@@ -1,0 +1,49 @@
+name: yggdrasil
+
+version: 0.0.1
+publish_to: none
+
+environment:
+  sdk: 2.18.2
+  flutter: 3.3.5
+
+dependencies:
+  flutter:
+    sdk: flutter
+  get_it: 7.2.0
+  theme_tailor_annotation: 1.0.3
+
+dev_dependencies:
+  # Run `flutter pub run build_runner build --delete-conflicting-outputs` in order to generate stuff.
+  build_runner: 2.3.0
+  fh_lints:
+    git:
+      ref: master # to-branch-script-tag
+      url: git@github.com:futurehomeno/pubdev_registry.git
+      path: packages/fh_lints
+  flutter_test:
+    sdk: flutter
+  theme_tailor: 1.0.8
+
+flutter:
+  fonts:
+    - family: WorkSans
+      fonts:
+        - asset: assets/fonts/WorkSans-Black.ttf
+        - asset: assets/fonts/WorkSans-BlackItalic.ttf
+        - asset: assets/fonts/WorkSans-Bold.ttf
+        - asset: assets/fonts/WorkSans-BoldItalic.ttf
+        - asset: assets/fonts/WorkSans-ExtraBold.ttf
+        - asset: assets/fonts/WorkSans-ExtraBoldItalic.ttf
+        - asset: assets/fonts/WorkSans-ExtraLight.ttf
+        - asset: assets/fonts/WorkSans-ExtraLightItalic.ttf
+        - asset: assets/fonts/WorkSans-Italic.ttf
+        - asset: assets/fonts/WorkSans-Light.ttf
+        - asset: assets/fonts/WorkSans-LightItalic.ttf
+        - asset: assets/fonts/WorkSans-Medium.ttf
+        - asset: assets/fonts/WorkSans-MediumItalic.ttf
+        - asset: assets/fonts/WorkSans-Regular.ttf
+        - asset: assets/fonts/WorkSans-SemiBold.ttf
+        - asset: assets/fonts/WorkSans-SemiBoldItalic.ttf
+        - asset: assets/fonts/WorkSans-Thin.ttf
+        - asset: assets/fonts/WorkSans-ThinItalic.ttf

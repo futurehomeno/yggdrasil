@@ -1,0 +1,10 @@
+targets:
+  $default:
+    builders:
+      theme_tailor:
+        options:
+          themes:
+            - consumerLight
+            - consumerDark
+            - professionalLight
+            - professionalDark
