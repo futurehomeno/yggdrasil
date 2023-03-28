@@ -1,13 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:theme_tailor_annotation/theme_tailor_annotation.dart';
 
-import 'yg_border.dart';
-import 'yg_color.dart';
-import 'yg_dimensions.dart';
-import 'yg_gradients.dart';
-import 'yg_radii.dart';
-import 'yg_shadows.dart';
-import 'yg_text_styles.dart';
+import 'tokens/_tokens.dart';
 
 part 'tokens.tailor.dart';
 
