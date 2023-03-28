@@ -25,32 +25,21 @@ abstract class YgButton extends StatelessWidget {
   Widget build(BuildContext context) {
     final YgButtonStyle style = defaultStyleOf(context);
 
-    return ConstrainedBox(
-      constraints: const BoxConstraints.tightFor(height: 50.0),
-      child: Material(
-        textStyle: style.textStyle,
-        color: style.backgroundColor,
-        shape: style.shape,
-        child: InkWell(
-          onTap: onPressed,
-          onLongPress: onLongPress,
-          onHover: onHover,
-          onFocusChange: onFocusChange,
-          customBorder: style.shape,
-          child: Align(
-            alignment: Alignment.center,
-            child: child,
-          ),
+    return Material(
+      textStyle: style.textStyle,
+      color: style.backgroundColor,
+      shape: style.shape,
+      child: InkWell(
+        onTap: onPressed,
+        onLongPress: onLongPress,
+        onHover: onHover,
+        onFocusChange: onFocusChange,
+        customBorder: style.shape,
+        child: Padding(
+          padding: style.padding,
+          child: child,
         ),
       ),
     );
   }
-}
-
-enum YgButtonVariant {
-  primary,
-  secondary,
-  text,
-  link,
-  critical;
 }

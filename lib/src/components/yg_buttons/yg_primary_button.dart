@@ -25,6 +25,7 @@ class YgPrimaryButton extends YgButton {
         gradient: context.buttonThemes.primaryButtonTheme.borderGradient,
         borderRadius: context.buttonThemes.primaryButtonTheme.borderRadius,
       ),
+      padding: context.buttonThemes.buttonPadding,
     );
   }
 }
