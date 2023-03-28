@@ -20,7 +20,7 @@ class Yggdrasil extends StatelessWidget {
       title: 'Yggdrasil',
       theme: ThemeData(
         brightness: Brightness.light,
-        extensions: YgTheme.themes,
+        extensions: <YgTheme>[YgTheme.consumerLight],
       ),
       home: const HomeScreen(),
       navigatorKey: YgRouter.navigatorKey,

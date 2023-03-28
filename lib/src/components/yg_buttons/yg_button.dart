@@ -1,6 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:yggdrasil/src/tokens/consumer_dark/_consumer_dark.dart';
-import 'package:yggdrasil/src/utils/_utils.dart';
 
 import 'yg_button_style.dart';
 
@@ -32,17 +30,13 @@ abstract class YgButton extends StatelessWidget {
       child: Material(
         textStyle: style.textStyle,
         color: style.backgroundColor,
-        shape: YgRoundedRectangleGradientBorder(
-          borderRadius: style.borderRadius,
-          gradient: FhGradients.actionPrimaryDefault,
-          width: 1.0,
-        ),
+        shape: style.shape,
         child: InkWell(
           onTap: onPressed,
           onLongPress: onLongPress,
           onHover: onHover,
           onFocusChange: onFocusChange,
-          borderRadius: style.borderRadius,
+          customBorder: style.shape,
           child: Align(
             alignment: Alignment.center,
             child: child,

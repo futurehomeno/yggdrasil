@@ -20,11 +20,11 @@ class YgPrimaryButton extends YgButton {
     return YgButtonStyle(
       backgroundColor: context.buttonThemes.primaryButtonTheme.backgroundColor,
       textStyle: context.buttonThemes.primaryButtonTheme.textStyle,
-      shape: YgGradientBoxBorder(
+      shape: YgRoundedRectangleGradientBorder(
         width: context.buttonThemes.primaryButtonTheme.borderWidth,
         gradient: context.buttonThemes.primaryButtonTheme.borderGradient,
+        borderRadius: context.buttonThemes.primaryButtonTheme.borderRadius,
       ),
-      borderRadius: context.buttonThemes.primaryButtonTheme.borderRadius,
     );
   }
 }

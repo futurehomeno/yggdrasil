@@ -17,25 +17,9 @@ class YgRoundedRectangleGradientBorder extends RoundedRectangleBorder {
           borderRadius.resolve(textDirection).toRRect(rect), side.toPaint());
     } else {
       final Paint paint = Paint()..shader = gradient.createShader(rect);
-      if (side.strokeAlign == StrokeAlign.inside) {
-        final RRect outer = borderRadius.resolve(textDirection).toRRect(rect);
-        final RRect inner = outer.deflate(width);
-        canvas.drawDRRect(outer, inner, paint);
-      } else {
-        final Rect inner;
-        final Rect outer;
-        if (side.strokeAlign == StrokeAlign.center) {
-          inner = rect.deflate(width / 2);
-          outer = rect.inflate(width / 2);
-        } else {
-          inner = rect;
-          outer = rect.inflate(width);
-        }
-        final BorderRadius borderRadiusResolved =
-            borderRadius.resolve(textDirection);
-        canvas.drawDRRect(borderRadiusResolved.toRRect(outer),
-            borderRadiusResolved.toRRect(inner), paint);
-      }
+      final RRect outer = borderRadius.resolve(textDirection).toRRect(rect);
+      final RRect inner = outer.deflate(width);
+      canvas.drawDRRect(outer, inner, paint);
     }
   }
 

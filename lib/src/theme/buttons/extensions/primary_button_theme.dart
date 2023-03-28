@@ -21,10 +21,18 @@ class _$PrimaryButtonTheme {
   ];
 
   static List<TextStyle> textStyle = <TextStyle>[
-    consumer_light.FhTextStyles.paragraph2Medium,
-    consumer_dark.FhTextStyles.paragraph2Medium,
-    professional_light.FhTextStyles.paragraph2Medium,
-    professional_dark.FhTextStyles.paragraph2Medium,
+    consumer_light.FhTextStyles.paragraph3Bold.copyWith(
+      color: consumer_light.FhColors.textDefault,
+    ),
+    consumer_dark.FhTextStyles.paragraph3Bold.copyWith(
+      color: consumer_dark.FhColors.textDefault,
+    ),
+    professional_light.FhTextStyles.paragraph3Bold.copyWith(
+      color: professional_light.FhColors.textDefault,
+    ),
+    professional_dark.FhTextStyles.paragraph3Bold.copyWith(
+      color: professional_dark.FhColors.textDefault,
+    ),
   ];
 
   static List<double> borderWidth = <double>[
