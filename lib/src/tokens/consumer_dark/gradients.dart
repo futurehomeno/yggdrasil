@@ -6,12 +6,12 @@ class FhGradients {
   const FhGradients._();
 
   /// Default color for Dashboard background.
-  static const backgroundGradient = LinearGradient(
-    begin: Alignment(0, 1),
-    end: Alignment(2.220446049250313e-16, -1),
+  static const LinearGradient backgroundGradient = LinearGradient(
+    begin: Alignment(0.0, 1.0),
+    end: Alignment(2.220446049250313e-16, -1.0),
     stops: [
-      0,
-      1,
+      0.0,
+      1.0,
     ],
     colors: [
       Color(0xfff1f3fa),
@@ -19,12 +19,12 @@ class FhGradients {
     ],
   );
 
-  static const actionPrimaryDefault = LinearGradient(
-    begin: Alignment(0, 1),
-    end: Alignment(2.220446049250313e-16, -1),
+  static const LinearGradient actionPrimaryDefault = LinearGradient(
+    begin: Alignment(0.0, 1.0),
+    end: Alignment(2.220446049250313e-16, -1.0),
     stops: [
-      0,
-      1,
+      0.0,
+      1.0,
     ],
     colors: [
       Color(0xff0bf9bd),
@@ -32,12 +32,12 @@ class FhGradients {
     ],
   );
 
-  static const actionPrimaryHovered = LinearGradient(
-    begin: Alignment(0, 1),
-    end: Alignment(2.220446049250313e-16, -1),
+  static const LinearGradient actionPrimaryHovered = LinearGradient(
+    begin: Alignment(0.0, 1.0),
+    end: Alignment(2.220446049250313e-16, -1.0),
     stops: [
-      0,
-      1,
+      0.0,
+      1.0,
     ],
     colors: [
       Color(0xff05dba6),
@@ -45,12 +45,12 @@ class FhGradients {
     ],
   );
 
-  static const actionPrimaryPressed = LinearGradient(
-    begin: Alignment(0, 1),
-    end: Alignment(2.220446049250313e-16, -1),
+  static const LinearGradient actionPrimaryPressed = LinearGradient(
+    begin: Alignment(0.0, 1.0),
+    end: Alignment(2.220446049250313e-16, -1.0),
     stops: [
-      0,
-      1,
+      0.0,
+      1.0,
     ],
     colors: [
       Color(0xff05dba6),
@@ -58,12 +58,12 @@ class FhGradients {
     ],
   );
 
-  static const actionPrimarySelected = LinearGradient(
-    begin: Alignment(0, 1),
-    end: Alignment(2.220446049250313e-16, -1),
+  static const LinearGradient actionPrimarySelected = LinearGradient(
+    begin: Alignment(0.0, 1.0),
+    end: Alignment(2.220446049250313e-16, -1.0),
     stops: [
-      0,
-      1,
+      0.0,
+      1.0,
     ],
     colors: [
       Color(0xff05c192),
@@ -71,12 +71,12 @@ class FhGradients {
     ],
   );
 
-  static const actionSecondarySelected = LinearGradient(
-    begin: Alignment(0, 1),
-    end: Alignment(2.220446049250313e-16, -1),
+  static const LinearGradient actionSecondarySelected = LinearGradient(
+    begin: Alignment(0.0, 1.0),
+    end: Alignment(2.220446049250313e-16, -1.0),
     stops: [
-      0,
-      1,
+      0.0,
+      1.0,
     ],
     colors: [
       Color(0xffb35f02),
@@ -84,12 +84,12 @@ class FhGradients {
     ],
   );
 
-  static const actionSecondaryPressed = LinearGradient(
-    begin: Alignment(0, 1),
-    end: Alignment(2.220446049250313e-16, -1),
+  static const LinearGradient actionSecondaryPressed = LinearGradient(
+    begin: Alignment(0.0, 1.0),
+    end: Alignment(2.220446049250313e-16, -1.0),
     stops: [
-      0,
-      1,
+      0.0,
+      1.0,
     ],
     colors: [
       Color(0xffd27102),
@@ -97,12 +97,12 @@ class FhGradients {
     ],
   );
 
-  static const actionSecondaryHovered = LinearGradient(
-    begin: Alignment(0, 1),
-    end: Alignment(2.220446049250313e-16, -1),
+  static const LinearGradient actionSecondaryHovered = LinearGradient(
+    begin: Alignment(0.0, 1.0),
+    end: Alignment(2.220446049250313e-16, -1.0),
     stops: [
-      0,
-      1,
+      0.0,
+      1.0,
     ],
     colors: [
       Color(0xffd27102),
@@ -110,12 +110,12 @@ class FhGradients {
     ],
   );
 
-  static const actionSecondaryDefault = LinearGradient(
-    begin: Alignment(0, 1),
-    end: Alignment(2.220446049250313e-16, -1),
+  static const LinearGradient actionSecondaryDefault = LinearGradient(
+    begin: Alignment(0.0, 1.0),
+    end: Alignment(2.220446049250313e-16, -1.0),
     stops: [
-      0,
-      1,
+      0.0,
+      1.0,
     ],
     colors: [
       Color(0xfff28102),

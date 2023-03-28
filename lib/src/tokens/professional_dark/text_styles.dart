@@ -10,9 +10,9 @@ class FhTextStyles {
     fontFamily: "Work Sans",
     fontWeight: FontWeight.w700,
     fontStyle: FontStyle.normal,
-    fontSize: 48,
+    fontSize: 48.0,
     decoration: TextDecoration.none,
-    letterSpacing: 0,
+    letterSpacing: 0.0,
     height: 1.25,
     leadingDistribution: TextLeadingDistribution.even,
   );
@@ -22,9 +22,9 @@ class FhTextStyles {
     fontFamily: "Work Sans",
     fontWeight: FontWeight.w600,
     fontStyle: FontStyle.normal,
-    fontSize: 48,
+    fontSize: 48.0,
     decoration: TextDecoration.none,
-    letterSpacing: 0,
+    letterSpacing: 0.0,
     height: 1.25,
     leadingDistribution: TextLeadingDistribution.even,
   );
@@ -34,9 +34,9 @@ class FhTextStyles {
     fontFamily: "Work Sans",
     fontWeight: FontWeight.w400,
     fontStyle: FontStyle.normal,
-    fontSize: 48,
+    fontSize: 48.0,
     decoration: TextDecoration.none,
-    letterSpacing: 0,
+    letterSpacing: 0.0,
     height: 1.25,
     leadingDistribution: TextLeadingDistribution.even,
   );
@@ -48,7 +48,7 @@ class FhTextStyles {
     fontStyle: FontStyle.normal,
     fontSize: 12,
     decoration: TextDecoration.none,
-    letterSpacing: 0,
+    letterSpacing: 0.0,
     height: 1.3333333333333333,
     leadingDistribution: TextLeadingDistribution.even,
   );
@@ -60,7 +60,7 @@ class FhTextStyles {
     fontStyle: FontStyle.normal,
     fontSize: 12,
     decoration: TextDecoration.none,
-    letterSpacing: 0,
+    letterSpacing: 0.0,
     height: 1.3333333333333333,
     leadingDistribution: TextLeadingDistribution.even,
   );
@@ -72,7 +72,7 @@ class FhTextStyles {
     fontStyle: FontStyle.normal,
     fontSize: 12,
     decoration: TextDecoration.none,
-    letterSpacing: 0,
+    letterSpacing: 0.0,
     height: 1.3333333333333333,
     leadingDistribution: TextLeadingDistribution.even,
   );
@@ -84,7 +84,7 @@ class FhTextStyles {
     fontStyle: FontStyle.normal,
     fontSize: 14,
     decoration: TextDecoration.none,
-    letterSpacing: 0,
+    letterSpacing: 0.0,
     height: 1.4285714285714286,
     leadingDistribution: TextLeadingDistribution.even,
   );
@@ -96,7 +96,7 @@ class FhTextStyles {
     fontStyle: FontStyle.normal,
     fontSize: 14,
     decoration: TextDecoration.none,
-    letterSpacing: 0,
+    letterSpacing: 0.0,
     height: 1.4285714285714286,
     leadingDistribution: TextLeadingDistribution.even,
   );
@@ -108,7 +108,7 @@ class FhTextStyles {
     fontStyle: FontStyle.normal,
     fontSize: 14,
     decoration: TextDecoration.none,
-    letterSpacing: 0,
+    letterSpacing: 0.0,
     height: 1.4285714285714286,
     leadingDistribution: TextLeadingDistribution.even,
   );
@@ -120,7 +120,7 @@ class FhTextStyles {
     fontStyle: FontStyle.normal,
     fontSize: 16,
     decoration: TextDecoration.none,
-    letterSpacing: 0,
+    letterSpacing: 0.0,
     height: 1.5,
     leadingDistribution: TextLeadingDistribution.even,
   );
@@ -132,7 +132,7 @@ class FhTextStyles {
     fontStyle: FontStyle.normal,
     fontSize: 16,
     decoration: TextDecoration.none,
-    letterSpacing: 0,
+    letterSpacing: 0.0,
     height: 1.5,
     leadingDistribution: TextLeadingDistribution.even,
   );
@@ -144,7 +144,7 @@ class FhTextStyles {
     fontStyle: FontStyle.normal,
     fontSize: 16,
     decoration: TextDecoration.none,
-    letterSpacing: 0,
+    letterSpacing: 0.0,
     height: 1.5,
     leadingDistribution: TextLeadingDistribution.even,
   );
@@ -156,7 +156,7 @@ class FhTextStyles {
     fontStyle: FontStyle.normal,
     fontSize: 20,
     decoration: TextDecoration.none,
-    letterSpacing: 0,
+    letterSpacing: 0.0,
     height: 1.4,
     leadingDistribution: TextLeadingDistribution.even,
   );
@@ -168,7 +168,7 @@ class FhTextStyles {
     fontStyle: FontStyle.normal,
     fontSize: 20,
     decoration: TextDecoration.none,
-    letterSpacing: 0,
+    letterSpacing: 0.0,
     height: 1.4,
     leadingDistribution: TextLeadingDistribution.even,
   );
@@ -180,7 +180,7 @@ class FhTextStyles {
     fontStyle: FontStyle.normal,
     fontSize: 20,
     decoration: TextDecoration.none,
-    letterSpacing: 0,
+    letterSpacing: 0.0,
     height: 1.4,
     leadingDistribution: TextLeadingDistribution.even,
   );
@@ -192,7 +192,7 @@ class FhTextStyles {
     fontStyle: FontStyle.normal,
     fontSize: 24,
     decoration: TextDecoration.none,
-    letterSpacing: 0,
+    letterSpacing: 0.0,
     height: 1.1666666666666667,
     leadingDistribution: TextLeadingDistribution.even,
   );
@@ -204,7 +204,7 @@ class FhTextStyles {
     fontStyle: FontStyle.normal,
     fontSize: 24,
     decoration: TextDecoration.none,
-    letterSpacing: 0,
+    letterSpacing: 0.0,
     height: 1.1666666666666667,
     leadingDistribution: TextLeadingDistribution.even,
   );
@@ -216,7 +216,7 @@ class FhTextStyles {
     fontStyle: FontStyle.normal,
     fontSize: 24,
     decoration: TextDecoration.none,
-    letterSpacing: 0,
+    letterSpacing: 0.0,
     height: 1.1666666666666667,
     leadingDistribution: TextLeadingDistribution.even,
   );
@@ -228,8 +228,8 @@ class FhTextStyles {
     fontStyle: FontStyle.normal,
     fontSize: 28,
     decoration: TextDecoration.none,
-    letterSpacing: 0,
-    height: 1,
+    letterSpacing: 0.0,
+    height: 1.0,
     leadingDistribution: TextLeadingDistribution.even,
   );
 
@@ -240,8 +240,8 @@ class FhTextStyles {
     fontStyle: FontStyle.normal,
     fontSize: 28,
     decoration: TextDecoration.none,
-    letterSpacing: 0,
-    height: 1,
+    letterSpacing: 0.0,
+    height: 1.0,
     leadingDistribution: TextLeadingDistribution.even,
   );
 
@@ -252,8 +252,8 @@ class FhTextStyles {
     fontStyle: FontStyle.normal,
     fontSize: 28,
     decoration: TextDecoration.none,
-    letterSpacing: 0,
-    height: 1,
+    letterSpacing: 0.0,
+    height: 1.0,
     leadingDistribution: TextLeadingDistribution.even,
   );
 
@@ -264,8 +264,8 @@ class FhTextStyles {
     fontStyle: FontStyle.normal,
     fontSize: 32,
     decoration: TextDecoration.none,
-    letterSpacing: 0,
-    height: 1,
+    letterSpacing: 0.0,
+    height: 1.0,
     leadingDistribution: TextLeadingDistribution.even,
   );
 
@@ -276,8 +276,8 @@ class FhTextStyles {
     fontStyle: FontStyle.normal,
     fontSize: 32,
     decoration: TextDecoration.none,
-    letterSpacing: 0,
-    height: 1,
+    letterSpacing: 0.0,
+    height: 1.0,
     leadingDistribution: TextLeadingDistribution.even,
   );
 
@@ -288,8 +288,8 @@ class FhTextStyles {
     fontStyle: FontStyle.normal,
     fontSize: 32,
     decoration: TextDecoration.none,
-    letterSpacing: 0,
-    height: 1,
+    letterSpacing: 0.0,
+    height: 1.0,
     leadingDistribution: TextLeadingDistribution.even,
   );
 
@@ -300,7 +300,7 @@ class FhTextStyles {
     fontStyle: FontStyle.normal,
     fontSize: 16,
     decoration: TextDecoration.none,
-    letterSpacing: 0,
+    letterSpacing: 0.0,
     height: 1.5,
     leadingDistribution: TextLeadingDistribution.even,
   );
@@ -312,7 +312,7 @@ class FhTextStyles {
     fontStyle: FontStyle.normal,
     fontSize: 16,
     decoration: TextDecoration.none,
-    letterSpacing: 0,
+    letterSpacing: 0.0,
     height: 1.5,
     leadingDistribution: TextLeadingDistribution.even,
   );
@@ -324,7 +324,7 @@ class FhTextStyles {
     fontStyle: FontStyle.normal,
     fontSize: 16,
     decoration: TextDecoration.none,
-    letterSpacing: 0,
+    letterSpacing: 0.0,
     height: 1.5,
     leadingDistribution: TextLeadingDistribution.even,
   );
@@ -336,7 +336,7 @@ class FhTextStyles {
     fontStyle: FontStyle.normal,
     fontSize: 20,
     decoration: TextDecoration.none,
-    letterSpacing: 0,
+    letterSpacing: 0.0,
     height: 1.4,
     leadingDistribution: TextLeadingDistribution.even,
   );
@@ -348,7 +348,7 @@ class FhTextStyles {
     fontStyle: FontStyle.normal,
     fontSize: 20,
     decoration: TextDecoration.none,
-    letterSpacing: 0,
+    letterSpacing: 0.0,
     height: 1.4,
     leadingDistribution: TextLeadingDistribution.even,
   );
@@ -360,7 +360,7 @@ class FhTextStyles {
     fontStyle: FontStyle.normal,
     fontSize: 20,
     decoration: TextDecoration.none,
-    letterSpacing: 0,
+    letterSpacing: 0.0,
     height: 1.4,
     leadingDistribution: TextLeadingDistribution.even,
   );
@@ -372,7 +372,7 @@ class FhTextStyles {
     fontStyle: FontStyle.normal,
     fontSize: 20,
     decoration: TextDecoration.none,
-    letterSpacing: 0,
+    letterSpacing: 0.0,
     height: 1.4,
     leadingDistribution: TextLeadingDistribution.even,
   );
@@ -384,7 +384,7 @@ class FhTextStyles {
     fontStyle: FontStyle.normal,
     fontSize: 20,
     decoration: TextDecoration.none,
-    letterSpacing: 0,
+    letterSpacing: 0.0,
     height: 1.4,
     leadingDistribution: TextLeadingDistribution.even,
   );
@@ -396,7 +396,7 @@ class FhTextStyles {
     fontStyle: FontStyle.normal,
     fontSize: 20,
     decoration: TextDecoration.none,
-    letterSpacing: 0,
+    letterSpacing: 0.0,
     height: 1.4,
     leadingDistribution: TextLeadingDistribution.even,
   );
@@ -408,7 +408,7 @@ class FhTextStyles {
     fontStyle: FontStyle.normal,
     fontSize: 24,
     decoration: TextDecoration.none,
-    letterSpacing: 0,
+    letterSpacing: 0.0,
     height: 1.1666666666666667,
     leadingDistribution: TextLeadingDistribution.even,
   );
@@ -420,7 +420,7 @@ class FhTextStyles {
     fontStyle: FontStyle.normal,
     fontSize: 24,
     decoration: TextDecoration.none,
-    letterSpacing: 0,
+    letterSpacing: 0.0,
     height: 1.1666666666666667,
     leadingDistribution: TextLeadingDistribution.even,
   );
@@ -432,7 +432,7 @@ class FhTextStyles {
     fontStyle: FontStyle.normal,
     fontSize: 24,
     decoration: TextDecoration.none,
-    letterSpacing: 0,
+    letterSpacing: 0.0,
     height: 1.1666666666666667,
     leadingDistribution: TextLeadingDistribution.even,
   );
@@ -444,8 +444,8 @@ class FhTextStyles {
     fontStyle: FontStyle.normal,
     fontSize: 40,
     decoration: TextDecoration.none,
-    letterSpacing: 0,
-    height: 1,
+    letterSpacing: 0.0,
+    height: 1.0,
     leadingDistribution: TextLeadingDistribution.even,
   );
 
@@ -456,8 +456,8 @@ class FhTextStyles {
     fontStyle: FontStyle.normal,
     fontSize: 40,
     decoration: TextDecoration.none,
-    letterSpacing: 0,
-    height: 1,
+    letterSpacing: 0.0,
+    height: 1.0,
     leadingDistribution: TextLeadingDistribution.even,
   );
 
@@ -468,8 +468,8 @@ class FhTextStyles {
     fontStyle: FontStyle.normal,
     fontSize: 40,
     decoration: TextDecoration.none,
-    letterSpacing: 0,
-    height: 1,
+    letterSpacing: 0.0,
+    height: 1.0,
     leadingDistribution: TextLeadingDistribution.even,
   );
 }

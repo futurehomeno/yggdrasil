@@ -1,0 +1,564 @@
+// coverage:ignore-file
+// GENERATED CODE - DO NOT MODIFY BY HAND
+// ignore_for_file: type=lint, unused_element
+
+part of 'yg_text_styles.dart';
+
+// **************************************************************************
+// ThemeTailorGenerator
+// **************************************************************************
+
+class YgTextStyle extends ThemeExtension<YgTextStyle> {
+  const YgTextStyle({
+    required this.caption1Regular,
+    required this.caption1Medium,
+    required this.caption1Bold,
+    required this.paragraph3Regular,
+    required this.paragraph3Medium,
+    required this.paragraph3Bold,
+    required this.sectionHeading3Regular,
+    required this.sectionHeading3Medium,
+    required this.sectionHeading3Bold,
+    required this.sectionHeading2Regular,
+    required this.sectionHeading2Medium,
+    required this.sectionHeading2Bold,
+    required this.sectionHeading1Regular,
+    required this.sectionHeading1Medium,
+    required this.sectionHeading1Bold,
+    required this.pageHeading1Regular,
+    required this.pageHeading1Medium,
+    required this.pageHeading1Bold,
+    required this.display3Regular,
+    required this.display3Medium,
+    required this.display3Bold,
+    required this.display2Regular,
+    required this.display2Bold,
+    required this.display2Medium,
+    required this.display1Bold,
+    required this.display1Medium,
+    required this.display1Regular,
+    required this.paragraph2Regular,
+    required this.paragraph2Medium,
+    required this.paragraph2Bold,
+    required this.paragraph1Medium,
+    required this.paragraph1Bold,
+    required this.paragraph1Regular,
+    required this.pageHeading3Medium,
+    required this.pageHeading3Bold,
+    required this.pageHeading3Regular,
+    required this.pageHeading2Regular,
+    required this.pageHeading2Medium,
+    required this.pageHeading2Bold,
+  });
+
+  final TextStyle caption1Regular;
+  final TextStyle caption1Medium;
+  final TextStyle caption1Bold;
+  final TextStyle paragraph3Regular;
+  final TextStyle paragraph3Medium;
+  final TextStyle paragraph3Bold;
+  final TextStyle sectionHeading3Regular;
+  final TextStyle sectionHeading3Medium;
+  final TextStyle sectionHeading3Bold;
+  final TextStyle sectionHeading2Regular;
+  final TextStyle sectionHeading2Medium;
+  final TextStyle sectionHeading2Bold;
+  final TextStyle sectionHeading1Regular;
+  final TextStyle sectionHeading1Medium;
+  final TextStyle sectionHeading1Bold;
+  final TextStyle pageHeading1Regular;
+  final TextStyle pageHeading1Medium;
+  final TextStyle pageHeading1Bold;
+  final TextStyle display3Regular;
+  final TextStyle display3Medium;
+  final TextStyle display3Bold;
+  final TextStyle display2Regular;
+  final TextStyle display2Bold;
+  final TextStyle display2Medium;
+  final TextStyle display1Bold;
+  final TextStyle display1Medium;
+  final TextStyle display1Regular;
+  final TextStyle paragraph2Regular;
+  final TextStyle paragraph2Medium;
+  final TextStyle paragraph2Bold;
+  final TextStyle paragraph1Medium;
+  final TextStyle paragraph1Bold;
+  final TextStyle paragraph1Regular;
+  final TextStyle pageHeading3Medium;
+  final TextStyle pageHeading3Bold;
+  final TextStyle pageHeading3Regular;
+  final TextStyle pageHeading2Regular;
+  final TextStyle pageHeading2Medium;
+  final TextStyle pageHeading2Bold;
+
+  static final YgTextStyle consumerLight = YgTextStyle(
+    caption1Regular: _$YgTextStyle.caption1Regular[0],
+    caption1Medium: _$YgTextStyle.caption1Medium[0],
+    caption1Bold: _$YgTextStyle.caption1Bold[0],
+    paragraph3Regular: _$YgTextStyle.paragraph3Regular[0],
+    paragraph3Medium: _$YgTextStyle.paragraph3Medium[0],
+    paragraph3Bold: _$YgTextStyle.paragraph3Bold[0],
+    sectionHeading3Regular: _$YgTextStyle.sectionHeading3Regular[0],
+    sectionHeading3Medium: _$YgTextStyle.sectionHeading3Medium[0],
+    sectionHeading3Bold: _$YgTextStyle.sectionHeading3Bold[0],
+    sectionHeading2Regular: _$YgTextStyle.sectionHeading2Regular[0],
+    sectionHeading2Medium: _$YgTextStyle.sectionHeading2Medium[0],
+    sectionHeading2Bold: _$YgTextStyle.sectionHeading2Bold[0],
+    sectionHeading1Regular: _$YgTextStyle.sectionHeading1Regular[0],
+    sectionHeading1Medium: _$YgTextStyle.sectionHeading1Medium[0],
+    sectionHeading1Bold: _$YgTextStyle.sectionHeading1Bold[0],
+    pageHeading1Regular: _$YgTextStyle.pageHeading1Regular[0],
+    pageHeading1Medium: _$YgTextStyle.pageHeading1Medium[0],
+    pageHeading1Bold: _$YgTextStyle.pageHeading1Bold[0],
+    display3Regular: _$YgTextStyle.display3Regular[0],
+    display3Medium: _$YgTextStyle.display3Medium[0],
+    display3Bold: _$YgTextStyle.display3Bold[0],
+    display2Regular: _$YgTextStyle.display2Regular[0],
+    display2Bold: _$YgTextStyle.display2Bold[0],
+    display2Medium: _$YgTextStyle.display2Medium[0],
+    display1Bold: _$YgTextStyle.display1Bold[0],
+    display1Medium: _$YgTextStyle.display1Medium[0],
+    display1Regular: _$YgTextStyle.display1Regular[0],
+    paragraph2Regular: _$YgTextStyle.paragraph2Regular[0],
+    paragraph2Medium: _$YgTextStyle.paragraph2Medium[0],
+    paragraph2Bold: _$YgTextStyle.paragraph2Bold[0],
+    paragraph1Medium: _$YgTextStyle.paragraph1Medium[0],
+    paragraph1Bold: _$YgTextStyle.paragraph1Bold[0],
+    paragraph1Regular: _$YgTextStyle.paragraph1Regular[0],
+    pageHeading3Medium: _$YgTextStyle.pageHeading3Medium[0],
+    pageHeading3Bold: _$YgTextStyle.pageHeading3Bold[0],
+    pageHeading3Regular: _$YgTextStyle.pageHeading3Regular[0],
+    pageHeading2Regular: _$YgTextStyle.pageHeading2Regular[0],
+    pageHeading2Medium: _$YgTextStyle.pageHeading2Medium[0],
+    pageHeading2Bold: _$YgTextStyle.pageHeading2Bold[0],
+  );
+
+  static final YgTextStyle consumerDark = YgTextStyle(
+    caption1Regular: _$YgTextStyle.caption1Regular[1],
+    caption1Medium: _$YgTextStyle.caption1Medium[1],
+    caption1Bold: _$YgTextStyle.caption1Bold[1],
+    paragraph3Regular: _$YgTextStyle.paragraph3Regular[1],
+    paragraph3Medium: _$YgTextStyle.paragraph3Medium[1],
+    paragraph3Bold: _$YgTextStyle.paragraph3Bold[1],
+    sectionHeading3Regular: _$YgTextStyle.sectionHeading3Regular[1],
+    sectionHeading3Medium: _$YgTextStyle.sectionHeading3Medium[1],
+    sectionHeading3Bold: _$YgTextStyle.sectionHeading3Bold[1],
+    sectionHeading2Regular: _$YgTextStyle.sectionHeading2Regular[1],
+    sectionHeading2Medium: _$YgTextStyle.sectionHeading2Medium[1],
+    sectionHeading2Bold: _$YgTextStyle.sectionHeading2Bold[1],
+    sectionHeading1Regular: _$YgTextStyle.sectionHeading1Regular[1],
+    sectionHeading1Medium: _$YgTextStyle.sectionHeading1Medium[1],
+    sectionHeading1Bold: _$YgTextStyle.sectionHeading1Bold[1],
+    pageHeading1Regular: _$YgTextStyle.pageHeading1Regular[1],
+    pageHeading1Medium: _$YgTextStyle.pageHeading1Medium[1],
+    pageHeading1Bold: _$YgTextStyle.pageHeading1Bold[1],
+    display3Regular: _$YgTextStyle.display3Regular[1],
+    display3Medium: _$YgTextStyle.display3Medium[1],
+    display3Bold: _$YgTextStyle.display3Bold[1],
+    display2Regular: _$YgTextStyle.display2Regular[1],
+    display2Bold: _$YgTextStyle.display2Bold[1],
+    display2Medium: _$YgTextStyle.display2Medium[1],
+    display1Bold: _$YgTextStyle.display1Bold[1],
+    display1Medium: _$YgTextStyle.display1Medium[1],
+    display1Regular: _$YgTextStyle.display1Regular[1],
+    paragraph2Regular: _$YgTextStyle.paragraph2Regular[1],
+    paragraph2Medium: _$YgTextStyle.paragraph2Medium[1],
+    paragraph2Bold: _$YgTextStyle.paragraph2Bold[1],
+    paragraph1Medium: _$YgTextStyle.paragraph1Medium[1],
+    paragraph1Bold: _$YgTextStyle.paragraph1Bold[1],
+    paragraph1Regular: _$YgTextStyle.paragraph1Regular[1],
+    pageHeading3Medium: _$YgTextStyle.pageHeading3Medium[1],
+    pageHeading3Bold: _$YgTextStyle.pageHeading3Bold[1],
+    pageHeading3Regular: _$YgTextStyle.pageHeading3Regular[1],
+    pageHeading2Regular: _$YgTextStyle.pageHeading2Regular[1],
+    pageHeading2Medium: _$YgTextStyle.pageHeading2Medium[1],
+    pageHeading2Bold: _$YgTextStyle.pageHeading2Bold[1],
+  );
+
+  static final YgTextStyle professionalLight = YgTextStyle(
+    caption1Regular: _$YgTextStyle.caption1Regular[2],
+    caption1Medium: _$YgTextStyle.caption1Medium[2],
+    caption1Bold: _$YgTextStyle.caption1Bold[2],
+    paragraph3Regular: _$YgTextStyle.paragraph3Regular[2],
+    paragraph3Medium: _$YgTextStyle.paragraph3Medium[2],
+    paragraph3Bold: _$YgTextStyle.paragraph3Bold[2],
+    sectionHeading3Regular: _$YgTextStyle.sectionHeading3Regular[2],
+    sectionHeading3Medium: _$YgTextStyle.sectionHeading3Medium[2],
+    sectionHeading3Bold: _$YgTextStyle.sectionHeading3Bold[2],
+    sectionHeading2Regular: _$YgTextStyle.sectionHeading2Regular[2],
+    sectionHeading2Medium: _$YgTextStyle.sectionHeading2Medium[2],
+    sectionHeading2Bold: _$YgTextStyle.sectionHeading2Bold[2],
+    sectionHeading1Regular: _$YgTextStyle.sectionHeading1Regular[2],
+    sectionHeading1Medium: _$YgTextStyle.sectionHeading1Medium[2],
+    sectionHeading1Bold: _$YgTextStyle.sectionHeading1Bold[2],
+    pageHeading1Regular: _$YgTextStyle.pageHeading1Regular[2],
+    pageHeading1Medium: _$YgTextStyle.pageHeading1Medium[2],
+    pageHeading1Bold: _$YgTextStyle.pageHeading1Bold[2],
+    display3Regular: _$YgTextStyle.display3Regular[2],
+    display3Medium: _$YgTextStyle.display3Medium[2],
+    display3Bold: _$YgTextStyle.display3Bold[2],
+    display2Regular: _$YgTextStyle.display2Regular[2],
+    display2Bold: _$YgTextStyle.display2Bold[2],
+    display2Medium: _$YgTextStyle.display2Medium[2],
+    display1Bold: _$YgTextStyle.display1Bold[2],
+    display1Medium: _$YgTextStyle.display1Medium[2],
+    display1Regular: _$YgTextStyle.display1Regular[2],
+    paragraph2Regular: _$YgTextStyle.paragraph2Regular[2],
+    paragraph2Medium: _$YgTextStyle.paragraph2Medium[2],
+    paragraph2Bold: _$YgTextStyle.paragraph2Bold[2],
+    paragraph1Medium: _$YgTextStyle.paragraph1Medium[2],
+    paragraph1Bold: _$YgTextStyle.paragraph1Bold[2],
+    paragraph1Regular: _$YgTextStyle.paragraph1Regular[2],
+    pageHeading3Medium: _$YgTextStyle.pageHeading3Medium[2],
+    pageHeading3Bold: _$YgTextStyle.pageHeading3Bold[2],
+    pageHeading3Regular: _$YgTextStyle.pageHeading3Regular[2],
+    pageHeading2Regular: _$YgTextStyle.pageHeading2Regular[2],
+    pageHeading2Medium: _$YgTextStyle.pageHeading2Medium[2],
+    pageHeading2Bold: _$YgTextStyle.pageHeading2Bold[2],
+  );
+
+  static final YgTextStyle professionalDark = YgTextStyle(
+    caption1Regular: _$YgTextStyle.caption1Regular[3],
+    caption1Medium: _$YgTextStyle.caption1Medium[3],
+    caption1Bold: _$YgTextStyle.caption1Bold[3],
+    paragraph3Regular: _$YgTextStyle.paragraph3Regular[3],
+    paragraph3Medium: _$YgTextStyle.paragraph3Medium[3],
+    paragraph3Bold: _$YgTextStyle.paragraph3Bold[3],
+    sectionHeading3Regular: _$YgTextStyle.sectionHeading3Regular[3],
+    sectionHeading3Medium: _$YgTextStyle.sectionHeading3Medium[3],
+    sectionHeading3Bold: _$YgTextStyle.sectionHeading3Bold[3],
+    sectionHeading2Regular: _$YgTextStyle.sectionHeading2Regular[3],
+    sectionHeading2Medium: _$YgTextStyle.sectionHeading2Medium[3],
+    sectionHeading2Bold: _$YgTextStyle.sectionHeading2Bold[3],
+    sectionHeading1Regular: _$YgTextStyle.sectionHeading1Regular[3],
+    sectionHeading1Medium: _$YgTextStyle.sectionHeading1Medium[3],
+    sectionHeading1Bold: _$YgTextStyle.sectionHeading1Bold[3],
+    pageHeading1Regular: _$YgTextStyle.pageHeading1Regular[3],
+    pageHeading1Medium: _$YgTextStyle.pageHeading1Medium[3],
+    pageHeading1Bold: _$YgTextStyle.pageHeading1Bold[3],
+    display3Regular: _$YgTextStyle.display3Regular[3],
+    display3Medium: _$YgTextStyle.display3Medium[3],
+    display3Bold: _$YgTextStyle.display3Bold[3],
+    display2Regular: _$YgTextStyle.display2Regular[3],
+    display2Bold: _$YgTextStyle.display2Bold[3],
+    display2Medium: _$YgTextStyle.display2Medium[3],
+    display1Bold: _$YgTextStyle.display1Bold[3],
+    display1Medium: _$YgTextStyle.display1Medium[3],
+    display1Regular: _$YgTextStyle.display1Regular[3],
+    paragraph2Regular: _$YgTextStyle.paragraph2Regular[3],
+    paragraph2Medium: _$YgTextStyle.paragraph2Medium[3],
+    paragraph2Bold: _$YgTextStyle.paragraph2Bold[3],
+    paragraph1Medium: _$YgTextStyle.paragraph1Medium[3],
+    paragraph1Bold: _$YgTextStyle.paragraph1Bold[3],
+    paragraph1Regular: _$YgTextStyle.paragraph1Regular[3],
+    pageHeading3Medium: _$YgTextStyle.pageHeading3Medium[3],
+    pageHeading3Bold: _$YgTextStyle.pageHeading3Bold[3],
+    pageHeading3Regular: _$YgTextStyle.pageHeading3Regular[3],
+    pageHeading2Regular: _$YgTextStyle.pageHeading2Regular[3],
+    pageHeading2Medium: _$YgTextStyle.pageHeading2Medium[3],
+    pageHeading2Bold: _$YgTextStyle.pageHeading2Bold[3],
+  );
+
+  static final themes = [
+    consumerLight,
+    consumerDark,
+    professionalLight,
+    professionalDark,
+  ];
+
+  @override
+  YgTextStyle copyWith({
+    TextStyle? caption1Regular,
+    TextStyle? caption1Medium,
+    TextStyle? caption1Bold,
+    TextStyle? paragraph3Regular,
+    TextStyle? paragraph3Medium,
+    TextStyle? paragraph3Bold,
+    TextStyle? sectionHeading3Regular,
+    TextStyle? sectionHeading3Medium,
+    TextStyle? sectionHeading3Bold,
+    TextStyle? sectionHeading2Regular,
+    TextStyle? sectionHeading2Medium,
+    TextStyle? sectionHeading2Bold,
+    TextStyle? sectionHeading1Regular,
+    TextStyle? sectionHeading1Medium,
+    TextStyle? sectionHeading1Bold,
+    TextStyle? pageHeading1Regular,
+    TextStyle? pageHeading1Medium,
+    TextStyle? pageHeading1Bold,
+    TextStyle? display3Regular,
+    TextStyle? display3Medium,
+    TextStyle? display3Bold,
+    TextStyle? display2Regular,
+    TextStyle? display2Bold,
+    TextStyle? display2Medium,
+    TextStyle? display1Bold,
+    TextStyle? display1Medium,
+    TextStyle? display1Regular,
+    TextStyle? paragraph2Regular,
+    TextStyle? paragraph2Medium,
+    TextStyle? paragraph2Bold,
+    TextStyle? paragraph1Medium,
+    TextStyle? paragraph1Bold,
+    TextStyle? paragraph1Regular,
+    TextStyle? pageHeading3Medium,
+    TextStyle? pageHeading3Bold,
+    TextStyle? pageHeading3Regular,
+    TextStyle? pageHeading2Regular,
+    TextStyle? pageHeading2Medium,
+    TextStyle? pageHeading2Bold,
+  }) {
+    return YgTextStyle(
+      caption1Regular: caption1Regular ?? this.caption1Regular,
+      caption1Medium: caption1Medium ?? this.caption1Medium,
+      caption1Bold: caption1Bold ?? this.caption1Bold,
+      paragraph3Regular: paragraph3Regular ?? this.paragraph3Regular,
+      paragraph3Medium: paragraph3Medium ?? this.paragraph3Medium,
+      paragraph3Bold: paragraph3Bold ?? this.paragraph3Bold,
+      sectionHeading3Regular:
+          sectionHeading3Regular ?? this.sectionHeading3Regular,
+      sectionHeading3Medium:
+          sectionHeading3Medium ?? this.sectionHeading3Medium,
+      sectionHeading3Bold: sectionHeading3Bold ?? this.sectionHeading3Bold,
+      sectionHeading2Regular:
+          sectionHeading2Regular ?? this.sectionHeading2Regular,
+      sectionHeading2Medium:
+          sectionHeading2Medium ?? this.sectionHeading2Medium,
+      sectionHeading2Bold: sectionHeading2Bold ?? this.sectionHeading2Bold,
+      sectionHeading1Regular:
+          sectionHeading1Regular ?? this.sectionHeading1Regular,
+      sectionHeading1Medium:
+          sectionHeading1Medium ?? this.sectionHeading1Medium,
+      sectionHeading1Bold: sectionHeading1Bold ?? this.sectionHeading1Bold,
+      pageHeading1Regular: pageHeading1Regular ?? this.pageHeading1Regular,
+      pageHeading1Medium: pageHeading1Medium ?? this.pageHeading1Medium,
+      pageHeading1Bold: pageHeading1Bold ?? this.pageHeading1Bold,
+      display3Regular: display3Regular ?? this.display3Regular,
+      display3Medium: display3Medium ?? this.display3Medium,
+      display3Bold: display3Bold ?? this.display3Bold,
+      display2Regular: display2Regular ?? this.display2Regular,
+      display2Bold: display2Bold ?? this.display2Bold,
+      display2Medium: display2Medium ?? this.display2Medium,
+      display1Bold: display1Bold ?? this.display1Bold,
+      display1Medium: display1Medium ?? this.display1Medium,
+      display1Regular: display1Regular ?? this.display1Regular,
+      paragraph2Regular: paragraph2Regular ?? this.paragraph2Regular,
+      paragraph2Medium: paragraph2Medium ?? this.paragraph2Medium,
+      paragraph2Bold: paragraph2Bold ?? this.paragraph2Bold,
+      paragraph1Medium: paragraph1Medium ?? this.paragraph1Medium,
+      paragraph1Bold: paragraph1Bold ?? this.paragraph1Bold,
+      paragraph1Regular: paragraph1Regular ?? this.paragraph1Regular,
+      pageHeading3Medium: pageHeading3Medium ?? this.pageHeading3Medium,
+      pageHeading3Bold: pageHeading3Bold ?? this.pageHeading3Bold,
+      pageHeading3Regular: pageHeading3Regular ?? this.pageHeading3Regular,
+      pageHeading2Regular: pageHeading2Regular ?? this.pageHeading2Regular,
+      pageHeading2Medium: pageHeading2Medium ?? this.pageHeading2Medium,
+      pageHeading2Bold: pageHeading2Bold ?? this.pageHeading2Bold,
+    );
+  }
+
+  @override
+  YgTextStyle lerp(ThemeExtension<YgTextStyle>? other, double t) {
+    if (other is! YgTextStyle) return this;
+    return YgTextStyle(
+      caption1Regular:
+          TextStyle.lerp(caption1Regular, other.caption1Regular, t)!,
+      caption1Medium: TextStyle.lerp(caption1Medium, other.caption1Medium, t)!,
+      caption1Bold: TextStyle.lerp(caption1Bold, other.caption1Bold, t)!,
+      paragraph3Regular:
+          TextStyle.lerp(paragraph3Regular, other.paragraph3Regular, t)!,
+      paragraph3Medium:
+          TextStyle.lerp(paragraph3Medium, other.paragraph3Medium, t)!,
+      paragraph3Bold: TextStyle.lerp(paragraph3Bold, other.paragraph3Bold, t)!,
+      sectionHeading3Regular: TextStyle.lerp(
+          sectionHeading3Regular, other.sectionHeading3Regular, t)!,
+      sectionHeading3Medium: TextStyle.lerp(
+          sectionHeading3Medium, other.sectionHeading3Medium, t)!,
+      sectionHeading3Bold:
+          TextStyle.lerp(sectionHeading3Bold, other.sectionHeading3Bold, t)!,
+      sectionHeading2Regular: TextStyle.lerp(
+          sectionHeading2Regular, other.sectionHeading2Regular, t)!,
+      sectionHeading2Medium: TextStyle.lerp(
+          sectionHeading2Medium, other.sectionHeading2Medium, t)!,
+      sectionHeading2Bold:
+          TextStyle.lerp(sectionHeading2Bold, other.sectionHeading2Bold, t)!,
+      sectionHeading1Regular: TextStyle.lerp(
+          sectionHeading1Regular, other.sectionHeading1Regular, t)!,
+      sectionHeading1Medium: TextStyle.lerp(
+          sectionHeading1Medium, other.sectionHeading1Medium, t)!,
+      sectionHeading1Bold:
+          TextStyle.lerp(sectionHeading1Bold, other.sectionHeading1Bold, t)!,
+      pageHeading1Regular:
+          TextStyle.lerp(pageHeading1Regular, other.pageHeading1Regular, t)!,
+      pageHeading1Medium:
+          TextStyle.lerp(pageHeading1Medium, other.pageHeading1Medium, t)!,
+      pageHeading1Bold:
+          TextStyle.lerp(pageHeading1Bold, other.pageHeading1Bold, t)!,
+      display3Regular:
+          TextStyle.lerp(display3Regular, other.display3Regular, t)!,
+      display3Medium: TextStyle.lerp(display3Medium, other.display3Medium, t)!,
+      display3Bold: TextStyle.lerp(display3Bold, other.display3Bold, t)!,
+      display2Regular:
+          TextStyle.lerp(display2Regular, other.display2Regular, t)!,
+      display2Bold: TextStyle.lerp(display2Bold, other.display2Bold, t)!,
+      display2Medium: TextStyle.lerp(display2Medium, other.display2Medium, t)!,
+      display1Bold: TextStyle.lerp(display1Bold, other.display1Bold, t)!,
+      display1Medium: TextStyle.lerp(display1Medium, other.display1Medium, t)!,
+      display1Regular:
+          TextStyle.lerp(display1Regular, other.display1Regular, t)!,
+      paragraph2Regular:
+          TextStyle.lerp(paragraph2Regular, other.paragraph2Regular, t)!,
+      paragraph2Medium:
+          TextStyle.lerp(paragraph2Medium, other.paragraph2Medium, t)!,
+      paragraph2Bold: TextStyle.lerp(paragraph2Bold, other.paragraph2Bold, t)!,
+      paragraph1Medium:
+          TextStyle.lerp(paragraph1Medium, other.paragraph1Medium, t)!,
+      paragraph1Bold: TextStyle.lerp(paragraph1Bold, other.paragraph1Bold, t)!,
+      paragraph1Regular:
+          TextStyle.lerp(paragraph1Regular, other.paragraph1Regular, t)!,
+      pageHeading3Medium:
+          TextStyle.lerp(pageHeading3Medium, other.pageHeading3Medium, t)!,
+      pageHeading3Bold:
+          TextStyle.lerp(pageHeading3Bold, other.pageHeading3Bold, t)!,
+      pageHeading3Regular:
+          TextStyle.lerp(pageHeading3Regular, other.pageHeading3Regular, t)!,
+      pageHeading2Regular:
+          TextStyle.lerp(pageHeading2Regular, other.pageHeading2Regular, t)!,
+      pageHeading2Medium:
+          TextStyle.lerp(pageHeading2Medium, other.pageHeading2Medium, t)!,
+      pageHeading2Bold:
+          TextStyle.lerp(pageHeading2Bold, other.pageHeading2Bold, t)!,
+    );
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is YgTextStyle &&
+            const DeepCollectionEquality()
+                .equals(caption1Regular, other.caption1Regular) &&
+            const DeepCollectionEquality()
+                .equals(caption1Medium, other.caption1Medium) &&
+            const DeepCollectionEquality()
+                .equals(caption1Bold, other.caption1Bold) &&
+            const DeepCollectionEquality()
+                .equals(paragraph3Regular, other.paragraph3Regular) &&
+            const DeepCollectionEquality()
+                .equals(paragraph3Medium, other.paragraph3Medium) &&
+            const DeepCollectionEquality()
+                .equals(paragraph3Bold, other.paragraph3Bold) &&
+            const DeepCollectionEquality()
+                .equals(sectionHeading3Regular, other.sectionHeading3Regular) &&
+            const DeepCollectionEquality()
+                .equals(sectionHeading3Medium, other.sectionHeading3Medium) &&
+            const DeepCollectionEquality()
+                .equals(sectionHeading3Bold, other.sectionHeading3Bold) &&
+            const DeepCollectionEquality()
+                .equals(sectionHeading2Regular, other.sectionHeading2Regular) &&
+            const DeepCollectionEquality()
+                .equals(sectionHeading2Medium, other.sectionHeading2Medium) &&
+            const DeepCollectionEquality()
+                .equals(sectionHeading2Bold, other.sectionHeading2Bold) &&
+            const DeepCollectionEquality()
+                .equals(sectionHeading1Regular, other.sectionHeading1Regular) &&
+            const DeepCollectionEquality()
+                .equals(sectionHeading1Medium, other.sectionHeading1Medium) &&
+            const DeepCollectionEquality()
+                .equals(sectionHeading1Bold, other.sectionHeading1Bold) &&
+            const DeepCollectionEquality()
+                .equals(pageHeading1Regular, other.pageHeading1Regular) &&
+            const DeepCollectionEquality()
+                .equals(pageHeading1Medium, other.pageHeading1Medium) &&
+            const DeepCollectionEquality()
+                .equals(pageHeading1Bold, other.pageHeading1Bold) &&
+            const DeepCollectionEquality()
+                .equals(display3Regular, other.display3Regular) &&
+            const DeepCollectionEquality()
+                .equals(display3Medium, other.display3Medium) &&
+            const DeepCollectionEquality()
+                .equals(display3Bold, other.display3Bold) &&
+            const DeepCollectionEquality()
+                .equals(display2Regular, other.display2Regular) &&
+            const DeepCollectionEquality()
+                .equals(display2Bold, other.display2Bold) &&
+            const DeepCollectionEquality()
+                .equals(display2Medium, other.display2Medium) &&
+            const DeepCollectionEquality()
+                .equals(display1Bold, other.display1Bold) &&
+            const DeepCollectionEquality()
+                .equals(display1Medium, other.display1Medium) &&
+            const DeepCollectionEquality()
+                .equals(display1Regular, other.display1Regular) &&
+            const DeepCollectionEquality()
+                .equals(paragraph2Regular, other.paragraph2Regular) &&
+            const DeepCollectionEquality()
+                .equals(paragraph2Medium, other.paragraph2Medium) &&
+            const DeepCollectionEquality()
+                .equals(paragraph2Bold, other.paragraph2Bold) &&
+            const DeepCollectionEquality()
+                .equals(paragraph1Medium, other.paragraph1Medium) &&
+            const DeepCollectionEquality()
+                .equals(paragraph1Bold, other.paragraph1Bold) &&
+            const DeepCollectionEquality()
+                .equals(paragraph1Regular, other.paragraph1Regular) &&
+            const DeepCollectionEquality()
+                .equals(pageHeading3Medium, other.pageHeading3Medium) &&
+            const DeepCollectionEquality()
+                .equals(pageHeading3Bold, other.pageHeading3Bold) &&
+            const DeepCollectionEquality()
+                .equals(pageHeading3Regular, other.pageHeading3Regular) &&
+            const DeepCollectionEquality()
+                .equals(pageHeading2Regular, other.pageHeading2Regular) &&
+            const DeepCollectionEquality()
+                .equals(pageHeading2Medium, other.pageHeading2Medium) &&
+            const DeepCollectionEquality()
+                .equals(pageHeading2Bold, other.pageHeading2Bold));
+  }
+
+  @override
+  int get hashCode {
+    return Object.hashAll([
+      runtimeType,
+      const DeepCollectionEquality().hash(caption1Regular),
+      const DeepCollectionEquality().hash(caption1Medium),
+      const DeepCollectionEquality().hash(caption1Bold),
+      const DeepCollectionEquality().hash(paragraph3Regular),
+      const DeepCollectionEquality().hash(paragraph3Medium),
+      const DeepCollectionEquality().hash(paragraph3Bold),
+      const DeepCollectionEquality().hash(sectionHeading3Regular),
+      const DeepCollectionEquality().hash(sectionHeading3Medium),
+      const DeepCollectionEquality().hash(sectionHeading3Bold),
+      const DeepCollectionEquality().hash(sectionHeading2Regular),
+      const DeepCollectionEquality().hash(sectionHeading2Medium),
+      const DeepCollectionEquality().hash(sectionHeading2Bold),
+      const DeepCollectionEquality().hash(sectionHeading1Regular),
+      const DeepCollectionEquality().hash(sectionHeading1Medium),
+      const DeepCollectionEquality().hash(sectionHeading1Bold),
+      const DeepCollectionEquality().hash(pageHeading1Regular),
+      const DeepCollectionEquality().hash(pageHeading1Medium),
+      const DeepCollectionEquality().hash(pageHeading1Bold),
+      const DeepCollectionEquality().hash(display3Regular),
+      const DeepCollectionEquality().hash(display3Medium),
+      const DeepCollectionEquality().hash(display3Bold),
+      const DeepCollectionEquality().hash(display2Regular),
+      const DeepCollectionEquality().hash(display2Bold),
+      const DeepCollectionEquality().hash(display2Medium),
+      const DeepCollectionEquality().hash(display1Bold),
+      const DeepCollectionEquality().hash(display1Medium),
+      const DeepCollectionEquality().hash(display1Regular),
+      const DeepCollectionEquality().hash(paragraph2Regular),
+      const DeepCollectionEquality().hash(paragraph2Medium),
+      const DeepCollectionEquality().hash(paragraph2Bold),
+      const DeepCollectionEquality().hash(paragraph1Medium),
+      const DeepCollectionEquality().hash(paragraph1Bold),
+      const DeepCollectionEquality().hash(paragraph1Regular),
+      const DeepCollectionEquality().hash(pageHeading3Medium),
+      const DeepCollectionEquality().hash(pageHeading3Bold),
+      const DeepCollectionEquality().hash(pageHeading3Regular),
+      const DeepCollectionEquality().hash(pageHeading2Regular),
+      const DeepCollectionEquality().hash(pageHeading2Medium),
+      const DeepCollectionEquality().hash(pageHeading2Bold)
+    ]);
+  }
+}

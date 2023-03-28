@@ -1,12 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:theme_tailor_annotation/theme_tailor_annotation.dart';
 
-import 'buttons/button_themes.dart';
+import 'tokens/tokens.dart';
 
 part 'theme.tailor.dart';
 
+// See build.yaml for theme build information.
 @Tailor()
-class _$MyTheme {
+class _$YgTheme {
   @themeExtension
-  static List<YgButtonThemes> buttonThemes = YgButtonThemes.themes;
+  static List<YgTokens> tokens = YgTokens.themes;
 }

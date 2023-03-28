@@ -1,4 +1,0 @@
-enum YgButtonSize {
-  medium,
-  small,
-}

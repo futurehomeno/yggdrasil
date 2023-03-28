@@ -4,19 +4,19 @@ import 'package:flutter/material.dart';
 
 class FhRadii {
   const FhRadii._();
-  static const none = BorderRadius.all(Radius.circular(0));
+  static const BorderRadius none = BorderRadius.all(Radius.circular(0.0));
 
-  static const xs = BorderRadius.all(Radius.circular(10));
+  static const BorderRadius xs = BorderRadius.all(Radius.circular(10.0));
 
-  static const xxs = BorderRadius.all(Radius.circular(5));
+  static const BorderRadius xxs = BorderRadius.all(Radius.circular(5.0));
 
-  static const sm = BorderRadius.all(Radius.circular(15));
+  static const BorderRadius sm = BorderRadius.all(Radius.circular(15.0));
 
-  static const md = BorderRadius.all(Radius.circular(20));
+  static const BorderRadius md = BorderRadius.all(Radius.circular(20.0));
 
-  static const lg = BorderRadius.all(Radius.circular(25));
+  static const BorderRadius lg = BorderRadius.all(Radius.circular(25.0));
 
-  static const xl = BorderRadius.all(Radius.circular(30));
+  static const BorderRadius xl = BorderRadius.all(Radius.circular(30.0));
 
-  static const xxl = BorderRadius.all(Radius.circular(50));
+  static const BorderRadius xxl = BorderRadius.all(Radius.circular(50.0));
 }

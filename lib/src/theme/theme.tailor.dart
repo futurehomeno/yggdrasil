@@ -8,27 +8,27 @@ part of 'theme.dart';
 // ThemeTailorGenerator
 // **************************************************************************
 
-class MyTheme extends ThemeExtension<MyTheme> {
-  const MyTheme({
-    required this.buttonThemes,
+class YgTheme extends ThemeExtension<YgTheme> {
+  const YgTheme({
+    required this.tokens,
   });
 
-  final YgButtonThemes buttonThemes;
+  final YgTokens tokens;
 
-  static final MyTheme consumerLight = MyTheme(
-    buttonThemes: _$MyTheme.buttonThemes[0],
+  static final YgTheme consumerLight = YgTheme(
+    tokens: _$YgTheme.tokens[0],
   );
 
-  static final MyTheme consumerDark = MyTheme(
-    buttonThemes: _$MyTheme.buttonThemes[1],
+  static final YgTheme consumerDark = YgTheme(
+    tokens: _$YgTheme.tokens[1],
   );
 
-  static final MyTheme professionalLight = MyTheme(
-    buttonThemes: _$MyTheme.buttonThemes[2],
+  static final YgTheme professionalLight = YgTheme(
+    tokens: _$YgTheme.tokens[2],
   );
 
-  static final MyTheme professionalDark = MyTheme(
-    buttonThemes: _$MyTheme.buttonThemes[3],
+  static final YgTheme professionalDark = YgTheme(
+    tokens: _$YgTheme.tokens[3],
   );
 
   static final themes = [
@@ -39,19 +39,19 @@ class MyTheme extends ThemeExtension<MyTheme> {
   ];
 
   @override
-  MyTheme copyWith({
-    YgButtonThemes? buttonThemes,
+  YgTheme copyWith({
+    YgTokens? tokens,
   }) {
-    return MyTheme(
-      buttonThemes: buttonThemes ?? this.buttonThemes,
+    return YgTheme(
+      tokens: tokens ?? this.tokens,
     );
   }
 
   @override
-  MyTheme lerp(ThemeExtension<MyTheme>? other, double t) {
-    if (other is! MyTheme) return this;
-    return MyTheme(
-      buttonThemes: buttonThemes.lerp(other.buttonThemes, t),
+  YgTheme lerp(ThemeExtension<YgTheme>? other, double t) {
+    if (other is! YgTheme) return this;
+    return YgTheme(
+      tokens: tokens.lerp(other.tokens, t),
     );
   }
 
@@ -59,19 +59,18 @@ class MyTheme extends ThemeExtension<MyTheme> {
   bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is MyTheme &&
-            const DeepCollectionEquality()
-                .equals(buttonThemes, other.buttonThemes));
+            other is YgTheme &&
+            const DeepCollectionEquality().equals(tokens, other.tokens));
   }
 
   @override
   int get hashCode {
     return Object.hash(
-        runtimeType, const DeepCollectionEquality().hash(buttonThemes));
+        runtimeType, const DeepCollectionEquality().hash(tokens));
   }
 }
 
-extension MyThemeBuildContextProps on BuildContext {
-  MyTheme get _myTheme => Theme.of(this).extension<MyTheme>()!;
-  YgButtonThemes get buttonThemes => _myTheme.buttonThemes;
+extension YgThemeBuildContextProps on BuildContext {
+  YgTheme get _ygTheme => Theme.of(this).extension<YgTheme>()!;
+  YgTokens get tokens => _ygTheme.tokens;
 }
