@@ -18,6 +18,8 @@ abstract class YgButton extends StatelessWidget {
   final ValueChanged<bool>? onFocusChange;
   final Widget child;
 
+  bool get _enabled => onPressed != null || onLongPress != null;
+
   @protected
   YgButtonStyle defaultStyleOf(BuildContext context);
 
@@ -37,7 +39,11 @@ abstract class YgButton extends StatelessWidget {
         customBorder: style.shape,
         child: Padding(
           padding: style.padding,
-          child: child,
+          child: Align(
+            heightFactor: 1.0,
+            widthFactor: 1.0,
+            child: child,
+          ),
         ),
       ),
     );

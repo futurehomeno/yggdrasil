@@ -49,6 +49,33 @@ class _$PrimaryButtonTheme {
     professional_dark.FhGradients.actionPrimaryDefault,
   ];
 
+  static List<LinearGradient> disabledBorderGradient = <LinearGradient>[
+    const LinearGradient(
+      colors: <Color>[
+        consumer_light.FhColors.actionPrimaryDisabled,
+        consumer_light.FhColors.actionPrimaryDisabled,
+      ],
+    ),
+    const LinearGradient(
+      colors: <Color>[
+        consumer_dark.FhColors.actionPrimaryDisabled,
+        consumer_dark.FhColors.actionPrimaryDisabled,
+      ],
+    ),
+    const LinearGradient(
+      colors: <Color>[
+        professional_light.FhColors.actionPrimaryDisabled,
+        professional_light.FhColors.actionPrimaryDisabled,
+      ],
+    ),
+    const LinearGradient(
+      colors: <Color>[
+        professional_dark.FhColors.actionPrimaryDisabled,
+        professional_dark.FhColors.actionPrimaryDisabled,
+      ],
+    ),
+  ];
+
   static List<BorderRadius> borderRadius = <BorderRadius>[
     consumer_light.FhRadii.xxl,
     consumer_dark.FhRadii.xxl,
