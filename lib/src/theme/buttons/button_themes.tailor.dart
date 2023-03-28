@@ -10,18 +10,24 @@ part of 'button_themes.dart';
 
 class YgButtonThemes extends ThemeExtension<YgButtonThemes> {
   const YgButtonThemes({
+    required this.criticalButtonTheme,
+    required this.linkButtonTheme,
     required this.primaryButtonTheme,
     required this.secondaryButtonTheme,
     required this.textButtonTheme,
     required this.buttonPadding,
   });
 
+  final CriticalButtonTheme criticalButtonTheme;
+  final LinkButtonTheme linkButtonTheme;
   final PrimaryButtonTheme primaryButtonTheme;
   final SecondaryButtonTheme secondaryButtonTheme;
   final TextButtonTheme textButtonTheme;
   final EdgeInsets buttonPadding;
 
   static final YgButtonThemes consumerLight = YgButtonThemes(
+    criticalButtonTheme: _$YgButtonThemes.criticalButtonTheme[0],
+    linkButtonTheme: _$YgButtonThemes.linkButtonTheme[0],
     primaryButtonTheme: _$YgButtonThemes.primaryButtonTheme[0],
     secondaryButtonTheme: _$YgButtonThemes.secondaryButtonTheme[0],
     textButtonTheme: _$YgButtonThemes.textButtonTheme[0],
@@ -29,6 +35,8 @@ class YgButtonThemes extends ThemeExtension<YgButtonThemes> {
   );
 
   static final YgButtonThemes consumerDark = YgButtonThemes(
+    criticalButtonTheme: _$YgButtonThemes.criticalButtonTheme[1],
+    linkButtonTheme: _$YgButtonThemes.linkButtonTheme[1],
     primaryButtonTheme: _$YgButtonThemes.primaryButtonTheme[1],
     secondaryButtonTheme: _$YgButtonThemes.secondaryButtonTheme[1],
     textButtonTheme: _$YgButtonThemes.textButtonTheme[1],
@@ -36,6 +44,8 @@ class YgButtonThemes extends ThemeExtension<YgButtonThemes> {
   );
 
   static final YgButtonThemes professionalLight = YgButtonThemes(
+    criticalButtonTheme: _$YgButtonThemes.criticalButtonTheme[2],
+    linkButtonTheme: _$YgButtonThemes.linkButtonTheme[2],
     primaryButtonTheme: _$YgButtonThemes.primaryButtonTheme[2],
     secondaryButtonTheme: _$YgButtonThemes.secondaryButtonTheme[2],
     textButtonTheme: _$YgButtonThemes.textButtonTheme[2],
@@ -43,6 +53,8 @@ class YgButtonThemes extends ThemeExtension<YgButtonThemes> {
   );
 
   static final YgButtonThemes professionalDark = YgButtonThemes(
+    criticalButtonTheme: _$YgButtonThemes.criticalButtonTheme[3],
+    linkButtonTheme: _$YgButtonThemes.linkButtonTheme[3],
     primaryButtonTheme: _$YgButtonThemes.primaryButtonTheme[3],
     secondaryButtonTheme: _$YgButtonThemes.secondaryButtonTheme[3],
     textButtonTheme: _$YgButtonThemes.textButtonTheme[3],
@@ -58,12 +70,16 @@ class YgButtonThemes extends ThemeExtension<YgButtonThemes> {
 
   @override
   YgButtonThemes copyWith({
+    CriticalButtonTheme? criticalButtonTheme,
+    LinkButtonTheme? linkButtonTheme,
     PrimaryButtonTheme? primaryButtonTheme,
     SecondaryButtonTheme? secondaryButtonTheme,
     TextButtonTheme? textButtonTheme,
     EdgeInsets? buttonPadding,
   }) {
     return YgButtonThemes(
+      criticalButtonTheme: criticalButtonTheme ?? this.criticalButtonTheme,
+      linkButtonTheme: linkButtonTheme ?? this.linkButtonTheme,
       primaryButtonTheme: primaryButtonTheme ?? this.primaryButtonTheme,
       secondaryButtonTheme: secondaryButtonTheme ?? this.secondaryButtonTheme,
       textButtonTheme: textButtonTheme ?? this.textButtonTheme,
@@ -75,6 +91,9 @@ class YgButtonThemes extends ThemeExtension<YgButtonThemes> {
   YgButtonThemes lerp(ThemeExtension<YgButtonThemes>? other, double t) {
     if (other is! YgButtonThemes) return this;
     return YgButtonThemes(
+      criticalButtonTheme:
+          criticalButtonTheme.lerp(other.criticalButtonTheme, t),
+      linkButtonTheme: linkButtonTheme.lerp(other.linkButtonTheme, t),
       primaryButtonTheme: primaryButtonTheme.lerp(other.primaryButtonTheme, t),
       secondaryButtonTheme:
           secondaryButtonTheme.lerp(other.secondaryButtonTheme, t),
@@ -89,6 +108,10 @@ class YgButtonThemes extends ThemeExtension<YgButtonThemes> {
         (other.runtimeType == runtimeType &&
             other is YgButtonThemes &&
             const DeepCollectionEquality()
+                .equals(criticalButtonTheme, other.criticalButtonTheme) &&
+            const DeepCollectionEquality()
+                .equals(linkButtonTheme, other.linkButtonTheme) &&
+            const DeepCollectionEquality()
                 .equals(primaryButtonTheme, other.primaryButtonTheme) &&
             const DeepCollectionEquality()
                 .equals(secondaryButtonTheme, other.secondaryButtonTheme) &&
@@ -102,271 +125,11 @@ class YgButtonThemes extends ThemeExtension<YgButtonThemes> {
   int get hashCode {
     return Object.hash(
         runtimeType,
+        const DeepCollectionEquality().hash(criticalButtonTheme),
+        const DeepCollectionEquality().hash(linkButtonTheme),
         const DeepCollectionEquality().hash(primaryButtonTheme),
         const DeepCollectionEquality().hash(secondaryButtonTheme),
         const DeepCollectionEquality().hash(textButtonTheme),
         const DeepCollectionEquality().hash(buttonPadding));
-  }
-}
-
-class PrimaryButtonTheme extends ThemeExtension<PrimaryButtonTheme> {
-  const PrimaryButtonTheme({
-    required this.textColor,
-    required this.textStyle,
-    required this.backgroundGradient,
-  });
-
-  final Color textColor;
-  final TextStyle textStyle;
-  final LinearGradient backgroundGradient;
-
-  static final PrimaryButtonTheme consumerLight = PrimaryButtonTheme(
-    textColor: _$PrimaryButtonTheme.textColor[0],
-    textStyle: _$PrimaryButtonTheme.textStyle[0],
-    backgroundGradient: _$PrimaryButtonTheme.backgroundGradient[0],
-  );
-
-  static final PrimaryButtonTheme consumerDark = PrimaryButtonTheme(
-    textColor: _$PrimaryButtonTheme.textColor[1],
-    textStyle: _$PrimaryButtonTheme.textStyle[1],
-    backgroundGradient: _$PrimaryButtonTheme.backgroundGradient[1],
-  );
-
-  static final PrimaryButtonTheme professionalLight = PrimaryButtonTheme(
-    textColor: _$PrimaryButtonTheme.textColor[2],
-    textStyle: _$PrimaryButtonTheme.textStyle[2],
-    backgroundGradient: _$PrimaryButtonTheme.backgroundGradient[2],
-  );
-
-  static final PrimaryButtonTheme professionalDark = PrimaryButtonTheme(
-    textColor: _$PrimaryButtonTheme.textColor[3],
-    textStyle: _$PrimaryButtonTheme.textStyle[3],
-    backgroundGradient: _$PrimaryButtonTheme.backgroundGradient[3],
-  );
-
-  static final themes = [
-    consumerLight,
-    consumerDark,
-    professionalLight,
-    professionalDark,
-  ];
-
-  @override
-  PrimaryButtonTheme copyWith({
-    Color? textColor,
-    TextStyle? textStyle,
-    LinearGradient? backgroundGradient,
-  }) {
-    return PrimaryButtonTheme(
-      textColor: textColor ?? this.textColor,
-      textStyle: textStyle ?? this.textStyle,
-      backgroundGradient: backgroundGradient ?? this.backgroundGradient,
-    );
-  }
-
-  @override
-  PrimaryButtonTheme lerp(ThemeExtension<PrimaryButtonTheme>? other, double t) {
-    if (other is! PrimaryButtonTheme) return this;
-    return PrimaryButtonTheme(
-      textColor: Color.lerp(textColor, other.textColor, t)!,
-      textStyle: TextStyle.lerp(textStyle, other.textStyle, t)!,
-      backgroundGradient:
-          t < 0.5 ? backgroundGradient : other.backgroundGradient,
-    );
-  }
-
-  @override
-  bool operator ==(Object other) {
-    return identical(this, other) ||
-        (other.runtimeType == runtimeType &&
-            other is PrimaryButtonTheme &&
-            const DeepCollectionEquality().equals(textColor, other.textColor) &&
-            const DeepCollectionEquality().equals(textStyle, other.textStyle) &&
-            const DeepCollectionEquality()
-                .equals(backgroundGradient, other.backgroundGradient));
-  }
-
-  @override
-  int get hashCode {
-    return Object.hash(
-        runtimeType,
-        const DeepCollectionEquality().hash(textColor),
-        const DeepCollectionEquality().hash(textStyle),
-        const DeepCollectionEquality().hash(backgroundGradient));
-  }
-}
-
-class SecondaryButtonTheme extends ThemeExtension<SecondaryButtonTheme> {
-  const SecondaryButtonTheme({
-    required this.textColor,
-    required this.textStyle,
-    required this.backgroundGradient,
-  });
-
-  final Color textColor;
-  final TextStyle textStyle;
-  final LinearGradient backgroundGradient;
-
-  static final SecondaryButtonTheme consumerLight = SecondaryButtonTheme(
-    textColor: _$SecondaryButtonTheme.textColor[0],
-    textStyle: _$SecondaryButtonTheme.textStyle[0],
-    backgroundGradient: _$SecondaryButtonTheme.backgroundGradient[0],
-  );
-
-  static final SecondaryButtonTheme consumerDark = SecondaryButtonTheme(
-    textColor: _$SecondaryButtonTheme.textColor[1],
-    textStyle: _$SecondaryButtonTheme.textStyle[1],
-    backgroundGradient: _$SecondaryButtonTheme.backgroundGradient[1],
-  );
-
-  static final SecondaryButtonTheme professionalLight = SecondaryButtonTheme(
-    textColor: _$SecondaryButtonTheme.textColor[2],
-    textStyle: _$SecondaryButtonTheme.textStyle[2],
-    backgroundGradient: _$SecondaryButtonTheme.backgroundGradient[2],
-  );
-
-  static final SecondaryButtonTheme professionalDark = SecondaryButtonTheme(
-    textColor: _$SecondaryButtonTheme.textColor[3],
-    textStyle: _$SecondaryButtonTheme.textStyle[3],
-    backgroundGradient: _$SecondaryButtonTheme.backgroundGradient[3],
-  );
-
-  static final themes = [
-    consumerLight,
-    consumerDark,
-    professionalLight,
-    professionalDark,
-  ];
-
-  @override
-  SecondaryButtonTheme copyWith({
-    Color? textColor,
-    TextStyle? textStyle,
-    LinearGradient? backgroundGradient,
-  }) {
-    return SecondaryButtonTheme(
-      textColor: textColor ?? this.textColor,
-      textStyle: textStyle ?? this.textStyle,
-      backgroundGradient: backgroundGradient ?? this.backgroundGradient,
-    );
-  }
-
-  @override
-  SecondaryButtonTheme lerp(
-      ThemeExtension<SecondaryButtonTheme>? other, double t) {
-    if (other is! SecondaryButtonTheme) return this;
-    return SecondaryButtonTheme(
-      textColor: Color.lerp(textColor, other.textColor, t)!,
-      textStyle: TextStyle.lerp(textStyle, other.textStyle, t)!,
-      backgroundGradient:
-          t < 0.5 ? backgroundGradient : other.backgroundGradient,
-    );
-  }
-
-  @override
-  bool operator ==(Object other) {
-    return identical(this, other) ||
-        (other.runtimeType == runtimeType &&
-            other is SecondaryButtonTheme &&
-            const DeepCollectionEquality().equals(textColor, other.textColor) &&
-            const DeepCollectionEquality().equals(textStyle, other.textStyle) &&
-            const DeepCollectionEquality()
-                .equals(backgroundGradient, other.backgroundGradient));
-  }
-
-  @override
-  int get hashCode {
-    return Object.hash(
-        runtimeType,
-        const DeepCollectionEquality().hash(textColor),
-        const DeepCollectionEquality().hash(textStyle),
-        const DeepCollectionEquality().hash(backgroundGradient));
-  }
-}
-
-class TextButtonTheme extends ThemeExtension<TextButtonTheme> {
-  const TextButtonTheme({
-    required this.textColor,
-    required this.textStyle,
-    required this.backgroundGradient,
-  });
-
-  final Color textColor;
-  final TextStyle textStyle;
-  final LinearGradient backgroundGradient;
-
-  static final TextButtonTheme consumerLight = TextButtonTheme(
-    textColor: _$TextButtonTheme.textColor[0],
-    textStyle: _$TextButtonTheme.textStyle[0],
-    backgroundGradient: _$TextButtonTheme.backgroundGradient[0],
-  );
-
-  static final TextButtonTheme consumerDark = TextButtonTheme(
-    textColor: _$TextButtonTheme.textColor[1],
-    textStyle: _$TextButtonTheme.textStyle[1],
-    backgroundGradient: _$TextButtonTheme.backgroundGradient[1],
-  );
-
-  static final TextButtonTheme professionalLight = TextButtonTheme(
-    textColor: _$TextButtonTheme.textColor[2],
-    textStyle: _$TextButtonTheme.textStyle[2],
-    backgroundGradient: _$TextButtonTheme.backgroundGradient[2],
-  );
-
-  static final TextButtonTheme professionalDark = TextButtonTheme(
-    textColor: _$TextButtonTheme.textColor[3],
-    textStyle: _$TextButtonTheme.textStyle[3],
-    backgroundGradient: _$TextButtonTheme.backgroundGradient[3],
-  );
-
-  static final themes = [
-    consumerLight,
-    consumerDark,
-    professionalLight,
-    professionalDark,
-  ];
-
-  @override
-  TextButtonTheme copyWith({
-    Color? textColor,
-    TextStyle? textStyle,
-    LinearGradient? backgroundGradient,
-  }) {
-    return TextButtonTheme(
-      textColor: textColor ?? this.textColor,
-      textStyle: textStyle ?? this.textStyle,
-      backgroundGradient: backgroundGradient ?? this.backgroundGradient,
-    );
-  }
-
-  @override
-  TextButtonTheme lerp(ThemeExtension<TextButtonTheme>? other, double t) {
-    if (other is! TextButtonTheme) return this;
-    return TextButtonTheme(
-      textColor: Color.lerp(textColor, other.textColor, t)!,
-      textStyle: TextStyle.lerp(textStyle, other.textStyle, t)!,
-      backgroundGradient:
-          t < 0.5 ? backgroundGradient : other.backgroundGradient,
-    );
-  }
-
-  @override
-  bool operator ==(Object other) {
-    return identical(this, other) ||
-        (other.runtimeType == runtimeType &&
-            other is TextButtonTheme &&
-            const DeepCollectionEquality().equals(textColor, other.textColor) &&
-            const DeepCollectionEquality().equals(textStyle, other.textStyle) &&
-            const DeepCollectionEquality()
-                .equals(backgroundGradient, other.backgroundGradient));
-  }
-
-  @override
-  int get hashCode {
-    return Object.hash(
-        runtimeType,
-        const DeepCollectionEquality().hash(textColor),
-        const DeepCollectionEquality().hash(textStyle),
-        const DeepCollectionEquality().hash(backgroundGradient));
   }
 }
