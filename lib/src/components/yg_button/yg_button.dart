@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:yggdrasil/src/components/yg_buttons/yg_button_style.dart';
+import 'package:yggdrasil/src/components/yg_button/yg_button_style.dart';
 import 'package:yggdrasil/src/theme/_theme.dart';
 
 import 'enums/yg_button_size.dart';

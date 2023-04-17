@@ -1,1 +1,1 @@
-export 'yg_buttons/yg_button.dart';
+export 'yg_button/yg_button.dart';
