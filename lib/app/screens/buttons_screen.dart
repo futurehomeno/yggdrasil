@@ -185,6 +185,38 @@ class ButtonsScreen extends StatelessWidget {
             icon: const Icon(Icons.add),
             child: const Text('Button'),
           ),
+          const YgButton(
+            variant: ButtonVariant.primary,
+            size: ButtonSize.small,
+            onPressed: null,
+            child: Text('Disabled button'),
+          ),
+          const YgButton(
+            variant: ButtonVariant.primary,
+            size: ButtonSize.medium,
+            onPressed: null,
+            child: Text('Disabled button'),
+          ),
+          const YgButton(
+            variant: ButtonVariant.primary,
+            size: ButtonSize.large,
+            onPressed: null,
+            child: Text('Disabled button'),
+          ),
+          YgButton.leftIcon(
+            variant: ButtonVariant.primary,
+            size: ButtonSize.small,
+            onPressed: null,
+            icon: const Icon(Icons.add),
+            child: const Text('Disabled button'),
+          ),
+          YgButton.rightIcon(
+            variant: ButtonVariant.primary,
+            size: ButtonSize.small,
+            onPressed: null,
+            icon: const Icon(Icons.add),
+            child: const Text('Disabled button'),
+          ),
         ],
       ),
     );

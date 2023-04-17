@@ -28,25 +28,21 @@ class YgButtonStyle {
           size: size,
         );
       case ButtonVariant.secondary:
-        // TODO(bjhandeland): Make secondary.
         return YgButtonStyle.secondary(
           context: context,
           size: size,
         );
       case ButtonVariant.text:
-        // TODO(bjhandeland): Make text.
         return YgButtonStyle.text(
           context: context,
           size: size,
         );
       case ButtonVariant.link:
-        // TODO(bjhandeland): Make link.
         return YgButtonStyle.link(
           context: context,
           size: size,
         );
       case ButtonVariant.critical:
-        // TODO(bjhandeland): Make critical.
         return YgButtonStyle.critical(
           context: context,
           size: size,
@@ -68,7 +64,7 @@ class YgButtonStyle {
         width: context.buttonThemes.borderWidth,
       ),
       disabledShape: YgRoundedRectangleGradientBorder(
-        gradient: context.buttonThemes.primaryButtonTheme.borderGradient,
+        gradient: context.buttonThemes.primaryButtonTheme.disabledBorderGradient,
         borderRadius: context.buttonThemes.borderRadius,
         width: context.buttonThemes.borderWidth,
       ),
@@ -90,7 +86,7 @@ class YgButtonStyle {
         width: context.buttonThemes.borderWidth,
       ),
       disabledShape: YgRoundedRectangleGradientBorder(
-        gradient: context.buttonThemes.secondaryButtonTheme.borderGradient,
+        gradient: context.buttonThemes.secondaryButtonTheme.disabledBorderGradient,
         borderRadius: context.buttonThemes.borderRadius,
         width: context.buttonThemes.borderWidth,
       ),
@@ -112,7 +108,7 @@ class YgButtonStyle {
         width: context.buttonThemes.borderWidth,
       ),
       disabledShape: YgRoundedRectangleGradientBorder(
-        gradient: context.buttonThemes.textButtonTheme.borderGradient,
+        gradient: context.buttonThemes.textButtonTheme.disabledBorderGradient,
         borderRadius: context.buttonThemes.borderRadius,
         width: context.buttonThemes.borderWidth,
       ),
@@ -134,7 +130,7 @@ class YgButtonStyle {
         width: context.buttonThemes.borderWidth,
       ),
       disabledShape: YgRoundedRectangleGradientBorder(
-        gradient: context.buttonThemes.linkButtonTheme.borderGradient,
+        gradient: context.buttonThemes.linkButtonTheme.disabledBorderGradient,
         borderRadius: context.buttonThemes.borderRadius,
         width: context.buttonThemes.borderWidth,
       ),
@@ -156,7 +152,7 @@ class YgButtonStyle {
         width: context.buttonThemes.borderWidth,
       ),
       disabledShape: YgRoundedRectangleGradientBorder(
-        gradient: context.buttonThemes.criticalButtonTheme.borderGradient,
+        gradient: context.buttonThemes.criticalButtonTheme.disabledBorderGradient,
         borderRadius: context.buttonThemes.borderRadius,
         width: context.buttonThemes.borderWidth,
       ),
@@ -195,8 +191,6 @@ class YgButtonStyle {
   final TextStyle disabledTextStyle;
   final OutlinedBorder shape;
   final OutlinedBorder disabledShape;
-  // final BorderSide side;
-  // final BorderSide disabledSide;
   final EdgeInsets padding;
 }
 
