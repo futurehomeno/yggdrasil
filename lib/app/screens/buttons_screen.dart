@@ -1,9 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:yggdrasil/app/core/_core.dart';
-import 'package:yggdrasil/app/widgets/yg_screen.dart';
+import 'package:yggdrasil/app/widgets/_widgets.dart';
 import 'package:yggdrasil/src/components/_components.dart';
-import 'package:yggdrasil/src/components/yg_buttons/enums/yg_button_size.dart';
-import 'package:yggdrasil/src/components/yg_buttons/enums/yg_button_variant.dart';
 
 class ButtonsScreen extends StatelessWidget {
   const ButtonsScreen({super.key});

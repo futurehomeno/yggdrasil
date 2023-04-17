@@ -1,9 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:yggdrasil/src/components/yg_button/yg_button_style.dart';
 import 'package:yggdrasil/src/theme/_theme.dart';
 
-import 'enums/yg_button_size.dart';
-import 'enums/yg_button_variant.dart';
+import 'enums/_enums.dart';
+import 'yg_button_style.dart';
 
 /// Base class for creating all Yg buttons.
 class YgButton extends ButtonStyleButton {
