@@ -1,10 +1,9 @@
-import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:yggdrasil/src/theme/_theme.dart';
 import 'package:yggdrasil/src/utils/_utils.dart';
 
-import 'yg_button_size.dart';
-import 'yg_button_variant.dart';
+import 'enums/_enums.dart';
+import 'properties/_properties.dart';
 
 class YgButtonStyle {
   const YgButtonStyle({
@@ -163,11 +162,11 @@ class YgButtonStyle {
   ButtonStyle toButtonStyle() {
     return ButtonStyle(
       backgroundColor: ButtonStyleButton.allOrNull(backgroundColor),
-      textStyle: _YgButtonTextStyleProperty(
+      textStyle: YgButtonTextStyleProperty(
         textStyle: textStyle,
         disabled: disabledTextStyle,
       ),
-      shape: _YgButtonOutlinedBorderProperty(
+      shape: YgButtonOutlinedBorderProperty(
         outlinedBorder: shape,
         disabled: disabledShape,
       ),
@@ -179,7 +178,7 @@ class YgButtonStyle {
       elevation: ButtonStyleButton.allOrNull(0.0),
       alignment: Alignment.center,
       tapTargetSize: MaterialTapTargetSize.shrinkWrap,
-      mouseCursor: _YgButtonMouseCursorProperty(
+      mouseCursor: YgButtonMouseCursorProperty(
         mouseCursor: SystemMouseCursors.click,
         disabled: SystemMouseCursors.basic,
       ),
@@ -192,99 +191,4 @@ class YgButtonStyle {
   final OutlinedBorder shape;
   final OutlinedBorder disabledShape;
   final EdgeInsets padding;
-}
-
-@immutable
-class _YgButtonColorProperty extends MaterialStateProperty<Color?> with Diagnosticable {
-  _YgButtonColorProperty({
-    required this.color,
-    required this.disabled,
-  });
-
-  final Color? color;
-  final Color? disabled;
-
-  @override
-  Color? resolve(Set<MaterialState> states) {
-    if (states.contains(MaterialState.disabled)) {
-      return disabled;
-    }
-    return color;
-  }
-}
-
-@immutable
-class _YgButtonTextStyleProperty extends MaterialStateProperty<TextStyle?> with Diagnosticable {
-  _YgButtonTextStyleProperty({
-    required this.textStyle,
-    required this.disabled,
-  });
-
-  final TextStyle? textStyle;
-  final TextStyle? disabled;
-
-  @override
-  TextStyle? resolve(Set<MaterialState> states) {
-    if (states.contains(MaterialState.disabled)) {
-      return disabled;
-    }
-    return textStyle;
-  }
-}
-
-@immutable
-class _YgButtonOutlinedBorderProperty extends MaterialStateProperty<OutlinedBorder?> with Diagnosticable {
-  _YgButtonOutlinedBorderProperty({
-    required this.outlinedBorder,
-    required this.disabled,
-  });
-
-  final OutlinedBorder? outlinedBorder;
-  final OutlinedBorder? disabled;
-
-  @override
-  OutlinedBorder? resolve(Set<MaterialState> states) {
-    if (states.contains(MaterialState.disabled)) {
-      return disabled;
-    }
-    return outlinedBorder;
-  }
-}
-
-@immutable
-class _YgButtonBorderSideProperty extends MaterialStateProperty<BorderSide?> with Diagnosticable {
-  _YgButtonBorderSideProperty({
-    required this.outlinedBorder,
-    required this.disabled,
-  });
-
-  final BorderSide? outlinedBorder;
-  final BorderSide? disabled;
-
-  @override
-  BorderSide? resolve(Set<MaterialState> states) {
-    if (states.contains(MaterialState.disabled)) {
-      return disabled;
-    }
-    return outlinedBorder;
-  }
-}
-
-@immutable
-class _YgButtonMouseCursorProperty extends MaterialStateProperty<MouseCursor?> with Diagnosticable {
-  _YgButtonMouseCursorProperty({
-    required this.mouseCursor,
-    required this.disabled,
-  });
-
-  final MouseCursor? mouseCursor;
-  final MouseCursor? disabled;
-
-  @override
-  MouseCursor? resolve(Set<MaterialState> states) {
-    if (states.contains(MaterialState.disabled)) {
-      return disabled;
-    }
-    return mouseCursor;
-  }
 }
