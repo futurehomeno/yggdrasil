@@ -122,4 +122,17 @@ class FhGradients {
       Color(0xfff9470b),
     ],
   );
+
+  static const LinearGradient transparent = LinearGradient(
+    begin: Alignment(0.0, 1.0),
+    end: Alignment(2.220446049250313e-16, -1.0),
+    stops: [
+      0.0,
+      1.0,
+    ],
+    colors: [
+      Color(0x00000000),
+      Color(0x00000000),
+    ],
+  );
 }

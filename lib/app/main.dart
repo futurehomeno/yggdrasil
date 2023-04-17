@@ -19,8 +19,8 @@ class Yggdrasil extends StatelessWidget {
     return MaterialApp(
       title: 'Yggdrasil',
       theme: ThemeData(
-        brightness: Brightness.light,
-        extensions: <YgTheme>[YgTheme.consumerLight],
+        brightness: Brightness.dark,
+        extensions: <YgTheme>[YgTheme.consumerDark],
       ),
       home: const HomeScreen(),
       navigatorKey: YgRouter.navigatorKey,

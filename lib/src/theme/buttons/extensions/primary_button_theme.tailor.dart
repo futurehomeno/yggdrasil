@@ -12,47 +12,47 @@ class PrimaryButtonTheme extends ThemeExtension<PrimaryButtonTheme> {
   const PrimaryButtonTheme({
     required this.backgroundColor,
     required this.textStyle,
-    required this.borderWidth,
+    required this.disabledTextStyle,
     required this.borderGradient,
-    required this.borderRadius,
+    required this.disabledBorderGradient,
   });
 
   final Color backgroundColor;
   final TextStyle textStyle;
-  final double borderWidth;
-  final Gradient borderGradient;
-  final BorderRadius borderRadius;
+  final TextStyle disabledTextStyle;
+  final LinearGradient borderGradient;
+  final LinearGradient disabledBorderGradient;
 
   static final PrimaryButtonTheme consumerLight = PrimaryButtonTheme(
     backgroundColor: _$PrimaryButtonTheme.backgroundColor[0],
     textStyle: _$PrimaryButtonTheme.textStyle[0],
-    borderWidth: _$PrimaryButtonTheme.borderWidth[0],
+    disabledTextStyle: _$PrimaryButtonTheme.disabledTextStyle[0],
     borderGradient: _$PrimaryButtonTheme.borderGradient[0],
-    borderRadius: _$PrimaryButtonTheme.borderRadius[0],
+    disabledBorderGradient: _$PrimaryButtonTheme.disabledBorderGradient[0],
   );
 
   static final PrimaryButtonTheme consumerDark = PrimaryButtonTheme(
     backgroundColor: _$PrimaryButtonTheme.backgroundColor[1],
     textStyle: _$PrimaryButtonTheme.textStyle[1],
-    borderWidth: _$PrimaryButtonTheme.borderWidth[1],
+    disabledTextStyle: _$PrimaryButtonTheme.disabledTextStyle[1],
     borderGradient: _$PrimaryButtonTheme.borderGradient[1],
-    borderRadius: _$PrimaryButtonTheme.borderRadius[1],
+    disabledBorderGradient: _$PrimaryButtonTheme.disabledBorderGradient[1],
   );
 
   static final PrimaryButtonTheme professionalLight = PrimaryButtonTheme(
     backgroundColor: _$PrimaryButtonTheme.backgroundColor[2],
     textStyle: _$PrimaryButtonTheme.textStyle[2],
-    borderWidth: _$PrimaryButtonTheme.borderWidth[2],
+    disabledTextStyle: _$PrimaryButtonTheme.disabledTextStyle[2],
     borderGradient: _$PrimaryButtonTheme.borderGradient[2],
-    borderRadius: _$PrimaryButtonTheme.borderRadius[2],
+    disabledBorderGradient: _$PrimaryButtonTheme.disabledBorderGradient[2],
   );
 
   static final PrimaryButtonTheme professionalDark = PrimaryButtonTheme(
     backgroundColor: _$PrimaryButtonTheme.backgroundColor[3],
     textStyle: _$PrimaryButtonTheme.textStyle[3],
-    borderWidth: _$PrimaryButtonTheme.borderWidth[3],
+    disabledTextStyle: _$PrimaryButtonTheme.disabledTextStyle[3],
     borderGradient: _$PrimaryButtonTheme.borderGradient[3],
-    borderRadius: _$PrimaryButtonTheme.borderRadius[3],
+    disabledBorderGradient: _$PrimaryButtonTheme.disabledBorderGradient[3],
   );
 
   static final themes = [
@@ -66,16 +66,17 @@ class PrimaryButtonTheme extends ThemeExtension<PrimaryButtonTheme> {
   PrimaryButtonTheme copyWith({
     Color? backgroundColor,
     TextStyle? textStyle,
-    double? borderWidth,
-    Gradient? borderGradient,
-    BorderRadius? borderRadius,
+    TextStyle? disabledTextStyle,
+    LinearGradient? borderGradient,
+    LinearGradient? disabledBorderGradient,
   }) {
     return PrimaryButtonTheme(
       backgroundColor: backgroundColor ?? this.backgroundColor,
       textStyle: textStyle ?? this.textStyle,
-      borderWidth: borderWidth ?? this.borderWidth,
+      disabledTextStyle: disabledTextStyle ?? this.disabledTextStyle,
       borderGradient: borderGradient ?? this.borderGradient,
-      borderRadius: borderRadius ?? this.borderRadius,
+      disabledBorderGradient:
+          disabledBorderGradient ?? this.disabledBorderGradient,
     );
   }
 
@@ -85,9 +86,11 @@ class PrimaryButtonTheme extends ThemeExtension<PrimaryButtonTheme> {
     return PrimaryButtonTheme(
       backgroundColor: Color.lerp(backgroundColor, other.backgroundColor, t)!,
       textStyle: TextStyle.lerp(textStyle, other.textStyle, t)!,
-      borderWidth: t < 0.5 ? borderWidth : other.borderWidth,
+      disabledTextStyle:
+          TextStyle.lerp(disabledTextStyle, other.disabledTextStyle, t)!,
       borderGradient: t < 0.5 ? borderGradient : other.borderGradient,
-      borderRadius: t < 0.5 ? borderRadius : other.borderRadius,
+      disabledBorderGradient:
+          t < 0.5 ? disabledBorderGradient : other.disabledBorderGradient,
     );
   }
 
@@ -100,11 +103,11 @@ class PrimaryButtonTheme extends ThemeExtension<PrimaryButtonTheme> {
                 .equals(backgroundColor, other.backgroundColor) &&
             const DeepCollectionEquality().equals(textStyle, other.textStyle) &&
             const DeepCollectionEquality()
-                .equals(borderWidth, other.borderWidth) &&
+                .equals(disabledTextStyle, other.disabledTextStyle) &&
             const DeepCollectionEquality()
                 .equals(borderGradient, other.borderGradient) &&
             const DeepCollectionEquality()
-                .equals(borderRadius, other.borderRadius));
+                .equals(disabledBorderGradient, other.disabledBorderGradient));
   }
 
   @override
@@ -113,8 +116,8 @@ class PrimaryButtonTheme extends ThemeExtension<PrimaryButtonTheme> {
         runtimeType,
         const DeepCollectionEquality().hash(backgroundColor),
         const DeepCollectionEquality().hash(textStyle),
-        const DeepCollectionEquality().hash(borderWidth),
+        const DeepCollectionEquality().hash(disabledTextStyle),
         const DeepCollectionEquality().hash(borderGradient),
-        const DeepCollectionEquality().hash(borderRadius));
+        const DeepCollectionEquality().hash(disabledBorderGradient));
   }
 }

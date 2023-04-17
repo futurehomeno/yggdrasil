@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:yggdrasil/app/core/_core.dart';
 import 'package:yggdrasil/app/widgets/yg_screen.dart';
-import 'package:yggdrasil/src/components/yg_buttons/yg_primary_button.dart';
+import 'package:yggdrasil/src/components/_components.dart';
+import 'package:yggdrasil/src/components/yg_buttons/yg_button_size.dart';
+import 'package:yggdrasil/src/components/yg_buttons/yg_button_variant.dart';
 
 class ButtonsScreen extends StatelessWidget {
   const ButtonsScreen({super.key});
@@ -23,17 +25,165 @@ class ButtonsScreen extends StatelessWidget {
       supernovaLink: 'Link',
       child: Column(
         children: <Widget>[
-          TextButton(
+          YgButton(
+            variant: ButtonVariant.primary,
+            size: ButtonSize.small,
             onPressed: () {},
-            child: const Text('TextButton'),
+            child: const Text('Button'),
           ),
-          OutlinedButton(
+          YgButton(
+            variant: ButtonVariant.primary,
+            size: ButtonSize.medium,
             onPressed: () {},
-            child: const Text('OutlinedButton'),
+            child: const Text('Button'),
           ),
-          YgPrimaryButton(
+          YgButton(
+            variant: ButtonVariant.primary,
+            size: ButtonSize.large,
             onPressed: () {},
-            child: const Text('YgPrimaryButton'),
+            child: const Text('Button'),
+          ),
+          YgButton.leftIcon(
+            variant: ButtonVariant.primary,
+            size: ButtonSize.small,
+            onPressed: () {},
+            icon: const Icon(Icons.add),
+            child: const Text('Button'),
+          ),
+          YgButton.rightIcon(
+            variant: ButtonVariant.primary,
+            size: ButtonSize.small,
+            onPressed: () {},
+            icon: const Icon(Icons.add),
+            child: const Text('Button'),
+          ),
+          YgButton(
+            variant: ButtonVariant.secondary,
+            size: ButtonSize.small,
+            onPressed: () {},
+            child: const Text('Button'),
+          ),
+          YgButton(
+            variant: ButtonVariant.secondary,
+            size: ButtonSize.medium,
+            onPressed: () {},
+            child: const Text('Button'),
+          ),
+          YgButton(
+            variant: ButtonVariant.secondary,
+            size: ButtonSize.large,
+            onPressed: () {},
+            child: const Text('Button'),
+          ),
+          YgButton.leftIcon(
+            variant: ButtonVariant.secondary,
+            size: ButtonSize.small,
+            onPressed: () {},
+            icon: const Icon(Icons.add),
+            child: const Text('Button'),
+          ),
+          YgButton.rightIcon(
+            variant: ButtonVariant.secondary,
+            size: ButtonSize.small,
+            onPressed: () {},
+            icon: const Icon(Icons.add),
+            child: const Text('Button'),
+          ),
+          YgButton(
+            variant: ButtonVariant.text,
+            size: ButtonSize.small,
+            onPressed: () {},
+            child: const Text('Button'),
+          ),
+          YgButton(
+            variant: ButtonVariant.text,
+            size: ButtonSize.medium,
+            onPressed: () {},
+            child: const Text('Button'),
+          ),
+          YgButton(
+            variant: ButtonVariant.text,
+            size: ButtonSize.large,
+            onPressed: () {},
+            child: const Text('Button'),
+          ),
+          YgButton.leftIcon(
+            variant: ButtonVariant.text,
+            size: ButtonSize.small,
+            onPressed: () {},
+            icon: const Icon(Icons.add),
+            child: const Text('Button'),
+          ),
+          YgButton.rightIcon(
+            variant: ButtonVariant.text,
+            size: ButtonSize.small,
+            onPressed: () {},
+            icon: const Icon(Icons.add),
+            child: const Text('Button'),
+          ),
+          YgButton(
+            variant: ButtonVariant.link,
+            size: ButtonSize.small,
+            onPressed: () {},
+            child: const Text('Button'),
+          ),
+          YgButton(
+            variant: ButtonVariant.link,
+            size: ButtonSize.medium,
+            onPressed: () {},
+            child: const Text('Button'),
+          ),
+          YgButton(
+            variant: ButtonVariant.link,
+            size: ButtonSize.large,
+            onPressed: () {},
+            child: const Text('Button'),
+          ),
+          YgButton.leftIcon(
+            variant: ButtonVariant.link,
+            size: ButtonSize.small,
+            onPressed: () {},
+            icon: const Icon(Icons.add),
+            child: const Text('Button'),
+          ),
+          YgButton.rightIcon(
+            variant: ButtonVariant.link,
+            size: ButtonSize.small,
+            onPressed: () {},
+            icon: const Icon(Icons.add),
+            child: const Text('Button'),
+          ),
+          YgButton(
+            variant: ButtonVariant.critical,
+            size: ButtonSize.small,
+            onPressed: () {},
+            child: const Text('Button'),
+          ),
+          YgButton(
+            variant: ButtonVariant.critical,
+            size: ButtonSize.medium,
+            onPressed: () {},
+            child: const Text('Button'),
+          ),
+          YgButton(
+            variant: ButtonVariant.critical,
+            size: ButtonSize.large,
+            onPressed: () {},
+            child: const Text('Button'),
+          ),
+          YgButton.leftIcon(
+            variant: ButtonVariant.critical,
+            size: ButtonSize.small,
+            onPressed: () {},
+            icon: const Icon(Icons.add),
+            child: const Text('Button'),
+          ),
+          YgButton.rightIcon(
+            variant: ButtonVariant.critical,
+            size: ButtonSize.small,
+            onPressed: () {},
+            icon: const Icon(Icons.add),
+            child: const Text('Button'),
           ),
         ],
       ),
