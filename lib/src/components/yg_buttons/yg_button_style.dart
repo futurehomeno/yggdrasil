@@ -5,6 +5,10 @@ import 'package:yggdrasil/src/utils/_utils.dart';
 import 'enums/_enums.dart';
 import 'properties/_properties.dart';
 
+/// Button style for YgButtons.
+///
+/// Variation of the [ButtonStyle] to better fit Yg buttons.
+/// Use [toButtonStyle] to convert to material [ButtonStyle].
 class YgButtonStyle {
   const YgButtonStyle({
     required this.backgroundColor,

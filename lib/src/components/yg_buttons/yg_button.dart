@@ -5,6 +5,7 @@ import 'package:yggdrasil/src/theme/_theme.dart';
 import 'enums/yg_button_size.dart';
 import 'enums/yg_button_variant.dart';
 
+/// Base class for creating all Yg buttons.
 class YgButton extends ButtonStyleButton {
   const YgButton({
     super.key,
