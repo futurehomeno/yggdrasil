@@ -21,7 +21,7 @@ class ButtonsScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return YgScreen(
       componentName: 'Button',
-      componentDesc: 'Button',
+      componentDesc: 'Buttons',
       supernovaLink: 'Link',
       child: Column(
         children: <Widget>[

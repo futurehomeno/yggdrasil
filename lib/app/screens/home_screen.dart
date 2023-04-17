@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:yggdrasil/app/core/_core.dart';
+import 'package:yggdrasil/app/widgets/_widgets.dart';
 
 import 'buttons_screen.dart';
 
@@ -17,18 +18,19 @@ class HomeScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      body: SingleChildScrollView(
-        child: Column(
-          children: <Widget>[
-            ListTile(
-              title: const Text('Buttons'),
-              onTap: () {
-                sl<YgRouter>().push(ButtonsScreen.route());
-              },
-            ),
-          ],
-        ),
+    return YgScreen(
+      componentName: 'Home',
+      componentDesc: 'List of supported components.',
+      supernovaLink: '-',
+      child: Column(
+        children: <Widget>[
+          ListTile(
+            title: const Text('Buttons'),
+            onTap: () {
+              sl<YgRouter>().push(ButtonsScreen.route());
+            },
+          ),
+        ],
       ),
     );
   }
