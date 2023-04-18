@@ -1,0 +1,4 @@
+enum YgTagImpact {
+  strong,
+  weak;
+}

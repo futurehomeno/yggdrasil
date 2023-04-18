@@ -2,7 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:theme_tailor_annotation/theme_tailor_annotation.dart';
 
 import 'buttons/_buttons.dart';
-import 'tokens/tokens.dart';
+import 'tags/_tags.dart';
+import 'tokens/_tokens.dart';
 
 part 'theme.tailor.dart';
 
@@ -14,4 +15,7 @@ class _$YgTheme {
 
   @themeExtension
   static List<YgButtonThemes> buttonThemes = YgButtonThemes.themes;
+
+  @themeExtension
+  static List<YgTagThemes> tagThemes = YgTagThemes.themes;
 }

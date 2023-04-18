@@ -3,6 +3,7 @@ import 'package:yggdrasil/app/core/_core.dart';
 import 'package:yggdrasil/app/widgets/_widgets.dart';
 
 import 'buttons_screen.dart';
+import 'tags_screen.dart';
 
 class HomeScreen extends StatelessWidget {
   const HomeScreen({super.key});
@@ -28,6 +29,12 @@ class HomeScreen extends StatelessWidget {
             title: const Text('Buttons'),
             onTap: () {
               sl<YgRouter>().push(ButtonsScreen.route());
+            },
+          ),
+          ListTile(
+            title: const Text('Tags'),
+            onTap: () {
+              sl<YgRouter>().push(TagsScreen.route());
             },
           ),
         ],
