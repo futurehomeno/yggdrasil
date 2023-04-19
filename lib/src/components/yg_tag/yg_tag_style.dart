@@ -27,31 +27,31 @@ class YgTagStyle {
   }) {
     switch (variant) {
       case YgTagVariant.neutral:
-        return YgTagStyle.neutral(
+        return _buildNeutralTag(
           context: context,
           size: size,
           impact: impact,
         );
       case YgTagVariant.informative:
-        return YgTagStyle.informative(
+        return _buildInformativeTag(
           context: context,
           size: size,
           impact: impact,
         );
       case YgTagVariant.positive:
-        return YgTagStyle.positive(
+        return _buildPositiveTag(
           context: context,
           size: size,
           impact: impact,
         );
       case YgTagVariant.warning:
-        return YgTagStyle.warning(
+        return _buildWarningTag(
           context: context,
           size: size,
           impact: impact,
         );
       case YgTagVariant.negative:
-        return YgTagStyle.negative(
+        return _buildNegativeTag(
           context: context,
           size: size,
           impact: impact,
@@ -59,10 +59,10 @@ class YgTagStyle {
     }
   }
 
-  factory YgTagStyle.neutral({
+  static YgTagStyle _buildNeutralTag({
     required BuildContext context,
-    YgTagSize size = YgTagSize.medium,
-    YgTagImpact impact = YgTagImpact.weak,
+    required YgTagSize size,
+    required YgTagImpact impact,
   }) {
     return YgTagStyle(
       backgroundColor: impact == YgTagImpact.weak
@@ -82,10 +82,10 @@ class YgTagStyle {
     );
   }
 
-  factory YgTagStyle.informative({
+  static YgTagStyle _buildInformativeTag({
     required BuildContext context,
-    YgTagSize size = YgTagSize.medium,
-    YgTagImpact impact = YgTagImpact.weak,
+    required YgTagSize size,
+    required YgTagImpact impact,
   }) {
     return YgTagStyle(
       backgroundColor: context.buttonThemes.secondaryButtonTheme.backgroundColor,
@@ -105,10 +105,10 @@ class YgTagStyle {
     );
   }
 
-  factory YgTagStyle.positive({
+  static YgTagStyle _buildPositiveTag({
     required BuildContext context,
-    YgTagSize size = YgTagSize.medium,
-    YgTagImpact impact = YgTagImpact.weak,
+    required YgTagSize size,
+    required YgTagImpact impact,
   }) {
     return YgTagStyle(
       backgroundColor: context.buttonThemes.textButtonTheme.backgroundColor,
@@ -128,10 +128,10 @@ class YgTagStyle {
     );
   }
 
-  factory YgTagStyle.warning({
+  static YgTagStyle _buildWarningTag({
     required BuildContext context,
-    YgTagSize size = YgTagSize.medium,
-    YgTagImpact impact = YgTagImpact.weak,
+    required YgTagSize size,
+    required YgTagImpact impact,
   }) {
     return YgTagStyle(
       backgroundColor: context.buttonThemes.linkButtonTheme.backgroundColor,
@@ -151,10 +151,10 @@ class YgTagStyle {
     );
   }
 
-  factory YgTagStyle.negative({
+  static YgTagStyle _buildNegativeTag({
     required BuildContext context,
-    YgTagSize size = YgTagSize.medium,
-    YgTagImpact impact = YgTagImpact.weak,
+    required YgTagSize size,
+    required YgTagImpact impact,
   }) {
     return YgTagStyle(
       backgroundColor: context.buttonThemes.criticalButtonTheme.backgroundColor,
