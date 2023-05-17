@@ -103,4 +103,87 @@ class _$YgButtonThemes {
     professional_light.FhBorders.sm.left.width,
     professional_dark.FhBorders.sm.left.width,
   ];
+
+  static List<EdgeInsets> somePadding = ThemePadding.only(
+    bottom: FhDimensions.sm,
+    right: FhDimensions.sm,
+  );
+}
+
+class ThemePadding {
+  const ThemePadding._();
+
+  static List<EdgeInsets> only({
+    List<double>? left,
+    List<double>? right,
+    List<double>? top,
+    List<double>? bottom,
+  }) {
+    final List<EdgeInsets> result = <EdgeInsets>[];
+    for (int i = 0; i < 4; i++) {
+      result.add(EdgeInsets.only(
+        bottom: bottom?[i] ?? 0,
+        top: top?[i] ?? 0,
+        left: left?[i] ?? 0,
+        right: right?[i] ?? 0,
+      ));
+    }
+    return result;
+  }
+
+  static List<EdgeInsets> symmetric({
+    List<double>? horizontal,
+    List<double>? vertical,
+  }) {
+    return only(
+      left: horizontal,
+      right: horizontal,
+      top: vertical,
+      bottom: vertical,
+    );
+  }
+
+  static List<EdgeInsets> fromLTRB(
+    List<double>? left,
+    List<double>? top,
+    List<double>? right,
+    List<double>? bottom,
+  ) {
+    return only(
+      top: top,
+      bottom: bottom,
+      left: left,
+      right: right,
+    );
+  }
+
+  static List<EdgeInsets> all(
+    List<double>? all,
+  ) {
+    return only(
+      top: all,
+      bottom: all,
+      left: all,
+      right: all,
+    );
+  }
+}
+
+class FhDimensions {
+  const FhDimensions._();
+  static const List<double> none = <double>[0.0, 0.0, 0.0, 0.0];
+
+  static const List<double> xxs = <double>[5.0, 5.0, 5.0, 5.0];
+
+  static const List<double> xs = <double>[10.0, 10.0, 10.0, 10.0];
+
+  static const List<double> sm = <double>[15.0, 15.0, 15.0, 15.0];
+
+  static const List<double> md = <double>[20.0, 20.0, 20.0, 20.0];
+
+  static const List<double> lg = <double>[25.0, 25.0, 25.0, 25.0];
+
+  static const List<double> xl = <double>[30.0, 30.0, 30.0, 30.0];
+
+  static const List<double> xxl = <double>[50.0, 50.0, 50.0, 50.0];
 }
