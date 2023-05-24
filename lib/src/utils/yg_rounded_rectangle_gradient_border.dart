@@ -1,4 +1,4 @@
-import 'package:flutter/widgets.dart';
+import 'package:flutter/material.dart';
 
 class YgRoundedRectangleGradientBorder extends OutlinedBorder {
   const YgRoundedRectangleGradientBorder({
@@ -43,18 +43,7 @@ class YgRoundedRectangleGradientBorder extends OutlinedBorder {
   @override
   Path getInnerPath(Rect rect, {TextDirection? textDirection}) {
     final RRect borderRect = borderRadius.resolve(textDirection).toRRect(rect);
-    final RRect adjustedRect;
-    switch (side.strokeAlign) {
-      case StrokeAlign.inside:
-        adjustedRect = borderRect.deflate(side.width);
-        break;
-      case StrokeAlign.center:
-        adjustedRect = borderRect.deflate(side.width / 2);
-        break;
-      case StrokeAlign.outside:
-        adjustedRect = borderRect;
-        break;
-    }
+    final RRect adjustedRect = borderRect.deflate(side.width * (side.strokeAlign - 1) * -0.5);
     return Path()..addRRect(adjustedRect);
   }
 

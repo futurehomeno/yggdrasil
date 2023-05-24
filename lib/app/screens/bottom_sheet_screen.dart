@@ -32,7 +32,7 @@ class _BottomSheetScreenState extends State<BottomSheetScreen> with TickerProvid
       supernovaLink: 'Link',
       scrollable: false,
       child: Column(
-        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+        // mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: <Widget>[
           YgButton(
             variant: ButtonVariant.primary,
@@ -40,6 +40,48 @@ class _BottomSheetScreenState extends State<BottomSheetScreen> with TickerProvid
               Navigator.of(context).push(YgModalBottomSheetRoute());
             },
             child: const Text('Show default bottom sheet'),
+          ),
+          YgButton(
+            variant: ButtonVariant.primary,
+            onPressed: () {
+              showModalBottomSheet<Widget>(
+                isScrollControlled: true,
+                isDismissible: true,
+                context: context,
+                builder: (BuildContext context) {
+                  return DraggableScrollableSheet(
+                    initialChildSize: 0.4,
+                    expand: false,
+                    builder: (BuildContext context, ScrollController scrollController) {
+                      return SingleChildScrollView(
+                        controller: scrollController,
+                        child: YgBottomSheet(
+                          title: 'Sheet title',
+                          content: SingleChildScrollView(
+                            controller: scrollController,
+                            child: AspectRatio(
+                              aspectRatio: 0.1,
+                              child: Container(
+                                decoration: BoxDecoration(
+                                  color: Colors.grey,
+                                  borderRadius: BorderRadius.circular(5),
+                                ),
+                              ),
+                            ),
+                          ),
+                          footer: YgButton(
+                            variant: ButtonVariant.primary,
+                            onPressed: () {},
+                            child: const Text('Button'),
+                          ),
+                        ),
+                      );
+                    },
+                  );
+                },
+              );
+            },
+            child: const Text('Show material bottom sheet'),
           ),
           // const YgModalBottomSheet(),
         ],
@@ -129,12 +171,14 @@ class _YgModalBottomSheetState extends State<YgModalBottomSheet> {
                   resizeCallback: _bottomSheetResized,
                   child: YgBottomSheet(
                     title: 'Sheet title',
-                    content: AspectRatio(
-                      aspectRatio: 1,
-                      child: Container(
-                        decoration: BoxDecoration(
-                          color: Colors.grey,
-                          borderRadius: BorderRadius.circular(5),
+                    content: SingleChildScrollView(
+                      child: AspectRatio(
+                        aspectRatio: 0.5,
+                        child: Container(
+                          decoration: BoxDecoration(
+                            color: Colors.grey,
+                            borderRadius: BorderRadius.circular(5),
+                          ),
                         ),
                       ),
                     ),
