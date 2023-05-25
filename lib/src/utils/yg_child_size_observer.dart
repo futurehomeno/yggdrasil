@@ -3,8 +3,8 @@ import 'package:flutter/rendering.dart';
 
 typedef ResizeCallback = void Function(Size size);
 
-class ChildSize extends SingleChildRenderObjectWidget {
-  const ChildSize({
+class YgChildSizeObserver extends SingleChildRenderObjectWidget {
+  const YgChildSizeObserver({
     super.key,
     required super.child,
     required this.resizeCallback,
@@ -14,19 +14,19 @@ class ChildSize extends SingleChildRenderObjectWidget {
 
   @override
   RenderObject createRenderObject(BuildContext context) {
-    return RenderChildSize(
+    return YgRenderChildSizeObserver(
       resizeCallback: resizeCallback,
     );
   }
 
   @override
-  void updateRenderObject(BuildContext context, RenderChildSize renderObject) {
+  void updateRenderObject(BuildContext context, YgRenderChildSizeObserver renderObject) {
     renderObject.resizeCallback = resizeCallback;
   }
 }
 
-class RenderChildSize extends RenderBox with RenderObjectWithChildMixin<RenderBox> {
-  RenderChildSize({
+class YgRenderChildSizeObserver extends RenderBox with RenderObjectWithChildMixin<RenderBox> {
+  YgRenderChildSizeObserver({
     required ResizeCallback resizeCallback,
   }) : _resizeCallback = resizeCallback;
 

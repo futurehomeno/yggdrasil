@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:yggdrasil/src/components/yg_bottom_sheet/yg_bottom_sheet_scroll_physics_provider.dart';
+import 'package:yggdrasil/src/components/yg_bottom_sheet/scroll_physics/yg_bottom_sheet_scroll_physics_provider.dart';
 import 'package:yggdrasil/src/theme/_theme.dart';
 import 'package:yggdrasil/src/theme/bottom_sheet/bottom_sheet_themes.dart';
 

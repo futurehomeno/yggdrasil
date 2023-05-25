@@ -1,9 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:yggdrasil/src/components/yg_bottom_sheet/_yg_bottom_sheet.dart';
 
-import 'yg_model_bottom_sheet.dart';
+import '../_yg_bottom_sheet.dart';
 
-abstract class YgModalBottomSheetRoute extends PopupRoute<YgModalBottomSheet> {
+abstract class YgBottomSheetModalRoute extends PopupRoute<YgBottomSheetModal> {
   late AnimationController _controller;
 
   @override
@@ -36,7 +35,7 @@ abstract class YgModalBottomSheetRoute extends PopupRoute<YgModalBottomSheet> {
 
   @override
   Widget buildPage(BuildContext context, Animation<double> animation, Animation<double> secondaryAnimation) {
-    return YgModalBottomSheet(
+    return YgBottomSheetModal(
       modalController: _controller,
       bottomSheet: buildBottomSheet(context),
     );
