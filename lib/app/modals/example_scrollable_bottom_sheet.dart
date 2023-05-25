@@ -6,7 +6,7 @@ class ExampleScrollableBottomSheet extends YgModalBottomSheetRoute {
   @override
   YgBottomSheet buildBottomSheet(BuildContext context) {
     return YgBottomSheet(
-      title: 'Example Bottom Sheet',
+      title: 'Scrollable Bottom Sheet',
       content: Column(
         mainAxisSize: MainAxisSize.min,
         children: List<Widget>.generate(

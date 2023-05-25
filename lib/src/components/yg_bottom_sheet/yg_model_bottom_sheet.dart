@@ -21,9 +21,9 @@ class YgModalBottomSheet extends StatefulWidget {
 
 class _YgModalBottomSheetState extends State<YgModalBottomSheet> {
   bool fullyExpanded = false;
+  bool isScrolling = false;
 
-  double offset = 0;
-  double sheetSize = 100000;
+  double? sheetSize;
 
   @override
   Widget build(BuildContext context) {
@@ -93,21 +93,26 @@ class _YgModalBottomSheetState extends State<YgModalBottomSheet> {
   }
 
   void _handleSwipeUpdate(double movement) {
-    widget.modalController.value -= movement / sheetSize;
+    if (sheetSize != null) {
+      widget.modalController.value -= movement / sheetSize!;
+    }
   }
 
   double _transformScroll(double value, ScrollMetrics metrics) {
     final bool isSwipingUp = value < 0 && widget.modalController.value != 1;
     final bool isSwipingDown = metrics.extentBefore == 0 && value > 0;
-    if (isSwipingDown || isSwipingUp) {
+    final bool canSwipeModal = !isScrolling && metrics.extentBefore == 0;
+    if ((isSwipingDown && canSwipeModal) || isSwipingUp) {
       _handleSwipeUpdate(value);
       return 0;
     }
+    isScrolling = true;
     return value;
   }
 
   bool _handleScrollStop(double velocity, ScrollMetrics metrics) {
     _handleSwipeEnd(-velocity);
+    isScrolling = false;
     return widget.modalController.value == 1;
   }
 }
