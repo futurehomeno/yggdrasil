@@ -67,6 +67,7 @@ class YgBottomSheet extends StatelessWidget {
                     padding: theme.outerPadding.copyWith(top: 0),
                     child: Column(
                       mainAxisSize: MainAxisSize.min,
+                      crossAxisAlignment: CrossAxisAlignment.stretch,
                       children: <Widget>[
                         content,
                         if (footer != null)

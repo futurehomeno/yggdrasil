@@ -6,10 +6,13 @@ import '../_yg_bottom_sheet.dart';
 // TODO(Tim): This should probably be moved in to the theme / be a token.
 
 /// The minimum velocity for a swipe to be considered a fling.
-const double flingVelocity = 2000;
+const double _flingVelocity = 2000;
 
 /// The duration of the animation used for moving the [BottomSheet].
-const Duration animationDuration = Duration(milliseconds: 225);
+const Duration _animationDuration = Duration(milliseconds: 225);
+
+/// The curve used for moving the [BottomSheet].
+const Curve _animationCurve = Curves.easeOut;
 
 class YgBottomSheetModal extends StatefulWidget {
   const YgBottomSheetModal({
@@ -28,7 +31,7 @@ class YgBottomSheetModal extends StatefulWidget {
 class _YgBottomSheetModalState extends State<YgBottomSheetModal> {
   bool _isScrolling = false;
   double? _sheetSize;
-  ParametricCurve<double> _curve = Curves.easeOut;
+  ParametricCurve<double> _curve = _animationCurve;
 
   @override
   Widget build(BuildContext context) {
@@ -78,7 +81,7 @@ class _YgBottomSheetModalState extends State<YgBottomSheetModal> {
   void _animatedToOpened() {
     widget.modalController.animateTo(
       1,
-      duration: animationDuration,
+      duration: _animationDuration,
     );
   }
 
@@ -89,7 +92,7 @@ class _YgBottomSheetModalState extends State<YgBottomSheetModal> {
   }
 
   void _handleSwipeEnd(double velocity) {
-    _curve = YgSuspendedCurve(widget.modalController.value, curve: Curves.easeOut);
+    _curve = YgSuspendedCurve(widget.modalController.value, curve: _animationCurve);
 
     if (widget.modalController.isAnimating || widget.modalController.value == 1) {
       return;
@@ -97,7 +100,7 @@ class _YgBottomSheetModalState extends State<YgBottomSheetModal> {
 
     // If velocity if above fling velocity, animate to the fling direction, else
     // animate to the nearest point.
-    final bool swipeToOpened = velocity.abs() > flingVelocity ? velocity < 0 : widget.modalController.value > 0.5;
+    final bool swipeToOpened = velocity.abs() > _flingVelocity ? velocity < 0 : widget.modalController.value > 0.5;
 
     if (swipeToOpened) {
       _animatedToOpened();
