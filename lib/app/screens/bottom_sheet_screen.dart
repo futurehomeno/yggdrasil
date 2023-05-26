@@ -23,8 +23,6 @@ class BottomSheetScreen extends StatefulWidget {
 }
 
 class _BottomSheetScreenState extends State<BottomSheetScreen> with TickerProviderStateMixin {
-  double offset = 0;
-
   @override
   Widget build(BuildContext context) {
     return YgScreen(
