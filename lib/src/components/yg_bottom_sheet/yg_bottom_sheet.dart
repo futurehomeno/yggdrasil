@@ -29,55 +29,58 @@ class YgBottomSheet extends StatelessWidget {
           topLeft: Radius.circular(20),
           topRight: Radius.circular(20),
         ),
-        child: Column(
-          mainAxisSize: MainAxisSize.min,
-          children: <Widget>[
-            Padding(
-              padding: theme.outerPadding.copyWith(bottom: 0),
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.stretch,
-                mainAxisSize: MainAxisSize.min,
-                children: <Widget>[
-                  Center(
-                    child: Container(
-                      width: 48,
-                      height: 5,
-                      decoration: BoxDecoration(
-                        color: theme.handleBarColor,
-                        borderRadius: BorderRadius.circular(2.5),
+        child: SafeArea(
+          top: false,
+          child: Column(
+            mainAxisSize: MainAxisSize.min,
+            children: <Widget>[
+              Padding(
+                padding: theme.outerPadding.copyWith(bottom: 0),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.stretch,
+                  mainAxisSize: MainAxisSize.min,
+                  children: <Widget>[
+                    Center(
+                      child: Container(
+                        width: 48,
+                        height: 5,
+                        decoration: BoxDecoration(
+                          color: theme.handleBarColor,
+                          borderRadius: BorderRadius.circular(2.5),
+                        ),
                       ),
                     ),
-                  ),
-                  Padding(
-                    padding: theme.titlePadding,
-                    child: Text(
-                      title,
-                      style: theme.titleStyle,
+                    Padding(
+                      padding: theme.titlePadding,
+                      child: Text(
+                        title,
+                        style: theme.titleStyle,
+                      ),
                     ),
-                  ),
-                ],
-              ),
-            ),
-            Flexible(
-              child: SingleChildScrollView(
-                physics: scrollPhysicsProvider?.scrollPhysics,
-                child: Padding(
-                  padding: theme.outerPadding.copyWith(top: 0),
-                  child: Column(
-                    mainAxisSize: MainAxisSize.min,
-                    children: <Widget>[
-                      content,
-                      if (footer != null)
-                        Padding(
-                          padding: theme.footerPadding,
-                          child: footer,
-                        ),
-                    ],
-                  ),
+                  ],
                 ),
               ),
-            )
-          ],
+              Flexible(
+                child: SingleChildScrollView(
+                  physics: scrollPhysicsProvider?.scrollPhysics,
+                  child: Padding(
+                    padding: theme.outerPadding.copyWith(top: 0),
+                    child: Column(
+                      mainAxisSize: MainAxisSize.min,
+                      children: <Widget>[
+                        content,
+                        if (footer != null)
+                          Padding(
+                            padding: theme.footerPadding,
+                            child: footer,
+                          ),
+                      ],
+                    ),
+                  ),
+                ),
+              )
+            ],
+          ),
         ),
       ),
     );

@@ -3,6 +3,14 @@ import 'package:yggdrasil/src/utils/_utils.dart';
 
 import '../_yg_bottom_sheet.dart';
 
+// TODO(Tim): This should probably be moved in to the theme / be a token.
+
+/// The minimum velocity for a swipe to be considered a fling.
+const double flingVelocity = 2000;
+
+/// The duration of the animation used for moving the [BottomSheet].
+const Duration animationDuration = Duration(milliseconds: 225);
+
 class YgBottomSheetModal extends StatefulWidget {
   const YgBottomSheetModal({
     super.key,
@@ -20,10 +28,12 @@ class YgBottomSheetModal extends StatefulWidget {
 class _YgBottomSheetModalState extends State<YgBottomSheetModal> {
   bool _isScrolling = false;
   double? _sheetSize;
+  ParametricCurve<double> _curve = Curves.easeOut;
 
   @override
   Widget build(BuildContext context) {
     return SafeArea(
+      bottom: false,
       child: Align(
         alignment: Alignment.bottomCenter,
         child: AnimatedBuilder(
@@ -32,7 +42,7 @@ class _YgBottomSheetModalState extends State<YgBottomSheetModal> {
             return FractionalTranslation(
               translation: Offset(
                 0,
-                1 - widget.modalController.value,
+                1 - _curve.transform(widget.modalController.value),
               ),
               child: child,
             );
@@ -68,8 +78,7 @@ class _YgBottomSheetModalState extends State<YgBottomSheetModal> {
   void _animatedToOpened() {
     widget.modalController.animateTo(
       1,
-      duration: const Duration(milliseconds: 225),
-      curve: Curves.easeOut,
+      duration: animationDuration,
     );
   }
 
@@ -80,13 +89,15 @@ class _YgBottomSheetModalState extends State<YgBottomSheetModal> {
   }
 
   void _handleSwipeEnd(double velocity) {
+    _curve = YgSuspendedCurve(widget.modalController.value, curve: Curves.easeOut);
+
     if (widget.modalController.isAnimating || widget.modalController.value == 1) {
       return;
     }
 
     // If velocity if above fling velocity, animate to the fling direction, else
     // animate to the nearest point.
-    final bool swipeToOpened = velocity.abs() > 2000 ? velocity < 0 : widget.modalController.value > 0.5;
+    final bool swipeToOpened = velocity.abs() > flingVelocity ? velocity < 0 : widget.modalController.value > 0.5;
 
     if (swipeToOpened) {
       _animatedToOpened();
@@ -96,6 +107,8 @@ class _YgBottomSheetModalState extends State<YgBottomSheetModal> {
   }
 
   void _handleSwipeUpdate(double movement) {
+    _curve = Curves.linear;
+
     if (_sheetSize != null) {
       widget.modalController.value -= movement / _sheetSize!;
     }

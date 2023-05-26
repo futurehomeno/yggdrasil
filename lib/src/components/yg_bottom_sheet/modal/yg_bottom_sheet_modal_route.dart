@@ -17,7 +17,7 @@ abstract class YgBottomSheetModalRoute extends PopupRoute<YgBottomSheetModal> {
   String? get barrierLabel => 'Dismissible Dialog';
 
   @override
-  Duration get transitionDuration => const Duration(milliseconds: 300);
+  Duration get transitionDuration => const Duration(milliseconds: 225);
 
   @override
   Curve get barrierCurve => Curves.easeOut;

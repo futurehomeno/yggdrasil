@@ -46,10 +46,9 @@ class YgBottomSheetScrollPhysics extends ScrollPhysics {
       velocity,
     );
 
-    if (shouldDoBallisticsSimulation) {
-      return super.createBallisticSimulation(position, velocity);
-    }
-
-    return super.createBallisticSimulation(position, 0);
+    return super.createBallisticSimulation(
+      position,
+      shouldDoBallisticsSimulation ? velocity : 0,
+    );
   }
 }
