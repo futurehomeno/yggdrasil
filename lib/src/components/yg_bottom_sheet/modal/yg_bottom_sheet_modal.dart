@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:yggdrasil/src/theme/_theme.dart';
 import 'package:yggdrasil/src/utils/_utils.dart';
 
 import '../_yg_bottom_sheet.dart';
@@ -41,46 +42,60 @@ class _YgBottomSheetModalState extends State<YgBottomSheetModal> {
 
   @override
   Widget build(BuildContext context) {
-    return SafeArea(
-      bottom: false,
-      child: Align(
-        alignment: Alignment.bottomCenter,
-        child: AnimatedBuilder(
-          animation: widget.modalController,
-          builder: (BuildContext context, Widget? child) {
-            return FractionalTranslation(
-              translation: Offset(
-                0,
-                1 - _curve.transform(widget.modalController.value),
-              ),
-              child: child,
-            );
-          },
-          child: YgChildSizeObserver(
-            resizeCallback: (Size size) {
-              _sheetSize = size.height;
-            },
-            child: GestureDetector(
-              onVerticalDragUpdate: (DragUpdateDetails details) {
-                _handleSwipeUpdate(details.delta.dy);
-              },
-              onVerticalDragCancel: () {
-                _handleSwipeEnd(0);
-              },
-              onVerticalDragEnd: (DragEndDetails details) {
-                _handleSwipeEnd(details.primaryVelocity ?? 0);
-              },
-              child: YgBottomSheetScrollPhysicsProvider(
-                scrollPhysics: YgBottomSheetScrollPhysics(
-                  handleScrollSwipeEnd: _handleScrollStop,
-                  handleScrollSwipeUpdate: _handleScrollSwipeUpdate,
-                ),
-                child: widget.bottomSheet,
+    return Stack(
+      children: [
+        Positioned.fill(
+          child: IgnorePointer(
+            child: FadeTransition(
+              opacity: widget.modalController,
+              child: ColoredBox(
+                color: context.bottomSheetTheme.scrimColor,
               ),
             ),
           ),
         ),
-      ),
+        SafeArea(
+          bottom: false,
+          child: Align(
+            alignment: Alignment.bottomCenter,
+            child: AnimatedBuilder(
+              animation: widget.modalController,
+              builder: (BuildContext context, Widget? child) {
+                return FractionalTranslation(
+                  translation: Offset(
+                    0,
+                    1 - _curve.transform(widget.modalController.value),
+                  ),
+                  child: child,
+                );
+              },
+              child: YgChildSizeObserver(
+                resizeCallback: (Size size) {
+                  _sheetSize = size.height;
+                },
+                child: GestureDetector(
+                  onVerticalDragUpdate: (DragUpdateDetails details) {
+                    _handleSwipeUpdate(details.delta.dy);
+                  },
+                  onVerticalDragCancel: () {
+                    _handleSwipeEnd(0);
+                  },
+                  onVerticalDragEnd: (DragEndDetails details) {
+                    _handleSwipeEnd(details.primaryVelocity ?? 0);
+                  },
+                  child: YgBottomSheetScrollPhysicsProvider(
+                    scrollPhysics: YgBottomSheetScrollPhysics(
+                      handleScrollSwipeEnd: _handleScrollStop,
+                      handleScrollSwipeUpdate: _handleScrollSwipeUpdate,
+                    ),
+                    child: widget.bottomSheet,
+                  ),
+                ),
+              ),
+            ),
+          ),
+        ),
+      ],
     );
   }
 

@@ -12,6 +12,7 @@ class YgBottomSheetThemes extends ThemeExtension<YgBottomSheetThemes> {
   const YgBottomSheetThemes({
     required this.handleBarColor,
     required this.backgroundColor,
+    required this.scrimColor,
     required this.borderRadius,
     required this.outerPadding,
     required this.footerPadding,
@@ -21,6 +22,7 @@ class YgBottomSheetThemes extends ThemeExtension<YgBottomSheetThemes> {
 
   final Color handleBarColor;
   final Color backgroundColor;
+  final Color scrimColor;
   final BorderRadius borderRadius;
   final EdgeInsets outerPadding;
   final EdgeInsets footerPadding;
@@ -30,6 +32,7 @@ class YgBottomSheetThemes extends ThemeExtension<YgBottomSheetThemes> {
   static final YgBottomSheetThemes consumerLight = YgBottomSheetThemes(
     handleBarColor: _$YgBottomSheetThemes.handleBarColor[0],
     backgroundColor: _$YgBottomSheetThemes.backgroundColor[0],
+    scrimColor: _$YgBottomSheetThemes.scrimColor[0],
     borderRadius: _$YgBottomSheetThemes.borderRadius[0],
     outerPadding: _$YgBottomSheetThemes.outerPadding[0],
     footerPadding: _$YgBottomSheetThemes.footerPadding[0],
@@ -40,6 +43,7 @@ class YgBottomSheetThemes extends ThemeExtension<YgBottomSheetThemes> {
   static final YgBottomSheetThemes consumerDark = YgBottomSheetThemes(
     handleBarColor: _$YgBottomSheetThemes.handleBarColor[1],
     backgroundColor: _$YgBottomSheetThemes.backgroundColor[1],
+    scrimColor: _$YgBottomSheetThemes.scrimColor[1],
     borderRadius: _$YgBottomSheetThemes.borderRadius[1],
     outerPadding: _$YgBottomSheetThemes.outerPadding[1],
     footerPadding: _$YgBottomSheetThemes.footerPadding[1],
@@ -50,6 +54,7 @@ class YgBottomSheetThemes extends ThemeExtension<YgBottomSheetThemes> {
   static final YgBottomSheetThemes professionalLight = YgBottomSheetThemes(
     handleBarColor: _$YgBottomSheetThemes.handleBarColor[2],
     backgroundColor: _$YgBottomSheetThemes.backgroundColor[2],
+    scrimColor: _$YgBottomSheetThemes.scrimColor[2],
     borderRadius: _$YgBottomSheetThemes.borderRadius[2],
     outerPadding: _$YgBottomSheetThemes.outerPadding[2],
     footerPadding: _$YgBottomSheetThemes.footerPadding[2],
@@ -60,6 +65,7 @@ class YgBottomSheetThemes extends ThemeExtension<YgBottomSheetThemes> {
   static final YgBottomSheetThemes professionalDark = YgBottomSheetThemes(
     handleBarColor: _$YgBottomSheetThemes.handleBarColor[3],
     backgroundColor: _$YgBottomSheetThemes.backgroundColor[3],
+    scrimColor: _$YgBottomSheetThemes.scrimColor[3],
     borderRadius: _$YgBottomSheetThemes.borderRadius[3],
     outerPadding: _$YgBottomSheetThemes.outerPadding[3],
     footerPadding: _$YgBottomSheetThemes.footerPadding[3],
@@ -78,6 +84,7 @@ class YgBottomSheetThemes extends ThemeExtension<YgBottomSheetThemes> {
   YgBottomSheetThemes copyWith({
     Color? handleBarColor,
     Color? backgroundColor,
+    Color? scrimColor,
     BorderRadius? borderRadius,
     EdgeInsets? outerPadding,
     EdgeInsets? footerPadding,
@@ -87,6 +94,7 @@ class YgBottomSheetThemes extends ThemeExtension<YgBottomSheetThemes> {
     return YgBottomSheetThemes(
       handleBarColor: handleBarColor ?? this.handleBarColor,
       backgroundColor: backgroundColor ?? this.backgroundColor,
+      scrimColor: scrimColor ?? this.scrimColor,
       borderRadius: borderRadius ?? this.borderRadius,
       outerPadding: outerPadding ?? this.outerPadding,
       footerPadding: footerPadding ?? this.footerPadding,
@@ -102,6 +110,7 @@ class YgBottomSheetThemes extends ThemeExtension<YgBottomSheetThemes> {
     return YgBottomSheetThemes(
       handleBarColor: Color.lerp(handleBarColor, other.handleBarColor, t)!,
       backgroundColor: Color.lerp(backgroundColor, other.backgroundColor, t)!,
+      scrimColor: Color.lerp(scrimColor, other.scrimColor, t)!,
       borderRadius: t < 0.5 ? borderRadius : other.borderRadius,
       outerPadding: t < 0.5 ? outerPadding : other.outerPadding,
       footerPadding: t < 0.5 ? footerPadding : other.footerPadding,
@@ -120,6 +129,8 @@ class YgBottomSheetThemes extends ThemeExtension<YgBottomSheetThemes> {
             const DeepCollectionEquality()
                 .equals(backgroundColor, other.backgroundColor) &&
             const DeepCollectionEquality()
+                .equals(scrimColor, other.scrimColor) &&
+            const DeepCollectionEquality()
                 .equals(borderRadius, other.borderRadius) &&
             const DeepCollectionEquality()
                 .equals(outerPadding, other.outerPadding) &&
@@ -137,6 +148,7 @@ class YgBottomSheetThemes extends ThemeExtension<YgBottomSheetThemes> {
         runtimeType,
         const DeepCollectionEquality().hash(handleBarColor),
         const DeepCollectionEquality().hash(backgroundColor),
+        const DeepCollectionEquality().hash(scrimColor),
         const DeepCollectionEquality().hash(borderRadius),
         const DeepCollectionEquality().hash(outerPadding),
         const DeepCollectionEquality().hash(footerPadding),

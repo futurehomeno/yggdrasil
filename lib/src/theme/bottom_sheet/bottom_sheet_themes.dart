@@ -23,6 +23,13 @@ class _$YgBottomSheetThemes {
     professional_dark.FhColors.backgroundDefault,
   ];
 
+  static List<Color> scrimColor = <Color>[
+    consumer_light.FhColors.backgroundOverlay,
+    consumer_dark.FhColors.backgroundOverlay,
+    professional_light.FhColors.backgroundOverlay,
+    professional_dark.FhColors.backgroundOverlay,
+  ];
+
   static const List<BorderRadius> borderRadius = <BorderRadius>[
     BorderRadius.only(
       topLeft: Radius.circular(consumer_light.FhDimensions.xl),

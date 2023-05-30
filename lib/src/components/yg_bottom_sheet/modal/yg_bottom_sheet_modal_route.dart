@@ -5,8 +5,10 @@ import '../_yg_bottom_sheet.dart';
 abstract class YgBottomSheetModalRoute extends PopupRoute<YgBottomSheetModal> {
   late AnimationController _controller;
 
+  // This is set to transparent so we can use our theming with a fake scrim
+  // elsewhere.
   @override
-  Color? get barrierColor => Colors.black.withAlpha(0x50);
+  Color? get barrierColor => Colors.transparent;
 
   // This allows the popup to be dismissed by tapping the scrim or by pressing
   // the escape key on the keyboard.
