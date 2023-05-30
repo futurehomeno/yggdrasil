@@ -3,6 +3,12 @@ import 'package:flutter/rendering.dart';
 
 typedef ResizeCallback = void Function(Size size);
 
+/// Widget which observes it's child widget size.
+///
+/// ! -- IMPORTANT --
+/// [resizeCallback] gets called after the layout of the child widget is
+/// calculated, this means you do NOT know the size of the child widget during
+/// first build.
 class YgChildSizeObserver extends SingleChildRenderObjectWidget {
   const YgChildSizeObserver({
     super.key,
@@ -10,6 +16,7 @@ class YgChildSizeObserver extends SingleChildRenderObjectWidget {
     required this.resizeCallback,
   });
 
+  /// Callback which gets called when the child widget size is known.
   final ResizeCallback resizeCallback;
 
   @override
