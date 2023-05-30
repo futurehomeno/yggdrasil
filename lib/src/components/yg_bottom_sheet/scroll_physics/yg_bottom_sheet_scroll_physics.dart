@@ -11,7 +11,20 @@ class YgBottomSheetScrollPhysics extends ScrollPhysics {
     required this.handleScrollSwipeEnd,
   });
 
+  /// Callback for when the user swipes in the scrollable area.
+  ///
+  /// Gets passed the [ScrollMetrics] and the amount which the swipe would
+  /// scroll the page.
+  ///
+  /// Should return true if the swipe should scroll the page.
   final bool Function(ScrollMetrics metrics, double scrollAmount) handleScrollSwipeUpdate;
+
+  /// Callback for when the user has stopped swiping in the scrollable area.
+  ///
+  /// Gets passed the [ScrollMetrics] and the average velocity of the swipe.
+  ///
+  /// Should return true if the the content of the scrollable area should be
+  /// flung using the scroll velocity.
   final bool Function(ScrollMetrics metrics, double velocity) handleScrollSwipeEnd;
 
   @override
