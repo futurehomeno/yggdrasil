@@ -9,10 +9,10 @@ import '../_yg_bottom_sheet.dart';
 /// The minimum velocity for a swipe to be considered a fling.
 const double _flingVelocity = 2000;
 
-/// The duration of the animation used for moving the [BottomSheet].
+/// The duration of the animation used for moving the [YgBottomSheet].
 const Duration _animationDuration = Duration(milliseconds: 225);
 
-/// The curve used for moving the [BottomSheet].
+/// The curve used for moving the [YgBottomSheet].
 const Curve _animationCurve = Curves.easeOut;
 
 class YgBottomSheetModal extends StatefulWidget {
@@ -30,14 +30,14 @@ class YgBottomSheetModal extends StatefulWidget {
 }
 
 class _YgBottomSheetModalState extends State<YgBottomSheetModal> {
-  /// Set to true when the content of the [BottomSheet] is being scrolled.
+  /// Set to true when the content of the [YgBottomSheet] is being scrolled.
   bool _isScrolling = false;
 
-  /// The size of the [BottomSheet], can be null because the size is only known
+  /// The size of the [YgBottomSheet], can be null because the size is only known
   /// after the first build / layout.
   double? _sheetSize;
 
-  /// The current curve applied to the movement of the [BottomSheet].
+  /// The current curve applied to the movement of the [YgBottomSheet].
   ParametricCurve<double> _curve = _animationCurve;
 
   @override

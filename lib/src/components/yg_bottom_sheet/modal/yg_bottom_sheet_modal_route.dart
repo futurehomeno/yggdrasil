@@ -2,6 +2,10 @@ import 'package:flutter/material.dart';
 
 import '../_yg_bottom_sheet.dart';
 
+/// A route which should be extended to create a [YgBottomSheet] modal route.
+///
+/// Wraps the result from [buildBottomSheet] in a [YgBottomSheetModal] which
+/// provides animations for opening ans closing the [YgBottomSheet] and a scrim.
 abstract class YgBottomSheetModalRoute extends PopupRoute<YgBottomSheetModal> {
   late AnimationController _controller;
 
@@ -43,5 +47,6 @@ abstract class YgBottomSheetModalRoute extends PopupRoute<YgBottomSheetModal> {
     );
   }
 
+  /// Builds the [YgBottomSheet].
   YgBottomSheet buildBottomSheet(BuildContext context);
 }
