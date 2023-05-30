@@ -29,8 +29,14 @@ class YgBottomSheetModal extends StatefulWidget {
 }
 
 class _YgBottomSheetModalState extends State<YgBottomSheetModal> {
+  /// Set to true when the content of the [BottomSheet] is being scrolled.
   bool _isScrolling = false;
+
+  /// The size of the [BottomSheet], can be null because the size is only known
+  /// after the first build / layout.
   double? _sheetSize;
+
+  /// The current curve applied to the movement of the [BottomSheet].
   ParametricCurve<double> _curve = _animationCurve;
 
   @override
@@ -67,7 +73,7 @@ class _YgBottomSheetModalState extends State<YgBottomSheetModal> {
               child: YgBottomSheetScrollPhysicsProvider(
                 scrollPhysics: YgBottomSheetScrollPhysics(
                   handleScrollSwipeEnd: _handleScrollStop,
-                  handleScrollSwipeUpdate: _transformScroll,
+                  handleScrollSwipeUpdate: _handleScrollSwipeUpdate,
                 ),
                 child: widget.bottomSheet,
               ),
@@ -117,7 +123,7 @@ class _YgBottomSheetModalState extends State<YgBottomSheetModal> {
     }
   }
 
-  bool _transformScroll(ScrollMetrics metrics, double value) {
+  bool _handleScrollSwipeUpdate(ScrollMetrics metrics, double value) {
     // Check if the modal is being scrolled or swiped away, when it is being
     // scrolled don't animate the modal, if the modal is being swiped away don't
     // scroll it's content.
