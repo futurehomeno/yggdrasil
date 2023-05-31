@@ -44,7 +44,6 @@ class _YgBottomSheetState extends State<YgBottomSheet> {
 
   @override
   Widget build(BuildContext context) {
-    print('BUILDING!!!!!!!! $_showBottomShadow $_showTopShadow');
     final YgBottomSheetThemes theme = context.bottomSheetTheme;
     final YgBottomSheetScrollPhysicsProvider? scrollPhysicsProvider =
         context.dependOnInheritedWidgetOfExactType<YgBottomSheetScrollPhysicsProvider>();
@@ -76,7 +75,7 @@ class _YgBottomSheetState extends State<YgBottomSheet> {
     final bool newShowTopShadow = position.extentBefore != 0;
 
     if ((_showBottomShadow != newShowBottomShadow) || (_showTopShadow != newShowTopShadow)) {
-      print('UPDATE!');
+      print('UPDATE');
       setState(() {
         _showBottomShadow = newShowBottomShadow;
         _showTopShadow = newShowTopShadow;
@@ -130,6 +129,8 @@ class _YgBottomSheetState extends State<YgBottomSheet> {
     YgBottomSheetScrollPhysicsProvider? scrollPhysicsProvider,
     YgBottomSheetThemes theme,
   ) {
+    print('BUILDING, Top: ${_showTopShadow ? 1 : 0}, Bottom: ${_showBottomShadow ? 1 : 0}');
+
     return Flexible(
       child: Stack(
         children: <Widget>[
@@ -153,7 +154,7 @@ class _YgBottomSheetState extends State<YgBottomSheet> {
                 duration: const Duration(milliseconds: 200),
                 curve: Curves.easeOut,
                 opacity: _showTopShadow ? 1 : 0,
-                key: _bottomShadowKey,
+                key: _topShadowKey,
                 child: Container(
                   color: Colors.red,
                   height: 10,
@@ -170,7 +171,7 @@ class _YgBottomSheetState extends State<YgBottomSheet> {
                 duration: const Duration(milliseconds: 200),
                 curve: Curves.easeOut,
                 opacity: _showBottomShadow ? 1 : 0,
-                key: _topShadowKey,
+                key: _bottomShadowKey,
                 child: Container(
                   color: Colors.red,
                   height: 10,
