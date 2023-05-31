@@ -6,15 +6,6 @@ import '../_yg_bottom_sheet.dart';
 
 // TODO(Tim): This should probably be moved in to the theme / be a token.
 
-/// The minimum velocity for a swipe to be considered a fling.
-const double _flingVelocity = 2000;
-
-/// The duration of the animation used for moving the [YgBottomSheet].
-const Duration _animationDuration = Duration(milliseconds: 225);
-
-/// The curve used for moving the [YgBottomSheet].
-const Curve _animationCurve = Curves.easeOut;
-
 class YgBottomSheetModal extends StatefulWidget {
   const YgBottomSheetModal({
     super.key,
@@ -38,12 +29,12 @@ class _YgBottomSheetModalState extends State<YgBottomSheetModal> {
   double? _sheetSize;
 
   /// The current curve applied to the movement of the [YgBottomSheet].
-  ParametricCurve<double> _curve = _animationCurve;
+  late ParametricCurve<double> _curve = context.bottomSheetTheme.movementAnimationCurve;
 
   @override
   Widget build(BuildContext context) {
     return Stack(
-      children: [
+      children: <Widget>[
         Positioned.fill(
           child: IgnorePointer(
             child: FadeTransition(
@@ -102,7 +93,7 @@ class _YgBottomSheetModalState extends State<YgBottomSheetModal> {
   void _animatedToOpened() {
     widget.modalController.animateTo(
       1,
-      duration: _animationDuration,
+      duration: context.bottomSheetTheme.movementAnimationDuration,
     );
   }
 
@@ -113,7 +104,10 @@ class _YgBottomSheetModalState extends State<YgBottomSheetModal> {
   }
 
   void _handleSwipeEnd(double velocity) {
-    _curve = YgSuspendedCurve(widget.modalController.value, curve: _animationCurve);
+    _curve = YgSuspendedCurve(
+      widget.modalController.value,
+      curve: context.bottomSheetTheme.movementAnimationCurve,
+    );
 
     if (widget.modalController.isAnimating || widget.modalController.value == 1) {
       return;
@@ -121,7 +115,12 @@ class _YgBottomSheetModalState extends State<YgBottomSheetModal> {
 
     // If velocity if above fling velocity, animate to the fling direction, else
     // animate to the nearest point.
-    final bool swipeToOpened = velocity.abs() > _flingVelocity ? velocity < 0 : widget.modalController.value > 0.5;
+    final bool swipeToOpened;
+    if (velocity.abs() > context.bottomSheetTheme.flingVelocity) {
+      swipeToOpened = velocity < 0;
+    } else {
+      swipeToOpened = widget.modalController.value > 0.5;
+    }
 
     if (swipeToOpened) {
       _animatedToOpened();

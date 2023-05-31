@@ -116,4 +116,25 @@ class _$YgBottomSheetThemes {
       color: professional_dark.FhColors.textDefault,
     ),
   ];
+
+  static List<double> flingVelocity = <double>[
+    2000,
+    2000,
+    2000,
+    2000,
+  ];
+
+  static List<Duration> movementAnimationDuration = <Duration>[
+    const Duration(milliseconds: 225),
+    const Duration(milliseconds: 225),
+    const Duration(milliseconds: 225),
+    const Duration(milliseconds: 225),
+  ];
+
+  static List<Curve> movementAnimationCurve = <Curve>[
+    Curves.easeOut,
+    Curves.easeOut,
+    Curves.easeOut,
+    Curves.easeOut,
+  ];
 }

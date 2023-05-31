@@ -18,6 +18,9 @@ class YgBottomSheetThemes extends ThemeExtension<YgBottomSheetThemes> {
     required this.footerPadding,
     required this.titlePadding,
     required this.titleStyle,
+    required this.flingVelocity,
+    required this.movementAnimationDuration,
+    required this.movementAnimationCurve,
   });
 
   final Color handleBarColor;
@@ -28,6 +31,9 @@ class YgBottomSheetThemes extends ThemeExtension<YgBottomSheetThemes> {
   final EdgeInsets footerPadding;
   final EdgeInsets titlePadding;
   final TextStyle titleStyle;
+  final double flingVelocity;
+  final Duration movementAnimationDuration;
+  final Curve movementAnimationCurve;
 
   static final YgBottomSheetThemes consumerLight = YgBottomSheetThemes(
     handleBarColor: _$YgBottomSheetThemes.handleBarColor[0],
@@ -38,6 +44,10 @@ class YgBottomSheetThemes extends ThemeExtension<YgBottomSheetThemes> {
     footerPadding: _$YgBottomSheetThemes.footerPadding[0],
     titlePadding: _$YgBottomSheetThemes.titlePadding[0],
     titleStyle: _$YgBottomSheetThemes.titleStyle[0],
+    flingVelocity: _$YgBottomSheetThemes.flingVelocity[0],
+    movementAnimationDuration:
+        _$YgBottomSheetThemes.movementAnimationDuration[0],
+    movementAnimationCurve: _$YgBottomSheetThemes.movementAnimationCurve[0],
   );
 
   static final YgBottomSheetThemes consumerDark = YgBottomSheetThemes(
@@ -49,6 +59,10 @@ class YgBottomSheetThemes extends ThemeExtension<YgBottomSheetThemes> {
     footerPadding: _$YgBottomSheetThemes.footerPadding[1],
     titlePadding: _$YgBottomSheetThemes.titlePadding[1],
     titleStyle: _$YgBottomSheetThemes.titleStyle[1],
+    flingVelocity: _$YgBottomSheetThemes.flingVelocity[1],
+    movementAnimationDuration:
+        _$YgBottomSheetThemes.movementAnimationDuration[1],
+    movementAnimationCurve: _$YgBottomSheetThemes.movementAnimationCurve[1],
   );
 
   static final YgBottomSheetThemes professionalLight = YgBottomSheetThemes(
@@ -60,6 +74,10 @@ class YgBottomSheetThemes extends ThemeExtension<YgBottomSheetThemes> {
     footerPadding: _$YgBottomSheetThemes.footerPadding[2],
     titlePadding: _$YgBottomSheetThemes.titlePadding[2],
     titleStyle: _$YgBottomSheetThemes.titleStyle[2],
+    flingVelocity: _$YgBottomSheetThemes.flingVelocity[2],
+    movementAnimationDuration:
+        _$YgBottomSheetThemes.movementAnimationDuration[2],
+    movementAnimationCurve: _$YgBottomSheetThemes.movementAnimationCurve[2],
   );
 
   static final YgBottomSheetThemes professionalDark = YgBottomSheetThemes(
@@ -71,6 +89,10 @@ class YgBottomSheetThemes extends ThemeExtension<YgBottomSheetThemes> {
     footerPadding: _$YgBottomSheetThemes.footerPadding[3],
     titlePadding: _$YgBottomSheetThemes.titlePadding[3],
     titleStyle: _$YgBottomSheetThemes.titleStyle[3],
+    flingVelocity: _$YgBottomSheetThemes.flingVelocity[3],
+    movementAnimationDuration:
+        _$YgBottomSheetThemes.movementAnimationDuration[3],
+    movementAnimationCurve: _$YgBottomSheetThemes.movementAnimationCurve[3],
   );
 
   static final themes = [
@@ -90,6 +112,9 @@ class YgBottomSheetThemes extends ThemeExtension<YgBottomSheetThemes> {
     EdgeInsets? footerPadding,
     EdgeInsets? titlePadding,
     TextStyle? titleStyle,
+    double? flingVelocity,
+    Duration? movementAnimationDuration,
+    Curve? movementAnimationCurve,
   }) {
     return YgBottomSheetThemes(
       handleBarColor: handleBarColor ?? this.handleBarColor,
@@ -100,6 +125,11 @@ class YgBottomSheetThemes extends ThemeExtension<YgBottomSheetThemes> {
       footerPadding: footerPadding ?? this.footerPadding,
       titlePadding: titlePadding ?? this.titlePadding,
       titleStyle: titleStyle ?? this.titleStyle,
+      flingVelocity: flingVelocity ?? this.flingVelocity,
+      movementAnimationDuration:
+          movementAnimationDuration ?? this.movementAnimationDuration,
+      movementAnimationCurve:
+          movementAnimationCurve ?? this.movementAnimationCurve,
     );
   }
 
@@ -116,6 +146,11 @@ class YgBottomSheetThemes extends ThemeExtension<YgBottomSheetThemes> {
       footerPadding: t < 0.5 ? footerPadding : other.footerPadding,
       titlePadding: t < 0.5 ? titlePadding : other.titlePadding,
       titleStyle: TextStyle.lerp(titleStyle, other.titleStyle, t)!,
+      flingVelocity: t < 0.5 ? flingVelocity : other.flingVelocity,
+      movementAnimationDuration:
+          t < 0.5 ? movementAnimationDuration : other.movementAnimationDuration,
+      movementAnimationCurve:
+          t < 0.5 ? movementAnimationCurve : other.movementAnimationCurve,
     );
   }
 
@@ -139,7 +174,13 @@ class YgBottomSheetThemes extends ThemeExtension<YgBottomSheetThemes> {
             const DeepCollectionEquality()
                 .equals(titlePadding, other.titlePadding) &&
             const DeepCollectionEquality()
-                .equals(titleStyle, other.titleStyle));
+                .equals(titleStyle, other.titleStyle) &&
+            const DeepCollectionEquality()
+                .equals(flingVelocity, other.flingVelocity) &&
+            const DeepCollectionEquality().equals(
+                movementAnimationDuration, other.movementAnimationDuration) &&
+            const DeepCollectionEquality()
+                .equals(movementAnimationCurve, other.movementAnimationCurve));
   }
 
   @override
@@ -153,6 +194,9 @@ class YgBottomSheetThemes extends ThemeExtension<YgBottomSheetThemes> {
         const DeepCollectionEquality().hash(outerPadding),
         const DeepCollectionEquality().hash(footerPadding),
         const DeepCollectionEquality().hash(titlePadding),
-        const DeepCollectionEquality().hash(titleStyle));
+        const DeepCollectionEquality().hash(titleStyle),
+        const DeepCollectionEquality().hash(flingVelocity),
+        const DeepCollectionEquality().hash(movementAnimationDuration),
+        const DeepCollectionEquality().hash(movementAnimationCurve));
   }
 }

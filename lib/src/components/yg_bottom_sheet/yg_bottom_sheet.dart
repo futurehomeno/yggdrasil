@@ -32,52 +32,67 @@ class YgBottomSheet extends StatelessWidget {
           child: Column(
             mainAxisSize: MainAxisSize.min,
             children: <Widget>[
-              Padding(
-                padding: theme.outerPadding.copyWith(bottom: 0),
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.stretch,
-                  mainAxisSize: MainAxisSize.min,
-                  children: <Widget>[
-                    Center(
-                      child: Container(
-                        width: 48,
-                        height: 5,
-                        decoration: BoxDecoration(
-                          color: theme.handleBarColor,
-                          borderRadius: BorderRadius.circular(2.5),
-                        ),
-                      ),
-                    ),
-                    Padding(
-                      padding: theme.titlePadding,
-                      child: Text(
-                        title,
-                        style: theme.titleStyle,
-                      ),
-                    ),
-                  ],
+              _buildHeader(theme),
+              _buildContent(scrollPhysicsProvider, theme),
+            ],
+          ),
+        ),
+      ),
+    );
+  }
+
+  Padding _buildHeader(YgBottomSheetThemes theme) {
+    return Padding(
+      padding: theme.outerPadding.copyWith(bottom: 0),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.stretch,
+        mainAxisSize: MainAxisSize.min,
+        children: <Widget>[
+          Center(
+            child: _buildDragHandle(theme),
+          ),
+          Padding(
+            padding: theme.titlePadding,
+            child: Text(
+              title,
+              style: theme.titleStyle,
+            ),
+          ),
+        ],
+      ),
+    );
+  }
+
+  Container _buildDragHandle(YgBottomSheetThemes theme) {
+    return Container(
+      width: 48,
+      height: 5,
+      decoration: BoxDecoration(
+        color: theme.handleBarColor,
+        borderRadius: BorderRadius.circular(2.5),
+      ),
+    );
+  }
+
+  Flexible _buildContent(
+    YgBottomSheetScrollPhysicsProvider? scrollPhysicsProvider,
+    YgBottomSheetThemes theme,
+  ) {
+    return Flexible(
+      child: SingleChildScrollView(
+        physics: scrollPhysicsProvider?.scrollPhysics,
+        child: Padding(
+          padding: theme.outerPadding.copyWith(top: 0),
+          child: Column(
+            mainAxisSize: MainAxisSize.min,
+            crossAxisAlignment: CrossAxisAlignment.stretch,
+            children: <Widget>[
+              content,
+              if (footer != null)
+                Padding(
+                  padding: theme.footerPadding,
+                  child: footer,
                 ),
-              ),
-              Flexible(
-                child: SingleChildScrollView(
-                  physics: scrollPhysicsProvider?.scrollPhysics,
-                  child: Padding(
-                    padding: theme.outerPadding.copyWith(top: 0),
-                    child: Column(
-                      mainAxisSize: MainAxisSize.min,
-                      crossAxisAlignment: CrossAxisAlignment.stretch,
-                      children: <Widget>[
-                        content,
-                        if (footer != null)
-                          Padding(
-                            padding: theme.footerPadding,
-                            child: footer,
-                          ),
-                      ],
-                    ),
-                  ),
-                ),
-              )
             ],
           ),
         ),
