@@ -4,7 +4,7 @@ import 'package:yggdrasil/src/theme/bottom_sheet/_bottom_sheet.dart';
 
 import '../_components.dart';
 
-class YgBottomSheet extends StatelessWidget {
+class YgBottomSheet extends StatefulWidget {
   const YgBottomSheet({
     super.key,
     required this.title,
@@ -17,7 +17,34 @@ class YgBottomSheet extends StatelessWidget {
   final Widget? footer;
 
   @override
+  State<YgBottomSheet> createState() => _YgBottomSheetState();
+}
+
+class _YgBottomSheetState extends State<YgBottomSheet> {
+  final ScrollController _scrollController = ScrollController();
+
+  /// Wether to show a shadow on the bottom of the scrollable content.
+  bool _showBottomShadow = false;
+
+  /// Wether to show a shadow on the top of the scrollable content.
+  bool _showTopShadow = false;
+
+  final GlobalKey _bottomShadowKey = GlobalKey();
+
+  final GlobalKey _topShadowKey = GlobalKey();
+
+  @override
+  void initState() {
+    _scrollController.addListener(_updateShadows);
+    super.initState();
+
+    // Also update shadows after the content is first rendered.
+    WidgetsBinding.instance.addPostFrameCallback((_) => _updateShadows());
+  }
+
+  @override
   Widget build(BuildContext context) {
+    print('BUILDING!!!!!!!! $_showBottomShadow $_showTopShadow');
     final YgBottomSheetThemes theme = context.bottomSheetTheme;
     final YgBottomSheetScrollPhysicsProvider? scrollPhysicsProvider =
         context.dependOnInheritedWidgetOfExactType<YgBottomSheetScrollPhysicsProvider>();
@@ -34,10 +61,35 @@ class YgBottomSheet extends StatelessWidget {
             children: <Widget>[
               _buildHeader(theme),
               _buildContent(scrollPhysicsProvider, theme),
+              if (widget.footer != null) _buildFooter(theme),
             ],
           ),
         ),
       ),
+    );
+  }
+
+  void _updateShadows() {
+    final ScrollPosition position = _scrollController.position;
+
+    final bool newShowBottomShadow = position.extentAfter != 0;
+    final bool newShowTopShadow = position.extentBefore != 0;
+
+    if ((_showBottomShadow != newShowBottomShadow) || (_showTopShadow != newShowTopShadow)) {
+      print('UPDATE!');
+      setState(() {
+        _showBottomShadow = newShowBottomShadow;
+        _showTopShadow = newShowTopShadow;
+      });
+    }
+  }
+
+  Padding _buildFooter(YgBottomSheetThemes theme) {
+    return Padding(
+      padding: theme.outerPadding.copyWith(
+        top: theme.footerPadding.top,
+      ),
+      child: widget.footer,
     );
   }
 
@@ -54,7 +106,7 @@ class YgBottomSheet extends StatelessWidget {
           Padding(
             padding: theme.titlePadding,
             child: Text(
-              title,
+              widget.title,
               style: theme.titleStyle,
             ),
           ),
@@ -79,23 +131,54 @@ class YgBottomSheet extends StatelessWidget {
     YgBottomSheetThemes theme,
   ) {
     return Flexible(
-      child: SingleChildScrollView(
-        physics: scrollPhysicsProvider?.scrollPhysics,
-        child: Padding(
-          padding: theme.outerPadding.copyWith(top: 0),
-          child: Column(
-            mainAxisSize: MainAxisSize.min,
-            crossAxisAlignment: CrossAxisAlignment.stretch,
-            children: <Widget>[
-              content,
-              if (footer != null)
-                Padding(
-                  padding: theme.footerPadding,
-                  child: footer,
-                ),
-            ],
+      child: Stack(
+        children: <Widget>[
+          SingleChildScrollView(
+            controller: _scrollController,
+            physics: scrollPhysicsProvider?.scrollPhysics,
+            child: Padding(
+              padding: theme.outerPadding.copyWith(
+                top: 0,
+                bottom: 0,
+              ),
+              child: widget.content,
+            ),
           ),
-        ),
+          Positioned(
+            top: 0,
+            left: 0,
+            right: 0,
+            child: IgnorePointer(
+              child: AnimatedOpacity(
+                duration: const Duration(milliseconds: 200),
+                curve: Curves.easeOut,
+                opacity: _showTopShadow ? 1 : 0,
+                key: _bottomShadowKey,
+                child: Container(
+                  color: Colors.red,
+                  height: 10,
+                ),
+              ),
+            ),
+          ),
+          Positioned(
+            bottom: 0,
+            left: 0,
+            right: 0,
+            child: IgnorePointer(
+              child: AnimatedOpacity(
+                duration: const Duration(milliseconds: 200),
+                curve: Curves.easeOut,
+                opacity: _showBottomShadow ? 1 : 0,
+                key: _topShadowKey,
+                child: Container(
+                  color: Colors.red,
+                  height: 10,
+                ),
+              ),
+            ),
+          ),
+        ],
       ),
     );
   }
