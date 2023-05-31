@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:provider/provider.dart';
 import 'package:yggdrasil/app/core/_core.dart';
 
@@ -14,6 +15,11 @@ void main() {
       child: const Yggdrasil(),
     ),
   );
+
+  WidgetsBinding.instance.addPostFrameCallback((Duration timeStamp) {
+    SystemChrome.setSystemUIOverlayStyle(const SystemUiOverlayStyle(systemNavigationBarColor: Colors.transparent));
+    SystemChrome.setEnabledSystemUIMode(SystemUiMode.edgeToEdge);
+  });
 }
 
 class Yggdrasil extends StatelessWidget {

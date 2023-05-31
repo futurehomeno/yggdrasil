@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:yggdrasil/app/core/_core.dart';
 import 'package:yggdrasil/app/widgets/_widgets.dart';
 
+import 'bottom_sheet_screen.dart';
 import 'buttons_screen.dart';
 
 class HomeScreen extends StatelessWidget {
@@ -28,6 +29,12 @@ class HomeScreen extends StatelessWidget {
             title: const Text('Buttons'),
             onTap: () {
               sl<YgRouter>().push(ButtonsScreen.route());
+            },
+          ),
+          ListTile(
+            title: const Text('Bottom sheet'),
+            onTap: () {
+              sl<YgRouter>().push(BottomSheetScreen.route());
             },
           ),
         ],
