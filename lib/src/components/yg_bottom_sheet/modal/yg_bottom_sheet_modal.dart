@@ -4,8 +4,6 @@ import 'package:yggdrasil/src/utils/_utils.dart';
 
 import '../_yg_bottom_sheet.dart';
 
-// TODO(Tim): This should probably be moved in to the theme / be a token.
-
 class YgBottomSheetModal extends StatefulWidget {
   const YgBottomSheetModal({
     super.key,
