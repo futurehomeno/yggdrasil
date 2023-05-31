@@ -21,7 +21,6 @@ class YgButtonThemes extends ThemeExtension<YgButtonThemes> {
     required this.iconSpacing,
     required this.borderRadius,
     required this.borderWidth,
-    required this.somePadding,
   });
 
   final CriticalButtonTheme criticalButtonTheme;
@@ -35,7 +34,6 @@ class YgButtonThemes extends ThemeExtension<YgButtonThemes> {
   final double iconSpacing;
   final BorderRadius borderRadius;
   final double borderWidth;
-  final EdgeInsets somePadding;
 
   static final YgButtonThemes consumerLight = YgButtonThemes(
     criticalButtonTheme: _$YgButtonThemes.criticalButtonTheme[0],
@@ -49,7 +47,6 @@ class YgButtonThemes extends ThemeExtension<YgButtonThemes> {
     iconSpacing: _$YgButtonThemes.iconSpacing[0],
     borderRadius: _$YgButtonThemes.borderRadius[0],
     borderWidth: _$YgButtonThemes.borderWidth[0],
-    somePadding: _$YgButtonThemes.somePadding[0],
   );
 
   static final YgButtonThemes consumerDark = YgButtonThemes(
@@ -64,7 +61,6 @@ class YgButtonThemes extends ThemeExtension<YgButtonThemes> {
     iconSpacing: _$YgButtonThemes.iconSpacing[1],
     borderRadius: _$YgButtonThemes.borderRadius[1],
     borderWidth: _$YgButtonThemes.borderWidth[1],
-    somePadding: _$YgButtonThemes.somePadding[1],
   );
 
   static final YgButtonThemes professionalLight = YgButtonThemes(
@@ -79,7 +75,6 @@ class YgButtonThemes extends ThemeExtension<YgButtonThemes> {
     iconSpacing: _$YgButtonThemes.iconSpacing[2],
     borderRadius: _$YgButtonThemes.borderRadius[2],
     borderWidth: _$YgButtonThemes.borderWidth[2],
-    somePadding: _$YgButtonThemes.somePadding[2],
   );
 
   static final YgButtonThemes professionalDark = YgButtonThemes(
@@ -94,7 +89,6 @@ class YgButtonThemes extends ThemeExtension<YgButtonThemes> {
     iconSpacing: _$YgButtonThemes.iconSpacing[3],
     borderRadius: _$YgButtonThemes.borderRadius[3],
     borderWidth: _$YgButtonThemes.borderWidth[3],
-    somePadding: _$YgButtonThemes.somePadding[3],
   );
 
   static final themes = [
@@ -117,7 +111,6 @@ class YgButtonThemes extends ThemeExtension<YgButtonThemes> {
     double? iconSpacing,
     BorderRadius? borderRadius,
     double? borderWidth,
-    EdgeInsets? somePadding,
   }) {
     return YgButtonThemes(
       criticalButtonTheme: criticalButtonTheme ?? this.criticalButtonTheme,
@@ -131,7 +124,6 @@ class YgButtonThemes extends ThemeExtension<YgButtonThemes> {
       iconSpacing: iconSpacing ?? this.iconSpacing,
       borderRadius: borderRadius ?? this.borderRadius,
       borderWidth: borderWidth ?? this.borderWidth,
-      somePadding: somePadding ?? this.somePadding,
     );
   }
 
@@ -152,7 +144,6 @@ class YgButtonThemes extends ThemeExtension<YgButtonThemes> {
       iconSpacing: t < 0.5 ? iconSpacing : other.iconSpacing,
       borderRadius: t < 0.5 ? borderRadius : other.borderRadius,
       borderWidth: t < 0.5 ? borderWidth : other.borderWidth,
-      somePadding: t < 0.5 ? somePadding : other.somePadding,
     );
   }
 
@@ -182,9 +173,7 @@ class YgButtonThemes extends ThemeExtension<YgButtonThemes> {
             const DeepCollectionEquality()
                 .equals(borderRadius, other.borderRadius) &&
             const DeepCollectionEquality()
-                .equals(borderWidth, other.borderWidth) &&
-            const DeepCollectionEquality()
-                .equals(somePadding, other.somePadding));
+                .equals(borderWidth, other.borderWidth));
   }
 
   @override
@@ -201,7 +190,6 @@ class YgButtonThemes extends ThemeExtension<YgButtonThemes> {
         const DeepCollectionEquality().hash(paddingLarge),
         const DeepCollectionEquality().hash(iconSpacing),
         const DeepCollectionEquality().hash(borderRadius),
-        const DeepCollectionEquality().hash(borderWidth),
-        const DeepCollectionEquality().hash(somePadding));
+        const DeepCollectionEquality().hash(borderWidth));
   }
 }
