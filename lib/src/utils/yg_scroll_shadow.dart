@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 
+/// Applies a shadow at the top or bottom of a scroll view.
 class YgScrollShadow extends StatefulWidget {
   const YgScrollShadow({
     super.key,
@@ -14,11 +15,7 @@ class YgScrollShadow extends StatefulWidget {
 
 class _YgScrollShadowState extends State<YgScrollShadow> {
   ScrollController? _scrollController;
-
-  /// Wether to show a shadow on the bottom of the scrollable content.
   bool _showBottomShadow = false;
-
-  /// Wether to show a shadow on the top of the scrollable content.
   bool _showTopShadow = false;
 
   @override
