@@ -33,6 +33,7 @@ class YgBottomSheet extends StatelessWidget {
             top: false,
             child: Column(
               mainAxisSize: MainAxisSize.min,
+              crossAxisAlignment: CrossAxisAlignment.stretch,
               children: <Widget>[
                 _buildHeader(theme),
                 _buildContent(scrollPhysicsProvider, theme),
