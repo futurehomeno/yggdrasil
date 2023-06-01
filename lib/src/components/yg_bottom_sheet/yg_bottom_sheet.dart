@@ -27,10 +27,10 @@ class YgBottomSheet extends StatelessWidget {
       child: Material(
         borderRadius: theme.borderRadius,
         color: theme.backgroundColor,
-        child: ClipRRect(
-          borderRadius: theme.borderRadius,
-          child: SafeArea(
-            top: false,
+        child: SafeArea(
+          top: false,
+          child: ClipRRect(
+            borderRadius: theme.borderRadius,
             child: Column(
               mainAxisSize: MainAxisSize.min,
               crossAxisAlignment: CrossAxisAlignment.stretch,
