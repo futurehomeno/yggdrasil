@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:yggdrasil/src/theme/theme.dart';
 
 import '../_yg_bottom_sheet.dart';
 
@@ -23,10 +24,10 @@ abstract class YgBottomSheetModalRoute extends PopupRoute<YgBottomSheetModal> {
   String? get barrierLabel => 'Dismissible Dialog';
 
   @override
-  Duration get transitionDuration => const Duration(milliseconds: 225);
+  Duration get transitionDuration => navigator!.context.bottomSheetTheme.movementAnimationDuration;
 
   @override
-  Curve get barrierCurve => Curves.easeOut;
+  Curve get barrierCurve => navigator!.context.bottomSheetTheme.movementAnimationCurve;
 
   @override
   AnimationController createAnimationController() {
