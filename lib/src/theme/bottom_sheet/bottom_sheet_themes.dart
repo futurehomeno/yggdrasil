@@ -125,16 +125,16 @@ class _$YgBottomSheetThemes {
   ];
 
   static List<Duration> movementAnimationDuration = <Duration>[
-    const Duration(milliseconds: 225),
-    const Duration(milliseconds: 225),
-    const Duration(milliseconds: 225),
-    const Duration(milliseconds: 225),
+    const Duration(milliseconds: 200),
+    const Duration(milliseconds: 200),
+    const Duration(milliseconds: 200),
+    const Duration(milliseconds: 200),
   ];
 
   static List<Curve> movementAnimationCurve = <Curve>[
-    Curves.easeOut,
-    Curves.easeOut,
-    Curves.easeOut,
-    Curves.easeOut,
+    const Cubic(0.42, 0, 0.2, 1),
+    const Cubic(0.42, 0, 0.2, 1),
+    const Cubic(0.42, 0, 0.2, 1),
+    const Cubic(0.42, 0, 0.2, 1),
   ];
 }
