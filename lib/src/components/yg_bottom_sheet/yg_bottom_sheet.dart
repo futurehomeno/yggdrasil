@@ -1,10 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:yggdrasil/src/theme/_theme.dart';
 import 'package:yggdrasil/src/theme/bottom_sheet/_bottom_sheet.dart';
+import 'package:yggdrasil/src/utils/_utils.dart';
 
 import '../_components.dart';
 
-class YgBottomSheet extends StatefulWidget {
+class YgBottomSheet extends StatelessWidget {
   const YgBottomSheet({
     super.key,
     required this.title,
@@ -17,70 +18,31 @@ class YgBottomSheet extends StatefulWidget {
   final Widget? footer;
 
   @override
-  State<YgBottomSheet> createState() => _YgBottomSheetState();
-}
-
-class _YgBottomSheetState extends State<YgBottomSheet> {
-  final ScrollController _scrollController = ScrollController();
-
-  /// Wether to show a shadow on the bottom of the scrollable content.
-  bool _showBottomShadow = false;
-
-  /// Wether to show a shadow on the top of the scrollable content.
-  bool _showTopShadow = false;
-
-  final GlobalKey _bottomShadowKey = GlobalKey();
-
-  final GlobalKey _topShadowKey = GlobalKey();
-
-  @override
-  void initState() {
-    _scrollController.addListener(_updateShadows);
-    super.initState();
-
-    // Also update shadows after the content is first rendered.
-    WidgetsBinding.instance.addPostFrameCallback((_) => _updateShadows());
-  }
-
-  @override
   Widget build(BuildContext context) {
     final YgBottomSheetThemes theme = context.bottomSheetTheme;
     final YgBottomSheetScrollPhysicsProvider? scrollPhysicsProvider =
         context.dependOnInheritedWidgetOfExactType<YgBottomSheetScrollPhysicsProvider>();
 
-    return Material(
-      borderRadius: theme.borderRadius,
-      color: theme.backgroundColor,
-      child: ClipRRect(
+    return RepaintBoundary(
+      child: Material(
         borderRadius: theme.borderRadius,
-        child: SafeArea(
-          top: false,
-          child: Column(
-            mainAxisSize: MainAxisSize.min,
-            children: <Widget>[
-              _buildHeader(theme),
-              _buildContent(scrollPhysicsProvider, theme),
-              if (widget.footer != null) _buildFooter(theme),
-            ],
+        color: theme.backgroundColor,
+        child: ClipRRect(
+          borderRadius: theme.borderRadius,
+          child: SafeArea(
+            top: false,
+            child: Column(
+              mainAxisSize: MainAxisSize.min,
+              children: <Widget>[
+                _buildHeader(theme),
+                _buildContent(scrollPhysicsProvider, theme),
+                if (footer != null) _buildFooter(theme),
+              ],
+            ),
           ),
         ),
       ),
     );
-  }
-
-  void _updateShadows() {
-    final ScrollPosition position = _scrollController.position;
-
-    final bool newShowBottomShadow = position.extentAfter != 0;
-    final bool newShowTopShadow = position.extentBefore != 0;
-
-    if ((_showBottomShadow != newShowBottomShadow) || (_showTopShadow != newShowTopShadow)) {
-      print('UPDATE');
-      setState(() {
-        _showBottomShadow = newShowBottomShadow;
-        _showTopShadow = newShowTopShadow;
-      });
-    }
   }
 
   Padding _buildFooter(YgBottomSheetThemes theme) {
@@ -88,7 +50,7 @@ class _YgBottomSheetState extends State<YgBottomSheet> {
       padding: theme.outerPadding.copyWith(
         top: theme.footerPadding.top,
       ),
-      child: widget.footer,
+      child: footer,
     );
   }
 
@@ -105,7 +67,7 @@ class _YgBottomSheetState extends State<YgBottomSheet> {
           Padding(
             padding: theme.titlePadding,
             child: Text(
-              widget.title,
+              title,
               style: theme.titleStyle,
             ),
           ),
@@ -129,57 +91,18 @@ class _YgBottomSheetState extends State<YgBottomSheet> {
     YgBottomSheetScrollPhysicsProvider? scrollPhysicsProvider,
     YgBottomSheetThemes theme,
   ) {
-    print('BUILDING, Top: ${_showTopShadow ? 1 : 0}, Bottom: ${_showBottomShadow ? 1 : 0}');
-
     return Flexible(
-      child: Stack(
-        children: <Widget>[
-          SingleChildScrollView(
-            controller: _scrollController,
-            physics: scrollPhysicsProvider?.scrollPhysics,
-            child: Padding(
-              padding: theme.outerPadding.copyWith(
-                top: 0,
-                bottom: 0,
-              ),
-              child: widget.content,
+      child: YgScrollShadow(
+        child: SingleChildScrollView(
+          physics: scrollPhysicsProvider?.scrollPhysics,
+          child: Padding(
+            padding: theme.outerPadding.copyWith(
+              top: 0,
+              bottom: 0,
             ),
+            child: content,
           ),
-          Positioned(
-            top: 0,
-            left: 0,
-            right: 0,
-            child: IgnorePointer(
-              child: AnimatedOpacity(
-                duration: const Duration(milliseconds: 200),
-                curve: Curves.easeOut,
-                opacity: _showTopShadow ? 1 : 0,
-                key: _topShadowKey,
-                child: Container(
-                  color: Colors.red,
-                  height: 10,
-                ),
-              ),
-            ),
-          ),
-          Positioned(
-            bottom: 0,
-            left: 0,
-            right: 0,
-            child: IgnorePointer(
-              child: AnimatedOpacity(
-                duration: const Duration(milliseconds: 200),
-                curve: Curves.easeOut,
-                opacity: _showBottomShadow ? 1 : 0,
-                key: _bottomShadowKey,
-                child: Container(
-                  color: Colors.red,
-                  height: 10,
-                ),
-              ),
-            ),
-          ),
-        ],
+        ),
       ),
     );
   }
