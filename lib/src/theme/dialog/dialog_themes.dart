@@ -1,0 +1,67 @@
+import 'package:flutter/material.dart';
+import 'package:theme_tailor_annotation/theme_tailor_annotation.dart';
+import 'package:yggdrasil/src/tokens/consumer_dark/_consumer_dark.dart' as consumer_dark;
+import 'package:yggdrasil/src/tokens/consumer_light/_consumer_light.dart' as consumer_light;
+import 'package:yggdrasil/src/tokens/professional_dark/_professional_dark.dart' as professional_dark;
+import 'package:yggdrasil/src/tokens/professional_light/_professional_light.dart' as professional_light;
+
+part 'dialog_themes.tailor.dart';
+
+@tailorComponent
+class _$YgDialogThemes {
+  static List<Color> backgroundColor = <Color>[
+    consumer_light.FhColors.backgroundDefault,
+    consumer_dark.FhColors.backgroundDefault,
+    professional_light.FhColors.backgroundDefault,
+    professional_dark.FhColors.backgroundDefault,
+  ];
+
+  static List<Color> iconContainerColor = <Color>[
+    consumer_light.FhColors.backgroundWeak,
+    consumer_dark.FhColors.backgroundWeak,
+    professional_light.FhColors.backgroundWeak,
+    professional_dark.FhColors.backgroundWeak,
+  ];
+
+  static List<EdgeInsets> outerPadding = <EdgeInsets>[
+    const EdgeInsets.all(consumer_light.FhDimensions.md),
+    const EdgeInsets.all(consumer_dark.FhDimensions.md),
+    const EdgeInsets.all(professional_light.FhDimensions.md),
+    const EdgeInsets.all(professional_dark.FhDimensions.md),
+  ];
+
+  static List<EdgeInsets> iconPadding = <EdgeInsets>[
+    const EdgeInsets.all(consumer_light.FhDimensions.xs),
+    const EdgeInsets.all(consumer_dark.FhDimensions.xs),
+    const EdgeInsets.all(professional_light.FhDimensions.xs),
+    const EdgeInsets.all(professional_dark.FhDimensions.xs),
+  ];
+
+  static List<EdgeInsets> textSectionPadding = <EdgeInsets>[
+    const EdgeInsets.symmetric(vertical: consumer_light.FhDimensions.xl),
+    const EdgeInsets.symmetric(vertical: consumer_dark.FhDimensions.xl),
+    const EdgeInsets.symmetric(vertical: professional_light.FhDimensions.xl),
+    const EdgeInsets.symmetric(vertical: professional_dark.FhDimensions.xl),
+  ];
+
+  static List<double> titleDescriptionSpacing = <double>[
+    consumer_light.FhDimensions.sm,
+    consumer_dark.FhDimensions.sm,
+    professional_light.FhDimensions.sm,
+    professional_dark.FhDimensions.sm,
+  ];
+
+  static List<BorderRadius> outerBorderRadius = <BorderRadius>[
+    consumer_light.FhRadii.xl,
+    consumer_dark.FhRadii.xl,
+    professional_light.FhRadii.xl,
+    professional_dark.FhRadii.xl,
+  ];
+
+  static List<double> buttonSpacing = <double>[
+    consumer_light.FhDimensions.xs,
+    consumer_dark.FhDimensions.xs,
+    professional_light.FhDimensions.xs,
+    professional_dark.FhDimensions.xs,
+  ];
+}
