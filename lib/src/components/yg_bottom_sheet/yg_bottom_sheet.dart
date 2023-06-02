@@ -10,12 +10,12 @@ class YgBottomSheet extends StatelessWidget {
     super.key,
     required this.title,
     required this.content,
-    this.footer,
+    this.footerButtons,
   });
 
   final String title;
   final Widget content;
-  final Widget? footer;
+  final List<YgButton>? footerButtons;
 
   @override
   Widget build(BuildContext context) {
@@ -37,7 +37,7 @@ class YgBottomSheet extends StatelessWidget {
               children: <Widget>[
                 _buildHeader(theme),
                 _buildContent(scrollPhysicsProvider, theme),
-                if (footer != null) _buildFooter(theme),
+                if (footerButtons?.isNotEmpty == true) _buildFooter(theme),
               ],
             ),
           ),
@@ -46,12 +46,31 @@ class YgBottomSheet extends StatelessWidget {
     );
   }
 
-  Padding _buildFooter(YgBottomSheetThemes theme) {
+  Widget _buildFooter(YgBottomSheetThemes theme) {
+    final List<Widget> buttons = footerButtons!;
+
+    final List<Widget> children = <Widget>[
+      buttons[0],
+    ];
+
+    for (int i = 1; i < buttons.length; i++) {
+      children.addAll(<Widget>[
+        SizedBox(
+          height: theme.buttonSpacing,
+        ),
+        buttons[i],
+      ]);
+    }
+
     return Padding(
       padding: theme.outerPadding.copyWith(
         top: theme.footerPadding.top,
       ),
-      child: footer,
+      child: Column(
+        mainAxisSize: MainAxisSize.min,
+        crossAxisAlignment: CrossAxisAlignment.stretch,
+        children: children,
+      ),
     );
   }
 

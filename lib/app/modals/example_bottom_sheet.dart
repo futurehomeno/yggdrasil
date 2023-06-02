@@ -21,11 +21,13 @@ class ExampleBottomSheet extends YgBottomSheetModalRoute {
           ),
         ),
       ),
-      footer: YgButton(
-        variant: ButtonVariant.primary,
-        onPressed: () {},
-        child: const Text('Button'),
-      ),
+      footerButtons: <YgButton>[
+        YgButton(
+          variant: ButtonVariant.primary,
+          onPressed: () {},
+          child: const Text('Button'),
+        ),
+      ],
     );
   }
 }

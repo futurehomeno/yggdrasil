@@ -83,6 +83,13 @@ class _$YgBottomSheetThemes {
     ),
   ];
 
+  static const List<double> buttonSpacing = <double>[
+    consumer_light.FhDimensions.sm,
+    consumer_dark.FhDimensions.sm,
+    professional_light.FhDimensions.sm,
+    professional_dark.FhDimensions.sm,
+  ];
+
   static const List<EdgeInsets> titlePadding = <EdgeInsets>[
     EdgeInsets.only(
       top: consumer_light.FhDimensions.sm,
