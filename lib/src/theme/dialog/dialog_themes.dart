@@ -51,6 +51,20 @@ class _$YgDialogThemes {
     professional_dark.FhDimensions.sm,
   ];
 
+  static List<TextStyle> titleTextStyle = <TextStyle>[
+    consumer_light.FhTextStyles.sectionHeading2Medium,
+    consumer_dark.FhTextStyles.sectionHeading2Medium,
+    professional_light.FhTextStyles.sectionHeading2Medium,
+    professional_dark.FhTextStyles.sectionHeading2Medium,
+  ];
+
+  static List<TextStyle> descriptionTextStyle = <TextStyle>[
+    consumer_light.FhTextStyles.paragraph3Regular,
+    consumer_dark.FhTextStyles.paragraph3Regular,
+    professional_light.FhTextStyles.paragraph3Regular,
+    professional_dark.FhTextStyles.paragraph3Regular,
+  ];
+
   static List<BorderRadius> outerBorderRadius = <BorderRadius>[
     consumer_light.FhRadii.xl,
     consumer_dark.FhRadii.xl,
@@ -63,5 +77,26 @@ class _$YgDialogThemes {
     consumer_dark.FhDimensions.xs,
     professional_light.FhDimensions.xs,
     professional_dark.FhDimensions.xs,
+  ];
+
+  static List<Color> scrimColor = <Color>[
+    consumer_light.FhColors.backgroundOverlay,
+    consumer_dark.FhColors.backgroundOverlay,
+    professional_light.FhColors.backgroundOverlay,
+    professional_dark.FhColors.backgroundOverlay,
+  ];
+
+  static List<Duration> movementAnimationDuration = <Duration>[
+    const Duration(milliseconds: 200),
+    const Duration(milliseconds: 200),
+    const Duration(milliseconds: 200),
+    const Duration(milliseconds: 200),
+  ];
+
+  static List<Curve> movementAnimationCurve = <Curve>[
+    const Cubic(0.42, 0, 0.2, 1),
+    const Cubic(0.42, 0, 0.2, 1),
+    const Cubic(0.42, 0, 0.2, 1),
+    const Cubic(0.42, 0, 0.2, 1),
   ];
 }
