@@ -44,10 +44,15 @@ abstract class YgDialogRoute extends PopupRoute<YgDialog> {
   @override
   Widget buildPage(BuildContext context, Animation<double> animation, Animation<double> secondaryAnimation) {
     return Center(
-        child: Padding(
-      padding: const EdgeInsets.all(30),
-      child: buildDialog(context),
-    ));
+      child: Padding(
+        // TODO(Tim): This should not be hardcoded here, but for now the design
+        // does not make sense (fixed width for the dialog), so suggested a max
+        // width and padding to edge of screen instead. Until feedback from
+        // design this should be good enough.
+        padding: const EdgeInsets.all(30),
+        child: buildDialog(context),
+      ),
+    );
   }
 
   /// Builds the [YgBottomSheet].

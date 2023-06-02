@@ -34,43 +34,55 @@ class YgDialog extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.stretch,
           mainAxisSize: MainAxisSize.min,
           children: <Widget>[
-            Container(
-              padding: dialogTheme.iconPadding,
-              decoration: BoxDecoration(
-                color: dialogTheme.iconContainerColor,
-                shape: BoxShape.circle,
-              ),
-              child: icon,
-            ),
-            Padding(
-              padding: dialogTheme.textSectionPadding,
-              child: Column(
-                mainAxisSize: MainAxisSize.min,
-                children: <Widget>[
-                  Text(
-                    title,
-                    textAlign: TextAlign.center,
-                    style: dialogTheme.titleTextStyle,
-                  ),
-                  SizedBox(
-                    height: dialogTheme.titleDescriptionSpacing,
-                  ),
-                  Text(
-                    description,
-                    textAlign: TextAlign.center,
-                    style: dialogTheme.descriptionTextStyle,
-                  ),
-                ],
-              ),
-            ),
-            Column(
-              mainAxisSize: MainAxisSize.min,
-              crossAxisAlignment: CrossAxisAlignment.stretch,
-              children: spacingBuilder.buildWidgetWithSpacing(actions),
-            )
+            _buildIcon(dialogTheme),
+            _buildTextSection(dialogTheme),
+            _buildActionsSection(spacingBuilder)
           ],
         ),
       ),
+    );
+  }
+
+  Column _buildActionsSection(YgSpacingBuilder spacingBuilder) {
+    return Column(
+      mainAxisSize: MainAxisSize.min,
+      crossAxisAlignment: CrossAxisAlignment.stretch,
+      children: spacingBuilder.buildWidgetWithSpacing(actions),
+    );
+  }
+
+  Padding _buildTextSection(YgDialogThemes dialogTheme) {
+    return Padding(
+      padding: dialogTheme.textSectionPadding,
+      child: Column(
+        mainAxisSize: MainAxisSize.min,
+        children: <Widget>[
+          Text(
+            title,
+            textAlign: TextAlign.center,
+            style: dialogTheme.titleTextStyle,
+          ),
+          SizedBox(
+            height: dialogTheme.titleDescriptionSpacing,
+          ),
+          Text(
+            description,
+            textAlign: TextAlign.center,
+            style: dialogTheme.descriptionTextStyle,
+          ),
+        ],
+      ),
+    );
+  }
+
+  Container _buildIcon(YgDialogThemes dialogTheme) {
+    return Container(
+      padding: dialogTheme.iconPadding,
+      decoration: BoxDecoration(
+        color: dialogTheme.iconContainerColor,
+        shape: BoxShape.circle,
+      ),
+      child: icon,
     );
   }
 }
