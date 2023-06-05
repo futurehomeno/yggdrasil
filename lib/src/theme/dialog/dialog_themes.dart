@@ -86,6 +86,27 @@ class _$YgDialogThemes {
     professional_dark.FhColors.backgroundOverlay,
   ];
 
+  static List<double> paddingToScreenEdge = <double>[
+    consumer_light.FhDimensions.xl,
+    consumer_dark.FhDimensions.xl,
+    professional_light.FhDimensions.xl,
+    professional_dark.FhDimensions.xl,
+  ];
+
+  static List<double> minWidth = <double>[
+    260,
+    260,
+    260,
+    260,
+  ];
+
+  static List<double> maxWidth = <double>[
+    480,
+    480,
+    480,
+    480,
+  ];
+
   static List<Duration> movementAnimationDuration = <Duration>[
     const Duration(milliseconds: 200),
     const Duration(milliseconds: 200),

@@ -21,6 +21,9 @@ class YgDialogThemes extends ThemeExtension<YgDialogThemes> {
     required this.outerBorderRadius,
     required this.buttonSpacing,
     required this.scrimColor,
+    required this.paddingToScreenEdge,
+    required this.minWidth,
+    required this.maxWidth,
     required this.movementAnimationDuration,
     required this.movementAnimationCurve,
   });
@@ -36,6 +39,9 @@ class YgDialogThemes extends ThemeExtension<YgDialogThemes> {
   final BorderRadius outerBorderRadius;
   final double buttonSpacing;
   final Color scrimColor;
+  final double paddingToScreenEdge;
+  final double minWidth;
+  final double maxWidth;
   final Duration movementAnimationDuration;
   final Curve movementAnimationCurve;
 
@@ -51,6 +57,9 @@ class YgDialogThemes extends ThemeExtension<YgDialogThemes> {
     outerBorderRadius: _$YgDialogThemes.outerBorderRadius[0],
     buttonSpacing: _$YgDialogThemes.buttonSpacing[0],
     scrimColor: _$YgDialogThemes.scrimColor[0],
+    paddingToScreenEdge: _$YgDialogThemes.paddingToScreenEdge[0],
+    minWidth: _$YgDialogThemes.minWidth[0],
+    maxWidth: _$YgDialogThemes.maxWidth[0],
     movementAnimationDuration: _$YgDialogThemes.movementAnimationDuration[0],
     movementAnimationCurve: _$YgDialogThemes.movementAnimationCurve[0],
   );
@@ -67,6 +76,9 @@ class YgDialogThemes extends ThemeExtension<YgDialogThemes> {
     outerBorderRadius: _$YgDialogThemes.outerBorderRadius[1],
     buttonSpacing: _$YgDialogThemes.buttonSpacing[1],
     scrimColor: _$YgDialogThemes.scrimColor[1],
+    paddingToScreenEdge: _$YgDialogThemes.paddingToScreenEdge[1],
+    minWidth: _$YgDialogThemes.minWidth[1],
+    maxWidth: _$YgDialogThemes.maxWidth[1],
     movementAnimationDuration: _$YgDialogThemes.movementAnimationDuration[1],
     movementAnimationCurve: _$YgDialogThemes.movementAnimationCurve[1],
   );
@@ -83,6 +95,9 @@ class YgDialogThemes extends ThemeExtension<YgDialogThemes> {
     outerBorderRadius: _$YgDialogThemes.outerBorderRadius[2],
     buttonSpacing: _$YgDialogThemes.buttonSpacing[2],
     scrimColor: _$YgDialogThemes.scrimColor[2],
+    paddingToScreenEdge: _$YgDialogThemes.paddingToScreenEdge[2],
+    minWidth: _$YgDialogThemes.minWidth[2],
+    maxWidth: _$YgDialogThemes.maxWidth[2],
     movementAnimationDuration: _$YgDialogThemes.movementAnimationDuration[2],
     movementAnimationCurve: _$YgDialogThemes.movementAnimationCurve[2],
   );
@@ -99,6 +114,9 @@ class YgDialogThemes extends ThemeExtension<YgDialogThemes> {
     outerBorderRadius: _$YgDialogThemes.outerBorderRadius[3],
     buttonSpacing: _$YgDialogThemes.buttonSpacing[3],
     scrimColor: _$YgDialogThemes.scrimColor[3],
+    paddingToScreenEdge: _$YgDialogThemes.paddingToScreenEdge[3],
+    minWidth: _$YgDialogThemes.minWidth[3],
+    maxWidth: _$YgDialogThemes.maxWidth[3],
     movementAnimationDuration: _$YgDialogThemes.movementAnimationDuration[3],
     movementAnimationCurve: _$YgDialogThemes.movementAnimationCurve[3],
   );
@@ -123,6 +141,9 @@ class YgDialogThemes extends ThemeExtension<YgDialogThemes> {
     BorderRadius? outerBorderRadius,
     double? buttonSpacing,
     Color? scrimColor,
+    double? paddingToScreenEdge,
+    double? minWidth,
+    double? maxWidth,
     Duration? movementAnimationDuration,
     Curve? movementAnimationCurve,
   }) {
@@ -139,6 +160,9 @@ class YgDialogThemes extends ThemeExtension<YgDialogThemes> {
       outerBorderRadius: outerBorderRadius ?? this.outerBorderRadius,
       buttonSpacing: buttonSpacing ?? this.buttonSpacing,
       scrimColor: scrimColor ?? this.scrimColor,
+      paddingToScreenEdge: paddingToScreenEdge ?? this.paddingToScreenEdge,
+      minWidth: minWidth ?? this.minWidth,
+      maxWidth: maxWidth ?? this.maxWidth,
       movementAnimationDuration:
           movementAnimationDuration ?? this.movementAnimationDuration,
       movementAnimationCurve:
@@ -165,6 +189,10 @@ class YgDialogThemes extends ThemeExtension<YgDialogThemes> {
       outerBorderRadius: t < 0.5 ? outerBorderRadius : other.outerBorderRadius,
       buttonSpacing: t < 0.5 ? buttonSpacing : other.buttonSpacing,
       scrimColor: Color.lerp(scrimColor, other.scrimColor, t)!,
+      paddingToScreenEdge:
+          t < 0.5 ? paddingToScreenEdge : other.paddingToScreenEdge,
+      minWidth: t < 0.5 ? minWidth : other.minWidth,
+      maxWidth: t < 0.5 ? maxWidth : other.maxWidth,
       movementAnimationDuration:
           t < 0.5 ? movementAnimationDuration : other.movementAnimationDuration,
       movementAnimationCurve:
@@ -199,6 +227,10 @@ class YgDialogThemes extends ThemeExtension<YgDialogThemes> {
                 .equals(buttonSpacing, other.buttonSpacing) &&
             const DeepCollectionEquality()
                 .equals(scrimColor, other.scrimColor) &&
+            const DeepCollectionEquality()
+                .equals(paddingToScreenEdge, other.paddingToScreenEdge) &&
+            const DeepCollectionEquality().equals(minWidth, other.minWidth) &&
+            const DeepCollectionEquality().equals(maxWidth, other.maxWidth) &&
             const DeepCollectionEquality().equals(
                 movementAnimationDuration, other.movementAnimationDuration) &&
             const DeepCollectionEquality()
@@ -220,6 +252,9 @@ class YgDialogThemes extends ThemeExtension<YgDialogThemes> {
         const DeepCollectionEquality().hash(outerBorderRadius),
         const DeepCollectionEquality().hash(buttonSpacing),
         const DeepCollectionEquality().hash(scrimColor),
+        const DeepCollectionEquality().hash(paddingToScreenEdge),
+        const DeepCollectionEquality().hash(minWidth),
+        const DeepCollectionEquality().hash(maxWidth),
         const DeepCollectionEquality().hash(movementAnimationDuration),
         const DeepCollectionEquality().hash(movementAnimationCurve));
   }

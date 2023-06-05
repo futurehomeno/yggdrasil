@@ -1,3 +1,5 @@
+import 'dart:math';
+
 import 'package:flutter/material.dart';
 import 'package:yggdrasil/src/theme/dialog/_dialog.dart';
 import 'package:yggdrasil/src/theme/theme.dart';
@@ -8,6 +10,9 @@ import '_yg_dialog.dart';
 ///
 /// Wraps the result from [buildBottomSheet] in a [YgBottomSheetModal] which
 /// provides animations for opening ans closing the [YgBottomSheet] and a scrim.
+///
+/// If the user should not be able to close the modal by pressing the scrim,
+/// override the value [barrierDismissible] and set it to false.
 abstract class YgDialogRoute extends PopupRoute<YgDialog> {
   late AnimationController _controller;
 
@@ -22,8 +27,6 @@ abstract class YgDialogRoute extends PopupRoute<YgDialog> {
   @override
   Curve get barrierCurve => _dialogTheme.movementAnimationCurve;
 
-  // This allows the popup to be dismissed by tapping the scrim or by pressing
-  // the escape key on the keyboard.
   @override
   bool get barrierDismissible => true;
 
@@ -43,15 +46,24 @@ abstract class YgDialogRoute extends PopupRoute<YgDialog> {
 
   @override
   Widget buildPage(BuildContext context, Animation<double> animation, Animation<double> secondaryAnimation) {
-    return Center(
-      child: Padding(
-        // TODO(Tim): This should not be hardcoded here, but for now the design
-        // does not make sense (fixed width for the dialog), so suggested a max
-        // width and padding to edge of screen instead. Until feedback from
-        // design this should be good enough.
-        padding: const EdgeInsets.all(30),
-        child: buildDialog(context),
-      ),
+    final YgDialogThemes theme = context.dialogTheme;
+    return LayoutBuilder(
+      builder: (BuildContext context, BoxConstraints constraints) {
+        // Custom layout which applies a max width, padding and min width.
+        // The padding gets discarded to preserve the min width, the min width
+        // gets discarded when it's more than the total with of the screen.
+        final double minWidth = min(theme.minWidth, constraints.maxWidth);
+        final double maxWidth = min(theme.maxWidth, constraints.maxWidth);
+        final double widthWithPadding = maxWidth - (theme.paddingToScreenEdge * 2);
+        final double width = max(minWidth, widthWithPadding);
+
+        return Center(
+          child: SizedBox(
+            width: width,
+            child: buildDialog(context),
+          ),
+        );
+      },
     );
   }
 
