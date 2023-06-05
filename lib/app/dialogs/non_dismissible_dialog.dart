@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:yggdrasil/src/components/yg_dialog/_yg_dialog.dart';
 import 'package:yggdrasil/yggdrasil.dart';
 
 class NonDismissibleDialog extends YgDialogRoute {
