@@ -1,9 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:theme_tailor_annotation/theme_tailor_annotation.dart';
 import 'package:yggdrasil/src/theme/badge/_badge.dart';
+import 'package:yggdrasil/src/theme/internal/internal.dart';
 
 import 'bottom_sheet/_bottom_sheet.dart';
 import 'buttons/_buttons.dart';
+import 'dialog/_dialog.dart';
 import 'dot_indicator/_dot_indicator.dart';
 import 'tokens/tokens.dart';
 
@@ -26,4 +28,10 @@ class _$YgTheme {
 
   @themeExtension
   static List<YgDotIndicatorTheme> dotIndicatorTheme = YgDotIndicatorTheme.themes;
+
+  @themeExtension
+  static List<YgDialogThemes> dialogTheme = YgDialogThemes.themes;
+
+  @themeExtension
+  static List<YgInternalTheme> internalTheme = YgInternalTheme.themes;
 }

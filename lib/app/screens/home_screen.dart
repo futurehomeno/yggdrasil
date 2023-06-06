@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:yggdrasil/app/core/_core.dart';
 import 'package:yggdrasil/app/screens/badge_screen.dart';
+import 'package:yggdrasil/app/screens/dialog_screen.dart';
 import 'package:yggdrasil/app/widgets/_widgets.dart';
 
 import 'bottom_sheet_screen.dart';
@@ -42,6 +43,12 @@ class HomeScreen extends StatelessWidget {
             title: const Text('Badge'),
             onTap: () {
               sl<YgRouter>().push(BadgeScreen.route());
+            },
+          ),
+          ListTile(
+            title: const Text('Dialog'),
+            onTap: () {
+              sl<YgRouter>().push(DialogScreen.route());
             },
           ),
         ],
