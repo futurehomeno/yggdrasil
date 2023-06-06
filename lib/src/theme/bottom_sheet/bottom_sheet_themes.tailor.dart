@@ -16,6 +16,7 @@ class YgBottomSheetThemes extends ThemeExtension<YgBottomSheetThemes> {
     required this.borderRadius,
     required this.outerPadding,
     required this.footerPadding,
+    required this.buttonSpacing,
     required this.titlePadding,
     required this.titleStyle,
     required this.flingVelocity,
@@ -29,6 +30,7 @@ class YgBottomSheetThemes extends ThemeExtension<YgBottomSheetThemes> {
   final BorderRadius borderRadius;
   final EdgeInsets outerPadding;
   final EdgeInsets footerPadding;
+  final double buttonSpacing;
   final EdgeInsets titlePadding;
   final TextStyle titleStyle;
   final double flingVelocity;
@@ -42,6 +44,7 @@ class YgBottomSheetThemes extends ThemeExtension<YgBottomSheetThemes> {
     borderRadius: _$YgBottomSheetThemes.borderRadius[0],
     outerPadding: _$YgBottomSheetThemes.outerPadding[0],
     footerPadding: _$YgBottomSheetThemes.footerPadding[0],
+    buttonSpacing: _$YgBottomSheetThemes.buttonSpacing[0],
     titlePadding: _$YgBottomSheetThemes.titlePadding[0],
     titleStyle: _$YgBottomSheetThemes.titleStyle[0],
     flingVelocity: _$YgBottomSheetThemes.flingVelocity[0],
@@ -57,6 +60,7 @@ class YgBottomSheetThemes extends ThemeExtension<YgBottomSheetThemes> {
     borderRadius: _$YgBottomSheetThemes.borderRadius[1],
     outerPadding: _$YgBottomSheetThemes.outerPadding[1],
     footerPadding: _$YgBottomSheetThemes.footerPadding[1],
+    buttonSpacing: _$YgBottomSheetThemes.buttonSpacing[1],
     titlePadding: _$YgBottomSheetThemes.titlePadding[1],
     titleStyle: _$YgBottomSheetThemes.titleStyle[1],
     flingVelocity: _$YgBottomSheetThemes.flingVelocity[1],
@@ -72,6 +76,7 @@ class YgBottomSheetThemes extends ThemeExtension<YgBottomSheetThemes> {
     borderRadius: _$YgBottomSheetThemes.borderRadius[2],
     outerPadding: _$YgBottomSheetThemes.outerPadding[2],
     footerPadding: _$YgBottomSheetThemes.footerPadding[2],
+    buttonSpacing: _$YgBottomSheetThemes.buttonSpacing[2],
     titlePadding: _$YgBottomSheetThemes.titlePadding[2],
     titleStyle: _$YgBottomSheetThemes.titleStyle[2],
     flingVelocity: _$YgBottomSheetThemes.flingVelocity[2],
@@ -87,6 +92,7 @@ class YgBottomSheetThemes extends ThemeExtension<YgBottomSheetThemes> {
     borderRadius: _$YgBottomSheetThemes.borderRadius[3],
     outerPadding: _$YgBottomSheetThemes.outerPadding[3],
     footerPadding: _$YgBottomSheetThemes.footerPadding[3],
+    buttonSpacing: _$YgBottomSheetThemes.buttonSpacing[3],
     titlePadding: _$YgBottomSheetThemes.titlePadding[3],
     titleStyle: _$YgBottomSheetThemes.titleStyle[3],
     flingVelocity: _$YgBottomSheetThemes.flingVelocity[3],
@@ -110,6 +116,7 @@ class YgBottomSheetThemes extends ThemeExtension<YgBottomSheetThemes> {
     BorderRadius? borderRadius,
     EdgeInsets? outerPadding,
     EdgeInsets? footerPadding,
+    double? buttonSpacing,
     EdgeInsets? titlePadding,
     TextStyle? titleStyle,
     double? flingVelocity,
@@ -123,6 +130,7 @@ class YgBottomSheetThemes extends ThemeExtension<YgBottomSheetThemes> {
       borderRadius: borderRadius ?? this.borderRadius,
       outerPadding: outerPadding ?? this.outerPadding,
       footerPadding: footerPadding ?? this.footerPadding,
+      buttonSpacing: buttonSpacing ?? this.buttonSpacing,
       titlePadding: titlePadding ?? this.titlePadding,
       titleStyle: titleStyle ?? this.titleStyle,
       flingVelocity: flingVelocity ?? this.flingVelocity,
@@ -144,6 +152,7 @@ class YgBottomSheetThemes extends ThemeExtension<YgBottomSheetThemes> {
       borderRadius: t < 0.5 ? borderRadius : other.borderRadius,
       outerPadding: t < 0.5 ? outerPadding : other.outerPadding,
       footerPadding: t < 0.5 ? footerPadding : other.footerPadding,
+      buttonSpacing: t < 0.5 ? buttonSpacing : other.buttonSpacing,
       titlePadding: t < 0.5 ? titlePadding : other.titlePadding,
       titleStyle: TextStyle.lerp(titleStyle, other.titleStyle, t)!,
       flingVelocity: t < 0.5 ? flingVelocity : other.flingVelocity,
@@ -172,6 +181,8 @@ class YgBottomSheetThemes extends ThemeExtension<YgBottomSheetThemes> {
             const DeepCollectionEquality()
                 .equals(footerPadding, other.footerPadding) &&
             const DeepCollectionEquality()
+                .equals(buttonSpacing, other.buttonSpacing) &&
+            const DeepCollectionEquality()
                 .equals(titlePadding, other.titlePadding) &&
             const DeepCollectionEquality()
                 .equals(titleStyle, other.titleStyle) &&
@@ -193,6 +204,7 @@ class YgBottomSheetThemes extends ThemeExtension<YgBottomSheetThemes> {
         const DeepCollectionEquality().hash(borderRadius),
         const DeepCollectionEquality().hash(outerPadding),
         const DeepCollectionEquality().hash(footerPadding),
+        const DeepCollectionEquality().hash(buttonSpacing),
         const DeepCollectionEquality().hash(titlePadding),
         const DeepCollectionEquality().hash(titleStyle),
         const DeepCollectionEquality().hash(flingVelocity),

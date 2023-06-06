@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:yggdrasil/src/theme/_theme.dart';
 import 'package:yggdrasil/src/theme/bottom_sheet/_bottom_sheet.dart';
+import 'package:yggdrasil/src/utils/_utils.dart';
 
 import '../_components.dart';
 
@@ -9,12 +10,12 @@ class YgBottomSheet extends StatelessWidget {
     super.key,
     required this.title,
     required this.content,
-    this.footer,
+    this.footerButtons,
   });
 
   final String title;
   final Widget content;
-  final Widget? footer;
+  final List<YgButton>? footerButtons;
 
   @override
   Widget build(BuildContext context) {
@@ -22,21 +23,53 @@ class YgBottomSheet extends StatelessWidget {
     final YgBottomSheetScrollPhysicsProvider? scrollPhysicsProvider =
         context.dependOnInheritedWidgetOfExactType<YgBottomSheetScrollPhysicsProvider>();
 
-    return Material(
-      borderRadius: theme.borderRadius,
-      color: theme.backgroundColor,
-      child: ClipRRect(
+    return RepaintBoundary(
+      child: Material(
         borderRadius: theme.borderRadius,
+        color: theme.backgroundColor,
         child: SafeArea(
           top: false,
-          child: Column(
-            mainAxisSize: MainAxisSize.min,
-            children: <Widget>[
-              _buildHeader(theme),
-              _buildContent(scrollPhysicsProvider, theme),
-            ],
+          child: ClipRRect(
+            borderRadius: theme.borderRadius,
+            child: Column(
+              mainAxisSize: MainAxisSize.min,
+              crossAxisAlignment: CrossAxisAlignment.stretch,
+              children: <Widget>[
+                _buildHeader(theme),
+                _buildContent(scrollPhysicsProvider, theme),
+                if (footerButtons?.isNotEmpty == true) _buildFooter(theme),
+              ],
+            ),
           ),
         ),
+      ),
+    );
+  }
+
+  Widget _buildFooter(YgBottomSheetThemes theme) {
+    final List<Widget> buttons = footerButtons!;
+
+    final List<Widget> children = <Widget>[
+      buttons[0],
+    ];
+
+    for (int i = 1; i < buttons.length; i++) {
+      children.addAll(<Widget>[
+        SizedBox(
+          height: theme.buttonSpacing,
+        ),
+        buttons[i],
+      ]);
+    }
+
+    return Padding(
+      padding: theme.outerPadding.copyWith(
+        top: theme.footerPadding.top,
+      ),
+      child: Column(
+        mainAxisSize: MainAxisSize.min,
+        crossAxisAlignment: CrossAxisAlignment.stretch,
+        children: children,
       ),
     );
   }
@@ -79,21 +112,15 @@ class YgBottomSheet extends StatelessWidget {
     YgBottomSheetThemes theme,
   ) {
     return Flexible(
-      child: SingleChildScrollView(
-        physics: scrollPhysicsProvider?.scrollPhysics,
-        child: Padding(
-          padding: theme.outerPadding.copyWith(top: 0),
-          child: Column(
-            mainAxisSize: MainAxisSize.min,
-            crossAxisAlignment: CrossAxisAlignment.stretch,
-            children: <Widget>[
-              content,
-              if (footer != null)
-                Padding(
-                  padding: theme.footerPadding,
-                  child: footer,
-                ),
-            ],
+      child: YgScrollShadow(
+        child: SingleChildScrollView(
+          physics: scrollPhysicsProvider?.scrollPhysics,
+          child: Padding(
+            padding: theme.outerPadding.copyWith(
+              top: 0,
+              bottom: 0,
+            ),
+            child: content,
           ),
         ),
       ),

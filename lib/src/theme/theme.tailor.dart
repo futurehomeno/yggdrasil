@@ -14,18 +14,21 @@ class YgTheme extends ThemeExtension<YgTheme> {
     required this.buttonThemes,
     required this.bottomSheetTheme,
     required this.dialogTheme,
+    required this.internalTheme,
   });
 
   final YgTokens tokens;
   final YgButtonThemes buttonThemes;
   final YgBottomSheetThemes bottomSheetTheme;
   final YgDialogThemes dialogTheme;
+  final YgInternalTheme internalTheme;
 
   static final YgTheme consumerLight = YgTheme(
     tokens: _$YgTheme.tokens[0],
     buttonThemes: _$YgTheme.buttonThemes[0],
     bottomSheetTheme: _$YgTheme.bottomSheetTheme[0],
     dialogTheme: _$YgTheme.dialogTheme[0],
+    internalTheme: _$YgTheme.internalTheme[0],
   );
 
   static final YgTheme consumerDark = YgTheme(
@@ -33,6 +36,7 @@ class YgTheme extends ThemeExtension<YgTheme> {
     buttonThemes: _$YgTheme.buttonThemes[1],
     bottomSheetTheme: _$YgTheme.bottomSheetTheme[1],
     dialogTheme: _$YgTheme.dialogTheme[1],
+    internalTheme: _$YgTheme.internalTheme[1],
   );
 
   static final YgTheme professionalLight = YgTheme(
@@ -40,6 +44,7 @@ class YgTheme extends ThemeExtension<YgTheme> {
     buttonThemes: _$YgTheme.buttonThemes[2],
     bottomSheetTheme: _$YgTheme.bottomSheetTheme[2],
     dialogTheme: _$YgTheme.dialogTheme[2],
+    internalTheme: _$YgTheme.internalTheme[2],
   );
 
   static final YgTheme professionalDark = YgTheme(
@@ -47,6 +52,7 @@ class YgTheme extends ThemeExtension<YgTheme> {
     buttonThemes: _$YgTheme.buttonThemes[3],
     bottomSheetTheme: _$YgTheme.bottomSheetTheme[3],
     dialogTheme: _$YgTheme.dialogTheme[3],
+    internalTheme: _$YgTheme.internalTheme[3],
   );
 
   static final themes = [
@@ -62,12 +68,14 @@ class YgTheme extends ThemeExtension<YgTheme> {
     YgButtonThemes? buttonThemes,
     YgBottomSheetThemes? bottomSheetTheme,
     YgDialogThemes? dialogTheme,
+    YgInternalTheme? internalTheme,
   }) {
     return YgTheme(
       tokens: tokens ?? this.tokens,
       buttonThemes: buttonThemes ?? this.buttonThemes,
       bottomSheetTheme: bottomSheetTheme ?? this.bottomSheetTheme,
       dialogTheme: dialogTheme ?? this.dialogTheme,
+      internalTheme: internalTheme ?? this.internalTheme,
     );
   }
 
@@ -79,6 +87,7 @@ class YgTheme extends ThemeExtension<YgTheme> {
       buttonThemes: buttonThemes.lerp(other.buttonThemes, t),
       bottomSheetTheme: bottomSheetTheme.lerp(other.bottomSheetTheme, t),
       dialogTheme: dialogTheme.lerp(other.dialogTheme, t),
+      internalTheme: internalTheme.lerp(other.internalTheme, t),
     );
   }
 
@@ -93,7 +102,9 @@ class YgTheme extends ThemeExtension<YgTheme> {
             const DeepCollectionEquality()
                 .equals(bottomSheetTheme, other.bottomSheetTheme) &&
             const DeepCollectionEquality()
-                .equals(dialogTheme, other.dialogTheme));
+                .equals(dialogTheme, other.dialogTheme) &&
+            const DeepCollectionEquality()
+                .equals(internalTheme, other.internalTheme));
   }
 
   @override
@@ -103,7 +114,8 @@ class YgTheme extends ThemeExtension<YgTheme> {
         const DeepCollectionEquality().hash(tokens),
         const DeepCollectionEquality().hash(buttonThemes),
         const DeepCollectionEquality().hash(bottomSheetTheme),
-        const DeepCollectionEquality().hash(dialogTheme));
+        const DeepCollectionEquality().hash(dialogTheme),
+        const DeepCollectionEquality().hash(internalTheme));
   }
 }
 
@@ -113,4 +125,5 @@ extension YgThemeBuildContextProps on BuildContext {
   YgButtonThemes get buttonThemes => _ygTheme.buttonThemes;
   YgBottomSheetThemes get bottomSheetTheme => _ygTheme.bottomSheetTheme;
   YgDialogThemes get dialogTheme => _ygTheme.dialogTheme;
+  YgInternalTheme get internalTheme => _ygTheme.internalTheme;
 }
