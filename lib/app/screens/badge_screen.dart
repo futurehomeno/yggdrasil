@@ -1,0 +1,47 @@
+import 'package:flutter/material.dart';
+import 'package:yggdrasil/app/core/_core.dart';
+import 'package:yggdrasil/app/widgets/_widgets.dart';
+import 'package:yggdrasil/yggdrasil.dart';
+
+class BadgeScreen extends StatelessWidget {
+  const BadgeScreen({super.key});
+
+  static const String routeName = 'ButtonsScreen';
+
+  static PageRouteBuilder<Widget> route() {
+    return YgRouteBuilder().fadeTransition(
+      settings: const RouteSettings(name: routeName),
+      screen: const BadgeScreen(),
+    );
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return YgScreen(
+      componentName: 'Button',
+      componentDesc: 'Buttons',
+      supernovaLink: 'Link',
+      child: Column(
+        children: <Widget>[
+          YgBadge(
+            amount: 5,
+            weight: YgBadgeWeight.strong,
+            child: IconButton(
+              onPressed: () {},
+              icon: const Icon(Icons.notifications_none_outlined),
+            ),
+          ),
+          YgBadge(
+            amount: 5,
+            weight: YgBadgeWeight.weak,
+            child: IconButton(
+              onPressed: () {},
+              icon: const Icon(Icons.notifications_none_outlined),
+            ),
+          ),
+          const YgDotIndicator(),
+        ],
+      ),
+    );
+  }
+}
