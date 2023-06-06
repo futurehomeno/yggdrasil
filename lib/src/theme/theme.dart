@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:theme_tailor_annotation/theme_tailor_annotation.dart';
+import 'package:yggdrasil/src/theme/internal/internal.dart';
 
 import 'bottom_sheet/_bottom_sheet.dart';
 import 'buttons/_buttons.dart';
@@ -18,4 +19,7 @@ class _$YgTheme {
 
   @themeExtension
   static List<YgBottomSheetThemes> bottomSheetTheme = YgBottomSheetThemes.themes;
+
+  @themeExtension
+  static List<YgInternalTheme> internalTheme = YgInternalTheme.themes;
 }
