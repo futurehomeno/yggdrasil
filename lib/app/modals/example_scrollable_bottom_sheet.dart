@@ -15,24 +15,18 @@ class ExampleScrollableBottomSheet extends YgBottomSheetModalRoute {
           ),
         ),
       ),
-      footer: Column(
-        crossAxisAlignment: CrossAxisAlignment.stretch,
-        children: <Widget>[
-          YgButton(
-            variant: ButtonVariant.primary,
-            onPressed: () {},
-            child: const Text('Primary button'),
-          ),
-          const SizedBox(
-            height: 15,
-          ),
-          YgButton(
-            variant: ButtonVariant.secondary,
-            onPressed: () {},
-            child: const Text('Secondary button'),
-          ),
-        ],
-      ),
+      footerButtons: <YgButton>[
+        YgButton(
+          variant: ButtonVariant.primary,
+          onPressed: () {},
+          child: const Text('Primary button'),
+        ),
+        YgButton(
+          variant: ButtonVariant.secondary,
+          onPressed: () {},
+          child: const Text('Secondary button'),
+        ),
+      ],
     );
   }
 }

@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:yggdrasil/src/theme/bottom_sheet/_bottom_sheet.dart';
+import 'package:yggdrasil/src/theme/theme.dart';
 
 import '../_yg_bottom_sheet.dart';
 
@@ -9,10 +11,16 @@ import '../_yg_bottom_sheet.dart';
 abstract class YgBottomSheetModalRoute extends PopupRoute<YgBottomSheetModal> {
   late AnimationController _controller;
 
-  // This is set to transparent so we can use our theming with a fake scrim
-  // elsewhere.
+  YgBottomSheetThemes get _bottomSheetTheme => navigator!.context.bottomSheetTheme;
+
   @override
-  Color? get barrierColor => Colors.transparent;
+  Color? get barrierColor => _bottomSheetTheme.scrimColor;
+
+  @override
+  Duration get transitionDuration => _bottomSheetTheme.movementAnimationDuration;
+
+  @override
+  Curve get barrierCurve => _bottomSheetTheme.movementAnimationCurve;
 
   // This allows the popup to be dismissed by tapping the scrim or by pressing
   // the escape key on the keyboard.
@@ -21,12 +29,6 @@ abstract class YgBottomSheetModalRoute extends PopupRoute<YgBottomSheetModal> {
 
   @override
   String? get barrierLabel => 'Dismissible Dialog';
-
-  @override
-  Duration get transitionDuration => const Duration(milliseconds: 225);
-
-  @override
-  Curve get barrierCurve => Curves.easeOut;
 
   @override
   AnimationController createAnimationController() {
