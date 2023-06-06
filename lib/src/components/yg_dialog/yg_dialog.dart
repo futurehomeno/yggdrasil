@@ -43,11 +43,14 @@ class YgDialog extends StatelessWidget {
     );
   }
 
-  Column _buildActionsSection(YgSpacingBuilder spacingBuilder) {
-    return Column(
-      mainAxisSize: MainAxisSize.min,
-      crossAxisAlignment: CrossAxisAlignment.stretch,
-      children: spacingBuilder.buildWidgetWithSpacing(actions),
+  Container _buildIcon(YgDialogThemes dialogTheme) {
+    return Container(
+      padding: dialogTheme.iconPadding,
+      decoration: BoxDecoration(
+        color: dialogTheme.iconContainerColor,
+        shape: BoxShape.circle,
+      ),
+      child: icon,
     );
   }
 
@@ -75,14 +78,11 @@ class YgDialog extends StatelessWidget {
     );
   }
 
-  Container _buildIcon(YgDialogThemes dialogTheme) {
-    return Container(
-      padding: dialogTheme.iconPadding,
-      decoration: BoxDecoration(
-        color: dialogTheme.iconContainerColor,
-        shape: BoxShape.circle,
-      ),
-      child: icon,
+  Column _buildActionsSection(YgSpacingBuilder spacingBuilder) {
+    return Column(
+      mainAxisSize: MainAxisSize.min,
+      crossAxisAlignment: CrossAxisAlignment.stretch,
+      children: spacingBuilder.buildWidgetWithSpacing(actions),
     );
   }
 }

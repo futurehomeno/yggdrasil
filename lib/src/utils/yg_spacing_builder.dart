@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 
+/// Adds spacing between a list of widgets using [SizedBox].
 class YgSpacingBuilder {
   const YgSpacingBuilder({
     this.horizontalSpacing = 0,
