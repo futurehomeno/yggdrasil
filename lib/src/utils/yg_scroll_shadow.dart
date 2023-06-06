@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:yggdrasil/src/theme/_theme.dart';
-import 'package:yggdrasil/src/theme/internal/scroll_shadow/scroll_shadow.dart';
 
 /// Applies a shadow at the top or bottom of a scroll view.
 class YgScrollShadow extends StatefulWidget {
