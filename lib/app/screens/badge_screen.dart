@@ -32,7 +32,7 @@ class BadgeScreen extends StatelessWidget {
             ),
           ),
           YgBadge(
-            amount: 5,
+            amount: 18,
             weight: YgBadgeWeight.weak,
             child: IconButton(
               onPressed: () {},
