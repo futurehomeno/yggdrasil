@@ -2,6 +2,5 @@ export 'badge/_badge.dart';
 export 'bottom_sheet/_bottom_sheet.dart';
 export 'buttons/_buttons.dart';
 export 'dialog/_dialog.dart';
-export 'dot_indicator/_dot_indicator.dart';
 export 'internal/_internal.dart';
 export 'theme.dart';

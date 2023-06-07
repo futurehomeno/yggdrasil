@@ -1,19 +1,19 @@
 import 'package:flutter/material.dart';
 import 'package:yggdrasil/src/theme/_theme.dart';
 
-class YgDotIndicator extends StatelessWidget {
-  const YgDotIndicator({super.key});
+class YgDotBadge extends StatelessWidget {
+  const YgDotBadge({super.key});
 
   @override
   Widget build(BuildContext context) {
-    final YgDotIndicatorTheme theme = context.dotIndicatorTheme;
+    final YgBadgeTheme theme = context.badgeTheme;
 
     return Container(
       width: 8,
       height: 8,
       decoration: BoxDecoration(
         borderRadius: theme.borderRadius,
-        color: theme.color,
+        color: theme.strongColor,
       ),
     );
   }

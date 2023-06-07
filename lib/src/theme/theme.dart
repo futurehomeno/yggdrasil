@@ -6,7 +6,6 @@ import 'package:yggdrasil/src/theme/internal/internal.dart';
 import 'bottom_sheet/_bottom_sheet.dart';
 import 'buttons/_buttons.dart';
 import 'dialog/_dialog.dart';
-import 'dot_indicator/_dot_indicator.dart';
 import 'tokens/tokens.dart';
 
 part 'theme.tailor.dart';
@@ -25,9 +24,6 @@ class _$YgTheme {
 
   @themeExtension
   static List<YgBadgeTheme> badgeTheme = YgBadgeTheme.themes;
-
-  @themeExtension
-  static List<YgDotIndicatorTheme> dotIndicatorTheme = YgDotIndicatorTheme.themes;
 
   @themeExtension
   static List<YgDialogThemes> dialogTheme = YgDialogThemes.themes;
