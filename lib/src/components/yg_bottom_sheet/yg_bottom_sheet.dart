@@ -30,14 +30,21 @@ class YgBottomSheet extends StatelessWidget {
           top: false,
           child: ClipRRect(
             borderRadius: theme.borderRadius,
-            child: Column(
-              mainAxisSize: MainAxisSize.min,
-              crossAxisAlignment: CrossAxisAlignment.stretch,
-              children: <Widget>[
-                _buildHeader(theme),
-                _buildContent(scrollPhysicsProvider, theme),
-                if (footerButtons?.isNotEmpty == true) _buildFooter(theme),
-              ],
+            child: Padding(
+              padding: theme.outerPadding.copyWith(
+                top: 0,
+                left: 0,
+                right: 0,
+              ),
+              child: Column(
+                mainAxisSize: MainAxisSize.min,
+                crossAxisAlignment: CrossAxisAlignment.stretch,
+                children: <Widget>[
+                  _buildHeader(theme),
+                  _buildContent(scrollPhysicsProvider, theme),
+                  if (footerButtons?.isNotEmpty == true) _buildFooter(theme),
+                ],
+              ),
             ),
           ),
         ),
@@ -64,6 +71,7 @@ class YgBottomSheet extends StatelessWidget {
     return Padding(
       padding: theme.outerPadding.copyWith(
         top: theme.footerPadding.top,
+        bottom: 0,
       ),
       child: Column(
         mainAxisSize: MainAxisSize.min,

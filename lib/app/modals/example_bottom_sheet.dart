@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:yggdrasil/src/components/yg_bottom_sheet/modal/yg_bottom_sheet_modal_route.dart';
 import 'package:yggdrasil/src/components/yg_bottom_sheet/yg_bottom_sheet.dart';
-import 'package:yggdrasil/src/components/yg_button/enums/_enums.dart';
 import 'package:yggdrasil/src/components/yg_button/yg_button.dart';
 
 class ExampleBottomSheet extends YgBottomSheetModalRoute {
@@ -21,12 +20,12 @@ class ExampleBottomSheet extends YgBottomSheetModalRoute {
           ),
         ),
       ),
-      footerButtons: <YgButton>[
-        YgButton(
-          variant: ButtonVariant.primary,
-          onPressed: () {},
-          child: const Text('Button'),
-        ),
+      footerButtons: const <YgButton>[
+        // YgButton(
+        //   variant: ButtonVariant.primary,
+        //   onPressed: () {},
+        //   child: const Text('Button'),
+        // ),
       ],
     );
   }
