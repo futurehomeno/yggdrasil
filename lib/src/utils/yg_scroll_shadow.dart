@@ -12,7 +12,7 @@ class YgScrollShadow extends StatefulWidget {
   /// The child widget.
   final Widget child;
 
-  /// The scroll controller of the scrollable surface which the shadows should
+  /// The [ScrollController] of the scrollable surface which the shadows should
   /// be added to.
   final ScrollController controller;
 
