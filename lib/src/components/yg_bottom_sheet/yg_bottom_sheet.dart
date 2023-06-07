@@ -21,7 +21,7 @@ class YgBottomSheet extends StatefulWidget {
 }
 
 class _YgBottomSheetState extends State<YgBottomSheet> {
-  late final ScrollController _scrollController = ScrollController();
+  final ScrollController _scrollController = ScrollController();
 
   @override
   Widget build(BuildContext context) {
