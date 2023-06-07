@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:yggdrasil/src/theme/_theme.dart';
-import 'package:yggdrasil/src/theme/bottom_sheet/_bottom_sheet.dart';
 import 'package:yggdrasil/src/utils/_utils.dart';
 
 import '../_components.dart';
