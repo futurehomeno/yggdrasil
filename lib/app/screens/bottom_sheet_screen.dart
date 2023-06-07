@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:yggdrasil/app/core/_core.dart';
+import 'package:yggdrasil/app/modals/example_bottom_sheet_without_footer.dart';
 import 'package:yggdrasil/src/components/_components.dart';
 
 import '../modals/example_bottom_sheet.dart';
@@ -45,6 +46,13 @@ class _BottomSheetScreenState extends State<BottomSheetScreen> with TickerProvid
               Navigator.of(context).push(ExampleScrollableBottomSheet());
             },
             child: const Text('Show scrollable bottom sheet'),
+          ),
+          YgButton(
+            variant: ButtonVariant.primary,
+            onPressed: () {
+              Navigator.of(context).push(ExampleBottomSheetWithoutFooter());
+            },
+            child: const Text('Show bottom sheet without footer'),
           ),
         ],
       ),

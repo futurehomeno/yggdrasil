@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:yggdrasil/yggdrasil.dart';
 
-class ExampleBottomSheet extends YgBottomSheetModalRoute {
+class ExampleBottomSheetWithoutFooter extends YgBottomSheetModalRoute {
   @override
   YgBottomSheet buildBottomSheet(BuildContext context) {
     return YgBottomSheet(
@@ -18,13 +18,6 @@ class ExampleBottomSheet extends YgBottomSheetModalRoute {
           ),
         ),
       ),
-      footerButtons: <YgButton>[
-        YgButton(
-          variant: ButtonVariant.primary,
-          onPressed: () {},
-          child: const Text('Button'),
-        ),
-      ],
     );
   }
 }
