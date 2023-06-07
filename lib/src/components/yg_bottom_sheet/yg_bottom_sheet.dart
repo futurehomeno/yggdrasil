@@ -4,7 +4,7 @@ import 'package:yggdrasil/src/utils/_utils.dart';
 
 import '../_components.dart';
 
-class YgBottomSheet extends StatelessWidget {
+class YgBottomSheet extends StatefulWidget {
   const YgBottomSheet({
     super.key,
     required this.title,
@@ -15,6 +15,13 @@ class YgBottomSheet extends StatelessWidget {
   final String title;
   final Widget content;
   final List<YgButton>? footerButtons;
+
+  @override
+  State<YgBottomSheet> createState() => _YgBottomSheetState();
+}
+
+class _YgBottomSheetState extends State<YgBottomSheet> {
+  final ScrollController _scrollController = ScrollController();
 
   @override
   Widget build(BuildContext context) {
@@ -40,7 +47,7 @@ class YgBottomSheet extends StatelessWidget {
                 children: <Widget>[
                   _buildHeader(theme),
                   _buildContent(scrollPhysicsProvider, theme),
-                  if (footerButtons?.isNotEmpty == true) _buildFooter(theme),
+                  if (widget.footerButtons?.isNotEmpty == true) _buildFooter(theme),
                 ],
               ),
             ),
@@ -51,7 +58,7 @@ class YgBottomSheet extends StatelessWidget {
   }
 
   Widget _buildFooter(YgBottomSheetThemes theme) {
-    final List<Widget> buttons = footerButtons!;
+    final List<Widget> buttons = widget.footerButtons!;
 
     final List<Widget> children = <Widget>[
       buttons[0],
@@ -92,7 +99,7 @@ class YgBottomSheet extends StatelessWidget {
           Padding(
             padding: theme.titlePadding,
             child: Text(
-              title,
+              widget.title,
               style: theme.titleStyle,
             ),
           ),
@@ -118,14 +125,16 @@ class YgBottomSheet extends StatelessWidget {
   ) {
     return Flexible(
       child: YgScrollShadow(
+        controller: _scrollController,
         child: SingleChildScrollView(
+          controller: _scrollController,
           physics: scrollPhysicsProvider?.scrollPhysics,
           child: Padding(
             padding: theme.outerPadding.copyWith(
               top: 0,
               bottom: 0,
             ),
-            child: content,
+            child: widget.content,
           ),
         ),
       ),
