@@ -46,15 +46,6 @@ class _BottomSheetScreenState extends State<BottomSheetScreen> with TickerProvid
             },
             child: const Text('Show scrollable bottom sheet'),
           ),
-          YgBottomSheet(
-            title: 'title',
-            content: AspectRatio(
-              aspectRatio: 1,
-              child: Container(
-                color: Colors.red,
-              ),
-            ),
-          )
         ],
       ),
     );
