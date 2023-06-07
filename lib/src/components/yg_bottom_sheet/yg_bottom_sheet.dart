@@ -31,10 +31,8 @@ class YgBottomSheet extends StatelessWidget {
           child: ClipRRect(
             borderRadius: theme.borderRadius,
             child: Padding(
-              padding: theme.outerPadding.copyWith(
-                top: 0,
-                left: 0,
-                right: 0,
+              padding: EdgeInsets.only(
+                bottom: theme.outerPadding.bottom,
               ),
               child: Column(
                 mainAxisSize: MainAxisSize.min,
