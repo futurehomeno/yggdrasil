@@ -6,28 +6,34 @@ class YgScrollShadow extends StatefulWidget {
   const YgScrollShadow({
     super.key,
     required this.child,
+    required this.controller,
   });
 
+  /// The child widget.
   final Widget child;
+
+  /// The scroll controller of the scrollable surface which the shadows should
+  /// be added to.
+  final ScrollController controller;
 
   @override
   State<YgScrollShadow> createState() => _YgScrollShadowState();
 }
 
 class _YgScrollShadowState extends State<YgScrollShadow> {
-  ScrollController? _scrollController;
   bool _showBottomShadow = false;
   bool _showTopShadow = false;
 
   @override
   void initState() {
+    widget.controller.addListener(_updateShadows);
     WidgetsBinding.instance.addPostFrameCallback((_) => _updateShadows());
 
     super.initState();
   }
 
   void _updateShadows() {
-    final ScrollPosition position = _scrollController!.position;
+    final ScrollPosition position = widget.controller.position;
 
     final bool newShowBottomShadow = position.extentAfter != 0;
     final bool newShowTopShadow = position.extentBefore != 0;
@@ -41,20 +47,22 @@ class _YgScrollShadowState extends State<YgScrollShadow> {
 
   @override
   void dispose() {
-    _scrollController?.removeListener(_updateShadows);
+    widget.controller.removeListener(_updateShadows);
     super.dispose();
   }
 
   @override
-  Widget build(BuildContext context) {
-    final ScrollController scrollController = PrimaryScrollController.of(context);
-
-    if (_scrollController != scrollController) {
-      _scrollController?.removeListener(_updateShadows);
-      _scrollController = scrollController;
-      _scrollController?.addListener(_updateShadows);
+  void didUpdateWidget(covariant YgScrollShadow oldWidget) {
+    if (oldWidget.controller != widget.controller) {
+      oldWidget.controller.removeListener(_updateShadows);
+      widget.controller.addListener(_updateShadows);
     }
 
+    super.didUpdateWidget(oldWidget);
+  }
+
+  @override
+  Widget build(BuildContext context) {
     return Stack(
       children: <Widget>[
         widget.child,
