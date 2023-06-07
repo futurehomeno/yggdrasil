@@ -10,9 +10,9 @@ environment:
 dependencies:
   flutter:
     sdk: flutter
-  get_it: 7.2.0
+  get_it: 7.5.0
   theme_tailor_annotation: 1.0.3
-  provider: ^6.0.5
+  provider: 5.0.0
 
 dev_dependencies:
   # Run `flutter pub run build_runner build --delete-conflicting-outputs` in order to generate stuff.
