@@ -43,6 +43,11 @@ dependencies:
 dev_dependencies:
   flutter_test:
     sdk: flutter
+  fh_lints:
+    git:
+      ref: master # to-branch-script-tag
+      url: git@github.com:futurehomeno/pubdev_registry.git
+      path: packages/fh_lints
 
   # The "flutter_lints" package below contains a set of recommended lints to
   # encourage good coding practices. The lint set provided by the package is
