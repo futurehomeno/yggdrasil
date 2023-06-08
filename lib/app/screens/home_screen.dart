@@ -5,6 +5,7 @@ import 'package:yggdrasil/app/widgets/_widgets.dart';
 
 import 'bottom_sheet_screen.dart';
 import 'buttons_screen.dart';
+import 'text_link_screen.dart';
 
 class HomeScreen extends StatelessWidget {
   const HomeScreen({super.key});
@@ -42,6 +43,12 @@ class HomeScreen extends StatelessWidget {
             title: const Text('Dialog'),
             onTap: () {
               sl<YgRouter>().push(DialogScreen.route());
+            },
+          ),
+          ListTile(
+            title: const Text('Text link'),
+            onTap: () {
+              sl<YgRouter>().push(TextLinkScreen.route());
             },
           ),
         ],
