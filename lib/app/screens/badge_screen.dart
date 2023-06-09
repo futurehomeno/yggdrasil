@@ -6,7 +6,7 @@ import 'package:yggdrasil/yggdrasil.dart';
 class BadgeScreen extends StatelessWidget {
   const BadgeScreen({super.key});
 
-  static const String routeName = 'ButtonsScreen';
+  static const String routeName = 'BadgeScreen';
 
   static PageRouteBuilder<Widget> route() {
     return YgRouteBuilder().fadeTransition(
@@ -39,7 +39,7 @@ class BadgeScreen extends StatelessWidget {
               icon: const Icon(Icons.notifications_none_outlined),
             ),
           ),
-          const YgDotIndicator(),
+          const YgDotBadge(),
         ],
       ),
     );
