@@ -1,3 +1,4 @@
+export 'badge/_badge.dart';
 export 'bottom_sheet/_bottom_sheet.dart';
 export 'buttons/_buttons.dart';
 export 'dialog/_dialog.dart';
