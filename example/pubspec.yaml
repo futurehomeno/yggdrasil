@@ -16,9 +16,6 @@ dependencies:
   get_it: 7.5.0
   provider: 5.0.0
 
-
-  cupertino_icons: ^1.0.2
-
 dev_dependencies:
   flutter_test:
     sdk: flutter
@@ -28,6 +25,7 @@ dev_dependencies:
       url: git@github.com:futurehomeno/pubdev_registry.git
       path: packages/fh_lints
   flutter_lints: ^2.0.0
+  mockito: 5.4.0
 
 flutter:
   uses-material-design: true

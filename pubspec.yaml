@@ -11,6 +11,12 @@ dependencies:
   flutter:
     sdk: flutter
   theme_tailor_annotation: 1.0.3
+  json_annotation: 4.6.0
+  fh_utils:
+    git:
+      ref: master # to-branch-script-tag
+      url: git@github.com:futurehomeno/pubdev_registry.git
+      path: packages/fh_utils
 
 dev_dependencies:
   # Run `flutter pub run build_runner build --delete-conflicting-outputs` in order to generate stuff.
@@ -20,15 +26,10 @@ dev_dependencies:
       ref: master # to-branch-script-tag
       url: git@github.com:futurehomeno/pubdev_registry.git
       path: packages/fh_lints
-  fh_utils:
-    git:
-      ref: master # to-branch-script-tag
-      url: git@github.com:futurehomeno/pubdev_registry.git
-      path: packages/fh_utils
   flutter_test:
     sdk: flutter
   theme_tailor: 1.0.8
-  mockito: 5.3.0
+  mockito: 5.4.0
 
 flutter:
   uses-material-design: true

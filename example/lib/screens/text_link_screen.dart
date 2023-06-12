@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:yggdrasil/app/core/_core.dart';
-import 'package:yggdrasil/app/widgets/_widgets.dart';
-import 'package:yggdrasil/src/components/yg_text_link/yg_text_link.dart';
+import 'package:yggdrasil/yggdrasil.dart';
+import 'package:yggdrasil_demo/core/yg_route_builder.dart';
+import 'package:yggdrasil_demo/widgets/_widgets.dart';
 
 class TextLinkScreen extends StatelessWidget {
   const TextLinkScreen({super.key});
@@ -23,7 +23,7 @@ class TextLinkScreen extends StatelessWidget {
       supernovaLink: 'Link',
       scrollable: false,
       child: Column(
-        children: <Widget>[
+        children: const <Widget>[
           YgTextLink(
             text: 'Link',
             url: 'https://futurehome.no/',
@@ -78,7 +78,7 @@ class TextLinkScreen extends StatelessWidget {
           ),
           YgTextLink(
             text: 'Link',
-            icon: const Icon(
+            icon: Icon(
               Icons.open_in_browser_rounded,
             ),
             url: 'https://futurehome.no/',
@@ -87,7 +87,7 @@ class TextLinkScreen extends StatelessWidget {
           ),
           YgTextLink(
             text: 'Link',
-            icon: const Icon(
+            icon: Icon(
               Icons.open_in_browser_rounded,
             ),
             url: 'https://futurehome.no/',
@@ -96,7 +96,7 @@ class TextLinkScreen extends StatelessWidget {
           ),
           YgTextLink(
             text: 'Link',
-            icon: const Icon(
+            icon: Icon(
               Icons.open_in_browser_rounded,
             ),
             url: 'https://futurehome.no/',
@@ -105,7 +105,7 @@ class TextLinkScreen extends StatelessWidget {
           ),
           YgTextLink(
             text: 'Link',
-            icon: const Icon(
+            icon: Icon(
               Icons.open_in_browser_rounded,
             ),
             url: 'https://futurehome.no/',
