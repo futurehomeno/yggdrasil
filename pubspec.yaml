@@ -4,15 +4,13 @@ version: 0.0.1
 publish_to: none
 
 environment:
-  sdk: 2.18.2
-  flutter: 3.3.5
+  sdk: 2.19.6
+  flutter: 3.7.12
 
 dependencies:
   flutter:
     sdk: flutter
-  get_it: 7.2.0
   theme_tailor_annotation: 1.0.3
-  provider: ^6.0.5
 
 dev_dependencies:
   # Run `flutter pub run build_runner build --delete-conflicting-outputs` in order to generate stuff.
