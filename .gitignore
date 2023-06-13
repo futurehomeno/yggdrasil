@@ -46,3 +46,9 @@ app.*.map.json
 /android/app/release
 
 .vscode/
+
+ios/Flutter/Generated.xcconfig
+
+ios/Flutter/flutter_export_environment.sh
+
+macos/Flutter/ephemeral/
