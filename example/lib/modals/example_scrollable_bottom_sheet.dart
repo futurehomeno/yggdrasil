@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:yggdrasil/src/components/_components.dart';
+import 'package:yggdrasil/yggdrasil.dart';
 
 class ExampleScrollableBottomSheet extends YgBottomSheetModalRoute {
   @override

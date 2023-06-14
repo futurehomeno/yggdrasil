@@ -9,7 +9,6 @@ class YgScreen extends StatelessWidget {
     required this.componentDesc,
     required this.supernovaLink,
     required this.child,
-    this.scrollable = true,
     super.key,
   });
 
@@ -17,7 +16,6 @@ class YgScreen extends StatelessWidget {
   final String componentDesc;
   final String supernovaLink;
   final Widget child;
-  final bool scrollable;
 
   @override
   Widget build(BuildContext context) {
@@ -35,11 +33,14 @@ class YgScreen extends StatelessWidget {
           )
         ],
       ),
-      body: scrollable
-          ? SingleChildScrollView(
-              child: child,
-            )
-          : child,
+      body: SingleChildScrollView(
+        child: SafeArea(
+          child: Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 10.0),
+            child: child,
+          ),
+        ),
+      ),
     );
   }
 

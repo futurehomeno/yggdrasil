@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:yggdrasil/src/components/_components.dart';
 import 'package:yggdrasil/yggdrasil.dart';
 import 'package:yggdrasil_demo/core/_core.dart';
 import 'package:yggdrasil_demo/modals/example_bottom_sheet.dart';
@@ -30,7 +29,6 @@ class _BottomSheetScreenState extends State<BottomSheetScreen> with TickerProvid
       componentName: 'Bottom sheet',
       componentDesc: 'Bottom sheet',
       supernovaLink: 'Link',
-      scrollable: false,
       child: Column(
         children: <Widget>[
           YgButton(

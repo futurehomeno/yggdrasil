@@ -19,9 +19,10 @@ class BadgeScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return YgScreen(
       componentName: 'Badge',
-      componentDesc: 'Badge',
+      componentDesc: 'Badges',
       supernovaLink: 'Link',
       child: Column(
+        crossAxisAlignment: CrossAxisAlignment.stretch,
         children: <Widget>[
           YgBadge(
             amount: 5,
@@ -31,6 +32,7 @@ class BadgeScreen extends StatelessWidget {
               icon: const Icon(Icons.notifications_none_outlined),
             ),
           ),
+          const SizedBox(height: 8.0),
           YgBadge(
             amount: 18,
             weight: YgBadgeWeight.weak,
@@ -39,6 +41,7 @@ class BadgeScreen extends StatelessWidget {
               icon: const Icon(Icons.notifications_none_outlined),
             ),
           ),
+          const SizedBox(height: 8.0),
           const YgDotBadge(),
         ],
       ),

@@ -29,7 +29,6 @@ class _DialogScreenState extends State<DialogScreen> with TickerProviderStateMix
       componentName: 'Dialog',
       componentDesc: 'Dialog',
       supernovaLink: 'Link',
-      scrollable: false,
       child: Column(
         children: <Widget>[
           YgButton(
