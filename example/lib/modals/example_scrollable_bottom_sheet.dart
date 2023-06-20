@@ -4,7 +4,7 @@ import 'package:yggdrasil/src/components/_components.dart';
 class ExampleScrollableBottomSheet extends YgBottomSheetModalRoute {
   @override
   YgBottomSheet buildBottomSheet(BuildContext context) {
-    return YgBottomSheet(
+    return YgBottomSheet.withFooter(
       title: 'Scrollable Bottom Sheet',
       content: Column(
         mainAxisSize: MainAxisSize.min,
@@ -15,6 +15,7 @@ class ExampleScrollableBottomSheet extends YgBottomSheetModalRoute {
           ),
         ),
       ),
+      footerButtonsAxis: Axis.vertical,
       footerButtons: <YgButton>[
         YgButton(
           variant: ButtonVariant.primary,
