@@ -6,18 +6,18 @@ publish_to: 'none' # Remove this line if you wish to publish to pub.dev
 version: 1.0.0+1
 
 environment:
-  sdk: '>=2.19.6 <3.0.0'
+  sdk: ^3.0.5
+  flutter: 3.10.5
 
 dependencies:
   flutter:
     sdk: flutter
   yggdrasil:
     path: ../
-  get_it: 7.5.0
+  get_it: 7.6.0
   provider: 5.0.0
 
-
-  cupertino_icons: ^1.0.2
+  cupertino_icons: 1.0.5
 
 dev_dependencies:
   flutter_test:
@@ -27,7 +27,6 @@ dev_dependencies:
       ref: master # to-branch-script-tag
       url: git@github.com:futurehomeno/pubdev_registry.git
       path: packages/fh_lints
-  flutter_lints: ^2.0.0
 
 flutter:
   uses-material-design: true
