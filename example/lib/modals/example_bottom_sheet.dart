@@ -4,7 +4,7 @@ import 'package:yggdrasil/yggdrasil.dart';
 class ExampleBottomSheet extends YgBottomSheetModalRoute {
   @override
   YgBottomSheet buildBottomSheet(BuildContext context) {
-    return YgBottomSheet.withFooter(
+    return YgBottomSheet(
       title: 'Example Bottom Sheet',
       content: AspectRatio(
         aspectRatio: 1,
@@ -18,7 +18,6 @@ class ExampleBottomSheet extends YgBottomSheetModalRoute {
           ),
         ),
       ),
-      footerButtonsAxis: Axis.vertical,
       footerButtons: <YgButton>[
         YgButton(
           variant: ButtonVariant.primary,
