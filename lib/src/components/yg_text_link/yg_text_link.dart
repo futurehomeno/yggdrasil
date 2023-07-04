@@ -1,4 +1,4 @@
-import 'package:fh_utils/fh_utils.dart';
+// import 'package:fh_utils/fh_utils.dart';
 import 'package:flutter/material.dart';
 
 import '_yg_text_link.dart';
@@ -53,6 +53,6 @@ class YgTextLink extends StatelessWidget {
 
   void _handlePress() {
     onPressed?.call();
-    FhUrlLauncher().launchUrl(url);
+    // FhUrlLauncher().launchUrl(url);
   }
 }

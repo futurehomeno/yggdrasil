@@ -71,4 +71,11 @@ class _$YgTextLinkTheme {
     professional_light.FhColors.interactiveHighlightDisabled,
     professional_dark.FhColors.interactiveHighlightDisabled,
   ];
+
+  static List<EdgeInsets> iconPadding = <EdgeInsets>[
+    const EdgeInsets.only(left: consumer_light.FhDimensions.xxs),
+    const EdgeInsets.only(left: consumer_dark.FhDimensions.xxs),
+    const EdgeInsets.only(left: professional_light.FhDimensions.xxs),
+    const EdgeInsets.only(left: professional_dark.FhDimensions.xxs),
+  ];
 }

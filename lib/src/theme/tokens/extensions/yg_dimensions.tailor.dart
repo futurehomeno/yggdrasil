@@ -1,76 +1,76 @@
 // coverage:ignore-file
 // GENERATED CODE - DO NOT MODIFY BY HAND
-// ignore_for_file: type=lint, unused_element
+// ignore_for_file: type=lint, unused_element, unnecessary_cast
 
 part of 'yg_dimensions.dart';
 
 // **************************************************************************
-// ThemeTailorGenerator
+// TailorAnnotationsGenerator
 // **************************************************************************
 
 class YgDimension extends ThemeExtension<YgDimension> {
   const YgDimension({
-    required this.none,
-    required this.xxs,
-    required this.xs,
-    required this.sm,
-    required this.md,
     required this.lg,
+    required this.md,
+    required this.none,
+    required this.sm,
     required this.xl,
+    required this.xs,
     required this.xxl,
+    required this.xxs,
   });
 
-  final double none;
-  final double xxs;
-  final double xs;
-  final double sm;
-  final double md;
   final double lg;
+  final double md;
+  final double none;
+  final double sm;
   final double xl;
+  final double xs;
   final double xxl;
+  final double xxs;
 
   static final YgDimension consumerLight = YgDimension(
-    none: _$YgDimension.none[0],
-    xxs: _$YgDimension.xxs[0],
-    xs: _$YgDimension.xs[0],
-    sm: _$YgDimension.sm[0],
-    md: _$YgDimension.md[0],
     lg: _$YgDimension.lg[0],
+    md: _$YgDimension.md[0],
+    none: _$YgDimension.none[0],
+    sm: _$YgDimension.sm[0],
     xl: _$YgDimension.xl[0],
+    xs: _$YgDimension.xs[0],
     xxl: _$YgDimension.xxl[0],
+    xxs: _$YgDimension.xxs[0],
   );
 
   static final YgDimension consumerDark = YgDimension(
-    none: _$YgDimension.none[1],
-    xxs: _$YgDimension.xxs[1],
-    xs: _$YgDimension.xs[1],
-    sm: _$YgDimension.sm[1],
-    md: _$YgDimension.md[1],
     lg: _$YgDimension.lg[1],
+    md: _$YgDimension.md[1],
+    none: _$YgDimension.none[1],
+    sm: _$YgDimension.sm[1],
     xl: _$YgDimension.xl[1],
+    xs: _$YgDimension.xs[1],
     xxl: _$YgDimension.xxl[1],
+    xxs: _$YgDimension.xxs[1],
   );
 
   static final YgDimension professionalLight = YgDimension(
-    none: _$YgDimension.none[2],
-    xxs: _$YgDimension.xxs[2],
-    xs: _$YgDimension.xs[2],
-    sm: _$YgDimension.sm[2],
-    md: _$YgDimension.md[2],
     lg: _$YgDimension.lg[2],
+    md: _$YgDimension.md[2],
+    none: _$YgDimension.none[2],
+    sm: _$YgDimension.sm[2],
     xl: _$YgDimension.xl[2],
+    xs: _$YgDimension.xs[2],
     xxl: _$YgDimension.xxl[2],
+    xxs: _$YgDimension.xxs[2],
   );
 
   static final YgDimension professionalDark = YgDimension(
-    none: _$YgDimension.none[3],
-    xxs: _$YgDimension.xxs[3],
-    xs: _$YgDimension.xs[3],
-    sm: _$YgDimension.sm[3],
-    md: _$YgDimension.md[3],
     lg: _$YgDimension.lg[3],
+    md: _$YgDimension.md[3],
+    none: _$YgDimension.none[3],
+    sm: _$YgDimension.sm[3],
     xl: _$YgDimension.xl[3],
+    xs: _$YgDimension.xs[3],
     xxl: _$YgDimension.xxl[3],
+    xxs: _$YgDimension.xxs[3],
   );
 
   static final themes = [
@@ -82,39 +82,39 @@ class YgDimension extends ThemeExtension<YgDimension> {
 
   @override
   YgDimension copyWith({
-    double? none,
-    double? xxs,
-    double? xs,
-    double? sm,
-    double? md,
     double? lg,
+    double? md,
+    double? none,
+    double? sm,
     double? xl,
+    double? xs,
     double? xxl,
+    double? xxs,
   }) {
     return YgDimension(
-      none: none ?? this.none,
-      xxs: xxs ?? this.xxs,
-      xs: xs ?? this.xs,
-      sm: sm ?? this.sm,
-      md: md ?? this.md,
       lg: lg ?? this.lg,
+      md: md ?? this.md,
+      none: none ?? this.none,
+      sm: sm ?? this.sm,
       xl: xl ?? this.xl,
+      xs: xs ?? this.xs,
       xxl: xxl ?? this.xxl,
+      xxs: xxs ?? this.xxs,
     );
   }
 
   @override
-  YgDimension lerp(ThemeExtension<YgDimension>? other, double t) {
-    if (other is! YgDimension) return this;
+  YgDimension lerp(covariant ThemeExtension<YgDimension>? other, double t) {
+    if (other is! YgDimension) return this as YgDimension;
     return YgDimension(
-      none: t < 0.5 ? none : other.none,
-      xxs: t < 0.5 ? xxs : other.xxs,
-      xs: t < 0.5 ? xs : other.xs,
-      sm: t < 0.5 ? sm : other.sm,
-      md: t < 0.5 ? md : other.md,
       lg: t < 0.5 ? lg : other.lg,
+      md: t < 0.5 ? md : other.md,
+      none: t < 0.5 ? none : other.none,
+      sm: t < 0.5 ? sm : other.sm,
       xl: t < 0.5 ? xl : other.xl,
+      xs: t < 0.5 ? xs : other.xs,
       xxl: t < 0.5 ? xxl : other.xxl,
+      xxs: t < 0.5 ? xxs : other.xxs,
     );
   }
 
@@ -123,27 +123,28 @@ class YgDimension extends ThemeExtension<YgDimension> {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is YgDimension &&
-            const DeepCollectionEquality().equals(none, other.none) &&
-            const DeepCollectionEquality().equals(xxs, other.xxs) &&
-            const DeepCollectionEquality().equals(xs, other.xs) &&
-            const DeepCollectionEquality().equals(sm, other.sm) &&
-            const DeepCollectionEquality().equals(md, other.md) &&
             const DeepCollectionEquality().equals(lg, other.lg) &&
+            const DeepCollectionEquality().equals(md, other.md) &&
+            const DeepCollectionEquality().equals(none, other.none) &&
+            const DeepCollectionEquality().equals(sm, other.sm) &&
             const DeepCollectionEquality().equals(xl, other.xl) &&
-            const DeepCollectionEquality().equals(xxl, other.xxl));
+            const DeepCollectionEquality().equals(xs, other.xs) &&
+            const DeepCollectionEquality().equals(xxl, other.xxl) &&
+            const DeepCollectionEquality().equals(xxs, other.xxs));
   }
 
   @override
   int get hashCode {
     return Object.hash(
-        runtimeType,
-        const DeepCollectionEquality().hash(none),
-        const DeepCollectionEquality().hash(xxs),
-        const DeepCollectionEquality().hash(xs),
-        const DeepCollectionEquality().hash(sm),
-        const DeepCollectionEquality().hash(md),
-        const DeepCollectionEquality().hash(lg),
-        const DeepCollectionEquality().hash(xl),
-        const DeepCollectionEquality().hash(xxl));
+      runtimeType.hashCode,
+      const DeepCollectionEquality().hash(lg),
+      const DeepCollectionEquality().hash(md),
+      const DeepCollectionEquality().hash(none),
+      const DeepCollectionEquality().hash(sm),
+      const DeepCollectionEquality().hash(xl),
+      const DeepCollectionEquality().hash(xs),
+      const DeepCollectionEquality().hash(xxl),
+      const DeepCollectionEquality().hash(xxs),
+    );
   }
 }
