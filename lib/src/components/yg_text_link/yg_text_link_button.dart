@@ -91,6 +91,8 @@ class _YgTextLinkContent extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final YgTextLinkTheme theme = context.textLinkTheme;
+
     return Row(
       mainAxisSize: MainAxisSize.min,
       crossAxisAlignment: CrossAxisAlignment.center,
@@ -98,11 +100,11 @@ class _YgTextLinkContent extends StatelessWidget {
         Text(text),
         if (icon != null)
           Padding(
-            padding: const EdgeInsets.only(left: 5),
+            padding: theme.iconPadding,
             child: IconTheme(
               data: IconThemeData(
                 color: DefaultTextStyle.of(context).style.color,
-                size: 15,
+                size: theme.iconSize,
               ),
               child: icon!,
             ),

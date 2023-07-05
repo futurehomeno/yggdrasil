@@ -11,7 +11,10 @@ dependencies:
   flutter:
     sdk: flutter
   theme_tailor_annotation: 
-    path: ../theme_tailor/packages/theme_tailor_annotation
+    git:
+      ref: main
+      url: git@github.com:futurehomeno/theme_tailor.git
+      path: packages/theme_tailor_annotation
   fh_utils:
     git:
       ref: master # to-branch-script-tag
@@ -31,8 +34,11 @@ dev_dependencies:
       path: packages/fh_lints
   flutter_test:
     sdk: flutter
-  theme_tailor: 
-    path: ../theme_tailor/packages/theme_tailor
+  theme_tailor:
+    git:
+      ref: main
+      url: git@github.com:futurehomeno/theme_tailor.git
+      path: packages/theme_tailor
 
 flutter:
   uses-material-design: true
