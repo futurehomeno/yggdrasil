@@ -13,6 +13,7 @@ enum YgTextLinkWeight {
   strong,
 }
 
+/// Text link button implementation.
 class YgTextLinkButton extends ButtonStyleButton {
   YgTextLinkButton({
     super.key,

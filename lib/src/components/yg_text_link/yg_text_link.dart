@@ -1,8 +1,12 @@
 // import 'package:fh_utils/fh_utils.dart';
+import 'package:fh_utils/fh_utils.dart';
 import 'package:flutter/material.dart';
 
 import '_yg_text_link.dart';
 
+/// Component which opens a web url when clicked on.
+///
+/// For a version which only functions as a button, use [YgTextLinkButton].
 class YgTextLink extends StatelessWidget {
   const YgTextLink({
     super.key,
@@ -53,6 +57,6 @@ class YgTextLink extends StatelessWidget {
 
   void _handlePress() {
     onPressed?.call();
-    // FhUrlLauncher().launchUrl(url);
+    const FhUrlLauncher().launchUrl(url);
   }
 }
