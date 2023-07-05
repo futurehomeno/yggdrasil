@@ -12,7 +12,7 @@ class YgBottomSheetModal extends StatefulWidget {
   });
 
   final AnimationController modalController;
-  final YgBottomSheet bottomSheet;
+  final Widget bottomSheet;
 
   @override
   State<YgBottomSheetModal> createState() => _YgBottomSheetModalState();

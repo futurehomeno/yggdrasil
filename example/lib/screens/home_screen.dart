@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:yggdrasil_demo/core/_core.dart';
 import 'package:yggdrasil_demo/widgets/_widgets.dart';
 
+import 'badge_screen.dart';
 import 'bottom_sheet_screen.dart';
 import 'buttons_screen.dart';
 import 'dialog_screen.dart';
@@ -37,6 +38,12 @@ class HomeScreen extends StatelessWidget {
             title: const Text('Bottom sheet'),
             onTap: () {
               sl<YgRouter>().push(BottomSheetScreen.route());
+            },
+          ),
+          ListTile(
+            title: const Text('Badge'),
+            onTap: () {
+              sl<YgRouter>().push(BadgeScreen.route());
             },
           ),
           ListTile(

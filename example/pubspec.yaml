@@ -6,7 +6,7 @@ publish_to: 'none' # Remove this line if you wish to publish to pub.dev
 version: 1.0.0+1
 
 environment:
-  sdk: 3.0.5
+  sdk: ^3.0.5
   flutter: 3.10.5
 
 dependencies:
@@ -14,19 +14,19 @@ dependencies:
     sdk: flutter
   yggdrasil:
     path: ../
-  get_it: 7.5.0
+  get_it: 7.6.0
   provider: 5.0.0
+
+  cupertino_icons: 1.0.5
 
 dev_dependencies:
   flutter_test:
     sdk: flutter
-  # fh_lints:
-  #   git:
-  #     ref: master # to-branch-script-tag
-  #     url: git@github.com:futurehomeno/pubdev_registry.git
-  #     path: packages/fh_lints
-  flutter_lints: ^2.0.0
-  mockito: 5.4.0
+  fh_lints:
+    git:
+      ref: master # to-branch-script-tag
+      url: git@github.com:futurehomeno/pubdev_registry.git
+      path: packages/fh_lints
 
 flutter:
   uses-material-design: true

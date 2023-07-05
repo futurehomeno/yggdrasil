@@ -10,6 +10,7 @@ part of 'theme.dart';
 
 class YgTheme extends ThemeExtension<YgTheme> {
   const YgTheme({
+    required this.badgeTheme,
     required this.bottomSheetTheme,
     required this.buttonThemes,
     required this.dialogTheme,
@@ -18,6 +19,7 @@ class YgTheme extends ThemeExtension<YgTheme> {
     required this.tokens,
   });
 
+  final YgBadgeTheme badgeTheme;
   final YgBottomSheetThemes bottomSheetTheme;
   final YgButtonThemes buttonThemes;
   final YgDialogThemes dialogTheme;
@@ -26,6 +28,7 @@ class YgTheme extends ThemeExtension<YgTheme> {
   final YgTokens tokens;
 
   static final YgTheme consumerLight = YgTheme(
+    badgeTheme: _$YgTheme.badgeTheme[0],
     bottomSheetTheme: _$YgTheme.bottomSheetTheme[0],
     buttonThemes: _$YgTheme.buttonThemes[0],
     dialogTheme: _$YgTheme.dialogTheme[0],
@@ -35,6 +38,7 @@ class YgTheme extends ThemeExtension<YgTheme> {
   );
 
   static final YgTheme consumerDark = YgTheme(
+    badgeTheme: _$YgTheme.badgeTheme[1],
     bottomSheetTheme: _$YgTheme.bottomSheetTheme[1],
     buttonThemes: _$YgTheme.buttonThemes[1],
     dialogTheme: _$YgTheme.dialogTheme[1],
@@ -44,6 +48,7 @@ class YgTheme extends ThemeExtension<YgTheme> {
   );
 
   static final YgTheme professionalLight = YgTheme(
+    badgeTheme: _$YgTheme.badgeTheme[2],
     bottomSheetTheme: _$YgTheme.bottomSheetTheme[2],
     buttonThemes: _$YgTheme.buttonThemes[2],
     dialogTheme: _$YgTheme.dialogTheme[2],
@@ -53,6 +58,7 @@ class YgTheme extends ThemeExtension<YgTheme> {
   );
 
   static final YgTheme professionalDark = YgTheme(
+    badgeTheme: _$YgTheme.badgeTheme[3],
     bottomSheetTheme: _$YgTheme.bottomSheetTheme[3],
     buttonThemes: _$YgTheme.buttonThemes[3],
     dialogTheme: _$YgTheme.dialogTheme[3],
@@ -70,6 +76,7 @@ class YgTheme extends ThemeExtension<YgTheme> {
 
   @override
   YgTheme copyWith({
+    YgBadgeTheme? badgeTheme,
     YgBottomSheetThemes? bottomSheetTheme,
     YgButtonThemes? buttonThemes,
     YgDialogThemes? dialogTheme,
@@ -78,6 +85,7 @@ class YgTheme extends ThemeExtension<YgTheme> {
     YgTokens? tokens,
   }) {
     return YgTheme(
+      badgeTheme: badgeTheme ?? this.badgeTheme,
       bottomSheetTheme: bottomSheetTheme ?? this.bottomSheetTheme,
       buttonThemes: buttonThemes ?? this.buttonThemes,
       dialogTheme: dialogTheme ?? this.dialogTheme,
@@ -91,6 +99,7 @@ class YgTheme extends ThemeExtension<YgTheme> {
   YgTheme lerp(covariant ThemeExtension<YgTheme>? other, double t) {
     if (other is! YgTheme) return this as YgTheme;
     return YgTheme(
+      badgeTheme: badgeTheme.lerp(other.badgeTheme, t) as YgBadgeTheme,
       bottomSheetTheme: bottomSheetTheme.lerp(other.bottomSheetTheme, t)
           as YgBottomSheetThemes,
       buttonThemes: buttonThemes.lerp(other.buttonThemes, t) as YgButtonThemes,
@@ -109,6 +118,8 @@ class YgTheme extends ThemeExtension<YgTheme> {
         (other.runtimeType == runtimeType &&
             other is YgTheme &&
             const DeepCollectionEquality()
+                .equals(badgeTheme, other.badgeTheme) &&
+            const DeepCollectionEquality()
                 .equals(bottomSheetTheme, other.bottomSheetTheme) &&
             const DeepCollectionEquality()
                 .equals(buttonThemes, other.buttonThemes) &&
@@ -125,6 +136,7 @@ class YgTheme extends ThemeExtension<YgTheme> {
   int get hashCode {
     return Object.hash(
       runtimeType.hashCode,
+      const DeepCollectionEquality().hash(badgeTheme),
       const DeepCollectionEquality().hash(bottomSheetTheme),
       const DeepCollectionEquality().hash(buttonThemes),
       const DeepCollectionEquality().hash(dialogTheme),
@@ -137,6 +149,7 @@ class YgTheme extends ThemeExtension<YgTheme> {
 
 extension YgThemeBuildContextProps on BuildContext {
   YgTheme get ygTheme => Theme.of(this).extension<YgTheme>()!;
+  YgBadgeTheme get badgeTheme => ygTheme.badgeTheme;
   YgBottomSheetThemes get bottomSheetTheme => ygTheme.bottomSheetTheme;
   YgButtonThemes get buttonThemes => ygTheme.buttonThemes;
   YgDialogThemes get dialogTheme => ygTheme.dialogTheme;
