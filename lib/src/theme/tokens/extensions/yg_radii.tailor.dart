@@ -1,79 +1,79 @@
 // coverage:ignore-file
 // GENERATED CODE - DO NOT MODIFY BY HAND
-// ignore_for_file: type=lint, unused_element
+// ignore_for_file: type=lint, unused_element, unnecessary_cast
 
 part of 'yg_radii.dart';
 
 // **************************************************************************
-// ThemeTailorGenerator
+// TailorAnnotationsGenerator
 // **************************************************************************
 
 class YgRadius extends ThemeExtension<YgRadius> {
   const YgRadius({
-    required this.none,
-    required this.xxs,
-    required this.xs,
-    required this.sm,
-    required this.md,
     required this.lg,
+    required this.md,
+    required this.none,
+    required this.sm,
     required this.xl,
+    required this.xs,
     required this.xxl,
+    required this.xxs,
   });
 
-  final BorderRadius none;
-  final BorderRadius xxs;
-  final BorderRadius xs;
-  final BorderRadius sm;
-  final BorderRadius md;
   final BorderRadius lg;
+  final BorderRadius md;
+  final BorderRadius none;
+  final BorderRadius sm;
   final BorderRadius xl;
+  final BorderRadius xs;
   final BorderRadius xxl;
+  final BorderRadius xxs;
 
-  static final YgRadius consumerLight = YgRadius(
-    none: _$YgRadius.none[0],
-    xxs: _$YgRadius.xxs[0],
-    xs: _$YgRadius.xs[0],
-    sm: _$YgRadius.sm[0],
-    md: _$YgRadius.md[0],
-    lg: _$YgRadius.lg[0],
-    xl: _$YgRadius.xl[0],
-    xxl: _$YgRadius.xxl[0],
+  static const YgRadius consumerLight = YgRadius(
+    lg: consumer_light.FhRadii.lg,
+    md: consumer_light.FhRadii.md,
+    none: consumer_light.FhRadii.none,
+    sm: consumer_light.FhRadii.sm,
+    xl: consumer_light.FhRadii.xl,
+    xs: consumer_light.FhRadii.xs,
+    xxl: consumer_light.FhRadii.xxl,
+    xxs: consumer_light.FhRadii.xxs,
   );
 
-  static final YgRadius consumerDark = YgRadius(
-    none: _$YgRadius.none[1],
-    xxs: _$YgRadius.xxs[1],
-    xs: _$YgRadius.xs[1],
-    sm: _$YgRadius.sm[1],
-    md: _$YgRadius.md[1],
-    lg: _$YgRadius.lg[1],
-    xl: _$YgRadius.xl[1],
-    xxl: _$YgRadius.xxl[1],
+  static const YgRadius consumerDark = YgRadius(
+    lg: consumer_dark.FhRadii.lg,
+    md: consumer_dark.FhRadii.md,
+    none: consumer_dark.FhRadii.none,
+    sm: consumer_dark.FhRadii.sm,
+    xl: consumer_dark.FhRadii.xl,
+    xs: consumer_dark.FhRadii.xs,
+    xxl: consumer_dark.FhRadii.xxl,
+    xxs: consumer_dark.FhRadii.xxs,
   );
 
-  static final YgRadius professionalLight = YgRadius(
-    none: _$YgRadius.none[2],
-    xxs: _$YgRadius.xxs[2],
-    xs: _$YgRadius.xs[2],
-    sm: _$YgRadius.sm[2],
-    md: _$YgRadius.md[2],
-    lg: _$YgRadius.lg[2],
-    xl: _$YgRadius.xl[2],
-    xxl: _$YgRadius.xxl[2],
+  static const YgRadius professionalLight = YgRadius(
+    lg: professional_light.FhRadii.lg,
+    md: professional_light.FhRadii.md,
+    none: professional_light.FhRadii.none,
+    sm: professional_light.FhRadii.sm,
+    xl: professional_light.FhRadii.xl,
+    xs: professional_light.FhRadii.xs,
+    xxl: professional_light.FhRadii.xxl,
+    xxs: professional_light.FhRadii.xxs,
   );
 
-  static final YgRadius professionalDark = YgRadius(
-    none: _$YgRadius.none[3],
-    xxs: _$YgRadius.xxs[3],
-    xs: _$YgRadius.xs[3],
-    sm: _$YgRadius.sm[3],
-    md: _$YgRadius.md[3],
-    lg: _$YgRadius.lg[3],
-    xl: _$YgRadius.xl[3],
-    xxl: _$YgRadius.xxl[3],
+  static const YgRadius professionalDark = YgRadius(
+    lg: professional_dark.FhRadii.lg,
+    md: professional_dark.FhRadii.md,
+    none: professional_dark.FhRadii.none,
+    sm: professional_dark.FhRadii.sm,
+    xl: professional_dark.FhRadii.xl,
+    xs: professional_dark.FhRadii.xs,
+    xxl: professional_dark.FhRadii.xxl,
+    xxs: professional_dark.FhRadii.xxs,
   );
 
-  static final themes = [
+  static const themes = [
     consumerLight,
     consumerDark,
     professionalLight,
@@ -82,39 +82,39 @@ class YgRadius extends ThemeExtension<YgRadius> {
 
   @override
   YgRadius copyWith({
-    BorderRadius? none,
-    BorderRadius? xxs,
-    BorderRadius? xs,
-    BorderRadius? sm,
-    BorderRadius? md,
     BorderRadius? lg,
+    BorderRadius? md,
+    BorderRadius? none,
+    BorderRadius? sm,
     BorderRadius? xl,
+    BorderRadius? xs,
     BorderRadius? xxl,
+    BorderRadius? xxs,
   }) {
     return YgRadius(
-      none: none ?? this.none,
-      xxs: xxs ?? this.xxs,
-      xs: xs ?? this.xs,
-      sm: sm ?? this.sm,
-      md: md ?? this.md,
       lg: lg ?? this.lg,
+      md: md ?? this.md,
+      none: none ?? this.none,
+      sm: sm ?? this.sm,
       xl: xl ?? this.xl,
+      xs: xs ?? this.xs,
       xxl: xxl ?? this.xxl,
+      xxs: xxs ?? this.xxs,
     );
   }
 
   @override
-  YgRadius lerp(ThemeExtension<YgRadius>? other, double t) {
-    if (other is! YgRadius) return this;
+  YgRadius lerp(covariant ThemeExtension<YgRadius>? other, double t) {
+    if (other is! YgRadius) return this as YgRadius;
     return YgRadius(
-      none: t < 0.5 ? none : other.none,
-      xxs: t < 0.5 ? xxs : other.xxs,
-      xs: t < 0.5 ? xs : other.xs,
-      sm: t < 0.5 ? sm : other.sm,
-      md: t < 0.5 ? md : other.md,
       lg: t < 0.5 ? lg : other.lg,
+      md: t < 0.5 ? md : other.md,
+      none: t < 0.5 ? none : other.none,
+      sm: t < 0.5 ? sm : other.sm,
       xl: t < 0.5 ? xl : other.xl,
+      xs: t < 0.5 ? xs : other.xs,
       xxl: t < 0.5 ? xxl : other.xxl,
+      xxs: t < 0.5 ? xxs : other.xxs,
     );
   }
 
@@ -123,27 +123,28 @@ class YgRadius extends ThemeExtension<YgRadius> {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is YgRadius &&
-            const DeepCollectionEquality().equals(none, other.none) &&
-            const DeepCollectionEquality().equals(xxs, other.xxs) &&
-            const DeepCollectionEquality().equals(xs, other.xs) &&
-            const DeepCollectionEquality().equals(sm, other.sm) &&
-            const DeepCollectionEquality().equals(md, other.md) &&
             const DeepCollectionEquality().equals(lg, other.lg) &&
+            const DeepCollectionEquality().equals(md, other.md) &&
+            const DeepCollectionEquality().equals(none, other.none) &&
+            const DeepCollectionEquality().equals(sm, other.sm) &&
             const DeepCollectionEquality().equals(xl, other.xl) &&
-            const DeepCollectionEquality().equals(xxl, other.xxl));
+            const DeepCollectionEquality().equals(xs, other.xs) &&
+            const DeepCollectionEquality().equals(xxl, other.xxl) &&
+            const DeepCollectionEquality().equals(xxs, other.xxs));
   }
 
   @override
   int get hashCode {
     return Object.hash(
-        runtimeType,
-        const DeepCollectionEquality().hash(none),
-        const DeepCollectionEquality().hash(xxs),
-        const DeepCollectionEquality().hash(xs),
-        const DeepCollectionEquality().hash(sm),
-        const DeepCollectionEquality().hash(md),
-        const DeepCollectionEquality().hash(lg),
-        const DeepCollectionEquality().hash(xl),
-        const DeepCollectionEquality().hash(xxl));
+      runtimeType.hashCode,
+      const DeepCollectionEquality().hash(lg),
+      const DeepCollectionEquality().hash(md),
+      const DeepCollectionEquality().hash(none),
+      const DeepCollectionEquality().hash(sm),
+      const DeepCollectionEquality().hash(xl),
+      const DeepCollectionEquality().hash(xs),
+      const DeepCollectionEquality().hash(xxl),
+      const DeepCollectionEquality().hash(xxs),
+    );
   }
 }

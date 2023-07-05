@@ -1,61 +1,57 @@
 import 'package:flutter/material.dart';
 import 'package:theme_tailor_annotation/theme_tailor_annotation.dart';
-import 'package:yggdrasil/src/tokens/consumer_dark/_consumer_dark.dart'
-    as consumer_dark;
-import 'package:yggdrasil/src/tokens/consumer_light/_consumer_light.dart'
-    as consumer_light;
-import 'package:yggdrasil/src/tokens/professional_dark/_professional_dark.dart'
-    as professional_dark;
-import 'package:yggdrasil/src/tokens/professional_light/_professional_light.dart'
-    as professional_light;
+import 'package:yggdrasil/src/tokens/consumer_dark/_consumer_dark.dart' as consumer_dark;
+import 'package:yggdrasil/src/tokens/consumer_light/_consumer_light.dart' as consumer_light;
+import 'package:yggdrasil/src/tokens/professional_dark/_professional_dark.dart' as professional_dark;
+import 'package:yggdrasil/src/tokens/professional_light/_professional_light.dart' as professional_light;
 
 part 'yg_dimensions.tailor.dart';
 
 @tailorComponent
 class _$YgDimension {
-  static List<double> none = <double>[
+  static List<double> none = [
     consumer_light.FhDimensions.none,
     consumer_dark.FhDimensions.none,
     professional_light.FhDimensions.none,
     professional_dark.FhDimensions.none,
   ];
-  static List<double> xxs = <double>[
+  static List<double> xxs = [
     consumer_light.FhDimensions.xxs,
     consumer_dark.FhDimensions.xxs,
     professional_light.FhDimensions.xxs,
     professional_dark.FhDimensions.xxs,
   ];
-  static List<double> xs = <double>[
+  static List<double> xs = [
     consumer_light.FhDimensions.xs,
     consumer_dark.FhDimensions.xs,
     professional_light.FhDimensions.xs,
     professional_dark.FhDimensions.xs,
   ];
-  static List<double> sm = <double>[
+  static List<double> sm = [
     consumer_light.FhDimensions.sm,
     consumer_dark.FhDimensions.sm,
     professional_light.FhDimensions.sm,
     professional_dark.FhDimensions.sm,
   ];
-  static List<double> md = <double>[
+  static List<double> md = [
     consumer_light.FhDimensions.md,
     consumer_dark.FhDimensions.md,
     professional_light.FhDimensions.md,
     professional_dark.FhDimensions.md,
   ];
-  static List<double> lg = <double>[
+  static List<double> lg = [
     consumer_light.FhDimensions.lg,
     consumer_dark.FhDimensions.lg,
     professional_light.FhDimensions.lg,
     professional_dark.FhDimensions.lg,
   ];
-  static List<double> xl = <double>[
+  static List<double> xl = [
     consumer_light.FhDimensions.xl,
     consumer_dark.FhDimensions.xl,
     professional_light.FhDimensions.xl,
     professional_dark.FhDimensions.xl,
   ];
-  static List<double> xxl = <double>[
+  static List<double> xxl = [
     consumer_light.FhDimensions.xxl,
     consumer_dark.FhDimensions.xxl,
     professional_light.FhDimensions.xxl,
