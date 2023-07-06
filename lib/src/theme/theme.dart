@@ -6,6 +6,7 @@ import 'package:yggdrasil/src/theme/tags/_tags.dart';
 
 import 'bottom_sheet/_bottom_sheet.dart';
 import 'buttons/_buttons.dart';
+import 'card/_card.dart';
 import 'dialog/_dialog.dart';
 import 'tokens/tokens.dart';
 
@@ -25,6 +26,9 @@ class _$YgTheme {
 
   @themeExtension
   static List<YgButtonThemes> buttonThemes = YgButtonThemes.themes;
+
+  @themeExtension
+  static List<YgCardTheme> cardTheme = YgCardTheme.themes;
 
   @themeExtension
   static List<YgDialogThemes> dialogTheme = YgDialogThemes.themes;

@@ -42,6 +42,12 @@ class HomeScreen extends StatelessWidget {
             },
           ),
           ListTile(
+            title: const Text('Cards'),
+            onTap: () {
+              sl<YgRouter>().push(CardScreen.route());
+            },
+          ),
+          ListTile(
             title: const Text('Dialog'),
             onTap: () {
               sl<YgRouter>().push(DialogScreen.route());

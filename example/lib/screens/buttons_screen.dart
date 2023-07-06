@@ -25,7 +25,6 @@ class ButtonsScreen extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.stretch,
         children: <Widget>[
           YgCard(
-            title: 'PrimaryButton',
             child: Column(
               children: <Widget>[
                 YgButton(
@@ -68,7 +67,6 @@ class ButtonsScreen extends StatelessWidget {
             ),
           ),
           YgCard(
-            title: 'Secondary Button',
             child: Column(
               children: <Widget>[
                 YgButton(
@@ -111,7 +109,6 @@ class ButtonsScreen extends StatelessWidget {
             ),
           ),
           YgCard(
-            title: 'Text Button',
             child: Column(
               children: <Widget>[
                 YgButton(
@@ -154,7 +151,6 @@ class ButtonsScreen extends StatelessWidget {
             ),
           ),
           YgCard(
-            title: 'Critical Button',
             child: Column(
               children: <Widget>[
                 YgButton(
@@ -197,7 +193,6 @@ class ButtonsScreen extends StatelessWidget {
             ),
           ),
           YgCard(
-            title: 'Link Button',
             child: Column(
               children: <Widget>[
                 YgButton(

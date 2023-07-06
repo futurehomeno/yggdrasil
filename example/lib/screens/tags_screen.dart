@@ -25,7 +25,6 @@ class TagsScreen extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.stretch,
         children: <Widget>[
           YgCard(
-            title: 'NeutralTag',
             child: Column(
               children: <Widget>[
                 YgTag(
@@ -109,7 +108,6 @@ class TagsScreen extends StatelessWidget {
             ),
           ),
           YgCard(
-            title: 'InformativeTag',
             child: Column(
               children: <Widget>[
                 YgTag(
@@ -193,7 +191,6 @@ class TagsScreen extends StatelessWidget {
             ),
           ),
           YgCard(
-            title: 'PositiveTag',
             child: Column(
               children: <Widget>[
                 YgTag(
@@ -277,7 +274,6 @@ class TagsScreen extends StatelessWidget {
             ),
           ),
           YgCard(
-            title: 'WarningTag',
             child: Column(
               children: <Widget>[
                 YgTag(
@@ -361,7 +357,6 @@ class TagsScreen extends StatelessWidget {
             ),
           ),
           YgCard(
-            title: 'NegativeTag',
             child: Column(
               children: <Widget>[
                 YgTag(
