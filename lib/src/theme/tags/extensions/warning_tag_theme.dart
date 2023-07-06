@@ -10,17 +10,17 @@ part 'warning_tag_theme.tailor.dart';
 @tailorComponent
 class _$WarningTagTheme {
   static List<Color> backgroundColor = <Color>[
-    consumer_light.FhColors.backgroundWeak,
-    consumer_dark.FhColors.backgroundWeak,
-    professional_light.FhColors.backgroundWeak,
-    professional_dark.FhColors.backgroundWeak,
+    consumer_light.FhColors.backgroundWarningWeak,
+    consumer_dark.FhColors.backgroundWarningWeak,
+    professional_light.FhColors.backgroundWarningWeak,
+    professional_dark.FhColors.backgroundWarningWeak,
   ];
 
   static List<Color> strongBackgroundColor = <Color>[
-    consumer_light.FhColors.backgroundWeak,
-    consumer_dark.FhColors.backgroundWeak,
-    professional_light.FhColors.backgroundWeak,
-    professional_dark.FhColors.backgroundWeak,
+    consumer_light.FhColors.backgroundWarningStrong,
+    consumer_dark.FhColors.backgroundWarningStrong,
+    professional_light.FhColors.backgroundWarningStrong,
+    professional_dark.FhColors.backgroundWarningStrong,
   ];
 
   static List<Color> disabledBackgroundColor = <Color>[
@@ -31,46 +31,46 @@ class _$WarningTagTheme {
   ];
 
   static List<TextStyle> textStyle = <TextStyle>[
-    consumer_light.FhTextStyles.paragraph3Medium.copyWith(
+    consumer_light.FhTextStyles.caption1Medium.copyWith(
       color: consumer_light.FhColors.textDefault,
     ),
-    consumer_dark.FhTextStyles.paragraph3Medium.copyWith(
+    consumer_dark.FhTextStyles.caption1Medium.copyWith(
       color: consumer_dark.FhColors.textDefault,
     ),
-    professional_light.FhTextStyles.paragraph3Medium.copyWith(
+    professional_light.FhTextStyles.caption1Medium.copyWith(
       color: professional_light.FhColors.textDefault,
     ),
-    professional_dark.FhTextStyles.paragraph3Medium.copyWith(
+    professional_dark.FhTextStyles.caption1Medium.copyWith(
       color: professional_dark.FhColors.textDefault,
     ),
   ];
 
   static List<TextStyle> strongTextStyle = <TextStyle>[
-    consumer_light.FhTextStyles.paragraph3Medium.copyWith(
-      color: consumer_light.FhColors.textDefault,
+    consumer_light.FhTextStyles.caption1Medium.copyWith(
+      color: consumer_light.FhColors.textInverse,
     ),
-    consumer_dark.FhTextStyles.paragraph3Medium.copyWith(
-      color: consumer_dark.FhColors.textDefault,
+    consumer_dark.FhTextStyles.caption1Medium.copyWith(
+      color: consumer_dark.FhColors.textInverse,
     ),
-    professional_light.FhTextStyles.paragraph3Medium.copyWith(
-      color: professional_light.FhColors.textDefault,
+    professional_light.FhTextStyles.caption1Medium.copyWith(
+      color: professional_light.FhColors.textInverse,
     ),
-    professional_dark.FhTextStyles.paragraph3Medium.copyWith(
-      color: professional_dark.FhColors.textDefault,
+    professional_dark.FhTextStyles.caption1Medium.copyWith(
+      color: professional_dark.FhColors.textInverse,
     ),
   ];
 
   static List<TextStyle> disabledTextStyle = <TextStyle>[
-    consumer_light.FhTextStyles.paragraph3Medium.copyWith(
+    consumer_light.FhTextStyles.caption1Medium.copyWith(
       color: consumer_light.FhColors.textDefault,
     ),
-    consumer_dark.FhTextStyles.paragraph3Medium.copyWith(
+    consumer_dark.FhTextStyles.caption1Medium.copyWith(
       color: consumer_dark.FhColors.textDefault,
     ),
-    professional_light.FhTextStyles.paragraph3Medium.copyWith(
+    professional_light.FhTextStyles.caption1Medium.copyWith(
       color: professional_light.FhColors.textDefault,
     ),
-    professional_dark.FhTextStyles.paragraph3Medium.copyWith(
+    professional_dark.FhTextStyles.caption1Medium.copyWith(
       color: professional_dark.FhColors.textDefault,
     ),
   ];

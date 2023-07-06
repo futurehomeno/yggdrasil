@@ -53,6 +53,22 @@ class YgTag extends ButtonStyleButton {
     required YgTagImpact impact,
   }) = _YgTagWithRightIcon;
 
+  factory YgTag.doubleIcon({
+    Key? key,
+    required VoidCallback? onPressed,
+    VoidCallback? onLongPress,
+    ButtonStyle? style,
+    FocusNode? focusNode,
+    bool? autofocus,
+    Clip? clipBehavior,
+    required Widget leadingIcon,
+    required Widget trailingIcon,
+    required Widget child,
+    required YgTagVariant variant,
+    required YgTagSize size,
+    required YgTagImpact impact,
+  }) = _YgTagWithDoubleIcon;
+
   final YgTagVariant variant;
   final YgTagSize size;
   final YgTagImpact impact;
@@ -113,8 +129,12 @@ class _YgTagWithRightIconChild extends StatelessWidget {
       mainAxisSize: MainAxisSize.min,
       children: <Widget>[
         Flexible(child: child),
-        SizedBox(width: context.buttonThemes.iconSpacing),
-        icon,
+        SizedBox(width: context.tagThemes.iconSpacing),
+        SizedBox(
+          width: context.tagThemes.iconSize,
+          height: context.tagThemes.iconSize,
+          child: icon,
+        ),
       ],
     );
   }
@@ -158,9 +178,76 @@ class _YgTagWithLeftIconChild extends StatelessWidget {
     return Row(
       mainAxisSize: MainAxisSize.min,
       children: <Widget>[
-        icon,
-        SizedBox(width: context.buttonThemes.iconSpacing),
+        SizedBox(
+          width: context.tagThemes.iconSize,
+          height: context.tagThemes.iconSize,
+          child: icon,
+        ),
+        SizedBox(width: context.tagThemes.iconSpacing),
         Flexible(child: child),
+      ],
+    );
+  }
+}
+
+class _YgTagWithDoubleIcon extends YgTag {
+  _YgTagWithDoubleIcon({
+    super.key,
+    required super.onPressed,
+    super.onLongPress,
+    super.style,
+    super.focusNode,
+    bool? autofocus,
+    Clip? clipBehavior,
+    required Widget leadingIcon,
+    required Widget trailingIcon,
+    required Widget child,
+    required YgTagVariant variant,
+    required YgTagSize size,
+    required YgTagImpact impact,
+  }) : super(
+          autofocus: autofocus ?? false,
+          clipBehavior: clipBehavior ?? Clip.none,
+          child: _YgTagWithDoubleIconChild(
+            leadingIcon: leadingIcon,
+            trailingIcon: trailingIcon,
+            child: child,
+          ),
+          variant: variant,
+          size: size,
+          impact: impact,
+        );
+}
+
+class _YgTagWithDoubleIconChild extends StatelessWidget {
+  const _YgTagWithDoubleIconChild({
+    required this.child,
+    required this.leadingIcon,
+    required this.trailingIcon,
+  });
+
+  final Widget child;
+  final Widget leadingIcon;
+  final Widget trailingIcon;
+
+  @override
+  Widget build(BuildContext context) {
+    return Row(
+      mainAxisSize: MainAxisSize.min,
+      children: <Widget>[
+        SizedBox(
+          width: context.tagThemes.iconSize,
+          height: context.tagThemes.iconSize,
+          child: leadingIcon,
+        ),
+        SizedBox(width: context.tagThemes.iconSpacing),
+        Flexible(child: child),
+        SizedBox(width: context.tagThemes.iconSpacing),
+        SizedBox(
+          width: context.tagThemes.iconSize,
+          height: context.tagThemes.iconSize,
+          child: trailingIcon,
+        ),
       ],
     );
   }

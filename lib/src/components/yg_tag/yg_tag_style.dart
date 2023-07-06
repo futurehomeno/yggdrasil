@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:yggdrasil/src/theme/_theme.dart';
-import 'package:yggdrasil/src/utils/_utils.dart';
 
 import 'enums/_enums.dart';
 import 'properties/_properties.dart';
@@ -88,18 +87,18 @@ class YgTagStyle {
     required YgTagImpact impact,
   }) {
     return YgTagStyle(
-      backgroundColor: context.buttonThemes.secondaryButtonTheme.backgroundColor,
-      textStyle: context.buttonThemes.secondaryButtonTheme.textStyle,
-      disabledTextStyle: context.buttonThemes.secondaryButtonTheme.disabledTextStyle,
-      shape: YgRoundedRectangleGradientBorder(
-        gradient: context.buttonThemes.secondaryButtonTheme.borderGradient,
-        borderRadius: context.buttonThemes.borderRadius,
-        width: context.buttonThemes.borderWidth,
+      backgroundColor: impact == YgTagImpact.weak
+          ? context.tagThemes.informativeTagTheme.backgroundColor
+          : context.tagThemes.informativeTagTheme.strongBackgroundColor,
+      textStyle: impact == YgTagImpact.weak
+          ? context.tagThemes.informativeTagTheme.textStyle
+          : context.tagThemes.informativeTagTheme.strongTextStyle,
+      disabledTextStyle: context.tagThemes.informativeTagTheme.disabledTextStyle,
+      shape: RoundedRectangleBorder(
+        borderRadius: context.tagThemes.borderRadius,
       ),
-      disabledShape: YgRoundedRectangleGradientBorder(
-        gradient: context.buttonThemes.secondaryButtonTheme.disabledBorderGradient,
-        borderRadius: context.buttonThemes.borderRadius,
-        width: context.buttonThemes.borderWidth,
+      disabledShape: RoundedRectangleBorder(
+        borderRadius: context.tagThemes.borderRadius,
       ),
       padding: size.buildPadding(context),
     );
@@ -111,18 +110,18 @@ class YgTagStyle {
     required YgTagImpact impact,
   }) {
     return YgTagStyle(
-      backgroundColor: context.buttonThemes.textButtonTheme.backgroundColor,
-      textStyle: context.buttonThemes.textButtonTheme.textStyle,
-      disabledTextStyle: context.buttonThemes.textButtonTheme.disabledTextStyle,
-      shape: YgRoundedRectangleGradientBorder(
-        gradient: context.buttonThemes.textButtonTheme.borderGradient,
-        borderRadius: context.buttonThemes.borderRadius,
-        width: context.buttonThemes.borderWidth,
+      backgroundColor: impact == YgTagImpact.weak
+          ? context.tagThemes.positiveTagTheme.backgroundColor
+          : context.tagThemes.positiveTagTheme.strongBackgroundColor,
+      textStyle: impact == YgTagImpact.weak
+          ? context.tagThemes.positiveTagTheme.textStyle
+          : context.tagThemes.positiveTagTheme.strongTextStyle,
+      disabledTextStyle: context.tagThemes.positiveTagTheme.disabledTextStyle,
+      shape: RoundedRectangleBorder(
+        borderRadius: context.tagThemes.borderRadius,
       ),
-      disabledShape: YgRoundedRectangleGradientBorder(
-        gradient: context.buttonThemes.textButtonTheme.disabledBorderGradient,
-        borderRadius: context.buttonThemes.borderRadius,
-        width: context.buttonThemes.borderWidth,
+      disabledShape: RoundedRectangleBorder(
+        borderRadius: context.tagThemes.borderRadius,
       ),
       padding: size.buildPadding(context),
     );
@@ -134,18 +133,18 @@ class YgTagStyle {
     required YgTagImpact impact,
   }) {
     return YgTagStyle(
-      backgroundColor: context.buttonThemes.linkButtonTheme.backgroundColor,
-      textStyle: context.buttonThemes.linkButtonTheme.textStyle,
-      disabledTextStyle: context.buttonThemes.linkButtonTheme.disabledTextStyle,
-      shape: YgRoundedRectangleGradientBorder(
-        gradient: context.buttonThemes.linkButtonTheme.borderGradient,
-        borderRadius: context.buttonThemes.borderRadius,
-        width: context.buttonThemes.borderWidth,
+      backgroundColor: impact == YgTagImpact.weak
+          ? context.tagThemes.warningTagTheme.backgroundColor
+          : context.tagThemes.warningTagTheme.strongBackgroundColor,
+      textStyle: impact == YgTagImpact.weak
+          ? context.tagThemes.warningTagTheme.textStyle
+          : context.tagThemes.warningTagTheme.strongTextStyle,
+      disabledTextStyle: context.tagThemes.warningTagTheme.disabledTextStyle,
+      shape: RoundedRectangleBorder(
+        borderRadius: context.tagThemes.borderRadius,
       ),
-      disabledShape: YgRoundedRectangleGradientBorder(
-        gradient: context.buttonThemes.linkButtonTheme.disabledBorderGradient,
-        borderRadius: context.buttonThemes.borderRadius,
-        width: context.buttonThemes.borderWidth,
+      disabledShape: RoundedRectangleBorder(
+        borderRadius: context.tagThemes.borderRadius,
       ),
       padding: size.buildPadding(context),
     );
@@ -157,18 +156,18 @@ class YgTagStyle {
     required YgTagImpact impact,
   }) {
     return YgTagStyle(
-      backgroundColor: context.buttonThemes.criticalButtonTheme.backgroundColor,
-      textStyle: context.buttonThemes.criticalButtonTheme.textStyle,
-      disabledTextStyle: context.buttonThemes.criticalButtonTheme.disabledTextStyle,
-      shape: YgRoundedRectangleGradientBorder(
-        gradient: context.buttonThemes.criticalButtonTheme.borderGradient,
-        borderRadius: context.buttonThemes.borderRadius,
-        width: context.buttonThemes.borderWidth,
+      backgroundColor: impact == YgTagImpact.weak
+          ? context.tagThemes.negativeTagTheme.backgroundColor
+          : context.tagThemes.negativeTagTheme.strongBackgroundColor,
+      textStyle: impact == YgTagImpact.weak
+          ? context.tagThemes.negativeTagTheme.textStyle
+          : context.tagThemes.negativeTagTheme.strongTextStyle,
+      disabledTextStyle: context.tagThemes.negativeTagTheme.disabledTextStyle,
+      shape: RoundedRectangleBorder(
+        borderRadius: context.tagThemes.borderRadius,
       ),
-      disabledShape: YgRoundedRectangleGradientBorder(
-        gradient: context.buttonThemes.criticalButtonTheme.disabledBorderGradient,
-        borderRadius: context.buttonThemes.borderRadius,
-        width: context.buttonThemes.borderWidth,
+      disabledShape: RoundedRectangleBorder(
+        borderRadius: context.tagThemes.borderRadius,
       ),
       padding: size.buildPadding(context),
     );
