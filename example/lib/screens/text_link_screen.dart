@@ -23,92 +23,88 @@ class TextLinkScreen extends StatelessWidget {
       supernovaLink: 'Link',
       scrollable: false,
       child: Column(
-        children: const <Widget>[
+        children: <Widget>[
           YgTextLink(
+            onPressed: () {},
             text: 'Link',
-            url: 'https://futurehome.no/',
             size: YgTextLinkSize.small,
             weight: YgTextLinkWeight.weak,
           ),
           YgTextLink(
+            onPressed: () {},
             text: 'Link',
-            url: 'https://futurehome.no/',
             size: YgTextLinkSize.small,
             weight: YgTextLinkWeight.strong,
           ),
           YgTextLink(
+            onPressed: () {},
             text: 'Link',
-            url: 'https://futurehome.no/',
             size: YgTextLinkSize.medium,
             weight: YgTextLinkWeight.weak,
           ),
           YgTextLink(
+            onPressed: () {},
             text: 'Link',
-            url: 'https://futurehome.no/',
             size: YgTextLinkSize.medium,
             weight: YgTextLinkWeight.strong,
           ),
           YgTextLink(
             text: 'Link',
-            url: 'https://futurehome.no/',
             size: YgTextLinkSize.small,
             weight: YgTextLinkWeight.weak,
-            disabled: true,
+            onPressed: null,
           ),
           YgTextLink(
             text: 'Link',
-            url: 'https://futurehome.no/',
             size: YgTextLinkSize.small,
             weight: YgTextLinkWeight.strong,
-            disabled: true,
+            onPressed: null,
           ),
           YgTextLink(
             text: 'Link',
-            url: 'https://futurehome.no/',
             size: YgTextLinkSize.medium,
             weight: YgTextLinkWeight.weak,
-            disabled: true,
+            onPressed: null,
           ),
           YgTextLink(
             text: 'Link',
-            url: 'https://futurehome.no/',
             size: YgTextLinkSize.medium,
             weight: YgTextLinkWeight.strong,
-            disabled: true,
+            onPressed: null,
           ),
           YgTextLink(
+            onPressed: () {},
             text: 'Link',
-            icon: Icon(
+            icon: const Icon(
               Icons.open_in_browser_rounded,
             ),
-            url: 'https://futurehome.no/',
             size: YgTextLinkSize.small,
             weight: YgTextLinkWeight.weak,
           ),
           YgTextLink(
+            onPressed: () {},
             text: 'Link',
-            icon: Icon(
+            icon: const Icon(
               Icons.open_in_browser_rounded,
             ),
-            url: 'https://futurehome.no/',
             size: YgTextLinkSize.small,
             weight: YgTextLinkWeight.strong,
           ),
           YgTextLink(
+            onPressed: () {},
             text: 'Link',
-            icon: Icon(
+            icon: const Icon(
               Icons.open_in_browser_rounded,
             ),
-            url: 'https://futurehome.no/',
             size: YgTextLinkSize.medium,
             weight: YgTextLinkWeight.weak,
           ),
           YgTextLink(
+            onPressed: () {},
             text: 'Link',
-            icon: Icon(
+            icon: const Icon(
               Icons.open_in_browser_rounded,
             ),
-            url: 'https://futurehome.no/',
             size: YgTextLinkSize.medium,
             weight: YgTextLinkWeight.strong,
           ),
