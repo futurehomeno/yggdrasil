@@ -17,23 +17,23 @@ class YgDialog extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final YgDialogThemes dialogTheme = context.dialogTheme;
+    final YgDialogThemes dialogThemes = context.dialogThemes;
 
     final YgSpacingBuilder spacingBuilder = YgSpacingBuilder(
-      horizontalSpacing: dialogTheme.buttonSpacing,
+      horizontalSpacing: dialogThemes.buttonSpacing,
     );
 
     return Material(
-      borderRadius: dialogTheme.outerBorderRadius,
-      color: dialogTheme.backgroundColor,
+      borderRadius: dialogThemes.outerBorderRadius,
+      color: dialogThemes.backgroundColor,
       child: Padding(
-        padding: dialogTheme.outerPadding,
+        padding: dialogThemes.outerPadding,
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.stretch,
           mainAxisSize: MainAxisSize.min,
           children: <Widget>[
-            _buildIcon(dialogTheme),
-            _buildTextSection(dialogTheme),
+            _buildIcon(dialogThemes),
+            _buildTextSection(dialogThemes),
             _buildActionsSection(spacingBuilder)
           ],
         ),

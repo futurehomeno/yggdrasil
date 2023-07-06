@@ -19,23 +19,23 @@ class _$YgTheme {
   static List<YgTokens> tokens = YgTokens.themes;
 
   @themeExtension
-  static List<YgBadgeTheme> badgeTheme = YgBadgeTheme.themes;
+  static List<YgBadgeThemes> badgeThemes = YgBadgeThemes.themes;
 
   @themeExtension
-  static List<YgBottomSheetThemes> bottomSheetTheme = YgBottomSheetThemes.themes;
+  static List<YgBottomSheetThemes> bottomSheetThemes = YgBottomSheetThemes.themes;
 
   @themeExtension
   static List<YgButtonThemes> buttonThemes = YgButtonThemes.themes;
 
   @themeExtension
-  static List<YgCardTheme> cardTheme = YgCardTheme.themes;
+  static List<YgCardThemes> cardThemes = YgCardThemes.themes;
 
   @themeExtension
-  static List<YgDialogThemes> dialogTheme = YgDialogThemes.themes;
+  static List<YgDialogThemes> dialogThemes = YgDialogThemes.themes;
 
   @themeExtension
   static List<YgTagThemes> tagThemes = YgTagThemes.themes;
 
   @themeExtension
-  static List<YgInternalTheme> internalTheme = YgInternalTheme.themes;
+  static List<YgInternalThemes> internalThemes = YgInternalThemes.themes;
 }

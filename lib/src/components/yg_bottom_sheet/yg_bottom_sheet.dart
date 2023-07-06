@@ -25,29 +25,29 @@ class _YgBottomSheetState extends State<YgBottomSheet> {
 
   @override
   Widget build(BuildContext context) {
-    final YgBottomSheetThemes theme = context.bottomSheetTheme;
+    final YgBottomSheetThemes bottomSheetThemes = context.bottomSheetThemes;
     final YgBottomSheetScrollPhysicsProvider? scrollPhysicsProvider =
         context.dependOnInheritedWidgetOfExactType<YgBottomSheetScrollPhysicsProvider>();
 
     return RepaintBoundary(
       child: Material(
-        borderRadius: theme.borderRadius,
-        color: theme.backgroundColor,
+        borderRadius: bottomSheetThemes.borderRadius,
+        color: bottomSheetThemes.backgroundColor,
         child: SafeArea(
           top: false,
           child: ClipRRect(
-            borderRadius: theme.borderRadius,
+            borderRadius: bottomSheetThemes.borderRadius,
             child: Padding(
               padding: EdgeInsets.only(
-                bottom: theme.outerPadding.bottom,
+                bottom: bottomSheetThemes.outerPadding.bottom,
               ),
               child: Column(
                 mainAxisSize: MainAxisSize.min,
                 crossAxisAlignment: CrossAxisAlignment.stretch,
                 children: <Widget>[
-                  _buildHeader(theme),
-                  _buildContent(scrollPhysicsProvider, theme),
-                  if (widget.footerButtons?.isNotEmpty == true) _buildFooter(theme),
+                  _buildHeader(bottomSheetThemes),
+                  _buildContent(scrollPhysicsProvider, bottomSheetThemes),
+                  if (widget.footerButtons?.isNotEmpty == true) _buildFooter(bottomSheetThemes),
                 ],
               ),
             ),

@@ -27,7 +27,7 @@ class _YgBottomSheetModalState extends State<YgBottomSheetModal> {
   double? _sheetSize;
 
   /// The current curve applied to the movement of the [YgBottomSheet].
-  late ParametricCurve<double> _curve = context.bottomSheetTheme.movementAnimationCurve;
+  late ParametricCurve<double> _curve = context.bottomSheetThemes.movementAnimationCurve;
 
   @override
   Widget build(BuildContext context) {
@@ -77,7 +77,7 @@ class _YgBottomSheetModalState extends State<YgBottomSheetModal> {
   void _animatedToOpened() {
     widget.modalController.animateTo(
       1,
-      duration: context.bottomSheetTheme.movementAnimationDuration,
+      duration: context.bottomSheetThemes.movementAnimationDuration,
     );
   }
 
@@ -90,7 +90,7 @@ class _YgBottomSheetModalState extends State<YgBottomSheetModal> {
   void _handleSwipeEnd(double velocity) {
     _curve = YgSuspendedCurve(
       widget.modalController.value,
-      curve: context.bottomSheetTheme.movementAnimationCurve,
+      curve: context.bottomSheetThemes.movementAnimationCurve,
     );
 
     if (widget.modalController.isAnimating || widget.modalController.value == 1) {
@@ -100,7 +100,7 @@ class _YgBottomSheetModalState extends State<YgBottomSheetModal> {
     // If velocity if above fling velocity, animate to the fling direction, else
     // animate to the nearest point.
     final bool swipeToOpened;
-    if (velocity.abs() > context.bottomSheetTheme.flingVelocity) {
+    if (velocity.abs() > context.bottomSheetThemes.flingVelocity) {
       swipeToOpened = velocity < 0;
     } else {
       swipeToOpened = widget.modalController.value > 0.5;

@@ -6,7 +6,7 @@ enum YgCardVariant {
   filled,
   outlined;
 
-  Color getBackgroundColor(YgCardTheme theme) {
+  Color getBackgroundColor(YgCardThemes theme) {
     switch (this) {
       case YgCardVariant.elevated:
         return theme.elevatedBackgroundColor;
@@ -17,7 +17,7 @@ enum YgCardVariant {
     }
   }
 
-  ShapeBorder? getShape(YgCardTheme theme) {
+  ShapeBorder? getShape(YgCardThemes theme) {
     switch (this) {
       case YgCardVariant.elevated:
         return RoundedRectangleBorder(
@@ -38,7 +38,7 @@ enum YgCardVariant {
     }
   }
 
-  double getElevation(YgCardTheme theme) {
+  double getElevation(YgCardThemes theme) {
     switch (this) {
       case YgCardVariant.elevated:
         return 1.0;

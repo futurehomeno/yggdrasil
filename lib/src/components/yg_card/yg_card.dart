@@ -16,17 +16,17 @@ class YgCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final YgCardTheme theme = context.cardTheme;
+    final YgCardThemes cardThemes = context.cardThemes;
 
     return Container(
       margin: EdgeInsets.only(
-        bottom: theme.verticalCardMargin,
+        bottom: cardThemes.verticalCardMargin,
       ),
       child: Material(
         type: MaterialType.card,
-        color: variant.getBackgroundColor(theme),
-        shape: variant.getShape(theme),
-        elevation: variant.getElevation(theme),
+        color: variant.getBackgroundColor(cardThemes),
+        shape: variant.getShape(cardThemes),
+        elevation: variant.getElevation(cardThemes),
         borderOnForeground: false,
         child: child,
       ),

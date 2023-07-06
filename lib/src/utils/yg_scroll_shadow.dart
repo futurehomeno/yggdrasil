@@ -82,7 +82,7 @@ class _YgScrollShadowState extends State<YgScrollShadow> {
     required Alignment alignment,
     required bool shown,
   }) {
-    final YgScrollShadowThemes theme = context.internalTheme.scrollShadow;
+    final YgScrollShadowThemes scrollShadowThemes = context.internalThemes.scrollShadowThemes;
 
     return Positioned(
       bottom: alignment.y > 0 ? 0 : null,
@@ -91,15 +91,15 @@ class _YgScrollShadowState extends State<YgScrollShadow> {
       right: 0,
       child: IgnorePointer(
         child: AnimatedOpacity(
-          duration: theme.fadeDuration,
-          curve: theme.fadeCurve,
+          duration: scrollShadowThemes.fadeDuration,
+          curve: scrollShadowThemes.fadeCurve,
           opacity: shown ? 1 : 0,
           child: Container(
-            height: theme.shadowSize,
+            height: scrollShadowThemes.shadowSize,
             decoration: BoxDecoration(
               gradient: LinearGradient(
                 colors: <Color>[
-                  theme.shadowColor,
+                  scrollShadowThemes.shadowColor,
                   Colors.transparent,
                 ],
                 end: -alignment,

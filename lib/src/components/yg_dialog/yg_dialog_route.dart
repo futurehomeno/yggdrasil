@@ -16,16 +16,16 @@ import '_yg_dialog.dart';
 abstract class YgDialogRoute extends PopupRoute<YgDialog> {
   late AnimationController _controller;
 
-  YgDialogThemes get _dialogTheme => navigator!.context.dialogTheme;
+  YgDialogThemes get _dialogThemes => navigator!.context.dialogThemes;
 
   @override
-  Color? get barrierColor => _dialogTheme.scrimColor;
+  Color? get barrierColor => _dialogThemes.scrimColor;
 
   @override
-  Duration get transitionDuration => _dialogTheme.movementAnimationDuration;
+  Duration get transitionDuration => _dialogThemes.movementAnimationDuration;
 
   @override
-  Curve get barrierCurve => _dialogTheme.movementAnimationCurve;
+  Curve get barrierCurve => _dialogThemes.movementAnimationCurve;
 
   @override
   bool get barrierDismissible => true;
@@ -46,15 +46,16 @@ abstract class YgDialogRoute extends PopupRoute<YgDialog> {
 
   @override
   Widget buildPage(BuildContext context, Animation<double> animation, Animation<double> secondaryAnimation) {
-    final YgDialogThemes theme = context.dialogTheme;
+    final YgDialogThemes dialogThemes = context.dialogThemes;
+
     return LayoutBuilder(
       builder: (BuildContext context, BoxConstraints constraints) {
         // Custom layout which applies a max width, padding and min width.
         // The padding gets discarded to preserve the min width, the min width
         // gets discarded when it's more than the total with of the screen.
-        final double minWidth = min(theme.minWidth, constraints.maxWidth);
-        final double maxWidth = min(theme.maxWidth, constraints.maxWidth);
-        final double widthWithPadding = maxWidth - (theme.paddingToScreenEdge * 2);
+        final double minWidth = min(dialogThemes.minWidth, constraints.maxWidth);
+        final double maxWidth = min(dialogThemes.maxWidth, constraints.maxWidth);
+        final double widthWithPadding = maxWidth - (dialogThemes.paddingToScreenEdge * 2);
         final double width = max(minWidth, widthWithPadding);
 
         return Center(

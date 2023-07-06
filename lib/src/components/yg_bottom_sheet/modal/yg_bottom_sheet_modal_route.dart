@@ -11,16 +11,16 @@ import '../_yg_bottom_sheet.dart';
 abstract class YgBottomSheetModalRoute extends PopupRoute<YgBottomSheetModal> {
   late AnimationController _controller;
 
-  YgBottomSheetThemes get _bottomSheetTheme => navigator!.context.bottomSheetTheme;
+  YgBottomSheetThemes get _bottomSheetThemes => navigator!.context.bottomSheetThemes;
 
   @override
-  Color? get barrierColor => _bottomSheetTheme.scrimColor;
+  Color? get barrierColor => _bottomSheetThemes.scrimColor;
 
   @override
-  Duration get transitionDuration => _bottomSheetTheme.movementAnimationDuration;
+  Duration get transitionDuration => _bottomSheetThemes.movementAnimationDuration;
 
   @override
-  Curve get barrierCurve => _bottomSheetTheme.movementAnimationCurve;
+  Curve get barrierCurve => _bottomSheetThemes.movementAnimationCurve;
 
   // This allows the popup to be dismissed by tapping the scrim or by pressing
   // the escape key on the keyboard.

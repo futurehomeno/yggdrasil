@@ -2,14 +2,14 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 // ignore_for_file: type=lint, unused_element, unnecessary_cast
 
-part of 'card_theme.dart';
+part of 'card_themes.dart';
 
 // **************************************************************************
 // TailorAnnotationsGenerator
 // **************************************************************************
 
-class YgCardTheme extends ThemeExtension<YgCardTheme> {
-  const YgCardTheme({
+class YgCardThemes extends ThemeExtension<YgCardThemes> {
+  const YgCardThemes({
     required this.borderRadius,
     required this.elevatedBackgroundColor,
     required this.filledBackgroundColor,
@@ -25,40 +25,40 @@ class YgCardTheme extends ThemeExtension<YgCardTheme> {
   final Color outlinedBorderColor;
   final double verticalCardMargin;
 
-  static final YgCardTheme consumerLight = YgCardTheme(
-    borderRadius: _$YgCardTheme.borderRadius[0],
-    elevatedBackgroundColor: _$YgCardTheme.elevatedBackgroundColor[0],
-    filledBackgroundColor: _$YgCardTheme.filledBackgroundColor[0],
-    outlinedBackgroundColor: _$YgCardTheme.outlinedBackgroundColor[0],
-    outlinedBorderColor: _$YgCardTheme.outlinedBorderColor[0],
-    verticalCardMargin: _$YgCardTheme.verticalCardMargin[0],
+  static final YgCardThemes consumerLight = YgCardThemes(
+    borderRadius: _$YgCardThemes.borderRadius[0],
+    elevatedBackgroundColor: _$YgCardThemes.elevatedBackgroundColor[0],
+    filledBackgroundColor: _$YgCardThemes.filledBackgroundColor[0],
+    outlinedBackgroundColor: _$YgCardThemes.outlinedBackgroundColor[0],
+    outlinedBorderColor: _$YgCardThemes.outlinedBorderColor[0],
+    verticalCardMargin: _$YgCardThemes.verticalCardMargin[0],
   );
 
-  static final YgCardTheme consumerDark = YgCardTheme(
-    borderRadius: _$YgCardTheme.borderRadius[1],
-    elevatedBackgroundColor: _$YgCardTheme.elevatedBackgroundColor[1],
-    filledBackgroundColor: _$YgCardTheme.filledBackgroundColor[1],
-    outlinedBackgroundColor: _$YgCardTheme.outlinedBackgroundColor[1],
-    outlinedBorderColor: _$YgCardTheme.outlinedBorderColor[1],
-    verticalCardMargin: _$YgCardTheme.verticalCardMargin[1],
+  static final YgCardThemes consumerDark = YgCardThemes(
+    borderRadius: _$YgCardThemes.borderRadius[1],
+    elevatedBackgroundColor: _$YgCardThemes.elevatedBackgroundColor[1],
+    filledBackgroundColor: _$YgCardThemes.filledBackgroundColor[1],
+    outlinedBackgroundColor: _$YgCardThemes.outlinedBackgroundColor[1],
+    outlinedBorderColor: _$YgCardThemes.outlinedBorderColor[1],
+    verticalCardMargin: _$YgCardThemes.verticalCardMargin[1],
   );
 
-  static final YgCardTheme professionalLight = YgCardTheme(
-    borderRadius: _$YgCardTheme.borderRadius[2],
-    elevatedBackgroundColor: _$YgCardTheme.elevatedBackgroundColor[2],
-    filledBackgroundColor: _$YgCardTheme.filledBackgroundColor[2],
-    outlinedBackgroundColor: _$YgCardTheme.outlinedBackgroundColor[2],
-    outlinedBorderColor: _$YgCardTheme.outlinedBorderColor[2],
-    verticalCardMargin: _$YgCardTheme.verticalCardMargin[2],
+  static final YgCardThemes professionalLight = YgCardThemes(
+    borderRadius: _$YgCardThemes.borderRadius[2],
+    elevatedBackgroundColor: _$YgCardThemes.elevatedBackgroundColor[2],
+    filledBackgroundColor: _$YgCardThemes.filledBackgroundColor[2],
+    outlinedBackgroundColor: _$YgCardThemes.outlinedBackgroundColor[2],
+    outlinedBorderColor: _$YgCardThemes.outlinedBorderColor[2],
+    verticalCardMargin: _$YgCardThemes.verticalCardMargin[2],
   );
 
-  static final YgCardTheme professionalDark = YgCardTheme(
-    borderRadius: _$YgCardTheme.borderRadius[3],
-    elevatedBackgroundColor: _$YgCardTheme.elevatedBackgroundColor[3],
-    filledBackgroundColor: _$YgCardTheme.filledBackgroundColor[3],
-    outlinedBackgroundColor: _$YgCardTheme.outlinedBackgroundColor[3],
-    outlinedBorderColor: _$YgCardTheme.outlinedBorderColor[3],
-    verticalCardMargin: _$YgCardTheme.verticalCardMargin[3],
+  static final YgCardThemes professionalDark = YgCardThemes(
+    borderRadius: _$YgCardThemes.borderRadius[3],
+    elevatedBackgroundColor: _$YgCardThemes.elevatedBackgroundColor[3],
+    filledBackgroundColor: _$YgCardThemes.filledBackgroundColor[3],
+    outlinedBackgroundColor: _$YgCardThemes.outlinedBackgroundColor[3],
+    outlinedBorderColor: _$YgCardThemes.outlinedBorderColor[3],
+    verticalCardMargin: _$YgCardThemes.verticalCardMargin[3],
   );
 
   static final themes = [
@@ -69,7 +69,7 @@ class YgCardTheme extends ThemeExtension<YgCardTheme> {
   ];
 
   @override
-  YgCardTheme copyWith({
+  YgCardThemes copyWith({
     BorderRadius? borderRadius,
     Color? elevatedBackgroundColor,
     Color? filledBackgroundColor,
@@ -77,7 +77,7 @@ class YgCardTheme extends ThemeExtension<YgCardTheme> {
     Color? outlinedBorderColor,
     double? verticalCardMargin,
   }) {
-    return YgCardTheme(
+    return YgCardThemes(
       borderRadius: borderRadius ?? this.borderRadius,
       elevatedBackgroundColor:
           elevatedBackgroundColor ?? this.elevatedBackgroundColor,
@@ -91,9 +91,9 @@ class YgCardTheme extends ThemeExtension<YgCardTheme> {
   }
 
   @override
-  YgCardTheme lerp(covariant ThemeExtension<YgCardTheme>? other, double t) {
-    if (other is! YgCardTheme) return this as YgCardTheme;
-    return YgCardTheme(
+  YgCardThemes lerp(covariant ThemeExtension<YgCardThemes>? other, double t) {
+    if (other is! YgCardThemes) return this as YgCardThemes;
+    return YgCardThemes(
       borderRadius: t < 0.5 ? borderRadius : other.borderRadius,
       elevatedBackgroundColor: Color.lerp(
           elevatedBackgroundColor, other.elevatedBackgroundColor, t)!,
@@ -112,7 +112,7 @@ class YgCardTheme extends ThemeExtension<YgCardTheme> {
   bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is YgCardTheme &&
+            other is YgCardThemes &&
             const DeepCollectionEquality()
                 .equals(borderRadius, other.borderRadius) &&
             const DeepCollectionEquality().equals(
