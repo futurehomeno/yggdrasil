@@ -49,6 +49,6 @@ abstract class YgBottomSheetModalRoute extends PopupRoute<YgBottomSheetModal> {
     );
   }
 
-  /// Builds the [YgBottomSheet].
-  YgBottomSheet buildBottomSheet(BuildContext context);
+  /// Builds the bottom sheet.
+  Widget buildBottomSheet(BuildContext context);
 }
