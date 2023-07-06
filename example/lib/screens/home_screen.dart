@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:yggdrasil_demo/core/_core.dart';
+import 'package:yggdrasil_demo/screens/text_input_screen.dart';
 import 'package:yggdrasil_demo/widgets/_widgets.dart';
 
 import 'badge_screen.dart';
@@ -56,6 +57,12 @@ class HomeScreen extends StatelessWidget {
             title: const Text('Text link'),
             onTap: () {
               sl<YgRouter>().push(TextLinkScreen.route());
+            },
+          ),
+          ListTile(
+            title: const Text('Text input'),
+            onTap: () {
+              sl<YgRouter>().push(TextInputScreen.route());
             },
           ),
         ],
