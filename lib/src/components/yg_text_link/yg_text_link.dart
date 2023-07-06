@@ -3,16 +3,6 @@ import 'package:yggdrasil/yggdrasil.dart';
 
 import 'properties/_properties.dart';
 
-enum YgTextLinkSize {
-  small,
-  medium,
-}
-
-enum YgTextLinkWeight {
-  weak,
-  strong,
-}
-
 /// Text link button implementation.
 class YgTextLink extends ButtonStyleButton {
   YgTextLink({
