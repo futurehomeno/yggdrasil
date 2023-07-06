@@ -1,11 +1,11 @@
 // coverage:ignore-file
 // GENERATED CODE - DO NOT MODIFY BY HAND
-// ignore_for_file: type=lint, unused_element
+// ignore_for_file: type=lint, unused_element, unnecessary_cast
 
 part of 'internal.dart';
 
 // **************************************************************************
-// ThemeTailorGenerator
+// TailorAnnotationsGenerator
 // **************************************************************************
 
 class YgInternalTheme extends ThemeExtension<YgInternalTheme> {
@@ -48,10 +48,12 @@ class YgInternalTheme extends ThemeExtension<YgInternalTheme> {
   }
 
   @override
-  YgInternalTheme lerp(ThemeExtension<YgInternalTheme>? other, double t) {
-    if (other is! YgInternalTheme) return this;
+  YgInternalTheme lerp(
+      covariant ThemeExtension<YgInternalTheme>? other, double t) {
+    if (other is! YgInternalTheme) return this as YgInternalTheme;
     return YgInternalTheme(
-      scrollShadow: scrollShadow.lerp(other.scrollShadow, t),
+      scrollShadow:
+          scrollShadow.lerp(other.scrollShadow, t) as YgScrollShadowThemes,
     );
   }
 
@@ -67,6 +69,8 @@ class YgInternalTheme extends ThemeExtension<YgInternalTheme> {
   @override
   int get hashCode {
     return Object.hash(
-        runtimeType, const DeepCollectionEquality().hash(scrollShadow));
+      runtimeType.hashCode,
+      const DeepCollectionEquality().hash(scrollShadow),
+    );
   }
 }

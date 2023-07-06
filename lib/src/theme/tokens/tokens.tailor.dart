@@ -1,11 +1,11 @@
 // coverage:ignore-file
 // GENERATED CODE - DO NOT MODIFY BY HAND
-// ignore_for_file: type=lint, unused_element
+// ignore_for_file: type=lint, unused_element, unnecessary_cast
 
 part of 'tokens.dart';
 
 // **************************************************************************
-// ThemeTailorGenerator
+// TailorAnnotationsGenerator
 // **************************************************************************
 
 class YgTokens extends ThemeExtension<YgTokens> {
@@ -96,16 +96,16 @@ class YgTokens extends ThemeExtension<YgTokens> {
   }
 
   @override
-  YgTokens lerp(ThemeExtension<YgTokens>? other, double t) {
-    if (other is! YgTokens) return this;
+  YgTokens lerp(covariant ThemeExtension<YgTokens>? other, double t) {
+    if (other is! YgTokens) return this as YgTokens;
     return YgTokens(
-      borders: borders.lerp(other.borders, t),
-      colors: colors.lerp(other.colors, t),
-      dimensions: dimensions.lerp(other.dimensions, t),
-      gradients: gradients.lerp(other.gradients, t),
-      radii: radii.lerp(other.radii, t),
-      shadows: shadows.lerp(other.shadows, t),
-      textStyles: textStyles.lerp(other.textStyles, t),
+      borders: borders.lerp(other.borders, t) as YgBorder,
+      colors: colors.lerp(other.colors, t) as YgColor,
+      dimensions: dimensions.lerp(other.dimensions, t) as YgDimension,
+      gradients: gradients.lerp(other.gradients, t) as YgGradient,
+      radii: radii.lerp(other.radii, t) as YgRadius,
+      shadows: shadows.lerp(other.shadows, t) as YgShadow,
+      textStyles: textStyles.lerp(other.textStyles, t) as YgTextStyle,
     );
   }
 
@@ -128,13 +128,14 @@ class YgTokens extends ThemeExtension<YgTokens> {
   @override
   int get hashCode {
     return Object.hash(
-        runtimeType,
-        const DeepCollectionEquality().hash(borders),
-        const DeepCollectionEquality().hash(colors),
-        const DeepCollectionEquality().hash(dimensions),
-        const DeepCollectionEquality().hash(gradients),
-        const DeepCollectionEquality().hash(radii),
-        const DeepCollectionEquality().hash(shadows),
-        const DeepCollectionEquality().hash(textStyles));
+      runtimeType.hashCode,
+      const DeepCollectionEquality().hash(borders),
+      const DeepCollectionEquality().hash(colors),
+      const DeepCollectionEquality().hash(dimensions),
+      const DeepCollectionEquality().hash(gradients),
+      const DeepCollectionEquality().hash(radii),
+      const DeepCollectionEquality().hash(shadows),
+      const DeepCollectionEquality().hash(textStyles),
+    );
   }
 }

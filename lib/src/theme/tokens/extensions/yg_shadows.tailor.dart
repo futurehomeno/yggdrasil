@@ -1,11 +1,11 @@
 // coverage:ignore-file
 // GENERATED CODE - DO NOT MODIFY BY HAND
-// ignore_for_file: type=lint, unused_element
+// ignore_for_file: type=lint, unused_element, unnecessary_cast
 
 part of 'yg_shadows.dart';
 
 // **************************************************************************
-// ThemeTailorGenerator
+// TailorAnnotationsGenerator
 // **************************************************************************
 
 class YgShadow extends ThemeExtension<YgShadow> {
@@ -27,11 +27,13 @@ class YgShadow extends ThemeExtension<YgShadow> {
   ];
 
   @override
-  ThemeExtension<YgShadow> copyWith() => YgShadow();
+  YgShadow copyWith() {
+    return YgShadow();
+  }
 
   @override
-  YgShadow lerp(ThemeExtension<YgShadow>? other, double t) {
-    if (other is! YgShadow) return this;
+  YgShadow lerp(covariant ThemeExtension<YgShadow>? other, double t) {
+    if (other is! YgShadow) return this as YgShadow;
     return YgShadow();
   }
 
