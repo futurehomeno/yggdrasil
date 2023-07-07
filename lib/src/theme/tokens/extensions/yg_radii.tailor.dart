@@ -29,6 +29,7 @@ class YgRadius extends ThemeExtension<YgRadius> {
   final BorderRadius xxl;
   final BorderRadius xxs;
 
+<<<<<<< HEAD
   static const YgRadius consumerLight = YgRadius(
     lg: consumer_light.FhRadii.lg,
     md: consumer_light.FhRadii.md,
@@ -71,6 +72,50 @@ class YgRadius extends ThemeExtension<YgRadius> {
     xs: professional_dark.FhRadii.xs,
     xxl: professional_dark.FhRadii.xxl,
     xxs: professional_dark.FhRadii.xxs,
+=======
+  static final YgRadius consumerLight = YgRadius(
+    lg: _$YgRadius.lg[0],
+    md: _$YgRadius.md[0],
+    none: _$YgRadius.none[0],
+    sm: _$YgRadius.sm[0],
+    xl: _$YgRadius.xl[0],
+    xs: _$YgRadius.xs[0],
+    xxl: _$YgRadius.xxl[0],
+    xxs: _$YgRadius.xxs[0],
+  );
+
+  static final YgRadius consumerDark = YgRadius(
+    lg: _$YgRadius.lg[1],
+    md: _$YgRadius.md[1],
+    none: _$YgRadius.none[1],
+    sm: _$YgRadius.sm[1],
+    xl: _$YgRadius.xl[1],
+    xs: _$YgRadius.xs[1],
+    xxl: _$YgRadius.xxl[1],
+    xxs: _$YgRadius.xxs[1],
+  );
+
+  static final YgRadius professionalLight = YgRadius(
+    lg: _$YgRadius.lg[2],
+    md: _$YgRadius.md[2],
+    none: _$YgRadius.none[2],
+    sm: _$YgRadius.sm[2],
+    xl: _$YgRadius.xl[2],
+    xs: _$YgRadius.xs[2],
+    xxl: _$YgRadius.xxl[2],
+    xxs: _$YgRadius.xxs[2],
+  );
+
+  static final YgRadius professionalDark = YgRadius(
+    lg: _$YgRadius.lg[3],
+    md: _$YgRadius.md[3],
+    none: _$YgRadius.none[3],
+    sm: _$YgRadius.sm[3],
+    xl: _$YgRadius.xl[3],
+    xs: _$YgRadius.xs[3],
+    xxl: _$YgRadius.xxl[3],
+    xxs: _$YgRadius.xxs[3],
+>>>>>>> main
   );
 
   static const themes = [

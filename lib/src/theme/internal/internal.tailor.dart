@@ -48,10 +48,19 @@ class YgInternalThemes extends ThemeExtension<YgInternalThemes> {
   }
 
   @override
+<<<<<<< HEAD
   YgInternalThemes lerp(covariant ThemeExtension<YgInternalThemes>? other, double t) {
     if (other is! YgInternalThemes) return this as YgInternalThemes;
     return YgInternalThemes(
       scrollShadowThemes: scrollShadowThemes.lerp(other.scrollShadowThemes, t) as YgScrollShadowThemes,
+=======
+  YgInternalTheme lerp(
+      covariant ThemeExtension<YgInternalTheme>? other, double t) {
+    if (other is! YgInternalTheme) return this as YgInternalTheme;
+    return YgInternalTheme(
+      scrollShadow:
+          scrollShadow.lerp(other.scrollShadow, t) as YgScrollShadowThemes,
+>>>>>>> main
     );
   }
 
@@ -67,7 +76,11 @@ class YgInternalThemes extends ThemeExtension<YgInternalThemes> {
   int get hashCode {
     return Object.hash(
       runtimeType.hashCode,
+<<<<<<< HEAD
       const DeepCollectionEquality().hash(scrollShadowThemes),
+=======
+      const DeepCollectionEquality().hash(scrollShadow),
+>>>>>>> main
     );
   }
 }

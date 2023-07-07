@@ -4,4 +4,5 @@ export 'buttons/_buttons.dart';
 export 'card/_card.dart';
 export 'dialog/_dialog.dart';
 export 'internal/_internal.dart';
+export 'text_link/_text_link.dart';
 export 'theme.dart';
