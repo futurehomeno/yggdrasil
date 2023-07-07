@@ -10,25 +10,25 @@ part of 'internal.dart';
 
 class YgInternalThemes extends ThemeExtension<YgInternalThemes> {
   const YgInternalThemes({
-    required this.scrollShadowThemes,
+    required this.scrollShadow,
   });
 
-  final YgScrollShadowThemes scrollShadowThemes;
+  final YgScrollShadowThemes scrollShadow;
 
   static final YgInternalThemes consumerLight = YgInternalThemes(
-    scrollShadowThemes: _$YgInternalTheme.scrollShadow[0],
+    scrollShadow: _$YgInternalThemes.scrollShadow[0],
   );
 
   static final YgInternalThemes consumerDark = YgInternalThemes(
-    scrollShadowThemes: _$YgInternalTheme.scrollShadow[1],
+    scrollShadow: _$YgInternalThemes.scrollShadow[1],
   );
 
   static final YgInternalThemes professionalLight = YgInternalThemes(
-    scrollShadowThemes: _$YgInternalTheme.scrollShadow[2],
+    scrollShadow: _$YgInternalThemes.scrollShadow[2],
   );
 
   static final YgInternalThemes professionalDark = YgInternalThemes(
-    scrollShadowThemes: _$YgInternalTheme.scrollShadow[3],
+    scrollShadow: _$YgInternalThemes.scrollShadow[3],
   );
 
   static final themes = [
@@ -43,15 +43,17 @@ class YgInternalThemes extends ThemeExtension<YgInternalThemes> {
     YgScrollShadowThemes? scrollShadow,
   }) {
     return YgInternalThemes(
-      scrollShadowThemes: scrollShadow ?? this.scrollShadowThemes,
+      scrollShadow: scrollShadow ?? this.scrollShadow,
     );
   }
 
   @override
-  YgInternalThemes lerp(covariant ThemeExtension<YgInternalThemes>? other, double t) {
+  YgInternalThemes lerp(
+      covariant ThemeExtension<YgInternalThemes>? other, double t) {
     if (other is! YgInternalThemes) return this as YgInternalThemes;
     return YgInternalThemes(
-      scrollShadowThemes: scrollShadowThemes.lerp(other.scrollShadowThemes, t) as YgScrollShadowThemes,
+      scrollShadow:
+          scrollShadow.lerp(other.scrollShadow, t) as YgScrollShadowThemes,
     );
   }
 
@@ -60,14 +62,15 @@ class YgInternalThemes extends ThemeExtension<YgInternalThemes> {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is YgInternalThemes &&
-            const DeepCollectionEquality().equals(scrollShadowThemes, other.scrollShadowThemes));
+            const DeepCollectionEquality()
+                .equals(scrollShadow, other.scrollShadow));
   }
 
   @override
   int get hashCode {
     return Object.hash(
       runtimeType.hashCode,
-      const DeepCollectionEquality().hash(scrollShadowThemes),
+      const DeepCollectionEquality().hash(scrollShadow),
     );
   }
 }

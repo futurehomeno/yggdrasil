@@ -5,5 +5,6 @@ export 'card/_card.dart';
 export 'dialog/_dialog.dart';
 export 'icon/_icon_themes.dart';
 export 'internal/_internal.dart';
+export 'text_link/_text_link.dart';
 export 'list_tile/_list_tile.dart';
 export 'theme.dart';

@@ -6,3 +6,4 @@ export 'dialog_screen.dart';
 export 'home_screen.dart';
 export 'list_tile_screen.dart';
 export 'tags_screen.dart';
+export 'text_link_screen.dart';

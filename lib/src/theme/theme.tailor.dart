@@ -19,6 +19,7 @@ class YgTheme extends ThemeExtension<YgTheme> {
     required this.internalThemes,
     required this.listTileThemes,
     required this.tagThemes,
+    required this.textLinkThemes,
     required this.tokens,
   });
 
@@ -31,6 +32,7 @@ class YgTheme extends ThemeExtension<YgTheme> {
   final YgInternalThemes internalThemes;
   final YgListTileThemes listTileThemes;
   final YgTagThemes tagThemes;
+  final YgTextLinkThemes textLinkThemes;
   final YgTokens tokens;
 
   static final YgTheme consumerLight = YgTheme(
@@ -43,6 +45,7 @@ class YgTheme extends ThemeExtension<YgTheme> {
     internalThemes: _$YgTheme.internalThemes[0],
     listTileThemes: _$YgTheme.listTileThemes[0],
     tagThemes: _$YgTheme.tagThemes[0],
+    textLinkThemes: _$YgTheme.textLinkThemes[0],
     tokens: _$YgTheme.tokens[0],
   );
 
@@ -56,6 +59,7 @@ class YgTheme extends ThemeExtension<YgTheme> {
     internalThemes: _$YgTheme.internalThemes[1],
     listTileThemes: _$YgTheme.listTileThemes[1],
     tagThemes: _$YgTheme.tagThemes[1],
+    textLinkThemes: _$YgTheme.textLinkThemes[1],
     tokens: _$YgTheme.tokens[1],
   );
 
@@ -69,6 +73,7 @@ class YgTheme extends ThemeExtension<YgTheme> {
     internalThemes: _$YgTheme.internalThemes[2],
     listTileThemes: _$YgTheme.listTileThemes[2],
     tagThemes: _$YgTheme.tagThemes[2],
+    textLinkThemes: _$YgTheme.textLinkThemes[2],
     tokens: _$YgTheme.tokens[2],
   );
 
@@ -82,6 +87,7 @@ class YgTheme extends ThemeExtension<YgTheme> {
     internalThemes: _$YgTheme.internalThemes[3],
     listTileThemes: _$YgTheme.listTileThemes[3],
     tagThemes: _$YgTheme.tagThemes[3],
+    textLinkThemes: _$YgTheme.textLinkThemes[3],
     tokens: _$YgTheme.tokens[3],
   );
 
@@ -103,6 +109,7 @@ class YgTheme extends ThemeExtension<YgTheme> {
     YgInternalThemes? internalThemes,
     YgListTileThemes? listTileThemes,
     YgTagThemes? tagThemes,
+    YgTextLinkThemes? textLinkThemes,
     YgTokens? tokens,
   }) {
     return YgTheme(
@@ -115,6 +122,7 @@ class YgTheme extends ThemeExtension<YgTheme> {
       internalThemes: internalThemes ?? this.internalThemes,
       listTileThemes: listTileThemes ?? this.listTileThemes,
       tagThemes: tagThemes ?? this.tagThemes,
+      textLinkThemes: textLinkThemes ?? this.textLinkThemes,
       tokens: tokens ?? this.tokens,
     );
   }
@@ -135,6 +143,8 @@ class YgTheme extends ThemeExtension<YgTheme> {
       listTileThemes:
           listTileThemes.lerp(other.listTileThemes, t) as YgListTileThemes,
       tagThemes: tagThemes.lerp(other.tagThemes, t) as YgTagThemes,
+      textLinkThemes:
+          textLinkThemes.lerp(other.textLinkThemes, t) as YgTextLinkThemes,
       tokens: tokens.lerp(other.tokens, t) as YgTokens,
     );
   }
@@ -161,6 +171,8 @@ class YgTheme extends ThemeExtension<YgTheme> {
             const DeepCollectionEquality()
                 .equals(listTileThemes, other.listTileThemes) &&
             const DeepCollectionEquality().equals(tagThemes, other.tagThemes) &&
+            const DeepCollectionEquality()
+                .equals(textLinkThemes, other.textLinkThemes) &&
             const DeepCollectionEquality().equals(tokens, other.tokens));
   }
 
@@ -177,6 +189,7 @@ class YgTheme extends ThemeExtension<YgTheme> {
       const DeepCollectionEquality().hash(internalThemes),
       const DeepCollectionEquality().hash(listTileThemes),
       const DeepCollectionEquality().hash(tagThemes),
+      const DeepCollectionEquality().hash(textLinkThemes),
       const DeepCollectionEquality().hash(tokens),
     );
   }
@@ -193,5 +206,6 @@ extension YgThemeBuildContextProps on BuildContext {
   YgInternalThemes get internalThemes => ygTheme.internalThemes;
   YgListTileThemes get listTileThemes => ygTheme.listTileThemes;
   YgTagThemes get tagThemes => ygTheme.tagThemes;
+  YgTextLinkThemes get textLinkThemes => ygTheme.textLinkThemes;
   YgTokens get tokens => ygTheme.tokens;
 }

@@ -24,35 +24,35 @@ class YgBadgeThemes extends ThemeExtension<YgBadgeThemes> {
   final TextStyle weakTextStyle;
 
   static final YgBadgeThemes consumerLight = YgBadgeThemes(
-    borderRadius: _$YgBadgeTheme.borderRadius[0],
-    strongColor: _$YgBadgeTheme.strongColor[0],
-    strongTextStyle: _$YgBadgeTheme.strongTextStyle[0],
-    weakColor: _$YgBadgeTheme.weakColor[0],
-    weakTextStyle: _$YgBadgeTheme.weakTextStyle[0],
+    borderRadius: _$YgBadgeThemes.borderRadius[0],
+    strongColor: _$YgBadgeThemes.strongColor[0],
+    strongTextStyle: _$YgBadgeThemes.strongTextStyle[0],
+    weakColor: _$YgBadgeThemes.weakColor[0],
+    weakTextStyle: _$YgBadgeThemes.weakTextStyle[0],
   );
 
   static final YgBadgeThemes consumerDark = YgBadgeThemes(
-    borderRadius: _$YgBadgeTheme.borderRadius[1],
-    strongColor: _$YgBadgeTheme.strongColor[1],
-    strongTextStyle: _$YgBadgeTheme.strongTextStyle[1],
-    weakColor: _$YgBadgeTheme.weakColor[1],
-    weakTextStyle: _$YgBadgeTheme.weakTextStyle[1],
+    borderRadius: _$YgBadgeThemes.borderRadius[1],
+    strongColor: _$YgBadgeThemes.strongColor[1],
+    strongTextStyle: _$YgBadgeThemes.strongTextStyle[1],
+    weakColor: _$YgBadgeThemes.weakColor[1],
+    weakTextStyle: _$YgBadgeThemes.weakTextStyle[1],
   );
 
   static final YgBadgeThemes professionalLight = YgBadgeThemes(
-    borderRadius: _$YgBadgeTheme.borderRadius[2],
-    strongColor: _$YgBadgeTheme.strongColor[2],
-    strongTextStyle: _$YgBadgeTheme.strongTextStyle[2],
-    weakColor: _$YgBadgeTheme.weakColor[2],
-    weakTextStyle: _$YgBadgeTheme.weakTextStyle[2],
+    borderRadius: _$YgBadgeThemes.borderRadius[2],
+    strongColor: _$YgBadgeThemes.strongColor[2],
+    strongTextStyle: _$YgBadgeThemes.strongTextStyle[2],
+    weakColor: _$YgBadgeThemes.weakColor[2],
+    weakTextStyle: _$YgBadgeThemes.weakTextStyle[2],
   );
 
   static final YgBadgeThemes professionalDark = YgBadgeThemes(
-    borderRadius: _$YgBadgeTheme.borderRadius[3],
-    strongColor: _$YgBadgeTheme.strongColor[3],
-    strongTextStyle: _$YgBadgeTheme.strongTextStyle[3],
-    weakColor: _$YgBadgeTheme.weakColor[3],
-    weakTextStyle: _$YgBadgeTheme.weakTextStyle[3],
+    borderRadius: _$YgBadgeThemes.borderRadius[3],
+    strongColor: _$YgBadgeThemes.strongColor[3],
+    strongTextStyle: _$YgBadgeThemes.strongTextStyle[3],
+    weakColor: _$YgBadgeThemes.weakColor[3],
+    weakTextStyle: _$YgBadgeThemes.weakTextStyle[3],
   );
 
   static final themes = [
@@ -85,7 +85,8 @@ class YgBadgeThemes extends ThemeExtension<YgBadgeThemes> {
     return YgBadgeThemes(
       borderRadius: t < 0.5 ? borderRadius : other.borderRadius,
       strongColor: Color.lerp(strongColor, other.strongColor, t)!,
-      strongTextStyle: TextStyle.lerp(strongTextStyle, other.strongTextStyle, t)!,
+      strongTextStyle:
+          TextStyle.lerp(strongTextStyle, other.strongTextStyle, t)!,
       weakColor: Color.lerp(weakColor, other.weakColor, t)!,
       weakTextStyle: TextStyle.lerp(weakTextStyle, other.weakTextStyle, t)!,
     );
@@ -96,11 +97,15 @@ class YgBadgeThemes extends ThemeExtension<YgBadgeThemes> {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is YgBadgeThemes &&
-            const DeepCollectionEquality().equals(borderRadius, other.borderRadius) &&
-            const DeepCollectionEquality().equals(strongColor, other.strongColor) &&
-            const DeepCollectionEquality().equals(strongTextStyle, other.strongTextStyle) &&
+            const DeepCollectionEquality()
+                .equals(borderRadius, other.borderRadius) &&
+            const DeepCollectionEquality()
+                .equals(strongColor, other.strongColor) &&
+            const DeepCollectionEquality()
+                .equals(strongTextStyle, other.strongTextStyle) &&
             const DeepCollectionEquality().equals(weakColor, other.weakColor) &&
-            const DeepCollectionEquality().equals(weakTextStyle, other.weakTextStyle));
+            const DeepCollectionEquality()
+                .equals(weakTextStyle, other.weakTextStyle));
   }
 
   @override

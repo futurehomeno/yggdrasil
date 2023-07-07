@@ -1,0 +1,4 @@
+enum YgTextLinkSize {
+  small,
+  medium,
+}

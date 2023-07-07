@@ -65,6 +65,12 @@ class HomeScreen extends StatelessWidget {
               sl<YgRouter>().push(TagsScreen.route());
             },
           ),
+          ListTile(
+            title: const Text('Text link'),
+            onTap: () {
+              sl<YgRouter>().push(TextLinkScreen.route());
+            },
+          ),
         ],
       ),
     );

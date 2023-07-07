@@ -1,0 +1,4 @@
+enum YgTextLinkWeight {
+  weak,
+  strong,
+}

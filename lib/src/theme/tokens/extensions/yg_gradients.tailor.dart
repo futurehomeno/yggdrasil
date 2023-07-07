@@ -31,63 +31,55 @@ class YgGradient extends ThemeExtension<YgGradient> {
   final dynamic actionSecondarySelected;
   final dynamic backgroundGradient;
 
-  static const YgGradient consumerLight = YgGradient(
-    actionPrimaryDefault: consumer_light.FhGradients.actionPrimaryDefault,
-    actionPrimaryHovered: consumer_light.FhGradients.actionPrimaryHovered,
-    actionPrimaryPressed: consumer_light.FhGradients.actionPrimaryPressed,
-    actionPrimarySelected: consumer_light.FhGradients.actionPrimarySelected,
-    actionSecondaryDefault: consumer_light.FhGradients.actionSecondaryDefault,
-    actionSecondaryHovered: consumer_light.FhGradients.actionSecondaryHovered,
-    actionSecondaryPressed: consumer_light.FhGradients.actionSecondaryPressed,
-    actionSecondarySelected: consumer_light.FhGradients.actionSecondarySelected,
-    backgroundGradient: consumer_light.FhGradients.backgroundGradient,
+  static final YgGradient consumerLight = YgGradient(
+    actionPrimaryDefault: _$YgGradient.actionPrimaryDefault[0],
+    actionPrimaryHovered: _$YgGradient.actionPrimaryHovered[0],
+    actionPrimaryPressed: _$YgGradient.actionPrimaryPressed[0],
+    actionPrimarySelected: _$YgGradient.actionPrimarySelected[0],
+    actionSecondaryDefault: _$YgGradient.actionSecondaryDefault[0],
+    actionSecondaryHovered: _$YgGradient.actionSecondaryHovered[0],
+    actionSecondaryPressed: _$YgGradient.actionSecondaryPressed[0],
+    actionSecondarySelected: _$YgGradient.actionSecondarySelected[0],
+    backgroundGradient: _$YgGradient.backgroundGradient[0],
   );
 
-  static const YgGradient consumerDark = YgGradient(
-    actionPrimaryDefault: consumer_dark.FhGradients.actionPrimaryDefault,
-    actionPrimaryHovered: consumer_dark.FhGradients.actionPrimaryHovered,
-    actionPrimaryPressed: consumer_dark.FhGradients.actionPrimaryPressed,
-    actionPrimarySelected: consumer_dark.FhGradients.actionPrimarySelected,
-    actionSecondaryDefault: consumer_dark.FhGradients.actionSecondaryDefault,
-    actionSecondaryHovered: consumer_dark.FhGradients.actionSecondaryHovered,
-    actionSecondaryPressed: consumer_dark.FhGradients.actionSecondaryPressed,
-    actionSecondarySelected: consumer_dark.FhGradients.actionSecondarySelected,
-    backgroundGradient: consumer_dark.FhGradients.backgroundGradient,
+  static final YgGradient consumerDark = YgGradient(
+    actionPrimaryDefault: _$YgGradient.actionPrimaryDefault[1],
+    actionPrimaryHovered: _$YgGradient.actionPrimaryHovered[1],
+    actionPrimaryPressed: _$YgGradient.actionPrimaryPressed[1],
+    actionPrimarySelected: _$YgGradient.actionPrimarySelected[1],
+    actionSecondaryDefault: _$YgGradient.actionSecondaryDefault[1],
+    actionSecondaryHovered: _$YgGradient.actionSecondaryHovered[1],
+    actionSecondaryPressed: _$YgGradient.actionSecondaryPressed[1],
+    actionSecondarySelected: _$YgGradient.actionSecondarySelected[1],
+    backgroundGradient: _$YgGradient.backgroundGradient[1],
   );
 
-  static const YgGradient professionalLight = YgGradient(
-    actionPrimaryDefault: professional_light.FhGradients.actionPrimaryDefault,
-    actionPrimaryHovered: professional_light.FhGradients.actionPrimaryHovered,
-    actionPrimaryPressed: professional_light.FhGradients.actionPrimaryPressed,
-    actionPrimarySelected: professional_light.FhGradients.actionPrimarySelected,
-    actionSecondaryDefault:
-        professional_light.FhGradients.actionSecondaryDefault,
-    actionSecondaryHovered:
-        professional_light.FhGradients.actionSecondaryHovered,
-    actionSecondaryPressed:
-        professional_light.FhGradients.actionSecondaryPressed,
-    actionSecondarySelected:
-        professional_light.FhGradients.actionSecondarySelected,
-    backgroundGradient: professional_light.FhGradients.backgroundGradient,
+  static final YgGradient professionalLight = YgGradient(
+    actionPrimaryDefault: _$YgGradient.actionPrimaryDefault[2],
+    actionPrimaryHovered: _$YgGradient.actionPrimaryHovered[2],
+    actionPrimaryPressed: _$YgGradient.actionPrimaryPressed[2],
+    actionPrimarySelected: _$YgGradient.actionPrimarySelected[2],
+    actionSecondaryDefault: _$YgGradient.actionSecondaryDefault[2],
+    actionSecondaryHovered: _$YgGradient.actionSecondaryHovered[2],
+    actionSecondaryPressed: _$YgGradient.actionSecondaryPressed[2],
+    actionSecondarySelected: _$YgGradient.actionSecondarySelected[2],
+    backgroundGradient: _$YgGradient.backgroundGradient[2],
   );
 
-  static const YgGradient professionalDark = YgGradient(
-    actionPrimaryDefault: professional_dark.FhGradients.actionPrimaryDefault,
-    actionPrimaryHovered: professional_dark.FhGradients.actionPrimaryHovered,
-    actionPrimaryPressed: professional_dark.FhGradients.actionPrimaryPressed,
-    actionPrimarySelected: professional_dark.FhGradients.actionPrimarySelected,
-    actionSecondaryDefault:
-        professional_dark.FhGradients.actionSecondaryDefault,
-    actionSecondaryHovered:
-        professional_dark.FhGradients.actionSecondaryHovered,
-    actionSecondaryPressed:
-        professional_dark.FhGradients.actionSecondaryPressed,
-    actionSecondarySelected:
-        professional_dark.FhGradients.actionSecondarySelected,
-    backgroundGradient: professional_dark.FhGradients.backgroundGradient,
+  static final YgGradient professionalDark = YgGradient(
+    actionPrimaryDefault: _$YgGradient.actionPrimaryDefault[3],
+    actionPrimaryHovered: _$YgGradient.actionPrimaryHovered[3],
+    actionPrimaryPressed: _$YgGradient.actionPrimaryPressed[3],
+    actionPrimarySelected: _$YgGradient.actionPrimarySelected[3],
+    actionSecondaryDefault: _$YgGradient.actionSecondaryDefault[3],
+    actionSecondaryHovered: _$YgGradient.actionSecondaryHovered[3],
+    actionSecondaryPressed: _$YgGradient.actionSecondaryPressed[3],
+    actionSecondarySelected: _$YgGradient.actionSecondarySelected[3],
+    backgroundGradient: _$YgGradient.backgroundGradient[3],
   );
 
-  static const themes = [
+  static final themes = [
     consumerLight,
     consumerDark,
     professionalLight,

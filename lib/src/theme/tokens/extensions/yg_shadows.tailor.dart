@@ -11,15 +11,15 @@ part of 'yg_shadows.dart';
 class YgShadow extends ThemeExtension<YgShadow> {
   const YgShadow();
 
-  static const YgShadow consumerLight = YgShadow();
+  static final YgShadow consumerLight = YgShadow();
 
-  static const YgShadow consumerDark = YgShadow();
+  static final YgShadow consumerDark = YgShadow();
 
-  static const YgShadow professionalLight = YgShadow();
+  static final YgShadow professionalLight = YgShadow();
 
-  static const YgShadow professionalDark = YgShadow();
+  static final YgShadow professionalDark = YgShadow();
 
-  static const themes = [
+  static final themes = [
     consumerLight,
     consumerDark,
     professionalLight,

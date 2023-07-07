@@ -10,7 +10,11 @@ environment:
 dependencies:
   flutter:
     sdk: flutter
-  theme_tailor_annotation: 2.0.0
+  theme_tailor_annotation: 
+    git:
+      ref: main
+      url: git@github.com:futurehomeno/theme_tailor.git
+      path: packages/theme_tailor_annotation
 
 dev_dependencies:
   # Run `flutter pub run build_runner build --delete-conflicting-outputs` in order to generate stuff.
@@ -22,7 +26,11 @@ dev_dependencies:
       path: packages/fh_lints
   flutter_test:
     sdk: flutter
-  theme_tailor: 2.0.0
+  theme_tailor:
+    git:
+      ref: main
+      url: git@github.com:futurehomeno/theme_tailor.git
+      path: packages/theme_tailor
 
 flutter:
   uses-material-design: true

@@ -45,10 +45,10 @@ packages:
     dependency: transitive
     description:
       name: build
-      sha256: "80184af8b6cb3e5c1c4ec6d8544d27711700bc3e6d2efad04238c7b5290889f0"
+      sha256: "43865b79fbb78532e4bff7c33087aa43b1d488c4fdef014eaef568af6d8016dc"
       url: "https://pub.dev"
     source: hosted
-    version: "2.4.1"
+    version: "2.4.0"
   build_config:
     dependency: transitive
     description:
@@ -206,7 +206,7 @@ packages:
     description:
       path: "packages/fh_lints"
       ref: master
-      resolved-ref: "2494bccb5dab8e866c23a65e941970bfb2e358a5"
+      resolved-ref: dfe8c6b974e677fa6056b523fc0dc75bd66a3397
       url: "git@github.com:futurehomeno/pubdev_registry.git"
     source: git
     version: "1.0.0"
@@ -453,26 +453,26 @@ packages:
     dependency: transitive
     description:
       name: source_gen
-      sha256: fc0da689e5302edb6177fdd964efcb7f58912f43c28c2047a808f5bfff643d16
+      sha256: "373f96cf5a8744bc9816c1ff41cf5391bbdbe3d7a96fe98c622b6738a8a7bd33"
       url: "https://pub.dev"
     source: hosted
-    version: "1.4.0"
+    version: "1.3.2"
   source_gen_test:
     dependency: transitive
     description:
       name: source_gen_test
-      sha256: "0929da347d2dd868fed3a278b52ab4bf4467cff9a8cae40b6abbd6e96e5c4840"
+      sha256: "81f7516adf14d43bafcc2bfb906630514d079739d85c7b2dc11dc1233f2c3bf5"
       url: "https://pub.dev"
     source: hosted
-    version: "1.0.6"
+    version: "1.0.5"
   source_helper:
     dependency: transitive
     description:
       name: source_helper
-      sha256: "6adebc0006c37dd63fe05bca0a929b99f06402fc95aa35bf36d67f5c06de01fd"
+      sha256: "3b67aade1d52416149c633ba1bb36df44d97c6b51830c2198e934e3fca87ca1f"
       url: "https://pub.dev"
     source: hosted
-    version: "1.3.4"
+    version: "1.3.3"
   source_map_stack_trace:
     dependency: transitive
     description:
@@ -564,18 +564,20 @@ packages:
   theme_tailor:
     dependency: "direct dev"
     description:
-      name: theme_tailor
-      sha256: ef13093d0c2779830a17d2a4f41a0a48ef130fa4f7383541a96b5b2f26478e56
-      url: "https://pub.dev"
-    source: hosted
+      path: "packages/theme_tailor"
+      ref: main
+      resolved-ref: "33a7ae4f8756ef7807bc6edeed56ec46783346df"
+      url: "git@github.com:futurehomeno/theme_tailor.git"
+    source: git
     version: "2.0.0"
   theme_tailor_annotation:
     dependency: "direct main"
     description:
-      name: theme_tailor_annotation
-      sha256: e75cf627202816cf4b45910658205959524860b99951bd0d370e760bf3546424
-      url: "https://pub.dev"
-    source: hosted
+      path: "packages/theme_tailor_annotation"
+      ref: main
+      resolved-ref: "33a7ae4f8756ef7807bc6edeed56ec46783346df"
+      url: "git@github.com:futurehomeno/theme_tailor.git"
+    source: git
     version: "2.0.0"
   timing:
     dependency: transitive
