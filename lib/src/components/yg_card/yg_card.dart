@@ -28,6 +28,7 @@ class YgCard extends StatelessWidget {
         shape: variant.getShape(cardThemes),
         elevation: variant.getElevation(cardThemes),
         borderOnForeground: false,
+        clipBehavior: Clip.antiAlias,
         child: child,
       ),
     );

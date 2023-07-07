@@ -11,7 +11,7 @@ class YgTag extends ButtonStyleButton {
     required this.variant,
     this.size = YgTagSize.medium,
     this.impact = YgTagImpact.weak,
-    required super.onPressed,
+    super.onPressed,
     super.onLongPress,
     super.onHover,
     super.onFocusChange,
