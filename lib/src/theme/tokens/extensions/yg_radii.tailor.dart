@@ -29,50 +29,6 @@ class YgRadius extends ThemeExtension<YgRadius> {
   final BorderRadius xxl;
   final BorderRadius xxs;
 
-<<<<<<< HEAD
-  static const YgRadius consumerLight = YgRadius(
-    lg: consumer_light.FhRadii.lg,
-    md: consumer_light.FhRadii.md,
-    none: consumer_light.FhRadii.none,
-    sm: consumer_light.FhRadii.sm,
-    xl: consumer_light.FhRadii.xl,
-    xs: consumer_light.FhRadii.xs,
-    xxl: consumer_light.FhRadii.xxl,
-    xxs: consumer_light.FhRadii.xxs,
-  );
-
-  static const YgRadius consumerDark = YgRadius(
-    lg: consumer_dark.FhRadii.lg,
-    md: consumer_dark.FhRadii.md,
-    none: consumer_dark.FhRadii.none,
-    sm: consumer_dark.FhRadii.sm,
-    xl: consumer_dark.FhRadii.xl,
-    xs: consumer_dark.FhRadii.xs,
-    xxl: consumer_dark.FhRadii.xxl,
-    xxs: consumer_dark.FhRadii.xxs,
-  );
-
-  static const YgRadius professionalLight = YgRadius(
-    lg: professional_light.FhRadii.lg,
-    md: professional_light.FhRadii.md,
-    none: professional_light.FhRadii.none,
-    sm: professional_light.FhRadii.sm,
-    xl: professional_light.FhRadii.xl,
-    xs: professional_light.FhRadii.xs,
-    xxl: professional_light.FhRadii.xxl,
-    xxs: professional_light.FhRadii.xxs,
-  );
-
-  static const YgRadius professionalDark = YgRadius(
-    lg: professional_dark.FhRadii.lg,
-    md: professional_dark.FhRadii.md,
-    none: professional_dark.FhRadii.none,
-    sm: professional_dark.FhRadii.sm,
-    xl: professional_dark.FhRadii.xl,
-    xs: professional_dark.FhRadii.xs,
-    xxl: professional_dark.FhRadii.xxl,
-    xxs: professional_dark.FhRadii.xxs,
-=======
   static final YgRadius consumerLight = YgRadius(
     lg: _$YgRadius.lg[0],
     md: _$YgRadius.md[0],
@@ -115,10 +71,9 @@ class YgRadius extends ThemeExtension<YgRadius> {
     xs: _$YgRadius.xs[3],
     xxl: _$YgRadius.xxl[3],
     xxs: _$YgRadius.xxs[3],
->>>>>>> main
   );
 
-  static const themes = [
+  static final themes = [
     consumerLight,
     consumerDark,
     professionalLight,

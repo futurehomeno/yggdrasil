@@ -21,7 +21,6 @@ class TextLinkScreen extends StatelessWidget {
       componentName: 'Text Link',
       componentDesc: 'Text Link',
       supernovaLink: 'Link',
-      scrollable: false,
       child: Column(
         children: <Widget>[
           YgTextLink(

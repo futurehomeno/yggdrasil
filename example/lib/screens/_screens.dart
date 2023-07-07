@@ -5,3 +5,4 @@ export 'card_screen.dart';
 export 'dialog_screen.dart';
 export 'home_screen.dart';
 export 'tags_screen.dart';
+export 'text_link_screen.dart';

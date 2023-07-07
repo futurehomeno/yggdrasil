@@ -1,6 +1,5 @@
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
-import 'package:yggdrasil/src/components/yg_text_link/_yg_text_link.dart';
 import 'package:yggdrasil/yggdrasil.dart';
 
 @immutable
@@ -11,7 +10,7 @@ class YgTextLinkTextStyleProperty extends MaterialStateProperty<TextStyle?> with
     required this.weight,
   });
 
-  final YgTextLinkTheme theme;
+  final YgTextLinkThemes theme;
   final YgTextLinkSize size;
   final YgTextLinkWeight weight;
 

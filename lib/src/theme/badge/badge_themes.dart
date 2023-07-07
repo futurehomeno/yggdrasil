@@ -8,7 +8,7 @@ import 'package:yggdrasil/src/tokens/professional_light/_professional_light.dart
 part 'badge_themes.tailor.dart';
 
 @tailorComponent
-class _$YgBadgeTheme {
+class _$YgBadgeThemes {
   static List<TextStyle> weakTextStyle = <TextStyle>[
     consumer_light.FhTextStyles.caption1Bold.copyWith(
       color: consumer_light.FhColors.textDefault,

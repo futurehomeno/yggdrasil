@@ -31,7 +31,7 @@ class YgTextLink extends ButtonStyleButton {
 
   @override
   ButtonStyle defaultStyleOf(BuildContext context) {
-    final YgTextLinkTheme theme = context.textLinkTheme;
+    final YgTextLinkThemes theme = context.textLinkThemes;
 
     return ButtonStyle(
       backgroundColor: ButtonStyleButton.allOrNull(Colors.transparent),
@@ -81,7 +81,7 @@ class _YgTextLinkContent extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final YgTextLinkTheme theme = context.textLinkTheme;
+    final YgTextLinkThemes theme = context.textLinkThemes;
 
     return Row(
       mainAxisSize: MainAxisSize.min,

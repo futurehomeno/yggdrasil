@@ -5,10 +5,10 @@ import 'package:yggdrasil/src/tokens/consumer_light/_consumer_light.dart' as con
 import 'package:yggdrasil/src/tokens/professional_dark/_professional_dark.dart' as professional_dark;
 import 'package:yggdrasil/src/tokens/professional_light/_professional_light.dart' as professional_light;
 
-part 'text_link_theme.tailor.dart';
+part 'text_link_themes.tailor.dart';
 
 @tailorComponent
-class _$YgTextLinkTheme {
+class _$YgTextLinkThemes {
   static List<TextStyle> smallWeakTextStyle = <TextStyle>[
     consumer_light.FhTextStyles.caption1Regular,
     consumer_dark.FhTextStyles.caption1Regular,

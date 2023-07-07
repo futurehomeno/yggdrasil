@@ -15,18 +15,10 @@ dependencies:
       ref: main
       url: git@github.com:futurehomeno/theme_tailor.git
       path: packages/theme_tailor_annotation
-  fh_utils:
-    git:
-      ref: master # to-branch-script-tag
-      url: git@github.com:futurehomeno/pubdev_registry.git
-      path: packages/fh_utils
 
 dev_dependencies:
   # Run `flutter pub run build_runner build --delete-conflicting-outputs` in order to generate stuff.
   build_runner: 2.4.6
-  build_runner_core: 7.2.10
-  analyzer: 5.13.0
-  mockito: 5.4.2
   fh_lints:
     git:
       ref: master # to-branch-script-tag
