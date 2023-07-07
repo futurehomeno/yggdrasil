@@ -3,5 +3,7 @@ export 'bottom_sheet/_bottom_sheet.dart';
 export 'buttons/_buttons.dart';
 export 'card/_card.dart';
 export 'dialog/_dialog.dart';
+export 'icon/_icon_themes.dart';
 export 'internal/_internal.dart';
+export 'list_tile/_list_tile.dart';
 export 'theme.dart';

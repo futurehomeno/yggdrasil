@@ -15,7 +15,9 @@ class YgTheme extends ThemeExtension<YgTheme> {
     required this.buttonThemes,
     required this.cardThemes,
     required this.dialogThemes,
+    required this.iconThemes,
     required this.internalThemes,
+    required this.listTileThemes,
     required this.tagThemes,
     required this.tokens,
   });
@@ -25,7 +27,9 @@ class YgTheme extends ThemeExtension<YgTheme> {
   final YgButtonThemes buttonThemes;
   final YgCardThemes cardThemes;
   final YgDialogThemes dialogThemes;
+  final YgIconThemes iconThemes;
   final YgInternalThemes internalThemes;
+  final YgListTileThemes listTileThemes;
   final YgTagThemes tagThemes;
   final YgTokens tokens;
 
@@ -35,7 +39,9 @@ class YgTheme extends ThemeExtension<YgTheme> {
     buttonThemes: _$YgTheme.buttonThemes[0],
     cardThemes: _$YgTheme.cardThemes[0],
     dialogThemes: _$YgTheme.dialogThemes[0],
+    iconThemes: _$YgTheme.iconThemes[0],
     internalThemes: _$YgTheme.internalThemes[0],
+    listTileThemes: _$YgTheme.listTileThemes[0],
     tagThemes: _$YgTheme.tagThemes[0],
     tokens: _$YgTheme.tokens[0],
   );
@@ -46,7 +52,9 @@ class YgTheme extends ThemeExtension<YgTheme> {
     buttonThemes: _$YgTheme.buttonThemes[1],
     cardThemes: _$YgTheme.cardThemes[1],
     dialogThemes: _$YgTheme.dialogThemes[1],
+    iconThemes: _$YgTheme.iconThemes[1],
     internalThemes: _$YgTheme.internalThemes[1],
+    listTileThemes: _$YgTheme.listTileThemes[1],
     tagThemes: _$YgTheme.tagThemes[1],
     tokens: _$YgTheme.tokens[1],
   );
@@ -57,7 +65,9 @@ class YgTheme extends ThemeExtension<YgTheme> {
     buttonThemes: _$YgTheme.buttonThemes[2],
     cardThemes: _$YgTheme.cardThemes[2],
     dialogThemes: _$YgTheme.dialogThemes[2],
+    iconThemes: _$YgTheme.iconThemes[2],
     internalThemes: _$YgTheme.internalThemes[2],
+    listTileThemes: _$YgTheme.listTileThemes[2],
     tagThemes: _$YgTheme.tagThemes[2],
     tokens: _$YgTheme.tokens[2],
   );
@@ -68,7 +78,9 @@ class YgTheme extends ThemeExtension<YgTheme> {
     buttonThemes: _$YgTheme.buttonThemes[3],
     cardThemes: _$YgTheme.cardThemes[3],
     dialogThemes: _$YgTheme.dialogThemes[3],
+    iconThemes: _$YgTheme.iconThemes[3],
     internalThemes: _$YgTheme.internalThemes[3],
+    listTileThemes: _$YgTheme.listTileThemes[3],
     tagThemes: _$YgTheme.tagThemes[3],
     tokens: _$YgTheme.tokens[3],
   );
@@ -87,7 +99,9 @@ class YgTheme extends ThemeExtension<YgTheme> {
     YgButtonThemes? buttonThemes,
     YgCardThemes? cardThemes,
     YgDialogThemes? dialogThemes,
+    YgIconThemes? iconThemes,
     YgInternalThemes? internalThemes,
+    YgListTileThemes? listTileThemes,
     YgTagThemes? tagThemes,
     YgTokens? tokens,
   }) {
@@ -97,7 +111,9 @@ class YgTheme extends ThemeExtension<YgTheme> {
       buttonThemes: buttonThemes ?? this.buttonThemes,
       cardThemes: cardThemes ?? this.cardThemes,
       dialogThemes: dialogThemes ?? this.dialogThemes,
+      iconThemes: iconThemes ?? this.iconThemes,
       internalThemes: internalThemes ?? this.internalThemes,
+      listTileThemes: listTileThemes ?? this.listTileThemes,
       tagThemes: tagThemes ?? this.tagThemes,
       tokens: tokens ?? this.tokens,
     );
@@ -113,8 +129,11 @@ class YgTheme extends ThemeExtension<YgTheme> {
       buttonThemes: buttonThemes.lerp(other.buttonThemes, t) as YgButtonThemes,
       cardThemes: cardThemes.lerp(other.cardThemes, t) as YgCardThemes,
       dialogThemes: dialogThemes.lerp(other.dialogThemes, t) as YgDialogThemes,
+      iconThemes: iconThemes.lerp(other.iconThemes, t) as YgIconThemes,
       internalThemes:
           internalThemes.lerp(other.internalThemes, t) as YgInternalThemes,
+      listTileThemes:
+          listTileThemes.lerp(other.listTileThemes, t) as YgListTileThemes,
       tagThemes: tagThemes.lerp(other.tagThemes, t) as YgTagThemes,
       tokens: tokens.lerp(other.tokens, t) as YgTokens,
     );
@@ -136,7 +155,11 @@ class YgTheme extends ThemeExtension<YgTheme> {
             const DeepCollectionEquality()
                 .equals(dialogThemes, other.dialogThemes) &&
             const DeepCollectionEquality()
+                .equals(iconThemes, other.iconThemes) &&
+            const DeepCollectionEquality()
                 .equals(internalThemes, other.internalThemes) &&
+            const DeepCollectionEquality()
+                .equals(listTileThemes, other.listTileThemes) &&
             const DeepCollectionEquality().equals(tagThemes, other.tagThemes) &&
             const DeepCollectionEquality().equals(tokens, other.tokens));
   }
@@ -150,7 +173,9 @@ class YgTheme extends ThemeExtension<YgTheme> {
       const DeepCollectionEquality().hash(buttonThemes),
       const DeepCollectionEquality().hash(cardThemes),
       const DeepCollectionEquality().hash(dialogThemes),
+      const DeepCollectionEquality().hash(iconThemes),
       const DeepCollectionEquality().hash(internalThemes),
+      const DeepCollectionEquality().hash(listTileThemes),
       const DeepCollectionEquality().hash(tagThemes),
       const DeepCollectionEquality().hash(tokens),
     );
@@ -164,7 +189,9 @@ extension YgThemeBuildContextProps on BuildContext {
   YgButtonThemes get buttonThemes => ygTheme.buttonThemes;
   YgCardThemes get cardThemes => ygTheme.cardThemes;
   YgDialogThemes get dialogThemes => ygTheme.dialogThemes;
+  YgIconThemes get iconThemes => ygTheme.iconThemes;
   YgInternalThemes get internalThemes => ygTheme.internalThemes;
+  YgListTileThemes get listTileThemes => ygTheme.listTileThemes;
   YgTagThemes get tagThemes => ygTheme.tagThemes;
   YgTokens get tokens => ygTheme.tokens;
 }

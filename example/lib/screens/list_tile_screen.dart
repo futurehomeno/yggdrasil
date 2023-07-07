@@ -1,0 +1,160 @@
+import 'package:flutter/material.dart';
+import 'package:yggdrasil/yggdrasil.dart';
+import 'package:yggdrasil_demo/core/_core.dart';
+import 'package:yggdrasil_demo/widgets/_widgets.dart';
+
+class ListTileScreen extends StatelessWidget {
+  const ListTileScreen({super.key});
+
+  static const String routeName = 'ListTileScreen';
+
+  static PageRouteBuilder<Widget> route() {
+    return YgRouteBuilder().fadeTransition(
+      settings: const RouteSettings(name: routeName),
+      screen: const ListTileScreen(),
+    );
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return YgScreen(
+      componentName: 'ListTile',
+      componentDesc: 'ListTiles',
+      supernovaLink: 'Link',
+      child: SingleChildScrollView(
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.stretch,
+          children: <Widget>[
+            YgListTile(
+              title: 'Title',
+            ),
+            YgListTile(
+              title: 'Title',
+              subtitle: 'Bacon ipsum dolor amet chicken frankfurter burgdoggen landjaeger sirloin ham pig.',
+            ),
+            YgListTile(
+              title: 'Title',
+              subtitle: 'Bacon ipsum dolor amet chicken frankfurter burgdoggen landjaeger sirloin ham pig.',
+              leadingWidgets: const <Widget>[
+                YgIcon(icon: 'asd', iconSize: YgIconSize.medium),
+              ],
+            ),
+            YgListTile(
+              title: 'Title',
+              subtitle: 'Bacon ipsum dolor amet chicken frankfurter burgdoggen landjaeger sirloin ham pig.',
+              leadingWidgets: const <Widget>[
+                YgIcon(icon: 'asd', iconSize: YgIconSize.medium),
+                YgIcon(icon: 'asd', iconSize: YgIconSize.medium),
+              ],
+            ),
+            YgListTile(
+              title: 'Title',
+              subtitle: 'Bacon ipsum dolor amet chicken frankfurter burgdoggen landjaeger sirloin ham pig.',
+              leadingWidgets: const <Widget>[
+                YgIcon(icon: 'asd', iconSize: YgIconSize.medium),
+                YgIcon(icon: 'asd', iconSize: YgIconSize.medium),
+              ],
+              trailingWidgets: const <Widget>[
+                YgIcon(icon: 'asd', iconSize: YgIconSize.medium),
+              ],
+            ),
+            YgListTile(
+              title: 'Title',
+              subtitle: 'Bacon ipsum dolor amet chicken frankfurter burgdoggen landjaeger sirloin ham pig.',
+              leadingWidgets: const <Widget>[
+                YgIcon(icon: 'asd', iconSize: YgIconSize.medium),
+                YgIcon(icon: 'asd', iconSize: YgIconSize.medium),
+              ],
+              trailingWidgets: const <Widget>[
+                YgIcon(icon: 'asd', iconSize: YgIconSize.medium),
+              ],
+              supportingWidgets: const <Widget>[
+                YgTag(
+                  variant: YgTagVariant.positive,
+                  size: YgTagSize.small,
+                  child: Text('Trailing'),
+                )
+              ],
+            ),
+            YgListTile(
+              title: 'Title',
+              subtitle: 'Bacon ipsum dolor amet chicken frankfurter burgdoggen landjaeger sirloin ham pig.',
+              leadingWidgets: const <Widget>[
+                YgIcon(icon: 'asd', iconSize: YgIconSize.medium),
+                YgIcon(icon: 'asd', iconSize: YgIconSize.medium),
+              ],
+              trailingWidgets: const <Widget>[
+                YgIcon(icon: 'asd', iconSize: YgIconSize.medium),
+              ],
+              supportingWidgets: <Widget>[
+                const YgTag(
+                  variant: YgTagVariant.positive,
+                  size: YgTagSize.small,
+                  child: Text('Trailing'),
+                ),
+                YgTag(
+                  variant: YgTagVariant.negative,
+                  size: YgTagSize.small,
+                  onPressed: () {},
+                  child: const Text('Clickable!'),
+                )
+              ],
+            ),
+            YgListTile(
+              title: 'Title',
+              subtitle: 'Bacon ipsum dolor amet chicken frankfurter burgdoggen landjaeger sirloin ham pig.',
+              onInfoTap: () {},
+              leadingWidgets: const <Widget>[
+                YgIcon(icon: 'asd', iconSize: YgIconSize.medium),
+                YgIcon(icon: 'asd', iconSize: YgIconSize.medium),
+              ],
+              trailingWidgets: const <Widget>[
+                YgIcon(icon: 'asd', iconSize: YgIconSize.medium),
+              ],
+              supportingWidgets: <Widget>[
+                const YgTag(
+                  variant: YgTagVariant.positive,
+                  size: YgTagSize.small,
+                  child: Text('Trailing'),
+                ),
+                YgTag(
+                  variant: YgTagVariant.negative,
+                  size: YgTagSize.small,
+                  onPressed: () {},
+                  child: const Text('Clickable!'),
+                )
+              ],
+            ),
+            YgListTile(
+              title: 'Tappable!',
+              subtitle: 'Bacon ipsum dolor amet chicken frankfurter burgdoggen landjaeger sirloin ham pig.',
+              onTap: () {},
+              onInfoTap: () {},
+              leadingWidgets: const <Widget>[
+                YgIcon(icon: 'asd', iconSize: YgIconSize.medium),
+                YgIcon(icon: 'asd', iconSize: YgIconSize.medium),
+              ],
+              trailingWidgets: const <Widget>[
+                YgIcon(icon: 'asd', iconSize: YgIconSize.medium),
+                YgIcon(icon: 'asd', iconSize: YgIconSize.medium),
+              ],
+              supportingWidgets: <Widget>[
+                const YgTag(
+                  variant: YgTagVariant.positive,
+                  size: YgTagSize.small,
+                  child: Text('Trailing'),
+                ),
+                YgTag(
+                  variant: YgTagVariant.negative,
+                  size: YgTagSize.small,
+                  onPressed: () {},
+                  child: const Text('Clickable!'),
+                )
+              ],
+            ),
+          ],
+        ),
+      ),
+    );
+  }
+}

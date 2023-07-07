@@ -1,13 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:theme_tailor_annotation/theme_tailor_annotation.dart';
-import 'package:yggdrasil/src/theme/badge/_badge.dart';
-import 'package:yggdrasil/src/theme/internal/internal.dart';
 import 'package:yggdrasil/src/theme/tags/_tags.dart';
 
-import 'bottom_sheet/_bottom_sheet.dart';
-import 'buttons/_buttons.dart';
-import 'card/_card.dart';
-import 'dialog/_dialog.dart';
+import '_theme.dart';
 import 'tokens/tokens.dart';
 
 part 'theme.tailor.dart';
@@ -32,6 +27,12 @@ class _$YgTheme {
 
   @themeExtension
   static List<YgDialogThemes> dialogThemes = YgDialogThemes.themes;
+
+  @themeExtension
+  static List<YgIconThemes> iconThemes = YgIconThemes.themes;
+
+  @themeExtension
+  static List<YgListTileThemes> listTileThemes = YgListTileThemes.themes;
 
   @themeExtension
   static List<YgTagThemes> tagThemes = YgTagThemes.themes;
