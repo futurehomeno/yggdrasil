@@ -40,17 +40,17 @@ class YgCallout extends StatelessWidget {
                     title!,
                     style: theme.titleTextStyle,
                   ),
-                if (title != null) SizedBox(height: theme.spacing),
+                if (title != null) SizedBox(height: theme.titleSpacing),
                 Text(
                   description,
                   style: theme.descriptionTextStyle,
                 ),
-                if (textLink != null) SizedBox(height: theme.spacing),
+                if (textLink != null) SizedBox(height: theme.linkSpacing),
                 if (textLink != null) textLink!
               ],
             ),
           ),
-          SizedBox(width: theme.spacing),
+          SizedBox(width: theme.closeButtonSpacing),
           GestureDetector(
             onTap: () {},
             child: const Icon(Icons.close),
