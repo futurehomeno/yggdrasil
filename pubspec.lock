@@ -262,7 +262,7 @@ packages:
     description:
       path: "packages/fh_lints"
       ref: master
-      resolved-ref: f692ebe8aa8e8eeb7daef52d7cf8d8ea546481b6
+      resolved-ref: dfe8c6b974e677fa6056b523fc0dc75bd66a3397
       url: "git@github.com:futurehomeno/pubdev_registry.git"
     source: git
     version: "1.0.0"
@@ -271,7 +271,7 @@ packages:
     description:
       path: "packages/fh_logger"
       ref: master
-      resolved-ref: "2494bccb5dab8e866c23a65e941970bfb2e358a5"
+      resolved-ref: dfe8c6b974e677fa6056b523fc0dc75bd66a3397
       url: "git@github.com:futurehomeno/pubdev_registry.git"
     source: git
     version: "1.1.0"
@@ -280,7 +280,7 @@ packages:
     description:
       path: "packages/fh_utils"
       ref: master
-      resolved-ref: "2494bccb5dab8e866c23a65e941970bfb2e358a5"
+      resolved-ref: dfe8c6b974e677fa6056b523fc0dc75bd66a3397
       url: "git@github.com:futurehomeno/pubdev_registry.git"
     source: git
     version: "1.1.0"
@@ -615,10 +615,10 @@ packages:
     dependency: transitive
     description:
       name: pubspec_parse
-      sha256: "75f6614d6dde2dc68948dffbaa4fe5dae32cd700eb9fb763fe11dfb45a3c4d0a"
+      sha256: c63b2876e58e194e4b0828fcb080ad0e06d051cb607a6be51a9e084f47cb9367
       url: "https://pub.dev"
     source: hosted
-    version: "1.2.1"
+    version: "1.2.3"
   rxdart:
     dependency: transitive
     description:
@@ -886,10 +886,10 @@ packages:
     dependency: transitive
     description:
       name: url_launcher_web
-      sha256: "6bb1e5d7fe53daf02a8fee85352432a40b1f868a81880e99ec7440113d5cfcab"
+      sha256: cc26720eefe98c1b71d85f9dc7ef0cada5132617046369d9dc296b3ecaa5cbb4
       url: "https://pub.dev"
     source: hosted
-    version: "2.0.17"
+    version: "2.0.18"
   url_launcher_windows:
     dependency: transitive
     description:
