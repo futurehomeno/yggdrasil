@@ -35,19 +35,22 @@ class CalloutScreen extends StatelessWidget {
                 icon: const Icon(Icons.link),
                 onPressed: () {},
               ),
+              onClose: () {},
             ),
             const SizedBox(height: 10.0),
-            const YgCallout(
+            YgCallout(
               calloutVariant: YgCalloutVariant.highlight,
+              onClose: () {},
               title: 'Title',
               description:
                   'Callouts are contextual messages used to communicate a specific state to a page or feature.',
             ),
             const SizedBox(height: 10.0),
-            const YgCallout(
+            YgCallout(
               calloutVariant: YgCalloutVariant.highlight,
               description:
                   'Callouts are contextual messages used to communicate a specific state to a page or feature.',
+              onClose: () {},
             ),
             const SizedBox(height: 10.0),
             YgCallout(
@@ -60,19 +63,22 @@ class CalloutScreen extends StatelessWidget {
                 icon: const Icon(Icons.link),
                 onPressed: () {},
               ),
+              onClose: () {},
             ),
             const SizedBox(height: 10.0),
-            const YgCallout(
+            YgCallout(
               calloutVariant: YgCalloutVariant.success,
               title: 'Title',
               description:
                   'Callouts are contextual messages used to communicate a specific state to a page or feature.',
+              onClose: () {},
             ),
             const SizedBox(height: 10.0),
-            const YgCallout(
+            YgCallout(
               calloutVariant: YgCalloutVariant.success,
               description:
                   'Callouts are contextual messages used to communicate a specific state to a page or feature.',
+              onClose: () {},
             ),
             const SizedBox(height: 10.0),
             YgCallout(
@@ -85,19 +91,22 @@ class CalloutScreen extends StatelessWidget {
                 icon: const Icon(Icons.link),
                 onPressed: () {},
               ),
+              onClose: () {},
             ),
             const SizedBox(height: 10.0),
-            const YgCallout(
+            YgCallout(
               calloutVariant: YgCalloutVariant.warning,
               title: 'Title',
               description:
                   'Callouts are contextual messages used to communicate a specific state to a page or feature.',
+              onClose: () {},
             ),
             const SizedBox(height: 10.0),
-            const YgCallout(
+            YgCallout(
               calloutVariant: YgCalloutVariant.warning,
               description:
                   'Callouts are contextual messages used to communicate a specific state to a page or feature.',
+              onClose: () {},
             ),
             const SizedBox(height: 10.0),
             YgCallout(
@@ -110,19 +119,22 @@ class CalloutScreen extends StatelessWidget {
                 icon: const Icon(Icons.link),
                 onPressed: () {},
               ),
+              onClose: () {},
             ),
             const SizedBox(height: 10.0),
-            const YgCallout(
+            YgCallout(
               calloutVariant: YgCalloutVariant.critical,
               title: 'Title',
               description:
                   'Callouts are contextual messages used to communicate a specific state to a page or feature.',
+              onClose: () {},
             ),
             const SizedBox(height: 10.0),
-            const YgCallout(
+            YgCallout(
               calloutVariant: YgCalloutVariant.critical,
               description:
                   'Callouts are contextual messages used to communicate a specific state to a page or feature.',
+              onClose: () {},
             ),
             const SizedBox(height: 10.0),
           ],

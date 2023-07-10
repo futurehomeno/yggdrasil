@@ -5,6 +5,7 @@ class YgCallout extends StatelessWidget {
   const YgCallout({
     required this.calloutVariant,
     required this.description,
+    required this.onClose,
     this.title,
     this.textLink,
     super.key,
@@ -14,31 +15,38 @@ class YgCallout extends StatelessWidget {
   final String description;
   final String? title;
   final YgTextLink? textLink;
+  final VoidCallback onClose;
 
   @override
   Widget build(BuildContext context) {
     final YgCalloutThemes theme = context.calloutTheme;
 
-    return Container(
-      padding: theme.padding,
-      decoration: BoxDecoration(
-        color: calloutVariant.getBackgroundColor(theme),
+    return Material(
+      color: calloutVariant.getBackgroundColor(theme),
+      shape: RoundedRectangleBorder(
         borderRadius: theme.borderRadius,
-        border: Border.all(
+        side: BorderSide(
           color: calloutVariant.getBorderColor(theme),
         ),
       ),
-      child: Row(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: <Widget>[
-          Flexible(
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: <Widget>[
-                if (title != null)
+      child: Padding(
+        padding: theme.padding,
+        child: Row(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: <Widget>[
+            Flexible(
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: <Widget>[
+                  if (title != null)
+                    Text(
+                      title!,
+                      style: theme.titleTextStyle,
+                    ),
+                  if (title != null) SizedBox(height: theme.spacing),
                   Text(
-                    title!,
-                    style: theme.titleTextStyle,
+                    description,
+                    style: theme.descriptionTextStyle,
                   ),
                 if (title != null) SizedBox(height: theme.titleSpacing),
                 Text(
