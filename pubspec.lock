@@ -261,8 +261,8 @@ packages:
     dependency: "direct dev"
     description:
       path: "packages/fh_lints"
-      ref: master
-      resolved-ref: f692ebe8aa8e8eeb7daef52d7cf8d8ea546481b6
+      ref: "releases/1.3.71"
+      resolved-ref: "7d79ed201fbb38e1ebecb245ee9b8b79ec0e97fa"
       url: "git@github.com:futurehomeno/pubdev_registry.git"
     source: git
     version: "1.0.0"
@@ -270,8 +270,8 @@ packages:
     dependency: transitive
     description:
       path: "packages/fh_logger"
-      ref: master
-      resolved-ref: "2494bccb5dab8e866c23a65e941970bfb2e358a5"
+      ref: "releases/1.3.71"
+      resolved-ref: "7d79ed201fbb38e1ebecb245ee9b8b79ec0e97fa"
       url: "git@github.com:futurehomeno/pubdev_registry.git"
     source: git
     version: "1.1.0"
@@ -279,8 +279,8 @@ packages:
     dependency: "direct main"
     description:
       path: "packages/fh_utils"
-      ref: master
-      resolved-ref: "2494bccb5dab8e866c23a65e941970bfb2e358a5"
+      ref: "releases/1.3.71"
+      resolved-ref: "7d79ed201fbb38e1ebecb245ee9b8b79ec0e97fa"
       url: "git@github.com:futurehomeno/pubdev_registry.git"
     source: git
     version: "1.1.0"
