@@ -39,31 +39,32 @@ class YgCallout extends StatelessWidget {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: <Widget>[
                   if (title != null)
-                    Text(
-                      title!,
-                      style: theme.titleTextStyle,
+                    Padding(
+                      padding: EdgeInsets.only(bottom: theme.titleSpacing),
+                      child: Text(
+                        title!,
+                        style: theme.titleTextStyle,
+                      ),
                     ),
-                  if (title != null) SizedBox(height: theme.spacing),
                   Text(
                     description,
                     style: theme.descriptionTextStyle,
                   ),
-                if (title != null) SizedBox(height: theme.titleSpacing),
-                Text(
-                  description,
-                  style: theme.descriptionTextStyle,
-                ),
-                if (textLink != null) SizedBox(height: theme.linkSpacing),
-                if (textLink != null) textLink!
-              ],
+                  if (textLink != null)
+                    Padding(
+                      padding: EdgeInsets.only(top: theme.linkSpacing),
+                      child: textLink!,
+                    )
+                ],
+              ),
             ),
-          ),
-          SizedBox(width: theme.closeButtonSpacing),
-          GestureDetector(
-            onTap: () {},
-            child: const Icon(Icons.close),
-          ),
-        ],
+            SizedBox(width: theme.closeButtonSpacing),
+            GestureDetector(
+              onTap: () {},
+              child: const Icon(Icons.close),
+            ),
+          ],
+        ),
       ),
     );
   }
