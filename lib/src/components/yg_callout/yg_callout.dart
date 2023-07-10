@@ -18,6 +18,7 @@ class YgCallout extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final YgCalloutThemes theme = context.calloutTheme;
+
     return Container(
       padding: theme.padding,
       decoration: BoxDecoration(
