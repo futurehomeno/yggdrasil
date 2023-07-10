@@ -69,11 +69,7 @@ class ListTileScreen extends StatelessWidget {
                 YgIcon(icon: 'asd', iconSize: YgIconSize.medium),
               ],
               supportingWidgets: const <Widget>[
-                YgTag(
-                  variant: YgTagVariant.positive,
-                  size: YgTagSize.small,
-                  child: Text('Trailing'),
-                )
+                YgIcon(icon: 'asd', iconSize: YgIconSize.medium),
               ],
             ),
             YgListTile(
@@ -86,18 +82,9 @@ class ListTileScreen extends StatelessWidget {
               trailingWidgets: const <Widget>[
                 YgIcon(icon: 'asd', iconSize: YgIconSize.medium),
               ],
-              supportingWidgets: <Widget>[
-                const YgTag(
-                  variant: YgTagVariant.positive,
-                  size: YgTagSize.small,
-                  child: Text('Trailing'),
-                ),
-                YgTag(
-                  variant: YgTagVariant.negative,
-                  size: YgTagSize.small,
-                  onPressed: () {},
-                  child: const Text('Clickable!'),
-                )
+              supportingWidgets: const <Widget>[
+                YgIcon(icon: 'asd', iconSize: YgIconSize.medium),
+                YgIcon(icon: 'asd', iconSize: YgIconSize.medium),
               ],
             ),
             YgListTile(
@@ -111,18 +98,9 @@ class ListTileScreen extends StatelessWidget {
               trailingWidgets: const <Widget>[
                 YgIcon(icon: 'asd', iconSize: YgIconSize.medium),
               ],
-              supportingWidgets: <Widget>[
-                const YgTag(
-                  variant: YgTagVariant.positive,
-                  size: YgTagSize.small,
-                  child: Text('Trailing'),
-                ),
-                YgTag(
-                  variant: YgTagVariant.negative,
-                  size: YgTagSize.small,
-                  onPressed: () {},
-                  child: const Text('Clickable!'),
-                )
+              supportingWidgets: const <Widget>[
+                YgIcon(icon: 'asd', iconSize: YgIconSize.medium),
+                YgIcon(icon: 'asd', iconSize: YgIconSize.medium),
               ],
             ),
             YgListTile(
@@ -138,18 +116,28 @@ class ListTileScreen extends StatelessWidget {
                 YgIcon(icon: 'asd', iconSize: YgIconSize.medium),
                 YgIcon(icon: 'asd', iconSize: YgIconSize.medium),
               ],
-              supportingWidgets: <Widget>[
-                const YgTag(
-                  variant: YgTagVariant.positive,
-                  size: YgTagSize.small,
-                  child: Text('Trailing'),
-                ),
-                YgTag(
-                  variant: YgTagVariant.negative,
-                  size: YgTagSize.small,
-                  onPressed: () {},
-                  child: const Text('Clickable!'),
-                )
+              supportingWidgets: const <Widget>[
+                YgIcon(icon: 'asd', iconSize: YgIconSize.medium),
+                YgIcon(icon: 'asd', iconSize: YgIconSize.medium),
+              ],
+            ),
+            YgListTile(
+              title: 'Tappable!',
+              subtitle: 'Bacon ipsum dolor amet chicken frankfurter burgdoggen landjaeger sirloin ham pig.',
+              subtitleIcon: const YgIcon(icon: 'asd', iconSize: YgIconSize.small),
+              onTap: () {},
+              onInfoTap: () {},
+              leadingWidgets: const <Widget>[
+                YgIcon(icon: 'asd', iconSize: YgIconSize.medium),
+                YgIcon(icon: 'asd', iconSize: YgIconSize.medium),
+              ],
+              trailingWidgets: const <Widget>[
+                YgIcon(icon: 'asd', iconSize: YgIconSize.medium),
+                YgIcon(icon: 'asd', iconSize: YgIconSize.medium),
+              ],
+              supportingWidgets: const <Widget>[
+                YgIcon(icon: 'asd', iconSize: YgIconSize.medium),
+                YgIcon(icon: 'asd', iconSize: YgIconSize.medium),
               ],
             ),
           ],

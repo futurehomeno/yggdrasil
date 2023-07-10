@@ -6,6 +6,7 @@ class YgListTile extends StatelessWidget {
     super.key,
     required this.title,
     this.subtitle,
+    this.subtitleIcon,
     this.leadingWidgets = const <Widget>[],
     this.trailingWidgets = const <Widget>[],
     this.supportingWidgets = const <Widget>[],
@@ -17,6 +18,7 @@ class YgListTile extends StatelessWidget {
 
   final String title;
   final String? subtitle;
+  final Widget? subtitleIcon;
   final List<Widget> leadingWidgets;
   final List<Widget> trailingWidgets;
   final List<Widget> supportingWidgets;
@@ -74,9 +76,20 @@ class YgListTile extends StatelessWidget {
   Widget _buildSubtitle(YgListTileThemes listTileThemes) {
     return Padding(
       padding: EdgeInsets.only(top: listTileThemes.contentSpacing),
-      child: Text(
-        subtitle!,
-        style: listTileThemes.subtitleTextStyle,
+      child: Row(
+        children: <Widget>[
+          if (subtitleIcon != null)
+            Padding(
+              padding: EdgeInsets.only(right: listTileThemes.contentSpacing),
+              child: subtitleIcon,
+            ),
+          Flexible(
+            child: Text(
+              subtitle!,
+              style: listTileThemes.subtitleTextStyle,
+            ),
+          ),
+        ],
       ),
     );
   }
@@ -85,7 +98,7 @@ class YgListTile extends StatelessWidget {
     return Padding(
       padding: EdgeInsets.only(left: listTileThemes.contentSpacing),
       child: YgIcon(
-        icon: 'Icon',
+        icon: '',
         iconSize: YgIconSize.small,
         tapSize: YgIconTapSize.large,
         onTap: onInfoTap!,
