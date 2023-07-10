@@ -43,6 +43,31 @@ dev_dependencies:
 flutter:
   uses-material-design: true
   fonts:
+    - family: Dosis
+      fonts:
+        - asset: assets/fonts/Dosis-Bold.ttf
+        - asset: assets/fonts/Dosis-ExtraBold.ttf
+        - asset: assets/fonts/Dosis-ExtraLight.ttf
+        - asset: assets/fonts/Dosis-Light.ttf
+        - asset: assets/fonts/Dosis-Medium.ttf
+        - asset: assets/fonts/Dosis-Regular.ttf
+        - asset: assets/fonts/Dosis-SemiBold.ttf
+
+    - family: OpenSans
+      fonts:
+        - asset: assets/fonts/OpenSans-Bold.ttf
+        - asset: assets/fonts/OpenSans-BoldItalic.ttf
+        - asset: assets/fonts/OpenSans-ExtraBold.ttf
+        - asset: assets/fonts/OpenSans-ExtraBoldItalic.ttf
+        - asset: assets/fonts/OpenSans-Italic.ttf
+        - asset: assets/fonts/OpenSans-Light.ttf
+        - asset: assets/fonts/OpenSans-LightItalic.ttf
+        - asset: assets/fonts/OpenSans-Medium.ttf
+        - asset: assets/fonts/OpenSans-MediumItalic.ttf
+        - asset: assets/fonts/OpenSans-Regular.ttf
+        - asset: assets/fonts/OpenSans-SemiBold.ttf
+        - asset: assets/fonts/OpenSans-SemiBoldItalic.ttf
+
     - family: WorkSans
       fonts:
         - asset: assets/fonts/WorkSans-Black.ttf
