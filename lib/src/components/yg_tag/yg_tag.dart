@@ -4,7 +4,10 @@ import 'package:yggdrasil/src/theme/_theme.dart';
 import 'enums/_enums.dart';
 import 'yg_tag_style.dart';
 
-/// Base class for creating all Yg buttons.
+/// Base class for creating all Yg tags.
+///
+/// Tags are based on [ButtonStyleButton] and [ButtonStyle]
+/// as the style is practically the same.
 class YgTag extends ButtonStyleButton {
   const YgTag({
     super.key,
