@@ -12,7 +12,6 @@ class YgTagThemes extends ThemeExtension<YgTagThemes> {
   const YgTagThemes({
     required this.borderRadius,
     required this.borderWidth,
-    required this.iconSize,
     required this.iconSpacing,
     required this.informativeTagTheme,
     required this.negativeTagTheme,
@@ -25,7 +24,6 @@ class YgTagThemes extends ThemeExtension<YgTagThemes> {
 
   final BorderRadius borderRadius;
   final double borderWidth;
-  final double iconSize;
   final double iconSpacing;
   final InformativeTagTheme informativeTagTheme;
   final NegativeTagTheme negativeTagTheme;
@@ -38,7 +36,6 @@ class YgTagThemes extends ThemeExtension<YgTagThemes> {
   static final YgTagThemes consumerLight = YgTagThemes(
     borderRadius: _$YgTagThemes.borderRadius[0],
     borderWidth: _$YgTagThemes.borderWidth[0],
-    iconSize: _$YgTagThemes.iconSize[0],
     iconSpacing: _$YgTagThemes.iconSpacing[0],
     informativeTagTheme: _$YgTagThemes.informativeTagTheme[0],
     negativeTagTheme: _$YgTagThemes.negativeTagTheme[0],
@@ -52,7 +49,6 @@ class YgTagThemes extends ThemeExtension<YgTagThemes> {
   static final YgTagThemes consumerDark = YgTagThemes(
     borderRadius: _$YgTagThemes.borderRadius[1],
     borderWidth: _$YgTagThemes.borderWidth[1],
-    iconSize: _$YgTagThemes.iconSize[1],
     iconSpacing: _$YgTagThemes.iconSpacing[1],
     informativeTagTheme: _$YgTagThemes.informativeTagTheme[1],
     negativeTagTheme: _$YgTagThemes.negativeTagTheme[1],
@@ -66,7 +62,6 @@ class YgTagThemes extends ThemeExtension<YgTagThemes> {
   static final YgTagThemes professionalLight = YgTagThemes(
     borderRadius: _$YgTagThemes.borderRadius[2],
     borderWidth: _$YgTagThemes.borderWidth[2],
-    iconSize: _$YgTagThemes.iconSize[2],
     iconSpacing: _$YgTagThemes.iconSpacing[2],
     informativeTagTheme: _$YgTagThemes.informativeTagTheme[2],
     negativeTagTheme: _$YgTagThemes.negativeTagTheme[2],
@@ -80,7 +75,6 @@ class YgTagThemes extends ThemeExtension<YgTagThemes> {
   static final YgTagThemes professionalDark = YgTagThemes(
     borderRadius: _$YgTagThemes.borderRadius[3],
     borderWidth: _$YgTagThemes.borderWidth[3],
-    iconSize: _$YgTagThemes.iconSize[3],
     iconSpacing: _$YgTagThemes.iconSpacing[3],
     informativeTagTheme: _$YgTagThemes.informativeTagTheme[3],
     negativeTagTheme: _$YgTagThemes.negativeTagTheme[3],
@@ -102,7 +96,6 @@ class YgTagThemes extends ThemeExtension<YgTagThemes> {
   YgTagThemes copyWith({
     BorderRadius? borderRadius,
     double? borderWidth,
-    double? iconSize,
     double? iconSpacing,
     InformativeTagTheme? informativeTagTheme,
     NegativeTagTheme? negativeTagTheme,
@@ -115,7 +108,6 @@ class YgTagThemes extends ThemeExtension<YgTagThemes> {
     return YgTagThemes(
       borderRadius: borderRadius ?? this.borderRadius,
       borderWidth: borderWidth ?? this.borderWidth,
-      iconSize: iconSize ?? this.iconSize,
       iconSpacing: iconSpacing ?? this.iconSpacing,
       informativeTagTheme: informativeTagTheme ?? this.informativeTagTheme,
       negativeTagTheme: negativeTagTheme ?? this.negativeTagTheme,
@@ -133,7 +125,6 @@ class YgTagThemes extends ThemeExtension<YgTagThemes> {
     return YgTagThemes(
       borderRadius: t < 0.5 ? borderRadius : other.borderRadius,
       borderWidth: t < 0.5 ? borderWidth : other.borderWidth,
-      iconSize: t < 0.5 ? iconSize : other.iconSize,
       iconSpacing: t < 0.5 ? iconSpacing : other.iconSpacing,
       informativeTagTheme: informativeTagTheme.lerp(
           other.informativeTagTheme, t) as InformativeTagTheme,
@@ -159,7 +150,6 @@ class YgTagThemes extends ThemeExtension<YgTagThemes> {
                 .equals(borderRadius, other.borderRadius) &&
             const DeepCollectionEquality()
                 .equals(borderWidth, other.borderWidth) &&
-            const DeepCollectionEquality().equals(iconSize, other.iconSize) &&
             const DeepCollectionEquality()
                 .equals(iconSpacing, other.iconSpacing) &&
             const DeepCollectionEquality()
@@ -184,7 +174,6 @@ class YgTagThemes extends ThemeExtension<YgTagThemes> {
       runtimeType.hashCode,
       const DeepCollectionEquality().hash(borderRadius),
       const DeepCollectionEquality().hash(borderWidth),
-      const DeepCollectionEquality().hash(iconSize),
       const DeepCollectionEquality().hash(iconSpacing),
       const DeepCollectionEquality().hash(informativeTagTheme),
       const DeepCollectionEquality().hash(negativeTagTheme),

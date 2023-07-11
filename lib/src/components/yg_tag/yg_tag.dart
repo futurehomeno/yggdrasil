@@ -1,14 +1,12 @@
 import 'package:flutter/material.dart';
-import 'package:yggdrasil/src/theme/_theme.dart';
+import 'package:yggdrasil/yggdrasil.dart';
 
-import 'enums/_enums.dart';
 import 'yg_tag_style.dart';
 
 /// Base class for creating all [YgTag]s.
 ///
 /// Tags are based on [ButtonStyleButton] and [ButtonStyle]
 /// as the style is practically the same.
-// TODO(bjhandeland): Replace icon with FhIcon after merge.
 class YgTag extends ButtonStyleButton {
   const YgTag({
     super.key,
@@ -35,7 +33,7 @@ class YgTag extends ButtonStyleButton {
     FocusNode? focusNode,
     bool? autofocus,
     Clip? clipBehavior,
-    required Widget icon,
+    required String icon,
     required Widget child,
     required YgTagVariant variant,
     required YgTagSize size,
@@ -50,7 +48,7 @@ class YgTag extends ButtonStyleButton {
     FocusNode? focusNode,
     bool? autofocus,
     Clip? clipBehavior,
-    required Widget icon,
+    required String icon,
     required Widget child,
     required YgTagVariant variant,
     required YgTagSize size,
@@ -65,8 +63,8 @@ class YgTag extends ButtonStyleButton {
     FocusNode? focusNode,
     bool? autofocus,
     Clip? clipBehavior,
-    required Widget leadingIcon,
-    required Widget trailingIcon,
+    required String leadingIcon,
+    required String trailingIcon,
     required Widget child,
     required YgTagVariant variant,
     required YgTagSize size,
@@ -103,7 +101,7 @@ class _YgTagWithRightIcon extends YgTag {
     super.focusNode,
     bool? autofocus,
     Clip? clipBehavior,
-    required Widget icon,
+    required String icon,
     required Widget child,
     required YgTagVariant variant,
     required YgTagSize size,
@@ -125,7 +123,7 @@ class _YgTagWithRightIconChild extends StatelessWidget {
   });
 
   final Widget child;
-  final Widget icon;
+  final String icon;
 
   @override
   Widget build(BuildContext context) {
@@ -134,11 +132,7 @@ class _YgTagWithRightIconChild extends StatelessWidget {
       children: <Widget>[
         Flexible(child: child),
         SizedBox(width: context.tagThemes.iconSpacing),
-        SizedBox(
-          width: context.tagThemes.iconSize,
-          height: context.tagThemes.iconSize,
-          child: icon,
-        ),
+        YgIcon(icon: icon, iconSize: YgIconSize.smaller),
       ],
     );
   }
@@ -153,7 +147,7 @@ class _YgTagWithLeftIcon extends YgTag {
     super.focusNode,
     bool? autofocus,
     Clip? clipBehavior,
-    required Widget icon,
+    required String icon,
     required Widget child,
     required YgTagVariant variant,
     required YgTagSize size,
@@ -175,18 +169,14 @@ class _YgTagWithLeftIconChild extends StatelessWidget {
   });
 
   final Widget child;
-  final Widget icon;
+  final String icon;
 
   @override
   Widget build(BuildContext context) {
     return Row(
       mainAxisSize: MainAxisSize.min,
       children: <Widget>[
-        SizedBox(
-          width: context.tagThemes.iconSize,
-          height: context.tagThemes.iconSize,
-          child: icon,
-        ),
+        YgIcon(icon: icon, iconSize: YgIconSize.smaller),
         SizedBox(width: context.tagThemes.iconSpacing),
         Flexible(child: child),
       ],
@@ -203,8 +193,8 @@ class _YgTagWithDoubleIcon extends YgTag {
     super.focusNode,
     bool? autofocus,
     Clip? clipBehavior,
-    required Widget leadingIcon,
-    required Widget trailingIcon,
+    required String leadingIcon,
+    required String trailingIcon,
     required Widget child,
     required YgTagVariant variant,
     required YgTagSize size,
@@ -231,27 +221,19 @@ class _YgTagWithDoubleIconChild extends StatelessWidget {
   });
 
   final Widget child;
-  final Widget leadingIcon;
-  final Widget trailingIcon;
+  final String leadingIcon;
+  final String trailingIcon;
 
   @override
   Widget build(BuildContext context) {
     return Row(
       mainAxisSize: MainAxisSize.min,
       children: <Widget>[
-        SizedBox(
-          width: context.tagThemes.iconSize,
-          height: context.tagThemes.iconSize,
-          child: leadingIcon,
-        ),
+        YgIcon(icon: leadingIcon, iconSize: YgIconSize.smaller),
         SizedBox(width: context.tagThemes.iconSpacing),
         Flexible(child: child),
         SizedBox(width: context.tagThemes.iconSpacing),
-        SizedBox(
-          width: context.tagThemes.iconSize,
-          height: context.tagThemes.iconSize,
-          child: trailingIcon,
-        ),
+        YgIcon(icon: trailingIcon, iconSize: YgIconSize.smaller),
       ],
     );
   }

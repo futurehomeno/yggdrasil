@@ -13,34 +13,40 @@ class YgIconThemes extends ThemeExtension<YgIconThemes> {
     required this.sizeLarge,
     required this.sizeMedium,
     required this.sizeSmall,
+    required this.sizeSmaller,
   });
 
   final double sizeLarge;
   final double sizeMedium;
   final double sizeSmall;
+  final double sizeSmaller;
 
   static final YgIconThemes consumerLight = YgIconThemes(
     sizeLarge: _$YgIconThemes.sizeLarge[0],
     sizeMedium: _$YgIconThemes.sizeMedium[0],
     sizeSmall: _$YgIconThemes.sizeSmall[0],
+    sizeSmaller: _$YgIconThemes.sizeSmaller[0],
   );
 
   static final YgIconThemes consumerDark = YgIconThemes(
     sizeLarge: _$YgIconThemes.sizeLarge[1],
     sizeMedium: _$YgIconThemes.sizeMedium[1],
     sizeSmall: _$YgIconThemes.sizeSmall[1],
+    sizeSmaller: _$YgIconThemes.sizeSmaller[1],
   );
 
   static final YgIconThemes professionalLight = YgIconThemes(
     sizeLarge: _$YgIconThemes.sizeLarge[2],
     sizeMedium: _$YgIconThemes.sizeMedium[2],
     sizeSmall: _$YgIconThemes.sizeSmall[2],
+    sizeSmaller: _$YgIconThemes.sizeSmaller[2],
   );
 
   static final YgIconThemes professionalDark = YgIconThemes(
     sizeLarge: _$YgIconThemes.sizeLarge[3],
     sizeMedium: _$YgIconThemes.sizeMedium[3],
     sizeSmall: _$YgIconThemes.sizeSmall[3],
+    sizeSmaller: _$YgIconThemes.sizeSmaller[3],
   );
 
   static final themes = [
@@ -55,11 +61,13 @@ class YgIconThemes extends ThemeExtension<YgIconThemes> {
     double? sizeLarge,
     double? sizeMedium,
     double? sizeSmall,
+    double? sizeSmaller,
   }) {
     return YgIconThemes(
       sizeLarge: sizeLarge ?? this.sizeLarge,
       sizeMedium: sizeMedium ?? this.sizeMedium,
       sizeSmall: sizeSmall ?? this.sizeSmall,
+      sizeSmaller: sizeSmaller ?? this.sizeSmaller,
     );
   }
 
@@ -70,6 +78,7 @@ class YgIconThemes extends ThemeExtension<YgIconThemes> {
       sizeLarge: t < 0.5 ? sizeLarge : other.sizeLarge,
       sizeMedium: t < 0.5 ? sizeMedium : other.sizeMedium,
       sizeSmall: t < 0.5 ? sizeSmall : other.sizeSmall,
+      sizeSmaller: t < 0.5 ? sizeSmaller : other.sizeSmaller,
     );
   }
 
@@ -81,7 +90,9 @@ class YgIconThemes extends ThemeExtension<YgIconThemes> {
             const DeepCollectionEquality().equals(sizeLarge, other.sizeLarge) &&
             const DeepCollectionEquality()
                 .equals(sizeMedium, other.sizeMedium) &&
-            const DeepCollectionEquality().equals(sizeSmall, other.sizeSmall));
+            const DeepCollectionEquality().equals(sizeSmall, other.sizeSmall) &&
+            const DeepCollectionEquality()
+                .equals(sizeSmaller, other.sizeSmaller));
   }
 
   @override
@@ -91,6 +102,7 @@ class YgIconThemes extends ThemeExtension<YgIconThemes> {
       const DeepCollectionEquality().hash(sizeLarge),
       const DeepCollectionEquality().hash(sizeMedium),
       const DeepCollectionEquality().hash(sizeSmall),
+      const DeepCollectionEquality().hash(sizeSmaller),
     );
   }
 }
