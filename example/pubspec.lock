@@ -134,31 +134,10 @@ packages:
     description:
       path: "packages/fh_lints"
       ref: master
-      resolved-ref: dfe8c6b974e677fa6056b523fc0dc75bd66a3397
+      resolved-ref: fffb2fc90d7c148271b3fc52c2c1512488b01db1
       url: "git@github.com:futurehomeno/pubdev_registry.git"
     source: git
     version: "1.0.0"
-<<<<<<< HEAD
-=======
-  fh_logger:
-    dependency: transitive
-    description:
-      path: "packages/fh_logger"
-      ref: "releases/1.3.71"
-      resolved-ref: "7d79ed201fbb38e1ebecb245ee9b8b79ec0e97fa"
-      url: "git@github.com:futurehomeno/pubdev_registry.git"
-    source: git
-    version: "1.1.0"
-  fh_utils:
-    dependency: transitive
-    description:
-      path: "packages/fh_utils"
-      ref: "releases/1.3.71"
-      resolved-ref: "7d79ed201fbb38e1ebecb245ee9b8b79ec0e97fa"
-      url: "git@github.com:futurehomeno/pubdev_registry.git"
-    source: git
-    version: "1.1.0"
->>>>>>> main
   file:
     dependency: transitive
     description:
