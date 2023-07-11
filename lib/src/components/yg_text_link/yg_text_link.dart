@@ -86,7 +86,7 @@ class _YgTextLinkContent extends StatelessWidget {
     return Row(
       mainAxisSize: MainAxisSize.min,
       crossAxisAlignment: CrossAxisAlignment.center,
-      children: [
+      children: <Widget>[
         Text(text),
         if (icon != null)
           Padding(
