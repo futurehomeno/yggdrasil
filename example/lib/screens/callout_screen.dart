@@ -28,8 +28,7 @@ class CalloutScreen extends StatelessWidget {
             YgCallout(
               calloutVariant: YgCalloutVariant.highlight,
               title: 'Title',
-              description:
-                  'Callouts are contextual messages used to communicate a specific state to a page or feature.',
+              description: 'Callout with a title, description and a text link.',
               textLink: YgTextLink(
                 text: 'Link',
                 icon: const Icon(Icons.link),
@@ -42,22 +41,19 @@ class CalloutScreen extends StatelessWidget {
               calloutVariant: YgCalloutVariant.highlight,
               onClose: () {},
               title: 'Title',
-              description:
-                  'Callouts are contextual messages used to communicate a specific state to a page or feature.',
+              description: 'Callout with a title and description.',
             ),
             const SizedBox(height: 10.0),
             YgCallout(
               calloutVariant: YgCalloutVariant.highlight,
-              description:
-                  'Callouts are contextual messages used to communicate a specific state to a page or feature.',
+              description: 'Callout with a description only.',
               onClose: () {},
             ),
             const SizedBox(height: 10.0),
             YgCallout(
               calloutVariant: YgCalloutVariant.success,
               title: 'Title',
-              description:
-                  'Callouts are contextual messages used to communicate a specific state to a page or feature.',
+              description: 'Callout with a title, description and a text link.',
               textLink: YgTextLink(
                 text: 'Link',
                 icon: const Icon(Icons.link),
@@ -69,23 +65,20 @@ class CalloutScreen extends StatelessWidget {
             YgCallout(
               calloutVariant: YgCalloutVariant.success,
               title: 'Title',
-              description:
-                  'Callouts are contextual messages used to communicate a specific state to a page or feature.',
+              description: 'Callout with a title and description.',
               onClose: () {},
             ),
             const SizedBox(height: 10.0),
             YgCallout(
               calloutVariant: YgCalloutVariant.success,
-              description:
-                  'Callouts are contextual messages used to communicate a specific state to a page or feature.',
+              description: 'Callout with a description only.',
               onClose: () {},
             ),
             const SizedBox(height: 10.0),
             YgCallout(
               calloutVariant: YgCalloutVariant.warning,
               title: 'Title',
-              description:
-                  'Callouts are contextual messages used to communicate a specific state to a page or feature.',
+              description: 'Callout with a title, description and a text link.',
               textLink: YgTextLink(
                 text: 'Link',
                 icon: const Icon(Icons.link),
@@ -97,23 +90,20 @@ class CalloutScreen extends StatelessWidget {
             YgCallout(
               calloutVariant: YgCalloutVariant.warning,
               title: 'Title',
-              description:
-                  'Callouts are contextual messages used to communicate a specific state to a page or feature.',
+              description: 'Callout with a title and description.',
               onClose: () {},
             ),
             const SizedBox(height: 10.0),
             YgCallout(
               calloutVariant: YgCalloutVariant.warning,
-              description:
-                  'Callouts are contextual messages used to communicate a specific state to a page or feature.',
+              description: 'Callout with a description only.',
               onClose: () {},
             ),
             const SizedBox(height: 10.0),
             YgCallout(
               calloutVariant: YgCalloutVariant.critical,
               title: 'Title',
-              description:
-                  'Callouts are contextual messages used to communicate a specific state to a page or feature.',
+              description: 'Callout with a title, description and a text link.',
               textLink: YgTextLink(
                 text: 'Link',
                 icon: const Icon(Icons.link),
@@ -125,15 +115,13 @@ class CalloutScreen extends StatelessWidget {
             YgCallout(
               calloutVariant: YgCalloutVariant.critical,
               title: 'Title',
-              description:
-                  'Callouts are contextual messages used to communicate a specific state to a page or feature.',
+              description: 'Callout with a title and description.',
               onClose: () {},
             ),
             const SizedBox(height: 10.0),
             YgCallout(
               calloutVariant: YgCalloutVariant.critical,
-              description:
-                  'Callouts are contextual messages used to communicate a specific state to a page or feature.',
+              description: 'Callout with a description only.',
               onClose: () {},
             ),
             const SizedBox(height: 10.0),
