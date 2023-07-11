@@ -22,7 +22,6 @@ class CardScreen extends StatelessWidget {
       componentDesc: 'Cards',
       supernovaLink: 'Link',
       child: Column(
-        crossAxisAlignment: CrossAxisAlignment.stretch,
         children: <Widget>[
           YgCard(
             child: YgListTile(

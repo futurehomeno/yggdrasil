@@ -23,8 +23,8 @@ class _BottomSheetScreenState extends State<BottomSheetScreen> with TickerProvid
   @override
   Widget build(BuildContext context) {
     return YgScreen(
-      componentName: 'Bottom sheet',
-      componentDesc: 'Bottom sheet',
+      componentName: 'BottomSheet',
+      componentDesc: 'Bottom sheets',
       supernovaLink: 'Link',
       child: Column(
         children: <Widget>[

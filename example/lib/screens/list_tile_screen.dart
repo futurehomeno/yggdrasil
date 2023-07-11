@@ -19,129 +19,126 @@ class ListTileScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return YgScreen(
       componentName: 'ListTile',
-      componentDesc: 'ListTiles',
+      componentDesc: 'List Tiles',
       supernovaLink: 'Link',
-      child: SingleChildScrollView(
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.stretch,
-          children: <Widget>[
-            YgListTile(
-              title: 'Title',
-            ),
-            YgListTile(
-              title: 'Title',
-              subtitle: 'Bacon ipsum dolor amet chicken frankfurter burgdoggen landjaeger sirloin ham pig.',
-            ),
-            YgListTile(
-              title: 'Title',
-              subtitle: 'Bacon ipsum dolor amet chicken frankfurter burgdoggen landjaeger sirloin ham pig.',
-              leadingWidgets: const <Widget>[
-                YgIcon(icon: 'asd', iconSize: YgIconSize.medium),
-              ],
-            ),
-            YgListTile(
-              title: 'Title',
-              subtitle: 'Bacon ipsum dolor amet chicken frankfurter burgdoggen landjaeger sirloin ham pig.',
-              leadingWidgets: const <Widget>[
-                YgIcon(icon: 'asd', iconSize: YgIconSize.medium),
-                YgIcon(icon: 'asd', iconSize: YgIconSize.medium),
-              ],
-            ),
-            YgListTile(
-              title: 'Title',
-              subtitle: 'Bacon ipsum dolor amet chicken frankfurter burgdoggen landjaeger sirloin ham pig.',
-              leadingWidgets: const <Widget>[
-                YgIcon(icon: 'asd', iconSize: YgIconSize.medium),
-                YgIcon(icon: 'asd', iconSize: YgIconSize.medium),
-              ],
-              trailingWidgets: const <Widget>[
-                YgIcon(icon: 'asd', iconSize: YgIconSize.medium),
-              ],
-            ),
-            YgListTile(
-              title: 'Title',
-              subtitle: 'Bacon ipsum dolor amet chicken frankfurter burgdoggen landjaeger sirloin ham pig.',
-              leadingWidgets: const <Widget>[
-                YgIcon(icon: 'asd', iconSize: YgIconSize.medium),
-                YgIcon(icon: 'asd', iconSize: YgIconSize.medium),
-              ],
-              trailingWidgets: const <Widget>[
-                YgIcon(icon: 'asd', iconSize: YgIconSize.medium),
-              ],
-              supportingWidgets: const <Widget>[
-                YgIcon(icon: 'asd', iconSize: YgIconSize.medium),
-              ],
-            ),
-            YgListTile(
-              title: 'Title',
-              subtitle: 'Bacon ipsum dolor amet chicken frankfurter burgdoggen landjaeger sirloin ham pig.',
-              leadingWidgets: const <Widget>[
-                YgIcon(icon: 'asd', iconSize: YgIconSize.medium),
-                YgIcon(icon: 'asd', iconSize: YgIconSize.medium),
-              ],
-              trailingWidgets: const <Widget>[
-                YgIcon(icon: 'asd', iconSize: YgIconSize.medium),
-              ],
-              supportingWidgets: const <Widget>[
-                YgIcon(icon: 'asd', iconSize: YgIconSize.medium),
-                YgIcon(icon: 'asd', iconSize: YgIconSize.medium),
-              ],
-            ),
-            YgListTile(
-              title: 'Title',
-              subtitle: 'Bacon ipsum dolor amet chicken frankfurter burgdoggen landjaeger sirloin ham pig.',
-              onInfoTap: () {},
-              leadingWidgets: const <Widget>[
-                YgIcon(icon: 'asd', iconSize: YgIconSize.medium),
-                YgIcon(icon: 'asd', iconSize: YgIconSize.medium),
-              ],
-              trailingWidgets: const <Widget>[
-                YgIcon(icon: 'asd', iconSize: YgIconSize.medium),
-              ],
-              supportingWidgets: const <Widget>[
-                YgIcon(icon: 'asd', iconSize: YgIconSize.medium),
-                YgIcon(icon: 'asd', iconSize: YgIconSize.medium),
-              ],
-            ),
-            YgListTile(
-              title: 'Tappable!',
-              subtitle: 'Bacon ipsum dolor amet chicken frankfurter burgdoggen landjaeger sirloin ham pig.',
-              onTap: () {},
-              onInfoTap: () {},
-              leadingWidgets: const <Widget>[
-                YgIcon(icon: 'asd', iconSize: YgIconSize.medium),
-                YgIcon(icon: 'asd', iconSize: YgIconSize.medium),
-              ],
-              trailingWidgets: const <Widget>[
-                YgIcon(icon: 'asd', iconSize: YgIconSize.medium),
-                YgIcon(icon: 'asd', iconSize: YgIconSize.medium),
-              ],
-              supportingWidgets: const <Widget>[
-                YgIcon(icon: 'asd', iconSize: YgIconSize.medium),
-                YgIcon(icon: 'asd', iconSize: YgIconSize.medium),
-              ],
-            ),
-            YgListTile(
-              title: 'Tappable!',
-              subtitle: 'Bacon ipsum dolor amet chicken frankfurter burgdoggen landjaeger sirloin ham pig.',
-              subtitleIcon: const YgIcon(icon: 'asd', iconSize: YgIconSize.small),
-              onTap: () {},
-              onInfoTap: () {},
-              leadingWidgets: const <Widget>[
-                YgIcon(icon: 'asd', iconSize: YgIconSize.medium),
-                YgIcon(icon: 'asd', iconSize: YgIconSize.medium),
-              ],
-              trailingWidgets: const <Widget>[
-                YgIcon(icon: 'asd', iconSize: YgIconSize.medium),
-                YgIcon(icon: 'asd', iconSize: YgIconSize.medium),
-              ],
-              supportingWidgets: const <Widget>[
-                YgIcon(icon: 'asd', iconSize: YgIconSize.medium),
-                YgIcon(icon: 'asd', iconSize: YgIconSize.medium),
-              ],
-            ),
-          ],
-        ),
+      child: Column(
+        children: <Widget>[
+          YgListTile(
+            title: 'Title',
+          ),
+          YgListTile(
+            title: 'Title',
+            subtitle: 'Bacon ipsum dolor amet chicken frankfurter burgdoggen landjaeger sirloin ham pig.',
+          ),
+          YgListTile(
+            title: 'Title',
+            subtitle: 'Bacon ipsum dolor amet chicken frankfurter burgdoggen landjaeger sirloin ham pig.',
+            leadingWidgets: const <Widget>[
+              YgIcon(icon: 'asd', iconSize: YgIconSize.medium),
+            ],
+          ),
+          YgListTile(
+            title: 'Title',
+            subtitle: 'Bacon ipsum dolor amet chicken frankfurter burgdoggen landjaeger sirloin ham pig.',
+            leadingWidgets: const <Widget>[
+              YgIcon(icon: 'asd', iconSize: YgIconSize.medium),
+              YgIcon(icon: 'asd', iconSize: YgIconSize.medium),
+            ],
+          ),
+          YgListTile(
+            title: 'Title',
+            subtitle: 'Bacon ipsum dolor amet chicken frankfurter burgdoggen landjaeger sirloin ham pig.',
+            leadingWidgets: const <Widget>[
+              YgIcon(icon: 'asd', iconSize: YgIconSize.medium),
+              YgIcon(icon: 'asd', iconSize: YgIconSize.medium),
+            ],
+            trailingWidgets: const <Widget>[
+              YgIcon(icon: 'asd', iconSize: YgIconSize.medium),
+            ],
+          ),
+          YgListTile(
+            title: 'Title',
+            subtitle: 'Bacon ipsum dolor amet chicken frankfurter burgdoggen landjaeger sirloin ham pig.',
+            leadingWidgets: const <Widget>[
+              YgIcon(icon: 'asd', iconSize: YgIconSize.medium),
+              YgIcon(icon: 'asd', iconSize: YgIconSize.medium),
+            ],
+            trailingWidgets: const <Widget>[
+              YgIcon(icon: 'asd', iconSize: YgIconSize.medium),
+            ],
+            supportingWidgets: const <Widget>[
+              YgIcon(icon: 'asd', iconSize: YgIconSize.medium),
+            ],
+          ),
+          YgListTile(
+            title: 'Title',
+            subtitle: 'Bacon ipsum dolor amet chicken frankfurter burgdoggen landjaeger sirloin ham pig.',
+            leadingWidgets: const <Widget>[
+              YgIcon(icon: 'asd', iconSize: YgIconSize.medium),
+              YgIcon(icon: 'asd', iconSize: YgIconSize.medium),
+            ],
+            trailingWidgets: const <Widget>[
+              YgIcon(icon: 'asd', iconSize: YgIconSize.medium),
+            ],
+            supportingWidgets: const <Widget>[
+              YgIcon(icon: 'asd', iconSize: YgIconSize.medium),
+              YgIcon(icon: 'asd', iconSize: YgIconSize.medium),
+            ],
+          ),
+          YgListTile(
+            title: 'Title',
+            subtitle: 'Bacon ipsum dolor amet chicken frankfurter burgdoggen landjaeger sirloin ham pig.',
+            onInfoTap: () {},
+            leadingWidgets: const <Widget>[
+              YgIcon(icon: 'asd', iconSize: YgIconSize.medium),
+              YgIcon(icon: 'asd', iconSize: YgIconSize.medium),
+            ],
+            trailingWidgets: const <Widget>[
+              YgIcon(icon: 'asd', iconSize: YgIconSize.medium),
+            ],
+            supportingWidgets: const <Widget>[
+              YgIcon(icon: 'asd', iconSize: YgIconSize.medium),
+              YgIcon(icon: 'asd', iconSize: YgIconSize.medium),
+            ],
+          ),
+          YgListTile(
+            title: 'Tappable!',
+            subtitle: 'Bacon ipsum dolor amet chicken frankfurter burgdoggen landjaeger sirloin ham pig.',
+            onTap: () {},
+            onInfoTap: () {},
+            leadingWidgets: const <Widget>[
+              YgIcon(icon: 'asd', iconSize: YgIconSize.medium),
+              YgIcon(icon: 'asd', iconSize: YgIconSize.medium),
+            ],
+            trailingWidgets: const <Widget>[
+              YgIcon(icon: 'asd', iconSize: YgIconSize.medium),
+              YgIcon(icon: 'asd', iconSize: YgIconSize.medium),
+            ],
+            supportingWidgets: const <Widget>[
+              YgIcon(icon: 'asd', iconSize: YgIconSize.medium),
+              YgIcon(icon: 'asd', iconSize: YgIconSize.medium),
+            ],
+          ),
+          YgListTile(
+            title: 'Tappable!',
+            subtitle: 'Bacon ipsum dolor amet chicken frankfurter burgdoggen landjaeger sirloin ham pig.',
+            subtitleIcon: const YgIcon(icon: 'asd', iconSize: YgIconSize.small),
+            onTap: () {},
+            onInfoTap: () {},
+            leadingWidgets: const <Widget>[
+              YgIcon(icon: 'asd', iconSize: YgIconSize.medium),
+              YgIcon(icon: 'asd', iconSize: YgIconSize.medium),
+            ],
+            trailingWidgets: const <Widget>[
+              YgIcon(icon: 'asd', iconSize: YgIconSize.medium),
+              YgIcon(icon: 'asd', iconSize: YgIconSize.medium),
+            ],
+            supportingWidgets: const <Widget>[
+              YgIcon(icon: 'asd', iconSize: YgIconSize.medium),
+              YgIcon(icon: 'asd', iconSize: YgIconSize.medium),
+            ],
+          ),
+        ],
       ),
     );
   }

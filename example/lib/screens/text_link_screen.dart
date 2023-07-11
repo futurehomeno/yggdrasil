@@ -18,8 +18,8 @@ class TextLinkScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return YgScreen(
-      componentName: 'Text Link',
-      componentDesc: 'Text Link',
+      componentName: 'TextLink',
+      componentDesc: 'Text links',
       supernovaLink: 'Link',
       child: Column(
         children: <Widget>[

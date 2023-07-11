@@ -19,7 +19,7 @@ class CalloutScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return YgScreen(
       componentName: 'Callout',
-      componentDesc: 'Callout',
+      componentDesc: 'Callouts',
       supernovaLink: 'Link',
       child: Column(
         children: <Widget>[
