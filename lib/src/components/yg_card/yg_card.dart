@@ -25,19 +25,14 @@ class YgCard extends StatelessWidget {
   Widget build(BuildContext context) {
     final YgCardThemes cardThemes = context.cardThemes;
 
-    return Container(
-      margin: EdgeInsets.only(
-        bottom: cardThemes.verticalCardMargin,
-      ),
-      child: Material(
-        type: MaterialType.card,
-        color: variant.getBackgroundColor(cardThemes),
-        shape: variant.getShape(cardThemes),
-        elevation: variant.getElevation(cardThemes),
-        borderOnForeground: false,
-        clipBehavior: Clip.antiAlias,
-        child: child,
-      ),
+    return Material(
+      type: MaterialType.card,
+      color: variant.getBackgroundColor(cardThemes),
+      shape: variant.getShape(cardThemes),
+      elevation: variant.getElevation(cardThemes),
+      borderOnForeground: false,
+      clipBehavior: Clip.antiAlias,
+      child: child,
     );
   }
 }

@@ -43,11 +43,4 @@ class _$YgCardThemes {
     professional_light.FhRadii.md,
     professional_dark.FhRadii.md,
   ];
-
-  static List<double> verticalCardMargin = <double>[
-    consumer_light.FhDimensions.xxs,
-    consumer_dark.FhDimensions.xxs,
-    professional_light.FhDimensions.xxs,
-    professional_dark.FhDimensions.xxs,
-  ];
 }

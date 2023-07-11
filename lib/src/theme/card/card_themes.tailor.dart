@@ -15,7 +15,6 @@ class YgCardThemes extends ThemeExtension<YgCardThemes> {
     required this.filledBackgroundColor,
     required this.outlinedBackgroundColor,
     required this.outlinedBorderColor,
-    required this.verticalCardMargin,
   });
 
   final BorderRadius borderRadius;
@@ -23,7 +22,6 @@ class YgCardThemes extends ThemeExtension<YgCardThemes> {
   final Color filledBackgroundColor;
   final Color outlinedBackgroundColor;
   final Color outlinedBorderColor;
-  final double verticalCardMargin;
 
   static final YgCardThemes consumerLight = YgCardThemes(
     borderRadius: _$YgCardThemes.borderRadius[0],
@@ -31,7 +29,6 @@ class YgCardThemes extends ThemeExtension<YgCardThemes> {
     filledBackgroundColor: _$YgCardThemes.filledBackgroundColor[0],
     outlinedBackgroundColor: _$YgCardThemes.outlinedBackgroundColor[0],
     outlinedBorderColor: _$YgCardThemes.outlinedBorderColor[0],
-    verticalCardMargin: _$YgCardThemes.verticalCardMargin[0],
   );
 
   static final YgCardThemes consumerDark = YgCardThemes(
@@ -40,7 +37,6 @@ class YgCardThemes extends ThemeExtension<YgCardThemes> {
     filledBackgroundColor: _$YgCardThemes.filledBackgroundColor[1],
     outlinedBackgroundColor: _$YgCardThemes.outlinedBackgroundColor[1],
     outlinedBorderColor: _$YgCardThemes.outlinedBorderColor[1],
-    verticalCardMargin: _$YgCardThemes.verticalCardMargin[1],
   );
 
   static final YgCardThemes professionalLight = YgCardThemes(
@@ -49,7 +45,6 @@ class YgCardThemes extends ThemeExtension<YgCardThemes> {
     filledBackgroundColor: _$YgCardThemes.filledBackgroundColor[2],
     outlinedBackgroundColor: _$YgCardThemes.outlinedBackgroundColor[2],
     outlinedBorderColor: _$YgCardThemes.outlinedBorderColor[2],
-    verticalCardMargin: _$YgCardThemes.verticalCardMargin[2],
   );
 
   static final YgCardThemes professionalDark = YgCardThemes(
@@ -58,7 +53,6 @@ class YgCardThemes extends ThemeExtension<YgCardThemes> {
     filledBackgroundColor: _$YgCardThemes.filledBackgroundColor[3],
     outlinedBackgroundColor: _$YgCardThemes.outlinedBackgroundColor[3],
     outlinedBorderColor: _$YgCardThemes.outlinedBorderColor[3],
-    verticalCardMargin: _$YgCardThemes.verticalCardMargin[3],
   );
 
   static final themes = [
@@ -75,7 +69,6 @@ class YgCardThemes extends ThemeExtension<YgCardThemes> {
     Color? filledBackgroundColor,
     Color? outlinedBackgroundColor,
     Color? outlinedBorderColor,
-    double? verticalCardMargin,
   }) {
     return YgCardThemes(
       borderRadius: borderRadius ?? this.borderRadius,
@@ -86,7 +79,6 @@ class YgCardThemes extends ThemeExtension<YgCardThemes> {
       outlinedBackgroundColor:
           outlinedBackgroundColor ?? this.outlinedBackgroundColor,
       outlinedBorderColor: outlinedBorderColor ?? this.outlinedBorderColor,
-      verticalCardMargin: verticalCardMargin ?? this.verticalCardMargin,
     );
   }
 
@@ -103,8 +95,6 @@ class YgCardThemes extends ThemeExtension<YgCardThemes> {
           outlinedBackgroundColor, other.outlinedBackgroundColor, t)!,
       outlinedBorderColor:
           Color.lerp(outlinedBorderColor, other.outlinedBorderColor, t)!,
-      verticalCardMargin:
-          t < 0.5 ? verticalCardMargin : other.verticalCardMargin,
     );
   }
 
@@ -122,9 +112,7 @@ class YgCardThemes extends ThemeExtension<YgCardThemes> {
             const DeepCollectionEquality().equals(
                 outlinedBackgroundColor, other.outlinedBackgroundColor) &&
             const DeepCollectionEquality()
-                .equals(outlinedBorderColor, other.outlinedBorderColor) &&
-            const DeepCollectionEquality()
-                .equals(verticalCardMargin, other.verticalCardMargin));
+                .equals(outlinedBorderColor, other.outlinedBorderColor));
   }
 
   @override
@@ -136,7 +124,6 @@ class YgCardThemes extends ThemeExtension<YgCardThemes> {
       const DeepCollectionEquality().hash(filledBackgroundColor),
       const DeepCollectionEquality().hash(outlinedBackgroundColor),
       const DeepCollectionEquality().hash(outlinedBorderColor),
-      const DeepCollectionEquality().hash(verticalCardMargin),
     );
   }
 }

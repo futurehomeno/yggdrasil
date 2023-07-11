@@ -25,9 +25,10 @@ class YgScreen extends StatelessWidget {
         actions: <Widget>[
           Consumer<YgAppState>(
             builder: (BuildContext context, YgAppState ygAppState, Widget? widget) {
-              return IconButton(
-                onPressed: ygAppState.toggleTheme,
-                icon: Icon(_buildThemeIcon(context, ygAppState)),
+              return YgIcon(
+                icon: 'icon',
+                onTap: ygAppState.toggleTheme,
+                tapSize: YgIconTapSize.largest,
               );
             },
           )
@@ -42,12 +43,5 @@ class YgScreen extends StatelessWidget {
         ),
       ),
     );
-  }
-
-  IconData _buildThemeIcon(BuildContext context, YgAppState ygAppState) {
-    if (ygAppState.currentTheme == YgTheme.consumerLight) {
-      return Icons.dark_mode_outlined;
-    }
-    return Icons.light_mode_outlined;
   }
 }
