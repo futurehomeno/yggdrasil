@@ -19,7 +19,7 @@ class YgCallout extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final YgCalloutThemes theme = context.calloutTheme;
+    final YgCalloutThemes theme = context.calloutThemes;
 
     return Material(
       color: calloutVariant.getBackgroundColor(theme),
@@ -34,7 +34,7 @@ class YgCallout extends StatelessWidget {
         child: Row(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: <Widget>[
-            Flexible(
+            Expanded(
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: <Widget>[
@@ -59,9 +59,10 @@ class YgCallout extends StatelessWidget {
               ),
             ),
             SizedBox(width: theme.closeButtonSpacing),
-            GestureDetector(
-              onTap: () {},
-              child: const Icon(Icons.close),
+            // TODO(emeban): `IconButton` -> `YgIcon` (when YgIcon gets merged)
+            IconButton(
+              icon: const Icon(Icons.close),
+              onPressed: onClose,
             ),
           ],
         ),
