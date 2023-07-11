@@ -4,7 +4,7 @@ version: 0.0.1
 publish_to: none
 
 environment:
-  sdk: 3.0.5
+  sdk: ^3.0.5
   flutter: 3.10.5
 
 dependencies:
@@ -15,11 +15,6 @@ dependencies:
       ref: main
       url: git@github.com:futurehomeno/theme_tailor.git
       path: packages/theme_tailor_annotation
-  fh_utils:
-    git:
-      ref: master # to-branch-script-tag
-      url: git@github.com:futurehomeno/pubdev_registry.git
-      path: packages/fh_utils
 
 dev_dependencies:
   # Run `flutter pub run build_runner build --delete-conflicting-outputs` in order to generate stuff.
@@ -29,7 +24,7 @@ dev_dependencies:
   mockito: 5.4.2
   fh_lints:
     git:
-      ref: master # to-branch-script-tag
+      ref: releases/1.3.71 # to-pubdev-reference-script-tag
       url: git@github.com:futurehomeno/pubdev_registry.git
       path: packages/fh_lints
   flutter_test:
