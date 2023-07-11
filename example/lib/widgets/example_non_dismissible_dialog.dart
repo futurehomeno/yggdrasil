@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:yggdrasil/yggdrasil.dart';
 
-class NonDismissibleDialog extends YgDialogRoute {
+class ExampleNonDismissibleDialog extends YgDialogRoute {
   @override
   final bool barrierDismissible = false;
 
