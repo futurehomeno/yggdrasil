@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:yggdrasil/src/theme/_theme.dart';
+import 'package:yggdrasil/src/theme/tags/extensions/_extensions.dart';
 
 import 'enums/_enums.dart';
 import 'properties/_properties.dart';
@@ -8,6 +9,7 @@ import 'properties/_properties.dart';
 ///
 /// Variation of the [ButtonStyle] to better fit [YgTags].
 /// Use [toButtonStyle] to convert to material [ButtonStyle].
+// TODO(bjhandeland): Find a way to improve this. Too much repeated code.
 class YgTagStyle {
   const YgTagStyle({
     required this.backgroundColor,
@@ -26,150 +28,73 @@ class YgTagStyle {
   }) {
     switch (variant) {
       case YgTagVariant.neutral:
-        return _buildNeutralTag(
-          context: context,
-          size: size,
-          impact: impact,
+        final NeutralTagTheme theme = context.tagThemes.neutralTagTheme;
+
+        return _buildTagStyle(
+          backgroundColor: impact == YgTagImpact.weak ? theme.backgroundColor : theme.strongBackgroundColor,
+          textStyle: impact == YgTagImpact.weak ? theme.textStyle : theme.strongTextStyle,
+          disabledTextStyle: theme.disabledTextStyle,
+          borderRadius: context.tagThemes.borderRadius,
+          padding: size.buildPadding(context),
         );
+
       case YgTagVariant.informative:
-        return _buildInformativeTag(
-          context: context,
-          size: size,
-          impact: impact,
+        final InformativeTagTheme theme = context.tagThemes.informativeTagTheme;
+
+        return _buildTagStyle(
+          backgroundColor: impact == YgTagImpact.weak ? theme.backgroundColor : theme.strongBackgroundColor,
+          textStyle: impact == YgTagImpact.weak ? theme.textStyle : theme.strongTextStyle,
+          disabledTextStyle: theme.disabledTextStyle,
+          borderRadius: context.tagThemes.borderRadius,
+          padding: size.buildPadding(context),
         );
       case YgTagVariant.positive:
-        return _buildPositiveTag(
-          context: context,
-          size: size,
-          impact: impact,
+        final PositiveTagTheme theme = context.tagThemes.positiveTagTheme;
+
+        return _buildTagStyle(
+          backgroundColor: impact == YgTagImpact.weak ? theme.backgroundColor : theme.strongBackgroundColor,
+          textStyle: impact == YgTagImpact.weak ? theme.textStyle : theme.strongTextStyle,
+          disabledTextStyle: theme.disabledTextStyle,
+          borderRadius: context.tagThemes.borderRadius,
+          padding: size.buildPadding(context),
         );
       case YgTagVariant.warning:
-        return _buildWarningTag(
-          context: context,
-          size: size,
-          impact: impact,
+        final WarningTagTheme theme = context.tagThemes.warningTagTheme;
+
+        return _buildTagStyle(
+          backgroundColor: impact == YgTagImpact.weak ? theme.backgroundColor : theme.strongBackgroundColor,
+          textStyle: impact == YgTagImpact.weak ? theme.textStyle : theme.strongTextStyle,
+          disabledTextStyle: theme.disabledTextStyle,
+          borderRadius: context.tagThemes.borderRadius,
+          padding: size.buildPadding(context),
         );
       case YgTagVariant.negative:
-        return _buildNegativeTag(
-          context: context,
-          size: size,
-          impact: impact,
+        final NegativeTagTheme theme = context.tagThemes.negativeTagTheme;
+
+        return _buildTagStyle(
+          backgroundColor: impact == YgTagImpact.weak ? theme.backgroundColor : theme.strongBackgroundColor,
+          textStyle: impact == YgTagImpact.weak ? theme.textStyle : theme.strongTextStyle,
+          disabledTextStyle: theme.disabledTextStyle,
+          borderRadius: context.tagThemes.borderRadius,
+          padding: size.buildPadding(context),
         );
     }
   }
 
-  static YgTagStyle _buildNeutralTag({
-    required BuildContext context,
-    required YgTagSize size,
-    required YgTagImpact impact,
+  static YgTagStyle _buildTagStyle({
+    required Color backgroundColor,
+    required TextStyle textStyle,
+    required TextStyle disabledTextStyle,
+    required BorderRadius borderRadius,
+    required EdgeInsets padding,
   }) {
     return YgTagStyle(
-      backgroundColor: impact == YgTagImpact.weak
-          ? context.tagThemes.neutralTagTheme.backgroundColor
-          : context.tagThemes.neutralTagTheme.strongBackgroundColor,
-      textStyle: impact == YgTagImpact.weak
-          ? context.tagThemes.neutralTagTheme.textStyle
-          : context.tagThemes.neutralTagTheme.strongTextStyle,
-      disabledTextStyle: context.tagThemes.neutralTagTheme.disabledTextStyle,
-      shape: RoundedRectangleBorder(
-        borderRadius: context.tagThemes.borderRadius,
-      ),
-      disabledShape: RoundedRectangleBorder(
-        borderRadius: context.tagThemes.borderRadius,
-      ),
-      padding: size.buildPadding(context),
-    );
-  }
-
-  static YgTagStyle _buildInformativeTag({
-    required BuildContext context,
-    required YgTagSize size,
-    required YgTagImpact impact,
-  }) {
-    return YgTagStyle(
-      backgroundColor: impact == YgTagImpact.weak
-          ? context.tagThemes.informativeTagTheme.backgroundColor
-          : context.tagThemes.informativeTagTheme.strongBackgroundColor,
-      textStyle: impact == YgTagImpact.weak
-          ? context.tagThemes.informativeTagTheme.textStyle
-          : context.tagThemes.informativeTagTheme.strongTextStyle,
-      disabledTextStyle: context.tagThemes.informativeTagTheme.disabledTextStyle,
-      shape: RoundedRectangleBorder(
-        borderRadius: context.tagThemes.borderRadius,
-      ),
-      disabledShape: RoundedRectangleBorder(
-        borderRadius: context.tagThemes.borderRadius,
-      ),
-      padding: size.buildPadding(context),
-    );
-  }
-
-  static YgTagStyle _buildPositiveTag({
-    required BuildContext context,
-    required YgTagSize size,
-    required YgTagImpact impact,
-  }) {
-    return YgTagStyle(
-      backgroundColor: impact == YgTagImpact.weak
-          ? context.tagThemes.positiveTagTheme.backgroundColor
-          : context.tagThemes.positiveTagTheme.strongBackgroundColor,
-      textStyle: impact == YgTagImpact.weak
-          ? context.tagThemes.positiveTagTheme.textStyle
-          : context.tagThemes.positiveTagTheme.strongTextStyle,
-      disabledTextStyle: context.tagThemes.positiveTagTheme.disabledTextStyle,
-      shape: RoundedRectangleBorder(
-        borderRadius: context.tagThemes.borderRadius,
-      ),
-      disabledShape: RoundedRectangleBorder(
-        borderRadius: context.tagThemes.borderRadius,
-      ),
-      padding: size.buildPadding(context),
-    );
-  }
-
-  static YgTagStyle _buildWarningTag({
-    required BuildContext context,
-    required YgTagSize size,
-    required YgTagImpact impact,
-  }) {
-    return YgTagStyle(
-      backgroundColor: impact == YgTagImpact.weak
-          ? context.tagThemes.warningTagTheme.backgroundColor
-          : context.tagThemes.warningTagTheme.strongBackgroundColor,
-      textStyle: impact == YgTagImpact.weak
-          ? context.tagThemes.warningTagTheme.textStyle
-          : context.tagThemes.warningTagTheme.strongTextStyle,
-      disabledTextStyle: context.tagThemes.warningTagTheme.disabledTextStyle,
-      shape: RoundedRectangleBorder(
-        borderRadius: context.tagThemes.borderRadius,
-      ),
-      disabledShape: RoundedRectangleBorder(
-        borderRadius: context.tagThemes.borderRadius,
-      ),
-      padding: size.buildPadding(context),
-    );
-  }
-
-  static YgTagStyle _buildNegativeTag({
-    required BuildContext context,
-    required YgTagSize size,
-    required YgTagImpact impact,
-  }) {
-    return YgTagStyle(
-      backgroundColor: impact == YgTagImpact.weak
-          ? context.tagThemes.negativeTagTheme.backgroundColor
-          : context.tagThemes.negativeTagTheme.strongBackgroundColor,
-      textStyle: impact == YgTagImpact.weak
-          ? context.tagThemes.negativeTagTheme.textStyle
-          : context.tagThemes.negativeTagTheme.strongTextStyle,
-      disabledTextStyle: context.tagThemes.negativeTagTheme.disabledTextStyle,
-      shape: RoundedRectangleBorder(
-        borderRadius: context.tagThemes.borderRadius,
-      ),
-      disabledShape: RoundedRectangleBorder(
-        borderRadius: context.tagThemes.borderRadius,
-      ),
-      padding: size.buildPadding(context),
+      backgroundColor: backgroundColor,
+      textStyle: textStyle,
+      disabledTextStyle: disabledTextStyle,
+      shape: RoundedRectangleBorder(borderRadius: borderRadius),
+      disabledShape: RoundedRectangleBorder(borderRadius: borderRadius),
+      padding: padding,
     );
   }
 
