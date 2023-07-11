@@ -61,10 +61,10 @@ class YgCallout extends StatelessWidget {
               ),
             ),
             SizedBox(width: theme.closeButtonSpacing),
-            // TODO(emeban): `IconButton` -> `YgIcon` (when YgIcon gets merged)
-            IconButton(
-              icon: const Icon(Icons.close),
-              onPressed: onClose,
+            // TODO(emeban): `GestureDetector` -> `YgIcon` (when YgIcon gets merged)
+            GestureDetector(
+              onTap: onClose,
+              child: const Icon(Icons.close),
             ),
           ],
         ),
