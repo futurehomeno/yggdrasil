@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:yggdrasil/src/theme/_theme.dart';
+import 'package:yggdrasil/yggdrasil.dart';
 
 class YgAppState extends ChangeNotifier {
   final YgTheme _defaultTheme = YgTheme.consumerLight;
@@ -21,15 +21,9 @@ class YgAppState extends ChangeNotifier {
 
   ThemeData get currentThemeData {
     if (_currentTheme == YgTheme.consumerLight) {
-      return ThemeData(
-        brightness: Brightness.light,
-        extensions: <YgTheme>[YgTheme.consumerLight],
-      );
+      return YgThemeDataHelper.consumerLightThemeData;
     }
 
-    return ThemeData(
-      brightness: Brightness.dark,
-      extensions: <YgTheme>[YgTheme.consumerDark],
-    );
+    return YgThemeDataHelper.consumerDarkThemeData;
   }
 }
