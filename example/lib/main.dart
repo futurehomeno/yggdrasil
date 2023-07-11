@@ -3,7 +3,7 @@ import 'package:flutter/services.dart';
 import 'package:provider/provider.dart';
 
 import 'core/_core.dart';
-import 'screens/home_screen.dart';
+import 'screens/_screens.dart';
 
 void main() {
   // Set up the locator service before initializing the app.

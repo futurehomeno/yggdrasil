@@ -5,6 +5,7 @@ import 'enums/_enums.dart';
 import 'yg_button_style.dart';
 
 /// Base class for creating all Yg buttons.
+// TODO(bjhandeland): Replace icon with FhIcon after merge.
 class YgButton extends ButtonStyleButton {
   const YgButton({
     super.key,

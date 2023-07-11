@@ -1,1 +1,6 @@
 include: package:fh_lints/fh_lints.yaml
+
+# Do not analyze the tokens.
+analyzer:
+  exclude:
+    - 'lib/src/theme/tokens/*'

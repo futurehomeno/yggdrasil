@@ -13,7 +13,9 @@ class YgTheme extends ThemeExtension<YgTheme> {
     required this.badgeThemes,
     required this.bottomSheetThemes,
     required this.buttonThemes,
+    required this.calloutThemes,
     required this.cardThemes,
+    required this.dialogTheme,
     required this.dialogThemes,
     required this.iconThemes,
     required this.internalThemes,
@@ -26,7 +28,9 @@ class YgTheme extends ThemeExtension<YgTheme> {
   final YgBadgeThemes badgeThemes;
   final YgBottomSheetThemes bottomSheetThemes;
   final YgButtonThemes buttonThemes;
+  final YgCalloutThemes calloutThemes;
   final YgCardThemes cardThemes;
+  final YgDialogThemes dialogTheme;
   final YgDialogThemes dialogThemes;
   final YgIconThemes iconThemes;
   final YgInternalThemes internalThemes;
@@ -39,7 +43,9 @@ class YgTheme extends ThemeExtension<YgTheme> {
     badgeThemes: _$YgTheme.badgeThemes[0],
     bottomSheetThemes: _$YgTheme.bottomSheetThemes[0],
     buttonThemes: _$YgTheme.buttonThemes[0],
+    calloutThemes: _$YgTheme.calloutThemes[0],
     cardThemes: _$YgTheme.cardThemes[0],
+    dialogTheme: _$YgTheme.dialogTheme[0],
     dialogThemes: _$YgTheme.dialogThemes[0],
     iconThemes: _$YgTheme.iconThemes[0],
     internalThemes: _$YgTheme.internalThemes[0],
@@ -53,7 +59,9 @@ class YgTheme extends ThemeExtension<YgTheme> {
     badgeThemes: _$YgTheme.badgeThemes[1],
     bottomSheetThemes: _$YgTheme.bottomSheetThemes[1],
     buttonThemes: _$YgTheme.buttonThemes[1],
+    calloutThemes: _$YgTheme.calloutThemes[1],
     cardThemes: _$YgTheme.cardThemes[1],
+    dialogTheme: _$YgTheme.dialogTheme[1],
     dialogThemes: _$YgTheme.dialogThemes[1],
     iconThemes: _$YgTheme.iconThemes[1],
     internalThemes: _$YgTheme.internalThemes[1],
@@ -67,7 +75,9 @@ class YgTheme extends ThemeExtension<YgTheme> {
     badgeThemes: _$YgTheme.badgeThemes[2],
     bottomSheetThemes: _$YgTheme.bottomSheetThemes[2],
     buttonThemes: _$YgTheme.buttonThemes[2],
+    calloutThemes: _$YgTheme.calloutThemes[2],
     cardThemes: _$YgTheme.cardThemes[2],
+    dialogTheme: _$YgTheme.dialogTheme[2],
     dialogThemes: _$YgTheme.dialogThemes[2],
     iconThemes: _$YgTheme.iconThemes[2],
     internalThemes: _$YgTheme.internalThemes[2],
@@ -81,7 +91,9 @@ class YgTheme extends ThemeExtension<YgTheme> {
     badgeThemes: _$YgTheme.badgeThemes[3],
     bottomSheetThemes: _$YgTheme.bottomSheetThemes[3],
     buttonThemes: _$YgTheme.buttonThemes[3],
+    calloutThemes: _$YgTheme.calloutThemes[3],
     cardThemes: _$YgTheme.cardThemes[3],
+    dialogTheme: _$YgTheme.dialogTheme[3],
     dialogThemes: _$YgTheme.dialogThemes[3],
     iconThemes: _$YgTheme.iconThemes[3],
     internalThemes: _$YgTheme.internalThemes[3],
@@ -103,7 +115,9 @@ class YgTheme extends ThemeExtension<YgTheme> {
     YgBadgeThemes? badgeThemes,
     YgBottomSheetThemes? bottomSheetThemes,
     YgButtonThemes? buttonThemes,
+    YgCalloutThemes? calloutThemes,
     YgCardThemes? cardThemes,
+    YgDialogThemes? dialogTheme,
     YgDialogThemes? dialogThemes,
     YgIconThemes? iconThemes,
     YgInternalThemes? internalThemes,
@@ -116,7 +130,9 @@ class YgTheme extends ThemeExtension<YgTheme> {
       badgeThemes: badgeThemes ?? this.badgeThemes,
       bottomSheetThemes: bottomSheetThemes ?? this.bottomSheetThemes,
       buttonThemes: buttonThemes ?? this.buttonThemes,
+      calloutThemes: calloutThemes ?? this.calloutThemes,
       cardThemes: cardThemes ?? this.cardThemes,
+      dialogTheme: dialogTheme ?? this.dialogTheme,
       dialogThemes: dialogThemes ?? this.dialogThemes,
       iconThemes: iconThemes ?? this.iconThemes,
       internalThemes: internalThemes ?? this.internalThemes,
@@ -135,7 +151,10 @@ class YgTheme extends ThemeExtension<YgTheme> {
       bottomSheetThemes: bottomSheetThemes.lerp(other.bottomSheetThemes, t)
           as YgBottomSheetThemes,
       buttonThemes: buttonThemes.lerp(other.buttonThemes, t) as YgButtonThemes,
+      calloutThemes:
+          calloutThemes.lerp(other.calloutThemes, t) as YgCalloutThemes,
       cardThemes: cardThemes.lerp(other.cardThemes, t) as YgCardThemes,
+      dialogTheme: dialogTheme.lerp(other.dialogTheme, t) as YgDialogThemes,
       dialogThemes: dialogThemes.lerp(other.dialogThemes, t) as YgDialogThemes,
       iconThemes: iconThemes.lerp(other.iconThemes, t) as YgIconThemes,
       internalThemes:
@@ -161,7 +180,11 @@ class YgTheme extends ThemeExtension<YgTheme> {
             const DeepCollectionEquality()
                 .equals(buttonThemes, other.buttonThemes) &&
             const DeepCollectionEquality()
+                .equals(calloutThemes, other.calloutThemes) &&
+            const DeepCollectionEquality()
                 .equals(cardThemes, other.cardThemes) &&
+            const DeepCollectionEquality()
+                .equals(dialogTheme, other.dialogTheme) &&
             const DeepCollectionEquality()
                 .equals(dialogThemes, other.dialogThemes) &&
             const DeepCollectionEquality()
@@ -183,7 +206,9 @@ class YgTheme extends ThemeExtension<YgTheme> {
       const DeepCollectionEquality().hash(badgeThemes),
       const DeepCollectionEquality().hash(bottomSheetThemes),
       const DeepCollectionEquality().hash(buttonThemes),
+      const DeepCollectionEquality().hash(calloutThemes),
       const DeepCollectionEquality().hash(cardThemes),
+      const DeepCollectionEquality().hash(dialogTheme),
       const DeepCollectionEquality().hash(dialogThemes),
       const DeepCollectionEquality().hash(iconThemes),
       const DeepCollectionEquality().hash(internalThemes),
@@ -200,7 +225,9 @@ extension YgThemeBuildContextProps on BuildContext {
   YgBadgeThemes get badgeThemes => ygTheme.badgeThemes;
   YgBottomSheetThemes get bottomSheetThemes => ygTheme.bottomSheetThemes;
   YgButtonThemes get buttonThemes => ygTheme.buttonThemes;
+  YgCalloutThemes get calloutThemes => ygTheme.calloutThemes;
   YgCardThemes get cardThemes => ygTheme.cardThemes;
+  YgDialogThemes get dialogTheme => ygTheme.dialogTheme;
   YgDialogThemes get dialogThemes => ygTheme.dialogThemes;
   YgIconThemes get iconThemes => ygTheme.iconThemes;
   YgInternalThemes get internalThemes => ygTheme.internalThemes;

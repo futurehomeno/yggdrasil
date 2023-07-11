@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:yggdrasil/yggdrasil.dart';
-import 'package:yggdrasil_demo/core/yg_route_builder.dart';
+import 'package:yggdrasil_demo/core/_core.dart';
 import 'package:yggdrasil_demo/widgets/_widgets.dart';
 
 class TextLinkScreen extends StatelessWidget {
