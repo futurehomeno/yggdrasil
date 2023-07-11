@@ -83,6 +83,7 @@ class _$YgButtonThemes {
     )
   ];
 
+  // TODO(bjhandeland): Remove after merging FhIcon.
   static List<double> iconSize = <double>[
     consumer_light.FhDimensions.sm,
     consumer_dark.FhDimensions.sm,

@@ -8,6 +8,7 @@ import 'yg_tag_style.dart';
 ///
 /// Tags are based on [ButtonStyleButton] and [ButtonStyle]
 /// as the style is practically the same.
+// TODO(bjhandeland): Replace icon with FhIcon after merge.
 class YgTag extends ButtonStyleButton {
   const YgTag({
     super.key,
