@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:theme_tailor_annotation/theme_tailor_annotation.dart';
+import 'package:yggdrasil/src/theme/callout/extensions/_extensions.dart';
 import 'package:yggdrasil/src/tokens/consumer_dark/_consumer_dark.dart' as consumer_dark;
 import 'package:yggdrasil/src/tokens/consumer_light/_consumer_light.dart' as consumer_light;
 import 'package:yggdrasil/src/tokens/professional_dark/_professional_dark.dart' as professional_dark;
@@ -9,61 +10,17 @@ part 'callout_themes.tailor.dart';
 
 @tailorComponent
 class _$YgCalloutThemes {
-  static List<Color> highlightBackgroundColor = <Color>[
-    consumer_light.FhColors.backgroundHighlightWeak,
-    consumer_dark.FhColors.backgroundHighlightWeak,
-    professional_light.FhColors.backgroundHighlightWeak,
-    professional_dark.FhColors.backgroundHighlightWeak,
-  ];
+  @themeExtension
+  static List<CriticalCalloutTheme> criticalCalloutTheme = CriticalCalloutTheme.themes;
 
-  static List<Color> successBackgroundColor = <Color>[
-    consumer_light.FhColors.backgroundSuccessWeak,
-    consumer_dark.FhColors.backgroundSuccessWeak,
-    professional_light.FhColors.backgroundSuccessWeak,
-    professional_dark.FhColors.backgroundSuccessWeak,
-  ];
+  @themeExtension
+  static List<HighlightCalloutTheme> highlightCalloutTheme = HighlightCalloutTheme.themes;
 
-  static List<Color> warningBackgroundColor = <Color>[
-    consumer_light.FhColors.backgroundWarningWeak,
-    consumer_dark.FhColors.backgroundWarningWeak,
-    professional_light.FhColors.backgroundWarningWeak,
-    professional_dark.FhColors.backgroundWarningWeak,
-  ];
+  @themeExtension
+  static List<SuccessCalloutTheme> successCalloutTheme = SuccessCalloutTheme.themes;
 
-  static List<Color> criticalBackgroundColor = <Color>[
-    consumer_light.FhColors.backgroundCriticalWeak,
-    consumer_dark.FhColors.backgroundCriticalWeak,
-    professional_light.FhColors.backgroundCriticalWeak,
-    professional_dark.FhColors.backgroundCriticalWeak,
-  ];
-
-  static List<Color> highlightBorderColor = <Color>[
-    consumer_light.FhColors.borderHighlightWeak,
-    consumer_dark.FhColors.borderHighlightWeak,
-    professional_light.FhColors.borderHighlightWeak,
-    professional_dark.FhColors.borderHighlightWeak,
-  ];
-
-  static List<Color> successBorderColor = <Color>[
-    consumer_light.FhColors.borderSuccessWeak,
-    consumer_dark.FhColors.borderSuccessWeak,
-    professional_light.FhColors.borderSuccessWeak,
-    professional_dark.FhColors.borderSuccessWeak,
-  ];
-
-  static List<Color> warningBorderColor = <Color>[
-    consumer_light.FhColors.borderWarningWeak,
-    consumer_dark.FhColors.borderWarningWeak,
-    professional_light.FhColors.borderWarningWeak,
-    professional_dark.FhColors.borderWarningWeak,
-  ];
-
-  static List<Color> criticalBorderColor = <Color>[
-    consumer_light.FhColors.borderCriticalWeak,
-    consumer_dark.FhColors.borderCriticalWeak,
-    professional_light.FhColors.borderCriticalWeak,
-    professional_dark.FhColors.borderCriticalWeak,
-  ];
+  @themeExtension
+  static List<WarningCalloutTheme> warningCalloutTheme = WarningCalloutTheme.themes;
 
   static List<BorderRadius> borderRadius = <BorderRadius>[
     consumer_light.FhRadii.sm,
@@ -112,20 +69,5 @@ class _$YgCalloutThemes {
     consumer_dark.FhTextStyles.paragraph3Regular,
     professional_light.FhTextStyles.paragraph3Regular,
     professional_dark.FhTextStyles.paragraph3Regular,
-  ];
-
-  static List<TextStyle> linkTextStyle = <TextStyle>[
-    consumer_light.FhTextStyles.caption1Medium.copyWith(
-      color: consumer_light.FhColors.interactiveHighlightDefault,
-    ),
-    consumer_dark.FhTextStyles.caption1Medium.copyWith(
-      color: consumer_dark.FhColors.interactiveHighlightDefault,
-    ),
-    professional_light.FhTextStyles.caption1Medium.copyWith(
-      color: professional_light.FhColors.interactiveHighlightDefault,
-    ),
-    professional_dark.FhTextStyles.caption1Medium.copyWith(
-      color: professional_dark.FhColors.interactiveHighlightDefault,
-    ),
   ];
 }

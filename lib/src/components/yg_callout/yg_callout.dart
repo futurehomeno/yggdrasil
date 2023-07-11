@@ -20,13 +20,15 @@ class YgCallout extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final YgCalloutThemes theme = context.calloutThemes;
+    final YgTextLink? textLink = this.textLink;
+    final String? title = this.title;
 
     return Material(
-      color: calloutVariant.getBackgroundColor(theme),
+      color: _getBackgroundColor(theme),
       shape: RoundedRectangleBorder(
         borderRadius: theme.borderRadius,
         side: BorderSide(
-          color: calloutVariant.getBorderColor(theme),
+          color: _getBorderColor(theme),
         ),
       ),
       child: Padding(
@@ -42,7 +44,7 @@ class YgCallout extends StatelessWidget {
                     Padding(
                       padding: EdgeInsets.only(bottom: theme.titleSpacing),
                       child: Text(
-                        title!,
+                        title,
                         style: theme.titleTextStyle,
                       ),
                     ),
@@ -53,7 +55,7 @@ class YgCallout extends StatelessWidget {
                   if (textLink != null)
                     Padding(
                       padding: EdgeInsets.only(top: theme.linkSpacing),
-                      child: textLink!,
+                      child: textLink,
                     )
                 ],
               ),
@@ -68,5 +70,31 @@ class YgCallout extends StatelessWidget {
         ),
       ),
     );
+  }
+
+  Color _getBackgroundColor(YgCalloutThemes theme) {
+    switch (calloutVariant) {
+      case YgCalloutVariant.highlight:
+        return theme.highlightCalloutTheme.backgroundColor;
+      case YgCalloutVariant.success:
+        return theme.successCalloutTheme.backgroundColor;
+      case YgCalloutVariant.warning:
+        return theme.warningCalloutTheme.backgroundColor;
+      case YgCalloutVariant.critical:
+        return theme.criticalCalloutTheme.backgroundColor;
+    }
+  }
+
+  Color _getBorderColor(YgCalloutThemes theme) {
+    switch (calloutVariant) {
+      case YgCalloutVariant.highlight:
+        return theme.highlightCalloutTheme.borderColor;
+      case YgCalloutVariant.success:
+        return theme.successCalloutTheme.borderColor;
+      case YgCalloutVariant.warning:
+        return theme.warningCalloutTheme.borderColor;
+      case YgCalloutVariant.critical:
+        return theme.criticalCalloutTheme.borderColor;
+    }
   }
 }
