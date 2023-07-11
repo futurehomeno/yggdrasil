@@ -34,7 +34,7 @@ class YgCallout extends StatelessWidget {
       child: Padding(
         padding: theme.padding,
         child: Row(
-          crossAxisAlignment: CrossAxisAlignment.start,
+          crossAxisAlignment: title == null ? CrossAxisAlignment.center : CrossAxisAlignment.start,
           children: <Widget>[
             Expanded(
               child: Column(
@@ -61,10 +61,11 @@ class YgCallout extends StatelessWidget {
               ),
             ),
             SizedBox(width: theme.closeButtonSpacing),
-            // TODO(emeban): `GestureDetector` -> `YgIcon` (when YgIcon gets merged)
-            GestureDetector(
+            YgIcon(
+              icon: 'icon',
               onTap: onClose,
-              child: const Icon(Icons.close),
+              iconSize: YgIconSize.small,
+              tapSize: YgIconTapSize.medium,
             ),
           ],
         ),
