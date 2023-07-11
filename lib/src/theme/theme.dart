@@ -28,7 +28,7 @@ class _$YgTheme {
   static List<YgBadgeTheme> badgeTheme = YgBadgeTheme.themes;
 
   @themeExtension
-  static List<YgCalloutThemes> calloutTheme = YgCalloutThemes.themes;
+  static List<YgCalloutThemes> calloutThemes = YgCalloutThemes.themes;
 
   @themeExtension
   static List<YgDialogThemes> dialogTheme = YgDialogThemes.themes;
