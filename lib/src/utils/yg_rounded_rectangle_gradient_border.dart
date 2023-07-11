@@ -10,13 +10,13 @@ class YgRoundedRectangleGradientBorder extends OutlinedBorder {
     this.width = 1.0,
   });
 
-  // The gradient to use when filling the shape.
+  /// The gradient to use when filling the shape.
   final Gradient gradient;
 
-  // The radii for each corner.
+  /// The radii for each corner.
   final BorderRadiusGeometry borderRadius;
 
-  // The width of the border.
+  /// The width of the border.
   final double width;
 
   @override
