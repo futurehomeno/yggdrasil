@@ -1,10 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:yggdrasil/yggdrasil.dart';
 import 'package:yggdrasil_demo/core/_core.dart';
-import 'package:yggdrasil_demo/dialogs/example_dialog.dart';
-import 'package:yggdrasil_demo/dialogs/non_dismissible_dialog.dart';
-
-import '../widgets/yg_screen.dart';
+import 'package:yggdrasil_demo/widgets/_widgets.dart';
 
 class DialogScreen extends StatefulWidget {
   const DialogScreen({super.key});
@@ -42,7 +39,7 @@ class _DialogScreenState extends State<DialogScreen> with TickerProviderStateMix
           YgButton(
             variant: ButtonVariant.primary,
             onPressed: () {
-              Navigator.of(context).push(NonDismissibleDialog());
+              Navigator.of(context).push(ExampleNonDismissibleDialog());
             },
             child: const Text('Show non dismissible dialog'),
           ),
