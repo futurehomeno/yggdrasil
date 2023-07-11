@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:yggdrasil/src/theme/theme.dart';
 
-/// Constructs a ThemeData to be used in an application.
+/// Helper to construct ThemeData to be used in an application.
 class YgThemeDataHelper {
   // region Consumer themes.
   static ThemeData get consumerLightThemeData {
