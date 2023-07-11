@@ -12,7 +12,7 @@ enum YgIconSize {
       case small:
         return iconThemes.sizeSmall;
       case medium:
-        return iconThemes.sizeMedium;
+        return iconThemes.sizeLarge;
     }
   }
 }

@@ -5,7 +5,7 @@ class YgIcon extends StatelessWidget {
   const YgIcon({
     required this.icon,
     this.iconSize = YgIconSize.medium,
-    this.tapSize = YgIconTapSize.large,
+    this.tapSize = YgIconTapSize.larger,
     this.onTap,
     super.key,
   });

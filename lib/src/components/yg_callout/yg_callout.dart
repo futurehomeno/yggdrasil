@@ -65,7 +65,7 @@ class YgCallout extends StatelessWidget {
               icon: 'icon',
               onTap: onClose,
               iconSize: YgIconSize.small,
-              tapSize: YgIconTapSize.medium,
+              tapSize: YgIconTapSize.large,
             ),
           ],
         ),

@@ -11,40 +11,46 @@ part of 'icon_themes.dart';
 class YgIconThemes extends ThemeExtension<YgIconThemes> {
   const YgIconThemes({
     required this.sizeLarge,
-    required this.sizeMedium,
+    required this.sizeLarger,
+    required this.sizeLargest,
     required this.sizeSmall,
     required this.sizeSmaller,
   });
 
   final double sizeLarge;
-  final double sizeMedium;
+  final double sizeLarger;
+  final double sizeLargest;
   final double sizeSmall;
   final double sizeSmaller;
 
   static final YgIconThemes consumerLight = YgIconThemes(
     sizeLarge: _$YgIconThemes.sizeLarge[0],
-    sizeMedium: _$YgIconThemes.sizeMedium[0],
+    sizeLarger: _$YgIconThemes.sizeLarger[0],
+    sizeLargest: _$YgIconThemes.sizeLargest[0],
     sizeSmall: _$YgIconThemes.sizeSmall[0],
     sizeSmaller: _$YgIconThemes.sizeSmaller[0],
   );
 
   static final YgIconThemes consumerDark = YgIconThemes(
     sizeLarge: _$YgIconThemes.sizeLarge[1],
-    sizeMedium: _$YgIconThemes.sizeMedium[1],
+    sizeLarger: _$YgIconThemes.sizeLarger[1],
+    sizeLargest: _$YgIconThemes.sizeLargest[1],
     sizeSmall: _$YgIconThemes.sizeSmall[1],
     sizeSmaller: _$YgIconThemes.sizeSmaller[1],
   );
 
   static final YgIconThemes professionalLight = YgIconThemes(
     sizeLarge: _$YgIconThemes.sizeLarge[2],
-    sizeMedium: _$YgIconThemes.sizeMedium[2],
+    sizeLarger: _$YgIconThemes.sizeLarger[2],
+    sizeLargest: _$YgIconThemes.sizeLargest[2],
     sizeSmall: _$YgIconThemes.sizeSmall[2],
     sizeSmaller: _$YgIconThemes.sizeSmaller[2],
   );
 
   static final YgIconThemes professionalDark = YgIconThemes(
     sizeLarge: _$YgIconThemes.sizeLarge[3],
-    sizeMedium: _$YgIconThemes.sizeMedium[3],
+    sizeLarger: _$YgIconThemes.sizeLarger[3],
+    sizeLargest: _$YgIconThemes.sizeLargest[3],
     sizeSmall: _$YgIconThemes.sizeSmall[3],
     sizeSmaller: _$YgIconThemes.sizeSmaller[3],
   );
@@ -59,13 +65,15 @@ class YgIconThemes extends ThemeExtension<YgIconThemes> {
   @override
   YgIconThemes copyWith({
     double? sizeLarge,
-    double? sizeMedium,
+    double? sizeLarger,
+    double? sizeLargest,
     double? sizeSmall,
     double? sizeSmaller,
   }) {
     return YgIconThemes(
       sizeLarge: sizeLarge ?? this.sizeLarge,
-      sizeMedium: sizeMedium ?? this.sizeMedium,
+      sizeLarger: sizeLarger ?? this.sizeLarger,
+      sizeLargest: sizeLargest ?? this.sizeLargest,
       sizeSmall: sizeSmall ?? this.sizeSmall,
       sizeSmaller: sizeSmaller ?? this.sizeSmaller,
     );
@@ -76,7 +84,8 @@ class YgIconThemes extends ThemeExtension<YgIconThemes> {
     if (other is! YgIconThemes) return this as YgIconThemes;
     return YgIconThemes(
       sizeLarge: t < 0.5 ? sizeLarge : other.sizeLarge,
-      sizeMedium: t < 0.5 ? sizeMedium : other.sizeMedium,
+      sizeLarger: t < 0.5 ? sizeLarger : other.sizeLarger,
+      sizeLargest: t < 0.5 ? sizeLargest : other.sizeLargest,
       sizeSmall: t < 0.5 ? sizeSmall : other.sizeSmall,
       sizeSmaller: t < 0.5 ? sizeSmaller : other.sizeSmaller,
     );
@@ -89,7 +98,9 @@ class YgIconThemes extends ThemeExtension<YgIconThemes> {
             other is YgIconThemes &&
             const DeepCollectionEquality().equals(sizeLarge, other.sizeLarge) &&
             const DeepCollectionEquality()
-                .equals(sizeMedium, other.sizeMedium) &&
+                .equals(sizeLarger, other.sizeLarger) &&
+            const DeepCollectionEquality()
+                .equals(sizeLargest, other.sizeLargest) &&
             const DeepCollectionEquality().equals(sizeSmall, other.sizeSmall) &&
             const DeepCollectionEquality()
                 .equals(sizeSmaller, other.sizeSmaller));
@@ -100,7 +111,8 @@ class YgIconThemes extends ThemeExtension<YgIconThemes> {
     return Object.hash(
       runtimeType.hashCode,
       const DeepCollectionEquality().hash(sizeLarge),
-      const DeepCollectionEquality().hash(sizeMedium),
+      const DeepCollectionEquality().hash(sizeLarger),
+      const DeepCollectionEquality().hash(sizeLargest),
       const DeepCollectionEquality().hash(sizeSmall),
       const DeepCollectionEquality().hash(sizeSmaller),
     );

@@ -23,17 +23,24 @@ class _$YgIconThemes {
     professional_dark.FhDimensions.sm,
   ];
 
-  static List<double> sizeMedium = <double>[
+  static List<double> sizeLarge = <double>[
     consumer_light.FhDimensions.lg,
     consumer_dark.FhDimensions.lg,
     professional_light.FhDimensions.lg,
     professional_dark.FhDimensions.lg,
   ];
 
-  static List<double> sizeLarge = <double>[
+  static List<double> sizeLarger = <double>[
     consumer_light.FhDimensions.xl,
     consumer_dark.FhDimensions.xl,
     professional_light.FhDimensions.xl,
     professional_dark.FhDimensions.xl,
+  ];
+
+  static List<double> sizeLargest = <double>[
+    consumer_light.FhDimensions.xxl,
+    consumer_dark.FhDimensions.xxl,
+    professional_light.FhDimensions.xxl,
+    professional_dark.FhDimensions.xxl,
   ];
 }

@@ -100,7 +100,7 @@ class YgListTile extends StatelessWidget {
       child: YgIcon(
         icon: '',
         iconSize: YgIconSize.small,
-        tapSize: YgIconTapSize.large,
+        tapSize: YgIconTapSize.larger,
         onTap: onInfoTap!,
       ),
     );
