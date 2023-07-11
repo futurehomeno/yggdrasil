@@ -31,21 +31,18 @@ class ButtonsScreen extends StatelessWidget {
                 onPressed: () {},
                 child: const Text('Button'),
               ),
-              const SizedBox(height: 8.0),
               YgButton(
                 variant: ButtonVariant.primary,
                 size: ButtonSize.medium,
                 onPressed: () {},
                 child: const Text('Button'),
               ),
-              const SizedBox(height: 8.0),
               YgButton(
                 variant: ButtonVariant.primary,
                 size: ButtonSize.large,
                 onPressed: () {},
                 child: const Text('Button'),
               ),
-              const SizedBox(height: 8.0),
               YgButton.leftIcon(
                 variant: ButtonVariant.primary,
                 size: ButtonSize.small,
@@ -53,7 +50,6 @@ class ButtonsScreen extends StatelessWidget {
                 icon: 'icon',
                 child: const Text('Button'),
               ),
-              const SizedBox(height: 8.0),
               YgButton.rightIcon(
                 variant: ButtonVariant.primary,
                 size: ButtonSize.small,
@@ -71,21 +67,18 @@ class ButtonsScreen extends StatelessWidget {
                 onPressed: () {},
                 child: const Text('Button'),
               ),
-              const SizedBox(height: 8.0),
               YgButton(
                 variant: ButtonVariant.secondary,
                 size: ButtonSize.medium,
                 onPressed: () {},
                 child: const Text('Button'),
               ),
-              const SizedBox(height: 8.0),
               YgButton(
                 variant: ButtonVariant.secondary,
                 size: ButtonSize.large,
                 onPressed: () {},
                 child: const Text('Button'),
               ),
-              const SizedBox(height: 8.0),
               YgButton.leftIcon(
                 variant: ButtonVariant.secondary,
                 size: ButtonSize.small,
@@ -93,7 +86,6 @@ class ButtonsScreen extends StatelessWidget {
                 icon: 'icon',
                 child: const Text('Button'),
               ),
-              const SizedBox(height: 8.0),
               YgButton.rightIcon(
                 variant: ButtonVariant.secondary,
                 size: ButtonSize.small,
@@ -111,21 +103,18 @@ class ButtonsScreen extends StatelessWidget {
                 onPressed: () {},
                 child: const Text('Button'),
               ),
-              const SizedBox(height: 8.0),
               YgButton(
                 variant: ButtonVariant.text,
                 size: ButtonSize.medium,
                 onPressed: () {},
                 child: const Text('Button'),
               ),
-              const SizedBox(height: 8.0),
               YgButton(
                 variant: ButtonVariant.text,
                 size: ButtonSize.large,
                 onPressed: () {},
                 child: const Text('Button'),
               ),
-              const SizedBox(height: 8.0),
               YgButton.leftIcon(
                 variant: ButtonVariant.text,
                 size: ButtonSize.small,
@@ -133,7 +122,6 @@ class ButtonsScreen extends StatelessWidget {
                 icon: 'icon',
                 child: const Text('Button'),
               ),
-              const SizedBox(height: 8.0),
               YgButton.rightIcon(
                 variant: ButtonVariant.text,
                 size: ButtonSize.small,
@@ -151,21 +139,18 @@ class ButtonsScreen extends StatelessWidget {
                 onPressed: () {},
                 child: const Text('Button'),
               ),
-              const SizedBox(height: 8.0),
               YgButton(
                 variant: ButtonVariant.critical,
                 size: ButtonSize.medium,
                 onPressed: () {},
                 child: const Text('Button'),
               ),
-              const SizedBox(height: 8.0),
               YgButton(
                 variant: ButtonVariant.critical,
                 size: ButtonSize.large,
                 onPressed: () {},
                 child: const Text('Button'),
               ),
-              const SizedBox(height: 8.0),
               YgButton.leftIcon(
                 variant: ButtonVariant.critical,
                 size: ButtonSize.small,
@@ -173,7 +158,6 @@ class ButtonsScreen extends StatelessWidget {
                 icon: 'icon',
                 child: const Text('Button'),
               ),
-              const SizedBox(height: 8.0),
               YgButton.rightIcon(
                 variant: ButtonVariant.critical,
                 size: ButtonSize.small,
@@ -191,21 +175,18 @@ class ButtonsScreen extends StatelessWidget {
                 onPressed: () {},
                 child: const Text('Button'),
               ),
-              const SizedBox(height: 8.0),
               YgButton(
                 variant: ButtonVariant.link,
                 size: ButtonSize.medium,
                 onPressed: () {},
                 child: const Text('Button'),
               ),
-              const SizedBox(height: 8.0),
               YgButton(
                 variant: ButtonVariant.link,
                 size: ButtonSize.large,
                 onPressed: () {},
                 child: const Text('Button'),
               ),
-              const SizedBox(height: 8.0),
               YgButton.leftIcon(
                 variant: ButtonVariant.link,
                 size: ButtonSize.small,
@@ -213,7 +194,6 @@ class ButtonsScreen extends StatelessWidget {
                 icon: 'icon',
                 child: const Text('Button'),
               ),
-              const SizedBox(height: 8.0),
               YgButton.rightIcon(
                 variant: ButtonVariant.link,
                 size: ButtonSize.small,

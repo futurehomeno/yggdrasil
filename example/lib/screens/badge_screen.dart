@@ -32,7 +32,6 @@ class BadgeScreen extends StatelessWidget {
               icon: const Icon(Icons.notifications_none_outlined),
             ),
           ),
-          const SizedBox(height: 8.0),
           YgBadge(
             amount: 18,
             weight: YgBadgeWeight.weak,
@@ -41,7 +40,6 @@ class BadgeScreen extends StatelessWidget {
               icon: const Icon(Icons.notifications_none_outlined),
             ),
           ),
-          const SizedBox(height: 8.0),
           const YgDotBadge(),
         ],
       ),

@@ -32,7 +32,6 @@ class TagsScreen extends StatelessWidget {
                 onPressed: () {},
                 child: const Text('Small Weak'),
               ),
-              const SizedBox(height: 8.0),
               YgTag(
                 variant: YgTagVariant.neutral,
                 size: YgTagSize.small,
@@ -40,7 +39,6 @@ class TagsScreen extends StatelessWidget {
                 onPressed: () {},
                 child: const Text('Small Strong'),
               ),
-              const SizedBox(height: 8.0),
               YgTag.leftIcon(
                 variant: YgTagVariant.neutral,
                 size: YgTagSize.small,
@@ -49,7 +47,6 @@ class TagsScreen extends StatelessWidget {
                 icon: 'icon',
                 child: const Text('Small Strong'),
               ),
-              const SizedBox(height: 8.0),
               YgTag.rightIcon(
                 variant: YgTagVariant.neutral,
                 size: YgTagSize.small,
@@ -58,7 +55,6 @@ class TagsScreen extends StatelessWidget {
                 icon: 'icon',
                 child: const Text('Small Strong'),
               ),
-              const SizedBox(height: 8.0),
               YgTag.doubleIcon(
                 variant: YgTagVariant.neutral,
                 size: YgTagSize.small,
@@ -68,7 +64,6 @@ class TagsScreen extends StatelessWidget {
                 trailingIcon: 'icon',
                 child: const Text('Small Strong'),
               ),
-              const SizedBox(height: 8.0),
               YgTag(
                 variant: YgTagVariant.neutral,
                 size: YgTagSize.medium,
@@ -76,7 +71,6 @@ class TagsScreen extends StatelessWidget {
                 onPressed: () {},
                 child: const Text('Medium Weak'),
               ),
-              const SizedBox(height: 8.0),
               YgTag(
                 variant: YgTagVariant.neutral,
                 size: YgTagSize.medium,
@@ -84,7 +78,6 @@ class TagsScreen extends StatelessWidget {
                 onPressed: () {},
                 child: const Text('Medium Strong'),
               ),
-              const SizedBox(height: 8.0),
               YgTag.leftIcon(
                 variant: YgTagVariant.neutral,
                 size: YgTagSize.medium,
@@ -93,7 +86,6 @@ class TagsScreen extends StatelessWidget {
                 icon: 'icon',
                 child: const Text('Medium Strong'),
               ),
-              const SizedBox(height: 8.0),
               YgTag.rightIcon(
                 variant: YgTagVariant.neutral,
                 size: YgTagSize.medium,
@@ -113,7 +105,6 @@ class TagsScreen extends StatelessWidget {
                 onPressed: () {},
                 child: const Text('Small Weak'),
               ),
-              const SizedBox(height: 8.0),
               YgTag(
                 variant: YgTagVariant.informative,
                 size: YgTagSize.small,
@@ -121,7 +112,6 @@ class TagsScreen extends StatelessWidget {
                 onPressed: () {},
                 child: const Text('Small Strong'),
               ),
-              const SizedBox(height: 8.0),
               YgTag.leftIcon(
                 variant: YgTagVariant.informative,
                 size: YgTagSize.small,
@@ -130,7 +120,6 @@ class TagsScreen extends StatelessWidget {
                 icon: 'icon',
                 child: const Text('Small Strong'),
               ),
-              const SizedBox(height: 8.0),
               YgTag.rightIcon(
                 variant: YgTagVariant.informative,
                 size: YgTagSize.small,
@@ -139,7 +128,6 @@ class TagsScreen extends StatelessWidget {
                 icon: 'icon',
                 child: const Text('Small Strong'),
               ),
-              const SizedBox(height: 8.0),
               YgTag.doubleIcon(
                 variant: YgTagVariant.informative,
                 size: YgTagSize.small,
@@ -149,7 +137,6 @@ class TagsScreen extends StatelessWidget {
                 trailingIcon: 'icon',
                 child: const Text('Small Strong'),
               ),
-              const SizedBox(height: 8.0),
               YgTag(
                 variant: YgTagVariant.informative,
                 size: YgTagSize.medium,
@@ -157,7 +144,6 @@ class TagsScreen extends StatelessWidget {
                 onPressed: () {},
                 child: const Text('Medium Weak'),
               ),
-              const SizedBox(height: 8.0),
               YgTag(
                 variant: YgTagVariant.informative,
                 size: YgTagSize.medium,
@@ -165,7 +151,6 @@ class TagsScreen extends StatelessWidget {
                 onPressed: () {},
                 child: const Text('Medium Strong'),
               ),
-              const SizedBox(height: 8.0),
               YgTag.leftIcon(
                 variant: YgTagVariant.informative,
                 size: YgTagSize.medium,
@@ -174,7 +159,6 @@ class TagsScreen extends StatelessWidget {
                 icon: 'icon',
                 child: const Text('Medium Strong'),
               ),
-              const SizedBox(height: 8.0),
               YgTag.rightIcon(
                 variant: YgTagVariant.informative,
                 size: YgTagSize.medium,
@@ -194,7 +178,6 @@ class TagsScreen extends StatelessWidget {
                 onPressed: () {},
                 child: const Text('Small Weak'),
               ),
-              const SizedBox(height: 8.0),
               YgTag(
                 variant: YgTagVariant.positive,
                 size: YgTagSize.small,
@@ -202,7 +185,6 @@ class TagsScreen extends StatelessWidget {
                 onPressed: () {},
                 child: const Text('Small Strong'),
               ),
-              const SizedBox(height: 8.0),
               YgTag.leftIcon(
                 variant: YgTagVariant.positive,
                 size: YgTagSize.small,
@@ -211,7 +193,6 @@ class TagsScreen extends StatelessWidget {
                 icon: 'icon',
                 child: const Text('Small Strong'),
               ),
-              const SizedBox(height: 8.0),
               YgTag.rightIcon(
                 variant: YgTagVariant.positive,
                 size: YgTagSize.small,
@@ -220,7 +201,6 @@ class TagsScreen extends StatelessWidget {
                 icon: 'icon',
                 child: const Text('Small Strong'),
               ),
-              const SizedBox(height: 8.0),
               YgTag.doubleIcon(
                 variant: YgTagVariant.positive,
                 size: YgTagSize.small,
@@ -230,7 +210,6 @@ class TagsScreen extends StatelessWidget {
                 trailingIcon: 'icon',
                 child: const Text('Small Strong'),
               ),
-              const SizedBox(height: 8.0),
               YgTag(
                 variant: YgTagVariant.positive,
                 size: YgTagSize.medium,
@@ -238,7 +217,6 @@ class TagsScreen extends StatelessWidget {
                 onPressed: () {},
                 child: const Text('Medium Weak'),
               ),
-              const SizedBox(height: 8.0),
               YgTag(
                 variant: YgTagVariant.positive,
                 size: YgTagSize.medium,
@@ -246,7 +224,6 @@ class TagsScreen extends StatelessWidget {
                 onPressed: () {},
                 child: const Text('Medium Strong'),
               ),
-              const SizedBox(height: 8.0),
               YgTag.leftIcon(
                 variant: YgTagVariant.positive,
                 size: YgTagSize.medium,
@@ -255,7 +232,6 @@ class TagsScreen extends StatelessWidget {
                 icon: 'icon',
                 child: const Text('Medium Strong'),
               ),
-              const SizedBox(height: 8.0),
               YgTag.rightIcon(
                 variant: YgTagVariant.positive,
                 size: YgTagSize.medium,
@@ -275,7 +251,6 @@ class TagsScreen extends StatelessWidget {
                 onPressed: () {},
                 child: const Text('Small Weak'),
               ),
-              const SizedBox(height: 8.0),
               YgTag(
                 variant: YgTagVariant.warning,
                 size: YgTagSize.small,
@@ -283,7 +258,6 @@ class TagsScreen extends StatelessWidget {
                 onPressed: () {},
                 child: const Text('Small Strong'),
               ),
-              const SizedBox(height: 8.0),
               YgTag.leftIcon(
                 variant: YgTagVariant.warning,
                 size: YgTagSize.small,
@@ -292,7 +266,6 @@ class TagsScreen extends StatelessWidget {
                 icon: 'icon',
                 child: const Text('Small Strong'),
               ),
-              const SizedBox(height: 8.0),
               YgTag.rightIcon(
                 variant: YgTagVariant.warning,
                 size: YgTagSize.small,
@@ -301,7 +274,6 @@ class TagsScreen extends StatelessWidget {
                 icon: 'icon',
                 child: const Text('Small Strong'),
               ),
-              const SizedBox(height: 8.0),
               YgTag.doubleIcon(
                 variant: YgTagVariant.warning,
                 size: YgTagSize.small,
@@ -311,7 +283,6 @@ class TagsScreen extends StatelessWidget {
                 trailingIcon: 'icon',
                 child: const Text('Small Strong'),
               ),
-              const SizedBox(height: 8.0),
               YgTag(
                 variant: YgTagVariant.warning,
                 size: YgTagSize.medium,
@@ -319,7 +290,6 @@ class TagsScreen extends StatelessWidget {
                 onPressed: () {},
                 child: const Text('Medium Weak'),
               ),
-              const SizedBox(height: 8.0),
               YgTag(
                 variant: YgTagVariant.warning,
                 size: YgTagSize.medium,
@@ -327,7 +297,6 @@ class TagsScreen extends StatelessWidget {
                 onPressed: () {},
                 child: const Text('Medium Strong'),
               ),
-              const SizedBox(height: 8.0),
               YgTag.leftIcon(
                 variant: YgTagVariant.warning,
                 size: YgTagSize.medium,
@@ -336,7 +305,6 @@ class TagsScreen extends StatelessWidget {
                 icon: 'icon',
                 child: const Text('Medium Strong'),
               ),
-              const SizedBox(height: 8.0),
               YgTag.rightIcon(
                 variant: YgTagVariant.warning,
                 size: YgTagSize.medium,
@@ -356,7 +324,6 @@ class TagsScreen extends StatelessWidget {
                 onPressed: () {},
                 child: const Text('Small Weak'),
               ),
-              const SizedBox(height: 8.0),
               YgTag(
                 variant: YgTagVariant.negative,
                 size: YgTagSize.small,
@@ -364,7 +331,6 @@ class TagsScreen extends StatelessWidget {
                 onPressed: () {},
                 child: const Text('Small Strong'),
               ),
-              const SizedBox(height: 8.0),
               YgTag.leftIcon(
                 variant: YgTagVariant.negative,
                 size: YgTagSize.small,
@@ -373,7 +339,6 @@ class TagsScreen extends StatelessWidget {
                 icon: 'icon',
                 child: const Text('Small Strong'),
               ),
-              const SizedBox(height: 8.0),
               YgTag.rightIcon(
                 variant: YgTagVariant.negative,
                 size: YgTagSize.small,
@@ -382,7 +347,6 @@ class TagsScreen extends StatelessWidget {
                 icon: 'icon',
                 child: const Text('Small Strong'),
               ),
-              const SizedBox(height: 8.0),
               YgTag.doubleIcon(
                 variant: YgTagVariant.negative,
                 size: YgTagSize.small,
@@ -392,7 +356,6 @@ class TagsScreen extends StatelessWidget {
                 trailingIcon: 'icon',
                 child: const Text('Small Strong'),
               ),
-              const SizedBox(height: 8.0),
               YgTag(
                 variant: YgTagVariant.negative,
                 size: YgTagSize.medium,
@@ -400,7 +363,6 @@ class TagsScreen extends StatelessWidget {
                 onPressed: () {},
                 child: const Text('Medium Weak'),
               ),
-              const SizedBox(height: 8.0),
               YgTag(
                 variant: YgTagVariant.negative,
                 size: YgTagSize.medium,
@@ -408,7 +370,6 @@ class TagsScreen extends StatelessWidget {
                 onPressed: () {},
                 child: const Text('Medium Strong'),
               ),
-              const SizedBox(height: 8.0),
               YgTag.leftIcon(
                 variant: YgTagVariant.negative,
                 size: YgTagSize.medium,
@@ -417,7 +378,6 @@ class TagsScreen extends StatelessWidget {
                 icon: 'icon',
                 child: const Text('Medium Strong'),
               ),
-              const SizedBox(height: 8.0),
               YgTag.rightIcon(
                 variant: YgTagVariant.negative,
                 size: YgTagSize.medium,
