@@ -5,6 +5,7 @@ import 'package:yggdrasil/src/theme/internal/internal.dart';
 
 import 'bottom_sheet/_bottom_sheet.dart';
 import 'buttons/_buttons.dart';
+import 'callout/_callout.dart';
 import 'dialog/_dialog.dart';
 import 'text_link/text_link_theme.dart';
 import 'tokens/tokens.dart';
@@ -25,6 +26,9 @@ class _$YgTheme {
 
   @themeExtension
   static List<YgBadgeTheme> badgeTheme = YgBadgeTheme.themes;
+
+  @themeExtension
+  static List<YgCalloutThemes> calloutThemes = YgCalloutThemes.themes;
 
   @themeExtension
   static List<YgDialogThemes> dialogTheme = YgDialogThemes.themes;

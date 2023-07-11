@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:yggdrasil_demo/core/_core.dart';
+import 'package:yggdrasil_demo/screens/_screens.dart';
 import 'package:yggdrasil_demo/widgets/_widgets.dart';
 
 import 'badge_screen.dart';
@@ -44,6 +45,12 @@ class HomeScreen extends StatelessWidget {
             title: const Text('Badge'),
             onTap: () {
               sl<YgRouter>().push(BadgeScreen.route());
+            },
+          ),
+          ListTile(
+            title: const Text('Callout'),
+            onTap: () {
+              sl<YgRouter>().push(CalloutScreen.route());
             },
           ),
           ListTile(
