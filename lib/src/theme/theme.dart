@@ -4,6 +4,7 @@ import 'package:theme_tailor_annotation/theme_tailor_annotation.dart';
 import 'badge/_badge.dart';
 import 'bottom_sheet/_bottom_sheet.dart';
 import 'buttons/_buttons.dart';
+import 'callout/_callout.dart';
 import 'card/_card.dart';
 import 'dialog/_dialog.dart';
 import 'internal/_internal.dart';
@@ -33,6 +34,12 @@ class _$YgTheme {
 
   @themeExtension
   static List<YgDialogThemes> dialogThemes = YgDialogThemes.themes;
+
+  @themeExtension
+  static List<YgCalloutThemes> calloutThemes = YgCalloutThemes.themes;
+
+  @themeExtension
+  static List<YgDialogThemes> dialogTheme = YgDialogThemes.themes;
 
   @themeExtension
   static List<YgTagThemes> tagThemes = YgTagThemes.themes;

@@ -35,23 +35,48 @@ dev_dependencies:
 flutter:
   uses-material-design: true
   fonts:
+    - family: Dosis
+      fonts:
+        - asset: assets/fonts/dosis/Dosis-Bold.ttf
+        - asset: assets/fonts/dosis/Dosis-ExtraBold.ttf
+        - asset: assets/fonts/dosis/Dosis-ExtraLight.ttf
+        - asset: assets/fonts/dosis/Dosis-Light.ttf
+        - asset: assets/fonts/dosis/Dosis-Medium.ttf
+        - asset: assets/fonts/dosis/Dosis-Regular.ttf
+        - asset: assets/fonts/dosis/Dosis-SemiBold.ttf
+
+    - family: OpenSans
+      fonts:
+        - asset: assets/fonts/open_sans/OpenSans-Bold.ttf
+        - asset: assets/fonts/open_sans/OpenSans-BoldItalic.ttf
+        - asset: assets/fonts/open_sans/OpenSans-ExtraBold.ttf
+        - asset: assets/fonts/open_sans/OpenSans-ExtraBoldItalic.ttf
+        - asset: assets/fonts/open_sans/OpenSans-Italic.ttf
+        - asset: assets/fonts/open_sans/OpenSans-Light.ttf
+        - asset: assets/fonts/open_sans/OpenSans-LightItalic.ttf
+        - asset: assets/fonts/open_sans/OpenSans-Medium.ttf
+        - asset: assets/fonts/open_sans/OpenSans-MediumItalic.ttf
+        - asset: assets/fonts/open_sans/OpenSans-Regular.ttf
+        - asset: assets/fonts/open_sans/OpenSans-SemiBold.ttf
+        - asset: assets/fonts/open_sans/OpenSans-SemiBoldItalic.ttf
+
     - family: WorkSans
       fonts:
-        - asset: assets/fonts/WorkSans-Black.ttf
-        - asset: assets/fonts/WorkSans-BlackItalic.ttf
-        - asset: assets/fonts/WorkSans-Bold.ttf
-        - asset: assets/fonts/WorkSans-BoldItalic.ttf
-        - asset: assets/fonts/WorkSans-ExtraBold.ttf
-        - asset: assets/fonts/WorkSans-ExtraBoldItalic.ttf
-        - asset: assets/fonts/WorkSans-ExtraLight.ttf
-        - asset: assets/fonts/WorkSans-ExtraLightItalic.ttf
-        - asset: assets/fonts/WorkSans-Italic.ttf
-        - asset: assets/fonts/WorkSans-Light.ttf
-        - asset: assets/fonts/WorkSans-LightItalic.ttf
-        - asset: assets/fonts/WorkSans-Medium.ttf
-        - asset: assets/fonts/WorkSans-MediumItalic.ttf
-        - asset: assets/fonts/WorkSans-Regular.ttf
-        - asset: assets/fonts/WorkSans-SemiBold.ttf
-        - asset: assets/fonts/WorkSans-SemiBoldItalic.ttf
-        - asset: assets/fonts/WorkSans-Thin.ttf
-        - asset: assets/fonts/WorkSans-ThinItalic.ttf
+        - asset: assets/fonts/work_sans/WorkSans-Black.ttf
+        - asset: assets/fonts/work_sans/WorkSans-BlackItalic.ttf
+        - asset: assets/fonts/work_sans/WorkSans-Bold.ttf
+        - asset: assets/fonts/work_sans/WorkSans-BoldItalic.ttf
+        - asset: assets/fonts/work_sans/WorkSans-ExtraBold.ttf
+        - asset: assets/fonts/work_sans/WorkSans-ExtraBoldItalic.ttf
+        - asset: assets/fonts/work_sans/WorkSans-ExtraLight.ttf
+        - asset: assets/fonts/work_sans/WorkSans-ExtraLightItalic.ttf
+        - asset: assets/fonts/work_sans/WorkSans-Italic.ttf
+        - asset: assets/fonts/work_sans/WorkSans-Light.ttf
+        - asset: assets/fonts/work_sans/WorkSans-LightItalic.ttf
+        - asset: assets/fonts/work_sans/WorkSans-Medium.ttf
+        - asset: assets/fonts/work_sans/WorkSans-MediumItalic.ttf
+        - asset: assets/fonts/work_sans/WorkSans-Regular.ttf
+        - asset: assets/fonts/work_sans/WorkSans-SemiBold.ttf
+        - asset: assets/fonts/work_sans/WorkSans-SemiBoldItalic.ttf
+        - asset: assets/fonts/work_sans/WorkSans-Thin.ttf
+        - asset: assets/fonts/work_sans/WorkSans-ThinItalic.ttf

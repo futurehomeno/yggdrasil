@@ -58,10 +58,13 @@ abstract class YgDialogRoute extends PopupRoute<YgDialog> {
         final double widthWithPadding = maxWidth - (dialogThemes.paddingToScreenEdge * 2);
         final double width = max(minWidth, widthWithPadding);
 
-        return Center(
-          child: SizedBox(
-            width: width,
-            child: buildDialog(context),
+        return FadeTransition(
+          opacity: animation,
+          child: Center(
+            child: SizedBox(
+              width: width,
+              child: buildDialog(context),
+            ),
           ),
         );
       },

@@ -1,9 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:yggdrasil/yggdrasil.dart';
 import 'package:yggdrasil_demo/core/_core.dart';
-import 'package:yggdrasil_demo/modals/example_bottom_sheet.dart';
-import 'package:yggdrasil_demo/modals/example_bottom_sheet_without_footer.dart';
-import 'package:yggdrasil_demo/modals/example_scrollable_bottom_sheet.dart';
 import 'package:yggdrasil_demo/widgets/_widgets.dart';
 
 class BottomSheetScreen extends StatefulWidget {
