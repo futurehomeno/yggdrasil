@@ -4,14 +4,14 @@ import 'package:yggdrasil/yggdrasil.dart';
 class YgIcon extends StatelessWidget {
   const YgIcon({
     required this.icon,
-    this.iconSize = YgIconSize.medium,
+    this.size = YgIconSize.medium,
     this.tapSize = YgIconTapSize.larger,
     this.onTap,
     super.key,
   });
 
   final String icon;
-  final YgIconSize iconSize;
+  final YgIconSize size;
   final YgIconTapSize tapSize;
   final VoidCallback? onTap;
 
@@ -21,7 +21,7 @@ class YgIcon extends StatelessWidget {
 
     if (onTap == null) {
       return SizedBox.square(
-        dimension: iconSize.getIconSize(iconTheme),
+        dimension: size.getIconSize(iconTheme),
         child: const Placeholder(),
       );
     }
@@ -37,7 +37,7 @@ class YgIcon extends StatelessWidget {
           child: Align(
             alignment: Alignment.center,
             child: SizedBox.square(
-              dimension: iconSize.getIconSize(iconTheme),
+              dimension: size.getIconSize(iconTheme),
               child: const Placeholder(),
             ),
           ),

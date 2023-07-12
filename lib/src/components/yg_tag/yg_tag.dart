@@ -132,7 +132,7 @@ class _YgTagWithRightIconChild extends StatelessWidget {
       children: <Widget>[
         Flexible(child: child),
         SizedBox(width: context.tagTheme.iconSpacing),
-        YgIcon(icon: icon, iconSize: YgIconSize.smaller),
+        YgIcon(icon: icon, size: YgIconSize.smaller),
       ],
     );
   }
@@ -176,7 +176,7 @@ class _YgTagWithLeftIconChild extends StatelessWidget {
     return Row(
       mainAxisSize: MainAxisSize.min,
       children: <Widget>[
-        YgIcon(icon: icon, iconSize: YgIconSize.smaller),
+        YgIcon(icon: icon, size: YgIconSize.smaller),
         SizedBox(width: context.tagTheme.iconSpacing),
         Flexible(child: child),
       ],
@@ -229,11 +229,11 @@ class _YgTagWithDoubleIconChild extends StatelessWidget {
     return Row(
       mainAxisSize: MainAxisSize.min,
       children: <Widget>[
-        YgIcon(icon: leadingIcon, iconSize: YgIconSize.smaller),
+        YgIcon(icon: leadingIcon, size: YgIconSize.smaller),
         SizedBox(width: context.tagTheme.iconSpacing),
         Flexible(child: child),
         SizedBox(width: context.tagTheme.iconSpacing),
-        YgIcon(icon: trailingIcon, iconSize: YgIconSize.smaller),
+        YgIcon(icon: trailingIcon, size: YgIconSize.smaller),
       ],
     );
   }

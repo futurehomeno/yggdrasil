@@ -27,7 +27,7 @@ class CalloutScreen extends StatelessWidget {
           Column(
             children: <Widget>[
               YgCallout(
-                calloutVariant: YgCalloutVariant.highlight,
+                variant: YgCalloutVariant.highlight,
                 title: 'Title',
                 description: 'Callout with a title, description and a text link.',
                 textLink: YgTextLink(
@@ -38,18 +38,18 @@ class CalloutScreen extends StatelessWidget {
                 onClose: () {},
               ),
               YgCallout(
-                calloutVariant: YgCalloutVariant.highlight,
+                variant: YgCalloutVariant.highlight,
                 onClose: () {},
                 title: 'Title',
                 description: 'Callout with a title and description.',
               ),
               YgCallout(
-                calloutVariant: YgCalloutVariant.highlight,
+                variant: YgCalloutVariant.highlight,
                 description: 'Callout with a description only.',
                 onClose: () {},
               ),
               const YgCallout(
-                calloutVariant: YgCalloutVariant.highlight,
+                variant: YgCalloutVariant.highlight,
                 description: 'Callout with no close.',
               ),
             ],
@@ -58,7 +58,7 @@ class CalloutScreen extends StatelessWidget {
           Column(
             children: <Widget>[
               YgCallout(
-                calloutVariant: YgCalloutVariant.success,
+                variant: YgCalloutVariant.success,
                 title: 'Title',
                 description: 'Callout with a title, description and a text link.',
                 textLink: YgTextLink(
@@ -69,18 +69,18 @@ class CalloutScreen extends StatelessWidget {
                 onClose: () {},
               ),
               YgCallout(
-                calloutVariant: YgCalloutVariant.success,
+                variant: YgCalloutVariant.success,
                 title: 'Title',
                 description: 'Callout with a title and description.',
                 onClose: () {},
               ),
               YgCallout(
-                calloutVariant: YgCalloutVariant.success,
+                variant: YgCalloutVariant.success,
                 description: 'Callout with a description only.',
                 onClose: () {},
               ),
               const YgCallout(
-                calloutVariant: YgCalloutVariant.success,
+                variant: YgCalloutVariant.success,
                 description: 'Callout with no close.',
               ),
             ],
@@ -89,7 +89,7 @@ class CalloutScreen extends StatelessWidget {
           Column(
             children: <Widget>[
               YgCallout(
-                calloutVariant: YgCalloutVariant.warning,
+                variant: YgCalloutVariant.warning,
                 title: 'Title',
                 description: 'Callout with a title, description and a text link.',
                 textLink: YgTextLink(
@@ -100,18 +100,18 @@ class CalloutScreen extends StatelessWidget {
                 onClose: () {},
               ),
               YgCallout(
-                calloutVariant: YgCalloutVariant.warning,
+                variant: YgCalloutVariant.warning,
                 title: 'Title',
                 description: 'Callout with a title and description.',
                 onClose: () {},
               ),
               YgCallout(
-                calloutVariant: YgCalloutVariant.warning,
+                variant: YgCalloutVariant.warning,
                 description: 'Callout with a description only.',
                 onClose: () {},
               ),
               const YgCallout(
-                calloutVariant: YgCalloutVariant.warning,
+                variant: YgCalloutVariant.warning,
                 description: 'Callout with no close.',
               ),
             ],
@@ -120,7 +120,7 @@ class CalloutScreen extends StatelessWidget {
           Column(
             children: <Widget>[
               YgCallout(
-                calloutVariant: YgCalloutVariant.critical,
+                variant: YgCalloutVariant.critical,
                 title: 'Title',
                 description: 'Callout with a title, description and a text link.',
                 textLink: YgTextLink(
@@ -131,18 +131,18 @@ class CalloutScreen extends StatelessWidget {
                 onClose: () {},
               ),
               YgCallout(
-                calloutVariant: YgCalloutVariant.critical,
+                variant: YgCalloutVariant.critical,
                 title: 'Title',
                 description: 'Callout with a title and description.',
                 onClose: () {},
               ),
               YgCallout(
-                calloutVariant: YgCalloutVariant.critical,
+                variant: YgCalloutVariant.critical,
                 description: 'Callout with a description only.',
                 onClose: () {},
               ),
               const YgCallout(
-                calloutVariant: YgCalloutVariant.critical,
+                variant: YgCalloutVariant.critical,
                 description: 'Callout with no close.',
               ),
             ],

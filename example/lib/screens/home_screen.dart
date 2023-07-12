@@ -19,7 +19,7 @@ class HomeScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return YgScreen(
-      componentName: 'Home',
+      componentName: 'Yggdrasil Components',
       componentDesc: 'List of supported components.',
       supernovaLink: '-',
       child: Column(

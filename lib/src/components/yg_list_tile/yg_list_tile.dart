@@ -99,7 +99,7 @@ class YgListTile extends StatelessWidget {
       padding: EdgeInsets.only(left: listTileTheme.contentSpacing),
       child: YgIcon(
         icon: '',
-        iconSize: YgIconSize.small,
+        size: YgIconSize.small,
         tapSize: YgIconTapSize.larger,
         onTap: onInfoTap!,
       ),

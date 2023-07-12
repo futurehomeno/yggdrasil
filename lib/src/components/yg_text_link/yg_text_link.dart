@@ -93,7 +93,7 @@ class _YgTextLinkContent extends StatelessWidget {
             padding: theme.iconPadding,
             child: YgIcon(
               icon: icon!,
-              iconSize: YgIconSize.small,
+              size: YgIconSize.small,
             ),
           ),
       ],

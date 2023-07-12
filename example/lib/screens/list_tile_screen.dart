@@ -34,55 +34,55 @@ class ListTileScreen extends StatelessWidget {
             title: 'Title',
             subtitle: 'Bacon ipsum dolor amet chicken frankfurter burgdoggen landjaeger sirloin ham pig.',
             leadingWidgets: const <Widget>[
-              YgIcon(icon: 'asd', iconSize: YgIconSize.medium),
+              YgIcon(icon: 'asd', size: YgIconSize.medium),
             ],
           ),
           YgListTile(
             title: 'Title',
             subtitle: 'Bacon ipsum dolor amet chicken frankfurter burgdoggen landjaeger sirloin ham pig.',
             leadingWidgets: const <Widget>[
-              YgIcon(icon: 'asd', iconSize: YgIconSize.medium),
-              YgIcon(icon: 'asd', iconSize: YgIconSize.medium),
+              YgIcon(icon: 'asd', size: YgIconSize.medium),
+              YgIcon(icon: 'asd', size: YgIconSize.medium),
             ],
           ),
           YgListTile(
             title: 'Title',
             subtitle: 'Bacon ipsum dolor amet chicken frankfurter burgdoggen landjaeger sirloin ham pig.',
             leadingWidgets: const <Widget>[
-              YgIcon(icon: 'asd', iconSize: YgIconSize.medium),
-              YgIcon(icon: 'asd', iconSize: YgIconSize.medium),
+              YgIcon(icon: 'asd', size: YgIconSize.medium),
+              YgIcon(icon: 'asd', size: YgIconSize.medium),
             ],
             trailingWidgets: const <Widget>[
-              YgIcon(icon: 'asd', iconSize: YgIconSize.medium),
+              YgIcon(icon: 'asd', size: YgIconSize.medium),
             ],
           ),
           YgListTile(
             title: 'Title',
             subtitle: 'Bacon ipsum dolor amet chicken frankfurter burgdoggen landjaeger sirloin ham pig.',
             leadingWidgets: const <Widget>[
-              YgIcon(icon: 'asd', iconSize: YgIconSize.medium),
-              YgIcon(icon: 'asd', iconSize: YgIconSize.medium),
+              YgIcon(icon: 'asd', size: YgIconSize.medium),
+              YgIcon(icon: 'asd', size: YgIconSize.medium),
             ],
             trailingWidgets: const <Widget>[
-              YgIcon(icon: 'asd', iconSize: YgIconSize.medium),
+              YgIcon(icon: 'asd', size: YgIconSize.medium),
             ],
             supportingWidgets: const <Widget>[
-              YgIcon(icon: 'asd', iconSize: YgIconSize.medium),
+              YgIcon(icon: 'asd', size: YgIconSize.medium),
             ],
           ),
           YgListTile(
             title: 'Title',
             subtitle: 'Bacon ipsum dolor amet chicken frankfurter burgdoggen landjaeger sirloin ham pig.',
             leadingWidgets: const <Widget>[
-              YgIcon(icon: 'asd', iconSize: YgIconSize.medium),
-              YgIcon(icon: 'asd', iconSize: YgIconSize.medium),
+              YgIcon(icon: 'asd', size: YgIconSize.medium),
+              YgIcon(icon: 'asd', size: YgIconSize.medium),
             ],
             trailingWidgets: const <Widget>[
-              YgIcon(icon: 'asd', iconSize: YgIconSize.medium),
+              YgIcon(icon: 'asd', size: YgIconSize.medium),
             ],
             supportingWidgets: const <Widget>[
-              YgIcon(icon: 'asd', iconSize: YgIconSize.medium),
-              YgIcon(icon: 'asd', iconSize: YgIconSize.medium),
+              YgIcon(icon: 'asd', size: YgIconSize.medium),
+              YgIcon(icon: 'asd', size: YgIconSize.medium),
             ],
           ),
           YgListTile(
@@ -90,15 +90,15 @@ class ListTileScreen extends StatelessWidget {
             subtitle: 'Bacon ipsum dolor amet chicken frankfurter burgdoggen landjaeger sirloin ham pig.',
             onInfoTap: () {},
             leadingWidgets: const <Widget>[
-              YgIcon(icon: 'asd', iconSize: YgIconSize.medium),
-              YgIcon(icon: 'asd', iconSize: YgIconSize.medium),
+              YgIcon(icon: 'asd', size: YgIconSize.medium),
+              YgIcon(icon: 'asd', size: YgIconSize.medium),
             ],
             trailingWidgets: const <Widget>[
-              YgIcon(icon: 'asd', iconSize: YgIconSize.medium),
+              YgIcon(icon: 'asd', size: YgIconSize.medium),
             ],
             supportingWidgets: const <Widget>[
-              YgIcon(icon: 'asd', iconSize: YgIconSize.medium),
-              YgIcon(icon: 'asd', iconSize: YgIconSize.medium),
+              YgIcon(icon: 'asd', size: YgIconSize.medium),
+              YgIcon(icon: 'asd', size: YgIconSize.medium),
             ],
           ),
           YgListTile(
@@ -107,35 +107,35 @@ class ListTileScreen extends StatelessWidget {
             onTap: () {},
             onInfoTap: () {},
             leadingWidgets: const <Widget>[
-              YgIcon(icon: 'asd', iconSize: YgIconSize.medium),
-              YgIcon(icon: 'asd', iconSize: YgIconSize.medium),
+              YgIcon(icon: 'asd', size: YgIconSize.medium),
+              YgIcon(icon: 'asd', size: YgIconSize.medium),
             ],
             trailingWidgets: const <Widget>[
-              YgIcon(icon: 'asd', iconSize: YgIconSize.medium),
-              YgIcon(icon: 'asd', iconSize: YgIconSize.medium),
+              YgIcon(icon: 'asd', size: YgIconSize.medium),
+              YgIcon(icon: 'asd', size: YgIconSize.medium),
             ],
             supportingWidgets: const <Widget>[
-              YgIcon(icon: 'asd', iconSize: YgIconSize.medium),
-              YgIcon(icon: 'asd', iconSize: YgIconSize.medium),
+              YgIcon(icon: 'asd', size: YgIconSize.medium),
+              YgIcon(icon: 'asd', size: YgIconSize.medium),
             ],
           ),
           YgListTile(
             title: 'Tappable!',
             subtitle: 'Bacon ipsum dolor amet chicken frankfurter burgdoggen landjaeger sirloin ham pig.',
-            subtitleIcon: const YgIcon(icon: 'asd', iconSize: YgIconSize.small),
+            subtitleIcon: const YgIcon(icon: 'asd', size: YgIconSize.small),
             onTap: () {},
             onInfoTap: () {},
             leadingWidgets: const <Widget>[
-              YgIcon(icon: 'asd', iconSize: YgIconSize.medium),
-              YgIcon(icon: 'asd', iconSize: YgIconSize.medium),
+              YgIcon(icon: 'asd', size: YgIconSize.medium),
+              YgIcon(icon: 'asd', size: YgIconSize.medium),
             ],
             trailingWidgets: const <Widget>[
-              YgIcon(icon: 'asd', iconSize: YgIconSize.medium),
-              YgIcon(icon: 'asd', iconSize: YgIconSize.medium),
+              YgIcon(icon: 'asd', size: YgIconSize.medium),
+              YgIcon(icon: 'asd', size: YgIconSize.medium),
             ],
             supportingWidgets: const <Widget>[
-              YgIcon(icon: 'asd', iconSize: YgIconSize.medium),
-              YgIcon(icon: 'asd', iconSize: YgIconSize.medium),
+              YgIcon(icon: 'asd', size: YgIconSize.medium),
+              YgIcon(icon: 'asd', size: YgIconSize.medium),
             ],
           ),
         ],

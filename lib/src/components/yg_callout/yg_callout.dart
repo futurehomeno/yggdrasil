@@ -3,16 +3,16 @@ import 'package:yggdrasil/yggdrasil.dart';
 
 class YgCallout extends StatelessWidget {
   const YgCallout({
-    required this.calloutVariant,
     required this.description,
+    this.variant = YgCalloutVariant.highlight,
     this.title,
     this.textLink,
     this.onClose,
     super.key,
   });
 
-  final YgCalloutVariant calloutVariant;
   final String description;
+  final YgCalloutVariant variant;
   final String? title;
   final YgTextLink? textLink;
   final VoidCallback? onClose;
@@ -66,7 +66,7 @@ class YgCallout extends StatelessWidget {
                 child: YgIcon(
                   icon: 'icon',
                   onTap: onClose,
-                  iconSize: YgIconSize.small,
+                  size: YgIconSize.small,
                   tapSize: YgIconTapSize.large,
                 ),
               ),
@@ -77,7 +77,7 @@ class YgCallout extends StatelessWidget {
   }
 
   Color _getBackgroundColor(YgCalloutTheme theme) {
-    switch (calloutVariant) {
+    switch (variant) {
       case YgCalloutVariant.highlight:
         return theme.highlightCalloutTheme.backgroundColor;
       case YgCalloutVariant.success:
@@ -90,7 +90,7 @@ class YgCallout extends StatelessWidget {
   }
 
   Color _getBorderColor(YgCalloutTheme theme) {
-    switch (calloutVariant) {
+    switch (variant) {
       case YgCalloutVariant.highlight:
         return theme.highlightCalloutTheme.borderColor;
       case YgCalloutVariant.success:
