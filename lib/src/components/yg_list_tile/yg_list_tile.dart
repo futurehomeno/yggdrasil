@@ -145,4 +145,38 @@ class YgListTile extends StatelessWidget {
       ]),
     );
   }
+
+  /// Add a one pixel border in between each tile.
+  ///
+  /// Modified version of the [divideTiles] method from [ListTile] in M3.
+  static Iterable<Widget> divideTiles({
+    required Iterable<Widget> tiles,
+    required BuildContext context,
+  }) {
+    tiles = tiles.toList();
+
+    if (tiles.isEmpty || tiles.length == 1) {
+      return tiles;
+    }
+
+    Widget wrapTile(Widget tile) {
+      return DecoratedBox(
+        position: DecorationPosition.foreground,
+        decoration: BoxDecoration(
+          border: Border(
+            bottom: BorderSide(
+              color: context.tokens.colors.borderDefault,
+              width: 1.0,
+            ),
+          ),
+        ),
+        child: tile,
+      );
+    }
+
+    return <Widget>[
+      ...tiles.take(tiles.length - 1).map(wrapTile),
+      tiles.last,
+    ];
+  }
 }

@@ -10,8 +10,8 @@ class ExampleScrollableBottomSheet extends YgBottomSheetModalRoute {
         mainAxisSize: MainAxisSize.min,
         children: List<Widget>.generate(
           25,
-          (int index) => ListTile(
-            title: Text('List item ${index + 1}'),
+          (int index) => YgListTile(
+            title: 'List item ${index + 1}',
           ),
         ),
       ),

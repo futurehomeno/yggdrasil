@@ -20,9 +20,8 @@ class YgIcon extends StatelessWidget {
     final YgIconThemes iconThemes = context.iconThemes;
 
     if (onTap == null) {
-      return SizedBox(
-        width: iconSize.getIconSize(iconThemes),
-        height: iconSize.getIconSize(iconThemes),
+      return SizedBox.square(
+        dimension: iconSize.getIconSize(iconThemes),
         child: const Placeholder(),
       );
     }
@@ -33,14 +32,12 @@ class YgIcon extends StatelessWidget {
       child: InkWell(
         borderRadius: BorderRadius.circular(tapSize.getTapSize(iconThemes)),
         onTap: onTap,
-        child: SizedBox(
-          height: tapSize.getTapSize(iconThemes),
-          width: tapSize.getTapSize(iconThemes),
+        child: SizedBox.square(
+          dimension: tapSize.getTapSize(iconThemes),
           child: Align(
             alignment: Alignment.center,
-            child: SizedBox(
-              width: iconSize.getIconSize(iconThemes),
-              height: iconSize.getIconSize(iconThemes),
+            child: SizedBox.square(
+              dimension: iconSize.getIconSize(iconThemes),
               child: const Placeholder(),
             ),
           ),

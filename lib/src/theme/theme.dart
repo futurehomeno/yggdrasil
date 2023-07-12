@@ -7,6 +7,7 @@ import 'buttons/_buttons.dart';
 import 'callout/_callout.dart';
 import 'card/_card.dart';
 import 'dialog/_dialog.dart';
+import 'divider/_divider.dart';
 import 'icon/_icon_themes.dart';
 import 'internal/_internal.dart';
 import 'list_tile/_list_tile.dart';
@@ -41,7 +42,7 @@ class _$YgTheme {
   static List<YgCalloutThemes> calloutThemes = YgCalloutThemes.themes;
 
   @themeExtension
-  static List<YgDialogThemes> dialogTheme = YgDialogThemes.themes;
+  static List<YgDividerThemes> dividerThemes = YgDividerThemes.themes;
 
   @themeExtension
   static List<YgIconThemes> iconThemes = YgIconThemes.themes;

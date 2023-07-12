@@ -5,9 +5,9 @@ class YgCallout extends StatelessWidget {
   const YgCallout({
     required this.calloutVariant,
     required this.description,
-    required this.onClose,
     this.title,
     this.textLink,
+    this.onClose,
     super.key,
   });
 
@@ -15,7 +15,7 @@ class YgCallout extends StatelessWidget {
   final String description;
   final String? title;
   final YgTextLink? textLink;
-  final VoidCallback onClose;
+  final VoidCallback? onClose;
 
   @override
   Widget build(BuildContext context) {
@@ -60,13 +60,16 @@ class YgCallout extends StatelessWidget {
                 ],
               ),
             ),
-            SizedBox(width: theme.closeButtonSpacing),
-            YgIcon(
-              icon: 'icon',
-              onTap: onClose,
-              iconSize: YgIconSize.small,
-              tapSize: YgIconTapSize.large,
-            ),
+            if (onClose != null)
+              Padding(
+                padding: EdgeInsets.only(left: theme.closeButtonSpacing),
+                child: YgIcon(
+                  icon: 'icon',
+                  onTap: onClose,
+                  iconSize: YgIconSize.small,
+                  tapSize: YgIconTapSize.large,
+                ),
+              ),
           ],
         ),
       ),

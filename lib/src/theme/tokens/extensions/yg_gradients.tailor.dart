@@ -21,15 +21,15 @@ class YgGradient extends ThemeExtension<YgGradient> {
     required this.backgroundGradient,
   });
 
-  final dynamic actionPrimaryDefault;
-  final dynamic actionPrimaryHovered;
-  final dynamic actionPrimaryPressed;
-  final dynamic actionPrimarySelected;
-  final dynamic actionSecondaryDefault;
-  final dynamic actionSecondaryHovered;
-  final dynamic actionSecondaryPressed;
-  final dynamic actionSecondarySelected;
-  final dynamic backgroundGradient;
+  final Gradient actionPrimaryDefault;
+  final Gradient actionPrimaryHovered;
+  final Gradient actionPrimaryPressed;
+  final Gradient actionPrimarySelected;
+  final Gradient actionSecondaryDefault;
+  final Gradient actionSecondaryHovered;
+  final Gradient actionSecondaryPressed;
+  final Gradient actionSecondarySelected;
+  final Gradient backgroundGradient;
 
   static final YgGradient consumerLight = YgGradient(
     actionPrimaryDefault: _$YgGradient.actionPrimaryDefault[0],
@@ -88,15 +88,15 @@ class YgGradient extends ThemeExtension<YgGradient> {
 
   @override
   YgGradient copyWith({
-    dynamic actionPrimaryDefault,
-    dynamic actionPrimaryHovered,
-    dynamic actionPrimaryPressed,
-    dynamic actionPrimarySelected,
-    dynamic actionSecondaryDefault,
-    dynamic actionSecondaryHovered,
-    dynamic actionSecondaryPressed,
-    dynamic actionSecondarySelected,
-    dynamic backgroundGradient,
+    Gradient? actionPrimaryDefault,
+    Gradient? actionPrimaryHovered,
+    Gradient? actionPrimaryPressed,
+    Gradient? actionPrimarySelected,
+    Gradient? actionSecondaryDefault,
+    Gradient? actionSecondaryHovered,
+    Gradient? actionSecondaryPressed,
+    Gradient? actionSecondarySelected,
+    Gradient? backgroundGradient,
   }) {
     return YgGradient(
       actionPrimaryDefault: actionPrimaryDefault ?? this.actionPrimaryDefault,

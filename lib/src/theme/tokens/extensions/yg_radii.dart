@@ -9,49 +9,49 @@ part 'yg_radii.tailor.dart';
 
 @tailorComponent
 class _$YgRadius {
-  static const List<BorderRadius> none = [
+  static const List<BorderRadius> none = <BorderRadius>[
     consumer_light.FhRadii.none,
     consumer_dark.FhRadii.none,
     professional_light.FhRadii.none,
     professional_dark.FhRadii.none,
   ];
-  static const List<BorderRadius> xxs = [
+  static const List<BorderRadius> xxs = <BorderRadius>[
     consumer_light.FhRadii.xxs,
     consumer_dark.FhRadii.xxs,
     professional_light.FhRadii.xxs,
     professional_dark.FhRadii.xxs,
   ];
-  static const List<BorderRadius> xs = [
+  static const List<BorderRadius> xs = <BorderRadius>[
     consumer_light.FhRadii.xs,
     consumer_dark.FhRadii.xs,
     professional_light.FhRadii.xs,
     professional_dark.FhRadii.xs,
   ];
-  static const List<BorderRadius> sm = [
+  static const List<BorderRadius> sm = <BorderRadius>[
     consumer_light.FhRadii.sm,
     consumer_dark.FhRadii.sm,
     professional_light.FhRadii.sm,
     professional_dark.FhRadii.sm,
   ];
-  static const List<BorderRadius> md = [
+  static const List<BorderRadius> md = <BorderRadius>[
     consumer_light.FhRadii.md,
     consumer_dark.FhRadii.md,
     professional_light.FhRadii.md,
     professional_dark.FhRadii.md,
   ];
-  static const List<BorderRadius> lg = [
+  static const List<BorderRadius> lg = <BorderRadius>[
     consumer_light.FhRadii.lg,
     consumer_dark.FhRadii.lg,
     professional_light.FhRadii.lg,
     professional_dark.FhRadii.lg,
   ];
-  static const List<BorderRadius> xl = [
+  static const List<BorderRadius> xl = <BorderRadius>[
     consumer_light.FhRadii.xl,
     consumer_dark.FhRadii.xl,
     professional_light.FhRadii.xl,
     professional_dark.FhRadii.xl,
   ];
-  static const List<BorderRadius> xxl = [
+  static const List<BorderRadius> xxl = <BorderRadius>[
     consumer_light.FhRadii.xxl,
     consumer_dark.FhRadii.xxl,
     professional_light.FhRadii.xxl,

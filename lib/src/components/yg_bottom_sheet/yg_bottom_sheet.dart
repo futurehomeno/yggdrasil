@@ -66,9 +66,7 @@ class _YgBottomSheetState extends State<YgBottomSheet> {
 
     for (int i = 1; i < buttons.length; i++) {
       children.addAll(<Widget>[
-        SizedBox(
-          height: theme.buttonSpacing,
-        ),
+        SizedBox(height: theme.buttonSpacing),
         buttons[i],
       ]);
     }

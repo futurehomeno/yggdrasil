@@ -4,6 +4,7 @@ export 'buttons/_buttons.dart';
 export 'callout/_callout.dart';
 export 'card/_card.dart';
 export 'dialog/_dialog.dart';
+export 'divider/_divider.dart';
 export 'helpers/_helpers.dart';
 export 'icon/_icon_themes.dart';
 export 'internal/_internal.dart';

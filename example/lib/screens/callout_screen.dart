@@ -45,6 +45,10 @@ class CalloutScreen extends StatelessWidget {
             description: 'Callout with a description only.',
             onClose: () {},
           ),
+          const YgCallout(
+            calloutVariant: YgCalloutVariant.highlight,
+            description: 'Callout with a description only.',
+          ),
           YgCallout(
             calloutVariant: YgCalloutVariant.success,
             title: 'Title',
@@ -66,6 +70,10 @@ class CalloutScreen extends StatelessWidget {
             calloutVariant: YgCalloutVariant.success,
             description: 'Callout with a description only.',
             onClose: () {},
+          ),
+          const YgCallout(
+            calloutVariant: YgCalloutVariant.success,
+            description: 'Callout with a description only.',
           ),
           YgCallout(
             calloutVariant: YgCalloutVariant.warning,

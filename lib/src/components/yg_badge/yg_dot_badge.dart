@@ -8,14 +8,12 @@ class YgDotBadge extends StatelessWidget {
   Widget build(BuildContext context) {
     final YgBadgeThemes badgeTheme = context.badgeThemes;
 
-    return Center(
-      child: Container(
-        width: 8,
-        height: 8,
-        decoration: BoxDecoration(
-          borderRadius: badgeTheme.borderRadius,
-          color: badgeTheme.strongColor,
-        ),
+    return Container(
+      width: 8,
+      height: 8,
+      decoration: BoxDecoration(
+        color: badgeTheme.strongColor,
+        shape: BoxShape.circle,
       ),
     );
   }

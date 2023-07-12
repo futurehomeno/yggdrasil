@@ -15,8 +15,8 @@ class YgTheme extends ThemeExtension<YgTheme> {
     required this.buttonThemes,
     required this.calloutThemes,
     required this.cardThemes,
-    required this.dialogTheme,
     required this.dialogThemes,
+    required this.dividerThemes,
     required this.iconThemes,
     required this.internalThemes,
     required this.listTileThemes,
@@ -30,8 +30,8 @@ class YgTheme extends ThemeExtension<YgTheme> {
   final YgButtonThemes buttonThemes;
   final YgCalloutThemes calloutThemes;
   final YgCardThemes cardThemes;
-  final YgDialogThemes dialogTheme;
   final YgDialogThemes dialogThemes;
+  final YgDividerThemes dividerThemes;
   final YgIconThemes iconThemes;
   final YgInternalThemes internalThemes;
   final YgListTileThemes listTileThemes;
@@ -45,8 +45,8 @@ class YgTheme extends ThemeExtension<YgTheme> {
     buttonThemes: _$YgTheme.buttonThemes[0],
     calloutThemes: _$YgTheme.calloutThemes[0],
     cardThemes: _$YgTheme.cardThemes[0],
-    dialogTheme: _$YgTheme.dialogTheme[0],
     dialogThemes: _$YgTheme.dialogThemes[0],
+    dividerThemes: _$YgTheme.dividerThemes[0],
     iconThemes: _$YgTheme.iconThemes[0],
     internalThemes: _$YgTheme.internalThemes[0],
     listTileThemes: _$YgTheme.listTileThemes[0],
@@ -61,8 +61,8 @@ class YgTheme extends ThemeExtension<YgTheme> {
     buttonThemes: _$YgTheme.buttonThemes[1],
     calloutThemes: _$YgTheme.calloutThemes[1],
     cardThemes: _$YgTheme.cardThemes[1],
-    dialogTheme: _$YgTheme.dialogTheme[1],
     dialogThemes: _$YgTheme.dialogThemes[1],
+    dividerThemes: _$YgTheme.dividerThemes[1],
     iconThemes: _$YgTheme.iconThemes[1],
     internalThemes: _$YgTheme.internalThemes[1],
     listTileThemes: _$YgTheme.listTileThemes[1],
@@ -77,8 +77,8 @@ class YgTheme extends ThemeExtension<YgTheme> {
     buttonThemes: _$YgTheme.buttonThemes[2],
     calloutThemes: _$YgTheme.calloutThemes[2],
     cardThemes: _$YgTheme.cardThemes[2],
-    dialogTheme: _$YgTheme.dialogTheme[2],
     dialogThemes: _$YgTheme.dialogThemes[2],
+    dividerThemes: _$YgTheme.dividerThemes[2],
     iconThemes: _$YgTheme.iconThemes[2],
     internalThemes: _$YgTheme.internalThemes[2],
     listTileThemes: _$YgTheme.listTileThemes[2],
@@ -93,8 +93,8 @@ class YgTheme extends ThemeExtension<YgTheme> {
     buttonThemes: _$YgTheme.buttonThemes[3],
     calloutThemes: _$YgTheme.calloutThemes[3],
     cardThemes: _$YgTheme.cardThemes[3],
-    dialogTheme: _$YgTheme.dialogTheme[3],
     dialogThemes: _$YgTheme.dialogThemes[3],
+    dividerThemes: _$YgTheme.dividerThemes[3],
     iconThemes: _$YgTheme.iconThemes[3],
     internalThemes: _$YgTheme.internalThemes[3],
     listTileThemes: _$YgTheme.listTileThemes[3],
@@ -117,8 +117,8 @@ class YgTheme extends ThemeExtension<YgTheme> {
     YgButtonThemes? buttonThemes,
     YgCalloutThemes? calloutThemes,
     YgCardThemes? cardThemes,
-    YgDialogThemes? dialogTheme,
     YgDialogThemes? dialogThemes,
+    YgDividerThemes? dividerThemes,
     YgIconThemes? iconThemes,
     YgInternalThemes? internalThemes,
     YgListTileThemes? listTileThemes,
@@ -132,8 +132,8 @@ class YgTheme extends ThemeExtension<YgTheme> {
       buttonThemes: buttonThemes ?? this.buttonThemes,
       calloutThemes: calloutThemes ?? this.calloutThemes,
       cardThemes: cardThemes ?? this.cardThemes,
-      dialogTheme: dialogTheme ?? this.dialogTheme,
       dialogThemes: dialogThemes ?? this.dialogThemes,
+      dividerThemes: dividerThemes ?? this.dividerThemes,
       iconThemes: iconThemes ?? this.iconThemes,
       internalThemes: internalThemes ?? this.internalThemes,
       listTileThemes: listTileThemes ?? this.listTileThemes,
@@ -154,8 +154,9 @@ class YgTheme extends ThemeExtension<YgTheme> {
       calloutThemes:
           calloutThemes.lerp(other.calloutThemes, t) as YgCalloutThemes,
       cardThemes: cardThemes.lerp(other.cardThemes, t) as YgCardThemes,
-      dialogTheme: dialogTheme.lerp(other.dialogTheme, t) as YgDialogThemes,
       dialogThemes: dialogThemes.lerp(other.dialogThemes, t) as YgDialogThemes,
+      dividerThemes:
+          dividerThemes.lerp(other.dividerThemes, t) as YgDividerThemes,
       iconThemes: iconThemes.lerp(other.iconThemes, t) as YgIconThemes,
       internalThemes:
           internalThemes.lerp(other.internalThemes, t) as YgInternalThemes,
@@ -184,9 +185,9 @@ class YgTheme extends ThemeExtension<YgTheme> {
             const DeepCollectionEquality()
                 .equals(cardThemes, other.cardThemes) &&
             const DeepCollectionEquality()
-                .equals(dialogTheme, other.dialogTheme) &&
-            const DeepCollectionEquality()
                 .equals(dialogThemes, other.dialogThemes) &&
+            const DeepCollectionEquality()
+                .equals(dividerThemes, other.dividerThemes) &&
             const DeepCollectionEquality()
                 .equals(iconThemes, other.iconThemes) &&
             const DeepCollectionEquality()
@@ -208,8 +209,8 @@ class YgTheme extends ThemeExtension<YgTheme> {
       const DeepCollectionEquality().hash(buttonThemes),
       const DeepCollectionEquality().hash(calloutThemes),
       const DeepCollectionEquality().hash(cardThemes),
-      const DeepCollectionEquality().hash(dialogTheme),
       const DeepCollectionEquality().hash(dialogThemes),
+      const DeepCollectionEquality().hash(dividerThemes),
       const DeepCollectionEquality().hash(iconThemes),
       const DeepCollectionEquality().hash(internalThemes),
       const DeepCollectionEquality().hash(listTileThemes),
@@ -227,8 +228,8 @@ extension YgThemeBuildContextProps on BuildContext {
   YgButtonThemes get buttonThemes => ygTheme.buttonThemes;
   YgCalloutThemes get calloutThemes => ygTheme.calloutThemes;
   YgCardThemes get cardThemes => ygTheme.cardThemes;
-  YgDialogThemes get dialogTheme => ygTheme.dialogTheme;
   YgDialogThemes get dialogThemes => ygTheme.dialogThemes;
+  YgDividerThemes get dividerThemes => ygTheme.dividerThemes;
   YgIconThemes get iconThemes => ygTheme.iconThemes;
   YgInternalThemes get internalThemes => ygTheme.internalThemes;
   YgListTileThemes get listTileThemes => ygTheme.listTileThemes;
