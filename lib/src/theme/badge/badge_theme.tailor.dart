@@ -2,14 +2,14 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 // ignore_for_file: type=lint, unused_element, unnecessary_cast
 
-part of 'badge_themes.dart';
+part of 'badge_theme.dart';
 
 // **************************************************************************
 // TailorAnnotationsGenerator
 // **************************************************************************
 
-class YgBadgeThemes extends ThemeExtension<YgBadgeThemes> {
-  const YgBadgeThemes({
+class YgBadgeTheme extends ThemeExtension<YgBadgeTheme> {
+  const YgBadgeTheme({
     required this.borderRadius,
     required this.strongColor,
     required this.strongTextStyle,
@@ -23,36 +23,36 @@ class YgBadgeThemes extends ThemeExtension<YgBadgeThemes> {
   final Color weakColor;
   final TextStyle weakTextStyle;
 
-  static final YgBadgeThemes consumerLight = YgBadgeThemes(
-    borderRadius: _$YgBadgeThemes.borderRadius[0],
-    strongColor: _$YgBadgeThemes.strongColor[0],
-    strongTextStyle: _$YgBadgeThemes.strongTextStyle[0],
-    weakColor: _$YgBadgeThemes.weakColor[0],
-    weakTextStyle: _$YgBadgeThemes.weakTextStyle[0],
+  static final YgBadgeTheme consumerLight = YgBadgeTheme(
+    borderRadius: _$YgBadgeTheme.borderRadius[0],
+    strongColor: _$YgBadgeTheme.strongColor[0],
+    strongTextStyle: _$YgBadgeTheme.strongTextStyle[0],
+    weakColor: _$YgBadgeTheme.weakColor[0],
+    weakTextStyle: _$YgBadgeTheme.weakTextStyle[0],
   );
 
-  static final YgBadgeThemes consumerDark = YgBadgeThemes(
-    borderRadius: _$YgBadgeThemes.borderRadius[1],
-    strongColor: _$YgBadgeThemes.strongColor[1],
-    strongTextStyle: _$YgBadgeThemes.strongTextStyle[1],
-    weakColor: _$YgBadgeThemes.weakColor[1],
-    weakTextStyle: _$YgBadgeThemes.weakTextStyle[1],
+  static final YgBadgeTheme consumerDark = YgBadgeTheme(
+    borderRadius: _$YgBadgeTheme.borderRadius[1],
+    strongColor: _$YgBadgeTheme.strongColor[1],
+    strongTextStyle: _$YgBadgeTheme.strongTextStyle[1],
+    weakColor: _$YgBadgeTheme.weakColor[1],
+    weakTextStyle: _$YgBadgeTheme.weakTextStyle[1],
   );
 
-  static final YgBadgeThemes professionalLight = YgBadgeThemes(
-    borderRadius: _$YgBadgeThemes.borderRadius[2],
-    strongColor: _$YgBadgeThemes.strongColor[2],
-    strongTextStyle: _$YgBadgeThemes.strongTextStyle[2],
-    weakColor: _$YgBadgeThemes.weakColor[2],
-    weakTextStyle: _$YgBadgeThemes.weakTextStyle[2],
+  static final YgBadgeTheme professionalLight = YgBadgeTheme(
+    borderRadius: _$YgBadgeTheme.borderRadius[2],
+    strongColor: _$YgBadgeTheme.strongColor[2],
+    strongTextStyle: _$YgBadgeTheme.strongTextStyle[2],
+    weakColor: _$YgBadgeTheme.weakColor[2],
+    weakTextStyle: _$YgBadgeTheme.weakTextStyle[2],
   );
 
-  static final YgBadgeThemes professionalDark = YgBadgeThemes(
-    borderRadius: _$YgBadgeThemes.borderRadius[3],
-    strongColor: _$YgBadgeThemes.strongColor[3],
-    strongTextStyle: _$YgBadgeThemes.strongTextStyle[3],
-    weakColor: _$YgBadgeThemes.weakColor[3],
-    weakTextStyle: _$YgBadgeThemes.weakTextStyle[3],
+  static final YgBadgeTheme professionalDark = YgBadgeTheme(
+    borderRadius: _$YgBadgeTheme.borderRadius[3],
+    strongColor: _$YgBadgeTheme.strongColor[3],
+    strongTextStyle: _$YgBadgeTheme.strongTextStyle[3],
+    weakColor: _$YgBadgeTheme.weakColor[3],
+    weakTextStyle: _$YgBadgeTheme.weakTextStyle[3],
   );
 
   static final themes = [
@@ -63,14 +63,14 @@ class YgBadgeThemes extends ThemeExtension<YgBadgeThemes> {
   ];
 
   @override
-  YgBadgeThemes copyWith({
+  YgBadgeTheme copyWith({
     BorderRadius? borderRadius,
     Color? strongColor,
     TextStyle? strongTextStyle,
     Color? weakColor,
     TextStyle? weakTextStyle,
   }) {
-    return YgBadgeThemes(
+    return YgBadgeTheme(
       borderRadius: borderRadius ?? this.borderRadius,
       strongColor: strongColor ?? this.strongColor,
       strongTextStyle: strongTextStyle ?? this.strongTextStyle,
@@ -80,9 +80,9 @@ class YgBadgeThemes extends ThemeExtension<YgBadgeThemes> {
   }
 
   @override
-  YgBadgeThemes lerp(covariant ThemeExtension<YgBadgeThemes>? other, double t) {
-    if (other is! YgBadgeThemes) return this as YgBadgeThemes;
-    return YgBadgeThemes(
+  YgBadgeTheme lerp(covariant ThemeExtension<YgBadgeTheme>? other, double t) {
+    if (other is! YgBadgeTheme) return this as YgBadgeTheme;
+    return YgBadgeTheme(
       borderRadius: t < 0.5 ? borderRadius : other.borderRadius,
       strongColor: Color.lerp(strongColor, other.strongColor, t)!,
       strongTextStyle:
@@ -96,7 +96,7 @@ class YgBadgeThemes extends ThemeExtension<YgBadgeThemes> {
   bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is YgBadgeThemes &&
+            other is YgBadgeTheme &&
             const DeepCollectionEquality()
                 .equals(borderRadius, other.borderRadius) &&
             const DeepCollectionEquality()

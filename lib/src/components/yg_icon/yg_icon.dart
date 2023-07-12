@@ -17,27 +17,27 @@ class YgIcon extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final YgIconThemes iconThemes = context.iconThemes;
+    final YgIconTheme iconTheme = context.iconTheme;
 
     if (onTap == null) {
       return SizedBox.square(
-        dimension: iconSize.getIconSize(iconThemes),
+        dimension: iconSize.getIconSize(iconTheme),
         child: const Placeholder(),
       );
     }
 
     return Material(
-      borderRadius: BorderRadius.circular(tapSize.getTapSize(iconThemes)),
+      borderRadius: BorderRadius.circular(tapSize.getTapSize(iconTheme)),
       color: context.tokens.colors.backgroundTransparent,
       child: InkWell(
-        borderRadius: BorderRadius.circular(tapSize.getTapSize(iconThemes)),
+        borderRadius: BorderRadius.circular(tapSize.getTapSize(iconTheme)),
         onTap: onTap,
         child: SizedBox.square(
-          dimension: tapSize.getTapSize(iconThemes),
+          dimension: tapSize.getTapSize(iconTheme),
           child: Align(
             alignment: Alignment.center,
             child: SizedBox.square(
-              dimension: iconSize.getIconSize(iconThemes),
+              dimension: iconSize.getIconSize(iconTheme),
               child: const Placeholder(),
             ),
           ),

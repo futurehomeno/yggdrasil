@@ -2,14 +2,14 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 // ignore_for_file: type=lint, unused_element, unnecessary_cast
 
-part of 'callout_themes.dart';
+part of 'callout_theme.dart';
 
 // **************************************************************************
 // TailorAnnotationsGenerator
 // **************************************************************************
 
-class YgCalloutThemes extends ThemeExtension<YgCalloutThemes> {
-  const YgCalloutThemes({
+class YgCalloutTheme extends ThemeExtension<YgCalloutTheme> {
+  const YgCalloutTheme({
     required this.borderRadius,
     required this.closeButtonSpacing,
     required this.criticalCalloutTheme,
@@ -35,60 +35,60 @@ class YgCalloutThemes extends ThemeExtension<YgCalloutThemes> {
   final TextStyle titleTextStyle;
   final WarningCalloutTheme warningCalloutTheme;
 
-  static final YgCalloutThemes consumerLight = YgCalloutThemes(
-    borderRadius: _$YgCalloutThemes.borderRadius[0],
-    closeButtonSpacing: _$YgCalloutThemes.closeButtonSpacing[0],
-    criticalCalloutTheme: _$YgCalloutThemes.criticalCalloutTheme[0],
-    descriptionTextStyle: _$YgCalloutThemes.descriptionTextStyle[0],
-    highlightCalloutTheme: _$YgCalloutThemes.highlightCalloutTheme[0],
-    linkSpacing: _$YgCalloutThemes.linkSpacing[0],
-    padding: _$YgCalloutThemes.padding[0],
-    successCalloutTheme: _$YgCalloutThemes.successCalloutTheme[0],
-    titleSpacing: _$YgCalloutThemes.titleSpacing[0],
-    titleTextStyle: _$YgCalloutThemes.titleTextStyle[0],
-    warningCalloutTheme: _$YgCalloutThemes.warningCalloutTheme[0],
+  static final YgCalloutTheme consumerLight = YgCalloutTheme(
+    borderRadius: _$YgCalloutTheme.borderRadius[0],
+    closeButtonSpacing: _$YgCalloutTheme.closeButtonSpacing[0],
+    criticalCalloutTheme: _$YgCalloutTheme.criticalCalloutTheme[0],
+    descriptionTextStyle: _$YgCalloutTheme.descriptionTextStyle[0],
+    highlightCalloutTheme: _$YgCalloutTheme.highlightCalloutTheme[0],
+    linkSpacing: _$YgCalloutTheme.linkSpacing[0],
+    padding: _$YgCalloutTheme.padding[0],
+    successCalloutTheme: _$YgCalloutTheme.successCalloutTheme[0],
+    titleSpacing: _$YgCalloutTheme.titleSpacing[0],
+    titleTextStyle: _$YgCalloutTheme.titleTextStyle[0],
+    warningCalloutTheme: _$YgCalloutTheme.warningCalloutTheme[0],
   );
 
-  static final YgCalloutThemes consumerDark = YgCalloutThemes(
-    borderRadius: _$YgCalloutThemes.borderRadius[1],
-    closeButtonSpacing: _$YgCalloutThemes.closeButtonSpacing[1],
-    criticalCalloutTheme: _$YgCalloutThemes.criticalCalloutTheme[1],
-    descriptionTextStyle: _$YgCalloutThemes.descriptionTextStyle[1],
-    highlightCalloutTheme: _$YgCalloutThemes.highlightCalloutTheme[1],
-    linkSpacing: _$YgCalloutThemes.linkSpacing[1],
-    padding: _$YgCalloutThemes.padding[1],
-    successCalloutTheme: _$YgCalloutThemes.successCalloutTheme[1],
-    titleSpacing: _$YgCalloutThemes.titleSpacing[1],
-    titleTextStyle: _$YgCalloutThemes.titleTextStyle[1],
-    warningCalloutTheme: _$YgCalloutThemes.warningCalloutTheme[1],
+  static final YgCalloutTheme consumerDark = YgCalloutTheme(
+    borderRadius: _$YgCalloutTheme.borderRadius[1],
+    closeButtonSpacing: _$YgCalloutTheme.closeButtonSpacing[1],
+    criticalCalloutTheme: _$YgCalloutTheme.criticalCalloutTheme[1],
+    descriptionTextStyle: _$YgCalloutTheme.descriptionTextStyle[1],
+    highlightCalloutTheme: _$YgCalloutTheme.highlightCalloutTheme[1],
+    linkSpacing: _$YgCalloutTheme.linkSpacing[1],
+    padding: _$YgCalloutTheme.padding[1],
+    successCalloutTheme: _$YgCalloutTheme.successCalloutTheme[1],
+    titleSpacing: _$YgCalloutTheme.titleSpacing[1],
+    titleTextStyle: _$YgCalloutTheme.titleTextStyle[1],
+    warningCalloutTheme: _$YgCalloutTheme.warningCalloutTheme[1],
   );
 
-  static final YgCalloutThemes professionalLight = YgCalloutThemes(
-    borderRadius: _$YgCalloutThemes.borderRadius[2],
-    closeButtonSpacing: _$YgCalloutThemes.closeButtonSpacing[2],
-    criticalCalloutTheme: _$YgCalloutThemes.criticalCalloutTheme[2],
-    descriptionTextStyle: _$YgCalloutThemes.descriptionTextStyle[2],
-    highlightCalloutTheme: _$YgCalloutThemes.highlightCalloutTheme[2],
-    linkSpacing: _$YgCalloutThemes.linkSpacing[2],
-    padding: _$YgCalloutThemes.padding[2],
-    successCalloutTheme: _$YgCalloutThemes.successCalloutTheme[2],
-    titleSpacing: _$YgCalloutThemes.titleSpacing[2],
-    titleTextStyle: _$YgCalloutThemes.titleTextStyle[2],
-    warningCalloutTheme: _$YgCalloutThemes.warningCalloutTheme[2],
+  static final YgCalloutTheme professionalLight = YgCalloutTheme(
+    borderRadius: _$YgCalloutTheme.borderRadius[2],
+    closeButtonSpacing: _$YgCalloutTheme.closeButtonSpacing[2],
+    criticalCalloutTheme: _$YgCalloutTheme.criticalCalloutTheme[2],
+    descriptionTextStyle: _$YgCalloutTheme.descriptionTextStyle[2],
+    highlightCalloutTheme: _$YgCalloutTheme.highlightCalloutTheme[2],
+    linkSpacing: _$YgCalloutTheme.linkSpacing[2],
+    padding: _$YgCalloutTheme.padding[2],
+    successCalloutTheme: _$YgCalloutTheme.successCalloutTheme[2],
+    titleSpacing: _$YgCalloutTheme.titleSpacing[2],
+    titleTextStyle: _$YgCalloutTheme.titleTextStyle[2],
+    warningCalloutTheme: _$YgCalloutTheme.warningCalloutTheme[2],
   );
 
-  static final YgCalloutThemes professionalDark = YgCalloutThemes(
-    borderRadius: _$YgCalloutThemes.borderRadius[3],
-    closeButtonSpacing: _$YgCalloutThemes.closeButtonSpacing[3],
-    criticalCalloutTheme: _$YgCalloutThemes.criticalCalloutTheme[3],
-    descriptionTextStyle: _$YgCalloutThemes.descriptionTextStyle[3],
-    highlightCalloutTheme: _$YgCalloutThemes.highlightCalloutTheme[3],
-    linkSpacing: _$YgCalloutThemes.linkSpacing[3],
-    padding: _$YgCalloutThemes.padding[3],
-    successCalloutTheme: _$YgCalloutThemes.successCalloutTheme[3],
-    titleSpacing: _$YgCalloutThemes.titleSpacing[3],
-    titleTextStyle: _$YgCalloutThemes.titleTextStyle[3],
-    warningCalloutTheme: _$YgCalloutThemes.warningCalloutTheme[3],
+  static final YgCalloutTheme professionalDark = YgCalloutTheme(
+    borderRadius: _$YgCalloutTheme.borderRadius[3],
+    closeButtonSpacing: _$YgCalloutTheme.closeButtonSpacing[3],
+    criticalCalloutTheme: _$YgCalloutTheme.criticalCalloutTheme[3],
+    descriptionTextStyle: _$YgCalloutTheme.descriptionTextStyle[3],
+    highlightCalloutTheme: _$YgCalloutTheme.highlightCalloutTheme[3],
+    linkSpacing: _$YgCalloutTheme.linkSpacing[3],
+    padding: _$YgCalloutTheme.padding[3],
+    successCalloutTheme: _$YgCalloutTheme.successCalloutTheme[3],
+    titleSpacing: _$YgCalloutTheme.titleSpacing[3],
+    titleTextStyle: _$YgCalloutTheme.titleTextStyle[3],
+    warningCalloutTheme: _$YgCalloutTheme.warningCalloutTheme[3],
   );
 
   static final themes = [
@@ -99,7 +99,7 @@ class YgCalloutThemes extends ThemeExtension<YgCalloutThemes> {
   ];
 
   @override
-  YgCalloutThemes copyWith({
+  YgCalloutTheme copyWith({
     BorderRadius? borderRadius,
     double? closeButtonSpacing,
     CriticalCalloutTheme? criticalCalloutTheme,
@@ -112,7 +112,7 @@ class YgCalloutThemes extends ThemeExtension<YgCalloutThemes> {
     TextStyle? titleTextStyle,
     WarningCalloutTheme? warningCalloutTheme,
   }) {
-    return YgCalloutThemes(
+    return YgCalloutTheme(
       borderRadius: borderRadius ?? this.borderRadius,
       closeButtonSpacing: closeButtonSpacing ?? this.closeButtonSpacing,
       criticalCalloutTheme: criticalCalloutTheme ?? this.criticalCalloutTheme,
@@ -129,10 +129,10 @@ class YgCalloutThemes extends ThemeExtension<YgCalloutThemes> {
   }
 
   @override
-  YgCalloutThemes lerp(
-      covariant ThemeExtension<YgCalloutThemes>? other, double t) {
-    if (other is! YgCalloutThemes) return this as YgCalloutThemes;
-    return YgCalloutThemes(
+  YgCalloutTheme lerp(
+      covariant ThemeExtension<YgCalloutTheme>? other, double t) {
+    if (other is! YgCalloutTheme) return this as YgCalloutTheme;
+    return YgCalloutTheme(
       borderRadius: t < 0.5 ? borderRadius : other.borderRadius,
       closeButtonSpacing:
           t < 0.5 ? closeButtonSpacing : other.closeButtonSpacing,
@@ -157,7 +157,7 @@ class YgCalloutThemes extends ThemeExtension<YgCalloutThemes> {
   bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is YgCalloutThemes &&
+            other is YgCalloutTheme &&
             const DeepCollectionEquality()
                 .equals(borderRadius, other.borderRadius) &&
             const DeepCollectionEquality()

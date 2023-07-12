@@ -2,14 +2,14 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 // ignore_for_file: type=lint, unused_element, unnecessary_cast
 
-part of 'button_themes.dart';
+part of 'button_theme.dart';
 
 // **************************************************************************
 // TailorAnnotationsGenerator
 // **************************************************************************
 
-class YgButtonThemes extends ThemeExtension<YgButtonThemes> {
-  const YgButtonThemes({
+class YgButtonTheme extends ThemeExtension<YgButtonTheme> {
+  const YgButtonTheme({
     required this.borderRadius,
     required this.borderWidth,
     required this.criticalButtonTheme,
@@ -35,60 +35,60 @@ class YgButtonThemes extends ThemeExtension<YgButtonThemes> {
   final SecondaryButtonTheme secondaryButtonTheme;
   final TextButtonTheme textButtonTheme;
 
-  static final YgButtonThemes consumerLight = YgButtonThemes(
-    borderRadius: _$YgButtonThemes.borderRadius[0],
-    borderWidth: _$YgButtonThemes.borderWidth[0],
-    criticalButtonTheme: _$YgButtonThemes.criticalButtonTheme[0],
-    iconSpacing: _$YgButtonThemes.iconSpacing[0],
-    linkButtonTheme: _$YgButtonThemes.linkButtonTheme[0],
-    paddingLarge: _$YgButtonThemes.paddingLarge[0],
-    paddingMedium: _$YgButtonThemes.paddingMedium[0],
-    paddingSmall: _$YgButtonThemes.paddingSmall[0],
-    primaryButtonTheme: _$YgButtonThemes.primaryButtonTheme[0],
-    secondaryButtonTheme: _$YgButtonThemes.secondaryButtonTheme[0],
-    textButtonTheme: _$YgButtonThemes.textButtonTheme[0],
+  static final YgButtonTheme consumerLight = YgButtonTheme(
+    borderRadius: _$YgButtonTheme.borderRadius[0],
+    borderWidth: _$YgButtonTheme.borderWidth[0],
+    criticalButtonTheme: _$YgButtonTheme.criticalButtonTheme[0],
+    iconSpacing: _$YgButtonTheme.iconSpacing[0],
+    linkButtonTheme: _$YgButtonTheme.linkButtonTheme[0],
+    paddingLarge: _$YgButtonTheme.paddingLarge[0],
+    paddingMedium: _$YgButtonTheme.paddingMedium[0],
+    paddingSmall: _$YgButtonTheme.paddingSmall[0],
+    primaryButtonTheme: _$YgButtonTheme.primaryButtonTheme[0],
+    secondaryButtonTheme: _$YgButtonTheme.secondaryButtonTheme[0],
+    textButtonTheme: _$YgButtonTheme.textButtonTheme[0],
   );
 
-  static final YgButtonThemes consumerDark = YgButtonThemes(
-    borderRadius: _$YgButtonThemes.borderRadius[1],
-    borderWidth: _$YgButtonThemes.borderWidth[1],
-    criticalButtonTheme: _$YgButtonThemes.criticalButtonTheme[1],
-    iconSpacing: _$YgButtonThemes.iconSpacing[1],
-    linkButtonTheme: _$YgButtonThemes.linkButtonTheme[1],
-    paddingLarge: _$YgButtonThemes.paddingLarge[1],
-    paddingMedium: _$YgButtonThemes.paddingMedium[1],
-    paddingSmall: _$YgButtonThemes.paddingSmall[1],
-    primaryButtonTheme: _$YgButtonThemes.primaryButtonTheme[1],
-    secondaryButtonTheme: _$YgButtonThemes.secondaryButtonTheme[1],
-    textButtonTheme: _$YgButtonThemes.textButtonTheme[1],
+  static final YgButtonTheme consumerDark = YgButtonTheme(
+    borderRadius: _$YgButtonTheme.borderRadius[1],
+    borderWidth: _$YgButtonTheme.borderWidth[1],
+    criticalButtonTheme: _$YgButtonTheme.criticalButtonTheme[1],
+    iconSpacing: _$YgButtonTheme.iconSpacing[1],
+    linkButtonTheme: _$YgButtonTheme.linkButtonTheme[1],
+    paddingLarge: _$YgButtonTheme.paddingLarge[1],
+    paddingMedium: _$YgButtonTheme.paddingMedium[1],
+    paddingSmall: _$YgButtonTheme.paddingSmall[1],
+    primaryButtonTheme: _$YgButtonTheme.primaryButtonTheme[1],
+    secondaryButtonTheme: _$YgButtonTheme.secondaryButtonTheme[1],
+    textButtonTheme: _$YgButtonTheme.textButtonTheme[1],
   );
 
-  static final YgButtonThemes professionalLight = YgButtonThemes(
-    borderRadius: _$YgButtonThemes.borderRadius[2],
-    borderWidth: _$YgButtonThemes.borderWidth[2],
-    criticalButtonTheme: _$YgButtonThemes.criticalButtonTheme[2],
-    iconSpacing: _$YgButtonThemes.iconSpacing[2],
-    linkButtonTheme: _$YgButtonThemes.linkButtonTheme[2],
-    paddingLarge: _$YgButtonThemes.paddingLarge[2],
-    paddingMedium: _$YgButtonThemes.paddingMedium[2],
-    paddingSmall: _$YgButtonThemes.paddingSmall[2],
-    primaryButtonTheme: _$YgButtonThemes.primaryButtonTheme[2],
-    secondaryButtonTheme: _$YgButtonThemes.secondaryButtonTheme[2],
-    textButtonTheme: _$YgButtonThemes.textButtonTheme[2],
+  static final YgButtonTheme professionalLight = YgButtonTheme(
+    borderRadius: _$YgButtonTheme.borderRadius[2],
+    borderWidth: _$YgButtonTheme.borderWidth[2],
+    criticalButtonTheme: _$YgButtonTheme.criticalButtonTheme[2],
+    iconSpacing: _$YgButtonTheme.iconSpacing[2],
+    linkButtonTheme: _$YgButtonTheme.linkButtonTheme[2],
+    paddingLarge: _$YgButtonTheme.paddingLarge[2],
+    paddingMedium: _$YgButtonTheme.paddingMedium[2],
+    paddingSmall: _$YgButtonTheme.paddingSmall[2],
+    primaryButtonTheme: _$YgButtonTheme.primaryButtonTheme[2],
+    secondaryButtonTheme: _$YgButtonTheme.secondaryButtonTheme[2],
+    textButtonTheme: _$YgButtonTheme.textButtonTheme[2],
   );
 
-  static final YgButtonThemes professionalDark = YgButtonThemes(
-    borderRadius: _$YgButtonThemes.borderRadius[3],
-    borderWidth: _$YgButtonThemes.borderWidth[3],
-    criticalButtonTheme: _$YgButtonThemes.criticalButtonTheme[3],
-    iconSpacing: _$YgButtonThemes.iconSpacing[3],
-    linkButtonTheme: _$YgButtonThemes.linkButtonTheme[3],
-    paddingLarge: _$YgButtonThemes.paddingLarge[3],
-    paddingMedium: _$YgButtonThemes.paddingMedium[3],
-    paddingSmall: _$YgButtonThemes.paddingSmall[3],
-    primaryButtonTheme: _$YgButtonThemes.primaryButtonTheme[3],
-    secondaryButtonTheme: _$YgButtonThemes.secondaryButtonTheme[3],
-    textButtonTheme: _$YgButtonThemes.textButtonTheme[3],
+  static final YgButtonTheme professionalDark = YgButtonTheme(
+    borderRadius: _$YgButtonTheme.borderRadius[3],
+    borderWidth: _$YgButtonTheme.borderWidth[3],
+    criticalButtonTheme: _$YgButtonTheme.criticalButtonTheme[3],
+    iconSpacing: _$YgButtonTheme.iconSpacing[3],
+    linkButtonTheme: _$YgButtonTheme.linkButtonTheme[3],
+    paddingLarge: _$YgButtonTheme.paddingLarge[3],
+    paddingMedium: _$YgButtonTheme.paddingMedium[3],
+    paddingSmall: _$YgButtonTheme.paddingSmall[3],
+    primaryButtonTheme: _$YgButtonTheme.primaryButtonTheme[3],
+    secondaryButtonTheme: _$YgButtonTheme.secondaryButtonTheme[3],
+    textButtonTheme: _$YgButtonTheme.textButtonTheme[3],
   );
 
   static final themes = [
@@ -99,7 +99,7 @@ class YgButtonThemes extends ThemeExtension<YgButtonThemes> {
   ];
 
   @override
-  YgButtonThemes copyWith({
+  YgButtonTheme copyWith({
     BorderRadius? borderRadius,
     double? borderWidth,
     CriticalButtonTheme? criticalButtonTheme,
@@ -112,7 +112,7 @@ class YgButtonThemes extends ThemeExtension<YgButtonThemes> {
     SecondaryButtonTheme? secondaryButtonTheme,
     TextButtonTheme? textButtonTheme,
   }) {
-    return YgButtonThemes(
+    return YgButtonTheme(
       borderRadius: borderRadius ?? this.borderRadius,
       borderWidth: borderWidth ?? this.borderWidth,
       criticalButtonTheme: criticalButtonTheme ?? this.criticalButtonTheme,
@@ -128,10 +128,9 @@ class YgButtonThemes extends ThemeExtension<YgButtonThemes> {
   }
 
   @override
-  YgButtonThemes lerp(
-      covariant ThemeExtension<YgButtonThemes>? other, double t) {
-    if (other is! YgButtonThemes) return this as YgButtonThemes;
-    return YgButtonThemes(
+  YgButtonTheme lerp(covariant ThemeExtension<YgButtonTheme>? other, double t) {
+    if (other is! YgButtonTheme) return this as YgButtonTheme;
+    return YgButtonTheme(
       borderRadius: t < 0.5 ? borderRadius : other.borderRadius,
       borderWidth: t < 0.5 ? borderWidth : other.borderWidth,
       criticalButtonTheme: criticalButtonTheme.lerp(
@@ -155,7 +154,7 @@ class YgButtonThemes extends ThemeExtension<YgButtonThemes> {
   bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is YgButtonThemes &&
+            other is YgButtonTheme &&
             const DeepCollectionEquality()
                 .equals(borderRadius, other.borderRadius) &&
             const DeepCollectionEquality()

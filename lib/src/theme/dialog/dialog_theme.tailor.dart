@@ -2,14 +2,14 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 // ignore_for_file: type=lint, unused_element, unnecessary_cast
 
-part of 'dialog_themes.dart';
+part of 'dialog_theme.dart';
 
 // **************************************************************************
 // TailorAnnotationsGenerator
 // **************************************************************************
 
-class YgDialogThemes extends ThemeExtension<YgDialogThemes> {
-  const YgDialogThemes({
+class YgDialogTheme extends ThemeExtension<YgDialogTheme> {
+  const YgDialogTheme({
     required this.backgroundColor,
     required this.buttonSpacing,
     required this.descriptionTextStyle,
@@ -45,80 +45,80 @@ class YgDialogThemes extends ThemeExtension<YgDialogThemes> {
   final double titleDescriptionSpacing;
   final TextStyle titleTextStyle;
 
-  static final YgDialogThemes consumerLight = YgDialogThemes(
-    backgroundColor: _$YgDialogThemes.backgroundColor[0],
-    buttonSpacing: _$YgDialogThemes.buttonSpacing[0],
-    descriptionTextStyle: _$YgDialogThemes.descriptionTextStyle[0],
-    iconContainerColor: _$YgDialogThemes.iconContainerColor[0],
-    iconPadding: _$YgDialogThemes.iconPadding[0],
-    maxWidth: _$YgDialogThemes.maxWidth[0],
-    minWidth: _$YgDialogThemes.minWidth[0],
-    movementAnimationCurve: _$YgDialogThemes.movementAnimationCurve[0],
-    movementAnimationDuration: _$YgDialogThemes.movementAnimationDuration[0],
-    outerBorderRadius: _$YgDialogThemes.outerBorderRadius[0],
-    outerPadding: _$YgDialogThemes.outerPadding[0],
-    paddingToScreenEdge: _$YgDialogThemes.paddingToScreenEdge[0],
-    scrimColor: _$YgDialogThemes.scrimColor[0],
-    textSectionPadding: _$YgDialogThemes.textSectionPadding[0],
-    titleDescriptionSpacing: _$YgDialogThemes.titleDescriptionSpacing[0],
-    titleTextStyle: _$YgDialogThemes.titleTextStyle[0],
+  static final YgDialogTheme consumerLight = YgDialogTheme(
+    backgroundColor: _$YgDialogTheme.backgroundColor[0],
+    buttonSpacing: _$YgDialogTheme.buttonSpacing[0],
+    descriptionTextStyle: _$YgDialogTheme.descriptionTextStyle[0],
+    iconContainerColor: _$YgDialogTheme.iconContainerColor[0],
+    iconPadding: _$YgDialogTheme.iconPadding[0],
+    maxWidth: _$YgDialogTheme.maxWidth[0],
+    minWidth: _$YgDialogTheme.minWidth[0],
+    movementAnimationCurve: _$YgDialogTheme.movementAnimationCurve[0],
+    movementAnimationDuration: _$YgDialogTheme.movementAnimationDuration[0],
+    outerBorderRadius: _$YgDialogTheme.outerBorderRadius[0],
+    outerPadding: _$YgDialogTheme.outerPadding[0],
+    paddingToScreenEdge: _$YgDialogTheme.paddingToScreenEdge[0],
+    scrimColor: _$YgDialogTheme.scrimColor[0],
+    textSectionPadding: _$YgDialogTheme.textSectionPadding[0],
+    titleDescriptionSpacing: _$YgDialogTheme.titleDescriptionSpacing[0],
+    titleTextStyle: _$YgDialogTheme.titleTextStyle[0],
   );
 
-  static final YgDialogThemes consumerDark = YgDialogThemes(
-    backgroundColor: _$YgDialogThemes.backgroundColor[1],
-    buttonSpacing: _$YgDialogThemes.buttonSpacing[1],
-    descriptionTextStyle: _$YgDialogThemes.descriptionTextStyle[1],
-    iconContainerColor: _$YgDialogThemes.iconContainerColor[1],
-    iconPadding: _$YgDialogThemes.iconPadding[1],
-    maxWidth: _$YgDialogThemes.maxWidth[1],
-    minWidth: _$YgDialogThemes.minWidth[1],
-    movementAnimationCurve: _$YgDialogThemes.movementAnimationCurve[1],
-    movementAnimationDuration: _$YgDialogThemes.movementAnimationDuration[1],
-    outerBorderRadius: _$YgDialogThemes.outerBorderRadius[1],
-    outerPadding: _$YgDialogThemes.outerPadding[1],
-    paddingToScreenEdge: _$YgDialogThemes.paddingToScreenEdge[1],
-    scrimColor: _$YgDialogThemes.scrimColor[1],
-    textSectionPadding: _$YgDialogThemes.textSectionPadding[1],
-    titleDescriptionSpacing: _$YgDialogThemes.titleDescriptionSpacing[1],
-    titleTextStyle: _$YgDialogThemes.titleTextStyle[1],
+  static final YgDialogTheme consumerDark = YgDialogTheme(
+    backgroundColor: _$YgDialogTheme.backgroundColor[1],
+    buttonSpacing: _$YgDialogTheme.buttonSpacing[1],
+    descriptionTextStyle: _$YgDialogTheme.descriptionTextStyle[1],
+    iconContainerColor: _$YgDialogTheme.iconContainerColor[1],
+    iconPadding: _$YgDialogTheme.iconPadding[1],
+    maxWidth: _$YgDialogTheme.maxWidth[1],
+    minWidth: _$YgDialogTheme.minWidth[1],
+    movementAnimationCurve: _$YgDialogTheme.movementAnimationCurve[1],
+    movementAnimationDuration: _$YgDialogTheme.movementAnimationDuration[1],
+    outerBorderRadius: _$YgDialogTheme.outerBorderRadius[1],
+    outerPadding: _$YgDialogTheme.outerPadding[1],
+    paddingToScreenEdge: _$YgDialogTheme.paddingToScreenEdge[1],
+    scrimColor: _$YgDialogTheme.scrimColor[1],
+    textSectionPadding: _$YgDialogTheme.textSectionPadding[1],
+    titleDescriptionSpacing: _$YgDialogTheme.titleDescriptionSpacing[1],
+    titleTextStyle: _$YgDialogTheme.titleTextStyle[1],
   );
 
-  static final YgDialogThemes professionalLight = YgDialogThemes(
-    backgroundColor: _$YgDialogThemes.backgroundColor[2],
-    buttonSpacing: _$YgDialogThemes.buttonSpacing[2],
-    descriptionTextStyle: _$YgDialogThemes.descriptionTextStyle[2],
-    iconContainerColor: _$YgDialogThemes.iconContainerColor[2],
-    iconPadding: _$YgDialogThemes.iconPadding[2],
-    maxWidth: _$YgDialogThemes.maxWidth[2],
-    minWidth: _$YgDialogThemes.minWidth[2],
-    movementAnimationCurve: _$YgDialogThemes.movementAnimationCurve[2],
-    movementAnimationDuration: _$YgDialogThemes.movementAnimationDuration[2],
-    outerBorderRadius: _$YgDialogThemes.outerBorderRadius[2],
-    outerPadding: _$YgDialogThemes.outerPadding[2],
-    paddingToScreenEdge: _$YgDialogThemes.paddingToScreenEdge[2],
-    scrimColor: _$YgDialogThemes.scrimColor[2],
-    textSectionPadding: _$YgDialogThemes.textSectionPadding[2],
-    titleDescriptionSpacing: _$YgDialogThemes.titleDescriptionSpacing[2],
-    titleTextStyle: _$YgDialogThemes.titleTextStyle[2],
+  static final YgDialogTheme professionalLight = YgDialogTheme(
+    backgroundColor: _$YgDialogTheme.backgroundColor[2],
+    buttonSpacing: _$YgDialogTheme.buttonSpacing[2],
+    descriptionTextStyle: _$YgDialogTheme.descriptionTextStyle[2],
+    iconContainerColor: _$YgDialogTheme.iconContainerColor[2],
+    iconPadding: _$YgDialogTheme.iconPadding[2],
+    maxWidth: _$YgDialogTheme.maxWidth[2],
+    minWidth: _$YgDialogTheme.minWidth[2],
+    movementAnimationCurve: _$YgDialogTheme.movementAnimationCurve[2],
+    movementAnimationDuration: _$YgDialogTheme.movementAnimationDuration[2],
+    outerBorderRadius: _$YgDialogTheme.outerBorderRadius[2],
+    outerPadding: _$YgDialogTheme.outerPadding[2],
+    paddingToScreenEdge: _$YgDialogTheme.paddingToScreenEdge[2],
+    scrimColor: _$YgDialogTheme.scrimColor[2],
+    textSectionPadding: _$YgDialogTheme.textSectionPadding[2],
+    titleDescriptionSpacing: _$YgDialogTheme.titleDescriptionSpacing[2],
+    titleTextStyle: _$YgDialogTheme.titleTextStyle[2],
   );
 
-  static final YgDialogThemes professionalDark = YgDialogThemes(
-    backgroundColor: _$YgDialogThemes.backgroundColor[3],
-    buttonSpacing: _$YgDialogThemes.buttonSpacing[3],
-    descriptionTextStyle: _$YgDialogThemes.descriptionTextStyle[3],
-    iconContainerColor: _$YgDialogThemes.iconContainerColor[3],
-    iconPadding: _$YgDialogThemes.iconPadding[3],
-    maxWidth: _$YgDialogThemes.maxWidth[3],
-    minWidth: _$YgDialogThemes.minWidth[3],
-    movementAnimationCurve: _$YgDialogThemes.movementAnimationCurve[3],
-    movementAnimationDuration: _$YgDialogThemes.movementAnimationDuration[3],
-    outerBorderRadius: _$YgDialogThemes.outerBorderRadius[3],
-    outerPadding: _$YgDialogThemes.outerPadding[3],
-    paddingToScreenEdge: _$YgDialogThemes.paddingToScreenEdge[3],
-    scrimColor: _$YgDialogThemes.scrimColor[3],
-    textSectionPadding: _$YgDialogThemes.textSectionPadding[3],
-    titleDescriptionSpacing: _$YgDialogThemes.titleDescriptionSpacing[3],
-    titleTextStyle: _$YgDialogThemes.titleTextStyle[3],
+  static final YgDialogTheme professionalDark = YgDialogTheme(
+    backgroundColor: _$YgDialogTheme.backgroundColor[3],
+    buttonSpacing: _$YgDialogTheme.buttonSpacing[3],
+    descriptionTextStyle: _$YgDialogTheme.descriptionTextStyle[3],
+    iconContainerColor: _$YgDialogTheme.iconContainerColor[3],
+    iconPadding: _$YgDialogTheme.iconPadding[3],
+    maxWidth: _$YgDialogTheme.maxWidth[3],
+    minWidth: _$YgDialogTheme.minWidth[3],
+    movementAnimationCurve: _$YgDialogTheme.movementAnimationCurve[3],
+    movementAnimationDuration: _$YgDialogTheme.movementAnimationDuration[3],
+    outerBorderRadius: _$YgDialogTheme.outerBorderRadius[3],
+    outerPadding: _$YgDialogTheme.outerPadding[3],
+    paddingToScreenEdge: _$YgDialogTheme.paddingToScreenEdge[3],
+    scrimColor: _$YgDialogTheme.scrimColor[3],
+    textSectionPadding: _$YgDialogTheme.textSectionPadding[3],
+    titleDescriptionSpacing: _$YgDialogTheme.titleDescriptionSpacing[3],
+    titleTextStyle: _$YgDialogTheme.titleTextStyle[3],
   );
 
   static final themes = [
@@ -129,7 +129,7 @@ class YgDialogThemes extends ThemeExtension<YgDialogThemes> {
   ];
 
   @override
-  YgDialogThemes copyWith({
+  YgDialogTheme copyWith({
     Color? backgroundColor,
     double? buttonSpacing,
     TextStyle? descriptionTextStyle,
@@ -147,7 +147,7 @@ class YgDialogThemes extends ThemeExtension<YgDialogThemes> {
     double? titleDescriptionSpacing,
     TextStyle? titleTextStyle,
   }) {
-    return YgDialogThemes(
+    return YgDialogTheme(
       backgroundColor: backgroundColor ?? this.backgroundColor,
       buttonSpacing: buttonSpacing ?? this.buttonSpacing,
       descriptionTextStyle: descriptionTextStyle ?? this.descriptionTextStyle,
@@ -171,10 +171,9 @@ class YgDialogThemes extends ThemeExtension<YgDialogThemes> {
   }
 
   @override
-  YgDialogThemes lerp(
-      covariant ThemeExtension<YgDialogThemes>? other, double t) {
-    if (other is! YgDialogThemes) return this as YgDialogThemes;
-    return YgDialogThemes(
+  YgDialogTheme lerp(covariant ThemeExtension<YgDialogTheme>? other, double t) {
+    if (other is! YgDialogTheme) return this as YgDialogTheme;
+    return YgDialogTheme(
       backgroundColor: Color.lerp(backgroundColor, other.backgroundColor, t)!,
       buttonSpacing: t < 0.5 ? buttonSpacing : other.buttonSpacing,
       descriptionTextStyle:
@@ -205,7 +204,7 @@ class YgDialogThemes extends ThemeExtension<YgDialogThemes> {
   bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is YgDialogThemes &&
+            other is YgDialogTheme &&
             const DeepCollectionEquality()
                 .equals(backgroundColor, other.backgroundColor) &&
             const DeepCollectionEquality()

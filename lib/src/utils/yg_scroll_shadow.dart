@@ -82,7 +82,7 @@ class _YgScrollShadowState extends State<YgScrollShadow> {
     required Alignment alignment,
     required bool shown,
   }) {
-    final YgScrollShadowThemes scrollShadowThemes = context.internalThemes.scrollShadow;
+    final YgScrollShadowThemes scrollShadowThemes = context.internalTheme.scrollShadow;
 
     return Positioned(
       bottom: alignment.y > 0 ? 0 : null,

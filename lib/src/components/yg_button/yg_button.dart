@@ -105,7 +105,7 @@ class _YgButtonWithRightIconChild extends StatelessWidget {
       mainAxisSize: MainAxisSize.min,
       children: <Widget>[
         Flexible(child: child),
-        SizedBox(width: context.buttonThemes.iconSpacing),
+        SizedBox(width: context.buttonTheme.iconSpacing),
         YgIcon(icon: icon, iconSize: YgIconSize.small),
       ],
     );
@@ -149,7 +149,7 @@ class _YgButtonWithLeftIconChild extends StatelessWidget {
       mainAxisSize: MainAxisSize.min,
       children: <Widget>[
         YgIcon(icon: icon, iconSize: YgIconSize.small),
-        SizedBox(width: context.buttonThemes.iconSpacing),
+        SizedBox(width: context.buttonTheme.iconSpacing),
         Flexible(child: child),
       ],
     );

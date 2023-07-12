@@ -8,26 +8,26 @@ part of 'internal.dart';
 // TailorAnnotationsGenerator
 // **************************************************************************
 
-class YgInternalThemes extends ThemeExtension<YgInternalThemes> {
-  const YgInternalThemes({
+class YgInternalTheme extends ThemeExtension<YgInternalTheme> {
+  const YgInternalTheme({
     required this.scrollShadow,
   });
 
   final YgScrollShadowThemes scrollShadow;
 
-  static final YgInternalThemes consumerLight = YgInternalThemes(
+  static final YgInternalTheme consumerLight = YgInternalTheme(
     scrollShadow: _$YgInternalThemes.scrollShadow[0],
   );
 
-  static final YgInternalThemes consumerDark = YgInternalThemes(
+  static final YgInternalTheme consumerDark = YgInternalTheme(
     scrollShadow: _$YgInternalThemes.scrollShadow[1],
   );
 
-  static final YgInternalThemes professionalLight = YgInternalThemes(
+  static final YgInternalTheme professionalLight = YgInternalTheme(
     scrollShadow: _$YgInternalThemes.scrollShadow[2],
   );
 
-  static final YgInternalThemes professionalDark = YgInternalThemes(
+  static final YgInternalTheme professionalDark = YgInternalTheme(
     scrollShadow: _$YgInternalThemes.scrollShadow[3],
   );
 
@@ -39,21 +39,19 @@ class YgInternalThemes extends ThemeExtension<YgInternalThemes> {
   ];
 
   @override
-  YgInternalThemes copyWith({
+  YgInternalTheme copyWith({
     YgScrollShadowThemes? scrollShadow,
   }) {
-    return YgInternalThemes(
+    return YgInternalTheme(
       scrollShadow: scrollShadow ?? this.scrollShadow,
     );
   }
 
   @override
-  YgInternalThemes lerp(
-      covariant ThemeExtension<YgInternalThemes>? other, double t) {
-    if (other is! YgInternalThemes) return this as YgInternalThemes;
-    return YgInternalThemes(
-      scrollShadow:
-          scrollShadow.lerp(other.scrollShadow, t) as YgScrollShadowThemes,
+  YgInternalTheme lerp(covariant ThemeExtension<YgInternalTheme>? other, double t) {
+    if (other is! YgInternalTheme) return this as YgInternalTheme;
+    return YgInternalTheme(
+      scrollShadow: scrollShadow.lerp(other.scrollShadow, t) as YgScrollShadowThemes,
     );
   }
 
@@ -61,9 +59,8 @@ class YgInternalThemes extends ThemeExtension<YgInternalThemes> {
   bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is YgInternalThemes &&
-            const DeepCollectionEquality()
-                .equals(scrollShadow, other.scrollShadow));
+            other is YgInternalTheme &&
+            const DeepCollectionEquality().equals(scrollShadow, other.scrollShadow));
   }
 
   @override

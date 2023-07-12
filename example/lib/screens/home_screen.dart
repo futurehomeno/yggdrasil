@@ -40,13 +40,13 @@ class HomeScreen extends StatelessWidget {
             trailingWidgets: const <YgIcon>[YgIcon(icon: 'icon')],
           ),
           YgListTile(
-            title: 'Cards',
-            onTap: () => sl<YgRouter>().push(CardScreen.route()),
+            title: 'Callout',
+            onTap: () => sl<YgRouter>().push(CalloutScreen.route()),
             trailingWidgets: const <YgIcon>[YgIcon(icon: 'icon')],
           ),
           YgListTile(
-            title: 'Callout',
-            onTap: () => sl<YgRouter>().push(CalloutScreen.route()),
+            title: 'Cards',
+            onTap: () => sl<YgRouter>().push(CardScreen.route()),
             trailingWidgets: const <YgIcon>[YgIcon(icon: 'icon')],
           ),
           YgListTile(

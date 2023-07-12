@@ -27,7 +27,7 @@ class YgListTile extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final YgListTileThemes listTileThemes = context.listTileThemes;
+    final YgListTileTheme listTileTheme = context.listTileTheme;
 
     return Material(
       borderRadius: BorderRadius.circular(10.0),
@@ -36,21 +36,21 @@ class YgListTile extends StatelessWidget {
         borderRadius: BorderRadius.circular(10.0),
         onTap: onTap,
         child: Padding(
-          padding: listTileThemes.padding,
+          padding: listTileTheme.padding,
           child: Row(
             children: <Widget>[
-              if (leadingWidgets.isNotEmpty) _buildLeadingWidgets(listTileThemes),
+              if (leadingWidgets.isNotEmpty) _buildLeadingWidgets(listTileTheme),
               Expanded(
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: <Widget>[
-                    _buildTitle(listTileThemes),
-                    if (subtitle != null) _buildSubtitle(listTileThemes),
+                    _buildTitle(listTileTheme),
+                    if (subtitle != null) _buildSubtitle(listTileTheme),
                   ],
                 ),
               ),
-              if (supportingWidgets.isNotEmpty) _buildSupportingWidgets(listTileThemes),
-              if (trailingWidgets.isNotEmpty) _buildTrailingWidgets(listTileThemes),
+              if (supportingWidgets.isNotEmpty) _buildSupportingWidgets(listTileTheme),
+              if (trailingWidgets.isNotEmpty) _buildTrailingWidgets(listTileTheme),
             ],
           ),
         ),
@@ -58,35 +58,35 @@ class YgListTile extends StatelessWidget {
     );
   }
 
-  Widget _buildTitle(YgListTileThemes listTileThemes) {
+  Widget _buildTitle(YgListTileTheme listTileTheme) {
     return Row(
       children: <Widget>[
         Flexible(
           child: Text(
             title,
-            style: listTileThemes.titleTextStyle,
+            style: listTileTheme.titleTextStyle,
             overflow: TextOverflow.ellipsis,
           ),
         ),
-        if (onInfoTap != null) _buildInfoButton(listTileThemes),
+        if (onInfoTap != null) _buildInfoButton(listTileTheme),
       ],
     );
   }
 
-  Widget _buildSubtitle(YgListTileThemes listTileThemes) {
+  Widget _buildSubtitle(YgListTileTheme listTileTheme) {
     return Padding(
-      padding: EdgeInsets.only(top: listTileThemes.contentSpacing),
+      padding: EdgeInsets.only(top: listTileTheme.contentSpacing),
       child: Row(
         children: <Widget>[
           if (subtitleIcon != null)
             Padding(
-              padding: EdgeInsets.only(right: listTileThemes.contentSpacing),
+              padding: EdgeInsets.only(right: listTileTheme.contentSpacing),
               child: subtitleIcon,
             ),
           Flexible(
             child: Text(
               subtitle!,
-              style: listTileThemes.subtitleTextStyle,
+              style: listTileTheme.subtitleTextStyle,
             ),
           ),
         ],
@@ -94,9 +94,9 @@ class YgListTile extends StatelessWidget {
     );
   }
 
-  Widget _buildInfoButton(YgListTileThemes listTileThemes) {
+  Widget _buildInfoButton(YgListTileTheme listTileTheme) {
     return Padding(
-      padding: EdgeInsets.only(left: listTileThemes.contentSpacing),
+      padding: EdgeInsets.only(left: listTileTheme.contentSpacing),
       child: YgIcon(
         icon: '',
         iconSize: YgIconSize.small,
@@ -106,10 +106,10 @@ class YgListTile extends StatelessWidget {
     );
   }
 
-  Widget _buildLeadingWidgets(YgListTileThemes listTileThemes) {
+  Widget _buildLeadingWidgets(YgListTileTheme listTileTheme) {
     final List<Widget> paddedLeadingIcons = leadingWidgets.map((Widget leadingWidget) {
       return Padding(
-        padding: EdgeInsets.only(right: listTileThemes.contentSpacing),
+        padding: EdgeInsets.only(right: listTileTheme.contentSpacing),
         child: leadingWidget,
       );
     }).toList();
@@ -117,10 +117,10 @@ class YgListTile extends StatelessWidget {
     return Row(children: paddedLeadingIcons);
   }
 
-  Widget _buildTrailingWidgets(YgListTileThemes listTileThemes) {
+  Widget _buildTrailingWidgets(YgListTileTheme listTileTheme) {
     final List<Widget> paddedTrailingWidgets = trailingWidgets.map((Widget trailingIcon) {
       return Padding(
-        padding: EdgeInsets.only(left: listTileThemes.contentSpacing),
+        padding: EdgeInsets.only(left: listTileTheme.contentSpacing),
         child: trailingIcon,
       );
     }).toList();
@@ -128,19 +128,19 @@ class YgListTile extends StatelessWidget {
     return Row(children: paddedTrailingWidgets);
   }
 
-  Widget _buildSupportingWidgets(YgListTileThemes listTileThemes) {
+  Widget _buildSupportingWidgets(YgListTileTheme listTileTheme) {
     if (supportingWidgets.length == 1) {
       return Padding(
-        padding: EdgeInsets.only(left: listTileThemes.contentSpacing),
+        padding: EdgeInsets.only(left: listTileTheme.contentSpacing),
         child: supportingWidgets.first,
       );
     }
 
     return Padding(
-      padding: EdgeInsets.only(left: listTileThemes.contentSpacing),
+      padding: EdgeInsets.only(left: listTileTheme.contentSpacing),
       child: Column(crossAxisAlignment: CrossAxisAlignment.end, children: <Widget>[
         supportingWidgets.first,
-        SizedBox(height: listTileThemes.contentSpacing),
+        SizedBox(height: listTileTheme.contentSpacing),
         supportingWidgets.last,
       ]),
     );

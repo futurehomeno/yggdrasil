@@ -6,10 +6,10 @@ import 'package:yggdrasil/src/tokens/consumer_light/_consumer_light.dart' as con
 import 'package:yggdrasil/src/tokens/professional_dark/_professional_dark.dart' as professional_dark;
 import 'package:yggdrasil/src/tokens/professional_light/_professional_light.dart' as professional_light;
 
-part 'callout_themes.tailor.dart';
+part 'callout_theme.tailor.dart';
 
 @tailorComponent
-class _$YgCalloutThemes {
+class _$YgCalloutTheme {
   @themeExtension
   static List<CriticalCalloutTheme> criticalCalloutTheme = CriticalCalloutTheme.themes;
 

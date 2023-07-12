@@ -1,1 +1,1 @@
-export 'dialog_themes.dart';
+export 'dialog_theme.dart';

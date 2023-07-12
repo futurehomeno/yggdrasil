@@ -8,9 +8,9 @@ enum YgTagSize {
   EdgeInsets buildPadding(BuildContext context) {
     switch (this) {
       case YgTagSize.small:
-        return context.tagThemes.paddingSmall;
+        return context.tagTheme.paddingSmall;
       case YgTagSize.medium:
-        return context.tagThemes.paddingMedium;
+        return context.tagTheme.paddingMedium;
     }
   }
 }

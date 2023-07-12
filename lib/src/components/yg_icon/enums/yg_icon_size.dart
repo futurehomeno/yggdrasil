@@ -5,7 +5,7 @@ enum YgIconSize {
   small,
   medium;
 
-  double getIconSize(YgIconThemes iconThemes) {
+  double getIconSize(YgIconTheme iconThemes) {
     switch (this) {
       case smaller:
         return iconThemes.sizeSmaller;

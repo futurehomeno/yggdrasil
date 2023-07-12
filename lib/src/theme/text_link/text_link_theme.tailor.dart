@@ -2,20 +2,19 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 // ignore_for_file: type=lint, unused_element, unnecessary_cast
 
-part of 'text_link_themes.dart';
+part of 'text_link_theme.dart';
 
 // **************************************************************************
 // TailorAnnotationsGenerator
 // **************************************************************************
 
-class YgTextLinkThemes extends ThemeExtension<YgTextLinkThemes> {
-  const YgTextLinkThemes({
+class YgTextLinkTheme extends ThemeExtension<YgTextLinkTheme> {
+  const YgTextLinkTheme({
     required this.defaultColor,
     required this.disabledColor,
     required this.focusColor,
     required this.hoverColor,
     required this.iconPadding,
-    required this.iconSize,
     required this.mediumStrongTextStyle,
     required this.mediumWeakTextStyle,
     required this.pressedColor,
@@ -28,67 +27,62 @@ class YgTextLinkThemes extends ThemeExtension<YgTextLinkThemes> {
   final Color focusColor;
   final Color hoverColor;
   final EdgeInsets iconPadding;
-  final double iconSize;
   final TextStyle mediumStrongTextStyle;
   final TextStyle mediumWeakTextStyle;
   final Color pressedColor;
   final TextStyle smallStrongTextStyle;
   final TextStyle smallWeakTextStyle;
 
-  static final YgTextLinkThemes consumerLight = YgTextLinkThemes(
-    defaultColor: _$YgTextLinkThemes.defaultColor[0],
-    disabledColor: _$YgTextLinkThemes.disabledColor[0],
-    focusColor: _$YgTextLinkThemes.focusColor[0],
-    hoverColor: _$YgTextLinkThemes.hoverColor[0],
-    iconPadding: _$YgTextLinkThemes.iconPadding[0],
-    iconSize: _$YgTextLinkThemes.iconSize[0],
-    mediumStrongTextStyle: _$YgTextLinkThemes.mediumStrongTextStyle[0],
-    mediumWeakTextStyle: _$YgTextLinkThemes.mediumWeakTextStyle[0],
-    pressedColor: _$YgTextLinkThemes.pressedColor[0],
-    smallStrongTextStyle: _$YgTextLinkThemes.smallStrongTextStyle[0],
-    smallWeakTextStyle: _$YgTextLinkThemes.smallWeakTextStyle[0],
+  static final YgTextLinkTheme consumerLight = YgTextLinkTheme(
+    defaultColor: _$YgTextLinkTheme.defaultColor[0],
+    disabledColor: _$YgTextLinkTheme.disabledColor[0],
+    focusColor: _$YgTextLinkTheme.focusColor[0],
+    hoverColor: _$YgTextLinkTheme.hoverColor[0],
+    iconPadding: _$YgTextLinkTheme.iconPadding[0],
+    mediumStrongTextStyle: _$YgTextLinkTheme.mediumStrongTextStyle[0],
+    mediumWeakTextStyle: _$YgTextLinkTheme.mediumWeakTextStyle[0],
+    pressedColor: _$YgTextLinkTheme.pressedColor[0],
+    smallStrongTextStyle: _$YgTextLinkTheme.smallStrongTextStyle[0],
+    smallWeakTextStyle: _$YgTextLinkTheme.smallWeakTextStyle[0],
   );
 
-  static final YgTextLinkThemes consumerDark = YgTextLinkThemes(
-    defaultColor: _$YgTextLinkThemes.defaultColor[1],
-    disabledColor: _$YgTextLinkThemes.disabledColor[1],
-    focusColor: _$YgTextLinkThemes.focusColor[1],
-    hoverColor: _$YgTextLinkThemes.hoverColor[1],
-    iconPadding: _$YgTextLinkThemes.iconPadding[1],
-    iconSize: _$YgTextLinkThemes.iconSize[1],
-    mediumStrongTextStyle: _$YgTextLinkThemes.mediumStrongTextStyle[1],
-    mediumWeakTextStyle: _$YgTextLinkThemes.mediumWeakTextStyle[1],
-    pressedColor: _$YgTextLinkThemes.pressedColor[1],
-    smallStrongTextStyle: _$YgTextLinkThemes.smallStrongTextStyle[1],
-    smallWeakTextStyle: _$YgTextLinkThemes.smallWeakTextStyle[1],
+  static final YgTextLinkTheme consumerDark = YgTextLinkTheme(
+    defaultColor: _$YgTextLinkTheme.defaultColor[1],
+    disabledColor: _$YgTextLinkTheme.disabledColor[1],
+    focusColor: _$YgTextLinkTheme.focusColor[1],
+    hoverColor: _$YgTextLinkTheme.hoverColor[1],
+    iconPadding: _$YgTextLinkTheme.iconPadding[1],
+    mediumStrongTextStyle: _$YgTextLinkTheme.mediumStrongTextStyle[1],
+    mediumWeakTextStyle: _$YgTextLinkTheme.mediumWeakTextStyle[1],
+    pressedColor: _$YgTextLinkTheme.pressedColor[1],
+    smallStrongTextStyle: _$YgTextLinkTheme.smallStrongTextStyle[1],
+    smallWeakTextStyle: _$YgTextLinkTheme.smallWeakTextStyle[1],
   );
 
-  static final YgTextLinkThemes professionalLight = YgTextLinkThemes(
-    defaultColor: _$YgTextLinkThemes.defaultColor[2],
-    disabledColor: _$YgTextLinkThemes.disabledColor[2],
-    focusColor: _$YgTextLinkThemes.focusColor[2],
-    hoverColor: _$YgTextLinkThemes.hoverColor[2],
-    iconPadding: _$YgTextLinkThemes.iconPadding[2],
-    iconSize: _$YgTextLinkThemes.iconSize[2],
-    mediumStrongTextStyle: _$YgTextLinkThemes.mediumStrongTextStyle[2],
-    mediumWeakTextStyle: _$YgTextLinkThemes.mediumWeakTextStyle[2],
-    pressedColor: _$YgTextLinkThemes.pressedColor[2],
-    smallStrongTextStyle: _$YgTextLinkThemes.smallStrongTextStyle[2],
-    smallWeakTextStyle: _$YgTextLinkThemes.smallWeakTextStyle[2],
+  static final YgTextLinkTheme professionalLight = YgTextLinkTheme(
+    defaultColor: _$YgTextLinkTheme.defaultColor[2],
+    disabledColor: _$YgTextLinkTheme.disabledColor[2],
+    focusColor: _$YgTextLinkTheme.focusColor[2],
+    hoverColor: _$YgTextLinkTheme.hoverColor[2],
+    iconPadding: _$YgTextLinkTheme.iconPadding[2],
+    mediumStrongTextStyle: _$YgTextLinkTheme.mediumStrongTextStyle[2],
+    mediumWeakTextStyle: _$YgTextLinkTheme.mediumWeakTextStyle[2],
+    pressedColor: _$YgTextLinkTheme.pressedColor[2],
+    smallStrongTextStyle: _$YgTextLinkTheme.smallStrongTextStyle[2],
+    smallWeakTextStyle: _$YgTextLinkTheme.smallWeakTextStyle[2],
   );
 
-  static final YgTextLinkThemes professionalDark = YgTextLinkThemes(
-    defaultColor: _$YgTextLinkThemes.defaultColor[3],
-    disabledColor: _$YgTextLinkThemes.disabledColor[3],
-    focusColor: _$YgTextLinkThemes.focusColor[3],
-    hoverColor: _$YgTextLinkThemes.hoverColor[3],
-    iconPadding: _$YgTextLinkThemes.iconPadding[3],
-    iconSize: _$YgTextLinkThemes.iconSize[3],
-    mediumStrongTextStyle: _$YgTextLinkThemes.mediumStrongTextStyle[3],
-    mediumWeakTextStyle: _$YgTextLinkThemes.mediumWeakTextStyle[3],
-    pressedColor: _$YgTextLinkThemes.pressedColor[3],
-    smallStrongTextStyle: _$YgTextLinkThemes.smallStrongTextStyle[3],
-    smallWeakTextStyle: _$YgTextLinkThemes.smallWeakTextStyle[3],
+  static final YgTextLinkTheme professionalDark = YgTextLinkTheme(
+    defaultColor: _$YgTextLinkTheme.defaultColor[3],
+    disabledColor: _$YgTextLinkTheme.disabledColor[3],
+    focusColor: _$YgTextLinkTheme.focusColor[3],
+    hoverColor: _$YgTextLinkTheme.hoverColor[3],
+    iconPadding: _$YgTextLinkTheme.iconPadding[3],
+    mediumStrongTextStyle: _$YgTextLinkTheme.mediumStrongTextStyle[3],
+    mediumWeakTextStyle: _$YgTextLinkTheme.mediumWeakTextStyle[3],
+    pressedColor: _$YgTextLinkTheme.pressedColor[3],
+    smallStrongTextStyle: _$YgTextLinkTheme.smallStrongTextStyle[3],
+    smallWeakTextStyle: _$YgTextLinkTheme.smallWeakTextStyle[3],
   );
 
   static final themes = [
@@ -99,26 +93,24 @@ class YgTextLinkThemes extends ThemeExtension<YgTextLinkThemes> {
   ];
 
   @override
-  YgTextLinkThemes copyWith({
+  YgTextLinkTheme copyWith({
     Color? defaultColor,
     Color? disabledColor,
     Color? focusColor,
     Color? hoverColor,
     EdgeInsets? iconPadding,
-    double? iconSize,
     TextStyle? mediumStrongTextStyle,
     TextStyle? mediumWeakTextStyle,
     Color? pressedColor,
     TextStyle? smallStrongTextStyle,
     TextStyle? smallWeakTextStyle,
   }) {
-    return YgTextLinkThemes(
+    return YgTextLinkTheme(
       defaultColor: defaultColor ?? this.defaultColor,
       disabledColor: disabledColor ?? this.disabledColor,
       focusColor: focusColor ?? this.focusColor,
       hoverColor: hoverColor ?? this.hoverColor,
       iconPadding: iconPadding ?? this.iconPadding,
-      iconSize: iconSize ?? this.iconSize,
       mediumStrongTextStyle:
           mediumStrongTextStyle ?? this.mediumStrongTextStyle,
       mediumWeakTextStyle: mediumWeakTextStyle ?? this.mediumWeakTextStyle,
@@ -129,16 +121,15 @@ class YgTextLinkThemes extends ThemeExtension<YgTextLinkThemes> {
   }
 
   @override
-  YgTextLinkThemes lerp(
-      covariant ThemeExtension<YgTextLinkThemes>? other, double t) {
-    if (other is! YgTextLinkThemes) return this as YgTextLinkThemes;
-    return YgTextLinkThemes(
+  YgTextLinkTheme lerp(
+      covariant ThemeExtension<YgTextLinkTheme>? other, double t) {
+    if (other is! YgTextLinkTheme) return this as YgTextLinkTheme;
+    return YgTextLinkTheme(
       defaultColor: Color.lerp(defaultColor, other.defaultColor, t)!,
       disabledColor: Color.lerp(disabledColor, other.disabledColor, t)!,
       focusColor: Color.lerp(focusColor, other.focusColor, t)!,
       hoverColor: Color.lerp(hoverColor, other.hoverColor, t)!,
       iconPadding: t < 0.5 ? iconPadding : other.iconPadding,
-      iconSize: t < 0.5 ? iconSize : other.iconSize,
       mediumStrongTextStyle: TextStyle.lerp(
           mediumStrongTextStyle, other.mediumStrongTextStyle, t)!,
       mediumWeakTextStyle:
@@ -155,7 +146,7 @@ class YgTextLinkThemes extends ThemeExtension<YgTextLinkThemes> {
   bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is YgTextLinkThemes &&
+            other is YgTextLinkTheme &&
             const DeepCollectionEquality()
                 .equals(defaultColor, other.defaultColor) &&
             const DeepCollectionEquality()
@@ -166,7 +157,6 @@ class YgTextLinkThemes extends ThemeExtension<YgTextLinkThemes> {
                 .equals(hoverColor, other.hoverColor) &&
             const DeepCollectionEquality()
                 .equals(iconPadding, other.iconPadding) &&
-            const DeepCollectionEquality().equals(iconSize, other.iconSize) &&
             const DeepCollectionEquality()
                 .equals(mediumStrongTextStyle, other.mediumStrongTextStyle) &&
             const DeepCollectionEquality()
@@ -188,7 +178,6 @@ class YgTextLinkThemes extends ThemeExtension<YgTextLinkThemes> {
       const DeepCollectionEquality().hash(focusColor),
       const DeepCollectionEquality().hash(hoverColor),
       const DeepCollectionEquality().hash(iconPadding),
-      const DeepCollectionEquality().hash(iconSize),
       const DeepCollectionEquality().hash(mediumStrongTextStyle),
       const DeepCollectionEquality().hash(mediumWeakTextStyle),
       const DeepCollectionEquality().hash(pressedColor),

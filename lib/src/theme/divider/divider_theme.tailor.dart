@@ -2,14 +2,14 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 // ignore_for_file: type=lint, unused_element, unnecessary_cast
 
-part of 'divider_themes.dart';
+part of 'divider_theme.dart';
 
 // **************************************************************************
 // TailorAnnotationsGenerator
 // **************************************************************************
 
-class YgDividerThemes extends ThemeExtension<YgDividerThemes> {
-  const YgDividerThemes({
+class YgDividerTheme extends ThemeExtension<YgDividerTheme> {
+  const YgDividerTheme({
     required this.color,
     required this.indentLarge,
     required this.indentMedium,
@@ -21,32 +21,32 @@ class YgDividerThemes extends ThemeExtension<YgDividerThemes> {
   final double indentMedium;
   final double indentSmall;
 
-  static final YgDividerThemes consumerLight = YgDividerThemes(
-    color: _$YgDividerThemes.color[0],
-    indentLarge: _$YgDividerThemes.indentLarge[0],
-    indentMedium: _$YgDividerThemes.indentMedium[0],
-    indentSmall: _$YgDividerThemes.indentSmall[0],
+  static final YgDividerTheme consumerLight = YgDividerTheme(
+    color: _$YgDividerTheme.color[0],
+    indentLarge: _$YgDividerTheme.indentLarge[0],
+    indentMedium: _$YgDividerTheme.indentMedium[0],
+    indentSmall: _$YgDividerTheme.indentSmall[0],
   );
 
-  static final YgDividerThemes consumerDark = YgDividerThemes(
-    color: _$YgDividerThemes.color[1],
-    indentLarge: _$YgDividerThemes.indentLarge[1],
-    indentMedium: _$YgDividerThemes.indentMedium[1],
-    indentSmall: _$YgDividerThemes.indentSmall[1],
+  static final YgDividerTheme consumerDark = YgDividerTheme(
+    color: _$YgDividerTheme.color[1],
+    indentLarge: _$YgDividerTheme.indentLarge[1],
+    indentMedium: _$YgDividerTheme.indentMedium[1],
+    indentSmall: _$YgDividerTheme.indentSmall[1],
   );
 
-  static final YgDividerThemes professionalLight = YgDividerThemes(
-    color: _$YgDividerThemes.color[2],
-    indentLarge: _$YgDividerThemes.indentLarge[2],
-    indentMedium: _$YgDividerThemes.indentMedium[2],
-    indentSmall: _$YgDividerThemes.indentSmall[2],
+  static final YgDividerTheme professionalLight = YgDividerTheme(
+    color: _$YgDividerTheme.color[2],
+    indentLarge: _$YgDividerTheme.indentLarge[2],
+    indentMedium: _$YgDividerTheme.indentMedium[2],
+    indentSmall: _$YgDividerTheme.indentSmall[2],
   );
 
-  static final YgDividerThemes professionalDark = YgDividerThemes(
-    color: _$YgDividerThemes.color[3],
-    indentLarge: _$YgDividerThemes.indentLarge[3],
-    indentMedium: _$YgDividerThemes.indentMedium[3],
-    indentSmall: _$YgDividerThemes.indentSmall[3],
+  static final YgDividerTheme professionalDark = YgDividerTheme(
+    color: _$YgDividerTheme.color[3],
+    indentLarge: _$YgDividerTheme.indentLarge[3],
+    indentMedium: _$YgDividerTheme.indentMedium[3],
+    indentSmall: _$YgDividerTheme.indentSmall[3],
   );
 
   static final themes = [
@@ -57,13 +57,13 @@ class YgDividerThemes extends ThemeExtension<YgDividerThemes> {
   ];
 
   @override
-  YgDividerThemes copyWith({
+  YgDividerTheme copyWith({
     Color? color,
     double? indentLarge,
     double? indentMedium,
     double? indentSmall,
   }) {
-    return YgDividerThemes(
+    return YgDividerTheme(
       color: color ?? this.color,
       indentLarge: indentLarge ?? this.indentLarge,
       indentMedium: indentMedium ?? this.indentMedium,
@@ -72,10 +72,10 @@ class YgDividerThemes extends ThemeExtension<YgDividerThemes> {
   }
 
   @override
-  YgDividerThemes lerp(
-      covariant ThemeExtension<YgDividerThemes>? other, double t) {
-    if (other is! YgDividerThemes) return this as YgDividerThemes;
-    return YgDividerThemes(
+  YgDividerTheme lerp(
+      covariant ThemeExtension<YgDividerTheme>? other, double t) {
+    if (other is! YgDividerTheme) return this as YgDividerTheme;
+    return YgDividerTheme(
       color: Color.lerp(color, other.color, t)!,
       indentLarge: t < 0.5 ? indentLarge : other.indentLarge,
       indentMedium: t < 0.5 ? indentMedium : other.indentMedium,
@@ -87,7 +87,7 @@ class YgDividerThemes extends ThemeExtension<YgDividerThemes> {
   bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is YgDividerThemes &&
+            other is YgDividerTheme &&
             const DeepCollectionEquality().equals(color, other.color) &&
             const DeepCollectionEquality()
                 .equals(indentLarge, other.indentLarge) &&

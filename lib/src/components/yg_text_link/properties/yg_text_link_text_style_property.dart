@@ -10,7 +10,7 @@ class YgTextLinkTextStyleProperty extends MaterialStateProperty<TextStyle?> with
     required this.weight,
   });
 
-  final YgTextLinkThemes theme;
+  final YgTextLinkTheme theme;
   final YgTextLinkSize size;
   final YgTextLinkWeight weight;
 

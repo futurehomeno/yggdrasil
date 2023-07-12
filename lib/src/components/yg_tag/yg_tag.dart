@@ -12,7 +12,7 @@ class YgTag extends ButtonStyleButton {
     super.key,
     required this.variant,
     this.size = YgTagSize.medium,
-    this.impact = YgTagImpact.weak,
+    this.weight = YgTagWeight.weak,
     super.onPressed,
     super.onLongPress,
     super.onHover,
@@ -37,7 +37,7 @@ class YgTag extends ButtonStyleButton {
     required Widget child,
     required YgTagVariant variant,
     required YgTagSize size,
-    required YgTagImpact impact,
+    required YgTagWeight weight,
   }) = _YgTagWithLeftIcon;
 
   factory YgTag.rightIcon({
@@ -52,7 +52,7 @@ class YgTag extends ButtonStyleButton {
     required Widget child,
     required YgTagVariant variant,
     required YgTagSize size,
-    required YgTagImpact impact,
+    required YgTagWeight weight,
   }) = _YgTagWithRightIcon;
 
   factory YgTag.doubleIcon({
@@ -68,12 +68,12 @@ class YgTag extends ButtonStyleButton {
     required Widget child,
     required YgTagVariant variant,
     required YgTagSize size,
-    required YgTagImpact impact,
+    required YgTagWeight weight,
   }) = _YgTagWithDoubleIcon;
 
   final YgTagVariant variant;
   final YgTagSize size;
-  final YgTagImpact impact;
+  final YgTagWeight weight;
 
   @override
   ButtonStyle defaultStyleOf(BuildContext context) {
@@ -81,7 +81,7 @@ class YgTag extends ButtonStyleButton {
       context: context,
       variant: variant,
       size: size,
-      impact: impact,
+      weight: weight,
     ).toButtonStyle();
   }
 
@@ -105,14 +105,14 @@ class _YgTagWithRightIcon extends YgTag {
     required Widget child,
     required YgTagVariant variant,
     required YgTagSize size,
-    required YgTagImpact impact,
+    required YgTagWeight weight,
   }) : super(
           autofocus: autofocus ?? false,
           clipBehavior: clipBehavior ?? Clip.none,
           child: _YgTagWithRightIconChild(icon: icon, child: child),
           variant: variant,
           size: size,
-          impact: impact,
+          weight: weight,
         );
 }
 
@@ -131,7 +131,7 @@ class _YgTagWithRightIconChild extends StatelessWidget {
       mainAxisSize: MainAxisSize.min,
       children: <Widget>[
         Flexible(child: child),
-        SizedBox(width: context.tagThemes.iconSpacing),
+        SizedBox(width: context.tagTheme.iconSpacing),
         YgIcon(icon: icon, iconSize: YgIconSize.smaller),
       ],
     );
@@ -151,14 +151,14 @@ class _YgTagWithLeftIcon extends YgTag {
     required Widget child,
     required YgTagVariant variant,
     required YgTagSize size,
-    required YgTagImpact impact,
+    required YgTagWeight weight,
   }) : super(
           autofocus: autofocus ?? false,
           clipBehavior: clipBehavior ?? Clip.none,
           child: _YgTagWithLeftIconChild(icon: icon, child: child),
           variant: variant,
           size: size,
-          impact: impact,
+          weight: weight,
         );
 }
 
@@ -177,7 +177,7 @@ class _YgTagWithLeftIconChild extends StatelessWidget {
       mainAxisSize: MainAxisSize.min,
       children: <Widget>[
         YgIcon(icon: icon, iconSize: YgIconSize.smaller),
-        SizedBox(width: context.tagThemes.iconSpacing),
+        SizedBox(width: context.tagTheme.iconSpacing),
         Flexible(child: child),
       ],
     );
@@ -198,7 +198,7 @@ class _YgTagWithDoubleIcon extends YgTag {
     required Widget child,
     required YgTagVariant variant,
     required YgTagSize size,
-    required YgTagImpact impact,
+    required YgTagWeight weight,
   }) : super(
           autofocus: autofocus ?? false,
           clipBehavior: clipBehavior ?? Clip.none,
@@ -209,7 +209,7 @@ class _YgTagWithDoubleIcon extends YgTag {
           ),
           variant: variant,
           size: size,
-          impact: impact,
+          weight: weight,
         );
 }
 
@@ -230,9 +230,9 @@ class _YgTagWithDoubleIconChild extends StatelessWidget {
       mainAxisSize: MainAxisSize.min,
       children: <Widget>[
         YgIcon(icon: leadingIcon, iconSize: YgIconSize.smaller),
-        SizedBox(width: context.tagThemes.iconSpacing),
+        SizedBox(width: context.tagTheme.iconSpacing),
         Flexible(child: child),
-        SizedBox(width: context.tagThemes.iconSpacing),
+        SizedBox(width: context.tagTheme.iconSpacing),
         YgIcon(icon: trailingIcon, iconSize: YgIconSize.smaller),
       ],
     );

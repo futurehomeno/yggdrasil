@@ -9,11 +9,11 @@ enum ButtonSize {
   EdgeInsets buildPadding(BuildContext context) {
     switch (this) {
       case ButtonSize.small:
-        return context.buttonThemes.paddingSmall;
+        return context.buttonTheme.paddingSmall;
       case ButtonSize.medium:
-        return context.buttonThemes.paddingMedium;
+        return context.buttonTheme.paddingMedium;
       case ButtonSize.large:
-        return context.buttonThemes.paddingLarge;
+        return context.buttonTheme.paddingLarge;
     }
   }
 }

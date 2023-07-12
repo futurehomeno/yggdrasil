@@ -17,22 +17,22 @@ class YgDialog extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final YgDialogThemes dialogThemes = context.dialogThemes;
+    final YgDialogTheme dialogTheme = context.dialogTheme;
 
     final YgSpacingBuilder spacingBuilder = YgSpacingBuilder(
-      horizontalSpacing: dialogThemes.buttonSpacing,
+      horizontalSpacing: dialogTheme.buttonSpacing,
     );
 
     return Material(
-      borderRadius: dialogThemes.outerBorderRadius,
-      color: dialogThemes.backgroundColor,
+      borderRadius: dialogTheme.outerBorderRadius,
+      color: dialogTheme.backgroundColor,
       child: Padding(
-        padding: dialogThemes.outerPadding,
+        padding: dialogTheme.outerPadding,
         child: Column(
           mainAxisSize: MainAxisSize.min,
           children: <Widget>[
-            _buildIcon(dialogThemes),
-            _buildTextSection(dialogThemes),
+            _buildIcon(dialogTheme),
+            _buildTextSection(dialogTheme),
             _buildActionsSection(spacingBuilder)
           ],
         ),
@@ -40,7 +40,7 @@ class YgDialog extends StatelessWidget {
     );
   }
 
-  Container _buildIcon(YgDialogThemes dialogTheme) {
+  Container _buildIcon(YgDialogTheme dialogTheme) {
     return Container(
       padding: dialogTheme.iconPadding,
       decoration: BoxDecoration(
@@ -51,7 +51,7 @@ class YgDialog extends StatelessWidget {
     );
   }
 
-  Padding _buildTextSection(YgDialogThemes dialogTheme) {
+  Padding _buildTextSection(YgDialogTheme dialogTheme) {
     return Padding(
       padding: dialogTheme.textSectionPadding,
       child: Column(

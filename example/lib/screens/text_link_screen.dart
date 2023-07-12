@@ -23,6 +23,7 @@ class TextLinkScreen extends StatelessWidget {
       supernovaLink: 'Link',
       child: Column(
         children: <Widget>[
+          YgListTile(title: 'Enabled text link'),
           YgTextLink(
             onPressed: () {},
             text: 'Link',
@@ -47,6 +48,7 @@ class TextLinkScreen extends StatelessWidget {
             size: YgTextLinkSize.medium,
             weight: YgTextLinkWeight.strong,
           ),
+          YgListTile(title: 'Disabled text link'),
           YgTextLink(
             text: 'Link',
             size: YgTextLinkSize.small,
@@ -71,41 +73,38 @@ class TextLinkScreen extends StatelessWidget {
             weight: YgTextLinkWeight.strong,
             onPressed: null,
           ),
-          YgTextLink(
-            onPressed: () {},
-            text: 'Link',
-            icon: const Icon(
-              Icons.open_in_browser_rounded,
-            ),
-            size: YgTextLinkSize.small,
-            weight: YgTextLinkWeight.weak,
-          ),
-          YgTextLink(
-            onPressed: () {},
-            text: 'Link',
-            icon: const Icon(
-              Icons.open_in_browser_rounded,
-            ),
-            size: YgTextLinkSize.small,
-            weight: YgTextLinkWeight.strong,
-          ),
-          YgTextLink(
-            onPressed: () {},
-            text: 'Link',
-            icon: const Icon(
-              Icons.open_in_browser_rounded,
-            ),
-            size: YgTextLinkSize.medium,
-            weight: YgTextLinkWeight.weak,
-          ),
-          YgTextLink(
-            onPressed: () {},
-            text: 'Link',
-            icon: const Icon(
-              Icons.open_in_browser_rounded,
-            ),
-            size: YgTextLinkSize.medium,
-            weight: YgTextLinkWeight.strong,
+          YgListTile(title: 'Text link w/ icon'),
+          Column(
+            children: <Widget>[
+              YgTextLink(
+                onPressed: () {},
+                text: 'Link',
+                icon: 'icon',
+                size: YgTextLinkSize.small,
+                weight: YgTextLinkWeight.weak,
+              ),
+              YgTextLink(
+                onPressed: () {},
+                text: 'Link',
+                icon: 'icon',
+                size: YgTextLinkSize.small,
+                weight: YgTextLinkWeight.strong,
+              ),
+              YgTextLink(
+                onPressed: () {},
+                text: 'Link',
+                icon: 'icon',
+                size: YgTextLinkSize.medium,
+                weight: YgTextLinkWeight.weak,
+              ),
+              YgTextLink(
+                onPressed: () {},
+                text: 'Link',
+                icon: 'icon',
+                size: YgTextLinkSize.medium,
+                weight: YgTextLinkWeight.strong,
+              ),
+            ],
           ),
         ],
       ),

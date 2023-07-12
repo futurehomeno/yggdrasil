@@ -2,14 +2,14 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 // ignore_for_file: type=lint, unused_element, unnecessary_cast
 
-part of 'list_tile_themes.dart';
+part of 'list_tile_theme.dart';
 
 // **************************************************************************
 // TailorAnnotationsGenerator
 // **************************************************************************
 
-class YgListTileThemes extends ThemeExtension<YgListTileThemes> {
-  const YgListTileThemes({
+class YgListTileTheme extends ThemeExtension<YgListTileTheme> {
+  const YgListTileTheme({
     required this.contentSpacing,
     required this.iconSize,
     required this.padding,
@@ -23,36 +23,36 @@ class YgListTileThemes extends ThemeExtension<YgListTileThemes> {
   final TextStyle subtitleTextStyle;
   final TextStyle titleTextStyle;
 
-  static final YgListTileThemes consumerLight = YgListTileThemes(
-    contentSpacing: _$YgListTileThemes.contentSpacing[0],
-    iconSize: _$YgListTileThemes.iconSize[0],
-    padding: _$YgListTileThemes.padding[0],
-    subtitleTextStyle: _$YgListTileThemes.subtitleTextStyle[0],
-    titleTextStyle: _$YgListTileThemes.titleTextStyle[0],
+  static final YgListTileTheme consumerLight = YgListTileTheme(
+    contentSpacing: _$YgListTileTheme.contentSpacing[0],
+    iconSize: _$YgListTileTheme.iconSize[0],
+    padding: _$YgListTileTheme.padding[0],
+    subtitleTextStyle: _$YgListTileTheme.subtitleTextStyle[0],
+    titleTextStyle: _$YgListTileTheme.titleTextStyle[0],
   );
 
-  static final YgListTileThemes consumerDark = YgListTileThemes(
-    contentSpacing: _$YgListTileThemes.contentSpacing[1],
-    iconSize: _$YgListTileThemes.iconSize[1],
-    padding: _$YgListTileThemes.padding[1],
-    subtitleTextStyle: _$YgListTileThemes.subtitleTextStyle[1],
-    titleTextStyle: _$YgListTileThemes.titleTextStyle[1],
+  static final YgListTileTheme consumerDark = YgListTileTheme(
+    contentSpacing: _$YgListTileTheme.contentSpacing[1],
+    iconSize: _$YgListTileTheme.iconSize[1],
+    padding: _$YgListTileTheme.padding[1],
+    subtitleTextStyle: _$YgListTileTheme.subtitleTextStyle[1],
+    titleTextStyle: _$YgListTileTheme.titleTextStyle[1],
   );
 
-  static final YgListTileThemes professionalLight = YgListTileThemes(
-    contentSpacing: _$YgListTileThemes.contentSpacing[2],
-    iconSize: _$YgListTileThemes.iconSize[2],
-    padding: _$YgListTileThemes.padding[2],
-    subtitleTextStyle: _$YgListTileThemes.subtitleTextStyle[2],
-    titleTextStyle: _$YgListTileThemes.titleTextStyle[2],
+  static final YgListTileTheme professionalLight = YgListTileTheme(
+    contentSpacing: _$YgListTileTheme.contentSpacing[2],
+    iconSize: _$YgListTileTheme.iconSize[2],
+    padding: _$YgListTileTheme.padding[2],
+    subtitleTextStyle: _$YgListTileTheme.subtitleTextStyle[2],
+    titleTextStyle: _$YgListTileTheme.titleTextStyle[2],
   );
 
-  static final YgListTileThemes professionalDark = YgListTileThemes(
-    contentSpacing: _$YgListTileThemes.contentSpacing[3],
-    iconSize: _$YgListTileThemes.iconSize[3],
-    padding: _$YgListTileThemes.padding[3],
-    subtitleTextStyle: _$YgListTileThemes.subtitleTextStyle[3],
-    titleTextStyle: _$YgListTileThemes.titleTextStyle[3],
+  static final YgListTileTheme professionalDark = YgListTileTheme(
+    contentSpacing: _$YgListTileTheme.contentSpacing[3],
+    iconSize: _$YgListTileTheme.iconSize[3],
+    padding: _$YgListTileTheme.padding[3],
+    subtitleTextStyle: _$YgListTileTheme.subtitleTextStyle[3],
+    titleTextStyle: _$YgListTileTheme.titleTextStyle[3],
   );
 
   static final themes = [
@@ -63,14 +63,14 @@ class YgListTileThemes extends ThemeExtension<YgListTileThemes> {
   ];
 
   @override
-  YgListTileThemes copyWith({
+  YgListTileTheme copyWith({
     double? contentSpacing,
     double? iconSize,
     EdgeInsets? padding,
     TextStyle? subtitleTextStyle,
     TextStyle? titleTextStyle,
   }) {
-    return YgListTileThemes(
+    return YgListTileTheme(
       contentSpacing: contentSpacing ?? this.contentSpacing,
       iconSize: iconSize ?? this.iconSize,
       padding: padding ?? this.padding,
@@ -80,10 +80,10 @@ class YgListTileThemes extends ThemeExtension<YgListTileThemes> {
   }
 
   @override
-  YgListTileThemes lerp(
-      covariant ThemeExtension<YgListTileThemes>? other, double t) {
-    if (other is! YgListTileThemes) return this as YgListTileThemes;
-    return YgListTileThemes(
+  YgListTileTheme lerp(
+      covariant ThemeExtension<YgListTileTheme>? other, double t) {
+    if (other is! YgListTileTheme) return this as YgListTileTheme;
+    return YgListTileTheme(
       contentSpacing: t < 0.5 ? contentSpacing : other.contentSpacing,
       iconSize: t < 0.5 ? iconSize : other.iconSize,
       padding: t < 0.5 ? padding : other.padding,
@@ -97,7 +97,7 @@ class YgListTileThemes extends ThemeExtension<YgListTileThemes> {
   bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is YgListTileThemes &&
+            other is YgListTileTheme &&
             const DeepCollectionEquality()
                 .equals(contentSpacing, other.contentSpacing) &&
             const DeepCollectionEquality().equals(iconSize, other.iconSize) &&

@@ -1,4 +1,4 @@
-enum YgTagImpact {
+enum YgTagWeight {
   strong,
   weak;
 }

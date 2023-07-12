@@ -1,1 +1,1 @@
-export 'divider_themes.dart';
+export 'divider_theme.dart';

@@ -10,96 +10,96 @@ part of 'theme.dart';
 
 class YgTheme extends ThemeExtension<YgTheme> {
   const YgTheme({
-    required this.badgeThemes,
-    required this.bottomSheetThemes,
-    required this.buttonThemes,
-    required this.calloutThemes,
-    required this.cardThemes,
-    required this.dialogThemes,
-    required this.dividerThemes,
-    required this.iconThemes,
-    required this.internalThemes,
-    required this.listTileThemes,
-    required this.tagThemes,
-    required this.textLinkThemes,
+    required this.badgeTheme,
+    required this.bottomSheetTheme,
+    required this.buttonTheme,
+    required this.calloutTheme,
+    required this.cardTheme,
+    required this.dialogTheme,
+    required this.dividerTheme,
+    required this.iconTheme,
+    required this.internalTheme,
+    required this.listTileTheme,
+    required this.tagTheme,
+    required this.textLinkTheme,
     required this.tokens,
   });
 
-  final YgBadgeThemes badgeThemes;
-  final YgBottomSheetThemes bottomSheetThemes;
-  final YgButtonThemes buttonThemes;
-  final YgCalloutThemes calloutThemes;
-  final YgCardThemes cardThemes;
-  final YgDialogThemes dialogThemes;
-  final YgDividerThemes dividerThemes;
-  final YgIconThemes iconThemes;
-  final YgInternalThemes internalThemes;
-  final YgListTileThemes listTileThemes;
-  final YgTagThemes tagThemes;
-  final YgTextLinkThemes textLinkThemes;
+  final YgBadgeTheme badgeTheme;
+  final YgBottomSheetTheme bottomSheetTheme;
+  final YgButtonTheme buttonTheme;
+  final YgCalloutTheme calloutTheme;
+  final YgCardTheme cardTheme;
+  final YgDialogTheme dialogTheme;
+  final YgDividerTheme dividerTheme;
+  final YgIconTheme iconTheme;
+  final YgInternalTheme internalTheme;
+  final YgListTileTheme listTileTheme;
+  final YgTagTheme tagTheme;
+  final YgTextLinkTheme textLinkTheme;
   final YgTokens tokens;
 
   static final YgTheme consumerLight = YgTheme(
-    badgeThemes: _$YgTheme.badgeThemes[0],
-    bottomSheetThemes: _$YgTheme.bottomSheetThemes[0],
-    buttonThemes: _$YgTheme.buttonThemes[0],
-    calloutThemes: _$YgTheme.calloutThemes[0],
-    cardThemes: _$YgTheme.cardThemes[0],
-    dialogThemes: _$YgTheme.dialogThemes[0],
-    dividerThemes: _$YgTheme.dividerThemes[0],
-    iconThemes: _$YgTheme.iconThemes[0],
-    internalThemes: _$YgTheme.internalThemes[0],
-    listTileThemes: _$YgTheme.listTileThemes[0],
-    tagThemes: _$YgTheme.tagThemes[0],
-    textLinkThemes: _$YgTheme.textLinkThemes[0],
+    badgeTheme: _$YgTheme.badgeTheme[0],
+    bottomSheetTheme: _$YgTheme.bottomSheetTheme[0],
+    buttonTheme: _$YgTheme.buttonTheme[0],
+    calloutTheme: _$YgTheme.calloutTheme[0],
+    cardTheme: _$YgTheme.cardTheme[0],
+    dialogTheme: _$YgTheme.dialogTheme[0],
+    dividerTheme: _$YgTheme.dividerTheme[0],
+    iconTheme: _$YgTheme.iconTheme[0],
+    internalTheme: _$YgTheme.internalTheme[0],
+    listTileTheme: _$YgTheme.listTileTheme[0],
+    tagTheme: _$YgTheme.tagTheme[0],
+    textLinkTheme: _$YgTheme.textLinkTheme[0],
     tokens: _$YgTheme.tokens[0],
   );
 
   static final YgTheme consumerDark = YgTheme(
-    badgeThemes: _$YgTheme.badgeThemes[1],
-    bottomSheetThemes: _$YgTheme.bottomSheetThemes[1],
-    buttonThemes: _$YgTheme.buttonThemes[1],
-    calloutThemes: _$YgTheme.calloutThemes[1],
-    cardThemes: _$YgTheme.cardThemes[1],
-    dialogThemes: _$YgTheme.dialogThemes[1],
-    dividerThemes: _$YgTheme.dividerThemes[1],
-    iconThemes: _$YgTheme.iconThemes[1],
-    internalThemes: _$YgTheme.internalThemes[1],
-    listTileThemes: _$YgTheme.listTileThemes[1],
-    tagThemes: _$YgTheme.tagThemes[1],
-    textLinkThemes: _$YgTheme.textLinkThemes[1],
+    badgeTheme: _$YgTheme.badgeTheme[1],
+    bottomSheetTheme: _$YgTheme.bottomSheetTheme[1],
+    buttonTheme: _$YgTheme.buttonTheme[1],
+    calloutTheme: _$YgTheme.calloutTheme[1],
+    cardTheme: _$YgTheme.cardTheme[1],
+    dialogTheme: _$YgTheme.dialogTheme[1],
+    dividerTheme: _$YgTheme.dividerTheme[1],
+    iconTheme: _$YgTheme.iconTheme[1],
+    internalTheme: _$YgTheme.internalTheme[1],
+    listTileTheme: _$YgTheme.listTileTheme[1],
+    tagTheme: _$YgTheme.tagTheme[1],
+    textLinkTheme: _$YgTheme.textLinkTheme[1],
     tokens: _$YgTheme.tokens[1],
   );
 
   static final YgTheme professionalLight = YgTheme(
-    badgeThemes: _$YgTheme.badgeThemes[2],
-    bottomSheetThemes: _$YgTheme.bottomSheetThemes[2],
-    buttonThemes: _$YgTheme.buttonThemes[2],
-    calloutThemes: _$YgTheme.calloutThemes[2],
-    cardThemes: _$YgTheme.cardThemes[2],
-    dialogThemes: _$YgTheme.dialogThemes[2],
-    dividerThemes: _$YgTheme.dividerThemes[2],
-    iconThemes: _$YgTheme.iconThemes[2],
-    internalThemes: _$YgTheme.internalThemes[2],
-    listTileThemes: _$YgTheme.listTileThemes[2],
-    tagThemes: _$YgTheme.tagThemes[2],
-    textLinkThemes: _$YgTheme.textLinkThemes[2],
+    badgeTheme: _$YgTheme.badgeTheme[2],
+    bottomSheetTheme: _$YgTheme.bottomSheetTheme[2],
+    buttonTheme: _$YgTheme.buttonTheme[2],
+    calloutTheme: _$YgTheme.calloutTheme[2],
+    cardTheme: _$YgTheme.cardTheme[2],
+    dialogTheme: _$YgTheme.dialogTheme[2],
+    dividerTheme: _$YgTheme.dividerTheme[2],
+    iconTheme: _$YgTheme.iconTheme[2],
+    internalTheme: _$YgTheme.internalTheme[2],
+    listTileTheme: _$YgTheme.listTileTheme[2],
+    tagTheme: _$YgTheme.tagTheme[2],
+    textLinkTheme: _$YgTheme.textLinkTheme[2],
     tokens: _$YgTheme.tokens[2],
   );
 
   static final YgTheme professionalDark = YgTheme(
-    badgeThemes: _$YgTheme.badgeThemes[3],
-    bottomSheetThemes: _$YgTheme.bottomSheetThemes[3],
-    buttonThemes: _$YgTheme.buttonThemes[3],
-    calloutThemes: _$YgTheme.calloutThemes[3],
-    cardThemes: _$YgTheme.cardThemes[3],
-    dialogThemes: _$YgTheme.dialogThemes[3],
-    dividerThemes: _$YgTheme.dividerThemes[3],
-    iconThemes: _$YgTheme.iconThemes[3],
-    internalThemes: _$YgTheme.internalThemes[3],
-    listTileThemes: _$YgTheme.listTileThemes[3],
-    tagThemes: _$YgTheme.tagThemes[3],
-    textLinkThemes: _$YgTheme.textLinkThemes[3],
+    badgeTheme: _$YgTheme.badgeTheme[3],
+    bottomSheetTheme: _$YgTheme.bottomSheetTheme[3],
+    buttonTheme: _$YgTheme.buttonTheme[3],
+    calloutTheme: _$YgTheme.calloutTheme[3],
+    cardTheme: _$YgTheme.cardTheme[3],
+    dialogTheme: _$YgTheme.dialogTheme[3],
+    dividerTheme: _$YgTheme.dividerTheme[3],
+    iconTheme: _$YgTheme.iconTheme[3],
+    internalTheme: _$YgTheme.internalTheme[3],
+    listTileTheme: _$YgTheme.listTileTheme[3],
+    tagTheme: _$YgTheme.tagTheme[3],
+    textLinkTheme: _$YgTheme.textLinkTheme[3],
     tokens: _$YgTheme.tokens[3],
   );
 
@@ -112,33 +112,33 @@ class YgTheme extends ThemeExtension<YgTheme> {
 
   @override
   YgTheme copyWith({
-    YgBadgeThemes? badgeThemes,
-    YgBottomSheetThemes? bottomSheetThemes,
-    YgButtonThemes? buttonThemes,
-    YgCalloutThemes? calloutThemes,
-    YgCardThemes? cardThemes,
-    YgDialogThemes? dialogThemes,
-    YgDividerThemes? dividerThemes,
-    YgIconThemes? iconThemes,
-    YgInternalThemes? internalThemes,
-    YgListTileThemes? listTileThemes,
-    YgTagThemes? tagThemes,
-    YgTextLinkThemes? textLinkThemes,
+    YgBadgeTheme? badgeTheme,
+    YgBottomSheetTheme? bottomSheetTheme,
+    YgButtonTheme? buttonTheme,
+    YgCalloutTheme? calloutTheme,
+    YgCardTheme? cardTheme,
+    YgDialogTheme? dialogTheme,
+    YgDividerTheme? dividerTheme,
+    YgIconTheme? iconTheme,
+    YgInternalTheme? internalTheme,
+    YgListTileTheme? listTileTheme,
+    YgTagTheme? tagTheme,
+    YgTextLinkTheme? textLinkTheme,
     YgTokens? tokens,
   }) {
     return YgTheme(
-      badgeThemes: badgeThemes ?? this.badgeThemes,
-      bottomSheetThemes: bottomSheetThemes ?? this.bottomSheetThemes,
-      buttonThemes: buttonThemes ?? this.buttonThemes,
-      calloutThemes: calloutThemes ?? this.calloutThemes,
-      cardThemes: cardThemes ?? this.cardThemes,
-      dialogThemes: dialogThemes ?? this.dialogThemes,
-      dividerThemes: dividerThemes ?? this.dividerThemes,
-      iconThemes: iconThemes ?? this.iconThemes,
-      internalThemes: internalThemes ?? this.internalThemes,
-      listTileThemes: listTileThemes ?? this.listTileThemes,
-      tagThemes: tagThemes ?? this.tagThemes,
-      textLinkThemes: textLinkThemes ?? this.textLinkThemes,
+      badgeTheme: badgeTheme ?? this.badgeTheme,
+      bottomSheetTheme: bottomSheetTheme ?? this.bottomSheetTheme,
+      buttonTheme: buttonTheme ?? this.buttonTheme,
+      calloutTheme: calloutTheme ?? this.calloutTheme,
+      cardTheme: cardTheme ?? this.cardTheme,
+      dialogTheme: dialogTheme ?? this.dialogTheme,
+      dividerTheme: dividerTheme ?? this.dividerTheme,
+      iconTheme: iconTheme ?? this.iconTheme,
+      internalTheme: internalTheme ?? this.internalTheme,
+      listTileTheme: listTileTheme ?? this.listTileTheme,
+      tagTheme: tagTheme ?? this.tagTheme,
+      textLinkTheme: textLinkTheme ?? this.textLinkTheme,
       tokens: tokens ?? this.tokens,
     );
   }
@@ -147,24 +147,22 @@ class YgTheme extends ThemeExtension<YgTheme> {
   YgTheme lerp(covariant ThemeExtension<YgTheme>? other, double t) {
     if (other is! YgTheme) return this as YgTheme;
     return YgTheme(
-      badgeThemes: badgeThemes.lerp(other.badgeThemes, t) as YgBadgeThemes,
-      bottomSheetThemes: bottomSheetThemes.lerp(other.bottomSheetThemes, t)
-          as YgBottomSheetThemes,
-      buttonThemes: buttonThemes.lerp(other.buttonThemes, t) as YgButtonThemes,
-      calloutThemes:
-          calloutThemes.lerp(other.calloutThemes, t) as YgCalloutThemes,
-      cardThemes: cardThemes.lerp(other.cardThemes, t) as YgCardThemes,
-      dialogThemes: dialogThemes.lerp(other.dialogThemes, t) as YgDialogThemes,
-      dividerThemes:
-          dividerThemes.lerp(other.dividerThemes, t) as YgDividerThemes,
-      iconThemes: iconThemes.lerp(other.iconThemes, t) as YgIconThemes,
-      internalThemes:
-          internalThemes.lerp(other.internalThemes, t) as YgInternalThemes,
-      listTileThemes:
-          listTileThemes.lerp(other.listTileThemes, t) as YgListTileThemes,
-      tagThemes: tagThemes.lerp(other.tagThemes, t) as YgTagThemes,
-      textLinkThemes:
-          textLinkThemes.lerp(other.textLinkThemes, t) as YgTextLinkThemes,
+      badgeTheme: badgeTheme.lerp(other.badgeTheme, t) as YgBadgeTheme,
+      bottomSheetTheme: bottomSheetTheme.lerp(other.bottomSheetTheme, t)
+          as YgBottomSheetTheme,
+      buttonTheme: buttonTheme.lerp(other.buttonTheme, t) as YgButtonTheme,
+      calloutTheme: calloutTheme.lerp(other.calloutTheme, t) as YgCalloutTheme,
+      cardTheme: cardTheme.lerp(other.cardTheme, t) as YgCardTheme,
+      dialogTheme: dialogTheme.lerp(other.dialogTheme, t) as YgDialogTheme,
+      dividerTheme: dividerTheme.lerp(other.dividerTheme, t) as YgDividerTheme,
+      iconTheme: iconTheme.lerp(other.iconTheme, t) as YgIconTheme,
+      internalTheme:
+          internalTheme.lerp(other.internalTheme, t) as YgInternalTheme,
+      listTileTheme:
+          listTileTheme.lerp(other.listTileTheme, t) as YgListTileTheme,
+      tagTheme: tagTheme.lerp(other.tagTheme, t) as YgTagTheme,
+      textLinkTheme:
+          textLinkTheme.lerp(other.textLinkTheme, t) as YgTextLinkTheme,
       tokens: tokens.lerp(other.tokens, t) as YgTokens,
     );
   }
@@ -175,28 +173,26 @@ class YgTheme extends ThemeExtension<YgTheme> {
         (other.runtimeType == runtimeType &&
             other is YgTheme &&
             const DeepCollectionEquality()
-                .equals(badgeThemes, other.badgeThemes) &&
+                .equals(badgeTheme, other.badgeTheme) &&
             const DeepCollectionEquality()
-                .equals(bottomSheetThemes, other.bottomSheetThemes) &&
+                .equals(bottomSheetTheme, other.bottomSheetTheme) &&
             const DeepCollectionEquality()
-                .equals(buttonThemes, other.buttonThemes) &&
+                .equals(buttonTheme, other.buttonTheme) &&
             const DeepCollectionEquality()
-                .equals(calloutThemes, other.calloutThemes) &&
+                .equals(calloutTheme, other.calloutTheme) &&
+            const DeepCollectionEquality().equals(cardTheme, other.cardTheme) &&
             const DeepCollectionEquality()
-                .equals(cardThemes, other.cardThemes) &&
+                .equals(dialogTheme, other.dialogTheme) &&
             const DeepCollectionEquality()
-                .equals(dialogThemes, other.dialogThemes) &&
+                .equals(dividerTheme, other.dividerTheme) &&
+            const DeepCollectionEquality().equals(iconTheme, other.iconTheme) &&
             const DeepCollectionEquality()
-                .equals(dividerThemes, other.dividerThemes) &&
+                .equals(internalTheme, other.internalTheme) &&
             const DeepCollectionEquality()
-                .equals(iconThemes, other.iconThemes) &&
+                .equals(listTileTheme, other.listTileTheme) &&
+            const DeepCollectionEquality().equals(tagTheme, other.tagTheme) &&
             const DeepCollectionEquality()
-                .equals(internalThemes, other.internalThemes) &&
-            const DeepCollectionEquality()
-                .equals(listTileThemes, other.listTileThemes) &&
-            const DeepCollectionEquality().equals(tagThemes, other.tagThemes) &&
-            const DeepCollectionEquality()
-                .equals(textLinkThemes, other.textLinkThemes) &&
+                .equals(textLinkTheme, other.textLinkTheme) &&
             const DeepCollectionEquality().equals(tokens, other.tokens));
   }
 
@@ -204,18 +200,18 @@ class YgTheme extends ThemeExtension<YgTheme> {
   int get hashCode {
     return Object.hash(
       runtimeType.hashCode,
-      const DeepCollectionEquality().hash(badgeThemes),
-      const DeepCollectionEquality().hash(bottomSheetThemes),
-      const DeepCollectionEquality().hash(buttonThemes),
-      const DeepCollectionEquality().hash(calloutThemes),
-      const DeepCollectionEquality().hash(cardThemes),
-      const DeepCollectionEquality().hash(dialogThemes),
-      const DeepCollectionEquality().hash(dividerThemes),
-      const DeepCollectionEquality().hash(iconThemes),
-      const DeepCollectionEquality().hash(internalThemes),
-      const DeepCollectionEquality().hash(listTileThemes),
-      const DeepCollectionEquality().hash(tagThemes),
-      const DeepCollectionEquality().hash(textLinkThemes),
+      const DeepCollectionEquality().hash(badgeTheme),
+      const DeepCollectionEquality().hash(bottomSheetTheme),
+      const DeepCollectionEquality().hash(buttonTheme),
+      const DeepCollectionEquality().hash(calloutTheme),
+      const DeepCollectionEquality().hash(cardTheme),
+      const DeepCollectionEquality().hash(dialogTheme),
+      const DeepCollectionEquality().hash(dividerTheme),
+      const DeepCollectionEquality().hash(iconTheme),
+      const DeepCollectionEquality().hash(internalTheme),
+      const DeepCollectionEquality().hash(listTileTheme),
+      const DeepCollectionEquality().hash(tagTheme),
+      const DeepCollectionEquality().hash(textLinkTheme),
       const DeepCollectionEquality().hash(tokens),
     );
   }
@@ -223,17 +219,17 @@ class YgTheme extends ThemeExtension<YgTheme> {
 
 extension YgThemeBuildContextProps on BuildContext {
   YgTheme get ygTheme => Theme.of(this).extension<YgTheme>()!;
-  YgBadgeThemes get badgeThemes => ygTheme.badgeThemes;
-  YgBottomSheetThemes get bottomSheetThemes => ygTheme.bottomSheetThemes;
-  YgButtonThemes get buttonThemes => ygTheme.buttonThemes;
-  YgCalloutThemes get calloutThemes => ygTheme.calloutThemes;
-  YgCardThemes get cardThemes => ygTheme.cardThemes;
-  YgDialogThemes get dialogThemes => ygTheme.dialogThemes;
-  YgDividerThemes get dividerThemes => ygTheme.dividerThemes;
-  YgIconThemes get iconThemes => ygTheme.iconThemes;
-  YgInternalThemes get internalThemes => ygTheme.internalThemes;
-  YgListTileThemes get listTileThemes => ygTheme.listTileThemes;
-  YgTagThemes get tagThemes => ygTheme.tagThemes;
-  YgTextLinkThemes get textLinkThemes => ygTheme.textLinkThemes;
+  YgBadgeTheme get badgeTheme => ygTheme.badgeTheme;
+  YgBottomSheetTheme get bottomSheetTheme => ygTheme.bottomSheetTheme;
+  YgButtonTheme get buttonTheme => ygTheme.buttonTheme;
+  YgCalloutTheme get calloutTheme => ygTheme.calloutTheme;
+  YgCardTheme get cardTheme => ygTheme.cardTheme;
+  YgDialogTheme get dialogTheme => ygTheme.dialogTheme;
+  YgDividerTheme get dividerTheme => ygTheme.dividerTheme;
+  YgIconTheme get iconTheme => ygTheme.iconTheme;
+  YgInternalTheme get internalTheme => ygTheme.internalTheme;
+  YgListTileTheme get listTileTheme => ygTheme.listTileTheme;
+  YgTagTheme get tagTheme => ygTheme.tagTheme;
+  YgTextLinkTheme get textLinkTheme => ygTheme.textLinkTheme;
   YgTokens get tokens => ygTheme.tokens;
 }

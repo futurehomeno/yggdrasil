@@ -6,7 +6,7 @@ class YgDotBadge extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final YgBadgeThemes badgeTheme = context.badgeThemes;
+    final YgBadgeTheme badgeTheme = context.badgeTheme;
 
     return Container(
       width: 8,

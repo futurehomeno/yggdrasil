@@ -3,16 +3,16 @@ import 'package:theme_tailor_annotation/theme_tailor_annotation.dart';
 
 import 'badge/_badge.dart';
 import 'bottom_sheet/_bottom_sheet.dart';
-import 'buttons/_buttons.dart';
+import 'button/_button.dart';
 import 'callout/_callout.dart';
 import 'card/_card.dart';
 import 'dialog/_dialog.dart';
 import 'divider/_divider.dart';
-import 'icon/_icon_themes.dart';
+import 'icon/_icon.dart';
 import 'internal/_internal.dart';
 import 'list_tile/_list_tile.dart';
-import 'tags/tag_themes.dart';
-import 'text_link/text_link_themes.dart';
+import 'tag/_tag.dart';
+import 'text_link/_text_link.dart';
 import 'tokens/tokens.dart';
 
 part 'theme.tailor.dart';
@@ -24,38 +24,38 @@ class _$YgTheme {
   static List<YgTokens> tokens = YgTokens.themes;
 
   @themeExtension
-  static List<YgBadgeThemes> badgeThemes = YgBadgeThemes.themes;
+  static List<YgBadgeTheme> badgeTheme = YgBadgeTheme.themes;
 
   @themeExtension
-  static List<YgBottomSheetThemes> bottomSheetThemes = YgBottomSheetThemes.themes;
+  static List<YgBottomSheetTheme> bottomSheetTheme = YgBottomSheetTheme.themes;
 
   @themeExtension
-  static List<YgButtonThemes> buttonThemes = YgButtonThemes.themes;
+  static List<YgButtonTheme> buttonTheme = YgButtonTheme.themes;
 
   @themeExtension
-  static List<YgCardThemes> cardThemes = YgCardThemes.themes;
+  static List<YgCardTheme> cardTheme = YgCardTheme.themes;
 
   @themeExtension
-  static List<YgDialogThemes> dialogThemes = YgDialogThemes.themes;
+  static List<YgDialogTheme> dialogTheme = YgDialogTheme.themes;
 
   @themeExtension
-  static List<YgCalloutThemes> calloutThemes = YgCalloutThemes.themes;
+  static List<YgCalloutTheme> calloutTheme = YgCalloutTheme.themes;
 
   @themeExtension
-  static List<YgDividerThemes> dividerThemes = YgDividerThemes.themes;
+  static List<YgDividerTheme> dividerTheme = YgDividerTheme.themes;
 
   @themeExtension
-  static List<YgIconThemes> iconThemes = YgIconThemes.themes;
+  static List<YgIconTheme> iconTheme = YgIconTheme.themes;
 
   @themeExtension
-  static List<YgListTileThemes> listTileThemes = YgListTileThemes.themes;
+  static List<YgListTileTheme> listTileTheme = YgListTileTheme.themes;
 
   @themeExtension
-  static List<YgTagThemes> tagThemes = YgTagThemes.themes;
+  static List<YgTagTheme> tagTheme = YgTagTheme.themes;
 
   @themeExtension
-  static List<YgTextLinkThemes> textLinkThemes = YgTextLinkThemes.themes;
+  static List<YgTextLinkTheme> textLinkTheme = YgTextLinkTheme.themes;
 
   @themeExtension
-  static List<YgInternalThemes> internalThemes = YgInternalThemes.themes;
+  static List<YgInternalTheme> internalTheme = YgInternalTheme.themes;
 }

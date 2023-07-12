@@ -2,14 +2,14 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 // ignore_for_file: type=lint, unused_element, unnecessary_cast
 
-part of 'tag_themes.dart';
+part of 'tag_theme.dart';
 
 // **************************************************************************
 // TailorAnnotationsGenerator
 // **************************************************************************
 
-class YgTagThemes extends ThemeExtension<YgTagThemes> {
-  const YgTagThemes({
+class YgTagTheme extends ThemeExtension<YgTagTheme> {
+  const YgTagTheme({
     required this.borderRadius,
     required this.borderWidth,
     required this.iconSpacing,
@@ -33,56 +33,56 @@ class YgTagThemes extends ThemeExtension<YgTagThemes> {
   final PositiveTagTheme positiveTagTheme;
   final WarningTagTheme warningTagTheme;
 
-  static final YgTagThemes consumerLight = YgTagThemes(
-    borderRadius: _$YgTagThemes.borderRadius[0],
-    borderWidth: _$YgTagThemes.borderWidth[0],
-    iconSpacing: _$YgTagThemes.iconSpacing[0],
-    informativeTagTheme: _$YgTagThemes.informativeTagTheme[0],
-    negativeTagTheme: _$YgTagThemes.negativeTagTheme[0],
-    neutralTagTheme: _$YgTagThemes.neutralTagTheme[0],
-    paddingMedium: _$YgTagThemes.paddingMedium[0],
-    paddingSmall: _$YgTagThemes.paddingSmall[0],
-    positiveTagTheme: _$YgTagThemes.positiveTagTheme[0],
-    warningTagTheme: _$YgTagThemes.warningTagTheme[0],
+  static final YgTagTheme consumerLight = YgTagTheme(
+    borderRadius: _$YgTagTheme.borderRadius[0],
+    borderWidth: _$YgTagTheme.borderWidth[0],
+    iconSpacing: _$YgTagTheme.iconSpacing[0],
+    informativeTagTheme: _$YgTagTheme.informativeTagTheme[0],
+    negativeTagTheme: _$YgTagTheme.negativeTagTheme[0],
+    neutralTagTheme: _$YgTagTheme.neutralTagTheme[0],
+    paddingMedium: _$YgTagTheme.paddingMedium[0],
+    paddingSmall: _$YgTagTheme.paddingSmall[0],
+    positiveTagTheme: _$YgTagTheme.positiveTagTheme[0],
+    warningTagTheme: _$YgTagTheme.warningTagTheme[0],
   );
 
-  static final YgTagThemes consumerDark = YgTagThemes(
-    borderRadius: _$YgTagThemes.borderRadius[1],
-    borderWidth: _$YgTagThemes.borderWidth[1],
-    iconSpacing: _$YgTagThemes.iconSpacing[1],
-    informativeTagTheme: _$YgTagThemes.informativeTagTheme[1],
-    negativeTagTheme: _$YgTagThemes.negativeTagTheme[1],
-    neutralTagTheme: _$YgTagThemes.neutralTagTheme[1],
-    paddingMedium: _$YgTagThemes.paddingMedium[1],
-    paddingSmall: _$YgTagThemes.paddingSmall[1],
-    positiveTagTheme: _$YgTagThemes.positiveTagTheme[1],
-    warningTagTheme: _$YgTagThemes.warningTagTheme[1],
+  static final YgTagTheme consumerDark = YgTagTheme(
+    borderRadius: _$YgTagTheme.borderRadius[1],
+    borderWidth: _$YgTagTheme.borderWidth[1],
+    iconSpacing: _$YgTagTheme.iconSpacing[1],
+    informativeTagTheme: _$YgTagTheme.informativeTagTheme[1],
+    negativeTagTheme: _$YgTagTheme.negativeTagTheme[1],
+    neutralTagTheme: _$YgTagTheme.neutralTagTheme[1],
+    paddingMedium: _$YgTagTheme.paddingMedium[1],
+    paddingSmall: _$YgTagTheme.paddingSmall[1],
+    positiveTagTheme: _$YgTagTheme.positiveTagTheme[1],
+    warningTagTheme: _$YgTagTheme.warningTagTheme[1],
   );
 
-  static final YgTagThemes professionalLight = YgTagThemes(
-    borderRadius: _$YgTagThemes.borderRadius[2],
-    borderWidth: _$YgTagThemes.borderWidth[2],
-    iconSpacing: _$YgTagThemes.iconSpacing[2],
-    informativeTagTheme: _$YgTagThemes.informativeTagTheme[2],
-    negativeTagTheme: _$YgTagThemes.negativeTagTheme[2],
-    neutralTagTheme: _$YgTagThemes.neutralTagTheme[2],
-    paddingMedium: _$YgTagThemes.paddingMedium[2],
-    paddingSmall: _$YgTagThemes.paddingSmall[2],
-    positiveTagTheme: _$YgTagThemes.positiveTagTheme[2],
-    warningTagTheme: _$YgTagThemes.warningTagTheme[2],
+  static final YgTagTheme professionalLight = YgTagTheme(
+    borderRadius: _$YgTagTheme.borderRadius[2],
+    borderWidth: _$YgTagTheme.borderWidth[2],
+    iconSpacing: _$YgTagTheme.iconSpacing[2],
+    informativeTagTheme: _$YgTagTheme.informativeTagTheme[2],
+    negativeTagTheme: _$YgTagTheme.negativeTagTheme[2],
+    neutralTagTheme: _$YgTagTheme.neutralTagTheme[2],
+    paddingMedium: _$YgTagTheme.paddingMedium[2],
+    paddingSmall: _$YgTagTheme.paddingSmall[2],
+    positiveTagTheme: _$YgTagTheme.positiveTagTheme[2],
+    warningTagTheme: _$YgTagTheme.warningTagTheme[2],
   );
 
-  static final YgTagThemes professionalDark = YgTagThemes(
-    borderRadius: _$YgTagThemes.borderRadius[3],
-    borderWidth: _$YgTagThemes.borderWidth[3],
-    iconSpacing: _$YgTagThemes.iconSpacing[3],
-    informativeTagTheme: _$YgTagThemes.informativeTagTheme[3],
-    negativeTagTheme: _$YgTagThemes.negativeTagTheme[3],
-    neutralTagTheme: _$YgTagThemes.neutralTagTheme[3],
-    paddingMedium: _$YgTagThemes.paddingMedium[3],
-    paddingSmall: _$YgTagThemes.paddingSmall[3],
-    positiveTagTheme: _$YgTagThemes.positiveTagTheme[3],
-    warningTagTheme: _$YgTagThemes.warningTagTheme[3],
+  static final YgTagTheme professionalDark = YgTagTheme(
+    borderRadius: _$YgTagTheme.borderRadius[3],
+    borderWidth: _$YgTagTheme.borderWidth[3],
+    iconSpacing: _$YgTagTheme.iconSpacing[3],
+    informativeTagTheme: _$YgTagTheme.informativeTagTheme[3],
+    negativeTagTheme: _$YgTagTheme.negativeTagTheme[3],
+    neutralTagTheme: _$YgTagTheme.neutralTagTheme[3],
+    paddingMedium: _$YgTagTheme.paddingMedium[3],
+    paddingSmall: _$YgTagTheme.paddingSmall[3],
+    positiveTagTheme: _$YgTagTheme.positiveTagTheme[3],
+    warningTagTheme: _$YgTagTheme.warningTagTheme[3],
   );
 
   static final themes = [
@@ -93,7 +93,7 @@ class YgTagThemes extends ThemeExtension<YgTagThemes> {
   ];
 
   @override
-  YgTagThemes copyWith({
+  YgTagTheme copyWith({
     BorderRadius? borderRadius,
     double? borderWidth,
     double? iconSpacing,
@@ -105,7 +105,7 @@ class YgTagThemes extends ThemeExtension<YgTagThemes> {
     PositiveTagTheme? positiveTagTheme,
     WarningTagTheme? warningTagTheme,
   }) {
-    return YgTagThemes(
+    return YgTagTheme(
       borderRadius: borderRadius ?? this.borderRadius,
       borderWidth: borderWidth ?? this.borderWidth,
       iconSpacing: iconSpacing ?? this.iconSpacing,
@@ -120,9 +120,9 @@ class YgTagThemes extends ThemeExtension<YgTagThemes> {
   }
 
   @override
-  YgTagThemes lerp(covariant ThemeExtension<YgTagThemes>? other, double t) {
-    if (other is! YgTagThemes) return this as YgTagThemes;
-    return YgTagThemes(
+  YgTagTheme lerp(covariant ThemeExtension<YgTagTheme>? other, double t) {
+    if (other is! YgTagTheme) return this as YgTagTheme;
+    return YgTagTheme(
       borderRadius: t < 0.5 ? borderRadius : other.borderRadius,
       borderWidth: t < 0.5 ? borderWidth : other.borderWidth,
       iconSpacing: t < 0.5 ? iconSpacing : other.iconSpacing,
@@ -145,7 +145,7 @@ class YgTagThemes extends ThemeExtension<YgTagThemes> {
   bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is YgTagThemes &&
+            other is YgTagTheme &&
             const DeepCollectionEquality()
                 .equals(borderRadius, other.borderRadius) &&
             const DeepCollectionEquality()

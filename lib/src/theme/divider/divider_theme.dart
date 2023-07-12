@@ -5,39 +5,32 @@ import 'package:yggdrasil/src/tokens/consumer_light/_consumer_light.dart' as con
 import 'package:yggdrasil/src/tokens/professional_dark/_professional_dark.dart' as professional_dark;
 import 'package:yggdrasil/src/tokens/professional_light/_professional_light.dart' as professional_light;
 
-part 'icon_themes.tailor.dart';
+part 'divider_theme.tailor.dart';
 
 @tailorComponent
-class _$YgIconThemes {
-  static List<double> sizeSmaller = <double>[
-    consumer_light.FhDimensions.xs,
-    consumer_dark.FhDimensions.xs,
-    professional_light.FhDimensions.xs,
-    professional_dark.FhDimensions.xs,
+class _$YgDividerTheme {
+  static List<Color> color = <Color>[
+    consumer_light.FhColors.borderDefault,
+    consumer_dark.FhColors.borderDefault,
+    professional_light.FhColors.borderDefault,
+    professional_dark.FhColors.borderDefault,
   ];
 
-  static List<double> sizeSmall = <double>[
+  static List<double> indentSmall = <double>[
     consumer_light.FhDimensions.sm,
     consumer_dark.FhDimensions.sm,
     professional_light.FhDimensions.sm,
     professional_dark.FhDimensions.sm,
   ];
 
-  static List<double> sizeLarge = <double>[
+  static List<double> indentMedium = <double>[
     consumer_light.FhDimensions.lg,
     consumer_dark.FhDimensions.lg,
     professional_light.FhDimensions.lg,
     professional_dark.FhDimensions.lg,
   ];
 
-  static List<double> sizeLarger = <double>[
-    consumer_light.FhDimensions.xl,
-    consumer_dark.FhDimensions.xl,
-    professional_light.FhDimensions.xl,
-    professional_dark.FhDimensions.xl,
-  ];
-
-  static List<double> sizeLargest = <double>[
+  static List<double> indentLarge = <double>[
     consumer_light.FhDimensions.xxl,
     consumer_dark.FhDimensions.xxl,
     professional_light.FhDimensions.xxl,

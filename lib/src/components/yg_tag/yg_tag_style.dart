@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:yggdrasil/src/theme/_theme.dart';
-import 'package:yggdrasil/src/theme/tags/extensions/_extensions.dart';
 
 import 'enums/_enums.dart';
 import 'properties/_properties.dart';
@@ -24,58 +23,58 @@ class YgTagStyle {
     required BuildContext context,
     required YgTagVariant variant,
     YgTagSize size = YgTagSize.medium,
-    YgTagImpact impact = YgTagImpact.weak,
+    YgTagWeight weight = YgTagWeight.weak,
   }) {
     switch (variant) {
       case YgTagVariant.neutral:
-        final NeutralTagTheme theme = context.tagThemes.neutralTagTheme;
+        final NeutralTagTheme theme = context.tagTheme.neutralTagTheme;
 
         return _buildTagStyle(
-          backgroundColor: impact == YgTagImpact.weak ? theme.backgroundColor : theme.strongBackgroundColor,
-          textStyle: impact == YgTagImpact.weak ? theme.textStyle : theme.strongTextStyle,
+          backgroundColor: weight == YgTagWeight.weak ? theme.backgroundColor : theme.strongBackgroundColor,
+          textStyle: weight == YgTagWeight.weak ? theme.textStyle : theme.strongTextStyle,
           disabledTextStyle: theme.disabledTextStyle,
-          borderRadius: context.tagThemes.borderRadius,
+          borderRadius: context.tagTheme.borderRadius,
           padding: size.buildPadding(context),
         );
 
       case YgTagVariant.informative:
-        final InformativeTagTheme theme = context.tagThemes.informativeTagTheme;
+        final InformativeTagTheme theme = context.tagTheme.informativeTagTheme;
 
         return _buildTagStyle(
-          backgroundColor: impact == YgTagImpact.weak ? theme.backgroundColor : theme.strongBackgroundColor,
-          textStyle: impact == YgTagImpact.weak ? theme.textStyle : theme.strongTextStyle,
+          backgroundColor: weight == YgTagWeight.weak ? theme.backgroundColor : theme.strongBackgroundColor,
+          textStyle: weight == YgTagWeight.weak ? theme.textStyle : theme.strongTextStyle,
           disabledTextStyle: theme.disabledTextStyle,
-          borderRadius: context.tagThemes.borderRadius,
+          borderRadius: context.tagTheme.borderRadius,
           padding: size.buildPadding(context),
         );
       case YgTagVariant.positive:
-        final PositiveTagTheme theme = context.tagThemes.positiveTagTheme;
+        final PositiveTagTheme theme = context.tagTheme.positiveTagTheme;
 
         return _buildTagStyle(
-          backgroundColor: impact == YgTagImpact.weak ? theme.backgroundColor : theme.strongBackgroundColor,
-          textStyle: impact == YgTagImpact.weak ? theme.textStyle : theme.strongTextStyle,
+          backgroundColor: weight == YgTagWeight.weak ? theme.backgroundColor : theme.strongBackgroundColor,
+          textStyle: weight == YgTagWeight.weak ? theme.textStyle : theme.strongTextStyle,
           disabledTextStyle: theme.disabledTextStyle,
-          borderRadius: context.tagThemes.borderRadius,
+          borderRadius: context.tagTheme.borderRadius,
           padding: size.buildPadding(context),
         );
       case YgTagVariant.warning:
-        final WarningTagTheme theme = context.tagThemes.warningTagTheme;
+        final WarningTagTheme theme = context.tagTheme.warningTagTheme;
 
         return _buildTagStyle(
-          backgroundColor: impact == YgTagImpact.weak ? theme.backgroundColor : theme.strongBackgroundColor,
-          textStyle: impact == YgTagImpact.weak ? theme.textStyle : theme.strongTextStyle,
+          backgroundColor: weight == YgTagWeight.weak ? theme.backgroundColor : theme.strongBackgroundColor,
+          textStyle: weight == YgTagWeight.weak ? theme.textStyle : theme.strongTextStyle,
           disabledTextStyle: theme.disabledTextStyle,
-          borderRadius: context.tagThemes.borderRadius,
+          borderRadius: context.tagTheme.borderRadius,
           padding: size.buildPadding(context),
         );
       case YgTagVariant.negative:
-        final NegativeTagTheme theme = context.tagThemes.negativeTagTheme;
+        final NegativeTagTheme theme = context.tagTheme.negativeTagTheme;
 
         return _buildTagStyle(
-          backgroundColor: impact == YgTagImpact.weak ? theme.backgroundColor : theme.strongBackgroundColor,
-          textStyle: impact == YgTagImpact.weak ? theme.textStyle : theme.strongTextStyle,
+          backgroundColor: weight == YgTagWeight.weak ? theme.backgroundColor : theme.strongBackgroundColor,
+          textStyle: weight == YgTagWeight.weak ? theme.textStyle : theme.strongTextStyle,
           disabledTextStyle: theme.disabledTextStyle,
-          borderRadius: context.tagThemes.borderRadius,
+          borderRadius: context.tagTheme.borderRadius,
           padding: size.buildPadding(context),
         );
     }

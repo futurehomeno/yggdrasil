@@ -1,1 +1,1 @@
-export 'badge_themes.dart';
+export 'badge_theme.dart';

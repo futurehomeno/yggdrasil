@@ -23,48 +23,63 @@ class CardScreen extends StatelessWidget {
       supernovaLink: 'Link',
       child: Column(
         children: <Widget>[
-          YgCard(
-            child: YgListTile(
-              title: 'Elevated card',
-              subtitle: 'Bacon ipsum dolor amet chicken frankfurter burgdoggen landjaeger sirloin ham pig.',
-            ),
+          YgListTile(title: 'Elevated card'),
+          Column(
+            children: <Widget>[
+              YgCard(
+                child: YgListTile(
+                  title: 'Elevated card',
+                  subtitle: 'Bacon ipsum dolor amet chicken frankfurter burgdoggen landjaeger sirloin ham pig.',
+                ),
+              ),
+              YgCard(
+                child: YgListTile(
+                  title: 'Elevated card w/ tapable tile',
+                  subtitle: 'Bacon ipsum dolor amet chicken frankfurter burgdoggen landjaeger sirloin ham pig.',
+                  onTap: () {},
+                ),
+              ),
+            ],
           ),
-          YgCard(
-            child: YgListTile(
-              title: 'Elevated card w/ tapable tile',
-              subtitle: 'Bacon ipsum dolor amet chicken frankfurter burgdoggen landjaeger sirloin ham pig.',
-              onTap: () {},
-            ),
+          YgListTile(title: 'Filled card'),
+          Column(
+            children: <Widget>[
+              YgCard(
+                variant: YgCardVariant.filled,
+                child: YgListTile(
+                  title: 'Filled card',
+                  subtitle: 'Bacon ipsum dolor amet chicken frankfurter burgdoggen landjaeger sirloin ham pig.',
+                ),
+              ),
+              YgCard(
+                variant: YgCardVariant.filled,
+                child: YgListTile(
+                  title: 'Filled card w/ tapable tile',
+                  subtitle: 'Bacon ipsum dolor amet chicken frankfurter burgdoggen landjaeger sirloin ham pig.',
+                  onTap: () {},
+                ),
+              ),
+            ],
           ),
-          YgCard(
-            variant: YgCardVariant.filled,
-            child: YgListTile(
-              title: 'Filled card',
-              subtitle: 'Bacon ipsum dolor amet chicken frankfurter burgdoggen landjaeger sirloin ham pig.',
-            ),
-          ),
-          YgCard(
-            variant: YgCardVariant.filled,
-            child: YgListTile(
-              title: 'Filled card w/ tapable tile',
-              subtitle: 'Bacon ipsum dolor amet chicken frankfurter burgdoggen landjaeger sirloin ham pig.',
-              onTap: () {},
-            ),
-          ),
-          YgCard(
-            variant: YgCardVariant.outlined,
-            child: YgListTile(
-              title: 'Outlined card',
-              subtitle: 'Bacon ipsum dolor amet chicken frankfurter burgdoggen landjaeger sirloin ham pig.',
-            ),
-          ),
-          YgCard(
-            variant: YgCardVariant.outlined,
-            child: YgListTile(
-              title: 'Outlined card w/ tapable tile',
-              subtitle: 'Bacon ipsum dolor amet chicken frankfurter burgdoggen landjaeger sirloin ham pig.',
-              onTap: () {},
-            ),
+          YgListTile(title: 'Outlined card'),
+          Column(
+            children: <Widget>[
+              YgCard(
+                variant: YgCardVariant.outlined,
+                child: YgListTile(
+                  title: 'Outlined card',
+                  subtitle: 'Bacon ipsum dolor amet chicken frankfurter burgdoggen landjaeger sirloin ham pig.',
+                ),
+              ),
+              YgCard(
+                variant: YgCardVariant.outlined,
+                child: YgListTile(
+                  title: 'Outlined card w/ tapable tile',
+                  subtitle: 'Bacon ipsum dolor amet chicken frankfurter burgdoggen landjaeger sirloin ham pig.',
+                  onTap: () {},
+                ),
+              ),
+            ],
           ),
         ],
       ),

@@ -5,10 +5,10 @@ import 'package:yggdrasil/src/tokens/consumer_light/_consumer_light.dart' as con
 import 'package:yggdrasil/src/tokens/professional_dark/_professional_dark.dart' as professional_dark;
 import 'package:yggdrasil/src/tokens/professional_light/_professional_light.dart' as professional_light;
 
-part 'dialog_themes.tailor.dart';
+part 'dialog_theme.tailor.dart';
 
 @tailorComponent
-class _$YgDialogThemes {
+class _$YgDialogTheme {
   static List<Color> backgroundColor = <Color>[
     consumer_light.FhColors.backgroundDefault,
     consumer_dark.FhColors.backgroundDefault,

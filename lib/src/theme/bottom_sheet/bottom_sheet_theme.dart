@@ -5,10 +5,10 @@ import 'package:yggdrasil/src/tokens/consumer_light/_consumer_light.dart' as con
 import 'package:yggdrasil/src/tokens/professional_dark/_professional_dark.dart' as professional_dark;
 import 'package:yggdrasil/src/tokens/professional_light/_professional_light.dart' as professional_light;
 
-part 'bottom_sheet_themes.tailor.dart';
+part 'bottom_sheet_theme.tailor.dart';
 
 @tailorComponent
-class _$YgBottomSheetThemes {
+class _$YgBottomSheetTheme {
   static List<Color> handleBarColor = <Color>[
     consumer_light.FhColors.borderDefault,
     consumer_dark.FhColors.borderDefault,

@@ -7,24 +7,24 @@ import 'package:yggdrasil/src/tokens/professional_light/_professional_light.dart
 
 import 'extensions/_extensions.dart';
 
-part 'button_themes.tailor.dart';
+part 'tag_theme.tailor.dart';
 
 @tailorComponent
-class _$YgButtonThemes {
+class _$YgTagTheme {
   @themeExtension
-  static List<CriticalButtonTheme> criticalButtonTheme = CriticalButtonTheme.themes;
+  static List<NeutralTagTheme> neutralTagTheme = NeutralTagTheme.themes;
 
   @themeExtension
-  static List<LinkButtonTheme> linkButtonTheme = LinkButtonTheme.themes;
+  static List<InformativeTagTheme> informativeTagTheme = InformativeTagTheme.themes;
 
   @themeExtension
-  static List<PrimaryButtonTheme> primaryButtonTheme = PrimaryButtonTheme.themes;
+  static List<PositiveTagTheme> positiveTagTheme = PositiveTagTheme.themes;
 
   @themeExtension
-  static List<SecondaryButtonTheme> secondaryButtonTheme = SecondaryButtonTheme.themes;
+  static List<WarningTagTheme> warningTagTheme = WarningTagTheme.themes;
 
   @themeExtension
-  static List<TextButtonTheme> textButtonTheme = TextButtonTheme.themes;
+  static List<NegativeTagTheme> negativeTagTheme = NegativeTagTheme.themes;
 
   static List<EdgeInsets> paddingSmall = <EdgeInsets>[
     const EdgeInsets.symmetric(
@@ -61,25 +61,6 @@ class _$YgButtonThemes {
     const EdgeInsets.symmetric(
       vertical: professional_dark.FhDimensions.xs,
       horizontal: professional_dark.FhDimensions.lg,
-    )
-  ];
-
-  static List<EdgeInsets> paddingLarge = <EdgeInsets>[
-    const EdgeInsets.symmetric(
-      vertical: consumer_light.FhDimensions.sm,
-      horizontal: consumer_light.FhDimensions.xl,
-    ),
-    const EdgeInsets.symmetric(
-      vertical: consumer_dark.FhDimensions.sm,
-      horizontal: consumer_dark.FhDimensions.xl,
-    ),
-    const EdgeInsets.symmetric(
-      vertical: professional_light.FhDimensions.sm,
-      horizontal: professional_light.FhDimensions.xl,
-    ),
-    const EdgeInsets.symmetric(
-      vertical: professional_dark.FhDimensions.sm,
-      horizontal: professional_dark.FhDimensions.xl,
     )
   ];
 

@@ -9,7 +9,7 @@ class YgTextLink extends ButtonStyleButton {
     super.key,
     required String text,
     required super.onPressed,
-    Widget? icon,
+    String? icon,
     this.size = YgTextLinkSize.small,
     this.weight = YgTextLinkWeight.weak,
     super.autofocus = false,
@@ -31,7 +31,7 @@ class YgTextLink extends ButtonStyleButton {
 
   @override
   ButtonStyle defaultStyleOf(BuildContext context) {
-    final YgTextLinkThemes theme = context.textLinkThemes;
+    final YgTextLinkTheme theme = context.textLinkTheme;
 
     return ButtonStyle(
       backgroundColor: ButtonStyleButton.allOrNull(Colors.transparent),
@@ -77,11 +77,11 @@ class _YgTextLinkContent extends StatelessWidget {
   });
 
   final String text;
-  final Widget? icon;
+  final String? icon;
 
   @override
   Widget build(BuildContext context) {
-    final YgTextLinkThemes theme = context.textLinkThemes;
+    final YgTextLinkTheme theme = context.textLinkTheme;
 
     return Row(
       mainAxisSize: MainAxisSize.min,
@@ -91,12 +91,9 @@ class _YgTextLinkContent extends StatelessWidget {
         if (icon != null)
           Padding(
             padding: theme.iconPadding,
-            child: IconTheme(
-              data: IconThemeData(
-                color: DefaultTextStyle.of(context).style.color,
-                size: theme.iconSize,
-              ),
-              child: icon!,
+            child: YgIcon(
+              icon: icon!,
+              iconSize: YgIconSize.small,
             ),
           ),
       ],

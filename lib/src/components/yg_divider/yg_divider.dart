@@ -21,7 +21,7 @@ class YgDivider extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final YgDividerThemes theme = context.dividerThemes;
+    final YgDividerTheme theme = context.dividerTheme;
 
     return SizedBox(
       height: 1.0,
@@ -35,7 +35,7 @@ class YgDivider extends StatelessWidget {
           decoration: BoxDecoration(
             border: Border(
               bottom: BorderSide(
-                color: context.dividerThemes.color,
+                color: context.dividerTheme.color,
                 width: 1.0,
               ),
             ),

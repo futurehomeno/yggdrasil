@@ -19,7 +19,7 @@ class YgCallout extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final YgCalloutThemes theme = context.calloutThemes;
+    final YgCalloutTheme theme = context.calloutTheme;
     final YgTextLink? textLink = this.textLink;
     final String? title = this.title;
 
@@ -76,7 +76,7 @@ class YgCallout extends StatelessWidget {
     );
   }
 
-  Color _getBackgroundColor(YgCalloutThemes theme) {
+  Color _getBackgroundColor(YgCalloutTheme theme) {
     switch (calloutVariant) {
       case YgCalloutVariant.highlight:
         return theme.highlightCalloutTheme.backgroundColor;
@@ -89,7 +89,7 @@ class YgCallout extends StatelessWidget {
     }
   }
 
-  Color _getBorderColor(YgCalloutThemes theme) {
+  Color _getBorderColor(YgCalloutTheme theme) {
     switch (calloutVariant) {
       case YgCalloutVariant.highlight:
         return theme.highlightCalloutTheme.borderColor;

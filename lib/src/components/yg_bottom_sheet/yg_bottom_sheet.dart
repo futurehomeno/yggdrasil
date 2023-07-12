@@ -25,29 +25,29 @@ class _YgBottomSheetState extends State<YgBottomSheet> {
 
   @override
   Widget build(BuildContext context) {
-    final YgBottomSheetThemes bottomSheetThemes = context.bottomSheetThemes;
+    final YgBottomSheetTheme bottomSheetTheme = context.bottomSheetTheme;
     final YgBottomSheetScrollPhysicsProvider? scrollPhysicsProvider =
         context.dependOnInheritedWidgetOfExactType<YgBottomSheetScrollPhysicsProvider>();
 
     return RepaintBoundary(
       child: Material(
-        borderRadius: bottomSheetThemes.borderRadius,
-        color: bottomSheetThemes.backgroundColor,
+        borderRadius: bottomSheetTheme.borderRadius,
+        color: bottomSheetTheme.backgroundColor,
         child: SafeArea(
           top: false,
           child: ClipRRect(
-            borderRadius: bottomSheetThemes.borderRadius,
+            borderRadius: bottomSheetTheme.borderRadius,
             child: Padding(
               padding: EdgeInsets.only(
-                bottom: bottomSheetThemes.outerPadding.bottom,
+                bottom: bottomSheetTheme.outerPadding.bottom,
               ),
               child: Column(
                 mainAxisSize: MainAxisSize.min,
                 crossAxisAlignment: CrossAxisAlignment.stretch,
                 children: <Widget>[
-                  _buildHeader(bottomSheetThemes),
-                  _buildContent(scrollPhysicsProvider, bottomSheetThemes),
-                  if (widget.footerButtons?.isNotEmpty == true) _buildFooter(bottomSheetThemes),
+                  _buildHeader(bottomSheetTheme),
+                  _buildContent(scrollPhysicsProvider, bottomSheetTheme),
+                  if (widget.footerButtons?.isNotEmpty == true) _buildFooter(bottomSheetTheme),
                 ],
               ),
             ),
@@ -57,7 +57,7 @@ class _YgBottomSheetState extends State<YgBottomSheet> {
     );
   }
 
-  Widget _buildFooter(YgBottomSheetThemes theme) {
+  Widget _buildFooter(YgBottomSheetTheme theme) {
     final List<Widget> buttons = widget.footerButtons!;
 
     final List<Widget> children = <Widget>[
@@ -84,7 +84,7 @@ class _YgBottomSheetState extends State<YgBottomSheet> {
     );
   }
 
-  Padding _buildHeader(YgBottomSheetThemes theme) {
+  Padding _buildHeader(YgBottomSheetTheme theme) {
     return Padding(
       padding: theme.outerPadding.copyWith(bottom: 0),
       child: Column(
@@ -106,7 +106,7 @@ class _YgBottomSheetState extends State<YgBottomSheet> {
     );
   }
 
-  Container _buildDragHandle(YgBottomSheetThemes theme) {
+  Container _buildDragHandle(YgBottomSheetTheme theme) {
     return Container(
       width: 48,
       height: 5,
@@ -119,7 +119,7 @@ class _YgBottomSheetState extends State<YgBottomSheet> {
 
   Flexible _buildContent(
     YgBottomSheetScrollPhysicsProvider? scrollPhysicsProvider,
-    YgBottomSheetThemes theme,
+    YgBottomSheetTheme theme,
   ) {
     return Flexible(
       child: YgScrollShadow(

@@ -19,7 +19,7 @@ class YgBadge extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final YgBadgeThemes badgeThemes = context.badgeThemes;
+    final YgBadgeTheme badgeTheme = context.badgeTheme;
 
     return Stack(
       alignment: alignment,
@@ -28,8 +28,8 @@ class YgBadge extends StatelessWidget {
         Container(
           padding: const EdgeInsets.fromLTRB(5, 2, 5, 2),
           decoration: BoxDecoration(
-            color: weight.getBadgeColor(badgeThemes),
-            borderRadius: badgeThemes.borderRadius,
+            color: weight.getBadgeColor(badgeTheme),
+            borderRadius: badgeTheme.borderRadius,
           ),
           constraints: const BoxConstraints(
             minWidth: 20,
@@ -37,7 +37,7 @@ class YgBadge extends StatelessWidget {
           ),
           child: Text(
             amount > 9 ? '9+' : amount.toString(),
-            style: weight.getTextStyle(badgeThemes),
+            style: weight.getTextStyle(badgeTheme),
           ),
         ),
       ],

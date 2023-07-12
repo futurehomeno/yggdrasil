@@ -5,7 +5,7 @@ enum YgBadgeWeight {
   weak,
   strong;
 
-  Color getBadgeColor(YgBadgeThemes theme) {
+  Color getBadgeColor(YgBadgeTheme theme) {
     switch (this) {
       case YgBadgeWeight.weak:
         return theme.weakColor;
@@ -14,7 +14,7 @@ enum YgBadgeWeight {
     }
   }
 
-  TextStyle getTextStyle(YgBadgeThemes theme) {
+  TextStyle getTextStyle(YgBadgeTheme theme) {
     switch (this) {
       case YgBadgeWeight.weak:
         return theme.weakTextStyle;

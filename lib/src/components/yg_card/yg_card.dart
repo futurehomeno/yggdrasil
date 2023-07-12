@@ -23,13 +23,13 @@ class YgCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final YgCardThemes cardThemes = context.cardThemes;
+    final YgCardTheme cardTheme = context.cardTheme;
 
     return Material(
       type: MaterialType.card,
-      color: variant.getBackgroundColor(cardThemes),
-      shape: variant.getShape(cardThemes),
-      elevation: variant.getElevation(cardThemes),
+      color: variant.getBackgroundColor(cardTheme),
+      shape: variant.getShape(cardTheme),
+      elevation: variant.getElevation(cardTheme),
       borderOnForeground: false,
       clipBehavior: Clip.antiAlias,
       child: child,
