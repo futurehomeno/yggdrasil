@@ -5,5 +5,6 @@ export 'callout/_callout.dart';
 export 'dialog/_dialog.dart';
 export 'helpers/_helpers.dart';
 export 'internal/_internal.dart';
+export 'snackbar/_snackbar.dart';
 export 'text_link/_text_link.dart';
 export 'theme.dart';
