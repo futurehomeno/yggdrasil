@@ -4,6 +4,7 @@ import 'package:yggdrasil/yggdrasil.dart';
 class YgIcon extends StatelessWidget {
   const YgIcon({
     required this.icon,
+    this.color,
     this.size = YgIconSize.medium,
     this.tapSize = YgIconTapSize.larger,
     this.onTap,
@@ -11,6 +12,7 @@ class YgIcon extends StatelessWidget {
   });
 
   final String icon;
+  final Color? color;
   final YgIconSize size;
   final YgIconTapSize tapSize;
   final VoidCallback? onTap;
@@ -42,7 +44,9 @@ class YgIcon extends StatelessWidget {
             alignment: Alignment.center,
             child: SizedBox.square(
               dimension: size.getIconSize(iconTheme),
-              child: const Placeholder(),
+              child: Placeholder(
+                color: color ?? context.defaults.iconColor,
+              ),
             ),
           ),
         ),

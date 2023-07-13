@@ -51,13 +51,12 @@ class YgSnackbar extends StatelessWidget {
                 ),
               ),
             ),
-            // TODO(emeban): `GestureDetector` -> `YgIcon` (when YgIcon gets merged)
-            GestureDetector(
+            YgIcon(
+              icon: 'icon',
+              color: context.defaults.invertedIconColor,
               onTap: onClose,
-              child: Icon(
-                Icons.close,
-                color: theme.closeIconColor,
-              ),
+              size: YgIconSize.small,
+              tapSize: YgIconTapSize.large,
             ),
           ],
         ),

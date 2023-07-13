@@ -23,16 +23,19 @@ class SnackbarScreen extends StatelessWidget {
       supernovaLink: 'Link',
       child: Column(
         children: <Widget>[
+          YgListTile(title: 'Highlight snackbar'),
           YgSnackbar(
             variant: YgSnackbarVariant.highlight,
             message: 'Snackbars provide feedback after users take an action',
             onClose: () {},
           ),
+          YgListTile(title: 'Success snackbar'),
           YgSnackbar(
             variant: YgSnackbarVariant.success,
             message: 'Snackbars provide feedback after users take an action',
             onClose: () {},
           ),
+          YgListTile(title: 'Critical snackbar'),
           YgSnackbar(
             variant: YgSnackbarVariant.critical,
             message: 'Snackbars provide feedback after users take an action',

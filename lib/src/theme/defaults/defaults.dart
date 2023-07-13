@@ -50,4 +50,18 @@ class _$YgDefaults {
     professional_light.FhColors.backgroundDefault,
     professional_dark.FhColors.backgroundDefault,
   ];
+
+  static List<Color> iconColor = <Color>[
+    consumer_light.FhColors.iconDefault,
+    consumer_dark.FhColors.iconDefault,
+    professional_light.FhColors.iconDefault,
+    professional_dark.FhColors.iconDefault,
+  ];
+
+  static List<Color> invertedIconColor = <Color>[
+    consumer_light.FhColors.iconInverse,
+    consumer_dark.FhColors.iconInverse,
+    professional_light.FhColors.iconInverse,
+    professional_dark.FhColors.iconInverse,
+  ];
 }
