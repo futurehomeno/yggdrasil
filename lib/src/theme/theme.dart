@@ -7,6 +7,7 @@ import 'bottom_sheet/_bottom_sheet.dart';
 import 'buttons/_buttons.dart';
 import 'callout/_callout.dart';
 import 'dialog/_dialog.dart';
+import 'snackbar/_snackbar.dart';
 import 'text_link/text_link_theme.dart';
 import 'tokens/tokens.dart';
 
@@ -32,6 +33,9 @@ class _$YgTheme {
 
   @themeExtension
   static List<YgDialogThemes> dialogTheme = YgDialogThemes.themes;
+
+  @themeExtension
+  static List<YgSnackbarTheme> snackbarTheme = YgSnackbarTheme.themes;
 
   @themeExtension
   static List<YgTextLinkTheme> textLinkTheme = YgTextLinkTheme.themes;
