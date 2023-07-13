@@ -8,19 +8,19 @@ class ExampleNonDismissibleDialog extends YgDialogRoute {
   @override
   YgDialog buildDialog(BuildContext context) {
     return YgDialog(
-      icon: 'icon',
+      icon: SharedIcons.other25,
       title: 'Non Dismissible Dialog',
       description: 'A dialog which can not be dismissed by the user without choosing a action.',
       actions: <YgButton>[
         YgButton(
-          variant: ButtonVariant.primary,
+          variant: YgButtonVariant.primary,
           onPressed: () {
             Navigator.of(context).pop();
           },
           child: const Text('Action 1'),
         ),
         YgButton(
-          variant: ButtonVariant.secondary,
+          variant: YgButtonVariant.secondary,
           onPressed: () {
             Navigator.of(context).pop();
           },

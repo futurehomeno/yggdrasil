@@ -17,12 +17,12 @@ class ExampleScrollableBottomSheet extends YgBottomSheetModalRoute {
       ),
       footerButtons: <YgButton>[
         YgButton(
-          variant: ButtonVariant.primary,
+          variant: YgButtonVariant.primary,
           onPressed: () {},
           child: const Text('Primary button'),
         ),
         YgButton(
-          variant: ButtonVariant.secondary,
+          variant: YgButtonVariant.secondary,
           onPressed: () {},
           child: const Text('Secondary button'),
         ),

@@ -30,7 +30,7 @@ class _DialogScreenState extends State<DialogScreen> with TickerProviderStateMix
         children: <Widget>[
           YgListTile(title: 'Normal dialog'),
           YgButton(
-            variant: ButtonVariant.primary,
+            variant: YgButtonVariant.primary,
             onPressed: () {
               Navigator.of(context).push(ExampleDialog());
             },
@@ -38,7 +38,7 @@ class _DialogScreenState extends State<DialogScreen> with TickerProviderStateMix
           ),
           YgListTile(title: 'Non-dismissible dialog'),
           YgButton(
-            variant: ButtonVariant.primary,
+            variant: YgButtonVariant.primary,
             onPressed: () {
               Navigator.of(context).push(ExampleNonDismissibleDialog());
             },

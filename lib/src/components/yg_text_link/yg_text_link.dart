@@ -9,7 +9,7 @@ class YgTextLink extends ButtonStyleButton {
     super.key,
     required String text,
     required super.onPressed,
-    String? icon,
+    bool external = false,
     this.size = YgTextLinkSize.small,
     this.weight = YgTextLinkWeight.weak,
     super.autofocus = false,
@@ -20,8 +20,8 @@ class YgTextLink extends ButtonStyleButton {
     super.focusNode,
   }) : super(
           child: _YgTextLinkContent(
+            external: external,
             text: text,
-            icon: icon,
           ),
           style: null,
         );
@@ -73,11 +73,11 @@ class YgTextLink extends ButtonStyleButton {
 class _YgTextLinkContent extends StatelessWidget {
   const _YgTextLinkContent({
     required this.text,
-    required this.icon,
+    required this.external,
   });
 
   final String text;
-  final String? icon;
+  final bool external;
 
   @override
   Widget build(BuildContext context) {
@@ -88,11 +88,12 @@ class _YgTextLinkContent extends StatelessWidget {
       crossAxisAlignment: CrossAxisAlignment.center,
       children: <Widget>[
         Text(text),
-        if (icon != null)
+        if (external)
           Padding(
             padding: theme.iconPadding,
             child: YgIcon(
-              icon: icon!,
+              icon: SharedIcons.outLink15,
+              color: theme.iconColor,
               size: YgIconSize.small,
             ),
           ),

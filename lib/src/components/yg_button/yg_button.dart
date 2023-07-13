@@ -9,7 +9,7 @@ class YgButton extends ButtonStyleButton {
   const YgButton({
     super.key,
     required this.variant,
-    this.size = ButtonSize.medium,
+    this.size = YgButtonSize.medium,
     required super.onPressed,
     super.onLongPress,
     super.onHover,
@@ -32,8 +32,8 @@ class YgButton extends ButtonStyleButton {
     Clip? clipBehavior,
     required String icon,
     required Widget child,
-    required ButtonVariant variant,
-    required ButtonSize size,
+    required YgButtonVariant variant,
+    required YgButtonSize size,
   }) = _YgButtonWithLeftIcon;
 
   factory YgButton.rightIcon({
@@ -46,12 +46,12 @@ class YgButton extends ButtonStyleButton {
     Clip? clipBehavior,
     required String icon,
     required Widget child,
-    required ButtonVariant variant,
-    required ButtonSize size,
+    required YgButtonVariant variant,
+    required YgButtonSize size,
   }) = _YgButtonWithRightIcon;
 
-  final ButtonVariant variant;
-  final ButtonSize size;
+  final YgButtonVariant variant;
+  final YgButtonSize size;
 
   @override
   ButtonStyle defaultStyleOf(BuildContext context) {
@@ -80,8 +80,8 @@ class _YgButtonWithRightIcon extends YgButton {
     Clip? clipBehavior,
     required String icon,
     required Widget child,
-    required ButtonVariant variant,
-    required ButtonSize size,
+    required YgButtonVariant variant,
+    required YgButtonSize size,
   }) : super(
           clipBehavior: clipBehavior ?? Clip.none,
           child: _YgButtonWithRightIconChild(icon: icon, child: child),
@@ -126,8 +126,8 @@ class _YgButtonWithLeftIcon extends YgButton {
     Clip? clipBehavior,
     required String icon,
     required Widget child,
-    required ButtonVariant variant,
-    required ButtonSize size,
+    required YgButtonVariant variant,
+    required YgButtonSize size,
   }) : super(
           autofocus: autofocus ?? false,
           clipBehavior: clipBehavior ?? Clip.none,

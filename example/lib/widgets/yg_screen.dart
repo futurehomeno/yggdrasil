@@ -28,9 +28,10 @@ class YgScreen extends StatelessWidget {
           Consumer<YgAppState>(
             builder: (BuildContext context, YgAppState ygAppState, Widget? widget) {
               return YgIcon(
-                icon: 'icon',
+                icon: SharedIcons.logo,
                 onTap: ygAppState.toggleTheme,
                 tapSize: YgIconTapSize.largest,
+                useSvgColor: true,
               );
             },
           )

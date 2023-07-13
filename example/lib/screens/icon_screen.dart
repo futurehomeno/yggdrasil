@@ -24,20 +24,41 @@ class IconScreen extends StatelessWidget {
       child: Column(
         children: <Widget>[
           YgListTile(title: 'Normal icon'),
-          YgIcon(
-            icon: 'icon',
-            size: YgIconSize.small,
-            tapSize: YgIconTapSize.largest,
-            onTap: () {},
+          const YgIcon(
+            icon: SharedIcons.other25,
+            size: YgIconSize.large,
+          ),
+          YgListTile(
+            title: 'Inverted icon on a dark background',
+            subtitle: 'These still look good when switching from light mode to dark mode.',
+          ),
+          YgTag(
+            variant: YgTagVariant.positive,
+            weight: YgTagWeight.strong,
+            onPressed: () {},
+            child: const YgIcon(
+              icon: SharedIcons.other25,
+              size: YgIconSize.large,
+              invertColor: true,
+            ),
+          ),
+          YgListTile(
+            title: 'Icon with color from svg',
+            subtitle: 'Used when icons come with multiple colors.',
+          ),
+          const YgIcon(
+            icon: MduIcons.sdcoOkColor25,
+            size: YgIconSize.large,
+            useSvgColor: true,
           ),
           YgListTile(title: 'Clickable icon'),
           YgIcon(
-            icon: 'icon',
+            icon: SharedIcons.other25,
             onTap: () {},
           ),
           YgListTile(title: 'Clickable icon w/ large area'),
           YgIcon(
-            icon: 'icon',
+            icon: SharedIcons.other25,
             onTap: () {},
             tapSize: YgIconTapSize.largest,
           )

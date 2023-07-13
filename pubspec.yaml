@@ -15,6 +15,7 @@ dependencies:
       ref: main
       url: git@github.com:futurehomeno/theme_tailor.git
       path: packages/theme_tailor_annotation
+  flutter_svg: 2.0.7
 
 dev_dependencies:
   # Run `flutter pub run build_runner build --delete-conflicting-outputs` in order to generate stuff.
@@ -80,3 +81,64 @@ flutter:
         - asset: assets/fonts/work_sans/WorkSans-SemiBoldItalic.ttf
         - asset: assets/fonts/work_sans/WorkSans-Thin.ttf
         - asset: assets/fonts/work_sans/WorkSans-ThinItalic.ttf
+  assets:
+    - assets/icons/alarm/
+    - assets/icons/app_devices/
+    - assets/icons/automation/
+    - assets/icons/big/
+    - assets/icons/building_type/
+    - assets/icons/color_presets/
+    - assets/icons/controls/barrier/
+    - assets/icons/controls/chargepoint/
+    - assets/icons/controls/climate/
+    - assets/icons/controls/door_lock/
+    - assets/icons/controls/shading/
+    - assets/icons/controls/siren/
+    - assets/icons/device_alarm/
+    - assets/icons/device_subtype/
+    - assets/icons/device_type/
+    - assets/icons/dogs/
+    - assets/icons/energy_group/
+    - assets/icons/energy_optimization_settings/
+    - assets/icons/energy_statistics/
+    - assets/icons/fh_font/
+    - assets/icons/functionality/
+    - assets/icons/household_settings/
+    - assets/icons/hub/
+    - assets/icons/mdu/battery/
+    - assets/icons/mdu/contact/
+    - assets/icons/mdu/device/
+    - assets/icons/mdu/logo/
+    - assets/icons/mdu/other/
+    - assets/icons/mdu/premise/
+    - assets/icons/mdu/ring/
+    - assets/icons/mdu/role/
+    - assets/icons/mdu/site/
+    - assets/icons/mdu/stamp/
+    - assets/icons/mdu/symbol/
+    - assets/icons/media/
+    - assets/icons/modes/
+    - assets/icons/notification_group/
+    - assets/icons/playground/
+    - assets/icons/profile_settings/
+    - assets/icons/room/
+    - assets/icons/security/
+    - assets/icons/services/
+    - assets/icons/services/device_modes/
+    - assets/icons/settings/
+    - assets/icons/shading/
+    - assets/icons/shared/
+    - assets/icons/siren_mode/
+    - assets/icons/square_flags/
+    - assets/icons/text/
+    - assets/icons/timeline/
+    - assets/icons/timeline/events/
+    - assets/icons/user_verification/
+    - assets/icons/widgets/app_bar/
+    - assets/icons/widgets/bottom_nav/
+    - assets/icons/widgets/forms/fh_search/
+    - assets/icons/widgets/pickers/fh_circular_color_temperature_picker/
+    - assets/icons/widgets/pickers/fh_circular_picker/
+    - assets/icons/widgets/pickers/fh_simple_slider/
+    - assets/icons/widgets/sliders/
+    - assets/icons/zwave_inclusion/

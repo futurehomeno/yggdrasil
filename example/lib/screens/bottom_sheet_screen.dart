@@ -30,7 +30,7 @@ class _BottomSheetScreenState extends State<BottomSheetScreen> with TickerProvid
         children: <Widget>[
           YgListTile(title: 'Default bottom sheet'),
           YgButton(
-            variant: ButtonVariant.primary,
+            variant: YgButtonVariant.primary,
             onPressed: () {
               Navigator.of(context).push(ExampleBottomSheet());
             },
@@ -38,7 +38,7 @@ class _BottomSheetScreenState extends State<BottomSheetScreen> with TickerProvid
           ),
           YgListTile(title: 'Scrollable bottom sheet'),
           YgButton(
-            variant: ButtonVariant.primary,
+            variant: YgButtonVariant.primary,
             onPressed: () {
               Navigator.of(context).push(ExampleScrollableBottomSheet());
             },
@@ -46,7 +46,7 @@ class _BottomSheetScreenState extends State<BottomSheetScreen> with TickerProvid
           ),
           YgListTile(title: 'Bottom sheet w/o footer'),
           YgButton(
-            variant: ButtonVariant.primary,
+            variant: YgButtonVariant.primary,
             onPressed: () {
               Navigator.of(context).push(ExampleBottomSheetWithoutFooter());
             },
