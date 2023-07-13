@@ -20,8 +20,12 @@ class YgTheme extends ThemeExtension<YgTheme> {
     required this.dividerTheme,
     required this.iconTheme,
     required this.internalTheme,
+<<<<<<< HEAD
     required this.listTileTheme,
     required this.tagTheme,
+=======
+    required this.snackbarTheme,
+>>>>>>> main
     required this.textLinkTheme,
     required this.tokens,
   });
@@ -36,8 +40,12 @@ class YgTheme extends ThemeExtension<YgTheme> {
   final YgDividerTheme dividerTheme;
   final YgIconTheme iconTheme;
   final YgInternalTheme internalTheme;
+<<<<<<< HEAD
   final YgListTileTheme listTileTheme;
   final YgTagTheme tagTheme;
+=======
+  final YgSnackbarTheme snackbarTheme;
+>>>>>>> main
   final YgTextLinkTheme textLinkTheme;
   final YgTokens tokens;
 
@@ -52,8 +60,12 @@ class YgTheme extends ThemeExtension<YgTheme> {
     dividerTheme: _$YgTheme.dividerTheme[0],
     iconTheme: _$YgTheme.iconTheme[0],
     internalTheme: _$YgTheme.internalTheme[0],
+<<<<<<< HEAD
     listTileTheme: _$YgTheme.listTileTheme[0],
     tagTheme: _$YgTheme.tagTheme[0],
+=======
+    snackbarTheme: _$YgTheme.snackbarTheme[0],
+>>>>>>> main
     textLinkTheme: _$YgTheme.textLinkTheme[0],
     tokens: _$YgTheme.tokens[0],
   );
@@ -69,8 +81,12 @@ class YgTheme extends ThemeExtension<YgTheme> {
     dividerTheme: _$YgTheme.dividerTheme[1],
     iconTheme: _$YgTheme.iconTheme[1],
     internalTheme: _$YgTheme.internalTheme[1],
+<<<<<<< HEAD
     listTileTheme: _$YgTheme.listTileTheme[1],
     tagTheme: _$YgTheme.tagTheme[1],
+=======
+    snackbarTheme: _$YgTheme.snackbarTheme[1],
+>>>>>>> main
     textLinkTheme: _$YgTheme.textLinkTheme[1],
     tokens: _$YgTheme.tokens[1],
   );
@@ -86,8 +102,12 @@ class YgTheme extends ThemeExtension<YgTheme> {
     dividerTheme: _$YgTheme.dividerTheme[2],
     iconTheme: _$YgTheme.iconTheme[2],
     internalTheme: _$YgTheme.internalTheme[2],
+<<<<<<< HEAD
     listTileTheme: _$YgTheme.listTileTheme[2],
     tagTheme: _$YgTheme.tagTheme[2],
+=======
+    snackbarTheme: _$YgTheme.snackbarTheme[2],
+>>>>>>> main
     textLinkTheme: _$YgTheme.textLinkTheme[2],
     tokens: _$YgTheme.tokens[2],
   );
@@ -103,8 +123,12 @@ class YgTheme extends ThemeExtension<YgTheme> {
     dividerTheme: _$YgTheme.dividerTheme[3],
     iconTheme: _$YgTheme.iconTheme[3],
     internalTheme: _$YgTheme.internalTheme[3],
+<<<<<<< HEAD
     listTileTheme: _$YgTheme.listTileTheme[3],
     tagTheme: _$YgTheme.tagTheme[3],
+=======
+    snackbarTheme: _$YgTheme.snackbarTheme[3],
+>>>>>>> main
     textLinkTheme: _$YgTheme.textLinkTheme[3],
     tokens: _$YgTheme.tokens[3],
   );
@@ -128,8 +152,12 @@ class YgTheme extends ThemeExtension<YgTheme> {
     YgDividerTheme? dividerTheme,
     YgIconTheme? iconTheme,
     YgInternalTheme? internalTheme,
+<<<<<<< HEAD
     YgListTileTheme? listTileTheme,
     YgTagTheme? tagTheme,
+=======
+    YgSnackbarTheme? snackbarTheme,
+>>>>>>> main
     YgTextLinkTheme? textLinkTheme,
     YgTokens? tokens,
   }) {
@@ -144,8 +172,12 @@ class YgTheme extends ThemeExtension<YgTheme> {
       dividerTheme: dividerTheme ?? this.dividerTheme,
       iconTheme: iconTheme ?? this.iconTheme,
       internalTheme: internalTheme ?? this.internalTheme,
+<<<<<<< HEAD
       listTileTheme: listTileTheme ?? this.listTileTheme,
       tagTheme: tagTheme ?? this.tagTheme,
+=======
+      snackbarTheme: snackbarTheme ?? this.snackbarTheme,
+>>>>>>> main
       textLinkTheme: textLinkTheme ?? this.textLinkTheme,
       tokens: tokens ?? this.tokens,
     );
@@ -167,9 +199,14 @@ class YgTheme extends ThemeExtension<YgTheme> {
       iconTheme: iconTheme.lerp(other.iconTheme, t) as YgIconTheme,
       internalTheme:
           internalTheme.lerp(other.internalTheme, t) as YgInternalTheme,
+<<<<<<< HEAD
       listTileTheme:
           listTileTheme.lerp(other.listTileTheme, t) as YgListTileTheme,
       tagTheme: tagTheme.lerp(other.tagTheme, t) as YgTagTheme,
+=======
+      snackbarTheme:
+          snackbarTheme.lerp(other.snackbarTheme, t) as YgSnackbarTheme,
+>>>>>>> main
       textLinkTheme:
           textLinkTheme.lerp(other.textLinkTheme, t) as YgTextLinkTheme,
       tokens: tokens.lerp(other.tokens, t) as YgTokens,
@@ -199,8 +236,12 @@ class YgTheme extends ThemeExtension<YgTheme> {
             const DeepCollectionEquality()
                 .equals(internalTheme, other.internalTheme) &&
             const DeepCollectionEquality()
+<<<<<<< HEAD
                 .equals(listTileTheme, other.listTileTheme) &&
             const DeepCollectionEquality().equals(tagTheme, other.tagTheme) &&
+=======
+                .equals(snackbarTheme, other.snackbarTheme) &&
+>>>>>>> main
             const DeepCollectionEquality()
                 .equals(textLinkTheme, other.textLinkTheme) &&
             const DeepCollectionEquality().equals(tokens, other.tokens));
@@ -220,8 +261,12 @@ class YgTheme extends ThemeExtension<YgTheme> {
       const DeepCollectionEquality().hash(dividerTheme),
       const DeepCollectionEquality().hash(iconTheme),
       const DeepCollectionEquality().hash(internalTheme),
+<<<<<<< HEAD
       const DeepCollectionEquality().hash(listTileTheme),
       const DeepCollectionEquality().hash(tagTheme),
+=======
+      const DeepCollectionEquality().hash(snackbarTheme),
+>>>>>>> main
       const DeepCollectionEquality().hash(textLinkTheme),
       const DeepCollectionEquality().hash(tokens),
     );
@@ -240,8 +285,12 @@ extension YgThemeBuildContextProps on BuildContext {
   YgDividerTheme get dividerTheme => ygTheme.dividerTheme;
   YgIconTheme get iconTheme => ygTheme.iconTheme;
   YgInternalTheme get internalTheme => ygTheme.internalTheme;
+<<<<<<< HEAD
   YgListTileTheme get listTileTheme => ygTheme.listTileTheme;
   YgTagTheme get tagTheme => ygTheme.tagTheme;
+=======
+  YgSnackbarTheme get snackbarTheme => ygTheme.snackbarTheme;
+>>>>>>> main
   YgTextLinkTheme get textLinkTheme => ygTheme.textLinkTheme;
   YgTokens get tokens => ygTheme.tokens;
 }
