@@ -8,11 +8,11 @@ import 'callout/_callout.dart';
 import 'card/_card.dart';
 import 'defaults/_defaults.dart';
 import 'dialog/_dialog.dart';
-import 'snackbar/_snackbar.dart';
 import 'divider/_divider.dart';
 import 'icon/_icon.dart';
 import 'internal/_internal.dart';
 import 'list_tile/_list_tile.dart';
+import 'snackbar/_snackbar.dart';
 import 'tag/_tag.dart';
 import 'text_link/_text_link.dart';
 import 'tokens/tokens.dart';
@@ -41,9 +41,6 @@ class _$YgTheme {
   static List<YgCardTheme> cardTheme = YgCardTheme.themes;
 
   @themeExtension
-  static List<YgSnackbarTheme> snackbarTheme = YgSnackbarTheme.themes;
-
-  @themeExtension
   static List<YgDialogTheme> dialogTheme = YgDialogTheme.themes;
 
   @themeExtension
@@ -57,6 +54,9 @@ class _$YgTheme {
 
   @themeExtension
   static List<YgListTileTheme> listTileTheme = YgListTileTheme.themes;
+
+  @themeExtension
+  static List<YgSnackbarTheme> snackbarTheme = YgSnackbarTheme.themes;
 
   @themeExtension
   static List<YgTagTheme> tagTheme = YgTagTheme.themes;

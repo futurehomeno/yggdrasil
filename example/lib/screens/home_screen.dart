@@ -49,17 +49,6 @@ class HomeScreen extends StatelessWidget {
             onTap: () => sl<YgRouter>().push(CardScreen.route()),
             trailingWidgets: const <YgIcon>[YgIcon(icon: 'icon')],
           ),
-          ListTile(
-            title: const Text('Snackbar'),
-            onTap: () {
-              sl<YgRouter>().push(SnackbarScreen.route());
-            },
-          ),
-          ListTile(
-            title: const Text('Text link'),
-            onTap: () {
-              sl<YgRouter>().push(TextLinkScreen.route());
-            },
           YgListTile(
             title: 'Dialog',
             onTap: () => sl<YgRouter>().push(DialogScreen.route()),
@@ -83,6 +72,11 @@ class HomeScreen extends StatelessWidget {
           YgListTile(
             title: 'List tile',
             onTap: () => sl<YgRouter>().push(ListTileScreen.route()),
+            trailingWidgets: const <YgIcon>[YgIcon(icon: 'icon')],
+          ),
+          YgListTile(
+            title: 'Snackbar',
+            onTap: () => sl<YgRouter>().push(SnackbarScreen.route()),
             trailingWidgets: const <YgIcon>[YgIcon(icon: 'icon')],
           ),
           YgListTile(
