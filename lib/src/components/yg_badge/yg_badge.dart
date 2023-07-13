@@ -35,9 +35,12 @@ class YgBadge extends StatelessWidget {
             minWidth: 20,
             minHeight: 20,
           ),
-          child: Text(
-            amount > 9 ? '9+' : amount.toString(),
-            style: weight.getTextStyle(badgeTheme),
+          child: Center(
+            widthFactor: 1,
+            child: Text(
+              amount > 9 ? '9+' : amount.toString(),
+              style: weight.getTextStyle(badgeTheme),
+            ),
           ),
         ),
       ],
