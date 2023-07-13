@@ -9,11 +9,11 @@ enum YgCardVariant {
   Color getBackgroundColor(YgCardTheme theme) {
     switch (this) {
       case YgCardVariant.elevated:
-        return theme.elevatedBackgroundColor;
+        return theme.elevatedCardTheme.backgroundColor;
       case YgCardVariant.filled:
-        return theme.filledBackgroundColor;
+        return theme.filledCardTheme.backgroundColor;
       case YgCardVariant.outlined:
-        return theme.outlinedBackgroundColor;
+        return theme.outlinedCardTheme.backgroundColor;
     }
   }
 
@@ -30,10 +30,7 @@ enum YgCardVariant {
       case YgCardVariant.outlined:
         return RoundedRectangleBorder(
           borderRadius: theme.borderRadius,
-          side: BorderSide(
-            color: theme.outlinedBorderColor,
-            width: 1,
-          ),
+          side: theme.outlinedCardTheme.borderSide,
         );
     }
   }
@@ -41,7 +38,7 @@ enum YgCardVariant {
   double getElevation(YgCardTheme theme) {
     switch (this) {
       case YgCardVariant.elevated:
-        return 1.0;
+        return theme.elevation;
       case YgCardVariant.filled:
         return 0.0;
       case YgCardVariant.outlined:

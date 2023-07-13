@@ -6,14 +6,14 @@ enum ButtonSize {
   medium,
   large;
 
-  EdgeInsets buildPadding(BuildContext context) {
+  EdgeInsets buildPadding(YgButtonTheme theme) {
     switch (this) {
       case ButtonSize.small:
-        return context.buttonTheme.paddingSmall;
+        return theme.paddingSmall;
       case ButtonSize.medium:
-        return context.buttonTheme.paddingMedium;
+        return theme.paddingMedium;
       case ButtonSize.large:
-        return context.buttonTheme.paddingLarge;
+        return theme.paddingLarge;
     }
   }
 }

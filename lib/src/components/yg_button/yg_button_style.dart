@@ -1,4 +1,4 @@
-import 'package:flutter/material.dart';
+import 'package:flutter/material.dart' hide TextButtonTheme;
 import 'package:yggdrasil/src/theme/_theme.dart';
 import 'package:yggdrasil/src/utils/_utils.dart';
 
@@ -90,21 +90,24 @@ class YgButtonStyle {
     required BuildContext context,
     required ButtonSize size,
   }) {
+    final YgButtonTheme theme = context.buttonTheme;
+    final PrimaryButtonTheme primaryButtonTheme = theme.primaryButtonTheme;
+
     return YgButtonStyle(
-      backgroundColor: context.buttonTheme.primaryButtonTheme.backgroundColor,
-      textStyle: context.buttonTheme.primaryButtonTheme.textStyle,
-      disabledTextStyle: context.buttonTheme.primaryButtonTheme.disabledTextStyle,
+      backgroundColor: primaryButtonTheme.backgroundColor,
+      textStyle: primaryButtonTheme.textStyle,
+      disabledTextStyle: primaryButtonTheme.disabledTextStyle,
       shape: YgRoundedRectangleGradientBorder(
-        gradient: context.buttonTheme.primaryButtonTheme.borderGradient,
-        borderRadius: context.buttonTheme.borderRadius,
-        width: context.buttonTheme.borderWidth,
+        gradient: primaryButtonTheme.borderGradient,
+        borderRadius: theme.borderRadius,
+        width: theme.borderWidth,
       ),
       disabledShape: YgRoundedRectangleGradientBorder(
-        gradient: context.buttonTheme.primaryButtonTheme.disabledBorderGradient,
-        borderRadius: context.buttonTheme.borderRadius,
-        width: context.buttonTheme.borderWidth,
+        gradient: primaryButtonTheme.disabledBorderGradient,
+        borderRadius: theme.borderRadius,
+        width: theme.borderWidth,
       ),
-      padding: size.buildPadding(context),
+      padding: size.buildPadding(theme),
     );
   }
 
@@ -112,21 +115,24 @@ class YgButtonStyle {
     required BuildContext context,
     required ButtonSize size,
   }) {
+    final YgButtonTheme theme = context.buttonTheme;
+    final SecondaryButtonTheme secondaryButtonTheme = theme.secondaryButtonTheme;
+
     return YgButtonStyle(
-      backgroundColor: context.buttonTheme.secondaryButtonTheme.backgroundColor,
-      textStyle: context.buttonTheme.secondaryButtonTheme.textStyle,
-      disabledTextStyle: context.buttonTheme.secondaryButtonTheme.disabledTextStyle,
+      backgroundColor: secondaryButtonTheme.backgroundColor,
+      textStyle: secondaryButtonTheme.textStyle,
+      disabledTextStyle: secondaryButtonTheme.disabledTextStyle,
       shape: YgRoundedRectangleGradientBorder(
-        gradient: context.buttonTheme.secondaryButtonTheme.borderGradient,
-        borderRadius: context.buttonTheme.borderRadius,
-        width: context.buttonTheme.borderWidth,
+        gradient: secondaryButtonTheme.borderGradient,
+        borderRadius: theme.borderRadius,
+        width: theme.borderWidth,
       ),
       disabledShape: YgRoundedRectangleGradientBorder(
-        gradient: context.buttonTheme.secondaryButtonTheme.disabledBorderGradient,
-        borderRadius: context.buttonTheme.borderRadius,
-        width: context.buttonTheme.borderWidth,
+        gradient: secondaryButtonTheme.disabledBorderGradient,
+        borderRadius: theme.borderRadius,
+        width: theme.borderWidth,
       ),
-      padding: size.buildPadding(context),
+      padding: size.buildPadding(theme),
     );
   }
 
@@ -134,21 +140,24 @@ class YgButtonStyle {
     required BuildContext context,
     required ButtonSize size,
   }) {
+    final YgButtonTheme theme = context.buttonTheme;
+    final TextButtonTheme textButtonTheme = theme.textButtonTheme;
+
     return YgButtonStyle(
-      backgroundColor: context.buttonTheme.textButtonTheme.backgroundColor,
-      textStyle: context.buttonTheme.textButtonTheme.textStyle,
-      disabledTextStyle: context.buttonTheme.textButtonTheme.disabledTextStyle,
+      backgroundColor: textButtonTheme.backgroundColor,
+      textStyle: textButtonTheme.textStyle,
+      disabledTextStyle: textButtonTheme.disabledTextStyle,
       shape: YgRoundedRectangleGradientBorder(
-        gradient: context.buttonTheme.textButtonTheme.borderGradient,
-        borderRadius: context.buttonTheme.borderRadius,
-        width: context.buttonTheme.borderWidth,
+        gradient: textButtonTheme.borderGradient,
+        borderRadius: theme.borderRadius,
+        width: theme.borderWidth,
       ),
       disabledShape: YgRoundedRectangleGradientBorder(
-        gradient: context.buttonTheme.textButtonTheme.disabledBorderGradient,
-        borderRadius: context.buttonTheme.borderRadius,
-        width: context.buttonTheme.borderWidth,
+        gradient: textButtonTheme.disabledBorderGradient,
+        borderRadius: theme.borderRadius,
+        width: theme.borderWidth,
       ),
-      padding: size.buildPadding(context),
+      padding: size.buildPadding(theme),
     );
   }
 
@@ -156,21 +165,24 @@ class YgButtonStyle {
     required BuildContext context,
     required ButtonSize size,
   }) {
+    final YgButtonTheme theme = context.buttonTheme;
+    final LinkButtonTheme linkButtonTheme = theme.linkButtonTheme;
+
     return YgButtonStyle(
-      backgroundColor: context.buttonTheme.linkButtonTheme.backgroundColor,
-      textStyle: context.buttonTheme.linkButtonTheme.textStyle,
-      disabledTextStyle: context.buttonTheme.linkButtonTheme.disabledTextStyle,
+      backgroundColor: linkButtonTheme.backgroundColor,
+      textStyle: linkButtonTheme.textStyle,
+      disabledTextStyle: linkButtonTheme.disabledTextStyle,
       shape: YgRoundedRectangleGradientBorder(
-        gradient: context.buttonTheme.linkButtonTheme.borderGradient,
-        borderRadius: context.buttonTheme.borderRadius,
-        width: context.buttonTheme.borderWidth,
+        gradient: linkButtonTheme.borderGradient,
+        borderRadius: theme.borderRadius,
+        width: theme.borderWidth,
       ),
       disabledShape: YgRoundedRectangleGradientBorder(
-        gradient: context.buttonTheme.linkButtonTheme.disabledBorderGradient,
-        borderRadius: context.buttonTheme.borderRadius,
-        width: context.buttonTheme.borderWidth,
+        gradient: linkButtonTheme.disabledBorderGradient,
+        borderRadius: theme.borderRadius,
+        width: theme.borderWidth,
       ),
-      padding: size.buildPadding(context),
+      padding: size.buildPadding(theme),
     );
   }
 
@@ -178,21 +190,24 @@ class YgButtonStyle {
     required BuildContext context,
     required ButtonSize size,
   }) {
+    final YgButtonTheme theme = context.buttonTheme;
+    final CriticalButtonTheme criticalButtonTheme = theme.criticalButtonTheme;
+
     return YgButtonStyle(
-      backgroundColor: context.buttonTheme.criticalButtonTheme.backgroundColor,
-      textStyle: context.buttonTheme.criticalButtonTheme.textStyle,
-      disabledTextStyle: context.buttonTheme.criticalButtonTheme.disabledTextStyle,
+      backgroundColor: criticalButtonTheme.backgroundColor,
+      textStyle: criticalButtonTheme.textStyle,
+      disabledTextStyle: criticalButtonTheme.disabledTextStyle,
       shape: YgRoundedRectangleGradientBorder(
-        gradient: context.buttonTheme.criticalButtonTheme.borderGradient,
-        borderRadius: context.buttonTheme.borderRadius,
-        width: context.buttonTheme.borderWidth,
+        gradient: criticalButtonTheme.borderGradient,
+        borderRadius: theme.borderRadius,
+        width: theme.borderWidth,
       ),
       disabledShape: YgRoundedRectangleGradientBorder(
-        gradient: context.buttonTheme.criticalButtonTheme.disabledBorderGradient,
-        borderRadius: context.buttonTheme.borderRadius,
-        width: context.buttonTheme.borderWidth,
+        gradient: criticalButtonTheme.disabledBorderGradient,
+        borderRadius: theme.borderRadius,
+        width: theme.borderWidth,
       ),
-      padding: size.buildPadding(context),
+      padding: size.buildPadding(theme),
     );
   }
 }

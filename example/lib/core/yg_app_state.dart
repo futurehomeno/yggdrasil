@@ -20,10 +20,6 @@ class YgAppState extends ChangeNotifier {
   YgTheme get currentTheme => _currentTheme;
 
   ThemeData get currentThemeData {
-    if (_currentTheme == YgTheme.consumerLight) {
-      return YgThemeDataHelper.consumerLightThemeData;
-    }
-
-    return YgThemeDataHelper.consumerDarkThemeData;
+    return YgThemeDataHelper.getThemeData(_currentTheme);
   }
 }

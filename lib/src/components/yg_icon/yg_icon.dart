@@ -27,10 +27,14 @@ class YgIcon extends StatelessWidget {
     }
 
     return Material(
-      borderRadius: BorderRadius.circular(tapSize.getTapSize(iconTheme)),
+      borderRadius: BorderRadius.circular(
+        tapSize.getTapSize(iconTheme),
+      ),
       color: context.tokens.colors.backgroundTransparent,
       child: InkWell(
-        borderRadius: BorderRadius.circular(tapSize.getTapSize(iconTheme)),
+        borderRadius: BorderRadius.circular(
+          tapSize.getTapSize(iconTheme),
+        ),
         onTap: onTap,
         child: SizedBox.square(
           dimension: tapSize.getTapSize(iconTheme),

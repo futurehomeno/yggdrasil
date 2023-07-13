@@ -64,7 +64,8 @@ class ListScreen extends StatelessWidget {
               const YgDivider(),
               YgListTile(title: 'Title 1')
             ],
-          )
+          ),
+          // TODO(bjhandeland): Add list example with lazy loading.
         ],
       ),
     );

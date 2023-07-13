@@ -42,15 +42,6 @@ class ListTileScreen extends StatelessWidget {
             subtitle: 'Bacon ipsum dolor amet chicken frankfurter burgdoggen landjaeger sirloin ham pig.',
             leadingWidgets: const <Widget>[
               YgIcon(icon: 'asd', size: YgIconSize.medium),
-              YgIcon(icon: 'asd', size: YgIconSize.medium),
-            ],
-          ),
-          YgListTile(
-            title: 'Title',
-            subtitle: 'Bacon ipsum dolor amet chicken frankfurter burgdoggen landjaeger sirloin ham pig.',
-            leadingWidgets: const <Widget>[
-              YgIcon(icon: 'asd', size: YgIconSize.medium),
-              YgIcon(icon: 'asd', size: YgIconSize.medium),
             ],
             trailingWidgets: const <Widget>[
               YgIcon(icon: 'asd', size: YgIconSize.medium),
@@ -60,7 +51,6 @@ class ListTileScreen extends StatelessWidget {
             title: 'Title',
             subtitle: 'Bacon ipsum dolor amet chicken frankfurter burgdoggen landjaeger sirloin ham pig.',
             leadingWidgets: const <Widget>[
-              YgIcon(icon: 'asd', size: YgIconSize.medium),
               YgIcon(icon: 'asd', size: YgIconSize.medium),
             ],
             trailingWidgets: const <Widget>[
@@ -74,7 +64,6 @@ class ListTileScreen extends StatelessWidget {
             title: 'Title',
             subtitle: 'Bacon ipsum dolor amet chicken frankfurter burgdoggen landjaeger sirloin ham pig.',
             leadingWidgets: const <Widget>[
-              YgIcon(icon: 'asd', size: YgIconSize.medium),
               YgIcon(icon: 'asd', size: YgIconSize.medium),
             ],
             trailingWidgets: const <Widget>[
@@ -90,7 +79,6 @@ class ListTileScreen extends StatelessWidget {
             subtitle: 'Bacon ipsum dolor amet chicken frankfurter burgdoggen landjaeger sirloin ham pig.',
             onInfoTap: () {},
             leadingWidgets: const <Widget>[
-              YgIcon(icon: 'asd', size: YgIconSize.medium),
               YgIcon(icon: 'asd', size: YgIconSize.medium),
             ],
             trailingWidgets: const <Widget>[
@@ -108,10 +96,8 @@ class ListTileScreen extends StatelessWidget {
             onInfoTap: () {},
             leadingWidgets: const <Widget>[
               YgIcon(icon: 'asd', size: YgIconSize.medium),
-              YgIcon(icon: 'asd', size: YgIconSize.medium),
             ],
             trailingWidgets: const <Widget>[
-              YgIcon(icon: 'asd', size: YgIconSize.medium),
               YgIcon(icon: 'asd', size: YgIconSize.medium),
             ],
             supportingWidgets: const <Widget>[
@@ -123,14 +109,18 @@ class ListTileScreen extends StatelessWidget {
             title: 'Tappable!',
             subtitle: 'Bacon ipsum dolor amet chicken frankfurter burgdoggen landjaeger sirloin ham pig.',
             subtitleIcon: const YgIcon(icon: 'asd', size: YgIconSize.small),
-            onTap: () {},
+            onTap: () {
+              showDateRangePicker(
+                context: context,
+                firstDate: DateTime.now(),
+                lastDate: DateTime.now().add(const Duration(days: 30)),
+              );
+            },
             onInfoTap: () {},
             leadingWidgets: const <Widget>[
               YgIcon(icon: 'asd', size: YgIconSize.medium),
-              YgIcon(icon: 'asd', size: YgIconSize.medium),
             ],
             trailingWidgets: const <Widget>[
-              YgIcon(icon: 'asd', size: YgIconSize.medium),
               YgIcon(icon: 'asd', size: YgIconSize.medium),
             ],
             supportingWidgets: const <Widget>[

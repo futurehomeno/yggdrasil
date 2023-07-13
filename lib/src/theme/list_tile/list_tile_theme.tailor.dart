@@ -13,6 +13,7 @@ class YgListTileTheme extends ThemeExtension<YgListTileTheme> {
     required this.contentSpacing,
     required this.iconSize,
     required this.padding,
+    required this.splashRadius,
     required this.subtitleTextStyle,
     required this.titleTextStyle,
   });
@@ -20,6 +21,7 @@ class YgListTileTheme extends ThemeExtension<YgListTileTheme> {
   final double contentSpacing;
   final double iconSize;
   final EdgeInsets padding;
+  final double splashRadius;
   final TextStyle subtitleTextStyle;
   final TextStyle titleTextStyle;
 
@@ -27,6 +29,7 @@ class YgListTileTheme extends ThemeExtension<YgListTileTheme> {
     contentSpacing: _$YgListTileTheme.contentSpacing[0],
     iconSize: _$YgListTileTheme.iconSize[0],
     padding: _$YgListTileTheme.padding[0],
+    splashRadius: _$YgListTileTheme.splashRadius[0],
     subtitleTextStyle: _$YgListTileTheme.subtitleTextStyle[0],
     titleTextStyle: _$YgListTileTheme.titleTextStyle[0],
   );
@@ -35,6 +38,7 @@ class YgListTileTheme extends ThemeExtension<YgListTileTheme> {
     contentSpacing: _$YgListTileTheme.contentSpacing[1],
     iconSize: _$YgListTileTheme.iconSize[1],
     padding: _$YgListTileTheme.padding[1],
+    splashRadius: _$YgListTileTheme.splashRadius[1],
     subtitleTextStyle: _$YgListTileTheme.subtitleTextStyle[1],
     titleTextStyle: _$YgListTileTheme.titleTextStyle[1],
   );
@@ -43,6 +47,7 @@ class YgListTileTheme extends ThemeExtension<YgListTileTheme> {
     contentSpacing: _$YgListTileTheme.contentSpacing[2],
     iconSize: _$YgListTileTheme.iconSize[2],
     padding: _$YgListTileTheme.padding[2],
+    splashRadius: _$YgListTileTheme.splashRadius[2],
     subtitleTextStyle: _$YgListTileTheme.subtitleTextStyle[2],
     titleTextStyle: _$YgListTileTheme.titleTextStyle[2],
   );
@@ -51,6 +56,7 @@ class YgListTileTheme extends ThemeExtension<YgListTileTheme> {
     contentSpacing: _$YgListTileTheme.contentSpacing[3],
     iconSize: _$YgListTileTheme.iconSize[3],
     padding: _$YgListTileTheme.padding[3],
+    splashRadius: _$YgListTileTheme.splashRadius[3],
     subtitleTextStyle: _$YgListTileTheme.subtitleTextStyle[3],
     titleTextStyle: _$YgListTileTheme.titleTextStyle[3],
   );
@@ -67,6 +73,7 @@ class YgListTileTheme extends ThemeExtension<YgListTileTheme> {
     double? contentSpacing,
     double? iconSize,
     EdgeInsets? padding,
+    double? splashRadius,
     TextStyle? subtitleTextStyle,
     TextStyle? titleTextStyle,
   }) {
@@ -74,6 +81,7 @@ class YgListTileTheme extends ThemeExtension<YgListTileTheme> {
       contentSpacing: contentSpacing ?? this.contentSpacing,
       iconSize: iconSize ?? this.iconSize,
       padding: padding ?? this.padding,
+      splashRadius: splashRadius ?? this.splashRadius,
       subtitleTextStyle: subtitleTextStyle ?? this.subtitleTextStyle,
       titleTextStyle: titleTextStyle ?? this.titleTextStyle,
     );
@@ -87,6 +95,7 @@ class YgListTileTheme extends ThemeExtension<YgListTileTheme> {
       contentSpacing: t < 0.5 ? contentSpacing : other.contentSpacing,
       iconSize: t < 0.5 ? iconSize : other.iconSize,
       padding: t < 0.5 ? padding : other.padding,
+      splashRadius: t < 0.5 ? splashRadius : other.splashRadius,
       subtitleTextStyle:
           TextStyle.lerp(subtitleTextStyle, other.subtitleTextStyle, t)!,
       titleTextStyle: TextStyle.lerp(titleTextStyle, other.titleTextStyle, t)!,
@@ -103,6 +112,8 @@ class YgListTileTheme extends ThemeExtension<YgListTileTheme> {
             const DeepCollectionEquality().equals(iconSize, other.iconSize) &&
             const DeepCollectionEquality().equals(padding, other.padding) &&
             const DeepCollectionEquality()
+                .equals(splashRadius, other.splashRadius) &&
+            const DeepCollectionEquality()
                 .equals(subtitleTextStyle, other.subtitleTextStyle) &&
             const DeepCollectionEquality()
                 .equals(titleTextStyle, other.titleTextStyle));
@@ -115,6 +126,7 @@ class YgListTileTheme extends ThemeExtension<YgListTileTheme> {
       const DeepCollectionEquality().hash(contentSpacing),
       const DeepCollectionEquality().hash(iconSize),
       const DeepCollectionEquality().hash(padding),
+      const DeepCollectionEquality().hash(splashRadius),
       const DeepCollectionEquality().hash(subtitleTextStyle),
       const DeepCollectionEquality().hash(titleTextStyle),
     );

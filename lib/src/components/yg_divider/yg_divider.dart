@@ -2,10 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:yggdrasil/yggdrasil.dart';
 
 /// Simple divider based on [Divider] from M3.
-///
-/// The ability to specify height, width, thickness,
-/// and indentation are not supported, but the code to
-/// do so has been left in place for future use.
 class YgDivider extends StatelessWidget {
   const YgDivider({
     super.key,

@@ -6,6 +6,7 @@ import 'bottom_sheet/_bottom_sheet.dart';
 import 'button/_button.dart';
 import 'callout/_callout.dart';
 import 'card/_card.dart';
+import 'defaults/_defaults.dart';
 import 'dialog/_dialog.dart';
 import 'divider/_divider.dart';
 import 'icon/_icon.dart';
@@ -22,6 +23,9 @@ part 'theme.tailor.dart';
 class _$YgTheme {
   @themeExtension
   static List<YgTokens> tokens = YgTokens.themes;
+
+  @themeExtension
+  static List<YgDefaults> defaults = YgDefaults.themes;
 
   @themeExtension
   static List<YgBadgeTheme> badgeTheme = YgBadgeTheme.themes;

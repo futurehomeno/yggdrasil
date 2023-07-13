@@ -1,6 +1,15 @@
 import 'package:flutter/material.dart';
 import 'package:yggdrasil/yggdrasil.dart';
 
+/// List tile component based on [ListTile] from M3.
+///
+/// This component is used to display a list of items.
+///
+/// Supports 2 leading, 2 trailing and 2 supporting widgets,
+/// however, this differs from design in Figma. This is so
+/// we do not encourage designers to use more than 2 widgets.
+// TODO(bjhandeland): Make the info icon's clickable area larger
+// without making the actual icon larger.
 class YgListTile extends StatelessWidget {
   const YgListTile({
     super.key,
@@ -27,30 +36,29 @@ class YgListTile extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final YgListTileTheme listTileTheme = context.listTileTheme;
+    final YgListTileTheme theme = context.listTileTheme;
 
     return Material(
-      borderRadius: BorderRadius.circular(10.0),
       color: context.tokens.colors.backgroundTransparent,
       child: InkWell(
-        borderRadius: BorderRadius.circular(10.0),
+        borderRadius: BorderRadius.circular(theme.splashRadius),
         onTap: onTap,
         child: Padding(
-          padding: listTileTheme.padding,
+          padding: theme.padding,
           child: Row(
             children: <Widget>[
-              if (leadingWidgets.isNotEmpty) _buildLeadingWidgets(listTileTheme),
+              if (leadingWidgets.isNotEmpty) _buildLeadingWidgets(theme),
               Expanded(
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: <Widget>[
-                    _buildTitle(listTileTheme),
-                    if (subtitle != null) _buildSubtitle(listTileTheme),
+                    _buildTitle(theme),
+                    if (subtitle != null) _buildSubtitle(theme),
                   ],
                 ),
               ),
-              if (supportingWidgets.isNotEmpty) _buildSupportingWidgets(listTileTheme),
-              if (trailingWidgets.isNotEmpty) _buildTrailingWidgets(listTileTheme),
+              if (supportingWidgets.isNotEmpty) _buildSupportingWidgets(theme),
+              if (trailingWidgets.isNotEmpty) _buildTrailingWidgets(theme),
             ],
           ),
         ),
@@ -138,11 +146,14 @@ class YgListTile extends StatelessWidget {
 
     return Padding(
       padding: EdgeInsets.only(left: listTileTheme.contentSpacing),
-      child: Column(crossAxisAlignment: CrossAxisAlignment.end, children: <Widget>[
-        supportingWidgets.first,
-        SizedBox(height: listTileTheme.contentSpacing),
-        supportingWidgets.last,
-      ]),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.end,
+        children: <Widget>[
+          supportingWidgets.first,
+          SizedBox(height: listTileTheme.contentSpacing),
+          supportingWidgets.last,
+        ],
+      ),
     );
   }
 

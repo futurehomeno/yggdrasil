@@ -3,6 +3,7 @@ export 'bottom_sheet/_bottom_sheet.dart';
 export 'button/_button.dart';
 export 'callout/_callout.dart';
 export 'card/_card.dart';
+export 'defaults/_defaults.dart';
 export 'dialog/_dialog.dart';
 export 'divider/_divider.dart';
 export 'helpers/_helpers.dart';

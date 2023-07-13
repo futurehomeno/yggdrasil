@@ -24,7 +24,12 @@ class IconScreen extends StatelessWidget {
       child: Column(
         children: <Widget>[
           YgListTile(title: 'Normal icon'),
-          const YgIcon(icon: 'icon'),
+          YgIcon(
+            icon: 'icon',
+            size: YgIconSize.small,
+            tapSize: YgIconTapSize.largest,
+            onTap: () {},
+          ),
           YgListTile(title: 'Clickable icon'),
           YgIcon(
             icon: 'icon',
