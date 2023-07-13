@@ -24,18 +24,18 @@ class SnackbarScreen extends StatelessWidget {
       child: Column(
         children: <Widget>[
           YgSnackbar(
-            snackbarVariant: YgSnackbarVariant.highlight,
-            message: 'Snackbar provide feedback after users take an action',
+            variant: YgSnackbarVariant.highlight,
+            message: 'Snackbars provide feedback after users take an action',
             onClose: () {},
           ),
           YgSnackbar(
-            snackbarVariant: YgSnackbarVariant.success,
-            message: 'Snackbar provide feedback after users take an action',
+            variant: YgSnackbarVariant.success,
+            message: 'Snackbars provide feedback after users take an action',
             onClose: () {},
           ),
           YgSnackbar(
-            snackbarVariant: YgSnackbarVariant.critical,
-            message: 'Snackbar provide feedback after users take an action',
+            variant: YgSnackbarVariant.critical,
+            message: 'Snackbars provide feedback after users take an action',
             onClose: () {},
           )
         ],

@@ -9,7 +9,7 @@ import 'package:yggdrasil/src/tokens/professional_light/_professional_light.dart
 part 'snackbar_themes.tailor.dart';
 
 @tailorComponent
-class _$YgSnackbarThemes {
+class _$YgSnackbarTheme {
   @themeExtension
   static List<CriticalSnackbarTheme> criticalSnackbarTheme = CriticalSnackbarTheme.themes;
 
@@ -54,11 +54,11 @@ class _$YgSnackbarThemes {
     professional_dark.FhDimensions.xs,
   ];
 
-  static List<double> containerIconSpacing = <double>[
-    consumer_light.FhDimensions.xxs,
-    consumer_dark.FhDimensions.xxs,
-    professional_light.FhDimensions.xxs,
-    professional_dark.FhDimensions.xxs,
+  static List<EdgeInsets> iconContainerPadding = <EdgeInsets>[
+    const EdgeInsets.all(consumer_light.FhDimensions.xxs),
+    const EdgeInsets.all(consumer_dark.FhDimensions.xxs),
+    const EdgeInsets.all(professional_light.FhDimensions.xxs),
+    const EdgeInsets.all(professional_dark.FhDimensions.xxs),
   ];
 
   static List<TextStyle> messageTextStyle = <TextStyle>[

@@ -6,21 +6,21 @@ class YgSnackbarVariantMapper {
   const YgSnackbarVariantMapper._();
 
   static Color getContainerIconColor({
-    required YgSnackbarThemes theme,
+    required YgSnackbarTheme theme,
     required YgSnackbarVariant snackbarVariant,
   }) {
     switch (snackbarVariant) {
       case YgSnackbarVariant.highlight:
-        return theme.highlightSnackbarTheme.containerIconColor;
+        return theme.highlightSnackbarTheme.iconContainerColor;
       case YgSnackbarVariant.success:
-        return theme.successSnackbarTheme.containerIconColor;
+        return theme.successSnackbarTheme.iconContainerColor;
       case YgSnackbarVariant.critical:
-        return theme.criticalSnackbarTheme.containerIconColor;
+        return theme.criticalSnackbarTheme.iconContainerColor;
     }
   }
 
   static Color getIconColor({
-    required YgSnackbarThemes theme,
+    required YgSnackbarTheme theme,
     required YgSnackbarVariant snackbarVariant,
   }) {
     switch (snackbarVariant) {
@@ -35,7 +35,7 @@ class YgSnackbarVariantMapper {
 
   // TODO(emeban): convert this to YgIcon whenever possible
   static Icon getIcon({
-    required YgSnackbarThemes theme,
+    required YgSnackbarTheme theme,
     required YgSnackbarVariant snackbarVariant,
   }) {
     switch (snackbarVariant) {

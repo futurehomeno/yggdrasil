@@ -16,7 +16,7 @@ class YgTheme extends ThemeExtension<YgTheme> {
     required this.calloutThemes,
     required this.dialogTheme,
     required this.internalTheme,
-    required this.snackbarThemes,
+    required this.snackbarTheme,
     required this.textLinkTheme,
     required this.tokens,
   });
@@ -27,7 +27,7 @@ class YgTheme extends ThemeExtension<YgTheme> {
   final YgCalloutThemes calloutThemes;
   final YgDialogThemes dialogTheme;
   final YgInternalTheme internalTheme;
-  final YgSnackbarThemes snackbarThemes;
+  final YgSnackbarTheme snackbarTheme;
   final YgTextLinkTheme textLinkTheme;
   final YgTokens tokens;
 
@@ -38,7 +38,7 @@ class YgTheme extends ThemeExtension<YgTheme> {
     calloutThemes: _$YgTheme.calloutThemes[0],
     dialogTheme: _$YgTheme.dialogTheme[0],
     internalTheme: _$YgTheme.internalTheme[0],
-    snackbarThemes: _$YgTheme.snackbarThemes[0],
+    snackbarTheme: _$YgTheme.snackbarTheme[0],
     textLinkTheme: _$YgTheme.textLinkTheme[0],
     tokens: _$YgTheme.tokens[0],
   );
@@ -50,7 +50,7 @@ class YgTheme extends ThemeExtension<YgTheme> {
     calloutThemes: _$YgTheme.calloutThemes[1],
     dialogTheme: _$YgTheme.dialogTheme[1],
     internalTheme: _$YgTheme.internalTheme[1],
-    snackbarThemes: _$YgTheme.snackbarThemes[1],
+    snackbarTheme: _$YgTheme.snackbarTheme[1],
     textLinkTheme: _$YgTheme.textLinkTheme[1],
     tokens: _$YgTheme.tokens[1],
   );
@@ -62,7 +62,7 @@ class YgTheme extends ThemeExtension<YgTheme> {
     calloutThemes: _$YgTheme.calloutThemes[2],
     dialogTheme: _$YgTheme.dialogTheme[2],
     internalTheme: _$YgTheme.internalTheme[2],
-    snackbarThemes: _$YgTheme.snackbarThemes[2],
+    snackbarTheme: _$YgTheme.snackbarTheme[2],
     textLinkTheme: _$YgTheme.textLinkTheme[2],
     tokens: _$YgTheme.tokens[2],
   );
@@ -74,7 +74,7 @@ class YgTheme extends ThemeExtension<YgTheme> {
     calloutThemes: _$YgTheme.calloutThemes[3],
     dialogTheme: _$YgTheme.dialogTheme[3],
     internalTheme: _$YgTheme.internalTheme[3],
-    snackbarThemes: _$YgTheme.snackbarThemes[3],
+    snackbarTheme: _$YgTheme.snackbarTheme[3],
     textLinkTheme: _$YgTheme.textLinkTheme[3],
     tokens: _$YgTheme.tokens[3],
   );
@@ -94,7 +94,7 @@ class YgTheme extends ThemeExtension<YgTheme> {
     YgCalloutThemes? calloutThemes,
     YgDialogThemes? dialogTheme,
     YgInternalTheme? internalTheme,
-    YgSnackbarThemes? snackbarThemes,
+    YgSnackbarTheme? snackbarTheme,
     YgTextLinkTheme? textLinkTheme,
     YgTokens? tokens,
   }) {
@@ -105,7 +105,7 @@ class YgTheme extends ThemeExtension<YgTheme> {
       calloutThemes: calloutThemes ?? this.calloutThemes,
       dialogTheme: dialogTheme ?? this.dialogTheme,
       internalTheme: internalTheme ?? this.internalTheme,
-      snackbarThemes: snackbarThemes ?? this.snackbarThemes,
+      snackbarTheme: snackbarTheme ?? this.snackbarTheme,
       textLinkTheme: textLinkTheme ?? this.textLinkTheme,
       tokens: tokens ?? this.tokens,
     );
@@ -124,8 +124,8 @@ class YgTheme extends ThemeExtension<YgTheme> {
       dialogTheme: dialogTheme.lerp(other.dialogTheme, t) as YgDialogThemes,
       internalTheme:
           internalTheme.lerp(other.internalTheme, t) as YgInternalTheme,
-      snackbarThemes:
-          snackbarThemes.lerp(other.snackbarThemes, t) as YgSnackbarThemes,
+      snackbarTheme:
+          snackbarTheme.lerp(other.snackbarTheme, t) as YgSnackbarTheme,
       textLinkTheme:
           textLinkTheme.lerp(other.textLinkTheme, t) as YgTextLinkTheme,
       tokens: tokens.lerp(other.tokens, t) as YgTokens,
@@ -150,7 +150,7 @@ class YgTheme extends ThemeExtension<YgTheme> {
             const DeepCollectionEquality()
                 .equals(internalTheme, other.internalTheme) &&
             const DeepCollectionEquality()
-                .equals(snackbarThemes, other.snackbarThemes) &&
+                .equals(snackbarTheme, other.snackbarTheme) &&
             const DeepCollectionEquality()
                 .equals(textLinkTheme, other.textLinkTheme) &&
             const DeepCollectionEquality().equals(tokens, other.tokens));
@@ -166,7 +166,7 @@ class YgTheme extends ThemeExtension<YgTheme> {
       const DeepCollectionEquality().hash(calloutThemes),
       const DeepCollectionEquality().hash(dialogTheme),
       const DeepCollectionEquality().hash(internalTheme),
-      const DeepCollectionEquality().hash(snackbarThemes),
+      const DeepCollectionEquality().hash(snackbarTheme),
       const DeepCollectionEquality().hash(textLinkTheme),
       const DeepCollectionEquality().hash(tokens),
     );
@@ -181,7 +181,7 @@ extension YgThemeBuildContextProps on BuildContext {
   YgCalloutThemes get calloutThemes => ygTheme.calloutThemes;
   YgDialogThemes get dialogTheme => ygTheme.dialogTheme;
   YgInternalTheme get internalTheme => ygTheme.internalTheme;
-  YgSnackbarThemes get snackbarThemes => ygTheme.snackbarThemes;
+  YgSnackbarTheme get snackbarTheme => ygTheme.snackbarTheme;
   YgTextLinkTheme get textLinkTheme => ygTheme.textLinkTheme;
   YgTokens get tokens => ygTheme.tokens;
 }

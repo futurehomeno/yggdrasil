@@ -35,7 +35,7 @@ class _$YgTheme {
   static List<YgDialogThemes> dialogTheme = YgDialogThemes.themes;
 
   @themeExtension
-  static List<YgSnackbarThemes> snackbarThemes = YgSnackbarThemes.themes;
+  static List<YgSnackbarTheme> snackbarTheme = YgSnackbarTheme.themes;
 
   @themeExtension
   static List<YgTextLinkTheme> textLinkTheme = YgTextLinkTheme.themes;

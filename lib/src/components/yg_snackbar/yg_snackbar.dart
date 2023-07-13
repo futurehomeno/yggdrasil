@@ -4,19 +4,19 @@ import 'package:yggdrasil/yggdrasil.dart';
 
 class YgSnackbar extends StatelessWidget {
   const YgSnackbar({
-    required this.snackbarVariant,
+    required this.variant,
     required this.message,
     required this.onClose,
     super.key,
   });
 
-  final YgSnackbarVariant snackbarVariant;
+  final YgSnackbarVariant variant;
   final String message;
   final VoidCallback onClose;
 
   @override
   Widget build(BuildContext context) {
-    final YgSnackbarThemes theme = context.snackbarThemes;
+    final YgSnackbarTheme theme = context.snackbarTheme;
 
     return Material(
       color: theme.backgroundColor,
@@ -26,17 +26,19 @@ class YgSnackbar extends StatelessWidget {
         child: Row(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: <Widget>[
-            Material(
-              color: YgSnackbarVariantMapper.getContainerIconColor(
-                theme: theme,
-                snackbarVariant: snackbarVariant,
+            DecoratedBox(
+              decoration: BoxDecoration(
+                shape: BoxShape.circle,
+                color: YgSnackbarVariantMapper.getContainerIconColor(
+                  theme: theme,
+                  snackbarVariant: variant,
+                ),
               ),
-              shape: const CircleBorder(),
               child: Padding(
-                padding: EdgeInsets.all(theme.containerIconSpacing),
+                padding: theme.iconContainerPadding,
                 child: YgSnackbarVariantMapper.getIcon(
                   theme: theme,
-                  snackbarVariant: snackbarVariant,
+                  snackbarVariant: variant,
                 ),
               ),
             ),

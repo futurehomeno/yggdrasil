@@ -10,31 +10,31 @@ part of 'critical_snackbar_theme.dart';
 
 class CriticalSnackbarTheme extends ThemeExtension<CriticalSnackbarTheme> {
   const CriticalSnackbarTheme({
-    required this.containerIconColor,
     required this.iconColor,
+    required this.iconContainerColor,
   });
 
-  final Color containerIconColor;
   final Color iconColor;
+  final Color iconContainerColor;
 
   static final CriticalSnackbarTheme consumerLight = CriticalSnackbarTheme(
-    containerIconColor: _$CriticalSnackbarTheme.containerIconColor[0],
     iconColor: _$CriticalSnackbarTheme.iconColor[0],
+    iconContainerColor: _$CriticalSnackbarTheme.iconContainerColor[0],
   );
 
   static final CriticalSnackbarTheme consumerDark = CriticalSnackbarTheme(
-    containerIconColor: _$CriticalSnackbarTheme.containerIconColor[1],
     iconColor: _$CriticalSnackbarTheme.iconColor[1],
+    iconContainerColor: _$CriticalSnackbarTheme.iconContainerColor[1],
   );
 
   static final CriticalSnackbarTheme professionalLight = CriticalSnackbarTheme(
-    containerIconColor: _$CriticalSnackbarTheme.containerIconColor[2],
     iconColor: _$CriticalSnackbarTheme.iconColor[2],
+    iconContainerColor: _$CriticalSnackbarTheme.iconContainerColor[2],
   );
 
   static final CriticalSnackbarTheme professionalDark = CriticalSnackbarTheme(
-    containerIconColor: _$CriticalSnackbarTheme.containerIconColor[3],
     iconColor: _$CriticalSnackbarTheme.iconColor[3],
+    iconContainerColor: _$CriticalSnackbarTheme.iconContainerColor[3],
   );
 
   static final themes = [
@@ -46,12 +46,12 @@ class CriticalSnackbarTheme extends ThemeExtension<CriticalSnackbarTheme> {
 
   @override
   CriticalSnackbarTheme copyWith({
-    Color? containerIconColor,
     Color? iconColor,
+    Color? iconContainerColor,
   }) {
     return CriticalSnackbarTheme(
-      containerIconColor: containerIconColor ?? this.containerIconColor,
       iconColor: iconColor ?? this.iconColor,
+      iconContainerColor: iconContainerColor ?? this.iconContainerColor,
     );
   }
 
@@ -60,9 +60,9 @@ class CriticalSnackbarTheme extends ThemeExtension<CriticalSnackbarTheme> {
       covariant ThemeExtension<CriticalSnackbarTheme>? other, double t) {
     if (other is! CriticalSnackbarTheme) return this as CriticalSnackbarTheme;
     return CriticalSnackbarTheme(
-      containerIconColor:
-          Color.lerp(containerIconColor, other.containerIconColor, t)!,
       iconColor: Color.lerp(iconColor, other.iconColor, t)!,
+      iconContainerColor:
+          Color.lerp(iconContainerColor, other.iconContainerColor, t)!,
     );
   }
 
@@ -71,17 +71,17 @@ class CriticalSnackbarTheme extends ThemeExtension<CriticalSnackbarTheme> {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is CriticalSnackbarTheme &&
+            const DeepCollectionEquality().equals(iconColor, other.iconColor) &&
             const DeepCollectionEquality()
-                .equals(containerIconColor, other.containerIconColor) &&
-            const DeepCollectionEquality().equals(iconColor, other.iconColor));
+                .equals(iconContainerColor, other.iconContainerColor));
   }
 
   @override
   int get hashCode {
     return Object.hash(
       runtimeType.hashCode,
-      const DeepCollectionEquality().hash(containerIconColor),
       const DeepCollectionEquality().hash(iconColor),
+      const DeepCollectionEquality().hash(iconContainerColor),
     );
   }
 }

@@ -9,7 +9,7 @@ part 'highlight_snackbar_theme.tailor.dart';
 
 @tailorComponent
 class _$HighlightSnackbarTheme {
-  static List<Color> containerIconColor = <Color>[
+  static List<Color> iconContainerColor = <Color>[
     consumer_light.FhColors.backgroundHighlightWeak,
     consumer_dark.FhColors.backgroundHighlightWeak,
     professional_light.FhColors.backgroundHighlightWeak,

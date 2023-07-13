@@ -9,7 +9,7 @@ part 'critical_snackbar_theme.tailor.dart';
 
 @tailorComponent
 class _$CriticalSnackbarTheme {
-  static List<Color> containerIconColor = <Color>[
+  static List<Color> iconContainerColor = <Color>[
     consumer_light.FhColors.backgroundCriticalWeak,
     consumer_dark.FhColors.backgroundCriticalWeak,
     professional_light.FhColors.backgroundCriticalWeak,

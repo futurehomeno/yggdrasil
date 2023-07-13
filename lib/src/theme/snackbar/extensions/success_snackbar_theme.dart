@@ -9,7 +9,7 @@ part 'success_snackbar_theme.tailor.dart';
 
 @tailorComponent
 class _$SuccessSnackbarTheme {
-  static List<Color> containerIconColor = <Color>[
+  static List<Color> iconContainerColor = <Color>[
     consumer_light.FhColors.backgroundSuccessWeak,
     consumer_dark.FhColors.backgroundSuccessWeak,
     professional_light.FhColors.backgroundSuccessWeak,

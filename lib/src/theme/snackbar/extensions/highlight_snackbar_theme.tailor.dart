@@ -10,32 +10,32 @@ part of 'highlight_snackbar_theme.dart';
 
 class HighlightSnackbarTheme extends ThemeExtension<HighlightSnackbarTheme> {
   const HighlightSnackbarTheme({
-    required this.containerIconColor,
     required this.iconColor,
+    required this.iconContainerColor,
   });
 
-  final Color containerIconColor;
   final Color iconColor;
+  final Color iconContainerColor;
 
   static final HighlightSnackbarTheme consumerLight = HighlightSnackbarTheme(
-    containerIconColor: _$HighlightSnackbarTheme.containerIconColor[0],
     iconColor: _$HighlightSnackbarTheme.iconColor[0],
+    iconContainerColor: _$HighlightSnackbarTheme.iconContainerColor[0],
   );
 
   static final HighlightSnackbarTheme consumerDark = HighlightSnackbarTheme(
-    containerIconColor: _$HighlightSnackbarTheme.containerIconColor[1],
     iconColor: _$HighlightSnackbarTheme.iconColor[1],
+    iconContainerColor: _$HighlightSnackbarTheme.iconContainerColor[1],
   );
 
   static final HighlightSnackbarTheme professionalLight =
       HighlightSnackbarTheme(
-    containerIconColor: _$HighlightSnackbarTheme.containerIconColor[2],
     iconColor: _$HighlightSnackbarTheme.iconColor[2],
+    iconContainerColor: _$HighlightSnackbarTheme.iconContainerColor[2],
   );
 
   static final HighlightSnackbarTheme professionalDark = HighlightSnackbarTheme(
-    containerIconColor: _$HighlightSnackbarTheme.containerIconColor[3],
     iconColor: _$HighlightSnackbarTheme.iconColor[3],
+    iconContainerColor: _$HighlightSnackbarTheme.iconContainerColor[3],
   );
 
   static final themes = [
@@ -47,12 +47,12 @@ class HighlightSnackbarTheme extends ThemeExtension<HighlightSnackbarTheme> {
 
   @override
   HighlightSnackbarTheme copyWith({
-    Color? containerIconColor,
     Color? iconColor,
+    Color? iconContainerColor,
   }) {
     return HighlightSnackbarTheme(
-      containerIconColor: containerIconColor ?? this.containerIconColor,
       iconColor: iconColor ?? this.iconColor,
+      iconContainerColor: iconContainerColor ?? this.iconContainerColor,
     );
   }
 
@@ -61,9 +61,9 @@ class HighlightSnackbarTheme extends ThemeExtension<HighlightSnackbarTheme> {
       covariant ThemeExtension<HighlightSnackbarTheme>? other, double t) {
     if (other is! HighlightSnackbarTheme) return this as HighlightSnackbarTheme;
     return HighlightSnackbarTheme(
-      containerIconColor:
-          Color.lerp(containerIconColor, other.containerIconColor, t)!,
       iconColor: Color.lerp(iconColor, other.iconColor, t)!,
+      iconContainerColor:
+          Color.lerp(iconContainerColor, other.iconContainerColor, t)!,
     );
   }
 
@@ -72,17 +72,17 @@ class HighlightSnackbarTheme extends ThemeExtension<HighlightSnackbarTheme> {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is HighlightSnackbarTheme &&
+            const DeepCollectionEquality().equals(iconColor, other.iconColor) &&
             const DeepCollectionEquality()
-                .equals(containerIconColor, other.containerIconColor) &&
-            const DeepCollectionEquality().equals(iconColor, other.iconColor));
+                .equals(iconContainerColor, other.iconContainerColor));
   }
 
   @override
   int get hashCode {
     return Object.hash(
       runtimeType.hashCode,
-      const DeepCollectionEquality().hash(containerIconColor),
       const DeepCollectionEquality().hash(iconColor),
+      const DeepCollectionEquality().hash(iconContainerColor),
     );
   }
 }
