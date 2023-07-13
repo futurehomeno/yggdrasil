@@ -1,21 +1,18 @@
 import 'package:yggdrasil/src/theme/_theme.dart';
 
 enum YgIconTapSize {
-  small,
   large,
   larger,
   largest;
 
   double getTapSize(YgIconTheme iconThemes) {
     switch (this) {
-      case small:
-        return iconThemes.sizeSmall;
       case large:
-        return iconThemes.sizeLarge;
+        return iconThemes.tapSize.large;
       case larger:
-        return iconThemes.sizeLarger;
+        return iconThemes.tapSize.larger;
       case largest:
-        return iconThemes.sizeLargest;
+        return iconThemes.tapSize.largest;
     }
   }
 }

@@ -8,11 +8,11 @@ enum YgIconSize {
   double getIconSize(YgIconTheme iconThemes) {
     switch (this) {
       case smaller:
-        return iconThemes.sizeSmaller;
+        return iconThemes.size.smaller;
       case small:
-        return iconThemes.sizeSmall;
+        return iconThemes.size.small;
       case medium:
-        return iconThemes.sizeLarge;
+        return iconThemes.size.large;
     }
   }
 }

@@ -10,49 +10,31 @@ part of 'icon_theme.dart';
 
 class YgIconTheme extends ThemeExtension<YgIconTheme> {
   const YgIconTheme({
-    required this.sizeLarge,
-    required this.sizeLarger,
-    required this.sizeLargest,
-    required this.sizeSmall,
-    required this.sizeSmaller,
+    required this.size,
+    required this.tapSize,
   });
 
-  final double sizeLarge;
-  final double sizeLarger;
-  final double sizeLargest;
-  final double sizeSmall;
-  final double sizeSmaller;
+  final YgIconSizeTheme size;
+  final YgIconTapSizeTheme tapSize;
 
   static final YgIconTheme consumerLight = YgIconTheme(
-    sizeLarge: _$YgIconTheme.sizeLarge[0],
-    sizeLarger: _$YgIconTheme.sizeLarger[0],
-    sizeLargest: _$YgIconTheme.sizeLargest[0],
-    sizeSmall: _$YgIconTheme.sizeSmall[0],
-    sizeSmaller: _$YgIconTheme.sizeSmaller[0],
+    size: _$YgIconTheme.size[0],
+    tapSize: _$YgIconTheme.tapSize[0],
   );
 
   static final YgIconTheme consumerDark = YgIconTheme(
-    sizeLarge: _$YgIconTheme.sizeLarge[1],
-    sizeLarger: _$YgIconTheme.sizeLarger[1],
-    sizeLargest: _$YgIconTheme.sizeLargest[1],
-    sizeSmall: _$YgIconTheme.sizeSmall[1],
-    sizeSmaller: _$YgIconTheme.sizeSmaller[1],
+    size: _$YgIconTheme.size[1],
+    tapSize: _$YgIconTheme.tapSize[1],
   );
 
   static final YgIconTheme professionalLight = YgIconTheme(
-    sizeLarge: _$YgIconTheme.sizeLarge[2],
-    sizeLarger: _$YgIconTheme.sizeLarger[2],
-    sizeLargest: _$YgIconTheme.sizeLargest[2],
-    sizeSmall: _$YgIconTheme.sizeSmall[2],
-    sizeSmaller: _$YgIconTheme.sizeSmaller[2],
+    size: _$YgIconTheme.size[2],
+    tapSize: _$YgIconTheme.tapSize[2],
   );
 
   static final YgIconTheme professionalDark = YgIconTheme(
-    sizeLarge: _$YgIconTheme.sizeLarge[3],
-    sizeLarger: _$YgIconTheme.sizeLarger[3],
-    sizeLargest: _$YgIconTheme.sizeLargest[3],
-    sizeSmall: _$YgIconTheme.sizeSmall[3],
-    sizeSmaller: _$YgIconTheme.sizeSmaller[3],
+    size: _$YgIconTheme.size[3],
+    tapSize: _$YgIconTheme.tapSize[3],
   );
 
   static final themes = [
@@ -64,18 +46,12 @@ class YgIconTheme extends ThemeExtension<YgIconTheme> {
 
   @override
   YgIconTheme copyWith({
-    double? sizeLarge,
-    double? sizeLarger,
-    double? sizeLargest,
-    double? sizeSmall,
-    double? sizeSmaller,
+    YgIconSizeTheme? size,
+    YgIconTapSizeTheme? tapSize,
   }) {
     return YgIconTheme(
-      sizeLarge: sizeLarge ?? this.sizeLarge,
-      sizeLarger: sizeLarger ?? this.sizeLarger,
-      sizeLargest: sizeLargest ?? this.sizeLargest,
-      sizeSmall: sizeSmall ?? this.sizeSmall,
-      sizeSmaller: sizeSmaller ?? this.sizeSmaller,
+      size: size ?? this.size,
+      tapSize: tapSize ?? this.tapSize,
     );
   }
 
@@ -83,11 +59,8 @@ class YgIconTheme extends ThemeExtension<YgIconTheme> {
   YgIconTheme lerp(covariant ThemeExtension<YgIconTheme>? other, double t) {
     if (other is! YgIconTheme) return this as YgIconTheme;
     return YgIconTheme(
-      sizeLarge: t < 0.5 ? sizeLarge : other.sizeLarge,
-      sizeLarger: t < 0.5 ? sizeLarger : other.sizeLarger,
-      sizeLargest: t < 0.5 ? sizeLargest : other.sizeLargest,
-      sizeSmall: t < 0.5 ? sizeSmall : other.sizeSmall,
-      sizeSmaller: t < 0.5 ? sizeSmaller : other.sizeSmaller,
+      size: size.lerp(other.size, t) as YgIconSizeTheme,
+      tapSize: tapSize.lerp(other.tapSize, t) as YgIconTapSizeTheme,
     );
   }
 
@@ -96,25 +69,16 @@ class YgIconTheme extends ThemeExtension<YgIconTheme> {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is YgIconTheme &&
-            const DeepCollectionEquality().equals(sizeLarge, other.sizeLarge) &&
-            const DeepCollectionEquality()
-                .equals(sizeLarger, other.sizeLarger) &&
-            const DeepCollectionEquality()
-                .equals(sizeLargest, other.sizeLargest) &&
-            const DeepCollectionEquality().equals(sizeSmall, other.sizeSmall) &&
-            const DeepCollectionEquality()
-                .equals(sizeSmaller, other.sizeSmaller));
+            const DeepCollectionEquality().equals(size, other.size) &&
+            const DeepCollectionEquality().equals(tapSize, other.tapSize));
   }
 
   @override
   int get hashCode {
     return Object.hash(
       runtimeType.hashCode,
-      const DeepCollectionEquality().hash(sizeLarge),
-      const DeepCollectionEquality().hash(sizeLarger),
-      const DeepCollectionEquality().hash(sizeLargest),
-      const DeepCollectionEquality().hash(sizeSmall),
-      const DeepCollectionEquality().hash(sizeSmaller),
+      const DeepCollectionEquality().hash(size),
+      const DeepCollectionEquality().hash(tapSize),
     );
   }
 }
