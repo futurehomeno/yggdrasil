@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:yggdrasil/src/utils/yg_spacing_builder.dart';
 import 'package:yggdrasil/yggdrasil.dart';
 
 class YgDialog extends StatelessWidget {
@@ -11,14 +10,14 @@ class YgDialog extends StatelessWidget {
     required this.actions,
   }) : assert(actions.isNotEmpty, '"actions" should contain at least one button');
 
-  final Widget icon;
+  final String icon;
   final String title;
   final String description;
   final List<YgButton> actions;
 
   @override
   Widget build(BuildContext context) {
-    final YgDialogThemes dialogTheme = context.dialogTheme;
+    final YgDialogTheme dialogTheme = context.dialogTheme;
 
     final YgSpacingBuilder spacingBuilder = YgSpacingBuilder(
       horizontalSpacing: dialogTheme.buttonSpacing,
@@ -30,7 +29,6 @@ class YgDialog extends StatelessWidget {
       child: Padding(
         padding: dialogTheme.outerPadding,
         child: Column(
-          crossAxisAlignment: CrossAxisAlignment.stretch,
           mainAxisSize: MainAxisSize.min,
           children: <Widget>[
             _buildIcon(dialogTheme),
@@ -42,18 +40,18 @@ class YgDialog extends StatelessWidget {
     );
   }
 
-  Container _buildIcon(YgDialogThemes dialogTheme) {
+  Container _buildIcon(YgDialogTheme dialogTheme) {
     return Container(
       padding: dialogTheme.iconPadding,
       decoration: BoxDecoration(
         color: dialogTheme.iconContainerColor,
         shape: BoxShape.circle,
       ),
-      child: icon,
+      child: YgIcon(icon: icon),
     );
   }
 
-  Padding _buildTextSection(YgDialogThemes dialogTheme) {
+  Padding _buildTextSection(YgDialogTheme dialogTheme) {
     return Padding(
       padding: dialogTheme.textSectionPadding,
       child: Column(
@@ -64,9 +62,7 @@ class YgDialog extends StatelessWidget {
             textAlign: TextAlign.center,
             style: dialogTheme.titleTextStyle,
           ),
-          SizedBox(
-            height: dialogTheme.titleDescriptionSpacing,
-          ),
+          SizedBox(height: dialogTheme.titleDescriptionSpacing),
           Text(
             description,
             textAlign: TextAlign.center,

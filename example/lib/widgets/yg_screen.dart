@@ -16,8 +16,8 @@ class YgScreen extends StatelessWidget {
   final String componentName;
   final String componentDesc;
   final String supernovaLink;
-  final Widget child;
   final bool scrollable;
+  final Widget child;
 
   @override
   Widget build(BuildContext context) {
@@ -27,9 +27,10 @@ class YgScreen extends StatelessWidget {
         actions: <Widget>[
           Consumer<YgAppState>(
             builder: (BuildContext context, YgAppState ygAppState, Widget? widget) {
-              return IconButton(
-                onPressed: ygAppState.toggleTheme,
-                icon: Icon(_buildThemeIcon(context, ygAppState)),
+              return YgIcon(
+                icon: 'icon',
+                onTap: ygAppState.toggleTheme,
+                tapSize: YgIconTapSize.largest,
               );
             },
           )
@@ -37,16 +38,13 @@ class YgScreen extends StatelessWidget {
       ),
       body: scrollable
           ? SingleChildScrollView(
-              child: child,
+              child: SafeArea(
+                child: child,
+              ),
             )
-          : child,
+          : SafeArea(
+              child: child,
+            ),
     );
-  }
-
-  IconData _buildThemeIcon(BuildContext context, YgAppState ygAppState) {
-    if (ygAppState.currentTheme == YgTheme.consumerLight) {
-      return Icons.dark_mode_outlined;
-    }
-    return Icons.light_mode_outlined;
   }
 }

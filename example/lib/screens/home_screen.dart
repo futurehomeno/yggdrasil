@@ -1,13 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:yggdrasil/yggdrasil.dart';
 import 'package:yggdrasil_demo/core/_core.dart';
 import 'package:yggdrasil_demo/screens/_screens.dart';
 import 'package:yggdrasil_demo/widgets/_widgets.dart';
-
-import 'badge_screen.dart';
-import 'bottom_sheet_screen.dart';
-import 'buttons_screen.dart';
-import 'dialog_screen.dart';
-import 'text_link_screen.dart';
 
 class HomeScreen extends StatelessWidget {
   const HomeScreen({super.key});
@@ -24,52 +19,75 @@ class HomeScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return YgScreen(
-      componentName: 'Home',
+      componentName: 'Yggdrasil Components',
       componentDesc: 'List of supported components.',
       supernovaLink: '-',
       child: Column(
         children: <Widget>[
-          ListTile(
-            title: const Text('Buttons'),
-            onTap: () {
-              sl<YgRouter>().push(ButtonsScreen.route());
-            },
+          YgListTile(
+            title: 'Badge',
+            onTap: () => sl<YgRouter>().push(BadgeScreen.route()),
+            trailingWidgets: const <YgIcon>[YgIcon(icon: 'icon')],
           ),
-          ListTile(
-            title: const Text('Bottom sheet'),
-            onTap: () {
-              sl<YgRouter>().push(BottomSheetScreen.route());
-            },
+          YgListTile(
+            title: 'Bottom sheet',
+            onTap: () => sl<YgRouter>().push(BottomSheetScreen.route()),
+            trailingWidgets: const <YgIcon>[YgIcon(icon: 'icon')],
           ),
-          ListTile(
-            title: const Text('Badge'),
-            onTap: () {
-              sl<YgRouter>().push(BadgeScreen.route());
-            },
+          YgListTile(
+            title: 'Buttons',
+            onTap: () => sl<YgRouter>().push(ButtonsScreen.route()),
+            trailingWidgets: const <YgIcon>[YgIcon(icon: 'icon')],
           ),
-          ListTile(
-            title: const Text('Callout'),
-            onTap: () {
-              sl<YgRouter>().push(CalloutScreen.route());
-            },
+          YgListTile(
+            title: 'Callout',
+            onTap: () => sl<YgRouter>().push(CalloutScreen.route()),
+            trailingWidgets: const <YgIcon>[YgIcon(icon: 'icon')],
           ),
-          ListTile(
-            title: const Text('Dialog'),
-            onTap: () {
-              sl<YgRouter>().push(DialogScreen.route());
-            },
+          YgListTile(
+            title: 'Cards',
+            onTap: () => sl<YgRouter>().push(CardScreen.route()),
+            trailingWidgets: const <YgIcon>[YgIcon(icon: 'icon')],
           ),
-          ListTile(
-            title: const Text('Snackbar'),
-            onTap: () {
-              sl<YgRouter>().push(SnackbarScreen.route());
-            },
+          YgListTile(
+            title: 'Dialog',
+            onTap: () => sl<YgRouter>().push(DialogScreen.route()),
+            trailingWidgets: const <YgIcon>[YgIcon(icon: 'icon')],
           ),
-          ListTile(
-            title: const Text('Text link'),
-            onTap: () {
-              sl<YgRouter>().push(TextLinkScreen.route());
-            },
+          YgListTile(
+            title: 'Divider',
+            onTap: () => sl<YgRouter>().push(DividerScreen.route()),
+            trailingWidgets: const <YgIcon>[YgIcon(icon: 'icon')],
+          ),
+          YgListTile(
+            title: 'Icon',
+            onTap: () => sl<YgRouter>().push(IconScreen.route()),
+            trailingWidgets: const <YgIcon>[YgIcon(icon: 'icon')],
+          ),
+          YgListTile(
+            title: 'List',
+            onTap: () => sl<YgRouter>().push(ListScreen.route()),
+            trailingWidgets: const <YgIcon>[YgIcon(icon: 'icon')],
+          ),
+          YgListTile(
+            title: 'List tile',
+            onTap: () => sl<YgRouter>().push(ListTileScreen.route()),
+            trailingWidgets: const <YgIcon>[YgIcon(icon: 'icon')],
+          ),
+          YgListTile(
+            title: 'Snackbar',
+            onTap: () => sl<YgRouter>().push(SnackbarScreen.route()),
+            trailingWidgets: const <YgIcon>[YgIcon(icon: 'icon')],
+          ),
+          YgListTile(
+            title: 'Tags',
+            onTap: () => sl<YgRouter>().push(TagsScreen.route()),
+            trailingWidgets: const <YgIcon>[YgIcon(icon: 'icon')],
+          ),
+          YgListTile(
+            title: 'Text link',
+            onTap: () => sl<YgRouter>().push(TextLinkScreen.route()),
+            trailingWidgets: const <YgIcon>[YgIcon(icon: 'icon')],
           ),
         ],
       ),

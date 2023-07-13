@@ -19,26 +19,58 @@ class BadgeScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return YgScreen(
       componentName: 'Badge',
-      componentDesc: 'Badge',
+      componentDesc: 'Badges',
       supernovaLink: 'Link',
       child: Column(
         children: <Widget>[
+          YgListTile(title: 'Badges with count 0 - 9'),
           YgBadge(
-            amount: 5,
+            amount: 0,
             weight: YgBadgeWeight.strong,
-            child: IconButton(
-              onPressed: () {},
-              icon: const Icon(Icons.notifications_none_outlined),
+            child: YgIcon(
+              onTap: () {},
+              icon: 'icon',
+              tapSize: YgIconTapSize.largest,
             ),
           ),
           YgBadge(
-            amount: 18,
-            weight: YgBadgeWeight.weak,
-            child: IconButton(
-              onPressed: () {},
-              icon: const Icon(Icons.notifications_none_outlined),
+            amount: 1,
+            weight: YgBadgeWeight.strong,
+            child: YgIcon(
+              onTap: () {},
+              icon: 'icon',
+              tapSize: YgIconTapSize.largest,
             ),
           ),
+          YgBadge(
+            amount: 8,
+            weight: YgBadgeWeight.strong,
+            child: YgIcon(
+              onTap: () {},
+              icon: 'icon',
+              tapSize: YgIconTapSize.largest,
+            ),
+          ),
+          YgBadge(
+            amount: 9,
+            weight: YgBadgeWeight.strong,
+            child: YgIcon(
+              onTap: () {},
+              icon: 'icon',
+              tapSize: YgIconTapSize.largest,
+            ),
+          ),
+          YgListTile(title: 'Badges with more than 9'),
+          YgBadge(
+            amount: 10,
+            weight: YgBadgeWeight.weak,
+            child: YgIcon(
+              onTap: () {},
+              icon: 'icon',
+              tapSize: YgIconTapSize.largest,
+            ),
+          ),
+          YgListTile(title: 'Dot badge'),
           const YgDotBadge(),
         ],
       ),

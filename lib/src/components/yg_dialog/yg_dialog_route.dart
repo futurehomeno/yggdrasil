@@ -1,10 +1,7 @@
 import 'dart:math';
 
 import 'package:flutter/material.dart';
-import 'package:yggdrasil/src/theme/dialog/_dialog.dart';
-import 'package:yggdrasil/src/theme/theme.dart';
-
-import '_yg_dialog.dart';
+import 'package:yggdrasil/yggdrasil.dart';
 
 /// A route which should be extended to create a [YgBottomSheet] modal route.
 ///
@@ -16,16 +13,16 @@ import '_yg_dialog.dart';
 abstract class YgDialogRoute extends PopupRoute<YgDialog> {
   late AnimationController _controller;
 
-  YgDialogThemes get _dialogTheme => navigator!.context.dialogTheme;
+  YgDialogTheme get _dialogThemes => navigator!.context.dialogTheme;
 
   @override
-  Color? get barrierColor => _dialogTheme.scrimColor;
+  Color? get barrierColor => _dialogThemes.scrimColor;
 
   @override
-  Duration get transitionDuration => _dialogTheme.movementAnimationDuration;
+  Duration get transitionDuration => _dialogThemes.movementAnimationDuration;
 
   @override
-  Curve get barrierCurve => _dialogTheme.movementAnimationCurve;
+  Curve get barrierCurve => _dialogThemes.movementAnimationCurve;
 
   @override
   bool get barrierDismissible => true;
@@ -46,15 +43,16 @@ abstract class YgDialogRoute extends PopupRoute<YgDialog> {
 
   @override
   Widget buildPage(BuildContext context, Animation<double> animation, Animation<double> secondaryAnimation) {
-    final YgDialogThemes theme = context.dialogTheme;
+    final YgDialogTheme dialogTheme = context.dialogTheme;
+
     return LayoutBuilder(
       builder: (BuildContext context, BoxConstraints constraints) {
         // Custom layout which applies a max width, padding and min width.
         // The padding gets discarded to preserve the min width, the min width
         // gets discarded when it's more than the total with of the screen.
-        final double minWidth = min(theme.minWidth, constraints.maxWidth);
-        final double maxWidth = min(theme.maxWidth, constraints.maxWidth);
-        final double widthWithPadding = maxWidth - (theme.paddingToScreenEdge * 2);
+        final double minWidth = min(dialogTheme.minWidth, constraints.maxWidth);
+        final double maxWidth = min(dialogTheme.maxWidth, constraints.maxWidth);
+        final double widthWithPadding = maxWidth - (dialogTheme.paddingToScreenEdge * 2);
         final double width = max(minWidth, widthWithPadding);
 
         return FadeTransition(

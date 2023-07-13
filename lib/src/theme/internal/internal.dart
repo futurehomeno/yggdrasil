@@ -5,7 +5,7 @@ import 'package:yggdrasil/src/theme/internal/scroll_shadow/scroll_shadow.dart';
 part 'internal.tailor.dart';
 
 @tailorComponent
-class _$YgInternalTheme {
+class _$YgInternalThemes {
   @themeExtension
   static List<YgScrollShadowThemes> scrollShadow = YgScrollShadowThemes.themes;
 }

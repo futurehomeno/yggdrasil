@@ -4,37 +4,19 @@ import 'package:yggdrasil/src/theme/theme.dart';
 /// Helper to construct ThemeData to be used in an application.
 class YgThemeDataHelper {
   // region Consumer themes.
-  static ThemeData get consumerLightThemeData {
+  static ThemeData getThemeData(YgTheme theme) {
     return ThemeData(
-      brightness: Brightness.light,
-      extensions: <YgTheme>[YgTheme.consumerLight],
+      brightness: theme.defaults.brightness,
+      extensions: <YgTheme>[theme],
+      useMaterial3: true,
+      // Default theme values.
       pageTransitionsTheme: _defaultPageTransitionsTheme,
-    );
-  }
-
-  static ThemeData get consumerDarkThemeData {
-    return ThemeData(
-      brightness: Brightness.dark,
-      extensions: <YgTheme>[YgTheme.consumerDark],
-      pageTransitionsTheme: _defaultPageTransitionsTheme,
-    );
-  }
-  // endregion
-
-  // region Professional themes.
-  static ThemeData get professionalLightThemeData {
-    return ThemeData(
-      brightness: Brightness.light,
-      extensions: <YgTheme>[YgTheme.professionalLight],
-      pageTransitionsTheme: _defaultPageTransitionsTheme,
-    );
-  }
-
-  static ThemeData get professionalDarkThemeData {
-    return ThemeData(
-      brightness: Brightness.dark,
-      extensions: <YgTheme>[YgTheme.professionalDark],
-      pageTransitionsTheme: _defaultPageTransitionsTheme,
+      scaffoldBackgroundColor: theme.defaults.scaffoldColor,
+      splashColor: theme.defaults.splashColor,
+      highlightColor: theme.defaults.highlightColor,
+      focusColor: theme.defaults.focusColor,
+      // Temporary theme values. Will be removed once we have proper component.
+      appBarTheme: AppBarTheme(color: theme.defaults.appBarColor),
     );
   }
   // endregion

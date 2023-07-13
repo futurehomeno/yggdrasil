@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:yggdrasil/src/components/_components.dart';
 import 'package:yggdrasil/src/theme/_theme.dart';
 
-import 'enums/_enums.dart';
 import 'yg_button_style.dart';
 
 /// Base class for creating all Yg buttons.
@@ -30,7 +30,7 @@ class YgButton extends ButtonStyleButton {
     FocusNode? focusNode,
     bool? autofocus,
     Clip? clipBehavior,
-    required Widget icon,
+    required String icon,
     required Widget child,
     required ButtonVariant variant,
     required ButtonSize size,
@@ -44,7 +44,7 @@ class YgButton extends ButtonStyleButton {
     FocusNode? focusNode,
     bool autofocus,
     Clip? clipBehavior,
-    required Widget icon,
+    required String icon,
     required Widget child,
     required ButtonVariant variant,
     required ButtonSize size,
@@ -78,7 +78,7 @@ class _YgButtonWithRightIcon extends YgButton {
     super.focusNode,
     super.autofocus = false,
     Clip? clipBehavior,
-    required Widget icon,
+    required String icon,
     required Widget child,
     required ButtonVariant variant,
     required ButtonSize size,
@@ -97,7 +97,7 @@ class _YgButtonWithRightIconChild extends StatelessWidget {
   });
 
   final Widget child;
-  final Widget icon;
+  final String icon;
 
   @override
   Widget build(BuildContext context) {
@@ -105,8 +105,11 @@ class _YgButtonWithRightIconChild extends StatelessWidget {
       mainAxisSize: MainAxisSize.min,
       children: <Widget>[
         Flexible(child: child),
-        SizedBox(width: context.buttonThemes.iconSpacing),
-        icon,
+        SizedBox(width: context.buttonTheme.iconSpacing),
+        YgIcon(
+          icon: icon,
+          size: YgIconSize.small,
+        ),
       ],
     );
   }
@@ -121,7 +124,7 @@ class _YgButtonWithLeftIcon extends YgButton {
     super.focusNode,
     bool? autofocus,
     Clip? clipBehavior,
-    required Widget icon,
+    required String icon,
     required Widget child,
     required ButtonVariant variant,
     required ButtonSize size,
@@ -141,15 +144,18 @@ class _YgButtonWithLeftIconChild extends StatelessWidget {
   });
 
   final Widget child;
-  final Widget icon;
+  final String icon;
 
   @override
   Widget build(BuildContext context) {
     return Row(
       mainAxisSize: MainAxisSize.min,
       children: <Widget>[
-        icon,
-        SizedBox(width: context.buttonThemes.iconSpacing),
+        YgIcon(
+          icon: icon,
+          size: YgIconSize.small,
+        ),
+        SizedBox(width: context.buttonTheme.iconSpacing),
         Flexible(child: child),
       ],
     );

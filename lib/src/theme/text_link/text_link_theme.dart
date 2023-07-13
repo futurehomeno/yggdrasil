@@ -78,11 +78,4 @@ class _$YgTextLinkTheme {
     const EdgeInsets.only(left: professional_light.FhDimensions.xxs),
     const EdgeInsets.only(left: professional_dark.FhDimensions.xxs),
   ];
-
-  static List<double> iconSize = <double>[
-    consumer_light.FhDimensions.sm,
-    consumer_dark.FhDimensions.sm,
-    professional_light.FhDimensions.sm,
-    professional_dark.FhDimensions.sm,
-  ];
 }

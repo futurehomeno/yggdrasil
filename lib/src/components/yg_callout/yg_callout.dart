@@ -3,23 +3,23 @@ import 'package:yggdrasil/yggdrasil.dart';
 
 class YgCallout extends StatelessWidget {
   const YgCallout({
-    required this.calloutVariant,
     required this.description,
-    required this.onClose,
+    this.variant = YgCalloutVariant.highlight,
     this.title,
     this.textLink,
+    this.onClose,
     super.key,
   });
 
-  final YgCalloutVariant calloutVariant;
   final String description;
+  final YgCalloutVariant variant;
   final String? title;
   final YgTextLink? textLink;
-  final VoidCallback onClose;
+  final VoidCallback? onClose;
 
   @override
   Widget build(BuildContext context) {
-    final YgCalloutThemes theme = context.calloutThemes;
+    final YgCalloutTheme theme = context.calloutTheme;
     final YgTextLink? textLink = this.textLink;
     final String? title = this.title;
 
@@ -34,7 +34,7 @@ class YgCallout extends StatelessWidget {
       child: Padding(
         padding: theme.padding,
         child: Row(
-          crossAxisAlignment: CrossAxisAlignment.start,
+          crossAxisAlignment: title == null ? CrossAxisAlignment.center : CrossAxisAlignment.start,
           children: <Widget>[
             Expanded(
               child: Column(
@@ -60,20 +60,24 @@ class YgCallout extends StatelessWidget {
                 ],
               ),
             ),
-            SizedBox(width: theme.closeButtonSpacing),
-            // TODO(emeban): `GestureDetector` -> `YgIcon` (when YgIcon gets merged)
-            GestureDetector(
-              onTap: onClose,
-              child: const Icon(Icons.close),
-            ),
+            if (onClose != null)
+              Padding(
+                padding: EdgeInsets.only(left: theme.closeButtonSpacing),
+                child: YgIcon(
+                  icon: 'icon',
+                  onTap: onClose,
+                  size: YgIconSize.small,
+                  tapSize: YgIconTapSize.large,
+                ),
+              ),
           ],
         ),
       ),
     );
   }
 
-  Color _getBackgroundColor(YgCalloutThemes theme) {
-    switch (calloutVariant) {
+  Color _getBackgroundColor(YgCalloutTheme theme) {
+    switch (variant) {
       case YgCalloutVariant.highlight:
         return theme.highlightCalloutTheme.backgroundColor;
       case YgCalloutVariant.success:
@@ -85,8 +89,8 @@ class YgCallout extends StatelessWidget {
     }
   }
 
-  Color _getBorderColor(YgCalloutThemes theme) {
-    switch (calloutVariant) {
+  Color _getBorderColor(YgCalloutTheme theme) {
+    switch (variant) {
       case YgCalloutVariant.highlight:
         return theme.highlightCalloutTheme.borderColor;
       case YgCalloutVariant.success:

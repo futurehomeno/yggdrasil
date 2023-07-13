@@ -15,7 +15,6 @@ class YgTextLinkTheme extends ThemeExtension<YgTextLinkTheme> {
     required this.focusColor,
     required this.hoverColor,
     required this.iconPadding,
-    required this.iconSize,
     required this.mediumStrongTextStyle,
     required this.mediumWeakTextStyle,
     required this.pressedColor,
@@ -28,7 +27,6 @@ class YgTextLinkTheme extends ThemeExtension<YgTextLinkTheme> {
   final Color focusColor;
   final Color hoverColor;
   final EdgeInsets iconPadding;
-  final double iconSize;
   final TextStyle mediumStrongTextStyle;
   final TextStyle mediumWeakTextStyle;
   final Color pressedColor;
@@ -41,7 +39,6 @@ class YgTextLinkTheme extends ThemeExtension<YgTextLinkTheme> {
     focusColor: _$YgTextLinkTheme.focusColor[0],
     hoverColor: _$YgTextLinkTheme.hoverColor[0],
     iconPadding: _$YgTextLinkTheme.iconPadding[0],
-    iconSize: _$YgTextLinkTheme.iconSize[0],
     mediumStrongTextStyle: _$YgTextLinkTheme.mediumStrongTextStyle[0],
     mediumWeakTextStyle: _$YgTextLinkTheme.mediumWeakTextStyle[0],
     pressedColor: _$YgTextLinkTheme.pressedColor[0],
@@ -55,7 +52,6 @@ class YgTextLinkTheme extends ThemeExtension<YgTextLinkTheme> {
     focusColor: _$YgTextLinkTheme.focusColor[1],
     hoverColor: _$YgTextLinkTheme.hoverColor[1],
     iconPadding: _$YgTextLinkTheme.iconPadding[1],
-    iconSize: _$YgTextLinkTheme.iconSize[1],
     mediumStrongTextStyle: _$YgTextLinkTheme.mediumStrongTextStyle[1],
     mediumWeakTextStyle: _$YgTextLinkTheme.mediumWeakTextStyle[1],
     pressedColor: _$YgTextLinkTheme.pressedColor[1],
@@ -69,7 +65,6 @@ class YgTextLinkTheme extends ThemeExtension<YgTextLinkTheme> {
     focusColor: _$YgTextLinkTheme.focusColor[2],
     hoverColor: _$YgTextLinkTheme.hoverColor[2],
     iconPadding: _$YgTextLinkTheme.iconPadding[2],
-    iconSize: _$YgTextLinkTheme.iconSize[2],
     mediumStrongTextStyle: _$YgTextLinkTheme.mediumStrongTextStyle[2],
     mediumWeakTextStyle: _$YgTextLinkTheme.mediumWeakTextStyle[2],
     pressedColor: _$YgTextLinkTheme.pressedColor[2],
@@ -83,7 +78,6 @@ class YgTextLinkTheme extends ThemeExtension<YgTextLinkTheme> {
     focusColor: _$YgTextLinkTheme.focusColor[3],
     hoverColor: _$YgTextLinkTheme.hoverColor[3],
     iconPadding: _$YgTextLinkTheme.iconPadding[3],
-    iconSize: _$YgTextLinkTheme.iconSize[3],
     mediumStrongTextStyle: _$YgTextLinkTheme.mediumStrongTextStyle[3],
     mediumWeakTextStyle: _$YgTextLinkTheme.mediumWeakTextStyle[3],
     pressedColor: _$YgTextLinkTheme.pressedColor[3],
@@ -105,7 +99,6 @@ class YgTextLinkTheme extends ThemeExtension<YgTextLinkTheme> {
     Color? focusColor,
     Color? hoverColor,
     EdgeInsets? iconPadding,
-    double? iconSize,
     TextStyle? mediumStrongTextStyle,
     TextStyle? mediumWeakTextStyle,
     Color? pressedColor,
@@ -118,7 +111,6 @@ class YgTextLinkTheme extends ThemeExtension<YgTextLinkTheme> {
       focusColor: focusColor ?? this.focusColor,
       hoverColor: hoverColor ?? this.hoverColor,
       iconPadding: iconPadding ?? this.iconPadding,
-      iconSize: iconSize ?? this.iconSize,
       mediumStrongTextStyle:
           mediumStrongTextStyle ?? this.mediumStrongTextStyle,
       mediumWeakTextStyle: mediumWeakTextStyle ?? this.mediumWeakTextStyle,
@@ -138,7 +130,6 @@ class YgTextLinkTheme extends ThemeExtension<YgTextLinkTheme> {
       focusColor: Color.lerp(focusColor, other.focusColor, t)!,
       hoverColor: Color.lerp(hoverColor, other.hoverColor, t)!,
       iconPadding: t < 0.5 ? iconPadding : other.iconPadding,
-      iconSize: t < 0.5 ? iconSize : other.iconSize,
       mediumStrongTextStyle: TextStyle.lerp(
           mediumStrongTextStyle, other.mediumStrongTextStyle, t)!,
       mediumWeakTextStyle:
@@ -166,7 +157,6 @@ class YgTextLinkTheme extends ThemeExtension<YgTextLinkTheme> {
                 .equals(hoverColor, other.hoverColor) &&
             const DeepCollectionEquality()
                 .equals(iconPadding, other.iconPadding) &&
-            const DeepCollectionEquality().equals(iconSize, other.iconSize) &&
             const DeepCollectionEquality()
                 .equals(mediumStrongTextStyle, other.mediumStrongTextStyle) &&
             const DeepCollectionEquality()
@@ -188,7 +178,6 @@ class YgTextLinkTheme extends ThemeExtension<YgTextLinkTheme> {
       const DeepCollectionEquality().hash(focusColor),
       const DeepCollectionEquality().hash(hoverColor),
       const DeepCollectionEquality().hash(iconPadding),
-      const DeepCollectionEquality().hash(iconSize),
       const DeepCollectionEquality().hash(mediumStrongTextStyle),
       const DeepCollectionEquality().hash(mediumWeakTextStyle),
       const DeepCollectionEquality().hash(pressedColor),
