@@ -20,7 +20,9 @@ class YgSnackbar extends StatelessWidget {
 
     return Material(
       color: theme.backgroundColor,
-      shape: RoundedRectangleBorder(borderRadius: theme.borderRadius),
+      shape: RoundedRectangleBorder(
+        borderRadius: theme.borderRadius,
+      ),
       child: Padding(
         padding: theme.padding,
         child: Row(

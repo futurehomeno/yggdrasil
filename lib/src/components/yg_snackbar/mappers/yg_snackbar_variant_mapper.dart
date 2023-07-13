@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:yggdrasil/src/components/yg_snackbar/enums/_enums.dart';
-import 'package:yggdrasil/src/theme/_theme.dart';
+import 'package:yggdrasil/yggdrasil.dart';
 
 class YgSnackbarVariantMapper {
   const YgSnackbarVariantMapper._();
@@ -33,26 +32,28 @@ class YgSnackbarVariantMapper {
     }
   }
 
-  // TODO(emeban): convert this to YgIcon whenever possible
-  static Icon getIcon({
+  static YgIcon getIcon({
     required YgSnackbarTheme theme,
     required YgSnackbarVariant snackbarVariant,
   }) {
     switch (snackbarVariant) {
       case YgSnackbarVariant.highlight:
-        return Icon(
-          Icons.info_outline,
+        return YgIcon(
+          icon: 'icon',
+          size: YgIconSize.small,
           color: theme.highlightSnackbarTheme.iconColor,
         );
       case YgSnackbarVariant.success:
-        return Icon(
-          Icons.check,
-          color: theme.successSnackbarTheme.iconColor,
+        return YgIcon(
+          icon: 'icon',
+          size: YgIconSize.small,
+          color: theme.highlightSnackbarTheme.iconColor,
         );
       case YgSnackbarVariant.critical:
-        return Icon(
-          Icons.warning_amber_outlined,
-          color: theme.criticalSnackbarTheme.iconColor,
+        return YgIcon(
+          icon: 'icon',
+          size: YgIconSize.small,
+          color: theme.highlightSnackbarTheme.iconColor,
         );
     }
   }
