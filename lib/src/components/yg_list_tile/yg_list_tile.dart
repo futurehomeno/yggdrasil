@@ -110,6 +110,7 @@ class YgListTile extends StatelessWidget {
     );
   }
 
+  // TODO(bjhandeland): Make sure the whole button is clickable.
   Widget _buildInfoButton(YgListTileTheme listTileTheme) {
     return Padding(
       padding: EdgeInsets.only(left: listTileTheme.contentSpacing),
