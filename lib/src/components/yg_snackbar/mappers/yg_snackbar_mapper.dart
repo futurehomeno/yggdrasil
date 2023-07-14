@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:yggdrasil/yggdrasil.dart';
 
-class YgSnackbarVariantMapper {
-  const YgSnackbarVariantMapper._();
+class YgSnackbarMapper {
+  const YgSnackbarMapper._();
 
   static Color getContainerIconColor({
     required YgSnackbarTheme theme,

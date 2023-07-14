@@ -1,1 +1,1 @@
-export 'yg_snackbar_variant_mapper.dart';
+export 'yg_snackbar_mapper.dart';

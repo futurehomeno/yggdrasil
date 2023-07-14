@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:yggdrasil/src/components/yg_badge/_yg_badge.dart';
 import 'package:yggdrasil/src/theme/_theme.dart';
-
-import 'enums/_enums.dart';
 
 class YgBadge extends StatelessWidget {
   const YgBadge({
@@ -28,7 +27,10 @@ class YgBadge extends StatelessWidget {
         Container(
           padding: const EdgeInsets.fromLTRB(5, 2, 5, 2),
           decoration: BoxDecoration(
-            color: weight.getBadgeColor(badgeTheme),
+            color: YgBadgeMapper.getBadgeColor(
+              theme: badgeTheme,
+              weight: weight,
+            ),
             borderRadius: badgeTheme.borderRadius,
           ),
           constraints: const BoxConstraints(
@@ -39,7 +41,10 @@ class YgBadge extends StatelessWidget {
             widthFactor: 1,
             child: Text(
               amount > 9 ? '9+' : amount.toString(),
-              style: weight.getTextStyle(badgeTheme),
+              style: YgBadgeMapper.getTextStyle(
+                theme: badgeTheme,
+                weight: weight,
+              ),
             ),
           ),
         ),

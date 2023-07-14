@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart' hide TextButtonTheme;
+import 'package:yggdrasil/src/components/yg_button/_yg_button.dart';
 import 'package:yggdrasil/src/theme/_theme.dart';
 import 'package:yggdrasil/src/utils/_utils.dart';
 
-import 'enums/_enums.dart';
 import 'properties/_properties.dart';
 
 /// Button style for YgButtons.
@@ -107,7 +107,10 @@ class YgButtonStyle {
         borderRadius: theme.borderRadius,
         width: theme.borderWidth,
       ),
-      padding: size.buildPadding(theme),
+      padding: YgButtonMapper.buildPadding(
+        theme: theme,
+        size: size,
+      ),
     );
   }
 
@@ -132,7 +135,10 @@ class YgButtonStyle {
         borderRadius: theme.borderRadius,
         width: theme.borderWidth,
       ),
-      padding: size.buildPadding(theme),
+      padding: YgButtonMapper.buildPadding(
+        theme: theme,
+        size: size,
+      ),
     );
   }
 
@@ -157,7 +163,10 @@ class YgButtonStyle {
         borderRadius: theme.borderRadius,
         width: theme.borderWidth,
       ),
-      padding: size.buildPadding(theme),
+      padding: YgButtonMapper.buildPadding(
+        theme: theme,
+        size: size,
+      ),
     );
   }
 
@@ -182,7 +191,10 @@ class YgButtonStyle {
         borderRadius: theme.borderRadius,
         width: theme.borderWidth,
       ),
-      padding: size.buildPadding(theme),
+      padding: YgButtonMapper.buildPadding(
+        theme: theme,
+        size: size,
+      ),
     );
   }
 
@@ -207,7 +219,10 @@ class YgButtonStyle {
         borderRadius: theme.borderRadius,
         width: theme.borderWidth,
       ),
-      padding: size.buildPadding(theme),
+      padding: YgButtonMapper.buildPadding(
+        theme: theme,
+        size: size,
+      ),
     );
   }
 }
