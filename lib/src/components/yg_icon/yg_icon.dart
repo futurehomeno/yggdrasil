@@ -23,27 +23,42 @@ class YgIcon extends StatelessWidget {
 
     if (onTap == null) {
       return SizedBox.square(
-        dimension: size.getIconSize(iconTheme),
+        dimension: YgIconMapper.getIconSize(
+          iconTheme: iconTheme,
+          iconSize: size,
+        ),
         child: const Placeholder(),
       );
     }
 
     return Material(
       borderRadius: BorderRadius.circular(
-        tapSize.getTapSize(iconTheme),
+        YgIconMapper.getTapSize(
+          iconTheme: iconTheme,
+          tapSize: tapSize,
+        ),
       ),
       color: context.tokens.colors.backgroundTransparent,
       child: InkWell(
         borderRadius: BorderRadius.circular(
-          tapSize.getTapSize(iconTheme),
+          YgIconMapper.getTapSize(
+            iconTheme: iconTheme,
+            tapSize: tapSize,
+          ),
         ),
         onTap: onTap,
         child: SizedBox.square(
-          dimension: tapSize.getTapSize(iconTheme),
+          dimension: YgIconMapper.getTapSize(
+            iconTheme: iconTheme,
+            tapSize: tapSize,
+          ),
           child: Align(
             alignment: Alignment.center,
             child: SizedBox.square(
-              dimension: size.getIconSize(iconTheme),
+              dimension: YgIconMapper.getIconSize(
+                iconTheme: iconTheme,
+                iconSize: size,
+              ),
               child: Placeholder(
                 color: color ?? context.defaults.iconColor,
               ),
