@@ -31,7 +31,6 @@ class YgScreen extends StatelessWidget {
                 YgIcons.sum,
                 onTap: ygAppState.toggleTheme,
                 tapSize: YgIconTapSize.largest,
-                useSvgColor: true,
               );
             },
           )
