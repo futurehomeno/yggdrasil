@@ -17,7 +17,10 @@ class YgIcon extends StatelessWidget {
   /// String representing the name of the icon.
   final String icon;
 
-  /// Color of the icon. If null, the default color will be used.
+  /// Color of the icon.
+  ///
+  /// If null, the default color for icons will be used.
+  /// This responds well when changing the theme.
   final Color? color;
 
   /// Whether the icon color should be inverted.
@@ -41,6 +44,9 @@ class YgIcon extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    assert(!(useSvgColor && color != null), 'Can only specify color or useSvgColor, not both');
+    assert(!(useSvgColor && invertColor), 'Not possible to invert the svg color.');
+
     final YgIconTheme iconTheme = context.iconTheme;
     final ColorFilter? colorFilter = _setColorFilter(color, context);
 
@@ -69,12 +75,12 @@ class YgIcon extends StatelessWidget {
     );
   }
 
-  ColorFilter? _setColorFilter(Color? myColor, BuildContext context) {
+  ColorFilter? _setColorFilter(Color? color, BuildContext context) {
     if (useSvgColor) {
       return null;
     }
 
-    if (myColor == null) {
+    if (color == null) {
       return ColorFilter.mode(
         invertColor ? context.defaults.invertedIconColor : context.defaults.iconColor,
         BlendMode.srcIn,
@@ -82,7 +88,7 @@ class YgIcon extends StatelessWidget {
     }
 
     return ColorFilter.mode(
-      myColor,
+      color,
       BlendMode.srcIn,
     );
   }
