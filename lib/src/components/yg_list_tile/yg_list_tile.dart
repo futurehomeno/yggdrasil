@@ -8,8 +8,6 @@ import 'package:yggdrasil/yggdrasil.dart';
 /// Supports 2 leading, 2 trailing and 2 supporting widgets,
 /// however, this differs from design in Figma. This is so
 /// we do not encourage designers to use more than 2 widgets.
-// TODO(bjhandeland): Make the info icon's clickable area larger
-// without making the actual icon larger.
 class YgListTile extends StatelessWidget {
   const YgListTile({
     super.key,
@@ -119,7 +117,7 @@ class YgListTile extends StatelessWidget {
         SharedIcons.infoNew,
         size: YgIconSize.small,
         tapSize: YgIconTapSize.largest,
-        onTap: onInfoTap!,
+        onTap: onInfoTap,
       ),
     );
   }

@@ -21,6 +21,7 @@ class YgBottomSheet extends StatefulWidget {
 }
 
 class _YgBottomSheetState extends State<YgBottomSheet> {
+  // TODO(bjhandeland): potentially expose the scroll controller.
   final ScrollController _scrollController = ScrollController();
 
   @override

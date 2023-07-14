@@ -9,9 +9,9 @@ class YgTextLink extends ButtonStyleButton {
     super.key,
     required String text,
     required super.onPressed,
-    bool external = false,
     this.size = YgTextLinkSize.small,
     this.weight = YgTextLinkWeight.weak,
+    this.external = false,
     super.autofocus = false,
     super.clipBehavior = Clip.none,
     super.onLongPress,
@@ -28,6 +28,7 @@ class YgTextLink extends ButtonStyleButton {
 
   final YgTextLinkSize size;
   final YgTextLinkWeight weight;
+  final bool external;
 
   @override
   ButtonStyle defaultStyleOf(BuildContext context) {

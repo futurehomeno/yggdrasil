@@ -19,13 +19,15 @@ class YgIcon extends StatelessWidget {
 
   /// Color of the icon.
   ///
-  /// If null, the default color for icons will be used.
+  /// If null, the default theme color for icons will be used.
   /// This responds well when changing the theme.
   final Color? color;
 
   /// Whether the icon color should be inverted.
   ///
-  /// The default color works for light backgrounds, but not for dark backgrounds.
+  /// Enable this if the icon is placed on a dark background.
+  /// The default theme color works for light backgrounds,
+  /// but not for dark backgrounds.
   final bool invertColor;
 
   /// Whether the icon should use the color defined in the SVG file.

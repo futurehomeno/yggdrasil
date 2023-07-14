@@ -5,12 +5,14 @@ import 'package:yggdrasil/src/theme/_theme.dart';
 import 'yg_button_style.dart';
 
 /// Base class for creating all Yg buttons.
+// TODO(bjhandeland): Consider making the private classes parts.
 class YgButton extends ButtonStyleButton {
   const YgButton({
     super.key,
     required this.variant,
-    this.size = YgButtonSize.medium,
     required super.onPressed,
+    required super.child,
+    this.size = YgButtonSize.medium,
     super.onLongPress,
     super.onHover,
     super.onFocusChange,
@@ -19,7 +21,6 @@ class YgButton extends ButtonStyleButton {
     super.autofocus = false,
     super.clipBehavior = Clip.none,
     super.statesController,
-    required super.child,
   });
 
   // region Leading icon

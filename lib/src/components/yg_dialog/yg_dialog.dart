@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:yggdrasil/yggdrasil.dart';
 
+// TODO(bjhandeland): Icon can sometimes be a loading indicator.
+// TODO(bjhandeland): Factories for variants, e.g. success, warning, etc.
 class YgDialog extends StatelessWidget {
   YgDialog({
     super.key,
