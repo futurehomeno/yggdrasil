@@ -31,14 +31,14 @@ class YgSnackbar extends StatelessWidget {
             DecoratedBox(
               decoration: BoxDecoration(
                 shape: BoxShape.circle,
-                color: YgSnackbarVariantMapper.getContainerIconColor(
+                color: YgSnackbarMapper.getContainerIconColor(
                   theme: theme,
                   snackbarVariant: variant,
                 ),
               ),
               child: Padding(
                 padding: theme.iconContainerPadding,
-                child: YgSnackbarVariantMapper.getIcon(
+                child: YgSnackbarMapper.getIcon(
                   theme: theme,
                   snackbarVariant: variant,
                 ),

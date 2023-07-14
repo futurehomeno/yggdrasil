@@ -1,1 +1,1 @@
-export 'yg_callout_variant_mapper.dart';
+export 'yg_callout_mapper.dart';

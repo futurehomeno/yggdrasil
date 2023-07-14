@@ -24,14 +24,14 @@ class YgCallout extends StatelessWidget {
     final String? title = this.title;
 
     return Material(
-      color: YgCalloutVariantMapper.getBackgroundColor(
+      color: YgCalloutMapper.getBackgroundColor(
         theme: theme,
         variant: variant,
       ),
       shape: RoundedRectangleBorder(
         borderRadius: theme.borderRadius,
         side: BorderSide(
-          color: YgCalloutVariantMapper.getBorderColor(
+          color: YgCalloutMapper.getBorderColor(
             theme: theme,
             variant: variant,
           ),

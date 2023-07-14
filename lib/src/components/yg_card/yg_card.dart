@@ -27,15 +27,15 @@ class YgCard extends StatelessWidget {
 
     return Material(
       type: MaterialType.card,
-      color: YgCardVariantMapper.getBackgroundColor(
+      color: YgCardMapper.getBackgroundColor(
         theme: cardTheme,
         variant: variant,
       ),
-      shape: YgCardVariantMapper.getShape(
+      shape: YgCardMapper.getShape(
         theme: cardTheme,
         variant: variant,
       ),
-      elevation: YgCardVariantMapper.getElevation(
+      elevation: YgCardMapper.getElevation(
         theme: cardTheme,
         variant: variant,
       ),

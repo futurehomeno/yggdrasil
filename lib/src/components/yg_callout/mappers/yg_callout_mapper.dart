@@ -2,8 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:yggdrasil/src/components/yg_callout/_yg_callout.dart';
 import 'package:yggdrasil/src/theme/_theme.dart';
 
-class YgCalloutVariantMapper {
-  const YgCalloutVariantMapper._();
+class YgCalloutMapper {
+  const YgCalloutMapper._();
 
   static Color getBackgroundColor({
     required YgCalloutTheme theme,

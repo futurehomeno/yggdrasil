@@ -1,1 +1,1 @@
-export 'yg_card_variant_mapper.dart';
+export 'yg_card_mapper.dart';

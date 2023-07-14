@@ -2,8 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:yggdrasil/src/components/yg_card/_yg_card.dart';
 import 'package:yggdrasil/src/theme/_theme.dart';
 
-class YgCardVariantMapper {
-  const YgCardVariantMapper._();
+class YgCardMapper {
+  const YgCardMapper._();
 
   static Color getBackgroundColor({
     required YgCardTheme theme,
