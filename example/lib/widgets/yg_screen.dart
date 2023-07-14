@@ -5,12 +5,12 @@ import 'package:yggdrasil_demo/core/_core.dart';
 
 class YgScreen extends StatelessWidget {
   const YgScreen({
+    super.key,
     required this.componentName,
     required this.componentDesc,
     required this.supernovaLink,
     required this.child,
     this.scrollable = true,
-    super.key,
   });
 
   final String componentName;

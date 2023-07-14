@@ -23,53 +23,53 @@ class ListTileScreen extends StatelessWidget {
       supernovaLink: 'Link',
       child: Column(
         children: <Widget>[
-          YgListTile(
+          const YgListTile(
             title: 'Title',
           ),
-          YgListTile(
+          const YgListTile(
             title: 'Title',
             subtitle: 'Bacon ipsum dolor amet chicken frankfurter burgdoggen landjaeger sirloin ham pig.',
           ),
-          YgListTile(
+          const YgListTile(
             title: 'Title',
             subtitle: 'Bacon ipsum dolor amet chicken frankfurter burgdoggen landjaeger sirloin ham pig.',
-            leadingWidgets: const <Widget>[
+            leadingWidgets: <Widget>[
               YgIcon(YgIcons.info, size: YgIconSize.large),
             ],
           ),
-          YgListTile(
+          const YgListTile(
             title: 'Title',
             subtitle: 'Bacon ipsum dolor amet chicken frankfurter burgdoggen landjaeger sirloin ham pig.',
-            leadingWidgets: const <Widget>[
+            leadingWidgets: <Widget>[
               YgIcon(YgIcons.info, size: YgIconSize.large),
             ],
-            trailingWidgets: const <Widget>[
+            trailingWidgets: <Widget>[
               YgIcon(YgIcons.info, size: YgIconSize.large),
             ],
           ),
-          YgListTile(
+          const YgListTile(
             title: 'Title',
             subtitle: 'Bacon ipsum dolor amet chicken frankfurter burgdoggen landjaeger sirloin ham pig.',
-            leadingWidgets: const <Widget>[
+            leadingWidgets: <Widget>[
               YgIcon(YgIcons.info, size: YgIconSize.large),
             ],
-            trailingWidgets: const <Widget>[
+            trailingWidgets: <Widget>[
               YgIcon(YgIcons.info, size: YgIconSize.large),
             ],
-            supportingWidgets: const <Widget>[
+            supportingWidgets: <Widget>[
               YgIcon(YgIcons.info, size: YgIconSize.large),
             ],
           ),
-          YgListTile(
+          const YgListTile(
             title: 'Title',
             subtitle: 'Bacon ipsum dolor amet chicken frankfurter burgdoggen landjaeger sirloin ham pig.',
-            leadingWidgets: const <Widget>[
+            leadingWidgets: <Widget>[
               YgIcon(YgIcons.info, size: YgIconSize.large),
             ],
-            trailingWidgets: const <Widget>[
+            trailingWidgets: <Widget>[
               YgIcon(YgIcons.info, size: YgIconSize.large),
             ],
-            supportingWidgets: const <Widget>[
+            supportingWidgets: <Widget>[
               YgIcon(YgIcons.info, size: YgIconSize.large),
               YgIcon(YgIcons.info, size: YgIconSize.large),
             ],

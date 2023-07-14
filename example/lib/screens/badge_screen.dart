@@ -23,7 +23,7 @@ class BadgeScreen extends StatelessWidget {
       supernovaLink: 'Link',
       child: Column(
         children: <Widget>[
-          YgListTile(title: 'Badges with count 0 - 9'),
+          const YgListTile(title: 'Badges with count 0 - 9'),
           YgBadge(
             amount: 0,
             weight: YgBadgeWeight.strong,
@@ -60,7 +60,7 @@ class BadgeScreen extends StatelessWidget {
               tapSize: YgIconTapSize.largest,
             ),
           ),
-          YgListTile(title: 'Badges with more than 9'),
+          const YgListTile(title: 'Badges with more than 9'),
           YgBadge(
             amount: 10,
             weight: YgBadgeWeight.weak,
@@ -70,7 +70,7 @@ class BadgeScreen extends StatelessWidget {
               tapSize: YgIconTapSize.largest,
             ),
           ),
-          YgListTile(title: 'Dot badge'),
+          const YgListTile(title: 'Dot badge'),
           const YgDotBadge(),
         ],
       ),

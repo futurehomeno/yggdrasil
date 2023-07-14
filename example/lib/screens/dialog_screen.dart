@@ -28,7 +28,7 @@ class _DialogScreenState extends State<DialogScreen> with TickerProviderStateMix
       supernovaLink: 'Link',
       child: Column(
         children: <Widget>[
-          YgListTile(title: 'Normal dialog'),
+          const YgListTile(title: 'Normal dialog'),
           YgButton(
             variant: YgButtonVariant.primary,
             onPressed: () {
@@ -36,7 +36,7 @@ class _DialogScreenState extends State<DialogScreen> with TickerProviderStateMix
             },
             child: const Text('Show'),
           ),
-          YgListTile(title: 'Non-dismissible dialog'),
+          const YgListTile(title: 'Non-dismissible dialog'),
           YgButton(
             variant: YgButtonVariant.primary,
             onPressed: () {

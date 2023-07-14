@@ -23,12 +23,12 @@ class IconScreen extends StatelessWidget {
       supernovaLink: 'Link',
       child: Column(
         children: <Widget>[
-          YgListTile(title: 'Normal icon'),
+          const YgListTile(title: 'Normal icon'),
           const YgIcon(
             YgIcons.info,
             size: YgIconSize.large,
           ),
-          YgListTile(
+          const YgListTile(
             title: 'Inverted icon on a dark background',
             subtitle: 'These still look good when switching from light mode to dark mode.',
           ),
@@ -42,12 +42,12 @@ class IconScreen extends StatelessWidget {
               invertColor: true,
             ),
           ),
-          YgListTile(title: 'Clickable icon'),
+          const YgListTile(title: 'Clickable icon'),
           YgIcon(
             YgIcons.info,
             onTap: () {},
           ),
-          YgListTile(title: 'Clickable icon w/ large area'),
+          const YgListTile(title: 'Clickable icon w/ large area'),
           YgIcon(
             YgIcons.info,
             onTap: () {},

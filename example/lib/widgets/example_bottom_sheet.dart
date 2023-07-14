@@ -6,7 +6,7 @@ class ExampleBottomSheet extends YgBottomSheetModalRoute {
   YgBottomSheet buildBottomSheet(BuildContext context) {
     return YgBottomSheet(
       title: 'Example Bottom Sheet',
-      content: YgCard(
+      content: const YgCard(
         variant: YgCardVariant.filled,
         child: YgListTile(
           title: 'Example content',

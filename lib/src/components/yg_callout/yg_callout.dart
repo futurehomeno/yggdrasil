@@ -3,12 +3,12 @@ import 'package:yggdrasil/yggdrasil.dart';
 
 class YgCallout extends StatelessWidget {
   const YgCallout({
+    super.key,
     required this.description,
     this.variant = YgCalloutVariant.highlight,
     this.title,
     this.textLink,
     this.onClose,
-    super.key,
   });
 
   final String description;

@@ -2,16 +2,22 @@ import 'package:flutter/material.dart';
 import 'package:yggdrasil/src/components/yg_snackbar/mappers/_mappers.dart';
 import 'package:yggdrasil/yggdrasil.dart';
 
+/// A custom widget for styled Snackbar.
 class YgSnackbar extends StatelessWidget {
   const YgSnackbar({
+    super.key,
     required this.variant,
     required this.message,
     required this.onClose,
-    super.key,
   });
 
+  /// Style variant of the Snackbar.
   final YgSnackbarVariant variant;
+
+  /// Main content of the Snackbar.
   final String message;
+
+  /// Callback triggered on Snackbar close.
   final VoidCallback onClose;
 
   @override

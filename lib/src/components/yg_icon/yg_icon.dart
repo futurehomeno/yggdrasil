@@ -5,13 +5,13 @@ import 'package:yggdrasil/yggdrasil.dart';
 class YgIcon extends StatelessWidget {
   const YgIcon(
     this.icon, {
+    super.key,
     this.color,
     this.invertColor = false,
     this.useSvgColor = false,
     this.size = YgIconSize.large,
     this.tapSize = YgIconTapSize.largest,
     this.onTap,
-    super.key,
   });
 
   /// String representing the name of the icon.

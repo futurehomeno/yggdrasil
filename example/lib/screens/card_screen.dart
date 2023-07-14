@@ -23,10 +23,10 @@ class CardScreen extends StatelessWidget {
       supernovaLink: 'Link',
       child: Column(
         children: <Widget>[
-          YgListTile(title: 'Elevated card'),
+          const YgListTile(title: 'Elevated card'),
           Column(
             children: <Widget>[
-              YgCard(
+              const YgCard(
                 child: YgListTile(
                   title: 'Elevated card',
                   subtitle: 'Bacon ipsum dolor amet chicken frankfurter burgdoggen landjaeger sirloin ham pig.',
@@ -41,10 +41,10 @@ class CardScreen extends StatelessWidget {
               ),
             ],
           ),
-          YgListTile(title: 'Filled card'),
+          const YgListTile(title: 'Filled card'),
           Column(
             children: <Widget>[
-              YgCard(
+              const YgCard(
                 variant: YgCardVariant.filled,
                 child: YgListTile(
                   title: 'Filled card',
@@ -61,10 +61,10 @@ class CardScreen extends StatelessWidget {
               ),
             ],
           ),
-          YgListTile(title: 'Outlined card'),
+          const YgListTile(title: 'Outlined card'),
           Column(
             children: <Widget>[
-              YgCard(
+              const YgCard(
                 variant: YgCardVariant.outlined,
                 child: YgListTile(
                   title: 'Outlined card',
