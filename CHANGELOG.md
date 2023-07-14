@@ -1,7 +1,7 @@
 # 1.0.0 [14.07.2023 17:00]
 
 [feature] Added component ygBadge.
-[feature] Added component ygBottom_sheet.
+[feature] Added component ygBottomSheet.
 [feature] Added component ygButton.
 [feature] Added component ygCallout.
 [feature] Added component ygCard.
