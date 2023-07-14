@@ -25,7 +25,7 @@ class IconScreen extends StatelessWidget {
         children: <Widget>[
           YgListTile(title: 'Normal icon'),
           const YgIcon(
-            SharedIcons.other25,
+            YgIcons.info,
             size: YgIconSize.large,
           ),
           YgListTile(
@@ -37,28 +37,19 @@ class IconScreen extends StatelessWidget {
             weight: YgTagWeight.strong,
             onPressed: () {},
             child: const YgIcon(
-              SharedIcons.other25,
+              YgIcons.info,
               size: YgIconSize.large,
               invertColor: true,
             ),
           ),
-          YgListTile(
-            title: 'Icon with color from svg',
-            subtitle: 'Used when icons come with multiple colors.',
-          ),
-          const YgIcon(
-            MduIcons.sdcoOkColor25,
-            size: YgIconSize.large,
-            useSvgColor: true,
-          ),
           YgListTile(title: 'Clickable icon'),
           YgIcon(
-            SharedIcons.other25,
+            YgIcons.info,
             onTap: () {},
           ),
           YgListTile(title: 'Clickable icon w/ large area'),
           YgIcon(
-            SharedIcons.other25,
+            YgIcons.info,
             onTap: () {},
             tapSize: YgIconTapSize.largest,
           )

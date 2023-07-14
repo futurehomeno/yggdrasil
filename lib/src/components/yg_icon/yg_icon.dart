@@ -9,7 +9,7 @@ class YgIcon extends StatelessWidget {
     this.invertColor = false,
     this.useSvgColor = false,
     this.size = YgIconSize.large,
-    this.tapSize = YgIconTapSize.larger,
+    this.tapSize = YgIconTapSize.largest,
     this.onTap,
     super.key,
   });
@@ -100,7 +100,7 @@ class YgIcon extends StatelessWidget {
     YgIconTheme iconTheme,
   ) {
     return SvgPicture.asset(
-      IconConstants.getIconPath(icon),
+      icon,
       package: 'yggdrasil',
       colorFilter: colorFilter,
       height: size.getIconSize(iconTheme),

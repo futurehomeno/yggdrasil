@@ -4,13 +4,13 @@ import 'package:yggdrasil/yggdrasil.dart';
 // TODO(bjhandeland): Icon can sometimes be a loading indicator.
 // TODO(bjhandeland): Factories for variants, e.g. success, warning, etc.
 class YgDialog extends StatelessWidget {
-  YgDialog({
+  const YgDialog({
     super.key,
     required this.icon,
     required this.title,
     required this.description,
     required this.actions,
-  }) : assert(actions.isNotEmpty, '"actions" should contain at least one button');
+  });
 
   final YgIcon icon;
   final String title;
@@ -19,6 +19,8 @@ class YgDialog extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    assert(actions.isNotEmpty, '"actions" should contain at least one button');
+
     final YgDialogTheme dialogTheme = context.dialogTheme;
 
     final YgSpacingBuilder spacingBuilder = YgSpacingBuilder(

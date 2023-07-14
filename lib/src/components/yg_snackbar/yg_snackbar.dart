@@ -54,11 +54,11 @@ class YgSnackbar extends StatelessWidget {
               ),
             ),
             YgIcon(
-              SharedIcons.cross,
+              YgIcons.cross,
               color: context.defaults.invertedIconColor,
               onTap: onClose,
               size: YgIconSize.small,
-              tapSize: YgIconTapSize.large,
+              tapSize: YgIconTapSize.larger,
             ),
           ],
         ),

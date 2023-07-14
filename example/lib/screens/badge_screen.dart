@@ -29,7 +29,7 @@ class BadgeScreen extends StatelessWidget {
             weight: YgBadgeWeight.strong,
             child: YgIcon(
               onTap: () {},
-              SharedIcons.other25,
+              YgIcons.info,
               tapSize: YgIconTapSize.largest,
             ),
           ),
@@ -38,7 +38,7 @@ class BadgeScreen extends StatelessWidget {
             weight: YgBadgeWeight.strong,
             child: YgIcon(
               onTap: () {},
-              SharedIcons.other25,
+              YgIcons.info,
               tapSize: YgIconTapSize.largest,
             ),
           ),
@@ -47,7 +47,7 @@ class BadgeScreen extends StatelessWidget {
             weight: YgBadgeWeight.strong,
             child: YgIcon(
               onTap: () {},
-              SharedIcons.other25,
+              YgIcons.info,
               tapSize: YgIconTapSize.largest,
             ),
           ),
@@ -56,7 +56,7 @@ class BadgeScreen extends StatelessWidget {
             weight: YgBadgeWeight.strong,
             child: YgIcon(
               onTap: () {},
-              SharedIcons.other25,
+              YgIcons.info,
               tapSize: YgIconTapSize.largest,
             ),
           ),
@@ -66,7 +66,7 @@ class BadgeScreen extends StatelessWidget {
             weight: YgBadgeWeight.weak,
             child: YgIcon(
               onTap: () {},
-              SharedIcons.other25,
+              YgIcons.info,
               tapSize: YgIconTapSize.largest,
             ),
           ),

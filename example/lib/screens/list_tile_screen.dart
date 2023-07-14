@@ -34,44 +34,44 @@ class ListTileScreen extends StatelessWidget {
             title: 'Title',
             subtitle: 'Bacon ipsum dolor amet chicken frankfurter burgdoggen landjaeger sirloin ham pig.',
             leadingWidgets: const <Widget>[
-              YgIcon(SharedIcons.other25, size: YgIconSize.large),
+              YgIcon(YgIcons.info, size: YgIconSize.large),
             ],
           ),
           YgListTile(
             title: 'Title',
             subtitle: 'Bacon ipsum dolor amet chicken frankfurter burgdoggen landjaeger sirloin ham pig.',
             leadingWidgets: const <Widget>[
-              YgIcon(SharedIcons.other25, size: YgIconSize.large),
+              YgIcon(YgIcons.info, size: YgIconSize.large),
             ],
             trailingWidgets: const <Widget>[
-              YgIcon(SharedIcons.other25, size: YgIconSize.large),
+              YgIcon(YgIcons.info, size: YgIconSize.large),
             ],
           ),
           YgListTile(
             title: 'Title',
             subtitle: 'Bacon ipsum dolor amet chicken frankfurter burgdoggen landjaeger sirloin ham pig.',
             leadingWidgets: const <Widget>[
-              YgIcon(SharedIcons.other25, size: YgIconSize.large),
+              YgIcon(YgIcons.info, size: YgIconSize.large),
             ],
             trailingWidgets: const <Widget>[
-              YgIcon(SharedIcons.other25, size: YgIconSize.large),
+              YgIcon(YgIcons.info, size: YgIconSize.large),
             ],
             supportingWidgets: const <Widget>[
-              YgIcon(SharedIcons.other25, size: YgIconSize.large),
+              YgIcon(YgIcons.info, size: YgIconSize.large),
             ],
           ),
           YgListTile(
             title: 'Title',
             subtitle: 'Bacon ipsum dolor amet chicken frankfurter burgdoggen landjaeger sirloin ham pig.',
             leadingWidgets: const <Widget>[
-              YgIcon(SharedIcons.other25, size: YgIconSize.large),
+              YgIcon(YgIcons.info, size: YgIconSize.large),
             ],
             trailingWidgets: const <Widget>[
-              YgIcon(SharedIcons.other25, size: YgIconSize.large),
+              YgIcon(YgIcons.info, size: YgIconSize.large),
             ],
             supportingWidgets: const <Widget>[
-              YgIcon(SharedIcons.other25, size: YgIconSize.large),
-              YgIcon(SharedIcons.other25, size: YgIconSize.large),
+              YgIcon(YgIcons.info, size: YgIconSize.large),
+              YgIcon(YgIcons.info, size: YgIconSize.large),
             ],
           ),
           YgListTile(
@@ -79,14 +79,14 @@ class ListTileScreen extends StatelessWidget {
             subtitle: 'Bacon ipsum dolor amet chicken frankfurter burgdoggen landjaeger sirloin ham pig.',
             onInfoTap: () {},
             leadingWidgets: const <Widget>[
-              YgIcon(SharedIcons.other25, size: YgIconSize.large),
+              YgIcon(YgIcons.info, size: YgIconSize.large),
             ],
             trailingWidgets: const <Widget>[
-              YgIcon(SharedIcons.other25, size: YgIconSize.large),
+              YgIcon(YgIcons.info, size: YgIconSize.large),
             ],
             supportingWidgets: const <Widget>[
-              YgIcon(SharedIcons.other25, size: YgIconSize.large),
-              YgIcon(SharedIcons.other25, size: YgIconSize.large),
+              YgIcon(YgIcons.info, size: YgIconSize.large),
+              YgIcon(YgIcons.info, size: YgIconSize.large),
             ],
           ),
           YgListTile(
@@ -95,31 +95,31 @@ class ListTileScreen extends StatelessWidget {
             onTap: () {},
             onInfoTap: () {},
             leadingWidgets: const <Widget>[
-              YgIcon(SharedIcons.other25, size: YgIconSize.large),
+              YgIcon(YgIcons.info, size: YgIconSize.large),
             ],
             trailingWidgets: const <Widget>[
-              YgIcon(SharedIcons.other25, size: YgIconSize.large),
+              YgIcon(YgIcons.info, size: YgIconSize.large),
             ],
             supportingWidgets: const <Widget>[
-              YgIcon(SharedIcons.other25, size: YgIconSize.large),
-              YgIcon(SharedIcons.other25, size: YgIconSize.large),
+              YgIcon(YgIcons.info, size: YgIconSize.large),
+              YgIcon(YgIcons.info, size: YgIconSize.large),
             ],
           ),
           YgListTile(
             title: 'Tappable!',
             subtitle: 'Bacon ipsum dolor amet chicken frankfurter burgdoggen landjaeger sirloin ham pig.',
-            subtitleIcon: const YgIcon(SharedIcons.other25, size: YgIconSize.small),
+            subtitleIcon: const YgIcon(YgIcons.info, size: YgIconSize.small),
             onTap: () {},
             onInfoTap: () {},
             leadingWidgets: const <Widget>[
-              YgIcon(SharedIcons.other25, size: YgIconSize.large),
+              YgIcon(YgIcons.info, size: YgIconSize.large),
             ],
             trailingWidgets: const <Widget>[
-              YgIcon(SharedIcons.other25, size: YgIconSize.large),
+              YgIcon(YgIcons.info, size: YgIconSize.large),
             ],
             supportingWidgets: const <Widget>[
-              YgIcon(SharedIcons.other25, size: YgIconSize.large),
-              YgIcon(SharedIcons.other25, size: YgIconSize.large),
+              YgIcon(YgIcons.info, size: YgIconSize.large),
+              YgIcon(YgIcons.info, size: YgIconSize.large),
             ],
           ),
         ],

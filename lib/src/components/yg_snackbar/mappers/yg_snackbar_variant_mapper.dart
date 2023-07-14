@@ -39,19 +39,19 @@ class YgSnackbarVariantMapper {
     switch (snackbarVariant) {
       case YgSnackbarVariant.highlight:
         return YgIcon(
-          SharedIcons.infoNew,
+          YgIcons.info,
           size: YgIconSize.small,
           color: theme.highlightSnackbarTheme.iconColor,
         );
       case YgSnackbarVariant.success:
         return YgIcon(
-          SharedIcons.check,
+          YgIcons.check,
           size: YgIconSize.small,
           color: theme.successSnackbarTheme.iconColor,
         );
       case YgSnackbarVariant.critical:
         return YgIcon(
-          SharedIcons.error,
+          YgIcons.error,
           size: YgIconSize.small,
           color: theme.criticalSnackbarTheme.iconColor,
         );
