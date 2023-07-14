@@ -1,18 +1,18 @@
 import 'package:flutter/material.dart';
 import 'package:yggdrasil/src/theme/_theme.dart';
 
-enum ButtonSize {
+enum YgButtonSize {
   small,
   medium,
   large;
 
   EdgeInsets buildPadding(YgButtonTheme theme) {
     switch (this) {
-      case ButtonSize.small:
+      case YgButtonSize.small:
         return theme.paddingSmall;
-      case ButtonSize.medium:
+      case YgButtonSize.medium:
         return theme.paddingMedium;
-      case ButtonSize.large:
+      case YgButtonSize.large:
         return theme.paddingLarge;
     }
   }

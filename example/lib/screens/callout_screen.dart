@@ -32,7 +32,7 @@ class CalloutScreen extends StatelessWidget {
                 description: 'Callout with a title, description and a text link.',
                 textLink: YgTextLink(
                   text: 'Link',
-                  icon: 'icon',
+                  external: true,
                   onPressed: () {},
                 ),
                 onClose: () {},
@@ -63,7 +63,7 @@ class CalloutScreen extends StatelessWidget {
                 description: 'Callout with a title, description and a text link.',
                 textLink: YgTextLink(
                   text: 'Link',
-                  icon: 'icon',
+                  external: true,
                   onPressed: () {},
                 ),
                 onClose: () {},
@@ -94,7 +94,7 @@ class CalloutScreen extends StatelessWidget {
                 description: 'Callout with a title, description and a text link.',
                 textLink: YgTextLink(
                   text: 'Link',
-                  icon: 'icon',
+                  external: true,
                   onPressed: () {},
                 ),
                 onClose: () {},
@@ -125,7 +125,7 @@ class CalloutScreen extends StatelessWidget {
                 description: 'Callout with a title, description and a text link.',
                 textLink: YgTextLink(
                   text: 'Link',
-                  icon: 'icon',
+                  external: true,
                   onPressed: () {},
                 ),
                 onClose: () {},

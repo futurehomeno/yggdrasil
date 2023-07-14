@@ -3,6 +3,7 @@ import 'package:yggdrasil/yggdrasil.dart';
 import 'package:yggdrasil_demo/core/_core.dart';
 import 'package:yggdrasil_demo/widgets/_widgets.dart';
 
+// TODO(bjhandeland): Add list example with lazy loading.
 class ListScreen extends StatelessWidget {
   const ListScreen({super.key});
 
@@ -65,7 +66,6 @@ class ListScreen extends StatelessWidget {
               YgListTile(title: 'Title 1')
             ],
           ),
-          // TODO(bjhandeland): Add list example with lazy loading.
         ],
       ),
     );

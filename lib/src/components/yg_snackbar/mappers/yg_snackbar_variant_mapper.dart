@@ -39,21 +39,21 @@ class YgSnackbarVariantMapper {
     switch (snackbarVariant) {
       case YgSnackbarVariant.highlight:
         return YgIcon(
-          icon: 'icon',
+          YgIcons.info,
           size: YgIconSize.small,
           color: theme.highlightSnackbarTheme.iconColor,
         );
       case YgSnackbarVariant.success:
         return YgIcon(
-          icon: 'icon',
+          YgIcons.check,
           size: YgIconSize.small,
-          color: theme.highlightSnackbarTheme.iconColor,
+          color: theme.successSnackbarTheme.iconColor,
         );
       case YgSnackbarVariant.critical:
         return YgIcon(
-          icon: 'icon',
+          YgIcons.error,
           size: YgIconSize.small,
-          color: theme.highlightSnackbarTheme.iconColor,
+          color: theme.criticalSnackbarTheme.iconColor,
         );
     }
   }

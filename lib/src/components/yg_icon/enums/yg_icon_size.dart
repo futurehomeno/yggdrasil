@@ -1,17 +1,14 @@
 import 'package:yggdrasil/yggdrasil.dart';
 
 enum YgIconSize {
-  smaller,
   small,
-  medium;
+  large;
 
   double getIconSize(YgIconTheme iconThemes) {
     switch (this) {
-      case smaller:
-        return iconThemes.size.smaller;
       case small:
         return iconThemes.size.small;
-      case medium:
+      case large:
         return iconThemes.size.large;
     }
   }

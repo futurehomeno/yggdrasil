@@ -15,7 +15,7 @@ class ExampleBottomSheet extends YgBottomSheetModalRoute {
       ),
       footerButtons: <YgButton>[
         YgButton(
-          variant: ButtonVariant.primary,
+          variant: YgButtonVariant.primary,
           onPressed: () {},
           child: const Text('Button'),
         ),

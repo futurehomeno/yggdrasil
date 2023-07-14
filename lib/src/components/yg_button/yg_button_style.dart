@@ -21,31 +21,31 @@ class YgButtonStyle {
 
   factory YgButtonStyle.fromVariant({
     required BuildContext context,
-    required ButtonVariant variant,
-    ButtonSize size = ButtonSize.medium,
+    required YgButtonVariant variant,
+    YgButtonSize size = YgButtonSize.medium,
   }) {
     switch (variant) {
-      case ButtonVariant.primary:
+      case YgButtonVariant.primary:
         return _buildPrimaryButton(
           context: context,
           size: size,
         );
-      case ButtonVariant.secondary:
+      case YgButtonVariant.secondary:
         return _buildSecondaryButton(
           context: context,
           size: size,
         );
-      case ButtonVariant.text:
+      case YgButtonVariant.text:
         return _buildTextButton(
           context: context,
           size: size,
         );
-      case ButtonVariant.link:
+      case YgButtonVariant.link:
         return _buildLinkButton(
           context: context,
           size: size,
         );
-      case ButtonVariant.critical:
+      case YgButtonVariant.critical:
         return _buildCriticalButton(
           context: context,
           size: size,
@@ -88,7 +88,7 @@ class YgButtonStyle {
 
   static YgButtonStyle _buildPrimaryButton({
     required BuildContext context,
-    required ButtonSize size,
+    required YgButtonSize size,
   }) {
     final YgButtonTheme theme = context.buttonTheme;
     final PrimaryButtonTheme primaryButtonTheme = theme.primaryButtonTheme;
@@ -113,7 +113,7 @@ class YgButtonStyle {
 
   static YgButtonStyle _buildSecondaryButton({
     required BuildContext context,
-    required ButtonSize size,
+    required YgButtonSize size,
   }) {
     final YgButtonTheme theme = context.buttonTheme;
     final SecondaryButtonTheme secondaryButtonTheme = theme.secondaryButtonTheme;
@@ -138,7 +138,7 @@ class YgButtonStyle {
 
   static YgButtonStyle _buildTextButton({
     required BuildContext context,
-    required ButtonSize size,
+    required YgButtonSize size,
   }) {
     final YgButtonTheme theme = context.buttonTheme;
     final TextButtonTheme textButtonTheme = theme.textButtonTheme;
@@ -163,7 +163,7 @@ class YgButtonStyle {
 
   static YgButtonStyle _buildLinkButton({
     required BuildContext context,
-    required ButtonSize size,
+    required YgButtonSize size,
   }) {
     final YgButtonTheme theme = context.buttonTheme;
     final LinkButtonTheme linkButtonTheme = theme.linkButtonTheme;
@@ -188,7 +188,7 @@ class YgButtonStyle {
 
   static YgButtonStyle _buildCriticalButton({
     required BuildContext context,
-    required ButtonSize size,
+    required YgButtonSize size,
   }) {
     final YgButtonTheme theme = context.buttonTheme;
     final CriticalButtonTheme criticalButtonTheme = theme.criticalButtonTheme;
