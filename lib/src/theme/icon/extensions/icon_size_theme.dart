@@ -9,13 +9,6 @@ part 'icon_size_theme.tailor.dart';
 
 @tailorComponent
 class _$YgIconSizeTheme {
-  static List<double> smaller = <double>[
-    consumer_light.FhDimensions.xs,
-    consumer_dark.FhDimensions.xs,
-    professional_light.FhDimensions.xs,
-    professional_dark.FhDimensions.xs,
-  ];
-
   static List<double> small = <double>[
     consumer_light.FhDimensions.sm,
     consumer_dark.FhDimensions.sm,
