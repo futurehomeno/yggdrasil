@@ -67,16 +67,26 @@ class YgListTile extends StatelessWidget {
   }
 
   Widget _buildTitle(YgListTileTheme listTileTheme) {
-    return Row(
+    const double infoButtonVerticalTranslation = -10.0;
+    const EdgeInsets titleHorizontalPaddingForInfoButton = EdgeInsets.only(right: 40.0);
+
+    return Stack(
+      clipBehavior: Clip.none,
       children: <Widget>[
-        Flexible(
+        Padding(
+          padding: onInfoTap != null ? titleHorizontalPaddingForInfoButton : EdgeInsets.zero,
           child: Text(
             title,
             style: listTileTheme.titleTextStyle,
             overflow: TextOverflow.ellipsis,
           ),
         ),
-        if (onInfoTap != null) _buildInfoButton(listTileTheme),
+        if (onInfoTap != null)
+          Positioned(
+            right: 0,
+            top: infoButtonVerticalTranslation,
+            child: _buildInfoButton(listTileTheme),
+          ),
       ],
     );
   }
@@ -108,7 +118,7 @@ class YgListTile extends StatelessWidget {
       child: YgIcon(
         SharedIcons.infoNew,
         size: YgIconSize.small,
-        tapSize: YgIconTapSize.larger,
+        tapSize: YgIconTapSize.largest,
         onTap: onInfoTap!,
       ),
     );
