@@ -4,6 +4,7 @@ import 'package:yggdrasil/src/utils/_utils.dart';
 
 import '../_components.dart';
 
+// TODO(bjhandeland): potentially expose the scroll controller.
 class YgBottomSheet extends StatefulWidget {
   const YgBottomSheet({
     super.key,
@@ -21,7 +22,6 @@ class YgBottomSheet extends StatefulWidget {
 }
 
 class _YgBottomSheetState extends State<YgBottomSheet> {
-  // TODO(bjhandeland): potentially expose the scroll controller.
   final ScrollController _scrollController = ScrollController();
 
   @override
