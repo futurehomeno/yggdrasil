@@ -14,36 +14,35 @@ class YgIcon extends StatelessWidget {
     super.key,
   });
 
+  /// String representing the name of the icon.
   final String icon;
+
+  /// Color of the icon. If null, the default color will be used.
   final Color? color;
+
+  /// Whether the icon color should be inverted.
+  ///
+  /// The default color works for light backgrounds, but not for dark backgrounds.
   final bool invertColor;
+
+  /// Whether the icon should use the color defined in the SVG file.
   final bool useSvgColor;
+
+  /// Size of the icon.
   final YgIconSize size;
+
+  /// Size of the tap area.
   final YgIconTapSize tapSize;
+
+  /// Callback for when the icon is tapped.
+  ///
+  /// This also enables the ripple effect on the icon.
   final VoidCallback? onTap;
 
   @override
   Widget build(BuildContext context) {
     final YgIconTheme iconTheme = context.iconTheme;
-
-    // Need to be saved as a local variable in order to allow for type promotion.
-    final Color? myColor = color;
-
-    final ColorFilter? colorFilter;
-
-    if (useSvgColor) {
-      colorFilter = null;
-    } else if (myColor == null) {
-      colorFilter = ColorFilter.mode(
-        invertColor ? context.defaults.invertedIconColor : context.defaults.iconColor,
-        BlendMode.srcIn,
-      );
-    } else {
-      colorFilter = ColorFilter.mode(
-        myColor,
-        BlendMode.srcIn,
-      );
-    }
+    final ColorFilter? colorFilter = _setColorFilter(color, context);
 
     if (onTap == null) {
       return _buildSvg(colorFilter, iconTheme);
@@ -70,6 +69,24 @@ class YgIcon extends StatelessWidget {
     );
   }
 
+  ColorFilter? _setColorFilter(Color? myColor, BuildContext context) {
+    if (useSvgColor) {
+      return null;
+    }
+
+    if (myColor == null) {
+      return ColorFilter.mode(
+        invertColor ? context.defaults.invertedIconColor : context.defaults.iconColor,
+        BlendMode.srcIn,
+      );
+    }
+
+    return ColorFilter.mode(
+      myColor,
+      BlendMode.srcIn,
+    );
+  }
+
   SvgPicture _buildSvg(
     ColorFilter? colorFilter,
     YgIconTheme iconTheme,
@@ -84,6 +101,8 @@ class YgIcon extends StatelessWidget {
   }
 
   /// Creates a copy of this [YgIcon] but with the given fields replaced with the new values.
+  ///
+  /// This can be used to enforce a default value for some of the fields of [YgIcon].
   YgIcon copyWith({
     String? icon,
     Color? color,
