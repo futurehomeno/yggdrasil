@@ -1,4 +1,4 @@
-enum ButtonSize {
+enum YgButtonSize {
   small,
   medium,
   large;

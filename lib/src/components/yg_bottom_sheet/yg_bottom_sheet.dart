@@ -4,6 +4,7 @@ import 'package:yggdrasil/src/utils/_utils.dart';
 
 import '../_components.dart';
 
+// TODO(bjhandeland): potentially expose the scroll controller.
 class YgBottomSheet extends StatefulWidget {
   const YgBottomSheet({
     super.key,

@@ -9,11 +9,9 @@ class YgIconMapper {
     required YgIconSize iconSize,
   }) {
     switch (iconSize) {
-      case YgIconSize.smaller:
-        return iconTheme.size.smaller;
       case YgIconSize.small:
         return iconTheme.size.small;
-      case YgIconSize.medium:
+      case YgIconSize.large:
         return iconTheme.size.large;
     }
   }
@@ -23,8 +21,6 @@ class YgIconMapper {
     required YgIconTapSize tapSize,
   }) {
     switch (tapSize) {
-      case YgIconTapSize.large:
-        return iconTheme.tapSize.large;
       case YgIconTapSize.larger:
         return iconTheme.tapSize.larger;
       case YgIconTapSize.largest:

@@ -8,16 +8,14 @@ import 'package:yggdrasil/yggdrasil.dart';
 /// Supports 2 leading, 2 trailing and 2 supporting widgets,
 /// however, this differs from design in Figma. This is so
 /// we do not encourage designers to use more than 2 widgets.
-// TODO(bjhandeland): Make the info icon's clickable area larger
-// without making the actual icon larger.
 class YgListTile extends StatelessWidget {
   const YgListTile({
     super.key,
     required this.title,
     this.subtitle,
     this.subtitleIcon,
-    this.leadingWidgets = const <Widget>[],
-    this.trailingWidgets = const <Widget>[],
+    this.leadingWidgets = const <YgIcon>[],
+    this.trailingWidgets = const <YgIcon>[],
     this.supportingWidgets = const <Widget>[],
     this.onTap,
     this.onInfoTap,
@@ -67,16 +65,26 @@ class YgListTile extends StatelessWidget {
   }
 
   Widget _buildTitle(YgListTileTheme listTileTheme) {
-    return Row(
+    const double infoButtonVerticalTranslation = -10.0;
+    const EdgeInsets titleHorizontalPaddingForInfoButton = EdgeInsets.only(right: 40.0);
+
+    return Stack(
+      clipBehavior: Clip.none,
       children: <Widget>[
-        Flexible(
+        Padding(
+          padding: onInfoTap != null ? titleHorizontalPaddingForInfoButton : EdgeInsets.zero,
           child: Text(
             title,
             style: listTileTheme.titleTextStyle,
             overflow: TextOverflow.ellipsis,
           ),
         ),
-        if (onInfoTap != null) _buildInfoButton(listTileTheme),
+        if (onInfoTap != null)
+          Positioned(
+            right: 0,
+            top: infoButtonVerticalTranslation,
+            child: _buildInfoButton(listTileTheme),
+          ),
       ],
     );
   }
@@ -102,14 +110,15 @@ class YgListTile extends StatelessWidget {
     );
   }
 
+  // TODO(bjhandeland): Make sure the whole button is clickable.
   Widget _buildInfoButton(YgListTileTheme listTileTheme) {
     return Padding(
       padding: EdgeInsets.only(left: listTileTheme.contentSpacing),
       child: YgIcon(
-        icon: '',
+        YgIcons.info,
         size: YgIconSize.small,
-        tapSize: YgIconTapSize.larger,
-        onTap: onInfoTap!,
+        tapSize: YgIconTapSize.largest,
+        onTap: onInfoTap,
       ),
     );
   }

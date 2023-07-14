@@ -7,14 +7,14 @@ class YgButtonMapper {
 
   static EdgeInsets buildPadding({
     required YgButtonTheme theme,
-    required ButtonSize size,
+    required YgButtonSize size,
   }) {
     switch (size) {
-      case ButtonSize.small:
+      case YgButtonSize.small:
         return theme.paddingSmall;
-      case ButtonSize.medium:
+      case YgButtonSize.medium:
         return theme.paddingMedium;
-      case ButtonSize.large:
+      case YgButtonSize.large:
         return theme.paddingLarge;
     }
   }

@@ -12,35 +12,29 @@ class YgIconSizeTheme extends ThemeExtension<YgIconSizeTheme> {
   const YgIconSizeTheme({
     required this.large,
     required this.small,
-    required this.smaller,
   });
 
   final double large;
   final double small;
-  final double smaller;
 
   static final YgIconSizeTheme consumerLight = YgIconSizeTheme(
     large: _$YgIconSizeTheme.large[0],
     small: _$YgIconSizeTheme.small[0],
-    smaller: _$YgIconSizeTheme.smaller[0],
   );
 
   static final YgIconSizeTheme consumerDark = YgIconSizeTheme(
     large: _$YgIconSizeTheme.large[1],
     small: _$YgIconSizeTheme.small[1],
-    smaller: _$YgIconSizeTheme.smaller[1],
   );
 
   static final YgIconSizeTheme professionalLight = YgIconSizeTheme(
     large: _$YgIconSizeTheme.large[2],
     small: _$YgIconSizeTheme.small[2],
-    smaller: _$YgIconSizeTheme.smaller[2],
   );
 
   static final YgIconSizeTheme professionalDark = YgIconSizeTheme(
     large: _$YgIconSizeTheme.large[3],
     small: _$YgIconSizeTheme.small[3],
-    smaller: _$YgIconSizeTheme.smaller[3],
   );
 
   static final themes = [
@@ -54,12 +48,10 @@ class YgIconSizeTheme extends ThemeExtension<YgIconSizeTheme> {
   YgIconSizeTheme copyWith({
     double? large,
     double? small,
-    double? smaller,
   }) {
     return YgIconSizeTheme(
       large: large ?? this.large,
       small: small ?? this.small,
-      smaller: smaller ?? this.smaller,
     );
   }
 
@@ -70,7 +62,6 @@ class YgIconSizeTheme extends ThemeExtension<YgIconSizeTheme> {
     return YgIconSizeTheme(
       large: t < 0.5 ? large : other.large,
       small: t < 0.5 ? small : other.small,
-      smaller: t < 0.5 ? smaller : other.smaller,
     );
   }
 
@@ -80,8 +71,7 @@ class YgIconSizeTheme extends ThemeExtension<YgIconSizeTheme> {
         (other.runtimeType == runtimeType &&
             other is YgIconSizeTheme &&
             const DeepCollectionEquality().equals(large, other.large) &&
-            const DeepCollectionEquality().equals(small, other.small) &&
-            const DeepCollectionEquality().equals(smaller, other.smaller));
+            const DeepCollectionEquality().equals(small, other.small));
   }
 
   @override
@@ -90,7 +80,6 @@ class YgIconSizeTheme extends ThemeExtension<YgIconSizeTheme> {
       runtimeType.hashCode,
       const DeepCollectionEquality().hash(large),
       const DeepCollectionEquality().hash(small),
-      const DeepCollectionEquality().hash(smaller),
     );
   }
 }
