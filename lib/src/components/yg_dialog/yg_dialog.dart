@@ -10,7 +10,7 @@ class YgDialog extends StatelessWidget {
     required this.actions,
   }) : assert(actions.isNotEmpty, '"actions" should contain at least one button');
 
-  final String icon;
+  final YgIcon icon;
   final String title;
   final String description;
   final List<YgButton> actions;
@@ -47,7 +47,7 @@ class YgDialog extends StatelessWidget {
         color: dialogTheme.iconContainerColor,
         shape: BoxShape.circle,
       ),
-      child: YgIcon(icon: icon),
+      child: icon,
     );
   }
 

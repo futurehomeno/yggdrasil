@@ -3,8 +3,8 @@ import 'package:flutter_svg/flutter_svg.dart';
 import 'package:yggdrasil/yggdrasil.dart';
 
 class YgIcon extends StatelessWidget {
-  const YgIcon({
-    required this.icon,
+  const YgIcon(
+    this.icon, {
     this.color,
     this.invertColor = false,
     this.useSvgColor = false,
@@ -80,6 +80,27 @@ class YgIcon extends StatelessWidget {
       colorFilter: colorFilter,
       height: size.getIconSize(iconTheme),
       width: size.getIconSize(iconTheme),
+    );
+  }
+
+  /// Creates a copy of this [YgIcon] but with the given fields replaced with the new values.
+  YgIcon copyWith({
+    String? icon,
+    Color? color,
+    bool? invertColor,
+    bool? useSvgColor,
+    YgIconSize? size,
+    YgIconTapSize? tapSize,
+    VoidCallback? onTap,
+  }) {
+    return YgIcon(
+      icon ?? this.icon,
+      color: color ?? this.color,
+      invertColor: invertColor ?? this.invertColor,
+      useSvgColor: useSvgColor ?? this.useSvgColor,
+      size: size ?? this.size,
+      tapSize: tapSize ?? this.tapSize,
+      onTap: onTap ?? this.onTap,
     );
   }
 }

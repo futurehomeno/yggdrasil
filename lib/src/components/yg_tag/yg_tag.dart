@@ -25,7 +25,8 @@ class YgTag extends ButtonStyleButton {
     required super.child,
   });
 
-  factory YgTag.leftIcon({
+  // region Leading icon
+  factory YgTag.leadingIcon({
     Key? key,
     required VoidCallback? onPressed,
     VoidCallback? onLongPress,
@@ -33,14 +34,16 @@ class YgTag extends ButtonStyleButton {
     FocusNode? focusNode,
     bool autofocus,
     Clip clipBehavior,
-    required String icon,
+    required YgIcon icon,
     required Widget child,
     required YgTagVariant variant,
     required YgTagSize size,
     required YgTagWeight weight,
-  }) = _YgTagWithLeftIcon;
+  }) = _YgTagWithLeadingIcon;
+  // endregion Leading icon
 
-  factory YgTag.rightIcon({
+  // region Trailing icon
+  factory YgTag.trailingIcon({
     Key? key,
     required VoidCallback? onPressed,
     VoidCallback? onLongPress,
@@ -48,13 +51,15 @@ class YgTag extends ButtonStyleButton {
     FocusNode? focusNode,
     bool autofocus,
     Clip clipBehavior,
-    required String icon,
+    required YgIcon icon,
     required Widget child,
     required YgTagVariant variant,
     required YgTagSize size,
     required YgTagWeight weight,
-  }) = _YgTagWithRightIcon;
+  }) = _YgTagWithTrailingIcon;
+  // endregion Trailing icon
 
+  // region Double icon
   factory YgTag.doubleIcon({
     Key? key,
     required VoidCallback? onPressed,
@@ -63,13 +68,14 @@ class YgTag extends ButtonStyleButton {
     FocusNode? focusNode,
     bool autofocus,
     Clip clipBehavior,
-    required String leadingIcon,
-    required String trailingIcon,
+    required YgIcon leadingIcon,
+    required YgIcon trailingIcon,
     required Widget child,
     required YgTagVariant variant,
     required YgTagSize size,
     required YgTagWeight weight,
   }) = _YgTagWithDoubleIcon;
+  // endregion Double icon
 
   final YgTagVariant variant;
   final YgTagSize size;
@@ -92,8 +98,9 @@ class YgTag extends ButtonStyleButton {
   }
 }
 
-class _YgTagWithRightIcon extends YgTag {
-  _YgTagWithRightIcon({
+// region Leading icon
+class _YgTagWithLeadingIcon extends YgTag {
+  _YgTagWithLeadingIcon({
     super.key,
     required super.onPressed,
     super.onLongPress,
@@ -101,13 +108,13 @@ class _YgTagWithRightIcon extends YgTag {
     super.focusNode,
     super.autofocus = false,
     super.clipBehavior = Clip.none,
-    required String icon,
+    required YgIcon icon,
     required Widget child,
     required YgTagVariant variant,
     required YgTagSize size,
     required YgTagWeight weight,
   }) : super(
-          child: _YgTagWithRightIconChild(
+          child: _YgTagWithLeadingIconChild(
             icon: icon,
             child: child,
           ),
@@ -117,33 +124,32 @@ class _YgTagWithRightIcon extends YgTag {
         );
 }
 
-class _YgTagWithRightIconChild extends StatelessWidget {
-  const _YgTagWithRightIconChild({
-    required this.child,
+class _YgTagWithLeadingIconChild extends StatelessWidget {
+  const _YgTagWithLeadingIconChild({
     required this.icon,
+    required this.child,
   });
 
+  final YgIcon icon;
   final Widget child;
-  final String icon;
 
   @override
   Widget build(BuildContext context) {
     return Row(
       mainAxisSize: MainAxisSize.min,
       children: <Widget>[
-        Flexible(child: child),
+        icon.copyWith(size: YgIconSize.smaller),
         SizedBox(width: context.tagTheme.iconSpacing),
-        YgIcon(
-          icon: icon,
-          size: YgIconSize.smaller,
-        ),
+        Flexible(child: child),
       ],
     );
   }
 }
+// endregion Leading icon
 
-class _YgTagWithLeftIcon extends YgTag {
-  _YgTagWithLeftIcon({
+// region Trailing icon
+class _YgTagWithTrailingIcon extends YgTag {
+  _YgTagWithTrailingIcon({
     super.key,
     required super.onPressed,
     super.onLongPress,
@@ -151,44 +157,46 @@ class _YgTagWithLeftIcon extends YgTag {
     super.focusNode,
     super.autofocus = false,
     super.clipBehavior = Clip.none,
-    required String icon,
+    required YgIcon icon,
     required Widget child,
     required YgTagVariant variant,
     required YgTagSize size,
     required YgTagWeight weight,
   }) : super(
-          child: _YgTagWithLeftIconChild(icon: icon, child: child),
+          child: _YgTagWithTrailingIconChild(
+            icon: icon,
+            child: child,
+          ),
           variant: variant,
           size: size,
           weight: weight,
         );
 }
 
-class _YgTagWithLeftIconChild extends StatelessWidget {
-  const _YgTagWithLeftIconChild({
-    required this.child,
+class _YgTagWithTrailingIconChild extends StatelessWidget {
+  const _YgTagWithTrailingIconChild({
     required this.icon,
+    required this.child,
   });
 
+  final YgIcon icon;
   final Widget child;
-  final String icon;
 
   @override
   Widget build(BuildContext context) {
     return Row(
       mainAxisSize: MainAxisSize.min,
       children: <Widget>[
-        YgIcon(
-          icon: icon,
-          size: YgIconSize.smaller,
-        ),
-        SizedBox(width: context.tagTheme.iconSpacing),
         Flexible(child: child),
+        SizedBox(width: context.tagTheme.iconSpacing),
+        icon.copyWith(size: YgIconSize.smaller),
       ],
     );
   }
 }
+// endregion Trailing icon
 
+// region Double icon
 class _YgTagWithDoubleIcon extends YgTag {
   _YgTagWithDoubleIcon({
     super.key,
@@ -198,8 +206,8 @@ class _YgTagWithDoubleIcon extends YgTag {
     super.focusNode,
     super.autofocus = false,
     super.clipBehavior = Clip.none,
-    required String leadingIcon,
-    required String trailingIcon,
+    required YgIcon leadingIcon,
+    required YgIcon trailingIcon,
     required Widget child,
     required YgTagVariant variant,
     required YgTagSize size,
@@ -218,26 +226,27 @@ class _YgTagWithDoubleIcon extends YgTag {
 
 class _YgTagWithDoubleIconChild extends StatelessWidget {
   const _YgTagWithDoubleIconChild({
-    required this.child,
     required this.leadingIcon,
     required this.trailingIcon,
+    required this.child,
   });
 
+  final YgIcon leadingIcon;
+  final YgIcon trailingIcon;
   final Widget child;
-  final String leadingIcon;
-  final String trailingIcon;
 
   @override
   Widget build(BuildContext context) {
     return Row(
       mainAxisSize: MainAxisSize.min,
       children: <Widget>[
-        YgIcon(icon: leadingIcon, size: YgIconSize.smaller),
+        leadingIcon.copyWith(size: YgIconSize.smaller),
         SizedBox(width: context.tagTheme.iconSpacing),
         Flexible(child: child),
         SizedBox(width: context.tagTheme.iconSpacing),
-        YgIcon(icon: trailingIcon, size: YgIconSize.smaller),
+        trailingIcon.copyWith(size: YgIconSize.smaller),
       ],
     );
   }
 }
+// endregion Double icon

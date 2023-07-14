@@ -87,12 +87,14 @@ class _YgTextLinkContent extends StatelessWidget {
       mainAxisSize: MainAxisSize.min,
       crossAxisAlignment: CrossAxisAlignment.center,
       children: <Widget>[
-        Text(text),
+        Flexible(
+          child: Text(text),
+        ),
         if (external)
           Padding(
             padding: theme.iconPadding,
             child: YgIcon(
-              icon: SharedIcons.outLink15,
+              SharedIcons.outLink15,
               color: theme.iconColor,
               size: YgIconSize.small,
             ),

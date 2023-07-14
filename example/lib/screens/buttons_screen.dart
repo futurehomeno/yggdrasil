@@ -44,18 +44,18 @@ class ButtonsScreen extends StatelessWidget {
                 onPressed: () {},
                 child: const Text('Button'),
               ),
-              YgButton.leftIcon(
+              YgButton.leadingIcon(
                 variant: YgButtonVariant.primary,
                 size: YgButtonSize.small,
                 onPressed: () {},
-                icon: SharedIcons.other25,
+                icon: const YgIcon(SharedIcons.other25),
                 child: const Text('Button'),
               ),
-              YgButton.rightIcon(
+              YgButton.trailingIcon(
                 variant: YgButtonVariant.primary,
                 size: YgButtonSize.small,
                 onPressed: () {},
-                icon: SharedIcons.other25,
+                icon: const YgIcon(SharedIcons.other25),
                 child: const Text('Button'),
               ),
             ],
@@ -81,18 +81,18 @@ class ButtonsScreen extends StatelessWidget {
                 onPressed: () {},
                 child: const Text('Button'),
               ),
-              YgButton.leftIcon(
+              YgButton.leadingIcon(
                 variant: YgButtonVariant.secondary,
                 size: YgButtonSize.small,
                 onPressed: () {},
-                icon: SharedIcons.other25,
+                icon: const YgIcon(SharedIcons.other25),
                 child: const Text('Button'),
               ),
-              YgButton.rightIcon(
+              YgButton.trailingIcon(
                 variant: YgButtonVariant.secondary,
                 size: YgButtonSize.small,
                 onPressed: () {},
-                icon: SharedIcons.other25,
+                icon: const YgIcon(SharedIcons.other25),
                 child: const Text('Button'),
               ),
             ],
@@ -118,18 +118,18 @@ class ButtonsScreen extends StatelessWidget {
                 onPressed: () {},
                 child: const Text('Button'),
               ),
-              YgButton.leftIcon(
+              YgButton.leadingIcon(
                 variant: YgButtonVariant.text,
                 size: YgButtonSize.small,
                 onPressed: () {},
-                icon: SharedIcons.other25,
+                icon: const YgIcon(SharedIcons.other25),
                 child: const Text('Button'),
               ),
-              YgButton.rightIcon(
+              YgButton.trailingIcon(
                 variant: YgButtonVariant.text,
                 size: YgButtonSize.small,
                 onPressed: () {},
-                icon: SharedIcons.other25,
+                icon: const YgIcon(SharedIcons.other25),
                 child: const Text('Button'),
               ),
             ],
@@ -155,18 +155,18 @@ class ButtonsScreen extends StatelessWidget {
                 onPressed: () {},
                 child: const Text('Button'),
               ),
-              YgButton.leftIcon(
+              YgButton.leadingIcon(
                 variant: YgButtonVariant.critical,
                 size: YgButtonSize.small,
                 onPressed: () {},
-                icon: SharedIcons.other25,
+                icon: const YgIcon(SharedIcons.other25),
                 child: const Text('Button'),
               ),
-              YgButton.rightIcon(
+              YgButton.trailingIcon(
                 variant: YgButtonVariant.critical,
                 size: YgButtonSize.small,
                 onPressed: () {},
-                icon: SharedIcons.other25,
+                icon: const YgIcon(SharedIcons.other25),
                 child: const Text('Button'),
               ),
             ],
@@ -192,18 +192,18 @@ class ButtonsScreen extends StatelessWidget {
                 onPressed: () {},
                 child: const Text('Button'),
               ),
-              YgButton.leftIcon(
+              YgButton.leadingIcon(
                 variant: YgButtonVariant.link,
                 size: YgButtonSize.small,
                 onPressed: () {},
-                icon: SharedIcons.other25,
+                icon: const YgIcon(SharedIcons.other25),
                 child: const Text('Button'),
               ),
-              YgButton.rightIcon(
+              YgButton.trailingIcon(
                 variant: YgButtonVariant.link,
                 size: YgButtonSize.small,
                 onPressed: () {},
-                icon: SharedIcons.other25,
+                icon: const YgIcon(SharedIcons.other25),
                 child: const Text('Button'),
               ),
             ],

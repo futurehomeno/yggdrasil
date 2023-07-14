@@ -5,7 +5,7 @@ class ExampleDialog extends YgDialogRoute {
   @override
   YgDialog buildDialog(BuildContext context) {
     return YgDialog(
-      icon: SharedIcons.other25,
+      icon: const YgIcon(SharedIcons.other25),
       title: 'Example dialog',
       description: 'The description should provide the necessary information needed to make an informed decision.',
       actions: <YgButton>[

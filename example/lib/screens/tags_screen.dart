@@ -40,20 +40,20 @@ class TagsScreen extends StatelessWidget {
                 onPressed: () {},
                 child: const Text('Small Strong'),
               ),
-              YgTag.leftIcon(
+              YgTag.leadingIcon(
                 variant: YgTagVariant.neutral,
                 size: YgTagSize.small,
                 weight: YgTagWeight.strong,
                 onPressed: () {},
-                icon: SharedIcons.other25,
+                icon: const YgIcon(SharedIcons.other25),
                 child: const Text('Small Strong'),
               ),
-              YgTag.rightIcon(
+              YgTag.trailingIcon(
                 variant: YgTagVariant.neutral,
                 size: YgTagSize.small,
                 weight: YgTagWeight.strong,
                 onPressed: () {},
-                icon: SharedIcons.other25,
+                icon: const YgIcon(SharedIcons.other25),
                 child: const Text('Small Strong'),
               ),
               YgTag.doubleIcon(
@@ -61,8 +61,8 @@ class TagsScreen extends StatelessWidget {
                 size: YgTagSize.small,
                 weight: YgTagWeight.strong,
                 onPressed: () {},
-                leadingIcon: SharedIcons.other25,
-                trailingIcon: SharedIcons.other25,
+                leadingIcon: const YgIcon(SharedIcons.other25),
+                trailingIcon: const YgIcon(SharedIcons.other25),
                 child: const Text('Small Strong'),
               ),
               YgTag(
@@ -79,20 +79,20 @@ class TagsScreen extends StatelessWidget {
                 onPressed: () {},
                 child: const Text('Medium Strong'),
               ),
-              YgTag.leftIcon(
+              YgTag.leadingIcon(
                 variant: YgTagVariant.neutral,
                 size: YgTagSize.medium,
                 weight: YgTagWeight.strong,
                 onPressed: () {},
-                icon: SharedIcons.other25,
+                icon: const YgIcon(SharedIcons.other25),
                 child: const Text('Medium Strong'),
               ),
-              YgTag.rightIcon(
+              YgTag.trailingIcon(
                 variant: YgTagVariant.neutral,
                 size: YgTagSize.medium,
                 weight: YgTagWeight.strong,
                 onPressed: () {},
-                icon: SharedIcons.other25,
+                icon: const YgIcon(SharedIcons.other25),
                 child: const Text('Medium Strong'),
               ),
             ],
@@ -114,20 +114,20 @@ class TagsScreen extends StatelessWidget {
                 onPressed: () {},
                 child: const Text('Small Strong'),
               ),
-              YgTag.leftIcon(
+              YgTag.leadingIcon(
                 variant: YgTagVariant.informative,
                 size: YgTagSize.small,
                 weight: YgTagWeight.strong,
                 onPressed: () {},
-                icon: SharedIcons.other25,
+                icon: const YgIcon(SharedIcons.other25),
                 child: const Text('Small Strong'),
               ),
-              YgTag.rightIcon(
+              YgTag.trailingIcon(
                 variant: YgTagVariant.informative,
                 size: YgTagSize.small,
                 weight: YgTagWeight.strong,
                 onPressed: () {},
-                icon: SharedIcons.other25,
+                icon: const YgIcon(SharedIcons.other25),
                 child: const Text('Small Strong'),
               ),
               YgTag.doubleIcon(
@@ -135,8 +135,8 @@ class TagsScreen extends StatelessWidget {
                 size: YgTagSize.small,
                 weight: YgTagWeight.strong,
                 onPressed: () {},
-                leadingIcon: SharedIcons.other25,
-                trailingIcon: SharedIcons.other25,
+                leadingIcon: const YgIcon(SharedIcons.other25),
+                trailingIcon: const YgIcon(SharedIcons.other25),
                 child: const Text('Small Strong'),
               ),
               YgTag(
@@ -153,20 +153,20 @@ class TagsScreen extends StatelessWidget {
                 onPressed: () {},
                 child: const Text('Medium Strong'),
               ),
-              YgTag.leftIcon(
+              YgTag.leadingIcon(
                 variant: YgTagVariant.informative,
                 size: YgTagSize.medium,
                 weight: YgTagWeight.strong,
                 onPressed: () {},
-                icon: SharedIcons.other25,
+                icon: const YgIcon(SharedIcons.other25),
                 child: const Text('Medium Strong'),
               ),
-              YgTag.rightIcon(
+              YgTag.trailingIcon(
                 variant: YgTagVariant.informative,
                 size: YgTagSize.medium,
                 weight: YgTagWeight.strong,
                 onPressed: () {},
-                icon: SharedIcons.other25,
+                icon: const YgIcon(SharedIcons.other25),
                 child: const Text('Medium Strong'),
               ),
             ],
@@ -188,20 +188,20 @@ class TagsScreen extends StatelessWidget {
                 onPressed: () {},
                 child: const Text('Small Strong'),
               ),
-              YgTag.leftIcon(
+              YgTag.leadingIcon(
                 variant: YgTagVariant.positive,
                 size: YgTagSize.small,
                 weight: YgTagWeight.strong,
                 onPressed: () {},
-                icon: SharedIcons.other25,
+                icon: const YgIcon(SharedIcons.other25),
                 child: const Text('Small Strong'),
               ),
-              YgTag.rightIcon(
+              YgTag.trailingIcon(
                 variant: YgTagVariant.positive,
                 size: YgTagSize.small,
                 weight: YgTagWeight.strong,
                 onPressed: () {},
-                icon: SharedIcons.other25,
+                icon: const YgIcon(SharedIcons.other25),
                 child: const Text('Small Strong'),
               ),
               YgTag.doubleIcon(
@@ -209,8 +209,8 @@ class TagsScreen extends StatelessWidget {
                 size: YgTagSize.small,
                 weight: YgTagWeight.strong,
                 onPressed: () {},
-                leadingIcon: SharedIcons.other25,
-                trailingIcon: SharedIcons.other25,
+                leadingIcon: const YgIcon(SharedIcons.other25),
+                trailingIcon: const YgIcon(SharedIcons.other25),
                 child: const Text('Small Strong'),
               ),
               YgTag(
@@ -227,20 +227,20 @@ class TagsScreen extends StatelessWidget {
                 onPressed: () {},
                 child: const Text('Medium Strong'),
               ),
-              YgTag.leftIcon(
+              YgTag.leadingIcon(
                 variant: YgTagVariant.positive,
                 size: YgTagSize.medium,
                 weight: YgTagWeight.strong,
                 onPressed: () {},
-                icon: SharedIcons.other25,
+                icon: const YgIcon(SharedIcons.other25),
                 child: const Text('Medium Strong'),
               ),
-              YgTag.rightIcon(
+              YgTag.trailingIcon(
                 variant: YgTagVariant.positive,
                 size: YgTagSize.medium,
                 weight: YgTagWeight.strong,
                 onPressed: () {},
-                icon: SharedIcons.other25,
+                icon: const YgIcon(SharedIcons.other25),
                 child: const Text('Medium Strong'),
               ),
             ],
@@ -262,20 +262,20 @@ class TagsScreen extends StatelessWidget {
                 onPressed: () {},
                 child: const Text('Small Strong'),
               ),
-              YgTag.leftIcon(
+              YgTag.leadingIcon(
                 variant: YgTagVariant.warning,
                 size: YgTagSize.small,
                 weight: YgTagWeight.strong,
                 onPressed: () {},
-                icon: SharedIcons.other25,
+                icon: const YgIcon(SharedIcons.other25),
                 child: const Text('Small Strong'),
               ),
-              YgTag.rightIcon(
+              YgTag.trailingIcon(
                 variant: YgTagVariant.warning,
                 size: YgTagSize.small,
                 weight: YgTagWeight.strong,
                 onPressed: () {},
-                icon: SharedIcons.other25,
+                icon: const YgIcon(SharedIcons.other25),
                 child: const Text('Small Strong'),
               ),
               YgTag.doubleIcon(
@@ -283,8 +283,8 @@ class TagsScreen extends StatelessWidget {
                 size: YgTagSize.small,
                 weight: YgTagWeight.strong,
                 onPressed: () {},
-                leadingIcon: SharedIcons.other25,
-                trailingIcon: SharedIcons.other25,
+                leadingIcon: const YgIcon(SharedIcons.other25),
+                trailingIcon: const YgIcon(SharedIcons.other25),
                 child: const Text('Small Strong'),
               ),
               YgTag(
@@ -301,20 +301,20 @@ class TagsScreen extends StatelessWidget {
                 onPressed: () {},
                 child: const Text('Medium Strong'),
               ),
-              YgTag.leftIcon(
+              YgTag.leadingIcon(
                 variant: YgTagVariant.warning,
                 size: YgTagSize.medium,
                 weight: YgTagWeight.strong,
                 onPressed: () {},
-                icon: SharedIcons.other25,
+                icon: const YgIcon(SharedIcons.other25),
                 child: const Text('Medium Strong'),
               ),
-              YgTag.rightIcon(
+              YgTag.trailingIcon(
                 variant: YgTagVariant.warning,
                 size: YgTagSize.medium,
                 weight: YgTagWeight.strong,
                 onPressed: () {},
-                icon: SharedIcons.other25,
+                icon: const YgIcon(SharedIcons.other25),
                 child: const Text('Medium Strong'),
               ),
             ],
@@ -336,20 +336,20 @@ class TagsScreen extends StatelessWidget {
                 onPressed: () {},
                 child: const Text('Small Strong'),
               ),
-              YgTag.leftIcon(
+              YgTag.leadingIcon(
                 variant: YgTagVariant.negative,
                 size: YgTagSize.small,
                 weight: YgTagWeight.strong,
                 onPressed: () {},
-                icon: SharedIcons.other25,
+                icon: const YgIcon(SharedIcons.other25),
                 child: const Text('Small Strong'),
               ),
-              YgTag.rightIcon(
+              YgTag.trailingIcon(
                 variant: YgTagVariant.negative,
                 size: YgTagSize.small,
                 weight: YgTagWeight.strong,
                 onPressed: () {},
-                icon: SharedIcons.other25,
+                icon: const YgIcon(SharedIcons.other25),
                 child: const Text('Small Strong'),
               ),
               YgTag.doubleIcon(
@@ -357,8 +357,8 @@ class TagsScreen extends StatelessWidget {
                 size: YgTagSize.small,
                 weight: YgTagWeight.strong,
                 onPressed: () {},
-                leadingIcon: SharedIcons.other25,
-                trailingIcon: SharedIcons.other25,
+                leadingIcon: const YgIcon(SharedIcons.other25),
+                trailingIcon: const YgIcon(SharedIcons.other25),
                 child: const Text('Small Strong'),
               ),
               YgTag(
@@ -375,20 +375,20 @@ class TagsScreen extends StatelessWidget {
                 onPressed: () {},
                 child: const Text('Medium Strong'),
               ),
-              YgTag.leftIcon(
+              YgTag.leadingIcon(
                 variant: YgTagVariant.negative,
                 size: YgTagSize.medium,
                 weight: YgTagWeight.strong,
                 onPressed: () {},
-                icon: SharedIcons.other25,
+                icon: const YgIcon(SharedIcons.other25),
                 child: const Text('Medium Strong'),
               ),
-              YgTag.rightIcon(
+              YgTag.trailingIcon(
                 variant: YgTagVariant.negative,
                 size: YgTagSize.medium,
                 weight: YgTagWeight.strong,
                 onPressed: () {},
-                icon: SharedIcons.other25,
+                icon: const YgIcon(SharedIcons.other25),
                 child: const Text('Medium Strong'),
               ),
             ],

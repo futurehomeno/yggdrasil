@@ -64,7 +64,7 @@ class YgCallout extends StatelessWidget {
               Padding(
                 padding: EdgeInsets.only(left: theme.closeButtonSpacing),
                 child: YgIcon(
-                  icon: SharedIcons.cross,
+                  SharedIcons.cross,
                   onTap: onClose,
                   size: YgIconSize.small,
                   tapSize: YgIconTapSize.large,
