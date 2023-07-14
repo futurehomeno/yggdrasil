@@ -23,7 +23,7 @@ class ButtonsScreen extends StatelessWidget {
       supernovaLink: 'Link',
       child: Column(
         children: <Widget>[
-          YgListTile(title: 'Primary buttons'),
+          const YgListTile(title: 'Primary buttons'),
           Column(
             children: <Widget>[
               YgButton(
@@ -60,7 +60,7 @@ class ButtonsScreen extends StatelessWidget {
               ),
             ],
           ),
-          YgListTile(title: 'Secondary buttons'),
+          const YgListTile(title: 'Secondary buttons'),
           Column(
             children: <Widget>[
               YgButton(
@@ -97,7 +97,7 @@ class ButtonsScreen extends StatelessWidget {
               ),
             ],
           ),
-          YgListTile(title: 'Text buttons'),
+          const YgListTile(title: 'Text buttons'),
           Column(
             children: <Widget>[
               YgButton(
@@ -134,7 +134,7 @@ class ButtonsScreen extends StatelessWidget {
               ),
             ],
           ),
-          YgListTile(title: 'Critical buttons'),
+          const YgListTile(title: 'Critical buttons'),
           Column(
             children: <Widget>[
               YgButton(
@@ -171,7 +171,7 @@ class ButtonsScreen extends StatelessWidget {
               ),
             ],
           ),
-          YgListTile(title: 'Link buttons'),
+          const YgListTile(title: 'Link buttons'),
           Column(
             children: <Widget>[
               YgButton(

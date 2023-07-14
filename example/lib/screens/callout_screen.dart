@@ -23,7 +23,7 @@ class CalloutScreen extends StatelessWidget {
       supernovaLink: 'Link',
       child: Column(
         children: <Widget>[
-          YgListTile(title: 'Highlight callout'),
+          const YgListTile(title: 'Highlight callout'),
           Column(
             children: <Widget>[
               YgCallout(
@@ -54,7 +54,7 @@ class CalloutScreen extends StatelessWidget {
               ),
             ],
           ),
-          YgListTile(title: 'Success callout'),
+          const YgListTile(title: 'Success callout'),
           Column(
             children: <Widget>[
               YgCallout(
@@ -85,7 +85,7 @@ class CalloutScreen extends StatelessWidget {
               ),
             ],
           ),
-          YgListTile(title: 'Warning callout'),
+          const YgListTile(title: 'Warning callout'),
           Column(
             children: <Widget>[
               YgCallout(
@@ -116,7 +116,7 @@ class CalloutScreen extends StatelessWidget {
               ),
             ],
           ),
-          YgListTile(title: 'Critical callout'),
+          const YgListTile(title: 'Critical callout'),
           Column(
             children: <Widget>[
               YgCallout(

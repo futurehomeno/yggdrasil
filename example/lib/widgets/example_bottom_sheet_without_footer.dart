@@ -4,7 +4,7 @@ import 'package:yggdrasil/yggdrasil.dart';
 class ExampleBottomSheetWithoutFooter extends YgBottomSheetModalRoute {
   @override
   YgBottomSheet buildBottomSheet(BuildContext context) {
-    return YgBottomSheet(
+    return const YgBottomSheet(
       title: 'Example Bottom Sheet',
       content: YgCard(
         variant: YgCardVariant.filled,

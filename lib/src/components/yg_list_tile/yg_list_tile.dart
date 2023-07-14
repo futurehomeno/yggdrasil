@@ -19,9 +19,7 @@ class YgListTile extends StatelessWidget {
     this.supportingWidgets = const <Widget>[],
     this.onTap,
     this.onInfoTap,
-  })  : assert(leadingWidgets.length <= 2, 'Cannot have more than 2 leading widgets.'),
-        assert(trailingWidgets.length <= 2, 'Cannot have more than 2 trailing widget.'),
-        assert(supportingWidgets.length <= 2, 'Cannot have more than 2 supporting widgets.');
+  });
 
   final String title;
   final String? subtitle;
@@ -34,6 +32,10 @@ class YgListTile extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    assert(leadingWidgets.length <= 2, 'Cannot have more than 2 leading widgets.');
+    assert(trailingWidgets.length <= 2, 'Cannot have more than 2 trailing widget.');
+    assert(supportingWidgets.length <= 2, 'Cannot have more than 2 supporting widgets.');
+
     final YgListTileTheme theme = context.listTileTheme;
 
     return Material(

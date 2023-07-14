@@ -23,7 +23,7 @@ class TagsScreen extends StatelessWidget {
       supernovaLink: 'Link',
       child: Column(
         children: <Widget>[
-          YgListTile(title: 'Normal dialog'),
+          const YgListTile(title: 'Normal dialog'),
           Column(
             children: <Widget>[
               YgTag(
@@ -97,7 +97,7 @@ class TagsScreen extends StatelessWidget {
               ),
             ],
           ),
-          YgListTile(title: 'Informative dialog'),
+          const YgListTile(title: 'Informative dialog'),
           Column(
             children: <Widget>[
               YgTag(
@@ -171,7 +171,7 @@ class TagsScreen extends StatelessWidget {
               ),
             ],
           ),
-          YgListTile(title: 'Positive dialog'),
+          const YgListTile(title: 'Positive dialog'),
           Column(
             children: <Widget>[
               YgTag(
@@ -245,7 +245,7 @@ class TagsScreen extends StatelessWidget {
               ),
             ],
           ),
-          YgListTile(title: 'Warning dialog'),
+          const YgListTile(title: 'Warning dialog'),
           Column(
             children: <Widget>[
               YgTag(
@@ -319,7 +319,7 @@ class TagsScreen extends StatelessWidget {
               ),
             ],
           ),
-          YgListTile(title: 'Negative dialog'),
+          const YgListTile(title: 'Negative dialog'),
           Column(
             children: <Widget>[
               YgTag(

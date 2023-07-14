@@ -17,20 +17,20 @@ class DividerScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return YgScreen(
+    return const YgScreen(
       componentName: 'Divider',
       componentDesc: 'Dividers',
       supernovaLink: 'Link',
       child: Column(
         children: <Widget>[
           YgListTile(title: 'Normal Divider'),
-          const YgDivider(),
+          YgDivider(),
           YgListTile(title: 'Divider /w start indent'),
-          const YgDivider(indent: YgDividerIndent.large),
+          YgDivider(indent: YgDividerIndent.large),
           YgListTile(title: 'Divider w/ end indent'),
-          const YgDivider(endIndent: YgDividerIndent.large),
+          YgDivider(endIndent: YgDividerIndent.large),
           YgListTile(title: 'Divider w/ both indent'),
-          const YgDivider(
+          YgDivider(
             indent: YgDividerIndent.large,
             endIndent: YgDividerIndent.large,
           ),

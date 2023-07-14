@@ -23,7 +23,7 @@ class TextLinkScreen extends StatelessWidget {
       supernovaLink: 'Link',
       child: Column(
         children: <Widget>[
-          YgListTile(title: 'Enabled text link'),
+          const YgListTile(title: 'Enabled text link'),
           YgTextLink(
             onPressed: () {},
             text: 'Link',
@@ -48,7 +48,7 @@ class TextLinkScreen extends StatelessWidget {
             size: YgTextLinkSize.medium,
             weight: YgTextLinkWeight.strong,
           ),
-          YgListTile(title: 'Disabled text link'),
+          const YgListTile(title: 'Disabled text link'),
           YgTextLink(
             text: 'Link',
             size: YgTextLinkSize.small,
@@ -73,7 +73,7 @@ class TextLinkScreen extends StatelessWidget {
             weight: YgTextLinkWeight.strong,
             onPressed: null,
           ),
-          YgListTile(title: 'Text link w/ icon'),
+          const YgListTile(title: 'Text link w/ icon'),
           Column(
             children: <Widget>[
               YgTextLink(

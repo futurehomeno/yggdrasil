@@ -134,7 +134,7 @@ packages:
     description:
       path: "packages/fh_lints"
       ref: master
-      resolved-ref: d97177c9bee8f75f9eabf2b516e7f1272bac850b
+      resolved-ref: "7283c4db031d6212f18a6d00be3f12b9af7fd70c"
       url: "git@github.com:futurehomeno/pubdev_registry.git"
     source: git
     version: "1.0.0"
@@ -456,7 +456,7 @@ packages:
       path: ".."
       relative: true
     source: path
-    version: "0.0.1"
+    version: "1.0.0"
 sdks:
   dart: "3.0.5"
   flutter: ">=3.10.5"

@@ -2,9 +2,9 @@ import 'package:flutter/material.dart';
 
 class YgBottomSheetScrollPhysicsProvider extends InheritedWidget {
   const YgBottomSheetScrollPhysicsProvider({
+    super.key,
     required this.scrollPhysics,
     required super.child,
-    super.key,
   });
 
   final ScrollPhysics scrollPhysics;

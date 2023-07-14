@@ -24,7 +24,7 @@ class ListScreen extends StatelessWidget {
       supernovaLink: 'Link',
       child: Column(
         children: <Widget>[
-          YgListTile(title: 'ListView.builder'),
+          const YgListTile(title: 'ListView.builder'),
           ListView.builder(
             shrinkWrap: true,
             itemCount: 3,
@@ -32,7 +32,7 @@ class ListScreen extends StatelessWidget {
               return YgListTile(title: 'Title $index');
             },
           ),
-          YgListTile(title: 'ListView.separated'),
+          const YgListTile(title: 'ListView.separated'),
           ListView.separated(
             shrinkWrap: true,
             itemCount: 3,
@@ -43,26 +43,26 @@ class ListScreen extends StatelessWidget {
               return const YgDivider();
             },
           ),
-          YgListTile(title: 'ListView w/ divideTiles'),
+          const YgListTile(title: 'ListView w/ divideTiles'),
           ListView(
             shrinkWrap: true,
             children: YgListTile.divideTiles(
               tiles: <YgListTile>[
-                YgListTile(title: 'Title 1'),
-                YgListTile(title: 'Title 1'),
-                YgListTile(title: 'Title 1')
+                const YgListTile(title: 'Title 1'),
+                const YgListTile(title: 'Title 1'),
+                const YgListTile(title: 'Title 1')
               ],
               context: context,
             ).toList(),
           ),
-          YgListTile(title: 'Manual'),
+          const YgListTile(title: 'Manual'),
           ListView(
             shrinkWrap: true,
-            children: <Widget>[
+            children: const <Widget>[
               YgListTile(title: 'Title 1'),
-              const YgDivider(),
+              YgDivider(),
               YgListTile(title: 'Title 1'),
-              const YgDivider(),
+              YgDivider(),
               YgListTile(title: 'Title 1')
             ],
           ),
