@@ -1,6 +1,6 @@
 import 'package:yggdrasil/yggdrasil.dart';
 
-class YgDividerIndentMapper {
+class YgDividerMapper {
   static double getIndent(YgDividerIndent ygDividerIndent, YgDividerTheme theme) {
     switch (ygDividerIndent) {
       case YgDividerIndent.none:

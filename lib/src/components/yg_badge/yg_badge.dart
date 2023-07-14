@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:yggdrasil/src/components/yg_badge/_yg_badge.dart';
 import 'package:yggdrasil/src/theme/_theme.dart';
-
-import 'enums/_enums.dart';
 
 /// [YgBadge] takes a child widget and overlays it with a badge.
 class YgBadge extends StatelessWidget {
@@ -39,7 +38,10 @@ class YgBadge extends StatelessWidget {
         Container(
           padding: const EdgeInsets.fromLTRB(5, 2, 5, 2),
           decoration: BoxDecoration(
-            color: weight.getBadgeColor(badgeTheme),
+            color: YgBadgeMapper.getBadgeColor(
+              theme: badgeTheme,
+              weight: weight,
+            ),
             borderRadius: badgeTheme.borderRadius,
           ),
           constraints: const BoxConstraints(
@@ -50,7 +52,10 @@ class YgBadge extends StatelessWidget {
             widthFactor: 1,
             child: Text(
               amount > maxBadgeCount ? '$maxBadgeCount+' : amount.toString(),
-              style: weight.getTextStyle(badgeTheme),
+              style: YgBadgeMapper.getTextStyle(
+                theme: badgeTheme,
+                weight: weight,
+              ),
             ),
           ),
         ),

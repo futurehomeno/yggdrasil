@@ -58,16 +58,25 @@ class YgIcon extends StatelessWidget {
 
     return Material(
       borderRadius: BorderRadius.circular(
-        tapSize.getTapSize(iconTheme),
+        YgIconMapper.getTapSize(
+          iconTheme: iconTheme,
+          tapSize: tapSize,
+        ),
       ),
       color: context.tokens.colors.backgroundTransparent,
       child: InkWell(
         borderRadius: BorderRadius.circular(
-          tapSize.getTapSize(iconTheme),
+          YgIconMapper.getTapSize(
+            iconTheme: iconTheme,
+            tapSize: tapSize,
+          ),
         ),
         onTap: onTap,
         child: SizedBox.square(
-          dimension: tapSize.getTapSize(iconTheme),
+          dimension: YgIconMapper.getTapSize(
+            iconTheme: iconTheme,
+            tapSize: tapSize,
+          ),
           child: Align(
             alignment: Alignment.center,
             child: _buildSvg(colorFilter, iconTheme),
@@ -103,8 +112,14 @@ class YgIcon extends StatelessWidget {
       icon,
       package: 'yggdrasil',
       colorFilter: colorFilter,
-      height: size.getIconSize(iconTheme),
-      width: size.getIconSize(iconTheme),
+      height: YgIconMapper.getIconSize(
+        iconTheme: iconTheme,
+        iconSize: size,
+      ),
+      width: YgIconMapper.getIconSize(
+        iconTheme: iconTheme,
+        iconSize: size,
+      ),
     );
   }
 

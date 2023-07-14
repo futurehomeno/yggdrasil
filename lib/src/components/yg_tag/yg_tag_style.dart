@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:yggdrasil/src/components/yg_tag/_yg_tag.dart';
 import 'package:yggdrasil/src/theme/_theme.dart';
 
-import 'enums/_enums.dart';
 import 'properties/_properties.dart';
 
 /// Tag style for YgTags.
@@ -34,7 +34,10 @@ class YgTagStyle {
           textStyle: weight == YgTagWeight.weak ? theme.textStyle : theme.strongTextStyle,
           disabledTextStyle: theme.disabledTextStyle,
           borderRadius: context.tagTheme.borderRadius,
-          padding: size.buildPadding(context),
+          padding: YgTagMapper.buildPadding(
+            context: context,
+            tagSize: size,
+          ),
         );
 
       case YgTagVariant.informative:
@@ -45,7 +48,10 @@ class YgTagStyle {
           textStyle: weight == YgTagWeight.weak ? theme.textStyle : theme.strongTextStyle,
           disabledTextStyle: theme.disabledTextStyle,
           borderRadius: context.tagTheme.borderRadius,
-          padding: size.buildPadding(context),
+          padding: YgTagMapper.buildPadding(
+            context: context,
+            tagSize: size,
+          ),
         );
       case YgTagVariant.positive:
         final PositiveTagTheme theme = context.tagTheme.positiveTagTheme;
@@ -55,7 +61,10 @@ class YgTagStyle {
           textStyle: weight == YgTagWeight.weak ? theme.textStyle : theme.strongTextStyle,
           disabledTextStyle: theme.disabledTextStyle,
           borderRadius: context.tagTheme.borderRadius,
-          padding: size.buildPadding(context),
+          padding: YgTagMapper.buildPadding(
+            context: context,
+            tagSize: size,
+          ),
         );
       case YgTagVariant.warning:
         final WarningTagTheme theme = context.tagTheme.warningTagTheme;
@@ -65,7 +74,10 @@ class YgTagStyle {
           textStyle: weight == YgTagWeight.weak ? theme.textStyle : theme.strongTextStyle,
           disabledTextStyle: theme.disabledTextStyle,
           borderRadius: context.tagTheme.borderRadius,
-          padding: size.buildPadding(context),
+          padding: YgTagMapper.buildPadding(
+            context: context,
+            tagSize: size,
+          ),
         );
       case YgTagVariant.negative:
         final NegativeTagTheme theme = context.tagTheme.negativeTagTheme;
@@ -75,7 +87,10 @@ class YgTagStyle {
           textStyle: weight == YgTagWeight.weak ? theme.textStyle : theme.strongTextStyle,
           disabledTextStyle: theme.disabledTextStyle,
           borderRadius: context.tagTheme.borderRadius,
-          padding: size.buildPadding(context),
+          padding: YgTagMapper.buildPadding(
+            context: context,
+            tagSize: size,
+          ),
         );
     }
   }
