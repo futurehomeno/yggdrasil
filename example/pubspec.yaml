@@ -1,12 +1,11 @@
 name: yggdrasil_demo
-description: A demo app for yggdrasil.
+description: A demo app for Yggdrasil.
+publish_to: 'none'
 
-publish_to: 'none' # Remove this line if you wish to publish to pub.dev
-
-version: 1.0.0+1
+version: 1.0.0
 
 environment:
-  sdk: 3.0.5
+  sdk: ^3.0.5
   flutter: 3.10.5
 
 dependencies:
