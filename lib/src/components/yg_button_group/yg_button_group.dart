@@ -35,7 +35,7 @@ class YgButtonGroup extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    assert(children.length > 1, 'ButtonGroup must have at least 2 buttons');
+    assert(children.length >= 2, 'ButtonGroup must have at least 2 buttons');
     assert(children.length <= 3, 'ButtonGroup can have at most 3 buttons');
 
     return ListView.separated(
