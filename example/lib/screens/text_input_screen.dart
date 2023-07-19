@@ -25,16 +25,19 @@ class _TextInputScreenState extends State<TextInputScreen> {
   @override
   Widget build(BuildContext context) {
     return YgScreen(
-      componentName: 'Dialog',
-      componentDesc: 'Dialog',
+      componentName: 'Text Input',
+      componentDesc: 'Text Input',
       scrollable: false,
       supernovaLink: 'Input',
       child: Column(
         children: <Widget>[
-          YgTextInput(
-            fieldKey: key,
-            label: 'Label',
-            obscureText: true,
+          Container(
+            color: Colors.red,
+            child: YgTextInput(
+              fieldKey: key,
+              label: 'Label',
+              obscureText: true,
+            ),
           ),
         ],
       ),

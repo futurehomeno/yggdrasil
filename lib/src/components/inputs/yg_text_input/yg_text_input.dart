@@ -86,6 +86,8 @@ class _YgTextInputState extends State<YgTextInput> {
           widget.label,
         ),
         suffix: _computedSuffix,
+        floatingLabelStyle: const TextStyle(),
+        labelStyle: const TextStyle(),
       ),
       validator: YgInputValidatorCombiner<String>(
         validators: widget.validators,
