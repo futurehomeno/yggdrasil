@@ -28,7 +28,7 @@ class YgScreen extends StatelessWidget {
           Consumer<YgAppState>(
             builder: (BuildContext context, YgAppState ygAppState, Widget? widget) {
               return YgIcon(
-                YgIcons.sum,
+                YgIcons.refresh,
                 onTap: ygAppState.toggleTheme,
                 tapSize: YgIconTapSize.largest,
               );
