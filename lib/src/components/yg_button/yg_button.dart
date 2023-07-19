@@ -1,16 +1,18 @@
 import 'package:flutter/material.dart';
+import 'package:yggdrasil/src/components/_components.dart';
 import 'package:yggdrasil/src/theme/_theme.dart';
 
-import 'enums/_enums.dart';
 import 'yg_button_style.dart';
 
 /// Base class for creating all Yg buttons.
+// TODO(bjhandeland): Consider making the private classes parts.
 class YgButton extends ButtonStyleButton {
   const YgButton({
     super.key,
     required this.variant,
-    this.size = ButtonSize.medium,
     required super.onPressed,
+    required super.child,
+    this.size = YgButtonSize.medium,
     super.onLongPress,
     super.onHover,
     super.onFocusChange,
@@ -19,10 +21,10 @@ class YgButton extends ButtonStyleButton {
     super.autofocus = false,
     super.clipBehavior = Clip.none,
     super.statesController,
-    required super.child,
   });
 
-  factory YgButton.leftIcon({
+  // region Leading icon
+  factory YgButton.leadingIcon({
     Key? key,
     required VoidCallback? onPressed,
     VoidCallback? onLongPress,
@@ -30,13 +32,16 @@ class YgButton extends ButtonStyleButton {
     FocusNode? focusNode,
     bool? autofocus,
     Clip? clipBehavior,
-    required Widget icon,
+    required YgIcon icon,
     required Widget child,
-    required ButtonVariant variant,
-    required ButtonSize size,
-  }) = _YgButtonWithLeftIcon;
+    required YgButtonVariant variant,
+    required YgButtonSize size,
+  }) = _YgButtonWithLeadingIcon;
 
-  factory YgButton.rightIcon({
+  // endregion Leading icon
+
+  // region Trailing icon
+  factory YgButton.trailingIcon({
     Key? key,
     required VoidCallback? onPressed,
     VoidCallback? onLongPress,
@@ -44,14 +49,14 @@ class YgButton extends ButtonStyleButton {
     FocusNode? focusNode,
     bool autofocus,
     Clip? clipBehavior,
-    required Widget icon,
+    required YgIcon icon,
     required Widget child,
-    required ButtonVariant variant,
-    required ButtonSize size,
-  }) = _YgButtonWithRightIcon;
+    required YgButtonVariant variant,
+    required YgButtonSize size,
+  }) = _YgButtonWithTrailingIcon;
 
-  final ButtonVariant variant;
-  final ButtonSize size;
+  final YgButtonVariant variant;
+  final YgButtonSize size;
 
   @override
   ButtonStyle defaultStyleOf(BuildContext context) {
@@ -61,6 +66,7 @@ class YgButton extends ButtonStyleButton {
       size: size,
     ).toButtonStyle();
   }
+  // endregion Trailing icon
 
   @override
   ButtonStyle? themeStyleOf(BuildContext context) {
@@ -69,51 +75,10 @@ class YgButton extends ButtonStyleButton {
   }
 }
 
-class _YgButtonWithRightIcon extends YgButton {
-  _YgButtonWithRightIcon({
-    super.key,
-    required super.onPressed,
-    super.onLongPress,
-    super.style,
-    super.focusNode,
-    super.autofocus = false,
-    Clip? clipBehavior,
-    required Widget icon,
-    required Widget child,
-    required ButtonVariant variant,
-    required ButtonSize size,
-  }) : super(
-          clipBehavior: clipBehavior ?? Clip.none,
-          child: _YgButtonWithRightIconChild(icon: icon, child: child),
-          variant: variant,
-          size: size,
-        );
-}
+// region Leading icon
 
-class _YgButtonWithRightIconChild extends StatelessWidget {
-  const _YgButtonWithRightIconChild({
-    required this.child,
-    required this.icon,
-  });
-
-  final Widget child;
-  final Widget icon;
-
-  @override
-  Widget build(BuildContext context) {
-    return Row(
-      mainAxisSize: MainAxisSize.min,
-      children: <Widget>[
-        Flexible(child: child),
-        SizedBox(width: context.buttonThemes.iconSpacing),
-        icon,
-      ],
-    );
-  }
-}
-
-class _YgButtonWithLeftIcon extends YgButton {
-  _YgButtonWithLeftIcon({
+class _YgButtonWithLeadingIcon extends YgButton {
+  _YgButtonWithLeadingIcon({
     super.key,
     required super.onPressed,
     super.onLongPress,
@@ -121,37 +86,92 @@ class _YgButtonWithLeftIcon extends YgButton {
     super.focusNode,
     bool? autofocus,
     Clip? clipBehavior,
-    required Widget icon,
+    required YgIcon icon,
     required Widget child,
-    required ButtonVariant variant,
-    required ButtonSize size,
+    required YgButtonVariant variant,
+    required YgButtonSize size,
   }) : super(
           autofocus: autofocus ?? false,
           clipBehavior: clipBehavior ?? Clip.none,
-          child: _YgButtonWithLeftIconChild(icon: icon, child: child),
+          child: _YgButtonWithLeadingIconChild(
+            icon: icon,
+            child: child,
+          ),
           variant: variant,
           size: size,
         );
 }
 
-class _YgButtonWithLeftIconChild extends StatelessWidget {
-  const _YgButtonWithLeftIconChild({
-    required this.child,
+class _YgButtonWithLeadingIconChild extends StatelessWidget {
+  const _YgButtonWithLeadingIconChild({
     required this.icon,
+    required this.child,
   });
 
+  final YgIcon icon;
   final Widget child;
-  final Widget icon;
 
   @override
   Widget build(BuildContext context) {
     return Row(
       mainAxisSize: MainAxisSize.min,
       children: <Widget>[
-        icon,
-        SizedBox(width: context.buttonThemes.iconSpacing),
+        icon.copyWith(size: YgIconSize.small),
+        SizedBox(width: context.buttonTheme.iconSpacing),
         Flexible(child: child),
       ],
     );
   }
 }
+
+// endregion Leading icon
+
+// region Trailing icon
+
+class _YgButtonWithTrailingIcon extends YgButton {
+  _YgButtonWithTrailingIcon({
+    super.key,
+    required super.onPressed,
+    super.onLongPress,
+    super.style,
+    super.focusNode,
+    super.autofocus = false,
+    Clip? clipBehavior,
+    required YgIcon icon,
+    required Widget child,
+    required YgButtonVariant variant,
+    required YgButtonSize size,
+  }) : super(
+          clipBehavior: clipBehavior ?? Clip.none,
+          child: _YgButtonWithTrailingIconChild(
+            icon: icon,
+            child: child,
+          ),
+          variant: variant,
+          size: size,
+        );
+}
+
+class _YgButtonWithTrailingIconChild extends StatelessWidget {
+  const _YgButtonWithTrailingIconChild({
+    required this.icon,
+    required this.child,
+  });
+
+  final YgIcon icon;
+  final Widget child;
+
+  @override
+  Widget build(BuildContext context) {
+    return Row(
+      mainAxisSize: MainAxisSize.min,
+      children: <Widget>[
+        Flexible(child: child),
+        SizedBox(width: context.buttonTheme.iconSpacing),
+        icon.copyWith(size: YgIconSize.small),
+      ],
+    );
+  }
+}
+
+//endregion Trailing icon

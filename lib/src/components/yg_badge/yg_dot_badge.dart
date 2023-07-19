@@ -1,19 +1,23 @@
 import 'package:flutter/material.dart';
 import 'package:yggdrasil/src/theme/_theme.dart';
 
+/// A dot-shaped badge with a fixed size.
 class YgDotBadge extends StatelessWidget {
   const YgDotBadge({super.key});
 
+  /// The size of the dot badge.
+  static const double badgeSize = 8.0;
+
   @override
   Widget build(BuildContext context) {
-    final YgBadgeTheme theme = context.badgeTheme;
+    final YgBadgeTheme badgeTheme = context.badgeTheme;
 
     return Container(
-      width: 8,
-      height: 8,
+      width: badgeSize,
+      height: badgeSize,
       decoration: BoxDecoration(
-        borderRadius: theme.borderRadius,
-        color: theme.strongColor,
+        color: badgeTheme.strongColor,
+        shape: BoxShape.circle,
       ),
     );
   }

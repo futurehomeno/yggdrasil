@@ -1,0 +1,4 @@
+enum YgBadgeWeight {
+  weak,
+  strong;
+}

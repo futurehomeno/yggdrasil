@@ -1,5 +1,8 @@
 import 'package:flutter/widgets.dart';
 
+/// Rounded rectangle border with gradient.
+///
+/// The default [RoundedRectangleBorder] does not support gradient.
 class YgRoundedRectangleGradientBorder extends OutlinedBorder {
   const YgRoundedRectangleGradientBorder({
     required this.gradient,
@@ -7,11 +10,13 @@ class YgRoundedRectangleGradientBorder extends OutlinedBorder {
     this.width = 1.0,
   });
 
+  /// The gradient to use when filling the shape.
   final Gradient gradient;
 
   /// The radii for each corner.
   final BorderRadiusGeometry borderRadius;
 
+  /// The width of the border.
   final double width;
 
   @override

@@ -1,9 +1,8 @@
 name: yggdrasil_demo
-description: A demo app for yggdrasil.
+description: A demo app for Yggdrasil.
+publish_to: 'none'
 
-publish_to: 'none' # Remove this line if you wish to publish to pub.dev
-
-version: 1.0.0+1
+version: 1.0.0
 
 environment:
   sdk: ^3.0.5
@@ -15,9 +14,7 @@ dependencies:
   yggdrasil:
     path: ../
   get_it: 7.6.0
-  provider: 5.0.0
-
-  cupertino_icons: 1.0.5
+  provider: 6.0.5
 
 dev_dependencies:
   mockito: 5.4.2
@@ -28,6 +25,7 @@ dev_dependencies:
       ref: master # to-branch-script-tag
       url: git@github.com:futurehomeno/pubdev_registry.git
       path: packages/fh_lints
+  flutter_lints: ^2.0.1
 
 flutter:
   uses-material-design: true

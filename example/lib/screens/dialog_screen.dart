@@ -1,10 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:yggdrasil/yggdrasil.dart';
 import 'package:yggdrasil_demo/core/_core.dart';
-import 'package:yggdrasil_demo/dialogs/example_dialog.dart';
-import 'package:yggdrasil_demo/dialogs/non_dismissible_dialog.dart';
-
-import '../widgets/yg_screen.dart';
+import 'package:yggdrasil_demo/widgets/_widgets.dart';
 
 class DialogScreen extends StatefulWidget {
   const DialogScreen({super.key});
@@ -27,24 +24,21 @@ class _DialogScreenState extends State<DialogScreen> with TickerProviderStateMix
   Widget build(BuildContext context) {
     return YgScreen(
       componentName: 'Dialog',
-      componentDesc: 'Dialog',
+      componentDesc: 'Dialogs',
       supernovaLink: 'Link',
-      scrollable: false,
       child: Column(
         children: <Widget>[
+          const YgListTile(title: 'Normal dialog'),
           YgButton(
-            variant: ButtonVariant.primary,
-            onPressed: () {
-              Navigator.of(context).push(ExampleDialog());
-            },
-            child: const Text('Show dialog'),
+            variant: YgButtonVariant.primary,
+            onPressed: () => Navigator.of(context).push(ExampleDialog()),
+            child: const Text('Show'),
           ),
+          const YgListTile(title: 'Non-dismissible dialog'),
           YgButton(
-            variant: ButtonVariant.primary,
-            onPressed: () {
-              Navigator.of(context).push(NonDismissibleDialog());
-            },
-            child: const Text('Show non dismissible dialog'),
+            variant: YgButtonVariant.primary,
+            onPressed: () => Navigator.of(context).push(ExampleNonDismissibleDialog()),
+            child: const Text('Show'),
           ),
         ],
       ),

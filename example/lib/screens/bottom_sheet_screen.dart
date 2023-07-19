@@ -1,10 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:yggdrasil/src/components/_components.dart';
 import 'package:yggdrasil/yggdrasil.dart';
 import 'package:yggdrasil_demo/core/_core.dart';
-import 'package:yggdrasil_demo/modals/example_bottom_sheet.dart';
-import 'package:yggdrasil_demo/modals/example_bottom_sheet_without_footer.dart';
-import 'package:yggdrasil_demo/modals/example_scrollable_bottom_sheet.dart';
 import 'package:yggdrasil_demo/widgets/_widgets.dart';
 
 class BottomSheetScreen extends StatefulWidget {
@@ -27,32 +23,34 @@ class _BottomSheetScreenState extends State<BottomSheetScreen> with TickerProvid
   @override
   Widget build(BuildContext context) {
     return YgScreen(
-      componentName: 'Bottom sheet',
-      componentDesc: 'Bottom sheet',
+      componentName: 'BottomSheet',
+      componentDesc: 'Bottom sheets',
       supernovaLink: 'Link',
-      scrollable: false,
       child: Column(
         children: <Widget>[
+          const YgListTile(title: 'Default bottom sheet'),
           YgButton(
-            variant: ButtonVariant.primary,
+            variant: YgButtonVariant.primary,
             onPressed: () {
               Navigator.of(context).push(ExampleBottomSheet());
             },
-            child: const Text('Show default bottom sheet'),
+            child: const Text('Show'),
           ),
+          const YgListTile(title: 'Scrollable bottom sheet'),
           YgButton(
-            variant: ButtonVariant.primary,
+            variant: YgButtonVariant.primary,
             onPressed: () {
               Navigator.of(context).push(ExampleScrollableBottomSheet());
             },
-            child: const Text('Show scrollable bottom sheet'),
+            child: const Text('Show'),
           ),
+          const YgListTile(title: 'Bottom sheet w/o footer'),
           YgButton(
-            variant: ButtonVariant.primary,
+            variant: YgButtonVariant.primary,
             onPressed: () {
               Navigator.of(context).push(ExampleBottomSheetWithoutFooter());
             },
-            child: const Text('Show bottom sheet without footer'),
+            child: const Text('Show'),
           ),
         ],
       ),

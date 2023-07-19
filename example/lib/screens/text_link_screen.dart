@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:yggdrasil/yggdrasil.dart';
-import 'package:yggdrasil_demo/core/yg_route_builder.dart';
+import 'package:yggdrasil_demo/core/_core.dart';
 import 'package:yggdrasil_demo/widgets/_widgets.dart';
 
 class TextLinkScreen extends StatelessWidget {
@@ -18,12 +18,12 @@ class TextLinkScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return YgScreen(
-      componentName: 'Text Link',
-      componentDesc: 'Text Link',
+      componentName: 'TextLink',
+      componentDesc: 'Text links',
       supernovaLink: 'Link',
-      scrollable: false,
       child: Column(
         children: <Widget>[
+          const YgListTile(title: 'Enabled text link'),
           YgTextLink(
             onPressed: () {},
             text: 'Link',
@@ -48,6 +48,7 @@ class TextLinkScreen extends StatelessWidget {
             size: YgTextLinkSize.medium,
             weight: YgTextLinkWeight.strong,
           ),
+          const YgListTile(title: 'Disabled text link'),
           YgTextLink(
             text: 'Link',
             size: YgTextLinkSize.small,
@@ -72,41 +73,38 @@ class TextLinkScreen extends StatelessWidget {
             weight: YgTextLinkWeight.strong,
             onPressed: null,
           ),
-          YgTextLink(
-            onPressed: () {},
-            text: 'Link',
-            icon: const Icon(
-              Icons.open_in_browser_rounded,
-            ),
-            size: YgTextLinkSize.small,
-            weight: YgTextLinkWeight.weak,
-          ),
-          YgTextLink(
-            onPressed: () {},
-            text: 'Link',
-            icon: const Icon(
-              Icons.open_in_browser_rounded,
-            ),
-            size: YgTextLinkSize.small,
-            weight: YgTextLinkWeight.strong,
-          ),
-          YgTextLink(
-            onPressed: () {},
-            text: 'Link',
-            icon: const Icon(
-              Icons.open_in_browser_rounded,
-            ),
-            size: YgTextLinkSize.medium,
-            weight: YgTextLinkWeight.weak,
-          ),
-          YgTextLink(
-            onPressed: () {},
-            text: 'Link',
-            icon: const Icon(
-              Icons.open_in_browser_rounded,
-            ),
-            size: YgTextLinkSize.medium,
-            weight: YgTextLinkWeight.strong,
+          const YgListTile(title: 'Text link w/ icon'),
+          Column(
+            children: <Widget>[
+              YgTextLink(
+                onPressed: () {},
+                text: 'Link',
+                external: true,
+                size: YgTextLinkSize.small,
+                weight: YgTextLinkWeight.weak,
+              ),
+              YgTextLink(
+                onPressed: () {},
+                text: 'Link',
+                external: true,
+                size: YgTextLinkSize.small,
+                weight: YgTextLinkWeight.strong,
+              ),
+              YgTextLink(
+                onPressed: () {},
+                text: 'Link',
+                external: true,
+                size: YgTextLinkSize.medium,
+                weight: YgTextLinkWeight.weak,
+              ),
+              YgTextLink(
+                onPressed: () {},
+                text: 'Link',
+                external: true,
+                size: YgTextLinkSize.medium,
+                weight: YgTextLinkWeight.strong,
+              ),
+            ],
           ),
         ],
       ),

@@ -1,4 +1,4 @@
-enum ButtonVariant {
+enum YgButtonVariant {
   primary,
   secondary,
   text,

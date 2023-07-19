@@ -9,9 +9,9 @@ class YgTextLink extends ButtonStyleButton {
     super.key,
     required String text,
     required super.onPressed,
-    Widget? icon,
     this.size = YgTextLinkSize.small,
     this.weight = YgTextLinkWeight.weak,
+    this.external = false,
     super.autofocus = false,
     super.clipBehavior = Clip.none,
     super.onLongPress,
@@ -20,14 +20,15 @@ class YgTextLink extends ButtonStyleButton {
     super.focusNode,
   }) : super(
           child: _YgTextLinkContent(
+            external: external,
             text: text,
-            icon: icon,
           ),
           style: null,
         );
 
   final YgTextLinkSize size;
   final YgTextLinkWeight weight;
+  final bool external;
 
   @override
   ButtonStyle defaultStyleOf(BuildContext context) {
@@ -73,11 +74,11 @@ class YgTextLink extends ButtonStyleButton {
 class _YgTextLinkContent extends StatelessWidget {
   const _YgTextLinkContent({
     required this.text,
-    required this.icon,
+    required this.external,
   });
 
   final String text;
-  final Widget? icon;
+  final bool external;
 
   @override
   Widget build(BuildContext context) {
@@ -86,17 +87,17 @@ class _YgTextLinkContent extends StatelessWidget {
     return Row(
       mainAxisSize: MainAxisSize.min,
       crossAxisAlignment: CrossAxisAlignment.center,
-      children: [
-        Text(text),
-        if (icon != null)
+      children: <Widget>[
+        Flexible(
+          child: Text(text),
+        ),
+        if (external)
           Padding(
             padding: theme.iconPadding,
-            child: IconTheme(
-              data: IconThemeData(
-                color: DefaultTextStyle.of(context).style.color,
-                size: theme.iconSize,
-              ),
-              child: icon!,
+            child: YgIcon(
+              YgIcons.link,
+              color: theme.iconColor,
+              size: YgIconSize.small,
             ),
           ),
       ],

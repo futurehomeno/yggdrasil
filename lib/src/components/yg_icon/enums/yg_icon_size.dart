@@ -1,0 +1,4 @@
+enum YgIconSize {
+  small,
+  large;
+}

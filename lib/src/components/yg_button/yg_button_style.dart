@@ -1,8 +1,8 @@
-import 'package:flutter/material.dart';
+import 'package:flutter/material.dart' hide TextButtonTheme;
+import 'package:yggdrasil/src/components/yg_button/_yg_button.dart';
 import 'package:yggdrasil/src/theme/_theme.dart';
 import 'package:yggdrasil/src/utils/_utils.dart';
 
-import 'enums/_enums.dart';
 import 'properties/_properties.dart';
 
 /// Button style for YgButtons.
@@ -21,31 +21,31 @@ class YgButtonStyle {
 
   factory YgButtonStyle.fromVariant({
     required BuildContext context,
-    required ButtonVariant variant,
-    ButtonSize size = ButtonSize.medium,
+    required YgButtonVariant variant,
+    YgButtonSize size = YgButtonSize.medium,
   }) {
     switch (variant) {
-      case ButtonVariant.primary:
+      case YgButtonVariant.primary:
         return _buildPrimaryButton(
           context: context,
           size: size,
         );
-      case ButtonVariant.secondary:
+      case YgButtonVariant.secondary:
         return _buildSecondaryButton(
           context: context,
           size: size,
         );
-      case ButtonVariant.text:
+      case YgButtonVariant.text:
         return _buildTextButton(
           context: context,
           size: size,
         );
-      case ButtonVariant.link:
+      case YgButtonVariant.link:
         return _buildLinkButton(
           context: context,
           size: size,
         );
-      case ButtonVariant.critical:
+      case YgButtonVariant.critical:
         return _buildCriticalButton(
           context: context,
           size: size,
@@ -88,111 +88,141 @@ class YgButtonStyle {
 
   static YgButtonStyle _buildPrimaryButton({
     required BuildContext context,
-    required ButtonSize size,
+    required YgButtonSize size,
   }) {
+    final YgButtonTheme theme = context.buttonTheme;
+    final PrimaryButtonTheme primaryButtonTheme = theme.primaryButtonTheme;
+
     return YgButtonStyle(
-      backgroundColor: context.buttonThemes.primaryButtonTheme.backgroundColor,
-      textStyle: context.buttonThemes.primaryButtonTheme.textStyle,
-      disabledTextStyle: context.buttonThemes.primaryButtonTheme.disabledTextStyle,
+      backgroundColor: primaryButtonTheme.backgroundColor,
+      textStyle: primaryButtonTheme.textStyle,
+      disabledTextStyle: primaryButtonTheme.disabledTextStyle,
       shape: YgRoundedRectangleGradientBorder(
-        gradient: context.buttonThemes.primaryButtonTheme.borderGradient,
-        borderRadius: context.buttonThemes.borderRadius,
-        width: context.buttonThemes.borderWidth,
+        gradient: primaryButtonTheme.borderGradient,
+        borderRadius: theme.borderRadius,
+        width: theme.borderWidth,
       ),
       disabledShape: YgRoundedRectangleGradientBorder(
-        gradient: context.buttonThemes.primaryButtonTheme.disabledBorderGradient,
-        borderRadius: context.buttonThemes.borderRadius,
-        width: context.buttonThemes.borderWidth,
+        gradient: primaryButtonTheme.disabledBorderGradient,
+        borderRadius: theme.borderRadius,
+        width: theme.borderWidth,
       ),
-      padding: size.buildPadding(context),
+      padding: YgButtonMapper.buildPadding(
+        theme: theme,
+        size: size,
+      ),
     );
   }
 
   static YgButtonStyle _buildSecondaryButton({
     required BuildContext context,
-    required ButtonSize size,
+    required YgButtonSize size,
   }) {
+    final YgButtonTheme theme = context.buttonTheme;
+    final SecondaryButtonTheme secondaryButtonTheme = theme.secondaryButtonTheme;
+
     return YgButtonStyle(
-      backgroundColor: context.buttonThemes.secondaryButtonTheme.backgroundColor,
-      textStyle: context.buttonThemes.secondaryButtonTheme.textStyle,
-      disabledTextStyle: context.buttonThemes.secondaryButtonTheme.disabledTextStyle,
+      backgroundColor: secondaryButtonTheme.backgroundColor,
+      textStyle: secondaryButtonTheme.textStyle,
+      disabledTextStyle: secondaryButtonTheme.disabledTextStyle,
       shape: YgRoundedRectangleGradientBorder(
-        gradient: context.buttonThemes.secondaryButtonTheme.borderGradient,
-        borderRadius: context.buttonThemes.borderRadius,
-        width: context.buttonThemes.borderWidth,
+        gradient: secondaryButtonTheme.borderGradient,
+        borderRadius: theme.borderRadius,
+        width: theme.borderWidth,
       ),
       disabledShape: YgRoundedRectangleGradientBorder(
-        gradient: context.buttonThemes.secondaryButtonTheme.disabledBorderGradient,
-        borderRadius: context.buttonThemes.borderRadius,
-        width: context.buttonThemes.borderWidth,
+        gradient: secondaryButtonTheme.disabledBorderGradient,
+        borderRadius: theme.borderRadius,
+        width: theme.borderWidth,
       ),
-      padding: size.buildPadding(context),
+      padding: YgButtonMapper.buildPadding(
+        theme: theme,
+        size: size,
+      ),
     );
   }
 
   static YgButtonStyle _buildTextButton({
     required BuildContext context,
-    required ButtonSize size,
+    required YgButtonSize size,
   }) {
+    final YgButtonTheme theme = context.buttonTheme;
+    final TextButtonTheme textButtonTheme = theme.textButtonTheme;
+
     return YgButtonStyle(
-      backgroundColor: context.buttonThemes.textButtonTheme.backgroundColor,
-      textStyle: context.buttonThemes.textButtonTheme.textStyle,
-      disabledTextStyle: context.buttonThemes.textButtonTheme.disabledTextStyle,
+      backgroundColor: textButtonTheme.backgroundColor,
+      textStyle: textButtonTheme.textStyle,
+      disabledTextStyle: textButtonTheme.disabledTextStyle,
       shape: YgRoundedRectangleGradientBorder(
-        gradient: context.buttonThemes.textButtonTheme.borderGradient,
-        borderRadius: context.buttonThemes.borderRadius,
-        width: context.buttonThemes.borderWidth,
+        gradient: textButtonTheme.borderGradient,
+        borderRadius: theme.borderRadius,
+        width: theme.borderWidth,
       ),
       disabledShape: YgRoundedRectangleGradientBorder(
-        gradient: context.buttonThemes.textButtonTheme.disabledBorderGradient,
-        borderRadius: context.buttonThemes.borderRadius,
-        width: context.buttonThemes.borderWidth,
+        gradient: textButtonTheme.disabledBorderGradient,
+        borderRadius: theme.borderRadius,
+        width: theme.borderWidth,
       ),
-      padding: size.buildPadding(context),
+      padding: YgButtonMapper.buildPadding(
+        theme: theme,
+        size: size,
+      ),
     );
   }
 
   static YgButtonStyle _buildLinkButton({
     required BuildContext context,
-    required ButtonSize size,
+    required YgButtonSize size,
   }) {
+    final YgButtonTheme theme = context.buttonTheme;
+    final LinkButtonTheme linkButtonTheme = theme.linkButtonTheme;
+
     return YgButtonStyle(
-      backgroundColor: context.buttonThemes.linkButtonTheme.backgroundColor,
-      textStyle: context.buttonThemes.linkButtonTheme.textStyle,
-      disabledTextStyle: context.buttonThemes.linkButtonTheme.disabledTextStyle,
+      backgroundColor: linkButtonTheme.backgroundColor,
+      textStyle: linkButtonTheme.textStyle,
+      disabledTextStyle: linkButtonTheme.disabledTextStyle,
       shape: YgRoundedRectangleGradientBorder(
-        gradient: context.buttonThemes.linkButtonTheme.borderGradient,
-        borderRadius: context.buttonThemes.borderRadius,
-        width: context.buttonThemes.borderWidth,
+        gradient: linkButtonTheme.borderGradient,
+        borderRadius: theme.borderRadius,
+        width: theme.borderWidth,
       ),
       disabledShape: YgRoundedRectangleGradientBorder(
-        gradient: context.buttonThemes.linkButtonTheme.disabledBorderGradient,
-        borderRadius: context.buttonThemes.borderRadius,
-        width: context.buttonThemes.borderWidth,
+        gradient: linkButtonTheme.disabledBorderGradient,
+        borderRadius: theme.borderRadius,
+        width: theme.borderWidth,
       ),
-      padding: size.buildPadding(context),
+      padding: YgButtonMapper.buildPadding(
+        theme: theme,
+        size: size,
+      ),
     );
   }
 
   static YgButtonStyle _buildCriticalButton({
     required BuildContext context,
-    required ButtonSize size,
+    required YgButtonSize size,
   }) {
+    final YgButtonTheme theme = context.buttonTheme;
+    final CriticalButtonTheme criticalButtonTheme = theme.criticalButtonTheme;
+
     return YgButtonStyle(
-      backgroundColor: context.buttonThemes.criticalButtonTheme.backgroundColor,
-      textStyle: context.buttonThemes.criticalButtonTheme.textStyle,
-      disabledTextStyle: context.buttonThemes.criticalButtonTheme.disabledTextStyle,
+      backgroundColor: criticalButtonTheme.backgroundColor,
+      textStyle: criticalButtonTheme.textStyle,
+      disabledTextStyle: criticalButtonTheme.disabledTextStyle,
       shape: YgRoundedRectangleGradientBorder(
-        gradient: context.buttonThemes.criticalButtonTheme.borderGradient,
-        borderRadius: context.buttonThemes.borderRadius,
-        width: context.buttonThemes.borderWidth,
+        gradient: criticalButtonTheme.borderGradient,
+        borderRadius: theme.borderRadius,
+        width: theme.borderWidth,
       ),
       disabledShape: YgRoundedRectangleGradientBorder(
-        gradient: context.buttonThemes.criticalButtonTheme.disabledBorderGradient,
-        borderRadius: context.buttonThemes.borderRadius,
-        width: context.buttonThemes.borderWidth,
+        gradient: criticalButtonTheme.disabledBorderGradient,
+        borderRadius: theme.borderRadius,
+        width: theme.borderWidth,
       ),
-      padding: size.buildPadding(context),
+      padding: YgButtonMapper.buildPadding(
+        theme: theme,
+        size: size,
+      ),
     );
   }
 }

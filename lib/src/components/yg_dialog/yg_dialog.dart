@@ -1,25 +1,27 @@
 import 'package:flutter/material.dart';
-import 'package:yggdrasil/src/theme/_theme.dart';
-import 'package:yggdrasil/src/utils/yg_spacing_builder.dart';
 import 'package:yggdrasil/yggdrasil.dart';
 
+// TODO(bjhandeland): Icon can sometimes be a loading indicator.
+// TODO(bjhandeland): Factories for variants, e.g. success, warning, etc.
 class YgDialog extends StatelessWidget {
-  YgDialog({
+  const YgDialog({
     super.key,
     required this.icon,
     required this.title,
     required this.description,
     required this.actions,
-  }) : assert(actions.isNotEmpty, '"actions" should contain at least one button');
+  });
 
-  final Widget icon;
+  final YgIcon icon;
   final String title;
   final String description;
   final List<YgButton> actions;
 
   @override
   Widget build(BuildContext context) {
-    final YgDialogThemes dialogTheme = context.dialogTheme;
+    assert(actions.isNotEmpty, '"actions" should contain at least one button');
+
+    final YgDialogTheme dialogTheme = context.dialogTheme;
 
     final YgSpacingBuilder spacingBuilder = YgSpacingBuilder(
       horizontalSpacing: dialogTheme.buttonSpacing,
@@ -31,7 +33,6 @@ class YgDialog extends StatelessWidget {
       child: Padding(
         padding: dialogTheme.outerPadding,
         child: Column(
-          crossAxisAlignment: CrossAxisAlignment.stretch,
           mainAxisSize: MainAxisSize.min,
           children: <Widget>[
             _buildIcon(dialogTheme),
@@ -43,7 +44,7 @@ class YgDialog extends StatelessWidget {
     );
   }
 
-  Container _buildIcon(YgDialogThemes dialogTheme) {
+  Container _buildIcon(YgDialogTheme dialogTheme) {
     return Container(
       padding: dialogTheme.iconPadding,
       decoration: BoxDecoration(
@@ -54,7 +55,7 @@ class YgDialog extends StatelessWidget {
     );
   }
 
-  Padding _buildTextSection(YgDialogThemes dialogTheme) {
+  Padding _buildTextSection(YgDialogTheme dialogTheme) {
     return Padding(
       padding: dialogTheme.textSectionPadding,
       child: Column(
@@ -65,9 +66,7 @@ class YgDialog extends StatelessWidget {
             textAlign: TextAlign.center,
             style: dialogTheme.titleTextStyle,
           ),
-          SizedBox(
-            height: dialogTheme.titleDescriptionSpacing,
-          ),
+          SizedBox(height: dialogTheme.titleDescriptionSpacing),
           Text(
             description,
             textAlign: TextAlign.center,

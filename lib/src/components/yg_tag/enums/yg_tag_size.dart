@@ -1,0 +1,4 @@
+enum YgTagSize {
+  small,
+  medium;
+}
