@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:yggdrasil/src/extensions/_extensions.dart';
 import 'package:yggdrasil/yggdrasil.dart';
 
 class YgButtonGroup extends StatelessWidget {
@@ -43,19 +42,15 @@ class YgButtonGroup extends StatelessWidget {
 
     if (axis == Axis.vertical) {
       return Column(
-        children: children.separatedBy(
-          SizedBox(
-            height: context.buttonGroupTheme.buttonSpacing,
-          ),
+        children: children.withSpacing(
+          verticalSpacing: context.buttonGroupTheme.buttonSpacing,
         ),
       );
     }
 
     return Row(
-      children: children.separatedBy(
-        SizedBox(
-          height: context.buttonGroupTheme.buttonSpacing,
-        ),
+      children: children.withSpacing(
+        horizontalSpacing: context.buttonGroupTheme.buttonSpacing,
       ),
     );
   }

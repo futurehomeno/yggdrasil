@@ -26,8 +26,8 @@ extension WidgetListExtension on List<Widget> {
   }) {
     return separatedBy(
       SizedBox(
-        height: horizontalSpacing,
-        width: verticalSpacing,
+        height: verticalSpacing,
+        width: horizontalSpacing,
       ),
     );
   }

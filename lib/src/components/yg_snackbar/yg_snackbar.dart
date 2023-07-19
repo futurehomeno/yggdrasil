@@ -51,12 +51,9 @@ class YgSnackbar extends StatelessWidget {
               ),
             ),
             Expanded(
-              child: Padding(
-                padding: EdgeInsets.symmetric(horizontal: theme.messageSpacing),
-                child: Text(
-                  message,
-                  style: theme.messageTextStyle,
-                ),
+              child: Text(
+                message,
+                style: theme.messageTextStyle,
               ),
             ),
             YgIcon(
@@ -66,7 +63,7 @@ class YgSnackbar extends StatelessWidget {
               size: YgIconSize.small,
               tapSize: YgIconTapSize.larger,
             ),
-          ],
+          ].withSpacing(horizontalSpacing: theme.messageSpacing),
         ),
       ),
     );

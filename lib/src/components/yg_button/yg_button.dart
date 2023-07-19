@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:yggdrasil/src/components/_components.dart';
-import 'package:yggdrasil/src/theme/_theme.dart';
+import 'package:yggdrasil/yggdrasil.dart';
 
 import 'yg_button_style.dart';
 
@@ -117,9 +116,8 @@ class _YgButtonWithLeadingIconChild extends StatelessWidget {
       mainAxisSize: MainAxisSize.min,
       children: <Widget>[
         icon.copyWith(size: YgIconSize.small),
-        SizedBox(width: context.buttonTheme.iconSpacing),
         Flexible(child: child),
-      ],
+      ].withSpacing(horizontalSpacing: context.buttonTheme.iconSpacing),
     );
   }
 }
@@ -167,9 +165,8 @@ class _YgButtonWithTrailingIconChild extends StatelessWidget {
       mainAxisSize: MainAxisSize.min,
       children: <Widget>[
         Flexible(child: child),
-        SizedBox(width: context.buttonTheme.iconSpacing),
         icon.copyWith(size: YgIconSize.small),
-      ],
+      ].withSpacing(horizontalSpacing: context.buttonTheme.iconSpacing),
     );
   }
 }
