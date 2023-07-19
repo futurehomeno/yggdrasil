@@ -25,7 +25,7 @@ class YgButtonGroup extends StatelessWidget {
           variant: YgButtonVariant.link,
           size: YgButtonSize.medium,
           onPressed: onCancelPressed,
-          child: const Text('Cancel'),
+          child: Text(cancelText),
         ),
       ],
     );
