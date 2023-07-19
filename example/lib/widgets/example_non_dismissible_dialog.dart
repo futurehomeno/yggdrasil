@@ -11,22 +11,24 @@ class ExampleNonDismissibleDialog extends YgDialogRoute {
       icon: const YgIcon(YgIcons.info),
       title: 'Non Dismissible Dialog',
       description: 'A dialog which can not be dismissed by the user without choosing a action.',
-      actions: <YgButton>[
-        YgButton(
-          variant: YgButtonVariant.primary,
-          onPressed: () {
-            Navigator.of(context).pop();
-          },
-          child: const Text('Action 1'),
-        ),
-        YgButton(
-          variant: YgButtonVariant.secondary,
-          onPressed: () {
-            Navigator.of(context).pop();
-          },
-          child: const Text('Action 2'),
-        ),
-      ],
+      ygButtonGroup: YgButtonGroup(
+        children: <YgButton>[
+          YgButton(
+            variant: YgButtonVariant.primary,
+            onPressed: () {
+              Navigator.of(context).pop();
+            },
+            child: const Text('Action 1'),
+          ),
+          YgButton(
+            variant: YgButtonVariant.secondary,
+            onPressed: () {
+              Navigator.of(context).pop();
+            },
+            child: const Text('Action 2'),
+          ),
+        ],
+      ),
     );
   }
 }

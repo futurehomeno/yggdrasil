@@ -1,10 +1,12 @@
 import 'package:flutter/material.dart';
+import 'package:yggdrasil/src/extensions/_extensions.dart';
 import 'package:yggdrasil/yggdrasil.dart';
 
 class YgButtonGroup extends StatelessWidget {
   const YgButtonGroup({
     super.key,
     required this.children,
+    this.axis = Axis.vertical,
   });
 
   factory YgButtonGroup.actionOrCancel({
@@ -32,21 +34,29 @@ class YgButtonGroup extends StatelessWidget {
   }
 
   final List<YgButton> children;
+  final Axis axis;
 
   @override
   Widget build(BuildContext context) {
     assert(children.length >= 2, 'ButtonGroup must have at least 2 buttons');
     assert(children.length <= 3, 'ButtonGroup can have at most 3 buttons');
 
-    return ListView.separated(
-      shrinkWrap: true,
-      itemCount: children.length,
-      itemBuilder: (BuildContext context, int index) {
-        return children[index];
-      },
-      separatorBuilder: (BuildContext context, int index) {
-        return SizedBox(height: context.buttonGroupTheme.buttonSpacing);
-      },
+    if (axis == Axis.vertical) {
+      return Column(
+        children: children.separatedBy(
+          SizedBox(
+            height: context.buttonGroupTheme.buttonSpacing,
+          ),
+        ),
+      );
+    }
+
+    return Row(
+      children: children.separatedBy(
+        SizedBox(
+          height: context.buttonGroupTheme.buttonSpacing,
+        ),
+      ),
     );
   }
 }

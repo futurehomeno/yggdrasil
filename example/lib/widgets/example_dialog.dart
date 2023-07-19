@@ -8,18 +8,20 @@ class ExampleDialog extends YgDialogRoute {
       icon: const YgIcon(YgIcons.info),
       title: 'Example dialog',
       description: 'The description should provide the necessary information needed to make an informed decision.',
-      actions: <YgButton>[
-        YgButton(
-          variant: YgButtonVariant.primary,
-          onPressed: () {},
-          child: const Text('Primary button'),
-        ),
-        YgButton(
-          variant: YgButtonVariant.secondary,
-          onPressed: () {},
-          child: const Text('Secondary button'),
-        ),
-      ],
+      ygButtonGroup: YgButtonGroup(
+        children: <YgButton>[
+          YgButton(
+            variant: YgButtonVariant.primary,
+            onPressed: () {},
+            child: const Text('Primary button'),
+          ),
+          YgButton(
+            variant: YgButtonVariant.secondary,
+            onPressed: () {},
+            child: const Text('Secondary button'),
+          ),
+        ],
+      ),
     );
   }
 }
