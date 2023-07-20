@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:yggdrasil/yggdrasil.dart';
 import 'package:yggdrasil_demo/core/_core.dart';
+import 'package:yggdrasil_demo/extensions/widget_list_extensions.dart';
 import 'package:yggdrasil_demo/widgets/_widgets.dart';
 
 class CardScreen extends StatelessWidget {
@@ -39,7 +40,7 @@ class CardScreen extends StatelessWidget {
                   onTap: () {},
                 ),
               ),
-            ],
+            ].inspectable.spaced20,
           ),
           const YgListTile(title: 'Filled card'),
           Column(
@@ -59,7 +60,7 @@ class CardScreen extends StatelessWidget {
                   onTap: () {},
                 ),
               ),
-            ],
+            ].inspectable.spaced20,
           ),
           const YgListTile(title: 'Outlined card'),
           Column(
@@ -79,7 +80,7 @@ class CardScreen extends StatelessWidget {
                   onTap: () {},
                 ),
               ),
-            ],
+            ].inspectable.spaced20,
           ),
         ],
       ),

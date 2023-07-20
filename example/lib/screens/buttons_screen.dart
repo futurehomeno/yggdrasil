@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:yggdrasil/yggdrasil.dart';
 import 'package:yggdrasil_demo/core/_core.dart';
+import 'package:yggdrasil_demo/extensions/widget_list_extensions.dart';
 import 'package:yggdrasil_demo/widgets/_widgets.dart';
 
 class ButtonsScreen extends StatelessWidget {
@@ -58,7 +59,7 @@ class ButtonsScreen extends StatelessWidget {
                 icon: const YgIcon(YgIcons.info),
                 child: const Text('Button'),
               ),
-            ],
+            ].inspectable.spaced10,
           ),
           const YgListTile(title: 'Secondary buttons'),
           Column(
@@ -95,7 +96,7 @@ class ButtonsScreen extends StatelessWidget {
                 icon: const YgIcon(YgIcons.info),
                 child: const Text('Button'),
               ),
-            ],
+            ].inspectable.spaced10,
           ),
           const YgListTile(title: 'Text buttons'),
           Column(
@@ -132,7 +133,7 @@ class ButtonsScreen extends StatelessWidget {
                 icon: const YgIcon(YgIcons.info),
                 child: const Text('Button'),
               ),
-            ],
+            ].inspectable.spaced10,
           ),
           const YgListTile(title: 'Critical buttons'),
           Column(
@@ -169,7 +170,7 @@ class ButtonsScreen extends StatelessWidget {
                 icon: const YgIcon(YgIcons.info),
                 child: const Text('Button'),
               ),
-            ],
+            ].inspectable.spaced10,
           ),
           const YgListTile(title: 'Link buttons'),
           Column(
@@ -206,7 +207,7 @@ class ButtonsScreen extends StatelessWidget {
                 icon: const YgIcon(YgIcons.info),
                 child: const Text('Button'),
               ),
-            ],
+            ].inspectable.spaced10,
           ),
         ],
       ),

@@ -1,14 +1,6 @@
 import 'package:flutter/material.dart';
 
-extension InspectWrapperWidgetExtension on Widget {
-  Widget get inspectable {
-    return InspectWrapper(
-      child: this,
-    );
-  }
-}
-
-class InspectWrapper extends StatelessWidget {
+class InspectWrapper extends StatefulWidget {
   const InspectWrapper({
     super.key,
     required this.child,
@@ -17,18 +9,33 @@ class InspectWrapper extends StatelessWidget {
   final Widget child;
 
   @override
+  State<InspectWrapper> createState() => _InspectWrapperState();
+}
+
+class _InspectWrapperState extends State<InspectWrapper> {
+  @override
   Widget build(BuildContext context) {
     final YgOutlineInheritedState? state = YgOutlineInheritedState.of(context);
-    return AnimatedContainer(
-      duration: const Duration(milliseconds: 200),
-      curve: Curves.easeOut,
-      decoration: BoxDecoration(
-        border: Border.all(
-          width: 1,
-          color: state?.toggled == true ? const Color(0xffff00ff) : Colors.transparent,
+    return Stack(
+      children: <Widget>[
+        widget.child,
+        Positioned.fill(
+          child: IgnorePointer(
+            child: AnimatedContainer(
+              duration: const Duration(milliseconds: 200),
+              curve: Curves.easeOut,
+              decoration: BoxDecoration(
+                border: state?.toggled == true
+                    ? Border.all(
+                        width: 1,
+                        color: const Color(0xffff00ff),
+                      )
+                    : null,
+              ),
+            ),
+          ),
         ),
-      ),
-      child: child,
+      ],
     );
   }
 }

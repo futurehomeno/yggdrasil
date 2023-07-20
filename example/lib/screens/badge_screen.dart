@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:yggdrasil/yggdrasil.dart';
 import 'package:yggdrasil_demo/core/_core.dart';
+import 'package:yggdrasil_demo/extensions/_extensions.dart';
 import 'package:yggdrasil_demo/widgets/_widgets.dart';
 
 class BadgeScreen extends StatelessWidget {
@@ -24,42 +25,44 @@ class BadgeScreen extends StatelessWidget {
       child: Column(
         children: <Widget>[
           const YgListTile(title: 'Badges with count 0 - 9'),
-          YgBadge(
-            amount: 0,
-            weight: YgBadgeWeight.strong,
-            child: YgIcon(
-              onTap: () {},
-              YgIcons.info,
-              tapSize: YgIconTapSize.largest,
+          ...<Widget>[
+            YgBadge(
+              amount: 0,
+              weight: YgBadgeWeight.strong,
+              child: YgIcon(
+                onTap: () {},
+                YgIcons.info,
+                tapSize: YgIconTapSize.largest,
+              ),
             ),
-          ).inspectable,
-          YgBadge(
-            amount: 1,
-            weight: YgBadgeWeight.strong,
-            child: YgIcon(
-              onTap: () {},
-              YgIcons.info,
-              tapSize: YgIconTapSize.largest,
+            YgBadge(
+              amount: 1,
+              weight: YgBadgeWeight.strong,
+              child: YgIcon(
+                onTap: () {},
+                YgIcons.info,
+                tapSize: YgIconTapSize.largest,
+              ),
             ),
-          ).inspectable,
-          YgBadge(
-            amount: 8,
-            weight: YgBadgeWeight.strong,
-            child: YgIcon(
-              onTap: () {},
-              YgIcons.info,
-              tapSize: YgIconTapSize.largest,
+            YgBadge(
+              amount: 8,
+              weight: YgBadgeWeight.strong,
+              child: YgIcon(
+                onTap: () {},
+                YgIcons.info,
+                tapSize: YgIconTapSize.largest,
+              ),
             ),
-          ).inspectable,
-          YgBadge(
-            amount: 9,
-            weight: YgBadgeWeight.strong,
-            child: YgIcon(
-              onTap: () {},
-              YgIcons.info,
-              tapSize: YgIconTapSize.largest,
+            YgBadge(
+              amount: 9,
+              weight: YgBadgeWeight.strong,
+              child: YgIcon(
+                onTap: () {},
+                YgIcons.info,
+                tapSize: YgIconTapSize.largest,
+              ),
             ),
-          ).inspectable,
+          ].inspectable.spaced20,
           const YgListTile(title: 'Badges with more than 9'),
           YgBadge(
             amount: 10,

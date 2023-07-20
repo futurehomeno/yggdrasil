@@ -118,7 +118,7 @@ class _YgTextInputState extends State<YgTextInput> {
   Widget build(BuildContext context) {
     final Widget layout = RepaintBoundary(
       child: SizedBox(
-        height: 56,
+        height: 60,
         child: Stack(
           children: <Widget>[
             if (widget.outlined)
@@ -141,7 +141,7 @@ class _YgTextInputState extends State<YgTextInput> {
               ),
             Positioned.fill(
               child: Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 10),
+                padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 12),
                 child: Row(
                   children: <Widget>[
                     Expanded(

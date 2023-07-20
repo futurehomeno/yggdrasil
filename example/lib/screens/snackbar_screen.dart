@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:yggdrasil/yggdrasil.dart';
 import 'package:yggdrasil_demo/core/_core.dart';
+import 'package:yggdrasil_demo/extensions/widget_extensions.dart';
 import 'package:yggdrasil_demo/widgets/_widgets.dart';
 
 class SnackbarScreen extends StatelessWidget {
@@ -28,19 +29,19 @@ class SnackbarScreen extends StatelessWidget {
             variant: YgSnackbarVariant.highlight,
             message: 'Snackbars provide feedback after users take an action',
             onClose: () {},
-          ),
+          ).inspectable,
           const YgListTile(title: 'Success snackbar'),
           YgSnackbar(
             variant: YgSnackbarVariant.success,
             message: 'Snackbars provide feedback after users take an action',
             onClose: () {},
-          ),
+          ).inspectable,
           const YgListTile(title: 'Critical snackbar'),
           YgSnackbar(
             variant: YgSnackbarVariant.critical,
             message: 'Snackbars provide feedback after users take an action',
             onClose: () {},
-          )
+          ).inspectable
         ],
       ),
     );

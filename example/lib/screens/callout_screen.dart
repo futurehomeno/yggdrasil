@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:yggdrasil/yggdrasil.dart';
 import 'package:yggdrasil_demo/core/_core.dart';
+import 'package:yggdrasil_demo/extensions/widget_list_extensions.dart';
 import 'package:yggdrasil_demo/widgets/_widgets.dart';
 
 class CalloutScreen extends StatelessWidget {
@@ -52,7 +53,7 @@ class CalloutScreen extends StatelessWidget {
                 variant: YgCalloutVariant.highlight,
                 description: 'Callout with no close.',
               ),
-            ],
+            ].inspectable.spaced20,
           ),
           const YgListTile(title: 'Success callout'),
           Column(
@@ -83,7 +84,7 @@ class CalloutScreen extends StatelessWidget {
                 variant: YgCalloutVariant.success,
                 description: 'Callout with no close.',
               ),
-            ],
+            ].inspectable.spaced20,
           ),
           const YgListTile(title: 'Warning callout'),
           Column(
@@ -114,7 +115,7 @@ class CalloutScreen extends StatelessWidget {
                 variant: YgCalloutVariant.warning,
                 description: 'Callout with no close.',
               ),
-            ],
+            ].inspectable.spaced20,
           ),
           const YgListTile(title: 'Critical callout'),
           Column(
@@ -145,7 +146,7 @@ class CalloutScreen extends StatelessWidget {
                 variant: YgCalloutVariant.critical,
                 description: 'Callout with no close.',
               ),
-            ],
+            ].inspectable.spaced20,
           ),
         ],
       ),
