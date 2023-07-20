@@ -6,6 +6,9 @@ class YgButtonGroup extends StatelessWidget {
     super.key,
     required this.children,
     this.axis = Axis.vertical,
+    this.mainAxisAlignment = MainAxisAlignment.start,
+    this.mainAxisSize = MainAxisSize.max,
+    this.crossAxisAlignment = CrossAxisAlignment.stretch,
   });
 
   factory YgButtonGroup.actionOrCancel({
@@ -34,14 +37,20 @@ class YgButtonGroup extends StatelessWidget {
 
   final List<YgButton> children;
   final Axis axis;
+  final MainAxisAlignment mainAxisAlignment;
+  final MainAxisSize mainAxisSize;
+  final CrossAxisAlignment crossAxisAlignment;
 
   @override
   Widget build(BuildContext context) {
-    assert(children.length >= 2, 'ButtonGroup must have at least 2 buttons');
+    assert(children.isNotEmpty, 'ButtonGroup must have at least 1 buttons');
     assert(children.length <= 3, 'ButtonGroup can have at most 3 buttons');
 
     if (axis == Axis.vertical) {
       return Column(
+        mainAxisAlignment: mainAxisAlignment,
+        mainAxisSize: mainAxisSize,
+        crossAxisAlignment: crossAxisAlignment,
         children: children.withSpacing(
           verticalSpacing: context.buttonGroupTheme.buttonSpacing,
         ),
@@ -49,6 +58,9 @@ class YgButtonGroup extends StatelessWidget {
     }
 
     return Row(
+      mainAxisAlignment: mainAxisAlignment,
+      mainAxisSize: mainAxisSize,
+      crossAxisAlignment: crossAxisAlignment,
       children: children.withSpacing(
         horizontalSpacing: context.buttonGroupTheme.buttonSpacing,
       ),

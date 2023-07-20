@@ -12,21 +12,24 @@ class ExampleScrollableBottomSheet extends YgBottomSheetModalRoute {
           25,
           (int index) => YgListTile(
             title: 'List item ${index + 1}',
+            onTap: () {},
           ),
         ),
       ),
-      footerButtons: <YgButton>[
-        YgButton(
-          variant: YgButtonVariant.primary,
-          onPressed: () {},
-          child: const Text('Primary button'),
-        ),
-        YgButton(
-          variant: YgButtonVariant.secondary,
-          onPressed: () {},
-          child: const Text('Secondary button'),
-        ),
-      ],
+      footerButtons: YgButtonGroup(
+        children: <YgButton>[
+          YgButton(
+            variant: YgButtonVariant.primary,
+            onPressed: () {},
+            child: const Text('Primary button'),
+          ),
+          YgButton(
+            variant: YgButtonVariant.secondary,
+            onPressed: () {},
+            child: const Text('Secondary button'),
+          ),
+        ],
+      ),
     );
   }
 }

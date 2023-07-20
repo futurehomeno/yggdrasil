@@ -13,13 +13,15 @@ class ExampleBottomSheet extends YgBottomSheetModalRoute {
           subtitle: 'Bacon ipsum dolor amet chicken frankfurter burgdoggen landjaeger sirloin ham pig.',
         ),
       ),
-      footerButtons: <YgButton>[
-        YgButton(
-          variant: YgButtonVariant.primary,
-          onPressed: () {},
-          child: const Text('Button'),
-        ),
-      ],
+      footerButtons: YgButtonGroup(
+        children: <YgButton>[
+          YgButton(
+            variant: YgButtonVariant.primary,
+            onPressed: () {},
+            child: const Text('Button'),
+          ),
+        ],
+      ),
     );
   }
 }

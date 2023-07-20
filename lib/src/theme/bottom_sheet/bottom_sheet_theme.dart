@@ -49,7 +49,7 @@ class _$YgBottomSheetTheme {
     ),
   ];
 
-  static const List<EdgeInsets> outerPadding = <EdgeInsets>[
+  static const List<EdgeInsets> headerPadding = <EdgeInsets>[
     EdgeInsets.symmetric(
       vertical: consumer_light.FhDimensions.md,
       horizontal: consumer_light.FhDimensions.xl,
@@ -68,18 +68,45 @@ class _$YgBottomSheetTheme {
     ),
   ];
 
+  static const List<EdgeInsets> contentPadding = <EdgeInsets>[
+    EdgeInsets.symmetric(
+      horizontal: consumer_light.FhDimensions.xl,
+    ),
+    EdgeInsets.symmetric(
+      horizontal: consumer_dark.FhDimensions.xl,
+    ),
+    EdgeInsets.symmetric(
+      horizontal: professional_light.FhDimensions.xl,
+    ),
+    EdgeInsets.symmetric(
+      horizontal: professional_dark.FhDimensions.xl,
+    ),
+  ];
+
   static const List<EdgeInsets> footerPadding = <EdgeInsets>[
-    EdgeInsets.only(
-      top: consumer_light.FhDimensions.xl,
+    EdgeInsets.fromLTRB(
+      consumer_light.FhDimensions.xl,
+      0.0,
+      consumer_light.FhDimensions.xl,
+      consumer_light.FhDimensions.xl,
     ),
-    EdgeInsets.only(
-      top: consumer_dark.FhDimensions.xl,
+    EdgeInsets.fromLTRB(
+      consumer_dark.FhDimensions.xl,
+      0.0,
+      consumer_dark.FhDimensions.xl,
+      consumer_dark.FhDimensions.xl,
     ),
-    EdgeInsets.only(
-      top: professional_light.FhDimensions.xl,
+    EdgeInsets.fromLTRB(
+      professional_light.FhDimensions.xl,
+      0.0,
+      professional_light.FhDimensions.xl,
+      professional_light.FhDimensions.xl,
     ),
-    EdgeInsets.only(
-      top: professional_dark.FhDimensions.xl,
+    EdgeInsets.fromLTRB(
+      professional_dark.FhDimensions.xl,
+      0.0,
+      professional_dark.FhDimensions.xl,
+      professional_dark.FhDimensions.xl,
     ),
   ];
 
@@ -88,25 +115,6 @@ class _$YgBottomSheetTheme {
     consumer_dark.FhDimensions.sm,
     professional_light.FhDimensions.sm,
     professional_dark.FhDimensions.sm,
-  ];
-
-  static const List<EdgeInsets> titlePadding = <EdgeInsets>[
-    EdgeInsets.only(
-      top: consumer_light.FhDimensions.sm,
-      bottom: consumer_light.FhDimensions.xl,
-    ),
-    EdgeInsets.only(
-      top: consumer_dark.FhDimensions.sm,
-      bottom: consumer_dark.FhDimensions.xl,
-    ),
-    EdgeInsets.only(
-      top: professional_light.FhDimensions.sm,
-      bottom: professional_light.FhDimensions.xl,
-    ),
-    EdgeInsets.only(
-      top: professional_dark.FhDimensions.sm,
-      bottom: professional_dark.FhDimensions.xl,
-    ),
   ];
 
   static List<TextStyle> titleStyle = <TextStyle>[

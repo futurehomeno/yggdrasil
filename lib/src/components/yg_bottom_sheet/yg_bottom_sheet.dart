@@ -1,8 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:yggdrasil/src/theme/_theme.dart';
-import 'package:yggdrasil/src/utils/_utils.dart';
-
-import '../_components.dart';
+import 'package:yggdrasil/src/components/yg_bottom_sheet/yg_bottom_sheet_header.dart';
+import 'package:yggdrasil/yggdrasil.dart';
 
 // TODO(bjhandeland): potentially expose the scroll controller.
 class YgBottomSheet extends StatefulWidget {
@@ -15,7 +13,7 @@ class YgBottomSheet extends StatefulWidget {
 
   final String title;
   final Widget content;
-  final List<YgButton>? footerButtons;
+  final YgButtonGroup? footerButtons;
 
   @override
   State<YgBottomSheet> createState() => _YgBottomSheetState();
@@ -38,19 +36,18 @@ class _YgBottomSheetState extends State<YgBottomSheet> {
           top: false,
           child: ClipRRect(
             borderRadius: bottomSheetTheme.borderRadius,
-            child: Padding(
-              padding: EdgeInsets.only(
-                bottom: bottomSheetTheme.outerPadding.bottom,
-              ),
-              child: Column(
-                mainAxisSize: MainAxisSize.min,
-                crossAxisAlignment: CrossAxisAlignment.stretch,
-                children: <Widget>[
-                  _buildHeader(bottomSheetTheme),
-                  _buildContent(scrollPhysicsProvider, bottomSheetTheme),
-                  if (widget.footerButtons?.isNotEmpty == true) _buildFooter(bottomSheetTheme),
-                ],
-              ),
+            child: Column(
+              mainAxisSize: MainAxisSize.min,
+              crossAxisAlignment: CrossAxisAlignment.stretch,
+              children: <Widget>[
+                YgBottomSheetHeader(title: widget.title),
+                _buildContent(scrollPhysicsProvider, bottomSheetTheme),
+                if (widget.footerButtons != null)
+                  Padding(
+                    padding: bottomSheetTheme.footerPadding,
+                    child: widget.footerButtons!,
+                  ),
+              ].withVerticalSpacing(30.0),
             ),
           ),
         ),
@@ -58,67 +55,7 @@ class _YgBottomSheetState extends State<YgBottomSheet> {
     );
   }
 
-  Widget _buildFooter(YgBottomSheetTheme theme) {
-    final List<Widget> buttons = widget.footerButtons!;
-
-    final List<Widget> children = <Widget>[
-      buttons[0],
-    ];
-
-    for (int i = 1; i < buttons.length; i++) {
-      children.addAll(<Widget>[
-        SizedBox(height: theme.buttonSpacing),
-        buttons[i],
-      ]);
-    }
-
-    return Padding(
-      padding: theme.outerPadding.copyWith(
-        top: theme.footerPadding.top,
-        bottom: 0,
-      ),
-      child: Column(
-        mainAxisSize: MainAxisSize.min,
-        crossAxisAlignment: CrossAxisAlignment.stretch,
-        children: children,
-      ),
-    );
-  }
-
-  Padding _buildHeader(YgBottomSheetTheme theme) {
-    return Padding(
-      padding: theme.outerPadding.copyWith(bottom: 0),
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.stretch,
-        mainAxisSize: MainAxisSize.min,
-        children: <Widget>[
-          Center(
-            child: _buildDragHandle(theme),
-          ),
-          Padding(
-            padding: theme.titlePadding,
-            child: Text(
-              widget.title,
-              style: theme.titleStyle,
-            ),
-          ),
-        ],
-      ),
-    );
-  }
-
-  Container _buildDragHandle(YgBottomSheetTheme theme) {
-    return Container(
-      width: 48,
-      height: 5,
-      decoration: BoxDecoration(
-        color: theme.handleBarColor,
-        borderRadius: BorderRadius.circular(2.5),
-      ),
-    );
-  }
-
-  Flexible _buildContent(
+  Widget _buildContent(
     YgBottomSheetScrollPhysicsProvider? scrollPhysicsProvider,
     YgBottomSheetTheme theme,
   ) {
@@ -129,10 +66,7 @@ class _YgBottomSheetState extends State<YgBottomSheet> {
           controller: _scrollController,
           physics: scrollPhysicsProvider?.scrollPhysics,
           child: Padding(
-            padding: theme.outerPadding.copyWith(
-              top: 0,
-              bottom: 0,
-            ),
+            padding: theme.contentPadding,
             child: widget.content,
           ),
         ),

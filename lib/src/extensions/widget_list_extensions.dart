@@ -31,4 +31,14 @@ extension WidgetListExtension on List<Widget> {
       ),
     );
   }
+
+  /// Adds spacing horizontally between widgets using [SizedBox].
+  List<Widget> withHorizontalSpacing(double horizontalSpacing) {
+    return separatedBy(SizedBox(width: horizontalSpacing));
+  }
+
+  /// Adds spacing vertically between widgets using [SizedBox].
+  List<Widget> withVerticalSpacing(double verticalSpacing) {
+    return separatedBy(SizedBox(height: verticalSpacing));
+  }
 }
