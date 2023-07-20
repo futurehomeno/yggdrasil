@@ -51,9 +51,7 @@ class YgButtonGroup extends StatelessWidget {
         mainAxisAlignment: mainAxisAlignment,
         mainAxisSize: mainAxisSize,
         crossAxisAlignment: crossAxisAlignment,
-        children: children.withSpacing(
-          verticalSpacing: context.buttonGroupTheme.buttonSpacing,
-        ),
+        children: children.withVerticalSpacing(context.buttonGroupTheme.buttonSpacing),
       );
     }
 
@@ -61,9 +59,7 @@ class YgButtonGroup extends StatelessWidget {
       mainAxisAlignment: mainAxisAlignment,
       mainAxisSize: mainAxisSize,
       crossAxisAlignment: crossAxisAlignment,
-      children: children.withSpacing(
-        horizontalSpacing: context.buttonGroupTheme.buttonSpacing,
-      ),
+      children: children.withHorizontalSpacing(context.buttonGroupTheme.buttonSpacing),
     );
   }
 }

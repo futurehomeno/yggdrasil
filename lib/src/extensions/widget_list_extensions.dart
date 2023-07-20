@@ -20,7 +20,7 @@ extension WidgetListExtension on List<Widget> {
   }
 
   /// Adds spacing between widgets using [SizedBox].
-  List<Widget> withSpacing({
+  List<Widget> _withSpacing({
     double horizontalSpacing = 0,
     double verticalSpacing = 0,
   }) {
@@ -34,11 +34,11 @@ extension WidgetListExtension on List<Widget> {
 
   /// Adds spacing horizontally between widgets using [SizedBox].
   List<Widget> withHorizontalSpacing(double horizontalSpacing) {
-    return separatedBy(SizedBox(width: horizontalSpacing));
+    return _withSpacing(horizontalSpacing: horizontalSpacing);
   }
 
   /// Adds spacing vertically between widgets using [SizedBox].
   List<Widget> withVerticalSpacing(double verticalSpacing) {
-    return separatedBy(SizedBox(height: verticalSpacing));
+    return _withSpacing(verticalSpacing: verticalSpacing);
   }
 }

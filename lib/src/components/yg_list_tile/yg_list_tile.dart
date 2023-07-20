@@ -117,25 +117,19 @@ class YgListTile extends StatelessWidget {
 
   Widget _buildLeadingWidgets(YgListTileTheme listTileTheme) {
     return Row(
-      children: leadingWidgets.withSpacing(
-        horizontalSpacing: listTileTheme.contentSpacing,
-      ),
+      children: leadingWidgets.withHorizontalSpacing(listTileTheme.contentSpacing),
     );
   }
 
   Widget _buildTrailingWidgets(YgListTileTheme listTileTheme) {
     return Row(
-      children: trailingWidgets.withSpacing(
-        horizontalSpacing: listTileTheme.contentSpacing,
-      ),
+      children: trailingWidgets.withHorizontalSpacing(listTileTheme.contentSpacing),
     );
   }
 
   Widget _buildSupportingWidgets(YgListTileTheme listTileTheme) {
     return Column(
-      children: supportingWidgets.withSpacing(
-        verticalSpacing: listTileTheme.contentSpacing,
-      ),
+      children: supportingWidgets.withVerticalSpacing(listTileTheme.contentSpacing),
     );
   }
 }
