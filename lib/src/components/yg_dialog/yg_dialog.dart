@@ -9,23 +9,17 @@ class YgDialog extends StatelessWidget {
     required this.icon,
     required this.title,
     required this.description,
-    required this.actions,
+    required this.ygButtonGroup,
   });
 
   final YgIcon icon;
   final String title;
   final String description;
-  final List<YgButton> actions;
+  final YgButtonGroup ygButtonGroup;
 
   @override
   Widget build(BuildContext context) {
-    assert(actions.isNotEmpty, '"actions" should contain at least one button');
-
     final YgDialogTheme dialogTheme = context.dialogTheme;
-
-    final YgSpacingBuilder spacingBuilder = YgSpacingBuilder(
-      horizontalSpacing: dialogTheme.buttonSpacing,
-    );
 
     return Material(
       borderRadius: dialogTheme.outerBorderRadius,
@@ -37,7 +31,7 @@ class YgDialog extends StatelessWidget {
           children: <Widget>[
             _buildIcon(dialogTheme),
             _buildTextSection(dialogTheme),
-            _buildActionsSection(spacingBuilder)
+            ygButtonGroup,
           ],
         ),
       ),
@@ -74,14 +68,6 @@ class YgDialog extends StatelessWidget {
           ),
         ],
       ),
-    );
-  }
-
-  Column _buildActionsSection(YgSpacingBuilder spacingBuilder) {
-    return Column(
-      mainAxisSize: MainAxisSize.min,
-      crossAxisAlignment: CrossAxisAlignment.stretch,
-      children: spacingBuilder.buildWidgetWithSpacing(actions),
     );
   }
 }

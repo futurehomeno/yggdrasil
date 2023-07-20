@@ -54,12 +54,12 @@ class YgListTile extends StatelessWidget {
                   children: <Widget>[
                     _buildTitle(theme),
                     if (subtitle != null) _buildSubtitle(theme),
-                  ],
+                  ].withVerticalSpacing(theme.contentSpacing),
                 ),
               ),
               if (supportingWidgets.isNotEmpty) _buildSupportingWidgets(theme),
               if (trailingWidgets.isNotEmpty) _buildTrailingWidgets(theme),
-            ],
+            ].withHorizontalSpacing(theme.contentSpacing),
           ),
         ),
       ),
@@ -92,113 +92,43 @@ class YgListTile extends StatelessWidget {
   }
 
   Widget _buildSubtitle(YgListTileTheme listTileTheme) {
-    return Padding(
-      padding: EdgeInsets.only(top: listTileTheme.contentSpacing),
-      child: Row(
-        children: <Widget>[
-          if (subtitleIcon != null)
-            Padding(
-              padding: EdgeInsets.only(right: listTileTheme.contentSpacing),
-              child: subtitleIcon,
-            ),
-          Flexible(
-            child: Text(
-              subtitle!,
-              style: listTileTheme.subtitleTextStyle,
-            ),
+    return Row(
+      children: <Widget>[
+        if (subtitleIcon != null) subtitleIcon!,
+        Flexible(
+          child: Text(
+            subtitle!,
+            style: listTileTheme.subtitleTextStyle,
           ),
-        ],
-      ),
+        ),
+      ].withHorizontalSpacing(listTileTheme.contentSpacing),
     );
   }
 
-  // TODO(bjhandeland): Make sure the whole button is clickable.
   Widget _buildInfoButton(YgListTileTheme listTileTheme) {
-    return Padding(
-      padding: EdgeInsets.only(left: listTileTheme.contentSpacing),
-      child: YgIcon(
-        YgIcons.info,
-        size: YgIconSize.small,
-        tapSize: YgIconTapSize.largest,
-        onTap: onInfoTap,
-      ),
+    return YgIcon(
+      YgIcons.info,
+      size: YgIconSize.small,
+      tapSize: YgIconTapSize.largest,
+      onTap: onInfoTap,
     );
   }
 
   Widget _buildLeadingWidgets(YgListTileTheme listTileTheme) {
-    final List<Widget> paddedLeadingIcons = leadingWidgets.map((Widget leadingWidget) {
-      return Padding(
-        padding: EdgeInsets.only(right: listTileTheme.contentSpacing),
-        child: leadingWidget,
-      );
-    }).toList();
-
-    return Row(children: paddedLeadingIcons);
-  }
-
-  Widget _buildTrailingWidgets(YgListTileTheme listTileTheme) {
-    final List<Widget> paddedTrailingWidgets = trailingWidgets.map((Widget trailingIcon) {
-      return Padding(
-        padding: EdgeInsets.only(left: listTileTheme.contentSpacing),
-        child: trailingIcon,
-      );
-    }).toList();
-
-    return Row(children: paddedTrailingWidgets);
-  }
-
-  Widget _buildSupportingWidgets(YgListTileTheme listTileTheme) {
-    if (supportingWidgets.length == 1) {
-      return Padding(
-        padding: EdgeInsets.only(left: listTileTheme.contentSpacing),
-        child: supportingWidgets.first,
-      );
-    }
-
-    return Padding(
-      padding: EdgeInsets.only(left: listTileTheme.contentSpacing),
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.end,
-        children: <Widget>[
-          supportingWidgets.first,
-          SizedBox(height: listTileTheme.contentSpacing),
-          supportingWidgets.last,
-        ],
-      ),
+    return Row(
+      children: leadingWidgets.withHorizontalSpacing(listTileTheme.contentSpacing),
     );
   }
 
-  /// Add a one pixel border in between each tile.
-  ///
-  /// Modified version of the [divideTiles] method from [ListTile] in M3.
-  static Iterable<Widget> divideTiles({
-    required Iterable<Widget> tiles,
-    required BuildContext context,
-  }) {
-    tiles = tiles.toList();
+  Widget _buildTrailingWidgets(YgListTileTheme listTileTheme) {
+    return Row(
+      children: trailingWidgets.withHorizontalSpacing(listTileTheme.contentSpacing),
+    );
+  }
 
-    if (tiles.isEmpty || tiles.length == 1) {
-      return tiles;
-    }
-
-    Widget wrapTile(Widget tile) {
-      return DecoratedBox(
-        position: DecorationPosition.foreground,
-        decoration: BoxDecoration(
-          border: Border(
-            bottom: BorderSide(
-              color: context.tokens.colors.borderDefault,
-              width: 1.0,
-            ),
-          ),
-        ),
-        child: tile,
-      );
-    }
-
-    return <Widget>[
-      ...tiles.take(tiles.length - 1).map(wrapTile),
-      tiles.last,
-    ];
+  Widget _buildSupportingWidgets(YgListTileTheme listTileTheme) {
+    return Column(
+      children: supportingWidgets.withVerticalSpacing(listTileTheme.contentSpacing),
+    );
   }
 }
