@@ -140,7 +140,7 @@ class _YgTagWithLeadingIconChild extends StatelessWidget {
       children: <Widget>[
         icon.copyWith(size: YgIconSize.small),
         Flexible(child: child),
-      ].withSpacing(horizontalSpacing: context.tagTheme.iconSpacing),
+      ].withHorizontalSpacing(context.tagTheme.iconSpacing),
     );
   }
 }
@@ -188,7 +188,7 @@ class _YgTagWithTrailingIconChild extends StatelessWidget {
       children: <Widget>[
         Flexible(child: child),
         icon.copyWith(size: YgIconSize.small),
-      ].withSpacing(horizontalSpacing: context.tagTheme.iconSpacing),
+      ].withHorizontalSpacing(context.tagTheme.iconSpacing),
     );
   }
 }
@@ -241,7 +241,7 @@ class _YgTagWithDoubleIconChild extends StatelessWidget {
         leadingIcon.copyWith(size: YgIconSize.small),
         Flexible(child: child),
         trailingIcon.copyWith(size: YgIconSize.small),
-      ].withSpacing(horizontalSpacing: context.tagTheme.iconSpacing),
+      ].withHorizontalSpacing(context.tagTheme.iconSpacing),
     );
   }
 }

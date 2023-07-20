@@ -54,12 +54,12 @@ class YgListTile extends StatelessWidget {
                   children: <Widget>[
                     _buildTitle(theme),
                     if (subtitle != null) _buildSubtitle(theme),
-                  ].withSpacing(verticalSpacing: theme.contentSpacing),
+                  ].withVerticalSpacing(theme.contentSpacing),
                 ),
               ),
               if (supportingWidgets.isNotEmpty) _buildSupportingWidgets(theme),
               if (trailingWidgets.isNotEmpty) _buildTrailingWidgets(theme),
-            ].withSpacing(horizontalSpacing: theme.contentSpacing),
+            ].withHorizontalSpacing(theme.contentSpacing),
           ),
         ),
       ),
@@ -101,7 +101,7 @@ class YgListTile extends StatelessWidget {
             style: listTileTheme.subtitleTextStyle,
           ),
         ),
-      ].withSpacing(horizontalSpacing: listTileTheme.contentSpacing),
+      ].withHorizontalSpacing(listTileTheme.contentSpacing),
     );
   }
 

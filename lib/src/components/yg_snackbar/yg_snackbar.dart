@@ -63,7 +63,7 @@ class YgSnackbar extends StatelessWidget {
               size: YgIconSize.small,
               tapSize: YgIconTapSize.larger,
             ),
-          ].withSpacing(horizontalSpacing: theme.messageSpacing),
+          ].withHorizontalSpacing(theme.messageSpacing),
         ),
       ),
     );

@@ -117,7 +117,7 @@ class _YgButtonWithLeadingIconChild extends StatelessWidget {
       children: <Widget>[
         icon.copyWith(size: YgIconSize.small),
         Flexible(child: child),
-      ].withSpacing(horizontalSpacing: context.buttonTheme.iconSpacing),
+      ].withHorizontalSpacing(context.buttonTheme.iconSpacing),
     );
   }
 }
@@ -166,7 +166,7 @@ class _YgButtonWithTrailingIconChild extends StatelessWidget {
       children: <Widget>[
         Flexible(child: child),
         icon.copyWith(size: YgIconSize.small),
-      ].withSpacing(horizontalSpacing: context.buttonTheme.iconSpacing),
+      ].withHorizontalSpacing(context.buttonTheme.iconSpacing),
     );
   }
 }
