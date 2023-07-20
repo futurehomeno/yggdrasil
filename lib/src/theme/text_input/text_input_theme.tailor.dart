@@ -20,6 +20,8 @@ class YgTextInputTheme extends ThemeExtension<YgTextInputTheme> {
     required this.borderHover,
     required this.borderRadius,
     required this.cursorColor,
+    required this.errorIconColor,
+    required this.errorTextStyle,
     required this.iconDefaultColor,
     required this.iconDisabledColor,
     required this.labelDefaultColor,
@@ -45,6 +47,8 @@ class YgTextInputTheme extends ThemeExtension<YgTextInputTheme> {
   final Border borderHover;
   final BorderRadius borderRadius;
   final Color cursorColor;
+  final Color errorIconColor;
+  final TextStyle errorTextStyle;
   final Color iconDefaultColor;
   final Color iconDisabledColor;
   final Color labelDefaultColor;
@@ -70,6 +74,8 @@ class YgTextInputTheme extends ThemeExtension<YgTextInputTheme> {
     borderHover: _$YgTextInputTheme.borderHover[0],
     borderRadius: _$YgTextInputTheme.borderRadius[0],
     cursorColor: _$YgTextInputTheme.cursorColor[0],
+    errorIconColor: _$YgTextInputTheme.errorIconColor[0],
+    errorTextStyle: _$YgTextInputTheme.errorTextStyle[0],
     iconDefaultColor: _$YgTextInputTheme.iconDefaultColor[0],
     iconDisabledColor: _$YgTextInputTheme.iconDisabledColor[0],
     labelDefaultColor: _$YgTextInputTheme.labelDefaultColor[0],
@@ -96,6 +102,8 @@ class YgTextInputTheme extends ThemeExtension<YgTextInputTheme> {
     borderHover: _$YgTextInputTheme.borderHover[1],
     borderRadius: _$YgTextInputTheme.borderRadius[1],
     cursorColor: _$YgTextInputTheme.cursorColor[1],
+    errorIconColor: _$YgTextInputTheme.errorIconColor[1],
+    errorTextStyle: _$YgTextInputTheme.errorTextStyle[1],
     iconDefaultColor: _$YgTextInputTheme.iconDefaultColor[1],
     iconDisabledColor: _$YgTextInputTheme.iconDisabledColor[1],
     labelDefaultColor: _$YgTextInputTheme.labelDefaultColor[1],
@@ -122,6 +130,8 @@ class YgTextInputTheme extends ThemeExtension<YgTextInputTheme> {
     borderHover: _$YgTextInputTheme.borderHover[2],
     borderRadius: _$YgTextInputTheme.borderRadius[2],
     cursorColor: _$YgTextInputTheme.cursorColor[2],
+    errorIconColor: _$YgTextInputTheme.errorIconColor[2],
+    errorTextStyle: _$YgTextInputTheme.errorTextStyle[2],
     iconDefaultColor: _$YgTextInputTheme.iconDefaultColor[2],
     iconDisabledColor: _$YgTextInputTheme.iconDisabledColor[2],
     labelDefaultColor: _$YgTextInputTheme.labelDefaultColor[2],
@@ -148,6 +158,8 @@ class YgTextInputTheme extends ThemeExtension<YgTextInputTheme> {
     borderHover: _$YgTextInputTheme.borderHover[3],
     borderRadius: _$YgTextInputTheme.borderRadius[3],
     cursorColor: _$YgTextInputTheme.cursorColor[3],
+    errorIconColor: _$YgTextInputTheme.errorIconColor[3],
+    errorTextStyle: _$YgTextInputTheme.errorTextStyle[3],
     iconDefaultColor: _$YgTextInputTheme.iconDefaultColor[3],
     iconDisabledColor: _$YgTextInputTheme.iconDisabledColor[3],
     labelDefaultColor: _$YgTextInputTheme.labelDefaultColor[3],
@@ -182,6 +194,8 @@ class YgTextInputTheme extends ThemeExtension<YgTextInputTheme> {
     Border? borderHover,
     BorderRadius? borderRadius,
     Color? cursorColor,
+    Color? errorIconColor,
+    TextStyle? errorTextStyle,
     Color? iconDefaultColor,
     Color? iconDisabledColor,
     Color? labelDefaultColor,
@@ -209,6 +223,8 @@ class YgTextInputTheme extends ThemeExtension<YgTextInputTheme> {
       borderHover: borderHover ?? this.borderHover,
       borderRadius: borderRadius ?? this.borderRadius,
       cursorColor: cursorColor ?? this.cursorColor,
+      errorIconColor: errorIconColor ?? this.errorIconColor,
+      errorTextStyle: errorTextStyle ?? this.errorTextStyle,
       iconDefaultColor: iconDefaultColor ?? this.iconDefaultColor,
       iconDisabledColor: iconDisabledColor ?? this.iconDisabledColor,
       labelDefaultColor: labelDefaultColor ?? this.labelDefaultColor,
@@ -248,6 +264,8 @@ class YgTextInputTheme extends ThemeExtension<YgTextInputTheme> {
       borderHover: t < 0.5 ? borderHover : other.borderHover,
       borderRadius: t < 0.5 ? borderRadius : other.borderRadius,
       cursorColor: Color.lerp(cursorColor, other.cursorColor, t)!,
+      errorIconColor: Color.lerp(errorIconColor, other.errorIconColor, t)!,
+      errorTextStyle: TextStyle.lerp(errorTextStyle, other.errorTextStyle, t)!,
       iconDefaultColor:
           Color.lerp(iconDefaultColor, other.iconDefaultColor, t)!,
       iconDisabledColor:
@@ -302,6 +320,10 @@ class YgTextInputTheme extends ThemeExtension<YgTextInputTheme> {
             const DeepCollectionEquality()
                 .equals(cursorColor, other.cursorColor) &&
             const DeepCollectionEquality()
+                .equals(errorIconColor, other.errorIconColor) &&
+            const DeepCollectionEquality()
+                .equals(errorTextStyle, other.errorTextStyle) &&
+            const DeepCollectionEquality()
                 .equals(iconDefaultColor, other.iconDefaultColor) &&
             const DeepCollectionEquality()
                 .equals(iconDisabledColor, other.iconDisabledColor) &&
@@ -343,6 +365,8 @@ class YgTextInputTheme extends ThemeExtension<YgTextInputTheme> {
       const DeepCollectionEquality().hash(borderHover),
       const DeepCollectionEquality().hash(borderRadius),
       const DeepCollectionEquality().hash(cursorColor),
+      const DeepCollectionEquality().hash(errorIconColor),
+      const DeepCollectionEquality().hash(errorTextStyle),
       const DeepCollectionEquality().hash(iconDefaultColor),
       const DeepCollectionEquality().hash(iconDisabledColor),
       const DeepCollectionEquality().hash(labelDefaultColor),

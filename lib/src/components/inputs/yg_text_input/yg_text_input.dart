@@ -1,6 +1,16 @@
 import 'package:flutter/material.dart';
 import 'package:yggdrasil/yggdrasil.dart';
 
+enum YgTextInputSize {
+  medium,
+  large,
+}
+
+enum YgTextInputVariant {
+  outlined,
+  standard,
+}
+
 class YgTextInput extends StatefulWidget {
   const YgTextInput({
     super.key,
@@ -9,12 +19,13 @@ class YgTextInput extends StatefulWidget {
     this.obscureText = false,
     this.showPasswordButton = true,
     this.validators,
-    this.outlined = false,
+    this.variant = YgTextInputVariant.standard,
     this.placeholder,
     this.trailingIcon,
     this.initialValue,
     this.controller,
     this.disabled = false,
+    this.size = YgTextInputSize.large,
   });
 
   /// Obscures the text in the input.
@@ -37,7 +48,7 @@ class YgTextInput extends StatefulWidget {
   final List<TextValidator>? validators;
 
   /// The variant of the input.
-  final bool outlined;
+  final YgTextInputVariant variant;
 
   /// The label shown on top of the input.
   final String label;
@@ -54,6 +65,8 @@ class YgTextInput extends StatefulWidget {
   final String? initialValue;
 
   final bool disabled;
+
+  final YgTextInputSize size;
 
   /// Controls the text being edited.
   ///
@@ -81,7 +94,7 @@ class _YgTextInputState extends State<YgTextInput> {
 
   bool _focused = false;
 
-  final bool _containsError = false;
+  final bool _containsError = true;
 
   bool _hovered = false;
 
@@ -117,64 +130,77 @@ class _YgTextInputState extends State<YgTextInput> {
   @override
   Widget build(BuildContext context) {
     final Widget layout = RepaintBoundary(
-      child: SizedBox(
-        height: 60,
-        child: Stack(
-          children: <Widget>[
-            if (widget.outlined)
-              AnimatedContainer(
-                duration: _duration,
-                decoration: BoxDecoration(
-                  color: _backgroundColor,
-                  border: _border,
-                  borderRadius: _theme.borderRadius,
-                ),
-              ),
-            if (!widget.outlined)
-              AnimatedContainer(
-                duration: _duration,
-                decoration: BoxDecoration(
-                  border: Border(
-                    bottom: _border.bottom,
-                  ),
-                ),
-              ),
-            Positioned.fill(
-              child: Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 12),
-                child: Row(
-                  children: <Widget>[
-                    Expanded(
-                      child: Stack(
-                        children: <Widget>[
-                          Align(
-                            alignment: Alignment.bottomCenter,
-                            child: SizedBox(
-                              height: _valueTextStyle.height! * _valueTextStyle.fontSize!,
-                              child: _getValueText(),
-                            ),
-                          ),
-                          AnimatedAlign(
-                            duration: _duration,
-                            alignment: _labelAlignment,
-                            child: AnimatedDefaultTextStyle(
-                              duration: _duration,
-                              style: _labelTextStyle,
-                              child: Text(
-                                widget.label,
-                              ),
-                            ),
-                          ),
-                        ],
+      child: Column(
+        mainAxisSize: MainAxisSize.min,
+        children: <Widget>[
+          SizedBox(
+            height: switch (widget.size) {
+              YgTextInputSize.large => 60,
+              YgTextInputSize.medium => 50,
+            },
+            child: Stack(
+              children: <Widget>[
+                switch (widget.variant) {
+                  YgTextInputVariant.outlined => AnimatedContainer(
+                      duration: _duration,
+                      curve: Curves.easeOut,
+                      decoration: BoxDecoration(
+                        color: _backgroundColor,
+                        border: _border,
+                        borderRadius: _theme.borderRadius,
                       ),
                     ),
-                    _computedSuffix
-                  ],
+                  YgTextInputVariant.standard => AnimatedContainer(
+                      duration: _duration,
+                      curve: Curves.easeOut,
+                      decoration: BoxDecoration(
+                        border: Border(
+                          bottom: _border.bottom,
+                        ),
+                      ),
+                    )
+                },
+                Positioned.fill(
+                  child: Padding(
+                    padding: _labelValueContainerPadding,
+                    child: Row(
+                      children: <Widget>[
+                        Expanded(
+                          child: Stack(
+                            children: <Widget>[
+                              Align(
+                                alignment: Alignment.bottomCenter,
+                                child: SizedBox(
+                                  height: _valueTextStyle.height! * _valueTextStyle.fontSize!,
+                                  child: _getValueText(),
+                                ),
+                              ),
+                              AnimatedAlign(
+                                duration: _duration,
+                                curve: Curves.easeOut,
+                                alignment: _labelAlignment,
+                                child: AnimatedDefaultTextStyle(
+                                  duration: _duration,
+                                  curve: Curves.easeOut,
+                                  style: _labelTextStyle,
+                                  child: Text(
+                                    widget.label,
+                                  ),
+                                ),
+                              ),
+                            ],
+                          ),
+                        ),
+                        _computedSuffix
+                      ],
+                    ),
+                  ),
                 ),
-              ),
+              ],
             ),
-          ],
-        ),
+          ),
+          _errorMessageWidget,
+        ],
       ),
     );
 
@@ -199,6 +225,44 @@ class _YgTextInputState extends State<YgTextInput> {
       child: GestureDetector(
         onTap: _handleTap,
         child: layout,
+      ),
+    );
+  }
+
+  EdgeInsets get _labelValueContainerPadding {
+    final double paddingSize = switch (widget.size) {
+      YgTextInputSize.large => 12,
+      YgTextInputSize.medium => 7,
+    };
+
+    return EdgeInsets.symmetric(
+      vertical: paddingSize,
+      horizontal: switch (widget.variant) {
+        YgTextInputVariant.outlined => 12,
+        YgTextInputVariant.standard => 0,
+      },
+    );
+  }
+
+  Widget get _errorMessageWidget {
+    if (widget.disabled || !_containsError) {
+      return const SizedBox(height: 20);
+    }
+
+    return Padding(
+      padding: const EdgeInsets.only(top: 4),
+      child: Row(
+        children: <Widget>[
+          YgIcon(
+            YgIcons.error,
+            size: YgIconSize.small,
+            color: _theme.errorIconColor,
+          ),
+          Text(
+            'Error Message',
+            style: _theme.errorTextStyle,
+          )
+        ].withHorizontalSpacing(4),
       ),
     );
   }

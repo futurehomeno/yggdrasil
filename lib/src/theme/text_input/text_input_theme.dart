@@ -243,6 +243,32 @@ class _$YgTextInputTheme {
 
   // endregion
 
+  // region Error Footer
+
+  static List<TextStyle> errorTextStyle = <TextStyle>[
+    consumer_light.FhTextStyles.caption1Regular.copyWith(
+      color: consumer_light.FhColors.textCritical,
+    ),
+    consumer_dark.FhTextStyles.caption1Regular.copyWith(
+      color: consumer_dark.FhColors.textCritical,
+    ),
+    professional_light.FhTextStyles.caption1Regular.copyWith(
+      color: professional_light.FhColors.textCritical,
+    ),
+    professional_dark.FhTextStyles.caption1Regular.copyWith(
+      color: professional_dark.FhColors.textCritical,
+    ),
+  ];
+
+  static const List<Color> errorIconColor = <Color>[
+    consumer_light.FhColors.iconCritical,
+    consumer_dark.FhColors.iconCritical,
+    professional_light.FhColors.iconCritical,
+    professional_dark.FhColors.iconCritical,
+  ];
+
+  // endregion
+
   static const List<Color> cursorColor = <Color>[
     consumer_light.FhColors.textHighlight,
     consumer_dark.FhColors.textHighlight,
