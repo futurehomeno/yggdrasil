@@ -24,22 +24,67 @@ class _TextInputScreenState extends State<TextInputScreen> {
 
   @override
   Widget build(BuildContext context) {
-    return YgScreen(
-      componentName: 'Text Input',
-      componentDesc: 'Text Input',
-      scrollable: false,
-      supernovaLink: 'Input',
-      child: Column(
-        children: <Widget>[
-          Container(
-            color: Colors.red,
-            child: YgTextInput(
+    return GestureDetector(
+      onTap: () {
+        FocusScope.of(context).unfocus();
+      },
+      child: YgScreen(
+        componentName: 'Text Input',
+        componentDesc: 'Text Input',
+        scrollable: false,
+        supernovaLink: 'Input',
+        child: Column(
+          children: <Widget>[
+            YgTextInput(
               fieldKey: key,
               label: 'Label',
               obscureText: true,
             ),
-          ),
-        ],
+            YgTextInput(
+              fieldKey: key,
+              label: 'Label',
+              obscureText: true,
+              disabled: true,
+            ),
+            YgTextInput(
+              fieldKey: key,
+              label: 'Label',
+              disabled: true,
+            ),
+            YgTextInput(
+              fieldKey: key,
+              label: 'Label',
+              initialValue: 'Initial value',
+              disabled: true,
+            ),
+            YgTextInput(
+              fieldKey: key,
+              label: 'Label',
+              obscureText: true,
+              outlined: true,
+            ),
+            YgTextInput(
+              fieldKey: key,
+              label: 'Label',
+              obscureText: true,
+              outlined: true,
+              disabled: true,
+            ),
+            YgTextInput(
+              fieldKey: key,
+              label: 'Label',
+              disabled: true,
+              outlined: true,
+            ),
+            YgTextInput(
+              fieldKey: key,
+              label: 'Label',
+              initialValue: 'Initial value',
+              disabled: true,
+              outlined: true,
+            ),
+          ],
+        ),
       ),
     );
   }

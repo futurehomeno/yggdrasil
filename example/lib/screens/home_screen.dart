@@ -89,11 +89,12 @@ class HomeScreen extends StatelessWidget {
             onTap: () => sl<YgRouter>().push(TextLinkScreen.route()),
             trailingWidgets: const <YgIcon>[YgIcon(YgIcons.caretRight)],
           ),
-          ListTile(
-            title: const Text('Text input'),
+          YgListTile(
+            title: 'Text input',
             onTap: () {
               sl<YgRouter>().push(TextInputScreen.route());
             },
+            trailingWidgets: const <YgIcon>[YgIcon(YgIcons.caretRight)],
           ),
         ],
       ),

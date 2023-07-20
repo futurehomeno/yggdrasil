@@ -26,10 +26,10 @@ class _$YgTextInputTheme {
   ];
 
   static const List<Color> labelDisabledColor = <Color>[
-    consumer_light.FhColors.textDefault,
-    consumer_dark.FhColors.textDefault,
-    professional_light.FhColors.textDefault,
-    professional_dark.FhColors.textDefault,
+    consumer_light.FhColors.textDisabled,
+    consumer_dark.FhColors.textDisabled,
+    professional_light.FhColors.textDisabled,
+    professional_dark.FhColors.textDisabled,
   ];
 
   static const List<TextStyle> labelDefaultTextStyle = <TextStyle>[
@@ -75,36 +75,96 @@ class _$YgTextInputTheme {
 
   // region Border
 
-  static const List<Color> borderDefaultColor = <Color>[
-    consumer_light.FhColors.borderDefault,
-    consumer_dark.FhColors.borderDefault,
-    professional_light.FhColors.borderDefault,
-    professional_dark.FhColors.borderDefault,
+  static List<Border> borderDefault = <Border>[
+    Border.all(
+      color: consumer_light.FhColors.borderDefault,
+      width: 1,
+    ),
+    Border.all(
+      color: consumer_dark.FhColors.borderDefault,
+      width: 1,
+    ),
+    Border.all(
+      color: professional_light.FhColors.borderDefault,
+      width: 1,
+    ),
+    Border.all(
+      color: professional_dark.FhColors.borderDefault,
+      width: 1,
+    ),
   ];
 
-  static const List<Color> borderHoverColor = <Color>[
-    consumer_light.FhColors.borderWeak,
-    consumer_dark.FhColors.borderWeak,
-    professional_light.FhColors.borderWeak,
-    professional_dark.FhColors.borderWeak,
+  static List<Border> borderHover = <Border>[
+    Border.all(
+      color: consumer_light.FhColors.borderWeak,
+      width: 1,
+    ),
+    Border.all(
+      color: consumer_dark.FhColors.borderWeak,
+      width: 1,
+    ),
+    Border.all(
+      color: professional_light.FhColors.borderWeak,
+      width: 1,
+    ),
+    Border.all(
+      color: professional_dark.FhColors.borderWeak,
+      width: 1,
+    ),
   ];
-  static const List<Color> borderFocusColor = <Color>[
-    consumer_light.FhColors.interactiveHighlightDefault,
-    consumer_dark.FhColors.interactiveHighlightDefault,
-    professional_light.FhColors.interactiveHighlightDefault,
-    professional_dark.FhColors.interactiveHighlightDefault,
+  static List<Border> borderFocus = <Border>[
+    Border.all(
+      color: consumer_light.FhColors.interactiveHighlightDefault,
+      width: 2,
+    ),
+    Border.all(
+      color: consumer_dark.FhColors.interactiveHighlightDefault,
+      width: 2,
+    ),
+    Border.all(
+      color: professional_light.FhColors.interactiveHighlightDefault,
+      width: 2,
+    ),
+    Border.all(
+      color: professional_dark.FhColors.interactiveHighlightDefault,
+      width: 2,
+    ),
   ];
-  static const List<Color> borderErrorColor = <Color>[
-    consumer_light.FhColors.interactiveCriticalDefault,
-    consumer_dark.FhColors.interactiveCriticalDefault,
-    professional_light.FhColors.interactiveCriticalDefault,
-    professional_dark.FhColors.interactiveCriticalDefault,
+  static List<Border> borderError = <Border>[
+    Border.all(
+      color: consumer_light.FhColors.interactiveCriticalDefault,
+      width: 2,
+    ),
+    Border.all(
+      color: consumer_dark.FhColors.interactiveCriticalDefault,
+      width: 2,
+    ),
+    Border.all(
+      color: professional_light.FhColors.interactiveCriticalDefault,
+      width: 2,
+    ),
+    Border.all(
+      color: professional_dark.FhColors.interactiveCriticalDefault,
+      width: 2,
+    ),
   ];
-  static const List<Color> borderDisabledColor = <Color>[
-    consumer_light.FhColors.borderDisabled,
-    consumer_dark.FhColors.borderDisabled,
-    professional_light.FhColors.borderDisabled,
-    professional_dark.FhColors.borderDisabled,
+  static List<Border> borderDisabled = <Border>[
+    Border.all(
+      color: consumer_light.FhColors.borderDisabled,
+      width: 1,
+    ),
+    Border.all(
+      color: consumer_dark.FhColors.borderDisabled,
+      width: 1,
+    ),
+    Border.all(
+      color: professional_light.FhColors.borderDisabled,
+      width: 1,
+    ),
+    Border.all(
+      color: professional_dark.FhColors.borderDisabled,
+      width: 1,
+    ),
   ];
 
   static const List<BorderRadius> borderRadius = <BorderRadius>[
@@ -140,7 +200,7 @@ class _$YgTextInputTheme {
 
   // endregion
 
-  // region Placeholder
+  // region Value
 
   static const List<Color> valueDefaultColor = <Color>[
     consumer_light.FhColors.textDefault,
@@ -165,40 +225,28 @@ class _$YgTextInputTheme {
 
   // endregion
 
-  static const List<Color> disabledBorderColor = <Color>[
-    consumer_light.FhColors.borderDefault,
-    consumer_dark.FhColors.borderDefault,
-    professional_light.FhColors.borderDefault,
-    professional_dark.FhColors.borderDefault,
+  // region Icon
+
+  static const List<Color> iconDefaultColor = <Color>[
+    consumer_light.FhColors.iconDefault,
+    consumer_dark.FhColors.iconDefault,
+    professional_light.FhColors.iconDefault,
+    professional_dark.FhColors.iconDefault,
   ];
 
-  static const List<Color> disabledOutlineBackgroundColor = <Color>[
-    consumer_light.FhColors.backgroundDefault,
-    consumer_dark.FhColors.backgroundDefault,
-    professional_light.FhColors.backgroundDefault,
-    professional_dark.FhColors.backgroundDefault,
-  ];
-
-  static const List<Color> disabledLabelColor = <Color>[
-    consumer_light.FhColors.textWeak,
-    consumer_dark.FhColors.textWeak,
-    professional_light.FhColors.textWeak,
-    professional_dark.FhColors.textWeak,
-  ];
-
-  static const List<double> disabledBorderSize = <double>[
-    1,
-    1,
-    1,
-    1,
-  ];
-
-  static const List<Color> disabledPlaceholderColor = <Color>[
-    consumer_light.FhColors.textDisabled,
-    consumer_dark.FhColors.textDisabled,
-    professional_light.FhColors.textDisabled,
-    professional_dark.FhColors.textDisabled,
+  static const List<Color> iconDisabledColor = <Color>[
+    consumer_light.FhColors.iconDisabled,
+    consumer_dark.FhColors.iconDisabled,
+    professional_light.FhColors.iconDisabled,
+    professional_dark.FhColors.iconDisabled,
   ];
 
   // endregion
+
+  static const List<Color> cursorColor = <Color>[
+    consumer_light.FhColors.textHighlight,
+    consumer_dark.FhColors.textHighlight,
+    professional_light.FhColors.textHighlight,
+    professional_dark.FhColors.textHighlight,
+  ];
 }

@@ -32,7 +32,7 @@ class BadgeScreen extends StatelessWidget {
               YgIcons.info,
               tapSize: YgIconTapSize.largest,
             ),
-          ),
+          ).inspectable,
           YgBadge(
             amount: 1,
             weight: YgBadgeWeight.strong,
@@ -41,7 +41,7 @@ class BadgeScreen extends StatelessWidget {
               YgIcons.info,
               tapSize: YgIconTapSize.largest,
             ),
-          ),
+          ).inspectable,
           YgBadge(
             amount: 8,
             weight: YgBadgeWeight.strong,
@@ -50,7 +50,7 @@ class BadgeScreen extends StatelessWidget {
               YgIcons.info,
               tapSize: YgIconTapSize.largest,
             ),
-          ),
+          ).inspectable,
           YgBadge(
             amount: 9,
             weight: YgBadgeWeight.strong,
@@ -59,7 +59,7 @@ class BadgeScreen extends StatelessWidget {
               YgIcons.info,
               tapSize: YgIconTapSize.largest,
             ),
-          ),
+          ).inspectable,
           const YgListTile(title: 'Badges with more than 9'),
           YgBadge(
             amount: 10,
@@ -69,9 +69,9 @@ class BadgeScreen extends StatelessWidget {
               YgIcons.info,
               tapSize: YgIconTapSize.largest,
             ),
-          ),
+          ).inspectable,
           const YgListTile(title: 'Dot badge'),
-          const YgDotBadge(),
+          const YgDotBadge().inspectable,
         ],
       ),
     );

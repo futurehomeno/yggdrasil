@@ -23,6 +23,7 @@ class YgTheme extends ThemeExtension<YgTheme> {
     required this.listTileTheme,
     required this.snackbarTheme,
     required this.tagTheme,
+    required this.textInputTheme,
     required this.textLinkTheme,
     required this.tokens,
   });
@@ -40,6 +41,7 @@ class YgTheme extends ThemeExtension<YgTheme> {
   final YgListTileTheme listTileTheme;
   final YgSnackbarTheme snackbarTheme;
   final YgTagTheme tagTheme;
+  final YgTextInputTheme textInputTheme;
   final YgTextLinkTheme textLinkTheme;
   final YgTokens tokens;
 
@@ -57,6 +59,7 @@ class YgTheme extends ThemeExtension<YgTheme> {
     listTileTheme: _$YgTheme.listTileTheme[0],
     snackbarTheme: _$YgTheme.snackbarTheme[0],
     tagTheme: _$YgTheme.tagTheme[0],
+    textInputTheme: _$YgTheme.textInputTheme[0],
     textLinkTheme: _$YgTheme.textLinkTheme[0],
     tokens: _$YgTheme.tokens[0],
   );
@@ -75,6 +78,7 @@ class YgTheme extends ThemeExtension<YgTheme> {
     listTileTheme: _$YgTheme.listTileTheme[1],
     snackbarTheme: _$YgTheme.snackbarTheme[1],
     tagTheme: _$YgTheme.tagTheme[1],
+    textInputTheme: _$YgTheme.textInputTheme[1],
     textLinkTheme: _$YgTheme.textLinkTheme[1],
     tokens: _$YgTheme.tokens[1],
   );
@@ -93,6 +97,7 @@ class YgTheme extends ThemeExtension<YgTheme> {
     listTileTheme: _$YgTheme.listTileTheme[2],
     snackbarTheme: _$YgTheme.snackbarTheme[2],
     tagTheme: _$YgTheme.tagTheme[2],
+    textInputTheme: _$YgTheme.textInputTheme[2],
     textLinkTheme: _$YgTheme.textLinkTheme[2],
     tokens: _$YgTheme.tokens[2],
   );
@@ -111,6 +116,7 @@ class YgTheme extends ThemeExtension<YgTheme> {
     listTileTheme: _$YgTheme.listTileTheme[3],
     snackbarTheme: _$YgTheme.snackbarTheme[3],
     tagTheme: _$YgTheme.tagTheme[3],
+    textInputTheme: _$YgTheme.textInputTheme[3],
     textLinkTheme: _$YgTheme.textLinkTheme[3],
     tokens: _$YgTheme.tokens[3],
   );
@@ -137,6 +143,7 @@ class YgTheme extends ThemeExtension<YgTheme> {
     YgListTileTheme? listTileTheme,
     YgSnackbarTheme? snackbarTheme,
     YgTagTheme? tagTheme,
+    YgTextInputTheme? textInputTheme,
     YgTextLinkTheme? textLinkTheme,
     YgTokens? tokens,
   }) {
@@ -154,6 +161,7 @@ class YgTheme extends ThemeExtension<YgTheme> {
       listTileTheme: listTileTheme ?? this.listTileTheme,
       snackbarTheme: snackbarTheme ?? this.snackbarTheme,
       tagTheme: tagTheme ?? this.tagTheme,
+      textInputTheme: textInputTheme ?? this.textInputTheme,
       textLinkTheme: textLinkTheme ?? this.textLinkTheme,
       tokens: tokens ?? this.tokens,
     );
@@ -180,6 +188,8 @@ class YgTheme extends ThemeExtension<YgTheme> {
       snackbarTheme:
           snackbarTheme.lerp(other.snackbarTheme, t) as YgSnackbarTheme,
       tagTheme: tagTheme.lerp(other.tagTheme, t) as YgTagTheme,
+      textInputTheme:
+          textInputTheme.lerp(other.textInputTheme, t) as YgTextInputTheme,
       textLinkTheme:
           textLinkTheme.lerp(other.textLinkTheme, t) as YgTextLinkTheme,
       tokens: tokens.lerp(other.tokens, t) as YgTokens,
@@ -214,6 +224,8 @@ class YgTheme extends ThemeExtension<YgTheme> {
                 .equals(snackbarTheme, other.snackbarTheme) &&
             const DeepCollectionEquality().equals(tagTheme, other.tagTheme) &&
             const DeepCollectionEquality()
+                .equals(textInputTheme, other.textInputTheme) &&
+            const DeepCollectionEquality()
                 .equals(textLinkTheme, other.textLinkTheme) &&
             const DeepCollectionEquality().equals(tokens, other.tokens));
   }
@@ -235,6 +247,7 @@ class YgTheme extends ThemeExtension<YgTheme> {
       const DeepCollectionEquality().hash(listTileTheme),
       const DeepCollectionEquality().hash(snackbarTheme),
       const DeepCollectionEquality().hash(tagTheme),
+      const DeepCollectionEquality().hash(textInputTheme),
       const DeepCollectionEquality().hash(textLinkTheme),
       const DeepCollectionEquality().hash(tokens),
     );
@@ -256,6 +269,7 @@ extension YgThemeBuildContextProps on BuildContext {
   YgListTileTheme get listTileTheme => ygTheme.listTileTheme;
   YgSnackbarTheme get snackbarTheme => ygTheme.snackbarTheme;
   YgTagTheme get tagTheme => ygTheme.tagTheme;
+  YgTextInputTheme get textInputTheme => ygTheme.textInputTheme;
   YgTextLinkTheme get textLinkTheme => ygTheme.textLinkTheme;
   YgTokens get tokens => ygTheme.tokens;
 }

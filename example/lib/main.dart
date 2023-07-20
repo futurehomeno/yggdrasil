@@ -4,6 +4,7 @@ import 'package:provider/provider.dart';
 
 import 'core/_core.dart';
 import 'screens/_screens.dart';
+import 'widgets/_widgets.dart';
 
 void main() {
   // Set up the locator service before initializing the app.
@@ -17,8 +18,14 @@ void main() {
   );
 
   WidgetsBinding.instance.addPostFrameCallback((Duration timeStamp) {
-    SystemChrome.setSystemUIOverlayStyle(const SystemUiOverlayStyle(systemNavigationBarColor: Colors.transparent));
-    SystemChrome.setEnabledSystemUIMode(SystemUiMode.edgeToEdge);
+    SystemChrome.setSystemUIOverlayStyle(
+      const SystemUiOverlayStyle(
+        systemNavigationBarColor: Colors.transparent,
+      ),
+    );
+    SystemChrome.setEnabledSystemUIMode(
+      SystemUiMode.edgeToEdge,
+    );
   });
 }
 
@@ -29,12 +36,15 @@ class Yggdrasil extends StatelessWidget {
   Widget build(BuildContext context) {
     return Consumer<YgAppState>(
       builder: (BuildContext context, YgAppState ygAppState, Widget? child) {
-        return MaterialApp(
-          title: 'Yggdrasil',
-          theme: ygAppState.currentThemeData,
-          home: const HomeScreen(),
-          navigatorKey: YgRouter.navigatorKey,
-          debugShowCheckedModeBanner: false,
+        return YgOutlineInheritedState(
+          toggled: ygAppState.outlineToggled,
+          child: MaterialApp(
+            title: 'Yggdrasil',
+            theme: ygAppState.currentThemeData,
+            home: const HomeScreen(),
+            navigatorKey: YgRouter.navigatorKey,
+            debugShowCheckedModeBanner: false,
+          ),
         );
       },
     );

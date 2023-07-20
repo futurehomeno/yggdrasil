@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:theme_tailor_annotation/theme_tailor_annotation.dart';
+import 'package:yggdrasil/src/theme/text_input/_text_input.dart';
 
 import 'badge/_badge.dart';
 import 'bottom_sheet/_bottom_sheet.dart';
@@ -66,4 +67,7 @@ class _$YgTheme {
 
   @themeExtension
   static List<YgInternalTheme> internalTheme = YgInternalTheme.themes;
+
+  @themeExtension
+  static List<YgTextInputTheme> textInputTheme = YgTextInputTheme.themes;
 }

@@ -13,17 +13,15 @@ class YgTextInputTheme extends ThemeExtension<YgTextInputTheme> {
     required this.backgroundDefaultColor,
     required this.backgroundDisabledColor,
     required this.backgroundErrorColor,
-    required this.borderDefaultColor,
-    required this.borderDisabledColor,
-    required this.borderErrorColor,
-    required this.borderFocusColor,
-    required this.borderHoverColor,
+    required this.borderDefault,
+    required this.borderDisabled,
+    required this.borderError,
+    required this.borderFocus,
+    required this.borderHover,
     required this.borderRadius,
-    required this.disabledBorderColor,
-    required this.disabledBorderSize,
-    required this.disabledLabelColor,
-    required this.disabledOutlineBackgroundColor,
-    required this.disabledPlaceholderColor,
+    required this.cursorColor,
+    required this.iconDefaultColor,
+    required this.iconDisabledColor,
     required this.labelDefaultColor,
     required this.labelDefaultTextStyle,
     required this.labelDisabledColor,
@@ -40,17 +38,15 @@ class YgTextInputTheme extends ThemeExtension<YgTextInputTheme> {
   final Color backgroundDefaultColor;
   final Color backgroundDisabledColor;
   final Color backgroundErrorColor;
-  final Color borderDefaultColor;
-  final Color borderDisabledColor;
-  final Color borderErrorColor;
-  final Color borderFocusColor;
-  final Color borderHoverColor;
+  final Border borderDefault;
+  final Border borderDisabled;
+  final Border borderError;
+  final Border borderFocus;
+  final Border borderHover;
   final BorderRadius borderRadius;
-  final Color disabledBorderColor;
-  final double disabledBorderSize;
-  final Color disabledLabelColor;
-  final Color disabledOutlineBackgroundColor;
-  final Color disabledPlaceholderColor;
+  final Color cursorColor;
+  final Color iconDefaultColor;
+  final Color iconDisabledColor;
   final Color labelDefaultColor;
   final TextStyle labelDefaultTextStyle;
   final Color labelDisabledColor;
@@ -67,18 +63,15 @@ class YgTextInputTheme extends ThemeExtension<YgTextInputTheme> {
     backgroundDefaultColor: _$YgTextInputTheme.backgroundDefaultColor[0],
     backgroundDisabledColor: _$YgTextInputTheme.backgroundDisabledColor[0],
     backgroundErrorColor: _$YgTextInputTheme.backgroundErrorColor[0],
-    borderDefaultColor: _$YgTextInputTheme.borderDefaultColor[0],
-    borderDisabledColor: _$YgTextInputTheme.borderDisabledColor[0],
-    borderErrorColor: _$YgTextInputTheme.borderErrorColor[0],
-    borderFocusColor: _$YgTextInputTheme.borderFocusColor[0],
-    borderHoverColor: _$YgTextInputTheme.borderHoverColor[0],
+    borderDefault: _$YgTextInputTheme.borderDefault[0],
+    borderDisabled: _$YgTextInputTheme.borderDisabled[0],
+    borderError: _$YgTextInputTheme.borderError[0],
+    borderFocus: _$YgTextInputTheme.borderFocus[0],
+    borderHover: _$YgTextInputTheme.borderHover[0],
     borderRadius: _$YgTextInputTheme.borderRadius[0],
-    disabledBorderColor: _$YgTextInputTheme.disabledBorderColor[0],
-    disabledBorderSize: _$YgTextInputTheme.disabledBorderSize[0],
-    disabledLabelColor: _$YgTextInputTheme.disabledLabelColor[0],
-    disabledOutlineBackgroundColor:
-        _$YgTextInputTheme.disabledOutlineBackgroundColor[0],
-    disabledPlaceholderColor: _$YgTextInputTheme.disabledPlaceholderColor[0],
+    cursorColor: _$YgTextInputTheme.cursorColor[0],
+    iconDefaultColor: _$YgTextInputTheme.iconDefaultColor[0],
+    iconDisabledColor: _$YgTextInputTheme.iconDisabledColor[0],
     labelDefaultColor: _$YgTextInputTheme.labelDefaultColor[0],
     labelDefaultTextStyle: _$YgTextInputTheme.labelDefaultTextStyle[0],
     labelDisabledColor: _$YgTextInputTheme.labelDisabledColor[0],
@@ -96,18 +89,15 @@ class YgTextInputTheme extends ThemeExtension<YgTextInputTheme> {
     backgroundDefaultColor: _$YgTextInputTheme.backgroundDefaultColor[1],
     backgroundDisabledColor: _$YgTextInputTheme.backgroundDisabledColor[1],
     backgroundErrorColor: _$YgTextInputTheme.backgroundErrorColor[1],
-    borderDefaultColor: _$YgTextInputTheme.borderDefaultColor[1],
-    borderDisabledColor: _$YgTextInputTheme.borderDisabledColor[1],
-    borderErrorColor: _$YgTextInputTheme.borderErrorColor[1],
-    borderFocusColor: _$YgTextInputTheme.borderFocusColor[1],
-    borderHoverColor: _$YgTextInputTheme.borderHoverColor[1],
+    borderDefault: _$YgTextInputTheme.borderDefault[1],
+    borderDisabled: _$YgTextInputTheme.borderDisabled[1],
+    borderError: _$YgTextInputTheme.borderError[1],
+    borderFocus: _$YgTextInputTheme.borderFocus[1],
+    borderHover: _$YgTextInputTheme.borderHover[1],
     borderRadius: _$YgTextInputTheme.borderRadius[1],
-    disabledBorderColor: _$YgTextInputTheme.disabledBorderColor[1],
-    disabledBorderSize: _$YgTextInputTheme.disabledBorderSize[1],
-    disabledLabelColor: _$YgTextInputTheme.disabledLabelColor[1],
-    disabledOutlineBackgroundColor:
-        _$YgTextInputTheme.disabledOutlineBackgroundColor[1],
-    disabledPlaceholderColor: _$YgTextInputTheme.disabledPlaceholderColor[1],
+    cursorColor: _$YgTextInputTheme.cursorColor[1],
+    iconDefaultColor: _$YgTextInputTheme.iconDefaultColor[1],
+    iconDisabledColor: _$YgTextInputTheme.iconDisabledColor[1],
     labelDefaultColor: _$YgTextInputTheme.labelDefaultColor[1],
     labelDefaultTextStyle: _$YgTextInputTheme.labelDefaultTextStyle[1],
     labelDisabledColor: _$YgTextInputTheme.labelDisabledColor[1],
@@ -125,18 +115,15 @@ class YgTextInputTheme extends ThemeExtension<YgTextInputTheme> {
     backgroundDefaultColor: _$YgTextInputTheme.backgroundDefaultColor[2],
     backgroundDisabledColor: _$YgTextInputTheme.backgroundDisabledColor[2],
     backgroundErrorColor: _$YgTextInputTheme.backgroundErrorColor[2],
-    borderDefaultColor: _$YgTextInputTheme.borderDefaultColor[2],
-    borderDisabledColor: _$YgTextInputTheme.borderDisabledColor[2],
-    borderErrorColor: _$YgTextInputTheme.borderErrorColor[2],
-    borderFocusColor: _$YgTextInputTheme.borderFocusColor[2],
-    borderHoverColor: _$YgTextInputTheme.borderHoverColor[2],
+    borderDefault: _$YgTextInputTheme.borderDefault[2],
+    borderDisabled: _$YgTextInputTheme.borderDisabled[2],
+    borderError: _$YgTextInputTheme.borderError[2],
+    borderFocus: _$YgTextInputTheme.borderFocus[2],
+    borderHover: _$YgTextInputTheme.borderHover[2],
     borderRadius: _$YgTextInputTheme.borderRadius[2],
-    disabledBorderColor: _$YgTextInputTheme.disabledBorderColor[2],
-    disabledBorderSize: _$YgTextInputTheme.disabledBorderSize[2],
-    disabledLabelColor: _$YgTextInputTheme.disabledLabelColor[2],
-    disabledOutlineBackgroundColor:
-        _$YgTextInputTheme.disabledOutlineBackgroundColor[2],
-    disabledPlaceholderColor: _$YgTextInputTheme.disabledPlaceholderColor[2],
+    cursorColor: _$YgTextInputTheme.cursorColor[2],
+    iconDefaultColor: _$YgTextInputTheme.iconDefaultColor[2],
+    iconDisabledColor: _$YgTextInputTheme.iconDisabledColor[2],
     labelDefaultColor: _$YgTextInputTheme.labelDefaultColor[2],
     labelDefaultTextStyle: _$YgTextInputTheme.labelDefaultTextStyle[2],
     labelDisabledColor: _$YgTextInputTheme.labelDisabledColor[2],
@@ -154,18 +141,15 @@ class YgTextInputTheme extends ThemeExtension<YgTextInputTheme> {
     backgroundDefaultColor: _$YgTextInputTheme.backgroundDefaultColor[3],
     backgroundDisabledColor: _$YgTextInputTheme.backgroundDisabledColor[3],
     backgroundErrorColor: _$YgTextInputTheme.backgroundErrorColor[3],
-    borderDefaultColor: _$YgTextInputTheme.borderDefaultColor[3],
-    borderDisabledColor: _$YgTextInputTheme.borderDisabledColor[3],
-    borderErrorColor: _$YgTextInputTheme.borderErrorColor[3],
-    borderFocusColor: _$YgTextInputTheme.borderFocusColor[3],
-    borderHoverColor: _$YgTextInputTheme.borderHoverColor[3],
+    borderDefault: _$YgTextInputTheme.borderDefault[3],
+    borderDisabled: _$YgTextInputTheme.borderDisabled[3],
+    borderError: _$YgTextInputTheme.borderError[3],
+    borderFocus: _$YgTextInputTheme.borderFocus[3],
+    borderHover: _$YgTextInputTheme.borderHover[3],
     borderRadius: _$YgTextInputTheme.borderRadius[3],
-    disabledBorderColor: _$YgTextInputTheme.disabledBorderColor[3],
-    disabledBorderSize: _$YgTextInputTheme.disabledBorderSize[3],
-    disabledLabelColor: _$YgTextInputTheme.disabledLabelColor[3],
-    disabledOutlineBackgroundColor:
-        _$YgTextInputTheme.disabledOutlineBackgroundColor[3],
-    disabledPlaceholderColor: _$YgTextInputTheme.disabledPlaceholderColor[3],
+    cursorColor: _$YgTextInputTheme.cursorColor[3],
+    iconDefaultColor: _$YgTextInputTheme.iconDefaultColor[3],
+    iconDisabledColor: _$YgTextInputTheme.iconDisabledColor[3],
     labelDefaultColor: _$YgTextInputTheme.labelDefaultColor[3],
     labelDefaultTextStyle: _$YgTextInputTheme.labelDefaultTextStyle[3],
     labelDisabledColor: _$YgTextInputTheme.labelDisabledColor[3],
@@ -191,17 +175,15 @@ class YgTextInputTheme extends ThemeExtension<YgTextInputTheme> {
     Color? backgroundDefaultColor,
     Color? backgroundDisabledColor,
     Color? backgroundErrorColor,
-    Color? borderDefaultColor,
-    Color? borderDisabledColor,
-    Color? borderErrorColor,
-    Color? borderFocusColor,
-    Color? borderHoverColor,
+    Border? borderDefault,
+    Border? borderDisabled,
+    Border? borderError,
+    Border? borderFocus,
+    Border? borderHover,
     BorderRadius? borderRadius,
-    Color? disabledBorderColor,
-    double? disabledBorderSize,
-    Color? disabledLabelColor,
-    Color? disabledOutlineBackgroundColor,
-    Color? disabledPlaceholderColor,
+    Color? cursorColor,
+    Color? iconDefaultColor,
+    Color? iconDisabledColor,
     Color? labelDefaultColor,
     TextStyle? labelDefaultTextStyle,
     Color? labelDisabledColor,
@@ -220,19 +202,15 @@ class YgTextInputTheme extends ThemeExtension<YgTextInputTheme> {
       backgroundDisabledColor:
           backgroundDisabledColor ?? this.backgroundDisabledColor,
       backgroundErrorColor: backgroundErrorColor ?? this.backgroundErrorColor,
-      borderDefaultColor: borderDefaultColor ?? this.borderDefaultColor,
-      borderDisabledColor: borderDisabledColor ?? this.borderDisabledColor,
-      borderErrorColor: borderErrorColor ?? this.borderErrorColor,
-      borderFocusColor: borderFocusColor ?? this.borderFocusColor,
-      borderHoverColor: borderHoverColor ?? this.borderHoverColor,
+      borderDefault: borderDefault ?? this.borderDefault,
+      borderDisabled: borderDisabled ?? this.borderDisabled,
+      borderError: borderError ?? this.borderError,
+      borderFocus: borderFocus ?? this.borderFocus,
+      borderHover: borderHover ?? this.borderHover,
       borderRadius: borderRadius ?? this.borderRadius,
-      disabledBorderColor: disabledBorderColor ?? this.disabledBorderColor,
-      disabledBorderSize: disabledBorderSize ?? this.disabledBorderSize,
-      disabledLabelColor: disabledLabelColor ?? this.disabledLabelColor,
-      disabledOutlineBackgroundColor:
-          disabledOutlineBackgroundColor ?? this.disabledOutlineBackgroundColor,
-      disabledPlaceholderColor:
-          disabledPlaceholderColor ?? this.disabledPlaceholderColor,
+      cursorColor: cursorColor ?? this.cursorColor,
+      iconDefaultColor: iconDefaultColor ?? this.iconDefaultColor,
+      iconDisabledColor: iconDisabledColor ?? this.iconDisabledColor,
       labelDefaultColor: labelDefaultColor ?? this.labelDefaultColor,
       labelDefaultTextStyle:
           labelDefaultTextStyle ?? this.labelDefaultTextStyle,
@@ -263,27 +241,17 @@ class YgTextInputTheme extends ThemeExtension<YgTextInputTheme> {
           backgroundDisabledColor, other.backgroundDisabledColor, t)!,
       backgroundErrorColor:
           Color.lerp(backgroundErrorColor, other.backgroundErrorColor, t)!,
-      borderDefaultColor:
-          Color.lerp(borderDefaultColor, other.borderDefaultColor, t)!,
-      borderDisabledColor:
-          Color.lerp(borderDisabledColor, other.borderDisabledColor, t)!,
-      borderErrorColor:
-          Color.lerp(borderErrorColor, other.borderErrorColor, t)!,
-      borderFocusColor:
-          Color.lerp(borderFocusColor, other.borderFocusColor, t)!,
-      borderHoverColor:
-          Color.lerp(borderHoverColor, other.borderHoverColor, t)!,
+      borderDefault: t < 0.5 ? borderDefault : other.borderDefault,
+      borderDisabled: t < 0.5 ? borderDisabled : other.borderDisabled,
+      borderError: t < 0.5 ? borderError : other.borderError,
+      borderFocus: t < 0.5 ? borderFocus : other.borderFocus,
+      borderHover: t < 0.5 ? borderHover : other.borderHover,
       borderRadius: t < 0.5 ? borderRadius : other.borderRadius,
-      disabledBorderColor:
-          Color.lerp(disabledBorderColor, other.disabledBorderColor, t)!,
-      disabledBorderSize:
-          t < 0.5 ? disabledBorderSize : other.disabledBorderSize,
-      disabledLabelColor:
-          Color.lerp(disabledLabelColor, other.disabledLabelColor, t)!,
-      disabledOutlineBackgroundColor: Color.lerp(disabledOutlineBackgroundColor,
-          other.disabledOutlineBackgroundColor, t)!,
-      disabledPlaceholderColor: Color.lerp(
-          disabledPlaceholderColor, other.disabledPlaceholderColor, t)!,
+      cursorColor: Color.lerp(cursorColor, other.cursorColor, t)!,
+      iconDefaultColor:
+          Color.lerp(iconDefaultColor, other.iconDefaultColor, t)!,
+      iconDisabledColor:
+          Color.lerp(iconDisabledColor, other.iconDisabledColor, t)!,
       labelDefaultColor:
           Color.lerp(labelDefaultColor, other.labelDefaultColor, t)!,
       labelDefaultTextStyle: TextStyle.lerp(
@@ -320,28 +288,23 @@ class YgTextInputTheme extends ThemeExtension<YgTextInputTheme> {
             const DeepCollectionEquality()
                 .equals(backgroundErrorColor, other.backgroundErrorColor) &&
             const DeepCollectionEquality()
-                .equals(borderDefaultColor, other.borderDefaultColor) &&
+                .equals(borderDefault, other.borderDefault) &&
             const DeepCollectionEquality()
-                .equals(borderDisabledColor, other.borderDisabledColor) &&
+                .equals(borderDisabled, other.borderDisabled) &&
             const DeepCollectionEquality()
-                .equals(borderErrorColor, other.borderErrorColor) &&
+                .equals(borderError, other.borderError) &&
             const DeepCollectionEquality()
-                .equals(borderFocusColor, other.borderFocusColor) &&
+                .equals(borderFocus, other.borderFocus) &&
             const DeepCollectionEquality()
-                .equals(borderHoverColor, other.borderHoverColor) &&
+                .equals(borderHover, other.borderHover) &&
             const DeepCollectionEquality()
                 .equals(borderRadius, other.borderRadius) &&
             const DeepCollectionEquality()
-                .equals(disabledBorderColor, other.disabledBorderColor) &&
+                .equals(cursorColor, other.cursorColor) &&
             const DeepCollectionEquality()
-                .equals(disabledBorderSize, other.disabledBorderSize) &&
+                .equals(iconDefaultColor, other.iconDefaultColor) &&
             const DeepCollectionEquality()
-                .equals(disabledLabelColor, other.disabledLabelColor) &&
-            const DeepCollectionEquality().equals(
-                disabledOutlineBackgroundColor,
-                other.disabledOutlineBackgroundColor) &&
-            const DeepCollectionEquality().equals(
-                disabledPlaceholderColor, other.disabledPlaceholderColor) &&
+                .equals(iconDisabledColor, other.iconDisabledColor) &&
             const DeepCollectionEquality()
                 .equals(labelDefaultColor, other.labelDefaultColor) &&
             const DeepCollectionEquality()
@@ -373,17 +336,15 @@ class YgTextInputTheme extends ThemeExtension<YgTextInputTheme> {
       const DeepCollectionEquality().hash(backgroundDefaultColor),
       const DeepCollectionEquality().hash(backgroundDisabledColor),
       const DeepCollectionEquality().hash(backgroundErrorColor),
-      const DeepCollectionEquality().hash(borderDefaultColor),
-      const DeepCollectionEquality().hash(borderDisabledColor),
-      const DeepCollectionEquality().hash(borderErrorColor),
-      const DeepCollectionEquality().hash(borderFocusColor),
-      const DeepCollectionEquality().hash(borderHoverColor),
+      const DeepCollectionEquality().hash(borderDefault),
+      const DeepCollectionEquality().hash(borderDisabled),
+      const DeepCollectionEquality().hash(borderError),
+      const DeepCollectionEquality().hash(borderFocus),
+      const DeepCollectionEquality().hash(borderHover),
       const DeepCollectionEquality().hash(borderRadius),
-      const DeepCollectionEquality().hash(disabledBorderColor),
-      const DeepCollectionEquality().hash(disabledBorderSize),
-      const DeepCollectionEquality().hash(disabledLabelColor),
-      const DeepCollectionEquality().hash(disabledOutlineBackgroundColor),
-      const DeepCollectionEquality().hash(disabledPlaceholderColor),
+      const DeepCollectionEquality().hash(cursorColor),
+      const DeepCollectionEquality().hash(iconDefaultColor),
+      const DeepCollectionEquality().hash(iconDisabledColor),
       const DeepCollectionEquality().hash(labelDefaultColor),
       const DeepCollectionEquality().hash(labelDefaultTextStyle),
       const DeepCollectionEquality().hash(labelDisabledColor),

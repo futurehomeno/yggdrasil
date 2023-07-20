@@ -7,10 +7,10 @@ class YgIcon extends StatelessWidget {
     this.icon, {
     super.key,
     this.color,
-    this.invertColor = false,
-    this.useSvgColor = false,
-    this.size = YgIconSize.large,
-    this.tapSize = YgIconTapSize.largest,
+    this.invertColor,
+    this.useSvgColor,
+    this.size,
+    this.tapSize,
     this.onTap,
   });
 
@@ -28,16 +28,16 @@ class YgIcon extends StatelessWidget {
   /// Enable this if the icon is placed on a dark background.
   /// The default theme color works for light backgrounds,
   /// but not for dark backgrounds.
-  final bool invertColor;
+  final bool? invertColor;
 
   /// Whether the icon should use the color defined in the SVG file.
-  final bool useSvgColor;
+  final bool? useSvgColor;
 
   /// Size of the icon.
-  final YgIconSize size;
+  final YgIconSize? size;
 
   /// Size of the tap area.
-  final YgIconTapSize tapSize;
+  final YgIconTapSize? tapSize;
 
   /// Callback for when the icon is tapped.
   ///
@@ -46,14 +46,32 @@ class YgIcon extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final YgDefaultIconStyle? defaultStyle = YgDefaultIconStyle.of(context);
+
+    final Color? color = this.color ?? defaultStyle?.color;
+    final bool invertColor = this.invertColor ?? defaultStyle?.invertColor ?? false;
+    final bool useSvgColor = this.useSvgColor ?? defaultStyle?.useSvgColor ?? false;
+    final YgIconSize size = this.size ?? defaultStyle?.size ?? YgIconSize.large;
+    final YgIconTapSize tapSize = this.tapSize ?? defaultStyle?.tapSize ?? YgIconTapSize.largest;
+
+    // TODO(Tim): Figure out something so default values can't trigger these.
     assert(!(useSvgColor && color != null), 'Can only specify color or useSvgColor, not both');
     assert(!(useSvgColor && invertColor), 'Not possible to invert the svg color.');
 
     final YgIconTheme iconTheme = context.iconTheme;
-    final ColorFilter? colorFilter = _setColorFilter(color, context);
+    final ColorFilter? colorFilter = _setColorFilter(
+      context,
+      color: color,
+      invertColor: invertColor,
+      useSvgColor: useSvgColor,
+    );
 
     if (onTap == null) {
-      return _buildSvg(colorFilter, iconTheme);
+      return _buildSvg(
+        iconTheme,
+        colorFilter: colorFilter,
+        size: size,
+      );
     }
 
     return Material(
@@ -79,14 +97,23 @@ class YgIcon extends StatelessWidget {
           ),
           child: Align(
             alignment: Alignment.center,
-            child: _buildSvg(colorFilter, iconTheme),
+            child: _buildSvg(
+              iconTheme,
+              colorFilter: colorFilter,
+              size: size,
+            ),
           ),
         ),
       ),
     );
   }
 
-  ColorFilter? _setColorFilter(Color? color, BuildContext context) {
+  ColorFilter? _setColorFilter(
+    BuildContext context, {
+    required Color? color,
+    required bool useSvgColor,
+    required bool invertColor,
+  }) {
     if (useSvgColor) {
       return null;
     }
@@ -105,9 +132,10 @@ class YgIcon extends StatelessWidget {
   }
 
   SvgPicture _buildSvg(
-    ColorFilter? colorFilter,
-    YgIconTheme iconTheme,
-  ) {
+    YgIconTheme iconTheme, {
+    required ColorFilter? colorFilter,
+    required YgIconSize size,
+  }) {
     return SvgPicture.asset(
       icon,
       package: 'yggdrasil',

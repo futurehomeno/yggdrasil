@@ -21,30 +21,38 @@ class YgScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: Text(componentName),
-        actions: <Widget>[
-          Consumer<YgAppState>(
-            builder: (BuildContext context, YgAppState ygAppState, Widget? widget) {
-              return YgIcon(
+    return Consumer<YgAppState>(
+      builder: (BuildContext context, YgAppState ygAppState, Widget? widget) {
+        return Scaffold(
+          appBar: AppBar(
+            title: Text(componentName),
+            actions: <Widget>[
+              YgIcon(
+                YgIcons.eyeOpen,
+                onTap: ygAppState.toggleOutline,
+                tapSize: YgIconTapSize.largest,
+              ),
+              YgIcon(
                 YgIcons.refresh,
                 onTap: ygAppState.toggleTheme,
                 tapSize: YgIconTapSize.largest,
-              );
-            },
-          )
-        ],
-      ),
-      body: scrollable
-          ? SingleChildScrollView(
-              child: SafeArea(
-                child: child,
               ),
-            )
-          : SafeArea(
-              child: child,
-            ),
+            ],
+          ),
+          body: Padding(
+            padding: const EdgeInsets.all(20),
+            child: scrollable
+                ? SingleChildScrollView(
+                    child: SafeArea(
+                      child: child,
+                    ),
+                  )
+                : SafeArea(
+                    child: child,
+                  ),
+          ),
+        );
+      },
     );
   }
 }
