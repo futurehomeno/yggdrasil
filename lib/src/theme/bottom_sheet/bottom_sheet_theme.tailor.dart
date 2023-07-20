@@ -20,6 +20,7 @@ class YgBottomSheetTheme extends ThemeExtension<YgBottomSheetTheme> {
     required this.headerPadding,
     required this.movementAnimationCurve,
     required this.movementAnimationDuration,
+    required this.outerPadding,
     required this.scrimColor,
     required this.titleStyle,
   });
@@ -34,6 +35,7 @@ class YgBottomSheetTheme extends ThemeExtension<YgBottomSheetTheme> {
   final EdgeInsets headerPadding;
   final Curve movementAnimationCurve;
   final Duration movementAnimationDuration;
+  final EdgeInsets outerPadding;
   final Color scrimColor;
   final TextStyle titleStyle;
 
@@ -49,6 +51,7 @@ class YgBottomSheetTheme extends ThemeExtension<YgBottomSheetTheme> {
     movementAnimationCurve: _$YgBottomSheetTheme.movementAnimationCurve[0],
     movementAnimationDuration:
         _$YgBottomSheetTheme.movementAnimationDuration[0],
+    outerPadding: _$YgBottomSheetTheme.outerPadding[0],
     scrimColor: _$YgBottomSheetTheme.scrimColor[0],
     titleStyle: _$YgBottomSheetTheme.titleStyle[0],
   );
@@ -65,6 +68,7 @@ class YgBottomSheetTheme extends ThemeExtension<YgBottomSheetTheme> {
     movementAnimationCurve: _$YgBottomSheetTheme.movementAnimationCurve[1],
     movementAnimationDuration:
         _$YgBottomSheetTheme.movementAnimationDuration[1],
+    outerPadding: _$YgBottomSheetTheme.outerPadding[1],
     scrimColor: _$YgBottomSheetTheme.scrimColor[1],
     titleStyle: _$YgBottomSheetTheme.titleStyle[1],
   );
@@ -81,6 +85,7 @@ class YgBottomSheetTheme extends ThemeExtension<YgBottomSheetTheme> {
     movementAnimationCurve: _$YgBottomSheetTheme.movementAnimationCurve[2],
     movementAnimationDuration:
         _$YgBottomSheetTheme.movementAnimationDuration[2],
+    outerPadding: _$YgBottomSheetTheme.outerPadding[2],
     scrimColor: _$YgBottomSheetTheme.scrimColor[2],
     titleStyle: _$YgBottomSheetTheme.titleStyle[2],
   );
@@ -97,6 +102,7 @@ class YgBottomSheetTheme extends ThemeExtension<YgBottomSheetTheme> {
     movementAnimationCurve: _$YgBottomSheetTheme.movementAnimationCurve[3],
     movementAnimationDuration:
         _$YgBottomSheetTheme.movementAnimationDuration[3],
+    outerPadding: _$YgBottomSheetTheme.outerPadding[3],
     scrimColor: _$YgBottomSheetTheme.scrimColor[3],
     titleStyle: _$YgBottomSheetTheme.titleStyle[3],
   );
@@ -120,6 +126,7 @@ class YgBottomSheetTheme extends ThemeExtension<YgBottomSheetTheme> {
     EdgeInsets? headerPadding,
     Curve? movementAnimationCurve,
     Duration? movementAnimationDuration,
+    EdgeInsets? outerPadding,
     Color? scrimColor,
     TextStyle? titleStyle,
   }) {
@@ -136,6 +143,7 @@ class YgBottomSheetTheme extends ThemeExtension<YgBottomSheetTheme> {
           movementAnimationCurve ?? this.movementAnimationCurve,
       movementAnimationDuration:
           movementAnimationDuration ?? this.movementAnimationDuration,
+      outerPadding: outerPadding ?? this.outerPadding,
       scrimColor: scrimColor ?? this.scrimColor,
       titleStyle: titleStyle ?? this.titleStyle,
     );
@@ -158,6 +166,7 @@ class YgBottomSheetTheme extends ThemeExtension<YgBottomSheetTheme> {
           t < 0.5 ? movementAnimationCurve : other.movementAnimationCurve,
       movementAnimationDuration:
           t < 0.5 ? movementAnimationDuration : other.movementAnimationDuration,
+      outerPadding: t < 0.5 ? outerPadding : other.outerPadding,
       scrimColor: Color.lerp(scrimColor, other.scrimColor, t)!,
       titleStyle: TextStyle.lerp(titleStyle, other.titleStyle, t)!,
     );
@@ -189,6 +198,8 @@ class YgBottomSheetTheme extends ThemeExtension<YgBottomSheetTheme> {
             const DeepCollectionEquality().equals(
                 movementAnimationDuration, other.movementAnimationDuration) &&
             const DeepCollectionEquality()
+                .equals(outerPadding, other.outerPadding) &&
+            const DeepCollectionEquality()
                 .equals(scrimColor, other.scrimColor) &&
             const DeepCollectionEquality()
                 .equals(titleStyle, other.titleStyle));
@@ -208,6 +219,7 @@ class YgBottomSheetTheme extends ThemeExtension<YgBottomSheetTheme> {
       const DeepCollectionEquality().hash(headerPadding),
       const DeepCollectionEquality().hash(movementAnimationCurve),
       const DeepCollectionEquality().hash(movementAnimationDuration),
+      const DeepCollectionEquality().hash(outerPadding),
       const DeepCollectionEquality().hash(scrimColor),
       const DeepCollectionEquality().hash(titleStyle),
     );

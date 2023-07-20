@@ -36,18 +36,21 @@ class _YgBottomSheetState extends State<YgBottomSheet> {
           top: false,
           child: ClipRRect(
             borderRadius: bottomSheetTheme.borderRadius,
-            child: Column(
-              mainAxisSize: MainAxisSize.min,
-              crossAxisAlignment: CrossAxisAlignment.stretch,
-              children: <Widget>[
-                YgBottomSheetHeader(title: widget.title),
-                _buildContent(scrollPhysicsProvider, bottomSheetTheme),
-                if (widget.footerButtons != null)
-                  Padding(
-                    padding: bottomSheetTheme.footerPadding,
-                    child: widget.footerButtons!,
-                  ),
-              ].withVerticalSpacing(30.0),
+            child: Padding(
+              padding: bottomSheetTheme.outerPadding,
+              child: Column(
+                mainAxisSize: MainAxisSize.min,
+                crossAxisAlignment: CrossAxisAlignment.stretch,
+                children: <Widget>[
+                  YgBottomSheetHeader(title: widget.title),
+                  _buildContent(scrollPhysicsProvider, bottomSheetTheme),
+                  if (widget.footerButtons != null)
+                    Padding(
+                      padding: bottomSheetTheme.footerPadding,
+                      child: widget.footerButtons!,
+                    ),
+                ].withVerticalSpacing(30.0),
+              ),
             ),
           ),
         ),

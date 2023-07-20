@@ -49,22 +49,49 @@ class _$YgBottomSheetTheme {
     ),
   ];
 
+  static const List<EdgeInsets> outerPadding = <EdgeInsets>[
+    EdgeInsets.only(
+      top: consumer_light.FhDimensions.md,
+      bottom: consumer_light.FhDimensions.lg,
+    ),
+    EdgeInsets.only(
+      top: consumer_dark.FhDimensions.md,
+      bottom: consumer_dark.FhDimensions.lg,
+    ),
+    EdgeInsets.only(
+      top: professional_light.FhDimensions.md,
+      bottom: professional_light.FhDimensions.lg,
+    ),
+    EdgeInsets.only(
+      top: professional_dark.FhDimensions.md,
+      bottom: professional_dark.FhDimensions.lg,
+    ),
+  ];
+
   static const List<EdgeInsets> headerPadding = <EdgeInsets>[
-    EdgeInsets.symmetric(
-      vertical: consumer_light.FhDimensions.md,
-      horizontal: consumer_light.FhDimensions.xl,
+    EdgeInsets.fromLTRB(
+      consumer_light.FhDimensions.xl,
+      0.0,
+      consumer_light.FhDimensions.xl,
+      consumer_light.FhDimensions.md,
     ),
-    EdgeInsets.symmetric(
-      vertical: consumer_dark.FhDimensions.md,
-      horizontal: consumer_dark.FhDimensions.xl,
+    EdgeInsets.fromLTRB(
+      consumer_dark.FhDimensions.xl,
+      0.0,
+      consumer_dark.FhDimensions.xl,
+      consumer_dark.FhDimensions.md,
     ),
-    EdgeInsets.symmetric(
-      vertical: professional_light.FhDimensions.md,
-      horizontal: professional_light.FhDimensions.xl,
+    EdgeInsets.fromLTRB(
+      professional_light.FhDimensions.xl,
+      0.0,
+      professional_light.FhDimensions.xl,
+      professional_light.FhDimensions.md,
     ),
-    EdgeInsets.symmetric(
-      vertical: professional_dark.FhDimensions.md,
-      horizontal: professional_dark.FhDimensions.xl,
+    EdgeInsets.fromLTRB(
+      professional_dark.FhDimensions.xl,
+      0.0,
+      professional_dark.FhDimensions.xl,
+      professional_dark.FhDimensions.md,
     ),
   ];
 
@@ -88,25 +115,25 @@ class _$YgBottomSheetTheme {
       consumer_light.FhDimensions.xl,
       0.0,
       consumer_light.FhDimensions.xl,
-      consumer_light.FhDimensions.xl,
+      0.0,
     ),
     EdgeInsets.fromLTRB(
       consumer_dark.FhDimensions.xl,
       0.0,
       consumer_dark.FhDimensions.xl,
-      consumer_dark.FhDimensions.xl,
+      0.0,
     ),
     EdgeInsets.fromLTRB(
       professional_light.FhDimensions.xl,
       0.0,
       professional_light.FhDimensions.xl,
-      professional_light.FhDimensions.xl,
+      0.0,
     ),
     EdgeInsets.fromLTRB(
       professional_dark.FhDimensions.xl,
       0.0,
       professional_dark.FhDimensions.xl,
-      professional_dark.FhDimensions.xl,
+      0.0,
     ),
   ];
 
