@@ -9,11 +9,25 @@ part 'bottom_sheet_theme.tailor.dart';
 
 @tailorComponent
 class _$YgBottomSheetTheme {
-  static List<Color> handleBarColor = <Color>[
+  static List<Color> handleColor = <Color>[
     consumer_light.FhColors.borderDefault,
     consumer_dark.FhColors.borderDefault,
     professional_light.FhColors.borderDefault,
     professional_dark.FhColors.borderDefault,
+  ];
+
+  static List<double> handleWidth = <double>[
+    48.0,
+    48.0,
+    48.0,
+    48.0,
+  ];
+
+  static List<double> handleHeight = <double>[
+    consumer_light.FhDimensions.xxs,
+    consumer_dark.FhDimensions.xxs,
+    professional_light.FhDimensions.xxs,
+    professional_dark.FhDimensions.xxs,
   ];
 
   static List<Color> backgroundColor = <Color>[
@@ -135,13 +149,6 @@ class _$YgBottomSheetTheme {
       professional_dark.FhDimensions.xl,
       0.0,
     ),
-  ];
-
-  static const List<double> buttonSpacing = <double>[
-    consumer_light.FhDimensions.sm,
-    consumer_dark.FhDimensions.sm,
-    professional_light.FhDimensions.sm,
-    professional_dark.FhDimensions.sm,
   ];
 
   static List<TextStyle> titleStyle = <TextStyle>[

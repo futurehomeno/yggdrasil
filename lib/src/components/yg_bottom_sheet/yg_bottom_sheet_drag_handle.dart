@@ -8,12 +8,11 @@ class YgBottomSheetDragHandle extends StatelessWidget {
   Widget build(BuildContext context) {
     final YgBottomSheetTheme bottomSheetTheme = context.bottomSheetTheme;
 
-    // TODO(bjhandeland): Move handle values to theme.
     return Container(
-      width: 48,
-      height: 5,
+      width: bottomSheetTheme.handleWidth,
+      height: bottomSheetTheme.handleHeight,
       decoration: BoxDecoration(
-        color: bottomSheetTheme.handleBarColor,
+        color: bottomSheetTheme.handleColor,
         borderRadius: BorderRadius.circular(2.5),
       ),
     );
