@@ -1,6 +1,7 @@
 export 'badge/_badge.dart';
 export 'bottom_sheet/_bottom_sheet.dart';
 export 'button/_button.dart';
+export 'button_group/_button_group.dart';
 export 'callout/_callout.dart';
 export 'card/_card.dart';
 export 'defaults/_defaults.dart';

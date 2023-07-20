@@ -9,11 +9,25 @@ part 'bottom_sheet_theme.tailor.dart';
 
 @tailorComponent
 class _$YgBottomSheetTheme {
-  static List<Color> handleBarColor = <Color>[
+  static List<Color> handleColor = <Color>[
     consumer_light.FhColors.borderDefault,
     consumer_dark.FhColors.borderDefault,
     professional_light.FhColors.borderDefault,
     professional_dark.FhColors.borderDefault,
+  ];
+
+  static List<double> handleWidth = <double>[
+    48.0,
+    48.0,
+    48.0,
+    48.0,
+  ];
+
+  static List<double> handleHeight = <double>[
+    consumer_light.FhDimensions.xxs,
+    consumer_dark.FhDimensions.xxs,
+    professional_light.FhDimensions.xxs,
+    professional_dark.FhDimensions.xxs,
   ];
 
   static List<Color> backgroundColor = <Color>[
@@ -50,62 +64,90 @@ class _$YgBottomSheetTheme {
   ];
 
   static const List<EdgeInsets> outerPadding = <EdgeInsets>[
+    EdgeInsets.only(
+      top: consumer_light.FhDimensions.md,
+      bottom: consumer_light.FhDimensions.lg,
+    ),
+    EdgeInsets.only(
+      top: consumer_dark.FhDimensions.md,
+      bottom: consumer_dark.FhDimensions.lg,
+    ),
+    EdgeInsets.only(
+      top: professional_light.FhDimensions.md,
+      bottom: professional_light.FhDimensions.lg,
+    ),
+    EdgeInsets.only(
+      top: professional_dark.FhDimensions.md,
+      bottom: professional_dark.FhDimensions.lg,
+    ),
+  ];
+
+  static const List<EdgeInsets> headerPadding = <EdgeInsets>[
+    EdgeInsets.fromLTRB(
+      consumer_light.FhDimensions.xl,
+      0.0,
+      consumer_light.FhDimensions.xl,
+      consumer_light.FhDimensions.md,
+    ),
+    EdgeInsets.fromLTRB(
+      consumer_dark.FhDimensions.xl,
+      0.0,
+      consumer_dark.FhDimensions.xl,
+      consumer_dark.FhDimensions.md,
+    ),
+    EdgeInsets.fromLTRB(
+      professional_light.FhDimensions.xl,
+      0.0,
+      professional_light.FhDimensions.xl,
+      professional_light.FhDimensions.md,
+    ),
+    EdgeInsets.fromLTRB(
+      professional_dark.FhDimensions.xl,
+      0.0,
+      professional_dark.FhDimensions.xl,
+      professional_dark.FhDimensions.md,
+    ),
+  ];
+
+  static const List<EdgeInsets> contentPadding = <EdgeInsets>[
     EdgeInsets.symmetric(
-      vertical: consumer_light.FhDimensions.md,
       horizontal: consumer_light.FhDimensions.xl,
     ),
     EdgeInsets.symmetric(
-      vertical: consumer_dark.FhDimensions.md,
       horizontal: consumer_dark.FhDimensions.xl,
     ),
     EdgeInsets.symmetric(
-      vertical: professional_light.FhDimensions.md,
       horizontal: professional_light.FhDimensions.xl,
     ),
     EdgeInsets.symmetric(
-      vertical: professional_dark.FhDimensions.md,
       horizontal: professional_dark.FhDimensions.xl,
     ),
   ];
 
   static const List<EdgeInsets> footerPadding = <EdgeInsets>[
-    EdgeInsets.only(
-      top: consumer_light.FhDimensions.xl,
+    EdgeInsets.fromLTRB(
+      consumer_light.FhDimensions.xl,
+      0.0,
+      consumer_light.FhDimensions.xl,
+      0.0,
     ),
-    EdgeInsets.only(
-      top: consumer_dark.FhDimensions.xl,
+    EdgeInsets.fromLTRB(
+      consumer_dark.FhDimensions.xl,
+      0.0,
+      consumer_dark.FhDimensions.xl,
+      0.0,
     ),
-    EdgeInsets.only(
-      top: professional_light.FhDimensions.xl,
+    EdgeInsets.fromLTRB(
+      professional_light.FhDimensions.xl,
+      0.0,
+      professional_light.FhDimensions.xl,
+      0.0,
     ),
-    EdgeInsets.only(
-      top: professional_dark.FhDimensions.xl,
-    ),
-  ];
-
-  static const List<double> buttonSpacing = <double>[
-    consumer_light.FhDimensions.sm,
-    consumer_dark.FhDimensions.sm,
-    professional_light.FhDimensions.sm,
-    professional_dark.FhDimensions.sm,
-  ];
-
-  static const List<EdgeInsets> titlePadding = <EdgeInsets>[
-    EdgeInsets.only(
-      top: consumer_light.FhDimensions.sm,
-      bottom: consumer_light.FhDimensions.xl,
-    ),
-    EdgeInsets.only(
-      top: consumer_dark.FhDimensions.sm,
-      bottom: consumer_dark.FhDimensions.xl,
-    ),
-    EdgeInsets.only(
-      top: professional_light.FhDimensions.sm,
-      bottom: professional_light.FhDimensions.xl,
-    ),
-    EdgeInsets.only(
-      top: professional_dark.FhDimensions.sm,
-      bottom: professional_dark.FhDimensions.xl,
+    EdgeInsets.fromLTRB(
+      professional_dark.FhDimensions.xl,
+      0.0,
+      professional_dark.FhDimensions.xl,
+      0.0,
     ),
   ];
 
@@ -122,6 +164,20 @@ class _$YgBottomSheetTheme {
     professional_dark.FhTextStyles.sectionHeading2Medium.copyWith(
       color: professional_dark.FhColors.textDefault,
     ),
+  ];
+
+  static List<double> titleSpacing = <double>[
+    consumer_light.FhDimensions.sm,
+    consumer_dark.FhDimensions.sm,
+    professional_light.FhDimensions.sm,
+    professional_dark.FhDimensions.sm,
+  ];
+
+  static List<double> contentSpacing = <double>[
+    consumer_light.FhDimensions.xl,
+    consumer_dark.FhDimensions.xl,
+    professional_light.FhDimensions.xl,
+    professional_dark.FhDimensions.xl,
   ];
 
   static List<double> flingVelocity = <double>[

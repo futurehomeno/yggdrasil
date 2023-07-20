@@ -43,17 +43,14 @@ class ListScreen extends StatelessWidget {
               return const YgDivider();
             },
           ),
-          const YgListTile(title: 'ListView w/ divideTiles'),
+          const YgListTile(title: 'ListView w/ separated by'),
           ListView(
             shrinkWrap: true,
-            children: YgListTile.divideTiles(
-              tiles: <YgListTile>[
-                const YgListTile(title: 'Title 1'),
-                const YgListTile(title: 'Title 1'),
-                const YgListTile(title: 'Title 1')
-              ],
-              context: context,
-            ).toList(),
+            children: <YgListTile>[
+              const YgListTile(title: 'Title 1'),
+              const YgListTile(title: 'Title 1'),
+              const YgListTile(title: 'Title 1')
+            ].separatedBy(const YgDivider()),
           ),
           const YgListTile(title: 'Manual'),
           ListView(

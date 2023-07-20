@@ -5,6 +5,7 @@ import 'package:yggdrasil/src/theme/text_input/_text_input.dart';
 import 'badge/_badge.dart';
 import 'bottom_sheet/_bottom_sheet.dart';
 import 'button/_button.dart';
+import 'button_group/_button_group.dart';
 import 'callout/_callout.dart';
 import 'card/_card.dart';
 import 'defaults/_defaults.dart';
@@ -37,6 +38,9 @@ class _$YgTheme {
 
   @themeExtension
   static List<YgButtonTheme> buttonTheme = YgButtonTheme.themes;
+
+  @themeExtension
+  static List<YgButtonGroupTheme> buttonGroupTheme = YgButtonGroupTheme.themes;
 
   @themeExtension
   static List<YgCardTheme> cardTheme = YgCardTheme.themes;

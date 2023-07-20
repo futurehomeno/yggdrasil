@@ -67,16 +67,13 @@ class YgCallout extends StatelessWidget {
               ),
             ),
             if (onClose != null)
-              Padding(
-                padding: EdgeInsets.only(left: theme.closeButtonSpacing),
-                child: YgIcon(
-                  YgIcons.cross,
-                  onTap: onClose,
-                  size: YgIconSize.small,
-                  tapSize: YgIconTapSize.larger,
-                ),
+              YgIcon(
+                YgIcons.cross,
+                onTap: onClose,
+                size: YgIconSize.small,
+                tapSize: YgIconTapSize.larger,
               ),
-          ],
+          ].withHorizontalSpacing(theme.closeButtonSpacing),
         ),
       ),
     );
