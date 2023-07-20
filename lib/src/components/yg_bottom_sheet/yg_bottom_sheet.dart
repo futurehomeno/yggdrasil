@@ -49,7 +49,7 @@ class _YgBottomSheetState extends State<YgBottomSheet> {
                       padding: bottomSheetTheme.footerPadding,
                       child: widget.footerButtons!,
                     ),
-                ].withVerticalSpacing(30.0),
+                ].withVerticalSpacing(bottomSheetTheme.contentSpacing),
               ),
             ),
           ),

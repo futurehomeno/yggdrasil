@@ -166,6 +166,20 @@ class _$YgBottomSheetTheme {
     ),
   ];
 
+  static List<double> titleSpacing = <double>[
+    consumer_light.FhDimensions.sm,
+    consumer_dark.FhDimensions.sm,
+    professional_light.FhDimensions.sm,
+    professional_dark.FhDimensions.sm,
+  ];
+
+  static List<double> contentSpacing = <double>[
+    consumer_light.FhDimensions.xl,
+    consumer_dark.FhDimensions.xl,
+    professional_light.FhDimensions.xl,
+    professional_dark.FhDimensions.xl,
+  ];
+
   static List<double> flingVelocity = <double>[
     2000,
     2000,
