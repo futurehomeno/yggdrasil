@@ -105,7 +105,6 @@ class YgListTile extends StatelessWidget {
     );
   }
 
-  // TODO(bjhandeland): Make sure the whole button is clickable.
   Widget _buildInfoButton(YgListTileTheme listTileTheme) {
     return YgIcon(
       YgIcons.info,
