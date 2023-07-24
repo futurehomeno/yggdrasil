@@ -3,6 +3,9 @@ import 'package:yggdrasil/yggdrasil.dart';
 
 class ExampleDialogNonDismissible extends YgDialogRoute {
   @override
+  RouteSettings get settings => const RouteSettings(name: 'ExampleDialogNoButtons');
+
+  @override
   final bool barrierDismissible = false;
 
   @override

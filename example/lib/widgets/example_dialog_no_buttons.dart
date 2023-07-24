@@ -3,6 +3,9 @@ import 'package:yggdrasil/yggdrasil.dart';
 
 class ExampleDialogNoButtons extends YgDialogRoute {
   @override
+  RouteSettings get settings => const RouteSettings(name: 'ExampleDialogNoButtons');
+
+  @override
   YgDialog buildDialog(BuildContext context) {
     return const YgDialog(
       header: YgIcon(YgIcons.info),

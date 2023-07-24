@@ -3,6 +3,9 @@ import 'package:yggdrasil/yggdrasil.dart';
 
 class ExampleScrollableBottomSheet extends YgBottomSheetModalRoute {
   @override
+  RouteSettings get settings => const RouteSettings(name: 'ExampleScrollableBottomSheet');
+
+  @override
   YgBottomSheet buildBottomSheet(BuildContext context) {
     return YgBottomSheet(
       title: 'Scrollable Bottom Sheet',
