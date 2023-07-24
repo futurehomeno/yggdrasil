@@ -31,6 +31,9 @@ class YgIcon extends StatelessWidget {
   final bool invertColor;
 
   /// Whether the icon should use the color defined in the SVG file.
+  ///
+  /// !--- IMPORTANT ---
+  /// Setting this will override color and invertColor.
   final bool useSvgColor;
 
   /// Size of the icon.
@@ -46,9 +49,6 @@ class YgIcon extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    assert(!(useSvgColor && color != null), 'Can only specify color or useSvgColor, not both');
-    assert(!(useSvgColor && invertColor), 'Not possible to invert the svg color.');
-
     final YgIconTheme iconTheme = context.iconTheme;
     final ColorFilter? colorFilter = _setColorFilter(color, context);
 

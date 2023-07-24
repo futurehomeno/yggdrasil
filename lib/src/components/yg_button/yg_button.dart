@@ -8,33 +8,34 @@ import 'yg_button_style.dart';
 class YgButton extends ButtonStyleButton {
   const YgButton({
     super.key,
-    required this.variant,
     required super.onPressed,
     required super.child,
     this.size = YgButtonSize.medium,
-    super.onLongPress,
-    super.onHover,
-    super.onFocusChange,
-    super.style,
-    super.focusNode,
+    this.variant = YgButtonVariant.primary,
+    this.iconColor,
     super.autofocus = false,
     super.clipBehavior = Clip.none,
+    super.focusNode,
+    super.onFocusChange,
+    super.onHover,
+    super.onLongPress,
     super.statesController,
+    super.style,
   });
 
   // region Leading icon
   factory YgButton.leadingIcon({
     Key? key,
     required VoidCallback? onPressed,
-    VoidCallback? onLongPress,
-    ButtonStyle? style,
-    FocusNode? focusNode,
-    bool? autofocus,
-    Clip? clipBehavior,
-    required YgIcon icon,
     required Widget child,
-    required YgButtonVariant variant,
-    required YgButtonSize size,
+    required YgIcon icon,
+    bool? autofocus,
+    ButtonStyle? style,
+    Clip? clipBehavior,
+    FocusNode? focusNode,
+    VoidCallback? onLongPress,
+    YgButtonSize size,
+    YgButtonVariant variant,
   }) = _YgButtonWithLeadingIcon;
 
   // endregion Leading icon
@@ -43,19 +44,20 @@ class YgButton extends ButtonStyleButton {
   factory YgButton.trailingIcon({
     Key? key,
     required VoidCallback? onPressed,
-    VoidCallback? onLongPress,
-    ButtonStyle? style,
-    FocusNode? focusNode,
-    bool autofocus,
-    Clip? clipBehavior,
-    required YgIcon icon,
     required Widget child,
-    required YgButtonVariant variant,
-    required YgButtonSize size,
+    required YgIcon icon,
+    bool autofocus,
+    ButtonStyle? style,
+    Clip? clipBehavior,
+    FocusNode? focusNode,
+    VoidCallback? onLongPress,
+    YgButtonSize size,
+    YgButtonVariant variant,
   }) = _YgButtonWithTrailingIcon;
 
   final YgButtonVariant variant;
   final YgButtonSize size;
+  final Color? iconColor;
 
   @override
   ButtonStyle defaultStyleOf(BuildContext context) {
@@ -63,6 +65,7 @@ class YgButton extends ButtonStyleButton {
       context: context,
       variant: variant,
       size: size,
+      iconColor: iconColor,
     ).toButtonStyle();
   }
   // endregion Trailing icon
@@ -80,15 +83,15 @@ class _YgButtonWithLeadingIcon extends YgButton {
   _YgButtonWithLeadingIcon({
     super.key,
     required super.onPressed,
-    super.onLongPress,
-    super.style,
-    super.focusNode,
-    bool? autofocus,
-    Clip? clipBehavior,
     required YgIcon icon,
     required Widget child,
-    required YgButtonVariant variant,
-    required YgButtonSize size,
+    bool? autofocus,
+    Clip? clipBehavior,
+    YgButtonSize size = YgButtonSize.medium,
+    YgButtonVariant variant = YgButtonVariant.primary,
+    super.focusNode,
+    super.onLongPress,
+    super.style,
   }) : super(
           autofocus: autofocus ?? false,
           clipBehavior: clipBehavior ?? Clip.none,
@@ -115,7 +118,10 @@ class _YgButtonWithLeadingIconChild extends StatelessWidget {
     return Row(
       mainAxisSize: MainAxisSize.min,
       children: <Widget>[
-        icon.copyWith(size: YgIconSize.small),
+        icon.copyWith(
+          size: YgIconSize.small,
+          color: IconTheme.of(context).color,
+        ),
         Flexible(child: child),
       ].withHorizontalSpacing(context.buttonTheme.iconSpacing),
     );
@@ -130,15 +136,15 @@ class _YgButtonWithTrailingIcon extends YgButton {
   _YgButtonWithTrailingIcon({
     super.key,
     required super.onPressed,
-    super.onLongPress,
-    super.style,
-    super.focusNode,
-    super.autofocus = false,
-    Clip? clipBehavior,
     required YgIcon icon,
     required Widget child,
-    required YgButtonVariant variant,
-    required YgButtonSize size,
+    bool? autofocus,
+    Clip? clipBehavior,
+    YgButtonSize size = YgButtonSize.medium,
+    YgButtonVariant variant = YgButtonVariant.primary,
+    super.focusNode,
+    super.onLongPress,
+    super.style,
   }) : super(
           clipBehavior: clipBehavior ?? Clip.none,
           child: _YgButtonWithTrailingIconChild(
@@ -165,7 +171,10 @@ class _YgButtonWithTrailingIconChild extends StatelessWidget {
       mainAxisSize: MainAxisSize.min,
       children: <Widget>[
         Flexible(child: child),
-        icon.copyWith(size: YgIconSize.small),
+        icon.copyWith(
+          size: YgIconSize.small,
+          color: IconTheme.of(context).color,
+        ),
       ].withHorizontalSpacing(context.buttonTheme.iconSpacing),
     );
   }

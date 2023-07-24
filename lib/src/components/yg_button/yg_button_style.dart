@@ -24,33 +24,39 @@ class YgButtonStyle {
   factory YgButtonStyle.fromVariant({
     required BuildContext context,
     required YgButtonVariant variant,
-    YgButtonSize size = YgButtonSize.medium,
+    required YgButtonSize size,
+    required Color? iconColor,
   }) {
     switch (variant) {
       case YgButtonVariant.primary:
         return _buildPrimaryButton(
           context: context,
           size: size,
+          iconColor: iconColor,
         );
       case YgButtonVariant.secondary:
         return _buildSecondaryButton(
           context: context,
           size: size,
+          iconColor: iconColor,
         );
       case YgButtonVariant.text:
         return _buildTextButton(
           context: context,
           size: size,
+          iconColor: iconColor,
         );
       case YgButtonVariant.link:
         return _buildLinkButton(
           context: context,
           size: size,
+          iconColor: iconColor,
         );
       case YgButtonVariant.critical:
         return _buildCriticalButton(
           context: context,
           size: size,
+          iconColor: iconColor,
         );
     }
   }
@@ -97,6 +103,7 @@ class YgButtonStyle {
   static YgButtonStyle _buildPrimaryButton({
     required BuildContext context,
     required YgButtonSize size,
+    required Color? iconColor,
   }) {
     final YgButtonTheme theme = context.buttonTheme;
     final PrimaryButtonTheme primaryButtonTheme = theme.primaryButtonTheme;
@@ -119,14 +126,15 @@ class YgButtonStyle {
         theme: theme,
         size: size,
       ),
-      iconColor: context.defaults.iconColor,
-      disabledIconColor: context.defaults.invertedIconColor,
+      iconColor: iconColor ?? context.buttonTheme.iconDefaultColor,
+      disabledIconColor: context.buttonTheme.iconDisabledColor,
     );
   }
 
   static YgButtonStyle _buildSecondaryButton({
     required BuildContext context,
     required YgButtonSize size,
+    required Color? iconColor,
   }) {
     final YgButtonTheme theme = context.buttonTheme;
     final SecondaryButtonTheme secondaryButtonTheme = theme.secondaryButtonTheme;
@@ -149,14 +157,15 @@ class YgButtonStyle {
         theme: theme,
         size: size,
       ),
-      iconColor: context.defaults.iconColor,
-      disabledIconColor: context.defaults.invertedIconColor,
+      iconColor: iconColor ?? context.buttonTheme.iconDefaultColor,
+      disabledIconColor: context.buttonTheme.iconDisabledColor,
     );
   }
 
   static YgButtonStyle _buildTextButton({
     required BuildContext context,
     required YgButtonSize size,
+    required Color? iconColor,
   }) {
     final YgButtonTheme theme = context.buttonTheme;
     final TextButtonTheme textButtonTheme = theme.textButtonTheme;
@@ -179,14 +188,15 @@ class YgButtonStyle {
         theme: theme,
         size: size,
       ),
-      iconColor: context.defaults.iconColor,
-      disabledIconColor: context.defaults.invertedIconColor,
+      iconColor: iconColor ?? context.buttonTheme.iconDefaultColor,
+      disabledIconColor: context.buttonTheme.iconDisabledColor,
     );
   }
 
   static YgButtonStyle _buildLinkButton({
     required BuildContext context,
     required YgButtonSize size,
+    required Color? iconColor,
   }) {
     final YgButtonTheme theme = context.buttonTheme;
     final LinkButtonTheme linkButtonTheme = theme.linkButtonTheme;
@@ -209,14 +219,15 @@ class YgButtonStyle {
         theme: theme,
         size: size,
       ),
-      iconColor: context.defaults.iconColor,
-      disabledIconColor: context.defaults.invertedIconColor,
+      iconColor: iconColor ?? context.buttonTheme.iconDefaultColor,
+      disabledIconColor: context.buttonTheme.iconDisabledColor,
     );
   }
 
   static YgButtonStyle _buildCriticalButton({
     required BuildContext context,
     required YgButtonSize size,
+    required Color? iconColor,
   }) {
     final YgButtonTheme theme = context.buttonTheme;
     final CriticalButtonTheme criticalButtonTheme = theme.criticalButtonTheme;
@@ -239,8 +250,8 @@ class YgButtonStyle {
         theme: theme,
         size: size,
       ),
-      iconColor: context.defaults.iconColor,
-      disabledIconColor: context.defaults.invertedIconColor,
+      iconColor: iconColor ?? context.buttonTheme.iconDefaultColor,
+      disabledIconColor: context.buttonTheme.iconDisabledColor,
     );
   }
 }
