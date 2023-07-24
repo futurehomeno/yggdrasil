@@ -38,11 +38,8 @@ class YgScreen extends StatelessWidget {
       ),
       body: scrollable
           ? SingleChildScrollView(
-              child: Padding(
-                padding: const EdgeInsets.only(bottom: 50.0),
-                child: SafeArea(
-                  child: child,
-                ),
+              child: SafeArea(
+                child: child,
               ),
             )
           : SafeArea(

@@ -33,7 +33,7 @@ class YgIcon extends StatelessWidget {
   /// Whether the icon should use the color defined in the SVG file.
   ///
   /// !--- IMPORTANT ---
-  /// Setting this will override color and invertColor.
+  /// Setting this will override [color] and [invertColor].
   final bool useSvgColor;
 
   /// Size of the icon.
