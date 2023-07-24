@@ -5,19 +5,19 @@ class ExampleDialog extends YgDialogRoute {
   @override
   YgDialog buildDialog(BuildContext context) {
     return YgDialog(
-      icon: const YgIcon(YgIcons.info),
+      header: const YgIcon(YgIcons.info),
       title: 'Example dialog',
       description: 'The description should provide the necessary information needed to make an informed decision.',
       ygButtonGroup: YgButtonGroup(
         children: <YgButton>[
           YgButton(
             variant: YgButtonVariant.primary,
-            onPressed: () {},
+            onPressed: () => Navigator.of(context).pop(),
             child: const Text('Primary button'),
           ),
           YgButton(
             variant: YgButtonVariant.secondary,
-            onPressed: () {},
+            onPressed: () => Navigator.of(context).pop(),
             child: const Text('Secondary button'),
           ),
         ],

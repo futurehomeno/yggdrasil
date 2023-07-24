@@ -37,7 +37,13 @@ class _DialogScreenState extends State<DialogScreen> with TickerProviderStateMix
           const YgListTile(title: 'Non-dismissible dialog'),
           YgButton(
             variant: YgButtonVariant.primary,
-            onPressed: () => Navigator.of(context).push(ExampleNonDismissibleDialog()),
+            onPressed: () => Navigator.of(context).push(ExampleDialogNonDismissible()),
+            child: const Text('Show'),
+          ),
+          const YgListTile(title: 'No-buttons dialog'),
+          YgButton(
+            variant: YgButtonVariant.primary,
+            onPressed: () => Navigator.of(context).push(ExampleDialogNoButtons()),
             child: const Text('Show'),
           ),
         ],
