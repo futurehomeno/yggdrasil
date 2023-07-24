@@ -23,6 +23,17 @@ class ButtonGroupScreen extends StatelessWidget {
       supernovaLink: 'Link',
       child: Column(
         children: <Widget>[
+          const YgListTile(title: 'Button group with 1 button'),
+          YgButtonGroup(
+            children: <YgButton>[
+              YgButton(
+                variant: YgButtonVariant.primary,
+                size: YgButtonSize.medium,
+                onPressed: () {},
+                child: const Text('Button 1'),
+              ),
+            ],
+          ),
           const YgListTile(title: 'Button group with 2 buttons'),
           YgButtonGroup(
             children: <YgButton>[
