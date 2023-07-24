@@ -17,6 +17,8 @@ class YgButtonStyle {
     required this.shape,
     required this.disabledShape,
     required this.padding,
+    required this.iconColor,
+    required this.disabledIconColor,
   });
 
   factory YgButtonStyle.fromVariant({
@@ -76,6 +78,10 @@ class YgButtonStyle {
         mouseCursor: SystemMouseCursors.click,
         disabled: SystemMouseCursors.basic,
       ),
+      iconColor: YgButtonIconColorProperty(
+        color: iconColor,
+        disabled: disabledIconColor,
+      ),
     );
   }
 
@@ -85,6 +91,8 @@ class YgButtonStyle {
   final OutlinedBorder shape;
   final OutlinedBorder disabledShape;
   final EdgeInsets padding;
+  final Color iconColor;
+  final Color disabledIconColor;
 
   static YgButtonStyle _buildPrimaryButton({
     required BuildContext context,
@@ -111,6 +119,8 @@ class YgButtonStyle {
         theme: theme,
         size: size,
       ),
+      iconColor: context.defaults.iconColor,
+      disabledIconColor: context.defaults.invertedIconColor,
     );
   }
 
@@ -139,6 +149,8 @@ class YgButtonStyle {
         theme: theme,
         size: size,
       ),
+      iconColor: context.defaults.iconColor,
+      disabledIconColor: context.defaults.invertedIconColor,
     );
   }
 
@@ -167,6 +179,8 @@ class YgButtonStyle {
         theme: theme,
         size: size,
       ),
+      iconColor: context.defaults.iconColor,
+      disabledIconColor: context.defaults.invertedIconColor,
     );
   }
 
@@ -195,6 +209,8 @@ class YgButtonStyle {
         theme: theme,
         size: size,
       ),
+      iconColor: context.defaults.iconColor,
+      disabledIconColor: context.defaults.invertedIconColor,
     );
   }
 
@@ -223,6 +239,8 @@ class YgButtonStyle {
         theme: theme,
         size: size,
       ),
+      iconColor: context.defaults.iconColor,
+      disabledIconColor: context.defaults.invertedIconColor,
     );
   }
 }
