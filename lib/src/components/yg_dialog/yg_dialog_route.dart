@@ -69,5 +69,5 @@ abstract class YgDialogRoute extends PopupRoute<YgDialog> {
   }
 
   /// Builds the [YgBottomSheet].
-  YgDialog buildDialog(BuildContext context);
+  Widget buildDialog(BuildContext context);
 }
