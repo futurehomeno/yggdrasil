@@ -1,5 +1,1 @@
-<svg width="25" height="25" viewBox="0 0 25 25" fill="none" xmlns="http://www.w3.org/2000/svg">
-<g id="caret_right">
-<path id="iconDefault" fill-rule="evenodd" clip-rule="evenodd" d="M7.89137 3.51643C8.13545 3.27235 8.53118 3.27235 8.77525 3.51643L17.1086 11.8498C17.3527 12.0938 17.3527 12.4896 17.1086 12.7336L8.77525 21.067C8.53118 21.3111 8.13545 21.3111 7.89137 21.067C7.64729 20.8229 7.64729 20.4272 7.89137 20.1831L15.7828 12.2917L7.89137 4.40032C7.64729 4.15624 7.64729 3.76051 7.89137 3.51643Z" fill="#18303F"/>
-</g>
-</svg>
+<svg width="25" height="25" viewBox="0 0 25 25" fill="none"><g id="caret_right"><path id="iconDefault" fill-rule="evenodd" clip-rule="evenodd" d="M7.891 3.516a.625.625 0 0 1 .884 0l8.334 8.334a.625.625 0 0 1 0 .884l-8.334 8.333a.625.625 0 1 1-.884-.884l7.892-7.891L7.89 4.4a.625.625 0 0 1 0-.884Z" fill="#18303F"/></g></svg>
