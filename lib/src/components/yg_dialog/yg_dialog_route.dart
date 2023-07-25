@@ -16,6 +16,9 @@ abstract class YgDialogRoute extends PopupRoute<YgDialog> {
   YgDialogTheme get _dialogThemes => navigator!.context.dialogTheme;
 
   @override
+  RouteSettings get settings => RouteSettings(name: name);
+
+  @override
   Color? get barrierColor => _dialogThemes.scrimColor;
 
   @override
@@ -40,6 +43,11 @@ abstract class YgDialogRoute extends PopupRoute<YgDialog> {
     );
     return _controller;
   }
+
+  /// The name of the dialog.
+  ///
+  /// Used to construct the route settings.
+  String get name;
 
   @override
   Widget buildPage(BuildContext context, Animation<double> animation, Animation<double> secondaryAnimation) {
@@ -69,5 +77,5 @@ abstract class YgDialogRoute extends PopupRoute<YgDialog> {
   }
 
   /// Builds the [YgBottomSheet].
-  YgDialog buildDialog(BuildContext context);
+  Widget buildDialog(BuildContext context);
 }

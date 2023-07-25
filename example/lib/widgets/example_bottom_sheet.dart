@@ -3,6 +3,9 @@ import 'package:yggdrasil/yggdrasil.dart';
 
 class ExampleBottomSheet extends YgBottomSheetModalRoute {
   @override
+  String get name => 'ExampleBottomSheet';
+
+  @override
   YgBottomSheet buildBottomSheet(BuildContext context) {
     return YgBottomSheet(
       title: 'Example Bottom Sheet',

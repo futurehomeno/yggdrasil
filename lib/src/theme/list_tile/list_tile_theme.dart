@@ -10,16 +10,16 @@ part 'list_tile_theme.tailor.dart';
 @tailorComponent
 class _$YgListTileTheme {
   static List<TextStyle> titleTextStyle = <TextStyle>[
-    consumer_light.FhTextStyles.pageHeading3Medium.copyWith(
+    consumer_light.FhTextStyles.sectionHeading3Medium.copyWith(
       color: consumer_light.FhColors.textDefault,
     ),
-    consumer_dark.FhTextStyles.pageHeading3Medium.copyWith(
+    consumer_dark.FhTextStyles.sectionHeading3Medium.copyWith(
       color: consumer_dark.FhColors.textDefault,
     ),
-    professional_light.FhTextStyles.pageHeading3Medium.copyWith(
+    professional_light.FhTextStyles.sectionHeading3Medium.copyWith(
       color: professional_light.FhColors.textDefault,
     ),
-    professional_dark.FhTextStyles.pageHeading3Medium.copyWith(
+    professional_dark.FhTextStyles.sectionHeading3Medium.copyWith(
       color: professional_dark.FhColors.textDefault,
     ),
   ];
