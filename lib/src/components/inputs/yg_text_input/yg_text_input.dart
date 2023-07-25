@@ -16,11 +16,9 @@ enum YgTextInputVariant {
 class YgTextInput extends StatefulWidget {
   const YgTextInput({
     super.key,
-    required this.fieldKey,
     required this.label,
     this.obscureText = false,
     this.showObscureTextButton = true,
-    this.validators,
     this.variant = YgTextInputVariant.standard,
     this.placeholder,
     this.trailingIcon,
@@ -34,6 +32,8 @@ class YgTextInput extends StatefulWidget {
     this.readOnly = false,
     this.maxLines = 1,
     this.inputFormatters,
+    this.onChanged,
+    this.error,
   });
 
   /// Obscures the text in the input.
@@ -49,11 +49,7 @@ class YgTextInput extends StatefulWidget {
   /// null.
   final bool showObscureTextButton;
 
-  /// A list of [TextValidator]s which validate user input.
-  ///
-  /// Will validate the input in the order the validators were added to the
-  /// list. Will only show the first error.
-  final List<TextValidator>? validators;
+  final ValueChanged<String>? onChanged;
 
   /// The variant of the input.
   final YgTextInputVariant variant;
@@ -72,19 +68,44 @@ class YgTextInput extends StatefulWidget {
   /// The initial value.
   final String? initialValue;
 
+  /// Weather the input is disabled.
+  ///
+  /// Applies styling for the disabled text input. Also disabled all interaction.
   final bool disabled;
 
+  /// The size of the input.
+  ///
+  /// Primarily affects the height of the input.
   final YgTextInputSize size;
 
+  /// The type of keyboard to use for editing the text.
+  ///
+  /// Defaults to [TextInputType.text] if [maxLines] is one and
+  /// [TextInputType.multiline] otherwise.
   final TextInputType? keyboardType;
 
+  /// When true enables autocorrect.
+  ///
+  /// !--- IMPORTANT ---
+  /// Remember to turn this off for things like email and similar where
+  /// autocorrect gets in the way.
   final bool autocorrect;
 
+  /// {@macro flutter.widgets.editableText.readOnly}
   final bool readOnly;
 
+  /// {@macro flutter.widgets.editableText.textCapitalization}
   final TextCapitalization textCapitalization;
 
+  /// {@macro flutter.widgets.editableText.maxLines}
   final int maxLines;
+
+  /// The error to display under the input.
+  ///
+  /// Will change the styling of the widget to reflect the presence of the error.
+  /// Must be null when there is no error, an empty string is still seen as an
+  /// valid error.
+  final String? error;
 
   /// Determines what's allowed to enter into the field.
   ///
@@ -96,14 +117,15 @@ class YgTextInput extends StatefulWidget {
   /// When defined will overwrite the [initialValue].
   final TextEditingController? controller;
 
-  /// The key used to get the value of the field.
-  final TextFieldKey fieldKey;
-
   @override
   State<YgTextInput> createState() => _YgTextInputState();
 }
 
 class _YgTextInputState extends State<YgTextInput> {
+  final UniqueKey _valueKey = UniqueKey();
+  final UniqueKey _placeholderKey = UniqueKey();
+  final UniqueKey _labelKey = UniqueKey();
+
   static const Duration _duration = Duration(milliseconds: 200);
 
   late final FocusNode _focusNode = FocusNode();
@@ -117,11 +139,9 @@ class _YgTextInputState extends State<YgTextInput> {
 
   bool _focused = false;
 
-  final bool _containsError = true;
+  bool get _containsError => widget.error != null;
 
   bool _hovered = false;
-
-  // late bool _disabled = widget.disabled;
 
   bool _isEmpty = true;
 
@@ -152,6 +172,9 @@ class _YgTextInputState extends State<YgTextInput> {
 
   @override
   Widget build(BuildContext context) {
+    final String? placeholder = widget.placeholder;
+    final double labelFloatingHeight = _labelFloatingHeight;
+
     final Widget layout = RepaintBoundary(
       child: Column(
         mainAxisSize: MainAxisSize.min,
@@ -187,11 +210,22 @@ class _YgTextInputState extends State<YgTextInput> {
                     Expanded(
                       child: Stack(
                         children: <Widget>[
+                          if (placeholder != null && _isEmpty)
+                            Padding(
+                              key: _placeholderKey,
+                              padding: EdgeInsets.only(top: labelFloatingHeight),
+                              child: Text(
+                                placeholder,
+                                style: _placeholderTextStyle,
+                              ),
+                            ),
                           Padding(
-                            padding: EdgeInsets.only(top: _labelFloatingHeight),
+                            key: _valueKey,
+                            padding: EdgeInsets.only(top: labelFloatingHeight),
                             child: _getValueText(),
                           ),
                           AnimatedSlide(
+                            key: _labelKey,
                             duration: _duration,
                             curve: Curves.easeOut,
                             offset: _labelOffset,
@@ -330,6 +364,19 @@ class _YgTextInputState extends State<YgTextInput> {
       readOnly: widget.readOnly,
       maxLines: widget.maxLines,
       inputFormatters: widget.inputFormatters,
+      onChanged: widget.onChanged,
+    );
+  }
+
+  TextStyle get _placeholderTextStyle {
+    if (widget.disabled) {
+      return _theme.placeholderTextStyle.copyWith(
+        color: _theme.placeholderDisabledColor,
+      );
+    }
+
+    return _theme.placeholderTextStyle.copyWith(
+      color: _theme.placeholderDefaultColor,
     );
   }
 
