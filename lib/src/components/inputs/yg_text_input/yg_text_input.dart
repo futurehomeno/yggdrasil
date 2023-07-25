@@ -2,29 +2,29 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:yggdrasil/yggdrasil.dart';
 
-import 'components/_components.dart';
+import 'widgets/_widgets.dart';
 
-class YgTextInput extends YgTextInputComponent {
+class YgTextInput extends YgTextInputWidget {
   const YgTextInput({
     super.key,
+    super.controller,
+    super.focusNode,
     required this.label,
-    this.obscureText = false,
-    this.showObscureTextButton = true,
-    this.variant = YgTextInputVariant.standard,
+    this.error,
+    this.onChanged,
     this.placeholder,
     this.trailingIcon,
-    super.controller,
-    this.disabled = false,
-    this.size = YgTextInputSize.large,
     this.keyboardType,
-    this.autocorrect = true,
-    this.textCapitalization = TextCapitalization.none,
-    this.readOnly = false,
-    this.maxLines = 1,
     this.inputFormatters,
-    this.onChanged,
-    this.error,
-    super.focusNode,
+    this.maxLines = 1,
+    this.disabled = false,
+    this.readOnly = false,
+    this.autocorrect = true,
+    this.obscureText = false,
+    this.showObscureTextButton = true,
+    this.size = YgTextInputSize.large,
+    this.variant = YgTextInputVariant.standard,
+    this.textCapitalization = TextCapitalization.none,
   });
 
   /// Obscures the text in the input.
@@ -104,13 +104,15 @@ class YgTextInput extends YgTextInputComponent {
   State<YgTextInput> createState() => _YgTextInputState();
 }
 
-class _YgTextInputState extends YgTextInputComponentState<YgTextInput> {
+class _YgTextInputState extends YgTextInputWidgetState<YgTextInput> {
   /// Wether to hide the obscured text or not.
   bool _obscureTextToggled = true;
 
-  bool get _containsError => widget.error != null;
-
+  /// wether the input is being hovered over.
   bool _hovered = false;
+
+  /// Wether there is an error which should be displayed on the input.
+  bool get _hasError => widget.error != null;
 
   @override
   Widget build(BuildContext context) {
@@ -197,7 +199,7 @@ class _YgTextInputState extends YgTextInputComponentState<YgTextInput> {
   }
 
   Widget get _errorMessageWidget {
-    if (widget.disabled || !_containsError) {
+    if (widget.disabled || !_hasError) {
       return const SizedBox(height: 20);
     }
 

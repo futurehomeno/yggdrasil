@@ -2,16 +2,16 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:yggdrasil/yggdrasil.dart';
 
-import '_components.dart';
+import '_widgets.dart';
 
-class YgTextInputContent extends YgTextInputComponent {
+class YgTextInputContent extends YgTextInputWidget {
   const YgTextInputContent({
     super.key,
+    required super.controller,
+    required super.focusNode,
     required this.placeholder,
     required this.label,
-    required super.controller,
     required this.disabled,
-    required super.focusNode,
     required this.obscureText,
     required this.maxLines,
     required this.autocorrect,
@@ -38,7 +38,7 @@ class YgTextInputContent extends YgTextInputComponent {
   State<YgTextInputContent> createState() => _YgTextInputContentState();
 }
 
-class _YgTextInputContentState extends YgTextInputComponentState<YgTextInputContent> {
+class _YgTextInputContentState extends YgTextInputWidgetState<YgTextInputContent> {
   final UniqueKey _valueKey = UniqueKey();
   final UniqueKey _placeholderKey = UniqueKey();
   final UniqueKey _labelKey = UniqueKey();

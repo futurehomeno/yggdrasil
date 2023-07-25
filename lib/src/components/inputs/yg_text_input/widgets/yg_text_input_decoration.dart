@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:yggdrasil/yggdrasil.dart';
 
-import '_components.dart';
+import '_widgets.dart';
 
-class YgTextInputDecoration extends YgTextInputComponent {
+class YgTextInputDecoration extends YgTextInputWidget {
   const YgTextInputDecoration({
     super.key,
     required this.child,
@@ -25,7 +25,7 @@ class YgTextInputDecoration extends YgTextInputComponent {
   State<YgTextInputDecoration> createState() => _YgTextInputDecorationState();
 }
 
-class _YgTextInputDecorationState extends YgTextInputComponentState<YgTextInputDecoration> {
+class _YgTextInputDecorationState extends YgTextInputWidgetState<YgTextInputDecoration> {
   @override
   Widget build(BuildContext context) {
     return Stack(
