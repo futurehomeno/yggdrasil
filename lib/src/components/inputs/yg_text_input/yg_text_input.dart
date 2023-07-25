@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
+import 'package:yggdrasil/src/theme/extensions/_extensions.dart';
 import 'package:yggdrasil/yggdrasil.dart';
 
 enum YgTextInputSize {
@@ -17,7 +19,7 @@ class YgTextInput extends StatefulWidget {
     required this.fieldKey,
     required this.label,
     this.obscureText = false,
-    this.showPasswordButton = true,
+    this.showObscureTextButton = true,
     this.validators,
     this.variant = YgTextInputVariant.standard,
     this.placeholder,
@@ -26,11 +28,17 @@ class YgTextInput extends StatefulWidget {
     this.controller,
     this.disabled = false,
     this.size = YgTextInputSize.large,
+    this.keyboardType,
+    this.autocorrect = true,
+    this.textCapitalization = TextCapitalization.none,
+    this.readOnly = false,
+    this.maxLines = 1,
+    this.inputFormatters,
   });
 
   /// Obscures the text in the input.
   ///
-  /// If [showPasswordButton] is set to true (the default value) and the
+  /// If [showObscureTextButton] is set to true (the default value) and the
   /// [trailingIcon] is empty, there will be a suffix button added which will show
   /// the text in the input when pressed.
   final bool obscureText;
@@ -39,7 +47,7 @@ class YgTextInput extends StatefulWidget {
   ///
   /// Will only work when [obscureText] is set to true and [trailingIcon] is set to
   /// null.
-  final bool showPasswordButton;
+  final bool showObscureTextButton;
 
   /// A list of [TextValidator]s which validate user input.
   ///
@@ -67,6 +75,21 @@ class YgTextInput extends StatefulWidget {
   final bool disabled;
 
   final YgTextInputSize size;
+
+  final TextInputType? keyboardType;
+
+  final bool autocorrect;
+
+  final bool readOnly;
+
+  final TextCapitalization textCapitalization;
+
+  final int maxLines;
+
+  /// Determines what's allowed to enter into the field.
+  ///
+  /// See [FhInputFormatters].
+  final List<TextInputFormatter>? inputFormatters;
 
   /// Controls the text being edited.
   ///
@@ -133,14 +156,10 @@ class _YgTextInputState extends State<YgTextInput> {
       child: Column(
         mainAxisSize: MainAxisSize.min,
         children: <Widget>[
-          SizedBox(
-            height: switch (widget.size) {
-              YgTextInputSize.large => 60,
-              YgTextInputSize.medium => 50,
-            },
-            child: Stack(
-              children: <Widget>[
-                switch (widget.variant) {
+          Stack(
+            children: <Widget>[
+              Positioned.fill(
+                child: switch (widget.variant) {
                   YgTextInputVariant.outlined => AnimatedContainer(
                       duration: _duration,
                       curve: Curves.easeOut,
@@ -160,44 +179,39 @@ class _YgTextInputState extends State<YgTextInput> {
                       ),
                     )
                 },
-                Positioned.fill(
-                  child: Padding(
-                    padding: _labelValueContainerPadding,
-                    child: Row(
-                      children: <Widget>[
-                        Expanded(
-                          child: Stack(
-                            children: <Widget>[
-                              Align(
-                                alignment: Alignment.bottomCenter,
-                                child: SizedBox(
-                                  height: _valueTextStyle.height! * _valueTextStyle.fontSize!,
-                                  child: _getValueText(),
-                                ),
-                              ),
-                              AnimatedAlign(
-                                duration: _duration,
-                                curve: Curves.easeOut,
-                                alignment: _labelAlignment,
-                                child: AnimatedDefaultTextStyle(
-                                  duration: _duration,
-                                  curve: Curves.easeOut,
-                                  style: _labelTextStyle,
-                                  child: Text(
-                                    widget.label,
-                                  ),
-                                ),
-                              ),
-                            ],
+              ),
+              Padding(
+                padding: _labelValueContainerPadding,
+                child: Row(
+                  children: <Widget>[
+                    Expanded(
+                      child: Stack(
+                        children: <Widget>[
+                          Padding(
+                            padding: EdgeInsets.only(top: _labelFloatingHeight),
+                            child: _getValueText(),
                           ),
-                        ),
-                        _computedSuffix
-                      ],
+                          AnimatedSlide(
+                            duration: _duration,
+                            curve: Curves.easeOut,
+                            offset: _labelOffset,
+                            child: AnimatedDefaultTextStyle(
+                              duration: _duration,
+                              curve: Curves.easeOut,
+                              style: _labelTextStyle,
+                              child: Text(
+                                widget.label,
+                              ),
+                            ),
+                          )
+                        ],
+                      ),
                     ),
-                  ),
+                    _computedSuffix
+                  ],
                 ),
-              ],
-            ),
+              ),
+            ],
           ),
           _errorMessageWidget,
         ],
@@ -294,6 +308,7 @@ class _YgTextInputState extends State<YgTextInput> {
         child: Text(
           _controller.text,
           style: _valueTextStyle,
+          maxLines: widget.maxLines,
         ),
       );
     }
@@ -306,12 +321,24 @@ class _YgTextInputState extends State<YgTextInput> {
       style: _valueTextStyle,
       obscureText: _obscureText,
       cursorHeight: _valueTextStyle.fontSize,
-      cursorOffset: Offset(
-        0,
-        _valueTextStyle.fontSize! * 0.375,
-      ),
+      cursorOffset: _cursorOffset,
       selectionColor: _theme.cursorColor,
       cursorWidth: 1,
+      keyboardType: widget.keyboardType,
+      autocorrect: widget.autocorrect,
+      textCapitalization: widget.textCapitalization,
+      readOnly: widget.readOnly,
+      maxLines: widget.maxLines,
+      inputFormatters: widget.inputFormatters,
+    );
+  }
+
+  Offset get _cursorOffset {
+    final TextStyle style = _theme.valueTextStyle;
+
+    return Offset(
+      0,
+      (style.computedHeight - style.fontSize!) / 2,
     );
   }
 
@@ -319,12 +346,23 @@ class _YgTextInputState extends State<YgTextInput> {
 
   bool get _floatLabel => _focused || !_isEmpty || widget.placeholder?.isNotEmpty == true;
 
-  Alignment get _labelAlignment {
+  double get _labelFloatingHeight => _theme.labelFocusFilledTextStyle.computedHeight;
+
+  Offset get _labelOffset {
     if (_floatLabel) {
-      return Alignment.topLeft;
+      return Offset.zero;
     }
 
-    return Alignment.centerLeft;
+    final double labelFloatingHeight = _labelFloatingHeight;
+    final double labelDefaultHeight = _theme.labelDefaultTextStyle.computedHeight;
+    final double valueDefaultHeight = _theme.valueTextStyle.computedHeight;
+
+    final double combinedHeight = labelFloatingHeight + valueDefaultHeight;
+
+    return Offset(
+      0,
+      ((combinedHeight / labelDefaultHeight) - 1) / 2,
+    );
   }
 
   Color get _backgroundColor {
@@ -382,7 +420,7 @@ class _YgTextInputState extends State<YgTextInput> {
       return false;
     }
 
-    if (!widget.showPasswordButton) {
+    if (!widget.showObscureTextButton) {
       return true;
     }
 
@@ -392,7 +430,7 @@ class _YgTextInputState extends State<YgTextInput> {
   Widget get _computedSuffix {
     Widget? suffix = widget.trailingIcon;
 
-    if (suffix == null && widget.obscureText && widget.showPasswordButton) {
+    if (suffix == null && widget.obscureText && widget.showObscureTextButton) {
       suffix = YgIcon(
         _suffixIcon,
         onTap: () {

@@ -32,11 +32,11 @@ class _$YgTextInputTheme {
     professional_dark.FhColors.textDisabled,
   ];
 
-  static const List<TextStyle> labelDefaultTextStyle = <TextStyle>[
-    consumer_light.FhTextStyles.paragraph2Regular,
-    consumer_dark.FhTextStyles.paragraph2Regular,
-    professional_light.FhTextStyles.paragraph2Regular,
-    professional_dark.FhTextStyles.paragraph2Regular,
+  static List<TextStyle> labelDefaultTextStyle = <TextStyle>[
+    consumer_light.FhTextStyles.paragraph2Regular.copyWith(height: 1.25),
+    consumer_dark.FhTextStyles.paragraph2Regular.copyWith(height: 1.25),
+    professional_light.FhTextStyles.paragraph2Regular.copyWith(height: 1.25),
+    professional_dark.FhTextStyles.paragraph2Regular.copyWith(height: 1.25),
   ];
 
   static const List<TextStyle> labelFocusFilledTextStyle = <TextStyle>[
@@ -216,11 +216,11 @@ class _$YgTextInputTheme {
     professional_dark.FhColors.textDisabled,
   ];
 
-  static const List<TextStyle> valueTextStyle = <TextStyle>[
-    consumer_light.FhTextStyles.paragraph2Regular,
-    consumer_dark.FhTextStyles.paragraph2Regular,
-    professional_light.FhTextStyles.paragraph2Regular,
-    professional_dark.FhTextStyles.paragraph2Regular,
+  static List<TextStyle> valueTextStyle = <TextStyle>[
+    consumer_light.FhTextStyles.paragraph2Regular.copyWith(height: 1.25),
+    consumer_dark.FhTextStyles.paragraph2Regular.copyWith(height: 1.25),
+    professional_light.FhTextStyles.paragraph2Regular.copyWith(height: 1.25),
+    professional_dark.FhTextStyles.paragraph2Regular.copyWith(height: 1.25),
   ];
 
   // endregion
