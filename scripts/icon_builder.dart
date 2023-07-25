@@ -19,11 +19,14 @@ void main() {
     ..writeln('  YgIcons._();')
     ..writeln('');
 
+  /// Buffer used to build the static const strings.
   final StringBuffer allIconsBuffer = StringBuffer();
 
+  /// Buffer used to build the list of icon paths.
   final StringBuffer allIconPathsBuffer = StringBuffer()
     ..writeln('  static const List<String> allIconPaths = <String>[');
 
+  /// Buffer used to build the list of icon names.
   final StringBuffer allIconNames = StringBuffer()..writeln('  static const List<String> allIconNames = <String>[');
 
   // List of files in the directory.
