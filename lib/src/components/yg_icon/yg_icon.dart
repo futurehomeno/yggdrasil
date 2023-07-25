@@ -7,11 +7,11 @@ class YgIcon extends StatelessWidget {
     this.icon, {
     super.key,
     this.color,
+    this.onTap,
     this.invertColor = false,
     this.useSvgColor = false,
     this.size = YgIconSize.large,
     this.tapSize = YgIconTapSize.largest,
-    this.onTap,
   });
 
   /// String representing the name of the icon.
@@ -49,44 +49,45 @@ class YgIcon extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final YgIconTheme iconTheme = context.iconTheme;
-    final ColorFilter? colorFilter = _setColorFilter(color, context);
+    final YgIconTheme ygIconTheme = context.iconTheme;
+
+    final double iconSize = YgIconMapper.getIconSize(
+      iconTheme: ygIconTheme,
+      iconSize: size,
+    );
+
+    final double iconTapSize = YgIconMapper.getTapSize(
+      iconTheme: ygIconTheme,
+      tapSize: tapSize,
+    );
+
+    // Grabs the nearest material icon theme.
+    final IconThemeData materialIconTheme = IconTheme.of(context);
+    final Color? iconColor = color ?? materialIconTheme.color;
+    final ColorFilter? colorFilter = _setColorFilter(context, iconColor);
 
     if (onTap == null) {
-      return _buildSvg(colorFilter, iconTheme);
+      return _buildSvg(colorFilter, iconSize);
     }
 
     return Material(
-      borderRadius: BorderRadius.circular(
-        YgIconMapper.getTapSize(
-          iconTheme: iconTheme,
-          tapSize: tapSize,
-        ),
-      ),
+      borderRadius: BorderRadius.circular(iconTapSize),
       color: context.tokens.colors.backgroundTransparent,
       child: InkWell(
-        borderRadius: BorderRadius.circular(
-          YgIconMapper.getTapSize(
-            iconTheme: iconTheme,
-            tapSize: tapSize,
-          ),
-        ),
+        borderRadius: BorderRadius.circular(iconTapSize),
         onTap: onTap,
         child: SizedBox.square(
-          dimension: YgIconMapper.getTapSize(
-            iconTheme: iconTheme,
-            tapSize: tapSize,
-          ),
+          dimension: iconTapSize,
           child: Align(
             alignment: Alignment.center,
-            child: _buildSvg(colorFilter, iconTheme),
+            child: _buildSvg(colorFilter, iconSize),
           ),
         ),
       ),
     );
   }
 
-  ColorFilter? _setColorFilter(Color? color, BuildContext context) {
+  ColorFilter? _setColorFilter(BuildContext context, Color? color) {
     if (useSvgColor) {
       return null;
     }
@@ -106,20 +107,14 @@ class YgIcon extends StatelessWidget {
 
   SvgPicture _buildSvg(
     ColorFilter? colorFilter,
-    YgIconTheme iconTheme,
+    double iconSize,
   ) {
     return SvgPicture.asset(
       icon,
       package: 'yggdrasil',
       colorFilter: colorFilter,
-      height: YgIconMapper.getIconSize(
-        iconTheme: iconTheme,
-        iconSize: size,
-      ),
-      width: YgIconMapper.getIconSize(
-        iconTheme: iconTheme,
-        iconSize: size,
-      ),
+      height: iconSize,
+      width: iconSize,
     );
   }
 

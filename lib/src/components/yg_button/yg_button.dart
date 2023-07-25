@@ -12,7 +12,6 @@ class YgButton extends ButtonStyleButton {
     required super.child,
     this.size = YgButtonSize.medium,
     this.variant = YgButtonVariant.primary,
-    this.iconColor,
     super.autofocus = false,
     super.clipBehavior = Clip.none,
     super.focusNode,
@@ -57,7 +56,6 @@ class YgButton extends ButtonStyleButton {
 
   final YgButtonVariant variant;
   final YgButtonSize size;
-  final Color? iconColor;
 
   @override
   ButtonStyle defaultStyleOf(BuildContext context) {
@@ -65,7 +63,6 @@ class YgButton extends ButtonStyleButton {
       context: context,
       variant: variant,
       size: size,
-      iconColor: iconColor,
     ).toButtonStyle();
   }
   // endregion Trailing icon
@@ -118,10 +115,7 @@ class _YgButtonWithLeadingIconChild extends StatelessWidget {
     return Row(
       mainAxisSize: MainAxisSize.min,
       children: <Widget>[
-        icon.copyWith(
-          size: YgIconSize.small,
-          color: IconTheme.of(context).color,
-        ),
+        icon.copyWith(size: YgIconSize.small),
         Flexible(child: child),
       ].withHorizontalSpacing(context.buttonTheme.iconSpacing),
     );
@@ -173,7 +167,9 @@ class _YgButtonWithTrailingIconChild extends StatelessWidget {
         Flexible(child: child),
         icon.copyWith(
           size: YgIconSize.small,
-          color: IconTheme.of(context).color,
+          color: MaterialStateProperty.resolveWith((Set<MaterialStates> states) {
+            return states.contains(MaterialState.disabled) ? null : icon.color;
+          });
         ),
       ].withHorizontalSpacing(context.buttonTheme.iconSpacing),
     );
