@@ -31,6 +31,40 @@ void main() {
     }
   }
 
+  // Add some space.
+  buffer.writeln('');
+
+  buffer.writeln('  static const List<String> allIconPaths = <String>[');
+  for (final FileSystemEntity entity in files) {
+    // Only process SVG files.
+    if (entity is File && entity.path.endsWith('.svg')) {
+      final String fileName = entity.path.split(Platform.pathSeparator).last;
+      final String iconName = fileName.split('.').first;
+      final String camelCaseIconName = toCamelCase(iconName);
+      buffer.writeln('    $camelCaseIconName,');
+    }
+  }
+
+  // Close the list.
+  buffer.writeln('  ];');
+
+  // Add some space.
+  buffer.writeln('');
+
+  buffer.writeln('  static const List<String> allIconNames = <String>[');
+  for (final FileSystemEntity entity in files) {
+    // Only process SVG files.
+    if (entity is File && entity.path.endsWith('.svg')) {
+      final String fileName = entity.path.split(Platform.pathSeparator).last;
+      final String iconName = fileName.split('.').first;
+      final String camelCaseIconName = toCamelCase(iconName);
+      buffer.writeln('    \'$camelCaseIconName\',');
+    }
+  }
+
+  // Close the list.
+  buffer.writeln('  ];');
+
   // Close the class.
   buffer.writeln('}');
 
