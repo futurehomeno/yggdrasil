@@ -7,6 +7,7 @@ class YgTextFormInput extends FormField<String> {
     this.controller,
     required TextFieldKey super.key,
     required String label,
+    String? error,
     String? placeholder,
     YgIcon? trailingIcon,
     String? initialValue,
@@ -51,6 +52,7 @@ class YgTextFormInput extends FormField<String> {
                 maxLines: maxLines,
                 inputFormatters: inputFormatters,
                 onChanged: field.didChange,
+                error: error ?? field.errorText,
               ),
             );
           },
