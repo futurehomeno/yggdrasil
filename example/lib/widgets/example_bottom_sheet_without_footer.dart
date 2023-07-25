@@ -3,7 +3,7 @@ import 'package:yggdrasil/yggdrasil.dart';
 
 class ExampleBottomSheetWithoutFooter extends YgBottomSheetModalRoute {
   @override
-  RouteSettings get settings => const RouteSettings(name: 'ExampleBottomSheetWithoutFooter');
+  String get name => 'ExampleBottomSheetWithoutFooter';
 
   @override
   YgBottomSheet buildBottomSheet(BuildContext context) {

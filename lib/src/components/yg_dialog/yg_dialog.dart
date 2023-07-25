@@ -32,6 +32,7 @@ class YgDialog extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final YgDialogTheme dialogTheme = context.dialogTheme;
+    final YgButtonGroup? ygButtonGroup = this.ygButtonGroup;
 
     return Material(
       borderRadius: dialogTheme.outerBorderRadius,
@@ -43,7 +44,7 @@ class YgDialog extends StatelessWidget {
           children: <Widget>[
             _buildHeader(dialogTheme),
             _buildTextSection(dialogTheme),
-            if (ygButtonGroup != null) ygButtonGroup!,
+            if (ygButtonGroup != null) ygButtonGroup,
           ].withVerticalSpacing(30.0),
         ),
       ),
