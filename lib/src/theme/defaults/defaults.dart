@@ -64,4 +64,18 @@ class _$YgDefaults {
     professional_light.FhColors.iconInverse,
     professional_dark.FhColors.iconInverse,
   ];
+
+  static List<Duration> animationDuration = <Duration>[
+    const Duration(milliseconds: 200),
+    const Duration(milliseconds: 200),
+    const Duration(milliseconds: 200),
+    const Duration(milliseconds: 200),
+  ];
+
+  static List<Curve> animationCurve = <Curve>[
+    const Cubic(0.42, 0, 0.2, 1),
+    const Cubic(0.42, 0, 0.2, 1),
+    const Cubic(0.42, 0, 0.2, 1),
+    const Cubic(0.42, 0, 0.2, 1),
+  ];
 }

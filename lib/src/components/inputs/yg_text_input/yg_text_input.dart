@@ -1,19 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:yggdrasil/src/theme/extensions/_extensions.dart';
 import 'package:yggdrasil/yggdrasil.dart';
 
-enum YgTextInputSize {
-  medium,
-  large,
-}
+import 'components/_components.dart';
 
-enum YgTextInputVariant {
-  outlined,
-  standard,
-}
-
-class YgTextInput extends StatefulWidget {
+class YgTextInput extends YgTextInputComponent {
   const YgTextInput({
     super.key,
     required this.label,
@@ -22,8 +13,7 @@ class YgTextInput extends StatefulWidget {
     this.variant = YgTextInputVariant.standard,
     this.placeholder,
     this.trailingIcon,
-    this.initialValue,
-    this.controller,
+    super.controller,
     this.disabled = false,
     this.size = YgTextInputSize.large,
     this.keyboardType,
@@ -34,6 +24,7 @@ class YgTextInput extends StatefulWidget {
     this.inputFormatters,
     this.onChanged,
     this.error,
+    super.focusNode,
   });
 
   /// Obscures the text in the input.
@@ -64,9 +55,6 @@ class YgTextInput extends StatefulWidget {
 
   /// The suffix shown in the input.
   final YgIcon? trailingIcon;
-
-  /// The initial value.
-  final String? initialValue;
 
   /// Weather the input is disabled.
   ///
@@ -112,140 +100,58 @@ class YgTextInput extends StatefulWidget {
   /// See [FhInputFormatters].
   final List<TextInputFormatter>? inputFormatters;
 
-  /// Controls the text being edited.
-  ///
-  /// When defined will overwrite the [initialValue].
-  final TextEditingController? controller;
-
   @override
   State<YgTextInput> createState() => _YgTextInputState();
 }
 
-class _YgTextInputState extends State<YgTextInput> {
-  final UniqueKey _valueKey = UniqueKey();
-  final UniqueKey _placeholderKey = UniqueKey();
-  final UniqueKey _labelKey = UniqueKey();
-
-  static const Duration _duration = Duration(milliseconds: 200);
-
-  late final FocusNode _focusNode = FocusNode();
-
-  late final TextEditingController _controller = TextEditingController(
-    text: widget.initialValue,
-  );
-
+class _YgTextInputState extends YgTextInputComponentState<YgTextInput> {
   /// Wether to hide the obscured text or not.
   bool _obscureTextToggled = true;
-
-  bool _focused = false;
 
   bool get _containsError => widget.error != null;
 
   bool _hovered = false;
 
-  bool _isEmpty = true;
-
-  @override
-  void initState() {
-    _focusNode.addListener(_focusChanged);
-    _controller.addListener(_valueUpdated);
-    _valueUpdated();
-    super.initState();
-  }
-
-  void _valueUpdated() {
-    final bool isEmpty = _controller.text.isEmpty;
-
-    if (isEmpty != _isEmpty) {
-      _isEmpty = isEmpty;
-      setState(() {});
-    }
-  }
-
-  void _focusChanged() {
-    final bool focused = _focusNode.hasFocus;
-    if (focused != _focused) {
-      _focused = focused;
-      setState(() {});
-    }
-  }
-
   @override
   Widget build(BuildContext context) {
-    final String? placeholder = widget.placeholder;
-    final double labelFloatingHeight = _labelFloatingHeight;
+    final Widget? suffix = _computedSuffix;
 
     final Widget layout = RepaintBoundary(
       child: Column(
         mainAxisSize: MainAxisSize.min,
         children: <Widget>[
-          Stack(
-            children: <Widget>[
-              Positioned.fill(
-                child: switch (widget.variant) {
-                  YgTextInputVariant.outlined => AnimatedContainer(
-                      duration: _duration,
-                      curve: Curves.easeOut,
-                      decoration: BoxDecoration(
-                        color: _backgroundColor,
-                        border: _border,
-                        borderRadius: _theme.borderRadius,
-                      ),
+          YgTextInputDecoration(
+            variant: widget.variant,
+            controller: widget.controller,
+            disabled: widget.disabled,
+            error: widget.error != null,
+            focusNode: focusNode,
+            hovered: _hovered,
+            child: Padding(
+              padding: _contentPadding,
+              child: Row(
+                children: <Widget>[
+                  Expanded(
+                    child: YgTextInputContent(
+                      controller: widget.controller,
+                      disabled: widget.disabled,
+                      focusNode: focusNode,
+                      label: widget.label,
+                      obscureText: _obscureText,
+                      placeholder: widget.placeholder,
+                      maxLines: widget.maxLines,
+                      autocorrect: widget.autocorrect,
+                      inputFormatters: widget.inputFormatters,
+                      keyboardType: widget.keyboardType,
+                      onChanged: widget.onChanged,
+                      readOnly: widget.readOnly,
+                      textCapitalization: widget.textCapitalization,
                     ),
-                  YgTextInputVariant.standard => AnimatedContainer(
-                      duration: _duration,
-                      curve: Curves.easeOut,
-                      decoration: BoxDecoration(
-                        border: Border(
-                          bottom: _border.bottom,
-                        ),
-                      ),
-                    )
-                },
+                  ),
+                  if (suffix != null) suffix,
+                ],
               ),
-              Padding(
-                padding: _labelValueContainerPadding,
-                child: Row(
-                  children: <Widget>[
-                    Expanded(
-                      child: Stack(
-                        children: <Widget>[
-                          if (placeholder != null && _isEmpty)
-                            Padding(
-                              key: _placeholderKey,
-                              padding: EdgeInsets.only(top: labelFloatingHeight),
-                              child: Text(
-                                placeholder,
-                                style: _placeholderTextStyle,
-                              ),
-                            ),
-                          Padding(
-                            key: _valueKey,
-                            padding: EdgeInsets.only(top: labelFloatingHeight),
-                            child: _getValueText(),
-                          ),
-                          AnimatedSlide(
-                            key: _labelKey,
-                            duration: _duration,
-                            curve: Curves.easeOut,
-                            offset: _labelOffset,
-                            child: AnimatedDefaultTextStyle(
-                              duration: _duration,
-                              curve: Curves.easeOut,
-                              style: _labelTextStyle,
-                              child: Text(
-                                widget.label,
-                              ),
-                            ),
-                          )
-                        ],
-                      ),
-                    ),
-                    _computedSuffix
-                  ],
-                ),
-              ),
-            ],
+            ),
           ),
           _errorMessageWidget,
         ],
@@ -277,14 +183,12 @@ class _YgTextInputState extends State<YgTextInput> {
     );
   }
 
-  EdgeInsets get _labelValueContainerPadding {
-    final double paddingSize = switch (widget.size) {
-      YgTextInputSize.large => 12,
-      YgTextInputSize.medium => 7,
-    };
-
+  EdgeInsets get _contentPadding {
     return EdgeInsets.symmetric(
-      vertical: paddingSize,
+      vertical: switch (widget.size) {
+        YgTextInputSize.large => 12,
+        YgTextInputSize.medium => 7,
+      },
       horizontal: switch (widget.variant) {
         YgTextInputVariant.outlined => 12,
         YgTextInputVariant.standard => 0,
@@ -304,161 +208,20 @@ class _YgTextInputState extends State<YgTextInput> {
           YgIcon(
             YgIcons.error,
             size: YgIconSize.small,
-            color: _theme.errorIconColor,
+            color: theme.errorIconColor,
           ),
           Text(
             'Error Message',
-            style: _theme.errorTextStyle,
+            style: theme.errorTextStyle,
           )
         ].withHorizontalSpacing(4),
       ),
     );
   }
 
-  Border get _border {
-    if (widget.disabled) {
-      return _theme.borderDisabled;
-    }
-
-    if (_containsError) {
-      return _theme.borderError;
-    }
-
-    if (_focused) {
-      return _theme.borderFocus;
-    }
-
-    if (_hovered) {
-      return _theme.borderHover;
-    }
-
-    return _theme.borderDefault;
-  }
-
-  Widget _getValueText() {
-    if (widget.disabled) {
-      return Align(
-        alignment: Alignment.centerLeft,
-        child: Text(
-          _controller.text,
-          style: _valueTextStyle,
-          maxLines: widget.maxLines,
-        ),
-      );
-    }
-
-    return EditableText(
-      focusNode: _focusNode,
-      backgroundCursorColor: _theme.cursorColor,
-      controller: _controller,
-      cursorColor: _theme.cursorColor,
-      style: _valueTextStyle,
-      obscureText: _obscureText,
-      cursorHeight: _valueTextStyle.fontSize,
-      cursorOffset: _cursorOffset,
-      selectionColor: _theme.cursorColor,
-      cursorWidth: 1,
-      keyboardType: widget.keyboardType,
-      autocorrect: widget.autocorrect,
-      textCapitalization: widget.textCapitalization,
-      readOnly: widget.readOnly,
-      maxLines: widget.maxLines,
-      inputFormatters: widget.inputFormatters,
-      onChanged: widget.onChanged,
-    );
-  }
-
-  TextStyle get _placeholderTextStyle {
-    if (widget.disabled) {
-      return _theme.placeholderTextStyle.copyWith(
-        color: _theme.placeholderDisabledColor,
-      );
-    }
-
-    return _theme.placeholderTextStyle.copyWith(
-      color: _theme.placeholderDefaultColor,
-    );
-  }
-
-  Offset get _cursorOffset {
-    final TextStyle style = _theme.valueTextStyle;
-
-    return Offset(
-      0,
-      (style.computedHeight - style.fontSize!) / 2,
-    );
-  }
-
-  YgTextInputTheme get _theme => context.textInputTheme;
-
-  bool get _floatLabel => _focused || !_isEmpty || widget.placeholder?.isNotEmpty == true;
-
-  double get _labelFloatingHeight => _theme.labelFocusFilledTextStyle.computedHeight;
-
-  Offset get _labelOffset {
-    if (_floatLabel) {
-      return Offset.zero;
-    }
-
-    final double labelFloatingHeight = _labelFloatingHeight;
-    final double labelDefaultHeight = _theme.labelDefaultTextStyle.computedHeight;
-    final double valueDefaultHeight = _theme.valueTextStyle.computedHeight;
-
-    final double combinedHeight = labelFloatingHeight + valueDefaultHeight;
-
-    return Offset(
-      0,
-      ((combinedHeight / labelDefaultHeight) - 1) / 2,
-    );
-  }
-
-  Color get _backgroundColor {
-    if (widget.disabled) {
-      return _theme.backgroundDisabledColor;
-    }
-    if (_containsError) {
-      return _theme.backgroundErrorColor;
-    }
-    return _theme.backgroundDefaultColor;
-  }
-
-  TextStyle get _labelTextStyle {
-    final TextStyle baseStyle = _floatLabel ? _theme.labelFocusFilledTextStyle : _theme.labelDefaultTextStyle;
-
-    if (widget.disabled) {
-      return baseStyle.copyWith(
-        color: _theme.labelDisabledColor,
-      );
-    }
-
-    if (_focused || !_isEmpty) {
-      return baseStyle.copyWith(
-        color: _theme.labelFocusFilledColor,
-      );
-    }
-
-    return baseStyle.copyWith(
-      color: _theme.labelDefaultColor,
-    );
-  }
-
-  TextStyle get _valueTextStyle {
-    final TextStyle baseStyle = _theme.valueTextStyle;
-
-    if (widget.disabled) {
-      return baseStyle.copyWith(
-        color: _theme.valueDisabledColor,
-      );
-    }
-
-    return baseStyle.copyWith(
-      color: _theme.valueDefaultColor,
-    );
-  }
-
   void _handleTap() {
-    if (!_focusNode.hasFocus) {
-      _focusNode.requestFocus();
+    if (!focusNode.hasFocus) {
+      focusNode.requestFocus();
     }
   }
 
@@ -474,7 +237,7 @@ class _YgTextInputState extends State<YgTextInput> {
     return _obscureTextToggled;
   }
 
-  Widget get _computedSuffix {
+  Widget? get _computedSuffix {
     Widget? suffix = widget.trailingIcon;
 
     if (suffix == null && widget.obscureText && widget.showObscureTextButton) {
@@ -498,15 +261,15 @@ class _YgTextInputState extends State<YgTextInput> {
       );
     }
 
-    return const SizedBox();
+    return null;
   }
 
   Color get _suffixIconColor {
     if (widget.disabled) {
-      return _theme.iconDisabledColor;
+      return theme.iconDisabledColor;
     }
 
-    return _theme.iconDefaultColor;
+    return theme.iconDefaultColor;
   }
 
   String get _suffixIcon {

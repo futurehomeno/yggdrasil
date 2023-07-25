@@ -1,0 +1,4 @@
+enum YgTextInputSize {
+  medium,
+  large,
+}
