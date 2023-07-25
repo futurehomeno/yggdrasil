@@ -6,20 +6,33 @@ import 'package:yggdrasil/yggdrasil.dart';
 class YgDialog extends StatelessWidget {
   const YgDialog({
     super.key,
-    required this.icon,
+    required this.header,
     required this.title,
     required this.description,
-    required this.ygButtonGroup,
+    this.ygButtonGroup,
   });
 
-  final YgIcon icon;
+  /// Content that is displayed above the title, typically an icon.
+  ///
+  /// The content is wrapped in a circular container with a background color.
+  final Widget header;
+
+  /// Title of the dialog.
   final String title;
+
+  /// Description of the dialog.
   final String description;
-  final YgButtonGroup ygButtonGroup;
+
+  /// Optional buttons that are displayed at the bottom of the dialog.
+  ///
+  /// For non-dismissible dialogs, with the exception of loading dialogs,
+  /// the buttons are required and must allow the user to close the dialog.
+  final YgButtonGroup? ygButtonGroup;
 
   @override
   Widget build(BuildContext context) {
     final YgDialogTheme dialogTheme = context.dialogTheme;
+    final YgButtonGroup? ygButtonGroup = this.ygButtonGroup;
 
     return Material(
       borderRadius: dialogTheme.outerBorderRadius,
@@ -29,45 +42,40 @@ class YgDialog extends StatelessWidget {
         child: Column(
           mainAxisSize: MainAxisSize.min,
           children: <Widget>[
-            _buildIcon(dialogTheme),
+            _buildHeader(dialogTheme),
             _buildTextSection(dialogTheme),
-            ygButtonGroup,
-          ],
+            if (ygButtonGroup != null) ygButtonGroup,
+          ].withVerticalSpacing(30.0),
         ),
       ),
     );
   }
 
-  Container _buildIcon(YgDialogTheme dialogTheme) {
+  Widget _buildHeader(YgDialogTheme dialogTheme) {
     return Container(
       padding: dialogTheme.iconPadding,
       decoration: BoxDecoration(
         color: dialogTheme.iconContainerColor,
         shape: BoxShape.circle,
       ),
-      child: icon,
+      child: header,
     );
   }
 
-  Padding _buildTextSection(YgDialogTheme dialogTheme) {
-    return Padding(
-      padding: dialogTheme.textSectionPadding,
-      child: Column(
-        mainAxisSize: MainAxisSize.min,
-        children: <Widget>[
-          Text(
-            title,
-            textAlign: TextAlign.center,
-            style: dialogTheme.titleTextStyle,
-          ),
-          SizedBox(height: dialogTheme.titleDescriptionSpacing),
-          Text(
-            description,
-            textAlign: TextAlign.center,
-            style: dialogTheme.descriptionTextStyle,
-          ),
-        ],
-      ),
+  Widget _buildTextSection(YgDialogTheme dialogTheme) {
+    return Column(
+      children: <Widget>[
+        Text(
+          title,
+          textAlign: TextAlign.center,
+          style: dialogTheme.titleTextStyle,
+        ),
+        Text(
+          description,
+          textAlign: TextAlign.center,
+          style: dialogTheme.descriptionTextStyle,
+        ),
+      ].withVerticalSpacing(dialogTheme.titleDescriptionSpacing),
     );
   }
 }
