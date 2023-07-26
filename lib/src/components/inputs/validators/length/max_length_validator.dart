@@ -10,7 +10,7 @@ class MaxLengthValidator extends TextValidator {
   final String error;
 
   @override
-  String? validate(String? value) {
+  String? validate(YgDefaultValidatorErrors defaults, String? value) {
     if (value == null) {
       return null;
     }
