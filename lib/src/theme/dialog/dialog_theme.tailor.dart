@@ -23,7 +23,6 @@ class YgDialogTheme extends ThemeExtension<YgDialogTheme> {
     required this.outerPadding,
     required this.paddingToScreenEdge,
     required this.scrimColor,
-    required this.textSectionPadding,
     required this.titleDescriptionSpacing,
     required this.titleTextStyle,
   });
@@ -41,7 +40,6 @@ class YgDialogTheme extends ThemeExtension<YgDialogTheme> {
   final EdgeInsets outerPadding;
   final double paddingToScreenEdge;
   final Color scrimColor;
-  final EdgeInsets textSectionPadding;
   final double titleDescriptionSpacing;
   final TextStyle titleTextStyle;
 
@@ -59,7 +57,6 @@ class YgDialogTheme extends ThemeExtension<YgDialogTheme> {
     outerPadding: _$YgDialogTheme.outerPadding[0],
     paddingToScreenEdge: _$YgDialogTheme.paddingToScreenEdge[0],
     scrimColor: _$YgDialogTheme.scrimColor[0],
-    textSectionPadding: _$YgDialogTheme.textSectionPadding[0],
     titleDescriptionSpacing: _$YgDialogTheme.titleDescriptionSpacing[0],
     titleTextStyle: _$YgDialogTheme.titleTextStyle[0],
   );
@@ -78,7 +75,6 @@ class YgDialogTheme extends ThemeExtension<YgDialogTheme> {
     outerPadding: _$YgDialogTheme.outerPadding[1],
     paddingToScreenEdge: _$YgDialogTheme.paddingToScreenEdge[1],
     scrimColor: _$YgDialogTheme.scrimColor[1],
-    textSectionPadding: _$YgDialogTheme.textSectionPadding[1],
     titleDescriptionSpacing: _$YgDialogTheme.titleDescriptionSpacing[1],
     titleTextStyle: _$YgDialogTheme.titleTextStyle[1],
   );
@@ -97,7 +93,6 @@ class YgDialogTheme extends ThemeExtension<YgDialogTheme> {
     outerPadding: _$YgDialogTheme.outerPadding[2],
     paddingToScreenEdge: _$YgDialogTheme.paddingToScreenEdge[2],
     scrimColor: _$YgDialogTheme.scrimColor[2],
-    textSectionPadding: _$YgDialogTheme.textSectionPadding[2],
     titleDescriptionSpacing: _$YgDialogTheme.titleDescriptionSpacing[2],
     titleTextStyle: _$YgDialogTheme.titleTextStyle[2],
   );
@@ -116,7 +111,6 @@ class YgDialogTheme extends ThemeExtension<YgDialogTheme> {
     outerPadding: _$YgDialogTheme.outerPadding[3],
     paddingToScreenEdge: _$YgDialogTheme.paddingToScreenEdge[3],
     scrimColor: _$YgDialogTheme.scrimColor[3],
-    textSectionPadding: _$YgDialogTheme.textSectionPadding[3],
     titleDescriptionSpacing: _$YgDialogTheme.titleDescriptionSpacing[3],
     titleTextStyle: _$YgDialogTheme.titleTextStyle[3],
   );
@@ -143,7 +137,6 @@ class YgDialogTheme extends ThemeExtension<YgDialogTheme> {
     EdgeInsets? outerPadding,
     double? paddingToScreenEdge,
     Color? scrimColor,
-    EdgeInsets? textSectionPadding,
     double? titleDescriptionSpacing,
     TextStyle? titleTextStyle,
   }) {
@@ -163,7 +156,6 @@ class YgDialogTheme extends ThemeExtension<YgDialogTheme> {
       outerPadding: outerPadding ?? this.outerPadding,
       paddingToScreenEdge: paddingToScreenEdge ?? this.paddingToScreenEdge,
       scrimColor: scrimColor ?? this.scrimColor,
-      textSectionPadding: textSectionPadding ?? this.textSectionPadding,
       titleDescriptionSpacing:
           titleDescriptionSpacing ?? this.titleDescriptionSpacing,
       titleTextStyle: titleTextStyle ?? this.titleTextStyle,
@@ -192,8 +184,6 @@ class YgDialogTheme extends ThemeExtension<YgDialogTheme> {
       paddingToScreenEdge:
           t < 0.5 ? paddingToScreenEdge : other.paddingToScreenEdge,
       scrimColor: Color.lerp(scrimColor, other.scrimColor, t)!,
-      textSectionPadding:
-          t < 0.5 ? textSectionPadding : other.textSectionPadding,
       titleDescriptionSpacing:
           t < 0.5 ? titleDescriptionSpacing : other.titleDescriptionSpacing,
       titleTextStyle: TextStyle.lerp(titleTextStyle, other.titleTextStyle, t)!,
@@ -229,8 +219,6 @@ class YgDialogTheme extends ThemeExtension<YgDialogTheme> {
                 .equals(paddingToScreenEdge, other.paddingToScreenEdge) &&
             const DeepCollectionEquality()
                 .equals(scrimColor, other.scrimColor) &&
-            const DeepCollectionEquality()
-                .equals(textSectionPadding, other.textSectionPadding) &&
             const DeepCollectionEquality().equals(
                 titleDescriptionSpacing, other.titleDescriptionSpacing) &&
             const DeepCollectionEquality()
@@ -254,7 +242,6 @@ class YgDialogTheme extends ThemeExtension<YgDialogTheme> {
       const DeepCollectionEquality().hash(outerPadding),
       const DeepCollectionEquality().hash(paddingToScreenEdge),
       const DeepCollectionEquality().hash(scrimColor),
-      const DeepCollectionEquality().hash(textSectionPadding),
       const DeepCollectionEquality().hash(titleDescriptionSpacing),
       const DeepCollectionEquality().hash(titleTextStyle),
     );

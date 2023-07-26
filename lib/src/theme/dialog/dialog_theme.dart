@@ -37,13 +37,6 @@ class _$YgDialogTheme {
     const EdgeInsets.all(professional_dark.FhDimensions.xs),
   ];
 
-  static List<EdgeInsets> textSectionPadding = <EdgeInsets>[
-    const EdgeInsets.symmetric(vertical: consumer_light.FhDimensions.xl),
-    const EdgeInsets.symmetric(vertical: consumer_dark.FhDimensions.xl),
-    const EdgeInsets.symmetric(vertical: professional_light.FhDimensions.xl),
-    const EdgeInsets.symmetric(vertical: professional_dark.FhDimensions.xl),
-  ];
-
   static List<double> titleDescriptionSpacing = <double>[
     consumer_light.FhDimensions.sm,
     consumer_dark.FhDimensions.sm,

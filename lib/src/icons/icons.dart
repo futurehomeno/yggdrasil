@@ -6,10 +6,12 @@ class YgIcons {
 
   static const String search = 'assets/icons/search.svg';
   static const String eyeOpen = 'assets/icons/eye-open.svg';
+  static const String house = 'assets/icons/house.svg';
   static const String alert = 'assets/icons/alert.svg';
   static const String rotate = 'assets/icons/rotate.svg';
   static const String caretDot = 'assets/icons/caret_dot.svg';
   static const String power = 'assets/icons/power.svg';
+  static const String electricCar = 'assets/icons/electric-car.svg';
   static const String handle = 'assets/icons/handle.svg';
   static const String supportBubble = 'assets/icons/support-bubble.svg';
   static const String failed = 'assets/icons/failed.svg';
@@ -18,7 +20,10 @@ class YgIcons {
   static const String arrowLeft = 'assets/icons/arrow_left.svg';
   static const String link = 'assets/icons/link.svg';
   static const String caretLeft = 'assets/icons/caret_left.svg';
+  static const String wifiExcellent = 'assets/icons/wifi-excellent.svg';
   static const String caretRight = 'assets/icons/caret_right.svg';
+  static const String wifiNoSignal = 'assets/icons/wifi-no-signal.svg';
+  static const String deviceHubAlt = 'assets/icons/device-hub-alt.svg';
   static const String arrowUp = 'assets/icons/arrow_up.svg';
   static const String decrease = 'assets/icons/decrease.svg';
   static const String bell = 'assets/icons/bell.svg';
@@ -38,21 +43,157 @@ class YgIcons {
   static const String arrowDown = 'assets/icons/arrow_down.svg';
   static const String play = 'assets/icons/play.svg';
   static const String notification = 'assets/icons/notification.svg';
+  static const String wifiWeak = 'assets/icons/wifi-weak.svg';
   static const String tip = 'assets/icons/tip.svg';
   static const String more = 'assets/icons/more.svg';
   static const String trash = 'assets/icons/trash.svg';
+  static const String edit = 'assets/icons/edit.svg';
   static const String manualBook = 'assets/icons/manual-book.svg';
   static const String sum = 'assets/icons/sum.svg';
   static const String forbidden = 'assets/icons/forbidden.svg';
+  static const String deviceEvCharger = 'assets/icons/device-ev-charger.svg';
   static const String success = 'assets/icons/success.svg';
   static const String call = 'assets/icons/call.svg';
+  static const String deviceTransfer = 'assets/icons/device-transfer.svg';
   static const String lockClosed = 'assets/icons/lock_closed.svg';
   static const String calendar = 'assets/icons/calendar.svg';
   static const String cross = 'assets/icons/cross.svg';
   static const String error = 'assets/icons/error.svg';
   static const String pause = 'assets/icons/pause.svg';
   static const String caretUp = 'assets/icons/caret_up.svg';
+  static const String wifiOk = 'assets/icons/wifi-ok.svg';
   static const String powerDisabled = 'assets/icons/power-disabled.svg';
+  static const String deviceHub = 'assets/icons/device-hub.svg';
   static const String minus = 'assets/icons/minus.svg';
   static const String placeholder = 'assets/icons/placeholder.svg';
+
+  static const List<String> allIconPaths = <String>[
+    search,
+    eyeOpen,
+    house,
+    alert,
+    rotate,
+    caretDot,
+    power,
+    electricCar,
+    handle,
+    supportBubble,
+    failed,
+    eyeClosed,
+    increase,
+    arrowLeft,
+    link,
+    caretLeft,
+    wifiExcellent,
+    caretRight,
+    wifiNoSignal,
+    deviceHubAlt,
+    arrowUp,
+    decrease,
+    bell,
+    stop,
+    arrowRight,
+    support,
+    plus,
+    check,
+    warning,
+    bluetooth,
+    lockOpen,
+    email,
+    info,
+    refresh,
+    alertBubble,
+    caretDown,
+    arrowDown,
+    play,
+    notification,
+    wifiWeak,
+    tip,
+    more,
+    trash,
+    edit,
+    manualBook,
+    sum,
+    forbidden,
+    deviceEvCharger,
+    success,
+    call,
+    deviceTransfer,
+    lockClosed,
+    calendar,
+    cross,
+    error,
+    pause,
+    caretUp,
+    wifiOk,
+    powerDisabled,
+    deviceHub,
+    minus,
+    placeholder,
+  ];
+
+  static const List<String> allIconNames = <String>[
+    'search',
+    'eyeOpen',
+    'house',
+    'alert',
+    'rotate',
+    'caretDot',
+    'power',
+    'electricCar',
+    'handle',
+    'supportBubble',
+    'failed',
+    'eyeClosed',
+    'increase',
+    'arrowLeft',
+    'link',
+    'caretLeft',
+    'wifiExcellent',
+    'caretRight',
+    'wifiNoSignal',
+    'deviceHubAlt',
+    'arrowUp',
+    'decrease',
+    'bell',
+    'stop',
+    'arrowRight',
+    'support',
+    'plus',
+    'check',
+    'warning',
+    'bluetooth',
+    'lockOpen',
+    'email',
+    'info',
+    'refresh',
+    'alertBubble',
+    'caretDown',
+    'arrowDown',
+    'play',
+    'notification',
+    'wifiWeak',
+    'tip',
+    'more',
+    'trash',
+    'edit',
+    'manualBook',
+    'sum',
+    'forbidden',
+    'deviceEvCharger',
+    'success',
+    'call',
+    'deviceTransfer',
+    'lockClosed',
+    'calendar',
+    'cross',
+    'error',
+    'pause',
+    'caretUp',
+    'wifiOk',
+    'powerDisabled',
+    'deviceHub',
+    'minus',
+    'placeholder',
+  ];
 }
