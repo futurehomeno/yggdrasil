@@ -7,13 +7,16 @@ class ExampleLoginFormDialog extends YgDialogRoute {
     required this.password,
   });
 
+  @override
+  final String name = 'ExampleLoginFormDialog';
+
   final String email;
   final String password;
 
   @override
   YgDialog buildDialog(BuildContext context) {
     return YgDialog(
-      icon: const YgIcon(YgIcons.info),
+      header: const YgIcon(YgIcons.info),
       title: 'Login Successful',
       description: 'You were logged in using email $email and password $password',
       ygButtonGroup: YgButtonGroup(

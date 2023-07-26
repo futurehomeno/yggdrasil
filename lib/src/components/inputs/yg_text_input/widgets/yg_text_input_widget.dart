@@ -54,17 +54,38 @@ abstract class YgTextInputWidgetState<T extends YgTextInputWidget> extends State
   @mustCallSuper
   @override
   void didUpdateWidget(covariant T oldWidget) {
-    if (widget.controller != _controller) {
-      _controller.removeListener(_valueUpdated);
-      _controller = widget.controller ?? _createController();
-      _controller.addListener(_valueUpdated);
+    final TextEditingController? newController = widget.controller;
+    final FocusNode? newFocusNode = widget.focusNode;
+
+    if (newController == null) {
+      if (oldWidget.controller != null) {
+        _updateController(_createController());
+      }
+    } else if (newController != _controller) {
+      _updateController(newController);
     }
-    if (widget.focusNode != _focusNode) {
-      _focusNode.removeListener(_focusChanged);
-      _focusNode = widget.focusNode ?? FocusNode();
-      _focusNode.addListener(_focusChanged);
+
+    if (newFocusNode == null) {
+      if (oldWidget.focusNode != null) {
+        _updateFocusNode(FocusNode());
+      }
+    } else if (newFocusNode != _focusNode) {
+      _updateFocusNode(newFocusNode);
     }
+
     super.didUpdateWidget(oldWidget);
+  }
+
+  void _updateFocusNode(FocusNode focusNode) {
+    _focusNode.removeListener(_focusChanged);
+    _focusNode = focusNode;
+    _focusNode.addListener(_focusChanged);
+  }
+
+  void _updateController(TextEditingController controller) {
+    _controller.removeListener(_valueUpdated);
+    _controller = controller;
+    _controller.addListener(_valueUpdated);
   }
 
   @mustCallSuper
