@@ -18,10 +18,7 @@ class _InspectWrapperState extends State<InspectWrapper> {
     final YgOutlineInheritedState? state = YgOutlineInheritedState.of(context);
     return Stack(
       children: <Widget>[
-        FractionallySizedBox(
-          widthFactor: 1,
-          child: widget.child,
-        ),
+        widget.child,
         Positioned.fill(
           child: IgnorePointer(
             child: AnimatedContainer(

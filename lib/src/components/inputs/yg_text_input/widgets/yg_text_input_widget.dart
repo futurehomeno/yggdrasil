@@ -39,10 +39,6 @@ abstract class YgTextInputWidgetState<T extends YgTextInputWidget> extends State
   Duration get duration => context.defaults.animationDuration;
   Curve get curve => context.defaults.animationCurve;
 
-  TextEditingController _createController() => TextEditingController(
-        text: widget.initialValue,
-      );
-
   @mustCallSuper
   @override
   void initState() {
@@ -76,6 +72,14 @@ abstract class YgTextInputWidgetState<T extends YgTextInputWidget> extends State
     super.didUpdateWidget(oldWidget);
   }
 
+  @mustCallSuper
+  @override
+  void dispose() {
+    _controller.removeListener(_valueUpdated);
+    _focusNode.removeListener(_focusChanged);
+    super.dispose();
+  }
+
   void _updateFocusNode(FocusNode focusNode) {
     _focusNode.removeListener(_focusChanged);
     _focusNode = focusNode;
@@ -88,13 +92,9 @@ abstract class YgTextInputWidgetState<T extends YgTextInputWidget> extends State
     _controller.addListener(_valueUpdated);
   }
 
-  @mustCallSuper
-  @override
-  void dispose() {
-    _controller.removeListener(_valueUpdated);
-    _focusNode.removeListener(_focusChanged);
-    super.dispose();
-  }
+  TextEditingController _createController() => TextEditingController(
+        text: widget.initialValue,
+      );
 
   void _valueUpdated() {
     final bool isEmpty = _controller.text.isEmpty;

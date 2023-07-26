@@ -47,8 +47,9 @@ class YgIcon extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final YgDefaultIconStyle? defaultStyle = YgDefaultIconStyle.of(context);
+    final IconThemeData materialIconTheme = IconTheme.of(context);
 
-    final Color? color = this.color ?? defaultStyle?.color;
+    final Color? color = this.color ?? defaultStyle?.color ?? materialIconTheme.color;
     final bool invertColor = this.invertColor ?? defaultStyle?.invertColor ?? false;
     final bool useSvgColor = this.useSvgColor ?? defaultStyle?.useSvgColor ?? false;
     final YgIconSize size = this.size ?? defaultStyle?.size ?? YgIconSize.large;
