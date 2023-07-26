@@ -1,16 +1,16 @@
 import 'package:yggdrasil/yggdrasil.dart';
 
-class NullValidator extends YgInputValidator<dynamic> {
-  NullValidator({
-    required this.error,
+class NullValidator extends InputValidator<dynamic> {
+  const NullValidator({
+    required this.nullError,
   });
 
-  final String error;
+  final String nullError;
 
   @override
   String? validate(YgDefaultValidatorErrors defaults, dynamic value) {
     if (value == null) {
-      return error;
+      return nullError;
     }
 
     return null;

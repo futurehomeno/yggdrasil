@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:provider/provider.dart';
+import 'package:yggdrasil/yggdrasil.dart';
+import 'package:yggdrasil_demo/translations/default_validator_errors.dart';
 
 import 'core/_core.dart';
 import 'screens/_screens.dart';
@@ -41,6 +43,12 @@ class Yggdrasil extends StatelessWidget {
           child: MaterialApp(
             title: 'Yggdrasil',
             theme: ygAppState.currentThemeData,
+            builder: (BuildContext context, Widget? child) {
+              return YgDefaultValidatorErrorsProvider(
+                defaultErrors: buildDefaultValidatorErrors(),
+                child: child!,
+              );
+            },
             home: const HomeScreen(),
             navigatorKey: YgRouter.navigatorKey,
             debugShowCheckedModeBanner: false,

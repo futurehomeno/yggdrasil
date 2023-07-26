@@ -1,16 +1,16 @@
 import '../_validators.dart';
 
 class RequiredValidator extends TextValidator {
-  RequiredValidator({
-    this.error,
+  const RequiredValidator({
+    this.requiredError,
   });
 
-  final String? error;
+  final String? requiredError;
 
   @override
   String? validate(YgDefaultValidatorErrors defaults, String? value) {
     if (value == null || value.isEmpty) {
-      return error ?? defaults.required(value);
+      return requiredError ?? defaults.required;
     }
 
     return null;

@@ -1,13 +1,13 @@
 import '../_validators.dart';
 
 class MaxLengthValidator extends TextValidator {
-  MaxLengthValidator({
+  const MaxLengthValidator({
     required this.max,
-    required this.error,
+    required this.tooLongError,
   });
 
   final int max;
-  final String error;
+  final String tooLongError;
 
   @override
   String? validate(YgDefaultValidatorErrors defaults, String? value) {
@@ -16,7 +16,7 @@ class MaxLengthValidator extends TextValidator {
     }
 
     if (value.length > max) {
-      return error;
+      return tooLongError;
     }
 
     return null;

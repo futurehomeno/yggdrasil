@@ -1,17 +1,17 @@
 import 'package:yggdrasil/yggdrasil.dart';
 
-class ConfirmValidator<T> extends YgInputValidator<T> {
+class ConfirmValidator<T> extends InputValidator<T> {
   ConfirmValidator({
-    required this.getOtherValue,
+    required this.otherKeyField,
     required this.error,
   });
 
-  final T Function() getOtherValue;
+  final FormFieldKey<T> otherKeyField;
   final String error;
 
   @override
   String? validate(YgDefaultValidatorErrors defaults, T? value) {
-    final T otherValue = getOtherValue();
+    final T? otherValue = otherKeyField.value;
 
     if (otherValue != value) {
       return error;

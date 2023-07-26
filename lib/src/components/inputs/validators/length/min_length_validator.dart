@@ -1,13 +1,13 @@
 import '../_validators.dart';
 
 class MinLengthValidator extends TextValidator {
-  MinLengthValidator({
+  const MinLengthValidator({
     required this.min,
-    required this.error,
+    required this.toShortError,
   });
 
   final int min;
-  final String error;
+  final String toShortError;
 
   @override
   String? validate(YgDefaultValidatorErrors defaults, String? value) {
@@ -16,7 +16,7 @@ class MinLengthValidator extends TextValidator {
     }
 
     if (value.length < min) {
-      return error;
+      return toShortError;
     }
 
     return null;

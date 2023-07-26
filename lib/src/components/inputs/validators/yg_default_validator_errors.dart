@@ -1,8 +1,5 @@
-typedef Error<T> = String Function(T? value);
-typedef TextError = Error<String>;
-
 class YgDefaultValidatorErrors {
-  YgDefaultValidatorErrors({
+  const YgDefaultValidatorErrors({
     required this.invalidEmail,
     required this.required,
     required this.invalidHubSerial,
@@ -13,30 +10,39 @@ class YgDefaultValidatorErrors {
     required this.phoneNumberInvalid,
     required this.phoneNumberTooLong,
     required this.phoneNumberTooShort,
+    required this.passwordsDoNotMatch,
+    required this.passwordTooShort,
   });
 
   // region Misc
 
-  final TextError invalidHubSerial;
-  final TextError invalidEmail;
-  final TextError required;
-  final TextError siteNameTooLong;
-  final TextError invalidZwaveParameterLength;
+  final String invalidHubSerial;
+  final String invalidEmail;
+  final String required;
+  final String siteNameTooLong;
+  final String invalidZwaveParameterLength;
 
   // endregion
 
   // region Doorman Pin Code
 
-  final TextError doormanPinCodeTooShort;
-  final TextError doormanPinCodeTooLong;
+  final String doormanPinCodeTooShort;
+  final String doormanPinCodeTooLong;
 
   // endregion
 
   // region Phone Number
 
-  final TextError phoneNumberTooShort;
-  final TextError phoneNumberTooLong;
-  final TextError phoneNumberInvalid;
+  final String phoneNumberTooShort;
+  final String phoneNumberTooLong;
+  final String phoneNumberInvalid;
+
+  // endregion
+
+  // region Password
+
+  final String passwordTooShort;
+  final String passwordsDoNotMatch;
 
   // endregion
 }

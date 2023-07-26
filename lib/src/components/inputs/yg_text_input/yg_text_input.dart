@@ -129,11 +129,11 @@ class _YgTextInputState extends YgTextInputWidgetState<YgTextInput> {
             error: widget.error != null,
             focusNode: focusNode,
             hovered: _hovered,
-            child: Padding(
-              padding: _contentPadding,
-              child: Row(
-                children: <Widget>[
-                  Expanded(
+            child: Row(
+              children: <Widget>[
+                Expanded(
+                  child: Padding(
+                    padding: _contentPadding,
                     child: YgTextInputContent(
                       controller: widget.controller,
                       disabled: widget.disabled,
@@ -150,9 +150,9 @@ class _YgTextInputState extends YgTextInputWidgetState<YgTextInput> {
                       textCapitalization: widget.textCapitalization,
                     ),
                   ),
-                  if (suffix != null) suffix,
-                ],
-              ),
+                ),
+                if (suffix != null) suffix,
+              ],
             ),
           ),
           _errorMessageWidget,
@@ -199,7 +199,9 @@ class _YgTextInputState extends YgTextInputWidgetState<YgTextInput> {
   }
 
   Widget get _errorMessageWidget {
-    if (widget.disabled || !_hasError) {
+    final String? error = widget.error;
+
+    if (widget.disabled || error == null) {
       return const SizedBox(height: 20);
     }
 
@@ -213,7 +215,7 @@ class _YgTextInputState extends YgTextInputWidgetState<YgTextInput> {
             color: theme.errorIconColor,
           ),
           Text(
-            'Error Message',
+            error,
             style: theme.errorTextStyle,
           )
         ].withHorizontalSpacing(4),
@@ -254,12 +256,12 @@ class _YgTextInputState extends YgTextInputWidgetState<YgTextInput> {
 
     if (suffix != null) {
       return YgDefaultIconStyle(
-        tapSize: YgIconTapSize.larger,
+        tapSize: YgIconTapSize.largest,
         color: _suffixIconColor,
-        child: Padding(
-          padding: const EdgeInsets.only(left: 5),
-          child: suffix,
-        ),
+        // child: Padding(
+        //   padding: const EdgeInsets.only(left: 5),
+        child: suffix,
+        // ),
       );
     }
 

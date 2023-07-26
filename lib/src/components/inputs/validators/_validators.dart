@@ -5,7 +5,6 @@ export 'length/_length.dart';
 export 'null/_null.dart';
 export 'phone_number/_phone_number.dart';
 export 'required/_required.dart';
-export 'text_validator.dart';
 export 'variants/_variants.dart';
 export 'yg_combined_validator.dart';
 export 'yg_default_validator_errors.dart';

@@ -26,11 +26,11 @@ class PhoneNumberValidator extends TextValidator {
     final int numbers = value.replaceAll(RegExp(r'[^\d]'), '').length;
 
     if (numbers < 6) {
-      return defaults.phoneNumberTooShort(value);
+      return defaults.phoneNumberTooShort;
     }
 
     if (numbers > 15) {
-      return defaults.phoneNumberTooLong(value);
+      return defaults.phoneNumberTooLong;
     }
 
     // Don't allow other characters than digits, + and spaces. Also do not allow
@@ -38,7 +38,7 @@ class PhoneNumberValidator extends TextValidator {
     final RegExp regExp = RegExp(withCountryCode ? r'^\+?(?:\d ?)+$' : r'^(?:\d ?)+$');
 
     if (!regExp.hasMatch(value)) {
-      return invalidError ?? defaults.phoneNumberInvalid(value);
+      return invalidError ?? defaults.phoneNumberInvalid;
     }
 
     return null;

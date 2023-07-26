@@ -25,6 +25,7 @@ class _TextInputScreenState extends State<TextInputScreen> {
   final FormKey formKey = FormKey();
   final TextFieldKey emailKey = TextFieldKey();
   final TextFieldKey passwordKey = TextFieldKey();
+  final TextFieldKey passwordConfirmKey = TextFieldKey();
 
   @override
   Widget build(BuildContext context) {
@@ -104,12 +105,32 @@ class _TextInputScreenState extends State<TextInputScreen> {
                 children: <Widget>[
                   YgTextFormInput(
                     key: emailKey,
+                    validators: const <TextValidator>[
+                      RequiredValidator(),
+                      EmailValidator(),
+                    ],
                     label: 'Email',
                     variant: YgTextInputVariant.outlined,
                   ).inspectable,
                   YgTextFormInput(
+                    validators: const <TextValidator>[
+                      RequiredValidator(),
+                      PasswordValidator(),
+                    ],
                     key: passwordKey,
                     label: 'Password',
+                    obscureText: true,
+                    variant: YgTextInputVariant.outlined,
+                  ).inspectable,
+                  YgTextFormInput(
+                    validators: <TextValidator>[
+                      const RequiredValidator(),
+                      PasswordConfirmValidator(
+                        otherPasswordFieldKey: passwordKey,
+                      )
+                    ],
+                    key: passwordConfirmKey,
+                    label: 'Confirm password',
                     obscureText: true,
                     variant: YgTextInputVariant.outlined,
                   ).inspectable,
@@ -140,7 +161,7 @@ class _TextInputScreenState extends State<TextInputScreen> {
     final String? password = passwordKey.value;
 
     Navigator.of(context).push(
-      ExampleLoginFormDialog(
+      ExampleSignupFormDialog(
         email: email ?? '',
         password: password ?? '',
       ),

@@ -1,14 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:yggdrasil/yggdrasil.dart';
 
-class ExampleLoginFormDialog extends YgDialogRoute {
-  ExampleLoginFormDialog({
+class ExampleSignupFormDialog extends YgDialogRoute {
+  ExampleSignupFormDialog({
     required this.email,
     required this.password,
   });
 
   @override
-  final String name = 'ExampleLoginFormDialog';
+  final String name = 'ExampleSignupFormDialog';
 
   final String email;
   final String password;

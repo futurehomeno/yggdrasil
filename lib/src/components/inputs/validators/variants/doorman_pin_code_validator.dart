@@ -2,19 +2,27 @@ import 'package:yggdrasil/yggdrasil.dart';
 
 /// Validates that a site name is not empty and at maximum 30 characters.
 class DoormanPicCodeValidator extends CombinedValidator<String> {
+  const DoormanPicCodeValidator({
+    this.pinCodeTooLongError,
+    this.pinCodeTooShortError,
+  });
+
+  final String? pinCodeTooLongError;
+  final String? pinCodeTooShortError;
+
   @override
-  List<YgInputValidator<String>> getValidators(
+  List<InputValidator<String>> getValidators(
     YgDefaultValidatorErrors defaults,
     String? value,
   ) {
-    return <YgInputValidator<String>>[
+    return <InputValidator<String>>[
       MaxLengthValidator(
         max: 6,
-        error: defaults.doormanPinCodeTooLong(value),
+        tooLongError: pinCodeTooLongError ?? defaults.doormanPinCodeTooLong,
       ),
       MinLengthValidator(
         min: 6,
-        error: defaults.doormanPinCodeTooShort(value),
+        toShortError: pinCodeTooShortError ?? defaults.doormanPinCodeTooShort,
       )
     ];
   }

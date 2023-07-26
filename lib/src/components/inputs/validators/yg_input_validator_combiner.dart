@@ -9,13 +9,13 @@ class YgInputValidatorCombiner<T> {
     required this.getContext,
   });
 
-  final List<YgInputValidator<T>>? validators;
+  final List<InputValidator<T>>? validators;
   final BuildContext Function() getContext;
 
   String? call(T? input) {
     final BuildContext context = getContext();
 
-    final List<YgInputValidator<T>>? validators = this.validators;
+    final List<InputValidator<T>>? validators = this.validators;
 
     final YgDefaultValidatorErrorsProvider defaultsProvider = YgDefaultValidatorErrorsProvider.of(context);
 
@@ -23,7 +23,7 @@ class YgInputValidatorCombiner<T> {
       return null;
     }
 
-    for (final YgInputValidator<T> validator in validators) {
+    for (final InputValidator<T> validator in validators) {
       final String? error = validator.validate(
         defaultsProvider.defaultErrors,
         input,

@@ -15,9 +15,11 @@ final RegExp _emailRegExp = RegExp(r'^[a-zA-Z0-9.!#$%&’*+\/=?^_`{|}~-]+@([a-zA
 ///
 /// See the [_emailRegExp] for more info.
 class EmailValidator extends TextValidator {
-  EmailValidator([this.errorMessage]);
+  const EmailValidator({
+    this.invalidEmailError,
+  });
 
-  final String? errorMessage;
+  final String? invalidEmailError;
 
   @override
   String? validate(YgDefaultValidatorErrors defaults, String? value) {
@@ -26,7 +28,7 @@ class EmailValidator extends TextValidator {
     }
 
     if (!_emailRegExp.hasMatch(value)) {
-      return errorMessage ?? defaults.invalidEmail(value);
+      return invalidEmailError ?? defaults.invalidEmail;
     }
 
     return null;

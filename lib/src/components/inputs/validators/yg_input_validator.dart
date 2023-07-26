@@ -1,7 +1,10 @@
 import '_validators.dart';
 
-abstract class YgInputValidator<T> {
-  const YgInputValidator();
+typedef TextValidator = InputValidator<String>;
+typedef NumberValidator = InputValidator<num>;
+
+abstract class InputValidator<T> {
+  const InputValidator();
 
   String? validate(YgDefaultValidatorErrors defaults, T? value);
 }
