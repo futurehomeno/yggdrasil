@@ -9,8 +9,8 @@ class YgIcon extends StatelessWidget {
     super.key,
     this.size,
     this.color,
-    this.semanticLabel,
     this.useEmbeddedColor = false,
+    this.semanticLabel,
   });
 
   /// The icon to display.
@@ -29,13 +29,13 @@ class YgIcon extends StatelessWidget {
   /// Defaults to the nearest [IconTheme]'s [IconThemeData.color].
   final Color? color;
 
+  /// Uses the color embedded in the SVG instead of theme.
+  final bool useEmbeddedColor;
+
   /// Semantic label for the icon.
   ///
   /// This label does not show in the UI.
   final String? semanticLabel;
-
-  /// Uses the color embedded in the SVG instead of theme.
-  final bool useEmbeddedColor;
 
   @override
   Widget build(BuildContext context) {
@@ -55,18 +55,6 @@ class YgIcon extends StatelessWidget {
 
     final Color? iconColor = color ?? materialIconTheme.color;
     final ColorFilter? colorFilter = _getColorFilter(context, iconColor);
-
-    // final double? iconSize = size ?? iconTheme.size;
-    //
-    // final double? iconFill = fill ?? iconTheme.fill;
-    //
-    // final double? iconWeight = weight ?? iconTheme.weight;
-    //
-    // final double? iconGrade = grade ?? iconTheme.grade;
-    //
-    // final double? iconOpticalSize = opticalSize ?? iconTheme.opticalSize;
-    //
-    // final List<Shadow>? iconShadows = shadows ?? iconTheme.shadows;
 
     if (icon == null) {
       return Semantics(
@@ -121,6 +109,7 @@ class YgIcon extends StatelessWidget {
     properties.add(StringProperty('icon', icon, defaultValue: null));
     properties.add(EnumProperty<YgIconSize>('size', size, defaultValue: null));
     properties.add(ColorProperty('color', color, defaultValue: null));
+    properties.add(FlagProperty('useEmbeddedColor', value: useEmbeddedColor));
     properties.add(StringProperty('semanticLabel', semanticLabel, defaultValue: null));
   }
 }
