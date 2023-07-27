@@ -32,7 +32,6 @@ class YgButtonStyle {
     switch (variant) {
       case YgButtonVariant.primary:
         final PrimaryButtonTheme theme = context.buttonTheme.primaryButtonTheme;
-
         return _buildButtonStyle(
           backgroundColor: theme.backgroundColor,
           textStyle: theme.textStyle,
@@ -58,7 +57,6 @@ class YgButtonStyle {
 
       case YgButtonVariant.secondary:
         final SecondaryButtonTheme theme = context.buttonTheme.secondaryButtonTheme;
-
         return _buildButtonStyle(
           backgroundColor: theme.backgroundColor,
           textStyle: theme.textStyle,
@@ -81,9 +79,9 @@ class YgButtonStyle {
           iconColor: context.buttonTheme.iconDefaultColor,
           iconDisabledColor: context.buttonTheme.iconDisabledColor,
         );
+
       case YgButtonVariant.text:
         final TextButtonTheme theme = context.buttonTheme.textButtonTheme;
-
         return _buildButtonStyle(
           backgroundColor: theme.backgroundColor,
           textStyle: theme.textStyle,
@@ -106,9 +104,9 @@ class YgButtonStyle {
           iconColor: context.buttonTheme.iconDefaultColor,
           iconDisabledColor: context.buttonTheme.iconDisabledColor,
         );
+
       case YgButtonVariant.link:
         final LinkButtonTheme theme = context.buttonTheme.linkButtonTheme;
-
         return _buildButtonStyle(
           backgroundColor: theme.backgroundColor,
           textStyle: theme.textStyle,
@@ -131,9 +129,9 @@ class YgButtonStyle {
           iconColor: context.buttonTheme.iconDefaultColor,
           iconDisabledColor: context.buttonTheme.iconDisabledColor,
         );
+
       case YgButtonVariant.critical:
         final CriticalButtonTheme theme = context.buttonTheme.criticalButtonTheme;
-
         return _buildButtonStyle(
           backgroundColor: theme.backgroundColor,
           textStyle: theme.textStyle,
