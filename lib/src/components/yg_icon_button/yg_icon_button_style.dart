@@ -6,7 +6,7 @@ import 'package:yggdrasil/src/theme/icon_button/_icon_button.dart';
 import 'enums/_enums.dart';
 import 'properties/_properties.dart';
 
-/// Button style for YgButtons.
+/// Button style for YgIconButtons.
 ///
 /// Variation of the [ButtonStyle] to better fit Yg buttons.
 /// Use [toButtonStyle] to convert to material [ButtonStyle].
