@@ -8,7 +8,7 @@ import 'properties/_properties.dart';
 
 /// Button style for YgIconButtons.
 ///
-/// Variation of the [ButtonStyle] to better fit Yg buttons.
+/// Variation of the [ButtonStyle] to better fit YgIconButtons.
 /// Use [toButtonStyle] to convert to material [ButtonStyle].
 class YgIconButtonStyle {
   const YgIconButtonStyle({
