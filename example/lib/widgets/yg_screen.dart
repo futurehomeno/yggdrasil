@@ -3,6 +3,7 @@ import 'package:provider/provider.dart';
 import 'package:yggdrasil/yggdrasil.dart';
 import 'package:yggdrasil_demo/core/_core.dart';
 
+// DO NOT USE! This is a temporary widget to make the demo work.
 class YgScreen extends StatelessWidget {
   const YgScreen({
     super.key,

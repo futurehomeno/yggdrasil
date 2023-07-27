@@ -5,3 +5,4 @@ export 'example_dialog_no_buttons.dart';
 export 'example_dialog_non_dismissible.dart';
 export 'example_scrollable_bottom_sheet.dart';
 export 'yg_screen.dart';
+export 'yg_text.dart';
