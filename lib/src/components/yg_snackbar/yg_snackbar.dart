@@ -59,7 +59,10 @@ class YgSnackbar extends StatelessWidget {
             YgIconButton(
               onPressed: onClose,
               size: YgIconButtonSize.small,
-              child: const YgIcon(YgIcons.cross),
+              child: YgIcon(
+                YgIcons.cross,
+                color: theme.closeIconColor,
+              ),
             ),
           ].withHorizontalSpacing(theme.messageSpacing),
         ),
