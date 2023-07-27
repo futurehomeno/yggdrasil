@@ -2,8 +2,8 @@ import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 
 @immutable
-class YgButtonIconColorProperty extends MaterialStateProperty<Color?> with Diagnosticable {
-  YgButtonIconColorProperty({
+class YgIconButtonIconColorProperty extends MaterialStateProperty<Color?> with Diagnosticable {
+  YgIconButtonIconColorProperty({
     required this.color,
     required this.disabled,
   });

@@ -2,8 +2,8 @@ import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 
 @immutable
-class YgButtonOutlinedBorderProperty extends MaterialStateProperty<OutlinedBorder?> with Diagnosticable {
-  YgButtonOutlinedBorderProperty({
+class YgIconButtonOutlinedBorderProperty extends MaterialStateProperty<OutlinedBorder?> with Diagnosticable {
+  YgIconButtonOutlinedBorderProperty({
     required this.outlinedBorder,
     required this.disabled,
   });

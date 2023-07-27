@@ -2,8 +2,8 @@ import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 
 @immutable
-class YgButtonMouseCursorProperty extends MaterialStateProperty<MouseCursor?> with Diagnosticable {
-  YgButtonMouseCursorProperty({
+class YgIconButtonMouseCursorProperty extends MaterialStateProperty<MouseCursor?> with Diagnosticable {
+  YgIconButtonMouseCursorProperty({
     required this.mouseCursor,
     required this.disabled,
   });

@@ -109,11 +109,11 @@ class YgIconButtonStyle {
   ButtonStyle toButtonStyle() {
     return ButtonStyle(
       backgroundColor: ButtonStyleButton.allOrNull(backgroundColor),
-      shape: YgButtonOutlinedBorderProperty(
+      shape: YgIconButtonOutlinedBorderProperty(
         outlinedBorder: shape,
         disabled: disabledShape,
       ),
-      iconColor: YgButtonIconColorProperty(
+      iconColor: YgIconButtonIconColorProperty(
         color: iconColor,
         disabled: iconDisabledColor,
       ),
@@ -126,7 +126,7 @@ class YgIconButtonStyle {
       elevation: ButtonStyleButton.allOrNull(0.0),
       alignment: Alignment.center,
       tapTargetSize: MaterialTapTargetSize.shrinkWrap,
-      mouseCursor: YgButtonMouseCursorProperty(
+      mouseCursor: YgIconButtonMouseCursorProperty(
         mouseCursor: SystemMouseCursors.click,
         disabled: SystemMouseCursors.basic,
       ),
