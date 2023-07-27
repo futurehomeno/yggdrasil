@@ -71,6 +71,27 @@ class _$YgTagTheme {
     professional_dark.FhDimensions.xxs,
   ];
 
+  static List<Color> iconDefaultColor = <Color>[
+    consumer_light.FhColors.iconDefault,
+    consumer_dark.FhColors.iconDefault,
+    professional_light.FhColors.iconDefault,
+    professional_dark.FhColors.iconDefault,
+  ];
+
+  static List<Color> iconDisabledColor = <Color>[
+    consumer_light.FhColors.iconDisabled,
+    consumer_dark.FhColors.iconDisabled,
+    professional_light.FhColors.iconDisabled,
+    professional_dark.FhColors.iconDisabled,
+  ];
+
+  static List<double> iconSize = <double>[
+    consumer_light.FhDimensions.sm,
+    consumer_dark.FhDimensions.sm,
+    professional_light.FhDimensions.sm,
+    professional_dark.FhDimensions.sm,
+  ];
+
   static List<BorderRadius> borderRadius = <BorderRadius>[
     consumer_light.FhRadii.xxl,
     consumer_dark.FhRadii.xxl,

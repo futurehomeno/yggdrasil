@@ -11,12 +11,13 @@ import 'defaults/_defaults.dart';
 import 'dialog/_dialog.dart';
 import 'divider/_divider.dart';
 import 'icon/_icon.dart';
+import 'icon_button/_icon_button.dart';
 import 'internal/_internal.dart';
 import 'list_tile/_list_tile.dart';
 import 'snackbar/_snackbar.dart';
 import 'tag/_tag.dart';
 import 'text_link/_text_link.dart';
-import 'tokens/tokens.dart';
+import 'tokens/_tokens.dart';
 
 part 'theme.tailor.dart';
 
@@ -55,6 +56,9 @@ class _$YgTheme {
 
   @themeExtension
   static List<YgIconTheme> iconTheme = YgIconTheme.themes;
+
+  @themeExtension
+  static List<YgIconButtonTheme> iconButtonTheme = YgIconButtonTheme.themes;
 
   @themeExtension
   static List<YgListTileTheme> listTileTheme = YgListTileTheme.themes;

@@ -115,7 +115,7 @@ class _YgButtonWithLeadingIconChild extends StatelessWidget {
     return Row(
       mainAxisSize: MainAxisSize.min,
       children: <Widget>[
-        icon.copyWith(size: YgIconSize.small),
+        icon,
         Flexible(child: child),
       ].withHorizontalSpacing(context.buttonTheme.iconSpacing),
     );
@@ -165,12 +165,7 @@ class _YgButtonWithTrailingIconChild extends StatelessWidget {
       mainAxisSize: MainAxisSize.min,
       children: <Widget>[
         Flexible(child: child),
-        icon.copyWith(
-          size: YgIconSize.small,
-          color: MaterialStateProperty.resolveWith((Set<MaterialStates> states) {
-            return states.contains(MaterialState.disabled) ? null : icon.color;
-          });
-        ),
+        icon,
       ].withHorizontalSpacing(context.buttonTheme.iconSpacing),
     );
   }

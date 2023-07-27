@@ -18,6 +18,7 @@ class IconsListScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return YgScreen(
+      scrollable: false,
       componentName: 'Icon',
       componentDesc: 'Icons',
       supernovaLink: 'Link',
@@ -32,7 +33,7 @@ class IconsListScreen extends StatelessWidget {
             title: iconName,
             subtitle: iconPath,
             leadingWidgets: <YgIcon>[
-              YgIcon(iconPath, useSvgColor: true),
+              YgIcon(iconPath, useEmbeddedColor: true),
             ],
           );
         },

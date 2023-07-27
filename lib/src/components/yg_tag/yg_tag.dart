@@ -138,7 +138,7 @@ class _YgTagWithLeadingIconChild extends StatelessWidget {
     return Row(
       mainAxisSize: MainAxisSize.min,
       children: <Widget>[
-        icon.copyWith(size: YgIconSize.small),
+        icon,
         Flexible(child: child),
       ].withHorizontalSpacing(context.tagTheme.iconSpacing),
     );
@@ -187,7 +187,7 @@ class _YgTagWithTrailingIconChild extends StatelessWidget {
       mainAxisSize: MainAxisSize.min,
       children: <Widget>[
         Flexible(child: child),
-        icon.copyWith(size: YgIconSize.small),
+        icon,
       ].withHorizontalSpacing(context.tagTheme.iconSpacing),
     );
   }
@@ -238,9 +238,9 @@ class _YgTagWithDoubleIconChild extends StatelessWidget {
     return Row(
       mainAxisSize: MainAxisSize.min,
       children: <Widget>[
-        leadingIcon.copyWith(size: YgIconSize.small),
+        leadingIcon,
         Flexible(child: child),
-        trailingIcon.copyWith(size: YgIconSize.small),
+        trailingIcon,
       ].withHorizontalSpacing(context.tagTheme.iconSpacing),
     );
   }

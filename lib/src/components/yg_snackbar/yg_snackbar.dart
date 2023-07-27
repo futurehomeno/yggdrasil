@@ -56,12 +56,10 @@ class YgSnackbar extends StatelessWidget {
                 style: theme.messageTextStyle,
               ),
             ),
-            YgIcon(
-              YgIcons.cross,
-              color: context.defaults.invertedIconColor,
-              onTap: onClose,
-              size: YgIconSize.small,
-              tapSize: YgIconTapSize.larger,
+            YgIconButton(
+              onPressed: onClose,
+              size: YgIconButtonSize.small,
+              child: const YgIcon(YgIcons.cross),
             ),
           ].withHorizontalSpacing(theme.messageSpacing),
         ),

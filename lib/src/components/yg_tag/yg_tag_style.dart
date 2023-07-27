@@ -14,6 +14,9 @@ class YgTagStyle {
     required this.backgroundColor,
     required this.textStyle,
     required this.disabledTextStyle,
+    required this.iconSize,
+    required this.iconColor,
+    required this.iconDisabledColor,
     required this.shape,
     required this.disabledShape,
     required this.padding,
@@ -33,6 +36,9 @@ class YgTagStyle {
           backgroundColor: weight == YgTagWeight.weak ? theme.backgroundColor : theme.strongBackgroundColor,
           textStyle: weight == YgTagWeight.weak ? theme.textStyle : theme.strongTextStyle,
           disabledTextStyle: theme.disabledTextStyle,
+          iconSize: context.tagTheme.iconSize,
+          iconColor: context.tagTheme.iconDefaultColor,
+          iconDisabledColor: context.tagTheme.iconDisabledColor,
           borderRadius: context.tagTheme.borderRadius,
           padding: YgTagMapper.buildPadding(
             context: context,
@@ -47,6 +53,9 @@ class YgTagStyle {
           backgroundColor: weight == YgTagWeight.weak ? theme.backgroundColor : theme.strongBackgroundColor,
           textStyle: weight == YgTagWeight.weak ? theme.textStyle : theme.strongTextStyle,
           disabledTextStyle: theme.disabledTextStyle,
+          iconSize: context.tagTheme.iconSize,
+          iconColor: context.tagTheme.iconDefaultColor,
+          iconDisabledColor: context.tagTheme.iconDisabledColor,
           borderRadius: context.tagTheme.borderRadius,
           padding: YgTagMapper.buildPadding(
             context: context,
@@ -60,6 +69,9 @@ class YgTagStyle {
           backgroundColor: weight == YgTagWeight.weak ? theme.backgroundColor : theme.strongBackgroundColor,
           textStyle: weight == YgTagWeight.weak ? theme.textStyle : theme.strongTextStyle,
           disabledTextStyle: theme.disabledTextStyle,
+          iconSize: context.tagTheme.iconSize,
+          iconColor: context.tagTheme.iconDefaultColor,
+          iconDisabledColor: context.tagTheme.iconDisabledColor,
           borderRadius: context.tagTheme.borderRadius,
           padding: YgTagMapper.buildPadding(
             context: context,
@@ -73,6 +85,9 @@ class YgTagStyle {
           backgroundColor: weight == YgTagWeight.weak ? theme.backgroundColor : theme.strongBackgroundColor,
           textStyle: weight == YgTagWeight.weak ? theme.textStyle : theme.strongTextStyle,
           disabledTextStyle: theme.disabledTextStyle,
+          iconSize: context.tagTheme.iconSize,
+          iconColor: context.tagTheme.iconDefaultColor,
+          iconDisabledColor: context.tagTheme.iconDisabledColor,
           borderRadius: context.tagTheme.borderRadius,
           padding: YgTagMapper.buildPadding(
             context: context,
@@ -86,6 +101,9 @@ class YgTagStyle {
           backgroundColor: weight == YgTagWeight.weak ? theme.backgroundColor : theme.strongBackgroundColor,
           textStyle: weight == YgTagWeight.weak ? theme.textStyle : theme.strongTextStyle,
           disabledTextStyle: theme.disabledTextStyle,
+          iconSize: context.tagTheme.iconSize,
+          iconColor: context.tagTheme.iconDefaultColor,
+          iconDisabledColor: context.tagTheme.iconDisabledColor,
           borderRadius: context.tagTheme.borderRadius,
           padding: YgTagMapper.buildPadding(
             context: context,
@@ -99,6 +117,9 @@ class YgTagStyle {
     required Color backgroundColor,
     required TextStyle textStyle,
     required TextStyle disabledTextStyle,
+    required double iconSize,
+    required Color iconColor,
+    required Color iconDisabledColor,
     required BorderRadius borderRadius,
     required EdgeInsets padding,
   }) {
@@ -106,6 +127,9 @@ class YgTagStyle {
       backgroundColor: backgroundColor,
       textStyle: textStyle,
       disabledTextStyle: disabledTextStyle,
+      iconSize: iconSize,
+      iconColor: iconColor,
+      iconDisabledColor: iconDisabledColor,
       shape: RoundedRectangleBorder(borderRadius: borderRadius),
       disabledShape: RoundedRectangleBorder(borderRadius: borderRadius),
       padding: padding,
@@ -123,6 +147,11 @@ class YgTagStyle {
         outlinedBorder: shape,
         disabled: disabledShape,
       ),
+      iconColor: YgTagIconColorProperty(
+        color: iconColor,
+        disabled: iconDisabledColor,
+      ),
+      iconSize: ButtonStyleButton.allOrNull(iconSize),
       padding: ButtonStyleButton.allOrNull(padding),
       minimumSize: ButtonStyleButton.allOrNull(const Size(80, 26)),
       maximumSize: ButtonStyleButton.allOrNull(Size.infinite),
@@ -141,6 +170,9 @@ class YgTagStyle {
   final Color backgroundColor;
   final TextStyle textStyle;
   final TextStyle disabledTextStyle;
+  final double iconSize;
+  final Color iconColor;
+  final Color iconDisabledColor;
   final OutlinedBorder shape;
   final OutlinedBorder disabledShape;
   final EdgeInsets padding;

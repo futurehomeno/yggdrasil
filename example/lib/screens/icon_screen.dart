@@ -39,20 +39,8 @@ class IconScreen extends StatelessWidget {
             child: const YgIcon(
               YgIcons.info,
               size: YgIconSize.large,
-              invertColor: true,
             ),
           ),
-          const YgListTile(title: 'Clickable icon'),
-          YgIcon(
-            YgIcons.info,
-            onTap: () {},
-          ),
-          const YgListTile(title: 'Clickable icon w/ large area'),
-          YgIcon(
-            YgIcons.info,
-            onTap: () {},
-            tapSize: YgIconTapSize.largest,
-          )
         ],
       ),
     );

@@ -90,6 +90,13 @@ class _$YgButtonTheme {
     professional_dark.FhDimensions.xxs,
   ];
 
+  static List<double> iconSize = <double>[
+    consumer_light.FhDimensions.sm,
+    consumer_dark.FhDimensions.sm,
+    professional_light.FhDimensions.sm,
+    professional_dark.FhDimensions.sm,
+  ];
+
   static List<Color> iconDefaultColor = <Color>[
     consumer_light.FhColors.iconDefault,
     consumer_dark.FhColors.iconDefault,

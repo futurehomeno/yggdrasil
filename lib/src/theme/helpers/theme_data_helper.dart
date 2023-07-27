@@ -17,7 +17,9 @@ class YgThemeDataHelper {
       focusColor: theme.defaults.focusColor,
       // Temporary theme values. Will be removed once we have proper component.
       appBarTheme: AppBarTheme(color: theme.defaults.appBarColor),
-      iconTheme: IconThemeData(color: theme.defaults.iconColor),
+      iconTheme: IconThemeData(
+        color: theme.defaults.iconColor,
+      ),
     );
   }
   // endregion

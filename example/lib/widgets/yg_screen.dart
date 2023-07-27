@@ -27,10 +27,9 @@ class YgScreen extends StatelessWidget {
         actions: <Widget>[
           Consumer<YgAppState>(
             builder: (BuildContext context, YgAppState ygAppState, Widget? widget) {
-              return YgIcon(
-                YgIcons.refresh,
-                onTap: ygAppState.toggleTheme,
-                tapSize: YgIconTapSize.largest,
+              return YgIconButton(
+                onPressed: ygAppState.toggleTheme,
+                child: const YgIcon(YgIcons.refresh),
               );
             },
           )

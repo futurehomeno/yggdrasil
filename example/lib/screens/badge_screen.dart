@@ -27,47 +27,42 @@ class BadgeScreen extends StatelessWidget {
           YgBadge(
             amount: 0,
             weight: YgBadgeWeight.strong,
-            child: YgIcon(
-              onTap: () {},
-              YgIcons.info,
-              tapSize: YgIconTapSize.largest,
+            child: YgIconButton(
+              onPressed: () {},
+              child: const YgIcon(YgIcons.info),
             ),
           ),
           YgBadge(
             amount: 1,
             weight: YgBadgeWeight.strong,
-            child: YgIcon(
-              onTap: () {},
-              YgIcons.info,
-              tapSize: YgIconTapSize.largest,
+            child: YgIconButton(
+              onPressed: () {},
+              child: const YgIcon(YgIcons.info),
             ),
           ),
           YgBadge(
             amount: 8,
             weight: YgBadgeWeight.strong,
-            child: YgIcon(
-              onTap: () {},
-              YgIcons.info,
-              tapSize: YgIconTapSize.largest,
+            child: YgIconButton(
+              onPressed: () {},
+              child: const YgIcon(YgIcons.info),
             ),
           ),
           YgBadge(
             amount: 9,
             weight: YgBadgeWeight.strong,
-            child: YgIcon(
-              onTap: () {},
-              YgIcons.info,
-              tapSize: YgIconTapSize.largest,
+            child: YgIconButton(
+              onPressed: () {},
+              child: const YgIcon(YgIcons.info),
             ),
           ),
           const YgListTile(title: 'Badges with more than 9'),
           YgBadge(
             amount: 10,
             weight: YgBadgeWeight.weak,
-            child: YgIcon(
-              onTap: () {},
-              YgIcons.info,
-              tapSize: YgIconTapSize.largest,
+            child: YgIconButton(
+              onPressed: () {},
+              child: const YgIcon(YgIcons.info),
             ),
           ),
           const YgListTile(title: 'Dot badge'),

@@ -1,0 +1,4 @@
+enum YgIconButtonSize {
+  small,
+  medium,
+}
