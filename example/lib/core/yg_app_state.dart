@@ -6,7 +6,6 @@ class YgAppState extends ChangeNotifier {
   final YgTheme _defaultTheme = YgTheme.consumerLight;
   YgTheme _currentTheme = YgTheme.consumerLight;
   YgTheme get theme => _defaultTheme;
-  bool _outlineToggled = false;
   bool _debugPaintSizeEnabled = false;
   bool _debugPaintBaselinesEnabled = false;
   bool _debugPaintLayerBordersEnabled = false;
@@ -21,11 +20,6 @@ class YgAppState extends ChangeNotifier {
       _currentTheme = YgTheme.consumerLight;
     }
 
-    notifyListeners();
-  }
-
-  void toggleOutline() {
-    _outlineToggled ^= true;
     notifyListeners();
   }
 
@@ -75,7 +69,6 @@ class YgAppState extends ChangeNotifier {
   YgTheme get defaultTheme => _defaultTheme;
   YgTheme get currentTheme => _currentTheme;
 
-  bool get outlineToggled => _outlineToggled;
   bool get debugPaintSizeEnabled => _debugPaintSizeEnabled;
   bool get debugPaintBaselinesEnabled => _debugPaintBaselinesEnabled;
   bool get debugPaintLayerBordersEnabled => _debugPaintLayerBordersEnabled;

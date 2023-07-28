@@ -38,19 +38,19 @@ class Yggdrasil extends StatelessWidget {
   Widget build(BuildContext context) {
     return Consumer<YgAppState>(
       builder: (BuildContext context, YgAppState ygAppState, Widget? child) {
+        // Set the debug paint flags.
+        debugPaintSizeEnabled = ygAppState.debugPaintSizeEnabled;
+        debugPaintBaselinesEnabled = ygAppState.debugPaintBaselinesEnabled;
+        debugPaintLayerBordersEnabled = ygAppState.debugPaintLayerBordersEnabled;
+        debugPaintPointersEnabled = ygAppState.debugPaintPointersEnabled;
+        debugRepaintRainbowEnabled = ygAppState.debugRepaintRainbowEnabled;
+        debugRepaintTextRainbowEnabled = ygAppState.debugRepaintTextRainbowEnabled;
+
         return MaterialApp(
           key: ygAppState.key,
           title: 'Yggdrasil',
           theme: ygAppState.currentThemeData,
           builder: (BuildContext context, Widget? child) {
-            // Set the debug paint flags.
-            debugPaintSizeEnabled = ygAppState.debugPaintSizeEnabled;
-            debugPaintBaselinesEnabled = ygAppState.debugPaintBaselinesEnabled;
-            debugPaintLayerBordersEnabled = ygAppState.debugPaintLayerBordersEnabled;
-            debugPaintPointersEnabled = ygAppState.debugPaintPointersEnabled;
-            debugRepaintRainbowEnabled = ygAppState.debugRepaintRainbowEnabled;
-            debugRepaintTextRainbowEnabled = ygAppState.debugRepaintTextRainbowEnabled;
-
             return YgDefaultValidatorErrorsProvider(
               defaultErrors: buildDefaultValidatorErrors(),
               child: child!,
