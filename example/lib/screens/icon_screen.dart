@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:yggdrasil/yggdrasil.dart';
 import 'package:yggdrasil_demo/core/_core.dart';
-import 'package:yggdrasil_demo/extensions/widget_extensions.dart';
 import 'package:yggdrasil_demo/widgets/_widgets.dart';
 
 class IconScreen extends StatelessWidget {
@@ -28,7 +27,7 @@ class IconScreen extends StatelessWidget {
           const YgIcon(
             YgIcons.info,
             size: YgIconSize.large,
-          ).inspectable,
+          ),
           const YgListTile(
             title: 'Inverted icon on a dark background',
             subtitle: 'These still look good when switching from light mode to dark mode.',
@@ -41,19 +40,19 @@ class IconScreen extends StatelessWidget {
               YgIcons.info,
               size: YgIconSize.large,
               invertColor: true,
-            ).inspectable,
+            ),
           ),
           const YgListTile(title: 'Clickable icon'),
           YgIcon(
             YgIcons.info,
             onTap: () {},
-          ).inspectable,
+          ),
           const YgListTile(title: 'Clickable icon w/ large area'),
           YgIcon(
             YgIcons.info,
             onTap: () {},
             tapSize: YgIconTapSize.largest,
-          ).inspectable
+          ),
         ],
       ),
     );

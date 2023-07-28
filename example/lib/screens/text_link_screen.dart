@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:yggdrasil/yggdrasil.dart';
 import 'package:yggdrasil_demo/core/_core.dart';
-import 'package:yggdrasil_demo/extensions/widget_extensions.dart';
 import 'package:yggdrasil_demo/widgets/_widgets.dart';
 
 class TextLinkScreen extends StatelessWidget {
@@ -30,50 +29,50 @@ class TextLinkScreen extends StatelessWidget {
             text: 'Link',
             size: YgTextLinkSize.small,
             weight: YgTextLinkWeight.weak,
-          ).inspectable,
+          ),
           YgTextLink(
             onPressed: () {},
             text: 'Link',
             size: YgTextLinkSize.small,
             weight: YgTextLinkWeight.strong,
-          ).inspectable,
+          ),
           YgTextLink(
             onPressed: () {},
             text: 'Link',
             size: YgTextLinkSize.medium,
             weight: YgTextLinkWeight.weak,
-          ).inspectable,
+          ),
           YgTextLink(
             onPressed: () {},
             text: 'Link',
             size: YgTextLinkSize.medium,
             weight: YgTextLinkWeight.strong,
-          ).inspectable,
+          ),
           const YgListTile(title: 'Disabled text link'),
           YgTextLink(
             text: 'Link',
             size: YgTextLinkSize.small,
             weight: YgTextLinkWeight.weak,
             onPressed: null,
-          ).inspectable,
+          ),
           YgTextLink(
             text: 'Link',
             size: YgTextLinkSize.small,
             weight: YgTextLinkWeight.strong,
             onPressed: null,
-          ).inspectable,
+          ),
           YgTextLink(
             text: 'Link',
             size: YgTextLinkSize.medium,
             weight: YgTextLinkWeight.weak,
             onPressed: null,
-          ).inspectable,
+          ),
           YgTextLink(
             text: 'Link',
             size: YgTextLinkSize.medium,
             weight: YgTextLinkWeight.strong,
             onPressed: null,
-          ).inspectable,
+          ),
           const YgListTile(title: 'Text link w/ icon'),
           Column(
             children: <Widget>[
@@ -83,28 +82,28 @@ class TextLinkScreen extends StatelessWidget {
                 external: true,
                 size: YgTextLinkSize.small,
                 weight: YgTextLinkWeight.weak,
-              ).inspectable,
+              ),
               YgTextLink(
                 onPressed: () {},
                 text: 'Link',
                 external: true,
                 size: YgTextLinkSize.small,
                 weight: YgTextLinkWeight.strong,
-              ).inspectable,
+              ),
               YgTextLink(
                 onPressed: () {},
                 text: 'Link',
                 external: true,
                 size: YgTextLinkSize.medium,
                 weight: YgTextLinkWeight.weak,
-              ).inspectable,
+              ),
               YgTextLink(
                 onPressed: () {},
                 text: 'Link',
                 external: true,
                 size: YgTextLinkSize.medium,
                 weight: YgTextLinkWeight.strong,
-              ).inspectable,
+              ),
             ],
           ),
         ],

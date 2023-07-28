@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:yggdrasil/yggdrasil.dart';
 import 'package:yggdrasil_demo/core/yg_route_builder.dart';
-import 'package:yggdrasil_demo/extensions/_extensions.dart';
 import 'package:yggdrasil_demo/widgets/_widgets.dart';
 import 'package:yggdrasil_demo/widgets/login_form_dialog.dart';
 
@@ -42,57 +41,57 @@ class _TextInputScreenState extends State<TextInputScreen> {
             const YgListTile(title: 'Default variant'),
             const YgTextInput(
               label: 'Label',
-            ).inspectable,
+            ),
             const YgTextInput(
               label: 'Label',
               size: YgTextInputSize.medium,
-            ).inspectable,
+            ),
             const YgTextInput(
               label: 'Label',
               placeholder: 'Placeholder',
-            ).inspectable,
+            ),
             const YgTextInput(
               label: 'Label',
               obscureText: true,
-            ).inspectable,
+            ),
             const YgTextInput(
               label: 'Label',
               error: 'Error Message',
-            ).inspectable,
+            ),
             const YgTextInput(
               label: 'Label',
               disabled: true,
-            ).inspectable,
+            ),
             const YgListTile(title: 'Outlined variant'),
             const YgTextInput(
               label: 'Label',
               variant: YgTextInputVariant.outlined,
-            ).inspectable,
+            ),
             const YgTextInput(
               label: 'Label',
               variant: YgTextInputVariant.outlined,
               size: YgTextInputSize.medium,
-            ).inspectable,
+            ),
             const YgTextInput(
               label: 'Label',
               variant: YgTextInputVariant.outlined,
               placeholder: 'Placeholder',
-            ).inspectable,
+            ),
             const YgTextInput(
               label: 'Label',
               variant: YgTextInputVariant.outlined,
               obscureText: true,
-            ).inspectable,
+            ),
             const YgTextInput(
               label: 'Label',
               variant: YgTextInputVariant.outlined,
               error: 'Error Message',
-            ).inspectable,
+            ),
             const YgTextInput(
               label: 'Label',
               variant: YgTextInputVariant.outlined,
               disabled: true,
-            ).inspectable,
+            ),
             const YgListTile(
               title: 'Example use in a form',
               subtitle: 'Valid password: password123',
@@ -111,7 +110,7 @@ class _TextInputScreenState extends State<TextInputScreen> {
                     ],
                     label: 'Email',
                     variant: YgTextInputVariant.outlined,
-                  ).inspectable,
+                  ),
                   YgTextFormInput(
                     validators: const <TextValidator>[
                       RequiredValidator(),
@@ -121,7 +120,7 @@ class _TextInputScreenState extends State<TextInputScreen> {
                     label: 'Password',
                     obscureText: true,
                     variant: YgTextInputVariant.outlined,
-                  ).inspectable,
+                  ),
                   YgTextFormInput(
                     validators: <TextValidator>[
                       const RequiredValidator(),
@@ -133,16 +132,16 @@ class _TextInputScreenState extends State<TextInputScreen> {
                     label: 'Confirm password',
                     obscureText: true,
                     variant: YgTextInputVariant.outlined,
-                  ).inspectable,
+                  ),
                   YgButton(
                     variant: YgButtonVariant.primary,
                     onPressed: _validateForm,
                     child: const Text('Login'),
                   )
-                ].spaced20,
+                ],
               ),
             )
-          ].spaced20,
+          ],
         ),
       ),
     );

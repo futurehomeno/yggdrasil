@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:yggdrasil/yggdrasil.dart';
 import 'package:yggdrasil_demo/core/_core.dart';
-import 'package:yggdrasil_demo/extensions/widget_list_extensions.dart';
 import 'package:yggdrasil_demo/widgets/_widgets.dart';
 
 class ListTileScreen extends StatelessWidget {
@@ -123,7 +122,7 @@ class ListTileScreen extends StatelessWidget {
               YgIcon(YgIcons.info, size: YgIconSize.large),
             ],
           ),
-        ].inspectable,
+        ],
       ),
     );
   }

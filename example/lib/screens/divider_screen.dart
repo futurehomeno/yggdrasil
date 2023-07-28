@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:yggdrasil/yggdrasil.dart';
 import 'package:yggdrasil_demo/core/_core.dart';
-import 'package:yggdrasil_demo/extensions/widget_extensions.dart';
 import 'package:yggdrasil_demo/widgets/_widgets.dart';
 
 class DividerScreen extends StatelessWidget {
@@ -25,16 +24,16 @@ class DividerScreen extends StatelessWidget {
       child: Column(
         children: <Widget>[
           const YgListTile(title: 'Normal Divider'),
-          const YgDivider().inspectable,
+          const YgDivider(),
           const YgListTile(title: 'Divider /w start indent'),
-          const YgDivider(indent: YgDividerIndent.large).inspectable,
+          const YgDivider(indent: YgDividerIndent.large),
           const YgListTile(title: 'Divider w/ end indent'),
-          const YgDivider(endIndent: YgDividerIndent.large).inspectable,
+          const YgDivider(endIndent: YgDividerIndent.large),
           const YgListTile(title: 'Divider w/ both indent'),
           const YgDivider(
             indent: YgDividerIndent.large,
             endIndent: YgDividerIndent.large,
-          ).inspectable,
+          ),
         ],
       ),
     );

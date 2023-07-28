@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:yggdrasil/yggdrasil.dart';
 import 'package:yggdrasil_demo/core/_core.dart';
-import 'package:yggdrasil_demo/extensions/_extensions.dart';
 import 'package:yggdrasil_demo/widgets/_widgets.dart';
 
 class BadgeScreen extends StatelessWidget {
@@ -62,7 +61,7 @@ class BadgeScreen extends StatelessWidget {
                 tapSize: YgIconTapSize.largest,
               ),
             ),
-          ].inspectable.spaced20,
+          ],
           const YgListTile(title: 'Badges with more than 9'),
           YgBadge(
             amount: 10,
@@ -72,9 +71,9 @@ class BadgeScreen extends StatelessWidget {
               YgIcons.info,
               tapSize: YgIconTapSize.largest,
             ),
-          ).inspectable,
+          ),
           const YgListTile(title: 'Dot badge'),
-          const YgDotBadge().inspectable,
+          const YgDotBadge(),
         ],
       ),
     );

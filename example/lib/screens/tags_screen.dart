@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:yggdrasil/yggdrasil.dart';
 import 'package:yggdrasil_demo/core/_core.dart';
-import 'package:yggdrasil_demo/extensions/widget_list_extensions.dart';
 import 'package:yggdrasil_demo/widgets/_widgets.dart';
 
 class TagsScreen extends StatelessWidget {
@@ -96,7 +95,7 @@ class TagsScreen extends StatelessWidget {
                 icon: const YgIcon(YgIcons.cross, invertColor: true),
                 child: const Text('Medium Strong'),
               ),
-            ].inspectable.spaced10,
+            ],
           ),
           const YgListTile(title: 'Informative dialog'),
           Column(
@@ -170,7 +169,7 @@ class TagsScreen extends StatelessWidget {
                 icon: const YgIcon(YgIcons.cross, invertColor: true),
                 child: const Text('Medium Strong'),
               ),
-            ].inspectable.spaced10,
+            ],
           ),
           const YgListTile(title: 'Positive dialog'),
           Column(
@@ -244,7 +243,7 @@ class TagsScreen extends StatelessWidget {
                 icon: const YgIcon(YgIcons.cross, invertColor: true),
                 child: const Text('Medium Strong'),
               ),
-            ].inspectable.spaced10,
+            ],
           ),
           const YgListTile(title: 'Warning dialog'),
           Column(
@@ -318,7 +317,7 @@ class TagsScreen extends StatelessWidget {
                 icon: const YgIcon(YgIcons.cross, invertColor: true),
                 child: const Text('Medium Strong'),
               ),
-            ].inspectable.spaced10,
+            ],
           ),
           const YgListTile(title: 'Negative dialog'),
           Column(
@@ -392,7 +391,7 @@ class TagsScreen extends StatelessWidget {
                 icon: const YgIcon(YgIcons.cross, invertColor: true),
                 child: const Text('Medium Strong'),
               ),
-            ].inspectable.spaced10,
+            ],
           ),
         ],
       ),

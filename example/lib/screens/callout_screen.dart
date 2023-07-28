@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:yggdrasil/yggdrasil.dart';
 import 'package:yggdrasil_demo/core/_core.dart';
-import 'package:yggdrasil_demo/extensions/widget_list_extensions.dart';
 import 'package:yggdrasil_demo/widgets/_widgets.dart';
 
 class CalloutScreen extends StatelessWidget {
@@ -25,129 +24,121 @@ class CalloutScreen extends StatelessWidget {
       child: Column(
         children: <Widget>[
           const YgListTile(title: 'Highlight callout'),
-          Column(
-            children: <Widget>[
-              YgCallout(
-                variant: YgCalloutVariant.highlight,
-                title: 'Title',
-                description: 'Callout with a title, description and a text link.',
-                textLink: YgTextLink(
-                  text: 'Link',
-                  external: true,
-                  onPressed: () {},
-                ),
-                onClose: () {},
+          Column(children: <Widget>[
+            YgCallout(
+              variant: YgCalloutVariant.highlight,
+              title: 'Title',
+              description: 'Callout with a title, description and a text link.',
+              textLink: YgTextLink(
+                text: 'Link',
+                external: true,
+                onPressed: () {},
               ),
-              YgCallout(
-                variant: YgCalloutVariant.highlight,
-                onClose: () {},
-                title: 'Title',
-                description: 'Callout with a title and description.',
-              ),
-              YgCallout(
-                variant: YgCalloutVariant.highlight,
-                description: 'Callout with a description only.',
-                onClose: () {},
-              ),
-              const YgCallout(
-                variant: YgCalloutVariant.highlight,
-                description: 'Callout with no close.',
-              ),
-            ].inspectable.spaced20,
-          ),
+              onClose: () {},
+            ),
+            YgCallout(
+              variant: YgCalloutVariant.highlight,
+              onClose: () {},
+              title: 'Title',
+              description: 'Callout with a title and description.',
+            ),
+            YgCallout(
+              variant: YgCalloutVariant.highlight,
+              description: 'Callout with a description only.',
+              onClose: () {},
+            ),
+            const YgCallout(
+              variant: YgCalloutVariant.highlight,
+              description: 'Callout with no close.',
+            ),
+          ]),
           const YgListTile(title: 'Success callout'),
-          Column(
-            children: <Widget>[
-              YgCallout(
-                variant: YgCalloutVariant.success,
-                title: 'Title',
-                description: 'Callout with a title, description and a text link.',
-                textLink: YgTextLink(
-                  text: 'Link',
-                  external: true,
-                  onPressed: () {},
-                ),
-                onClose: () {},
+          Column(children: <Widget>[
+            YgCallout(
+              variant: YgCalloutVariant.success,
+              title: 'Title',
+              description: 'Callout with a title, description and a text link.',
+              textLink: YgTextLink(
+                text: 'Link',
+                external: true,
+                onPressed: () {},
               ),
-              YgCallout(
-                variant: YgCalloutVariant.success,
-                title: 'Title',
-                description: 'Callout with a title and description.',
-                onClose: () {},
-              ),
-              YgCallout(
-                variant: YgCalloutVariant.success,
-                description: 'Callout with a description only.',
-                onClose: () {},
-              ),
-              const YgCallout(
-                variant: YgCalloutVariant.success,
-                description: 'Callout with no close.',
-              ),
-            ].inspectable.spaced20,
-          ),
+              onClose: () {},
+            ),
+            YgCallout(
+              variant: YgCalloutVariant.success,
+              title: 'Title',
+              description: 'Callout with a title and description.',
+              onClose: () {},
+            ),
+            YgCallout(
+              variant: YgCalloutVariant.success,
+              description: 'Callout with a description only.',
+              onClose: () {},
+            ),
+            const YgCallout(
+              variant: YgCalloutVariant.success,
+              description: 'Callout with no close.',
+            ),
+          ]),
           const YgListTile(title: 'Warning callout'),
-          Column(
-            children: <Widget>[
-              YgCallout(
-                variant: YgCalloutVariant.warning,
-                title: 'Title',
-                description: 'Callout with a title, description and a text link.',
-                textLink: YgTextLink(
-                  text: 'Link',
-                  external: true,
-                  onPressed: () {},
-                ),
-                onClose: () {},
+          Column(children: <Widget>[
+            YgCallout(
+              variant: YgCalloutVariant.warning,
+              title: 'Title',
+              description: 'Callout with a title, description and a text link.',
+              textLink: YgTextLink(
+                text: 'Link',
+                external: true,
+                onPressed: () {},
               ),
-              YgCallout(
-                variant: YgCalloutVariant.warning,
-                title: 'Title',
-                description: 'Callout with a title and description.',
-                onClose: () {},
-              ),
-              YgCallout(
-                variant: YgCalloutVariant.warning,
-                description: 'Callout with a description only.',
-                onClose: () {},
-              ),
-              const YgCallout(
-                variant: YgCalloutVariant.warning,
-                description: 'Callout with no close.',
-              ),
-            ].inspectable.spaced20,
-          ),
+              onClose: () {},
+            ),
+            YgCallout(
+              variant: YgCalloutVariant.warning,
+              title: 'Title',
+              description: 'Callout with a title and description.',
+              onClose: () {},
+            ),
+            YgCallout(
+              variant: YgCalloutVariant.warning,
+              description: 'Callout with a description only.',
+              onClose: () {},
+            ),
+            const YgCallout(
+              variant: YgCalloutVariant.warning,
+              description: 'Callout with no close.',
+            ),
+          ]),
           const YgListTile(title: 'Critical callout'),
-          Column(
-            children: <Widget>[
-              YgCallout(
-                variant: YgCalloutVariant.critical,
-                title: 'Title',
-                description: 'Callout with a title, description and a text link.',
-                textLink: YgTextLink(
-                  text: 'Link',
-                  external: true,
-                  onPressed: () {},
-                ),
-                onClose: () {},
+          Column(children: <Widget>[
+            YgCallout(
+              variant: YgCalloutVariant.critical,
+              title: 'Title',
+              description: 'Callout with a title, description and a text link.',
+              textLink: YgTextLink(
+                text: 'Link',
+                external: true,
+                onPressed: () {},
               ),
-              YgCallout(
-                variant: YgCalloutVariant.critical,
-                title: 'Title',
-                description: 'Callout with a title and description.',
-                onClose: () {},
-              ),
-              YgCallout(
-                variant: YgCalloutVariant.critical,
-                description: 'Callout with a description only.',
-                onClose: () {},
-              ),
-              const YgCallout(
-                variant: YgCalloutVariant.critical,
-                description: 'Callout with no close.',
-              ),
-            ].inspectable.spaced20,
-          ),
+              onClose: () {},
+            ),
+            YgCallout(
+              variant: YgCalloutVariant.critical,
+              title: 'Title',
+              description: 'Callout with a title and description.',
+              onClose: () {},
+            ),
+            YgCallout(
+              variant: YgCalloutVariant.critical,
+              description: 'Callout with a description only.',
+              onClose: () {},
+            ),
+            const YgCallout(
+              variant: YgCalloutVariant.critical,
+              description: 'Callout with no close.',
+            ),
+          ]),
         ],
       ),
     );

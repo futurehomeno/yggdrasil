@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:yggdrasil/yggdrasil.dart';
 import 'package:yggdrasil_demo/core/_core.dart';
-import 'package:yggdrasil_demo/extensions/widget_extensions.dart';
 import 'package:yggdrasil_demo/widgets/_widgets.dart';
 
 // TODO(bjhandeland): Add list example with lazy loading.
@@ -32,7 +31,7 @@ class ListScreen extends StatelessWidget {
             itemBuilder: (BuildContext context, int index) {
               return YgListTile(title: 'Title $index');
             },
-          ).inspectable,
+          ),
           const YgListTile(title: 'ListView.separated'),
           ListView.separated(
             shrinkWrap: true,
@@ -43,7 +42,7 @@ class ListScreen extends StatelessWidget {
             separatorBuilder: (BuildContext context, int index) {
               return const YgDivider();
             },
-          ).inspectable,
+          ),
           const YgListTile(title: 'ListView w/ separated by'),
           ListView(
             shrinkWrap: true,
@@ -52,7 +51,7 @@ class ListScreen extends StatelessWidget {
               const YgListTile(title: 'Title 1'),
               const YgListTile(title: 'Title 1')
             ].separatedBy(const YgDivider()),
-          ).inspectable,
+          ),
           const YgListTile(title: 'Manual'),
           ListView(
             shrinkWrap: true,
@@ -63,7 +62,7 @@ class ListScreen extends StatelessWidget {
               YgDivider(),
               YgListTile(title: 'Title 1')
             ],
-          ).inspectable,
+          ),
         ],
       ),
     );

@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:yggdrasil/yggdrasil.dart';
 import 'package:yggdrasil_demo/core/_core.dart';
-import 'package:yggdrasil_demo/extensions/widget_extensions.dart';
 import 'package:yggdrasil_demo/widgets/_widgets.dart';
 
 class ButtonGroupScreen extends StatelessWidget {
@@ -51,7 +50,7 @@ class ButtonGroupScreen extends StatelessWidget {
                 child: const Text('Button 2'),
               ),
             ],
-          ).inspectable,
+          ),
           const YgListTile(title: 'Button group with 3 buttons'),
           YgButtonGroup(
             children: <YgButton>[
@@ -74,14 +73,14 @@ class ButtonGroupScreen extends StatelessWidget {
                 child: const Text('Critical'),
               ),
             ],
-          ).inspectable,
+          ),
           const YgListTile(title: 'Action or cancel group.'),
           YgButtonGroup.actionOrCancel(
             actionText: 'Save',
             cancelText: 'Cancel',
             onActionPressed: () {},
             onCancelPressed: () {},
-          ).inspectable,
+          ),
         ],
       ),
     );
