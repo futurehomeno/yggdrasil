@@ -4,6 +4,15 @@ import 'package:yggdrasil/yggdrasil.dart';
 
 import 'widgets/_widgets.dart';
 
+enum YgTextInputStates {
+  error,
+  hovered,
+  focused,
+  disabled,
+  suffix,
+  large,
+}
+
 class YgTextInput extends YgTextInputWidget {
   const YgTextInput({
     super.key,
@@ -111,12 +120,9 @@ class _YgTextInputState extends YgTextInputWidgetState<YgTextInput> {
   /// wether the input is being hovered over.
   bool _hovered = false;
 
-  /// Wether there is an error which should be displayed on the input.
-  bool get _hasError => widget.error != null;
-
   @override
   Widget build(BuildContext context) {
-    final Widget? suffix = _computedSuffix;
+    final Widget? suffix = _buildSuffix();
 
     final Widget layout = RepaintBoundary(
       child: Column(
@@ -133,7 +139,7 @@ class _YgTextInputState extends YgTextInputWidgetState<YgTextInput> {
               children: <Widget>[
                 Expanded(
                   child: Padding(
-                    padding: _contentPadding,
+                    padding: _getContentPadding(suffix != null),
                     child: YgTextInputContent(
                       controller: widget.controller,
                       disabled: widget.disabled,
@@ -155,7 +161,7 @@ class _YgTextInputState extends YgTextInputWidgetState<YgTextInput> {
               ],
             ),
           ),
-          _errorMessageWidget,
+          _buildErrorMessage(),
         ],
       ),
     );
@@ -185,20 +191,7 @@ class _YgTextInputState extends YgTextInputWidgetState<YgTextInput> {
     );
   }
 
-  EdgeInsets get _contentPadding {
-    return EdgeInsets.symmetric(
-      vertical: switch (widget.size) {
-        YgTextInputSize.large => 12,
-        YgTextInputSize.medium => 7,
-      },
-      horizontal: switch (widget.variant) {
-        YgTextInputVariant.outlined => 12,
-        YgTextInputVariant.standard => 0,
-      },
-    );
-  }
-
-  Widget get _errorMessageWidget {
+  Widget _buildErrorMessage() {
     final String? error = widget.error;
 
     if (widget.disabled || error == null) {
@@ -223,25 +216,34 @@ class _YgTextInputState extends YgTextInputWidgetState<YgTextInput> {
     );
   }
 
+  EdgeInsets _getContentPadding(bool suffix) {
+    final EdgeInsets padding = EdgeInsets.symmetric(
+      vertical: switch (widget.size) {
+        YgTextInputSize.large => 12,
+        YgTextInputSize.medium => 7,
+      },
+      horizontal: switch (widget.variant) {
+        YgTextInputVariant.outlined => 12,
+        YgTextInputVariant.standard => 0,
+      },
+    );
+
+    if (!suffix) {
+      return padding;
+    }
+
+    return padding.copyWith(
+      right: 0,
+    );
+  }
+
   void _handleTap() {
     if (!focusNode.hasFocus) {
       focusNode.requestFocus();
     }
   }
 
-  bool get _obscureText {
-    if (!widget.obscureText) {
-      return false;
-    }
-
-    if (!widget.showObscureTextButton) {
-      return true;
-    }
-
-    return _obscureTextToggled;
-  }
-
-  Widget? get _computedSuffix {
+  Widget? _buildSuffix() {
     Widget? suffix = widget.trailingIcon;
 
     if (suffix == null && widget.obscureText && widget.showObscureTextButton) {
@@ -258,14 +260,23 @@ class _YgTextInputState extends YgTextInputWidgetState<YgTextInput> {
       return YgDefaultIconStyle(
         tapSize: YgIconTapSize.largest,
         color: _suffixIconColor,
-        // child: Padding(
-        //   padding: const EdgeInsets.only(left: 5),
         child: suffix,
-        // ),
       );
     }
 
     return null;
+  }
+
+  bool get _obscureText {
+    if (!widget.obscureText) {
+      return false;
+    }
+
+    if (!widget.showObscureTextButton) {
+      return true;
+    }
+
+    return _obscureTextToggled;
   }
 
   Color get _suffixIconColor {
