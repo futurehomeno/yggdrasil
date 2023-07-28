@@ -59,7 +59,10 @@ class YgIcon extends StatelessWidget {
     if (icon == null) {
       return Semantics(
         label: semanticLabel,
-        child: SizedBox.square(dimension: iconSize),
+        child: SizedBox.square(
+          dimension: iconSize,
+          child: const Placeholder(),
+        ),
       );
     }
 
