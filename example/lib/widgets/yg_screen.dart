@@ -3,6 +3,8 @@ import 'package:provider/provider.dart';
 import 'package:yggdrasil/yggdrasil.dart';
 import 'package:yggdrasil_demo/core/_core.dart';
 
+import 'yg_debug_bottom_sheet.dart';
+
 class YgScreen extends StatelessWidget {
   const YgScreen({
     super.key,
@@ -36,7 +38,7 @@ class YgScreen extends StatelessWidget {
             actions: <Widget>[
               YgIcon(
                 YgIcons.eyeOpen,
-                onTap: () => Navigator.of(context).push(DebugBottomSheet(ygAppState)),
+                onTap: () => Navigator.of(context).push(YgDebugBottomSheet(ygAppState)),
                 tapSize: YgIconTapSize.largest,
               ),
               YgIcon(
@@ -53,84 +55,6 @@ class YgScreen extends StatelessWidget {
               : child,
         );
       },
-    );
-  }
-}
-
-class DebugBottomSheet extends YgBottomSheetModalRoute {
-  DebugBottomSheet(this.ygAppState);
-
-  final YgAppState ygAppState;
-
-  @override
-  String get name => 'DebugBottomSheet';
-
-  @override
-  YgBottomSheet buildBottomSheet(BuildContext context) {
-    return YgBottomSheet(
-      title: 'Debug Stuff',
-      content: Column(children: <Widget>[
-        YgListTile(
-          title: 'Toggle paint size',
-          onTap: () => ygAppState.toggleDebugPaintSizeEnabled(),
-          trailingWidgets: <Widget>[
-            Checkbox(
-              value: ygAppState.debugPaintSizeEnabled,
-              onChanged: (_) => ygAppState.toggleDebugPaintSizeEnabled(),
-            )
-          ],
-        ),
-        YgListTile(
-          title: 'Toggle paint baseline',
-          onTap: () => ygAppState.toggleDebugPaintBaselinesEnabled(),
-          trailingWidgets: <Widget>[
-            Checkbox(
-              value: ygAppState.debugPaintBaselinesEnabled,
-              onChanged: (_) => ygAppState.toggleDebugPaintBaselinesEnabled(),
-            )
-          ],
-        ),
-        YgListTile(
-          title: 'Toggle layer borders',
-          onTap: () => ygAppState.toggleDebugPaintLayerBordersEnabled(),
-          trailingWidgets: <Widget>[
-            Checkbox(
-              value: ygAppState.debugPaintLayerBordersEnabled,
-              onChanged: (_) => ygAppState.toggleDebugPaintLayerBordersEnabled(),
-            )
-          ],
-        ),
-        YgListTile(
-          title: 'Toggle paint pointers',
-          onTap: () => ygAppState.toggleDebugPaintPointersEnabled(),
-          trailingWidgets: <Widget>[
-            Checkbox(
-              value: ygAppState.debugPaintPointersEnabled,
-              onChanged: (_) => ygAppState.toggleDebugPaintPointersEnabled(),
-            )
-          ],
-        ),
-        YgListTile(
-          title: 'Toggle repaint rainbow',
-          onTap: () => ygAppState.toggleDebugRepaintRainbowEnabled(),
-          trailingWidgets: <Widget>[
-            Checkbox(
-              value: ygAppState.debugRepaintRainbowEnabled,
-              onChanged: (_) => ygAppState.toggleDebugRepaintRainbowEnabled(),
-            )
-          ],
-        ),
-        YgListTile(
-          title: 'Toggle repaint text rainbow',
-          onTap: () => ygAppState.toggleDebugRepaintTextRainbowEnabled(),
-          trailingWidgets: <Widget>[
-            Checkbox(
-              value: ygAppState.debugRepaintTextRainbowEnabled,
-              onChanged: (_) => ygAppState.toggleDebugRepaintTextRainbowEnabled(),
-            )
-          ],
-        ),
-      ]),
     );
   }
 }
