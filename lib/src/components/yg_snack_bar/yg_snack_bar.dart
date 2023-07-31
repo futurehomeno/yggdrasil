@@ -27,6 +27,7 @@ class YgSnackBar extends SnackBar {
     final YgSnackBarTheme theme = context.snackBarTheme;
 
     return Row(
+      crossAxisAlignment: CrossAxisAlignment.start,
       children: <Widget>[
         DecoratedBox(
           decoration: BoxDecoration(
@@ -52,7 +53,7 @@ class YgSnackBar extends SnackBar {
         ),
         YgIcon(
           YgIcons.cross,
-          color: context.defaults.invertedIconColor,
+          color: theme.closeIconColor,
           size: YgIconSize.small,
           tapSize: YgIconTapSize.larger,
           onTap: () {
