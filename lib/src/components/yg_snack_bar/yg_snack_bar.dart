@@ -11,19 +11,25 @@ class YgSnackBar extends SnackBar {
     required String message,
     YgSnackBarVariant variant = YgSnackBarVariant.highlight,
   }) : super(
-          content: _buildSnackBarContent(message, variant, context),
+          content: _buildSnackBarContent(
+            context: context,
+            message: message,
+            variant: variant,
+          ),
           backgroundColor: context.snackBarTheme.backgroundColor,
           behavior: SnackBarBehavior.floating,
           margin: context.snackBarTheme.margin,
           padding: context.snackBarTheme.padding,
-          shape: RoundedRectangleBorder(borderRadius: context.snackBarTheme.borderRadius),
+          shape: RoundedRectangleBorder(
+            borderRadius: context.snackBarTheme.borderRadius,
+          ),
         );
 
-  static Widget _buildSnackBarContent(
-    String message,
-    YgSnackBarVariant variant,
-    BuildContext context,
-  ) {
+  static Widget _buildSnackBarContent({
+    required BuildContext context,
+    required String message,
+    required YgSnackBarVariant variant,
+  }) {
     final YgSnackBarTheme theme = context.snackBarTheme;
 
     return Row(
