@@ -30,7 +30,7 @@ class YgSnackBar extends SnackBar {
     required String message,
     required YgSnackBarVariant variant,
   }) {
-    final YgSnackBarTheme theme = context.snackBarTheme;
+    final YgSnackBarTheme snackBarTheme = context.snackBarTheme;
 
     return Row(
       crossAxisAlignment: CrossAxisAlignment.start,
@@ -39,14 +39,14 @@ class YgSnackBar extends SnackBar {
           decoration: BoxDecoration(
             shape: BoxShape.circle,
             color: YgSnackBarMapper.getContainerIconColor(
-              theme: theme,
+              theme: snackBarTheme,
               snackBarVariant: variant,
             ),
           ),
           child: Padding(
-            padding: theme.iconContainerPadding,
+            padding: snackBarTheme.iconContainerPadding,
             child: YgSnackBarMapper.getIcon(
-              theme: theme,
+              theme: snackBarTheme,
               snackBarVariant: variant,
             ),
           ),
@@ -54,19 +54,19 @@ class YgSnackBar extends SnackBar {
         Expanded(
           child: Text(
             message,
-            style: theme.messageTextStyle,
+            style: snackBarTheme.messageTextStyle,
           ),
         ),
         YgIcon(
           YgIcons.cross,
-          color: theme.closeIconColor,
+          color: snackBarTheme.closeIconColor,
           size: YgIconSize.small,
           tapSize: YgIconTapSize.larger,
           onTap: () {
             ScaffoldMessenger.of(context).hideCurrentSnackBar();
           },
         ),
-      ].withHorizontalSpacing(theme.messageSpacing),
+      ].withHorizontalSpacing(snackBarTheme.messageSpacing),
     );
   }
 }
