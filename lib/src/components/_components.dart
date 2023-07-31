@@ -8,6 +8,6 @@ export 'yg_dialog/_yg_dialog.dart';
 export 'yg_divider/_yg_divider.dart';
 export 'yg_icon/_yg_icon.dart';
 export 'yg_list_tile/_yg_list_tile.dart';
-export 'yg_snackbar/_yg_snackbar.dart';
+export 'yg_snack_bar/_yg_snack_bar.dart';
 export 'yg_tag/_yg_tag.dart';
 export 'yg_text_link/_yg_text_link.dart';
