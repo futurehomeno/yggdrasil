@@ -59,4 +59,18 @@ class _$LinkButtonTheme {
     professional_light.FhGradients.transparent,
     professional_dark.FhGradients.transparent,
   ];
+
+  static List<Color> iconDefaultColor = <Color>[
+    consumer_light.FhColors.iconHighlight,
+    consumer_dark.FhColors.iconHighlight,
+    professional_light.FhColors.iconHighlight,
+    professional_dark.FhColors.iconHighlight,
+  ];
+
+  static List<Color> iconDisabledColor = <Color>[
+    consumer_light.FhColors.iconDisabled,
+    consumer_dark.FhColors.iconDisabled,
+    professional_light.FhColors.iconDisabled,
+    professional_dark.FhColors.iconDisabled,
+  ];
 }

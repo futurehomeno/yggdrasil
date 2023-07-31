@@ -51,8 +51,8 @@ class YgButtonStyle {
             size: size,
           ),
           iconSize: context.buttonTheme.iconSize,
-          iconColor: context.buttonTheme.iconDefaultColor,
-          iconDisabledColor: context.buttonTheme.iconDisabledColor,
+          iconColor: theme.iconDefaultColor,
+          iconDisabledColor: theme.iconDisabledColor,
         );
 
       case YgButtonVariant.secondary:
@@ -76,8 +76,8 @@ class YgButtonStyle {
             size: size,
           ),
           iconSize: context.buttonTheme.iconSize,
-          iconColor: context.buttonTheme.iconDefaultColor,
-          iconDisabledColor: context.buttonTheme.iconDisabledColor,
+          iconColor: theme.iconDefaultColor,
+          iconDisabledColor: theme.iconDisabledColor,
         );
 
       case YgButtonVariant.text:
@@ -101,8 +101,8 @@ class YgButtonStyle {
             size: size,
           ),
           iconSize: context.buttonTheme.iconSize,
-          iconColor: context.buttonTheme.iconDefaultColor,
-          iconDisabledColor: context.buttonTheme.iconDisabledColor,
+          iconColor: theme.iconDefaultColor,
+          iconDisabledColor: theme.iconDisabledColor,
         );
 
       case YgButtonVariant.link:
@@ -126,8 +126,8 @@ class YgButtonStyle {
             size: size,
           ),
           iconSize: context.buttonTheme.iconSize,
-          iconColor: context.buttonTheme.iconDefaultColor,
-          iconDisabledColor: context.buttonTheme.iconDisabledColor,
+          iconColor: theme.iconDefaultColor,
+          iconDisabledColor: theme.iconDisabledColor,
         );
 
       case YgButtonVariant.critical:
@@ -151,8 +151,8 @@ class YgButtonStyle {
             size: size,
           ),
           iconSize: context.buttonTheme.iconSize,
-          iconColor: context.buttonTheme.iconDefaultColor,
-          iconDisabledColor: context.buttonTheme.iconDisabledColor,
+          iconColor: theme.iconDefaultColor,
+          iconDisabledColor: theme.iconDisabledColor,
         );
     }
   }
