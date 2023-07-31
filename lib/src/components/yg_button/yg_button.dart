@@ -23,36 +23,64 @@ class YgButton extends ButtonStyleButton {
   });
 
   // region Leading icon
-  factory YgButton.leadingIcon({
+  YgButton.leadingIcon({
     Key? key,
     required VoidCallback? onPressed,
     required Widget child,
     required YgIcon icon,
-    bool? autofocus,
+    bool autofocus = false,
+    Clip clipBehavior = Clip.none,
     ButtonStyle? style,
-    Clip? clipBehavior,
     FocusNode? focusNode,
     VoidCallback? onLongPress,
-    YgButtonSize size,
-    YgButtonVariant variant,
-  }) = _YgButtonWithLeadingIcon;
+    YgButtonSize size = YgButtonSize.medium,
+    YgButtonVariant variant = YgButtonVariant.primary,
+  }) : this(
+          key: key,
+          onPressed: onPressed,
+          child: _YgButtonWithLeadingIconChild(
+            icon: icon,
+            child: child,
+          ),
+          autofocus: autofocus,
+          style: style,
+          clipBehavior: clipBehavior,
+          focusNode: focusNode,
+          onLongPress: onLongPress,
+          size: size,
+          variant: variant,
+        );
 
   // endregion Leading icon
 
   // region Trailing icon
-  factory YgButton.trailingIcon({
+  YgButton.trailingIcon({
     Key? key,
     required VoidCallback? onPressed,
     required Widget child,
     required YgIcon icon,
-    bool autofocus,
+    bool autofocus = false,
+    Clip clipBehavior = Clip.none,
     ButtonStyle? style,
-    Clip? clipBehavior,
     FocusNode? focusNode,
     VoidCallback? onLongPress,
-    YgButtonSize size,
-    YgButtonVariant variant,
-  }) = _YgButtonWithTrailingIcon;
+    YgButtonSize size = YgButtonSize.medium,
+    YgButtonVariant variant = YgButtonVariant.primary,
+  }) : this(
+          key: key,
+          onPressed: onPressed,
+          child: _YgButtonWithTrailingIconChild(
+            icon: icon,
+            child: child,
+          ),
+          autofocus: autofocus,
+          style: style,
+          clipBehavior: clipBehavior,
+          focusNode: focusNode,
+          onLongPress: onLongPress,
+          size: size,
+          variant: variant,
+        );
 
   final YgButtonVariant variant;
   final YgButtonSize size;
@@ -75,31 +103,6 @@ class YgButton extends ButtonStyleButton {
 }
 
 // region Leading icon
-
-class _YgButtonWithLeadingIcon extends YgButton {
-  _YgButtonWithLeadingIcon({
-    super.key,
-    required super.onPressed,
-    required YgIcon icon,
-    required Widget child,
-    bool? autofocus,
-    Clip? clipBehavior,
-    YgButtonSize size = YgButtonSize.medium,
-    YgButtonVariant variant = YgButtonVariant.primary,
-    super.focusNode,
-    super.onLongPress,
-    super.style,
-  }) : super(
-          autofocus: autofocus ?? false,
-          clipBehavior: clipBehavior ?? Clip.none,
-          child: _YgButtonWithLeadingIconChild(
-            icon: icon,
-            child: child,
-          ),
-          variant: variant,
-          size: size,
-        );
-}
 
 class _YgButtonWithLeadingIconChild extends StatelessWidget {
   const _YgButtonWithLeadingIconChild({
@@ -125,30 +128,6 @@ class _YgButtonWithLeadingIconChild extends StatelessWidget {
 // endregion Leading icon
 
 // region Trailing icon
-
-class _YgButtonWithTrailingIcon extends YgButton {
-  _YgButtonWithTrailingIcon({
-    super.key,
-    required super.onPressed,
-    required YgIcon icon,
-    required Widget child,
-    bool? autofocus,
-    Clip? clipBehavior,
-    YgButtonSize size = YgButtonSize.medium,
-    YgButtonVariant variant = YgButtonVariant.primary,
-    super.focusNode,
-    super.onLongPress,
-    super.style,
-  }) : super(
-          clipBehavior: clipBehavior ?? Clip.none,
-          child: _YgButtonWithTrailingIconChild(
-            icon: icon,
-            child: child,
-          ),
-          variant: variant,
-          size: size,
-        );
-}
 
 class _YgButtonWithTrailingIconChild extends StatelessWidget {
   const _YgButtonWithTrailingIconChild({

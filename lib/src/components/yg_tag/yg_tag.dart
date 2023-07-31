@@ -26,55 +26,98 @@ class YgTag extends ButtonStyleButton {
   });
 
   // region Leading icon
-  factory YgTag.leadingIcon({
+  YgTag.leadingIcon({
     Key? key,
     required YgIcon icon,
     required Widget child,
-    bool autofocus,
+    bool autofocus = false,
+    Clip clipBehavior = Clip.none,
     ButtonStyle? style,
-    Clip clipBehavior,
     FocusNode? focusNode,
-    VoidCallback? onLongPress,
     VoidCallback? onPressed,
-    YgTagSize size,
-    YgTagVariant variant,
-    YgTagWeight weight,
-  }) = _YgTagWithLeadingIcon;
+    VoidCallback? onLongPress,
+    YgTagSize size = YgTagSize.medium,
+    YgTagVariant variant = YgTagVariant.neutral,
+    YgTagWeight weight = YgTagWeight.weak,
+  }) : this(
+          key: key,
+          child: _YgTagWithLeadingIconChild(
+            icon: icon,
+            child: child,
+          ),
+          autofocus: autofocus,
+          style: style,
+          clipBehavior: clipBehavior,
+          focusNode: focusNode,
+          onPressed: onPressed,
+          onLongPress: onLongPress,
+          size: size,
+          variant: variant,
+        );
   // endregion Leading icon
 
   // region Trailing icon
-  factory YgTag.trailingIcon({
+  YgTag.trailingIcon({
     Key? key,
     required YgIcon icon,
     required Widget child,
-    bool autofocus,
+    bool autofocus = false,
+    Clip clipBehavior = Clip.none,
     ButtonStyle? style,
-    Clip clipBehavior,
     FocusNode? focusNode,
-    VoidCallback? onLongPress,
     VoidCallback? onPressed,
-    YgTagSize size,
-    YgTagVariant variant,
-    YgTagWeight weight,
-  }) = _YgTagWithTrailingIcon;
+    VoidCallback? onLongPress,
+    YgTagSize size = YgTagSize.medium,
+    YgTagVariant variant = YgTagVariant.neutral,
+    YgTagWeight weight = YgTagWeight.weak,
+  }) : this(
+          key: key,
+          child: _YgTagWithTrailingIconChild(
+            icon: icon,
+            child: child,
+          ),
+          autofocus: autofocus,
+          style: style,
+          clipBehavior: clipBehavior,
+          focusNode: focusNode,
+          onPressed: onPressed,
+          onLongPress: onLongPress,
+          size: size,
+          variant: variant,
+        );
   // endregion Trailing icon
 
   // region Double icon
-  factory YgTag.doubleIcon({
+  YgTag.doubleIcon({
     Key? key,
     required YgIcon leadingIcon,
     required YgIcon trailingIcon,
     required Widget child,
-    bool autofocus,
+    bool autofocus = false,
+    Clip clipBehavior = Clip.none,
     ButtonStyle? style,
-    Clip clipBehavior,
     FocusNode? focusNode,
-    VoidCallback? onLongPress,
     VoidCallback? onPressed,
-    YgTagSize size,
-    YgTagVariant variant,
-    YgTagWeight weight,
-  }) = _YgTagWithDoubleIcon;
+    VoidCallback? onLongPress,
+    YgTagSize size = YgTagSize.medium,
+    YgTagVariant variant = YgTagVariant.neutral,
+    YgTagWeight weight = YgTagWeight.weak,
+  }) : this(
+          key: key,
+          child: _YgTagWithDoubleIconChild(
+            leadingIcon: leadingIcon,
+            trailingIcon: trailingIcon,
+            child: child,
+          ),
+          autofocus: autofocus,
+          style: style,
+          clipBehavior: clipBehavior,
+          focusNode: focusNode,
+          onPressed: onPressed,
+          onLongPress: onLongPress,
+          size: size,
+          variant: variant,
+        );
   // endregion Double icon
 
   final YgTagVariant variant;
@@ -99,31 +142,6 @@ class YgTag extends ButtonStyleButton {
 }
 
 // region Leading icon
-class _YgTagWithLeadingIcon extends YgTag {
-  _YgTagWithLeadingIcon({
-    super.key,
-    required YgIcon icon,
-    required Widget child,
-    super.autofocus = false,
-    super.clipBehavior = Clip.none,
-    super.focusNode,
-    super.onLongPress,
-    super.onPressed,
-    super.style,
-    YgTagSize size = YgTagSize.medium,
-    YgTagVariant variant = YgTagVariant.neutral,
-    YgTagWeight weight = YgTagWeight.weak,
-  }) : super(
-          child: _YgTagWithLeadingIconChild(
-            icon: icon,
-            child: child,
-          ),
-          variant: variant,
-          size: size,
-          weight: weight,
-        );
-}
-
 class _YgTagWithLeadingIconChild extends StatelessWidget {
   const _YgTagWithLeadingIconChild({
     required this.icon,
@@ -147,31 +165,6 @@ class _YgTagWithLeadingIconChild extends StatelessWidget {
 // endregion Leading icon
 
 // region Trailing icon
-class _YgTagWithTrailingIcon extends YgTag {
-  _YgTagWithTrailingIcon({
-    super.key,
-    required YgIcon icon,
-    required Widget child,
-    super.autofocus = false,
-    super.clipBehavior = Clip.none,
-    super.focusNode,
-    super.onLongPress,
-    super.onPressed,
-    super.style,
-    YgTagSize size = YgTagSize.medium,
-    YgTagVariant variant = YgTagVariant.neutral,
-    YgTagWeight weight = YgTagWeight.weak,
-  }) : super(
-          child: _YgTagWithTrailingIconChild(
-            icon: icon,
-            child: child,
-          ),
-          variant: variant,
-          size: size,
-          weight: weight,
-        );
-}
-
 class _YgTagWithTrailingIconChild extends StatelessWidget {
   const _YgTagWithTrailingIconChild({
     required this.icon,
@@ -195,33 +188,6 @@ class _YgTagWithTrailingIconChild extends StatelessWidget {
 // endregion Trailing icon
 
 // region Double icon
-class _YgTagWithDoubleIcon extends YgTag {
-  _YgTagWithDoubleIcon({
-    super.key,
-    required YgIcon leadingIcon,
-    required YgIcon trailingIcon,
-    required Widget child,
-    super.autofocus = false,
-    super.clipBehavior = Clip.none,
-    super.focusNode,
-    super.onLongPress,
-    super.onPressed,
-    super.style,
-    YgTagSize size = YgTagSize.medium,
-    YgTagVariant variant = YgTagVariant.neutral,
-    YgTagWeight weight = YgTagWeight.weak,
-  }) : super(
-          child: _YgTagWithDoubleIconChild(
-            leadingIcon: leadingIcon,
-            trailingIcon: trailingIcon,
-            child: child,
-          ),
-          variant: variant,
-          size: size,
-          weight: weight,
-        );
-}
-
 class _YgTagWithDoubleIconChild extends StatelessWidget {
   const _YgTagWithDoubleIconChild({
     required this.leadingIcon,
