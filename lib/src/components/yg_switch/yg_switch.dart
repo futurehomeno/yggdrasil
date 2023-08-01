@@ -1,11 +1,16 @@
 import 'package:flutter/material.dart';
 import 'package:yggdrasil/src/theme/theme.dart';
 
+import 'yg_switch_handle.dart';
+
+/// Binary (or optionally tri-state) switch.
+// TODO(bjhandeland): Replace animation properties with theme tokens.
 class YgSwitch extends StatelessWidget {
   const YgSwitch({
     super.key,
     required this.value,
     required this.onChanged,
+    this.ignorePointer = false,
     this.triState = false,
   });
 
@@ -15,30 +20,41 @@ class YgSwitch extends StatelessWidget {
   /// Callback to trigger when the value of the switch changes.
   final Function(bool? newValue)? onChanged;
 
+  final bool ignorePointer;
+
   /// Makes switch toggle from true --> false --> null --> true --> ...
   final bool triState;
 
   @override
   Widget build(BuildContext context) {
-    return Material(
-      color: _getBackgroundColor(context),
-      shape: RoundedRectangleBorder(
-        borderRadius: BorderRadius.circular(50.0),
-      ),
-      child: InkWell(
-        borderRadius: BorderRadius.circular(50.0),
-        onTap: onChanged == null ? null : onTap,
-        child: SizedBox(
-          width: 50.0,
-          height: 30.0,
-          child: Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 5.0),
-            child: AnimatedAlign(
-              curve: Curves.easeInOut,
-              alignment: _getHandleAlignment(),
-              duration: const Duration(milliseconds: 200),
-              child: YgSwitchHandle(
-                color: _getHandleColor(context),
+    return IgnorePointer(
+      ignoring: ignorePointer,
+      child: RepaintBoundary(
+        child: Semantics(
+          toggled: value,
+          child: Material(
+            color: _getBackgroundColor(context),
+            shape: RoundedRectangleBorder(
+              borderRadius: context.switchTheme.borderRadius,
+            ),
+            child: InkWell(
+              excludeFromSemantics: true,
+              borderRadius: context.switchTheme.borderRadius,
+              onTap: onChanged == null ? null : onTap,
+              child: SizedBox(
+                width: context.switchTheme.width,
+                height: context.switchTheme.height,
+                child: Padding(
+                  padding: const EdgeInsets.symmetric(horizontal: 5.0),
+                  child: AnimatedAlign(
+                    curve: Curves.easeInOut,
+                    alignment: _getHandleAlignment(),
+                    duration: const Duration(milliseconds: 200),
+                    child: YgSwitchHandle(
+                      color: _getHandleColor(context),
+                    ),
+                  ),
+                ),
               ),
             ),
           ),
@@ -108,26 +124,5 @@ class YgSwitch extends StatelessWidget {
     }
 
     return context.switchTheme.handleNullColor;
-  }
-}
-
-class YgSwitchHandle extends StatelessWidget {
-  const YgSwitchHandle({
-    super.key,
-    required this.color,
-  });
-
-  final Color color;
-
-  @override
-  Widget build(BuildContext context) {
-    return Container(
-      height: 20.0,
-      width: 20.0,
-      decoration: BoxDecoration(
-        shape: BoxShape.circle,
-        color: color,
-      ),
-    );
   }
 }

@@ -9,6 +9,27 @@ part 'switch_theme.tailor.dart';
 
 @tailorComponent
 class _$YgSwitchTheme {
+  static List<double> height = <double>[
+    consumer_light.FhDimensions.xl,
+    consumer_dark.FhDimensions.xl,
+    professional_light.FhDimensions.xl,
+    professional_dark.FhDimensions.xl,
+  ];
+
+  static List<double> width = <double>[
+    consumer_light.FhDimensions.xxl,
+    consumer_dark.FhDimensions.xxl,
+    professional_light.FhDimensions.xxl,
+    professional_dark.FhDimensions.xxl,
+  ];
+
+  static List<double> handleSize = <double>[
+    consumer_light.FhDimensions.md,
+    consumer_dark.FhDimensions.md,
+    professional_light.FhDimensions.md,
+    professional_dark.FhDimensions.md,
+  ];
+
   static List<Color> backgroundSelectedColor = <Color>[
     consumer_light.FhColors.backgroundHighlightDefault,
     consumer_dark.FhColors.backgroundHighlightDefault,
