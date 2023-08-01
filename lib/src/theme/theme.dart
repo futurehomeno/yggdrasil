@@ -14,6 +14,7 @@ import 'icon/_icon.dart';
 import 'internal/_internal.dart';
 import 'list_tile/_list_tile.dart';
 import 'snackbar/_snackbar.dart';
+import 'switch/_switch.dart';
 import 'tag/_tag.dart';
 import 'text_link/_text_link.dart';
 import 'tokens/tokens.dart';
@@ -61,6 +62,9 @@ class _$YgTheme {
 
   @themeExtension
   static List<YgSnackbarTheme> snackbarTheme = YgSnackbarTheme.themes;
+
+  @themeExtension
+  static List<YgSwitchTheme> switchTheme = YgSwitchTheme.themes;
 
   @themeExtension
   static List<YgTagTheme> tagTheme = YgTagTheme.themes;
