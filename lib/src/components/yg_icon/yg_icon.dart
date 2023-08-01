@@ -80,6 +80,7 @@ class YgIcon extends StatelessWidget {
                 colorFilter: colorFilter,
                 height: iconSize,
                 width: iconSize,
+                excludeFromSemantics: true,
               ),
             ),
           ),
