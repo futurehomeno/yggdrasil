@@ -6,12 +6,7 @@ class YgAppState extends ChangeNotifier {
   final YgTheme _defaultTheme = YgTheme.consumerLight;
   YgTheme _currentTheme = YgTheme.consumerLight;
   YgTheme get theme => _defaultTheme;
-  bool _debugPaintSizeEnabled = false;
-  bool _debugPaintBaselinesEnabled = false;
-  bool _debugPaintLayerBordersEnabled = false;
-  bool _debugPaintPointersEnabled = false;
-  bool _debugRepaintRainbowEnabled = false;
-  bool _debugRepaintTextRainbowEnabled = false;
+  bool _debugOutlineEnabled = false;
 
   void toggleTheme() {
     if (_currentTheme == YgTheme.consumerLight) {
@@ -23,38 +18,8 @@ class YgAppState extends ChangeNotifier {
     notifyListeners();
   }
 
-  Future<void> toggleDebugPaintSizeEnabled() async {
-    _debugPaintSizeEnabled ^= true;
-    _updateAppKey();
-    notifyListeners();
-  }
-
-  Future<void> toggleDebugPaintBaselinesEnabled() async {
-    _debugPaintBaselinesEnabled ^= true;
-    _updateAppKey();
-    notifyListeners();
-  }
-
-  Future<void> toggleDebugPaintLayerBordersEnabled() async {
-    _debugPaintLayerBordersEnabled ^= true;
-    _updateAppKey();
-    notifyListeners();
-  }
-
-  Future<void> toggleDebugPaintPointersEnabled() async {
-    _debugPaintPointersEnabled ^= true;
-    _updateAppKey();
-    notifyListeners();
-  }
-
-  Future<void> toggleDebugRepaintRainbowEnabled() async {
-    _debugRepaintRainbowEnabled ^= true;
-    _updateAppKey();
-    notifyListeners();
-  }
-
-  Future<void> toggleDebugRepaintTextRainbowEnabled() async {
-    _debugRepaintTextRainbowEnabled ^= true;
+  Future<void> toggleDebugOutlineEnabled() async {
+    _debugOutlineEnabled ^= true;
     _updateAppKey();
     notifyListeners();
   }
@@ -69,12 +34,7 @@ class YgAppState extends ChangeNotifier {
   YgTheme get defaultTheme => _defaultTheme;
   YgTheme get currentTheme => _currentTheme;
 
-  bool get debugPaintSizeEnabled => _debugPaintSizeEnabled;
-  bool get debugPaintBaselinesEnabled => _debugPaintBaselinesEnabled;
-  bool get debugPaintLayerBordersEnabled => _debugPaintLayerBordersEnabled;
-  bool get debugPaintPointersEnabled => _debugPaintPointersEnabled;
-  bool get debugRepaintRainbowEnabled => _debugRepaintRainbowEnabled;
-  bool get debugRepaintTextRainbowEnabled => _debugRepaintTextRainbowEnabled;
+  bool get debugOutlineEnabled => _debugOutlineEnabled;
 
   ThemeData get currentThemeData {
     return YgThemeDataHelper.getThemeData(_currentTheme);

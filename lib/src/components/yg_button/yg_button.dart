@@ -5,7 +5,7 @@ import 'yg_button_style.dart';
 
 /// Base class for creating all Yg buttons.
 // TODO(bjhandeland): Consider making the private classes parts.
-class YgButton extends ButtonStyleButton {
+class YgButton extends ButtonStyleButton with StatefulWidgetDebugMixin {
   const YgButton({
     super.key,
     required this.variant,

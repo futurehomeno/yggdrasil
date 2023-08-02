@@ -3,7 +3,7 @@ import 'package:yggdrasil/src/components/yg_snackbar/mappers/_mappers.dart';
 import 'package:yggdrasil/yggdrasil.dart';
 
 /// A custom widget for styled Snackbar.
-class YgSnackbar extends StatelessWidget {
+class YgSnackbar extends StatelessWidget with StatelessWidgetDebugMixin {
   const YgSnackbar({
     super.key,
     required this.variant,

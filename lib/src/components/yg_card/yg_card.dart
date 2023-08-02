@@ -8,7 +8,7 @@ import 'package:yggdrasil/yggdrasil.dart';
 /// By design, this card does not have any padding.
 // TODO(bjhandeland): Make this component stateful or make a stateful card.
 // TODO(bjhandeland): Add support for semanticContainer.
-class YgCard extends StatelessWidget {
+class YgCard extends StatelessWidget with StatelessWidgetDebugMixin {
   const YgCard({
     super.key,
     this.variant = YgCardVariant.elevated,

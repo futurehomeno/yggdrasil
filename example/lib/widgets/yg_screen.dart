@@ -3,8 +3,6 @@ import 'package:provider/provider.dart';
 import 'package:yggdrasil/yggdrasil.dart';
 import 'package:yggdrasil_demo/core/_core.dart';
 
-import 'yg_debug_bottom_sheet.dart';
-
 class YgScreen extends StatelessWidget {
   const YgScreen({
     super.key,
@@ -38,7 +36,7 @@ class YgScreen extends StatelessWidget {
             actions: <Widget>[
               YgIcon(
                 YgIcons.eyeOpen,
-                onTap: () => Navigator.of(context).push(YgDebugBottomSheet(ygAppState)),
+                onTap: ygAppState.toggleDebugOutlineEnabled,
                 tapSize: YgIconTapSize.largest,
               ),
               YgIcon(

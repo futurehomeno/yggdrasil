@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:yggdrasil/yggdrasil.dart';
 
-class YgButtonGroup extends StatelessWidget {
+class YgButtonGroup extends StatelessWidget with StatelessWidgetDebugMixin {
   const YgButtonGroup({
     super.key,
     required this.children,

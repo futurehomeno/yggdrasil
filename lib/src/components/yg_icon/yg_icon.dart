@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:yggdrasil/yggdrasil.dart';
 
-class YgIcon extends StatelessWidget {
+class YgIcon extends StatelessWidget with StatelessWidgetDebugMixin {
   const YgIcon(
     this.icon, {
     super.key,

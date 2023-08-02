@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/rendering.dart';
 import 'package:flutter/services.dart';
 import 'package:provider/provider.dart';
 import 'package:yggdrasil/yggdrasil.dart';
@@ -31,20 +30,21 @@ void main() {
   });
 }
 
-class Yggdrasil extends StatelessWidget {
+class Yggdrasil extends StatefulWidget {
   const Yggdrasil({super.key});
 
+  @override
+  State<Yggdrasil> createState() => _YggdrasilState();
+}
+
+class _YggdrasilState extends State<Yggdrasil> {
   @override
   Widget build(BuildContext context) {
     return Consumer<YgAppState>(
       builder: (BuildContext context, YgAppState ygAppState, Widget? child) {
         // Set the debug paint flags.
-        debugPaintSizeEnabled = ygAppState.debugPaintSizeEnabled;
-        debugPaintBaselinesEnabled = ygAppState.debugPaintBaselinesEnabled;
-        debugPaintLayerBordersEnabled = ygAppState.debugPaintLayerBordersEnabled;
-        debugPaintPointersEnabled = ygAppState.debugPaintPointersEnabled;
-        debugRepaintRainbowEnabled = ygAppState.debugRepaintRainbowEnabled;
-        debugRepaintTextRainbowEnabled = ygAppState.debugRepaintTextRainbowEnabled;
+
+        debugOutlineEnabled = ygAppState.debugOutlineEnabled;
 
         return MaterialApp(
           key: ygAppState.key,

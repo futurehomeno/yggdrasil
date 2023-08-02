@@ -13,7 +13,7 @@ enum YgTextInputStates {
   large,
 }
 
-class YgTextInput extends YgTextInputWidget {
+class YgTextInput extends YgTextInputWidget with StatefulWidgetDebugMixin {
   const YgTextInput({
     super.key,
     super.controller,
