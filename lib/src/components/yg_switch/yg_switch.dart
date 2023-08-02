@@ -10,7 +10,6 @@ class YgSwitch extends StatelessWidget {
     super.key,
     required this.value,
     required this.onChanged,
-    this.ignorePointer = false,
     this.triState = false,
   });
 
@@ -20,39 +19,34 @@ class YgSwitch extends StatelessWidget {
   /// Callback to trigger when the value of the switch changes.
   final Function(bool? newValue)? onChanged;
 
-  final bool ignorePointer;
-
-  /// Makes switch toggle from true --> false --> null --> true --> ...
+  /// Enables `null` as a valid third state for the switch.
   final bool triState;
 
   @override
   Widget build(BuildContext context) {
-    return IgnorePointer(
-      ignoring: ignorePointer,
-      child: RepaintBoundary(
-        child: Semantics(
-          toggled: value,
-          child: Material(
-            color: _getBackgroundColor(context),
-            shape: RoundedRectangleBorder(
-              borderRadius: context.switchTheme.borderRadius,
-            ),
-            child: InkWell(
-              excludeFromSemantics: true,
-              borderRadius: context.switchTheme.borderRadius,
-              onTap: onChanged == null ? null : onTap,
-              child: SizedBox(
-                width: context.switchTheme.width,
-                height: context.switchTheme.height,
-                child: Padding(
-                  padding: const EdgeInsets.symmetric(horizontal: 5.0),
-                  child: AnimatedAlign(
-                    curve: Curves.easeInOut,
-                    alignment: _getHandleAlignment(),
-                    duration: const Duration(milliseconds: 200),
-                    child: YgSwitchHandle(
-                      color: _getHandleColor(context),
-                    ),
+    return RepaintBoundary(
+      child: Semantics(
+        toggled: value,
+        child: Material(
+          color: _getBackgroundColor(context),
+          shape: RoundedRectangleBorder(
+            borderRadius: context.switchTheme.borderRadius,
+          ),
+          child: InkWell(
+            excludeFromSemantics: true,
+            borderRadius: context.switchTheme.borderRadius,
+            onTap: onChanged == null ? null : onTap,
+            child: SizedBox(
+              width: context.switchTheme.width,
+              height: context.switchTheme.height,
+              child: Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 5.0),
+                child: AnimatedAlign(
+                  curve: Curves.easeInOut,
+                  alignment: _getHandleAlignment(),
+                  duration: const Duration(milliseconds: 200),
+                  child: YgSwitchHandle(
+                    color: _getHandleColor(context),
                   ),
                 ),
               ),
