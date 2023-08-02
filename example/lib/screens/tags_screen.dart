@@ -24,10 +24,23 @@ class TagsScreen extends StatelessWidget {
       child: Column(
         children: <Widget>[
           const YgListTile(title: 'Variants'),
-          const Column(
+          Column(
             children: <Widget>[
-              YgTag(
-                child: Text('Neutral'),
+              Row(
+                mainAxisSize: MainAxisSize.min,
+                children: <Widget>[
+                  const YgTag(
+                    child: Text('Neutral'),
+                  ),
+                  YgTag(
+                    onPressed: () {},
+                    child: const Text('Clickable'),
+                  ),
+                  const YgTag(
+                    onPressed: null,
+                    child: Text('Disabled'),
+                  ),
+                ],
               ),
               YgTag(
                 variant: YgTagVariant.informative,

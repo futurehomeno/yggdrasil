@@ -4,7 +4,6 @@ import 'package:yggdrasil/yggdrasil.dart';
 import 'yg_button_style.dart';
 
 /// Base class for creating all Yg buttons.
-// TODO(bjhandeland): Consider making the private classes parts.
 class YgButton extends ButtonStyleButton {
   const YgButton({
     super.key,
@@ -24,62 +23,50 @@ class YgButton extends ButtonStyleButton {
 
   // region Leading icon
   YgButton.leadingIcon({
-    Key? key,
-    required VoidCallback? onPressed,
-    required Widget child,
+    super.key,
+    required super.onPressed,
     required YgIcon icon,
-    bool autofocus = false,
-    Clip clipBehavior = Clip.none,
-    ButtonStyle? style,
-    FocusNode? focusNode,
-    VoidCallback? onLongPress,
-    YgButtonSize size = YgButtonSize.medium,
-    YgButtonVariant variant = YgButtonVariant.primary,
-  }) : this(
-          key: key,
-          onPressed: onPressed,
+    required Widget child,
+    super.autofocus = false,
+    super.clipBehavior = Clip.none,
+    this.size = YgButtonSize.medium,
+    this.variant = YgButtonVariant.primary,
+    super.focusNode,
+    super.onFocusChange,
+    super.onHover,
+    super.onLongPress,
+    super.statesController,
+    super.style,
+  }) : super(
           child: _YgButtonWithLeadingIconChild(
             icon: icon,
             child: child,
           ),
-          autofocus: autofocus,
-          style: style,
-          clipBehavior: clipBehavior,
-          focusNode: focusNode,
-          onLongPress: onLongPress,
-          size: size,
-          variant: variant,
         );
 
   // endregion Leading icon
 
   // region Trailing icon
   YgButton.trailingIcon({
-    Key? key,
-    required VoidCallback? onPressed,
-    required Widget child,
+    super.key,
+    required super.onPressed,
     required YgIcon icon,
-    bool autofocus = false,
-    Clip clipBehavior = Clip.none,
-    ButtonStyle? style,
-    FocusNode? focusNode,
-    VoidCallback? onLongPress,
-    YgButtonSize size = YgButtonSize.medium,
-    YgButtonVariant variant = YgButtonVariant.primary,
-  }) : this(
-          key: key,
-          onPressed: onPressed,
+    required Widget child,
+    super.autofocus = false,
+    super.clipBehavior = Clip.none,
+    this.size = YgButtonSize.medium,
+    this.variant = YgButtonVariant.primary,
+    super.focusNode,
+    super.onFocusChange,
+    super.onHover,
+    super.onLongPress,
+    super.statesController,
+    super.style,
+  }) : super(
           child: _YgButtonWithTrailingIconChild(
             icon: icon,
             child: child,
           ),
-          autofocus: autofocus,
-          style: style,
-          clipBehavior: clipBehavior,
-          focusNode: focusNode,
-          onLongPress: onLongPress,
-          size: size,
-          variant: variant,
         );
 
   final YgButtonVariant variant;

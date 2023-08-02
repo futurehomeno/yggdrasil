@@ -25,6 +25,7 @@ class IconButtonScreen extends StatelessWidget {
         children: <Widget>[
           const YgListTile(title: 'Variants - Normal / Disabled'),
           Row(
+            mainAxisSize: MainAxisSize.min,
             children: <Widget>[
               YgIconButton(
                 onPressed: () {},
@@ -37,6 +38,7 @@ class IconButtonScreen extends StatelessWidget {
             ],
           ),
           Row(
+            mainAxisSize: MainAxisSize.min,
             children: <Widget>[
               YgIconButton(
                 onPressed: () {},
@@ -51,6 +53,7 @@ class IconButtonScreen extends StatelessWidget {
             ],
           ),
           Row(
+            mainAxisSize: MainAxisSize.min,
             children: <Widget>[
               YgIconButton(
                 onPressed: () {},
@@ -65,6 +68,7 @@ class IconButtonScreen extends StatelessWidget {
             ],
           ),
           Row(
+            mainAxisSize: MainAxisSize.min,
             children: <Widget>[
               YgIconButton(
                 onPressed: () {},
