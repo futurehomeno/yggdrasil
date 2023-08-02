@@ -74,39 +74,35 @@ class TextLinkScreen extends StatelessWidget {
             onPressed: null,
           ),
           const YgListTile(title: 'Text link w/ icon'),
-          Column(
-            children: <Widget>[
-              YgTextLink(
-                onPressed: () {},
-                text: 'Link',
-                external: true,
-                size: YgTextLinkSize.small,
-                weight: YgTextLinkWeight.weak,
-              ),
-              YgTextLink(
-                onPressed: () {},
-                text: 'Link',
-                external: true,
-                size: YgTextLinkSize.small,
-                weight: YgTextLinkWeight.strong,
-              ),
-              YgTextLink(
-                onPressed: () {},
-                text: 'Link',
-                external: true,
-                size: YgTextLinkSize.medium,
-                weight: YgTextLinkWeight.weak,
-              ),
-              YgTextLink(
-                onPressed: () {},
-                text: 'Link',
-                external: true,
-                size: YgTextLinkSize.medium,
-                weight: YgTextLinkWeight.strong,
-              ),
-            ],
+          YgTextLink(
+            onPressed: () {},
+            text: 'Link',
+            external: true,
+            size: YgTextLinkSize.small,
+            weight: YgTextLinkWeight.weak,
           ),
-        ],
+          YgTextLink(
+            onPressed: () {},
+            text: 'Link',
+            external: true,
+            size: YgTextLinkSize.small,
+            weight: YgTextLinkWeight.strong,
+          ),
+          YgTextLink(
+            onPressed: () {},
+            text: 'Link',
+            external: true,
+            size: YgTextLinkSize.medium,
+            weight: YgTextLinkWeight.weak,
+          ),
+          YgTextLink(
+            onPressed: () {},
+            text: 'Link',
+            external: true,
+            size: YgTextLinkSize.medium,
+            weight: YgTextLinkWeight.strong,
+          ),
+        ].withVerticalSpacing(10),
       ),
     );
   }

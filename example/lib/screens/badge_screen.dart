@@ -61,7 +61,7 @@ class BadgeScreen extends StatelessWidget {
                 tapSize: YgIconTapSize.largest,
               ),
             ),
-          ],
+          ].withVerticalSpacing(10),
           const YgListTile(title: 'Badges with more than 9'),
           YgBadge(
             amount: 10,

@@ -34,7 +34,7 @@ class DividerScreen extends StatelessWidget {
             indent: YgDividerIndent.large,
             endIndent: YgDividerIndent.large,
           ),
-        ],
+        ].withVerticalSpacing(10),
       ),
     );
   }

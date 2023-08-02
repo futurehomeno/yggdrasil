@@ -24,7 +24,7 @@ class CardScreen extends StatelessWidget {
       child: Column(
         children: <Widget>[
           const YgListTile(title: 'Elevated card'),
-          Column(children: <Widget>[
+          ...<Widget>[
             const YgCard(
               child: YgListTile(
                 title: 'Elevated card',
@@ -38,9 +38,9 @@ class CardScreen extends StatelessWidget {
                 onTap: () {},
               ),
             ),
-          ]),
+          ].withVerticalSpacing(20),
           const YgListTile(title: 'Filled card'),
-          Column(children: <Widget>[
+          ...<Widget>[
             const YgCard(
               variant: YgCardVariant.filled,
               child: YgListTile(
@@ -56,9 +56,9 @@ class CardScreen extends StatelessWidget {
                 onTap: () {},
               ),
             ),
-          ]),
+          ].withVerticalSpacing(20),
           const YgListTile(title: 'Outlined card'),
-          Column(children: <Widget>[
+          ...<Widget>[
             const YgCard(
               variant: YgCardVariant.outlined,
               child: YgListTile(
@@ -74,7 +74,7 @@ class CardScreen extends StatelessWidget {
                 onTap: () {},
               ),
             ),
-          ]),
+          ].withVerticalSpacing(20),
         ],
       ),
     );

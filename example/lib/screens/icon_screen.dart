@@ -53,7 +53,7 @@ class IconScreen extends StatelessWidget {
             onTap: () {},
             tapSize: YgIconTapSize.largest,
           ),
-        ],
+        ].withVerticalSpacing(10),
       ),
     );
   }

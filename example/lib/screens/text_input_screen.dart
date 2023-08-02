@@ -138,10 +138,10 @@ class _TextInputScreenState extends State<TextInputScreen> {
                     onPressed: _validateForm,
                     child: const Text('Login'),
                   )
-                ],
+                ].withVerticalSpacing(10),
               ),
             )
-          ],
+          ].withVerticalSpacing(10),
         ),
       ),
     );

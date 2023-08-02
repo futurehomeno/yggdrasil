@@ -58,7 +58,7 @@ class ButtonsScreen extends StatelessWidget {
                 icon: const YgIcon(YgIcons.info),
                 child: const Text('Button'),
               ),
-            ],
+            ].withVerticalSpacing(10),
           ),
           const YgListTile(title: 'Secondary buttons'),
           Column(
@@ -95,7 +95,7 @@ class ButtonsScreen extends StatelessWidget {
                 icon: const YgIcon(YgIcons.info),
                 child: const Text('Button'),
               ),
-            ],
+            ].withVerticalSpacing(10),
           ),
           const YgListTile(title: 'Text buttons'),
           Column(
@@ -132,7 +132,7 @@ class ButtonsScreen extends StatelessWidget {
                 icon: const YgIcon(YgIcons.info),
                 child: const Text('Button'),
               ),
-            ],
+            ].withVerticalSpacing(10),
           ),
           const YgListTile(title: 'Critical buttons'),
           Column(
@@ -169,7 +169,7 @@ class ButtonsScreen extends StatelessWidget {
                 icon: const YgIcon(YgIcons.info),
                 child: const Text('Button'),
               ),
-            ],
+            ].withVerticalSpacing(10),
           ),
           const YgListTile(title: 'Link buttons'),
           Column(
@@ -206,7 +206,7 @@ class ButtonsScreen extends StatelessWidget {
                 icon: const YgIcon(YgIcons.info),
                 child: const Text('Button'),
               ),
-            ],
+            ].withVerticalSpacing(10),
           ),
         ],
       ),

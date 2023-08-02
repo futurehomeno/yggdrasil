@@ -41,7 +41,7 @@ class SnackbarScreen extends StatelessWidget {
             message: 'Snackbars provide feedback after users take an action',
             onClose: () {},
           ),
-        ],
+        ].withVerticalSpacing(10),
       ),
     );
   }
