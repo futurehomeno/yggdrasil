@@ -30,14 +30,9 @@ void main() {
   });
 }
 
-class Yggdrasil extends StatefulWidget {
+class Yggdrasil extends StatelessWidget {
   const Yggdrasil({super.key});
 
-  @override
-  State<Yggdrasil> createState() => _YggdrasilState();
-}
-
-class _YggdrasilState extends State<Yggdrasil> {
   @override
   Widget build(BuildContext context) {
     return Consumer<YgAppState>(
