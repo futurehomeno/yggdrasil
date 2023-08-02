@@ -2,48 +2,12 @@ import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 import 'package:yggdrasil/src/components/yg_debug/yg_debug_properties.dart';
 
-/// Injects a YgDebugWidget in between the build widget.
-mixin StatefulWidgetDebugMixin on StatefulWidget {
-  @override
-  StatefulElement createElement() => _YgDebugStatefulElement(this);
-}
-
-mixin StatelessWidgetDebugMixin on StatelessWidget {
-  @override
-  StatelessElement createElement() => _YgDebugStatelessElement(this);
-}
-
-class _YgDebugStatefulElement extends StatefulElement {
-  _YgDebugStatefulElement(super.widget);
-
-  @override
-  Widget build() {
-    return YgDebugWidget(
-      child: super.build(),
-    );
-  }
-}
-
-class _YgDebugStatelessElement extends StatelessElement {
-  _YgDebugStatelessElement(super.widget);
-
-  @override
-  Widget build() {
-    return YgDebugWidget(
-      child: super.build(),
-    );
-  }
-}
-
 /// A design debugging widget.
-///
-/// !--- IMPORTANT ---
-/// Should be added to every custom top level widget we make.
 ///
 /// Provides debugging outlines for designers which indicate the bounds of every
 /// custom widget we implement.
-class YgDebugWidget extends SingleChildRenderObjectWidget {
-  const YgDebugWidget({
+class YgDebug extends SingleChildRenderObjectWidget {
+  const YgDebug({
     super.key,
     required super.child,
   });
