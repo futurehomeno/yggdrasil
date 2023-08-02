@@ -1,21 +1,22 @@
 import 'package:flutter/material.dart';
+import 'package:yggdrasil/yggdrasil.dart';
 
-import 'yg_default_validator_errors_provider.dart.dart';
-import 'yg_input_validator.dart';
-
+/// A class which combines transforms validators to the default flutter interface.
+///
+/// Primarily used internally in yggdrasil widgets like the [YgTextInput].
 class YgInputValidatorCombiner<T> {
   const YgInputValidatorCombiner({
     this.validators,
     required this.getContext,
   });
 
-  final List<InputValidator<T>>? validators;
+  final List<YgInputValidator<T>>? validators;
   final BuildContext Function() getContext;
 
   String? call(T? input) {
     final BuildContext context = getContext();
 
-    final List<InputValidator<T>>? validators = this.validators;
+    final List<YgInputValidator<T>>? validators = this.validators;
 
     final YgDefaultValidatorErrorsProvider defaultsProvider = YgDefaultValidatorErrorsProvider.of(context);
 
@@ -23,7 +24,7 @@ class YgInputValidatorCombiner<T> {
       return null;
     }
 
-    for (final InputValidator<T> validator in validators) {
+    for (final YgInputValidator<T> validator in validators) {
       final String? error = validator.validate(
         defaultsProvider.defaultErrors,
         input,

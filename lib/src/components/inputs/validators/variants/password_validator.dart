@@ -8,11 +8,11 @@ class PasswordValidator extends CombinedValidator<String> {
   final String? passwordTooShortError;
 
   @override
-  List<TextValidator> getValidators(YgDefaultValidatorErrors defaults, String? value) {
-    return <TextValidator>[
+  List<YgTextValidator> getValidators(YgDefaultValidatorErrors defaults, String? value) {
+    return <YgTextValidator>[
       MinLengthValidator(
         min: 8,
-        toShortError: passwordTooShortError ?? defaults.passwordTooShort,
+        tooShortError: passwordTooShortError ?? defaults.passwordTooShort,
       ),
     ];
   }

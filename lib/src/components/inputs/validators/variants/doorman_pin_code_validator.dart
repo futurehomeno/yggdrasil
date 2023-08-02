@@ -11,18 +11,18 @@ class DoormanPicCodeValidator extends CombinedValidator<String> {
   final String? pinCodeTooShortError;
 
   @override
-  List<InputValidator<String>> getValidators(
+  List<YgInputValidator<String>> getValidators(
     YgDefaultValidatorErrors defaults,
     String? value,
   ) {
-    return <InputValidator<String>>[
+    return <YgInputValidator<String>>[
       MaxLengthValidator(
         max: 6,
         tooLongError: pinCodeTooLongError ?? defaults.doormanPinCodeTooLong,
       ),
       MinLengthValidator(
         min: 6,
-        toShortError: pinCodeTooShortError ?? defaults.doormanPinCodeTooShort,
+        tooShortError: pinCodeTooShortError ?? defaults.doormanPinCodeTooShort,
       )
     ];
   }

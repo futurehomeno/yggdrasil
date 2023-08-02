@@ -1,6 +1,6 @@
 import '../_validators.dart';
 
-class RequiredValidator extends TextValidator {
+class RequiredValidator extends YgTextValidator {
   const RequiredValidator({
     this.requiredError,
   });

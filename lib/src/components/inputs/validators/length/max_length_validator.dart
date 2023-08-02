@@ -1,6 +1,6 @@
 import '../_validators.dart';
 
-class MaxLengthValidator extends TextValidator {
+class MaxLengthValidator extends YgTextValidator {
   const MaxLengthValidator({
     required this.max,
     required this.tooLongError,

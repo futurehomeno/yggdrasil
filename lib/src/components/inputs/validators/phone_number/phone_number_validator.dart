@@ -2,8 +2,17 @@ import 'package:yggdrasil/yggdrasil.dart';
 
 /// Validates phone numbers
 ///
+/// Assumes phone number has at least 6 and no more
+/// than 15 digits.
 ///
-class PhoneNumberValidator extends TextValidator {
+/// When [withCountryCode] is set to true a leading + is accepted.
+///
+/// Will provider default errors for [tooShortError], [tooLongError] and
+/// [invalidError] if no custom error is specified.
+///
+/// Look at [YgDefaultValidatorErrors] and [YgDefaultValidatorErrorsProvider]
+/// for more info regarding default errors.
+class PhoneNumberValidator extends YgTextValidator {
   const PhoneNumberValidator({
     required this.withCountryCode,
     this.tooLongError,
@@ -26,11 +35,11 @@ class PhoneNumberValidator extends TextValidator {
     final int numbers = value.replaceAll(RegExp(r'[^\d]'), '').length;
 
     if (numbers < 6) {
-      return defaults.phoneNumberTooShort;
+      return tooShortError ?? defaults.phoneNumberTooShort;
     }
 
     if (numbers > 15) {
-      return defaults.phoneNumberTooLong;
+      return tooLongError ?? defaults.phoneNumberTooLong;
     }
 
     // Don't allow other characters than digits, + and spaces. Also do not allow

@@ -10,9 +10,9 @@ class PasswordConfirmValidator extends CombinedValidator<String> {
   final TextFieldKey otherPasswordFieldKey;
 
   @override
-  List<TextValidator> getValidators(YgDefaultValidatorErrors defaults, String? value) {
-    return <TextValidator>[
-      ConfirmValidator<String>(
+  List<YgTextValidator> getValidators(YgDefaultValidatorErrors defaults, String? value) {
+    return <YgTextValidator>[
+      MatchValidator<String>(
         otherKeyField: otherPasswordFieldKey,
         error: passwordsDoNotMatchError ?? defaults.passwordsDoNotMatch,
       )

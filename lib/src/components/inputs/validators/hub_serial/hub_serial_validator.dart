@@ -1,6 +1,6 @@
 import 'package:yggdrasil/yggdrasil.dart';
 
-class HubSerialValidator extends TextValidator {
+class HubSerialValidator extends YgTextValidator {
   const HubSerialValidator({
     this.invalidHubSerialError,
   });

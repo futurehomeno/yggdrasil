@@ -1,6 +1,6 @@
 import 'package:yggdrasil/yggdrasil.dart';
 
-class NullValidator extends InputValidator<dynamic> {
+class NullValidator extends YgInputValidator<dynamic> {
   const NullValidator({
     required this.nullError,
   });

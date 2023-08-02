@@ -13,8 +13,6 @@ extension TextStyleExtensions on TextStyle {
   /// This getter can be very expensive when used for the first time if the
   /// [fontSize] and [height] are not defined, as this will create and compute
   /// the layout of a [TextPainter] and return the computed height.
-  ///
-  ///
   double get computedHeight {
     final double? height = this.height;
     final double? fontSize = this.fontSize;

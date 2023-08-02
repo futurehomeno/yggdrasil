@@ -14,25 +14,31 @@ class YgTextInputContent extends YgTextInputWidget {
     required this.disabled,
     required this.obscureText,
     required this.maxLines,
+    required this.minLines,
     required this.autocorrect,
     required this.inputFormatters,
     required this.keyboardType,
     required this.onChanged,
     required this.readOnly,
     required this.textCapitalization,
+    required this.textInputAction,
+    required this.onEditingComplete,
   });
 
   final String? placeholder;
   final String label;
   final bool disabled;
   final bool obscureText;
-  final int maxLines;
+  final int? maxLines;
+  final int? minLines;
   final TextInputType? keyboardType;
   final bool autocorrect;
   final TextCapitalization textCapitalization;
   final bool readOnly;
   final List<TextInputFormatter>? inputFormatters;
   final ValueChanged<String>? onChanged;
+  final VoidCallback? onEditingComplete;
+  final TextInputAction? textInputAction;
 
   @override
   State<YgTextInputContent> createState() => _YgTextInputContentState();
@@ -85,12 +91,17 @@ class _YgTextInputContentState extends YgTextInputWidgetState<YgTextInputContent
   double get _labelFloatingHeight => theme.labelFocusFilledTextStyle.computedHeight;
 
   Widget _getValueText() {
+    final TextStyle baseStyle = theme.valueTextStyle;
+
     if (widget.disabled) {
+      // TODO(Tim): Look in to some way to replicate minLines.
       return Align(
         alignment: Alignment.centerLeft,
         child: Text(
           controller.text,
-          style: _valueTextStyle,
+          style: baseStyle.copyWith(
+            color: theme.valueDisabledColor,
+          ),
           maxLines: widget.maxLines,
         ),
       );
@@ -101,9 +112,11 @@ class _YgTextInputContentState extends YgTextInputWidgetState<YgTextInputContent
       backgroundCursorColor: theme.cursorColor,
       controller: controller,
       cursorColor: theme.cursorColor,
-      style: _valueTextStyle,
+      style: baseStyle.copyWith(
+        color: theme.valueDefaultColor,
+      ),
       obscureText: widget.obscureText,
-      cursorHeight: _valueTextStyle.fontSize,
+      cursorHeight: baseStyle.fontSize,
       cursorOffset: _cursorOffset,
       selectionColor: theme.cursorColor,
       cursorWidth: 1,
@@ -112,8 +125,11 @@ class _YgTextInputContentState extends YgTextInputWidgetState<YgTextInputContent
       textCapitalization: widget.textCapitalization,
       readOnly: widget.readOnly,
       maxLines: widget.maxLines,
+      minLines: widget.minLines,
       inputFormatters: widget.inputFormatters,
       onChanged: widget.onChanged,
+      onEditingComplete: widget.onEditingComplete,
+      textInputAction: widget.textInputAction,
     );
   }
 
@@ -157,20 +173,6 @@ class _YgTextInputContentState extends YgTextInputWidgetState<YgTextInputContent
 
     return baseStyle.copyWith(
       color: theme.labelDefaultColor,
-    );
-  }
-
-  TextStyle get _valueTextStyle {
-    final TextStyle baseStyle = theme.valueTextStyle;
-
-    if (widget.disabled) {
-      return baseStyle.copyWith(
-        color: theme.valueDisabledColor,
-      );
-    }
-
-    return baseStyle.copyWith(
-      color: theme.valueDefaultColor,
     );
   }
 

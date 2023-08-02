@@ -9,11 +9,11 @@ class SiteNameValidator extends CombinedValidator<String> {
   final String? siteNameTooLongError;
 
   @override
-  List<InputValidator<String>> getValidators(
+  List<YgInputValidator<String>> getValidators(
     YgDefaultValidatorErrors defaults,
     String? value,
   ) {
-    return <InputValidator<String>>[
+    return <YgInputValidator<String>>[
       MaxLengthValidator(
         max: 30,
         tooLongError: siteNameTooLongError ?? defaults.siteNameTooLong,

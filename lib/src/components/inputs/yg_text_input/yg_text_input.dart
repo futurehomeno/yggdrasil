@@ -25,7 +25,10 @@ class YgTextInput extends YgTextInputWidget with StatefulWidgetDebugMixin {
     this.trailingIcon,
     this.keyboardType,
     this.inputFormatters,
+    this.textInputAction,
+    this.onEditingComplete,
     this.maxLines = 1,
+    this.minLines,
     this.disabled = false,
     this.readOnly = false,
     this.autocorrect = true,
@@ -34,7 +37,10 @@ class YgTextInput extends YgTextInputWidget with StatefulWidgetDebugMixin {
     this.size = YgTextInputSize.large,
     this.variant = YgTextInputVariant.standard,
     this.textCapitalization = TextCapitalization.none,
-  });
+  }) : assert(
+          maxLines == null || minLines == null || maxLines >= minLines,
+          'When both minLines and maxLines are set, maxLines should be equal or higher than minLines',
+        );
 
   /// Obscures the text in the input.
   ///
@@ -49,6 +55,7 @@ class YgTextInput extends YgTextInputWidget with StatefulWidgetDebugMixin {
   /// null.
   final bool showObscureTextButton;
 
+  /// Triggers whenever there's a change to the input value.
   final ValueChanged<String>? onChanged;
 
   /// The variant of the input.
@@ -56,6 +63,30 @@ class YgTextInput extends YgTextInputWidget with StatefulWidgetDebugMixin {
 
   /// The label shown on top of the input.
   final String label;
+
+  /// Called when the user submits editable content (e.g., user presses the "done"
+  /// button on the keyboard).
+  ///
+  /// The default implementation of [onEditingComplete] executes 2 different
+  /// behaviors based on the situation:
+  ///
+  ///  - When a completion action is pressed, such as "done", "go", "send", or
+  ///    "search", the user's content is submitted to the [controller] and then
+  ///    focus is given up.
+  ///
+  ///  - When a non-completion action is pressed, such as "next" or "previous",
+  ///    the user's content is submitted to the [controller], but focus is not
+  ///    given up because developers may want to immediately move focus to
+  ///    another input widget within [onSubmitted].
+  ///
+  /// Providing [onEditingComplete] prevents the aforementioned default behavior.
+  final VoidCallback? onEditingComplete;
+
+  /// The type of action button to use for the keyboard.
+  ///
+  /// Defaults to [TextInputAction.newline] if [keyboardType] is
+  /// [TextInputType.multiline] and [TextInputAction.done] otherwise.
+  final TextInputAction? textInputAction;
 
   /// The placeholder shown in the input.
   ///
@@ -65,9 +96,9 @@ class YgTextInput extends YgTextInputWidget with StatefulWidgetDebugMixin {
   /// The suffix shown in the input.
   final YgIcon? trailingIcon;
 
-  /// Weather the input is disabled.
+  /// Whether the input is disabled.
   ///
-  /// Applies styling for the disabled text input. Also disabled all interaction.
+  /// Applies styling for the disabled text input. Also disables all interaction.
   final bool disabled;
 
   /// The size of the input.
@@ -88,14 +119,64 @@ class YgTextInput extends YgTextInputWidget with StatefulWidgetDebugMixin {
   /// autocorrect gets in the way.
   final bool autocorrect;
 
-  /// {@macro flutter.widgets.editableText.readOnly}
+  /// Whether the text can be changed.
+  ///
+  /// When this is set to true, the text cannot be modified
+  /// by any shortcut or keyboard operation. The text is still selectable.
+  ///
+  /// Defaults to false. Must not be null.
   final bool readOnly;
 
-  /// {@macro flutter.widgets.editableText.textCapitalization}
+  /// Configures how the platform keyboard will select an uppercase or
+  /// lowercase keyboard.
+  ///
+  /// Only supports text keyboards, other keyboard types will ignore this
+  /// configuration. Capitalization is locale-aware.
+  ///
+  /// Defaults to [TextCapitalization.none]. Must not be null.
+  ///
+  /// See also:
+  ///
+  ///  * [TextCapitalization], for a description of each capitalization behavior.
   final TextCapitalization textCapitalization;
 
-  /// {@macro flutter.widgets.editableText.maxLines}
-  final int maxLines;
+  /// The maximum number of lines to show at one time, wrapping if necessary.
+  ///
+  /// This affects the height of the field itself and does not limit the number
+  /// of lines that can be entered into the field.
+  ///
+  /// If this is 1 (the default), the text will not wrap, but will scroll
+  /// horizontally instead.
+  ///
+  /// If this is null, there is no limit to the number of lines, and the text
+  /// container will start with enough vertical space for one line and
+  /// automatically grow to accommodate additional lines as they are entered, up
+  /// to the height of its constraints.
+  ///
+  /// If this is not null, the value must be greater than zero, and it will lock
+  /// the input to the given number of lines and take up enough horizontal space
+  /// to accommodate that number of lines. Setting [minLines] as well allows the
+  /// input to grow and shrink between the indicated range.
+  final int? maxLines;
+
+  /// The minimum number of lines to occupy when the content spans fewer lines.
+  ///
+  /// This affects the height of the field itself and does not limit the number
+  /// of lines that can be entered into the field.
+  ///
+  /// If this is null (default), text container starts with enough vertical space
+  /// for one line and grows to accommodate additional lines as they are entered.
+  ///
+  /// This can be used in combination with [maxLines] for a varying set of behaviors.
+  ///
+  /// If the value is set, it must be greater than zero. If the value is greater
+  /// than 1, [maxLines] should also be set to either null or greater than
+  /// this value.
+  ///
+  /// When [maxLines] is set as well, the height will grow between the indicated
+  /// range of lines. When [maxLines] is null, it will grow as high as needed,
+  /// starting from [minLines].
+  final int? minLines;
 
   /// The error to display under the input.
   ///
@@ -141,6 +222,8 @@ class _YgTextInputState extends YgTextInputWidgetState<YgTextInput> {
                   child: Padding(
                     padding: _getContentPadding(suffix != null),
                     child: YgTextInputContent(
+                      onEditingComplete: widget.onEditingComplete,
+                      textInputAction: widget.textInputAction,
                       controller: widget.controller,
                       disabled: widget.disabled,
                       focusNode: focusNode,
@@ -148,6 +231,7 @@ class _YgTextInputState extends YgTextInputWidgetState<YgTextInput> {
                       obscureText: _obscureText,
                       placeholder: widget.placeholder,
                       maxLines: widget.maxLines,
+                      minLines: widget.minLines,
                       autocorrect: widget.autocorrect,
                       inputFormatters: widget.inputFormatters,
                       keyboardType: widget.keyboardType,

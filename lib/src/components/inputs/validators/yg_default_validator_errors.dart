@@ -1,3 +1,12 @@
+// TODO(Tim): Add default translations by the time we add translations to yggdrassil.
+
+/// Default errors which should be provided for implementations of
+/// [YgInputValidator].
+///
+/// !--- IMPORTANT ---
+/// Since we do not have translations in yggdrassil yet there can not be default
+/// values yet, until the translations are added make sure to update all apps
+/// with the defaults.
 class YgDefaultValidatorErrors {
   const YgDefaultValidatorErrors({
     required this.invalidEmail,

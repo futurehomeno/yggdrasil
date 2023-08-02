@@ -14,7 +14,7 @@ final RegExp _emailRegExp = RegExp(r'^[a-zA-Z0-9.!#$%&’*+\/=?^_`{|}~-]+@([a-zA
 /// Validates most common email formats.
 ///
 /// See the [_emailRegExp] for more info.
-class EmailValidator extends TextValidator {
+class EmailValidator extends YgTextValidator {
   const EmailValidator({
     this.invalidEmailError,
   });

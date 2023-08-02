@@ -104,7 +104,7 @@ class _TextInputScreenState extends State<TextInputScreen> {
                 children: <Widget>[
                   YgTextFormInput(
                     key: emailKey,
-                    validators: const <TextValidator>[
+                    validators: const <YgTextValidator>[
                       RequiredValidator(),
                       EmailValidator(),
                     ],
@@ -112,7 +112,7 @@ class _TextInputScreenState extends State<TextInputScreen> {
                     variant: YgTextInputVariant.outlined,
                   ),
                   YgTextFormInput(
-                    validators: const <TextValidator>[
+                    validators: const <YgTextValidator>[
                       RequiredValidator(),
                       PasswordValidator(),
                     ],
@@ -122,7 +122,7 @@ class _TextInputScreenState extends State<TextInputScreen> {
                     variant: YgTextInputVariant.outlined,
                   ),
                   YgTextFormInput(
-                    validators: <TextValidator>[
+                    validators: <YgTextValidator>[
                       const RequiredValidator(),
                       PasswordConfirmValidator(
                         otherPasswordFieldKey: passwordKey,
