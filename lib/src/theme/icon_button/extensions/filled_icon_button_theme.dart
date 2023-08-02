@@ -17,10 +17,10 @@ class _$FilledIconButtonTheme {
   ];
 
   static List<Color> disabledIconColor = <Color>[
-    consumer_light.FhColors.iconInverse,
-    consumer_dark.FhColors.iconInverse,
-    professional_light.FhColors.iconInverse,
-    professional_dark.FhColors.iconInverse,
+    consumer_light.FhColors.iconDisabled,
+    consumer_dark.FhColors.iconDisabled,
+    professional_light.FhColors.iconDisabled,
+    professional_dark.FhColors.iconDisabled,
   ];
 
   static List<Color> backgroundColor = <Color>[
@@ -31,9 +31,9 @@ class _$FilledIconButtonTheme {
   ];
 
   static List<Color> disabledBackgroundColor = <Color>[
-    consumer_light.FhColors.backgroundInverse,
-    consumer_dark.FhColors.backgroundInverse,
-    professional_light.FhColors.backgroundInverse,
-    professional_dark.FhColors.backgroundInverse,
+    consumer_light.FhColors.backgroundDisabled,
+    consumer_dark.FhColors.backgroundDisabled,
+    professional_light.FhColors.backgroundDisabled,
+    professional_dark.FhColors.backgroundDisabled,
   ];
 }

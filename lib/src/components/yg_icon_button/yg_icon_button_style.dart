@@ -108,7 +108,10 @@ class YgIconButtonStyle {
 
   ButtonStyle toButtonStyle() {
     return ButtonStyle(
-      backgroundColor: ButtonStyleButton.allOrNull(backgroundColor),
+      backgroundColor: YgIconButtonBackgroundColorProperty(
+        color: backgroundColor,
+        disabled: disabledBackgroundColor,
+      ),
       shape: YgIconButtonOutlinedBorderProperty(
         outlinedBorder: shape,
         disabled: disabledShape,

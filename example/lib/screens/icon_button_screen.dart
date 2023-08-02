@@ -23,56 +23,72 @@ class IconButtonScreen extends StatelessWidget {
       supernovaLink: 'Link',
       child: Column(
         children: <Widget>[
-          const YgListTile(title: 'Variants'),
-          const YgText('Standard'),
-          YgIconButton(
-            onPressed: () {},
-            child: const YgIcon(YgIcons.info),
+          const YgListTile(title: 'Variants - Normal / Disabled'),
+          Row(
+            children: <Widget>[
+              YgIconButton(
+                onPressed: () {},
+                child: const YgIcon(YgIcons.info),
+              ),
+              const YgIconButton(
+                onPressed: null,
+                child: YgIcon(YgIcons.info),
+              ),
+            ],
           ),
-          const YgText('Filled'),
-          YgIconButton(
-            onPressed: () {},
-            variant: YgIconButtonVariant.filled,
-            child: const YgIcon(YgIcons.info),
+          Row(
+            children: <Widget>[
+              YgIconButton(
+                onPressed: () {},
+                variant: YgIconButtonVariant.filled,
+                child: const YgIcon(YgIcons.info),
+              ),
+              const YgIconButton(
+                onPressed: null,
+                variant: YgIconButtonVariant.filled,
+                child: YgIcon(YgIcons.info),
+              ),
+            ],
           ),
-          const YgText('Tonal'),
-          YgIconButton(
-            onPressed: () {},
-            variant: YgIconButtonVariant.tonal,
-            child: const YgIcon(YgIcons.info),
+          Row(
+            children: <Widget>[
+              YgIconButton(
+                onPressed: () {},
+                variant: YgIconButtonVariant.tonal,
+                child: const YgIcon(YgIcons.info),
+              ),
+              const YgIconButton(
+                onPressed: null,
+                variant: YgIconButtonVariant.tonal,
+                child: YgIcon(YgIcons.info),
+              ),
+            ],
           ),
-          const YgText('Outlined'),
-          YgIconButton(
-            onPressed: () {},
-            variant: YgIconButtonVariant.outlined,
-            child: const YgIcon(YgIcons.info),
+          Row(
+            children: <Widget>[
+              YgIconButton(
+                onPressed: () {},
+                variant: YgIconButtonVariant.outlined,
+                child: const YgIcon(YgIcons.info),
+              ),
+              const YgIconButton(
+                onPressed: null,
+                variant: YgIconButtonVariant.outlined,
+                child: YgIcon(YgIcons.info),
+              ),
+            ],
           ),
           const YgListTile(title: 'Sizes'),
-          const YgText('Small'),
           YgIconButton(
             onPressed: () {},
             variant: YgIconButtonVariant.filled,
             size: YgIconButtonSize.small,
             child: const YgIcon(YgIcons.info),
           ),
-          const YgText('Medium'),
           YgIconButton(
             onPressed: () {},
             variant: YgIconButtonVariant.filled,
             child: const YgIcon(YgIcons.info),
-          ),
-          const YgListTile(title: 'States'),
-          const YgText('Enabled'),
-          YgIconButton(
-            onPressed: () {},
-            variant: YgIconButtonVariant.filled,
-            child: const YgIcon(YgIcons.info),
-          ),
-          const YgText('Disabled'),
-          const YgIconButton(
-            onPressed: null,
-            variant: YgIconButtonVariant.filled,
-            child: YgIcon(YgIcons.info),
           ),
         ],
       ),

@@ -23,6 +23,10 @@ class IconScreen extends StatelessWidget {
       supernovaLink: 'Link',
       child: Column(
         children: <Widget>[
+          YgListTile(
+            title: 'Available icons',
+            subtitle: 'All currently supported icons can be seen on the icons list screen.',
+          ),
           YgListTile(title: 'Sizes'),
           ...<Widget>[
             YgText('Small'),

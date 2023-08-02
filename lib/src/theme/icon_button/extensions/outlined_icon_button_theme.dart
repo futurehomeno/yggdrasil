@@ -17,10 +17,10 @@ class _$OutlinedIconButtonTheme {
   ];
 
   static List<Color> disabledIconColor = <Color>[
-    consumer_light.FhColors.iconDefault,
-    consumer_dark.FhColors.iconDefault,
-    professional_light.FhColors.iconDefault,
-    professional_dark.FhColors.iconDefault,
+    consumer_light.FhColors.iconDisabled,
+    consumer_dark.FhColors.iconDisabled,
+    professional_light.FhColors.iconDisabled,
+    professional_dark.FhColors.iconDisabled,
   ];
 
   static List<Color> backgroundColor = <Color>[
@@ -45,9 +45,9 @@ class _$OutlinedIconButtonTheme {
   ];
 
   static List<Color> disabledBorderColor = <Color>[
-    consumer_light.FhColors.borderDefault,
-    consumer_dark.FhColors.borderDefault,
-    professional_light.FhColors.borderDefault,
-    professional_dark.FhColors.borderDefault,
+    consumer_light.FhColors.borderDisabled,
+    consumer_dark.FhColors.borderDisabled,
+    professional_light.FhColors.borderDisabled,
+    professional_dark.FhColors.borderDisabled,
   ];
 }
