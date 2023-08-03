@@ -23,6 +23,7 @@ class _SwitchScreenState extends State<SwitchListTileScreen> {
   bool? switchListTileValue = false;
   bool? switchListTileTriStateValue = false;
   bool? switchListTileDisabledValue = false;
+  bool? switchListTileTrailingWidgetValue = false;
 
   @override
   Widget build(BuildContext context) {
@@ -62,9 +63,9 @@ class _SwitchScreenState extends State<SwitchListTileScreen> {
             title: 'SwitchListTile with trailingWidget',
             subtitle: 'Mostly used to add a YgIconButton.',
             trailingWidget: const YgIcon(YgIcons.info),
-            value: switchListTileValue,
+            value: switchListTileTrailingWidgetValue,
             onChanged: (bool? newValue) {
-              switchListTileValue = newValue;
+              switchListTileTrailingWidgetValue = newValue;
               setState(() {});
             },
           ),
