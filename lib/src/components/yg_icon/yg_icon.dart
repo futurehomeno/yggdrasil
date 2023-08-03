@@ -113,7 +113,12 @@ class YgIcon extends StatelessWidget {
     properties.add(StringProperty('icon', icon, defaultValue: null));
     properties.add(EnumProperty<YgIconSize>('size', size, defaultValue: null));
     properties.add(ColorProperty('color', color, defaultValue: null));
-    properties.add(FlagProperty('useEmbeddedColor', value: useEmbeddedColor));
+    properties.add(FlagProperty(
+      'useEmbeddedColor',
+      value: useEmbeddedColor,
+      ifTrue: 'Uses embedded color',
+      ifFalse: 'Uses theme or overwritten color',
+    ));
     properties.add(StringProperty('semanticLabel', semanticLabel, defaultValue: null));
   }
 }
