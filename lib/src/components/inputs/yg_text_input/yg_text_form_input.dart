@@ -17,8 +17,8 @@ class YgTextFormInput extends FormField<String> {
     VoidCallback? onEditingComplete,
     TextInputAction? textInputAction,
     List<TextInputFormatter>? inputFormatters,
-    int? maxLines = 1,
     int? minLines,
+    int? maxLines = 1,
     bool disabled = false,
     bool readOnly = false,
     bool autocorrect = true,
@@ -48,7 +48,7 @@ class YgTextFormInput extends FormField<String> {
                 showObscureTextButton: showObscureTextButton,
                 variant: variant,
                 placeholder: placeholder,
-                trailingIcon: trailingIcon,
+                suffix: trailingIcon,
                 controller: state._effectiveController,
                 disabled: disabled,
                 size: size,
@@ -65,6 +65,55 @@ class YgTextFormInput extends FormField<String> {
               ),
             );
           },
+        );
+
+  YgTextFormInput.email({
+    TextEditingController? controller,
+    required TextFieldKey key,
+    required String label,
+    String? error,
+    String? invalidEmailError,
+    String? requiredError,
+    String? placeholder,
+    YgIcon? trailingIcon,
+    String? initialValue,
+    FocusNode? focusNode,
+    VoidCallback? onEditingComplete,
+    TextInputAction? textInputAction,
+    List<TextInputFormatter>? inputFormatters,
+    bool required = false,
+    bool disabled = false,
+    bool readOnly = false,
+    YgTextInputSize size = YgTextInputSize.large,
+    YgTextInputVariant variant = YgTextInputVariant.standard,
+  }) : this(
+          key: key,
+          label: label,
+          controller: controller,
+          error: error,
+          validators: <YgTextValidator>[
+            if (required)
+              RequiredValidator(
+                requiredError: requiredError,
+              ),
+            EmailValidator(
+              invalidEmailError: invalidEmailError,
+            )
+          ],
+          placeholder: placeholder,
+          trailingIcon: trailingIcon,
+          initialValue: initialValue,
+          focusNode: focusNode,
+          keyboardType: TextInputType.emailAddress,
+          onEditingComplete: onEditingComplete,
+          textInputAction: textInputAction,
+          inputFormatters: inputFormatters,
+          disabled: disabled,
+          readOnly: readOnly,
+          autocorrect: false,
+          size: size,
+          variant: variant,
+          textCapitalization: TextCapitalization.none,
         );
 
   /// Controls the text being edited.

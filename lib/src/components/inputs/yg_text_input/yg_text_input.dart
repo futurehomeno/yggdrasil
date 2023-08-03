@@ -22,7 +22,7 @@ class YgTextInput extends YgTextInputWidget with StatefulWidgetDebugMixin {
     this.error,
     this.onChanged,
     this.placeholder,
-    this.trailingIcon,
+    this.suffix,
     this.keyboardType,
     this.inputFormatters,
     this.textInputAction,
@@ -37,22 +37,29 @@ class YgTextInput extends YgTextInputWidget with StatefulWidgetDebugMixin {
     this.size = YgTextInputSize.large,
     this.variant = YgTextInputVariant.standard,
     this.textCapitalization = TextCapitalization.none,
-  }) : assert(
+  })  : assert(
           maxLines == null || minLines == null || maxLines >= minLines,
           'When both minLines and maxLines are set, maxLines should be equal or higher than minLines',
+        ),
+        assert(
+          suffix == null || showObscureTextButton == false || obscureText == false,
+          'Can not add a suffix if showObscureTextButton and obscureText are set to true',
         );
 
   /// Obscures the text in the input.
   ///
   /// If [showObscureTextButton] is set to true (the default value) and the
-  /// [trailingIcon] is empty, there will be a suffix button added which will show
+  /// [suffix] is empty, there will be a suffix button added which will show
   /// the text in the input when pressed.
   final bool obscureText;
 
   /// Shows a button to toggle obscuring the text.
   ///
-  /// Will only work when [obscureText] is set to true and [trailingIcon] is set to
+  /// Will only work when [obscureText] is set to true and [suffix] is set to
   /// null.
+  ///
+  /// Has to be set to false if [obscureText] is set to true and a suffix is
+  /// provided.
   final bool showObscureTextButton;
 
   /// Triggers whenever there's a change to the input value.
@@ -94,7 +101,11 @@ class YgTextInput extends YgTextInputWidget with StatefulWidgetDebugMixin {
   final String? placeholder;
 
   /// The suffix shown in the input.
-  final YgIcon? trailingIcon;
+  ///
+  /// !--- IMPORTANT ---
+  /// You can not add a suffix if [showObscureTextButton] and [obscureText] are
+  /// set to true!
+  final Widget? suffix;
 
   /// Whether the input is disabled.
   ///
@@ -328,7 +339,7 @@ class _YgTextInputState extends YgTextInputWidgetState<YgTextInput> {
   }
 
   Widget? _buildSuffix() {
-    Widget? suffix = widget.trailingIcon;
+    Widget? suffix = widget.suffix;
 
     if (suffix == null && widget.obscureText && widget.showObscureTextButton) {
       suffix = YgIcon(
