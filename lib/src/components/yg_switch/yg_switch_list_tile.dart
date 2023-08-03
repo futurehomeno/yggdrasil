@@ -7,9 +7,11 @@ class YgSwitchListTile extends StatelessWidget {
   const YgSwitchListTile({
     super.key,
     required this.title,
-    required this.subtitle,
     required this.value,
     required this.onChanged,
+    this.subtitle,
+    this.subtitleIcon,
+    this.trailingWidget,
     this.triState = false,
   });
 
@@ -17,7 +19,10 @@ class YgSwitchListTile extends StatelessWidget {
   final String title;
 
   /// See [YgListTile] documentation.
-  final String subtitle;
+  final String? subtitle;
+
+  /// See [YgListTile] documentation.
+  final Widget? subtitleIcon;
 
   /// See [YgSwitch] documentation.
   final bool? value;
@@ -28,13 +33,18 @@ class YgSwitchListTile extends StatelessWidget {
   /// See [YgSwitch] documentation.
   final bool triState;
 
+  /// Optional widget to display before the switch.
+  final Widget? trailingWidget;
+
   @override
   Widget build(BuildContext context) {
     return YgListTile(
       title: title,
       subtitle: subtitle,
+      subtitleIcon: subtitleIcon,
       onTap: onChanged == null ? null : _onTap,
       trailingWidgets: <Widget>[
+        if (trailingWidget != null) trailingWidget!,
         YgSwitch(
           value: value,
           onChanged: onChanged,

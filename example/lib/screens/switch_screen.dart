@@ -86,30 +86,10 @@ class _SwitchScreenState extends State<SwitchScreen> {
               ),
             ],
           ),
-          YgSwitchListTile(
-            title: 'Switch in a SwitchListTile',
-            subtitle: 'The whole ListTile and Switch is tappable.',
-            value: switchListTileValue,
-            onChanged: (bool? newValue) {
-              switchListTileValue = newValue;
-              setState(() {});
-            },
-          ),
-          YgSwitchListTile(
-            title: 'Tri-state switch in a SwitchListTile',
-            subtitle: 'The whole ListTile and Switch is tappable.',
-            value: switchListTileTriStateValue,
-            triState: true,
-            onChanged: (bool? newValue) {
-              switchListTileTriStateValue = newValue;
-              setState(() {});
-            },
-          ),
-          YgSwitchListTile(
-            title: 'Disabled switch in a SwitchListTile',
-            subtitle: 'The whole ListTile and Switch is tappable. Alas, they do nothing.',
-            value: switchListTileDisabledValue,
-            onChanged: null,
+          const YgCallout(
+            title: 'Note',
+            description:
+                'You can place a switch in a list tile as shown above, but consider using SwitchListTile instead if you intend for the whole list tile to be tappable.',
           ),
         ],
       ),
