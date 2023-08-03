@@ -12,5 +12,6 @@ export 'icons_list.dart';
 export 'list_screen.dart';
 export 'list_tile_screen.dart';
 export 'snackbar_screen.dart';
+export 'switch_list_tile_screen.dart';
 export 'tags_screen.dart';
 export 'text_link_screen.dart';

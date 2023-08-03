@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:yggdrasil/yggdrasil.dart';
 import 'package:yggdrasil_demo/core/_core.dart';
 import 'package:yggdrasil_demo/screens/_screens.dart';
+import 'package:yggdrasil_demo/screens/switch_screen.dart';
 import 'package:yggdrasil_demo/widgets/_widgets.dart';
 
 import 'icon_button_screen.dart';
@@ -94,6 +95,16 @@ class HomeScreen extends StatelessWidget {
           YgListTile(
             title: 'Snackbar',
             onTap: () => sl<YgRouter>().push(SnackbarScreen.route()),
+            trailingWidgets: const <YgIcon>[YgIcon(YgIcons.caretRight)],
+          ),
+          YgListTile(
+            title: 'Switch',
+            onTap: () => sl<YgRouter>().push(SwitchScreen.route()),
+            trailingWidgets: const <YgIcon>[YgIcon(YgIcons.caretRight)],
+          ),
+          YgListTile(
+            title: 'SwitchListTile',
+            onTap: () => sl<YgRouter>().push(SwitchListTileScreen.route()),
             trailingWidgets: const <YgIcon>[YgIcon(YgIcons.caretRight)],
           ),
           YgListTile(

@@ -3,6 +3,8 @@ import 'package:yggdrasil/src/theme/theme.dart';
 
 /// Helper to construct ThemeData to be used in an application.
 class YgThemeDataHelper {
+  YgThemeDataHelper._();
+
   // region Consumer themes.
   static ThemeData getThemeData(YgTheme theme) {
     return ThemeData(
