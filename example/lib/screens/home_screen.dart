@@ -2,7 +2,10 @@ import 'package:flutter/material.dart';
 import 'package:yggdrasil/yggdrasil.dart';
 import 'package:yggdrasil_demo/core/_core.dart';
 import 'package:yggdrasil_demo/screens/_screens.dart';
+import 'package:yggdrasil_demo/screens/switch_screen.dart';
 import 'package:yggdrasil_demo/widgets/_widgets.dart';
+
+import 'icon_button_screen.dart';
 
 class HomeScreen extends StatelessWidget {
   const HomeScreen({super.key});
@@ -18,7 +21,7 @@ class HomeScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return YgScreen(
+    return DemoScreen(
       componentName: 'Yggdrasil Components',
       componentDesc: 'List of supported components.',
       supernovaLink: '-',
@@ -30,7 +33,7 @@ class HomeScreen extends StatelessWidget {
             trailingWidgets: const <YgIcon>[YgIcon(YgIcons.caretRight)],
           ),
           YgListTile(
-            title: 'Bottom sheet',
+            title: 'BottomSheet',
             onTap: () => sl<YgRouter>().push(BottomSheetScreen.route()),
             trailingWidgets: const <YgIcon>[YgIcon(YgIcons.caretRight)],
           ),
@@ -40,7 +43,7 @@ class HomeScreen extends StatelessWidget {
             trailingWidgets: const <YgIcon>[YgIcon(YgIcons.caretRight)],
           ),
           YgListTile(
-            title: 'Button group',
+            title: 'ButtonGroup',
             onTap: () => sl<YgRouter>().push(ButtonGroupScreen.route()),
             trailingWidgets: const <YgIcon>[YgIcon(YgIcons.caretRight)],
           ),
@@ -70,6 +73,11 @@ class HomeScreen extends StatelessWidget {
             trailingWidgets: const <YgIcon>[YgIcon(YgIcons.caretRight)],
           ),
           YgListTile(
+            title: 'IconButton',
+            onTap: () => sl<YgRouter>().push(IconButtonScreen.route()),
+            trailingWidgets: const <YgIcon>[YgIcon(YgIcons.caretRight)],
+          ),
+          YgListTile(
             title: 'Icon list (all icons)',
             onTap: () => sl<YgRouter>().push(IconsListScreen.route()),
             trailingWidgets: const <YgIcon>[YgIcon(YgIcons.caretRight)],
@@ -80,7 +88,7 @@ class HomeScreen extends StatelessWidget {
             trailingWidgets: const <YgIcon>[YgIcon(YgIcons.caretRight)],
           ),
           YgListTile(
-            title: 'List tile',
+            title: 'ListTile',
             onTap: () => sl<YgRouter>().push(ListTileScreen.route()),
             trailingWidgets: const <YgIcon>[YgIcon(YgIcons.caretRight)],
           ),
@@ -90,19 +98,29 @@ class HomeScreen extends StatelessWidget {
             trailingWidgets: const <YgIcon>[YgIcon(YgIcons.caretRight)],
           ),
           YgListTile(
+            title: 'Switch',
+            onTap: () => sl<YgRouter>().push(SwitchScreen.route()),
+            trailingWidgets: const <YgIcon>[YgIcon(YgIcons.caretRight)],
+          ),
+          YgListTile(
+            title: 'SwitchListTile',
+            onTap: () => sl<YgRouter>().push(SwitchListTileScreen.route()),
+            trailingWidgets: const <YgIcon>[YgIcon(YgIcons.caretRight)],
+          ),
+          YgListTile(
             title: 'Tags',
             onTap: () => sl<YgRouter>().push(TagsScreen.route()),
             trailingWidgets: const <YgIcon>[YgIcon(YgIcons.caretRight)],
           ),
           YgListTile(
-            title: 'Text input',
+            title: 'TextInput',
             onTap: () {
               sl<YgRouter>().push(TextInputScreen.route());
             },
             trailingWidgets: const <YgIcon>[YgIcon(YgIcons.caretRight)],
           ),
           YgListTile(
-            title: 'Text link',
+            title: 'TextLink',
             onTap: () => sl<YgRouter>().push(TextLinkScreen.route()),
             trailingWidgets: const <YgIcon>[YgIcon(YgIcons.caretRight)],
           ),

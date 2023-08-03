@@ -32,7 +32,7 @@ class _TextInputScreenState extends State<TextInputScreen> {
       onTap: () {
         FocusScope.of(context).unfocus();
       },
-      child: YgScreen(
+      child: DemoScreen(
         componentName: 'Text Input',
         componentDesc: 'Text Input',
         supernovaLink: 'Input',

@@ -1,107 +1,87 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/rendering.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:yggdrasil/yggdrasil.dart';
 
-class YgIcon extends StatelessWidget with StatelessWidgetDebugMixin {
+class YgIcon extends StatelessWidget {
   const YgIcon(
     this.icon, {
     super.key,
-    this.color,
-    this.invertColor,
-    this.useSvgColor,
     this.size,
-    this.tapSize,
-    this.onTap,
+    this.color,
+    this.useEmbeddedColor = false,
+    this.semanticLabel,
   });
 
-  /// String representing the name of the icon.
-  final String icon;
-
-  /// Color of the icon.
+  /// The icon to display.
   ///
-  /// If null, the default theme color for icons will be used.
-  /// This responds well when changing the theme.
-  final Color? color;
-
-  /// Whether the icon color should be inverted.
+  /// The available icons are shown in the IconList screen.
   ///
-  /// Enable this if the icon is placed on a dark background.
-  /// The default theme color works for light backgrounds,
-  /// but not for dark backgrounds.
-  final bool? invertColor;
+  /// The icon can be null, in which case the widget will render as an empty
+  /// space of the specified [size].
+  final String? icon;
 
-  /// Whether the icon should use the color defined in the SVG file.
-  final bool? useSvgColor;
-
-  /// Size of the icon.
+  /// The size of the icon.
   final YgIconSize? size;
 
-  /// Size of the tap area.
-  final YgIconTapSize? tapSize;
-
-  /// Callback for when the icon is tapped.
+  /// The color to use when drawing the icon.
   ///
-  /// This also enables the ripple effect on the icon.
-  final VoidCallback? onTap;
+  /// Defaults to the nearest [IconTheme]'s [IconThemeData.color].
+  final Color? color;
+
+  /// Uses the color embedded in the SVG instead of theme.
+  final bool useEmbeddedColor;
+
+  /// Semantic label for the icon.
+  ///
+  /// This label does not show in the UI.
+  final String? semanticLabel;
 
   @override
   Widget build(BuildContext context) {
-    final YgDefaultIconStyle? defaultStyle = YgDefaultIconStyle.of(context);
+    final String? icon = this.icon;
+    final YgIconSize? size = this.size;
+
+    final YgIconTheme ygIconTheme = context.iconTheme;
     final IconThemeData materialIconTheme = IconTheme.of(context);
 
-    final Color? color = this.color ?? defaultStyle?.color ?? materialIconTheme.color;
-    final bool invertColor = this.invertColor ?? defaultStyle?.invertColor ?? false;
-    final bool useSvgColor = this.useSvgColor ?? defaultStyle?.useSvgColor ?? false;
-    final YgIconSize size = this.size ?? defaultStyle?.size ?? YgIconSize.large;
-    final YgIconTapSize tapSize = this.tapSize ?? defaultStyle?.tapSize ?? YgIconTapSize.largest;
-
-    // TODO(Tim): Figure out something so default values can't trigger these.
-    assert(!(useSvgColor && color != null), 'Can only specify color or useSvgColor, not both');
-    assert(!(useSvgColor && invertColor), 'Not possible to invert the svg color.');
-
-    final YgIconTheme iconTheme = context.iconTheme;
-    final ColorFilter? colorFilter = _setColorFilter(
-      context,
-      color: color,
-      invertColor: invertColor,
-      useSvgColor: useSvgColor,
-    );
-
-    if (onTap == null) {
-      return _buildSvg(
-        iconTheme,
-        colorFilter: colorFilter,
-        size: size,
+    double? iconSize = materialIconTheme.size;
+    if (size != null) {
+      iconSize = YgIconMapper.getIconSize(
+        iconTheme: ygIconTheme,
+        iconSize: size,
       );
     }
 
-    return Material(
-      borderRadius: BorderRadius.circular(
-        YgIconMapper.getTapSize(
-          iconTheme: iconTheme,
-          tapSize: tapSize,
-        ),
-      ),
-      color: context.tokens.colors.backgroundTransparent,
-      child: InkWell(
-        borderRadius: BorderRadius.circular(
-          YgIconMapper.getTapSize(
-            iconTheme: iconTheme,
-            tapSize: tapSize,
-          ),
-        ),
-        onTap: onTap,
+    final Color? iconColor = color ?? materialIconTheme.color;
+    final ColorFilter? colorFilter = _getColorFilter(context, iconColor);
+
+    if (icon == null) {
+      return Semantics(
+        label: semanticLabel,
         child: SizedBox.square(
-          dimension: YgIconMapper.getTapSize(
-            iconTheme: iconTheme,
-            tapSize: tapSize,
-          ),
-          child: Align(
-            alignment: Alignment.center,
-            child: _buildSvg(
-              iconTheme,
-              colorFilter: colorFilter,
-              size: size,
+          dimension: iconSize,
+          child: const Placeholder(),
+        ),
+      );
+    }
+
+    return Semantics(
+      label: semanticLabel,
+      child: ExcludeSemantics(
+        child: SizedBox.square(
+          dimension: iconSize,
+          child: Center(
+            child: Align(
+              alignment: Alignment.center,
+              child: SvgPicture.asset(
+                icon,
+                package: 'yggdrasil',
+                colorFilter: colorFilter,
+                height: iconSize,
+                width: iconSize,
+                excludeFromSemantics: true,
+              ),
             ),
           ),
         ),
@@ -109,19 +89,14 @@ class YgIcon extends StatelessWidget with StatelessWidgetDebugMixin {
     );
   }
 
-  ColorFilter? _setColorFilter(
-    BuildContext context, {
-    required Color? color,
-    required bool useSvgColor,
-    required bool invertColor,
-  }) {
-    if (useSvgColor) {
+  ColorFilter? _getColorFilter(BuildContext context, Color? color) {
+    if (useEmbeddedColor) {
       return null;
     }
 
     if (color == null) {
       return ColorFilter.mode(
-        invertColor ? context.defaults.invertedIconColor : context.defaults.iconColor,
+        context.defaults.iconColor,
         BlendMode.srcIn,
       );
     }
@@ -132,46 +107,18 @@ class YgIcon extends StatelessWidget with StatelessWidgetDebugMixin {
     );
   }
 
-  SvgPicture _buildSvg(
-    YgIconTheme iconTheme, {
-    required ColorFilter? colorFilter,
-    required YgIconSize size,
-  }) {
-    return SvgPicture.asset(
-      icon,
-      package: 'yggdrasil',
-      colorFilter: colorFilter,
-      height: YgIconMapper.getIconSize(
-        iconTheme: iconTheme,
-        iconSize: size,
-      ),
-      width: YgIconMapper.getIconSize(
-        iconTheme: iconTheme,
-        iconSize: size,
-      ),
-    );
-  }
-
-  /// Creates a copy of this [YgIcon] but with the given fields replaced with the new values.
-  ///
-  /// This can be used to enforce a default value for some of the fields of [YgIcon].
-  YgIcon copyWith({
-    String? icon,
-    Color? color,
-    bool? invertColor,
-    bool? useSvgColor,
-    YgIconSize? size,
-    YgIconTapSize? tapSize,
-    VoidCallback? onTap,
-  }) {
-    return YgIcon(
-      icon ?? this.icon,
-      color: color ?? this.color,
-      invertColor: invertColor ?? this.invertColor,
-      useSvgColor: useSvgColor ?? this.useSvgColor,
-      size: size ?? this.size,
-      tapSize: tapSize ?? this.tapSize,
-      onTap: onTap ?? this.onTap,
-    );
+  @override
+  void debugFillProperties(DiagnosticPropertiesBuilder properties) {
+    super.debugFillProperties(properties);
+    properties.add(StringProperty('icon', icon, defaultValue: null));
+    properties.add(EnumProperty<YgIconSize>('size', size, defaultValue: null));
+    properties.add(ColorProperty('color', color, defaultValue: null));
+    properties.add(FlagProperty(
+      'useEmbeddedColor',
+      value: useEmbeddedColor,
+      ifTrue: 'Uses embedded color',
+      ifFalse: 'Uses theme or overwritten color',
+    ));
+    properties.add(StringProperty('semanticLabel', semanticLabel, defaultValue: null));
   }
 }

@@ -3,6 +3,8 @@ import 'package:yggdrasil/src/theme/theme.dart';
 
 /// Helper to construct ThemeData to be used in an application.
 class YgThemeDataHelper {
+  YgThemeDataHelper._();
+
   // region Consumer themes.
   static ThemeData getThemeData(YgTheme theme) {
     return ThemeData(
@@ -17,6 +19,9 @@ class YgThemeDataHelper {
       focusColor: theme.defaults.focusColor,
       // Temporary theme values. Will be removed once we have proper component.
       appBarTheme: AppBarTheme(color: theme.defaults.appBarColor),
+      iconTheme: IconThemeData(
+        color: theme.defaults.iconColor,
+      ),
     );
   }
   // endregion

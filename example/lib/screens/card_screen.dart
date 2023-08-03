@@ -17,65 +17,59 @@ class CardScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return YgScreen(
+    return DemoScreen(
       componentName: 'Card',
       componentDesc: 'Cards',
       supernovaLink: 'Link',
       child: Column(
         children: <Widget>[
           const YgListTile(title: 'Elevated card'),
-          ...<Widget>[
-            const YgCard(
-              child: YgListTile(
-                title: 'Elevated card',
-                subtitle: 'Bacon ipsum dolor amet chicken frankfurter burgdoggen landjaeger sirloin ham pig.',
-              ),
+          const YgCard(
+            child: YgListTile(
+              title: 'Elevated card',
+              subtitle: 'Bacon ipsum dolor amet chicken frankfurter burgdoggen landjaeger sirloin ham pig.',
             ),
-            YgCard(
-              child: YgListTile(
-                title: 'Elevated card w/ tapable tile',
-                subtitle: 'Bacon ipsum dolor amet chicken frankfurter burgdoggen landjaeger sirloin ham pig.',
-                onTap: () {},
-              ),
+          ),
+          YgCard(
+            child: YgListTile(
+              title: 'Elevated card w/ tapable tile',
+              subtitle: 'Bacon ipsum dolor amet chicken frankfurter burgdoggen landjaeger sirloin ham pig.',
+              onTap: () {},
             ),
-          ].withVerticalSpacing(20),
+          ),
           const YgListTile(title: 'Filled card'),
-          ...<Widget>[
-            const YgCard(
-              variant: YgCardVariant.filled,
-              child: YgListTile(
-                title: 'Filled card',
-                subtitle: 'Bacon ipsum dolor amet chicken frankfurter burgdoggen landjaeger sirloin ham pig.',
-              ),
+          const YgCard(
+            variant: YgCardVariant.filled,
+            child: YgListTile(
+              title: 'Filled card',
+              subtitle: 'Bacon ipsum dolor amet chicken frankfurter burgdoggen landjaeger sirloin ham pig.',
             ),
-            YgCard(
-              variant: YgCardVariant.filled,
-              child: YgListTile(
-                title: 'Filled card w/ tapable tile',
-                subtitle: 'Bacon ipsum dolor amet chicken frankfurter burgdoggen landjaeger sirloin ham pig.',
-                onTap: () {},
-              ),
+          ),
+          YgCard(
+            variant: YgCardVariant.filled,
+            child: YgListTile(
+              title: 'Filled card w/ tapable tile',
+              subtitle: 'Bacon ipsum dolor amet chicken frankfurter burgdoggen landjaeger sirloin ham pig.',
+              onTap: () {},
             ),
-          ].withVerticalSpacing(20),
+          ),
           const YgListTile(title: 'Outlined card'),
-          ...<Widget>[
-            const YgCard(
-              variant: YgCardVariant.outlined,
-              child: YgListTile(
-                title: 'Outlined card',
-                subtitle: 'Bacon ipsum dolor amet chicken frankfurter burgdoggen landjaeger sirloin ham pig.',
-              ),
+          const YgCard(
+            variant: YgCardVariant.outlined,
+            child: YgListTile(
+              title: 'Outlined card',
+              subtitle: 'Bacon ipsum dolor amet chicken frankfurter burgdoggen landjaeger sirloin ham pig.',
             ),
-            YgCard(
-              variant: YgCardVariant.outlined,
-              child: YgListTile(
-                title: 'Outlined card w/ tapable tile',
-                subtitle: 'Bacon ipsum dolor amet chicken frankfurter burgdoggen landjaeger sirloin ham pig.',
-                onTap: () {},
-              ),
+          ),
+          YgCard(
+            variant: YgCardVariant.outlined,
+            child: YgListTile(
+              title: 'Outlined card w/ tapable tile',
+              subtitle: 'Bacon ipsum dolor amet chicken frankfurter burgdoggen landjaeger sirloin ham pig.',
+              onTap: () {},
             ),
-          ].withVerticalSpacing(20),
-        ],
+          ),
+        ].withVerticalSpacing(10),
       ),
     );
   }

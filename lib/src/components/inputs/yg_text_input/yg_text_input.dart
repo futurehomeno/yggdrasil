@@ -342,19 +342,23 @@ class _YgTextInputState extends YgTextInputWidgetState<YgTextInput> {
     Widget? suffix = widget.suffix;
 
     if (suffix == null && widget.obscureText && widget.showObscureTextButton) {
-      suffix = YgIcon(
-        _suffixIcon,
-        onTap: () {
+      suffix = YgIconButton(
+        onPressed: () {
           _obscureTextToggled ^= true;
           setState(() {});
         },
+        child: YgIcon(
+          _suffixIcon,
+        ),
       );
     }
 
     if (suffix != null) {
-      return YgDefaultIconStyle(
-        tapSize: YgIconTapSize.largest,
-        color: _suffixIconColor,
+      return IconTheme(
+        data: IconThemeData(
+          color: _suffixIconColor,
+          size: 25,
+        ),
         child: suffix,
       );
     }

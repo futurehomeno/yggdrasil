@@ -3,8 +3,8 @@ import 'package:provider/provider.dart';
 import 'package:yggdrasil/yggdrasil.dart';
 import 'package:yggdrasil_demo/core/_core.dart';
 
-class YgScreen extends StatelessWidget {
-  const YgScreen({
+class DemoScreen extends StatelessWidget {
+  const DemoScreen({
     super.key,
     required this.componentName,
     required this.componentDesc,
@@ -34,15 +34,17 @@ class YgScreen extends StatelessWidget {
           appBar: AppBar(
             title: Text(componentName),
             actions: <Widget>[
-              YgIcon(
-                YgIcons.eyeOpen,
-                onTap: ygAppState.toggleDebugOutlineEnabled,
-                tapSize: YgIconTapSize.largest,
+              YgIconButton(
+                onPressed: ygAppState.toggleDebugOutlineEnabled,
+                child: const YgIcon(YgIcons.eyeOpen),
               ),
-              YgIcon(
-                YgIcons.refresh,
-                onTap: ygAppState.toggleTheme,
-                tapSize: YgIconTapSize.largest,
+              YgIconButton(
+                onPressed: ygAppState.toggleProfessionalTheme,
+                child: const Icon(Icons.business),
+              ),
+              YgIconButton(
+                onPressed: ygAppState.toggleDarkMode,
+                child: const YgIcon(YgIcons.refresh),
               ),
             ],
           ),

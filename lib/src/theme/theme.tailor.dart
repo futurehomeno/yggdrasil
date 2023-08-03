@@ -19,10 +19,12 @@ class YgTheme extends ThemeExtension<YgTheme> {
     required this.defaults,
     required this.dialogTheme,
     required this.dividerTheme,
+    required this.iconButtonTheme,
     required this.iconTheme,
     required this.internalTheme,
     required this.listTileTheme,
     required this.snackbarTheme,
+    required this.switchTheme,
     required this.tagTheme,
     required this.textInputTheme,
     required this.textLinkTheme,
@@ -38,10 +40,12 @@ class YgTheme extends ThemeExtension<YgTheme> {
   final YgDefaults defaults;
   final YgDialogTheme dialogTheme;
   final YgDividerTheme dividerTheme;
+  final YgIconButtonTheme iconButtonTheme;
   final YgIconTheme iconTheme;
   final YgInternalTheme internalTheme;
   final YgListTileTheme listTileTheme;
   final YgSnackbarTheme snackbarTheme;
+  final YgSwitchTheme switchTheme;
   final YgTagTheme tagTheme;
   final YgTextInputTheme textInputTheme;
   final YgTextLinkTheme textLinkTheme;
@@ -57,10 +61,12 @@ class YgTheme extends ThemeExtension<YgTheme> {
     defaults: _$YgTheme.defaults[0],
     dialogTheme: _$YgTheme.dialogTheme[0],
     dividerTheme: _$YgTheme.dividerTheme[0],
+    iconButtonTheme: _$YgTheme.iconButtonTheme[0],
     iconTheme: _$YgTheme.iconTheme[0],
     internalTheme: _$YgTheme.internalTheme[0],
     listTileTheme: _$YgTheme.listTileTheme[0],
     snackbarTheme: _$YgTheme.snackbarTheme[0],
+    switchTheme: _$YgTheme.switchTheme[0],
     tagTheme: _$YgTheme.tagTheme[0],
     textInputTheme: _$YgTheme.textInputTheme[0],
     textLinkTheme: _$YgTheme.textLinkTheme[0],
@@ -77,10 +83,12 @@ class YgTheme extends ThemeExtension<YgTheme> {
     defaults: _$YgTheme.defaults[1],
     dialogTheme: _$YgTheme.dialogTheme[1],
     dividerTheme: _$YgTheme.dividerTheme[1],
+    iconButtonTheme: _$YgTheme.iconButtonTheme[1],
     iconTheme: _$YgTheme.iconTheme[1],
     internalTheme: _$YgTheme.internalTheme[1],
     listTileTheme: _$YgTheme.listTileTheme[1],
     snackbarTheme: _$YgTheme.snackbarTheme[1],
+    switchTheme: _$YgTheme.switchTheme[1],
     tagTheme: _$YgTheme.tagTheme[1],
     textInputTheme: _$YgTheme.textInputTheme[1],
     textLinkTheme: _$YgTheme.textLinkTheme[1],
@@ -97,10 +105,12 @@ class YgTheme extends ThemeExtension<YgTheme> {
     defaults: _$YgTheme.defaults[2],
     dialogTheme: _$YgTheme.dialogTheme[2],
     dividerTheme: _$YgTheme.dividerTheme[2],
+    iconButtonTheme: _$YgTheme.iconButtonTheme[2],
     iconTheme: _$YgTheme.iconTheme[2],
     internalTheme: _$YgTheme.internalTheme[2],
     listTileTheme: _$YgTheme.listTileTheme[2],
     snackbarTheme: _$YgTheme.snackbarTheme[2],
+    switchTheme: _$YgTheme.switchTheme[2],
     tagTheme: _$YgTheme.tagTheme[2],
     textInputTheme: _$YgTheme.textInputTheme[2],
     textLinkTheme: _$YgTheme.textLinkTheme[2],
@@ -117,10 +127,12 @@ class YgTheme extends ThemeExtension<YgTheme> {
     defaults: _$YgTheme.defaults[3],
     dialogTheme: _$YgTheme.dialogTheme[3],
     dividerTheme: _$YgTheme.dividerTheme[3],
+    iconButtonTheme: _$YgTheme.iconButtonTheme[3],
     iconTheme: _$YgTheme.iconTheme[3],
     internalTheme: _$YgTheme.internalTheme[3],
     listTileTheme: _$YgTheme.listTileTheme[3],
     snackbarTheme: _$YgTheme.snackbarTheme[3],
+    switchTheme: _$YgTheme.switchTheme[3],
     tagTheme: _$YgTheme.tagTheme[3],
     textInputTheme: _$YgTheme.textInputTheme[3],
     textLinkTheme: _$YgTheme.textLinkTheme[3],
@@ -145,10 +157,12 @@ class YgTheme extends ThemeExtension<YgTheme> {
     YgDefaults? defaults,
     YgDialogTheme? dialogTheme,
     YgDividerTheme? dividerTheme,
+    YgIconButtonTheme? iconButtonTheme,
     YgIconTheme? iconTheme,
     YgInternalTheme? internalTheme,
     YgListTileTheme? listTileTheme,
     YgSnackbarTheme? snackbarTheme,
+    YgSwitchTheme? switchTheme,
     YgTagTheme? tagTheme,
     YgTextInputTheme? textInputTheme,
     YgTextLinkTheme? textLinkTheme,
@@ -164,10 +178,12 @@ class YgTheme extends ThemeExtension<YgTheme> {
       defaults: defaults ?? this.defaults,
       dialogTheme: dialogTheme ?? this.dialogTheme,
       dividerTheme: dividerTheme ?? this.dividerTheme,
+      iconButtonTheme: iconButtonTheme ?? this.iconButtonTheme,
       iconTheme: iconTheme ?? this.iconTheme,
       internalTheme: internalTheme ?? this.internalTheme,
       listTileTheme: listTileTheme ?? this.listTileTheme,
       snackbarTheme: snackbarTheme ?? this.snackbarTheme,
+      switchTheme: switchTheme ?? this.switchTheme,
       tagTheme: tagTheme ?? this.tagTheme,
       textInputTheme: textInputTheme ?? this.textInputTheme,
       textLinkTheme: textLinkTheme ?? this.textLinkTheme,
@@ -190,6 +206,8 @@ class YgTheme extends ThemeExtension<YgTheme> {
       defaults: defaults.lerp(other.defaults, t) as YgDefaults,
       dialogTheme: dialogTheme.lerp(other.dialogTheme, t) as YgDialogTheme,
       dividerTheme: dividerTheme.lerp(other.dividerTheme, t) as YgDividerTheme,
+      iconButtonTheme:
+          iconButtonTheme.lerp(other.iconButtonTheme, t) as YgIconButtonTheme,
       iconTheme: iconTheme.lerp(other.iconTheme, t) as YgIconTheme,
       internalTheme:
           internalTheme.lerp(other.internalTheme, t) as YgInternalTheme,
@@ -197,6 +215,7 @@ class YgTheme extends ThemeExtension<YgTheme> {
           listTileTheme.lerp(other.listTileTheme, t) as YgListTileTheme,
       snackbarTheme:
           snackbarTheme.lerp(other.snackbarTheme, t) as YgSnackbarTheme,
+      switchTheme: switchTheme.lerp(other.switchTheme, t) as YgSwitchTheme,
       tagTheme: tagTheme.lerp(other.tagTheme, t) as YgTagTheme,
       textInputTheme:
           textInputTheme.lerp(other.textInputTheme, t) as YgTextInputTheme,
@@ -227,6 +246,8 @@ class YgTheme extends ThemeExtension<YgTheme> {
                 .equals(dialogTheme, other.dialogTheme) &&
             const DeepCollectionEquality()
                 .equals(dividerTheme, other.dividerTheme) &&
+            const DeepCollectionEquality()
+                .equals(iconButtonTheme, other.iconButtonTheme) &&
             const DeepCollectionEquality().equals(iconTheme, other.iconTheme) &&
             const DeepCollectionEquality()
                 .equals(internalTheme, other.internalTheme) &&
@@ -234,6 +255,8 @@ class YgTheme extends ThemeExtension<YgTheme> {
                 .equals(listTileTheme, other.listTileTheme) &&
             const DeepCollectionEquality()
                 .equals(snackbarTheme, other.snackbarTheme) &&
+            const DeepCollectionEquality()
+                .equals(switchTheme, other.switchTheme) &&
             const DeepCollectionEquality().equals(tagTheme, other.tagTheme) &&
             const DeepCollectionEquality()
                 .equals(textInputTheme, other.textInputTheme) &&
@@ -255,10 +278,12 @@ class YgTheme extends ThemeExtension<YgTheme> {
       const DeepCollectionEquality().hash(defaults),
       const DeepCollectionEquality().hash(dialogTheme),
       const DeepCollectionEquality().hash(dividerTheme),
+      const DeepCollectionEquality().hash(iconButtonTheme),
       const DeepCollectionEquality().hash(iconTheme),
       const DeepCollectionEquality().hash(internalTheme),
       const DeepCollectionEquality().hash(listTileTheme),
       const DeepCollectionEquality().hash(snackbarTheme),
+      const DeepCollectionEquality().hash(switchTheme),
       const DeepCollectionEquality().hash(tagTheme),
       const DeepCollectionEquality().hash(textInputTheme),
       const DeepCollectionEquality().hash(textLinkTheme),
@@ -278,10 +303,12 @@ extension YgThemeBuildContextProps on BuildContext {
   YgDefaults get defaults => ygTheme.defaults;
   YgDialogTheme get dialogTheme => ygTheme.dialogTheme;
   YgDividerTheme get dividerTheme => ygTheme.dividerTheme;
+  YgIconButtonTheme get iconButtonTheme => ygTheme.iconButtonTheme;
   YgIconTheme get iconTheme => ygTheme.iconTheme;
   YgInternalTheme get internalTheme => ygTheme.internalTheme;
   YgListTileTheme get listTileTheme => ygTheme.listTileTheme;
   YgSnackbarTheme get snackbarTheme => ygTheme.snackbarTheme;
+  YgSwitchTheme get switchTheme => ygTheme.switchTheme;
   YgTagTheme get tagTheme => ygTheme.tagTheme;
   YgTextInputTheme get textInputTheme => ygTheme.textInputTheme;
   YgTextLinkTheme get textLinkTheme => ygTheme.textLinkTheme;

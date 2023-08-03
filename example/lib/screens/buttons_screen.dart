@@ -17,198 +17,93 @@ class ButtonsScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return YgScreen(
+    return DemoScreen(
       componentName: 'Button',
       componentDesc: 'Buttons',
       supernovaLink: 'Link',
       child: Column(
         children: <Widget>[
-          const YgListTile(title: 'Primary buttons'),
-          Column(
-            children: <Widget>[
-              YgButton(
-                variant: YgButtonVariant.primary,
-                size: YgButtonSize.small,
-                onPressed: () {},
-                child: const Text('Button'),
-              ),
-              YgButton(
-                variant: YgButtonVariant.primary,
-                size: YgButtonSize.medium,
-                onPressed: () {},
-                child: const Text('Button'),
-              ),
-              YgButton(
-                variant: YgButtonVariant.primary,
-                size: YgButtonSize.large,
-                onPressed: () {},
-                child: const Text('Button'),
-              ),
-              YgButton.leadingIcon(
-                variant: YgButtonVariant.primary,
-                size: YgButtonSize.small,
-                onPressed: () {},
-                icon: const YgIcon(YgIcons.info),
-                child: const Text('Button'),
-              ),
-              YgButton.trailingIcon(
-                variant: YgButtonVariant.primary,
-                size: YgButtonSize.small,
-                onPressed: () {},
-                icon: const YgIcon(YgIcons.info),
-                child: const Text('Button'),
-              ),
-            ].withVerticalSpacing(10),
+          const YgListTile(title: 'Variants'),
+          YgButton(
+            onPressed: () {},
+            child: const Text('Primary'),
           ),
-          const YgListTile(title: 'Secondary buttons'),
-          Column(
-            children: <Widget>[
-              YgButton(
-                variant: YgButtonVariant.secondary,
-                size: YgButtonSize.small,
-                onPressed: () {},
-                child: const Text('Button'),
-              ),
-              YgButton(
-                variant: YgButtonVariant.secondary,
-                size: YgButtonSize.medium,
-                onPressed: () {},
-                child: const Text('Button'),
-              ),
-              YgButton(
-                variant: YgButtonVariant.secondary,
-                size: YgButtonSize.large,
-                onPressed: () {},
-                child: const Text('Button'),
-              ),
-              YgButton.leadingIcon(
-                variant: YgButtonVariant.secondary,
-                size: YgButtonSize.small,
-                onPressed: () {},
-                icon: const YgIcon(YgIcons.info),
-                child: const Text('Button'),
-              ),
-              YgButton.trailingIcon(
-                variant: YgButtonVariant.secondary,
-                size: YgButtonSize.small,
-                onPressed: () {},
-                icon: const YgIcon(YgIcons.info),
-                child: const Text('Button'),
-              ),
-            ].withVerticalSpacing(10),
+          YgButton(
+            variant: YgButtonVariant.secondary,
+            onPressed: () {},
+            child: const Text('Secondary'),
           ),
-          const YgListTile(title: 'Text buttons'),
-          Column(
-            children: <Widget>[
-              YgButton(
-                variant: YgButtonVariant.text,
-                size: YgButtonSize.small,
-                onPressed: () {},
-                child: const Text('Button'),
-              ),
-              YgButton(
-                variant: YgButtonVariant.text,
-                size: YgButtonSize.medium,
-                onPressed: () {},
-                child: const Text('Button'),
-              ),
-              YgButton(
-                variant: YgButtonVariant.text,
-                size: YgButtonSize.large,
-                onPressed: () {},
-                child: const Text('Button'),
-              ),
-              YgButton.leadingIcon(
-                variant: YgButtonVariant.text,
-                size: YgButtonSize.small,
-                onPressed: () {},
-                icon: const YgIcon(YgIcons.info),
-                child: const Text('Button'),
-              ),
-              YgButton.trailingIcon(
-                variant: YgButtonVariant.text,
-                size: YgButtonSize.small,
-                onPressed: () {},
-                icon: const YgIcon(YgIcons.info),
-                child: const Text('Button'),
-              ),
-            ].withVerticalSpacing(10),
+          YgButton(
+            variant: YgButtonVariant.text,
+            onPressed: () {},
+            child: const Text('Text'),
           ),
-          const YgListTile(title: 'Critical buttons'),
-          Column(
-            children: <Widget>[
-              YgButton(
-                variant: YgButtonVariant.critical,
-                size: YgButtonSize.small,
-                onPressed: () {},
-                child: const Text('Button'),
-              ),
-              YgButton(
-                variant: YgButtonVariant.critical,
-                size: YgButtonSize.medium,
-                onPressed: () {},
-                child: const Text('Button'),
-              ),
-              YgButton(
-                variant: YgButtonVariant.critical,
-                size: YgButtonSize.large,
-                onPressed: () {},
-                child: const Text('Button'),
-              ),
-              YgButton.leadingIcon(
-                variant: YgButtonVariant.critical,
-                size: YgButtonSize.small,
-                onPressed: () {},
-                icon: const YgIcon(YgIcons.info),
-                child: const Text('Button'),
-              ),
-              YgButton.trailingIcon(
-                variant: YgButtonVariant.critical,
-                size: YgButtonSize.small,
-                onPressed: () {},
-                icon: const YgIcon(YgIcons.info),
-                child: const Text('Button'),
-              ),
-            ].withVerticalSpacing(10),
+          YgButton(
+            variant: YgButtonVariant.link,
+            onPressed: () {},
+            child: const Text('Link'),
           ),
-          const YgListTile(title: 'Link buttons'),
-          Column(
-            children: <Widget>[
-              YgButton(
-                variant: YgButtonVariant.link,
-                size: YgButtonSize.small,
-                onPressed: () {},
-                child: const Text('Button'),
-              ),
-              YgButton(
-                variant: YgButtonVariant.link,
-                size: YgButtonSize.medium,
-                onPressed: () {},
-                child: const Text('Button'),
-              ),
-              YgButton(
-                variant: YgButtonVariant.link,
-                size: YgButtonSize.large,
-                onPressed: () {},
-                child: const Text('Button'),
-              ),
-              YgButton.leadingIcon(
-                variant: YgButtonVariant.link,
-                size: YgButtonSize.small,
-                onPressed: () {},
-                icon: const YgIcon(YgIcons.info),
-                child: const Text('Button'),
-              ),
-              YgButton.trailingIcon(
-                variant: YgButtonVariant.link,
-                size: YgButtonSize.small,
-                onPressed: () {},
-                icon: const YgIcon(YgIcons.info),
-                child: const Text('Button'),
-              ),
-            ].withVerticalSpacing(10),
+          YgButton(
+            variant: YgButtonVariant.critical,
+            onPressed: () {},
+            child: const Text('Critical'),
           ),
-        ],
+          const YgListTile(title: 'Size variations'),
+          YgButton(
+            size: YgButtonSize.small,
+            onPressed: () {},
+            child: const Text('Small'),
+          ),
+          YgButton(
+            onPressed: () {},
+            child: const Text('Medium'),
+          ),
+          YgButton(
+            size: YgButtonSize.large,
+            onPressed: () {},
+            child: const Text('Large'),
+          ),
+          const YgListTile(title: 'Icon variations'),
+          YgButton.leadingIcon(
+            icon: const YgIcon(YgIcons.info),
+            onPressed: () {},
+            child: const Text('Leading icon'),
+          ),
+          YgButton.trailingIcon(
+            icon: const YgIcon(YgIcons.info),
+            onPressed: () {},
+            child: const Text('Trailing icon'),
+          ),
+          const YgListTile(title: 'State variations'),
+          YgButton.trailingIcon(
+            icon: const YgIcon(YgIcons.check),
+            onPressed: () {},
+            child: const Text('Enabled'),
+          ),
+          YgButton.trailingIcon(
+            icon: const YgIcon(YgIcons.cross),
+            onPressed: null,
+            child: const Text('Disabled'),
+          ),
+          const YgListTile(title: 'Icon color variations'),
+          YgButton.leadingIcon(
+            icon: const YgIcon(YgIcons.deviceHub),
+            onPressed: () {},
+            child: const Text('Default icon color'),
+          ),
+          YgButton.leadingIcon(
+            variant: YgButtonVariant.link,
+            icon: const YgIcon(YgIcons.info),
+            onPressed: () {},
+            child: const Text('Link icon color'),
+          ),
+          YgButton.leadingIcon(
+            variant: YgButtonVariant.text,
+            icon: const YgIcon(YgIcons.info),
+            onPressed: () {},
+            child: const Text('Text icon color'),
+          ),
+        ].withVerticalSpacing(10),
       ),
     );
   }

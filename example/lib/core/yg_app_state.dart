@@ -7,14 +7,33 @@ class YgAppState extends ChangeNotifier {
   YgTheme _currentTheme = YgTheme.consumerLight;
   YgTheme get theme => _defaultTheme;
   bool _debugOutlineEnabled = false;
+  bool _darkMode = false;
+  bool _businessTheme = false;
 
-  void toggleTheme() {
-    if (_currentTheme == YgTheme.consumerLight) {
-      _currentTheme = YgTheme.consumerDark;
+  void toggleDarkMode() {
+    _darkMode ^= true;
+    _updateTheme();
+  }
+
+  void toggleProfessionalTheme() {
+    _businessTheme ^= true;
+    _updateTheme();
+  }
+
+  void _updateTheme() {
+    if (_businessTheme) {
+      if (_darkMode) {
+        _currentTheme = YgTheme.professionalDark;
+      } else {
+        _currentTheme = YgTheme.professionalLight;
+      }
     } else {
-      _currentTheme = YgTheme.consumerLight;
+      if (_darkMode) {
+        _currentTheme = YgTheme.consumerDark;
+      } else {
+        _currentTheme = YgTheme.consumerLight;
+      }
     }
-
     notifyListeners();
   }
 

@@ -17,7 +17,7 @@ class TextLinkScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return YgScreen(
+    return DemoScreen(
       componentName: 'TextLink',
       componentDesc: 'Text links',
       supernovaLink: 'Link',
@@ -80,6 +80,27 @@ class TextLinkScreen extends StatelessWidget {
             external: true,
             size: YgTextLinkSize.small,
             weight: YgTextLinkWeight.weak,
+          ),
+          YgTextLink(
+            onPressed: () {},
+            text: 'Link',
+            external: true,
+            size: YgTextLinkSize.small,
+            weight: YgTextLinkWeight.strong,
+          ),
+          YgTextLink(
+            onPressed: () {},
+            text: 'Link',
+            external: true,
+            size: YgTextLinkSize.medium,
+            weight: YgTextLinkWeight.weak,
+          ),
+          YgTextLink(
+            onPressed: () {},
+            text: 'Link',
+            external: true,
+            size: YgTextLinkSize.medium,
+            weight: YgTextLinkWeight.strong,
           ),
           YgTextLink(
             onPressed: () {},

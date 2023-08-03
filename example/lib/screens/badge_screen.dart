@@ -17,64 +17,57 @@ class BadgeScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return YgScreen(
+    return DemoScreen(
       componentName: 'Badge',
       componentDesc: 'Badges',
       supernovaLink: 'Link',
       child: Column(
         children: <Widget>[
           const YgListTile(title: 'Badges with count 0 - 9'),
-          ...<Widget>[
-            YgBadge(
-              amount: 0,
-              weight: YgBadgeWeight.strong,
-              child: YgIcon(
-                onTap: () {},
-                YgIcons.info,
-                tapSize: YgIconTapSize.largest,
-              ),
+          YgBadge(
+            amount: 0,
+            weight: YgBadgeWeight.strong,
+            child: YgIconButton(
+              onPressed: () {},
+              child: const YgIcon(YgIcons.info),
             ),
-            YgBadge(
-              amount: 1,
-              weight: YgBadgeWeight.strong,
-              child: YgIcon(
-                onTap: () {},
-                YgIcons.info,
-                tapSize: YgIconTapSize.largest,
-              ),
+          ),
+          YgBadge(
+            amount: 1,
+            weight: YgBadgeWeight.strong,
+            child: YgIconButton(
+              onPressed: () {},
+              child: const YgIcon(YgIcons.info),
             ),
-            YgBadge(
-              amount: 8,
-              weight: YgBadgeWeight.strong,
-              child: YgIcon(
-                onTap: () {},
-                YgIcons.info,
-                tapSize: YgIconTapSize.largest,
-              ),
+          ),
+          YgBadge(
+            amount: 8,
+            weight: YgBadgeWeight.strong,
+            child: YgIconButton(
+              onPressed: () {},
+              child: const YgIcon(YgIcons.info),
             ),
-            YgBadge(
-              amount: 9,
-              weight: YgBadgeWeight.strong,
-              child: YgIcon(
-                onTap: () {},
-                YgIcons.info,
-                tapSize: YgIconTapSize.largest,
-              ),
+          ),
+          YgBadge(
+            amount: 9,
+            weight: YgBadgeWeight.strong,
+            child: YgIconButton(
+              onPressed: () {},
+              child: const YgIcon(YgIcons.info),
             ),
-          ].withVerticalSpacing(10),
+          ),
           const YgListTile(title: 'Badges with more than 9'),
           YgBadge(
             amount: 10,
             weight: YgBadgeWeight.weak,
-            child: YgIcon(
-              onTap: () {},
-              YgIcons.info,
-              tapSize: YgIconTapSize.largest,
+            child: YgIconButton(
+              onPressed: () {},
+              child: const YgIcon(YgIcons.info),
             ),
           ),
           const YgListTile(title: 'Dot badge'),
           const YgDotBadge(),
-        ],
+        ].withVerticalSpacing(10),
       ),
     );
   }
