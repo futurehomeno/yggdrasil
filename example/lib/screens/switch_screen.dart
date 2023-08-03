@@ -26,6 +26,9 @@ class _SwitchScreenState extends State<SwitchScreen> {
   bool? disabledTrueValue = true;
   bool? disabledNullValue;
   bool? listTileValue = false;
+  bool? switchListTileValue = false;
+  bool? switchListTileTriStateValue = false;
+  bool? switchListTileDisabledValue = false;
 
   @override
   Widget build(BuildContext context) {
@@ -53,21 +56,26 @@ class _SwitchScreenState extends State<SwitchScreen> {
             },
           ),
           const YgListTile(title: 'Disabled switch'),
-          YgSwitch(
-            value: disabledFalseValue,
-            onChanged: null,
+          Row(
+            mainAxisSize: MainAxisSize.min,
+            children: <Widget>[
+              YgSwitch(
+                value: disabledFalseValue,
+                onChanged: null,
+              ),
+              YgSwitch(
+                value: disabledNullValue,
+                onChanged: null,
+              ),
+              YgSwitch(
+                value: disabledTrueValue,
+                onChanged: null,
+              ),
+            ],
           ),
-          YgSwitch(
-            value: disabledTrueValue,
-            onChanged: null,
-          ),
-          YgSwitch(
-            value: disabledNullValue,
-            onChanged: null,
-          ),
-          const YgListTile(title: 'Switch in a list tile'),
           YgListTile(
-            title: 'I have a switch!',
+            title: 'Switch in a list tile',
+            subtitle: 'Only the Switch is tappable.',
             trailingWidgets: <Widget>[
               YgSwitch(
                 value: listTileValue,
@@ -77,6 +85,31 @@ class _SwitchScreenState extends State<SwitchScreen> {
                 },
               ),
             ],
+          ),
+          YgSwitchListTile(
+            title: 'Switch in a SwitchListTile',
+            subtitle: 'The whole ListTile and Switch is tappable.',
+            value: switchListTileValue,
+            onChanged: (bool? newValue) {
+              switchListTileValue = newValue;
+              setState(() {});
+            },
+          ),
+          YgSwitchListTile(
+            title: 'Tri-state switch in a SwitchListTile',
+            subtitle: 'The whole ListTile and Switch is tappable.',
+            value: switchListTileTriStateValue,
+            triState: true,
+            onChanged: (bool? newValue) {
+              switchListTileTriStateValue = newValue;
+              setState(() {});
+            },
+          ),
+          YgSwitchListTile(
+            title: 'Disabled switch in a SwitchListTile',
+            subtitle: 'The whole ListTile and Switch is tappable.',
+            value: switchListTileDisabledValue,
+            onChanged: null,
           ),
         ],
       ),

@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:yggdrasil/src/theme/theme.dart';
 
+import 'helpers/_yg_switch_helpers.dart';
 import 'yg_switch_handle.dart';
 
 /// Binary (or optionally tri-state) switch.
@@ -39,7 +40,7 @@ class YgSwitch extends StatelessWidget {
           child: InkWell(
             excludeFromSemantics: true,
             borderRadius: context.switchTheme.borderRadius,
-            onTap: onChanged == null ? null : onTap,
+            onTap: onChanged == null ? null : _onTap,
             child: SizedBox(
               width: context.switchTheme.width,
               height: context.switchTheme.height,
@@ -62,22 +63,8 @@ class YgSwitch extends StatelessWidget {
     );
   }
 
-  void onTap() {
-    final bool? currentValue = value;
-    bool? nextValue;
-
-    if (triState) {
-      if (currentValue == null) {
-        nextValue = true;
-      } else if (currentValue == true) {
-        nextValue = false;
-      } else {
-        nextValue = null;
-      }
-    } else {
-      nextValue = !currentValue!;
-    }
-
+  void _onTap() {
+    final bool? nextValue = YgSwitchHelpers.getNextValue(value, triState);
     onChanged?.call(nextValue);
   }
 
