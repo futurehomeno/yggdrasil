@@ -17,7 +17,7 @@ class SnackBarScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return YgScreen(
+    return DemoScreen(
       componentName: 'SnackBar',
       componentDesc: 'Snack Bars',
       supernovaLink: 'Link',
