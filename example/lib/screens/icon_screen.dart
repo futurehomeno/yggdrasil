@@ -28,16 +28,14 @@ class IconScreen extends StatelessWidget {
             subtitle: 'All currently supported icons can be seen on the icons list screen.',
           ),
           YgListTile(title: 'Sizes'),
-          ...<Widget>[
-            YgIcon(
-              YgIcons.info,
-              size: YgIconSize.small,
-            ),
-            YgIcon(
-              YgIcons.info,
-              size: YgIconSize.large,
-            ),
-          ],
+          YgIcon(
+            YgIcons.info,
+            size: YgIconSize.small,
+          ),
+          YgIcon(
+            YgIcons.info,
+            size: YgIconSize.large,
+          ),
           YgListTile(
             title: 'Inherited color',
             subtitle: 'Color switching is handled by the parent widget.',
