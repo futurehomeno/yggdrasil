@@ -29,7 +29,7 @@ class _SwitchScreenState extends State<SwitchScreen> {
 
   @override
   Widget build(BuildContext context) {
-    return YgScreen(
+    return DemoScreen(
       componentName: 'Switch',
       componentDesc: 'Switches',
       supernovaLink: 'Link',
