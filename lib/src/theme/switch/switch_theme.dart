@@ -92,4 +92,20 @@ class _$YgSwitchTheme {
     professional_light.FhRadii.xxl,
     professional_dark.FhRadii.xxl,
   ];
+
+  // TODO(bjhandeland): Replace with theme token.
+  static List<Duration> animationDuration = <Duration>[
+    const Duration(milliseconds: 200),
+    const Duration(milliseconds: 200),
+    const Duration(milliseconds: 200),
+    const Duration(milliseconds: 200),
+  ];
+
+  // TODO(bjhandeland): Replace with theme token.
+  static List<Curve> animationCurve = <Curve>[
+    const Cubic(0.42, 0.0, 0.58, 1.0),
+    const Cubic(0.42, 0.0, 0.58, 1.0),
+    const Cubic(0.42, 0.0, 0.58, 1.0),
+    const Cubic(0.42, 0.0, 0.58, 1.0),
+  ];
 }

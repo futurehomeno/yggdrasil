@@ -10,6 +10,8 @@ part of 'switch_theme.dart';
 
 class YgSwitchTheme extends ThemeExtension<YgSwitchTheme> {
   const YgSwitchTheme({
+    required this.animationCurve,
+    required this.animationDuration,
     required this.backgroundDeselectedColor,
     required this.backgroundDisabledColor,
     required this.backgroundNullColor,
@@ -24,6 +26,8 @@ class YgSwitchTheme extends ThemeExtension<YgSwitchTheme> {
     required this.width,
   });
 
+  final Curve animationCurve;
+  final Duration animationDuration;
   final Color backgroundDeselectedColor;
   final Color backgroundDisabledColor;
   final Color backgroundNullColor;
@@ -38,6 +42,8 @@ class YgSwitchTheme extends ThemeExtension<YgSwitchTheme> {
   final double width;
 
   static final YgSwitchTheme consumerLight = YgSwitchTheme(
+    animationCurve: _$YgSwitchTheme.animationCurve[0],
+    animationDuration: _$YgSwitchTheme.animationDuration[0],
     backgroundDeselectedColor: _$YgSwitchTheme.backgroundDeselectedColor[0],
     backgroundDisabledColor: _$YgSwitchTheme.backgroundDisabledColor[0],
     backgroundNullColor: _$YgSwitchTheme.backgroundNullColor[0],
@@ -53,6 +59,8 @@ class YgSwitchTheme extends ThemeExtension<YgSwitchTheme> {
   );
 
   static final YgSwitchTheme consumerDark = YgSwitchTheme(
+    animationCurve: _$YgSwitchTheme.animationCurve[1],
+    animationDuration: _$YgSwitchTheme.animationDuration[1],
     backgroundDeselectedColor: _$YgSwitchTheme.backgroundDeselectedColor[1],
     backgroundDisabledColor: _$YgSwitchTheme.backgroundDisabledColor[1],
     backgroundNullColor: _$YgSwitchTheme.backgroundNullColor[1],
@@ -68,6 +76,8 @@ class YgSwitchTheme extends ThemeExtension<YgSwitchTheme> {
   );
 
   static final YgSwitchTheme professionalLight = YgSwitchTheme(
+    animationCurve: _$YgSwitchTheme.animationCurve[2],
+    animationDuration: _$YgSwitchTheme.animationDuration[2],
     backgroundDeselectedColor: _$YgSwitchTheme.backgroundDeselectedColor[2],
     backgroundDisabledColor: _$YgSwitchTheme.backgroundDisabledColor[2],
     backgroundNullColor: _$YgSwitchTheme.backgroundNullColor[2],
@@ -83,6 +93,8 @@ class YgSwitchTheme extends ThemeExtension<YgSwitchTheme> {
   );
 
   static final YgSwitchTheme professionalDark = YgSwitchTheme(
+    animationCurve: _$YgSwitchTheme.animationCurve[3],
+    animationDuration: _$YgSwitchTheme.animationDuration[3],
     backgroundDeselectedColor: _$YgSwitchTheme.backgroundDeselectedColor[3],
     backgroundDisabledColor: _$YgSwitchTheme.backgroundDisabledColor[3],
     backgroundNullColor: _$YgSwitchTheme.backgroundNullColor[3],
@@ -106,6 +118,8 @@ class YgSwitchTheme extends ThemeExtension<YgSwitchTheme> {
 
   @override
   YgSwitchTheme copyWith({
+    Curve? animationCurve,
+    Duration? animationDuration,
     Color? backgroundDeselectedColor,
     Color? backgroundDisabledColor,
     Color? backgroundNullColor,
@@ -120,6 +134,8 @@ class YgSwitchTheme extends ThemeExtension<YgSwitchTheme> {
     double? width,
   }) {
     return YgSwitchTheme(
+      animationCurve: animationCurve ?? this.animationCurve,
+      animationDuration: animationDuration ?? this.animationDuration,
       backgroundDeselectedColor:
           backgroundDeselectedColor ?? this.backgroundDeselectedColor,
       backgroundDisabledColor:
@@ -143,6 +159,8 @@ class YgSwitchTheme extends ThemeExtension<YgSwitchTheme> {
   YgSwitchTheme lerp(covariant ThemeExtension<YgSwitchTheme>? other, double t) {
     if (other is! YgSwitchTheme) return this as YgSwitchTheme;
     return YgSwitchTheme(
+      animationCurve: t < 0.5 ? animationCurve : other.animationCurve,
+      animationDuration: t < 0.5 ? animationDuration : other.animationDuration,
       backgroundDeselectedColor: Color.lerp(
           backgroundDeselectedColor, other.backgroundDeselectedColor, t)!,
       backgroundDisabledColor: Color.lerp(
@@ -170,6 +188,10 @@ class YgSwitchTheme extends ThemeExtension<YgSwitchTheme> {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is YgSwitchTheme &&
+            const DeepCollectionEquality()
+                .equals(animationCurve, other.animationCurve) &&
+            const DeepCollectionEquality()
+                .equals(animationDuration, other.animationDuration) &&
             const DeepCollectionEquality().equals(
                 backgroundDeselectedColor, other.backgroundDeselectedColor) &&
             const DeepCollectionEquality().equals(
@@ -198,6 +220,8 @@ class YgSwitchTheme extends ThemeExtension<YgSwitchTheme> {
   int get hashCode {
     return Object.hash(
       runtimeType.hashCode,
+      const DeepCollectionEquality().hash(animationCurve),
+      const DeepCollectionEquality().hash(animationDuration),
       const DeepCollectionEquality().hash(backgroundDeselectedColor),
       const DeepCollectionEquality().hash(backgroundDisabledColor),
       const DeepCollectionEquality().hash(backgroundNullColor),

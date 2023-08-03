@@ -4,7 +4,6 @@ import 'package:yggdrasil/src/theme/theme.dart';
 import 'yg_switch_handle.dart';
 
 /// Binary (or optionally tri-state) switch.
-// TODO(bjhandeland): Replace animation properties with theme tokens.
 class YgSwitch extends StatelessWidget {
   const YgSwitch({
     super.key,
@@ -13,13 +12,18 @@ class YgSwitch extends StatelessWidget {
     this.triState = false,
   });
 
-  /// Toggles the binary switch state.
+  /// The current value of the switch.
   final bool? value;
 
   /// Callback to trigger when the value of the switch changes.
+  ///
+  /// The switch itself does not maintain any state. Instead, when the state of
+  /// the switch changes, the widget calls the [onChanged] callback.
   final Function(bool? newValue)? onChanged;
 
   /// Enables `null` as a valid third state for the switch.
+  ///
+  /// The switch will then cycle through false --> null --> true --> false --> ...
   final bool triState;
 
   @override
@@ -40,11 +44,12 @@ class YgSwitch extends StatelessWidget {
               width: context.switchTheme.width,
               height: context.switchTheme.height,
               child: Padding(
+                // Moves the switch away from the edges.
                 padding: const EdgeInsets.symmetric(horizontal: 5.0),
                 child: AnimatedAlign(
-                  curve: Curves.easeInOut,
+                  curve: context.switchTheme.animationCurve,
                   alignment: _getHandleAlignment(),
-                  duration: const Duration(milliseconds: 200),
+                  duration: context.switchTheme.animationDuration,
                   child: YgSwitchHandle(
                     color: _getHandleColor(context),
                   ),
