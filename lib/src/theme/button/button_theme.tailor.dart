@@ -13,6 +13,7 @@ class YgButtonTheme extends ThemeExtension<YgButtonTheme> {
     required this.borderRadius,
     required this.borderWidth,
     required this.criticalButtonTheme,
+    required this.iconSize,
     required this.iconSpacing,
     required this.linkButtonTheme,
     required this.paddingLarge,
@@ -26,6 +27,7 @@ class YgButtonTheme extends ThemeExtension<YgButtonTheme> {
   final BorderRadius borderRadius;
   final double borderWidth;
   final CriticalButtonTheme criticalButtonTheme;
+  final double iconSize;
   final double iconSpacing;
   final LinkButtonTheme linkButtonTheme;
   final EdgeInsets paddingLarge;
@@ -39,6 +41,7 @@ class YgButtonTheme extends ThemeExtension<YgButtonTheme> {
     borderRadius: _$YgButtonTheme.borderRadius[0],
     borderWidth: _$YgButtonTheme.borderWidth[0],
     criticalButtonTheme: _$YgButtonTheme.criticalButtonTheme[0],
+    iconSize: _$YgButtonTheme.iconSize[0],
     iconSpacing: _$YgButtonTheme.iconSpacing[0],
     linkButtonTheme: _$YgButtonTheme.linkButtonTheme[0],
     paddingLarge: _$YgButtonTheme.paddingLarge[0],
@@ -53,6 +56,7 @@ class YgButtonTheme extends ThemeExtension<YgButtonTheme> {
     borderRadius: _$YgButtonTheme.borderRadius[1],
     borderWidth: _$YgButtonTheme.borderWidth[1],
     criticalButtonTheme: _$YgButtonTheme.criticalButtonTheme[1],
+    iconSize: _$YgButtonTheme.iconSize[1],
     iconSpacing: _$YgButtonTheme.iconSpacing[1],
     linkButtonTheme: _$YgButtonTheme.linkButtonTheme[1],
     paddingLarge: _$YgButtonTheme.paddingLarge[1],
@@ -67,6 +71,7 @@ class YgButtonTheme extends ThemeExtension<YgButtonTheme> {
     borderRadius: _$YgButtonTheme.borderRadius[2],
     borderWidth: _$YgButtonTheme.borderWidth[2],
     criticalButtonTheme: _$YgButtonTheme.criticalButtonTheme[2],
+    iconSize: _$YgButtonTheme.iconSize[2],
     iconSpacing: _$YgButtonTheme.iconSpacing[2],
     linkButtonTheme: _$YgButtonTheme.linkButtonTheme[2],
     paddingLarge: _$YgButtonTheme.paddingLarge[2],
@@ -81,6 +86,7 @@ class YgButtonTheme extends ThemeExtension<YgButtonTheme> {
     borderRadius: _$YgButtonTheme.borderRadius[3],
     borderWidth: _$YgButtonTheme.borderWidth[3],
     criticalButtonTheme: _$YgButtonTheme.criticalButtonTheme[3],
+    iconSize: _$YgButtonTheme.iconSize[3],
     iconSpacing: _$YgButtonTheme.iconSpacing[3],
     linkButtonTheme: _$YgButtonTheme.linkButtonTheme[3],
     paddingLarge: _$YgButtonTheme.paddingLarge[3],
@@ -103,6 +109,7 @@ class YgButtonTheme extends ThemeExtension<YgButtonTheme> {
     BorderRadius? borderRadius,
     double? borderWidth,
     CriticalButtonTheme? criticalButtonTheme,
+    double? iconSize,
     double? iconSpacing,
     LinkButtonTheme? linkButtonTheme,
     EdgeInsets? paddingLarge,
@@ -116,6 +123,7 @@ class YgButtonTheme extends ThemeExtension<YgButtonTheme> {
       borderRadius: borderRadius ?? this.borderRadius,
       borderWidth: borderWidth ?? this.borderWidth,
       criticalButtonTheme: criticalButtonTheme ?? this.criticalButtonTheme,
+      iconSize: iconSize ?? this.iconSize,
       iconSpacing: iconSpacing ?? this.iconSpacing,
       linkButtonTheme: linkButtonTheme ?? this.linkButtonTheme,
       paddingLarge: paddingLarge ?? this.paddingLarge,
@@ -135,6 +143,7 @@ class YgButtonTheme extends ThemeExtension<YgButtonTheme> {
       borderWidth: t < 0.5 ? borderWidth : other.borderWidth,
       criticalButtonTheme: criticalButtonTheme.lerp(
           other.criticalButtonTheme, t) as CriticalButtonTheme,
+      iconSize: t < 0.5 ? iconSize : other.iconSize,
       iconSpacing: t < 0.5 ? iconSpacing : other.iconSpacing,
       linkButtonTheme:
           linkButtonTheme.lerp(other.linkButtonTheme, t) as LinkButtonTheme,
@@ -161,6 +170,7 @@ class YgButtonTheme extends ThemeExtension<YgButtonTheme> {
                 .equals(borderWidth, other.borderWidth) &&
             const DeepCollectionEquality()
                 .equals(criticalButtonTheme, other.criticalButtonTheme) &&
+            const DeepCollectionEquality().equals(iconSize, other.iconSize) &&
             const DeepCollectionEquality()
                 .equals(iconSpacing, other.iconSpacing) &&
             const DeepCollectionEquality()
@@ -186,6 +196,7 @@ class YgButtonTheme extends ThemeExtension<YgButtonTheme> {
       const DeepCollectionEquality().hash(borderRadius),
       const DeepCollectionEquality().hash(borderWidth),
       const DeepCollectionEquality().hash(criticalButtonTheme),
+      const DeepCollectionEquality().hash(iconSize),
       const DeepCollectionEquality().hash(iconSpacing),
       const DeepCollectionEquality().hash(linkButtonTheme),
       const DeepCollectionEquality().hash(paddingLarge),

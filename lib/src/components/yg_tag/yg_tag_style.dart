@@ -14,6 +14,9 @@ class YgTagStyle {
     required this.backgroundColor,
     required this.textStyle,
     required this.disabledTextStyle,
+    required this.iconSize,
+    required this.iconColor,
+    required this.iconDisabledColor,
     required this.shape,
     required this.disabledShape,
     required this.padding,
@@ -25,15 +28,22 @@ class YgTagStyle {
     YgTagSize size = YgTagSize.medium,
     YgTagWeight weight = YgTagWeight.weak,
   }) {
+    final YgTagTheme ygTagTheme = context.tagTheme;
+
     switch (variant) {
       case YgTagVariant.neutral:
-        final NeutralTagTheme theme = context.tagTheme.neutralTagTheme;
-
+        final NeutralTagTheme neutralTagTheme = ygTagTheme.neutralTagTheme;
         return _buildTagStyle(
-          backgroundColor: weight == YgTagWeight.weak ? theme.backgroundColor : theme.strongBackgroundColor,
-          textStyle: weight == YgTagWeight.weak ? theme.textStyle : theme.strongTextStyle,
-          disabledTextStyle: theme.disabledTextStyle,
-          borderRadius: context.tagTheme.borderRadius,
+          backgroundColor:
+              weight == YgTagWeight.weak ? neutralTagTheme.backgroundColor : neutralTagTheme.strongBackgroundColor,
+          textStyle: weight == YgTagWeight.weak ? ygTagTheme.textStyle : ygTagTheme.strongTextStyle,
+          disabledTextStyle:
+              weight == YgTagWeight.weak ? ygTagTheme.disabledTextStyle : ygTagTheme.disabledStrongTextStyle,
+          iconSize: ygTagTheme.iconSize,
+          iconColor: weight == YgTagWeight.weak ? ygTagTheme.iconWeakColor : ygTagTheme.iconStrongColor,
+          iconDisabledColor:
+              weight == YgTagWeight.weak ? ygTagTheme.iconWeakDisabledColor : ygTagTheme.iconStrongDisabledColor,
+          borderRadius: ygTagTheme.borderRadius,
           padding: YgTagMapper.buildPadding(
             context: context,
             tagSize: size,
@@ -41,52 +51,76 @@ class YgTagStyle {
         );
 
       case YgTagVariant.informative:
-        final InformativeTagTheme theme = context.tagTheme.informativeTagTheme;
-
+        final InformativeTagTheme informativeTagTheme = ygTagTheme.informativeTagTheme;
         return _buildTagStyle(
-          backgroundColor: weight == YgTagWeight.weak ? theme.backgroundColor : theme.strongBackgroundColor,
-          textStyle: weight == YgTagWeight.weak ? theme.textStyle : theme.strongTextStyle,
-          disabledTextStyle: theme.disabledTextStyle,
-          borderRadius: context.tagTheme.borderRadius,
+          backgroundColor: weight == YgTagWeight.weak
+              ? informativeTagTheme.backgroundColor
+              : informativeTagTheme.strongBackgroundColor,
+          textStyle: weight == YgTagWeight.weak ? ygTagTheme.textStyle : ygTagTheme.strongTextStyle,
+          disabledTextStyle:
+              weight == YgTagWeight.weak ? ygTagTheme.disabledTextStyle : ygTagTheme.disabledStrongTextStyle,
+          iconSize: ygTagTheme.iconSize,
+          iconColor: weight == YgTagWeight.weak ? ygTagTheme.iconWeakColor : ygTagTheme.iconStrongColor,
+          iconDisabledColor:
+              weight == YgTagWeight.weak ? ygTagTheme.iconWeakDisabledColor : ygTagTheme.iconStrongDisabledColor,
+          borderRadius: ygTagTheme.borderRadius,
           padding: YgTagMapper.buildPadding(
             context: context,
             tagSize: size,
           ),
         );
+
       case YgTagVariant.positive:
-        final PositiveTagTheme theme = context.tagTheme.positiveTagTheme;
-
+        final PositiveTagTheme positiveTagTheme = ygTagTheme.positiveTagTheme;
         return _buildTagStyle(
-          backgroundColor: weight == YgTagWeight.weak ? theme.backgroundColor : theme.strongBackgroundColor,
-          textStyle: weight == YgTagWeight.weak ? theme.textStyle : theme.strongTextStyle,
-          disabledTextStyle: theme.disabledTextStyle,
-          borderRadius: context.tagTheme.borderRadius,
+          backgroundColor:
+              weight == YgTagWeight.weak ? positiveTagTheme.backgroundColor : positiveTagTheme.strongBackgroundColor,
+          textStyle: weight == YgTagWeight.weak ? ygTagTheme.textStyle : ygTagTheme.strongTextStyle,
+          disabledTextStyle:
+              weight == YgTagWeight.weak ? ygTagTheme.disabledTextStyle : ygTagTheme.disabledStrongTextStyle,
+          iconSize: ygTagTheme.iconSize,
+          iconColor: weight == YgTagWeight.weak ? ygTagTheme.iconWeakColor : ygTagTheme.iconStrongColor,
+          iconDisabledColor:
+              weight == YgTagWeight.weak ? ygTagTheme.iconWeakDisabledColor : ygTagTheme.iconStrongDisabledColor,
+          borderRadius: ygTagTheme.borderRadius,
           padding: YgTagMapper.buildPadding(
             context: context,
             tagSize: size,
           ),
         );
+
       case YgTagVariant.warning:
-        final WarningTagTheme theme = context.tagTheme.warningTagTheme;
-
+        final WarningTagTheme warningTagTheme = ygTagTheme.warningTagTheme;
         return _buildTagStyle(
-          backgroundColor: weight == YgTagWeight.weak ? theme.backgroundColor : theme.strongBackgroundColor,
-          textStyle: weight == YgTagWeight.weak ? theme.textStyle : theme.strongTextStyle,
-          disabledTextStyle: theme.disabledTextStyle,
-          borderRadius: context.tagTheme.borderRadius,
+          backgroundColor:
+              weight == YgTagWeight.weak ? warningTagTheme.backgroundColor : warningTagTheme.strongBackgroundColor,
+          textStyle: weight == YgTagWeight.weak ? ygTagTheme.textStyle : ygTagTheme.strongTextStyle,
+          disabledTextStyle:
+              weight == YgTagWeight.weak ? ygTagTheme.disabledTextStyle : ygTagTheme.disabledStrongTextStyle,
+          iconSize: ygTagTheme.iconSize,
+          iconColor: weight == YgTagWeight.weak ? ygTagTheme.iconWeakColor : ygTagTheme.iconStrongColor,
+          iconDisabledColor:
+              weight == YgTagWeight.weak ? ygTagTheme.iconWeakDisabledColor : ygTagTheme.iconStrongDisabledColor,
+          borderRadius: ygTagTheme.borderRadius,
           padding: YgTagMapper.buildPadding(
             context: context,
             tagSize: size,
           ),
         );
-      case YgTagVariant.negative:
-        final NegativeTagTheme theme = context.tagTheme.negativeTagTheme;
 
+      case YgTagVariant.negative:
+        final NegativeTagTheme negativeTagTheme = ygTagTheme.negativeTagTheme;
         return _buildTagStyle(
-          backgroundColor: weight == YgTagWeight.weak ? theme.backgroundColor : theme.strongBackgroundColor,
-          textStyle: weight == YgTagWeight.weak ? theme.textStyle : theme.strongTextStyle,
-          disabledTextStyle: theme.disabledTextStyle,
-          borderRadius: context.tagTheme.borderRadius,
+          backgroundColor:
+              weight == YgTagWeight.weak ? negativeTagTheme.backgroundColor : negativeTagTheme.strongBackgroundColor,
+          textStyle: weight == YgTagWeight.weak ? ygTagTheme.textStyle : ygTagTheme.strongTextStyle,
+          disabledTextStyle:
+              weight == YgTagWeight.weak ? ygTagTheme.disabledTextStyle : ygTagTheme.disabledStrongTextStyle,
+          iconSize: ygTagTheme.iconSize,
+          iconColor: weight == YgTagWeight.weak ? ygTagTheme.iconWeakColor : ygTagTheme.iconStrongColor,
+          iconDisabledColor:
+              weight == YgTagWeight.weak ? ygTagTheme.iconWeakDisabledColor : ygTagTheme.iconStrongDisabledColor,
+          borderRadius: ygTagTheme.borderRadius,
           padding: YgTagMapper.buildPadding(
             context: context,
             tagSize: size,
@@ -99,6 +133,9 @@ class YgTagStyle {
     required Color backgroundColor,
     required TextStyle textStyle,
     required TextStyle disabledTextStyle,
+    required double iconSize,
+    required Color iconColor,
+    required Color iconDisabledColor,
     required BorderRadius borderRadius,
     required EdgeInsets padding,
   }) {
@@ -106,6 +143,9 @@ class YgTagStyle {
       backgroundColor: backgroundColor,
       textStyle: textStyle,
       disabledTextStyle: disabledTextStyle,
+      iconSize: iconSize,
+      iconColor: iconColor,
+      iconDisabledColor: iconDisabledColor,
       shape: RoundedRectangleBorder(borderRadius: borderRadius),
       disabledShape: RoundedRectangleBorder(borderRadius: borderRadius),
       padding: padding,
@@ -123,6 +163,11 @@ class YgTagStyle {
         outlinedBorder: shape,
         disabled: disabledShape,
       ),
+      iconColor: YgTagIconColorProperty(
+        color: iconColor,
+        disabled: iconDisabledColor,
+      ),
+      iconSize: ButtonStyleButton.allOrNull(iconSize),
       padding: ButtonStyleButton.allOrNull(padding),
       minimumSize: ButtonStyleButton.allOrNull(const Size(80, 26)),
       maximumSize: ButtonStyleButton.allOrNull(Size.infinite),
@@ -141,6 +186,9 @@ class YgTagStyle {
   final Color backgroundColor;
   final TextStyle textStyle;
   final TextStyle disabledTextStyle;
+  final double iconSize;
+  final Color iconColor;
+  final Color iconDisabledColor;
   final OutlinedBorder shape;
   final OutlinedBorder disabledShape;
   final EdgeInsets padding;

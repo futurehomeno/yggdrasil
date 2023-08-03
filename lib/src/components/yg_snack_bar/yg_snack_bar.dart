@@ -57,12 +57,9 @@ class YgSnackBar extends SnackBar {
             style: snackBarTheme.messageTextStyle,
           ),
         ),
-        YgIcon(
-          YgIcons.cross,
-          color: snackBarTheme.closeIconColor,
-          size: YgIconSize.small,
-          tapSize: YgIconTapSize.larger,
-          onTap: () {
+        YgIconButton(
+          child: const YgIcon(YgIcons.cross),
+          onPressed: () {
             ScaffoldMessenger.of(context).hideCurrentSnackBar();
           },
         ),

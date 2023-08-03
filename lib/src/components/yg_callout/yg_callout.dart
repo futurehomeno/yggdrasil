@@ -67,11 +67,10 @@ class YgCallout extends StatelessWidget {
               ),
             ),
             if (onClose != null)
-              YgIcon(
-                YgIcons.cross,
-                onTap: onClose,
-                size: YgIconSize.small,
-                tapSize: YgIconTapSize.larger,
+              YgIconButton(
+                onPressed: onClose,
+                size: YgIconButtonSize.small,
+                child: const YgIcon(YgIcons.cross),
               ),
           ].withHorizontalSpacing(theme.closeButtonSpacing),
         ),

@@ -14,6 +14,8 @@ class SecondaryButtonTheme extends ThemeExtension<SecondaryButtonTheme> {
     required this.borderGradient,
     required this.disabledBorderGradient,
     required this.disabledTextStyle,
+    required this.iconDefaultColor,
+    required this.iconDisabledColor,
     required this.textStyle,
   });
 
@@ -21,6 +23,8 @@ class SecondaryButtonTheme extends ThemeExtension<SecondaryButtonTheme> {
   final LinearGradient borderGradient;
   final LinearGradient disabledBorderGradient;
   final TextStyle disabledTextStyle;
+  final Color iconDefaultColor;
+  final Color iconDisabledColor;
   final TextStyle textStyle;
 
   static final SecondaryButtonTheme consumerLight = SecondaryButtonTheme(
@@ -28,6 +32,8 @@ class SecondaryButtonTheme extends ThemeExtension<SecondaryButtonTheme> {
     borderGradient: _$SecondaryButtonTheme.borderGradient[0],
     disabledBorderGradient: _$SecondaryButtonTheme.disabledBorderGradient[0],
     disabledTextStyle: _$SecondaryButtonTheme.disabledTextStyle[0],
+    iconDefaultColor: _$SecondaryButtonTheme.iconDefaultColor[0],
+    iconDisabledColor: _$SecondaryButtonTheme.iconDisabledColor[0],
     textStyle: _$SecondaryButtonTheme.textStyle[0],
   );
 
@@ -36,6 +42,8 @@ class SecondaryButtonTheme extends ThemeExtension<SecondaryButtonTheme> {
     borderGradient: _$SecondaryButtonTheme.borderGradient[1],
     disabledBorderGradient: _$SecondaryButtonTheme.disabledBorderGradient[1],
     disabledTextStyle: _$SecondaryButtonTheme.disabledTextStyle[1],
+    iconDefaultColor: _$SecondaryButtonTheme.iconDefaultColor[1],
+    iconDisabledColor: _$SecondaryButtonTheme.iconDisabledColor[1],
     textStyle: _$SecondaryButtonTheme.textStyle[1],
   );
 
@@ -44,6 +52,8 @@ class SecondaryButtonTheme extends ThemeExtension<SecondaryButtonTheme> {
     borderGradient: _$SecondaryButtonTheme.borderGradient[2],
     disabledBorderGradient: _$SecondaryButtonTheme.disabledBorderGradient[2],
     disabledTextStyle: _$SecondaryButtonTheme.disabledTextStyle[2],
+    iconDefaultColor: _$SecondaryButtonTheme.iconDefaultColor[2],
+    iconDisabledColor: _$SecondaryButtonTheme.iconDisabledColor[2],
     textStyle: _$SecondaryButtonTheme.textStyle[2],
   );
 
@@ -52,6 +62,8 @@ class SecondaryButtonTheme extends ThemeExtension<SecondaryButtonTheme> {
     borderGradient: _$SecondaryButtonTheme.borderGradient[3],
     disabledBorderGradient: _$SecondaryButtonTheme.disabledBorderGradient[3],
     disabledTextStyle: _$SecondaryButtonTheme.disabledTextStyle[3],
+    iconDefaultColor: _$SecondaryButtonTheme.iconDefaultColor[3],
+    iconDisabledColor: _$SecondaryButtonTheme.iconDisabledColor[3],
     textStyle: _$SecondaryButtonTheme.textStyle[3],
   );
 
@@ -68,6 +80,8 @@ class SecondaryButtonTheme extends ThemeExtension<SecondaryButtonTheme> {
     LinearGradient? borderGradient,
     LinearGradient? disabledBorderGradient,
     TextStyle? disabledTextStyle,
+    Color? iconDefaultColor,
+    Color? iconDisabledColor,
     TextStyle? textStyle,
   }) {
     return SecondaryButtonTheme(
@@ -76,6 +90,8 @@ class SecondaryButtonTheme extends ThemeExtension<SecondaryButtonTheme> {
       disabledBorderGradient:
           disabledBorderGradient ?? this.disabledBorderGradient,
       disabledTextStyle: disabledTextStyle ?? this.disabledTextStyle,
+      iconDefaultColor: iconDefaultColor ?? this.iconDefaultColor,
+      iconDisabledColor: iconDisabledColor ?? this.iconDisabledColor,
       textStyle: textStyle ?? this.textStyle,
     );
   }
@@ -91,6 +107,10 @@ class SecondaryButtonTheme extends ThemeExtension<SecondaryButtonTheme> {
           t < 0.5 ? disabledBorderGradient : other.disabledBorderGradient,
       disabledTextStyle:
           TextStyle.lerp(disabledTextStyle, other.disabledTextStyle, t)!,
+      iconDefaultColor:
+          Color.lerp(iconDefaultColor, other.iconDefaultColor, t)!,
+      iconDisabledColor:
+          Color.lerp(iconDisabledColor, other.iconDisabledColor, t)!,
       textStyle: TextStyle.lerp(textStyle, other.textStyle, t)!,
     );
   }
@@ -108,6 +128,10 @@ class SecondaryButtonTheme extends ThemeExtension<SecondaryButtonTheme> {
                 .equals(disabledBorderGradient, other.disabledBorderGradient) &&
             const DeepCollectionEquality()
                 .equals(disabledTextStyle, other.disabledTextStyle) &&
+            const DeepCollectionEquality()
+                .equals(iconDefaultColor, other.iconDefaultColor) &&
+            const DeepCollectionEquality()
+                .equals(iconDisabledColor, other.iconDisabledColor) &&
             const DeepCollectionEquality().equals(textStyle, other.textStyle));
   }
 
@@ -119,6 +143,8 @@ class SecondaryButtonTheme extends ThemeExtension<SecondaryButtonTheme> {
       const DeepCollectionEquality().hash(borderGradient),
       const DeepCollectionEquality().hash(disabledBorderGradient),
       const DeepCollectionEquality().hash(disabledTextStyle),
+      const DeepCollectionEquality().hash(iconDefaultColor),
+      const DeepCollectionEquality().hash(iconDisabledColor),
       const DeepCollectionEquality().hash(textStyle),
     );
   }

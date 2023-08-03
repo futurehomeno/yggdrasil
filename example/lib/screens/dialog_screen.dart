@@ -22,7 +22,7 @@ class DialogScreen extends StatefulWidget {
 class _DialogScreenState extends State<DialogScreen> with TickerProviderStateMixin {
   @override
   Widget build(BuildContext context) {
-    return YgScreen(
+    return DemoScreen(
       componentName: 'Dialog',
       componentDesc: 'Dialogs',
       supernovaLink: 'Link',

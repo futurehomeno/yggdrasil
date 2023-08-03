@@ -14,6 +14,8 @@ class CriticalButtonTheme extends ThemeExtension<CriticalButtonTheme> {
     required this.borderGradient,
     required this.disabledBorderGradient,
     required this.disabledTextStyle,
+    required this.iconDefaultColor,
+    required this.iconDisabledColor,
     required this.textStyle,
   });
 
@@ -21,6 +23,8 @@ class CriticalButtonTheme extends ThemeExtension<CriticalButtonTheme> {
   final LinearGradient borderGradient;
   final LinearGradient disabledBorderGradient;
   final TextStyle disabledTextStyle;
+  final Color iconDefaultColor;
+  final Color iconDisabledColor;
   final TextStyle textStyle;
 
   static final CriticalButtonTheme consumerLight = CriticalButtonTheme(
@@ -28,6 +32,8 @@ class CriticalButtonTheme extends ThemeExtension<CriticalButtonTheme> {
     borderGradient: _$CriticalButtonTheme.borderGradient[0],
     disabledBorderGradient: _$CriticalButtonTheme.disabledBorderGradient[0],
     disabledTextStyle: _$CriticalButtonTheme.disabledTextStyle[0],
+    iconDefaultColor: _$CriticalButtonTheme.iconDefaultColor[0],
+    iconDisabledColor: _$CriticalButtonTheme.iconDisabledColor[0],
     textStyle: _$CriticalButtonTheme.textStyle[0],
   );
 
@@ -36,6 +42,8 @@ class CriticalButtonTheme extends ThemeExtension<CriticalButtonTheme> {
     borderGradient: _$CriticalButtonTheme.borderGradient[1],
     disabledBorderGradient: _$CriticalButtonTheme.disabledBorderGradient[1],
     disabledTextStyle: _$CriticalButtonTheme.disabledTextStyle[1],
+    iconDefaultColor: _$CriticalButtonTheme.iconDefaultColor[1],
+    iconDisabledColor: _$CriticalButtonTheme.iconDisabledColor[1],
     textStyle: _$CriticalButtonTheme.textStyle[1],
   );
 
@@ -44,6 +52,8 @@ class CriticalButtonTheme extends ThemeExtension<CriticalButtonTheme> {
     borderGradient: _$CriticalButtonTheme.borderGradient[2],
     disabledBorderGradient: _$CriticalButtonTheme.disabledBorderGradient[2],
     disabledTextStyle: _$CriticalButtonTheme.disabledTextStyle[2],
+    iconDefaultColor: _$CriticalButtonTheme.iconDefaultColor[2],
+    iconDisabledColor: _$CriticalButtonTheme.iconDisabledColor[2],
     textStyle: _$CriticalButtonTheme.textStyle[2],
   );
 
@@ -52,6 +62,8 @@ class CriticalButtonTheme extends ThemeExtension<CriticalButtonTheme> {
     borderGradient: _$CriticalButtonTheme.borderGradient[3],
     disabledBorderGradient: _$CriticalButtonTheme.disabledBorderGradient[3],
     disabledTextStyle: _$CriticalButtonTheme.disabledTextStyle[3],
+    iconDefaultColor: _$CriticalButtonTheme.iconDefaultColor[3],
+    iconDisabledColor: _$CriticalButtonTheme.iconDisabledColor[3],
     textStyle: _$CriticalButtonTheme.textStyle[3],
   );
 
@@ -68,6 +80,8 @@ class CriticalButtonTheme extends ThemeExtension<CriticalButtonTheme> {
     LinearGradient? borderGradient,
     LinearGradient? disabledBorderGradient,
     TextStyle? disabledTextStyle,
+    Color? iconDefaultColor,
+    Color? iconDisabledColor,
     TextStyle? textStyle,
   }) {
     return CriticalButtonTheme(
@@ -76,6 +90,8 @@ class CriticalButtonTheme extends ThemeExtension<CriticalButtonTheme> {
       disabledBorderGradient:
           disabledBorderGradient ?? this.disabledBorderGradient,
       disabledTextStyle: disabledTextStyle ?? this.disabledTextStyle,
+      iconDefaultColor: iconDefaultColor ?? this.iconDefaultColor,
+      iconDisabledColor: iconDisabledColor ?? this.iconDisabledColor,
       textStyle: textStyle ?? this.textStyle,
     );
   }
@@ -91,6 +107,10 @@ class CriticalButtonTheme extends ThemeExtension<CriticalButtonTheme> {
           t < 0.5 ? disabledBorderGradient : other.disabledBorderGradient,
       disabledTextStyle:
           TextStyle.lerp(disabledTextStyle, other.disabledTextStyle, t)!,
+      iconDefaultColor:
+          Color.lerp(iconDefaultColor, other.iconDefaultColor, t)!,
+      iconDisabledColor:
+          Color.lerp(iconDisabledColor, other.iconDisabledColor, t)!,
       textStyle: TextStyle.lerp(textStyle, other.textStyle, t)!,
     );
   }
@@ -108,6 +128,10 @@ class CriticalButtonTheme extends ThemeExtension<CriticalButtonTheme> {
                 .equals(disabledBorderGradient, other.disabledBorderGradient) &&
             const DeepCollectionEquality()
                 .equals(disabledTextStyle, other.disabledTextStyle) &&
+            const DeepCollectionEquality()
+                .equals(iconDefaultColor, other.iconDefaultColor) &&
+            const DeepCollectionEquality()
+                .equals(iconDisabledColor, other.iconDisabledColor) &&
             const DeepCollectionEquality().equals(textStyle, other.textStyle));
   }
 
@@ -119,6 +143,8 @@ class CriticalButtonTheme extends ThemeExtension<CriticalButtonTheme> {
       const DeepCollectionEquality().hash(borderGradient),
       const DeepCollectionEquality().hash(disabledBorderGradient),
       const DeepCollectionEquality().hash(disabledTextStyle),
+      const DeepCollectionEquality().hash(iconDefaultColor),
+      const DeepCollectionEquality().hash(iconDisabledColor),
       const DeepCollectionEquality().hash(textStyle),
     );
   }
