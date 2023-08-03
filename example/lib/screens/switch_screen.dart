@@ -26,9 +26,6 @@ class _SwitchScreenState extends State<SwitchScreen> {
   bool? disabledTrueValue = true;
   bool? disabledNullValue;
   bool? listTileValue = false;
-  bool? switchListTileValue = false;
-  bool? switchListTileTriStateValue = false;
-  bool? switchListTileDisabledValue = false;
 
   @override
   Widget build(BuildContext context) {
