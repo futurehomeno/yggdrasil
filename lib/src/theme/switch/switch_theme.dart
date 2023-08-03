@@ -30,56 +30,56 @@ class _$YgSwitchTheme {
     professional_dark.FhDimensions.md,
   ];
 
-  static List<Color> backgroundSelectedColor = <Color>[
+  static List<Color> trackToggledColor = <Color>[
     consumer_light.FhColors.backgroundHighlightDefault,
     consumer_dark.FhColors.backgroundHighlightDefault,
     professional_light.FhColors.backgroundHighlightDefault,
     professional_dark.FhColors.backgroundHighlightDefault,
   ];
 
-  static List<Color> backgroundDeselectedColor = <Color>[
+  static List<Color> trackNotToggledColor = <Color>[
     consumer_light.FhColors.backgroundDisabled,
     consumer_dark.FhColors.backgroundDisabled,
     professional_light.FhColors.backgroundDisabled,
     professional_dark.FhColors.backgroundDisabled,
   ];
 
-  static List<Color> backgroundNullColor = <Color>[
+  static List<Color> trackNullColor = <Color>[
     consumer_light.FhColors.backgroundDisabled,
     consumer_dark.FhColors.backgroundDisabled,
     professional_light.FhColors.backgroundDisabled,
     professional_dark.FhColors.backgroundDisabled,
   ];
 
-  static List<Color> backgroundDisabledColor = <Color>[
+  static List<Color> trackDisabledColor = <Color>[
     consumer_light.FhColors.backgroundDisabled,
     consumer_dark.FhColors.backgroundDisabled,
     professional_light.FhColors.backgroundDisabled,
     professional_dark.FhColors.backgroundDisabled,
   ];
 
-  static List<Color> handleSelectedColor = <Color>[
+  static List<Color> thumbToggledColor = <Color>[
     consumer_light.FhColors.iconInverse,
     consumer_dark.FhColors.iconInverse,
     professional_light.FhColors.iconInverse,
     professional_dark.FhColors.iconInverse,
   ];
 
-  static List<Color> handleDeselectedColor = <Color>[
+  static List<Color> thumbNotToggledColor = <Color>[
     consumer_light.FhColors.iconInverse,
     consumer_dark.FhColors.iconInverse,
     professional_light.FhColors.iconInverse,
     professional_dark.FhColors.iconInverse,
   ];
 
-  static List<Color> handleNullColor = <Color>[
+  static List<Color> thumbNullColor = <Color>[
     consumer_light.FhColors.iconInverse,
     consumer_dark.FhColors.iconInverse,
     professional_light.FhColors.iconInverse,
     professional_dark.FhColors.iconInverse,
   ];
 
-  static List<Color> handleDisabledColor = <Color>[
+  static List<Color> thumbDisabledColor = <Color>[
     consumer_light.FhColors.iconDisabled,
     consumer_dark.FhColors.iconDisabled,
     professional_light.FhColors.iconDisabled,

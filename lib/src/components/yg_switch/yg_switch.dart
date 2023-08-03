@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:yggdrasil/src/theme/theme.dart';
 
 import 'helpers/_yg_switch_helpers.dart';
-import 'yg_switch_handle.dart';
+import 'yg_switch_thumb.dart';
 
 /// Binary (or optionally tri-state) switch.
 class YgSwitch extends StatelessWidget {
@@ -36,7 +36,7 @@ class YgSwitch extends StatelessWidget {
           onTap: onChanged == null ? null : _onTap,
           child: DecoratedBox(
             decoration: BoxDecoration(
-              color: _getBackgroundColor(context),
+              color: _getTrackColor(context),
               borderRadius: context.switchTheme.borderRadius,
             ),
             child: SizedBox(
@@ -50,7 +50,7 @@ class YgSwitch extends StatelessWidget {
                   alignment: _getHandleAlignment(),
                   duration: context.switchTheme.animationDuration,
                   child: YgSwitchHandle(
-                    color: _getHandleColor(context),
+                    color: _getThumbColor(context),
                   ),
                 ),
               ),
@@ -78,35 +78,35 @@ class YgSwitch extends StatelessWidget {
     return Alignment.center;
   }
 
-  Color _getBackgroundColor(BuildContext context) {
+  Color _getTrackColor(BuildContext context) {
     if (onChanged == null) {
-      return context.switchTheme.backgroundDisabledColor;
+      return context.switchTheme.trackDisabledColor;
     }
 
     if (value == true) {
-      return context.switchTheme.backgroundSelectedColor;
+      return context.switchTheme.trackToggledColor;
     }
 
     if (value == false) {
-      return context.switchTheme.backgroundDeselectedColor;
+      return context.switchTheme.trackNotToggledColor;
     }
 
-    return context.switchTheme.backgroundNullColor;
+    return context.switchTheme.trackNullColor;
   }
 
-  Color _getHandleColor(BuildContext context) {
+  Color _getThumbColor(BuildContext context) {
     if (onChanged == null) {
-      return context.switchTheme.handleDisabledColor;
+      return context.switchTheme.thumbDisabledColor;
     }
 
     if (value == true) {
-      return context.switchTheme.handleSelectedColor;
+      return context.switchTheme.thumbToggledColor;
     }
 
     if (value == false) {
-      return context.switchTheme.handleDeselectedColor;
+      return context.switchTheme.thumbNotToggledColor;
     }
 
-    return context.switchTheme.handleNullColor;
+    return context.switchTheme.thumbNullColor;
   }
 }

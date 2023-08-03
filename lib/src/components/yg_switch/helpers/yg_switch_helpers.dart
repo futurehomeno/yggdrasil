@@ -5,21 +5,18 @@ class YgSwitchHelpers {
     bool? value,
     bool triState,
   ) {
-    final bool? currentValue = value;
-    bool? nextValue;
-
-    if (triState) {
-      if (currentValue == null) {
-        nextValue = true;
-      } else if (currentValue == true) {
-        nextValue = false;
-      } else {
-        nextValue = null;
-      }
-    } else {
-      nextValue = !currentValue!;
+    if (!triState) {
+      return value != true;
     }
 
-    return nextValue;
+    if (value == null) {
+      return true;
+    }
+
+    if (value == true) {
+      return false;
+    }
+
+    return null;
   }
 }

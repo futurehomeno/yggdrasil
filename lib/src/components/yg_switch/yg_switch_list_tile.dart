@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:yggdrasil/src/components/_components.dart';
 import 'package:yggdrasil/src/components/yg_switch/helpers/_yg_switch_helpers.dart';
+import 'package:yggdrasil/src/utils/_utils.dart';
 
 /// Binary (or optionally tri-state) switch.
 class YgSwitchListTile extends StatelessWidget {
@@ -45,10 +46,14 @@ class YgSwitchListTile extends StatelessWidget {
       onTap: onChanged == null ? null : _onTap,
       trailingWidgets: <Widget>[
         if (trailingWidget != null) trailingWidget!,
-        YgSwitch(
-          value: value,
-          onChanged: onChanged,
-          triState: triState,
+        AbsorbPointer(
+          child: YgNoFocus(
+            child: YgSwitch(
+              value: value,
+              onChanged: onChanged,
+              triState: triState,
+            ),
+          ),
         ),
       ],
     );

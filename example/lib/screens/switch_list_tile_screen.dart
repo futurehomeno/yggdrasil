@@ -24,6 +24,7 @@ class _SwitchScreenState extends State<SwitchListTileScreen> {
   bool? switchListTileTriStateValue = false;
   bool? switchListTileDisabledValue = false;
   bool? switchListTileTrailingWidgetValue = false;
+  bool test = false;
 
   @override
   Widget build(BuildContext context) {
@@ -73,6 +74,13 @@ class _SwitchScreenState extends State<SwitchListTileScreen> {
             title: 'Note',
             description:
                 'You can also place a Switch inside a ListTile manually if you intend for only the Switch to be tappable. See the SwitchScreen for an example.',
+          ),
+          SwitchListTile(
+            value: test,
+            onChanged: (bool newValue) {
+              test = newValue;
+              setState(() {});
+            },
           ),
         ],
       ),
