@@ -17,7 +17,7 @@ class DividerScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const YgScreen(
+    return const DemoScreen(
       componentName: 'Divider',
       componentDesc: 'Dividers',
       supernovaLink: 'Link',

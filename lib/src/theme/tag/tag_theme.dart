@@ -71,6 +71,41 @@ class _$YgTagTheme {
     professional_dark.FhDimensions.xxs,
   ];
 
+  static List<Color> iconWeakColor = <Color>[
+    consumer_light.FhColors.iconDefault,
+    consumer_dark.FhColors.iconDefault,
+    professional_light.FhColors.iconDefault,
+    professional_dark.FhColors.iconDefault,
+  ];
+
+  static List<Color> iconWeakDisabledColor = <Color>[
+    consumer_light.FhColors.iconDefault,
+    consumer_dark.FhColors.iconDefault,
+    professional_light.FhColors.iconDefault,
+    professional_dark.FhColors.iconDefault,
+  ];
+
+  static List<Color> iconStrongColor = <Color>[
+    consumer_light.FhColors.iconInverse,
+    consumer_dark.FhColors.iconInverse,
+    professional_light.FhColors.iconInverse,
+    professional_dark.FhColors.iconInverse,
+  ];
+
+  static List<Color> iconStrongDisabledColor = <Color>[
+    consumer_light.FhColors.iconInverse,
+    consumer_dark.FhColors.iconInverse,
+    professional_light.FhColors.iconInverse,
+    professional_dark.FhColors.iconInverse,
+  ];
+
+  static List<double> iconSize = <double>[
+    consumer_light.FhDimensions.sm,
+    consumer_dark.FhDimensions.sm,
+    professional_light.FhDimensions.sm,
+    professional_dark.FhDimensions.sm,
+  ];
+
   static List<BorderRadius> borderRadius = <BorderRadius>[
     consumer_light.FhRadii.xxl,
     consumer_dark.FhRadii.xxl,
@@ -83,5 +118,65 @@ class _$YgTagTheme {
     consumer_dark.FhBorders.sm.left.width,
     professional_light.FhBorders.sm.left.width,
     professional_dark.FhBorders.sm.left.width,
+  ];
+
+  static List<TextStyle> textStyle = <TextStyle>[
+    consumer_light.FhTextStyles.caption1Medium.copyWith(
+      color: consumer_light.FhColors.textDefault,
+    ),
+    consumer_dark.FhTextStyles.caption1Medium.copyWith(
+      color: consumer_dark.FhColors.textDefault,
+    ),
+    professional_light.FhTextStyles.caption1Medium.copyWith(
+      color: professional_light.FhColors.textDefault,
+    ),
+    professional_dark.FhTextStyles.caption1Medium.copyWith(
+      color: professional_dark.FhColors.textDefault,
+    ),
+  ];
+
+  static List<TextStyle> strongTextStyle = <TextStyle>[
+    consumer_light.FhTextStyles.caption1Medium.copyWith(
+      color: consumer_light.FhColors.textInverse,
+    ),
+    consumer_dark.FhTextStyles.caption1Medium.copyWith(
+      color: consumer_dark.FhColors.textInverse,
+    ),
+    professional_light.FhTextStyles.caption1Medium.copyWith(
+      color: professional_light.FhColors.textInverse,
+    ),
+    professional_dark.FhTextStyles.caption1Medium.copyWith(
+      color: professional_dark.FhColors.textInverse,
+    ),
+  ];
+
+  static List<TextStyle> disabledTextStyle = <TextStyle>[
+    consumer_light.FhTextStyles.caption1Medium.copyWith(
+      color: consumer_light.FhColors.textDefault,
+    ),
+    consumer_dark.FhTextStyles.caption1Medium.copyWith(
+      color: consumer_dark.FhColors.textDefault,
+    ),
+    professional_light.FhTextStyles.caption1Medium.copyWith(
+      color: professional_light.FhColors.textDefault,
+    ),
+    professional_dark.FhTextStyles.caption1Medium.copyWith(
+      color: professional_dark.FhColors.textDefault,
+    ),
+  ];
+
+  static List<TextStyle> disabledStrongTextStyle = <TextStyle>[
+    consumer_light.FhTextStyles.caption1Medium.copyWith(
+      color: consumer_light.FhColors.textInverse,
+    ),
+    consumer_dark.FhTextStyles.caption1Medium.copyWith(
+      color: consumer_dark.FhColors.textInverse,
+    ),
+    professional_light.FhTextStyles.caption1Medium.copyWith(
+      color: professional_light.FhColors.textInverse,
+    ),
+    professional_dark.FhTextStyles.caption1Medium.copyWith(
+      color: professional_dark.FhColors.textInverse,
+    ),
   ];
 }

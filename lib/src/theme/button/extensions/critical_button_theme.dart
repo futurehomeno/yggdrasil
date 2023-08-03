@@ -99,4 +99,18 @@ class _$CriticalButtonTheme {
       ],
     ),
   ];
+
+  static List<Color> iconDefaultColor = <Color>[
+    consumer_light.FhColors.iconDefault,
+    consumer_dark.FhColors.iconDefault,
+    professional_light.FhColors.iconDefault,
+    professional_dark.FhColors.iconDefault,
+  ];
+
+  static List<Color> iconDisabledColor = <Color>[
+    consumer_light.FhColors.iconDisabled,
+    consumer_dark.FhColors.iconDisabled,
+    professional_light.FhColors.iconDisabled,
+    professional_dark.FhColors.iconDisabled,
+  ];
 }
