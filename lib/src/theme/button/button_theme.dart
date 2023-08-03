@@ -90,6 +90,13 @@ class _$YgButtonTheme {
     professional_dark.FhDimensions.xxs,
   ];
 
+  static List<double> iconSize = <double>[
+    consumer_light.FhDimensions.sm,
+    consumer_dark.FhDimensions.sm,
+    professional_light.FhDimensions.sm,
+    professional_dark.FhDimensions.sm,
+  ];
+
   static List<BorderRadius> borderRadius = <BorderRadius>[
     consumer_light.FhRadii.xxl,
     consumer_dark.FhRadii.xxl,

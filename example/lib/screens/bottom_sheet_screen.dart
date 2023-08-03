@@ -22,7 +22,7 @@ class BottomSheetScreen extends StatefulWidget {
 class _BottomSheetScreenState extends State<BottomSheetScreen> with TickerProviderStateMixin {
   @override
   Widget build(BuildContext context) {
-    return YgScreen(
+    return DemoScreen(
       componentName: 'BottomSheet',
       componentDesc: 'Bottom sheets',
       supernovaLink: 'Link',

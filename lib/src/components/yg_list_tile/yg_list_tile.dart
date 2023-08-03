@@ -119,11 +119,10 @@ class YgListTile extends StatelessWidget {
   }
 
   Widget _buildInfoButton(YgListTileTheme listTileTheme) {
-    return YgIcon(
-      YgIcons.info,
-      size: YgIconSize.small,
-      tapSize: YgIconTapSize.largest,
-      onTap: onInfoTap,
+    return YgIconButton(
+      onPressed: onInfoTap,
+      size: YgIconButtonSize.small,
+      child: const YgIcon(YgIcons.info),
     );
   }
 

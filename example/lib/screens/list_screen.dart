@@ -18,7 +18,7 @@ class ListScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return YgScreen(
+    return DemoScreen(
       componentName: 'List',
       componentDesc: 'Lists',
       supernovaLink: 'Link',
