@@ -17,7 +17,7 @@ class IconScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const YgScreen(
+    return const DemoScreen(
       componentName: 'Icon',
       componentDesc: 'Icons',
       supernovaLink: 'Link',
@@ -29,12 +29,10 @@ class IconScreen extends StatelessWidget {
           ),
           YgListTile(title: 'Sizes'),
           ...<Widget>[
-            YgText('Small'),
             YgIcon(
               YgIcons.info,
               size: YgIconSize.small,
             ),
-            YgText('Large'),
             YgIcon(
               YgIcons.info,
               size: YgIconSize.large,

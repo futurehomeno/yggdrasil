@@ -14,12 +14,12 @@ class YgTagTheme extends ThemeExtension<YgTagTheme> {
     required this.borderWidth,
     required this.disabledStrongTextStyle,
     required this.disabledTextStyle,
-    required this.iconDefaultColor,
-    required this.iconDisabledColor,
-    required this.iconInvertedColor,
-    required this.iconInvertedDisabledColor,
     required this.iconSize,
     required this.iconSpacing,
+    required this.iconStrongColor,
+    required this.iconStrongDisabledColor,
+    required this.iconWeakColor,
+    required this.iconWeakDisabledColor,
     required this.informativeTagTheme,
     required this.negativeTagTheme,
     required this.neutralTagTheme,
@@ -35,12 +35,12 @@ class YgTagTheme extends ThemeExtension<YgTagTheme> {
   final double borderWidth;
   final TextStyle disabledStrongTextStyle;
   final TextStyle disabledTextStyle;
-  final Color iconDefaultColor;
-  final Color iconDisabledColor;
-  final Color iconInvertedColor;
-  final Color iconInvertedDisabledColor;
   final double iconSize;
   final double iconSpacing;
+  final Color iconStrongColor;
+  final Color iconStrongDisabledColor;
+  final Color iconWeakColor;
+  final Color iconWeakDisabledColor;
   final InformativeTagTheme informativeTagTheme;
   final NegativeTagTheme negativeTagTheme;
   final NeutralTagTheme neutralTagTheme;
@@ -56,12 +56,12 @@ class YgTagTheme extends ThemeExtension<YgTagTheme> {
     borderWidth: _$YgTagTheme.borderWidth[0],
     disabledStrongTextStyle: _$YgTagTheme.disabledStrongTextStyle[0],
     disabledTextStyle: _$YgTagTheme.disabledTextStyle[0],
-    iconDefaultColor: _$YgTagTheme.iconDefaultColor[0],
-    iconDisabledColor: _$YgTagTheme.iconDisabledColor[0],
-    iconInvertedColor: _$YgTagTheme.iconInvertedColor[0],
-    iconInvertedDisabledColor: _$YgTagTheme.iconInvertedDisabledColor[0],
     iconSize: _$YgTagTheme.iconSize[0],
     iconSpacing: _$YgTagTheme.iconSpacing[0],
+    iconStrongColor: _$YgTagTheme.iconStrongColor[0],
+    iconStrongDisabledColor: _$YgTagTheme.iconStrongDisabledColor[0],
+    iconWeakColor: _$YgTagTheme.iconWeakColor[0],
+    iconWeakDisabledColor: _$YgTagTheme.iconWeakDisabledColor[0],
     informativeTagTheme: _$YgTagTheme.informativeTagTheme[0],
     negativeTagTheme: _$YgTagTheme.negativeTagTheme[0],
     neutralTagTheme: _$YgTagTheme.neutralTagTheme[0],
@@ -78,12 +78,12 @@ class YgTagTheme extends ThemeExtension<YgTagTheme> {
     borderWidth: _$YgTagTheme.borderWidth[1],
     disabledStrongTextStyle: _$YgTagTheme.disabledStrongTextStyle[1],
     disabledTextStyle: _$YgTagTheme.disabledTextStyle[1],
-    iconDefaultColor: _$YgTagTheme.iconDefaultColor[1],
-    iconDisabledColor: _$YgTagTheme.iconDisabledColor[1],
-    iconInvertedColor: _$YgTagTheme.iconInvertedColor[1],
-    iconInvertedDisabledColor: _$YgTagTheme.iconInvertedDisabledColor[1],
     iconSize: _$YgTagTheme.iconSize[1],
     iconSpacing: _$YgTagTheme.iconSpacing[1],
+    iconStrongColor: _$YgTagTheme.iconStrongColor[1],
+    iconStrongDisabledColor: _$YgTagTheme.iconStrongDisabledColor[1],
+    iconWeakColor: _$YgTagTheme.iconWeakColor[1],
+    iconWeakDisabledColor: _$YgTagTheme.iconWeakDisabledColor[1],
     informativeTagTheme: _$YgTagTheme.informativeTagTheme[1],
     negativeTagTheme: _$YgTagTheme.negativeTagTheme[1],
     neutralTagTheme: _$YgTagTheme.neutralTagTheme[1],
@@ -100,12 +100,12 @@ class YgTagTheme extends ThemeExtension<YgTagTheme> {
     borderWidth: _$YgTagTheme.borderWidth[2],
     disabledStrongTextStyle: _$YgTagTheme.disabledStrongTextStyle[2],
     disabledTextStyle: _$YgTagTheme.disabledTextStyle[2],
-    iconDefaultColor: _$YgTagTheme.iconDefaultColor[2],
-    iconDisabledColor: _$YgTagTheme.iconDisabledColor[2],
-    iconInvertedColor: _$YgTagTheme.iconInvertedColor[2],
-    iconInvertedDisabledColor: _$YgTagTheme.iconInvertedDisabledColor[2],
     iconSize: _$YgTagTheme.iconSize[2],
     iconSpacing: _$YgTagTheme.iconSpacing[2],
+    iconStrongColor: _$YgTagTheme.iconStrongColor[2],
+    iconStrongDisabledColor: _$YgTagTheme.iconStrongDisabledColor[2],
+    iconWeakColor: _$YgTagTheme.iconWeakColor[2],
+    iconWeakDisabledColor: _$YgTagTheme.iconWeakDisabledColor[2],
     informativeTagTheme: _$YgTagTheme.informativeTagTheme[2],
     negativeTagTheme: _$YgTagTheme.negativeTagTheme[2],
     neutralTagTheme: _$YgTagTheme.neutralTagTheme[2],
@@ -122,12 +122,12 @@ class YgTagTheme extends ThemeExtension<YgTagTheme> {
     borderWidth: _$YgTagTheme.borderWidth[3],
     disabledStrongTextStyle: _$YgTagTheme.disabledStrongTextStyle[3],
     disabledTextStyle: _$YgTagTheme.disabledTextStyle[3],
-    iconDefaultColor: _$YgTagTheme.iconDefaultColor[3],
-    iconDisabledColor: _$YgTagTheme.iconDisabledColor[3],
-    iconInvertedColor: _$YgTagTheme.iconInvertedColor[3],
-    iconInvertedDisabledColor: _$YgTagTheme.iconInvertedDisabledColor[3],
     iconSize: _$YgTagTheme.iconSize[3],
     iconSpacing: _$YgTagTheme.iconSpacing[3],
+    iconStrongColor: _$YgTagTheme.iconStrongColor[3],
+    iconStrongDisabledColor: _$YgTagTheme.iconStrongDisabledColor[3],
+    iconWeakColor: _$YgTagTheme.iconWeakColor[3],
+    iconWeakDisabledColor: _$YgTagTheme.iconWeakDisabledColor[3],
     informativeTagTheme: _$YgTagTheme.informativeTagTheme[3],
     negativeTagTheme: _$YgTagTheme.negativeTagTheme[3],
     neutralTagTheme: _$YgTagTheme.neutralTagTheme[3],
@@ -152,12 +152,12 @@ class YgTagTheme extends ThemeExtension<YgTagTheme> {
     double? borderWidth,
     TextStyle? disabledStrongTextStyle,
     TextStyle? disabledTextStyle,
-    Color? iconDefaultColor,
-    Color? iconDisabledColor,
-    Color? iconInvertedColor,
-    Color? iconInvertedDisabledColor,
     double? iconSize,
     double? iconSpacing,
+    Color? iconStrongColor,
+    Color? iconStrongDisabledColor,
+    Color? iconWeakColor,
+    Color? iconWeakDisabledColor,
     InformativeTagTheme? informativeTagTheme,
     NegativeTagTheme? negativeTagTheme,
     NeutralTagTheme? neutralTagTheme,
@@ -174,13 +174,14 @@ class YgTagTheme extends ThemeExtension<YgTagTheme> {
       disabledStrongTextStyle:
           disabledStrongTextStyle ?? this.disabledStrongTextStyle,
       disabledTextStyle: disabledTextStyle ?? this.disabledTextStyle,
-      iconDefaultColor: iconDefaultColor ?? this.iconDefaultColor,
-      iconDisabledColor: iconDisabledColor ?? this.iconDisabledColor,
-      iconInvertedColor: iconInvertedColor ?? this.iconInvertedColor,
-      iconInvertedDisabledColor:
-          iconInvertedDisabledColor ?? this.iconInvertedDisabledColor,
       iconSize: iconSize ?? this.iconSize,
       iconSpacing: iconSpacing ?? this.iconSpacing,
+      iconStrongColor: iconStrongColor ?? this.iconStrongColor,
+      iconStrongDisabledColor:
+          iconStrongDisabledColor ?? this.iconStrongDisabledColor,
+      iconWeakColor: iconWeakColor ?? this.iconWeakColor,
+      iconWeakDisabledColor:
+          iconWeakDisabledColor ?? this.iconWeakDisabledColor,
       informativeTagTheme: informativeTagTheme ?? this.informativeTagTheme,
       negativeTagTheme: negativeTagTheme ?? this.negativeTagTheme,
       neutralTagTheme: neutralTagTheme ?? this.neutralTagTheme,
@@ -203,16 +204,14 @@ class YgTagTheme extends ThemeExtension<YgTagTheme> {
           disabledStrongTextStyle, other.disabledStrongTextStyle, t)!,
       disabledTextStyle:
           TextStyle.lerp(disabledTextStyle, other.disabledTextStyle, t)!,
-      iconDefaultColor:
-          Color.lerp(iconDefaultColor, other.iconDefaultColor, t)!,
-      iconDisabledColor:
-          Color.lerp(iconDisabledColor, other.iconDisabledColor, t)!,
-      iconInvertedColor:
-          Color.lerp(iconInvertedColor, other.iconInvertedColor, t)!,
-      iconInvertedDisabledColor: Color.lerp(
-          iconInvertedDisabledColor, other.iconInvertedDisabledColor, t)!,
       iconSize: t < 0.5 ? iconSize : other.iconSize,
       iconSpacing: t < 0.5 ? iconSpacing : other.iconSpacing,
+      iconStrongColor: Color.lerp(iconStrongColor, other.iconStrongColor, t)!,
+      iconStrongDisabledColor: Color.lerp(
+          iconStrongDisabledColor, other.iconStrongDisabledColor, t)!,
+      iconWeakColor: Color.lerp(iconWeakColor, other.iconWeakColor, t)!,
+      iconWeakDisabledColor:
+          Color.lerp(iconWeakDisabledColor, other.iconWeakDisabledColor, t)!,
       informativeTagTheme: informativeTagTheme.lerp(
           other.informativeTagTheme, t) as InformativeTagTheme,
       negativeTagTheme:
@@ -244,17 +243,17 @@ class YgTagTheme extends ThemeExtension<YgTagTheme> {
                 disabledStrongTextStyle, other.disabledStrongTextStyle) &&
             const DeepCollectionEquality()
                 .equals(disabledTextStyle, other.disabledTextStyle) &&
-            const DeepCollectionEquality()
-                .equals(iconDefaultColor, other.iconDefaultColor) &&
-            const DeepCollectionEquality()
-                .equals(iconDisabledColor, other.iconDisabledColor) &&
-            const DeepCollectionEquality()
-                .equals(iconInvertedColor, other.iconInvertedColor) &&
-            const DeepCollectionEquality().equals(
-                iconInvertedDisabledColor, other.iconInvertedDisabledColor) &&
             const DeepCollectionEquality().equals(iconSize, other.iconSize) &&
             const DeepCollectionEquality()
                 .equals(iconSpacing, other.iconSpacing) &&
+            const DeepCollectionEquality()
+                .equals(iconStrongColor, other.iconStrongColor) &&
+            const DeepCollectionEquality().equals(
+                iconStrongDisabledColor, other.iconStrongDisabledColor) &&
+            const DeepCollectionEquality()
+                .equals(iconWeakColor, other.iconWeakColor) &&
+            const DeepCollectionEquality()
+                .equals(iconWeakDisabledColor, other.iconWeakDisabledColor) &&
             const DeepCollectionEquality()
                 .equals(informativeTagTheme, other.informativeTagTheme) &&
             const DeepCollectionEquality()
@@ -282,12 +281,12 @@ class YgTagTheme extends ThemeExtension<YgTagTheme> {
       const DeepCollectionEquality().hash(borderWidth),
       const DeepCollectionEquality().hash(disabledStrongTextStyle),
       const DeepCollectionEquality().hash(disabledTextStyle),
-      const DeepCollectionEquality().hash(iconDefaultColor),
-      const DeepCollectionEquality().hash(iconDisabledColor),
-      const DeepCollectionEquality().hash(iconInvertedColor),
-      const DeepCollectionEquality().hash(iconInvertedDisabledColor),
       const DeepCollectionEquality().hash(iconSize),
       const DeepCollectionEquality().hash(iconSpacing),
+      const DeepCollectionEquality().hash(iconStrongColor),
+      const DeepCollectionEquality().hash(iconStrongDisabledColor),
+      const DeepCollectionEquality().hash(iconWeakColor),
+      const DeepCollectionEquality().hash(iconWeakDisabledColor),
       const DeepCollectionEquality().hash(informativeTagTheme),
       const DeepCollectionEquality().hash(negativeTagTheme),
       const DeepCollectionEquality().hash(neutralTagTheme),

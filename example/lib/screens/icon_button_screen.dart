@@ -17,7 +17,7 @@ class IconButtonScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return YgScreen(
+    return DemoScreen(
       componentName: 'IconButton',
       componentDesc: 'Icon Buttons',
       supernovaLink: 'Link',

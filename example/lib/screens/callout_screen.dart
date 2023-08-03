@@ -17,7 +17,7 @@ class CalloutScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return YgScreen(
+    return DemoScreen(
       componentName: 'Callout',
       componentDesc: 'Callouts',
       supernovaLink: 'Link',

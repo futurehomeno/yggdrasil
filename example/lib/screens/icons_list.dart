@@ -17,7 +17,7 @@ class IconsListScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return YgScreen(
+    return DemoScreen(
       scrollable: false,
       componentName: 'Icon',
       componentDesc: 'Icons',

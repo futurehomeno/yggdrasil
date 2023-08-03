@@ -3,9 +3,8 @@ import 'package:provider/provider.dart';
 import 'package:yggdrasil/yggdrasil.dart';
 import 'package:yggdrasil_demo/core/_core.dart';
 
-// DO NOT USE! This is a temporary widget to make the demo work.
-class YgScreen extends StatelessWidget {
-  const YgScreen({
+class DemoScreen extends StatelessWidget {
+  const DemoScreen({
     super.key,
     required this.componentName,
     required this.componentDesc,

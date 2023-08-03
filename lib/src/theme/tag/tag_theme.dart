@@ -71,28 +71,28 @@ class _$YgTagTheme {
     professional_dark.FhDimensions.xxs,
   ];
 
-  static List<Color> iconDefaultColor = <Color>[
+  static List<Color> iconWeakColor = <Color>[
     consumer_light.FhColors.iconDefault,
     consumer_dark.FhColors.iconDefault,
     professional_light.FhColors.iconDefault,
     professional_dark.FhColors.iconDefault,
   ];
 
-  static List<Color> iconDisabledColor = <Color>[
+  static List<Color> iconWeakDisabledColor = <Color>[
     consumer_light.FhColors.iconDefault,
     consumer_dark.FhColors.iconDefault,
     professional_light.FhColors.iconDefault,
     professional_dark.FhColors.iconDefault,
   ];
 
-  static List<Color> iconInvertedColor = <Color>[
+  static List<Color> iconStrongColor = <Color>[
     consumer_light.FhColors.iconInverse,
     consumer_dark.FhColors.iconInverse,
     professional_light.FhColors.iconInverse,
     professional_dark.FhColors.iconInverse,
   ];
 
-  static List<Color> iconInvertedDisabledColor = <Color>[
+  static List<Color> iconStrongDisabledColor = <Color>[
     consumer_light.FhColors.iconInverse,
     consumer_dark.FhColors.iconInverse,
     professional_light.FhColors.iconInverse,

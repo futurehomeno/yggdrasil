@@ -40,9 +40,9 @@ class YgTagStyle {
           disabledTextStyle:
               weight == YgTagWeight.weak ? ygTagTheme.disabledTextStyle : ygTagTheme.disabledStrongTextStyle,
           iconSize: ygTagTheme.iconSize,
-          iconColor: weight == YgTagWeight.weak ? ygTagTheme.iconDefaultColor : ygTagTheme.iconInvertedColor,
+          iconColor: weight == YgTagWeight.weak ? ygTagTheme.iconWeakColor : ygTagTheme.iconStrongColor,
           iconDisabledColor:
-              weight == YgTagWeight.weak ? ygTagTheme.iconDisabledColor : ygTagTheme.iconInvertedDisabledColor,
+              weight == YgTagWeight.weak ? ygTagTheme.iconWeakDisabledColor : ygTagTheme.iconStrongDisabledColor,
           borderRadius: ygTagTheme.borderRadius,
           padding: YgTagMapper.buildPadding(
             context: context,
@@ -60,9 +60,9 @@ class YgTagStyle {
           disabledTextStyle:
               weight == YgTagWeight.weak ? ygTagTheme.disabledTextStyle : ygTagTheme.disabledStrongTextStyle,
           iconSize: ygTagTheme.iconSize,
-          iconColor: weight == YgTagWeight.weak ? ygTagTheme.iconDefaultColor : ygTagTheme.iconInvertedColor,
+          iconColor: weight == YgTagWeight.weak ? ygTagTheme.iconWeakColor : ygTagTheme.iconStrongColor,
           iconDisabledColor:
-              weight == YgTagWeight.weak ? ygTagTheme.iconDisabledColor : ygTagTheme.iconInvertedDisabledColor,
+              weight == YgTagWeight.weak ? ygTagTheme.iconWeakDisabledColor : ygTagTheme.iconStrongDisabledColor,
           borderRadius: ygTagTheme.borderRadius,
           padding: YgTagMapper.buildPadding(
             context: context,
@@ -79,9 +79,9 @@ class YgTagStyle {
           disabledTextStyle:
               weight == YgTagWeight.weak ? ygTagTheme.disabledTextStyle : ygTagTheme.disabledStrongTextStyle,
           iconSize: ygTagTheme.iconSize,
-          iconColor: weight == YgTagWeight.weak ? ygTagTheme.iconDefaultColor : ygTagTheme.iconInvertedColor,
+          iconColor: weight == YgTagWeight.weak ? ygTagTheme.iconWeakColor : ygTagTheme.iconStrongColor,
           iconDisabledColor:
-              weight == YgTagWeight.weak ? ygTagTheme.iconDisabledColor : ygTagTheme.iconInvertedDisabledColor,
+              weight == YgTagWeight.weak ? ygTagTheme.iconWeakDisabledColor : ygTagTheme.iconStrongDisabledColor,
           borderRadius: ygTagTheme.borderRadius,
           padding: YgTagMapper.buildPadding(
             context: context,
@@ -98,9 +98,9 @@ class YgTagStyle {
           disabledTextStyle:
               weight == YgTagWeight.weak ? ygTagTheme.disabledTextStyle : ygTagTheme.disabledStrongTextStyle,
           iconSize: ygTagTheme.iconSize,
-          iconColor: weight == YgTagWeight.weak ? ygTagTheme.iconDefaultColor : ygTagTheme.iconInvertedColor,
+          iconColor: weight == YgTagWeight.weak ? ygTagTheme.iconWeakColor : ygTagTheme.iconStrongColor,
           iconDisabledColor:
-              weight == YgTagWeight.weak ? ygTagTheme.iconDisabledColor : ygTagTheme.iconInvertedDisabledColor,
+              weight == YgTagWeight.weak ? ygTagTheme.iconWeakDisabledColor : ygTagTheme.iconStrongDisabledColor,
           borderRadius: ygTagTheme.borderRadius,
           padding: YgTagMapper.buildPadding(
             context: context,
@@ -117,9 +117,9 @@ class YgTagStyle {
           disabledTextStyle:
               weight == YgTagWeight.weak ? ygTagTheme.disabledTextStyle : ygTagTheme.disabledStrongTextStyle,
           iconSize: ygTagTheme.iconSize,
-          iconColor: weight == YgTagWeight.weak ? ygTagTheme.iconDefaultColor : ygTagTheme.iconInvertedColor,
+          iconColor: weight == YgTagWeight.weak ? ygTagTheme.iconWeakColor : ygTagTheme.iconStrongColor,
           iconDisabledColor:
-              weight == YgTagWeight.weak ? ygTagTheme.iconDisabledColor : ygTagTheme.iconInvertedDisabledColor,
+              weight == YgTagWeight.weak ? ygTagTheme.iconWeakDisabledColor : ygTagTheme.iconStrongDisabledColor,
           borderRadius: ygTagTheme.borderRadius,
           padding: YgTagMapper.buildPadding(
             context: context,

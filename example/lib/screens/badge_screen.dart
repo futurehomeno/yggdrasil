@@ -17,7 +17,7 @@ class BadgeScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return YgScreen(
+    return DemoScreen(
       componentName: 'Badge',
       componentDesc: 'Badges',
       supernovaLink: 'Link',

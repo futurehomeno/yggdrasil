@@ -17,49 +17,34 @@ class TagsScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return YgScreen(
+    return DemoScreen(
       componentName: 'Tag',
       componentDesc: 'Tags',
       supernovaLink: 'Link',
       child: Column(
         children: <Widget>[
           const YgListTile(title: 'Variants'),
-          Column(
-            children: <Widget>[
-              Row(
-                mainAxisSize: MainAxisSize.min,
-                children: <Widget>[
-                  const YgTag(
-                    child: Text('Neutral'),
-                  ),
-                  YgTag(
-                    onPressed: () {},
-                    child: const Text('Clickable'),
-                  ),
-                  const YgTag(
-                    onPressed: null,
-                    child: Text('Disabled'),
-                  ),
-                ],
-              ),
-              YgTag(
-                variant: YgTagVariant.informative,
-                child: Text('Informative'),
-              ),
-              YgTag(
-                variant: YgTagVariant.positive,
-                child: Text('Positive'),
-              ),
-              YgTag(
-                variant: YgTagVariant.warning,
-                child: Text('Warning'),
-              ),
-              YgTag(
-                variant: YgTagVariant.negative,
-                child: Text('Negative'),
-              ),
-            ],
-          ),
+          ...<Widget>[
+            const YgTag(
+              child: Text('Neutral'),
+            ),
+            const YgTag(
+              variant: YgTagVariant.informative,
+              child: Text('Informative'),
+            ),
+            const YgTag(
+              variant: YgTagVariant.positive,
+              child: Text('Positive'),
+            ),
+            const YgTag(
+              variant: YgTagVariant.warning,
+              child: Text('Warning'),
+            ),
+            const YgTag(
+              variant: YgTagVariant.negative,
+              child: Text('Negative'),
+            ),
+          ],
           const YgListTile(title: 'Sizes'),
           const Column(
             children: <Widget>[
@@ -107,19 +92,37 @@ class TagsScreen extends StatelessWidget {
             ],
           ),
           const YgListTile(title: 'Weights'),
-          Column(
-            children: <Widget>[
-              YgTag.leadingIcon(
-                icon: const YgIcon(YgIcons.info),
-                child: const Text('Neutral weak'),
-              ),
-              YgTag.leadingIcon(
-                icon: const YgIcon(YgIcons.info),
-                weight: YgTagWeight.strong,
-                child: const Text('Neutral strong'),
-              ),
-            ],
-          ),
+          ...<Widget>[
+            YgTag.leadingIcon(
+              icon: const YgIcon(YgIcons.info),
+              weight: YgTagWeight.strong,
+              child: const Text('Neutral strong'),
+            ),
+            YgTag.leadingIcon(
+              icon: const YgIcon(YgIcons.info),
+              variant: YgTagVariant.informative,
+              weight: YgTagWeight.strong,
+              child: const Text('Informative strong'),
+            ),
+            YgTag.leadingIcon(
+              icon: const YgIcon(YgIcons.info),
+              variant: YgTagVariant.positive,
+              weight: YgTagWeight.strong,
+              child: const Text('Positive strong'),
+            ),
+            YgTag.leadingIcon(
+              icon: const YgIcon(YgIcons.info),
+              variant: YgTagVariant.warning,
+              weight: YgTagWeight.strong,
+              child: const Text('Warning strong'),
+            ),
+            YgTag.leadingIcon(
+              icon: const YgIcon(YgIcons.info),
+              variant: YgTagVariant.negative,
+              weight: YgTagWeight.strong,
+              child: const Text('Negative strong'),
+            ),
+          ],
         ],
       ),
     );

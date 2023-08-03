@@ -17,7 +17,7 @@ class CardScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return YgScreen(
+    return DemoScreen(
       componentName: 'Card',
       componentDesc: 'Cards',
       supernovaLink: 'Link',

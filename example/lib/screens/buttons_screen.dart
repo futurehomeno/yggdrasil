@@ -17,7 +17,7 @@ class ButtonsScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return YgScreen(
+    return DemoScreen(
       componentName: 'Button',
       componentDesc: 'Buttons',
       supernovaLink: 'Link',
