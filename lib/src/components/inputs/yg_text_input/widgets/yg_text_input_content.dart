@@ -68,7 +68,7 @@ class _YgTextInputContentState extends YgTextInputWidgetState<YgTextInputContent
         Padding(
           key: _valueKey,
           padding: EdgeInsets.only(top: labelFloatingHeight),
-          child: _getValueText(),
+          child: _buildValueText(),
         ),
         AnimatedSlide(
           key: _labelKey,
@@ -90,7 +90,7 @@ class _YgTextInputContentState extends YgTextInputWidgetState<YgTextInputContent
 
   double get _labelFloatingHeight => theme.labelFocusFilledTextStyle.computedHeight;
 
-  Widget _getValueText() {
+  Widget _buildValueText() {
     final TextStyle baseStyle = theme.valueTextStyle;
 
     if (widget.disabled) {

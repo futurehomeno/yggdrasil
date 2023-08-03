@@ -102,12 +102,8 @@ class _TextInputScreenState extends State<TextInputScreen> {
                 mainAxisSize: MainAxisSize.min,
                 crossAxisAlignment: CrossAxisAlignment.stretch,
                 children: <Widget>[
-                  YgTextFormInput(
+                  YgTextFormInput.email(
                     key: emailKey,
-                    validators: const <YgTextValidator>[
-                      RequiredValidator(),
-                      EmailValidator(),
-                    ],
                     label: 'Email',
                     variant: YgTextInputVariant.outlined,
                   ),
