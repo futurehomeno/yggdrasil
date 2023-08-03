@@ -65,6 +65,19 @@ class _SwitchScreenState extends State<SwitchScreen> {
             value: disabledNullValue,
             onChanged: null,
           ),
+          const YgListTile(title: 'Switch in a list tile'),
+          YgListTile(
+            title: 'I have a switch!',
+            trailingWidgets: <Widget>[
+              YgSwitch(
+                value: listTileValue,
+                onChanged: (bool? newValue) {
+                  listTileValue = newValue;
+                  setState(() {});
+                },
+              ),
+            ],
+          ),
         ],
       ),
     );
