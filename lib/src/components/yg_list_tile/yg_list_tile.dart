@@ -21,6 +21,19 @@ class YgListTile extends StatelessWidget {
     this.onInfoTap,
   });
 
+  /// Convenience for generating links from YgListTiles.
+  factory YgListTile.link({
+    required String link,
+    required String iconPath,
+    required VoidCallback onTap,
+  }) {
+    return YgListTile(
+      title: link,
+      leadingWidgets: <Widget>[YgIcon(iconPath)],
+      onTap: onTap,
+    );
+  }
+
   final String title;
   final String? subtitle;
   final Widget? subtitleIcon;
