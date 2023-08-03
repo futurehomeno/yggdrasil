@@ -32,21 +32,19 @@ class YgSwitch extends StatelessWidget {
     return RepaintBoundary(
       child: Semantics(
         toggled: value,
-        child: Material(
-          color: _getBackgroundColor(context),
-          shape: RoundedRectangleBorder(
-            borderRadius: context.switchTheme.borderRadius,
-          ),
-          child: InkWell(
-            excludeFromSemantics: true,
-            borderRadius: context.switchTheme.borderRadius,
-            onTap: onChanged == null ? null : _onTap,
+        child: GestureDetector(
+          onTap: onChanged == null ? null : _onTap,
+          child: DecoratedBox(
+            decoration: BoxDecoration(
+              color: _getBackgroundColor(context),
+              borderRadius: context.switchTheme.borderRadius,
+            ),
             child: SizedBox(
               width: context.switchTheme.width,
               height: context.switchTheme.height,
               child: Padding(
                 // Moves the switch away from the edges.
-                padding: const EdgeInsets.symmetric(horizontal: 5.0),
+                padding: context.switchTheme.trackPadding,
                 child: AnimatedAlign(
                   curve: context.switchTheme.animationCurve,
                   alignment: _getHandleAlignment(),

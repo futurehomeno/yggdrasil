@@ -23,6 +23,7 @@ class YgSwitchTheme extends ThemeExtension<YgSwitchTheme> {
     required this.handleSelectedColor,
     required this.handleSize,
     required this.height,
+    required this.trackPadding,
     required this.width,
   });
 
@@ -39,6 +40,7 @@ class YgSwitchTheme extends ThemeExtension<YgSwitchTheme> {
   final Color handleSelectedColor;
   final double handleSize;
   final double height;
+  final EdgeInsets trackPadding;
   final double width;
 
   static final YgSwitchTheme consumerLight = YgSwitchTheme(
@@ -55,6 +57,7 @@ class YgSwitchTheme extends ThemeExtension<YgSwitchTheme> {
     handleSelectedColor: _$YgSwitchTheme.handleSelectedColor[0],
     handleSize: _$YgSwitchTheme.handleSize[0],
     height: _$YgSwitchTheme.height[0],
+    trackPadding: _$YgSwitchTheme.trackPadding[0],
     width: _$YgSwitchTheme.width[0],
   );
 
@@ -72,6 +75,7 @@ class YgSwitchTheme extends ThemeExtension<YgSwitchTheme> {
     handleSelectedColor: _$YgSwitchTheme.handleSelectedColor[1],
     handleSize: _$YgSwitchTheme.handleSize[1],
     height: _$YgSwitchTheme.height[1],
+    trackPadding: _$YgSwitchTheme.trackPadding[1],
     width: _$YgSwitchTheme.width[1],
   );
 
@@ -89,6 +93,7 @@ class YgSwitchTheme extends ThemeExtension<YgSwitchTheme> {
     handleSelectedColor: _$YgSwitchTheme.handleSelectedColor[2],
     handleSize: _$YgSwitchTheme.handleSize[2],
     height: _$YgSwitchTheme.height[2],
+    trackPadding: _$YgSwitchTheme.trackPadding[2],
     width: _$YgSwitchTheme.width[2],
   );
 
@@ -106,6 +111,7 @@ class YgSwitchTheme extends ThemeExtension<YgSwitchTheme> {
     handleSelectedColor: _$YgSwitchTheme.handleSelectedColor[3],
     handleSize: _$YgSwitchTheme.handleSize[3],
     height: _$YgSwitchTheme.height[3],
+    trackPadding: _$YgSwitchTheme.trackPadding[3],
     width: _$YgSwitchTheme.width[3],
   );
 
@@ -131,6 +137,7 @@ class YgSwitchTheme extends ThemeExtension<YgSwitchTheme> {
     Color? handleSelectedColor,
     double? handleSize,
     double? height,
+    EdgeInsets? trackPadding,
     double? width,
   }) {
     return YgSwitchTheme(
@@ -151,6 +158,7 @@ class YgSwitchTheme extends ThemeExtension<YgSwitchTheme> {
       handleSelectedColor: handleSelectedColor ?? this.handleSelectedColor,
       handleSize: handleSize ?? this.handleSize,
       height: height ?? this.height,
+      trackPadding: trackPadding ?? this.trackPadding,
       width: width ?? this.width,
     );
   }
@@ -179,6 +187,7 @@ class YgSwitchTheme extends ThemeExtension<YgSwitchTheme> {
           Color.lerp(handleSelectedColor, other.handleSelectedColor, t)!,
       handleSize: t < 0.5 ? handleSize : other.handleSize,
       height: t < 0.5 ? height : other.height,
+      trackPadding: t < 0.5 ? trackPadding : other.trackPadding,
       width: t < 0.5 ? width : other.width,
     );
   }
@@ -213,6 +222,8 @@ class YgSwitchTheme extends ThemeExtension<YgSwitchTheme> {
             const DeepCollectionEquality()
                 .equals(handleSize, other.handleSize) &&
             const DeepCollectionEquality().equals(height, other.height) &&
+            const DeepCollectionEquality()
+                .equals(trackPadding, other.trackPadding) &&
             const DeepCollectionEquality().equals(width, other.width));
   }
 
@@ -233,6 +244,7 @@ class YgSwitchTheme extends ThemeExtension<YgSwitchTheme> {
       const DeepCollectionEquality().hash(handleSelectedColor),
       const DeepCollectionEquality().hash(handleSize),
       const DeepCollectionEquality().hash(height),
+      const DeepCollectionEquality().hash(trackPadding),
       const DeepCollectionEquality().hash(width),
     );
   }

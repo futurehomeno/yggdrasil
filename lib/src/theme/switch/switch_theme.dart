@@ -93,6 +93,13 @@ class _$YgSwitchTheme {
     professional_dark.FhRadii.xxl,
   ];
 
+  static List<EdgeInsets> trackPadding = <EdgeInsets>[
+    const EdgeInsets.symmetric(horizontal: consumer_light.FhDimensions.xxs),
+    const EdgeInsets.symmetric(horizontal: consumer_dark.FhDimensions.xxs),
+    const EdgeInsets.symmetric(horizontal: professional_light.FhDimensions.xxs),
+    const EdgeInsets.symmetric(horizontal: professional_dark.FhDimensions.xxs),
+  ];
+
   // TODO(bjhandeland): Replace with theme token.
   static List<Duration> animationDuration = <Duration>[
     const Duration(milliseconds: 200),
