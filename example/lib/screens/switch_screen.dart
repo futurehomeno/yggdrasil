@@ -107,7 +107,7 @@ class _SwitchScreenState extends State<SwitchScreen> {
           ),
           YgSwitchListTile(
             title: 'Disabled switch in a SwitchListTile',
-            subtitle: 'The whole ListTile and Switch is tappable.',
+            subtitle: 'The whole ListTile and Switch is tappable. Alas, they do nothing.',
             value: switchListTileDisabledValue,
             onChanged: null,
           ),
