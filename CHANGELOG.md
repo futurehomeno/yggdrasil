@@ -1,3 +1,26 @@
+# 1.2.0 [04.08.2023 09:42]
+
+[dev-feature] Added YgText to make demo pages a little nicer.
+[dev-improvement] Added sensible defaults for YgButton.
+[dev-improvement] Button screen layout changed to better showcase buttons.
+[dev-improvement] Tag screen layout changed to better showcase tags.
+[dev-improvement] YgScreen renamed to DemoScreen.
+[feature] Added link factory for YgListTile.
+[feature] Added YgIconButton component.
+[feature] Added YgSwitch component.
+[feature] Added YgSwitchListTile component.
+[fix] Breaking: useSvgColor renamed to useEmbeddedColor.
+[fix] Breaking: YgIcon no longer allows actions. Replaced by YgIconButton.
+[fix] Correct icon color now applied to text and link buttons.
+[fix] Icon color is now correctly applied to disabled buttons.
+[fix] Icon color is now correctly applied to disabled tags.
+[fix] Several improvements to how YgTag handle text, icon and background themes.
+[fix] Snackbar renamed SnackBar to match convention.
+[improvement] Added debugFillProperties to YgIcon.
+[improvement] Added Semantics to YgIcon.
+[improvement] Changed from factory to named constructor for buttons and tags.
+[improvement] Snack bars can now be triggered.
+
 # 1.1.0 [25.07.2023 12:39]
 
 [dev-feature] Added new screen showcasing all current icons. 
