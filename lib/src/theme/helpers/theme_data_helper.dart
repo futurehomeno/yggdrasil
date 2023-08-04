@@ -11,6 +11,7 @@ class YgThemeDataHelper {
       brightness: theme.defaults.brightness,
       extensions: <YgTheme>[theme],
       useMaterial3: true,
+      colorSchemeSeed: theme.defaults.colorSchemeSeed,
       // Default theme values.
       pageTransitionsTheme: _defaultPageTransitionsTheme,
       scaffoldBackgroundColor: theme.defaults.scaffoldColor,
