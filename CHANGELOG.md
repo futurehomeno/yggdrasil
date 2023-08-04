@@ -1,3 +1,11 @@
+# 1.2.1 [04.08.2023 13:46]
+
+[improvement] Set seed color to override purple default of m3.
+[dev-improvement] Card screen reworked to better showcase examples.
+[fix] Changed import of Open Sans to OpenSans to that it actually imports.
+[dev-improvement] Changed SwitchListTile example with trailing widget to use IconButton.
+[fix] Changed size of IconButton for SnackBar to small.
+
 # 1.2.0 [04.08.2023 09:42]
 
 [dev-feature] Added YgText to make demo pages a little nicer.
