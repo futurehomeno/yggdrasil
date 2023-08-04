@@ -43,10 +43,10 @@ class _$YgSnackBarTheme {
 
   // These are not from tokens!
   static List<EdgeInsets> margin = <EdgeInsets>[
-    const EdgeInsets.fromLTRB(30.0, 0.0, 30.0, 40.0),
-    const EdgeInsets.fromLTRB(30.0, 0.0, 30.0, 40.0),
-    const EdgeInsets.fromLTRB(30.0, 0.0, 30.0, 40.0),
-    const EdgeInsets.fromLTRB(30.0, 0.0, 30.0, 40.0),
+    const EdgeInsets.all(consumer_light.FhDimensions.xl),
+    const EdgeInsets.all(consumer_dark.FhDimensions.xl),
+    const EdgeInsets.all(professional_light.FhDimensions.xl),
+    const EdgeInsets.all(professional_dark.FhDimensions.xl),
   ];
 
   static List<EdgeInsets> padding = <EdgeInsets>[
