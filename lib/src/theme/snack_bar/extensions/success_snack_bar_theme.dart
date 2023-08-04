@@ -5,21 +5,21 @@ import 'package:yggdrasil/src/tokens/consumer_light/_consumer_light.dart' as con
 import 'package:yggdrasil/src/tokens/professional_dark/_professional_dark.dart' as professional_dark;
 import 'package:yggdrasil/src/tokens/professional_light/_professional_light.dart' as professional_light;
 
-part 'highlight_snackbar_theme.tailor.dart';
+part 'success_snack_bar_theme.tailor.dart';
 
 @tailorComponent
-class _$HighlightSnackbarTheme {
+class _$SuccessSnackBarTheme {
   static List<Color> iconContainerColor = <Color>[
-    consumer_light.FhColors.backgroundHighlightWeak,
-    consumer_dark.FhColors.backgroundHighlightWeak,
-    professional_light.FhColors.backgroundHighlightWeak,
-    professional_dark.FhColors.backgroundHighlightWeak,
+    consumer_light.FhColors.backgroundSuccessWeak,
+    consumer_dark.FhColors.backgroundSuccessWeak,
+    professional_light.FhColors.backgroundSuccessWeak,
+    professional_dark.FhColors.backgroundSuccessWeak,
   ];
 
   static List<Color> iconColor = <Color>[
-    consumer_light.FhColors.iconHighlight,
-    consumer_dark.FhColors.iconHighlight,
-    professional_light.FhColors.iconHighlight,
-    professional_dark.FhColors.iconHighlight,
+    consumer_light.FhColors.iconSuccess,
+    consumer_dark.FhColors.iconSuccess,
+    professional_light.FhColors.iconSuccess,
+    professional_dark.FhColors.iconSuccess,
   ];
 }

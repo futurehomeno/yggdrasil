@@ -1,4 +1,4 @@
-enum YgSnackbarVariant {
+enum YgSnackBarVariant {
   highlight,
   success,
   critical;

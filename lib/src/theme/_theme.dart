@@ -11,7 +11,7 @@ export 'helpers/_helpers.dart';
 export 'icon/_icon.dart';
 export 'internal/_internal.dart';
 export 'list_tile/_list_tile.dart';
-export 'snackbar/_snackbar.dart';
+export 'snack_bar/_snack_bar.dart';
 export 'switch/_switch.dart';
 export 'tag/_tag.dart';
 export 'text_link/_text_link.dart';
