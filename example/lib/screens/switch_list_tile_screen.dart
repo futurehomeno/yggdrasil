@@ -58,11 +58,13 @@ class _SwitchScreenState extends State<SwitchListTileScreen> {
             value: switchListTileDisabledValue,
             onChanged: null,
           ),
-          // TODO(bjhandeland): Update example with YgIconButton when merged.
           YgSwitchListTile(
-            title: 'SwitchListTile with trailingWidget',
+            title: 'With trailingWidget',
             subtitle: 'Mostly used to add a YgIconButton.',
-            trailingWidget: const YgIcon(YgIcons.info),
+            trailingWidget: YgIconButton(
+              onPressed: () {},
+              child: const YgIcon(YgIcons.info),
+            ),
             value: switchListTileTrailingWidgetValue,
             onChanged: (bool? newValue) {
               switchListTileTrailingWidgetValue = newValue;

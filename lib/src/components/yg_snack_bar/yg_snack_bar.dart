@@ -54,10 +54,11 @@ class YgSnackBar extends SnackBar {
         Expanded(
           child: Text(
             message,
-            style: snackBarTheme.messageTextStyle,
+            style: context.tokens.textStyles.paragraph3Regular,
           ),
         ),
         YgIconButton(
+          size: YgIconButtonSize.small,
           child: YgIcon(
             YgIcons.cross,
             color: context.snackBarTheme.closeIconColor,
