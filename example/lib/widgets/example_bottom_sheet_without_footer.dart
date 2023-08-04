@@ -13,7 +13,7 @@ class ExampleBottomSheetWithoutFooter extends YgBottomSheetModalRoute {
         variant: YgCardVariant.filled,
         child: YgListTile(
           title: 'Example content',
-          subtitle: 'Bacon ipsum dolor amet chicken frankfurter burgdoggen landjaeger sirloin ham pig.',
+          subtitle: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit.',
         ),
       ),
     );

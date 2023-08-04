@@ -13,11 +13,11 @@ class ExampleBottomSheet extends YgBottomSheetModalRoute {
         children: <Widget>[
           const YgListTile(
             title: 'Example content',
-            subtitle: 'Bacon ipsum dolor amet chicken frankfurter burgdoggen landjaeger sirloin ham pig.',
+            subtitle: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit.',
           ),
           YgListTile(
             title: 'Clickable example content',
-            subtitle: 'Bacon ipsum dolor amet chicken frankfurter burgdoggen landjaeger sirloin ham pig.',
+            subtitle: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit.',
             onTap: () {},
           ),
         ].separatedBy(const Divider()),

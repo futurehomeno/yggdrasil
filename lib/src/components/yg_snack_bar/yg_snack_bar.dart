@@ -58,6 +58,7 @@ class YgSnackBar extends SnackBar {
           ),
         ),
         YgIconButton(
+          size: YgIconButtonSize.small,
           child: YgIcon(
             YgIcons.cross,
             color: context.snackBarTheme.closeIconColor,

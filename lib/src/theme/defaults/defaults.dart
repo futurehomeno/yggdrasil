@@ -16,6 +16,13 @@ class _$YgDefaults {
     Brightness.dark, // professional_dark
   ];
 
+  static List<Color> colorSchemeSeed = <Color>[
+    consumer_light.FhColors.backgroundHighlightDefault,
+    consumer_dark.FhColors.backgroundHighlightDefault,
+    professional_light.FhColors.backgroundHighlightDefault,
+    professional_dark.FhColors.backgroundHighlightDefault,
+  ];
+
   static List<Color> splashColor = <Color>[
     consumer_light.FhColors.backgroundDisabled.withAlpha(150),
     consumer_dark.FhColors.backgroundDisabled.withAlpha(150),

@@ -28,18 +28,18 @@ class ListTileScreen extends StatelessWidget {
           ),
           const YgListTile(
             title: 'Title',
-            subtitle: 'Bacon ipsum dolor amet chicken frankfurter burgdoggen landjaeger sirloin ham pig.',
+            subtitle: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit.',
           ),
           const YgListTile(
             title: 'Title',
-            subtitle: 'Bacon ipsum dolor amet chicken frankfurter burgdoggen landjaeger sirloin ham pig.',
+            subtitle: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit.',
             leadingWidgets: <Widget>[
               YgIcon(YgIcons.info, size: YgIconSize.large),
             ],
           ),
           const YgListTile(
             title: 'Title',
-            subtitle: 'Bacon ipsum dolor amet chicken frankfurter burgdoggen landjaeger sirloin ham pig.',
+            subtitle: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit.',
             leadingWidgets: <Widget>[
               YgIcon(YgIcons.info, size: YgIconSize.large),
             ],
@@ -49,7 +49,7 @@ class ListTileScreen extends StatelessWidget {
           ),
           const YgListTile(
             title: 'Title',
-            subtitle: 'Bacon ipsum dolor amet chicken frankfurter burgdoggen landjaeger sirloin ham pig.',
+            subtitle: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit.',
             leadingWidgets: <Widget>[
               YgIcon(YgIcons.info, size: YgIconSize.large),
             ],
@@ -62,7 +62,7 @@ class ListTileScreen extends StatelessWidget {
           ),
           const YgListTile(
             title: 'Title',
-            subtitle: 'Bacon ipsum dolor amet chicken frankfurter burgdoggen landjaeger sirloin ham pig.',
+            subtitle: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit.',
             leadingWidgets: <Widget>[
               YgIcon(YgIcons.info, size: YgIconSize.large),
             ],
@@ -76,7 +76,7 @@ class ListTileScreen extends StatelessWidget {
           ),
           YgListTile(
             title: 'Title',
-            subtitle: 'Bacon ipsum dolor amet chicken frankfurter burgdoggen landjaeger sirloin ham pig.',
+            subtitle: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit.',
             onInfoTap: () {},
             leadingWidgets: const <Widget>[
               YgIcon(YgIcons.info, size: YgIconSize.large),
@@ -91,7 +91,7 @@ class ListTileScreen extends StatelessWidget {
           ),
           YgListTile(
             title: 'Tappable!',
-            subtitle: 'Bacon ipsum dolor amet chicken frankfurter burgdoggen landjaeger sirloin ham pig.',
+            subtitle: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit.',
             onTap: () {},
             onInfoTap: () {},
             leadingWidgets: const <Widget>[
@@ -107,7 +107,7 @@ class ListTileScreen extends StatelessWidget {
           ),
           YgListTile(
             title: 'Tappable!',
-            subtitle: 'Bacon ipsum dolor amet chicken frankfurter burgdoggen landjaeger sirloin ham pig.',
+            subtitle: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit.',
             subtitleIcon: const YgIcon(YgIcons.info, size: YgIconSize.small),
             onTap: () {},
             onInfoTap: () {},
