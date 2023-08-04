@@ -54,7 +54,7 @@ class YgSnackBar extends SnackBar {
         Expanded(
           child: Text(
             message,
-            style: context.tokens.textStyles.paragraph3Regular,
+            style: snackBarTheme.messageTextStyle,
           ),
         ),
         YgIconButton(
