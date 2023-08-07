@@ -125,7 +125,7 @@ class _YgRadioState<T> extends State<YgRadio<T>> {
     );
   }
 
-  AnimatedContainer _buildBackground({
+  Widget _buildBackground({
     required BuildContext context,
     required double? resolvedSize,
     required Color? resolvedBackgroundColor,
@@ -152,7 +152,7 @@ class _YgRadioState<T> extends State<YgRadio<T>> {
     );
   }
 
-  AnimatedContainer buildHandle({
+  Widget buildHandle({
     required BuildContext context,
     required double? resolvedHandleSize,
     required Color? resolvedHandleColor,
@@ -175,7 +175,7 @@ class _YgRadioState<T> extends State<YgRadio<T>> {
     );
   }
 
-  AnimatedContainer _buildHelperHandle({
+  Widget _buildHelperHandle({
     required BuildContext context,
     required double? resolvedHelperHandleSize,
   }) {
