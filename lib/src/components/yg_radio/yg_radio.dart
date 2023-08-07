@@ -110,40 +110,82 @@ class _YgRadioState<T> extends State<YgRadio<T>> {
             enabled: widget._enabled,
             child: Padding(
               padding: EdgeInsets.all(context.radioTheme.padding),
-              child: AnimatedContainer(
-                duration: context.radioTheme.animationDuration,
-                width: resolvedSize,
-                height: resolvedSize,
-                decoration: BoxDecoration(
-                  shape: BoxShape.circle,
-                  color: resolvedBackgroundColor,
-                ),
-                child: Center(
-                  child: AnimatedContainer(
-                    duration: context.radioTheme.animationDuration,
-                    width: resolvedHandleSize,
-                    height: resolvedHandleSize,
-                    decoration: BoxDecoration(
-                      shape: BoxShape.circle,
-                      color: resolvedHandleColor,
-                    ),
-                    child: Center(
-                      child: AnimatedContainer(
-                        duration: context.radioTheme.animationDuration,
-                        width: resolvedHelperHandleSize,
-                        height: resolvedHelperHandleSize,
-                        decoration: BoxDecoration(
-                          shape: BoxShape.circle,
-                          color: context.radioTheme.helperHandleColor,
-                        ),
-                      ),
-                    ),
-                  ),
-                ),
+              child: _buildBackground(
+                context: context,
+                resolvedSize: resolvedSize,
+                resolvedBackgroundColor: resolvedBackgroundColor,
+                resolvedHandleSize: resolvedHandleSize,
+                resolvedHandleColor: resolvedHandleColor,
+                resolvedHelperHandleSize: resolvedHelperHandleSize,
               ),
             ),
           ),
         ),
+      ),
+    );
+  }
+
+  AnimatedContainer _buildBackground({
+    required BuildContext context,
+    required double? resolvedSize,
+    required Color? resolvedBackgroundColor,
+    required double? resolvedHandleSize,
+    required Color? resolvedHandleColor,
+    required double? resolvedHelperHandleSize,
+  }) {
+    return AnimatedContainer(
+      duration: context.radioTheme.animationDuration,
+      width: resolvedSize,
+      height: resolvedSize,
+      decoration: BoxDecoration(
+        shape: BoxShape.circle,
+        color: resolvedBackgroundColor,
+      ),
+      child: Center(
+        child: buildHandle(
+          context: context,
+          resolvedHandleSize: resolvedHandleSize,
+          resolvedHandleColor: resolvedHandleColor,
+          resolvedHelperHandleSize: resolvedHelperHandleSize,
+        ),
+      ),
+    );
+  }
+
+  AnimatedContainer buildHandle({
+    required BuildContext context,
+    required double? resolvedHandleSize,
+    required Color? resolvedHandleColor,
+    required double? resolvedHelperHandleSize,
+  }) {
+    return AnimatedContainer(
+      duration: context.radioTheme.animationDuration,
+      width: resolvedHandleSize,
+      height: resolvedHandleSize,
+      decoration: BoxDecoration(
+        shape: BoxShape.circle,
+        color: resolvedHandleColor,
+      ),
+      child: Center(
+        child: _buildHelperHandle(
+          context: context,
+          resolvedHelperHandleSize: resolvedHelperHandleSize,
+        ),
+      ),
+    );
+  }
+
+  AnimatedContainer _buildHelperHandle({
+    required BuildContext context,
+    required double? resolvedHelperHandleSize,
+  }) {
+    return AnimatedContainer(
+      duration: context.radioTheme.animationDuration,
+      width: resolvedHelperHandleSize,
+      height: resolvedHelperHandleSize,
+      decoration: BoxDecoration(
+        shape: BoxShape.circle,
+        color: context.radioTheme.helperHandleColor,
       ),
     );
   }
