@@ -40,18 +40,15 @@ class YgRadio<T> extends StatefulWidget {
 }
 
 class _YgRadioState<T> extends State<YgRadio<T>> {
-  MaterialStatesController? internalStatesController;
-
   // region StatesController
   void handleStatesControllerChange() {
     // Force a rebuild to resolve MaterialStateProperty properties.
     setState(() {});
   }
 
-  MaterialStatesController get statesController => internalStatesController!;
+  MaterialStatesController statesController = MaterialStatesController();
 
   void initStatesController() {
-    internalStatesController = MaterialStatesController();
     statesController.update(MaterialState.disabled, !widget._enabled);
     statesController.update(MaterialState.selected, widget._selected);
     statesController.addListener(handleStatesControllerChange);
