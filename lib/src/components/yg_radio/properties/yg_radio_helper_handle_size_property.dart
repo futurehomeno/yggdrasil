@@ -19,7 +19,7 @@ class YgRadioHelperHandleSizeProperty extends MaterialStateProperty<double?> wit
       }
       return disabledDeselected;
     }
-    // Helper handle should not show when not disabled.
+    // Helper handle should only show for disabled states.
     // Returning `null` does not work as the widget will still render.
     return 0.0;
   }
