@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:theme_tailor_annotation/theme_tailor_annotation.dart';
+import 'package:yggdrasil/src/theme/radio/_radio.dart';
 
 import 'badge/_badge.dart';
 import 'bottom_sheet/_bottom_sheet.dart';
@@ -63,6 +64,9 @@ class _$YgTheme {
 
   @themeExtension
   static List<YgListTileTheme> listTileTheme = YgListTileTheme.themes;
+
+  @themeExtension
+  static List<YgRadioTheme> radioTheme = YgRadioTheme.themes;
 
   @themeExtension
   static List<YgSnackBarTheme> snackBarTheme = YgSnackBarTheme.themes;

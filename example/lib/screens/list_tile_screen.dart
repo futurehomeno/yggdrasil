@@ -79,7 +79,11 @@ class ListTileScreen extends StatelessWidget {
             subtitle: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit.',
             onInfoTap: () {},
             leadingWidgets: const <Widget>[
-              YgIcon(YgIcons.info, size: YgIconSize.large),
+              YgIcon(
+                YgIcons.deviceEvCharger,
+                size: YgIconSize.large,
+                useEmbeddedColor: true,
+              ),
             ],
             trailingWidgets: const <Widget>[
               YgIcon(YgIcons.info, size: YgIconSize.large),
