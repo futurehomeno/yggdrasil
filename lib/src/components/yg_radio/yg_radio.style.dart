@@ -9,6 +9,7 @@ class YgRadioStyle {
     required this.handleSize,
     required this.handleColor,
     required this.helperHandleSize,
+    required this.mouseCursor,
   });
 
   factory YgRadioStyle.base(BuildContext context) {
@@ -40,6 +41,10 @@ class YgRadioStyle {
         disabledDeselected: context.radioTheme.disabledDeselectedHelperHandleSize,
         disabledSelected: context.radioTheme.disabledSelectedHelperHandleSize,
       ),
+      mouseCursor: YgRadioMouseCursorProperty(
+        enabled: SystemMouseCursors.click,
+        disabled: SystemMouseCursors.basic,
+      ),
     );
   }
 
@@ -48,4 +53,5 @@ class YgRadioStyle {
   final YgRadioHandleSizeProperty handleSize;
   final YgRadioHandleColorProperty handleColor;
   final YgRadioHelperHandleSizeProperty helperHandleSize;
+  final YgRadioMouseCursorProperty mouseCursor;
 }

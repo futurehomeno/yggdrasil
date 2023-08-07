@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:yggdrasil/src/components/yg_radio/yg_radio.style.dart';
 import 'package:yggdrasil/src/theme/_theme.dart';
 
+/// Yggdrasil radio button.
 class YgRadio<T> extends StatefulWidget {
   const YgRadio({
     super.key,
@@ -25,9 +26,9 @@ class YgRadio<T> extends StatefulWidget {
   /// the radio changes, the widget calls the [onChanged] callback.
   final ValueChanged<T?>? onChanged;
 
-  bool get enabled => onChanged != null;
+  bool get _enabled => onChanged != null;
 
-  bool get selected => value == groupValue;
+  bool get _selected => value == groupValue;
 
   @override
   State<YgRadio<T>> createState() => _YgRadioState<T>();
@@ -46,8 +47,8 @@ class _YgRadioState<T> extends State<YgRadio<T>> {
 
   void initStatesController() {
     internalStatesController = MaterialStatesController();
-    statesController.update(MaterialState.disabled, !widget.enabled);
-    statesController.update(MaterialState.selected, widget.selected);
+    statesController.update(MaterialState.disabled, !widget._enabled);
+    statesController.update(MaterialState.selected, widget._selected);
     statesController.addListener(handleStatesControllerChange);
   }
 
@@ -61,13 +62,13 @@ class _YgRadioState<T> extends State<YgRadio<T>> {
   void didUpdateWidget(covariant YgRadio<T> oldWidget) {
     super.didUpdateWidget(oldWidget);
 
-    if (widget.selected != oldWidget.selected) {
-      statesController.update(MaterialState.selected, widget.selected);
+    if (widget._selected != oldWidget._selected) {
+      statesController.update(MaterialState.selected, widget._selected);
     }
 
-    if (widget.enabled != oldWidget.enabled) {
-      statesController.update(MaterialState.disabled, !widget.enabled);
-      if (!widget.enabled) {
+    if (widget._enabled != oldWidget._enabled) {
+      statesController.update(MaterialState.disabled, !widget._enabled);
+      if (!widget._enabled) {
         // The radio may have been disabled while a press gesture is currently underway.
         statesController.update(MaterialState.pressed, false);
       }
@@ -89,17 +90,21 @@ class _YgRadioState<T> extends State<YgRadio<T>> {
     final double? resolvedSize = radioStyle.size.resolve(statesController.value);
     final double? resolvedHandleSize = radioStyle.handleSize.resolve(statesController.value);
     final double? resolvedHelperHandleSize = radioStyle.helperHandleSize.resolve(statesController.value);
+    final MouseCursor resolvedMouseCursor = radioStyle.mouseCursor.resolve(statesController.value)!;
 
     return RepaintBoundary(
-      child: GestureDetector(
-        behavior: HitTestBehavior.opaque,
-        onTap: widget.onChanged == null ? null : _onTap,
-        child: FocusableActionDetector(
-          onShowHoverHighlight: _onShowHoverHighlight,
-          onShowFocusHighlight: _onShowFocusHighlight,
-          child: Padding(
-            padding: EdgeInsets.all(context.radioTheme.padding),
-            child: InkWell(
+      child: Semantics(
+        checked: widget._selected,
+        child: GestureDetector(
+          behavior: HitTestBehavior.opaque,
+          onTap: widget.onChanged == null ? null : _onTap,
+          child: FocusableActionDetector(
+            onShowHoverHighlight: _onShowHoverHighlight,
+            onShowFocusHighlight: _onShowFocusHighlight,
+            mouseCursor: resolvedMouseCursor,
+            enabled: widget._enabled,
+            child: Padding(
+              padding: EdgeInsets.all(context.radioTheme.padding),
               child: AnimatedContainer(
                 duration: context.radioTheme.animationDuration,
                 width: resolvedSize,

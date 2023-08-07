@@ -140,17 +140,17 @@ class _$YgRadioTheme {
 
   // TODO(bjhandeland): Replace with theme token.
   static List<Duration> animationDuration = <Duration>[
-    const Duration(milliseconds: 200),
-    const Duration(milliseconds: 200),
-    const Duration(milliseconds: 200),
-    const Duration(milliseconds: 200),
+    const Duration(milliseconds: 80),
+    const Duration(milliseconds: 80),
+    const Duration(milliseconds: 80),
+    const Duration(milliseconds: 80),
   ];
 
   // TODO(bjhandeland): Replace with theme token.
   static List<Curve> animationCurve = <Curve>[
-    const Cubic(0.42, 0.0, 0.58, 1.0),
-    const Cubic(0.42, 0.0, 0.58, 1.0),
-    const Cubic(0.42, 0.0, 0.58, 1.0),
-    const Cubic(0.42, 0.0, 0.58, 1.0),
+    const Cubic(0.35, 0.0, 0.1, 1.0),
+    const Cubic(0.35, 0.0, 0.1, 1.0),
+    const Cubic(0.35, 0.0, 0.1, 1.0),
+    const Cubic(0.35, 0.0, 0.1, 1.0),
   ];
 }

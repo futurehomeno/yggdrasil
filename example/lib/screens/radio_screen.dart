@@ -20,7 +20,8 @@ class RadioScreen extends StatefulWidget {
 }
 
 class _RadioScreenState extends State<RadioScreen> {
-  int groupValue = 1;
+  int radioGroupValue = 1;
+  int disabledRadioGroupValue = 1;
 
   @override
   Widget build(BuildContext context) {
@@ -33,28 +34,29 @@ class _RadioScreenState extends State<RadioScreen> {
           const YgListTile(title: 'Radio'),
           YgRadio<int>(
             value: 1,
-            groupValue: groupValue,
+            groupValue: radioGroupValue,
             onChanged: (int? newValue) {
-              groupValue = newValue!;
+              radioGroupValue = newValue!;
               setState(() {});
             },
           ),
           YgRadio<int>(
             value: 2,
-            groupValue: groupValue,
+            groupValue: radioGroupValue,
             onChanged: (int? newValue) {
-              groupValue = newValue!;
+              radioGroupValue = newValue!;
               setState(() {});
             },
           ),
+          const YgListTile(title: 'Disabled radio, selected / unselected'),
           YgRadio<int>(
             value: 1,
-            groupValue: groupValue,
+            groupValue: disabledRadioGroupValue,
             onChanged: null,
           ),
           YgRadio<int>(
             value: 2,
-            groupValue: groupValue,
+            groupValue: disabledRadioGroupValue,
             onChanged: null,
           ),
         ],
