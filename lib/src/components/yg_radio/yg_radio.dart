@@ -3,6 +3,11 @@ import 'package:yggdrasil/src/components/yg_radio/yg_radio.style.dart';
 import 'package:yggdrasil/src/theme/_theme.dart';
 
 /// Yggdrasil radio button.
+///
+/// The widget consists of three circles stacked on top of one another.
+/// The first circle creates the background (or border when not selected).
+/// The second circle creates the handle, large when not selected, small when selected.
+/// The last circle creates the helper handle, only used for the disabled state.
 class YgRadio<T> extends StatefulWidget {
   const YgRadio({
     super.key,
