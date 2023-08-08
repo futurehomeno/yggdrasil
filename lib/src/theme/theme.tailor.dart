@@ -23,6 +23,7 @@ class YgTheme extends ThemeExtension<YgTheme> {
     required this.iconTheme,
     required this.internalTheme,
     required this.listTileTheme,
+    required this.progressIndicatorTheme,
     required this.snackBarTheme,
     required this.switchTheme,
     required this.tagTheme,
@@ -43,6 +44,7 @@ class YgTheme extends ThemeExtension<YgTheme> {
   final YgIconTheme iconTheme;
   final YgInternalTheme internalTheme;
   final YgListTileTheme listTileTheme;
+  final YgProgressIndicatorTheme progressIndicatorTheme;
   final YgSnackBarTheme snackBarTheme;
   final YgSwitchTheme switchTheme;
   final YgTagTheme tagTheme;
@@ -63,6 +65,7 @@ class YgTheme extends ThemeExtension<YgTheme> {
     iconTheme: _$YgTheme.iconTheme[0],
     internalTheme: _$YgTheme.internalTheme[0],
     listTileTheme: _$YgTheme.listTileTheme[0],
+    progressIndicatorTheme: _$YgTheme.progressIndicatorTheme[0],
     snackBarTheme: _$YgTheme.snackBarTheme[0],
     switchTheme: _$YgTheme.switchTheme[0],
     tagTheme: _$YgTheme.tagTheme[0],
@@ -84,6 +87,7 @@ class YgTheme extends ThemeExtension<YgTheme> {
     iconTheme: _$YgTheme.iconTheme[1],
     internalTheme: _$YgTheme.internalTheme[1],
     listTileTheme: _$YgTheme.listTileTheme[1],
+    progressIndicatorTheme: _$YgTheme.progressIndicatorTheme[1],
     snackBarTheme: _$YgTheme.snackBarTheme[1],
     switchTheme: _$YgTheme.switchTheme[1],
     tagTheme: _$YgTheme.tagTheme[1],
@@ -105,6 +109,7 @@ class YgTheme extends ThemeExtension<YgTheme> {
     iconTheme: _$YgTheme.iconTheme[2],
     internalTheme: _$YgTheme.internalTheme[2],
     listTileTheme: _$YgTheme.listTileTheme[2],
+    progressIndicatorTheme: _$YgTheme.progressIndicatorTheme[2],
     snackBarTheme: _$YgTheme.snackBarTheme[2],
     switchTheme: _$YgTheme.switchTheme[2],
     tagTheme: _$YgTheme.tagTheme[2],
@@ -126,6 +131,7 @@ class YgTheme extends ThemeExtension<YgTheme> {
     iconTheme: _$YgTheme.iconTheme[3],
     internalTheme: _$YgTheme.internalTheme[3],
     listTileTheme: _$YgTheme.listTileTheme[3],
+    progressIndicatorTheme: _$YgTheme.progressIndicatorTheme[3],
     snackBarTheme: _$YgTheme.snackBarTheme[3],
     switchTheme: _$YgTheme.switchTheme[3],
     tagTheme: _$YgTheme.tagTheme[3],
@@ -155,6 +161,7 @@ class YgTheme extends ThemeExtension<YgTheme> {
     YgIconTheme? iconTheme,
     YgInternalTheme? internalTheme,
     YgListTileTheme? listTileTheme,
+    YgProgressIndicatorTheme? progressIndicatorTheme,
     YgSnackBarTheme? snackBarTheme,
     YgSwitchTheme? switchTheme,
     YgTagTheme? tagTheme,
@@ -175,6 +182,8 @@ class YgTheme extends ThemeExtension<YgTheme> {
       iconTheme: iconTheme ?? this.iconTheme,
       internalTheme: internalTheme ?? this.internalTheme,
       listTileTheme: listTileTheme ?? this.listTileTheme,
+      progressIndicatorTheme:
+          progressIndicatorTheme ?? this.progressIndicatorTheme,
       snackBarTheme: snackBarTheme ?? this.snackBarTheme,
       switchTheme: switchTheme ?? this.switchTheme,
       tagTheme: tagTheme ?? this.tagTheme,
@@ -205,6 +214,8 @@ class YgTheme extends ThemeExtension<YgTheme> {
           internalTheme.lerp(other.internalTheme, t) as YgInternalTheme,
       listTileTheme:
           listTileTheme.lerp(other.listTileTheme, t) as YgListTileTheme,
+      progressIndicatorTheme: progressIndicatorTheme.lerp(
+          other.progressIndicatorTheme, t) as YgProgressIndicatorTheme,
       snackBarTheme:
           snackBarTheme.lerp(other.snackBarTheme, t) as YgSnackBarTheme,
       switchTheme: switchTheme.lerp(other.switchTheme, t) as YgSwitchTheme,
@@ -244,6 +255,8 @@ class YgTheme extends ThemeExtension<YgTheme> {
             const DeepCollectionEquality()
                 .equals(listTileTheme, other.listTileTheme) &&
             const DeepCollectionEquality()
+                .equals(progressIndicatorTheme, other.progressIndicatorTheme) &&
+            const DeepCollectionEquality()
                 .equals(snackBarTheme, other.snackBarTheme) &&
             const DeepCollectionEquality()
                 .equals(switchTheme, other.switchTheme) &&
@@ -270,6 +283,7 @@ class YgTheme extends ThemeExtension<YgTheme> {
       const DeepCollectionEquality().hash(iconTheme),
       const DeepCollectionEquality().hash(internalTheme),
       const DeepCollectionEquality().hash(listTileTheme),
+      const DeepCollectionEquality().hash(progressIndicatorTheme),
       const DeepCollectionEquality().hash(snackBarTheme),
       const DeepCollectionEquality().hash(switchTheme),
       const DeepCollectionEquality().hash(tagTheme),
@@ -294,6 +308,8 @@ extension YgThemeBuildContextProps on BuildContext {
   YgIconTheme get iconTheme => ygTheme.iconTheme;
   YgInternalTheme get internalTheme => ygTheme.internalTheme;
   YgListTileTheme get listTileTheme => ygTheme.listTileTheme;
+  YgProgressIndicatorTheme get progressIndicatorTheme =>
+      ygTheme.progressIndicatorTheme;
   YgSnackBarTheme get snackBarTheme => ygTheme.snackBarTheme;
   YgSwitchTheme get switchTheme => ygTheme.switchTheme;
   YgTagTheme get tagTheme => ygTheme.tagTheme;
