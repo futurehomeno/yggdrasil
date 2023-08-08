@@ -5,7 +5,6 @@ import 'package:yggdrasil/src/theme/_theme.dart';
 class YgRadioStyle {
   YgRadioStyle({
     required this.backgroundColor,
-    required this.size,
     required this.handleSize,
     required this.handleColor,
     required this.helperHandleSize,
@@ -21,11 +20,6 @@ class YgRadioStyle {
         deselected: context.radioTheme.deselectedBackgroundColor,
         deselectedHovered: context.radioTheme.deselectedHoveredBackgroundColor,
         deselectedDisabled: context.radioTheme.deselectedDisabledBackgroundColor,
-      ),
-      size: YgRadioSizeProperty(
-        selected: context.radioTheme.size,
-        deselected: context.radioTheme.size,
-        disabled: context.radioTheme.size,
       ),
       handleSize: YgRadioHandleSizeProperty(
         selected: context.radioTheme.selectedHandleSize,
@@ -49,7 +43,6 @@ class YgRadioStyle {
   }
 
   final YgRadioBackgroundColorProperty backgroundColor;
-  final YgRadioSizeProperty size;
   final YgRadioHandleSizeProperty handleSize;
   final YgRadioHandleColorProperty handleColor;
   final YgRadioHelperHandleSizeProperty helperHandleSize;

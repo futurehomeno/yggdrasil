@@ -86,10 +86,10 @@ class _YgRadioState<T> extends State<YgRadio<T>> {
 
   @override
   Widget build(BuildContext context) {
+    final YgRadioTheme radioTheme = context.radioTheme;
     final YgRadioStyle radioStyle = YgRadioStyle.base(context);
     final Color? resolvedBackgroundColor = radioStyle.backgroundColor.resolve(statesController.value);
     final Color? resolvedHandleColor = radioStyle.handleColor.resolve(statesController.value);
-    final double? resolvedSize = radioStyle.size.resolve(statesController.value);
     final double? resolvedHandleSize = radioStyle.handleSize.resolve(statesController.value);
     final double? resolvedHelperHandleSize = radioStyle.helperHandleSize.resolve(statesController.value);
     final MouseCursor resolvedMouseCursor = radioStyle.mouseCursor.resolve(statesController.value)!;
@@ -106,10 +106,10 @@ class _YgRadioState<T> extends State<YgRadio<T>> {
             mouseCursor: resolvedMouseCursor,
             enabled: widget._enabled,
             child: Padding(
-              padding: EdgeInsets.all(context.radioTheme.padding),
+              padding: EdgeInsets.all(radioTheme.padding),
               child: _buildBackground(
                 context: context,
-                resolvedSize: resolvedSize,
+                size: radioTheme.size,
                 resolvedBackgroundColor: resolvedBackgroundColor,
                 resolvedHandleSize: resolvedHandleSize,
                 resolvedHandleColor: resolvedHandleColor,
@@ -124,7 +124,7 @@ class _YgRadioState<T> extends State<YgRadio<T>> {
 
   Widget _buildBackground({
     required BuildContext context,
-    required double? resolvedSize,
+    required double? size,
     required Color? resolvedBackgroundColor,
     required double? resolvedHandleSize,
     required Color? resolvedHandleColor,
@@ -132,8 +132,8 @@ class _YgRadioState<T> extends State<YgRadio<T>> {
   }) {
     return AnimatedContainer(
       duration: context.radioTheme.animationDuration,
-      width: resolvedSize,
-      height: resolvedSize,
+      width: size,
+      height: size,
       decoration: BoxDecoration(
         shape: BoxShape.circle,
         color: resolvedBackgroundColor,
