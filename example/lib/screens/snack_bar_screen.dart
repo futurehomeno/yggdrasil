@@ -41,7 +41,7 @@ class SnackBarScreen extends StatelessWidget {
             onPressed: () => _showCriticalSnackBar(context),
             child: const Text('Show'),
           ),
-        ],
+        ].withVerticalSpacing(10),
       ),
     );
   }
