@@ -3,23 +3,23 @@ import 'package:yggdrasil/yggdrasil.dart';
 import 'package:yggdrasil_demo/core/_core.dart';
 import 'package:yggdrasil_demo/widgets/_widgets.dart';
 
-class SwitchListTileScreen extends StatefulWidget {
-  const SwitchListTileScreen({super.key});
+class ListTileSwitchScreen extends StatefulWidget {
+  const ListTileSwitchScreen({super.key});
 
-  static const String routeName = 'SwitchListTileScreen';
+  static const String routeName = 'ListTileSwitchScreen';
 
   static PageRouteBuilder<Widget> route() {
     return YgRouteBuilder().fadeTransition(
       settings: const RouteSettings(name: routeName),
-      screen: const SwitchListTileScreen(),
+      screen: const ListTileSwitchScreen(),
     );
   }
 
   @override
-  State<SwitchListTileScreen> createState() => _SwitchScreenState();
+  State<ListTileSwitchScreen> createState() => _ListTileSwitchScreenState();
 }
 
-class _SwitchScreenState extends State<SwitchListTileScreen> {
+class _ListTileSwitchScreenState extends State<ListTileSwitchScreen> {
   bool? switchListTileValue = false;
   bool? switchListTileTriStateValue = false;
   bool? switchListTileDisabledValue = false;
