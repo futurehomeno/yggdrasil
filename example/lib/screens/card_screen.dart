@@ -23,49 +23,37 @@ class CardScreen extends StatelessWidget {
       supernovaLink: 'Link',
       child: Column(
         children: <Widget>[
-          const YgListTile(title: 'Elevated card'),
+          const YgListTile(title: 'Variants'),
           const YgCard(
             child: YgListTile(
               title: 'Elevated card',
-              subtitle: 'Bacon ipsum dolor amet chicken frankfurter burgdoggen landjaeger sirloin ham pig.',
+              subtitle: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit.',
             ),
           ),
-          YgCard(
-            child: YgListTile(
-              title: 'Elevated card w/ tapable tile',
-              subtitle: 'Bacon ipsum dolor amet chicken frankfurter burgdoggen landjaeger sirloin ham pig.',
-              onTap: () {},
-            ),
-          ),
-          const YgListTile(title: 'Filled card'),
           const YgCard(
             variant: YgCardVariant.filled,
             child: YgListTile(
               title: 'Filled card',
-              subtitle: 'Bacon ipsum dolor amet chicken frankfurter burgdoggen landjaeger sirloin ham pig.',
+              subtitle: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit.',
             ),
           ),
-          YgCard(
-            variant: YgCardVariant.filled,
-            child: YgListTile(
-              title: 'Filled card w/ tapable tile',
-              subtitle: 'Bacon ipsum dolor amet chicken frankfurter burgdoggen landjaeger sirloin ham pig.',
-              onTap: () {},
-            ),
-          ),
-          const YgListTile(title: 'Outlined card'),
           const YgCard(
             variant: YgCardVariant.outlined,
             child: YgListTile(
               title: 'Outlined card',
-              subtitle: 'Bacon ipsum dolor amet chicken frankfurter burgdoggen landjaeger sirloin ham pig.',
+              subtitle: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit.',
             ),
           ),
+          const YgListTile(
+            title: 'Content',
+            subtitle:
+                'Cards are only containers for other widgets and thus do not have any styling of their own. Most commonly you\'ll be adding a ListTile inside of them, as seen in the examples here.',
+          ),
           YgCard(
-            variant: YgCardVariant.outlined,
+            variant: YgCardVariant.filled,
             child: YgListTile(
-              title: 'Outlined card w/ tapable tile',
-              subtitle: 'Bacon ipsum dolor amet chicken frankfurter burgdoggen landjaeger sirloin ham pig.',
+              title: 'This is a clickable list tile',
+              subtitle: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit.',
               onTap: () {},
             ),
           ),

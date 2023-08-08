@@ -2,14 +2,14 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 // ignore_for_file: type=lint, unused_element, unnecessary_cast
 
-part of 'highlight_snackbar_theme.dart';
+part of 'highlight_snack_bar_theme.dart';
 
 // **************************************************************************
 // TailorAnnotationsGenerator
 // **************************************************************************
 
-class HighlightSnackbarTheme extends ThemeExtension<HighlightSnackbarTheme> {
-  const HighlightSnackbarTheme({
+class HighlightSnackBarTheme extends ThemeExtension<HighlightSnackBarTheme> {
+  const HighlightSnackBarTheme({
     required this.iconColor,
     required this.iconContainerColor,
   });
@@ -17,25 +17,25 @@ class HighlightSnackbarTheme extends ThemeExtension<HighlightSnackbarTheme> {
   final Color iconColor;
   final Color iconContainerColor;
 
-  static final HighlightSnackbarTheme consumerLight = HighlightSnackbarTheme(
-    iconColor: _$HighlightSnackbarTheme.iconColor[0],
-    iconContainerColor: _$HighlightSnackbarTheme.iconContainerColor[0],
+  static final HighlightSnackBarTheme consumerLight = HighlightSnackBarTheme(
+    iconColor: _$HighlightSnackBarTheme.iconColor[0],
+    iconContainerColor: _$HighlightSnackBarTheme.iconContainerColor[0],
   );
 
-  static final HighlightSnackbarTheme consumerDark = HighlightSnackbarTheme(
-    iconColor: _$HighlightSnackbarTheme.iconColor[1],
-    iconContainerColor: _$HighlightSnackbarTheme.iconContainerColor[1],
+  static final HighlightSnackBarTheme consumerDark = HighlightSnackBarTheme(
+    iconColor: _$HighlightSnackBarTheme.iconColor[1],
+    iconContainerColor: _$HighlightSnackBarTheme.iconContainerColor[1],
   );
 
-  static final HighlightSnackbarTheme professionalLight =
-      HighlightSnackbarTheme(
-    iconColor: _$HighlightSnackbarTheme.iconColor[2],
-    iconContainerColor: _$HighlightSnackbarTheme.iconContainerColor[2],
+  static final HighlightSnackBarTheme professionalLight =
+      HighlightSnackBarTheme(
+    iconColor: _$HighlightSnackBarTheme.iconColor[2],
+    iconContainerColor: _$HighlightSnackBarTheme.iconContainerColor[2],
   );
 
-  static final HighlightSnackbarTheme professionalDark = HighlightSnackbarTheme(
-    iconColor: _$HighlightSnackbarTheme.iconColor[3],
-    iconContainerColor: _$HighlightSnackbarTheme.iconContainerColor[3],
+  static final HighlightSnackBarTheme professionalDark = HighlightSnackBarTheme(
+    iconColor: _$HighlightSnackBarTheme.iconColor[3],
+    iconContainerColor: _$HighlightSnackBarTheme.iconContainerColor[3],
   );
 
   static final themes = [
@@ -46,21 +46,21 @@ class HighlightSnackbarTheme extends ThemeExtension<HighlightSnackbarTheme> {
   ];
 
   @override
-  HighlightSnackbarTheme copyWith({
+  HighlightSnackBarTheme copyWith({
     Color? iconColor,
     Color? iconContainerColor,
   }) {
-    return HighlightSnackbarTheme(
+    return HighlightSnackBarTheme(
       iconColor: iconColor ?? this.iconColor,
       iconContainerColor: iconContainerColor ?? this.iconContainerColor,
     );
   }
 
   @override
-  HighlightSnackbarTheme lerp(
-      covariant ThemeExtension<HighlightSnackbarTheme>? other, double t) {
-    if (other is! HighlightSnackbarTheme) return this as HighlightSnackbarTheme;
-    return HighlightSnackbarTheme(
+  HighlightSnackBarTheme lerp(
+      covariant ThemeExtension<HighlightSnackBarTheme>? other, double t) {
+    if (other is! HighlightSnackBarTheme) return this as HighlightSnackBarTheme;
+    return HighlightSnackBarTheme(
       iconColor: Color.lerp(iconColor, other.iconColor, t)!,
       iconContainerColor:
           Color.lerp(iconContainerColor, other.iconContainerColor, t)!,
@@ -71,7 +71,7 @@ class HighlightSnackbarTheme extends ThemeExtension<HighlightSnackbarTheme> {
   bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is HighlightSnackbarTheme &&
+            other is HighlightSnackBarTheme &&
             const DeepCollectionEquality().equals(iconColor, other.iconColor) &&
             const DeepCollectionEquality()
                 .equals(iconContainerColor, other.iconContainerColor));

@@ -5,10 +5,10 @@ import 'package:yggdrasil/src/tokens/consumer_light/_consumer_light.dart' as con
 import 'package:yggdrasil/src/tokens/professional_dark/_professional_dark.dart' as professional_dark;
 import 'package:yggdrasil/src/tokens/professional_light/_professional_light.dart' as professional_light;
 
-part 'critical_snackbar_theme.tailor.dart';
+part 'critical_snack_bar_theme.tailor.dart';
 
 @tailorComponent
-class _$CriticalSnackbarTheme {
+class _$CriticalSnackBarTheme {
   static List<Color> iconContainerColor = <Color>[
     consumer_light.FhColors.backgroundCriticalWeak,
     consumer_dark.FhColors.backgroundCriticalWeak,

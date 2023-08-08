@@ -4,7 +4,6 @@ import 'enums/_enums.dart';
 import 'yg_icon_button_style.dart';
 
 /// Base class for creating all YgIconButtons.
-// TODO(bjhandeland): Consider making the private classes parts.
 class YgIconButton extends ButtonStyleButton {
   const YgIconButton({
     super.key,

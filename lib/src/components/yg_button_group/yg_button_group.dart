@@ -20,14 +20,11 @@ class YgButtonGroup extends StatelessWidget with StatelessWidgetDebugMixin {
     return YgButtonGroup(
       children: <YgButton>[
         YgButton(
-          variant: YgButtonVariant.primary,
-          size: YgButtonSize.medium,
           onPressed: onActionPressed,
           child: Text(actionText),
         ),
         YgButton(
           variant: YgButtonVariant.link,
-          size: YgButtonSize.medium,
           onPressed: onCancelPressed,
           child: Text(cancelText),
         ),

@@ -7,7 +7,7 @@ class FhTextStyles {
 
   /// 12/16.
   static const TextStyle caption1Regular = TextStyle(
-    fontFamily: "Open Sans",
+    fontFamily: "OpenSans",
     package: 'yggdrasil',
     fontWeight: FontWeight.w400,
     fontStyle: FontStyle.normal,
@@ -20,7 +20,7 @@ class FhTextStyles {
 
   /// 12/16.
   static const TextStyle caption1Medium = TextStyle(
-    fontFamily: "Open Sans",
+    fontFamily: "OpenSans",
     package: 'yggdrasil',
     fontWeight: FontWeight.w600,
     fontStyle: FontStyle.normal,
@@ -33,7 +33,7 @@ class FhTextStyles {
 
   /// 12/16.
   static const TextStyle caption1Bold = TextStyle(
-    fontFamily: "Open Sans",
+    fontFamily: "OpenSans",
     package: 'yggdrasil',
     fontWeight: FontWeight.w700,
     fontStyle: FontStyle.normal,
@@ -46,7 +46,7 @@ class FhTextStyles {
 
   /// 14/20.
   static const TextStyle paragraph3Regular = TextStyle(
-    fontFamily: "Open Sans",
+    fontFamily: "OpenSans",
     package: 'yggdrasil',
     fontWeight: FontWeight.w400,
     fontStyle: FontStyle.normal,
@@ -59,7 +59,7 @@ class FhTextStyles {
 
   /// 14/20.
   static const TextStyle paragraph3Medium = TextStyle(
-    fontFamily: "Open Sans",
+    fontFamily: "OpenSans",
     package: 'yggdrasil',
     fontWeight: FontWeight.w600,
     fontStyle: FontStyle.normal,
@@ -72,7 +72,7 @@ class FhTextStyles {
 
   /// 14/20.
   static const TextStyle paragraph3Bold = TextStyle(
-    fontFamily: "Open Sans",
+    fontFamily: "OpenSans",
     package: 'yggdrasil',
     fontWeight: FontWeight.w700,
     fontStyle: FontStyle.normal,
@@ -358,7 +358,7 @@ class FhTextStyles {
 
   /// 16/24.
   static const TextStyle paragraph2Regular = TextStyle(
-    fontFamily: "Open Sans",
+    fontFamily: "OpenSans",
     package: 'yggdrasil',
     fontWeight: FontWeight.w400,
     fontStyle: FontStyle.normal,
@@ -371,7 +371,7 @@ class FhTextStyles {
 
   /// 16/24.
   static const TextStyle paragraph2Medium = TextStyle(
-    fontFamily: "Open Sans",
+    fontFamily: "OpenSans",
     package: 'yggdrasil',
     fontWeight: FontWeight.w600,
     fontStyle: FontStyle.normal,
@@ -384,7 +384,7 @@ class FhTextStyles {
 
   /// 16/24.
   static const TextStyle paragraph2Bold = TextStyle(
-    fontFamily: "Open Sans",
+    fontFamily: "OpenSans",
     package: 'yggdrasil',
     fontWeight: FontWeight.w700,
     fontStyle: FontStyle.normal,
@@ -397,7 +397,7 @@ class FhTextStyles {
 
   /// 20/28.
   static const TextStyle paragraph1Medium = TextStyle(
-    fontFamily: "Open Sans",
+    fontFamily: "OpenSans",
     package: 'yggdrasil',
     fontWeight: FontWeight.w600,
     fontStyle: FontStyle.normal,
@@ -410,7 +410,7 @@ class FhTextStyles {
 
   /// 20/28.
   static const TextStyle paragraph1Bold = TextStyle(
-    fontFamily: "Open Sans",
+    fontFamily: "OpenSans",
     package: 'yggdrasil',
     fontWeight: FontWeight.w700,
     fontStyle: FontStyle.normal,
@@ -423,7 +423,7 @@ class FhTextStyles {
 
   /// 20/28.
   static const TextStyle paragraph1Regular = TextStyle(
-    fontFamily: "Open Sans",
+    fontFamily: "OpenSans",
     package: 'yggdrasil',
     fontWeight: FontWeight.w400,
     fontStyle: FontStyle.normal,

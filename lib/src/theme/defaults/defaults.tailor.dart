@@ -14,6 +14,7 @@ class YgDefaults extends ThemeExtension<YgDefaults> {
     required this.animationDuration,
     required this.appBarColor,
     required this.brightness,
+    required this.colorSchemeSeed,
     required this.focusColor,
     required this.highlightColor,
     required this.iconColor,
@@ -26,6 +27,7 @@ class YgDefaults extends ThemeExtension<YgDefaults> {
   final Duration animationDuration;
   final Color appBarColor;
   final Brightness brightness;
+  final Color colorSchemeSeed;
   final Color focusColor;
   final Color highlightColor;
   final Color iconColor;
@@ -38,6 +40,7 @@ class YgDefaults extends ThemeExtension<YgDefaults> {
     animationDuration: _$YgDefaults.animationDuration[0],
     appBarColor: _$YgDefaults.appBarColor[0],
     brightness: _$YgDefaults.brightness[0],
+    colorSchemeSeed: _$YgDefaults.colorSchemeSeed[0],
     focusColor: _$YgDefaults.focusColor[0],
     highlightColor: _$YgDefaults.highlightColor[0],
     iconColor: _$YgDefaults.iconColor[0],
@@ -51,6 +54,7 @@ class YgDefaults extends ThemeExtension<YgDefaults> {
     animationDuration: _$YgDefaults.animationDuration[1],
     appBarColor: _$YgDefaults.appBarColor[1],
     brightness: _$YgDefaults.brightness[1],
+    colorSchemeSeed: _$YgDefaults.colorSchemeSeed[1],
     focusColor: _$YgDefaults.focusColor[1],
     highlightColor: _$YgDefaults.highlightColor[1],
     iconColor: _$YgDefaults.iconColor[1],
@@ -64,6 +68,7 @@ class YgDefaults extends ThemeExtension<YgDefaults> {
     animationDuration: _$YgDefaults.animationDuration[2],
     appBarColor: _$YgDefaults.appBarColor[2],
     brightness: _$YgDefaults.brightness[2],
+    colorSchemeSeed: _$YgDefaults.colorSchemeSeed[2],
     focusColor: _$YgDefaults.focusColor[2],
     highlightColor: _$YgDefaults.highlightColor[2],
     iconColor: _$YgDefaults.iconColor[2],
@@ -77,6 +82,7 @@ class YgDefaults extends ThemeExtension<YgDefaults> {
     animationDuration: _$YgDefaults.animationDuration[3],
     appBarColor: _$YgDefaults.appBarColor[3],
     brightness: _$YgDefaults.brightness[3],
+    colorSchemeSeed: _$YgDefaults.colorSchemeSeed[3],
     focusColor: _$YgDefaults.focusColor[3],
     highlightColor: _$YgDefaults.highlightColor[3],
     iconColor: _$YgDefaults.iconColor[3],
@@ -98,6 +104,7 @@ class YgDefaults extends ThemeExtension<YgDefaults> {
     Duration? animationDuration,
     Color? appBarColor,
     Brightness? brightness,
+    Color? colorSchemeSeed,
     Color? focusColor,
     Color? highlightColor,
     Color? iconColor,
@@ -110,6 +117,7 @@ class YgDefaults extends ThemeExtension<YgDefaults> {
       animationDuration: animationDuration ?? this.animationDuration,
       appBarColor: appBarColor ?? this.appBarColor,
       brightness: brightness ?? this.brightness,
+      colorSchemeSeed: colorSchemeSeed ?? this.colorSchemeSeed,
       focusColor: focusColor ?? this.focusColor,
       highlightColor: highlightColor ?? this.highlightColor,
       iconColor: iconColor ?? this.iconColor,
@@ -127,6 +135,7 @@ class YgDefaults extends ThemeExtension<YgDefaults> {
       animationDuration: t < 0.5 ? animationDuration : other.animationDuration,
       appBarColor: Color.lerp(appBarColor, other.appBarColor, t)!,
       brightness: t < 0.5 ? brightness : other.brightness,
+      colorSchemeSeed: Color.lerp(colorSchemeSeed, other.colorSchemeSeed, t)!,
       focusColor: Color.lerp(focusColor, other.focusColor, t)!,
       highlightColor: Color.lerp(highlightColor, other.highlightColor, t)!,
       iconColor: Color.lerp(iconColor, other.iconColor, t)!,
@@ -151,6 +160,8 @@ class YgDefaults extends ThemeExtension<YgDefaults> {
             const DeepCollectionEquality()
                 .equals(brightness, other.brightness) &&
             const DeepCollectionEquality()
+                .equals(colorSchemeSeed, other.colorSchemeSeed) &&
+            const DeepCollectionEquality()
                 .equals(focusColor, other.focusColor) &&
             const DeepCollectionEquality()
                 .equals(highlightColor, other.highlightColor) &&
@@ -171,6 +182,7 @@ class YgDefaults extends ThemeExtension<YgDefaults> {
       const DeepCollectionEquality().hash(animationDuration),
       const DeepCollectionEquality().hash(appBarColor),
       const DeepCollectionEquality().hash(brightness),
+      const DeepCollectionEquality().hash(colorSchemeSeed),
       const DeepCollectionEquality().hash(focusColor),
       const DeepCollectionEquality().hash(highlightColor),
       const DeepCollectionEquality().hash(iconColor),

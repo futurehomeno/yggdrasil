@@ -1,2 +1,2 @@
 export 'enums/_enums.dart';
-export 'yg_snackbar.dart';
+export 'yg_snack_bar.dart';

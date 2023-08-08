@@ -2,14 +2,14 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 // ignore_for_file: type=lint, unused_element, unnecessary_cast
 
-part of 'critical_snackbar_theme.dart';
+part of 'success_snack_bar_theme.dart';
 
 // **************************************************************************
 // TailorAnnotationsGenerator
 // **************************************************************************
 
-class CriticalSnackbarTheme extends ThemeExtension<CriticalSnackbarTheme> {
-  const CriticalSnackbarTheme({
+class SuccessSnackBarTheme extends ThemeExtension<SuccessSnackBarTheme> {
+  const SuccessSnackBarTheme({
     required this.iconColor,
     required this.iconContainerColor,
   });
@@ -17,24 +17,24 @@ class CriticalSnackbarTheme extends ThemeExtension<CriticalSnackbarTheme> {
   final Color iconColor;
   final Color iconContainerColor;
 
-  static final CriticalSnackbarTheme consumerLight = CriticalSnackbarTheme(
-    iconColor: _$CriticalSnackbarTheme.iconColor[0],
-    iconContainerColor: _$CriticalSnackbarTheme.iconContainerColor[0],
+  static final SuccessSnackBarTheme consumerLight = SuccessSnackBarTheme(
+    iconColor: _$SuccessSnackBarTheme.iconColor[0],
+    iconContainerColor: _$SuccessSnackBarTheme.iconContainerColor[0],
   );
 
-  static final CriticalSnackbarTheme consumerDark = CriticalSnackbarTheme(
-    iconColor: _$CriticalSnackbarTheme.iconColor[1],
-    iconContainerColor: _$CriticalSnackbarTheme.iconContainerColor[1],
+  static final SuccessSnackBarTheme consumerDark = SuccessSnackBarTheme(
+    iconColor: _$SuccessSnackBarTheme.iconColor[1],
+    iconContainerColor: _$SuccessSnackBarTheme.iconContainerColor[1],
   );
 
-  static final CriticalSnackbarTheme professionalLight = CriticalSnackbarTheme(
-    iconColor: _$CriticalSnackbarTheme.iconColor[2],
-    iconContainerColor: _$CriticalSnackbarTheme.iconContainerColor[2],
+  static final SuccessSnackBarTheme professionalLight = SuccessSnackBarTheme(
+    iconColor: _$SuccessSnackBarTheme.iconColor[2],
+    iconContainerColor: _$SuccessSnackBarTheme.iconContainerColor[2],
   );
 
-  static final CriticalSnackbarTheme professionalDark = CriticalSnackbarTheme(
-    iconColor: _$CriticalSnackbarTheme.iconColor[3],
-    iconContainerColor: _$CriticalSnackbarTheme.iconContainerColor[3],
+  static final SuccessSnackBarTheme professionalDark = SuccessSnackBarTheme(
+    iconColor: _$SuccessSnackBarTheme.iconColor[3],
+    iconContainerColor: _$SuccessSnackBarTheme.iconContainerColor[3],
   );
 
   static final themes = [
@@ -45,21 +45,21 @@ class CriticalSnackbarTheme extends ThemeExtension<CriticalSnackbarTheme> {
   ];
 
   @override
-  CriticalSnackbarTheme copyWith({
+  SuccessSnackBarTheme copyWith({
     Color? iconColor,
     Color? iconContainerColor,
   }) {
-    return CriticalSnackbarTheme(
+    return SuccessSnackBarTheme(
       iconColor: iconColor ?? this.iconColor,
       iconContainerColor: iconContainerColor ?? this.iconContainerColor,
     );
   }
 
   @override
-  CriticalSnackbarTheme lerp(
-      covariant ThemeExtension<CriticalSnackbarTheme>? other, double t) {
-    if (other is! CriticalSnackbarTheme) return this as CriticalSnackbarTheme;
-    return CriticalSnackbarTheme(
+  SuccessSnackBarTheme lerp(
+      covariant ThemeExtension<SuccessSnackBarTheme>? other, double t) {
+    if (other is! SuccessSnackBarTheme) return this as SuccessSnackBarTheme;
+    return SuccessSnackBarTheme(
       iconColor: Color.lerp(iconColor, other.iconColor, t)!,
       iconContainerColor:
           Color.lerp(iconContainerColor, other.iconContainerColor, t)!,
@@ -70,7 +70,7 @@ class CriticalSnackbarTheme extends ThemeExtension<CriticalSnackbarTheme> {
   bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is CriticalSnackbarTheme &&
+            other is SuccessSnackBarTheme &&
             const DeepCollectionEquality().equals(iconColor, other.iconColor) &&
             const DeepCollectionEquality()
                 .equals(iconContainerColor, other.iconContainerColor));
