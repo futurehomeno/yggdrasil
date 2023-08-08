@@ -18,10 +18,10 @@ class _$YgRadioTheme {
 
   // TODO(bjhandeland): Replace with theme token.
   static List<double> padding = <double>[
-    4.0,
-    4.0,
-    4.0,
-    4.0,
+    2.0,
+    2.0,
+    2.0,
+    2.0,
   ];
 
   static List<Color> selectedBackgroundColor = <Color>[
