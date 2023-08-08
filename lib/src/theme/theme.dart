@@ -8,6 +8,7 @@ import 'button/_button.dart';
 import 'button_group/_button_group.dart';
 import 'callout/_callout.dart';
 import 'card/_card.dart';
+import 'checkbox/_checkbox.dart';
 import 'defaults/_defaults.dart';
 import 'dialog/_dialog.dart';
 import 'divider/_divider.dart';
@@ -46,6 +47,9 @@ class _$YgTheme {
 
   @themeExtension
   static List<YgCardTheme> cardTheme = YgCardTheme.themes;
+
+  @themeExtension
+  static List<YgCheckboxTheme> checkboxTheme = YgCheckboxTheme.themes;
 
   @themeExtension
   static List<YgDialogTheme> dialogTheme = YgDialogTheme.themes;
