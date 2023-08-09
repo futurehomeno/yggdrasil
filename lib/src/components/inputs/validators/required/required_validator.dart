@@ -6,7 +6,9 @@ class RequiredValidator extends YgTextValidator {
     this.requiredError,
   });
 
-  /// The error shown whent he input is null or an empty string.
+  /// The error shown when the input is null or an empty string.
+  ///
+  /// Overrides the default error [YgDefaultValidatorErrors.required].
   final String? requiredError;
 
   @override
