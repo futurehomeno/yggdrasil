@@ -5,7 +5,7 @@ void main() {
   group('MinLengthValidator', () {
     const String error = 'value_too_short';
 
-    test('should return error value is too short', () {
+    test('should return an error if value is too short', () {
       // PREPARE
       const MinLengthValidator validator = MinLengthValidator(
         min: 2,
@@ -19,7 +19,7 @@ void main() {
       expect(result, error);
     });
 
-    test('should return null value is not too short', () {
+    test('should return null if value is not too short', () {
       // PREPARE
       const MinLengthValidator validator = MinLengthValidator(
         min: 2,
