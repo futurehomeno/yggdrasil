@@ -24,11 +24,11 @@ class YgInputValidatorToFormFieldValidatorTransformer<T> {
 
     final List<YgInputValidator<T>>? validators = this.validators;
 
-    final YgDefaultValidatorErrorsProvider defaultsProvider = YgDefaultValidatorErrorsProvider.of(context);
-
     if (validators == null) {
       return null;
     }
+
+    final YgDefaultValidatorErrorsProvider defaultsProvider = YgDefaultValidatorErrorsProvider.of(context);
 
     for (final YgInputValidator<T> validator in validators) {
       final String? error = validator.validate(
