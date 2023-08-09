@@ -300,7 +300,14 @@ class _$YgTextInputTheme {
     professional_dark.FhDimensions.xs,
   ];
 
-  static List<EdgeInsets> suffixPadding = <EdgeInsets>[
+  static List<EdgeInsets> outlinedSuffixPadding = <EdgeInsets>[
+    const EdgeInsets.symmetric(horizontal: consumer_light.FhDimensions.xxs),
+    const EdgeInsets.symmetric(horizontal: consumer_dark.FhDimensions.xxs),
+    const EdgeInsets.symmetric(horizontal: professional_light.FhDimensions.xxs),
+    const EdgeInsets.symmetric(horizontal: professional_dark.FhDimensions.xxs),
+  ];
+
+  static List<EdgeInsets> standardSuffixPadding = <EdgeInsets>[
     const EdgeInsets.only(left: consumer_light.FhDimensions.xxs),
     const EdgeInsets.only(left: consumer_dark.FhDimensions.xxs),
     const EdgeInsets.only(left: professional_light.FhDimensions.xxs),

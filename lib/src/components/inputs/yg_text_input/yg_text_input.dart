@@ -233,7 +233,7 @@ class _YgTextInputState extends YgTextInputWidgetState<YgTextInput> {
             focusNode: focusNode,
             hovered: _hovered,
             child: Padding(
-              padding: _contentPadding,
+              padding: _contentPadding(suffix != null),
               child: Row(
                 crossAxisAlignment: CrossAxisAlignment.center,
                 children: <Widget>[
@@ -323,8 +323,8 @@ class _YgTextInputState extends YgTextInputWidgetState<YgTextInput> {
     );
   }
 
-  EdgeInsets get _contentPadding {
-    return EdgeInsets.symmetric(
+  EdgeInsets _contentPadding(bool suffix) {
+    final EdgeInsets base = EdgeInsets.symmetric(
       vertical: switch (widget.size) {
         YgTextInputSize.large => theme.largeVerticalContentPadding,
         YgTextInputSize.medium => theme.mediumVerticalContentPadding,
@@ -334,6 +334,10 @@ class _YgTextInputState extends YgTextInputWidgetState<YgTextInput> {
         YgTextInputVariant.standard => theme.standardHorizontalContentPadding,
       },
     );
+
+    if (!suffix) return base;
+
+    return base.copyWith(right: 0);
   }
 
   void _handleTap() {
@@ -347,6 +351,11 @@ class _YgTextInputState extends YgTextInputWidgetState<YgTextInput> {
 
     final bool renderShowObscureTextIcon = suffix == null && widget.obscureText && widget.showObscureTextButton;
 
+    final EdgeInsets padding = switch (widget.variant) {
+      YgTextInputVariant.outlined => theme.outlinedSuffixPadding,
+      YgTextInputVariant.standard => theme.standardSuffixPadding,
+    };
+
     if (renderShowObscureTextIcon) {
       suffix = YgIcon(
         _suffixIcon,
@@ -355,7 +364,7 @@ class _YgTextInputState extends YgTextInputWidgetState<YgTextInput> {
 
     if (suffix != null) {
       return Padding(
-        padding: theme.suffixPadding,
+        padding: padding,
         child: YgIconButton(
           size: YgIconButtonSize.small,
           onPressed: widget.disabled

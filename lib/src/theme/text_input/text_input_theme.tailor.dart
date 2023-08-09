@@ -34,11 +34,12 @@ class YgTextInputTheme extends ThemeExtension<YgTextInputTheme> {
     required this.largeVerticalContentPadding,
     required this.mediumVerticalContentPadding,
     required this.outlinedHorizontalContentPadding,
+    required this.outlinedSuffixPadding,
     required this.placeholderDefaultColor,
     required this.placeholderDisabledColor,
     required this.placeholderTextStyle,
     required this.standardHorizontalContentPadding,
-    required this.suffixPadding,
+    required this.standardSuffixPadding,
     required this.valueDefaultColor,
     required this.valueDisabledColor,
     required this.valueTextStyle,
@@ -68,11 +69,12 @@ class YgTextInputTheme extends ThemeExtension<YgTextInputTheme> {
   final double largeVerticalContentPadding;
   final double mediumVerticalContentPadding;
   final double outlinedHorizontalContentPadding;
+  final EdgeInsets outlinedSuffixPadding;
   final Color placeholderDefaultColor;
   final Color placeholderDisabledColor;
   final TextStyle placeholderTextStyle;
   final double standardHorizontalContentPadding;
-  final EdgeInsets suffixPadding;
+  final EdgeInsets standardSuffixPadding;
   final Color valueDefaultColor;
   final Color valueDisabledColor;
   final TextStyle valueTextStyle;
@@ -105,12 +107,13 @@ class YgTextInputTheme extends ThemeExtension<YgTextInputTheme> {
         _$YgTextInputTheme.mediumVerticalContentPadding[0],
     outlinedHorizontalContentPadding:
         _$YgTextInputTheme.outlinedHorizontalContentPadding[0],
+    outlinedSuffixPadding: _$YgTextInputTheme.outlinedSuffixPadding[0],
     placeholderDefaultColor: _$YgTextInputTheme.placeholderDefaultColor[0],
     placeholderDisabledColor: _$YgTextInputTheme.placeholderDisabledColor[0],
     placeholderTextStyle: _$YgTextInputTheme.placeholderTextStyle[0],
     standardHorizontalContentPadding:
         _$YgTextInputTheme.standardHorizontalContentPadding[0],
-    suffixPadding: _$YgTextInputTheme.suffixPadding[0],
+    standardSuffixPadding: _$YgTextInputTheme.standardSuffixPadding[0],
     valueDefaultColor: _$YgTextInputTheme.valueDefaultColor[0],
     valueDisabledColor: _$YgTextInputTheme.valueDisabledColor[0],
     valueTextStyle: _$YgTextInputTheme.valueTextStyle[0],
@@ -144,12 +147,13 @@ class YgTextInputTheme extends ThemeExtension<YgTextInputTheme> {
         _$YgTextInputTheme.mediumVerticalContentPadding[1],
     outlinedHorizontalContentPadding:
         _$YgTextInputTheme.outlinedHorizontalContentPadding[1],
+    outlinedSuffixPadding: _$YgTextInputTheme.outlinedSuffixPadding[1],
     placeholderDefaultColor: _$YgTextInputTheme.placeholderDefaultColor[1],
     placeholderDisabledColor: _$YgTextInputTheme.placeholderDisabledColor[1],
     placeholderTextStyle: _$YgTextInputTheme.placeholderTextStyle[1],
     standardHorizontalContentPadding:
         _$YgTextInputTheme.standardHorizontalContentPadding[1],
-    suffixPadding: _$YgTextInputTheme.suffixPadding[1],
+    standardSuffixPadding: _$YgTextInputTheme.standardSuffixPadding[1],
     valueDefaultColor: _$YgTextInputTheme.valueDefaultColor[1],
     valueDisabledColor: _$YgTextInputTheme.valueDisabledColor[1],
     valueTextStyle: _$YgTextInputTheme.valueTextStyle[1],
@@ -183,12 +187,13 @@ class YgTextInputTheme extends ThemeExtension<YgTextInputTheme> {
         _$YgTextInputTheme.mediumVerticalContentPadding[2],
     outlinedHorizontalContentPadding:
         _$YgTextInputTheme.outlinedHorizontalContentPadding[2],
+    outlinedSuffixPadding: _$YgTextInputTheme.outlinedSuffixPadding[2],
     placeholderDefaultColor: _$YgTextInputTheme.placeholderDefaultColor[2],
     placeholderDisabledColor: _$YgTextInputTheme.placeholderDisabledColor[2],
     placeholderTextStyle: _$YgTextInputTheme.placeholderTextStyle[2],
     standardHorizontalContentPadding:
         _$YgTextInputTheme.standardHorizontalContentPadding[2],
-    suffixPadding: _$YgTextInputTheme.suffixPadding[2],
+    standardSuffixPadding: _$YgTextInputTheme.standardSuffixPadding[2],
     valueDefaultColor: _$YgTextInputTheme.valueDefaultColor[2],
     valueDisabledColor: _$YgTextInputTheme.valueDisabledColor[2],
     valueTextStyle: _$YgTextInputTheme.valueTextStyle[2],
@@ -222,12 +227,13 @@ class YgTextInputTheme extends ThemeExtension<YgTextInputTheme> {
         _$YgTextInputTheme.mediumVerticalContentPadding[3],
     outlinedHorizontalContentPadding:
         _$YgTextInputTheme.outlinedHorizontalContentPadding[3],
+    outlinedSuffixPadding: _$YgTextInputTheme.outlinedSuffixPadding[3],
     placeholderDefaultColor: _$YgTextInputTheme.placeholderDefaultColor[3],
     placeholderDisabledColor: _$YgTextInputTheme.placeholderDisabledColor[3],
     placeholderTextStyle: _$YgTextInputTheme.placeholderTextStyle[3],
     standardHorizontalContentPadding:
         _$YgTextInputTheme.standardHorizontalContentPadding[3],
-    suffixPadding: _$YgTextInputTheme.suffixPadding[3],
+    standardSuffixPadding: _$YgTextInputTheme.standardSuffixPadding[3],
     valueDefaultColor: _$YgTextInputTheme.valueDefaultColor[3],
     valueDisabledColor: _$YgTextInputTheme.valueDisabledColor[3],
     valueTextStyle: _$YgTextInputTheme.valueTextStyle[3],
@@ -266,11 +272,12 @@ class YgTextInputTheme extends ThemeExtension<YgTextInputTheme> {
     double? largeVerticalContentPadding,
     double? mediumVerticalContentPadding,
     double? outlinedHorizontalContentPadding,
+    EdgeInsets? outlinedSuffixPadding,
     Color? placeholderDefaultColor,
     Color? placeholderDisabledColor,
     TextStyle? placeholderTextStyle,
     double? standardHorizontalContentPadding,
-    EdgeInsets? suffixPadding,
+    EdgeInsets? standardSuffixPadding,
     Color? valueDefaultColor,
     Color? valueDisabledColor,
     TextStyle? valueTextStyle,
@@ -308,6 +315,8 @@ class YgTextInputTheme extends ThemeExtension<YgTextInputTheme> {
           mediumVerticalContentPadding ?? this.mediumVerticalContentPadding,
       outlinedHorizontalContentPadding: outlinedHorizontalContentPadding ??
           this.outlinedHorizontalContentPadding,
+      outlinedSuffixPadding:
+          outlinedSuffixPadding ?? this.outlinedSuffixPadding,
       placeholderDefaultColor:
           placeholderDefaultColor ?? this.placeholderDefaultColor,
       placeholderDisabledColor:
@@ -315,7 +324,8 @@ class YgTextInputTheme extends ThemeExtension<YgTextInputTheme> {
       placeholderTextStyle: placeholderTextStyle ?? this.placeholderTextStyle,
       standardHorizontalContentPadding: standardHorizontalContentPadding ??
           this.standardHorizontalContentPadding,
-      suffixPadding: suffixPadding ?? this.suffixPadding,
+      standardSuffixPadding:
+          standardSuffixPadding ?? this.standardSuffixPadding,
       valueDefaultColor: valueDefaultColor ?? this.valueDefaultColor,
       valueDisabledColor: valueDisabledColor ?? this.valueDisabledColor,
       valueTextStyle: valueTextStyle ?? this.valueTextStyle,
@@ -365,6 +375,8 @@ class YgTextInputTheme extends ThemeExtension<YgTextInputTheme> {
       outlinedHorizontalContentPadding: t < 0.5
           ? outlinedHorizontalContentPadding
           : other.outlinedHorizontalContentPadding,
+      outlinedSuffixPadding:
+          t < 0.5 ? outlinedSuffixPadding : other.outlinedSuffixPadding,
       placeholderDefaultColor: Color.lerp(
           placeholderDefaultColor, other.placeholderDefaultColor, t)!,
       placeholderDisabledColor: Color.lerp(
@@ -374,7 +386,8 @@ class YgTextInputTheme extends ThemeExtension<YgTextInputTheme> {
       standardHorizontalContentPadding: t < 0.5
           ? standardHorizontalContentPadding
           : other.standardHorizontalContentPadding,
-      suffixPadding: t < 0.5 ? suffixPadding : other.suffixPadding,
+      standardSuffixPadding:
+          t < 0.5 ? standardSuffixPadding : other.standardSuffixPadding,
       valueDefaultColor:
           Color.lerp(valueDefaultColor, other.valueDefaultColor, t)!,
       valueDisabledColor:
@@ -437,6 +450,8 @@ class YgTextInputTheme extends ThemeExtension<YgTextInputTheme> {
             const DeepCollectionEquality().equals(
                 outlinedHorizontalContentPadding,
                 other.outlinedHorizontalContentPadding) &&
+            const DeepCollectionEquality()
+                .equals(outlinedSuffixPadding, other.outlinedSuffixPadding) &&
             const DeepCollectionEquality().equals(
                 placeholderDefaultColor, other.placeholderDefaultColor) &&
             const DeepCollectionEquality().equals(
@@ -447,7 +462,7 @@ class YgTextInputTheme extends ThemeExtension<YgTextInputTheme> {
                 standardHorizontalContentPadding,
                 other.standardHorizontalContentPadding) &&
             const DeepCollectionEquality()
-                .equals(suffixPadding, other.suffixPadding) &&
+                .equals(standardSuffixPadding, other.standardSuffixPadding) &&
             const DeepCollectionEquality()
                 .equals(valueDefaultColor, other.valueDefaultColor) &&
             const DeepCollectionEquality()
@@ -484,11 +499,12 @@ class YgTextInputTheme extends ThemeExtension<YgTextInputTheme> {
       const DeepCollectionEquality().hash(largeVerticalContentPadding),
       const DeepCollectionEquality().hash(mediumVerticalContentPadding),
       const DeepCollectionEquality().hash(outlinedHorizontalContentPadding),
+      const DeepCollectionEquality().hash(outlinedSuffixPadding),
       const DeepCollectionEquality().hash(placeholderDefaultColor),
       const DeepCollectionEquality().hash(placeholderDisabledColor),
       const DeepCollectionEquality().hash(placeholderTextStyle),
       const DeepCollectionEquality().hash(standardHorizontalContentPadding),
-      const DeepCollectionEquality().hash(suffixPadding),
+      const DeepCollectionEquality().hash(standardSuffixPadding),
       const DeepCollectionEquality().hash(valueDefaultColor),
       const DeepCollectionEquality().hash(valueDisabledColor),
       const DeepCollectionEquality().hash(valueTextStyle),
