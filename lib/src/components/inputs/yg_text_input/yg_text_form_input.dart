@@ -31,9 +31,9 @@ class YgTextFormInput extends FormField<String> {
           initialValue: controller != null ? controller.text : (initialValue ?? ''),
           enabled: !disabled,
           autovalidateMode: AutovalidateMode.disabled,
-          validator: YgInputValidatorCombiner<String>(
+          validator: YgInputValidatorToFormFieldValidatorTransformer<String>(
             validators: validators,
-            getContext: () => key.currentContext!,
+            fieldKey: key,
           ),
           builder: (FormFieldState<String> field) {
             final _YgTextFormInputState state = field as _YgTextFormInputState;

@@ -1,20 +1,26 @@
 import 'package:flutter/material.dart';
 import 'package:yggdrasil/yggdrasil.dart';
 
-/// A class which combines transforms validators to the default flutter interface.
+/// A class which combines validators and exposes them through the default
+/// flutter [FormFieldValidator] interface.
 ///
 /// Primarily used internally in yggdrasil widgets like the [YgTextInput].
-class YgInputValidatorCombiner<T> {
-  const YgInputValidatorCombiner({
+class YgInputValidatorToFormFieldValidatorTransformer<T> {
+  const YgInputValidatorToFormFieldValidatorTransformer({
     this.validators,
-    required this.getContext,
+    required this.fieldKey,
   });
 
   final List<YgInputValidator<T>>? validators;
-  final BuildContext Function() getContext;
+  final FormFieldKey<T> fieldKey;
 
   String? call(T? input) {
-    final BuildContext context = getContext();
+    final BuildContext? context = fieldKey.currentContext;
+
+    assert(context != null, 'The field key has to be assigned to a field!');
+    if (context == null) {
+      return null;
+    }
 
     final List<YgInputValidator<T>>? validators = this.validators;
 
