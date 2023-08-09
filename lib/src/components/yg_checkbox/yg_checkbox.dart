@@ -19,6 +19,7 @@ class YgCheckbox extends StatefulWidget {
     required this.value,
     required this.onChanged,
     this.triState = false,
+    this.hasError = false,
   });
 
   /// The current value of the checkbox.
@@ -34,6 +35,9 @@ class YgCheckbox extends StatefulWidget {
   ///
   /// The checkbox will then cycle through false --> null --> true --> false --> ...
   final bool triState;
+
+  /// Whether the checkbox is in an error state.
+  final bool hasError;
 
   bool get _enabled => onChanged != null;
 
@@ -53,6 +57,7 @@ class _YgRadioState extends State<YgCheckbox> {
   MaterialStatesController statesController = MaterialStatesController();
 
   void initStatesController() {
+    statesController.update(MaterialState.error, widget.hasError);
     statesController.update(MaterialState.disabled, !widget._enabled);
     statesController.update(MaterialState.selected, widget._selected);
     statesController.addListener(handleStatesControllerChange);
@@ -78,6 +83,10 @@ class _YgRadioState extends State<YgCheckbox> {
         // The radio may have been disabled while a press gesture is currently underway.
         statesController.update(MaterialState.pressed, false);
       }
+    }
+
+    if (widget.hasError != oldWidget.hasError) {
+      statesController.update(MaterialState.error, !widget.hasError);
     }
   }
 

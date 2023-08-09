@@ -22,6 +22,7 @@ class CheckboxScreen extends StatefulWidget {
 class _CheckboxScreenState extends State<CheckboxScreen> {
   bool? binaryValue = false;
   bool? triStateValue = false;
+  bool? errorValue = false;
 
   @override
   Widget build(BuildContext context) {
@@ -47,6 +48,15 @@ class _CheckboxScreenState extends State<CheckboxScreen> {
               triStateValue = newValue;
               setState(() {});
             },
+          ),
+          const YgListTile(title: 'Error checkbox'),
+          YgCheckbox(
+            value: errorValue,
+            onChanged: (bool? newValue) {
+              errorValue = newValue;
+              setState(() {});
+            },
+            hasError: true,
           ),
           const YgListTile(title: 'Disabled radio, selected / unselected'),
           const YgCheckbox(

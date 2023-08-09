@@ -45,6 +45,13 @@ class _$YgCheckboxTheme {
     professional_dark.FhColors.interactiveHighlightHovered,
   ];
 
+  static List<Color> selectedErrorFillColor = <Color>[
+    consumer_light.FhColors.interactiveCriticalDefault,
+    consumer_dark.FhColors.interactiveCriticalDefault,
+    professional_light.FhColors.interactiveCriticalDefault,
+    professional_dark.FhColors.interactiveCriticalDefault,
+  ];
+
   static List<Color> selectedDisabledFillColor = <Color>[
     consumer_light.FhColors.backgroundDisabled,
     consumer_dark.FhColors.backgroundDisabled,
@@ -67,6 +74,13 @@ class _$YgCheckboxTheme {
   ];
 
   static List<Color> deselectedPressedFillColor = <Color>[
+    consumer_light.FhColors.backgroundDefault,
+    consumer_dark.FhColors.backgroundDefault,
+    professional_light.FhColors.backgroundDefault,
+    professional_dark.FhColors.backgroundDefault,
+  ];
+
+  static List<Color> deselectedErrorFillColor = <Color>[
     consumer_light.FhColors.backgroundDefault,
     consumer_dark.FhColors.backgroundDefault,
     professional_light.FhColors.backgroundDefault,
@@ -106,6 +120,13 @@ class _$YgCheckboxTheme {
     consumer_dark.FhColors.borderWeak,
     professional_light.FhColors.borderWeak,
     professional_dark.FhColors.borderWeak,
+  ];
+
+  static List<Color> deselectedErrorBorderColor = <Color>[
+    consumer_light.FhColors.interactiveCriticalDefault,
+    consumer_dark.FhColors.interactiveCriticalDefault,
+    professional_light.FhColors.interactiveCriticalDefault,
+    professional_dark.FhColors.interactiveCriticalDefault,
   ];
 
   static List<Color> deselectedDisabledBorderColor = <Color>[

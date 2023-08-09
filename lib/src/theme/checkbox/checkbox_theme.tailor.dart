@@ -15,6 +15,8 @@ class YgCheckboxTheme extends ThemeExtension<YgCheckboxTheme> {
     required this.deselectedBorderColor,
     required this.deselectedDisabledBorderColor,
     required this.deselectedDisabledFillColor,
+    required this.deselectedErrorBorderColor,
+    required this.deselectedErrorFillColor,
     required this.deselectedFillColor,
     required this.deselectedHoveredBorderColor,
     required this.deselectedHoveredFillColor,
@@ -25,6 +27,7 @@ class YgCheckboxTheme extends ThemeExtension<YgCheckboxTheme> {
     required this.selectedDisabledBorderColor,
     required this.selectedDisabledCheckColor,
     required this.selectedDisabledFillColor,
+    required this.selectedErrorFillColor,
     required this.selectedFillColor,
     required this.selectedHoveredFillColor,
     required this.selectedPressedFillColor,
@@ -36,6 +39,8 @@ class YgCheckboxTheme extends ThemeExtension<YgCheckboxTheme> {
   final Color deselectedBorderColor;
   final Color deselectedDisabledBorderColor;
   final Color deselectedDisabledFillColor;
+  final Color deselectedErrorBorderColor;
+  final Color deselectedErrorFillColor;
   final Color deselectedFillColor;
   final Color deselectedHoveredBorderColor;
   final Color deselectedHoveredFillColor;
@@ -46,6 +51,7 @@ class YgCheckboxTheme extends ThemeExtension<YgCheckboxTheme> {
   final Color selectedDisabledBorderColor;
   final Color selectedDisabledCheckColor;
   final Color selectedDisabledFillColor;
+  final Color selectedErrorFillColor;
   final Color selectedFillColor;
   final Color selectedHoveredFillColor;
   final Color selectedPressedFillColor;
@@ -59,6 +65,8 @@ class YgCheckboxTheme extends ThemeExtension<YgCheckboxTheme> {
         _$YgCheckboxTheme.deselectedDisabledBorderColor[0],
     deselectedDisabledFillColor:
         _$YgCheckboxTheme.deselectedDisabledFillColor[0],
+    deselectedErrorBorderColor: _$YgCheckboxTheme.deselectedErrorBorderColor[0],
+    deselectedErrorFillColor: _$YgCheckboxTheme.deselectedErrorFillColor[0],
     deselectedFillColor: _$YgCheckboxTheme.deselectedFillColor[0],
     deselectedHoveredBorderColor:
         _$YgCheckboxTheme.deselectedHoveredBorderColor[0],
@@ -72,6 +80,7 @@ class YgCheckboxTheme extends ThemeExtension<YgCheckboxTheme> {
         _$YgCheckboxTheme.selectedDisabledBorderColor[0],
     selectedDisabledCheckColor: _$YgCheckboxTheme.selectedDisabledCheckColor[0],
     selectedDisabledFillColor: _$YgCheckboxTheme.selectedDisabledFillColor[0],
+    selectedErrorFillColor: _$YgCheckboxTheme.selectedErrorFillColor[0],
     selectedFillColor: _$YgCheckboxTheme.selectedFillColor[0],
     selectedHoveredFillColor: _$YgCheckboxTheme.selectedHoveredFillColor[0],
     selectedPressedFillColor: _$YgCheckboxTheme.selectedPressedFillColor[0],
@@ -86,6 +95,8 @@ class YgCheckboxTheme extends ThemeExtension<YgCheckboxTheme> {
         _$YgCheckboxTheme.deselectedDisabledBorderColor[1],
     deselectedDisabledFillColor:
         _$YgCheckboxTheme.deselectedDisabledFillColor[1],
+    deselectedErrorBorderColor: _$YgCheckboxTheme.deselectedErrorBorderColor[1],
+    deselectedErrorFillColor: _$YgCheckboxTheme.deselectedErrorFillColor[1],
     deselectedFillColor: _$YgCheckboxTheme.deselectedFillColor[1],
     deselectedHoveredBorderColor:
         _$YgCheckboxTheme.deselectedHoveredBorderColor[1],
@@ -99,6 +110,7 @@ class YgCheckboxTheme extends ThemeExtension<YgCheckboxTheme> {
         _$YgCheckboxTheme.selectedDisabledBorderColor[1],
     selectedDisabledCheckColor: _$YgCheckboxTheme.selectedDisabledCheckColor[1],
     selectedDisabledFillColor: _$YgCheckboxTheme.selectedDisabledFillColor[1],
+    selectedErrorFillColor: _$YgCheckboxTheme.selectedErrorFillColor[1],
     selectedFillColor: _$YgCheckboxTheme.selectedFillColor[1],
     selectedHoveredFillColor: _$YgCheckboxTheme.selectedHoveredFillColor[1],
     selectedPressedFillColor: _$YgCheckboxTheme.selectedPressedFillColor[1],
@@ -113,6 +125,8 @@ class YgCheckboxTheme extends ThemeExtension<YgCheckboxTheme> {
         _$YgCheckboxTheme.deselectedDisabledBorderColor[2],
     deselectedDisabledFillColor:
         _$YgCheckboxTheme.deselectedDisabledFillColor[2],
+    deselectedErrorBorderColor: _$YgCheckboxTheme.deselectedErrorBorderColor[2],
+    deselectedErrorFillColor: _$YgCheckboxTheme.deselectedErrorFillColor[2],
     deselectedFillColor: _$YgCheckboxTheme.deselectedFillColor[2],
     deselectedHoveredBorderColor:
         _$YgCheckboxTheme.deselectedHoveredBorderColor[2],
@@ -126,6 +140,7 @@ class YgCheckboxTheme extends ThemeExtension<YgCheckboxTheme> {
         _$YgCheckboxTheme.selectedDisabledBorderColor[2],
     selectedDisabledCheckColor: _$YgCheckboxTheme.selectedDisabledCheckColor[2],
     selectedDisabledFillColor: _$YgCheckboxTheme.selectedDisabledFillColor[2],
+    selectedErrorFillColor: _$YgCheckboxTheme.selectedErrorFillColor[2],
     selectedFillColor: _$YgCheckboxTheme.selectedFillColor[2],
     selectedHoveredFillColor: _$YgCheckboxTheme.selectedHoveredFillColor[2],
     selectedPressedFillColor: _$YgCheckboxTheme.selectedPressedFillColor[2],
@@ -140,6 +155,8 @@ class YgCheckboxTheme extends ThemeExtension<YgCheckboxTheme> {
         _$YgCheckboxTheme.deselectedDisabledBorderColor[3],
     deselectedDisabledFillColor:
         _$YgCheckboxTheme.deselectedDisabledFillColor[3],
+    deselectedErrorBorderColor: _$YgCheckboxTheme.deselectedErrorBorderColor[3],
+    deselectedErrorFillColor: _$YgCheckboxTheme.deselectedErrorFillColor[3],
     deselectedFillColor: _$YgCheckboxTheme.deselectedFillColor[3],
     deselectedHoveredBorderColor:
         _$YgCheckboxTheme.deselectedHoveredBorderColor[3],
@@ -153,6 +170,7 @@ class YgCheckboxTheme extends ThemeExtension<YgCheckboxTheme> {
         _$YgCheckboxTheme.selectedDisabledBorderColor[3],
     selectedDisabledCheckColor: _$YgCheckboxTheme.selectedDisabledCheckColor[3],
     selectedDisabledFillColor: _$YgCheckboxTheme.selectedDisabledFillColor[3],
+    selectedErrorFillColor: _$YgCheckboxTheme.selectedErrorFillColor[3],
     selectedFillColor: _$YgCheckboxTheme.selectedFillColor[3],
     selectedHoveredFillColor: _$YgCheckboxTheme.selectedHoveredFillColor[3],
     selectedPressedFillColor: _$YgCheckboxTheme.selectedPressedFillColor[3],
@@ -173,6 +191,8 @@ class YgCheckboxTheme extends ThemeExtension<YgCheckboxTheme> {
     Color? deselectedBorderColor,
     Color? deselectedDisabledBorderColor,
     Color? deselectedDisabledFillColor,
+    Color? deselectedErrorBorderColor,
+    Color? deselectedErrorFillColor,
     Color? deselectedFillColor,
     Color? deselectedHoveredBorderColor,
     Color? deselectedHoveredFillColor,
@@ -183,6 +203,7 @@ class YgCheckboxTheme extends ThemeExtension<YgCheckboxTheme> {
     Color? selectedDisabledBorderColor,
     Color? selectedDisabledCheckColor,
     Color? selectedDisabledFillColor,
+    Color? selectedErrorFillColor,
     Color? selectedFillColor,
     Color? selectedHoveredFillColor,
     Color? selectedPressedFillColor,
@@ -197,6 +218,10 @@ class YgCheckboxTheme extends ThemeExtension<YgCheckboxTheme> {
           deselectedDisabledBorderColor ?? this.deselectedDisabledBorderColor,
       deselectedDisabledFillColor:
           deselectedDisabledFillColor ?? this.deselectedDisabledFillColor,
+      deselectedErrorBorderColor:
+          deselectedErrorBorderColor ?? this.deselectedErrorBorderColor,
+      deselectedErrorFillColor:
+          deselectedErrorFillColor ?? this.deselectedErrorFillColor,
       deselectedFillColor: deselectedFillColor ?? this.deselectedFillColor,
       deselectedHoveredBorderColor:
           deselectedHoveredBorderColor ?? this.deselectedHoveredBorderColor,
@@ -214,6 +239,8 @@ class YgCheckboxTheme extends ThemeExtension<YgCheckboxTheme> {
           selectedDisabledCheckColor ?? this.selectedDisabledCheckColor,
       selectedDisabledFillColor:
           selectedDisabledFillColor ?? this.selectedDisabledFillColor,
+      selectedErrorFillColor:
+          selectedErrorFillColor ?? this.selectedErrorFillColor,
       selectedFillColor: selectedFillColor ?? this.selectedFillColor,
       selectedHoveredFillColor:
           selectedHoveredFillColor ?? this.selectedHoveredFillColor,
@@ -236,6 +263,10 @@ class YgCheckboxTheme extends ThemeExtension<YgCheckboxTheme> {
           other.deselectedDisabledBorderColor, t)!,
       deselectedDisabledFillColor: Color.lerp(
           deselectedDisabledFillColor, other.deselectedDisabledFillColor, t)!,
+      deselectedErrorBorderColor: Color.lerp(
+          deselectedErrorBorderColor, other.deselectedErrorBorderColor, t)!,
+      deselectedErrorFillColor: Color.lerp(
+          deselectedErrorFillColor, other.deselectedErrorFillColor, t)!,
       deselectedFillColor:
           Color.lerp(deselectedFillColor, other.deselectedFillColor, t)!,
       deselectedHoveredBorderColor: Color.lerp(
@@ -255,6 +286,8 @@ class YgCheckboxTheme extends ThemeExtension<YgCheckboxTheme> {
           selectedDisabledCheckColor, other.selectedDisabledCheckColor, t)!,
       selectedDisabledFillColor: Color.lerp(
           selectedDisabledFillColor, other.selectedDisabledFillColor, t)!,
+      selectedErrorFillColor:
+          Color.lerp(selectedErrorFillColor, other.selectedErrorFillColor, t)!,
       selectedFillColor:
           Color.lerp(selectedFillColor, other.selectedFillColor, t)!,
       selectedHoveredFillColor: Color.lerp(
@@ -280,6 +313,10 @@ class YgCheckboxTheme extends ThemeExtension<YgCheckboxTheme> {
                 other.deselectedDisabledBorderColor) &&
             const DeepCollectionEquality().equals(deselectedDisabledFillColor,
                 other.deselectedDisabledFillColor) &&
+            const DeepCollectionEquality().equals(
+                deselectedErrorBorderColor, other.deselectedErrorBorderColor) &&
+            const DeepCollectionEquality().equals(
+                deselectedErrorFillColor, other.deselectedErrorFillColor) &&
             const DeepCollectionEquality()
                 .equals(deselectedFillColor, other.deselectedFillColor) &&
             const DeepCollectionEquality().equals(deselectedHoveredBorderColor,
@@ -300,6 +337,8 @@ class YgCheckboxTheme extends ThemeExtension<YgCheckboxTheme> {
             const DeepCollectionEquality().equals(
                 selectedDisabledFillColor, other.selectedDisabledFillColor) &&
             const DeepCollectionEquality()
+                .equals(selectedErrorFillColor, other.selectedErrorFillColor) &&
+            const DeepCollectionEquality()
                 .equals(selectedFillColor, other.selectedFillColor) &&
             const DeepCollectionEquality().equals(
                 selectedHoveredFillColor, other.selectedHoveredFillColor) &&
@@ -310,13 +349,15 @@ class YgCheckboxTheme extends ThemeExtension<YgCheckboxTheme> {
 
   @override
   int get hashCode {
-    return Object.hash(
+    return Object.hashAll([
       runtimeType.hashCode,
       const DeepCollectionEquality().hash(animationCurve),
       const DeepCollectionEquality().hash(animationDuration),
       const DeepCollectionEquality().hash(deselectedBorderColor),
       const DeepCollectionEquality().hash(deselectedDisabledBorderColor),
       const DeepCollectionEquality().hash(deselectedDisabledFillColor),
+      const DeepCollectionEquality().hash(deselectedErrorBorderColor),
+      const DeepCollectionEquality().hash(deselectedErrorFillColor),
       const DeepCollectionEquality().hash(deselectedFillColor),
       const DeepCollectionEquality().hash(deselectedHoveredBorderColor),
       const DeepCollectionEquality().hash(deselectedHoveredFillColor),
@@ -327,10 +368,11 @@ class YgCheckboxTheme extends ThemeExtension<YgCheckboxTheme> {
       const DeepCollectionEquality().hash(selectedDisabledBorderColor),
       const DeepCollectionEquality().hash(selectedDisabledCheckColor),
       const DeepCollectionEquality().hash(selectedDisabledFillColor),
+      const DeepCollectionEquality().hash(selectedErrorFillColor),
       const DeepCollectionEquality().hash(selectedFillColor),
       const DeepCollectionEquality().hash(selectedHoveredFillColor),
       const DeepCollectionEquality().hash(selectedPressedFillColor),
       const DeepCollectionEquality().hash(size),
-    );
+    ]);
   }
 }

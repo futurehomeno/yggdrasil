@@ -8,6 +8,7 @@ class YgCheckboxBorderColorProperty extends MaterialStateProperty<Color?> with D
     required this.deselected,
     required this.deselectedHovered,
     required this.deselectedPressed,
+    required this.deselectedError,
     required this.deselectedDisabled,
   });
 
@@ -15,6 +16,7 @@ class YgCheckboxBorderColorProperty extends MaterialStateProperty<Color?> with D
   final Color? deselected;
   final Color? deselectedHovered;
   final Color? deselectedPressed;
+  final Color? deselectedError;
   final Color? deselectedDisabled;
 
   Color? resolveWith(Set<MaterialState> states, bool? value) {
@@ -38,6 +40,9 @@ class YgCheckboxBorderColorProperty extends MaterialStateProperty<Color?> with D
 
     if (states.contains(MaterialState.disabled)) {
       return deselectedDisabled;
+    }
+    if (states.contains(MaterialState.error)) {
+      return deselectedError;
     }
     if (states.contains(MaterialState.pressed)) {
       return deselectedPressed;

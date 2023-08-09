@@ -20,10 +20,12 @@ class YgCheckboxStyle {
         selected: checkboxTheme.selectedFillColor,
         selectedHovered: checkboxTheme.selectedHoveredFillColor,
         selectedPressed: checkboxTheme.selectedPressedFillColor,
+        selectedError: checkboxTheme.selectedErrorFillColor,
         selectedDisabled: checkboxTheme.selectedDisabledFillColor,
         deselected: checkboxTheme.deselectedFillColor,
         deselectedHovered: checkboxTheme.deselectedHoveredFillColor,
         deselectedPressed: checkboxTheme.deselectedPressedFillColor,
+        deselectedError: checkboxTheme.deselectedErrorFillColor,
         deselectedDisabled: checkboxTheme.deselectedDisabledFillColor,
       ),
       borderColor: YgCheckboxBorderColorProperty(
@@ -31,6 +33,7 @@ class YgCheckboxStyle {
         deselected: checkboxTheme.deselectedBorderColor,
         deselectedHovered: checkboxTheme.deselectedHoveredBorderColor,
         deselectedPressed: checkboxTheme.deselectedPressedBorderColor,
+        deselectedError: checkboxTheme.deselectedErrorBorderColor,
         deselectedDisabled: checkboxTheme.deselectedDisabledBorderColor,
       ),
       checkColor: YgCheckboxCheckColorProperty(
