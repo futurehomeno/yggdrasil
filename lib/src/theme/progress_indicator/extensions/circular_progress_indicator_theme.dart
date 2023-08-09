@@ -9,7 +9,7 @@ part 'circular_progress_indicator_theme.tailor.dart';
 
 @tailorComponent
 class _$CircularProgressIndicatorTheme {
-  static List<Color> activeColor = <Color>[
+  static List<Color> color = <Color>[
     consumer_light.FhColors.interactiveHighlightDefault,
     consumer_dark.FhColors.interactiveHighlightDefault,
     professional_light.FhColors.interactiveHighlightDefault,
@@ -23,7 +23,7 @@ class _$CircularProgressIndicatorTheme {
     professional_dark.FhDimensions.xxl,
   ];
 
-  static List<double> activeIndicatorSize = <double>[
+  static List<double> indicatorSize = <double>[
     consumer_light.FhDimensions.xl,
     consumer_dark.FhDimensions.xl,
     professional_light.FhDimensions.xl,

@@ -1,26 +1,24 @@
 import 'package:flutter/material.dart';
 import 'package:yggdrasil/src/theme/_theme.dart';
+import 'package:yggdrasil/src/theme/progress_indicator/extensions/_extensions.dart';
 
 class YgLinearProgressIndicator extends StatelessWidget {
   const YgLinearProgressIndicator({
-    required this.value,
     super.key,
   });
 
-  final double value;
-
   @override
   Widget build(BuildContext context) {
-    final YgProgressIndicatorTheme theme = context.progressIndicatorTheme;
+    final YgProgressIndicatorTheme indicatorTheme = context.progressIndicatorTheme;
+    final LinearProgressIndicatorTheme theme = indicatorTheme.linearProgressIndicatorTheme;
 
-    return Material(
-      borderRadius: theme.linearProgressIndicatorTheme.borderRadius,
+    return ClipRRect(
+      borderRadius: theme.borderRadius,
       child: SizedBox(
-        height: theme.linearProgressIndicatorTheme.height,
+        height: theme.height,
         child: LinearProgressIndicator(
-          value: value,
-          color: theme.linearProgressIndicatorTheme.activeColor,
-          backgroundColor: theme.linearProgressIndicatorTheme.backgroundColor,
+          color: theme.color,
+          backgroundColor: theme.backgroundColor,
         ),
       ),
     );

@@ -11,49 +11,45 @@ part of 'circular_progress_indicator_theme.dart';
 class CircularProgressIndicatorTheme
     extends ThemeExtension<CircularProgressIndicatorTheme> {
   const CircularProgressIndicatorTheme({
-    required this.activeColor,
-    required this.activeIndicatorSize,
+    required this.color,
     required this.indicatorContainerSize,
+    required this.indicatorSize,
   });
 
-  final Color activeColor;
-  final double activeIndicatorSize;
+  final Color color;
   final double indicatorContainerSize;
+  final double indicatorSize;
 
   static final CircularProgressIndicatorTheme consumerLight =
       CircularProgressIndicatorTheme(
-    activeColor: _$CircularProgressIndicatorTheme.activeColor[0],
-    activeIndicatorSize:
-        _$CircularProgressIndicatorTheme.activeIndicatorSize[0],
+    color: _$CircularProgressIndicatorTheme.color[0],
     indicatorContainerSize:
         _$CircularProgressIndicatorTheme.indicatorContainerSize[0],
+    indicatorSize: _$CircularProgressIndicatorTheme.indicatorSize[0],
   );
 
   static final CircularProgressIndicatorTheme consumerDark =
       CircularProgressIndicatorTheme(
-    activeColor: _$CircularProgressIndicatorTheme.activeColor[1],
-    activeIndicatorSize:
-        _$CircularProgressIndicatorTheme.activeIndicatorSize[1],
+    color: _$CircularProgressIndicatorTheme.color[1],
     indicatorContainerSize:
         _$CircularProgressIndicatorTheme.indicatorContainerSize[1],
+    indicatorSize: _$CircularProgressIndicatorTheme.indicatorSize[1],
   );
 
   static final CircularProgressIndicatorTheme professionalLight =
       CircularProgressIndicatorTheme(
-    activeColor: _$CircularProgressIndicatorTheme.activeColor[2],
-    activeIndicatorSize:
-        _$CircularProgressIndicatorTheme.activeIndicatorSize[2],
+    color: _$CircularProgressIndicatorTheme.color[2],
     indicatorContainerSize:
         _$CircularProgressIndicatorTheme.indicatorContainerSize[2],
+    indicatorSize: _$CircularProgressIndicatorTheme.indicatorSize[2],
   );
 
   static final CircularProgressIndicatorTheme professionalDark =
       CircularProgressIndicatorTheme(
-    activeColor: _$CircularProgressIndicatorTheme.activeColor[3],
-    activeIndicatorSize:
-        _$CircularProgressIndicatorTheme.activeIndicatorSize[3],
+    color: _$CircularProgressIndicatorTheme.color[3],
     indicatorContainerSize:
         _$CircularProgressIndicatorTheme.indicatorContainerSize[3],
+    indicatorSize: _$CircularProgressIndicatorTheme.indicatorSize[3],
   );
 
   static final themes = [
@@ -65,15 +61,15 @@ class CircularProgressIndicatorTheme
 
   @override
   CircularProgressIndicatorTheme copyWith({
-    Color? activeColor,
-    double? activeIndicatorSize,
+    Color? color,
     double? indicatorContainerSize,
+    double? indicatorSize,
   }) {
     return CircularProgressIndicatorTheme(
-      activeColor: activeColor ?? this.activeColor,
-      activeIndicatorSize: activeIndicatorSize ?? this.activeIndicatorSize,
+      color: color ?? this.color,
       indicatorContainerSize:
           indicatorContainerSize ?? this.indicatorContainerSize,
+      indicatorSize: indicatorSize ?? this.indicatorSize,
     );
   }
 
@@ -84,11 +80,10 @@ class CircularProgressIndicatorTheme
     if (other is! CircularProgressIndicatorTheme)
       return this as CircularProgressIndicatorTheme;
     return CircularProgressIndicatorTheme(
-      activeColor: Color.lerp(activeColor, other.activeColor, t)!,
-      activeIndicatorSize:
-          t < 0.5 ? activeIndicatorSize : other.activeIndicatorSize,
+      color: Color.lerp(color, other.color, t)!,
       indicatorContainerSize:
           t < 0.5 ? indicatorContainerSize : other.indicatorContainerSize,
+      indicatorSize: t < 0.5 ? indicatorSize : other.indicatorSize,
     );
   }
 
@@ -97,21 +92,20 @@ class CircularProgressIndicatorTheme
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is CircularProgressIndicatorTheme &&
+            const DeepCollectionEquality().equals(color, other.color) &&
             const DeepCollectionEquality()
-                .equals(activeColor, other.activeColor) &&
+                .equals(indicatorContainerSize, other.indicatorContainerSize) &&
             const DeepCollectionEquality()
-                .equals(activeIndicatorSize, other.activeIndicatorSize) &&
-            const DeepCollectionEquality()
-                .equals(indicatorContainerSize, other.indicatorContainerSize));
+                .equals(indicatorSize, other.indicatorSize));
   }
 
   @override
   int get hashCode {
     return Object.hash(
       runtimeType.hashCode,
-      const DeepCollectionEquality().hash(activeColor),
-      const DeepCollectionEquality().hash(activeIndicatorSize),
+      const DeepCollectionEquality().hash(color),
       const DeepCollectionEquality().hash(indicatorContainerSize),
+      const DeepCollectionEquality().hash(indicatorSize),
     );
   }
 }

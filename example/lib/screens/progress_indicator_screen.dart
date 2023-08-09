@@ -23,16 +23,8 @@ class ProgressIndicatorScreen extends StatelessWidget {
       supernovaLink: 'Link',
       child: Column(
         children: <Widget>[
-          YgLinearProgressIndicator(value: 0.00),
-          YgLinearProgressIndicator(value: 0.25),
-          YgLinearProgressIndicator(value: 0.50),
-          YgLinearProgressIndicator(value: 0.75),
-          YgLinearProgressIndicator(value: 1.00),
-          YgCircularProgressIndicator(value: 0.00),
-          YgCircularProgressIndicator(value: 0.25),
-          YgCircularProgressIndicator(value: 0.50),
-          YgCircularProgressIndicator(value: 0.75),
-          YgCircularProgressIndicator(value: 1.00),
+          YgLinearProgressIndicator(),
+          YgCircularProgressIndicator(),
         ],
       ),
     );

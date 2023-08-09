@@ -9,7 +9,7 @@ part 'linear_progress_indicator_theme.tailor.dart';
 
 @tailorComponent
 class _$LinearProgressIndicatorTheme {
-  static List<Color> activeColor = <Color>[
+  static List<Color> color = <Color>[
     consumer_light.FhColors.interactiveHighlightDefault,
     consumer_dark.FhColors.interactiveHighlightDefault,
     professional_light.FhColors.interactiveHighlightDefault,
