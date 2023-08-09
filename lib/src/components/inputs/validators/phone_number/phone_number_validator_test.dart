@@ -26,6 +26,25 @@ void main() {
       expect(result, isNull);
     });
 
+    test('should return error when the value is a phone number with country code if country code is disabled', () {
+      // PREPARE
+      const PhoneNumberValidator validator = PhoneNumberValidator(
+        tooShortError: tooShortError,
+        tooLongError: tooLongError,
+        invalidError: invalidError,
+        withCountryCode: false,
+      );
+
+      // TRIGGER
+      final String? result = validator.validate(
+        YgDefaultsValidatorErrorMocks.valid,
+        '+123456789',
+      );
+
+      // TEST
+      expect(result, invalidError);
+    });
+
     test('should return null when the value is a valid phone number with country code', () {
       // PREPARE
       const PhoneNumberValidator validator = PhoneNumberValidator(
