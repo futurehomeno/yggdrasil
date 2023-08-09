@@ -1,5 +1,6 @@
 import '../_validators.dart';
 
+/// Validates a value not not bellow [min] length.
 class MinLengthValidator extends YgTextValidator {
   const MinLengthValidator({
     required this.min,
@@ -9,7 +10,7 @@ class MinLengthValidator extends YgTextValidator {
   /// The minimum allowed length of the validated text.
   final int min;
 
-  /// The error shown when the text is longer than [min].
+  /// The error shown when the text is shorter than [min].
   final String tooShortError;
 
   @override

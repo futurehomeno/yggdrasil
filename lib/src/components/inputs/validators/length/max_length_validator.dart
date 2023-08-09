@@ -1,5 +1,6 @@
 import '../_validators.dart';
 
+/// Validates a value not not above [max] length.
 class MaxLengthValidator extends YgTextValidator {
   const MaxLengthValidator({
     required this.max,
