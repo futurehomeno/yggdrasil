@@ -316,10 +316,10 @@ class _$YgTextInputTheme {
 
   // TODO(Tim): Update to using tokens when available.
   static List<EdgeInsets> errorPadding = <EdgeInsets>[
-    const EdgeInsets.only(top: 4),
-    const EdgeInsets.only(top: 4),
-    const EdgeInsets.only(top: 4),
-    const EdgeInsets.only(top: 4),
+    const EdgeInsets.only(top: consumer_light.FhDimensions.xxs),
+    const EdgeInsets.only(top: consumer_dark.FhDimensions.xxs),
+    const EdgeInsets.only(top: professional_light.FhDimensions.xxs),
+    const EdgeInsets.only(top: professional_dark.FhDimensions.xxs),
   ];
 
   // TODO(Tim): Update to using tokens when available.
