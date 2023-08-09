@@ -11,5 +11,5 @@ export 'yg_default_validator_errors.dart';
 export 'yg_default_validator_errors_provider.dart.dart';
 export 'yg_defaults_validator_error_mocks.dart';
 export 'yg_input_validator.dart';
-export 'yg_input_validator_combiner.dart';
+export 'yg_input_validator_to_form_field_validator_transformer.dart';
 export 'zwave/_zwave.dart';
