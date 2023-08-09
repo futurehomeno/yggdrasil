@@ -28,7 +28,7 @@ class YgTextInputDecoration extends YgTextInputWidget {
 class _YgTextInputDecorationState extends YgTextInputWidgetState<YgTextInputDecoration> {
   @override
   Widget build(BuildContext context) {
-    final Stack content = Stack(
+    return Stack(
       children: <Widget>[
         Positioned.fill(
           child: AnimatedContainer(
@@ -37,6 +37,7 @@ class _YgTextInputDecorationState extends YgTextInputWidgetState<YgTextInputDeco
             decoration: BoxDecoration(
               border: _border,
               borderRadius: _borderRadius,
+              color: _backgroundColor,
             ),
           ),
         ),
@@ -45,16 +46,6 @@ class _YgTextInputDecorationState extends YgTextInputWidgetState<YgTextInputDeco
           child: widget.child,
         ),
       ],
-    );
-
-    if (widget.variant == YgTextInputVariant.standard) {
-      return content;
-    }
-
-    return Material(
-      color: _backgroundColor,
-      borderRadius: _borderRadius,
-      child: content,
     );
   }
 
@@ -95,6 +86,10 @@ class _YgTextInputDecorationState extends YgTextInputWidgetState<YgTextInputDeco
   }
 
   Color get _backgroundColor {
+    if (widget.variant == YgTextInputVariant.standard) {
+      return Colors.transparent;
+    }
+
     if (widget.disabled) {
       return theme.backgroundDisabledColor;
     }
