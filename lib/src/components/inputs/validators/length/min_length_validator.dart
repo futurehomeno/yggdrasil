@@ -1,6 +1,6 @@
 import '../_validators.dart';
 
-/// Validates a value not not bellow [min] length.
+/// Validates a value is not bellow [min] length.
 class MinLengthValidator extends YgTextValidator {
   const MinLengthValidator({
     required this.min,
