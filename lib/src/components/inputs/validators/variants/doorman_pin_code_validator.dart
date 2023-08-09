@@ -1,6 +1,6 @@
 import 'package:yggdrasil/yggdrasil.dart';
 
-/// Validates that a site name is not empty and at maximum 30 characters.
+/// Validates that a doorman pin code is exactly 6 characters.
 class DoormanPicCodeValidator extends CombinedValidator<String> {
   const DoormanPicCodeValidator({
     this.pinCodeTooLongError,
