@@ -94,16 +94,26 @@ class _YgTextInputContentState extends YgTextInputWidgetState<YgTextInputContent
     final TextStyle baseStyle = theme.valueTextStyle;
 
     if (widget.disabled) {
-      // TODO(Tim): Look in to some way to replicate minLines.
+      final int? minLines = widget.minLines;
+
+      Widget text = Text(
+        controller.text,
+        style: baseStyle.copyWith(
+          color: theme.valueDisabledColor,
+        ),
+        maxLines: widget.maxLines,
+      );
+
+      if (minLines != null && minLines > 1) {
+        text = SizedBox(
+          height: baseStyle.computedHeight * minLines,
+          child: text,
+        );
+      }
+
       return Align(
         alignment: Alignment.centerLeft,
-        child: Text(
-          controller.text,
-          style: baseStyle.copyWith(
-            color: theme.valueDisabledColor,
-          ),
-          maxLines: widget.maxLines,
-        ),
+        child: text,
       );
     }
 
