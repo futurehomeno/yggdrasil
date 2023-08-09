@@ -57,11 +57,17 @@ class _TextInputScreenState extends State<TextInputScreen> {
             const YgTextInput(
               label: 'Label',
               error: 'Error Message',
-              suffix: YgIcon(YgIcons.alert),
             ),
             const YgTextInput(
               label: 'Label',
               disabled: true,
+              obscureText: true,
+            ),
+            const YgTextInput(
+              label: 'Label',
+              placeholder: 'Multi line',
+              maxLines: 5,
+              minLines: 2,
             ),
             const YgListTile(title: 'Outlined variant'),
             const YgTextInput(
@@ -92,6 +98,13 @@ class _TextInputScreenState extends State<TextInputScreen> {
               label: 'Label',
               variant: YgTextInputVariant.outlined,
               disabled: true,
+            ),
+            const YgTextInput(
+              label: 'Label',
+              variant: YgTextInputVariant.outlined,
+              placeholder: 'Multi line',
+              maxLines: 5,
+              minLines: 2,
             ),
             const YgListTile(
               title: 'Example use in a form',

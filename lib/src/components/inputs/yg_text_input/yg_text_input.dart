@@ -45,6 +45,10 @@ class YgTextInput extends YgTextInputWidget with StatefulWidgetDebugMixin {
         assert(
           suffix == null || showObscureTextButton == false || obscureText == false,
           'Can not add a suffix if showObscureTextButton and obscureText are set to true',
+        ),
+        assert(
+          (suffix == null) == (onSuffixPressed == null),
+          'Suffix and onSuffixPressed should either be both null or both defined',
         );
 
   /// Obscures the text in the input.
@@ -90,12 +94,10 @@ class YgTextInput extends YgTextInputWidget with StatefulWidgetDebugMixin {
   /// Providing [onEditingComplete] prevents the aforementioned default behavior.
   final VoidCallback? onEditingComplete;
 
-  /// Called when the user presses on the suffix.
+  /// Called when the user presses the [suffix].
   ///
-  /// Should be used instead of an [YgIconButton] to maintain the styling of the
-  /// input.
-  ///
-  /// When this is not null an [InkResponse] will create an ripple animation.
+  /// !--- IMPORTANT ---
+  /// If onSuffixPressed is defined [suffix] also has to be defined.
   final VoidCallback? onSuffixPressed;
 
   /// The type of action button to use for the keyboard.
@@ -116,10 +118,8 @@ class YgTextInput extends YgTextInputWidget with StatefulWidgetDebugMixin {
   /// set to true!
   ///
   /// !--- IMPORTANT ---
-  /// Only add icons to the suffix, do NOT use an [YgIconButton], this is not in
-  /// line with the design, instead just add an icon and use the
-  /// [onSuffixPressed] to handle a click on the suffix.
-  final Widget? suffix;
+  /// If suffix is defined [onSuffixPressed] also has to be defined.
+  final YgIconButton? suffix;
 
   /// Whether the input is disabled.
   ///
@@ -351,11 +351,6 @@ class _YgTextInputState extends YgTextInputWidgetState<YgTextInput> {
     }
   }
 
-  void _toggleShowObscureText() {
-    _obscureTextToggled ^= true;
-    setState(() {});
-  }
-
   Widget? _buildSuffix() {
     Widget? suffix = widget.suffix;
 
@@ -368,32 +363,26 @@ class _YgTextInputState extends YgTextInputWidgetState<YgTextInput> {
     }
 
     if (suffix != null) {
-      return InkResponse(
-        onTap: renderShowObscureTextIcon ? _toggleShowObscureText : widget.onSuffixPressed,
-        radius: _suffixSize,
-        child: Padding(
-          padding: theme.suffixPadding,
-          child: IconTheme(
-            data: IconThemeData(
-              color: _suffixIconColor,
-              size: _suffixSize,
-            ),
-            child: suffix,
-          ),
+      return Padding(
+        padding: theme.suffixPadding,
+        child: YgIconButton(
+          size: YgIconButtonSize.small,
+          onPressed: widget.disabled
+              ? null
+              : () {
+                  if (renderShowObscureTextIcon) {
+                    _obscureTextToggled ^= true;
+                    setState(() {});
+                  } else {
+                    widget.onSuffixPressed?.call();
+                  }
+                },
+          child: suffix,
         ),
       );
     }
 
     return null;
-  }
-
-  double get _suffixSize {
-    switch (widget.size) {
-      case YgTextInputSize.large:
-        return theme.largeSuffixSize;
-      case YgTextInputSize.medium:
-        return theme.mediumSuffixSize;
-    }
   }
 
   bool get _obscureText {
@@ -406,14 +395,6 @@ class _YgTextInputState extends YgTextInputWidgetState<YgTextInput> {
     }
 
     return _obscureTextToggled;
-  }
-
-  Color get _suffixIconColor {
-    if (widget.disabled) {
-      return theme.iconDisabledColor;
-    }
-
-    return theme.iconDefaultColor;
   }
 
   String get _suffixIcon {

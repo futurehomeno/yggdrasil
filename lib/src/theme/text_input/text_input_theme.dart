@@ -225,24 +225,6 @@ class _$YgTextInputTheme {
 
   // endregion
 
-  // region Icon
-
-  static const List<Color> iconDefaultColor = <Color>[
-    consumer_light.FhColors.iconDefault,
-    consumer_dark.FhColors.iconDefault,
-    professional_light.FhColors.iconDefault,
-    professional_dark.FhColors.iconDefault,
-  ];
-
-  static const List<Color> iconDisabledColor = <Color>[
-    consumer_light.FhColors.iconDisabled,
-    consumer_dark.FhColors.iconDisabled,
-    professional_light.FhColors.iconDisabled,
-    professional_dark.FhColors.iconDisabled,
-  ];
-
-  // endregion
-
   // region Error Footer
 
   static List<TextStyle> errorTextStyle = <TextStyle>[
@@ -305,10 +287,10 @@ class _$YgTextInputTheme {
   ];
 
   static List<double> standardHorizontalContentPadding = <double>[
-    consumer_light.FhDimensions.xxs,
-    consumer_dark.FhDimensions.xxs,
-    professional_light.FhDimensions.xxs,
-    professional_dark.FhDimensions.xxs,
+    0,
+    0,
+    0,
+    0,
   ];
 
   static List<double> outlinedHorizontalContentPadding = <double>[
@@ -316,20 +298,6 @@ class _$YgTextInputTheme {
     consumer_dark.FhDimensions.xs,
     professional_light.FhDimensions.xs,
     professional_dark.FhDimensions.xs,
-  ];
-
-  static List<double> mediumSuffixSize = <double>[
-    consumer_light.FhDimensions.sm,
-    consumer_dark.FhDimensions.sm,
-    professional_light.FhDimensions.sm,
-    professional_dark.FhDimensions.sm,
-  ];
-
-  static List<double> largeSuffixSize = <double>[
-    consumer_light.FhDimensions.md,
-    consumer_dark.FhDimensions.md,
-    professional_light.FhDimensions.md,
-    professional_dark.FhDimensions.md,
   ];
 
   static List<EdgeInsets> suffixPadding = <EdgeInsets>[

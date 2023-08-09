@@ -41,7 +41,7 @@ class _YgTextInputDecorationState extends YgTextInputWidgetState<YgTextInputDeco
           ),
         ),
         Padding(
-          padding: const EdgeInsets.all(2.0),
+          padding: _childPadding,
           child: widget.child,
         ),
       ],
@@ -56,6 +56,13 @@ class _YgTextInputDecorationState extends YgTextInputWidgetState<YgTextInputDeco
       borderRadius: _borderRadius,
       child: content,
     );
+  }
+
+  EdgeInsets get _childPadding {
+    return switch (widget.variant) {
+      YgTextInputVariant.outlined => const EdgeInsets.all(2),
+      YgTextInputVariant.standard => const EdgeInsets.only(bottom: 2),
+    };
   }
 
   BorderRadius? get _borderRadius {
