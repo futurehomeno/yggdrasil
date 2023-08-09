@@ -38,7 +38,6 @@ class Yggdrasil extends StatelessWidget {
     return Consumer<YgAppState>(
       builder: (BuildContext context, YgAppState ygAppState, Widget? child) {
         // Set the debug paint flags.
-
         debugOutlineEnabled = ygAppState.debugOutlineEnabled;
 
         return MaterialApp(
