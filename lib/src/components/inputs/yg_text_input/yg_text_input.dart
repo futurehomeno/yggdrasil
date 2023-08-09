@@ -4,15 +4,6 @@ import 'package:yggdrasil/yggdrasil.dart';
 
 import 'widgets/_widgets.dart';
 
-enum YgTextInputStates {
-  error,
-  hovered,
-  focused,
-  disabled,
-  suffix,
-  large,
-}
-
 class YgTextInput extends YgTextInputWidget with StatefulWidgetDebugMixin {
   const YgTextInput({
     super.key,
