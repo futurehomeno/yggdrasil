@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:yggdrasil/yggdrasil.dart';
 
+/// Form field variation of [YgTextInput].
 class YgTextFormInput extends FormField<String> {
   YgTextFormInput({
     this.controller,
@@ -67,6 +68,7 @@ class YgTextFormInput extends FormField<String> {
           },
         );
 
+  /// Convenience method for creating email fields.
   YgTextFormInput.email({
     TextEditingController? controller,
     required TextFieldKey key,
