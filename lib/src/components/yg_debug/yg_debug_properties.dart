@@ -6,4 +6,4 @@
 /// our widgets even while the debugging is disabled. We rather rebuild the
 /// entire app once when enabling debugging instead.
 
-bool debugOutlineEnabled = true;
+bool debugOutlineEnabled = false;

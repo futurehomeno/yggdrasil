@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:yggdrasil/yggdrasil.dart';
 
 class YgAppState extends ChangeNotifier {
-  UniqueKey _key = UniqueKey();
   final YgTheme _defaultTheme = YgTheme.consumerLight;
   YgTheme _currentTheme = YgTheme.consumerLight;
   YgTheme get theme => _defaultTheme;
@@ -39,16 +38,8 @@ class YgAppState extends ChangeNotifier {
 
   Future<void> toggleDebugOutlineEnabled() async {
     _debugOutlineEnabled ^= true;
-    _updateAppKey();
     notifyListeners();
   }
-
-  /// Updates the app key to force a rebuild of the app.
-  void _updateAppKey() {
-    _key = UniqueKey();
-  }
-
-  UniqueKey get key => _key;
 
   YgTheme get defaultTheme => _defaultTheme;
   YgTheme get currentTheme => _currentTheme;

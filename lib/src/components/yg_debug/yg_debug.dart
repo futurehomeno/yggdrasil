@@ -12,6 +12,23 @@ class YgDebug extends SingleChildRenderObjectWidget {
     required super.child,
   });
 
+  /// Repaints every instance of [YgDebug].
+  ///
+  /// !--- IMPORTANT ---
+  /// This action is very expensive as it repaints every instance of this widget.
+  /// Only use when changing debug properties!
+  static void repaintAllInstances(BuildContext context) {
+    void rebuild(Element el) {
+      el.visitChildren(rebuild);
+      final RenderObject? renderObject = el.renderObject;
+      if (renderObject is _YgDebugChild) {
+        renderObject.markNeedsPaint();
+      }
+    }
+
+    (context as Element).visitChildren(rebuild);
+  }
+
   @override
   RenderObject createRenderObject(BuildContext context) {
     return _YgDebugChild();
