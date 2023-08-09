@@ -59,7 +59,7 @@ class _RadioScreenState extends State<RadioScreen> {
             groupValue: disabledRadioGroupValue,
             onChanged: null,
           ),
-        ],
+        ].withVerticalSpacing(10),
       ),
     );
   }
