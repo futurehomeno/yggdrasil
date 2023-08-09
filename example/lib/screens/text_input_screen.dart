@@ -157,9 +157,9 @@ class _TextInputScreenState extends State<TextInputScreen> {
   }
 
   void _validateForm() {
-    final bool valid = formKey.validate();
-
     FocusScope.of(context).unfocus();
+
+    final bool valid = formKey.validate();
 
     if (!valid) {
       return;
