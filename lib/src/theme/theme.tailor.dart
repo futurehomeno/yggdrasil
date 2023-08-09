@@ -279,7 +279,7 @@ class YgTheme extends ThemeExtension<YgTheme> {
 
   @override
   int get hashCode {
-    return Object.hash(
+    return Object.hashAll([
       runtimeType.hashCode,
       const DeepCollectionEquality().hash(badgeTheme),
       const DeepCollectionEquality().hash(bottomSheetTheme),
@@ -301,7 +301,7 @@ class YgTheme extends ThemeExtension<YgTheme> {
       const DeepCollectionEquality().hash(tagTheme),
       const DeepCollectionEquality().hash(textLinkTheme),
       const DeepCollectionEquality().hash(tokens),
-    );
+    ]);
   }
 }
 

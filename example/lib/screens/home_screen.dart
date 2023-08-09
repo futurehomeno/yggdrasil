@@ -103,13 +103,13 @@ class HomeScreen extends StatelessWidget {
             trailingWidgets: const <YgIcon>[YgIcon(YgIcons.caretRight)],
           ),
           YgListTile(
-            title: 'Radio',
-            onTap: () => sl<YgRouter>().push(RadioScreen.route()),
+            title: 'ProgressIndicator',
+            onTap: () => sl<YgRouter>().push(ProgressIndicatorScreen.route()),
             trailingWidgets: const <YgIcon>[YgIcon(YgIcons.caretRight)],
           ),
           YgListTile(
-            title: 'ProgressIndicator',
-            onTap: () => sl<YgRouter>().push(ProgressIndicatorScreen.route()),
+            title: 'Radio',
+            onTap: () => sl<YgRouter>().push(RadioScreen.route()),
             trailingWidgets: const <YgIcon>[YgIcon(YgIcons.caretRight)],
           ),
           YgListTile(
