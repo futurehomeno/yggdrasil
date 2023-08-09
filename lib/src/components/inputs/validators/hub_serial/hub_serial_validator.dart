@@ -1,5 +1,8 @@
 import 'package:yggdrasil/yggdrasil.dart';
 
+/// Validates a hub serial.
+///
+/// Makes sure the serial is at least 16 characters long, and not exactly 17.
 class HubSerialValidator extends YgTextValidator {
   const HubSerialValidator({
     this.invalidHubSerialError,
