@@ -4,8 +4,7 @@
 
 // ignore_for_file: no_leading_underscores_for_library_prefixes
 import 'package:mockito/mockito.dart' as _i1;
-import 'package:yggdrasil/src/components/inputs/utils/keys/check_box_field_key/check_box_field_key.dart'
-    as _i2;
+import 'package:yggdrasil/src/components/inputs/utils/keys/_keys.dart' as _i2;
 
 // ignore_for_file: type=lint
 // ignore_for_file: avoid_redundant_argument_values

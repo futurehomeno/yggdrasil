@@ -36,8 +36,8 @@ abstract class YgTextInputWidgetState<T extends YgTextInputWidget> extends State
   bool get isEmpty => _isEmpty;
 
   YgTextInputTheme get theme => context.textInputTheme;
-  Duration get duration => context.defaults.animationDuration;
-  Curve get curve => context.defaults.animationCurve;
+  Duration get duration => theme.animationDuration;
+  Curve get curve => theme.animationCurve;
 
   @mustCallSuper
   @override

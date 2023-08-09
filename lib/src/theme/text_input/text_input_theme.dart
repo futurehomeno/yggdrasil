@@ -275,4 +275,83 @@ class _$YgTextInputTheme {
     professional_light.FhColors.textHighlight,
     professional_dark.FhColors.textHighlight,
   ];
+
+  static List<Duration> animationDuration = <Duration>[
+    const Duration(milliseconds: 200),
+    const Duration(milliseconds: 200),
+    const Duration(milliseconds: 200),
+    const Duration(milliseconds: 200),
+  ];
+
+  static List<Curve> animationCurve = <Curve>[
+    const Cubic(0.42, 0, 0.2, 1),
+    const Cubic(0.42, 0, 0.2, 1),
+    const Cubic(0.42, 0, 0.2, 1),
+    const Cubic(0.42, 0, 0.2, 1),
+  ];
+
+  static List<double> mediumVerticalContentPadding = <double>[
+    consumer_light.FhDimensions.xxs,
+    consumer_dark.FhDimensions.xxs,
+    professional_light.FhDimensions.xxs,
+    professional_dark.FhDimensions.xxs,
+  ];
+
+  static List<double> largeVerticalContentPadding = <double>[
+    consumer_light.FhDimensions.xs,
+    consumer_dark.FhDimensions.xs,
+    professional_light.FhDimensions.xs,
+    professional_dark.FhDimensions.xs,
+  ];
+
+  static List<double> standardHorizontalContentPadding = <double>[
+    consumer_light.FhDimensions.xxs,
+    consumer_dark.FhDimensions.xxs,
+    professional_light.FhDimensions.xxs,
+    professional_dark.FhDimensions.xxs,
+  ];
+
+  static List<double> outlinedHorizontalContentPadding = <double>[
+    consumer_light.FhDimensions.xs,
+    consumer_dark.FhDimensions.xs,
+    professional_light.FhDimensions.xs,
+    professional_dark.FhDimensions.xs,
+  ];
+
+  static List<double> mediumSuffixSize = <double>[
+    consumer_light.FhDimensions.sm,
+    consumer_dark.FhDimensions.sm,
+    professional_light.FhDimensions.sm,
+    professional_dark.FhDimensions.sm,
+  ];
+
+  static List<double> largeSuffixSize = <double>[
+    consumer_light.FhDimensions.md,
+    consumer_dark.FhDimensions.md,
+    professional_light.FhDimensions.md,
+    professional_dark.FhDimensions.md,
+  ];
+
+  static List<EdgeInsets> suffixPadding = <EdgeInsets>[
+    const EdgeInsets.only(left: consumer_light.FhDimensions.xxs),
+    const EdgeInsets.only(left: consumer_dark.FhDimensions.xxs),
+    const EdgeInsets.only(left: professional_light.FhDimensions.xxs),
+    const EdgeInsets.only(left: professional_dark.FhDimensions.xxs),
+  ];
+
+  // TODO(Tim): Update to using tokens when available.
+  static List<EdgeInsets> errorPadding = <EdgeInsets>[
+    const EdgeInsets.only(top: 4),
+    const EdgeInsets.only(top: 4),
+    const EdgeInsets.only(top: 4),
+    const EdgeInsets.only(top: 4),
+  ];
+
+  // TODO(Tim): Update to using tokens when available.
+  static List<EdgeInsets> errorIconPadding = <EdgeInsets>[
+    const EdgeInsets.only(right: 4),
+    const EdgeInsets.only(right: 4),
+    const EdgeInsets.only(right: 4),
+    const EdgeInsets.only(right: 4),
+  ];
 }

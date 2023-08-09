@@ -57,6 +57,7 @@ class _TextInputScreenState extends State<TextInputScreen> {
             const YgTextInput(
               label: 'Label',
               error: 'Error Message',
+              suffix: YgIcon(YgIcons.alert),
             ),
             const YgTextInput(
               label: 'Label',
@@ -94,7 +95,6 @@ class _TextInputScreenState extends State<TextInputScreen> {
             ),
             const YgListTile(
               title: 'Example use in a form',
-              subtitle: 'Valid password: password123',
             ),
             Form(
               key: formKey,

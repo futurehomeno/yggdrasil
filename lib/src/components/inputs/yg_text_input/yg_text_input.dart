@@ -25,6 +25,7 @@ class YgTextInput extends YgTextInputWidget with StatefulWidgetDebugMixin {
     this.suffix,
     this.keyboardType,
     this.inputFormatters,
+    this.onSuffixPressed,
     this.textInputAction,
     this.onEditingComplete,
     this.maxLines = 1,
@@ -89,6 +90,14 @@ class YgTextInput extends YgTextInputWidget with StatefulWidgetDebugMixin {
   /// Providing [onEditingComplete] prevents the aforementioned default behavior.
   final VoidCallback? onEditingComplete;
 
+  /// Called when the user presses on the suffix.
+  ///
+  /// Should be used instead of an [YgIconButton] to maintain the styling of the
+  /// input.
+  ///
+  /// When this is not null an [InkResponse] will create an ripple animation.
+  final VoidCallback? onSuffixPressed;
+
   /// The type of action button to use for the keyboard.
   ///
   /// Defaults to [TextInputAction.newline] if [keyboardType] is
@@ -105,6 +114,11 @@ class YgTextInput extends YgTextInputWidget with StatefulWidgetDebugMixin {
   /// !--- IMPORTANT ---
   /// You can not add a suffix if [showObscureTextButton] and [obscureText] are
   /// set to true!
+  ///
+  /// !--- IMPORTANT ---
+  /// Only add icons to the suffix, do NOT use an [YgIconButton], this is not in
+  /// line with the design, instead just add an icon and use the
+  /// [onSuffixPressed] to handle a click on the suffix.
   final Widget? suffix;
 
   /// Whether the input is disabled.
@@ -227,11 +241,12 @@ class _YgTextInputState extends YgTextInputWidgetState<YgTextInput> {
             error: widget.error != null,
             focusNode: focusNode,
             hovered: _hovered,
-            child: Row(
-              children: <Widget>[
-                Expanded(
-                  child: Padding(
-                    padding: _getContentPadding(suffix != null),
+            child: Padding(
+              padding: _contentPadding,
+              child: Row(
+                crossAxisAlignment: CrossAxisAlignment.center,
+                children: <Widget>[
+                  Expanded(
                     child: YgTextInputContent(
                       onEditingComplete: widget.onEditingComplete,
                       textInputAction: widget.textInputAction,
@@ -251,9 +266,9 @@ class _YgTextInputState extends YgTextInputWidgetState<YgTextInput> {
                       textCapitalization: widget.textCapitalization,
                     ),
                   ),
-                ),
-                if (suffix != null) suffix,
-              ],
+                  if (suffix != null) suffix,
+                ],
+              ),
             ),
           ),
           _buildErrorMessage(),
@@ -289,46 +304,44 @@ class _YgTextInputState extends YgTextInputWidgetState<YgTextInput> {
   Widget _buildErrorMessage() {
     final String? error = widget.error;
 
+    final TextStyle errorStyle = theme.errorTextStyle;
+    final EdgeInsets errorPadding = theme.errorPadding;
+
     if (widget.disabled || error == null) {
-      return const SizedBox(height: 20);
+      return SizedBox(height: errorStyle.computedHeight + errorPadding.vertical);
     }
 
     return Padding(
-      padding: const EdgeInsets.only(top: 4),
+      padding: errorPadding,
       child: Row(
         children: <Widget>[
-          YgIcon(
-            YgIcons.error,
-            size: YgIconSize.small,
-            color: theme.errorIconColor,
+          Padding(
+            padding: theme.errorIconPadding,
+            child: YgIcon(
+              YgIcons.error,
+              size: YgIconSize.small,
+              color: theme.errorIconColor,
+            ),
           ),
           Text(
             error,
-            style: theme.errorTextStyle,
+            style: errorStyle,
           )
-        ].withHorizontalSpacing(4),
+        ],
       ),
     );
   }
 
-  EdgeInsets _getContentPadding(bool suffix) {
-    final EdgeInsets padding = EdgeInsets.symmetric(
+  EdgeInsets get _contentPadding {
+    return EdgeInsets.symmetric(
       vertical: switch (widget.size) {
-        YgTextInputSize.large => 12,
-        YgTextInputSize.medium => 7,
+        YgTextInputSize.large => theme.largeVerticalContentPadding,
+        YgTextInputSize.medium => theme.mediumVerticalContentPadding,
       },
       horizontal: switch (widget.variant) {
-        YgTextInputVariant.outlined => 12,
-        YgTextInputVariant.standard => 0,
+        YgTextInputVariant.outlined => theme.outlinedHorizontalContentPadding,
+        YgTextInputVariant.standard => theme.standardHorizontalContentPadding,
       },
-    );
-
-    if (!suffix) {
-      return padding;
-    }
-
-    return padding.copyWith(
-      right: 0,
     );
   }
 
@@ -338,32 +351,49 @@ class _YgTextInputState extends YgTextInputWidgetState<YgTextInput> {
     }
   }
 
+  void _toggleShowObscureText() {
+    _obscureTextToggled ^= true;
+    setState(() {});
+  }
+
   Widget? _buildSuffix() {
     Widget? suffix = widget.suffix;
 
-    if (suffix == null && widget.obscureText && widget.showObscureTextButton) {
-      suffix = YgIconButton(
-        onPressed: () {
-          _obscureTextToggled ^= true;
-          setState(() {});
-        },
-        child: YgIcon(
-          _suffixIcon,
-        ),
+    final bool renderShowObscureTextIcon = suffix == null && widget.obscureText && widget.showObscureTextButton;
+
+    if (renderShowObscureTextIcon) {
+      suffix = YgIcon(
+        _suffixIcon,
       );
     }
 
     if (suffix != null) {
-      return IconTheme(
-        data: IconThemeData(
-          color: _suffixIconColor,
-          size: 25,
+      return InkResponse(
+        onTap: renderShowObscureTextIcon ? _toggleShowObscureText : widget.onSuffixPressed,
+        radius: _suffixSize,
+        child: Padding(
+          padding: theme.suffixPadding,
+          child: IconTheme(
+            data: IconThemeData(
+              color: _suffixIconColor,
+              size: _suffixSize,
+            ),
+            child: suffix,
+          ),
         ),
-        child: suffix,
       );
     }
 
     return null;
+  }
+
+  double get _suffixSize {
+    switch (widget.size) {
+      case YgTextInputSize.large:
+        return theme.largeSuffixSize;
+      case YgTextInputSize.medium:
+        return theme.mediumSuffixSize;
+    }
   }
 
   bool get _obscureText {

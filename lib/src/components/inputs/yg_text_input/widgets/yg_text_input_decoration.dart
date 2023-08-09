@@ -28,53 +28,63 @@ class YgTextInputDecoration extends YgTextInputWidget {
 class _YgTextInputDecorationState extends YgTextInputWidgetState<YgTextInputDecoration> {
   @override
   Widget build(BuildContext context) {
-    return Stack(
+    final Stack content = Stack(
       children: <Widget>[
         Positioned.fill(
-          child: switch (widget.variant) {
-            YgTextInputVariant.outlined => AnimatedContainer(
-                duration: duration,
-                curve: curve,
-                decoration: BoxDecoration(
-                  color: _backgroundColor,
-                  border: _border,
-                  borderRadius: theme.borderRadius,
-                ),
-              ),
-            YgTextInputVariant.standard => AnimatedContainer(
-                duration: duration,
-                curve: curve,
-                decoration: BoxDecoration(
-                  border: Border(
-                    bottom: _border.bottom,
-                  ),
-                ),
-              ),
-          },
+          child: AnimatedContainer(
+            duration: duration,
+            curve: curve,
+            decoration: BoxDecoration(
+              border: _border,
+              borderRadius: _borderRadius,
+            ),
+          ),
         ),
-        widget.child,
+        Padding(
+          padding: const EdgeInsets.all(2.0),
+          child: widget.child,
+        ),
       ],
+    );
+
+    if (widget.variant == YgTextInputVariant.standard) {
+      return content;
+    }
+
+    return Material(
+      color: _backgroundColor,
+      borderRadius: _borderRadius,
+      child: content,
     );
   }
 
+  BorderRadius? get _borderRadius {
+    return switch (widget.variant) {
+      YgTextInputVariant.outlined => theme.borderRadius,
+      YgTextInputVariant.standard => null,
+    };
+  }
+
   Border get _border {
+    Border base = theme.borderDefault;
+
     if (widget.disabled) {
-      return theme.borderDisabled;
+      base = theme.borderDisabled;
+    } else if (widget.error) {
+      base = theme.borderError;
+    } else if (focused) {
+      base = theme.borderFocus;
+    } else if (widget.hovered) {
+      base = theme.borderHover;
     }
 
-    if (widget.error) {
-      return theme.borderError;
+    if (widget.variant == YgTextInputVariant.outlined) {
+      return base;
     }
 
-    if (focused) {
-      return theme.borderFocus;
-    }
-
-    if (widget.hovered) {
-      return theme.borderHover;
-    }
-
-    return theme.borderDefault;
+    return Border(
+      bottom: base.bottom,
+    );
   }
 
   Color get _backgroundColor {
