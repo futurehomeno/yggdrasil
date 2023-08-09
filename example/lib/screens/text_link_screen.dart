@@ -102,27 +102,6 @@ class TextLinkScreen extends StatelessWidget {
             size: YgTextLinkSize.medium,
             weight: YgTextLinkWeight.strong,
           ),
-          YgTextLink(
-            onPressed: () {},
-            text: 'Link',
-            external: true,
-            size: YgTextLinkSize.small,
-            weight: YgTextLinkWeight.strong,
-          ),
-          YgTextLink(
-            onPressed: () {},
-            text: 'Link',
-            external: true,
-            size: YgTextLinkSize.medium,
-            weight: YgTextLinkWeight.weak,
-          ),
-          YgTextLink(
-            onPressed: () {},
-            text: 'Link',
-            external: true,
-            size: YgTextLinkSize.medium,
-            weight: YgTextLinkWeight.strong,
-          ),
         ].withVerticalSpacing(10),
       ),
     );
