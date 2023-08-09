@@ -11,6 +11,7 @@ export 'home_screen.dart';
 export 'icon_screen.dart';
 export 'icons_list.dart';
 export 'list_screen.dart';
+export 'list_tile_checkbox_screen.dart';
 export 'list_tile_radio_screen.dart';
 export 'list_tile_screen.dart';
 export 'list_tile_switch_screen.dart';
