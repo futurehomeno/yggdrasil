@@ -33,7 +33,7 @@ class _TextInputScreenState extends State<TextInputScreen> {
         FocusScope.of(context).unfocus();
       },
       child: DemoScreen(
-        componentName: 'Text Input',
+        componentName: 'TextInput',
         componentDesc: 'Text Input',
         supernovaLink: 'Input',
         child: Column(
