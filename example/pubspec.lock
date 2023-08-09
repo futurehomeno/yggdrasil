@@ -134,7 +134,7 @@ packages:
     description:
       path: "packages/fh_lints"
       ref: master
-      resolved-ref: "7283c4db031d6212f18a6d00be3f12b9af7fd70c"
+      resolved-ref: "069243d1bb577872c5071282c263a9f3d534c66f"
       url: "git@github.com:futurehomeno/pubdev_registry.git"
     source: git
     version: "1.0.0"
