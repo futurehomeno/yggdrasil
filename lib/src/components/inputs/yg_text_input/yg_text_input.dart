@@ -88,7 +88,7 @@ class YgTextInput extends YgTextInputWidget with StatefulWidgetDebugMixin {
   /// Called when the user presses the [suffix].
   ///
   /// !--- IMPORTANT ---
-  /// If onSuffixPressed is defined [suffix] also has to be defined.
+  /// If [onSuffixPressed] is defined [suffix] also has to be defined.
   final VoidCallback? onSuffixPressed;
 
   /// The type of action button to use for the keyboard.
@@ -109,7 +109,7 @@ class YgTextInput extends YgTextInputWidget with StatefulWidgetDebugMixin {
   /// set to true!
   ///
   /// !--- IMPORTANT ---
-  /// If suffix is defined [onSuffixPressed] also has to be defined.
+  /// If [suffix] is defined [onSuffixPressed] also has to be defined.
   final YgIconButton? suffix;
 
   /// Whether the input is disabled.
