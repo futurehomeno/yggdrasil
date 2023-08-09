@@ -16,7 +16,7 @@ class YgBottomSheetHeader extends StatelessWidget {
     final YgBottomSheetTheme bottomSheetTheme = context.bottomSheetTheme;
 
     return Padding(
-      padding: bottomSheetTheme.headerPadding,
+      padding: bottomSheetTheme.headerHorizontalPadding,
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.stretch,
         mainAxisSize: MainAxisSize.min,
@@ -28,7 +28,7 @@ class YgBottomSheetHeader extends StatelessWidget {
             title,
             style: bottomSheetTheme.titleStyle,
           ),
-        ].withVerticalSpacing(bottomSheetTheme.titleSpacing),
+        ].withVerticalSpacing(bottomSheetTheme.handleTitleSpacing),
       ),
     );
   }
