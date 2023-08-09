@@ -4,14 +4,6 @@ import 'package:yggdrasil/yggdrasil.dart';
 ///
 /// Assumes phone number has at least 6 and no more
 /// than 15 digits.
-///
-/// When [withCountryCode] is set to true a leading + is accepted.
-///
-/// Will provider default errors for [tooShortError], [tooLongError] and
-/// [invalidError] if no custom error is specified.
-///
-/// Look at [YgDefaultValidatorErrors] and [YgDefaultValidatorErrorsProvider]
-/// for more info regarding default errors.
 class PhoneNumberValidator extends YgTextValidator {
   const PhoneNumberValidator({
     required this.withCountryCode,
@@ -20,9 +12,24 @@ class PhoneNumberValidator extends YgTextValidator {
     this.invalidError,
   });
 
+  /// The error shown when the phone number is too short.
+  ///
+  /// Overrides the default error [YgDefaultValidatorErrors.phoneNumberTooShort].
   final String? tooShortError;
+
+  /// The error shown when the phone number is too long.
+  ///
+  /// Overrides the default error [YgDefaultValidatorErrors.phoneNumberTooLong].
   final String? tooLongError;
+
+  /// The error shown when the phone number is not valid.
+  ///
+  /// Overrides the default error [YgDefaultValidatorErrors.phoneNumberInvalid].
   final String? invalidError;
+
+  /// Wether the phone number can have an country code.
+  ///
+  /// Effectively only means a leading + is accepted.
   final bool withCountryCode;
 
   @override

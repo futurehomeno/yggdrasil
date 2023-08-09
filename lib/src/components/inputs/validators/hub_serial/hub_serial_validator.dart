@@ -5,6 +5,9 @@ class HubSerialValidator extends YgTextValidator {
     this.invalidHubSerialError,
   });
 
+  /// Error shown when the hub serial is invalid.
+  ///
+  /// Overrides the default error [YgDefaultValidatorErrors.invalidHubSerial].
   final String? invalidHubSerialError;
 
   @override

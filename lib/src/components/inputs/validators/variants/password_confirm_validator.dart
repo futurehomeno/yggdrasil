@@ -13,7 +13,7 @@ class PasswordConfirmValidator extends CombinedValidator<String> {
   List<YgTextValidator> getValidators(YgDefaultValidatorErrors defaults, String? value) {
     return <YgTextValidator>[
       MatchValidator<String>(
-        otherKeyField: otherPasswordFieldKey,
+        otherFieldKey: otherPasswordFieldKey,
         error: passwordsDoNotMatchError ?? defaults.passwordsDoNotMatch,
       )
     ];

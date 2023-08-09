@@ -1,10 +1,16 @@
 import 'package:yggdrasil/yggdrasil.dart';
 
+/// Validates the zwave parameter length.
+///
+/// Makes sure the value is only 1, 2 or 4.
 class ZwaveParameterLengthValidator extends YgTextValidator {
   const ZwaveParameterLengthValidator({
     this.invalidZwaveParameterLengthError,
   });
 
+  /// The error shown when the zwave paramter is not 1, 2 or 4.
+  ///
+  /// Overrides the default error [YgDefaultValidatorErrors.invalidZwaveParameterLength].
   final String? invalidZwaveParameterLengthError;
 
   @override

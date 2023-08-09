@@ -6,7 +6,7 @@ void main() {
     const String error = 'fields_do_not_match';
     final MockTextFieldKey otherFieldKey = MockTextFieldKey();
     final MatchValidator<String> validator = MatchValidator<String>(
-      otherKeyField: otherFieldKey,
+      otherFieldKey: otherFieldKey,
       error: error,
     );
 

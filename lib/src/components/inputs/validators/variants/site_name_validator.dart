@@ -6,6 +6,9 @@ class SiteNameValidator extends CombinedValidator<String> {
     this.siteNameTooLongError,
   });
 
+  /// The error shown when the site name is longer than 30 characters.
+  ///
+  /// Overrides the default error [YgDefaultValidatorErrors.siteNameTooLong].
   final String? siteNameTooLongError;
 
   @override

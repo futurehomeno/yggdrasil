@@ -6,7 +6,10 @@ class MaxLengthValidator extends YgTextValidator {
     required this.tooLongError,
   });
 
+  /// The maximum allowed length of the validated text.
   final int max;
+
+  /// The error shown when the text is longer than [max].
   final String tooLongError;
 
   @override

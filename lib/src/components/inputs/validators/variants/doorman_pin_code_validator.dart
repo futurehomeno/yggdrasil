@@ -7,7 +7,14 @@ class DoormanPicCodeValidator extends CombinedValidator<String> {
     this.pinCodeTooShortError,
   });
 
+  /// The error shown when the pin code is too long.
+  ///
+  /// Overrides the default error [YgDefaultValidatorErrors.doormanPinCodeTooLong].
   final String? pinCodeTooLongError;
+
+  /// The error shown when the pin code is too short.
+  ///
+  /// Overrides the default error [YgDefaultValidatorErrors.doormanPinCodeTooShort].
   final String? pinCodeTooShortError;
 
   @override

@@ -1,10 +1,12 @@
 import '../_validators.dart';
 
+/// Validates the input is not null or an empty string.
 class RequiredValidator extends YgTextValidator {
   const RequiredValidator({
     this.requiredError,
   });
 
+  /// The error shown whent he input is null or an empty string.
   final String? requiredError;
 
   @override

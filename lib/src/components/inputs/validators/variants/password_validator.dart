@@ -1,10 +1,14 @@
 import 'package:yggdrasil/src/components/inputs/validators/_validators.dart';
 
+/// Validates that a password is at least 8 characters long.
 class PasswordValidator extends CombinedValidator<String> {
   const PasswordValidator({
     this.passwordTooShortError,
   });
 
+  /// The error shown when the password is shorter than 8 characters.
+  ///
+  /// Overrides the default error [YgDefaultValidatorErrors.passwordTooShort].
   final String? passwordTooShortError;
 
   @override

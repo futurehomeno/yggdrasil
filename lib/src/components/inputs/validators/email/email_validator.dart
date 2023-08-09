@@ -16,6 +16,9 @@ class EmailValidator extends YgTextValidator {
     this.invalidEmailError,
   });
 
+  /// Error shown when the email is invalid.
+  ///
+  /// Overrides the default error [YgDefaultValidatorErrors.invalidEmail].
   final String? invalidEmailError;
 
   @override

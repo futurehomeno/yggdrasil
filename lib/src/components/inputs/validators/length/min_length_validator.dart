@@ -6,7 +6,10 @@ class MinLengthValidator extends YgTextValidator {
     required this.tooShortError,
   });
 
+  /// The minimum allowed length of the validated text.
   final int min;
+
+  /// The error shown when the text is longer than [min].
   final String tooShortError;
 
   @override
