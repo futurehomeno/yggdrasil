@@ -5,7 +5,7 @@ void main() {
   group('MaxLengthValidator', () {
     const String error = 'value_too_long';
 
-    test('should return error value is too long', () {
+    test('should return an error if value is too long', () {
       // PREPARE
       const MaxLengthValidator validator = MaxLengthValidator(
         max: 1,
@@ -19,7 +19,7 @@ void main() {
       expect(result, error);
     });
 
-    test('should return null value is not too long', () {
+    test('should return null if value is not too long', () {
       // PREPARE
       const MaxLengthValidator validator = MaxLengthValidator(
         max: 2,
