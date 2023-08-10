@@ -49,30 +49,30 @@ class YgListTile extends StatelessWidget {
     assert(trailingWidgets.length <= 2, 'Cannot have more than 2 trailing widget.');
     assert(supportingWidgets.length <= 2, 'Cannot have more than 2 supporting widgets.');
 
-    final YgListTileTheme theme = context.listTileTheme;
+    final YgListTileTheme listTileTheme = context.listTileTheme;
 
     return Material(
       color: context.tokens.colors.backgroundTransparent,
       child: InkWell(
-        borderRadius: BorderRadius.circular(theme.splashRadius),
+        borderRadius: BorderRadius.circular(listTileTheme.splashRadius),
         onTap: onTap,
         child: Padding(
-          padding: theme.padding,
+          padding: listTileTheme.outerPadding,
           child: Row(
             children: <Widget>[
-              if (leadingWidgets.isNotEmpty) _buildLeadingWidgets(theme),
+              if (leadingWidgets.isNotEmpty) _buildLeadingWidgets(listTileTheme),
               Expanded(
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: <Widget>[
-                    _buildTitle(theme),
-                    if (subtitle != null) _buildSubtitle(theme),
-                  ].withVerticalSpacing(theme.contentSpacing),
+                    _buildTitle(listTileTheme),
+                    if (subtitle != null) _buildSubtitle(listTileTheme),
+                  ].withVerticalSpacing(listTileTheme.titleSubtitleSpacing),
                 ),
               ),
-              if (supportingWidgets.isNotEmpty) _buildSupportingWidgets(theme),
-              if (trailingWidgets.isNotEmpty) _buildTrailingWidgets(theme),
-            ].withHorizontalSpacing(theme.contentSpacing),
+              if (supportingWidgets.isNotEmpty) _buildSupportingWidgets(listTileTheme),
+              if (trailingWidgets.isNotEmpty) _buildTrailingWidgets(listTileTheme),
+            ].withHorizontalSpacing(listTileTheme.contentSpacing),
           ),
         ),
       ),
@@ -80,27 +80,15 @@ class YgListTile extends StatelessWidget {
   }
 
   Widget _buildTitle(YgListTileTheme listTileTheme) {
-    const double infoButtonVerticalTranslation = -10.0;
-    const EdgeInsets titleHorizontalPaddingForInfoButton = EdgeInsets.only(right: 40.0);
-
-    return Stack(
-      clipBehavior: Clip.none,
+    return Row(
       children: <Widget>[
-        Padding(
-          padding: onInfoTap != null ? titleHorizontalPaddingForInfoButton : EdgeInsets.zero,
-          child: Text(
-            title,
-            style: listTileTheme.titleTextStyle,
-            overflow: TextOverflow.ellipsis,
-          ),
+        Text(
+          title,
+          style: listTileTheme.titleTextStyle,
+          overflow: TextOverflow.ellipsis,
         ),
-        if (onInfoTap != null)
-          Positioned(
-            right: 0,
-            top: infoButtonVerticalTranslation,
-            child: _buildInfoButton(listTileTheme),
-          ),
-      ],
+        if (onInfoTap != null) _buildInfoButton(listTileTheme),
+      ].withHorizontalSpacing(listTileTheme.titleInfoSpacing),
     );
   }
 
@@ -114,7 +102,7 @@ class YgListTile extends StatelessWidget {
             style: listTileTheme.subtitleTextStyle,
           ),
         ),
-      ].withHorizontalSpacing(listTileTheme.contentSpacing),
+      ].withHorizontalSpacing(listTileTheme.subtitleSubtitleIconSpacing),
     );
   }
 
