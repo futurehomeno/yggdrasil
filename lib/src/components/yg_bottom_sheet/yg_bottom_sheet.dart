@@ -37,7 +37,7 @@ class _YgBottomSheetState extends State<YgBottomSheet> {
           child: ClipRRect(
             borderRadius: bottomSheetTheme.borderRadius,
             child: Padding(
-              padding: bottomSheetTheme.outerPadding,
+              padding: bottomSheetTheme.verticalOuterPadding,
               child: Column(
                 mainAxisSize: MainAxisSize.min,
                 crossAxisAlignment: CrossAxisAlignment.stretch,
@@ -68,10 +68,7 @@ class _YgBottomSheetState extends State<YgBottomSheet> {
         child: SingleChildScrollView(
           controller: _scrollController,
           physics: scrollPhysicsProvider?.scrollPhysics,
-          child: Padding(
-            padding: theme.contentPadding,
-            child: widget.content,
-          ),
+          child: widget.content,
         ),
       ),
     );

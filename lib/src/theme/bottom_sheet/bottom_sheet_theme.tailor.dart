@@ -12,117 +12,111 @@ class YgBottomSheetTheme extends ThemeExtension<YgBottomSheetTheme> {
   const YgBottomSheetTheme({
     required this.backgroundColor,
     required this.borderRadius,
-    required this.contentPadding,
     required this.contentSpacing,
     required this.flingVelocity,
     required this.footerPadding,
     required this.handleColor,
     required this.handleHeight,
+    required this.handleTitleSpacing,
     required this.handleWidth,
-    required this.headerPadding,
+    required this.headerHorizontalPadding,
     required this.movementAnimationCurve,
     required this.movementAnimationDuration,
-    required this.outerPadding,
     required this.scrimColor,
-    required this.titleSpacing,
     required this.titleStyle,
+    required this.verticalOuterPadding,
   });
 
   final Color backgroundColor;
   final BorderRadius borderRadius;
-  final EdgeInsets contentPadding;
   final double contentSpacing;
   final double flingVelocity;
   final EdgeInsets footerPadding;
   final Color handleColor;
   final double handleHeight;
+  final double handleTitleSpacing;
   final double handleWidth;
-  final EdgeInsets headerPadding;
+  final EdgeInsets headerHorizontalPadding;
   final Curve movementAnimationCurve;
   final Duration movementAnimationDuration;
-  final EdgeInsets outerPadding;
   final Color scrimColor;
-  final double titleSpacing;
   final TextStyle titleStyle;
+  final EdgeInsets verticalOuterPadding;
 
   static final YgBottomSheetTheme consumerLight = YgBottomSheetTheme(
     backgroundColor: _$YgBottomSheetTheme.backgroundColor[0],
     borderRadius: _$YgBottomSheetTheme.borderRadius[0],
-    contentPadding: _$YgBottomSheetTheme.contentPadding[0],
     contentSpacing: _$YgBottomSheetTheme.contentSpacing[0],
     flingVelocity: _$YgBottomSheetTheme.flingVelocity[0],
     footerPadding: _$YgBottomSheetTheme.footerPadding[0],
     handleColor: _$YgBottomSheetTheme.handleColor[0],
     handleHeight: _$YgBottomSheetTheme.handleHeight[0],
+    handleTitleSpacing: _$YgBottomSheetTheme.handleTitleSpacing[0],
     handleWidth: _$YgBottomSheetTheme.handleWidth[0],
-    headerPadding: _$YgBottomSheetTheme.headerPadding[0],
+    headerHorizontalPadding: _$YgBottomSheetTheme.headerHorizontalPadding[0],
     movementAnimationCurve: _$YgBottomSheetTheme.movementAnimationCurve[0],
     movementAnimationDuration:
         _$YgBottomSheetTheme.movementAnimationDuration[0],
-    outerPadding: _$YgBottomSheetTheme.outerPadding[0],
     scrimColor: _$YgBottomSheetTheme.scrimColor[0],
-    titleSpacing: _$YgBottomSheetTheme.titleSpacing[0],
     titleStyle: _$YgBottomSheetTheme.titleStyle[0],
+    verticalOuterPadding: _$YgBottomSheetTheme.verticalOuterPadding[0],
   );
 
   static final YgBottomSheetTheme consumerDark = YgBottomSheetTheme(
     backgroundColor: _$YgBottomSheetTheme.backgroundColor[1],
     borderRadius: _$YgBottomSheetTheme.borderRadius[1],
-    contentPadding: _$YgBottomSheetTheme.contentPadding[1],
     contentSpacing: _$YgBottomSheetTheme.contentSpacing[1],
     flingVelocity: _$YgBottomSheetTheme.flingVelocity[1],
     footerPadding: _$YgBottomSheetTheme.footerPadding[1],
     handleColor: _$YgBottomSheetTheme.handleColor[1],
     handleHeight: _$YgBottomSheetTheme.handleHeight[1],
+    handleTitleSpacing: _$YgBottomSheetTheme.handleTitleSpacing[1],
     handleWidth: _$YgBottomSheetTheme.handleWidth[1],
-    headerPadding: _$YgBottomSheetTheme.headerPadding[1],
+    headerHorizontalPadding: _$YgBottomSheetTheme.headerHorizontalPadding[1],
     movementAnimationCurve: _$YgBottomSheetTheme.movementAnimationCurve[1],
     movementAnimationDuration:
         _$YgBottomSheetTheme.movementAnimationDuration[1],
-    outerPadding: _$YgBottomSheetTheme.outerPadding[1],
     scrimColor: _$YgBottomSheetTheme.scrimColor[1],
-    titleSpacing: _$YgBottomSheetTheme.titleSpacing[1],
     titleStyle: _$YgBottomSheetTheme.titleStyle[1],
+    verticalOuterPadding: _$YgBottomSheetTheme.verticalOuterPadding[1],
   );
 
   static final YgBottomSheetTheme professionalLight = YgBottomSheetTheme(
     backgroundColor: _$YgBottomSheetTheme.backgroundColor[2],
     borderRadius: _$YgBottomSheetTheme.borderRadius[2],
-    contentPadding: _$YgBottomSheetTheme.contentPadding[2],
     contentSpacing: _$YgBottomSheetTheme.contentSpacing[2],
     flingVelocity: _$YgBottomSheetTheme.flingVelocity[2],
     footerPadding: _$YgBottomSheetTheme.footerPadding[2],
     handleColor: _$YgBottomSheetTheme.handleColor[2],
     handleHeight: _$YgBottomSheetTheme.handleHeight[2],
+    handleTitleSpacing: _$YgBottomSheetTheme.handleTitleSpacing[2],
     handleWidth: _$YgBottomSheetTheme.handleWidth[2],
-    headerPadding: _$YgBottomSheetTheme.headerPadding[2],
+    headerHorizontalPadding: _$YgBottomSheetTheme.headerHorizontalPadding[2],
     movementAnimationCurve: _$YgBottomSheetTheme.movementAnimationCurve[2],
     movementAnimationDuration:
         _$YgBottomSheetTheme.movementAnimationDuration[2],
-    outerPadding: _$YgBottomSheetTheme.outerPadding[2],
     scrimColor: _$YgBottomSheetTheme.scrimColor[2],
-    titleSpacing: _$YgBottomSheetTheme.titleSpacing[2],
     titleStyle: _$YgBottomSheetTheme.titleStyle[2],
+    verticalOuterPadding: _$YgBottomSheetTheme.verticalOuterPadding[2],
   );
 
   static final YgBottomSheetTheme professionalDark = YgBottomSheetTheme(
     backgroundColor: _$YgBottomSheetTheme.backgroundColor[3],
     borderRadius: _$YgBottomSheetTheme.borderRadius[3],
-    contentPadding: _$YgBottomSheetTheme.contentPadding[3],
     contentSpacing: _$YgBottomSheetTheme.contentSpacing[3],
     flingVelocity: _$YgBottomSheetTheme.flingVelocity[3],
     footerPadding: _$YgBottomSheetTheme.footerPadding[3],
     handleColor: _$YgBottomSheetTheme.handleColor[3],
     handleHeight: _$YgBottomSheetTheme.handleHeight[3],
+    handleTitleSpacing: _$YgBottomSheetTheme.handleTitleSpacing[3],
     handleWidth: _$YgBottomSheetTheme.handleWidth[3],
-    headerPadding: _$YgBottomSheetTheme.headerPadding[3],
+    headerHorizontalPadding: _$YgBottomSheetTheme.headerHorizontalPadding[3],
     movementAnimationCurve: _$YgBottomSheetTheme.movementAnimationCurve[3],
     movementAnimationDuration:
         _$YgBottomSheetTheme.movementAnimationDuration[3],
-    outerPadding: _$YgBottomSheetTheme.outerPadding[3],
     scrimColor: _$YgBottomSheetTheme.scrimColor[3],
-    titleSpacing: _$YgBottomSheetTheme.titleSpacing[3],
     titleStyle: _$YgBottomSheetTheme.titleStyle[3],
+    verticalOuterPadding: _$YgBottomSheetTheme.verticalOuterPadding[3],
   );
 
   static final themes = [
@@ -136,40 +130,39 @@ class YgBottomSheetTheme extends ThemeExtension<YgBottomSheetTheme> {
   YgBottomSheetTheme copyWith({
     Color? backgroundColor,
     BorderRadius? borderRadius,
-    EdgeInsets? contentPadding,
     double? contentSpacing,
     double? flingVelocity,
     EdgeInsets? footerPadding,
     Color? handleColor,
     double? handleHeight,
+    double? handleTitleSpacing,
     double? handleWidth,
-    EdgeInsets? headerPadding,
+    EdgeInsets? headerHorizontalPadding,
     Curve? movementAnimationCurve,
     Duration? movementAnimationDuration,
-    EdgeInsets? outerPadding,
     Color? scrimColor,
-    double? titleSpacing,
     TextStyle? titleStyle,
+    EdgeInsets? verticalOuterPadding,
   }) {
     return YgBottomSheetTheme(
       backgroundColor: backgroundColor ?? this.backgroundColor,
       borderRadius: borderRadius ?? this.borderRadius,
-      contentPadding: contentPadding ?? this.contentPadding,
       contentSpacing: contentSpacing ?? this.contentSpacing,
       flingVelocity: flingVelocity ?? this.flingVelocity,
       footerPadding: footerPadding ?? this.footerPadding,
       handleColor: handleColor ?? this.handleColor,
       handleHeight: handleHeight ?? this.handleHeight,
+      handleTitleSpacing: handleTitleSpacing ?? this.handleTitleSpacing,
       handleWidth: handleWidth ?? this.handleWidth,
-      headerPadding: headerPadding ?? this.headerPadding,
+      headerHorizontalPadding:
+          headerHorizontalPadding ?? this.headerHorizontalPadding,
       movementAnimationCurve:
           movementAnimationCurve ?? this.movementAnimationCurve,
       movementAnimationDuration:
           movementAnimationDuration ?? this.movementAnimationDuration,
-      outerPadding: outerPadding ?? this.outerPadding,
       scrimColor: scrimColor ?? this.scrimColor,
-      titleSpacing: titleSpacing ?? this.titleSpacing,
       titleStyle: titleStyle ?? this.titleStyle,
+      verticalOuterPadding: verticalOuterPadding ?? this.verticalOuterPadding,
     );
   }
 
@@ -180,22 +173,24 @@ class YgBottomSheetTheme extends ThemeExtension<YgBottomSheetTheme> {
     return YgBottomSheetTheme(
       backgroundColor: Color.lerp(backgroundColor, other.backgroundColor, t)!,
       borderRadius: t < 0.5 ? borderRadius : other.borderRadius,
-      contentPadding: t < 0.5 ? contentPadding : other.contentPadding,
       contentSpacing: t < 0.5 ? contentSpacing : other.contentSpacing,
       flingVelocity: t < 0.5 ? flingVelocity : other.flingVelocity,
       footerPadding: t < 0.5 ? footerPadding : other.footerPadding,
       handleColor: Color.lerp(handleColor, other.handleColor, t)!,
       handleHeight: t < 0.5 ? handleHeight : other.handleHeight,
+      handleTitleSpacing:
+          t < 0.5 ? handleTitleSpacing : other.handleTitleSpacing,
       handleWidth: t < 0.5 ? handleWidth : other.handleWidth,
-      headerPadding: t < 0.5 ? headerPadding : other.headerPadding,
+      headerHorizontalPadding:
+          t < 0.5 ? headerHorizontalPadding : other.headerHorizontalPadding,
       movementAnimationCurve:
           t < 0.5 ? movementAnimationCurve : other.movementAnimationCurve,
       movementAnimationDuration:
           t < 0.5 ? movementAnimationDuration : other.movementAnimationDuration,
-      outerPadding: t < 0.5 ? outerPadding : other.outerPadding,
       scrimColor: Color.lerp(scrimColor, other.scrimColor, t)!,
-      titleSpacing: t < 0.5 ? titleSpacing : other.titleSpacing,
       titleStyle: TextStyle.lerp(titleStyle, other.titleStyle, t)!,
+      verticalOuterPadding:
+          t < 0.5 ? verticalOuterPadding : other.verticalOuterPadding,
     );
   }
 
@@ -209,8 +204,6 @@ class YgBottomSheetTheme extends ThemeExtension<YgBottomSheetTheme> {
             const DeepCollectionEquality()
                 .equals(borderRadius, other.borderRadius) &&
             const DeepCollectionEquality()
-                .equals(contentPadding, other.contentPadding) &&
-            const DeepCollectionEquality()
                 .equals(contentSpacing, other.contentSpacing) &&
             const DeepCollectionEquality()
                 .equals(flingVelocity, other.flingVelocity) &&
@@ -221,21 +214,21 @@ class YgBottomSheetTheme extends ThemeExtension<YgBottomSheetTheme> {
             const DeepCollectionEquality()
                 .equals(handleHeight, other.handleHeight) &&
             const DeepCollectionEquality()
-                .equals(handleWidth, other.handleWidth) &&
+                .equals(handleTitleSpacing, other.handleTitleSpacing) &&
             const DeepCollectionEquality()
-                .equals(headerPadding, other.headerPadding) &&
+                .equals(handleWidth, other.handleWidth) &&
+            const DeepCollectionEquality().equals(
+                headerHorizontalPadding, other.headerHorizontalPadding) &&
             const DeepCollectionEquality()
                 .equals(movementAnimationCurve, other.movementAnimationCurve) &&
             const DeepCollectionEquality().equals(
                 movementAnimationDuration, other.movementAnimationDuration) &&
             const DeepCollectionEquality()
-                .equals(outerPadding, other.outerPadding) &&
-            const DeepCollectionEquality()
                 .equals(scrimColor, other.scrimColor) &&
             const DeepCollectionEquality()
-                .equals(titleSpacing, other.titleSpacing) &&
+                .equals(titleStyle, other.titleStyle) &&
             const DeepCollectionEquality()
-                .equals(titleStyle, other.titleStyle));
+                .equals(verticalOuterPadding, other.verticalOuterPadding));
   }
 
   @override
@@ -244,20 +237,19 @@ class YgBottomSheetTheme extends ThemeExtension<YgBottomSheetTheme> {
       runtimeType.hashCode,
       const DeepCollectionEquality().hash(backgroundColor),
       const DeepCollectionEquality().hash(borderRadius),
-      const DeepCollectionEquality().hash(contentPadding),
       const DeepCollectionEquality().hash(contentSpacing),
       const DeepCollectionEquality().hash(flingVelocity),
       const DeepCollectionEquality().hash(footerPadding),
       const DeepCollectionEquality().hash(handleColor),
       const DeepCollectionEquality().hash(handleHeight),
+      const DeepCollectionEquality().hash(handleTitleSpacing),
       const DeepCollectionEquality().hash(handleWidth),
-      const DeepCollectionEquality().hash(headerPadding),
+      const DeepCollectionEquality().hash(headerHorizontalPadding),
       const DeepCollectionEquality().hash(movementAnimationCurve),
       const DeepCollectionEquality().hash(movementAnimationDuration),
-      const DeepCollectionEquality().hash(outerPadding),
       const DeepCollectionEquality().hash(scrimColor),
-      const DeepCollectionEquality().hash(titleSpacing),
       const DeepCollectionEquality().hash(titleStyle),
+      const DeepCollectionEquality().hash(verticalOuterPadding),
     );
   }
 }
