@@ -14,6 +14,7 @@ export 'list_screen.dart';
 export 'list_tile_radio_screen.dart';
 export 'list_tile_screen.dart';
 export 'list_tile_switch_screen.dart';
+export 'progress_indicator_screen.dart';
 export 'radio_screen.dart';
 export 'snack_bar_screen.dart';
 export 'tags_screen.dart';
