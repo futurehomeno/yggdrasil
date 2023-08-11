@@ -47,7 +47,7 @@ class YgCheckboxBorderColorProperty extends MaterialStateProperty<Color?> with D
     if (states.contains(MaterialState.pressed)) {
       return deselectedPressed;
     }
-    if (states.contains(MaterialState.hovered)) {
+    if (states.contains(MaterialState.hovered) || states.contains(MaterialState.focused)) {
       return deselectedHovered;
     }
 

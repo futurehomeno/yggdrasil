@@ -16,12 +16,11 @@ class _$YgCheckboxTheme {
     professional_dark.FhDimensions.md,
   ];
 
-  // TODO(bjhandeland): Replace with theme token.
   static List<double> padding = <double>[
-    2.0,
-    2.0,
-    2.0,
-    2.0,
+    consumer_light.FhDimensions.xxs,
+    consumer_dark.FhDimensions.xxs,
+    professional_light.FhDimensions.xxs,
+    professional_dark.FhDimensions.xxs,
   ];
 
   static List<Color> selectedFillColor = <Color>[
