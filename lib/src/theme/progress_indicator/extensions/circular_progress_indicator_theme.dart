@@ -16,14 +16,14 @@ class _$CircularProgressIndicatorTheme {
     professional_dark.FhColors.interactiveHighlightDefault,
   ];
 
-  static List<double> indicatorContainerSize = <double>[
+  static List<double> containerSize = <double>[
     consumer_light.FhDimensions.xxl,
     consumer_dark.FhDimensions.xxl,
     professional_light.FhDimensions.xxl,
     professional_dark.FhDimensions.xxl,
   ];
 
-  static List<double> indicatorSize = <double>[
+  static List<double> size = <double>[
     consumer_light.FhDimensions.xl,
     consumer_dark.FhDimensions.xl,
     professional_light.FhDimensions.xl,

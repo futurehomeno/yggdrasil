@@ -2,31 +2,33 @@ import 'package:flutter/material.dart';
 import 'package:yggdrasil/src/theme/_theme.dart';
 import 'package:yggdrasil/src/theme/progress_indicator/extensions/_extensions.dart';
 
-/// Indicates progress in a circular line.
+/// Shows progress along a circle.
 class YgCircularProgressIndicator extends StatelessWidget {
   const YgCircularProgressIndicator({
-    this.value,
     super.key,
+    this.value,
   });
 
   /// Used for specifying the current progress.
+  ///
   /// Value must be in range of 0.0 to 1.0.
+  /// Pass `null` to turn into an indeterminate progress indicator.
   final double? value;
 
   @override
   Widget build(BuildContext context) {
-    final YgProgressIndicatorTheme indicatorTheme = context.progressIndicatorTheme;
-    final CircularProgressIndicatorTheme theme = indicatorTheme.circularProgressIndicatorTheme;
+    final CircularProgressIndicatorTheme circularProgressIndicatorTheme =
+        context.progressIndicatorTheme.circularProgressIndicatorTheme;
 
     return SizedBox.square(
-      dimension: theme.indicatorContainerSize,
+      dimension: circularProgressIndicatorTheme.containerSize,
       child: Center(
         child: SizedBox.square(
-          dimension: theme.indicatorSize,
+          dimension: circularProgressIndicatorTheme.size,
           child: CircularProgressIndicator(
             value: value,
-            color: theme.color,
-            strokeWidth: theme.strokeWidth,
+            color: circularProgressIndicatorTheme.color,
+            strokeWidth: circularProgressIndicatorTheme.strokeWidth,
           ),
         ),
       ),
