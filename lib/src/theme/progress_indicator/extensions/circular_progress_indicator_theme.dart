@@ -29,4 +29,11 @@ class _$CircularProgressIndicatorTheme {
     professional_light.FhDimensions.xl,
     professional_dark.FhDimensions.xl,
   ];
+
+  static List<double> strokeWidth = <double>[
+    consumer_light.FhDimensions.xxs,
+    consumer_dark.FhDimensions.xxs,
+    professional_light.FhDimensions.xxs,
+    professional_dark.FhDimensions.xxs,
+  ];
 }

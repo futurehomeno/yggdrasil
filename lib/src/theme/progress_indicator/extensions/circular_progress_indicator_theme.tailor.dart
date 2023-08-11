@@ -14,11 +14,13 @@ class CircularProgressIndicatorTheme
     required this.color,
     required this.indicatorContainerSize,
     required this.indicatorSize,
+    required this.strokeWidth,
   });
 
   final Color color;
   final double indicatorContainerSize;
   final double indicatorSize;
+  final double strokeWidth;
 
   static final CircularProgressIndicatorTheme consumerLight =
       CircularProgressIndicatorTheme(
@@ -26,6 +28,7 @@ class CircularProgressIndicatorTheme
     indicatorContainerSize:
         _$CircularProgressIndicatorTheme.indicatorContainerSize[0],
     indicatorSize: _$CircularProgressIndicatorTheme.indicatorSize[0],
+    strokeWidth: _$CircularProgressIndicatorTheme.strokeWidth[0],
   );
 
   static final CircularProgressIndicatorTheme consumerDark =
@@ -34,6 +37,7 @@ class CircularProgressIndicatorTheme
     indicatorContainerSize:
         _$CircularProgressIndicatorTheme.indicatorContainerSize[1],
     indicatorSize: _$CircularProgressIndicatorTheme.indicatorSize[1],
+    strokeWidth: _$CircularProgressIndicatorTheme.strokeWidth[1],
   );
 
   static final CircularProgressIndicatorTheme professionalLight =
@@ -42,6 +46,7 @@ class CircularProgressIndicatorTheme
     indicatorContainerSize:
         _$CircularProgressIndicatorTheme.indicatorContainerSize[2],
     indicatorSize: _$CircularProgressIndicatorTheme.indicatorSize[2],
+    strokeWidth: _$CircularProgressIndicatorTheme.strokeWidth[2],
   );
 
   static final CircularProgressIndicatorTheme professionalDark =
@@ -50,6 +55,7 @@ class CircularProgressIndicatorTheme
     indicatorContainerSize:
         _$CircularProgressIndicatorTheme.indicatorContainerSize[3],
     indicatorSize: _$CircularProgressIndicatorTheme.indicatorSize[3],
+    strokeWidth: _$CircularProgressIndicatorTheme.strokeWidth[3],
   );
 
   static final themes = [
@@ -64,12 +70,14 @@ class CircularProgressIndicatorTheme
     Color? color,
     double? indicatorContainerSize,
     double? indicatorSize,
+    double? strokeWidth,
   }) {
     return CircularProgressIndicatorTheme(
       color: color ?? this.color,
       indicatorContainerSize:
           indicatorContainerSize ?? this.indicatorContainerSize,
       indicatorSize: indicatorSize ?? this.indicatorSize,
+      strokeWidth: strokeWidth ?? this.strokeWidth,
     );
   }
 
@@ -84,6 +92,7 @@ class CircularProgressIndicatorTheme
       indicatorContainerSize:
           t < 0.5 ? indicatorContainerSize : other.indicatorContainerSize,
       indicatorSize: t < 0.5 ? indicatorSize : other.indicatorSize,
+      strokeWidth: t < 0.5 ? strokeWidth : other.strokeWidth,
     );
   }
 
@@ -96,7 +105,9 @@ class CircularProgressIndicatorTheme
             const DeepCollectionEquality()
                 .equals(indicatorContainerSize, other.indicatorContainerSize) &&
             const DeepCollectionEquality()
-                .equals(indicatorSize, other.indicatorSize));
+                .equals(indicatorSize, other.indicatorSize) &&
+            const DeepCollectionEquality()
+                .equals(strokeWidth, other.strokeWidth));
   }
 
   @override
@@ -106,6 +117,7 @@ class CircularProgressIndicatorTheme
       const DeepCollectionEquality().hash(color),
       const DeepCollectionEquality().hash(indicatorContainerSize),
       const DeepCollectionEquality().hash(indicatorSize),
+      const DeepCollectionEquality().hash(strokeWidth),
     );
   }
 }
