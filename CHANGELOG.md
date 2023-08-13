@@ -1,10 +1,20 @@
+# 1.3.0 [11.08.2023 14:30]
+
+[feature] Added YgCircularProgressIndicator component.
+[feature] Added YgLinearProgressIndicator component.
+[feature] Added YgRadio component.
+[feature] Added YgRadioListTile component.
+[fix] "Info" icon in title no longer floats upwards.
+[fix] Fixed padding and spacing for the YgBottomSheet.
+[improvement] Adjusted ListTile spacing according to design.
+
 # 1.2.1 [04.08.2023 13:46]
 
-[improvement] Set seed color to override purple default of m3.
 [dev-improvement] Card screen reworked to better showcase examples.
-[fix] Changed import of Open Sans to OpenSans to that it actually imports.
 [dev-improvement] Changed SwitchListTile example with trailing widget to use IconButton.
+[fix] Changed import of Open Sans to OpenSans to that it actually imports.
 [fix] Changed size of IconButton for SnackBar to small.
+[improvement] Set seed color to override purple default of m3.
 
 # 1.2.0 [04.08.2023 09:42]
 
