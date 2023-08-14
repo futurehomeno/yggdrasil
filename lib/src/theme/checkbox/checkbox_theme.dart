@@ -149,18 +149,11 @@ class _$YgCheckboxTheme {
     professional_dark.FhColors.iconDisabled,
   ];
 
-  static List<TextStyle> titleTextStyle = <TextStyle>[
+  static List<TextStyle> checkboxItemTitleTextStyle = <TextStyle>[
     consumer_light.FhTextStyles.paragraph2Regular,
     consumer_dark.FhTextStyles.paragraph2Regular,
     professional_light.FhTextStyles.paragraph2Regular,
     professional_dark.FhTextStyles.paragraph2Regular,
-  ];
-
-  static List<TextStyle> descriptionTextStyle = <TextStyle>[
-    consumer_light.FhTextStyles.caption1Regular,
-    consumer_dark.FhTextStyles.caption1Regular,
-    professional_light.FhTextStyles.caption1Regular,
-    professional_dark.FhTextStyles.caption1Regular,
   ];
 
   static List<double> checkboxItemCheckboxTitleSpacing = <double>[
@@ -170,7 +163,7 @@ class _$YgCheckboxTheme {
     professional_dark.FhDimensions.xs,
   ];
 
-  static List<TextStyle> labelTextStyle = <TextStyle>[
+  static List<TextStyle> checkboxGroupLabelTextStyle = <TextStyle>[
     consumer_light.FhTextStyles.paragraph2Medium,
     consumer_dark.FhTextStyles.paragraph2Medium,
     professional_light.FhTextStyles.paragraph2Medium,

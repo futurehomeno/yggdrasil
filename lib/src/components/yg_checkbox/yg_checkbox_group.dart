@@ -13,15 +13,17 @@ class YgCheckboxGroup extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final YgCheckboxTheme checkboxTheme = context.checkboxTheme;
+
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: <Widget>[
         Text(
           label,
-          style: context.checkboxTheme.labelTextStyle,
+          style: checkboxTheme.checkboxGroupLabelTextStyle,
         ),
         ...checkboxItems,
-      ].withVerticalSpacing(context.checkboxTheme.checkboxGroupLabelColumnSpacing),
+      ].withVerticalSpacing(checkboxTheme.checkboxGroupLabelColumnSpacing),
     );
   }
 }

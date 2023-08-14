@@ -1,6 +1,5 @@
 import 'package:flutter/cupertino.dart';
 import 'package:yggdrasil/src/theme/_theme.dart';
-import 'package:yggdrasil/src/theme/checkbox/_checkbox.dart';
 
 import 'properties/_properties.dart';
 

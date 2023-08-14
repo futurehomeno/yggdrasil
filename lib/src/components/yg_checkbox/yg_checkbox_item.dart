@@ -1,7 +1,10 @@
 import 'package:flutter/material.dart';
-import 'package:yggdrasil/yggdrasil.dart';
+import 'package:yggdrasil/src/extensions/_extensions.dart';
+import 'package:yggdrasil/src/theme/_theme.dart';
+import 'package:yggdrasil/src/utils/_utils.dart';
 
-import '../yg_switch/helpers/_yg_switch_helpers.dart';
+import 'helpers/_helpers.dart';
+import 'yg_checkbox.dart';
 
 class YgCheckboxItem extends StatelessWidget {
   const YgCheckboxItem({
@@ -21,6 +24,8 @@ class YgCheckboxItem extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final YgCheckboxTheme checkboxTheme = context.checkboxTheme;
+
     return Material(
       type: MaterialType.transparency,
       child: InkWell(
@@ -35,17 +40,17 @@ class YgCheckboxItem extends StatelessWidget {
             Expanded(
               child: Text(
                 title,
-                style: context.checkboxTheme.titleTextStyle,
+                style: checkboxTheme.checkboxItemTitleTextStyle,
               ),
             ),
-          ].withHorizontalSpacing(context.checkboxTheme.checkboxItemCheckboxTitleSpacing),
+          ].withHorizontalSpacing(checkboxTheme.checkboxItemCheckboxTitleSpacing),
         ),
       ),
     );
   }
 
   void _onTap() {
-    final bool? nextValue = YgSwitchHelpers.getNextValue(checkbox.value, checkbox.triState);
+    final bool? nextValue = YgCheckboxHelpers.getNextValue(checkbox.value, checkbox.triState);
     checkbox.onChanged?.call(nextValue);
   }
 }
