@@ -22,7 +22,7 @@ class YgCheckboxItem extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Material(
-      color: context.tokens.colors.backgroundTransparent,
+      type: MaterialType.transparency,
       child: InkWell(
         onTap: checkbox.onChanged == null ? null : _onTap,
         child: Row(
