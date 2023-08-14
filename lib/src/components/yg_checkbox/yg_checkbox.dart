@@ -2,11 +2,10 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:yggdrasil/src/components/yg_checkbox/helpers/_helpers.dart';
 import 'package:yggdrasil/src/components/yg_checkbox/yg_checkbox.style.dart';
-import 'package:yggdrasil/src/components/yg_checkbox/yg_checkbox_line.dart';
 import 'package:yggdrasil/src/theme/checkbox/_checkbox.dart';
 import 'package:yggdrasil/yggdrasil.dart';
 
-import 'yg_checkbox_checkmark.dart';
+import 'widgets/_widgets.dart';
 
 /// Yggdrasil radio button.
 ///

@@ -149,6 +149,41 @@ class _$YgCheckboxTheme {
     professional_dark.FhColors.iconDisabled,
   ];
 
+  static List<TextStyle> titleTextStyle = <TextStyle>[
+    consumer_light.FhTextStyles.paragraph2Regular,
+    consumer_dark.FhTextStyles.paragraph2Regular,
+    professional_light.FhTextStyles.paragraph2Regular,
+    professional_dark.FhTextStyles.paragraph2Regular,
+  ];
+
+  static List<TextStyle> descriptionTextStyle = <TextStyle>[
+    consumer_light.FhTextStyles.caption1Regular,
+    consumer_dark.FhTextStyles.caption1Regular,
+    professional_light.FhTextStyles.caption1Regular,
+    professional_dark.FhTextStyles.caption1Regular,
+  ];
+
+  static List<double> checkboxItemCheckboxTitleSpacing = <double>[
+    consumer_light.FhDimensions.xs,
+    consumer_dark.FhDimensions.xs,
+    professional_light.FhDimensions.xs,
+    professional_dark.FhDimensions.xs,
+  ];
+
+  static List<TextStyle> labelTextStyle = <TextStyle>[
+    consumer_light.FhTextStyles.paragraph2Medium,
+    consumer_dark.FhTextStyles.paragraph2Medium,
+    professional_light.FhTextStyles.paragraph2Medium,
+    professional_dark.FhTextStyles.paragraph2Medium,
+  ];
+
+  static List<double> checkboxGroupLabelColumnSpacing = <double>[
+    consumer_light.FhDimensions.xs,
+    consumer_dark.FhDimensions.xs,
+    professional_light.FhDimensions.xs,
+    professional_dark.FhDimensions.xs,
+  ];
+
   // TODO(bjhandeland): Replace with theme token.
   static List<Duration> animationDuration = <Duration>[
     const Duration(milliseconds: 120),
