@@ -23,7 +23,7 @@ class EmailValidator extends YgTextValidator {
 
   @override
   String? validate(YgDefaultValidatorErrors defaults, String? value) {
-    if (value == null) {
+    if (value == null || value.isEmpty) {
       return null;
     }
 
