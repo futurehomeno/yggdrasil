@@ -39,22 +39,35 @@ class _$YgListTileTheme {
     ),
   ];
 
-  static List<EdgeInsets> padding = <EdgeInsets>[
-    const EdgeInsets.all(
-      consumer_light.FhDimensions.sm,
-    ),
-    const EdgeInsets.all(
-      consumer_dark.FhDimensions.sm,
-    ),
-    const EdgeInsets.all(
-      professional_light.FhDimensions.sm,
-    ),
-    const EdgeInsets.all(
-      professional_dark.FhDimensions.sm,
-    )
+  static List<EdgeInsets> outerPadding = <EdgeInsets>[
+    const EdgeInsets.all(consumer_light.FhDimensions.sm),
+    const EdgeInsets.all(consumer_dark.FhDimensions.sm),
+    const EdgeInsets.all(professional_light.FhDimensions.sm),
+    const EdgeInsets.all(professional_dark.FhDimensions.sm)
   ];
 
   static List<double> contentSpacing = <double>[
+    consumer_light.FhDimensions.sm,
+    consumer_dark.FhDimensions.sm,
+    professional_light.FhDimensions.sm,
+    professional_dark.FhDimensions.sm,
+  ];
+
+  static List<double> titleSubtitleSpacing = <double>[
+    consumer_light.FhDimensions.xxs,
+    consumer_dark.FhDimensions.xxs,
+    professional_light.FhDimensions.xxs,
+    professional_dark.FhDimensions.xxs,
+  ];
+
+  static List<double> titleInfoSpacing = <double>[
+    consumer_light.FhDimensions.xxs,
+    consumer_dark.FhDimensions.xxs,
+    professional_light.FhDimensions.xxs,
+    professional_dark.FhDimensions.xxs,
+  ];
+
+  static List<double> subtitleSubtitleIconSpacing = <double>[
     consumer_light.FhDimensions.xxs,
     consumer_dark.FhDimensions.xxs,
     professional_light.FhDimensions.xxs,

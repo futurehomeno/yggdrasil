@@ -63,92 +63,42 @@ class _$YgBottomSheetTheme {
     ),
   ];
 
-  static const List<EdgeInsets> outerPadding = <EdgeInsets>[
-    EdgeInsets.only(
-      top: consumer_light.FhDimensions.md,
-      bottom: consumer_light.FhDimensions.lg,
-    ),
-    EdgeInsets.only(
-      top: consumer_dark.FhDimensions.md,
-      bottom: consumer_dark.FhDimensions.lg,
-    ),
-    EdgeInsets.only(
-      top: professional_light.FhDimensions.md,
-      bottom: professional_light.FhDimensions.lg,
-    ),
-    EdgeInsets.only(
-      top: professional_dark.FhDimensions.md,
-      bottom: professional_dark.FhDimensions.lg,
-    ),
+  // Vertical outer padding of thw whole sheet.
+  static const List<EdgeInsets> verticalOuterPadding = <EdgeInsets>[
+    EdgeInsets.symmetric(vertical: consumer_light.FhDimensions.md),
+    EdgeInsets.symmetric(vertical: consumer_dark.FhDimensions.md),
+    EdgeInsets.symmetric(vertical: professional_light.FhDimensions.md),
+    EdgeInsets.symmetric(vertical: professional_dark.FhDimensions.md),
   ];
 
-  static const List<EdgeInsets> headerPadding = <EdgeInsets>[
-    EdgeInsets.fromLTRB(
-      consumer_light.FhDimensions.xl,
-      0.0,
-      consumer_light.FhDimensions.xl,
-      consumer_light.FhDimensions.md,
-    ),
-    EdgeInsets.fromLTRB(
-      consumer_dark.FhDimensions.xl,
-      0.0,
-      consumer_dark.FhDimensions.xl,
-      consumer_dark.FhDimensions.md,
-    ),
-    EdgeInsets.fromLTRB(
-      professional_light.FhDimensions.xl,
-      0.0,
-      professional_light.FhDimensions.xl,
-      professional_light.FhDimensions.md,
-    ),
-    EdgeInsets.fromLTRB(
-      professional_dark.FhDimensions.xl,
-      0.0,
-      professional_dark.FhDimensions.xl,
-      professional_dark.FhDimensions.md,
-    ),
+  static const List<EdgeInsets> headerHorizontalPadding = <EdgeInsets>[
+    EdgeInsets.symmetric(horizontal: consumer_light.FhDimensions.md),
+    EdgeInsets.symmetric(horizontal: consumer_dark.FhDimensions.md),
+    EdgeInsets.symmetric(horizontal: professional_light.FhDimensions.md),
+    EdgeInsets.symmetric(horizontal: professional_dark.FhDimensions.md),
   ];
 
-  static const List<EdgeInsets> contentPadding = <EdgeInsets>[
-    EdgeInsets.symmetric(
-      horizontal: consumer_light.FhDimensions.xl,
-    ),
-    EdgeInsets.symmetric(
-      horizontal: consumer_dark.FhDimensions.xl,
-    ),
-    EdgeInsets.symmetric(
-      horizontal: professional_light.FhDimensions.xl,
-    ),
-    EdgeInsets.symmetric(
-      horizontal: professional_dark.FhDimensions.xl,
-    ),
+  // Spacing between the title and the handle
+  static List<double> handleTitleSpacing = <double>[
+    consumer_light.FhDimensions.xs,
+    consumer_dark.FhDimensions.xs,
+    professional_light.FhDimensions.xs,
+    professional_dark.FhDimensions.xs,
+  ];
+
+  // Spacing between the content.
+  static List<double> contentSpacing = <double>[
+    consumer_light.FhDimensions.md,
+    consumer_dark.FhDimensions.md,
+    professional_light.FhDimensions.md,
+    professional_dark.FhDimensions.md,
   ];
 
   static const List<EdgeInsets> footerPadding = <EdgeInsets>[
-    EdgeInsets.fromLTRB(
-      consumer_light.FhDimensions.xl,
-      0.0,
-      consumer_light.FhDimensions.xl,
-      0.0,
-    ),
-    EdgeInsets.fromLTRB(
-      consumer_dark.FhDimensions.xl,
-      0.0,
-      consumer_dark.FhDimensions.xl,
-      0.0,
-    ),
-    EdgeInsets.fromLTRB(
-      professional_light.FhDimensions.xl,
-      0.0,
-      professional_light.FhDimensions.xl,
-      0.0,
-    ),
-    EdgeInsets.fromLTRB(
-      professional_dark.FhDimensions.xl,
-      0.0,
-      professional_dark.FhDimensions.xl,
-      0.0,
-    ),
+    EdgeInsets.symmetric(horizontal: consumer_light.FhDimensions.md),
+    EdgeInsets.symmetric(horizontal: consumer_dark.FhDimensions.md),
+    EdgeInsets.symmetric(horizontal: professional_light.FhDimensions.md),
+    EdgeInsets.symmetric(horizontal: professional_dark.FhDimensions.md),
   ];
 
   static List<TextStyle> titleStyle = <TextStyle>[
@@ -164,20 +114,6 @@ class _$YgBottomSheetTheme {
     professional_dark.FhTextStyles.sectionHeading2Medium.copyWith(
       color: professional_dark.FhColors.textDefault,
     ),
-  ];
-
-  static List<double> titleSpacing = <double>[
-    consumer_light.FhDimensions.sm,
-    consumer_dark.FhDimensions.sm,
-    professional_light.FhDimensions.sm,
-    professional_dark.FhDimensions.sm,
-  ];
-
-  static List<double> contentSpacing = <double>[
-    consumer_light.FhDimensions.xl,
-    consumer_dark.FhDimensions.xl,
-    professional_light.FhDimensions.xl,
-    professional_dark.FhDimensions.xl,
   ];
 
   static List<double> flingVelocity = <double>[
