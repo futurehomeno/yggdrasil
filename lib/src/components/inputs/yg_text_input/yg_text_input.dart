@@ -4,8 +4,8 @@ import 'package:yggdrasil/yggdrasil.dart';
 
 import 'widgets/_widgets.dart';
 
-class YgTextInput extends YgTextInputWidget with StatefulWidgetDebugMixin {
-  const YgTextInput({
+class YgTextField extends YgTextFieldBaseWidget with StatefulWidgetDebugMixin {
+  const YgTextField({
     super.key,
     super.controller,
     super.focusNode,
@@ -26,8 +26,8 @@ class YgTextInput extends YgTextInputWidget with StatefulWidgetDebugMixin {
     this.autocorrect = true,
     this.obscureText = false,
     this.showObscureTextButton = true,
-    this.size = YgTextInputSize.large,
-    this.variant = YgTextInputVariant.standard,
+    this.size = YgTextFieldSize.large,
+    this.variant = YgTextFieldVariant.standard,
     this.textCapitalization = TextCapitalization.none,
   })  : assert(
           maxLines == null || minLines == null || maxLines >= minLines,
@@ -62,7 +62,7 @@ class YgTextInput extends YgTextInputWidget with StatefulWidgetDebugMixin {
   final ValueChanged<String>? onChanged;
 
   /// The variant of the input.
-  final YgTextInputVariant variant;
+  final YgTextFieldVariant variant;
 
   /// The label shown on top of the input.
   final String label;
@@ -120,7 +120,7 @@ class YgTextInput extends YgTextInputWidget with StatefulWidgetDebugMixin {
   /// The size of the input.
   ///
   /// Primarily affects the height of the input.
-  final YgTextInputSize size;
+  final YgTextFieldSize size;
 
   /// The type of keyboard to use for editing the text.
   ///
@@ -207,14 +207,14 @@ class YgTextInput extends YgTextInputWidget with StatefulWidgetDebugMixin {
   final List<TextInputFormatter>? inputFormatters;
 
   @override
-  State<YgTextInput> createState() => _YgTextInputState();
+  State<YgTextField> createState() => _YgTextFieldState();
 }
 
-class _YgTextInputState extends YgTextInputWidgetState<YgTextInput> {
-  /// Wether to hide the obscured text or not.
+class _YgTextFieldState extends YgTextFieldBaseWidgetState<YgTextField> {
+  /// Whether to hide the obscured text or not.
   bool _obscureTextToggled = true;
 
-  /// wether the input is being hovered over.
+  /// Whether the input is being hovered over.
   bool _hovered = false;
 
   @override
@@ -225,7 +225,7 @@ class _YgTextInputState extends YgTextInputWidgetState<YgTextInput> {
       child: Column(
         mainAxisSize: MainAxisSize.min,
         children: <Widget>[
-          YgTextInputDecoration(
+          YgTextFieldDecoration(
             variant: widget.variant,
             controller: widget.controller,
             disabled: widget.disabled,
@@ -238,7 +238,7 @@ class _YgTextInputState extends YgTextInputWidgetState<YgTextInput> {
                 crossAxisAlignment: CrossAxisAlignment.center,
                 children: <Widget>[
                   Expanded(
-                    child: YgTextInputContent(
+                    child: YgTextFieldContent(
                       onEditingComplete: widget.onEditingComplete,
                       textInputAction: widget.textInputAction,
                       controller: widget.controller,
@@ -326,12 +326,12 @@ class _YgTextInputState extends YgTextInputWidgetState<YgTextInput> {
   EdgeInsets _contentPadding(bool suffix) {
     final EdgeInsets base = EdgeInsets.symmetric(
       vertical: switch (widget.size) {
-        YgTextInputSize.large => theme.largeVerticalContentPadding,
-        YgTextInputSize.medium => theme.mediumVerticalContentPadding,
+        YgTextFieldSize.large => theme.largeVerticalContentPadding,
+        YgTextFieldSize.medium => theme.mediumVerticalContentPadding,
       },
       horizontal: switch (widget.variant) {
-        YgTextInputVariant.outlined => theme.outlinedHorizontalContentPadding,
-        YgTextInputVariant.standard => theme.standardHorizontalContentPadding,
+        YgTextFieldVariant.outlined => theme.outlinedHorizontalContentPadding,
+        YgTextFieldVariant.standard => 0,
       },
     );
 
@@ -352,8 +352,8 @@ class _YgTextInputState extends YgTextInputWidgetState<YgTextInput> {
     final bool renderShowObscureTextIcon = suffix == null && widget.obscureText && widget.showObscureTextButton;
 
     final EdgeInsets padding = switch (widget.variant) {
-      YgTextInputVariant.outlined => theme.outlinedSuffixPadding,
-      YgTextInputVariant.standard => theme.standardSuffixPadding,
+      YgTextFieldVariant.outlined => theme.outlinedSuffixPadding,
+      YgTextFieldVariant.standard => theme.standardSuffixPadding,
     };
 
     if (renderShowObscureTextIcon) {

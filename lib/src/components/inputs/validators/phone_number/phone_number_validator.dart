@@ -27,7 +27,7 @@ class PhoneNumberValidator extends YgTextValidator {
   /// Overrides the default error [YgDefaultValidatorErrors.phoneNumberInvalid].
   final String? invalidError;
 
-  /// Wether the phone number can have an country code.
+  /// Whether the phone number can have an country code.
   ///
   /// Effectively only means a leading + is accepted.
   final bool withCountryCode;

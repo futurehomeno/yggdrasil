@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:yggdrasil/yggdrasil.dart';
 
-/// A widget with methods shared between internal [YgTextInput] widget.
-abstract class YgTextInputWidget extends StatefulWidget {
-  const YgTextInputWidget({
+/// A widget with methods shared between internal [YgTextField] widgets.
+abstract class YgTextFieldBaseWidget extends StatefulWidget {
+  const YgTextFieldBaseWidget({
     this.controller,
     this.focusNode,
     super.key,
@@ -22,7 +22,7 @@ abstract class YgTextInputWidget extends StatefulWidget {
   final String? initialValue;
 }
 
-abstract class YgTextInputWidgetState<T extends YgTextInputWidget> extends State<T> {
+abstract class YgTextFieldBaseWidgetState<T extends YgTextFieldBaseWidget> extends State<T> {
   late FocusNode _focusNode = widget.focusNode ?? FocusNode();
   FocusNode get focusNode => _focusNode;
 
@@ -35,7 +35,7 @@ abstract class YgTextInputWidgetState<T extends YgTextInputWidget> extends State
   late bool _isEmpty = _controller.text.isEmpty;
   bool get isEmpty => _isEmpty;
 
-  YgTextInputTheme get theme => context.textInputTheme;
+  YgTextFieldTheme get theme => context.textInputTheme;
   Duration get duration => theme.animationDuration;
   Curve get curve => theme.animationCurve;
 

@@ -1,4 +1,4 @@
-enum YgTextInputSize {
+enum YgTextFieldSize {
   medium,
   large,
 }

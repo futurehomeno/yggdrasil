@@ -4,8 +4,11 @@ import 'package:yggdrasil/yggdrasil.dart';
 
 import '_widgets.dart';
 
-class YgTextInputContent extends YgTextInputWidget {
-  const YgTextInputContent({
+/// The content of the [YgTextField].
+///
+/// Renders and animates the value text, label and placeholder.
+class YgTextFieldContent extends YgTextFieldBaseWidget {
+  const YgTextFieldContent({
     super.key,
     required super.controller,
     required super.focusNode,
@@ -41,10 +44,10 @@ class YgTextInputContent extends YgTextInputWidget {
   final TextInputAction? textInputAction;
 
   @override
-  State<YgTextInputContent> createState() => _YgTextInputContentState();
+  State<YgTextFieldContent> createState() => _YgTextFieldContentState();
 }
 
-class _YgTextInputContentState extends YgTextInputWidgetState<YgTextInputContent> {
+class _YgTextFieldContentState extends YgTextFieldBaseWidgetState<YgTextFieldContent> {
   final UniqueKey _valueKey = UniqueKey();
   final UniqueKey _placeholderKey = UniqueKey();
   final UniqueKey _labelKey = UniqueKey();
@@ -129,7 +132,7 @@ class _YgTextInputContentState extends YgTextInputWidgetState<YgTextInputContent
       cursorHeight: baseStyle.fontSize,
       cursorOffset: _cursorOffset,
       selectionColor: theme.cursorColor,
-      cursorWidth: 1,
+      cursorWidth: 1.0,
       keyboardType: widget.keyboardType,
       autocorrect: widget.autocorrect,
       textCapitalization: widget.textCapitalization,
@@ -149,7 +152,7 @@ class _YgTextInputContentState extends YgTextInputWidgetState<YgTextInputContent
     final TextStyle style = theme.valueTextStyle;
 
     return Offset(
-      0,
+      0.0,
       (style.computedHeight - style.fontSize!) / 2,
     );
   }
@@ -198,7 +201,7 @@ class _YgTextInputContentState extends YgTextInputWidgetState<YgTextInputContent
     final double combinedHeight = labelFloatingHeight + valueDefaultHeight;
 
     return Offset(
-      0,
+      0.0,
       ((combinedHeight / labelDefaultHeight) - 1) / 2,
     );
   }

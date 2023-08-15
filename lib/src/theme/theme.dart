@@ -85,5 +85,5 @@ class _$YgTheme {
   static List<YgInternalTheme> internalTheme = YgInternalTheme.themes;
 
   @themeExtension
-  static List<YgTextInputTheme> textInputTheme = YgTextInputTheme.themes;
+  static List<YgTextFieldTheme> textInputTheme = YgTextFieldTheme.themes;
 }

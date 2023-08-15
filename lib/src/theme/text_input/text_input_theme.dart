@@ -8,7 +8,7 @@ import 'package:yggdrasil/src/tokens/professional_light/_professional_light.dart
 part 'text_input_theme.tailor.dart';
 
 @tailorComponent
-class _$YgTextInputTheme {
+class _$YgTextFieldTheme {
   // region Label
 
   static const List<Color> labelDefaultColor = <Color>[
@@ -32,6 +32,8 @@ class _$YgTextInputTheme {
     professional_dark.FhColors.textDisabled,
   ];
 
+  // Height had to be adjusted to achieve the correct line height used in the
+  // design.
   static List<TextStyle> labelDefaultTextStyle = <TextStyle>[
     consumer_light.FhTextStyles.paragraph2Regular.copyWith(height: 1.25),
     consumer_dark.FhTextStyles.paragraph2Regular.copyWith(height: 1.25),
@@ -64,6 +66,8 @@ class _$YgTextInputTheme {
     professional_dark.FhColors.textDisabled,
   ];
 
+  // Height had to be adjusted to achieve the correct line height used in the
+  // design.
   static List<TextStyle> placeholderTextStyle = <TextStyle>[
     consumer_light.FhTextStyles.paragraph2Regular.copyWith(height: 1.25),
     consumer_dark.FhTextStyles.paragraph2Regular.copyWith(height: 1.25),
@@ -76,95 +80,62 @@ class _$YgTextInputTheme {
   // region Border
 
   static List<Border> borderDefault = <Border>[
-    Border.all(
-      color: consumer_light.FhColors.borderDefault,
-      width: 1,
-    ),
-    Border.all(
-      color: consumer_dark.FhColors.borderDefault,
-      width: 1,
-    ),
-    Border.all(
-      color: professional_light.FhColors.borderDefault,
-      width: 1,
-    ),
-    Border.all(
-      color: professional_dark.FhColors.borderDefault,
-      width: 1,
-    ),
+    Border.all(color: consumer_light.FhColors.borderDefault),
+    Border.all(color: consumer_dark.FhColors.borderDefault),
+    Border.all(color: professional_light.FhColors.borderDefault),
+    Border.all(color: professional_dark.FhColors.borderDefault),
   ];
 
   static List<Border> borderHover = <Border>[
-    Border.all(
-      color: consumer_light.FhColors.borderWeak,
-      width: 1,
-    ),
-    Border.all(
-      color: consumer_dark.FhColors.borderWeak,
-      width: 1,
-    ),
-    Border.all(
-      color: professional_light.FhColors.borderWeak,
-      width: 1,
-    ),
-    Border.all(
-      color: professional_dark.FhColors.borderWeak,
-      width: 1,
-    ),
+    Border.all(color: consumer_light.FhColors.borderWeak),
+    Border.all(color: consumer_dark.FhColors.borderWeak),
+    Border.all(color: professional_light.FhColors.borderWeak),
+    Border.all(color: professional_dark.FhColors.borderWeak),
   ];
+
   static List<Border> borderFocus = <Border>[
     Border.all(
       color: consumer_light.FhColors.interactiveHighlightDefault,
-      width: 2,
+      width: 2.0,
     ),
     Border.all(
       color: consumer_dark.FhColors.interactiveHighlightDefault,
-      width: 2,
+      width: 2.0,
     ),
     Border.all(
       color: professional_light.FhColors.interactiveHighlightDefault,
-      width: 2,
+      width: 2.0,
     ),
     Border.all(
       color: professional_dark.FhColors.interactiveHighlightDefault,
-      width: 2,
+      width: 2.0,
     ),
   ];
+
   static List<Border> borderError = <Border>[
     Border.all(
       color: consumer_light.FhColors.interactiveCriticalDefault,
-      width: 2,
+      width: 2.0,
     ),
     Border.all(
       color: consumer_dark.FhColors.interactiveCriticalDefault,
-      width: 2,
+      width: 2.0,
     ),
     Border.all(
       color: professional_light.FhColors.interactiveCriticalDefault,
-      width: 2,
+      width: 2.0,
     ),
     Border.all(
       color: professional_dark.FhColors.interactiveCriticalDefault,
-      width: 2,
+      width: 2.0,
     ),
   ];
+
   static List<Border> borderDisabled = <Border>[
-    Border.all(
-      color: consumer_light.FhColors.borderDisabled,
-      width: 1,
-    ),
-    Border.all(
-      color: consumer_dark.FhColors.borderDisabled,
-      width: 1,
-    ),
-    Border.all(
-      color: professional_light.FhColors.borderDisabled,
-      width: 1,
-    ),
-    Border.all(
-      color: professional_dark.FhColors.borderDisabled,
-      width: 1,
-    ),
+    Border.all(color: consumer_light.FhColors.borderDisabled),
+    Border.all(color: consumer_dark.FhColors.borderDisabled),
+    Border.all(color: professional_light.FhColors.borderDisabled),
+    Border.all(color: professional_dark.FhColors.borderDisabled),
   ];
 
   static const List<BorderRadius> borderRadius = <BorderRadius>[
@@ -216,6 +187,8 @@ class _$YgTextInputTheme {
     professional_dark.FhColors.textDisabled,
   ];
 
+  // Height had to be adjusted to achieve the correct line height used in the
+  // design.
   static List<TextStyle> valueTextStyle = <TextStyle>[
     consumer_light.FhTextStyles.paragraph2Regular.copyWith(height: 1.25),
     consumer_dark.FhTextStyles.paragraph2Regular.copyWith(height: 1.25),
@@ -286,13 +259,6 @@ class _$YgTextInputTheme {
     professional_dark.FhDimensions.xs,
   ];
 
-  static List<double> standardHorizontalContentPadding = <double>[
-    0,
-    0,
-    0,
-    0,
-  ];
-
   static List<double> outlinedHorizontalContentPadding = <double>[
     consumer_light.FhDimensions.xs,
     consumer_dark.FhDimensions.xs,
@@ -321,11 +287,10 @@ class _$YgTextInputTheme {
     const EdgeInsets.only(top: professional_dark.FhDimensions.xxs),
   ];
 
-  // TODO(Tim): Update to using tokens when available.
   static List<EdgeInsets> errorIconPadding = <EdgeInsets>[
-    const EdgeInsets.only(right: 4),
-    const EdgeInsets.only(right: 4),
-    const EdgeInsets.only(right: 4),
-    const EdgeInsets.only(right: 4),
+    const EdgeInsets.only(right: consumer_light.FhDimensions.xxs),
+    const EdgeInsets.only(right: consumer_dark.FhDimensions.xxs),
+    const EdgeInsets.only(right: professional_light.FhDimensions.xxs),
+    const EdgeInsets.only(right: professional_dark.FhDimensions.xxs),
   ];
 }

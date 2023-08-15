@@ -3,8 +3,8 @@ import 'package:yggdrasil/yggdrasil.dart';
 
 import '_widgets.dart';
 
-class YgTextInputDecoration extends YgTextInputWidget {
-  const YgTextInputDecoration({
+class YgTextFieldDecoration extends YgTextFieldBaseWidget {
+  const YgTextFieldDecoration({
     super.key,
     required this.child,
     required this.variant,
@@ -16,16 +16,16 @@ class YgTextInputDecoration extends YgTextInputWidget {
   });
 
   final Widget child;
-  final YgTextInputVariant variant;
+  final YgTextFieldVariant variant;
   final bool disabled;
   final bool hovered;
   final bool error;
 
   @override
-  State<YgTextInputDecoration> createState() => _YgTextInputDecorationState();
+  State<YgTextFieldDecoration> createState() => _YgTextFieldDecorationState();
 }
 
-class _YgTextInputDecorationState extends YgTextInputWidgetState<YgTextInputDecoration> {
+class _YgTextFieldDecorationState extends YgTextFieldBaseWidgetState<YgTextFieldDecoration> {
   @override
   Widget build(BuildContext context) {
     return Stack(
@@ -51,15 +51,15 @@ class _YgTextInputDecorationState extends YgTextInputWidgetState<YgTextInputDeco
 
   EdgeInsets get _childPadding {
     return switch (widget.variant) {
-      YgTextInputVariant.outlined => const EdgeInsets.all(2),
-      YgTextInputVariant.standard => const EdgeInsets.only(bottom: 2),
+      YgTextFieldVariant.outlined => const EdgeInsets.all(2),
+      YgTextFieldVariant.standard => const EdgeInsets.only(bottom: 2),
     };
   }
 
   BorderRadius? get _borderRadius {
     return switch (widget.variant) {
-      YgTextInputVariant.outlined => theme.borderRadius,
-      YgTextInputVariant.standard => null,
+      YgTextFieldVariant.outlined => theme.borderRadius,
+      YgTextFieldVariant.standard => null,
     };
   }
 
@@ -76,7 +76,7 @@ class _YgTextInputDecorationState extends YgTextInputWidgetState<YgTextInputDeco
       base = theme.borderHover;
     }
 
-    if (widget.variant == YgTextInputVariant.outlined) {
+    if (widget.variant == YgTextFieldVariant.outlined) {
       return base;
     }
 
@@ -86,7 +86,7 @@ class _YgTextInputDecorationState extends YgTextInputWidgetState<YgTextInputDeco
   }
 
   Color get _backgroundColor {
-    if (widget.variant == YgTextInputVariant.standard) {
+    if (widget.variant == YgTextFieldVariant.standard) {
       return Colors.transparent;
     }
 

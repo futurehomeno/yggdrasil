@@ -2,9 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:yggdrasil/yggdrasil.dart';
 
-/// Form field variation of [YgTextInput].
-class YgTextFormInput extends FormField<String> {
-  YgTextFormInput({
+/// Form field variation of [YgTextField].
+class YgTextFormField extends FormField<String> {
+  YgTextFormField({
     this.controller,
     required TextFieldKey super.key,
     required String label,
@@ -25,8 +25,8 @@ class YgTextFormInput extends FormField<String> {
     bool autocorrect = true,
     bool obscureText = false,
     bool showObscureTextButton = true,
-    YgTextInputSize size = YgTextInputSize.large,
-    YgTextInputVariant variant = YgTextInputVariant.standard,
+    YgTextFieldSize size = YgTextFieldSize.large,
+    YgTextFieldVariant variant = YgTextFieldVariant.standard,
     TextCapitalization textCapitalization = TextCapitalization.none,
   }) : super(
           initialValue: controller != null ? controller.text : (initialValue ?? ''),
@@ -41,7 +41,7 @@ class YgTextFormInput extends FormField<String> {
 
             return UnmanagedRestorationScope(
               bucket: field.bucket,
-              child: YgTextInput(
+              child: YgTextField(
                 label: label,
                 onEditingComplete: onEditingComplete,
                 textInputAction: textInputAction,
@@ -69,7 +69,7 @@ class YgTextFormInput extends FormField<String> {
         );
 
   /// Convenience method for creating email fields.
-  YgTextFormInput.email({
+  YgTextFormField.email({
     TextEditingController? controller,
     required TextFieldKey key,
     required String label,
@@ -86,8 +86,8 @@ class YgTextFormInput extends FormField<String> {
     bool required = false,
     bool disabled = false,
     bool readOnly = false,
-    YgTextInputSize size = YgTextInputSize.large,
-    YgTextInputVariant variant = YgTextInputVariant.standard,
+    YgTextFieldSize size = YgTextFieldSize.large,
+    YgTextFieldVariant variant = YgTextFieldVariant.standard,
   }) : this(
           key: key,
           label: label,
@@ -134,7 +134,7 @@ class _YgTextFormInputState extends FormFieldState<String> {
 
   TextEditingController get _effectiveController => _formField.controller ?? _controller!.value;
 
-  YgTextFormInput get _formField => super.widget as YgTextFormInput;
+  YgTextFormField get _formField => super.widget as YgTextFormField;
 
   @override
   void restoreState(RestorationBucket? oldBucket, bool initialRestore) {
@@ -171,7 +171,7 @@ class _YgTextFormInputState extends FormFieldState<String> {
   }
 
   @override
-  void didUpdateWidget(YgTextFormInput oldWidget) {
+  void didUpdateWidget(YgTextFormField oldWidget) {
     super.didUpdateWidget(oldWidget);
     if (_formField.controller != oldWidget.controller) {
       oldWidget.controller?.removeListener(_handleControllerChanged);

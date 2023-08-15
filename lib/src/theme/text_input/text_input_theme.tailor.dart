@@ -8,8 +8,8 @@ part of 'text_input_theme.dart';
 // TailorAnnotationsGenerator
 // **************************************************************************
 
-class YgTextInputTheme extends ThemeExtension<YgTextInputTheme> {
-  const YgTextInputTheme({
+class YgTextFieldTheme extends ThemeExtension<YgTextFieldTheme> {
+  const YgTextFieldTheme({
     required this.animationCurve,
     required this.animationDuration,
     required this.backgroundDefaultColor,
@@ -38,7 +38,6 @@ class YgTextInputTheme extends ThemeExtension<YgTextInputTheme> {
     required this.placeholderDefaultColor,
     required this.placeholderDisabledColor,
     required this.placeholderTextStyle,
-    required this.standardHorizontalContentPadding,
     required this.standardSuffixPadding,
     required this.valueDefaultColor,
     required this.valueDisabledColor,
@@ -73,170 +72,161 @@ class YgTextInputTheme extends ThemeExtension<YgTextInputTheme> {
   final Color placeholderDefaultColor;
   final Color placeholderDisabledColor;
   final TextStyle placeholderTextStyle;
-  final double standardHorizontalContentPadding;
   final EdgeInsets standardSuffixPadding;
   final Color valueDefaultColor;
   final Color valueDisabledColor;
   final TextStyle valueTextStyle;
 
-  static final YgTextInputTheme consumerLight = YgTextInputTheme(
-    animationCurve: _$YgTextInputTheme.animationCurve[0],
-    animationDuration: _$YgTextInputTheme.animationDuration[0],
-    backgroundDefaultColor: _$YgTextInputTheme.backgroundDefaultColor[0],
-    backgroundDisabledColor: _$YgTextInputTheme.backgroundDisabledColor[0],
-    backgroundErrorColor: _$YgTextInputTheme.backgroundErrorColor[0],
-    borderDefault: _$YgTextInputTheme.borderDefault[0],
-    borderDisabled: _$YgTextInputTheme.borderDisabled[0],
-    borderError: _$YgTextInputTheme.borderError[0],
-    borderFocus: _$YgTextInputTheme.borderFocus[0],
-    borderHover: _$YgTextInputTheme.borderHover[0],
-    borderRadius: _$YgTextInputTheme.borderRadius[0],
-    cursorColor: _$YgTextInputTheme.cursorColor[0],
-    errorIconColor: _$YgTextInputTheme.errorIconColor[0],
-    errorIconPadding: _$YgTextInputTheme.errorIconPadding[0],
-    errorPadding: _$YgTextInputTheme.errorPadding[0],
-    errorTextStyle: _$YgTextInputTheme.errorTextStyle[0],
-    labelDefaultColor: _$YgTextInputTheme.labelDefaultColor[0],
-    labelDefaultTextStyle: _$YgTextInputTheme.labelDefaultTextStyle[0],
-    labelDisabledColor: _$YgTextInputTheme.labelDisabledColor[0],
-    labelFocusFilledColor: _$YgTextInputTheme.labelFocusFilledColor[0],
-    labelFocusFilledTextStyle: _$YgTextInputTheme.labelFocusFilledTextStyle[0],
+  static final YgTextFieldTheme consumerLight = YgTextFieldTheme(
+    animationCurve: _$YgTextFieldTheme.animationCurve[0],
+    animationDuration: _$YgTextFieldTheme.animationDuration[0],
+    backgroundDefaultColor: _$YgTextFieldTheme.backgroundDefaultColor[0],
+    backgroundDisabledColor: _$YgTextFieldTheme.backgroundDisabledColor[0],
+    backgroundErrorColor: _$YgTextFieldTheme.backgroundErrorColor[0],
+    borderDefault: _$YgTextFieldTheme.borderDefault[0],
+    borderDisabled: _$YgTextFieldTheme.borderDisabled[0],
+    borderError: _$YgTextFieldTheme.borderError[0],
+    borderFocus: _$YgTextFieldTheme.borderFocus[0],
+    borderHover: _$YgTextFieldTheme.borderHover[0],
+    borderRadius: _$YgTextFieldTheme.borderRadius[0],
+    cursorColor: _$YgTextFieldTheme.cursorColor[0],
+    errorIconColor: _$YgTextFieldTheme.errorIconColor[0],
+    errorIconPadding: _$YgTextFieldTheme.errorIconPadding[0],
+    errorPadding: _$YgTextFieldTheme.errorPadding[0],
+    errorTextStyle: _$YgTextFieldTheme.errorTextStyle[0],
+    labelDefaultColor: _$YgTextFieldTheme.labelDefaultColor[0],
+    labelDefaultTextStyle: _$YgTextFieldTheme.labelDefaultTextStyle[0],
+    labelDisabledColor: _$YgTextFieldTheme.labelDisabledColor[0],
+    labelFocusFilledColor: _$YgTextFieldTheme.labelFocusFilledColor[0],
+    labelFocusFilledTextStyle: _$YgTextFieldTheme.labelFocusFilledTextStyle[0],
     largeVerticalContentPadding:
-        _$YgTextInputTheme.largeVerticalContentPadding[0],
+        _$YgTextFieldTheme.largeVerticalContentPadding[0],
     mediumVerticalContentPadding:
-        _$YgTextInputTheme.mediumVerticalContentPadding[0],
+        _$YgTextFieldTheme.mediumVerticalContentPadding[0],
     outlinedHorizontalContentPadding:
-        _$YgTextInputTheme.outlinedHorizontalContentPadding[0],
-    outlinedSuffixPadding: _$YgTextInputTheme.outlinedSuffixPadding[0],
-    placeholderDefaultColor: _$YgTextInputTheme.placeholderDefaultColor[0],
-    placeholderDisabledColor: _$YgTextInputTheme.placeholderDisabledColor[0],
-    placeholderTextStyle: _$YgTextInputTheme.placeholderTextStyle[0],
-    standardHorizontalContentPadding:
-        _$YgTextInputTheme.standardHorizontalContentPadding[0],
-    standardSuffixPadding: _$YgTextInputTheme.standardSuffixPadding[0],
-    valueDefaultColor: _$YgTextInputTheme.valueDefaultColor[0],
-    valueDisabledColor: _$YgTextInputTheme.valueDisabledColor[0],
-    valueTextStyle: _$YgTextInputTheme.valueTextStyle[0],
+        _$YgTextFieldTheme.outlinedHorizontalContentPadding[0],
+    outlinedSuffixPadding: _$YgTextFieldTheme.outlinedSuffixPadding[0],
+    placeholderDefaultColor: _$YgTextFieldTheme.placeholderDefaultColor[0],
+    placeholderDisabledColor: _$YgTextFieldTheme.placeholderDisabledColor[0],
+    placeholderTextStyle: _$YgTextFieldTheme.placeholderTextStyle[0],
+    standardSuffixPadding: _$YgTextFieldTheme.standardSuffixPadding[0],
+    valueDefaultColor: _$YgTextFieldTheme.valueDefaultColor[0],
+    valueDisabledColor: _$YgTextFieldTheme.valueDisabledColor[0],
+    valueTextStyle: _$YgTextFieldTheme.valueTextStyle[0],
   );
 
-  static final YgTextInputTheme consumerDark = YgTextInputTheme(
-    animationCurve: _$YgTextInputTheme.animationCurve[1],
-    animationDuration: _$YgTextInputTheme.animationDuration[1],
-    backgroundDefaultColor: _$YgTextInputTheme.backgroundDefaultColor[1],
-    backgroundDisabledColor: _$YgTextInputTheme.backgroundDisabledColor[1],
-    backgroundErrorColor: _$YgTextInputTheme.backgroundErrorColor[1],
-    borderDefault: _$YgTextInputTheme.borderDefault[1],
-    borderDisabled: _$YgTextInputTheme.borderDisabled[1],
-    borderError: _$YgTextInputTheme.borderError[1],
-    borderFocus: _$YgTextInputTheme.borderFocus[1],
-    borderHover: _$YgTextInputTheme.borderHover[1],
-    borderRadius: _$YgTextInputTheme.borderRadius[1],
-    cursorColor: _$YgTextInputTheme.cursorColor[1],
-    errorIconColor: _$YgTextInputTheme.errorIconColor[1],
-    errorIconPadding: _$YgTextInputTheme.errorIconPadding[1],
-    errorPadding: _$YgTextInputTheme.errorPadding[1],
-    errorTextStyle: _$YgTextInputTheme.errorTextStyle[1],
-    labelDefaultColor: _$YgTextInputTheme.labelDefaultColor[1],
-    labelDefaultTextStyle: _$YgTextInputTheme.labelDefaultTextStyle[1],
-    labelDisabledColor: _$YgTextInputTheme.labelDisabledColor[1],
-    labelFocusFilledColor: _$YgTextInputTheme.labelFocusFilledColor[1],
-    labelFocusFilledTextStyle: _$YgTextInputTheme.labelFocusFilledTextStyle[1],
+  static final YgTextFieldTheme consumerDark = YgTextFieldTheme(
+    animationCurve: _$YgTextFieldTheme.animationCurve[1],
+    animationDuration: _$YgTextFieldTheme.animationDuration[1],
+    backgroundDefaultColor: _$YgTextFieldTheme.backgroundDefaultColor[1],
+    backgroundDisabledColor: _$YgTextFieldTheme.backgroundDisabledColor[1],
+    backgroundErrorColor: _$YgTextFieldTheme.backgroundErrorColor[1],
+    borderDefault: _$YgTextFieldTheme.borderDefault[1],
+    borderDisabled: _$YgTextFieldTheme.borderDisabled[1],
+    borderError: _$YgTextFieldTheme.borderError[1],
+    borderFocus: _$YgTextFieldTheme.borderFocus[1],
+    borderHover: _$YgTextFieldTheme.borderHover[1],
+    borderRadius: _$YgTextFieldTheme.borderRadius[1],
+    cursorColor: _$YgTextFieldTheme.cursorColor[1],
+    errorIconColor: _$YgTextFieldTheme.errorIconColor[1],
+    errorIconPadding: _$YgTextFieldTheme.errorIconPadding[1],
+    errorPadding: _$YgTextFieldTheme.errorPadding[1],
+    errorTextStyle: _$YgTextFieldTheme.errorTextStyle[1],
+    labelDefaultColor: _$YgTextFieldTheme.labelDefaultColor[1],
+    labelDefaultTextStyle: _$YgTextFieldTheme.labelDefaultTextStyle[1],
+    labelDisabledColor: _$YgTextFieldTheme.labelDisabledColor[1],
+    labelFocusFilledColor: _$YgTextFieldTheme.labelFocusFilledColor[1],
+    labelFocusFilledTextStyle: _$YgTextFieldTheme.labelFocusFilledTextStyle[1],
     largeVerticalContentPadding:
-        _$YgTextInputTheme.largeVerticalContentPadding[1],
+        _$YgTextFieldTheme.largeVerticalContentPadding[1],
     mediumVerticalContentPadding:
-        _$YgTextInputTheme.mediumVerticalContentPadding[1],
+        _$YgTextFieldTheme.mediumVerticalContentPadding[1],
     outlinedHorizontalContentPadding:
-        _$YgTextInputTheme.outlinedHorizontalContentPadding[1],
-    outlinedSuffixPadding: _$YgTextInputTheme.outlinedSuffixPadding[1],
-    placeholderDefaultColor: _$YgTextInputTheme.placeholderDefaultColor[1],
-    placeholderDisabledColor: _$YgTextInputTheme.placeholderDisabledColor[1],
-    placeholderTextStyle: _$YgTextInputTheme.placeholderTextStyle[1],
-    standardHorizontalContentPadding:
-        _$YgTextInputTheme.standardHorizontalContentPadding[1],
-    standardSuffixPadding: _$YgTextInputTheme.standardSuffixPadding[1],
-    valueDefaultColor: _$YgTextInputTheme.valueDefaultColor[1],
-    valueDisabledColor: _$YgTextInputTheme.valueDisabledColor[1],
-    valueTextStyle: _$YgTextInputTheme.valueTextStyle[1],
+        _$YgTextFieldTheme.outlinedHorizontalContentPadding[1],
+    outlinedSuffixPadding: _$YgTextFieldTheme.outlinedSuffixPadding[1],
+    placeholderDefaultColor: _$YgTextFieldTheme.placeholderDefaultColor[1],
+    placeholderDisabledColor: _$YgTextFieldTheme.placeholderDisabledColor[1],
+    placeholderTextStyle: _$YgTextFieldTheme.placeholderTextStyle[1],
+    standardSuffixPadding: _$YgTextFieldTheme.standardSuffixPadding[1],
+    valueDefaultColor: _$YgTextFieldTheme.valueDefaultColor[1],
+    valueDisabledColor: _$YgTextFieldTheme.valueDisabledColor[1],
+    valueTextStyle: _$YgTextFieldTheme.valueTextStyle[1],
   );
 
-  static final YgTextInputTheme professionalLight = YgTextInputTheme(
-    animationCurve: _$YgTextInputTheme.animationCurve[2],
-    animationDuration: _$YgTextInputTheme.animationDuration[2],
-    backgroundDefaultColor: _$YgTextInputTheme.backgroundDefaultColor[2],
-    backgroundDisabledColor: _$YgTextInputTheme.backgroundDisabledColor[2],
-    backgroundErrorColor: _$YgTextInputTheme.backgroundErrorColor[2],
-    borderDefault: _$YgTextInputTheme.borderDefault[2],
-    borderDisabled: _$YgTextInputTheme.borderDisabled[2],
-    borderError: _$YgTextInputTheme.borderError[2],
-    borderFocus: _$YgTextInputTheme.borderFocus[2],
-    borderHover: _$YgTextInputTheme.borderHover[2],
-    borderRadius: _$YgTextInputTheme.borderRadius[2],
-    cursorColor: _$YgTextInputTheme.cursorColor[2],
-    errorIconColor: _$YgTextInputTheme.errorIconColor[2],
-    errorIconPadding: _$YgTextInputTheme.errorIconPadding[2],
-    errorPadding: _$YgTextInputTheme.errorPadding[2],
-    errorTextStyle: _$YgTextInputTheme.errorTextStyle[2],
-    labelDefaultColor: _$YgTextInputTheme.labelDefaultColor[2],
-    labelDefaultTextStyle: _$YgTextInputTheme.labelDefaultTextStyle[2],
-    labelDisabledColor: _$YgTextInputTheme.labelDisabledColor[2],
-    labelFocusFilledColor: _$YgTextInputTheme.labelFocusFilledColor[2],
-    labelFocusFilledTextStyle: _$YgTextInputTheme.labelFocusFilledTextStyle[2],
+  static final YgTextFieldTheme professionalLight = YgTextFieldTheme(
+    animationCurve: _$YgTextFieldTheme.animationCurve[2],
+    animationDuration: _$YgTextFieldTheme.animationDuration[2],
+    backgroundDefaultColor: _$YgTextFieldTheme.backgroundDefaultColor[2],
+    backgroundDisabledColor: _$YgTextFieldTheme.backgroundDisabledColor[2],
+    backgroundErrorColor: _$YgTextFieldTheme.backgroundErrorColor[2],
+    borderDefault: _$YgTextFieldTheme.borderDefault[2],
+    borderDisabled: _$YgTextFieldTheme.borderDisabled[2],
+    borderError: _$YgTextFieldTheme.borderError[2],
+    borderFocus: _$YgTextFieldTheme.borderFocus[2],
+    borderHover: _$YgTextFieldTheme.borderHover[2],
+    borderRadius: _$YgTextFieldTheme.borderRadius[2],
+    cursorColor: _$YgTextFieldTheme.cursorColor[2],
+    errorIconColor: _$YgTextFieldTheme.errorIconColor[2],
+    errorIconPadding: _$YgTextFieldTheme.errorIconPadding[2],
+    errorPadding: _$YgTextFieldTheme.errorPadding[2],
+    errorTextStyle: _$YgTextFieldTheme.errorTextStyle[2],
+    labelDefaultColor: _$YgTextFieldTheme.labelDefaultColor[2],
+    labelDefaultTextStyle: _$YgTextFieldTheme.labelDefaultTextStyle[2],
+    labelDisabledColor: _$YgTextFieldTheme.labelDisabledColor[2],
+    labelFocusFilledColor: _$YgTextFieldTheme.labelFocusFilledColor[2],
+    labelFocusFilledTextStyle: _$YgTextFieldTheme.labelFocusFilledTextStyle[2],
     largeVerticalContentPadding:
-        _$YgTextInputTheme.largeVerticalContentPadding[2],
+        _$YgTextFieldTheme.largeVerticalContentPadding[2],
     mediumVerticalContentPadding:
-        _$YgTextInputTheme.mediumVerticalContentPadding[2],
+        _$YgTextFieldTheme.mediumVerticalContentPadding[2],
     outlinedHorizontalContentPadding:
-        _$YgTextInputTheme.outlinedHorizontalContentPadding[2],
-    outlinedSuffixPadding: _$YgTextInputTheme.outlinedSuffixPadding[2],
-    placeholderDefaultColor: _$YgTextInputTheme.placeholderDefaultColor[2],
-    placeholderDisabledColor: _$YgTextInputTheme.placeholderDisabledColor[2],
-    placeholderTextStyle: _$YgTextInputTheme.placeholderTextStyle[2],
-    standardHorizontalContentPadding:
-        _$YgTextInputTheme.standardHorizontalContentPadding[2],
-    standardSuffixPadding: _$YgTextInputTheme.standardSuffixPadding[2],
-    valueDefaultColor: _$YgTextInputTheme.valueDefaultColor[2],
-    valueDisabledColor: _$YgTextInputTheme.valueDisabledColor[2],
-    valueTextStyle: _$YgTextInputTheme.valueTextStyle[2],
+        _$YgTextFieldTheme.outlinedHorizontalContentPadding[2],
+    outlinedSuffixPadding: _$YgTextFieldTheme.outlinedSuffixPadding[2],
+    placeholderDefaultColor: _$YgTextFieldTheme.placeholderDefaultColor[2],
+    placeholderDisabledColor: _$YgTextFieldTheme.placeholderDisabledColor[2],
+    placeholderTextStyle: _$YgTextFieldTheme.placeholderTextStyle[2],
+    standardSuffixPadding: _$YgTextFieldTheme.standardSuffixPadding[2],
+    valueDefaultColor: _$YgTextFieldTheme.valueDefaultColor[2],
+    valueDisabledColor: _$YgTextFieldTheme.valueDisabledColor[2],
+    valueTextStyle: _$YgTextFieldTheme.valueTextStyle[2],
   );
 
-  static final YgTextInputTheme professionalDark = YgTextInputTheme(
-    animationCurve: _$YgTextInputTheme.animationCurve[3],
-    animationDuration: _$YgTextInputTheme.animationDuration[3],
-    backgroundDefaultColor: _$YgTextInputTheme.backgroundDefaultColor[3],
-    backgroundDisabledColor: _$YgTextInputTheme.backgroundDisabledColor[3],
-    backgroundErrorColor: _$YgTextInputTheme.backgroundErrorColor[3],
-    borderDefault: _$YgTextInputTheme.borderDefault[3],
-    borderDisabled: _$YgTextInputTheme.borderDisabled[3],
-    borderError: _$YgTextInputTheme.borderError[3],
-    borderFocus: _$YgTextInputTheme.borderFocus[3],
-    borderHover: _$YgTextInputTheme.borderHover[3],
-    borderRadius: _$YgTextInputTheme.borderRadius[3],
-    cursorColor: _$YgTextInputTheme.cursorColor[3],
-    errorIconColor: _$YgTextInputTheme.errorIconColor[3],
-    errorIconPadding: _$YgTextInputTheme.errorIconPadding[3],
-    errorPadding: _$YgTextInputTheme.errorPadding[3],
-    errorTextStyle: _$YgTextInputTheme.errorTextStyle[3],
-    labelDefaultColor: _$YgTextInputTheme.labelDefaultColor[3],
-    labelDefaultTextStyle: _$YgTextInputTheme.labelDefaultTextStyle[3],
-    labelDisabledColor: _$YgTextInputTheme.labelDisabledColor[3],
-    labelFocusFilledColor: _$YgTextInputTheme.labelFocusFilledColor[3],
-    labelFocusFilledTextStyle: _$YgTextInputTheme.labelFocusFilledTextStyle[3],
+  static final YgTextFieldTheme professionalDark = YgTextFieldTheme(
+    animationCurve: _$YgTextFieldTheme.animationCurve[3],
+    animationDuration: _$YgTextFieldTheme.animationDuration[3],
+    backgroundDefaultColor: _$YgTextFieldTheme.backgroundDefaultColor[3],
+    backgroundDisabledColor: _$YgTextFieldTheme.backgroundDisabledColor[3],
+    backgroundErrorColor: _$YgTextFieldTheme.backgroundErrorColor[3],
+    borderDefault: _$YgTextFieldTheme.borderDefault[3],
+    borderDisabled: _$YgTextFieldTheme.borderDisabled[3],
+    borderError: _$YgTextFieldTheme.borderError[3],
+    borderFocus: _$YgTextFieldTheme.borderFocus[3],
+    borderHover: _$YgTextFieldTheme.borderHover[3],
+    borderRadius: _$YgTextFieldTheme.borderRadius[3],
+    cursorColor: _$YgTextFieldTheme.cursorColor[3],
+    errorIconColor: _$YgTextFieldTheme.errorIconColor[3],
+    errorIconPadding: _$YgTextFieldTheme.errorIconPadding[3],
+    errorPadding: _$YgTextFieldTheme.errorPadding[3],
+    errorTextStyle: _$YgTextFieldTheme.errorTextStyle[3],
+    labelDefaultColor: _$YgTextFieldTheme.labelDefaultColor[3],
+    labelDefaultTextStyle: _$YgTextFieldTheme.labelDefaultTextStyle[3],
+    labelDisabledColor: _$YgTextFieldTheme.labelDisabledColor[3],
+    labelFocusFilledColor: _$YgTextFieldTheme.labelFocusFilledColor[3],
+    labelFocusFilledTextStyle: _$YgTextFieldTheme.labelFocusFilledTextStyle[3],
     largeVerticalContentPadding:
-        _$YgTextInputTheme.largeVerticalContentPadding[3],
+        _$YgTextFieldTheme.largeVerticalContentPadding[3],
     mediumVerticalContentPadding:
-        _$YgTextInputTheme.mediumVerticalContentPadding[3],
+        _$YgTextFieldTheme.mediumVerticalContentPadding[3],
     outlinedHorizontalContentPadding:
-        _$YgTextInputTheme.outlinedHorizontalContentPadding[3],
-    outlinedSuffixPadding: _$YgTextInputTheme.outlinedSuffixPadding[3],
-    placeholderDefaultColor: _$YgTextInputTheme.placeholderDefaultColor[3],
-    placeholderDisabledColor: _$YgTextInputTheme.placeholderDisabledColor[3],
-    placeholderTextStyle: _$YgTextInputTheme.placeholderTextStyle[3],
-    standardHorizontalContentPadding:
-        _$YgTextInputTheme.standardHorizontalContentPadding[3],
-    standardSuffixPadding: _$YgTextInputTheme.standardSuffixPadding[3],
-    valueDefaultColor: _$YgTextInputTheme.valueDefaultColor[3],
-    valueDisabledColor: _$YgTextInputTheme.valueDisabledColor[3],
-    valueTextStyle: _$YgTextInputTheme.valueTextStyle[3],
+        _$YgTextFieldTheme.outlinedHorizontalContentPadding[3],
+    outlinedSuffixPadding: _$YgTextFieldTheme.outlinedSuffixPadding[3],
+    placeholderDefaultColor: _$YgTextFieldTheme.placeholderDefaultColor[3],
+    placeholderDisabledColor: _$YgTextFieldTheme.placeholderDisabledColor[3],
+    placeholderTextStyle: _$YgTextFieldTheme.placeholderTextStyle[3],
+    standardSuffixPadding: _$YgTextFieldTheme.standardSuffixPadding[3],
+    valueDefaultColor: _$YgTextFieldTheme.valueDefaultColor[3],
+    valueDisabledColor: _$YgTextFieldTheme.valueDisabledColor[3],
+    valueTextStyle: _$YgTextFieldTheme.valueTextStyle[3],
   );
 
   static final themes = [
@@ -247,7 +237,7 @@ class YgTextInputTheme extends ThemeExtension<YgTextInputTheme> {
   ];
 
   @override
-  YgTextInputTheme copyWith({
+  YgTextFieldTheme copyWith({
     Curve? animationCurve,
     Duration? animationDuration,
     Color? backgroundDefaultColor,
@@ -276,13 +266,12 @@ class YgTextInputTheme extends ThemeExtension<YgTextInputTheme> {
     Color? placeholderDefaultColor,
     Color? placeholderDisabledColor,
     TextStyle? placeholderTextStyle,
-    double? standardHorizontalContentPadding,
     EdgeInsets? standardSuffixPadding,
     Color? valueDefaultColor,
     Color? valueDisabledColor,
     TextStyle? valueTextStyle,
   }) {
-    return YgTextInputTheme(
+    return YgTextFieldTheme(
       animationCurve: animationCurve ?? this.animationCurve,
       animationDuration: animationDuration ?? this.animationDuration,
       backgroundDefaultColor:
@@ -322,8 +311,6 @@ class YgTextInputTheme extends ThemeExtension<YgTextInputTheme> {
       placeholderDisabledColor:
           placeholderDisabledColor ?? this.placeholderDisabledColor,
       placeholderTextStyle: placeholderTextStyle ?? this.placeholderTextStyle,
-      standardHorizontalContentPadding: standardHorizontalContentPadding ??
-          this.standardHorizontalContentPadding,
       standardSuffixPadding:
           standardSuffixPadding ?? this.standardSuffixPadding,
       valueDefaultColor: valueDefaultColor ?? this.valueDefaultColor,
@@ -333,10 +320,10 @@ class YgTextInputTheme extends ThemeExtension<YgTextInputTheme> {
   }
 
   @override
-  YgTextInputTheme lerp(
-      covariant ThemeExtension<YgTextInputTheme>? other, double t) {
-    if (other is! YgTextInputTheme) return this as YgTextInputTheme;
-    return YgTextInputTheme(
+  YgTextFieldTheme lerp(
+      covariant ThemeExtension<YgTextFieldTheme>? other, double t) {
+    if (other is! YgTextFieldTheme) return this as YgTextFieldTheme;
+    return YgTextFieldTheme(
       animationCurve: t < 0.5 ? animationCurve : other.animationCurve,
       animationDuration: t < 0.5 ? animationDuration : other.animationDuration,
       backgroundDefaultColor:
@@ -383,9 +370,6 @@ class YgTextInputTheme extends ThemeExtension<YgTextInputTheme> {
           placeholderDisabledColor, other.placeholderDisabledColor, t)!,
       placeholderTextStyle:
           TextStyle.lerp(placeholderTextStyle, other.placeholderTextStyle, t)!,
-      standardHorizontalContentPadding: t < 0.5
-          ? standardHorizontalContentPadding
-          : other.standardHorizontalContentPadding,
       standardSuffixPadding:
           t < 0.5 ? standardSuffixPadding : other.standardSuffixPadding,
       valueDefaultColor:
@@ -400,7 +384,7 @@ class YgTextInputTheme extends ThemeExtension<YgTextInputTheme> {
   bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is YgTextInputTheme &&
+            other is YgTextFieldTheme &&
             const DeepCollectionEquality()
                 .equals(animationCurve, other.animationCurve) &&
             const DeepCollectionEquality()
@@ -458,9 +442,6 @@ class YgTextInputTheme extends ThemeExtension<YgTextInputTheme> {
                 placeholderDisabledColor, other.placeholderDisabledColor) &&
             const DeepCollectionEquality()
                 .equals(placeholderTextStyle, other.placeholderTextStyle) &&
-            const DeepCollectionEquality().equals(
-                standardHorizontalContentPadding,
-                other.standardHorizontalContentPadding) &&
             const DeepCollectionEquality()
                 .equals(standardSuffixPadding, other.standardSuffixPadding) &&
             const DeepCollectionEquality()
@@ -503,7 +484,6 @@ class YgTextInputTheme extends ThemeExtension<YgTextInputTheme> {
       const DeepCollectionEquality().hash(placeholderDefaultColor),
       const DeepCollectionEquality().hash(placeholderDisabledColor),
       const DeepCollectionEquality().hash(placeholderTextStyle),
-      const DeepCollectionEquality().hash(standardHorizontalContentPadding),
       const DeepCollectionEquality().hash(standardSuffixPadding),
       const DeepCollectionEquality().hash(valueDefaultColor),
       const DeepCollectionEquality().hash(valueDisabledColor),

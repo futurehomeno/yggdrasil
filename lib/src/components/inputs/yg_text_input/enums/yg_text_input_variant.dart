@@ -1,4 +1,4 @@
-enum YgTextInputVariant {
+enum YgTextFieldVariant {
   outlined,
   standard,
 }

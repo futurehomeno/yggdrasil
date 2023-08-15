@@ -4,23 +4,23 @@ import 'package:yggdrasil_demo/core/yg_route_builder.dart';
 import 'package:yggdrasil_demo/widgets/_widgets.dart';
 import 'package:yggdrasil_demo/widgets/login_form_dialog.dart';
 
-class TextInputScreen extends StatefulWidget {
-  const TextInputScreen({super.key});
+class TextFieldScreen extends StatefulWidget {
+  const TextFieldScreen({super.key});
 
   static const String routeName = 'TextInputScreen';
 
   static PageRouteBuilder<Widget> route() {
     return YgRouteBuilder().fadeTransition(
       settings: const RouteSettings(name: routeName),
-      screen: const TextInputScreen(),
+      screen: const TextFieldScreen(),
     );
   }
 
   @override
-  State<TextInputScreen> createState() => _TextInputScreenState();
+  State<TextFieldScreen> createState() => _TextFieldScreenState();
 }
 
-class _TextInputScreenState extends State<TextInputScreen> {
+class _TextFieldScreenState extends State<TextFieldScreen> {
   final FormKey formKey = FormKey();
   final TextFieldKey emailKey = TextFieldKey();
   final TextFieldKey passwordKey = TextFieldKey();
@@ -33,75 +33,75 @@ class _TextInputScreenState extends State<TextInputScreen> {
         FocusScope.of(context).unfocus();
       },
       child: DemoScreen(
-        componentName: 'TextInput',
-        componentDesc: 'Text Input',
+        componentName: 'TextField',
+        componentDesc: 'Text Field',
         supernovaLink: 'Input',
         child: Column(
           children: <Widget>[
             const YgListTile(title: 'Default variant'),
-            const YgTextInput(
+            const YgTextField(
               label: 'Label',
             ),
-            const YgTextInput(
+            const YgTextField(
               label: 'Label',
-              size: YgTextInputSize.medium,
+              size: YgTextFieldSize.medium,
             ),
-            const YgTextInput(
+            const YgTextField(
               label: 'Label',
               placeholder: 'Placeholder',
             ),
-            const YgTextInput(
+            const YgTextField(
               label: 'Label',
               obscureText: true,
             ),
-            const YgTextInput(
+            const YgTextField(
               label: 'Label',
               error: 'Error Message',
             ),
-            const YgTextInput(
+            const YgTextField(
               label: 'Label',
               disabled: true,
               obscureText: true,
             ),
-            const YgTextInput(
+            const YgTextField(
               label: 'Label',
               placeholder: 'Multi line',
               maxLines: 5,
               minLines: 2,
             ),
             const YgListTile(title: 'Outlined variant'),
-            const YgTextInput(
+            const YgTextField(
               label: 'Label',
-              variant: YgTextInputVariant.outlined,
+              variant: YgTextFieldVariant.outlined,
             ),
-            const YgTextInput(
+            const YgTextField(
               label: 'Label',
-              variant: YgTextInputVariant.outlined,
-              size: YgTextInputSize.medium,
+              variant: YgTextFieldVariant.outlined,
+              size: YgTextFieldSize.medium,
             ),
-            const YgTextInput(
+            const YgTextField(
               label: 'Label',
-              variant: YgTextInputVariant.outlined,
+              variant: YgTextFieldVariant.outlined,
               placeholder: 'Placeholder',
             ),
-            const YgTextInput(
+            const YgTextField(
               label: 'Label',
-              variant: YgTextInputVariant.outlined,
+              variant: YgTextFieldVariant.outlined,
               obscureText: true,
             ),
-            const YgTextInput(
+            const YgTextField(
               label: 'Label',
-              variant: YgTextInputVariant.outlined,
+              variant: YgTextFieldVariant.outlined,
               error: 'Error Message',
             ),
-            const YgTextInput(
+            const YgTextField(
               label: 'Label',
-              variant: YgTextInputVariant.outlined,
+              variant: YgTextFieldVariant.outlined,
               disabled: true,
             ),
-            const YgTextInput(
+            const YgTextField(
               label: 'Label',
-              variant: YgTextInputVariant.outlined,
+              variant: YgTextFieldVariant.outlined,
               placeholder: 'Multi line',
               maxLines: 5,
               minLines: 2,
@@ -115,12 +115,12 @@ class _TextInputScreenState extends State<TextInputScreen> {
                 mainAxisSize: MainAxisSize.min,
                 crossAxisAlignment: CrossAxisAlignment.stretch,
                 children: <Widget>[
-                  YgTextFormInput.email(
+                  YgTextFormField.email(
                     key: emailKey,
                     label: 'Email',
-                    variant: YgTextInputVariant.outlined,
+                    variant: YgTextFieldVariant.outlined,
                   ),
-                  YgTextFormInput(
+                  YgTextFormField(
                     validators: const <YgTextValidator>[
                       RequiredValidator(),
                       PasswordValidator(),
@@ -128,9 +128,9 @@ class _TextInputScreenState extends State<TextInputScreen> {
                     key: passwordKey,
                     label: 'Password',
                     obscureText: true,
-                    variant: YgTextInputVariant.outlined,
+                    variant: YgTextFieldVariant.outlined,
                   ),
-                  YgTextFormInput(
+                  YgTextFormField(
                     validators: <YgTextValidator>[
                       const RequiredValidator(),
                       PasswordConfirmValidator(
@@ -140,7 +140,7 @@ class _TextInputScreenState extends State<TextInputScreen> {
                     key: passwordConfirmKey,
                     label: 'Confirm password',
                     obscureText: true,
-                    variant: YgTextInputVariant.outlined,
+                    variant: YgTextFieldVariant.outlined,
                   ),
                   YgButton(
                     variant: YgButtonVariant.primary,

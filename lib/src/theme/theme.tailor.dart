@@ -49,7 +49,7 @@ class YgTheme extends ThemeExtension<YgTheme> {
   final YgSnackBarTheme snackBarTheme;
   final YgSwitchTheme switchTheme;
   final YgTagTheme tagTheme;
-  final YgTextInputTheme textInputTheme;
+  final YgTextFieldTheme textInputTheme;
   final YgTextLinkTheme textLinkTheme;
   final YgTokens tokens;
 
@@ -171,7 +171,7 @@ class YgTheme extends ThemeExtension<YgTheme> {
     YgSnackBarTheme? snackBarTheme,
     YgSwitchTheme? switchTheme,
     YgTagTheme? tagTheme,
-    YgTextInputTheme? textInputTheme,
+    YgTextFieldTheme? textInputTheme,
     YgTextLinkTheme? textLinkTheme,
     YgTokens? tokens,
   }) {
@@ -227,7 +227,7 @@ class YgTheme extends ThemeExtension<YgTheme> {
       switchTheme: switchTheme.lerp(other.switchTheme, t) as YgSwitchTheme,
       tagTheme: tagTheme.lerp(other.tagTheme, t) as YgTagTheme,
       textInputTheme:
-          textInputTheme.lerp(other.textInputTheme, t) as YgTextInputTheme,
+          textInputTheme.lerp(other.textInputTheme, t) as YgTextFieldTheme,
       textLinkTheme:
           textLinkTheme.lerp(other.textLinkTheme, t) as YgTextLinkTheme,
       tokens: tokens.lerp(other.tokens, t) as YgTokens,
@@ -323,7 +323,7 @@ extension YgThemeBuildContextProps on BuildContext {
   YgSnackBarTheme get snackBarTheme => ygTheme.snackBarTheme;
   YgSwitchTheme get switchTheme => ygTheme.switchTheme;
   YgTagTheme get tagTheme => ygTheme.tagTheme;
-  YgTextInputTheme get textInputTheme => ygTheme.textInputTheme;
+  YgTextFieldTheme get textInputTheme => ygTheme.textInputTheme;
   YgTextLinkTheme get textLinkTheme => ygTheme.textLinkTheme;
   YgTokens get tokens => ygTheme.tokens;
 }
