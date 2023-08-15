@@ -66,6 +66,8 @@ class _YgTextFieldContentState extends YgTextFieldBaseWidgetState<YgTextFieldCon
             child: Text(
               placeholder,
               style: _placeholderTextStyle,
+              maxLines: widget.minLines ?? 1,
+              overflow: TextOverflow.ellipsis,
             ),
           ),
         Padding(

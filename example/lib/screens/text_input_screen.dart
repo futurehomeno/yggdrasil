@@ -55,7 +55,7 @@ class _TextFieldScreenState extends State<TextFieldScreen> {
             ),
             const YgTextField.password(
               textInputAction: TextInputAction.next,
-              label: 'Label',
+              label: 'Password',
             ),
             const YgTextField.text(
               textInputAction: TextInputAction.next,
@@ -64,12 +64,12 @@ class _TextFieldScreenState extends State<TextFieldScreen> {
             ),
             const YgTextField.password(
               textInputAction: TextInputAction.next,
-              label: 'Label',
+              label: 'Password',
               disabled: true,
             ),
             const YgTextField.multiline(
-              label: 'Label',
-              placeholder: 'Multi line',
+              label: 'Multi line',
+              placeholder: 'Cupidatat reprehenderit qui laborum do elit fugiat deserunt ipsum.',
               maxLines: 5,
               minLines: 2,
             ),
@@ -93,7 +93,7 @@ class _TextFieldScreenState extends State<TextFieldScreen> {
             ),
             const YgTextField.password(
               textInputAction: TextInputAction.next,
-              label: 'Label',
+              label: 'Password',
               variant: YgTextFieldVariant.outlined,
             ),
             const YgTextField.text(
@@ -109,9 +109,9 @@ class _TextFieldScreenState extends State<TextFieldScreen> {
               disabled: true,
             ),
             const YgTextField.multiline(
-              label: 'Label',
+              label: 'Multi line',
               variant: YgTextFieldVariant.outlined,
-              placeholder: 'Multi line',
+              placeholder: 'Id labore veniam id veniam duis in cillum eu duis sint veniam eiusmod do cupidatat.',
               maxLines: 5,
               minLines: 2,
             ),
