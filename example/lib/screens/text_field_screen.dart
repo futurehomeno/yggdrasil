@@ -7,7 +7,7 @@ import 'package:yggdrasil_demo/widgets/login_form_dialog.dart';
 class TextFieldScreen extends StatefulWidget {
   const TextFieldScreen({super.key});
 
-  static const String routeName = 'TextInputScreen';
+  static const String routeName = 'TextFieldScreen';
 
   static PageRouteBuilder<Widget> route() {
     return YgRouteBuilder().fadeTransition(

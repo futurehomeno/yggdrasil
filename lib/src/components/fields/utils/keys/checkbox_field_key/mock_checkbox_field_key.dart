@@ -2,13 +2,13 @@
 import 'package:mockito/annotations.dart';
 import 'package:mockito/mockito.dart';
 
-import 'check_box_field_key.dart';
-import 'mock_check_box_field_key.mocks.dart';
+import 'checkbox_field_key.dart';
+import 'mock_checkbox_field_key.mocks.dart';
 
 @GenerateMocks(<Type>[], customMocks: <MockSpec<dynamic>>[
-  MockSpec<CheckBoxFieldKey>(as: #GeneratedMockCheckBoxFieldKey),
+  MockSpec<CheckboxFieldKey>(as: #GeneratedMockCheckboxFieldKey),
 ])
-class MockCheckBoxFieldKey extends GeneratedMockCheckBoxFieldKey {
+class MockCheckboxFieldKey extends GeneratedMockCheckboxFieldKey {
   void mockValue(bool mockValue) {
     when(
       value,
