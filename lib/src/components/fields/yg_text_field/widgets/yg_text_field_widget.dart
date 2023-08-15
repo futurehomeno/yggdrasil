@@ -18,7 +18,7 @@ abstract class YgTextFieldBaseWidget extends StatefulWidget {
   /// When defined will overwrite the [initialValue].
   final TextEditingController? controller;
 
-  /// The initial value of the input.
+  /// The initial value of the text field.
   final String? initialValue;
 }
 

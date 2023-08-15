@@ -170,11 +170,11 @@ class YgTextField extends YgTextFieldBaseWidget with StatefulWidgetDebugMixin {
           'Suffix and onSuffixPressed should either be both null or both defined',
         );
 
-  /// Obscures the text in the input.
+  /// Obscures the text in the text field.
   ///
   /// If [showObscureTextButton] is set to true (the default value) and the
   /// [suffix] is empty, there will be a suffix button added which will show
-  /// the text in the input when pressed.
+  /// the text in the text field when pressed.
   final bool obscureText;
 
   /// Shows a button to toggle obscuring the text.
@@ -186,13 +186,13 @@ class YgTextField extends YgTextFieldBaseWidget with StatefulWidgetDebugMixin {
   /// provided.
   final bool showObscureTextButton;
 
-  /// Triggers whenever there's a change to the input value.
+  /// Triggers whenever there's a change to the text field value.
   final ValueChanged<String>? onChanged;
 
-  /// The variant of the input.
+  /// The variant of the text field.
   final YgTextFieldVariant variant;
 
-  /// The label shown on top of the input.
+  /// The label shown on top of the text field.
   final String label;
 
   /// Called when the user submits editable content (e.g., user presses the "done"
@@ -208,7 +208,7 @@ class YgTextField extends YgTextFieldBaseWidget with StatefulWidgetDebugMixin {
   ///  - When a non-completion action is pressed, such as "next" or "previous",
   ///    the user's content is submitted to the [controller], but focus is not
   ///    given up because developers may want to immediately move focus to
-  ///    another input widget within [onSubmitted].
+  ///    another text field widget within [onSubmitted].
   ///
   /// Providing [onEditingComplete] prevents the aforementioned default behavior.
   final VoidCallback? onEditingComplete;
@@ -222,12 +222,12 @@ class YgTextField extends YgTextFieldBaseWidget with StatefulWidgetDebugMixin {
   /// The type of action button to use for the keyboard.
   final TextInputAction textInputAction;
 
-  /// The placeholder shown in the input.
+  /// The placeholder shown in the text field.
   ///
   /// Gets replaced with the value entered by the user if the value is not empty.
   final String? placeholder;
 
-  /// The suffix shown in the input.
+  /// The suffix shown in the text field.
   ///
   /// !--- IMPORTANT ---
   /// You can not add a suffix if [showObscureTextButton] and [obscureText] are
@@ -237,14 +237,14 @@ class YgTextField extends YgTextFieldBaseWidget with StatefulWidgetDebugMixin {
   /// If [suffix] is defined [onSuffixPressed] also has to be defined.
   final YgIconButton? suffix;
 
-  /// Whether the input is disabled.
+  /// Whether the text field is disabled.
   ///
-  /// Applies styling for the disabled text input. Also disables all interaction.
+  /// Applies styling for the disabled text text field. Also disables all interaction.
   final bool disabled;
 
-  /// The size of the input.
+  /// The size of the text field.
   ///
-  /// Primarily affects the height of the input.
+  /// Primarily affects the height of the text field.
   final YgTextFieldSize size;
 
   /// The type of keyboard to use for editing the text.
@@ -288,9 +288,9 @@ class YgTextField extends YgTextFieldBaseWidget with StatefulWidgetDebugMixin {
   /// to the height of its constraints.
   ///
   /// If this is not null, the value must be greater than zero, and it will lock
-  /// the input to the given number of lines and take up enough horizontal space
+  /// the text field to the given number of lines and take up enough horizontal space
   /// to accommodate that number of lines. Setting [minLines] as well allows the
-  /// input to grow and shrink between the indicated range.
+  /// text field to grow and shrink between the indicated range.
   final int? maxLines;
 
   /// The minimum number of lines to occupy when the content spans fewer lines.
@@ -312,7 +312,7 @@ class YgTextField extends YgTextFieldBaseWidget with StatefulWidgetDebugMixin {
   /// starting from [minLines].
   final int? minLines;
 
-  /// The error to display under the input.
+  /// The error to display under the text field.
   ///
   /// Will change the styling of the widget to reflect the presence of the error.
   /// Must be null when there is no error, an empty string is still seen as an
@@ -332,7 +332,7 @@ class _YgTextFieldState extends YgTextFieldBaseWidgetState<YgTextField> {
   /// Whether to hide the obscured text or not.
   bool _obscureTextToggled = true;
 
-  /// Whether the input is being hovered over.
+  /// Whether the text field is being hovered over.
   bool _hovered = false;
 
   @override
