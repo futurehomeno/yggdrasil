@@ -39,67 +39,76 @@ class _TextFieldScreenState extends State<TextFieldScreen> {
         child: Column(
           children: <Widget>[
             const YgListTile(title: 'Default variant'),
-            const YgTextField(
+            const YgTextField.text(
+              textInputAction: TextInputAction.next,
               label: 'Label',
             ),
-            const YgTextField(
+            const YgTextField.text(
+              textInputAction: TextInputAction.next,
               label: 'Label',
               size: YgTextFieldSize.medium,
             ),
-            const YgTextField(
+            const YgTextField.text(
+              textInputAction: TextInputAction.next,
               label: 'Label',
               placeholder: 'Placeholder',
             ),
-            const YgTextField(
+            const YgTextField.password(
+              textInputAction: TextInputAction.next,
               label: 'Label',
-              obscureText: true,
             ),
-            const YgTextField(
+            const YgTextField.text(
+              textInputAction: TextInputAction.next,
               label: 'Label',
               error: 'Error Message',
             ),
-            const YgTextField(
+            const YgTextField.password(
+              textInputAction: TextInputAction.next,
               label: 'Label',
               disabled: true,
-              obscureText: true,
             ),
-            const YgTextField(
+            const YgTextField.multiline(
               label: 'Label',
               placeholder: 'Multi line',
               maxLines: 5,
               minLines: 2,
             ),
             const YgListTile(title: 'Outlined variant'),
-            const YgTextField(
+            const YgTextField.text(
+              textInputAction: TextInputAction.next,
               label: 'Label',
               variant: YgTextFieldVariant.outlined,
             ),
-            const YgTextField(
+            const YgTextField.text(
+              textInputAction: TextInputAction.next,
               label: 'Label',
               variant: YgTextFieldVariant.outlined,
               size: YgTextFieldSize.medium,
             ),
-            const YgTextField(
+            const YgTextField.text(
+              textInputAction: TextInputAction.next,
               label: 'Label',
               variant: YgTextFieldVariant.outlined,
               placeholder: 'Placeholder',
             ),
-            const YgTextField(
+            const YgTextField.password(
+              textInputAction: TextInputAction.next,
               label: 'Label',
               variant: YgTextFieldVariant.outlined,
-              obscureText: true,
             ),
-            const YgTextField(
+            const YgTextField.text(
+              textInputAction: TextInputAction.next,
               label: 'Label',
               variant: YgTextFieldVariant.outlined,
               error: 'Error Message',
             ),
-            const YgTextField(
+            const YgTextField.text(
+              textInputAction: TextInputAction.next,
               label: 'Label',
               variant: YgTextFieldVariant.outlined,
               disabled: true,
             ),
-            const YgTextField(
+            const YgTextField.multiline(
               label: 'Label',
               variant: YgTextFieldVariant.outlined,
               placeholder: 'Multi line',
@@ -116,31 +125,25 @@ class _TextFieldScreenState extends State<TextFieldScreen> {
                 crossAxisAlignment: CrossAxisAlignment.stretch,
                 children: <Widget>[
                   YgTextFormField.email(
+                    required: true,
                     key: emailKey,
                     label: 'Email',
                     variant: YgTextFieldVariant.outlined,
+                    textInputAction: TextInputAction.next,
                   ),
-                  YgTextFormField(
-                    validators: const <YgTextValidator>[
-                      RequiredValidator(),
-                      PasswordValidator(),
-                    ],
+                  YgTextFormField.password(
+                    required: true,
                     key: passwordKey,
                     label: 'Password',
-                    obscureText: true,
+                    textInputAction: TextInputAction.next,
                     variant: YgTextFieldVariant.outlined,
                   ),
-                  YgTextFormField(
-                    validators: <YgTextValidator>[
-                      const RequiredValidator(),
-                      PasswordConfirmValidator(
-                        otherPasswordFieldKey: passwordKey,
-                      )
-                    ],
+                  YgTextFormField.password(
+                    otherPasswordFieldKey: passwordKey,
                     key: passwordConfirmKey,
                     label: 'Confirm password',
-                    obscureText: true,
                     variant: YgTextFieldVariant.outlined,
+                    textInputAction: TextInputAction.done,
                   ),
                   YgButton(
                     variant: YgButtonVariant.primary,
