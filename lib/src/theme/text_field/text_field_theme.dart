@@ -5,7 +5,7 @@ import 'package:yggdrasil/src/tokens/consumer_light/_consumer_light.dart' as con
 import 'package:yggdrasil/src/tokens/professional_dark/_professional_dark.dart' as professional_dark;
 import 'package:yggdrasil/src/tokens/professional_light/_professional_light.dart' as professional_light;
 
-part 'text_input_theme.tailor.dart';
+part 'text_field_theme.tailor.dart';
 
 @tailorComponent
 class _$YgTextFieldTheme {

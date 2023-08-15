@@ -1,4 +1,4 @@
-import 'package:yggdrasil/src/components/inputs/validators/_validators.dart';
+import 'package:yggdrasil/src/components/fields/validators/_validators.dart';
 
 /// Validates that a password is at least 8 characters long.
 class PasswordValidator extends CombinedValidator<String> {

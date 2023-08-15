@@ -2,7 +2,7 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 // ignore_for_file: type=lint, unused_element, unnecessary_cast
 
-part of 'text_input_theme.dart';
+part of 'text_field_theme.dart';
 
 // **************************************************************************
 // TailorAnnotationsGenerator
