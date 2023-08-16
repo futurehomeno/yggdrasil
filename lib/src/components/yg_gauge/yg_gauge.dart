@@ -16,10 +16,12 @@ class YgGauge extends StatefulWidget with StatefulWidgetDebugMixin {
     this.minValue = 0.0,
     this.maxValue = 1.0,
     this.title,
+    this.buildTitle,
     this.label,
     this.notation,
     this.icon,
-  })  : assert(minValue <= maxValue, 'minValue must be less than or equal to maxValue'),
+  })  : assert(title == null || buildTitle == null, 'title and buildTitle can not be both defined.'),
+        assert(minValue <= maxValue, 'minValue must be less than or equal to maxValue'),
         assert(icon == null || notation == null, 'Cannot have both icon and notation'),
         assert(title == null || label == null || icon == null, 'Cannot have both title and label or icon');
 
@@ -35,7 +37,14 @@ class YgGauge extends StatefulWidget with StatefulWidgetDebugMixin {
   final double maxValue;
 
   /// Text shown in the center of the gauge.
+  ///
+  /// When the title depends on the value use [buildTitle] instead.
   final String? title;
+
+  /// A builder which uses the current value to generate a title.
+  ///
+  /// When the title is static use [title] instead.
+  final String Function(double value)? buildTitle;
 
   /// Text show on the bottom of the gauge.
   final String? label;
@@ -67,7 +76,7 @@ class _YgGaugeState extends State<YgGauge> with TickerProviderStateMixin {
   @override
   void didUpdateWidget(covariant YgGauge oldWidget) {
     if (widget.value != oldWidget.value) {
-      _tween.begin = oldWidget.value;
+      _tween.begin = _animation.value;
       _tween.end = widget.value;
       _controller.value = 0.0;
 
@@ -110,6 +119,9 @@ class _YgGaugeState extends State<YgGauge> with TickerProviderStateMixin {
     final double topPaddingWithoutNotation = constraints.maxHeight / 100 * 35;
     final double bottomPadding = constraints.maxHeight / 100 * 10;
 
+    final String? title = widget.title;
+    final String Function(double value)? buildTitle = widget.buildTitle;
+
     return Stack(
       children: <Widget>[
         Align(
@@ -119,7 +131,8 @@ class _YgGaugeState extends State<YgGauge> with TickerProviderStateMixin {
             child: Column(
               children: <Widget>[
                 if (widget.icon != null && widget.title == null) _buildIcon(context),
-                if (widget.title != null) _buildTitle(context),
+                if (title != null) _buildTitle(context, title),
+                if (buildTitle != null) _buildAnimatedTitle(context),
                 if (widget.notation != null) _buildNotation(context),
               ],
             ),
@@ -144,9 +157,19 @@ class _YgGaugeState extends State<YgGauge> with TickerProviderStateMixin {
   }
 
   // TODO(developer): Remove test style height after updating tokens.
-  Text _buildTitle(BuildContext context) {
+  Widget _buildAnimatedTitle(BuildContext context) {
+    return AnimatedBuilder(
+      animation: _animation,
+      builder: (BuildContext context, _) => _buildTitle(
+        context,
+        widget.buildTitle!(_animation.value),
+      ),
+    );
+  }
+
+  Text _buildTitle(BuildContext context, String title) {
     return Text(
-      widget.title!,
+      title,
       style: context.gaugeTheme.titleTextStyle.copyWith(
         height: 24.0 / 20.0,
         color: _disabled ? context.tokens.colors.textDisabled : null,
