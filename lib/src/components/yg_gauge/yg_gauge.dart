@@ -9,7 +9,7 @@ import 'package:yggdrasil/yggdrasil.dart';
 /// only be used from around 90px to 120px and not inside
 /// widgets that are larger / smaller than that.
 // TODO(reza): Define larger / smaller version of this component.
-class YgGauge extends StatelessWidget {
+class YgGauge extends StatefulWidget {
   const YgGauge({
     super.key,
     required this.value,
@@ -46,26 +46,47 @@ class YgGauge extends StatelessWidget {
   final YgIcon? icon;
 
   @override
+  State<YgGauge> createState() => _YgGaugeState();
+}
+
+class _YgGaugeState extends State<YgGauge> with TickerProviderStateMixin {
+  late final AnimationController _controller = AnimationController(
+    vsync: this,
+    duration: context.gaugeTheme.tweenDuration,
+  );
+  late final Tween<double> _tween = Tween<double>(
+    begin: widget.value ?? 0,
+    end: widget.value ?? 0,
+  );
+  late final CurveTween _curveTween = CurveTween(
+    curve: context.gaugeTheme.tweenCurve,
+  );
+  late final Animation<double> _animation = _controller.drive(_curveTween).drive(_tween);
+
+  @override
+  void didUpdateWidget(covariant YgGauge oldWidget) {
+    if (widget.value != oldWidget.value) {
+      _tween.begin = oldWidget.value;
+      _tween.end = widget.value;
+      _controller.forward(from: 0);
+    }
+    super.didUpdateWidget(oldWidget);
+  }
+
+  @override
   Widget build(BuildContext context) {
     return RepaintBoundary(
       child: AspectRatio(
         aspectRatio: 1.0,
         child: LayoutBuilder(
           builder: (BuildContext context, BoxConstraints constraints) {
-            return TweenAnimationBuilder<double>(
-              duration: context.gaugeTheme.tweenDuration,
-              tween: Tween<double>(begin: value ?? 0.0, end: value ?? 0.0),
-              curve: context.gaugeTheme.tweenCurve,
-              builder: (BuildContext context, double value, Widget? child) {
-                return CustomPaint(
-                  painter: _YgGaugePainter(
-                    value: value,
-                    gradient: _getDefaultGradient(context),
-                    trackColor: trackColor ?? _getDefaultTrackColor(context),
-                  ),
-                  child: _buildContent(context, constraints),
-                );
-              },
+            return CustomPaint(
+              painter: _YgGaugePainter(
+                gradient: _getDefaultGradient(context),
+                trackColor: widget.trackColor ?? _getDefaultTrackColor(context),
+                animation: _animation,
+              ),
+              child: _buildContent(context, constraints),
             );
           },
         ),
@@ -83,12 +104,12 @@ class YgGauge extends StatelessWidget {
         Align(
           alignment: Alignment.topCenter,
           child: Padding(
-            padding: EdgeInsets.only(top: notation != null ? topPaddingWithNotation : topPaddingWithoutNotation),
+            padding: EdgeInsets.only(top: widget.notation != null ? topPaddingWithNotation : topPaddingWithoutNotation),
             child: Column(
               children: <Widget>[
-                if (icon != null && title == null) _buildIcon(context),
-                if (title != null) _buildTitle(context),
-                if (notation != null) _buildNotation(context),
+                if (widget.icon != null && widget.title == null) _buildIcon(context),
+                if (widget.title != null) _buildTitle(context),
+                if (widget.notation != null) _buildNotation(context),
               ],
             ),
           ),
@@ -100,8 +121,9 @@ class YgGauge extends StatelessWidget {
             child: Column(
               mainAxisSize: MainAxisSize.min,
               children: <Widget>[
-                if (icon != null && label == null && (title != null && label != null)) _buildIcon(context),
-                if (label != null) _buildLabel(context),
+                if (widget.icon != null && widget.label == null && (widget.title != null && widget.label != null))
+                  _buildIcon(context),
+                if (widget.label != null) _buildLabel(context),
               ],
             ),
           ),
@@ -113,7 +135,7 @@ class YgGauge extends StatelessWidget {
   // TODO(developer): Remove test style height after updating tokens.
   Text _buildTitle(BuildContext context) {
     return Text(
-      title!,
+      widget.title!,
       style: context.gaugeTheme.titleTextStyle.copyWith(
         height: 24 / 20,
         color: _disabled ? context.tokens.colors.textDisabled : null,
@@ -125,7 +147,7 @@ class YgGauge extends StatelessWidget {
 
   Text _buildNotation(BuildContext context) {
     return Text(
-      notation!,
+      widget.notation!,
       style: context.gaugeTheme.notationTextStyle.copyWith(
         color: _disabled ? context.tokens.colors.textDisabled : null,
       ),
@@ -136,7 +158,7 @@ class YgGauge extends StatelessWidget {
 
   Widget _buildLabel(BuildContext context) {
     return Text(
-      label!,
+      widget.label!,
       style: context.gaugeTheme.labelTextStyle.copyWith(
         color: _disabled ? context.tokens.colors.textDisabled : null,
       ),
@@ -150,7 +172,7 @@ class YgGauge extends StatelessWidget {
       data: IconThemeData(
         color: _disabled ? context.tokens.colors.iconDisabled : context.tokens.colors.iconDefault,
       ),
-      child: icon!,
+      child: widget.icon!,
     );
   }
 
@@ -179,17 +201,17 @@ class YgGauge extends StatelessWidget {
     return context.tokens.colors.backgroundDisabled;
   }
 
-  bool get _disabled => value == null;
+  bool get _disabled => widget.value == null;
 }
 
 class _YgGaugePainter extends CustomPainter {
   _YgGaugePainter({
-    required this.value,
     required this.gradient,
     required this.trackColor,
-  });
+    required this.animation,
+  }) : super(repaint: animation);
 
-  final double value;
+  final Animation<double> animation;
   final Gradient gradient;
   final Color trackColor;
 
@@ -239,7 +261,7 @@ class _YgGaugePainter extends CustomPainter {
     canvas.drawArc(
       rect,
       startAngle,
-      endAngle * value,
+      endAngle * animation.value,
       false,
       arcPainter,
     );
@@ -247,6 +269,6 @@ class _YgGaugePainter extends CustomPainter {
 
   @override
   bool shouldRepaint(covariant _YgGaugePainter oldDelegate) {
-    return oldDelegate.value != value;
+    return oldDelegate.gradient != gradient || oldDelegate.trackColor != trackColor;
   }
 }
