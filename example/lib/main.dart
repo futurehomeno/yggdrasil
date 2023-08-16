@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:provider/provider.dart';
+import 'package:yggdrasil/yggdrasil.dart';
+import 'package:yggdrasil_demo/translations/default_validator_errors.dart';
 
 import 'core/_core.dart';
 import 'screens/_screens.dart';
@@ -17,8 +19,14 @@ void main() {
   );
 
   WidgetsBinding.instance.addPostFrameCallback((Duration timeStamp) {
-    SystemChrome.setSystemUIOverlayStyle(const SystemUiOverlayStyle(systemNavigationBarColor: Colors.transparent));
-    SystemChrome.setEnabledSystemUIMode(SystemUiMode.edgeToEdge);
+    SystemChrome.setSystemUIOverlayStyle(
+      const SystemUiOverlayStyle(
+        systemNavigationBarColor: Colors.transparent,
+      ),
+    );
+    SystemChrome.setEnabledSystemUIMode(
+      SystemUiMode.edgeToEdge,
+    );
   });
 }
 
@@ -29,9 +37,21 @@ class Yggdrasil extends StatelessWidget {
   Widget build(BuildContext context) {
     return Consumer<YgAppState>(
       builder: (BuildContext context, YgAppState ygAppState, Widget? child) {
+        // Set the debug paint flags.
+        if (ygAppState.debugOutlineEnabled != debugOutlineEnabled) {
+          debugOutlineEnabled = ygAppState.debugOutlineEnabled;
+          YgDebug.repaintAllInstances(context);
+        }
+
         return MaterialApp(
           title: 'Yggdrasil',
           theme: ygAppState.currentThemeData,
+          builder: (BuildContext context, Widget? child) {
+            return YgDefaultValidatorErrorsProvider(
+              defaultErrors: buildDefaultValidatorErrors(),
+              child: child!,
+            );
+          },
           home: const HomeScreen(),
           navigatorKey: YgRouter.navigatorKey,
           debugShowCheckedModeBanner: false,

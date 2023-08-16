@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:yggdrasil/yggdrasil.dart';
 
-import 'enums/_enums.dart';
 import 'yg_icon_button_style.dart';
 
 /// Base class for creating all YgIconButtons.
-class YgIconButton extends ButtonStyleButton {
+class YgIconButton extends ButtonStyleButton with StatefulWidgetDebugMixin {
   const YgIconButton({
     super.key,
     required super.onPressed,

@@ -21,29 +21,40 @@ class DemoScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: Text(componentName),
-        actions: <Widget>[
-          Consumer<YgAppState>(
-            builder: (BuildContext context, YgAppState ygAppState, Widget? widget) {
-              return YgIconButton(
-                onPressed: ygAppState.toggleTheme,
-                child: const YgIcon(YgIcons.refresh),
-              );
-            },
-          )
-        ],
+    final SafeArea child = SafeArea(
+      child: Padding(
+        padding: const EdgeInsets.all(20.0),
+        child: this.child,
       ),
-      body: scrollable
-          ? SingleChildScrollView(
-              child: SafeArea(
-                child: child,
+    );
+
+    return Consumer<YgAppState>(
+      builder: (BuildContext context, YgAppState ygAppState, Widget? widget) {
+        return Scaffold(
+          appBar: AppBar(
+            title: Text(componentName),
+            actions: <Widget>[
+              YgIconButton(
+                onPressed: ygAppState.toggleDebugOutlineEnabled,
+                child: const YgIcon(YgIcons.eyeOpen),
               ),
-            )
-          : SafeArea(
-              child: child,
-            ),
+              YgIconButton(
+                onPressed: ygAppState.toggleProfessionalTheme,
+                child: const Icon(Icons.business),
+              ),
+              YgIconButton(
+                onPressed: ygAppState.toggleDarkMode,
+                child: const YgIcon(YgIcons.refresh),
+              ),
+            ],
+          ),
+          body: scrollable
+              ? SingleChildScrollView(
+                  child: child,
+                )
+              : child,
+        );
+      },
     );
   }
 }

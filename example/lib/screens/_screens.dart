@@ -17,4 +17,5 @@ export 'progress_indicator_screen.dart';
 export 'radio_screen.dart';
 export 'snack_bar_screen.dart';
 export 'tags_screen.dart';
+export 'text_field_screen.dart';
 export 'text_link_screen.dart';
