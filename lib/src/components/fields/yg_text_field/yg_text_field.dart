@@ -380,7 +380,11 @@ class _YgTextFieldState extends YgTextFieldBaseWidgetState<YgTextField> {
               ),
             ),
           ),
-          _buildErrorMessage(),
+          AnimatedSize(
+            duration: duration,
+            curve: curve,
+            child: _buildErrorMessage(),
+          )
         ],
       ),
     );
@@ -413,28 +417,33 @@ class _YgTextFieldState extends YgTextFieldBaseWidgetState<YgTextField> {
   Widget _buildErrorMessage() {
     final String? error = widget.error;
 
-    final TextStyle errorStyle = theme.errorTextStyle;
-    final EdgeInsets errorPadding = theme.errorPadding;
-
     if (widget.disabled || error == null) {
-      return SizedBox(height: errorStyle.computedHeight + errorPadding.vertical);
+      return const FractionallySizedBox(
+        widthFactor: 1,
+      );
     }
 
     return Padding(
-      padding: errorPadding,
+      padding: theme.errorPadding,
       child: Row(
+        crossAxisAlignment: CrossAxisAlignment.start,
         children: <Widget>[
           Padding(
             padding: theme.errorIconPadding,
-            child: YgIcon(
-              YgIcons.error,
-              size: YgIconSize.small,
-              color: theme.errorIconColor,
+            child: SizedBox(
+              height: theme.errorTextStyle.computedHeight,
+              child: Center(
+                child: YgIcon(
+                  YgIcons.error,
+                  size: YgIconSize.small,
+                  color: theme.errorIconColor,
+                ),
+              ),
             ),
           ),
           Text(
             error,
-            style: errorStyle,
+            style: theme.errorTextStyle,
           )
         ],
       ),
