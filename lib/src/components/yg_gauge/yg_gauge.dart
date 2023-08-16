@@ -43,7 +43,7 @@ class YgGauge extends StatefulWidget with StatefulWidgetDebugMixin {
 
   /// A builder which uses the current value to generate a title.
   ///
-  /// When the title is state use [title] instead.
+  /// When the title is static use [title] instead.
   final String Function(double value)? buildTitle;
 
   /// Text show on the bottom of the gauge.
