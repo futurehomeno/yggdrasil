@@ -36,27 +36,33 @@ class _ListTileSwitchScreenState extends State<ListTileSwitchScreen> {
           YgSwitchListTile(
             title: 'SwitchListTile',
             subtitle: 'The whole ListTile and Switch is tappable.',
-            value: switchListTileValue,
-            onChanged: (bool? newValue) {
-              switchListTileValue = newValue;
-              setState(() {});
-            },
+            ygSwitch: YgSwitch(
+              value: switchListTileValue,
+              onChanged: (bool? newValue) {
+                switchListTileValue = newValue;
+                setState(() {});
+              },
+            ),
           ),
           YgSwitchListTile(
             title: 'Tri-state SwitchListTile',
             subtitle: 'The whole ListTile and Switch is tappable.',
-            value: switchListTileTriStateValue,
-            triState: true,
-            onChanged: (bool? newValue) {
-              switchListTileTriStateValue = newValue;
-              setState(() {});
-            },
+            ygSwitch: YgSwitch(
+              value: switchListTileTriStateValue,
+              triState: true,
+              onChanged: (bool? newValue) {
+                switchListTileTriStateValue = newValue;
+                setState(() {});
+              },
+            ),
           ),
           YgSwitchListTile(
             title: 'Disabled SwitchListTile',
             subtitle: 'Tapping anywhere does nothing.',
-            value: switchListTileDisabledValue,
-            onChanged: null,
+            ygSwitch: YgSwitch(
+              value: switchListTileDisabledValue,
+              onChanged: null,
+            ),
           ),
           YgSwitchListTile(
             title: 'With trailingWidget',
@@ -65,11 +71,13 @@ class _ListTileSwitchScreenState extends State<ListTileSwitchScreen> {
               onPressed: () {},
               child: const YgIcon(YgIcons.info),
             ),
-            value: switchListTileTrailingWidgetValue,
-            onChanged: (bool? newValue) {
-              switchListTileTrailingWidgetValue = newValue;
-              setState(() {});
-            },
+            ygSwitch: YgSwitch(
+              value: switchListTileTrailingWidgetValue,
+              onChanged: (bool? newValue) {
+                switchListTileTrailingWidgetValue = newValue;
+                setState(() {});
+              },
+            ),
           ),
           const YgCallout(
             title: 'Note',

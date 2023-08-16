@@ -34,19 +34,23 @@ class _ListTileRadioScreenState extends State<ListTileRadioScreen> {
           YgRadioListTile<int>(
             title: 'RadioListTile',
             subtitle: 'The whole ListTile and Radio is tappable.',
-            value: 1,
-            groupValue: radioGroupValue,
-            onChanged: (int? newValue) {
-              radioGroupValue = newValue!;
-              setState(() {});
-            },
+            radio: YgRadio<int>(
+              value: 1,
+              groupValue: radioGroupValue,
+              onChanged: (int? newValue) {
+                radioGroupValue = newValue!;
+                setState(() {});
+              },
+            ),
           ),
           YgRadioListTile<int>(
             title: 'Disabled RadioListTile',
             subtitle: 'Tapping anywhere does nothing.',
-            value: 2,
-            groupValue: disabledRadioGroupValue,
-            onChanged: null,
+            radio: YgRadio<int>(
+              value: 2,
+              groupValue: disabledRadioGroupValue,
+              onChanged: null,
+            ),
           ),
           YgRadioListTile<int>(
             title: 'With trailingWidget',
@@ -55,12 +59,14 @@ class _ListTileRadioScreenState extends State<ListTileRadioScreen> {
               onPressed: () {},
               child: const YgIcon(YgIcons.info),
             ),
-            value: 3,
-            groupValue: radioGroupValue,
-            onChanged: (int? newValue) {
-              radioGroupValue = newValue!;
-              setState(() {});
-            },
+            radio: YgRadio<int>(
+              value: 3,
+              groupValue: radioGroupValue,
+              onChanged: (int? newValue) {
+                radioGroupValue = newValue!;
+                setState(() {});
+              },
+            ),
           ),
           const YgCallout(
             title: 'Note',
