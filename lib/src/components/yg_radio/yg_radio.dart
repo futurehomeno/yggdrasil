@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:yggdrasil/src/components/yg_radio/yg_radio.style.dart';
-import 'package:yggdrasil/src/theme/_theme.dart';
+import 'package:yggdrasil/yggdrasil.dart';
 
 /// Yggdrasil radio button.
 ///
@@ -8,7 +8,7 @@ import 'package:yggdrasil/src/theme/_theme.dart';
 /// The first circle creates the background (or border when not selected).
 /// The second circle creates the handle, large when not selected, small when selected.
 /// The last circle creates the helper handle, only used for the disabled state.
-class YgRadio<T> extends StatefulWidget {
+class YgRadio<T> extends StatefulWidget with StatefulWidgetDebugMixin {
   const YgRadio({
     super.key,
     required this.value,

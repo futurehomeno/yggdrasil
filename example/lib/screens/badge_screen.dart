@@ -67,7 +67,7 @@ class BadgeScreen extends StatelessWidget {
           ),
           const YgListTile(title: 'Dot badge'),
           const YgDotBadge(),
-        ],
+        ].withVerticalSpacing(10),
       ),
     );
   }

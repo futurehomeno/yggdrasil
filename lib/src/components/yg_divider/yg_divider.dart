@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:yggdrasil/yggdrasil.dart';
 
 /// Simple divider based on [Divider] from M3.
-class YgDivider extends StatelessWidget {
+class YgDivider extends StatelessWidget with StatelessWidgetDebugMixin {
   const YgDivider({
     super.key,
     this.indent = YgDividerIndent.none,

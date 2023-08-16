@@ -103,7 +103,7 @@ class ButtonsScreen extends StatelessWidget {
             onPressed: () {},
             child: const Text('Text icon color'),
           ),
-        ],
+        ].withVerticalSpacing(10),
       ),
     );
   }

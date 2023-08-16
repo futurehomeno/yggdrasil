@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:yggdrasil/yggdrasil.dart';
 
-class YgCallout extends StatelessWidget {
+class YgCallout extends StatelessWidget with StatelessWidgetDebugMixin {
   const YgCallout({
     super.key,
     required this.description,

@@ -7,7 +7,7 @@ import 'yg_tag_style.dart';
 ///
 /// Tags are based on [ButtonStyleButton] and [ButtonStyle]
 /// as the style is practically the same.
-class YgTag extends ButtonStyleButton {
+class YgTag extends ButtonStyleButton with StatefulWidgetDebugMixin {
   const YgTag({
     super.key,
     required super.child,
