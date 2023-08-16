@@ -15,7 +15,9 @@ class YgGauge extends StatelessWidget {
     this.label,
     this.notation,
     this.icon,
-  });
+  })  : assert(icon == null || notation == null, 'Cannot have both icon and notation'),
+        assert(title == null || label == null || icon == null, 'Cannot have both title and label or icon'),
+        assert(value == null || value >= 0.0 && value <= 1.0, 'Value must be between 0.0 and 1.0');
 
   /// Current value of the gauge from 0.0 to 1.0.
   ///
@@ -35,47 +37,43 @@ class YgGauge extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    assert(icon == null || notation == null, 'Cannot have both icon and notation');
-    assert(title == null || label == null || icon == null, 'Cannot have both title and label or icon');
-
-    if (value != null) {
-      assert(value! >= 0.0 && value! <= 1.0, 'Value must be between 0.0 and 1.0');
-    }
-
     return RepaintBoundary(
-      child: LayoutBuilder(
-        builder: (BuildContext context, BoxConstraints constraints) {
-          return TweenAnimationBuilder<double>(
-            duration: context.gaugeTheme.tweenDuration,
-            tween: Tween<double>(begin: 0.0, end: value ?? 0.0),
-            curve: context.gaugeTheme.tweenCurve,
-            builder: (BuildContext context, double value, Widget? child) {
-              return SizedBox.square(
-                dimension: constraints.biggest.width,
-                child: CustomPaint(
+      child: AspectRatio(
+        aspectRatio: 1.0,
+        child: LayoutBuilder(
+          builder: (BuildContext context, BoxConstraints constraints) {
+            return TweenAnimationBuilder<double>(
+              duration: context.gaugeTheme.tweenDuration,
+              tween: Tween<double>(begin: 0.0, end: value ?? 0.0),
+              curve: context.gaugeTheme.tweenCurve,
+              builder: (BuildContext context, double value, Widget? child) {
+                return CustomPaint(
                   painter: _YgGaugePainter(
                     value: value,
                     gradient: gradient ?? _getDefaultGradient(context),
                     trackColor: trackColor ?? _getDefaultTrackColor(context),
-                    size: constraints.biggest,
                   ),
-                  child: _buildChild(context),
-                ),
-              );
-            },
-          );
-        },
+                  child: _buildChild(context, constraints),
+                );
+              },
+            );
+          },
+        ),
       ),
     );
   }
 
-  Widget _buildChild(BuildContext context) {
+  Widget _buildChild(BuildContext context, BoxConstraints constraints) {
+    final double topPaddingWithNotation = constraints.maxHeight / 100 * 30;
+    final double topPaddingWithoutNotation = constraints.maxHeight / 100 * 35;
+    final double bottomPadding = constraints.maxHeight / 100 * 10;
+
     return Stack(
       children: <Widget>[
         Align(
           alignment: Alignment.topCenter,
           child: Padding(
-            padding: EdgeInsets.only(top: notation != null ? 30.0 : 35.0),
+            padding: EdgeInsets.only(top: notation != null ? topPaddingWithNotation : topPaddingWithoutNotation),
             child: Column(
               children: <Widget>[
                 if (icon != null && title == null) _buildIcon(context),
@@ -88,7 +86,7 @@ class YgGauge extends StatelessWidget {
         Align(
           alignment: Alignment.bottomCenter,
           child: Padding(
-            padding: const EdgeInsets.only(bottom: 10.0),
+            padding: EdgeInsets.only(bottom: bottomPadding),
             child: Column(
               mainAxisSize: MainAxisSize.min,
               children: <Widget>[
@@ -179,13 +177,11 @@ class _YgGaugePainter extends CustomPainter {
     required this.value,
     required this.gradient,
     required this.trackColor,
-    required this.size,
   });
 
   final double value;
   final Gradient gradient;
   final Color trackColor;
-  final Size size;
 
   @override
   void paint(Canvas canvas, Size size) {
