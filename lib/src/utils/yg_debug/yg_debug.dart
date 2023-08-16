@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
-import 'package:yggdrasil/src/components/yg_debug/yg_debug_properties.dart';
+
+import 'yg_debug_properties.dart';
 
 /// A design debugging widget.
 ///

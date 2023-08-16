@@ -4,6 +4,7 @@ export 'button/_button.dart';
 export 'button_group/_button_group.dart';
 export 'callout/_callout.dart';
 export 'card/_card.dart';
+export 'checkbox/_checkbox.dart';
 export 'defaults/_defaults.dart';
 export 'dialog/_dialog.dart';
 export 'divider/_divider.dart';

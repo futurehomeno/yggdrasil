@@ -16,6 +16,7 @@ class YgTheme extends ThemeExtension<YgTheme> {
     required this.buttonTheme,
     required this.calloutTheme,
     required this.cardTheme,
+    required this.checkboxTheme,
     required this.defaults,
     required this.dialogTheme,
     required this.dividerTheme,
@@ -40,6 +41,7 @@ class YgTheme extends ThemeExtension<YgTheme> {
   final YgButtonTheme buttonTheme;
   final YgCalloutTheme calloutTheme;
   final YgCardTheme cardTheme;
+  final YgCheckboxTheme checkboxTheme;
   final YgDefaults defaults;
   final YgDialogTheme dialogTheme;
   final YgDividerTheme dividerTheme;
@@ -64,6 +66,7 @@ class YgTheme extends ThemeExtension<YgTheme> {
     buttonTheme: _$YgTheme.buttonTheme[0],
     calloutTheme: _$YgTheme.calloutTheme[0],
     cardTheme: _$YgTheme.cardTheme[0],
+    checkboxTheme: _$YgTheme.checkboxTheme[0],
     defaults: _$YgTheme.defaults[0],
     dialogTheme: _$YgTheme.dialogTheme[0],
     dividerTheme: _$YgTheme.dividerTheme[0],
@@ -89,6 +92,7 @@ class YgTheme extends ThemeExtension<YgTheme> {
     buttonTheme: _$YgTheme.buttonTheme[1],
     calloutTheme: _$YgTheme.calloutTheme[1],
     cardTheme: _$YgTheme.cardTheme[1],
+    checkboxTheme: _$YgTheme.checkboxTheme[1],
     defaults: _$YgTheme.defaults[1],
     dialogTheme: _$YgTheme.dialogTheme[1],
     dividerTheme: _$YgTheme.dividerTheme[1],
@@ -114,6 +118,7 @@ class YgTheme extends ThemeExtension<YgTheme> {
     buttonTheme: _$YgTheme.buttonTheme[2],
     calloutTheme: _$YgTheme.calloutTheme[2],
     cardTheme: _$YgTheme.cardTheme[2],
+    checkboxTheme: _$YgTheme.checkboxTheme[2],
     defaults: _$YgTheme.defaults[2],
     dialogTheme: _$YgTheme.dialogTheme[2],
     dividerTheme: _$YgTheme.dividerTheme[2],
@@ -139,6 +144,7 @@ class YgTheme extends ThemeExtension<YgTheme> {
     buttonTheme: _$YgTheme.buttonTheme[3],
     calloutTheme: _$YgTheme.calloutTheme[3],
     cardTheme: _$YgTheme.cardTheme[3],
+    checkboxTheme: _$YgTheme.checkboxTheme[3],
     defaults: _$YgTheme.defaults[3],
     dialogTheme: _$YgTheme.dialogTheme[3],
     dividerTheme: _$YgTheme.dividerTheme[3],
@@ -172,6 +178,7 @@ class YgTheme extends ThemeExtension<YgTheme> {
     YgButtonTheme? buttonTheme,
     YgCalloutTheme? calloutTheme,
     YgCardTheme? cardTheme,
+    YgCheckboxTheme? checkboxTheme,
     YgDefaults? defaults,
     YgDialogTheme? dialogTheme,
     YgDividerTheme? dividerTheme,
@@ -196,6 +203,7 @@ class YgTheme extends ThemeExtension<YgTheme> {
       buttonTheme: buttonTheme ?? this.buttonTheme,
       calloutTheme: calloutTheme ?? this.calloutTheme,
       cardTheme: cardTheme ?? this.cardTheme,
+      checkboxTheme: checkboxTheme ?? this.checkboxTheme,
       defaults: defaults ?? this.defaults,
       dialogTheme: dialogTheme ?? this.dialogTheme,
       dividerTheme: dividerTheme ?? this.dividerTheme,
@@ -228,6 +236,8 @@ class YgTheme extends ThemeExtension<YgTheme> {
       buttonTheme: buttonTheme.lerp(other.buttonTheme, t) as YgButtonTheme,
       calloutTheme: calloutTheme.lerp(other.calloutTheme, t) as YgCalloutTheme,
       cardTheme: cardTheme.lerp(other.cardTheme, t) as YgCardTheme,
+      checkboxTheme:
+          checkboxTheme.lerp(other.checkboxTheme, t) as YgCheckboxTheme,
       defaults: defaults.lerp(other.defaults, t) as YgDefaults,
       dialogTheme: dialogTheme.lerp(other.dialogTheme, t) as YgDialogTheme,
       dividerTheme: dividerTheme.lerp(other.dividerTheme, t) as YgDividerTheme,
@@ -270,6 +280,8 @@ class YgTheme extends ThemeExtension<YgTheme> {
             const DeepCollectionEquality()
                 .equals(calloutTheme, other.calloutTheme) &&
             const DeepCollectionEquality().equals(cardTheme, other.cardTheme) &&
+            const DeepCollectionEquality()
+                .equals(checkboxTheme, other.checkboxTheme) &&
             const DeepCollectionEquality().equals(defaults, other.defaults) &&
             const DeepCollectionEquality()
                 .equals(dialogTheme, other.dialogTheme) &&
@@ -310,6 +322,7 @@ class YgTheme extends ThemeExtension<YgTheme> {
       const DeepCollectionEquality().hash(buttonTheme),
       const DeepCollectionEquality().hash(calloutTheme),
       const DeepCollectionEquality().hash(cardTheme),
+      const DeepCollectionEquality().hash(checkboxTheme),
       const DeepCollectionEquality().hash(defaults),
       const DeepCollectionEquality().hash(dialogTheme),
       const DeepCollectionEquality().hash(dividerTheme),
@@ -338,6 +351,7 @@ extension YgThemeBuildContextProps on BuildContext {
   YgButtonTheme get buttonTheme => ygTheme.buttonTheme;
   YgCalloutTheme get calloutTheme => ygTheme.calloutTheme;
   YgCardTheme get cardTheme => ygTheme.cardTheme;
+  YgCheckboxTheme get checkboxTheme => ygTheme.checkboxTheme;
   YgDefaults get defaults => ygTheme.defaults;
   YgDialogTheme get dialogTheme => ygTheme.dialogTheme;
   YgDividerTheme get dividerTheme => ygTheme.dividerTheme;

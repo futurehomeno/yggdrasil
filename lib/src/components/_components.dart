@@ -5,7 +5,7 @@ export 'yg_button/_yg_button.dart';
 export 'yg_button_group/_yg_button_group.dart';
 export 'yg_callout/_yg_callout.dart';
 export 'yg_card/_yg_card.dart';
-export 'yg_debug/_yg_debug.dart';
+export 'yg_checkbox/_yg_checkbox.dart';
 export 'yg_dialog/_yg_dialog.dart';
 export 'yg_divider/_yg_divider.dart';
 export 'yg_gauge/_yg_gauge.dart';

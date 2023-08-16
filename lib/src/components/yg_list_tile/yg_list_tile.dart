@@ -52,7 +52,7 @@ class YgListTile extends StatelessWidget with StatelessWidgetDebugMixin {
     final YgListTileTheme listTileTheme = context.listTileTheme;
 
     return Material(
-      color: context.tokens.colors.backgroundTransparent,
+      type: MaterialType.transparency,
       child: InkWell(
         borderRadius: BorderRadius.circular(listTileTheme.splashRadius),
         onTap: onTap,

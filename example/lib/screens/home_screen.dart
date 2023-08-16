@@ -58,6 +58,11 @@ class HomeScreen extends StatelessWidget {
             trailingWidgets: const <YgIcon>[YgIcon(YgIcons.caretRight)],
           ),
           YgListTile(
+            title: 'Checkbox',
+            onTap: () => sl<YgRouter>().push(CheckboxScreen.route()),
+            trailingWidgets: const <YgIcon>[YgIcon(YgIcons.caretRight)],
+          ),
+          YgListTile(
             title: 'Dialog',
             onTap: () => sl<YgRouter>().push(DialogScreen.route()),
             trailingWidgets: const <YgIcon>[YgIcon(YgIcons.caretRight)],
@@ -90,6 +95,11 @@ class HomeScreen extends StatelessWidget {
           YgListTile(
             title: 'ListTile',
             onTap: () => sl<YgRouter>().push(ListTileScreen.route()),
+            trailingWidgets: const <YgIcon>[YgIcon(YgIcons.caretRight)],
+          ),
+          YgListTile(
+            title: 'ListTile - CheckboxListTile',
+            onTap: () => sl<YgRouter>().push(ListTileCheckboxScreen.route()),
             trailingWidgets: const <YgIcon>[YgIcon(YgIcons.caretRight)],
           ),
           YgListTile(
