@@ -8,7 +8,7 @@ import 'package:yggdrasil/yggdrasil.dart';
 /// Supports 2 leading, 2 trailing and 2 supporting widgets,
 /// however, this differs from design in Figma. This is so
 /// we do not encourage designers to use more than 2 widgets.
-class YgListTile extends StatelessWidget {
+class YgListTile extends StatelessWidget with StatelessWidgetDebugMixin {
   const YgListTile({
     super.key,
     required this.title,

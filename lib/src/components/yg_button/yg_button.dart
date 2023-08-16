@@ -4,7 +4,7 @@ import 'package:yggdrasil/yggdrasil.dart';
 import 'yg_button_style.dart';
 
 /// Base class for creating all Yg buttons.
-class YgButton extends ButtonStyleButton {
+class YgButton extends ButtonStyleButton with StatefulWidgetDebugMixin {
   const YgButton({
     super.key,
     required super.onPressed,

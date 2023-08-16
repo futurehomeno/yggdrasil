@@ -68,7 +68,7 @@ class _SwitchScreenState extends State<SwitchScreen> {
                 value: disabledTrueValue,
                 onChanged: null,
               ),
-            ],
+            ].withHorizontalSpacing(10),
           ),
           YgListTile(
             title: 'Switch in a list tile',
@@ -88,7 +88,7 @@ class _SwitchScreenState extends State<SwitchScreen> {
             description:
                 'You can place a switch in a list tile as shown above, but consider using SwitchListTile instead if you intend for the whole list tile to be tappable.',
           ),
-        ],
+        ].withVerticalSpacing(10),
       ),
     );
   }

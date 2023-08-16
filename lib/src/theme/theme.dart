@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:theme_tailor_annotation/theme_tailor_annotation.dart';
-import 'package:yggdrasil/src/theme/radio/_radio.dart';
 
 import 'badge/_badge.dart';
 import 'bottom_sheet/_bottom_sheet.dart';
@@ -16,9 +15,11 @@ import 'icon_button/_icon_button.dart';
 import 'internal/_internal.dart';
 import 'list_tile/_list_tile.dart';
 import 'progress_indicator/_progress_indicator.dart';
+import 'radio/_radio.dart';
 import 'snack_bar/_snack_bar.dart';
 import 'switch/_switch.dart';
 import 'tag/_tag.dart';
+import 'text_field/_text_field.dart';
 import 'text_link/_text_link.dart';
 import 'tokens/_tokens.dart';
 import 'top_app_bar/_top_app_bar.dart';
@@ -90,4 +91,7 @@ class _$YgTheme {
 
   @themeExtension
   static List<YgInternalTheme> internalTheme = YgInternalTheme.themes;
+
+  @themeExtension
+  static List<YgTextFieldTheme> textInputTheme = YgTextFieldTheme.themes;
 }

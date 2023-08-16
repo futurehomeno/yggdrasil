@@ -4,7 +4,7 @@ import 'package:yggdrasil/yggdrasil.dart';
 import 'properties/_properties.dart';
 
 /// Text link button implementation.
-class YgTextLink extends ButtonStyleButton {
+class YgTextLink extends ButtonStyleButton with StatefulWidgetDebugMixin {
   YgTextLink({
     super.key,
     required String text,
