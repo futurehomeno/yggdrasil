@@ -9,7 +9,7 @@ import 'package:yggdrasil/yggdrasil.dart';
 /// only be used from around 90px to 120px and not inside
 /// widgets that are larger / smaller than that.
 // TODO(reza): Define larger / smaller version of this component.
-class YgGauge extends StatefulWidget {
+class YgGauge extends StatefulWidget with StatefulWidgetDebugMixin {
   const YgGauge({
     super.key,
     required this.value,
@@ -58,17 +58,22 @@ class _YgGaugeState extends State<YgGauge> with TickerProviderStateMixin {
     begin: widget.value ?? 0,
     end: widget.value ?? 0,
   );
-  late final CurveTween _curveTween = CurveTween(
-    curve: context.gaugeTheme.tweenCurve,
-  );
-  late final Animation<double> _animation = _controller.drive(_curveTween).drive(_tween);
+  late final Animation<double> _animation = _controller.drive(_tween);
 
   @override
   void didUpdateWidget(covariant YgGauge oldWidget) {
     if (widget.value != oldWidget.value) {
       _tween.begin = oldWidget.value;
       _tween.end = widget.value;
-      _controller.forward(from: 0);
+      _controller.value = 0;
+
+      final YgGaugeTheme theme = context.gaugeTheme;
+
+      _controller.animateTo(
+        1,
+        curve: theme.tweenCurve,
+        duration: theme.tweenDuration,
+      );
     }
     super.didUpdateWidget(oldWidget);
   }
