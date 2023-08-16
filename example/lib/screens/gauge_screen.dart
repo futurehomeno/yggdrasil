@@ -150,6 +150,33 @@ class GaugeScreen extends StatelessWidget {
               ),
             ],
           ),
+          YgListTile(title: 'Responsive between ~90px and ~120px'),
+          Row(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: <Widget>[
+              SizedBox.square(
+                dimension: 90,
+                child: YgGauge(
+                  value: 0.5,
+                  title: '90px',
+                ),
+              ),
+              SizedBox.square(
+                dimension: 100,
+                child: YgGauge(
+                  value: 0.5,
+                  title: '100px',
+                ),
+              ),
+              SizedBox.square(
+                dimension: 120,
+                child: YgGauge(
+                  value: 0.5,
+                  title: '120px',
+                ),
+              ),
+            ],
+          ),
         ],
       ),
     );

@@ -4,7 +4,11 @@ import 'package:flutter/material.dart';
 import 'package:yggdrasil/yggdrasil.dart';
 
 /// Arc-style gauge that goes from 0.0 to 1.0.
-// TODO(bjhandeland): Look into different constructors.
+///
+/// This version of the gauge is responsive, but should
+/// only be used from around 90px to 120px and not inside
+/// widgets that are larger / smaller than that.
+// TODO(reza): Define larger / smaller version of this component.
 class YgGauge extends StatelessWidget {
   const YgGauge({
     super.key,
