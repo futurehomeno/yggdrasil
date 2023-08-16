@@ -5,19 +5,46 @@ class YgAppState extends ChangeNotifier {
   final YgTheme _defaultTheme = YgTheme.consumerLight;
   YgTheme _currentTheme = YgTheme.consumerLight;
   YgTheme get theme => _defaultTheme;
+  bool _debugOutlineEnabled = false;
+  bool _darkMode = false;
+  bool _businessTheme = false;
 
-  void toggleTheme() {
-    if (_currentTheme == YgTheme.consumerLight) {
-      _currentTheme = YgTheme.consumerDark;
+  void toggleDarkMode() {
+    _darkMode ^= true;
+    _updateTheme();
+  }
+
+  void toggleProfessionalTheme() {
+    _businessTheme ^= true;
+    _updateTheme();
+  }
+
+  void _updateTheme() {
+    if (_businessTheme) {
+      if (_darkMode) {
+        _currentTheme = YgTheme.professionalDark;
+      } else {
+        _currentTheme = YgTheme.professionalLight;
+      }
     } else {
-      _currentTheme = YgTheme.consumerLight;
+      if (_darkMode) {
+        _currentTheme = YgTheme.consumerDark;
+      } else {
+        _currentTheme = YgTheme.consumerLight;
+      }
     }
+    notifyListeners();
+  }
 
+  Future<void> toggleDebugOutlineEnabled() async {
+    _debugOutlineEnabled ^= true;
     notifyListeners();
   }
 
   YgTheme get defaultTheme => _defaultTheme;
   YgTheme get currentTheme => _currentTheme;
+
+  bool get debugOutlineEnabled => _debugOutlineEnabled;
 
   ThemeData get currentThemeData {
     return YgThemeDataHelper.getThemeData(_currentTheme);

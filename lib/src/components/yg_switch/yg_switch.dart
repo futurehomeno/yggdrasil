@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
-import 'package:yggdrasil/src/theme/theme.dart';
+import 'package:yggdrasil/yggdrasil.dart';
 
 import 'helpers/_yg_switch_helpers.dart';
 import 'yg_switch_thumb.dart';
 
 /// Binary (or optionally tri-state) switch.
-class YgSwitch extends StatelessWidget {
+class YgSwitch extends StatelessWidget with StatelessWidgetDebugMixin {
   const YgSwitch({
     super.key,
     required this.value,

@@ -4,7 +4,7 @@ import 'package:yggdrasil/yggdrasil.dart';
 import 'mappers/_mappers.dart';
 
 /// A custom widget for styled SnackBar.
-class YgSnackBar extends SnackBar {
+class YgSnackBar extends SnackBar with StatefulWidgetDebugMixin {
   YgSnackBar({
     super.key,
     required BuildContext context,

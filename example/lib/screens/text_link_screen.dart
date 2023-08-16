@@ -102,7 +102,7 @@ class TextLinkScreen extends StatelessWidget {
             size: YgTextLinkSize.medium,
             weight: YgTextLinkWeight.strong,
           ),
-        ],
+        ].withVerticalSpacing(10),
       ),
     );
   }

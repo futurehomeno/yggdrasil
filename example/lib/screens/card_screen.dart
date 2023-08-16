@@ -57,7 +57,7 @@ class CardScreen extends StatelessWidget {
               onTap: () {},
             ),
           ),
-        ],
+        ].withVerticalSpacing(10),
       ),
     );
   }

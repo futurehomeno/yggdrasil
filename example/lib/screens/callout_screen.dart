@@ -131,7 +131,7 @@ class CalloutScreen extends StatelessWidget {
             variant: YgCalloutVariant.critical,
             description: 'Callout with no close.',
           ),
-        ],
+        ].withVerticalSpacing(10),
       ),
     );
   }

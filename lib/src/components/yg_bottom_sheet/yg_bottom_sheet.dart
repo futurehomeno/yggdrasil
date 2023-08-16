@@ -3,7 +3,7 @@ import 'package:yggdrasil/src/components/yg_bottom_sheet/yg_bottom_sheet_header.
 import 'package:yggdrasil/yggdrasil.dart';
 
 // TODO(bjhandeland): potentially expose the scroll controller.
-class YgBottomSheet extends StatefulWidget {
+class YgBottomSheet extends StatefulWidget with StatefulWidgetDebugMixin {
   const YgBottomSheet({
     super.key,
     required this.title,

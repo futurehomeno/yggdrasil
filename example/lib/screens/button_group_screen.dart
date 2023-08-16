@@ -81,7 +81,7 @@ class ButtonGroupScreen extends StatelessWidget {
             onActionPressed: () {},
             onCancelPressed: () {},
           ),
-        ],
+        ].withVerticalSpacing(10),
       ),
     );
   }

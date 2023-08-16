@@ -35,7 +35,7 @@ class IconButtonScreen extends StatelessWidget {
                 onPressed: null,
                 child: YgIcon(YgIcons.info),
               ),
-            ],
+            ].withHorizontalSpacing(10),
           ),
           Row(
             mainAxisSize: MainAxisSize.min,
@@ -50,7 +50,7 @@ class IconButtonScreen extends StatelessWidget {
                 variant: YgIconButtonVariant.filled,
                 child: YgIcon(YgIcons.info),
               ),
-            ],
+            ].withHorizontalSpacing(10),
           ),
           Row(
             mainAxisSize: MainAxisSize.min,
@@ -65,7 +65,7 @@ class IconButtonScreen extends StatelessWidget {
                 variant: YgIconButtonVariant.tonal,
                 child: YgIcon(YgIcons.info),
               ),
-            ],
+            ].withHorizontalSpacing(10),
           ),
           Row(
             mainAxisSize: MainAxisSize.min,
@@ -80,7 +80,7 @@ class IconButtonScreen extends StatelessWidget {
                 variant: YgIconButtonVariant.outlined,
                 child: YgIcon(YgIcons.info),
               ),
-            ],
+            ].withHorizontalSpacing(10),
           ),
           const YgListTile(title: 'Sizes'),
           YgIconButton(
@@ -94,7 +94,7 @@ class IconButtonScreen extends StatelessWidget {
             variant: YgIconButtonVariant.filled,
             child: const YgIcon(YgIcons.info),
           ),
-        ],
+        ].withVerticalSpacing(10),
       ),
     );
   }

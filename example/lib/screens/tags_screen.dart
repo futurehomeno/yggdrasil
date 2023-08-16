@@ -107,7 +107,7 @@ class TagsScreen extends StatelessWidget {
             weight: YgTagWeight.strong,
             child: const Text('Negative strong'),
           ),
-        ],
+        ].withHorizontalSpacing(10),
       ),
     );
   }

@@ -89,7 +89,7 @@ class _RadioScreenState extends State<RadioScreen> {
               ),
             ],
           ),
-        ],
+        ].withVerticalSpacing(10),
       ),
     );
   }
