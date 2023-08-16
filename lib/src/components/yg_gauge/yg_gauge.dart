@@ -3,7 +3,7 @@ import 'dart:math' as math;
 import 'package:flutter/material.dart';
 import 'package:yggdrasil/yggdrasil.dart';
 
-/// Arc-style gauge that goes from 0.0 to 1.0.
+/// Arc-style gauge.
 ///
 /// This version of the gauge is responsive, but should
 /// only be used from around 90px to 120px and not inside
@@ -13,22 +13,26 @@ class YgGauge extends StatefulWidget with StatefulWidgetDebugMixin {
   const YgGauge({
     super.key,
     required this.value,
-    this.trackColor,
+    this.minValue = 0.0,
+    this.maxValue = 1.0,
     this.title,
     this.label,
     this.notation,
     this.icon,
-  })  : assert(icon == null || notation == null, 'Cannot have both icon and notation'),
-        assert(title == null || label == null || icon == null, 'Cannot have both title and label or icon'),
-        assert(value == null || value >= 0.0 && value <= 1.0, 'Value must be between 0.0 and 1.0');
+  })  : assert(minValue <= maxValue, 'minValue must be less than or equal to maxValue'),
+        assert(icon == null || notation == null, 'Cannot have both icon and notation'),
+        assert(title == null || label == null || icon == null, 'Cannot have both title and label or icon');
 
-  /// Current value of the gauge from 0.0 to 1.0.
+  /// Current value of the gauge.
   ///
   /// Null is treated as 0.0 but also renders the gauge as disabled.
   final double? value;
 
-  /// Color of the track (behind the gradient).
-  final Color? trackColor;
+  /// The minimum value of the gauge.
+  final double minValue;
+
+  /// The maximum value of the gauge.
+  final double maxValue;
 
   /// Text shown in the center of the gauge.
   final String? title;
@@ -55,8 +59,8 @@ class _YgGaugeState extends State<YgGauge> with TickerProviderStateMixin {
     duration: context.gaugeTheme.tweenDuration,
   );
   late final Tween<double> _tween = Tween<double>(
-    begin: widget.value ?? 0,
-    end: widget.value ?? 0,
+    begin: widget.value ?? 0.0,
+    end: widget.value ?? 0.0,
   );
   late final Animation<double> _animation = _controller.drive(_tween);
 
@@ -65,12 +69,12 @@ class _YgGaugeState extends State<YgGauge> with TickerProviderStateMixin {
     if (widget.value != oldWidget.value) {
       _tween.begin = oldWidget.value;
       _tween.end = widget.value;
-      _controller.value = 0;
+      _controller.value = 0.0;
 
       final YgGaugeTheme theme = context.gaugeTheme;
 
       _controller.animateTo(
-        1,
+        1.0,
         curve: theme.tweenCurve,
         duration: theme.tweenDuration,
       );
@@ -87,8 +91,10 @@ class _YgGaugeState extends State<YgGauge> with TickerProviderStateMixin {
           builder: (BuildContext context, BoxConstraints constraints) {
             return CustomPaint(
               painter: _YgGaugePainter(
+                minValue: widget.minValue,
+                maxValue: widget.maxValue,
                 gradient: _getDefaultGradient(context),
-                trackColor: widget.trackColor ?? _getDefaultTrackColor(context),
+                trackColor: _getDefaultTrackColor(context),
                 animation: _animation,
               ),
               child: _buildContent(context, constraints),
@@ -142,7 +148,7 @@ class _YgGaugeState extends State<YgGauge> with TickerProviderStateMixin {
     return Text(
       widget.title!,
       style: context.gaugeTheme.titleTextStyle.copyWith(
-        height: 24 / 20,
+        height: 24.0 / 20.0,
         color: _disabled ? context.tokens.colors.textDisabled : null,
       ),
       overflow: TextOverflow.fade,
@@ -193,11 +199,11 @@ class _YgGaugeState extends State<YgGauge> with TickerProviderStateMixin {
         context.tokens.colors.borderCriticalDefault,
       ],
       stops: const <double>[
-        45 / 360,
-        180 / 360,
-        315 / 360,
+        45.0 / 360.0,
+        180.0 / 360.0,
+        315.0 / 360.0,
       ],
-      transform: const GradientRotation(math.pi / 2),
+      transform: const GradientRotation(math.pi / 2.0),
     );
   }
 
@@ -211,11 +217,15 @@ class _YgGaugeState extends State<YgGauge> with TickerProviderStateMixin {
 
 class _YgGaugePainter extends CustomPainter {
   _YgGaugePainter({
+    required this.minValue,
+    required this.maxValue,
     required this.gradient,
     required this.trackColor,
     required this.animation,
   }) : super(repaint: animation);
 
+  final double minValue;
+  final double maxValue;
   final Animation<double> animation;
   final Gradient gradient;
   final Color trackColor;
@@ -266,7 +276,7 @@ class _YgGaugePainter extends CustomPainter {
     canvas.drawArc(
       rect,
       startAngle,
-      endAngle * animation.value,
+      endAngle * ((animation.value - minValue) / (maxValue - minValue)),
       false,
       arcPainter,
     );

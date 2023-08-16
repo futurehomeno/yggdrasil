@@ -177,6 +177,34 @@ class GaugeScreen extends StatelessWidget {
               ),
             ],
           ),
+          YgListTile(title: 'Flexible min / max'),
+          Row(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: <Widget>[
+              SizedBox.square(
+                dimension: 100,
+                child: YgGauge(
+                  value: 42.0,
+                  title: '42.0',
+                  notation: 'from',
+                  label: '30 to 50',
+                  minValue: 30.0,
+                  maxValue: 50.0,
+                ),
+              ),
+              SizedBox.square(
+                dimension: 100,
+                child: YgGauge(
+                  value: -3.0,
+                  title: '-3.0',
+                  notation: 'from',
+                  label: '-10 to 10',
+                  minValue: -10.0,
+                  maxValue: 10.0,
+                ),
+              ),
+            ],
+          ),
         ],
       ),
     );
