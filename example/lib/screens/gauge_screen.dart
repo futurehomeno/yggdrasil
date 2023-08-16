@@ -1,9 +1,11 @@
+import 'dart:math';
+
 import 'package:flutter/material.dart';
 import 'package:yggdrasil/yggdrasil.dart';
 import 'package:yggdrasil_demo/core/_core.dart';
 import 'package:yggdrasil_demo/widgets/_widgets.dart';
 
-class GaugeScreen extends StatelessWidget {
+class GaugeScreen extends StatefulWidget {
   const GaugeScreen({super.key});
 
   static const String routeName = 'GaugeScreen';
@@ -16,15 +18,23 @@ class GaugeScreen extends StatelessWidget {
   }
 
   @override
+  State<GaugeScreen> createState() => _GaugeScreenState();
+}
+
+class _GaugeScreenState extends State<GaugeScreen> {
+  double value = 0;
+  Random random = Random();
+
+  @override
   Widget build(BuildContext context) {
-    return const DemoScreen(
+    return DemoScreen(
       componentName: 'Gauge',
       componentDesc: 'Gauges',
       supernovaLink: 'Link',
       child: Column(
         children: <Widget>[
-          YgListTile(title: 'Gauge'),
-          Row(
+          const YgListTile(title: 'Gauge'),
+          const Row(
             mainAxisAlignment: MainAxisAlignment.center,
             children: <Widget>[
               SizedBox.square(
@@ -43,7 +53,7 @@ class GaugeScreen extends StatelessWidget {
               ),
             ],
           ),
-          Row(
+          const Row(
             mainAxisAlignment: MainAxisAlignment.center,
             children: <Widget>[
               SizedBox.square(
@@ -69,8 +79,8 @@ class GaugeScreen extends StatelessWidget {
               ),
             ],
           ),
-          YgListTile(title: 'Disabled gauge'),
-          Row(
+          const YgListTile(title: 'Disabled gauge'),
+          const Row(
             mainAxisAlignment: MainAxisAlignment.center,
             children: <Widget>[
               SizedBox.square(
@@ -91,8 +101,8 @@ class GaugeScreen extends StatelessWidget {
               ),
             ],
           ),
-          YgListTile(title: 'Child variations'),
-          Row(
+          const YgListTile(title: 'Child variations'),
+          const Row(
             mainAxisAlignment: MainAxisAlignment.center,
             children: <Widget>[
               SizedBox.square(
@@ -121,7 +131,7 @@ class GaugeScreen extends StatelessWidget {
               ),
             ],
           ),
-          Row(
+          const Row(
             mainAxisAlignment: MainAxisAlignment.center,
             children: <Widget>[
               SizedBox.square(
@@ -150,8 +160,8 @@ class GaugeScreen extends StatelessWidget {
               ),
             ],
           ),
-          YgListTile(title: 'Responsive between ~90px and ~120px'),
-          Row(
+          const YgListTile(title: 'Responsive between ~90px and ~120px'),
+          const Row(
             mainAxisAlignment: MainAxisAlignment.center,
             children: <Widget>[
               SizedBox.square(
@@ -177,8 +187,8 @@ class GaugeScreen extends StatelessWidget {
               ),
             ],
           ),
-          YgListTile(title: 'Flexible min / max'),
-          Row(
+          const YgListTile(title: 'Flexible min / max'),
+          const Row(
             mainAxisAlignment: MainAxisAlignment.center,
             children: <Widget>[
               SizedBox.square(
@@ -205,6 +215,23 @@ class GaugeScreen extends StatelessWidget {
               ),
             ],
           ),
+          const YgListTile(title: 'Animated'),
+          SizedBox.square(
+            dimension: 120,
+            child: YgGauge(
+              value: value,
+              buildTitle: (double value) => value.toStringAsFixed(0),
+              label: 'Animated',
+              maxValue: 100.0,
+            ),
+          ),
+          YgButton(
+            onPressed: () {
+              value = random.nextInt(100).toDouble();
+              setState(() {});
+            },
+            child: const Text('Change value'),
+          )
         ],
       ),
     );
