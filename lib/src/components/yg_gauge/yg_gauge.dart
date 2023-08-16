@@ -13,7 +13,6 @@ class YgGauge extends StatelessWidget {
   const YgGauge({
     super.key,
     required this.value,
-    this.gradient,
     this.trackColor,
     this.title,
     this.label,
@@ -28,15 +27,22 @@ class YgGauge extends StatelessWidget {
   /// Null is treated as 0.0 but also renders the gauge as disabled.
   final double? value;
 
-  /// Gradient to use in the gauge.
-  final Gradient? gradient;
-
   /// Color of the track (behind the gradient).
   final Color? trackColor;
 
+  /// Text shown in the center of the gauge.
   final String? title;
+
+  /// Text show on the bottom of the gauge.
   final String? label;
+
+  /// Notation, usually kW, shown below the title.
   final String? notation;
+
+  /// Icon shown either above the label or below the title.
+  ///
+  /// If title and icon are passed, the icon will be shown below the title.
+  /// If label and icon are passed, the icon will be shown above the label.
   final YgIcon? icon;
 
   @override
@@ -48,16 +54,16 @@ class YgGauge extends StatelessWidget {
           builder: (BuildContext context, BoxConstraints constraints) {
             return TweenAnimationBuilder<double>(
               duration: context.gaugeTheme.tweenDuration,
-              tween: Tween<double>(begin: 0.0, end: value ?? 0.0),
+              tween: Tween<double>(begin: value ?? 0.0, end: value ?? 0.0),
               curve: context.gaugeTheme.tweenCurve,
               builder: (BuildContext context, double value, Widget? child) {
                 return CustomPaint(
                   painter: _YgGaugePainter(
                     value: value,
-                    gradient: gradient ?? _getDefaultGradient(context),
+                    gradient: _getDefaultGradient(context),
                     trackColor: trackColor ?? _getDefaultTrackColor(context),
                   ),
-                  child: _buildChild(context, constraints),
+                  child: _buildContent(context, constraints),
                 );
               },
             );
@@ -67,7 +73,7 @@ class YgGauge extends StatelessWidget {
     );
   }
 
-  Widget _buildChild(BuildContext context, BoxConstraints constraints) {
+  Widget _buildContent(BuildContext context, BoxConstraints constraints) {
     final double topPaddingWithNotation = constraints.maxHeight / 100 * 30;
     final double topPaddingWithoutNotation = constraints.maxHeight / 100 * 35;
     final double bottomPadding = constraints.maxHeight / 100 * 10;
@@ -240,7 +246,7 @@ class _YgGaugePainter extends CustomPainter {
   }
 
   @override
-  bool shouldRepaint(covariant CustomPainter oldDelegate) {
-    return true;
+  bool shouldRepaint(covariant _YgGaugePainter oldDelegate) {
+    return oldDelegate.value != value;
   }
 }
