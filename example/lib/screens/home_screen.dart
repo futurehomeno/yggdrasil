@@ -132,6 +132,11 @@ class HomeScreen extends StatelessWidget {
             onTap: () => sl<YgRouter>().push(TextLinkScreen.route()),
             trailingWidgets: const <YgIcon>[YgIcon(YgIcons.caretRight)],
           ),
+          YgListTile(
+            title: 'TopAppBar',
+            onTap: () => sl<YgRouter>().push(TopAppBarScreen.route()),
+            trailingWidgets: const <YgIcon>[YgIcon(YgIcons.caretRight)],
+          ),
         ],
       ),
     );
