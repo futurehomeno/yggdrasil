@@ -9,17 +9,22 @@ class YgRadioItem<T> extends StatelessWidget with StatelessWidgetDebugMixin {
   const YgRadioItem({
     super.key,
     required this.title,
-    required this.radio,
+    required this.value,
+    required this.groupValue,
+    required this.onChanged,
   });
 
   /// Title to show to the right of the radio.
   final String title;
 
-  /// The actual radio.
-  ///
-  /// Clicking anywhere on the [YgRadioItem] will trigger
-  /// the onChanged callback of this radio.
-  final YgRadio<T> radio;
+  /// See [YgRadio] documentation.
+  final T value;
+
+  /// See [YgRadio] documentation.
+  final T? groupValue;
+
+  /// See [YgRadio] documentation.
+  final ValueChanged<T?>? onChanged;
 
   @override
   Widget build(BuildContext context) {
@@ -28,12 +33,16 @@ class YgRadioItem<T> extends StatelessWidget with StatelessWidgetDebugMixin {
     return Material(
       type: MaterialType.transparency,
       child: InkWell(
-        onTap: radio.onChanged == null ? null : _onTap,
+        onTap: onChanged == null ? null : _onTap,
         child: Row(
           children: <Widget>[
             AbsorbPointer(
               child: YgNoFocus(
-                child: radio,
+                child: YgRadio<T>(
+                  value: value,
+                  groupValue: groupValue,
+                  onChanged: onChanged,
+                ),
               ),
             ),
             Expanded(
@@ -49,6 +58,6 @@ class YgRadioItem<T> extends StatelessWidget with StatelessWidgetDebugMixin {
   }
 
   void _onTap() {
-    radio.onChanged?.call(radio.value);
+    onChanged?.call(value);
   }
 }

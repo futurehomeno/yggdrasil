@@ -25,13 +25,13 @@ class YgCheckboxListTile extends StatelessWidget {
   /// See [YgListTile] documentation.
   final Widget? subtitleIcon;
 
-  /// See [YgSwitch] documentation.
+  /// See [YgCheckbox] documentation.
   final bool? value;
 
-  /// See [YgSwitch] documentation.
+  /// See [YgCheckbox] documentation.
   final Function(bool? newValue)? onChanged;
 
-  /// See [YgSwitch] documentation.
+  /// See [YgCheckbox] documentation.
   final bool triState;
 
   /// Optional widget to display before the switch.

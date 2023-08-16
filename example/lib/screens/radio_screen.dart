@@ -67,25 +67,21 @@ class _RadioScreenState extends State<RadioScreen> {
             radioItems: <YgRadioItem<int>>[
               YgRadioItem<int>(
                 title: 'Radio item 1',
-                radio: YgRadio<int>(
-                  value: 1,
-                  groupValue: radioGroupGroupValue,
-                  onChanged: (int? newValue) {
-                    radioGroupGroupValue = newValue!;
-                    setState(() {});
-                  },
-                ),
+                value: 1,
+                groupValue: radioGroupGroupValue,
+                onChanged: (int? newValue) {
+                  radioGroupGroupValue = newValue!;
+                  setState(() {});
+                },
               ),
               YgRadioItem<int>(
                 title: 'Radio item 2',
-                radio: YgRadio<int>(
-                  value: 2,
-                  groupValue: radioGroupGroupValue,
-                  onChanged: (int? newValue) {
-                    radioGroupGroupValue = newValue!;
-                    setState(() {});
-                  },
-                ),
+                value: 2,
+                groupValue: radioGroupGroupValue,
+                onChanged: (int? newValue) {
+                  radioGroupGroupValue = newValue!;
+                  setState(() {});
+                },
               ),
             ],
           ),

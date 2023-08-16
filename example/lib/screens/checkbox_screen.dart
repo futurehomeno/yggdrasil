@@ -75,13 +75,11 @@ class _CheckboxScreenState extends State<CheckboxScreen> {
           const YgListTile(title: 'Checkbox item'),
           YgCheckboxItem(
             title: 'Some title',
-            checkbox: YgCheckbox(
-              value: checkboxItem,
-              onChanged: (bool? newValue) {
-                checkboxItem = newValue;
-                setState(() {});
-              },
-            ),
+            value: checkboxItem,
+            onChanged: (bool? newValue) {
+              checkboxItem = newValue;
+              setState(() {});
+            },
           ),
           const YgListTile(title: 'Checkbox group'),
           YgCheckboxGroup(
@@ -89,23 +87,19 @@ class _CheckboxScreenState extends State<CheckboxScreen> {
             checkboxItems: <YgCheckboxItem>[
               YgCheckboxItem(
                 title: 'Some title',
-                checkbox: YgCheckbox(
-                  value: checkboxGroup1,
-                  onChanged: (bool? newValue) {
-                    checkboxGroup1 = newValue;
-                    setState(() {});
-                  },
-                ),
+                value: checkboxGroup1,
+                onChanged: (bool? newValue) {
+                  checkboxGroup1 = newValue;
+                  setState(() {});
+                },
               ),
               YgCheckboxItem(
                 title: 'Some title',
-                checkbox: YgCheckbox(
-                  value: checkboxGroup2,
-                  onChanged: (bool? newValue) {
-                    checkboxGroup2 = newValue;
-                    setState(() {});
-                  },
-                ),
+                value: checkboxGroup2,
+                onChanged: (bool? newValue) {
+                  checkboxGroup2 = newValue;
+                  setState(() {});
+                },
               ),
             ],
           ),
