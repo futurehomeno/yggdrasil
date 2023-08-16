@@ -23,10 +23,8 @@ class YgRadioTheme extends ThemeExtension<YgRadioTheme> {
     required this.disabledSelectedHelperHandleSize,
     required this.helperHandleColor,
     required this.padding,
-    required this.radioGroupLabelColumnSpacing,
-    required this.radioGroupLabelTextStyle,
-    required this.radioItemRadioTitleSpacing,
-    required this.radioItemTitleTextStyle,
+    required this.radioGroupTheme,
+    required this.radioItemTheme,
     required this.selectedBackgroundColor,
     required this.selectedDisabledBackgroundColor,
     required this.selectedHandleColor,
@@ -49,10 +47,8 @@ class YgRadioTheme extends ThemeExtension<YgRadioTheme> {
   final double disabledSelectedHelperHandleSize;
   final Color helperHandleColor;
   final double padding;
-  final double radioGroupLabelColumnSpacing;
-  final TextStyle radioGroupLabelTextStyle;
-  final double radioItemRadioTitleSpacing;
-  final TextStyle radioItemTitleTextStyle;
+  final YgRadioGroupTheme radioGroupTheme;
+  final YgRadioItemTheme radioItemTheme;
   final Color selectedBackgroundColor;
   final Color selectedDisabledBackgroundColor;
   final Color selectedHandleColor;
@@ -80,11 +76,8 @@ class YgRadioTheme extends ThemeExtension<YgRadioTheme> {
         _$YgRadioTheme.disabledSelectedHelperHandleSize[0],
     helperHandleColor: _$YgRadioTheme.helperHandleColor[0],
     padding: _$YgRadioTheme.padding[0],
-    radioGroupLabelColumnSpacing:
-        _$YgRadioTheme.radioGroupLabelColumnSpacing[0],
-    radioGroupLabelTextStyle: _$YgRadioTheme.radioGroupLabelTextStyle[0],
-    radioItemRadioTitleSpacing: _$YgRadioTheme.radioItemRadioTitleSpacing[0],
-    radioItemTitleTextStyle: _$YgRadioTheme.radioItemTitleTextStyle[0],
+    radioGroupTheme: _$YgRadioTheme.radioGroupTheme[0],
+    radioItemTheme: _$YgRadioTheme.radioItemTheme[0],
     selectedBackgroundColor: _$YgRadioTheme.selectedBackgroundColor[0],
     selectedDisabledBackgroundColor:
         _$YgRadioTheme.selectedDisabledBackgroundColor[0],
@@ -116,11 +109,8 @@ class YgRadioTheme extends ThemeExtension<YgRadioTheme> {
         _$YgRadioTheme.disabledSelectedHelperHandleSize[1],
     helperHandleColor: _$YgRadioTheme.helperHandleColor[1],
     padding: _$YgRadioTheme.padding[1],
-    radioGroupLabelColumnSpacing:
-        _$YgRadioTheme.radioGroupLabelColumnSpacing[1],
-    radioGroupLabelTextStyle: _$YgRadioTheme.radioGroupLabelTextStyle[1],
-    radioItemRadioTitleSpacing: _$YgRadioTheme.radioItemRadioTitleSpacing[1],
-    radioItemTitleTextStyle: _$YgRadioTheme.radioItemTitleTextStyle[1],
+    radioGroupTheme: _$YgRadioTheme.radioGroupTheme[1],
+    radioItemTheme: _$YgRadioTheme.radioItemTheme[1],
     selectedBackgroundColor: _$YgRadioTheme.selectedBackgroundColor[1],
     selectedDisabledBackgroundColor:
         _$YgRadioTheme.selectedDisabledBackgroundColor[1],
@@ -152,11 +142,8 @@ class YgRadioTheme extends ThemeExtension<YgRadioTheme> {
         _$YgRadioTheme.disabledSelectedHelperHandleSize[2],
     helperHandleColor: _$YgRadioTheme.helperHandleColor[2],
     padding: _$YgRadioTheme.padding[2],
-    radioGroupLabelColumnSpacing:
-        _$YgRadioTheme.radioGroupLabelColumnSpacing[2],
-    radioGroupLabelTextStyle: _$YgRadioTheme.radioGroupLabelTextStyle[2],
-    radioItemRadioTitleSpacing: _$YgRadioTheme.radioItemRadioTitleSpacing[2],
-    radioItemTitleTextStyle: _$YgRadioTheme.radioItemTitleTextStyle[2],
+    radioGroupTheme: _$YgRadioTheme.radioGroupTheme[2],
+    radioItemTheme: _$YgRadioTheme.radioItemTheme[2],
     selectedBackgroundColor: _$YgRadioTheme.selectedBackgroundColor[2],
     selectedDisabledBackgroundColor:
         _$YgRadioTheme.selectedDisabledBackgroundColor[2],
@@ -188,11 +175,8 @@ class YgRadioTheme extends ThemeExtension<YgRadioTheme> {
         _$YgRadioTheme.disabledSelectedHelperHandleSize[3],
     helperHandleColor: _$YgRadioTheme.helperHandleColor[3],
     padding: _$YgRadioTheme.padding[3],
-    radioGroupLabelColumnSpacing:
-        _$YgRadioTheme.radioGroupLabelColumnSpacing[3],
-    radioGroupLabelTextStyle: _$YgRadioTheme.radioGroupLabelTextStyle[3],
-    radioItemRadioTitleSpacing: _$YgRadioTheme.radioItemRadioTitleSpacing[3],
-    radioItemTitleTextStyle: _$YgRadioTheme.radioItemTitleTextStyle[3],
+    radioGroupTheme: _$YgRadioTheme.radioGroupTheme[3],
+    radioItemTheme: _$YgRadioTheme.radioItemTheme[3],
     selectedBackgroundColor: _$YgRadioTheme.selectedBackgroundColor[3],
     selectedDisabledBackgroundColor:
         _$YgRadioTheme.selectedDisabledBackgroundColor[3],
@@ -227,10 +211,8 @@ class YgRadioTheme extends ThemeExtension<YgRadioTheme> {
     double? disabledSelectedHelperHandleSize,
     Color? helperHandleColor,
     double? padding,
-    double? radioGroupLabelColumnSpacing,
-    TextStyle? radioGroupLabelTextStyle,
-    double? radioItemRadioTitleSpacing,
-    TextStyle? radioItemTitleTextStyle,
+    YgRadioGroupTheme? radioGroupTheme,
+    YgRadioItemTheme? radioItemTheme,
     Color? selectedBackgroundColor,
     Color? selectedDisabledBackgroundColor,
     Color? selectedHandleColor,
@@ -260,14 +242,8 @@ class YgRadioTheme extends ThemeExtension<YgRadioTheme> {
           this.disabledSelectedHelperHandleSize,
       helperHandleColor: helperHandleColor ?? this.helperHandleColor,
       padding: padding ?? this.padding,
-      radioGroupLabelColumnSpacing:
-          radioGroupLabelColumnSpacing ?? this.radioGroupLabelColumnSpacing,
-      radioGroupLabelTextStyle:
-          radioGroupLabelTextStyle ?? this.radioGroupLabelTextStyle,
-      radioItemRadioTitleSpacing:
-          radioItemRadioTitleSpacing ?? this.radioItemRadioTitleSpacing,
-      radioItemTitleTextStyle:
-          radioItemTitleTextStyle ?? this.radioItemTitleTextStyle,
+      radioGroupTheme: radioGroupTheme ?? this.radioGroupTheme,
+      radioItemTheme: radioItemTheme ?? this.radioItemTheme,
       selectedBackgroundColor:
           selectedBackgroundColor ?? this.selectedBackgroundColor,
       selectedDisabledBackgroundColor: selectedDisabledBackgroundColor ??
@@ -317,16 +293,10 @@ class YgRadioTheme extends ThemeExtension<YgRadioTheme> {
       helperHandleColor:
           Color.lerp(helperHandleColor, other.helperHandleColor, t)!,
       padding: t < 0.5 ? padding : other.padding,
-      radioGroupLabelColumnSpacing: t < 0.5
-          ? radioGroupLabelColumnSpacing
-          : other.radioGroupLabelColumnSpacing,
-      radioGroupLabelTextStyle: TextStyle.lerp(
-          radioGroupLabelTextStyle, other.radioGroupLabelTextStyle, t)!,
-      radioItemRadioTitleSpacing: t < 0.5
-          ? radioItemRadioTitleSpacing
-          : other.radioItemRadioTitleSpacing,
-      radioItemTitleTextStyle: TextStyle.lerp(
-          radioItemTitleTextStyle, other.radioItemTitleTextStyle, t)!,
+      radioGroupTheme:
+          radioGroupTheme.lerp(other.radioGroupTheme, t) as YgRadioGroupTheme,
+      radioItemTheme:
+          radioItemTheme.lerp(other.radioItemTheme, t) as YgRadioItemTheme,
       selectedBackgroundColor: Color.lerp(
           selectedBackgroundColor, other.selectedBackgroundColor, t)!,
       selectedDisabledBackgroundColor: Color.lerp(
@@ -380,15 +350,14 @@ class YgRadioTheme extends ThemeExtension<YgRadioTheme> {
             const DeepCollectionEquality()
                 .equals(helperHandleColor, other.helperHandleColor) &&
             const DeepCollectionEquality().equals(padding, other.padding) &&
-            const DeepCollectionEquality().equals(radioGroupLabelColumnSpacing,
-                other.radioGroupLabelColumnSpacing) &&
+            const DeepCollectionEquality()
+                .equals(radioGroupTheme, other.radioGroupTheme) &&
+            const DeepCollectionEquality()
+                .equals(radioItemTheme, other.radioItemTheme) &&
             const DeepCollectionEquality().equals(
-                radioGroupLabelTextStyle, other.radioGroupLabelTextStyle) &&
+                selectedBackgroundColor, other.selectedBackgroundColor) &&
             const DeepCollectionEquality().equals(
-                radioItemRadioTitleSpacing, other.radioItemRadioTitleSpacing) &&
-            const DeepCollectionEquality().equals(radioItemTitleTextStyle, other.radioItemTitleTextStyle) &&
-            const DeepCollectionEquality().equals(selectedBackgroundColor, other.selectedBackgroundColor) &&
-            const DeepCollectionEquality().equals(selectedDisabledBackgroundColor, other.selectedDisabledBackgroundColor) &&
+                selectedDisabledBackgroundColor, other.selectedDisabledBackgroundColor) &&
             const DeepCollectionEquality().equals(selectedHandleColor, other.selectedHandleColor) &&
             const DeepCollectionEquality().equals(selectedHandleSize, other.selectedHandleSize) &&
             const DeepCollectionEquality().equals(selectedHoveredBackgroundColor, other.selectedHoveredBackgroundColor) &&
@@ -413,10 +382,8 @@ class YgRadioTheme extends ThemeExtension<YgRadioTheme> {
       const DeepCollectionEquality().hash(disabledSelectedHelperHandleSize),
       const DeepCollectionEquality().hash(helperHandleColor),
       const DeepCollectionEquality().hash(padding),
-      const DeepCollectionEquality().hash(radioGroupLabelColumnSpacing),
-      const DeepCollectionEquality().hash(radioGroupLabelTextStyle),
-      const DeepCollectionEquality().hash(radioItemRadioTitleSpacing),
-      const DeepCollectionEquality().hash(radioItemTitleTextStyle),
+      const DeepCollectionEquality().hash(radioGroupTheme),
+      const DeepCollectionEquality().hash(radioItemTheme),
       const DeepCollectionEquality().hash(selectedBackgroundColor),
       const DeepCollectionEquality().hash(selectedDisabledBackgroundColor),
       const DeepCollectionEquality().hash(selectedHandleColor),

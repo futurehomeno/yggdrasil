@@ -5,10 +5,18 @@ import 'package:yggdrasil/src/tokens/consumer_light/_consumer_light.dart' as con
 import 'package:yggdrasil/src/tokens/professional_dark/_professional_dark.dart' as professional_dark;
 import 'package:yggdrasil/src/tokens/professional_light/_professional_light.dart' as professional_light;
 
+import 'extensions/_extensions.dart';
+
 part 'checkbox_theme.tailor.dart';
 
 @tailorComponent
 class _$YgCheckboxTheme {
+  @themeExtension
+  static List<YgCheckboxGroupTheme> checkboxGroupTheme = YgCheckboxGroupTheme.themes;
+
+  @themeExtension
+  static List<YgCheckboxItemTheme> checkboxItemTheme = YgCheckboxItemTheme.themes;
+
   static List<double> size = <double>[
     consumer_light.FhDimensions.md,
     consumer_dark.FhDimensions.md,
@@ -147,34 +155,6 @@ class _$YgCheckboxTheme {
     consumer_dark.FhColors.iconDisabled,
     professional_light.FhColors.iconDisabled,
     professional_dark.FhColors.iconDisabled,
-  ];
-
-  static List<TextStyle> checkboxItemTitleTextStyle = <TextStyle>[
-    consumer_light.FhTextStyles.paragraph2Regular,
-    consumer_dark.FhTextStyles.paragraph2Regular,
-    professional_light.FhTextStyles.paragraph2Regular,
-    professional_dark.FhTextStyles.paragraph2Regular,
-  ];
-
-  static List<double> checkboxItemCheckboxTitleSpacing = <double>[
-    consumer_light.FhDimensions.xs,
-    consumer_dark.FhDimensions.xs,
-    professional_light.FhDimensions.xs,
-    professional_dark.FhDimensions.xs,
-  ];
-
-  static List<TextStyle> checkboxGroupLabelTextStyle = <TextStyle>[
-    consumer_light.FhTextStyles.paragraph2Medium,
-    consumer_dark.FhTextStyles.paragraph2Medium,
-    professional_light.FhTextStyles.paragraph2Medium,
-    professional_dark.FhTextStyles.paragraph2Medium,
-  ];
-
-  static List<double> checkboxGroupLabelColumnSpacing = <double>[
-    consumer_light.FhDimensions.xs,
-    consumer_dark.FhDimensions.xs,
-    professional_light.FhDimensions.xs,
-    professional_dark.FhDimensions.xs,
   ];
 
   // TODO(bjhandeland): Replace with theme token.

@@ -24,10 +24,10 @@ class YgRadioGroup<T> extends StatelessWidget with StatelessWidgetDebugMixin {
       children: <Widget>[
         Text(
           label,
-          style: radioTheme.radioGroupLabelTextStyle,
+          style: radioTheme.radioGroupTheme.labelTextStyle,
         ),
         ...radioItems,
-      ].withVerticalSpacing(radioTheme.radioGroupLabelColumnSpacing),
+      ].withVerticalSpacing(radioTheme.radioGroupTheme.labelColumnSpacing),
     );
   }
 }

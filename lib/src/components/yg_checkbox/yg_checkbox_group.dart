@@ -24,10 +24,10 @@ class YgCheckboxGroup extends StatelessWidget with StatelessWidgetDebugMixin {
       children: <Widget>[
         Text(
           label,
-          style: checkboxTheme.checkboxGroupLabelTextStyle,
+          style: checkboxTheme.checkboxGroupTheme.labelTextStyle,
         ),
         ...checkboxItems,
-      ].withVerticalSpacing(checkboxTheme.checkboxGroupLabelColumnSpacing),
+      ].withVerticalSpacing(checkboxTheme.checkboxGroupTheme.labelColumnSpacing),
     );
   }
 }

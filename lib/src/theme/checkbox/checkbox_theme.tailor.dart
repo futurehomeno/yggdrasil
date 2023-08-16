@@ -12,10 +12,8 @@ class YgCheckboxTheme extends ThemeExtension<YgCheckboxTheme> {
   const YgCheckboxTheme({
     required this.animationCurve,
     required this.animationDuration,
-    required this.checkboxGroupLabelColumnSpacing,
-    required this.checkboxGroupLabelTextStyle,
-    required this.checkboxItemCheckboxTitleSpacing,
-    required this.checkboxItemTitleTextStyle,
+    required this.checkboxGroupTheme,
+    required this.checkboxItemTheme,
     required this.deselectedBorderColor,
     required this.deselectedDisabledBorderColor,
     required this.deselectedDisabledFillColor,
@@ -40,10 +38,8 @@ class YgCheckboxTheme extends ThemeExtension<YgCheckboxTheme> {
 
   final Curve animationCurve;
   final Duration animationDuration;
-  final double checkboxGroupLabelColumnSpacing;
-  final TextStyle checkboxGroupLabelTextStyle;
-  final double checkboxItemCheckboxTitleSpacing;
-  final TextStyle checkboxItemTitleTextStyle;
+  final YgCheckboxGroupTheme checkboxGroupTheme;
+  final YgCheckboxItemTheme checkboxItemTheme;
   final Color deselectedBorderColor;
   final Color deselectedDisabledBorderColor;
   final Color deselectedDisabledFillColor;
@@ -68,13 +64,8 @@ class YgCheckboxTheme extends ThemeExtension<YgCheckboxTheme> {
   static final YgCheckboxTheme consumerLight = YgCheckboxTheme(
     animationCurve: _$YgCheckboxTheme.animationCurve[0],
     animationDuration: _$YgCheckboxTheme.animationDuration[0],
-    checkboxGroupLabelColumnSpacing:
-        _$YgCheckboxTheme.checkboxGroupLabelColumnSpacing[0],
-    checkboxGroupLabelTextStyle:
-        _$YgCheckboxTheme.checkboxGroupLabelTextStyle[0],
-    checkboxItemCheckboxTitleSpacing:
-        _$YgCheckboxTheme.checkboxItemCheckboxTitleSpacing[0],
-    checkboxItemTitleTextStyle: _$YgCheckboxTheme.checkboxItemTitleTextStyle[0],
+    checkboxGroupTheme: _$YgCheckboxTheme.checkboxGroupTheme[0],
+    checkboxItemTheme: _$YgCheckboxTheme.checkboxItemTheme[0],
     deselectedBorderColor: _$YgCheckboxTheme.deselectedBorderColor[0],
     deselectedDisabledBorderColor:
         _$YgCheckboxTheme.deselectedDisabledBorderColor[0],
@@ -105,13 +96,8 @@ class YgCheckboxTheme extends ThemeExtension<YgCheckboxTheme> {
   static final YgCheckboxTheme consumerDark = YgCheckboxTheme(
     animationCurve: _$YgCheckboxTheme.animationCurve[1],
     animationDuration: _$YgCheckboxTheme.animationDuration[1],
-    checkboxGroupLabelColumnSpacing:
-        _$YgCheckboxTheme.checkboxGroupLabelColumnSpacing[1],
-    checkboxGroupLabelTextStyle:
-        _$YgCheckboxTheme.checkboxGroupLabelTextStyle[1],
-    checkboxItemCheckboxTitleSpacing:
-        _$YgCheckboxTheme.checkboxItemCheckboxTitleSpacing[1],
-    checkboxItemTitleTextStyle: _$YgCheckboxTheme.checkboxItemTitleTextStyle[1],
+    checkboxGroupTheme: _$YgCheckboxTheme.checkboxGroupTheme[1],
+    checkboxItemTheme: _$YgCheckboxTheme.checkboxItemTheme[1],
     deselectedBorderColor: _$YgCheckboxTheme.deselectedBorderColor[1],
     deselectedDisabledBorderColor:
         _$YgCheckboxTheme.deselectedDisabledBorderColor[1],
@@ -142,13 +128,8 @@ class YgCheckboxTheme extends ThemeExtension<YgCheckboxTheme> {
   static final YgCheckboxTheme professionalLight = YgCheckboxTheme(
     animationCurve: _$YgCheckboxTheme.animationCurve[2],
     animationDuration: _$YgCheckboxTheme.animationDuration[2],
-    checkboxGroupLabelColumnSpacing:
-        _$YgCheckboxTheme.checkboxGroupLabelColumnSpacing[2],
-    checkboxGroupLabelTextStyle:
-        _$YgCheckboxTheme.checkboxGroupLabelTextStyle[2],
-    checkboxItemCheckboxTitleSpacing:
-        _$YgCheckboxTheme.checkboxItemCheckboxTitleSpacing[2],
-    checkboxItemTitleTextStyle: _$YgCheckboxTheme.checkboxItemTitleTextStyle[2],
+    checkboxGroupTheme: _$YgCheckboxTheme.checkboxGroupTheme[2],
+    checkboxItemTheme: _$YgCheckboxTheme.checkboxItemTheme[2],
     deselectedBorderColor: _$YgCheckboxTheme.deselectedBorderColor[2],
     deselectedDisabledBorderColor:
         _$YgCheckboxTheme.deselectedDisabledBorderColor[2],
@@ -179,13 +160,8 @@ class YgCheckboxTheme extends ThemeExtension<YgCheckboxTheme> {
   static final YgCheckboxTheme professionalDark = YgCheckboxTheme(
     animationCurve: _$YgCheckboxTheme.animationCurve[3],
     animationDuration: _$YgCheckboxTheme.animationDuration[3],
-    checkboxGroupLabelColumnSpacing:
-        _$YgCheckboxTheme.checkboxGroupLabelColumnSpacing[3],
-    checkboxGroupLabelTextStyle:
-        _$YgCheckboxTheme.checkboxGroupLabelTextStyle[3],
-    checkboxItemCheckboxTitleSpacing:
-        _$YgCheckboxTheme.checkboxItemCheckboxTitleSpacing[3],
-    checkboxItemTitleTextStyle: _$YgCheckboxTheme.checkboxItemTitleTextStyle[3],
+    checkboxGroupTheme: _$YgCheckboxTheme.checkboxGroupTheme[3],
+    checkboxItemTheme: _$YgCheckboxTheme.checkboxItemTheme[3],
     deselectedBorderColor: _$YgCheckboxTheme.deselectedBorderColor[3],
     deselectedDisabledBorderColor:
         _$YgCheckboxTheme.deselectedDisabledBorderColor[3],
@@ -224,10 +200,8 @@ class YgCheckboxTheme extends ThemeExtension<YgCheckboxTheme> {
   YgCheckboxTheme copyWith({
     Curve? animationCurve,
     Duration? animationDuration,
-    double? checkboxGroupLabelColumnSpacing,
-    TextStyle? checkboxGroupLabelTextStyle,
-    double? checkboxItemCheckboxTitleSpacing,
-    TextStyle? checkboxItemTitleTextStyle,
+    YgCheckboxGroupTheme? checkboxGroupTheme,
+    YgCheckboxItemTheme? checkboxItemTheme,
     Color? deselectedBorderColor,
     Color? deselectedDisabledBorderColor,
     Color? deselectedDisabledFillColor,
@@ -252,14 +226,8 @@ class YgCheckboxTheme extends ThemeExtension<YgCheckboxTheme> {
     return YgCheckboxTheme(
       animationCurve: animationCurve ?? this.animationCurve,
       animationDuration: animationDuration ?? this.animationDuration,
-      checkboxGroupLabelColumnSpacing: checkboxGroupLabelColumnSpacing ??
-          this.checkboxGroupLabelColumnSpacing,
-      checkboxGroupLabelTextStyle:
-          checkboxGroupLabelTextStyle ?? this.checkboxGroupLabelTextStyle,
-      checkboxItemCheckboxTitleSpacing: checkboxItemCheckboxTitleSpacing ??
-          this.checkboxItemCheckboxTitleSpacing,
-      checkboxItemTitleTextStyle:
-          checkboxItemTitleTextStyle ?? this.checkboxItemTitleTextStyle,
+      checkboxGroupTheme: checkboxGroupTheme ?? this.checkboxGroupTheme,
+      checkboxItemTheme: checkboxItemTheme ?? this.checkboxItemTheme,
       deselectedBorderColor:
           deselectedBorderColor ?? this.deselectedBorderColor,
       deselectedDisabledBorderColor:
@@ -305,16 +273,10 @@ class YgCheckboxTheme extends ThemeExtension<YgCheckboxTheme> {
     return YgCheckboxTheme(
       animationCurve: t < 0.5 ? animationCurve : other.animationCurve,
       animationDuration: t < 0.5 ? animationDuration : other.animationDuration,
-      checkboxGroupLabelColumnSpacing: t < 0.5
-          ? checkboxGroupLabelColumnSpacing
-          : other.checkboxGroupLabelColumnSpacing,
-      checkboxGroupLabelTextStyle: TextStyle.lerp(
-          checkboxGroupLabelTextStyle, other.checkboxGroupLabelTextStyle, t)!,
-      checkboxItemCheckboxTitleSpacing: t < 0.5
-          ? checkboxItemCheckboxTitleSpacing
-          : other.checkboxItemCheckboxTitleSpacing,
-      checkboxItemTitleTextStyle: TextStyle.lerp(
-          checkboxItemTitleTextStyle, other.checkboxItemTitleTextStyle, t)!,
+      checkboxGroupTheme: checkboxGroupTheme.lerp(other.checkboxGroupTheme, t)
+          as YgCheckboxGroupTheme,
+      checkboxItemTheme: checkboxItemTheme.lerp(other.checkboxItemTheme, t)
+          as YgCheckboxItemTheme,
       deselectedBorderColor:
           Color.lerp(deselectedBorderColor, other.deselectedBorderColor, t)!,
       deselectedDisabledBorderColor: Color.lerp(deselectedDisabledBorderColor,
@@ -365,16 +327,10 @@ class YgCheckboxTheme extends ThemeExtension<YgCheckboxTheme> {
                 .equals(animationCurve, other.animationCurve) &&
             const DeepCollectionEquality()
                 .equals(animationDuration, other.animationDuration) &&
-            const DeepCollectionEquality().equals(
-                checkboxGroupLabelColumnSpacing,
-                other.checkboxGroupLabelColumnSpacing) &&
-            const DeepCollectionEquality().equals(checkboxGroupLabelTextStyle,
-                other.checkboxGroupLabelTextStyle) &&
-            const DeepCollectionEquality().equals(
-                checkboxItemCheckboxTitleSpacing,
-                other.checkboxItemCheckboxTitleSpacing) &&
-            const DeepCollectionEquality().equals(
-                checkboxItemTitleTextStyle, other.checkboxItemTitleTextStyle) &&
+            const DeepCollectionEquality()
+                .equals(checkboxGroupTheme, other.checkboxGroupTheme) &&
+            const DeepCollectionEquality()
+                .equals(checkboxItemTheme, other.checkboxItemTheme) &&
             const DeepCollectionEquality()
                 .equals(deselectedBorderColor, other.deselectedBorderColor) &&
             const DeepCollectionEquality().equals(deselectedDisabledBorderColor,
@@ -400,13 +356,18 @@ class YgCheckboxTheme extends ThemeExtension<YgCheckboxTheme> {
                 .equals(selectedCheckColor, other.selectedCheckColor) &&
             const DeepCollectionEquality().equals(selectedDisabledBorderColor,
                 other.selectedDisabledBorderColor) &&
+            const DeepCollectionEquality().equals(
+                selectedDisabledCheckColor, other.selectedDisabledCheckColor) &&
+            const DeepCollectionEquality().equals(
+                selectedDisabledFillColor, other.selectedDisabledFillColor) &&
             const DeepCollectionEquality()
-                .equals(selectedDisabledCheckColor, other.selectedDisabledCheckColor) &&
-            const DeepCollectionEquality().equals(selectedDisabledFillColor, other.selectedDisabledFillColor) &&
-            const DeepCollectionEquality().equals(selectedErrorFillColor, other.selectedErrorFillColor) &&
-            const DeepCollectionEquality().equals(selectedFillColor, other.selectedFillColor) &&
-            const DeepCollectionEquality().equals(selectedHoveredFillColor, other.selectedHoveredFillColor) &&
-            const DeepCollectionEquality().equals(selectedPressedFillColor, other.selectedPressedFillColor) &&
+                .equals(selectedErrorFillColor, other.selectedErrorFillColor) &&
+            const DeepCollectionEquality()
+                .equals(selectedFillColor, other.selectedFillColor) &&
+            const DeepCollectionEquality().equals(
+                selectedHoveredFillColor, other.selectedHoveredFillColor) &&
+            const DeepCollectionEquality().equals(
+                selectedPressedFillColor, other.selectedPressedFillColor) &&
             const DeepCollectionEquality().equals(size, other.size));
   }
 
@@ -416,10 +377,8 @@ class YgCheckboxTheme extends ThemeExtension<YgCheckboxTheme> {
       runtimeType.hashCode,
       const DeepCollectionEquality().hash(animationCurve),
       const DeepCollectionEquality().hash(animationDuration),
-      const DeepCollectionEquality().hash(checkboxGroupLabelColumnSpacing),
-      const DeepCollectionEquality().hash(checkboxGroupLabelTextStyle),
-      const DeepCollectionEquality().hash(checkboxItemCheckboxTitleSpacing),
-      const DeepCollectionEquality().hash(checkboxItemTitleTextStyle),
+      const DeepCollectionEquality().hash(checkboxGroupTheme),
+      const DeepCollectionEquality().hash(checkboxItemTheme),
       const DeepCollectionEquality().hash(deselectedBorderColor),
       const DeepCollectionEquality().hash(deselectedDisabledBorderColor),
       const DeepCollectionEquality().hash(deselectedDisabledFillColor),
