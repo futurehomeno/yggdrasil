@@ -7,6 +7,7 @@ export 'card_screen.dart';
 export 'checkbox_screen.dart';
 export 'dialog_screen.dart';
 export 'divider_screen.dart';
+export 'gauge_screen.dart';
 export 'home_screen.dart';
 export 'icon_screen.dart';
 export 'icons_list.dart';

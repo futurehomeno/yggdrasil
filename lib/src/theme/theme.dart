@@ -11,6 +11,7 @@ import 'checkbox/_checkbox.dart';
 import 'defaults/_defaults.dart';
 import 'dialog/_dialog.dart';
 import 'divider/_divider.dart';
+import 'gauge/_gauge.dart';
 import 'icon/_icon.dart';
 import 'icon_button/_icon_button.dart';
 import 'internal/_internal.dart';
@@ -61,6 +62,9 @@ class _$YgTheme {
 
   @themeExtension
   static List<YgDividerTheme> dividerTheme = YgDividerTheme.themes;
+
+  @themeExtension
+  static List<YgGaugeTheme> gaugeTheme = YgGaugeTheme.themes;
 
   @themeExtension
   static List<YgIconTheme> iconTheme = YgIconTheme.themes;
