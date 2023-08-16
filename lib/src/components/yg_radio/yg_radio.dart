@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:yggdrasil/src/theme/_theme.dart';
 import 'package:yggdrasil/src/utils/_utils.dart';
 
@@ -105,6 +106,14 @@ class _YgRadioState<T> extends State<YgRadio<T>> {
           child: FocusableActionDetector(
             onShowHoverHighlight: _onShowHoverHighlight,
             onShowFocusHighlight: _onShowFocusHighlight,
+            shortcuts: const <ShortcutActivator, Intent>{
+              SingleActivator(LogicalKeyboardKey.space, control: true): ActivateIntent(),
+            },
+            actions: <Type, Action<Intent>>{
+              ActivateIntent: CallbackAction<Intent>(onInvoke: (_) {
+                return widget.onChanged == null ? null : _onTap();
+              }),
+            },
             mouseCursor: resolvedMouseCursor,
             enabled: widget._enabled,
             child: Padding(
