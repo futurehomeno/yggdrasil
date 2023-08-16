@@ -30,6 +30,7 @@ class YgTheme extends ThemeExtension<YgTheme> {
     required this.tagTheme,
     required this.textLinkTheme,
     required this.tokens,
+    required this.topAppBarTheme,
   });
 
   final YgBadgeTheme badgeTheme;
@@ -52,6 +53,7 @@ class YgTheme extends ThemeExtension<YgTheme> {
   final YgTagTheme tagTheme;
   final YgTextLinkTheme textLinkTheme;
   final YgTokens tokens;
+  final YgTopAppBarTheme topAppBarTheme;
 
   static final YgTheme consumerLight = YgTheme(
     badgeTheme: _$YgTheme.badgeTheme[0],
@@ -74,6 +76,7 @@ class YgTheme extends ThemeExtension<YgTheme> {
     tagTheme: _$YgTheme.tagTheme[0],
     textLinkTheme: _$YgTheme.textLinkTheme[0],
     tokens: _$YgTheme.tokens[0],
+    topAppBarTheme: _$YgTheme.topAppBarTheme[0],
   );
 
   static final YgTheme consumerDark = YgTheme(
@@ -97,6 +100,7 @@ class YgTheme extends ThemeExtension<YgTheme> {
     tagTheme: _$YgTheme.tagTheme[1],
     textLinkTheme: _$YgTheme.textLinkTheme[1],
     tokens: _$YgTheme.tokens[1],
+    topAppBarTheme: _$YgTheme.topAppBarTheme[1],
   );
 
   static final YgTheme professionalLight = YgTheme(
@@ -120,6 +124,7 @@ class YgTheme extends ThemeExtension<YgTheme> {
     tagTheme: _$YgTheme.tagTheme[2],
     textLinkTheme: _$YgTheme.textLinkTheme[2],
     tokens: _$YgTheme.tokens[2],
+    topAppBarTheme: _$YgTheme.topAppBarTheme[2],
   );
 
   static final YgTheme professionalDark = YgTheme(
@@ -143,6 +148,7 @@ class YgTheme extends ThemeExtension<YgTheme> {
     tagTheme: _$YgTheme.tagTheme[3],
     textLinkTheme: _$YgTheme.textLinkTheme[3],
     tokens: _$YgTheme.tokens[3],
+    topAppBarTheme: _$YgTheme.topAppBarTheme[3],
   );
 
   static final themes = [
@@ -174,6 +180,7 @@ class YgTheme extends ThemeExtension<YgTheme> {
     YgTagTheme? tagTheme,
     YgTextLinkTheme? textLinkTheme,
     YgTokens? tokens,
+    YgTopAppBarTheme? topAppBarTheme,
   }) {
     return YgTheme(
       badgeTheme: badgeTheme ?? this.badgeTheme,
@@ -197,6 +204,7 @@ class YgTheme extends ThemeExtension<YgTheme> {
       tagTheme: tagTheme ?? this.tagTheme,
       textLinkTheme: textLinkTheme ?? this.textLinkTheme,
       tokens: tokens ?? this.tokens,
+      topAppBarTheme: topAppBarTheme ?? this.topAppBarTheme,
     );
   }
 
@@ -232,6 +240,8 @@ class YgTheme extends ThemeExtension<YgTheme> {
       textLinkTheme:
           textLinkTheme.lerp(other.textLinkTheme, t) as YgTextLinkTheme,
       tokens: tokens.lerp(other.tokens, t) as YgTokens,
+      topAppBarTheme:
+          topAppBarTheme.lerp(other.topAppBarTheme, t) as YgTopAppBarTheme,
     );
   }
 
@@ -274,7 +284,9 @@ class YgTheme extends ThemeExtension<YgTheme> {
             const DeepCollectionEquality().equals(tagTheme, other.tagTheme) &&
             const DeepCollectionEquality()
                 .equals(textLinkTheme, other.textLinkTheme) &&
-            const DeepCollectionEquality().equals(tokens, other.tokens));
+            const DeepCollectionEquality().equals(tokens, other.tokens) &&
+            const DeepCollectionEquality()
+                .equals(topAppBarTheme, other.topAppBarTheme));
   }
 
   @override
@@ -301,6 +313,7 @@ class YgTheme extends ThemeExtension<YgTheme> {
       const DeepCollectionEquality().hash(tagTheme),
       const DeepCollectionEquality().hash(textLinkTheme),
       const DeepCollectionEquality().hash(tokens),
+      const DeepCollectionEquality().hash(topAppBarTheme),
     ]);
   }
 }
@@ -328,4 +341,5 @@ extension YgThemeBuildContextProps on BuildContext {
   YgTagTheme get tagTheme => ygTheme.tagTheme;
   YgTextLinkTheme get textLinkTheme => ygTheme.textLinkTheme;
   YgTokens get tokens => ygTheme.tokens;
+  YgTopAppBarTheme get topAppBarTheme => ygTheme.topAppBarTheme;
 }

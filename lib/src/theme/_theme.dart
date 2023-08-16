@@ -18,3 +18,4 @@ export 'switch/_switch.dart';
 export 'tag/_tag.dart';
 export 'text_link/_text_link.dart';
 export 'theme.dart';
+export 'top_app_bar/_top_app_bar.dart';

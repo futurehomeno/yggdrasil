@@ -21,6 +21,7 @@ import 'switch/_switch.dart';
 import 'tag/_tag.dart';
 import 'text_link/_text_link.dart';
 import 'tokens/_tokens.dart';
+import 'top_app_bar/_top_app_bar.dart';
 
 part 'theme.tailor.dart';
 
@@ -83,6 +84,9 @@ class _$YgTheme {
 
   @themeExtension
   static List<YgTextLinkTheme> textLinkTheme = YgTextLinkTheme.themes;
+
+  @themeExtension
+  static List<YgTopAppBarTheme> topAppBarTheme = YgTopAppBarTheme.themes;
 
   @themeExtension
   static List<YgInternalTheme> internalTheme = YgInternalTheme.themes;
