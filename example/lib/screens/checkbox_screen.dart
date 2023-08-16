@@ -63,7 +63,7 @@ class _CheckboxScreenState extends State<CheckboxScreen> {
             },
             hasError: true,
           ),
-          const YgListTile(title: 'Disabled radio, selected / unselected'),
+          const YgListTile(title: 'Disabled checkbox, selected / unselected'),
           const YgCheckbox(
             value: true,
             onChanged: null,
@@ -109,7 +109,7 @@ class _CheckboxScreenState extends State<CheckboxScreen> {
               ),
             ],
           ),
-        ],
+        ].withVerticalSpacing(10),
       ),
     );
   }

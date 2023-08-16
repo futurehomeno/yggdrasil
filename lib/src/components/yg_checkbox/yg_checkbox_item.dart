@@ -6,7 +6,7 @@ import 'package:yggdrasil/src/utils/_utils.dart';
 import 'helpers/_helpers.dart';
 import 'yg_checkbox.dart';
 
-class YgCheckboxItem extends StatelessWidget {
+class YgCheckboxItem extends StatelessWidget with StatelessWidgetDebugMixin {
   const YgCheckboxItem({
     super.key,
     required this.title,

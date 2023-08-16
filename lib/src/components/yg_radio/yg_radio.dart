@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:yggdrasil/src/components/yg_radio/yg_radio.style.dart';
-import 'package:yggdrasil/yggdrasil.dart';
+import 'package:yggdrasil/src/theme/_theme.dart';
+import 'package:yggdrasil/src/utils/_utils.dart';
+
+import 'yg_radio.style.dart';
 
 /// Yggdrasil radio button.
 ///

@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:yggdrasil/src/components/_components.dart';
 import 'package:yggdrasil/src/theme/_theme.dart';
+import 'package:yggdrasil/src/utils/_utils.dart';
 
 /// [YgBadge] takes a child widget and overlays it with a badge.
 class YgBadge extends StatelessWidget with StatelessWidgetDebugMixin {

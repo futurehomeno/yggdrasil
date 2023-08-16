@@ -1,7 +1,11 @@
 import 'package:flutter/material.dart';
-import 'package:yggdrasil/yggdrasil.dart';
+import 'package:yggdrasil/src/extensions/_extensions.dart';
+import 'package:yggdrasil/src/theme/_theme.dart';
+import 'package:yggdrasil/src/utils/_utils.dart';
 
-class YgCheckboxGroup extends StatelessWidget {
+import 'yg_checkbox_item.dart';
+
+class YgCheckboxGroup extends StatelessWidget with StatelessWidgetDebugMixin {
   const YgCheckboxGroup({
     super.key,
     required this.label,

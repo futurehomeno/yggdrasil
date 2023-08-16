@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:yggdrasil/yggdrasil.dart';
+import 'package:yggdrasil/src/theme/_theme.dart';
+import 'package:yggdrasil/src/utils/_utils.dart';
 
 import 'helpers/_helpers.dart';
 import 'widgets/_widgets.dart';
@@ -12,7 +13,7 @@ import 'yg_checkbox.style.dart';
 /// The first circle creates the background (or border when not selected).
 /// The second circle creates the handle, large when not selected, small when selected.
 /// The last circle creates the helper handle, only used for the disabled state.
-class YgCheckbox extends StatefulWidget {
+class YgCheckbox extends StatefulWidget with StatefulWidgetDebugMixin {
   const YgCheckbox({
     super.key,
     required this.value,
