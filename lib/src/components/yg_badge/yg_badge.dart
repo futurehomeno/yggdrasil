@@ -36,7 +36,10 @@ class YgBadge extends StatelessWidget with StatelessWidgetDebugMixin {
       children: <Widget>[
         child,
         Container(
-          padding: const EdgeInsets.fromLTRB(5, 2, 5, 2),
+          padding: const EdgeInsets.symmetric(
+            horizontal: 5.0,
+            vertical: 2.0,
+          ),
           decoration: BoxDecoration(
             color: YgBadgeMapper.getBadgeColor(
               theme: badgeTheme,

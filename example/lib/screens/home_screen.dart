@@ -123,6 +123,11 @@ class HomeScreen extends StatelessWidget {
             trailingWidgets: const <YgIcon>[YgIcon(YgIcons.caretRight)],
           ),
           YgListTile(
+            title: 'Statistics - Gauge',
+            onTap: () => sl<YgRouter>().push(GaugeScreen.route()),
+            trailingWidgets: const <YgIcon>[YgIcon(YgIcons.caretRight)],
+          ),
+          YgListTile(
             title: 'Tags',
             onTap: () => sl<YgRouter>().push(TagsScreen.route()),
             trailingWidgets: const <YgIcon>[YgIcon(YgIcons.caretRight)],

@@ -62,7 +62,7 @@ class YgCallout extends StatelessWidget with StatelessWidgetDebugMixin {
                     Padding(
                       padding: EdgeInsets.only(top: theme.linkSpacing),
                       child: textLink,
-                    )
+                    ),
                 ],
               ),
             ),
