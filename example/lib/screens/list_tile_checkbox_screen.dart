@@ -36,33 +36,27 @@ class _ListTileCheckboxScreenState extends State<ListTileCheckboxScreen> {
           YgCheckboxListTile(
             title: 'CheckboxListTile',
             subtitle: 'The whole ListTile and Checkbox is tappable.',
-            checkbox: YgCheckbox(
-              value: checkboxListTileValue,
-              onChanged: (bool? newValue) {
-                checkboxListTileValue = newValue;
-                setState(() {});
-              },
-            ),
+            value: checkboxListTileValue,
+            onChanged: (bool? newValue) {
+              checkboxListTileValue = newValue;
+              setState(() {});
+            },
           ),
           YgCheckboxListTile(
             title: 'Tri-state CheckboxListTile',
             subtitle: 'The whole ListTile and Checkbox is tappable.',
-            checkbox: YgCheckbox(
-              value: checkboxListTileTriStateValue,
-              triState: true,
-              onChanged: (bool? newValue) {
-                checkboxListTileTriStateValue = newValue;
-                setState(() {});
-              },
-            ),
+            value: checkboxListTileTriStateValue,
+            triState: true,
+            onChanged: (bool? newValue) {
+              checkboxListTileTriStateValue = newValue;
+              setState(() {});
+            },
           ),
           YgCheckboxListTile(
             title: 'Disabled CheckboxListTile',
             subtitle: 'Tapping anywhere does nothing.',
-            checkbox: YgCheckbox(
-              value: checkboxListTileDisabledValue,
-              onChanged: null,
-            ),
+            value: checkboxListTileDisabledValue,
+            onChanged: null,
           ),
           YgCheckboxListTile(
             title: 'With trailingWidget',
@@ -71,13 +65,11 @@ class _ListTileCheckboxScreenState extends State<ListTileCheckboxScreen> {
               onPressed: () {},
               child: const YgIcon(YgIcons.info),
             ),
-            checkbox: YgCheckbox(
-              value: checkboxListTileTrailingWidgetValue,
-              onChanged: (bool? newValue) {
-                checkboxListTileTrailingWidgetValue = newValue;
-                setState(() {});
-              },
-            ),
+            value: checkboxListTileTrailingWidgetValue,
+            onChanged: (bool? newValue) {
+              checkboxListTileTrailingWidgetValue = newValue;
+              setState(() {});
+            },
           ),
           const YgCallout(
             title: 'Note',

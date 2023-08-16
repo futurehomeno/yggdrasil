@@ -8,26 +8,31 @@ class YgSwitchListTile extends StatelessWidget {
   const YgSwitchListTile({
     super.key,
     required this.title,
-    required this.ygSwitch,
+    required this.value,
+    required this.onChanged,
     this.subtitle,
     this.subtitleIcon,
     this.trailingWidget,
+    this.triState = false,
   });
 
   /// See [YgListTile] documentation.
   final String title;
-
-  /// The actual switch.
-  ///
-  /// Clicking anywhere on the [YgSwitchListTile] will trigger
-  /// the onChanged callback of this switch.
-  final YgSwitch ygSwitch;
 
   /// See [YgListTile] documentation.
   final String? subtitle;
 
   /// See [YgListTile] documentation.
   final Widget? subtitleIcon;
+
+  /// See [YgSwitch] documentation.
+  final bool? value;
+
+  /// See [YgSwitch] documentation.
+  final Function(bool? newValue)? onChanged;
+
+  /// See [YgSwitch] documentation.
+  final bool triState;
 
   /// Optional widget to display before the switch.
   final Widget? trailingWidget;
@@ -38,15 +43,15 @@ class YgSwitchListTile extends StatelessWidget {
       title: title,
       subtitle: subtitle,
       subtitleIcon: subtitleIcon,
-      onTap: ygSwitch.onChanged == null ? null : _onTap,
+      onTap: onChanged == null ? null : _onTap,
       trailingWidgets: <Widget>[
         if (trailingWidget != null) trailingWidget!,
         AbsorbPointer(
           child: YgNoFocus(
             child: YgSwitch(
-              value: ygSwitch.value,
-              onChanged: ygSwitch.onChanged,
-              triState: ygSwitch.triState,
+              value: value,
+              onChanged: onChanged,
+              triState: triState,
             ),
           ),
         ),
@@ -55,7 +60,7 @@ class YgSwitchListTile extends StatelessWidget {
   }
 
   void _onTap() {
-    final bool? nextValue = YgSwitchHelpers.getNextValue(ygSwitch.value, ygSwitch.triState);
-    ygSwitch.onChanged?.call(nextValue);
+    final bool? nextValue = YgSwitchHelpers.getNextValue(value, triState);
+    onChanged?.call(nextValue);
   }
 }

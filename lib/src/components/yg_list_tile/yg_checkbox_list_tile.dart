@@ -8,26 +8,31 @@ class YgCheckboxListTile extends StatelessWidget {
   const YgCheckboxListTile({
     super.key,
     required this.title,
-    required this.checkbox,
+    required this.value,
+    required this.onChanged,
     this.subtitle,
     this.subtitleIcon,
     this.trailingWidget,
+    this.triState = false,
   });
 
   /// See [YgListTile] documentation.
   final String title;
-
-  /// The actual checkbox.
-  ///
-  /// Clicking anywhere on the [YgCheckboxListTile] will trigger
-  /// the onChanged callback of this checkbox.
-  final YgCheckbox checkbox;
 
   /// See [YgListTile] documentation.
   final String? subtitle;
 
   /// See [YgListTile] documentation.
   final Widget? subtitleIcon;
+
+  /// See [YgSwitch] documentation.
+  final bool? value;
+
+  /// See [YgSwitch] documentation.
+  final Function(bool? newValue)? onChanged;
+
+  /// See [YgSwitch] documentation.
+  final bool triState;
 
   /// Optional widget to display before the switch.
   final Widget? trailingWidget;
@@ -38,15 +43,15 @@ class YgCheckboxListTile extends StatelessWidget {
       title: title,
       subtitle: subtitle,
       subtitleIcon: subtitleIcon,
-      onTap: checkbox.onChanged == null ? null : _onTap,
+      onTap: onChanged == null ? null : _onTap,
       trailingWidgets: <Widget>[
         if (trailingWidget != null) trailingWidget!,
         AbsorbPointer(
           child: YgNoFocus(
             child: YgCheckbox(
-              value: checkbox.value,
-              onChanged: checkbox.onChanged,
-              triState: checkbox.triState,
+              value: value,
+              onChanged: onChanged,
+              triState: triState,
             ),
           ),
         ),
@@ -55,7 +60,7 @@ class YgCheckboxListTile extends StatelessWidget {
   }
 
   void _onTap() {
-    final bool? nextValue = YgSwitchHelpers.getNextValue(checkbox.value, checkbox.triState);
-    checkbox.onChanged?.call(nextValue);
+    final bool? nextValue = YgSwitchHelpers.getNextValue(value, triState);
+    onChanged?.call(nextValue);
   }
 }

@@ -7,7 +7,9 @@ class YgRadioListTile<T> extends StatelessWidget {
   const YgRadioListTile({
     super.key,
     required this.title,
-    required this.radio,
+    required this.value,
+    required this.groupValue,
+    required this.onChanged,
     this.subtitle,
     this.subtitleIcon,
     this.trailingWidget,
@@ -16,17 +18,20 @@ class YgRadioListTile<T> extends StatelessWidget {
   /// See [YgListTile] documentation.
   final String title;
 
-  /// The actual radio.
-  ///
-  /// Clicking anywhere on the [YgRadioListTile] will trigger
-  /// the onChanged callback of this radio.
-  final YgRadio<T> radio;
-
   /// See [YgListTile] documentation.
   final String? subtitle;
 
   /// See [YgListTile] documentation.
   final Widget? subtitleIcon;
+
+  /// See [YgRadio] documentation.
+  final T value;
+
+  /// See [YgRadio] documentation.
+  final T? groupValue;
+
+  /// See [YgRadio] documentation.
+  final ValueChanged<T?>? onChanged;
 
   /// Optional widget to display before the switch.
   final Widget? trailingWidget;
@@ -37,15 +42,15 @@ class YgRadioListTile<T> extends StatelessWidget {
       title: title,
       subtitle: subtitle,
       subtitleIcon: subtitleIcon,
-      onTap: radio.onChanged == null ? null : _onTap,
+      onTap: onChanged == null ? null : _onTap,
       trailingWidgets: <Widget>[
         if (trailingWidget != null) trailingWidget!,
         AbsorbPointer(
           child: YgNoFocus(
             child: YgRadio<T>(
-              value: radio.value,
-              groupValue: radio.groupValue,
-              onChanged: radio.onChanged,
+              value: value,
+              groupValue: groupValue,
+              onChanged: onChanged,
             ),
           ),
         ),
@@ -54,6 +59,6 @@ class YgRadioListTile<T> extends StatelessWidget {
   }
 
   void _onTap() {
-    radio.onChanged?.call(radio.value);
+    onChanged?.call(value);
   }
 }
