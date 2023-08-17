@@ -12,12 +12,12 @@ part 'radio_theme.tailor.dart';
 @tailorComponent
 class _$YgRadioTheme {
   @themeExtension
-  static List<YgRadioGroupTheme> radioGroupTheme = YgRadioGroupTheme.themes;
+  static final List<YgRadioGroupTheme> radioGroupTheme = YgRadioGroupTheme.themes;
 
   @themeExtension
-  static List<YgRadioItemTheme> radioItemTheme = YgRadioItemTheme.themes;
+  static final List<YgRadioItemTheme> radioItemTheme = YgRadioItemTheme.themes;
 
-  static List<double> size = <double>[
+  static const List<double> size = <double>[
     consumer_light.FhDimensions.md,
     consumer_dark.FhDimensions.md,
     professional_light.FhDimensions.md,
@@ -25,84 +25,84 @@ class _$YgRadioTheme {
   ];
 
   // TODO(bjhandeland): Replace with theme token.
-  static List<double> padding = <double>[
+  static const List<double> padding = <double>[
     2.0,
     2.0,
     2.0,
     2.0,
   ];
 
-  static List<Color> selectedBackgroundColor = <Color>[
+  static const List<Color> selectedBackgroundColor = <Color>[
     consumer_light.FhColors.interactiveHighlightDefault,
     consumer_dark.FhColors.interactiveHighlightDefault,
     professional_light.FhColors.interactiveHighlightDefault,
     professional_dark.FhColors.interactiveHighlightDefault,
   ];
 
-  static List<Color> selectedHoveredBackgroundColor = <Color>[
+  static const List<Color> selectedHoveredBackgroundColor = <Color>[
     consumer_light.FhColors.interactiveHighlightHovered,
     consumer_dark.FhColors.interactiveHighlightHovered,
     professional_light.FhColors.interactiveHighlightHovered,
     professional_dark.FhColors.interactiveHighlightHovered,
   ];
 
-  static List<Color> selectedPressedBackgroundColor = <Color>[
+  static const List<Color> selectedPressedBackgroundColor = <Color>[
     consumer_light.FhColors.interactiveHighlightHovered,
     consumer_dark.FhColors.interactiveHighlightHovered,
     professional_light.FhColors.interactiveHighlightHovered,
     professional_dark.FhColors.interactiveHighlightHovered,
   ];
 
-  static List<Color> selectedDisabledBackgroundColor = <Color>[
+  static const List<Color> selectedDisabledBackgroundColor = <Color>[
     consumer_light.FhColors.borderDisabled,
     consumer_dark.FhColors.borderDisabled,
     professional_light.FhColors.borderDisabled,
     professional_dark.FhColors.borderDisabled,
   ];
 
-  static List<Color> deselectedBackgroundColor = <Color>[
+  static const List<Color> deselectedBackgroundColor = <Color>[
     consumer_light.FhColors.borderDefault,
     consumer_dark.FhColors.borderDefault,
     professional_light.FhColors.borderDefault,
     professional_dark.FhColors.borderDefault,
   ];
 
-  static List<Color> deselectedHoveredBackgroundColor = <Color>[
+  static const List<Color> deselectedHoveredBackgroundColor = <Color>[
     consumer_light.FhColors.borderWeak,
     consumer_dark.FhColors.borderWeak,
     professional_light.FhColors.borderWeak,
     professional_dark.FhColors.borderWeak,
   ];
 
-  static List<Color> deselectedPressedBackgroundColor = <Color>[
+  static const List<Color> deselectedPressedBackgroundColor = <Color>[
     consumer_light.FhColors.borderWeak,
     consumer_dark.FhColors.borderWeak,
     professional_light.FhColors.borderWeak,
     professional_dark.FhColors.borderWeak,
   ];
 
-  static List<Color> deselectedDisabledBackgroundColor = <Color>[
+  static const List<Color> deselectedDisabledBackgroundColor = <Color>[
     consumer_light.FhColors.borderDisabled,
     consumer_dark.FhColors.borderDisabled,
     professional_light.FhColors.borderDisabled,
     professional_dark.FhColors.borderDisabled,
   ];
 
-  static List<Color> selectedHandleColor = <Color>[
+  static const List<Color> selectedHandleColor = <Color>[
     consumer_light.FhColors.iconInverse,
     consumer_dark.FhColors.iconInverse,
     professional_light.FhColors.iconInverse,
     professional_dark.FhColors.iconInverse,
   ];
 
-  static List<Color> deselectedHandleColor = <Color>[
+  static const List<Color> deselectedHandleColor = <Color>[
     consumer_light.FhColors.iconInverse,
     consumer_dark.FhColors.iconInverse,
     professional_light.FhColors.iconInverse,
     professional_dark.FhColors.iconInverse,
   ];
 
-  static List<Color> disabledHandleColor = <Color>[
+  static const List<Color> disabledHandleColor = <Color>[
     consumer_light.FhColors.backgroundDisabled,
     consumer_dark.FhColors.backgroundDisabled,
     professional_light.FhColors.backgroundDisabled,
@@ -110,7 +110,7 @@ class _$YgRadioTheme {
   ];
 
   // TODO(bjhandeland): Replace with theme token.
-  static List<double> selectedHandleSize = <double>[
+  static const List<double> selectedHandleSize = <double>[
     8.0,
     8.0,
     8.0,
@@ -118,47 +118,47 @@ class _$YgRadioTheme {
   ];
 
   // TODO(bjhandeland): Replace with theme token.
-  static List<double> deselectedHandleSize = <double>[
+  static const List<double> deselectedHandleSize = <double>[
     16.0,
     16.0,
     16.0,
     16.0,
   ];
 
-  static List<Color> helperHandleColor = <Color>[
+  static const List<Color> helperHandleColor = <Color>[
     consumer_light.FhColors.iconDisabled,
     consumer_dark.FhColors.iconDisabled,
     professional_light.FhColors.iconDisabled,
     professional_dark.FhColors.iconDisabled,
   ];
 
-  static List<double> disabledDeselectedHelperHandleSize = <double>[
+  static const List<double> disabledDeselectedHelperHandleSize = <double>[
     0.0,
     0.0,
     0.0,
     0.0,
   ];
 
-  static List<double> disabledSelectedHelperHandleSize = <double>[
+  static const List<double> disabledSelectedHelperHandleSize = <double>[
     8.0,
     8.0,
     8.0,
     8.0,
-  ];
-
-  // TODO(bjhandeland): Replace with theme token.
-  static List<Duration> animationDuration = <Duration>[
-    const Duration(milliseconds: 80),
-    const Duration(milliseconds: 80),
-    const Duration(milliseconds: 80),
-    const Duration(milliseconds: 80),
   ];
 
   // TODO(bjhandeland): Replace with theme token.
-  static List<Curve> animationCurve = <Curve>[
-    const Cubic(0.35, 0.0, 0.1, 1.0),
-    const Cubic(0.35, 0.0, 0.1, 1.0),
-    const Cubic(0.35, 0.0, 0.1, 1.0),
-    const Cubic(0.35, 0.0, 0.1, 1.0),
+  static const List<Duration> animationDuration = <Duration>[
+    Duration(milliseconds: 80),
+    Duration(milliseconds: 80),
+    Duration(milliseconds: 80),
+    Duration(milliseconds: 80),
+  ];
+
+  // TODO(bjhandeland): Replace with theme token.
+  static const List<Curve> animationCurve = <Curve>[
+    Cubic(0.35, 0.0, 0.1, 1.0),
+    Cubic(0.35, 0.0, 0.1, 1.0),
+    Cubic(0.35, 0.0, 0.1, 1.0),
+    Cubic(0.35, 0.0, 0.1, 1.0),
   ];
 }

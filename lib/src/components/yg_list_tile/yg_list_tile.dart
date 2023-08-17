@@ -87,7 +87,7 @@ class YgListTile extends StatelessWidget with StatelessWidgetDebugMixin {
           style: listTileTheme.titleTextStyle,
           overflow: TextOverflow.ellipsis,
         ),
-        if (onInfoTap != null) _buildInfoButton(listTileTheme),
+        if (onInfoTap != null) _buildInfoButton(),
       ].withHorizontalSpacing(listTileTheme.titleInfoSpacing),
     );
   }
@@ -106,7 +106,7 @@ class YgListTile extends StatelessWidget with StatelessWidgetDebugMixin {
     );
   }
 
-  Widget _buildInfoButton(YgListTileTheme listTileTheme) {
+  Widget _buildInfoButton() {
     return YgIconButton(
       onPressed: onInfoTap,
       size: YgIconButtonSize.small,

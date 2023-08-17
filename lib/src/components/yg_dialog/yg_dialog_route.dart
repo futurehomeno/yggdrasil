@@ -41,6 +41,7 @@ abstract class YgDialogRoute extends PopupRoute<YgDialog> {
       vsync: navigator!,
       value: 0,
     );
+
     return _controller;
   }
 

@@ -46,6 +46,7 @@ abstract class YgBottomSheetModalRoute extends PopupRoute<YgBottomSheetModal> {
       vsync: navigator!,
       value: 0,
     );
+
     return _controller;
   }
 

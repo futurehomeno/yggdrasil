@@ -9,14 +9,14 @@ part 'critical_callout_theme.tailor.dart';
 
 @tailorComponent
 class _$CriticalCalloutTheme {
-  static List<Color> backgroundColor = <Color>[
+  static const List<Color> backgroundColor = <Color>[
     consumer_light.FhColors.backgroundCriticalWeak,
     consumer_dark.FhColors.backgroundCriticalWeak,
     professional_light.FhColors.backgroundCriticalWeak,
     professional_dark.FhColors.backgroundCriticalWeak,
   ];
 
-  static List<Color> borderColor = <Color>[
+  static const List<Color> borderColor = <Color>[
     consumer_light.FhColors.borderCriticalWeak,
     consumer_dark.FhColors.borderCriticalWeak,
     professional_light.FhColors.borderCriticalWeak,

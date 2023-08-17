@@ -96,6 +96,7 @@ class _YgTextFieldDecorationState extends YgTextFieldBaseWidgetState<YgTextField
     if (widget.error) {
       return theme.backgroundErrorColor;
     }
+
     return theme.backgroundDefaultColor;
   }
 }

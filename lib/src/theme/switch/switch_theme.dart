@@ -9,110 +9,110 @@ part 'switch_theme.tailor.dart';
 
 @tailorComponent
 class _$YgSwitchTheme {
-  static List<double> height = <double>[
+  static const List<double> height = <double>[
     consumer_light.FhDimensions.xl,
     consumer_dark.FhDimensions.xl,
     professional_light.FhDimensions.xl,
     professional_dark.FhDimensions.xl,
   ];
 
-  static List<double> width = <double>[
+  static const List<double> width = <double>[
     consumer_light.FhDimensions.xxl,
     consumer_dark.FhDimensions.xxl,
     professional_light.FhDimensions.xxl,
     professional_dark.FhDimensions.xxl,
   ];
 
-  static List<double> handleSize = <double>[
+  static const List<double> handleSize = <double>[
     consumer_light.FhDimensions.md,
     consumer_dark.FhDimensions.md,
     professional_light.FhDimensions.md,
     professional_dark.FhDimensions.md,
   ];
 
-  static List<Color> trackToggledColor = <Color>[
+  static const List<Color> trackToggledColor = <Color>[
     consumer_light.FhColors.backgroundHighlightDefault,
     consumer_dark.FhColors.backgroundHighlightDefault,
     professional_light.FhColors.backgroundHighlightDefault,
     professional_dark.FhColors.backgroundHighlightDefault,
   ];
 
-  static List<Color> trackNotToggledColor = <Color>[
+  static const List<Color> trackNotToggledColor = <Color>[
     consumer_light.FhColors.backgroundDisabled,
     consumer_dark.FhColors.backgroundDisabled,
     professional_light.FhColors.backgroundDisabled,
     professional_dark.FhColors.backgroundDisabled,
   ];
 
-  static List<Color> trackNullColor = <Color>[
+  static const List<Color> trackNullColor = <Color>[
     consumer_light.FhColors.backgroundDisabled,
     consumer_dark.FhColors.backgroundDisabled,
     professional_light.FhColors.backgroundDisabled,
     professional_dark.FhColors.backgroundDisabled,
   ];
 
-  static List<Color> trackDisabledColor = <Color>[
+  static const List<Color> trackDisabledColor = <Color>[
     consumer_light.FhColors.backgroundDisabled,
     consumer_dark.FhColors.backgroundDisabled,
     professional_light.FhColors.backgroundDisabled,
     professional_dark.FhColors.backgroundDisabled,
   ];
 
-  static List<Color> thumbToggledColor = <Color>[
+  static const List<Color> thumbToggledColor = <Color>[
     consumer_light.FhColors.iconInverse,
     consumer_dark.FhColors.iconInverse,
     professional_light.FhColors.iconInverse,
     professional_dark.FhColors.iconInverse,
   ];
 
-  static List<Color> thumbNotToggledColor = <Color>[
+  static const List<Color> thumbNotToggledColor = <Color>[
     consumer_light.FhColors.iconInverse,
     consumer_dark.FhColors.iconInverse,
     professional_light.FhColors.iconInverse,
     professional_dark.FhColors.iconInverse,
   ];
 
-  static List<Color> thumbNullColor = <Color>[
+  static const List<Color> thumbNullColor = <Color>[
     consumer_light.FhColors.iconInverse,
     consumer_dark.FhColors.iconInverse,
     professional_light.FhColors.iconInverse,
     professional_dark.FhColors.iconInverse,
   ];
 
-  static List<Color> thumbDisabledColor = <Color>[
+  static const List<Color> thumbDisabledColor = <Color>[
     consumer_light.FhColors.iconDisabled,
     consumer_dark.FhColors.iconDisabled,
     professional_light.FhColors.iconDisabled,
     professional_dark.FhColors.iconDisabled,
   ];
 
-  static List<BorderRadius> borderRadius = <BorderRadius>[
+  static const List<BorderRadius> borderRadius = <BorderRadius>[
     consumer_light.FhRadii.xxl,
     consumer_dark.FhRadii.xxl,
     professional_light.FhRadii.xxl,
     professional_dark.FhRadii.xxl,
   ];
 
-  static List<EdgeInsets> trackPadding = <EdgeInsets>[
-    const EdgeInsets.symmetric(horizontal: consumer_light.FhDimensions.xxs),
-    const EdgeInsets.symmetric(horizontal: consumer_dark.FhDimensions.xxs),
-    const EdgeInsets.symmetric(horizontal: professional_light.FhDimensions.xxs),
-    const EdgeInsets.symmetric(horizontal: professional_dark.FhDimensions.xxs),
+  static const List<EdgeInsets> trackPadding = <EdgeInsets>[
+    EdgeInsets.symmetric(horizontal: consumer_light.FhDimensions.xxs),
+    EdgeInsets.symmetric(horizontal: consumer_dark.FhDimensions.xxs),
+    EdgeInsets.symmetric(horizontal: professional_light.FhDimensions.xxs),
+    EdgeInsets.symmetric(horizontal: professional_dark.FhDimensions.xxs),
   ];
 
   // TODO(bjhandeland): Replace with theme token.
-  static List<Duration> animationDuration = <Duration>[
-    const Duration(milliseconds: 200),
-    const Duration(milliseconds: 200),
-    const Duration(milliseconds: 200),
-    const Duration(milliseconds: 200),
+  static const List<Duration> animationDuration = <Duration>[
+    Duration(milliseconds: 200),
+    Duration(milliseconds: 200),
+    Duration(milliseconds: 200),
+    Duration(milliseconds: 200),
   ];
 
   // TODO(bjhandeland): Replace with theme token.
-  static List<Curve> animationCurve = <Curve>[
-    const Cubic(0.42, 0.0, 0.58, 1.0),
-    const Cubic(0.42, 0.0, 0.58, 1.0),
-    const Cubic(0.42, 0.0, 0.58, 1.0),
-    const Cubic(0.42, 0.0, 0.58, 1.0),
+  static const List<Curve> animationCurve = <Curve>[
+    Cubic(0.42, 0.0, 0.58, 1.0),
+    Cubic(0.42, 0.0, 0.58, 1.0),
+    Cubic(0.42, 0.0, 0.58, 1.0),
+    Cubic(0.42, 0.0, 0.58, 1.0),
   ];
 }

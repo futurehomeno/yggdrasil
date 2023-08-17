@@ -9,14 +9,14 @@ part 'radio_group_theme.tailor.dart';
 
 @tailorComponent
 class _$YgRadioGroupTheme {
-  static List<TextStyle> labelTextStyle = <TextStyle>[
+  static const List<TextStyle> labelTextStyle = <TextStyle>[
     consumer_light.FhTextStyles.paragraph2Medium,
     consumer_dark.FhTextStyles.paragraph2Medium,
     professional_light.FhTextStyles.paragraph2Medium,
     professional_dark.FhTextStyles.paragraph2Medium,
   ];
 
-  static List<double> labelColumnSpacing = <double>[
+  static const List<double> labelColumnSpacing = <double>[
     consumer_light.FhDimensions.xs,
     consumer_dark.FhDimensions.xs,
     professional_light.FhDimensions.xs,

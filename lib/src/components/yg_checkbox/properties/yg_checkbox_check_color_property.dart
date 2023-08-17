@@ -16,6 +16,7 @@ class YgCheckboxCheckColorProperty extends MaterialStateProperty<Color?> with Di
     if (states.contains(MaterialState.disabled)) {
       return disabled;
     }
+
     return selected;
   }
 }

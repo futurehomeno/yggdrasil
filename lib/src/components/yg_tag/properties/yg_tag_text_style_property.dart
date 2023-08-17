@@ -16,6 +16,7 @@ class YgTagTextStyleProperty extends MaterialStateProperty<TextStyle?> with Diag
     if (states.contains(MaterialState.disabled)) {
       return disabled;
     }
+
     return textStyle;
   }
 }

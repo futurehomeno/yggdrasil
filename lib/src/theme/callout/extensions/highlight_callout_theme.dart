@@ -9,14 +9,14 @@ part 'highlight_callout_theme.tailor.dart';
 
 @tailorComponent
 class _$HighlightCalloutTheme {
-  static List<Color> backgroundColor = <Color>[
+  static const List<Color> backgroundColor = <Color>[
     consumer_light.FhColors.backgroundHighlightWeak,
     consumer_dark.FhColors.backgroundHighlightWeak,
     professional_light.FhColors.backgroundHighlightWeak,
     professional_dark.FhColors.backgroundHighlightWeak,
   ];
 
-  static List<Color> borderColor = <Color>[
+  static const List<Color> borderColor = <Color>[
     consumer_light.FhColors.borderHighlightWeak,
     consumer_dark.FhColors.borderHighlightWeak,
     professional_light.FhColors.borderHighlightWeak,

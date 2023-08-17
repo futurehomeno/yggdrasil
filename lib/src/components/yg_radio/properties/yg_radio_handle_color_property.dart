@@ -21,6 +21,7 @@ class YgRadioHandleColorProperty extends MaterialStateProperty<Color?> with Diag
     if (states.contains(MaterialState.selected)) {
       return selected;
     }
+
     return deselected;
   }
 }

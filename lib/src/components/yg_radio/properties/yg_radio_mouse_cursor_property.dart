@@ -16,6 +16,7 @@ class YgRadioMouseCursorProperty extends MaterialStateProperty<MouseCursor?> wit
     if (states.contains(MaterialState.disabled)) {
       return disabled;
     }
+
     return enabled;
   }
 }

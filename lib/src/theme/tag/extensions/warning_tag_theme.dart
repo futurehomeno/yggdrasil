@@ -9,21 +9,21 @@ part 'warning_tag_theme.tailor.dart';
 
 @tailorComponent
 class _$WarningTagTheme {
-  static List<Color> backgroundColor = <Color>[
+  static const List<Color> backgroundColor = <Color>[
     consumer_light.FhColors.backgroundWarningWeak,
     consumer_dark.FhColors.backgroundWarningWeak,
     professional_light.FhColors.backgroundWarningWeak,
     professional_dark.FhColors.backgroundWarningWeak,
   ];
 
-  static List<Color> strongBackgroundColor = <Color>[
+  static const List<Color> strongBackgroundColor = <Color>[
     consumer_light.FhColors.backgroundWarningStrong,
     consumer_dark.FhColors.backgroundWarningStrong,
     professional_light.FhColors.backgroundWarningStrong,
     professional_dark.FhColors.backgroundWarningStrong,
   ];
 
-  static List<Color> disabledBackgroundColor = <Color>[
+  static const List<Color> disabledBackgroundColor = <Color>[
     consumer_light.FhColors.backgroundTransparent,
     consumer_dark.FhColors.backgroundTransparent,
     professional_light.FhColors.backgroundTransparent,

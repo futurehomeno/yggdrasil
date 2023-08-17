@@ -9,21 +9,21 @@ part 'informative_tag_theme.tailor.dart';
 
 @tailorComponent
 class _$InformativeTagTheme {
-  static List<Color> backgroundColor = <Color>[
+  static const List<Color> backgroundColor = <Color>[
     consumer_light.FhColors.backgroundHighlightWeak,
     consumer_dark.FhColors.backgroundHighlightWeak,
     professional_light.FhColors.backgroundHighlightWeak,
     professional_dark.FhColors.backgroundHighlightWeak,
   ];
 
-  static List<Color> strongBackgroundColor = <Color>[
+  static const List<Color> strongBackgroundColor = <Color>[
     consumer_light.FhColors.backgroundHighlightStrong,
     consumer_dark.FhColors.backgroundHighlightStrong,
     professional_light.FhColors.backgroundHighlightStrong,
     professional_dark.FhColors.backgroundHighlightStrong,
   ];
 
-  static List<Color> disabledBackgroundColor = <Color>[
+  static const List<Color> disabledBackgroundColor = <Color>[
     consumer_light.FhColors.backgroundTransparent,
     consumer_dark.FhColors.backgroundTransparent,
     professional_light.FhColors.backgroundTransparent,

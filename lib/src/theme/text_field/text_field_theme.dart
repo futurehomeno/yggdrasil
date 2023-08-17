@@ -34,7 +34,7 @@ class _$YgTextFieldTheme {
 
   // Height had to be adjusted to achieve the correct line height used in the
   // design.
-  static List<TextStyle> labelDefaultTextStyle = <TextStyle>[
+  static final List<TextStyle> labelDefaultTextStyle = <TextStyle>[
     consumer_light.FhTextStyles.paragraph2Regular.copyWith(height: 1.25),
     consumer_dark.FhTextStyles.paragraph2Regular.copyWith(height: 1.25),
     professional_light.FhTextStyles.paragraph2Regular.copyWith(height: 1.25),
@@ -68,7 +68,7 @@ class _$YgTextFieldTheme {
 
   // Height had to be adjusted to achieve the correct line height used in the
   // design.
-  static List<TextStyle> placeholderTextStyle = <TextStyle>[
+  static final List<TextStyle> placeholderTextStyle = <TextStyle>[
     consumer_light.FhTextStyles.paragraph2Regular.copyWith(height: 1.25),
     consumer_dark.FhTextStyles.paragraph2Regular.copyWith(height: 1.25),
     professional_light.FhTextStyles.paragraph2Regular.copyWith(height: 1.25),
@@ -79,21 +79,21 @@ class _$YgTextFieldTheme {
 
   // region Border
 
-  static List<Border> borderDefault = <Border>[
+  static final List<Border> borderDefault = <Border>[
     Border.all(color: consumer_light.FhColors.borderDefault),
     Border.all(color: consumer_dark.FhColors.borderDefault),
     Border.all(color: professional_light.FhColors.borderDefault),
     Border.all(color: professional_dark.FhColors.borderDefault),
   ];
 
-  static List<Border> borderHover = <Border>[
+  static final List<Border> borderHover = <Border>[
     Border.all(color: consumer_light.FhColors.borderWeak),
     Border.all(color: consumer_dark.FhColors.borderWeak),
     Border.all(color: professional_light.FhColors.borderWeak),
     Border.all(color: professional_dark.FhColors.borderWeak),
   ];
 
-  static List<Border> borderFocus = <Border>[
+  static final List<Border> borderFocus = <Border>[
     Border.all(
       color: consumer_light.FhColors.interactiveHighlightDefault,
       width: 2.0,
@@ -112,7 +112,7 @@ class _$YgTextFieldTheme {
     ),
   ];
 
-  static List<Border> borderError = <Border>[
+  static final List<Border> borderError = <Border>[
     Border.all(
       color: consumer_light.FhColors.interactiveCriticalDefault,
       width: 2.0,
@@ -131,7 +131,7 @@ class _$YgTextFieldTheme {
     ),
   ];
 
-  static List<Border> borderDisabled = <Border>[
+  static final List<Border> borderDisabled = <Border>[
     Border.all(color: consumer_light.FhColors.borderDisabled),
     Border.all(color: consumer_dark.FhColors.borderDisabled),
     Border.all(color: professional_light.FhColors.borderDisabled),
@@ -189,7 +189,7 @@ class _$YgTextFieldTheme {
 
   // Height had to be adjusted to achieve the correct line height used in the
   // design.
-  static List<TextStyle> valueTextStyle = <TextStyle>[
+  static final List<TextStyle> valueTextStyle = <TextStyle>[
     consumer_light.FhTextStyles.paragraph2Regular.copyWith(height: 1.25),
     consumer_dark.FhTextStyles.paragraph2Regular.copyWith(height: 1.25),
     professional_light.FhTextStyles.paragraph2Regular.copyWith(height: 1.25),
@@ -200,7 +200,7 @@ class _$YgTextFieldTheme {
 
   // region Error Footer
 
-  static List<TextStyle> errorTextStyle = <TextStyle>[
+  static final List<TextStyle> errorTextStyle = <TextStyle>[
     consumer_light.FhTextStyles.caption1Regular.copyWith(
       color: consumer_light.FhColors.textCritical,
     ),
@@ -231,66 +231,66 @@ class _$YgTextFieldTheme {
     professional_dark.FhColors.textHighlight,
   ];
 
-  static List<Duration> animationDuration = <Duration>[
-    const Duration(milliseconds: 200),
-    const Duration(milliseconds: 200),
-    const Duration(milliseconds: 200),
-    const Duration(milliseconds: 200),
+  static const List<Duration> animationDuration = <Duration>[
+    Duration(milliseconds: 200),
+    Duration(milliseconds: 200),
+    Duration(milliseconds: 200),
+    Duration(milliseconds: 200),
   ];
 
-  static List<Curve> animationCurve = <Curve>[
-    const Cubic(0.42, 0, 0.2, 1),
-    const Cubic(0.42, 0, 0.2, 1),
-    const Cubic(0.42, 0, 0.2, 1),
-    const Cubic(0.42, 0, 0.2, 1),
+  static const List<Curve> animationCurve = <Curve>[
+    Cubic(0.42, 0, 0.2, 1),
+    Cubic(0.42, 0, 0.2, 1),
+    Cubic(0.42, 0, 0.2, 1),
+    Cubic(0.42, 0, 0.2, 1),
   ];
 
-  static List<double> mediumVerticalContentPadding = <double>[
+  static const List<double> mediumVerticalContentPadding = <double>[
     consumer_light.FhDimensions.xxs,
     consumer_dark.FhDimensions.xxs,
     professional_light.FhDimensions.xxs,
     professional_dark.FhDimensions.xxs,
   ];
 
-  static List<double> largeVerticalContentPadding = <double>[
+  static const List<double> largeVerticalContentPadding = <double>[
     consumer_light.FhDimensions.xs,
     consumer_dark.FhDimensions.xs,
     professional_light.FhDimensions.xs,
     professional_dark.FhDimensions.xs,
   ];
 
-  static List<double> outlinedHorizontalContentPadding = <double>[
+  static const List<double> outlinedHorizontalContentPadding = <double>[
     consumer_light.FhDimensions.xs,
     consumer_dark.FhDimensions.xs,
     professional_light.FhDimensions.xs,
     professional_dark.FhDimensions.xs,
   ];
 
-  static List<EdgeInsets> outlinedSuffixPadding = <EdgeInsets>[
-    const EdgeInsets.symmetric(horizontal: consumer_light.FhDimensions.xxs),
-    const EdgeInsets.symmetric(horizontal: consumer_dark.FhDimensions.xxs),
-    const EdgeInsets.symmetric(horizontal: professional_light.FhDimensions.xxs),
-    const EdgeInsets.symmetric(horizontal: professional_dark.FhDimensions.xxs),
+  static const List<EdgeInsets> outlinedSuffixPadding = <EdgeInsets>[
+    EdgeInsets.symmetric(horizontal: consumer_light.FhDimensions.xxs),
+    EdgeInsets.symmetric(horizontal: consumer_dark.FhDimensions.xxs),
+    EdgeInsets.symmetric(horizontal: professional_light.FhDimensions.xxs),
+    EdgeInsets.symmetric(horizontal: professional_dark.FhDimensions.xxs),
   ];
 
-  static List<EdgeInsets> standardSuffixPadding = <EdgeInsets>[
-    const EdgeInsets.only(left: consumer_light.FhDimensions.xxs),
-    const EdgeInsets.only(left: consumer_dark.FhDimensions.xxs),
-    const EdgeInsets.only(left: professional_light.FhDimensions.xxs),
-    const EdgeInsets.only(left: professional_dark.FhDimensions.xxs),
+  static const List<EdgeInsets> standardSuffixPadding = <EdgeInsets>[
+    EdgeInsets.only(left: consumer_light.FhDimensions.xxs),
+    EdgeInsets.only(left: consumer_dark.FhDimensions.xxs),
+    EdgeInsets.only(left: professional_light.FhDimensions.xxs),
+    EdgeInsets.only(left: professional_dark.FhDimensions.xxs),
   ];
 
-  static List<EdgeInsets> errorPadding = <EdgeInsets>[
-    const EdgeInsets.only(top: consumer_light.FhDimensions.xxs),
-    const EdgeInsets.only(top: consumer_dark.FhDimensions.xxs),
-    const EdgeInsets.only(top: professional_light.FhDimensions.xxs),
-    const EdgeInsets.only(top: professional_dark.FhDimensions.xxs),
+  static const List<EdgeInsets> errorPadding = <EdgeInsets>[
+    EdgeInsets.only(top: consumer_light.FhDimensions.xxs),
+    EdgeInsets.only(top: consumer_dark.FhDimensions.xxs),
+    EdgeInsets.only(top: professional_light.FhDimensions.xxs),
+    EdgeInsets.only(top: professional_dark.FhDimensions.xxs),
   ];
 
-  static List<EdgeInsets> errorIconPadding = <EdgeInsets>[
-    const EdgeInsets.only(right: consumer_light.FhDimensions.xxs),
-    const EdgeInsets.only(right: consumer_dark.FhDimensions.xxs),
-    const EdgeInsets.only(right: professional_light.FhDimensions.xxs),
-    const EdgeInsets.only(right: professional_dark.FhDimensions.xxs),
+  static const List<EdgeInsets> errorIconPadding = <EdgeInsets>[
+    EdgeInsets.only(right: consumer_light.FhDimensions.xxs),
+    EdgeInsets.only(right: consumer_dark.FhDimensions.xxs),
+    EdgeInsets.only(right: professional_light.FhDimensions.xxs),
+    EdgeInsets.only(right: professional_dark.FhDimensions.xxs),
   ];
 }
