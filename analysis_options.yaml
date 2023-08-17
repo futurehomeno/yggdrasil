@@ -2,7 +2,7 @@ include: package:fh_lints/fh_lints.yaml
 
 analyzer:
   exclude:
-    - 'lib/src/theme/tokens/*'
+    - 'lib/src/tokens/**/*.dart'
     - 'lib/**/*.tailor.dart'
 
 dart_code_metrics:

@@ -34,14 +34,14 @@ class YgTextFieldContent extends YgTextFieldBaseWidget {
   final bool obscureText;
   final int? maxLines;
   final int? minLines;
-  final TextInputType? keyboardType;
+  final TextInputType keyboardType;
   final bool autocorrect;
   final TextCapitalization textCapitalization;
   final bool readOnly;
   final List<TextInputFormatter>? inputFormatters;
   final ValueChanged<String>? onChanged;
   final VoidCallback? onEditingComplete;
-  final TextInputAction? textInputAction;
+  final TextInputAction textInputAction;
 
   @override
   State<YgTextFieldContent> createState() => _YgTextFieldContentState();

@@ -2,7 +2,7 @@ import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 
 @immutable
-class YgCheckboxFillColorProperty extends MaterialStateProperty<Color?> with Diagnosticable {
+class YgCheckboxFillColorProperty extends MaterialStateProperty<Color> with Diagnosticable {
   YgCheckboxFillColorProperty({
     required this.selected,
     required this.selectedHovered,
@@ -16,18 +16,18 @@ class YgCheckboxFillColorProperty extends MaterialStateProperty<Color?> with Dia
     required this.deselectedDisabled,
   });
 
-  final Color? selected;
-  final Color? selectedHovered;
-  final Color? selectedPressed;
-  final Color? selectedError;
-  final Color? selectedDisabled;
-  final Color? deselected;
-  final Color? deselectedHovered;
-  final Color? deselectedPressed;
-  final Color? deselectedError;
-  final Color? deselectedDisabled;
+  final Color selected;
+  final Color selectedHovered;
+  final Color selectedPressed;
+  final Color selectedError;
+  final Color selectedDisabled;
+  final Color deselected;
+  final Color deselectedHovered;
+  final Color deselectedPressed;
+  final Color deselectedError;
+  final Color deselectedDisabled;
 
-  Color? resolveWith(Set<MaterialState> states, bool? value) {
+  Color resolveWith(Set<MaterialState> states, bool? value) {
     if (value == null) {
       if (states.contains(MaterialState.disabled)) {
         return selectedDisabled;
@@ -44,7 +44,7 @@ class YgCheckboxFillColorProperty extends MaterialStateProperty<Color?> with Dia
   }
 
   @override
-  Color? resolve(Set<MaterialState> states) {
+  Color resolve(Set<MaterialState> states) {
     if (states.contains(MaterialState.selected)) {
       if (states.contains(MaterialState.disabled)) {
         return selectedDisabled;
