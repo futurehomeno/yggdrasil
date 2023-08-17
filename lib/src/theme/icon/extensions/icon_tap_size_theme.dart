@@ -9,14 +9,14 @@ part 'icon_tap_size_theme.tailor.dart';
 
 @tailorComponent
 class _$YgIconTapSizeTheme {
-  static List<double> larger = <double>[
+  static const List<double> larger = <double>[
     consumer_light.FhDimensions.xl,
     consumer_dark.FhDimensions.xl,
     professional_light.FhDimensions.xl,
     professional_dark.FhDimensions.xl,
   ];
 
-  static List<double> largest = <double>[
+  static const List<double> largest = <double>[
     consumer_light.FhDimensions.xxl,
     consumer_dark.FhDimensions.xxl,
     professional_light.FhDimensions.xxl,

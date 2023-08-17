@@ -9,14 +9,14 @@ part 'link_button_theme.tailor.dart';
 
 @tailorComponent
 class _$LinkButtonTheme {
-  static List<Color> backgroundColor = <Color>[
+  static const List<Color> backgroundColor = <Color>[
     consumer_light.FhColors.backgroundTransparent,
     consumer_dark.FhColors.backgroundTransparent,
     professional_light.FhColors.backgroundTransparent,
     professional_dark.FhColors.backgroundTransparent,
   ];
 
-  static List<TextStyle> textStyle = <TextStyle>[
+  static final List<TextStyle> textStyle = <TextStyle>[
     consumer_light.FhTextStyles.paragraph3Bold.copyWith(
       color: consumer_light.FhColors.interactiveHighlightDefault,
     ),
@@ -31,7 +31,7 @@ class _$LinkButtonTheme {
     ),
   ];
 
-  static List<TextStyle> disabledTextStyle = <TextStyle>[
+  static final List<TextStyle> disabledTextStyle = <TextStyle>[
     consumer_light.FhTextStyles.paragraph3Bold.copyWith(
       color: consumer_light.FhColors.textDisabled,
     ),
@@ -46,28 +46,28 @@ class _$LinkButtonTheme {
     ),
   ];
 
-  static List<LinearGradient> borderGradient = <LinearGradient>[
+  static const List<LinearGradient> borderGradient = <LinearGradient>[
     consumer_light.FhGradients.transparent,
     consumer_dark.FhGradients.transparent,
     professional_light.FhGradients.transparent,
     professional_dark.FhGradients.transparent,
   ];
 
-  static List<LinearGradient> disabledBorderGradient = <LinearGradient>[
+  static const List<LinearGradient> disabledBorderGradient = <LinearGradient>[
     consumer_light.FhGradients.transparent,
     consumer_dark.FhGradients.transparent,
     professional_light.FhGradients.transparent,
     professional_dark.FhGradients.transparent,
   ];
 
-  static List<Color> iconDefaultColor = <Color>[
+  static const List<Color> iconDefaultColor = <Color>[
     consumer_light.FhColors.iconHighlight,
     consumer_dark.FhColors.iconHighlight,
     professional_light.FhColors.iconHighlight,
     professional_dark.FhColors.iconHighlight,
   ];
 
-  static List<Color> iconDisabledColor = <Color>[
+  static const List<Color> iconDisabledColor = <Color>[
     consumer_light.FhColors.iconDisabled,
     consumer_dark.FhColors.iconDisabled,
     professional_light.FhColors.iconDisabled,

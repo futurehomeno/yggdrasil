@@ -8,8 +8,8 @@ part 'icon_theme.tailor.dart';
 @tailorComponent
 class _$YgIconTheme {
   @themeExtension
-  static List<YgIconSizeTheme> size = YgIconSizeTheme.themes;
+  static const List<YgIconSizeTheme> size = YgIconSizeTheme.themes;
 
   @themeExtension
-  static List<YgIconTapSizeTheme> tapSize = YgIconTapSizeTheme.themes;
+  static const List<YgIconTapSizeTheme> tapSize = YgIconTapSizeTheme.themes;
 }

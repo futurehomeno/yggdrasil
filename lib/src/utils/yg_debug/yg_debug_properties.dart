@@ -6,4 +6,7 @@
 /// our widgets even while the debugging is disabled. We rather rebuild the
 /// entire app once when enabling debugging instead.
 
+// TODO(tim): move to a better place, e.g. AppState, and remove ignore comments.
+// ignore_for_file: prefer-static-class
+// ignore: avoid-global-state
 bool debugOutlineEnabled = false;

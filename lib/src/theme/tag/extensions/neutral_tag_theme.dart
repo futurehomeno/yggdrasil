@@ -9,21 +9,21 @@ part 'neutral_tag_theme.tailor.dart';
 
 @tailorComponent
 class _$NeutralTagTheme {
-  static List<Color> backgroundColor = <Color>[
+  static const List<Color> backgroundColor = <Color>[
     consumer_light.FhColors.backgroundWeak,
     consumer_dark.FhColors.backgroundWeak,
     professional_light.FhColors.backgroundWeak,
     professional_dark.FhColors.backgroundWeak,
   ];
 
-  static List<Color> strongBackgroundColor = <Color>[
+  static const List<Color> strongBackgroundColor = <Color>[
     consumer_light.FhColors.backgroundInverse,
     consumer_dark.FhColors.backgroundInverse,
     professional_light.FhColors.backgroundInverse,
     professional_dark.FhColors.backgroundInverse,
   ];
 
-  static List<Color> disabledBackgroundColor = <Color>[
+  static const List<Color> disabledBackgroundColor = <Color>[
     consumer_light.FhColors.backgroundTransparent,
     consumer_dark.FhColors.backgroundTransparent,
     professional_light.FhColors.backgroundTransparent,

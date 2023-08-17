@@ -30,7 +30,7 @@ class DoormanPicCodeValidator extends CombinedValidator<String> {
       MinLengthValidator(
         min: 6,
         tooShortError: pinCodeTooShortError ?? defaults.doormanPinCodeTooShort,
-      )
+      ),
     ];
   }
 }

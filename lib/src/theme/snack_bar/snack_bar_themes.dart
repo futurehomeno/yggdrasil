@@ -12,29 +12,29 @@ part 'snack_bar_themes.tailor.dart';
 @tailorComponent
 class _$YgSnackBarTheme {
   @themeExtension
-  static List<CriticalSnackBarTheme> criticalSnackBarTheme = CriticalSnackBarTheme.themes;
+  static const List<CriticalSnackBarTheme> criticalSnackBarTheme = CriticalSnackBarTheme.themes;
 
   @themeExtension
-  static List<HighlightSnackBarTheme> highlightSnackBarTheme = HighlightSnackBarTheme.themes;
+  static const List<HighlightSnackBarTheme> highlightSnackBarTheme = HighlightSnackBarTheme.themes;
 
   @themeExtension
-  static List<SuccessSnackBarTheme> successSnackBarTheme = SuccessSnackBarTheme.themes;
+  static const List<SuccessSnackBarTheme> successSnackBarTheme = SuccessSnackBarTheme.themes;
 
-  static List<Color> backgroundColor = <Color>[
+  static const List<Color> backgroundColor = <Color>[
     consumer_light.FhColors.backgroundInverse,
     consumer_dark.FhColors.backgroundInverse,
     professional_light.FhColors.backgroundInverse,
     professional_dark.FhColors.backgroundInverse,
   ];
 
-  static List<Color> closeIconColor = <Color>[
+  static const List<Color> closeIconColor = <Color>[
     consumer_light.FhColors.iconInverse,
     consumer_dark.FhColors.iconInverse,
     professional_light.FhColors.iconInverse,
     professional_dark.FhColors.iconInverse,
   ];
 
-  static List<BorderRadius> borderRadius = <BorderRadius>[
+  static const List<BorderRadius> borderRadius = <BorderRadius>[
     consumer_light.FhRadii.sm,
     consumer_dark.FhRadii.sm,
     professional_light.FhRadii.sm,
@@ -42,35 +42,35 @@ class _$YgSnackBarTheme {
   ];
 
   // These are not from tokens!
-  static List<EdgeInsets> margin = <EdgeInsets>[
-    const EdgeInsets.all(consumer_light.FhDimensions.xl),
-    const EdgeInsets.all(consumer_dark.FhDimensions.xl),
-    const EdgeInsets.all(professional_light.FhDimensions.xl),
-    const EdgeInsets.all(professional_dark.FhDimensions.xl),
+  static const List<EdgeInsets> margin = <EdgeInsets>[
+    EdgeInsets.all(consumer_light.FhDimensions.xl),
+    EdgeInsets.all(consumer_dark.FhDimensions.xl),
+    EdgeInsets.all(professional_light.FhDimensions.xl),
+    EdgeInsets.all(professional_dark.FhDimensions.xl),
   ];
 
-  static List<EdgeInsets> padding = <EdgeInsets>[
-    const EdgeInsets.all(consumer_light.FhDimensions.sm),
-    const EdgeInsets.all(consumer_dark.FhDimensions.sm),
-    const EdgeInsets.all(professional_light.FhDimensions.sm),
-    const EdgeInsets.all(professional_dark.FhDimensions.sm),
+  static const List<EdgeInsets> padding = <EdgeInsets>[
+    EdgeInsets.all(consumer_light.FhDimensions.sm),
+    EdgeInsets.all(consumer_dark.FhDimensions.sm),
+    EdgeInsets.all(professional_light.FhDimensions.sm),
+    EdgeInsets.all(professional_dark.FhDimensions.sm),
   ];
 
-  static List<double> messageSpacing = <double>[
+  static const List<double> messageSpacing = <double>[
     consumer_light.FhDimensions.xs,
     consumer_dark.FhDimensions.xs,
     professional_light.FhDimensions.xs,
     professional_dark.FhDimensions.xs,
   ];
 
-  static List<EdgeInsets> iconContainerPadding = <EdgeInsets>[
-    const EdgeInsets.all(consumer_light.FhDimensions.xxs),
-    const EdgeInsets.all(consumer_dark.FhDimensions.xxs),
-    const EdgeInsets.all(professional_light.FhDimensions.xxs),
-    const EdgeInsets.all(professional_dark.FhDimensions.xxs),
+  static const List<EdgeInsets> iconContainerPadding = <EdgeInsets>[
+    EdgeInsets.all(consumer_light.FhDimensions.xxs),
+    EdgeInsets.all(consumer_dark.FhDimensions.xxs),
+    EdgeInsets.all(professional_light.FhDimensions.xxs),
+    EdgeInsets.all(professional_dark.FhDimensions.xxs),
   ];
 
-  static List<TextStyle> messageTextStyle = <TextStyle>[
+  static final List<TextStyle> messageTextStyle = <TextStyle>[
     consumer_light.FhTextStyles.paragraph3Regular.copyWith(
       color: consumer_light.FhColors.textInverse,
     ),

@@ -169,7 +169,7 @@ class YgColor extends ThemeExtension<YgColor> {
   final Color textWarning;
   final Color textWeak;
 
-  static final YgColor consumerLight = YgColor(
+  static const final YgColor consumerLight = YgColor(
     actionCriticalDefault: _$YgColor.actionCriticalDefault[0],
     actionCriticalDisabled: _$YgColor.actionCriticalDisabled[0],
     actionCriticalHovered: _$YgColor.actionCriticalHovered[0],
@@ -250,7 +250,7 @@ class YgColor extends ThemeExtension<YgColor> {
     textWeak: _$YgColor.textWeak[0],
   );
 
-  static final YgColor consumerDark = YgColor(
+  static const final YgColor consumerDark = YgColor(
     actionCriticalDefault: _$YgColor.actionCriticalDefault[1],
     actionCriticalDisabled: _$YgColor.actionCriticalDisabled[1],
     actionCriticalHovered: _$YgColor.actionCriticalHovered[1],
@@ -331,7 +331,7 @@ class YgColor extends ThemeExtension<YgColor> {
     textWeak: _$YgColor.textWeak[1],
   );
 
-  static final YgColor professionalLight = YgColor(
+  static const final YgColor professionalLight = YgColor(
     actionCriticalDefault: _$YgColor.actionCriticalDefault[2],
     actionCriticalDisabled: _$YgColor.actionCriticalDisabled[2],
     actionCriticalHovered: _$YgColor.actionCriticalHovered[2],
@@ -412,7 +412,7 @@ class YgColor extends ThemeExtension<YgColor> {
     textWeak: _$YgColor.textWeak[2],
   );
 
-  static final YgColor professionalDark = YgColor(
+  static const final YgColor professionalDark = YgColor(
     actionCriticalDefault: _$YgColor.actionCriticalDefault[3],
     actionCriticalDisabled: _$YgColor.actionCriticalDisabled[3],
     actionCriticalHovered: _$YgColor.actionCriticalHovered[3],
@@ -493,7 +493,7 @@ class YgColor extends ThemeExtension<YgColor> {
     textWeak: _$YgColor.textWeak[3],
   );
 
-  static final themes = [
+  static const final themes = [
     consumerLight,
     consumerDark,
     professionalLight,

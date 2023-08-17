@@ -384,7 +384,7 @@ class _YgTextFieldState extends YgTextFieldBaseWidgetState<YgTextField> {
             duration: duration,
             curve: curve,
             child: _buildErrorMessage(),
-          )
+          ),
         ],
       ),
     );
@@ -444,7 +444,7 @@ class _YgTextFieldState extends YgTextFieldBaseWidgetState<YgTextField> {
           Text(
             error,
             style: theme.errorTextStyle,
-          )
+          ),
         ],
       ),
     );

@@ -8,23 +8,23 @@ part 'tokens.tailor.dart';
 @tailorComponent
 class _$YgTokens {
   @themeExtension
-  static List<YgBorder> borders = YgBorder.themes;
+  static const List<YgBorder> borders = YgBorder.themes;
 
   @themeExtension
-  static List<YgColor> colors = YgColor.themes;
+  static const List<YgColor> colors = YgColor.themes;
 
   @themeExtension
-  static List<YgDimension> dimensions = YgDimension.themes;
+  static const List<YgDimension> dimensions = YgDimension.themes;
 
   @themeExtension
-  static List<YgGradient> gradients = YgGradient.themes;
+  static const List<YgGradient> gradients = YgGradient.themes;
 
   @themeExtension
-  static List<YgRadius> radii = YgRadius.themes;
+  static const List<YgRadius> radii = YgRadius.themes;
 
   @themeExtension
-  static List<YgShadow> shadows = YgShadow.themes;
+  static const List<YgShadow> shadows = YgShadow.themes;
 
   @themeExtension
-  static List<YgTextStyle> textStyles = YgTextStyle.themes;
+  static const List<YgTextStyle> textStyles = YgTextStyle.themes;
 }

@@ -9,7 +9,7 @@ part 'elevated_card_theme.tailor.dart';
 
 @tailorComponent
 class _$ElevatedCardTheme {
-  static List<Color> backgroundColor = <Color>[
+  static const List<Color> backgroundColor = <Color>[
     consumer_light.FhColors.backgroundDefault,
     consumer_dark.FhColors.backgroundDefault,
     professional_light.FhColors.backgroundDefault,

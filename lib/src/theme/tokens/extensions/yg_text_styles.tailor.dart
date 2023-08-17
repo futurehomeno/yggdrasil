@@ -91,7 +91,7 @@ class YgTextStyle extends ThemeExtension<YgTextStyle> {
   final TextStyle sectionHeading3Medium;
   final TextStyle sectionHeading3Regular;
 
-  static final YgTextStyle consumerLight = YgTextStyle(
+  static const final YgTextStyle consumerLight = YgTextStyle(
     caption1Bold: _$YgTextStyle.caption1Bold[0],
     caption1Medium: _$YgTextStyle.caption1Medium[0],
     caption1Regular: _$YgTextStyle.caption1Regular[0],
@@ -133,7 +133,7 @@ class YgTextStyle extends ThemeExtension<YgTextStyle> {
     sectionHeading3Regular: _$YgTextStyle.sectionHeading3Regular[0],
   );
 
-  static final YgTextStyle consumerDark = YgTextStyle(
+  static const final YgTextStyle consumerDark = YgTextStyle(
     caption1Bold: _$YgTextStyle.caption1Bold[1],
     caption1Medium: _$YgTextStyle.caption1Medium[1],
     caption1Regular: _$YgTextStyle.caption1Regular[1],
@@ -175,7 +175,7 @@ class YgTextStyle extends ThemeExtension<YgTextStyle> {
     sectionHeading3Regular: _$YgTextStyle.sectionHeading3Regular[1],
   );
 
-  static final YgTextStyle professionalLight = YgTextStyle(
+  static const final YgTextStyle professionalLight = YgTextStyle(
     caption1Bold: _$YgTextStyle.caption1Bold[2],
     caption1Medium: _$YgTextStyle.caption1Medium[2],
     caption1Regular: _$YgTextStyle.caption1Regular[2],
@@ -217,7 +217,7 @@ class YgTextStyle extends ThemeExtension<YgTextStyle> {
     sectionHeading3Regular: _$YgTextStyle.sectionHeading3Regular[2],
   );
 
-  static final YgTextStyle professionalDark = YgTextStyle(
+  static const final YgTextStyle professionalDark = YgTextStyle(
     caption1Bold: _$YgTextStyle.caption1Bold[3],
     caption1Medium: _$YgTextStyle.caption1Medium[3],
     caption1Regular: _$YgTextStyle.caption1Regular[3],
@@ -259,7 +259,7 @@ class YgTextStyle extends ThemeExtension<YgTextStyle> {
     sectionHeading3Regular: _$YgTextStyle.sectionHeading3Regular[3],
   );
 
-  static final themes = [
+  static const final themes = [
     consumerLight,
     consumerDark,
     professionalLight,

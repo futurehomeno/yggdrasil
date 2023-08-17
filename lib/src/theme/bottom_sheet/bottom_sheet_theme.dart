@@ -9,35 +9,35 @@ part 'bottom_sheet_theme.tailor.dart';
 
 @tailorComponent
 class _$YgBottomSheetTheme {
-  static List<Color> handleColor = <Color>[
+  static const List<Color> handleColor = <Color>[
     consumer_light.FhColors.borderDefault,
     consumer_dark.FhColors.borderDefault,
     professional_light.FhColors.borderDefault,
     professional_dark.FhColors.borderDefault,
   ];
 
-  static List<double> handleWidth = <double>[
+  static const List<double> handleWidth = <double>[
     48.0,
     48.0,
     48.0,
     48.0,
   ];
 
-  static List<double> handleHeight = <double>[
+  static const List<double> handleHeight = <double>[
     consumer_light.FhDimensions.xxs,
     consumer_dark.FhDimensions.xxs,
     professional_light.FhDimensions.xxs,
     professional_dark.FhDimensions.xxs,
   ];
 
-  static List<Color> backgroundColor = <Color>[
+  static const List<Color> backgroundColor = <Color>[
     consumer_light.FhColors.backgroundDefault,
     consumer_dark.FhColors.backgroundDefault,
     professional_light.FhColors.backgroundDefault,
     professional_dark.FhColors.backgroundDefault,
   ];
 
-  static List<Color> scrimColor = <Color>[
+  static const List<Color> scrimColor = <Color>[
     consumer_light.FhColors.backgroundOverlay,
     consumer_dark.FhColors.backgroundOverlay,
     professional_light.FhColors.backgroundOverlay,
@@ -79,7 +79,7 @@ class _$YgBottomSheetTheme {
   ];
 
   // Spacing between the title and the handle
-  static List<double> handleTitleSpacing = <double>[
+  static const List<double> handleTitleSpacing = <double>[
     consumer_light.FhDimensions.xs,
     consumer_dark.FhDimensions.xs,
     professional_light.FhDimensions.xs,
@@ -87,7 +87,7 @@ class _$YgBottomSheetTheme {
   ];
 
   // Spacing between the content.
-  static List<double> contentSpacing = <double>[
+  static const List<double> contentSpacing = <double>[
     consumer_light.FhDimensions.md,
     consumer_dark.FhDimensions.md,
     professional_light.FhDimensions.md,
@@ -101,7 +101,7 @@ class _$YgBottomSheetTheme {
     EdgeInsets.symmetric(horizontal: professional_dark.FhDimensions.md),
   ];
 
-  static List<TextStyle> titleStyle = <TextStyle>[
+  static final List<TextStyle> titleStyle = <TextStyle>[
     consumer_light.FhTextStyles.sectionHeading2Medium.copyWith(
       color: consumer_light.FhColors.textDefault,
     ),
@@ -116,24 +116,24 @@ class _$YgBottomSheetTheme {
     ),
   ];
 
-  static List<double> flingVelocity = <double>[
+  static const List<double> flingVelocity = <double>[
     2000,
     2000,
     2000,
     2000,
   ];
 
-  static List<Duration> movementAnimationDuration = <Duration>[
-    const Duration(milliseconds: 200),
-    const Duration(milliseconds: 200),
-    const Duration(milliseconds: 200),
-    const Duration(milliseconds: 200),
+  static const List<Duration> movementAnimationDuration = <Duration>[
+    Duration(milliseconds: 200),
+    Duration(milliseconds: 200),
+    Duration(milliseconds: 200),
+    Duration(milliseconds: 200),
   ];
 
-  static List<Curve> movementAnimationCurve = <Curve>[
-    const Cubic(0.42, 0, 0.2, 1),
-    const Cubic(0.42, 0, 0.2, 1),
-    const Cubic(0.42, 0, 0.2, 1),
-    const Cubic(0.42, 0, 0.2, 1),
+  static const List<Curve> movementAnimationCurve = <Curve>[
+    Cubic(0.42, 0, 0.2, 1),
+    Cubic(0.42, 0, 0.2, 1),
+    Cubic(0.42, 0, 0.2, 1),
+    Cubic(0.42, 0, 0.2, 1),
   ];
 }

@@ -9,77 +9,77 @@ part 'text_link_theme.tailor.dart';
 
 @tailorComponent
 class _$YgTextLinkTheme {
-  static List<TextStyle> smallWeakTextStyle = <TextStyle>[
+  static const List<TextStyle> smallWeakTextStyle = <TextStyle>[
     consumer_light.FhTextStyles.caption1Regular,
     consumer_dark.FhTextStyles.caption1Regular,
     professional_light.FhTextStyles.caption1Regular,
     professional_dark.FhTextStyles.caption1Regular,
   ];
 
-  static List<TextStyle> mediumWeakTextStyle = <TextStyle>[
+  static const List<TextStyle> mediumWeakTextStyle = <TextStyle>[
     consumer_light.FhTextStyles.paragraph2Regular,
     consumer_dark.FhTextStyles.paragraph2Regular,
     professional_light.FhTextStyles.paragraph2Regular,
     professional_dark.FhTextStyles.paragraph2Regular,
   ];
 
-  static List<TextStyle> smallStrongTextStyle = <TextStyle>[
+  static const List<TextStyle> smallStrongTextStyle = <TextStyle>[
     consumer_light.FhTextStyles.caption1Medium,
     consumer_dark.FhTextStyles.caption1Medium,
     professional_light.FhTextStyles.caption1Medium,
     professional_dark.FhTextStyles.caption1Medium,
   ];
 
-  static List<TextStyle> mediumStrongTextStyle = <TextStyle>[
+  static const List<TextStyle> mediumStrongTextStyle = <TextStyle>[
     consumer_light.FhTextStyles.paragraph2Medium,
     consumer_dark.FhTextStyles.paragraph2Medium,
     professional_light.FhTextStyles.paragraph2Medium,
     professional_dark.FhTextStyles.paragraph2Medium,
   ];
 
-  static List<Color> defaultColor = <Color>[
+  static const List<Color> defaultColor = <Color>[
     consumer_light.FhColors.interactiveHighlightDefault,
     consumer_dark.FhColors.interactiveHighlightDefault,
     professional_light.FhColors.interactiveHighlightDefault,
     professional_dark.FhColors.interactiveHighlightDefault,
   ];
 
-  static List<Color> hoverColor = <Color>[
+  static const List<Color> hoverColor = <Color>[
     consumer_light.FhColors.interactiveHighlightHovered,
     consumer_dark.FhColors.interactiveHighlightHovered,
     professional_light.FhColors.interactiveHighlightHovered,
     professional_dark.FhColors.interactiveHighlightHovered,
   ];
 
-  static List<Color> focusColor = <Color>[
+  static const List<Color> focusColor = <Color>[
     consumer_light.FhColors.interactiveHighlightDefault,
     consumer_dark.FhColors.interactiveHighlightDefault,
     professional_light.FhColors.interactiveHighlightDefault,
     professional_dark.FhColors.interactiveHighlightDefault,
   ];
 
-  static List<Color> pressedColor = <Color>[
+  static const List<Color> pressedColor = <Color>[
     consumer_light.FhColors.interactiveHighlightPressed,
     consumer_dark.FhColors.interactiveHighlightPressed,
     professional_light.FhColors.interactiveHighlightPressed,
     professional_dark.FhColors.interactiveHighlightPressed,
   ];
 
-  static List<Color> disabledColor = <Color>[
+  static const List<Color> disabledColor = <Color>[
     consumer_light.FhColors.interactiveHighlightDisabled,
     consumer_dark.FhColors.interactiveHighlightDisabled,
     professional_light.FhColors.interactiveHighlightDisabled,
     professional_dark.FhColors.interactiveHighlightDisabled,
   ];
 
-  static List<EdgeInsets> iconPadding = <EdgeInsets>[
-    const EdgeInsets.only(left: consumer_light.FhDimensions.xxs),
-    const EdgeInsets.only(left: consumer_dark.FhDimensions.xxs),
-    const EdgeInsets.only(left: professional_light.FhDimensions.xxs),
-    const EdgeInsets.only(left: professional_dark.FhDimensions.xxs),
+  static const List<EdgeInsets> iconPadding = <EdgeInsets>[
+    EdgeInsets.only(left: consumer_light.FhDimensions.xxs),
+    EdgeInsets.only(left: consumer_dark.FhDimensions.xxs),
+    EdgeInsets.only(left: professional_light.FhDimensions.xxs),
+    EdgeInsets.only(left: professional_dark.FhDimensions.xxs),
   ];
 
-  static List<Color> iconColor = <Color>[
+  static const List<Color> iconColor = <Color>[
     consumer_light.FhColors.interactiveHighlightDefault,
     consumer_dark.FhColors.interactiveHighlightDefault,
     professional_light.FhColors.interactiveHighlightDefault,

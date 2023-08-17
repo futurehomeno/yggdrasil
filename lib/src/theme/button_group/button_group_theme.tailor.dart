@@ -15,23 +15,23 @@ class YgButtonGroupTheme extends ThemeExtension<YgButtonGroupTheme> {
 
   final double buttonSpacing;
 
-  static final YgButtonGroupTheme consumerLight = YgButtonGroupTheme(
+  static const final YgButtonGroupTheme consumerLight = YgButtonGroupTheme(
     buttonSpacing: _$YgButtonGroupTheme.buttonSpacing[0],
   );
 
-  static final YgButtonGroupTheme consumerDark = YgButtonGroupTheme(
+  static const final YgButtonGroupTheme consumerDark = YgButtonGroupTheme(
     buttonSpacing: _$YgButtonGroupTheme.buttonSpacing[1],
   );
 
-  static final YgButtonGroupTheme professionalLight = YgButtonGroupTheme(
+  static const final YgButtonGroupTheme professionalLight = YgButtonGroupTheme(
     buttonSpacing: _$YgButtonGroupTheme.buttonSpacing[2],
   );
 
-  static final YgButtonGroupTheme professionalDark = YgButtonGroupTheme(
+  static const final YgButtonGroupTheme professionalDark = YgButtonGroupTheme(
     buttonSpacing: _$YgButtonGroupTheme.buttonSpacing[3],
   );
 
-  static final themes = [
+  static const final themes = [
     consumerLight,
     consumerDark,
     professionalLight,

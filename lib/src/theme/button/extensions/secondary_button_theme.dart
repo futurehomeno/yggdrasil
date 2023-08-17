@@ -9,14 +9,14 @@ part 'secondary_button_theme.tailor.dart';
 
 @tailorComponent
 class _$SecondaryButtonTheme {
-  static List<Color> backgroundColor = <Color>[
+  static const List<Color> backgroundColor = <Color>[
     consumer_light.FhColors.backgroundTransparent,
     consumer_dark.FhColors.backgroundTransparent,
     professional_light.FhColors.backgroundTransparent,
     professional_dark.FhColors.backgroundTransparent,
   ];
 
-  static List<TextStyle> textStyle = <TextStyle>[
+  static final List<TextStyle> textStyle = <TextStyle>[
     consumer_light.FhTextStyles.paragraph3Bold.copyWith(
       color: consumer_light.FhColors.textDefault,
     ),
@@ -31,7 +31,7 @@ class _$SecondaryButtonTheme {
     ),
   ];
 
-  static List<TextStyle> disabledTextStyle = <TextStyle>[
+  static final List<TextStyle> disabledTextStyle = <TextStyle>[
     consumer_light.FhTextStyles.paragraph3Bold.copyWith(
       color: consumer_light.FhColors.textDisabled,
     ),
@@ -46,33 +46,33 @@ class _$SecondaryButtonTheme {
     ),
   ];
 
-  static List<LinearGradient> borderGradient = <LinearGradient>[
+  static const List<LinearGradient> borderGradient = <LinearGradient>[
     consumer_light.FhGradients.actionSecondaryDefault,
     consumer_dark.FhGradients.actionSecondaryDefault,
     professional_light.FhGradients.actionSecondaryDefault,
     professional_dark.FhGradients.actionSecondaryDefault,
   ];
 
-  static List<LinearGradient> disabledBorderGradient = <LinearGradient>[
-    const LinearGradient(
+  static const List<LinearGradient> disabledBorderGradient = <LinearGradient>[
+    LinearGradient(
       colors: <Color>[
         consumer_light.FhColors.actionSecondaryDisabled,
         consumer_light.FhColors.actionSecondaryDisabled,
       ],
     ),
-    const LinearGradient(
+    LinearGradient(
       colors: <Color>[
         consumer_dark.FhColors.actionSecondaryDisabled,
         consumer_dark.FhColors.actionSecondaryDisabled,
       ],
     ),
-    const LinearGradient(
+    LinearGradient(
       colors: <Color>[
         professional_light.FhColors.actionSecondaryDisabled,
         professional_light.FhColors.actionSecondaryDisabled,
       ],
     ),
-    const LinearGradient(
+    LinearGradient(
       colors: <Color>[
         professional_dark.FhColors.actionSecondaryDisabled,
         professional_dark.FhColors.actionSecondaryDisabled,
@@ -80,14 +80,14 @@ class _$SecondaryButtonTheme {
     ),
   ];
 
-  static List<Color> iconDefaultColor = <Color>[
+  static const List<Color> iconDefaultColor = <Color>[
     consumer_light.FhColors.iconDefault,
     consumer_dark.FhColors.iconDefault,
     professional_light.FhColors.iconDefault,
     professional_dark.FhColors.iconDefault,
   ];
 
-  static List<Color> iconDisabledColor = <Color>[
+  static const List<Color> iconDisabledColor = <Color>[
     consumer_light.FhColors.iconDisabled,
     consumer_dark.FhColors.iconDisabled,
     professional_light.FhColors.iconDisabled,

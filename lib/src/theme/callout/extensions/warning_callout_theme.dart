@@ -9,14 +9,14 @@ part 'warning_callout_theme.tailor.dart';
 
 @tailorComponent
 class _$WarningCalloutTheme {
-  static List<Color> backgroundColor = <Color>[
+  static const List<Color> backgroundColor = <Color>[
     consumer_light.FhColors.backgroundWarningWeak,
     consumer_dark.FhColors.backgroundWarningWeak,
     professional_light.FhColors.backgroundWarningWeak,
     professional_dark.FhColors.backgroundWarningWeak,
   ];
 
-  static List<Color> borderColor = <Color>[
+  static const List<Color> borderColor = <Color>[
     consumer_light.FhColors.borderWarningWeak,
     consumer_dark.FhColors.borderWarningWeak,
     professional_light.FhColors.borderWarningWeak,

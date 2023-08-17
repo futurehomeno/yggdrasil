@@ -12,99 +12,99 @@ part 'button_theme.tailor.dart';
 @tailorComponent
 class _$YgButtonTheme {
   @themeExtension
-  static List<CriticalButtonTheme> criticalButtonTheme = CriticalButtonTheme.themes;
+  static const List<CriticalButtonTheme> criticalButtonTheme = CriticalButtonTheme.themes;
 
   @themeExtension
-  static List<LinkButtonTheme> linkButtonTheme = LinkButtonTheme.themes;
+  static const List<LinkButtonTheme> linkButtonTheme = LinkButtonTheme.themes;
 
   @themeExtension
-  static List<PrimaryButtonTheme> primaryButtonTheme = PrimaryButtonTheme.themes;
+  static const List<PrimaryButtonTheme> primaryButtonTheme = PrimaryButtonTheme.themes;
 
   @themeExtension
-  static List<SecondaryButtonTheme> secondaryButtonTheme = SecondaryButtonTheme.themes;
+  static const List<SecondaryButtonTheme> secondaryButtonTheme = SecondaryButtonTheme.themes;
 
   @themeExtension
-  static List<TextButtonTheme> textButtonTheme = TextButtonTheme.themes;
+  static const List<TextButtonTheme> textButtonTheme = TextButtonTheme.themes;
 
-  static List<EdgeInsets> paddingSmall = <EdgeInsets>[
-    const EdgeInsets.symmetric(
+  static const List<EdgeInsets> paddingSmall = <EdgeInsets>[
+    EdgeInsets.symmetric(
       vertical: consumer_light.FhDimensions.xxs,
       horizontal: consumer_light.FhDimensions.md,
     ),
-    const EdgeInsets.symmetric(
+    EdgeInsets.symmetric(
       vertical: consumer_dark.FhDimensions.xxs,
       horizontal: consumer_dark.FhDimensions.md,
     ),
-    const EdgeInsets.symmetric(
+    EdgeInsets.symmetric(
       vertical: professional_light.FhDimensions.xxs,
       horizontal: professional_light.FhDimensions.md,
     ),
-    const EdgeInsets.symmetric(
+    EdgeInsets.symmetric(
       vertical: professional_dark.FhDimensions.xxs,
       horizontal: professional_dark.FhDimensions.md,
-    )
+    ),
   ];
 
-  static List<EdgeInsets> paddingMedium = <EdgeInsets>[
-    const EdgeInsets.symmetric(
+  static const List<EdgeInsets> paddingMedium = <EdgeInsets>[
+    EdgeInsets.symmetric(
       vertical: consumer_light.FhDimensions.xs,
       horizontal: consumer_light.FhDimensions.lg,
     ),
-    const EdgeInsets.symmetric(
+    EdgeInsets.symmetric(
       vertical: consumer_dark.FhDimensions.xs,
       horizontal: consumer_dark.FhDimensions.lg,
     ),
-    const EdgeInsets.symmetric(
+    EdgeInsets.symmetric(
       vertical: professional_light.FhDimensions.xs,
       horizontal: professional_light.FhDimensions.lg,
     ),
-    const EdgeInsets.symmetric(
+    EdgeInsets.symmetric(
       vertical: professional_dark.FhDimensions.xs,
       horizontal: professional_dark.FhDimensions.lg,
-    )
+    ),
   ];
 
-  static List<EdgeInsets> paddingLarge = <EdgeInsets>[
-    const EdgeInsets.symmetric(
+  static const List<EdgeInsets> paddingLarge = <EdgeInsets>[
+    EdgeInsets.symmetric(
       vertical: consumer_light.FhDimensions.sm,
       horizontal: consumer_light.FhDimensions.xl,
     ),
-    const EdgeInsets.symmetric(
+    EdgeInsets.symmetric(
       vertical: consumer_dark.FhDimensions.sm,
       horizontal: consumer_dark.FhDimensions.xl,
     ),
-    const EdgeInsets.symmetric(
+    EdgeInsets.symmetric(
       vertical: professional_light.FhDimensions.sm,
       horizontal: professional_light.FhDimensions.xl,
     ),
-    const EdgeInsets.symmetric(
+    EdgeInsets.symmetric(
       vertical: professional_dark.FhDimensions.sm,
       horizontal: professional_dark.FhDimensions.xl,
-    )
+    ),
   ];
 
-  static List<double> iconSpacing = <double>[
+  static const List<double> iconSpacing = <double>[
     consumer_light.FhDimensions.xxs,
     consumer_dark.FhDimensions.xxs,
     professional_light.FhDimensions.xxs,
     professional_dark.FhDimensions.xxs,
   ];
 
-  static List<double> iconSize = <double>[
+  static const List<double> iconSize = <double>[
     consumer_light.FhDimensions.sm,
     consumer_dark.FhDimensions.sm,
     professional_light.FhDimensions.sm,
     professional_dark.FhDimensions.sm,
   ];
 
-  static List<BorderRadius> borderRadius = <BorderRadius>[
+  static const List<BorderRadius> borderRadius = <BorderRadius>[
     consumer_light.FhRadii.xxl,
     consumer_dark.FhRadii.xxl,
     professional_light.FhRadii.xxl,
     professional_dark.FhRadii.xxl,
   ];
 
-  static List<double> borderWidth = <double>[
+  static final List<double> borderWidth = <double>[
     consumer_light.FhBorders.sm.left.width,
     consumer_dark.FhBorders.sm.left.width,
     professional_light.FhBorders.sm.left.width,

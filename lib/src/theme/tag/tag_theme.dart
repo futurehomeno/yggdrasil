@@ -12,115 +12,115 @@ part 'tag_theme.tailor.dart';
 @tailorComponent
 class _$YgTagTheme {
   @themeExtension
-  static List<NeutralTagTheme> neutralTagTheme = NeutralTagTheme.themes;
+  static const List<NeutralTagTheme> neutralTagTheme = NeutralTagTheme.themes;
 
   @themeExtension
-  static List<InformativeTagTheme> informativeTagTheme = InformativeTagTheme.themes;
+  static const List<InformativeTagTheme> informativeTagTheme = InformativeTagTheme.themes;
 
   @themeExtension
-  static List<PositiveTagTheme> positiveTagTheme = PositiveTagTheme.themes;
+  static const List<PositiveTagTheme> positiveTagTheme = PositiveTagTheme.themes;
 
   @themeExtension
-  static List<WarningTagTheme> warningTagTheme = WarningTagTheme.themes;
+  static const List<WarningTagTheme> warningTagTheme = WarningTagTheme.themes;
 
   @themeExtension
-  static List<NegativeTagTheme> negativeTagTheme = NegativeTagTheme.themes;
+  static const List<NegativeTagTheme> negativeTagTheme = NegativeTagTheme.themes;
 
-  static List<EdgeInsets> paddingSmall = <EdgeInsets>[
-    const EdgeInsets.symmetric(
+  static const List<EdgeInsets> paddingSmall = <EdgeInsets>[
+    EdgeInsets.symmetric(
       vertical: consumer_light.FhDimensions.xxs,
       horizontal: consumer_light.FhDimensions.md,
     ),
-    const EdgeInsets.symmetric(
+    EdgeInsets.symmetric(
       vertical: consumer_dark.FhDimensions.xxs,
       horizontal: consumer_dark.FhDimensions.md,
     ),
-    const EdgeInsets.symmetric(
+    EdgeInsets.symmetric(
       vertical: professional_light.FhDimensions.xxs,
       horizontal: professional_light.FhDimensions.md,
     ),
-    const EdgeInsets.symmetric(
+    EdgeInsets.symmetric(
       vertical: professional_dark.FhDimensions.xxs,
       horizontal: professional_dark.FhDimensions.md,
-    )
+    ),
   ];
 
-  static List<EdgeInsets> paddingMedium = <EdgeInsets>[
-    const EdgeInsets.symmetric(
+  static const List<EdgeInsets> paddingMedium = <EdgeInsets>[
+    EdgeInsets.symmetric(
       vertical: consumer_light.FhDimensions.xs,
       horizontal: consumer_light.FhDimensions.lg,
     ),
-    const EdgeInsets.symmetric(
+    EdgeInsets.symmetric(
       vertical: consumer_dark.FhDimensions.xs,
       horizontal: consumer_dark.FhDimensions.lg,
     ),
-    const EdgeInsets.symmetric(
+    EdgeInsets.symmetric(
       vertical: professional_light.FhDimensions.xs,
       horizontal: professional_light.FhDimensions.lg,
     ),
-    const EdgeInsets.symmetric(
+    EdgeInsets.symmetric(
       vertical: professional_dark.FhDimensions.xs,
       horizontal: professional_dark.FhDimensions.lg,
-    )
+    ),
   ];
 
-  static List<double> iconSpacing = <double>[
+  static const List<double> iconSpacing = <double>[
     consumer_light.FhDimensions.xxs,
     consumer_dark.FhDimensions.xxs,
     professional_light.FhDimensions.xxs,
     professional_dark.FhDimensions.xxs,
   ];
 
-  static List<Color> iconWeakColor = <Color>[
+  static const List<Color> iconWeakColor = <Color>[
     consumer_light.FhColors.iconDefault,
     consumer_dark.FhColors.iconDefault,
     professional_light.FhColors.iconDefault,
     professional_dark.FhColors.iconDefault,
   ];
 
-  static List<Color> iconWeakDisabledColor = <Color>[
+  static const List<Color> iconWeakDisabledColor = <Color>[
     consumer_light.FhColors.iconDefault,
     consumer_dark.FhColors.iconDefault,
     professional_light.FhColors.iconDefault,
     professional_dark.FhColors.iconDefault,
   ];
 
-  static List<Color> iconStrongColor = <Color>[
+  static const List<Color> iconStrongColor = <Color>[
     consumer_light.FhColors.iconInverse,
     consumer_dark.FhColors.iconInverse,
     professional_light.FhColors.iconInverse,
     professional_dark.FhColors.iconInverse,
   ];
 
-  static List<Color> iconStrongDisabledColor = <Color>[
+  static const List<Color> iconStrongDisabledColor = <Color>[
     consumer_light.FhColors.iconInverse,
     consumer_dark.FhColors.iconInverse,
     professional_light.FhColors.iconInverse,
     professional_dark.FhColors.iconInverse,
   ];
 
-  static List<double> iconSize = <double>[
+  static const List<double> iconSize = <double>[
     consumer_light.FhDimensions.sm,
     consumer_dark.FhDimensions.sm,
     professional_light.FhDimensions.sm,
     professional_dark.FhDimensions.sm,
   ];
 
-  static List<BorderRadius> borderRadius = <BorderRadius>[
+  static const List<BorderRadius> borderRadius = <BorderRadius>[
     consumer_light.FhRadii.xxl,
     consumer_dark.FhRadii.xxl,
     professional_light.FhRadii.xxl,
     professional_dark.FhRadii.xxl,
   ];
 
-  static List<double> borderWidth = <double>[
+  static final List<double> borderWidth = <double>[
     consumer_light.FhBorders.sm.left.width,
     consumer_dark.FhBorders.sm.left.width,
     professional_light.FhBorders.sm.left.width,
     professional_dark.FhBorders.sm.left.width,
   ];
 
-  static List<TextStyle> textStyle = <TextStyle>[
+  static final List<TextStyle> textStyle = <TextStyle>[
     consumer_light.FhTextStyles.caption1Medium.copyWith(
       color: consumer_light.FhColors.textDefault,
     ),
@@ -135,7 +135,7 @@ class _$YgTagTheme {
     ),
   ];
 
-  static List<TextStyle> strongTextStyle = <TextStyle>[
+  static final List<TextStyle> strongTextStyle = <TextStyle>[
     consumer_light.FhTextStyles.caption1Medium.copyWith(
       color: consumer_light.FhColors.textInverse,
     ),
@@ -150,7 +150,7 @@ class _$YgTagTheme {
     ),
   ];
 
-  static List<TextStyle> disabledTextStyle = <TextStyle>[
+  static final List<TextStyle> disabledTextStyle = <TextStyle>[
     consumer_light.FhTextStyles.caption1Medium.copyWith(
       color: consumer_light.FhColors.textDefault,
     ),
@@ -165,7 +165,7 @@ class _$YgTagTheme {
     ),
   ];
 
-  static List<TextStyle> disabledStrongTextStyle = <TextStyle>[
+  static final List<TextStyle> disabledStrongTextStyle = <TextStyle>[
     consumer_light.FhTextStyles.caption1Medium.copyWith(
       color: consumer_light.FhColors.textInverse,
     ),

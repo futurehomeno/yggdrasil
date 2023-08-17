@@ -22,7 +22,7 @@ class PasswordConfirmValidator extends CombinedValidator<String> {
       MatchValidator<String>(
         otherFieldKey: otherPasswordFieldKey,
         error: passwordsDoNotMatchError ?? defaults.passwordsDoNotMatch,
-      )
+      ),
     ];
   }
 }

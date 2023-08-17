@@ -31,7 +31,7 @@ class YgGradient extends ThemeExtension<YgGradient> {
   final Gradient actionSecondarySelected;
   final Gradient backgroundGradient;
 
-  static final YgGradient consumerLight = YgGradient(
+  static const final YgGradient consumerLight = YgGradient(
     actionPrimaryDefault: _$YgGradient.actionPrimaryDefault[0],
     actionPrimaryHovered: _$YgGradient.actionPrimaryHovered[0],
     actionPrimaryPressed: _$YgGradient.actionPrimaryPressed[0],
@@ -43,7 +43,7 @@ class YgGradient extends ThemeExtension<YgGradient> {
     backgroundGradient: _$YgGradient.backgroundGradient[0],
   );
 
-  static final YgGradient consumerDark = YgGradient(
+  static const final YgGradient consumerDark = YgGradient(
     actionPrimaryDefault: _$YgGradient.actionPrimaryDefault[1],
     actionPrimaryHovered: _$YgGradient.actionPrimaryHovered[1],
     actionPrimaryPressed: _$YgGradient.actionPrimaryPressed[1],
@@ -55,7 +55,7 @@ class YgGradient extends ThemeExtension<YgGradient> {
     backgroundGradient: _$YgGradient.backgroundGradient[1],
   );
 
-  static final YgGradient professionalLight = YgGradient(
+  static const final YgGradient professionalLight = YgGradient(
     actionPrimaryDefault: _$YgGradient.actionPrimaryDefault[2],
     actionPrimaryHovered: _$YgGradient.actionPrimaryHovered[2],
     actionPrimaryPressed: _$YgGradient.actionPrimaryPressed[2],
@@ -67,7 +67,7 @@ class YgGradient extends ThemeExtension<YgGradient> {
     backgroundGradient: _$YgGradient.backgroundGradient[2],
   );
 
-  static final YgGradient professionalDark = YgGradient(
+  static const final YgGradient professionalDark = YgGradient(
     actionPrimaryDefault: _$YgGradient.actionPrimaryDefault[3],
     actionPrimaryHovered: _$YgGradient.actionPrimaryHovered[3],
     actionPrimaryPressed: _$YgGradient.actionPrimaryPressed[3],
@@ -79,7 +79,7 @@ class YgGradient extends ThemeExtension<YgGradient> {
     backgroundGradient: _$YgGradient.backgroundGradient[3],
   );
 
-  static final themes = [
+  static const final themes = [
     consumerLight,
     consumerDark,
     professionalLight,
