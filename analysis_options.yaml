@@ -1,18 +1,16 @@
 include: package:fh_lints/fh_lints.yaml
 
-# Do not analyze the tokens.
 analyzer:
   exclude:
     - 'lib/src/theme/tokens/*'
     - 'lib/**/*.tailor.dart'
 
 dart_code_metrics:
-  # TODO(DEV-1307): what the task says
-  #  metrics:
-  #    cyclomatic-complexity: 20
-  #    number-of-parameters: 4
-  #    maximum-nesting-level: 5
-  #  metrics-exclude:
+  metrics:
+    cyclomatic-complexity: 20
+    number-of-parameters: 4
+    maximum-nesting-level: 5
+  metrics-exclude:
 
   rules:
     # Not used because too much work is required to get it working.
@@ -81,7 +79,6 @@ dart_code_metrics:
     # TODO(DEV-1298): what the task says
     # - prefer-single-widget-per-file
 
-    # TODO(DEV-1297): what the task says
     - prefer-const-border-radius
 
     - use-setstate-synchronously
@@ -93,8 +90,6 @@ dart_code_metrics:
     # - prefer-extracting-callbacks
 
   anti-patterns:
-  # TODO(DEV-1293): what the task says
-  # - long-method
+  - long-method
 
-  # TODO(DEV-1294): what the task says
-  # - long-parameter-list
+  - long-parameter-list
