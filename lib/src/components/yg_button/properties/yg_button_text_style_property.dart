@@ -16,6 +16,7 @@ class YgButtonTextStyleProperty extends MaterialStateProperty<TextStyle?> with D
     if (states.contains(MaterialState.disabled)) {
       return disabled;
     }
+
     return textStyle;
   }
 }

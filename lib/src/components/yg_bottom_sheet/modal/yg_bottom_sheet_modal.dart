@@ -81,7 +81,7 @@ class _YgBottomSheetModalState extends State<YgBottomSheetModal> {
     );
   }
 
-  void _animateToClosed() async {
+  void _animateToClosed() {
     // We don't actually need to animate it as this will already be done by the
     // modal route.
     Navigator.of(context).pop();
@@ -129,6 +129,7 @@ class _YgBottomSheetModalState extends State<YgBottomSheetModal> {
     final bool isSwipingDown = metrics.extentBefore == 0 && value > 0 && !_isScrolling;
     if (isSwipingDown || isSwipingUp) {
       _handleSwipeUpdate(value);
+
       return false;
     }
 

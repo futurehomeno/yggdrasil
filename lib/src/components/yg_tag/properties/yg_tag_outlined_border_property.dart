@@ -16,6 +16,7 @@ class YgTagOutlinedBorderProperty extends MaterialStateProperty<OutlinedBorder?>
     if (states.contains(MaterialState.disabled)) {
       return disabled;
     }
+
     return outlinedBorder;
   }
 }

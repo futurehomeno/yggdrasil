@@ -19,6 +19,7 @@ class YgRadioOverlayColorProperty extends MaterialStateProperty<Color?> with Dia
     if (states.contains(MaterialState.hovered)) {
       return hovered;
     }
+
     return null;
   }
 }

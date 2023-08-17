@@ -28,6 +28,7 @@ class YgRadioBackgroundColorProperty extends MaterialStateProperty<Color?> with 
       if (states.contains(MaterialState.hovered) || states.contains(MaterialState.focused)) {
         return selectedHovered;
       }
+
       return selected;
     }
 
@@ -37,6 +38,7 @@ class YgRadioBackgroundColorProperty extends MaterialStateProperty<Color?> with 
     if (states.contains(MaterialState.hovered) || states.contains(MaterialState.focused)) {
       return deselectedHovered;
     }
+
     return deselected;
   }
 }

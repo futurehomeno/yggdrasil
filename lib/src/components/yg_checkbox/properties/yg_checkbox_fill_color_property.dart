@@ -39,6 +39,7 @@ class YgCheckboxFillColorProperty extends MaterialStateProperty<Color?> with Dia
         return selectedHovered;
       }
     }
+
     return resolve(states);
   }
 
@@ -57,6 +58,7 @@ class YgCheckboxFillColorProperty extends MaterialStateProperty<Color?> with Dia
       if (states.contains(MaterialState.hovered) || states.contains(MaterialState.focused)) {
         return selectedHovered;
       }
+
       return selected;
     }
 
@@ -72,6 +74,7 @@ class YgCheckboxFillColorProperty extends MaterialStateProperty<Color?> with Dia
     if (states.contains(MaterialState.hovered) || states.contains(MaterialState.focused)) {
       return deselectedHovered;
     }
+
     return deselected;
   }
 }

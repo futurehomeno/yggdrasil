@@ -9,42 +9,42 @@ part 'outlined_icon_button_theme.tailor.dart';
 
 @tailorComponent
 class _$OutlinedIconButtonTheme {
-  static List<Color> iconColor = <Color>[
+  static const List<Color> iconColor = <Color>[
     consumer_light.FhColors.iconDefault,
     consumer_dark.FhColors.iconDefault,
     professional_light.FhColors.iconDefault,
     professional_dark.FhColors.iconDefault,
   ];
 
-  static List<Color> disabledIconColor = <Color>[
+  static const List<Color> disabledIconColor = <Color>[
     consumer_light.FhColors.iconDisabled,
     consumer_dark.FhColors.iconDisabled,
     professional_light.FhColors.iconDisabled,
     professional_dark.FhColors.iconDisabled,
   ];
 
-  static List<Color> backgroundColor = <Color>[
+  static const List<Color> backgroundColor = <Color>[
     consumer_light.FhColors.backgroundTransparent,
     consumer_dark.FhColors.backgroundTransparent,
     professional_light.FhColors.backgroundTransparent,
     professional_dark.FhColors.backgroundTransparent,
   ];
 
-  static List<Color> disabledBackgroundColor = <Color>[
+  static const List<Color> disabledBackgroundColor = <Color>[
     consumer_light.FhColors.backgroundTransparent,
     consumer_dark.FhColors.backgroundTransparent,
     professional_light.FhColors.backgroundTransparent,
     professional_dark.FhColors.backgroundTransparent,
   ];
 
-  static List<Color> borderColor = <Color>[
+  static const List<Color> borderColor = <Color>[
     consumer_light.FhColors.borderDefault,
     consumer_dark.FhColors.borderDefault,
     professional_light.FhColors.borderDefault,
     professional_dark.FhColors.borderDefault,
   ];
 
-  static List<Color> disabledBorderColor = <Color>[
+  static const List<Color> disabledBorderColor = <Color>[
     consumer_light.FhColors.borderDisabled,
     consumer_dark.FhColors.borderDisabled,
     professional_light.FhColors.borderDisabled,

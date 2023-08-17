@@ -21,6 +21,7 @@ class YgRadioHandleSizeProperty extends MaterialStateProperty<double?> with Diag
     if (states.contains(MaterialState.selected)) {
       return selected;
     }
+
     return deselected;
   }
 }

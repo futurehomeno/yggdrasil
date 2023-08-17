@@ -1,6 +1,95 @@
 include: package:fh_lints/fh_lints.yaml
 
-# Do not analyze the tokens.
 analyzer:
   exclude:
     - 'lib/src/theme/tokens/*'
+    - 'lib/**/*.tailor.dart'
+
+dart_code_metrics:
+  metrics:
+    cyclomatic-complexity: 20
+    number-of-parameters: 4
+    maximum-nesting-level: 5
+  metrics-exclude:
+
+  rules:
+    # Not used because too much work is required to get it working.
+    # Additionally, there are small concerns to whether this will
+    # improve code readability in certain cases (even though generally
+    # we should create separate classes).
+    # - avoid-returning-widgets
+
+    - avoid-unnecessary-setstate
+
+    # Definitely not, it's harder to read as we don't know where exactly
+    # the padding will be applied (same reason as why we don't use margins),
+    # and destroys proper component responsibility separation.
+    # - avoid-wrapping-in-padding
+
+    - avoid-redundant-async
+
+    - avoid-unused-parameters
+
+    - avoid-unnecessary-conditionals
+
+    # TODO(DEV-1305): what the task says
+    # - arguments-ordering
+
+    # TODO(DEV-1304): what the task says
+    # - prefer-match-file-name
+
+    - newline-before-return
+
+    # Sometimes it is easier to read when we can use `if (x != true)`.
+    # - no-boolean-literal-compare
+
+    - avoid-nested-conditional-expressions
+
+    - list-all-equatable-fields
+
+    # Too much effort to correct.
+    # - no-magic-number
+
+    - prefer-async-await
+
+    - prefer-correct-edge-insets-constructor
+
+    - always-remove-listener
+
+    - consistent-update-render-object
+
+    - check-for-equals-in-render-object-setters
+
+    - prefer-trailing-comma
+
+    - avoid-global-state:
+        exclude:
+          - scripts/**
+
+    # Doesn't seem very useful and super spammy in tests/mocks.
+    # - avoid-ignoring-return-values
+
+    # TODO(DEV-1299): what the task says
+    # - avoid-non-null-assertion
+
+    - prefer-static-class:
+        exclude:
+          - scripts/**
+
+    # TODO(DEV-1298): what the task says
+    # - prefer-single-widget-per-file
+
+    - prefer-const-border-radius
+
+    - use-setstate-synchronously
+
+    # TODO(DEV-1296): what the task says
+    # - prefer-moving-to-variable
+
+    # TODO(DEV-1295): what the task says
+    # - prefer-extracting-callbacks
+
+  anti-patterns:
+  - long-method
+
+  - long-parameter-list

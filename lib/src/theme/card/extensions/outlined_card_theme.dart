@@ -9,7 +9,7 @@ part 'outlined_card_theme.tailor.dart';
 
 @tailorComponent
 class _$OutlinedCardTheme {
-  static List<Color> backgroundColor = <Color>[
+  static const List<Color> backgroundColor = <Color>[
     consumer_light.FhColors.backgroundDefault,
     consumer_dark.FhColors.backgroundDefault,
     professional_light.FhColors.backgroundDefault,
@@ -17,22 +17,22 @@ class _$OutlinedCardTheme {
   ];
 
   // TODO(bjhandeland): Use border width token when available.
-  static List<BorderSide> borderSide = <BorderSide>[
-    const BorderSide(
+  static const List<BorderSide> borderSide = <BorderSide>[
+    BorderSide(
       color: consumer_light.FhColors.borderDefault,
       width: 1.0,
     ),
-    const BorderSide(
+    BorderSide(
       color: consumer_light.FhColors.borderDefault,
       width: 1.0,
     ),
-    const BorderSide(
+    BorderSide(
       color: consumer_light.FhColors.borderDefault,
       width: 1.0,
     ),
-    const BorderSide(
+    BorderSide(
       color: consumer_light.FhColors.borderDefault,
       width: 1.0,
-    )
+    ),
   ];
 }

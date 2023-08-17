@@ -9,21 +9,21 @@ part 'positive_tag_theme.tailor.dart';
 
 @tailorComponent
 class _$PositiveTagTheme {
-  static List<Color> backgroundColor = <Color>[
+  static const List<Color> backgroundColor = <Color>[
     consumer_light.FhColors.backgroundSuccessWeak,
     consumer_dark.FhColors.backgroundSuccessWeak,
     professional_light.FhColors.backgroundSuccessWeak,
     professional_dark.FhColors.backgroundSuccessWeak,
   ];
 
-  static List<Color> strongBackgroundColor = <Color>[
+  static const List<Color> strongBackgroundColor = <Color>[
     consumer_light.FhColors.backgroundSuccessStrong,
     consumer_dark.FhColors.backgroundSuccessStrong,
     professional_light.FhColors.backgroundSuccessStrong,
     professional_dark.FhColors.backgroundSuccessStrong,
   ];
 
-  static List<Color> disabledBackgroundColor = <Color>[
+  static const List<Color> disabledBackgroundColor = <Color>[
     consumer_light.FhColors.backgroundTransparent,
     consumer_dark.FhColors.backgroundTransparent,
     professional_light.FhColors.backgroundTransparent,

@@ -9,21 +9,21 @@ part 'negative_tag_theme.tailor.dart';
 
 @tailorComponent
 class _$NegativeTagTheme {
-  static List<Color> backgroundColor = <Color>[
+  static const List<Color> backgroundColor = <Color>[
     consumer_light.FhColors.backgroundCriticalWeak,
     consumer_dark.FhColors.backgroundCriticalWeak,
     professional_light.FhColors.backgroundCriticalWeak,
     professional_dark.FhColors.backgroundCriticalWeak,
   ];
 
-  static List<Color> strongBackgroundColor = <Color>[
+  static const List<Color> strongBackgroundColor = <Color>[
     consumer_light.FhColors.backgroundCriticalStrong,
     consumer_dark.FhColors.backgroundCriticalStrong,
     professional_light.FhColors.backgroundCriticalStrong,
     professional_dark.FhColors.backgroundCriticalStrong,
   ];
 
-  static List<Color> disabledBackgroundColor = <Color>[
+  static const List<Color> disabledBackgroundColor = <Color>[
     consumer_light.FhColors.backgroundTransparent,
     consumer_dark.FhColors.backgroundTransparent,
     professional_light.FhColors.backgroundTransparent,

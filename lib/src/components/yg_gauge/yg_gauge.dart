@@ -132,7 +132,7 @@ class _YgGaugeState extends State<YgGauge> with TickerProviderStateMixin {
               children: <Widget>[
                 if (widget.icon != null && widget.title == null) _buildIcon(context),
                 if (title != null) _buildTitle(context, title),
-                if (buildTitle != null) _buildAnimatedTitle(context),
+                if (buildTitle != null) _buildAnimatedTitle(),
                 if (widget.notation != null) _buildNotation(context),
               ],
             ),
@@ -157,7 +157,7 @@ class _YgGaugeState extends State<YgGauge> with TickerProviderStateMixin {
   }
 
   // TODO(developer): Remove test style height after updating tokens.
-  Widget _buildAnimatedTitle(BuildContext context) {
+  Widget _buildAnimatedTitle() {
     return AnimatedBuilder(
       animation: _animation,
       builder: (BuildContext context, _) => _buildTitle(

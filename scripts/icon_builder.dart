@@ -67,8 +67,10 @@ void main() {
 /// Finally, removes the spaces to form a single word.
 String toCamelCase(String text) {
   final String normalizedText = text.replaceAll('-', '_');
+
   return normalizedText.split('_').asMap().entries.map((MapEntry<int, String> entry) {
     if (entry.key == 0) return entry.value;
+
     return '${entry.value[0].toUpperCase()}${entry.value.substring(1)}';
   }).join();
 }

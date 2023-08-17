@@ -100,7 +100,7 @@ class YgTextFormField extends FormField<String> {
               ),
             EmailValidator(
               invalidEmailError: invalidEmailError,
-            )
+            ),
           ],
           placeholder: placeholder,
           suffix: suffix,
@@ -157,7 +157,7 @@ class YgTextFormField extends FormField<String> {
             if (otherPasswordFieldKey != null)
               PasswordConfirmValidator(
                 otherPasswordFieldKey: otherPasswordFieldKey,
-              )
+              ),
           ],
           placeholder: placeholder,
           suffix: suffix,

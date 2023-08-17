@@ -13,7 +13,7 @@ class YgBottomSheetDragHandle extends StatelessWidget {
       height: bottomSheetTheme.handleHeight,
       decoration: BoxDecoration(
         color: bottomSheetTheme.handleColor,
-        borderRadius: BorderRadius.circular(2.5),
+        borderRadius: const BorderRadius.all(Radius.circular(2.5)),
       ),
     );
   }

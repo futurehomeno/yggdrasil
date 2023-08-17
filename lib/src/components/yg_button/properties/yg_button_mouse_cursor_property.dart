@@ -16,6 +16,7 @@ class YgButtonMouseCursorProperty extends MaterialStateProperty<MouseCursor?> wi
     if (states.contains(MaterialState.disabled)) {
       return disabled;
     }
+
     return mouseCursor;
   }
 }

@@ -136,7 +136,7 @@ class _YgRadioState extends State<YgCheckbox> {
                 height: checkboxTheme.size,
                 decoration: BoxDecoration(
                   color: widget.value == null ? checkboxTheme.selectedFillColor : resolvedFillColor,
-                  borderRadius: BorderRadius.circular(5.0),
+                  borderRadius: const BorderRadius.all(Radius.circular(5.0)),
                   border: Border.all(
                     width: 2.0,
                     color: resolvedBorderColor ?? Colors.transparent,

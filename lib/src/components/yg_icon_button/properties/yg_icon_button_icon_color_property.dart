@@ -16,6 +16,7 @@ class YgIconButtonIconColorProperty extends MaterialStateProperty<Color?> with D
     if (states.contains(MaterialState.disabled)) {
       return disabled;
     }
+
     return color;
   }
 }

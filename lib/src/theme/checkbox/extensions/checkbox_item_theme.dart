@@ -9,14 +9,14 @@ part 'checkbox_item_theme.tailor.dart';
 
 @tailorComponent
 class _$YgCheckboxItemTheme {
-  static List<TextStyle> titleTextStyle = <TextStyle>[
+  static const List<TextStyle> titleTextStyle = <TextStyle>[
     consumer_light.FhTextStyles.paragraph2Regular,
     consumer_dark.FhTextStyles.paragraph2Regular,
     professional_light.FhTextStyles.paragraph2Regular,
     professional_dark.FhTextStyles.paragraph2Regular,
   ];
 
-  static List<double> checkboxTitleSpacing = <double>[
+  static const List<double> checkboxTitleSpacing = <double>[
     consumer_light.FhDimensions.xs,
     consumer_dark.FhDimensions.xs,
     professional_light.FhDimensions.xs,

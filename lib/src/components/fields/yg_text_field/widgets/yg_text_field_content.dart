@@ -88,7 +88,7 @@ class _YgTextFieldContentState extends YgTextFieldBaseWidgetState<YgTextFieldCon
               widget.label,
             ),
           ),
-        )
+        ),
       ],
     );
   }

@@ -9,14 +9,14 @@ part 'success_callout_theme.tailor.dart';
 
 @tailorComponent
 class _$SuccessCalloutTheme {
-  static List<Color> backgroundColor = <Color>[
+  static const List<Color> backgroundColor = <Color>[
     consumer_light.FhColors.backgroundSuccessWeak,
     consumer_dark.FhColors.backgroundSuccessWeak,
     professional_light.FhColors.backgroundSuccessWeak,
     professional_dark.FhColors.backgroundSuccessWeak,
   ];
 
-  static List<Color> borderColor = <Color>[
+  static const List<Color> borderColor = <Color>[
     consumer_light.FhColors.borderSuccessWeak,
     consumer_dark.FhColors.borderSuccessWeak,
     professional_light.FhColors.borderSuccessWeak,

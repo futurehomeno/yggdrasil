@@ -9,28 +9,28 @@ part 'scroll_shadow.tailor.dart';
 
 @tailorComponent
 class _$YgScrollShadowThemes {
-  static List<Duration> fadeDuration = <Duration>[
-    const Duration(milliseconds: 200),
-    const Duration(milliseconds: 200),
-    const Duration(milliseconds: 200),
-    const Duration(milliseconds: 200),
+  static const List<Duration> fadeDuration = <Duration>[
+    Duration(milliseconds: 200),
+    Duration(milliseconds: 200),
+    Duration(milliseconds: 200),
+    Duration(milliseconds: 200),
   ];
 
-  static List<Curve> fadeCurve = <Curve>[
+  static const List<Curve> fadeCurve = <Curve>[
     Curves.easeOut,
     Curves.easeOut,
     Curves.easeOut,
     Curves.easeOut,
   ];
 
-  static List<Color> shadowColor = <Color>[
+  static final List<Color> shadowColor = <Color>[
     Colors.black.withOpacity(0.15),
     Colors.black.withOpacity(0.15),
     Colors.black.withOpacity(0.15),
     Colors.black.withOpacity(0.15),
   ];
 
-  static List<double> shadowSize = <double>[
+  static const List<double> shadowSize = <double>[
     consumer_light.FhDimensions.xs,
     consumer_dark.FhDimensions.xs,
     professional_light.FhDimensions.xs,

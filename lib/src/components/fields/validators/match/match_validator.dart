@@ -21,6 +21,7 @@ class MatchValidator<T> extends YgInputValidator<T> {
     if (otherValue != value) {
       return error;
     }
+
     return null;
   }
 }

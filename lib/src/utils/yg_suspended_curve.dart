@@ -33,6 +33,7 @@ class YgSuspendedCurve extends ParametricCurve<double> {
 
     final double curveProgress = (t - startingPoint) / (1 - startingPoint);
     final double transformed = curve.transform(curveProgress);
+
     return lerpDouble(startingPoint, 1, transformed)!;
   }
 

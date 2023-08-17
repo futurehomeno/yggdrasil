@@ -42,7 +42,7 @@ abstract class YgTextFieldBaseWidgetState<T extends YgTextFieldBaseWidget> exten
   @mustCallSuper
   @override
   void initState() {
-    focusNode.addListener(_focusChanged);
+    _focusNode.addListener(_focusChanged);
     _controller.addListener(_valueUpdated);
     super.initState();
   }
