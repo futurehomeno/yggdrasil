@@ -103,10 +103,10 @@ class _YgRadioState extends State<YgCheckbox> {
   Widget build(BuildContext context) {
     final YgCheckboxTheme checkboxTheme = context.checkboxTheme;
     final YgCheckboxStyle checkboxStyle = YgCheckboxStyle.base(context);
-    final Color? resolvedFillColor = checkboxStyle.fillColor.resolveWith(statesController.value, widget.value);
+    final Color resolvedFillColor = checkboxStyle.fillColor.resolveWith(statesController.value, widget.value);
     final Color? resolvedBorderColor = checkboxStyle.borderColor.resolveWith(statesController.value, widget.value);
-    final Color? resolvedCheckColor = checkboxStyle.checkColor.resolve(statesController.value);
-    final MouseCursor resolvedMouseCursor = checkboxStyle.mouseCursor.resolve(statesController.value)!;
+    final Color resolvedCheckColor = checkboxStyle.checkColor.resolve(statesController.value);
+    final MouseCursor resolvedMouseCursor = checkboxStyle.mouseCursor.resolve(statesController.value);
 
     return RepaintBoundary(
       child: Semantics(
