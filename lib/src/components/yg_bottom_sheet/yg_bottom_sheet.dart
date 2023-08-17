@@ -43,7 +43,7 @@ class _YgBottomSheetState extends State<YgBottomSheet> {
                 crossAxisAlignment: CrossAxisAlignment.stretch,
                 children: <Widget>[
                   YgBottomSheetHeader(title: widget.title),
-                  _buildContent(scrollPhysicsProvider, bottomSheetTheme),
+                  _buildContent(scrollPhysicsProvider),
                   if (widget.footerButtons != null)
                     Padding(
                       padding: bottomSheetTheme.footerPadding,
@@ -60,7 +60,6 @@ class _YgBottomSheetState extends State<YgBottomSheet> {
 
   Widget _buildContent(
     YgBottomSheetScrollPhysicsProvider? scrollPhysicsProvider,
-    YgBottomSheetTheme theme,
   ) {
     return Flexible(
       child: YgScrollShadow(

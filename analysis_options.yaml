@@ -29,10 +29,10 @@ dart_code_metrics:
     # - avoid-wrapping-in-padding
 
     # TODO(DEV-1306): what the task says
-    # - avoid-redundant-async
+    - avoid-redundant-async
 
     # TODO(DEV-1309): what the task says
-    # - avoid-unused-parameters
+    - avoid-unused-parameters
 
     - avoid-unnecessary-conditionals
 
