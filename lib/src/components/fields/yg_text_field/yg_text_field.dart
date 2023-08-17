@@ -4,7 +4,7 @@ import 'package:yggdrasil/src/components/fields/enums/field_state.dart';
 import 'package:yggdrasil/yggdrasil.dart';
 
 import '../widgets/_widgets.dart';
-import 'yg_field_value_text.dart';
+import 'widgets/_widgets.dart';
 
 class YgTextField extends StatefulWidget with StatefulWidgetDebugMixin {
   const YgTextField({

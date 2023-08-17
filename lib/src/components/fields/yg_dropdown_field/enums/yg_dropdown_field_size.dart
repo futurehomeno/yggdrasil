@@ -1,0 +1,4 @@
+enum YgDropdownFieldSize {
+  medium,
+  large,
+}

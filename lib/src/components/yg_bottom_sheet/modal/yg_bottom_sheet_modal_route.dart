@@ -11,7 +11,9 @@ import '../_yg_bottom_sheet.dart';
 abstract class YgBottomSheetModalRoute extends PopupRoute<YgBottomSheetModal> {
   late AnimationController _controller;
 
-  YgBottomSheetTheme get _bottomSheetTheme => navigator!.context.bottomSheetTheme;
+  YgBottomSheetTheme get _bottomSheetTheme => context.bottomSheetTheme;
+
+  BuildContext get context => navigator!.context;
 
   @override
   RouteSettings get settings => RouteSettings(name: name);

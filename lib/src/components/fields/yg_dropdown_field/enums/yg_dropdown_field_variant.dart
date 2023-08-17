@@ -1,0 +1,4 @@
+enum YgDropdownFieldVariant {
+  outlined,
+  standard,
+}

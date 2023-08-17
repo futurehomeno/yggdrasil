@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:yggdrasil/yggdrasil.dart';
 import 'package:yggdrasil_demo/core/_core.dart';
 import 'package:yggdrasil_demo/screens/_screens.dart';
+import 'package:yggdrasil_demo/screens/dropdown_field_screen.dart';
 import 'package:yggdrasil_demo/screens/switch_screen.dart';
 import 'package:yggdrasil_demo/widgets/_widgets.dart';
 
@@ -70,6 +71,11 @@ class HomeScreen extends StatelessWidget {
           YgListTile(
             title: 'Divider',
             onTap: () => sl<YgRouter>().push(DividerScreen.route()),
+            trailingWidgets: const <YgIcon>[YgIcon(YgIcons.caretRight)],
+          ),
+          YgListTile(
+            title: 'Dropdown',
+            onTap: () => sl<YgRouter>().push(DropdownFieldScreen.route()),
             trailingWidgets: const <YgIcon>[YgIcon(YgIcons.caretRight)],
           ),
           YgListTile(
