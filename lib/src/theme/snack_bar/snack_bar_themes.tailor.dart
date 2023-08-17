@@ -116,8 +116,10 @@ class YgSnackBarTheme extends ThemeExtension<YgSnackBarTheme> {
       backgroundColor: backgroundColor ?? this.backgroundColor,
       borderRadius: borderRadius ?? this.borderRadius,
       closeIconColor: closeIconColor ?? this.closeIconColor,
-      criticalSnackBarTheme: criticalSnackBarTheme ?? this.criticalSnackBarTheme,
-      highlightSnackBarTheme: highlightSnackBarTheme ?? this.highlightSnackBarTheme,
+      criticalSnackBarTheme:
+          criticalSnackBarTheme ?? this.criticalSnackBarTheme,
+      highlightSnackBarTheme:
+          highlightSnackBarTheme ?? this.highlightSnackBarTheme,
       iconContainerPadding: iconContainerPadding ?? this.iconContainerPadding,
       margin: margin ?? this.margin,
       messageSpacing: messageSpacing ?? this.messageSpacing,
@@ -128,20 +130,26 @@ class YgSnackBarTheme extends ThemeExtension<YgSnackBarTheme> {
   }
 
   @override
-  YgSnackBarTheme lerp(covariant ThemeExtension<YgSnackBarTheme>? other, double t) {
+  YgSnackBarTheme lerp(
+      covariant ThemeExtension<YgSnackBarTheme>? other, double t) {
     if (other is! YgSnackBarTheme) return this as YgSnackBarTheme;
     return YgSnackBarTheme(
       backgroundColor: Color.lerp(backgroundColor, other.backgroundColor, t)!,
       borderRadius: t < 0.5 ? borderRadius : other.borderRadius,
       closeIconColor: Color.lerp(closeIconColor, other.closeIconColor, t)!,
-      criticalSnackBarTheme: criticalSnackBarTheme.lerp(other.criticalSnackBarTheme, t) as CriticalSnackBarTheme,
-      highlightSnackBarTheme: highlightSnackBarTheme.lerp(other.highlightSnackBarTheme, t) as HighlightSnackBarTheme,
-      iconContainerPadding: t < 0.5 ? iconContainerPadding : other.iconContainerPadding,
+      criticalSnackBarTheme: criticalSnackBarTheme.lerp(
+          other.criticalSnackBarTheme, t) as CriticalSnackBarTheme,
+      highlightSnackBarTheme: highlightSnackBarTheme.lerp(
+          other.highlightSnackBarTheme, t) as HighlightSnackBarTheme,
+      iconContainerPadding:
+          t < 0.5 ? iconContainerPadding : other.iconContainerPadding,
       margin: t < 0.5 ? margin : other.margin,
       messageSpacing: t < 0.5 ? messageSpacing : other.messageSpacing,
-      messageTextStyle: TextStyle.lerp(messageTextStyle, other.messageTextStyle, t)!,
+      messageTextStyle:
+          TextStyle.lerp(messageTextStyle, other.messageTextStyle, t)!,
       padding: t < 0.5 ? padding : other.padding,
-      successSnackBarTheme: successSnackBarTheme.lerp(other.successSnackBarTheme, t) as SuccessSnackBarTheme,
+      successSnackBarTheme: successSnackBarTheme.lerp(
+          other.successSnackBarTheme, t) as SuccessSnackBarTheme,
     );
   }
 
@@ -150,17 +158,26 @@ class YgSnackBarTheme extends ThemeExtension<YgSnackBarTheme> {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is YgSnackBarTheme &&
-            const DeepCollectionEquality().equals(backgroundColor, other.backgroundColor) &&
-            const DeepCollectionEquality().equals(borderRadius, other.borderRadius) &&
-            const DeepCollectionEquality().equals(closeIconColor, other.closeIconColor) &&
-            const DeepCollectionEquality().equals(criticalSnackBarTheme, other.criticalSnackBarTheme) &&
-            const DeepCollectionEquality().equals(highlightSnackBarTheme, other.highlightSnackBarTheme) &&
-            const DeepCollectionEquality().equals(iconContainerPadding, other.iconContainerPadding) &&
+            const DeepCollectionEquality()
+                .equals(backgroundColor, other.backgroundColor) &&
+            const DeepCollectionEquality()
+                .equals(borderRadius, other.borderRadius) &&
+            const DeepCollectionEquality()
+                .equals(closeIconColor, other.closeIconColor) &&
+            const DeepCollectionEquality()
+                .equals(criticalSnackBarTheme, other.criticalSnackBarTheme) &&
+            const DeepCollectionEquality()
+                .equals(highlightSnackBarTheme, other.highlightSnackBarTheme) &&
+            const DeepCollectionEquality()
+                .equals(iconContainerPadding, other.iconContainerPadding) &&
             const DeepCollectionEquality().equals(margin, other.margin) &&
-            const DeepCollectionEquality().equals(messageSpacing, other.messageSpacing) &&
-            const DeepCollectionEquality().equals(messageTextStyle, other.messageTextStyle) &&
+            const DeepCollectionEquality()
+                .equals(messageSpacing, other.messageSpacing) &&
+            const DeepCollectionEquality()
+                .equals(messageTextStyle, other.messageTextStyle) &&
             const DeepCollectionEquality().equals(padding, other.padding) &&
-            const DeepCollectionEquality().equals(successSnackBarTheme, other.successSnackBarTheme));
+            const DeepCollectionEquality()
+                .equals(successSnackBarTheme, other.successSnackBarTheme));
   }
 
   @override

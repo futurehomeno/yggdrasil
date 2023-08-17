@@ -116,11 +116,13 @@ class YgTokens extends ThemeExtension<YgTokens> {
             other is YgTokens &&
             const DeepCollectionEquality().equals(borders, other.borders) &&
             const DeepCollectionEquality().equals(colors, other.colors) &&
-            const DeepCollectionEquality().equals(dimensions, other.dimensions) &&
+            const DeepCollectionEquality()
+                .equals(dimensions, other.dimensions) &&
             const DeepCollectionEquality().equals(gradients, other.gradients) &&
             const DeepCollectionEquality().equals(radii, other.radii) &&
             const DeepCollectionEquality().equals(shadows, other.shadows) &&
-            const DeepCollectionEquality().equals(textStyles, other.textStyles));
+            const DeepCollectionEquality()
+                .equals(textStyles, other.textStyles));
   }
 
   @override
