@@ -129,6 +129,7 @@ class _YgBottomSheetModalState extends State<YgBottomSheetModal> {
     final bool isSwipingDown = metrics.extentBefore == 0 && value > 0 && !_isScrolling;
     if (isSwipingDown || isSwipingUp) {
       _handleSwipeUpdate(value);
+
       return false;
     }
 

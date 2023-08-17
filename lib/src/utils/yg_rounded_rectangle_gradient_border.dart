@@ -49,6 +49,7 @@ class YgRoundedRectangleGradientBorder extends OutlinedBorder {
   Path getInnerPath(Rect rect, {TextDirection? textDirection}) {
     final RRect borderRect = borderRadius.resolve(textDirection).toRRect(rect);
     final RRect adjustedRect = borderRect.deflate(side.width * (side.strokeAlign - 1) * -0.5);
+
     return Path()..addRRect(adjustedRect);
   }
 

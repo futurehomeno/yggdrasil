@@ -16,6 +16,7 @@ class YgButtonOutlinedBorderProperty extends MaterialStateProperty<OutlinedBorde
     if (states.contains(MaterialState.disabled)) {
       return disabled;
     }
+
     return outlinedBorder;
   }
 }

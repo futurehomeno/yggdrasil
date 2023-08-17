@@ -32,6 +32,7 @@ class YgIconButtonStyle {
     switch (variant) {
       case YgIconButtonVariant.standard:
         final StandardIconButtonTheme theme = context.iconButtonTheme.standardIconButtonTheme;
+
         return _buildIconButtonStyle(
           backgroundColor: theme.backgroundColor,
           disabledBackgroundColor: theme.disabledBackgroundColor,
@@ -45,6 +46,7 @@ class YgIconButtonStyle {
 
       case YgIconButtonVariant.filled:
         final FilledIconButtonTheme theme = context.iconButtonTheme.filledIconButtonTheme;
+
         return _buildIconButtonStyle(
           backgroundColor: theme.backgroundColor,
           disabledBackgroundColor: theme.disabledBackgroundColor,
@@ -58,6 +60,7 @@ class YgIconButtonStyle {
 
       case YgIconButtonVariant.tonal:
         final TonalIconButtonTheme theme = context.iconButtonTheme.tonalIconButtonTheme;
+
         return _buildIconButtonStyle(
           backgroundColor: theme.backgroundColor,
           disabledBackgroundColor: theme.disabledBackgroundColor,
@@ -71,6 +74,7 @@ class YgIconButtonStyle {
 
       case YgIconButtonVariant.outlined:
         final OutlinedIconButtonTheme theme = context.iconButtonTheme.outlinedIconButtonTheme;
+
         return _buildIconButtonStyle(
           backgroundColor: theme.backgroundColor,
           disabledBackgroundColor: theme.disabledBackgroundColor,

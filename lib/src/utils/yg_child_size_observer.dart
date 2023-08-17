@@ -81,6 +81,7 @@ class YgRenderChildSizeObserver extends RenderBox with RenderObjectWithChildMixi
         position: position,
       );
     }
+
     return false;
   }
 }

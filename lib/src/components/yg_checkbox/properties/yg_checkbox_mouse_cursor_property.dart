@@ -16,6 +16,7 @@ class YgCheckboxMouseCursorProperty extends MaterialStateProperty<MouseCursor?> 
     if (states.contains(MaterialState.disabled)) {
       return disabled;
     }
+
     return enabled;
   }
 }

@@ -24,8 +24,10 @@ class YgCheckboxBorderColorProperty extends MaterialStateProperty<Color?> with D
       if (states.contains(MaterialState.disabled)) {
         return selectedDisabled;
       }
+
       return null;
     }
+
     return resolve(states);
   }
 
@@ -35,6 +37,7 @@ class YgCheckboxBorderColorProperty extends MaterialStateProperty<Color?> with D
       if (states.contains(MaterialState.disabled)) {
         return selectedDisabled;
       }
+
       return null;
     }
 

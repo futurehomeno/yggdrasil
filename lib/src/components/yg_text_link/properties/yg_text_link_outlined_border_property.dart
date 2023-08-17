@@ -20,6 +20,7 @@ class YgTextLinkOutlinedBorderProperty extends MaterialStateProperty<OutlinedBor
         borderRadius: BorderRadius.circular(5),
       );
     }
+
     return RoundedRectangleBorder(
       side: BorderSide.none,
       borderRadius: BorderRadius.circular(5),

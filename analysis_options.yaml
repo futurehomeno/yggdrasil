@@ -28,10 +28,8 @@ dart_code_metrics:
     # and destroys proper component responsibility separation.
     # - avoid-wrapping-in-padding
 
-    # TODO(DEV-1306): what the task says
     - avoid-redundant-async
 
-    # TODO(DEV-1309): what the task says
     - avoid-unused-parameters
 
     - avoid-unnecessary-conditionals
@@ -43,7 +41,7 @@ dart_code_metrics:
     # - prefer-match-file-name
 
     # TODO(DEV-1303): what the task says
-    # - newline-before-return
+    - newline-before-return
 
     # Sometimes it is easier to read when we can use `if (x != true)`.
     # - no-boolean-literal-compare
