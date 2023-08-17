@@ -41,11 +41,11 @@ class _TextFieldScreenState extends State<TextFieldScreen> {
             const YgListTile(title: 'Default variant'),
             const YgTextField.text(
               textInputAction: TextInputAction.next,
-              label: 'Label',
+              label: 'Default',
             ),
             const YgTextField.text(
               textInputAction: TextInputAction.next,
-              label: 'Label',
+              label: 'Medium size',
               size: YgTextFieldSize.medium,
             ),
             const YgTextField.text(

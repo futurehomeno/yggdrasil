@@ -1,14 +1,16 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:yggdrasil/src/components/fields/enums/field_state.dart';
 import 'package:yggdrasil/yggdrasil.dart';
 
-import 'widgets/_widgets.dart';
+import '../widgets/_widgets.dart';
+import 'yg_field_value_text.dart';
 
-class YgTextField extends YgTextFieldBaseWidget with StatefulWidgetDebugMixin {
+class YgTextField extends StatefulWidget with StatefulWidgetDebugMixin {
   const YgTextField({
     super.key,
-    super.controller,
-    super.focusNode,
+    this.controller,
+    this.focusNode,
     required this.label,
     required this.keyboardType,
     required this.textInputAction,
@@ -29,6 +31,7 @@ class YgTextField extends YgTextFieldBaseWidget with StatefulWidgetDebugMixin {
     this.showObscureTextButton = true,
     this.size = YgTextFieldSize.large,
     this.variant = YgTextFieldVariant.standard,
+    this.initialValue,
   })  : assert(
           maxLines == null || minLines == null || maxLines >= minLines,
           'When both minLines and maxLines are set, maxLines should be equal or higher than minLines',
@@ -44,8 +47,8 @@ class YgTextField extends YgTextFieldBaseWidget with StatefulWidgetDebugMixin {
 
   const YgTextField.email({
     super.key,
-    super.controller,
-    super.focusNode,
+    this.controller,
+    this.focusNode,
     required this.label,
     required this.textInputAction,
     this.error,
@@ -59,6 +62,7 @@ class YgTextField extends YgTextFieldBaseWidget with StatefulWidgetDebugMixin {
     this.readOnly = false,
     this.size = YgTextFieldSize.large,
     this.variant = YgTextFieldVariant.standard,
+    this.initialValue,
   })  : maxLines = 1,
         minLines = null,
         obscureText = false,
@@ -73,8 +77,8 @@ class YgTextField extends YgTextFieldBaseWidget with StatefulWidgetDebugMixin {
 
   const YgTextField.password({
     super.key,
-    super.controller,
-    super.focusNode,
+    this.controller,
+    this.focusNode,
     required this.label,
     required this.textInputAction,
     this.error,
@@ -89,6 +93,7 @@ class YgTextField extends YgTextFieldBaseWidget with StatefulWidgetDebugMixin {
     this.showObscureTextButton = true,
     this.size = YgTextFieldSize.large,
     this.variant = YgTextFieldVariant.standard,
+    this.initialValue,
   })  : maxLines = 1,
         minLines = null,
         obscureText = true,
@@ -106,8 +111,8 @@ class YgTextField extends YgTextFieldBaseWidget with StatefulWidgetDebugMixin {
 
   const YgTextField.text({
     super.key,
-    super.controller,
-    super.focusNode,
+    this.controller,
+    this.focusNode,
     required this.label,
     required this.textInputAction,
     this.error,
@@ -121,6 +126,7 @@ class YgTextField extends YgTextFieldBaseWidget with StatefulWidgetDebugMixin {
     this.readOnly = false,
     this.size = YgTextFieldSize.large,
     this.variant = YgTextFieldVariant.standard,
+    this.initialValue,
   })  : maxLines = 1,
         minLines = null,
         obscureText = false,
@@ -135,8 +141,8 @@ class YgTextField extends YgTextFieldBaseWidget with StatefulWidgetDebugMixin {
 
   const YgTextField.multiline({
     super.key,
-    super.controller,
-    super.focusNode,
+    this.controller,
+    this.focusNode,
     required this.label,
     this.error,
     this.onChanged,
@@ -151,6 +157,7 @@ class YgTextField extends YgTextFieldBaseWidget with StatefulWidgetDebugMixin {
     this.readOnly = false,
     this.size = YgTextFieldSize.large,
     this.variant = YgTextFieldVariant.standard,
+    this.initialValue,
   })  : obscureText = false,
         autocorrect = true,
         textCapitalization = TextCapitalization.sentences,
@@ -324,68 +331,122 @@ class YgTextField extends YgTextFieldBaseWidget with StatefulWidgetDebugMixin {
   /// See [FhInputFormatters].
   final List<TextInputFormatter>? inputFormatters;
 
+  /// Controls the focus of the widget.
+  final FocusNode? focusNode;
+
+  /// Controls the text being edited.
+  ///
+  /// When defined will overwrite the [initialValue].
+  final TextEditingController? controller;
+
+  /// The initial value of the text field.
+  final String? initialValue;
+
   @override
   State<YgTextField> createState() => _YgTextFieldState();
 }
 
-class _YgTextFieldState extends YgTextFieldBaseWidgetState<YgTextField> {
+class _YgTextFieldState extends State<YgTextField> {
+  /// The current states of the textfield.
+  late final FieldStates _states = <FieldState>{
+    if (widget.error != null) FieldState.error,
+    if (widget.disabled) FieldState.disabled,
+  };
+
   /// Whether to hide the obscured text or not.
   bool _obscureTextToggled = true;
 
-  /// Whether the text field is being hovered over.
-  bool _hovered = false;
+  /// The current [FocusNode].
+  late FocusNode _focusNode = widget.focusNode ?? FocusNode();
+
+  /// The current [TextEditingController].
+  late TextEditingController _controller = widget.controller ?? _createController();
+
+  @override
+  void initState() {
+    _focusNode.addListener(_focusChanged);
+    _controller.addListener(_valueUpdated);
+    super.initState();
+  }
+
+  @override
+  void didUpdateWidget(covariant YgTextField oldWidget) {
+    final TextEditingController? newController = widget.controller;
+    final FocusNode? newFocusNode = widget.focusNode;
+
+    if (newController == null) {
+      if (oldWidget.controller != null) {
+        _updateController(_createController());
+      }
+    } else if (newController != _controller) {
+      _updateController(newController);
+    }
+
+    if (newFocusNode == null) {
+      if (oldWidget.focusNode != null) {
+        _updateFocusNode(FocusNode());
+      }
+    } else if (newFocusNode != _focusNode) {
+      _updateFocusNode(newFocusNode);
+    }
+
+    _updateFieldState(FieldState.error, widget.error != null);
+    _updateFieldState(FieldState.disabled, widget.disabled);
+
+    super.didUpdateWidget(oldWidget);
+  }
+
+  void _updateFieldState(FieldState state, bool toggled) {
+    final bool isToggled = _states.contains(state);
+    if (isToggled != toggled) {
+      if (toggled) {
+        _states.add(state);
+      } else {
+        _states.remove(state);
+      }
+    }
+  }
+
+  @override
+  void dispose() {
+    _controller.removeListener(_valueUpdated);
+    _focusNode.removeListener(_focusChanged);
+    super.dispose();
+  }
 
   @override
   Widget build(BuildContext context) {
-    final Widget? suffix = _buildSuffix();
-
     final Widget layout = RepaintBoundary(
-      child: Column(
-        mainAxisSize: MainAxisSize.min,
-        children: <Widget>[
-          YgTextFieldDecoration(
-            variant: widget.variant,
-            controller: widget.controller,
-            disabled: widget.disabled,
-            error: widget.error != null,
-            focusNode: focusNode,
-            hovered: _hovered,
-            child: Padding(
-              padding: _contentPadding(suffix != null),
-              child: Row(
-                crossAxisAlignment: CrossAxisAlignment.center,
-                children: <Widget>[
-                  Expanded(
-                    child: YgTextFieldContent(
-                      onEditingComplete: widget.onEditingComplete,
-                      textInputAction: widget.textInputAction,
-                      controller: widget.controller,
-                      disabled: widget.disabled,
-                      focusNode: focusNode,
-                      label: widget.label,
-                      obscureText: _obscureText,
-                      placeholder: widget.placeholder,
-                      maxLines: widget.maxLines,
-                      minLines: widget.minLines,
-                      autocorrect: widget.autocorrect,
-                      inputFormatters: widget.inputFormatters,
-                      keyboardType: widget.keyboardType,
-                      onChanged: widget.onChanged,
-                      readOnly: widget.readOnly,
-                      textCapitalization: widget.textCapitalization,
-                    ),
-                  ),
-                  if (suffix != null) suffix,
-                ],
-              ),
-            ),
+      child: YgFieldDecoration(
+        outlined: widget.variant == YgTextFieldVariant.outlined,
+        large: widget.size == YgTextFieldSize.large,
+        error: widget.error,
+        states: _states,
+        suffix: _buildSuffix(),
+        content: YgFieldTextContent(
+          value: YgTextFieldValue(
+            autocorrect: widget.autocorrect,
+            controller: _controller,
+            focusNode: _focusNode,
+            inputFormatters: widget.inputFormatters,
+            keyboardType: widget.keyboardType,
+            label: widget.label,
+            maxLines: widget.maxLines,
+            minLines: widget.minLines,
+            obscureText: _obscureText,
+            onChanged: widget.onChanged,
+            onEditingComplete: widget.onEditingComplete,
+            placeholder: widget.placeholder,
+            readOnly: widget.readOnly,
+            states: _states,
+            textCapitalization: widget.textCapitalization,
+            textInputAction: widget.textInputAction,
           ),
-          AnimatedSize(
-            duration: duration,
-            curve: curve,
-            child: _buildErrorMessage(),
-          ),
-        ],
+          states: _states,
+          label: widget.label,
+          minLines: widget.minLines,
+          placeholder: widget.placeholder,
+        ),
       ),
     );
 
@@ -395,14 +456,14 @@ class _YgTextFieldState extends YgTextFieldBaseWidgetState<YgTextField> {
 
     return MouseRegion(
       onEnter: (_) {
-        if (!_hovered) {
-          _hovered = true;
+        if (!_states.hovered) {
+          _states.add(FieldState.hovered);
           setState(() {});
         }
       },
       onExit: (_) {
-        if (_hovered) {
-          _hovered = false;
+        if (_states.hovered) {
+          _states.remove(FieldState.hovered);
           setState(() {});
         }
       },
@@ -414,74 +475,10 @@ class _YgTextFieldState extends YgTextFieldBaseWidgetState<YgTextField> {
     );
   }
 
-  Widget _buildErrorMessage() {
-    final String? error = widget.error;
-
-    if (widget.disabled || error == null) {
-      return const FractionallySizedBox(
-        widthFactor: 1,
-      );
-    }
-
-    return Padding(
-      padding: theme.errorPadding,
-      child: Row(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: <Widget>[
-          Padding(
-            padding: theme.errorIconPadding,
-            child: SizedBox(
-              height: theme.errorTextStyle.computedHeight,
-              child: Center(
-                child: YgIcon(
-                  YgIcons.error,
-                  size: YgIconSize.small,
-                  color: theme.errorIconColor,
-                ),
-              ),
-            ),
-          ),
-          Text(
-            error,
-            style: theme.errorTextStyle,
-          ),
-        ],
-      ),
-    );
-  }
-
-  EdgeInsets _contentPadding(bool suffix) {
-    final EdgeInsets base = EdgeInsets.symmetric(
-      vertical: switch (widget.size) {
-        YgTextFieldSize.large => theme.largeVerticalContentPadding,
-        YgTextFieldSize.medium => theme.mediumVerticalContentPadding,
-      },
-      horizontal: switch (widget.variant) {
-        YgTextFieldVariant.outlined => theme.outlinedHorizontalContentPadding,
-        YgTextFieldVariant.standard => 0,
-      },
-    );
-
-    if (!suffix) return base;
-
-    return base.copyWith(right: 0);
-  }
-
-  void _handleTap() {
-    if (!focusNode.hasFocus) {
-      focusNode.requestFocus();
-    }
-  }
-
   Widget? _buildSuffix() {
     Widget? suffix = widget.suffix;
 
     final bool renderShowObscureTextIcon = suffix == null && widget.obscureText && widget.showObscureTextButton;
-
-    final EdgeInsets padding = switch (widget.variant) {
-      YgTextFieldVariant.outlined => theme.outlinedSuffixPadding,
-      YgTextFieldVariant.standard => theme.standardSuffixPadding,
-    };
 
     if (renderShowObscureTextIcon) {
       suffix = YgIcon(
@@ -490,22 +487,19 @@ class _YgTextFieldState extends YgTextFieldBaseWidgetState<YgTextField> {
     }
 
     if (suffix != null) {
-      return Padding(
-        padding: padding,
-        child: YgIconButton(
-          size: YgIconButtonSize.small,
-          onPressed: widget.disabled
-              ? null
-              : () {
-                  if (renderShowObscureTextIcon) {
-                    _obscureTextToggled ^= true;
-                    setState(() {});
-                  } else {
-                    widget.onSuffixPressed?.call();
-                  }
-                },
-          child: suffix,
-        ),
+      return YgIconButton(
+        size: YgIconButtonSize.small,
+        onPressed: widget.disabled
+            ? null
+            : () {
+                if (renderShowObscureTextIcon) {
+                  _obscureTextToggled ^= true;
+                  setState(() {});
+                } else {
+                  widget.onSuffixPressed?.call();
+                }
+              },
+        child: suffix,
       );
     }
 
@@ -530,5 +524,52 @@ class _YgTextFieldState extends YgTextFieldBaseWidgetState<YgTextField> {
     }
 
     return YgIcons.eyeClosed;
+  }
+
+  void _updateFocusNode(FocusNode focusNode) {
+    _focusNode.removeListener(_focusChanged);
+    _focusNode = focusNode;
+    _focusNode.addListener(_focusChanged);
+  }
+
+  void _updateController(TextEditingController controller) {
+    _controller.removeListener(_valueUpdated);
+    _controller = controller;
+    _controller.addListener(_valueUpdated);
+  }
+
+  TextEditingController _createController() => TextEditingController(
+        text: widget.initialValue,
+      );
+
+  void _valueUpdated() {
+    final bool filled = _controller.text.isNotEmpty;
+
+    if (filled != _states.filled) {
+      if (filled) {
+        _states.add(FieldState.filled);
+      } else {
+        _states.remove(FieldState.filled);
+      }
+      setState(() {});
+    }
+  }
+
+  void _focusChanged() {
+    final bool focused = _focusNode.hasFocus;
+    if (focused != _states.focused) {
+      if (focused) {
+        _states.add(FieldState.focused);
+      } else {
+        _states.remove(FieldState.focused);
+      }
+      setState(() {});
+    }
+  }
+
+  void _handleTap() {
+    if (!_focusNode.hasFocus) {
+      _focusNode.requestFocus();
+    }
   }
 }
