@@ -17,13 +17,13 @@ class YgTextLinkOutlinedBorderProperty extends MaterialStateProperty<OutlinedBor
           color: focusColor,
           width: 2,
         ),
-        borderRadius: BorderRadius.circular(5),
+        borderRadius: const BorderRadius.all(Radius.circular(5.0)),
       );
     }
 
-    return RoundedRectangleBorder(
+    return const RoundedRectangleBorder(
       side: BorderSide.none,
-      borderRadius: BorderRadius.circular(5),
+      borderRadius: BorderRadius.all(Radius.circular(5.0)),
     );
   }
 }

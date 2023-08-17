@@ -58,10 +58,8 @@ dart_code_metrics:
 
     - always-remove-listener
 
-    # TODO(DEV-1301): what the task says
     - consistent-update-render-object
 
-    # TODO(DEV-1300): what the task says
     - check-for-equals-in-render-object-setters
 
     - prefer-trailing-comma
@@ -84,7 +82,7 @@ dart_code_metrics:
     # - prefer-single-widget-per-file
 
     # TODO(DEV-1297): what the task says
-    # - prefer-const-border-radius
+    - prefer-const-border-radius
 
     - use-setstate-synchronously
 
