@@ -40,14 +40,12 @@ dart_code_metrics:
     # TODO(DEV-1304): what the task says
     # - prefer-match-file-name
 
-    # TODO(DEV-1303): what the task says
     - newline-before-return
 
     # Sometimes it is easier to read when we can use `if (x != true)`.
     # - no-boolean-literal-compare
 
-    # TODO(DEV-1302): what the task says
-    # - avoid-nested-conditional-expressions
+    - avoid-nested-conditional-expressions
 
     - list-all-equatable-fields
 
@@ -61,10 +59,10 @@ dart_code_metrics:
     - always-remove-listener
 
     # TODO(DEV-1301): what the task says
-    # - consistent-update-render-object
+    - consistent-update-render-object
 
     # TODO(DEV-1300): what the task says
-    # - check-for-equals-in-render-object-setters
+    - check-for-equals-in-render-object-setters
 
     - prefer-trailing-comma
 

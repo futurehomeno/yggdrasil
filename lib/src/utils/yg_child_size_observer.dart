@@ -46,6 +46,10 @@ class YgRenderChildSizeObserver extends RenderBox with RenderObjectWithChildMixi
   }
 
   set resizeCallback(ResizeCallback value) {
+    if (_resizeCallback == value) {
+      return;
+    }
+
     _resizeCallback = value;
     _resizeCallback(_lastSize);
   }
