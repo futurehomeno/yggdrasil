@@ -25,6 +25,7 @@ class YgFieldDecoration extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final Widget? suffix = this.suffix;
     final YgFieldTheme fieldTheme = context.fieldTheme;
     final YgFieldDecorationTheme theme = fieldTheme.decorationTheme;
 
@@ -52,7 +53,14 @@ class YgFieldDecoration extends StatelessWidget {
                   if (suffix != null)
                     Padding(
                       padding: _getSuffixPadding(theme),
-                      child: suffix,
+                      // We do not want the suffix to be traversable because
+                      // it breaks the next keyboard action.
+                      child: Focus(
+                        descendantsAreTraversable: false,
+                        skipTraversal: true,
+                        canRequestFocus: false,
+                        child: suffix,
+                      ),
                     ),
                 ],
               ),
