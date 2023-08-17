@@ -1,3 +1,20 @@
+# 1.4.0 [17.08.2023 08:55]
+
+[dev-feature] Added YgDebug widget for designers to inspect widget sizes.
+[dev-improvement] Replaced transparent color in material widget with MaterialType.transparent.
+[feature] Added YgCheckbox component.
+[feature] Added YgCheckboxGroup component.
+[feature] Added YgCheckboxItem component.
+[feature] Added YgCheckboxListTile component.
+[feature] Added YgGauge component.
+[feature] Added YgRadioGroup component.
+[feature] Added YgRadioItem component.
+[feature] Added YgTextInput.
+[fix] Added focus and keybinding to YgRadio.
+[fix] Error message should no longer take up space when not visible.
+[improvement] added spacing between widgets in example app.
+[improvement] added the option to switch to business theme.
+
 # 1.3.0 [11.08.2023 14:30]
 
 [feature] Added YgCircularProgressIndicator component.

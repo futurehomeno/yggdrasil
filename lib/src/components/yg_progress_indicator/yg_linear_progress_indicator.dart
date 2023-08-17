@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:yggdrasil/src/theme/progress_indicator/extensions/_extensions.dart';
 import 'package:yggdrasil/yggdrasil.dart';
 
 /// Shows progress along a line.
