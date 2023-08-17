@@ -40,7 +40,7 @@ class YgCallout extends StatelessWidget with StatelessWidgetDebugMixin {
       child: Padding(
         padding: theme.padding,
         child: Row(
-          crossAxisAlignment: title == null ? CrossAxisAlignment.center : CrossAxisAlignment.start,
+          crossAxisAlignment: CrossAxisAlignment.start,
           children: <Widget>[
             Expanded(
               child: Column(
