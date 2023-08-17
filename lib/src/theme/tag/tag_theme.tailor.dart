@@ -171,17 +171,14 @@ class YgTagTheme extends ThemeExtension<YgTagTheme> {
     return YgTagTheme(
       borderRadius: borderRadius ?? this.borderRadius,
       borderWidth: borderWidth ?? this.borderWidth,
-      disabledStrongTextStyle:
-          disabledStrongTextStyle ?? this.disabledStrongTextStyle,
+      disabledStrongTextStyle: disabledStrongTextStyle ?? this.disabledStrongTextStyle,
       disabledTextStyle: disabledTextStyle ?? this.disabledTextStyle,
       iconSize: iconSize ?? this.iconSize,
       iconSpacing: iconSpacing ?? this.iconSpacing,
       iconStrongColor: iconStrongColor ?? this.iconStrongColor,
-      iconStrongDisabledColor:
-          iconStrongDisabledColor ?? this.iconStrongDisabledColor,
+      iconStrongDisabledColor: iconStrongDisabledColor ?? this.iconStrongDisabledColor,
       iconWeakColor: iconWeakColor ?? this.iconWeakColor,
-      iconWeakDisabledColor:
-          iconWeakDisabledColor ?? this.iconWeakDisabledColor,
+      iconWeakDisabledColor: iconWeakDisabledColor ?? this.iconWeakDisabledColor,
       informativeTagTheme: informativeTagTheme ?? this.informativeTagTheme,
       negativeTagTheme: negativeTagTheme ?? this.negativeTagTheme,
       neutralTagTheme: neutralTagTheme ?? this.neutralTagTheme,
@@ -200,33 +197,23 @@ class YgTagTheme extends ThemeExtension<YgTagTheme> {
     return YgTagTheme(
       borderRadius: t < 0.5 ? borderRadius : other.borderRadius,
       borderWidth: t < 0.5 ? borderWidth : other.borderWidth,
-      disabledStrongTextStyle: TextStyle.lerp(
-          disabledStrongTextStyle, other.disabledStrongTextStyle, t)!,
-      disabledTextStyle:
-          TextStyle.lerp(disabledTextStyle, other.disabledTextStyle, t)!,
+      disabledStrongTextStyle: TextStyle.lerp(disabledStrongTextStyle, other.disabledStrongTextStyle, t)!,
+      disabledTextStyle: TextStyle.lerp(disabledTextStyle, other.disabledTextStyle, t)!,
       iconSize: t < 0.5 ? iconSize : other.iconSize,
       iconSpacing: t < 0.5 ? iconSpacing : other.iconSpacing,
       iconStrongColor: Color.lerp(iconStrongColor, other.iconStrongColor, t)!,
-      iconStrongDisabledColor: Color.lerp(
-          iconStrongDisabledColor, other.iconStrongDisabledColor, t)!,
+      iconStrongDisabledColor: Color.lerp(iconStrongDisabledColor, other.iconStrongDisabledColor, t)!,
       iconWeakColor: Color.lerp(iconWeakColor, other.iconWeakColor, t)!,
-      iconWeakDisabledColor:
-          Color.lerp(iconWeakDisabledColor, other.iconWeakDisabledColor, t)!,
-      informativeTagTheme: informativeTagTheme.lerp(
-          other.informativeTagTheme, t) as InformativeTagTheme,
-      negativeTagTheme:
-          negativeTagTheme.lerp(other.negativeTagTheme, t) as NegativeTagTheme,
-      neutralTagTheme:
-          neutralTagTheme.lerp(other.neutralTagTheme, t) as NeutralTagTheme,
+      iconWeakDisabledColor: Color.lerp(iconWeakDisabledColor, other.iconWeakDisabledColor, t)!,
+      informativeTagTheme: informativeTagTheme.lerp(other.informativeTagTheme, t) as InformativeTagTheme,
+      negativeTagTheme: negativeTagTheme.lerp(other.negativeTagTheme, t) as NegativeTagTheme,
+      neutralTagTheme: neutralTagTheme.lerp(other.neutralTagTheme, t) as NeutralTagTheme,
       paddingMedium: t < 0.5 ? paddingMedium : other.paddingMedium,
       paddingSmall: t < 0.5 ? paddingSmall : other.paddingSmall,
-      positiveTagTheme:
-          positiveTagTheme.lerp(other.positiveTagTheme, t) as PositiveTagTheme,
-      strongTextStyle:
-          TextStyle.lerp(strongTextStyle, other.strongTextStyle, t)!,
+      positiveTagTheme: positiveTagTheme.lerp(other.positiveTagTheme, t) as PositiveTagTheme,
+      strongTextStyle: TextStyle.lerp(strongTextStyle, other.strongTextStyle, t)!,
       textStyle: TextStyle.lerp(textStyle, other.textStyle, t)!,
-      warningTagTheme:
-          warningTagTheme.lerp(other.warningTagTheme, t) as WarningTagTheme,
+      warningTagTheme: warningTagTheme.lerp(other.warningTagTheme, t) as WarningTagTheme,
     );
   }
 
@@ -235,42 +222,25 @@ class YgTagTheme extends ThemeExtension<YgTagTheme> {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is YgTagTheme &&
-            const DeepCollectionEquality()
-                .equals(borderRadius, other.borderRadius) &&
-            const DeepCollectionEquality()
-                .equals(borderWidth, other.borderWidth) &&
-            const DeepCollectionEquality().equals(
-                disabledStrongTextStyle, other.disabledStrongTextStyle) &&
-            const DeepCollectionEquality()
-                .equals(disabledTextStyle, other.disabledTextStyle) &&
+            const DeepCollectionEquality().equals(borderRadius, other.borderRadius) &&
+            const DeepCollectionEquality().equals(borderWidth, other.borderWidth) &&
+            const DeepCollectionEquality().equals(disabledStrongTextStyle, other.disabledStrongTextStyle) &&
+            const DeepCollectionEquality().equals(disabledTextStyle, other.disabledTextStyle) &&
             const DeepCollectionEquality().equals(iconSize, other.iconSize) &&
-            const DeepCollectionEquality()
-                .equals(iconSpacing, other.iconSpacing) &&
-            const DeepCollectionEquality()
-                .equals(iconStrongColor, other.iconStrongColor) &&
-            const DeepCollectionEquality().equals(
-                iconStrongDisabledColor, other.iconStrongDisabledColor) &&
-            const DeepCollectionEquality()
-                .equals(iconWeakColor, other.iconWeakColor) &&
-            const DeepCollectionEquality()
-                .equals(iconWeakDisabledColor, other.iconWeakDisabledColor) &&
-            const DeepCollectionEquality()
-                .equals(informativeTagTheme, other.informativeTagTheme) &&
-            const DeepCollectionEquality()
-                .equals(negativeTagTheme, other.negativeTagTheme) &&
-            const DeepCollectionEquality()
-                .equals(neutralTagTheme, other.neutralTagTheme) &&
-            const DeepCollectionEquality()
-                .equals(paddingMedium, other.paddingMedium) &&
-            const DeepCollectionEquality()
-                .equals(paddingSmall, other.paddingSmall) &&
-            const DeepCollectionEquality()
-                .equals(positiveTagTheme, other.positiveTagTheme) &&
-            const DeepCollectionEquality()
-                .equals(strongTextStyle, other.strongTextStyle) &&
+            const DeepCollectionEquality().equals(iconSpacing, other.iconSpacing) &&
+            const DeepCollectionEquality().equals(iconStrongColor, other.iconStrongColor) &&
+            const DeepCollectionEquality().equals(iconStrongDisabledColor, other.iconStrongDisabledColor) &&
+            const DeepCollectionEquality().equals(iconWeakColor, other.iconWeakColor) &&
+            const DeepCollectionEquality().equals(iconWeakDisabledColor, other.iconWeakDisabledColor) &&
+            const DeepCollectionEquality().equals(informativeTagTheme, other.informativeTagTheme) &&
+            const DeepCollectionEquality().equals(negativeTagTheme, other.negativeTagTheme) &&
+            const DeepCollectionEquality().equals(neutralTagTheme, other.neutralTagTheme) &&
+            const DeepCollectionEquality().equals(paddingMedium, other.paddingMedium) &&
+            const DeepCollectionEquality().equals(paddingSmall, other.paddingSmall) &&
+            const DeepCollectionEquality().equals(positiveTagTheme, other.positiveTagTheme) &&
+            const DeepCollectionEquality().equals(strongTextStyle, other.strongTextStyle) &&
             const DeepCollectionEquality().equals(textStyle, other.textStyle) &&
-            const DeepCollectionEquality()
-                .equals(warningTagTheme, other.warningTagTheme));
+            const DeepCollectionEquality().equals(warningTagTheme, other.warningTagTheme));
   }
 
   @override

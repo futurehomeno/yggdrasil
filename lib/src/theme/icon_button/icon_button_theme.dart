@@ -12,16 +12,16 @@ part 'icon_button_theme.tailor.dart';
 @tailorComponent
 class _$YgIconButtonTheme {
   @themeExtension
-  static const List<StandardIconButtonTheme> standardIconButtonTheme = StandardIconButtonTheme.themes;
+  static final List<StandardIconButtonTheme> standardIconButtonTheme = StandardIconButtonTheme.themes;
 
   @themeExtension
-  static const List<FilledIconButtonTheme> filledIconButtonTheme = FilledIconButtonTheme.themes;
+  static final List<FilledIconButtonTheme> filledIconButtonTheme = FilledIconButtonTheme.themes;
 
   @themeExtension
-  static const List<TonalIconButtonTheme> tonalIconButtonTheme = TonalIconButtonTheme.themes;
+  static final List<TonalIconButtonTheme> tonalIconButtonTheme = TonalIconButtonTheme.themes;
 
   @themeExtension
-  static const List<OutlinedIconButtonTheme> outlinedIconButtonTheme = OutlinedIconButtonTheme.themes;
+  static final List<OutlinedIconButtonTheme> outlinedIconButtonTheme = OutlinedIconButtonTheme.themes;
 
   static const List<double> sizeSmall = <double>[
     consumer_light.FhDimensions.xl,

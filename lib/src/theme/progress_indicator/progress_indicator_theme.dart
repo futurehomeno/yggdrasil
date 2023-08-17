@@ -7,9 +7,9 @@ part 'progress_indicator_theme.tailor.dart';
 @tailorComponent
 class _$YgProgressIndicatorTheme {
   @themeExtension
-  static const List<CircularProgressIndicatorTheme> circularProgressIndicatorTheme =
+  static final List<CircularProgressIndicatorTheme> circularProgressIndicatorTheme =
       CircularProgressIndicatorTheme.themes;
 
   @themeExtension
-  static const List<LinearProgressIndicatorTheme> linearProgressIndicatorTheme = LinearProgressIndicatorTheme.themes;
+  static final List<LinearProgressIndicatorTheme> linearProgressIndicatorTheme = LinearProgressIndicatorTheme.themes;
 }

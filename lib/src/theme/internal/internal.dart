@@ -7,5 +7,5 @@ part 'internal.tailor.dart';
 @tailorComponent
 class _$YgInternalTheme {
   @themeExtension
-  static const List<YgScrollShadowThemes> scrollShadow = YgScrollShadowThemes.themes;
+  static final List<YgScrollShadowThemes> scrollShadow = YgScrollShadowThemes.themes;
 }

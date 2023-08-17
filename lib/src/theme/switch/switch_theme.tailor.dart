@@ -168,21 +168,15 @@ class YgSwitchTheme extends ThemeExtension<YgSwitchTheme> {
       borderRadius: t < 0.5 ? borderRadius : other.borderRadius,
       handleSize: t < 0.5 ? handleSize : other.handleSize,
       height: t < 0.5 ? height : other.height,
-      thumbDisabledColor:
-          Color.lerp(thumbDisabledColor, other.thumbDisabledColor, t)!,
-      thumbNotToggledColor:
-          Color.lerp(thumbNotToggledColor, other.thumbNotToggledColor, t)!,
+      thumbDisabledColor: Color.lerp(thumbDisabledColor, other.thumbDisabledColor, t)!,
+      thumbNotToggledColor: Color.lerp(thumbNotToggledColor, other.thumbNotToggledColor, t)!,
       thumbNullColor: Color.lerp(thumbNullColor, other.thumbNullColor, t)!,
-      thumbToggledColor:
-          Color.lerp(thumbToggledColor, other.thumbToggledColor, t)!,
-      trackDisabledColor:
-          Color.lerp(trackDisabledColor, other.trackDisabledColor, t)!,
-      trackNotToggledColor:
-          Color.lerp(trackNotToggledColor, other.trackNotToggledColor, t)!,
+      thumbToggledColor: Color.lerp(thumbToggledColor, other.thumbToggledColor, t)!,
+      trackDisabledColor: Color.lerp(trackDisabledColor, other.trackDisabledColor, t)!,
+      trackNotToggledColor: Color.lerp(trackNotToggledColor, other.trackNotToggledColor, t)!,
       trackNullColor: Color.lerp(trackNullColor, other.trackNullColor, t)!,
       trackPadding: t < 0.5 ? trackPadding : other.trackPadding,
-      trackToggledColor:
-          Color.lerp(trackToggledColor, other.trackToggledColor, t)!,
+      trackToggledColor: Color.lerp(trackToggledColor, other.trackToggledColor, t)!,
       width: t < 0.5 ? width : other.width,
     );
   }
@@ -192,33 +186,20 @@ class YgSwitchTheme extends ThemeExtension<YgSwitchTheme> {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is YgSwitchTheme &&
-            const DeepCollectionEquality()
-                .equals(animationCurve, other.animationCurve) &&
-            const DeepCollectionEquality()
-                .equals(animationDuration, other.animationDuration) &&
-            const DeepCollectionEquality()
-                .equals(borderRadius, other.borderRadius) &&
-            const DeepCollectionEquality()
-                .equals(handleSize, other.handleSize) &&
+            const DeepCollectionEquality().equals(animationCurve, other.animationCurve) &&
+            const DeepCollectionEquality().equals(animationDuration, other.animationDuration) &&
+            const DeepCollectionEquality().equals(borderRadius, other.borderRadius) &&
+            const DeepCollectionEquality().equals(handleSize, other.handleSize) &&
             const DeepCollectionEquality().equals(height, other.height) &&
-            const DeepCollectionEquality()
-                .equals(thumbDisabledColor, other.thumbDisabledColor) &&
-            const DeepCollectionEquality()
-                .equals(thumbNotToggledColor, other.thumbNotToggledColor) &&
-            const DeepCollectionEquality()
-                .equals(thumbNullColor, other.thumbNullColor) &&
-            const DeepCollectionEquality()
-                .equals(thumbToggledColor, other.thumbToggledColor) &&
-            const DeepCollectionEquality()
-                .equals(trackDisabledColor, other.trackDisabledColor) &&
-            const DeepCollectionEquality()
-                .equals(trackNotToggledColor, other.trackNotToggledColor) &&
-            const DeepCollectionEquality()
-                .equals(trackNullColor, other.trackNullColor) &&
-            const DeepCollectionEquality()
-                .equals(trackPadding, other.trackPadding) &&
-            const DeepCollectionEquality()
-                .equals(trackToggledColor, other.trackToggledColor) &&
+            const DeepCollectionEquality().equals(thumbDisabledColor, other.thumbDisabledColor) &&
+            const DeepCollectionEquality().equals(thumbNotToggledColor, other.thumbNotToggledColor) &&
+            const DeepCollectionEquality().equals(thumbNullColor, other.thumbNullColor) &&
+            const DeepCollectionEquality().equals(thumbToggledColor, other.thumbToggledColor) &&
+            const DeepCollectionEquality().equals(trackDisabledColor, other.trackDisabledColor) &&
+            const DeepCollectionEquality().equals(trackNotToggledColor, other.trackNotToggledColor) &&
+            const DeepCollectionEquality().equals(trackNullColor, other.trackNullColor) &&
+            const DeepCollectionEquality().equals(trackPadding, other.trackPadding) &&
+            const DeepCollectionEquality().equals(trackToggledColor, other.trackToggledColor) &&
             const DeepCollectionEquality().equals(width, other.width));
   }
 

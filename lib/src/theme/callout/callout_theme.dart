@@ -11,16 +11,16 @@ part 'callout_theme.tailor.dart';
 @tailorComponent
 class _$YgCalloutTheme {
   @themeExtension
-  static const List<CriticalCalloutTheme> criticalCalloutTheme = CriticalCalloutTheme.themes;
+  static final List<CriticalCalloutTheme> criticalCalloutTheme = CriticalCalloutTheme.themes;
 
   @themeExtension
-  static const List<HighlightCalloutTheme> highlightCalloutTheme = HighlightCalloutTheme.themes;
+  static final List<HighlightCalloutTheme> highlightCalloutTheme = HighlightCalloutTheme.themes;
 
   @themeExtension
-  static const List<SuccessCalloutTheme> successCalloutTheme = SuccessCalloutTheme.themes;
+  static final List<SuccessCalloutTheme> successCalloutTheme = SuccessCalloutTheme.themes;
 
   @themeExtension
-  static const List<WarningCalloutTheme> warningCalloutTheme = WarningCalloutTheme.themes;
+  static final List<WarningCalloutTheme> warningCalloutTheme = WarningCalloutTheme.themes;
 
   static const List<BorderRadius> borderRadius = <BorderRadius>[
     consumer_light.FhRadii.sm,

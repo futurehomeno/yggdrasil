@@ -11,13 +11,13 @@ part 'card_theme.tailor.dart';
 @tailorComponent
 class _$YgCardTheme {
   @themeExtension
-  static const List<ElevatedCardTheme> elevatedCardTheme = ElevatedCardTheme.themes;
+  static final List<ElevatedCardTheme> elevatedCardTheme = ElevatedCardTheme.themes;
 
   @themeExtension
-  static const List<OutlinedCardTheme> outlinedCardTheme = OutlinedCardTheme.themes;
+  static final List<OutlinedCardTheme> outlinedCardTheme = OutlinedCardTheme.themes;
 
   @themeExtension
-  static const List<FilledCardTheme> filledCardTheme = FilledCardTheme.themes;
+  static final List<FilledCardTheme> filledCardTheme = FilledCardTheme.themes;
 
   static const List<BorderRadius> borderRadius = <BorderRadius>[
     consumer_light.FhRadii.md,

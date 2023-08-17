@@ -56,8 +56,7 @@ class YgIconTapSizeTheme extends ThemeExtension<YgIconTapSizeTheme> {
   }
 
   @override
-  YgIconTapSizeTheme lerp(
-      covariant ThemeExtension<YgIconTapSizeTheme>? other, double t) {
+  YgIconTapSizeTheme lerp(covariant ThemeExtension<YgIconTapSizeTheme>? other, double t) {
     if (other is! YgIconTapSizeTheme) return this as YgIconTapSizeTheme;
     return YgIconTapSizeTheme(
       larger: t < 0.5 ? larger : other.larger,

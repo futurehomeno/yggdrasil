@@ -99,12 +99,9 @@ class YgTextFieldTheme extends ThemeExtension<YgTextFieldTheme> {
     labelDisabledColor: _$YgTextFieldTheme.labelDisabledColor[0],
     labelFocusFilledColor: _$YgTextFieldTheme.labelFocusFilledColor[0],
     labelFocusFilledTextStyle: _$YgTextFieldTheme.labelFocusFilledTextStyle[0],
-    largeVerticalContentPadding:
-        _$YgTextFieldTheme.largeVerticalContentPadding[0],
-    mediumVerticalContentPadding:
-        _$YgTextFieldTheme.mediumVerticalContentPadding[0],
-    outlinedHorizontalContentPadding:
-        _$YgTextFieldTheme.outlinedHorizontalContentPadding[0],
+    largeVerticalContentPadding: _$YgTextFieldTheme.largeVerticalContentPadding[0],
+    mediumVerticalContentPadding: _$YgTextFieldTheme.mediumVerticalContentPadding[0],
+    outlinedHorizontalContentPadding: _$YgTextFieldTheme.outlinedHorizontalContentPadding[0],
     outlinedSuffixPadding: _$YgTextFieldTheme.outlinedSuffixPadding[0],
     placeholderDefaultColor: _$YgTextFieldTheme.placeholderDefaultColor[0],
     placeholderDisabledColor: _$YgTextFieldTheme.placeholderDisabledColor[0],
@@ -137,12 +134,9 @@ class YgTextFieldTheme extends ThemeExtension<YgTextFieldTheme> {
     labelDisabledColor: _$YgTextFieldTheme.labelDisabledColor[1],
     labelFocusFilledColor: _$YgTextFieldTheme.labelFocusFilledColor[1],
     labelFocusFilledTextStyle: _$YgTextFieldTheme.labelFocusFilledTextStyle[1],
-    largeVerticalContentPadding:
-        _$YgTextFieldTheme.largeVerticalContentPadding[1],
-    mediumVerticalContentPadding:
-        _$YgTextFieldTheme.mediumVerticalContentPadding[1],
-    outlinedHorizontalContentPadding:
-        _$YgTextFieldTheme.outlinedHorizontalContentPadding[1],
+    largeVerticalContentPadding: _$YgTextFieldTheme.largeVerticalContentPadding[1],
+    mediumVerticalContentPadding: _$YgTextFieldTheme.mediumVerticalContentPadding[1],
+    outlinedHorizontalContentPadding: _$YgTextFieldTheme.outlinedHorizontalContentPadding[1],
     outlinedSuffixPadding: _$YgTextFieldTheme.outlinedSuffixPadding[1],
     placeholderDefaultColor: _$YgTextFieldTheme.placeholderDefaultColor[1],
     placeholderDisabledColor: _$YgTextFieldTheme.placeholderDisabledColor[1],
@@ -175,12 +169,9 @@ class YgTextFieldTheme extends ThemeExtension<YgTextFieldTheme> {
     labelDisabledColor: _$YgTextFieldTheme.labelDisabledColor[2],
     labelFocusFilledColor: _$YgTextFieldTheme.labelFocusFilledColor[2],
     labelFocusFilledTextStyle: _$YgTextFieldTheme.labelFocusFilledTextStyle[2],
-    largeVerticalContentPadding:
-        _$YgTextFieldTheme.largeVerticalContentPadding[2],
-    mediumVerticalContentPadding:
-        _$YgTextFieldTheme.mediumVerticalContentPadding[2],
-    outlinedHorizontalContentPadding:
-        _$YgTextFieldTheme.outlinedHorizontalContentPadding[2],
+    largeVerticalContentPadding: _$YgTextFieldTheme.largeVerticalContentPadding[2],
+    mediumVerticalContentPadding: _$YgTextFieldTheme.mediumVerticalContentPadding[2],
+    outlinedHorizontalContentPadding: _$YgTextFieldTheme.outlinedHorizontalContentPadding[2],
     outlinedSuffixPadding: _$YgTextFieldTheme.outlinedSuffixPadding[2],
     placeholderDefaultColor: _$YgTextFieldTheme.placeholderDefaultColor[2],
     placeholderDisabledColor: _$YgTextFieldTheme.placeholderDisabledColor[2],
@@ -213,12 +204,9 @@ class YgTextFieldTheme extends ThemeExtension<YgTextFieldTheme> {
     labelDisabledColor: _$YgTextFieldTheme.labelDisabledColor[3],
     labelFocusFilledColor: _$YgTextFieldTheme.labelFocusFilledColor[3],
     labelFocusFilledTextStyle: _$YgTextFieldTheme.labelFocusFilledTextStyle[3],
-    largeVerticalContentPadding:
-        _$YgTextFieldTheme.largeVerticalContentPadding[3],
-    mediumVerticalContentPadding:
-        _$YgTextFieldTheme.mediumVerticalContentPadding[3],
-    outlinedHorizontalContentPadding:
-        _$YgTextFieldTheme.outlinedHorizontalContentPadding[3],
+    largeVerticalContentPadding: _$YgTextFieldTheme.largeVerticalContentPadding[3],
+    mediumVerticalContentPadding: _$YgTextFieldTheme.mediumVerticalContentPadding[3],
+    outlinedHorizontalContentPadding: _$YgTextFieldTheme.outlinedHorizontalContentPadding[3],
     outlinedSuffixPadding: _$YgTextFieldTheme.outlinedSuffixPadding[3],
     placeholderDefaultColor: _$YgTextFieldTheme.placeholderDefaultColor[3],
     placeholderDisabledColor: _$YgTextFieldTheme.placeholderDisabledColor[3],
@@ -274,10 +262,8 @@ class YgTextFieldTheme extends ThemeExtension<YgTextFieldTheme> {
     return YgTextFieldTheme(
       animationCurve: animationCurve ?? this.animationCurve,
       animationDuration: animationDuration ?? this.animationDuration,
-      backgroundDefaultColor:
-          backgroundDefaultColor ?? this.backgroundDefaultColor,
-      backgroundDisabledColor:
-          backgroundDisabledColor ?? this.backgroundDisabledColor,
+      backgroundDefaultColor: backgroundDefaultColor ?? this.backgroundDefaultColor,
+      backgroundDisabledColor: backgroundDisabledColor ?? this.backgroundDisabledColor,
       backgroundErrorColor: backgroundErrorColor ?? this.backgroundErrorColor,
       borderDefault: borderDefault ?? this.borderDefault,
       borderDisabled: borderDisabled ?? this.borderDisabled,
@@ -291,28 +277,18 @@ class YgTextFieldTheme extends ThemeExtension<YgTextFieldTheme> {
       errorPadding: errorPadding ?? this.errorPadding,
       errorTextStyle: errorTextStyle ?? this.errorTextStyle,
       labelDefaultColor: labelDefaultColor ?? this.labelDefaultColor,
-      labelDefaultTextStyle:
-          labelDefaultTextStyle ?? this.labelDefaultTextStyle,
+      labelDefaultTextStyle: labelDefaultTextStyle ?? this.labelDefaultTextStyle,
       labelDisabledColor: labelDisabledColor ?? this.labelDisabledColor,
-      labelFocusFilledColor:
-          labelFocusFilledColor ?? this.labelFocusFilledColor,
-      labelFocusFilledTextStyle:
-          labelFocusFilledTextStyle ?? this.labelFocusFilledTextStyle,
-      largeVerticalContentPadding:
-          largeVerticalContentPadding ?? this.largeVerticalContentPadding,
-      mediumVerticalContentPadding:
-          mediumVerticalContentPadding ?? this.mediumVerticalContentPadding,
-      outlinedHorizontalContentPadding: outlinedHorizontalContentPadding ??
-          this.outlinedHorizontalContentPadding,
-      outlinedSuffixPadding:
-          outlinedSuffixPadding ?? this.outlinedSuffixPadding,
-      placeholderDefaultColor:
-          placeholderDefaultColor ?? this.placeholderDefaultColor,
-      placeholderDisabledColor:
-          placeholderDisabledColor ?? this.placeholderDisabledColor,
+      labelFocusFilledColor: labelFocusFilledColor ?? this.labelFocusFilledColor,
+      labelFocusFilledTextStyle: labelFocusFilledTextStyle ?? this.labelFocusFilledTextStyle,
+      largeVerticalContentPadding: largeVerticalContentPadding ?? this.largeVerticalContentPadding,
+      mediumVerticalContentPadding: mediumVerticalContentPadding ?? this.mediumVerticalContentPadding,
+      outlinedHorizontalContentPadding: outlinedHorizontalContentPadding ?? this.outlinedHorizontalContentPadding,
+      outlinedSuffixPadding: outlinedSuffixPadding ?? this.outlinedSuffixPadding,
+      placeholderDefaultColor: placeholderDefaultColor ?? this.placeholderDefaultColor,
+      placeholderDisabledColor: placeholderDisabledColor ?? this.placeholderDisabledColor,
       placeholderTextStyle: placeholderTextStyle ?? this.placeholderTextStyle,
-      standardSuffixPadding:
-          standardSuffixPadding ?? this.standardSuffixPadding,
+      standardSuffixPadding: standardSuffixPadding ?? this.standardSuffixPadding,
       valueDefaultColor: valueDefaultColor ?? this.valueDefaultColor,
       valueDisabledColor: valueDisabledColor ?? this.valueDisabledColor,
       valueTextStyle: valueTextStyle ?? this.valueTextStyle,
@@ -320,18 +296,14 @@ class YgTextFieldTheme extends ThemeExtension<YgTextFieldTheme> {
   }
 
   @override
-  YgTextFieldTheme lerp(
-      covariant ThemeExtension<YgTextFieldTheme>? other, double t) {
+  YgTextFieldTheme lerp(covariant ThemeExtension<YgTextFieldTheme>? other, double t) {
     if (other is! YgTextFieldTheme) return this as YgTextFieldTheme;
     return YgTextFieldTheme(
       animationCurve: t < 0.5 ? animationCurve : other.animationCurve,
       animationDuration: t < 0.5 ? animationDuration : other.animationDuration,
-      backgroundDefaultColor:
-          Color.lerp(backgroundDefaultColor, other.backgroundDefaultColor, t)!,
-      backgroundDisabledColor: Color.lerp(
-          backgroundDisabledColor, other.backgroundDisabledColor, t)!,
-      backgroundErrorColor:
-          Color.lerp(backgroundErrorColor, other.backgroundErrorColor, t)!,
+      backgroundDefaultColor: Color.lerp(backgroundDefaultColor, other.backgroundDefaultColor, t)!,
+      backgroundDisabledColor: Color.lerp(backgroundDisabledColor, other.backgroundDisabledColor, t)!,
+      backgroundErrorColor: Color.lerp(backgroundErrorColor, other.backgroundErrorColor, t)!,
       borderDefault: t < 0.5 ? borderDefault : other.borderDefault,
       borderDisabled: t < 0.5 ? borderDisabled : other.borderDisabled,
       borderError: t < 0.5 ? borderError : other.borderError,
@@ -343,39 +315,22 @@ class YgTextFieldTheme extends ThemeExtension<YgTextFieldTheme> {
       errorIconPadding: t < 0.5 ? errorIconPadding : other.errorIconPadding,
       errorPadding: t < 0.5 ? errorPadding : other.errorPadding,
       errorTextStyle: TextStyle.lerp(errorTextStyle, other.errorTextStyle, t)!,
-      labelDefaultColor:
-          Color.lerp(labelDefaultColor, other.labelDefaultColor, t)!,
-      labelDefaultTextStyle: TextStyle.lerp(
-          labelDefaultTextStyle, other.labelDefaultTextStyle, t)!,
-      labelDisabledColor:
-          Color.lerp(labelDisabledColor, other.labelDisabledColor, t)!,
-      labelFocusFilledColor:
-          Color.lerp(labelFocusFilledColor, other.labelFocusFilledColor, t)!,
-      labelFocusFilledTextStyle: TextStyle.lerp(
-          labelFocusFilledTextStyle, other.labelFocusFilledTextStyle, t)!,
-      largeVerticalContentPadding: t < 0.5
-          ? largeVerticalContentPadding
-          : other.largeVerticalContentPadding,
-      mediumVerticalContentPadding: t < 0.5
-          ? mediumVerticalContentPadding
-          : other.mediumVerticalContentPadding,
-      outlinedHorizontalContentPadding: t < 0.5
-          ? outlinedHorizontalContentPadding
-          : other.outlinedHorizontalContentPadding,
-      outlinedSuffixPadding:
-          t < 0.5 ? outlinedSuffixPadding : other.outlinedSuffixPadding,
-      placeholderDefaultColor: Color.lerp(
-          placeholderDefaultColor, other.placeholderDefaultColor, t)!,
-      placeholderDisabledColor: Color.lerp(
-          placeholderDisabledColor, other.placeholderDisabledColor, t)!,
-      placeholderTextStyle:
-          TextStyle.lerp(placeholderTextStyle, other.placeholderTextStyle, t)!,
-      standardSuffixPadding:
-          t < 0.5 ? standardSuffixPadding : other.standardSuffixPadding,
-      valueDefaultColor:
-          Color.lerp(valueDefaultColor, other.valueDefaultColor, t)!,
-      valueDisabledColor:
-          Color.lerp(valueDisabledColor, other.valueDisabledColor, t)!,
+      labelDefaultColor: Color.lerp(labelDefaultColor, other.labelDefaultColor, t)!,
+      labelDefaultTextStyle: TextStyle.lerp(labelDefaultTextStyle, other.labelDefaultTextStyle, t)!,
+      labelDisabledColor: Color.lerp(labelDisabledColor, other.labelDisabledColor, t)!,
+      labelFocusFilledColor: Color.lerp(labelFocusFilledColor, other.labelFocusFilledColor, t)!,
+      labelFocusFilledTextStyle: TextStyle.lerp(labelFocusFilledTextStyle, other.labelFocusFilledTextStyle, t)!,
+      largeVerticalContentPadding: t < 0.5 ? largeVerticalContentPadding : other.largeVerticalContentPadding,
+      mediumVerticalContentPadding: t < 0.5 ? mediumVerticalContentPadding : other.mediumVerticalContentPadding,
+      outlinedHorizontalContentPadding:
+          t < 0.5 ? outlinedHorizontalContentPadding : other.outlinedHorizontalContentPadding,
+      outlinedSuffixPadding: t < 0.5 ? outlinedSuffixPadding : other.outlinedSuffixPadding,
+      placeholderDefaultColor: Color.lerp(placeholderDefaultColor, other.placeholderDefaultColor, t)!,
+      placeholderDisabledColor: Color.lerp(placeholderDisabledColor, other.placeholderDisabledColor, t)!,
+      placeholderTextStyle: TextStyle.lerp(placeholderTextStyle, other.placeholderTextStyle, t)!,
+      standardSuffixPadding: t < 0.5 ? standardSuffixPadding : other.standardSuffixPadding,
+      valueDefaultColor: Color.lerp(valueDefaultColor, other.valueDefaultColor, t)!,
+      valueDisabledColor: Color.lerp(valueDisabledColor, other.valueDisabledColor, t)!,
       valueTextStyle: TextStyle.lerp(valueTextStyle, other.valueTextStyle, t)!,
     );
   }
@@ -385,71 +340,39 @@ class YgTextFieldTheme extends ThemeExtension<YgTextFieldTheme> {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is YgTextFieldTheme &&
+            const DeepCollectionEquality().equals(animationCurve, other.animationCurve) &&
+            const DeepCollectionEquality().equals(animationDuration, other.animationDuration) &&
+            const DeepCollectionEquality().equals(backgroundDefaultColor, other.backgroundDefaultColor) &&
+            const DeepCollectionEquality().equals(backgroundDisabledColor, other.backgroundDisabledColor) &&
+            const DeepCollectionEquality().equals(backgroundErrorColor, other.backgroundErrorColor) &&
+            const DeepCollectionEquality().equals(borderDefault, other.borderDefault) &&
+            const DeepCollectionEquality().equals(borderDisabled, other.borderDisabled) &&
+            const DeepCollectionEquality().equals(borderError, other.borderError) &&
+            const DeepCollectionEquality().equals(borderFocus, other.borderFocus) &&
+            const DeepCollectionEquality().equals(borderHover, other.borderHover) &&
+            const DeepCollectionEquality().equals(borderRadius, other.borderRadius) &&
+            const DeepCollectionEquality().equals(cursorColor, other.cursorColor) &&
+            const DeepCollectionEquality().equals(errorIconColor, other.errorIconColor) &&
+            const DeepCollectionEquality().equals(errorIconPadding, other.errorIconPadding) &&
+            const DeepCollectionEquality().equals(errorPadding, other.errorPadding) &&
+            const DeepCollectionEquality().equals(errorTextStyle, other.errorTextStyle) &&
+            const DeepCollectionEquality().equals(labelDefaultColor, other.labelDefaultColor) &&
+            const DeepCollectionEquality().equals(labelDefaultTextStyle, other.labelDefaultTextStyle) &&
+            const DeepCollectionEquality().equals(labelDisabledColor, other.labelDisabledColor) &&
+            const DeepCollectionEquality().equals(labelFocusFilledColor, other.labelFocusFilledColor) &&
+            const DeepCollectionEquality().equals(labelFocusFilledTextStyle, other.labelFocusFilledTextStyle) &&
+            const DeepCollectionEquality().equals(largeVerticalContentPadding, other.largeVerticalContentPadding) &&
+            const DeepCollectionEquality().equals(mediumVerticalContentPadding, other.mediumVerticalContentPadding) &&
             const DeepCollectionEquality()
-                .equals(animationCurve, other.animationCurve) &&
-            const DeepCollectionEquality()
-                .equals(animationDuration, other.animationDuration) &&
-            const DeepCollectionEquality()
-                .equals(backgroundDefaultColor, other.backgroundDefaultColor) &&
-            const DeepCollectionEquality().equals(
-                backgroundDisabledColor, other.backgroundDisabledColor) &&
-            const DeepCollectionEquality()
-                .equals(backgroundErrorColor, other.backgroundErrorColor) &&
-            const DeepCollectionEquality()
-                .equals(borderDefault, other.borderDefault) &&
-            const DeepCollectionEquality()
-                .equals(borderDisabled, other.borderDisabled) &&
-            const DeepCollectionEquality()
-                .equals(borderError, other.borderError) &&
-            const DeepCollectionEquality()
-                .equals(borderFocus, other.borderFocus) &&
-            const DeepCollectionEquality()
-                .equals(borderHover, other.borderHover) &&
-            const DeepCollectionEquality()
-                .equals(borderRadius, other.borderRadius) &&
-            const DeepCollectionEquality()
-                .equals(cursorColor, other.cursorColor) &&
-            const DeepCollectionEquality()
-                .equals(errorIconColor, other.errorIconColor) &&
-            const DeepCollectionEquality()
-                .equals(errorIconPadding, other.errorIconPadding) &&
-            const DeepCollectionEquality()
-                .equals(errorPadding, other.errorPadding) &&
-            const DeepCollectionEquality()
-                .equals(errorTextStyle, other.errorTextStyle) &&
-            const DeepCollectionEquality()
-                .equals(labelDefaultColor, other.labelDefaultColor) &&
-            const DeepCollectionEquality()
-                .equals(labelDefaultTextStyle, other.labelDefaultTextStyle) &&
-            const DeepCollectionEquality()
-                .equals(labelDisabledColor, other.labelDisabledColor) &&
-            const DeepCollectionEquality()
-                .equals(labelFocusFilledColor, other.labelFocusFilledColor) &&
-            const DeepCollectionEquality().equals(
-                labelFocusFilledTextStyle, other.labelFocusFilledTextStyle) &&
-            const DeepCollectionEquality().equals(largeVerticalContentPadding,
-                other.largeVerticalContentPadding) &&
-            const DeepCollectionEquality().equals(mediumVerticalContentPadding,
-                other.mediumVerticalContentPadding) &&
-            const DeepCollectionEquality().equals(
-                outlinedHorizontalContentPadding,
-                other.outlinedHorizontalContentPadding) &&
-            const DeepCollectionEquality()
-                .equals(outlinedSuffixPadding, other.outlinedSuffixPadding) &&
-            const DeepCollectionEquality().equals(
-                placeholderDefaultColor, other.placeholderDefaultColor) &&
-            const DeepCollectionEquality().equals(
-                placeholderDisabledColor, other.placeholderDisabledColor) &&
-            const DeepCollectionEquality()
-                .equals(placeholderTextStyle, other.placeholderTextStyle) &&
-            const DeepCollectionEquality()
-                .equals(standardSuffixPadding, other.standardSuffixPadding) &&
-            const DeepCollectionEquality()
-                .equals(valueDefaultColor, other.valueDefaultColor) &&
-            const DeepCollectionEquality()
-                .equals(valueDisabledColor, other.valueDisabledColor) &&
-            const DeepCollectionEquality()
-                .equals(valueTextStyle, other.valueTextStyle));
+                .equals(outlinedHorizontalContentPadding, other.outlinedHorizontalContentPadding) &&
+            const DeepCollectionEquality().equals(outlinedSuffixPadding, other.outlinedSuffixPadding) &&
+            const DeepCollectionEquality().equals(placeholderDefaultColor, other.placeholderDefaultColor) &&
+            const DeepCollectionEquality().equals(placeholderDisabledColor, other.placeholderDisabledColor) &&
+            const DeepCollectionEquality().equals(placeholderTextStyle, other.placeholderTextStyle) &&
+            const DeepCollectionEquality().equals(standardSuffixPadding, other.standardSuffixPadding) &&
+            const DeepCollectionEquality().equals(valueDefaultColor, other.valueDefaultColor) &&
+            const DeepCollectionEquality().equals(valueDisabledColor, other.valueDisabledColor) &&
+            const DeepCollectionEquality().equals(valueTextStyle, other.valueTextStyle));
   }
 
   @override

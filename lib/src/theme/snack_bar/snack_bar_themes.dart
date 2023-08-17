@@ -12,13 +12,13 @@ part 'snack_bar_themes.tailor.dart';
 @tailorComponent
 class _$YgSnackBarTheme {
   @themeExtension
-  static const List<CriticalSnackBarTheme> criticalSnackBarTheme = CriticalSnackBarTheme.themes;
+  static final List<CriticalSnackBarTheme> criticalSnackBarTheme = CriticalSnackBarTheme.themes;
 
   @themeExtension
-  static const List<HighlightSnackBarTheme> highlightSnackBarTheme = HighlightSnackBarTheme.themes;
+  static final List<HighlightSnackBarTheme> highlightSnackBarTheme = HighlightSnackBarTheme.themes;
 
   @themeExtension
-  static const List<SuccessSnackBarTheme> successSnackBarTheme = SuccessSnackBarTheme.themes;
+  static final List<SuccessSnackBarTheme> successSnackBarTheme = SuccessSnackBarTheme.themes;
 
   static const List<Color> backgroundColor = <Color>[
     consumer_light.FhColors.backgroundInverse,

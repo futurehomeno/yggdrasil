@@ -67,23 +67,18 @@ class YgCheckboxTheme extends ThemeExtension<YgCheckboxTheme> {
     checkboxGroupTheme: _$YgCheckboxTheme.checkboxGroupTheme[0],
     checkboxItemTheme: _$YgCheckboxTheme.checkboxItemTheme[0],
     deselectedBorderColor: _$YgCheckboxTheme.deselectedBorderColor[0],
-    deselectedDisabledBorderColor:
-        _$YgCheckboxTheme.deselectedDisabledBorderColor[0],
-    deselectedDisabledFillColor:
-        _$YgCheckboxTheme.deselectedDisabledFillColor[0],
+    deselectedDisabledBorderColor: _$YgCheckboxTheme.deselectedDisabledBorderColor[0],
+    deselectedDisabledFillColor: _$YgCheckboxTheme.deselectedDisabledFillColor[0],
     deselectedErrorBorderColor: _$YgCheckboxTheme.deselectedErrorBorderColor[0],
     deselectedErrorFillColor: _$YgCheckboxTheme.deselectedErrorFillColor[0],
     deselectedFillColor: _$YgCheckboxTheme.deselectedFillColor[0],
-    deselectedHoveredBorderColor:
-        _$YgCheckboxTheme.deselectedHoveredBorderColor[0],
+    deselectedHoveredBorderColor: _$YgCheckboxTheme.deselectedHoveredBorderColor[0],
     deselectedHoveredFillColor: _$YgCheckboxTheme.deselectedHoveredFillColor[0],
-    deselectedPressedBorderColor:
-        _$YgCheckboxTheme.deselectedPressedBorderColor[0],
+    deselectedPressedBorderColor: _$YgCheckboxTheme.deselectedPressedBorderColor[0],
     deselectedPressedFillColor: _$YgCheckboxTheme.deselectedPressedFillColor[0],
     padding: _$YgCheckboxTheme.padding[0],
     selectedCheckColor: _$YgCheckboxTheme.selectedCheckColor[0],
-    selectedDisabledBorderColor:
-        _$YgCheckboxTheme.selectedDisabledBorderColor[0],
+    selectedDisabledBorderColor: _$YgCheckboxTheme.selectedDisabledBorderColor[0],
     selectedDisabledCheckColor: _$YgCheckboxTheme.selectedDisabledCheckColor[0],
     selectedDisabledFillColor: _$YgCheckboxTheme.selectedDisabledFillColor[0],
     selectedErrorFillColor: _$YgCheckboxTheme.selectedErrorFillColor[0],
@@ -99,23 +94,18 @@ class YgCheckboxTheme extends ThemeExtension<YgCheckboxTheme> {
     checkboxGroupTheme: _$YgCheckboxTheme.checkboxGroupTheme[1],
     checkboxItemTheme: _$YgCheckboxTheme.checkboxItemTheme[1],
     deselectedBorderColor: _$YgCheckboxTheme.deselectedBorderColor[1],
-    deselectedDisabledBorderColor:
-        _$YgCheckboxTheme.deselectedDisabledBorderColor[1],
-    deselectedDisabledFillColor:
-        _$YgCheckboxTheme.deselectedDisabledFillColor[1],
+    deselectedDisabledBorderColor: _$YgCheckboxTheme.deselectedDisabledBorderColor[1],
+    deselectedDisabledFillColor: _$YgCheckboxTheme.deselectedDisabledFillColor[1],
     deselectedErrorBorderColor: _$YgCheckboxTheme.deselectedErrorBorderColor[1],
     deselectedErrorFillColor: _$YgCheckboxTheme.deselectedErrorFillColor[1],
     deselectedFillColor: _$YgCheckboxTheme.deselectedFillColor[1],
-    deselectedHoveredBorderColor:
-        _$YgCheckboxTheme.deselectedHoveredBorderColor[1],
+    deselectedHoveredBorderColor: _$YgCheckboxTheme.deselectedHoveredBorderColor[1],
     deselectedHoveredFillColor: _$YgCheckboxTheme.deselectedHoveredFillColor[1],
-    deselectedPressedBorderColor:
-        _$YgCheckboxTheme.deselectedPressedBorderColor[1],
+    deselectedPressedBorderColor: _$YgCheckboxTheme.deselectedPressedBorderColor[1],
     deselectedPressedFillColor: _$YgCheckboxTheme.deselectedPressedFillColor[1],
     padding: _$YgCheckboxTheme.padding[1],
     selectedCheckColor: _$YgCheckboxTheme.selectedCheckColor[1],
-    selectedDisabledBorderColor:
-        _$YgCheckboxTheme.selectedDisabledBorderColor[1],
+    selectedDisabledBorderColor: _$YgCheckboxTheme.selectedDisabledBorderColor[1],
     selectedDisabledCheckColor: _$YgCheckboxTheme.selectedDisabledCheckColor[1],
     selectedDisabledFillColor: _$YgCheckboxTheme.selectedDisabledFillColor[1],
     selectedErrorFillColor: _$YgCheckboxTheme.selectedErrorFillColor[1],
@@ -131,23 +121,18 @@ class YgCheckboxTheme extends ThemeExtension<YgCheckboxTheme> {
     checkboxGroupTheme: _$YgCheckboxTheme.checkboxGroupTheme[2],
     checkboxItemTheme: _$YgCheckboxTheme.checkboxItemTheme[2],
     deselectedBorderColor: _$YgCheckboxTheme.deselectedBorderColor[2],
-    deselectedDisabledBorderColor:
-        _$YgCheckboxTheme.deselectedDisabledBorderColor[2],
-    deselectedDisabledFillColor:
-        _$YgCheckboxTheme.deselectedDisabledFillColor[2],
+    deselectedDisabledBorderColor: _$YgCheckboxTheme.deselectedDisabledBorderColor[2],
+    deselectedDisabledFillColor: _$YgCheckboxTheme.deselectedDisabledFillColor[2],
     deselectedErrorBorderColor: _$YgCheckboxTheme.deselectedErrorBorderColor[2],
     deselectedErrorFillColor: _$YgCheckboxTheme.deselectedErrorFillColor[2],
     deselectedFillColor: _$YgCheckboxTheme.deselectedFillColor[2],
-    deselectedHoveredBorderColor:
-        _$YgCheckboxTheme.deselectedHoveredBorderColor[2],
+    deselectedHoveredBorderColor: _$YgCheckboxTheme.deselectedHoveredBorderColor[2],
     deselectedHoveredFillColor: _$YgCheckboxTheme.deselectedHoveredFillColor[2],
-    deselectedPressedBorderColor:
-        _$YgCheckboxTheme.deselectedPressedBorderColor[2],
+    deselectedPressedBorderColor: _$YgCheckboxTheme.deselectedPressedBorderColor[2],
     deselectedPressedFillColor: _$YgCheckboxTheme.deselectedPressedFillColor[2],
     padding: _$YgCheckboxTheme.padding[2],
     selectedCheckColor: _$YgCheckboxTheme.selectedCheckColor[2],
-    selectedDisabledBorderColor:
-        _$YgCheckboxTheme.selectedDisabledBorderColor[2],
+    selectedDisabledBorderColor: _$YgCheckboxTheme.selectedDisabledBorderColor[2],
     selectedDisabledCheckColor: _$YgCheckboxTheme.selectedDisabledCheckColor[2],
     selectedDisabledFillColor: _$YgCheckboxTheme.selectedDisabledFillColor[2],
     selectedErrorFillColor: _$YgCheckboxTheme.selectedErrorFillColor[2],
@@ -163,23 +148,18 @@ class YgCheckboxTheme extends ThemeExtension<YgCheckboxTheme> {
     checkboxGroupTheme: _$YgCheckboxTheme.checkboxGroupTheme[3],
     checkboxItemTheme: _$YgCheckboxTheme.checkboxItemTheme[3],
     deselectedBorderColor: _$YgCheckboxTheme.deselectedBorderColor[3],
-    deselectedDisabledBorderColor:
-        _$YgCheckboxTheme.deselectedDisabledBorderColor[3],
-    deselectedDisabledFillColor:
-        _$YgCheckboxTheme.deselectedDisabledFillColor[3],
+    deselectedDisabledBorderColor: _$YgCheckboxTheme.deselectedDisabledBorderColor[3],
+    deselectedDisabledFillColor: _$YgCheckboxTheme.deselectedDisabledFillColor[3],
     deselectedErrorBorderColor: _$YgCheckboxTheme.deselectedErrorBorderColor[3],
     deselectedErrorFillColor: _$YgCheckboxTheme.deselectedErrorFillColor[3],
     deselectedFillColor: _$YgCheckboxTheme.deselectedFillColor[3],
-    deselectedHoveredBorderColor:
-        _$YgCheckboxTheme.deselectedHoveredBorderColor[3],
+    deselectedHoveredBorderColor: _$YgCheckboxTheme.deselectedHoveredBorderColor[3],
     deselectedHoveredFillColor: _$YgCheckboxTheme.deselectedHoveredFillColor[3],
-    deselectedPressedBorderColor:
-        _$YgCheckboxTheme.deselectedPressedBorderColor[3],
+    deselectedPressedBorderColor: _$YgCheckboxTheme.deselectedPressedBorderColor[3],
     deselectedPressedFillColor: _$YgCheckboxTheme.deselectedPressedFillColor[3],
     padding: _$YgCheckboxTheme.padding[3],
     selectedCheckColor: _$YgCheckboxTheme.selectedCheckColor[3],
-    selectedDisabledBorderColor:
-        _$YgCheckboxTheme.selectedDisabledBorderColor[3],
+    selectedDisabledBorderColor: _$YgCheckboxTheme.selectedDisabledBorderColor[3],
     selectedDisabledCheckColor: _$YgCheckboxTheme.selectedDisabledCheckColor[3],
     selectedDisabledFillColor: _$YgCheckboxTheme.selectedDisabledFillColor[3],
     selectedErrorFillColor: _$YgCheckboxTheme.selectedErrorFillColor[3],
@@ -228,92 +208,56 @@ class YgCheckboxTheme extends ThemeExtension<YgCheckboxTheme> {
       animationDuration: animationDuration ?? this.animationDuration,
       checkboxGroupTheme: checkboxGroupTheme ?? this.checkboxGroupTheme,
       checkboxItemTheme: checkboxItemTheme ?? this.checkboxItemTheme,
-      deselectedBorderColor:
-          deselectedBorderColor ?? this.deselectedBorderColor,
-      deselectedDisabledBorderColor:
-          deselectedDisabledBorderColor ?? this.deselectedDisabledBorderColor,
-      deselectedDisabledFillColor:
-          deselectedDisabledFillColor ?? this.deselectedDisabledFillColor,
-      deselectedErrorBorderColor:
-          deselectedErrorBorderColor ?? this.deselectedErrorBorderColor,
-      deselectedErrorFillColor:
-          deselectedErrorFillColor ?? this.deselectedErrorFillColor,
+      deselectedBorderColor: deselectedBorderColor ?? this.deselectedBorderColor,
+      deselectedDisabledBorderColor: deselectedDisabledBorderColor ?? this.deselectedDisabledBorderColor,
+      deselectedDisabledFillColor: deselectedDisabledFillColor ?? this.deselectedDisabledFillColor,
+      deselectedErrorBorderColor: deselectedErrorBorderColor ?? this.deselectedErrorBorderColor,
+      deselectedErrorFillColor: deselectedErrorFillColor ?? this.deselectedErrorFillColor,
       deselectedFillColor: deselectedFillColor ?? this.deselectedFillColor,
-      deselectedHoveredBorderColor:
-          deselectedHoveredBorderColor ?? this.deselectedHoveredBorderColor,
-      deselectedHoveredFillColor:
-          deselectedHoveredFillColor ?? this.deselectedHoveredFillColor,
-      deselectedPressedBorderColor:
-          deselectedPressedBorderColor ?? this.deselectedPressedBorderColor,
-      deselectedPressedFillColor:
-          deselectedPressedFillColor ?? this.deselectedPressedFillColor,
+      deselectedHoveredBorderColor: deselectedHoveredBorderColor ?? this.deselectedHoveredBorderColor,
+      deselectedHoveredFillColor: deselectedHoveredFillColor ?? this.deselectedHoveredFillColor,
+      deselectedPressedBorderColor: deselectedPressedBorderColor ?? this.deselectedPressedBorderColor,
+      deselectedPressedFillColor: deselectedPressedFillColor ?? this.deselectedPressedFillColor,
       padding: padding ?? this.padding,
       selectedCheckColor: selectedCheckColor ?? this.selectedCheckColor,
-      selectedDisabledBorderColor:
-          selectedDisabledBorderColor ?? this.selectedDisabledBorderColor,
-      selectedDisabledCheckColor:
-          selectedDisabledCheckColor ?? this.selectedDisabledCheckColor,
-      selectedDisabledFillColor:
-          selectedDisabledFillColor ?? this.selectedDisabledFillColor,
-      selectedErrorFillColor:
-          selectedErrorFillColor ?? this.selectedErrorFillColor,
+      selectedDisabledBorderColor: selectedDisabledBorderColor ?? this.selectedDisabledBorderColor,
+      selectedDisabledCheckColor: selectedDisabledCheckColor ?? this.selectedDisabledCheckColor,
+      selectedDisabledFillColor: selectedDisabledFillColor ?? this.selectedDisabledFillColor,
+      selectedErrorFillColor: selectedErrorFillColor ?? this.selectedErrorFillColor,
       selectedFillColor: selectedFillColor ?? this.selectedFillColor,
-      selectedHoveredFillColor:
-          selectedHoveredFillColor ?? this.selectedHoveredFillColor,
-      selectedPressedFillColor:
-          selectedPressedFillColor ?? this.selectedPressedFillColor,
+      selectedHoveredFillColor: selectedHoveredFillColor ?? this.selectedHoveredFillColor,
+      selectedPressedFillColor: selectedPressedFillColor ?? this.selectedPressedFillColor,
       size: size ?? this.size,
     );
   }
 
   @override
-  YgCheckboxTheme lerp(
-      covariant ThemeExtension<YgCheckboxTheme>? other, double t) {
+  YgCheckboxTheme lerp(covariant ThemeExtension<YgCheckboxTheme>? other, double t) {
     if (other is! YgCheckboxTheme) return this as YgCheckboxTheme;
     return YgCheckboxTheme(
       animationCurve: t < 0.5 ? animationCurve : other.animationCurve,
       animationDuration: t < 0.5 ? animationDuration : other.animationDuration,
-      checkboxGroupTheme: checkboxGroupTheme.lerp(other.checkboxGroupTheme, t)
-          as YgCheckboxGroupTheme,
-      checkboxItemTheme: checkboxItemTheme.lerp(other.checkboxItemTheme, t)
-          as YgCheckboxItemTheme,
-      deselectedBorderColor:
-          Color.lerp(deselectedBorderColor, other.deselectedBorderColor, t)!,
-      deselectedDisabledBorderColor: Color.lerp(deselectedDisabledBorderColor,
-          other.deselectedDisabledBorderColor, t)!,
-      deselectedDisabledFillColor: Color.lerp(
-          deselectedDisabledFillColor, other.deselectedDisabledFillColor, t)!,
-      deselectedErrorBorderColor: Color.lerp(
-          deselectedErrorBorderColor, other.deselectedErrorBorderColor, t)!,
-      deselectedErrorFillColor: Color.lerp(
-          deselectedErrorFillColor, other.deselectedErrorFillColor, t)!,
-      deselectedFillColor:
-          Color.lerp(deselectedFillColor, other.deselectedFillColor, t)!,
-      deselectedHoveredBorderColor: Color.lerp(
-          deselectedHoveredBorderColor, other.deselectedHoveredBorderColor, t)!,
-      deselectedHoveredFillColor: Color.lerp(
-          deselectedHoveredFillColor, other.deselectedHoveredFillColor, t)!,
-      deselectedPressedBorderColor: Color.lerp(
-          deselectedPressedBorderColor, other.deselectedPressedBorderColor, t)!,
-      deselectedPressedFillColor: Color.lerp(
-          deselectedPressedFillColor, other.deselectedPressedFillColor, t)!,
+      checkboxGroupTheme: checkboxGroupTheme.lerp(other.checkboxGroupTheme, t) as YgCheckboxGroupTheme,
+      checkboxItemTheme: checkboxItemTheme.lerp(other.checkboxItemTheme, t) as YgCheckboxItemTheme,
+      deselectedBorderColor: Color.lerp(deselectedBorderColor, other.deselectedBorderColor, t)!,
+      deselectedDisabledBorderColor: Color.lerp(deselectedDisabledBorderColor, other.deselectedDisabledBorderColor, t)!,
+      deselectedDisabledFillColor: Color.lerp(deselectedDisabledFillColor, other.deselectedDisabledFillColor, t)!,
+      deselectedErrorBorderColor: Color.lerp(deselectedErrorBorderColor, other.deselectedErrorBorderColor, t)!,
+      deselectedErrorFillColor: Color.lerp(deselectedErrorFillColor, other.deselectedErrorFillColor, t)!,
+      deselectedFillColor: Color.lerp(deselectedFillColor, other.deselectedFillColor, t)!,
+      deselectedHoveredBorderColor: Color.lerp(deselectedHoveredBorderColor, other.deselectedHoveredBorderColor, t)!,
+      deselectedHoveredFillColor: Color.lerp(deselectedHoveredFillColor, other.deselectedHoveredFillColor, t)!,
+      deselectedPressedBorderColor: Color.lerp(deselectedPressedBorderColor, other.deselectedPressedBorderColor, t)!,
+      deselectedPressedFillColor: Color.lerp(deselectedPressedFillColor, other.deselectedPressedFillColor, t)!,
       padding: t < 0.5 ? padding : other.padding,
-      selectedCheckColor:
-          Color.lerp(selectedCheckColor, other.selectedCheckColor, t)!,
-      selectedDisabledBorderColor: Color.lerp(
-          selectedDisabledBorderColor, other.selectedDisabledBorderColor, t)!,
-      selectedDisabledCheckColor: Color.lerp(
-          selectedDisabledCheckColor, other.selectedDisabledCheckColor, t)!,
-      selectedDisabledFillColor: Color.lerp(
-          selectedDisabledFillColor, other.selectedDisabledFillColor, t)!,
-      selectedErrorFillColor:
-          Color.lerp(selectedErrorFillColor, other.selectedErrorFillColor, t)!,
-      selectedFillColor:
-          Color.lerp(selectedFillColor, other.selectedFillColor, t)!,
-      selectedHoveredFillColor: Color.lerp(
-          selectedHoveredFillColor, other.selectedHoveredFillColor, t)!,
-      selectedPressedFillColor: Color.lerp(
-          selectedPressedFillColor, other.selectedPressedFillColor, t)!,
+      selectedCheckColor: Color.lerp(selectedCheckColor, other.selectedCheckColor, t)!,
+      selectedDisabledBorderColor: Color.lerp(selectedDisabledBorderColor, other.selectedDisabledBorderColor, t)!,
+      selectedDisabledCheckColor: Color.lerp(selectedDisabledCheckColor, other.selectedDisabledCheckColor, t)!,
+      selectedDisabledFillColor: Color.lerp(selectedDisabledFillColor, other.selectedDisabledFillColor, t)!,
+      selectedErrorFillColor: Color.lerp(selectedErrorFillColor, other.selectedErrorFillColor, t)!,
+      selectedFillColor: Color.lerp(selectedFillColor, other.selectedFillColor, t)!,
+      selectedHoveredFillColor: Color.lerp(selectedHoveredFillColor, other.selectedHoveredFillColor, t)!,
+      selectedPressedFillColor: Color.lerp(selectedPressedFillColor, other.selectedPressedFillColor, t)!,
       size: t < 0.5 ? size : other.size,
     );
   }
@@ -323,51 +267,29 @@ class YgCheckboxTheme extends ThemeExtension<YgCheckboxTheme> {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is YgCheckboxTheme &&
-            const DeepCollectionEquality()
-                .equals(animationCurve, other.animationCurve) &&
-            const DeepCollectionEquality()
-                .equals(animationDuration, other.animationDuration) &&
-            const DeepCollectionEquality()
-                .equals(checkboxGroupTheme, other.checkboxGroupTheme) &&
-            const DeepCollectionEquality()
-                .equals(checkboxItemTheme, other.checkboxItemTheme) &&
-            const DeepCollectionEquality()
-                .equals(deselectedBorderColor, other.deselectedBorderColor) &&
-            const DeepCollectionEquality().equals(deselectedDisabledBorderColor,
-                other.deselectedDisabledBorderColor) &&
-            const DeepCollectionEquality().equals(deselectedDisabledFillColor,
-                other.deselectedDisabledFillColor) &&
-            const DeepCollectionEquality().equals(
-                deselectedErrorBorderColor, other.deselectedErrorBorderColor) &&
-            const DeepCollectionEquality().equals(
-                deselectedErrorFillColor, other.deselectedErrorFillColor) &&
-            const DeepCollectionEquality()
-                .equals(deselectedFillColor, other.deselectedFillColor) &&
-            const DeepCollectionEquality().equals(deselectedHoveredBorderColor,
-                other.deselectedHoveredBorderColor) &&
-            const DeepCollectionEquality().equals(
-                deselectedHoveredFillColor, other.deselectedHoveredFillColor) &&
-            const DeepCollectionEquality().equals(deselectedPressedBorderColor,
-                other.deselectedPressedBorderColor) &&
-            const DeepCollectionEquality().equals(
-                deselectedPressedFillColor, other.deselectedPressedFillColor) &&
+            const DeepCollectionEquality().equals(animationCurve, other.animationCurve) &&
+            const DeepCollectionEquality().equals(animationDuration, other.animationDuration) &&
+            const DeepCollectionEquality().equals(checkboxGroupTheme, other.checkboxGroupTheme) &&
+            const DeepCollectionEquality().equals(checkboxItemTheme, other.checkboxItemTheme) &&
+            const DeepCollectionEquality().equals(deselectedBorderColor, other.deselectedBorderColor) &&
+            const DeepCollectionEquality().equals(deselectedDisabledBorderColor, other.deselectedDisabledBorderColor) &&
+            const DeepCollectionEquality().equals(deselectedDisabledFillColor, other.deselectedDisabledFillColor) &&
+            const DeepCollectionEquality().equals(deselectedErrorBorderColor, other.deselectedErrorBorderColor) &&
+            const DeepCollectionEquality().equals(deselectedErrorFillColor, other.deselectedErrorFillColor) &&
+            const DeepCollectionEquality().equals(deselectedFillColor, other.deselectedFillColor) &&
+            const DeepCollectionEquality().equals(deselectedHoveredBorderColor, other.deselectedHoveredBorderColor) &&
+            const DeepCollectionEquality().equals(deselectedHoveredFillColor, other.deselectedHoveredFillColor) &&
+            const DeepCollectionEquality().equals(deselectedPressedBorderColor, other.deselectedPressedBorderColor) &&
+            const DeepCollectionEquality().equals(deselectedPressedFillColor, other.deselectedPressedFillColor) &&
             const DeepCollectionEquality().equals(padding, other.padding) &&
-            const DeepCollectionEquality()
-                .equals(selectedCheckColor, other.selectedCheckColor) &&
-            const DeepCollectionEquality().equals(selectedDisabledBorderColor,
-                other.selectedDisabledBorderColor) &&
-            const DeepCollectionEquality().equals(
-                selectedDisabledCheckColor, other.selectedDisabledCheckColor) &&
-            const DeepCollectionEquality().equals(
-                selectedDisabledFillColor, other.selectedDisabledFillColor) &&
-            const DeepCollectionEquality()
-                .equals(selectedErrorFillColor, other.selectedErrorFillColor) &&
-            const DeepCollectionEquality()
-                .equals(selectedFillColor, other.selectedFillColor) &&
-            const DeepCollectionEquality().equals(
-                selectedHoveredFillColor, other.selectedHoveredFillColor) &&
-            const DeepCollectionEquality().equals(
-                selectedPressedFillColor, other.selectedPressedFillColor) &&
+            const DeepCollectionEquality().equals(selectedCheckColor, other.selectedCheckColor) &&
+            const DeepCollectionEquality().equals(selectedDisabledBorderColor, other.selectedDisabledBorderColor) &&
+            const DeepCollectionEquality().equals(selectedDisabledCheckColor, other.selectedDisabledCheckColor) &&
+            const DeepCollectionEquality().equals(selectedDisabledFillColor, other.selectedDisabledFillColor) &&
+            const DeepCollectionEquality().equals(selectedErrorFillColor, other.selectedErrorFillColor) &&
+            const DeepCollectionEquality().equals(selectedFillColor, other.selectedFillColor) &&
+            const DeepCollectionEquality().equals(selectedHoveredFillColor, other.selectedHoveredFillColor) &&
+            const DeepCollectionEquality().equals(selectedPressedFillColor, other.selectedPressedFillColor) &&
             const DeepCollectionEquality().equals(size, other.size));
   }
 

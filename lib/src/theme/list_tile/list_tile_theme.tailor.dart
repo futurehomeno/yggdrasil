@@ -36,8 +36,7 @@ class YgListTileTheme extends ThemeExtension<YgListTileTheme> {
     iconSize: _$YgListTileTheme.iconSize[0],
     outerPadding: _$YgListTileTheme.outerPadding[0],
     splashRadius: _$YgListTileTheme.splashRadius[0],
-    subtitleSubtitleIconSpacing:
-        _$YgListTileTheme.subtitleSubtitleIconSpacing[0],
+    subtitleSubtitleIconSpacing: _$YgListTileTheme.subtitleSubtitleIconSpacing[0],
     subtitleTextStyle: _$YgListTileTheme.subtitleTextStyle[0],
     titleInfoSpacing: _$YgListTileTheme.titleInfoSpacing[0],
     titleSubtitleSpacing: _$YgListTileTheme.titleSubtitleSpacing[0],
@@ -49,8 +48,7 @@ class YgListTileTheme extends ThemeExtension<YgListTileTheme> {
     iconSize: _$YgListTileTheme.iconSize[1],
     outerPadding: _$YgListTileTheme.outerPadding[1],
     splashRadius: _$YgListTileTheme.splashRadius[1],
-    subtitleSubtitleIconSpacing:
-        _$YgListTileTheme.subtitleSubtitleIconSpacing[1],
+    subtitleSubtitleIconSpacing: _$YgListTileTheme.subtitleSubtitleIconSpacing[1],
     subtitleTextStyle: _$YgListTileTheme.subtitleTextStyle[1],
     titleInfoSpacing: _$YgListTileTheme.titleInfoSpacing[1],
     titleSubtitleSpacing: _$YgListTileTheme.titleSubtitleSpacing[1],
@@ -62,8 +60,7 @@ class YgListTileTheme extends ThemeExtension<YgListTileTheme> {
     iconSize: _$YgListTileTheme.iconSize[2],
     outerPadding: _$YgListTileTheme.outerPadding[2],
     splashRadius: _$YgListTileTheme.splashRadius[2],
-    subtitleSubtitleIconSpacing:
-        _$YgListTileTheme.subtitleSubtitleIconSpacing[2],
+    subtitleSubtitleIconSpacing: _$YgListTileTheme.subtitleSubtitleIconSpacing[2],
     subtitleTextStyle: _$YgListTileTheme.subtitleTextStyle[2],
     titleInfoSpacing: _$YgListTileTheme.titleInfoSpacing[2],
     titleSubtitleSpacing: _$YgListTileTheme.titleSubtitleSpacing[2],
@@ -75,8 +72,7 @@ class YgListTileTheme extends ThemeExtension<YgListTileTheme> {
     iconSize: _$YgListTileTheme.iconSize[3],
     outerPadding: _$YgListTileTheme.outerPadding[3],
     splashRadius: _$YgListTileTheme.splashRadius[3],
-    subtitleSubtitleIconSpacing:
-        _$YgListTileTheme.subtitleSubtitleIconSpacing[3],
+    subtitleSubtitleIconSpacing: _$YgListTileTheme.subtitleSubtitleIconSpacing[3],
     subtitleTextStyle: _$YgListTileTheme.subtitleTextStyle[3],
     titleInfoSpacing: _$YgListTileTheme.titleInfoSpacing[3],
     titleSubtitleSpacing: _$YgListTileTheme.titleSubtitleSpacing[3],
@@ -107,8 +103,7 @@ class YgListTileTheme extends ThemeExtension<YgListTileTheme> {
       iconSize: iconSize ?? this.iconSize,
       outerPadding: outerPadding ?? this.outerPadding,
       splashRadius: splashRadius ?? this.splashRadius,
-      subtitleSubtitleIconSpacing:
-          subtitleSubtitleIconSpacing ?? this.subtitleSubtitleIconSpacing,
+      subtitleSubtitleIconSpacing: subtitleSubtitleIconSpacing ?? this.subtitleSubtitleIconSpacing,
       subtitleTextStyle: subtitleTextStyle ?? this.subtitleTextStyle,
       titleInfoSpacing: titleInfoSpacing ?? this.titleInfoSpacing,
       titleSubtitleSpacing: titleSubtitleSpacing ?? this.titleSubtitleSpacing,
@@ -117,22 +112,17 @@ class YgListTileTheme extends ThemeExtension<YgListTileTheme> {
   }
 
   @override
-  YgListTileTheme lerp(
-      covariant ThemeExtension<YgListTileTheme>? other, double t) {
+  YgListTileTheme lerp(covariant ThemeExtension<YgListTileTheme>? other, double t) {
     if (other is! YgListTileTheme) return this as YgListTileTheme;
     return YgListTileTheme(
       contentSpacing: t < 0.5 ? contentSpacing : other.contentSpacing,
       iconSize: t < 0.5 ? iconSize : other.iconSize,
       outerPadding: t < 0.5 ? outerPadding : other.outerPadding,
       splashRadius: t < 0.5 ? splashRadius : other.splashRadius,
-      subtitleSubtitleIconSpacing: t < 0.5
-          ? subtitleSubtitleIconSpacing
-          : other.subtitleSubtitleIconSpacing,
-      subtitleTextStyle:
-          TextStyle.lerp(subtitleTextStyle, other.subtitleTextStyle, t)!,
+      subtitleSubtitleIconSpacing: t < 0.5 ? subtitleSubtitleIconSpacing : other.subtitleSubtitleIconSpacing,
+      subtitleTextStyle: TextStyle.lerp(subtitleTextStyle, other.subtitleTextStyle, t)!,
       titleInfoSpacing: t < 0.5 ? titleInfoSpacing : other.titleInfoSpacing,
-      titleSubtitleSpacing:
-          t < 0.5 ? titleSubtitleSpacing : other.titleSubtitleSpacing,
+      titleSubtitleSpacing: t < 0.5 ? titleSubtitleSpacing : other.titleSubtitleSpacing,
       titleTextStyle: TextStyle.lerp(titleTextStyle, other.titleTextStyle, t)!,
     );
   }
@@ -142,23 +132,15 @@ class YgListTileTheme extends ThemeExtension<YgListTileTheme> {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is YgListTileTheme &&
-            const DeepCollectionEquality()
-                .equals(contentSpacing, other.contentSpacing) &&
+            const DeepCollectionEquality().equals(contentSpacing, other.contentSpacing) &&
             const DeepCollectionEquality().equals(iconSize, other.iconSize) &&
-            const DeepCollectionEquality()
-                .equals(outerPadding, other.outerPadding) &&
-            const DeepCollectionEquality()
-                .equals(splashRadius, other.splashRadius) &&
-            const DeepCollectionEquality().equals(subtitleSubtitleIconSpacing,
-                other.subtitleSubtitleIconSpacing) &&
-            const DeepCollectionEquality()
-                .equals(subtitleTextStyle, other.subtitleTextStyle) &&
-            const DeepCollectionEquality()
-                .equals(titleInfoSpacing, other.titleInfoSpacing) &&
-            const DeepCollectionEquality()
-                .equals(titleSubtitleSpacing, other.titleSubtitleSpacing) &&
-            const DeepCollectionEquality()
-                .equals(titleTextStyle, other.titleTextStyle));
+            const DeepCollectionEquality().equals(outerPadding, other.outerPadding) &&
+            const DeepCollectionEquality().equals(splashRadius, other.splashRadius) &&
+            const DeepCollectionEquality().equals(subtitleSubtitleIconSpacing, other.subtitleSubtitleIconSpacing) &&
+            const DeepCollectionEquality().equals(subtitleTextStyle, other.subtitleTextStyle) &&
+            const DeepCollectionEquality().equals(titleInfoSpacing, other.titleInfoSpacing) &&
+            const DeepCollectionEquality().equals(titleSubtitleSpacing, other.titleSubtitleSpacing) &&
+            const DeepCollectionEquality().equals(titleTextStyle, other.titleTextStyle));
   }
 
   @override

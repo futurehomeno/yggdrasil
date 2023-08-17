@@ -55,8 +55,7 @@ class YgBottomSheetTheme extends ThemeExtension<YgBottomSheetTheme> {
     handleWidth: _$YgBottomSheetTheme.handleWidth[0],
     headerHorizontalPadding: _$YgBottomSheetTheme.headerHorizontalPadding[0],
     movementAnimationCurve: _$YgBottomSheetTheme.movementAnimationCurve[0],
-    movementAnimationDuration:
-        _$YgBottomSheetTheme.movementAnimationDuration[0],
+    movementAnimationDuration: _$YgBottomSheetTheme.movementAnimationDuration[0],
     scrimColor: _$YgBottomSheetTheme.scrimColor[0],
     titleStyle: _$YgBottomSheetTheme.titleStyle[0],
     verticalOuterPadding: _$YgBottomSheetTheme.verticalOuterPadding[0],
@@ -74,8 +73,7 @@ class YgBottomSheetTheme extends ThemeExtension<YgBottomSheetTheme> {
     handleWidth: _$YgBottomSheetTheme.handleWidth[1],
     headerHorizontalPadding: _$YgBottomSheetTheme.headerHorizontalPadding[1],
     movementAnimationCurve: _$YgBottomSheetTheme.movementAnimationCurve[1],
-    movementAnimationDuration:
-        _$YgBottomSheetTheme.movementAnimationDuration[1],
+    movementAnimationDuration: _$YgBottomSheetTheme.movementAnimationDuration[1],
     scrimColor: _$YgBottomSheetTheme.scrimColor[1],
     titleStyle: _$YgBottomSheetTheme.titleStyle[1],
     verticalOuterPadding: _$YgBottomSheetTheme.verticalOuterPadding[1],
@@ -93,8 +91,7 @@ class YgBottomSheetTheme extends ThemeExtension<YgBottomSheetTheme> {
     handleWidth: _$YgBottomSheetTheme.handleWidth[2],
     headerHorizontalPadding: _$YgBottomSheetTheme.headerHorizontalPadding[2],
     movementAnimationCurve: _$YgBottomSheetTheme.movementAnimationCurve[2],
-    movementAnimationDuration:
-        _$YgBottomSheetTheme.movementAnimationDuration[2],
+    movementAnimationDuration: _$YgBottomSheetTheme.movementAnimationDuration[2],
     scrimColor: _$YgBottomSheetTheme.scrimColor[2],
     titleStyle: _$YgBottomSheetTheme.titleStyle[2],
     verticalOuterPadding: _$YgBottomSheetTheme.verticalOuterPadding[2],
@@ -112,8 +109,7 @@ class YgBottomSheetTheme extends ThemeExtension<YgBottomSheetTheme> {
     handleWidth: _$YgBottomSheetTheme.handleWidth[3],
     headerHorizontalPadding: _$YgBottomSheetTheme.headerHorizontalPadding[3],
     movementAnimationCurve: _$YgBottomSheetTheme.movementAnimationCurve[3],
-    movementAnimationDuration:
-        _$YgBottomSheetTheme.movementAnimationDuration[3],
+    movementAnimationDuration: _$YgBottomSheetTheme.movementAnimationDuration[3],
     scrimColor: _$YgBottomSheetTheme.scrimColor[3],
     titleStyle: _$YgBottomSheetTheme.titleStyle[3],
     verticalOuterPadding: _$YgBottomSheetTheme.verticalOuterPadding[3],
@@ -154,12 +150,9 @@ class YgBottomSheetTheme extends ThemeExtension<YgBottomSheetTheme> {
       handleHeight: handleHeight ?? this.handleHeight,
       handleTitleSpacing: handleTitleSpacing ?? this.handleTitleSpacing,
       handleWidth: handleWidth ?? this.handleWidth,
-      headerHorizontalPadding:
-          headerHorizontalPadding ?? this.headerHorizontalPadding,
-      movementAnimationCurve:
-          movementAnimationCurve ?? this.movementAnimationCurve,
-      movementAnimationDuration:
-          movementAnimationDuration ?? this.movementAnimationDuration,
+      headerHorizontalPadding: headerHorizontalPadding ?? this.headerHorizontalPadding,
+      movementAnimationCurve: movementAnimationCurve ?? this.movementAnimationCurve,
+      movementAnimationDuration: movementAnimationDuration ?? this.movementAnimationDuration,
       scrimColor: scrimColor ?? this.scrimColor,
       titleStyle: titleStyle ?? this.titleStyle,
       verticalOuterPadding: verticalOuterPadding ?? this.verticalOuterPadding,
@@ -167,8 +160,7 @@ class YgBottomSheetTheme extends ThemeExtension<YgBottomSheetTheme> {
   }
 
   @override
-  YgBottomSheetTheme lerp(
-      covariant ThemeExtension<YgBottomSheetTheme>? other, double t) {
+  YgBottomSheetTheme lerp(covariant ThemeExtension<YgBottomSheetTheme>? other, double t) {
     if (other is! YgBottomSheetTheme) return this as YgBottomSheetTheme;
     return YgBottomSheetTheme(
       backgroundColor: Color.lerp(backgroundColor, other.backgroundColor, t)!,
@@ -178,19 +170,14 @@ class YgBottomSheetTheme extends ThemeExtension<YgBottomSheetTheme> {
       footerPadding: t < 0.5 ? footerPadding : other.footerPadding,
       handleColor: Color.lerp(handleColor, other.handleColor, t)!,
       handleHeight: t < 0.5 ? handleHeight : other.handleHeight,
-      handleTitleSpacing:
-          t < 0.5 ? handleTitleSpacing : other.handleTitleSpacing,
+      handleTitleSpacing: t < 0.5 ? handleTitleSpacing : other.handleTitleSpacing,
       handleWidth: t < 0.5 ? handleWidth : other.handleWidth,
-      headerHorizontalPadding:
-          t < 0.5 ? headerHorizontalPadding : other.headerHorizontalPadding,
-      movementAnimationCurve:
-          t < 0.5 ? movementAnimationCurve : other.movementAnimationCurve,
-      movementAnimationDuration:
-          t < 0.5 ? movementAnimationDuration : other.movementAnimationDuration,
+      headerHorizontalPadding: t < 0.5 ? headerHorizontalPadding : other.headerHorizontalPadding,
+      movementAnimationCurve: t < 0.5 ? movementAnimationCurve : other.movementAnimationCurve,
+      movementAnimationDuration: t < 0.5 ? movementAnimationDuration : other.movementAnimationDuration,
       scrimColor: Color.lerp(scrimColor, other.scrimColor, t)!,
       titleStyle: TextStyle.lerp(titleStyle, other.titleStyle, t)!,
-      verticalOuterPadding:
-          t < 0.5 ? verticalOuterPadding : other.verticalOuterPadding,
+      verticalOuterPadding: t < 0.5 ? verticalOuterPadding : other.verticalOuterPadding,
     );
   }
 
@@ -199,36 +186,21 @@ class YgBottomSheetTheme extends ThemeExtension<YgBottomSheetTheme> {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is YgBottomSheetTheme &&
-            const DeepCollectionEquality()
-                .equals(backgroundColor, other.backgroundColor) &&
-            const DeepCollectionEquality()
-                .equals(borderRadius, other.borderRadius) &&
-            const DeepCollectionEquality()
-                .equals(contentSpacing, other.contentSpacing) &&
-            const DeepCollectionEquality()
-                .equals(flingVelocity, other.flingVelocity) &&
-            const DeepCollectionEquality()
-                .equals(footerPadding, other.footerPadding) &&
-            const DeepCollectionEquality()
-                .equals(handleColor, other.handleColor) &&
-            const DeepCollectionEquality()
-                .equals(handleHeight, other.handleHeight) &&
-            const DeepCollectionEquality()
-                .equals(handleTitleSpacing, other.handleTitleSpacing) &&
-            const DeepCollectionEquality()
-                .equals(handleWidth, other.handleWidth) &&
-            const DeepCollectionEquality().equals(
-                headerHorizontalPadding, other.headerHorizontalPadding) &&
-            const DeepCollectionEquality()
-                .equals(movementAnimationCurve, other.movementAnimationCurve) &&
-            const DeepCollectionEquality().equals(
-                movementAnimationDuration, other.movementAnimationDuration) &&
-            const DeepCollectionEquality()
-                .equals(scrimColor, other.scrimColor) &&
-            const DeepCollectionEquality()
-                .equals(titleStyle, other.titleStyle) &&
-            const DeepCollectionEquality()
-                .equals(verticalOuterPadding, other.verticalOuterPadding));
+            const DeepCollectionEquality().equals(backgroundColor, other.backgroundColor) &&
+            const DeepCollectionEquality().equals(borderRadius, other.borderRadius) &&
+            const DeepCollectionEquality().equals(contentSpacing, other.contentSpacing) &&
+            const DeepCollectionEquality().equals(flingVelocity, other.flingVelocity) &&
+            const DeepCollectionEquality().equals(footerPadding, other.footerPadding) &&
+            const DeepCollectionEquality().equals(handleColor, other.handleColor) &&
+            const DeepCollectionEquality().equals(handleHeight, other.handleHeight) &&
+            const DeepCollectionEquality().equals(handleTitleSpacing, other.handleTitleSpacing) &&
+            const DeepCollectionEquality().equals(handleWidth, other.handleWidth) &&
+            const DeepCollectionEquality().equals(headerHorizontalPadding, other.headerHorizontalPadding) &&
+            const DeepCollectionEquality().equals(movementAnimationCurve, other.movementAnimationCurve) &&
+            const DeepCollectionEquality().equals(movementAnimationDuration, other.movementAnimationDuration) &&
+            const DeepCollectionEquality().equals(scrimColor, other.scrimColor) &&
+            const DeepCollectionEquality().equals(titleStyle, other.titleStyle) &&
+            const DeepCollectionEquality().equals(verticalOuterPadding, other.verticalOuterPadding));
   }
 
   @override

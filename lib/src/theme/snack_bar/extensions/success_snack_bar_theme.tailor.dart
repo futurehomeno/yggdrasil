@@ -56,13 +56,11 @@ class SuccessSnackBarTheme extends ThemeExtension<SuccessSnackBarTheme> {
   }
 
   @override
-  SuccessSnackBarTheme lerp(
-      covariant ThemeExtension<SuccessSnackBarTheme>? other, double t) {
+  SuccessSnackBarTheme lerp(covariant ThemeExtension<SuccessSnackBarTheme>? other, double t) {
     if (other is! SuccessSnackBarTheme) return this as SuccessSnackBarTheme;
     return SuccessSnackBarTheme(
       iconColor: Color.lerp(iconColor, other.iconColor, t)!,
-      iconContainerColor:
-          Color.lerp(iconContainerColor, other.iconContainerColor, t)!,
+      iconContainerColor: Color.lerp(iconContainerColor, other.iconContainerColor, t)!,
     );
   }
 
@@ -72,8 +70,7 @@ class SuccessSnackBarTheme extends ThemeExtension<SuccessSnackBarTheme> {
         (other.runtimeType == runtimeType &&
             other is SuccessSnackBarTheme &&
             const DeepCollectionEquality().equals(iconColor, other.iconColor) &&
-            const DeepCollectionEquality()
-                .equals(iconContainerColor, other.iconContainerColor));
+            const DeepCollectionEquality().equals(iconContainerColor, other.iconContainerColor));
   }
 
   @override

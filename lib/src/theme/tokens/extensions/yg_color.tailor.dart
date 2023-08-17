@@ -169,7 +169,7 @@ class YgColor extends ThemeExtension<YgColor> {
   final Color textWarning;
   final Color textWeak;
 
-  static const final YgColor consumerLight = YgColor(
+  static final YgColor consumerLight = YgColor(
     actionCriticalDefault: _$YgColor.actionCriticalDefault[0],
     actionCriticalDisabled: _$YgColor.actionCriticalDisabled[0],
     actionCriticalHovered: _$YgColor.actionCriticalHovered[0],
@@ -250,7 +250,7 @@ class YgColor extends ThemeExtension<YgColor> {
     textWeak: _$YgColor.textWeak[0],
   );
 
-  static const final YgColor consumerDark = YgColor(
+  static final YgColor consumerDark = YgColor(
     actionCriticalDefault: _$YgColor.actionCriticalDefault[1],
     actionCriticalDisabled: _$YgColor.actionCriticalDisabled[1],
     actionCriticalHovered: _$YgColor.actionCriticalHovered[1],
@@ -331,7 +331,7 @@ class YgColor extends ThemeExtension<YgColor> {
     textWeak: _$YgColor.textWeak[1],
   );
 
-  static const final YgColor professionalLight = YgColor(
+  static final YgColor professionalLight = YgColor(
     actionCriticalDefault: _$YgColor.actionCriticalDefault[2],
     actionCriticalDisabled: _$YgColor.actionCriticalDisabled[2],
     actionCriticalHovered: _$YgColor.actionCriticalHovered[2],
@@ -412,7 +412,7 @@ class YgColor extends ThemeExtension<YgColor> {
     textWeak: _$YgColor.textWeak[2],
   );
 
-  static const final YgColor professionalDark = YgColor(
+  static final YgColor professionalDark = YgColor(
     actionCriticalDefault: _$YgColor.actionCriticalDefault[3],
     actionCriticalDisabled: _$YgColor.actionCriticalDisabled[3],
     actionCriticalHovered: _$YgColor.actionCriticalHovered[3],
@@ -493,7 +493,7 @@ class YgColor extends ThemeExtension<YgColor> {
     textWeak: _$YgColor.textWeak[3],
   );
 
-  static const final themes = [
+  static final themes = [
     consumerLight,
     consumerDark,
     professionalLight,
@@ -582,69 +582,44 @@ class YgColor extends ThemeExtension<YgColor> {
     Color? textWeak,
   }) {
     return YgColor(
-      actionCriticalDefault:
-          actionCriticalDefault ?? this.actionCriticalDefault,
-      actionCriticalDisabled:
-          actionCriticalDisabled ?? this.actionCriticalDisabled,
-      actionCriticalHovered:
-          actionCriticalHovered ?? this.actionCriticalHovered,
-      actionCriticalPressed:
-          actionCriticalPressed ?? this.actionCriticalPressed,
-      actionCriticalSelected:
-          actionCriticalSelected ?? this.actionCriticalSelected,
-      actionPrimaryDisabled:
-          actionPrimaryDisabled ?? this.actionPrimaryDisabled,
-      actionSecondaryDisabled:
-          actionSecondaryDisabled ?? this.actionSecondaryDisabled,
-      backgroundAccentDefault:
-          backgroundAccentDefault ?? this.backgroundAccentDefault,
-      backgroundAccentStrong:
-          backgroundAccentStrong ?? this.backgroundAccentStrong,
+      actionCriticalDefault: actionCriticalDefault ?? this.actionCriticalDefault,
+      actionCriticalDisabled: actionCriticalDisabled ?? this.actionCriticalDisabled,
+      actionCriticalHovered: actionCriticalHovered ?? this.actionCriticalHovered,
+      actionCriticalPressed: actionCriticalPressed ?? this.actionCriticalPressed,
+      actionCriticalSelected: actionCriticalSelected ?? this.actionCriticalSelected,
+      actionPrimaryDisabled: actionPrimaryDisabled ?? this.actionPrimaryDisabled,
+      actionSecondaryDisabled: actionSecondaryDisabled ?? this.actionSecondaryDisabled,
+      backgroundAccentDefault: backgroundAccentDefault ?? this.backgroundAccentDefault,
+      backgroundAccentStrong: backgroundAccentStrong ?? this.backgroundAccentStrong,
       backgroundAccentWeak: backgroundAccentWeak ?? this.backgroundAccentWeak,
-      backgroundCriticalDefault:
-          backgroundCriticalDefault ?? this.backgroundCriticalDefault,
-      backgroundCriticalStrong:
-          backgroundCriticalStrong ?? this.backgroundCriticalStrong,
-      backgroundCriticalWeak:
-          backgroundCriticalWeak ?? this.backgroundCriticalWeak,
+      backgroundCriticalDefault: backgroundCriticalDefault ?? this.backgroundCriticalDefault,
+      backgroundCriticalStrong: backgroundCriticalStrong ?? this.backgroundCriticalStrong,
+      backgroundCriticalWeak: backgroundCriticalWeak ?? this.backgroundCriticalWeak,
       backgroundDefault: backgroundDefault ?? this.backgroundDefault,
       backgroundDisabled: backgroundDisabled ?? this.backgroundDisabled,
-      backgroundHighlightDefault:
-          backgroundHighlightDefault ?? this.backgroundHighlightDefault,
-      backgroundHighlightStrong:
-          backgroundHighlightStrong ?? this.backgroundHighlightStrong,
-      backgroundHighlightWeak:
-          backgroundHighlightWeak ?? this.backgroundHighlightWeak,
+      backgroundHighlightDefault: backgroundHighlightDefault ?? this.backgroundHighlightDefault,
+      backgroundHighlightStrong: backgroundHighlightStrong ?? this.backgroundHighlightStrong,
+      backgroundHighlightWeak: backgroundHighlightWeak ?? this.backgroundHighlightWeak,
       backgroundInverse: backgroundInverse ?? this.backgroundInverse,
       backgroundOverlay: backgroundOverlay ?? this.backgroundOverlay,
-      backgroundSuccessDefault:
-          backgroundSuccessDefault ?? this.backgroundSuccessDefault,
-      backgroundSuccessStrong:
-          backgroundSuccessStrong ?? this.backgroundSuccessStrong,
-      backgroundSuccessWeak:
-          backgroundSuccessWeak ?? this.backgroundSuccessWeak,
-      backgroundTransparent:
-          backgroundTransparent ?? this.backgroundTransparent,
-      backgroundWarningDefault:
-          backgroundWarningDefault ?? this.backgroundWarningDefault,
-      backgroundWarningStrong:
-          backgroundWarningStrong ?? this.backgroundWarningStrong,
-      backgroundWarningWeak:
-          backgroundWarningWeak ?? this.backgroundWarningWeak,
+      backgroundSuccessDefault: backgroundSuccessDefault ?? this.backgroundSuccessDefault,
+      backgroundSuccessStrong: backgroundSuccessStrong ?? this.backgroundSuccessStrong,
+      backgroundSuccessWeak: backgroundSuccessWeak ?? this.backgroundSuccessWeak,
+      backgroundTransparent: backgroundTransparent ?? this.backgroundTransparent,
+      backgroundWarningDefault: backgroundWarningDefault ?? this.backgroundWarningDefault,
+      backgroundWarningStrong: backgroundWarningStrong ?? this.backgroundWarningStrong,
+      backgroundWarningWeak: backgroundWarningWeak ?? this.backgroundWarningWeak,
       backgroundWeak: backgroundWeak ?? this.backgroundWeak,
       borderAccentDefault: borderAccentDefault ?? this.borderAccentDefault,
       borderAccentStrong: borderAccentStrong ?? this.borderAccentStrong,
       borderAccentWeak: borderAccentWeak ?? this.borderAccentWeak,
-      borderCriticalDefault:
-          borderCriticalDefault ?? this.borderCriticalDefault,
+      borderCriticalDefault: borderCriticalDefault ?? this.borderCriticalDefault,
       borderCriticalStrong: borderCriticalStrong ?? this.borderCriticalStrong,
       borderCriticalWeak: borderCriticalWeak ?? this.borderCriticalWeak,
       borderDefault: borderDefault ?? this.borderDefault,
       borderDisabled: borderDisabled ?? this.borderDisabled,
-      borderHighlightDefault:
-          borderHighlightDefault ?? this.borderHighlightDefault,
-      borderHighlightStrong:
-          borderHighlightStrong ?? this.borderHighlightStrong,
+      borderHighlightDefault: borderHighlightDefault ?? this.borderHighlightDefault,
+      borderHighlightStrong: borderHighlightStrong ?? this.borderHighlightStrong,
       borderHighlightWeak: borderHighlightWeak ?? this.borderHighlightWeak,
       borderInverse: borderInverse ?? this.borderInverse,
       borderSuccessDefault: borderSuccessDefault ?? this.borderSuccessDefault,
@@ -665,26 +640,16 @@ class YgColor extends ThemeExtension<YgColor> {
       iconTransparent: iconTransparent ?? this.iconTransparent,
       iconWarning: iconWarning ?? this.iconWarning,
       iconWeak: iconWeak ?? this.iconWeak,
-      interactiveCriticalDefault:
-          interactiveCriticalDefault ?? this.interactiveCriticalDefault,
-      interactiveCriticalDisabled:
-          interactiveCriticalDisabled ?? this.interactiveCriticalDisabled,
-      interactiveCriticalHovered:
-          interactiveCriticalHovered ?? this.interactiveCriticalHovered,
-      interactiveCriticalPressed:
-          interactiveCriticalPressed ?? this.interactiveCriticalPressed,
-      interactiveCriticalSelected:
-          interactiveCriticalSelected ?? this.interactiveCriticalSelected,
-      interactiveHighlightDefault:
-          interactiveHighlightDefault ?? this.interactiveHighlightDefault,
-      interactiveHighlightDisabled:
-          interactiveHighlightDisabled ?? this.interactiveHighlightDisabled,
-      interactiveHighlightHovered:
-          interactiveHighlightHovered ?? this.interactiveHighlightHovered,
-      interactiveHighlightPressed:
-          interactiveHighlightPressed ?? this.interactiveHighlightPressed,
-      interactiveHighlightSelected:
-          interactiveHighlightSelected ?? this.interactiveHighlightSelected,
+      interactiveCriticalDefault: interactiveCriticalDefault ?? this.interactiveCriticalDefault,
+      interactiveCriticalDisabled: interactiveCriticalDisabled ?? this.interactiveCriticalDisabled,
+      interactiveCriticalHovered: interactiveCriticalHovered ?? this.interactiveCriticalHovered,
+      interactiveCriticalPressed: interactiveCriticalPressed ?? this.interactiveCriticalPressed,
+      interactiveCriticalSelected: interactiveCriticalSelected ?? this.interactiveCriticalSelected,
+      interactiveHighlightDefault: interactiveHighlightDefault ?? this.interactiveHighlightDefault,
+      interactiveHighlightDisabled: interactiveHighlightDisabled ?? this.interactiveHighlightDisabled,
+      interactiveHighlightHovered: interactiveHighlightHovered ?? this.interactiveHighlightHovered,
+      interactiveHighlightPressed: interactiveHighlightPressed ?? this.interactiveHighlightPressed,
+      interactiveHighlightSelected: interactiveHighlightSelected ?? this.interactiveHighlightSelected,
       textAccent: textAccent ?? this.textAccent,
       textCritical: textCritical ?? this.textCritical,
       textDefault: textDefault ?? this.textDefault,
@@ -702,96 +667,53 @@ class YgColor extends ThemeExtension<YgColor> {
   YgColor lerp(covariant ThemeExtension<YgColor>? other, double t) {
     if (other is! YgColor) return this as YgColor;
     return YgColor(
-      actionCriticalDefault:
-          Color.lerp(actionCriticalDefault, other.actionCriticalDefault, t)!,
-      actionCriticalDisabled:
-          Color.lerp(actionCriticalDisabled, other.actionCriticalDisabled, t)!,
-      actionCriticalHovered:
-          Color.lerp(actionCriticalHovered, other.actionCriticalHovered, t)!,
-      actionCriticalPressed:
-          Color.lerp(actionCriticalPressed, other.actionCriticalPressed, t)!,
-      actionCriticalSelected:
-          Color.lerp(actionCriticalSelected, other.actionCriticalSelected, t)!,
-      actionPrimaryDisabled:
-          Color.lerp(actionPrimaryDisabled, other.actionPrimaryDisabled, t)!,
-      actionSecondaryDisabled: Color.lerp(
-          actionSecondaryDisabled, other.actionSecondaryDisabled, t)!,
-      backgroundAccentDefault: Color.lerp(
-          backgroundAccentDefault, other.backgroundAccentDefault, t)!,
-      backgroundAccentStrong:
-          Color.lerp(backgroundAccentStrong, other.backgroundAccentStrong, t)!,
-      backgroundAccentWeak:
-          Color.lerp(backgroundAccentWeak, other.backgroundAccentWeak, t)!,
-      backgroundCriticalDefault: Color.lerp(
-          backgroundCriticalDefault, other.backgroundCriticalDefault, t)!,
-      backgroundCriticalStrong: Color.lerp(
-          backgroundCriticalStrong, other.backgroundCriticalStrong, t)!,
-      backgroundCriticalWeak:
-          Color.lerp(backgroundCriticalWeak, other.backgroundCriticalWeak, t)!,
-      backgroundDefault:
-          Color.lerp(backgroundDefault, other.backgroundDefault, t)!,
-      backgroundDisabled:
-          Color.lerp(backgroundDisabled, other.backgroundDisabled, t)!,
-      backgroundHighlightDefault: Color.lerp(
-          backgroundHighlightDefault, other.backgroundHighlightDefault, t)!,
-      backgroundHighlightStrong: Color.lerp(
-          backgroundHighlightStrong, other.backgroundHighlightStrong, t)!,
-      backgroundHighlightWeak: Color.lerp(
-          backgroundHighlightWeak, other.backgroundHighlightWeak, t)!,
-      backgroundInverse:
-          Color.lerp(backgroundInverse, other.backgroundInverse, t)!,
-      backgroundOverlay:
-          Color.lerp(backgroundOverlay, other.backgroundOverlay, t)!,
-      backgroundSuccessDefault: Color.lerp(
-          backgroundSuccessDefault, other.backgroundSuccessDefault, t)!,
-      backgroundSuccessStrong: Color.lerp(
-          backgroundSuccessStrong, other.backgroundSuccessStrong, t)!,
-      backgroundSuccessWeak:
-          Color.lerp(backgroundSuccessWeak, other.backgroundSuccessWeak, t)!,
-      backgroundTransparent:
-          Color.lerp(backgroundTransparent, other.backgroundTransparent, t)!,
-      backgroundWarningDefault: Color.lerp(
-          backgroundWarningDefault, other.backgroundWarningDefault, t)!,
-      backgroundWarningStrong: Color.lerp(
-          backgroundWarningStrong, other.backgroundWarningStrong, t)!,
-      backgroundWarningWeak:
-          Color.lerp(backgroundWarningWeak, other.backgroundWarningWeak, t)!,
+      actionCriticalDefault: Color.lerp(actionCriticalDefault, other.actionCriticalDefault, t)!,
+      actionCriticalDisabled: Color.lerp(actionCriticalDisabled, other.actionCriticalDisabled, t)!,
+      actionCriticalHovered: Color.lerp(actionCriticalHovered, other.actionCriticalHovered, t)!,
+      actionCriticalPressed: Color.lerp(actionCriticalPressed, other.actionCriticalPressed, t)!,
+      actionCriticalSelected: Color.lerp(actionCriticalSelected, other.actionCriticalSelected, t)!,
+      actionPrimaryDisabled: Color.lerp(actionPrimaryDisabled, other.actionPrimaryDisabled, t)!,
+      actionSecondaryDisabled: Color.lerp(actionSecondaryDisabled, other.actionSecondaryDisabled, t)!,
+      backgroundAccentDefault: Color.lerp(backgroundAccentDefault, other.backgroundAccentDefault, t)!,
+      backgroundAccentStrong: Color.lerp(backgroundAccentStrong, other.backgroundAccentStrong, t)!,
+      backgroundAccentWeak: Color.lerp(backgroundAccentWeak, other.backgroundAccentWeak, t)!,
+      backgroundCriticalDefault: Color.lerp(backgroundCriticalDefault, other.backgroundCriticalDefault, t)!,
+      backgroundCriticalStrong: Color.lerp(backgroundCriticalStrong, other.backgroundCriticalStrong, t)!,
+      backgroundCriticalWeak: Color.lerp(backgroundCriticalWeak, other.backgroundCriticalWeak, t)!,
+      backgroundDefault: Color.lerp(backgroundDefault, other.backgroundDefault, t)!,
+      backgroundDisabled: Color.lerp(backgroundDisabled, other.backgroundDisabled, t)!,
+      backgroundHighlightDefault: Color.lerp(backgroundHighlightDefault, other.backgroundHighlightDefault, t)!,
+      backgroundHighlightStrong: Color.lerp(backgroundHighlightStrong, other.backgroundHighlightStrong, t)!,
+      backgroundHighlightWeak: Color.lerp(backgroundHighlightWeak, other.backgroundHighlightWeak, t)!,
+      backgroundInverse: Color.lerp(backgroundInverse, other.backgroundInverse, t)!,
+      backgroundOverlay: Color.lerp(backgroundOverlay, other.backgroundOverlay, t)!,
+      backgroundSuccessDefault: Color.lerp(backgroundSuccessDefault, other.backgroundSuccessDefault, t)!,
+      backgroundSuccessStrong: Color.lerp(backgroundSuccessStrong, other.backgroundSuccessStrong, t)!,
+      backgroundSuccessWeak: Color.lerp(backgroundSuccessWeak, other.backgroundSuccessWeak, t)!,
+      backgroundTransparent: Color.lerp(backgroundTransparent, other.backgroundTransparent, t)!,
+      backgroundWarningDefault: Color.lerp(backgroundWarningDefault, other.backgroundWarningDefault, t)!,
+      backgroundWarningStrong: Color.lerp(backgroundWarningStrong, other.backgroundWarningStrong, t)!,
+      backgroundWarningWeak: Color.lerp(backgroundWarningWeak, other.backgroundWarningWeak, t)!,
       backgroundWeak: Color.lerp(backgroundWeak, other.backgroundWeak, t)!,
-      borderAccentDefault:
-          Color.lerp(borderAccentDefault, other.borderAccentDefault, t)!,
-      borderAccentStrong:
-          Color.lerp(borderAccentStrong, other.borderAccentStrong, t)!,
-      borderAccentWeak:
-          Color.lerp(borderAccentWeak, other.borderAccentWeak, t)!,
-      borderCriticalDefault:
-          Color.lerp(borderCriticalDefault, other.borderCriticalDefault, t)!,
-      borderCriticalStrong:
-          Color.lerp(borderCriticalStrong, other.borderCriticalStrong, t)!,
-      borderCriticalWeak:
-          Color.lerp(borderCriticalWeak, other.borderCriticalWeak, t)!,
+      borderAccentDefault: Color.lerp(borderAccentDefault, other.borderAccentDefault, t)!,
+      borderAccentStrong: Color.lerp(borderAccentStrong, other.borderAccentStrong, t)!,
+      borderAccentWeak: Color.lerp(borderAccentWeak, other.borderAccentWeak, t)!,
+      borderCriticalDefault: Color.lerp(borderCriticalDefault, other.borderCriticalDefault, t)!,
+      borderCriticalStrong: Color.lerp(borderCriticalStrong, other.borderCriticalStrong, t)!,
+      borderCriticalWeak: Color.lerp(borderCriticalWeak, other.borderCriticalWeak, t)!,
       borderDefault: Color.lerp(borderDefault, other.borderDefault, t)!,
       borderDisabled: Color.lerp(borderDisabled, other.borderDisabled, t)!,
-      borderHighlightDefault:
-          Color.lerp(borderHighlightDefault, other.borderHighlightDefault, t)!,
-      borderHighlightStrong:
-          Color.lerp(borderHighlightStrong, other.borderHighlightStrong, t)!,
-      borderHighlightWeak:
-          Color.lerp(borderHighlightWeak, other.borderHighlightWeak, t)!,
+      borderHighlightDefault: Color.lerp(borderHighlightDefault, other.borderHighlightDefault, t)!,
+      borderHighlightStrong: Color.lerp(borderHighlightStrong, other.borderHighlightStrong, t)!,
+      borderHighlightWeak: Color.lerp(borderHighlightWeak, other.borderHighlightWeak, t)!,
       borderInverse: Color.lerp(borderInverse, other.borderInverse, t)!,
-      borderSuccessDefault:
-          Color.lerp(borderSuccessDefault, other.borderSuccessDefault, t)!,
-      borderSuccessStrong:
-          Color.lerp(borderSuccessStrong, other.borderSuccessStrong, t)!,
-      borderSuccessWeak:
-          Color.lerp(borderSuccessWeak, other.borderSuccessWeak, t)!,
-      borderTransparent:
-          Color.lerp(borderTransparent, other.borderTransparent, t)!,
-      borderWarningDefault:
-          Color.lerp(borderWarningDefault, other.borderWarningDefault, t)!,
-      borderWarningStrong:
-          Color.lerp(borderWarningStrong, other.borderWarningStrong, t)!,
-      borderWarningWeak:
-          Color.lerp(borderWarningWeak, other.borderWarningWeak, t)!,
+      borderSuccessDefault: Color.lerp(borderSuccessDefault, other.borderSuccessDefault, t)!,
+      borderSuccessStrong: Color.lerp(borderSuccessStrong, other.borderSuccessStrong, t)!,
+      borderSuccessWeak: Color.lerp(borderSuccessWeak, other.borderSuccessWeak, t)!,
+      borderTransparent: Color.lerp(borderTransparent, other.borderTransparent, t)!,
+      borderWarningDefault: Color.lerp(borderWarningDefault, other.borderWarningDefault, t)!,
+      borderWarningStrong: Color.lerp(borderWarningStrong, other.borderWarningStrong, t)!,
+      borderWarningWeak: Color.lerp(borderWarningWeak, other.borderWarningWeak, t)!,
       borderWeak: Color.lerp(borderWeak, other.borderWeak, t)!,
       iconAccent: Color.lerp(iconAccent, other.iconAccent, t)!,
       iconCritical: Color.lerp(iconCritical, other.iconCritical, t)!,
@@ -803,26 +725,16 @@ class YgColor extends ThemeExtension<YgColor> {
       iconTransparent: Color.lerp(iconTransparent, other.iconTransparent, t)!,
       iconWarning: Color.lerp(iconWarning, other.iconWarning, t)!,
       iconWeak: Color.lerp(iconWeak, other.iconWeak, t)!,
-      interactiveCriticalDefault: Color.lerp(
-          interactiveCriticalDefault, other.interactiveCriticalDefault, t)!,
-      interactiveCriticalDisabled: Color.lerp(
-          interactiveCriticalDisabled, other.interactiveCriticalDisabled, t)!,
-      interactiveCriticalHovered: Color.lerp(
-          interactiveCriticalHovered, other.interactiveCriticalHovered, t)!,
-      interactiveCriticalPressed: Color.lerp(
-          interactiveCriticalPressed, other.interactiveCriticalPressed, t)!,
-      interactiveCriticalSelected: Color.lerp(
-          interactiveCriticalSelected, other.interactiveCriticalSelected, t)!,
-      interactiveHighlightDefault: Color.lerp(
-          interactiveHighlightDefault, other.interactiveHighlightDefault, t)!,
-      interactiveHighlightDisabled: Color.lerp(
-          interactiveHighlightDisabled, other.interactiveHighlightDisabled, t)!,
-      interactiveHighlightHovered: Color.lerp(
-          interactiveHighlightHovered, other.interactiveHighlightHovered, t)!,
-      interactiveHighlightPressed: Color.lerp(
-          interactiveHighlightPressed, other.interactiveHighlightPressed, t)!,
-      interactiveHighlightSelected: Color.lerp(
-          interactiveHighlightSelected, other.interactiveHighlightSelected, t)!,
+      interactiveCriticalDefault: Color.lerp(interactiveCriticalDefault, other.interactiveCriticalDefault, t)!,
+      interactiveCriticalDisabled: Color.lerp(interactiveCriticalDisabled, other.interactiveCriticalDisabled, t)!,
+      interactiveCriticalHovered: Color.lerp(interactiveCriticalHovered, other.interactiveCriticalHovered, t)!,
+      interactiveCriticalPressed: Color.lerp(interactiveCriticalPressed, other.interactiveCriticalPressed, t)!,
+      interactiveCriticalSelected: Color.lerp(interactiveCriticalSelected, other.interactiveCriticalSelected, t)!,
+      interactiveHighlightDefault: Color.lerp(interactiveHighlightDefault, other.interactiveHighlightDefault, t)!,
+      interactiveHighlightDisabled: Color.lerp(interactiveHighlightDisabled, other.interactiveHighlightDisabled, t)!,
+      interactiveHighlightHovered: Color.lerp(interactiveHighlightHovered, other.interactiveHighlightHovered, t)!,
+      interactiveHighlightPressed: Color.lerp(interactiveHighlightPressed, other.interactiveHighlightPressed, t)!,
+      interactiveHighlightSelected: Color.lerp(interactiveHighlightSelected, other.interactiveHighlightSelected, t)!,
       textAccent: Color.lerp(textAccent, other.textAccent, t)!,
       textCritical: Color.lerp(textCritical, other.textCritical, t)!,
       textDefault: Color.lerp(textDefault, other.textDefault, t)!,
@@ -841,92 +753,49 @@ class YgColor extends ThemeExtension<YgColor> {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is YgColor &&
-            const DeepCollectionEquality()
-                .equals(actionCriticalDefault, other.actionCriticalDefault) &&
-            const DeepCollectionEquality()
-                .equals(actionCriticalDisabled, other.actionCriticalDisabled) &&
-            const DeepCollectionEquality()
-                .equals(actionCriticalHovered, other.actionCriticalHovered) &&
-            const DeepCollectionEquality()
-                .equals(actionCriticalPressed, other.actionCriticalPressed) &&
-            const DeepCollectionEquality()
-                .equals(actionCriticalSelected, other.actionCriticalSelected) &&
-            const DeepCollectionEquality()
-                .equals(actionPrimaryDisabled, other.actionPrimaryDisabled) &&
-            const DeepCollectionEquality().equals(
-                actionSecondaryDisabled, other.actionSecondaryDisabled) &&
-            const DeepCollectionEquality().equals(
-                backgroundAccentDefault, other.backgroundAccentDefault) &&
-            const DeepCollectionEquality()
-                .equals(backgroundAccentStrong, other.backgroundAccentStrong) &&
-            const DeepCollectionEquality()
-                .equals(backgroundAccentWeak, other.backgroundAccentWeak) &&
-            const DeepCollectionEquality().equals(
-                backgroundCriticalDefault, other.backgroundCriticalDefault) &&
-            const DeepCollectionEquality().equals(
-                backgroundCriticalStrong, other.backgroundCriticalStrong) &&
-            const DeepCollectionEquality()
-                .equals(backgroundCriticalWeak, other.backgroundCriticalWeak) &&
-            const DeepCollectionEquality()
-                .equals(backgroundDefault, other.backgroundDefault) &&
-            const DeepCollectionEquality()
-                .equals(backgroundDisabled, other.backgroundDisabled) &&
-            const DeepCollectionEquality().equals(
-                backgroundHighlightDefault, other.backgroundHighlightDefault) &&
-            const DeepCollectionEquality().equals(
-                backgroundHighlightStrong, other.backgroundHighlightStrong) &&
-            const DeepCollectionEquality().equals(
-                backgroundHighlightWeak, other.backgroundHighlightWeak) &&
-            const DeepCollectionEquality()
-                .equals(backgroundInverse, other.backgroundInverse) &&
-            const DeepCollectionEquality()
-                .equals(backgroundOverlay, other.backgroundOverlay) &&
-            const DeepCollectionEquality().equals(
-                backgroundSuccessDefault, other.backgroundSuccessDefault) &&
-            const DeepCollectionEquality().equals(
-                backgroundSuccessStrong, other.backgroundSuccessStrong) &&
-            const DeepCollectionEquality()
-                .equals(backgroundSuccessWeak, other.backgroundSuccessWeak) &&
-            const DeepCollectionEquality()
-                .equals(backgroundTransparent, other.backgroundTransparent) &&
-            const DeepCollectionEquality().equals(
-                backgroundWarningDefault, other.backgroundWarningDefault) &&
-            const DeepCollectionEquality().equals(
-                backgroundWarningStrong, other.backgroundWarningStrong) &&
-            const DeepCollectionEquality()
-                .equals(backgroundWarningWeak, other.backgroundWarningWeak) &&
-            const DeepCollectionEquality()
-                .equals(backgroundWeak, other.backgroundWeak) &&
-            const DeepCollectionEquality()
-                .equals(borderAccentDefault, other.borderAccentDefault) &&
-            const DeepCollectionEquality()
-                .equals(borderAccentStrong, other.borderAccentStrong) &&
-            const DeepCollectionEquality()
-                .equals(borderAccentWeak, other.borderAccentWeak) &&
-            const DeepCollectionEquality()
-                .equals(borderCriticalDefault, other.borderCriticalDefault) &&
-            const DeepCollectionEquality()
-                .equals(borderCriticalStrong, other.borderCriticalStrong) &&
-            const DeepCollectionEquality()
-                .equals(borderCriticalWeak, other.borderCriticalWeak) &&
-            const DeepCollectionEquality()
-                .equals(borderDefault, other.borderDefault) &&
-            const DeepCollectionEquality()
-                .equals(borderDisabled, other.borderDisabled) &&
-            const DeepCollectionEquality()
-                .equals(borderHighlightDefault, other.borderHighlightDefault) &&
-            const DeepCollectionEquality()
-                .equals(borderHighlightStrong, other.borderHighlightStrong) &&
-            const DeepCollectionEquality()
-                .equals(borderHighlightWeak, other.borderHighlightWeak) &&
-            const DeepCollectionEquality()
-                .equals(borderInverse, other.borderInverse) &&
-            const DeepCollectionEquality()
-                .equals(borderSuccessDefault, other.borderSuccessDefault) &&
-            const DeepCollectionEquality()
-                .equals(borderSuccessStrong, other.borderSuccessStrong) &&
-            const DeepCollectionEquality()
-                .equals(borderSuccessWeak, other.borderSuccessWeak) &&
+            const DeepCollectionEquality().equals(actionCriticalDefault, other.actionCriticalDefault) &&
+            const DeepCollectionEquality().equals(actionCriticalDisabled, other.actionCriticalDisabled) &&
+            const DeepCollectionEquality().equals(actionCriticalHovered, other.actionCriticalHovered) &&
+            const DeepCollectionEquality().equals(actionCriticalPressed, other.actionCriticalPressed) &&
+            const DeepCollectionEquality().equals(actionCriticalSelected, other.actionCriticalSelected) &&
+            const DeepCollectionEquality().equals(actionPrimaryDisabled, other.actionPrimaryDisabled) &&
+            const DeepCollectionEquality().equals(actionSecondaryDisabled, other.actionSecondaryDisabled) &&
+            const DeepCollectionEquality().equals(backgroundAccentDefault, other.backgroundAccentDefault) &&
+            const DeepCollectionEquality().equals(backgroundAccentStrong, other.backgroundAccentStrong) &&
+            const DeepCollectionEquality().equals(backgroundAccentWeak, other.backgroundAccentWeak) &&
+            const DeepCollectionEquality().equals(backgroundCriticalDefault, other.backgroundCriticalDefault) &&
+            const DeepCollectionEquality().equals(backgroundCriticalStrong, other.backgroundCriticalStrong) &&
+            const DeepCollectionEquality().equals(backgroundCriticalWeak, other.backgroundCriticalWeak) &&
+            const DeepCollectionEquality().equals(backgroundDefault, other.backgroundDefault) &&
+            const DeepCollectionEquality().equals(backgroundDisabled, other.backgroundDisabled) &&
+            const DeepCollectionEquality().equals(backgroundHighlightDefault, other.backgroundHighlightDefault) &&
+            const DeepCollectionEquality().equals(backgroundHighlightStrong, other.backgroundHighlightStrong) &&
+            const DeepCollectionEquality().equals(backgroundHighlightWeak, other.backgroundHighlightWeak) &&
+            const DeepCollectionEquality().equals(backgroundInverse, other.backgroundInverse) &&
+            const DeepCollectionEquality().equals(backgroundOverlay, other.backgroundOverlay) &&
+            const DeepCollectionEquality().equals(backgroundSuccessDefault, other.backgroundSuccessDefault) &&
+            const DeepCollectionEquality().equals(backgroundSuccessStrong, other.backgroundSuccessStrong) &&
+            const DeepCollectionEquality().equals(backgroundSuccessWeak, other.backgroundSuccessWeak) &&
+            const DeepCollectionEquality().equals(backgroundTransparent, other.backgroundTransparent) &&
+            const DeepCollectionEquality().equals(backgroundWarningDefault, other.backgroundWarningDefault) &&
+            const DeepCollectionEquality().equals(backgroundWarningStrong, other.backgroundWarningStrong) &&
+            const DeepCollectionEquality().equals(backgroundWarningWeak, other.backgroundWarningWeak) &&
+            const DeepCollectionEquality().equals(backgroundWeak, other.backgroundWeak) &&
+            const DeepCollectionEquality().equals(borderAccentDefault, other.borderAccentDefault) &&
+            const DeepCollectionEquality().equals(borderAccentStrong, other.borderAccentStrong) &&
+            const DeepCollectionEquality().equals(borderAccentWeak, other.borderAccentWeak) &&
+            const DeepCollectionEquality().equals(borderCriticalDefault, other.borderCriticalDefault) &&
+            const DeepCollectionEquality().equals(borderCriticalStrong, other.borderCriticalStrong) &&
+            const DeepCollectionEquality().equals(borderCriticalWeak, other.borderCriticalWeak) &&
+            const DeepCollectionEquality().equals(borderDefault, other.borderDefault) &&
+            const DeepCollectionEquality().equals(borderDisabled, other.borderDisabled) &&
+            const DeepCollectionEquality().equals(borderHighlightDefault, other.borderHighlightDefault) &&
+            const DeepCollectionEquality().equals(borderHighlightStrong, other.borderHighlightStrong) &&
+            const DeepCollectionEquality().equals(borderHighlightWeak, other.borderHighlightWeak) &&
+            const DeepCollectionEquality().equals(borderInverse, other.borderInverse) &&
+            const DeepCollectionEquality().equals(borderSuccessDefault, other.borderSuccessDefault) &&
+            const DeepCollectionEquality().equals(borderSuccessStrong, other.borderSuccessStrong) &&
+            const DeepCollectionEquality().equals(borderSuccessWeak, other.borderSuccessWeak) &&
             const DeepCollectionEquality().equals(borderTransparent, other.borderTransparent) &&
             const DeepCollectionEquality().equals(borderWarningDefault, other.borderWarningDefault) &&
             const DeepCollectionEquality().equals(borderWarningStrong, other.borderWarningStrong) &&

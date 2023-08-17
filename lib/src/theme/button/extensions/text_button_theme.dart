@@ -16,7 +16,7 @@ class _$TextButtonTheme {
     professional_dark.FhColors.backgroundTransparent,
   ];
 
-  static const List<TextStyle> textStyle = <TextStyle>[
+  static final List<TextStyle> textStyle = <TextStyle>[
     consumer_light.FhTextStyles.paragraph3Bold.copyWith(
       color: consumer_light.FhColors.textWarning,
     ),
@@ -31,7 +31,7 @@ class _$TextButtonTheme {
     ),
   ];
 
-  static const List<TextStyle> disabledTextStyle = <TextStyle>[
+  static final List<TextStyle> disabledTextStyle = <TextStyle>[
     consumer_light.FhTextStyles.paragraph3Bold.copyWith(
       color: consumer_light.FhColors.textDisabled,
     ),

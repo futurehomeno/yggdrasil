@@ -12,10 +12,10 @@ part 'radio_theme.tailor.dart';
 @tailorComponent
 class _$YgRadioTheme {
   @themeExtension
-  static const List<YgRadioGroupTheme> radioGroupTheme = YgRadioGroupTheme.themes;
+  static final List<YgRadioGroupTheme> radioGroupTheme = YgRadioGroupTheme.themes;
 
   @themeExtension
-  static const List<YgRadioItemTheme> radioItemTheme = YgRadioItemTheme.themes;
+  static final List<YgRadioItemTheme> radioItemTheme = YgRadioItemTheme.themes;
 
   static const List<double> size = <double>[
     consumer_light.FhDimensions.md,

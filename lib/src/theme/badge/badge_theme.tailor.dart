@@ -85,8 +85,7 @@ class YgBadgeTheme extends ThemeExtension<YgBadgeTheme> {
     return YgBadgeTheme(
       borderRadius: t < 0.5 ? borderRadius : other.borderRadius,
       strongColor: Color.lerp(strongColor, other.strongColor, t)!,
-      strongTextStyle:
-          TextStyle.lerp(strongTextStyle, other.strongTextStyle, t)!,
+      strongTextStyle: TextStyle.lerp(strongTextStyle, other.strongTextStyle, t)!,
       weakColor: Color.lerp(weakColor, other.weakColor, t)!,
       weakTextStyle: TextStyle.lerp(weakTextStyle, other.weakTextStyle, t)!,
     );
@@ -97,15 +96,11 @@ class YgBadgeTheme extends ThemeExtension<YgBadgeTheme> {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is YgBadgeTheme &&
-            const DeepCollectionEquality()
-                .equals(borderRadius, other.borderRadius) &&
-            const DeepCollectionEquality()
-                .equals(strongColor, other.strongColor) &&
-            const DeepCollectionEquality()
-                .equals(strongTextStyle, other.strongTextStyle) &&
+            const DeepCollectionEquality().equals(borderRadius, other.borderRadius) &&
+            const DeepCollectionEquality().equals(strongColor, other.strongColor) &&
+            const DeepCollectionEquality().equals(strongTextStyle, other.strongTextStyle) &&
             const DeepCollectionEquality().equals(weakColor, other.weakColor) &&
-            const DeepCollectionEquality()
-                .equals(weakTextStyle, other.weakTextStyle));
+            const DeepCollectionEquality().equals(weakTextStyle, other.weakTextStyle));
   }
 
   @override

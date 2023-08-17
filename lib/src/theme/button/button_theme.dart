@@ -12,19 +12,19 @@ part 'button_theme.tailor.dart';
 @tailorComponent
 class _$YgButtonTheme {
   @themeExtension
-  static const List<CriticalButtonTheme> criticalButtonTheme = CriticalButtonTheme.themes;
+  static final List<CriticalButtonTheme> criticalButtonTheme = CriticalButtonTheme.themes;
 
   @themeExtension
-  static const List<LinkButtonTheme> linkButtonTheme = LinkButtonTheme.themes;
+  static final List<LinkButtonTheme> linkButtonTheme = LinkButtonTheme.themes;
 
   @themeExtension
-  static const List<PrimaryButtonTheme> primaryButtonTheme = PrimaryButtonTheme.themes;
+  static final List<PrimaryButtonTheme> primaryButtonTheme = PrimaryButtonTheme.themes;
 
   @themeExtension
-  static const List<SecondaryButtonTheme> secondaryButtonTheme = SecondaryButtonTheme.themes;
+  static final List<SecondaryButtonTheme> secondaryButtonTheme = SecondaryButtonTheme.themes;
 
   @themeExtension
-  static const List<TextButtonTheme> textButtonTheme = TextButtonTheme.themes;
+  static final List<TextButtonTheme> textButtonTheme = TextButtonTheme.themes;
 
   static const List<EdgeInsets> paddingSmall = <EdgeInsets>[
     EdgeInsets.symmetric(

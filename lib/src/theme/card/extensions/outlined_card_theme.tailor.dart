@@ -56,8 +56,7 @@ class OutlinedCardTheme extends ThemeExtension<OutlinedCardTheme> {
   }
 
   @override
-  OutlinedCardTheme lerp(
-      covariant ThemeExtension<OutlinedCardTheme>? other, double t) {
+  OutlinedCardTheme lerp(covariant ThemeExtension<OutlinedCardTheme>? other, double t) {
     if (other is! OutlinedCardTheme) return this as OutlinedCardTheme;
     return OutlinedCardTheme(
       backgroundColor: Color.lerp(backgroundColor, other.backgroundColor, t)!,
@@ -70,10 +69,8 @@ class OutlinedCardTheme extends ThemeExtension<OutlinedCardTheme> {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is OutlinedCardTheme &&
-            const DeepCollectionEquality()
-                .equals(backgroundColor, other.backgroundColor) &&
-            const DeepCollectionEquality()
-                .equals(borderSide, other.borderSide));
+            const DeepCollectionEquality().equals(backgroundColor, other.backgroundColor) &&
+            const DeepCollectionEquality().equals(borderSide, other.borderSide));
   }
 
   @override

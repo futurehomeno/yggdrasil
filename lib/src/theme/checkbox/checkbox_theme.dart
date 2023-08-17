@@ -12,10 +12,10 @@ part 'checkbox_theme.tailor.dart';
 @tailorComponent
 class _$YgCheckboxTheme {
   @themeExtension
-  static const List<YgCheckboxGroupTheme> checkboxGroupTheme = YgCheckboxGroupTheme.themes;
+  static final List<YgCheckboxGroupTheme> checkboxGroupTheme = YgCheckboxGroupTheme.themes;
 
   @themeExtension
-  static const List<YgCheckboxItemTheme> checkboxItemTheme = YgCheckboxItemTheme.themes;
+  static final List<YgCheckboxItemTheme> checkboxItemTheme = YgCheckboxItemTheme.themes;
 
   static const List<double> size = <double>[
     consumer_light.FhDimensions.md,

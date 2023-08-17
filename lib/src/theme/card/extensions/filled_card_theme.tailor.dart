@@ -48,8 +48,7 @@ class FilledCardTheme extends ThemeExtension<FilledCardTheme> {
   }
 
   @override
-  FilledCardTheme lerp(
-      covariant ThemeExtension<FilledCardTheme>? other, double t) {
+  FilledCardTheme lerp(covariant ThemeExtension<FilledCardTheme>? other, double t) {
     if (other is! FilledCardTheme) return this as FilledCardTheme;
     return FilledCardTheme(
       backgroundColor: Color.lerp(backgroundColor, other.backgroundColor, t)!,
@@ -61,8 +60,7 @@ class FilledCardTheme extends ThemeExtension<FilledCardTheme> {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is FilledCardTheme &&
-            const DeepCollectionEquality()
-                .equals(backgroundColor, other.backgroundColor));
+            const DeepCollectionEquality().equals(backgroundColor, other.backgroundColor));
   }
 
   @override

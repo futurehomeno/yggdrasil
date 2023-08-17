@@ -65,23 +65,19 @@ class FilledIconButtonTheme extends ThemeExtension<FilledIconButtonTheme> {
   }) {
     return FilledIconButtonTheme(
       backgroundColor: backgroundColor ?? this.backgroundColor,
-      disabledBackgroundColor:
-          disabledBackgroundColor ?? this.disabledBackgroundColor,
+      disabledBackgroundColor: disabledBackgroundColor ?? this.disabledBackgroundColor,
       disabledIconColor: disabledIconColor ?? this.disabledIconColor,
       iconColor: iconColor ?? this.iconColor,
     );
   }
 
   @override
-  FilledIconButtonTheme lerp(
-      covariant ThemeExtension<FilledIconButtonTheme>? other, double t) {
+  FilledIconButtonTheme lerp(covariant ThemeExtension<FilledIconButtonTheme>? other, double t) {
     if (other is! FilledIconButtonTheme) return this as FilledIconButtonTheme;
     return FilledIconButtonTheme(
       backgroundColor: Color.lerp(backgroundColor, other.backgroundColor, t)!,
-      disabledBackgroundColor: Color.lerp(
-          disabledBackgroundColor, other.disabledBackgroundColor, t)!,
-      disabledIconColor:
-          Color.lerp(disabledIconColor, other.disabledIconColor, t)!,
+      disabledBackgroundColor: Color.lerp(disabledBackgroundColor, other.disabledBackgroundColor, t)!,
+      disabledIconColor: Color.lerp(disabledIconColor, other.disabledIconColor, t)!,
       iconColor: Color.lerp(iconColor, other.iconColor, t)!,
     );
   }
@@ -91,12 +87,9 @@ class FilledIconButtonTheme extends ThemeExtension<FilledIconButtonTheme> {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is FilledIconButtonTheme &&
-            const DeepCollectionEquality()
-                .equals(backgroundColor, other.backgroundColor) &&
-            const DeepCollectionEquality().equals(
-                disabledBackgroundColor, other.disabledBackgroundColor) &&
-            const DeepCollectionEquality()
-                .equals(disabledIconColor, other.disabledIconColor) &&
+            const DeepCollectionEquality().equals(backgroundColor, other.backgroundColor) &&
+            const DeepCollectionEquality().equals(disabledBackgroundColor, other.disabledBackgroundColor) &&
+            const DeepCollectionEquality().equals(disabledIconColor, other.disabledIconColor) &&
             const DeepCollectionEquality().equals(iconColor, other.iconColor));
   }
 

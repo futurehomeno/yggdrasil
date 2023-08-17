@@ -11,15 +11,15 @@ part of 'yg_shadows.dart';
 class YgShadow extends ThemeExtension<YgShadow> {
   const YgShadow();
 
-  static const final YgShadow consumerLight = YgShadow();
+  static final YgShadow consumerLight = YgShadow();
 
-  static const final YgShadow consumerDark = YgShadow();
+  static final YgShadow consumerDark = YgShadow();
 
-  static const final YgShadow professionalLight = YgShadow();
+  static final YgShadow professionalLight = YgShadow();
 
-  static const final YgShadow professionalDark = YgShadow();
+  static final YgShadow professionalDark = YgShadow();
 
-  static const final themes = [
+  static final themes = [
     consumerLight,
     consumerDark,
     professionalLight,
@@ -39,8 +39,7 @@ class YgShadow extends ThemeExtension<YgShadow> {
 
   @override
   bool operator ==(Object other) {
-    return identical(this, other) ||
-        (other.runtimeType == runtimeType && other is YgShadow);
+    return identical(this, other) || (other.runtimeType == runtimeType && other is YgShadow);
   }
 
   @override

@@ -12,19 +12,19 @@ part 'tag_theme.tailor.dart';
 @tailorComponent
 class _$YgTagTheme {
   @themeExtension
-  static const List<NeutralTagTheme> neutralTagTheme = NeutralTagTheme.themes;
+  static final List<NeutralTagTheme> neutralTagTheme = NeutralTagTheme.themes;
 
   @themeExtension
-  static const List<InformativeTagTheme> informativeTagTheme = InformativeTagTheme.themes;
+  static final List<InformativeTagTheme> informativeTagTheme = InformativeTagTheme.themes;
 
   @themeExtension
-  static const List<PositiveTagTheme> positiveTagTheme = PositiveTagTheme.themes;
+  static final List<PositiveTagTheme> positiveTagTheme = PositiveTagTheme.themes;
 
   @themeExtension
-  static const List<WarningTagTheme> warningTagTheme = WarningTagTheme.themes;
+  static final List<WarningTagTheme> warningTagTheme = WarningTagTheme.themes;
 
   @themeExtension
-  static const List<NegativeTagTheme> negativeTagTheme = NegativeTagTheme.themes;
+  static final List<NegativeTagTheme> negativeTagTheme = NegativeTagTheme.themes;
 
   static const List<EdgeInsets> paddingSmall = <EdgeInsets>[
     EdgeInsets.symmetric(

@@ -117,8 +117,7 @@ class YgCalloutTheme extends ThemeExtension<YgCalloutTheme> {
       closeButtonSpacing: closeButtonSpacing ?? this.closeButtonSpacing,
       criticalCalloutTheme: criticalCalloutTheme ?? this.criticalCalloutTheme,
       descriptionTextStyle: descriptionTextStyle ?? this.descriptionTextStyle,
-      highlightCalloutTheme:
-          highlightCalloutTheme ?? this.highlightCalloutTheme,
+      highlightCalloutTheme: highlightCalloutTheme ?? this.highlightCalloutTheme,
       linkSpacing: linkSpacing ?? this.linkSpacing,
       padding: padding ?? this.padding,
       successCalloutTheme: successCalloutTheme ?? this.successCalloutTheme,
@@ -129,27 +128,20 @@ class YgCalloutTheme extends ThemeExtension<YgCalloutTheme> {
   }
 
   @override
-  YgCalloutTheme lerp(
-      covariant ThemeExtension<YgCalloutTheme>? other, double t) {
+  YgCalloutTheme lerp(covariant ThemeExtension<YgCalloutTheme>? other, double t) {
     if (other is! YgCalloutTheme) return this as YgCalloutTheme;
     return YgCalloutTheme(
       borderRadius: t < 0.5 ? borderRadius : other.borderRadius,
-      closeButtonSpacing:
-          t < 0.5 ? closeButtonSpacing : other.closeButtonSpacing,
-      criticalCalloutTheme: criticalCalloutTheme.lerp(
-          other.criticalCalloutTheme, t) as CriticalCalloutTheme,
-      descriptionTextStyle:
-          TextStyle.lerp(descriptionTextStyle, other.descriptionTextStyle, t)!,
-      highlightCalloutTheme: highlightCalloutTheme.lerp(
-          other.highlightCalloutTheme, t) as HighlightCalloutTheme,
+      closeButtonSpacing: t < 0.5 ? closeButtonSpacing : other.closeButtonSpacing,
+      criticalCalloutTheme: criticalCalloutTheme.lerp(other.criticalCalloutTheme, t) as CriticalCalloutTheme,
+      descriptionTextStyle: TextStyle.lerp(descriptionTextStyle, other.descriptionTextStyle, t)!,
+      highlightCalloutTheme: highlightCalloutTheme.lerp(other.highlightCalloutTheme, t) as HighlightCalloutTheme,
       linkSpacing: t < 0.5 ? linkSpacing : other.linkSpacing,
       padding: t < 0.5 ? padding : other.padding,
-      successCalloutTheme: successCalloutTheme.lerp(
-          other.successCalloutTheme, t) as SuccessCalloutTheme,
+      successCalloutTheme: successCalloutTheme.lerp(other.successCalloutTheme, t) as SuccessCalloutTheme,
       titleSpacing: t < 0.5 ? titleSpacing : other.titleSpacing,
       titleTextStyle: TextStyle.lerp(titleTextStyle, other.titleTextStyle, t)!,
-      warningCalloutTheme: warningCalloutTheme.lerp(
-          other.warningCalloutTheme, t) as WarningCalloutTheme,
+      warningCalloutTheme: warningCalloutTheme.lerp(other.warningCalloutTheme, t) as WarningCalloutTheme,
     );
   }
 
@@ -158,27 +150,17 @@ class YgCalloutTheme extends ThemeExtension<YgCalloutTheme> {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is YgCalloutTheme &&
-            const DeepCollectionEquality()
-                .equals(borderRadius, other.borderRadius) &&
-            const DeepCollectionEquality()
-                .equals(closeButtonSpacing, other.closeButtonSpacing) &&
-            const DeepCollectionEquality()
-                .equals(criticalCalloutTheme, other.criticalCalloutTheme) &&
-            const DeepCollectionEquality()
-                .equals(descriptionTextStyle, other.descriptionTextStyle) &&
-            const DeepCollectionEquality()
-                .equals(highlightCalloutTheme, other.highlightCalloutTheme) &&
-            const DeepCollectionEquality()
-                .equals(linkSpacing, other.linkSpacing) &&
+            const DeepCollectionEquality().equals(borderRadius, other.borderRadius) &&
+            const DeepCollectionEquality().equals(closeButtonSpacing, other.closeButtonSpacing) &&
+            const DeepCollectionEquality().equals(criticalCalloutTheme, other.criticalCalloutTheme) &&
+            const DeepCollectionEquality().equals(descriptionTextStyle, other.descriptionTextStyle) &&
+            const DeepCollectionEquality().equals(highlightCalloutTheme, other.highlightCalloutTheme) &&
+            const DeepCollectionEquality().equals(linkSpacing, other.linkSpacing) &&
             const DeepCollectionEquality().equals(padding, other.padding) &&
-            const DeepCollectionEquality()
-                .equals(successCalloutTheme, other.successCalloutTheme) &&
-            const DeepCollectionEquality()
-                .equals(titleSpacing, other.titleSpacing) &&
-            const DeepCollectionEquality()
-                .equals(titleTextStyle, other.titleTextStyle) &&
-            const DeepCollectionEquality()
-                .equals(warningCalloutTheme, other.warningCalloutTheme));
+            const DeepCollectionEquality().equals(successCalloutTheme, other.successCalloutTheme) &&
+            const DeepCollectionEquality().equals(titleSpacing, other.titleSpacing) &&
+            const DeepCollectionEquality().equals(titleTextStyle, other.titleTextStyle) &&
+            const DeepCollectionEquality().equals(warningCalloutTheme, other.warningCalloutTheme));
   }
 
   @override
