@@ -72,7 +72,8 @@ class YgDividerTheme extends ThemeExtension<YgDividerTheme> {
   }
 
   @override
-  YgDividerTheme lerp(covariant ThemeExtension<YgDividerTheme>? other, double t) {
+  YgDividerTheme lerp(
+      covariant ThemeExtension<YgDividerTheme>? other, double t) {
     if (other is! YgDividerTheme) return this as YgDividerTheme;
     return YgDividerTheme(
       color: Color.lerp(color, other.color, t)!,
@@ -88,9 +89,12 @@ class YgDividerTheme extends ThemeExtension<YgDividerTheme> {
         (other.runtimeType == runtimeType &&
             other is YgDividerTheme &&
             const DeepCollectionEquality().equals(color, other.color) &&
-            const DeepCollectionEquality().equals(indentLarge, other.indentLarge) &&
-            const DeepCollectionEquality().equals(indentMedium, other.indentMedium) &&
-            const DeepCollectionEquality().equals(indentSmall, other.indentSmall));
+            const DeepCollectionEquality()
+                .equals(indentLarge, other.indentLarge) &&
+            const DeepCollectionEquality()
+                .equals(indentMedium, other.indentMedium) &&
+            const DeepCollectionEquality()
+                .equals(indentSmall, other.indentSmall));
   }
 
   @override

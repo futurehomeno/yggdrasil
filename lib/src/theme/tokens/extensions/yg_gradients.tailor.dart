@@ -102,11 +102,16 @@ class YgGradient extends ThemeExtension<YgGradient> {
       actionPrimaryDefault: actionPrimaryDefault ?? this.actionPrimaryDefault,
       actionPrimaryHovered: actionPrimaryHovered ?? this.actionPrimaryHovered,
       actionPrimaryPressed: actionPrimaryPressed ?? this.actionPrimaryPressed,
-      actionPrimarySelected: actionPrimarySelected ?? this.actionPrimarySelected,
-      actionSecondaryDefault: actionSecondaryDefault ?? this.actionSecondaryDefault,
-      actionSecondaryHovered: actionSecondaryHovered ?? this.actionSecondaryHovered,
-      actionSecondaryPressed: actionSecondaryPressed ?? this.actionSecondaryPressed,
-      actionSecondarySelected: actionSecondarySelected ?? this.actionSecondarySelected,
+      actionPrimarySelected:
+          actionPrimarySelected ?? this.actionPrimarySelected,
+      actionSecondaryDefault:
+          actionSecondaryDefault ?? this.actionSecondaryDefault,
+      actionSecondaryHovered:
+          actionSecondaryHovered ?? this.actionSecondaryHovered,
+      actionSecondaryPressed:
+          actionSecondaryPressed ?? this.actionSecondaryPressed,
+      actionSecondarySelected:
+          actionSecondarySelected ?? this.actionSecondarySelected,
       backgroundGradient: backgroundGradient ?? this.backgroundGradient,
     );
   }
@@ -115,15 +120,24 @@ class YgGradient extends ThemeExtension<YgGradient> {
   YgGradient lerp(covariant ThemeExtension<YgGradient>? other, double t) {
     if (other is! YgGradient) return this as YgGradient;
     return YgGradient(
-      actionPrimaryDefault: t < 0.5 ? actionPrimaryDefault : other.actionPrimaryDefault,
-      actionPrimaryHovered: t < 0.5 ? actionPrimaryHovered : other.actionPrimaryHovered,
-      actionPrimaryPressed: t < 0.5 ? actionPrimaryPressed : other.actionPrimaryPressed,
-      actionPrimarySelected: t < 0.5 ? actionPrimarySelected : other.actionPrimarySelected,
-      actionSecondaryDefault: t < 0.5 ? actionSecondaryDefault : other.actionSecondaryDefault,
-      actionSecondaryHovered: t < 0.5 ? actionSecondaryHovered : other.actionSecondaryHovered,
-      actionSecondaryPressed: t < 0.5 ? actionSecondaryPressed : other.actionSecondaryPressed,
-      actionSecondarySelected: t < 0.5 ? actionSecondarySelected : other.actionSecondarySelected,
-      backgroundGradient: t < 0.5 ? backgroundGradient : other.backgroundGradient,
+      actionPrimaryDefault:
+          t < 0.5 ? actionPrimaryDefault : other.actionPrimaryDefault,
+      actionPrimaryHovered:
+          t < 0.5 ? actionPrimaryHovered : other.actionPrimaryHovered,
+      actionPrimaryPressed:
+          t < 0.5 ? actionPrimaryPressed : other.actionPrimaryPressed,
+      actionPrimarySelected:
+          t < 0.5 ? actionPrimarySelected : other.actionPrimarySelected,
+      actionSecondaryDefault:
+          t < 0.5 ? actionSecondaryDefault : other.actionSecondaryDefault,
+      actionSecondaryHovered:
+          t < 0.5 ? actionSecondaryHovered : other.actionSecondaryHovered,
+      actionSecondaryPressed:
+          t < 0.5 ? actionSecondaryPressed : other.actionSecondaryPressed,
+      actionSecondarySelected:
+          t < 0.5 ? actionSecondarySelected : other.actionSecondarySelected,
+      backgroundGradient:
+          t < 0.5 ? backgroundGradient : other.backgroundGradient,
     );
   }
 
@@ -132,15 +146,24 @@ class YgGradient extends ThemeExtension<YgGradient> {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is YgGradient &&
-            const DeepCollectionEquality().equals(actionPrimaryDefault, other.actionPrimaryDefault) &&
-            const DeepCollectionEquality().equals(actionPrimaryHovered, other.actionPrimaryHovered) &&
-            const DeepCollectionEquality().equals(actionPrimaryPressed, other.actionPrimaryPressed) &&
-            const DeepCollectionEquality().equals(actionPrimarySelected, other.actionPrimarySelected) &&
-            const DeepCollectionEquality().equals(actionSecondaryDefault, other.actionSecondaryDefault) &&
-            const DeepCollectionEquality().equals(actionSecondaryHovered, other.actionSecondaryHovered) &&
-            const DeepCollectionEquality().equals(actionSecondaryPressed, other.actionSecondaryPressed) &&
-            const DeepCollectionEquality().equals(actionSecondarySelected, other.actionSecondarySelected) &&
-            const DeepCollectionEquality().equals(backgroundGradient, other.backgroundGradient));
+            const DeepCollectionEquality()
+                .equals(actionPrimaryDefault, other.actionPrimaryDefault) &&
+            const DeepCollectionEquality()
+                .equals(actionPrimaryHovered, other.actionPrimaryHovered) &&
+            const DeepCollectionEquality()
+                .equals(actionPrimaryPressed, other.actionPrimaryPressed) &&
+            const DeepCollectionEquality()
+                .equals(actionPrimarySelected, other.actionPrimarySelected) &&
+            const DeepCollectionEquality()
+                .equals(actionSecondaryDefault, other.actionSecondaryDefault) &&
+            const DeepCollectionEquality()
+                .equals(actionSecondaryHovered, other.actionSecondaryHovered) &&
+            const DeepCollectionEquality()
+                .equals(actionSecondaryPressed, other.actionSecondaryPressed) &&
+            const DeepCollectionEquality().equals(
+                actionSecondarySelected, other.actionSecondarySelected) &&
+            const DeepCollectionEquality()
+                .equals(backgroundGradient, other.backgroundGradient));
   }
 
   @override

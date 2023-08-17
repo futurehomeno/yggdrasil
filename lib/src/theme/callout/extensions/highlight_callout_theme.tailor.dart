@@ -56,7 +56,8 @@ class HighlightCalloutTheme extends ThemeExtension<HighlightCalloutTheme> {
   }
 
   @override
-  HighlightCalloutTheme lerp(covariant ThemeExtension<HighlightCalloutTheme>? other, double t) {
+  HighlightCalloutTheme lerp(
+      covariant ThemeExtension<HighlightCalloutTheme>? other, double t) {
     if (other is! HighlightCalloutTheme) return this as HighlightCalloutTheme;
     return HighlightCalloutTheme(
       backgroundColor: Color.lerp(backgroundColor, other.backgroundColor, t)!,
@@ -69,8 +70,10 @@ class HighlightCalloutTheme extends ThemeExtension<HighlightCalloutTheme> {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is HighlightCalloutTheme &&
-            const DeepCollectionEquality().equals(backgroundColor, other.backgroundColor) &&
-            const DeepCollectionEquality().equals(borderColor, other.borderColor));
+            const DeepCollectionEquality()
+                .equals(backgroundColor, other.backgroundColor) &&
+            const DeepCollectionEquality()
+                .equals(borderColor, other.borderColor));
   }
 
   @override

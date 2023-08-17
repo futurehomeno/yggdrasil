@@ -27,7 +27,8 @@ class HighlightSnackBarTheme extends ThemeExtension<HighlightSnackBarTheme> {
     iconContainerColor: _$HighlightSnackBarTheme.iconContainerColor[1],
   );
 
-  static final HighlightSnackBarTheme professionalLight = HighlightSnackBarTheme(
+  static final HighlightSnackBarTheme professionalLight =
+      HighlightSnackBarTheme(
     iconColor: _$HighlightSnackBarTheme.iconColor[2],
     iconContainerColor: _$HighlightSnackBarTheme.iconContainerColor[2],
   );
@@ -56,11 +57,13 @@ class HighlightSnackBarTheme extends ThemeExtension<HighlightSnackBarTheme> {
   }
 
   @override
-  HighlightSnackBarTheme lerp(covariant ThemeExtension<HighlightSnackBarTheme>? other, double t) {
+  HighlightSnackBarTheme lerp(
+      covariant ThemeExtension<HighlightSnackBarTheme>? other, double t) {
     if (other is! HighlightSnackBarTheme) return this as HighlightSnackBarTheme;
     return HighlightSnackBarTheme(
       iconColor: Color.lerp(iconColor, other.iconColor, t)!,
-      iconContainerColor: Color.lerp(iconContainerColor, other.iconContainerColor, t)!,
+      iconContainerColor:
+          Color.lerp(iconContainerColor, other.iconContainerColor, t)!,
     );
   }
 
@@ -70,7 +73,8 @@ class HighlightSnackBarTheme extends ThemeExtension<HighlightSnackBarTheme> {
         (other.runtimeType == runtimeType &&
             other is HighlightSnackBarTheme &&
             const DeepCollectionEquality().equals(iconColor, other.iconColor) &&
-            const DeepCollectionEquality().equals(iconContainerColor, other.iconContainerColor));
+            const DeepCollectionEquality()
+                .equals(iconContainerColor, other.iconContainerColor));
   }
 
   @override

@@ -39,7 +39,8 @@ class YgShadow extends ThemeExtension<YgShadow> {
 
   @override
   bool operator ==(Object other) {
-    return identical(this, other) || (other.runtimeType == runtimeType && other is YgShadow);
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType && other is YgShadow);
   }
 
   @override

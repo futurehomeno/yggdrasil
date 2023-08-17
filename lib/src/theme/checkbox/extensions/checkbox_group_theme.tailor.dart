@@ -56,10 +56,12 @@ class YgCheckboxGroupTheme extends ThemeExtension<YgCheckboxGroupTheme> {
   }
 
   @override
-  YgCheckboxGroupTheme lerp(covariant ThemeExtension<YgCheckboxGroupTheme>? other, double t) {
+  YgCheckboxGroupTheme lerp(
+      covariant ThemeExtension<YgCheckboxGroupTheme>? other, double t) {
     if (other is! YgCheckboxGroupTheme) return this as YgCheckboxGroupTheme;
     return YgCheckboxGroupTheme(
-      labelColumnSpacing: t < 0.5 ? labelColumnSpacing : other.labelColumnSpacing,
+      labelColumnSpacing:
+          t < 0.5 ? labelColumnSpacing : other.labelColumnSpacing,
       labelTextStyle: TextStyle.lerp(labelTextStyle, other.labelTextStyle, t)!,
     );
   }
@@ -69,8 +71,10 @@ class YgCheckboxGroupTheme extends ThemeExtension<YgCheckboxGroupTheme> {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is YgCheckboxGroupTheme &&
-            const DeepCollectionEquality().equals(labelColumnSpacing, other.labelColumnSpacing) &&
-            const DeepCollectionEquality().equals(labelTextStyle, other.labelTextStyle));
+            const DeepCollectionEquality()
+                .equals(labelColumnSpacing, other.labelColumnSpacing) &&
+            const DeepCollectionEquality()
+                .equals(labelTextStyle, other.labelTextStyle));
   }
 
   @override

@@ -148,13 +148,16 @@ class YgDialogTheme extends ThemeExtension<YgDialogTheme> {
       iconPadding: iconPadding ?? this.iconPadding,
       maxWidth: maxWidth ?? this.maxWidth,
       minWidth: minWidth ?? this.minWidth,
-      movementAnimationCurve: movementAnimationCurve ?? this.movementAnimationCurve,
-      movementAnimationDuration: movementAnimationDuration ?? this.movementAnimationDuration,
+      movementAnimationCurve:
+          movementAnimationCurve ?? this.movementAnimationCurve,
+      movementAnimationDuration:
+          movementAnimationDuration ?? this.movementAnimationDuration,
       outerBorderRadius: outerBorderRadius ?? this.outerBorderRadius,
       outerPadding: outerPadding ?? this.outerPadding,
       paddingToScreenEdge: paddingToScreenEdge ?? this.paddingToScreenEdge,
       scrimColor: scrimColor ?? this.scrimColor,
-      titleDescriptionSpacing: titleDescriptionSpacing ?? this.titleDescriptionSpacing,
+      titleDescriptionSpacing:
+          titleDescriptionSpacing ?? this.titleDescriptionSpacing,
       titleTextStyle: titleTextStyle ?? this.titleTextStyle,
     );
   }
@@ -165,18 +168,24 @@ class YgDialogTheme extends ThemeExtension<YgDialogTheme> {
     return YgDialogTheme(
       backgroundColor: Color.lerp(backgroundColor, other.backgroundColor, t)!,
       buttonSpacing: t < 0.5 ? buttonSpacing : other.buttonSpacing,
-      descriptionTextStyle: TextStyle.lerp(descriptionTextStyle, other.descriptionTextStyle, t)!,
-      iconContainerColor: Color.lerp(iconContainerColor, other.iconContainerColor, t)!,
+      descriptionTextStyle:
+          TextStyle.lerp(descriptionTextStyle, other.descriptionTextStyle, t)!,
+      iconContainerColor:
+          Color.lerp(iconContainerColor, other.iconContainerColor, t)!,
       iconPadding: t < 0.5 ? iconPadding : other.iconPadding,
       maxWidth: t < 0.5 ? maxWidth : other.maxWidth,
       minWidth: t < 0.5 ? minWidth : other.minWidth,
-      movementAnimationCurve: t < 0.5 ? movementAnimationCurve : other.movementAnimationCurve,
-      movementAnimationDuration: t < 0.5 ? movementAnimationDuration : other.movementAnimationDuration,
+      movementAnimationCurve:
+          t < 0.5 ? movementAnimationCurve : other.movementAnimationCurve,
+      movementAnimationDuration:
+          t < 0.5 ? movementAnimationDuration : other.movementAnimationDuration,
       outerBorderRadius: t < 0.5 ? outerBorderRadius : other.outerBorderRadius,
       outerPadding: t < 0.5 ? outerPadding : other.outerPadding,
-      paddingToScreenEdge: t < 0.5 ? paddingToScreenEdge : other.paddingToScreenEdge,
+      paddingToScreenEdge:
+          t < 0.5 ? paddingToScreenEdge : other.paddingToScreenEdge,
       scrimColor: Color.lerp(scrimColor, other.scrimColor, t)!,
-      titleDescriptionSpacing: t < 0.5 ? titleDescriptionSpacing : other.titleDescriptionSpacing,
+      titleDescriptionSpacing:
+          t < 0.5 ? titleDescriptionSpacing : other.titleDescriptionSpacing,
       titleTextStyle: TextStyle.lerp(titleTextStyle, other.titleTextStyle, t)!,
     );
   }
@@ -186,21 +195,34 @@ class YgDialogTheme extends ThemeExtension<YgDialogTheme> {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is YgDialogTheme &&
-            const DeepCollectionEquality().equals(backgroundColor, other.backgroundColor) &&
-            const DeepCollectionEquality().equals(buttonSpacing, other.buttonSpacing) &&
-            const DeepCollectionEquality().equals(descriptionTextStyle, other.descriptionTextStyle) &&
-            const DeepCollectionEquality().equals(iconContainerColor, other.iconContainerColor) &&
-            const DeepCollectionEquality().equals(iconPadding, other.iconPadding) &&
+            const DeepCollectionEquality()
+                .equals(backgroundColor, other.backgroundColor) &&
+            const DeepCollectionEquality()
+                .equals(buttonSpacing, other.buttonSpacing) &&
+            const DeepCollectionEquality()
+                .equals(descriptionTextStyle, other.descriptionTextStyle) &&
+            const DeepCollectionEquality()
+                .equals(iconContainerColor, other.iconContainerColor) &&
+            const DeepCollectionEquality()
+                .equals(iconPadding, other.iconPadding) &&
             const DeepCollectionEquality().equals(maxWidth, other.maxWidth) &&
             const DeepCollectionEquality().equals(minWidth, other.minWidth) &&
-            const DeepCollectionEquality().equals(movementAnimationCurve, other.movementAnimationCurve) &&
-            const DeepCollectionEquality().equals(movementAnimationDuration, other.movementAnimationDuration) &&
-            const DeepCollectionEquality().equals(outerBorderRadius, other.outerBorderRadius) &&
-            const DeepCollectionEquality().equals(outerPadding, other.outerPadding) &&
-            const DeepCollectionEquality().equals(paddingToScreenEdge, other.paddingToScreenEdge) &&
-            const DeepCollectionEquality().equals(scrimColor, other.scrimColor) &&
-            const DeepCollectionEquality().equals(titleDescriptionSpacing, other.titleDescriptionSpacing) &&
-            const DeepCollectionEquality().equals(titleTextStyle, other.titleTextStyle));
+            const DeepCollectionEquality()
+                .equals(movementAnimationCurve, other.movementAnimationCurve) &&
+            const DeepCollectionEquality().equals(
+                movementAnimationDuration, other.movementAnimationDuration) &&
+            const DeepCollectionEquality()
+                .equals(outerBorderRadius, other.outerBorderRadius) &&
+            const DeepCollectionEquality()
+                .equals(outerPadding, other.outerPadding) &&
+            const DeepCollectionEquality()
+                .equals(paddingToScreenEdge, other.paddingToScreenEdge) &&
+            const DeepCollectionEquality()
+                .equals(scrimColor, other.scrimColor) &&
+            const DeepCollectionEquality().equals(
+                titleDescriptionSpacing, other.titleDescriptionSpacing) &&
+            const DeepCollectionEquality()
+                .equals(titleTextStyle, other.titleTextStyle));
   }
 
   @override

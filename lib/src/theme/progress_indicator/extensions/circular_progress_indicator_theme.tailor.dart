@@ -8,7 +8,8 @@ part of 'circular_progress_indicator_theme.dart';
 // TailorAnnotationsGenerator
 // **************************************************************************
 
-class CircularProgressIndicatorTheme extends ThemeExtension<CircularProgressIndicatorTheme> {
+class CircularProgressIndicatorTheme
+    extends ThemeExtension<CircularProgressIndicatorTheme> {
   const CircularProgressIndicatorTheme({
     required this.color,
     required this.containerSize,
@@ -21,28 +22,32 @@ class CircularProgressIndicatorTheme extends ThemeExtension<CircularProgressIndi
   final double size;
   final double strokeWidth;
 
-  static final CircularProgressIndicatorTheme consumerLight = CircularProgressIndicatorTheme(
+  static final CircularProgressIndicatorTheme consumerLight =
+      CircularProgressIndicatorTheme(
     color: _$CircularProgressIndicatorTheme.color[0],
     containerSize: _$CircularProgressIndicatorTheme.containerSize[0],
     size: _$CircularProgressIndicatorTheme.size[0],
     strokeWidth: _$CircularProgressIndicatorTheme.strokeWidth[0],
   );
 
-  static final CircularProgressIndicatorTheme consumerDark = CircularProgressIndicatorTheme(
+  static final CircularProgressIndicatorTheme consumerDark =
+      CircularProgressIndicatorTheme(
     color: _$CircularProgressIndicatorTheme.color[1],
     containerSize: _$CircularProgressIndicatorTheme.containerSize[1],
     size: _$CircularProgressIndicatorTheme.size[1],
     strokeWidth: _$CircularProgressIndicatorTheme.strokeWidth[1],
   );
 
-  static final CircularProgressIndicatorTheme professionalLight = CircularProgressIndicatorTheme(
+  static final CircularProgressIndicatorTheme professionalLight =
+      CircularProgressIndicatorTheme(
     color: _$CircularProgressIndicatorTheme.color[2],
     containerSize: _$CircularProgressIndicatorTheme.containerSize[2],
     size: _$CircularProgressIndicatorTheme.size[2],
     strokeWidth: _$CircularProgressIndicatorTheme.strokeWidth[2],
   );
 
-  static final CircularProgressIndicatorTheme professionalDark = CircularProgressIndicatorTheme(
+  static final CircularProgressIndicatorTheme professionalDark =
+      CircularProgressIndicatorTheme(
     color: _$CircularProgressIndicatorTheme.color[3],
     containerSize: _$CircularProgressIndicatorTheme.containerSize[3],
     size: _$CircularProgressIndicatorTheme.size[3],
@@ -72,8 +77,11 @@ class CircularProgressIndicatorTheme extends ThemeExtension<CircularProgressIndi
   }
 
   @override
-  CircularProgressIndicatorTheme lerp(covariant ThemeExtension<CircularProgressIndicatorTheme>? other, double t) {
-    if (other is! CircularProgressIndicatorTheme) return this as CircularProgressIndicatorTheme;
+  CircularProgressIndicatorTheme lerp(
+      covariant ThemeExtension<CircularProgressIndicatorTheme>? other,
+      double t) {
+    if (other is! CircularProgressIndicatorTheme)
+      return this as CircularProgressIndicatorTheme;
     return CircularProgressIndicatorTheme(
       color: Color.lerp(color, other.color, t)!,
       containerSize: t < 0.5 ? containerSize : other.containerSize,
@@ -88,9 +96,11 @@ class CircularProgressIndicatorTheme extends ThemeExtension<CircularProgressIndi
         (other.runtimeType == runtimeType &&
             other is CircularProgressIndicatorTheme &&
             const DeepCollectionEquality().equals(color, other.color) &&
-            const DeepCollectionEquality().equals(containerSize, other.containerSize) &&
+            const DeepCollectionEquality()
+                .equals(containerSize, other.containerSize) &&
             const DeepCollectionEquality().equals(size, other.size) &&
-            const DeepCollectionEquality().equals(strokeWidth, other.strokeWidth));
+            const DeepCollectionEquality()
+                .equals(strokeWidth, other.strokeWidth));
   }
 
   @override

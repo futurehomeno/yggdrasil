@@ -87,7 +87,8 @@ class LinkButtonTheme extends ThemeExtension<LinkButtonTheme> {
     return LinkButtonTheme(
       backgroundColor: backgroundColor ?? this.backgroundColor,
       borderGradient: borderGradient ?? this.borderGradient,
-      disabledBorderGradient: disabledBorderGradient ?? this.disabledBorderGradient,
+      disabledBorderGradient:
+          disabledBorderGradient ?? this.disabledBorderGradient,
       disabledTextStyle: disabledTextStyle ?? this.disabledTextStyle,
       iconDefaultColor: iconDefaultColor ?? this.iconDefaultColor,
       iconDisabledColor: iconDisabledColor ?? this.iconDisabledColor,
@@ -96,15 +97,20 @@ class LinkButtonTheme extends ThemeExtension<LinkButtonTheme> {
   }
 
   @override
-  LinkButtonTheme lerp(covariant ThemeExtension<LinkButtonTheme>? other, double t) {
+  LinkButtonTheme lerp(
+      covariant ThemeExtension<LinkButtonTheme>? other, double t) {
     if (other is! LinkButtonTheme) return this as LinkButtonTheme;
     return LinkButtonTheme(
       backgroundColor: Color.lerp(backgroundColor, other.backgroundColor, t)!,
       borderGradient: t < 0.5 ? borderGradient : other.borderGradient,
-      disabledBorderGradient: t < 0.5 ? disabledBorderGradient : other.disabledBorderGradient,
-      disabledTextStyle: TextStyle.lerp(disabledTextStyle, other.disabledTextStyle, t)!,
-      iconDefaultColor: Color.lerp(iconDefaultColor, other.iconDefaultColor, t)!,
-      iconDisabledColor: Color.lerp(iconDisabledColor, other.iconDisabledColor, t)!,
+      disabledBorderGradient:
+          t < 0.5 ? disabledBorderGradient : other.disabledBorderGradient,
+      disabledTextStyle:
+          TextStyle.lerp(disabledTextStyle, other.disabledTextStyle, t)!,
+      iconDefaultColor:
+          Color.lerp(iconDefaultColor, other.iconDefaultColor, t)!,
+      iconDisabledColor:
+          Color.lerp(iconDisabledColor, other.iconDisabledColor, t)!,
       textStyle: TextStyle.lerp(textStyle, other.textStyle, t)!,
     );
   }
@@ -114,12 +120,18 @@ class LinkButtonTheme extends ThemeExtension<LinkButtonTheme> {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is LinkButtonTheme &&
-            const DeepCollectionEquality().equals(backgroundColor, other.backgroundColor) &&
-            const DeepCollectionEquality().equals(borderGradient, other.borderGradient) &&
-            const DeepCollectionEquality().equals(disabledBorderGradient, other.disabledBorderGradient) &&
-            const DeepCollectionEquality().equals(disabledTextStyle, other.disabledTextStyle) &&
-            const DeepCollectionEquality().equals(iconDefaultColor, other.iconDefaultColor) &&
-            const DeepCollectionEquality().equals(iconDisabledColor, other.iconDisabledColor) &&
+            const DeepCollectionEquality()
+                .equals(backgroundColor, other.backgroundColor) &&
+            const DeepCollectionEquality()
+                .equals(borderGradient, other.borderGradient) &&
+            const DeepCollectionEquality()
+                .equals(disabledBorderGradient, other.disabledBorderGradient) &&
+            const DeepCollectionEquality()
+                .equals(disabledTextStyle, other.disabledTextStyle) &&
+            const DeepCollectionEquality()
+                .equals(iconDefaultColor, other.iconDefaultColor) &&
+            const DeepCollectionEquality()
+                .equals(iconDisabledColor, other.iconDisabledColor) &&
             const DeepCollectionEquality().equals(textStyle, other.textStyle));
   }
 

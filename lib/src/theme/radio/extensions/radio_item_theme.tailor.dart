@@ -56,7 +56,8 @@ class YgRadioItemTheme extends ThemeExtension<YgRadioItemTheme> {
   }
 
   @override
-  YgRadioItemTheme lerp(covariant ThemeExtension<YgRadioItemTheme>? other, double t) {
+  YgRadioItemTheme lerp(
+      covariant ThemeExtension<YgRadioItemTheme>? other, double t) {
     if (other is! YgRadioItemTheme) return this as YgRadioItemTheme;
     return YgRadioItemTheme(
       radioTitleSpacing: t < 0.5 ? radioTitleSpacing : other.radioTitleSpacing,
@@ -69,8 +70,10 @@ class YgRadioItemTheme extends ThemeExtension<YgRadioItemTheme> {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is YgRadioItemTheme &&
-            const DeepCollectionEquality().equals(radioTitleSpacing, other.radioTitleSpacing) &&
-            const DeepCollectionEquality().equals(titleTextStyle, other.titleTextStyle));
+            const DeepCollectionEquality()
+                .equals(radioTitleSpacing, other.radioTitleSpacing) &&
+            const DeepCollectionEquality()
+                .equals(titleTextStyle, other.titleTextStyle));
   }
 
   @override

@@ -56,7 +56,8 @@ class WarningCalloutTheme extends ThemeExtension<WarningCalloutTheme> {
   }
 
   @override
-  WarningCalloutTheme lerp(covariant ThemeExtension<WarningCalloutTheme>? other, double t) {
+  WarningCalloutTheme lerp(
+      covariant ThemeExtension<WarningCalloutTheme>? other, double t) {
     if (other is! WarningCalloutTheme) return this as WarningCalloutTheme;
     return WarningCalloutTheme(
       backgroundColor: Color.lerp(backgroundColor, other.backgroundColor, t)!,
@@ -69,8 +70,10 @@ class WarningCalloutTheme extends ThemeExtension<WarningCalloutTheme> {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is WarningCalloutTheme &&
-            const DeepCollectionEquality().equals(backgroundColor, other.backgroundColor) &&
-            const DeepCollectionEquality().equals(borderColor, other.borderColor));
+            const DeepCollectionEquality()
+                .equals(backgroundColor, other.backgroundColor) &&
+            const DeepCollectionEquality()
+                .equals(borderColor, other.borderColor));
   }
 
   @override
