@@ -6,7 +6,7 @@ import 'package:yggdrasil/yggdrasil.dart';
 /// This does not check if the value it self is "empty". When checking if a
 /// text field is empty, use the [RequiredValidator] instead.
 
-class NullValidator extends YgInputValidator<dynamic> {
+class NullValidator extends YgFieldValidator<dynamic> {
   const NullValidator({
     required this.nullError,
   });

@@ -3,7 +3,7 @@ import 'package:flutter/services.dart';
 import 'package:yggdrasil/src/theme/_theme.dart';
 import 'package:yggdrasil/src/utils/_utils.dart';
 
-import 'yg_radio.style.dart';
+import 'yg_radio_style.dart';
 
 /// Yggdrasil radio button.
 ///
@@ -91,11 +91,11 @@ class _YgRadioState<T> extends State<YgRadio<T>> {
   Widget build(BuildContext context) {
     final YgRadioTheme radioTheme = context.radioTheme;
     final YgRadioStyle radioStyle = YgRadioStyle.base(context);
-    final Color? resolvedBackgroundColor = radioStyle.backgroundColor.resolve(statesController.value);
-    final Color? resolvedHandleColor = radioStyle.handleColor.resolve(statesController.value);
-    final double? resolvedHandleSize = radioStyle.handleSize.resolve(statesController.value);
-    final double? resolvedHelperHandleSize = radioStyle.helperHandleSize.resolve(statesController.value);
-    final MouseCursor resolvedMouseCursor = radioStyle.mouseCursor.resolve(statesController.value)!;
+    final Color resolvedBackgroundColor = radioStyle.backgroundColor.resolve(statesController.value);
+    final Color resolvedHandleColor = radioStyle.handleColor.resolve(statesController.value);
+    final double resolvedHandleSize = radioStyle.handleSize.resolve(statesController.value);
+    final double resolvedHelperHandleSize = radioStyle.helperHandleSize.resolve(statesController.value);
+    final MouseCursor resolvedMouseCursor = radioStyle.mouseCursor.resolve(statesController.value);
 
     return RepaintBoundary(
       child: Semantics(

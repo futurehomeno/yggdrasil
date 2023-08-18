@@ -18,20 +18,6 @@ class YgSnackBarMapper {
     }
   }
 
-  static Color getIconColor({
-    required YgSnackBarTheme theme,
-    required YgSnackBarVariant snackBarVariant,
-  }) {
-    switch (snackBarVariant) {
-      case YgSnackBarVariant.highlight:
-        return theme.highlightSnackBarTheme.iconColor;
-      case YgSnackBarVariant.success:
-        return theme.successSnackBarTheme.iconColor;
-      case YgSnackBarVariant.critical:
-        return theme.criticalSnackBarTheme.iconColor;
-    }
-  }
-
   static YgIcon getIcon({
     required YgSnackBarTheme theme,
     required YgSnackBarVariant snackBarVariant,

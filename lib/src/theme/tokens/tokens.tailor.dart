@@ -15,7 +15,6 @@ class YgTokens extends ThemeExtension<YgTokens> {
     required this.dimensions,
     required this.gradients,
     required this.radii,
-    required this.shadows,
     required this.textStyles,
   });
 
@@ -24,7 +23,6 @@ class YgTokens extends ThemeExtension<YgTokens> {
   final YgDimension dimensions;
   final YgGradient gradients;
   final YgRadius radii;
-  final YgShadow shadows;
   final YgTextStyle textStyles;
 
   static final YgTokens consumerLight = YgTokens(
@@ -33,7 +31,6 @@ class YgTokens extends ThemeExtension<YgTokens> {
     dimensions: _$YgTokens.dimensions[0],
     gradients: _$YgTokens.gradients[0],
     radii: _$YgTokens.radii[0],
-    shadows: _$YgTokens.shadows[0],
     textStyles: _$YgTokens.textStyles[0],
   );
 
@@ -43,7 +40,6 @@ class YgTokens extends ThemeExtension<YgTokens> {
     dimensions: _$YgTokens.dimensions[1],
     gradients: _$YgTokens.gradients[1],
     radii: _$YgTokens.radii[1],
-    shadows: _$YgTokens.shadows[1],
     textStyles: _$YgTokens.textStyles[1],
   );
 
@@ -53,7 +49,6 @@ class YgTokens extends ThemeExtension<YgTokens> {
     dimensions: _$YgTokens.dimensions[2],
     gradients: _$YgTokens.gradients[2],
     radii: _$YgTokens.radii[2],
-    shadows: _$YgTokens.shadows[2],
     textStyles: _$YgTokens.textStyles[2],
   );
 
@@ -63,7 +58,6 @@ class YgTokens extends ThemeExtension<YgTokens> {
     dimensions: _$YgTokens.dimensions[3],
     gradients: _$YgTokens.gradients[3],
     radii: _$YgTokens.radii[3],
-    shadows: _$YgTokens.shadows[3],
     textStyles: _$YgTokens.textStyles[3],
   );
 
@@ -81,7 +75,6 @@ class YgTokens extends ThemeExtension<YgTokens> {
     YgDimension? dimensions,
     YgGradient? gradients,
     YgRadius? radii,
-    YgShadow? shadows,
     YgTextStyle? textStyles,
   }) {
     return YgTokens(
@@ -90,7 +83,6 @@ class YgTokens extends ThemeExtension<YgTokens> {
       dimensions: dimensions ?? this.dimensions,
       gradients: gradients ?? this.gradients,
       radii: radii ?? this.radii,
-      shadows: shadows ?? this.shadows,
       textStyles: textStyles ?? this.textStyles,
     );
   }
@@ -104,7 +96,6 @@ class YgTokens extends ThemeExtension<YgTokens> {
       dimensions: dimensions.lerp(other.dimensions, t) as YgDimension,
       gradients: gradients.lerp(other.gradients, t) as YgGradient,
       radii: radii.lerp(other.radii, t) as YgRadius,
-      shadows: shadows.lerp(other.shadows, t) as YgShadow,
       textStyles: textStyles.lerp(other.textStyles, t) as YgTextStyle,
     );
   }
@@ -120,7 +111,6 @@ class YgTokens extends ThemeExtension<YgTokens> {
                 .equals(dimensions, other.dimensions) &&
             const DeepCollectionEquality().equals(gradients, other.gradients) &&
             const DeepCollectionEquality().equals(radii, other.radii) &&
-            const DeepCollectionEquality().equals(shadows, other.shadows) &&
             const DeepCollectionEquality()
                 .equals(textStyles, other.textStyles));
   }
@@ -134,7 +124,6 @@ class YgTokens extends ThemeExtension<YgTokens> {
       const DeepCollectionEquality().hash(dimensions),
       const DeepCollectionEquality().hash(gradients),
       const DeepCollectionEquality().hash(radii),
-      const DeepCollectionEquality().hash(shadows),
       const DeepCollectionEquality().hash(textStyles),
     );
   }

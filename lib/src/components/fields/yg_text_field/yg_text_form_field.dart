@@ -32,7 +32,7 @@ class YgTextFormField extends FormField<String> {
           initialValue: controller != null ? controller.text : (initialValue ?? ''),
           enabled: !disabled,
           autovalidateMode: AutovalidateMode.disabled,
-          validator: YgInputValidatorToFormFieldValidatorTransformer<String>(
+          validator: YgFieldValidatorToFormFieldValidatorTransformer<String>(
             validators: validators,
             fieldKey: key,
           ),
