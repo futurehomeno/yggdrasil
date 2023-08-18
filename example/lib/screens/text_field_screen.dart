@@ -112,13 +112,10 @@ class _TextFieldScreenState extends State<TextFieldScreen> {
               key: formKey,
               child: Column(
                 children: <Widget>[
-                  YgTextFormField(
+                  YgTextFormField.email(
                     key: emailKey,
                     label: 'Email',
-                    textInputType: TextInputType.emailAddress,
                     textInputAction: TextInputAction.next,
-                    textCapitalization: TextCapitalization.none,
-                    autocorrect: true,
                     validator: _demoEmailValidator,
                     onEditingComplete: () {
                       if (emailKey.currentState!.validate()) {
@@ -126,14 +123,10 @@ class _TextFieldScreenState extends State<TextFieldScreen> {
                       }
                     },
                   ),
-                  YgTextFormField(
+                  YgTextFormField.password(
                     key: passwordKey,
                     label: 'Password',
-                    textInputType: TextInputType.text,
                     textInputAction: TextInputAction.done,
-                    textCapitalization: TextCapitalization.none,
-                    autocorrect: true,
-                    obscureText: true,
                     validator: _demoPasswordValidator,
                     onEditingComplete: () {
                       if (passwordKey.currentState!.validate()) {
