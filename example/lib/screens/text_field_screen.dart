@@ -124,27 +124,6 @@ class _TextFieldScreenState extends State<TextFieldScreen> {
                 mainAxisSize: MainAxisSize.min,
                 crossAxisAlignment: CrossAxisAlignment.stretch,
                 children: <Widget>[
-                  YgTextFormField.email(
-                    required: true,
-                    key: emailKey,
-                    label: 'Email',
-                    variant: YgTextFieldVariant.outlined,
-                    textInputAction: TextInputAction.next,
-                  ),
-                  YgTextFormField.password(
-                    required: true,
-                    key: passwordKey,
-                    label: 'Password',
-                    textInputAction: TextInputAction.next,
-                    variant: YgTextFieldVariant.outlined,
-                  ),
-                  YgTextFormField.password(
-                    otherPasswordFieldKey: passwordKey,
-                    key: passwordConfirmKey,
-                    label: 'Confirm password',
-                    variant: YgTextFieldVariant.outlined,
-                    textInputAction: TextInputAction.done,
-                  ),
                   YgButton(
                     variant: YgButtonVariant.primary,
                     onPressed: _validateForm,
