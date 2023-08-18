@@ -1,18 +1,18 @@
 import '_validators.dart';
 
 /// A validator that validates string values.
-typedef YgTextValidator = YgInputValidator<String>;
+typedef YgTextValidator = YgFieldValidator<String>;
 
 /// A validator that validates number values.
-typedef YgNumberValidator = YgInputValidator<num>;
+typedef YgNumberValidator = YgFieldValidator<num>;
 
 /// A validator class.
 ///
 /// Should be extended and override the [validate] method. Should also accept
 /// error values. If the error values are common they should be added to
 /// [YgDefaultValidatorErrors].
-abstract class YgInputValidator<T> {
-  const YgInputValidator();
+abstract class YgFieldValidator<T> {
+  const YgFieldValidator();
 
   /// Validates [value].
   ///

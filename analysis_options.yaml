@@ -35,8 +35,10 @@ dart_code_metrics:
     # TODO(DEV-1305): what the task says
     # - arguments-ordering
 
-    # TODO(DEV-1304): what the task says
-    # - prefer-match-file-name
+    - prefer-match-file-name:
+        exclude:
+          - 'lib/src/theme/**/*.dart'
+          - 'lib/src/theme/*.dart'
 
     - newline-before-return
 

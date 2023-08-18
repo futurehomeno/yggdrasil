@@ -1,1 +1,1 @@
-export 'icons.dart';
+export 'yg_icons.dart';

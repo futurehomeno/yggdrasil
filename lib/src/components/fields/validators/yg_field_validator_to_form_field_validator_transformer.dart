@@ -5,13 +5,13 @@ import 'package:yggdrasil/yggdrasil.dart';
 /// flutter [FormFieldValidator] interface.
 ///
 /// Primarily used internally in yggdrasil widgets like the [YgTextInput].
-class YgInputValidatorToFormFieldValidatorTransformer<T> {
-  const YgInputValidatorToFormFieldValidatorTransformer({
+class YgFieldValidatorToFormFieldValidatorTransformer<T> {
+  const YgFieldValidatorToFormFieldValidatorTransformer({
     this.validators,
     required this.fieldKey,
   });
 
-  final List<YgInputValidator<T>>? validators;
+  final List<YgFieldValidator<T>>? validators;
   final FormFieldKey<T> fieldKey;
 
   String? call(T? input) {
@@ -22,7 +22,7 @@ class YgInputValidatorToFormFieldValidatorTransformer<T> {
       return null;
     }
 
-    final List<YgInputValidator<T>>? validators = this.validators;
+    final List<YgFieldValidator<T>>? validators = this.validators;
 
     if (validators == null) {
       return null;
@@ -30,7 +30,7 @@ class YgInputValidatorToFormFieldValidatorTransformer<T> {
 
     final YgDefaultValidatorErrorsProvider defaultsProvider = YgDefaultValidatorErrorsProvider.of(context);
 
-    for (final YgInputValidator<T> validator in validators) {
+    for (final YgFieldValidator<T> validator in validators) {
       final String? error = validator.validate(
         defaultsProvider.defaultErrors,
         input,

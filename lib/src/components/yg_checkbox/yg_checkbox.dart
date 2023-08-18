@@ -5,7 +5,7 @@ import 'package:yggdrasil/src/utils/_utils.dart';
 
 import 'helpers/_helpers.dart';
 import 'widgets/_widgets.dart';
-import 'yg_checkbox.style.dart';
+import 'yg_checkbox_style.dart';
 
 /// Yggdrasil radio button.
 ///

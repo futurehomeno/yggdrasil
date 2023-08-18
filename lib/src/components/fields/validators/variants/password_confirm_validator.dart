@@ -1,7 +1,7 @@
 import 'package:yggdrasil/yggdrasil.dart';
 
 /// Validates password is equal to a password in another field.
-class PasswordConfirmValidator extends CombinedValidator<String> {
+class PasswordConfirmValidator extends YgCombinedValidator<String> {
   const PasswordConfirmValidator({
     this.passwordsDoNotMatchError,
     required this.otherPasswordFieldKey,

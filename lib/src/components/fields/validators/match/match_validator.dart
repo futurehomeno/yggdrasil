@@ -1,7 +1,7 @@
 import 'package:yggdrasil/yggdrasil.dart';
 
 /// Validates that the value of the field is equal to the value of another field.
-class MatchValidator<T> extends YgInputValidator<T> {
+class MatchValidator<T> extends YgFieldValidator<T> {
   const MatchValidator({
     required this.otherFieldKey,
     required this.error,

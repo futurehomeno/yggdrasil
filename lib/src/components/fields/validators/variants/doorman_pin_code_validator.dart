@@ -1,8 +1,8 @@
 import 'package:yggdrasil/yggdrasil.dart';
 
 /// Validates that a doorman pin code is exactly 6 characters.
-class DoormanPicCodeValidator extends CombinedValidator<String> {
-  const DoormanPicCodeValidator({
+class DoormanPinCodeValidator extends YgCombinedValidator<String> {
+  const DoormanPinCodeValidator({
     this.pinCodeTooLongError,
     this.pinCodeTooShortError,
   });
@@ -18,11 +18,11 @@ class DoormanPicCodeValidator extends CombinedValidator<String> {
   final String? pinCodeTooShortError;
 
   @override
-  List<YgInputValidator<String>> getValidators(
+  List<YgFieldValidator<String>> getValidators(
     YgDefaultValidatorErrors defaults,
     String? value,
   ) {
-    return <YgInputValidator<String>>[
+    return <YgFieldValidator<String>>[
       MaxLengthValidator(
         max: 6,
         tooLongError: pinCodeTooLongError ?? defaults.doormanPinCodeTooLong,

@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 
 import '_validators.dart';
 
-/// Provides [YgDefaultValidatorErrors] to implementations of [YgInputValidator].
+/// Provides [YgDefaultValidatorErrors] to implementations of [YgFieldValidator].
 ///
 /// Should be added on top level of the app and be rebuild when translations
 /// have changed.
