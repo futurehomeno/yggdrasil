@@ -115,7 +115,7 @@ class _TextFieldScreenState extends State<TextFieldScreen> {
                   YgTextFormField(
                     key: emailKey,
                     label: 'Email',
-                    textInputType: TextInputType.text,
+                    textInputType: TextInputType.emailAddress,
                     textInputAction: TextInputAction.next,
                     textCapitalization: TextCapitalization.none,
                     autocorrect: true,
