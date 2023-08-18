@@ -2,19 +2,21 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:yggdrasil/yggdrasil.dart';
 
-/// Form field variation of [YgTextField].
+/// A form field that contains a [YgTextField].
+///
+/// This is a convenience widget that wraps a [YgTextField] widget in a [FormField].
 class YgTextFormField extends FormField<String> {
   YgTextFormField({
     this.controller,
     required TextFieldKey super.key,
     required String label,
-    required TextInputType keyboardType,
+    required TextInputType textInputType,
     required TextInputAction textInputAction,
     required bool autocorrect,
     required TextCapitalization textCapitalization,
     String? error,
     String? placeholder,
-    YgIconButton? suffix,
+    YgIcon? suffix,
     String? initialValue,
     FocusNode? focusNode,
     FormFieldValidator<String>? validator,
@@ -50,7 +52,7 @@ class YgTextFormField extends FormField<String> {
                 controller: state._effectiveController,
                 disabled: disabled,
                 size: size,
-                keyboardType: keyboardType,
+                textInputType: textInputType,
                 autocorrect: autocorrect,
                 textCapitalization: textCapitalization,
                 readOnly: readOnly,

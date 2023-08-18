@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:yggdrasil/yggdrasil.dart';
+import 'package:yggdrasil/src/components/yg_text_field/enums/_enums.dart';
 
 import '_widgets.dart';
 

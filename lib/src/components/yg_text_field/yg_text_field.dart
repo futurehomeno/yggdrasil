@@ -10,7 +10,7 @@ class YgTextField extends YgTextFieldBaseWidget with StatefulWidgetDebugMixin {
     super.controller,
     super.focusNode,
     required this.label,
-    required this.keyboardType,
+    required this.textInputType,
     required this.textInputAction,
     required this.autocorrect,
     required this.textCapitalization,
@@ -36,134 +36,6 @@ class YgTextField extends YgTextFieldBaseWidget with StatefulWidgetDebugMixin {
         assert(
           suffix == null || showObscureTextButton == false || obscureText == false,
           'Can not add a suffix if showObscureTextButton and obscureText are set to true',
-        ),
-        assert(
-          (suffix == null) == (onSuffixPressed == null),
-          'Suffix and onSuffixPressed should either be both null or both defined',
-        );
-
-  const YgTextField.email({
-    super.key,
-    super.controller,
-    super.focusNode,
-    required this.label,
-    required this.textInputAction,
-    this.error,
-    this.onChanged,
-    this.placeholder,
-    this.suffix,
-    this.inputFormatters,
-    this.onSuffixPressed,
-    this.onEditingComplete,
-    this.disabled = false,
-    this.readOnly = false,
-    this.size = YgTextFieldSize.large,
-    this.variant = YgTextFieldVariant.standard,
-  })  : maxLines = 1,
-        minLines = null,
-        obscureText = false,
-        showObscureTextButton = false,
-        autocorrect = false,
-        textCapitalization = TextCapitalization.none,
-        keyboardType = TextInputType.emailAddress,
-        assert(
-          (suffix == null) == (onSuffixPressed == null),
-          'Suffix and onSuffixPressed should either be both null or both defined',
-        );
-
-  const YgTextField.password({
-    super.key,
-    super.controller,
-    super.focusNode,
-    required this.label,
-    required this.textInputAction,
-    this.error,
-    this.onChanged,
-    this.placeholder,
-    this.suffix,
-    this.inputFormatters,
-    this.onSuffixPressed,
-    this.onEditingComplete,
-    this.disabled = false,
-    this.readOnly = false,
-    this.showObscureTextButton = true,
-    this.size = YgTextFieldSize.large,
-    this.variant = YgTextFieldVariant.standard,
-  })  : maxLines = 1,
-        minLines = null,
-        obscureText = true,
-        autocorrect = false,
-        textCapitalization = TextCapitalization.none,
-        keyboardType = TextInputType.text,
-        assert(
-          suffix == null || showObscureTextButton == false,
-          'Can not add a suffix if showObscureTextButton is set to true',
-        ),
-        assert(
-          (suffix == null) == (onSuffixPressed == null),
-          'Suffix and onSuffixPressed should either be both null or both defined',
-        );
-
-  const YgTextField.text({
-    super.key,
-    super.controller,
-    super.focusNode,
-    required this.label,
-    required this.textInputAction,
-    this.error,
-    this.onChanged,
-    this.placeholder,
-    this.suffix,
-    this.inputFormatters,
-    this.onSuffixPressed,
-    this.onEditingComplete,
-    this.disabled = false,
-    this.readOnly = false,
-    this.size = YgTextFieldSize.large,
-    this.variant = YgTextFieldVariant.standard,
-  })  : maxLines = 1,
-        minLines = null,
-        obscureText = false,
-        autocorrect = true,
-        textCapitalization = TextCapitalization.sentences,
-        keyboardType = TextInputType.text,
-        showObscureTextButton = false,
-        assert(
-          (suffix == null) == (onSuffixPressed == null),
-          'Suffix and onSuffixPressed should either be both null or both defined',
-        );
-
-  const YgTextField.multiline({
-    super.key,
-    super.controller,
-    super.focusNode,
-    required this.label,
-    this.error,
-    this.onChanged,
-    this.placeholder,
-    this.suffix,
-    this.inputFormatters,
-    this.onSuffixPressed,
-    this.onEditingComplete,
-    this.minLines,
-    this.maxLines,
-    this.disabled = false,
-    this.readOnly = false,
-    this.size = YgTextFieldSize.large,
-    this.variant = YgTextFieldVariant.standard,
-  })  : obscureText = false,
-        autocorrect = true,
-        textCapitalization = TextCapitalization.sentences,
-        keyboardType = TextInputType.text,
-        showObscureTextButton = false,
-        textInputAction = TextInputAction.newline,
-        assert(
-          maxLines == null || maxLines > 1,
-          'maxLines should be null or higher than 1, for a single line text field use a different constructor.',
-        ),
-        assert(
-          maxLines == null || minLines == null || maxLines >= minLines,
-          'When both minLines and maxLines are set, maxLines should be equal or higher than minLines',
         ),
         assert(
           (suffix == null) == (onSuffixPressed == null),
@@ -235,7 +107,7 @@ class YgTextField extends YgTextFieldBaseWidget with StatefulWidgetDebugMixin {
   ///
   /// !--- IMPORTANT ---
   /// If [suffix] is defined [onSuffixPressed] also has to be defined.
-  final YgIconButton? suffix;
+  final YgIcon? suffix;
 
   /// Whether the text field is disabled.
   ///
@@ -248,7 +120,7 @@ class YgTextField extends YgTextFieldBaseWidget with StatefulWidgetDebugMixin {
   final YgTextFieldSize size;
 
   /// The type of keyboard to use for editing the text.
-  final TextInputType keyboardType;
+  final TextInputType textInputType;
 
   /// When true enables autocorrect.
   final bool autocorrect;
@@ -369,7 +241,7 @@ class _YgTextFieldState extends YgTextFieldBaseWidgetState<YgTextField> {
                       minLines: widget.minLines,
                       autocorrect: widget.autocorrect,
                       inputFormatters: widget.inputFormatters,
-                      keyboardType: widget.keyboardType,
+                      keyboardType: widget.textInputType,
                       onChanged: widget.onChanged,
                       readOnly: widget.readOnly,
                       textCapitalization: widget.textCapitalization,
@@ -474,7 +346,7 @@ class _YgTextFieldState extends YgTextFieldBaseWidgetState<YgTextField> {
   }
 
   Widget? _buildSuffix() {
-    Widget? suffix = widget.suffix;
+    YgIcon? suffix = widget.suffix;
 
     final bool renderShowObscureTextIcon = suffix == null && widget.obscureText && widget.showObscureTextButton;
 
@@ -484,9 +356,7 @@ class _YgTextFieldState extends YgTextFieldBaseWidgetState<YgTextField> {
     };
 
     if (renderShowObscureTextIcon) {
-      suffix = YgIcon(
-        _suffixIcon,
-      );
+      suffix = YgIcon(_suffixIcon);
     }
 
     if (suffix != null) {

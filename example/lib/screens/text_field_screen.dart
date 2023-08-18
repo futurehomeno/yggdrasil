@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:yggdrasil/yggdrasil.dart';
 import 'package:yggdrasil_demo/core/yg_route_builder.dart';
 import 'package:yggdrasil_demo/widgets/_widgets.dart';
-import 'package:yggdrasil_demo/widgets/login_form_dialog.dart';
 
 class TextFieldScreen extends StatefulWidget {
   const TextFieldScreen({super.key});
@@ -24,7 +23,6 @@ class _TextFieldScreenState extends State<TextFieldScreen> {
   final FormKey formKey = FormKey();
   final TextFieldKey emailKey = TextFieldKey();
   final TextFieldKey passwordKey = TextFieldKey();
-  final TextFieldKey passwordConfirmKey = TextFieldKey();
 
   @override
   Widget build(BuildContext context) {
@@ -38,122 +36,101 @@ class _TextFieldScreenState extends State<TextFieldScreen> {
         supernovaLink: 'Input',
         child: Column(
           children: <Widget>[
-            const YgListTile(title: 'Default variant'),
-            const YgTextField.text(
+            const YgListTile(title: 'Variations'),
+            const YgTextField(
+              label: 'Default field',
+              textInputType: TextInputType.text,
               textInputAction: TextInputAction.next,
+              textCapitalization: TextCapitalization.words,
+              autocorrect: true,
+            ),
+            const YgTextField(
+              label: 'Obscured',
+              textInputType: TextInputType.text,
+              textInputAction: TextInputAction.next,
+              textCapitalization: TextCapitalization.words,
+              autocorrect: true,
+              obscureText: true,
+            ),
+            const YgTextField(
               label: 'Label',
-            ),
-            const YgTextField.text(
+              placeholder: 'Fixed placeholder',
+              textInputType: TextInputType.text,
               textInputAction: TextInputAction.next,
-              label: 'Label',
-              size: YgTextFieldSize.medium,
+              textCapitalization: TextCapitalization.words,
+              autocorrect: true,
             ),
-            const YgTextField.text(
+            YgTextField(
+              label: 'Custom suffix',
+              textInputType: TextInputType.text,
               textInputAction: TextInputAction.next,
-              label: 'Label',
-              placeholder: 'Placeholder',
+              textCapitalization: TextCapitalization.words,
+              autocorrect: true,
+              suffix: const YgIcon(YgIcons.info),
+              onSuffixPressed: () {},
             ),
-            const YgTextField.password(
+            YgTextField(
+              label: 'Readonly',
+              controller: TextEditingController(text: 'Readonly'),
+              textInputType: TextInputType.text,
               textInputAction: TextInputAction.next,
-              label: 'Password',
+              textCapitalization: TextCapitalization.words,
+              autocorrect: true,
+              readOnly: true,
             ),
-            const YgTextField.text(
+            YgTextField(
+              label: 'Disabled',
+              controller: TextEditingController(text: 'Disabled'),
+              textInputType: TextInputType.text,
               textInputAction: TextInputAction.next,
-              label: 'Label',
-              error: 'Error Message',
-            ),
-            const YgTextField.password(
-              textInputAction: TextInputAction.next,
-              label: 'Password',
+              textCapitalization: TextCapitalization.words,
+              autocorrect: true,
               disabled: true,
             ),
-            const YgTextField.multiline(
-              label: 'Multi line',
-              placeholder: 'Cupidatat reprehenderit qui laborum do elit fugiat deserunt ipsum.',
-              maxLines: 5,
-              minLines: 2,
-            ),
-            const YgListTile(title: 'Outlined variant'),
-            const YgTextField.text(
+            const YgListTile(title: 'Variants'),
+            const YgTextField(
+              label: 'Standard',
+              variant: YgTextFieldVariant.standard,
+              textInputType: TextInputType.text,
               textInputAction: TextInputAction.next,
-              label: 'Label',
-              variant: YgTextFieldVariant.outlined,
+              textCapitalization: TextCapitalization.words,
+              autocorrect: true,
             ),
-            const YgTextField.text(
+            const YgTextField(
+              label: 'Outlined',
+              variant: YgTextFieldVariant.outlined,
+              textInputType: TextInputType.text,
               textInputAction: TextInputAction.next,
-              label: 'Label',
-              variant: YgTextFieldVariant.outlined,
-              size: YgTextFieldSize.medium,
+              textCapitalization: TextCapitalization.words,
+              autocorrect: true,
             ),
-            const YgTextField.text(
-              textInputAction: TextInputAction.next,
-              label: 'Label',
-              variant: YgTextFieldVariant.outlined,
-              placeholder: 'Placeholder',
-            ),
-            const YgTextField.password(
-              textInputAction: TextInputAction.next,
-              label: 'Password',
-              variant: YgTextFieldVariant.outlined,
-            ),
-            const YgTextField.text(
-              textInputAction: TextInputAction.next,
-              label: 'Label',
-              variant: YgTextFieldVariant.outlined,
-              error: 'Error Message',
-            ),
-            const YgTextField.text(
-              textInputAction: TextInputAction.next,
-              label: 'Label',
-              variant: YgTextFieldVariant.outlined,
-              disabled: true,
-            ),
-            const YgTextField.multiline(
-              label: 'Multi line',
-              variant: YgTextFieldVariant.outlined,
-              placeholder: 'Id labore veniam id veniam duis in cillum eu duis sint veniam eiusmod do cupidatat.',
-              maxLines: 5,
-              minLines: 2,
-            ),
-            const YgListTile(
-              title: 'Example use in a form',
-            ),
+            const YgListTile(title: 'Login form example'),
             Form(
               key: formKey,
               child: Column(
-                mainAxisSize: MainAxisSize.min,
-                crossAxisAlignment: CrossAxisAlignment.stretch,
                 children: <Widget>[
-                  YgButton(
-                    variant: YgButtonVariant.primary,
-                    onPressed: _validateForm,
-                    child: const Text('Login'),
-                  )
+                  YgTextFormField(
+                    key: emailKey,
+                    label: 'Email',
+                    textInputType: TextInputType.text,
+                    textInputAction: TextInputAction.next,
+                    textCapitalization: TextCapitalization.none,
+                    autocorrect: true,
+                  ),
+                  YgTextFormField(
+                    key: passwordKey,
+                    label: 'Password',
+                    textInputType: TextInputType.text,
+                    textInputAction: TextInputAction.done,
+                    textCapitalization: TextCapitalization.none,
+                    autocorrect: true,
+                    obscureText: true,
+                  ),
                 ].withVerticalSpacing(10),
               ),
             )
           ].withVerticalSpacing(10),
         ),
-      ),
-    );
-  }
-
-  void _validateForm() {
-    FocusScope.of(context).unfocus();
-
-    final bool valid = formKey.validate();
-
-    if (!valid) {
-      return;
-    }
-
-    final String? email = emailKey.value;
-    final String? password = passwordKey.value;
-
-    Navigator.of(context).push(
-      ExampleSignupFormDialog(
-        email: email ?? '',
-        password: password ?? '',
       ),
     );
   }
