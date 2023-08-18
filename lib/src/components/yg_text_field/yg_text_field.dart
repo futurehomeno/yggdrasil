@@ -346,40 +346,34 @@ class _YgTextFieldState extends YgTextFieldBaseWidgetState<YgTextField> {
   }
 
   Widget? _buildSuffix() {
-    YgIcon? suffix = widget.suffix;
+    if (widget.suffix == null && widget.obscureText && widget.showObscureTextButton) {
+      // Display the obscure text toggle icon
+      return _buildSuffixButton(YgIcon(_suffixIcon), () {
+        _obscureTextToggled ^= true;
+        setState(() {});
+      });
+    } else if (widget.suffix != null) {
+      // Display the custom suffix icon
+      return _buildSuffixButton(widget.suffix!, widget.onSuffixPressed);
+    }
 
-    final bool renderShowObscureTextIcon = suffix == null && widget.obscureText && widget.showObscureTextButton;
+    return null;
+  }
 
+  Widget _buildSuffixButton(YgIcon icon, VoidCallback? onPressed) {
     final EdgeInsets padding = switch (widget.variant) {
       YgTextFieldVariant.outlined => theme.outlinedSuffixPadding,
       YgTextFieldVariant.standard => theme.standardSuffixPadding,
     };
 
-    if (renderShowObscureTextIcon) {
-      suffix = YgIcon(_suffixIcon);
-    }
-
-    if (suffix != null) {
-      return Padding(
-        padding: padding,
-        child: YgIconButton(
-          size: YgIconButtonSize.small,
-          onPressed: widget.disabled
-              ? null
-              : () {
-                  if (renderShowObscureTextIcon) {
-                    _obscureTextToggled ^= true;
-                    setState(() {});
-                  } else {
-                    widget.onSuffixPressed?.call();
-                  }
-                },
-          child: suffix,
-        ),
-      );
-    }
-
-    return null;
+    return Padding(
+      padding: padding,
+      child: YgIconButton(
+        size: YgIconButtonSize.small,
+        onPressed: widget.disabled ? null : onPressed,
+        child: icon,
+      ),
+    );
   }
 
   bool get _obscureText {
