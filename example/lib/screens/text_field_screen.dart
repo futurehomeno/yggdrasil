@@ -33,7 +33,7 @@ class _TextFieldScreenState extends State<TextFieldScreen> {
       child: DemoScreen(
         componentName: 'TextField',
         componentDesc: 'Text Field',
-        supernovaLink: 'Input',
+        supernovaLink: 'Link',
         child: Column(
           children: <Widget>[
             const YgListTile(title: 'Variations'),
@@ -104,7 +104,10 @@ class _TextFieldScreenState extends State<TextFieldScreen> {
               textCapitalization: TextCapitalization.words,
               autocorrect: true,
             ),
-            const YgListTile(title: 'Login form example'),
+            const YgListTile(
+              title: 'Login form example',
+              subtitle: 'See example code for best-practice usage.',
+            ),
             Form(
               key: formKey,
               child: Column(
@@ -116,6 +119,12 @@ class _TextFieldScreenState extends State<TextFieldScreen> {
                     textInputAction: TextInputAction.next,
                     textCapitalization: TextCapitalization.none,
                     autocorrect: true,
+                    validator: _demoEmailValidator,
+                    onEditingComplete: () {
+                      if (emailKey.currentState!.validate()) {
+                        FocusScope.of(context).nextFocus();
+                      }
+                    },
                   ),
                   YgTextFormField(
                     key: passwordKey,
@@ -125,12 +134,67 @@ class _TextFieldScreenState extends State<TextFieldScreen> {
                     textCapitalization: TextCapitalization.none,
                     autocorrect: true,
                     obscureText: true,
+                    validator: _demoPasswordValidator,
+                    onEditingComplete: () {
+                      if (passwordKey.currentState!.validate()) {
+                        _onSubmit();
+                      }
+                    },
+                  ),
+                  YgButton(
+                    onPressed: _onSubmit,
+                    child: const Text('Submit'),
                   ),
                 ].withVerticalSpacing(10),
               ),
             )
           ].withVerticalSpacing(10),
         ),
+      ),
+    );
+  }
+
+  String? _demoEmailValidator(String? value) {
+    if (value == null || value.isEmpty) {
+      return 'Please enter an email address';
+    }
+
+    const String pattern = r'^[a-zA-Z0-9.a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$';
+    final RegExp regex = RegExp(pattern);
+    if (!regex.hasMatch(value)) {
+      return 'Please enter a valid email address';
+    }
+
+    return null;
+  }
+
+  String? _demoPasswordValidator(String? value) {
+    if (value == null || value.isEmpty) {
+      return 'Please enter a password';
+    }
+
+    const int minLength = 8;
+    if (value.length < minLength) {
+      return 'Password must be at least $minLength characters long';
+    }
+
+    return null;
+  }
+
+  void _onSubmit() {
+    FocusScope.of(context).unfocus();
+
+    if (!formKey.validate()) {
+      return;
+    }
+
+    final String? email = emailKey.value;
+    final String? password = passwordKey.value;
+
+    ScaffoldMessenger.of(context).showSnackBar(
+      YgSnackBar(
+        context: context,
+        message: 'Logging in with $email and $password.',
       ),
     );
   }
