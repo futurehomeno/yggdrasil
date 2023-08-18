@@ -347,13 +347,13 @@ class _YgTextFieldState extends YgTextFieldBaseWidgetState<YgTextField> {
 
   Widget? _buildSuffix() {
     if (widget.suffix == null && widget.obscureText && widget.showObscureTextButton) {
-      // Display the obscure text toggle icon
+      // Display the obscure text toggle icon.
       return _buildSuffixButton(YgIcon(_suffixIcon), () {
         _obscureTextToggled ^= true;
         setState(() {});
       });
     } else if (widget.suffix != null) {
-      // Display the custom suffix icon
+      // Display the custom suffix icon.
       return _buildSuffixButton(widget.suffix!, widget.onSuffixPressed);
     }
 
