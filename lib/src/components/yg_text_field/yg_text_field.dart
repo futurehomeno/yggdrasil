@@ -42,6 +42,105 @@ class YgTextField extends YgTextFieldBaseWidget with StatefulWidgetDebugMixin {
           'Suffix and onSuffixPressed should either be both null or both defined',
         );
 
+  const YgTextField.email({
+    super.key,
+    super.controller,
+    super.focusNode,
+    required this.label,
+    required this.textInputAction,
+    this.error,
+    this.onChanged,
+    this.placeholder,
+    this.suffix,
+    this.inputFormatters,
+    this.onSuffixPressed,
+    this.onEditingComplete,
+    this.disabled = false,
+    this.readOnly = false,
+    this.size = YgTextFieldSize.large,
+    this.variant = YgTextFieldVariant.standard,
+  })  : maxLines = 1,
+        minLines = null,
+        obscureText = false,
+        showObscureTextButton = false,
+        autocorrect = false,
+        textCapitalization = TextCapitalization.none,
+        textInputType = TextInputType.emailAddress,
+        assert(
+          (suffix == null) == (onSuffixPressed == null),
+          'Suffix and onSuffixPressed should either be both null or both defined',
+        );
+
+  const YgTextField.password({
+    super.key,
+    super.controller,
+    super.focusNode,
+    required this.label,
+    required this.textInputAction,
+    this.error,
+    this.onChanged,
+    this.placeholder,
+    this.suffix,
+    this.inputFormatters,
+    this.onSuffixPressed,
+    this.onEditingComplete,
+    this.disabled = false,
+    this.readOnly = false,
+    this.showObscureTextButton = true,
+    this.size = YgTextFieldSize.large,
+    this.variant = YgTextFieldVariant.standard,
+  })  : maxLines = 1,
+        minLines = null,
+        obscureText = true,
+        autocorrect = false,
+        textCapitalization = TextCapitalization.none,
+        textInputType = TextInputType.text,
+        assert(
+          suffix == null || showObscureTextButton == false,
+          'Can not add a suffix if showObscureTextButton is set to true',
+        ),
+        assert(
+          (suffix == null) == (onSuffixPressed == null),
+          'Suffix and onSuffixPressed should either be both null or both defined',
+        );
+
+  const YgTextField.multiline({
+    super.key,
+    super.controller,
+    super.focusNode,
+    required this.label,
+    this.error,
+    this.onChanged,
+    this.placeholder,
+    this.suffix,
+    this.inputFormatters,
+    this.onSuffixPressed,
+    this.onEditingComplete,
+    this.minLines,
+    this.maxLines,
+    this.disabled = false,
+    this.readOnly = false,
+    this.size = YgTextFieldSize.large,
+    this.variant = YgTextFieldVariant.standard,
+  })  : obscureText = false,
+        autocorrect = true,
+        textCapitalization = TextCapitalization.sentences,
+        textInputType = TextInputType.text,
+        showObscureTextButton = false,
+        textInputAction = TextInputAction.newline,
+        assert(
+          maxLines == null || maxLines > 1,
+          'maxLines should be null or higher than 1, for a single line text field use a different constructor.',
+        ),
+        assert(
+          maxLines == null || minLines == null || maxLines >= minLines,
+          'When both minLines and maxLines are set, maxLines should be equal or higher than minLines',
+        ),
+        assert(
+          (suffix == null) == (onSuffixPressed == null),
+          'Suffix and onSuffixPressed should either be both null or both defined',
+        );
+
   /// Obscures the text in the text field.
   ///
   /// If [showObscureTextButton] is set to true (the default value) and the
