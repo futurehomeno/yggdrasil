@@ -40,41 +40,54 @@ class YgCallout extends StatelessWidget with StatelessWidgetDebugMixin {
       child: Padding(
         padding: theme.padding,
         child: Row(
-          crossAxisAlignment: title == null ? CrossAxisAlignment.center : CrossAxisAlignment.start,
+          crossAxisAlignment: CrossAxisAlignment.start,
           children: <Widget>[
             Expanded(
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: <Widget>[
-                  if (title != null)
-                    Padding(
-                      padding: EdgeInsets.only(bottom: theme.titleSpacing),
-                      child: Text(
-                        title,
-                        style: theme.titleTextStyle,
-                      ),
-                    ),
-                  Text(
-                    description,
-                    style: theme.descriptionTextStyle,
-                  ),
-                  if (textLink != null)
-                    Padding(
-                      padding: EdgeInsets.only(top: theme.linkSpacing),
-                      child: textLink,
-                    ),
+                  if (title != null) _buildTitle(theme, title),
+                  _buildDescription(theme),
+                  if (textLink != null) _buildTextLink(theme, textLink),
                 ],
               ),
             ),
-            if (onClose != null)
-              YgIconButton(
-                onPressed: onClose,
-                size: YgIconButtonSize.small,
-                child: const YgIcon(YgIcons.cross),
-              ),
+            if (onClose != null) _buildCloseButton(),
           ].withHorizontalSpacing(theme.closeButtonSpacing),
         ),
       ),
+    );
+  }
+
+  Widget _buildCloseButton() {
+    return YgIconButton(
+      onPressed: onClose,
+      size: YgIconButtonSize.small,
+      child: const YgIcon(YgIcons.cross),
+    );
+  }
+
+  Widget _buildTitle(YgCalloutTheme theme, String title) {
+    return Padding(
+      padding: EdgeInsets.only(bottom: theme.titleSpacing),
+      child: Text(
+        title,
+        style: theme.titleTextStyle,
+      ),
+    );
+  }
+
+  Widget _buildTextLink(YgCalloutTheme theme, YgTextLink textLink) {
+    return Padding(
+      padding: EdgeInsets.only(top: theme.linkSpacing),
+      child: textLink,
+    );
+  }
+
+  Widget _buildDescription(YgCalloutTheme theme) {
+    return Text(
+      description,
+      style: theme.descriptionTextStyle,
     );
   }
 }

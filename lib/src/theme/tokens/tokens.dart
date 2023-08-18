@@ -23,8 +23,5 @@ class _$YgTokens {
   static final List<YgRadius> radii = YgRadius.themes;
 
   @themeExtension
-  static final List<YgShadow> shadows = YgShadow.themes;
-
-  @themeExtension
   static final List<YgTextStyle> textStyles = YgTextStyle.themes;
 }

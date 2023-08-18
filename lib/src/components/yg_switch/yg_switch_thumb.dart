@@ -2,8 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:yggdrasil/src/theme/theme.dart';
 
 /// Handle used in the [YgSwitch].
-class YgSwitchHandle extends StatelessWidget {
-  const YgSwitchHandle({
+class YgSwitchThumb extends StatelessWidget {
+  const YgSwitchThumb({
     super.key,
     required this.color,
   });

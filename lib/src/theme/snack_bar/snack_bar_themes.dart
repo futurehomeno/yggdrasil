@@ -63,13 +63,6 @@ class _$YgSnackBarTheme {
     professional_dark.FhDimensions.xs,
   ];
 
-  static const List<EdgeInsets> iconContainerPadding = <EdgeInsets>[
-    EdgeInsets.all(consumer_light.FhDimensions.xxs),
-    EdgeInsets.all(consumer_dark.FhDimensions.xxs),
-    EdgeInsets.all(professional_light.FhDimensions.xxs),
-    EdgeInsets.all(professional_dark.FhDimensions.xxs),
-  ];
-
   static final List<TextStyle> messageTextStyle = <TextStyle>[
     consumer_light.FhTextStyles.paragraph3Regular.copyWith(
       color: consumer_light.FhColors.textInverse,

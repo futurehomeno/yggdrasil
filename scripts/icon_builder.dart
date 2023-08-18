@@ -5,7 +5,7 @@ void main() {
   const String inputPath = 'assets/icons';
 
   /// Path to the directory where the generated Dart file will be saved.
-  const String outputPath = 'lib/src/icons/icons.dart';
+  const String outputPath = 'lib/src/icons/yg_icons.dart';
 
   /// Directory object pointing to the directory containing the SVG icons.
   final Directory directory = Directory(inputPath);

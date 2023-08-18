@@ -2,17 +2,17 @@ import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 
 @immutable
-class YgIconButtonOutlinedBorderProperty extends MaterialStateProperty<OutlinedBorder?> with Diagnosticable {
+class YgIconButtonOutlinedBorderProperty extends MaterialStateProperty<OutlinedBorder> with Diagnosticable {
   YgIconButtonOutlinedBorderProperty({
     required this.outlinedBorder,
     required this.disabled,
   });
 
-  final OutlinedBorder? outlinedBorder;
-  final OutlinedBorder? disabled;
+  final OutlinedBorder outlinedBorder;
+  final OutlinedBorder disabled;
 
   @override
-  OutlinedBorder? resolve(Set<MaterialState> states) {
+  OutlinedBorder resolve(Set<MaterialState> states) {
     if (states.contains(MaterialState.disabled)) {
       return disabled;
     }
