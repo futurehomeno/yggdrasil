@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:yggdrasil/yggdrasil.dart';
 
-import '_widgets.dart';
+import 'yg_text_field_base_widget.dart';
 
 /// The content of the [YgTextField].
 ///
