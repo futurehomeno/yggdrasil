@@ -112,6 +112,25 @@ dart_code_metrics:
     - prefer-single-widget-per-file
     - prefer-trailing-comma
 
+    # Flutter specific
+    - avoid-border-all
+    - avoid-expanded-as-spacer
+    - avoid-inherited-widget-in-initstate
+    # Very hard to do when theming is used.
+    # - avoid-late-context
+    # While a good idea, reduces readability a lot.
+    # - avoid-returning-widgets
+    - avoid-shrink-wrap-in-lists
+    - avoid-stateless-widget-initialized-fields
+    - avoid-wrapping-in-padding
+    - prefer-action-button-tooltip
+    - prefer-const-border-radius
+    - prefer-define-hero-tag
+    - prefer-extracting-callbacks
+    - prefer-text-rich
+    - prefer-using-list-view
+    - prefer-widget-private-members
+
     # Not part of the default ruleset
     - avoid-global-state
     - avoid-nested-conditional-expressions

@@ -25,8 +25,8 @@ class YgBadge extends StatelessWidget with StatelessWidgetDebugMixin {
   /// The alignment of the badge relative to the child.
   final Alignment alignment;
 
-  static const double badgeMinSize = 20.0;
-  static const int maxBadgeCount = 9;
+  static const double _badgeMinSize = 20.0;
+  static const int _maxBadgeCount = 9;
 
   @override
   Widget build(BuildContext context) {
@@ -49,13 +49,13 @@ class YgBadge extends StatelessWidget with StatelessWidgetDebugMixin {
             borderRadius: badgeTheme.borderRadius,
           ),
           constraints: const BoxConstraints(
-            minWidth: badgeMinSize,
-            minHeight: badgeMinSize,
+            minWidth: _badgeMinSize,
+            minHeight: _badgeMinSize,
           ),
           child: Center(
             widthFactor: 1,
             child: Text(
-              amount > maxBadgeCount ? '$maxBadgeCount+' : amount.toString(),
+              amount > _maxBadgeCount ? '$_maxBadgeCount+' : amount.toString(),
               style: YgBadgeMapper.getTextStyle(
                 theme: badgeTheme,
                 weight: weight,

@@ -49,24 +49,24 @@ class YgCheckbox extends StatefulWidget with StatefulWidgetDebugMixin {
 
 class _YgRadioState extends State<YgCheckbox> {
   // region StatesController
-  void handleStatesControllerChange() {
+  void _handleStatesControllerChange() {
     // Force a rebuild to resolve MaterialStateProperty properties.
     setState(() {});
   }
 
-  MaterialStatesController statesController = MaterialStatesController();
+  MaterialStatesController _statesController = MaterialStatesController();
 
-  void initStatesController() {
-    statesController.update(MaterialState.error, widget.hasError);
-    statesController.update(MaterialState.disabled, !widget._enabled);
-    statesController.update(MaterialState.selected, widget._selected);
-    statesController.addListener(handleStatesControllerChange);
+  void _initStatesController() {
+    _statesController.update(MaterialState.error, widget.hasError);
+    _statesController.update(MaterialState.disabled, !widget._enabled);
+    _statesController.update(MaterialState.selected, widget._selected);
+    _statesController.addListener(_handleStatesControllerChange);
   }
 
   @override
   void initState() {
     super.initState();
-    initStatesController();
+    _initStatesController();
   }
 
   @override
@@ -74,26 +74,26 @@ class _YgRadioState extends State<YgCheckbox> {
     super.didUpdateWidget(oldWidget);
 
     if (widget._selected != oldWidget._selected) {
-      statesController.update(MaterialState.selected, widget._selected);
+      _statesController.update(MaterialState.selected, widget._selected);
     }
 
     if (widget._enabled != oldWidget._enabled) {
-      statesController.update(MaterialState.disabled, !widget._enabled);
+      _statesController.update(MaterialState.disabled, !widget._enabled);
       if (!widget._enabled) {
         // The radio may have been disabled while a press gesture is currently underway.
-        statesController.update(MaterialState.pressed, false);
+        _statesController.update(MaterialState.pressed, false);
       }
     }
 
     if (widget.hasError != oldWidget.hasError) {
-      statesController.update(MaterialState.error, !widget.hasError);
+      _statesController.update(MaterialState.error, !widget.hasError);
     }
   }
 
   @override
   void dispose() {
-    statesController.removeListener(handleStatesControllerChange);
-    statesController.dispose();
+    _statesController.removeListener(_handleStatesControllerChange);
+    _statesController.dispose();
     super.dispose();
   }
   // endregion StatesController
@@ -102,10 +102,10 @@ class _YgRadioState extends State<YgCheckbox> {
   Widget build(BuildContext context) {
     final YgCheckboxTheme checkboxTheme = context.checkboxTheme;
     final YgCheckboxStyle checkboxStyle = YgCheckboxStyle.base(context);
-    final Color resolvedFillColor = checkboxStyle.fillColor.resolveWith(statesController.value, widget.value);
-    final Color? resolvedBorderColor = checkboxStyle.borderColor.resolveWith(statesController.value, widget.value);
-    final Color resolvedCheckColor = checkboxStyle.checkColor.resolve(statesController.value);
-    final MouseCursor resolvedMouseCursor = checkboxStyle.mouseCursor.resolve(statesController.value);
+    final Color resolvedFillColor = checkboxStyle.fillColor.resolveWith(_statesController.value, widget.value);
+    final Color? resolvedBorderColor = checkboxStyle.borderColor.resolveWith(_statesController.value, widget.value);
+    final Color resolvedCheckColor = checkboxStyle.checkColor.resolve(_statesController.value);
+    final MouseCursor resolvedMouseCursor = checkboxStyle.mouseCursor.resolve(_statesController.value);
 
     return RepaintBoundary(
       child: Semantics(
@@ -120,9 +120,7 @@ class _YgRadioState extends State<YgCheckbox> {
               SingleActivator(LogicalKeyboardKey.space, control: true): ActivateIntent(),
             },
             actions: <Type, Action<Intent>>{
-              ActivateIntent: CallbackAction<Intent>(onInvoke: (_) {
-                return widget.onChanged == null ? null : _onTap();
-              }),
+              ActivateIntent: CallbackAction<Intent>(onInvoke: _onInvoke),
             },
             mouseCursor: resolvedMouseCursor,
             enabled: widget._enabled,
@@ -136,10 +134,10 @@ class _YgRadioState extends State<YgCheckbox> {
                 decoration: BoxDecoration(
                   color: widget.value == null ? checkboxTheme.selectedFillColor : resolvedFillColor,
                   borderRadius: const BorderRadius.all(Radius.circular(5.0)),
-                  border: Border.all(
+                  border: Border.fromBorderSide(BorderSide(
                     width: 2.0,
                     color: resolvedBorderColor ?? Colors.transparent,
-                  ),
+                  )),
                 ),
                 child: AnimatedSwitcher(
                   duration: checkboxTheme.animationDuration,
@@ -164,11 +162,15 @@ class _YgRadioState extends State<YgCheckbox> {
   }
 
   void _onShowFocusHighlight(bool value) {
-    statesController.update(MaterialState.focused, value);
+    _statesController.update(MaterialState.focused, value);
   }
 
   void _onShowHoverHighlight(bool value) {
-    statesController.update(MaterialState.hovered, value);
+    _statesController.update(MaterialState.hovered, value);
+  }
+
+  void _onInvoke(Intent intent) {
+    return widget.onChanged == null ? null : _onTap();
   }
 
   void _onTap() {
