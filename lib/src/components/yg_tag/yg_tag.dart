@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:yggdrasil/yggdrasil.dart';
 
+import 'widgets/_widgets.dart';
 import 'yg_tag_style.dart';
 
 /// Base class for creating all [YgTag]s.
@@ -42,7 +43,7 @@ class YgTag extends ButtonStyleButton with StatefulWidgetDebugMixin {
     this.variant = YgTagVariant.neutral,
     this.weight = YgTagWeight.weak,
   }) : super(
-          child: _YgTagWithLeadingIconChild(
+          child: YgTagWithLeadingIconChild(
             icon: icon,
             child: child,
           ),
@@ -66,7 +67,7 @@ class YgTag extends ButtonStyleButton with StatefulWidgetDebugMixin {
     this.variant = YgTagVariant.neutral,
     this.weight = YgTagWeight.weak,
   }) : super(
-          child: _YgTagWithTrailingIconChild(
+          child: YgTagWithTrailingIconChild(
             icon: icon,
             child: child,
           ),
@@ -91,7 +92,7 @@ class YgTag extends ButtonStyleButton with StatefulWidgetDebugMixin {
     this.variant = YgTagVariant.neutral,
     this.weight = YgTagWeight.weak,
   }) : super(
-          child: _YgTagWithDoubleIconChild(
+          child: YgTagWithDoubleIconChild(
             leadingIcon: leadingIcon,
             trailingIcon: trailingIcon,
             child: child,
@@ -119,75 +120,3 @@ class YgTag extends ButtonStyleButton with StatefulWidgetDebugMixin {
     return null;
   }
 }
-
-// region Leading icon
-class _YgTagWithLeadingIconChild extends StatelessWidget {
-  const _YgTagWithLeadingIconChild({
-    required this.icon,
-    required this.child,
-  });
-
-  final YgIcon icon;
-  final Widget child;
-
-  @override
-  Widget build(BuildContext context) {
-    return Row(
-      mainAxisSize: MainAxisSize.min,
-      children: <Widget>[
-        icon,
-        Flexible(child: child),
-      ].withHorizontalSpacing(context.tagTheme.iconSpacing),
-    );
-  }
-}
-// endregion Leading icon
-
-// region Trailing icon
-class _YgTagWithTrailingIconChild extends StatelessWidget {
-  const _YgTagWithTrailingIconChild({
-    required this.icon,
-    required this.child,
-  });
-
-  final YgIcon icon;
-  final Widget child;
-
-  @override
-  Widget build(BuildContext context) {
-    return Row(
-      mainAxisSize: MainAxisSize.min,
-      children: <Widget>[
-        Flexible(child: child),
-        icon,
-      ].withHorizontalSpacing(context.tagTheme.iconSpacing),
-    );
-  }
-}
-// endregion Trailing icon
-
-// region Double icon
-class _YgTagWithDoubleIconChild extends StatelessWidget {
-  const _YgTagWithDoubleIconChild({
-    required this.leadingIcon,
-    required this.trailingIcon,
-    required this.child,
-  });
-
-  final YgIcon leadingIcon;
-  final YgIcon trailingIcon;
-  final Widget child;
-
-  @override
-  Widget build(BuildContext context) {
-    return Row(
-      mainAxisSize: MainAxisSize.min,
-      children: <Widget>[
-        leadingIcon,
-        Flexible(child: child),
-        trailingIcon,
-      ].withHorizontalSpacing(context.tagTheme.iconSpacing),
-    );
-  }
-}
-// endregion Double icon

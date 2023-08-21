@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:yggdrasil/yggdrasil.dart';
 
 import 'properties/_properties.dart';
+import 'widgets/_widgets.dart';
 
 /// Text link button implementation.
 class YgTextLink extends ButtonStyleButton with StatefulWidgetDebugMixin {
@@ -19,7 +20,7 @@ class YgTextLink extends ButtonStyleButton with StatefulWidgetDebugMixin {
     super.onFocusChange,
     super.focusNode,
   }) : super(
-          child: _YgTextLinkContent(
+          child: YgTextLinkContent(
             external: external,
             text: text,
           ),
@@ -68,39 +69,5 @@ class YgTextLink extends ButtonStyleButton with StatefulWidgetDebugMixin {
   ButtonStyle? themeStyleOf(BuildContext context) {
     // We do not use themes this way.
     return null;
-  }
-}
-
-class _YgTextLinkContent extends StatelessWidget {
-  const _YgTextLinkContent({
-    required this.text,
-    required this.external,
-  });
-
-  final String text;
-  final bool external;
-
-  @override
-  Widget build(BuildContext context) {
-    final YgTextLinkTheme theme = context.textLinkTheme;
-
-    return Row(
-      mainAxisSize: MainAxisSize.min,
-      crossAxisAlignment: CrossAxisAlignment.center,
-      children: <Widget>[
-        Flexible(
-          child: Text(text),
-        ),
-        if (external)
-          Padding(
-            padding: theme.iconPadding,
-            child: YgIcon(
-              YgIcons.link,
-              color: theme.iconColor,
-              size: YgIconSize.small,
-            ),
-          ),
-      ],
-    );
   }
 }

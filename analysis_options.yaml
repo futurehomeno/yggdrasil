@@ -1,5 +1,3 @@
-include: package:fh_lints/fh_lints.yaml
-
 analyzer:
   exclude:
     - 'lib/src/tokens/**/*.dart'
@@ -8,90 +6,129 @@ analyzer:
 dart_code_metrics:
   metrics:
     cyclomatic-complexity: 20
+    maximum-nesting-level: 4
     number-of-parameters: 4
-    maximum-nesting-level: 5
+
+    # Flutter specific
+    number-of-used-widgets: 20
+    widgets-nesting-level: 10
   metrics-exclude:
+    - 'lib/src/theme/*'
+    - 'lib/src/theme/**/*'
 
   rules:
-    # Not used because too much work is required to get it working.
-    # Additionally, there are small concerns to whether this will
-    # improve code readability in certain cases (even though generally
-    # we should create separate classes).
-    # - avoid-returning-widgets
-
-    - avoid-unnecessary-setstate
-
-    # Definitely not, it's harder to read as we don't know where exactly
-    # the padding will be applied (same reason as why we don't use margins),
-    # and destroys proper component responsibility separation.
-    # - avoid-wrapping-in-padding
-
-    - avoid-redundant-async
-
-    - avoid-unused-parameters
-
+    # Show potential errors
+    # Removed as it causes an issue with `setState(() {})`.
+    # - no-empty-block
+    # While this is nice, it forces renaming of variables to things
+    # that are not always clear.
+    # - avoid-shadowing
+    # This rule is just bad.
+    # - avoid-empty-setstate
+    - always-remove-listener
+    - avoid-cascade-after-if-null
+    - avoid-collection-methods-with-unrelated-types
+    - avoid-double-slash-imports
+    - avoid-duplicate-exports
+    - avoid-duplicate-mixins
+    - avoid-dynamic
+    - avoid-equal-expressions
+    - avoid-future-tostring
+    - avoid-generics-shadowing
+    - avoid-incomplete-copy-with
+    - avoid-map-keys-contains
+    - avoid-missed-calls
+    - avoid-missing-enum-constant-in-map
+    - avoid-missing-image-alt
+    - avoid-nested-futures
+    - avoid-nullable-interpolation
+    - avoid-passing-async-when-sync-expected
+    - avoid-recursive-widget-calls
+    - avoid-self-assignment
+    - avoid-self-compare
+    - avoid-shadowed-extension-methods
+    - avoid-state-constructors
+    - avoid-throw-in-catch-block
+    - avoid-throw-objects-without-tostring
+    - avoid-unassigned-late-fields-keyword
+    - avoid-uncaught-future-errors
     - avoid-unnecessary-conditionals
-
-    # TODO(DEV-1305): what the task says
-    # - arguments-ordering
-
+    - avoid-unnecessary-negations
+    - avoid-unnecessary-setstate
+    - avoid-unnecessary-type-assertions
+    - avoid-unnecessary-type-casts
+    - avoid-unrelated-type-assertions
+    - avoid-unrelated-type-casts
+    - avoid-unsafe-collection-methods
+    - avoid-unused-generics
+    - avoid-unused-instances
+    - avoid-unused-parameters
+    - check-for-equals-in-render-object-setters
+    - consistent-update-render-object
+    - dispose-fields
+    - function-always-returns-null
+    - no-equal-conditions
+    - no-equal-nested-conditions
+    - no-equal-switch-case
+    - no-equal-switch-expression-cases
+    - no-equal-then-else
+    - prefer-correct-for-loop-increment
+    - prefer-correct-json-casts
+    - prefer-correct-test-file-name
+    - prefer-iterable-of
     - prefer-match-file-name:
         exclude:
-          - 'lib/src/theme/**/*.dart'
-          - 'lib/src/theme/*.dart'
-
-    - newline-before-return
-
-    # Sometimes it is easier to read when we can use `if (x != true)`.
-    # - no-boolean-literal-compare
-
-    - avoid-nested-conditional-expressions
-
-    - list-all-equatable-fields
-
-    # Too much effort to correct.
-    # - no-magic-number
-
-    - prefer-async-await
-
-    - prefer-correct-edge-insets-constructor
-
-    - always-remove-listener
-
-    - consistent-update-render-object
-
-    - check-for-equals-in-render-object-setters
-
-    - prefer-trailing-comma
-
-    - avoid-global-state:
-        exclude:
-          - scripts/**
-
-    # Doesn't seem very useful and super spammy in tests/mocks.
-    # - avoid-ignoring-return-values
-
-    # TODO(DEV-1299): what the task says
-    # - avoid-non-null-assertion
-
-    - prefer-static-class:
-        exclude:
-          - scripts/**
-
-    # TODO(DEV-1298): what the task says
-    # - prefer-single-widget-per-file
-
-    - prefer-const-border-radius
-
+          - 'lib/src/theme/*'
+          - 'lib/src/theme/**/*'
+    - prefer-parentheses-with-if-null
+    - prefer-public-exception-classes
+    - prefer-return-await
+    - prefer-wildcard-pattern
+    - proper-super-calls
     - use-setstate-synchronously
 
-    # TODO(DEV-1296): what the task says
+    # Code simplification
+    - avoid-duplicate-patterns
+    - avoid-explicit-pattern-field-name
+    - avoid-keywords-in-wildcard-pattern
+    - avoid-nested-records
+    - avoid-redundant-async
+    - avoid-redundant-else
+    - avoid-redundant-positional-field-name
+    - avoid-redundant-pragma-inline
+    - avoid-unnecessary-call
+    - avoid-unnecessary-futures
+    - avoid-unnecessary-nullable-return-type
+    - avoid-unnecessary-overrides-in-state
+    - avoid-unnecessary-reassignment
+    - avoid-unnecessary-return
+    - avoid-unnecessary-stateful-widgets
+    - prefer-dedicated-media-query-methods
+    - prefer-simpler-patterns-null-check
+
+    # Style
+    # - unnecessary-trailing-comma
+    - prefer-declaring-const-constructor
+    - prefer-single-widget-per-file
+    - prefer-trailing-comma
+
+    # Not part of the default ruleset
+    - avoid-global-state
+    - avoid-nested-conditional-expressions
+    - list-all-equatable-fields
+    - newline-before-return
+    - prefer-async-await
+    - prefer-correct-edge-insets-constructor
+    - prefer-static-class
+
+    # TODO(dev): Add these when we have time.
+    # - arguments-ordering
+    # - avoid-non-null-assertion
+    # - no-magic-number
+    # - prefer-const-border-radius
+    # - prefer-extracting-callbacks
     # - prefer-moving-to-variable
 
-    # TODO(DEV-1295): what the task says
-    # - prefer-extracting-callbacks
-
   anti-patterns:
-  - long-method
-
-  - long-parameter-list
+    - long-method
+    - long-parameter-list

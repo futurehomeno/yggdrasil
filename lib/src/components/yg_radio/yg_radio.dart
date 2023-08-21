@@ -83,6 +83,7 @@ class _YgRadioState<T> extends State<YgRadio<T>> {
   @override
   void dispose() {
     statesController.removeListener(handleStatesControllerChange);
+    statesController.dispose();
     super.dispose();
   }
   // endregion StatesController

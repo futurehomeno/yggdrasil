@@ -8,11 +8,13 @@ extension WidgetListExtension on List<Widget> {
     }
 
     final List<Widget> widgetsWithSpacing = <Widget>[
+      // ignore: avoid-unsafe-collection-methods
       this[0],
     ];
 
     for (int i = 1; i < length; i++) {
       widgetsWithSpacing.add(separator);
+      // ignore: avoid-unsafe-collection-methods
       widgetsWithSpacing.add(this[i]);
     }
 

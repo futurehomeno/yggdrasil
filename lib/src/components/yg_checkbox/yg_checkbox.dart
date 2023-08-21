@@ -55,8 +55,6 @@ class _YgRadioState extends State<YgCheckbox> {
   }
 
   MaterialStatesController statesController = MaterialStatesController();
-  late final Map<ShortcutActivator, Intent> shortcutMap;
-  late final Map<Type, Action<Intent>> actionMap;
 
   void initStatesController() {
     statesController.update(MaterialState.error, widget.hasError);
@@ -95,6 +93,7 @@ class _YgRadioState extends State<YgCheckbox> {
   @override
   void dispose() {
     statesController.removeListener(handleStatesControllerChange);
+    statesController.dispose();
     super.dispose();
   }
   // endregion StatesController

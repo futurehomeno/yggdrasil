@@ -140,7 +140,7 @@ class _TextFieldScreenState extends State<TextFieldScreen> {
                   ),
                 ].withVerticalSpacing(10),
               ),
-            )
+            ),
           ].withVerticalSpacing(10),
         ),
       ),
@@ -187,6 +187,7 @@ class _TextFieldScreenState extends State<TextFieldScreen> {
     ScaffoldMessenger.of(context).showSnackBar(
       YgSnackBar(
         context: context,
+        // ignore: avoid-nullable-interpolation
         message: 'Logging in with $email and $password.',
       ),
     );

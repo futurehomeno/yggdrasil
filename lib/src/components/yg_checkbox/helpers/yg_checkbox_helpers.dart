@@ -1,5 +1,5 @@
 class YgCheckboxHelpers {
-  YgCheckboxHelpers._();
+  const YgCheckboxHelpers._();
 
   static bool? getNextValue(
     bool? value,

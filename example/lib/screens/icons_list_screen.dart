@@ -26,7 +26,9 @@ class IconsListScreen extends StatelessWidget {
         shrinkWrap: true,
         itemCount: YgIcons.allIconPaths.length,
         itemBuilder: (BuildContext context, int index) {
+          // ignore: avoid-unsafe-collection-methods
           final String iconPath = YgIcons.allIconPaths[index];
+          // ignore: avoid-unsafe-collection-methods
           final String iconName = YgIcons.allIconNames[index];
 
           return YgListTile(
