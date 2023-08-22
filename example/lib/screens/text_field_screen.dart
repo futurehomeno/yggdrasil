@@ -181,13 +181,12 @@ class _TextFieldScreenState extends State<TextFieldScreen> {
       return;
     }
 
-    final String? email = emailKey.value;
-    final String? password = passwordKey.value;
+    final String email = emailKey.value ?? '';
+    final String password = passwordKey.value ?? '';
 
     ScaffoldMessenger.of(context).showSnackBar(
       YgSnackBar(
         context: context,
-        // ignore: avoid-nullable-interpolation
         message: 'Logging in with $email and $password.',
       ),
     );

@@ -59,7 +59,9 @@ dart_code_metrics:
     - avoid-unnecessary-type-casts
     - avoid-unrelated-type-assertions
     - avoid-unrelated-type-casts
-    - avoid-unsafe-collection-methods
+    # Not used as the linter for it does not work very well.
+    # It will mark things as wrong even though there's a check before.
+    # - avoid-unsafe-collection-methods
     - avoid-unused-generics
     - avoid-unused-instances
     - avoid-unused-parameters
