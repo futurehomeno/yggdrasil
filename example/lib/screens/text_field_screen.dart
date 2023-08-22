@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:pubdev_registry/fh_utils/fh_utils.dart';
 import 'package:yggdrasil/yggdrasil.dart';
 import 'package:yggdrasil_demo/core/yg_route_builder.dart';
 import 'package:yggdrasil_demo/widgets/_widgets.dart';
@@ -23,6 +24,7 @@ class _TextFieldScreenState extends State<TextFieldScreen> {
   final FormKey formKey = FormKey();
   final TextFieldKey emailKey = TextFieldKey();
   final TextFieldKey passwordKey = TextFieldKey();
+  final TextFieldKey passwordConfirmKey = TextFieldKey();
 
   @override
   Widget build(BuildContext context) {
@@ -116,23 +118,41 @@ class _TextFieldScreenState extends State<TextFieldScreen> {
                     key: emailKey,
                     label: 'Email',
                     textInputAction: TextInputAction.next,
-                    validator: _demoEmailValidator,
-                    onEditingComplete: () {
-                      if (emailKey.currentState!.validate()) {
-                        FocusScope.of(context).nextFocus();
-                      }
-                    },
+                    validators: [
+                      RequiredValidator(
+                        requiredError: 'This field is required!',
+                      ),
+                      EmailValidator(
+                        invalidEmailError: 'Invalid email',
+                      )
+                    ],
                   ),
                   YgTextFormField.password(
                     key: passwordKey,
                     label: 'Password',
                     textInputAction: TextInputAction.done,
-                    validator: _demoPasswordValidator,
-                    onEditingComplete: () {
-                      if (passwordKey.currentState!.validate()) {
-                        _onSubmit();
-                      }
-                    },
+                    validators: [
+                      RequiredValidator(
+                        requiredError: 'This field is required!',
+                      ),
+                      PasswordValidator(
+                        passwordTooShortError: 'Password is too short!',
+                      )
+                    ],
+                  ),
+                  YgTextFormField.password(
+                    key: passwordConfirmKey,
+                    label: 'Confirm password',
+                    textInputAction: TextInputAction.done,
+                    validators: [
+                      RequiredValidator(
+                        requiredError: 'This field is required!',
+                      ),
+                      MatchValidator(
+                        otherFieldKey: passwordKey,
+                        error: 'Passwords do not match!',
+                      )
+                    ],
                   ),
                   YgButton(
                     onPressed: _onSubmit,
@@ -145,33 +165,6 @@ class _TextFieldScreenState extends State<TextFieldScreen> {
         ),
       ),
     );
-  }
-
-  String? _demoEmailValidator(String? value) {
-    if (value == null || value.isEmpty) {
-      return 'Please enter an email address';
-    }
-
-    const String pattern = r'^[a-zA-Z0-9.a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$';
-    final RegExp regex = RegExp(pattern);
-    if (!regex.hasMatch(value)) {
-      return 'Please enter a valid email address';
-    }
-
-    return null;
-  }
-
-  String? _demoPasswordValidator(String? value) {
-    if (value == null || value.isEmpty) {
-      return 'Please enter a password';
-    }
-
-    const int minLength = 8;
-    if (value.length < minLength) {
-      return 'Password must be at least $minLength characters long';
-    }
-
-    return null;
   }
 
   void _onSubmit() {
