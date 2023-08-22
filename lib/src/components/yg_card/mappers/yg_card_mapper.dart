@@ -25,10 +25,6 @@ class YgCardMapper {
   }) {
     switch (variant) {
       case YgCardVariant.elevated:
-        return RoundedRectangleBorder(
-          borderRadius: theme.borderRadius,
-        );
-      // ignore: no-equal-switch-case
       case YgCardVariant.filled:
         return RoundedRectangleBorder(
           borderRadius: theme.borderRadius,
