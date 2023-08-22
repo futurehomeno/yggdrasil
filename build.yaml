@@ -4,9 +4,6 @@ targets:
       exclude:
         - example/**
     builders:
-      mockito|mockBuilder:
-        generate_for:
-          - lib/**.dart
       theme_tailor:
         options:
           themes:

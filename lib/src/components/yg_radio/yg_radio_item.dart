@@ -46,9 +46,12 @@ class YgRadioItem<T> extends StatelessWidget with StatelessWidgetDebugMixin {
               ),
             ),
             Expanded(
-              child: Text(
-                title,
-                style: radioTheme.radioItemTheme.titleTextStyle,
+              child: Padding(
+                padding: radioTheme.radioItemTheme.titlePadding,
+                child: Text(
+                  title,
+                  style: radioTheme.radioItemTheme.titleTextStyle,
+                ),
               ),
             ),
           ].withHorizontalSpacing(radioTheme.radioItemTheme.radioTitleSpacing),

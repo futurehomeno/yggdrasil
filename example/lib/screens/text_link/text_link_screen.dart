@@ -1,0 +1,97 @@
+import 'package:flutter/material.dart';
+import 'package:yggdrasil/yggdrasil.dart';
+import 'package:yggdrasil_demo/core/_core.dart';
+import 'package:yggdrasil_demo/widgets/_widgets.dart';
+
+class TextLinkScreen extends StatelessWidget {
+  const TextLinkScreen({super.key});
+
+  static const String routeName = 'TextLinkScreen';
+
+  static PageRouteBuilder<Widget> route() {
+    return YgRouteBuilder().fadeTransition(
+      settings: const RouteSettings(name: routeName),
+      screen: const TextLinkScreen(),
+    );
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return DemoScreen(
+      componentName: 'TextLink',
+      componentDesc: 'Text links',
+      supernovaLink: 'Link',
+      child: Column(
+        children: <Widget>[
+          YgSectionColumn(
+            children: <Widget>[
+              const YgSectionTile(
+                title: 'Sizes',
+                subtitle: 'Spacing between links added manually.',
+              ),
+              Row(
+                mainAxisSize: MainAxisSize.min,
+                children: <Widget>[
+                  YgTextLink(
+                    onPressed: () {},
+                    text: 'Small',
+                    size: YgTextLinkSize.small,
+                    weight: YgTextLinkWeight.weak,
+                  ),
+                  YgTextLink(
+                    onPressed: () {},
+                    text: 'Medium',
+                    size: YgTextLinkSize.medium,
+                    weight: YgTextLinkWeight.weak,
+                  ),
+                ].withHorizontalSpacing(10.0),
+              ),
+            ],
+          ),
+          YgSectionColumn(
+            children: <Widget>[
+              const YgSectionTile(
+                title: 'Weights',
+                subtitle: 'Spacing between links added manually.',
+              ),
+              Row(
+                mainAxisSize: MainAxisSize.min,
+                children: <Widget>[
+                  YgTextLink(
+                    onPressed: () {},
+                    text: 'Weak',
+                    weight: YgTextLinkWeight.weak,
+                  ),
+                  YgTextLink(
+                    onPressed: () {},
+                    text: 'Strong',
+                    weight: YgTextLinkWeight.strong,
+                  ),
+                ].withHorizontalSpacing(10.0),
+              ),
+            ],
+          ),
+          YgSectionColumn(
+            children: <Widget>[
+              const YgSectionTile(title: 'Disabled text link'),
+              YgTextLink(
+                text: 'Disabled',
+                onPressed: null,
+              ),
+            ],
+          ),
+          YgSectionColumn(
+            children: <Widget>[
+              const YgSectionTile(title: 'External text link'),
+              YgTextLink(
+                onPressed: () {},
+                text: 'Link',
+                external: true,
+              ),
+            ],
+          ),
+        ],
+      ),
+    );
+  }
+}

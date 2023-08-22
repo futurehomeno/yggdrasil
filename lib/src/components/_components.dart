@@ -13,6 +13,7 @@ export 'yg_icon_button/_yg_icon_button.dart';
 export 'yg_list_tile/_yg_list_tile.dart';
 export 'yg_progress_indicator/_yg_progress_indicator.dart';
 export 'yg_radio/_yg_radio.dart';
+export 'yg_section_tile/_yg_section_tile.dart';
 export 'yg_snack_bar/_yg_snack_bar.dart';
 export 'yg_switch/_yg_switch.dart';
 export 'yg_tag/_yg_tag.dart';

@@ -54,7 +54,7 @@ class _YgRadioState extends State<YgCheckbox> {
     setState(() {});
   }
 
-  MaterialStatesController _statesController = MaterialStatesController();
+  final MaterialStatesController _statesController = MaterialStatesController();
 
   void _initStatesController() {
     _statesController.update(MaterialState.error, widget.hasError);
