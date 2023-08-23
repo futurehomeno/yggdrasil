@@ -1,7 +1,7 @@
 part of 'yg_button.dart';
 
-class YgButtonWithTrailingIconChild extends StatelessWidget {
-  const YgButtonWithTrailingIconChild({
+class _YgButtonWithTrailingIconChild extends StatelessWidget {
+  const _YgButtonWithTrailingIconChild({
     required this.icon,
     required this.child,
   });

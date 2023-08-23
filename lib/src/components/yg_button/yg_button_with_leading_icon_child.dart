@@ -1,7 +1,7 @@
 part of 'yg_button.dart';
 
-class YgButtonWithLeadingIconChild extends StatelessWidget {
-  const YgButtonWithLeadingIconChild({
+class _YgButtonWithLeadingIconChild extends StatelessWidget {
+  const _YgButtonWithLeadingIconChild({
     required this.icon,
     required this.child,
   });

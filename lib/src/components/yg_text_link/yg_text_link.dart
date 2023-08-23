@@ -21,7 +21,7 @@ class YgTextLink extends ButtonStyleButton with StatefulWidgetDebugMixin {
     super.onFocusChange,
     super.focusNode,
   }) : super(
-          child: YgTextLinkContent(
+          child: _YgTextLinkContent(
             external: external,
             text: text,
           ),

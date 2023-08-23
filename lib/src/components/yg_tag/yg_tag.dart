@@ -46,7 +46,7 @@ class YgTag extends ButtonStyleButton with StatefulWidgetDebugMixin {
     this.variant = YgTagVariant.neutral,
     this.weight = YgTagWeight.weak,
   }) : super(
-          child: YgTagWithLeadingIconChild(
+          child: _YgTagWithLeadingIconChild(
             icon: icon,
             child: child,
           ),
@@ -70,7 +70,7 @@ class YgTag extends ButtonStyleButton with StatefulWidgetDebugMixin {
     this.variant = YgTagVariant.neutral,
     this.weight = YgTagWeight.weak,
   }) : super(
-          child: YgTagWithTrailingIconChild(
+          child: _YgTagWithTrailingIconChild(
             icon: icon,
             child: child,
           ),
@@ -95,7 +95,7 @@ class YgTag extends ButtonStyleButton with StatefulWidgetDebugMixin {
     this.variant = YgTagVariant.neutral,
     this.weight = YgTagWeight.weak,
   }) : super(
-          child: YgTagWithDoubleIconChild(
+          child: _YgTagWithDoubleIconChild(
             leadingIcon: leadingIcon,
             trailingIcon: trailingIcon,
             child: child,

@@ -1,7 +1,7 @@
 part of 'yg_text_link.dart';
 
-class YgTextLinkContent extends StatelessWidget {
-  const YgTextLinkContent({
+class _YgTextLinkContent extends StatelessWidget {
+  const _YgTextLinkContent({
     required this.text,
     required this.external,
   });

@@ -1,7 +1,7 @@
 part of 'yg_tag.dart';
 
-class YgTagWithDoubleIconChild extends StatelessWidget {
-  const YgTagWithDoubleIconChild({
+class _YgTagWithDoubleIconChild extends StatelessWidget {
+  const _YgTagWithDoubleIconChild({
     required this.leadingIcon,
     required this.trailingIcon,
     required this.child,
