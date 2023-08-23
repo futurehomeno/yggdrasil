@@ -24,4 +24,13 @@ class GeneratedMockTextFieldKey extends _i1.Mock implements _i2.TextFieldKey {
   GeneratedMockTextFieldKey() {
     _i1.throwOnMissingStub(this);
   }
+
+  @override
+  bool validate() => (super.noSuchMethod(
+        Invocation.method(
+          #validate,
+          [],
+        ),
+        returnValue: false,
+      ) as bool);
 }

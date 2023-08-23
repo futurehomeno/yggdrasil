@@ -19,6 +19,7 @@ class YgTextFormField extends FormField<String> {
     FocusNode? focusNode,
     List<YgTextValidator>? validators,
     VoidCallback? onEditingComplete,
+    ValueChanged<bool>? onFocusChanged,
     List<TextInputFormatter>? inputFormatters,
     int? minLines,
     int? maxLines = 1,
@@ -27,11 +28,17 @@ class YgTextFormField extends FormField<String> {
     bool obscureText = false,
     bool showObscureTextButton = true,
     YgTextFieldSize size = YgTextFieldSize.large,
+    YgAutoValidate autoValidate = YgAutoValidate.disabled,
     YgTextFieldVariant variant = YgTextFieldVariant.standard,
   }) : super(
           initialValue: controller != null ? controller.text : (initialValue ?? ''),
           enabled: !disabled,
-          autovalidateMode: AutovalidateMode.disabled,
+          autovalidateMode: switch (autoValidate) {
+            YgAutoValidate.disabled => AutovalidateMode.disabled,
+            YgAutoValidate.onComplete => AutovalidateMode.disabled,
+            YgAutoValidate.onUserInteraction => AutovalidateMode.onUserInteraction,
+            YgAutoValidate.always => AutovalidateMode.always,
+          },
           validator: YgInputValidatorToFormFieldValidatorTransformer<String>(
             validators: validators,
             fieldKey: key,
@@ -43,7 +50,40 @@ class YgTextFormField extends FormField<String> {
               bucket: field.bucket,
               child: YgTextField(
                 label: label,
-                onEditingComplete: onEditingComplete,
+                onEditingComplete: () {
+                  if (autoValidate == YgAutoValidate.onComplete && !key.validate()) {
+                    return;
+                  }
+
+                  if (onEditingComplete != null) {
+                    onEditingComplete();
+
+                    return;
+                  }
+
+                  final BuildContext? context = key.currentContext;
+
+                  if (context == null) {
+                    return;
+                  }
+
+                  final FocusScopeNode focusScope = FocusScope.of(context);
+
+                  if (textInputAction == TextInputAction.next) {
+                    focusScope.nextFocus();
+                  } else if (textInputAction == TextInputAction.previous) {
+                    focusScope.previousFocus();
+                  } else {
+                    focusScope.unfocus();
+                  }
+                },
+                onFocusChanged: (bool focus) {
+                  if (!focus) {
+                    key.validate();
+                  }
+
+                  onFocusChanged?.call(focus);
+                },
                 textInputAction: textInputAction,
                 obscureText: obscureText,
                 showObscureTextButton: showObscureTextButton,
@@ -82,11 +122,13 @@ class YgTextFormField extends FormField<String> {
     String? initialValue,
     FocusNode? focusNode,
     VoidCallback? onEditingComplete,
+    ValueChanged<bool>? onFocusChanged,
     List<TextInputFormatter>? inputFormatters,
     bool required = false,
     bool disabled = false,
     bool readOnly = false,
     YgTextFieldSize size = YgTextFieldSize.large,
+    YgAutoValidate autoValidate = YgAutoValidate.disabled,
     YgTextFieldVariant variant = YgTextFieldVariant.standard,
   }) : this(
           key: key,
@@ -102,6 +144,8 @@ class YgTextFormField extends FormField<String> {
               invalidEmailError: invalidEmailError,
             ),
           ],
+          autoValidate: autoValidate,
+          onFocusChanged: onFocusChanged,
           placeholder: placeholder,
           suffix: suffix,
           initialValue: initialValue,
@@ -133,12 +177,14 @@ class YgTextFormField extends FormField<String> {
     String? initialValue,
     FocusNode? focusNode,
     VoidCallback? onEditingComplete,
+    ValueChanged<bool>? onFocusChanged,
     List<TextInputFormatter>? inputFormatters,
     bool required = false,
     bool disabled = false,
     bool readOnly = false,
     bool showObscureTextButton = true,
     YgTextFieldSize size = YgTextFieldSize.large,
+    YgAutoValidate autoValidate = YgAutoValidate.disabled,
     YgTextFieldVariant variant = YgTextFieldVariant.standard,
   }) : this(
           key: key,
@@ -159,12 +205,14 @@ class YgTextFormField extends FormField<String> {
                 otherPasswordFieldKey: otherPasswordFieldKey,
               ),
           ],
+          autoValidate: autoValidate,
           placeholder: placeholder,
           suffix: suffix,
           initialValue: initialValue,
           focusNode: focusNode,
           keyboardType: TextInputType.text,
           onEditingComplete: onEditingComplete,
+          onFocusChanged: onFocusChanged,
           textInputAction: textInputAction,
           inputFormatters: inputFormatters,
           showObscureTextButton: showObscureTextButton,
@@ -188,10 +236,12 @@ class YgTextFormField extends FormField<String> {
     String? error,
     String? requiredError,
     String? placeholder,
+    YgAutoValidate autoValidate = YgAutoValidate.disabled,
     YgIconButton? suffix,
     String? initialValue,
     FocusNode? focusNode,
     VoidCallback? onEditingComplete,
+    ValueChanged<bool>? onFocusChanged,
     List<TextInputFormatter>? inputFormatters,
     bool required = false,
     bool disabled = false,
@@ -209,8 +259,10 @@ class YgTextFormField extends FormField<String> {
           suffix: suffix,
           initialValue: initialValue,
           focusNode: focusNode,
+          autoValidate: autoValidate,
           keyboardType: TextInputType.text,
           onEditingComplete: onEditingComplete,
+          onFocusChanged: onFocusChanged,
           textInputAction: textInputAction,
           inputFormatters: inputFormatters,
           disabled: disabled,
@@ -236,6 +288,7 @@ class YgTextFormField extends FormField<String> {
     String? initialValue,
     FocusNode? focusNode,
     VoidCallback? onEditingComplete,
+    ValueChanged<bool>? onFocusChanged,
     List<TextInputFormatter>? inputFormatters,
     bool required = false,
     bool disabled = false,
@@ -243,6 +296,7 @@ class YgTextFormField extends FormField<String> {
     int? maxLines,
     int? minLines,
     YgTextFieldSize size = YgTextFieldSize.large,
+    YgAutoValidate autoValidate = YgAutoValidate.disabled,
     YgTextFieldVariant variant = YgTextFieldVariant.standard,
     TextCapitalization textCapitalization = TextCapitalization.sentences,
   }) : this(
@@ -254,9 +308,11 @@ class YgTextFormField extends FormField<String> {
           placeholder: placeholder,
           suffix: suffix,
           initialValue: initialValue,
+          autoValidate: autoValidate,
           focusNode: focusNode,
           keyboardType: TextInputType.multiline,
           onEditingComplete: onEditingComplete,
+          onFocusChanged: onFocusChanged,
           textInputAction: TextInputAction.newline,
           inputFormatters: inputFormatters,
           disabled: disabled,

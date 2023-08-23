@@ -116,7 +116,7 @@ class _YgFieldTextContentState extends State<YgFieldTextContent> {
       );
     }
 
-    if (widget.states.focused || widget.states.filled) {
+    if (widget.states.focused || widget.states.filled || widget.states.opened) {
       return baseStyle.copyWith(
         color: theme.labelFocusFilledColor,
       );

@@ -8,4 +8,7 @@ class FormFieldKey<T> extends LabeledGlobalKey<FormFieldState<T>> {
 
   /// The current value of the form field.
   T? get value => currentState?.value;
+
+  /// Validates the value of the form field.
+  bool validate() => currentState?.validate() == true;
 }

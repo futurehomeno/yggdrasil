@@ -40,18 +40,25 @@ class _DropdownFieldScreenState extends State<DropdownFieldScreen> {
           YgDropdownField<String>(
             allowDeselect: true,
             label: 'Label',
+            dropdownAction: DropdownAction.menu,
             entries: <YgDropdownEntry<String>>[
               YgDropdownEntry<String>(
-                title: 'Value1',
-                value: 'Value1',
+                icon: const YgIcon(YgIcons.alert),
+                subtitle: 'Subtitle of value 1',
+                title: 'Value 1',
+                value: 'value1',
               ),
               YgDropdownEntry<String>(
-                title: 'Value2',
-                value: 'Value2',
+                icon: const YgIcon(YgIcons.bell),
+                subtitle: 'Subtitle of value 2',
+                title: 'Value 2',
+                value: 'value2',
               ),
               YgDropdownEntry<String>(
-                title: 'Value3',
-                value: 'Value3',
+                icon: const YgIcon(YgIcons.bluetooth),
+                subtitle: 'Subtitle of value 3',
+                title: 'Value 3',
+                value: 'value3',
               ),
             ],
           ),

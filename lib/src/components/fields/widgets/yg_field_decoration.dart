@@ -165,7 +165,7 @@ class YgFieldDecoration extends StatelessWidget {
       base = theme.borderDisabled;
     } else if (states.error) {
       base = theme.borderError;
-    } else if (states.focused) {
+    } else if (states.focused || states.opened) {
       base = theme.borderFocus;
     } else if (states.hovered) {
       base = theme.borderHover;

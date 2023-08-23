@@ -19,18 +19,18 @@ class YgDropdownBottomSheetRoute<T extends Object> extends YgBottomSheetModalRou
   final bool allowDeselect;
 
   @override
-  Widget buildBottomSheet(BuildContext context) {
-    return WillPopScope(
-      onWillPop: () async {
-        onClose();
+  Future<RoutePopDisposition> willPop() {
+    onClose();
 
-        return true;
-      },
-      child: YgBottomSheet(
-        title: label,
-        content: Column(
-          children: _buildEntries(),
-        ),
+    return super.willPop();
+  }
+
+  @override
+  Widget buildBottomSheet(BuildContext context) {
+    return YgBottomSheet(
+      title: label,
+      content: Column(
+        children: _buildEntries(),
       ),
     );
   }
@@ -56,13 +56,7 @@ class YgDropdownBottomSheetRoute<T extends Object> extends YgBottomSheetModalRou
                 YgIcons.check,
               ),
           ],
-          onTap: () {
-            if (!selected) {
-              _handleNewValue(entry.value);
-            } else if (allowDeselect) {
-              _handleNewValue(null);
-            }
-          },
+          onTap: () => _handleNewValue(selected ? null : entry.value),
         ),
       );
     }
@@ -71,6 +65,7 @@ class YgDropdownBottomSheetRoute<T extends Object> extends YgBottomSheetModalRou
   }
 
   void _handleNewValue(T? value) {
+    onClose();
     onChange(value);
     Navigator.of(context).pop();
   }

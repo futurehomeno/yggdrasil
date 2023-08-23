@@ -23,6 +23,7 @@ class YgTextField extends StatefulWidget with StatefulWidgetDebugMixin {
     this.inputFormatters,
     this.onSuffixPressed,
     this.onEditingComplete,
+    this.onFocusChanged,
     this.maxLines = 1,
     this.minLines,
     this.disabled = false,
@@ -58,6 +59,7 @@ class YgTextField extends StatefulWidget with StatefulWidgetDebugMixin {
     this.inputFormatters,
     this.onSuffixPressed,
     this.onEditingComplete,
+    this.onFocusChanged,
     this.disabled = false,
     this.readOnly = false,
     this.size = YgTextFieldSize.large,
@@ -88,6 +90,7 @@ class YgTextField extends StatefulWidget with StatefulWidgetDebugMixin {
     this.inputFormatters,
     this.onSuffixPressed,
     this.onEditingComplete,
+    this.onFocusChanged,
     this.disabled = false,
     this.readOnly = false,
     this.showObscureTextButton = true,
@@ -122,6 +125,7 @@ class YgTextField extends StatefulWidget with StatefulWidgetDebugMixin {
     this.inputFormatters,
     this.onSuffixPressed,
     this.onEditingComplete,
+    this.onFocusChanged,
     this.disabled = false,
     this.readOnly = false,
     this.size = YgTextFieldSize.large,
@@ -151,6 +155,7 @@ class YgTextField extends StatefulWidget with StatefulWidgetDebugMixin {
     this.inputFormatters,
     this.onSuffixPressed,
     this.onEditingComplete,
+    this.onFocusChanged,
     this.minLines,
     this.maxLines,
     this.disabled = false,
@@ -219,6 +224,9 @@ class YgTextField extends StatefulWidget with StatefulWidgetDebugMixin {
   ///
   /// Providing [onEditingComplete] prevents the aforementioned default behavior.
   final VoidCallback? onEditingComplete;
+
+  /// Called when the widget gains or loses focus.
+  final ValueChanged<bool>? onFocusChanged;
 
   /// Called when the user presses the [suffix].
   ///
@@ -557,6 +565,9 @@ class _YgTextFieldState extends State<YgTextField> {
 
   void _focusChanged() {
     final bool focused = _focusNode.hasFocus;
+
+    widget.onFocusChanged?.call(focused);
+
     if (focused != _states.focused) {
       if (focused) {
         _states.add(FieldState.focused);

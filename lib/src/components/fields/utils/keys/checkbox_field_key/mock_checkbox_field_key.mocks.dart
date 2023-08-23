@@ -25,4 +25,13 @@ class GeneratedMockCheckboxFieldKey extends _i1.Mock
   GeneratedMockCheckboxFieldKey() {
     _i1.throwOnMissingStub(this);
   }
+
+  @override
+  bool validate() => (super.noSuchMethod(
+        Invocation.method(
+          #validate,
+          [],
+        ),
+        returnValue: false,
+      ) as bool);
 }

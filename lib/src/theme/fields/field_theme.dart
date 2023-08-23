@@ -1,8 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:theme_tailor_annotation/theme_tailor_annotation.dart';
-
-import 'extensions/field_content/_field_content.dart';
-import 'extensions/field_decoration/_field_decoration.dart';
+import 'package:yggdrasil/src/theme/fields/_fields.dart';
 
 part 'field_theme.tailor.dart';
 
@@ -13,6 +11,9 @@ class _$YgFieldTheme {
 
   @themeExtension
   static final List<YgFieldContentTheme> contentTheme = YgFieldContentTheme.themes;
+
+  @themeExtension
+  static final List<YgDropdownFieldTheme> dropdownTheme = YgDropdownFieldTheme.themes;
 
   static const List<Duration> animationDuration = <Duration>[
     Duration(milliseconds: 200),

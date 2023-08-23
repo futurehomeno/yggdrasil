@@ -1,10 +1,20 @@
+import 'dart:io';
+
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:yggdrasil/src/components/fields/enums/field_state.dart';
 import 'package:yggdrasil/src/theme/fields/field_theme.dart';
 import 'package:yggdrasil/yggdrasil.dart';
 
 import '../widgets/_widgets.dart';
 import 'yg_dropdown_bottom_sheet.dart';
+
+enum DropdownAction {
+  menu,
+  bottomSheet,
+  auto,
+  nothing,
+}
 
 class YgDropdownEntry<T extends Object> {
   YgDropdownEntry({
@@ -28,6 +38,7 @@ class YgDropdownField<T extends Object> extends StatefulWidget {
     required this.allowDeselect,
     this.variant = YgDropdownFieldVariant.standard,
     this.size = YgDropdownFieldSize.large,
+    this.dropdownAction = DropdownAction.auto,
     this.focusNode,
     this.initialValue,
     this.error,
@@ -49,6 +60,7 @@ class YgDropdownField<T extends Object> extends StatefulWidget {
   final int maxLines;
   final bool disabled;
   final bool allowDeselect;
+  final DropdownAction dropdownAction;
 
   @override
   State<YgDropdownField<T>> createState() => _YgDropdownFieldState<T>();
@@ -57,7 +69,6 @@ class YgDropdownField<T extends Object> extends StatefulWidget {
 class _YgDropdownFieldState<T extends Object> extends State<YgDropdownField<T>> {
   late T? _value = widget.initialValue;
   late YgDropdownEntry<T>? _selected = _getSelectedEntry();
-  bool _opened = false;
 
   late final FieldStates _states = <FieldState>{
     if (widget.disabled) FieldState.disabled,
@@ -77,16 +88,20 @@ class _YgDropdownFieldState<T extends Object> extends State<YgDropdownField<T>> 
         suffix: AnimatedRotation(
           duration: theme.animationDuration,
           curve: theme.animationCurve,
-          turns: _opened ? 0.5 : 0,
-          child: const YgIcon(
-            YgIcons.caretDown,
+          turns: _states.opened ? 0.5 : 0,
+          child: YgIconButton(
+            onPressed: () => _open(),
+            size: YgIconButtonSize.small,
+            child: const YgIcon(
+              YgIcons.caretDown,
+            ),
           ),
         ),
         content: YgFieldTextContent(
           value: Text(
             _selected?.title ?? '',
           ),
-          states: _states,
+          states: _states.without(FieldState.focused),
           label: widget.label,
           minLines: widget.minLines,
           placeholder: widget.placeholder,
@@ -102,13 +117,21 @@ class _YgDropdownFieldState<T extends Object> extends State<YgDropdownField<T>> 
       mouseCursor: SystemMouseCursors.click,
       focusNode: widget.focusNode,
       onShowFocusHighlight: (bool focused) {
-        _updateFieldState(FieldState.focused, focused || _opened);
+        _updateFieldState(FieldState.focused, focused);
+        setState(() {});
       },
       onShowHoverHighlight: (bool hovered) {
         _updateFieldState(FieldState.hovered, hovered);
+        setState(() {});
+      },
+      shortcuts: const <ShortcutActivator, Intent>{
+        SingleActivator(LogicalKeyboardKey.space, control: false): ActivateIntent(),
+      },
+      actions: <Type, Action<Intent>>{
+        ActivateIntent: CallbackAction<Intent>(onInvoke: (_) => _open()),
       },
       child: GestureDetector(
-        onTap: _openSelectMenu,
+        onTap: _open,
         child: layout,
       ),
     );
@@ -144,7 +167,32 @@ class _YgDropdownFieldState<T extends Object> extends State<YgDropdownField<T>> 
     }
   }
 
-  void _openSelectMenu() {
+  void _showMenu() {
+    final RenderBox itemBox = context.findRenderObject()! as RenderBox;
+    final Rect itemRect = itemBox.localToGlobal(
+          Offset.zero,
+          ancestor: Navigator.of(context).context.findRenderObject(),
+        ) &
+        itemBox.size;
+
+    Navigator.of(context).push(
+      YgDropdownMenuRoute<T>(
+        entries: widget.entries,
+        onChange: _updateValue,
+        currentValue: _value,
+        allowDeselect: widget.allowDeselect,
+        rect: itemRect,
+        onClose: () {
+          _updateFieldState(FieldState.opened, false);
+          setState(() {});
+        },
+      ),
+    );
+    _updateFieldState(FieldState.opened, true);
+    setState(() {});
+  }
+
+  void _showBottomSheet() {
     Navigator.of(context).push(
       YgDropdownBottomSheetRoute<T>(
         entries: widget.entries,
@@ -153,14 +201,33 @@ class _YgDropdownFieldState<T extends Object> extends State<YgDropdownField<T>> 
         currentValue: _value,
         allowDeselect: widget.allowDeselect,
         onClose: () {
-          _opened = false;
-          _updateFieldState(FieldState.focused, false);
+          _updateFieldState(FieldState.opened, false);
           setState(() {});
         },
       ),
     );
-    _opened = true;
-    _updateFieldState(FieldState.focused, true);
+    _updateFieldState(FieldState.opened, true);
     setState(() {});
+  }
+
+  void _performPlatformAction() {
+    if (Platform.isAndroid || Platform.isIOS) {
+      _showBottomSheet();
+    } else {
+      _showMenu();
+    }
+  }
+
+  void _open() {
+    switch (widget.dropdownAction) {
+      case DropdownAction.bottomSheet:
+        return _showBottomSheet();
+      case DropdownAction.menu:
+        return _showMenu();
+      case DropdownAction.auto:
+        return _performPlatformAction();
+      case DropdownAction.nothing:
+        return;
+    }
   }
 }

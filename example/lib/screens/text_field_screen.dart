@@ -130,6 +130,7 @@ class _TextFieldScreenState extends State<TextFieldScreen> {
                     label: 'Email',
                     variant: YgTextFieldVariant.outlined,
                     textInputAction: TextInputAction.next,
+                    autoValidate: YgAutoValidate.onComplete,
                   ),
                   YgTextFormField.password(
                     required: true,
