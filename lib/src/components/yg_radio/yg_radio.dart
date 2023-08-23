@@ -111,7 +111,7 @@ class _YgRadioState<T> extends State<YgRadio<T>> {
               SingleActivator(LogicalKeyboardKey.space, control: true): ActivateIntent(),
             },
             actions: <Type, Action<Intent>>{
-              ActivateIntent: CallbackAction<Intent>(onInvoke: _onInvoke),
+              ActivateIntent: CallbackAction<Intent>(onInvoke: (_) => _onTap()),
             },
             mouseCursor: resolvedMouseCursor,
             enabled: widget._enabled,
@@ -205,11 +205,10 @@ class _YgRadioState<T> extends State<YgRadio<T>> {
     _statesController.update(MaterialState.hovered, value);
   }
 
-  void _onInvoke(Intent intent) {
-    return widget.onChanged == null ? null : _onTap();
-  }
-
   void _onTap() {
-    widget.onChanged!(widget.value);
+    final onChanged = widget.onChanged;
+    if (onChanged != null) {
+      onChanged(widget.value);
+    }
   }
 }

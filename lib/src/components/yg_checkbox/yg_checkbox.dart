@@ -120,7 +120,7 @@ class _YgRadioState extends State<YgCheckbox> {
               SingleActivator(LogicalKeyboardKey.space, control: true): ActivateIntent(),
             },
             actions: <Type, Action<Intent>>{
-              ActivateIntent: CallbackAction<Intent>(onInvoke: _onInvoke),
+              ActivateIntent: CallbackAction<Intent>(onInvoke: (_) => _onTap()),
             },
             mouseCursor: resolvedMouseCursor,
             enabled: widget._enabled,
@@ -169,12 +169,11 @@ class _YgRadioState extends State<YgCheckbox> {
     _statesController.update(MaterialState.hovered, value);
   }
 
-  void _onInvoke(Intent intent) {
-    return widget.onChanged == null ? null : _onTap();
-  }
-
   void _onTap() {
-    final bool? nextValue = YgCheckboxHelpers.getNextValue(widget.value, widget.triState);
-    widget.onChanged?.call(nextValue);
+    final onChanged = widget.onChanged;
+    if (onChanged != null) {
+      final bool? nextValue = YgCheckboxHelpers.getNextValue(widget.value, widget.triState);
+      widget.onChanged?.call(nextValue);
+    }
   }
 }
