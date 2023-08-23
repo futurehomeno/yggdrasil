@@ -10,7 +10,7 @@ export 'divider_screen.dart';
 export 'gauge_screen.dart';
 export 'home_screen.dart';
 export 'icon_screen.dart';
-export 'icons_list.dart';
+export 'icons_list_screen.dart';
 export 'list_screen.dart';
 export 'list_tile_checkbox_screen.dart';
 export 'list_tile_radio_screen.dart';

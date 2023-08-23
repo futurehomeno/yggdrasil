@@ -15,7 +15,7 @@ class YgTextLinkTextStyleProperty extends MaterialStateProperty<TextStyle?> with
   final YgTextLinkWeight weight;
 
   @override
-  TextStyle? resolve(Set<MaterialState> states) {
+  TextStyle resolve(Set<MaterialState> states) {
     return _getBaseTextStyle().copyWith(
       color: _resolveColor(states),
     );
@@ -30,9 +30,9 @@ class YgTextLinkTextStyleProperty extends MaterialStateProperty<TextStyle?> with
       return theme.hoverColor;
     } else if (states.contains(MaterialState.focused)) {
       return theme.focusColor;
-    } else {
-      return theme.defaultColor;
     }
+
+    return theme.defaultColor;
   }
 
   TextStyle _getBaseTextStyle() {

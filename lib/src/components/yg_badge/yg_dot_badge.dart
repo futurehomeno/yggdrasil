@@ -6,15 +6,15 @@ class YgDotBadge extends StatelessWidget {
   const YgDotBadge({super.key});
 
   /// The size of the dot badge.
-  static const double badgeSize = 8.0;
+  static const double _badgeSize = 8.0;
 
   @override
   Widget build(BuildContext context) {
     final YgBadgeTheme badgeTheme = context.badgeTheme;
 
     return Container(
-      width: badgeSize,
-      height: badgeSize,
+      width: _badgeSize,
+      height: _badgeSize,
       decoration: BoxDecoration(
         color: badgeTheme.strongColor,
         shape: BoxShape.circle,

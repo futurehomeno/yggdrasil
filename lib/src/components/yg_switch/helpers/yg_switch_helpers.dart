@@ -1,5 +1,5 @@
 class YgSwitchHelpers {
-  YgSwitchHelpers._();
+  const YgSwitchHelpers._();
 
   static bool? getNextValue(
     bool? value,

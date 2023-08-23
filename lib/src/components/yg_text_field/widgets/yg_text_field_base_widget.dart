@@ -42,9 +42,9 @@ abstract class YgTextFieldBaseWidgetState<T extends YgTextFieldBaseWidget> exten
   @mustCallSuper
   @override
   void initState() {
+    super.initState();
     _focusNode.addListener(_focusChanged);
     _controller.addListener(_valueUpdated);
-    super.initState();
   }
 
   @mustCallSuper
@@ -77,6 +77,8 @@ abstract class YgTextFieldBaseWidgetState<T extends YgTextFieldBaseWidget> exten
   void dispose() {
     _controller.removeListener(_valueUpdated);
     _focusNode.removeListener(_focusChanged);
+    _controller.dispose();
+    _focusNode.dispose();
     super.dispose();
   }
 

@@ -19,11 +19,6 @@ dependencies:
 dev_dependencies:
   flutter_test:
     sdk: flutter
-  fh_lints:
-    git:
-      ref: master # to-branch-script-tag
-      url: git@github.com:futurehomeno/pubdev_registry.git
-      path: packages/fh_lints
   flutter_lints: ^2.0.1
 
 flutter:
