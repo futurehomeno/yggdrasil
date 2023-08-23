@@ -1,5 +1,4 @@
-import 'package:flutter/material.dart';
-import 'package:yggdrasil/yggdrasil.dart';
+part of 'yg_button.dart';
 
 class YgButtonWithTrailingIconChild extends StatelessWidget {
   const YgButtonWithTrailingIconChild({

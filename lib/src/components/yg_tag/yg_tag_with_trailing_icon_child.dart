@@ -1,8 +1,7 @@
-import 'package:flutter/material.dart';
-import 'package:yggdrasil/yggdrasil.dart';
+part of 'yg_tag.dart';
 
-class YgButtonWithLeadingIconChild extends StatelessWidget {
-  const YgButtonWithLeadingIconChild({
+class YgTagWithTrailingIconChild extends StatelessWidget {
+  const YgTagWithTrailingIconChild({
     required this.icon,
     required this.child,
   });
@@ -15,9 +14,9 @@ class YgButtonWithLeadingIconChild extends StatelessWidget {
     return Row(
       mainAxisSize: MainAxisSize.min,
       children: <Widget>[
-        icon,
         Flexible(child: child),
-      ].withHorizontalSpacing(context.buttonTheme.iconSpacing),
+        icon,
+      ].withHorizontalSpacing(context.tagTheme.iconSpacing),
     );
   }
 }

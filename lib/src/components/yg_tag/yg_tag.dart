@@ -1,8 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:yggdrasil/yggdrasil.dart';
 
-import 'widgets/_widgets.dart';
 import 'yg_tag_style.dart';
+
+part 'yg_tag_with_double_icon_child.dart';
+part 'yg_tag_with_leading_icon_child.dart';
+part 'yg_tag_with_trailing_icon_child.dart';
 
 /// Base class for creating all [YgTag]s.
 ///

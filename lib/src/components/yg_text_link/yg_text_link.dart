@@ -2,7 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:yggdrasil/yggdrasil.dart';
 
 import 'properties/_properties.dart';
-import 'widgets/_widgets.dart';
+
+part 'yg_text_link_content.dart';
 
 /// Text link button implementation.
 class YgTextLink extends ButtonStyleButton with StatefulWidgetDebugMixin {

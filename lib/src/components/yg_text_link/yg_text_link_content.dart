@@ -1,5 +1,4 @@
-import 'package:flutter/material.dart';
-import 'package:yggdrasil/yggdrasil.dart';
+part of 'yg_text_link.dart';
 
 class YgTextLinkContent extends StatelessWidget {
   const YgTextLinkContent({

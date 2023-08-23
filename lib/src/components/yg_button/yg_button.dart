@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:yggdrasil/yggdrasil.dart';
 
-import 'widgets/_widgets.dart';
 import 'yg_button_style.dart';
+
+part 'yg_button_with_leading_icon_child.dart';
+part 'yg_button_with_trailing_icon_child.dart';
 
 /// Base class for creating all Yg buttons.
 class YgButton extends ButtonStyleButton with StatefulWidgetDebugMixin {
