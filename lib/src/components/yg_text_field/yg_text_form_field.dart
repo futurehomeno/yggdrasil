@@ -34,21 +34,7 @@ class YgTextFormField extends FormField<String> {
           initialValue: controller != null ? controller.text : (initialValue ?? ''),
           enabled: !disabled,
           autovalidateMode: AutovalidateMode.disabled,
-          validator: (String? value) {
-            if (validators == null) {
-              return null;
-            }
-
-            for (final FormFieldValidator<String> validator in validators) {
-              final String? error = validator(value);
-
-              if (error != null) {
-                return error;
-              }
-            }
-
-            return null;
-          },
+          validator: (String? value) => _validateWithValidators(value, validators),
           builder: (FormFieldState<String> field) {
             final _YgTextFormInputState state = field as _YgTextFormInputState;
 
@@ -218,6 +204,22 @@ class YgTextFormField extends FormField<String> {
           maxLines: maxLines,
           minLines: minLines,
         );
+
+  static String? _validateWithValidators(String? value, List<FormFieldValidator<String>>? validators) {
+    if (validators == null) {
+      return null;
+    }
+
+    for (final FormFieldValidator<String> validator in validators) {
+      final String? error = validator(value);
+
+      if (error != null) {
+        return error;
+      }
+    }
+
+    return null;
+  }
 
   /// Controls the text being edited.
   ///
