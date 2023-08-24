@@ -45,7 +45,7 @@ class _DropdownFieldScreenState extends State<DropdownFieldScreen> {
               entries: List<YgDropdownEntry<String>>.generate(
                 20,
                 (int index) => YgDropdownEntry<String>(
-                  icon: const YgIcon(YgIcons.alert),
+                  icon: YgIcon(YgIcons.allIconPaths[index]),
                   subtitle: 'Subtitle of value $index',
                   title: 'Value $index',
                   value: 'value$index',
