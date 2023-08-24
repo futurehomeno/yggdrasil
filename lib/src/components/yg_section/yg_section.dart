@@ -3,79 +3,48 @@ import 'package:yggdrasil/src/components/_components.dart';
 import 'package:yggdrasil/src/theme/theme.dart';
 import 'package:yggdrasil/src/utils/_utils.dart';
 
+part 'yg_section_base.dart';
+part 'yg_section_column.dart';
 part 'yg_section_header.dart';
+part 'yg_section_list.dart';
 part 'yg_section_padding.dart';
 
 /// Responsible for applying correct padding to collections of widgets.
-class YgSection extends StatelessWidget with StatelessWidgetDebugMixin {
+abstract class YgSection extends StatelessWidget with StatelessWidgetDebugMixin {
   const YgSection._({
-    required this.child,
     this.title,
     this.subtitle,
   });
 
   /// When you have a single widgets that need to be padded.
-  factory YgSection.base({
+  const factory YgSection.base({
     required Widget child,
     String? title,
     String? subtitle,
-  }) {
-    return YgSection._(
-      title: title,
-      subtitle: subtitle,
-      child: _YgSectionPadding(
-        child: child,
-      ),
-    );
-  }
+  }) = _YgSectionBase;
 
   /// When you have a column of widgets that need to be padded.
-  factory YgSection.column({
+  const factory YgSection.column({
     required List<Widget> children,
     String? title,
     String? subtitle,
-    MainAxisAlignment mainAxisAlignment = MainAxisAlignment.start,
-    MainAxisSize mainAxisSize = MainAxisSize.max,
-    CrossAxisAlignment crossAxisAlignment = CrossAxisAlignment.center,
-  }) {
-    return YgSection._(
-      title: title,
-      subtitle: subtitle,
-      child: _YgSectionPadding(
-        child: Column(
-          mainAxisAlignment: mainAxisAlignment,
-          mainAxisSize: mainAxisSize,
-          crossAxisAlignment: crossAxisAlignment,
-          children: children,
-        ),
-      ),
-    );
-  }
+    MainAxisAlignment mainAxisAlignment,
+    MainAxisSize mainAxisSize,
+    CrossAxisAlignment crossAxisAlignment,
+  }) = _YgSectionColumn;
 
   /// When you have a list of [YgListTiles] that should be in a section.
   ///
   /// There's no padding here as we want [YgListTiles] to be edge to edge.
-  factory YgSection.list({
+  const factory YgSection.list({
     required List<YgListTile> children,
     String? title,
     String? subtitle,
-    MainAxisAlignment mainAxisAlignment = MainAxisAlignment.start,
-    MainAxisSize mainAxisSize = MainAxisSize.max,
-    CrossAxisAlignment crossAxisAlignment = CrossAxisAlignment.center,
-  }) {
-    return YgSection._(
-      title: title,
-      subtitle: subtitle,
-      child: Column(
-        mainAxisAlignment: mainAxisAlignment,
-        mainAxisSize: mainAxisSize,
-        crossAxisAlignment: crossAxisAlignment,
-        children: children,
-      ),
-    );
-  }
+    MainAxisAlignment mainAxisAlignment,
+    MainAxisSize mainAxisSize,
+    CrossAxisAlignment crossAxisAlignment,
+  }) = _YgSectionList;
 
-  final Widget child;
   final String? title;
   final String? subtitle;
 
@@ -83,6 +52,7 @@ class YgSection extends StatelessWidget with StatelessWidgetDebugMixin {
   Widget build(BuildContext context) {
     final String? title = this.title;
     final String? subtitle = this.subtitle;
+    final Widget child = buildChild(context);
 
     if (title == null) {
       return child;
@@ -98,4 +68,6 @@ class YgSection extends StatelessWidget with StatelessWidgetDebugMixin {
       ],
     );
   }
+
+  Widget buildChild(BuildContext context);
 }
