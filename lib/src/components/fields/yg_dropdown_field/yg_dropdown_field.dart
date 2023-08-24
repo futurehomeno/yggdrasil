@@ -30,7 +30,7 @@ class YgDropdownEntry<T extends Object> {
   final YgIcon? icon;
 }
 
-sealed class YgDropdownField<T extends Object> extends StatefulWidget {
+abstract class YgDropdownField<T extends Object> extends StatefulWidget {
   const factory YgDropdownField({
     Key key,
     required List<YgDropdownEntry<T>> entries,
@@ -49,7 +49,7 @@ sealed class YgDropdownField<T extends Object> extends StatefulWidget {
     ValueChanged<T?>? onChange,
   }) = _YgDropdownFieldSingleSelect<T>;
 
-  const factory YgDropdownField.multiselect({
+  const factory YgDropdownField.multiSelect({
     Key key,
     required List<YgDropdownEntry<T>> entries,
     required String label,

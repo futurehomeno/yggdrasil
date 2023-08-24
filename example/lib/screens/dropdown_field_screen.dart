@@ -36,13 +36,10 @@ class _DropdownFieldScreenState extends State<DropdownFieldScreen> {
         componentDesc: 'Dropdown Field',
         supernovaLink: 'Dropdown',
         child: Column(
-          children: List<Widget>.generate(
-            10,
-            (int index) => YgDropdownField<String>(
+          children: <Widget>[
+            YgDropdownField<String>(
               allowDeselect: true,
-              label: 'Label',
-              dropdownAction: DropdownAction.menu,
-              variant: YgDropdownFieldVariant.outlined,
+              label: 'Single select',
               entries: List<YgDropdownEntry<String>>.generate(
                 20,
                 (int index) => YgDropdownEntry<String>(
@@ -53,7 +50,20 @@ class _DropdownFieldScreenState extends State<DropdownFieldScreen> {
                 ),
               ),
             ),
-          ).withVerticalSpacing(15),
+            YgDropdownField<String>.multiSelect(
+              allowDeselect: true,
+              label: 'Multi select',
+              entries: List<YgDropdownEntry<String>>.generate(
+                20,
+                (int index) => YgDropdownEntry<String>(
+                  icon: YgIcon(YgIcons.allIconPaths[index]),
+                  subtitle: 'Subtitle of value $index',
+                  title: 'Value $index',
+                  value: 'value$index',
+                ),
+              ),
+            )
+          ].withVerticalSpacing(15),
         ),
       ),
     );

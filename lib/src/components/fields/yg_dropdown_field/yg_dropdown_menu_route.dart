@@ -249,7 +249,7 @@ class YgDropdownMenuPositionerRenderObject extends RenderBox with RenderObjectWi
   }
 }
 
-class YgDropdownMenu<T extends Object> extends StatelessWidget {
+class YgDropdownMenu<T extends Object> extends StatefulWidget {
   const YgDropdownMenu({
     super.key,
     required this.entries,
@@ -263,6 +263,11 @@ class YgDropdownMenu<T extends Object> extends StatelessWidget {
   final bool Function(T value) isValueSelected;
   final VoidCallback onClose;
 
+  @override
+  State<YgDropdownMenu<T>> createState() => _YgDropdownMenuState<T>();
+}
+
+class _YgDropdownMenuState<T extends Object> extends State<YgDropdownMenu<T>> {
   @override
   Widget build(BuildContext context) {
     final YgDropdownFieldTheme theme = context.fieldTheme.dropdownTheme;
@@ -283,20 +288,17 @@ class YgDropdownMenu<T extends Object> extends StatelessWidget {
                   sliver: SliverList(
                     delegate: SliverChildBuilderDelegate(
                       (BuildContext context, int index) {
-                        final YgDropdownEntry<T> entry = entries[index];
+                        final YgDropdownEntry<T> entry = widget.entries[index];
 
                         return DropdownMenuItem(
                           icon: entry.icon,
-                          selected: isValueSelected(entry.value),
+                          selected: widget.isValueSelected(entry.value),
                           subtitle: entry.subtitle,
                           title: entry.title,
-                          onPressed: () => _onValueTapped(
-                            context,
-                            entry.value,
-                          ),
+                          onPressed: () => _onValueTapped(entry.value),
                         );
                       },
-                      childCount: entries.length,
+                      childCount: widget.entries.length,
                     ),
                   ),
                 ),
@@ -308,11 +310,13 @@ class YgDropdownMenu<T extends Object> extends StatelessWidget {
     );
   }
 
-  void _onValueTapped(BuildContext context, T value) {
-    if (onValueTapped(value)) {
-      onClose();
+  void _onValueTapped(T value) {
+    if (widget.onValueTapped(value)) {
+      widget.onClose();
       Navigator.of(context).pop();
     }
+
+    setState(() {});
   }
 }
 
