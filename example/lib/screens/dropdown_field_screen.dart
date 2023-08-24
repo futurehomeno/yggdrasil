@@ -53,6 +53,7 @@ class _DropdownFieldScreenState extends State<DropdownFieldScreen> {
             YgDropdownField<String>.multiSelect(
               allowDeselect: true,
               label: 'Multi select',
+              maxLines: 1,
               entries: List<YgDropdownEntry<String>>.generate(
                 20,
                 (int index) => YgDropdownEntry<String>(

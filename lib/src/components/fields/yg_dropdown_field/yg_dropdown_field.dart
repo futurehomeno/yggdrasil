@@ -72,6 +72,7 @@ abstract class YgDropdownField<T extends Object> extends StatefulWidget {
     required this.entries,
     required this.label,
     required this.multiSelect,
+    required this.maxLines,
     this.allowDeselect = false,
     this.variant = YgDropdownFieldVariant.standard,
     this.size = YgDropdownFieldSize.large,
@@ -81,7 +82,6 @@ abstract class YgDropdownField<T extends Object> extends StatefulWidget {
     this.disabled = false,
     this.placeholder,
     this.minLines,
-    this.maxLines = 1,
   });
 
   final YgDropdownFieldVariant variant;
@@ -92,7 +92,7 @@ abstract class YgDropdownField<T extends Object> extends StatefulWidget {
   final String label;
   final int? minLines;
   final String? placeholder;
-  final int maxLines;
+  final int? maxLines;
   final bool disabled;
   final bool allowDeselect;
   final DropdownAction dropdownAction;
@@ -151,7 +151,7 @@ class _YgDropdownFieldMultiSelect<T extends Object> extends YgDropdownField<T> {
     String? error,
     int? minLines,
     String? placeholder,
-    int maxLines = 1,
+    int? maxLines,
     bool disabled = false,
     bool allowDeselect = false,
     DropdownAction dropdownAction = DropdownAction.auto,
@@ -210,6 +210,8 @@ abstract class _YgDropdownFieldState<T extends Object, W extends YgDropdownField
         content: YgFieldTextContent(
           value: Text(
             title,
+            maxLines: widget.maxLines,
+            overflow: widget.maxLines != 1 ? null : TextOverflow.ellipsis,
           ),
           states: _states.without(FieldState.focused),
           label: widget.label,
