@@ -49,7 +49,7 @@ class ListScreen extends StatelessWidget {
             children: <YgListTile>[
               const YgListTile(title: 'Title 1'),
               const YgListTile(title: 'Title 1'),
-              const YgListTile(title: 'Title 1')
+              const YgListTile(title: 'Title 1'),
             ].separatedBy(const YgDivider()),
           ),
           const YgListTile(title: 'Manual'),
@@ -60,7 +60,7 @@ class ListScreen extends StatelessWidget {
               YgDivider(),
               YgListTile(title: 'Title 1'),
               YgDivider(),
-              YgListTile(title: 'Title 1')
+              YgListTile(title: 'Title 1'),
             ],
           ),
         ],

@@ -19,7 +19,7 @@ abstract class YgBottomSheetModalRoute extends PopupRoute<YgBottomSheetModal> {
   RouteSettings get settings => RouteSettings(name: name);
 
   @override
-  Color? get barrierColor => _bottomSheetTheme.scrimColor;
+  Color get barrierColor => _bottomSheetTheme.scrimColor;
 
   @override
   Duration get transitionDuration => _bottomSheetTheme.movementAnimationDuration;
@@ -33,7 +33,7 @@ abstract class YgBottomSheetModalRoute extends PopupRoute<YgBottomSheetModal> {
   bool get barrierDismissible => true;
 
   @override
-  String? get barrierLabel => 'Dismissible Dialog';
+  String get barrierLabel => 'Dismissible Dialog';
 
   /// The name of the dialog.
   ///

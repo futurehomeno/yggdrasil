@@ -2,7 +2,7 @@ import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 
 @immutable
-class YgRadioBackgroundColorProperty extends MaterialStateProperty<Color?> with Diagnosticable {
+class YgRadioBackgroundColorProperty extends MaterialStateProperty<Color> with Diagnosticable {
   YgRadioBackgroundColorProperty({
     required this.selected,
     required this.selectedHovered,
@@ -12,15 +12,15 @@ class YgRadioBackgroundColorProperty extends MaterialStateProperty<Color?> with 
     required this.deselectedDisabled,
   });
 
-  final Color? selected;
-  final Color? selectedHovered;
-  final Color? selectedDisabled;
-  final Color? deselected;
-  final Color? deselectedHovered;
-  final Color? deselectedDisabled;
+  final Color selected;
+  final Color selectedHovered;
+  final Color selectedDisabled;
+  final Color deselected;
+  final Color deselectedHovered;
+  final Color deselectedDisabled;
 
   @override
-  Color? resolve(Set<MaterialState> states) {
+  Color resolve(Set<MaterialState> states) {
     if (states.contains(MaterialState.selected)) {
       if (states.contains(MaterialState.disabled)) {
         return selectedDisabled;

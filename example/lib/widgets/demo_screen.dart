@@ -40,7 +40,7 @@ class DemoScreen extends StatelessWidget {
               ),
               YgIconButton(
                 onPressed: ygAppState.toggleProfessionalTheme,
-                child: const Icon(Icons.business),
+                child: const YgIcon(YgIcons.power),
               ),
               YgIconButton(
                 onPressed: ygAppState.toggleDarkMode,

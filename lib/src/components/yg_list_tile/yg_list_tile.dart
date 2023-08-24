@@ -43,11 +43,16 @@ class YgListTile extends StatelessWidget with StatelessWidgetDebugMixin {
   final VoidCallback? onTap;
   final VoidCallback? onInfoTap;
 
+  static const int _allowedNumberOfLeadingWidgets = 2;
+  static const int _allowedNumberOfTrailingWidgets = 2;
+  static const int _allowedNumberOfSupportingWidgets = 2;
+
   @override
   Widget build(BuildContext context) {
-    assert(leadingWidgets.length <= 2, 'Cannot have more than 2 leading widgets.');
-    assert(trailingWidgets.length <= 2, 'Cannot have more than 2 trailing widget.');
-    assert(supportingWidgets.length <= 2, 'Cannot have more than 2 supporting widgets.');
+    assert(leadingWidgets.length <= _allowedNumberOfLeadingWidgets, 'Cannot have more than 2 leading widgets.');
+    assert(trailingWidgets.length <= _allowedNumberOfTrailingWidgets, 'Cannot have more than 2 trailing widget.');
+    assert(
+        supportingWidgets.length <= _allowedNumberOfSupportingWidgets, 'Cannot have more than 2 supporting widgets.');
 
     final YgListTileTheme listTileTheme = context.listTileTheme;
 

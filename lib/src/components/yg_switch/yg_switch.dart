@@ -49,7 +49,7 @@ class YgSwitch extends StatelessWidget with StatelessWidgetDebugMixin {
                   curve: context.switchTheme.animationCurve,
                   alignment: _getHandleAlignment(),
                   duration: context.switchTheme.animationDuration,
-                  child: YgSwitchHandle(
+                  child: YgSwitchThumb(
                     color: _getThumbColor(context),
                   ),
                 ),

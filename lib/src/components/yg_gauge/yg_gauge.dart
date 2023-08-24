@@ -92,6 +92,12 @@ class _YgGaugeState extends State<YgGauge> with TickerProviderStateMixin {
   }
 
   @override
+  void dispose() {
+    _controller.dispose();
+    super.dispose();
+  }
+
+  @override
   Widget build(BuildContext context) {
     return RepaintBoundary(
       child: AspectRatio(

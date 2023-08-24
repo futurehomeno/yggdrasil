@@ -18,6 +18,8 @@ class YgDebug extends SingleChildRenderObjectWidget {
   /// !--- IMPORTANT ---
   /// This action is very expensive as it repaints every instance of this widget.
   /// Only use when changing debug properties!
+  // Ignore this lint as this is a debug only method.
+  // ignore: prefer-widget-private-members
   static void repaintAllInstances(BuildContext context) {
     void rebuild(Element el) {
       el.visitChildren(rebuild);

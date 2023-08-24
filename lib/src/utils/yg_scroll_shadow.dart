@@ -68,10 +68,9 @@ class _YgScrollShadowState extends State<YgScrollShadow> {
 
   @override
   void initState() {
+    super.initState();
     _controller.addListener(_updateShadows);
     WidgetsBinding.instance.addPostFrameCallback((_) => _updateShadows());
-
-    super.initState();
   }
 
   void _updateShadows() {
@@ -90,6 +89,9 @@ class _YgScrollShadowState extends State<YgScrollShadow> {
   @override
   void dispose() {
     _controller.removeListener(_updateShadows);
+    if (widget.controller == null) {
+      _controller.dispose();
+    }
     super.dispose();
   }
 
