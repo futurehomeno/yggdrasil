@@ -14,7 +14,7 @@ abstract class YgSection extends StatelessWidget with StatelessWidgetDebugMixin 
   const YgSection._({
     this.title,
     this.subtitle,
-  });
+  }) : assert(title != null || subtitle == null, 'Subtitle cannot be set without a title.');
 
   /// When you have a single widgets that need to be padded.
   const factory YgSection.base({
@@ -45,7 +45,10 @@ abstract class YgSection extends StatelessWidget with StatelessWidgetDebugMixin 
     CrossAxisAlignment crossAxisAlignment,
   }) = _YgSectionList;
 
+  /// Title of the section.
   final String? title;
+
+  /// Subtitle of the section.
   final String? subtitle;
 
   @override
