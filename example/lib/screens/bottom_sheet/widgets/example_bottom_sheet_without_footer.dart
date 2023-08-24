@@ -7,9 +7,9 @@ class ExampleBottomSheetWithoutFooter extends YgBottomSheetModalRoute {
 
   @override
   YgBottomSheet buildBottomSheet(BuildContext context) {
-    return const YgBottomSheet(
+    return YgBottomSheet(
       title: 'Example Bottom Sheet',
-      content: YgSection(
+      content: YgSection.base(
         child: YgCard(
           variant: YgCardVariant.filled,
           child: YgListTile(

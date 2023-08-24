@@ -31,7 +31,7 @@ class _ListTileCheckboxScreenState extends State<ListTileCheckboxScreen> {
       componentName: 'CheckboxListTile',
       componentDesc: 'Checkbox list tiles',
       supernovaLink: 'Link',
-      child: YgSectionColumn(
+      child: YgSection.column(
         children: <Widget>[
           YgCheckboxListTile(
             title: 'CheckboxListTile',

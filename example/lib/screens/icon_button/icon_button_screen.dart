@@ -23,12 +23,10 @@ class IconButtonScreen extends StatelessWidget {
       supernovaLink: 'Link',
       child: Column(
         children: <Widget>[
-          YgSectionColumn(
+          YgSection.column(
+            title: 'Variants - Normal / Disabled',
+            subtitle: 'Spacing between icon buttons added manually.',
             children: <Widget>[
-              const YgSectionTile(
-                title: 'Variants - Normal / Disabled',
-                subtitle: 'Spacing between icon buttons added manually.',
-              ),
               Row(
                 mainAxisSize: MainAxisSize.min,
                 children: <Widget>[
@@ -89,12 +87,10 @@ class IconButtonScreen extends StatelessWidget {
               ),
             ].withVerticalSpacing(10.0),
           ),
-          YgSectionColumn(
+          YgSection.column(
+            title: 'Sizes',
+            subtitle: 'Spacing between icon buttons added manually.',
             children: <Widget>[
-              const YgSectionTile(
-                title: 'Sizes',
-                subtitle: 'Spacing between icon buttons added manually.',
-              ),
               Row(
                 mainAxisSize: MainAxisSize.min,
                 children: <Widget>[

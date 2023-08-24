@@ -34,9 +34,9 @@ class _RadioScreenState extends State<RadioScreen> {
       supernovaLink: 'Link',
       child: Column(
         children: <Widget>[
-          YgSectionColumn(
+          YgSection.column(
+            title: 'Radio',
             children: <Widget>[
-              const YgSectionTile(title: 'Radio'),
               YgRadio<int>(
                 value: 1,
                 groupValue: radioGroupValue,
@@ -55,9 +55,9 @@ class _RadioScreenState extends State<RadioScreen> {
               ),
             ],
           ),
-          YgSectionColumn(
+          YgSection.column(
+            title: 'Disabled radio, selected / unselected',
             children: <Widget>[
-              const YgSectionTile(title: 'Disabled radio, selected / unselected'),
               YgRadio<int>(
                 value: 1,
                 groupValue: disabledRadioGroupValue,
@@ -70,9 +70,9 @@ class _RadioScreenState extends State<RadioScreen> {
               ),
             ],
           ),
-          YgSectionColumn(
+          YgSection.column(
+            title: 'Radio group',
             children: <Widget>[
-              const YgSectionTile(title: 'Radio group'),
               YgRadioGroup<int>(
                 label: 'Some label',
                 radioItems: <YgRadioItem<int>>[
@@ -98,11 +98,9 @@ class _RadioScreenState extends State<RadioScreen> {
               ),
             ],
           ),
-          YgSectionColumn(
+          YgSection.column(
+            title: 'Radio in a list tile',
             children: <Widget>[
-              YgSectionTile(
-                title: 'Radio in a list tile',
-              ),
               YgCallout(
                 variant: YgCalloutVariant.warning,
                 description:

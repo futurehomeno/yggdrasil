@@ -23,9 +23,9 @@ class ButtonScreen extends StatelessWidget {
       supernovaLink: 'Link',
       child: Column(
         children: <Widget>[
-          YgSectionColumn(
+          YgSection.column(
+            title: 'Variants',
             children: <Widget>[
-              const YgSectionTile(title: 'Variants'),
               YgButton(
                 onPressed: () {},
                 child: const Text('Primary'),
@@ -52,9 +52,9 @@ class ButtonScreen extends StatelessWidget {
               ),
             ],
           ),
-          YgSectionColumn(
+          YgSection.column(
+            title: 'Size variations',
             children: <Widget>[
-              const YgSectionTile(title: 'Size variations'),
               YgButton(
                 size: YgButtonSize.small,
                 onPressed: () {},
@@ -71,9 +71,9 @@ class ButtonScreen extends StatelessWidget {
               ),
             ],
           ),
-          YgSectionColumn(
+          YgSection.column(
+            title: 'Icon variations',
             children: <Widget>[
-              const YgSectionTile(title: 'Icon variations'),
               YgButton.leadingIcon(
                 icon: const YgIcon(YgIcons.info),
                 onPressed: () {},
@@ -86,9 +86,9 @@ class ButtonScreen extends StatelessWidget {
               ),
             ],
           ),
-          YgSectionColumn(
+          YgSection.column(
+            title: 'State variations',
             children: <Widget>[
-              const YgSectionTile(title: 'State variations'),
               YgButton.trailingIcon(
                 icon: const YgIcon(YgIcons.check),
                 onPressed: () {},
@@ -101,9 +101,9 @@ class ButtonScreen extends StatelessWidget {
               ),
             ],
           ),
-          YgSectionColumn(
+          YgSection.column(
+            title: 'Icon color variations',
             children: <Widget>[
-              const YgSectionTile(title: 'Icon color variations'),
               YgButton.leadingIcon(
                 icon: const YgIcon(YgIcons.deviceHub),
                 onPressed: () {},

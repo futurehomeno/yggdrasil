@@ -23,12 +23,10 @@ class CardScreen extends StatelessWidget {
       supernovaLink: 'Link',
       child: Column(
         children: <Widget>[
-          YgSectionColumn(
+          YgSection.column(
+            title: 'Variants',
+            subtitle: 'Spacing between cards added manually.',
             children: <Widget>[
-              const YgSectionTile(
-                title: 'Variants',
-                subtitle: 'Spacing between cards added manually.',
-              ),
               const YgCard(
                 child: YgListTile(
                   title: 'Elevated card',
@@ -51,13 +49,11 @@ class CardScreen extends StatelessWidget {
               ),
             ].withVerticalSpacing(10.0),
           ),
-          YgSectionColumn(
+          YgSection.column(
+            title: 'Content',
+            subtitle:
+                'Cards are only containers for other widgets and thus do not have any styling of their own. Most commonly you\'ll be adding a ListTile inside of them, as seen in the examples here.',
             children: <Widget>[
-              const YgSectionTile(
-                title: 'Content',
-                subtitle:
-                    'Cards are only containers for other widgets and thus do not have any styling of their own. Most commonly you\'ll be adding a ListTile inside of them, as seen in the examples here.',
-              ),
               YgCard(
                 variant: YgCardVariant.filled,
                 child: YgListTile(

@@ -30,9 +30,9 @@ class _BottomSheetScreenState extends State<BottomSheetScreen> with TickerProvid
       supernovaLink: 'Link',
       child: Column(
         children: <Widget>[
-          YgSectionColumn(
+          YgSection.column(
+            title: 'Default bottom sheet',
             children: <Widget>[
-              const YgSectionTile(title: 'Default bottom sheet'),
               YgButton(
                 variant: YgButtonVariant.primary,
                 onPressed: () {
@@ -42,9 +42,9 @@ class _BottomSheetScreenState extends State<BottomSheetScreen> with TickerProvid
               ),
             ],
           ),
-          YgSectionColumn(
+          YgSection.column(
+            title: 'Scrollable bottom sheet',
             children: <Widget>[
-              const YgSectionTile(title: 'Scrollable bottom sheet'),
               YgButton(
                 variant: YgButtonVariant.primary,
                 onPressed: () {
@@ -54,9 +54,9 @@ class _BottomSheetScreenState extends State<BottomSheetScreen> with TickerProvid
               ),
             ],
           ),
-          YgSectionColumn(
+          YgSection.column(
+            title: 'Bottom sheet w/o footer',
             children: <Widget>[
-              const YgSectionTile(title: 'Bottom sheet w/o footer'),
               YgButton(
                 variant: YgButtonVariant.primary,
                 onPressed: () {

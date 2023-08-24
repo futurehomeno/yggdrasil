@@ -36,12 +36,10 @@ class _TextFieldScreenState extends State<TextFieldScreen> {
         supernovaLink: 'Link',
         child: Column(
           children: <Widget>[
-            YgSectionColumn(
+            YgSection.column(
+              title: 'Variations',
+              subtitle: 'Spacing between fields added manually.',
               children: <Widget>[
-                const YgSectionTile(
-                  title: 'Variations',
-                  subtitle: 'Spacing between fields added manually.',
-                ),
                 const YgTextField(
                   label: 'Default field',
                   textInputType: TextInputType.text,
@@ -94,12 +92,10 @@ class _TextFieldScreenState extends State<TextFieldScreen> {
                 ),
               ].withVerticalSpacing(10.0),
             ),
-            YgSectionColumn(
+            YgSection.column(
+              title: 'Variants',
+              subtitle: 'Spacing between links added manually.',
               children: <Widget>[
-                const YgSectionTile(
-                  title: 'Variants',
-                  subtitle: 'Spacing between links added manually.',
-                ),
                 const YgTextField(
                   label: 'Standard',
                   variant: YgTextFieldVariant.standard,
@@ -118,12 +114,10 @@ class _TextFieldScreenState extends State<TextFieldScreen> {
                 ),
               ].withVerticalSpacing(10.0),
             ),
-            YgSectionColumn(
+            YgSection.column(
+              title: 'Login form example',
+              subtitle: 'See example code for best-practice usage.',
               children: <Widget>[
-                const YgSectionTile(
-                  title: 'Login form example',
-                  subtitle: 'See example code for best-practice usage.',
-                ),
                 Form(
                   key: formKey,
                   child: Column(

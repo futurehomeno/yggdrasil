@@ -23,14 +23,16 @@ class DeviceDetailsExample extends StatelessWidget {
       supernovaLink: 'Link',
       child: Column(
         children: <Widget>[
-          YgSection(
-            child: YgListTile.link(
-              link: 'Customize',
-              iconPath: YgIcons.edit,
-              onTap: () {},
-            ),
+          YgSection.list(
+            children: <YgListTile>[
+              YgListTile.link(
+                link: 'Customize',
+                iconPath: YgIcons.edit,
+                onTap: () {},
+              ),
+            ],
           ),
-          YgSection(
+          YgSection.base(
             child: YgCard(
               variant: YgCardVariant.outlined,
               child: YgListTile(
@@ -45,7 +47,7 @@ class DeviceDetailsExample extends StatelessWidget {
               ),
             ),
           ),
-          YgSection(
+          YgSection.base(
             child: YgCallout(
               variant: YgCalloutVariant.warning,
               description:
@@ -56,13 +58,12 @@ class DeviceDetailsExample extends StatelessWidget {
               ),
             ),
           ),
-          YgSectionColumn(
+          YgSection.column(
+            title: 'Detailed data',
+            children: <Widget>[],
+          ),
+          Column(
             children: <Widget>[
-              YgSectionTile(
-                title: 'Detailed data',
-              ),
-              YgDivider(),
-              const SizedBox(height: 10.0),
               YgListTile(
                 title: 'Power',
                 leadingWidgets: <Widget>[YgIcon(YgIcons.power)],
@@ -85,7 +86,6 @@ class DeviceDetailsExample extends StatelessWidget {
               ),
               YgListTile(
                 title: 'Phases',
-                leadingWidgets: <Widget>[YgIcon(YgIcons.power)],
                 trailingWidgets: <Widget>[
                   YgTag(
                     child: Text('Danger!'),
@@ -96,13 +96,12 @@ class DeviceDetailsExample extends StatelessWidget {
               ),
             ],
           ),
-          YgSectionColumn(
+          YgSection.column(
+            title: 'General settings',
+            children: <Widget>[],
+          ),
+          Column(
             children: <Widget>[
-              YgSectionTile(
-                title: 'General settings',
-              ),
-              YgDivider(),
-              const SizedBox(height: 10.0),
               YgListTile.link(
                 link: 'System data',
                 iconPath: YgIcons.support,
@@ -112,6 +111,42 @@ class DeviceDetailsExample extends StatelessWidget {
                 link: 'Settings',
                 iconPath: YgIcons.support,
                 onTap: () {},
+              ),
+            ],
+          ),
+          YgListTile(
+            title: 'ELVA',
+            subtitle: 'ELVA charge controls!',
+            subtitleIcon: YgIcon(
+              YgIcons.deviceEvCharger,
+              useEmbeddedColor: true,
+              size: YgIconSize.small,
+            ),
+            leadingWidgets: <Widget>[
+              Stack(
+                clipBehavior: Clip.none,
+                children: <Widget>[
+                  YgIcon(
+                    YgIcons.deviceEvCharger,
+                    useEmbeddedColor: true,
+                  ),
+                  Positioned(
+                    top: -5.0,
+                    left: -5.0,
+                    child: Container(
+                      width: 15.0,
+                      height: 15.0,
+                      decoration: const BoxDecoration(
+                        color: Colors.orange,
+                        shape: BoxShape.circle,
+                      ),
+                      child: YgIcon(
+                        YgIcons.wifiExcellent,
+                        useEmbeddedColor: true,
+                      ),
+                    ),
+                  ),
+                ],
               ),
             ],
           ),

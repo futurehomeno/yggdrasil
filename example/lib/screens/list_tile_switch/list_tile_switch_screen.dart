@@ -31,7 +31,7 @@ class _ListTileSwitchScreenState extends State<ListTileSwitchScreen> {
       componentName: 'SwitchListTile',
       componentDesc: 'Switch list tiles',
       supernovaLink: 'Link',
-      child: YgSectionColumn(
+      child: YgSection.column(
         children: <Widget>[
           YgSwitchListTile(
             title: 'SwitchListTile',

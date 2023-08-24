@@ -23,12 +23,10 @@ class CalloutScreen extends StatelessWidget {
       supernovaLink: 'Link',
       child: Column(
         children: <Widget>[
-          YgSectionColumn(
+          YgSection.column(
+            title: 'Variants',
+            subtitle: 'Spacing between callouts added manually.',
             children: <Widget>[
-              const YgSectionTile(
-                title: 'Variants',
-                subtitle: 'Spacing between callouts added manually.',
-              ),
               YgCallout(
                 variant: YgCalloutVariant.highlight,
                 title: 'Title',
@@ -51,13 +49,11 @@ class CalloutScreen extends StatelessWidget {
               ),
             ].withVerticalSpacing(10.0),
           ),
-          YgSectionColumn(
+          YgSection.column(
+            title: 'With close button',
+            subtitle:
+                'When used with a close button, the information about closing the button needs to be saved somewhere.',
             children: <Widget>[
-              const YgSectionTile(
-                title: 'With close button',
-                subtitle:
-                    'When used with a close button, the information about closing the button needs to be saved somewhere.',
-              ),
               YgCallout(
                 variant: YgCalloutVariant.highlight,
                 title: 'Title',
@@ -66,18 +62,18 @@ class CalloutScreen extends StatelessWidget {
               ),
             ],
           ),
-          YgSectionColumn(
+          YgSection.column(
+            title: 'Only description',
             children: <Widget>[
-              const YgSectionTile(title: 'Only description'),
               YgCallout(
                 variant: YgCalloutVariant.highlight,
                 description: 'Callout with description only',
               ),
             ],
           ),
-          YgSectionColumn(
+          YgSection.column(
+            title: 'With text link button',
             children: <Widget>[
-              const YgSectionTile(title: 'With text link button'),
               YgCallout(
                 variant: YgCalloutVariant.highlight,
                 title: 'Title',

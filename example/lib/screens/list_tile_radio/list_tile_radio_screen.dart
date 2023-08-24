@@ -29,7 +29,7 @@ class _ListTileRadioScreenState extends State<ListTileRadioScreen> {
       componentName: 'ListTile - Radio',
       componentDesc: 'Radio list tiles',
       supernovaLink: 'Link',
-      child: YgSectionColumn(
+      child: YgSection.column(
         children: <Widget>[
           YgRadioListTile<int>(
             title: 'RadioListTile',

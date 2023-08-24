@@ -23,27 +23,27 @@ class DividerScreen extends StatelessWidget {
       supernovaLink: 'Link',
       child: Column(
         children: <Widget>[
-          YgSectionColumn(
+          YgSection.column(
+            title: 'Normal Divider',
             children: <Widget>[
-              const YgSectionTile(title: 'Normal Divider'),
               const YgDivider(),
             ],
           ),
-          YgSectionColumn(
+          YgSection.column(
+            title: 'Divider /w start indent',
             children: <Widget>[
-              const YgSectionTile(title: 'Divider /w start indent'),
               const YgDivider(indent: YgDividerIndent.large),
             ],
           ),
-          YgSectionColumn(
+          YgSection.column(
+            title: 'Divider w/ end indent',
             children: <Widget>[
-              const YgSectionTile(title: 'Divider w/ end indent'),
               const YgDivider(endIndent: YgDividerIndent.large),
             ],
           ),
-          YgSectionColumn(
+          YgSection.column(
+            title: 'Divider w/ both indent',
             children: <Widget>[
-              const YgSectionTile(title: 'Divider w/ both indent'),
               const YgDivider(
                 indent: YgDividerIndent.large,
                 endIndent: YgDividerIndent.large,

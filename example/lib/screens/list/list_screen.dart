@@ -25,21 +25,6 @@ class ListScreen extends StatelessWidget {
       scrollable: false,
       child: CustomScrollView(
         slivers: <Widget>[
-          SliverToBoxAdapter(
-            child: YgSection(
-              child: YgCallout(
-                title: 'Making lists',
-                description:
-                    'These are some examples of how to correctly make lists. Please use one of these methods, or make sure that you really know what you are doing if not',
-              ),
-            ),
-          ),
-          SliverPersistentHeader(
-            delegate: YgSectionTilePersistentHeaderDelegate(
-              title: 'SliverPersistentHeader',
-              subtitle: 'This is a SliverPersistentHeader',
-            ),
-          ),
           SliverList(
             delegate: SliverChildBuilderDelegate(
               (BuildContext context, int index) {
@@ -48,9 +33,6 @@ class ListScreen extends StatelessWidget {
               childCount: 100,
             ),
           ),
-          SliverToBoxAdapter(
-            child: YgSectionTile(title: 'Separated list'),
-          ),
           SliverList.separated(
             separatorBuilder: (BuildContext context, int index) {
               return const YgDivider();
@@ -58,7 +40,7 @@ class ListScreen extends StatelessWidget {
             itemBuilder: (BuildContext context, int index) {
               return YgListTile(title: 'Title $index');
             },
-            itemCount: 3,
+            itemCount: 100,
           ),
         ],
       ),

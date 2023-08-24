@@ -23,12 +23,10 @@ class TextLinkScreen extends StatelessWidget {
       supernovaLink: 'Link',
       child: Column(
         children: <Widget>[
-          YgSectionColumn(
+          YgSection.column(
+            title: 'Sizes',
+            subtitle: 'Spacing between links added manually.',
             children: <Widget>[
-              const YgSectionTile(
-                title: 'Sizes',
-                subtitle: 'Spacing between links added manually.',
-              ),
               Row(
                 mainAxisSize: MainAxisSize.min,
                 children: <Widget>[
@@ -48,12 +46,10 @@ class TextLinkScreen extends StatelessWidget {
               ),
             ],
           ),
-          YgSectionColumn(
+          YgSection.column(
+            title: 'Weights',
+            subtitle: 'Spacing between links added manually.',
             children: <Widget>[
-              const YgSectionTile(
-                title: 'Weights',
-                subtitle: 'Spacing between links added manually.',
-              ),
               Row(
                 mainAxisSize: MainAxisSize.min,
                 children: <Widget>[
@@ -71,18 +67,18 @@ class TextLinkScreen extends StatelessWidget {
               ),
             ],
           ),
-          YgSectionColumn(
+          YgSection.column(
+            title: 'Disabled text link',
             children: <Widget>[
-              const YgSectionTile(title: 'Disabled text link'),
               YgTextLink(
                 text: 'Disabled',
                 onPressed: null,
               ),
             ],
           ),
-          YgSectionColumn(
+          YgSection.column(
+            title: 'External text link',
             children: <Widget>[
-              const YgSectionTile(title: 'External text link'),
               YgTextLink(
                 onPressed: () {},
                 text: 'Link',

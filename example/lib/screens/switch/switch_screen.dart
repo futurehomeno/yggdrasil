@@ -35,9 +35,9 @@ class _SwitchScreenState extends State<SwitchScreen> {
       supernovaLink: 'Link',
       child: Column(
         children: <Widget>[
-          YgSectionColumn(
+          YgSection.column(
+            title: 'Binary switch',
             children: <Widget>[
-              const YgSectionTile(title: 'Binary switch'),
               YgSwitch(
                 value: binaryValue,
                 onChanged: (bool? newValue) {
@@ -47,9 +47,9 @@ class _SwitchScreenState extends State<SwitchScreen> {
               ),
             ],
           ),
-          YgSectionColumn(
+          YgSection.column(
+            title: 'Tri-state switch',
             children: <Widget>[
-              const YgSectionTile(title: 'Tri-state switch'),
               YgSwitch(
                 value: triStateValue,
                 triState: true,
@@ -60,9 +60,9 @@ class _SwitchScreenState extends State<SwitchScreen> {
               ),
             ],
           ),
-          YgSectionColumn(
+          YgSection.column(
+            title: 'Disabled switch',
             children: <Widget>[
-              const YgSectionTile(title: 'Disabled switch'),
               Row(
                 mainAxisSize: MainAxisSize.min,
                 children: <Widget>[
@@ -82,11 +82,9 @@ class _SwitchScreenState extends State<SwitchScreen> {
               ),
             ],
           ),
-          YgSectionColumn(
+          YgSection.column(
+            title: 'Switch in a list tile',
             children: <Widget>[
-              YgSectionTile(
-                title: 'Switch in a list tile',
-              ),
               YgCallout(
                 variant: YgCalloutVariant.warning,
                 description:

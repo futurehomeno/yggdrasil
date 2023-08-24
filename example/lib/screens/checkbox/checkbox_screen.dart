@@ -39,9 +39,9 @@ class _CheckboxScreenState extends State<CheckboxScreen> {
       supernovaLink: 'Link',
       child: Column(
         children: <Widget>[
-          YgSectionColumn(
+          YgSection.column(
+            title: 'Binary checkbox',
             children: <Widget>[
-              const YgSectionTile(title: 'Binary checkbox'),
               YgCheckbox(
                 value: binaryValue,
                 onChanged: (bool? newValue) {
@@ -51,9 +51,9 @@ class _CheckboxScreenState extends State<CheckboxScreen> {
               ),
             ],
           ),
-          YgSectionColumn(
+          YgSection.column(
+            title: 'Tri-state checkbox',
             children: <Widget>[
-              const YgSectionTile(title: 'Tri-state checkbox'),
               YgCheckbox(
                 value: triStateValue,
                 triState: true,
@@ -64,9 +64,9 @@ class _CheckboxScreenState extends State<CheckboxScreen> {
               ),
             ],
           ),
-          YgSectionColumn(
+          YgSection.column(
+            title: 'Error checkbox',
             children: <Widget>[
-              const YgSectionTile(title: 'Error checkbox'),
               YgCheckbox(
                 value: errorValue,
                 onChanged: (bool? newValue) {
@@ -77,9 +77,9 @@ class _CheckboxScreenState extends State<CheckboxScreen> {
               ),
             ],
           ),
-          YgSectionColumn(
+          YgSection.column(
+            title: 'Disabled checkbox, selected / unselected',
             children: <Widget>[
-              const YgSectionTile(title: 'Disabled checkbox, selected / unselected'),
               const YgCheckbox(
                 value: true,
                 onChanged: null,
@@ -90,9 +90,9 @@ class _CheckboxScreenState extends State<CheckboxScreen> {
               ),
             ],
           ),
-          YgSectionColumn(
+          YgSection.column(
+            title: 'Checkbox item',
             children: <Widget>[
-              const YgSectionTile(title: 'Checkbox item'),
               YgCheckboxItem(
                 title: 'Some title',
                 value: checkboxItem,
@@ -103,9 +103,9 @@ class _CheckboxScreenState extends State<CheckboxScreen> {
               ),
             ],
           ),
-          YgSectionColumn(
+          YgSection.column(
+            title: 'Checkbox group',
             children: <Widget>[
-              const YgSectionTile(title: 'Checkbox group'),
               YgCheckboxGroup(
                 label: 'Some label',
                 checkboxItems: <YgCheckboxItem>[
@@ -129,11 +129,9 @@ class _CheckboxScreenState extends State<CheckboxScreen> {
               ),
             ],
           ),
-          YgSectionColumn(
+          YgSection.column(
+            title: 'Checkbox in a list tile',
             children: <Widget>[
-              YgSectionTile(
-                title: 'Checkbox in a list tile',
-              ),
               YgCallout(
                 variant: YgCalloutVariant.warning,
                 description:

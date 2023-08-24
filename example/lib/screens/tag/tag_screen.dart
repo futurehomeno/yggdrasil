@@ -23,9 +23,9 @@ class TagScreen extends StatelessWidget {
       supernovaLink: 'Link',
       child: Column(
         children: <Widget>[
-          YgSectionColumn(
+          YgSection.column(
+            title: 'Variants',
             children: <Widget>[
-              const YgSectionTile(title: 'Variants'),
               const YgTag(
                 child: Text('Neutral'),
               ),
@@ -47,9 +47,9 @@ class TagScreen extends StatelessWidget {
               ),
             ],
           ),
-          YgSectionColumn(
+          YgSection.column(
+            title: 'Sizes',
             children: <Widget>[
-              const YgSectionTile(title: 'Sizes'),
               const YgTag(
                 size: YgTagSize.small,
                 child: Text('Small'),
@@ -60,9 +60,9 @@ class TagScreen extends StatelessWidget {
               ),
             ],
           ),
-          YgSectionColumn(
+          YgSection.column(
+            title: 'With icons',
             children: <Widget>[
-              const YgSectionTile(title: 'With icons'),
               YgTag.leadingIcon(
                 icon: const YgIcon(YgIcons.info),
                 child: const Text('Leading icon'),
@@ -78,9 +78,9 @@ class TagScreen extends StatelessWidget {
               ),
             ],
           ),
-          YgSectionColumn(
+          YgSection.column(
+            title: 'Clickable',
             children: <Widget>[
-              const YgSectionTile(title: 'Clickable'),
               YgTag.leadingIcon(
                 icon: const YgIcon(YgIcons.info),
                 onPressed: () {},
@@ -93,9 +93,9 @@ class TagScreen extends StatelessWidget {
               ),
             ],
           ),
-          YgSectionColumn(
+          YgSection.column(
+            title: 'Weights',
             children: <Widget>[
-              const YgSectionTile(title: 'Weights'),
               YgTag.leadingIcon(
                 icon: const YgIcon(YgIcons.info),
                 weight: YgTagWeight.strong,

@@ -23,17 +23,14 @@ class IconScreen extends StatelessWidget {
       supernovaLink: 'Link',
       child: Column(
         children: <Widget>[
-          YgSectionColumn(
-            children: <Widget>[
-              const YgSectionTile(
-                title: 'Available icons',
-                subtitle: 'All currently supported icons can be seen on the icons list screen.',
-              ),
-            ],
+          YgSection.column(
+            title: 'Available icons',
+            subtitle: 'All currently supported icons can be seen on the icons list screen.',
+            children: <Widget>[],
           ),
-          YgSectionColumn(
+          YgSection.column(
+            title: 'Sizes',
             children: <Widget>[
-              const YgSectionTile(title: 'Sizes'),
               Row(
                 mainAxisSize: MainAxisSize.min,
                 children: <Widget>[
@@ -49,12 +46,10 @@ class IconScreen extends StatelessWidget {
               ),
             ],
           ),
-          YgSectionColumn(
+          YgSection.column(
+            title: 'Inherited color',
+            subtitle: 'Color switching is handled by the parent widget.',
             children: <Widget>[
-              const YgSectionTile(
-                title: 'Inherited color',
-                subtitle: 'Color switching is handled by the parent widget.',
-              ),
               const YgTag(
                 weight: YgTagWeight.strong,
                 child: YgIcon(
@@ -64,12 +59,10 @@ class IconScreen extends StatelessWidget {
               ),
             ],
           ),
-          YgSectionColumn(
+          YgSection.column(
+            title: 'Disabled color',
+            subtitle: 'Color switching for state is handled by the parent widget.',
             children: <Widget>[
-              const YgSectionTile(
-                title: 'Disabled color',
-                subtitle: 'Color switching for state is handled by the parent widget.',
-              ),
               const YgButton(
                 onPressed: null,
                 child: YgIcon(
@@ -79,12 +72,10 @@ class IconScreen extends StatelessWidget {
               ),
             ],
           ),
-          YgSectionColumn(
+          YgSection.column(
+            title: 'Override color',
+            subtitle: 'Override the default theme color. See warning below.',
             children: <Widget>[
-              const YgSectionTile(
-                title: 'Override color',
-                subtitle: 'Override the default theme color. See warning below.',
-              ),
               const YgTag(
                 child: YgIcon(
                   YgIcons.deviceHub,
@@ -94,12 +85,10 @@ class IconScreen extends StatelessWidget {
               ),
             ],
           ),
-          YgSectionColumn(
+          YgSection.column(
+            title: 'Use embedded color',
+            subtitle: 'Color embedded in the SVG is used. See warning below.',
             children: <Widget>[
-              const YgSectionTile(
-                title: 'Use embedded color',
-                subtitle: 'Color embedded in the SVG is used. See warning below.',
-              ),
               const YgTag(
                 child: YgIcon(
                   YgIcons.deviceHub,
@@ -109,13 +98,11 @@ class IconScreen extends StatelessWidget {
               ),
             ],
           ),
-          YgSectionColumn(
+          YgSection.column(
+            title: 'Warning!',
+            subtitle:
+                'Overriding color by using either useEmbeddedColor or just setting a specific color will prevent the parent widget from being able to dynamically change the color based on theme or state changes. Use with caution, as end result may end up like the example below.',
             children: <Widget>[
-              const YgSectionTile(
-                title: 'Warning!',
-                subtitle:
-                    'Overriding color by using either useEmbeddedColor or just setting a specific color will prevent the parent widget from being able to dynamically change the color based on theme or state changes. Use with caution, as end result may end up like the example below.',
-              ),
               const YgTag(
                 weight: YgTagWeight.strong,
                 child: YgIcon(

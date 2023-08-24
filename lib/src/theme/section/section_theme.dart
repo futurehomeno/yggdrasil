@@ -16,23 +16,23 @@ class _$YgSectionTheme {
 
   static const List<EdgeInsets> padding = <EdgeInsets>[
     EdgeInsets.only(
-      left: consumer_light.FhDimensions.sm,
-      right: consumer_light.FhDimensions.sm,
+      left: consumer_light.FhDimensions.md,
+      right: consumer_light.FhDimensions.md,
       bottom: consumer_light.FhDimensions.md,
     ),
     EdgeInsets.only(
-      left: consumer_dark.FhDimensions.sm,
-      right: consumer_dark.FhDimensions.sm,
+      left: consumer_dark.FhDimensions.md,
+      right: consumer_dark.FhDimensions.md,
       bottom: consumer_dark.FhDimensions.md,
     ),
     EdgeInsets.only(
-      left: professional_light.FhDimensions.sm,
-      right: professional_light.FhDimensions.sm,
+      left: professional_light.FhDimensions.md,
+      right: professional_light.FhDimensions.md,
       bottom: professional_light.FhDimensions.md,
     ),
     EdgeInsets.only(
-      left: professional_dark.FhDimensions.sm,
-      right: professional_dark.FhDimensions.sm,
+      left: professional_dark.FhDimensions.md,
+      right: professional_dark.FhDimensions.md,
       bottom: professional_dark.FhDimensions.md,
     ),
   ];

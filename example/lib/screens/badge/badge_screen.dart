@@ -23,9 +23,9 @@ class BadgeScreen extends StatelessWidget {
       supernovaLink: 'Link',
       child: Column(
         children: <Widget>[
-          YgSectionColumn(
+          YgSection.column(
+            title: 'Badges with count 0 - 9',
             children: <Widget>[
-              const YgSectionTile(title: 'Badges with count 0 - 9'),
               Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: <Widget>[
@@ -65,9 +65,9 @@ class BadgeScreen extends StatelessWidget {
               ),
             ],
           ),
-          YgSectionColumn(
+          YgSection.column(
+            title: 'Badge with more than 9',
             children: <Widget>[
-              const YgSectionTile(title: 'Badge with more than 9'),
               YgBadge(
                 amount: 10,
                 weight: YgBadgeWeight.weak,
@@ -78,9 +78,9 @@ class BadgeScreen extends StatelessWidget {
               ),
             ],
           ),
-          YgSectionColumn(
+          YgSection.column(
+            title: 'Dot badge',
             children: <Widget>[
-              const YgSectionTile(title: 'Dot badge'),
               const YgDotBadge(),
             ],
           ),

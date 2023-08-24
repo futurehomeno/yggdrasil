@@ -23,36 +23,32 @@ class ProgressIndicatorScreen extends StatelessWidget {
       supernovaLink: 'Link',
       child: Column(
         children: <Widget>[
-          YgSectionColumn(
+          YgSection.column(
+            title: 'Linear progress indicator',
             children: <Widget>[
-              const YgSectionTile(title: 'Linear progress indicator'),
               const YgLinearProgressIndicator(),
             ],
           ),
-          YgSectionColumn(
+          YgSection.column(
+            title: 'w/ various values',
+            subtitle: 'Spacing between progress indicators added manually.',
             children: <Widget>[
-              const YgSectionTile(
-                title: 'w/ various values',
-                subtitle: 'Spacing between progress indicators added manually.',
-              ),
               const YgLinearProgressIndicator(value: 0.25),
               const YgLinearProgressIndicator(value: 0.5),
               const YgLinearProgressIndicator(value: 0.75),
               const YgLinearProgressIndicator(value: 1.0),
             ].withVerticalSpacing(5.0),
           ),
-          YgSectionColumn(
+          YgSection.column(
+            title: 'Circular progress indicator',
             children: <Widget>[
-              const YgSectionTile(title: 'Circular progress indicator'),
               const YgCircularProgressIndicator(),
             ],
           ),
-          YgSectionColumn(
+          YgSection.column(
+            title: 'w/ various values',
+            subtitle: 'Spacing between progress indicators added manually.',
             children: <Widget>[
-              const YgSectionTile(
-                title: 'w/ various values',
-                subtitle: 'Spacing between progress indicators added manually.',
-              ),
               Row(
                 mainAxisSize: MainAxisSize.min,
                 children: <Widget>[

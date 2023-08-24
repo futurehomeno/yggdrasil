@@ -9,7 +9,7 @@ class ExampleBottomSheet extends YgBottomSheetModalRoute {
   YgBottomSheet buildBottomSheet(BuildContext context) {
     return YgBottomSheet(
       title: 'Example Bottom Sheet',
-      content: YgSectionColumn(
+      content: YgSection.column(
         children: <Widget>[
           const YgListTile(
             title: 'Example content',

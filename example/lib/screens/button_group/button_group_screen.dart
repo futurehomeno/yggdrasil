@@ -23,9 +23,9 @@ class ButtonGroupScreen extends StatelessWidget {
       supernovaLink: 'Link',
       child: Column(
         children: <Widget>[
-          YgSectionColumn(
+          YgSection.column(
+            title: 'Button group with 1 button',
             children: <Widget>[
-              const YgSectionTile(title: 'Button group with 1 button'),
               YgButtonGroup(
                 children: <YgButton>[
                   YgButton(
@@ -38,9 +38,9 @@ class ButtonGroupScreen extends StatelessWidget {
               ),
             ],
           ),
-          YgSectionColumn(
+          YgSection.column(
+            title: 'Button group with 2 buttons',
             children: <Widget>[
-              const YgSectionTile(title: 'Button group with 2 buttons'),
               YgButtonGroup(
                 children: <YgButton>[
                   YgButton(
@@ -59,9 +59,9 @@ class ButtonGroupScreen extends StatelessWidget {
               ),
             ],
           ),
-          YgSectionColumn(
+          YgSection.column(
+            title: 'Button group with 3 buttons',
             children: <Widget>[
-              const YgSectionTile(title: 'Button group with 3 buttons'),
               YgButtonGroup(
                 children: <YgButton>[
                   YgButton(
@@ -86,9 +86,9 @@ class ButtonGroupScreen extends StatelessWidget {
               ),
             ],
           ),
-          YgSectionColumn(
+          YgSection.column(
+            title: 'Action or cancel group.',
             children: <Widget>[
-              const YgSectionTile(title: 'Action or cancel group.'),
               YgButtonGroup.actionOrCancel(
                 actionText: 'Save',
                 cancelText: 'Cancel',
