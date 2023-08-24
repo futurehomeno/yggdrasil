@@ -10,7 +10,7 @@ class YgTextFormField extends FormField<String> {
     this.controller,
     required TextFieldKey super.key,
     required String label,
-    required TextInputType textInputType,
+    required TextInputType keyboardType,
     required TextInputAction textInputAction,
     required bool autocorrect,
     required TextCapitalization textCapitalization,
@@ -40,7 +40,21 @@ class YgTextFormField extends FormField<String> {
             YgAutoValidate.onUserInteraction => AutovalidateMode.onUserInteraction,
             YgAutoValidate.always => AutovalidateMode.always,
           },
-          validator: (String? value) => _validateWithValidators(value, validators),
+          validator: (String? value) {
+            if (validators == null) {
+              return null;
+            }
+
+            for (final FormFieldValidator<String> validator in validators) {
+              final String? error = validator(value);
+
+              if (error != null) {
+                return error;
+              }
+            }
+
+            return null;
+          },
           builder: (FormFieldState<String> field) {
             final _YgTextFormInputState state = field as _YgTextFormInputState;
 
@@ -48,6 +62,7 @@ class YgTextFormField extends FormField<String> {
               bucket: field.bucket,
               child: YgTextField(
                 label: label,
+                // ignore: prefer-extracting-callbacks
                 onEditingComplete: () {
                   if (autoValidate == YgAutoValidate.onComplete && !key.validate()) {
                     return;
@@ -75,6 +90,7 @@ class YgTextFormField extends FormField<String> {
                     focusScope.unfocus();
                   }
                 },
+                // ignore: prefer-extracting-callbacks
                 onFocusChanged: (bool focus) {
                   if (!focus) {
                     key.validate();
@@ -91,7 +107,6 @@ class YgTextFormField extends FormField<String> {
                 controller: state._effectiveController,
                 disabled: disabled,
                 size: size,
-                textInputType: textInputType,
                 autocorrect: autocorrect,
                 textCapitalization: textCapitalization,
                 readOnly: readOnly,
@@ -101,6 +116,7 @@ class YgTextFormField extends FormField<String> {
                 error: error ?? field.errorText,
                 focusNode: focusNode,
                 minLines: minLines,
+                keyboardType: keyboardType,
               ),
             );
           },
@@ -139,7 +155,7 @@ class YgTextFormField extends FormField<String> {
           initialValue: initialValue,
           focusNode: focusNode,
           validators: validators,
-          textInputType: TextInputType.emailAddress,
+          keyboardType: TextInputType.emailAddress,
           onEditingComplete: onEditingComplete,
           textInputAction: textInputAction,
           inputFormatters: inputFormatters,
@@ -186,7 +202,7 @@ class YgTextFormField extends FormField<String> {
           initialValue: initialValue,
           focusNode: focusNode,
           validators: validators,
-          textInputType: TextInputType.text,
+          keyboardType: TextInputType.text,
           onEditingComplete: onEditingComplete,
           onFocusChanged: onFocusChanged,
           textInputAction: textInputAction,
@@ -238,7 +254,7 @@ class YgTextFormField extends FormField<String> {
           initialValue: initialValue,
           autoValidate: autoValidate,
           focusNode: focusNode,
-          textInputType: TextInputType.multiline,
+          keyboardType: TextInputType.multiline,
           onEditingComplete: onEditingComplete,
           onFocusChanged: onFocusChanged,
           textInputAction: TextInputAction.newline,
@@ -252,22 +268,6 @@ class YgTextFormField extends FormField<String> {
           maxLines: maxLines,
           minLines: minLines,
         );
-
-  static String? _validateWithValidators(String? value, List<FormFieldValidator<String>>? validators) {
-    if (validators == null) {
-      return null;
-    }
-
-    for (final FormFieldValidator<String> validator in validators) {
-      final String? error = validator(value);
-
-      if (error != null) {
-        return error;
-      }
-    }
-
-    return null;
-  }
 
   /// Controls the text being edited.
   ///

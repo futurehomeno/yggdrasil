@@ -9,6 +9,7 @@ export 'defaults/_defaults.dart';
 export 'dialog/_dialog.dart';
 export 'divider/_divider.dart';
 export 'extensions/_extensions.dart';
+export 'fields/_fields.dart';
 export 'gauge/_gauge.dart';
 export 'helpers/_helpers.dart';
 export 'icon/_icon.dart';

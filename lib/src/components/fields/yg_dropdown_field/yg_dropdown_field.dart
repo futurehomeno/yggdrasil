@@ -3,32 +3,13 @@ import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:yggdrasil/src/components/fields/enums/field_state.dart';
-import 'package:yggdrasil/src/theme/fields/field_theme.dart';
 import 'package:yggdrasil/yggdrasil.dart';
 
+import './widgets/_widgets.dart';
 import '../widgets/_widgets.dart';
-import 'yg_dropdown_bottom_sheet.dart';
 
-enum DropdownAction {
-  menu,
-  bottomSheet,
-  auto,
-  nothing,
-}
-
-class YgDropdownEntry<T extends Object> {
-  YgDropdownEntry({
-    required this.title,
-    required this.value,
-    this.subtitle,
-    this.icon,
-  });
-
-  final String title;
-  final T value;
-  final String? subtitle;
-  final YgIcon? icon;
-}
+part 'yg_dropdown_field_multi_select.dart';
+part 'yg_dropdown_field_single_select.dart';
 
 abstract class YgDropdownField<T extends Object> extends StatefulWidget {
   const factory YgDropdownField({
@@ -45,7 +26,7 @@ abstract class YgDropdownField<T extends Object> extends StatefulWidget {
     int maxLines,
     bool disabled,
     bool allowDeselect,
-    DropdownAction dropdownAction,
+    YgDropdownAction dropdownAction,
     ValueChanged<T?>? onChange,
   }) = _YgDropdownFieldSingleSelect<T>;
 
@@ -63,7 +44,7 @@ abstract class YgDropdownField<T extends Object> extends StatefulWidget {
     int maxLines,
     bool disabled,
     bool allowDeselect,
-    DropdownAction dropdownAction,
+    YgDropdownAction dropdownAction,
     ValueChanged<Set<T>>? onChange,
   }) = _YgDropdownFieldMultiSelect<T>;
 
@@ -76,7 +57,7 @@ abstract class YgDropdownField<T extends Object> extends StatefulWidget {
     this.allowDeselect = false,
     this.variant = YgDropdownFieldVariant.standard,
     this.size = YgDropdownFieldSize.large,
-    this.dropdownAction = DropdownAction.auto,
+    this.dropdownAction = YgDropdownAction.auto,
     this.focusNode,
     this.error,
     this.disabled = false,
@@ -95,88 +76,8 @@ abstract class YgDropdownField<T extends Object> extends StatefulWidget {
   final int? maxLines;
   final bool disabled;
   final bool allowDeselect;
-  final DropdownAction dropdownAction;
+  final YgDropdownAction dropdownAction;
   final bool multiSelect;
-}
-
-class _YgDropdownFieldSingleSelect<T extends Object> extends YgDropdownField<T> {
-  const _YgDropdownFieldSingleSelect({
-    super.key,
-    required List<YgDropdownEntry<T>> entries,
-    required String label,
-    YgDropdownFieldVariant variant = YgDropdownFieldVariant.standard,
-    YgDropdownFieldSize size = YgDropdownFieldSize.large,
-    FocusNode? focusNode,
-    this.initialValue,
-    String? error,
-    int? minLines,
-    String? placeholder,
-    int maxLines = 1,
-    bool disabled = false,
-    bool allowDeselect = false,
-    DropdownAction dropdownAction = DropdownAction.auto,
-    this.onChange,
-  }) : super._(
-          variant: variant,
-          size: size,
-          entries: entries,
-          focusNode: focusNode,
-          error: error,
-          label: label,
-          minLines: minLines,
-          placeholder: placeholder,
-          maxLines: maxLines,
-          disabled: disabled,
-          allowDeselect: allowDeselect,
-          dropdownAction: dropdownAction,
-          multiSelect: true,
-        );
-
-  final T? initialValue;
-  final ValueChanged<T?>? onChange;
-
-  @override
-  _YgDropdownFieldSingleSelectState<T> createState() => _YgDropdownFieldSingleSelectState<T>();
-}
-
-class _YgDropdownFieldMultiSelect<T extends Object> extends YgDropdownField<T> {
-  const _YgDropdownFieldMultiSelect({
-    super.key,
-    required List<YgDropdownEntry<T>> entries,
-    required String label,
-    YgDropdownFieldVariant variant = YgDropdownFieldVariant.standard,
-    YgDropdownFieldSize size = YgDropdownFieldSize.large,
-    FocusNode? focusNode,
-    this.initialValue,
-    String? error,
-    int? minLines,
-    String? placeholder,
-    int? maxLines,
-    bool disabled = false,
-    bool allowDeselect = false,
-    DropdownAction dropdownAction = DropdownAction.auto,
-    this.onChange,
-  }) : super._(
-          variant: variant,
-          size: size,
-          entries: entries,
-          focusNode: focusNode,
-          error: error,
-          label: label,
-          minLines: minLines,
-          placeholder: placeholder,
-          maxLines: maxLines,
-          disabled: disabled,
-          allowDeselect: allowDeselect,
-          dropdownAction: dropdownAction,
-          multiSelect: true,
-        );
-
-  final Set<T>? initialValue;
-  final ValueChanged<Set<T>>? onChange;
-
-  @override
-  _YgDropdownFieldMultiSelectState<T> createState() => _YgDropdownFieldMultiSelectState<T>();
 }
 
 abstract class _YgDropdownFieldState<T extends Object, W extends YgDropdownField<T>> extends State<W> {
@@ -228,14 +129,8 @@ abstract class _YgDropdownFieldState<T extends Object, W extends YgDropdownField
     return FocusableActionDetector(
       mouseCursor: SystemMouseCursors.click,
       focusNode: widget.focusNode,
-      onShowFocusHighlight: (bool focused) {
-        updateFieldState(FieldState.focused, focused);
-        setState(() {});
-      },
-      onShowHoverHighlight: (bool hovered) {
-        updateFieldState(FieldState.hovered, hovered);
-        setState(() {});
-      },
+      onShowFocusHighlight: (bool focused) => updateFieldState(FieldState.focused, focused),
+      onShowHoverHighlight: (bool hovered) => updateFieldState(FieldState.hovered, hovered),
       shortcuts: const <ShortcutActivator, Intent>{
         SingleActivator(LogicalKeyboardKey.space, control: false): ActivateIntent(),
       },
@@ -258,6 +153,7 @@ abstract class _YgDropdownFieldState<T extends Object, W extends YgDropdownField
         _states.remove(state);
       }
     }
+    setState(() {});
   }
 
   void _showMenu() {
@@ -274,14 +170,10 @@ abstract class _YgDropdownFieldState<T extends Object, W extends YgDropdownField
         onValueTapped: onValueTapped,
         isValueSelected: isValueSelected,
         rect: itemRect,
-        onClose: () {
-          updateFieldState(FieldState.opened, false);
-          setState(() {});
-        },
+        onClose: () => updateFieldState(FieldState.opened, false),
       ),
     );
     updateFieldState(FieldState.opened, true);
-    setState(() {});
   }
 
   void _showBottomSheet() {
@@ -291,14 +183,10 @@ abstract class _YgDropdownFieldState<T extends Object, W extends YgDropdownField
         label: widget.label,
         onValueTapped: onValueTapped,
         isValueSelected: isValueSelected,
-        onClose: () {
-          updateFieldState(FieldState.opened, false);
-          setState(() {});
-        },
+        onClose: () => updateFieldState(FieldState.opened, false),
       ),
     );
     updateFieldState(FieldState.opened, true);
-    setState(() {});
   }
 
   void _performPlatformAction() {
@@ -311,13 +199,13 @@ abstract class _YgDropdownFieldState<T extends Object, W extends YgDropdownField
 
   void _open() {
     switch (widget.dropdownAction) {
-      case DropdownAction.bottomSheet:
+      case YgDropdownAction.bottomSheet:
         return _showBottomSheet();
-      case DropdownAction.menu:
+      case YgDropdownAction.menu:
         return _showMenu();
-      case DropdownAction.auto:
+      case YgDropdownAction.auto:
         return _performPlatformAction();
-      case DropdownAction.nothing:
+      case YgDropdownAction.nothing:
         return;
     }
   }

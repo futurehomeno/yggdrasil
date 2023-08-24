@@ -41,14 +41,14 @@ class _TextFieldScreenState extends State<TextFieldScreen> {
             const YgListTile(title: 'Variations'),
             const YgTextField(
               label: 'Default field',
-              textInputType: TextInputType.text,
+              keyboardType: TextInputType.text,
               textInputAction: TextInputAction.next,
               textCapitalization: TextCapitalization.words,
               autocorrect: true,
             ),
             const YgTextField(
               label: 'Obscured',
-              textInputType: TextInputType.text,
+              keyboardType: TextInputType.text,
               textInputAction: TextInputAction.next,
               textCapitalization: TextCapitalization.words,
               autocorrect: true,
@@ -57,14 +57,14 @@ class _TextFieldScreenState extends State<TextFieldScreen> {
             const YgTextField(
               label: 'Label',
               placeholder: 'Fixed placeholder',
-              textInputType: TextInputType.text,
+              keyboardType: TextInputType.text,
               textInputAction: TextInputAction.next,
               textCapitalization: TextCapitalization.words,
               autocorrect: true,
             ),
             YgTextField(
               label: 'Custom suffix',
-              textInputType: TextInputType.text,
+              keyboardType: TextInputType.text,
               textInputAction: TextInputAction.next,
               textCapitalization: TextCapitalization.words,
               autocorrect: true,
@@ -74,7 +74,7 @@ class _TextFieldScreenState extends State<TextFieldScreen> {
             YgTextField(
               label: 'Readonly',
               controller: TextEditingController(text: 'Readonly'),
-              textInputType: TextInputType.text,
+              keyboardType: TextInputType.text,
               textInputAction: TextInputAction.next,
               textCapitalization: TextCapitalization.words,
               autocorrect: true,
@@ -83,7 +83,7 @@ class _TextFieldScreenState extends State<TextFieldScreen> {
             YgTextField(
               label: 'Disabled',
               controller: TextEditingController(text: 'Disabled'),
-              textInputType: TextInputType.text,
+              keyboardType: TextInputType.text,
               textInputAction: TextInputAction.next,
               textCapitalization: TextCapitalization.words,
               autocorrect: true,
@@ -93,7 +93,7 @@ class _TextFieldScreenState extends State<TextFieldScreen> {
             const YgTextField(
               label: 'Standard',
               variant: YgTextFieldVariant.standard,
-              textInputType: TextInputType.text,
+              keyboardType: TextInputType.text,
               textInputAction: TextInputAction.next,
               textCapitalization: TextCapitalization.words,
               autocorrect: true,
@@ -101,7 +101,7 @@ class _TextFieldScreenState extends State<TextFieldScreen> {
             const YgTextField(
               label: 'Outlined',
               variant: YgTextFieldVariant.outlined,
-              textInputType: TextInputType.text,
+              keyboardType: TextInputType.text,
               textInputAction: TextInputAction.next,
               textCapitalization: TextCapitalization.words,
               autocorrect: true,
