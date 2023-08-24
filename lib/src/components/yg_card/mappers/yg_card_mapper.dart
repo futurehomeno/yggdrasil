@@ -19,15 +19,12 @@ class YgCardMapper {
     }
   }
 
-  static ShapeBorder? getShape({
+  static ShapeBorder getShape({
     required YgCardTheme theme,
     required YgCardVariant variant,
   }) {
     switch (variant) {
       case YgCardVariant.elevated:
-        return RoundedRectangleBorder(
-          borderRadius: theme.borderRadius,
-        );
       case YgCardVariant.filled:
         return RoundedRectangleBorder(
           borderRadius: theme.borderRadius,
@@ -48,7 +45,6 @@ class YgCardMapper {
       case YgCardVariant.elevated:
         return theme.elevation;
       case YgCardVariant.filled:
-        return 0.0;
       case YgCardVariant.outlined:
         return 0.0;
     }

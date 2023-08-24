@@ -3,7 +3,7 @@ import 'package:yggdrasil/src/theme/theme.dart';
 
 /// Helper to construct ThemeData to be used in an application.
 class YgThemeDataHelper {
-  YgThemeDataHelper._();
+  const YgThemeDataHelper._();
 
   // region Consumer themes.
   static ThemeData getThemeData(YgTheme theme) {
@@ -29,6 +29,8 @@ class YgThemeDataHelper {
 
   static PageTransitionsTheme get _defaultPageTransitionsTheme {
     return const PageTransitionsTheme(
+      // Ignores fuchsia, linux and windows platforms.
+      // ignore: avoid-missing-enum-constant-in-map
       builders: <TargetPlatform, PageTransitionsBuilder>{
         // Forces old transition for Android devices.
         TargetPlatform.android: FadeUpwardsPageTransitionsBuilder(),

@@ -44,23 +44,23 @@ class YgRadio<T> extends StatefulWidget with StatefulWidgetDebugMixin {
 
 class _YgRadioState<T> extends State<YgRadio<T>> {
   // region StatesController
-  void handleStatesControllerChange() {
+  void _handleStatesControllerChange() {
     // Force a rebuild to resolve MaterialStateProperty properties.
     setState(() {});
   }
 
-  MaterialStatesController statesController = MaterialStatesController();
+  MaterialStatesController _statesController = MaterialStatesController();
 
-  void initStatesController() {
-    statesController.update(MaterialState.disabled, !widget._enabled);
-    statesController.update(MaterialState.selected, widget._selected);
-    statesController.addListener(handleStatesControllerChange);
+  void _initStatesController() {
+    _statesController.update(MaterialState.disabled, !widget._enabled);
+    _statesController.update(MaterialState.selected, widget._selected);
+    _statesController.addListener(_handleStatesControllerChange);
   }
 
   @override
   void initState() {
     super.initState();
-    initStatesController();
+    _initStatesController();
   }
 
   @override
@@ -68,21 +68,22 @@ class _YgRadioState<T> extends State<YgRadio<T>> {
     super.didUpdateWidget(oldWidget);
 
     if (widget._selected != oldWidget._selected) {
-      statesController.update(MaterialState.selected, widget._selected);
+      _statesController.update(MaterialState.selected, widget._selected);
     }
 
     if (widget._enabled != oldWidget._enabled) {
-      statesController.update(MaterialState.disabled, !widget._enabled);
+      _statesController.update(MaterialState.disabled, !widget._enabled);
       if (!widget._enabled) {
         // The radio may have been disabled while a press gesture is currently underway.
-        statesController.update(MaterialState.pressed, false);
+        _statesController.update(MaterialState.pressed, false);
       }
     }
   }
 
   @override
   void dispose() {
-    statesController.removeListener(handleStatesControllerChange);
+    _statesController.removeListener(_handleStatesControllerChange);
+    _statesController.dispose();
     super.dispose();
   }
   // endregion StatesController
@@ -91,11 +92,11 @@ class _YgRadioState<T> extends State<YgRadio<T>> {
   Widget build(BuildContext context) {
     final YgRadioTheme radioTheme = context.radioTheme;
     final YgRadioStyle radioStyle = YgRadioStyle.base(context);
-    final Color resolvedBackgroundColor = radioStyle.backgroundColor.resolve(statesController.value);
-    final Color resolvedHandleColor = radioStyle.handleColor.resolve(statesController.value);
-    final double resolvedHandleSize = radioStyle.handleSize.resolve(statesController.value);
-    final double resolvedHelperHandleSize = radioStyle.helperHandleSize.resolve(statesController.value);
-    final MouseCursor resolvedMouseCursor = radioStyle.mouseCursor.resolve(statesController.value);
+    final Color resolvedBackgroundColor = radioStyle.backgroundColor.resolve(_statesController.value);
+    final Color resolvedHandleColor = radioStyle.handleColor.resolve(_statesController.value);
+    final double resolvedHandleSize = radioStyle.handleSize.resolve(_statesController.value);
+    final double resolvedHelperHandleSize = radioStyle.helperHandleSize.resolve(_statesController.value);
+    final MouseCursor resolvedMouseCursor = radioStyle.mouseCursor.resolve(_statesController.value);
 
     return RepaintBoundary(
       child: Semantics(
@@ -110,9 +111,7 @@ class _YgRadioState<T> extends State<YgRadio<T>> {
               SingleActivator(LogicalKeyboardKey.space, control: true): ActivateIntent(),
             },
             actions: <Type, Action<Intent>>{
-              ActivateIntent: CallbackAction<Intent>(onInvoke: (_) {
-                return widget.onChanged == null ? null : _onTap();
-              }),
+              ActivateIntent: CallbackAction<Intent>(onInvoke: (_) => _onTap()),
             },
             mouseCursor: resolvedMouseCursor,
             enabled: widget._enabled,
@@ -150,7 +149,7 @@ class _YgRadioState<T> extends State<YgRadio<T>> {
         color: resolvedBackgroundColor,
       ),
       child: Center(
-        child: buildHandle(
+        child: _buildHandle(
           context: context,
           resolvedHandleSize: resolvedHandleSize,
           resolvedHandleColor: resolvedHandleColor,
@@ -160,7 +159,7 @@ class _YgRadioState<T> extends State<YgRadio<T>> {
     );
   }
 
-  Widget buildHandle({
+  Widget _buildHandle({
     required BuildContext context,
     required double? resolvedHandleSize,
     required Color? resolvedHandleColor,
@@ -199,14 +198,17 @@ class _YgRadioState<T> extends State<YgRadio<T>> {
   }
 
   void _onShowFocusHighlight(bool value) {
-    statesController.update(MaterialState.focused, value);
+    _statesController.update(MaterialState.focused, value);
   }
 
   void _onShowHoverHighlight(bool value) {
-    statesController.update(MaterialState.hovered, value);
+    _statesController.update(MaterialState.hovered, value);
   }
 
   void _onTap() {
-    widget.onChanged!(widget.value);
+    final onChanged = widget.onChanged;
+    if (onChanged != null) {
+      onChanged(widget.value);
+    }
   }
 }
