@@ -365,24 +365,28 @@ class _YgTextFieldState extends YgTextFieldBaseWidgetState<YgTextField> {
     }
 
     return MouseRegion(
-      onEnter: (_) {
-        if (!_hovered) {
-          _hovered = true;
-          setState(() {});
-        }
-      },
-      onExit: (_) {
-        if (_hovered) {
-          _hovered = false;
-          setState(() {});
-        }
-      },
+      onEnter: _onEnter,
+      onExit: _onExit,
       cursor: SystemMouseCursors.text,
       child: GestureDetector(
         onTap: _handleTap,
         child: layout,
       ),
     );
+  }
+
+  void _onEnter(PointerEnterEvent pointerEnterEvent) {
+    if (!_hovered) {
+      _hovered = true;
+      setState(() {});
+    }
+  }
+
+  void _onExit(PointerExitEvent pointerExitEvent) {
+    if (_hovered) {
+      _hovered = false;
+      setState(() {});
+    }
   }
 
   Widget _buildErrorMessage() {

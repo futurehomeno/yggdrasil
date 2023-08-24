@@ -19,7 +19,7 @@ abstract class YgDialogRoute extends PopupRoute<YgDialog> {
   RouteSettings get settings => RouteSettings(name: name);
 
   @override
-  Color? get barrierColor => _dialogThemes.scrimColor;
+  Color get barrierColor => _dialogThemes.scrimColor;
 
   @override
   Duration get transitionDuration => _dialogThemes.movementAnimationDuration;
@@ -31,7 +31,7 @@ abstract class YgDialogRoute extends PopupRoute<YgDialog> {
   bool get barrierDismissible => true;
 
   @override
-  String? get barrierLabel => 'Dismissible Dialog';
+  String get barrierLabel => 'Dismissible Dialog';
 
   @override
   AnimationController createAnimationController() {

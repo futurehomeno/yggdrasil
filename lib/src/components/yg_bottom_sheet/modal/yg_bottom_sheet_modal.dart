@@ -47,19 +47,11 @@ class _YgBottomSheetModalState extends State<YgBottomSheetModal> {
             );
           },
           child: YgChildSizeObserver(
-            resizeCallback: (Size size) {
-              _sheetSize = size.height;
-            },
+            resizeCallback: _resizeCallback,
             child: GestureDetector(
-              onVerticalDragUpdate: (DragUpdateDetails details) {
-                _handleSwipeUpdate(details.delta.dy);
-              },
-              onVerticalDragCancel: () {
-                _handleSwipeEnd(0);
-              },
-              onVerticalDragEnd: (DragEndDetails details) {
-                _handleSwipeEnd(details.primaryVelocity ?? 0);
-              },
+              onVerticalDragUpdate: _onVerticalDragUpdate,
+              onVerticalDragCancel: _onVerticalDragCancel,
+              onVerticalDragEnd: _onVerticalDragEnd,
               child: YgBottomSheetScrollPhysicsProvider(
                 scrollPhysics: YgBottomSheetScrollPhysics(
                   handleScrollSwipeEnd: _handleScrollStop,
@@ -72,6 +64,22 @@ class _YgBottomSheetModalState extends State<YgBottomSheetModal> {
         ),
       ),
     );
+  }
+
+  void _resizeCallback(Size size) {
+    _sheetSize = size.height;
+  }
+
+  void _onVerticalDragUpdate(DragUpdateDetails details) {
+    _handleSwipeUpdate(details.delta.dy);
+  }
+
+  void _onVerticalDragEnd(DragEndDetails details) {
+    _handleSwipeEnd(details.primaryVelocity ?? 0);
+  }
+
+  void _onVerticalDragCancel() {
+    _handleSwipeEnd(0);
   }
 
   void _animatedToOpened() {

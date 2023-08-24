@@ -3,7 +3,7 @@ import 'package:yggdrasil/src/components/yg_radio/properties/_properties.dart';
 import 'package:yggdrasil/src/theme/_theme.dart';
 
 class YgRadioStyle {
-  YgRadioStyle({
+  const YgRadioStyle({
     required this.backgroundColor,
     required this.handleSize,
     required this.handleColor,

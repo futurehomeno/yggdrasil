@@ -231,7 +231,7 @@ class _GaugeScreenState extends State<GaugeScreen> {
               setState(() {});
             },
             child: const Text('Change value'),
-          )
+          ),
         ],
       ),
     );
