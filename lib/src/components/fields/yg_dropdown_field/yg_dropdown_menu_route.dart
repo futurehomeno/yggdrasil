@@ -11,19 +11,17 @@ import 'package:yggdrasil/yggdrasil.dart';
 /// provides animations for opening ans closing the [YgBottomSheet] and a scrim.
 class YgDropdownMenuRoute<T extends Object> extends PopupRoute<Widget> {
   YgDropdownMenuRoute({
-    required this.allowDeselect,
-    required this.currentValue,
     required this.entries,
-    required this.onChange,
+    required this.onValueTapped,
+    required this.isValueSelected,
     required this.onClose,
     required this.rect,
   });
 
   final List<YgDropdownEntry<T>> entries;
-  final ValueChanged<T?> onChange;
+  final bool Function(T value) onValueTapped;
+  final bool Function(T value) isValueSelected;
   final VoidCallback onClose;
-  final T? currentValue;
-  final bool allowDeselect;
   final Rect rect;
 
   BuildContext get context => navigator!.context;
@@ -62,16 +60,16 @@ class YgDropdownMenuRoute<T extends Object> extends PopupRoute<Widget> {
         child: YgDropdownMenuPositioner(
           rect: rect,
           animation: animation.drive(CurveTween(curve: Curves.easeOut)),
-          padding: MediaQuery.of(context).padding,
+          screenPadding: MediaQuery.of(context).padding,
+          padding: 5.0,
           // TODO(Tim): Find a different fix for whatever the hell is going on here
           child: RepaintBoundary(
             child: RepaintBoundary(
               child: YgDropdownMenu<T>(
-                allowDeselect: allowDeselect,
                 entries: entries,
-                onChange: onChange,
+                onValueTapped: onValueTapped,
+                isValueSelected: isValueSelected,
                 onClose: onClose,
-                currentValue: currentValue,
               ),
             ),
           ),
@@ -87,18 +85,21 @@ class YgDropdownMenuPositioner extends SingleChildRenderObjectWidget {
     required super.child,
     required this.rect,
     required this.animation,
+    required this.screenPadding,
     required this.padding,
   });
 
   final Animation<double> animation;
   final Rect rect;
-  final EdgeInsets padding;
+  final EdgeInsets screenPadding;
+  final double padding;
 
   @override
   RenderObject createRenderObject(BuildContext context) {
     return YgDropdownMenuPositionerRenderObject(
       rect: rect,
       animation: animation,
+      screenPadding: screenPadding,
       padding: padding,
     );
   }
@@ -110,6 +111,7 @@ class YgDropdownMenuPositioner extends SingleChildRenderObjectWidget {
   ) {
     renderObject.rect = rect;
     renderObject.animation = animation;
+    renderObject.screenPadding = screenPadding;
     renderObject.padding = padding;
   }
 }
@@ -118,18 +120,20 @@ class YgDropdownMenuPositionerRenderObject extends RenderBox with RenderObjectWi
   YgDropdownMenuPositionerRenderObject({
     required Rect rect,
     required Animation<double> animation,
-    required EdgeInsets padding,
+    required EdgeInsets screenPadding,
+    required double padding,
   })  : _parentRect = rect,
         _animation = animation,
-        _padding = padding;
+        _padding = padding,
+        _screenPadding = screenPadding;
 
   late Offset _offset;
 
-  EdgeInsets _padding;
-  EdgeInsets get padding => _padding;
-  set padding(EdgeInsets padding) {
-    if (_padding != padding) {
-      _padding = padding;
+  EdgeInsets _screenPadding;
+  EdgeInsets get screenPadding => _screenPadding;
+  set screenPadding(EdgeInsets padding) {
+    if (_screenPadding != padding) {
+      _screenPadding = padding;
       markNeedsLayout();
     }
   }
@@ -153,6 +157,15 @@ class YgDropdownMenuPositionerRenderObject extends RenderBox with RenderObjectWi
     }
   }
 
+  double _padding;
+  double get padding => _padding;
+  set padding(double padding) {
+    if (_padding != padding) {
+      _padding = padding;
+      markNeedsLayout();
+    }
+  }
+
   @override
   void attach(PipelineOwner owner) {
     super.attach(owner);
@@ -167,15 +180,15 @@ class YgDropdownMenuPositionerRenderObject extends RenderBox with RenderObjectWi
 
   @override
   void performLayout() {
-    // TODO(Tim): add safe area padding
     final RenderBox? child = this.child;
 
     if (child == null) {
       return;
     }
 
-    final double spaceToScreenBottom = constraints.maxHeight - _parentRect.bottom - padding.bottom;
-    final double spaceToScreenTop = _parentRect.top - padding.top;
+    final double spaceToScreenBottom =
+        constraints.maxHeight - _parentRect.bottom - screenPadding.bottom - (padding * 2);
+    final double spaceToScreenTop = _parentRect.top - screenPadding.top - (padding * 2);
     final double maxHeight = max(spaceToScreenTop, spaceToScreenBottom);
 
     final Size targetSize = child.getDryLayout(
@@ -199,7 +212,9 @@ class YgDropdownMenuPositionerRenderObject extends RenderBox with RenderObjectWi
     // than bottom, it has to be top.
     _offset = Offset(
       _parentRect.left,
-      targetSize.height > spaceToScreenBottom ? _parentRect.top - child.size.height : _parentRect.bottom,
+      targetSize.height > spaceToScreenBottom
+          ? _parentRect.top - child.size.height - padding
+          : _parentRect.bottom + padding,
     );
 
     size = Size(
@@ -234,28 +249,19 @@ class YgDropdownMenuPositionerRenderObject extends RenderBox with RenderObjectWi
   }
 }
 
-class YgDropdownMenu<T extends Object> extends StatefulWidget {
+class YgDropdownMenu<T extends Object> extends StatelessWidget {
   const YgDropdownMenu({
     super.key,
     required this.entries,
-    required this.onChange,
+    required this.onValueTapped,
+    required this.isValueSelected,
     required this.onClose,
-    required this.currentValue,
-    required this.allowDeselect,
   });
 
   final List<YgDropdownEntry<T>> entries;
-  final ValueChanged<T?> onChange;
+  final bool Function(T value) onValueTapped;
+  final bool Function(T value) isValueSelected;
   final VoidCallback onClose;
-  final T? currentValue;
-  final bool allowDeselect;
-
-  @override
-  State<YgDropdownMenu<T>> createState() => _YgDropdownMenuState<T>();
-}
-
-class _YgDropdownMenuState<T extends Object> extends State<YgDropdownMenu<T>> {
-  late final ScrollController _controller = ScrollController();
 
   @override
   Widget build(BuildContext context) {
@@ -267,46 +273,46 @@ class _YgDropdownMenuState<T extends Object> extends State<YgDropdownMenu<T>> {
       borderRadius: const BorderRadius.all(Radius.circular(10)),
       child: ClipRRect(
         borderRadius: const BorderRadius.all(Radius.circular(10)),
-        child: YgScrollShadow(
-          controller: _controller,
-          child: CustomScrollView(
-            controller: _controller,
-            slivers: <Widget>[
-              SliverPadding(
-                padding: const EdgeInsets.all(5.0),
-                sliver: SliverList(
-                  delegate: SliverChildBuilderDelegate(
-                    (BuildContext context, int index) {
-                      final YgDropdownEntry<T> entry = widget.entries[index];
+        child: YgScrollShadow.builder(
+          builder: (BuildContext context, ScrollController controller) {
+            return CustomScrollView(
+              controller: controller,
+              slivers: <Widget>[
+                SliverPadding(
+                  padding: const EdgeInsets.all(5.0),
+                  sliver: SliverList(
+                    delegate: SliverChildBuilderDelegate(
+                      (BuildContext context, int index) {
+                        final YgDropdownEntry<T> entry = entries[index];
 
-                      final bool selected = widget.currentValue == entry.value;
-
-                      return DropdownMenuItem(
-                        icon: entry.icon,
-                        selected: entry.value == widget.currentValue,
-                        subtitle: entry.subtitle,
-                        title: entry.title,
-                        onPressed: () => _handleNewValue(
-                          context,
-                          selected ? null : entry.value,
-                        ),
-                      );
-                    },
-                    childCount: widget.entries.length,
+                        return DropdownMenuItem(
+                          icon: entry.icon,
+                          selected: isValueSelected(entry.value),
+                          subtitle: entry.subtitle,
+                          title: entry.title,
+                          onPressed: () => _onValueTapped(
+                            context,
+                            entry.value,
+                          ),
+                        );
+                      },
+                      childCount: entries.length,
+                    ),
                   ),
                 ),
-              ),
-            ],
-          ),
+              ],
+            );
+          },
         ),
       ),
     );
   }
 
-  void _handleNewValue(BuildContext context, T? value) {
-    widget.onClose();
-    widget.onChange(value);
-    Navigator.of(context).pop();
+  void _onValueTapped(BuildContext context, T value) {
+    if (onValueTapped(value)) {
+      onClose();
+      Navigator.of(context).pop();
+    }
   }
 }
 

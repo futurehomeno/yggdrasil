@@ -42,6 +42,7 @@ class _DropdownFieldScreenState extends State<DropdownFieldScreen> {
               allowDeselect: true,
               label: 'Label',
               dropdownAction: DropdownAction.menu,
+              variant: YgDropdownFieldVariant.outlined,
               entries: List<YgDropdownEntry<String>>.generate(
                 20,
                 (int index) => YgDropdownEntry<String>(
@@ -52,7 +53,7 @@ class _DropdownFieldScreenState extends State<DropdownFieldScreen> {
                 ),
               ),
             ),
-          ),
+          ).withVerticalSpacing(15),
         ),
       ),
     );

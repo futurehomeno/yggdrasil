@@ -5,18 +5,16 @@ class YgDropdownBottomSheetRoute<T extends Object> extends YgBottomSheetModalRou
   YgDropdownBottomSheetRoute({
     required this.entries,
     required this.label,
-    required this.onChange,
+    required this.onValueTapped,
+    required this.isValueSelected,
     required this.onClose,
-    required this.currentValue,
-    required this.allowDeselect,
   });
 
   final String label;
   final List<YgDropdownEntry<T>> entries;
-  final ValueChanged<T?> onChange;
+  final bool Function(T value) onValueTapped;
+  final bool Function(T value) isValueSelected;
   final VoidCallback onClose;
-  final T? currentValue;
-  final bool allowDeselect;
 
   @override
   Future<RoutePopDisposition> willPop() {
@@ -41,8 +39,6 @@ class YgDropdownBottomSheetRoute<T extends Object> extends YgBottomSheetModalRou
     for (final YgDropdownEntry<T> entry in entries) {
       final YgIcon? icon = entry.icon;
 
-      final bool selected = currentValue == entry.value;
-
       widgets.add(
         YgListTile(
           title: entry.title,
@@ -51,12 +47,12 @@ class YgDropdownBottomSheetRoute<T extends Object> extends YgBottomSheetModalRou
             if (icon != null) icon,
           ],
           trailingWidgets: <Widget>[
-            if (selected)
+            if (isValueSelected(entry.value))
               const YgIcon(
                 YgIcons.check,
               ),
           ],
-          onTap: () => _handleNewValue(selected ? null : entry.value),
+          onTap: () => _handleNewValue(entry.value),
         ),
       );
     }
@@ -64,10 +60,11 @@ class YgDropdownBottomSheetRoute<T extends Object> extends YgBottomSheetModalRou
     return widgets;
   }
 
-  void _handleNewValue(T? value) {
-    onClose();
-    onChange(value);
-    Navigator.of(context).pop();
+  void _handleNewValue(T value) {
+    if (onValueTapped(value)) {
+      onClose();
+      Navigator.of(context).pop();
+    }
   }
 
   @override

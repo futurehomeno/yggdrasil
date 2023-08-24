@@ -3,7 +3,8 @@ import 'package:yggdrasil/src/components/yg_bottom_sheet/yg_bottom_sheet_header.
 import 'package:yggdrasil/yggdrasil.dart';
 
 // TODO(bjhandeland): potentially expose the scroll controller.
-class YgBottomSheet extends StatefulWidget with StatefulWidgetDebugMixin {
+// TODO(Tim): find a way to allow slivers being used, in case of long lists.
+class YgBottomSheet extends StatelessWidget with StatelessWidgetDebugMixin {
   const YgBottomSheet({
     super.key,
     required this.title,
@@ -14,13 +15,6 @@ class YgBottomSheet extends StatefulWidget with StatefulWidgetDebugMixin {
   final String title;
   final Widget content;
   final YgButtonGroup? footerButtons;
-
-  @override
-  State<YgBottomSheet> createState() => _YgBottomSheetState();
-}
-
-class _YgBottomSheetState extends State<YgBottomSheet> {
-  final ScrollController _scrollController = ScrollController();
 
   @override
   Widget build(BuildContext context) {
@@ -42,12 +36,12 @@ class _YgBottomSheetState extends State<YgBottomSheet> {
                 mainAxisSize: MainAxisSize.min,
                 crossAxisAlignment: CrossAxisAlignment.stretch,
                 children: <Widget>[
-                  YgBottomSheetHeader(title: widget.title),
+                  YgBottomSheetHeader(title: title),
                   _buildContent(scrollPhysicsProvider),
-                  if (widget.footerButtons != null)
+                  if (footerButtons != null)
                     Padding(
                       padding: bottomSheetTheme.footerPadding,
-                      child: widget.footerButtons!,
+                      child: footerButtons!,
                     ),
                 ].withVerticalSpacing(bottomSheetTheme.contentSpacing),
               ),
@@ -62,13 +56,14 @@ class _YgBottomSheetState extends State<YgBottomSheet> {
     YgBottomSheetScrollPhysicsProvider? scrollPhysicsProvider,
   ) {
     return Flexible(
-      child: YgScrollShadow(
-        controller: _scrollController,
-        child: SingleChildScrollView(
-          controller: _scrollController,
-          physics: scrollPhysicsProvider?.scrollPhysics,
-          child: widget.content,
-        ),
+      child: YgScrollShadow.builder(
+        builder: (BuildContext context, ScrollController controller) {
+          return SingleChildScrollView(
+            controller: controller,
+            physics: scrollPhysicsProvider?.scrollPhysics,
+            child: content,
+          );
+        },
       ),
     );
   }

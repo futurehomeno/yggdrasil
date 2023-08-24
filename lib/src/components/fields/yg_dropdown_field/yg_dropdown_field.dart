@@ -30,17 +30,53 @@ class YgDropdownEntry<T extends Object> {
   final YgIcon? icon;
 }
 
-class YgDropdownField<T extends Object> extends StatefulWidget {
-  const YgDropdownField({
+sealed class YgDropdownField<T extends Object> extends StatefulWidget {
+  const factory YgDropdownField({
+    Key key,
+    required List<YgDropdownEntry<T>> entries,
+    required String label,
+    YgDropdownFieldVariant variant,
+    YgDropdownFieldSize size,
+    FocusNode? focusNode,
+    T initialValue,
+    String? error,
+    int? minLines,
+    String? placeholder,
+    int maxLines,
+    bool disabled,
+    bool allowDeselect,
+    DropdownAction dropdownAction,
+    ValueChanged<T?>? onChange,
+  }) = _YgDropdownFieldSingleSelect<T>;
+
+  const factory YgDropdownField.multiselect({
+    Key key,
+    required List<YgDropdownEntry<T>> entries,
+    required String label,
+    YgDropdownFieldVariant variant,
+    YgDropdownFieldSize size,
+    FocusNode? focusNode,
+    Set<T> initialValue,
+    String? error,
+    int? minLines,
+    String? placeholder,
+    int maxLines,
+    bool disabled,
+    bool allowDeselect,
+    DropdownAction dropdownAction,
+    ValueChanged<Set<T>>? onChange,
+  }) = _YgDropdownFieldMultiSelect<T>;
+
+  const YgDropdownField._({
     super.key,
     required this.entries,
     required this.label,
-    required this.allowDeselect,
+    required this.multiSelect,
+    this.allowDeselect = false,
     this.variant = YgDropdownFieldVariant.standard,
     this.size = YgDropdownFieldSize.large,
     this.dropdownAction = DropdownAction.auto,
     this.focusNode,
-    this.initialValue,
     this.error,
     this.disabled = false,
     this.placeholder,
@@ -52,7 +88,6 @@ class YgDropdownField<T extends Object> extends StatefulWidget {
   final YgDropdownFieldSize size;
   final List<YgDropdownEntry<T>> entries;
   final FocusNode? focusNode;
-  final T? initialValue;
   final String? error;
   final String label;
   final int? minLines;
@@ -61,15 +96,90 @@ class YgDropdownField<T extends Object> extends StatefulWidget {
   final bool disabled;
   final bool allowDeselect;
   final DropdownAction dropdownAction;
-
-  @override
-  State<YgDropdownField<T>> createState() => _YgDropdownFieldState<T>();
+  final bool multiSelect;
 }
 
-class _YgDropdownFieldState<T extends Object> extends State<YgDropdownField<T>> {
-  late T? _value = widget.initialValue;
-  late YgDropdownEntry<T>? _selected = _getSelectedEntry();
+class _YgDropdownFieldSingleSelect<T extends Object> extends YgDropdownField<T> {
+  const _YgDropdownFieldSingleSelect({
+    super.key,
+    required List<YgDropdownEntry<T>> entries,
+    required String label,
+    YgDropdownFieldVariant variant = YgDropdownFieldVariant.standard,
+    YgDropdownFieldSize size = YgDropdownFieldSize.large,
+    FocusNode? focusNode,
+    this.initialValue,
+    String? error,
+    int? minLines,
+    String? placeholder,
+    int maxLines = 1,
+    bool disabled = false,
+    bool allowDeselect = false,
+    DropdownAction dropdownAction = DropdownAction.auto,
+    this.onChange,
+  }) : super._(
+          variant: variant,
+          size: size,
+          entries: entries,
+          focusNode: focusNode,
+          error: error,
+          label: label,
+          minLines: minLines,
+          placeholder: placeholder,
+          maxLines: maxLines,
+          disabled: disabled,
+          allowDeselect: allowDeselect,
+          dropdownAction: dropdownAction,
+          multiSelect: true,
+        );
 
+  final T? initialValue;
+  final ValueChanged<T?>? onChange;
+
+  @override
+  _YgDropdownFieldSingleSelectState<T> createState() => _YgDropdownFieldSingleSelectState<T>();
+}
+
+class _YgDropdownFieldMultiSelect<T extends Object> extends YgDropdownField<T> {
+  const _YgDropdownFieldMultiSelect({
+    super.key,
+    required List<YgDropdownEntry<T>> entries,
+    required String label,
+    YgDropdownFieldVariant variant = YgDropdownFieldVariant.standard,
+    YgDropdownFieldSize size = YgDropdownFieldSize.large,
+    FocusNode? focusNode,
+    this.initialValue,
+    String? error,
+    int? minLines,
+    String? placeholder,
+    int maxLines = 1,
+    bool disabled = false,
+    bool allowDeselect = false,
+    DropdownAction dropdownAction = DropdownAction.auto,
+    this.onChange,
+  }) : super._(
+          variant: variant,
+          size: size,
+          entries: entries,
+          focusNode: focusNode,
+          error: error,
+          label: label,
+          minLines: minLines,
+          placeholder: placeholder,
+          maxLines: maxLines,
+          disabled: disabled,
+          allowDeselect: allowDeselect,
+          dropdownAction: dropdownAction,
+          multiSelect: true,
+        );
+
+  final Set<T>? initialValue;
+  final ValueChanged<Set<T>>? onChange;
+
+  @override
+  _YgDropdownFieldMultiSelectState<T> createState() => _YgDropdownFieldMultiSelectState<T>();
+}
+
+abstract class _YgDropdownFieldState<T extends Object, W extends YgDropdownField<T>> extends State<W> {
   late final FieldStates _states = <FieldState>{
     if (widget.disabled) FieldState.disabled,
     if (widget.error != null) FieldState.error,
@@ -99,7 +209,7 @@ class _YgDropdownFieldState<T extends Object> extends State<YgDropdownField<T>> 
         ),
         content: YgFieldTextContent(
           value: Text(
-            _selected?.title ?? '',
+            title,
           ),
           states: _states.without(FieldState.focused),
           label: widget.label,
@@ -117,11 +227,11 @@ class _YgDropdownFieldState<T extends Object> extends State<YgDropdownField<T>> 
       mouseCursor: SystemMouseCursors.click,
       focusNode: widget.focusNode,
       onShowFocusHighlight: (bool focused) {
-        _updateFieldState(FieldState.focused, focused);
+        updateFieldState(FieldState.focused, focused);
         setState(() {});
       },
       onShowHoverHighlight: (bool hovered) {
-        _updateFieldState(FieldState.hovered, hovered);
+        updateFieldState(FieldState.hovered, hovered);
         setState(() {});
       },
       shortcuts: const <ShortcutActivator, Intent>{
@@ -137,26 +247,7 @@ class _YgDropdownFieldState<T extends Object> extends State<YgDropdownField<T>> 
     );
   }
 
-  YgDropdownEntry<T>? _getSelectedEntry() {
-    for (final YgDropdownEntry<T> entry in widget.entries) {
-      if (entry.value == _value) {
-        return entry;
-      }
-    }
-
-    return null;
-  }
-
-  void _updateValue(T? value) {
-    _value = value;
-    _selected = _getSelectedEntry();
-
-    _updateFieldState(FieldState.filled, _selected != null);
-
-    setState(() {});
-  }
-
-  void _updateFieldState(FieldState state, bool toggled) {
+  void updateFieldState(FieldState state, bool toggled) {
     final bool isToggled = _states.contains(state);
     if (isToggled != toggled) {
       if (toggled) {
@@ -178,17 +269,16 @@ class _YgDropdownFieldState<T extends Object> extends State<YgDropdownField<T>> 
     Navigator.of(context).push(
       YgDropdownMenuRoute<T>(
         entries: widget.entries,
-        onChange: _updateValue,
-        currentValue: _value,
-        allowDeselect: widget.allowDeselect,
+        onValueTapped: onValueTapped,
+        isValueSelected: isValueSelected,
         rect: itemRect,
         onClose: () {
-          _updateFieldState(FieldState.opened, false);
+          updateFieldState(FieldState.opened, false);
           setState(() {});
         },
       ),
     );
-    _updateFieldState(FieldState.opened, true);
+    updateFieldState(FieldState.opened, true);
     setState(() {});
   }
 
@@ -197,16 +287,15 @@ class _YgDropdownFieldState<T extends Object> extends State<YgDropdownField<T>> 
       YgDropdownBottomSheetRoute<T>(
         entries: widget.entries,
         label: widget.label,
-        onChange: _updateValue,
-        currentValue: _value,
-        allowDeselect: widget.allowDeselect,
+        onValueTapped: onValueTapped,
+        isValueSelected: isValueSelected,
         onClose: () {
-          _updateFieldState(FieldState.opened, false);
+          updateFieldState(FieldState.opened, false);
           setState(() {});
         },
       ),
     );
-    _updateFieldState(FieldState.opened, true);
+    updateFieldState(FieldState.opened, true);
     setState(() {});
   }
 
@@ -229,5 +318,101 @@ class _YgDropdownFieldState<T extends Object> extends State<YgDropdownField<T>> 
       case DropdownAction.nothing:
         return;
     }
+  }
+
+  bool isValueSelected(T value);
+
+  bool onValueTapped(T value);
+
+  String get title;
+}
+
+class _YgDropdownFieldMultiSelectState<T extends Object>
+    extends _YgDropdownFieldState<T, _YgDropdownFieldMultiSelect<T>> {
+  late final Set<T> _values = widget.initialValue ?? <T>{};
+
+  @override
+  bool isValueSelected(T value) => _values.contains(value);
+
+  @override
+  bool onValueTapped(T value) {
+    if (_values.contains(value)) {
+      if (widget.allowDeselect) {
+        _values.remove(value);
+        _onChange();
+      }
+    } else {
+      _values.add(value);
+      _onChange();
+    }
+
+    return false;
+  }
+
+  @override
+  String get title {
+    final List<String> titles = <String>[];
+
+    for (final YgDropdownEntry<T> entry in widget.entries) {
+      if (_values.contains(entry.value)) {
+        titles.add(entry.title);
+      }
+    }
+
+    return titles.join(', ');
+  }
+
+  void _onChange() {
+    widget.onChange?.call(_values);
+    updateFieldState(FieldState.filled, _values.isNotEmpty);
+    setState(() {});
+  }
+}
+
+class _YgDropdownFieldSingleSelectState<T extends Object>
+    extends _YgDropdownFieldState<T, _YgDropdownFieldSingleSelect<T>> {
+  late T? _value = widget.initialValue;
+
+  @override
+  bool isValueSelected(T value) => value == _value;
+
+  @override
+  bool onValueTapped(T value) {
+    if (value == _value) {
+      if (widget.allowDeselect) {
+        _value = null;
+        _onChange();
+
+        return true;
+      }
+    } else {
+      _value = value;
+      _onChange();
+
+      return true;
+    }
+
+    return false;
+  }
+
+  void _onChange() {
+    widget.onChange?.call(_value);
+    updateFieldState(FieldState.filled, _value != null);
+    setState(() {});
+  }
+
+  @override
+  String get title {
+    if (_value == null) {
+      return '';
+    }
+
+    for (final YgDropdownEntry<T> entry in widget.entries) {
+      if (entry.value == _value) {
+        return entry.title;
+      }
+    }
+
+    return '';
   }
 }
