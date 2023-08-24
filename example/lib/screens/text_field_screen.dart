@@ -160,7 +160,7 @@ class _TextFieldScreenState extends State<TextFieldScreen> {
                   ),
                 ].withVerticalSpacing(10),
               ),
-            )
+            ),
           ].withVerticalSpacing(10),
         ),
       ),
@@ -174,8 +174,8 @@ class _TextFieldScreenState extends State<TextFieldScreen> {
       return;
     }
 
-    final String? email = emailKey.value;
-    final String? password = passwordKey.value;
+    final String email = emailKey.value ?? '';
+    final String password = passwordKey.value ?? '';
 
     ScaffoldMessenger.of(context).showSnackBar(
       YgSnackBar(

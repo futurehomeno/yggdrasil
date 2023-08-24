@@ -48,9 +48,7 @@ class YgSnackBar extends SnackBar with StatefulWidgetDebugMixin {
             YgIcons.cross,
             color: context.snackBarTheme.closeIconColor,
           ),
-          onPressed: () {
-            ScaffoldMessenger.of(context).hideCurrentSnackBar();
-          },
+          onPressed: () => ScaffoldMessenger.of(context).hideCurrentSnackBar(),
         ),
       ].withHorizontalSpacing(snackBarTheme.messageSpacing),
     );

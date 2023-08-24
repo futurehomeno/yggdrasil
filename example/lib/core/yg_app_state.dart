@@ -36,7 +36,7 @@ class YgAppState extends ChangeNotifier {
     notifyListeners();
   }
 
-  Future<void> toggleDebugOutlineEnabled() async {
+  void toggleDebugOutlineEnabled() {
     _debugOutlineEnabled ^= true;
     notifyListeners();
   }

@@ -4,7 +4,7 @@ import 'package:yggdrasil/src/theme/_theme.dart';
 import 'properties/_properties.dart';
 
 class YgCheckboxStyle {
-  YgCheckboxStyle({
+  const YgCheckboxStyle({
     required this.fillColor,
     required this.borderColor,
     required this.checkColor,
