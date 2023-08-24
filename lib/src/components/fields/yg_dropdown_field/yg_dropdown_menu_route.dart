@@ -1,8 +1,7 @@
 import 'dart:math';
 
 import 'package:flutter/material.dart';
-import 'package:flutter/src/rendering/box.dart';
-import 'package:flutter/src/rendering/object.dart';
+import 'package:flutter/rendering.dart';
 import 'package:yggdrasil/src/theme/fields/extensions/dropdown_field/dropdown_field_theme.dart';
 import 'package:yggdrasil/yggdrasil.dart';
 
@@ -58,15 +57,25 @@ class YgDropdownMenuRoute<T extends Object> extends PopupRoute<Widget> {
 
   @override
   Widget buildPage(BuildContext context, Animation<double> animation, Animation<double> secondaryAnimation) {
-    return YgDropdownMenuPositioner(
-      animation: animation,
-      rect: rect,
-      child: YgDropdownMenu<T>(
-        allowDeselect: allowDeselect,
-        entries: entries,
-        onChange: onChange,
-        onClose: onClose,
-        currentValue: currentValue,
+    return RepaintBoundary(
+      child: RepaintBoundary(
+        child: YgDropdownMenuPositioner(
+          rect: rect,
+          animation: animation.drive(CurveTween(curve: Curves.easeOut)),
+          padding: MediaQuery.of(context).padding,
+          // TODO(Tim): Find a different fix for whatever the hell is going on here
+          child: RepaintBoundary(
+            child: RepaintBoundary(
+              child: YgDropdownMenu<T>(
+                allowDeselect: allowDeselect,
+                entries: entries,
+                onChange: onChange,
+                onClose: onClose,
+                currentValue: currentValue,
+              ),
+            ),
+          ),
+        ),
       ),
     );
   }
@@ -78,16 +87,19 @@ class YgDropdownMenuPositioner extends SingleChildRenderObjectWidget {
     required super.child,
     required this.rect,
     required this.animation,
+    required this.padding,
   });
 
-  final Rect rect;
   final Animation<double> animation;
+  final Rect rect;
+  final EdgeInsets padding;
 
   @override
   RenderObject createRenderObject(BuildContext context) {
     return YgDropdownMenuPositionerRenderObject(
       rect: rect,
       animation: animation,
+      padding: padding,
     );
   }
 
@@ -98,7 +110,7 @@ class YgDropdownMenuPositioner extends SingleChildRenderObjectWidget {
   ) {
     renderObject.rect = rect;
     renderObject.animation = animation;
-    super.updateRenderObject(context, renderObject);
+    renderObject.padding = padding;
   }
 }
 
@@ -106,29 +118,51 @@ class YgDropdownMenuPositionerRenderObject extends RenderBox with RenderObjectWi
   YgDropdownMenuPositionerRenderObject({
     required Rect rect,
     required Animation<double> animation,
+    required EdgeInsets padding,
   })  : _parentRect = rect,
-        _animation = animation;
+        _animation = animation,
+        _padding = padding;
 
   late Offset _offset;
 
-  Animation<double> _animation;
-  Animation<double> get animation => _animation;
-
-  set animation(Animation<double> value) {
-    if (_animation != value) {
-      _animation = value;
-      // TODO(Tim): Listener which repaints child
+  EdgeInsets _padding;
+  EdgeInsets get padding => _padding;
+  set padding(EdgeInsets padding) {
+    if (_padding != padding) {
+      _padding = padding;
+      markNeedsLayout();
     }
   }
 
   Rect _parentRect;
   Rect get rect => _parentRect;
-
   set rect(Rect value) {
     if (_parentRect != value) {
       _parentRect = value;
       markNeedsLayout();
     }
+  }
+
+  Animation<double> _animation;
+  Animation<double> get animation => _animation;
+  set animation(Animation<double> animation) {
+    if (_animation != animation) {
+      _animation.removeListener(markNeedsLayout);
+      _animation = animation;
+      _animation.addListener(markNeedsLayout);
+    }
+  }
+
+  @override
+  void attach(PipelineOwner owner) {
+    super.attach(owner);
+    _animation.addListener(markNeedsLayout);
+  }
+
+  @override
+  void detach() {
+    _animation.removeListener(markNeedsLayout);
+    super.detach();
   }
 
   @override
@@ -140,12 +174,21 @@ class YgDropdownMenuPositionerRenderObject extends RenderBox with RenderObjectWi
       return;
     }
 
-    final double spaceToScreenBottom = constraints.maxHeight - _parentRect.bottom;
-    final double maxHeight = max(_parentRect.top, spaceToScreenBottom);
+    final double spaceToScreenBottom = constraints.maxHeight - _parentRect.bottom - padding.bottom;
+    final double spaceToScreenTop = _parentRect.top - padding.top;
+    final double maxHeight = max(spaceToScreenTop, spaceToScreenBottom);
+
+    final Size targetSize = child.getDryLayout(
+      BoxConstraints(
+        maxHeight: maxHeight,
+        maxWidth: _parentRect.width,
+        minWidth: _parentRect.width,
+      ),
+    );
 
     child.layout(
       BoxConstraints(
-        maxHeight: maxHeight,
+        maxHeight: targetSize.height * animation.value,
         maxWidth: _parentRect.width,
         minWidth: _parentRect.width,
       ),
@@ -156,7 +199,7 @@ class YgDropdownMenuPositionerRenderObject extends RenderBox with RenderObjectWi
     // than bottom, it has to be top.
     _offset = Offset(
       _parentRect.left,
-      child.size.height > spaceToScreenBottom ? _parentRect.top - child.size.height : _parentRect.bottom,
+      targetSize.height > spaceToScreenBottom ? _parentRect.top - child.size.height : _parentRect.bottom,
     );
 
     size = Size(
@@ -191,7 +234,7 @@ class YgDropdownMenuPositionerRenderObject extends RenderBox with RenderObjectWi
   }
 }
 
-class YgDropdownMenu<T extends Object> extends StatelessWidget {
+class YgDropdownMenu<T extends Object> extends StatefulWidget {
   const YgDropdownMenu({
     super.key,
     required this.entries,
@@ -208,53 +251,61 @@ class YgDropdownMenu<T extends Object> extends StatelessWidget {
   final bool allowDeselect;
 
   @override
+  State<YgDropdownMenu<T>> createState() => _YgDropdownMenuState<T>();
+}
+
+class _YgDropdownMenuState<T extends Object> extends State<YgDropdownMenu<T>> {
+  late final ScrollController _controller = ScrollController();
+
+  @override
   Widget build(BuildContext context) {
     final YgDropdownFieldTheme theme = context.fieldTheme.dropdownTheme;
 
-    return RepaintBoundary(
-      child: Material(
-        elevation: 5,
-        color: theme.menuItemBackground,
+    return Material(
+      elevation: 5,
+      color: theme.menuItemBackground,
+      borderRadius: const BorderRadius.all(Radius.circular(10)),
+      child: ClipRRect(
         borderRadius: const BorderRadius.all(Radius.circular(10)),
-        child: Padding(
-          padding: const EdgeInsets.all(5.0),
-          child: Column(
-            mainAxisSize: MainAxisSize.min,
-            children: _buildEntries(context),
+        child: YgScrollShadow(
+          controller: _controller,
+          child: CustomScrollView(
+            controller: _controller,
+            slivers: <Widget>[
+              SliverPadding(
+                padding: const EdgeInsets.all(5.0),
+                sliver: SliverList(
+                  delegate: SliverChildBuilderDelegate(
+                    (BuildContext context, int index) {
+                      final YgDropdownEntry<T> entry = widget.entries[index];
+
+                      final bool selected = widget.currentValue == entry.value;
+
+                      return DropdownMenuItem(
+                        icon: entry.icon,
+                        selected: entry.value == widget.currentValue,
+                        subtitle: entry.subtitle,
+                        title: entry.title,
+                        onPressed: () => _handleNewValue(
+                          context,
+                          selected ? null : entry.value,
+                        ),
+                      );
+                    },
+                    childCount: widget.entries.length,
+                  ),
+                ),
+              ),
+            ],
           ),
         ),
       ),
     );
   }
 
-  List<Widget> _buildEntries(
-    BuildContext context,
-  ) {
-    final List<Widget> widgets = <Widget>[];
-
-    for (final YgDropdownEntry<T> entry in entries) {
-      final bool selected = currentValue == entry.value;
-
-      widgets.add(
-        DropdownMenuItem(
-          icon: entry.icon,
-          selected: entry.value == currentValue,
-          subtitle: entry.subtitle,
-          title: entry.title,
-          onPressed: () => _handleNewValue(
-            context,
-            selected ? null : entry.value,
-          ),
-        ),
-      );
-    }
-
-    return widgets;
-  }
-
   void _handleNewValue(BuildContext context, T? value) {
-    onClose();
-    onChange(value);
+    widget.onClose();
+    widget.onChange(value);
     Navigator.of(context).pop();
   }
 }
@@ -281,48 +332,46 @@ class DropdownMenuItem extends StatelessWidget {
     final Widget? icon = this.icon;
     final YgDropdownFieldTheme theme = context.fieldTheme.dropdownTheme;
 
-    return RepaintBoundary(
-      child: Material(
-        color: theme.menuItemBackground,
+    return Material(
+      color: theme.menuItemBackground,
+      borderRadius: const BorderRadius.all(Radius.circular(5)),
+      child: InkWell(
         borderRadius: const BorderRadius.all(Radius.circular(5)),
-        child: InkWell(
-          borderRadius: const BorderRadius.all(Radius.circular(5)),
-          onTap: onPressed,
-          child: Padding(
-            padding: theme.menuItemPadding,
-            child: Row(
-              children: <Widget>[
-                if (icon != null)
-                  Padding(
-                    padding: theme.menuItemPrefixPadding,
-                    child: icon,
-                  ),
-                Expanded(
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    mainAxisSize: MainAxisSize.min,
-                    children: <Widget>[
+        onTap: onPressed,
+        child: Padding(
+          padding: theme.menuItemPadding,
+          child: Row(
+            children: <Widget>[
+              if (icon != null)
+                Padding(
+                  padding: theme.menuItemPrefixPadding,
+                  child: icon,
+                ),
+              Expanded(
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  mainAxisSize: MainAxisSize.min,
+                  children: <Widget>[
+                    Text(
+                      title,
+                      style: theme.menuItemTitleStyle,
+                    ),
+                    if (subtitle != null)
                       Text(
-                        title,
-                        style: theme.menuItemTitleStyle,
+                        subtitle,
+                        style: theme.menuItemSubtitleStyle,
                       ),
-                      if (subtitle != null)
-                        Text(
-                          subtitle,
-                          style: theme.menuItemSubtitleStyle,
-                        ),
-                    ],
+                  ],
+                ),
+              ),
+              if (selected)
+                Padding(
+                  padding: theme.menuItemSuffixPadding,
+                  child: const YgIcon(
+                    YgIcons.check,
                   ),
                 ),
-                if (selected)
-                  Padding(
-                    padding: theme.menuItemSuffixPadding,
-                    child: const YgIcon(
-                      YgIcons.check,
-                    ),
-                  ),
-              ],
-            ),
+            ],
           ),
         ),
       ),

@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:yggdrasil/yggdrasil.dart';
 import 'package:yggdrasil_demo/core/yg_route_builder.dart';
 import 'package:yggdrasil_demo/widgets/_widgets.dart';
-import 'package:yggdrasil_demo/widgets/login_form_dialog.dart';
 
 class DropdownFieldScreen extends StatefulWidget {
   const DropdownFieldScreen({super.key});
@@ -36,53 +35,25 @@ class _DropdownFieldScreenState extends State<DropdownFieldScreen> {
         componentName: 'DropdownField',
         componentDesc: 'Dropdown Field',
         supernovaLink: 'Dropdown',
-        child: Column(children: <Widget>[
-          YgDropdownField<String>(
-            allowDeselect: true,
-            label: 'Label',
-            dropdownAction: DropdownAction.menu,
-            entries: <YgDropdownEntry<String>>[
-              YgDropdownEntry<String>(
-                icon: const YgIcon(YgIcons.alert),
-                subtitle: 'Subtitle of value 1',
-                title: 'Value 1',
-                value: 'value1',
+        child: Column(
+          children: List<Widget>.generate(
+            10,
+            (int index) => YgDropdownField<String>(
+              allowDeselect: true,
+              label: 'Label',
+              dropdownAction: DropdownAction.menu,
+              entries: List<YgDropdownEntry<String>>.generate(
+                20,
+                (int index) => YgDropdownEntry<String>(
+                  icon: const YgIcon(YgIcons.alert),
+                  subtitle: 'Subtitle of value $index',
+                  title: 'Value $index',
+                  value: 'value$index',
+                ),
               ),
-              YgDropdownEntry<String>(
-                icon: const YgIcon(YgIcons.bell),
-                subtitle: 'Subtitle of value 2',
-                title: 'Value 2',
-                value: 'value2',
-              ),
-              YgDropdownEntry<String>(
-                icon: const YgIcon(YgIcons.bluetooth),
-                subtitle: 'Subtitle of value 3',
-                title: 'Value 3',
-                value: 'value3',
-              ),
-            ],
+            ),
           ),
-        ]),
-      ),
-    );
-  }
-
-  void _validateForm() {
-    FocusScope.of(context).unfocus();
-
-    final bool valid = formKey.validate();
-
-    if (!valid) {
-      return;
-    }
-
-    final String? email = emailKey.value;
-    final String? password = passwordKey.value;
-
-    Navigator.of(context).push(
-      ExampleSignupFormDialog(
-        email: email ?? '',
-        password: password ?? '',
+        ),
       ),
     );
   }
