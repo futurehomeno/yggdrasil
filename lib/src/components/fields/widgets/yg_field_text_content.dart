@@ -92,7 +92,9 @@ class _YgFieldTextContentState extends State<YgFieldTextContent> {
       );
     }
 
-    return baseStyle;
+    return baseStyle.copyWith(
+      color: theme.valueDefaultColor,
+    );
   }
 
   TextStyle get _placeholderTextStyle {
