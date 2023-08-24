@@ -14,17 +14,18 @@ class _YgSectionHeader extends StatelessWidget {
     final String? subtitle = this.subtitle;
 
     return Padding(
-      padding: const EdgeInsets.all(15.0),
+      padding: context.sectionTheme.sectionHeader.padding,
       child: Column(
+        crossAxisAlignment: CrossAxisAlignment.stretch,
         children: <Widget>[
           Text(
             title,
-            style: context.sectionTheme.sectionTileTheme.titleTextStyle,
+            style: context.sectionTheme.sectionHeader.titleTextStyle,
           ),
           if (subtitle != null)
             Text(
               subtitle,
-              style: context.sectionTheme.sectionTileTheme.subtitleTextStyle,
+              style: context.sectionTheme.sectionHeader.subtitleTextStyle,
             ),
         ],
       ),

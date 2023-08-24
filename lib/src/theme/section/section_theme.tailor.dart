@@ -11,30 +11,30 @@ part of 'section_theme.dart';
 class YgSectionTheme extends ThemeExtension<YgSectionTheme> {
   const YgSectionTheme({
     required this.padding,
-    required this.sectionTileTheme,
+    required this.sectionHeader,
   });
 
   final EdgeInsets padding;
-  final YgSectionTileTheme sectionTileTheme;
+  final YgSectionHeaderTheme sectionHeader;
 
   static final YgSectionTheme consumerLight = YgSectionTheme(
     padding: _$YgSectionTheme.padding[0],
-    sectionTileTheme: _$YgSectionTheme.sectionTileTheme[0],
+    sectionHeader: _$YgSectionTheme.sectionHeader[0],
   );
 
   static final YgSectionTheme consumerDark = YgSectionTheme(
     padding: _$YgSectionTheme.padding[1],
-    sectionTileTheme: _$YgSectionTheme.sectionTileTheme[1],
+    sectionHeader: _$YgSectionTheme.sectionHeader[1],
   );
 
   static final YgSectionTheme professionalLight = YgSectionTheme(
     padding: _$YgSectionTheme.padding[2],
-    sectionTileTheme: _$YgSectionTheme.sectionTileTheme[2],
+    sectionHeader: _$YgSectionTheme.sectionHeader[2],
   );
 
   static final YgSectionTheme professionalDark = YgSectionTheme(
     padding: _$YgSectionTheme.padding[3],
-    sectionTileTheme: _$YgSectionTheme.sectionTileTheme[3],
+    sectionHeader: _$YgSectionTheme.sectionHeader[3],
   );
 
   static final themes = [
@@ -47,11 +47,11 @@ class YgSectionTheme extends ThemeExtension<YgSectionTheme> {
   @override
   YgSectionTheme copyWith({
     EdgeInsets? padding,
-    YgSectionTileTheme? sectionTileTheme,
+    YgSectionHeaderTheme? sectionHeader,
   }) {
     return YgSectionTheme(
       padding: padding ?? this.padding,
-      sectionTileTheme: sectionTileTheme ?? this.sectionTileTheme,
+      sectionHeader: sectionHeader ?? this.sectionHeader,
     );
   }
 
@@ -61,8 +61,8 @@ class YgSectionTheme extends ThemeExtension<YgSectionTheme> {
     if (other is! YgSectionTheme) return this as YgSectionTheme;
     return YgSectionTheme(
       padding: t < 0.5 ? padding : other.padding,
-      sectionTileTheme: sectionTileTheme.lerp(other.sectionTileTheme, t)
-          as YgSectionTileTheme,
+      sectionHeader:
+          sectionHeader.lerp(other.sectionHeader, t) as YgSectionHeaderTheme,
     );
   }
 
@@ -73,7 +73,7 @@ class YgSectionTheme extends ThemeExtension<YgSectionTheme> {
             other is YgSectionTheme &&
             const DeepCollectionEquality().equals(padding, other.padding) &&
             const DeepCollectionEquality()
-                .equals(sectionTileTheme, other.sectionTileTheme));
+                .equals(sectionHeader, other.sectionHeader));
   }
 
   @override
@@ -81,7 +81,7 @@ class YgSectionTheme extends ThemeExtension<YgSectionTheme> {
     return Object.hash(
       runtimeType.hashCode,
       const DeepCollectionEquality().hash(padding),
-      const DeepCollectionEquality().hash(sectionTileTheme),
+      const DeepCollectionEquality().hash(sectionHeader),
     );
   }
 }

@@ -1,1 +1,1 @@
-export 'section_tile_theme.dart';
+export 'section_header_theme.dart';

@@ -12,7 +12,7 @@ part 'section_theme.tailor.dart';
 @tailorComponent
 class _$YgSectionTheme {
   @themeExtension
-  static final List<YgSectionTileTheme> sectionTileTheme = YgSectionTileTheme.themes;
+  static final List<YgSectionHeaderTheme> sectionHeader = YgSectionHeaderTheme.themes;
 
   static const List<EdgeInsets> padding = <EdgeInsets>[
     EdgeInsets.only(

@@ -5,10 +5,10 @@ import 'package:yggdrasil/src/tokens/consumer_light/_consumer_light.dart' as con
 import 'package:yggdrasil/src/tokens/professional_dark/_professional_dark.dart' as professional_dark;
 import 'package:yggdrasil/src/tokens/professional_light/_professional_light.dart' as professional_light;
 
-part 'section_tile_theme.tailor.dart';
+part 'section_header_theme.tailor.dart';
 
 @tailorComponent
-class _$YgSectionTileTheme {
+class _$YgSectionHeaderTheme {
   static const List<TextStyle> titleTextStyle = <TextStyle>[
     consumer_light.FhTextStyles.sectionHeading2Medium,
     consumer_dark.FhTextStyles.sectionHeading2Medium,
@@ -33,20 +33,20 @@ class _$YgSectionTileTheme {
 
   static const List<EdgeInsets> padding = <EdgeInsets>[
     EdgeInsets.symmetric(
-      vertical: consumer_light.FhDimensions.xs,
-      horizontal: consumer_light.FhDimensions.sm,
+      vertical: consumer_light.FhDimensions.sm,
+      horizontal: consumer_light.FhDimensions.md,
     ),
     EdgeInsets.symmetric(
-      vertical: consumer_dark.FhDimensions.xs,
-      horizontal: consumer_dark.FhDimensions.sm,
+      vertical: consumer_dark.FhDimensions.sm,
+      horizontal: consumer_dark.FhDimensions.md,
     ),
     EdgeInsets.symmetric(
-      vertical: professional_light.FhDimensions.xs,
-      horizontal: professional_light.FhDimensions.sm,
+      vertical: professional_light.FhDimensions.sm,
+      horizontal: professional_light.FhDimensions.md,
     ),
     EdgeInsets.symmetric(
-      vertical: professional_dark.FhDimensions.xs,
-      horizontal: professional_dark.FhDimensions.sm,
+      vertical: professional_dark.FhDimensions.sm,
+      horizontal: professional_dark.FhDimensions.md,
     ),
   ];
 

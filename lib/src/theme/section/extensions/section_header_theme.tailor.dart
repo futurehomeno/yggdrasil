@@ -2,14 +2,14 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 // ignore_for_file: type=lint, unused_element, unnecessary_cast
 
-part of 'section_tile_theme.dart';
+part of 'section_header_theme.dart';
 
 // **************************************************************************
 // TailorAnnotationsGenerator
 // **************************************************************************
 
-class YgSectionTileTheme extends ThemeExtension<YgSectionTileTheme> {
-  const YgSectionTileTheme({
+class YgSectionHeaderTheme extends ThemeExtension<YgSectionHeaderTheme> {
+  const YgSectionHeaderTheme({
     required this.padding,
     required this.subtitleTextStyle,
     required this.titleSubtitleSpacing,
@@ -21,32 +21,32 @@ class YgSectionTileTheme extends ThemeExtension<YgSectionTileTheme> {
   final double titleSubtitleSpacing;
   final TextStyle titleTextStyle;
 
-  static final YgSectionTileTheme consumerLight = YgSectionTileTheme(
-    padding: _$YgSectionTileTheme.padding[0],
-    subtitleTextStyle: _$YgSectionTileTheme.subtitleTextStyle[0],
-    titleSubtitleSpacing: _$YgSectionTileTheme.titleSubtitleSpacing[0],
-    titleTextStyle: _$YgSectionTileTheme.titleTextStyle[0],
+  static final YgSectionHeaderTheme consumerLight = YgSectionHeaderTheme(
+    padding: _$YgSectionHeaderTheme.padding[0],
+    subtitleTextStyle: _$YgSectionHeaderTheme.subtitleTextStyle[0],
+    titleSubtitleSpacing: _$YgSectionHeaderTheme.titleSubtitleSpacing[0],
+    titleTextStyle: _$YgSectionHeaderTheme.titleTextStyle[0],
   );
 
-  static final YgSectionTileTheme consumerDark = YgSectionTileTheme(
-    padding: _$YgSectionTileTheme.padding[1],
-    subtitleTextStyle: _$YgSectionTileTheme.subtitleTextStyle[1],
-    titleSubtitleSpacing: _$YgSectionTileTheme.titleSubtitleSpacing[1],
-    titleTextStyle: _$YgSectionTileTheme.titleTextStyle[1],
+  static final YgSectionHeaderTheme consumerDark = YgSectionHeaderTheme(
+    padding: _$YgSectionHeaderTheme.padding[1],
+    subtitleTextStyle: _$YgSectionHeaderTheme.subtitleTextStyle[1],
+    titleSubtitleSpacing: _$YgSectionHeaderTheme.titleSubtitleSpacing[1],
+    titleTextStyle: _$YgSectionHeaderTheme.titleTextStyle[1],
   );
 
-  static final YgSectionTileTheme professionalLight = YgSectionTileTheme(
-    padding: _$YgSectionTileTheme.padding[2],
-    subtitleTextStyle: _$YgSectionTileTheme.subtitleTextStyle[2],
-    titleSubtitleSpacing: _$YgSectionTileTheme.titleSubtitleSpacing[2],
-    titleTextStyle: _$YgSectionTileTheme.titleTextStyle[2],
+  static final YgSectionHeaderTheme professionalLight = YgSectionHeaderTheme(
+    padding: _$YgSectionHeaderTheme.padding[2],
+    subtitleTextStyle: _$YgSectionHeaderTheme.subtitleTextStyle[2],
+    titleSubtitleSpacing: _$YgSectionHeaderTheme.titleSubtitleSpacing[2],
+    titleTextStyle: _$YgSectionHeaderTheme.titleTextStyle[2],
   );
 
-  static final YgSectionTileTheme professionalDark = YgSectionTileTheme(
-    padding: _$YgSectionTileTheme.padding[3],
-    subtitleTextStyle: _$YgSectionTileTheme.subtitleTextStyle[3],
-    titleSubtitleSpacing: _$YgSectionTileTheme.titleSubtitleSpacing[3],
-    titleTextStyle: _$YgSectionTileTheme.titleTextStyle[3],
+  static final YgSectionHeaderTheme professionalDark = YgSectionHeaderTheme(
+    padding: _$YgSectionHeaderTheme.padding[3],
+    subtitleTextStyle: _$YgSectionHeaderTheme.subtitleTextStyle[3],
+    titleSubtitleSpacing: _$YgSectionHeaderTheme.titleSubtitleSpacing[3],
+    titleTextStyle: _$YgSectionHeaderTheme.titleTextStyle[3],
   );
 
   static final themes = [
@@ -57,13 +57,13 @@ class YgSectionTileTheme extends ThemeExtension<YgSectionTileTheme> {
   ];
 
   @override
-  YgSectionTileTheme copyWith({
+  YgSectionHeaderTheme copyWith({
     EdgeInsets? padding,
     TextStyle? subtitleTextStyle,
     double? titleSubtitleSpacing,
     TextStyle? titleTextStyle,
   }) {
-    return YgSectionTileTheme(
+    return YgSectionHeaderTheme(
       padding: padding ?? this.padding,
       subtitleTextStyle: subtitleTextStyle ?? this.subtitleTextStyle,
       titleSubtitleSpacing: titleSubtitleSpacing ?? this.titleSubtitleSpacing,
@@ -72,10 +72,10 @@ class YgSectionTileTheme extends ThemeExtension<YgSectionTileTheme> {
   }
 
   @override
-  YgSectionTileTheme lerp(
-      covariant ThemeExtension<YgSectionTileTheme>? other, double t) {
-    if (other is! YgSectionTileTheme) return this as YgSectionTileTheme;
-    return YgSectionTileTheme(
+  YgSectionHeaderTheme lerp(
+      covariant ThemeExtension<YgSectionHeaderTheme>? other, double t) {
+    if (other is! YgSectionHeaderTheme) return this as YgSectionHeaderTheme;
+    return YgSectionHeaderTheme(
       padding: t < 0.5 ? padding : other.padding,
       subtitleTextStyle:
           TextStyle.lerp(subtitleTextStyle, other.subtitleTextStyle, t)!,
@@ -89,7 +89,7 @@ class YgSectionTileTheme extends ThemeExtension<YgSectionTileTheme> {
   bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is YgSectionTileTheme &&
+            other is YgSectionHeaderTheme &&
             const DeepCollectionEquality().equals(padding, other.padding) &&
             const DeepCollectionEquality()
                 .equals(subtitleTextStyle, other.subtitleTextStyle) &&

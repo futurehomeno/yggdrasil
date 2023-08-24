@@ -25,10 +25,10 @@ class HomeScreen extends StatelessWidget {
       supernovaLink: '-',
       child: Column(
         children: <Widget>[
-          YgSection.column(
+          YgSection.list(
             title: 'Layouts',
             subtitle: 'Examples of how to make layouts with components.',
-            children: <Widget>[
+            children: <YgListTile>[
               YgListTile(
                 title: 'Device details',
                 onTap: () => sl<YgRouter>().push(DeviceDetailsExample.route()),
@@ -36,10 +36,10 @@ class HomeScreen extends StatelessWidget {
               ),
             ],
           ),
-          YgSection.column(
+          YgSection.list(
             title: 'Components',
             subtitle: 'Complete list of Yggdrasil components.',
-            children: <Widget>[
+            children: <YgListTile>[
               YgListTile(
                 title: 'Badge',
                 onTap: () => sl<YgRouter>().push(BadgeScreen.route()),

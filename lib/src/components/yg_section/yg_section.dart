@@ -12,10 +12,7 @@ class YgSection extends StatelessWidget with StatelessWidgetDebugMixin {
     required this.child,
     this.title,
     this.subtitle,
-  }) : assert(
-          (title != null && subtitle != null) || (title == null && subtitle == null),
-          'Title and subtitle must be both null or both not null.',
-        );
+  });
 
   /// When you have a single widgets that need to be padded.
   factory YgSection.base({
@@ -62,11 +59,17 @@ class YgSection extends StatelessWidget with StatelessWidgetDebugMixin {
     required List<YgListTile> children,
     String? title,
     String? subtitle,
+    MainAxisAlignment mainAxisAlignment = MainAxisAlignment.start,
+    MainAxisSize mainAxisSize = MainAxisSize.max,
+    CrossAxisAlignment crossAxisAlignment = CrossAxisAlignment.center,
   }) {
     return YgSection._(
       title: title,
       subtitle: subtitle,
       child: Column(
+        mainAxisAlignment: mainAxisAlignment,
+        mainAxisSize: mainAxisSize,
+        crossAxisAlignment: crossAxisAlignment,
         children: children,
       ),
     );
