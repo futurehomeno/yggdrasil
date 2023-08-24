@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:yggdrasil/src/extensions/_extensions.dart';
 import 'package:yggdrasil/src/theme/_theme.dart';
 import 'package:yggdrasil/src/utils/_utils.dart';
 
@@ -26,8 +25,9 @@ class YgRadioGroup<T> extends StatelessWidget with StatelessWidgetDebugMixin {
           label,
           style: radioTheme.radioGroupTheme.labelTextStyle,
         ),
+        SizedBox(height: radioTheme.radioGroupTheme.labelColumnSpacing),
         ...radioItems,
-      ].withVerticalSpacing(radioTheme.radioGroupTheme.labelColumnSpacing),
+      ],
     );
   }
 }

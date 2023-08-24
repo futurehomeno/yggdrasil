@@ -9,6 +9,13 @@ part 'radio_item_theme.tailor.dart';
 
 @tailorComponent
 class _$YgRadioItemTheme {
+  static const List<EdgeInsets> titlePadding = <EdgeInsets>[
+    EdgeInsets.symmetric(vertical: consumer_light.FhDimensions.xxs),
+    EdgeInsets.symmetric(vertical: consumer_dark.FhDimensions.xxs),
+    EdgeInsets.symmetric(vertical: professional_light.FhDimensions.xxs),
+    EdgeInsets.symmetric(vertical: professional_dark.FhDimensions.xxs),
+  ];
+
   static const List<TextStyle> titleTextStyle = <TextStyle>[
     consumer_light.FhTextStyles.paragraph2Regular,
     consumer_dark.FhTextStyles.paragraph2Regular,
