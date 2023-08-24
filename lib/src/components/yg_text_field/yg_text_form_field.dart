@@ -19,7 +19,7 @@ class YgTextFormField extends FormField<String> {
     YgIcon? suffix,
     String? initialValue,
     FocusNode? focusNode,
-    FormFieldValidator<String>? validator,
+    List<FormFieldValidator<String>>? validators,
     VoidCallback? onEditingComplete,
     List<TextInputFormatter>? inputFormatters,
     int? minLines,
@@ -34,7 +34,7 @@ class YgTextFormField extends FormField<String> {
           initialValue: controller != null ? controller.text : (initialValue ?? ''),
           enabled: !disabled,
           autovalidateMode: AutovalidateMode.disabled,
-          validator: validator,
+          validator: (String? value) => _validateWithValidators(value, validators),
           builder: (FormFieldState<String> field) {
             final _YgTextFormInputState state = field as _YgTextFormInputState;
 
@@ -80,7 +80,7 @@ class YgTextFormField extends FormField<String> {
     YgIcon? suffix,
     String? initialValue,
     FocusNode? focusNode,
-    FormFieldValidator<String>? validator,
+    List<FormFieldValidator<String>>? validators,
     VoidCallback? onEditingComplete,
     List<TextInputFormatter>? inputFormatters,
     bool required = false,
@@ -97,7 +97,7 @@ class YgTextFormField extends FormField<String> {
           suffix: suffix,
           initialValue: initialValue,
           focusNode: focusNode,
-          validator: validator,
+          validators: validators,
           textInputType: TextInputType.emailAddress,
           onEditingComplete: onEditingComplete,
           textInputAction: textInputAction,
@@ -124,7 +124,7 @@ class YgTextFormField extends FormField<String> {
     YgIcon? suffix,
     String? initialValue,
     FocusNode? focusNode,
-    FormFieldValidator<String>? validator,
+    List<FormFieldValidator<String>>? validators,
     VoidCallback? onEditingComplete,
     List<TextInputFormatter>? inputFormatters,
     bool required = false,
@@ -142,7 +142,7 @@ class YgTextFormField extends FormField<String> {
           suffix: suffix,
           initialValue: initialValue,
           focusNode: focusNode,
-          validator: validator,
+          validators: validators,
           textInputType: TextInputType.text,
           onEditingComplete: onEditingComplete,
           textInputAction: textInputAction,
@@ -170,7 +170,7 @@ class YgTextFormField extends FormField<String> {
     YgIcon? suffix,
     String? initialValue,
     FocusNode? focusNode,
-    FormFieldValidator<String>? validator,
+    List<FormFieldValidator<String>>? validators,
     VoidCallback? onEditingComplete,
     List<TextInputFormatter>? inputFormatters,
     bool required = false,
@@ -186,7 +186,7 @@ class YgTextFormField extends FormField<String> {
           label: label,
           controller: controller,
           error: error,
-          validator: validator,
+          validators: validators,
           placeholder: placeholder,
           suffix: suffix,
           initialValue: initialValue,
@@ -204,6 +204,22 @@ class YgTextFormField extends FormField<String> {
           maxLines: maxLines,
           minLines: minLines,
         );
+
+  static String? _validateWithValidators(String? value, List<FormFieldValidator<String>>? validators) {
+    if (validators == null) {
+      return null;
+    }
+
+    for (final FormFieldValidator<String> validator in validators) {
+      final String? error = validator(value);
+
+      if (error != null) {
+        return error;
+      }
+    }
+
+    return null;
+  }
 
   /// Controls the text being edited.
   ///
