@@ -30,6 +30,7 @@ class YgListTile extends StatelessWidget with StatelessWidgetDebugMixin {
     return YgListTile(
       title: link,
       leadingWidgets: <Widget>[YgIcon(iconPath)],
+      trailingWidgets: <Widget>[const YgIcon(YgIcons.caretRight)],
       onTap: onTap,
     );
   }

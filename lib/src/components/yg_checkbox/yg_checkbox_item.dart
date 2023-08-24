@@ -47,9 +47,12 @@ class YgCheckboxItem extends StatelessWidget with StatelessWidgetDebugMixin {
               ),
             ),
             Expanded(
-              child: Text(
-                title,
-                style: checkboxTheme.checkboxItemTheme.titleTextStyle,
+              child: Padding(
+                padding: checkboxTheme.checkboxItemTheme.titlePadding,
+                child: Text(
+                  title,
+                  style: checkboxTheme.checkboxItemTheme.titleTextStyle,
+                ),
               ),
             ),
           ].withHorizontalSpacing(checkboxTheme.checkboxItemTheme.checkboxTitleSpacing),

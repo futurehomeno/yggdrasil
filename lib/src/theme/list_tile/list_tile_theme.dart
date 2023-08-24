@@ -40,10 +40,22 @@ class _$YgListTileTheme {
   ];
 
   static const List<EdgeInsets> outerPadding = <EdgeInsets>[
-    EdgeInsets.all(consumer_light.FhDimensions.sm),
-    EdgeInsets.all(consumer_dark.FhDimensions.sm),
-    EdgeInsets.all(professional_light.FhDimensions.sm),
-    EdgeInsets.all(professional_dark.FhDimensions.sm),
+    EdgeInsets.symmetric(
+      horizontal: consumer_light.FhDimensions.md,
+      vertical: consumer_light.FhDimensions.sm,
+    ),
+    EdgeInsets.symmetric(
+      horizontal: consumer_dark.FhDimensions.md,
+      vertical: consumer_dark.FhDimensions.sm,
+    ),
+    EdgeInsets.symmetric(
+      horizontal: professional_light.FhDimensions.md,
+      vertical: professional_light.FhDimensions.sm,
+    ),
+    EdgeInsets.symmetric(
+      horizontal: professional_dark.FhDimensions.md,
+      vertical: professional_dark.FhDimensions.sm,
+    ),
   ];
 
   static const List<double> contentSpacing = <double>[
