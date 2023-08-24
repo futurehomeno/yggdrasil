@@ -49,6 +49,8 @@ abstract class YgSection extends StatelessWidget with StatelessWidgetDebugMixin 
   final String? title;
 
   /// Subtitle of the section.
+  ///
+  /// You cannot have a subtitle without a title.
   final String? subtitle;
 
   @override
