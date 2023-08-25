@@ -41,4 +41,4 @@ workflows:
 
       - name: Analyzing
         working_directory: /Users/builder/clone/app_files
-        script: dart $CM_BUILD_DIR/cli/futurehome.dart p rip flutter analyze -j 1 || exit 1
+        script: flutter analyze
