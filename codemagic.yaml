@@ -1,0 +1,44 @@
+workflows:
+  pr-builder:
+    name: PR builder
+    instance_type: mac_mini_m1
+    max_build_duration: 30
+    environment:
+      groups:
+        - frontend
+      flutter: 3.10.5
+      xcode: latest
+    cache:
+      cache_paths:
+        - ~/.pub-cache
+    triggering:
+      events:
+        - pull_request
+      branch_patterns:
+        - pattern: '*'
+          include: true
+          source: true
+      cancel_previous_builds: true
+    scripts:
+
+      - name: Moving cloned repo
+        working_directory: /Users/builder
+        script: |
+          cp -R clone app_files
+          rm -rf clone/*
+          mv app_files clone
+
+      - name: Downloading flutter cli
+        script: |
+          pwd
+          git clone git@github.com:futurehomeno/flutter-cli.git $CM_BUILD_DIR/cli
+          cd $CM_BUILD_DIR/cli
+          flutter pub get
+
+      - name: Checking formatting
+        working_directory: /Users/builder/clone/app_files
+        script: dart $CM_BUILD_DIR/cli/futurehome.dart f || exit 1
+
+      - name: Analyzing
+        working_directory: /Users/builder/clone/app_files
+        script: dart $CM_BUILD_DIR/cli/futurehome.dart p rip flutter analyze -j 1 || exit 1
