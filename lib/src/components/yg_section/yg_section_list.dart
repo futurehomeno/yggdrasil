@@ -20,11 +20,14 @@ class _YgSectionList extends YgSection {
 
   @override
   Widget buildChild(BuildContext context) {
-    return Column(
-      mainAxisAlignment: mainAxisAlignment,
-      mainAxisSize: mainAxisSize,
-      crossAxisAlignment: crossAxisAlignment,
-      children: children,
+    return Padding(
+      padding: EdgeInsets.only(bottom: context.sectionTheme.padding.bottom),
+      child: Column(
+        mainAxisAlignment: mainAxisAlignment,
+        mainAxisSize: mainAxisSize,
+        crossAxisAlignment: crossAxisAlignment,
+        children: children,
+      ),
     );
   }
 }
