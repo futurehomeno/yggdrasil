@@ -22,21 +22,24 @@ class IconListScreen extends StatelessWidget {
       componentName: 'Icon',
       componentDesc: 'Icons',
       supernovaLink: 'Link',
-      child: ListView.builder(
-        shrinkWrap: true,
-        itemCount: YgIcons.allIconPaths.length,
-        itemBuilder: (BuildContext context, int index) {
-          final String iconPath = YgIcons.allIconPaths[index];
-          final String iconName = YgIcons.allIconNames[index];
+      child: CustomScrollView(
+        slivers: <Widget>[
+          SliverList.builder(
+            itemBuilder: (BuildContext context, int index) {
+              final String iconPath = YgIcons.allIconPaths[index];
+              final String iconName = YgIcons.allIconNames[index];
 
-          return YgListTile(
-            title: iconName,
-            subtitle: iconPath,
-            leadingWidgets: <YgIcon>[
-              YgIcon(iconPath, useEmbeddedColor: true),
-            ],
-          );
-        },
+              return YgListTile(
+                title: iconName,
+                subtitle: iconPath,
+                leadingWidgets: <YgIcon>[
+                  YgIcon(iconPath, useEmbeddedColor: true),
+                ],
+              );
+            },
+            itemCount: YgIcons.allIconPaths.length,
+          ),
+        ],
       ),
     );
   }
