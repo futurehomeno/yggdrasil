@@ -9,7 +9,7 @@ class ButtonGroupScreen extends StatelessWidget {
   static const String routeName = 'ButtonGroupScreen';
 
   static PageRouteBuilder<Widget> route() {
-    return YgRouteBuilder().fadeTransition(
+    return const YgRouteBuilder().fadeTransition(
       settings: const RouteSettings(name: routeName),
       screen: const ButtonGroupScreen(),
     );

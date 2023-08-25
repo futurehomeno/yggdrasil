@@ -9,7 +9,7 @@ class CheckboxScreen extends StatefulWidget {
   static const String routeName = 'CheckboxScreen';
 
   static PageRouteBuilder<Widget> route() {
-    return YgRouteBuilder().fadeTransition(
+    return const YgRouteBuilder().fadeTransition(
       settings: const RouteSettings(name: routeName),
       screen: const CheckboxScreen(),
     );
@@ -77,14 +77,14 @@ class _CheckboxScreenState extends State<CheckboxScreen> {
               ),
             ],
           ),
-          YgSection.column(
+          const YgSection.column(
             title: 'Disabled checkbox, selected / unselected',
             children: <Widget>[
-              const YgCheckbox(
+              YgCheckbox(
                 value: true,
                 onChanged: null,
               ),
-              const YgCheckbox(
+              YgCheckbox(
                 value: false,
                 onChanged: null,
               ),
@@ -129,7 +129,7 @@ class _CheckboxScreenState extends State<CheckboxScreen> {
               ),
             ],
           ),
-          YgSection.base(
+          const YgSection.base(
             title: 'Checkbox in a list tile',
             child: YgCallout(
               variant: YgCalloutVariant.warning,

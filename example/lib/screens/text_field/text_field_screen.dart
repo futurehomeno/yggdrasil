@@ -10,7 +10,7 @@ class TextFieldScreen extends StatefulWidget {
   static const String routeName = 'TextFieldScreen';
 
   static PageRouteBuilder<Widget> route() {
-    return YgRouteBuilder().fadeTransition(
+    return const YgRouteBuilder().fadeTransition(
       settings: const RouteSettings(name: routeName),
       screen: const TextFieldScreen(),
     );
@@ -127,10 +127,10 @@ class _TextFieldScreenState extends State<TextFieldScreen> {
                         label: 'Email',
                         textInputAction: TextInputAction.next,
                         validators: <FormFieldValidator<String>>[
-                          RequiredValidator(
+                          const RequiredValidator(
                             requiredError: 'This field is required!',
                           ),
-                          EmailValidator(
+                          const EmailValidator(
                             invalidEmailError: 'Invalid email',
                           ),
                         ],
@@ -140,7 +140,7 @@ class _TextFieldScreenState extends State<TextFieldScreen> {
                         label: 'Password',
                         textInputAction: TextInputAction.done,
                         validators: <FormFieldValidator<String>>[
-                          RequiredValidator(
+                          const RequiredValidator(
                             requiredError: 'This field is required!',
                           ),
                           PasswordValidator(
@@ -153,7 +153,7 @@ class _TextFieldScreenState extends State<TextFieldScreen> {
                         label: 'Confirm password',
                         textInputAction: TextInputAction.done,
                         validators: <FormFieldValidator<String>>[
-                          RequiredValidator(
+                          const RequiredValidator(
                             requiredError: 'This field is required!',
                           ),
                           MatchValidator<String>(

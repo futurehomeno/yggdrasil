@@ -9,7 +9,7 @@ class CalloutScreen extends StatelessWidget {
   static const String routeName = 'CalloutScreen';
 
   static PageRouteBuilder<Widget> route() {
-    return YgRouteBuilder().fadeTransition(
+    return const YgRouteBuilder().fadeTransition(
       settings: const RouteSettings(name: routeName),
       screen: const CalloutScreen(),
     );
@@ -27,22 +27,22 @@ class CalloutScreen extends StatelessWidget {
             title: 'Variants',
             subtitle: 'Spacing between callouts added manually.',
             children: <Widget>[
-              YgCallout(
+              const YgCallout(
                 variant: YgCalloutVariant.highlight,
                 title: 'Title',
                 description: 'Callout with a title and description.',
               ),
-              YgCallout(
+              const YgCallout(
                 variant: YgCalloutVariant.success,
                 title: 'Title',
                 description: 'Callout with a title and description.',
               ),
-              YgCallout(
+              const YgCallout(
                 variant: YgCalloutVariant.warning,
                 title: 'Title',
                 description: 'Callout with a title and description.',
               ),
-              YgCallout(
+              const YgCallout(
                 variant: YgCalloutVariant.critical,
                 title: 'Title',
                 description: 'Callout with a title and description.',
@@ -62,7 +62,7 @@ class CalloutScreen extends StatelessWidget {
               ),
             ],
           ),
-          YgSection.column(
+          const YgSection.column(
             title: 'Only description',
             children: <Widget>[
               YgCallout(

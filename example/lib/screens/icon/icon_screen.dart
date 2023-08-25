@@ -9,7 +9,7 @@ class IconScreen extends StatelessWidget {
   static const String routeName = 'IconScreen';
 
   static PageRouteBuilder<Widget> route() {
-    return YgRouteBuilder().fadeTransition(
+    return const YgRouteBuilder().fadeTransition(
       settings: const RouteSettings(name: routeName),
       screen: const IconScreen(),
     );
@@ -17,7 +17,7 @@ class IconScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return DemoScreen(
+    return const DemoScreen(
       componentName: 'Icon',
       componentDesc: 'Icons',
       supernovaLink: 'Link',
@@ -34,11 +34,11 @@ class IconScreen extends StatelessWidget {
               Row(
                 mainAxisSize: MainAxisSize.min,
                 children: <Widget>[
-                  const YgIcon(
+                  YgIcon(
                     YgIcons.info,
                     size: YgIconSize.small,
                   ),
-                  const YgIcon(
+                  YgIcon(
                     YgIcons.info,
                     size: YgIconSize.large,
                   ),
@@ -50,7 +50,7 @@ class IconScreen extends StatelessWidget {
             title: 'Inherited color',
             subtitle: 'Color switching is handled by the parent widget.',
             children: <Widget>[
-              const YgTag(
+              YgTag(
                 weight: YgTagWeight.strong,
                 child: YgIcon(
                   YgIcons.info,
@@ -63,7 +63,7 @@ class IconScreen extends StatelessWidget {
             title: 'Disabled color',
             subtitle: 'Color switching for state is handled by the parent widget.',
             children: <Widget>[
-              const YgButton(
+              YgButton(
                 onPressed: null,
                 child: YgIcon(
                   YgIcons.info,
@@ -76,7 +76,7 @@ class IconScreen extends StatelessWidget {
             title: 'Override color',
             subtitle: 'Override the default theme color. See warning below.',
             children: <Widget>[
-              const YgTag(
+              YgTag(
                 child: YgIcon(
                   YgIcons.deviceHub,
                   color: Colors.green,
@@ -89,7 +89,7 @@ class IconScreen extends StatelessWidget {
             title: 'Use embedded color',
             subtitle: 'Color embedded in the SVG is used. See warning below.',
             children: <Widget>[
-              const YgTag(
+              YgTag(
                 child: YgIcon(
                   YgIcons.deviceHub,
                   useEmbeddedColor: true,
@@ -103,7 +103,7 @@ class IconScreen extends StatelessWidget {
             subtitle:
                 'Overriding color by using either useEmbeddedColor or just setting a specific color will prevent the parent widget from being able to dynamically change the color based on theme or state changes. Use with caution, as end result may end up like the example below.',
             children: <Widget>[
-              const YgTag(
+              YgTag(
                 weight: YgTagWeight.strong,
                 child: YgIcon(
                   YgIcons.deviceHub,

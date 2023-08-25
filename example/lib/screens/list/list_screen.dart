@@ -10,7 +10,7 @@ class ListScreen extends StatelessWidget {
   static const String routeName = 'ListScreen';
 
   static PageRouteBuilder<Widget> route() {
-    return YgRouteBuilder().fadeTransition(
+    return const YgRouteBuilder().fadeTransition(
       settings: const RouteSettings(name: routeName),
       screen: const ListScreen(),
     );
@@ -18,7 +18,7 @@ class ListScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return DemoScreen(
+    return const DemoScreen(
       componentName: 'List',
       componentDesc: 'Lists',
       supernovaLink: 'Link',

@@ -9,7 +9,7 @@ class TagScreen extends StatelessWidget {
   static const String routeName = 'TagsScreen';
 
   static PageRouteBuilder<Widget> route() {
-    return YgRouteBuilder().fadeTransition(
+    return const YgRouteBuilder().fadeTransition(
       settings: const RouteSettings(name: routeName),
       screen: const TagScreen(),
     );
@@ -52,7 +52,7 @@ class TagScreen extends StatelessWidget {
             children: <Widget>[
               Row(
                 mainAxisSize: MainAxisSize.min,
-                children: [
+                children: <Widget>[
                   const YgTag(
                     size: YgTagSize.small,
                     child: Text('Small'),

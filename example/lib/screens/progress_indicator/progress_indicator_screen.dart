@@ -9,7 +9,7 @@ class ProgressIndicatorScreen extends StatelessWidget {
   static const String routeName = 'ProgressIndicatorScreen';
 
   static PageRouteBuilder<Widget> route() {
-    return YgRouteBuilder().fadeTransition(
+    return const YgRouteBuilder().fadeTransition(
       settings: const RouteSettings(name: routeName),
       screen: const ProgressIndicatorScreen(),
     );
@@ -23,10 +23,10 @@ class ProgressIndicatorScreen extends StatelessWidget {
       supernovaLink: 'Link',
       child: Column(
         children: <Widget>[
-          YgSection.column(
+          const YgSection.column(
             title: 'Linear progress indicator',
             children: <Widget>[
-              const YgLinearProgressIndicator(),
+              YgLinearProgressIndicator(),
             ],
           ),
           YgSection.column(
@@ -39,10 +39,10 @@ class ProgressIndicatorScreen extends StatelessWidget {
               const YgLinearProgressIndicator(value: 1.0),
             ].withVerticalSpacing(5.0),
           ),
-          YgSection.column(
+          const YgSection.column(
             title: 'Circular progress indicator',
             children: <Widget>[
-              const YgCircularProgressIndicator(),
+              YgCircularProgressIndicator(),
             ],
           ),
           YgSection.column(

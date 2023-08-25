@@ -9,7 +9,7 @@ class RadioScreen extends StatefulWidget {
   static const String routeName = 'RadioScreen';
 
   static PageRouteBuilder<Widget> route() {
-    return YgRouteBuilder().fadeTransition(
+    return const YgRouteBuilder().fadeTransition(
       settings: const RouteSettings(name: routeName),
       screen: const RadioScreen(),
     );
@@ -98,7 +98,7 @@ class _RadioScreenState extends State<RadioScreen> {
               ),
             ],
           ),
-          YgSection.base(
+          const YgSection.base(
             title: 'Radio in a list tile',
             child: YgCallout(
               variant: YgCalloutVariant.warning,

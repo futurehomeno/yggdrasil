@@ -9,7 +9,7 @@ class ListTileRadioScreen extends StatefulWidget {
   static const String routeName = 'ListTileRadioScreen';
 
   static PageRouteBuilder<Widget> route() {
-    return YgRouteBuilder().fadeTransition(
+    return const YgRouteBuilder().fadeTransition(
       settings: const RouteSettings(name: routeName),
       screen: const ListTileRadioScreen(),
     );
@@ -31,8 +31,8 @@ class _ListTileRadioScreenState extends State<ListTileRadioScreen> {
       supernovaLink: 'Link',
       child: Column(
         children: <Widget>[
-          YgSection.base(
-            child: const YgCallout(
+          const YgSection.base(
+            child: YgCallout(
               title: 'Note',
               description:
                   'You can also place a Radio inside a ListTile manually if you intend for only the Radio to be tappable. See the RadioScreen for an example.',

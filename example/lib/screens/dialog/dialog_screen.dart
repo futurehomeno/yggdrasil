@@ -11,7 +11,7 @@ class DialogScreen extends StatefulWidget {
   static const String routeName = 'DialogScreen';
 
   static PageRouteBuilder<Widget> route() {
-    return YgRouteBuilder().fadeTransition(
+    return const YgRouteBuilder().fadeTransition(
       settings: const RouteSettings(name: routeName),
       screen: const DialogScreen(),
     );

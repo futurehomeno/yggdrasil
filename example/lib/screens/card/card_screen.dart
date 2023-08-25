@@ -9,7 +9,7 @@ class CardScreen extends StatelessWidget {
   static const String routeName = 'CardScreen';
 
   static PageRouteBuilder<Widget> route() {
-    return YgRouteBuilder().fadeTransition(
+    return const YgRouteBuilder().fadeTransition(
       settings: const RouteSettings(name: routeName),
       screen: const CardScreen(),
     );

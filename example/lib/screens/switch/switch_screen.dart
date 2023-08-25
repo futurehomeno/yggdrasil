@@ -9,7 +9,7 @@ class SwitchScreen extends StatefulWidget {
   static const String routeName = 'SwitchScreen';
 
   static PageRouteBuilder<Widget> route() {
-    return YgRouteBuilder().fadeTransition(
+    return const YgRouteBuilder().fadeTransition(
       settings: const RouteSettings(name: routeName),
       screen: const SwitchScreen(),
     );
@@ -82,7 +82,7 @@ class _SwitchScreenState extends State<SwitchScreen> {
               ),
             ],
           ),
-          YgSection.base(
+          const YgSection.base(
             title: 'Switch in a list tile',
             child: YgCallout(
               variant: YgCalloutVariant.warning,

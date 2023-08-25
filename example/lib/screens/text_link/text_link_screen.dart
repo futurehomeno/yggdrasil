@@ -9,7 +9,7 @@ class TextLinkScreen extends StatelessWidget {
   static const String routeName = 'TextLinkScreen';
 
   static PageRouteBuilder<Widget> route() {
-    return YgRouteBuilder().fadeTransition(
+    return const YgRouteBuilder().fadeTransition(
       settings: const RouteSettings(name: routeName),
       screen: const TextLinkScreen(),
     );

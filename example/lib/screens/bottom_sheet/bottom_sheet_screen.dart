@@ -11,7 +11,7 @@ class BottomSheetScreen extends StatefulWidget {
   static const String routeName = 'BottomSheetScreen';
 
   static PageRouteBuilder<Widget> route() {
-    return YgRouteBuilder().fadeTransition(
+    return const YgRouteBuilder().fadeTransition(
       settings: const RouteSettings(name: routeName),
       screen: const BottomSheetScreen(),
     );

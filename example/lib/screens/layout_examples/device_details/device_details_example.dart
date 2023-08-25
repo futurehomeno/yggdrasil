@@ -9,7 +9,7 @@ class DeviceDetailsExample extends StatelessWidget {
   static const String routeName = 'DeviceDetailsExample';
 
   static PageRouteBuilder<Widget> route() {
-    return YgRouteBuilder().fadeTransition(
+    return const YgRouteBuilder().fadeTransition(
       settings: const RouteSettings(name: routeName),
       screen: const DeviceDetailsExample(),
     );
@@ -32,7 +32,7 @@ class DeviceDetailsExample extends StatelessWidget {
               ),
             ],
           ),
-          YgSection.base(
+          const YgSection.base(
             child: YgCard(
               variant: YgCardVariant.outlined,
               child: YgListTile(
@@ -58,7 +58,7 @@ class DeviceDetailsExample extends StatelessWidget {
               ),
             ),
           ),
-          YgSection.list(
+          const YgSection.list(
             title: 'Detailed data',
             children: <YgListTile>[
               YgListTile(
@@ -86,9 +86,9 @@ class DeviceDetailsExample extends StatelessWidget {
                 leadingWidgets: <Widget>[YgIcon(YgIcons.power)],
                 trailingWidgets: <Widget>[
                   YgTag(
-                    child: Text('Danger!'),
                     size: YgTagSize.small,
                     variant: YgTagVariant.warning,
+                    child: Text('Danger!'),
                   ),
                 ],
               ),

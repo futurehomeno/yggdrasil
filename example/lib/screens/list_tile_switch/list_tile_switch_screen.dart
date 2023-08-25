@@ -9,7 +9,7 @@ class ListTileSwitchScreen extends StatefulWidget {
   static const String routeName = 'ListTileSwitchScreen';
 
   static PageRouteBuilder<Widget> route() {
-    return YgRouteBuilder().fadeTransition(
+    return const YgRouteBuilder().fadeTransition(
       settings: const RouteSettings(name: routeName),
       screen: const ListTileSwitchScreen(),
     );
@@ -33,8 +33,8 @@ class _ListTileSwitchScreenState extends State<ListTileSwitchScreen> {
       supernovaLink: 'Link',
       child: Column(
         children: <Widget>[
-          YgSection.base(
-            child: const YgCallout(
+          const YgSection.base(
+            child: YgCallout(
               title: 'Note',
               description:
                   'You can also place a Switch inside a ListTile manually if you intend for only the Switch to be tappable. See the SwitchScreen for an example.',

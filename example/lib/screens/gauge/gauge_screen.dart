@@ -11,7 +11,7 @@ class GaugeScreen extends StatefulWidget {
   static const String routeName = 'GaugeScreen';
 
   static PageRouteBuilder<Widget> route() {
-    return YgRouteBuilder().fadeTransition(
+    return const YgRouteBuilder().fadeTransition(
       settings: const RouteSettings(name: routeName),
       screen: const GaugeScreen(),
     );
@@ -33,10 +33,10 @@ class _GaugeScreenState extends State<GaugeScreen> {
       supernovaLink: 'Link',
       child: Column(
         children: <Widget>[
-          YgSection.column(
+          const YgSection.column(
             title: 'Gauge',
             children: <Widget>[
-              const Row(
+              Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: <Widget>[
                   SizedBox.square(
@@ -55,7 +55,7 @@ class _GaugeScreenState extends State<GaugeScreen> {
                   ),
                 ],
               ),
-              const Row(
+              Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: <Widget>[
                   SizedBox.square(
@@ -83,10 +83,10 @@ class _GaugeScreenState extends State<GaugeScreen> {
               ),
             ],
           ),
-          YgSection.column(
+          const YgSection.column(
             title: 'Disabled gauge',
             children: <Widget>[
-              const Row(
+              Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: <Widget>[
                   SizedBox.square(
@@ -109,10 +109,10 @@ class _GaugeScreenState extends State<GaugeScreen> {
               ),
             ],
           ),
-          YgSection.column(
+          const YgSection.column(
             title: 'Child variations',
             children: <Widget>[
-              const Row(
+              Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: <Widget>[
                   SizedBox.square(
@@ -141,7 +141,7 @@ class _GaugeScreenState extends State<GaugeScreen> {
                   ),
                 ],
               ),
-              const Row(
+              Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: <Widget>[
                   SizedBox.square(
@@ -172,10 +172,10 @@ class _GaugeScreenState extends State<GaugeScreen> {
               ),
             ],
           ),
-          YgSection.column(
+          const YgSection.column(
             title: 'Responsive between ~90px and ~120px',
             children: <Widget>[
-              const Row(
+              Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: <Widget>[
                   SizedBox.square(
@@ -203,10 +203,10 @@ class _GaugeScreenState extends State<GaugeScreen> {
               ),
             ],
           ),
-          YgSection.column(
+          const YgSection.column(
             title: 'Flexible min / max',
             children: <Widget>[
-              const Row(
+              Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: <Widget>[
                   SizedBox.square(

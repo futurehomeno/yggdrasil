@@ -9,7 +9,7 @@ class DividerScreen extends StatelessWidget {
   static const String routeName = 'DividerScreen';
 
   static PageRouteBuilder<Widget> route() {
-    return YgRouteBuilder().fadeTransition(
+    return const YgRouteBuilder().fadeTransition(
       settings: const RouteSettings(name: routeName),
       screen: const DividerScreen(),
     );
@@ -17,7 +17,7 @@ class DividerScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return DemoScreen(
+    return const DemoScreen(
       componentName: 'Divider',
       componentDesc: 'Dividers',
       supernovaLink: 'Link',
@@ -26,25 +26,25 @@ class DividerScreen extends StatelessWidget {
           YgSection.column(
             title: 'Normal Divider',
             children: <Widget>[
-              const YgDivider(),
+              YgDivider(),
             ],
           ),
           YgSection.column(
             title: 'Divider /w start indent',
             children: <Widget>[
-              const YgDivider(indent: YgDividerIndent.large),
+              YgDivider(indent: YgDividerIndent.large),
             ],
           ),
           YgSection.column(
             title: 'Divider w/ end indent',
             children: <Widget>[
-              const YgDivider(endIndent: YgDividerIndent.large),
+              YgDivider(endIndent: YgDividerIndent.large),
             ],
           ),
           YgSection.column(
             title: 'Divider w/ both indent',
             children: <Widget>[
-              const YgDivider(
+              YgDivider(
                 indent: YgDividerIndent.large,
                 endIndent: YgDividerIndent.large,
               ),

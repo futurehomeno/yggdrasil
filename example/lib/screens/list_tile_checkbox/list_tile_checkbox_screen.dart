@@ -9,7 +9,7 @@ class ListTileCheckboxScreen extends StatefulWidget {
   static const String routeName = 'ListTileCheckboxScreen';
 
   static PageRouteBuilder<Widget> route() {
-    return YgRouteBuilder().fadeTransition(
+    return const YgRouteBuilder().fadeTransition(
       settings: const RouteSettings(name: routeName),
       screen: const ListTileCheckboxScreen(),
     );
@@ -33,8 +33,8 @@ class _ListTileCheckboxScreenState extends State<ListTileCheckboxScreen> {
       supernovaLink: 'Link',
       child: Column(
         children: <Widget>[
-          YgSection.base(
-            child: const YgCallout(
+          const YgSection.base(
+            child: YgCallout(
               title: 'Note',
               description:
                   'You can also place a Checkbox inside a ListTile manually if you intend for only the Checkbox to be tappable. See the CheckboxScreen for an example.',

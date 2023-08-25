@@ -9,7 +9,7 @@ class BadgeScreen extends StatelessWidget {
   static const String routeName = 'BadgeScreen';
 
   static PageRouteBuilder<Widget> route() {
-    return YgRouteBuilder().fadeTransition(
+    return const YgRouteBuilder().fadeTransition(
       settings: const RouteSettings(name: routeName),
       screen: const BadgeScreen(),
     );
@@ -78,10 +78,10 @@ class BadgeScreen extends StatelessWidget {
               ),
             ],
           ),
-          YgSection.column(
+          const YgSection.column(
             title: 'Dot badge',
             children: <Widget>[
-              const YgDotBadge(),
+              YgDotBadge(),
             ],
           ),
         ],
