@@ -45,18 +45,23 @@ class TagScreen extends StatelessWidget {
                 variant: YgTagVariant.negative,
                 child: Text('Negative'),
               ),
-            ],
+            ].withVerticalSpacing(10.0),
           ),
           YgSection.column(
             title: 'Sizes',
             children: <Widget>[
-              const YgTag(
-                size: YgTagSize.small,
-                child: Text('Small'),
-              ),
-              const YgTag(
-                size: YgTagSize.medium,
-                child: Text('Medium'),
+              Row(
+                mainAxisSize: MainAxisSize.min,
+                children: [
+                  const YgTag(
+                    size: YgTagSize.small,
+                    child: Text('Small'),
+                  ),
+                  const YgTag(
+                    size: YgTagSize.medium,
+                    child: Text('Medium'),
+                  ),
+                ].withHorizontalSpacing(10.0),
               ),
             ],
           ),
@@ -76,20 +81,25 @@ class TagScreen extends StatelessWidget {
                 trailingIcon: const YgIcon(YgIcons.info),
                 child: const Text('Double icon'),
               ),
-            ],
+            ].withVerticalSpacing(10.0),
           ),
           YgSection.column(
             title: 'Clickable',
             children: <Widget>[
-              YgTag.leadingIcon(
-                icon: const YgIcon(YgIcons.info),
-                onPressed: () {},
-                child: const Text('Click me!'),
-              ),
-              YgTag.leadingIcon(
-                icon: const YgIcon(YgIcons.info),
-                onPressed: null,
-                child: const Text('Disabled'),
+              Row(
+                mainAxisSize: MainAxisSize.min,
+                children: <Widget>[
+                  YgTag.leadingIcon(
+                    icon: const YgIcon(YgIcons.info),
+                    onPressed: () {},
+                    child: const Text('Click me!'),
+                  ),
+                  YgTag.leadingIcon(
+                    icon: const YgIcon(YgIcons.info),
+                    onPressed: null,
+                    child: const Text('Disabled'),
+                  ),
+                ].withHorizontalSpacing(10.0),
               ),
             ],
           ),
@@ -125,7 +135,7 @@ class TagScreen extends StatelessWidget {
                 weight: YgTagWeight.strong,
                 child: const Text('Negative strong'),
               ),
-            ],
+            ].withVerticalSpacing(10.0),
           ),
         ],
       ),

@@ -29,43 +29,49 @@ class _ListTileRadioScreenState extends State<ListTileRadioScreen> {
       componentName: 'ListTile - Radio',
       componentDesc: 'Radio list tiles',
       supernovaLink: 'Link',
-      child: YgSection.column(
+      child: Column(
         children: <Widget>[
-          YgRadioListTile<int>(
-            title: 'RadioListTile',
-            subtitle: 'The whole ListTile and Radio is tappable.',
-            value: 1,
-            groupValue: radioGroupValue,
-            onChanged: (int? newValue) {
-              radioGroupValue = newValue!;
-              setState(() {});
-            },
-          ),
-          YgRadioListTile<int>(
-            title: 'Disabled RadioListTile',
-            subtitle: 'Tapping anywhere does nothing.',
-            value: 2,
-            groupValue: disabledRadioGroupValue,
-            onChanged: null,
-          ),
-          YgRadioListTile<int>(
-            title: 'With trailingWidget',
-            subtitle: 'Mostly used to add a YgIconButton.',
-            trailingWidget: YgIconButton(
-              onPressed: () {},
-              child: const YgIcon(YgIcons.info),
+          YgSection.base(
+            child: const YgCallout(
+              title: 'Note',
+              description:
+                  'You can also place a Radio inside a ListTile manually if you intend for only the Radio to be tappable. See the RadioScreen for an example.',
             ),
-            value: 3,
-            groupValue: radioGroupValue,
-            onChanged: (int? newValue) {
-              radioGroupValue = newValue!;
-              setState(() {});
-            },
           ),
-          const YgCallout(
-            title: 'Note',
-            description:
-                'You can also place a Radio inside a ListTile manually if you intend for only the Radio to be tappable. See the RadioScreen for an example.',
+          YgSection.list(
+            children: <Widget>[
+              YgRadioListTile<int>(
+                title: 'RadioListTile',
+                subtitle: 'The whole ListTile and Radio is tappable.',
+                value: 1,
+                groupValue: radioGroupValue,
+                onChanged: (int? newValue) {
+                  radioGroupValue = newValue!;
+                  setState(() {});
+                },
+              ),
+              YgRadioListTile<int>(
+                title: 'Disabled RadioListTile',
+                subtitle: 'Tapping anywhere does nothing.',
+                value: 2,
+                groupValue: disabledRadioGroupValue,
+                onChanged: null,
+              ),
+              YgRadioListTile<int>(
+                title: 'With trailingWidget',
+                subtitle: 'Mostly used to add a YgIconButton.',
+                trailingWidget: YgIconButton(
+                  onPressed: () {},
+                  child: const YgIcon(YgIcons.info),
+                ),
+                value: 3,
+                groupValue: radioGroupValue,
+                onChanged: (int? newValue) {
+                  radioGroupValue = newValue!;
+                  setState(() {});
+                },
+              ),
+            ],
           ),
         ],
       ),

@@ -98,14 +98,16 @@ class _RadioScreenState extends State<RadioScreen> {
               ),
             ],
           ),
-          YgSection.column(
+          YgSection.base(
             title: 'Radio in a list tile',
+            child: YgCallout(
+              variant: YgCalloutVariant.warning,
+              description:
+                  'You can place a Radio in a list tile as shown below, but consider using RadioListTile instead if you intend for the whole list tile to be tappable.',
+            ),
+          ),
+          YgSection.list(
             children: <Widget>[
-              YgCallout(
-                variant: YgCalloutVariant.warning,
-                description:
-                    'You can place a Radio in a list tile as shown below, but consider using RadioListTile instead if you intend for the whole list tile to be tappable.',
-              ),
               YgListTile(
                 title: 'Radio in a list tile',
                 subtitle: 'Only the Radio is tappable.',

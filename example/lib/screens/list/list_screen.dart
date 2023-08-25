@@ -23,26 +23,11 @@ class ListScreen extends StatelessWidget {
       componentDesc: 'Lists',
       supernovaLink: 'Link',
       scrollable: false,
-      child: CustomScrollView(
-        slivers: <Widget>[
-          SliverList(
-            delegate: SliverChildBuilderDelegate(
-              (BuildContext context, int index) {
-                return YgListTile(title: 'Title $index');
-              },
-              childCount: 100,
-            ),
-          ),
-          SliverList.separated(
-            separatorBuilder: (BuildContext context, int index) {
-              return const YgDivider();
-            },
-            itemBuilder: (BuildContext context, int index) {
-              return YgListTile(title: 'Title $index');
-            },
-            itemCount: 100,
-          ),
-        ],
+      child: YgSection.base(
+        child: YgCallout(
+          title: 'Nothing here yet.',
+          description: 'Best practices for how to make lists with slivers are a work in progress.',
+        ),
       ),
     );
   }

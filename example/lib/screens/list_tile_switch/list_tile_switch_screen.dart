@@ -31,50 +31,56 @@ class _ListTileSwitchScreenState extends State<ListTileSwitchScreen> {
       componentName: 'SwitchListTile',
       componentDesc: 'Switch list tiles',
       supernovaLink: 'Link',
-      child: YgSection.column(
+      child: Column(
         children: <Widget>[
-          YgSwitchListTile(
-            title: 'SwitchListTile',
-            subtitle: 'The whole ListTile and Switch is tappable.',
-            value: switchListTileValue,
-            onChanged: (bool? newValue) {
-              switchListTileValue = newValue;
-              setState(() {});
-            },
-          ),
-          YgSwitchListTile(
-            title: 'Tri-state SwitchListTile',
-            subtitle: 'The whole ListTile and Switch is tappable.',
-            value: switchListTileTriStateValue,
-            triState: true,
-            onChanged: (bool? newValue) {
-              switchListTileTriStateValue = newValue;
-              setState(() {});
-            },
-          ),
-          YgSwitchListTile(
-            title: 'Disabled SwitchListTile',
-            subtitle: 'Tapping anywhere does nothing.',
-            value: switchListTileDisabledValue,
-            onChanged: null,
-          ),
-          YgSwitchListTile(
-            title: 'With trailingWidget',
-            subtitle: 'Mostly used to add a YgIconButton.',
-            trailingWidget: YgIconButton(
-              onPressed: () {},
-              child: const YgIcon(YgIcons.info),
+          YgSection.base(
+            child: const YgCallout(
+              title: 'Note',
+              description:
+                  'You can also place a Switch inside a ListTile manually if you intend for only the Switch to be tappable. See the SwitchScreen for an example.',
             ),
-            value: switchListTileTrailingWidgetValue,
-            onChanged: (bool? newValue) {
-              switchListTileTrailingWidgetValue = newValue;
-              setState(() {});
-            },
           ),
-          const YgCallout(
-            title: 'Note',
-            description:
-                'You can also place a Switch inside a ListTile manually if you intend for only the Switch to be tappable. See the SwitchScreen for an example.',
+          YgSection.list(
+            children: <Widget>[
+              YgSwitchListTile(
+                title: 'SwitchListTile',
+                subtitle: 'The whole ListTile and Switch is tappable.',
+                value: switchListTileValue,
+                onChanged: (bool? newValue) {
+                  switchListTileValue = newValue;
+                  setState(() {});
+                },
+              ),
+              YgSwitchListTile(
+                title: 'Tri-state SwitchListTile',
+                subtitle: 'The whole ListTile and Switch is tappable.',
+                value: switchListTileTriStateValue,
+                triState: true,
+                onChanged: (bool? newValue) {
+                  switchListTileTriStateValue = newValue;
+                  setState(() {});
+                },
+              ),
+              YgSwitchListTile(
+                title: 'Disabled SwitchListTile',
+                subtitle: 'Tapping anywhere does nothing.',
+                value: switchListTileDisabledValue,
+                onChanged: null,
+              ),
+              YgSwitchListTile(
+                title: 'With trailingWidget',
+                subtitle: 'Mostly used to add a YgIconButton.',
+                trailingWidget: YgIconButton(
+                  onPressed: () {},
+                  child: const YgIcon(YgIcons.info),
+                ),
+                value: switchListTileTrailingWidgetValue,
+                onChanged: (bool? newValue) {
+                  switchListTileTrailingWidgetValue = newValue;
+                  setState(() {});
+                },
+              ),
+            ],
           ),
         ],
       ),

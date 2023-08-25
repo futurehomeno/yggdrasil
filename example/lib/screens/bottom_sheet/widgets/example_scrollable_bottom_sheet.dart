@@ -9,9 +9,9 @@ class ExampleScrollableBottomSheet extends YgBottomSheetModalRoute {
   YgBottomSheet buildBottomSheet(BuildContext context) {
     return YgBottomSheet(
       title: 'Scrollable Bottom Sheet',
-      content: YgSection.column(
+      content: YgSection.list(
         mainAxisSize: MainAxisSize.min,
-        children: List<Widget>.generate(
+        children: List<YgListTile>.generate(
           25,
           (int index) => YgListTile(
             title: 'List item ${index + 1}',

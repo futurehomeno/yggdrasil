@@ -82,14 +82,16 @@ class _SwitchScreenState extends State<SwitchScreen> {
               ),
             ],
           ),
-          YgSection.column(
+          YgSection.base(
             title: 'Switch in a list tile',
+            child: YgCallout(
+              variant: YgCalloutVariant.warning,
+              description:
+                  'You can place a Switch in a list tile as shown below, but consider using SwitchListTile instead if you intend for the whole list tile to be tappable.',
+            ),
+          ),
+          YgSection.list(
             children: <Widget>[
-              YgCallout(
-                variant: YgCalloutVariant.warning,
-                description:
-                    'You can place a Switch in a list tile as shown below, but consider using SwitchListTile instead if you intend for the whole list tile to be tappable.',
-              ),
               YgListTile(
                 title: 'Switch in a list tile',
                 subtitle: 'Only the Switch is tappable.',

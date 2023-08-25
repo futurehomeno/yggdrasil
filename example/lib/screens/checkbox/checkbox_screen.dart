@@ -129,14 +129,16 @@ class _CheckboxScreenState extends State<CheckboxScreen> {
               ),
             ],
           ),
-          YgSection.column(
+          YgSection.base(
             title: 'Checkbox in a list tile',
+            child: YgCallout(
+              variant: YgCalloutVariant.warning,
+              description:
+                  'You can place a Checkbox in a list tile as shown below, but consider using CheckboxListTile instead if you intend for the whole list tile to be tappable.',
+            ),
+          ),
+          YgSection.list(
             children: <Widget>[
-              YgCallout(
-                variant: YgCalloutVariant.warning,
-                description:
-                    'You can place a Checkbox in a list tile as shown below, but consider using CheckboxListTile instead if you intend for the whole list tile to be tappable.',
-              ),
               YgListTile(
                 title: 'Checkbox in a list tile',
                 subtitle: 'Only the Checkbox is tappable.',

@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:yggdrasil/src/components/_components.dart';
 import 'package:yggdrasil/src/theme/theme.dart';
 import 'package:yggdrasil/src/utils/_utils.dart';
 
@@ -37,7 +36,7 @@ abstract class YgSection extends StatelessWidget with StatelessWidgetDebugMixin 
   ///
   /// There's no padding here as we want [YgListTiles] to be edge to edge.
   const factory YgSection.list({
-    required List<YgListTile> children,
+    required List<Widget> children,
     String? title,
     String? subtitle,
     MainAxisAlignment mainAxisAlignment,

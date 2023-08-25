@@ -38,130 +38,140 @@ class _TextFieldScreenState extends State<TextFieldScreen> {
         supernovaLink: 'Link',
         child: Column(
           children: <Widget>[
-            const YgListTile(title: 'Variations'),
-            const YgTextField(
-              label: 'Default field',
-              textInputType: TextInputType.text,
-              textInputAction: TextInputAction.next,
-              textCapitalization: TextCapitalization.words,
-              autocorrect: true,
+            YgSection.column(
+              title: 'Variations',
+              children: <Widget>[
+                const YgTextField(
+                  label: 'Default field',
+                  textInputType: TextInputType.text,
+                  textInputAction: TextInputAction.next,
+                  textCapitalization: TextCapitalization.words,
+                  autocorrect: true,
+                ),
+                const YgTextField(
+                  label: 'Obscured',
+                  textInputType: TextInputType.text,
+                  textInputAction: TextInputAction.next,
+                  textCapitalization: TextCapitalization.words,
+                  autocorrect: true,
+                  obscureText: true,
+                ),
+                const YgTextField(
+                  label: 'Label',
+                  placeholder: 'Fixed placeholder',
+                  textInputType: TextInputType.text,
+                  textInputAction: TextInputAction.next,
+                  textCapitalization: TextCapitalization.words,
+                  autocorrect: true,
+                ),
+                YgTextField(
+                  label: 'Custom suffix',
+                  textInputType: TextInputType.text,
+                  textInputAction: TextInputAction.next,
+                  textCapitalization: TextCapitalization.words,
+                  autocorrect: true,
+                  suffix: const YgIcon(YgIcons.info),
+                  onSuffixPressed: () {},
+                ),
+                YgTextField(
+                  label: 'Readonly',
+                  controller: TextEditingController(text: 'Readonly'),
+                  textInputType: TextInputType.text,
+                  textInputAction: TextInputAction.next,
+                  textCapitalization: TextCapitalization.words,
+                  autocorrect: true,
+                  readOnly: true,
+                ),
+                YgTextField(
+                  label: 'Disabled',
+                  controller: TextEditingController(text: 'Disabled'),
+                  textInputType: TextInputType.text,
+                  textInputAction: TextInputAction.next,
+                  textCapitalization: TextCapitalization.words,
+                  autocorrect: true,
+                  disabled: true,
+                ),
+              ].withVerticalSpacing(10.0),
             ),
-            const YgTextField(
-              label: 'Obscured',
-              textInputType: TextInputType.text,
-              textInputAction: TextInputAction.next,
-              textCapitalization: TextCapitalization.words,
-              autocorrect: true,
-              obscureText: true,
+            YgSection.column(
+              title: 'Variants',
+              children: <Widget>[
+                const YgTextField(
+                  label: 'Standard',
+                  variant: YgTextFieldVariant.standard,
+                  textInputType: TextInputType.text,
+                  textInputAction: TextInputAction.next,
+                  textCapitalization: TextCapitalization.words,
+                  autocorrect: true,
+                ),
+                const YgTextField(
+                  label: 'Outlined',
+                  variant: YgTextFieldVariant.outlined,
+                  textInputType: TextInputType.text,
+                  textInputAction: TextInputAction.next,
+                  textCapitalization: TextCapitalization.words,
+                  autocorrect: true,
+                ),
+              ].withVerticalSpacing(10.0),
             ),
-            const YgTextField(
-              label: 'Label',
-              placeholder: 'Fixed placeholder',
-              textInputType: TextInputType.text,
-              textInputAction: TextInputAction.next,
-              textCapitalization: TextCapitalization.words,
-              autocorrect: true,
-            ),
-            YgTextField(
-              label: 'Custom suffix',
-              textInputType: TextInputType.text,
-              textInputAction: TextInputAction.next,
-              textCapitalization: TextCapitalization.words,
-              autocorrect: true,
-              suffix: const YgIcon(YgIcons.info),
-              onSuffixPressed: () {},
-            ),
-            YgTextField(
-              label: 'Readonly',
-              controller: TextEditingController(text: 'Readonly'),
-              textInputType: TextInputType.text,
-              textInputAction: TextInputAction.next,
-              textCapitalization: TextCapitalization.words,
-              autocorrect: true,
-              readOnly: true,
-            ),
-            YgTextField(
-              label: 'Disabled',
-              controller: TextEditingController(text: 'Disabled'),
-              textInputType: TextInputType.text,
-              textInputAction: TextInputAction.next,
-              textCapitalization: TextCapitalization.words,
-              autocorrect: true,
-              disabled: true,
-            ),
-            const YgListTile(title: 'Variants'),
-            const YgTextField(
-              label: 'Standard',
-              variant: YgTextFieldVariant.standard,
-              textInputType: TextInputType.text,
-              textInputAction: TextInputAction.next,
-              textCapitalization: TextCapitalization.words,
-              autocorrect: true,
-            ),
-            const YgTextField(
-              label: 'Outlined',
-              variant: YgTextFieldVariant.outlined,
-              textInputType: TextInputType.text,
-              textInputAction: TextInputAction.next,
-              textCapitalization: TextCapitalization.words,
-              autocorrect: true,
-            ),
-            const YgListTile(
+            YgSection.column(
               title: 'Login form example',
               subtitle: 'See example code for best-practice usage.',
+              children: <Widget>[
+                Form(
+                  key: formKey,
+                  child: Column(
+                    children: <Widget>[
+                      YgTextFormField.email(
+                        key: emailKey,
+                        label: 'Email',
+                        textInputAction: TextInputAction.next,
+                        validators: <FormFieldValidator<String>>[
+                          RequiredValidator(
+                            requiredError: 'This field is required!',
+                          ),
+                          EmailValidator(
+                            invalidEmailError: 'Invalid email',
+                          ),
+                        ],
+                      ),
+                      YgTextFormField.password(
+                        key: passwordKey,
+                        label: 'Password',
+                        textInputAction: TextInputAction.done,
+                        validators: <FormFieldValidator<String>>[
+                          RequiredValidator(
+                            requiredError: 'This field is required!',
+                          ),
+                          PasswordValidator(
+                            passwordTooShortError: 'Password is too short!',
+                          ),
+                        ],
+                      ),
+                      YgTextFormField.password(
+                        key: passwordConfirmKey,
+                        label: 'Confirm password',
+                        textInputAction: TextInputAction.done,
+                        validators: <FormFieldValidator<String>>[
+                          RequiredValidator(
+                            requiredError: 'This field is required!',
+                          ),
+                          MatchValidator<String>(
+                            otherFieldKey: passwordKey,
+                            error: 'Passwords do not match!',
+                          ),
+                        ],
+                      ),
+                      YgButton(
+                        onPressed: _onSubmit,
+                        child: const Text('Submit'),
+                      ),
+                    ].withVerticalSpacing(10),
+                  ),
+                ),
+              ],
             ),
-            Form(
-              key: formKey,
-              child: Column(
-                children: <Widget>[
-                  YgTextFormField.email(
-                    key: emailKey,
-                    label: 'Email',
-                    textInputAction: TextInputAction.next,
-                    validators: <FormFieldValidator<String>>[
-                      RequiredValidator(
-                        requiredError: 'This field is required!',
-                      ),
-                      EmailValidator(
-                        invalidEmailError: 'Invalid email',
-                      ),
-                    ],
-                  ),
-                  YgTextFormField.password(
-                    key: passwordKey,
-                    label: 'Password',
-                    textInputAction: TextInputAction.done,
-                    validators: <FormFieldValidator<String>>[
-                      RequiredValidator(
-                        requiredError: 'This field is required!',
-                      ),
-                      PasswordValidator(
-                        passwordTooShortError: 'Password is too short!',
-                      ),
-                    ],
-                  ),
-                  YgTextFormField.password(
-                    key: passwordConfirmKey,
-                    label: 'Confirm password',
-                    textInputAction: TextInputAction.done,
-                    validators: <FormFieldValidator<String>>[
-                      RequiredValidator(
-                        requiredError: 'This field is required!',
-                      ),
-                      MatchValidator<String>(
-                        otherFieldKey: passwordKey,
-                        error: 'Passwords do not match!',
-                      ),
-                    ],
-                  ),
-                  YgButton(
-                    onPressed: _onSubmit,
-                    child: const Text('Submit'),
-                  ),
-                ].withVerticalSpacing(10),
-              ),
-            ),
-          ].withVerticalSpacing(10),
+          ],
         ),
       ),
     );
