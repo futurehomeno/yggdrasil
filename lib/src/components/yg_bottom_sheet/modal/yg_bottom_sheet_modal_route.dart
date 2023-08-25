@@ -1,14 +1,13 @@
 import 'package:flutter/material.dart';
-import 'package:yggdrasil/src/theme/bottom_sheet/_bottom_sheet.dart';
-import 'package:yggdrasil/src/theme/theme.dart';
+import 'package:yggdrasil/yggdrasil.dart';
 
-import '../_yg_bottom_sheet.dart';
+part 'yg_bottom_sheet_modal.dart';
 
 /// A route which should be extended to create a [YgBottomSheet] modal route.
 ///
 /// Wraps the result from [buildBottomSheet] in a [YgBottomSheetModal] which
 /// provides animations for opening ans closing the [YgBottomSheet] and a scrim.
-abstract class YgBottomSheetModalRoute extends PopupRoute<YgBottomSheetModal> {
+abstract class YgBottomSheetModalRoute extends PopupRoute<_YgBottomSheetModal> {
   late AnimationController _controller;
 
   YgBottomSheetTheme get _bottomSheetTheme => context.bottomSheetTheme;
@@ -54,7 +53,7 @@ abstract class YgBottomSheetModalRoute extends PopupRoute<YgBottomSheetModal> {
 
   @override
   Widget buildPage(BuildContext context, Animation<double> animation, Animation<double> secondaryAnimation) {
-    return YgBottomSheetModal(
+    return _YgBottomSheetModal(
       modalController: _controller,
       bottomSheet: buildBottomSheet(context),
     );
