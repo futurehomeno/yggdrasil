@@ -49,41 +49,35 @@ class CalloutScreen extends StatelessWidget {
               ),
             ].withVerticalSpacing(10.0),
           ),
-          YgSection.column(
+          YgSection.base(
             title: 'With close button',
             subtitle:
                 'When used with a close button, the information about closing the button needs to be saved somewhere.',
-            children: <Widget>[
-              YgCallout(
-                variant: YgCalloutVariant.highlight,
-                title: 'Title',
-                description: 'Callout with a title and description.',
-                onClose: () {},
-              ),
-            ],
+            child: YgCallout(
+              variant: YgCalloutVariant.highlight,
+              title: 'Title',
+              description: 'Callout with a title and description.',
+              onClose: () {},
+            ),
           ),
-          const YgSection.column(
+          const YgSection.base(
             title: 'Only description',
-            children: <Widget>[
-              YgCallout(
-                variant: YgCalloutVariant.highlight,
-                description: 'Callout with description only',
-              ),
-            ],
+            child: YgCallout(
+              variant: YgCalloutVariant.highlight,
+              description: 'Callout with description only',
+            ),
           ),
-          YgSection.column(
+          YgSection.base(
             title: 'With text link button',
-            children: <Widget>[
-              YgCallout(
-                variant: YgCalloutVariant.highlight,
-                title: 'Title',
-                description: 'Callout with text link',
-                textLink: YgTextLink(
-                  text: 'Text link',
-                  onPressed: () {},
-                ),
+            child: YgCallout(
+              variant: YgCalloutVariant.highlight,
+              title: 'Title',
+              description: 'Callout with text link',
+              textLink: YgTextLink(
+                text: 'Text link',
+                onPressed: () {},
               ),
-            ],
+            ),
           ),
         ],
       ),

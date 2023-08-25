@@ -23,95 +23,84 @@ class IconScreen extends StatelessWidget {
       supernovaLink: 'Link',
       child: Column(
         children: <Widget>[
-          YgSection.column(
+          YgSection.base(
             title: 'Available icons',
-            subtitle: 'All currently supported icons can be seen on the icons list screen.',
-            children: <Widget>[],
+            child: YgCallout(
+              description: 'All currently supported icons can be seen on the icons list screen.',
+            ),
           ),
-          YgSection.column(
+          YgSection.base(
             title: 'Sizes',
-            children: <Widget>[
-              Row(
-                mainAxisSize: MainAxisSize.min,
-                children: <Widget>[
-                  YgIcon(
-                    YgIcons.info,
-                    size: YgIconSize.small,
-                  ),
-                  YgIcon(
-                    YgIcons.info,
-                    size: YgIconSize.large,
-                  ),
-                ],
-              ),
-            ],
+            child: Row(
+              mainAxisSize: MainAxisSize.min,
+              children: <Widget>[
+                YgIcon(
+                  YgIcons.info,
+                  size: YgIconSize.small,
+                ),
+                YgIcon(
+                  YgIcons.info,
+                  size: YgIconSize.large,
+                ),
+              ],
+            ),
           ),
-          YgSection.column(
+          YgSection.base(
             title: 'Inherited color',
             subtitle: 'Color switching is handled by the parent widget.',
-            children: <Widget>[
-              YgTag(
-                weight: YgTagWeight.strong,
-                child: YgIcon(
-                  YgIcons.info,
-                  size: YgIconSize.large,
-                ),
+            child: YgTag(
+              weight: YgTagWeight.strong,
+              child: YgIcon(
+                YgIcons.info,
+                size: YgIconSize.large,
               ),
-            ],
+            ),
           ),
-          YgSection.column(
+          YgSection.base(
             title: 'Disabled color',
             subtitle: 'Color switching for state is handled by the parent widget.',
-            children: <Widget>[
-              YgButton(
-                onPressed: null,
-                child: YgIcon(
-                  YgIcons.info,
-                  size: YgIconSize.large,
-                ),
+            child: YgButton(
+              onPressed: null,
+              child: YgIcon(
+                YgIcons.info,
+                size: YgIconSize.large,
               ),
-            ],
+            ),
           ),
-          YgSection.column(
+          YgSection.base(
             title: 'Override color',
             subtitle: 'Override the default theme color. See warning below.',
-            children: <Widget>[
-              YgTag(
-                child: YgIcon(
-                  YgIcons.deviceHub,
-                  color: Colors.green,
-                  size: YgIconSize.large,
-                ),
+            child: YgTag(
+              child: YgIcon(
+                YgIcons.deviceHub,
+                color: Colors.green,
+                size: YgIconSize.large,
               ),
-            ],
+            ),
           ),
-          YgSection.column(
+          YgSection.base(
             title: 'Use embedded color',
             subtitle: 'Color embedded in the SVG is used. See warning below.',
-            children: <Widget>[
-              YgTag(
-                child: YgIcon(
-                  YgIcons.deviceHub,
-                  useEmbeddedColor: true,
-                  size: YgIconSize.large,
-                ),
+            child: YgTag(
+              child: YgIcon(
+                YgIcons.deviceHub,
+                useEmbeddedColor: true,
+                size: YgIconSize.large,
               ),
-            ],
+            ),
           ),
-          YgSection.column(
+          YgSection.base(
             title: 'Warning!',
             subtitle:
                 'Overriding color by using either useEmbeddedColor or just setting a specific color will prevent the parent widget from being able to dynamically change the color based on theme or state changes. Use with caution, as end result may end up like the example below.',
-            children: <Widget>[
-              YgTag(
-                weight: YgTagWeight.strong,
-                child: YgIcon(
-                  YgIcons.deviceHub,
-                  useEmbeddedColor: true,
-                  size: YgIconSize.large,
-                ),
+            child: YgTag(
+              weight: YgTagWeight.strong,
+              child: YgIcon(
+                YgIcons.deviceHub,
+                useEmbeddedColor: true,
+                size: YgIconSize.large,
               ),
-            ],
+            ),
           ),
         ],
       ),

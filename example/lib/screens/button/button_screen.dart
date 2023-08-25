@@ -23,8 +23,16 @@ class ButtonScreen extends StatelessWidget {
       supernovaLink: 'Link',
       child: Column(
         children: <Widget>[
+          const YgSection.base(
+            title: 'Buttons in a group',
+            child: YgCallout(
+              variant: YgCalloutVariant.warning,
+              description: 'If you need a collection of buttons, use YgButtonGroup.',
+            ),
+          ),
           YgSection.column(
             title: 'Variants',
+            subtitle: 'Spacing between buttons added manually.',
             children: <Widget>[
               YgButton(
                 onPressed: () {},
@@ -50,10 +58,11 @@ class ButtonScreen extends StatelessWidget {
                 onPressed: () {},
                 child: const Text('Critical'),
               ),
-            ],
+            ].withVerticalSpacing(10.0),
           ),
           YgSection.column(
             title: 'Size variations',
+            subtitle: 'Spacing between buttons added manually.',
             children: <Widget>[
               YgButton(
                 size: YgButtonSize.small,
@@ -69,10 +78,11 @@ class ButtonScreen extends StatelessWidget {
                 onPressed: () {},
                 child: const Text('Large'),
               ),
-            ],
+            ].withVerticalSpacing(10.0),
           ),
           YgSection.column(
             title: 'Icon variations',
+            subtitle: 'Spacing between buttons added manually.',
             children: <Widget>[
               YgButton.leadingIcon(
                 icon: const YgIcon(YgIcons.info),
@@ -84,10 +94,11 @@ class ButtonScreen extends StatelessWidget {
                 onPressed: () {},
                 child: const Text('Trailing icon'),
               ),
-            ],
+            ].withVerticalSpacing(10.0),
           ),
           YgSection.column(
             title: 'State variations',
+            subtitle: 'Spacing between buttons added manually.',
             children: <Widget>[
               YgButton.trailingIcon(
                 icon: const YgIcon(YgIcons.check),
@@ -99,10 +110,11 @@ class ButtonScreen extends StatelessWidget {
                 onPressed: null,
                 child: const Text('Disabled'),
               ),
-            ],
+            ].withVerticalSpacing(10.0),
           ),
           YgSection.column(
             title: 'Icon color variations',
+            subtitle: 'Spacing between buttons added manually.',
             children: <Widget>[
               YgButton.leadingIcon(
                 icon: const YgIcon(YgIcons.deviceHub),
@@ -121,7 +133,7 @@ class ButtonScreen extends StatelessWidget {
                 onPressed: () {},
                 child: const Text('Text icon color'),
               ),
-            ],
+            ].withVerticalSpacing(10.0),
           ),
         ],
       ),

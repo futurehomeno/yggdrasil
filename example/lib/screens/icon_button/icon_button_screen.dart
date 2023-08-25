@@ -87,27 +87,25 @@ class IconButtonScreen extends StatelessWidget {
               ),
             ].withVerticalSpacing(10.0),
           ),
-          YgSection.column(
+          YgSection.base(
             title: 'Sizes',
             subtitle: 'Spacing between icon buttons added manually.',
-            children: <Widget>[
-              Row(
-                mainAxisSize: MainAxisSize.min,
-                children: <Widget>[
-                  YgIconButton(
-                    onPressed: () {},
-                    variant: YgIconButtonVariant.filled,
-                    size: YgIconButtonSize.small,
-                    child: const YgIcon(YgIcons.info),
-                  ),
-                  YgIconButton(
-                    onPressed: () {},
-                    variant: YgIconButtonVariant.filled,
-                    child: const YgIcon(YgIcons.info),
-                  ),
-                ].withHorizontalSpacing(10.0),
-              ),
-            ],
+            child: Row(
+              mainAxisSize: MainAxisSize.min,
+              children: <Widget>[
+                YgIconButton(
+                  onPressed: () {},
+                  variant: YgIconButtonVariant.filled,
+                  size: YgIconButtonSize.small,
+                  child: const YgIcon(YgIcons.info),
+                ),
+                YgIconButton(
+                  onPressed: () {},
+                  variant: YgIconButtonVariant.filled,
+                  child: const YgIcon(YgIcons.info),
+                ),
+              ].withHorizontalSpacing(10.0),
+            ),
           ),
         ],
       ),

@@ -30,35 +30,29 @@ class _DialogScreenState extends State<DialogScreen> with TickerProviderStateMix
       supernovaLink: 'Link',
       child: Column(
         children: <Widget>[
-          YgSection.column(
+          YgSection.base(
             title: 'Normal dialog',
-            children: <Widget>[
-              YgButton(
-                variant: YgButtonVariant.primary,
-                onPressed: () => Navigator.of(context).push(ExampleDialog()),
-                child: const Text('Show'),
-              ),
-            ],
+            child: YgButton(
+              variant: YgButtonVariant.primary,
+              onPressed: () => Navigator.of(context).push(ExampleDialog()),
+              child: const Text('Show'),
+            ),
           ),
-          YgSection.column(
+          YgSection.base(
             title: 'Non-dismissible dialog',
-            children: <Widget>[
-              YgButton(
-                variant: YgButtonVariant.primary,
-                onPressed: () => Navigator.of(context).push(ExampleDialogNonDismissible()),
-                child: const Text('Show'),
-              ),
-            ],
+            child: YgButton(
+              variant: YgButtonVariant.primary,
+              onPressed: () => Navigator.of(context).push(ExampleDialogNonDismissible()),
+              child: const Text('Show'),
+            ),
           ),
-          YgSection.column(
+          YgSection.base(
             title: 'No-buttons dialog',
-            children: <Widget>[
-              YgButton(
-                variant: YgButtonVariant.primary,
-                onPressed: () => Navigator.of(context).push(ExampleDialogNoButtons()),
-                child: const Text('Show'),
-              ),
-            ],
+            child: YgButton(
+              variant: YgButtonVariant.primary,
+              onPressed: () => Navigator.of(context).push(ExampleDialogNoButtons()),
+              child: const Text('Show'),
+            ),
           ),
         ],
       ),

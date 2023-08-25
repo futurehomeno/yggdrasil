@@ -35,52 +35,46 @@ class _SwitchScreenState extends State<SwitchScreen> {
       supernovaLink: 'Link',
       child: Column(
         children: <Widget>[
-          YgSection.column(
+          YgSection.base(
             title: 'Binary switch',
-            children: <Widget>[
-              YgSwitch(
-                value: binaryValue,
-                onChanged: (bool? newValue) {
-                  binaryValue = newValue;
-                  setState(() {});
-                },
-              ),
-            ],
+            child: YgSwitch(
+              value: binaryValue,
+              onChanged: (bool? newValue) {
+                binaryValue = newValue;
+                setState(() {});
+              },
+            ),
           ),
-          YgSection.column(
+          YgSection.base(
             title: 'Tri-state switch',
-            children: <Widget>[
-              YgSwitch(
-                value: triStateValue,
-                triState: true,
-                onChanged: (bool? newValue) {
-                  triStateValue = newValue;
-                  setState(() {});
-                },
-              ),
-            ],
+            child: YgSwitch(
+              value: triStateValue,
+              triState: true,
+              onChanged: (bool? newValue) {
+                triStateValue = newValue;
+                setState(() {});
+              },
+            ),
           ),
-          YgSection.column(
+          YgSection.base(
             title: 'Disabled switch',
-            children: <Widget>[
-              Row(
-                mainAxisSize: MainAxisSize.min,
-                children: <Widget>[
-                  YgSwitch(
-                    value: disabledFalseValue,
-                    onChanged: null,
-                  ),
-                  YgSwitch(
-                    value: disabledNullValue,
-                    onChanged: null,
-                  ),
-                  YgSwitch(
-                    value: disabledTrueValue,
-                    onChanged: null,
-                  ),
-                ].withHorizontalSpacing(10.0),
-              ),
-            ],
+            child: Row(
+              mainAxisSize: MainAxisSize.min,
+              children: <Widget>[
+                YgSwitch(
+                  value: disabledFalseValue,
+                  onChanged: null,
+                ),
+                YgSwitch(
+                  value: disabledNullValue,
+                  onChanged: null,
+                ),
+                YgSwitch(
+                  value: disabledTrueValue,
+                  onChanged: null,
+                ),
+              ].withHorizontalSpacing(10.0),
+            ),
           ),
           const YgSection.base(
             title: 'Switch in a list tile',

@@ -23,11 +23,9 @@ class ProgressIndicatorScreen extends StatelessWidget {
       supernovaLink: 'Link',
       child: Column(
         children: <Widget>[
-          const YgSection.column(
+          const YgSection.base(
             title: 'Linear progress indicator',
-            children: <Widget>[
-              YgLinearProgressIndicator(),
-            ],
+            child: YgLinearProgressIndicator(),
           ),
           YgSection.column(
             title: 'w/ various values',
@@ -39,26 +37,22 @@ class ProgressIndicatorScreen extends StatelessWidget {
               const YgLinearProgressIndicator(value: 1.0),
             ].withVerticalSpacing(5.0),
           ),
-          const YgSection.column(
+          const YgSection.base(
             title: 'Circular progress indicator',
-            children: <Widget>[
-              YgCircularProgressIndicator(),
-            ],
+            child: YgCircularProgressIndicator(),
           ),
-          YgSection.column(
+          YgSection.base(
             title: 'w/ various values',
             subtitle: 'Spacing between progress indicators added manually.',
-            children: <Widget>[
-              Row(
-                mainAxisSize: MainAxisSize.min,
-                children: <Widget>[
-                  const YgCircularProgressIndicator(value: 0.25),
-                  const YgCircularProgressIndicator(value: 0.5),
-                  const YgCircularProgressIndicator(value: 0.75),
-                  const YgCircularProgressIndicator(value: 1.0),
-                ].withHorizontalSpacing(5.0),
-              ),
-            ],
+            child: Row(
+              mainAxisSize: MainAxisSize.min,
+              children: <Widget>[
+                const YgCircularProgressIndicator(value: 0.25),
+                const YgCircularProgressIndicator(value: 0.5),
+                const YgCircularProgressIndicator(value: 0.75),
+                const YgCircularProgressIndicator(value: 1.0),
+              ].withHorizontalSpacing(5.0),
+            ),
           ),
         ],
       ),

@@ -21,7 +21,7 @@ class ListTileScreen extends StatelessWidget {
       componentName: 'ListTile',
       componentDesc: 'List Tiles',
       supernovaLink: 'Link',
-      child: YgSection.column(
+      child: YgSection.list(
         children: <Widget>[
           const YgListTile(
             title: 'Title',

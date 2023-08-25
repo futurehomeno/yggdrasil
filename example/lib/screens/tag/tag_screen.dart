@@ -47,23 +47,21 @@ class TagScreen extends StatelessWidget {
               ),
             ].withVerticalSpacing(10.0),
           ),
-          YgSection.column(
+          YgSection.base(
             title: 'Sizes',
-            children: <Widget>[
-              Row(
-                mainAxisSize: MainAxisSize.min,
-                children: <Widget>[
-                  const YgTag(
-                    size: YgTagSize.small,
-                    child: Text('Small'),
-                  ),
-                  const YgTag(
-                    size: YgTagSize.medium,
-                    child: Text('Medium'),
-                  ),
-                ].withHorizontalSpacing(10.0),
-              ),
-            ],
+            child: Row(
+              mainAxisSize: MainAxisSize.min,
+              children: <Widget>[
+                const YgTag(
+                  size: YgTagSize.small,
+                  child: Text('Small'),
+                ),
+                const YgTag(
+                  size: YgTagSize.medium,
+                  child: Text('Medium'),
+                ),
+              ].withHorizontalSpacing(10.0),
+            ),
           ),
           YgSection.column(
             title: 'With icons',
@@ -83,25 +81,23 @@ class TagScreen extends StatelessWidget {
               ),
             ].withVerticalSpacing(10.0),
           ),
-          YgSection.column(
+          YgSection.base(
             title: 'Clickable',
-            children: <Widget>[
-              Row(
-                mainAxisSize: MainAxisSize.min,
-                children: <Widget>[
-                  YgTag.leadingIcon(
-                    icon: const YgIcon(YgIcons.info),
-                    onPressed: () {},
-                    child: const Text('Click me!'),
-                  ),
-                  YgTag.leadingIcon(
-                    icon: const YgIcon(YgIcons.info),
-                    onPressed: null,
-                    child: const Text('Disabled'),
-                  ),
-                ].withHorizontalSpacing(10.0),
-              ),
-            ],
+            child: Row(
+              mainAxisSize: MainAxisSize.min,
+              children: <Widget>[
+                YgTag.leadingIcon(
+                  icon: const YgIcon(YgIcons.info),
+                  onPressed: () {},
+                  child: const Text('Click me!'),
+                ),
+                YgTag.leadingIcon(
+                  icon: const YgIcon(YgIcons.info),
+                  onPressed: null,
+                  child: const Text('Disabled'),
+                ),
+              ].withHorizontalSpacing(10.0),
+            ),
           ),
           YgSection.column(
             title: 'Weights',

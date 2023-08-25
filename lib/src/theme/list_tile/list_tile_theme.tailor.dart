@@ -13,7 +13,6 @@ class YgListTileTheme extends ThemeExtension<YgListTileTheme> {
     required this.contentSpacing,
     required this.iconSize,
     required this.outerPadding,
-    required this.splashRadius,
     required this.subtitleSubtitleIconSpacing,
     required this.subtitleTextStyle,
     required this.titleInfoSpacing,
@@ -24,7 +23,6 @@ class YgListTileTheme extends ThemeExtension<YgListTileTheme> {
   final double contentSpacing;
   final double iconSize;
   final EdgeInsets outerPadding;
-  final double splashRadius;
   final double subtitleSubtitleIconSpacing;
   final TextStyle subtitleTextStyle;
   final double titleInfoSpacing;
@@ -35,7 +33,6 @@ class YgListTileTheme extends ThemeExtension<YgListTileTheme> {
     contentSpacing: _$YgListTileTheme.contentSpacing[0],
     iconSize: _$YgListTileTheme.iconSize[0],
     outerPadding: _$YgListTileTheme.outerPadding[0],
-    splashRadius: _$YgListTileTheme.splashRadius[0],
     subtitleSubtitleIconSpacing:
         _$YgListTileTheme.subtitleSubtitleIconSpacing[0],
     subtitleTextStyle: _$YgListTileTheme.subtitleTextStyle[0],
@@ -48,7 +45,6 @@ class YgListTileTheme extends ThemeExtension<YgListTileTheme> {
     contentSpacing: _$YgListTileTheme.contentSpacing[1],
     iconSize: _$YgListTileTheme.iconSize[1],
     outerPadding: _$YgListTileTheme.outerPadding[1],
-    splashRadius: _$YgListTileTheme.splashRadius[1],
     subtitleSubtitleIconSpacing:
         _$YgListTileTheme.subtitleSubtitleIconSpacing[1],
     subtitleTextStyle: _$YgListTileTheme.subtitleTextStyle[1],
@@ -61,7 +57,6 @@ class YgListTileTheme extends ThemeExtension<YgListTileTheme> {
     contentSpacing: _$YgListTileTheme.contentSpacing[2],
     iconSize: _$YgListTileTheme.iconSize[2],
     outerPadding: _$YgListTileTheme.outerPadding[2],
-    splashRadius: _$YgListTileTheme.splashRadius[2],
     subtitleSubtitleIconSpacing:
         _$YgListTileTheme.subtitleSubtitleIconSpacing[2],
     subtitleTextStyle: _$YgListTileTheme.subtitleTextStyle[2],
@@ -74,7 +69,6 @@ class YgListTileTheme extends ThemeExtension<YgListTileTheme> {
     contentSpacing: _$YgListTileTheme.contentSpacing[3],
     iconSize: _$YgListTileTheme.iconSize[3],
     outerPadding: _$YgListTileTheme.outerPadding[3],
-    splashRadius: _$YgListTileTheme.splashRadius[3],
     subtitleSubtitleIconSpacing:
         _$YgListTileTheme.subtitleSubtitleIconSpacing[3],
     subtitleTextStyle: _$YgListTileTheme.subtitleTextStyle[3],
@@ -95,7 +89,6 @@ class YgListTileTheme extends ThemeExtension<YgListTileTheme> {
     double? contentSpacing,
     double? iconSize,
     EdgeInsets? outerPadding,
-    double? splashRadius,
     double? subtitleSubtitleIconSpacing,
     TextStyle? subtitleTextStyle,
     double? titleInfoSpacing,
@@ -106,7 +99,6 @@ class YgListTileTheme extends ThemeExtension<YgListTileTheme> {
       contentSpacing: contentSpacing ?? this.contentSpacing,
       iconSize: iconSize ?? this.iconSize,
       outerPadding: outerPadding ?? this.outerPadding,
-      splashRadius: splashRadius ?? this.splashRadius,
       subtitleSubtitleIconSpacing:
           subtitleSubtitleIconSpacing ?? this.subtitleSubtitleIconSpacing,
       subtitleTextStyle: subtitleTextStyle ?? this.subtitleTextStyle,
@@ -124,7 +116,6 @@ class YgListTileTheme extends ThemeExtension<YgListTileTheme> {
       contentSpacing: t < 0.5 ? contentSpacing : other.contentSpacing,
       iconSize: t < 0.5 ? iconSize : other.iconSize,
       outerPadding: t < 0.5 ? outerPadding : other.outerPadding,
-      splashRadius: t < 0.5 ? splashRadius : other.splashRadius,
       subtitleSubtitleIconSpacing: t < 0.5
           ? subtitleSubtitleIconSpacing
           : other.subtitleSubtitleIconSpacing,
@@ -147,8 +138,6 @@ class YgListTileTheme extends ThemeExtension<YgListTileTheme> {
             const DeepCollectionEquality().equals(iconSize, other.iconSize) &&
             const DeepCollectionEquality()
                 .equals(outerPadding, other.outerPadding) &&
-            const DeepCollectionEquality()
-                .equals(splashRadius, other.splashRadius) &&
             const DeepCollectionEquality().equals(subtitleSubtitleIconSpacing,
                 other.subtitleSubtitleIconSpacing) &&
             const DeepCollectionEquality()
@@ -168,7 +157,6 @@ class YgListTileTheme extends ThemeExtension<YgListTileTheme> {
       const DeepCollectionEquality().hash(contentSpacing),
       const DeepCollectionEquality().hash(iconSize),
       const DeepCollectionEquality().hash(outerPadding),
-      const DeepCollectionEquality().hash(splashRadius),
       const DeepCollectionEquality().hash(subtitleSubtitleIconSpacing),
       const DeepCollectionEquality().hash(subtitleTextStyle),
       const DeepCollectionEquality().hash(titleInfoSpacing),

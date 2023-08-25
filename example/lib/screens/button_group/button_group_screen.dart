@@ -23,79 +23,71 @@ class ButtonGroupScreen extends StatelessWidget {
       supernovaLink: 'Link',
       child: Column(
         children: <Widget>[
-          YgSection.column(
+          YgSection.base(
             title: 'Button group with 1 button',
-            children: <Widget>[
-              YgButtonGroup(
-                children: <YgButton>[
-                  YgButton(
-                    variant: YgButtonVariant.primary,
-                    size: YgButtonSize.medium,
-                    onPressed: () {},
-                    child: const Text('Button 1'),
-                  ),
-                ],
-              ),
-            ],
+            child: YgButtonGroup(
+              children: <YgButton>[
+                YgButton(
+                  variant: YgButtonVariant.primary,
+                  size: YgButtonSize.medium,
+                  onPressed: () {},
+                  child: const Text('Button 1'),
+                ),
+              ],
+            ),
           ),
-          YgSection.column(
+          YgSection.base(
             title: 'Button group with 2 buttons',
-            children: <Widget>[
-              YgButtonGroup(
-                children: <YgButton>[
-                  YgButton(
-                    variant: YgButtonVariant.primary,
-                    size: YgButtonSize.medium,
-                    onPressed: () {},
-                    child: const Text('Button 1'),
-                  ),
-                  YgButton(
-                    variant: YgButtonVariant.secondary,
-                    size: YgButtonSize.medium,
-                    onPressed: () {},
-                    child: const Text('Button 2'),
-                  ),
-                ],
-              ),
-            ],
+            child: YgButtonGroup(
+              children: <YgButton>[
+                YgButton(
+                  variant: YgButtonVariant.primary,
+                  size: YgButtonSize.medium,
+                  onPressed: () {},
+                  child: const Text('Button 1'),
+                ),
+                YgButton(
+                  variant: YgButtonVariant.secondary,
+                  size: YgButtonSize.medium,
+                  onPressed: () {},
+                  child: const Text('Button 2'),
+                ),
+              ],
+            ),
           ),
-          YgSection.column(
+          YgSection.base(
             title: 'Button group with 3 buttons',
-            children: <Widget>[
-              YgButtonGroup(
-                children: <YgButton>[
-                  YgButton(
-                    variant: YgButtonVariant.primary,
-                    size: YgButtonSize.medium,
-                    onPressed: () {},
-                    child: const Text('Primary'),
-                  ),
-                  YgButton(
-                    variant: YgButtonVariant.secondary,
-                    size: YgButtonSize.medium,
-                    onPressed: () {},
-                    child: const Text('Secondary'),
-                  ),
-                  YgButton(
-                    variant: YgButtonVariant.critical,
-                    size: YgButtonSize.medium,
-                    onPressed: () {},
-                    child: const Text('Critical'),
-                  ),
-                ],
-              ),
-            ],
+            child: YgButtonGroup(
+              children: <YgButton>[
+                YgButton(
+                  variant: YgButtonVariant.primary,
+                  size: YgButtonSize.medium,
+                  onPressed: () {},
+                  child: const Text('Primary'),
+                ),
+                YgButton(
+                  variant: YgButtonVariant.secondary,
+                  size: YgButtonSize.medium,
+                  onPressed: () {},
+                  child: const Text('Secondary'),
+                ),
+                YgButton(
+                  variant: YgButtonVariant.critical,
+                  size: YgButtonSize.medium,
+                  onPressed: () {},
+                  child: const Text('Critical'),
+                ),
+              ],
+            ),
           ),
-          YgSection.column(
+          YgSection.base(
             title: 'Action or cancel group.',
-            children: <Widget>[
-              YgButtonGroup.actionOrCancel(
-                actionText: 'Save',
-                cancelText: 'Cancel',
-                onActionPressed: () {},
-                onCancelPressed: () {},
-              ),
-            ],
+            child: YgButtonGroup.actionOrCancel(
+              actionText: 'Save',
+              cancelText: 'Cancel',
+              onActionPressed: () {},
+              onCancelPressed: () {},
+            ),
           ),
         ],
       ),

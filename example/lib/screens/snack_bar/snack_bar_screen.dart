@@ -23,35 +23,29 @@ class SnackBarScreen extends StatelessWidget {
       supernovaLink: 'Link',
       child: Column(
         children: <Widget>[
-          YgSection.column(
+          YgSection.base(
             title: 'Highlight snack bar',
-            children: <Widget>[
-              YgButton(
-                variant: YgButtonVariant.primary,
-                onPressed: () => _showHighlightSnackBar(context),
-                child: const Text('Show'),
-              ),
-            ],
+            child: YgButton(
+              variant: YgButtonVariant.primary,
+              onPressed: () => _showHighlightSnackBar(context),
+              child: const Text('Show'),
+            ),
           ),
-          YgSection.column(
+          YgSection.base(
             title: 'Success snack bar',
-            children: <Widget>[
-              YgButton(
-                variant: YgButtonVariant.primary,
-                onPressed: () => _showSuccessSnackBar(context),
-                child: const Text('Show'),
-              ),
-            ],
+            child: YgButton(
+              variant: YgButtonVariant.primary,
+              onPressed: () => _showSuccessSnackBar(context),
+              child: const Text('Show'),
+            ),
           ),
-          YgSection.column(
+          YgSection.base(
             title: 'Critical snack bar',
-            children: <Widget>[
-              YgButton(
-                variant: YgButtonVariant.primary,
-                onPressed: () => _showCriticalSnackBar(context),
-                child: const Text('Show'),
-              ),
-            ],
+            child: YgButton(
+              variant: YgButtonVariant.primary,
+              onPressed: () => _showCriticalSnackBar(context),
+              child: const Text('Show'),
+            ),
           ),
         ],
       ),

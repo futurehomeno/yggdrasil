@@ -49,20 +49,18 @@ class CardScreen extends StatelessWidget {
               ),
             ].withVerticalSpacing(10.0),
           ),
-          YgSection.column(
+          YgSection.base(
             title: 'Content',
             subtitle:
                 'Cards are only containers for other widgets and thus do not have any styling of their own. Most commonly you\'ll be adding a ListTile inside of them, as seen in the examples here.',
-            children: <Widget>[
-              YgCard(
-                variant: YgCardVariant.filled,
-                child: YgListTile(
-                  title: 'This is a clickable list tile',
-                  subtitle: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit.',
-                  onTap: () {},
-                ),
+            child: YgCard(
+              variant: YgCardVariant.filled,
+              child: YgListTile(
+                title: 'This is a clickable list tile',
+                subtitle: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit.',
+                onTap: () {},
               ),
-            ],
+            ),
           ),
         ],
       ),

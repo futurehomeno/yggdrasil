@@ -92,11 +92,4 @@ class _$YgListTileTheme {
     professional_light.FhDimensions.lg,
     professional_dark.FhDimensions.lg,
   ];
-
-  static const List<double> splashRadius = <double>[
-    consumer_light.FhDimensions.xs,
-    consumer_dark.FhDimensions.xs,
-    professional_light.FhDimensions.xs,
-    professional_dark.FhDimensions.xs,
-  ];
 }

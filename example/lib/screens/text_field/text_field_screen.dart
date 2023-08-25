@@ -114,62 +114,60 @@ class _TextFieldScreenState extends State<TextFieldScreen> {
                 ),
               ].withVerticalSpacing(10.0),
             ),
-            YgSection.column(
+            YgSection.base(
               title: 'Login form example',
               subtitle: 'See example code for best-practice usage.',
-              children: <Widget>[
-                Form(
-                  key: formKey,
-                  child: Column(
-                    children: <Widget>[
-                      YgTextFormField.email(
-                        key: emailKey,
-                        label: 'Email',
-                        textInputAction: TextInputAction.next,
-                        validators: <FormFieldValidator<String>>[
-                          const RequiredValidator(
-                            requiredError: 'This field is required!',
-                          ),
-                          const EmailValidator(
-                            invalidEmailError: 'Invalid email',
-                          ),
-                        ],
-                      ),
-                      YgTextFormField.password(
-                        key: passwordKey,
-                        label: 'Password',
-                        textInputAction: TextInputAction.done,
-                        validators: <FormFieldValidator<String>>[
-                          const RequiredValidator(
-                            requiredError: 'This field is required!',
-                          ),
-                          PasswordValidator(
-                            passwordTooShortError: 'Password is too short!',
-                          ),
-                        ],
-                      ),
-                      YgTextFormField.password(
-                        key: passwordConfirmKey,
-                        label: 'Confirm password',
-                        textInputAction: TextInputAction.done,
-                        validators: <FormFieldValidator<String>>[
-                          const RequiredValidator(
-                            requiredError: 'This field is required!',
-                          ),
-                          MatchValidator<String>(
-                            otherFieldKey: passwordKey,
-                            error: 'Passwords do not match!',
-                          ),
-                        ],
-                      ),
-                      YgButton(
-                        onPressed: _onSubmit,
-                        child: const Text('Submit'),
-                      ),
-                    ].withVerticalSpacing(10),
-                  ),
+              child: Form(
+                key: formKey,
+                child: Column(
+                  children: <Widget>[
+                    YgTextFormField.email(
+                      key: emailKey,
+                      label: 'Email',
+                      textInputAction: TextInputAction.next,
+                      validators: <FormFieldValidator<String>>[
+                        const RequiredValidator(
+                          requiredError: 'This field is required!',
+                        ),
+                        const EmailValidator(
+                          invalidEmailError: 'Invalid email',
+                        ),
+                      ],
+                    ),
+                    YgTextFormField.password(
+                      key: passwordKey,
+                      label: 'Password',
+                      textInputAction: TextInputAction.done,
+                      validators: <FormFieldValidator<String>>[
+                        const RequiredValidator(
+                          requiredError: 'This field is required!',
+                        ),
+                        PasswordValidator(
+                          passwordTooShortError: 'Password is too short!',
+                        ),
+                      ],
+                    ),
+                    YgTextFormField.password(
+                      key: passwordConfirmKey,
+                      label: 'Confirm password',
+                      textInputAction: TextInputAction.done,
+                      validators: <FormFieldValidator<String>>[
+                        const RequiredValidator(
+                          requiredError: 'This field is required!',
+                        ),
+                        MatchValidator<String>(
+                          otherFieldKey: passwordKey,
+                          error: 'Passwords do not match!',
+                        ),
+                      ],
+                    ),
+                    YgButton(
+                      onPressed: _onSubmit,
+                      child: const Text('Submit'),
+                    ),
+                  ].withVerticalSpacing(10),
                 ),
-              ],
+              ),
             ),
           ],
         ),

@@ -23,66 +23,60 @@ class BadgeScreen extends StatelessWidget {
       supernovaLink: 'Link',
       child: Column(
         children: <Widget>[
-          YgSection.column(
+          YgSection.base(
             title: 'Badges with count 0 - 9',
-            children: <Widget>[
-              Row(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: <Widget>[
-                  YgBadge(
-                    amount: 0,
-                    weight: YgBadgeWeight.strong,
-                    child: YgIconButton(
-                      onPressed: () {},
-                      child: const YgIcon(YgIcons.info),
-                    ),
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: <Widget>[
+                YgBadge(
+                  amount: 0,
+                  weight: YgBadgeWeight.strong,
+                  child: YgIconButton(
+                    onPressed: () {},
+                    child: const YgIcon(YgIcons.info),
                   ),
-                  YgBadge(
-                    amount: 1,
-                    weight: YgBadgeWeight.strong,
-                    child: YgIconButton(
-                      onPressed: () {},
-                      child: const YgIcon(YgIcons.info),
-                    ),
-                  ),
-                  YgBadge(
-                    amount: 8,
-                    weight: YgBadgeWeight.strong,
-                    child: YgIconButton(
-                      onPressed: () {},
-                      child: const YgIcon(YgIcons.info),
-                    ),
-                  ),
-                  YgBadge(
-                    amount: 9,
-                    weight: YgBadgeWeight.strong,
-                    child: YgIconButton(
-                      onPressed: () {},
-                      child: const YgIcon(YgIcons.info),
-                    ),
-                  ),
-                ],
-              ),
-            ],
-          ),
-          YgSection.column(
-            title: 'Badge with more than 9',
-            children: <Widget>[
-              YgBadge(
-                amount: 10,
-                weight: YgBadgeWeight.weak,
-                child: YgIconButton(
-                  onPressed: () {},
-                  child: const YgIcon(YgIcons.info),
                 ),
-              ),
-            ],
+                YgBadge(
+                  amount: 1,
+                  weight: YgBadgeWeight.strong,
+                  child: YgIconButton(
+                    onPressed: () {},
+                    child: const YgIcon(YgIcons.info),
+                  ),
+                ),
+                YgBadge(
+                  amount: 8,
+                  weight: YgBadgeWeight.strong,
+                  child: YgIconButton(
+                    onPressed: () {},
+                    child: const YgIcon(YgIcons.info),
+                  ),
+                ),
+                YgBadge(
+                  amount: 9,
+                  weight: YgBadgeWeight.strong,
+                  child: YgIconButton(
+                    onPressed: () {},
+                    child: const YgIcon(YgIcons.info),
+                  ),
+                ),
+              ],
+            ),
           ),
-          const YgSection.column(
+          YgSection.base(
+            title: 'Badge with more than 9',
+            child: YgBadge(
+              amount: 10,
+              weight: YgBadgeWeight.weak,
+              child: YgIconButton(
+                onPressed: () {},
+                child: const YgIcon(YgIcons.info),
+              ),
+            ),
+          ),
+          const YgSection.base(
             title: 'Dot badge',
-            children: <Widget>[
-              YgDotBadge(),
-            ],
+            child: YgDotBadge(),
           ),
         ],
       ),

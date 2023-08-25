@@ -30,41 +30,35 @@ class _BottomSheetScreenState extends State<BottomSheetScreen> with TickerProvid
       supernovaLink: 'Link',
       child: Column(
         children: <Widget>[
-          YgSection.column(
+          YgSection.base(
             title: 'Default bottom sheet',
-            children: <Widget>[
-              YgButton(
-                variant: YgButtonVariant.primary,
-                onPressed: () {
-                  Navigator.of(context).push(ExampleBottomSheet());
-                },
-                child: const Text('Show'),
-              ),
-            ],
+            child: YgButton(
+              variant: YgButtonVariant.primary,
+              onPressed: () {
+                Navigator.of(context).push(ExampleBottomSheet());
+              },
+              child: const Text('Show'),
+            ),
           ),
-          YgSection.column(
+          YgSection.base(
             title: 'Scrollable bottom sheet',
-            children: <Widget>[
-              YgButton(
-                variant: YgButtonVariant.primary,
-                onPressed: () {
-                  Navigator.of(context).push(ExampleScrollableBottomSheet());
-                },
-                child: const Text('Show'),
-              ),
-            ],
+            child: YgButton(
+              variant: YgButtonVariant.primary,
+              onPressed: () {
+                Navigator.of(context).push(ExampleScrollableBottomSheet());
+              },
+              child: const Text('Show'),
+            ),
           ),
-          YgSection.column(
+          YgSection.base(
             title: 'Bottom sheet w/o footer',
-            children: <Widget>[
-              YgButton(
-                variant: YgButtonVariant.primary,
-                onPressed: () {
-                  Navigator.of(context).push(ExampleBottomSheetWithoutFooter());
-                },
-                child: const Text('Show'),
-              ),
-            ],
+            child: YgButton(
+              variant: YgButtonVariant.primary,
+              onPressed: () {
+                Navigator.of(context).push(ExampleBottomSheetWithoutFooter());
+              },
+              child: const Text('Show'),
+            ),
           ),
         ],
       ),

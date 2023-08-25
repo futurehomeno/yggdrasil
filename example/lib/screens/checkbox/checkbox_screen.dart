@@ -39,95 +39,88 @@ class _CheckboxScreenState extends State<CheckboxScreen> {
       supernovaLink: 'Link',
       child: Column(
         children: <Widget>[
-          YgSection.column(
+          YgSection.base(
             title: 'Binary checkbox',
-            children: <Widget>[
-              YgCheckbox(
-                value: binaryValue,
-                onChanged: (bool? newValue) {
-                  binaryValue = newValue;
-                  setState(() {});
-                },
-              ),
-            ],
+            child: YgCheckbox(
+              value: binaryValue,
+              onChanged: (bool? newValue) {
+                binaryValue = newValue;
+                setState(() {});
+              },
+            ),
           ),
-          YgSection.column(
+          YgSection.base(
             title: 'Tri-state checkbox',
-            children: <Widget>[
-              YgCheckbox(
-                value: triStateValue,
-                triState: true,
-                onChanged: (bool? newValue) {
-                  triStateValue = newValue;
-                  setState(() {});
-                },
-              ),
-            ],
+            child: YgCheckbox(
+              value: triStateValue,
+              triState: true,
+              onChanged: (bool? newValue) {
+                triStateValue = newValue;
+                setState(() {});
+              },
+            ),
           ),
-          YgSection.column(
+          YgSection.base(
             title: 'Error checkbox',
-            children: <Widget>[
-              YgCheckbox(
-                value: errorValue,
-                onChanged: (bool? newValue) {
-                  errorValue = newValue;
-                  setState(() {});
-                },
-                hasError: true,
-              ),
-            ],
+            child: YgCheckbox(
+              value: errorValue,
+              onChanged: (bool? newValue) {
+                errorValue = newValue;
+                setState(() {});
+              },
+              hasError: true,
+            ),
           ),
-          const YgSection.column(
+          const YgSection.base(
             title: 'Disabled checkbox, selected / unselected',
-            children: <Widget>[
-              YgCheckbox(
-                value: true,
-                onChanged: null,
-              ),
-              YgCheckbox(
-                value: false,
-                onChanged: null,
-              ),
-            ],
+            child: Row(
+              mainAxisSize: MainAxisSize.min,
+              children: <Widget>[
+                YgCheckbox(
+                  value: true,
+                  onChanged: null,
+                ),
+                YgCheckbox(
+                  value: false,
+                  onChanged: null,
+                ),
+              ],
+            ),
           ),
-          YgSection.column(
+          YgSection.base(
             title: 'Checkbox item',
-            children: <Widget>[
-              YgCheckboxItem(
-                title: 'Some title',
-                value: checkboxItem,
-                onChanged: (bool? newValue) {
-                  checkboxItem = newValue;
-                  setState(() {});
-                },
-              ),
-            ],
+            child: YgCheckboxItem(
+              title: 'Some title',
+              value: checkboxItem,
+              onChanged: (bool? newValue) {
+                checkboxItem = newValue;
+                setState(() {});
+              },
+            ),
           ),
-          YgSection.column(
+          YgSection.base(
             title: 'Checkbox group',
-            children: <Widget>[
-              YgCheckboxGroup(
-                label: 'Some label',
-                checkboxItems: <YgCheckboxItem>[
-                  YgCheckboxItem(
-                    title: 'Some title',
-                    value: checkboxGroup1,
-                    onChanged: (bool? newValue) {
-                      checkboxGroup1 = newValue;
-                      setState(() {});
-                    },
-                  ),
-                  YgCheckboxItem(
-                    title: 'Some title',
-                    value: checkboxGroup2,
-                    onChanged: (bool? newValue) {
-                      checkboxGroup2 = newValue;
-                      setState(() {});
-                    },
-                  ),
-                ],
-              ),
-            ],
+            child: YgCheckboxGroup(
+              label: 'Some label',
+              checkboxItems: <YgCheckboxItem>[
+                YgCheckboxItem(
+                  title: 'Some title',
+                  value: checkboxGroup1,
+                  onChanged: (bool? newValue) {
+                    checkboxGroup1 = newValue;
+                    setState(() {});
+                  },
+                ),
+                YgCheckboxItem(
+                  title: 'Some title',
+                  value: checkboxGroup2,
+                  onChanged: (bool? newValue) {
+                    checkboxGroup2 = newValue;
+                    setState(() {});
+                  },
+                ),
+              ],
+            ),
           ),
           const YgSection.base(
             title: 'Checkbox in a list tile',
