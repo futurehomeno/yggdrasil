@@ -4,6 +4,8 @@ import 'package:yggdrasil/src/utils/_utils.dart';
 
 import 'yg_radio_item.dart';
 
+/// Group of [YgRadioItem]s.
+// TODO(bjhandeland): Check if these should have rounded corners.
 class YgRadioGroup<T> extends StatelessWidget with StatelessWidgetDebugMixin {
   const YgRadioGroup({
     super.key,

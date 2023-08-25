@@ -4,6 +4,8 @@ import 'package:yggdrasil/src/utils/_utils.dart';
 
 import 'yg_checkbox_item.dart';
 
+/// Group of [YgCheckboxItem]s.
+// TODO(bjhandeland): Check if these should have rounded corners.
 class YgCheckboxGroup extends StatelessWidget with StatelessWidgetDebugMixin {
   const YgCheckboxGroup({
     super.key,
