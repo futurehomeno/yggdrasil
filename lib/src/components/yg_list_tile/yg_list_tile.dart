@@ -30,6 +30,7 @@ class YgListTile extends StatelessWidget with StatelessWidgetDebugMixin {
     return YgListTile(
       title: link,
       leadingWidgets: <Widget>[YgIcon(iconPath)],
+      trailingWidgets: const <Widget>[YgIcon(YgIcons.caretRight)],
       onTap: onTap,
     );
   }
@@ -59,7 +60,6 @@ class YgListTile extends StatelessWidget with StatelessWidgetDebugMixin {
     return Material(
       type: MaterialType.transparency,
       child: InkWell(
-        borderRadius: BorderRadius.circular(listTileTheme.splashRadius),
         onTap: onTap,
         child: Padding(
           padding: listTileTheme.outerPadding,

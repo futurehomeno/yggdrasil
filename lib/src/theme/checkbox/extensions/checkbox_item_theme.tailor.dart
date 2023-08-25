@@ -11,29 +11,35 @@ part of 'checkbox_item_theme.dart';
 class YgCheckboxItemTheme extends ThemeExtension<YgCheckboxItemTheme> {
   const YgCheckboxItemTheme({
     required this.checkboxTitleSpacing,
+    required this.titlePadding,
     required this.titleTextStyle,
   });
 
   final double checkboxTitleSpacing;
+  final EdgeInsets titlePadding;
   final TextStyle titleTextStyle;
 
   static final YgCheckboxItemTheme consumerLight = YgCheckboxItemTheme(
     checkboxTitleSpacing: _$YgCheckboxItemTheme.checkboxTitleSpacing[0],
+    titlePadding: _$YgCheckboxItemTheme.titlePadding[0],
     titleTextStyle: _$YgCheckboxItemTheme.titleTextStyle[0],
   );
 
   static final YgCheckboxItemTheme consumerDark = YgCheckboxItemTheme(
     checkboxTitleSpacing: _$YgCheckboxItemTheme.checkboxTitleSpacing[1],
+    titlePadding: _$YgCheckboxItemTheme.titlePadding[1],
     titleTextStyle: _$YgCheckboxItemTheme.titleTextStyle[1],
   );
 
   static final YgCheckboxItemTheme professionalLight = YgCheckboxItemTheme(
     checkboxTitleSpacing: _$YgCheckboxItemTheme.checkboxTitleSpacing[2],
+    titlePadding: _$YgCheckboxItemTheme.titlePadding[2],
     titleTextStyle: _$YgCheckboxItemTheme.titleTextStyle[2],
   );
 
   static final YgCheckboxItemTheme professionalDark = YgCheckboxItemTheme(
     checkboxTitleSpacing: _$YgCheckboxItemTheme.checkboxTitleSpacing[3],
+    titlePadding: _$YgCheckboxItemTheme.titlePadding[3],
     titleTextStyle: _$YgCheckboxItemTheme.titleTextStyle[3],
   );
 
@@ -47,10 +53,12 @@ class YgCheckboxItemTheme extends ThemeExtension<YgCheckboxItemTheme> {
   @override
   YgCheckboxItemTheme copyWith({
     double? checkboxTitleSpacing,
+    EdgeInsets? titlePadding,
     TextStyle? titleTextStyle,
   }) {
     return YgCheckboxItemTheme(
       checkboxTitleSpacing: checkboxTitleSpacing ?? this.checkboxTitleSpacing,
+      titlePadding: titlePadding ?? this.titlePadding,
       titleTextStyle: titleTextStyle ?? this.titleTextStyle,
     );
   }
@@ -62,6 +70,7 @@ class YgCheckboxItemTheme extends ThemeExtension<YgCheckboxItemTheme> {
     return YgCheckboxItemTheme(
       checkboxTitleSpacing:
           t < 0.5 ? checkboxTitleSpacing : other.checkboxTitleSpacing,
+      titlePadding: t < 0.5 ? titlePadding : other.titlePadding,
       titleTextStyle: TextStyle.lerp(titleTextStyle, other.titleTextStyle, t)!,
     );
   }
@@ -74,6 +83,8 @@ class YgCheckboxItemTheme extends ThemeExtension<YgCheckboxItemTheme> {
             const DeepCollectionEquality()
                 .equals(checkboxTitleSpacing, other.checkboxTitleSpacing) &&
             const DeepCollectionEquality()
+                .equals(titlePadding, other.titlePadding) &&
+            const DeepCollectionEquality()
                 .equals(titleTextStyle, other.titleTextStyle));
   }
 
@@ -82,6 +93,7 @@ class YgCheckboxItemTheme extends ThemeExtension<YgCheckboxItemTheme> {
     return Object.hash(
       runtimeType.hashCode,
       const DeepCollectionEquality().hash(checkboxTitleSpacing),
+      const DeepCollectionEquality().hash(titlePadding),
       const DeepCollectionEquality().hash(titleTextStyle),
     );
   }

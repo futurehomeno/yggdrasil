@@ -44,6 +44,7 @@ class YgCallout extends StatelessWidget with StatelessWidgetDebugMixin {
           children: <Widget>[
             Expanded(
               child: Column(
+                mainAxisSize: MainAxisSize.min,
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: <Widget>[
                   if (title != null) _buildTitle(theme, title),
