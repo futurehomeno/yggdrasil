@@ -31,6 +31,11 @@ class ListTileScreen extends StatelessWidget {
             subtitle: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit.',
           ),
           const YgListTile(
+            title: 'YgListTile with a really long title. Like, really long. Super long if you will.',
+            subtitle:
+                'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus vestibulum fringilla ultrices. Pellentesque vitae sapien sed augue elementum sagittis vel sed dui.',
+          ),
+          const YgListTile(
             title: 'Title',
             subtitle: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit.',
             leadingWidgets: <Widget>[
