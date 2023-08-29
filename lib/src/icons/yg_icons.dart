@@ -4,196 +4,998 @@
 class YgIcons {
   const YgIcons._();
 
-  static const String search = 'assets/icons/search.svg';
-  static const String eyeOpen = 'assets/icons/eye-open.svg';
-  static const String house = 'assets/icons/house.svg';
+  static const String access = 'assets/icons/access.svg';
+  static const String accessGroup = 'assets/icons/access_group.svg';
+  static const String accessLocked = 'assets/icons/access_locked.svg';
+  static const String accessUnlocked = 'assets/icons/access_unlocked.svg';
+  static const String addAutomation = 'assets/icons/add_automation.svg';
+  static const String additional = 'assets/icons/additional.svg';
+  static const String admin = 'assets/icons/admin.svg';
   static const String alert = 'assets/icons/alert.svg';
-  static const String rotate = 'assets/icons/rotate.svg';
-  static const String caretDot = 'assets/icons/caret_dot.svg';
-  static const String power = 'assets/icons/power.svg';
-  static const String electricCar = 'assets/icons/electric-car.svg';
-  static const String handle = 'assets/icons/handle.svg';
-  static const String supportBubble = 'assets/icons/support-bubble.svg';
-  static const String failed = 'assets/icons/failed.svg';
-  static const String eyeClosed = 'assets/icons/eye-closed.svg';
-  static const String increase = 'assets/icons/increase.svg';
-  static const String arrowLeft = 'assets/icons/arrow_left.svg';
-  static const String link = 'assets/icons/link.svg';
-  static const String caretLeft = 'assets/icons/caret_left.svg';
-  static const String wifiExcellent = 'assets/icons/wifi-excellent.svg';
-  static const String caretRight = 'assets/icons/caret_right.svg';
-  static const String wifiNoSignal = 'assets/icons/wifi-no-signal.svg';
-  static const String deviceHubAlt = 'assets/icons/device-hub-alt.svg';
-  static const String arrowUp = 'assets/icons/arrow_up.svg';
-  static const String decrease = 'assets/icons/decrease.svg';
-  static const String bell = 'assets/icons/bell.svg';
-  static const String stop = 'assets/icons/stop.svg';
-  static const String arrowRight = 'assets/icons/arrow_right.svg';
-  static const String support = 'assets/icons/support.svg';
-  static const String plus = 'assets/icons/plus.svg';
-  static const String check = 'assets/icons/check.svg';
-  static const String warning = 'assets/icons/warning.svg';
-  static const String bluetooth = 'assets/icons/bluetooth.svg';
-  static const String lockOpen = 'assets/icons/lock_open.svg';
-  static const String email = 'assets/icons/email.svg';
-  static const String info = 'assets/icons/info.svg';
-  static const String refresh = 'assets/icons/refresh.svg';
-  static const String alertBubble = 'assets/icons/alert-bubble.svg';
-  static const String caretDown = 'assets/icons/caret_down.svg';
+  static const String alertBubble = 'assets/icons/alert_bubble.svg';
+  static const String anglePosition = 'assets/icons/angle_position.svg';
+  static const String apartment = 'assets/icons/apartment.svg';
+  static const String apartmentAlt = 'assets/icons/apartment_alt.svg';
+  static const String appliance = 'assets/icons/appliance.svg';
+  static const String appStore = 'assets/icons/app_store.svg';
+  static const String arduino = 'assets/icons/arduino.svg';
+  static const String areas = 'assets/icons/areas.svg';
   static const String arrowDown = 'assets/icons/arrow_down.svg';
-  static const String play = 'assets/icons/play.svg';
-  static const String notification = 'assets/icons/notification.svg';
-  static const String wifiWeak = 'assets/icons/wifi-weak.svg';
-  static const String tip = 'assets/icons/tip.svg';
-  static const String more = 'assets/icons/more.svg';
-  static const String trash = 'assets/icons/trash.svg';
-  static const String edit = 'assets/icons/edit.svg';
-  static const String manualBook = 'assets/icons/manual-book.svg';
-  static const String sum = 'assets/icons/sum.svg';
-  static const String forbidden = 'assets/icons/forbidden.svg';
-  static const String deviceEvCharger = 'assets/icons/device-ev-charger.svg';
-  static const String success = 'assets/icons/success.svg';
-  static const String call = 'assets/icons/call.svg';
-  static const String deviceTransfer = 'assets/icons/device-transfer.svg';
-  static const String lockClosed = 'assets/icons/lock_closed.svg';
+  static const String arrowLeft = 'assets/icons/arrow_left.svg';
+  static const String arrowRight = 'assets/icons/arrow_right.svg';
+  static const String arrowUp = 'assets/icons/arrow_up.svg';
+  static const String associations = 'assets/icons/associations.svg';
+  static const String attic = 'assets/icons/attic.svg';
+  static const String autoChange = 'assets/icons/auto_change.svg';
+  static const String aux1 = 'assets/icons/aux1.svg';
+  static const String away = 'assets/icons/away.svg';
+  static const String axisX = 'assets/icons/axis_x.svg';
+  static const String axisY = 'assets/icons/axis_y.svg';
+  static const String axisZ = 'assets/icons/axis_z.svg';
+  static const String backyard = 'assets/icons/backyard.svg';
+  static const String basement = 'assets/icons/basement.svg';
+  static const String bathroom = 'assets/icons/bathroom.svg';
+  static const String battery = 'assets/icons/battery.svg';
+  static const String bedroom = 'assets/icons/bedroom.svg';
+  static const String bedroomGuest = 'assets/icons/bedroom_guest.svg';
+  static const String bee = 'assets/icons/bee.svg';
+  static const String bees = 'assets/icons/bees.svg';
+  static const String bell = 'assets/icons/bell.svg';
+  static const String birdcage = 'assets/icons/birdcage.svg';
+  static const String bluetooth = 'assets/icons/bluetooth.svg';
+  static const String boiler = 'assets/icons/boiler.svg';
+  static const String bomb = 'assets/icons/bomb.svg';
+  static const String burglary = 'assets/icons/burglary.svg';
+  static const String cabin = 'assets/icons/cabin.svg';
   static const String calendar = 'assets/icons/calendar.svg';
-  static const String cross = 'assets/icons/cross.svg';
-  static const String error = 'assets/icons/error.svg';
-  static const String pause = 'assets/icons/pause.svg';
+  static const String calendarAdd = 'assets/icons/calendar_add.svg';
+  static const String calendarEdit = 'assets/icons/calendar_edit.svg';
+  static const String calendarPin = 'assets/icons/calendar_pin.svg';
+  static const String call = 'assets/icons/call.svg';
+  static const String camera = 'assets/icons/camera.svg';
+  static const String cameraScan = 'assets/icons/camera_scan.svg';
+  static const String capacity = 'assets/icons/capacity.svg';
+  static const String carbonDioxide = 'assets/icons/carbon_dioxide.svg';
+  static const String carbonMonoxide = 'assets/icons/carbon_monoxide.svg';
+  static const String caretDown = 'assets/icons/caret_down.svg';
+  static const String caretLeft = 'assets/icons/caret_left.svg';
+  static const String caretRight = 'assets/icons/caret_right.svg';
   static const String caretUp = 'assets/icons/caret_up.svg';
-  static const String wifiOk = 'assets/icons/wifi-ok.svg';
-  static const String powerDisabled = 'assets/icons/power-disabled.svg';
-  static const String deviceHub = 'assets/icons/device-hub.svg';
+  static const String cart = 'assets/icons/cart.svg';
+  static const String charger = 'assets/icons/charger.svg';
+  static const String check = 'assets/icons/check.svg';
+  static const String childRoom = 'assets/icons/child_room.svg';
+  static const String circle = 'assets/icons/circle.svg';
+  static const String circleDouble = 'assets/icons/circle_double.svg';
+  static const String circuitBreaker = 'assets/icons/circuit_breaker.svg';
+  static const String climate = 'assets/icons/climate.svg';
+  static const String closet = 'assets/icons/closet.svg';
+  static const String cloud = 'assets/icons/cloud.svg';
+  static const String color = 'assets/icons/color.svg';
+  static const String commonArea = 'assets/icons/common_area.svg';
+  static const String controlRoom = 'assets/icons/control_room.svg';
+  static const String copy = 'assets/icons/copy.svg';
+  static const String corridor = 'assets/icons/corridor.svg';
+  static const String coverRemove = 'assets/icons/cover_remove.svg';
+  static const String cross = 'assets/icons/cross.svg';
+  static const String dashboard = 'assets/icons/dashboard.svg';
+  static const String dashboardNo = 'assets/icons/dashboard_no.svg';
+  static const String decrease = 'assets/icons/decrease.svg';
+  static const String deviceConnected = 'assets/icons/device_connected.svg';
+  static const String deviceEvCharger = 'assets/icons/device_ev_charger.svg';
+  static const String deviceHub = 'assets/icons/device_hub.svg';
+  static const String deviceHubAlt = 'assets/icons/device_hub_alt.svg';
+  static const String deviceQrcode = 'assets/icons/device_qrcode.svg';
+  static const String deviceSync = 'assets/icons/device_sync.svg';
+  static const String deviceTransfer = 'assets/icons/device_transfer.svg';
+  static const String deviceUpdateFailed = 'assets/icons/device_update_failed.svg';
+  static const String deviceUpdateSuccess = 'assets/icons/device_update_success.svg';
+  static const String dialPeakOff = 'assets/icons/dial_peak_off.svg';
+  static const String diningRoom = 'assets/icons/dining_room.svg';
+  static const String direction = 'assets/icons/direction.svg';
+  static const String donut = 'assets/icons/donut.svg';
+  static const String doorClosed = 'assets/icons/door_closed.svg';
+  static const String doorClosedUnlocked = 'assets/icons/door_closed_unlocked.svg';
+  static const String doorLockClosed = 'assets/icons/door_lock_closed.svg';
+  static const String doorLocked = 'assets/icons/door_locked.svg';
+  static const String doorOpen = 'assets/icons/door_open.svg';
+  static const String doorOpenUnlocked = 'assets/icons/door_open_unlocked.svg';
+  static const String downstairs = 'assets/icons/downstairs.svg';
+  static const String dracula = 'assets/icons/dracula.svg';
+  static const String dry = 'assets/icons/dry.svg';
+  static const String edit = 'assets/icons/edit.svg';
+  static const String electricCar = 'assets/icons/electric_car.svg';
+  static const String email = 'assets/icons/email.svg';
+  static const String emergencyNo = 'assets/icons/emergency_no.svg';
+  static const String energy = 'assets/icons/energy.svg';
+  static const String energyBattery = 'assets/icons/energy_battery.svg';
+  static const String energyGrid = 'assets/icons/energy_grid.svg';
+  static const String energyMeter = 'assets/icons/energy_meter.svg';
+  static const String energySolar = 'assets/icons/energy_solar.svg';
+  static const String energyWind = 'assets/icons/energy_wind.svg';
+  static const String error = 'assets/icons/error.svg';
+  static const String export = 'assets/icons/export.svg';
+  static const String eyeClosed = 'assets/icons/eye_closed.svg';
+  static const String eyeOpen = 'assets/icons/eye_open.svg';
+  static const String faceId = 'assets/icons/face_id.svg';
+  static const String failed = 'assets/icons/failed.svg';
+  static const String fan = 'assets/icons/fan.svg';
+  static const String fanAlt = 'assets/icons/fan_alt.svg';
+  static const String fanSmall = 'assets/icons/fan_small.svg';
+  static const String feather = 'assets/icons/feather.svg';
+  static const String filter = 'assets/icons/filter.svg';
+  static const String fireOff = 'assets/icons/fire_off.svg';
+  static const String fireOn = 'assets/icons/fire_on.svg';
+  static const String fishBone = 'assets/icons/fish_bone.svg';
+  static const String flames = 'assets/icons/flames.svg';
+  static const String flex = 'assets/icons/flex.svg';
+  static const String forbidden = 'assets/icons/forbidden.svg';
+  static const String force = 'assets/icons/force.svg';
+  static const String furnace = 'assets/icons/furnace.svg';
+  static const String futurehome = 'assets/icons/futurehome.svg';
+  static const String garage = 'assets/icons/garage.svg';
+  static const String garageClosed = 'assets/icons/garage_closed.svg';
+  static const String garageOpen = 'assets/icons/garage_open.svg';
+  static const String gas = 'assets/icons/gas.svg';
+  static const String gasMaskOff = 'assets/icons/gas_mask_off.svg';
+  static const String gasMaskOn = 'assets/icons/gas_mask_on.svg';
+  static const String gateClosed = 'assets/icons/gate_closed.svg';
+  static const String gateClosedUnlocked = 'assets/icons/gate_closed_unlocked.svg';
+  static const String gateLocked = 'assets/icons/gate_locked.svg';
+  static const String gateOpen = 'assets/icons/gate_open.svg';
+  static const String gateOpenUnlocked = 'assets/icons/gate_open_unlocked.svg';
+  static const String gear = 'assets/icons/gear.svg';
+  static const String general = 'assets/icons/general.svg';
+  static const String grandfather = 'assets/icons/grandfather.svg';
+  static const String hallway = 'assets/icons/hallway.svg';
+  static const String han = 'assets/icons/han.svg';
+  static const String handle = 'assets/icons/handle.svg';
+  static const String health = 'assets/icons/health.svg';
+  static const String heater = 'assets/icons/heater.svg';
+  static const String history = 'assets/icons/history.svg';
+  static const String homeAway = 'assets/icons/home_away.svg';
+  static const String homeMorning = 'assets/icons/home_morning.svg';
+  static const String homeNight = 'assets/icons/home_night.svg';
+  static const String homeVacation = 'assets/icons/home_vacation.svg';
+  static const String hourglassEmpty = 'assets/icons/hourglass_empty.svg';
+  static const String hourglassFull = 'assets/icons/hourglass_full.svg';
+  static const String house = 'assets/icons/house.svg';
+  static const String humidity = 'assets/icons/humidity.svg';
+  static const String humiditySmall = 'assets/icons/humidity_small.svg';
+  static const String increase = 'assets/icons/increase.svg';
+  static const String info = 'assets/icons/info.svg';
+  static const String install = 'assets/icons/install.svg';
+  static const String integration = 'assets/icons/integration.svg';
+  static const String intercom = 'assets/icons/intercom.svg';
+  static const String inverter = 'assets/icons/inverter.svg';
+  static const String jar = 'assets/icons/jar.svg';
+  static const String key = 'assets/icons/key.svg';
+  static const String keytag = 'assets/icons/keytag.svg';
+  static const String keytagPin = 'assets/icons/keytag_pin.svg';
+  static const String khz = 'assets/icons/khz.svg';
+  static const String kitchen = 'assets/icons/kitchen.svg';
+  static const String laundry = 'assets/icons/laundry.svg';
+  static const String leaf = 'assets/icons/leaf.svg';
+  static const String leafDown = 'assets/icons/leaf_down.svg';
+  static const String leafRefresh = 'assets/icons/leaf_refresh.svg';
+  static const String leafUp = 'assets/icons/leaf_up.svg';
+  static const String leafWater = 'assets/icons/leaf_water.svg';
+  static const String leakWaterOff = 'assets/icons/leak_water_off.svg';
+  static const String leakWaterOn = 'assets/icons/leak_water_on.svg';
+  static const String lighting = 'assets/icons/lighting.svg';
+  static const String link = 'assets/icons/link.svg';
+  static const String lockClosed = 'assets/icons/lock_closed.svg';
+  static const String locked = 'assets/icons/locked.svg';
+  static const String lockOpen = 'assets/icons/lock_open.svg';
+  static const String login = 'assets/icons/login.svg';
+  static const String lounge = 'assets/icons/lounge.svg';
+  static const String luminance = 'assets/icons/luminance.svg';
+  static const String manualBook = 'assets/icons/manual_book.svg';
+  static const String map = 'assets/icons/map.svg';
+  static const String measure = 'assets/icons/measure.svg';
+  static const String media = 'assets/icons/media.svg';
+  static const String micOff = 'assets/icons/mic_off.svg';
+  static const String micOn = 'assets/icons/mic_on.svg';
   static const String minus = 'assets/icons/minus.svg';
+  static const String miscellaneousRoom = 'assets/icons/miscellaneous_room.svg';
+  static const String missing = 'assets/icons/missing.svg';
+  static const String modes = 'assets/icons/modes.svg';
+  static const String moisture = 'assets/icons/moisture.svg';
+  static const String moneyBag = 'assets/icons/money_bag.svg';
+  static const String more = 'assets/icons/more.svg';
+  static const String movementNothing = 'assets/icons/movement_nothing.svg';
+  static const String movementPaws = 'assets/icons/movement_paws.svg';
+  static const String movementPawsFilled = 'assets/icons/movement_paws_filled.svg';
+  static const String multipleChannels = 'assets/icons/multiple_channels.svg';
+  static const String nfc = 'assets/icons/nfc.svg';
+  static const String night = 'assets/icons/night.svg';
+  static const String noise = 'assets/icons/noise.svg';
+  static const String nothing = 'assets/icons/nothing.svg';
+  static const String notification = 'assets/icons/notification.svg';
+  static const String notingDown = 'assets/icons/noting_down.svg';
+  static const String office = 'assets/icons/office.svg';
+  static const String office1 = ' assets/icons/office-1.svg';
+  static const String oldMan = 'assets/icons/old_man.svg';
+  static const String omega = 'assets/icons/omega.svg';
+  static const String outdoors = 'assets/icons/outdoors.svg';
+  static const String panda = 'assets/icons/panda.svg';
+  static const String pause = 'assets/icons/pause.svg';
+  static const String pig = 'assets/icons/pig.svg';
+  static const String pin = 'assets/icons/pin.svg';
+  static const String pinCode = 'assets/icons/pin_code.svg';
+  static const String pingPong = 'assets/icons/ping_pong.svg';
   static const String placeholder = 'assets/icons/placeholder.svg';
+  static const String planet = 'assets/icons/planet.svg';
+  static const String plant = 'assets/icons/plant.svg';
+  static const String play = 'assets/icons/play.svg';
+  static const String play1 = ' assets/icons/play-1.svg';
+  static const String playlist = 'assets/icons/playlist.svg';
+  static const String plus = 'assets/icons/plus.svg';
+  static const String power = 'assets/icons/power.svg';
+  static const String powerDisabled = 'assets/icons/power_disabled.svg';
+  static const String pressure = 'assets/icons/pressure.svg';
+  static const String pressureAlt = 'assets/icons/pressure_alt.svg';
+  static const String qrCode = 'assets/icons/qr_code.svg';
+  static const String radio = 'assets/icons/radio.svg';
+  static const String read = 'assets/icons/read.svg';
+  static const String refresh = 'assets/icons/refresh.svg';
+  static const String refreshAlt = 'assets/icons/refresh_alt.svg';
+  static const String relax = 'assets/icons/relax.svg';
+  static const String relax1 = ' assets/icons/relax-1.svg';
+  static const String reload = 'assets/icons/reload.svg';
+  static const String rental = 'assets/icons/rental.svg';
+  static const String restart = 'assets/icons/restart.svg';
+  static const String rgb = 'assets/icons/rgb.svg';
+  static const String rocket = 'assets/icons/rocket.svg';
+  static const String rotate = 'assets/icons/rotate.svg';
+  static const String rotation = 'assets/icons/rotation.svg';
+  static const String safety = 'assets/icons/safety.svg';
+  static const String sea = 'assets/icons/sea.svg';
+  static const String search = 'assets/icons/search.svg';
+  static const String searchAlt = 'assets/icons/search_alt.svg';
+  static const String securityKey = 'assets/icons/security_key.svg';
+  static const String seismic = 'assets/icons/seismic.svg';
+  static const String sensor = 'assets/icons/sensor.svg';
+  static const String settings = 'assets/icons/settings.svg';
+  static const String shading = 'assets/icons/shading.svg';
+  static const String shading0Percent = 'assets/icons/shading_0_percent.svg';
+  static const String shading100Percent = 'assets/icons/shading_100_percent.svg';
+  static const String shading25Percent = 'assets/icons/shading_25_percent.svg';
+  static const String shading50Percent = 'assets/icons/shading_50_percent.svg';
+  static const String shading75Percent = 'assets/icons/shading_75_percent.svg';
+  static const String shaking = 'assets/icons/shaking.svg';
+  static const String shutterBoth = 'assets/icons/shutter_both.svg';
+  static const String shutterDown = 'assets/icons/shutter_down.svg';
+  static const String shutterUp = 'assets/icons/shutter_up.svg';
+  static const String sirenOff = 'assets/icons/siren_off.svg';
+  static const String sirenSettings = 'assets/icons/siren_settings.svg';
+  static const String smoke = 'assets/icons/smoke.svg';
+  static const String smokeDisabled = 'assets/icons/smoke_disabled.svg';
+  static const String smokeGasTest = 'assets/icons/smoke_gas_test.svg';
+  static const String smokeHealth = 'assets/icons/smoke_health.svg';
+  static const String smokeOn = 'assets/icons/smoke_on.svg';
+  static const String smokeSensitive = 'assets/icons/smoke_sensitive.svg';
+  static const String smokeTest = 'assets/icons/smoke_test.svg';
+  static const String snowflake = 'assets/icons/snowflake.svg';
+  static const String solar = 'assets/icons/solar.svg';
+  static const String speed = 'assets/icons/speed.svg';
+  static const String spider = 'assets/icons/spider.svg';
+  static const String stairs = 'assets/icons/stairs.svg';
+  static const String statistics = 'assets/icons/statistics.svg';
+  static const String stop = 'assets/icons/stop.svg';
+  static const String stopSmall = 'assets/icons/stop_small.svg';
+  static const String stopwatch = 'assets/icons/stopwatch.svg';
+  static const String storage = 'assets/icons/storage.svg';
+  static const String success = 'assets/icons/success.svg';
+  static const String sum = 'assets/icons/sum.svg';
+  static const String support = 'assets/icons/support.svg';
+  static const String supportBubble = 'assets/icons/support_bubble.svg';
+  static const String switchButton = 'assets/icons/switch_button.svg';
+  static const String tamperBad = 'assets/icons/tamper_bad.svg';
+  static const String temperatureHigh = 'assets/icons/temperature_high.svg';
+  static const String temperatureLow = 'assets/icons/temperature_low.svg';
+  static const String temporaryPin = 'assets/icons/temporary_pin.svg';
+  static const String threshold = 'assets/icons/threshold.svg';
+  static const String tide = 'assets/icons/tide.svg';
+  static const String timeline = 'assets/icons/timeline.svg';
+  static const String toilet = 'assets/icons/toilet.svg';
+  static const String touch = 'assets/icons/touch.svg';
+  static const String touchId = 'assets/icons/touch_id.svg';
+  static const String trash = 'assets/icons/trash.svg';
+  static const String tree = 'assets/icons/tree.svg';
+  static const String triggers = 'assets/icons/triggers.svg';
+  static const String tropical = 'assets/icons/tropical.svg';
+  static const String trumpet = 'assets/icons/trumpet.svg';
+  static const String tv = 'assets/icons/tv.svg';
+  static const String ultravioletUv = 'assets/icons/ultraviolet_uv.svg';
+  static const String unlocked = 'assets/icons/unlocked.svg';
+  static const String upstairs = 'assets/icons/upstairs.svg';
+  static const String valves = 'assets/icons/valves.svg';
+  static const String wallet = 'assets/icons/wallet.svg';
+  static const String warning = 'assets/icons/warning.svg';
+  static const String water = 'assets/icons/water.svg';
+  static const String waterFlow = 'assets/icons/water_flow.svg';
+  static const String waterPressure = 'assets/icons/water_pressure.svg';
+  static const String watts = 'assets/icons/watts.svg';
+  static const String weight = 'assets/icons/weight.svg';
+  static const String wifiExcellent = 'assets/icons/wifi_excellent.svg';
+  static const String wifiNoSignal = 'assets/icons/wifi_no_signal.svg';
+  static const String wifiOk = 'assets/icons/wifi_ok.svg';
+  static const String wifiUnknown = 'assets/icons/wifi_unknown.svg';
+  static const String wifiWeak = 'assets/icons/wifi_weak.svg';
+  static const String windowClosed = 'assets/icons/window_closed.svg';
+  static const String windowClosedUnlocked = 'assets/icons/window_closed_unlocked.svg';
+  static const String windowLocked = 'assets/icons/window_locked.svg';
+  static const String windowLockedAlt = 'assets/icons/window_locked_alt.svg';
+  static const String windowOpen = 'assets/icons/window_open.svg';
+  static const String windowOpenAlt = 'assets/icons/window_open_alt.svg';
+  static const String windowOpenUnlocked = 'assets/icons/window_open_unlocked.svg';
+  static const String work = 'assets/icons/work.svg';
+  static const String zigbee = 'assets/icons/zigbee.svg';
+  static const String zwave = 'assets/icons/zwave.svg';
 
   static const List<String> allIconPaths = <String>[
-    search,
-    eyeOpen,
-    house,
+    access,
+    accessGroup,
+    accessLocked,
+    accessUnlocked,
+    addAutomation,
+    additional,
+    admin,
     alert,
-    rotate,
-    caretDot,
-    power,
-    electricCar,
-    handle,
-    supportBubble,
-    failed,
-    eyeClosed,
-    increase,
-    arrowLeft,
-    link,
-    caretLeft,
-    wifiExcellent,
-    caretRight,
-    wifiNoSignal,
-    deviceHubAlt,
-    arrowUp,
-    decrease,
-    bell,
-    stop,
-    arrowRight,
-    support,
-    plus,
-    check,
-    warning,
-    bluetooth,
-    lockOpen,
-    email,
-    info,
-    refresh,
     alertBubble,
-    caretDown,
+    anglePosition,
+    apartment,
+    apartmentAlt,
+    appliance,
+    appStore,
+    arduino,
+    areas,
     arrowDown,
-    play,
-    notification,
-    wifiWeak,
-    tip,
-    more,
-    trash,
-    edit,
-    manualBook,
-    sum,
-    forbidden,
-    deviceEvCharger,
-    success,
-    call,
-    deviceTransfer,
-    lockClosed,
+    arrowLeft,
+    arrowRight,
+    arrowUp,
+    associations,
+    attic,
+    autoChange,
+    aux1,
+    away,
+    axisX,
+    axisY,
+    axisZ,
+    backyard,
+    basement,
+    bathroom,
+    battery,
+    bedroom,
+    bedroomGuest,
+    bee,
+    bees,
+    bell,
+    birdcage,
+    bluetooth,
+    boiler,
+    bomb,
+    burglary,
+    cabin,
     calendar,
-    cross,
-    error,
-    pause,
+    calendarAdd,
+    calendarEdit,
+    calendarPin,
+    call,
+    camera,
+    cameraScan,
+    capacity,
+    carbonDioxide,
+    carbonMonoxide,
+    caretDown,
+    caretLeft,
+    caretRight,
     caretUp,
-    wifiOk,
-    powerDisabled,
+    cart,
+    charger,
+    check,
+    childRoom,
+    circle,
+    circleDouble,
+    circuitBreaker,
+    climate,
+    closet,
+    cloud,
+    color,
+    commonArea,
+    controlRoom,
+    copy,
+    corridor,
+    coverRemove,
+    cross,
+    dashboard,
+    dashboardNo,
+    decrease,
+    deviceConnected,
+    deviceEvCharger,
     deviceHub,
+    deviceHubAlt,
+    deviceQrcode,
+    deviceSync,
+    deviceTransfer,
+    deviceUpdateFailed,
+    deviceUpdateSuccess,
+    dialPeakOff,
+    diningRoom,
+    direction,
+    donut,
+    doorClosed,
+    doorClosedUnlocked,
+    doorLockClosed,
+    doorLocked,
+    doorOpen,
+    doorOpenUnlocked,
+    downstairs,
+    dracula,
+    dry,
+    edit,
+    electricCar,
+    email,
+    emergencyNo,
+    energy,
+    energyBattery,
+    energyGrid,
+    energyMeter,
+    energySolar,
+    energyWind,
+    error,
+    export,
+    eyeClosed,
+    eyeOpen,
+    faceId,
+    failed,
+    fan,
+    fanAlt,
+    fanSmall,
+    feather,
+    filter,
+    fireOff,
+    fireOn,
+    fishBone,
+    flames,
+    flex,
+    forbidden,
+    force,
+    furnace,
+    futurehome,
+    garage,
+    garageClosed,
+    garageOpen,
+    gas,
+    gasMaskOff,
+    gasMaskOn,
+    gateClosed,
+    gateClosedUnlocked,
+    gateLocked,
+    gateOpen,
+    gateOpenUnlocked,
+    gear,
+    general,
+    grandfather,
+    hallway,
+    han,
+    handle,
+    health,
+    heater,
+    history,
+    homeAway,
+    homeMorning,
+    homeNight,
+    homeVacation,
+    hourglassEmpty,
+    hourglassFull,
+    house,
+    humidity,
+    humiditySmall,
+    increase,
+    info,
+    install,
+    integration,
+    intercom,
+    inverter,
+    jar,
+    key,
+    keytag,
+    keytagPin,
+    khz,
+    kitchen,
+    laundry,
+    leaf,
+    leafDown,
+    leafRefresh,
+    leafUp,
+    leafWater,
+    leakWaterOff,
+    leakWaterOn,
+    lighting,
+    link,
+    lockClosed,
+    locked,
+    lockOpen,
+    login,
+    lounge,
+    luminance,
+    manualBook,
+    map,
+    measure,
+    media,
+    micOff,
+    micOn,
     minus,
+    miscellaneousRoom,
+    missing,
+    modes,
+    moisture,
+    moneyBag,
+    more,
+    movementNothing,
+    movementPaws,
+    movementPawsFilled,
+    multipleChannels,
+    nfc,
+    night,
+    noise,
+    nothing,
+    notification,
+    notingDown,
+    office,
+    office1,
+    oldMan,
+    omega,
+    outdoors,
+    panda,
+    pause,
+    pig,
+    pin,
+    pinCode,
+    pingPong,
     placeholder,
+    planet,
+    plant,
+    play,
+    play1,
+    playlist,
+    plus,
+    power,
+    powerDisabled,
+    pressure,
+    pressureAlt,
+    qrCode,
+    radio,
+    read,
+    refresh,
+    refreshAlt,
+    relax,
+    relax1,
+    reload,
+    rental,
+    restart,
+    rgb,
+    rocket,
+    rotate,
+    rotation,
+    safety,
+    sea,
+    search,
+    searchAlt,
+    securityKey,
+    seismic,
+    sensor,
+    settings,
+    shading,
+    shading0Percent,
+    shading100Percent,
+    shading25Percent,
+    shading50Percent,
+    shading75Percent,
+    shaking,
+    shutterBoth,
+    shutterDown,
+    shutterUp,
+    sirenOff,
+    sirenSettings,
+    smoke,
+    smokeDisabled,
+    smokeGasTest,
+    smokeHealth,
+    smokeOn,
+    smokeSensitive,
+    smokeTest,
+    snowflake,
+    solar,
+    speed,
+    spider,
+    stairs,
+    statistics,
+    stop,
+    stopSmall,
+    stopwatch,
+    storage,
+    success,
+    sum,
+    support,
+    supportBubble,
+    switchButton,
+    tamperBad,
+    temperatureHigh,
+    temperatureLow,
+    temporaryPin,
+    threshold,
+    tide,
+    timeline,
+    toilet,
+    touch,
+    touchId,
+    trash,
+    tree,
+    triggers,
+    tropical,
+    trumpet,
+    tv,
+    ultravioletUv,
+    unlocked,
+    upstairs,
+    valves,
+    wallet,
+    warning,
+    water,
+    waterFlow,
+    waterPressure,
+    watts,
+    weight,
+    wifiExcellent,
+    wifiNoSignal,
+    wifiOk,
+    wifiUnknown,
+    wifiWeak,
+    windowClosed,
+    windowClosedUnlocked,
+    windowLocked,
+    windowLockedAlt,
+    windowOpen,
+    windowOpenAlt,
+    windowOpenUnlocked,
+    work,
+    zigbee,
+    zwave,
   ];
 
   static const List<String> allIconNames = <String>[
-    'search',
-    'eyeOpen',
-    'house',
+    'access',
+    'accessGroup',
+    'accessLocked',
+    'accessUnlocked',
+    'addAutomation',
+    'additional',
+    'admin',
     'alert',
-    'rotate',
-    'caretDot',
-    'power',
-    'electricCar',
-    'handle',
-    'supportBubble',
-    'failed',
-    'eyeClosed',
-    'increase',
-    'arrowLeft',
-    'link',
-    'caretLeft',
-    'wifiExcellent',
-    'caretRight',
-    'wifiNoSignal',
-    'deviceHubAlt',
-    'arrowUp',
-    'decrease',
-    'bell',
-    'stop',
-    'arrowRight',
-    'support',
-    'plus',
-    'check',
-    'warning',
-    'bluetooth',
-    'lockOpen',
-    'email',
-    'info',
-    'refresh',
     'alertBubble',
-    'caretDown',
+    'anglePosition',
+    'apartment',
+    'apartmentAlt',
+    'appliance',
+    'appStore',
+    'arduino',
+    'areas',
     'arrowDown',
-    'play',
-    'notification',
-    'wifiWeak',
-    'tip',
-    'more',
-    'trash',
-    'edit',
-    'manualBook',
-    'sum',
-    'forbidden',
-    'deviceEvCharger',
-    'success',
-    'call',
-    'deviceTransfer',
-    'lockClosed',
+    'arrowLeft',
+    'arrowRight',
+    'arrowUp',
+    'associations',
+    'attic',
+    'autoChange',
+    'aux1',
+    'away',
+    'axisX',
+    'axisY',
+    'axisZ',
+    'backyard',
+    'basement',
+    'bathroom',
+    'battery',
+    'bedroom',
+    'bedroomGuest',
+    'bee',
+    'bees',
+    'bell',
+    'birdcage',
+    'bluetooth',
+    'boiler',
+    'bomb',
+    'burglary',
+    'cabin',
     'calendar',
-    'cross',
-    'error',
-    'pause',
+    'calendarAdd',
+    'calendarEdit',
+    'calendarPin',
+    'call',
+    'camera',
+    'cameraScan',
+    'capacity',
+    'carbonDioxide',
+    'carbonMonoxide',
+    'caretDown',
+    'caretLeft',
+    'caretRight',
     'caretUp',
-    'wifiOk',
-    'powerDisabled',
+    'cart',
+    'charger',
+    'check',
+    'childRoom',
+    'circle',
+    'circleDouble',
+    'circuitBreaker',
+    'climate',
+    'closet',
+    'cloud',
+    'color',
+    'commonArea',
+    'controlRoom',
+    'copy',
+    'copy',
+    'corridor',
+    'coverRemove',
+    'cross',
+    'dashboard',
+    'dashboardNo',
+    'decrease',
+    'deviceConnected',
+    'deviceEvCharger',
     'deviceHub',
+    'deviceHubAlt',
+    'deviceQrcode',
+    'deviceSync',
+    'deviceTransfer',
+    'deviceUpdateFailed',
+    'deviceUpdateSuccess',
+    'dialPeakOff',
+    'diningRoom',
+    'direction',
+    'donut',
+    'doorClosed',
+    'doorClosedUnlocked',
+    'doorLockClosed',
+    'doorLocked',
+    'doorOpen',
+    'doorOpenUnlocked',
+    'downstairs',
+    'dracula',
+    'dry',
+    'edit',
+    'electricCar',
+    'email',
+    'emergencyNo',
+    'energy',
+    'energyBattery',
+    'energyGrid',
+    'energyMeter',
+    'energySolar',
+    'energyWind',
+    'error',
+    'export',
+    'eyeClosed',
+    'eyeOpen',
+    'faceId',
+    'failed',
+    'fan',
+    'fanAlt',
+    'fanSmall',
+    'feather',
+    'filter',
+    'fireOff',
+    'fireOn',
+    'fishBone',
+    'flames',
+    'flex',
+    'forbidden',
+    'force',
+    'furnace',
+    'futurehome',
+    'garage',
+    'garageClosed',
+    'garageOpen',
+    'gas',
+    'gasMaskOff',
+    'gasMaskOn',
+    'gateClosed',
+    'gateClosedUnlocked',
+    'gateLocked',
+    'gateOpen',
+    'gateOpenUnlocked',
+    'gear',
+    'general',
+    'grandfather',
+    'hallway',
+    'han',
+    'handle',
+    'health',
+    'heater',
+    'history',
+    'homeAway',
+    'homeMorning',
+    'homeNight',
+    'homeVacation',
+    'hourglassEmpty',
+    'hourglassFull',
+    'house',
+    'humidity',
+    'humiditySmall',
+    'increase',
+    'info',
+    'install',
+    'integration',
+    'intercom',
+    'inverter',
+    'jar',
+    'key',
+    'keytag',
+    'keytagPin',
+    'khz',
+    'kitchen',
+    'laundry',
+    'leaf',
+    'leafDown',
+    'leafRefresh',
+    'leafUp',
+    'leafWater',
+    'leakWaterOff',
+    'leakWaterOn',
+    'lighting',
+    'link',
+    'lockClosed',
+    'locked',
+    'lockOpen',
+    'login',
+    'lounge',
+    'luminance',
+    'manualBook',
+    'map',
+    'measure',
+    'media',
+    'micOff',
+    'micOn',
     'minus',
+    'miscellaneousRoom',
+    'missing',
+    'modes',
+    'moisture',
+    'moneyBag',
+    'more',
+    'movementNothing',
+    'movementPaws',
+    'movementPawsFilled',
+    'multipleChannels',
+    'nfc',
+    'night',
+    'noise',
+    'nothing',
+    'notification',
+    'notingDown',
+    'office',
+    'office1',
+    'oldMan',
+    'omega',
+    'outdoors',
+    'panda',
+    'pause',
+    'pig',
+    'pin',
+    'pinCode',
+    'pingPong',
     'placeholder',
+    'planet',
+    'plant',
+    'play',
+    'play1',
+    'playlist',
+    'plus',
+    'power',
+    'powerDisabled',
+    'pressure',
+    'pressureAlt',
+    'qrCode',
+    'radio',
+    'read',
+    'refresh',
+    'refreshAlt',
+    'relax',
+    'relax1',
+    'reload',
+    'rental',
+    'restart',
+    'rgb',
+    'rocket',
+    'rotate',
+    'rotation',
+    'safety',
+    'sea',
+    'search',
+    'searchAlt',
+    'securityKey',
+    'seismic',
+    'sensor',
+    'settings',
+    'shading',
+    'shading0Percent',
+    'shading100Percent',
+    'shading25Percent',
+    'shading50Percent',
+    'shading75Percent',
+    'shaking',
+    'shutterBoth',
+    'shutterDown',
+    'shutterUp',
+    'sirenOff',
+    'sirenSettings',
+    'smoke',
+    'smokeDisabled',
+    'smokeGasTest',
+    'smokeHealth',
+    'smokeOn',
+    'smokeSensitive',
+    'smokeTest',
+    'snowflake',
+    'solar',
+    'speed',
+    'spider',
+    'stairs',
+    'statistics',
+    'stop',
+    'stopSmall',
+    'stopwatch',
+    'storage',
+    'success',
+    'sum',
+    'support',
+    'supportBubble',
+    'switchButton',
+    'tamperBad',
+    'temperatureHigh',
+    'temperatureLow',
+    'temporaryPin',
+    'threshold',
+    'tide',
+    'timeline',
+    'toilet',
+    'touch',
+    'touchId',
+    'trash',
+    'tree',
+    'triggers',
+    'tropical',
+    'trumpet',
+    'tv',
+    'ultravioletUv',
+    'unlocked',
+    'upstairs',
+    'valves',
+    'wallet',
+    'warning',
+    'water',
+    'waterFlow',
+    'waterPressure',
+    'watts',
+    'weight',
+    'wifiExcellent',
+    'wifiNoSignal',
+    'wifiOk',
+    'wifiUnknown',
+    'wifiWeak',
+    'windowClosed',
+    'windowClosedUnlocked',
+    'windowLocked',
+    'windowLockedAlt',
+    'windowOpen',
+    'windowOpenAlt',
+    'windowOpenUnlocked',
+    'work',
+    'zigbee',
+    'zwave',
   ];
 }

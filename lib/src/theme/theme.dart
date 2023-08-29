@@ -19,6 +19,7 @@ import 'internal/_internal.dart';
 import 'list_tile/_list_tile.dart';
 import 'progress_indicator/_progress_indicator.dart';
 import 'radio/_radio.dart';
+import 'section/_section.dart';
 import 'snack_bar/_snack_bar.dart';
 import 'switch/_switch.dart';
 import 'tag/_tag.dart';
@@ -77,6 +78,9 @@ class _$YgTheme {
 
   @themeExtension
   static final List<YgRadioTheme> radioTheme = YgRadioTheme.themes;
+
+  @themeExtension
+  static final List<YgSectionTheme> sectionTheme = YgSectionTheme.themes;
 
   @themeExtension
   static final List<YgProgressIndicatorTheme> progressIndicatorTheme = YgProgressIndicatorTheme.themes;

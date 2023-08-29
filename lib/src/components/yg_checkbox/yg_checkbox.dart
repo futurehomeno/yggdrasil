@@ -54,7 +54,7 @@ class _YgRadioState extends State<YgCheckbox> {
     setState(() {});
   }
 
-  MaterialStatesController _statesController = MaterialStatesController();
+  final MaterialStatesController _statesController = MaterialStatesController();
 
   void _initStatesController() {
     _statesController.update(MaterialState.error, widget.hasError);
@@ -170,7 +170,7 @@ class _YgRadioState extends State<YgCheckbox> {
   }
 
   void _onTap() {
-    final onChanged = widget.onChanged;
+    final Function(bool? newValue)? onChanged = widget.onChanged;
     if (onChanged != null) {
       final bool? nextValue = YgCheckboxHelpers.getNextValue(widget.value, widget.triState);
       widget.onChanged?.call(nextValue);

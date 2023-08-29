@@ -1,3 +1,12 @@
+# 1.5.0 [25.08.2023 18:11]
+
+[dev-feature] Added DCM.
+[feature] Add YgSectionComponent.
+[feature] New icons (25/08/23).
+[fix] Close button should not be centered when callout has desc only.
+[improvement] Remove i18n and validators from YGG.
+[improvement] Multiple improvements to the demo app.
+
 # 1.4.0 [17.08.2023 08:55]
 
 [dev-feature] Added YgDebug widget for designers to inspect widget sizes.

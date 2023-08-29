@@ -1,10 +1,11 @@
 import 'package:flutter/material.dart';
-import 'package:yggdrasil/src/extensions/_extensions.dart';
 import 'package:yggdrasil/src/theme/_theme.dart';
 import 'package:yggdrasil/src/utils/_utils.dart';
 
 import 'yg_radio_item.dart';
 
+/// Group of [YgRadioItem]s.
+// TODO(bjhandeland): Check if these should have rounded corners.
 class YgRadioGroup<T> extends StatelessWidget with StatelessWidgetDebugMixin {
   const YgRadioGroup({
     super.key,
@@ -26,8 +27,9 @@ class YgRadioGroup<T> extends StatelessWidget with StatelessWidgetDebugMixin {
           label,
           style: radioTheme.radioGroupTheme.labelTextStyle,
         ),
+        SizedBox(height: radioTheme.radioGroupTheme.labelColumnSpacing),
         ...radioItems,
-      ].withVerticalSpacing(radioTheme.radioGroupTheme.labelColumnSpacing),
+      ],
     );
   }
 }

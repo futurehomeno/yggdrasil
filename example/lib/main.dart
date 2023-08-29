@@ -7,7 +7,7 @@ import 'yggdrasil.dart';
 
 void main() {
   // Set up the locator service before initializing the app.
-  sl.registerSingleton(YgRouter());
+  sl.registerSingleton(const YgRouter());
 
   runApp(
     ChangeNotifierProvider<YgAppState>(

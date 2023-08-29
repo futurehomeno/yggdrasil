@@ -49,7 +49,7 @@ class _YgRadioState<T> extends State<YgRadio<T>> {
     setState(() {});
   }
 
-  MaterialStatesController _statesController = MaterialStatesController();
+  final MaterialStatesController _statesController = MaterialStatesController();
 
   void _initStatesController() {
     _statesController.update(MaterialState.disabled, !widget._enabled);
@@ -206,7 +206,7 @@ class _YgRadioState<T> extends State<YgRadio<T>> {
   }
 
   void _onTap() {
-    final onChanged = widget.onChanged;
+    final ValueChanged<T?>? onChanged = widget.onChanged;
     if (onChanged != null) {
       onChanged(widget.value);
     }
