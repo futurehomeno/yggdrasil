@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:yggdrasil/src/components/fields/helpers/yg_validate_helper.dart';
 import 'package:yggdrasil/yggdrasil.dart';
 
 /// A form field that contains a [YgTextField].
@@ -35,69 +36,24 @@ class YgTextFormField extends FormField<String> {
   }) : super(
           initialValue: controller != null ? controller.text : (initialValue ?? ''),
           enabled: !disabled,
-          autovalidateMode: switch (autoValidate) {
-            YgAutoValidate.onComplete || YgAutoValidate.disabled => AutovalidateMode.disabled,
-            YgAutoValidate.onUserInteraction => AutovalidateMode.onUserInteraction,
-            YgAutoValidate.always => AutovalidateMode.always,
-          },
-          validator: (String? value) {
-            if (validators == null) {
-              return null;
-            }
-
-            for (final FormFieldValidator<String> validator in validators) {
-              final String? error = validator(value);
-
-              if (error != null) {
-                return error;
-              }
-            }
-
-            return null;
-          },
+          autovalidateMode: YgValidateHelper.mapAutoValidate(autoValidate),
+          validator: YgValidateHelper.combineValidators(validators),
           builder: (FormFieldState<String> field) {
             final _YgTextFormInputState state = field as _YgTextFormInputState;
+            final YgValidateHelper helper = YgValidateHelper(
+              key: key,
+              autoValidate: autoValidate,
+              onFocusChanged: onFocusChanged,
+              completeAction: YgValidateHelper.mapTextInputAction(textInputAction),
+              onEditingComplete: onEditingComplete,
+            );
 
             return UnmanagedRestorationScope(
               bucket: field.bucket,
               child: YgTextField(
                 label: label,
-                // ignore: prefer-extracting-callbacks
-                onEditingComplete: () {
-                  if (autoValidate == YgAutoValidate.onComplete && !key.validate()) {
-                    return;
-                  }
-
-                  if (onEditingComplete != null) {
-                    onEditingComplete();
-
-                    return;
-                  }
-
-                  final BuildContext? context = key.currentContext;
-
-                  if (context == null) {
-                    return;
-                  }
-
-                  final FocusScopeNode focusScope = FocusScope.of(context);
-
-                  if (textInputAction == TextInputAction.next) {
-                    focusScope.nextFocus();
-                  } else if (textInputAction == TextInputAction.previous) {
-                    focusScope.previousFocus();
-                  } else {
-                    focusScope.unfocus();
-                  }
-                },
-                // ignore: prefer-extracting-callbacks
-                onFocusChanged: (bool focus) {
-                  if (!focus) {
-                    key.validate();
-                  }
-
-                  onFocusChanged?.call(focus);
-                },
+                onEditingComplete: helper.onEditingComplete,
+                onFocusChanged: helper.onFocusChanged,
                 textInputAction: textInputAction,
                 obscureText: obscureText,
                 showObscureTextButton: showObscureTextButton,

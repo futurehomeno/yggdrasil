@@ -3,11 +3,13 @@ import 'package:yggdrasil/yggdrasil.dart';
 import 'package:yggdrasil_demo/core/yg_route_builder.dart';
 import 'package:yggdrasil_demo/widgets/_widgets.dart';
 
-class DropdownFieldScreen extends StatefulWidget {
+class DropdownFieldScreen extends StatelessWidget {
   const DropdownFieldScreen({super.key});
 
+  // ignore: prefer-widget-private-members
   static const String routeName = 'DropdownFieldScreen';
 
+  // ignore: prefer-widget-private-members
   static PageRouteBuilder<Widget> route() {
     return YgRouteBuilder().fadeTransition(
       settings: const RouteSettings(name: routeName),
@@ -16,21 +18,9 @@ class DropdownFieldScreen extends StatefulWidget {
   }
 
   @override
-  State<DropdownFieldScreen> createState() => _DropdownFieldScreenState();
-}
-
-class _DropdownFieldScreenState extends State<DropdownFieldScreen> {
-  final FormKey formKey = FormKey();
-  final TextFieldKey emailKey = TextFieldKey();
-  final TextFieldKey passwordKey = TextFieldKey();
-  final TextFieldKey passwordConfirmKey = TextFieldKey();
-
-  @override
   Widget build(BuildContext context) {
     return GestureDetector(
-      onTap: () {
-        FocusScope.of(context).unfocus();
-      },
+      onTap: () => FocusScope.of(context).unfocus(),
       child: DemoScreen(
         componentName: 'DropdownField',
         componentDesc: 'Dropdown Field',

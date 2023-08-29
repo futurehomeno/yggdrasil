@@ -1,24 +1,17 @@
 part of 'yg_dropdown_menu_route.dart';
 
-class _YgDropdownMenu<T extends Object> extends StatefulWidget {
+class _YgDropdownMenu<T extends Object> extends StatelessWidget {
   const _YgDropdownMenu({
     super.key,
     required this.entries,
-    required this.onValueTapped,
-    required this.isValueSelected,
+    required this.controller,
     required this.onClose,
   });
 
+  final YgDynamicDropdownController<T> controller;
   final List<YgDropdownEntry<T>> entries;
-  final bool Function(T value) onValueTapped;
-  final bool Function(T value) isValueSelected;
   final VoidCallback onClose;
 
-  @override
-  State<_YgDropdownMenu<T>> createState() => _YgDropdownMenuState<T>();
-}
-
-class _YgDropdownMenuState<T extends Object> extends State<_YgDropdownMenu<T>> {
   @override
   Widget build(BuildContext context) {
     final YgDropdownFieldTheme theme = context.fieldTheme.dropdownTheme;
@@ -30,26 +23,31 @@ class _YgDropdownMenuState<T extends Object> extends State<_YgDropdownMenu<T>> {
       child: ClipRRect(
         borderRadius: const BorderRadius.all(Radius.circular(10)),
         child: YgScrollShadow.builder(
-          builder: (BuildContext context, ScrollController controller) {
+          builder: (BuildContext context, ScrollController scrollController) {
             return CustomScrollView(
-              controller: controller,
+              controller: scrollController,
               slivers: <Widget>[
                 SliverPadding(
                   padding: const EdgeInsets.all(5.0),
                   sliver: SliverList(
                     delegate: SliverChildBuilderDelegate(
                       (BuildContext context, int index) {
-                        final YgDropdownEntry<T> entry = widget.entries[index];
+                        final YgDropdownEntry<T> entry = entries[index];
 
-                        return YgDropdownMenuItem(
-                          icon: entry.icon,
-                          selected: widget.isValueSelected(entry.value),
-                          subtitle: entry.subtitle,
-                          title: entry.title,
-                          onPressed: () => _onValueTapped(entry.value),
+                        return ListenableBuilder(
+                          listenable: controller,
+                          builder: (context, child) {
+                            return YgDropdownMenuItem(
+                              icon: entry.icon,
+                              selected: controller.isEntrySelected(entry),
+                              subtitle: entry.subtitle,
+                              title: entry.title,
+                              onPressed: () => _onEntryTapped(entry),
+                            );
+                          },
                         );
                       },
-                      childCount: widget.entries.length,
+                      childCount: entries.length,
                     ),
                   ),
                 ),
@@ -61,12 +59,7 @@ class _YgDropdownMenuState<T extends Object> extends State<_YgDropdownMenu<T>> {
     );
   }
 
-  void _onValueTapped(T value) {
-    if (widget.onValueTapped(value)) {
-      widget.onClose();
-      Navigator.of(context).pop();
-    }
-
-    setState(() {});
+  void _onEntryTapped(YgDropdownEntry<T> value) {
+    controller.onEntryTapped(value);
   }
 }

@@ -5,8 +5,8 @@ import 'package:flutter/services.dart';
 import 'package:yggdrasil/src/components/fields/enums/field_state.dart';
 import 'package:yggdrasil/yggdrasil.dart';
 
-import './widgets/_widgets.dart';
 import '../widgets/_widgets.dart';
+import 'widgets/_widgets.dart';
 
 part 'yg_dropdown_field_multi_select.dart';
 part 'yg_dropdown_field_single_select.dart';
@@ -19,7 +19,7 @@ abstract class YgDropdownField<T extends Object> extends StatefulWidget {
     YgDropdownFieldVariant variant,
     YgDropdownFieldSize size,
     FocusNode? focusNode,
-    T initialValue,
+    T? initialValue,
     String? error,
     int? minLines,
     String? placeholder,
@@ -28,6 +28,7 @@ abstract class YgDropdownField<T extends Object> extends StatefulWidget {
     bool allowDeselect,
     YgDropdownAction dropdownAction,
     ValueChanged<T?>? onChange,
+    ValueChanged<bool>? onFocusChanged,
   }) = _YgDropdownFieldSingleSelect<T>;
 
   const factory YgDropdownField.multiSelect({
@@ -37,7 +38,7 @@ abstract class YgDropdownField<T extends Object> extends StatefulWidget {
     YgDropdownFieldVariant variant,
     YgDropdownFieldSize size,
     FocusNode? focusNode,
-    Set<T> initialValue,
+    Set<T>? initialValue,
     String? error,
     int? minLines,
     String? placeholder,
@@ -46,13 +47,13 @@ abstract class YgDropdownField<T extends Object> extends StatefulWidget {
     bool allowDeselect,
     YgDropdownAction dropdownAction,
     ValueChanged<Set<T>>? onChange,
+    ValueChanged<bool>? onFocusChanged,
   }) = _YgDropdownFieldMultiSelect<T>;
 
   const YgDropdownField._({
     super.key,
     required this.entries,
     required this.label,
-    required this.multiSelect,
     required this.maxLines,
     this.allowDeselect = false,
     this.variant = YgDropdownFieldVariant.standard,
@@ -63,6 +64,9 @@ abstract class YgDropdownField<T extends Object> extends StatefulWidget {
     this.disabled = false,
     this.placeholder,
     this.minLines,
+    this.onFocusChanged,
+    this.onPressed,
+    this.controller,
   });
 
   final YgDropdownFieldVariant variant;
@@ -77,14 +81,37 @@ abstract class YgDropdownField<T extends Object> extends StatefulWidget {
   final bool disabled;
   final bool allowDeselect;
   final YgDropdownAction dropdownAction;
-  final bool multiSelect;
+  final ValueChanged<bool>? onFocusChanged;
+  final VoidCallback? onPressed;
+
+  // Can safely ignore dynamic here because anywhere the controller is used
+  // the type is overwritten.
+  final YgDynamicDropdownController<T>? controller;
 }
 
-abstract class _YgDropdownFieldState<T extends Object, W extends YgDropdownField<T>> extends State<W> {
+abstract class YgDropdownFieldState<T extends Object, W extends YgDropdownField<T>> extends State<W> {
+  late YgDynamicDropdownController<T> _controller = widget.controller ?? createController();
+
+  @override
+  void didUpdateWidget(covariant W oldWidget) {
+    final YgDynamicDropdownController<T>? newController = widget.controller;
+
+    if (newController == null) {
+      if (oldWidget.controller != null) {
+        _updateController(createController());
+      }
+    } else if (newController != _controller) {
+      _updateController(newController);
+    }
+    super.didUpdateWidget(oldWidget);
+  }
+
   late final FieldStates _states = <FieldState>{
     if (widget.disabled) FieldState.disabled,
     if (widget.error != null) FieldState.error,
   };
+
+  bool _opened = false;
 
   @override
   Widget build(BuildContext context) {
@@ -101,7 +128,7 @@ abstract class _YgDropdownFieldState<T extends Object, W extends YgDropdownField
           curve: theme.animationCurve,
           turns: _states.opened ? 0.5 : 0,
           child: YgIconButton(
-            onPressed: () => _open(),
+            onPressed: _controller.open,
             size: YgIconButtonSize.small,
             child: const YgIcon(
               YgIcons.caretDown,
@@ -109,10 +136,15 @@ abstract class _YgDropdownFieldState<T extends Object, W extends YgDropdownField
           ),
         ),
         content: YgFieldTextContent(
-          value: Text(
-            title,
-            maxLines: widget.maxLines,
-            overflow: widget.maxLines != 1 ? null : TextOverflow.ellipsis,
+          value: ListenableBuilder(
+            listenable: _controller,
+            builder: (context, child) {
+              return Text(
+                _controller.buildTitle(widget.entries),
+                maxLines: widget.maxLines,
+                overflow: widget.maxLines != 1 ? null : TextOverflow.ellipsis,
+              );
+            },
           ),
           states: _states.without(FieldState.focused),
           label: widget.label,
@@ -129,22 +161,36 @@ abstract class _YgDropdownFieldState<T extends Object, W extends YgDropdownField
     return FocusableActionDetector(
       mouseCursor: SystemMouseCursors.click,
       focusNode: widget.focusNode,
-      onShowFocusHighlight: (bool focused) => updateFieldState(FieldState.focused, focused),
-      onShowHoverHighlight: (bool hovered) => updateFieldState(FieldState.hovered, hovered),
+      onShowFocusHighlight: _onFocusChanged,
+      onShowHoverHighlight: (bool hovered) => _updateFieldState(FieldState.hovered, hovered),
       shortcuts: const <ShortcutActivator, Intent>{
         SingleActivator(LogicalKeyboardKey.space, control: false): ActivateIntent(),
       },
       actions: <Type, Action<Intent>>{
-        ActivateIntent: CallbackAction<Intent>(onInvoke: (_) => _open()),
+        ActivateIntent: CallbackAction<Intent>(onInvoke: (_) => _controller.open()),
       },
       child: GestureDetector(
-        onTap: _open,
+        onTap: _controller.open,
         child: layout,
       ),
     );
   }
 
-  void updateFieldState(FieldState state, bool toggled) {
+  @override
+  void dispose() {
+    _controller.removeListener(_controllerListener);
+    if (widget.controller == null) {
+      _controller.dispose();
+    }
+    super.dispose();
+  }
+
+  void _onFocusChanged(bool focused) {
+    widget.onFocusChanged?.call(focused);
+    _updateFieldState(FieldState.focused, focused);
+  }
+
+  void _updateFieldState(FieldState state, bool toggled) {
     final bool isToggled = _states.contains(state);
     if (isToggled != toggled) {
       if (toggled) {
@@ -152,57 +198,42 @@ abstract class _YgDropdownFieldState<T extends Object, W extends YgDropdownField
       } else {
         _states.remove(state);
       }
+      setState(() {});
     }
-    setState(() {});
   }
 
-  void _showMenu() {
+  void _updateController(YgDynamicDropdownController<T> controller) {
+    _controller.removeListener(_controllerListener);
+    _controller = controller;
+    _controller.addListener(_controllerListener);
+  }
+
+  void _controllerListener() {
+    _updateFieldState(FieldState.filled, _controller.filled);
+  }
+
+  Rect get rect {
     final RenderBox itemBox = context.findRenderObject()! as RenderBox;
-    final Rect itemRect = itemBox.localToGlobal(
+
+    return itemBox.localToGlobal(
           Offset.zero,
           ancestor: Navigator.of(context).context.findRenderObject(),
         ) &
         itemBox.size;
-
-    Navigator.of(context).push(
-      YgDropdownMenuRoute<T>(
-        entries: widget.entries,
-        onValueTapped: onValueTapped,
-        isValueSelected: isValueSelected,
-        rect: itemRect,
-        onClose: () => updateFieldState(FieldState.opened, false),
-      ),
-    );
-    updateFieldState(FieldState.opened, true);
   }
 
-  void _showBottomSheet() {
-    Navigator.of(context).push(
-      YgDropdownBottomSheetRoute<T>(
-        entries: widget.entries,
-        label: widget.label,
-        onValueTapped: onValueTapped,
-        isValueSelected: isValueSelected,
-        onClose: () => updateFieldState(FieldState.opened, false),
-      ),
-    );
-    updateFieldState(FieldState.opened, true);
-  }
+  // region Menu
 
-  void _performPlatformAction() {
-    if (Platform.isAndroid || Platform.isIOS) {
-      _showBottomSheet();
-    } else {
-      _showMenu();
-    }
-  }
+  void openMenu() {}
 
-  void _open() {
+  void openBottomSheet() {}
+
+  void open() {
     switch (widget.dropdownAction) {
       case YgDropdownAction.bottomSheet:
-        return _showBottomSheet();
+        return openBottomSheet();
       case YgDropdownAction.menu:
-        return _showMenu();
+        return openMenu();
       case YgDropdownAction.auto:
         return _performPlatformAction();
       case YgDropdownAction.nothing:
@@ -210,99 +241,27 @@ abstract class _YgDropdownFieldState<T extends Object, W extends YgDropdownField
     }
   }
 
-  bool isValueSelected(T value);
-
-  bool onValueTapped(T value);
-
-  String get title;
-}
-
-class _YgDropdownFieldMultiSelectState<T extends Object>
-    extends _YgDropdownFieldState<T, _YgDropdownFieldMultiSelect<T>> {
-  late final Set<T> _values = widget.initialValue ?? <T>{};
-
-  @override
-  bool isValueSelected(T value) => _values.contains(value);
-
-  @override
-  bool onValueTapped(T value) {
-    if (_values.contains(value)) {
-      if (widget.allowDeselect) {
-        _values.remove(value);
-        _onChange();
-      }
-    } else {
-      _values.add(value);
-      _onChange();
-    }
-
-    return false;
-  }
-
-  @override
-  String get title {
-    final List<String> titles = <String>[];
-
-    for (final YgDropdownEntry<T> entry in widget.entries) {
-      if (_values.contains(entry.value)) {
-        titles.add(entry.title);
-      }
-    }
-
-    return titles.join(', ');
-  }
-
-  void _onChange() {
-    widget.onChange?.call(_values);
-    updateFieldState(FieldState.filled, _values.isNotEmpty);
-    setState(() {});
-  }
-}
-
-class _YgDropdownFieldSingleSelectState<T extends Object>
-    extends _YgDropdownFieldState<T, _YgDropdownFieldSingleSelect<T>> {
-  late T? _value = widget.initialValue;
-
-  @override
-  bool isValueSelected(T value) => value == _value;
-
-  @override
-  bool onValueTapped(T value) {
-    if (value == _value) {
-      if (widget.allowDeselect) {
-        _value = null;
-        _onChange();
-
-        return true;
-      }
-    } else {
-      _value = value;
-      _onChange();
-
-      return true;
-    }
-
-    return false;
-  }
-
-  void _onChange() {
-    widget.onChange?.call(_value);
-    updateFieldState(FieldState.filled, _value != null);
+  void close() {
+    Navigator.popUntil(
+      context,
+      (Route route) => route is! YgDropdownMenuRoute && route is! YgDropdownBottomSheetRoute,
+    );
+    _opened = false;
     setState(() {});
   }
 
-  @override
-  String get title {
-    if (_value == null) {
-      return '';
+  void _performPlatformAction() {
+    if (Platform.isAndroid || Platform.isIOS) {
+      openBottomSheet();
+    } else {
+      openMenu();
     }
-
-    for (final YgDropdownEntry<T> entry in widget.entries) {
-      if (entry.value == _value) {
-        return entry.title;
-      }
-    }
-
-    return '';
   }
+
+  bool get isOpen {
+    return _opened;
+  }
+
+  // endregion
+  YgDynamicDropdownController<T> createController();
 }

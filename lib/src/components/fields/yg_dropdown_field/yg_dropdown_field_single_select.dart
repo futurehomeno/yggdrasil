@@ -16,6 +16,8 @@ class _YgDropdownFieldSingleSelect<T extends Object> extends YgDropdownField<T> 
     bool disabled = false,
     bool allowDeselect = false,
     YgDropdownAction dropdownAction = YgDropdownAction.auto,
+    ValueChanged<bool>? onFocusChanged,
+    YgSingleSelectDropdownController<T>? controller,
     this.onChange,
   }) : super._(
           variant: variant,
@@ -30,7 +32,8 @@ class _YgDropdownFieldSingleSelect<T extends Object> extends YgDropdownField<T> 
           disabled: disabled,
           allowDeselect: allowDeselect,
           dropdownAction: dropdownAction,
-          multiSelect: true,
+          onFocusChanged: onFocusChanged,
+          controller: controller,
         );
 
   final T? initialValue;
@@ -38,4 +41,14 @@ class _YgDropdownFieldSingleSelect<T extends Object> extends YgDropdownField<T> 
 
   @override
   _YgDropdownFieldSingleSelectState<T> createState() => _YgDropdownFieldSingleSelectState<T>();
+}
+
+class _YgDropdownFieldSingleSelectState<T extends Object>
+    extends YgDropdownFieldState<T, _YgDropdownFieldSingleSelect<T>> {
+  @override
+  YgDynamicDropdownController<T> createController() {
+    return YgSingleSelectDropdownController(
+      initialValue: widget.initialValue,
+    );
+  }
 }

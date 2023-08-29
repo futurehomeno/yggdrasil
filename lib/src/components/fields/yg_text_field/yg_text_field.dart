@@ -372,9 +372,9 @@ class _YgTextFieldState extends State<YgTextField> {
 
   @override
   void initState() {
+    super.initState();
     _focusNode.addListener(_focusChanged);
     _controller.addListener(_valueUpdated);
-    super.initState();
   }
 
   @override
@@ -418,7 +418,13 @@ class _YgTextFieldState extends State<YgTextField> {
   @override
   void dispose() {
     _controller.removeListener(_valueUpdated);
+    if (widget.controller == null) {
+      _controller.dispose();
+    }
     _focusNode.removeListener(_focusChanged);
+    if (widget.focusNode == null) {
+      _focusNode.dispose();
+    }
     super.dispose();
   }
 

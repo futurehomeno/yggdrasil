@@ -15,15 +15,14 @@ part 'yg_dropdown_menu_positioner.dart';
 class YgDropdownMenuRoute<T extends Object> extends PopupRoute<Widget> {
   YgDropdownMenuRoute({
     required this.entries,
-    required this.onValueTapped,
-    required this.isValueSelected,
+    required this.dropdownController,
     required this.onClose,
     required this.rect,
   });
 
+  // ignore: avoid-dynamic
+  final YgDynamicDropdownController<T> dropdownController;
   final List<YgDropdownEntry<T>> entries;
-  final bool Function(T value) onValueTapped;
-  final bool Function(T value) isValueSelected;
   final VoidCallback onClose;
   final Rect rect;
 
@@ -70,8 +69,7 @@ class YgDropdownMenuRoute<T extends Object> extends PopupRoute<Widget> {
             child: RepaintBoundary(
               child: _YgDropdownMenu<T>(
                 entries: entries,
-                onValueTapped: onValueTapped,
-                isValueSelected: isValueSelected,
+                controller: dropdownController,
                 onClose: onClose,
               ),
             ),

@@ -16,6 +16,7 @@ class _YgDropdownFieldMultiSelect<T extends Object> extends YgDropdownField<T> {
     bool disabled = false,
     bool allowDeselect = false,
     YgDropdownAction dropdownAction = YgDropdownAction.auto,
+    ValueChanged<bool>? onFocusChanged,
     this.onChange,
   }) : super._(
           variant: variant,
@@ -30,7 +31,7 @@ class _YgDropdownFieldMultiSelect<T extends Object> extends YgDropdownField<T> {
           disabled: disabled,
           allowDeselect: allowDeselect,
           dropdownAction: dropdownAction,
-          multiSelect: true,
+          onFocusChanged: onFocusChanged,
         );
 
   final Set<T>? initialValue;
@@ -38,4 +39,14 @@ class _YgDropdownFieldMultiSelect<T extends Object> extends YgDropdownField<T> {
 
   @override
   _YgDropdownFieldMultiSelectState<T> createState() => _YgDropdownFieldMultiSelectState<T>();
+}
+
+class _YgDropdownFieldMultiSelectState<T extends Object>
+    extends YgDropdownFieldState<T, _YgDropdownFieldMultiSelect<T>> {
+  @override
+  YgDynamicDropdownController<T> createController() {
+    return YgMultiSelectDropdownController(
+      initialValue: widget.initialValue,
+    );
+  }
 }
