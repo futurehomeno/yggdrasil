@@ -20,7 +20,6 @@ class YgDropdownMenuRoute<T extends Object> extends PopupRoute<Widget> {
     required this.rect,
   });
 
-  // ignore: avoid-dynamic
   final YgDynamicDropdownController<T> dropdownController;
   final List<YgDropdownEntry<T>> entries;
   final VoidCallback onClose;

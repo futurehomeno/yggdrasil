@@ -34,7 +34,10 @@ class _YgDropdownFieldMultiSelect<T extends Object> extends YgDropdownField<T> {
           onFocusChanged: onFocusChanged,
         );
 
+  /// The initial value of the dropdown field.
   final Set<T>? initialValue;
+
+  /// Called with the new value when the value has changed.
   final ValueChanged<Set<T>>? onChange;
 
   @override

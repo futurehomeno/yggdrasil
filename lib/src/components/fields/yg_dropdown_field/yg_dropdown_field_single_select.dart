@@ -36,7 +36,10 @@ class _YgDropdownFieldSingleSelect<T extends Object> extends YgDropdownField<T> 
           controller: controller,
         );
 
+  /// The initial value of the dropdown field.
   final T? initialValue;
+
+  /// Called with the new value when the value has changed.
   final ValueChanged<T?>? onChange;
 
   @override

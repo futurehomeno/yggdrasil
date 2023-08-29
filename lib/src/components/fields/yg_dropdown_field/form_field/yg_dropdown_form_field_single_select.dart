@@ -12,20 +12,18 @@ class YgDropdownFormFieldSingleSelect<T extends Object> extends YgDropdownFormFi
     this.error,
     this.minLines,
     this.placeholder,
-    this.validators,
     this.maxLines = 1,
     this.disabled = false,
     this.allowDeselect = false,
     this.variant = YgDropdownFieldVariant.standard,
     this.size = YgDropdownFieldSize.large,
     this.dropdownAction = YgDropdownAction.auto,
-    this.autoValidate = YgAutoValidate.disabled,
+    List<FormFieldValidator<T>>? validators,
+    YgAutoValidate autoValidate = YgAutoValidate.disabled,
   })  : enabled = !disabled,
         validator = YgValidateHelper.combineValidators(validators),
         autovalidateMode = YgValidateHelper.mapAutoValidate(autoValidate),
         super._(key: key);
-
-  // region Override
 
   @override
   final AutovalidateMode autovalidateMode;
@@ -68,22 +66,41 @@ class YgDropdownFormFieldSingleSelect<T extends Object> extends YgDropdownFormFi
   @override
   final FormFieldValidator<T>? validator;
 
-  // endregion
-
+  /// See [YgDropdownField.entries].
   final List<YgDropdownEntry<T>> entries;
+
+  /// See [YgDropdownField.entries].
   final String label;
+
+  /// See [YgDropdownField.entries].
   final YgDropdownFieldVariant variant;
+
+  /// See [YgDropdownField.entries].
   final YgDropdownFieldSize size;
+
+  /// See [YgDropdownField.entries].
   final FocusNode? focusNode;
+
+  /// See [YgDropdownField.entries].
   final String? error;
+
+  /// See [YgDropdownField.entries].
   final int? minLines;
+
+  /// See [YgDropdownField.entries].
   final String? placeholder;
+
+  /// See [YgDropdownField.entries].
   final int maxLines;
+
+  /// See [YgDropdownField.entries].
   final bool disabled;
+
+  /// See [YgDropdownField.entries].
   final bool allowDeselect;
+
+  /// See [YgDropdownField.entries].
   final YgDropdownAction dropdownAction;
-  final List<FormFieldValidator<T>>? validators;
-  final YgAutoValidate autoValidate;
 
   @override
   FormFieldState<T?> createState() {

@@ -12,6 +12,9 @@ part 'yg_dropdown_field_multi_select.dart';
 part 'yg_dropdown_field_single_select.dart';
 
 abstract class YgDropdownField<T extends Object> extends StatefulWidget {
+  /// factory constructor for a dropdown field with a single value.
+  ///
+  /// See [YgDropdownField] for the documentation of every argument.
   const factory YgDropdownField({
     Key key,
     required List<YgDropdownEntry<T>> entries,
@@ -31,6 +34,9 @@ abstract class YgDropdownField<T extends Object> extends StatefulWidget {
     ValueChanged<bool>? onFocusChanged,
   }) = _YgDropdownFieldSingleSelect<T>;
 
+  /// Factory contractor for a dropdown field with more than one value.
+  ///
+  /// See [YgDropdownField] for the documentation of every argument.
   const factory YgDropdownField.multiSelect({
     Key key,
     required List<YgDropdownEntry<T>> entries,
@@ -69,28 +75,106 @@ abstract class YgDropdownField<T extends Object> extends StatefulWidget {
     this.controller,
   });
 
+  /// The variant of the field.
   final YgDropdownFieldVariant variant;
+
+  /// The size of the field.
   final YgDropdownFieldSize size;
+
+  /// The dropdown entries.
+  ///
+  /// These will be rendered as either [YgListTile]s in a [YgBottomSheet] or as
+  /// menu entries.
   final List<YgDropdownEntry<T>> entries;
+
+  /// Controls the focus of the widget.
   final FocusNode? focusNode;
+
+  /// The error to display under the text field.
+  ///
+  /// Will change the styling of the widget to reflect the presence of the error.
+  /// Must be null when there is no error, an empty string is still seen as an
+  /// valid error.
   final String? error;
+
+  /// The label shown on top of the text field.
   final String label;
-  final int? minLines;
+
+  /// The placeholder shown in the text field.
+  ///
+  /// Gets replaced with the value entered by the user if the value is not empty.
   final String? placeholder;
+
+  /// The minimum number of lines to occupy when the content spans fewer lines.
+  ///
+  /// This affects the height of the field itself and does not limit the number
+  /// of values that can be selected at once.
+  ///
+  /// If this is null (default), text container starts with enough vertical space
+  /// for one line and grows to accommodate additional lines as they are entered.
+  ///
+  /// This can be used in combination with [maxLines] for a varying set of behaviors.
+  ///
+  /// If the value is set, it must be greater than zero. If the value is greater
+  /// than 1, [maxLines] should also be set to either null or greater than
+  /// this value.
+  ///
+  /// When [maxLines] is set as well, the height will grow between the indicated
+  /// range of lines. When [maxLines] is null, it will grow as high as needed,
+  /// starting from [minLines].
+  final int? minLines;
+
+  /// The maximum number of lines to show at one time, wrapping if necessary.
+  ///
+  /// This affects the height of the field itself and does not limit the number
+  /// of values that can be selected at once.
+  ///
+  /// If this is null, there is no limit to the number of lines, and the text
+  /// container will start with enough vertical space for one line and
+  /// automatically grow to accommodate additional lines as they are entered, up
+  /// to the height of its constraints.
+  ///
+  /// If this is not null, the value must be greater than zero, and it will lock
+  /// the text field to the given number of lines and take up enough horizontal space
+  /// to accommodate that number of lines. Setting [minLines] as well allows the
+  /// text field to grow and shrink between the indicated range.
   final int? maxLines;
+
+  /// Whether the text field is disabled.
+  ///
+  /// Applies styling for the disabled text text field. Also disables all interaction.
   final bool disabled;
+
+  /// Whether the value can be deselected by pressing it again.
   final bool allowDeselect;
+
+  /// The action that should be performed when the user presses the dropdown.
+  ///
+  /// By default checks the platform and will show a [YgBottomSheet] for mobile
+  /// devices and a menu for other devices.
   final YgDropdownAction dropdownAction;
+
+  /// Called when the widget gains or loses focus
   final ValueChanged<bool>? onFocusChanged;
+
+  /// Called when the user presses the dropdown.
   final VoidCallback? onPressed;
 
-  // Can safely ignore dynamic here because anywhere the controller is used
-  // the type is overwritten.
+  /// Controls the value of the dropdown and can open or close the dropdown.
+  ///
+  /// When defined will overwrite the [initialValue].
   final YgDynamicDropdownController<T>? controller;
 }
 
 abstract class YgDropdownFieldState<T extends Object, W extends YgDropdownField<T>> extends State<W> {
+  /// The current controller of the dropdown, either user specified or a default one.
   late YgDynamicDropdownController<T> _controller;
+
+  /// The current states of the dropdown.
+  late final FieldStates _states = <FieldState>{
+    if (widget.disabled) FieldState.disabled,
+    if (widget.error != null) FieldState.error,
+  };
 
   @override
   void initState() {
@@ -115,12 +199,15 @@ abstract class YgDropdownFieldState<T extends Object, W extends YgDropdownField<
     super.didUpdateWidget(oldWidget);
   }
 
-  late final FieldStates _states = <FieldState>{
-    if (widget.disabled) FieldState.disabled,
-    if (widget.error != null) FieldState.error,
-  };
-
-  bool _opened = false;
+  @override
+  void dispose() {
+    _controller.removeListener(_controllerListener);
+    _controller.detach();
+    if (widget.controller == null) {
+      _controller.dispose();
+    }
+    super.dispose();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -185,46 +272,8 @@ abstract class YgDropdownFieldState<T extends Object, W extends YgDropdownField<
     );
   }
 
-  @override
-  void dispose() {
-    _controller.removeListener(_controllerListener);
-    _controller.detach();
-    if (widget.controller == null) {
-      _controller.dispose();
-    }
-    super.dispose();
-  }
-
-  void _onFocusChanged(bool focused) {
-    widget.onFocusChanged?.call(focused);
-    _updateFieldState(FieldState.focused, focused);
-  }
-
-  void _updateFieldState(FieldState state, bool toggled) {
-    final bool isToggled = _states.contains(state);
-    if (isToggled != toggled) {
-      if (toggled) {
-        _states.add(state);
-      } else {
-        _states.remove(state);
-      }
-      setState(() {});
-    }
-  }
-
-  void _updateController(YgDynamicDropdownController<T> controller) {
-    _controller.removeListener(_controllerListener);
-    _controller.detach();
-    _controller = controller;
-    _controller.addListener(_controllerListener);
-    _controller.attach(this);
-  }
-
-  void _controllerListener() {
-    _updateFieldState(FieldState.filled, _controller.filled);
-  }
-
-  // region Menu
+  /// Creates a default controller to be used if there is no user specified one.
+  YgDynamicDropdownController<T> createController();
 
   void openMenu() {
     final RenderBox itemBox = context.findRenderObject()! as RenderBox;
@@ -278,6 +327,10 @@ abstract class YgDropdownFieldState<T extends Object, W extends YgDropdownField<
     _onClosed();
   }
 
+  bool get isOpen {
+    return _states.opened;
+  }
+
   void _onClosed() => _updateFieldState(FieldState.opened, false);
 
   void _performPlatformAction() {
@@ -288,10 +341,32 @@ abstract class YgDropdownFieldState<T extends Object, W extends YgDropdownField<
     }
   }
 
-  bool get isOpen {
-    return _states.opened;
+  void _onFocusChanged(bool focused) {
+    widget.onFocusChanged?.call(focused);
+    _updateFieldState(FieldState.focused, focused);
   }
 
-  // endregion
-  YgDynamicDropdownController<T> createController();
+  void _updateFieldState(FieldState state, bool toggled) {
+    final bool isToggled = _states.contains(state);
+    if (isToggled != toggled) {
+      if (toggled) {
+        _states.add(state);
+      } else {
+        _states.remove(state);
+      }
+      setState(() {});
+    }
+  }
+
+  void _updateController(YgDynamicDropdownController<T> controller) {
+    _controller.removeListener(_controllerListener);
+    _controller.detach();
+    _controller = controller;
+    _controller.addListener(_controllerListener);
+    _controller.attach(this);
+  }
+
+  void _controllerListener() {
+    _updateFieldState(FieldState.filled, _controller.filled);
+  }
 }
