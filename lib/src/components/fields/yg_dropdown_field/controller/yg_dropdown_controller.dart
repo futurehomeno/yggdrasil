@@ -94,4 +94,17 @@ abstract class YgDropdownController<T extends Object, V> extends ValueNotifier<V
 
     field.close();
   }
+
+  bool get isOpen {
+    final field = _field;
+    assert(
+      field != null,
+      'YgDropdownController.opened was accessed while the controller was not attached to a dropdown!',
+    );
+    if (field == null) {
+      return false;
+    }
+
+    return field.isOpen;
+  }
 }

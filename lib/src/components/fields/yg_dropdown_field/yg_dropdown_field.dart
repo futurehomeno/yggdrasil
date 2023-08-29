@@ -289,7 +289,7 @@ abstract class YgDropdownFieldState<T extends Object, W extends YgDropdownField<
   }
 
   bool get isOpen {
-    return _opened;
+    return _states.opened;
   }
 
   // endregion
