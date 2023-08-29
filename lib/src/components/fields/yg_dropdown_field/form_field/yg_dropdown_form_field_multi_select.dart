@@ -4,25 +4,29 @@ part of 'yg_dropdown_form_field.dart';
 
 class YgDropdownFormFieldMultiSelect<T extends Object> extends YgDropdownFormField<T> implements FormField<Set<T>> {
   YgDropdownFormFieldMultiSelect({
-    required FormFieldKey<T> key,
-    required this.entries,
-    required this.label,
-    this.focusNode,
+    required this.key,
+    required super.entries,
+    required super.label,
+    super.focusNode,
+    super.error,
+    super.minLines,
+    super.placeholder,
+    super.maxLines = null,
+    super.disabled = false,
+    super.allowDeselect = false,
+    super.variant = YgDropdownFieldVariant.standard,
+    super.size = YgDropdownFieldSize.large,
+    super.dropdownAction = YgDropdownAction.auto,
+    super.autoValidate = YgAutoValidate.disabled,
+    super.completeAction = YgCompleteAction.unfocus,
+    super.onFocusChanged,
+    super.onPressed,
     this.initialValue,
-    this.error,
-    this.minLines,
-    this.placeholder,
-    this.maxLines = 1,
-    this.disabled = false,
-    this.allowDeselect = false,
-    this.variant = YgDropdownFieldVariant.standard,
-    this.size = YgDropdownFieldSize.large,
-    this.dropdownAction = YgDropdownAction.auto,
+    this.controller,
     List<FormFieldValidator<Set<T>>>? validators,
-    YgAutoValidate autoValidate = YgAutoValidate.disabled,
-  })  : enabled = !disabled,
-        validator = YgValidateHelper.combineValidators(validators),
+  })  : validator = YgValidateHelper.combineValidators(validators),
         autovalidateMode = YgValidateHelper.mapAutoValidate(autoValidate),
+        onSaved = null,
         super._(key: key);
 
   @override
@@ -30,6 +34,14 @@ class YgDropdownFormFieldMultiSelect<T extends Object> extends YgDropdownFormFie
 
   @override
   late final FormFieldBuilder<Set<T>?> builder = (FormFieldState<Set<T>?> field) {
+    final YgValidateHelper helper = YgValidateHelper<T>(
+      key: key,
+      autoValidate: autoValidate,
+      onFocusChanged: onFocusChanged,
+      completeAction: completeAction,
+      onEditingComplete: null,
+    );
+
     return UnmanagedRestorationScope(
       bucket: field.bucket,
       child: YgDropdownField<T>.multiSelect(
@@ -47,60 +59,24 @@ class YgDropdownFormFieldMultiSelect<T extends Object> extends YgDropdownFormFie
         allowDeselect: allowDeselect,
         dropdownAction: dropdownAction,
         onChange: field.didChange,
+        controller: controller,
+        onFocusChanged: helper.onFocusChanged,
+        onPressed: onPressed,
       ),
     );
   };
 
   @override
-  final bool enabled;
-
-  @override
   final Set<T>? initialValue;
-
-  @override
-  final FormFieldSetter<Set<T>>? onSaved = null;
-
-  @override
-  final String? restorationId = null;
 
   @override
   final FormFieldValidator<Set<T>>? validator;
 
-  /// See [YgDropdownField.entries].
-  final List<YgDropdownEntry<T>> entries;
+  final YgMultiSelectDropdownController<T>? controller;
 
-  /// See [YgDropdownField.entries].
-  final String label;
+  final FormFieldSetter<Set<T>>? onSaved;
 
-  /// See [YgDropdownField.entries].
-  final YgDropdownFieldVariant variant;
-
-  /// See [YgDropdownField.entries].
-  final YgDropdownFieldSize size;
-
-  /// See [YgDropdownField.entries].
-  final FocusNode? focusNode;
-
-  /// See [YgDropdownField.entries].
-  final String? error;
-
-  /// See [YgDropdownField.entries].
-  final int? minLines;
-
-  /// See [YgDropdownField.entries].
-  final String? placeholder;
-
-  /// See [YgDropdownField.entries].
-  final int maxLines;
-
-  /// See [YgDropdownField.entries].
-  final bool disabled;
-
-  /// See [YgDropdownField.entries].
-  final bool allowDeselect;
-
-  /// See [YgDropdownField.entries].
-  final YgDropdownAction dropdownAction;
+  final FormFieldKey<T> key;
 
   @override
   FormFieldState<Set<T>> createState() {

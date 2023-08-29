@@ -16,44 +16,48 @@ abstract class YgDropdownField<T extends Object> extends StatefulWidget {
   ///
   /// See [YgDropdownField] for the documentation of every argument.
   const factory YgDropdownField({
-    Key key,
+    bool allowDeselect,
+    YgSingleSelectDropdownController<T>? controller,
+    bool disabled,
+    YgDropdownAction dropdownAction,
     required List<YgDropdownEntry<T>> entries,
-    required String label,
-    YgDropdownFieldVariant variant,
-    YgDropdownFieldSize size,
+    String? error,
     FocusNode? focusNode,
     T? initialValue,
-    String? error,
+    Key? key,
+    required String label,
+    int? maxLines,
     int? minLines,
-    String? placeholder,
-    int maxLines,
-    bool disabled,
-    bool allowDeselect,
-    YgDropdownAction dropdownAction,
     ValueChanged<T?>? onChange,
     ValueChanged<bool>? onFocusChanged,
+    VoidCallback? onPressed,
+    String? placeholder,
+    YgDropdownFieldSize size,
+    YgDropdownFieldVariant variant,
   }) = _YgDropdownFieldSingleSelect<T>;
 
   /// Factory contractor for a dropdown field with more than one value.
   ///
   /// See [YgDropdownField] for the documentation of every argument.
   const factory YgDropdownField.multiSelect({
-    Key key,
+    bool allowDeselect,
+    YgMultiSelectDropdownController<T>? controller,
+    bool disabled,
+    YgDropdownAction dropdownAction,
     required List<YgDropdownEntry<T>> entries,
-    required String label,
-    YgDropdownFieldVariant variant,
-    YgDropdownFieldSize size,
+    String? error,
     FocusNode? focusNode,
     Set<T>? initialValue,
-    String? error,
+    Key? key,
+    required String label,
+    int? maxLines,
     int? minLines,
-    String? placeholder,
-    int maxLines,
-    bool disabled,
-    bool allowDeselect,
-    YgDropdownAction dropdownAction,
     ValueChanged<Set<T>>? onChange,
     ValueChanged<bool>? onFocusChanged,
+    VoidCallback? onPressed,
+    String? placeholder,
+    YgDropdownFieldSize size,
+    YgDropdownFieldVariant variant,
   }) = _YgDropdownFieldMultiSelect<T>;
 
   const YgDropdownField._({
