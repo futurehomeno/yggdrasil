@@ -359,6 +359,7 @@ class _YgTextFieldState extends State<YgTextField> {
   late final FieldStates _states = <FieldState>{
     if (widget.error != null) FieldState.error,
     if (widget.disabled) FieldState.disabled,
+    if (_controller.text.isNotEmpty == true) FieldState.filled,
   };
 
   /// Whether to hide the obscured text or not.

@@ -1,6 +1,6 @@
 part of 'yg_dropdown_menu_route.dart';
 
-class _YgDropdownMenu<T extends Object> extends StatelessWidget {
+class _YgDropdownMenu<T extends Object> extends StatelessWidget with StatelessWidgetDebugMixin {
   const _YgDropdownMenu({
     super.key,
     required this.entries,
@@ -24,39 +24,42 @@ class _YgDropdownMenu<T extends Object> extends StatelessWidget {
         borderRadius: const BorderRadius.all(Radius.circular(10)),
         child: YgScrollShadow.builder(
           builder: (BuildContext context, ScrollController scrollController) {
-            return CustomScrollView(
+            return SingleChildScrollView(
               controller: scrollController,
-              slivers: <Widget>[
-                SliverPadding(
-                  padding: const EdgeInsets.all(5.0),
-                  sliver: SliverList(
-                    delegate: SliverChildBuilderDelegate(
-                      (BuildContext context, int index) {
-                        final YgDropdownEntry<T> entry = entries[index];
-
-                        return ListenableBuilder(
-                          listenable: controller,
-                          builder: (context, child) {
-                            return YgDropdownMenuItem(
-                              icon: entry.icon,
-                              selected: controller.isEntrySelected(entry),
-                              subtitle: entry.subtitle,
-                              title: entry.title,
-                              onPressed: () => _onEntryTapped(entry),
-                            );
-                          },
-                        );
-                      },
-                      childCount: entries.length,
-                    ),
-                  ),
+              child: Padding(
+                padding: const EdgeInsets.all(10.0),
+                child: ListenableBuilder(
+                  listenable: controller,
+                  builder: (context, child) {
+                    return Column(
+                      children: _buildEntries(),
+                    );
+                  },
                 ),
-              ],
+              ),
             );
           },
         ),
       ),
     );
+  }
+
+  List<Widget> _buildEntries() {
+    final List<Widget> widgets = <Widget>[];
+
+    for (final YgDropdownEntry<T> entry in entries) {
+      widgets.add(
+        YgDropdownMenuItem(
+          icon: entry.icon,
+          selected: controller.isEntrySelected(entry),
+          subtitle: entry.subtitle,
+          title: entry.title,
+          onPressed: () => _onEntryTapped(entry),
+        ),
+      );
+    }
+
+    return widgets;
   }
 
   void _onEntryTapped(YgDropdownEntry<T> value) {

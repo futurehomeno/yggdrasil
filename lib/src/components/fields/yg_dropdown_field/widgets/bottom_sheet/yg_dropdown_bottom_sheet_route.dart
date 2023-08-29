@@ -58,7 +58,7 @@ class YgDropdownBottomSheetRoute<T extends Object> extends YgBottomSheetModalRou
                 YgIcons.check,
               ),
           ],
-          onTap: () => _handleNewValue(entry),
+          onTap: () => _onEntryTapped(entry),
         ),
       );
     }
@@ -66,7 +66,7 @@ class YgDropdownBottomSheetRoute<T extends Object> extends YgBottomSheetModalRou
     return widgets;
   }
 
-  void _handleNewValue(YgDropdownEntry<T> value) {
+  void _onEntryTapped(YgDropdownEntry<T> value) {
     dropdownController.onEntryTapped(value);
   }
 }

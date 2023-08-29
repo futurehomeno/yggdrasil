@@ -31,32 +31,28 @@ class DropdownFieldScreen extends StatelessWidget {
               allowDeselect: true,
               label: 'Single select',
               dropdownAction: YgDropdownAction.menu,
-              entries: List<YgDropdownEntry<String>>.generate(
-                20,
-                (int index) => YgDropdownEntry<String>(
-                  icon: YgIcon(YgIcons.allIconPaths[index]),
-                  subtitle: 'Subtitle of value $index',
-                  title: 'Value $index',
-                  value: 'value$index',
-                ),
-              ),
+              entries: _generateEntries(4),
             ),
             YgDropdownField<String>.multiSelect(
               allowDeselect: true,
               label: 'Multi select',
               dropdownAction: YgDropdownAction.menu,
-              entries: List<YgDropdownEntry<String>>.generate(
-                20,
-                (int index) => YgDropdownEntry<String>(
-                  icon: YgIcon(YgIcons.allIconPaths[index]),
-                  subtitle: 'Subtitle of value $index',
-                  title: 'Value $index',
-                  value: 'value$index',
-                ),
-              ),
+              entries: _generateEntries(4),
             ),
           ].withVerticalSpacing(15),
         ),
+      ),
+    );
+  }
+
+  List<YgDropdownEntry<String>> _generateEntries(int amount) {
+    return List<YgDropdownEntry<String>>.generate(
+      amount,
+      (int index) => YgDropdownEntry<String>(
+        icon: YgIcon(YgIcons.allIconPaths[index]),
+        subtitle: 'Subtitle of value $index',
+        title: 'Value $index',
+        value: 'value$index',
       ),
     );
   }

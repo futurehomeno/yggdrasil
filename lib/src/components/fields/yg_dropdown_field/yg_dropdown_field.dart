@@ -11,7 +11,7 @@ import 'widgets/_widgets.dart';
 part 'yg_dropdown_field_multi_select.dart';
 part 'yg_dropdown_field_single_select.dart';
 
-abstract class YgDropdownField<T extends Object> extends StatefulWidget {
+abstract class YgDropdownField<T extends Object> extends StatefulWidget with StatefulWidgetDebugMixin {
   /// factory constructor for a dropdown field with a single value.
   ///
   /// See [YgDropdownField] for the documentation of every argument.

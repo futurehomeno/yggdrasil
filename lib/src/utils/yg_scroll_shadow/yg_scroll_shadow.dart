@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:yggdrasil/src/theme/_theme.dart';
 
+part 'yg_scroll_shadow_builder.dart';
+part 'yg_scroll_shadow_child.dart';
+
 typedef WidgetWithScrollBuilder = Widget Function(BuildContext context, ScrollController controller);
 
 /// Applies a shadow at the top or bottom of a scroll view.
@@ -29,38 +32,6 @@ abstract class YgScrollShadow extends StatefulWidget {
   State<YgScrollShadow> createState() => _YgScrollShadowState();
 }
 
-class _YgScrollShadowChild extends YgScrollShadow {
-  const _YgScrollShadowChild({
-    Key? key,
-    required this.child,
-    required ScrollController controller,
-  }) : super._(
-          controller: controller,
-          key: key,
-        );
-
-  final Widget child;
-
-  @override
-  Widget builder(BuildContext context, ScrollController controller) {
-    return child;
-  }
-}
-
-class _YgScrollShadowBuilder extends YgScrollShadow {
-  const _YgScrollShadowBuilder({
-    required WidgetWithScrollBuilder builder,
-  })  : _builder = builder,
-        super._();
-
-  final WidgetWithScrollBuilder _builder;
-
-  @override
-  Widget builder(BuildContext context, ScrollController controller) {
-    return _builder(context, controller);
-  }
-}
-
 class _YgScrollShadowState extends State<YgScrollShadow> {
   bool _showBottomShadow = false;
   bool _showTopShadow = false;
@@ -78,6 +49,8 @@ class _YgScrollShadowState extends State<YgScrollShadow> {
 
     final bool newShowBottomShadow = position.extentAfter != 0;
     final bool newShowTopShadow = position.extentBefore != 0;
+
+    print([position.extentAfter, position.extentBefore]);
 
     if ((_showBottomShadow != newShowBottomShadow) || (_showTopShadow != newShowTopShadow)) {
       _showBottomShadow = newShowBottomShadow;
