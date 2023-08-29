@@ -12,7 +12,6 @@ class YgDropdownFormFieldMultiSelect<T extends Object> extends YgDropdownFormFie
     this.error,
     this.minLines,
     this.placeholder,
-    this.onChange,
     this.validators,
     this.maxLines = 1,
     this.disabled = false,
@@ -49,7 +48,7 @@ class YgDropdownFormFieldMultiSelect<T extends Object> extends YgDropdownFormFie
         disabled: disabled,
         allowDeselect: allowDeselect,
         dropdownAction: dropdownAction,
-        onChange: onChange,
+        onChange: field.didChange,
       ),
     );
   };
@@ -83,7 +82,6 @@ class YgDropdownFormFieldMultiSelect<T extends Object> extends YgDropdownFormFie
   final bool disabled;
   final bool allowDeselect;
   final YgDropdownAction dropdownAction;
-  final ValueChanged<Set<T>>? onChange;
   final List<FormFieldValidator<Set<T>>>? validators;
   final YgAutoValidate autoValidate;
 

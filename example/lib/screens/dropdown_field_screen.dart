@@ -30,6 +30,7 @@ class DropdownFieldScreen extends StatelessWidget {
             YgDropdownField<String>(
               allowDeselect: true,
               label: 'Single select',
+              dropdownAction: YgDropdownAction.menu,
               entries: List<YgDropdownEntry<String>>.generate(
                 20,
                 (int index) => YgDropdownEntry<String>(
@@ -43,6 +44,7 @@ class DropdownFieldScreen extends StatelessWidget {
             YgDropdownField<String>.multiSelect(
               allowDeselect: true,
               label: 'Multi select',
+              dropdownAction: YgDropdownAction.menu,
               entries: List<YgDropdownEntry<String>>.generate(
                 20,
                 (int index) => YgDropdownEntry<String>(

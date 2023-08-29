@@ -30,7 +30,7 @@ abstract class YgDropdownController<T extends Object, V> extends ValueNotifier<V
 
   void attach(YgDropdownFieldState field) {
     assert(
-      _field != null && _field != field,
+      _field == null || _field == field,
       'Can not attach controller to multiple dropdowns.',
     );
     if (_field != null && _field != field) {

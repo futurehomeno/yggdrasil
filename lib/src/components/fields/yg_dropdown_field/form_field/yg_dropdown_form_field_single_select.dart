@@ -12,7 +12,6 @@ class YgDropdownFormFieldSingleSelect<T extends Object> extends YgDropdownFormFi
     this.error,
     this.minLines,
     this.placeholder,
-    this.onChange,
     this.validators,
     this.maxLines = 1,
     this.disabled = false,
@@ -49,7 +48,7 @@ class YgDropdownFormFieldSingleSelect<T extends Object> extends YgDropdownFormFi
         disabled: disabled,
         allowDeselect: allowDeselect,
         dropdownAction: dropdownAction,
-        onChange: onChange,
+        onChange: field.didChange,
       ),
     );
   };
@@ -83,7 +82,6 @@ class YgDropdownFormFieldSingleSelect<T extends Object> extends YgDropdownFormFi
   final bool disabled;
   final bool allowDeselect;
   final YgDropdownAction dropdownAction;
-  final ValueChanged<T?>? onChange;
   final List<FormFieldValidator<T>>? validators;
   final YgAutoValidate autoValidate;
 

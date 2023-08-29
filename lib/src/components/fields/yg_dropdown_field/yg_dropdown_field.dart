@@ -90,7 +90,16 @@ abstract class YgDropdownField<T extends Object> extends StatefulWidget {
 }
 
 abstract class YgDropdownFieldState<T extends Object, W extends YgDropdownField<T>> extends State<W> {
-  late YgDynamicDropdownController<T> _controller = widget.controller ?? createController();
+  late YgDynamicDropdownController<T> _controller;
+
+  @override
+  void initState() {
+    super.initState();
+
+    _controller = widget.controller ?? createController();
+    _controller.addListener(_controllerListener);
+    _controller.attach(this);
+  }
 
   @override
   void didUpdateWidget(covariant W oldWidget) {
@@ -179,6 +188,7 @@ abstract class YgDropdownFieldState<T extends Object, W extends YgDropdownField<
   @override
   void dispose() {
     _controller.removeListener(_controllerListener);
+    _controller.detach();
     if (widget.controller == null) {
       _controller.dispose();
     }
@@ -204,29 +214,48 @@ abstract class YgDropdownFieldState<T extends Object, W extends YgDropdownField<
 
   void _updateController(YgDynamicDropdownController<T> controller) {
     _controller.removeListener(_controllerListener);
+    _controller.detach();
     _controller = controller;
     _controller.addListener(_controllerListener);
+    _controller.attach(this);
   }
 
   void _controllerListener() {
     _updateFieldState(FieldState.filled, _controller.filled);
   }
 
-  Rect get rect {
-    final RenderBox itemBox = context.findRenderObject()! as RenderBox;
+  // region Menu
 
-    return itemBox.localToGlobal(
+  void openMenu() {
+    final RenderBox itemBox = context.findRenderObject()! as RenderBox;
+    final Rect itemRect = itemBox.localToGlobal(
           Offset.zero,
           ancestor: Navigator.of(context).context.findRenderObject(),
         ) &
         itemBox.size;
+
+    Navigator.of(context).push(
+      YgDropdownMenuRoute<T>(
+        entries: widget.entries,
+        dropdownController: _controller,
+        rect: itemRect,
+        onClose: _onClosed,
+      ),
+    );
+    _updateFieldState(FieldState.opened, true);
   }
 
-  // region Menu
-
-  void openMenu() {}
-
-  void openBottomSheet() {}
+  void openBottomSheet() {
+    Navigator.of(context).push(
+      YgDropdownBottomSheetRoute<T>(
+        entries: widget.entries,
+        label: widget.label,
+        dropdownController: _controller,
+        onClose: _onClosed,
+      ),
+    );
+    _updateFieldState(FieldState.opened, true);
+  }
 
   void open() {
     switch (widget.dropdownAction) {
@@ -246,9 +275,10 @@ abstract class YgDropdownFieldState<T extends Object, W extends YgDropdownField<
       context,
       (Route route) => route is! YgDropdownMenuRoute && route is! YgDropdownBottomSheetRoute,
     );
-    _opened = false;
-    setState(() {});
+    _onClosed();
   }
+
+  void _onClosed() => _updateFieldState(FieldState.opened, false);
 
   void _performPlatformAction() {
     if (Platform.isAndroid || Platform.isIOS) {

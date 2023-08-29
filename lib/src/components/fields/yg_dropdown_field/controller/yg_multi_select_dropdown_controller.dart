@@ -34,9 +34,11 @@ class YgMultiSelectDropdownController<T extends Object> extends YgDropdownContro
     if (value.contains(entry.value)) {
       if (field.widget.allowDeselect) {
         value.remove(entry.value);
+        notifyListeners();
       }
     } else {
       value.add(entry.value);
+      notifyListeners();
     }
   }
 
