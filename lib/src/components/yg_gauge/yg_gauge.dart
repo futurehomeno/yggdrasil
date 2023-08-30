@@ -24,7 +24,8 @@ class YgGauge extends StatefulWidget with StatefulWidgetDebugMixin {
   })  : assert(title == null || buildTitle == null, 'title and buildTitle can not be both defined.'),
         assert(minValue <= maxValue, 'minValue must be less than or equal to maxValue'),
         assert(icon == null || notation == null, 'Cannot have both icon and notation'),
-        assert(title == null || label == null || icon == null, 'Cannot have both title and label or icon');
+        assert(title == null || label == null || icon == null, 'Cannot have both title and label or icon'),
+        assert(value == null || (value <= maxValue && value >= minValue));
 
   /// Current value of the gauge.
   ///
