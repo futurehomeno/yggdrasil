@@ -257,8 +257,8 @@ class _GaugeScreenState extends State<GaugeScreen> {
               width: 200.0,
               child: YgGauge(
                 value: 0.5,
-                title: '200x200',
-                label: '200x200',
+                title: '100x200',
+                label: '100x200',
               ),
             ),
           ),
@@ -269,8 +269,8 @@ class _GaugeScreenState extends State<GaugeScreen> {
               width: 100.0,
               child: YgGauge(
                 value: 0.5,
-                title: '200x200',
-                label: '200x200',
+                title: '200x100',
+                label: '200x100',
               ),
             ),
           ),
