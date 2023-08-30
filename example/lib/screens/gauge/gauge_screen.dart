@@ -250,6 +250,30 @@ class _GaugeScreenState extends State<GaugeScreen> {
               ),
             ],
           ),
+          const YgSection.base(
+            title: 'Gauge in a 100x200 container',
+            child: SizedBox(
+              height: 100.0,
+              width: 200.0,
+              child: YgGauge(
+                value: 0.5,
+                title: '200x200',
+                label: '200x200',
+              ),
+            ),
+          ),
+          const YgSection.base(
+            title: 'Gauge in a 200x100 container',
+            child: SizedBox(
+              height: 200.0,
+              width: 100.0,
+              child: YgGauge(
+                value: 0.5,
+                title: '200x200',
+                label: '200x200',
+              ),
+            ),
+          ),
         ],
       ),
     );

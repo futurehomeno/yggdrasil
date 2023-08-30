@@ -100,21 +100,23 @@ class _YgGaugeState extends State<YgGauge> with TickerProviderStateMixin {
   @override
   Widget build(BuildContext context) {
     return RepaintBoundary(
-      child: AspectRatio(
-        aspectRatio: 1.0,
-        child: LayoutBuilder(
-          builder: (BuildContext context, BoxConstraints constraints) {
-            return CustomPaint(
-              painter: _YgGaugePainter(
-                minValue: widget.minValue,
-                maxValue: widget.maxValue,
-                gradient: _getDefaultGradient(context),
-                trackColor: _getDefaultTrackColor(context),
-                animation: _animation,
-              ),
-              child: _buildContent(context, constraints),
-            );
-          },
+      child: Center(
+        child: AspectRatio(
+          aspectRatio: 1.0,
+          child: LayoutBuilder(
+            builder: (BuildContext context, BoxConstraints constraints) {
+              return CustomPaint(
+                painter: _YgGaugePainter(
+                  minValue: widget.minValue,
+                  maxValue: widget.maxValue,
+                  gradient: _getDefaultGradient(context),
+                  trackColor: _getDefaultTrackColor(context),
+                  animation: _animation,
+                ),
+                child: _buildContent(context, constraints),
+              );
+            },
+          ),
         ),
       ),
     );
