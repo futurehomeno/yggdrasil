@@ -1,4 +1,4 @@
-part of 'yg_dropdown_field.dart';
+part of '../yg_dropdown_field.dart';
 
 class _YgDropdownFieldSingleSelect<T extends Object> extends YgDropdownField<T> {
   const _YgDropdownFieldSingleSelect({

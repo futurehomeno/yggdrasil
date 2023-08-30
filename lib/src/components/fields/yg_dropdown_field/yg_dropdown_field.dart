@@ -2,14 +2,23 @@ import 'dart:io';
 
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:yggdrasil/src/components/fields/enums/field_state.dart';
 import 'package:yggdrasil/yggdrasil.dart';
 
+import '../enums/_enums.dart';
+import '../helpers/yg_validate_helper.dart';
 import '../widgets/_widgets.dart';
 import 'widgets/_widgets.dart';
 
-part 'yg_dropdown_field_multi_select.dart';
-part 'yg_dropdown_field_single_select.dart';
+// This is really not ideal, but this is the only way to prevent us from
+// polluting the exports with classes that really should be private.
+part 'multi_select/yg_dropdown_field_multi_select.dart';
+part 'multi_select/yg_dropdown_form_field_multi_select.dart';
+part 'multi_select/yg_multi_select_dropdown_controller.dart';
+part 'single_select/yg_dropdown_field_single_select.dart';
+part 'single_select/yg_dropdown_form_field_single_select.dart';
+part 'single_select/yg_single_select_dropdown_controller.dart';
+part 'yg_dropdown_controller.dart';
+part 'yg_dropdown_form_field.dart';
 
 abstract class YgDropdownField<T extends Object> extends StatefulWidget with StatefulWidgetDebugMixin {
   /// factory constructor for a dropdown field with a single value.

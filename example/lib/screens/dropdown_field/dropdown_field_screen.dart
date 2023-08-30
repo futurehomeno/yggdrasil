@@ -22,7 +22,14 @@ class DropdownFieldScreen extends StatefulWidget {
 class _DropdownFieldScreenState extends State<DropdownFieldScreen> {
   final FormFieldKey<String> _singleSelectKey = FormFieldKey<String>();
   final MultiSelectKey<String> _multiSelectKey = MultiSelectKey<String>();
+  final YgMultiSelectDropdownController<String> _controller = YgMultiSelectDropdownController<String>();
   final FormKey _formKey = FormKey();
+
+  @override
+  void dispose() {
+    _controller.dispose();
+    super.dispose();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -108,6 +115,28 @@ class _DropdownFieldScreenState extends State<DropdownFieldScreen> {
                 YgButton(
                   onPressed: _onSubmit,
                   child: const Text('Submit'),
+                ),
+              ].withVerticalSpacing(15),
+            ),
+            YgSection.column(
+              title: 'Custom controller',
+              children: <Widget>[
+                YgDropdownField<String>.multiSelect(
+                  entries: _generateEntries(4),
+                  label: 'Custom controller',
+                  controller: _controller,
+                ),
+                YgButton(
+                  onPressed: () => _controller.add('value1'),
+                  child: const Text('Add Value 1'),
+                ),
+                YgButton(
+                  onPressed: () => _controller.clear(),
+                  child: const Text('Clear selected values'),
+                ),
+                YgButton(
+                  onPressed: () => _controller.openMenu(),
+                  child: const Text('Open dropdown menu'),
                 ),
               ].withVerticalSpacing(15),
             ),

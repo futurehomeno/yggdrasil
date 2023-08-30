@@ -1,17 +1,15 @@
-// ignore_for_file: avoid-stateless-widget-initialized-fields
+part of '../yg_dropdown_field.dart';
 
-part of 'yg_dropdown_form_field.dart';
-
-class YgDropdownFormFieldSingleSelect<T extends Object> extends YgDropdownFormField<T> implements FormField<T?> {
-  YgDropdownFormFieldSingleSelect({
-    required FormFieldKey<T> key,
+class YgDropdownFormFieldMultiSelect<T extends Object> extends YgDropdownFormField<T> implements FormField<Set<T>> {
+  YgDropdownFormFieldMultiSelect({
+    required MultiSelectKey<T> key,
     required super.entries,
     required super.label,
     super.focusNode,
     super.error,
     super.minLines,
     super.placeholder,
-    super.maxLines = 1,
+    super.maxLines,
     super.disabled = false,
     super.allowDeselect = false,
     super.variant = YgDropdownFieldVariant.standard,
@@ -23,17 +21,17 @@ class YgDropdownFormFieldSingleSelect<T extends Object> extends YgDropdownFormFi
     super.onPressed,
     this.initialValue,
     this.controller,
-    List<FormFieldValidator<T>>? validators,
-  })  : onSaved = null,
-        validator = YgValidateHelper.combineValidators(validators),
+    List<FormFieldValidator<Set<T>>>? validators,
+  })  : validator = YgValidateHelper.combineValidators(validators),
         autovalidateMode = YgValidateHelper.mapAutoValidate(autoValidate),
+        onSaved = null,
         _key = key,
         super._(
           key: key,
         );
 
-  Widget _builder(FormFieldState<T?> field) {
-    final YgValidateHelper<T> helper = YgValidateHelper<T>(
+  Widget _builder(FormFieldState<Set<T>?> field) {
+    final YgValidateHelper<Set<T>> helper = YgValidateHelper<Set<T>>(
       key: _key,
       autoValidate: autoValidate,
       onFocusChanged: onFocusChanged,
@@ -43,7 +41,7 @@ class YgDropdownFormFieldSingleSelect<T extends Object> extends YgDropdownFormFi
 
     return UnmanagedRestorationScope(
       bucket: field.bucket,
-      child: YgDropdownField<T>(
+      child: YgDropdownField<T>.multiSelect(
         entries: entries,
         label: label,
         variant: variant,
@@ -66,26 +64,27 @@ class YgDropdownFormFieldSingleSelect<T extends Object> extends YgDropdownFormFi
   }
 
   @override
-  late final FormFieldBuilder<T?> builder = _builder;
+  // ignore: avoid-stateless-widget-initialized-fields
+  late final FormFieldBuilder<Set<T>?> builder = _builder;
 
   @override
   final AutovalidateMode autovalidateMode;
 
   @override
-  final T? initialValue;
+  final Set<T>? initialValue;
 
   @override
-  final FormFieldValidator<T>? validator;
+  final FormFieldValidator<Set<T>>? validator;
 
-  final YgSingleSelectDropdownController<T>? controller;
-
-  @override
-  final FormFieldSetter<T?>? onSaved;
-
-  final FormFieldKey<T> _key;
+  final YgMultiSelectDropdownController<T>? controller;
 
   @override
-  FormFieldState<T?> createState() {
-    return FormFieldState<T?>();
+  final FormFieldSetter<Set<T>>? onSaved;
+
+  final MultiSelectKey<T> _key;
+
+  @override
+  FormFieldState<Set<T>> createState() {
+    return FormFieldState<Set<T>>();
   }
 }

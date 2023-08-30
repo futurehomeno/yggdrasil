@@ -1,4 +1,4 @@
-part of 'yg_dropdown_controller.dart';
+part of '../yg_dropdown_field.dart';
 
 class YgSingleSelectDropdownController<T extends Object> extends YgDropdownController<T, T?> {
   YgSingleSelectDropdownController({
@@ -41,6 +41,10 @@ class YgSingleSelectDropdownController<T extends Object> extends YgDropdownContr
       value = entry.value;
 
       close();
+    }
+
+    if (field is _YgDropdownFieldSingleSelectState<T>) {
+      field.widget.onChange?.call(value);
     }
   }
 

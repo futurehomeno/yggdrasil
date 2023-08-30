@@ -1,8 +1,4 @@
-import 'package:flutter/material.dart';
-import 'package:yggdrasil/yggdrasil.dart';
-
-part 'yg_multi_select_dropdown_controller.dart';
-part 'yg_single_select_dropdown_controller.dart';
+part of 'yg_dropdown_field.dart';
 
 /// We sometimes need to be able to accept a dropdown controller without knowing
 /// the value type
@@ -43,7 +39,7 @@ abstract class YgDropdownController<T extends Object, V> extends ValueNotifier<V
     _field = null;
   }
 
-  void openMenu(BuildContext context) {
+  void openMenu() {
     final YgDropdownFieldState<T, YgDropdownField<T>>? field = _field;
     assert(
       field != null,

@@ -1,4 +1,4 @@
-part of 'yg_dropdown_controller.dart';
+part of '../yg_dropdown_field.dart';
 
 class YgMultiSelectDropdownController<T extends Object> extends YgDropdownController<T, Set<T>> {
   YgMultiSelectDropdownController({
@@ -41,6 +41,35 @@ class YgMultiSelectDropdownController<T extends Object> extends YgDropdownContro
       value.add(entry.value);
       notifyListeners();
     }
+
+    if (field is _YgDropdownFieldMultiSelectState<T>) {
+      field.widget.onChange?.call(value);
+    }
+  }
+
+  bool add(T newValue) {
+    final bool added = value.add(newValue);
+
+    if (added) {
+      notifyListeners();
+    }
+
+    return added;
+  }
+
+  bool remove(T newValue) {
+    final bool removed = value.remove(newValue);
+
+    if (removed) {
+      notifyListeners();
+    }
+
+    return removed;
+  }
+
+  void clear() {
+    value.clear();
+    notifyListeners();
   }
 
   @override

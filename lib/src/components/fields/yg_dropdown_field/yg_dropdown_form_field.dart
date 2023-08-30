@@ -1,11 +1,4 @@
-import 'package:flutter/widgets.dart';
-import 'package:yggdrasil/src/components/fields/_fields.dart';
-import 'package:yggdrasil/src/components/fields/helpers/_helpers.dart';
-
-import '../../enums/_enums.dart';
-
-part 'yg_dropdown_form_field_multi_select.dart';
-part 'yg_dropdown_form_field_single_select.dart';
+part of 'yg_dropdown_field.dart';
 
 abstract class YgDropdownFormField<T extends Object> extends StatefulWidget {
   factory YgDropdownFormField({
