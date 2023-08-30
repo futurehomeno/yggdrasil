@@ -42,7 +42,7 @@ class _GaugeScreenState extends State<GaugeScreen> {
                   SizedBox.square(
                     dimension: 100,
                     child: YgGauge(
-                      value: 0.0,
+                      value: 10,
                       title: '0.0',
                     ),
                   ),

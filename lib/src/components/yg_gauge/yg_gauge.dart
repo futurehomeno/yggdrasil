@@ -1,4 +1,5 @@
 import 'dart:math' as math;
+import 'dart:ui';
 
 import 'package:flutter/material.dart';
 import 'package:yggdrasil/yggdrasil.dart';
@@ -77,7 +78,7 @@ class _YgGaugeState extends State<YgGauge> with TickerProviderStateMixin {
   void didUpdateWidget(covariant YgGauge oldWidget) {
     if (widget.value != oldWidget.value) {
       _tween.begin = _animation.value;
-      _tween.end = widget.value;
+      _tween.end = widget.value ?? 0.0;
       _controller.value = 0.0;
 
       final YgGaugeTheme theme = context.gaugeTheme;
@@ -307,7 +308,7 @@ class _YgGaugePainter extends CustomPainter {
     canvas.drawArc(
       rect,
       startAngle,
-      endAngle * ((animation.value - minValue) / (maxValue - minValue)),
+      endAngle * clampDouble(((animation.value - minValue) / (maxValue - minValue)), 0, 1),
       false,
       arcPainter,
     );
