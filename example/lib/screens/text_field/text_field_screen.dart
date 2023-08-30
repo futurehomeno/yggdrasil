@@ -7,10 +7,8 @@ import 'package:yggdrasil_demo/widgets/_widgets.dart';
 class TextFieldScreen extends StatefulWidget {
   const TextFieldScreen({super.key});
 
-  // ignore: prefer-widget-private-members
   static const String routeName = 'TextFieldScreen';
 
-  // ignore: prefer-widget-private-members
   static PageRouteBuilder<Widget> route() {
     return const YgRouteBuilder().fadeTransition(
       settings: const RouteSettings(name: routeName),

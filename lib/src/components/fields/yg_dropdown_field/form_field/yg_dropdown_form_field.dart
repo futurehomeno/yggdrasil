@@ -8,6 +8,52 @@ part 'yg_dropdown_form_field_multi_select.dart';
 part 'yg_dropdown_form_field_single_select.dart';
 
 abstract class YgDropdownFormField<T extends Object> extends StatefulWidget {
+  factory YgDropdownFormField({
+    required List<YgDropdownEntry<T>> entries,
+    required FormFieldKey<T> key,
+    required String label,
+    int? maxLines,
+    int? minLines,
+    String? error,
+    T? initialValue,
+    String? placeholder,
+    FocusNode? focusNode,
+    List<FormFieldValidator<T?>>? validators,
+    YgSingleSelectDropdownController<T>? controller,
+    bool disabled,
+    bool allowDeselect,
+    VoidCallback onPressed,
+    YgDropdownFieldSize size,
+    YgAutoValidate autoValidate,
+    YgCompleteAction completeAction,
+    YgDropdownAction dropdownAction,
+    YgDropdownFieldVariant variant,
+    ValueChanged<bool> onFocusChanged,
+  }) = YgDropdownFormFieldSingleSelect<T>;
+
+  factory YgDropdownFormField.multiSelect({
+    required List<YgDropdownEntry<T>> entries,
+    required MultiSelectKey<T> key,
+    required String label,
+    String? error,
+    int? maxLines,
+    int? minLines,
+    String? placeholder,
+    FocusNode? focusNode,
+    Set<T>? initialValue,
+    List<FormFieldValidator<Set<T>>>? validators,
+    YgMultiSelectDropdownController<T>? controller,
+    bool disabled,
+    bool allowDeselect,
+    VoidCallback onPressed,
+    YgDropdownFieldSize size,
+    YgAutoValidate autoValidate,
+    YgDropdownFieldVariant variant,
+    YgDropdownAction dropdownAction,
+    YgCompleteAction completeAction,
+    ValueChanged<bool> onFocusChanged,
+  }) = YgDropdownFormFieldMultiSelect<T>;
+
   const YgDropdownFormField._({
     super.key,
     required this.entries,
@@ -28,52 +74,6 @@ abstract class YgDropdownFormField<T extends Object> extends StatefulWidget {
     this.placeholder,
   })  : enabled = !disabled,
         restorationId = null;
-
-  factory YgDropdownFormField({
-    required List<YgDropdownEntry<T>> entries,
-    required FormFieldKey<Set<T>> key,
-    required String label,
-    int? maxLines,
-    int? minLines,
-    String? error,
-    T? initialValue,
-    String? placeholder,
-    FocusNode? focusNode,
-    List<FormFieldValidator<T>>? validators,
-    YgSingleSelectDropdownController<T>? controller,
-    bool disabled,
-    bool allowDeselect,
-    VoidCallback onPressed,
-    YgDropdownFieldSize size,
-    YgAutoValidate autoValidate,
-    YgCompleteAction completeAction,
-    YgDropdownAction dropdownAction,
-    YgDropdownFieldVariant variant,
-    ValueChanged<bool> onFocusChanged,
-  }) = YgDropdownFormFieldSingleSelect<T>;
-
-  factory YgDropdownFormField.multiSelect({
-    required List<YgDropdownEntry<T>> entries,
-    required FormFieldKey<T> key,
-    required String label,
-    String? error,
-    int? maxLines,
-    int? minLines,
-    String? placeholder,
-    FocusNode? focusNode,
-    Set<T>? initialValue,
-    List<FormFieldValidator<Set<T>>>? validators,
-    YgMultiSelectDropdownController<T>? controller,
-    bool disabled,
-    bool allowDeselect,
-    VoidCallback onPressed,
-    YgDropdownFieldSize size,
-    YgAutoValidate autoValidate,
-    YgDropdownFieldVariant variant,
-    YgDropdownAction dropdownAction,
-    YgCompleteAction completeAction,
-    ValueChanged<bool> onFocusChanged,
-  }) = YgDropdownFormFieldMultiSelect<T>;
 
   /// See [YgDropdownField.entries].
   final List<YgDropdownEntry<T>> entries;

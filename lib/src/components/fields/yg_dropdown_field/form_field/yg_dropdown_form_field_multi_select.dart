@@ -4,14 +4,14 @@ part of 'yg_dropdown_form_field.dart';
 
 class YgDropdownFormFieldMultiSelect<T extends Object> extends YgDropdownFormField<T> implements FormField<Set<T>> {
   YgDropdownFormFieldMultiSelect({
-    required this.key,
+    required MultiSelectKey<T> key,
     required super.entries,
     required super.label,
     super.focusNode,
     super.error,
     super.minLines,
     super.placeholder,
-    super.maxLines = null,
+    super.maxLines,
     super.disabled = false,
     super.allowDeselect = false,
     super.variant = YgDropdownFieldVariant.standard,
@@ -27,15 +27,14 @@ class YgDropdownFormFieldMultiSelect<T extends Object> extends YgDropdownFormFie
   })  : validator = YgValidateHelper.combineValidators(validators),
         autovalidateMode = YgValidateHelper.mapAutoValidate(autoValidate),
         onSaved = null,
-        super._(key: key);
+        _key = key,
+        super._(
+          key: key,
+        );
 
-  @override
-  final AutovalidateMode autovalidateMode;
-
-  @override
-  late final FormFieldBuilder<Set<T>?> builder = (FormFieldState<Set<T>?> field) {
-    final YgValidateHelper helper = YgValidateHelper<T>(
-      key: key,
+  Widget _builder(FormFieldState<Set<T>?> field) {
+    final YgValidateHelper<Set<T>> helper = YgValidateHelper<Set<T>>(
+      key: _key,
       autoValidate: autoValidate,
       onFocusChanged: onFocusChanged,
       completeAction: completeAction,
@@ -51,7 +50,7 @@ class YgDropdownFormFieldMultiSelect<T extends Object> extends YgDropdownFormFie
         size: size,
         focusNode: focusNode,
         initialValue: initialValue,
-        error: error,
+        error: error ?? field.errorText,
         minLines: minLines,
         placeholder: placeholder,
         maxLines: maxLines,
@@ -64,7 +63,13 @@ class YgDropdownFormFieldMultiSelect<T extends Object> extends YgDropdownFormFie
         onPressed: onPressed,
       ),
     );
-  };
+  }
+
+  @override
+  final AutovalidateMode autovalidateMode;
+
+  @override
+  late final FormFieldBuilder<Set<T>?> builder = _builder;
 
   @override
   final Set<T>? initialValue;
@@ -74,9 +79,10 @@ class YgDropdownFormFieldMultiSelect<T extends Object> extends YgDropdownFormFie
 
   final YgMultiSelectDropdownController<T>? controller;
 
+  @override
   final FormFieldSetter<Set<T>>? onSaved;
 
-  final FormFieldKey<T> key;
+  final MultiSelectKey<T> _key;
 
   @override
   FormFieldState<Set<T>> createState() {

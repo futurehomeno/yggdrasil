@@ -16,7 +16,7 @@ class YgValidateHelper<T> {
         _completeAction = completeAction,
         _onFocusChanged = onFocusChanged;
 
-  static mapAutoValidate(YgAutoValidate autoValidate) {
+  static AutovalidateMode mapAutoValidate(YgAutoValidate autoValidate) {
     switch (autoValidate) {
       case YgAutoValidate.onComplete:
       case YgAutoValidate.disabled:
@@ -28,7 +28,7 @@ class YgValidateHelper<T> {
     }
   }
 
-  static mapTextInputAction(TextInputAction textInputAction) {
+  static YgCompleteAction mapTextInputAction(TextInputAction textInputAction) {
     if (textInputAction == TextInputAction.next) {
       return YgCompleteAction.focusNext;
     } else if (textInputAction == TextInputAction.previous) {
@@ -71,7 +71,7 @@ class YgValidateHelper<T> {
   }
 
   void onEditingComplete() {
-    final onEditingComplete = this._onEditingComplete;
+    final VoidCallback? onEditingComplete = this._onEditingComplete;
 
     if (_autoValidate == YgAutoValidate.onComplete && !_key.validate()) {
       return;
@@ -91,9 +91,9 @@ class YgValidateHelper<T> {
 
     final FocusScopeNode focusScope = FocusScope.of(context);
 
-    if (_completeAction == TextInputAction.next) {
+    if (_completeAction == YgCompleteAction.focusNext) {
       focusScope.nextFocus();
-    } else if (_completeAction == TextInputAction.previous) {
+    } else if (_completeAction == YgCompleteAction.focusPrevious) {
       focusScope.previousFocus();
     } else {
       focusScope.unfocus();

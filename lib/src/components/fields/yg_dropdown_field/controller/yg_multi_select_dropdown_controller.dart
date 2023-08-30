@@ -22,7 +22,8 @@ class YgMultiSelectDropdownController<T extends Object> extends YgDropdownContro
 
   @override
   void onEntryTapped(YgDropdownEntry<T> entry) {
-    final field = _field;
+    final YgDropdownFieldState<T, YgDropdownField<T>>? field = _field;
+
     assert(
       field != null,
       'YgDropdownController.onEntryTapped was called while the controller was not attached to a dropdown!',
@@ -32,7 +33,7 @@ class YgMultiSelectDropdownController<T extends Object> extends YgDropdownContro
     }
 
     if (value.contains(entry.value)) {
-      if (field.widget.allowDeselect) {
+      if (field.widget.allowDeselect || value.length > 1) {
         value.remove(entry.value);
         notifyListeners();
       }

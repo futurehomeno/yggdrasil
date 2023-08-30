@@ -22,7 +22,7 @@ class YgSingleSelectDropdownController<T extends Object> extends YgDropdownContr
 
   @override
   void onEntryTapped(YgDropdownEntry<T> entry) {
-    final field = _field;
+    final YgDropdownFieldState<T, YgDropdownField<T>>? field = _field;
     assert(
       field != null,
       'YgDropdownController.onEntryTapped was called while the controller was not attached to a dropdown!',

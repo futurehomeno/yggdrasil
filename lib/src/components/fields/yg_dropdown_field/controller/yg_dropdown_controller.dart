@@ -26,9 +26,9 @@ abstract class YgDropdownController<T extends Object, V> extends ValueNotifier<V
   /// Whether the controller contains a value.
   bool get filled;
 
-  YgDropdownFieldState? _field;
+  YgDropdownFieldState<T, YgDropdownField<T>>? _field;
 
-  void attach(YgDropdownFieldState field) {
+  void attach(YgDropdownFieldState<T, YgDropdownField<T>> field) {
     assert(
       _field == null || _field == field,
       'Can not attach controller to multiple dropdowns.',
@@ -44,7 +44,7 @@ abstract class YgDropdownController<T extends Object, V> extends ValueNotifier<V
   }
 
   void openMenu(BuildContext context) {
-    final field = _field;
+    final YgDropdownFieldState<T, YgDropdownField<T>>? field = _field;
     assert(
       field != null,
       'YgDropdownController.openMenu was called while the controller was not attached to a dropdown!',
@@ -57,7 +57,7 @@ abstract class YgDropdownController<T extends Object, V> extends ValueNotifier<V
   }
 
   void openBottomSheet() {
-    final field = _field;
+    final YgDropdownFieldState<T, YgDropdownField<T>>? field = _field;
     assert(
       field != null,
       'YgDropdownController.openBottomSheet was called while the controller was not attached to a dropdown!',
@@ -70,7 +70,7 @@ abstract class YgDropdownController<T extends Object, V> extends ValueNotifier<V
   }
 
   void open() {
-    final field = _field;
+    final YgDropdownFieldState<T, YgDropdownField<T>>? field = _field;
     assert(
       field != null,
       'YgDropdownController.open was called while the controller was not attached to a dropdown!',
@@ -83,7 +83,7 @@ abstract class YgDropdownController<T extends Object, V> extends ValueNotifier<V
   }
 
   void close() {
-    final field = _field;
+    final YgDropdownFieldState<T, YgDropdownField<T>>? field = _field;
     assert(
       field != null,
       'YgDropdownController.close was called while the controller was not attached to a dropdown!',
@@ -96,7 +96,7 @@ abstract class YgDropdownController<T extends Object, V> extends ValueNotifier<V
   }
 
   bool get isOpen {
-    final field = _field;
+    final YgDropdownFieldState<T, YgDropdownField<T>>? field = _field;
     assert(
       field != null,
       'YgDropdownController.opened was accessed while the controller was not attached to a dropdown!',

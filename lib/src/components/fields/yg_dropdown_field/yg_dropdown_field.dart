@@ -200,6 +200,10 @@ abstract class YgDropdownFieldState<T extends Object, W extends YgDropdownField<
     } else if (newController != _controller) {
       _updateController(newController);
     }
+
+    _updateFieldState(FieldState.disabled, widget.disabled);
+    _updateFieldState(FieldState.error, widget.error != null);
+
     super.didUpdateWidget(oldWidget);
   }
 
@@ -238,7 +242,7 @@ abstract class YgDropdownFieldState<T extends Object, W extends YgDropdownField<
         content: YgFieldTextContent(
           value: ListenableBuilder(
             listenable: _controller,
-            builder: (context, child) {
+            builder: (BuildContext context, Widget? child) {
               return Text(
                 _controller.buildTitle(widget.entries),
                 maxLines: widget.maxLines,
@@ -262,7 +266,7 @@ abstract class YgDropdownFieldState<T extends Object, W extends YgDropdownField<
       mouseCursor: SystemMouseCursors.click,
       focusNode: widget.focusNode,
       onShowFocusHighlight: _onFocusChanged,
-      onShowHoverHighlight: (bool hovered) => _updateFieldState(FieldState.hovered, hovered),
+      onShowHoverHighlight: (bool hovered) => _updateFieldStateAndRebuild(FieldState.hovered, hovered),
       shortcuts: const <ShortcutActivator, Intent>{
         SingleActivator(LogicalKeyboardKey.space, control: false): ActivateIntent(),
       },
@@ -295,7 +299,7 @@ abstract class YgDropdownFieldState<T extends Object, W extends YgDropdownField<
         onClose: _onClosed,
       ),
     );
-    _updateFieldState(FieldState.opened, true);
+    _updateFieldStateAndRebuild(FieldState.opened, true);
   }
 
   void openBottomSheet() {
@@ -307,7 +311,7 @@ abstract class YgDropdownFieldState<T extends Object, W extends YgDropdownField<
         onClose: _onClosed,
       ),
     );
-    _updateFieldState(FieldState.opened, true);
+    _updateFieldStateAndRebuild(FieldState.opened, true);
   }
 
   void open() {
@@ -326,7 +330,8 @@ abstract class YgDropdownFieldState<T extends Object, W extends YgDropdownField<
   void close() {
     Navigator.popUntil(
       context,
-      (Route route) => route is! YgDropdownMenuRoute && route is! YgDropdownBottomSheetRoute,
+      // ignore: avoid-dynamic
+      (Route<dynamic> route) => route is! YgDropdownMenuRoute && route is! YgDropdownBottomSheetRoute,
     );
     _onClosed();
   }
@@ -335,7 +340,7 @@ abstract class YgDropdownFieldState<T extends Object, W extends YgDropdownField<
     return _states.opened;
   }
 
-  void _onClosed() => _updateFieldState(FieldState.opened, false);
+  void _onClosed() => _updateFieldStateAndRebuild(FieldState.opened, false);
 
   void _performPlatformAction() {
     if (Platform.isAndroid || Platform.isIOS) {
@@ -347,19 +352,27 @@ abstract class YgDropdownFieldState<T extends Object, W extends YgDropdownField<
 
   void _onFocusChanged(bool focused) {
     widget.onFocusChanged?.call(focused);
-    _updateFieldState(FieldState.focused, focused);
+    _updateFieldStateAndRebuild(FieldState.focused, focused);
   }
 
-  void _updateFieldState(FieldState state, bool toggled) {
+  void _updateFieldStateAndRebuild(FieldState state, bool toggled) {
+    if (_updateFieldState(state, toggled)) {
+      setState(() {});
+    }
+  }
+
+  bool _updateFieldState(FieldState state, bool toggled) {
     final bool isToggled = _states.contains(state);
-    if (isToggled != toggled) {
+    final bool shouldUpdate = isToggled != toggled;
+    if (shouldUpdate) {
       if (toggled) {
         _states.add(state);
       } else {
         _states.remove(state);
       }
-      setState(() {});
     }
+
+    return shouldUpdate;
   }
 
   void _updateController(YgDynamicDropdownController<T> controller) {
@@ -371,6 +384,6 @@ abstract class YgDropdownFieldState<T extends Object, W extends YgDropdownField<
   }
 
   void _controllerListener() {
-    _updateFieldState(FieldState.filled, _controller.filled);
+    _updateFieldStateAndRebuild(FieldState.filled, _controller.filled);
   }
 }

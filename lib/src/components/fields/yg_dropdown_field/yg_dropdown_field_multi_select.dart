@@ -36,7 +36,7 @@ class _YgDropdownFieldMultiSelectState<T extends Object>
     extends YgDropdownFieldState<T, _YgDropdownFieldMultiSelect<T>> {
   @override
   YgDynamicDropdownController<T> createController() {
-    return YgMultiSelectDropdownController(
+    return YgMultiSelectDropdownController<T>(
       initialValue: widget.initialValue,
     );
   }

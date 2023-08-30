@@ -40,7 +40,7 @@ class YgTextFormField extends FormField<String> {
           validator: YgValidateHelper.combineValidators(validators),
           builder: (FormFieldState<String> field) {
             final _YgTextFormInputState state = field as _YgTextFormInputState;
-            final YgValidateHelper helper = YgValidateHelper(
+            final YgValidateHelper<String> helper = YgValidateHelper<String>(
               key: key,
               autoValidate: autoValidate,
               onFocusChanged: onFocusChanged,
