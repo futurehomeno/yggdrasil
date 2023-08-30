@@ -1,3 +1,8 @@
+# 1.5.1 [30.08.2023 09:48]
+
+[fix] Enable list tiles to have long titles.
+[fix] Wrap YgGauge in Center to correct alignment in non-square boxes.
+
 # 1.5.0 [25.08.2023 18:11]
 
 [dev-feature] Added DCM.
