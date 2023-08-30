@@ -21,11 +21,26 @@ class YgGauge extends StatefulWidget with StatefulWidgetDebugMixin {
     this.label,
     this.notation,
     this.icon,
-  })  : assert(title == null || buildTitle == null, 'title and buildTitle can not be both defined.'),
-        assert(minValue <= maxValue, 'minValue must be less than or equal to maxValue'),
-        assert(icon == null || notation == null, 'Cannot have both icon and notation'),
-        assert(title == null || label == null || icon == null, 'Cannot have both title and label or icon'),
-        assert(value == null || (value <= maxValue && value >= minValue));
+  })  : assert(
+          title == null || buildTitle == null,
+          'title and buildTitle can not be both defined.',
+        ),
+        assert(
+          minValue <= maxValue,
+          'minValue must be less than or equal to maxValue',
+        ),
+        assert(
+          icon == null || notation == null,
+          'Cannot have both icon and notation',
+        ),
+        assert(
+          title == null || label == null || icon == null,
+          'Cannot have both title and label or icon',
+        ),
+        assert(
+          value == null || (value <= maxValue && value >= minValue),
+          'The value has to be between minValue and maxValue',
+        );
 
   /// Current value of the gauge.
   ///
