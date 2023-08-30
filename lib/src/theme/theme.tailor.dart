@@ -33,6 +33,7 @@ class YgTheme extends ThemeExtension<YgTheme> {
     required this.tagTheme,
     required this.textInputTheme,
     required this.textLinkTheme,
+    required this.toggleButtonTheme,
     required this.tokens,
   });
 
@@ -59,6 +60,7 @@ class YgTheme extends ThemeExtension<YgTheme> {
   final YgTagTheme tagTheme;
   final YgTextFieldTheme textInputTheme;
   final YgTextLinkTheme textLinkTheme;
+  final YgToggleButtonTheme toggleButtonTheme;
   final YgTokens tokens;
 
   static final YgTheme consumerLight = YgTheme(
@@ -85,6 +87,7 @@ class YgTheme extends ThemeExtension<YgTheme> {
     tagTheme: _$YgTheme.tagTheme[0],
     textInputTheme: _$YgTheme.textInputTheme[0],
     textLinkTheme: _$YgTheme.textLinkTheme[0],
+    toggleButtonTheme: _$YgTheme.toggleButtonTheme[0],
     tokens: _$YgTheme.tokens[0],
   );
 
@@ -112,6 +115,7 @@ class YgTheme extends ThemeExtension<YgTheme> {
     tagTheme: _$YgTheme.tagTheme[1],
     textInputTheme: _$YgTheme.textInputTheme[1],
     textLinkTheme: _$YgTheme.textLinkTheme[1],
+    toggleButtonTheme: _$YgTheme.toggleButtonTheme[1],
     tokens: _$YgTheme.tokens[1],
   );
 
@@ -139,6 +143,7 @@ class YgTheme extends ThemeExtension<YgTheme> {
     tagTheme: _$YgTheme.tagTheme[2],
     textInputTheme: _$YgTheme.textInputTheme[2],
     textLinkTheme: _$YgTheme.textLinkTheme[2],
+    toggleButtonTheme: _$YgTheme.toggleButtonTheme[2],
     tokens: _$YgTheme.tokens[2],
   );
 
@@ -166,6 +171,7 @@ class YgTheme extends ThemeExtension<YgTheme> {
     tagTheme: _$YgTheme.tagTheme[3],
     textInputTheme: _$YgTheme.textInputTheme[3],
     textLinkTheme: _$YgTheme.textLinkTheme[3],
+    toggleButtonTheme: _$YgTheme.toggleButtonTheme[3],
     tokens: _$YgTheme.tokens[3],
   );
 
@@ -201,6 +207,7 @@ class YgTheme extends ThemeExtension<YgTheme> {
     YgTagTheme? tagTheme,
     YgTextFieldTheme? textInputTheme,
     YgTextLinkTheme? textLinkTheme,
+    YgToggleButtonTheme? toggleButtonTheme,
     YgTokens? tokens,
   }) {
     return YgTheme(
@@ -228,6 +235,7 @@ class YgTheme extends ThemeExtension<YgTheme> {
       tagTheme: tagTheme ?? this.tagTheme,
       textInputTheme: textInputTheme ?? this.textInputTheme,
       textLinkTheme: textLinkTheme ?? this.textLinkTheme,
+      toggleButtonTheme: toggleButtonTheme ?? this.toggleButtonTheme,
       tokens: tokens ?? this.tokens,
     );
   }
@@ -269,6 +277,8 @@ class YgTheme extends ThemeExtension<YgTheme> {
           textInputTheme.lerp(other.textInputTheme, t) as YgTextFieldTheme,
       textLinkTheme:
           textLinkTheme.lerp(other.textLinkTheme, t) as YgTextLinkTheme,
+      toggleButtonTheme: toggleButtonTheme.lerp(other.toggleButtonTheme, t)
+          as YgToggleButtonTheme,
       tokens: tokens.lerp(other.tokens, t) as YgTokens,
     );
   }
@@ -320,6 +330,8 @@ class YgTheme extends ThemeExtension<YgTheme> {
                 .equals(textInputTheme, other.textInputTheme) &&
             const DeepCollectionEquality()
                 .equals(textLinkTheme, other.textLinkTheme) &&
+            const DeepCollectionEquality()
+                .equals(toggleButtonTheme, other.toggleButtonTheme) &&
             const DeepCollectionEquality().equals(tokens, other.tokens));
   }
 
@@ -350,6 +362,7 @@ class YgTheme extends ThemeExtension<YgTheme> {
       const DeepCollectionEquality().hash(tagTheme),
       const DeepCollectionEquality().hash(textInputTheme),
       const DeepCollectionEquality().hash(textLinkTheme),
+      const DeepCollectionEquality().hash(toggleButtonTheme),
       const DeepCollectionEquality().hash(tokens),
     ]);
   }
@@ -381,5 +394,6 @@ extension YgThemeBuildContextProps on BuildContext {
   YgTagTheme get tagTheme => ygTheme.tagTheme;
   YgTextFieldTheme get textInputTheme => ygTheme.textInputTheme;
   YgTextLinkTheme get textLinkTheme => ygTheme.textLinkTheme;
+  YgToggleButtonTheme get toggleButtonTheme => ygTheme.toggleButtonTheme;
   YgTokens get tokens => ygTheme.tokens;
 }

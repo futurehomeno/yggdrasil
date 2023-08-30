@@ -23,3 +23,4 @@ export 'tag/_tag.dart';
 export 'text_field/_text_field.dart';
 export 'text_link/_text_link.dart';
 export 'theme.dart';
+export 'toggle_button/_toggle_button.dart';

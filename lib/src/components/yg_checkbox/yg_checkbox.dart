@@ -7,12 +7,7 @@ import 'helpers/_helpers.dart';
 import 'widgets/_widgets.dart';
 import 'yg_checkbox_style.dart';
 
-/// Yggdrasil radio button.
-///
-/// The widget consists of three circles stacked on top of one another.
-/// The first circle creates the background (or border when not selected).
-/// The second circle creates the handle, large when not selected, small when selected.
-/// The last circle creates the helper handle, only used for the disabled state.
+/// Yggdrasil checkbox button.
 class YgCheckbox extends StatefulWidget with StatefulWidgetDebugMixin {
   const YgCheckbox({
     super.key,
@@ -44,10 +39,10 @@ class YgCheckbox extends StatefulWidget with StatefulWidgetDebugMixin {
   bool get _selected => value == true;
 
   @override
-  State<YgCheckbox> createState() => _YgRadioState();
+  State<YgCheckbox> createState() => _YgCheckboxState();
 }
 
-class _YgRadioState extends State<YgCheckbox> {
+class _YgCheckboxState extends State<YgCheckbox> {
   // region StatesController
   void _handleStatesControllerChange() {
     // Force a rebuild to resolve MaterialStateProperty properties.

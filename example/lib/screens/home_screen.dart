@@ -5,6 +5,8 @@ import 'package:yggdrasil_demo/screens/_screens.dart';
 import 'package:yggdrasil_demo/screens/layout_examples/_examples.dart';
 import 'package:yggdrasil_demo/widgets/_widgets.dart';
 
+import 'toggle_button/_toggle_button.dart';
+
 class HomeScreen extends StatelessWidget {
   const HomeScreen({super.key});
 
@@ -163,6 +165,11 @@ class HomeScreen extends StatelessWidget {
               YgListTile(
                 title: 'TextLink',
                 onTap: () => sl<YgRouter>().push(TextLinkScreen.route()),
+                trailingWidgets: const <YgIcon>[YgIcon(YgIcons.caretRight)],
+              ),
+              YgListTile(
+                title: 'ToggleButton',
+                onTap: () => sl<YgRouter>().push(ToggleButtonScreen.route()),
                 trailingWidgets: const <YgIcon>[YgIcon(YgIcons.caretRight)],
               ),
             ],
