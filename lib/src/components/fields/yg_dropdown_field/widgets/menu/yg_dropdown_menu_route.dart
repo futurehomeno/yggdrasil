@@ -61,10 +61,14 @@ class YgDropdownMenuRoute<T extends Object> extends PopupRoute<Widget> {
       animation: animation.drive(CurveTween(curve: Curves.easeOut)),
       screenPadding: MediaQuery.paddingOf(context),
       padding: 5.0,
-      child: _YgDropdownMenu<T>(
-        entries: entries,
-        controller: dropdownController,
-        onClose: onClose,
+      child: RepaintBoundary(
+        child: RepaintBoundary(
+          child: _YgDropdownMenu<T>(
+            entries: entries,
+            controller: dropdownController,
+            onClose: onClose,
+          ),
+        ),
       ),
     );
   }
