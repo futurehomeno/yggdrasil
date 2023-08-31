@@ -30,7 +30,7 @@ class _YgDropdownMenu<T extends Object> extends StatelessWidget with StatelessWi
                 padding: const EdgeInsets.all(10.0),
                 child: ListenableBuilder(
                   listenable: controller,
-                  builder: (context, child) {
+                  builder: (BuildContext context, Widget? child) {
                     return Column(
                       children: _buildEntries(),
                     );

@@ -41,6 +41,7 @@ class _YgScrollShadowState extends State<YgScrollShadow> {
   void initState() {
     super.initState();
     _controller.addListener(_updateShadows);
+
     WidgetsBinding.instance.addPostFrameCallback((_) => _updateShadows());
   }
 
@@ -49,8 +50,6 @@ class _YgScrollShadowState extends State<YgScrollShadow> {
 
     final bool newShowBottomShadow = position.extentAfter != 0;
     final bool newShowTopShadow = position.extentBefore != 0;
-
-    print([position.extentAfter, position.extentBefore]);
 
     if ((_showBottomShadow != newShowBottomShadow) || (_showTopShadow != newShowTopShadow)) {
       _showBottomShadow = newShowBottomShadow;
@@ -91,22 +90,31 @@ class _YgScrollShadowState extends State<YgScrollShadow> {
 
   @override
   Widget build(BuildContext context) {
-    return Stack(
-      children: <Widget>[
-        widget.builder(
-          context,
-          _controller,
-        ),
-        _buildShadow(
-          alignment: Alignment.bottomCenter,
-          shown: _showBottomShadow,
-        ),
-        _buildShadow(
-          alignment: Alignment.topCenter,
-          shown: _showTopShadow,
-        ),
-      ],
+    return NotificationListener<ScrollMetricsNotification>(
+      onNotification: _handleScrollMetricsChange,
+      child: Stack(
+        children: <Widget>[
+          widget.builder(
+            context,
+            _controller,
+          ),
+          _buildShadow(
+            alignment: Alignment.bottomCenter,
+            shown: _showBottomShadow,
+          ),
+          _buildShadow(
+            alignment: Alignment.topCenter,
+            shown: _showTopShadow,
+          ),
+        ],
+      ),
     );
+  }
+
+  bool _handleScrollMetricsChange(ScrollMetricsNotification notification) {
+    _updateShadows();
+
+    return false;
   }
 
   Widget _buildShadow({

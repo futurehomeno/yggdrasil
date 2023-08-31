@@ -56,24 +56,15 @@ class YgDropdownMenuRoute<T extends Object> extends PopupRoute<Widget> {
 
   @override
   Widget buildPage(BuildContext context, Animation<double> animation, Animation<double> secondaryAnimation) {
-    return RepaintBoundary(
-      child: RepaintBoundary(
-        child: _YgDropdownMenuPositioner(
-          rect: rect,
-          animation: animation.drive(CurveTween(curve: Curves.easeOut)),
-          screenPadding: MediaQuery.paddingOf(context),
-          padding: 5.0,
-          // TODO(Tim): Find a different fix for whatever the hell is going on here
-          child: RepaintBoundary(
-            child: RepaintBoundary(
-              child: _YgDropdownMenu<T>(
-                entries: entries,
-                controller: dropdownController,
-                onClose: onClose,
-              ),
-            ),
-          ),
-        ),
+    return _YgDropdownMenuPositioner(
+      rect: rect,
+      animation: animation.drive(CurveTween(curve: Curves.easeOut)),
+      screenPadding: MediaQuery.paddingOf(context),
+      padding: 5.0,
+      child: _YgDropdownMenu<T>(
+        entries: entries,
+        controller: dropdownController,
+        onClose: onClose,
       ),
     );
   }

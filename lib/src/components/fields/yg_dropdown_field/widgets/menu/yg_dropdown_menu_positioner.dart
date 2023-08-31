@@ -1,5 +1,6 @@
 part of 'yg_dropdown_menu_route.dart';
 
+// TODO(Tim): Make it so this gets updated if the followed widget changes.
 class _YgDropdownMenuPositioner extends SingleChildRenderObjectWidget {
   const _YgDropdownMenuPositioner({
     required super.child,
