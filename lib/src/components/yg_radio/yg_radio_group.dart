@@ -11,7 +11,7 @@ class YgRadioGroup<T> extends StatelessWidget with StatelessWidgetDebugMixin {
     super.key,
     required this.label,
     required this.radioItems,
-  });
+  }) : assert(radioItems.length <= 5, 'Radio group can only have 5 items');
 
   final String label;
   final List<YgRadioItem<T>> radioItems;

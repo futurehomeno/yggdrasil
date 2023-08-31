@@ -11,7 +11,7 @@ class YgCheckboxGroup extends StatelessWidget with StatelessWidgetDebugMixin {
     super.key,
     required this.label,
     required this.checkboxItems,
-  });
+  }) : assert(checkboxItems.length <= 5, 'Checkbox group can only have 5 items');
 
   final String label;
   final List<YgCheckboxItem> checkboxItems;
