@@ -77,8 +77,12 @@ abstract class YgTextFieldBaseWidgetState<T extends YgTextFieldBaseWidget> exten
   void dispose() {
     _controller.removeListener(_valueUpdated);
     _focusNode.removeListener(_focusChanged);
-    _controller.dispose();
-    _focusNode.dispose();
+    if (widget.controller == null) {
+      _controller.dispose();
+    }
+    if (widget.focusNode == null) {
+      _focusNode.dispose();
+    }
     super.dispose();
   }
 
