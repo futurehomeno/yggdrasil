@@ -1,3 +1,8 @@
+# 1.5.2 [30.08.2023 13:42]
+
+[fix] YgGauge no longer breaks when changing value from non-null to null.
+[fix] YgGauge no longer accepts values that are not between the min and max values.
+
 # 1.5.1 [30.08.2023 09:48]
 
 [fix] Enable list tiles to have long titles.
