@@ -4,19 +4,19 @@ import 'package:flutter/material.dart';
 @immutable
 class YgToggleButtonBorderColorProperty extends MaterialStateProperty<Color?> with Diagnosticable {
   YgToggleButtonBorderColorProperty({
+    required this.selected,
     required this.selectedDisabled,
     required this.deselected,
     required this.deselectedHovered,
     required this.deselectedPressed,
-    required this.deselectedError,
     required this.deselectedDisabled,
   });
 
+  final Color selected;
   final Color selectedDisabled;
   final Color deselected;
   final Color deselectedHovered;
   final Color deselectedPressed;
-  final Color deselectedError;
   final Color deselectedDisabled;
 
   Color? resolveWith(Set<MaterialState> states, bool? value) {
@@ -32,20 +32,17 @@ class YgToggleButtonBorderColorProperty extends MaterialStateProperty<Color?> wi
   }
 
   @override
-  Color? resolve(Set<MaterialState> states) {
+  Color resolve(Set<MaterialState> states) {
     if (states.contains(MaterialState.selected)) {
       if (states.contains(MaterialState.disabled)) {
         return selectedDisabled;
       }
 
-      return null;
+      return selected;
     }
 
     if (states.contains(MaterialState.disabled)) {
       return deselectedDisabled;
-    }
-    if (states.contains(MaterialState.error)) {
-      return deselectedError;
     }
     if (states.contains(MaterialState.pressed)) {
       return deselectedPressed;

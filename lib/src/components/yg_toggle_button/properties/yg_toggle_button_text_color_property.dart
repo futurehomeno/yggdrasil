@@ -2,8 +2,8 @@ import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 
 @immutable
-class YgToggleButtonIconColorProperty extends MaterialStateProperty<Color> with Diagnosticable {
-  YgToggleButtonIconColorProperty({
+class YgToggleButtonTextColorProperty extends MaterialStateProperty<Color> with Diagnosticable {
+  YgToggleButtonTextColorProperty({
     required this.selected,
     required this.selectedDisabled,
     required this.deselected,

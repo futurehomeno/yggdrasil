@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:yggdrasil/src/components/yg_toggle_button/helpers/_helpers.dart';
+import 'package:yggdrasil/src/components/yg_toggle_button/mappers/yg_toggle_button_mapper.dart';
 import 'package:yggdrasil/yggdrasil.dart';
 
 import 'yg_toggle_button_style.dart';
@@ -11,6 +12,7 @@ class YgToggleButton extends StatefulWidget with StatefulWidgetDebugMixin {
     super.key,
     required this.value,
     required this.onChanged,
+    this.size = YgToggleButtonSize.medium,
     this.icon,
     this.text,
     this.triState = false,
@@ -24,6 +26,9 @@ class YgToggleButton extends StatefulWidget with StatefulWidgetDebugMixin {
   /// The button itself does not maintain any state. Instead, when the state of
   /// the button changes, the widget calls the [onChanged] callback.
   final Function(bool? newValue)? onChanged;
+
+  /// The size of the toggle button.
+  final YgToggleButtonSize size;
 
   /// Icon to show in the button.
   final String? icon;
@@ -97,7 +102,11 @@ class _YgToggleButtonState extends State<YgToggleButton> {
     final Color resolvedFillColor = toggleButtonStyle.fillColor.resolveWith(_statesController.value, widget.value);
     final Color? resolvedBorderColor = toggleButtonStyle.borderColor.resolveWith(_statesController.value, widget.value);
     final Color resolvedIconColor = toggleButtonStyle.iconColor.resolve(_statesController.value);
+    final Color resolvedTextColor = toggleButtonStyle.textColor.resolve(_statesController.value);
     final MouseCursor resolvedMouseCursor = toggleButtonStyle.mouseCursor.resolve(_statesController.value);
+
+    final String? text = widget.text;
+    final String? icon = widget.icon;
 
     return RepaintBoundary(
       child: Semantics(
@@ -116,10 +125,41 @@ class _YgToggleButtonState extends State<YgToggleButton> {
             },
             mouseCursor: resolvedMouseCursor,
             enabled: widget._enabled,
-            child: _buildToggleButton(
-              resolvedFillColor: resolvedFillColor,
-              resolvedBorderColor: resolvedBorderColor,
-              resolvedIconColor: resolvedIconColor,
+            child: AnimatedContainer(
+              duration: toggleButtonTheme.animationDuration,
+              curve: toggleButtonTheme.animationCurve,
+              padding: YgToggleButtonMapper.buildPadding(
+                theme: toggleButtonTheme,
+                size: widget.size,
+                variant: _variant,
+              ),
+              decoration: BoxDecoration(
+                color: resolvedFillColor,
+                shape: _onlyIcon ? BoxShape.circle : BoxShape.rectangle,
+                border: Border.fromBorderSide(
+                  BorderSide(color: resolvedBorderColor ?? Colors.transparent),
+                ),
+                borderRadius: _onlyIcon ? null : BorderRadius.all(Radius.circular(toggleButtonTheme.borderRadius)),
+              ),
+              child: Row(
+                mainAxisSize: MainAxisSize.min,
+                children: <Widget>[
+                  if (icon != null)
+                    YgIcon(
+                      widget.icon,
+                      color: resolvedIconColor,
+                      size: _iconSize,
+                    ),
+                  if (text != null)
+                    Text(
+                      text,
+                      style: YgToggleButtonMapper.buildTextStyle(
+                        theme: toggleButtonTheme,
+                        size: widget.size,
+                      ).copyWith(color: resolvedTextColor),
+                    ),
+                ].withHorizontalSpacing(toggleButtonTheme.iconTextSpacing),
+              ),
             ),
           ),
         ),
@@ -127,105 +167,9 @@ class _YgToggleButtonState extends State<YgToggleButton> {
     );
   }
 
-  Widget _buildToggleButton({
-    required Color resolvedFillColor,
-    required Color? resolvedBorderColor,
-    required Color resolvedIconColor,
-  }) {
-    if (_onlyIcon) {
-      return _buildIconToggleButton(
-        resolvedFillColor: resolvedFillColor,
-        resolvedBorderColor: resolvedBorderColor,
-        resolvedIconColor: resolvedIconColor,
-      );
-    }
-
-    if (_onlyText) {
-      return _buildTextToggleButton(
-        resolvedFillColor: resolvedFillColor,
-        resolvedBorderColor: resolvedBorderColor,
-        resolvedIconColor: resolvedIconColor,
-      );
-    }
-
-    return _buildTextAndIconToggleButton(
-      resolvedFillColor: resolvedFillColor,
-      resolvedBorderColor: resolvedBorderColor,
-      resolvedIconColor: resolvedIconColor,
-    );
-  }
-
   bool get _onlyIcon => widget.icon != null && widget.text == null;
 
   bool get _onlyText => widget.icon == null && widget.text != null;
-
-  Widget _buildIconToggleButton({
-    required Color resolvedFillColor,
-    required Color? resolvedBorderColor,
-    required Color resolvedIconColor,
-  }) {
-    return AnimatedContainer(
-      duration: const Duration(milliseconds: 200),
-      decoration: BoxDecoration(
-        color: resolvedFillColor,
-        shape: BoxShape.circle,
-        border: Border.fromBorderSide(
-          BorderSide(color: resolvedBorderColor ?? Colors.transparent),
-        ),
-      ),
-      child: Center(
-        child: YgIcon(
-          widget.icon!,
-          color: resolvedIconColor,
-        ),
-      ),
-    );
-  }
-
-  Widget _buildTextToggleButton({
-    required Color resolvedFillColor,
-    required Color? resolvedBorderColor,
-    required Color resolvedIconColor,
-  }) {
-    return AnimatedContainer(
-      duration: const Duration(milliseconds: 200),
-      decoration: BoxDecoration(
-        color: resolvedFillColor,
-        borderRadius: const BorderRadius.all(Radius.circular(50.0)),
-        border: Border.fromBorderSide(
-          BorderSide(color: resolvedBorderColor ?? Colors.transparent),
-        ),
-      ),
-      child: Center(
-        child: Text(
-          widget.text!,
-        ),
-      ),
-    );
-  }
-
-  Widget _buildTextAndIconToggleButton({
-    required Color resolvedFillColor,
-    required Color? resolvedBorderColor,
-    required Color resolvedIconColor,
-  }) {
-    return AnimatedContainer(
-      duration: const Duration(milliseconds: 200),
-      decoration: BoxDecoration(
-        color: resolvedFillColor,
-        borderRadius: const BorderRadius.all(Radius.circular(50.0)),
-        border: Border.fromBorderSide(
-          BorderSide(color: resolvedBorderColor ?? Colors.transparent),
-        ),
-      ),
-      child: Center(
-        child: YgIcon(
-          widget.icon!,
-          color: resolvedIconColor,
-        ),
-      ),
-    );
-  }
 
   void _onShowFocusHighlight(bool value) {
     _statesController.update(MaterialState.focused, value);
@@ -241,5 +185,25 @@ class _YgToggleButtonState extends State<YgToggleButton> {
       final bool? nextValue = YgToggleButtonHelpers.getNextValue(widget.value, widget.triState);
       widget.onChanged?.call(nextValue);
     }
+  }
+
+  YgIconSize get _iconSize {
+    if (_onlyIcon && widget.size == YgToggleButtonSize.large) {
+      return YgIconSize.large;
+    }
+
+    return YgIconSize.small;
+  }
+
+  YgToggleButtonVariant get _variant {
+    if (_onlyIcon) {
+      return YgToggleButtonVariant.icon;
+    }
+
+    if (_onlyText) {
+      return YgToggleButtonVariant.text;
+    }
+
+    return YgToggleButtonVariant.iconAndText;
   }
 }

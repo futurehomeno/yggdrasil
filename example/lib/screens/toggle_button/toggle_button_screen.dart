@@ -20,10 +20,17 @@ class ToggleButtonScreen extends StatefulWidget {
 }
 
 class _ToggleButtonScreenState extends State<ToggleButtonScreen> {
-  bool? iconValue = false;
-  bool? triStateValue = false;
-  bool? errorValue = false;
-  bool? listTileValue = false;
+  bool? iconValue1 = false;
+  bool? iconValue2 = false;
+  bool? iconValue3 = false;
+  bool? textValue1 = false;
+  bool? textValue2 = false;
+  bool? textValue3 = false;
+  bool? iconTextValue1 = false;
+  bool? iconTextValue2 = false;
+  bool? iconTextValue3 = false;
+  bool? enabled = true;
+  bool? disabled = false;
 
   @override
   Widget build(BuildContext context) {
@@ -35,71 +42,131 @@ class _ToggleButtonScreenState extends State<ToggleButtonScreen> {
         children: <Widget>[
           YgSection.base(
             title: 'Icon toggle button',
-            child: YgToggleButton(
-              icon: YgIcons.info,
-              value: iconValue,
-              onChanged: (bool? newValue) {
-                iconValue = newValue;
-                setState(() {});
-              },
+            child: Row(
+              mainAxisSize: MainAxisSize.min,
+              children: <Widget>[
+                YgToggleButton(
+                  icon: YgIcons.info,
+                  value: iconValue1,
+                  size: YgToggleButtonSize.small,
+                  onChanged: (bool? newValue) {
+                    iconValue1 = newValue;
+                    setState(() {});
+                  },
+                ),
+                YgToggleButton(
+                  icon: YgIcons.info,
+                  value: iconValue2,
+                  size: YgToggleButtonSize.medium,
+                  onChanged: (bool? newValue) {
+                    iconValue2 = newValue;
+                    setState(() {});
+                  },
+                ),
+                YgToggleButton(
+                  icon: YgIcons.info,
+                  value: iconValue3,
+                  size: YgToggleButtonSize.large,
+                  onChanged: (bool? newValue) {
+                    iconValue3 = newValue;
+                    setState(() {});
+                  },
+                ),
+              ].withHorizontalSpacing(10.0),
             ),
           ),
-          // YgSection.base(
-          //   title: 'Tri-state toggle button',
-          //   child: YgToggleButton(
-          //     text: 'Tri-state toggle button',
-          //     value: triStateValue,
-          //     triState: true,
-          //     onChanged: (bool? newValue) {
-          //       triStateValue = newValue;
-          //       setState(() {});
-          //     },
-          //   ),
-          // ),
-          // const YgSection.base(
-          //   title: 'Disabled toggle button, selected / unselected',
-          //   child: Row(
-          //     mainAxisSize: MainAxisSize.min,
-          //     children: <Widget>[
-          //       YgToggleButton(
-          //         text: 'Disabled Toggle button',
-          //         value: true,
-          //         onChanged: null,
-          //       ),
-          //       YgToggleButton(
-          //         text: 'Disabled Toggle button',
-          //         value: false,
-          //         onChanged: null,
-          //       ),
-          //     ],
-          //   ),
-          // ),
-          // const YgSection.base(
-          //   title: 'Toggle button in a list tile',
-          //   child: YgCallout(
-          //     variant: YgCalloutVariant.warning,
-          //     description:
-          //         'You can place a toggle button in a list tile as shown below, but consider using ToggleButtonListTile instead if you intend for the whole list tile to be tappable.',
-          //   ),
-          // ),
-          // YgSection.list(
-          //   children: <Widget>[
-          //     YgListTile(
-          //       title: 'Toggle button in a list tile',
-          //       subtitle: 'Only the toggle button is tappable.',
-          //       trailingWidgets: <Widget>[
-          //         YgToggleButton(
-          //           text: 'Toggle button in a list tile',
-          //           value: listTileValue,
-          //           onChanged: (bool? newValue) {
-          //             listTileValue = newValue;
-          //             setState(() {});
-          //           },
-          //         ),
-          //       ],
-          //     ),
-          //   ],
-          // ),
+          YgSection.base(
+            title: 'Text toggle button',
+            child: Row(
+              mainAxisSize: MainAxisSize.min,
+              children: <Widget>[
+                YgToggleButton(
+                  text: 'Toggle',
+                  value: textValue1,
+                  size: YgToggleButtonSize.small,
+                  onChanged: (bool? newValue) {
+                    textValue1 = newValue;
+                    setState(() {});
+                  },
+                ),
+                YgToggleButton(
+                  text: 'Toggle',
+                  value: textValue2,
+                  size: YgToggleButtonSize.medium,
+                  onChanged: (bool? newValue) {
+                    textValue2 = newValue;
+                    setState(() {});
+                  },
+                ),
+                YgToggleButton(
+                  text: 'Toggle',
+                  value: textValue3,
+                  size: YgToggleButtonSize.large,
+                  onChanged: (bool? newValue) {
+                    textValue3 = newValue;
+                    setState(() {});
+                  },
+                ),
+              ].withHorizontalSpacing(10.0),
+            ),
+          ),
+          YgSection.base(
+            title: 'Icon & text toggle button',
+            child: Row(
+              mainAxisSize: MainAxisSize.min,
+              children: <Widget>[
+                YgToggleButton(
+                  icon: YgIcons.info,
+                  text: 'Toggle',
+                  value: iconTextValue1,
+                  size: YgToggleButtonSize.small,
+                  onChanged: (bool? newValue) {
+                    iconTextValue1 = newValue;
+                    setState(() {});
+                  },
+                ),
+                YgToggleButton(
+                  icon: YgIcons.info,
+                  text: 'Toggle',
+                  value: iconTextValue2,
+                  size: YgToggleButtonSize.medium,
+                  onChanged: (bool? newValue) {
+                    iconTextValue2 = newValue;
+                    setState(() {});
+                  },
+                ),
+                YgToggleButton(
+                  icon: YgIcons.info,
+                  text: 'Toggle',
+                  value: iconTextValue3,
+                  size: YgToggleButtonSize.large,
+                  onChanged: (bool? newValue) {
+                    iconTextValue3 = newValue;
+                    setState(() {});
+                  },
+                ),
+              ].withHorizontalSpacing(10.0),
+            ),
+          ),
+          YgSection.column(
+            title: 'Disabled',
+            children: <Widget>[
+              YgToggleButton(
+                icon: YgIcons.info,
+                text: 'Disabled (selected)',
+                value: enabled,
+                size: YgToggleButtonSize.medium,
+                onChanged: null,
+              ),
+              YgToggleButton(
+                icon: YgIcons.info,
+                text: 'Disabled (deselected)',
+                value: disabled,
+                size: YgToggleButtonSize.medium,
+                onChanged: null,
+              ),
+            ].withVerticalSpacing(10.0),
+          ),
         ],
       ),
     );

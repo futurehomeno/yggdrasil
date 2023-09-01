@@ -5,23 +5,61 @@ import 'package:yggdrasil/src/tokens/consumer_light/_consumer_light.dart' as con
 import 'package:yggdrasil/src/tokens/professional_dark/_professional_dark.dart' as professional_dark;
 import 'package:yggdrasil/src/tokens/professional_light/_professional_light.dart' as professional_light;
 
+import 'extensions/_extensions.dart';
+
 part 'toggle_button_theme.tailor.dart';
 
 @tailorComponent
 class _$YgToggleButtonTheme {
-  static const List<double> size = <double>[
-    consumer_light.FhDimensions.md,
-    consumer_dark.FhDimensions.md,
-    professional_light.FhDimensions.md,
-    professional_dark.FhDimensions.md,
+  @themeExtension
+  static final List<ToggleIconButtonTheme> toggleIconButtonTheme = ToggleIconButtonTheme.themes;
+
+  @themeExtension
+  static final List<ToggleTextButtonTheme> toggleTextButtonTheme = ToggleTextButtonTheme.themes;
+
+  @themeExtension
+  static final List<ToggleIconTextButtonTheme> toggleIconTextButtonTheme = ToggleIconTextButtonTheme.themes;
+
+  static const List<double> borderRadius = <double>[
+    consumer_light.FhDimensions.xxl,
+    consumer_dark.FhDimensions.xxl,
+    professional_light.FhDimensions.xxl,
+    professional_dark.FhDimensions.xxl,
   ];
 
-  static const List<double> padding = <double>[
+  static const List<double> iconTextSpacing = <double>[
     consumer_light.FhDimensions.xxs,
     consumer_dark.FhDimensions.xxs,
     professional_light.FhDimensions.xxs,
     professional_dark.FhDimensions.xxs,
   ];
+
+  // region text style
+
+  static const List<TextStyle> textStyleSmall = <TextStyle>[
+    consumer_light.FhTextStyles.caption1Bold,
+    consumer_dark.FhTextStyles.caption1Bold,
+    professional_light.FhTextStyles.caption1Bold,
+    professional_dark.FhTextStyles.caption1Bold,
+  ];
+
+  static const List<TextStyle> textStyleMedium = <TextStyle>[
+    consumer_light.FhTextStyles.paragraph3Bold,
+    consumer_dark.FhTextStyles.paragraph3Bold,
+    professional_light.FhTextStyles.paragraph3Bold,
+    professional_dark.FhTextStyles.paragraph3Bold,
+  ];
+
+  static const List<TextStyle> textStyleLarge = <TextStyle>[
+    consumer_light.FhTextStyles.paragraph2Bold,
+    consumer_dark.FhTextStyles.paragraph2Bold,
+    professional_light.FhTextStyles.paragraph2Bold,
+    professional_dark.FhTextStyles.paragraph2Bold,
+  ];
+
+  // endregion
+
+  // region fill color
 
   static const List<Color> selectedFillColor = <Color>[
     consumer_light.FhColors.backgroundInverse,
@@ -31,17 +69,17 @@ class _$YgToggleButtonTheme {
   ];
 
   static const List<Color> selectedHoveredFillColor = <Color>[
-    consumer_light.FhColors.backgroundWeak,
-    consumer_dark.FhColors.backgroundWeak,
-    professional_light.FhColors.backgroundWeak,
-    professional_dark.FhColors.backgroundWeak,
+    consumer_light.FhColors.backgroundInverse,
+    consumer_dark.FhColors.backgroundInverse,
+    professional_light.FhColors.backgroundInverse,
+    professional_dark.FhColors.backgroundInverse,
   ];
 
   static const List<Color> selectedPressedFillColor = <Color>[
-    consumer_light.FhColors.backgroundWeak,
-    consumer_dark.FhColors.backgroundWeak,
-    professional_light.FhColors.backgroundWeak,
-    professional_dark.FhColors.backgroundWeak,
+    consumer_light.FhColors.backgroundInverse,
+    consumer_dark.FhColors.backgroundInverse,
+    professional_light.FhColors.backgroundInverse,
+    professional_dark.FhColors.backgroundInverse,
   ];
 
   static const List<Color> selectedDisabledFillColor = <Color>[
@@ -59,24 +97,17 @@ class _$YgToggleButtonTheme {
   ];
 
   static const List<Color> deselectedHoveredFillColor = <Color>[
-    consumer_light.FhColors.backgroundDefault,
-    consumer_dark.FhColors.backgroundDefault,
-    professional_light.FhColors.backgroundDefault,
-    professional_dark.FhColors.backgroundDefault,
+    consumer_light.FhColors.backgroundWeak,
+    consumer_dark.FhColors.backgroundWeak,
+    professional_light.FhColors.backgroundWeak,
+    professional_dark.FhColors.backgroundWeak,
   ];
 
   static const List<Color> deselectedPressedFillColor = <Color>[
-    consumer_light.FhColors.backgroundDefault,
-    consumer_dark.FhColors.backgroundDefault,
-    professional_light.FhColors.backgroundDefault,
-    professional_dark.FhColors.backgroundDefault,
-  ];
-
-  static const List<Color> deselectedErrorFillColor = <Color>[
-    consumer_light.FhColors.backgroundDefault,
-    consumer_dark.FhColors.backgroundDefault,
-    professional_light.FhColors.backgroundDefault,
-    professional_dark.FhColors.backgroundDefault,
+    consumer_light.FhColors.backgroundWeak,
+    consumer_dark.FhColors.backgroundWeak,
+    professional_light.FhColors.backgroundWeak,
+    professional_dark.FhColors.backgroundWeak,
   ];
 
   static const List<Color> deselectedDisabledFillColor = <Color>[
@@ -84,6 +115,17 @@ class _$YgToggleButtonTheme {
     consumer_dark.FhColors.backgroundDisabled,
     professional_light.FhColors.backgroundDisabled,
     professional_dark.FhColors.backgroundDisabled,
+  ];
+
+  // endregion
+
+  // region border color
+
+  static const List<Color> selectedBorderColor = <Color>[
+    consumer_light.FhColors.borderInverse,
+    consumer_dark.FhColors.borderInverse,
+    professional_light.FhColors.borderInverse,
+    professional_dark.FhColors.borderInverse,
   ];
 
   static const List<Color> selectedDisabledBorderColor = <Color>[
@@ -114,28 +156,69 @@ class _$YgToggleButtonTheme {
     professional_dark.FhColors.borderWeak,
   ];
 
-  static const List<Color> deselectedErrorBorderColor = <Color>[
-    consumer_light.FhColors.interactiveCriticalDefault,
-    consumer_dark.FhColors.interactiveCriticalDefault,
-    professional_light.FhColors.interactiveCriticalDefault,
-    professional_dark.FhColors.interactiveCriticalDefault,
-  ];
-
   static const List<Color> deselectedDisabledBorderColor = <Color>[
-    consumer_light.FhColors.borderDisabled,
-    consumer_dark.FhColors.borderDisabled,
-    professional_light.FhColors.borderDisabled,
-    professional_dark.FhColors.borderDisabled,
+    consumer_light.FhColors.borderDefault,
+    consumer_dark.FhColors.borderDefault,
+    professional_light.FhColors.borderDefault,
+    professional_dark.FhColors.borderDefault,
   ];
 
-  static const List<Color> selectedCheckColor = <Color>[
+  // endregion
+
+  // redion Icon color
+
+  static const List<Color> selectedIconColor = <Color>[
     consumer_light.FhColors.iconInverse,
     consumer_dark.FhColors.iconInverse,
     professional_light.FhColors.iconInverse,
     professional_dark.FhColors.iconInverse,
   ];
 
-  static const List<Color> selectedDisabledCheckColor = <Color>[
+  static const List<Color> selectedDisabledIconColor = <Color>[
+    consumer_light.FhColors.iconDisabled,
+    consumer_dark.FhColors.iconDisabled,
+    professional_light.FhColors.iconDisabled,
+    professional_dark.FhColors.iconDisabled,
+  ];
+
+  static const List<Color> deselectedIconColor = <Color>[
+    consumer_light.FhColors.iconDefault,
+    consumer_dark.FhColors.iconDefault,
+    professional_light.FhColors.iconDefault,
+    professional_dark.FhColors.iconDefault,
+  ];
+
+  static const List<Color> deselectedDisabledIconColor = <Color>[
+    consumer_light.FhColors.iconDisabled,
+    consumer_dark.FhColors.iconDisabled,
+    professional_light.FhColors.iconDisabled,
+    professional_dark.FhColors.iconDisabled,
+  ];
+
+  // endregion
+
+  static const List<Color> selectedTextColor = <Color>[
+    consumer_light.FhColors.iconInverse,
+    consumer_dark.FhColors.iconInverse,
+    professional_light.FhColors.iconInverse,
+    professional_dark.FhColors.iconInverse,
+  ];
+
+  static const List<Color> selectedDisabledTextColor = <Color>[
+    consumer_light.FhColors.iconDisabled,
+    consumer_dark.FhColors.iconDisabled,
+    professional_light.FhColors.iconDisabled,
+    professional_dark.FhColors.iconDisabled,
+  ];
+
+  static const List<Color> deselectedTextColor = <Color>[
+    consumer_light.FhColors.iconDefault,
+    consumer_dark.FhColors.iconDefault,
+    professional_light.FhColors.iconDefault,
+    professional_dark.FhColors.iconDefault,
+  ];
+
+  static const List<Color> deselectedDisabledTextColor = <Color>[
     consumer_light.FhColors.iconDisabled,
     consumer_dark.FhColors.iconDisabled,
     professional_light.FhColors.iconDisabled,
