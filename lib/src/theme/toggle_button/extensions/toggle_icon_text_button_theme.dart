@@ -14,25 +14,25 @@ class _$ToggleIconTextButtonTheme {
       consumer_light.FhDimensions.xs,
       consumer_dark.FhDimensions.xxs,
       professional_light.FhDimensions.sm,
-      professional_dark.FhDimensions.xs,
+      professional_dark.FhDimensions.xxs,
     ),
     EdgeInsets.fromLTRB(
       consumer_light.FhDimensions.xs,
       consumer_dark.FhDimensions.xxs,
       professional_light.FhDimensions.sm,
-      professional_dark.FhDimensions.xs,
+      professional_dark.FhDimensions.xxs,
     ),
     EdgeInsets.fromLTRB(
       consumer_light.FhDimensions.xs,
       consumer_dark.FhDimensions.xxs,
       professional_light.FhDimensions.sm,
-      professional_dark.FhDimensions.xs,
+      professional_dark.FhDimensions.xxs,
     ),
     EdgeInsets.fromLTRB(
       consumer_light.FhDimensions.xs,
       consumer_dark.FhDimensions.xxs,
       professional_light.FhDimensions.sm,
-      professional_dark.FhDimensions.xs,
+      professional_dark.FhDimensions.xxs,
     ),
   ];
 
