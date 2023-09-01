@@ -1,6 +1,6 @@
 part of '../yg_dropdown_field.dart';
 
-class _YgDropdownFormFieldSingleSelect<T extends Object> extends YgDropdownFormField<T> implements FormField<T?> {
+class _YgDropdownFormFieldSingleSelect<T extends Object> extends YgDropdownFormField<T> implements FormField<T> {
   _YgDropdownFormFieldSingleSelect({
     required FormFieldKey<T> key,
     required super.entries,
@@ -84,7 +84,7 @@ class _YgDropdownFormFieldSingleSelect<T extends Object> extends YgDropdownFormF
   final FormFieldKey<T> _key;
 
   @override
-  FormFieldState<T?> createState() {
-    return FormFieldState<T?>();
+  FormFieldState<T> createState() {
+    return FormFieldState<T>();
   }
 }
