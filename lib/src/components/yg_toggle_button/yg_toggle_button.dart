@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:yggdrasil/src/components/yg_toggle_button/mappers/yg_toggle_button_mapper.dart';
 import 'package:yggdrasil/yggdrasil.dart';
 
+import 'mappers/_mappers.dart';
 import 'yg_toggle_button_style.dart';
 
 /// Yggdrasil toggle button.
