@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:yggdrasil/src/components/yg_toggle_button/helpers/_helpers.dart';
 import 'package:yggdrasil/src/components/yg_toggle_button/mappers/yg_toggle_button_mapper.dart';
 import 'package:yggdrasil/yggdrasil.dart';
 
@@ -18,13 +17,13 @@ class YgToggleButton extends StatefulWidget with StatefulWidgetDebugMixin {
   }) : assert(icon != null || text != null, 'Either icon or text must be provided.');
 
   /// The current value of the button.
-  final bool? value;
+  final bool value;
 
   /// Callback to trigger when the value of the button changes.
   ///
   /// The button itself does not maintain any state. Instead, when the state of
   /// the button changes, the widget calls the [onChanged] callback.
-  final Function(bool? newValue)? onChanged;
+  final Function(bool newValue)? onChanged;
 
   /// The size of the toggle button.
   final YgToggleButtonSize size;
@@ -101,6 +100,7 @@ class _YgToggleButtonState extends State<YgToggleButton> {
 
     final String? text = widget.text;
     final String? icon = widget.icon;
+    final YgToggleButtonVariant variant = _variant;
 
     return RepaintBoundary(
       child: Semantics(
@@ -125,15 +125,14 @@ class _YgToggleButtonState extends State<YgToggleButton> {
               padding: YgToggleButtonMapper.buildPadding(
                 theme: toggleButtonTheme,
                 size: widget.size,
-                variant: _variant,
+                variant: variant,
               ),
               decoration: BoxDecoration(
                 color: resolvedFillColor,
-                shape: _onlyIcon ? BoxShape.circle : BoxShape.rectangle,
                 border: Border.fromBorderSide(
                   BorderSide(color: resolvedBorderColor ?? Colors.transparent),
                 ),
-                borderRadius: _onlyIcon ? null : BorderRadius.all(Radius.circular(toggleButtonTheme.borderRadius)),
+                borderRadius: BorderRadius.all(Radius.circular(toggleButtonTheme.borderRadius)),
               ),
               child: Row(
                 mainAxisSize: MainAxisSize.min,
@@ -174,10 +173,9 @@ class _YgToggleButtonState extends State<YgToggleButton> {
   }
 
   void _onTap() {
-    final Function(bool? newValue)? onChanged = widget.onChanged;
+    final Function(bool newValue)? onChanged = widget.onChanged;
     if (onChanged != null) {
-      final bool? nextValue = YgToggleButtonHelpers.getNextValue(widget.value);
-      widget.onChanged?.call(nextValue);
+      widget.onChanged?.call(!widget.value);
     }
   }
 

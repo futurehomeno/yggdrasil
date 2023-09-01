@@ -20,17 +20,17 @@ class ToggleButtonScreen extends StatefulWidget {
 }
 
 class _ToggleButtonScreenState extends State<ToggleButtonScreen> {
-  bool? iconValue1 = false;
-  bool? iconValue2 = false;
-  bool? iconValue3 = false;
-  bool? textValue1 = false;
-  bool? textValue2 = false;
-  bool? textValue3 = false;
-  bool? iconTextValue1 = false;
-  bool? iconTextValue2 = false;
-  bool? iconTextValue3 = false;
-  bool? enabled = true;
-  bool? disabled = false;
+  bool iconValue1 = false;
+  bool iconValue2 = false;
+  bool iconValue3 = false;
+  bool textValue1 = false;
+  bool textValue2 = false;
+  bool textValue3 = false;
+  bool iconTextValue1 = false;
+  bool iconTextValue2 = false;
+  bool iconTextValue3 = false;
+  bool enabled = true;
+  bool disabled = false;
 
   @override
   Widget build(BuildContext context) {
@@ -49,7 +49,7 @@ class _ToggleButtonScreenState extends State<ToggleButtonScreen> {
                   icon: YgIcons.info,
                   value: iconValue1,
                   size: YgToggleButtonSize.small,
-                  onChanged: (bool? newValue) {
+                  onChanged: (bool newValue) {
                     iconValue1 = newValue;
                     setState(() {});
                   },
@@ -58,7 +58,7 @@ class _ToggleButtonScreenState extends State<ToggleButtonScreen> {
                   icon: YgIcons.info,
                   value: iconValue2,
                   size: YgToggleButtonSize.medium,
-                  onChanged: (bool? newValue) {
+                  onChanged: (bool newValue) {
                     iconValue2 = newValue;
                     setState(() {});
                   },
@@ -67,7 +67,7 @@ class _ToggleButtonScreenState extends State<ToggleButtonScreen> {
                   icon: YgIcons.info,
                   value: iconValue3,
                   size: YgToggleButtonSize.large,
-                  onChanged: (bool? newValue) {
+                  onChanged: (bool newValue) {
                     iconValue3 = newValue;
                     setState(() {});
                   },
@@ -84,7 +84,7 @@ class _ToggleButtonScreenState extends State<ToggleButtonScreen> {
                   text: 'Toggle',
                   value: textValue1,
                   size: YgToggleButtonSize.small,
-                  onChanged: (bool? newValue) {
+                  onChanged: (bool newValue) {
                     textValue1 = newValue;
                     setState(() {});
                   },
@@ -93,7 +93,7 @@ class _ToggleButtonScreenState extends State<ToggleButtonScreen> {
                   text: 'Toggle',
                   value: textValue2,
                   size: YgToggleButtonSize.medium,
-                  onChanged: (bool? newValue) {
+                  onChanged: (bool newValue) {
                     textValue2 = newValue;
                     setState(() {});
                   },
@@ -102,7 +102,7 @@ class _ToggleButtonScreenState extends State<ToggleButtonScreen> {
                   text: 'Toggle',
                   value: textValue3,
                   size: YgToggleButtonSize.large,
-                  onChanged: (bool? newValue) {
+                  onChanged: (bool newValue) {
                     textValue3 = newValue;
                     setState(() {});
                   },
@@ -120,7 +120,7 @@ class _ToggleButtonScreenState extends State<ToggleButtonScreen> {
                   text: 'Toggle',
                   value: iconTextValue1,
                   size: YgToggleButtonSize.small,
-                  onChanged: (bool? newValue) {
+                  onChanged: (bool newValue) {
                     iconTextValue1 = newValue;
                     setState(() {});
                   },
@@ -130,7 +130,7 @@ class _ToggleButtonScreenState extends State<ToggleButtonScreen> {
                   text: 'Toggle',
                   value: iconTextValue2,
                   size: YgToggleButtonSize.medium,
-                  onChanged: (bool? newValue) {
+                  onChanged: (bool newValue) {
                     iconTextValue2 = newValue;
                     setState(() {});
                   },
@@ -140,7 +140,7 @@ class _ToggleButtonScreenState extends State<ToggleButtonScreen> {
                   text: 'Toggle',
                   value: iconTextValue3,
                   size: YgToggleButtonSize.large,
-                  onChanged: (bool? newValue) {
+                  onChanged: (bool newValue) {
                     iconTextValue3 = newValue;
                     setState(() {});
                   },
