@@ -1,4 +1,5 @@
 import 'dart:math' as math;
+import 'dart:ui';
 
 import 'package:flutter/material.dart';
 import 'package:yggdrasil/yggdrasil.dart';
@@ -20,10 +21,26 @@ class YgGauge extends StatefulWidget with StatefulWidgetDebugMixin {
     this.label,
     this.notation,
     this.icon,
-  })  : assert(title == null || buildTitle == null, 'title and buildTitle can not be both defined.'),
-        assert(minValue <= maxValue, 'minValue must be less than or equal to maxValue'),
-        assert(icon == null || notation == null, 'Cannot have both icon and notation'),
-        assert(title == null || label == null || icon == null, 'Cannot have both title and label or icon');
+  })  : assert(
+          title == null || buildTitle == null,
+          'title and buildTitle can not be both defined.',
+        ),
+        assert(
+          minValue <= maxValue,
+          'minValue must be less than or equal to maxValue',
+        ),
+        assert(
+          icon == null || notation == null,
+          'Cannot have both icon and notation',
+        ),
+        assert(
+          title == null || label == null || icon == null,
+          'Cannot have both title and label or icon',
+        ),
+        assert(
+          value == null || (value <= maxValue && value >= minValue),
+          'The value has to be between minValue and maxValue',
+        );
 
   /// Current value of the gauge.
   ///
@@ -77,7 +94,7 @@ class _YgGaugeState extends State<YgGauge> with TickerProviderStateMixin {
   void didUpdateWidget(covariant YgGauge oldWidget) {
     if (widget.value != oldWidget.value) {
       _tween.begin = _animation.value;
-      _tween.end = widget.value;
+      _tween.end = widget.value ?? 0.0;
       _controller.value = 0.0;
 
       final YgGaugeTheme theme = context.gaugeTheme;
@@ -307,7 +324,7 @@ class _YgGaugePainter extends CustomPainter {
     canvas.drawArc(
       rect,
       startAngle,
-      endAngle * ((animation.value - minValue) / (maxValue - minValue)),
+      endAngle * clampDouble(((animation.value - minValue) / (maxValue - minValue)), 0, 1),
       false,
       arcPainter,
     );
