@@ -3,12 +3,7 @@ class YgToggleButtonHelpers {
 
   static bool? getNextValue(
     bool? value,
-    bool triState,
   ) {
-    if (!triState) {
-      return value != true;
-    }
-
     if (value == null) {
       return true;
     }

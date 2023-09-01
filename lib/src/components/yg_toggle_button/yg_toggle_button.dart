@@ -15,7 +15,6 @@ class YgToggleButton extends StatefulWidget with StatefulWidgetDebugMixin {
     this.size = YgToggleButtonSize.medium,
     this.icon,
     this.text,
-    this.triState = false,
   }) : assert(icon != null || text != null, 'Either icon or text must be provided.');
 
   /// The current value of the button.
@@ -35,11 +34,6 @@ class YgToggleButton extends StatefulWidget with StatefulWidgetDebugMixin {
 
   /// Text to show in the button.
   final String? text;
-
-  /// Enables `null` as a valid third state for the button.
-  ///
-  /// The button will then cycle through false --> null --> true --> false --> ...
-  final bool triState;
 
   bool get _enabled => onChanged != null;
 
@@ -182,7 +176,7 @@ class _YgToggleButtonState extends State<YgToggleButton> {
   void _onTap() {
     final Function(bool? newValue)? onChanged = widget.onChanged;
     if (onChanged != null) {
-      final bool? nextValue = YgToggleButtonHelpers.getNextValue(widget.value, widget.triState);
+      final bool? nextValue = YgToggleButtonHelpers.getNextValue(widget.value);
       widget.onChanged?.call(nextValue);
     }
   }
