@@ -74,7 +74,7 @@ class _YgToggleButtonState extends State<YgToggleButton> {
     if (widget._enabled != oldWidget._enabled) {
       _statesController.update(MaterialState.disabled, !widget._enabled);
       if (!widget._enabled) {
-        // The radio may have been disabled while a press gesture is currently underway.
+        // The toggle button may have been disabled while a press gesture is currently underway.
         _statesController.update(MaterialState.pressed, false);
       }
     }
