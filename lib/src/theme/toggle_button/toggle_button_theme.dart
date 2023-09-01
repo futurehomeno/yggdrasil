@@ -111,10 +111,10 @@ class _$YgToggleButtonTheme {
   ];
 
   static const List<Color> deselectedDisabledFillColor = <Color>[
-    consumer_light.FhColors.backgroundDisabled,
-    consumer_dark.FhColors.backgroundDisabled,
-    professional_light.FhColors.backgroundDisabled,
-    professional_dark.FhColors.backgroundDisabled,
+    consumer_light.FhColors.backgroundDefault,
+    consumer_dark.FhColors.backgroundDefault,
+    professional_light.FhColors.backgroundDefault,
+    professional_dark.FhColors.backgroundDefault,
   ];
 
   // endregion
