@@ -22,7 +22,7 @@ abstract class YgDropdownFormField<T extends Object> extends StatefulWidget {
     YgDropdownAction dropdownAction,
     YgDropdownFieldVariant variant,
     ValueChanged<bool> onFocusChanged,
-  }) = YgDropdownFormFieldSingleSelect<T>;
+  }) = _YgDropdownFormFieldSingleSelect<T>;
 
   factory YgDropdownFormField.multiSelect({
     required List<YgDropdownEntry<T>> entries,
@@ -45,10 +45,10 @@ abstract class YgDropdownFormField<T extends Object> extends StatefulWidget {
     YgDropdownAction dropdownAction,
     YgCompleteAction completeAction,
     ValueChanged<bool> onFocusChanged,
-  }) = YgDropdownFormFieldMultiSelect<T>;
+  }) = _YgDropdownFormFieldMultiSelect<T>;
 
   const YgDropdownFormField._({
-    super.key,
+    required super.key,
     required this.entries,
     required this.label,
     required this.disabled,
@@ -59,12 +59,12 @@ abstract class YgDropdownFormField<T extends Object> extends StatefulWidget {
     required this.size,
     required this.variant,
     required this.autoValidate,
-    this.error,
-    this.focusNode,
-    this.minLines,
-    this.onFocusChanged,
-    this.onPressed,
-    this.placeholder,
+    required this.error,
+    required this.focusNode,
+    required this.minLines,
+    required this.onFocusChanged,
+    required this.onPressed,
+    required this.placeholder,
   })  : enabled = !disabled,
         restorationId = null;
 

@@ -61,6 +61,8 @@ class YgDropdownMenuRoute<T extends Object> extends PopupRoute<Widget> {
       animation: animation.drive(CurveTween(curve: Curves.easeOut)),
       screenPadding: MediaQuery.paddingOf(context),
       padding: 5.0,
+      // Yes, we need 2 of them, otherwise the scroll shadow doesn't repaint,
+      // don't ask me how or why
       child: RepaintBoundary(
         child: RepaintBoundary(
           child: _YgDropdownMenu<T>(

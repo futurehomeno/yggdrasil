@@ -1,7 +1,7 @@
 part of '../yg_dropdown_field.dart';
 
-class YgDropdownFormFieldMultiSelect<T extends Object> extends YgDropdownFormField<T> implements FormField<Set<T>> {
-  YgDropdownFormFieldMultiSelect({
+class _YgDropdownFormFieldMultiSelect<T extends Object> extends YgDropdownFormField<T> implements FormField<Set<T>> {
+  _YgDropdownFormFieldMultiSelect({
     required MultiSelectKey<T> key,
     required super.entries,
     required super.label,

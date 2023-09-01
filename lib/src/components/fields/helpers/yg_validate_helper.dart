@@ -40,7 +40,7 @@ class YgValidateHelper<T> {
 
   static FormFieldValidator<T> combineValidators<T>(List<FormFieldValidator<T>>? validators) {
     return (T? value) {
-      if (validators == null) {
+      if (validators == null || validators.isEmpty) {
         return null;
       }
 

@@ -161,18 +161,7 @@ class _DropdownFieldScreenState extends State<DropdownFieldScreen> {
   void _onSubmit() {
     FocusScope.of(context).unfocus();
 
-    print([_singleSelectKey.value, _multiSelectKey.value]);
-
-    if (!_singleSelectKey.validate()) {
-      print('failed singleSelect');
-    }
-    if (!_multiSelectKey.validate()) {
-      print('failed multiSelect');
-    }
-
     if (!_formKey.validate()) {
-      print('failed');
-
       return;
     }
 

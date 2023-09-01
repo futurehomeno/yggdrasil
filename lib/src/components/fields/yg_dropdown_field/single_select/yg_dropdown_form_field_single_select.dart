@@ -1,7 +1,7 @@
 part of '../yg_dropdown_field.dart';
 
-class YgDropdownFormFieldSingleSelect<T extends Object> extends YgDropdownFormField<T> implements FormField<T?> {
-  YgDropdownFormFieldSingleSelect({
+class _YgDropdownFormFieldSingleSelect<T extends Object> extends YgDropdownFormField<T> implements FormField<T?> {
+  _YgDropdownFormFieldSingleSelect({
     required FormFieldKey<T> key,
     required super.entries,
     required super.label,
