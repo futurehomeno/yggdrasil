@@ -52,14 +52,12 @@ class _TopAppBarScreenState extends State<TopAppBarScreen> {
             automaticallyImplyLeading: false,
             title: 'Page title',
             centerTitle: true,
-            variant: YgSliverTopAppBarVariant.small,
           ),
           const YgListTile(title: 'Default non-sliver TopAppBar (title and leading)'),
           const YgTopAppBar(
             leading: YgIcon(YgIcons.caretLeft),
             title: 'Page title',
             centerTitle: true,
-            variant: YgSliverTopAppBarVariant.small,
           ),
           const YgListTile(title: 'Default non-sliver TopAppBar (title and actions)'),
           const YgTopAppBar(
@@ -70,7 +68,6 @@ class _TopAppBarScreenState extends State<TopAppBarScreen> {
             automaticallyImplyLeading: false,
             title: 'Page title',
             centerTitle: true,
-            variant: YgSliverTopAppBarVariant.small,
           ),
           const YgListTile(title: 'Default non-sliver TopAppBar (title, leading and actions)'),
           const YgTopAppBar(
@@ -85,7 +82,6 @@ class _TopAppBarScreenState extends State<TopAppBarScreen> {
             leading: YgIcon(YgIcons.caretLeft),
             title: 'Page title',
             centerTitle: true,
-            variant: YgSliverTopAppBarVariant.small,
           ),
           // Used for better scrolling preview.
           const SizedBox(height: 500.0),
