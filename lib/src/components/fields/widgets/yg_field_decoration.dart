@@ -122,6 +122,7 @@ class YgFieldDecoration extends StatelessWidget {
     return InkWell(
       borderRadius: _getBorderRadius(theme),
       onTap: onPressed,
+      canRequestFocus: false,
       child: child,
     );
   }
