@@ -1,10 +1,15 @@
 import 'package:flutter/material.dart';
-import 'package:yggdrasil/src/theme/fields/extensions/field_decoration/field_decoration_theme.dart';
-import 'package:yggdrasil/src/theme/fields/field_theme.dart';
 import 'package:yggdrasil/yggdrasil.dart';
 
-import '../enums/_enums.dart';
+import '../enums/field_state.dart';
+import 'yg_field_text_content.dart';
 
+/// The decoration of any yggdrasil field widget.
+///
+/// Only decorates the outside of the field, the content will most likely be a
+/// [YgFieldTextContent], but the content may also be a row of widgets as in
+/// for example the phone number field, or any other field with more than one
+/// value.
 class YgFieldDecoration extends StatelessWidget {
   const YgFieldDecoration({
     super.key,
@@ -14,14 +19,38 @@ class YgFieldDecoration extends StatelessWidget {
     required this.states,
     required this.suffix,
     required this.large,
+    required this.onPressed,
   });
 
+  /// The primary content in the field.
   final Widget content;
+
+  /// The suffix shown next to the content in the field.
   final Widget? suffix;
+
+  /// The error of the field.
+  ///
+  /// Will be displayed below the field it self and when added or removed will
+  /// animate the height of the field.
   final String? error;
+
+  /// If the field is of large size.
   final bool large;
+
+  /// If the field is of outlined variant.
   final bool outlined;
+
+  /// The current states of the field.
   final FieldStates states;
+
+  /// Called when pressed.
+  ///
+  /// !--- WARNING ---
+  /// Only use when the field decoration functions as a button, rather than a
+  /// container for child widgets which can request focus or handle clicks by
+  /// them self, as these will not and should not trigger this callback and
+  /// its accompanying ink ripple.
+  final VoidCallback? onPressed;
 
   @override
   Widget build(BuildContext context) {
@@ -32,40 +61,46 @@ class YgFieldDecoration extends StatelessWidget {
     return Column(
       mainAxisSize: MainAxisSize.min,
       children: <Widget>[
-        Stack(
-          children: <Widget>[
-            Positioned.fill(
-              child: AnimatedContainer(
-                duration: fieldTheme.animationDuration,
-                curve: fieldTheme.animationCurve,
-                decoration: BoxDecoration(
-                  border: _getBorder(theme),
-                  borderRadius: _getBorderRadius(theme),
-                  color: _getBackgroundColor(theme),
-                ),
-              ),
-            ),
-            Padding(
-              padding: _getChildPadding(theme),
-              child: Row(
-                children: <Widget>[
-                  Expanded(child: content),
-                  if (suffix != null)
-                    Padding(
-                      padding: _getSuffixPadding(theme),
-                      // We do not want the suffix to be traversable because
-                      // it breaks the next keyboard action.
-                      child: Focus(
-                        descendantsAreTraversable: false,
-                        skipTraversal: true,
-                        canRequestFocus: false,
-                        child: suffix,
-                      ),
+        Material(
+          borderRadius: _getBorderRadius(theme),
+          color: _getBackgroundColor(theme),
+          child: _maybeWrapWithInkwell(
+            theme: theme,
+            child: Stack(
+              children: <Widget>[
+                Positioned.fill(
+                  child: AnimatedContainer(
+                    duration: fieldTheme.animationDuration,
+                    curve: fieldTheme.animationCurve,
+                    decoration: BoxDecoration(
+                      border: _getBorder(theme),
+                      borderRadius: _getDecorationBorderRadius(theme),
                     ),
-                ],
-              ),
+                  ),
+                ),
+                Padding(
+                  padding: _getChildPadding(theme),
+                  child: Row(
+                    children: <Widget>[
+                      Expanded(child: content),
+                      if (suffix != null)
+                        Padding(
+                          padding: _getSuffixPadding(theme),
+                          // We do not want the suffix to be traversable because
+                          // it breaks the next keyboard action.
+                          child: Focus(
+                            descendantsAreTraversable: false,
+                            skipTraversal: true,
+                            canRequestFocus: false,
+                            child: suffix,
+                          ),
+                        ),
+                    ],
+                  ),
+                ),
+              ],
             ),
-          ],
+          ),
         ),
         AnimatedSize(
           duration: fieldTheme.animationDuration,
@@ -73,6 +108,21 @@ class YgFieldDecoration extends StatelessWidget {
           child: _buildErrorMessage(theme),
         ),
       ],
+    );
+  }
+
+  Widget _maybeWrapWithInkwell({
+    required Widget child,
+    required YgFieldDecorationTheme theme,
+  }) {
+    if (onPressed == null) {
+      return child;
+    }
+
+    return InkWell(
+      borderRadius: _getBorderRadius(theme),
+      onTap: onPressed,
+      child: child,
     );
   }
 
@@ -150,9 +200,19 @@ class YgFieldDecoration extends StatelessWidget {
         borderPadding;
   }
 
-  BorderRadius? _getBorderRadius(YgFieldDecorationTheme theme) {
+  BorderRadius _getBorderRadius(YgFieldDecorationTheme theme) {
     if (outlined) {
-      return theme.borderRadius;
+      return theme.borderRadiusOutlined;
+    }
+
+    return theme.borderRadiusDefault;
+  }
+
+  /// This method has to exist because a uneven border can not be applied when
+  /// there is a border radius.
+  BorderRadius? _getDecorationBorderRadius(YgFieldDecorationTheme theme) {
+    if (outlined) {
+      return theme.borderRadiusOutlined;
     }
 
     return null;

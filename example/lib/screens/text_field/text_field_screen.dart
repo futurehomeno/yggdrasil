@@ -96,7 +96,7 @@ class _TextFieldScreenState extends State<TextFieldScreen> {
               children: <Widget>[
                 const YgTextField(
                   label: 'Standard',
-                  variant: YgTextFieldVariant.standard,
+                  variant: YgFieldVariant.standard,
                   keyboardType: TextInputType.text,
                   textInputAction: TextInputAction.next,
                   textCapitalization: TextCapitalization.words,
@@ -104,7 +104,7 @@ class _TextFieldScreenState extends State<TextFieldScreen> {
                 ),
                 const YgTextField(
                   label: 'Outlined',
-                  variant: YgTextFieldVariant.outlined,
+                  variant: YgFieldVariant.outlined,
                   keyboardType: TextInputType.text,
                   textInputAction: TextInputAction.next,
                   textCapitalization: TextCapitalization.words,

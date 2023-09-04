@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:yggdrasil/src/components/fields/enums/field_state.dart';
-import 'package:yggdrasil/src/theme/fields/extensions/field_content/field_content_theme.dart';
 import 'package:yggdrasil/yggdrasil.dart';
 
 /// The content of the [YgTextField].
@@ -16,10 +15,30 @@ class YgFieldTextContent extends StatefulWidget {
     required this.minLines,
   });
 
+  /// The value value.
+  ///
+  /// This is simply a widget with a [DefaultTextStyle] provided to it, any
+  /// interaction logic of the value (if required) will be implemented elsewhere.
   final Widget value;
+
+  /// The placeholder.
+  ///
+  /// Only shown if [states] does not contain the [FieldState.filled].
   final String? placeholder;
+
+  /// The label.
+  ///
+  /// Will be in in place of the value if there is no [placeholder] and when
+  /// [states] does not contain [FieldState.filled], [FieldState.focused] or
+  /// [FieldState.opened].
   final String label;
+
+  /// The current states of the field.
   final FieldStates states;
+
+  /// The minium height of the value in an amount of lines.
+  ///
+  /// Only effects the height of the widget.
   final int? minLines;
 
   @override
@@ -59,12 +78,12 @@ class _YgFieldTextContentState extends State<YgFieldTextContent> {
         ),
         AnimatedSlide(
           key: _labelKey,
-          duration: duration,
-          curve: curve,
+          duration: _duration,
+          curve: _curve,
           offset: _labelOffset,
           child: AnimatedDefaultTextStyle(
-            duration: duration,
-            curve: curve,
+            duration: _duration,
+            curve: _curve,
             style: _labelTextStyle,
             child: Text(
               widget.label,
@@ -75,57 +94,57 @@ class _YgFieldTextContentState extends State<YgFieldTextContent> {
     );
   }
 
-  YgFieldContentTheme get theme => context.fieldTheme.contentTheme;
-  Duration get duration => context.fieldTheme.animationDuration;
-  Curve get curve => context.fieldTheme.animationCurve;
+  YgFieldContentTheme get _theme => context.fieldTheme.contentTheme;
+  Duration get _duration => context.fieldTheme.animationDuration;
+  Curve get _curve => context.fieldTheme.animationCurve;
 
-  double get _labelFloatingHeight => theme.labelFocusFilledTextStyle.computedHeight;
+  double get _labelFloatingHeight => _theme.labelFocusFilledTextStyle.computedHeight;
 
   bool get _floatLabel => widget.states.focused || widget.states.filled || widget.placeholder?.isNotEmpty == true;
 
   TextStyle get _valueTextStyle {
-    final TextStyle baseStyle = theme.valueTextStyle;
+    final TextStyle baseStyle = _theme.valueTextStyle;
 
     if (widget.states.disabled) {
       return baseStyle.copyWith(
-        color: theme.valueDisabledColor,
+        color: _theme.valueDisabledColor,
       );
     }
 
     return baseStyle.copyWith(
-      color: theme.valueDefaultColor,
+      color: _theme.valueDefaultColor,
     );
   }
 
   TextStyle get _placeholderTextStyle {
     if (widget.states.disabled) {
-      return theme.placeholderTextStyle.copyWith(
-        color: theme.placeholderDisabledColor,
+      return _theme.placeholderTextStyle.copyWith(
+        color: _theme.placeholderDisabledColor,
       );
     }
 
-    return theme.placeholderTextStyle.copyWith(
-      color: theme.placeholderDefaultColor,
+    return _theme.placeholderTextStyle.copyWith(
+      color: _theme.placeholderDefaultColor,
     );
   }
 
   TextStyle get _labelTextStyle {
-    final TextStyle baseStyle = _floatLabel ? theme.labelFocusFilledTextStyle : theme.labelDefaultTextStyle;
+    final TextStyle baseStyle = _floatLabel ? _theme.labelFocusFilledTextStyle : _theme.labelDefaultTextStyle;
 
     if (widget.states.disabled) {
       return baseStyle.copyWith(
-        color: theme.labelDisabledColor,
+        color: _theme.labelDisabledColor,
       );
     }
 
     if (widget.states.focused || widget.states.filled || widget.states.opened) {
       return baseStyle.copyWith(
-        color: theme.labelFocusFilledColor,
+        color: _theme.labelFocusFilledColor,
       );
     }
 
     return baseStyle.copyWith(
-      color: theme.labelDefaultColor,
+      color: _theme.labelDefaultColor,
     );
   }
 
@@ -135,8 +154,8 @@ class _YgFieldTextContentState extends State<YgFieldTextContent> {
     }
 
     final double labelFloatingHeight = _labelFloatingHeight;
-    final double labelDefaultHeight = theme.labelDefaultTextStyle.computedHeight;
-    final double valueDefaultHeight = theme.valueTextStyle.computedHeight;
+    final double labelDefaultHeight = _theme.labelDefaultTextStyle.computedHeight;
+    final double valueDefaultHeight = _theme.valueTextStyle.computedHeight;
 
     final double combinedHeight = labelFloatingHeight + valueDefaultHeight;
 

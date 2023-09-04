@@ -1,3 +1,4 @@
+/// All the states any yggdrasil field can be in.
 enum FieldState {
   focused,
   hovered,
@@ -7,8 +8,12 @@ enum FieldState {
   opened,
 }
 
+/// A set of [FieldState]s.
 typedef FieldStates = Set<FieldState>;
 
+// TODO(Tim): This does not seem like the best pattern, but i don't really have
+// a good alternative yet, probably find a better pattern when implementing
+// state based animated widget.
 extension FieldStatesExtension on FieldStates {
   bool get focused => contains(FieldState.focused);
   bool get hovered => contains(FieldState.hovered);

@@ -12,8 +12,8 @@ class _YgDropdownFormFieldSingleSelect<T extends Object> extends YgDropdownFormF
     super.maxLines = 1,
     super.disabled = false,
     super.allowDeselect = false,
-    super.variant = YgDropdownFieldVariant.standard,
-    super.size = YgDropdownFieldSize.large,
+    super.variant = YgFieldVariant.standard,
+    super.size = YgFieldSize.large,
     super.dropdownAction = YgDropdownAction.auto,
     super.autoValidate = YgAutoValidate.disabled,
     super.completeAction = YgCompleteAction.unfocus,
@@ -76,10 +76,13 @@ class _YgDropdownFormFieldSingleSelect<T extends Object> extends YgDropdownFormF
   @override
   final FormFieldValidator<T>? validator;
 
-  final YgSingleSelectDropdownController<T>? controller;
-
   @override
   final FormFieldSetter<T?>? onSaved;
+
+  /// The controller of the field.
+  ///
+  /// See [YgDropdownController] for more information on how to use it.
+  final YgSingleSelectDropdownController<T>? controller;
 
   final FormFieldKey<T> _key;
 

@@ -70,7 +70,7 @@ class _ListTileCheckboxScreenState extends State<ListTileCheckboxScreen> {
               YgCheckboxListTile(
                 title: 'With trailingWidget',
                 subtitle: 'Mostly used to add a YgIconButton.',
-                trailingWidget: YgIconButton(
+                leadingWidget: YgIconButton(
                   onPressed: () {},
                   child: const YgIcon(YgIcons.info),
                 ),

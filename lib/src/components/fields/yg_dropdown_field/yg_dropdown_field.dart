@@ -5,6 +5,7 @@ import 'package:flutter/services.dart';
 import 'package:yggdrasil/yggdrasil.dart';
 
 import '../enums/_enums.dart';
+import '../enums/field_state.dart';
 import '../helpers/yg_validate_helper.dart';
 import '../widgets/_widgets.dart';
 import 'widgets/_widgets.dart';
@@ -21,7 +22,7 @@ part 'yg_dropdown_controller.dart';
 part 'yg_dropdown_form_field.dart';
 
 abstract class YgDropdownField<T extends Object> extends StatefulWidget with StatefulWidgetDebugMixin {
-  /// factory constructor for a dropdown field with a single value.
+  /// factory constructor for a [YgDropdownField] with a single value.
   ///
   /// See [YgDropdownField] for the documentation of every argument.
   const factory YgDropdownField({
@@ -41,11 +42,11 @@ abstract class YgDropdownField<T extends Object> extends StatefulWidget with Sta
     ValueChanged<bool>? onFocusChanged,
     VoidCallback? onPressed,
     String? placeholder,
-    YgDropdownFieldSize size,
-    YgDropdownFieldVariant variant,
+    YgFieldSize size,
+    YgFieldVariant variant,
   }) = _YgDropdownFieldSingleSelect<T>;
 
-  /// Factory contractor for a dropdown field with more than one value.
+  /// Factory contractor for a [YgDropdownField] with more than one value.
   ///
   /// See [YgDropdownField] for the documentation of every argument.
   const factory YgDropdownField.multiSelect({
@@ -65,8 +66,8 @@ abstract class YgDropdownField<T extends Object> extends StatefulWidget with Sta
     ValueChanged<bool>? onFocusChanged,
     VoidCallback? onPressed,
     String? placeholder,
-    YgDropdownFieldSize size,
-    YgDropdownFieldVariant variant,
+    YgFieldSize size,
+    YgFieldVariant variant,
   }) = _YgDropdownFieldMultiSelect<T>;
 
   const YgDropdownField._({
@@ -75,8 +76,8 @@ abstract class YgDropdownField<T extends Object> extends StatefulWidget with Sta
     required this.label,
     required this.maxLines,
     this.allowDeselect = false,
-    this.variant = YgDropdownFieldVariant.standard,
-    this.size = YgDropdownFieldSize.large,
+    this.variant = YgFieldVariant.standard,
+    this.size = YgFieldSize.large,
     this.dropdownAction = YgDropdownAction.auto,
     this.focusNode,
     this.error,
@@ -89,10 +90,10 @@ abstract class YgDropdownField<T extends Object> extends StatefulWidget with Sta
   });
 
   /// The variant of the field.
-  final YgDropdownFieldVariant variant;
+  final YgFieldVariant variant;
 
   /// The size of the field.
-  final YgDropdownFieldSize size;
+  final YgFieldSize size;
 
   /// The dropdown entries.
   ///
@@ -232,16 +233,17 @@ abstract class YgDropdownFieldState<T extends Object, W extends YgDropdownField<
 
     final Widget layout = RepaintBoundary(
       child: YgFieldDecoration(
-        outlined: widget.variant == YgDropdownFieldVariant.outlined,
-        large: widget.size == YgDropdownFieldSize.large,
+        outlined: widget.variant == YgFieldVariant.outlined,
+        large: widget.size == YgFieldSize.large,
         error: widget.error,
         states: _states,
+        onPressed: widget.disabled ? null : open,
         suffix: AnimatedRotation(
           duration: theme.animationDuration,
           curve: theme.animationCurve,
           turns: _states.opened ? 0.5 : 0,
           child: YgIconButton(
-            onPressed: _controller.open,
+            onPressed: open,
             size: YgIconButtonSize.small,
             child: const YgIcon(
               YgIcons.caretDown,
@@ -280,10 +282,10 @@ abstract class YgDropdownFieldState<T extends Object, W extends YgDropdownField<
         SingleActivator(LogicalKeyboardKey.space, control: false): ActivateIntent(),
       },
       actions: <Type, Action<Intent>>{
-        ActivateIntent: CallbackAction<Intent>(onInvoke: (_) => _controller.open()),
+        ActivateIntent: CallbackAction<Intent>(onInvoke: (_) => open()),
       },
       child: GestureDetector(
-        onTap: _controller.open,
+        onTap: open,
         child: layout,
       ),
     );
@@ -331,7 +333,7 @@ abstract class YgDropdownFieldState<T extends Object, W extends YgDropdownField<
         return openMenu();
       case YgDropdownAction.auto:
         return _performPlatformAction();
-      case YgDropdownAction.nothing:
+      case YgDropdownAction.none:
         return;
     }
   }

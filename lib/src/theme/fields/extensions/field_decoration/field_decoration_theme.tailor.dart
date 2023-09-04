@@ -18,7 +18,8 @@ class YgFieldDecorationTheme extends ThemeExtension<YgFieldDecorationTheme> {
     required this.borderError,
     required this.borderFocus,
     required this.borderHover,
-    required this.borderRadius,
+    required this.borderRadiusDefault,
+    required this.borderRadiusOutlined,
     required this.errorIconColor,
     required this.errorIconPadding,
     required this.errorPadding,
@@ -39,7 +40,8 @@ class YgFieldDecorationTheme extends ThemeExtension<YgFieldDecorationTheme> {
   final Border borderError;
   final Border borderFocus;
   final Border borderHover;
-  final BorderRadius borderRadius;
+  final BorderRadius borderRadiusDefault;
+  final BorderRadius borderRadiusOutlined;
   final Color errorIconColor;
   final EdgeInsets errorIconPadding;
   final EdgeInsets errorPadding;
@@ -61,7 +63,8 @@ class YgFieldDecorationTheme extends ThemeExtension<YgFieldDecorationTheme> {
     borderError: _$YgFieldDecorationTheme.borderError[0],
     borderFocus: _$YgFieldDecorationTheme.borderFocus[0],
     borderHover: _$YgFieldDecorationTheme.borderHover[0],
-    borderRadius: _$YgFieldDecorationTheme.borderRadius[0],
+    borderRadiusDefault: _$YgFieldDecorationTheme.borderRadiusDefault[0],
+    borderRadiusOutlined: _$YgFieldDecorationTheme.borderRadiusOutlined[0],
     errorIconColor: _$YgFieldDecorationTheme.errorIconColor[0],
     errorIconPadding: _$YgFieldDecorationTheme.errorIconPadding[0],
     errorPadding: _$YgFieldDecorationTheme.errorPadding[0],
@@ -88,7 +91,8 @@ class YgFieldDecorationTheme extends ThemeExtension<YgFieldDecorationTheme> {
     borderError: _$YgFieldDecorationTheme.borderError[1],
     borderFocus: _$YgFieldDecorationTheme.borderFocus[1],
     borderHover: _$YgFieldDecorationTheme.borderHover[1],
-    borderRadius: _$YgFieldDecorationTheme.borderRadius[1],
+    borderRadiusDefault: _$YgFieldDecorationTheme.borderRadiusDefault[1],
+    borderRadiusOutlined: _$YgFieldDecorationTheme.borderRadiusOutlined[1],
     errorIconColor: _$YgFieldDecorationTheme.errorIconColor[1],
     errorIconPadding: _$YgFieldDecorationTheme.errorIconPadding[1],
     errorPadding: _$YgFieldDecorationTheme.errorPadding[1],
@@ -116,7 +120,8 @@ class YgFieldDecorationTheme extends ThemeExtension<YgFieldDecorationTheme> {
     borderError: _$YgFieldDecorationTheme.borderError[2],
     borderFocus: _$YgFieldDecorationTheme.borderFocus[2],
     borderHover: _$YgFieldDecorationTheme.borderHover[2],
-    borderRadius: _$YgFieldDecorationTheme.borderRadius[2],
+    borderRadiusDefault: _$YgFieldDecorationTheme.borderRadiusDefault[2],
+    borderRadiusOutlined: _$YgFieldDecorationTheme.borderRadiusOutlined[2],
     errorIconColor: _$YgFieldDecorationTheme.errorIconColor[2],
     errorIconPadding: _$YgFieldDecorationTheme.errorIconPadding[2],
     errorPadding: _$YgFieldDecorationTheme.errorPadding[2],
@@ -143,7 +148,8 @@ class YgFieldDecorationTheme extends ThemeExtension<YgFieldDecorationTheme> {
     borderError: _$YgFieldDecorationTheme.borderError[3],
     borderFocus: _$YgFieldDecorationTheme.borderFocus[3],
     borderHover: _$YgFieldDecorationTheme.borderHover[3],
-    borderRadius: _$YgFieldDecorationTheme.borderRadius[3],
+    borderRadiusDefault: _$YgFieldDecorationTheme.borderRadiusDefault[3],
+    borderRadiusOutlined: _$YgFieldDecorationTheme.borderRadiusOutlined[3],
     errorIconColor: _$YgFieldDecorationTheme.errorIconColor[3],
     errorIconPadding: _$YgFieldDecorationTheme.errorIconPadding[3],
     errorPadding: _$YgFieldDecorationTheme.errorPadding[3],
@@ -177,7 +183,8 @@ class YgFieldDecorationTheme extends ThemeExtension<YgFieldDecorationTheme> {
     Border? borderError,
     Border? borderFocus,
     Border? borderHover,
-    BorderRadius? borderRadius,
+    BorderRadius? borderRadiusDefault,
+    BorderRadius? borderRadiusOutlined,
     Color? errorIconColor,
     EdgeInsets? errorIconPadding,
     EdgeInsets? errorPadding,
@@ -200,7 +207,8 @@ class YgFieldDecorationTheme extends ThemeExtension<YgFieldDecorationTheme> {
       borderError: borderError ?? this.borderError,
       borderFocus: borderFocus ?? this.borderFocus,
       borderHover: borderHover ?? this.borderHover,
-      borderRadius: borderRadius ?? this.borderRadius,
+      borderRadiusDefault: borderRadiusDefault ?? this.borderRadiusDefault,
+      borderRadiusOutlined: borderRadiusOutlined ?? this.borderRadiusOutlined,
       errorIconColor: errorIconColor ?? this.errorIconColor,
       errorIconPadding: errorIconPadding ?? this.errorIconPadding,
       errorPadding: errorPadding ?? this.errorPadding,
@@ -236,7 +244,10 @@ class YgFieldDecorationTheme extends ThemeExtension<YgFieldDecorationTheme> {
       borderError: t < 0.5 ? borderError : other.borderError,
       borderFocus: t < 0.5 ? borderFocus : other.borderFocus,
       borderHover: t < 0.5 ? borderHover : other.borderHover,
-      borderRadius: t < 0.5 ? borderRadius : other.borderRadius,
+      borderRadiusDefault:
+          t < 0.5 ? borderRadiusDefault : other.borderRadiusDefault,
+      borderRadiusOutlined:
+          t < 0.5 ? borderRadiusOutlined : other.borderRadiusOutlined,
       errorIconColor: Color.lerp(errorIconColor, other.errorIconColor, t)!,
       errorIconPadding: t < 0.5 ? errorIconPadding : other.errorIconPadding,
       errorPadding: t < 0.5 ? errorPadding : other.errorPadding,
@@ -282,7 +293,9 @@ class YgFieldDecorationTheme extends ThemeExtension<YgFieldDecorationTheme> {
             const DeepCollectionEquality()
                 .equals(borderHover, other.borderHover) &&
             const DeepCollectionEquality()
-                .equals(borderRadius, other.borderRadius) &&
+                .equals(borderRadiusDefault, other.borderRadiusDefault) &&
+            const DeepCollectionEquality()
+                .equals(borderRadiusOutlined, other.borderRadiusOutlined) &&
             const DeepCollectionEquality()
                 .equals(errorIconColor, other.errorIconColor) &&
             const DeepCollectionEquality()
@@ -307,7 +320,7 @@ class YgFieldDecorationTheme extends ThemeExtension<YgFieldDecorationTheme> {
 
   @override
   int get hashCode {
-    return Object.hash(
+    return Object.hashAll([
       runtimeType.hashCode,
       const DeepCollectionEquality().hash(backgroundDefaultColor),
       const DeepCollectionEquality().hash(backgroundDisabledColor),
@@ -317,7 +330,8 @@ class YgFieldDecorationTheme extends ThemeExtension<YgFieldDecorationTheme> {
       const DeepCollectionEquality().hash(borderError),
       const DeepCollectionEquality().hash(borderFocus),
       const DeepCollectionEquality().hash(borderHover),
-      const DeepCollectionEquality().hash(borderRadius),
+      const DeepCollectionEquality().hash(borderRadiusDefault),
+      const DeepCollectionEquality().hash(borderRadiusOutlined),
       const DeepCollectionEquality().hash(errorIconColor),
       const DeepCollectionEquality().hash(errorIconPadding),
       const DeepCollectionEquality().hash(errorPadding),
@@ -328,6 +342,6 @@ class YgFieldDecorationTheme extends ThemeExtension<YgFieldDecorationTheme> {
       const DeepCollectionEquality().hash(mediumStandardContentPadding),
       const DeepCollectionEquality().hash(outlinedSuffixPadding),
       const DeepCollectionEquality().hash(standardSuffixPadding),
-    );
+    ]);
   }
 }

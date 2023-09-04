@@ -3,6 +3,7 @@ import 'package:flutter/services.dart';
 import 'package:yggdrasil/src/components/fields/enums/field_state.dart';
 import 'package:yggdrasil/yggdrasil.dart';
 
+import '../enums/_enums.dart';
 import '../widgets/_widgets.dart';
 import 'widgets/_widgets.dart';
 
@@ -30,8 +31,8 @@ class YgTextField extends StatefulWidget with StatefulWidgetDebugMixin {
     this.readOnly = false,
     this.obscureText = false,
     this.showObscureTextButton = true,
-    this.size = YgTextFieldSize.large,
-    this.variant = YgTextFieldVariant.standard,
+    this.size = YgFieldSize.large,
+    this.variant = YgFieldVariant.standard,
     this.initialValue,
   })  : assert(
           maxLines == null || minLines == null || maxLines >= minLines,
@@ -62,8 +63,8 @@ class YgTextField extends StatefulWidget with StatefulWidgetDebugMixin {
     this.onFocusChanged,
     this.disabled = false,
     this.readOnly = false,
-    this.size = YgTextFieldSize.large,
-    this.variant = YgTextFieldVariant.standard,
+    this.size = YgFieldSize.large,
+    this.variant = YgFieldVariant.standard,
     this.initialValue,
   })  : maxLines = 1,
         minLines = null,
@@ -94,8 +95,8 @@ class YgTextField extends StatefulWidget with StatefulWidgetDebugMixin {
     this.disabled = false,
     this.readOnly = false,
     this.showObscureTextButton = true,
-    this.size = YgTextFieldSize.large,
-    this.variant = YgTextFieldVariant.standard,
+    this.size = YgFieldSize.large,
+    this.variant = YgFieldVariant.standard,
     this.initialValue,
   })  : maxLines = 1,
         minLines = null,
@@ -128,8 +129,8 @@ class YgTextField extends StatefulWidget with StatefulWidgetDebugMixin {
     this.onFocusChanged,
     this.disabled = false,
     this.readOnly = false,
-    this.size = YgTextFieldSize.large,
-    this.variant = YgTextFieldVariant.standard,
+    this.size = YgFieldSize.large,
+    this.variant = YgFieldVariant.standard,
     this.initialValue,
   })  : maxLines = 1,
         minLines = null,
@@ -160,8 +161,8 @@ class YgTextField extends StatefulWidget with StatefulWidgetDebugMixin {
     this.maxLines,
     this.disabled = false,
     this.readOnly = false,
-    this.size = YgTextFieldSize.large,
-    this.variant = YgTextFieldVariant.standard,
+    this.size = YgFieldSize.large,
+    this.variant = YgFieldVariant.standard,
     this.initialValue,
   })  : obscureText = false,
         autocorrect = true,
@@ -202,7 +203,7 @@ class YgTextField extends StatefulWidget with StatefulWidgetDebugMixin {
   final ValueChanged<String>? onChanged;
 
   /// The variant of the text field.
-  final YgTextFieldVariant variant;
+  final YgFieldVariant variant;
 
   /// The label shown on top of the text field.
   final String label;
@@ -260,7 +261,7 @@ class YgTextField extends StatefulWidget with StatefulWidgetDebugMixin {
   /// The size of the text field.
   ///
   /// Primarily affects the height of the text field.
-  final YgTextFieldSize size;
+  final YgFieldSize size;
 
   /// The type of keyboard to use for editing the text.
   final TextInputType keyboardType;
@@ -433,11 +434,12 @@ class _YgTextFieldState extends State<YgTextField> {
   Widget build(BuildContext context) {
     final Widget layout = RepaintBoundary(
       child: YgFieldDecoration(
-        outlined: widget.variant == YgTextFieldVariant.outlined,
-        large: widget.size == YgTextFieldSize.large,
+        outlined: widget.variant == YgFieldVariant.outlined,
+        large: widget.size == YgFieldSize.large,
         error: widget.error,
         states: _states,
         suffix: _buildSuffix(),
+        onPressed: null,
         content: YgFieldTextContent(
           value: YgTextFieldValue(
             autocorrect: widget.autocorrect,
@@ -480,7 +482,7 @@ class _YgTextFieldState extends State<YgTextField> {
     );
   }
 
-  _updateHoverState(bool toggled) {
+  void _updateHoverState(bool toggled) {
     _updateFieldState(FieldState.hovered, toggled);
     setState(() {});
   }

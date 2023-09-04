@@ -68,6 +68,17 @@ class _DropdownFieldScreenState extends State<DropdownFieldScreen> {
                   entries: _generateEntries(4),
                 ),
                 YgDropdownField<String>(
+                  label: 'Button only',
+                  dropdownAction: YgDropdownAction.none,
+                  entries: _generateEntries(4),
+                ),
+                YgDropdownField<String>(
+                  label: 'Button only',
+                  variant: YgFieldVariant.outlined,
+                  dropdownAction: YgDropdownAction.none,
+                  entries: _generateEntries(4),
+                ),
+                YgDropdownField<String>(
                   label: 'Scrollable bottom sheet',
                   dropdownAction: YgDropdownAction.bottomSheet,
                   entries: _generateEntries(20),
@@ -89,12 +100,12 @@ class _DropdownFieldScreenState extends State<DropdownFieldScreen> {
               children: <Widget>[
                 YgDropdownField<String>(
                   label: 'Standard',
-                  variant: YgDropdownFieldVariant.standard,
+                  variant: YgFieldVariant.standard,
                   entries: _generateEntries(4),
                 ),
                 YgDropdownField<String>(
                   label: 'Outlined',
-                  variant: YgDropdownFieldVariant.outlined,
+                  variant: YgFieldVariant.outlined,
                   entries: _generateEntries(4),
                 ),
               ].withVerticalSpacing(15),
@@ -118,27 +129,30 @@ class _DropdownFieldScreenState extends State<DropdownFieldScreen> {
                 ),
               ].withVerticalSpacing(15),
             ),
-            YgSection.column(
-              title: 'Custom controller',
-              children: <Widget>[
-                YgDropdownField<String>.multiSelect(
-                  entries: _generateEntries(4),
-                  label: 'Custom controller',
-                  controller: _controller,
-                ),
-                YgButton(
-                  onPressed: () => _controller.add('value1'),
-                  child: const Text('Add Value 1'),
-                ),
-                YgButton(
-                  onPressed: () => _controller.clear(),
-                  child: const Text('Clear selected values'),
-                ),
-                YgButton(
-                  onPressed: () => _controller.openMenu(),
-                  child: const Text('Open dropdown menu'),
-                ),
-              ].withVerticalSpacing(15),
+            Form(
+              key: _formKey,
+              child: YgSection.column(
+                title: 'Custom controller',
+                children: <Widget>[
+                  YgDropdownField<String>.multiSelect(
+                    entries: _generateEntries(4),
+                    label: 'Custom controller',
+                    controller: _controller,
+                  ),
+                  YgButton(
+                    onPressed: () => _controller.add('value1'),
+                    child: const Text('Add Value 1'),
+                  ),
+                  YgButton(
+                    onPressed: () => _controller.clear(),
+                    child: const Text('Clear selected values'),
+                  ),
+                  YgButton(
+                    onPressed: () => _controller.openMenu(),
+                    child: const Text('Open dropdown menu'),
+                  ),
+                ].withVerticalSpacing(15),
+              ),
             ),
           ],
         ),
@@ -171,7 +185,7 @@ class _DropdownFieldScreenState extends State<DropdownFieldScreen> {
     ScaffoldMessenger.of(context).showSnackBar(
       YgSnackBar(
         context: context,
-        message: 'Logging in with $singleSelect and $multiSelect.',
+        message: 'Submitted form with $singleSelect and $multiSelect.',
       ),
     );
   }

@@ -30,7 +30,7 @@ class YgDropdownBottomSheetRoute<T extends Object> extends YgBottomSheetModalRou
       title: label,
       content: ListenableBuilder(
         listenable: dropdownController,
-        builder: (context, child) {
+        builder: (BuildContext context, Widget? child) {
           return Column(
             children: _buildEntries(),
           );
@@ -41,26 +41,31 @@ class YgDropdownBottomSheetRoute<T extends Object> extends YgBottomSheetModalRou
 
   List<Widget> _buildEntries() {
     final List<Widget> widgets = <Widget>[];
+    final YgDynamicDropdownController<T> controller = dropdownController;
 
     for (final YgDropdownEntry<T> entry in entries) {
-      final YgIcon? icon = entry.icon;
-
-      widgets.add(
-        YgListTile(
-          title: entry.title,
-          subtitle: entry.subtitle,
-          leadingWidgets: <Widget>[
-            if (icon != null) icon,
-          ],
-          trailingWidgets: <Widget>[
-            if (dropdownController.isEntrySelected(entry))
-              const YgIcon(
-                YgIcons.check,
-              ),
-          ],
-          onTap: () => _onEntryTapped(entry),
-        ),
-      );
+      if (controller is YgSingleSelectDropdownController<T>) {
+        widgets.add(
+          YgRadioListTile<T>(
+            title: entry.title,
+            subtitle: entry.subtitle,
+            leadingWidget: entry.icon,
+            groupValue: controller.value,
+            value: entry.value,
+            onChanged: (_) => _onEntryTapped(entry),
+          ),
+        );
+      } else {
+        widgets.add(
+          YgCheckboxListTile(
+            title: entry.title,
+            subtitle: entry.subtitle,
+            leadingWidget: entry.icon,
+            onChanged: (_) => _onEntryTapped(entry),
+            value: controller.isEntrySelected(entry),
+          ),
+        );
+      }
     }
 
     return widgets;

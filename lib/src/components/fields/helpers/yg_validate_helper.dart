@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:yggdrasil/src/components/fields/_fields.dart';
 
-import '../enums/yg_complete_action.dart';
+import '../enums/_enums.dart';
 
+// TODO(Tim): should maybe be updated / split to allow adding certain logic to non form fields as well.
+/// Helper for our custom validation logic.
 class YgValidateHelper<T> {
   const YgValidateHelper({
     required FormFieldKey<T> key,
@@ -16,6 +18,10 @@ class YgValidateHelper<T> {
         _completeAction = completeAction,
         _onFocusChanged = onFocusChanged;
 
+  /// Maps our [YgAutoValidate] to the flutter equivalent.
+  ///
+  /// Maps [YgAutoValidate.onComplete] to [AutovalidateMode.disabled] as the
+  /// [YgAutoValidate.onComplete] is implemented by us and not flutter.
   static AutovalidateMode mapAutoValidate(YgAutoValidate autoValidate) {
     switch (autoValidate) {
       case YgAutoValidate.onComplete:
@@ -28,6 +34,10 @@ class YgValidateHelper<T> {
     }
   }
 
+  /// Maps the [TextInputAction] to [YgCompleteAction].
+  ///
+  /// Should be used to get the default [YgCompleteAction], should be
+  /// overridable by the user.
   static YgCompleteAction mapTextInputAction(TextInputAction textInputAction) {
     if (textInputAction == TextInputAction.next) {
       return YgCompleteAction.focusNext;
@@ -38,6 +48,7 @@ class YgValidateHelper<T> {
     return YgCompleteAction.unfocus;
   }
 
+  /// Combines a list of [FormFieldValidator]s in to one.
   static FormFieldValidator<T> combineValidators<T>(List<FormFieldValidator<T>>? validators) {
     return (T? value) {
       if (validators == null || validators.isEmpty) {
@@ -56,12 +67,22 @@ class YgValidateHelper<T> {
     };
   }
 
+  /// The key used to do validation.
   final FormFieldKey<T> _key;
+
+  /// The validation mode of the field.
   final YgAutoValidate _autoValidate;
+
+  /// The user specified onFocusChanged handler.
   final ValueChanged<bool>? _onFocusChanged;
+
+  /// The action to execute when the user finishes editing a field.
   final YgCompleteAction _completeAction;
+
+  /// The user specified
   final VoidCallback? _onEditingComplete;
 
+  /// Handler for the field focuses changes.
   void onFocusChanged(bool hasFocus) {
     if (!hasFocus && _autoValidate == YgAutoValidate.onComplete) {
       _key.validate();
@@ -70,6 +91,7 @@ class YgValidateHelper<T> {
     _onFocusChanged?.call(hasFocus);
   }
 
+  /// Handler for when the user finishes editing a field.
   void onEditingComplete() {
     final VoidCallback? onEditingComplete = this._onEditingComplete;
 

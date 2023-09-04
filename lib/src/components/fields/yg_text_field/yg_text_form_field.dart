@@ -3,6 +3,8 @@ import 'package:flutter/services.dart';
 import 'package:yggdrasil/src/components/fields/helpers/yg_validate_helper.dart';
 import 'package:yggdrasil/yggdrasil.dart';
 
+import '../enums/_enums.dart';
+
 /// A form field that contains a [YgTextField].
 ///
 /// This is a convenience widget that wraps a [YgTextField] widget in a [FormField].
@@ -30,9 +32,9 @@ class YgTextFormField extends FormField<String> {
     bool readOnly = false,
     bool obscureText = false,
     bool showObscureTextButton = true,
-    YgTextFieldSize size = YgTextFieldSize.large,
+    YgFieldSize size = YgFieldSize.large,
     YgAutoValidate autoValidate = YgAutoValidate.disabled,
-    YgTextFieldVariant variant = YgTextFieldVariant.standard,
+    YgFieldVariant variant = YgFieldVariant.standard,
   }) : super(
           initialValue: controller != null ? controller.text : (initialValue ?? ''),
           enabled: !disabled,
@@ -98,9 +100,9 @@ class YgTextFormField extends FormField<String> {
     bool required = false,
     bool disabled = false,
     bool readOnly = false,
-    YgTextFieldSize size = YgTextFieldSize.large,
+    YgFieldSize size = YgFieldSize.large,
     YgAutoValidate autoValidate = YgAutoValidate.disabled,
-    YgTextFieldVariant variant = YgTextFieldVariant.standard,
+    YgFieldVariant variant = YgFieldVariant.standard,
   }) : this(
           key: key,
           label: label,
@@ -145,9 +147,9 @@ class YgTextFormField extends FormField<String> {
     bool disabled = false,
     bool readOnly = false,
     bool showObscureTextButton = true,
-    YgTextFieldSize size = YgTextFieldSize.large,
+    YgFieldSize size = YgFieldSize.large,
     YgAutoValidate autoValidate = YgAutoValidate.disabled,
-    YgTextFieldVariant variant = YgTextFieldVariant.standard,
+    YgFieldVariant variant = YgFieldVariant.standard,
   }) : this(
           key: key,
           label: label,
@@ -195,9 +197,9 @@ class YgTextFormField extends FormField<String> {
     bool readOnly = false,
     int? maxLines,
     int? minLines,
-    YgTextFieldSize size = YgTextFieldSize.large,
+    YgFieldSize size = YgFieldSize.large,
     YgAutoValidate autoValidate = YgAutoValidate.disabled,
-    YgTextFieldVariant variant = YgTextFieldVariant.standard,
+    YgFieldVariant variant = YgFieldVariant.standard,
     TextCapitalization textCapitalization = TextCapitalization.sentences,
   }) : this(
           key: key,

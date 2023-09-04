@@ -5,8 +5,8 @@ class _YgDropdownFieldSingleSelect<T extends Object> extends YgDropdownField<T> 
     super.key,
     required super.entries,
     required super.label,
-    super.variant = YgDropdownFieldVariant.standard,
-    super.size = YgDropdownFieldSize.large,
+    super.variant = YgFieldVariant.standard,
+    super.size = YgFieldSize.large,
     super.focusNode,
     super.error,
     super.minLines,
@@ -22,7 +22,7 @@ class _YgDropdownFieldSingleSelect<T extends Object> extends YgDropdownField<T> 
     this.onChange,
   }) : super._();
 
-  /// The initial value of the dropdown field.
+  /// The initial value of the [YgDropdownField].
   final T? initialValue;
 
   /// Called with the new value when the value has changed.

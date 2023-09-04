@@ -12,7 +12,7 @@ class YgRadioListTile<T> extends StatelessWidget {
     required this.onChanged,
     this.subtitle,
     this.subtitleIcon,
-    this.trailingWidget,
+    this.leadingWidget,
   });
 
   /// See [YgListTile] documentation.
@@ -34,26 +34,32 @@ class YgRadioListTile<T> extends StatelessWidget {
   final ValueChanged<T?>? onChanged;
 
   /// Optional widget to display before the switch.
-  final Widget? trailingWidget;
+  final Widget? leadingWidget;
 
   @override
   Widget build(BuildContext context) {
+    final Widget? leadingWidget = this.leadingWidget;
+
+    final AbsorbPointer radioButton = AbsorbPointer(
+      child: YgNoFocus(
+        child: YgRadio<T>(
+          value: value,
+          groupValue: groupValue,
+          onChanged: onChanged,
+        ),
+      ),
+    );
+
     return YgListTile(
       title: title,
       subtitle: subtitle,
       subtitleIcon: subtitleIcon,
       onTap: onChanged == null ? null : _onTap,
+      leadingWidgets: <Widget>[
+        if (leadingWidget == null) radioButton else leadingWidget,
+      ],
       trailingWidgets: <Widget>[
-        if (trailingWidget != null) trailingWidget!,
-        AbsorbPointer(
-          child: YgNoFocus(
-            child: YgRadio<T>(
-              value: value,
-              groupValue: groupValue,
-              onChanged: onChanged,
-            ),
-          ),
-        ),
+        if (leadingWidget != null) radioButton,
       ],
     );
   }

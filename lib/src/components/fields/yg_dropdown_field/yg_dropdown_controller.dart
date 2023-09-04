@@ -5,12 +5,22 @@ part of 'yg_dropdown_field.dart';
 // ignore: avoid-dynamic
 typedef YgDynamicDropdownController<T extends Object> = YgDropdownController<T, dynamic>;
 
+/// The base class controller for a [YgDropdownField].
+///
+/// Should not be used directly, instead look at one of the following more
+/// specific implementations.
+///
+///  - [YgSingleSelectDropdownController].
+///  - [YgMultiSelectDropdownController].
 abstract class YgDropdownController<T extends Object, V> extends ValueNotifier<V> {
   YgDropdownController({
     required V initialValue,
   }) : super(initialValue);
 
   /// Builds a title using the passed entries and the current [value].
+  ///
+  /// Used internally in the [YgDropdownField] and should generally not be used
+  /// by a user of the [YgDropdownField].
   String buildTitle(List<YgDropdownEntry<T>> entries);
 
   /// Handles a tap on a entry.
@@ -24,6 +34,14 @@ abstract class YgDropdownController<T extends Object, V> extends ValueNotifier<V
 
   YgDropdownFieldState<T, YgDropdownField<T>>? _field;
 
+  /// Method to attach a controller to a [YgDropdownField].
+  ///
+  /// !--- Warning ---
+  /// Used internally in the [YgDropdownField] and should not be used by a user
+  /// of the [YgDropdownField].
+  ///
+  /// Should not be called when the controller is already attached to a
+  /// [YgDropdownField].
   void attach(YgDropdownFieldState<T, YgDropdownField<T>> field) {
     assert(
       _field == null || _field == field,
@@ -35,10 +53,19 @@ abstract class YgDropdownController<T extends Object, V> extends ValueNotifier<V
     _field = field;
   }
 
+  /// Method to detach a controller from its current [YgDropdownField].
+  ///
+  /// Used internally in the [YgDropdownField] and should not be used by a user
+  /// of the [YgDropdownField].
   void detach() {
     _field = null;
   }
 
+  /// Opens the menu specifically.
+  ///
+  /// Should be called only when the menu specifically should be opened. For most
+  /// cases you want to use the [open] method instead to show either a menu or
+  /// bottom sheet, depending on the platform the user is on.
   void openMenu() {
     final YgDropdownFieldState<T, YgDropdownField<T>>? field = _field;
     assert(
@@ -52,6 +79,11 @@ abstract class YgDropdownController<T extends Object, V> extends ValueNotifier<V
     field.openMenu();
   }
 
+  /// Opens the bottom sheet specifically.
+  ///
+  /// Should be called only when the menu specifically should be opened. For most
+  /// cases you want to use the [open] method instead to show either a menu or
+  /// bottom sheet, depending on the platform the user is on.
   void openBottomSheet() {
     final YgDropdownFieldState<T, YgDropdownField<T>>? field = _field;
     assert(
@@ -65,6 +97,10 @@ abstract class YgDropdownController<T extends Object, V> extends ValueNotifier<V
     field.openBottomSheet();
   }
 
+  /// Opens the dropdown.
+  ///
+  /// Shows either a menu or bottom sheet, depending on the platform the user is
+  /// on.
   void open() {
     final YgDropdownFieldState<T, YgDropdownField<T>>? field = _field;
     assert(
@@ -78,6 +114,7 @@ abstract class YgDropdownController<T extends Object, V> extends ValueNotifier<V
     field.open();
   }
 
+  /// Closes the dropdown.
   void close() {
     final YgDropdownFieldState<T, YgDropdownField<T>>? field = _field;
     assert(
@@ -91,6 +128,7 @@ abstract class YgDropdownController<T extends Object, V> extends ValueNotifier<V
     field.close();
   }
 
+  /// Whether the dropdown in open or closed.
   bool get isOpen {
     final YgDropdownFieldState<T, YgDropdownField<T>>? field = _field;
     assert(

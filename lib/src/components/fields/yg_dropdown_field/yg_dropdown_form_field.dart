@@ -1,5 +1,6 @@
 part of 'yg_dropdown_field.dart';
 
+/// The [FormField] variant of the [YgDropdownField].
 abstract class YgDropdownFormField<T extends Object> extends StatefulWidget {
   factory YgDropdownFormField({
     required List<YgDropdownEntry<T>> entries,
@@ -16,11 +17,11 @@ abstract class YgDropdownFormField<T extends Object> extends StatefulWidget {
     bool disabled,
     bool allowDeselect,
     VoidCallback onPressed,
-    YgDropdownFieldSize size,
+    YgFieldSize size,
     YgAutoValidate autoValidate,
     YgCompleteAction completeAction,
     YgDropdownAction dropdownAction,
-    YgDropdownFieldVariant variant,
+    YgFieldVariant variant,
     ValueChanged<bool> onFocusChanged,
   }) = _YgDropdownFormFieldSingleSelect<T>;
 
@@ -39,9 +40,9 @@ abstract class YgDropdownFormField<T extends Object> extends StatefulWidget {
     bool disabled,
     bool allowDeselect,
     VoidCallback onPressed,
-    YgDropdownFieldSize size,
+    YgFieldSize size,
     YgAutoValidate autoValidate,
-    YgDropdownFieldVariant variant,
+    YgFieldVariant variant,
     YgDropdownAction dropdownAction,
     YgCompleteAction completeAction,
     ValueChanged<bool> onFocusChanged,
@@ -75,10 +76,10 @@ abstract class YgDropdownFormField<T extends Object> extends StatefulWidget {
   final String label;
 
   /// See [YgDropdownField.entries].
-  final YgDropdownFieldVariant variant;
+  final YgFieldVariant variant;
 
   /// See [YgDropdownField.entries].
-  final YgDropdownFieldSize size;
+  final YgFieldSize size;
 
   /// See [YgDropdownField.entries].
   final FocusNode? focusNode;
@@ -110,11 +111,21 @@ abstract class YgDropdownFormField<T extends Object> extends StatefulWidget {
   /// See [YgDropdownField.onPressed].
   final VoidCallback? onPressed;
 
+  /// The action which will be executed after the user selects a value.
+  ///
+  /// For more info see [YgCompleteAction].
   final YgCompleteAction completeAction;
 
+  /// The auto validation mode used.
+  ///
+  /// For more info see [YgAutoValidate].
   final YgAutoValidate autoValidate;
+
+  // region FormFieldOverrides
 
   final bool enabled;
 
   final String? restorationId;
+
+  // endregion
 }

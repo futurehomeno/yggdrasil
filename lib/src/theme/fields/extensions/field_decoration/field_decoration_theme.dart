@@ -70,7 +70,26 @@ class _$YgFieldDecorationTheme {
     Border.all(color: professional_dark.FhColors.borderDisabled),
   ];
 
-  static const List<BorderRadius> borderRadius = <BorderRadius>[
+  static final List<BorderRadius> borderRadiusDefault = <BorderRadius>[
+    BorderRadius.only(
+      topLeft: consumer_light.FhRadii.xs.topLeft,
+      topRight: consumer_light.FhRadii.xs.topRight,
+    ),
+    BorderRadius.only(
+      topLeft: consumer_dark.FhRadii.xs.topLeft,
+      topRight: consumer_dark.FhRadii.xs.topRight,
+    ),
+    BorderRadius.only(
+      topLeft: professional_light.FhRadii.xs.topLeft,
+      topRight: professional_light.FhRadii.xs.topRight,
+    ),
+    BorderRadius.only(
+      topLeft: professional_dark.FhRadii.xs.topLeft,
+      topRight: professional_dark.FhRadii.xs.topRight,
+    ),
+  ];
+
+  static const List<BorderRadius> borderRadiusOutlined = <BorderRadius>[
     consumer_light.FhRadii.xs,
     consumer_dark.FhRadii.xs,
     professional_light.FhRadii.xs,
