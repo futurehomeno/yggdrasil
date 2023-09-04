@@ -232,8 +232,8 @@ abstract class YgDropdownFieldState<T extends Object, W extends YgDropdownField<
 
     final Widget layout = RepaintBoundary(
       child: YgFieldDecoration(
-        outlined: widget.variant == YgFieldVariant.outlined,
-        large: widget.size == YgFieldSize.large,
+        variant: widget.variant,
+        size: widget.size,
         error: widget.error,
         states: _states,
         onPressed: widget.disabled ? null : open,

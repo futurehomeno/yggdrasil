@@ -433,8 +433,8 @@ class _YgTextFieldState extends State<YgTextField> {
   Widget build(BuildContext context) {
     final Widget layout = RepaintBoundary(
       child: YgFieldDecoration(
-        outlined: widget.variant == YgFieldVariant.outlined,
-        large: widget.size == YgFieldSize.large,
+        variant: widget.variant,
+        size: widget.size,
         error: widget.error,
         states: _states,
         suffix: _buildSuffix(),

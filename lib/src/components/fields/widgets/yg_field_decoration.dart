@@ -14,11 +14,11 @@ class YgFieldDecoration extends StatelessWidget {
   const YgFieldDecoration({
     super.key,
     required this.content,
-    required this.outlined,
+    required this.variant,
     required this.error,
     required this.states,
     required this.suffix,
-    required this.large,
+    required this.size,
     required this.onPressed,
   });
 
@@ -35,10 +35,10 @@ class YgFieldDecoration extends StatelessWidget {
   final String? error;
 
   /// If the field is of large size.
-  final bool large;
+  final YgFieldSize size;
 
   /// If the field is of outlined variant.
-  final bool outlined;
+  final YgFieldVariant variant;
 
   /// The current states of the field.
   final FieldStates states;
@@ -163,7 +163,7 @@ class YgFieldDecoration extends StatelessWidget {
   }
 
   EdgeInsets _getSuffixPadding(YgFieldDecorationTheme theme) {
-    if (outlined) {
+    if (variant == YgFieldVariant.outlined) {
       return theme.outlinedSuffixPadding;
     }
 
@@ -173,22 +173,23 @@ class YgFieldDecoration extends StatelessWidget {
   EdgeInsets _getChildPadding(YgFieldDecorationTheme theme) {
     // TODO(Tim): Have to find some better way to figure out the border size to
     // add to the padding.
-    final EdgeInsets borderPadding = outlined
-        ? const EdgeInsets.all(
-            2.0,
-          )
-        : const EdgeInsets.only(
-            bottom: 2,
-          );
+    final EdgeInsets borderPadding = switch (variant) {
+      YgFieldVariant.outlined => const EdgeInsets.all(
+          2.0,
+        ),
+      YgFieldVariant.standard => const EdgeInsets.only(
+          bottom: 2,
+        ),
+    };
 
-    final EdgeInsets base = switch (outlined) {
-      true => switch (large) {
-          true => theme.largeOutlinedContentPadding,
-          false => theme.mediumOutlinedContentPadding,
+    final EdgeInsets base = switch (variant) {
+      YgFieldVariant.outlined => switch (size) {
+          YgFieldSize.large => theme.largeOutlinedContentPadding,
+          YgFieldSize.medium => theme.mediumOutlinedContentPadding,
         },
-      false => switch (large) {
-          true => theme.largeStandardContentPadding,
-          false => theme.mediumStandardContentPadding,
+      YgFieldVariant.standard => switch (size) {
+          YgFieldSize.large => theme.largeStandardContentPadding,
+          YgFieldSize.medium => theme.mediumStandardContentPadding,
         },
     };
 
@@ -201,21 +202,23 @@ class YgFieldDecoration extends StatelessWidget {
   }
 
   BorderRadius _getBorderRadius(YgFieldDecorationTheme theme) {
-    if (outlined) {
-      return theme.borderRadiusOutlined;
+    switch (variant) {
+      case YgFieldVariant.outlined:
+        return theme.borderRadiusOutlined;
+      case YgFieldVariant.standard:
+        return theme.borderRadiusDefault;
     }
-
-    return theme.borderRadiusDefault;
   }
 
   /// This method has to exist because a uneven border can not be applied when
   /// there is a border radius.
   BorderRadius? _getDecorationBorderRadius(YgFieldDecorationTheme theme) {
-    if (outlined) {
-      return theme.borderRadiusOutlined;
+    switch (variant) {
+      case YgFieldVariant.outlined:
+        return theme.borderRadiusOutlined;
+      case YgFieldVariant.standard:
+        return null;
     }
-
-    return null;
   }
 
   Border _getBorder(YgFieldDecorationTheme theme) {
@@ -231,7 +234,7 @@ class YgFieldDecoration extends StatelessWidget {
       base = theme.borderHover;
     }
 
-    if (outlined) {
+    if (variant == YgFieldVariant.outlined) {
       return base;
     }
 
@@ -241,7 +244,7 @@ class YgFieldDecoration extends StatelessWidget {
   }
 
   Color _getBackgroundColor(YgFieldDecorationTheme theme) {
-    if (!outlined) {
+    if (variant != YgFieldVariant.outlined) {
       return Colors.transparent;
     }
 
