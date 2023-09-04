@@ -73,12 +73,6 @@ class _DropdownFieldScreenState extends State<DropdownFieldScreen> {
                   entries: _generateEntries(4),
                 ),
                 YgDropdownField<String>(
-                  label: 'Button only',
-                  variant: YgFieldVariant.outlined,
-                  dropdownAction: YgDropdownAction.none,
-                  entries: _generateEntries(4),
-                ),
-                YgDropdownField<String>(
                   label: 'Scrollable bottom sheet',
                   dropdownAction: YgDropdownAction.bottomSheet,
                   entries: _generateEntries(20),
