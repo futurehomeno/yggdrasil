@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:yggdrasil/src/components/_components.dart';
 import 'package:yggdrasil/src/theme/_theme.dart';
+import 'package:yggdrasil/src/utils/_utils.dart';
 
 /// [YgBadge] takes a child widget and overlays it with a badge.
 class YgBadge extends StatelessWidget with StatelessWidgetDebugMixin {
@@ -24,8 +25,8 @@ class YgBadge extends StatelessWidget with StatelessWidgetDebugMixin {
   /// The alignment of the badge relative to the child.
   final Alignment alignment;
 
-  static const double badgeMinSize = 20.0;
-  static const int maxBadgeCount = 9;
+  static const double _badgeMinSize = 20.0;
+  static const int _maxBadgeCount = 9;
 
   @override
   Widget build(BuildContext context) {
@@ -36,7 +37,10 @@ class YgBadge extends StatelessWidget with StatelessWidgetDebugMixin {
       children: <Widget>[
         child,
         Container(
-          padding: const EdgeInsets.fromLTRB(5, 2, 5, 2),
+          padding: const EdgeInsets.symmetric(
+            horizontal: 5.0,
+            vertical: 2.0,
+          ),
           decoration: BoxDecoration(
             color: YgBadgeMapper.getBadgeColor(
               theme: badgeTheme,
@@ -45,13 +49,13 @@ class YgBadge extends StatelessWidget with StatelessWidgetDebugMixin {
             borderRadius: badgeTheme.borderRadius,
           ),
           constraints: const BoxConstraints(
-            minWidth: badgeMinSize,
-            minHeight: badgeMinSize,
+            minWidth: _badgeMinSize,
+            minHeight: _badgeMinSize,
           ),
           child: Center(
             widthFactor: 1,
             child: Text(
-              amount > maxBadgeCount ? '$maxBadgeCount+' : amount.toString(),
+              amount > _maxBadgeCount ? '$_maxBadgeCount+' : amount.toString(),
               style: YgBadgeMapper.getTextStyle(
                 theme: badgeTheme,
                 weight: weight,

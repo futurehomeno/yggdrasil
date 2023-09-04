@@ -9,63 +9,63 @@ part 'defaults.tailor.dart';
 
 @tailorComponent
 class _$YgDefaults {
-  static List<Brightness> brightness = <Brightness>[
+  static const List<Brightness> brightness = <Brightness>[
     Brightness.light, // consumer_light
     Brightness.dark, // consumer_dark
     Brightness.light, // professional_light
     Brightness.dark, // professional_dark
   ];
 
-  static List<Color> colorSchemeSeed = <Color>[
+  static const List<Color> colorSchemeSeed = <Color>[
     consumer_light.FhColors.backgroundHighlightDefault,
     consumer_dark.FhColors.backgroundHighlightDefault,
     professional_light.FhColors.backgroundHighlightDefault,
     professional_dark.FhColors.backgroundHighlightDefault,
   ];
 
-  static List<Color> splashColor = <Color>[
+  static final List<Color> splashColor = <Color>[
     consumer_light.FhColors.backgroundDisabled.withAlpha(150),
     consumer_dark.FhColors.backgroundDisabled.withAlpha(150),
     professional_light.FhColors.backgroundDisabled.withAlpha(150),
     professional_dark.FhColors.backgroundDisabled.withAlpha(150),
   ];
 
-  static List<Color> highlightColor = <Color>[
+  static final List<Color> highlightColor = <Color>[
     consumer_light.FhColors.backgroundDisabled.withAlpha(150),
     consumer_dark.FhColors.backgroundDisabled.withAlpha(150),
     professional_light.FhColors.backgroundDisabled.withAlpha(150),
     professional_dark.FhColors.backgroundDisabled.withAlpha(150),
   ];
 
-  static List<Color> focusColor = <Color>[
+  static final List<Color> focusColor = <Color>[
     consumer_light.FhColors.backgroundDisabled.withAlpha(150),
     consumer_dark.FhColors.backgroundDisabled.withAlpha(150),
     professional_light.FhColors.backgroundDisabled.withAlpha(150),
     professional_dark.FhColors.backgroundDisabled.withAlpha(150),
   ];
 
-  static List<Color> scaffoldColor = <Color>[
+  static const List<Color> scaffoldColor = <Color>[
     consumer_light.FhColors.backgroundDefault,
     consumer_dark.FhColors.backgroundDefault,
     professional_light.FhColors.backgroundDefault,
     professional_dark.FhColors.backgroundDefault,
   ];
 
-  static List<Color> appBarColor = <Color>[
+  static const List<Color> appBarColor = <Color>[
     consumer_light.FhColors.backgroundDefault,
     consumer_dark.FhColors.backgroundDefault,
     professional_light.FhColors.backgroundDefault,
     professional_dark.FhColors.backgroundDefault,
   ];
 
-  static List<Color> iconColor = <Color>[
+  static const List<Color> iconColor = <Color>[
     consumer_light.FhColors.iconDefault,
     consumer_dark.FhColors.iconDefault,
     professional_light.FhColors.iconDefault,
     professional_dark.FhColors.iconDefault,
   ];
 
-  static List<Color> invertedIconColor = <Color>[
+  static const List<Color> invertedIconColor = <Color>[
     consumer_light.FhColors.iconInverse,
     consumer_dark.FhColors.iconInverse,
     professional_light.FhColors.iconInverse,

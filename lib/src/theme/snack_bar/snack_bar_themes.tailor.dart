@@ -15,7 +15,6 @@ class YgSnackBarTheme extends ThemeExtension<YgSnackBarTheme> {
     required this.closeIconColor,
     required this.criticalSnackBarTheme,
     required this.highlightSnackBarTheme,
-    required this.iconContainerPadding,
     required this.margin,
     required this.messageSpacing,
     required this.messageTextStyle,
@@ -28,7 +27,6 @@ class YgSnackBarTheme extends ThemeExtension<YgSnackBarTheme> {
   final Color closeIconColor;
   final CriticalSnackBarTheme criticalSnackBarTheme;
   final HighlightSnackBarTheme highlightSnackBarTheme;
-  final EdgeInsets iconContainerPadding;
   final EdgeInsets margin;
   final double messageSpacing;
   final TextStyle messageTextStyle;
@@ -41,7 +39,6 @@ class YgSnackBarTheme extends ThemeExtension<YgSnackBarTheme> {
     closeIconColor: _$YgSnackBarTheme.closeIconColor[0],
     criticalSnackBarTheme: _$YgSnackBarTheme.criticalSnackBarTheme[0],
     highlightSnackBarTheme: _$YgSnackBarTheme.highlightSnackBarTheme[0],
-    iconContainerPadding: _$YgSnackBarTheme.iconContainerPadding[0],
     margin: _$YgSnackBarTheme.margin[0],
     messageSpacing: _$YgSnackBarTheme.messageSpacing[0],
     messageTextStyle: _$YgSnackBarTheme.messageTextStyle[0],
@@ -55,7 +52,6 @@ class YgSnackBarTheme extends ThemeExtension<YgSnackBarTheme> {
     closeIconColor: _$YgSnackBarTheme.closeIconColor[1],
     criticalSnackBarTheme: _$YgSnackBarTheme.criticalSnackBarTheme[1],
     highlightSnackBarTheme: _$YgSnackBarTheme.highlightSnackBarTheme[1],
-    iconContainerPadding: _$YgSnackBarTheme.iconContainerPadding[1],
     margin: _$YgSnackBarTheme.margin[1],
     messageSpacing: _$YgSnackBarTheme.messageSpacing[1],
     messageTextStyle: _$YgSnackBarTheme.messageTextStyle[1],
@@ -69,7 +65,6 @@ class YgSnackBarTheme extends ThemeExtension<YgSnackBarTheme> {
     closeIconColor: _$YgSnackBarTheme.closeIconColor[2],
     criticalSnackBarTheme: _$YgSnackBarTheme.criticalSnackBarTheme[2],
     highlightSnackBarTheme: _$YgSnackBarTheme.highlightSnackBarTheme[2],
-    iconContainerPadding: _$YgSnackBarTheme.iconContainerPadding[2],
     margin: _$YgSnackBarTheme.margin[2],
     messageSpacing: _$YgSnackBarTheme.messageSpacing[2],
     messageTextStyle: _$YgSnackBarTheme.messageTextStyle[2],
@@ -83,7 +78,6 @@ class YgSnackBarTheme extends ThemeExtension<YgSnackBarTheme> {
     closeIconColor: _$YgSnackBarTheme.closeIconColor[3],
     criticalSnackBarTheme: _$YgSnackBarTheme.criticalSnackBarTheme[3],
     highlightSnackBarTheme: _$YgSnackBarTheme.highlightSnackBarTheme[3],
-    iconContainerPadding: _$YgSnackBarTheme.iconContainerPadding[3],
     margin: _$YgSnackBarTheme.margin[3],
     messageSpacing: _$YgSnackBarTheme.messageSpacing[3],
     messageTextStyle: _$YgSnackBarTheme.messageTextStyle[3],
@@ -105,7 +99,6 @@ class YgSnackBarTheme extends ThemeExtension<YgSnackBarTheme> {
     Color? closeIconColor,
     CriticalSnackBarTheme? criticalSnackBarTheme,
     HighlightSnackBarTheme? highlightSnackBarTheme,
-    EdgeInsets? iconContainerPadding,
     EdgeInsets? margin,
     double? messageSpacing,
     TextStyle? messageTextStyle,
@@ -120,7 +113,6 @@ class YgSnackBarTheme extends ThemeExtension<YgSnackBarTheme> {
           criticalSnackBarTheme ?? this.criticalSnackBarTheme,
       highlightSnackBarTheme:
           highlightSnackBarTheme ?? this.highlightSnackBarTheme,
-      iconContainerPadding: iconContainerPadding ?? this.iconContainerPadding,
       margin: margin ?? this.margin,
       messageSpacing: messageSpacing ?? this.messageSpacing,
       messageTextStyle: messageTextStyle ?? this.messageTextStyle,
@@ -141,8 +133,6 @@ class YgSnackBarTheme extends ThemeExtension<YgSnackBarTheme> {
           other.criticalSnackBarTheme, t) as CriticalSnackBarTheme,
       highlightSnackBarTheme: highlightSnackBarTheme.lerp(
           other.highlightSnackBarTheme, t) as HighlightSnackBarTheme,
-      iconContainerPadding:
-          t < 0.5 ? iconContainerPadding : other.iconContainerPadding,
       margin: t < 0.5 ? margin : other.margin,
       messageSpacing: t < 0.5 ? messageSpacing : other.messageSpacing,
       messageTextStyle:
@@ -168,8 +158,6 @@ class YgSnackBarTheme extends ThemeExtension<YgSnackBarTheme> {
                 .equals(criticalSnackBarTheme, other.criticalSnackBarTheme) &&
             const DeepCollectionEquality()
                 .equals(highlightSnackBarTheme, other.highlightSnackBarTheme) &&
-            const DeepCollectionEquality()
-                .equals(iconContainerPadding, other.iconContainerPadding) &&
             const DeepCollectionEquality().equals(margin, other.margin) &&
             const DeepCollectionEquality()
                 .equals(messageSpacing, other.messageSpacing) &&
@@ -189,7 +177,6 @@ class YgSnackBarTheme extends ThemeExtension<YgSnackBarTheme> {
       const DeepCollectionEquality().hash(closeIconColor),
       const DeepCollectionEquality().hash(criticalSnackBarTheme),
       const DeepCollectionEquality().hash(highlightSnackBarTheme),
-      const DeepCollectionEquality().hash(iconContainerPadding),
       const DeepCollectionEquality().hash(margin),
       const DeepCollectionEquality().hash(messageSpacing),
       const DeepCollectionEquality().hash(messageTextStyle),

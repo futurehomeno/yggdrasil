@@ -35,22 +35,7 @@ class YgSnackBar extends SnackBar with StatefulWidgetDebugMixin {
     return Row(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: <Widget>[
-        DecoratedBox(
-          decoration: BoxDecoration(
-            shape: BoxShape.circle,
-            color: YgSnackBarMapper.getContainerIconColor(
-              theme: snackBarTheme,
-              snackBarVariant: variant,
-            ),
-          ),
-          child: Padding(
-            padding: snackBarTheme.iconContainerPadding,
-            child: YgSnackBarMapper.getIcon(
-              theme: snackBarTheme,
-              snackBarVariant: variant,
-            ),
-          ),
-        ),
+        _buildDecorationIcon(snackBarTheme, variant),
         Expanded(
           child: Text(
             message,
@@ -63,11 +48,27 @@ class YgSnackBar extends SnackBar with StatefulWidgetDebugMixin {
             YgIcons.cross,
             color: context.snackBarTheme.closeIconColor,
           ),
-          onPressed: () {
-            ScaffoldMessenger.of(context).hideCurrentSnackBar();
-          },
+          onPressed: () => ScaffoldMessenger.of(context).hideCurrentSnackBar(),
         ),
       ].withHorizontalSpacing(snackBarTheme.messageSpacing),
+    );
+  }
+
+  static Widget _buildDecorationIcon(YgSnackBarTheme snackBarTheme, YgSnackBarVariant variant) {
+    return DecoratedBox(
+      decoration: BoxDecoration(
+        shape: BoxShape.circle,
+        color: YgSnackBarMapper.getContainerIconColor(
+          theme: snackBarTheme,
+          snackBarVariant: variant,
+        ),
+      ),
+      child: Center(
+        child: YgSnackBarMapper.getIcon(
+          theme: snackBarTheme,
+          snackBarVariant: variant,
+        ),
+      ),
     );
   }
 }

@@ -9,28 +9,28 @@ part 'standard_icon_button_theme.tailor.dart';
 
 @tailorComponent
 class _$StandardIconButtonTheme {
-  static List<Color> iconColor = <Color>[
+  static const List<Color> iconColor = <Color>[
     consumer_light.FhColors.iconDefault,
     consumer_dark.FhColors.iconDefault,
     professional_light.FhColors.iconDefault,
     professional_dark.FhColors.iconDefault,
   ];
 
-  static List<Color> disabledIconColor = <Color>[
+  static const List<Color> disabledIconColor = <Color>[
     consumer_light.FhColors.iconDisabled,
     consumer_dark.FhColors.iconDisabled,
     professional_light.FhColors.iconDisabled,
     professional_dark.FhColors.iconDisabled,
   ];
 
-  static List<Color> backgroundColor = <Color>[
+  static const List<Color> backgroundColor = <Color>[
     consumer_light.FhColors.backgroundTransparent,
     consumer_dark.FhColors.backgroundTransparent,
     professional_light.FhColors.backgroundTransparent,
     professional_dark.FhColors.backgroundTransparent,
   ];
 
-  static List<Color> disabledBackgroundColor = <Color>[
+  static const List<Color> disabledBackgroundColor = <Color>[
     consumer_light.FhColors.backgroundTransparent,
     consumer_dark.FhColors.backgroundTransparent,
     professional_light.FhColors.backgroundTransparent,

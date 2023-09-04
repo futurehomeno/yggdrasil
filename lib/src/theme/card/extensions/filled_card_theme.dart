@@ -9,7 +9,7 @@ part 'filled_card_theme.tailor.dart';
 
 @tailorComponent
 class _$FilledCardTheme {
-  static List<Color> backgroundColor = <Color>[
+  static const List<Color> backgroundColor = <Color>[
     consumer_light.FhColors.backgroundWeak,
     consumer_dark.FhColors.backgroundWeak,
     professional_light.FhColors.backgroundWeak,

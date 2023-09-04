@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:yggdrasil/src/theme/_theme.dart';
-import 'package:yggdrasil/src/theme/progress_indicator/extensions/_extensions.dart';
+import 'package:yggdrasil/src/utils/_utils.dart';
 
 /// Shows progress along a circle.
-class YgCircularProgressIndicator extends StatelessWidget {
+class YgCircularProgressIndicator extends StatelessWidget with StatelessWidgetDebugMixin {
   const YgCircularProgressIndicator({
     super.key,
     this.value,

@@ -30,6 +30,7 @@ class YgListTile extends StatelessWidget with StatelessWidgetDebugMixin {
     return YgListTile(
       title: link,
       leadingWidgets: <Widget>[YgIcon(iconPath)],
+      trailingWidgets: const <Widget>[YgIcon(YgIcons.caretRight)],
       onTap: onTap,
     );
   }
@@ -43,18 +44,22 @@ class YgListTile extends StatelessWidget with StatelessWidgetDebugMixin {
   final VoidCallback? onTap;
   final VoidCallback? onInfoTap;
 
+  static const int _allowedNumberOfLeadingWidgets = 2;
+  static const int _allowedNumberOfTrailingWidgets = 2;
+  static const int _allowedNumberOfSupportingWidgets = 2;
+
   @override
   Widget build(BuildContext context) {
-    assert(leadingWidgets.length <= 2, 'Cannot have more than 2 leading widgets.');
-    assert(trailingWidgets.length <= 2, 'Cannot have more than 2 trailing widget.');
-    assert(supportingWidgets.length <= 2, 'Cannot have more than 2 supporting widgets.');
+    assert(leadingWidgets.length <= _allowedNumberOfLeadingWidgets, 'Cannot have more than 2 leading widgets.');
+    assert(trailingWidgets.length <= _allowedNumberOfTrailingWidgets, 'Cannot have more than 2 trailing widget.');
+    assert(
+        supportingWidgets.length <= _allowedNumberOfSupportingWidgets, 'Cannot have more than 2 supporting widgets.');
 
     final YgListTileTheme listTileTheme = context.listTileTheme;
 
     return Material(
-      color: context.tokens.colors.backgroundTransparent,
+      type: MaterialType.transparency,
       child: InkWell(
-        borderRadius: BorderRadius.circular(listTileTheme.splashRadius),
         onTap: onTap,
         child: Padding(
           padding: listTileTheme.outerPadding,
@@ -82,12 +87,14 @@ class YgListTile extends StatelessWidget with StatelessWidgetDebugMixin {
   Widget _buildTitle(YgListTileTheme listTileTheme) {
     return Row(
       children: <Widget>[
-        Text(
-          title,
-          style: listTileTheme.titleTextStyle,
-          overflow: TextOverflow.ellipsis,
+        Flexible(
+          child: Text(
+            title,
+            style: listTileTheme.titleTextStyle,
+            overflow: TextOverflow.ellipsis,
+          ),
         ),
-        if (onInfoTap != null) _buildInfoButton(listTileTheme),
+        if (onInfoTap != null) _buildInfoButton(),
       ].withHorizontalSpacing(listTileTheme.titleInfoSpacing),
     );
   }
@@ -106,7 +113,7 @@ class YgListTile extends StatelessWidget with StatelessWidgetDebugMixin {
     );
   }
 
-  Widget _buildInfoButton(YgListTileTheme listTileTheme) {
+  Widget _buildInfoButton() {
     return YgIconButton(
       onPressed: onInfoTap,
       size: YgIconButtonSize.small,

@@ -11,60 +11,72 @@ part 'callout_theme.tailor.dart';
 @tailorComponent
 class _$YgCalloutTheme {
   @themeExtension
-  static List<CriticalCalloutTheme> criticalCalloutTheme = CriticalCalloutTheme.themes;
+  static final List<CriticalCalloutTheme> criticalCalloutTheme = CriticalCalloutTheme.themes;
 
   @themeExtension
-  static List<HighlightCalloutTheme> highlightCalloutTheme = HighlightCalloutTheme.themes;
+  static final List<HighlightCalloutTheme> highlightCalloutTheme = HighlightCalloutTheme.themes;
 
   @themeExtension
-  static List<SuccessCalloutTheme> successCalloutTheme = SuccessCalloutTheme.themes;
+  static final List<SuccessCalloutTheme> successCalloutTheme = SuccessCalloutTheme.themes;
 
   @themeExtension
-  static List<WarningCalloutTheme> warningCalloutTheme = WarningCalloutTheme.themes;
+  static final List<WarningCalloutTheme> warningCalloutTheme = WarningCalloutTheme.themes;
 
-  static List<BorderRadius> borderRadius = <BorderRadius>[
+  static const List<BorderRadius> borderRadius = <BorderRadius>[
     consumer_light.FhRadii.sm,
     consumer_dark.FhRadii.sm,
     professional_light.FhRadii.sm,
     professional_dark.FhRadii.sm,
   ];
 
-  static List<EdgeInsets> padding = <EdgeInsets>[
-    const EdgeInsets.all(consumer_light.FhDimensions.sm),
-    const EdgeInsets.all(consumer_dark.FhDimensions.sm),
-    const EdgeInsets.all(professional_light.FhDimensions.sm),
-    const EdgeInsets.all(professional_dark.FhDimensions.sm),
+  static const List<EdgeInsets> padding = <EdgeInsets>[
+    EdgeInsets.symmetric(
+      horizontal: consumer_light.FhDimensions.md,
+      vertical: consumer_light.FhDimensions.sm,
+    ),
+    EdgeInsets.symmetric(
+      horizontal: consumer_dark.FhDimensions.md,
+      vertical: consumer_dark.FhDimensions.sm,
+    ),
+    EdgeInsets.symmetric(
+      horizontal: professional_light.FhDimensions.md,
+      vertical: professional_light.FhDimensions.sm,
+    ),
+    EdgeInsets.symmetric(
+      horizontal: professional_dark.FhDimensions.md,
+      vertical: professional_dark.FhDimensions.sm,
+    ),
   ];
 
-  static List<double> titleSpacing = <double>[
+  static const List<double> titleSpacing = <double>[
     consumer_light.FhDimensions.xxs,
     consumer_dark.FhDimensions.xxs,
     professional_light.FhDimensions.xxs,
     professional_dark.FhDimensions.xxs,
   ];
 
-  static List<double> linkSpacing = <double>[
+  static const List<double> linkSpacing = <double>[
     consumer_light.FhDimensions.sm,
     consumer_dark.FhDimensions.sm,
     professional_light.FhDimensions.sm,
     professional_dark.FhDimensions.sm,
   ];
 
-  static List<double> closeButtonSpacing = <double>[
+  static const List<double> closeButtonSpacing = <double>[
     consumer_light.FhDimensions.xxs,
     consumer_dark.FhDimensions.xxs,
     professional_light.FhDimensions.xxs,
     professional_dark.FhDimensions.xxs,
   ];
 
-  static List<TextStyle> titleTextStyle = <TextStyle>[
+  static const List<TextStyle> titleTextStyle = <TextStyle>[
     consumer_light.FhTextStyles.sectionHeading3Bold,
     consumer_dark.FhTextStyles.sectionHeading3Bold,
     professional_light.FhTextStyles.sectionHeading3Bold,
     professional_dark.FhTextStyles.sectionHeading3Bold,
   ];
 
-  static List<TextStyle> descriptionTextStyle = <TextStyle>[
+  static const List<TextStyle> descriptionTextStyle = <TextStyle>[
     consumer_light.FhTextStyles.paragraph3Regular,
     consumer_dark.FhTextStyles.paragraph3Regular,
     professional_light.FhTextStyles.paragraph3Regular,

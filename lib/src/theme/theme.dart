@@ -7,15 +7,18 @@ import 'button/_button.dart';
 import 'button_group/_button_group.dart';
 import 'callout/_callout.dart';
 import 'card/_card.dart';
+import 'checkbox/_checkbox.dart';
 import 'defaults/_defaults.dart';
 import 'dialog/_dialog.dart';
 import 'divider/_divider.dart';
+import 'gauge/_gauge.dart';
 import 'icon/_icon.dart';
 import 'icon_button/_icon_button.dart';
 import 'internal/_internal.dart';
 import 'list_tile/_list_tile.dart';
 import 'progress_indicator/_progress_indicator.dart';
 import 'radio/_radio.dart';
+import 'section/_section.dart';
 import 'snack_bar/_snack_bar.dart';
 import 'switch/_switch.dart';
 import 'tag/_tag.dart';
@@ -30,68 +33,78 @@ part 'theme.tailor.dart';
 @Tailor()
 class _$YgTheme {
   @themeExtension
-  static List<YgTokens> tokens = YgTokens.themes;
+  static final List<YgTokens> tokens = YgTokens.themes;
 
   @themeExtension
-  static List<YgDefaults> defaults = YgDefaults.themes;
+  static final List<YgDefaults> defaults = YgDefaults.themes;
 
   @themeExtension
-  static List<YgBadgeTheme> badgeTheme = YgBadgeTheme.themes;
+  static final List<YgBadgeTheme> badgeTheme = YgBadgeTheme.themes;
 
   @themeExtension
-  static List<YgBottomSheetTheme> bottomSheetTheme = YgBottomSheetTheme.themes;
+  static final List<YgBottomSheetTheme> bottomSheetTheme = YgBottomSheetTheme.themes;
 
   @themeExtension
-  static List<YgButtonTheme> buttonTheme = YgButtonTheme.themes;
+  static final List<YgButtonTheme> buttonTheme = YgButtonTheme.themes;
 
   @themeExtension
-  static List<YgButtonGroupTheme> buttonGroupTheme = YgButtonGroupTheme.themes;
+  static final List<YgButtonGroupTheme> buttonGroupTheme = YgButtonGroupTheme.themes;
 
   @themeExtension
-  static List<YgCardTheme> cardTheme = YgCardTheme.themes;
+  static final List<YgCardTheme> cardTheme = YgCardTheme.themes;
 
   @themeExtension
-  static List<YgDialogTheme> dialogTheme = YgDialogTheme.themes;
+  static final List<YgCheckboxTheme> checkboxTheme = YgCheckboxTheme.themes;
 
   @themeExtension
-  static List<YgCalloutTheme> calloutTheme = YgCalloutTheme.themes;
+  static final List<YgDialogTheme> dialogTheme = YgDialogTheme.themes;
 
   @themeExtension
-  static List<YgDividerTheme> dividerTheme = YgDividerTheme.themes;
+  static final List<YgCalloutTheme> calloutTheme = YgCalloutTheme.themes;
 
   @themeExtension
-  static List<YgIconTheme> iconTheme = YgIconTheme.themes;
+  static final List<YgDividerTheme> dividerTheme = YgDividerTheme.themes;
 
   @themeExtension
-  static List<YgIconButtonTheme> iconButtonTheme = YgIconButtonTheme.themes;
+  static final List<YgGaugeTheme> gaugeTheme = YgGaugeTheme.themes;
 
   @themeExtension
-  static List<YgListTileTheme> listTileTheme = YgListTileTheme.themes;
+  static final List<YgIconTheme> iconTheme = YgIconTheme.themes;
 
   @themeExtension
-  static List<YgRadioTheme> radioTheme = YgRadioTheme.themes;
+  static final List<YgIconButtonTheme> iconButtonTheme = YgIconButtonTheme.themes;
 
   @themeExtension
-  static List<YgProgressIndicatorTheme> progressIndicatorTheme = YgProgressIndicatorTheme.themes;
+  static final List<YgListTileTheme> listTileTheme = YgListTileTheme.themes;
 
   @themeExtension
-  static List<YgSnackBarTheme> snackBarTheme = YgSnackBarTheme.themes;
+  static final List<YgRadioTheme> radioTheme = YgRadioTheme.themes;
 
   @themeExtension
-  static List<YgSwitchTheme> switchTheme = YgSwitchTheme.themes;
+  static final List<YgSectionTheme> sectionTheme = YgSectionTheme.themes;
 
   @themeExtension
-  static List<YgTagTheme> tagTheme = YgTagTheme.themes;
+  static final List<YgProgressIndicatorTheme> progressIndicatorTheme = YgProgressIndicatorTheme.themes;
 
   @themeExtension
-  static List<YgTextLinkTheme> textLinkTheme = YgTextLinkTheme.themes;
+  static final List<YgSnackBarTheme> snackBarTheme = YgSnackBarTheme.themes;
 
   @themeExtension
+  static final List<YgSwitchTheme> switchTheme = YgSwitchTheme.themes;
   static List<YgTopAppBarTheme> topAppBarTheme = YgTopAppBarTheme.themes;
 
   @themeExtension
   static List<YgInternalTheme> internalTheme = YgInternalTheme.themes;
 
   @themeExtension
-  static List<YgTextFieldTheme> textInputTheme = YgTextFieldTheme.themes;
+  static final List<YgTagTheme> tagTheme = YgTagTheme.themes;
+
+  @themeExtension
+  static final List<YgTextLinkTheme> textLinkTheme = YgTextLinkTheme.themes;
+
+  @themeExtension
+  static final List<YgInternalTheme> internalTheme = YgInternalTheme.themes;
+
+  @themeExtension
+  static final List<YgTextFieldTheme> textInputTheme = YgTextFieldTheme.themes;
 }

@@ -1,5 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:yggdrasil/yggdrasil.dart';
+import 'package:yggdrasil/src/theme/_theme.dart';
+import 'package:yggdrasil/src/utils/_utils.dart';
+
+import 'enums/_enums.dart';
+import 'mappers/_mappers.dart';
 
 /// Yggdrasil card component.
 ///

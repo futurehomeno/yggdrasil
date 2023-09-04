@@ -1,3 +1,44 @@
+# 1.5.3 [01.09.2023 11:28]
+
+[fix] Limit YgRadio- and YgCheckboxGroup to contain max 5 items.
+[fix] The focusNode and controller on a text field are no longer disposed when they are user specified.
+
+# 1.5.2 [30.08.2023 13:42]
+
+[fix] YgGauge no longer accepts values that are not between the min and max values.
+[fix] YgGauge no longer breaks when changing value from non-null to null.
+
+# 1.5.1 [30.08.2023 09:48]
+
+[fix] Enable list tiles to have long titles.
+[fix] Wrap YgGauge in Center to correct alignment in non-square boxes.
+
+# 1.5.0 [25.08.2023 18:11]
+
+[dev-feature] Added DCM.
+[feature] Add YgSectionComponent.
+[feature] New icons (25/08/23).
+[fix] Close button should not be centered when callout has desc only.
+[improvement] Remove i18n and validators from YGG.
+[improvement] Multiple improvements to the demo app.
+
+# 1.4.0 [17.08.2023 08:55]
+
+[dev-feature] Added YgDebug widget for designers to inspect widget sizes.
+[dev-improvement] Replaced transparent color in material widget with MaterialType.transparent.
+[feature] Added YgCheckbox component.
+[feature] Added YgCheckboxGroup component.
+[feature] Added YgCheckboxItem component.
+[feature] Added YgCheckboxListTile component.
+[feature] Added YgGauge component.
+[feature] Added YgRadioGroup component.
+[feature] Added YgRadioItem component.
+[feature] Added YgTextInput.
+[fix] Added focus and keybinding to YgRadio.
+[fix] Error message should no longer take up space when not visible.
+[improvement] added spacing between widgets in example app.
+[improvement] added the option to switch to business theme.
+
 # 1.3.0 [11.08.2023 14:30]
 
 [feature] Added YgCircularProgressIndicator component.

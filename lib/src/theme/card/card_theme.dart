@@ -11,15 +11,15 @@ part 'card_theme.tailor.dart';
 @tailorComponent
 class _$YgCardTheme {
   @themeExtension
-  static List<ElevatedCardTheme> elevatedCardTheme = ElevatedCardTheme.themes;
+  static final List<ElevatedCardTheme> elevatedCardTheme = ElevatedCardTheme.themes;
 
   @themeExtension
-  static List<OutlinedCardTheme> outlinedCardTheme = OutlinedCardTheme.themes;
+  static final List<OutlinedCardTheme> outlinedCardTheme = OutlinedCardTheme.themes;
 
   @themeExtension
-  static List<FilledCardTheme> filledCardTheme = FilledCardTheme.themes;
+  static final List<FilledCardTheme> filledCardTheme = FilledCardTheme.themes;
 
-  static List<BorderRadius> borderRadius = <BorderRadius>[
+  static const List<BorderRadius> borderRadius = <BorderRadius>[
     consumer_light.FhRadii.md,
     consumer_dark.FhRadii.md,
     professional_light.FhRadii.md,
@@ -27,7 +27,7 @@ class _$YgCardTheme {
   ];
 
   // TODO(bjhandeland): Use elevation token when available.
-  static List<double> elevation = <double>[
+  static const List<double> elevation = <double>[
     1.0,
     1.0,
     1.0,

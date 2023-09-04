@@ -33,6 +33,7 @@ class YgTagStyle {
     switch (variant) {
       case YgTagVariant.neutral:
         final NeutralTagTheme neutralTagTheme = ygTagTheme.neutralTagTheme;
+
         return _buildTagStyle(
           backgroundColor:
               weight == YgTagWeight.weak ? neutralTagTheme.backgroundColor : neutralTagTheme.strongBackgroundColor,
@@ -52,6 +53,7 @@ class YgTagStyle {
 
       case YgTagVariant.informative:
         final InformativeTagTheme informativeTagTheme = ygTagTheme.informativeTagTheme;
+
         return _buildTagStyle(
           backgroundColor: weight == YgTagWeight.weak
               ? informativeTagTheme.backgroundColor
@@ -72,6 +74,7 @@ class YgTagStyle {
 
       case YgTagVariant.positive:
         final PositiveTagTheme positiveTagTheme = ygTagTheme.positiveTagTheme;
+
         return _buildTagStyle(
           backgroundColor:
               weight == YgTagWeight.weak ? positiveTagTheme.backgroundColor : positiveTagTheme.strongBackgroundColor,
@@ -91,6 +94,7 @@ class YgTagStyle {
 
       case YgTagVariant.warning:
         final WarningTagTheme warningTagTheme = ygTagTheme.warningTagTheme;
+
         return _buildTagStyle(
           backgroundColor:
               weight == YgTagWeight.weak ? warningTagTheme.backgroundColor : warningTagTheme.strongBackgroundColor,
@@ -110,6 +114,7 @@ class YgTagStyle {
 
       case YgTagVariant.negative:
         final NegativeTagTheme negativeTagTheme = ygTagTheme.negativeTagTheme;
+
         return _buildTagStyle(
           backgroundColor:
               weight == YgTagWeight.weak ? negativeTagTheme.backgroundColor : negativeTagTheme.strongBackgroundColor,

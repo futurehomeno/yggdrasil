@@ -9,7 +9,7 @@ part 'badge_theme.tailor.dart';
 
 @tailorComponent
 class _$YgBadgeTheme {
-  static List<TextStyle> weakTextStyle = <TextStyle>[
+  static final List<TextStyle> weakTextStyle = <TextStyle>[
     consumer_light.FhTextStyles.caption1Bold.copyWith(
       color: consumer_light.FhColors.textDefault,
     ),
@@ -24,7 +24,7 @@ class _$YgBadgeTheme {
     ),
   ];
 
-  static List<TextStyle> strongTextStyle = <TextStyle>[
+  static final List<TextStyle> strongTextStyle = <TextStyle>[
     consumer_light.FhTextStyles.caption1Bold.copyWith(
       color: consumer_light.FhColors.textInverse,
     ),
@@ -39,21 +39,21 @@ class _$YgBadgeTheme {
     ),
   ];
 
-  static List<Color> weakColor = <Color>[
+  static const List<Color> weakColor = <Color>[
     consumer_light.FhColors.backgroundWeak,
     consumer_dark.FhColors.backgroundWeak,
     professional_light.FhColors.backgroundWeak,
     professional_dark.FhColors.backgroundWeak,
   ];
 
-  static List<Color> strongColor = <Color>[
+  static const List<Color> strongColor = <Color>[
     consumer_light.FhColors.backgroundHighlightDefault,
     consumer_dark.FhColors.backgroundHighlightDefault,
     professional_light.FhColors.backgroundHighlightDefault,
     professional_dark.FhColors.backgroundHighlightDefault,
   ];
 
-  static List<BorderRadius> borderRadius = <BorderRadius>[
+  static const List<BorderRadius> borderRadius = <BorderRadius>[
     consumer_light.FhRadii.xxl,
     consumer_dark.FhRadii.xxl,
     professional_light.FhRadii.xxl,

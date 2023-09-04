@@ -9,7 +9,7 @@ part 'list_tile_theme.tailor.dart';
 
 @tailorComponent
 class _$YgListTileTheme {
-  static List<TextStyle> titleTextStyle = <TextStyle>[
+  static final List<TextStyle> titleTextStyle = <TextStyle>[
     consumer_light.FhTextStyles.sectionHeading3Medium.copyWith(
       color: consumer_light.FhColors.textDefault,
     ),
@@ -24,7 +24,7 @@ class _$YgListTileTheme {
     ),
   ];
 
-  static List<TextStyle> subtitleTextStyle = <TextStyle>[
+  static final List<TextStyle> subtitleTextStyle = <TextStyle>[
     consumer_light.FhTextStyles.caption1Regular.copyWith(
       color: consumer_light.FhColors.textWeak,
     ),
@@ -39,52 +39,57 @@ class _$YgListTileTheme {
     ),
   ];
 
-  static List<EdgeInsets> outerPadding = <EdgeInsets>[
-    const EdgeInsets.all(consumer_light.FhDimensions.sm),
-    const EdgeInsets.all(consumer_dark.FhDimensions.sm),
-    const EdgeInsets.all(professional_light.FhDimensions.sm),
-    const EdgeInsets.all(professional_dark.FhDimensions.sm)
+  static const List<EdgeInsets> outerPadding = <EdgeInsets>[
+    EdgeInsets.symmetric(
+      horizontal: consumer_light.FhDimensions.md,
+      vertical: consumer_light.FhDimensions.sm,
+    ),
+    EdgeInsets.symmetric(
+      horizontal: consumer_dark.FhDimensions.md,
+      vertical: consumer_dark.FhDimensions.sm,
+    ),
+    EdgeInsets.symmetric(
+      horizontal: professional_light.FhDimensions.md,
+      vertical: professional_light.FhDimensions.sm,
+    ),
+    EdgeInsets.symmetric(
+      horizontal: professional_dark.FhDimensions.md,
+      vertical: professional_dark.FhDimensions.sm,
+    ),
   ];
 
-  static List<double> contentSpacing = <double>[
+  static const List<double> contentSpacing = <double>[
     consumer_light.FhDimensions.sm,
     consumer_dark.FhDimensions.sm,
     professional_light.FhDimensions.sm,
     professional_dark.FhDimensions.sm,
   ];
 
-  static List<double> titleSubtitleSpacing = <double>[
+  static const List<double> titleSubtitleSpacing = <double>[
     consumer_light.FhDimensions.xxs,
     consumer_dark.FhDimensions.xxs,
     professional_light.FhDimensions.xxs,
     professional_dark.FhDimensions.xxs,
   ];
 
-  static List<double> titleInfoSpacing = <double>[
+  static const List<double> titleInfoSpacing = <double>[
     consumer_light.FhDimensions.xxs,
     consumer_dark.FhDimensions.xxs,
     professional_light.FhDimensions.xxs,
     professional_dark.FhDimensions.xxs,
   ];
 
-  static List<double> subtitleSubtitleIconSpacing = <double>[
+  static const List<double> subtitleSubtitleIconSpacing = <double>[
     consumer_light.FhDimensions.xxs,
     consumer_dark.FhDimensions.xxs,
     professional_light.FhDimensions.xxs,
     professional_dark.FhDimensions.xxs,
   ];
 
-  static List<double> iconSize = <double>[
+  static const List<double> iconSize = <double>[
     consumer_light.FhDimensions.lg,
     consumer_dark.FhDimensions.lg,
     professional_light.FhDimensions.lg,
     professional_dark.FhDimensions.lg,
-  ];
-
-  static List<double> splashRadius = <double>[
-    consumer_light.FhDimensions.xs,
-    consumer_dark.FhDimensions.xs,
-    professional_light.FhDimensions.xs,
-    professional_dark.FhDimensions.xs,
   ];
 }

@@ -1,11 +1,13 @@
 import 'dart:io';
 
+import 'script_helpers.dart';
+
 void main() {
   /// Path to the directory containing the SVG icons.
   const String inputPath = 'assets/icons';
 
   /// Path to the directory where the generated Dart file will be saved.
-  const String outputPath = 'lib/src/icons/icons.dart';
+  const String outputPath = 'lib/src/icons/yg_icons.dart';
 
   /// Directory object pointing to the directory containing the SVG icons.
   final Directory directory = Directory(inputPath);
@@ -34,9 +36,13 @@ void main() {
   for (final FileSystemEntity entity in files) {
     // Only process SVG files.
     if (entity is File && entity.path.endsWith('.svg')) {
-      final String fileName = entity.path.split(Platform.pathSeparator).last;
-      final String iconName = fileName.split('.').first;
-      final String camelCaseIconName = toCamelCase(iconName);
+      final String? fileName = entity.path.split(Platform.pathSeparator).lastOrNull;
+      if (fileName == null) continue;
+
+      final String? iconName = fileName.split('.').firstOrNull;
+      if (iconName == null) continue;
+
+      final String camelCaseIconName = ScriptHelpers.toCamelCase(iconName);
       allIconsBuffer.writeln('  static const String $camelCaseIconName = \'$inputPath/$iconName.svg\';');
       allIconPathsBuffer.writeln('    $camelCaseIconName,');
       allIconNames.writeln('    \'$camelCaseIconName\',');
@@ -58,17 +64,4 @@ void main() {
   outputFile
     ..createSync(recursive: true)
     ..writeAsStringSync(mainBuffer.toString());
-}
-
-/// Converts [text] to camelCase.
-///
-/// Replaces hyphens and underscores with spaces, then capitalizes the
-/// first character of each word (except the first word).
-/// Finally, removes the spaces to form a single word.
-String toCamelCase(String text) {
-  final String normalizedText = text.replaceAll('-', '_');
-  return normalizedText.split('_').asMap().entries.map((MapEntry<int, String> entry) {
-    if (entry.key == 0) return entry.value;
-    return '${entry.value[0].toUpperCase()}${entry.value.substring(1)}';
-  }).join();
 }

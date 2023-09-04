@@ -7,8 +7,8 @@ import 'yg_icon_button_style.dart';
 class YgIconButton extends ButtonStyleButton with StatefulWidgetDebugMixin {
   const YgIconButton({
     super.key,
+    required YgIcon child,
     required super.onPressed,
-    required super.child,
     this.size = YgIconButtonSize.medium,
     this.variant = YgIconButtonVariant.standard,
     super.autofocus = false,
@@ -19,7 +19,7 @@ class YgIconButton extends ButtonStyleButton with StatefulWidgetDebugMixin {
     super.onLongPress,
     super.statesController,
     super.style,
-  });
+  }) : super(child: child);
 
   final YgIconButtonVariant variant;
   final YgIconButtonSize size;

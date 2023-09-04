@@ -1,9 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:yggdrasil/src/theme/_theme.dart';
-import 'package:yggdrasil/src/theme/progress_indicator/extensions/_extensions.dart';
+import 'package:yggdrasil/yggdrasil.dart';
 
 /// Shows progress along a line.
-class YgLinearProgressIndicator extends StatelessWidget {
+class YgLinearProgressIndicator extends StatelessWidget with StatelessWidgetDebugMixin {
   const YgLinearProgressIndicator({
     super.key,
     this.value,

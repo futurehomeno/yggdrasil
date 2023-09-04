@@ -23,6 +23,12 @@ class _YgBottomSheetState extends State<YgBottomSheet> {
   final ScrollController _scrollController = ScrollController();
 
   @override
+  void dispose() {
+    _scrollController.dispose();
+    super.dispose();
+  }
+
+  @override
   Widget build(BuildContext context) {
     final YgBottomSheetTheme bottomSheetTheme = context.bottomSheetTheme;
     final YgBottomSheetScrollPhysicsProvider? scrollPhysicsProvider =
@@ -43,7 +49,7 @@ class _YgBottomSheetState extends State<YgBottomSheet> {
                 crossAxisAlignment: CrossAxisAlignment.stretch,
                 children: <Widget>[
                   YgBottomSheetHeader(title: widget.title),
-                  _buildContent(scrollPhysicsProvider, bottomSheetTheme),
+                  _buildContent(scrollPhysicsProvider),
                   if (widget.footerButtons != null)
                     Padding(
                       padding: bottomSheetTheme.footerPadding,
@@ -60,7 +66,6 @@ class _YgBottomSheetState extends State<YgBottomSheet> {
 
   Widget _buildContent(
     YgBottomSheetScrollPhysicsProvider? scrollPhysicsProvider,
-    YgBottomSheetTheme theme,
   ) {
     return Flexible(
       child: YgScrollShadow(

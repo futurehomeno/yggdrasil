@@ -2,7 +2,7 @@ name: yggdrasil
 description: Design system for Futurehome.
 publish_to: none
 
-version: 1.3.0
+version: 1.5.3
 
 environment:
   sdk: ^3.0.5
@@ -11,6 +11,7 @@ environment:
 dependencies:
   flutter:
     sdk: flutter
+  flutter_lints: 2.0.1
   theme_tailor_annotation: 
     git:
       ref: main
@@ -21,12 +22,6 @@ dependencies:
 dev_dependencies:
   # Run `flutter pub run build_runner build --delete-conflicting-outputs` in order to generate stuff.
   build_runner: 2.4.6
-  mockito: 5.4.2
-  fh_lints:
-    git:
-      ref: releases/1.3.71 # to-pubdev-reference-script-tag
-      url: git@github.com:futurehomeno/pubdev_registry.git
-      path: packages/fh_lints
   flutter_test:
     sdk: flutter
   theme_tailor:

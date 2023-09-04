@@ -3,6 +3,10 @@ import 'package:yggdrasil/yggdrasil.dart';
 
 import 'yg_tag_style.dart';
 
+part 'yg_tag_with_double_icon_child.dart';
+part 'yg_tag_with_leading_icon_child.dart';
+part 'yg_tag_with_trailing_icon_child.dart';
+
 /// Base class for creating all [YgTag]s.
 ///
 /// Tags are based on [ButtonStyleButton] and [ButtonStyle]
@@ -119,75 +123,3 @@ class YgTag extends ButtonStyleButton with StatefulWidgetDebugMixin {
     return null;
   }
 }
-
-// region Leading icon
-class _YgTagWithLeadingIconChild extends StatelessWidget {
-  const _YgTagWithLeadingIconChild({
-    required this.icon,
-    required this.child,
-  });
-
-  final YgIcon icon;
-  final Widget child;
-
-  @override
-  Widget build(BuildContext context) {
-    return Row(
-      mainAxisSize: MainAxisSize.min,
-      children: <Widget>[
-        icon,
-        Flexible(child: child),
-      ].withHorizontalSpacing(context.tagTheme.iconSpacing),
-    );
-  }
-}
-// endregion Leading icon
-
-// region Trailing icon
-class _YgTagWithTrailingIconChild extends StatelessWidget {
-  const _YgTagWithTrailingIconChild({
-    required this.icon,
-    required this.child,
-  });
-
-  final YgIcon icon;
-  final Widget child;
-
-  @override
-  Widget build(BuildContext context) {
-    return Row(
-      mainAxisSize: MainAxisSize.min,
-      children: <Widget>[
-        Flexible(child: child),
-        icon,
-      ].withHorizontalSpacing(context.tagTheme.iconSpacing),
-    );
-  }
-}
-// endregion Trailing icon
-
-// region Double icon
-class _YgTagWithDoubleIconChild extends StatelessWidget {
-  const _YgTagWithDoubleIconChild({
-    required this.leadingIcon,
-    required this.trailingIcon,
-    required this.child,
-  });
-
-  final YgIcon leadingIcon;
-  final YgIcon trailingIcon;
-  final Widget child;
-
-  @override
-  Widget build(BuildContext context) {
-    return Row(
-      mainAxisSize: MainAxisSize.min,
-      children: <Widget>[
-        leadingIcon,
-        Flexible(child: child),
-        trailingIcon,
-      ].withHorizontalSpacing(context.tagTheme.iconSpacing),
-    );
-  }
-}
-// endregion Double icon

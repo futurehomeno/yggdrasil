@@ -1,0 +1,35 @@
+import 'package:flutter/material.dart';
+import 'package:yggdrasil/src/theme/_theme.dart';
+import 'package:yggdrasil/src/utils/_utils.dart';
+
+import 'yg_radio_item.dart';
+
+/// Group of [YgRadioItem]s.
+// TODO(bjhandeland): Check if these should have rounded corners.
+class YgRadioGroup<T> extends StatelessWidget with StatelessWidgetDebugMixin {
+  const YgRadioGroup({
+    super.key,
+    required this.label,
+    required this.radioItems,
+  }) : assert(radioItems.length <= 5, 'Radio group can only have 5 items');
+
+  final String label;
+  final List<YgRadioItem<T>> radioItems;
+
+  @override
+  Widget build(BuildContext context) {
+    final YgRadioTheme radioTheme = context.radioTheme;
+
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: <Widget>[
+        Text(
+          label,
+          style: radioTheme.radioGroupTheme.labelTextStyle,
+        ),
+        SizedBox(height: radioTheme.radioGroupTheme.labelColumnSpacing),
+        ...radioItems,
+      ],
+    );
+  }
+}

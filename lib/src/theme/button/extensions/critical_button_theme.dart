@@ -9,14 +9,14 @@ part 'critical_button_theme.tailor.dart';
 
 @tailorComponent
 class _$CriticalButtonTheme {
-  static List<Color> backgroundColor = <Color>[
+  static const List<Color> backgroundColor = <Color>[
     consumer_light.FhColors.backgroundTransparent,
     consumer_dark.FhColors.backgroundTransparent,
     professional_light.FhColors.backgroundTransparent,
     professional_dark.FhColors.backgroundTransparent,
   ];
 
-  static List<TextStyle> textStyle = <TextStyle>[
+  static final List<TextStyle> textStyle = <TextStyle>[
     consumer_light.FhTextStyles.paragraph3Bold.copyWith(
       color: consumer_light.FhColors.textDefault,
     ),
@@ -31,7 +31,7 @@ class _$CriticalButtonTheme {
     ),
   ];
 
-  static List<TextStyle> disabledTextStyle = <TextStyle>[
+  static final List<TextStyle> disabledTextStyle = <TextStyle>[
     consumer_light.FhTextStyles.paragraph3Bold.copyWith(
       color: consumer_light.FhColors.textDisabled,
     ),
@@ -46,26 +46,26 @@ class _$CriticalButtonTheme {
     ),
   ];
 
-  static List<LinearGradient> borderGradient = <LinearGradient>[
-    const LinearGradient(
+  static const List<LinearGradient> borderGradient = <LinearGradient>[
+    LinearGradient(
       colors: <Color>[
         consumer_light.FhColors.actionCriticalDefault,
         consumer_light.FhColors.actionCriticalDefault,
       ],
     ),
-    const LinearGradient(
+    LinearGradient(
       colors: <Color>[
         consumer_dark.FhColors.actionCriticalDefault,
         consumer_dark.FhColors.actionCriticalDefault,
       ],
     ),
-    const LinearGradient(
+    LinearGradient(
       colors: <Color>[
         professional_light.FhColors.actionCriticalDefault,
         professional_light.FhColors.actionCriticalDefault,
       ],
     ),
-    const LinearGradient(
+    LinearGradient(
       colors: <Color>[
         professional_dark.FhColors.actionCriticalDefault,
         professional_dark.FhColors.actionCriticalDefault,
@@ -73,26 +73,26 @@ class _$CriticalButtonTheme {
     ),
   ];
 
-  static List<LinearGradient> disabledBorderGradient = <LinearGradient>[
-    const LinearGradient(
+  static const List<LinearGradient> disabledBorderGradient = <LinearGradient>[
+    LinearGradient(
       colors: <Color>[
         consumer_light.FhColors.actionCriticalDisabled,
         consumer_light.FhColors.actionCriticalDisabled,
       ],
     ),
-    const LinearGradient(
+    LinearGradient(
       colors: <Color>[
         consumer_dark.FhColors.actionCriticalDisabled,
         consumer_dark.FhColors.actionCriticalDisabled,
       ],
     ),
-    const LinearGradient(
+    LinearGradient(
       colors: <Color>[
         professional_light.FhColors.actionCriticalDisabled,
         professional_light.FhColors.actionCriticalDisabled,
       ],
     ),
-    const LinearGradient(
+    LinearGradient(
       colors: <Color>[
         professional_dark.FhColors.actionCriticalDisabled,
         professional_dark.FhColors.actionCriticalDisabled,
@@ -100,14 +100,14 @@ class _$CriticalButtonTheme {
     ),
   ];
 
-  static List<Color> iconDefaultColor = <Color>[
+  static const List<Color> iconDefaultColor = <Color>[
     consumer_light.FhColors.iconDefault,
     consumer_dark.FhColors.iconDefault,
     professional_light.FhColors.iconDefault,
     professional_dark.FhColors.iconDefault,
   ];
 
-  static List<Color> iconDisabledColor = <Color>[
+  static const List<Color> iconDisabledColor = <Color>[
     consumer_light.FhColors.iconDisabled,
     consumer_dark.FhColors.iconDisabled,
     professional_light.FhColors.iconDisabled,

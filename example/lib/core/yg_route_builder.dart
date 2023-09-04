@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 
 class YgRouteBuilder {
+  const YgRouteBuilder();
+
   /// Page route builder with forced fade in / out transition.
   PageRouteBuilder<T> fadeTransition<T>({
     required RouteSettings settings,

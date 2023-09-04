@@ -16,15 +16,18 @@ class YgTheme extends ThemeExtension<YgTheme> {
     required this.buttonTheme,
     required this.calloutTheme,
     required this.cardTheme,
+    required this.checkboxTheme,
     required this.defaults,
     required this.dialogTheme,
     required this.dividerTheme,
+    required this.gaugeTheme,
     required this.iconButtonTheme,
     required this.iconTheme,
     required this.internalTheme,
     required this.listTileTheme,
     required this.progressIndicatorTheme,
     required this.radioTheme,
+    required this.sectionTheme,
     required this.snackBarTheme,
     required this.switchTheme,
     required this.tagTheme,
@@ -40,15 +43,18 @@ class YgTheme extends ThemeExtension<YgTheme> {
   final YgButtonTheme buttonTheme;
   final YgCalloutTheme calloutTheme;
   final YgCardTheme cardTheme;
+  final YgCheckboxTheme checkboxTheme;
   final YgDefaults defaults;
   final YgDialogTheme dialogTheme;
   final YgDividerTheme dividerTheme;
+  final YgGaugeTheme gaugeTheme;
   final YgIconButtonTheme iconButtonTheme;
   final YgIconTheme iconTheme;
   final YgInternalTheme internalTheme;
   final YgListTileTheme listTileTheme;
   final YgProgressIndicatorTheme progressIndicatorTheme;
   final YgRadioTheme radioTheme;
+  final YgSectionTheme sectionTheme;
   final YgSnackBarTheme snackBarTheme;
   final YgSwitchTheme switchTheme;
   final YgTagTheme tagTheme;
@@ -64,15 +70,18 @@ class YgTheme extends ThemeExtension<YgTheme> {
     buttonTheme: _$YgTheme.buttonTheme[0],
     calloutTheme: _$YgTheme.calloutTheme[0],
     cardTheme: _$YgTheme.cardTheme[0],
+    checkboxTheme: _$YgTheme.checkboxTheme[0],
     defaults: _$YgTheme.defaults[0],
     dialogTheme: _$YgTheme.dialogTheme[0],
     dividerTheme: _$YgTheme.dividerTheme[0],
+    gaugeTheme: _$YgTheme.gaugeTheme[0],
     iconButtonTheme: _$YgTheme.iconButtonTheme[0],
     iconTheme: _$YgTheme.iconTheme[0],
     internalTheme: _$YgTheme.internalTheme[0],
     listTileTheme: _$YgTheme.listTileTheme[0],
     progressIndicatorTheme: _$YgTheme.progressIndicatorTheme[0],
     radioTheme: _$YgTheme.radioTheme[0],
+    sectionTheme: _$YgTheme.sectionTheme[0],
     snackBarTheme: _$YgTheme.snackBarTheme[0],
     switchTheme: _$YgTheme.switchTheme[0],
     tagTheme: _$YgTheme.tagTheme[0],
@@ -89,15 +98,18 @@ class YgTheme extends ThemeExtension<YgTheme> {
     buttonTheme: _$YgTheme.buttonTheme[1],
     calloutTheme: _$YgTheme.calloutTheme[1],
     cardTheme: _$YgTheme.cardTheme[1],
+    checkboxTheme: _$YgTheme.checkboxTheme[1],
     defaults: _$YgTheme.defaults[1],
     dialogTheme: _$YgTheme.dialogTheme[1],
     dividerTheme: _$YgTheme.dividerTheme[1],
+    gaugeTheme: _$YgTheme.gaugeTheme[1],
     iconButtonTheme: _$YgTheme.iconButtonTheme[1],
     iconTheme: _$YgTheme.iconTheme[1],
     internalTheme: _$YgTheme.internalTheme[1],
     listTileTheme: _$YgTheme.listTileTheme[1],
     progressIndicatorTheme: _$YgTheme.progressIndicatorTheme[1],
     radioTheme: _$YgTheme.radioTheme[1],
+    sectionTheme: _$YgTheme.sectionTheme[1],
     snackBarTheme: _$YgTheme.snackBarTheme[1],
     switchTheme: _$YgTheme.switchTheme[1],
     tagTheme: _$YgTheme.tagTheme[1],
@@ -114,15 +126,18 @@ class YgTheme extends ThemeExtension<YgTheme> {
     buttonTheme: _$YgTheme.buttonTheme[2],
     calloutTheme: _$YgTheme.calloutTheme[2],
     cardTheme: _$YgTheme.cardTheme[2],
+    checkboxTheme: _$YgTheme.checkboxTheme[2],
     defaults: _$YgTheme.defaults[2],
     dialogTheme: _$YgTheme.dialogTheme[2],
     dividerTheme: _$YgTheme.dividerTheme[2],
+    gaugeTheme: _$YgTheme.gaugeTheme[2],
     iconButtonTheme: _$YgTheme.iconButtonTheme[2],
     iconTheme: _$YgTheme.iconTheme[2],
     internalTheme: _$YgTheme.internalTheme[2],
     listTileTheme: _$YgTheme.listTileTheme[2],
     progressIndicatorTheme: _$YgTheme.progressIndicatorTheme[2],
     radioTheme: _$YgTheme.radioTheme[2],
+    sectionTheme: _$YgTheme.sectionTheme[2],
     snackBarTheme: _$YgTheme.snackBarTheme[2],
     switchTheme: _$YgTheme.switchTheme[2],
     tagTheme: _$YgTheme.tagTheme[2],
@@ -139,15 +154,18 @@ class YgTheme extends ThemeExtension<YgTheme> {
     buttonTheme: _$YgTheme.buttonTheme[3],
     calloutTheme: _$YgTheme.calloutTheme[3],
     cardTheme: _$YgTheme.cardTheme[3],
+    checkboxTheme: _$YgTheme.checkboxTheme[3],
     defaults: _$YgTheme.defaults[3],
     dialogTheme: _$YgTheme.dialogTheme[3],
     dividerTheme: _$YgTheme.dividerTheme[3],
+    gaugeTheme: _$YgTheme.gaugeTheme[3],
     iconButtonTheme: _$YgTheme.iconButtonTheme[3],
     iconTheme: _$YgTheme.iconTheme[3],
     internalTheme: _$YgTheme.internalTheme[3],
     listTileTheme: _$YgTheme.listTileTheme[3],
     progressIndicatorTheme: _$YgTheme.progressIndicatorTheme[3],
     radioTheme: _$YgTheme.radioTheme[3],
+    sectionTheme: _$YgTheme.sectionTheme[3],
     snackBarTheme: _$YgTheme.snackBarTheme[3],
     switchTheme: _$YgTheme.switchTheme[3],
     tagTheme: _$YgTheme.tagTheme[3],
@@ -172,15 +190,18 @@ class YgTheme extends ThemeExtension<YgTheme> {
     YgButtonTheme? buttonTheme,
     YgCalloutTheme? calloutTheme,
     YgCardTheme? cardTheme,
+    YgCheckboxTheme? checkboxTheme,
     YgDefaults? defaults,
     YgDialogTheme? dialogTheme,
     YgDividerTheme? dividerTheme,
+    YgGaugeTheme? gaugeTheme,
     YgIconButtonTheme? iconButtonTheme,
     YgIconTheme? iconTheme,
     YgInternalTheme? internalTheme,
     YgListTileTheme? listTileTheme,
     YgProgressIndicatorTheme? progressIndicatorTheme,
     YgRadioTheme? radioTheme,
+    YgSectionTheme? sectionTheme,
     YgSnackBarTheme? snackBarTheme,
     YgSwitchTheme? switchTheme,
     YgTagTheme? tagTheme,
@@ -196,9 +217,11 @@ class YgTheme extends ThemeExtension<YgTheme> {
       buttonTheme: buttonTheme ?? this.buttonTheme,
       calloutTheme: calloutTheme ?? this.calloutTheme,
       cardTheme: cardTheme ?? this.cardTheme,
+      checkboxTheme: checkboxTheme ?? this.checkboxTheme,
       defaults: defaults ?? this.defaults,
       dialogTheme: dialogTheme ?? this.dialogTheme,
       dividerTheme: dividerTheme ?? this.dividerTheme,
+      gaugeTheme: gaugeTheme ?? this.gaugeTheme,
       iconButtonTheme: iconButtonTheme ?? this.iconButtonTheme,
       iconTheme: iconTheme ?? this.iconTheme,
       internalTheme: internalTheme ?? this.internalTheme,
@@ -206,6 +229,7 @@ class YgTheme extends ThemeExtension<YgTheme> {
       progressIndicatorTheme:
           progressIndicatorTheme ?? this.progressIndicatorTheme,
       radioTheme: radioTheme ?? this.radioTheme,
+      sectionTheme: sectionTheme ?? this.sectionTheme,
       snackBarTheme: snackBarTheme ?? this.snackBarTheme,
       switchTheme: switchTheme ?? this.switchTheme,
       tagTheme: tagTheme ?? this.tagTheme,
@@ -228,9 +252,12 @@ class YgTheme extends ThemeExtension<YgTheme> {
       buttonTheme: buttonTheme.lerp(other.buttonTheme, t) as YgButtonTheme,
       calloutTheme: calloutTheme.lerp(other.calloutTheme, t) as YgCalloutTheme,
       cardTheme: cardTheme.lerp(other.cardTheme, t) as YgCardTheme,
+      checkboxTheme:
+          checkboxTheme.lerp(other.checkboxTheme, t) as YgCheckboxTheme,
       defaults: defaults.lerp(other.defaults, t) as YgDefaults,
       dialogTheme: dialogTheme.lerp(other.dialogTheme, t) as YgDialogTheme,
       dividerTheme: dividerTheme.lerp(other.dividerTheme, t) as YgDividerTheme,
+      gaugeTheme: gaugeTheme.lerp(other.gaugeTheme, t) as YgGaugeTheme,
       iconButtonTheme:
           iconButtonTheme.lerp(other.iconButtonTheme, t) as YgIconButtonTheme,
       iconTheme: iconTheme.lerp(other.iconTheme, t) as YgIconTheme,
@@ -241,6 +268,7 @@ class YgTheme extends ThemeExtension<YgTheme> {
       progressIndicatorTheme: progressIndicatorTheme.lerp(
           other.progressIndicatorTheme, t) as YgProgressIndicatorTheme,
       radioTheme: radioTheme.lerp(other.radioTheme, t) as YgRadioTheme,
+      sectionTheme: sectionTheme.lerp(other.sectionTheme, t) as YgSectionTheme,
       snackBarTheme:
           snackBarTheme.lerp(other.snackBarTheme, t) as YgSnackBarTheme,
       switchTheme: switchTheme.lerp(other.switchTheme, t) as YgSwitchTheme,
@@ -271,11 +299,15 @@ class YgTheme extends ThemeExtension<YgTheme> {
             const DeepCollectionEquality()
                 .equals(calloutTheme, other.calloutTheme) &&
             const DeepCollectionEquality().equals(cardTheme, other.cardTheme) &&
+            const DeepCollectionEquality()
+                .equals(checkboxTheme, other.checkboxTheme) &&
             const DeepCollectionEquality().equals(defaults, other.defaults) &&
             const DeepCollectionEquality()
                 .equals(dialogTheme, other.dialogTheme) &&
             const DeepCollectionEquality()
                 .equals(dividerTheme, other.dividerTheme) &&
+            const DeepCollectionEquality()
+                .equals(gaugeTheme, other.gaugeTheme) &&
             const DeepCollectionEquality()
                 .equals(iconButtonTheme, other.iconButtonTheme) &&
             const DeepCollectionEquality().equals(iconTheme, other.iconTheme) &&
@@ -287,6 +319,8 @@ class YgTheme extends ThemeExtension<YgTheme> {
                 .equals(progressIndicatorTheme, other.progressIndicatorTheme) &&
             const DeepCollectionEquality()
                 .equals(radioTheme, other.radioTheme) &&
+            const DeepCollectionEquality()
+                .equals(sectionTheme, other.sectionTheme) &&
             const DeepCollectionEquality()
                 .equals(snackBarTheme, other.snackBarTheme) &&
             const DeepCollectionEquality()
@@ -311,15 +345,18 @@ class YgTheme extends ThemeExtension<YgTheme> {
       const DeepCollectionEquality().hash(buttonTheme),
       const DeepCollectionEquality().hash(calloutTheme),
       const DeepCollectionEquality().hash(cardTheme),
+      const DeepCollectionEquality().hash(checkboxTheme),
       const DeepCollectionEquality().hash(defaults),
       const DeepCollectionEquality().hash(dialogTheme),
       const DeepCollectionEquality().hash(dividerTheme),
+      const DeepCollectionEquality().hash(gaugeTheme),
       const DeepCollectionEquality().hash(iconButtonTheme),
       const DeepCollectionEquality().hash(iconTheme),
       const DeepCollectionEquality().hash(internalTheme),
       const DeepCollectionEquality().hash(listTileTheme),
       const DeepCollectionEquality().hash(progressIndicatorTheme),
       const DeepCollectionEquality().hash(radioTheme),
+      const DeepCollectionEquality().hash(sectionTheme),
       const DeepCollectionEquality().hash(snackBarTheme),
       const DeepCollectionEquality().hash(switchTheme),
       const DeepCollectionEquality().hash(tagTheme),
@@ -339,9 +376,11 @@ extension YgThemeBuildContextProps on BuildContext {
   YgButtonTheme get buttonTheme => ygTheme.buttonTheme;
   YgCalloutTheme get calloutTheme => ygTheme.calloutTheme;
   YgCardTheme get cardTheme => ygTheme.cardTheme;
+  YgCheckboxTheme get checkboxTheme => ygTheme.checkboxTheme;
   YgDefaults get defaults => ygTheme.defaults;
   YgDialogTheme get dialogTheme => ygTheme.dialogTheme;
   YgDividerTheme get dividerTheme => ygTheme.dividerTheme;
+  YgGaugeTheme get gaugeTheme => ygTheme.gaugeTheme;
   YgIconButtonTheme get iconButtonTheme => ygTheme.iconButtonTheme;
   YgIconTheme get iconTheme => ygTheme.iconTheme;
   YgInternalTheme get internalTheme => ygTheme.internalTheme;
@@ -349,6 +388,7 @@ extension YgThemeBuildContextProps on BuildContext {
   YgProgressIndicatorTheme get progressIndicatorTheme =>
       ygTheme.progressIndicatorTheme;
   YgRadioTheme get radioTheme => ygTheme.radioTheme;
+  YgSectionTheme get sectionTheme => ygTheme.sectionTheme;
   YgSnackBarTheme get snackBarTheme => ygTheme.snackBarTheme;
   YgSwitchTheme get switchTheme => ygTheme.switchTheme;
   YgTagTheme get tagTheme => ygTheme.tagTheme;
