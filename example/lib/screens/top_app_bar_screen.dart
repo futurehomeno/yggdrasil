@@ -11,7 +11,7 @@ class TopAppBarScreen extends StatefulWidget {
   static const String routeName = 'TopAppBarScreen';
 
   static PageRouteBuilder<Widget> route() {
-    return YgRouteBuilder().fadeTransition(
+    return const YgRouteBuilder().fadeTransition(
       settings: const RouteSettings(name: routeName),
       screen: const TopAppBarScreen(),
     );

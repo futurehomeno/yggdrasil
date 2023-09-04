@@ -9,7 +9,7 @@ class TopAppBarSliverSmallScreen extends StatefulWidget {
   static const String routeName = 'TopAppBarSliverSmallScreen';
 
   static PageRouteBuilder<Widget> route() {
-    return YgRouteBuilder().fadeTransition(
+    return const YgRouteBuilder().fadeTransition(
       settings: const RouteSettings(name: routeName),
       screen: const TopAppBarSliverSmallScreen(),
     );
