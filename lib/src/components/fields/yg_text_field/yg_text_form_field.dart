@@ -3,8 +3,6 @@ import 'package:flutter/services.dart';
 import 'package:yggdrasil/src/components/fields/helpers/yg_validate_helper.dart';
 import 'package:yggdrasil/yggdrasil.dart';
 
-import '../enums/_enums.dart';
-
 /// A form field that contains a [YgTextField].
 ///
 /// This is a convenience widget that wraps a [YgTextField] widget in a [FormField].

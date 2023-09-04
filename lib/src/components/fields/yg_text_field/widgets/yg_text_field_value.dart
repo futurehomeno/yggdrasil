@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:yggdrasil/src/components/fields/enums/field_state.dart';
 import 'package:yggdrasil/src/theme/_theme.dart';
-import 'package:yggdrasil/src/theme/fields/extensions/field_content/_field_content.dart';
 
 class YgTextFieldValue extends StatelessWidget {
   const YgTextFieldValue({

@@ -3,7 +3,6 @@ import 'package:flutter/services.dart';
 import 'package:yggdrasil/src/components/fields/enums/field_state.dart';
 import 'package:yggdrasil/yggdrasil.dart';
 
-import '../enums/_enums.dart';
 import '../widgets/_widgets.dart';
 import 'widgets/_widgets.dart';
 
