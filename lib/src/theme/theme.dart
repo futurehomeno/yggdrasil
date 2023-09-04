@@ -91,7 +91,6 @@ class _$YgTheme {
 
   @themeExtension
   static final List<YgSwitchTheme> switchTheme = YgSwitchTheme.themes;
-  static List<YgTopAppBarTheme> topAppBarTheme = YgTopAppBarTheme.themes;
 
   @themeExtension
   static List<YgInternalTheme> internalTheme = YgInternalTheme.themes;
@@ -103,8 +102,8 @@ class _$YgTheme {
   static final List<YgTextLinkTheme> textLinkTheme = YgTextLinkTheme.themes;
 
   @themeExtension
-  static final List<YgInternalTheme> internalTheme = YgInternalTheme.themes;
+  static final List<YgTextFieldTheme> textInputTheme = YgTextFieldTheme.themes;
 
   @themeExtension
-  static final List<YgTextFieldTheme> textInputTheme = YgTextFieldTheme.themes;
+  static List<YgTopAppBarTheme> topAppBarTheme = YgTopAppBarTheme.themes;
 }
