@@ -43,6 +43,8 @@ abstract class YgDropdownField<T extends Object> extends StatefulWidget with Sta
     String? placeholder,
     YgFieldSize size,
     YgFieldVariant variant,
+    YgCompleteAction completeAction,
+    VoidCallback? onEditingComplete,
   }) = _YgDropdownFieldSingleSelect<T>;
 
   /// Factory contractor for a [YgDropdownField] with more than one value.
@@ -67,6 +69,8 @@ abstract class YgDropdownField<T extends Object> extends StatefulWidget with Sta
     String? placeholder,
     YgFieldSize size,
     YgFieldVariant variant,
+    YgCompleteAction completeAction,
+    VoidCallback? onEditingComplete,
   }) = _YgDropdownFieldMultiSelect<T>;
 
   const YgDropdownField._({
@@ -78,6 +82,7 @@ abstract class YgDropdownField<T extends Object> extends StatefulWidget with Sta
     this.variant = YgFieldVariant.standard,
     this.size = YgFieldSize.large,
     this.dropdownAction = YgDropdownAction.auto,
+    this.completeAction = YgCompleteAction.unfocus,
     this.focusNode,
     this.error,
     this.disabled = false,
@@ -86,6 +91,7 @@ abstract class YgDropdownField<T extends Object> extends StatefulWidget with Sta
     this.onFocusChanged,
     this.onPressed,
     this.controller,
+    this.onEditingComplete,
   });
 
   /// The variant of the field.
@@ -177,11 +183,24 @@ abstract class YgDropdownField<T extends Object> extends StatefulWidget with Sta
   ///
   /// When defined will overwrite the [initialValue].
   final YgDynamicDropdownController<T>? controller;
+
+  /// The action to perform when the user completes editing the field.
+  ///
+  /// By default [YgCompleteAction.unfocus].
+  final YgCompleteAction completeAction;
+
+  /// Called when the dropdown is closed.
+  ///
+  /// Overrides the completeAction.
+  final VoidCallback? onEditingComplete;
 }
 
 abstract class YgDropdownFieldState<T extends Object, W extends YgDropdownField<T>> extends State<W> {
   /// The current controller of the dropdown, either user specified or a default one.
   late YgDynamicDropdownController<T> _controller;
+
+  /// The current [FocusNode] of the dropdown, either user specified of a default one.
+  late FocusNode _focusNode = widget.focusNode ?? FocusNode();
 
   /// The current states of the dropdown.
   late final FieldStates _states = <FieldState>{
@@ -201,6 +220,15 @@ abstract class YgDropdownFieldState<T extends Object, W extends YgDropdownField<
   @override
   void didUpdateWidget(covariant W oldWidget) {
     final YgDynamicDropdownController<T>? newController = widget.controller;
+    final FocusNode? newFocusNode = widget.focusNode;
+
+    if (newFocusNode == null) {
+      if (oldWidget.focusNode != null) {
+        _focusNode = FocusNode();
+      }
+    } else if (newFocusNode != _focusNode) {
+      _focusNode = newFocusNode;
+    }
 
     if (newController == null) {
       if (oldWidget.controller != null) {
@@ -222,6 +250,10 @@ abstract class YgDropdownFieldState<T extends Object, W extends YgDropdownField<
     _controller.detach();
     if (widget.controller == null) {
       _controller.dispose();
+    }
+
+    if (widget.focusNode == null) {
+      _focusNode.dispose();
     }
     super.dispose();
   }
@@ -274,8 +306,8 @@ abstract class YgDropdownFieldState<T extends Object, W extends YgDropdownField<
 
     return FocusableActionDetector(
       mouseCursor: SystemMouseCursors.click,
-      focusNode: widget.focusNode,
-      onShowFocusHighlight: _onFocusChanged,
+      focusNode: _focusNode,
+      onFocusChange: _onFocusChanged,
       onShowHoverHighlight: (bool hovered) => _updateFieldStateAndRebuild(FieldState.hovered, hovered),
       shortcuts: const <ShortcutActivator, Intent>{
         SingleActivator(LogicalKeyboardKey.space, control: false): ActivateIntent(),
@@ -325,6 +357,8 @@ abstract class YgDropdownFieldState<T extends Object, W extends YgDropdownField<
   }
 
   void open() {
+    _focusNode.requestFocus();
+
     switch (widget.dropdownAction) {
       case YgDropdownAction.bottomSheet:
         return openBottomSheet();
@@ -350,7 +384,34 @@ abstract class YgDropdownFieldState<T extends Object, W extends YgDropdownField<
     return _states.opened;
   }
 
-  void _onClosed() => _updateFieldStateAndRebuild(FieldState.opened, false);
+  void _onClosed() {
+    _updateFieldStateAndRebuild(FieldState.opened, false);
+
+    final VoidCallback? onEditingComplete = widget.onEditingComplete;
+
+    if (onEditingComplete != null) {
+      onEditingComplete();
+
+      return;
+    }
+
+    switch (widget.completeAction) {
+      case YgCompleteAction.focusNext:
+        _focusNode.nextFocus();
+
+        return;
+      case YgCompleteAction.focusPrevious:
+        _focusNode.previousFocus();
+
+        return;
+      case YgCompleteAction.unfocus:
+        _focusNode.unfocus();
+
+        return;
+      case YgCompleteAction.none:
+        return;
+    }
+  }
 
   void _performPlatformAction() {
     if (Platform.isAndroid || Platform.isIOS) {

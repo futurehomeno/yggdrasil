@@ -7,6 +7,7 @@ class _YgDropdownFieldMultiSelect<T extends Object> extends YgDropdownField<T> {
     required super.label,
     super.variant = YgFieldVariant.standard,
     super.size = YgFieldSize.large,
+    super.completeAction = YgCompleteAction.unfocus,
     super.focusNode,
     super.error,
     super.minLines,
@@ -17,6 +18,7 @@ class _YgDropdownFieldMultiSelect<T extends Object> extends YgDropdownField<T> {
     super.dropdownAction = YgDropdownAction.auto,
     super.onFocusChanged,
     super.onPressed,
+    super.onEditingComplete,
     YgMultiSelectDropdownController<T>? super.controller,
     this.initialValue,
     this.onChange,
@@ -26,6 +28,10 @@ class _YgDropdownFieldMultiSelect<T extends Object> extends YgDropdownField<T> {
   final Set<T>? initialValue;
 
   /// Called with the new value when the value has changed.
+  ///
+  /// !-- WARNING --
+  /// This value can be called multiple times while the dropdown is opened and
+  /// is not an alternative to the [onEditingComplete] callback.
   final ValueChanged<Set<T>>? onChange;
 
   @override

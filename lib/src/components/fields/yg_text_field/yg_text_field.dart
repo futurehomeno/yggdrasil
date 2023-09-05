@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:yggdrasil/src/components/fields/enums/field_state.dart';
+import 'package:yggdrasil/src/components/fields/helpers/yg_validate_helper.dart';
 import 'package:yggdrasil/yggdrasil.dart';
 
 import '../widgets/_widgets.dart';
@@ -33,6 +34,7 @@ class YgTextField extends StatefulWidget with StatefulWidgetDebugMixin {
     this.size = YgFieldSize.large,
     this.variant = YgFieldVariant.standard,
     this.initialValue,
+    this.completeAction,
   })  : assert(
           maxLines == null || minLines == null || maxLines >= minLines,
           'When both minLines and maxLines are set, maxLines should be equal or higher than minLines',
@@ -65,6 +67,7 @@ class YgTextField extends StatefulWidget with StatefulWidgetDebugMixin {
     this.size = YgFieldSize.large,
     this.variant = YgFieldVariant.standard,
     this.initialValue,
+    this.completeAction,
   })  : maxLines = 1,
         minLines = null,
         obscureText = false,
@@ -97,6 +100,7 @@ class YgTextField extends StatefulWidget with StatefulWidgetDebugMixin {
     this.size = YgFieldSize.large,
     this.variant = YgFieldVariant.standard,
     this.initialValue,
+    this.completeAction,
   })  : maxLines = 1,
         minLines = null,
         obscureText = true,
@@ -131,6 +135,7 @@ class YgTextField extends StatefulWidget with StatefulWidgetDebugMixin {
     this.size = YgFieldSize.large,
     this.variant = YgFieldVariant.standard,
     this.initialValue,
+    this.completeAction,
   })  : maxLines = 1,
         minLines = null,
         obscureText = false,
@@ -163,6 +168,7 @@ class YgTextField extends StatefulWidget with StatefulWidgetDebugMixin {
     this.size = YgFieldSize.large,
     this.variant = YgFieldVariant.standard,
     this.initialValue,
+    this.completeAction,
   })  : obscureText = false,
         autocorrect = true,
         textCapitalization = TextCapitalization.sentences,
@@ -350,6 +356,11 @@ class YgTextField extends StatefulWidget with StatefulWidgetDebugMixin {
   /// The initial value of the text field.
   final String? initialValue;
 
+  /// The action to perform when the user completes editing the field.
+  ///
+  /// By default based on the [textInputAction].
+  final YgCompleteAction? completeAction;
+
   @override
   State<YgTextField> createState() => _YgTextFieldState();
 }
@@ -451,7 +462,7 @@ class _YgTextFieldState extends State<YgTextField> {
             minLines: widget.minLines,
             obscureText: _obscureText,
             onChanged: widget.onChanged,
-            onEditingComplete: widget.onEditingComplete,
+            onEditingComplete: _onEditingComplete,
             placeholder: widget.placeholder,
             readOnly: widget.readOnly,
             states: _states,
@@ -479,6 +490,37 @@ class _YgTextFieldState extends State<YgTextField> {
         child: layout,
       ),
     );
+  }
+
+  // TODO(Tim): This should be moved somewhere else to make it reusable.
+  void _onEditingComplete() {
+    final VoidCallback? onEditingComplete = widget.onEditingComplete;
+
+    if (onEditingComplete != null) {
+      onEditingComplete();
+
+      return;
+    }
+
+    final YgCompleteAction completeAction =
+        widget.completeAction ?? YgValidateHelper.mapTextInputAction(widget.textInputAction);
+
+    switch (completeAction) {
+      case YgCompleteAction.focusNext:
+        _focusNode.nextFocus();
+
+        return;
+      case YgCompleteAction.focusPrevious:
+        _focusNode.previousFocus();
+
+        return;
+      case YgCompleteAction.unfocus:
+        _focusNode.unfocus();
+
+        return;
+      case YgCompleteAction.none:
+        return;
+    }
   }
 
   void _updateHoverState(bool toggled) {

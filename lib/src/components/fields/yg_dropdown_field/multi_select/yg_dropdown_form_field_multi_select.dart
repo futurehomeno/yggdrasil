@@ -58,6 +58,7 @@ class _YgDropdownFormFieldMultiSelect<T extends Object> extends YgDropdownFormFi
         onChange: field.didChange,
         controller: controller,
         onFocusChanged: helper.onFocusChanged,
+        onEditingComplete: helper.onEditingComplete,
         onPressed: onPressed,
       ),
     );

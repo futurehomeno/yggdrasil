@@ -58,6 +58,7 @@ class _YgDropdownFormFieldSingleSelect<T extends Object> extends YgDropdownFormF
         onChange: field.didChange,
         controller: controller,
         onFocusChanged: helper.onFocusChanged,
+        onEditingComplete: helper.onEditingComplete,
         onPressed: onPressed,
       ),
     );

@@ -123,6 +123,8 @@ class YgFieldDecoration extends StatelessWidget {
       borderRadius: _getBorderRadius(theme),
       onTap: onPressed,
       canRequestFocus: false,
+      hoverColor: Colors.transparent,
+      highlightColor: Colors.transparent,
       child: child,
     );
   }
