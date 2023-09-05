@@ -87,10 +87,12 @@ class YgListTile extends StatelessWidget with StatelessWidgetDebugMixin {
   Widget _buildTitle(YgListTileTheme listTileTheme) {
     return Row(
       children: <Widget>[
-        Text(
-          title,
-          style: listTileTheme.titleTextStyle,
-          overflow: TextOverflow.ellipsis,
+        Flexible(
+          child: Text(
+            title,
+            style: listTileTheme.titleTextStyle,
+            overflow: TextOverflow.ellipsis,
+          ),
         ),
         if (onInfoTap != null) _buildInfoButton(),
       ].withHorizontalSpacing(listTileTheme.titleInfoSpacing),
