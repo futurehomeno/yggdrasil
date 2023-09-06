@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:yggdrasil/yggdrasil.dart';
 import 'package:yggdrasil_demo/core/_core.dart';
+import 'package:yggdrasil_demo/widgets/debug_bottom_sheet.dart';
 
 /// Demo screen to use as a base for components screens.
 class DemoScreen extends StatelessWidget {
@@ -33,7 +34,8 @@ class DemoScreen extends StatelessWidget {
             title: Text(componentName),
             actions: <Widget>[
               YgIconButton(
-                onPressed: ygAppState.toggleDebugOutlineEnabled,
+                onPressed: () => YgDebug.toggleDebugging(context),
+                onLongPress: () => Navigator.of(context).push(DebugBottomSheet()),
                 child: const YgIcon(YgIcons.eyeOpen),
               ),
               YgIconButton(

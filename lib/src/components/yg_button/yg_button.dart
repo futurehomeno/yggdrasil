@@ -90,4 +90,7 @@ class YgButton extends ButtonStyleButton with StatefulWidgetDebugMixin {
     // We do not use themes this way.
     return null;
   }
+
+  @override
+  YgDebugType get debugType => YgDebugType.intractable;
 }

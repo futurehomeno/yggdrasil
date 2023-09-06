@@ -45,6 +45,9 @@ class YgCheckbox extends StatefulWidget with StatefulWidgetDebugMixin {
 
   @override
   State<YgCheckbox> createState() => _YgRadioState();
+
+  @override
+  YgDebugType get debugType => YgDebugType.intractable;
 }
 
 class _YgRadioState extends State<YgCheckbox> {

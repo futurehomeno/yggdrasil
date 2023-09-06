@@ -20,26 +20,24 @@ class _YgDropdownMenu<T extends Object> extends StatelessWidget with StatelessWi
       elevation: 5,
       color: theme.menuItemBackground,
       borderRadius: const BorderRadius.all(Radius.circular(10)),
-      child: ClipRRect(
-        borderRadius: const BorderRadius.all(Radius.circular(10)),
-        child: YgScrollShadow.builder(
-          builder: (BuildContext context, ScrollController scrollController) {
-            return SingleChildScrollView(
-              controller: scrollController,
-              child: Padding(
-                padding: const EdgeInsets.all(10.0),
-                child: ListenableBuilder(
-                  listenable: controller,
-                  builder: (BuildContext context, Widget? child) {
-                    return Column(
-                      children: _buildEntries(),
-                    );
-                  },
-                ),
+      clipBehavior: Clip.antiAlias,
+      child: YgScrollShadow.builder(
+        builder: (BuildContext context, ScrollController scrollController) {
+          return SingleChildScrollView(
+            controller: scrollController,
+            child: Padding(
+              padding: const EdgeInsets.all(10.0),
+              child: ListenableBuilder(
+                listenable: controller,
+                builder: (BuildContext context, Widget? child) {
+                  return Column(
+                    children: _buildEntries(),
+                  );
+                },
               ),
-            );
-          },
-        ),
+            ),
+          );
+        },
       ),
     );
   }

@@ -138,4 +138,7 @@ class YgListTile extends StatelessWidget with StatelessWidgetDebugMixin {
       children: supportingWidgets.withVerticalSpacing(listTileTheme.contentSpacing),
     );
   }
+
+  @override
+  YgDebugType get debugType => YgDebugType.intractable;
 }

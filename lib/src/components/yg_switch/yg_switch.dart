@@ -109,4 +109,7 @@ class YgSwitch extends StatelessWidget with StatelessWidgetDebugMixin {
 
     return context.switchTheme.thumbNullColor;
   }
+
+  @override
+  YgDebugType get debugType => YgDebugType.intractable;
 }
