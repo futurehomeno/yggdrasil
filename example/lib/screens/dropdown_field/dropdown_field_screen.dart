@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:pubdev_registry/fh_utils/fh_utils.dart';
 import 'package:yggdrasil/yggdrasil.dart';
 import 'package:yggdrasil_demo/core/yg_route_builder.dart';
 import 'package:yggdrasil_demo/widgets/_widgets.dart';
@@ -123,12 +124,26 @@ class _DropdownFieldScreenState extends State<DropdownFieldScreen> {
                   label: 'Single select',
                   entries: _generateEntries(4),
                   completeAction: YgCompleteAction.focusNext,
+                  autoValidate: YgAutoValidate.onComplete,
+                  validators: <FormFieldValidator<String>>[
+                    const NullValidator(nullError: 'This field is required!'),
+                  ],
                 ),
                 YgDropdownFormField<String>.multiSelect(
                   key: _multiSelectKey,
                   label: 'Multi select',
-                  entries: _generateEntries(4),
+                  entries: _generateEntries(6),
                   completeAction: YgCompleteAction.focusNext,
+                  autoValidate: YgAutoValidate.onComplete,
+                  validators: <FormFieldValidator<Set<String>>>[
+                    const MultiSelectRequiredValidator(
+                      requiredError: 'This field is required!',
+                    ),
+                    const MultiSelectMaxItemsValidator(
+                      tooManyItemsError: 'Can not select more than 3 items!',
+                      maxItems: 3,
+                    ),
+                  ],
                 ),
                 YgButton(
                   onPressed: _onSubmit,

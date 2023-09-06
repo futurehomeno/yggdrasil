@@ -26,26 +26,24 @@ class YgSingleSelectDropdownController<T extends Object> extends YgDropdownContr
     final YgDropdownFieldState<T, YgDropdownField<T>>? field = _field;
     assert(
       field != null,
-      'YgDropdownController.onEntryTapped was called while the controller was not attached to a dropdown!',
+      'YgDropdownController.onEntryTapped was called while the controller was not attached to a single select dropdown!',
     );
-    if (field == null) {
+    if (field is! _YgDropdownFieldSingleSelectState<T>) {
       return;
     }
 
     if (value == entry.value) {
       if (field.widget.allowDeselect) {
         value = null;
+        field.widget.onChange?.call(value);
 
         close();
       }
     } else {
       value = entry.value;
+      field.widget.onChange?.call(value);
 
       close();
-    }
-
-    if (field is _YgDropdownFieldSingleSelectState<T>) {
-      field.widget.onChange?.call(value);
     }
   }
 

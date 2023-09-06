@@ -26,25 +26,25 @@ class YgMultiSelectDropdownController<T extends Object> extends YgDropdownContro
     final YgDropdownFieldState<T, YgDropdownField<T>>? field = _field;
 
     assert(
-      field != null,
-      'YgDropdownController.onEntryTapped was called while the controller was not attached to a dropdown!',
+      field is _YgDropdownFieldMultiSelectState<T>,
+      'YgDropdownController.onEntryTapped was called while the controller was not attached to a multi select dropdown!',
     );
-    if (field == null) {
+    if (field is! _YgDropdownFieldMultiSelectState<T>) {
       return;
     }
 
     if (value.contains(entry.value)) {
       if (field.widget.allowDeselect || value.length > 1) {
         value.remove(entry.value);
+        field.widget.onChange?.call(value);
+
         notifyListeners();
       }
     } else {
       value.add(entry.value);
-      notifyListeners();
-    }
-
-    if (field is _YgDropdownFieldMultiSelectState<T>) {
       field.widget.onChange?.call(value);
+
+      notifyListeners();
     }
   }
 
