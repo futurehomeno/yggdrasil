@@ -17,16 +17,16 @@ class _YgDropdownMenu<T extends Object> extends StatelessWidget with StatelessWi
     final YgDropdownFieldTheme theme = context.fieldTheme.dropdownTheme;
 
     return Material(
-      elevation: 5,
+      elevation: theme.menuElevation,
       color: theme.menuItemBackground,
-      borderRadius: const BorderRadius.all(Radius.circular(10)),
+      borderRadius: theme.menuRadius,
       clipBehavior: Clip.antiAlias,
       child: YgScrollShadow.builder(
         builder: (BuildContext context, ScrollController scrollController) {
           return SingleChildScrollView(
             controller: scrollController,
             child: Padding(
-              padding: const EdgeInsets.all(10.0),
+              padding: theme.menuPadding,
               child: ListenableBuilder(
                 listenable: controller,
                 builder: (BuildContext context, Widget? child) {

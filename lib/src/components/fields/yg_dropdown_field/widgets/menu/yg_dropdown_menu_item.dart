@@ -24,9 +24,9 @@ class YgDropdownMenuItem extends StatelessWidget {
 
     return Material(
       color: theme.menuItemBackground,
-      borderRadius: const BorderRadius.all(Radius.circular(5)),
+      borderRadius: theme.menuItemRadius,
+      clipBehavior: Clip.antiAlias,
       child: InkWell(
-        borderRadius: const BorderRadius.all(Radius.circular(5)),
         onTap: onPressed,
         child: Padding(
           padding: theme.menuItemPadding,

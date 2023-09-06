@@ -27,6 +27,8 @@ class YgDropdownMenuRoute<T extends Object> extends PopupRoute<Widget> {
 
   BuildContext get context => navigator!.context;
 
+  YgDropdownFieldTheme get theme => context.fieldTheme.dropdownTheme;
+
   @override
   RouteSettings get settings => const RouteSettings(name: 'DropdownMenu');
 
@@ -34,10 +36,10 @@ class YgDropdownMenuRoute<T extends Object> extends PopupRoute<Widget> {
   Color get barrierColor => Colors.transparent;
 
   @override
-  Duration get transitionDuration => const Duration(milliseconds: 300);
+  Duration get transitionDuration => theme.menuAnimationDuration;
 
   @override
-  Curve get barrierCurve => Curves.easeOut;
+  Curve get barrierCurve => theme.menuAnimationCurve;
 
   // This allows the popup to be dismissed by tapping the scrim or by pressing
   // the escape key on the keyboard.
@@ -56,11 +58,13 @@ class YgDropdownMenuRoute<T extends Object> extends PopupRoute<Widget> {
 
   @override
   Widget buildPage(BuildContext context, Animation<double> animation, Animation<double> secondaryAnimation) {
+    final YgDropdownFieldTheme theme = context.fieldTheme.dropdownTheme;
+
     return _YgDropdownMenuPositioner(
       rect: rect,
-      animation: animation.drive(CurveTween(curve: Curves.easeOut)),
+      animation: animation.drive(CurveTween(curve: theme.menuAnimationCurve)),
       screenPadding: MediaQuery.paddingOf(context),
-      padding: 5.0,
+      padding: theme.menuToFieldPadding,
       // TODO(Tim): Find out what black magic is going on here and fix it, for
       // now though, yes, we need 2 of them, otherwise the scroll shadow doesn't
       // repaint don't ask me how or why.

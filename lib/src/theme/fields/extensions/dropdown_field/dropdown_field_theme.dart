@@ -66,4 +66,53 @@ class _$YgDropdownFieldTheme {
     professional_light.FhColors.backgroundDefault,
     professional_dark.FhColors.backgroundDefault,
   ];
+
+  static final List<BorderRadius> menuItemRadius = <BorderRadius>[
+    consumer_light.FhRadii.xxs,
+    consumer_dark.FhRadii.xxs,
+    professional_light.FhRadii.xxs,
+    professional_dark.FhRadii.xxs,
+  ];
+
+  static final List<BorderRadius> menuRadius = <BorderRadius>[
+    consumer_light.FhRadii.xs,
+    consumer_dark.FhRadii.xs,
+    professional_light.FhRadii.xs,
+    professional_dark.FhRadii.xs,
+  ];
+
+  static final List<double> menuElevation = <double>[
+    consumer_light.FhDimensions.xs,
+    consumer_dark.FhDimensions.xs,
+    professional_light.FhDimensions.xs,
+    professional_dark.FhDimensions.xs,
+  ];
+
+  static final List<double> menuToFieldPadding = <double>[
+    consumer_light.FhDimensions.xxs,
+    consumer_dark.FhDimensions.xxs,
+    professional_light.FhDimensions.xxs,
+    professional_dark.FhDimensions.xxs,
+  ];
+
+  static final List<EdgeInsets> menuPadding = <EdgeInsets>[
+    const EdgeInsets.all(consumer_light.FhDimensions.xs),
+    const EdgeInsets.all(consumer_dark.FhDimensions.xs),
+    const EdgeInsets.all(professional_light.FhDimensions.xs),
+    const EdgeInsets.all(professional_dark.FhDimensions.xs),
+  ];
+
+  static final List<Curve> menuAnimationCurve = <Curve>[
+    Curves.easeOut,
+    Curves.easeOut,
+    Curves.easeOut,
+    Curves.easeOut,
+  ];
+
+  static final List<Duration> menuAnimationDuration = <Duration>[
+    const Duration(milliseconds: 300),
+    const Duration(milliseconds: 300),
+    const Duration(milliseconds: 300),
+    const Duration(milliseconds: 300),
+  ];
 }
