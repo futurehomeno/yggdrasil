@@ -8,13 +8,21 @@ typedef WidgetWithScrollBuilder = Widget Function(BuildContext context, ScrollCo
 
 /// Applies a shadow at the top or bottom of a scroll view.
 abstract class YgScrollShadow extends StatefulWidget {
+  /// Builds the widget using provided [ScrollController].
   const factory YgScrollShadow({
     required Widget child,
     required ScrollController controller,
   }) = _YgScrollShadowChild;
 
+  /// Builds the child with a provided [ScrollController].
+  ///
+  /// Can be preferable to use when you don't have a scroll controller to
+  /// provide or when the scroll controller might be null, in which cases the
+  /// builder function will be provided with a internally created scroll
+  /// controller to pass to the scroll widget instead.
   const factory YgScrollShadow.builder({
     required WidgetWithScrollBuilder builder,
+    ScrollController? controller,
   }) = _YgScrollShadowBuilder;
 
   const YgScrollShadow._({
@@ -22,6 +30,10 @@ abstract class YgScrollShadow extends StatefulWidget {
     this.controller,
   });
 
+  /// Builds the child widget.
+  ///
+  /// Provides a [ScrollController] to the builder, this can either be the
+  /// controller supplied by the user or an internally created one.
   Widget builder(BuildContext context, ScrollController controller);
 
   /// The [ScrollController] of the scrollable surface which the shadows should

@@ -3,6 +3,7 @@ part of 'yg_scroll_shadow.dart';
 class _YgScrollShadowBuilder extends YgScrollShadow {
   const _YgScrollShadowBuilder({
     required WidgetWithScrollBuilder builder,
+    super.controller,
   })  : _builder = builder,
         super._();
 
