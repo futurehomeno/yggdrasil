@@ -40,5 +40,11 @@ class YgIconButton extends ButtonStyleButton with StatefulWidgetDebugMixin {
   }
 
   @override
-  YgDebugType get debugType => YgDebugType.intractable;
+  YgDebugType get debugType {
+    if (onPressed == null) {
+      return YgDebugType.other;
+    }
+
+    return YgDebugType.intractable;
+  }
 }

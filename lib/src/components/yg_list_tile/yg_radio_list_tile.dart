@@ -15,22 +15,22 @@ class YgRadioListTile<T> extends StatelessWidget {
     this.leadingWidget,
   });
 
-  /// See [YgListTile] documentation.
+  /// See [YgListTile.title].
   final String title;
 
-  /// See [YgListTile] documentation.
+  /// See [YgListTile.subtitle].
   final String? subtitle;
 
-  /// See [YgListTile] documentation.
+  /// See [YgListTile.subtitleIcon].
   final Widget? subtitleIcon;
 
-  /// See [YgRadio] documentation.
+  /// See [YgRadio.value].
   final T value;
 
-  /// See [YgRadio] documentation.
+  /// See [YgRadio.groupValue].
   final T? groupValue;
 
-  /// See [YgRadio] documentation.
+  /// See [YgRadio.onChanged].
   final ValueChanged<T?>? onChanged;
 
   /// Optional widget to display before the switch.

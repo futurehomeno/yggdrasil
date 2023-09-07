@@ -2,7 +2,7 @@
 
 /// List of widget types that have debugging support.
 enum YgDebugType {
-  /// Widgets that are not visible, but determine the placing of other widgets.
+  /// Widgets that are not visible, but determine the placement of other widgets.
   layout,
 
   /// All widgets that support some type of interaction.

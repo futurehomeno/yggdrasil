@@ -50,4 +50,11 @@ class _$OutlinedIconButtonTheme {
     professional_light.FhColors.borderDisabled,
     professional_dark.FhColors.borderDisabled,
   ];
+
+  static const List<Color> pressedColor = <Color>[
+    consumer_light.FhColors.backgroundDisabled,
+    consumer_dark.FhColors.backgroundDisabled,
+    professional_light.FhColors.backgroundDisabled,
+    professional_dark.FhColors.backgroundDisabled,
+  ];
 }

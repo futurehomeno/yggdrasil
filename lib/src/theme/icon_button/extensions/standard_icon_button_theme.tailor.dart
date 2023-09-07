@@ -14,12 +14,14 @@ class StandardIconButtonTheme extends ThemeExtension<StandardIconButtonTheme> {
     required this.disabledBackgroundColor,
     required this.disabledIconColor,
     required this.iconColor,
+    required this.pressedColor,
   });
 
   final Color backgroundColor;
   final Color disabledBackgroundColor;
   final Color disabledIconColor;
   final Color iconColor;
+  final Color pressedColor;
 
   static final StandardIconButtonTheme consumerLight = StandardIconButtonTheme(
     backgroundColor: _$StandardIconButtonTheme.backgroundColor[0],
@@ -27,6 +29,7 @@ class StandardIconButtonTheme extends ThemeExtension<StandardIconButtonTheme> {
         _$StandardIconButtonTheme.disabledBackgroundColor[0],
     disabledIconColor: _$StandardIconButtonTheme.disabledIconColor[0],
     iconColor: _$StandardIconButtonTheme.iconColor[0],
+    pressedColor: _$StandardIconButtonTheme.pressedColor[0],
   );
 
   static final StandardIconButtonTheme consumerDark = StandardIconButtonTheme(
@@ -35,6 +38,7 @@ class StandardIconButtonTheme extends ThemeExtension<StandardIconButtonTheme> {
         _$StandardIconButtonTheme.disabledBackgroundColor[1],
     disabledIconColor: _$StandardIconButtonTheme.disabledIconColor[1],
     iconColor: _$StandardIconButtonTheme.iconColor[1],
+    pressedColor: _$StandardIconButtonTheme.pressedColor[1],
   );
 
   static final StandardIconButtonTheme professionalLight =
@@ -44,6 +48,7 @@ class StandardIconButtonTheme extends ThemeExtension<StandardIconButtonTheme> {
         _$StandardIconButtonTheme.disabledBackgroundColor[2],
     disabledIconColor: _$StandardIconButtonTheme.disabledIconColor[2],
     iconColor: _$StandardIconButtonTheme.iconColor[2],
+    pressedColor: _$StandardIconButtonTheme.pressedColor[2],
   );
 
   static final StandardIconButtonTheme professionalDark =
@@ -53,6 +58,7 @@ class StandardIconButtonTheme extends ThemeExtension<StandardIconButtonTheme> {
         _$StandardIconButtonTheme.disabledBackgroundColor[3],
     disabledIconColor: _$StandardIconButtonTheme.disabledIconColor[3],
     iconColor: _$StandardIconButtonTheme.iconColor[3],
+    pressedColor: _$StandardIconButtonTheme.pressedColor[3],
   );
 
   static final themes = [
@@ -68,6 +74,7 @@ class StandardIconButtonTheme extends ThemeExtension<StandardIconButtonTheme> {
     Color? disabledBackgroundColor,
     Color? disabledIconColor,
     Color? iconColor,
+    Color? pressedColor,
   }) {
     return StandardIconButtonTheme(
       backgroundColor: backgroundColor ?? this.backgroundColor,
@@ -75,6 +82,7 @@ class StandardIconButtonTheme extends ThemeExtension<StandardIconButtonTheme> {
           disabledBackgroundColor ?? this.disabledBackgroundColor,
       disabledIconColor: disabledIconColor ?? this.disabledIconColor,
       iconColor: iconColor ?? this.iconColor,
+      pressedColor: pressedColor ?? this.pressedColor,
     );
   }
 
@@ -90,6 +98,7 @@ class StandardIconButtonTheme extends ThemeExtension<StandardIconButtonTheme> {
       disabledIconColor:
           Color.lerp(disabledIconColor, other.disabledIconColor, t)!,
       iconColor: Color.lerp(iconColor, other.iconColor, t)!,
+      pressedColor: Color.lerp(pressedColor, other.pressedColor, t)!,
     );
   }
 
@@ -104,7 +113,9 @@ class StandardIconButtonTheme extends ThemeExtension<StandardIconButtonTheme> {
                 disabledBackgroundColor, other.disabledBackgroundColor) &&
             const DeepCollectionEquality()
                 .equals(disabledIconColor, other.disabledIconColor) &&
-            const DeepCollectionEquality().equals(iconColor, other.iconColor));
+            const DeepCollectionEquality().equals(iconColor, other.iconColor) &&
+            const DeepCollectionEquality()
+                .equals(pressedColor, other.pressedColor));
   }
 
   @override
@@ -115,6 +126,7 @@ class StandardIconButtonTheme extends ThemeExtension<StandardIconButtonTheme> {
       const DeepCollectionEquality().hash(disabledBackgroundColor),
       const DeepCollectionEquality().hash(disabledIconColor),
       const DeepCollectionEquality().hash(iconColor),
+      const DeepCollectionEquality().hash(pressedColor),
     );
   }
 }

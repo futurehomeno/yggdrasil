@@ -29,7 +29,7 @@ class _DebugBottomSheetContentState extends State<_DebugBottomSheetContent> {
       children: <Widget>[
         DebugOption(
           title: 'Layout',
-          subtitle: 'Widgets that are not visible, but determine the placing of other widgets',
+          subtitle: 'Widgets that are not visible, but determine the placement of other widgets',
           type: YgDebugType.layout,
           onChange: () => setState(() {}),
           color: const Color(0x800080ff),
