@@ -160,12 +160,6 @@ class _YgDebugChild extends RenderProxyBox {
     // We always first draw the child.
     context.paintChild(child, offset);
 
-    final Paint paint = switch (_type) {
-      YgDebugType.intractable => _intractablePaint,
-      YgDebugType.layout => _layoutPaint,
-      YgDebugType.other => _otherPaint,
-    };
-
     if (_isToggled()) {
       final Path path = Path();
 
@@ -174,6 +168,12 @@ class _YgDebugChild extends RenderProxyBox {
       path.lineTo(offset.dx + size.width, size.height + offset.dy);
       path.lineTo(offset.dx, size.height + offset.dy);
       path.lineTo(offset.dx, offset.dy);
+
+      final Paint paint = switch (_type) {
+        YgDebugType.intractable => _intractablePaint,
+        YgDebugType.layout => _layoutPaint,
+        YgDebugType.other => _otherPaint,
+      };
 
       context.canvas.drawPath(path, paint);
     }
