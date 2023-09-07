@@ -111,5 +111,11 @@ class YgSwitch extends StatelessWidget with StatelessWidgetDebugMixin {
   }
 
   @override
-  YgDebugType get debugType => YgDebugType.intractable;
+  YgDebugType get debugType {
+    if (onChanged == null) {
+      return YgDebugType.other;
+    }
+
+    return YgDebugType.intractable;
+  }
 }

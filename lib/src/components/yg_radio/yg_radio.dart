@@ -42,7 +42,13 @@ class YgRadio<T> extends StatefulWidget with StatefulWidgetDebugMixin {
   State<YgRadio<T>> createState() => _YgRadioState<T>();
 
   @override
-  YgDebugType get debugType => YgDebugType.intractable;
+  YgDebugType get debugType {
+    if (onChanged == null) {
+      return YgDebugType.other;
+    }
+
+    return YgDebugType.intractable;
+  }
 }
 
 class _YgRadioState<T> extends State<YgRadio<T>> {

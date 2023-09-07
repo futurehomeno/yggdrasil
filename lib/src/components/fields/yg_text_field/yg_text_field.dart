@@ -363,6 +363,15 @@ class YgTextField extends StatefulWidget with StatefulWidgetDebugMixin {
 
   @override
   State<YgTextField> createState() => _YgTextFieldState();
+
+  @override
+  YgDebugType get debugType {
+    if (disabled) {
+      return YgDebugType.other;
+    }
+
+    return YgDebugType.intractable;
+  }
 }
 
 class _YgTextFieldState extends State<YgTextField> {

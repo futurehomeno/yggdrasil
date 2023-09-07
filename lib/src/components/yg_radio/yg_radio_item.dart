@@ -63,4 +63,13 @@ class YgRadioItem<T> extends StatelessWidget with StatelessWidgetDebugMixin {
   void _onTap() {
     onChanged?.call(value);
   }
+
+  @override
+  YgDebugType get debugType {
+    if (onChanged == null) {
+      return YgDebugType.other;
+    }
+
+    return YgDebugType.intractable;
+  }
 }

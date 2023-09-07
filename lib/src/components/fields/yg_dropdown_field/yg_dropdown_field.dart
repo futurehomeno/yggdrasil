@@ -193,6 +193,15 @@ abstract class YgDropdownField<T extends Object> extends StatefulWidget with Sta
   ///
   /// Overrides the completeAction.
   final VoidCallback? onEditingComplete;
+
+  @override
+  YgDebugType get debugType {
+    if (disabled) {
+      return YgDebugType.other;
+    }
+
+    return YgDebugType.intractable;
+  }
 }
 
 abstract class YgDropdownFieldState<T extends Object, W extends YgDropdownField<T>> extends State<W> {
@@ -274,7 +283,7 @@ abstract class YgDropdownFieldState<T extends Object, W extends YgDropdownField<
           curve: theme.animationCurve,
           turns: _states.opened ? 0.5 : 0,
           child: YgIconButton(
-            onPressed: open,
+            onPressed: widget.disabled ? null : open,
             size: YgIconButtonSize.small,
             child: const YgIcon(
               YgIcons.caretDown,
