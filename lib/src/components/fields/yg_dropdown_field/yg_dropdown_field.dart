@@ -215,6 +215,7 @@ abstract class YgDropdownFieldState<T extends Object, W extends YgDropdownField<
   late final FieldStates _states = <FieldState>{
     if (widget.disabled) FieldState.disabled,
     if (widget.error != null) FieldState.error,
+    if (_controller.filled) FieldState.filled,
   };
 
   @override

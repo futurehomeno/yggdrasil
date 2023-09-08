@@ -100,6 +100,43 @@ class _DropdownFieldScreenState extends State<DropdownFieldScreen> {
               ].withVerticalSpacing(15),
             ),
             YgSection.column(
+              title: 'Maximum lines',
+              subtitle: 'The single select will truncate the selected value, the multi line will wrap',
+              children: <Widget>[
+                const YgDropdownField<String>(
+                  label: 'Standard',
+                  variant: YgFieldVariant.standard,
+                  entries: <YgDropdownEntry<String>>[
+                    YgDropdownEntry<String>(
+                      title: 'A title that is longer than the width of the screen which should be truncated',
+                      value: 'value1',
+                    ),
+                    YgDropdownEntry<String>(
+                      title: 'Some value that is not the same as the previous value but also has a way too long title',
+                      value: 'value2',
+                    ),
+                  ],
+                  completeAction: YgCompleteAction.focusNext,
+                  initialValue: 'value2',
+                ),
+                YgDropdownField<String>.multiSelect(
+                  label: 'Outlined',
+                  entries: _generateEntries(20),
+                  completeAction: YgCompleteAction.focusNext,
+                  initialValue: const <String>{
+                    'value1',
+                    'value2',
+                    'value3',
+                    'value4',
+                    'value5',
+                    'value6',
+                    'value7',
+                    'value8',
+                  },
+                ),
+              ].withVerticalSpacing(15),
+            ),
+            YgSection.column(
               title: 'Variants',
               children: <Widget>[
                 YgDropdownField<String>(

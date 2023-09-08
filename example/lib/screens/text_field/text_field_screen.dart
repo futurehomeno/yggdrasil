@@ -62,27 +62,35 @@ class _TextFieldScreenState extends State<TextFieldScreen> {
                   textCapitalization: TextCapitalization.words,
                   autocorrect: true,
                 ),
-                YgTextField(
+                const YgTextField(
                   label: 'Custom suffix',
                   keyboardType: TextInputType.text,
                   textInputAction: TextInputAction.next,
                   textCapitalization: TextCapitalization.words,
                   autocorrect: true,
-                  suffix: const YgIcon(YgIcons.info),
-                  onSuffixPressed: () {},
                 ),
-                YgTextField(
+                const YgTextField(
+                  label: 'Multi line',
+                  keyboardType: TextInputType.multiline,
+                  textInputAction: TextInputAction.next,
+                  textCapitalization: TextCapitalization.words,
+                  completeAction: YgCompleteAction.focusNext,
+                  autocorrect: true,
+                  minLines: 2,
+                  maxLines: null,
+                ),
+                const YgTextField(
                   label: 'Readonly',
-                  controller: TextEditingController(text: 'Readonly'),
+                  initialValue: 'Readonly',
                   keyboardType: TextInputType.text,
                   textInputAction: TextInputAction.next,
                   textCapitalization: TextCapitalization.words,
                   autocorrect: true,
                   readOnly: true,
                 ),
-                YgTextField(
+                const YgTextField(
                   label: 'Disabled',
-                  controller: TextEditingController(text: 'Disabled'),
+                  initialValue: 'Disabled',
                   keyboardType: TextInputType.text,
                   textInputAction: TextInputAction.next,
                   textCapitalization: TextCapitalization.words,
