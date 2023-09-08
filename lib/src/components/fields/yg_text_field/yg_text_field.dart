@@ -10,13 +10,13 @@ import 'widgets/_widgets.dart';
 class YgTextField extends StatefulWidget with StatefulWidgetDebugMixin {
   const YgTextField({
     super.key,
-    this.controller,
-    this.focusNode,
     required this.label,
     required this.keyboardType,
     required this.textInputAction,
     required this.autocorrect,
     required this.textCapitalization,
+    this.controller,
+    this.focusNode,
     this.error,
     this.onChanged,
     this.placeholder,
@@ -50,10 +50,10 @@ class YgTextField extends StatefulWidget with StatefulWidgetDebugMixin {
 
   const YgTextField.email({
     super.key,
-    this.controller,
-    this.focusNode,
     required this.label,
     required this.textInputAction,
+    this.controller,
+    this.focusNode,
     this.error,
     this.onChanged,
     this.placeholder,
@@ -82,10 +82,10 @@ class YgTextField extends StatefulWidget with StatefulWidgetDebugMixin {
 
   const YgTextField.password({
     super.key,
-    this.controller,
-    this.focusNode,
     required this.label,
     required this.textInputAction,
+    this.controller,
+    this.focusNode,
     this.error,
     this.onChanged,
     this.placeholder,
@@ -116,43 +116,11 @@ class YgTextField extends StatefulWidget with StatefulWidgetDebugMixin {
           'Suffix and onSuffixPressed should either be both null or both defined',
         );
 
-  const YgTextField.text({
-    super.key,
-    this.controller,
-    this.focusNode,
-    required this.label,
-    required this.textInputAction,
-    this.error,
-    this.onChanged,
-    this.placeholder,
-    this.suffix,
-    this.inputFormatters,
-    this.onSuffixPressed,
-    this.onEditingComplete,
-    this.onFocusChanged,
-    this.disabled = false,
-    this.readOnly = false,
-    this.size = YgFieldSize.large,
-    this.variant = YgFieldVariant.standard,
-    this.initialValue,
-    this.completeAction,
-  })  : maxLines = 1,
-        minLines = null,
-        obscureText = false,
-        autocorrect = true,
-        textCapitalization = TextCapitalization.sentences,
-        keyboardType = TextInputType.text,
-        showObscureTextButton = false,
-        assert(
-          (suffix == null) == (onSuffixPressed == null),
-          'Suffix and onSuffixPressed should either be both null or both defined',
-        );
-
   const YgTextField.multiline({
     super.key,
+    required this.label,
     this.controller,
     this.focusNode,
-    required this.label,
     this.error,
     this.onChanged,
     this.placeholder,

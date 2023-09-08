@@ -174,7 +174,7 @@ class YgTextFormField extends FormField<String> {
         );
 
   /// Convenience method for creating a multiline text fields.
-  YgTextFormField.multilineText({
+  YgTextFormField.multiline({
     TextEditingController? controller,
     required TextFieldKey key,
     required String label,
