@@ -1,7 +1,8 @@
 part of '../yg_dropdown_field.dart';
 
 /// The controller for a [YgDropdownField].
-class YgSingleSelectDropdownController<T extends Object> extends YgDropdownController<T, T?, _YgDropdownFieldSingleSelect<T>> {
+class YgSingleSelectDropdownController<T extends Object>
+    extends YgDropdownController<T, T?, _YgDropdownFieldSingleSelectState<T>> {
   YgSingleSelectDropdownController({
     super.initialValue,
   });
@@ -23,25 +24,27 @@ class YgSingleSelectDropdownController<T extends Object> extends YgDropdownContr
 
   @override
   void onEntryTapped(YgDropdownEntry<T> entry) {
-    final YgDropdownFieldState<T, YgDropdownField<T>>? field = _field;
+    final _YgDropdownFieldSingleSelectState<T>? fieldState = _fieldState;
     assert(
-      field != null,
+      fieldState != null,
       'YgDropdownController.onEntryTapped was called while the controller was not attached to a single select dropdown!',
     );
-    if (field is! _YgDropdownFieldSingleSelectState<T>) {
+    if (fieldState == null) {
       return;
     }
 
+    final _YgDropdownFieldSingleSelect<T> widget = fieldState.widget;
+
     if (value == entry.value) {
-      if (field.widget.allowDeselect) {
+      if (widget.allowDeselect) {
         value = null;
-        field.widget.onChange?.call(value);
+        widget.onChange?.call(value);
 
         close();
       }
     } else {
       value = entry.value;
-      field.widget.onChange?.call(value);
+      widget.onChange?.call(value);
 
       close();
     }

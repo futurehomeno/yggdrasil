@@ -1,7 +1,8 @@
 part of '../yg_dropdown_field.dart';
 
 /// The controller for a [YgDropdownField.multiSelect]
-class YgMultiSelectDropdownController<T extends Object> extends YgDropdownController<T, Set<T>, _YgDropdownFieldMultiSelect<T>> {
+class YgMultiSelectDropdownController<T extends Object>
+    extends YgDropdownController<T, Set<T>, _YgDropdownFieldMultiSelectState<T>> {
   YgMultiSelectDropdownController({
     Set<T>? initialValue,
   }) : super(
@@ -23,26 +24,28 @@ class YgMultiSelectDropdownController<T extends Object> extends YgDropdownContro
 
   @override
   void onEntryTapped(YgDropdownEntry<T> entry) {
-    final YgDropdownFieldState<T, YgDropdownField<T>>? field = _field;
+    final _YgDropdownFieldMultiSelectState<T>? fieldState = _fieldState;
 
     assert(
-      field is _YgDropdownFieldMultiSelectState<T>,
+      fieldState is _YgDropdownFieldMultiSelectState<T>,
       'YgDropdownController.onEntryTapped was called while the controller was not attached to a multi select dropdown!',
     );
-    if (field is! _YgDropdownFieldMultiSelectState<T>) {
+    if (fieldState == null) {
       return;
     }
 
+    final _YgDropdownFieldMultiSelect<T> widget = fieldState.widget;
+
     if (value.contains(entry.value)) {
-      if (field.widget.allowDeselect || value.length > 1) {
+      if (widget.allowDeselect || value.length > 1) {
         value.remove(entry.value);
-        field.widget.onChange?.call(value);
+        widget.onChange?.call(value);
 
         notifyListeners();
       }
     } else {
       value.add(entry.value);
-      field.widget.onChange?.call(value);
+      widget.onChange?.call(value);
 
       notifyListeners();
     }
