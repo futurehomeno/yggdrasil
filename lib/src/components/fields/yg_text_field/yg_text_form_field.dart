@@ -33,6 +33,7 @@ class YgTextFormField extends FormField<String> {
     YgFieldSize size = YgFieldSize.large,
     YgAutoValidate autoValidate = YgAutoValidate.disabled,
     YgFieldVariant variant = YgFieldVariant.standard,
+    YgCompleteAction? completeAction,
   }) : super(
           initialValue: controller != null ? controller.text : (initialValue ?? ''),
           enabled: !disabled,
@@ -44,7 +45,7 @@ class YgTextFormField extends FormField<String> {
               key: key,
               autoValidate: autoValidate,
               onFocusChanged: onFocusChanged,
-              completeAction: YgValidateHelper.mapTextInputAction(textInputAction),
+              completeAction: completeAction ?? YgValidateHelper.mapTextInputAction(textInputAction),
               onEditingComplete: onEditingComplete,
             );
 
@@ -101,9 +102,11 @@ class YgTextFormField extends FormField<String> {
     YgFieldSize size = YgFieldSize.large,
     YgAutoValidate autoValidate = YgAutoValidate.disabled,
     YgFieldVariant variant = YgFieldVariant.standard,
+    YgCompleteAction? completeAction,
   }) : this(
           key: key,
           label: label,
+          completeAction: completeAction,
           controller: controller,
           error: error,
           placeholder: placeholder,
@@ -148,9 +151,11 @@ class YgTextFormField extends FormField<String> {
     YgFieldSize size = YgFieldSize.large,
     YgAutoValidate autoValidate = YgAutoValidate.disabled,
     YgFieldVariant variant = YgFieldVariant.standard,
+    YgCompleteAction? completeAction,
   }) : this(
           key: key,
           label: label,
+          completeAction: completeAction,
           controller: controller,
           error: error,
           placeholder: placeholder,
@@ -199,9 +204,11 @@ class YgTextFormField extends FormField<String> {
     YgAutoValidate autoValidate = YgAutoValidate.disabled,
     YgFieldVariant variant = YgFieldVariant.standard,
     TextCapitalization textCapitalization = TextCapitalization.sentences,
+    YgCompleteAction? completeAction,
   }) : this(
           key: key,
           label: label,
+          completeAction: completeAction,
           controller: controller,
           error: error,
           validators: validators,
