@@ -224,7 +224,7 @@ abstract class YgDropdownFieldState<T extends Object, W extends YgDropdownField<
 
     _controller = widget.controller ?? createController();
     _controller.addListener(_controllerListener);
-    _controller.attach(this);
+    _controller._attach(this);
   }
 
   @override
@@ -257,7 +257,7 @@ abstract class YgDropdownFieldState<T extends Object, W extends YgDropdownField<
   @override
   void dispose() {
     _controller.removeListener(_controllerListener);
-    _controller.detach();
+    _controller._detach();
     if (widget.controller == null) {
       _controller.dispose();
     }
@@ -475,10 +475,10 @@ abstract class YgDropdownFieldState<T extends Object, W extends YgDropdownField<
 
   void _updateController(YgDynamicDropdownController<T> controller) {
     _controller.removeListener(_controllerListener);
-    _controller.detach();
+    _controller._detach();
     _controller = controller;
     _controller.addListener(_controllerListener);
-    _controller.attach(this);
+    _controller._attach(this);
   }
 
   void _controllerListener() {

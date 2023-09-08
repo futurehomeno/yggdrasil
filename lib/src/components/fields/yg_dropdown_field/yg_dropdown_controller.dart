@@ -40,12 +40,9 @@ abstract class YgDropdownController<T extends Object, V, S extends YgDropdownFie
   /// Method to attach a controller to a [YgDropdownField].
   ///
   /// !--- Warning ---
-  /// Used internally in the [YgDropdownField] and should not be used by a user
-  /// of the [YgDropdownField].
-  ///
   /// Should not be called when the controller is already attached to a
   /// [YgDropdownField].
-  void attach(S fieldState) {
+  void _attach(S fieldState) {
     assert(
       _fieldState == null || _fieldState == fieldState,
       'Can not attach controller to multiple dropdowns.',
@@ -57,10 +54,7 @@ abstract class YgDropdownController<T extends Object, V, S extends YgDropdownFie
   }
 
   /// Method to detach a controller from its current [YgDropdownField].
-  ///
-  /// Used internally in the [YgDropdownField] and should not be used by a user
-  /// of the [YgDropdownField].
-  void detach() {
+  void _detach() {
     _fieldState = null;
   }
 
