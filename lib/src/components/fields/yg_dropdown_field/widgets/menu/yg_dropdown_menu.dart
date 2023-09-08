@@ -52,15 +52,11 @@ class _YgDropdownMenu<T extends Object> extends StatelessWidget with StatelessWi
           selected: controller.isEntrySelected(entry),
           subtitle: entry.subtitle,
           title: entry.title,
-          onPressed: () => _onEntryTapped(entry),
+          onPressed: () => controller.onEntryTapped(entry),
         ),
       );
     }
 
     return widgets;
-  }
-
-  void _onEntryTapped(YgDropdownEntry<T> value) {
-    controller.onEntryTapped(value);
   }
 }
