@@ -84,9 +84,9 @@ abstract class YgDropdownController<T extends Object, V, S extends YgDropdownFie
 
   /// Opens the bottom sheet specifically.
   ///
-  /// Should be called only when the menu specifically should be opened. For most
-  /// cases you want to use the [open] method instead to show either a menu or
-  /// bottom sheet, depending on the platform the user is on.
+  /// Should be called only when the bottom sheet specifically should be opened.
+  /// For most cases you want to use the [open] method instead to show either a
+  /// menu or bottom sheet, depending on the platform the user is on.
   void openBottomSheet() {
     final S? field = _fieldState;
     assert(
