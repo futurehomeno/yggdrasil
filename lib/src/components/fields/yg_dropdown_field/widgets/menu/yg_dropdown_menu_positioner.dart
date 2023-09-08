@@ -127,7 +127,7 @@ class _YgDropdownMenuPositionerRenderObject extends RenderBox with RenderObjectW
       parentUsesSize: true,
     );
 
-    // Since the child is constrained to either the top of bottom, if it's more
+    // Since the child is constrained to either the top or bottom, if it's more
     // than bottom, it has to be top.
     _offset = Offset(
       _parentRect.left,
