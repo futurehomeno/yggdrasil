@@ -1,7 +1,7 @@
 part of '../yg_dropdown_field.dart';
 
 /// The controller for a [YgDropdownField].
-class YgSingleSelectDropdownController<T extends Object> extends YgDropdownController<T, T?> {
+class YgSingleSelectDropdownController<T extends Object> extends YgDropdownController<T, T?, _YgDropdownFieldSingleSelect<T>> {
   YgSingleSelectDropdownController({
     super.initialValue,
   });

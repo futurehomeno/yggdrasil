@@ -12,7 +12,7 @@ typedef YgDynamicDropdownController<T extends Object> = YgDropdownController<T, 
 ///
 ///  - [YgSingleSelectDropdownController].
 ///  - [YgMultiSelectDropdownController].
-abstract class YgDropdownController<T extends Object, V> extends ValueNotifier<V> {
+abstract class YgDropdownController<T extends Object, V, W extends YgDropdownField<T>> extends ValueNotifier<V> {
   YgDropdownController({
     required V initialValue,
   }) : super(initialValue);
@@ -32,7 +32,7 @@ abstract class YgDropdownController<T extends Object, V> extends ValueNotifier<V
   /// Whether the controller contains a value.
   bool get filled;
 
-  YgDropdownFieldState<T, YgDropdownField<T>>? _field;
+  YgDropdownFieldState<T, W>? _field;
 
   /// Method to attach a controller to a [YgDropdownField].
   ///
@@ -42,7 +42,7 @@ abstract class YgDropdownController<T extends Object, V> extends ValueNotifier<V
   ///
   /// Should not be called when the controller is already attached to a
   /// [YgDropdownField].
-  void attach(YgDropdownFieldState<T, YgDropdownField<T>> field) {
+  void attach(YgDropdownFieldState<T, W> field) {
     assert(
       _field == null || _field == field,
       'Can not attach controller to multiple dropdowns.',
@@ -67,7 +67,7 @@ abstract class YgDropdownController<T extends Object, V> extends ValueNotifier<V
   /// cases you want to use the [open] method instead to show either a menu or
   /// bottom sheet, depending on the platform the user is on.
   void openMenu() {
-    final YgDropdownFieldState<T, YgDropdownField<T>>? field = _field;
+    final YgDropdownFieldState<T, W>? field = _field;
     assert(
       field != null,
       'YgDropdownController.openMenu was called while the controller was not attached to a dropdown!',
@@ -85,7 +85,7 @@ abstract class YgDropdownController<T extends Object, V> extends ValueNotifier<V
   /// cases you want to use the [open] method instead to show either a menu or
   /// bottom sheet, depending on the platform the user is on.
   void openBottomSheet() {
-    final YgDropdownFieldState<T, YgDropdownField<T>>? field = _field;
+    final YgDropdownFieldState<T, W>? field = _field;
     assert(
       field != null,
       'YgDropdownController.openBottomSheet was called while the controller was not attached to a dropdown!',
@@ -102,7 +102,7 @@ abstract class YgDropdownController<T extends Object, V> extends ValueNotifier<V
   /// Shows either a menu or bottom sheet, depending on the platform the user is
   /// on.
   void open() {
-    final YgDropdownFieldState<T, YgDropdownField<T>>? field = _field;
+    final YgDropdownFieldState<T, W>? field = _field;
     assert(
       field != null,
       'YgDropdownController.open was called while the controller was not attached to a dropdown!',
@@ -116,7 +116,7 @@ abstract class YgDropdownController<T extends Object, V> extends ValueNotifier<V
 
   /// Closes the dropdown.
   void close() {
-    final YgDropdownFieldState<T, YgDropdownField<T>>? field = _field;
+    final YgDropdownFieldState<T, W>? field = _field;
     assert(
       field != null,
       'YgDropdownController.close was called while the controller was not attached to a dropdown!',
@@ -130,7 +130,7 @@ abstract class YgDropdownController<T extends Object, V> extends ValueNotifier<V
 
   /// Whether the dropdown in open or closed.
   bool get isOpen {
-    final YgDropdownFieldState<T, YgDropdownField<T>>? field = _field;
+    final YgDropdownFieldState<T, W>? field = _field;
     assert(
       field != null,
       'YgDropdownController.opened was accessed while the controller was not attached to a dropdown!',

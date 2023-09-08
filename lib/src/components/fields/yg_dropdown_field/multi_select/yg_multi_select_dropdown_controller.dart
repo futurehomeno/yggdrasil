@@ -1,7 +1,7 @@
 part of '../yg_dropdown_field.dart';
 
 /// The controller for a [YgDropdownField.multiSelect]
-class YgMultiSelectDropdownController<T extends Object> extends YgDropdownController<T, Set<T>> {
+class YgMultiSelectDropdownController<T extends Object> extends YgDropdownController<T, Set<T>, _YgDropdownFieldMultiSelect<T>> {
   YgMultiSelectDropdownController({
     Set<T>? initialValue,
   }) : super(
