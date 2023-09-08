@@ -440,7 +440,6 @@ class _YgTextFieldState extends State<YgTextField> {
             obscureText: _obscureText,
             onChanged: widget.onChanged,
             onEditingComplete: _onEditingComplete,
-            placeholder: widget.placeholder,
             readOnly: widget.readOnly,
             states: _states,
             textCapitalization: widget.textCapitalization,
