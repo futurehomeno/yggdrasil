@@ -7,7 +7,6 @@ class YgTextFieldValue extends StatelessWidget {
   const YgTextFieldValue({
     super.key,
     required this.states,
-    required this.placeholder,
     required this.label,
     required this.obscureText,
     required this.maxLines,
@@ -27,7 +26,6 @@ class YgTextFieldValue extends StatelessWidget {
   final FocusNode focusNode;
   final TextEditingController controller;
   final FieldStates states;
-  final String? placeholder;
   final String label;
   final bool obscureText;
   final int? maxLines;
