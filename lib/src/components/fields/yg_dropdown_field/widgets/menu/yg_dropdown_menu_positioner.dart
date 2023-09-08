@@ -6,13 +6,11 @@ class _YgDropdownMenuPositioner extends SingleChildRenderObjectWidget {
     required super.child,
     required this.rect,
     required this.animation,
-    required this.screenPadding,
     required this.padding,
   });
 
   final Animation<double> animation;
   final Rect rect;
-  final EdgeInsets screenPadding;
   final double padding;
 
   @override
@@ -20,7 +18,7 @@ class _YgDropdownMenuPositioner extends SingleChildRenderObjectWidget {
     return _YgDropdownMenuPositionerRenderObject(
       rect: rect,
       animation: animation,
-      screenPadding: screenPadding,
+      screenPadding: MediaQuery.paddingOf(context),
       padding: padding,
     );
   }
@@ -32,7 +30,7 @@ class _YgDropdownMenuPositioner extends SingleChildRenderObjectWidget {
   ) {
     renderObject.rect = rect;
     renderObject.animation = animation;
-    renderObject.screenPadding = screenPadding;
+    renderObject.screenPadding = MediaQuery.paddingOf(context);
     renderObject.padding = padding;
   }
 }

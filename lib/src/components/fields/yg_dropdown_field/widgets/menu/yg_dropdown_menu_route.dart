@@ -62,7 +62,6 @@ class YgDropdownMenuRoute<T extends Object> extends PopupRoute<Widget> {
     return _YgDropdownMenuPositioner(
       rect: rect,
       animation: animation.drive(CurveTween(curve: theme.menuAnimationCurve)),
-      screenPadding: MediaQuery.paddingOf(context),
       padding: theme.menuToFieldPadding,
       // TODO(Tim): Find out what black magic is going on here and fix it, for
       // now though, yes, we need 2 of them, otherwise the scroll shadow doesn't

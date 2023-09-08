@@ -64,8 +64,8 @@ class YgFieldDecoration extends StatelessWidget {
         Material(
           borderRadius: _getBorderRadius(theme),
           color: _getBackgroundColor(theme),
+          clipBehavior: Clip.antiAlias,
           child: _maybeWrapWithInkwell(
-            theme: theme,
             child: Stack(
               children: <Widget>[
                 Positioned.fill(
@@ -113,19 +113,25 @@ class YgFieldDecoration extends StatelessWidget {
 
   Widget _maybeWrapWithInkwell({
     required Widget child,
-    required YgFieldDecorationTheme theme,
   }) {
     if (onPressed == null) {
       return child;
     }
 
-    return InkWell(
-      borderRadius: _getBorderRadius(theme),
-      onTap: onPressed,
-      canRequestFocus: false,
-      hoverColor: Colors.transparent,
-      highlightColor: Colors.transparent,
-      child: child,
+    return LayoutBuilder(
+      builder: (BuildContext context, BoxConstraints constraints) {
+        return YgNoFocus(
+          child: InkResponse(
+            splashFactory: InkRipple.splashFactory,
+            radius: constraints.maxWidth,
+            mouseCursor: SystemMouseCursors.click,
+            onTap: onPressed,
+            canRequestFocus: false,
+            hoverColor: Colors.transparent,
+            child: child,
+          ),
+        );
+      },
     );
   }
 
