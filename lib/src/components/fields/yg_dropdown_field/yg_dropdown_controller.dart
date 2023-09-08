@@ -9,8 +9,8 @@ typedef YgDynamicDropdownController<T extends Object>
 
 /// The base class controller for a [YgDropdownField].
 ///
-/// Should not be used directly, instead look at one of the following more
-/// specific implementations.
+/// Should not be used directly, instead look at using one of the following specific
+/// implementations.
 ///
 ///  - [YgSingleSelectDropdownController].
 ///  - [YgMultiSelectDropdownController].
