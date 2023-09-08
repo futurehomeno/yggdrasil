@@ -136,7 +136,7 @@ abstract class YgDropdownController<T extends Object, V, S extends YgDropdownFie
     final S? field = _fieldState;
     assert(
       field != null,
-      'YgDropdownController.opened was accessed while the controller was not attached to a dropdown!',
+      'YgDropdownController.isOpen was accessed while the controller was not attached to a dropdown!',
     );
     if (field == null) {
       return false;
