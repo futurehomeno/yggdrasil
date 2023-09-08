@@ -54,8 +54,10 @@ class YgTextFieldValue extends StatelessWidget {
       );
 
       if (minLines != null && minLines > 1) {
-        text = SizedBox(
-          height: baseStyle.computedHeight * minLines,
+        text = ConstrainedBox(
+          constraints: BoxConstraints(
+            minHeight: baseStyle.computedHeight * minLines,
+          ),
           child: text,
         );
       }

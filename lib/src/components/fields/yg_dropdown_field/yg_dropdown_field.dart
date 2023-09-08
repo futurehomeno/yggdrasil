@@ -294,13 +294,7 @@ abstract class YgDropdownFieldState<T extends Object, W extends YgDropdownField<
         content: YgFieldTextContent(
           value: ListenableBuilder(
             listenable: _controller,
-            builder: (BuildContext context, Widget? child) {
-              return Text(
-                _controller.buildTitle(widget.entries),
-                maxLines: widget.maxLines,
-                overflow: widget.maxLines != 1 ? null : TextOverflow.ellipsis,
-              );
-            },
+            builder: _buildText,
           ),
           states: _states.without(FieldState.focused),
           label: widget.label,
@@ -330,6 +324,29 @@ abstract class YgDropdownFieldState<T extends Object, W extends YgDropdownField<
         child: layout,
       ),
     );
+  }
+
+  Widget _buildText(BuildContext context, Widget? child) {
+    final int? minLines = widget.minLines;
+
+    final Text text = Text(
+      _controller.buildTitle(widget.entries),
+      maxLines: widget.maxLines,
+      overflow: widget.maxLines != 1 ? null : TextOverflow.ellipsis,
+    );
+
+    if (minLines != null && minLines > 1) {
+      final TextStyle style = DefaultTextStyle.of(context).style;
+
+      return ConstrainedBox(
+        constraints: BoxConstraints(
+          minHeight: style.computedHeight * minLines,
+        ),
+        child: text,
+      );
+    }
+
+    return text;
   }
 
   /// Creates a default controller to be used if there is no user specified one.
