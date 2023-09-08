@@ -109,17 +109,17 @@ abstract class YgDropdownField<T extends Object> extends StatefulWidget with Sta
   /// Controls the focus of the widget.
   final FocusNode? focusNode;
 
-  /// The error to display under the text field.
+  /// The error to display under the dropdown field.
   ///
   /// Will change the styling of the widget to reflect the presence of the error.
   /// Must be null when there is no error, an empty string is still seen as an
   /// valid error.
   final String? error;
 
-  /// The label shown on top of the text field.
+  /// The label shown on top of the dropdown field.
   final String label;
 
-  /// The placeholder shown in the text field.
+  /// The placeholder shown in the dropdown field.
   ///
   /// Gets replaced with the value entered by the user if the value is not empty.
   final String? placeholder;
@@ -129,7 +129,7 @@ abstract class YgDropdownField<T extends Object> extends StatefulWidget with Sta
   /// This affects the height of the field itself and does not limit the number
   /// of values that can be selected at once.
   ///
-  /// If this is null (default), text container starts with enough vertical space
+  /// If this is null (default), value container starts with enough vertical space
   /// for one line and grows to accommodate additional lines as they are entered.
   ///
   /// This can be used in combination with [maxLines] for a varying set of behaviors.
@@ -154,14 +154,14 @@ abstract class YgDropdownField<T extends Object> extends StatefulWidget with Sta
   /// to the height of its constraints.
   ///
   /// If this is not null, the value must be greater than zero, and it will lock
-  /// the text field to the given number of lines and take up enough horizontal space
+  /// the dropdown field to the given number of lines and take up enough horizontal space
   /// to accommodate that number of lines. Setting [minLines] as well allows the
-  /// text field to grow and shrink between the indicated range.
+  /// dropdown field to grow and shrink between the indicated range.
   final int? maxLines;
 
-  /// Whether the text field is disabled.
+  /// Whether the dropdown field is disabled.
   ///
-  /// Applies styling for the disabled text text field. Also disables all interaction.
+  /// Applies styling for the disabled dropdown field. Also disables all interaction.
   final bool disabled;
 
   /// Whether the value can be deselected by pressing it again.
