@@ -130,7 +130,7 @@ abstract class YgDropdownField<T extends Object> extends StatefulWidget with Sta
   /// of values that can be selected at once.
   ///
   /// If this is null (default), value container starts with enough vertical space
-  /// for one line and grows to accommodate additional lines as they are entered.
+  /// for one line and grows to accommodate additional values as they are selected.
   ///
   /// This can be used in combination with [maxLines] for a varying set of behaviors.
   ///
@@ -150,7 +150,7 @@ abstract class YgDropdownField<T extends Object> extends StatefulWidget with Sta
   ///
   /// If this is null, there is no limit to the number of lines, and the text
   /// container will start with enough vertical space for one line and
-  /// automatically grow to accommodate additional lines as they are entered, up
+  /// automatically grow to accommodate additional values as they are selected, up
   /// to the height of its constraints.
   ///
   /// If this is not null, the value must be greater than zero, and it will lock
