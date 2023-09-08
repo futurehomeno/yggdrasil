@@ -11,7 +11,7 @@ part 'yg_dropdown_menu_positioner.dart';
 /// A route which should be extended to create a [YgBottomSheet] modal route.
 ///
 /// Wraps the result from [buildBottomSheet] in a [YgBottomSheetModal] which
-/// provides animations for opening ans closing the [YgBottomSheet] and a scrim.
+/// provides animations for opening and closing the [YgBottomSheet] and a scrim.
 class YgDropdownMenuRoute<T extends Object> extends PopupRoute<Widget> {
   YgDropdownMenuRoute({
     required this.entries,
