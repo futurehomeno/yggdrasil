@@ -25,9 +25,9 @@ class YgDropdownEntry<T extends Object> {
   ///
   /// !--- WARNING ---
   /// The subtitle is only shown when the bottom sheet or menu are opened, and
-  /// NOT in the field it self, therefor they should NOT be used as the main
+  /// NOT in the field it self, therefore they should NOT be used as the main
   /// identifier of the entry as the user will not be able to identify the
-  /// selected value from looking at the field it self!
+  /// selected value from looking at the field itself.
   final String? subtitle;
 
   /// The icon of the entry.
