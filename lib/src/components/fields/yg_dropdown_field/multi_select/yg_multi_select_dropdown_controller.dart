@@ -37,18 +37,18 @@ class YgMultiSelectDropdownController<T extends Object>
     final _YgDropdownFieldMultiSelect<T> widget = fieldState.widget;
 
     if (value.contains(entry.value)) {
-      if (widget.allowDeselect || value.length > 1) {
-        value.remove(entry.value);
-        widget.onChange?.call(value);
-
-        notifyListeners();
+      if (!widget.allowDeselect && value.length < 2) {
+        return;
       }
+
+      value.remove(entry.value);
     } else {
       value.add(entry.value);
-      widget.onChange?.call(value);
-
-      notifyListeners();
     }
+
+    widget.onChange?.call(value);
+
+    notifyListeners();
   }
 
   bool add(T newValue) {
