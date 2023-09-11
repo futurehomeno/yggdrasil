@@ -37,7 +37,7 @@ class YgFieldDecoration extends StatelessWidget {
   /// The size of the field.
   final YgFieldSize size;
 
-  /// If the field is of outlined variant.
+  /// The variant of the field.
   final YgFieldVariant variant;
 
   /// The current states of the field.
