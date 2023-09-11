@@ -65,7 +65,9 @@ class YgListTile extends StatelessWidget with StatelessWidgetDebugMixin {
   /// Called when the list tile is pressed.
   final VoidCallback? onTap;
 
-  /// When shows info button next to the title, called when the button is pressed.
+  /// When provided, shows an info button next to the title.
+  /// 
+  /// Called when the button is pressed.
   final VoidCallback? onInfoTap;
 
   static const int _allowedNumberOfLeadingWidgets = 2;
