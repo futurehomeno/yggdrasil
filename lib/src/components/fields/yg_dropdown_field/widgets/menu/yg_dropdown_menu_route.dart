@@ -71,7 +71,6 @@ class YgDropdownMenuRoute<T extends Object> extends PopupRoute<Widget> {
           child: _YgDropdownMenu<T>(
             entries: entries,
             controller: dropdownController,
-            onClose: onClose,
           ),
         ),
       ),

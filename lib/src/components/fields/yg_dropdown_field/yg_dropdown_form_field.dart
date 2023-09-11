@@ -23,6 +23,7 @@ abstract class YgDropdownFormField<T extends Object> extends StatefulWidget {
     YgDropdownAction dropdownAction,
     YgFieldVariant variant,
     ValueChanged<bool> onFocusChanged,
+    VoidCallback onEditingComplete,
   }) = _YgDropdownFormFieldSingleSelect<T>;
 
   factory YgDropdownFormField.multiSelect({
@@ -46,6 +47,7 @@ abstract class YgDropdownFormField<T extends Object> extends StatefulWidget {
     YgDropdownAction dropdownAction,
     YgCompleteAction completeAction,
     ValueChanged<bool> onFocusChanged,
+    VoidCallback onEditingComplete,
   }) = _YgDropdownFormFieldMultiSelect<T>;
 
   const YgDropdownFormField._({
@@ -66,6 +68,7 @@ abstract class YgDropdownFormField<T extends Object> extends StatefulWidget {
     required this.onFocusChanged,
     required this.onPressed,
     required this.placeholder,
+    required this.onEditingComplete,
   })  : enabled = !disabled,
         restorationId = null;
 
@@ -110,6 +113,9 @@ abstract class YgDropdownFormField<T extends Object> extends StatefulWidget {
 
   /// See [YgDropdownField.onPressed].
   final VoidCallback? onPressed;
+
+  /// See [YgDropdownField.onEditingComplete].
+  final VoidCallback? onEditingComplete;
 
   /// The action which will be executed after the user selects a value.
   ///

@@ -19,6 +19,7 @@ class _YgDropdownFormFieldMultiSelect<T extends Object> extends YgDropdownFormFi
     super.completeAction = YgCompleteAction.unfocus,
     super.onFocusChanged,
     super.onPressed,
+    super.onEditingComplete,
     this.initialValue,
     this.controller,
     List<FormFieldValidator<Set<T>>>? validators,
@@ -36,7 +37,7 @@ class _YgDropdownFormFieldMultiSelect<T extends Object> extends YgDropdownFormFi
       autoValidate: autoValidate,
       onFocusChanged: onFocusChanged,
       completeAction: completeAction,
-      onEditingComplete: null,
+      onEditingComplete: onEditingComplete,
     );
 
     return UnmanagedRestorationScope(

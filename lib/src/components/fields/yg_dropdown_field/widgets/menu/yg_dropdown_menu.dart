@@ -5,12 +5,10 @@ class _YgDropdownMenu<T extends Object> extends StatelessWidget with StatelessWi
     super.key,
     required this.entries,
     required this.controller,
-    required this.onClose,
   });
 
   final YgDynamicDropdownController<T> controller;
   final List<YgDropdownEntry<T>> entries;
-  final VoidCallback onClose;
 
   @override
   Widget build(BuildContext context) {
