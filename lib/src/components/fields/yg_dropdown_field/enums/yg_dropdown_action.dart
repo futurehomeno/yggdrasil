@@ -5,7 +5,7 @@ enum YgDropdownAction {
   /// Show a menu when the dropdown is pressed.
   menu,
 
-  /// Show a bottoms sheet when the dropdown is pressed.
+  /// Show a bottom sheet when the dropdown is pressed.
   bottomSheet,
 
   /// Show a either a menu or dropdown depending on the current platform.
