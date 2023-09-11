@@ -27,7 +27,7 @@ class YgSingleSelectDropdownController<T extends Object>
     final _YgDropdownFieldSingleSelectState<T>? fieldState = _fieldState;
     assert(
       fieldState != null,
-      'YgDropdownController.onEntryTapped was called while the controller was not attached to a single select dropdown!',
+      'YgSingleSelectDropdownController.onEntryTapped was called while the controller was not attached to a single select dropdown!',
     );
     if (fieldState == null) {
       return;
