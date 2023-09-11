@@ -47,7 +47,7 @@ abstract class YgDropdownField<T extends Object> extends StatefulWidget with Sta
     VoidCallback? onEditingComplete,
   }) = _YgDropdownFieldSingleSelect<T>;
 
-  /// Factory contractor for a [YgDropdownField] with more than one value.
+  /// Factory constructor for a [YgDropdownField] with more than one value.
   ///
   /// See [YgDropdownField] for the documentation of every argument.
   const factory YgDropdownField.multiSelect({
