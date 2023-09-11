@@ -48,7 +48,7 @@ class YgFieldDecoration extends StatelessWidget {
   /// !--- WARNING ---
   /// Only use when the field decoration functions as a button, rather than a
   /// container for child widgets which can request focus or handle clicks by
-  /// them self, as these will not and should not trigger this callback and
+  /// themselves, as these will not, and should not, trigger this callback and
   /// its accompanying ink ripple.
   final VoidCallback? onPressed;
 
