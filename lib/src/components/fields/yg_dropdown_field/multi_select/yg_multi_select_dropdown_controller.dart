@@ -47,7 +47,6 @@ class YgMultiSelectDropdownController<T extends Object>
     }
 
     widget.onChange?.call(value);
-
     notifyListeners();
   }
 
