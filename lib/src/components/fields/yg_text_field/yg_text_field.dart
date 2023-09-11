@@ -434,7 +434,6 @@ class _YgTextFieldState extends State<YgTextField> {
             focusNode: _focusNode,
             inputFormatters: widget.inputFormatters,
             keyboardType: widget.keyboardType,
-            label: widget.label,
             maxLines: widget.maxLines,
             minLines: widget.minLines,
             obscureText: _obscureText,
