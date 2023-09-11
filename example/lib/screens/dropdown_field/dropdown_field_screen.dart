@@ -192,6 +192,7 @@ class _DropdownFieldScreenState extends State<DropdownFieldScreen> {
               key: _formKey,
               child: YgSection.column(
                 title: 'Custom controller',
+                subtitle: 'Dropdown is ${_controller.isOpen ? 'open' : 'closed'}',
                 children: <Widget>[
                   YgDropdownField<String>.multiSelect(
                     entries: _generateEntries(4),
@@ -222,8 +223,16 @@ class _DropdownFieldScreenState extends State<DropdownFieldScreen> {
                     child: const Text('Clear selected values'),
                   ),
                   YgButton(
+                    onPressed: () => _controller.open(),
+                    child: const Text('Open based on OS'),
+                  ),
+                  YgButton(
                     onPressed: () => _controller.openMenu(),
                     child: const Text('Open dropdown menu'),
+                  ),
+                  YgButton(
+                    onPressed: () => _controller.openBottomSheet(),
+                    child: const Text('Open bottom sheet'),
                   ),
                 ].withVerticalSpacing(15),
               ),
