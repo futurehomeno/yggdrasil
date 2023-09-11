@@ -1,7 +1,12 @@
+# 1.5.3 [01.09.2023 11:28]
+
+[fix] Limit YgRadio- and YgCheckboxGroup to contain max 5 items.
+[fix] The focusNode and controller on a text field are no longer disposed when they are user specified.
+
 # 1.5.2 [30.08.2023 13:42]
 
-[fix] YgGauge no longer breaks when changing value from non-null to null.
 [fix] YgGauge no longer accepts values that are not between the min and max values.
+[fix] YgGauge no longer breaks when changing value from non-null to null.
 
 # 1.5.1 [30.08.2023 09:48]
 
