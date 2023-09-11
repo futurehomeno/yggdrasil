@@ -30,14 +30,14 @@ class YgTextFieldValue extends StatelessWidget {
   final bool obscureText;
   final int? maxLines;
   final int? minLines;
-  final TextInputType? keyboardType;
+  final TextInputType keyboardType;
   final bool autocorrect;
   final TextCapitalization textCapitalization;
   final bool readOnly;
   final List<TextInputFormatter>? inputFormatters;
   final ValueChanged<String>? onChanged;
-  final VoidCallback? onEditingComplete;
-  final TextInputAction? textInputAction;
+  final VoidCallback onEditingComplete;
+  final TextInputAction textInputAction;
 
   @override
   Widget build(BuildContext context) {
