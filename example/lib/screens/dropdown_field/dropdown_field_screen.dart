@@ -199,11 +199,26 @@ class _DropdownFieldScreenState extends State<DropdownFieldScreen> {
                     controller: _controller,
                   ),
                   YgButton(
-                    onPressed: () => _controller.add('value1'),
+                    onPressed: () {
+                      _controller.add('value1');
+                      setState(() {});
+                    },
                     child: const Text('Add Value 1'),
                   ),
                   YgButton(
-                    onPressed: () => _controller.clear(),
+                    onPressed: _controller.value.contains('value1')
+                        ? () {
+                            _controller.remove('value1');
+                            setState(() {});
+                          }
+                        : null,
+                    child: const Text('Remove Value 1'),
+                  ),
+                  YgButton(
+                    onPressed: () {
+                      _controller.clear();
+                      setState(() {});
+                    },
                     child: const Text('Clear selected values'),
                   ),
                   YgButton(
