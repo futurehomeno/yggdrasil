@@ -36,18 +36,16 @@ class YgSingleSelectDropdownController<T extends Object>
     final _YgDropdownFieldSingleSelect<T> widget = fieldState.widget;
 
     if (value == entry.value) {
-      if (widget.allowDeselect) {
-        value = null;
-        widget.onChange?.call(value);
-
-        close();
+      if (!widget.allowDeselect) {
+        return;
       }
+      value = null;
     } else {
       value = entry.value;
-      widget.onChange?.call(value);
-
-      close();
     }
+
+    widget.onChange?.call(value);
+    close();
   }
 
   @override
