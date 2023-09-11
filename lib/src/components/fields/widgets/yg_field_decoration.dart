@@ -34,7 +34,7 @@ class YgFieldDecoration extends StatelessWidget {
   /// animate the height of the field.
   final String? error;
 
-  /// If the field is of large size.
+  /// The size of the field.
   final YgFieldSize size;
 
   /// If the field is of outlined variant.
