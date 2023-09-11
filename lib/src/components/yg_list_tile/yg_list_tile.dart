@@ -35,7 +35,7 @@ class YgListTile extends StatelessWidget with StatelessWidgetDebugMixin {
     );
   }
 
-  /// The title
+  /// The title.
   ///
   /// Shown in the middle of the list tile when there is no [subtitle], will be
   /// pushed to the top of the list tile if there is a [subtitle].
