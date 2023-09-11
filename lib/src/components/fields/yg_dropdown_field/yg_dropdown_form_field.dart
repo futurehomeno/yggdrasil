@@ -129,8 +129,10 @@ abstract class YgDropdownFormField<T extends Object> extends StatefulWidget {
 
   // region FormFieldOverrides
 
+  // ignore: unused-code
   final bool enabled;
 
+  // ignore: unused-code
   final String? restorationId;
 
   // endregion

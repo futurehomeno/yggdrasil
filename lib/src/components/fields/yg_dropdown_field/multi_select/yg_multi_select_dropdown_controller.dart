@@ -60,6 +60,7 @@ class YgMultiSelectDropdownController<T extends Object>
     return added;
   }
 
+  // ignore: unused-code
   bool remove(T newValue) {
     final bool removed = value.remove(newValue);
 

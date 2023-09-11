@@ -132,5 +132,10 @@ class YgIconButtonStyle {
   final Color iconDisabledColor;
   final OutlinedBorder shape;
   final OutlinedBorder disabledShape;
+
+  // TODO(DEV-1922): We have to use this at some point to fix the pressed color,
+  // now we are stuck on some issues regarding setting colors without creating
+  // unintended effects.
+  // ignore: unused-code
   final Color pressedColor;
 }

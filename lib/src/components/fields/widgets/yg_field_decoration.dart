@@ -43,7 +43,7 @@ class YgFieldDecoration extends StatelessWidget {
   /// The current states of the field.
   final FieldStates states;
 
-  /// Called when pressed.
+  /// Called when the field is pressed.
   ///
   /// !--- WARNING ---
   /// Only use when the field decoration functions as a button, rather than a

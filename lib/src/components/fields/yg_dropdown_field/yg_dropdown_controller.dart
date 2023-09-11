@@ -76,6 +76,7 @@ abstract class YgDropdownController<T extends Object, V, S extends YgDropdownFie
     field.openMenu();
   }
 
+  // ignore: unused-code
   /// Opens the bottom sheet specifically.
   ///
   /// Should be called only when the bottom sheet specifically should be opened.
@@ -94,6 +95,7 @@ abstract class YgDropdownController<T extends Object, V, S extends YgDropdownFie
     field.openBottomSheet();
   }
 
+  // ignore: unused-code
   /// Opens the dropdown.
   ///
   /// Shows either a menu or bottom sheet, depending on the platform the user is
@@ -125,6 +127,7 @@ abstract class YgDropdownController<T extends Object, V, S extends YgDropdownFie
     field.close();
   }
 
+  // ignore: unused-code
   /// Whether the dropdown in open or closed.
   bool get isOpen {
     final S? field = _fieldState;
