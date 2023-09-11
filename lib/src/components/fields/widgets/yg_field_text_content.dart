@@ -15,7 +15,7 @@ class YgFieldTextContent extends StatefulWidget {
     required this.minLines,
   });
 
-  /// The value value.
+  /// The value.
   ///
   /// This is simply a widget with a [DefaultTextStyle] provided to it, any
   /// interaction logic of the value (if required) will be implemented elsewhere.
