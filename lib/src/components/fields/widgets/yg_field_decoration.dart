@@ -30,7 +30,7 @@ class YgFieldDecoration extends StatelessWidget {
 
   /// The error of the field.
   ///
-  /// Will be displayed below the field it self and when added or removed will
+  /// Will be displayed below the field and when shown or hidden, will
   /// animate the height of the field.
   final String? error;
 
