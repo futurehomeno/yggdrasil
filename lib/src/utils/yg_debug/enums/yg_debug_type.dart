@@ -1,4 +1,4 @@
-// TODO(Tim): Should probably come up with a better set of types that are more meaningful to debugging widget sizes.
+// TODO(DEV-1921): Should probably come up with a better set of types that are more meaningful to debugging widget sizes.
 
 /// List of widget types that have debugging support.
 enum YgDebugType {

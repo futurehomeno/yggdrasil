@@ -180,8 +180,8 @@ class YgFieldDecoration extends StatelessWidget {
   }
 
   EdgeInsets _getChildPadding(YgFieldDecorationTheme theme) {
-    // TODO(Tim): Have to find some better way to figure out the border size to
-    // add to the padding.
+    // TODO(DEV-1915): Have to find some better way to figure out the border
+    // size to add to the padding.
     final EdgeInsets borderPadding = switch (variant) {
       YgFieldVariant.outlined => const EdgeInsets.all(
           2.0,

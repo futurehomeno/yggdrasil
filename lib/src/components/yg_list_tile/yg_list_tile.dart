@@ -74,7 +74,7 @@ class YgListTile extends StatelessWidget with StatelessWidgetDebugMixin {
 
   @override
   Widget build(BuildContext context) {
-    // TODO(Tim): This is not ideal, maybe look in to something using records so we can create a limit in widgets without asserts?
+    // TODO(DEV-1920): This is not ideal, maybe look in to something using records so we can create a limit in widgets without asserts?
     assert(leadingWidgets.length <= _allowedNumberOfLeadingWidgets, 'Cannot have more than 2 leading widgets.');
     assert(trailingWidgets.length <= _allowedNumberOfTrailingWidgets, 'Cannot have more than 2 trailing widget.');
     assert(

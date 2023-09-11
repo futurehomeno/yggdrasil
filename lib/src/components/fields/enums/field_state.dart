@@ -11,7 +11,7 @@ enum FieldState {
 /// A set of [FieldState]s.
 typedef FieldStates = Set<FieldState>;
 
-// TODO(Tim): This does not seem like the best pattern, but i don't really have
+// TODO(DEV-1654): This does not seem like the best pattern, but i don't really have
 // a good alternative yet, probably find a better pattern when implementing
 // state based animated widget.
 extension FieldStatesExtension on FieldStates {

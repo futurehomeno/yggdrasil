@@ -3,7 +3,7 @@ import 'package:yggdrasil/src/components/yg_bottom_sheet/yg_bottom_sheet_header.
 import 'package:yggdrasil/yggdrasil.dart';
 
 // TODO(bjhandeland): potentially expose the scroll controller.
-// TODO(Tim): find a way to allow slivers being used, in case of long lists.
+// TODO(DEV-1919): find a way to allow slivers being used, in case of long lists.
 class YgBottomSheet extends StatelessWidget with StatelessWidgetDebugMixin {
   const YgBottomSheet({
     super.key,
