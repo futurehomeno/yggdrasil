@@ -1,6 +1,6 @@
 import 'package:yggdrasil/yggdrasil.dart';
 
-/// A entry for a [YgDropdownField].
+/// An entry for a [YgDropdownField].
 class YgDropdownEntry<T extends Object> {
   const YgDropdownEntry({
     required this.title,
