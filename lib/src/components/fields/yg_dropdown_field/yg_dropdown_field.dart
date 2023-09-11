@@ -27,7 +27,7 @@ abstract class YgDropdownField<T extends Object> extends StatefulWidget with Sta
   const factory YgDropdownField({
     bool allowDeselect,
     YgSingleSelectDropdownController<T>? controller,
-    bool disabled,
+    bool enabled,
     YgDropdownAction dropdownAction,
     required List<YgDropdownEntry<T>> entries,
     String? error,
@@ -53,7 +53,7 @@ abstract class YgDropdownField<T extends Object> extends StatefulWidget with Sta
   const factory YgDropdownField.multiSelect({
     bool allowDeselect,
     YgMultiSelectDropdownController<T>? controller,
-    bool disabled,
+    bool enabled,
     YgDropdownAction dropdownAction,
     required List<YgDropdownEntry<T>> entries,
     String? error,
@@ -85,7 +85,7 @@ abstract class YgDropdownField<T extends Object> extends StatefulWidget with Sta
     this.completeAction = YgCompleteAction.unfocus,
     this.focusNode,
     this.error,
-    this.disabled = false,
+    this.enabled = true,
     this.placeholder,
     this.minLines,
     this.onFocusChanged,
@@ -162,7 +162,7 @@ abstract class YgDropdownField<T extends Object> extends StatefulWidget with Sta
   /// Whether the dropdown field is disabled.
   ///
   /// Applies styling for the disabled dropdown field. Also disables all interaction.
-  final bool disabled;
+  final bool enabled;
 
   /// Whether the value can be deselected by pressing it again.
   final bool allowDeselect;
@@ -196,7 +196,7 @@ abstract class YgDropdownField<T extends Object> extends StatefulWidget with Sta
 
   @override
   YgDebugType get debugType {
-    if (disabled) {
+    if (enabled) {
       return YgDebugType.other;
     }
 
@@ -213,7 +213,7 @@ abstract class YgDropdownFieldState<T extends Object, W extends YgDropdownField<
 
   /// The current states of the dropdown.
   late final FieldStates _states = <FieldState>{
-    if (widget.disabled) FieldState.disabled,
+    if (widget.enabled) FieldState.disabled,
     if (widget.error != null) FieldState.error,
     if (_controller.filled) FieldState.filled,
   };
@@ -248,7 +248,7 @@ abstract class YgDropdownFieldState<T extends Object, W extends YgDropdownField<
       _updateController(newController);
     }
 
-    _updateFieldState(FieldState.disabled, widget.disabled);
+    _updateFieldState(FieldState.disabled, widget.enabled);
     _updateFieldState(FieldState.error, widget.error != null);
 
     super.didUpdateWidget(oldWidget);
@@ -278,13 +278,13 @@ abstract class YgDropdownFieldState<T extends Object, W extends YgDropdownField<
         size: widget.size,
         error: widget.error,
         states: _states,
-        onPressed: widget.disabled ? null : open,
+        onPressed: widget.enabled ? null : open,
         suffix: AnimatedRotation(
           duration: theme.animationDuration,
           curve: theme.animationCurve,
           turns: _states.opened ? 0.5 : 0,
           child: YgIconButton(
-            onPressed: widget.disabled ? null : open,
+            onPressed: widget.enabled ? null : open,
             size: YgIconButtonSize.small,
             child: const YgIcon(
               YgIcons.caretDown,
@@ -304,7 +304,7 @@ abstract class YgDropdownFieldState<T extends Object, W extends YgDropdownField<
       ),
     );
 
-    if (widget.disabled) {
+    if (widget.enabled) {
       return layout;
     }
 

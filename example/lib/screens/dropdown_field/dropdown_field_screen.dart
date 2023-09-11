@@ -93,7 +93,7 @@ class _DropdownFieldScreenState extends State<DropdownFieldScreen> {
                 ),
                 YgDropdownField<String>(
                   label: 'Disabled',
-                  disabled: true,
+                  enabled: false,
                   entries: _generateEntries(4),
                   completeAction: YgCompleteAction.focusNext,
                 ),

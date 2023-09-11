@@ -14,7 +14,7 @@ abstract class YgDropdownFormField<T extends Object> extends StatefulWidget {
     FocusNode? focusNode,
     List<FormFieldValidator<T?>>? validators,
     YgSingleSelectDropdownController<T>? controller,
-    bool disabled,
+    bool enabled,
     bool allowDeselect,
     VoidCallback onPressed,
     YgFieldSize size,
@@ -38,7 +38,7 @@ abstract class YgDropdownFormField<T extends Object> extends StatefulWidget {
     Set<T>? initialValue,
     List<FormFieldValidator<Set<T>>>? validators,
     YgMultiSelectDropdownController<T>? controller,
-    bool disabled,
+    bool enabled,
     bool allowDeselect,
     VoidCallback onPressed,
     YgFieldSize size,
@@ -54,7 +54,7 @@ abstract class YgDropdownFormField<T extends Object> extends StatefulWidget {
     required super.key,
     required this.entries,
     required this.label,
-    required this.disabled,
+    required this.enabled,
     required this.dropdownAction,
     required this.maxLines,
     required this.allowDeselect,
@@ -69,8 +69,7 @@ abstract class YgDropdownFormField<T extends Object> extends StatefulWidget {
     required this.onPressed,
     required this.placeholder,
     required this.onEditingComplete,
-  })  : enabled = !disabled,
-        restorationId = null;
+  }) : restorationId = null;
 
   /// See [YgDropdownField.entries].
   final List<YgDropdownEntry<T>> entries;
@@ -100,7 +99,7 @@ abstract class YgDropdownFormField<T extends Object> extends StatefulWidget {
   final int? maxLines;
 
   /// See [YgDropdownField.entries].
-  final bool disabled;
+  final bool enabled;
 
   /// See [YgDropdownField.entries].
   final bool allowDeselect;
@@ -128,8 +127,6 @@ abstract class YgDropdownFormField<T extends Object> extends StatefulWidget {
   final YgAutoValidate autoValidate;
 
   // region FormFieldOverrides
-
-  final bool enabled;
 
   final String? restorationId;
 

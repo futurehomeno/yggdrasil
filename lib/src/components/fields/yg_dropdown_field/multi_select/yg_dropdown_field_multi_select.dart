@@ -13,7 +13,7 @@ class _YgDropdownFieldMultiSelect<T extends Object> extends YgDropdownField<T> {
     super.minLines,
     super.placeholder,
     super.maxLines,
-    super.disabled = false,
+    super.enabled = true,
     super.allowDeselect = false,
     super.dropdownAction = YgDropdownAction.auto,
     super.onFocusChanged,

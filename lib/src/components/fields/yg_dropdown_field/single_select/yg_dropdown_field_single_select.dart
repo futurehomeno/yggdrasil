@@ -13,7 +13,7 @@ class _YgDropdownFieldSingleSelect<T extends Object> extends YgDropdownField<T> 
     super.minLines,
     super.placeholder,
     super.maxLines = 1,
-    super.disabled = false,
+    super.enabled = true,
     super.allowDeselect = false,
     super.dropdownAction = YgDropdownAction.auto,
     super.onFocusChanged,
