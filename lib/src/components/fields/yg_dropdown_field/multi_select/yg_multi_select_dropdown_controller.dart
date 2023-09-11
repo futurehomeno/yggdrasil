@@ -27,7 +27,7 @@ class YgMultiSelectDropdownController<T extends Object>
     final _YgDropdownFieldMultiSelectState<T>? fieldState = _fieldState;
 
     assert(
-      fieldState is _YgDropdownFieldMultiSelectState<T>,
+      fieldState != null,
       'YgMultiSelectDropdownController.onEntryTapped was called while the controller was not attached to a multi select dropdown!',
     );
     if (fieldState == null) {
