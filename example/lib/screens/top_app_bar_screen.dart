@@ -5,7 +5,7 @@ import 'package:yggdrasil_demo/widgets/_widgets.dart';
 
 import '_screens.dart';
 
-class TopAppBarScreen extends StatefulWidget {
+class TopAppBarScreen extends StatelessWidget {
   const TopAppBarScreen({super.key});
 
   static const String routeName = 'TopAppBarScreen';
@@ -17,11 +17,6 @@ class TopAppBarScreen extends StatefulWidget {
     );
   }
 
-  @override
-  State<TopAppBarScreen> createState() => _TopAppBarScreenState();
-}
-
-class _TopAppBarScreenState extends State<TopAppBarScreen> {
   @override
   Widget build(BuildContext context) {
     return DemoScreen(

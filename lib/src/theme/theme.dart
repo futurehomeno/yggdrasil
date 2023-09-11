@@ -75,7 +75,7 @@ class _$YgTheme {
   static final List<YgIconButtonTheme> iconButtonTheme = YgIconButtonTheme.themes;
 
   @themeExtension
-  static List<YgInternalTheme> internalTheme = YgInternalTheme.themes;
+  static final List<YgInternalTheme> internalTheme = YgInternalTheme.themes;
 
   @themeExtension
   static final List<YgListTileTheme> listTileTheme = YgListTileTheme.themes;
@@ -105,5 +105,5 @@ class _$YgTheme {
   static final List<YgTextLinkTheme> textLinkTheme = YgTextLinkTheme.themes;
 
   @themeExtension
-  static List<YgTopAppBarTheme> topAppBarTheme = YgTopAppBarTheme.themes;
+  static final List<YgTopAppBarTheme> topAppBarTheme = YgTopAppBarTheme.themes;
 }

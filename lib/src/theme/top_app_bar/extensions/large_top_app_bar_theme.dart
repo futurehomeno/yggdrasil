@@ -9,7 +9,7 @@ part 'large_top_app_bar_theme.tailor.dart';
 
 @tailorComponent
 class _$LargeTopAppBarTheme {
-  static List<TextStyle> titleTextStyle = <TextStyle>[
+  static const List<TextStyle> titleTextStyle = <TextStyle>[
     consumer_light.FhTextStyles.pageHeading1Medium,
     consumer_dark.FhTextStyles.pageHeading1Medium,
     professional_light.FhTextStyles.pageHeading1Medium,

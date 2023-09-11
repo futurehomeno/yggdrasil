@@ -9,7 +9,7 @@ part 'medium_top_app_bar_theme.tailor.dart';
 
 @tailorComponent
 class _$MediumTopAppBarTheme {
-  static List<TextStyle> titleTextStyle = <TextStyle>[
+  static const List<TextStyle> titleTextStyle = <TextStyle>[
     consumer_light.FhTextStyles.pageHeading2Medium,
     consumer_dark.FhTextStyles.pageHeading2Medium,
     professional_light.FhTextStyles.pageHeading2Medium,

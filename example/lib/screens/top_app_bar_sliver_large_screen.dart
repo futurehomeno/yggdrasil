@@ -3,7 +3,7 @@ import 'package:yggdrasil/yggdrasil.dart';
 import 'package:yggdrasil_demo/core/_core.dart';
 import 'package:yggdrasil_demo/widgets/_widgets.dart';
 
-class TopAppBarSliverLargeScreen extends StatefulWidget {
+class TopAppBarSliverLargeScreen extends StatelessWidget {
   const TopAppBarSliverLargeScreen({super.key});
 
   static const String routeName = 'TopAppBarSliverLargeScreen';
@@ -15,11 +15,6 @@ class TopAppBarSliverLargeScreen extends StatefulWidget {
     );
   }
 
-  @override
-  State<TopAppBarSliverLargeScreen> createState() => _TopAppBarSliverLargeScreenState();
-}
-
-class _TopAppBarSliverLargeScreenState extends State<TopAppBarSliverLargeScreen> {
   @override
   Widget build(BuildContext context) {
     return DemoScreen(

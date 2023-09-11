@@ -11,36 +11,36 @@ part 'top_app_bar_theme.tailor.dart';
 @tailorComponent
 class _$YgTopAppBarTheme {
   @themeExtension
-  static List<LargeTopAppBarTheme> largeTopAppBarTheme = LargeTopAppBarTheme.themes;
+  static final List<LargeTopAppBarTheme> largeTopAppBarTheme = LargeTopAppBarTheme.themes;
 
   @themeExtension
-  static List<MediumTopAppBarTheme> mediumTopAppBarTheme = MediumTopAppBarTheme.themes;
+  static final List<MediumTopAppBarTheme> mediumTopAppBarTheme = MediumTopAppBarTheme.themes;
 
   @themeExtension
-  static List<SmallTopAppBarTheme> smallTopAppBarTheme = SmallTopAppBarTheme.themes;
+  static final List<SmallTopAppBarTheme> smallTopAppBarTheme = SmallTopAppBarTheme.themes;
 
-  static List<Color> backgroundColor = <Color>[
+  static const List<Color> backgroundColor = <Color>[
     consumer_light.FhColors.backgroundDefault,
     consumer_dark.FhColors.backgroundDefault,
     professional_light.FhColors.backgroundDefault,
     professional_dark.FhColors.backgroundDefault,
   ];
 
-  static List<Color> borderColor = <Color>[
+  static const List<Color> borderColor = <Color>[
     consumer_light.FhColors.borderDefault,
     consumer_dark.FhColors.borderDefault,
     professional_light.FhColors.borderDefault,
     professional_dark.FhColors.borderDefault,
   ];
 
-  static List<double> leadingSize = <double>[
+  static const List<double> leadingSize = <double>[
     consumer_light.FhDimensions.md,
     consumer_dark.FhDimensions.md,
     professional_light.FhDimensions.md,
     professional_dark.FhDimensions.md,
   ];
 
-  static List<double> trailingSize = <double>[
+  static const List<double> trailingSize = <double>[
     consumer_light.FhDimensions.md,
     consumer_dark.FhDimensions.md,
     professional_light.FhDimensions.md,
