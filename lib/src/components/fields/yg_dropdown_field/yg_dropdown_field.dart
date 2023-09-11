@@ -21,7 +21,7 @@ part 'yg_dropdown_controller.dart';
 part 'yg_dropdown_form_field.dart';
 
 abstract class YgDropdownField<T extends Object> extends StatefulWidget with StatefulWidgetDebugMixin {
-  /// factory constructor for a [YgDropdownField] with a single value.
+  /// Factory constructor for a [YgDropdownField] with a single value.
   ///
   /// See [YgDropdownField] for the documentation of every argument.
   const factory YgDropdownField({
