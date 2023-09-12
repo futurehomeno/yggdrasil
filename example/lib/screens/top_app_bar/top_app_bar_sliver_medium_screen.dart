@@ -37,7 +37,7 @@ class TopAppBarSliverMediumScreen extends StatelessWidget {
               child: YgListTile(title: 'Medium sliver top app bar (title and leading)'),
             ),
             YgSliverTopAppBar(
-              leading: YgIcon(YgIcons.caretLeft),
+              leading: YgIcon(YgIcons.deviceHub),
               title: 'Page title',
               variant: YgSliverTopAppBarVariant.medium,
             ),
@@ -54,6 +54,14 @@ class TopAppBarSliverMediumScreen extends StatelessWidget {
               variant: YgSliverTopAppBarVariant.medium,
             ),
             SliverToBoxAdapter(
+              child: YgListTile(title: 'Medium sliver top app bar with automaticallyImplyLeading'),
+            ),
+            YgSliverTopAppBar(
+              automaticallyImplyLeading: true,
+              title: 'Page title',
+              variant: YgSliverTopAppBarVariant.medium,
+            ),
+            SliverToBoxAdapter(
               child: YgListTile(title: 'Medium sliver top app bar (title, leading and actions)'),
             ),
             YgSliverTopAppBar(
@@ -66,7 +74,7 @@ class TopAppBarSliverMediumScreen extends StatelessWidget {
                 SizedBox(width: 10.0),
               ],
               centerTitle: false,
-              leading: YgIcon(YgIcons.caretLeft),
+              leading: YgIcon(YgIcons.deviceHub),
               title: 'Page title',
               variant: YgSliverTopAppBarVariant.medium,
             ),

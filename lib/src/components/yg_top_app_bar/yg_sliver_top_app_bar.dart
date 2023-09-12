@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:yggdrasil/yggdrasil.dart';
 
-class YgSliverTopAppBar extends StatelessWidget {
+class YgSliverTopAppBar extends StatefulWidget {
   const YgSliverTopAppBar({
     super.key,
     required this.title,
@@ -10,16 +10,25 @@ class YgSliverTopAppBar extends StatelessWidget {
     this.leading,
     this.pinned = true,
     this.centerTitle = false,
+    this.hasDrawer = false,
     this.automaticallyImplyLeading = true,
   });
 
   final bool pinned;
   final String title;
   final bool centerTitle;
+  final bool hasDrawer;
   final Widget? leading;
-  final List<Widget>? actions;
   final bool automaticallyImplyLeading;
+  final List<Widget>? actions;
   final YgSliverTopAppBarVariant variant;
+
+  @override
+  State<YgSliverTopAppBar> createState() => _YgSliverTopAppBarState();
+}
+
+class _YgSliverTopAppBarState extends State<YgSliverTopAppBar> {
+  Widget? leading;
 
   @override
   Widget build(BuildContext context) {
@@ -27,54 +36,81 @@ class YgSliverTopAppBar extends StatelessWidget {
     const double bottomBorderWidth = 1.0;
     const Color surfaceTintColor = Colors.transparent;
 
-    switch (variant) {
+    final ScaffoldState? scaffold = Scaffold.maybeOf(context);
+    final ModalRoute<dynamic>? parentRoute = ModalRoute.of(context);
+    final bool canPop = parentRoute?.canPop ?? false;
+    final bool hasEndDrawer = scaffold?.hasEndDrawer ?? false;
+    final bool useCloseButton = parentRoute is PageRoute<dynamic> && parentRoute.fullscreenDialog;
+
+    if (widget.leading == null && widget.automaticallyImplyLeading) {
+      if (widget.hasDrawer) {
+        // TODO(DEV-1928): Turn this into an YgIcon whenever we introduce drawers in apps.
+        leading = DrawerButton(
+          style: IconButton.styleFrom(iconSize: theme.leadingSize),
+        );
+      } else if ((!hasEndDrawer && canPop) || (parentRoute?.impliesAppBarDismissal ?? false)) {
+        leading = YgIconButton(
+          onPressed: () => Navigator.maybePop(context),
+          child: YgIcon(useCloseButton ? YgIcons.coverRemove : YgIcons.caretLeft),
+        );
+      }
+    }
+
+    if (widget.leading != null) {
+      leading = ConstrainedBox(
+        constraints: BoxConstraints.tightFor(width: theme.leadingSize),
+        child: widget.leading,
+      );
+    }
+
+    switch (widget.variant) {
       case YgSliverTopAppBarVariant.large:
         return SliverAppBar.large(
-          actions: actions,
-          pinned: pinned,
+          actions: widget.actions,
+          pinned: widget.pinned,
           shadowColor: theme.borderColor,
           backgroundColor: theme.backgroundColor,
           surfaceTintColor: surfaceTintColor,
           scrolledUnderElevation: bottomBorderWidth,
-          automaticallyImplyLeading: automaticallyImplyLeading,
+          automaticallyImplyLeading: widget.automaticallyImplyLeading,
           leading: leading,
-          centerTitle: centerTitle,
+          centerTitle: widget.centerTitle,
           title: Text(
-            title,
+            widget.title,
             style: theme.largeTopAppBarTheme.titleTextStyle,
           ),
         );
 
       case YgSliverTopAppBarVariant.medium:
         return SliverAppBar.medium(
-          actions: actions,
-          pinned: pinned,
+          actions: widget.actions,
+          pinned: widget.pinned,
           shadowColor: theme.borderColor,
           surfaceTintColor: surfaceTintColor,
           backgroundColor: theme.backgroundColor,
           scrolledUnderElevation: bottomBorderWidth,
-          automaticallyImplyLeading: automaticallyImplyLeading,
+          automaticallyImplyLeading: widget.automaticallyImplyLeading,
           leading: leading,
-          centerTitle: centerTitle,
+          centerTitle: widget.centerTitle,
           title: Text(
-            title,
+            widget.title,
             style: theme.mediumTopAppBarTheme.titleTextStyle,
           ),
         );
 
       case YgSliverTopAppBarVariant.small:
         return SliverAppBar(
-          actions: actions,
-          pinned: pinned,
+          actions: widget.actions,
+          pinned: widget.pinned,
           shadowColor: theme.borderColor,
           surfaceTintColor: surfaceTintColor,
           backgroundColor: theme.backgroundColor,
           scrolledUnderElevation: bottomBorderWidth,
-          automaticallyImplyLeading: automaticallyImplyLeading,
+          automaticallyImplyLeading: widget.automaticallyImplyLeading,
           leading: leading,
-          centerTitle: centerTitle,
+          centerTitle: widget.centerTitle,
           title: Text(
-            title,
+            widget.title,
             style: theme.smallTopAppBarTheme.titleTextStyle,
           ),
         );

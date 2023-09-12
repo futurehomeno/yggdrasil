@@ -24,7 +24,4 @@ export 'switch/_switch.dart';
 export 'tag/_tag.dart';
 export 'text_field/_text_field.dart';
 export 'text_link/_text_link.dart';
-export 'top_app_bar_screen.dart';
-export 'top_app_bar_sliver_large_screen.dart';
-export 'top_app_bar_sliver_medium_screen.dart';
-export 'top_app_bar_sliver_small_screen.dart';
+export 'top_app_bar/_top_app_bar.dart';
