@@ -28,7 +28,7 @@ class YgFieldTextContent extends StatefulWidget {
 
   /// The label.
   ///
-  /// Will be in in place of the value if there is no [placeholder] and when
+  /// Will be in place of the value if there is no [placeholder] and when
   /// [states] does not contain [FieldState.filled], [FieldState.focused] or
   /// [FieldState.opened].
   final String label;

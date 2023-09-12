@@ -37,13 +37,14 @@ class YgValidateHelper<T> {
   /// Should be used to get the default [YgCompleteAction], should be
   /// overridable by the user.
   static YgCompleteAction mapTextInputAction(TextInputAction textInputAction) {
-    if (textInputAction == TextInputAction.next) {
-      return YgCompleteAction.focusNext;
-    } else if (textInputAction == TextInputAction.previous) {
-      return YgCompleteAction.focusPrevious;
+    switch(textInputAction) {
+      case TextInputAction.next:
+        return YgCompleteAction.focusNext;
+      case TextInputAction.previous:
+        return YgCompleteAction.focusPrevious;
+      default:
+        return YgCompleteAction.unfocus;
     }
-
-    return YgCompleteAction.unfocus;
   }
 
   /// Combines a list of [FormFieldValidator]s in to one.
