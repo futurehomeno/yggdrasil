@@ -11,6 +11,7 @@ import 'checkbox/_checkbox.dart';
 import 'defaults/_defaults.dart';
 import 'dialog/_dialog.dart';
 import 'divider/_divider.dart';
+import 'fields/_fields.dart';
 import 'gauge/_gauge.dart';
 import 'icon/_icon.dart';
 import 'icon_button/_icon_button.dart';
@@ -22,7 +23,6 @@ import 'section/_section.dart';
 import 'snack_bar/_snack_bar.dart';
 import 'switch/_switch.dart';
 import 'tag/_tag.dart';
-import 'text_field/_text_field.dart';
 import 'text_link/_text_link.dart';
 import 'tokens/_tokens.dart';
 
@@ -101,5 +101,5 @@ class _$YgTheme {
   static final List<YgInternalTheme> internalTheme = YgInternalTheme.themes;
 
   @themeExtension
-  static final List<YgTextFieldTheme> textInputTheme = YgTextFieldTheme.themes;
+  static final List<YgFieldTheme> fieldTheme = YgFieldTheme.themes;
 }

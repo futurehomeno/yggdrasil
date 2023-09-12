@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:yggdrasil/src/theme/_theme.dart';
+import 'package:yggdrasil/yggdrasil.dart';
 
 /// A dot-shaped badge with a fixed size.
-class YgDotBadge extends StatelessWidget {
+class YgDotBadge extends StatelessWidget with StatelessWidgetDebugMixin {
   const YgDotBadge({super.key});
 
   /// The size of the dot badge.

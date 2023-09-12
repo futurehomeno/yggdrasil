@@ -16,6 +16,7 @@ class OutlinedIconButtonTheme extends ThemeExtension<OutlinedIconButtonTheme> {
     required this.disabledBorderColor,
     required this.disabledIconColor,
     required this.iconColor,
+    required this.pressedColor,
   });
 
   final Color backgroundColor;
@@ -24,6 +25,7 @@ class OutlinedIconButtonTheme extends ThemeExtension<OutlinedIconButtonTheme> {
   final Color disabledBorderColor;
   final Color disabledIconColor;
   final Color iconColor;
+  final Color pressedColor;
 
   static final OutlinedIconButtonTheme consumerLight = OutlinedIconButtonTheme(
     backgroundColor: _$OutlinedIconButtonTheme.backgroundColor[0],
@@ -33,6 +35,7 @@ class OutlinedIconButtonTheme extends ThemeExtension<OutlinedIconButtonTheme> {
     disabledBorderColor: _$OutlinedIconButtonTheme.disabledBorderColor[0],
     disabledIconColor: _$OutlinedIconButtonTheme.disabledIconColor[0],
     iconColor: _$OutlinedIconButtonTheme.iconColor[0],
+    pressedColor: _$OutlinedIconButtonTheme.pressedColor[0],
   );
 
   static final OutlinedIconButtonTheme consumerDark = OutlinedIconButtonTheme(
@@ -43,6 +46,7 @@ class OutlinedIconButtonTheme extends ThemeExtension<OutlinedIconButtonTheme> {
     disabledBorderColor: _$OutlinedIconButtonTheme.disabledBorderColor[1],
     disabledIconColor: _$OutlinedIconButtonTheme.disabledIconColor[1],
     iconColor: _$OutlinedIconButtonTheme.iconColor[1],
+    pressedColor: _$OutlinedIconButtonTheme.pressedColor[1],
   );
 
   static final OutlinedIconButtonTheme professionalLight =
@@ -54,6 +58,7 @@ class OutlinedIconButtonTheme extends ThemeExtension<OutlinedIconButtonTheme> {
     disabledBorderColor: _$OutlinedIconButtonTheme.disabledBorderColor[2],
     disabledIconColor: _$OutlinedIconButtonTheme.disabledIconColor[2],
     iconColor: _$OutlinedIconButtonTheme.iconColor[2],
+    pressedColor: _$OutlinedIconButtonTheme.pressedColor[2],
   );
 
   static final OutlinedIconButtonTheme professionalDark =
@@ -65,6 +70,7 @@ class OutlinedIconButtonTheme extends ThemeExtension<OutlinedIconButtonTheme> {
     disabledBorderColor: _$OutlinedIconButtonTheme.disabledBorderColor[3],
     disabledIconColor: _$OutlinedIconButtonTheme.disabledIconColor[3],
     iconColor: _$OutlinedIconButtonTheme.iconColor[3],
+    pressedColor: _$OutlinedIconButtonTheme.pressedColor[3],
   );
 
   static final themes = [
@@ -82,6 +88,7 @@ class OutlinedIconButtonTheme extends ThemeExtension<OutlinedIconButtonTheme> {
     Color? disabledBorderColor,
     Color? disabledIconColor,
     Color? iconColor,
+    Color? pressedColor,
   }) {
     return OutlinedIconButtonTheme(
       backgroundColor: backgroundColor ?? this.backgroundColor,
@@ -91,6 +98,7 @@ class OutlinedIconButtonTheme extends ThemeExtension<OutlinedIconButtonTheme> {
       disabledBorderColor: disabledBorderColor ?? this.disabledBorderColor,
       disabledIconColor: disabledIconColor ?? this.disabledIconColor,
       iconColor: iconColor ?? this.iconColor,
+      pressedColor: pressedColor ?? this.pressedColor,
     );
   }
 
@@ -109,6 +117,7 @@ class OutlinedIconButtonTheme extends ThemeExtension<OutlinedIconButtonTheme> {
       disabledIconColor:
           Color.lerp(disabledIconColor, other.disabledIconColor, t)!,
       iconColor: Color.lerp(iconColor, other.iconColor, t)!,
+      pressedColor: Color.lerp(pressedColor, other.pressedColor, t)!,
     );
   }
 
@@ -127,7 +136,9 @@ class OutlinedIconButtonTheme extends ThemeExtension<OutlinedIconButtonTheme> {
                 .equals(disabledBorderColor, other.disabledBorderColor) &&
             const DeepCollectionEquality()
                 .equals(disabledIconColor, other.disabledIconColor) &&
-            const DeepCollectionEquality().equals(iconColor, other.iconColor));
+            const DeepCollectionEquality().equals(iconColor, other.iconColor) &&
+            const DeepCollectionEquality()
+                .equals(pressedColor, other.pressedColor));
   }
 
   @override
@@ -140,6 +151,7 @@ class OutlinedIconButtonTheme extends ThemeExtension<OutlinedIconButtonTheme> {
       const DeepCollectionEquality().hash(disabledBorderColor),
       const DeepCollectionEquality().hash(disabledIconColor),
       const DeepCollectionEquality().hash(iconColor),
+      const DeepCollectionEquality().hash(pressedColor),
     );
   }
 }

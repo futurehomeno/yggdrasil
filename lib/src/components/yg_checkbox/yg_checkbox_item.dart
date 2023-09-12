@@ -65,4 +65,13 @@ class YgCheckboxItem extends StatelessWidget with StatelessWidgetDebugMixin {
     final bool? nextValue = YgCheckboxHelpers.getNextValue(value, triState);
     onChanged?.call(nextValue);
   }
+
+  @override
+  YgDebugType get debugType {
+    if (onChanged == null) {
+      return YgDebugType.other;
+    }
+
+    return YgDebugType.intractable;
+  }
 }

@@ -60,7 +60,7 @@ class _ListTileRadioScreenState extends State<ListTileRadioScreen> {
               YgRadioListTile<int>(
                 title: 'With trailingWidget',
                 subtitle: 'Mostly used to add a YgIconButton.',
-                trailingWidget: YgIconButton(
+                leadingWidget: YgIconButton(
                   onPressed: () {},
                   child: const YgIcon(YgIcons.info),
                 ),
