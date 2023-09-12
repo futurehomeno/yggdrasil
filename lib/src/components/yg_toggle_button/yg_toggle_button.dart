@@ -40,6 +40,15 @@ class YgToggleButton extends StatefulWidget with StatefulWidgetDebugMixin {
 
   @override
   State<YgToggleButton> createState() => _YgToggleButtonState();
+
+  @override
+  YgDebugType get debugType {
+    if (onChanged == null) {
+      return YgDebugType.other;
+    }
+
+    return YgDebugType.intractable;
+  }
 }
 
 class _YgToggleButtonState extends State<YgToggleButton> {
