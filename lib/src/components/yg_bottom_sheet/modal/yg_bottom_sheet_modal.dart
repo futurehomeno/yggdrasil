@@ -1,12 +1,7 @@
-import 'package:flutter/material.dart';
-import 'package:yggdrasil/src/theme/_theme.dart';
-import 'package:yggdrasil/src/utils/_utils.dart';
+part of 'yg_bottom_sheet_modal_route.dart';
 
-import '../_yg_bottom_sheet.dart';
-
-class YgBottomSheetModal extends StatefulWidget {
-  const YgBottomSheetModal({
-    super.key,
+class _YgBottomSheetModal extends StatefulWidget {
+  const _YgBottomSheetModal({
     required this.modalController,
     required this.bottomSheet,
   });
@@ -15,10 +10,10 @@ class YgBottomSheetModal extends StatefulWidget {
   final Widget bottomSheet;
 
   @override
-  State<YgBottomSheetModal> createState() => _YgBottomSheetModalState();
+  State<_YgBottomSheetModal> createState() => _YgBottomSheetModalState();
 }
 
-class _YgBottomSheetModalState extends State<YgBottomSheetModal> {
+class _YgBottomSheetModalState extends State<_YgBottomSheetModal> {
   /// Set to true when the content of the [YgBottomSheet] is being scrolled.
   bool _isScrolling = false;
 
@@ -92,7 +87,7 @@ class _YgBottomSheetModalState extends State<YgBottomSheetModal> {
   void _animateToClosed() {
     // We don't actually need to animate it as this will already be done by the
     // modal route.
-    Navigator.of(context).pop();
+    Navigator.of(context).maybePop();
   }
 
   void _handleSwipeEnd(double velocity) {

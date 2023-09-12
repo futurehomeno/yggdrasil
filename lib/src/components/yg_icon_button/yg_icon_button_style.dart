@@ -13,6 +13,7 @@ import 'properties/_properties.dart';
 class YgIconButtonStyle {
   const YgIconButtonStyle({
     required this.backgroundColor,
+    required this.pressedColor,
     required this.disabledBackgroundColor,
     required this.size,
     required this.iconSize,
@@ -33,13 +34,14 @@ class YgIconButtonStyle {
       case YgIconButtonVariant.standard:
         final StandardIconButtonTheme theme = context.iconButtonTheme.standardIconButtonTheme;
 
-        return _buildIconButtonStyle(
+        return YgIconButtonStyle(
           backgroundColor: theme.backgroundColor,
           disabledBackgroundColor: theme.disabledBackgroundColor,
           size: YgIconButtonMapper.buildSize(theme: iconButtonTheme, size: size),
           iconSize: YgIconButtonMapper.buildIconSize(theme: iconButtonTheme, size: size),
           iconColor: theme.iconColor,
           iconDisabledColor: theme.disabledIconColor,
+          pressedColor: theme.pressedColor,
           shape: const CircleBorder(),
           disabledShape: const CircleBorder(),
         );
@@ -47,13 +49,14 @@ class YgIconButtonStyle {
       case YgIconButtonVariant.filled:
         final FilledIconButtonTheme theme = context.iconButtonTheme.filledIconButtonTheme;
 
-        return _buildIconButtonStyle(
+        return YgIconButtonStyle(
           backgroundColor: theme.backgroundColor,
           disabledBackgroundColor: theme.disabledBackgroundColor,
           size: YgIconButtonMapper.buildSize(theme: iconButtonTheme, size: size),
           iconSize: YgIconButtonMapper.buildIconSize(theme: iconButtonTheme, size: size),
           iconColor: theme.iconColor,
           iconDisabledColor: theme.disabledIconColor,
+          pressedColor: theme.pressedColor,
           shape: const CircleBorder(),
           disabledShape: const CircleBorder(),
         );
@@ -61,13 +64,14 @@ class YgIconButtonStyle {
       case YgIconButtonVariant.tonal:
         final TonalIconButtonTheme theme = context.iconButtonTheme.tonalIconButtonTheme;
 
-        return _buildIconButtonStyle(
+        return YgIconButtonStyle(
           backgroundColor: theme.backgroundColor,
           disabledBackgroundColor: theme.disabledBackgroundColor,
           size: YgIconButtonMapper.buildSize(theme: iconButtonTheme, size: size),
           iconSize: YgIconButtonMapper.buildIconSize(theme: iconButtonTheme, size: size),
           iconColor: theme.iconColor,
           iconDisabledColor: theme.disabledIconColor,
+          pressedColor: theme.pressedColor,
           shape: const CircleBorder(),
           disabledShape: const CircleBorder(),
         );
@@ -75,39 +79,18 @@ class YgIconButtonStyle {
       case YgIconButtonVariant.outlined:
         final OutlinedIconButtonTheme theme = context.iconButtonTheme.outlinedIconButtonTheme;
 
-        return _buildIconButtonStyle(
+        return YgIconButtonStyle(
           backgroundColor: theme.backgroundColor,
           disabledBackgroundColor: theme.disabledBackgroundColor,
           size: YgIconButtonMapper.buildSize(theme: iconButtonTheme, size: size),
           iconSize: YgIconButtonMapper.buildIconSize(theme: iconButtonTheme, size: size),
           iconColor: theme.iconColor,
           iconDisabledColor: theme.disabledIconColor,
+          pressedColor: theme.pressedColor,
           shape: CircleBorder(side: BorderSide(width: 1.0, color: theme.borderColor)),
           disabledShape: CircleBorder(side: BorderSide(width: 1.0, color: theme.borderColor)),
         );
     }
-  }
-
-  static YgIconButtonStyle _buildIconButtonStyle({
-    required Color backgroundColor,
-    required Color disabledBackgroundColor,
-    required double size,
-    required double iconSize,
-    required Color iconColor,
-    required Color iconDisabledColor,
-    required OutlinedBorder shape,
-    required OutlinedBorder disabledShape,
-  }) {
-    return YgIconButtonStyle(
-      backgroundColor: backgroundColor,
-      disabledBackgroundColor: disabledBackgroundColor,
-      size: size,
-      iconSize: iconSize,
-      iconColor: iconColor,
-      iconDisabledColor: iconDisabledColor,
-      shape: shape,
-      disabledShape: disabledShape,
-    );
   }
 
   ButtonStyle toButtonStyle() {
@@ -133,6 +116,7 @@ class YgIconButtonStyle {
       elevation: ButtonStyleButton.allOrNull(0.0),
       alignment: Alignment.center,
       tapTargetSize: MaterialTapTargetSize.shrinkWrap,
+      splashFactory: InkRipple.splashFactory,
       mouseCursor: YgIconButtonMouseCursorProperty(
         mouseCursor: SystemMouseCursors.click,
         disabled: SystemMouseCursors.basic,
@@ -148,4 +132,10 @@ class YgIconButtonStyle {
   final Color iconDisabledColor;
   final OutlinedBorder shape;
   final OutlinedBorder disabledShape;
+
+  // TODO(DEV-1922): We have to use this at some point to fix the pressed color,
+  // now we are stuck on some issues regarding setting colors without creating
+  // unintended effects.
+  // ignore: unused-code
+  final Color pressedColor;
 }

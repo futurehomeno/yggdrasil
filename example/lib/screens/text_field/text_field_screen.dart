@@ -21,17 +21,15 @@ class TextFieldScreen extends StatefulWidget {
 }
 
 class _TextFieldScreenState extends State<TextFieldScreen> {
-  final FormKey formKey = FormKey();
-  final TextFieldKey emailKey = TextFieldKey();
-  final TextFieldKey passwordKey = TextFieldKey();
-  final TextFieldKey passwordConfirmKey = TextFieldKey();
+  final FormKey _formKey = FormKey();
+  final TextFieldKey _emailKey = TextFieldKey();
+  final TextFieldKey _passwordKey = TextFieldKey();
+  final TextFieldKey _passwordConfirmKey = TextFieldKey();
 
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
-      onTap: () {
-        FocusScope.of(context).unfocus();
-      },
+      onTap: () => FocusScope.of(context).unfocus(),
       child: DemoScreen(
         componentName: 'TextField',
         componentDesc: 'Text Field',
@@ -43,14 +41,14 @@ class _TextFieldScreenState extends State<TextFieldScreen> {
               children: <Widget>[
                 const YgTextField(
                   label: 'Default field',
-                  textInputType: TextInputType.text,
+                  keyboardType: TextInputType.text,
                   textInputAction: TextInputAction.next,
                   textCapitalization: TextCapitalization.words,
                   autocorrect: true,
                 ),
                 const YgTextField(
                   label: 'Obscured',
-                  textInputType: TextInputType.text,
+                  keyboardType: TextInputType.text,
                   textInputAction: TextInputAction.next,
                   textCapitalization: TextCapitalization.words,
                   autocorrect: true,
@@ -59,33 +57,41 @@ class _TextFieldScreenState extends State<TextFieldScreen> {
                 const YgTextField(
                   label: 'Label',
                   placeholder: 'Fixed placeholder',
-                  textInputType: TextInputType.text,
+                  keyboardType: TextInputType.text,
                   textInputAction: TextInputAction.next,
                   textCapitalization: TextCapitalization.words,
                   autocorrect: true,
                 ),
-                YgTextField(
+                const YgTextField(
                   label: 'Custom suffix',
-                  textInputType: TextInputType.text,
+                  keyboardType: TextInputType.text,
                   textInputAction: TextInputAction.next,
                   textCapitalization: TextCapitalization.words,
                   autocorrect: true,
-                  suffix: const YgIcon(YgIcons.info),
-                  onSuffixPressed: () {},
                 ),
-                YgTextField(
+                const YgTextField(
+                  label: 'Multi line',
+                  keyboardType: TextInputType.multiline,
+                  textInputAction: TextInputAction.next,
+                  textCapitalization: TextCapitalization.words,
+                  completeAction: YgCompleteAction.focusNext,
+                  autocorrect: true,
+                  minLines: 2,
+                  maxLines: null,
+                ),
+                const YgTextField(
                   label: 'Readonly',
-                  controller: TextEditingController(text: 'Readonly'),
-                  textInputType: TextInputType.text,
+                  initialValue: 'Readonly',
+                  keyboardType: TextInputType.text,
                   textInputAction: TextInputAction.next,
                   textCapitalization: TextCapitalization.words,
                   autocorrect: true,
                   readOnly: true,
                 ),
-                YgTextField(
+                const YgTextField(
                   label: 'Disabled',
-                  controller: TextEditingController(text: 'Disabled'),
-                  textInputType: TextInputType.text,
+                  initialValue: 'Disabled',
+                  keyboardType: TextInputType.text,
                   textInputAction: TextInputAction.next,
                   textCapitalization: TextCapitalization.words,
                   autocorrect: true,
@@ -98,16 +104,16 @@ class _TextFieldScreenState extends State<TextFieldScreen> {
               children: <Widget>[
                 const YgTextField(
                   label: 'Standard',
-                  variant: YgTextFieldVariant.standard,
-                  textInputType: TextInputType.text,
+                  variant: YgFieldVariant.standard,
+                  keyboardType: TextInputType.text,
                   textInputAction: TextInputAction.next,
                   textCapitalization: TextCapitalization.words,
                   autocorrect: true,
                 ),
                 const YgTextField(
                   label: 'Outlined',
-                  variant: YgTextFieldVariant.outlined,
-                  textInputType: TextInputType.text,
+                  variant: YgFieldVariant.outlined,
+                  keyboardType: TextInputType.text,
                   textInputAction: TextInputAction.next,
                   textCapitalization: TextCapitalization.words,
                   autocorrect: true,
@@ -118,11 +124,11 @@ class _TextFieldScreenState extends State<TextFieldScreen> {
               title: 'Login form example',
               subtitle: 'See example code for best-practice usage.',
               child: Form(
-                key: formKey,
+                key: _formKey,
                 child: Column(
                   children: <Widget>[
                     YgTextFormField.email(
-                      key: emailKey,
+                      key: _emailKey,
                       label: 'Email',
                       textInputAction: TextInputAction.next,
                       validators: <FormFieldValidator<String>>[
@@ -135,7 +141,7 @@ class _TextFieldScreenState extends State<TextFieldScreen> {
                       ],
                     ),
                     YgTextFormField.password(
-                      key: passwordKey,
+                      key: _passwordKey,
                       label: 'Password',
                       textInputAction: TextInputAction.done,
                       validators: <FormFieldValidator<String>>[
@@ -148,7 +154,7 @@ class _TextFieldScreenState extends State<TextFieldScreen> {
                       ],
                     ),
                     YgTextFormField.password(
-                      key: passwordConfirmKey,
+                      key: _passwordConfirmKey,
                       label: 'Confirm password',
                       textInputAction: TextInputAction.done,
                       validators: <FormFieldValidator<String>>[
@@ -156,7 +162,7 @@ class _TextFieldScreenState extends State<TextFieldScreen> {
                           requiredError: 'This field is required!',
                         ),
                         MatchValidator<String>(
-                          otherFieldKey: passwordKey,
+                          otherFieldKey: _passwordKey,
                           error: 'Passwords do not match!',
                         ),
                       ],
@@ -178,12 +184,12 @@ class _TextFieldScreenState extends State<TextFieldScreen> {
   void _onSubmit() {
     FocusScope.of(context).unfocus();
 
-    if (!formKey.validate()) {
+    if (!_formKey.validate()) {
       return;
     }
 
-    final String email = emailKey.value ?? '';
-    final String password = passwordKey.value ?? '';
+    final String email = _emailKey.value ?? '';
+    final String password = _passwordKey.value ?? '';
 
     ScaffoldMessenger.of(context).showSnackBar(
       YgSnackBar(

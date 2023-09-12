@@ -1,4 +1,0 @@
-enum YgTextFieldVariant {
-  outlined,
-  standard,
-}

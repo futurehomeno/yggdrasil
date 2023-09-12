@@ -24,7 +24,7 @@ class YgCheckbox extends StatefulWidget with StatefulWidgetDebugMixin {
   ///
   /// The checkbox itself does not maintain any state. Instead, when the state of
   /// the checkbox changes, the widget calls the [onChanged] callback.
-  final Function(bool? newValue)? onChanged;
+  final ValueChanged<bool?>? onChanged;
 
   /// Enables `null` as a valid third state for the checkbox.
   ///
@@ -40,6 +40,15 @@ class YgCheckbox extends StatefulWidget with StatefulWidgetDebugMixin {
 
   @override
   State<YgCheckbox> createState() => _YgCheckboxState();
+
+  @override
+  YgDebugType get debugType {
+    if (onChanged == null) {
+      return YgDebugType.other;
+    }
+
+    return YgDebugType.intractable;
+  }
 }
 
 class _YgCheckboxState extends State<YgCheckbox> {
@@ -165,7 +174,7 @@ class _YgCheckboxState extends State<YgCheckbox> {
   }
 
   void _onTap() {
-    final Function(bool? newValue)? onChanged = widget.onChanged;
+    final ValueChanged<bool>? onChanged = widget.onChanged;
     if (onChanged != null) {
       final bool? nextValue = YgCheckboxHelpers.getNextValue(widget.value, widget.triState);
       widget.onChanged?.call(nextValue);

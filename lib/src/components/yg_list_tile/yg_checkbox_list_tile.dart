@@ -12,7 +12,7 @@ class YgCheckboxListTile extends StatelessWidget {
     required this.onChanged,
     this.subtitle,
     this.subtitleIcon,
-    this.trailingWidget,
+    this.leadingWidget,
     this.triState = false,
   });
 
@@ -29,32 +29,38 @@ class YgCheckboxListTile extends StatelessWidget {
   final bool? value;
 
   /// See [YgCheckbox] documentation.
-  final Function(bool? newValue)? onChanged;
+  final ValueChanged<bool?>? onChanged;
 
   /// See [YgCheckbox] documentation.
   final bool triState;
 
   /// Optional widget to display before the switch.
-  final Widget? trailingWidget;
+  final Widget? leadingWidget;
 
   @override
   Widget build(BuildContext context) {
+    final Widget? leadingWidget = this.leadingWidget;
+
+    final AbsorbPointer checkbox = AbsorbPointer(
+      child: YgNoFocus(
+        child: YgCheckbox(
+          value: value,
+          onChanged: onChanged,
+          triState: triState,
+        ),
+      ),
+    );
+
     return YgListTile(
       title: title,
       subtitle: subtitle,
       subtitleIcon: subtitleIcon,
       onTap: onChanged == null ? null : _onTap,
+      leadingWidgets: <Widget>[
+        if (leadingWidget == null) checkbox else leadingWidget,
+      ],
       trailingWidgets: <Widget>[
-        if (trailingWidget != null) trailingWidget!,
-        AbsorbPointer(
-          child: YgNoFocus(
-            child: YgCheckbox(
-              value: value,
-              onChanged: onChanged,
-              triState: triState,
-            ),
-          ),
-        ),
+        if (leadingWidget != null) checkbox,
       ],
     );
   }

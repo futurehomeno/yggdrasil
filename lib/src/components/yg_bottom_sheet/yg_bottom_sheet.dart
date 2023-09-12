@@ -3,7 +3,8 @@ import 'package:yggdrasil/src/components/yg_bottom_sheet/yg_bottom_sheet_header.
 import 'package:yggdrasil/yggdrasil.dart';
 
 // TODO(bjhandeland): potentially expose the scroll controller.
-class YgBottomSheet extends StatefulWidget with StatefulWidgetDebugMixin {
+// TODO(DEV-1919): find a way to allow slivers being used, in case of long lists.
+class YgBottomSheet extends StatelessWidget with StatelessWidgetDebugMixin {
   const YgBottomSheet({
     super.key,
     required this.title,
@@ -16,19 +17,6 @@ class YgBottomSheet extends StatefulWidget with StatefulWidgetDebugMixin {
   final YgButtonGroup? footerButtons;
 
   @override
-  State<YgBottomSheet> createState() => _YgBottomSheetState();
-}
-
-class _YgBottomSheetState extends State<YgBottomSheet> {
-  final ScrollController _scrollController = ScrollController();
-
-  @override
-  void dispose() {
-    _scrollController.dispose();
-    super.dispose();
-  }
-
-  @override
   Widget build(BuildContext context) {
     final YgBottomSheetTheme bottomSheetTheme = context.bottomSheetTheme;
     final YgBottomSheetScrollPhysicsProvider? scrollPhysicsProvider =
@@ -38,25 +26,23 @@ class _YgBottomSheetState extends State<YgBottomSheet> {
       child: Material(
         borderRadius: bottomSheetTheme.borderRadius,
         color: bottomSheetTheme.backgroundColor,
+        clipBehavior: Clip.antiAlias,
         child: SafeArea(
           top: false,
-          child: ClipRRect(
-            borderRadius: bottomSheetTheme.borderRadius,
-            child: Padding(
-              padding: bottomSheetTheme.verticalOuterPadding,
-              child: Column(
-                mainAxisSize: MainAxisSize.min,
-                crossAxisAlignment: CrossAxisAlignment.stretch,
-                children: <Widget>[
-                  YgBottomSheetHeader(title: widget.title),
-                  _buildContent(scrollPhysicsProvider),
-                  if (widget.footerButtons != null)
-                    Padding(
-                      padding: bottomSheetTheme.footerPadding,
-                      child: widget.footerButtons!,
-                    ),
-                ].withVerticalSpacing(bottomSheetTheme.contentSpacing),
-              ),
+          child: Padding(
+            padding: bottomSheetTheme.verticalOuterPadding,
+            child: Column(
+              mainAxisSize: MainAxisSize.min,
+              crossAxisAlignment: CrossAxisAlignment.stretch,
+              children: <Widget>[
+                YgBottomSheetHeader(title: title),
+                _buildContent(scrollPhysicsProvider),
+                if (footerButtons != null)
+                  Padding(
+                    padding: bottomSheetTheme.footerPadding,
+                    child: footerButtons!,
+                  ),
+              ].withVerticalSpacing(bottomSheetTheme.contentSpacing),
             ),
           ),
         ),
@@ -68,13 +54,14 @@ class _YgBottomSheetState extends State<YgBottomSheet> {
     YgBottomSheetScrollPhysicsProvider? scrollPhysicsProvider,
   ) {
     return Flexible(
-      child: YgScrollShadow(
-        controller: _scrollController,
-        child: SingleChildScrollView(
-          controller: _scrollController,
-          physics: scrollPhysicsProvider?.scrollPhysics,
-          child: widget.content,
-        ),
+      child: YgScrollShadow.builder(
+        builder: (BuildContext context, ScrollController controller) {
+          return SingleChildScrollView(
+            controller: controller,
+            physics: scrollPhysicsProvider?.scrollPhysics,
+            child: content,
+          );
+        },
       ),
     );
   }

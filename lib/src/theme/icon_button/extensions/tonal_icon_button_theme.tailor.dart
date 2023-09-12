@@ -14,18 +14,21 @@ class TonalIconButtonTheme extends ThemeExtension<TonalIconButtonTheme> {
     required this.disabledBackgroundColor,
     required this.disabledIconColor,
     required this.iconColor,
+    required this.pressedColor,
   });
 
   final Color backgroundColor;
   final Color disabledBackgroundColor;
   final Color disabledIconColor;
   final Color iconColor;
+  final Color pressedColor;
 
   static final TonalIconButtonTheme consumerLight = TonalIconButtonTheme(
     backgroundColor: _$TonalIconButtonTheme.backgroundColor[0],
     disabledBackgroundColor: _$TonalIconButtonTheme.disabledBackgroundColor[0],
     disabledIconColor: _$TonalIconButtonTheme.disabledIconColor[0],
     iconColor: _$TonalIconButtonTheme.iconColor[0],
+    pressedColor: _$TonalIconButtonTheme.pressedColor[0],
   );
 
   static final TonalIconButtonTheme consumerDark = TonalIconButtonTheme(
@@ -33,6 +36,7 @@ class TonalIconButtonTheme extends ThemeExtension<TonalIconButtonTheme> {
     disabledBackgroundColor: _$TonalIconButtonTheme.disabledBackgroundColor[1],
     disabledIconColor: _$TonalIconButtonTheme.disabledIconColor[1],
     iconColor: _$TonalIconButtonTheme.iconColor[1],
+    pressedColor: _$TonalIconButtonTheme.pressedColor[1],
   );
 
   static final TonalIconButtonTheme professionalLight = TonalIconButtonTheme(
@@ -40,6 +44,7 @@ class TonalIconButtonTheme extends ThemeExtension<TonalIconButtonTheme> {
     disabledBackgroundColor: _$TonalIconButtonTheme.disabledBackgroundColor[2],
     disabledIconColor: _$TonalIconButtonTheme.disabledIconColor[2],
     iconColor: _$TonalIconButtonTheme.iconColor[2],
+    pressedColor: _$TonalIconButtonTheme.pressedColor[2],
   );
 
   static final TonalIconButtonTheme professionalDark = TonalIconButtonTheme(
@@ -47,6 +52,7 @@ class TonalIconButtonTheme extends ThemeExtension<TonalIconButtonTheme> {
     disabledBackgroundColor: _$TonalIconButtonTheme.disabledBackgroundColor[3],
     disabledIconColor: _$TonalIconButtonTheme.disabledIconColor[3],
     iconColor: _$TonalIconButtonTheme.iconColor[3],
+    pressedColor: _$TonalIconButtonTheme.pressedColor[3],
   );
 
   static final themes = [
@@ -62,6 +68,7 @@ class TonalIconButtonTheme extends ThemeExtension<TonalIconButtonTheme> {
     Color? disabledBackgroundColor,
     Color? disabledIconColor,
     Color? iconColor,
+    Color? pressedColor,
   }) {
     return TonalIconButtonTheme(
       backgroundColor: backgroundColor ?? this.backgroundColor,
@@ -69,6 +76,7 @@ class TonalIconButtonTheme extends ThemeExtension<TonalIconButtonTheme> {
           disabledBackgroundColor ?? this.disabledBackgroundColor,
       disabledIconColor: disabledIconColor ?? this.disabledIconColor,
       iconColor: iconColor ?? this.iconColor,
+      pressedColor: pressedColor ?? this.pressedColor,
     );
   }
 
@@ -83,6 +91,7 @@ class TonalIconButtonTheme extends ThemeExtension<TonalIconButtonTheme> {
       disabledIconColor:
           Color.lerp(disabledIconColor, other.disabledIconColor, t)!,
       iconColor: Color.lerp(iconColor, other.iconColor, t)!,
+      pressedColor: Color.lerp(pressedColor, other.pressedColor, t)!,
     );
   }
 
@@ -97,7 +106,9 @@ class TonalIconButtonTheme extends ThemeExtension<TonalIconButtonTheme> {
                 disabledBackgroundColor, other.disabledBackgroundColor) &&
             const DeepCollectionEquality()
                 .equals(disabledIconColor, other.disabledIconColor) &&
-            const DeepCollectionEquality().equals(iconColor, other.iconColor));
+            const DeepCollectionEquality().equals(iconColor, other.iconColor) &&
+            const DeepCollectionEquality()
+                .equals(pressedColor, other.pressedColor));
   }
 
   @override
@@ -108,6 +119,7 @@ class TonalIconButtonTheme extends ThemeExtension<TonalIconButtonTheme> {
       const DeepCollectionEquality().hash(disabledBackgroundColor),
       const DeepCollectionEquality().hash(disabledIconColor),
       const DeepCollectionEquality().hash(iconColor),
+      const DeepCollectionEquality().hash(pressedColor),
     );
   }
 }
