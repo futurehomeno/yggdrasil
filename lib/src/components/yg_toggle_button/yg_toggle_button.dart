@@ -10,7 +10,7 @@ import 'yg_toggle_button_style.dart';
 class YgToggleButton extends StatefulWidget with StatefulWidgetDebugMixin {
   const YgToggleButton({
     super.key,
-    required this.text,
+    required String this.text,
     required this.value,
     required this.onChanged,
     this.size = YgToggleButtonSize.medium,
