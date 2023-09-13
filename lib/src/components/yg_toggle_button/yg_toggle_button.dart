@@ -8,48 +8,22 @@ import 'yg_toggle_button_style.dart';
 
 /// Yggdrasil toggle button.
 class YgToggleButton extends StatefulWidget with StatefulWidgetDebugMixin {
-  const YgToggleButton._({
+  const YgToggleButton({
     super.key,
+    required String this.text,
     required this.value,
     required this.onChanged,
     this.size = YgToggleButtonSize.medium,
     this.icon,
-    this.text,
-  }) : assert(icon != null || text != null, 'Either icon or text must be provided.');
+  });
 
-  factory YgToggleButton.withIcon({
-    Key? key,
-    required bool value,
-    required ValueChanged<bool>? onChanged,
-    required String icon,
-    YgToggleButtonSize size = YgToggleButtonSize.medium,
-  }) {
-    return YgToggleButton._(
-      key: key,
-      value: value,
-      onChanged: onChanged,
-      icon: icon,
-      size: size,
-    );
-  }
-
-  factory YgToggleButton.withText({
-    Key? key,
-    required bool value,
-    required ValueChanged<bool>? onChanged,
-    required String text,
-    String? icon,
-    YgToggleButtonSize size = YgToggleButtonSize.medium,
-  }) {
-    return YgToggleButton._(
-      key: key,
-      value: value,
-      onChanged: onChanged,
-      icon: icon,
-      text: text,
-      size: size,
-    );
-  }
+  const YgToggleButton.icon({
+    super.key,
+    required String this.icon,
+    required this.value,
+    required this.onChanged,
+    this.size = YgToggleButtonSize.medium,
+  }) : text = null;
 
   /// The current value of the button.
   final bool value;
