@@ -58,18 +58,17 @@ class _YgToggleButtonState extends State<YgToggleButton> {
     setState(() {});
   }
 
-  final MaterialStatesController _statesController = MaterialStatesController();
-
-  void _initStatesController() {
-    _statesController.update(MaterialState.disabled, !widget._enabled);
-    _statesController.update(MaterialState.selected, widget._selected);
-    _statesController.addListener(_handleStatesControllerChange);
-  }
+  late final MaterialStatesController _statesController = MaterialStatesController(
+    <MaterialState>{
+      if (!widget._enabled) MaterialState.disabled,
+      if (widget._selected) MaterialState.selected,
+    },
+  );
 
   @override
   void initState() {
     super.initState();
-    _initStatesController();
+    _statesController.addListener(_handleStatesControllerChange);
   }
 
   @override
