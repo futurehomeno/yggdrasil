@@ -23,7 +23,7 @@ class YgToggleButton extends StatefulWidget with StatefulWidgetDebugMixin {
   ///
   /// The button itself does not maintain any state. Instead, when the state of
   /// the button changes, the widget calls the [onChanged] callback.
-  final Function(bool newValue)? onChanged;
+  final ValueChanged<bool>? onChanged;
 
   /// The size of the toggle button.
   final YgToggleButtonSize size;
