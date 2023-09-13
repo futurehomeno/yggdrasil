@@ -74,4 +74,7 @@ abstract class YgSection extends StatelessWidget with StatelessWidgetDebugMixin 
   }
 
   Widget buildChild(BuildContext context);
+
+  @override
+  YgDebugType get debugType => YgDebugType.layout;
 }

@@ -65,10 +65,10 @@ class _$YgBottomSheetTheme {
 
   // Vertical outer padding of thw whole sheet.
   static const List<EdgeInsets> verticalOuterPadding = <EdgeInsets>[
-    EdgeInsets.symmetric(vertical: consumer_light.FhDimensions.md),
-    EdgeInsets.symmetric(vertical: consumer_dark.FhDimensions.md),
-    EdgeInsets.symmetric(vertical: professional_light.FhDimensions.md),
-    EdgeInsets.symmetric(vertical: professional_dark.FhDimensions.md),
+    EdgeInsets.only(top: consumer_light.FhDimensions.md),
+    EdgeInsets.only(top: consumer_dark.FhDimensions.md),
+    EdgeInsets.only(top: professional_light.FhDimensions.md),
+    EdgeInsets.only(top: professional_dark.FhDimensions.md),
   ];
 
   static const List<EdgeInsets> headerHorizontalPadding = <EdgeInsets>[
@@ -95,10 +95,26 @@ class _$YgBottomSheetTheme {
   ];
 
   static const List<EdgeInsets> footerPadding = <EdgeInsets>[
-    EdgeInsets.symmetric(horizontal: consumer_light.FhDimensions.md),
-    EdgeInsets.symmetric(horizontal: consumer_dark.FhDimensions.md),
-    EdgeInsets.symmetric(horizontal: professional_light.FhDimensions.md),
-    EdgeInsets.symmetric(horizontal: professional_dark.FhDimensions.md),
+    EdgeInsets.only(
+      bottom: consumer_light.FhDimensions.md,
+      left: consumer_light.FhDimensions.md,
+      right: consumer_light.FhDimensions.md,
+    ),
+    EdgeInsets.only(
+      bottom: consumer_dark.FhDimensions.md,
+      left: consumer_dark.FhDimensions.md,
+      right: consumer_dark.FhDimensions.md,
+    ),
+    EdgeInsets.only(
+      bottom: professional_light.FhDimensions.md,
+      left: professional_light.FhDimensions.md,
+      right: professional_light.FhDimensions.md,
+    ),
+    EdgeInsets.only(
+      bottom: professional_dark.FhDimensions.md,
+      left: professional_dark.FhDimensions.md,
+      right: professional_dark.FhDimensions.md,
+    ),
   ];
 
   static final List<TextStyle> titleStyle = <TextStyle>[

@@ -14,18 +14,21 @@ class FilledIconButtonTheme extends ThemeExtension<FilledIconButtonTheme> {
     required this.disabledBackgroundColor,
     required this.disabledIconColor,
     required this.iconColor,
+    required this.pressedColor,
   });
 
   final Color backgroundColor;
   final Color disabledBackgroundColor;
   final Color disabledIconColor;
   final Color iconColor;
+  final Color pressedColor;
 
   static final FilledIconButtonTheme consumerLight = FilledIconButtonTheme(
     backgroundColor: _$FilledIconButtonTheme.backgroundColor[0],
     disabledBackgroundColor: _$FilledIconButtonTheme.disabledBackgroundColor[0],
     disabledIconColor: _$FilledIconButtonTheme.disabledIconColor[0],
     iconColor: _$FilledIconButtonTheme.iconColor[0],
+    pressedColor: _$FilledIconButtonTheme.pressedColor[0],
   );
 
   static final FilledIconButtonTheme consumerDark = FilledIconButtonTheme(
@@ -33,6 +36,7 @@ class FilledIconButtonTheme extends ThemeExtension<FilledIconButtonTheme> {
     disabledBackgroundColor: _$FilledIconButtonTheme.disabledBackgroundColor[1],
     disabledIconColor: _$FilledIconButtonTheme.disabledIconColor[1],
     iconColor: _$FilledIconButtonTheme.iconColor[1],
+    pressedColor: _$FilledIconButtonTheme.pressedColor[1],
   );
 
   static final FilledIconButtonTheme professionalLight = FilledIconButtonTheme(
@@ -40,6 +44,7 @@ class FilledIconButtonTheme extends ThemeExtension<FilledIconButtonTheme> {
     disabledBackgroundColor: _$FilledIconButtonTheme.disabledBackgroundColor[2],
     disabledIconColor: _$FilledIconButtonTheme.disabledIconColor[2],
     iconColor: _$FilledIconButtonTheme.iconColor[2],
+    pressedColor: _$FilledIconButtonTheme.pressedColor[2],
   );
 
   static final FilledIconButtonTheme professionalDark = FilledIconButtonTheme(
@@ -47,6 +52,7 @@ class FilledIconButtonTheme extends ThemeExtension<FilledIconButtonTheme> {
     disabledBackgroundColor: _$FilledIconButtonTheme.disabledBackgroundColor[3],
     disabledIconColor: _$FilledIconButtonTheme.disabledIconColor[3],
     iconColor: _$FilledIconButtonTheme.iconColor[3],
+    pressedColor: _$FilledIconButtonTheme.pressedColor[3],
   );
 
   static final themes = [
@@ -62,6 +68,7 @@ class FilledIconButtonTheme extends ThemeExtension<FilledIconButtonTheme> {
     Color? disabledBackgroundColor,
     Color? disabledIconColor,
     Color? iconColor,
+    Color? pressedColor,
   }) {
     return FilledIconButtonTheme(
       backgroundColor: backgroundColor ?? this.backgroundColor,
@@ -69,6 +76,7 @@ class FilledIconButtonTheme extends ThemeExtension<FilledIconButtonTheme> {
           disabledBackgroundColor ?? this.disabledBackgroundColor,
       disabledIconColor: disabledIconColor ?? this.disabledIconColor,
       iconColor: iconColor ?? this.iconColor,
+      pressedColor: pressedColor ?? this.pressedColor,
     );
   }
 
@@ -83,6 +91,7 @@ class FilledIconButtonTheme extends ThemeExtension<FilledIconButtonTheme> {
       disabledIconColor:
           Color.lerp(disabledIconColor, other.disabledIconColor, t)!,
       iconColor: Color.lerp(iconColor, other.iconColor, t)!,
+      pressedColor: Color.lerp(pressedColor, other.pressedColor, t)!,
     );
   }
 
@@ -97,7 +106,9 @@ class FilledIconButtonTheme extends ThemeExtension<FilledIconButtonTheme> {
                 disabledBackgroundColor, other.disabledBackgroundColor) &&
             const DeepCollectionEquality()
                 .equals(disabledIconColor, other.disabledIconColor) &&
-            const DeepCollectionEquality().equals(iconColor, other.iconColor));
+            const DeepCollectionEquality().equals(iconColor, other.iconColor) &&
+            const DeepCollectionEquality()
+                .equals(pressedColor, other.pressedColor));
   }
 
   @override
@@ -108,6 +119,7 @@ class FilledIconButtonTheme extends ThemeExtension<FilledIconButtonTheme> {
       const DeepCollectionEquality().hash(disabledBackgroundColor),
       const DeepCollectionEquality().hash(disabledIconColor),
       const DeepCollectionEquality().hash(iconColor),
+      const DeepCollectionEquality().hash(pressedColor),
     );
   }
 }

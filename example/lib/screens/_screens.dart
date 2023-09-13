@@ -7,6 +7,7 @@ export 'card/_card.dart';
 export 'checkbox/_checkbox.dart';
 export 'dialog/_dialog.dart';
 export 'divider/_divider.dart';
+export 'dropdown_field/_dropdown_field.dart';
 export 'gauge/_gauge.dart';
 export 'home_screen.dart';
 export 'icon/_icon.dart';
