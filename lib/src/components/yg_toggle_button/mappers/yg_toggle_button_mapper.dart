@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:yggdrasil/src/components/yg_toggle_button/enums/_enums.dart';
+import 'package:yggdrasil/src/components/yg_toggle_button/enums/yg_toggle_button_variant.dart';
 import 'package:yggdrasil/src/theme/_theme.dart';
 
 class YgToggleButtonMapper {

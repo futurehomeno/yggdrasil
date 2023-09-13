@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:yggdrasil/src/components/yg_toggle_button/enums/yg_toggle_button_variant.dart';
 import 'package:yggdrasil/yggdrasil.dart';
 
 import 'mappers/_mappers.dart';
@@ -7,7 +8,7 @@ import 'yg_toggle_button_style.dart';
 
 /// Yggdrasil toggle button.
 class YgToggleButton extends StatefulWidget with StatefulWidgetDebugMixin {
-  const YgToggleButton({
+  const YgToggleButton._({
     super.key,
     required this.value,
     required this.onChanged,
@@ -15,6 +16,40 @@ class YgToggleButton extends StatefulWidget with StatefulWidgetDebugMixin {
     this.icon,
     this.text,
   }) : assert(icon != null || text != null, 'Either icon or text must be provided.');
+
+  factory YgToggleButton.withIcon({
+    Key? key,
+    required bool value,
+    required ValueChanged<bool>? onChanged,
+    required String icon,
+    YgToggleButtonSize size = YgToggleButtonSize.medium,
+  }) {
+    return YgToggleButton._(
+      key: key,
+      value: value,
+      onChanged: onChanged,
+      icon: icon,
+      size: size,
+    );
+  }
+
+  factory YgToggleButton.withText({
+    Key? key,
+    required bool value,
+    required ValueChanged<bool>? onChanged,
+    required String text,
+    String? icon,
+    YgToggleButtonSize size = YgToggleButtonSize.medium,
+  }) {
+    return YgToggleButton._(
+      key: key,
+      value: value,
+      onChanged: onChanged,
+      icon: icon,
+      text: text,
+      size: size,
+    );
+  }
 
   /// The current value of the button.
   final bool value;
@@ -81,10 +116,6 @@ class _YgToggleButtonState extends State<YgToggleButton> {
 
     if (widget._enabled != oldWidget._enabled) {
       _statesController.update(MaterialState.disabled, !widget._enabled);
-      if (!widget._enabled) {
-        // The toggle button may have been disabled while a press gesture is currently underway.
-        _statesController.update(MaterialState.pressed, false);
-      }
     }
   }
 
@@ -195,6 +226,7 @@ class _YgToggleButtonState extends State<YgToggleButton> {
     return YgIconSize.small;
   }
 
+  // TODO(DEV-1936): Handle this in a better way.
   YgToggleButtonVariant get _variant {
     if (_onlyIcon) {
       return YgToggleButtonVariant.icon;
