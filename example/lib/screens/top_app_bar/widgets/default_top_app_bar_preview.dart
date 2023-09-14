@@ -94,9 +94,9 @@ class _DefaultTopAppBarPreviewState extends State<DefaultTopAppBarPreview> {
         return const YgIcon(YgIcons.deviceHub);
       case 'No leading':
         return const SizedBox();
-      default:
-        return const SizedBox();
     }
+
+    return null;
   }
 
   List<Widget>? get _actionsWidget {
@@ -117,9 +117,9 @@ class _DefaultTopAppBarPreviewState extends State<DefaultTopAppBarPreview> {
           YgIcon(YgIcons.edit),
           SizedBox(width: 10.0),
         ];
-      default:
-        return null;
     }
+
+    return null;
   }
 
   String get _currentLeadingState {

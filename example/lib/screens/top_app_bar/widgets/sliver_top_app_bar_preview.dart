@@ -133,9 +133,9 @@ class _SliverTopAppBarPreviewState extends State<SliverTopAppBarPreview> {
         return const YgIcon(YgIcons.deviceHub);
       case 'No leading':
         return const SizedBox();
-      default:
-        return const SizedBox();
     }
+
+    return null;
   }
 
   List<Widget>? get _actionsWidget {
@@ -156,9 +156,9 @@ class _SliverTopAppBarPreviewState extends State<SliverTopAppBarPreview> {
           YgIcon(YgIcons.edit),
           SizedBox(width: 10.0),
         ];
-      default:
-        return null;
     }
+
+    return null;
   }
 
   String get _currentLeadingState {

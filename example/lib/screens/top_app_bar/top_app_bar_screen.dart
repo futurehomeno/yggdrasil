@@ -23,7 +23,7 @@ class TopAppBarScreen extends StatelessWidget {
       componentDesc: 'TopAppBar',
       supernovaLink: 'Link',
       child: SizedBox(
-        height: MediaQuery.of(context).size.height,
+        height: MediaQuery.sizeOf(context).height,
         child: const Column(
           children: <Widget>[
             YgListTile(title: 'Default non-sliver TopAppBar'),

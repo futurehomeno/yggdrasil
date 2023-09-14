@@ -27,26 +27,26 @@ class YgTopAppBar extends StatefulWidget implements PreferredSizeWidget {
 }
 
 class _YgTopAppBarState extends State<YgTopAppBar> {
-  Widget? leading;
+  Widget? _leading;
 
   @override
   Widget build(BuildContext context) {
     final YgTopAppBarTheme theme = context.topAppBarTheme;
 
     final ScaffoldState? scaffold = Scaffold.maybeOf(context);
-    final ModalRoute<dynamic>? parentRoute = ModalRoute.of(context);
+    final ModalRoute<Object?>? parentRoute = ModalRoute.of(context);
     final bool canPop = parentRoute?.canPop ?? false;
     final bool hasEndDrawer = scaffold?.hasEndDrawer ?? false;
-    final bool useCloseButton = parentRoute is PageRoute<dynamic> && parentRoute.fullscreenDialog;
+    final bool useCloseButton = parentRoute is PageRoute<Object?> && parentRoute.fullscreenDialog;
 
     if (widget.leading == null && widget.automaticallyImplyLeading) {
       if (widget.hasDrawer) {
         // TODO(DEV-1928): Turn this into an YgIcon whenever we introduce drawers in apps.
-        leading = DrawerButton(
+        _leading = DrawerButton(
           style: IconButton.styleFrom(iconSize: theme.leadingSize),
         );
       } else if ((!hasEndDrawer && canPop) || (parentRoute?.impliesAppBarDismissal ?? false)) {
-        leading = YgIconButton(
+        _leading = YgIconButton(
           onPressed: () => Navigator.maybePop(context),
           child: YgIcon(useCloseButton ? YgIcons.coverRemove : YgIcons.caretLeft),
         );
@@ -54,7 +54,7 @@ class _YgTopAppBarState extends State<YgTopAppBar> {
     }
 
     if (widget.leading != null) {
-      leading = ConstrainedBox(
+      _leading = ConstrainedBox(
         constraints: BoxConstraints.tightFor(width: theme.leadingSize),
         child: widget.leading,
       );
@@ -65,7 +65,7 @@ class _YgTopAppBarState extends State<YgTopAppBar> {
       surfaceTintColor: Colors.transparent,
       backgroundColor: theme.backgroundColor,
       automaticallyImplyLeading: widget.automaticallyImplyLeading,
-      leading: leading,
+      leading: _leading,
       centerTitle: widget.centerTitle,
       title: Text(
         widget.title,
