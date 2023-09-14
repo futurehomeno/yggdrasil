@@ -24,6 +24,7 @@ import 'snack_bar/_snack_bar.dart';
 import 'switch/_switch.dart';
 import 'tag/_tag.dart';
 import 'text_link/_text_link.dart';
+import 'toggle_button/_toggle_button.dart';
 import 'tokens/_tokens.dart';
 import 'top_app_bar/_top_app_bar.dart';
 
@@ -84,13 +85,13 @@ class _$YgTheme {
   static final List<YgListTileTheme> listTileTheme = YgListTileTheme.themes;
 
   @themeExtension
+  static final List<YgProgressIndicatorTheme> progressIndicatorTheme = YgProgressIndicatorTheme.themes;
+
+  @themeExtension
   static final List<YgRadioTheme> radioTheme = YgRadioTheme.themes;
 
   @themeExtension
   static final List<YgSectionTheme> sectionTheme = YgSectionTheme.themes;
-
-  @themeExtension
-  static final List<YgProgressIndicatorTheme> progressIndicatorTheme = YgProgressIndicatorTheme.themes;
 
   @themeExtension
   static final List<YgSnackBarTheme> snackBarTheme = YgSnackBarTheme.themes;
@@ -103,6 +104,9 @@ class _$YgTheme {
 
   @themeExtension
   static final List<YgTextLinkTheme> textLinkTheme = YgTextLinkTheme.themes;
+
+  @themeExtension
+  static final List<YgToggleButtonTheme> toggleButtonTheme = YgToggleButtonTheme.themes;
 
   @themeExtension
   static final List<YgTopAppBarTheme> topAppBarTheme = YgTopAppBarTheme.themes;
