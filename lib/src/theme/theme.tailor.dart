@@ -31,6 +31,7 @@ class YgTheme extends ThemeExtension<YgTheme> {
     required this.sectionTheme,
     required this.snackBarTheme,
     required this.switchTheme,
+    required this.tabsTheme,
     required this.tagTheme,
     required this.textLinkTheme,
     required this.toggleButtonTheme,
@@ -58,6 +59,7 @@ class YgTheme extends ThemeExtension<YgTheme> {
   final YgSectionTheme sectionTheme;
   final YgSnackBarTheme snackBarTheme;
   final YgSwitchTheme switchTheme;
+  final YgTabsTheme tabsTheme;
   final YgTagTheme tagTheme;
   final YgTextLinkTheme textLinkTheme;
   final YgToggleButtonTheme toggleButtonTheme;
@@ -85,6 +87,7 @@ class YgTheme extends ThemeExtension<YgTheme> {
     sectionTheme: _$YgTheme.sectionTheme[0],
     snackBarTheme: _$YgTheme.snackBarTheme[0],
     switchTheme: _$YgTheme.switchTheme[0],
+    tabsTheme: _$YgTheme.tabsTheme[0],
     tagTheme: _$YgTheme.tagTheme[0],
     textLinkTheme: _$YgTheme.textLinkTheme[0],
     toggleButtonTheme: _$YgTheme.toggleButtonTheme[0],
@@ -113,6 +116,7 @@ class YgTheme extends ThemeExtension<YgTheme> {
     sectionTheme: _$YgTheme.sectionTheme[1],
     snackBarTheme: _$YgTheme.snackBarTheme[1],
     switchTheme: _$YgTheme.switchTheme[1],
+    tabsTheme: _$YgTheme.tabsTheme[1],
     tagTheme: _$YgTheme.tagTheme[1],
     textLinkTheme: _$YgTheme.textLinkTheme[1],
     toggleButtonTheme: _$YgTheme.toggleButtonTheme[1],
@@ -141,6 +145,7 @@ class YgTheme extends ThemeExtension<YgTheme> {
     sectionTheme: _$YgTheme.sectionTheme[2],
     snackBarTheme: _$YgTheme.snackBarTheme[2],
     switchTheme: _$YgTheme.switchTheme[2],
+    tabsTheme: _$YgTheme.tabsTheme[2],
     tagTheme: _$YgTheme.tagTheme[2],
     textLinkTheme: _$YgTheme.textLinkTheme[2],
     toggleButtonTheme: _$YgTheme.toggleButtonTheme[2],
@@ -169,6 +174,7 @@ class YgTheme extends ThemeExtension<YgTheme> {
     sectionTheme: _$YgTheme.sectionTheme[3],
     snackBarTheme: _$YgTheme.snackBarTheme[3],
     switchTheme: _$YgTheme.switchTheme[3],
+    tabsTheme: _$YgTheme.tabsTheme[3],
     tagTheme: _$YgTheme.tagTheme[3],
     textLinkTheme: _$YgTheme.textLinkTheme[3],
     toggleButtonTheme: _$YgTheme.toggleButtonTheme[3],
@@ -205,6 +211,7 @@ class YgTheme extends ThemeExtension<YgTheme> {
     YgSectionTheme? sectionTheme,
     YgSnackBarTheme? snackBarTheme,
     YgSwitchTheme? switchTheme,
+    YgTabsTheme? tabsTheme,
     YgTagTheme? tagTheme,
     YgTextLinkTheme? textLinkTheme,
     YgToggleButtonTheme? toggleButtonTheme,
@@ -233,6 +240,7 @@ class YgTheme extends ThemeExtension<YgTheme> {
       sectionTheme: sectionTheme ?? this.sectionTheme,
       snackBarTheme: snackBarTheme ?? this.snackBarTheme,
       switchTheme: switchTheme ?? this.switchTheme,
+      tabsTheme: tabsTheme ?? this.tabsTheme,
       tagTheme: tagTheme ?? this.tagTheme,
       textLinkTheme: textLinkTheme ?? this.textLinkTheme,
       toggleButtonTheme: toggleButtonTheme ?? this.toggleButtonTheme,
@@ -273,6 +281,7 @@ class YgTheme extends ThemeExtension<YgTheme> {
       snackBarTheme:
           snackBarTheme.lerp(other.snackBarTheme, t) as YgSnackBarTheme,
       switchTheme: switchTheme.lerp(other.switchTheme, t) as YgSwitchTheme,
+      tabsTheme: tabsTheme.lerp(other.tabsTheme, t) as YgTabsTheme,
       tagTheme: tagTheme.lerp(other.tagTheme, t) as YgTagTheme,
       textLinkTheme:
           textLinkTheme.lerp(other.textLinkTheme, t) as YgTextLinkTheme,
@@ -326,6 +335,7 @@ class YgTheme extends ThemeExtension<YgTheme> {
                 .equals(snackBarTheme, other.snackBarTheme) &&
             const DeepCollectionEquality()
                 .equals(switchTheme, other.switchTheme) &&
+            const DeepCollectionEquality().equals(tabsTheme, other.tabsTheme) &&
             const DeepCollectionEquality().equals(tagTheme, other.tagTheme) &&
             const DeepCollectionEquality()
                 .equals(textLinkTheme, other.textLinkTheme) &&
@@ -359,6 +369,7 @@ class YgTheme extends ThemeExtension<YgTheme> {
       const DeepCollectionEquality().hash(sectionTheme),
       const DeepCollectionEquality().hash(snackBarTheme),
       const DeepCollectionEquality().hash(switchTheme),
+      const DeepCollectionEquality().hash(tabsTheme),
       const DeepCollectionEquality().hash(tagTheme),
       const DeepCollectionEquality().hash(textLinkTheme),
       const DeepCollectionEquality().hash(toggleButtonTheme),
@@ -391,6 +402,7 @@ extension YgThemeBuildContextProps on BuildContext {
   YgSectionTheme get sectionTheme => ygTheme.sectionTheme;
   YgSnackBarTheme get snackBarTheme => ygTheme.snackBarTheme;
   YgSwitchTheme get switchTheme => ygTheme.switchTheme;
+  YgTabsTheme get tabsTheme => ygTheme.tabsTheme;
   YgTagTheme get tagTheme => ygTheme.tagTheme;
   YgTextLinkTheme get textLinkTheme => ygTheme.textLinkTheme;
   YgToggleButtonTheme get toggleButtonTheme => ygTheme.toggleButtonTheme;

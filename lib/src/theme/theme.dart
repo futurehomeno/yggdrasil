@@ -22,6 +22,7 @@ import 'radio/_radio.dart';
 import 'section/_section.dart';
 import 'snack_bar/_snack_bar.dart';
 import 'switch/_switch.dart';
+import 'tabs/_tabs.dart';
 import 'tag/_tag.dart';
 import 'text_link/_text_link.dart';
 import 'toggle_button/_toggle_button.dart';
@@ -91,6 +92,9 @@ class _$YgTheme {
 
   @themeExtension
   static final List<YgSwitchTheme> switchTheme = YgSwitchTheme.themes;
+
+  @themeExtension
+  static final List<YgTabsTheme> tabsTheme = YgTabsTheme.themes;
 
   @themeExtension
   static final List<YgTagTheme> tagTheme = YgTagTheme.themes;
