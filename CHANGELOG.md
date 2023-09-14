@@ -1,3 +1,11 @@
+# 1.6.0 [14.09.2023 08:35]
+
+[feature] Added YgDropdownField and YgDropdownFormField components.
+[feature] Added YgToggleButton component.
+[improvement] Added different types for debugging outlines and updated interface to toggle them.
+[improvement] YgTextFieldSize is now YgFieldSize and is compatible with other yggdrasil fields.
+[improvement] YgTextFieldVariant is now YgFieldVariant and is compatible with other yggdrasil fields.
+
 # 1.5.3 [01.09.2023 11:28]
 
 [fix] Limit YgRadio- and YgCheckboxGroup to contain max 5 items.
