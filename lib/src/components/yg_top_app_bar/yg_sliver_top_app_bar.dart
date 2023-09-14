@@ -14,8 +14,9 @@ class YgSliverTopAppBar extends StatefulWidget {
     this.automaticallyImplyLeading = true,
   });
 
-  final bool pinned;
+  // TODO(DEV-1946): Fix the title of the sliver just vanishing when you scroll to a certain point.
   final String title;
+  final bool pinned;
   final bool centerTitle;
   final bool hasDrawer;
   final Widget? leading;
@@ -63,9 +64,8 @@ class _YgSliverTopAppBarState extends State<YgSliverTopAppBar> {
       );
     }
 
-    switch (widget.variant) {
-      case YgSliverTopAppBarVariant.large:
-        return SliverAppBar.large(
+    return switch (widget.variant) {
+      YgSliverTopAppBarVariant.large => SliverAppBar.large(
           actions: widget.actions,
           pinned: widget.pinned,
           shadowColor: theme.borderColor,
@@ -77,12 +77,13 @@ class _YgSliverTopAppBarState extends State<YgSliverTopAppBar> {
           centerTitle: widget.centerTitle,
           title: Text(
             widget.title,
-            style: theme.largeTopAppBarTheme.titleTextStyle,
+            style: YgSliverTopAppBarMapper.getTitleTextStyle(
+              theme: theme,
+              variant: YgSliverTopAppBarVariant.large,
+            ),
           ),
-        );
-
-      case YgSliverTopAppBarVariant.medium:
-        return SliverAppBar.medium(
+        ),
+      YgSliverTopAppBarVariant.medium => SliverAppBar.medium(
           actions: widget.actions,
           pinned: widget.pinned,
           shadowColor: theme.borderColor,
@@ -94,12 +95,13 @@ class _YgSliverTopAppBarState extends State<YgSliverTopAppBar> {
           centerTitle: widget.centerTitle,
           title: Text(
             widget.title,
-            style: theme.mediumTopAppBarTheme.titleTextStyle,
+            style: YgSliverTopAppBarMapper.getTitleTextStyle(
+              theme: theme,
+              variant: YgSliverTopAppBarVariant.medium,
+            ),
           ),
-        );
-
-      case YgSliverTopAppBarVariant.small:
-        return SliverAppBar(
+        ),
+      YgSliverTopAppBarVariant.small => SliverAppBar(
           actions: widget.actions,
           pinned: widget.pinned,
           shadowColor: theme.borderColor,
@@ -111,12 +113,12 @@ class _YgSliverTopAppBarState extends State<YgSliverTopAppBar> {
           centerTitle: widget.centerTitle,
           title: Text(
             widget.title,
-            style: theme.smallTopAppBarTheme.titleTextStyle,
+            style: YgSliverTopAppBarMapper.getTitleTextStyle(
+              theme: theme,
+              variant: YgSliverTopAppBarVariant.small,
+            ),
           ),
-        );
-
-      default:
-        return const SliverToBoxAdapter();
-    }
+        ),
+    };
   }
 }
