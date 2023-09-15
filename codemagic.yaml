@@ -154,8 +154,7 @@ workflows:
           RELEASE_RESPONSE=$(
             curl --data "{
               \"tag_name\": \"$TAG\", 
-              \"name\": \"TAG\", 
-              \"body\": \"Release description\", 
+              \"name\": \"$TAG\",
               \"draft\": false, 
               \"prerelease\": false
             }" \
