@@ -108,15 +108,6 @@ workflows:
         script: dart $CM_BUILD_DIR/cli/futurehome.dart ci cav $VERSION -uc || exit 1
 
 
-  test-tag:
-    name: Test tag
-    instance_type: mac_mini_m1
-
-    scripts:
-      - name: Tag test
-        script: echo $CM_TAG
-
-
   android-release:
     name: Android release
     instance_type: mac_mini_m1
@@ -164,14 +155,12 @@ workflows:
             # Change these variables accordingly
             REPO="futurehomeno/yggdrasil"
             ARTIFACT_PATH="build/app/outputs/flutter-apk/app-release.apk"
-            TAG="1.6.0+3"
-            echo $CM_TAG
   
             # Create a new release
             RELEASE_RESPONSE=$(
               curl --data "{
-                \"tag_name\": \"$TAG\", 
-                \"name\": \"$TAG\",
+                \"tag_name\": \"$CM_TAG\", 
+                \"name\": \"$CM_TAG\",
                 \"draft\": false, 
                 \"prerelease\": false
               }" \
