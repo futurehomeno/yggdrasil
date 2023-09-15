@@ -148,7 +148,7 @@ workflows:
           # Change these variables accordingly
           REPO="futurehomeno/yggdrasil"
           ARTIFACT_PATH="build/app/outputs/bundle/release/app-release.aab"
-          TAG="1.6.0+2"
+          TAG="1.6.0+3"
           
           # Create a new release
           RELEASE_RESPONSE=$(
