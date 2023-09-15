@@ -98,21 +98,25 @@ workflows:
 
     scripts:
       - name: Set up local.properties
+        working_directory: $CM_BUILD_DIR/example
         script: echo "flutter.sdk=$HOME/programs/flutter" > "$CM_BUILD_DIR/android/local.properties"
 
       - name: Get Flutter packages
+        working_directory: $CM_BUILD_DIR/example
         script: flutter packages pub get
 
       - name: Build AAB with Flutter
+        working_directory: $CM_BUILD_DIR/example
         script: flutter build appbundle --release
 
       - name: Send artifacts to github
+        working_directory: $CM_BUILD_DIR/example
         script: |
           #!/bin/sh
 
           # Change these variables accordingly
           REPO = "futurehomeno/yggdrasil"
-          ARTIFACT_PATH = "path/to/your/artifact.ext"
+          ARTIFACT_PATH = "build/app/outputs/flutter-apk/app-release.apk"
           TAG = "1.6.0+2"
           
           # Create a new release
