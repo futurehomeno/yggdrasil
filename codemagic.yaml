@@ -114,9 +114,9 @@ workflows:
           #!/bin/sh
 
           # Change these variables accordingly
-          REPO = "futurehomeno/yggdrasil"
-          ARTIFACT_PATH = "build/app/outputs/flutter-apk/app-release.apk"
-          TAG = "1.6.0+2"
+          REPO="futurehomeno/yggdrasil"
+          ARTIFACT_PATH="build/app/outputs/flutter-apk/app-release.apk"
+          TAG="1.6.0+2"
           
           # Create a new release
           RELEASE_RESPONSE=$(
