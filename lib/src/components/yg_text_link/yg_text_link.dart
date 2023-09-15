@@ -71,4 +71,13 @@ class YgTextLink extends ButtonStyleButton with StatefulWidgetDebugMixin {
     // We do not use themes this way.
     return null;
   }
+
+  @override
+  YgDebugType get debugType {
+    if (onPressed == null) {
+      return YgDebugType.other;
+    }
+
+    return YgDebugType.intractable;
+  }
 }

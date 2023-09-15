@@ -47,9 +47,12 @@ class YgCheckboxItem extends StatelessWidget with StatelessWidgetDebugMixin {
               ),
             ),
             Expanded(
-              child: Text(
-                title,
-                style: checkboxTheme.checkboxItemTheme.titleTextStyle,
+              child: Padding(
+                padding: checkboxTheme.checkboxItemTheme.titlePadding,
+                child: Text(
+                  title,
+                  style: checkboxTheme.checkboxItemTheme.titleTextStyle,
+                ),
               ),
             ),
           ].withHorizontalSpacing(checkboxTheme.checkboxItemTheme.checkboxTitleSpacing),
@@ -61,5 +64,14 @@ class YgCheckboxItem extends StatelessWidget with StatelessWidgetDebugMixin {
   void _onTap() {
     final bool? nextValue = YgCheckboxHelpers.getNextValue(value, triState);
     onChanged?.call(nextValue);
+  }
+
+  @override
+  YgDebugType get debugType {
+    if (onChanged == null) {
+      return YgDebugType.other;
+    }
+
+    return YgDebugType.intractable;
   }
 }

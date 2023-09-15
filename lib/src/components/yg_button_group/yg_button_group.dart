@@ -59,4 +59,7 @@ class YgButtonGroup extends StatelessWidget with StatelessWidgetDebugMixin {
       children: children.withHorizontalSpacing(context.buttonGroupTheme.buttonSpacing),
     );
   }
+
+  @override
+  YgDebugType get debugType => YgDebugType.layout;
 }

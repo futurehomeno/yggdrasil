@@ -2,7 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:yggdrasil/yggdrasil.dart';
 import 'package:yggdrasil_demo/core/_core.dart';
+import 'package:yggdrasil_demo/widgets/debug_bottom_sheet.dart';
 
+/// Demo screen to use as a base for components screens.
 class DemoScreen extends StatelessWidget {
   const DemoScreen({
     super.key,
@@ -22,10 +24,7 @@ class DemoScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final SafeArea child = SafeArea(
-      child: Padding(
-        padding: const EdgeInsets.all(20.0),
-        child: this.child,
-      ),
+      child: this.child,
     );
 
     return Consumer<YgAppState>(
@@ -35,7 +34,8 @@ class DemoScreen extends StatelessWidget {
             title: Text(componentName),
             actions: <Widget>[
               YgIconButton(
-                onPressed: ygAppState.toggleDebugOutlineEnabled,
+                onPressed: () => YgDebug.toggleDebugging(context),
+                onLongPress: () => Navigator.of(context).push(DebugBottomSheet()),
                 child: const YgIcon(YgIcons.eyeOpen),
               ),
               YgIconButton(
@@ -48,11 +48,7 @@ class DemoScreen extends StatelessWidget {
               ),
             ],
           ),
-          body: scrollable
-              ? SingleChildScrollView(
-                  child: child,
-                )
-              : child,
+          body: scrollable ? SingleChildScrollView(child: child) : child,
         );
       },
     );

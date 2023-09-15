@@ -12,48 +12,54 @@ class YgRadioListTile<T> extends StatelessWidget {
     required this.onChanged,
     this.subtitle,
     this.subtitleIcon,
-    this.trailingWidget,
+    this.leadingWidget,
   });
 
-  /// See [YgListTile] documentation.
+  /// See [YgListTile.title].
   final String title;
 
-  /// See [YgListTile] documentation.
+  /// See [YgListTile.subtitle].
   final String? subtitle;
 
-  /// See [YgListTile] documentation.
+  /// See [YgListTile.subtitleIcon].
   final Widget? subtitleIcon;
 
-  /// See [YgRadio] documentation.
+  /// See [YgRadio.value].
   final T value;
 
-  /// See [YgRadio] documentation.
+  /// See [YgRadio.groupValue].
   final T? groupValue;
 
-  /// See [YgRadio] documentation.
+  /// See [YgRadio.onChanged].
   final ValueChanged<T?>? onChanged;
 
   /// Optional widget to display before the switch.
-  final Widget? trailingWidget;
+  final Widget? leadingWidget;
 
   @override
   Widget build(BuildContext context) {
+    final Widget? leadingWidget = this.leadingWidget;
+
+    final AbsorbPointer radioButton = AbsorbPointer(
+      child: YgNoFocus(
+        child: YgRadio<T>(
+          value: value,
+          groupValue: groupValue,
+          onChanged: onChanged,
+        ),
+      ),
+    );
+
     return YgListTile(
       title: title,
       subtitle: subtitle,
       subtitleIcon: subtitleIcon,
       onTap: onChanged == null ? null : _onTap,
+      leadingWidgets: <Widget>[
+        if (leadingWidget == null) radioButton else leadingWidget,
+      ],
       trailingWidgets: <Widget>[
-        if (trailingWidget != null) trailingWidget!,
-        AbsorbPointer(
-          child: YgNoFocus(
-            child: YgRadio<T>(
-              value: value,
-              groupValue: groupValue,
-              onChanged: onChanged,
-            ),
-          ),
-        ),
+        if (leadingWidget != null) radioButton,
       ],
     );
   }

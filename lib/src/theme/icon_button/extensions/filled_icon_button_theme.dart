@@ -36,4 +36,11 @@ class _$FilledIconButtonTheme {
     professional_light.FhColors.backgroundDisabled,
     professional_dark.FhColors.backgroundDisabled,
   ];
+
+  static const List<Color> pressedColor = <Color>[
+    consumer_light.FhColors.backgroundInverse,
+    consumer_dark.FhColors.backgroundInverse,
+    professional_light.FhColors.backgroundInverse,
+    professional_dark.FhColors.backgroundInverse,
+  ];
 }

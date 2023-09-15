@@ -19,7 +19,7 @@ class YgListTile extends StatelessWidget with StatelessWidgetDebugMixin {
     this.supportingWidgets = const <Widget>[],
     this.onTap,
     this.onInfoTap,
-  });
+  }) : assert(subtitleIcon == null || subtitle != null, 'Can not add a subtitleIcon without a subtitle');
 
   /// Convenience for generating links from YgListTiles.
   factory YgListTile.link({
@@ -30,17 +30,44 @@ class YgListTile extends StatelessWidget with StatelessWidgetDebugMixin {
     return YgListTile(
       title: link,
       leadingWidgets: <Widget>[YgIcon(iconPath)],
+      trailingWidgets: const <Widget>[YgIcon(YgIcons.caretRight)],
       onTap: onTap,
     );
   }
 
+  /// The title.
+  ///
+  /// Shown in the middle of the list tile when there is no [subtitle], will be
+  /// pushed to the top of the list tile if there is a [subtitle].
   final String title;
+
+  /// The subtitle.
+  ///
+  /// Shown below the [title].
   final String? subtitle;
+
+  /// Small icon shown in front of [subtitle].
+  ///
+  /// Can not be provided when there is no subtitle.
   final Widget? subtitleIcon;
+
+  /// Widgets which will be placed at the front of the list tile.
   final List<Widget> leadingWidgets;
+
+  /// Widgets which will be placed at the end of the list tile.
   final List<Widget> trailingWidgets;
+
+  /// Up to 2 widgets which will be placed between the content and the trailing widget.
+  ///
+  /// Will be stacked on top of each other when there is more than one specified.
   final List<Widget> supportingWidgets;
+
+  /// Called when the list tile is pressed.
   final VoidCallback? onTap;
+
+  /// When provided, shows an info button next to the title.
+  /// 
+  /// Called when the button is pressed.
   final VoidCallback? onInfoTap;
 
   static const int _allowedNumberOfLeadingWidgets = 2;
@@ -49,6 +76,7 @@ class YgListTile extends StatelessWidget with StatelessWidgetDebugMixin {
 
   @override
   Widget build(BuildContext context) {
+    // TODO(DEV-1920): This is not ideal, maybe look in to something using records so we can create a limit in widgets without asserts?
     assert(leadingWidgets.length <= _allowedNumberOfLeadingWidgets, 'Cannot have more than 2 leading widgets.');
     assert(trailingWidgets.length <= _allowedNumberOfTrailingWidgets, 'Cannot have more than 2 trailing widget.');
     assert(
@@ -59,7 +87,6 @@ class YgListTile extends StatelessWidget with StatelessWidgetDebugMixin {
     return Material(
       type: MaterialType.transparency,
       child: InkWell(
-        borderRadius: BorderRadius.circular(listTileTheme.splashRadius),
         onTap: onTap,
         child: Padding(
           padding: listTileTheme.outerPadding,
@@ -87,10 +114,12 @@ class YgListTile extends StatelessWidget with StatelessWidgetDebugMixin {
   Widget _buildTitle(YgListTileTheme listTileTheme) {
     return Row(
       children: <Widget>[
-        Text(
-          title,
-          style: listTileTheme.titleTextStyle,
-          overflow: TextOverflow.ellipsis,
+        Flexible(
+          child: Text(
+            title,
+            style: listTileTheme.titleTextStyle,
+            overflow: TextOverflow.ellipsis,
+          ),
         ),
         if (onInfoTap != null) _buildInfoButton(),
       ].withHorizontalSpacing(listTileTheme.titleInfoSpacing),
@@ -135,5 +164,14 @@ class YgListTile extends StatelessWidget with StatelessWidgetDebugMixin {
     return Column(
       children: supportingWidgets.withVerticalSpacing(listTileTheme.contentSpacing),
     );
+  }
+
+  @override
+  YgDebugType get debugType {
+    if (onTap == null) {
+      return YgDebugType.other;
+    }
+
+    return YgDebugType.intractable;
   }
 }

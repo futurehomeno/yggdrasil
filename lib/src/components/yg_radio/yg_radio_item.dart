@@ -46,9 +46,12 @@ class YgRadioItem<T> extends StatelessWidget with StatelessWidgetDebugMixin {
               ),
             ),
             Expanded(
-              child: Text(
-                title,
-                style: radioTheme.radioItemTheme.titleTextStyle,
+              child: Padding(
+                padding: radioTheme.radioItemTheme.titlePadding,
+                child: Text(
+                  title,
+                  style: radioTheme.radioItemTheme.titleTextStyle,
+                ),
               ),
             ),
           ].withHorizontalSpacing(radioTheme.radioItemTheme.radioTitleSpacing),
@@ -59,5 +62,14 @@ class YgRadioItem<T> extends StatelessWidget with StatelessWidgetDebugMixin {
 
   void _onTap() {
     onChanged?.call(value);
+  }
+
+  @override
+  YgDebugType get debugType {
+    if (onChanged == null) {
+      return YgDebugType.other;
+    }
+
+    return YgDebugType.intractable;
   }
 }

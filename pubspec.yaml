@@ -2,7 +2,7 @@ name: yggdrasil
 description: Design system for Futurehome.
 publish_to: none
 
-version: 1.4.0
+version: 1.6.0
 
 environment:
   sdk: ^3.0.5
@@ -11,6 +11,7 @@ environment:
 dependencies:
   flutter:
     sdk: flutter
+  flutter_lints: 2.0.1
   theme_tailor_annotation: 
     git:
       ref: main

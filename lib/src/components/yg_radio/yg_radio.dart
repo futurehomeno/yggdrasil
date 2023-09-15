@@ -40,6 +40,15 @@ class YgRadio<T> extends StatefulWidget with StatefulWidgetDebugMixin {
 
   @override
   State<YgRadio<T>> createState() => _YgRadioState<T>();
+
+  @override
+  YgDebugType get debugType {
+    if (onChanged == null) {
+      return YgDebugType.other;
+    }
+
+    return YgDebugType.intractable;
+  }
 }
 
 class _YgRadioState<T> extends State<YgRadio<T>> {
@@ -49,7 +58,7 @@ class _YgRadioState<T> extends State<YgRadio<T>> {
     setState(() {});
   }
 
-  MaterialStatesController _statesController = MaterialStatesController();
+  final MaterialStatesController _statesController = MaterialStatesController();
 
   void _initStatesController() {
     _statesController.update(MaterialState.disabled, !widget._enabled);
@@ -206,7 +215,7 @@ class _YgRadioState<T> extends State<YgRadio<T>> {
   }
 
   void _onTap() {
-    final onChanged = widget.onChanged;
+    final ValueChanged<T?>? onChanged = widget.onChanged;
     if (onChanged != null) {
       onChanged(widget.value);
     }

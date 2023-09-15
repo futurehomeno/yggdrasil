@@ -7,12 +7,7 @@ import 'helpers/_helpers.dart';
 import 'widgets/_widgets.dart';
 import 'yg_checkbox_style.dart';
 
-/// Yggdrasil radio button.
-///
-/// The widget consists of three circles stacked on top of one another.
-/// The first circle creates the background (or border when not selected).
-/// The second circle creates the handle, large when not selected, small when selected.
-/// The last circle creates the helper handle, only used for the disabled state.
+/// Yggdrasil checkbox button.
 class YgCheckbox extends StatefulWidget with StatefulWidgetDebugMixin {
   const YgCheckbox({
     super.key,
@@ -29,7 +24,7 @@ class YgCheckbox extends StatefulWidget with StatefulWidgetDebugMixin {
   ///
   /// The checkbox itself does not maintain any state. Instead, when the state of
   /// the checkbox changes, the widget calls the [onChanged] callback.
-  final Function(bool? newValue)? onChanged;
+  final ValueChanged<bool?>? onChanged;
 
   /// Enables `null` as a valid third state for the checkbox.
   ///
@@ -44,17 +39,26 @@ class YgCheckbox extends StatefulWidget with StatefulWidgetDebugMixin {
   bool get _selected => value == true;
 
   @override
-  State<YgCheckbox> createState() => _YgRadioState();
+  State<YgCheckbox> createState() => _YgCheckboxState();
+
+  @override
+  YgDebugType get debugType {
+    if (onChanged == null) {
+      return YgDebugType.other;
+    }
+
+    return YgDebugType.intractable;
+  }
 }
 
-class _YgRadioState extends State<YgCheckbox> {
+class _YgCheckboxState extends State<YgCheckbox> {
   // region StatesController
   void _handleStatesControllerChange() {
     // Force a rebuild to resolve MaterialStateProperty properties.
     setState(() {});
   }
 
-  MaterialStatesController _statesController = MaterialStatesController();
+  final MaterialStatesController _statesController = MaterialStatesController();
 
   void _initStatesController() {
     _statesController.update(MaterialState.error, widget.hasError);
@@ -80,7 +84,7 @@ class _YgRadioState extends State<YgCheckbox> {
     if (widget._enabled != oldWidget._enabled) {
       _statesController.update(MaterialState.disabled, !widget._enabled);
       if (!widget._enabled) {
-        // The radio may have been disabled while a press gesture is currently underway.
+        // The checkbox may have been disabled while a press gesture is currently underway.
         _statesController.update(MaterialState.pressed, false);
       }
     }
@@ -170,7 +174,7 @@ class _YgRadioState extends State<YgCheckbox> {
   }
 
   void _onTap() {
-    final onChanged = widget.onChanged;
+    final ValueChanged<bool>? onChanged = widget.onChanged;
     if (onChanged != null) {
       final bool? nextValue = YgCheckboxHelpers.getNextValue(widget.value, widget.triState);
       widget.onChanged?.call(nextValue);

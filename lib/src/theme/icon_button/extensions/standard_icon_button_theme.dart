@@ -36,4 +36,11 @@ class _$StandardIconButtonTheme {
     professional_light.FhColors.backgroundTransparent,
     professional_dark.FhColors.backgroundTransparent,
   ];
+
+  static const List<Color> pressedColor = <Color>[
+    consumer_light.FhColors.backgroundDisabled,
+    consumer_dark.FhColors.backgroundDisabled,
+    professional_light.FhColors.backgroundDisabled,
+    professional_dark.FhColors.backgroundDisabled,
+  ];
 }

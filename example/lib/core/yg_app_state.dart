@@ -5,7 +5,6 @@ class YgAppState extends ChangeNotifier {
   final YgTheme _defaultTheme = YgTheme.consumerLight;
   YgTheme _currentTheme = YgTheme.consumerLight;
   YgTheme get theme => _defaultTheme;
-  bool _debugOutlineEnabled = false;
   bool _darkMode = false;
   bool _businessTheme = false;
 
@@ -36,15 +35,8 @@ class YgAppState extends ChangeNotifier {
     notifyListeners();
   }
 
-  void toggleDebugOutlineEnabled() {
-    _debugOutlineEnabled ^= true;
-    notifyListeners();
-  }
-
   YgTheme get defaultTheme => _defaultTheme;
   YgTheme get currentTheme => _currentTheme;
-
-  bool get debugOutlineEnabled => _debugOutlineEnabled;
 
   ThemeData get currentThemeData {
     return YgThemeDataHelper.getThemeData(_currentTheme);

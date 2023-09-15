@@ -36,4 +36,11 @@ class _$TonalIconButtonTheme {
     professional_light.FhColors.backgroundDisabled,
     professional_dark.FhColors.backgroundDisabled,
   ];
+
+  static const List<Color> pressedColor = <Color>[
+    consumer_light.FhColors.backgroundWeak,
+    consumer_dark.FhColors.backgroundWeak,
+    professional_light.FhColors.backgroundWeak,
+    professional_dark.FhColors.backgroundWeak,
+  ];
 }

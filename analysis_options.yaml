@@ -1,7 +1,44 @@
 analyzer:
+  language:
+    strict-casts: true
+    strict-raw-types: true
+
   exclude:
     - 'lib/src/tokens/**/*.dart'
     - 'lib/**/*.tailor.dart'
+
+  errors:
+    # Treat missing required parameters as a warning (not a hint).
+    missing_required_param: warning
+    # Treat missing returns as a warning (not a hint).
+    missing_return: warning
+    # Allow having TODOs in the code.
+    todo: ignore
+
+include: package:flutter_lints/flutter.yaml
+
+linter:
+  rules:
+    # =========================
+    # Rules that we DON'T WANT.
+    # =========================
+    # Does not work when tests and mocks are placed in the /lib folder.
+    depend_on_referenced_packages: false
+
+    # ==============================
+    # Additional rules that we WANT.
+    # ==============================
+    always_declare_return_types: true
+    always_specify_types: true
+    flutter_style_todos: true
+    prefer_final_fields: true
+    prefer_final_locals: true
+    prefer_single_quotes: true
+    sort_constructors_first: true
+    sort_unnamed_constructors_first: true
+    unawaited_futures: true
+    avoid_dynamic_calls: true
+    directives_ordering: true
 
 dart_code_metrics:
   metrics:
@@ -128,10 +165,16 @@ dart_code_metrics:
     - prefer-action-button-tooltip
     - prefer-const-border-radius
     - prefer-define-hero-tag
-    - prefer-extracting-callbacks
+    - prefer-extracting-callbacks:
+        exclude:
+          - 'example/lib/screens/*'
+          - 'example/lib/screens/**/*'
     - prefer-text-rich
     - prefer-using-list-view
-    - prefer-widget-private-members
+    - prefer-widget-private-members:
+        exclude:
+          - 'example/lib/screens/*'
+          - 'example/lib/screens/**/*'
 
     # Not part of the default ruleset
     - avoid-global-state
@@ -147,7 +190,6 @@ dart_code_metrics:
     # - avoid-non-null-assertion
     # - no-magic-number
     # - prefer-const-border-radius
-    # - prefer-extracting-callbacks
     # - prefer-moving-to-variable
 
   anti-patterns:

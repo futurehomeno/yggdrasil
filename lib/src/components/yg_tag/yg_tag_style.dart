@@ -181,6 +181,7 @@ class YgTagStyle {
       elevation: ButtonStyleButton.allOrNull(0.0),
       alignment: Alignment.center,
       tapTargetSize: MaterialTapTargetSize.shrinkWrap,
+      splashFactory: InkRipple.splashFactory,
       mouseCursor: YgTagMouseCursorProperty(
         mouseCursor: SystemMouseCursors.click,
         disabled: SystemMouseCursors.basic,
