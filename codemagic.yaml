@@ -138,49 +138,52 @@ workflows:
 
       - name: Build AAB with Flutter
         working_directory: $CM_BUILD_DIR/example
-        script: flutter build appbundle --release
-
-      - name: Send artifacts to github
-        working_directory: $CM_BUILD_DIR/example
-        script: |
-          #!/bin/sh
-
-          # Change these variables accordingly
-          REPO="futurehomeno/yggdrasil"
-          ARTIFACT_PATH="build/app/outputs/bundle/release/app-release.aab"
-          TAG="1.6.0+3"
-          
-          # Create a new release
-          RELEASE_RESPONSE=$(
-            curl --data "{
-              \"tag_name\": \"$TAG\", 
-              \"name\": \"$TAG\",
-              \"draft\": false, 
-              \"prerelease\": false
-            }" \
-            -H "Authorization: token $GITHUB_TOKEN" \
-            -H "Content-Type: application/json" \
-            -X POST "https://api.github.com/repos/$REPO/releases"
-          )
-          
-          echo $RELEASE_RESPONSE
-          
-          # Extract the upload URL from the release response
-          UPLOAD_URL=$(echo $RELEASE_RESPONSE | jq -r .upload_url | sed -e "s/{?name,label}//")
-            
-          if [ -z "$UPLOAD_URL" ]; then
-            echo "Failed to get upload URL"
-            exit 1
-          fi
-            
-          # Upload the artifact
-          curl -X POST \
-            -H "Authorization: token $GITHUB_TOKEN" \
-            -H "Content-Type: $(file -b --mime-type $ARTIFACT_PATH)" \
-            --data-binary "@$ARTIFACT_PATH" \
-            "$UPLOAD_URL?name=$(basename $ARTIFACT_PATH)"
+        script: flutter build apk --release
 
     artifacts:
       - build/ios/ipa/*.ipa
       - /tmp/xcodebuild_logs/*.log
       - flutter_drive.log
+
+    publishing:
+      scripts:
+        - name: Send artifacts to github
+          working_directory: $CM_BUILD_DIR/example
+          script: |
+            #!/bin/sh
+  
+            # Change these variables accordingly
+            REPO="futurehomeno/yggdrasil"
+            ARTIFACT_PATH="build/app/outputs/flutter-apk/app-release.apk"
+            TAG="1.6.0+3"
+            echo $CM_TAG
+  
+            # Create a new release
+            RELEASE_RESPONSE=$(
+              curl --data "{
+                \"tag_name\": \"$TAG\", 
+                \"name\": \"$TAG\",
+                \"draft\": false, 
+                \"prerelease\": false
+              }" \
+              -H "Authorization: token $GITHUB_TOKEN" \
+              -H "Content-Type: application/json" \
+              -X POST "https://api.github.com/repos/$REPO/releases"
+            )
+  
+            echo $RELEASE_RESPONSE
+  
+            # Extract the upload URL from the release response
+            UPLOAD_URL=$(echo $RELEASE_RESPONSE | jq -r .upload_url | sed -e "s/{?name,label}//")
+  
+            if [ -z "$UPLOAD_URL" ]; then
+              echo "Failed to get upload URL"
+              exit 1
+            fi
+  
+            # Upload the artifact
+            curl -X POST \
+              -H "Authorization: token $GITHUB_TOKEN" \
+              -H "Content-Type: $(file -b --mime-type $ARTIFACT_PATH)" \
+              --data-binary "@$ARTIFACT_PATH" \
+              "$UPLOAD_URL?name=$(basename $ARTIFACT_PATH)"
