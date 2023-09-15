@@ -108,6 +108,15 @@ workflows:
         script: dart $CM_BUILD_DIR/cli/futurehome.dart ci cav $VERSION -uc || exit 1
 
 
+  test-tag:
+    name: Test tag
+    instance_type: mac_mini_m1
+
+    scripts:
+      - name: Tag test
+        script: echo $CM_TAG
+
+
   android-release:
     name: Android release
     instance_type: mac_mini_m1
