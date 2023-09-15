@@ -1,3 +1,6 @@
+# 1.6.0+2 [15.09.2023 08:31]
+
+
 # 1.6.0 [14.09.2023 08:35]
 
 [feature] Added YgDropdownField and YgDropdownFormField components.
