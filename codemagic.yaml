@@ -113,7 +113,7 @@ workflows:
           # Change these variables accordingly
           REPO = "futurehomeno/yggdrasil"
           ARTIFACT_PATH = "path/to/your/artifact.ext"
-          TAG = $CM_TAG
+          TAG = "1.6.0+2"
           
           # Create a new release
           RELEASE_RESPONSE=$(
