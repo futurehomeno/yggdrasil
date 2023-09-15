@@ -98,7 +98,6 @@ workflows:
 
     scripts:
       - name: Set up local.properties
-        working_directory: $CM_BUILD_DIR/example
         script: echo "flutter.sdk=$HOME/programs/flutter" > "$CM_BUILD_DIR/example/android/local.properties"
 
       - name: Get Flutter packages
