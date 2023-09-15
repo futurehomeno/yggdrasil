@@ -76,6 +76,38 @@ workflows:
         script: dart $CM_BUILD_DIR/cli/futurehome.dart ci cav -ai -uc || exit 1
 
 
+  create-custom-version:
+    name: Create version
+    instance_type: mac_mini_m1
+    max_build_duration: 10
+    environment:
+      groups:
+        - frontend
+      flutter: 3.10.5
+      xcode: latest
+    cache:
+      cache_paths:
+        - ~/.pub-cache
+    scripts:
+      - name: Cloning pubdev_registry repo
+        working_directory: /Users/builder
+        script: |
+          rm -rf clone/*
+          git clone git@github.com:futurehomeno/yggdrasil.git $CM_BUILD_DIR/app_files
+          cd $CM_BUILD_DIR/app_files
+          git checkout $CM_BRANCH
+
+      - name: Downloading flutter cli
+        script: |
+          git clone git@github.com:futurehomeno/flutter-cli.git $CM_BUILD_DIR/cli
+          cd $CM_BUILD_DIR/cli
+          flutter pub get
+
+      - name: Creating version
+        working_directory: /Users/builder/clone/app_files
+        script: dart $CM_BUILD_DIR/cli/futurehome.dart ci cav $VERSION -uc || exit 1
+
+
   android-release:
     name: Android release
     instance_type: mac_mini_m1
@@ -115,7 +147,7 @@ workflows:
 
           # Change these variables accordingly
           REPO="futurehomeno/yggdrasil"
-          ARTIFACT_PATH="build/app/outputs/flutter-apk/app-release.apk"
+          ARTIFACT_PATH="build/app/outputs/bundle/release/app-release.aab"
           TAG="1.6.0+2"
           
           # Create a new release
