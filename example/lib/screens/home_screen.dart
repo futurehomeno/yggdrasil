@@ -3,6 +3,7 @@ import 'package:yggdrasil/yggdrasil.dart';
 import 'package:yggdrasil_demo/core/_core.dart';
 import 'package:yggdrasil_demo/screens/_screens.dart';
 import 'package:yggdrasil_demo/screens/layout_examples/_examples.dart';
+import 'package:yggdrasil_demo/screens/tabs/tabs_screen.dart';
 import 'package:yggdrasil_demo/widgets/_widgets.dart';
 
 import 'toggle_button/_toggle_button.dart';
@@ -155,6 +156,11 @@ class HomeScreen extends StatelessWidget {
               YgListTile(
                 title: 'Statistics - Gauge',
                 onTap: () => sl<YgRouter>().push(GaugeScreen.route()),
+                trailingWidgets: const <YgIcon>[YgIcon(YgIcons.caretRight)],
+              ),
+              YgListTile(
+                title: 'Tabs',
+                onTap: () => sl<YgRouter>().push(TabsScreen.route()),
                 trailingWidgets: const <YgIcon>[YgIcon(YgIcons.caretRight)],
               ),
               YgListTile(

@@ -22,6 +22,7 @@ export 'progress_indicator/_progress_indicator.dart';
 export 'radio/_radio.dart';
 export 'snack_bar/_snack_bar.dart';
 export 'switch/_switch.dart';
+export 'tabs/_tabs.dart';
 export 'tag/_tag.dart';
 export 'text_field/_text_field.dart';
 export 'text_link/_text_link.dart';
