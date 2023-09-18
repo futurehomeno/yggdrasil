@@ -40,9 +40,6 @@ class TabsScreen extends StatelessWidget {
               YgTab(
                 label: 'Tab',
               ),
-              YgTab(
-                label: 'Tab',
-              ),
             ],
           ),
           SizedBox(height: 20.0),
@@ -63,16 +60,14 @@ class TabsScreen extends StatelessWidget {
               YgTab(
                 icon: YgIcon(YgIcons.map),
               ),
-              YgTab(
-                icon: YgIcon(YgIcons.apartment),
-              ),
             ],
           ),
           SizedBox(height: 20.0),
           YgListTile(
-            title: 'YgTabBar with both label and icon',
+            title: 'YgTabBar with both label and icon, and scrollable',
           ),
           YgTabBar(
+            isScrollable: true,
             tabs: <YgTab>[
               YgTab(
                 label: 'Tab',
@@ -92,7 +87,7 @@ class TabsScreen extends StatelessWidget {
               ),
               YgTab(
                 label: 'Tab',
-                icon: YgIcon(YgIcons.apartment),
+                icon: YgIcon(YgIcons.camera),
               ),
             ],
           ),

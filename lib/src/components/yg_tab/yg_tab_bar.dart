@@ -7,7 +7,7 @@ class YgTabBar extends StatefulWidget {
   const YgTabBar({
     super.key,
     required this.tabs,
-    this.isScrollable = true,
+    this.isScrollable = false,
     this.onTabPressed,
     this.initialIndex = 0,
   });
@@ -49,6 +49,7 @@ class _YgTabBarState extends State<YgTabBar> with TickerProviderStateMixin {
       onTap: widget.onTabPressed,
       controller: _tabController,
       isScrollable: widget.isScrollable,
+      physics: const ClampingScrollPhysics(),
       dividerColor: tabsTheme.dividerColor,
       indicatorColor: tabsTheme.indicatorColor,
       indicatorWeight: tabsTheme.indicatorHeight,
