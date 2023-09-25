@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:yggdrasil/yggdrasil.dart';
+import 'package:yggdrasil/src/theme/_theme.dart';
 
 class YgBottomSheetDragHandle extends StatelessWidget {
   const YgBottomSheetDragHandle({super.key});
