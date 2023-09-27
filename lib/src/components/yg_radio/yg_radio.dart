@@ -125,83 +125,28 @@ class _YgRadioState<T> extends State<YgRadio<T>> {
             mouseCursor: resolvedMouseCursor,
             enabled: widget._enabled,
             child: Padding(
-              padding: EdgeInsets.all(radioTheme.padding),
-              child: _buildBackground(
-                context: context,
-                size: radioTheme.size,
-                resolvedBackgroundColor: resolvedBackgroundColor,
-                resolvedHandleSize: resolvedHandleSize,
-                resolvedHandleColor: resolvedHandleColor,
-                resolvedHelperHandleSize: resolvedHelperHandleSize,
+              padding: EdgeInsets.all(context.radioTheme.padding + 10.0),
+              child: CustomPaint(
+                painter: _YgRadioPainter(
+                  size: radioTheme.size,
+                  color: resolvedBackgroundColor,
+                ),
+                child: CustomPaint(
+                  painter: _YgRadioPainter(
+                    color: resolvedHandleColor,
+                    size: resolvedHandleSize,
+                  ),
+                  child: CustomPaint(
+                    painter: _YgRadioPainter(
+                      color: context.radioTheme.helperHandleColor,
+                      size: resolvedHelperHandleSize,
+                    ),
+                  ),
+                ),
               ),
             ),
           ),
         ),
-      ),
-    );
-  }
-
-  Widget _buildBackground({
-    required BuildContext context,
-    required double? size,
-    required Color? resolvedBackgroundColor,
-    required double? resolvedHandleSize,
-    required Color? resolvedHandleColor,
-    required double? resolvedHelperHandleSize,
-  }) {
-    return AnimatedContainer(
-      duration: context.radioTheme.animationDuration,
-      width: size,
-      height: size,
-      decoration: BoxDecoration(
-        shape: BoxShape.circle,
-        color: resolvedBackgroundColor,
-      ),
-      child: Center(
-        child: _buildHandle(
-          context: context,
-          resolvedHandleSize: resolvedHandleSize,
-          resolvedHandleColor: resolvedHandleColor,
-          resolvedHelperHandleSize: resolvedHelperHandleSize,
-        ),
-      ),
-    );
-  }
-
-  Widget _buildHandle({
-    required BuildContext context,
-    required double? resolvedHandleSize,
-    required Color? resolvedHandleColor,
-    required double? resolvedHelperHandleSize,
-  }) {
-    return AnimatedContainer(
-      duration: context.radioTheme.animationDuration,
-      width: resolvedHandleSize,
-      height: resolvedHandleSize,
-      decoration: BoxDecoration(
-        shape: BoxShape.circle,
-        color: resolvedHandleColor,
-      ),
-      child: Center(
-        child: _buildHelperHandle(
-          context: context,
-          resolvedHelperHandleSize: resolvedHelperHandleSize,
-        ),
-      ),
-    );
-  }
-
-  Widget _buildHelperHandle({
-    required BuildContext context,
-    required double? resolvedHelperHandleSize,
-  }) {
-    return AnimatedContainer(
-      duration: context.radioTheme.animationDuration,
-      width: resolvedHelperHandleSize,
-      height: resolvedHelperHandleSize,
-      decoration: BoxDecoration(
-        shape: BoxShape.circle,
-        color: context.radioTheme.helperHandleColor,
       ),
     );
   }
@@ -219,5 +164,34 @@ class _YgRadioState<T> extends State<YgRadio<T>> {
     if (onChanged != null) {
       onChanged(widget.value);
     }
+  }
+}
+
+class _YgRadioPainter extends CustomPainter {
+  const _YgRadioPainter({
+    required this.size,
+    required this.color,
+  });
+
+  final double size;
+  final Color color;
+
+  @override
+  void paint(Canvas canvas, Size objectSize) {
+    final Paint paint = Paint()
+      ..style = PaintingStyle.fill
+      ..color = color;
+    canvas.drawCircle(
+      Offset(objectSize.width, objectSize.height),
+      size / 2.0,
+      paint,
+    );
+    //canvas.drawLine(Offset.zero, Offset(20, 20), Paint());
+    //canvas.drawRect(Rect.fromPoints(Offset.zero, Offset(50, 50)), Paint());
+  }
+
+  @override
+  bool shouldRepaint(covariant CustomPainter oldDelegate) {
+    return true;
   }
 }
