@@ -125,23 +125,16 @@ class _YgRadioState<T> extends State<YgRadio<T>> {
             mouseCursor: resolvedMouseCursor,
             enabled: widget._enabled,
             child: Padding(
-              padding: EdgeInsets.all(context.radioTheme.padding + 10.0),
+              padding: EdgeInsets.all(context.radioTheme.padding),
               child: CustomPaint(
+                size: Size.square(radioTheme.size),
                 painter: _YgRadioPainter(
-                  size: radioTheme.size,
-                  color: resolvedBackgroundColor,
-                ),
-                child: CustomPaint(
-                  painter: _YgRadioPainter(
-                    color: resolvedHandleColor,
-                    size: resolvedHandleSize,
-                  ),
-                  child: CustomPaint(
-                    painter: _YgRadioPainter(
-                      color: context.radioTheme.helperHandleColor,
-                      size: resolvedHelperHandleSize,
-                    ),
-                  ),
+                  radioSize: radioTheme.size,
+                  resolvedBackgroundColor: resolvedBackgroundColor,
+                  helperHandleColor: radioTheme.helperHandleColor,
+                  resolvedHandleColor: resolvedHandleColor,
+                  resolvedHandleSize: resolvedHandleSize,
+                  resolvedHelperHandleSize: resolvedHelperHandleSize,
                 ),
               ),
             ),
@@ -169,25 +162,52 @@ class _YgRadioState<T> extends State<YgRadio<T>> {
 
 class _YgRadioPainter extends CustomPainter {
   const _YgRadioPainter({
-    required this.size,
-    required this.color,
+    required this.radioSize,
+    required this.resolvedBackgroundColor,
+    required this.helperHandleColor,
+    required this.resolvedHandleColor,
+    required this.resolvedHandleSize,
+    required this.resolvedHelperHandleSize,
   });
 
-  final double size;
-  final Color color;
+  final double radioSize;
+  final Color resolvedBackgroundColor;
+  final double resolvedHandleSize;
+  final Color resolvedHandleColor;
+  final double resolvedHelperHandleSize;
+  final Color helperHandleColor;
 
   @override
   void paint(Canvas canvas, Size objectSize) {
-    final Paint paint = Paint()
+    final Paint backgroundPaint = Paint()
       ..style = PaintingStyle.fill
-      ..color = color;
+      ..color = resolvedBackgroundColor;
+
+    final Paint handlerPaint = Paint()
+      ..style = PaintingStyle.fill
+      ..color = resolvedHandleColor;
+
+    final Paint helperHandlePaint = Paint()
+      ..style = PaintingStyle.fill
+      ..color = helperHandleColor;
+
     canvas.drawCircle(
-      Offset(objectSize.width, objectSize.height),
-      size / 2.0,
-      paint,
+      Offset(objectSize.width / 2.0, objectSize.height / 2.0),
+      radioSize / 2.0,
+      backgroundPaint,
     );
-    //canvas.drawLine(Offset.zero, Offset(20, 20), Paint());
-    //canvas.drawRect(Rect.fromPoints(Offset.zero, Offset(50, 50)), Paint());
+
+    canvas.drawCircle(
+      Offset(objectSize.width / 2.0, objectSize.height / 2.0),
+      resolvedHandleSize / 2.0,
+      handlerPaint,
+    );
+
+    canvas.drawCircle(
+      Offset(objectSize.width / 2.0, objectSize.height / 2.0),
+      resolvedHelperHandleSize / 2.0,
+      helperHandlePaint,
+    );
   }
 
   @override
