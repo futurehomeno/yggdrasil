@@ -26,7 +26,7 @@ class _AppBarScreenState extends State<AppBarScreen> {
   bool _customLeading = false;
   bool _centerTitle = false;
   bool _automaticallyImplyLeading = true;
-  List<Widget>? _actions;
+  List<Widget> _actions = <Widget>[];
   int _actionsRadioGroupValue = 1;
 
   @override
@@ -69,6 +69,10 @@ class _AppBarScreenState extends State<AppBarScreen> {
                 value: _centerTitle,
                 onChanged: (bool? newValue) {
                   _centerTitle = newValue!;
+                  if (_centerTitle) {
+                    _actionsRadioGroupValue = 2;
+                    _actions = _singleAction;
+                  }
                   setState(() {});
                 },
               ),
@@ -112,7 +116,7 @@ class _AppBarScreenState extends State<AppBarScreen> {
                 groupValue: _actionsRadioGroupValue,
                 onChanged: (int? newValue) {
                   _actionsRadioGroupValue = newValue!;
-                  _actions = null;
+                  _actions = <Widget>[];
                   setState(() {});
                 },
               ),
@@ -135,6 +139,7 @@ class _AppBarScreenState extends State<AppBarScreen> {
                     onChanged: (int? newValue) {
                       _actionsRadioGroupValue = newValue!;
                       _actions = _defaultActions(context, ygAppState);
+                      _centerTitle = false;
                       setState(() {});
                     },
                   );

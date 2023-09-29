@@ -3,7 +3,7 @@ import 'package:yggdrasil/yggdrasil.dart';
 
 import 'widgets/_widgets.dart';
 
-class YgSliverAppBar extends StatefulWidget {
+class YgSliverAppBar extends StatelessWidget {
   const YgSliverAppBar({
     super.key,
     required this.title,
@@ -26,59 +26,39 @@ class YgSliverAppBar extends StatefulWidget {
   final YgSliverAppBarVariant variant;
 
   @override
-  State<YgSliverAppBar> createState() => _YgSliverAppBarState();
-}
-
-class _YgSliverAppBarState extends State<YgSliverAppBar> {
-  Widget? _leading;
-
-  @override
   Widget build(BuildContext context) {
     final YgAppBarTheme theme = context.appBarTheme;
     const Color surfaceTintColor = Colors.transparent;
-
     final ScaffoldState? scaffold = Scaffold.maybeOf(context);
     final ModalRoute<Object?>? parentRoute = ModalRoute.of(context);
     final bool canPop = parentRoute?.canPop ?? false;
     final bool hasEndDrawer = scaffold?.hasEndDrawer ?? false;
     final bool useCloseButton = parentRoute is PageRoute<Object?> && parentRoute.fullscreenDialog;
 
-    if (widget.leading == null && widget.automaticallyImplyLeading) {
-      if (widget.hasDrawer) {
-        // TODO(DEV-1928): Turn this into an YgIcon whenever we introduce drawers in apps.
-        _leading = DrawerButton(
-          style: IconButton.styleFrom(iconSize: theme.leadingIconSize),
-        );
-      } else if ((!hasEndDrawer && canPop) || (parentRoute?.impliesAppBarDismissal ?? false)) {
-        _leading = YgIconButton(
-          onPressed: () => Navigator.maybePop(context),
-          child: YgIcon(useCloseButton ? YgIcons.coverRemove : YgIcons.caretLeft),
-        );
-      }
-    }
+    final Widget? leading = _getLeadingWidget(
+      theme: theme,
+      hasEndDrawer: hasEndDrawer,
+      canPop: canPop,
+      parentRoute: parentRoute,
+      context: context,
+      useCloseButton: useCloseButton,
+    );
 
-    if (widget.leading != null) {
-      _leading = ConstrainedBox(
-        constraints: BoxConstraints.tightFor(width: theme.leadingIconSize),
-        child: widget.leading,
-      );
-    }
-
-    return switch (widget.variant) {
+    return switch (variant) {
       YgSliverAppBarVariant.small => SliverAppBar(
           toolbarHeight: theme.toolbarHeight,
-          actions: widget.actions,
-          pinned: widget.pinned,
+          actions: actions,
+          pinned: pinned,
           shadowColor: theme.borderColor,
           surfaceTintColor: surfaceTintColor,
           backgroundColor: theme.backgroundColor,
           scrolledUnderElevation: 1.0,
-          automaticallyImplyLeading: widget.automaticallyImplyLeading,
-          leading: _leading,
-          centerTitle: widget.centerTitle,
+          automaticallyImplyLeading: automaticallyImplyLeading,
+          leading: leading,
+          centerTitle: centerTitle,
           titleSpacing: theme.titleSpacing,
           title: Text(
-            widget.title,
+            title,
             style: YgSliverAppBarMapper.getTitleTextStyle(
               theme: theme,
               variant: YgSliverAppBarVariant.small,
@@ -89,21 +69,21 @@ class _YgSliverAppBarState extends State<YgSliverAppBar> {
           toolbarHeight: theme.toolbarHeight,
           collapsedHeight: theme.collapsedHeight,
           expandedHeight: theme.mediumAppBarTheme.expandedHeight,
-          actions: widget.actions,
-          pinned: widget.pinned,
+          actions: actions,
+          pinned: pinned,
           shadowColor: theme.borderColor,
           surfaceTintColor: surfaceTintColor,
           backgroundColor: theme.backgroundColor,
           scrolledUnderElevation: 1.0,
-          automaticallyImplyLeading: widget.automaticallyImplyLeading,
-          leading: _leading,
+          automaticallyImplyLeading: automaticallyImplyLeading,
+          leading: leading,
           flexibleSpace: YgFlexibleSpaceBar(
             expandedTitleScale: theme.mediumAppBarTheme.expandedTitleScale,
-            centerTitle: widget.centerTitle,
+            centerTitle: centerTitle,
             topTitlePadding: theme.mediumAppBarTheme.topTitlePadding,
             bottomTitlePadding: theme.mediumAppBarTheme.bottomTitlePadding,
             title: Text(
-              widget.title,
+              title,
               style: YgSliverAppBarMapper.getTitleTextStyle(
                 theme: theme,
                 variant: YgSliverAppBarVariant.medium,
@@ -115,21 +95,21 @@ class _YgSliverAppBarState extends State<YgSliverAppBar> {
           toolbarHeight: theme.toolbarHeight,
           collapsedHeight: theme.collapsedHeight,
           expandedHeight: theme.largeAppBarTheme.expandedHeight,
-          actions: widget.actions,
-          pinned: widget.pinned,
+          actions: actions,
+          pinned: pinned,
           shadowColor: theme.borderColor,
           backgroundColor: theme.backgroundColor,
           surfaceTintColor: surfaceTintColor,
           scrolledUnderElevation: 1.0,
-          automaticallyImplyLeading: widget.automaticallyImplyLeading,
-          leading: _leading,
+          automaticallyImplyLeading: automaticallyImplyLeading,
+          leading: leading,
           flexibleSpace: YgFlexibleSpaceBar(
             expandedTitleScale: theme.largeAppBarTheme.expandedTitleScale,
-            centerTitle: widget.centerTitle,
+            centerTitle: centerTitle,
             topTitlePadding: theme.largeAppBarTheme.topTitlePadding,
             bottomTitlePadding: theme.largeAppBarTheme.bottomTitlePadding,
             title: Text(
-              widget.title,
+              title,
               style: YgSliverAppBarMapper.getTitleTextStyle(
                 theme: theme,
                 variant: YgSliverAppBarVariant.large,
@@ -138,5 +118,37 @@ class _YgSliverAppBarState extends State<YgSliverAppBar> {
           ),
         ),
     };
+  }
+
+  Widget? _getLeadingWidget({
+    required YgAppBarTheme theme,
+    required bool hasEndDrawer,
+    required bool canPop,
+    required ModalRoute<Object?>? parentRoute,
+    required BuildContext context,
+    required bool useCloseButton,
+  }) {
+    if (automaticallyImplyLeading) {
+      if (hasDrawer) {
+        // TODO(DEV-1928): Turn this into an YgIcon whenever we introduce drawers in apps.
+        return DrawerButton(
+          style: IconButton.styleFrom(iconSize: theme.leadingIconSize),
+        );
+      } else if ((!hasEndDrawer && canPop) || (parentRoute?.impliesAppBarDismissal ?? false)) {
+        return YgIconButton(
+          onPressed: () => Navigator.maybePop(context),
+          child: YgIcon(useCloseButton ? YgIcons.coverRemove : YgIcons.caretLeft),
+        );
+      }
+    }
+
+    if (leading != null) {
+      return ConstrainedBox(
+        constraints: BoxConstraints.tightFor(width: theme.leadingIconSize),
+        child: leading,
+      );
+    }
+
+    return null;
   }
 }

@@ -31,7 +31,7 @@ class DemoScreen extends StatelessWidget {
           appBar: appBar ??
               YgAppBar(
                 title: componentName ?? '',
-                centerTitle: true,
+                centerTitle: false,
                 actions: <Widget>[
                   YgIconButton(
                     onPressed: () => YgDebug.toggleDebugging(context),

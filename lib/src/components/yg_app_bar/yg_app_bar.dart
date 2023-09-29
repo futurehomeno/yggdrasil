@@ -6,45 +6,51 @@ class YgAppBar extends StatelessWidget implements PreferredSizeWidget {
   const YgAppBar({
     super.key,
     required this.title,
-    this.actions,
+    this.actions = const <Widget>[],
     this.leading,
     this.centerTitle = false,
     this.hasDrawer = false,
     this.automaticallyImplyLeading = true,
-  });
+  }) : assert(
+          centerTitle && actions.length <= 1 || !centerTitle && actions.length <= 3,
+          'When the title is in the center, app bar can only have 1 action.',
+        );
 
   final String title;
   final bool centerTitle;
   final bool hasDrawer;
   final bool automaticallyImplyLeading;
   final Widget? leading;
-  final List<Widget>? actions;
+  final List<Widget> actions;
 
   @override
   Widget build(BuildContext context) {
     final YgAppBarTheme theme = context.appBarTheme;
+    const Color surfaceTintColor = Colors.transparent;
     final ScaffoldState? scaffold = Scaffold.maybeOf(context);
     final ModalRoute<Object?>? parentRoute = ModalRoute.of(context);
     final bool canPop = parentRoute?.canPop ?? false;
     final bool hasEndDrawer = scaffold?.hasEndDrawer ?? false;
     final bool useCloseButton = parentRoute is PageRoute<Object?> && parentRoute.fullscreenDialog;
 
+    final Widget? leading = _getLeadingWidget(
+      theme: theme,
+      hasEndDrawer: hasEndDrawer,
+      canPop: canPop,
+      parentRoute: parentRoute,
+      context: context,
+      useCloseButton: useCloseButton,
+    );
+
     return AppBar(
       toolbarHeight: theme.toolbarHeight,
       actions: actions,
-      surfaceTintColor: Colors.transparent,
+      surfaceTintColor: surfaceTintColor,
       backgroundColor: theme.backgroundColor,
       automaticallyImplyLeading: automaticallyImplyLeading,
       scrolledUnderElevation: 1.0,
       shadowColor: theme.borderColor,
-      leading: _getLeadingWidget(
-        theme: theme,
-        hasEndDrawer: hasEndDrawer,
-        canPop: canPop,
-        parentRoute: parentRoute,
-        context: context,
-        useCloseButton: useCloseButton,
-      ),
+      leading: leading,
       centerTitle: centerTitle,
       titleSpacing: theme.titleSpacing,
       title: Text(
