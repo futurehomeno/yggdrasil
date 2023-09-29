@@ -27,7 +27,7 @@ class _AppBarSliverScreenState extends State<AppBarSliverScreen> {
   bool _customLeading = false;
   bool _centerTitle = false;
   bool _automaticallyImplyLeading = true;
-  List<Widget>? _actions;
+  List<Widget> _actions = <Widget>[];
   int _actionsRadioGroupValue = 1;
 
   @override
@@ -110,6 +110,10 @@ class _AppBarSliverScreenState extends State<AppBarSliverScreen> {
                       value: _centerTitle,
                       onChanged: (bool? newValue) {
                         _centerTitle = newValue!;
+                        if (_centerTitle) {
+                          _actionsRadioGroupValue = 2;
+                          _actions = _singleAction;
+                        }
                         setState(() {});
                       },
                     ),
@@ -154,7 +158,7 @@ class _AppBarSliverScreenState extends State<AppBarSliverScreen> {
                       groupValue: _actionsRadioGroupValue,
                       onChanged: (int? newValue) {
                         _actionsRadioGroupValue = newValue!;
-                        _actions = null;
+                        _actions = <Widget>[];
                         setState(() {});
                       },
                     ),
@@ -177,6 +181,7 @@ class _AppBarSliverScreenState extends State<AppBarSliverScreen> {
                           onChanged: (int? newValue) {
                             _actionsRadioGroupValue = newValue!;
                             _actions = _defaultActions(context, ygAppState);
+                            _centerTitle = false;
                             setState(() {});
                           },
                         );

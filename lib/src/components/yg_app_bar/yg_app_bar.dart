@@ -51,13 +51,18 @@ class YgAppBar extends StatelessWidget implements PreferredSizeWidget {
       scrolledUnderElevation: 1.0,
       shadowColor: theme.borderColor,
       leading: leading,
-      centerTitle: centerTitle,
+      centerTitle: _evaluateCenterTitle(leading),
       titleSpacing: theme.titleSpacing,
       title: Text(
         title,
         style: theme.smallAppBarTheme.titleTextStyle,
       ),
     );
+  }
+
+  /// Enforces center title if we have no leading.
+  bool _evaluateCenterTitle(Widget? leading) {
+    return leading == null ? true : centerTitle;
   }
 
   Widget? _getLeadingWidget({

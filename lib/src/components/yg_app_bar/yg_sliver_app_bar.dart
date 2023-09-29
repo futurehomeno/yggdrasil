@@ -3,18 +3,22 @@ import 'package:yggdrasil/yggdrasil.dart';
 
 import 'widgets/_widgets.dart';
 
+/// Customized version of the [SliverAppBar] widget.
 class YgSliverAppBar extends StatelessWidget {
   const YgSliverAppBar({
     super.key,
     required this.title,
     required this.variant,
-    this.actions,
+    this.actions = const <Widget>[],
     this.leading,
     this.pinned = true,
     this.centerTitle = false,
     this.hasDrawer = false,
     this.automaticallyImplyLeading = true,
-  });
+  }) : assert(
+          centerTitle && actions.length <= 1 || !centerTitle && actions.length <= 3,
+          'When the title is in the center, app bar can only have 1 action.',
+        );
 
   final String title;
   final bool pinned;
@@ -22,7 +26,7 @@ class YgSliverAppBar extends StatelessWidget {
   final bool hasDrawer;
   final Widget? leading;
   final bool automaticallyImplyLeading;
-  final List<Widget>? actions;
+  final List<Widget> actions;
   final YgSliverAppBarVariant variant;
 
   @override
@@ -55,7 +59,7 @@ class YgSliverAppBar extends StatelessWidget {
           scrolledUnderElevation: 1.0,
           automaticallyImplyLeading: automaticallyImplyLeading,
           leading: leading,
-          centerTitle: centerTitle,
+          centerTitle: _evaluateCenterTitle(leading),
           titleSpacing: theme.titleSpacing,
           title: Text(
             title,
@@ -118,6 +122,11 @@ class YgSliverAppBar extends StatelessWidget {
           ),
         ),
     };
+  }
+
+  /// Enforces center title if we have no leading.
+  bool _evaluateCenterTitle(Widget? leading) {
+    return leading == null ? true : centerTitle;
   }
 
   Widget? _getLeadingWidget({
