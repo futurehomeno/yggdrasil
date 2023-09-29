@@ -30,8 +30,6 @@ class _RadioScreenState extends State<RadioScreen> {
   Widget build(BuildContext context) {
     return DemoScreen(
       componentName: 'Radio',
-      componentDesc: 'Radios',
-      supernovaLink: 'Link',
       child: Column(
         children: <Widget>[
           YgSection.column(

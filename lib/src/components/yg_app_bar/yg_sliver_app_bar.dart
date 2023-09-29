@@ -1,0 +1,143 @@
+import 'package:flutter/material.dart';
+import 'package:yggdrasil/yggdrasil.dart';
+
+import 'widgets/_widgets.dart';
+
+class YgSliverAppBar extends StatefulWidget {
+  const YgSliverAppBar({
+    super.key,
+    required this.title,
+    required this.variant,
+    this.actions,
+    this.leading,
+    this.pinned = true,
+    this.centerTitle = false,
+    this.hasDrawer = false,
+    this.automaticallyImplyLeading = true,
+  });
+
+  // TODO(DEV-1946): Fix the title of the sliver just vanishing when you scroll to a certain point.
+  final String title;
+  final bool pinned;
+  final bool centerTitle;
+  final bool hasDrawer;
+  final Widget? leading;
+  final bool automaticallyImplyLeading;
+  final List<Widget>? actions;
+  final YgSliverAppBarVariant variant;
+
+  @override
+  State<YgSliverAppBar> createState() => _YgSliverAppBarState();
+}
+
+class _YgSliverAppBarState extends State<YgSliverAppBar> {
+  Widget? _leading;
+
+  @override
+  Widget build(BuildContext context) {
+    final YgAppBarTheme theme = context.appBarTheme;
+    const double bottomBorderWidth = 1.0;
+    const Color surfaceTintColor = Colors.transparent;
+
+    final ScaffoldState? scaffold = Scaffold.maybeOf(context);
+    final ModalRoute<Object?>? parentRoute = ModalRoute.of(context);
+    final bool canPop = parentRoute?.canPop ?? false;
+    final bool hasEndDrawer = scaffold?.hasEndDrawer ?? false;
+    final bool useCloseButton = parentRoute is PageRoute<Object?> && parentRoute.fullscreenDialog;
+
+    if (widget.leading == null && widget.automaticallyImplyLeading) {
+      if (widget.hasDrawer) {
+        // TODO(DEV-1928): Turn this into an YgIcon whenever we introduce drawers in apps.
+        _leading = DrawerButton(
+          style: IconButton.styleFrom(iconSize: theme.leadingSize),
+        );
+      } else if ((!hasEndDrawer && canPop) || (parentRoute?.impliesAppBarDismissal ?? false)) {
+        _leading = Center(
+          child: YgIconButton(
+            onPressed: () => Navigator.maybePop(context),
+            child: YgIcon(useCloseButton ? YgIcons.coverRemove : YgIcons.caretLeft),
+          ),
+        );
+      }
+    }
+
+    if (widget.leading != null) {
+      _leading = ConstrainedBox(
+        constraints: BoxConstraints.tightFor(width: theme.leadingSize),
+        child: widget.leading,
+      );
+    }
+
+    return switch (widget.variant) {
+      YgSliverAppBarVariant.small => SliverAppBar(
+          toolbarHeight: 64.0,
+          actions: widget.actions,
+          pinned: widget.pinned,
+          shadowColor: theme.borderColor,
+          surfaceTintColor: surfaceTintColor,
+          backgroundColor: theme.backgroundColor,
+          scrolledUnderElevation: bottomBorderWidth,
+          automaticallyImplyLeading: widget.automaticallyImplyLeading,
+          leading: _leading,
+          centerTitle: widget.centerTitle,
+          title: Text(
+            widget.title,
+            style: YgSliverAppBarMapper.getTitleTextStyle(
+              theme: theme,
+              variant: YgSliverAppBarVariant.small,
+            ),
+          ),
+        ),
+      YgSliverAppBarVariant.medium => SliverAppBar.medium(
+          collapsedHeight: 64.0,
+          expandedHeight: 120.0,
+          actions: widget.actions,
+          pinned: widget.pinned,
+          shadowColor: theme.borderColor,
+          surfaceTintColor: surfaceTintColor,
+          backgroundColor: theme.backgroundColor,
+          scrolledUnderElevation: bottomBorderWidth,
+          automaticallyImplyLeading: widget.automaticallyImplyLeading,
+          leading: _leading,
+          flexibleSpace: YgFlexibleSpaceBar(
+            expandedTitleScale: 1.2,
+            centerTitle: widget.centerTitle,
+            topTitlePadding: 10.0,
+            bottomTitlePadding: 25.0,
+            title: Text(
+              widget.title,
+              style: YgSliverAppBarMapper.getTitleTextStyle(
+                theme: theme,
+                variant: YgSliverAppBarVariant.medium,
+              ),
+            ),
+          ),
+        ),
+      YgSliverAppBarVariant.large => SliverAppBar.large(
+          collapsedHeight: 64.0,
+          expandedHeight: 144.0,
+          actions: widget.actions,
+          pinned: widget.pinned,
+          shadowColor: theme.borderColor,
+          backgroundColor: theme.backgroundColor,
+          surfaceTintColor: surfaceTintColor,
+          scrolledUnderElevation: bottomBorderWidth,
+          automaticallyImplyLeading: widget.automaticallyImplyLeading,
+          leading: _leading,
+          flexibleSpace: YgFlexibleSpaceBar(
+            expandedTitleScale: 1.4,
+            centerTitle: widget.centerTitle,
+            topTitlePadding: 25.0,
+            bottomTitlePadding: 30.0,
+            title: Text(
+              widget.title,
+              style: YgSliverAppBarMapper.getTitleTextStyle(
+                theme: theme,
+                variant: YgSliverAppBarVariant.large,
+              ),
+            ),
+          ),
+        ),
+    };
+  }
+}

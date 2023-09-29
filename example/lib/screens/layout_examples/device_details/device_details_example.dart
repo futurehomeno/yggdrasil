@@ -19,8 +19,6 @@ class DeviceDetailsExample extends StatelessWidget {
   Widget build(BuildContext context) {
     return DemoScreen(
       componentName: 'DeviceDetailsExample',
-      componentDesc: 'Screen showing examples of section layouts.',
-      supernovaLink: 'Link',
       child: Column(
         children: <Widget>[
           YgSection.list(

@@ -38,8 +38,6 @@ class _DropdownFieldScreenState extends State<DropdownFieldScreen> {
       onTap: () => FocusScope.of(context).unfocus(),
       child: DemoScreen(
         componentName: 'DropdownField',
-        componentDesc: 'Dropdown Field',
-        supernovaLink: 'Dropdown',
         child: Column(
           children: <Widget>[
             YgSection.column(

@@ -10,6 +10,7 @@ part of 'theme.dart';
 
 class YgTheme extends ThemeExtension<YgTheme> {
   const YgTheme({
+    required this.appBarTheme,
     required this.badgeTheme,
     required this.bottomSheetTheme,
     required this.buttonGroupTheme,
@@ -35,9 +36,9 @@ class YgTheme extends ThemeExtension<YgTheme> {
     required this.textLinkTheme,
     required this.toggleButtonTheme,
     required this.tokens,
-    required this.topAppBarTheme,
   });
 
+  final YgAppBarTheme appBarTheme;
   final YgBadgeTheme badgeTheme;
   final YgBottomSheetTheme bottomSheetTheme;
   final YgButtonGroupTheme buttonGroupTheme;
@@ -63,9 +64,9 @@ class YgTheme extends ThemeExtension<YgTheme> {
   final YgTextLinkTheme textLinkTheme;
   final YgToggleButtonTheme toggleButtonTheme;
   final YgTokens tokens;
-  final YgTopAppBarTheme topAppBarTheme;
 
   static final YgTheme consumerLight = YgTheme(
+    appBarTheme: _$YgTheme.appBarTheme[0],
     badgeTheme: _$YgTheme.badgeTheme[0],
     bottomSheetTheme: _$YgTheme.bottomSheetTheme[0],
     buttonGroupTheme: _$YgTheme.buttonGroupTheme[0],
@@ -91,10 +92,10 @@ class YgTheme extends ThemeExtension<YgTheme> {
     textLinkTheme: _$YgTheme.textLinkTheme[0],
     toggleButtonTheme: _$YgTheme.toggleButtonTheme[0],
     tokens: _$YgTheme.tokens[0],
-    topAppBarTheme: _$YgTheme.topAppBarTheme[0],
   );
 
   static final YgTheme consumerDark = YgTheme(
+    appBarTheme: _$YgTheme.appBarTheme[1],
     badgeTheme: _$YgTheme.badgeTheme[1],
     bottomSheetTheme: _$YgTheme.bottomSheetTheme[1],
     buttonGroupTheme: _$YgTheme.buttonGroupTheme[1],
@@ -120,10 +121,10 @@ class YgTheme extends ThemeExtension<YgTheme> {
     textLinkTheme: _$YgTheme.textLinkTheme[1],
     toggleButtonTheme: _$YgTheme.toggleButtonTheme[1],
     tokens: _$YgTheme.tokens[1],
-    topAppBarTheme: _$YgTheme.topAppBarTheme[1],
   );
 
   static final YgTheme professionalLight = YgTheme(
+    appBarTheme: _$YgTheme.appBarTheme[2],
     badgeTheme: _$YgTheme.badgeTheme[2],
     bottomSheetTheme: _$YgTheme.bottomSheetTheme[2],
     buttonGroupTheme: _$YgTheme.buttonGroupTheme[2],
@@ -149,10 +150,10 @@ class YgTheme extends ThemeExtension<YgTheme> {
     textLinkTheme: _$YgTheme.textLinkTheme[2],
     toggleButtonTheme: _$YgTheme.toggleButtonTheme[2],
     tokens: _$YgTheme.tokens[2],
-    topAppBarTheme: _$YgTheme.topAppBarTheme[2],
   );
 
   static final YgTheme professionalDark = YgTheme(
+    appBarTheme: _$YgTheme.appBarTheme[3],
     badgeTheme: _$YgTheme.badgeTheme[3],
     bottomSheetTheme: _$YgTheme.bottomSheetTheme[3],
     buttonGroupTheme: _$YgTheme.buttonGroupTheme[3],
@@ -178,7 +179,6 @@ class YgTheme extends ThemeExtension<YgTheme> {
     textLinkTheme: _$YgTheme.textLinkTheme[3],
     toggleButtonTheme: _$YgTheme.toggleButtonTheme[3],
     tokens: _$YgTheme.tokens[3],
-    topAppBarTheme: _$YgTheme.topAppBarTheme[3],
   );
 
   static final themes = [
@@ -190,6 +190,7 @@ class YgTheme extends ThemeExtension<YgTheme> {
 
   @override
   YgTheme copyWith({
+    YgAppBarTheme? appBarTheme,
     YgBadgeTheme? badgeTheme,
     YgBottomSheetTheme? bottomSheetTheme,
     YgButtonGroupTheme? buttonGroupTheme,
@@ -215,9 +216,9 @@ class YgTheme extends ThemeExtension<YgTheme> {
     YgTextLinkTheme? textLinkTheme,
     YgToggleButtonTheme? toggleButtonTheme,
     YgTokens? tokens,
-    YgTopAppBarTheme? topAppBarTheme,
   }) {
     return YgTheme(
+      appBarTheme: appBarTheme ?? this.appBarTheme,
       badgeTheme: badgeTheme ?? this.badgeTheme,
       bottomSheetTheme: bottomSheetTheme ?? this.bottomSheetTheme,
       buttonGroupTheme: buttonGroupTheme ?? this.buttonGroupTheme,
@@ -244,7 +245,6 @@ class YgTheme extends ThemeExtension<YgTheme> {
       textLinkTheme: textLinkTheme ?? this.textLinkTheme,
       toggleButtonTheme: toggleButtonTheme ?? this.toggleButtonTheme,
       tokens: tokens ?? this.tokens,
-      topAppBarTheme: topAppBarTheme ?? this.topAppBarTheme,
     );
   }
 
@@ -252,6 +252,7 @@ class YgTheme extends ThemeExtension<YgTheme> {
   YgTheme lerp(covariant ThemeExtension<YgTheme>? other, double t) {
     if (other is! YgTheme) return this as YgTheme;
     return YgTheme(
+      appBarTheme: appBarTheme.lerp(other.appBarTheme, t) as YgAppBarTheme,
       badgeTheme: badgeTheme.lerp(other.badgeTheme, t) as YgBadgeTheme,
       bottomSheetTheme: bottomSheetTheme.lerp(other.bottomSheetTheme, t)
           as YgBottomSheetTheme,
@@ -287,8 +288,6 @@ class YgTheme extends ThemeExtension<YgTheme> {
       toggleButtonTheme: toggleButtonTheme.lerp(other.toggleButtonTheme, t)
           as YgToggleButtonTheme,
       tokens: tokens.lerp(other.tokens, t) as YgTokens,
-      topAppBarTheme:
-          topAppBarTheme.lerp(other.topAppBarTheme, t) as YgTopAppBarTheme,
     );
   }
 
@@ -297,6 +296,8 @@ class YgTheme extends ThemeExtension<YgTheme> {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is YgTheme &&
+            const DeepCollectionEquality()
+                .equals(appBarTheme, other.appBarTheme) &&
             const DeepCollectionEquality()
                 .equals(badgeTheme, other.badgeTheme) &&
             const DeepCollectionEquality()
@@ -341,15 +342,14 @@ class YgTheme extends ThemeExtension<YgTheme> {
                 .equals(textLinkTheme, other.textLinkTheme) &&
             const DeepCollectionEquality()
                 .equals(toggleButtonTheme, other.toggleButtonTheme) &&
-            const DeepCollectionEquality().equals(tokens, other.tokens) &&
-            const DeepCollectionEquality()
-                .equals(topAppBarTheme, other.topAppBarTheme));
+            const DeepCollectionEquality().equals(tokens, other.tokens));
   }
 
   @override
   int get hashCode {
     return Object.hashAll([
       runtimeType.hashCode,
+      const DeepCollectionEquality().hash(appBarTheme),
       const DeepCollectionEquality().hash(badgeTheme),
       const DeepCollectionEquality().hash(bottomSheetTheme),
       const DeepCollectionEquality().hash(buttonGroupTheme),
@@ -375,13 +375,13 @@ class YgTheme extends ThemeExtension<YgTheme> {
       const DeepCollectionEquality().hash(textLinkTheme),
       const DeepCollectionEquality().hash(toggleButtonTheme),
       const DeepCollectionEquality().hash(tokens),
-      const DeepCollectionEquality().hash(topAppBarTheme),
     ]);
   }
 }
 
 extension YgThemeBuildContextProps on BuildContext {
   YgTheme get ygTheme => Theme.of(this).extension<YgTheme>()!;
+  YgAppBarTheme get appBarTheme => ygTheme.appBarTheme;
   YgBadgeTheme get badgeTheme => ygTheme.badgeTheme;
   YgBottomSheetTheme get bottomSheetTheme => ygTheme.bottomSheetTheme;
   YgButtonGroupTheme get buttonGroupTheme => ygTheme.buttonGroupTheme;
@@ -408,5 +408,4 @@ extension YgThemeBuildContextProps on BuildContext {
   YgTextLinkTheme get textLinkTheme => ygTheme.textLinkTheme;
   YgToggleButtonTheme get toggleButtonTheme => ygTheme.toggleButtonTheme;
   YgTokens get tokens => ygTheme.tokens;
-  YgTopAppBarTheme get topAppBarTheme => ygTheme.topAppBarTheme;
 }

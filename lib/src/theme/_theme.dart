@@ -1,3 +1,4 @@
+export 'app_bar/_app_bar.dart';
 export 'badge/_badge.dart';
 export 'bottom_sheet/_bottom_sheet.dart';
 export 'button/_button.dart';
@@ -24,4 +25,3 @@ export 'tag/_tag.dart';
 export 'text_link/_text_link.dart';
 export 'theme.dart';
 export 'toggle_button/_toggle_button.dart';
-export 'top_app_bar/_top_app_bar.dart';

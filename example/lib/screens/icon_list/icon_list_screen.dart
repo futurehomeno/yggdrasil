@@ -20,8 +20,6 @@ class IconListScreen extends StatelessWidget {
     return DemoScreen(
       scrollable: false,
       componentName: 'Icon',
-      componentDesc: 'Icons',
-      supernovaLink: 'Link',
       child: CustomScrollView(
         slivers: <Widget>[
           SliverList.builder(

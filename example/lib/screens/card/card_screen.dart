@@ -19,8 +19,6 @@ class CardScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return DemoScreen(
       componentName: 'Card',
-      componentDesc: 'Cards',
-      supernovaLink: 'Link',
       child: Column(
         children: <Widget>[
           YgSection.column(

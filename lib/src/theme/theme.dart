@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:theme_tailor_annotation/theme_tailor_annotation.dart';
 
+import 'app_bar/_app_bar.dart';
 import 'badge/_badge.dart';
 import 'bottom_sheet/_bottom_sheet.dart';
 import 'button/_button.dart';
@@ -26,18 +27,29 @@ import 'tag/_tag.dart';
 import 'text_link/_text_link.dart';
 import 'toggle_button/_toggle_button.dart';
 import 'tokens/_tokens.dart';
-import 'top_app_bar/_top_app_bar.dart';
 
 part 'theme.tailor.dart';
 
 // See build.yaml for theme build information.
 @Tailor()
 class _$YgTheme {
+  // region Core themes
+
   @themeExtension
   static final List<YgTokens> tokens = YgTokens.themes;
 
   @themeExtension
   static final List<YgDefaults> defaults = YgDefaults.themes;
+
+  @themeExtension
+  static final List<YgInternalTheme> internalTheme = YgInternalTheme.themes;
+
+  // endregion
+
+  // region Component themes
+
+  @themeExtension
+  static final List<YgAppBarTheme> appBarTheme = YgAppBarTheme.themes;
 
   @themeExtension
   static final List<YgBadgeTheme> badgeTheme = YgBadgeTheme.themes;
@@ -52,6 +64,9 @@ class _$YgTheme {
   static final List<YgButtonGroupTheme> buttonGroupTheme = YgButtonGroupTheme.themes;
 
   @themeExtension
+  static final List<YgCalloutTheme> calloutTheme = YgCalloutTheme.themes;
+
+  @themeExtension
   static final List<YgCardTheme> cardTheme = YgCardTheme.themes;
 
   @themeExtension
@@ -59,9 +74,6 @@ class _$YgTheme {
 
   @themeExtension
   static final List<YgDialogTheme> dialogTheme = YgDialogTheme.themes;
-
-  @themeExtension
-  static final List<YgCalloutTheme> calloutTheme = YgCalloutTheme.themes;
 
   @themeExtension
   static final List<YgDividerTheme> dividerTheme = YgDividerTheme.themes;
@@ -77,9 +89,6 @@ class _$YgTheme {
 
   @themeExtension
   static final List<YgIconButtonTheme> iconButtonTheme = YgIconButtonTheme.themes;
-
-  @themeExtension
-  static final List<YgInternalTheme> internalTheme = YgInternalTheme.themes;
 
   @themeExtension
   static final List<YgListTileTheme> listTileTheme = YgListTileTheme.themes;
@@ -108,6 +117,5 @@ class _$YgTheme {
   @themeExtension
   static final List<YgToggleButtonTheme> toggleButtonTheme = YgToggleButtonTheme.themes;
 
-  @themeExtension
-  static final List<YgTopAppBarTheme> topAppBarTheme = YgTopAppBarTheme.themes;
+  // endregion
 }
