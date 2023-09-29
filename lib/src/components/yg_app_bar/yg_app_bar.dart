@@ -23,7 +23,7 @@ class YgAppBar extends StatefulWidget implements PreferredSizeWidget {
   State<YgAppBar> createState() => _YgAppBarState();
 
   @override
-  Size get preferredSize => const Size.fromHeight(kToolbarHeight);
+  Size get preferredSize => const Size.fromHeight(64.0);
 }
 
 class _YgAppBarState extends State<YgAppBar> {
@@ -49,6 +49,7 @@ class _YgAppBarState extends State<YgAppBar> {
     );
 
     return AppBar(
+      toolbarHeight: 64.0,
       actions: widget.actions,
       surfaceTintColor: Colors.transparent,
       backgroundColor: theme.backgroundColor,
