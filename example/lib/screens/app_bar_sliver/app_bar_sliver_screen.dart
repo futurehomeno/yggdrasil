@@ -17,10 +17,10 @@ class AppBarSliverScreen extends StatefulWidget {
   }
 
   @override
-  State<AppBarSliverScreen> createState() => _AppBarScreenState();
+  State<AppBarSliverScreen> createState() => _AppBarSliverScreenState();
 }
 
-class _AppBarScreenState extends State<AppBarSliverScreen> {
+class _AppBarSliverScreenState extends State<AppBarSliverScreen> {
   final TextEditingController _textEditingController = TextEditingController(text: 'App bar (sliver)');
   YgSliverAppBarVariant _variant = YgSliverAppBarVariant.small;
   int _variantRadioGroupValue = 1;
