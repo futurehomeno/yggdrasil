@@ -23,12 +23,12 @@ class YgMultiSelectDropdownController<T extends Object>
   }
 
   @override
-  void onEntryTapped(YgDropdownEntry<T> entry) {
+  void onValueTapped(T value) {
     final _YgDropdownFieldMultiSelectState<T>? fieldState = _fieldState;
 
     assert(
       fieldState != null,
-      'YgMultiSelectDropdownController.onEntryTapped was called while the controller was not attached to a multi select dropdown!',
+      'YgMultiSelectDropdownController.onValueTapped was called while the controller was not attached to a multi select dropdown!',
     );
     if (fieldState == null) {
       return;
@@ -36,17 +36,17 @@ class YgMultiSelectDropdownController<T extends Object>
 
     final _YgDropdownFieldMultiSelect<T> widget = fieldState.widget;
 
-    if (value.contains(entry.value)) {
-      if (!widget.allowDeselect && value.length < 2) {
+    if (this.value.contains(value)) {
+      if (!widget.allowDeselect && this.value.length < 2) {
         return;
       }
 
-      value.remove(entry.value);
+      this.value.remove(value);
     } else {
-      value.add(entry.value);
+      this.value.add(value);
     }
 
-    widget.onChange?.call(value);
+    widget.onChange?.call(this.value);
     notifyListeners();
   }
 
@@ -80,5 +80,5 @@ class YgMultiSelectDropdownController<T extends Object>
   bool get filled => value.isNotEmpty;
 
   @override
-  bool isEntrySelected(YgDropdownEntry<T> entry) => value.contains(entry.value);
+  bool isValueSelected(T value) => this.value.contains(value);
 }
