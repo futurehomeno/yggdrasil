@@ -10,25 +10,43 @@ part of 'large_app_bar_theme.dart';
 
 class LargeAppBarTheme extends ThemeExtension<LargeAppBarTheme> {
   const LargeAppBarTheme({
+    required this.bottomTitlePadding,
+    required this.expandedHeight,
     required this.titleTextStyle,
+    required this.topTitlePadding,
   });
 
+  final double bottomTitlePadding;
+  final double expandedHeight;
   final TextStyle titleTextStyle;
+  final double topTitlePadding;
 
   static final LargeAppBarTheme consumerLight = LargeAppBarTheme(
+    bottomTitlePadding: _$LargeAppBarTheme.bottomTitlePadding[0],
+    expandedHeight: _$LargeAppBarTheme.expandedHeight[0],
     titleTextStyle: _$LargeAppBarTheme.titleTextStyle[0],
+    topTitlePadding: _$LargeAppBarTheme.topTitlePadding[0],
   );
 
   static final LargeAppBarTheme consumerDark = LargeAppBarTheme(
+    bottomTitlePadding: _$LargeAppBarTheme.bottomTitlePadding[1],
+    expandedHeight: _$LargeAppBarTheme.expandedHeight[1],
     titleTextStyle: _$LargeAppBarTheme.titleTextStyle[1],
+    topTitlePadding: _$LargeAppBarTheme.topTitlePadding[1],
   );
 
   static final LargeAppBarTheme professionalLight = LargeAppBarTheme(
+    bottomTitlePadding: _$LargeAppBarTheme.bottomTitlePadding[2],
+    expandedHeight: _$LargeAppBarTheme.expandedHeight[2],
     titleTextStyle: _$LargeAppBarTheme.titleTextStyle[2],
+    topTitlePadding: _$LargeAppBarTheme.topTitlePadding[2],
   );
 
   static final LargeAppBarTheme professionalDark = LargeAppBarTheme(
+    bottomTitlePadding: _$LargeAppBarTheme.bottomTitlePadding[3],
+    expandedHeight: _$LargeAppBarTheme.expandedHeight[3],
     titleTextStyle: _$LargeAppBarTheme.titleTextStyle[3],
+    topTitlePadding: _$LargeAppBarTheme.topTitlePadding[3],
   );
 
   static final themes = [
@@ -40,10 +58,16 @@ class LargeAppBarTheme extends ThemeExtension<LargeAppBarTheme> {
 
   @override
   LargeAppBarTheme copyWith({
+    double? bottomTitlePadding,
+    double? expandedHeight,
     TextStyle? titleTextStyle,
+    double? topTitlePadding,
   }) {
     return LargeAppBarTheme(
+      bottomTitlePadding: bottomTitlePadding ?? this.bottomTitlePadding,
+      expandedHeight: expandedHeight ?? this.expandedHeight,
       titleTextStyle: titleTextStyle ?? this.titleTextStyle,
+      topTitlePadding: topTitlePadding ?? this.topTitlePadding,
     );
   }
 
@@ -52,7 +76,11 @@ class LargeAppBarTheme extends ThemeExtension<LargeAppBarTheme> {
       covariant ThemeExtension<LargeAppBarTheme>? other, double t) {
     if (other is! LargeAppBarTheme) return this as LargeAppBarTheme;
     return LargeAppBarTheme(
+      bottomTitlePadding:
+          t < 0.5 ? bottomTitlePadding : other.bottomTitlePadding,
+      expandedHeight: t < 0.5 ? expandedHeight : other.expandedHeight,
       titleTextStyle: TextStyle.lerp(titleTextStyle, other.titleTextStyle, t)!,
+      topTitlePadding: t < 0.5 ? topTitlePadding : other.topTitlePadding,
     );
   }
 
@@ -62,14 +90,23 @@ class LargeAppBarTheme extends ThemeExtension<LargeAppBarTheme> {
         (other.runtimeType == runtimeType &&
             other is LargeAppBarTheme &&
             const DeepCollectionEquality()
-                .equals(titleTextStyle, other.titleTextStyle));
+                .equals(bottomTitlePadding, other.bottomTitlePadding) &&
+            const DeepCollectionEquality()
+                .equals(expandedHeight, other.expandedHeight) &&
+            const DeepCollectionEquality()
+                .equals(titleTextStyle, other.titleTextStyle) &&
+            const DeepCollectionEquality()
+                .equals(topTitlePadding, other.topTitlePadding));
   }
 
   @override
   int get hashCode {
     return Object.hash(
       runtimeType.hashCode,
+      const DeepCollectionEquality().hash(bottomTitlePadding),
+      const DeepCollectionEquality().hash(expandedHeight),
       const DeepCollectionEquality().hash(titleTextStyle),
+      const DeepCollectionEquality().hash(topTitlePadding),
     );
   }
 }

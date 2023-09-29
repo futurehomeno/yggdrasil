@@ -30,11 +30,13 @@ class YgAppBar extends StatelessWidget implements PreferredSizeWidget {
     final bool useCloseButton = parentRoute is PageRoute<Object?> && parentRoute.fullscreenDialog;
 
     return AppBar(
-      toolbarHeight: 64.0,
+      toolbarHeight: theme.toolbarHeight,
       actions: actions,
       surfaceTintColor: Colors.transparent,
       backgroundColor: theme.backgroundColor,
       automaticallyImplyLeading: automaticallyImplyLeading,
+      scrolledUnderElevation: 1.0,
+      shadowColor: theme.borderColor,
       leading: _getLeadingWidget(
         theme: theme,
         hasEndDrawer: hasEndDrawer,
@@ -44,7 +46,7 @@ class YgAppBar extends StatelessWidget implements PreferredSizeWidget {
         useCloseButton: useCloseButton,
       ),
       centerTitle: centerTitle,
-      titleSpacing: 5.0,
+      titleSpacing: theme.titleSpacing,
       title: Text(
         title,
         style: theme.smallAppBarTheme.titleTextStyle,
@@ -64,7 +66,7 @@ class YgAppBar extends StatelessWidget implements PreferredSizeWidget {
       if (hasDrawer) {
         // TODO(DEV-1928): Turn this into an YgIcon whenever we introduce drawers in apps.
         return DrawerButton(
-          style: IconButton.styleFrom(iconSize: theme.leadingSize),
+          style: IconButton.styleFrom(iconSize: theme.leadingIconSize),
         );
       } else if ((!hasEndDrawer && canPop) || (parentRoute?.impliesAppBarDismissal ?? false)) {
         return YgIconButton(
@@ -76,7 +78,7 @@ class YgAppBar extends StatelessWidget implements PreferredSizeWidget {
 
     if (leading != null) {
       return ConstrainedBox(
-        constraints: BoxConstraints.tightFor(width: theme.leadingSize),
+        constraints: BoxConstraints.tightFor(width: theme.leadingIconSize),
         child: leading,
       );
     }
@@ -84,6 +86,9 @@ class YgAppBar extends StatelessWidget implements PreferredSizeWidget {
     return null;
   }
 
+  // !--- IMPORTANT ---
+  // If the size of the app bar changes, the size of the app bar must be updated in the
+  // `preferredSize` getter below.
   @override
   Size get preferredSize => const Size.fromHeight(64.0);
 }

@@ -12,59 +12,77 @@ class YgAppBarTheme extends ThemeExtension<YgAppBarTheme> {
   const YgAppBarTheme({
     required this.backgroundColor,
     required this.borderColor,
+    required this.collapsedHeight,
     required this.largeAppBarTheme,
-    required this.leadingSize,
+    required this.leadingIconSize,
     required this.mediumAppBarTheme,
     required this.smallAppBarTheme,
-    required this.trailingSize,
+    required this.titleSpacing,
+    required this.toolbarHeight,
+    required this.trailingIconSize,
   });
 
   final Color backgroundColor;
   final Color borderColor;
+  final double collapsedHeight;
   final LargeAppBarTheme largeAppBarTheme;
-  final double leadingSize;
+  final double leadingIconSize;
   final MediumAppBarTheme mediumAppBarTheme;
   final SmallAppBarTheme smallAppBarTheme;
-  final double trailingSize;
+  final double titleSpacing;
+  final double toolbarHeight;
+  final double trailingIconSize;
 
   static final YgAppBarTheme consumerLight = YgAppBarTheme(
     backgroundColor: _$YgAppBarTheme.backgroundColor[0],
     borderColor: _$YgAppBarTheme.borderColor[0],
+    collapsedHeight: _$YgAppBarTheme.collapsedHeight[0],
     largeAppBarTheme: _$YgAppBarTheme.largeAppBarTheme[0],
-    leadingSize: _$YgAppBarTheme.leadingSize[0],
+    leadingIconSize: _$YgAppBarTheme.leadingIconSize[0],
     mediumAppBarTheme: _$YgAppBarTheme.mediumAppBarTheme[0],
     smallAppBarTheme: _$YgAppBarTheme.smallAppBarTheme[0],
-    trailingSize: _$YgAppBarTheme.trailingSize[0],
+    titleSpacing: _$YgAppBarTheme.titleSpacing[0],
+    toolbarHeight: _$YgAppBarTheme.toolbarHeight[0],
+    trailingIconSize: _$YgAppBarTheme.trailingIconSize[0],
   );
 
   static final YgAppBarTheme consumerDark = YgAppBarTheme(
     backgroundColor: _$YgAppBarTheme.backgroundColor[1],
     borderColor: _$YgAppBarTheme.borderColor[1],
+    collapsedHeight: _$YgAppBarTheme.collapsedHeight[1],
     largeAppBarTheme: _$YgAppBarTheme.largeAppBarTheme[1],
-    leadingSize: _$YgAppBarTheme.leadingSize[1],
+    leadingIconSize: _$YgAppBarTheme.leadingIconSize[1],
     mediumAppBarTheme: _$YgAppBarTheme.mediumAppBarTheme[1],
     smallAppBarTheme: _$YgAppBarTheme.smallAppBarTheme[1],
-    trailingSize: _$YgAppBarTheme.trailingSize[1],
+    titleSpacing: _$YgAppBarTheme.titleSpacing[1],
+    toolbarHeight: _$YgAppBarTheme.toolbarHeight[1],
+    trailingIconSize: _$YgAppBarTheme.trailingIconSize[1],
   );
 
   static final YgAppBarTheme professionalLight = YgAppBarTheme(
     backgroundColor: _$YgAppBarTheme.backgroundColor[2],
     borderColor: _$YgAppBarTheme.borderColor[2],
+    collapsedHeight: _$YgAppBarTheme.collapsedHeight[2],
     largeAppBarTheme: _$YgAppBarTheme.largeAppBarTheme[2],
-    leadingSize: _$YgAppBarTheme.leadingSize[2],
+    leadingIconSize: _$YgAppBarTheme.leadingIconSize[2],
     mediumAppBarTheme: _$YgAppBarTheme.mediumAppBarTheme[2],
     smallAppBarTheme: _$YgAppBarTheme.smallAppBarTheme[2],
-    trailingSize: _$YgAppBarTheme.trailingSize[2],
+    titleSpacing: _$YgAppBarTheme.titleSpacing[2],
+    toolbarHeight: _$YgAppBarTheme.toolbarHeight[2],
+    trailingIconSize: _$YgAppBarTheme.trailingIconSize[2],
   );
 
   static final YgAppBarTheme professionalDark = YgAppBarTheme(
     backgroundColor: _$YgAppBarTheme.backgroundColor[3],
     borderColor: _$YgAppBarTheme.borderColor[3],
+    collapsedHeight: _$YgAppBarTheme.collapsedHeight[3],
     largeAppBarTheme: _$YgAppBarTheme.largeAppBarTheme[3],
-    leadingSize: _$YgAppBarTheme.leadingSize[3],
+    leadingIconSize: _$YgAppBarTheme.leadingIconSize[3],
     mediumAppBarTheme: _$YgAppBarTheme.mediumAppBarTheme[3],
     smallAppBarTheme: _$YgAppBarTheme.smallAppBarTheme[3],
-    trailingSize: _$YgAppBarTheme.trailingSize[3],
+    titleSpacing: _$YgAppBarTheme.titleSpacing[3],
+    toolbarHeight: _$YgAppBarTheme.toolbarHeight[3],
+    trailingIconSize: _$YgAppBarTheme.trailingIconSize[3],
   );
 
   static final themes = [
@@ -78,20 +96,26 @@ class YgAppBarTheme extends ThemeExtension<YgAppBarTheme> {
   YgAppBarTheme copyWith({
     Color? backgroundColor,
     Color? borderColor,
+    double? collapsedHeight,
     LargeAppBarTheme? largeAppBarTheme,
-    double? leadingSize,
+    double? leadingIconSize,
     MediumAppBarTheme? mediumAppBarTheme,
     SmallAppBarTheme? smallAppBarTheme,
-    double? trailingSize,
+    double? titleSpacing,
+    double? toolbarHeight,
+    double? trailingIconSize,
   }) {
     return YgAppBarTheme(
       backgroundColor: backgroundColor ?? this.backgroundColor,
       borderColor: borderColor ?? this.borderColor,
+      collapsedHeight: collapsedHeight ?? this.collapsedHeight,
       largeAppBarTheme: largeAppBarTheme ?? this.largeAppBarTheme,
-      leadingSize: leadingSize ?? this.leadingSize,
+      leadingIconSize: leadingIconSize ?? this.leadingIconSize,
       mediumAppBarTheme: mediumAppBarTheme ?? this.mediumAppBarTheme,
       smallAppBarTheme: smallAppBarTheme ?? this.smallAppBarTheme,
-      trailingSize: trailingSize ?? this.trailingSize,
+      titleSpacing: titleSpacing ?? this.titleSpacing,
+      toolbarHeight: toolbarHeight ?? this.toolbarHeight,
+      trailingIconSize: trailingIconSize ?? this.trailingIconSize,
     );
   }
 
@@ -101,14 +125,17 @@ class YgAppBarTheme extends ThemeExtension<YgAppBarTheme> {
     return YgAppBarTheme(
       backgroundColor: Color.lerp(backgroundColor, other.backgroundColor, t)!,
       borderColor: Color.lerp(borderColor, other.borderColor, t)!,
+      collapsedHeight: t < 0.5 ? collapsedHeight : other.collapsedHeight,
       largeAppBarTheme:
           largeAppBarTheme.lerp(other.largeAppBarTheme, t) as LargeAppBarTheme,
-      leadingSize: t < 0.5 ? leadingSize : other.leadingSize,
+      leadingIconSize: t < 0.5 ? leadingIconSize : other.leadingIconSize,
       mediumAppBarTheme: mediumAppBarTheme.lerp(other.mediumAppBarTheme, t)
           as MediumAppBarTheme,
       smallAppBarTheme:
           smallAppBarTheme.lerp(other.smallAppBarTheme, t) as SmallAppBarTheme,
-      trailingSize: t < 0.5 ? trailingSize : other.trailingSize,
+      titleSpacing: t < 0.5 ? titleSpacing : other.titleSpacing,
+      toolbarHeight: t < 0.5 ? toolbarHeight : other.toolbarHeight,
+      trailingIconSize: t < 0.5 ? trailingIconSize : other.trailingIconSize,
     );
   }
 
@@ -122,15 +149,21 @@ class YgAppBarTheme extends ThemeExtension<YgAppBarTheme> {
             const DeepCollectionEquality()
                 .equals(borderColor, other.borderColor) &&
             const DeepCollectionEquality()
+                .equals(collapsedHeight, other.collapsedHeight) &&
+            const DeepCollectionEquality()
                 .equals(largeAppBarTheme, other.largeAppBarTheme) &&
             const DeepCollectionEquality()
-                .equals(leadingSize, other.leadingSize) &&
+                .equals(leadingIconSize, other.leadingIconSize) &&
             const DeepCollectionEquality()
                 .equals(mediumAppBarTheme, other.mediumAppBarTheme) &&
             const DeepCollectionEquality()
                 .equals(smallAppBarTheme, other.smallAppBarTheme) &&
             const DeepCollectionEquality()
-                .equals(trailingSize, other.trailingSize));
+                .equals(titleSpacing, other.titleSpacing) &&
+            const DeepCollectionEquality()
+                .equals(toolbarHeight, other.toolbarHeight) &&
+            const DeepCollectionEquality()
+                .equals(trailingIconSize, other.trailingIconSize));
   }
 
   @override
@@ -139,11 +172,14 @@ class YgAppBarTheme extends ThemeExtension<YgAppBarTheme> {
       runtimeType.hashCode,
       const DeepCollectionEquality().hash(backgroundColor),
       const DeepCollectionEquality().hash(borderColor),
+      const DeepCollectionEquality().hash(collapsedHeight),
       const DeepCollectionEquality().hash(largeAppBarTheme),
-      const DeepCollectionEquality().hash(leadingSize),
+      const DeepCollectionEquality().hash(leadingIconSize),
       const DeepCollectionEquality().hash(mediumAppBarTheme),
       const DeepCollectionEquality().hash(smallAppBarTheme),
-      const DeepCollectionEquality().hash(trailingSize),
+      const DeepCollectionEquality().hash(titleSpacing),
+      const DeepCollectionEquality().hash(toolbarHeight),
+      const DeepCollectionEquality().hash(trailingIconSize),
     );
   }
 }

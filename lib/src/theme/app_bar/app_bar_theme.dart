@@ -33,17 +33,43 @@ class _$YgAppBarTheme {
     professional_dark.FhColors.borderDefault,
   ];
 
-  static const List<double> leadingSize = <double>[
+  static const List<double> leadingIconSize = <double>[
     consumer_light.FhDimensions.md,
     consumer_dark.FhDimensions.md,
     professional_light.FhDimensions.md,
     professional_dark.FhDimensions.md,
   ];
 
-  static const List<double> trailingSize = <double>[
+  static const List<double> trailingIconSize = <double>[
     consumer_light.FhDimensions.md,
     consumer_dark.FhDimensions.md,
     professional_light.FhDimensions.md,
     professional_dark.FhDimensions.md,
+  ];
+
+  static const List<double> titleSpacing = <double>[
+    consumer_light.FhDimensions.xxs,
+    consumer_dark.FhDimensions.xxs,
+    professional_light.FhDimensions.xxs,
+    professional_dark.FhDimensions.xxs,
+  ];
+
+  // !--- IMPORTANT ---
+  // If the size of the app bar changes, the size of the app bar must be updated in the
+  // `preferredSize` getter in the widget as well.
+  // Strange things might happen if this is not the same as collapsedHeight.
+  static const List<double> toolbarHeight = <double>[
+    64.0,
+    64.0,
+    64.0,
+    64.0,
+  ];
+
+  // Strange things might happen if this is not the same as collapsedHeight.
+  static const List<double> collapsedHeight = <double>[
+    64.0,
+    64.0,
+    64.0,
+    64.0,
   ];
 }

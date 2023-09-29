@@ -23,4 +23,25 @@ class _$MediumAppBarTheme {
       color: professional_dark.FhColors.textDefault,
     ),
   ];
+
+  static const List<double> expandedHeight = <double>[
+    120.0,
+    120.0,
+    120.0,
+    120.0,
+  ];
+
+  static const List<double> topTitlePadding = <double>[
+    consumer_light.FhDimensions.xs,
+    consumer_dark.FhDimensions.xs,
+    professional_light.FhDimensions.xs,
+    professional_dark.FhDimensions.xs,
+  ];
+
+  static const List<double> bottomTitlePadding = <double>[
+    consumer_light.FhDimensions.lg,
+    consumer_dark.FhDimensions.lg,
+    professional_light.FhDimensions.lg,
+    professional_dark.FhDimensions.lg,
+  ];
 }

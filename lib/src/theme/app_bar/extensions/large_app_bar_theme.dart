@@ -23,4 +23,25 @@ class _$LargeAppBarTheme {
       color: professional_dark.FhColors.textDefault,
     ),
   ];
+
+  static const List<double> expandedHeight = <double>[
+    144.0,
+    144.0,
+    144.0,
+    144.0,
+  ];
+
+  static const List<double> topTitlePadding = <double>[
+    consumer_light.FhDimensions.lg,
+    consumer_dark.FhDimensions.lg,
+    professional_light.FhDimensions.lg,
+    professional_dark.FhDimensions.lg,
+  ];
+
+  static const List<double> bottomTitlePadding = <double>[
+    consumer_light.FhDimensions.xl,
+    consumer_dark.FhDimensions.xl,
+    professional_light.FhDimensions.xl,
+    professional_dark.FhDimensions.xl,
+  ];
 }

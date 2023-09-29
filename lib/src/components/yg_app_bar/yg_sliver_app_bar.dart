@@ -16,7 +16,6 @@ class YgSliverAppBar extends StatefulWidget {
     this.automaticallyImplyLeading = true,
   });
 
-  // TODO(DEV-1946): Fix the title of the sliver just vanishing when you scroll to a certain point.
   final String title;
   final bool pinned;
   final bool centerTitle;
@@ -36,7 +35,6 @@ class _YgSliverAppBarState extends State<YgSliverAppBar> {
   @override
   Widget build(BuildContext context) {
     final YgAppBarTheme theme = context.appBarTheme;
-    const double bottomBorderWidth = 1.0;
     const Color surfaceTintColor = Colors.transparent;
 
     final ScaffoldState? scaffold = Scaffold.maybeOf(context);
@@ -49,7 +47,7 @@ class _YgSliverAppBarState extends State<YgSliverAppBar> {
       if (widget.hasDrawer) {
         // TODO(DEV-1928): Turn this into an YgIcon whenever we introduce drawers in apps.
         _leading = DrawerButton(
-          style: IconButton.styleFrom(iconSize: theme.leadingSize),
+          style: IconButton.styleFrom(iconSize: theme.leadingIconSize),
         );
       } else if ((!hasEndDrawer && canPop) || (parentRoute?.impliesAppBarDismissal ?? false)) {
         _leading = YgIconButton(
@@ -61,24 +59,24 @@ class _YgSliverAppBarState extends State<YgSliverAppBar> {
 
     if (widget.leading != null) {
       _leading = ConstrainedBox(
-        constraints: BoxConstraints.tightFor(width: theme.leadingSize),
+        constraints: BoxConstraints.tightFor(width: theme.leadingIconSize),
         child: widget.leading,
       );
     }
 
     return switch (widget.variant) {
       YgSliverAppBarVariant.small => SliverAppBar(
-          toolbarHeight: 64.0,
+          toolbarHeight: theme.toolbarHeight,
           actions: widget.actions,
           pinned: widget.pinned,
           shadowColor: theme.borderColor,
           surfaceTintColor: surfaceTintColor,
           backgroundColor: theme.backgroundColor,
-          scrolledUnderElevation: bottomBorderWidth,
+          scrolledUnderElevation: 1.0,
           automaticallyImplyLeading: widget.automaticallyImplyLeading,
           leading: _leading,
           centerTitle: widget.centerTitle,
-          titleSpacing: 5.0,
+          titleSpacing: theme.titleSpacing,
           title: Text(
             widget.title,
             style: YgSliverAppBarMapper.getTitleTextStyle(
@@ -88,22 +86,22 @@ class _YgSliverAppBarState extends State<YgSliverAppBar> {
           ),
         ),
       YgSliverAppBarVariant.medium => SliverAppBar(
-          toolbarHeight: 64.0,
-          collapsedHeight: 64.0,
-          expandedHeight: 120.0,
+          toolbarHeight: theme.toolbarHeight,
+          collapsedHeight: theme.collapsedHeight,
+          expandedHeight: theme.mediumAppBarTheme.expandedHeight,
           actions: widget.actions,
           pinned: widget.pinned,
           shadowColor: theme.borderColor,
           surfaceTintColor: surfaceTintColor,
           backgroundColor: theme.backgroundColor,
-          scrolledUnderElevation: bottomBorderWidth,
+          scrolledUnderElevation: 1.0,
           automaticallyImplyLeading: widget.automaticallyImplyLeading,
           leading: _leading,
           flexibleSpace: YgFlexibleSpaceBar(
             expandedTitleScale: 1.2,
             centerTitle: widget.centerTitle,
-            topTitlePadding: 10.0,
-            bottomTitlePadding: 25.0,
+            topTitlePadding: theme.mediumAppBarTheme.topTitlePadding,
+            bottomTitlePadding: theme.mediumAppBarTheme.bottomTitlePadding,
             title: Text(
               widget.title,
               style: YgSliverAppBarMapper.getTitleTextStyle(
@@ -114,22 +112,22 @@ class _YgSliverAppBarState extends State<YgSliverAppBar> {
           ),
         ),
       YgSliverAppBarVariant.large => SliverAppBar(
-          toolbarHeight: 64.0,
-          collapsedHeight: 64.0,
-          expandedHeight: 144.0,
+          toolbarHeight: theme.toolbarHeight,
+          collapsedHeight: theme.collapsedHeight,
+          expandedHeight: theme.largeAppBarTheme.expandedHeight,
           actions: widget.actions,
           pinned: widget.pinned,
           shadowColor: theme.borderColor,
           backgroundColor: theme.backgroundColor,
           surfaceTintColor: surfaceTintColor,
-          scrolledUnderElevation: bottomBorderWidth,
+          scrolledUnderElevation: 1.0,
           automaticallyImplyLeading: widget.automaticallyImplyLeading,
           leading: _leading,
           flexibleSpace: YgFlexibleSpaceBar(
             expandedTitleScale: 1.4,
             centerTitle: widget.centerTitle,
-            topTitlePadding: 25.0,
-            bottomTitlePadding: 30.0,
+            topTitlePadding: theme.largeAppBarTheme.topTitlePadding,
+            bottomTitlePadding: theme.largeAppBarTheme.bottomTitlePadding,
             title: Text(
               widget.title,
               style: YgSliverAppBarMapper.getTitleTextStyle(
