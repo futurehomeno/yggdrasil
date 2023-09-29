@@ -16,8 +16,8 @@ class YgIcons {
   static const String anglePosition = 'assets/icons/angle_position.svg';
   static const String apartment = 'assets/icons/apartment.svg';
   static const String apartmentAlt = 'assets/icons/apartment_alt.svg';
-  static const String appliance = 'assets/icons/appliance.svg';
   static const String appStore = 'assets/icons/app_store.svg';
+  static const String appliance = 'assets/icons/appliance.svg';
   static const String arduino = 'assets/icons/arduino.svg';
   static const String areas = 'assets/icons/areas.svg';
   static const String arrowDown = 'assets/icons/arrow_down.svg';
@@ -63,6 +63,7 @@ class YgIcons {
   static const String caretUp = 'assets/icons/caret_up.svg';
   static const String cart = 'assets/icons/cart.svg';
   static const String charger = 'assets/icons/charger.svg';
+  static const String chargerQuestion = 'assets/icons/charger_question.svg';
   static const String check = 'assets/icons/check.svg';
   static const String childRoom = 'assets/icons/child_room.svg';
   static const String circle = 'assets/icons/circle.svg';
@@ -185,8 +186,8 @@ class YgIcons {
   static const String lighting = 'assets/icons/lighting.svg';
   static const String link = 'assets/icons/link.svg';
   static const String lockClosed = 'assets/icons/lock_closed.svg';
-  static const String locked = 'assets/icons/locked.svg';
   static const String lockOpen = 'assets/icons/lock_open.svg';
+  static const String locked = 'assets/icons/locked.svg';
   static const String login = 'assets/icons/login.svg';
   static const String lounge = 'assets/icons/lounge.svg';
   static const String luminance = 'assets/icons/luminance.svg';
@@ -213,8 +214,8 @@ class YgIcons {
   static const String nothing = 'assets/icons/nothing.svg';
   static const String notification = 'assets/icons/notification.svg';
   static const String notingDown = 'assets/icons/noting_down.svg';
+  static const String office1 = 'assets/icons/office-1.svg';
   static const String office = 'assets/icons/office.svg';
-  static const String office1 = ' assets/icons/office-1.svg';
   static const String oldMan = 'assets/icons/old_man.svg';
   static const String omega = 'assets/icons/omega.svg';
   static const String outdoors = 'assets/icons/outdoors.svg';
@@ -227,8 +228,9 @@ class YgIcons {
   static const String placeholder = 'assets/icons/placeholder.svg';
   static const String planet = 'assets/icons/planet.svg';
   static const String plant = 'assets/icons/plant.svg';
+  static const String play1 = 'assets/icons/play-1.svg';
   static const String play = 'assets/icons/play.svg';
-  static const String play1 = ' assets/icons/play-1.svg';
+  static const String playQuestion = 'assets/icons/play_question.svg';
   static const String playlist = 'assets/icons/playlist.svg';
   static const String plus = 'assets/icons/plus.svg';
   static const String power = 'assets/icons/power.svg';
@@ -240,8 +242,8 @@ class YgIcons {
   static const String read = 'assets/icons/read.svg';
   static const String refresh = 'assets/icons/refresh.svg';
   static const String refreshAlt = 'assets/icons/refresh_alt.svg';
+  static const String relax1 = 'assets/icons/relax-1.svg';
   static const String relax = 'assets/icons/relax.svg';
-  static const String relax1 = ' assets/icons/relax-1.svg';
   static const String reload = 'assets/icons/reload.svg';
   static const String rental = 'assets/icons/rental.svg';
   static const String restart = 'assets/icons/restart.svg';
@@ -347,8 +349,8 @@ class YgIcons {
     anglePosition,
     apartment,
     apartmentAlt,
-    appliance,
     appStore,
+    appliance,
     arduino,
     areas,
     arrowDown,
@@ -394,6 +396,7 @@ class YgIcons {
     caretUp,
     cart,
     charger,
+    chargerQuestion,
     check,
     childRoom,
     circle,
@@ -516,8 +519,8 @@ class YgIcons {
     lighting,
     link,
     lockClosed,
-    locked,
     lockOpen,
+    locked,
     login,
     lounge,
     luminance,
@@ -544,8 +547,8 @@ class YgIcons {
     nothing,
     notification,
     notingDown,
-    office,
     office1,
+    office,
     oldMan,
     omega,
     outdoors,
@@ -558,8 +561,9 @@ class YgIcons {
     placeholder,
     planet,
     plant,
-    play,
     play1,
+    play,
+    playQuestion,
     playlist,
     plus,
     power,
@@ -571,8 +575,8 @@ class YgIcons {
     read,
     refresh,
     refreshAlt,
-    relax,
     relax1,
+    relax,
     reload,
     rental,
     restart,
@@ -679,8 +683,8 @@ class YgIcons {
     'anglePosition',
     'apartment',
     'apartmentAlt',
-    'appliance',
     'appStore',
+    'appliance',
     'arduino',
     'areas',
     'arrowDown',
@@ -726,6 +730,7 @@ class YgIcons {
     'caretUp',
     'cart',
     'charger',
+    'chargerQuestion',
     'check',
     'childRoom',
     'circle',
@@ -737,7 +742,6 @@ class YgIcons {
     'color',
     'commonArea',
     'controlRoom',
-    'copy',
     'copy',
     'corridor',
     'coverRemove',
@@ -849,8 +853,8 @@ class YgIcons {
     'lighting',
     'link',
     'lockClosed',
-    'locked',
     'lockOpen',
+    'locked',
     'login',
     'lounge',
     'luminance',
@@ -877,8 +881,8 @@ class YgIcons {
     'nothing',
     'notification',
     'notingDown',
-    'office',
     'office1',
+    'office',
     'oldMan',
     'omega',
     'outdoors',
@@ -891,8 +895,9 @@ class YgIcons {
     'placeholder',
     'planet',
     'plant',
-    'play',
     'play1',
+    'play',
+    'playQuestion',
     'playlist',
     'plus',
     'power',
@@ -904,8 +909,8 @@ class YgIcons {
     'read',
     'refresh',
     'refreshAlt',
-    'relax',
     'relax1',
+    'relax',
     'reload',
     'rental',
     'restart',
