@@ -52,11 +52,9 @@ class _YgSliverAppBarState extends State<YgSliverAppBar> {
           style: IconButton.styleFrom(iconSize: theme.leadingSize),
         );
       } else if ((!hasEndDrawer && canPop) || (parentRoute?.impliesAppBarDismissal ?? false)) {
-        _leading = Center(
-          child: YgIconButton(
-            onPressed: () => Navigator.maybePop(context),
-            child: YgIcon(useCloseButton ? YgIcons.coverRemove : YgIcons.caretLeft),
-          ),
+        _leading = YgIconButton(
+          onPressed: () => Navigator.maybePop(context),
+          child: YgIcon(useCloseButton ? YgIcons.coverRemove : YgIcons.caretLeft),
         );
       }
     }
@@ -80,6 +78,7 @@ class _YgSliverAppBarState extends State<YgSliverAppBar> {
           automaticallyImplyLeading: widget.automaticallyImplyLeading,
           leading: _leading,
           centerTitle: widget.centerTitle,
+          titleSpacing: 5.0,
           title: Text(
             widget.title,
             style: YgSliverAppBarMapper.getTitleTextStyle(
@@ -88,7 +87,8 @@ class _YgSliverAppBarState extends State<YgSliverAppBar> {
             ),
           ),
         ),
-      YgSliverAppBarVariant.medium => SliverAppBar.medium(
+      YgSliverAppBarVariant.medium => SliverAppBar(
+          toolbarHeight: 64.0,
           collapsedHeight: 64.0,
           expandedHeight: 120.0,
           actions: widget.actions,
@@ -113,7 +113,8 @@ class _YgSliverAppBarState extends State<YgSliverAppBar> {
             ),
           ),
         ),
-      YgSliverAppBarVariant.large => SliverAppBar.large(
+      YgSliverAppBarVariant.large => SliverAppBar(
+          toolbarHeight: 64.0,
           collapsedHeight: 64.0,
           expandedHeight: 144.0,
           actions: widget.actions,

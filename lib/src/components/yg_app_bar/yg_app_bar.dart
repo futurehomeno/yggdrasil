@@ -55,6 +55,7 @@ class _YgAppBarState extends State<YgAppBar> {
       automaticallyImplyLeading: widget.automaticallyImplyLeading,
       leading: _leading,
       centerTitle: widget.centerTitle,
+      titleSpacing: 5.0,
       title: Text(
         widget.title,
         style: theme.smallAppBarTheme.titleTextStyle,
