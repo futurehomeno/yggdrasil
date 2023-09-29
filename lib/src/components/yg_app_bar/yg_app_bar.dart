@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:yggdrasil/yggdrasil.dart';
 
-class YgAppBar extends StatefulWidget implements PreferredSizeWidget {
+/// Customized version of the [AppBar] widget.
+class YgAppBar extends StatelessWidget implements PreferredSizeWidget {
   const YgAppBar({
     super.key,
     required this.title,
@@ -20,45 +21,32 @@ class YgAppBar extends StatefulWidget implements PreferredSizeWidget {
   final List<Widget>? actions;
 
   @override
-  State<YgAppBar> createState() => _YgAppBarState();
-
-  @override
-  Size get preferredSize => const Size.fromHeight(64.0);
-}
-
-class _YgAppBarState extends State<YgAppBar> {
-  Widget? _leading;
-
-  @override
   Widget build(BuildContext context) {
     final YgAppBarTheme theme = context.appBarTheme;
-
     final ScaffoldState? scaffold = Scaffold.maybeOf(context);
     final ModalRoute<Object?>? parentRoute = ModalRoute.of(context);
     final bool canPop = parentRoute?.canPop ?? false;
     final bool hasEndDrawer = scaffold?.hasEndDrawer ?? false;
     final bool useCloseButton = parentRoute is PageRoute<Object?> && parentRoute.fullscreenDialog;
 
-    _leading = _getLeadingWidget(
-      theme: theme,
-      hasEndDrawer: hasEndDrawer,
-      canPop: canPop,
-      parentRoute: parentRoute,
-      context: context,
-      useCloseButton: useCloseButton,
-    );
-
     return AppBar(
       toolbarHeight: 64.0,
-      actions: widget.actions,
+      actions: actions,
       surfaceTintColor: Colors.transparent,
       backgroundColor: theme.backgroundColor,
-      automaticallyImplyLeading: widget.automaticallyImplyLeading,
-      leading: _leading,
-      centerTitle: widget.centerTitle,
+      automaticallyImplyLeading: automaticallyImplyLeading,
+      leading: _getLeadingWidget(
+        theme: theme,
+        hasEndDrawer: hasEndDrawer,
+        canPop: canPop,
+        parentRoute: parentRoute,
+        context: context,
+        useCloseButton: useCloseButton,
+      ),
+      centerTitle: centerTitle,
       titleSpacing: 5.0,
       title: Text(
-        widget.title,
+        title,
         style: theme.smallAppBarTheme.titleTextStyle,
       ),
     );
@@ -72,8 +60,8 @@ class _YgAppBarState extends State<YgAppBar> {
     required BuildContext context,
     required bool useCloseButton,
   }) {
-    if (widget.automaticallyImplyLeading) {
-      if (widget.hasDrawer) {
+    if (automaticallyImplyLeading) {
+      if (hasDrawer) {
         // TODO(DEV-1928): Turn this into an YgIcon whenever we introduce drawers in apps.
         return DrawerButton(
           style: IconButton.styleFrom(iconSize: theme.leadingSize),
@@ -86,13 +74,16 @@ class _YgAppBarState extends State<YgAppBar> {
       }
     }
 
-    if (widget.leading != null) {
+    if (leading != null) {
       return ConstrainedBox(
         constraints: BoxConstraints.tightFor(width: theme.leadingSize),
-        child: widget.leading,
+        child: leading,
       );
     }
 
     return null;
   }
+
+  @override
+  Size get preferredSize => const Size.fromHeight(64.0);
 }
