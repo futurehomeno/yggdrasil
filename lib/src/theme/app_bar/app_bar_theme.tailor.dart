@@ -10,6 +10,7 @@ part of 'app_bar_theme.dart';
 
 class YgAppBarTheme extends ThemeExtension<YgAppBarTheme> {
   const YgAppBarTheme({
+    required this.actionEdgeSpacing,
     required this.backgroundColor,
     required this.borderColor,
     required this.collapsedHeight,
@@ -23,6 +24,7 @@ class YgAppBarTheme extends ThemeExtension<YgAppBarTheme> {
     required this.trailingIconSize,
   });
 
+  final double actionEdgeSpacing;
   final Color backgroundColor;
   final Color borderColor;
   final double collapsedHeight;
@@ -36,6 +38,7 @@ class YgAppBarTheme extends ThemeExtension<YgAppBarTheme> {
   final double trailingIconSize;
 
   static final YgAppBarTheme consumerLight = YgAppBarTheme(
+    actionEdgeSpacing: _$YgAppBarTheme.actionEdgeSpacing[0],
     backgroundColor: _$YgAppBarTheme.backgroundColor[0],
     borderColor: _$YgAppBarTheme.borderColor[0],
     collapsedHeight: _$YgAppBarTheme.collapsedHeight[0],
@@ -50,6 +53,7 @@ class YgAppBarTheme extends ThemeExtension<YgAppBarTheme> {
   );
 
   static final YgAppBarTheme consumerDark = YgAppBarTheme(
+    actionEdgeSpacing: _$YgAppBarTheme.actionEdgeSpacing[1],
     backgroundColor: _$YgAppBarTheme.backgroundColor[1],
     borderColor: _$YgAppBarTheme.borderColor[1],
     collapsedHeight: _$YgAppBarTheme.collapsedHeight[1],
@@ -64,6 +68,7 @@ class YgAppBarTheme extends ThemeExtension<YgAppBarTheme> {
   );
 
   static final YgAppBarTheme professionalLight = YgAppBarTheme(
+    actionEdgeSpacing: _$YgAppBarTheme.actionEdgeSpacing[2],
     backgroundColor: _$YgAppBarTheme.backgroundColor[2],
     borderColor: _$YgAppBarTheme.borderColor[2],
     collapsedHeight: _$YgAppBarTheme.collapsedHeight[2],
@@ -78,6 +83,7 @@ class YgAppBarTheme extends ThemeExtension<YgAppBarTheme> {
   );
 
   static final YgAppBarTheme professionalDark = YgAppBarTheme(
+    actionEdgeSpacing: _$YgAppBarTheme.actionEdgeSpacing[3],
     backgroundColor: _$YgAppBarTheme.backgroundColor[3],
     borderColor: _$YgAppBarTheme.borderColor[3],
     collapsedHeight: _$YgAppBarTheme.collapsedHeight[3],
@@ -100,6 +106,7 @@ class YgAppBarTheme extends ThemeExtension<YgAppBarTheme> {
 
   @override
   YgAppBarTheme copyWith({
+    double? actionEdgeSpacing,
     Color? backgroundColor,
     Color? borderColor,
     double? collapsedHeight,
@@ -113,6 +120,7 @@ class YgAppBarTheme extends ThemeExtension<YgAppBarTheme> {
     double? trailingIconSize,
   }) {
     return YgAppBarTheme(
+      actionEdgeSpacing: actionEdgeSpacing ?? this.actionEdgeSpacing,
       backgroundColor: backgroundColor ?? this.backgroundColor,
       borderColor: borderColor ?? this.borderColor,
       collapsedHeight: collapsedHeight ?? this.collapsedHeight,
@@ -131,6 +139,7 @@ class YgAppBarTheme extends ThemeExtension<YgAppBarTheme> {
   YgAppBarTheme lerp(covariant ThemeExtension<YgAppBarTheme>? other, double t) {
     if (other is! YgAppBarTheme) return this as YgAppBarTheme;
     return YgAppBarTheme(
+      actionEdgeSpacing: t < 0.5 ? actionEdgeSpacing : other.actionEdgeSpacing,
       backgroundColor: Color.lerp(backgroundColor, other.backgroundColor, t)!,
       borderColor: Color.lerp(borderColor, other.borderColor, t)!,
       collapsedHeight: t < 0.5 ? collapsedHeight : other.collapsedHeight,
@@ -153,6 +162,8 @@ class YgAppBarTheme extends ThemeExtension<YgAppBarTheme> {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is YgAppBarTheme &&
+            const DeepCollectionEquality()
+                .equals(actionEdgeSpacing, other.actionEdgeSpacing) &&
             const DeepCollectionEquality()
                 .equals(backgroundColor, other.backgroundColor) &&
             const DeepCollectionEquality()
@@ -181,6 +192,7 @@ class YgAppBarTheme extends ThemeExtension<YgAppBarTheme> {
   int get hashCode {
     return Object.hash(
       runtimeType.hashCode,
+      const DeepCollectionEquality().hash(actionEdgeSpacing),
       const DeepCollectionEquality().hash(backgroundColor),
       const DeepCollectionEquality().hash(borderColor),
       const DeepCollectionEquality().hash(collapsedHeight),

@@ -51,7 +51,10 @@ class YgSliverAppBar extends StatelessWidget {
     return switch (variant) {
       YgSliverAppBarVariant.small => SliverAppBar(
           toolbarHeight: theme.toolbarHeight,
-          actions: actions,
+          actions: <Widget>[
+            ...actions,
+            SizedBox(width: theme.actionEdgeSpacing),
+          ],
           pinned: pinned,
           shadowColor: theme.borderColor,
           surfaceTintColor: surfaceTintColor,
@@ -74,7 +77,10 @@ class YgSliverAppBar extends StatelessWidget {
           toolbarHeight: theme.toolbarHeight,
           collapsedHeight: theme.collapsedHeight,
           expandedHeight: theme.mediumAppBarTheme.expandedHeight,
-          actions: actions,
+          actions: <Widget>[
+            ...actions,
+            SizedBox(width: theme.actionEdgeSpacing),
+          ],
           pinned: pinned,
           shadowColor: theme.borderColor,
           surfaceTintColor: surfaceTintColor,
@@ -101,7 +107,10 @@ class YgSliverAppBar extends StatelessWidget {
           toolbarHeight: theme.toolbarHeight,
           collapsedHeight: theme.collapsedHeight,
           expandedHeight: theme.largeAppBarTheme.expandedHeight,
-          actions: actions,
+          actions: <Widget>[
+            ...actions,
+            SizedBox(width: theme.actionEdgeSpacing),
+          ],
           pinned: pinned,
           shadowColor: theme.borderColor,
           backgroundColor: theme.backgroundColor,

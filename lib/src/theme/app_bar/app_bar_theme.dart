@@ -79,4 +79,12 @@ class _$YgAppBarTheme {
     60.0,
     60.0,
   ];
+
+  // Spacing between the action and the edge of the app bar.
+  static const List<double> actionEdgeSpacing = <double>[
+    consumer_light.FhDimensions.xxs,
+    consumer_dark.FhDimensions.xxs,
+    professional_light.FhDimensions.xxs,
+    professional_dark.FhDimensions.xxs,
+  ];
 }

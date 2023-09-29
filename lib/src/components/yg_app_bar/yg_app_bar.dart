@@ -44,7 +44,10 @@ class YgAppBar extends StatelessWidget implements PreferredSizeWidget {
 
     return AppBar(
       toolbarHeight: theme.toolbarHeight,
-      actions: actions,
+      actions: <Widget>[
+        ...actions,
+        SizedBox(width: theme.actionEdgeSpacing),
+      ],
       surfaceTintColor: surfaceTintColor,
       backgroundColor: theme.backgroundColor,
       automaticallyImplyLeading: automaticallyImplyLeading,
