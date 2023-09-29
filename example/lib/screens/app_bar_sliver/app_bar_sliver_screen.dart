@@ -21,7 +21,6 @@ class AppBarSliverScreen extends StatefulWidget {
 }
 
 class _AppBarSliverScreenState extends State<AppBarSliverScreen> {
-  final TextEditingController _textEditingController = TextEditingController(text: 'App bar (sliver)');
   YgSliverAppBarVariant _variant = YgSliverAppBarVariant.small;
   int _variantRadioGroupValue = 1;
   bool _customLeading = false;
@@ -29,12 +28,6 @@ class _AppBarSliverScreenState extends State<AppBarSliverScreen> {
   bool _automaticallyImplyLeading = true;
   List<Widget> _actions = <Widget>[];
   int _actionsRadioGroupValue = 1;
-
-  @override
-  void dispose() {
-    _textEditingController.dispose();
-    super.dispose();
-  }
 
   @override
   Widget build(BuildContext context) {
@@ -45,7 +38,7 @@ class _AppBarSliverScreenState extends State<AppBarSliverScreen> {
             variant: _variant,
             automaticallyImplyLeading: _automaticallyImplyLeading,
             leading: _customLeading ? YgIconButton(child: const YgIcon(YgIcons.info), onPressed: () {}) : null,
-            title: _textEditingController.text,
+            title: 'App bar (sliver)',
             actions: _actions,
             centerTitle: _centerTitle,
           ),
@@ -88,19 +81,6 @@ class _AppBarSliverScreenState extends State<AppBarSliverScreen> {
                     ),
                   ],
                 ),
-                YgSection.base(
-                  title: 'Title',
-                  subtitle: 'Change the title. It can be really long.',
-                  child: YgTextField(
-                    label: 'Title',
-                    keyboardType: TextInputType.text,
-                    textInputAction: TextInputAction.done,
-                    autocorrect: true,
-                    textCapitalization: TextCapitalization.words,
-                    controller: _textEditingController,
-                    onChanged: (String value) => setState(() {}),
-                  ),
-                ),
                 YgSection.list(
                   title: 'Center title',
                   subtitle: 'Whether the title should be centered.',
@@ -129,6 +109,9 @@ class _AppBarSliverScreenState extends State<AppBarSliverScreen> {
                       value: _automaticallyImplyLeading,
                       onChanged: (bool? newValue) {
                         _automaticallyImplyLeading = newValue!;
+                        if (_automaticallyImplyLeading) {
+                          _customLeading = false;
+                        }
                         setState(() {});
                       },
                     ),
@@ -143,6 +126,9 @@ class _AppBarSliverScreenState extends State<AppBarSliverScreen> {
                       value: _customLeading,
                       onChanged: (bool? newValue) {
                         _customLeading = newValue!;
+                        if (_customLeading) {
+                          _automaticallyImplyLeading = false;
+                        }
                         setState(() {});
                       },
                     ),

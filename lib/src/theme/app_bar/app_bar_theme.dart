@@ -72,4 +72,11 @@ class _$YgAppBarTheme {
     64.0,
     64.0,
   ];
+
+  static const List<double> leadingWidth = <double>[
+    60.0,
+    60.0,
+    60.0,
+    60.0,
+  ];
 }

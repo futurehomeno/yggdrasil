@@ -51,6 +51,7 @@ class YgAppBar extends StatelessWidget implements PreferredSizeWidget {
       scrolledUnderElevation: 1.0,
       shadowColor: theme.borderColor,
       leading: leading,
+      leadingWidth: theme.leadingWidth,
       centerTitle: _evaluateCenterTitle(leading),
       titleSpacing: theme.titleSpacing,
       title: Text(
@@ -76,20 +77,23 @@ class YgAppBar extends StatelessWidget implements PreferredSizeWidget {
     if (automaticallyImplyLeading) {
       if (hasDrawer) {
         // TODO(DEV-1928): Turn this into an YgIcon whenever we introduce drawers in apps.
-        return DrawerButton(
-          style: IconButton.styleFrom(iconSize: theme.leadingIconSize),
+        return Center(
+          child: DrawerButton(
+            style: IconButton.styleFrom(iconSize: theme.leadingIconSize),
+          ),
         );
       } else if ((!hasEndDrawer && canPop) || (parentRoute?.impliesAppBarDismissal ?? false)) {
-        return YgIconButton(
-          onPressed: () => Navigator.maybePop(context),
-          child: YgIcon(useCloseButton ? YgIcons.coverRemove : YgIcons.caretLeft),
+        return Center(
+          child: YgIconButton(
+            onPressed: () => Navigator.maybePop(context),
+            child: YgIcon(useCloseButton ? YgIcons.coverRemove : YgIcons.caretLeft),
+          ),
         );
       }
     }
 
     if (leading != null) {
-      return ConstrainedBox(
-        constraints: BoxConstraints.tightFor(width: theme.leadingIconSize),
+      return Center(
         child: leading,
       );
     }

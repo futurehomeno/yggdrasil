@@ -58,9 +58,10 @@ class YgSliverAppBar extends StatelessWidget {
           backgroundColor: theme.backgroundColor,
           scrolledUnderElevation: 1.0,
           automaticallyImplyLeading: automaticallyImplyLeading,
-          leading: leading,
           centerTitle: _evaluateCenterTitle(leading),
           titleSpacing: theme.titleSpacing,
+          leading: leading,
+          leadingWidth: theme.leadingWidth,
           title: Text(
             title,
             style: YgSliverAppBarMapper.getTitleTextStyle(
@@ -81,6 +82,7 @@ class YgSliverAppBar extends StatelessWidget {
           scrolledUnderElevation: 1.0,
           automaticallyImplyLeading: automaticallyImplyLeading,
           leading: leading,
+          leadingWidth: theme.leadingWidth,
           flexibleSpace: YgFlexibleSpaceBar(
             expandedTitleScale: theme.mediumAppBarTheme.expandedTitleScale,
             centerTitle: centerTitle,
@@ -107,6 +109,7 @@ class YgSliverAppBar extends StatelessWidget {
           scrolledUnderElevation: 1.0,
           automaticallyImplyLeading: automaticallyImplyLeading,
           leading: leading,
+          leadingWidth: theme.leadingWidth,
           flexibleSpace: YgFlexibleSpaceBar(
             expandedTitleScale: theme.largeAppBarTheme.expandedTitleScale,
             centerTitle: centerTitle,
@@ -140,20 +143,23 @@ class YgSliverAppBar extends StatelessWidget {
     if (automaticallyImplyLeading) {
       if (hasDrawer) {
         // TODO(DEV-1928): Turn this into an YgIcon whenever we introduce drawers in apps.
-        return DrawerButton(
-          style: IconButton.styleFrom(iconSize: theme.leadingIconSize),
+        return Center(
+          child: DrawerButton(
+            style: IconButton.styleFrom(iconSize: theme.leadingIconSize),
+          ),
         );
       } else if ((!hasEndDrawer && canPop) || (parentRoute?.impliesAppBarDismissal ?? false)) {
-        return YgIconButton(
-          onPressed: () => Navigator.maybePop(context),
-          child: YgIcon(useCloseButton ? YgIcons.coverRemove : YgIcons.caretLeft),
+        return Center(
+          child: YgIconButton(
+            onPressed: () => Navigator.maybePop(context),
+            child: YgIcon(useCloseButton ? YgIcons.coverRemove : YgIcons.caretLeft),
+          ),
         );
       }
     }
 
     if (leading != null) {
-      return ConstrainedBox(
-        constraints: BoxConstraints.tightFor(width: theme.leadingIconSize),
+      return Center(
         child: leading,
       );
     }
