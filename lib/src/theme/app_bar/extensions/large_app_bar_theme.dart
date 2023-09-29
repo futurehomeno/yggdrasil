@@ -31,6 +31,13 @@ class _$LargeAppBarTheme {
     144.0,
   ];
 
+  static const List<double> expandedTitleScale = <double>[
+    1.4,
+    1.4,
+    1.4,
+    1.4,
+  ];
+
   static const List<double> topTitlePadding = <double>[
     consumer_light.FhDimensions.lg,
     consumer_dark.FhDimensions.lg,

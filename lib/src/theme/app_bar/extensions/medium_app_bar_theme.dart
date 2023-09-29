@@ -31,6 +31,13 @@ class _$MediumAppBarTheme {
     120.0,
   ];
 
+  static const List<double> expandedTitleScale = <double>[
+    1.2,
+    1.2,
+    1.2,
+    1.2,
+  ];
+
   static const List<double> topTitlePadding = <double>[
     consumer_light.FhDimensions.xs,
     consumer_dark.FhDimensions.xs,

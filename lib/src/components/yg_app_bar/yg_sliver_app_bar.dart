@@ -98,7 +98,7 @@ class _YgSliverAppBarState extends State<YgSliverAppBar> {
           automaticallyImplyLeading: widget.automaticallyImplyLeading,
           leading: _leading,
           flexibleSpace: YgFlexibleSpaceBar(
-            expandedTitleScale: 1.2,
+            expandedTitleScale: theme.mediumAppBarTheme.expandedTitleScale,
             centerTitle: widget.centerTitle,
             topTitlePadding: theme.mediumAppBarTheme.topTitlePadding,
             bottomTitlePadding: theme.mediumAppBarTheme.bottomTitlePadding,
@@ -124,7 +124,7 @@ class _YgSliverAppBarState extends State<YgSliverAppBar> {
           automaticallyImplyLeading: widget.automaticallyImplyLeading,
           leading: _leading,
           flexibleSpace: YgFlexibleSpaceBar(
-            expandedTitleScale: 1.4,
+            expandedTitleScale: theme.largeAppBarTheme.expandedTitleScale,
             centerTitle: widget.centerTitle,
             topTitlePadding: theme.largeAppBarTheme.topTitlePadding,
             bottomTitlePadding: theme.largeAppBarTheme.bottomTitlePadding,
