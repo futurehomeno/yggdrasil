@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:yggdrasil/src/components/yg_tab/widgets/yg_underline_tab_indicator.dart';
 import 'package:yggdrasil/src/theme/tabs/_tabs.dart';
 import 'package:yggdrasil/yggdrasil.dart';
 
@@ -12,9 +13,16 @@ class YgTabBar extends StatefulWidget {
     this.initialIndex = 0,
   });
 
+  /// The tabs inside of the tab bar.
   final List<YgTab> tabs;
+
+  /// Whether you can horizontally scroll in the tab bar.
   final bool isScrollable;
+
+  /// Callback for when a tab is pressed.
   final void Function(int)? onTabPressed;
+
+  /// Index of the currently selected tab.
   final int initialIndex;
 
   @override
@@ -51,6 +59,7 @@ class _YgTabBarState extends State<YgTabBar> with TickerProviderStateMixin {
       isScrollable: widget.isScrollable,
       physics: const ClampingScrollPhysics(),
       dividerColor: tabsTheme.dividerColor,
+      indicator: const YgUnderlineTabIndicator(),
       indicatorColor: tabsTheme.indicatorColor,
       indicatorWeight: tabsTheme.indicatorHeight,
       indicatorPadding: tabsTheme.indicatorPadding,

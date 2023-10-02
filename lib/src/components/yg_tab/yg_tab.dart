@@ -10,7 +10,10 @@ class YgTab extends StatelessWidget {
     this.icon,
   });
 
+  /// Text to show inside the tab.
   final String? label;
+
+  /// Icon to show inside the tab.
   final Widget? icon;
 
   @override

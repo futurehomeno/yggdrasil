@@ -42,55 +42,55 @@ class TabsScreen extends StatelessWidget {
               ),
             ],
           ),
-          SizedBox(height: 20.0),
-          YgListTile(
-            title: 'YgTabBar with icon only',
-          ),
-          YgTabBar(
-            tabs: <YgTab>[
-              YgTab(
-                icon: YgIcon(YgIcons.deviceHub),
-              ),
-              YgTab(
-                icon: YgIcon(YgIcons.info),
-              ),
-              YgTab(
-                icon: YgIcon(YgIcons.alert),
-              ),
-              YgTab(
-                icon: YgIcon(YgIcons.map),
-              ),
-            ],
-          ),
-          SizedBox(height: 20.0),
-          YgListTile(
-            title: 'YgTabBar with both label and icon, and scrollable',
-          ),
-          YgTabBar(
-            isScrollable: true,
-            tabs: <YgTab>[
-              YgTab(
-                label: 'Tab',
-                icon: YgIcon(YgIcons.deviceHub),
-              ),
-              YgTab(
-                label: 'Tab',
-                icon: YgIcon(YgIcons.info),
-              ),
-              YgTab(
-                label: 'Tab',
-                icon: YgIcon(YgIcons.alert),
-              ),
-              YgTab(
-                label: 'Tab',
-                icon: YgIcon(YgIcons.map),
-              ),
-              YgTab(
-                label: 'Tab',
-                icon: YgIcon(YgIcons.camera),
-              ),
-            ],
-          ),
+          // SizedBox(height: 20.0),
+          // YgListTile(
+          //   title: 'YgTabBar with icon only',
+          // ),
+          // YgTabBar(
+          //   tabs: <YgTab>[
+          //     YgTab(
+          //       icon: YgIcon(YgIcons.deviceHub),
+          //     ),
+          //     YgTab(
+          //       icon: YgIcon(YgIcons.info),
+          //     ),
+          //     YgTab(
+          //       icon: YgIcon(YgIcons.alert),
+          //     ),
+          //     YgTab(
+          //       icon: YgIcon(YgIcons.map),
+          //     ),
+          //   ],
+          // ),
+          // SizedBox(height: 20.0),
+          // YgListTile(
+          //   title: 'YgTabBar with both label and icon, and scrollable',
+          // ),
+          // YgTabBar(
+          //   isScrollable: true,
+          //   tabs: <YgTab>[
+          //     YgTab(
+          //       label: 'Tab',
+          //       icon: YgIcon(YgIcons.deviceHub),
+          //     ),
+          //     YgTab(
+          //       label: 'Tab',
+          //       icon: YgIcon(YgIcons.info),
+          //     ),
+          //     YgTab(
+          //       label: 'Tab',
+          //       icon: YgIcon(YgIcons.alert),
+          //     ),
+          //     YgTab(
+          //       label: 'Tab',
+          //       icon: YgIcon(YgIcons.map),
+          //     ),
+          //     YgTab(
+          //       label: 'Tab',
+          //       icon: YgIcon(YgIcons.camera),
+          //     ),
+          //   ],
+          // ),
         ],
       ),
     );
