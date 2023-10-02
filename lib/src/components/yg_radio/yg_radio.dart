@@ -51,7 +51,19 @@ class YgRadio<T> extends StatefulWidget with StatefulWidgetDebugMixin {
   }
 }
 
-class _YgRadioState<T> extends State<YgRadio<T>> {
+class _YgRadioState<T> extends State<YgRadio<T>> with TickerProviderStateMixin {
+  late final AnimationController _animationController = AnimationController(
+    vsync: this,
+    duration: context.radioTheme.animationDuration,
+  );
+
+  late final Tween<double> _tween = Tween<double>(
+    begin: widget._selected ? 1.0 : 0.0,
+    end: !widget._selected ? 1.0 : 0.0,
+  );
+
+  late final Animation<double> _animation = _animationController.drive(_tween);
+
   // region StatesController
   void _handleStatesControllerChange() {
     // Force a rebuild to resolve MaterialStateProperty properties.
@@ -77,6 +89,15 @@ class _YgRadioState<T> extends State<YgRadio<T>> {
     super.didUpdateWidget(oldWidget);
 
     if (widget._selected != oldWidget._selected) {
+      _tween.begin = _animation.value;
+      _tween.end = !widget._selected ? 1.0 : 0.0;
+      _animationController.value = 0.0;
+      _animationController.animateTo(
+        1.0,
+        curve: context.radioTheme.animationCurve,
+        duration: context.radioTheme.animationDuration,
+      );
+
       _statesController.update(MaterialState.selected, widget._selected);
     }
 
@@ -93,6 +114,7 @@ class _YgRadioState<T> extends State<YgRadio<T>> {
   void dispose() {
     _statesController.removeListener(_handleStatesControllerChange);
     _statesController.dispose();
+    _animationController.dispose();
     super.dispose();
   }
   // endregion StatesController
@@ -129,6 +151,7 @@ class _YgRadioState<T> extends State<YgRadio<T>> {
               child: CustomPaint(
                 size: Size.square(radioTheme.size),
                 painter: _YgRadioPainter(
+                  animation: _animation,
                   radioSize: radioTheme.size,
                   resolvedBackgroundColor: resolvedBackgroundColor,
                   helperHandleColor: radioTheme.helperHandleColor,
@@ -161,14 +184,15 @@ class _YgRadioState<T> extends State<YgRadio<T>> {
 }
 
 class _YgRadioPainter extends CustomPainter {
-  const _YgRadioPainter({
+  _YgRadioPainter({
     required this.radioSize,
     required this.resolvedBackgroundColor,
     required this.helperHandleColor,
     required this.resolvedHandleColor,
     required this.resolvedHandleSize,
     required this.resolvedHelperHandleSize,
-  });
+    required this.animation,
+  }) : super(repaint: animation);
 
   final double radioSize;
   final Color resolvedBackgroundColor;
@@ -176,6 +200,7 @@ class _YgRadioPainter extends CustomPainter {
   final Color resolvedHandleColor;
   final double resolvedHelperHandleSize;
   final Color helperHandleColor;
+  final Animation<double> animation;
 
   @override
   void paint(Canvas canvas, Size objectSize) {
