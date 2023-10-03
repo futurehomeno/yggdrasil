@@ -66,7 +66,6 @@ class _TabsScreenState extends State<TabsScreen> with SingleTickerProviderStateM
                     SizedBox(
                       height: 100.0,
                       child: TabBarView(
-                        physics: NeverScrollableScrollPhysics(),
                         children: <Widget>[
                           Center(child: Text('Tab 1')),
                           Center(child: Text('Tab 2')),
@@ -98,7 +97,6 @@ class _TabsScreenState extends State<TabsScreen> with SingleTickerProviderStateM
                     SizedBox(
                       height: 100.0,
                       child: TabBarView(
-                        physics: NeverScrollableScrollPhysics(),
                         children: <Widget>[
                           Center(child: YgIcon(YgIcons.info)),
                           Center(child: YgIcon(YgIcons.edit)),
@@ -142,7 +140,6 @@ class _TabsScreenState extends State<TabsScreen> with SingleTickerProviderStateM
                     SizedBox(
                       height: 100.0,
                       child: TabBarView(
-                        physics: NeverScrollableScrollPhysics(),
                         children: <Widget>[
                           Center(child: Text('Tab 1')),
                           Center(child: Text('Tab 2')),
