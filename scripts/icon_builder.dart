@@ -38,8 +38,7 @@ void generateIconFile({required List<String> svgFileNames, required String input
     ..writeln('');
 
   final List<String> iconDeclarations = <String>[];
-  final List<String> iconPaths = <String>['  static const List<String> allIconPaths = <String>['];
-  final List<String> iconNames = <String>['  static const List<String> allIconNames = <String>['];
+  final List<String> allIcons = <String>['  static const List<Map<String, String>> allIcons = <Map<String, String>>['];
 
   for (final String fileName in svgFileNames) {
     final String? iconName = fileName.split('.').firstOrNull;
@@ -47,19 +46,15 @@ void generateIconFile({required List<String> svgFileNames, required String input
 
     final String camelCaseIconName = ScriptHelpers.toCamelCase(iconName);
     iconDeclarations.add('  static const String $camelCaseIconName = \'$inputPath/$iconName.svg\';');
-    iconPaths.add('    $camelCaseIconName,');
-    iconNames.add('    \'$camelCaseIconName\',');
+    allIcons.add('    <String, String>{\'$camelCaseIconName\': $camelCaseIconName},');
   }
 
-  iconPaths.add('  ];');
-  iconNames.add('  ];');
+  allIcons.add('  ];');
 
   mainBuffer
     ..writeln(iconDeclarations.join('\n'))
     ..writeln()
-    ..writeln(iconPaths.join('\n'))
-    ..writeln()
-    ..writeln(iconNames.join('\n'))
+    ..writeln(allIcons.join('\n'))
     ..writeln('}');
 
   final File outputFile = File(outputPath);

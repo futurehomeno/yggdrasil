@@ -3,7 +3,7 @@ import 'package:yggdrasil/yggdrasil.dart';
 import 'package:yggdrasil_demo/core/_core.dart';
 import 'package:yggdrasil_demo/widgets/_widgets.dart';
 
-class IconListScreen extends StatelessWidget {
+class IconListScreen extends StatefulWidget {
   const IconListScreen({super.key});
 
   static const String routeName = 'IconsList';
@@ -16,6 +16,13 @@ class IconListScreen extends StatelessWidget {
   }
 
   @override
+  State<IconListScreen> createState() => _IconListScreenState();
+}
+
+class _IconListScreenState extends State<IconListScreen> {
+  List<Map<String, String>> allIcons = YgIcons.allIcons;
+
+  @override
   Widget build(BuildContext context) {
     return DemoScreen(
       scrollable: false,
@@ -24,10 +31,28 @@ class IconListScreen extends StatelessWidget {
       supernovaLink: 'Link',
       child: CustomScrollView(
         slivers: <Widget>[
+          SliverToBoxAdapter(
+            child: YgSection.base(
+              title: 'List of all icons in YGG',
+              child: YgTextField(
+                label: 'Search',
+                keyboardType: TextInputType.text,
+                textInputAction: TextInputAction.search,
+                autocorrect: false,
+                textCapitalization: TextCapitalization.none,
+                onChanged: (String value) {
+                  allIcons = YgIcons.allIcons.where((Map<String, String> icon) {
+                    return icon.keys.first.contains(value) || icon.values.first.contains(value);
+                  }).toList();
+                  setState(() {});
+                },
+              ),
+            ),
+          ),
           SliverList.builder(
             itemBuilder: (BuildContext context, int index) {
-              final String iconPath = YgIcons.allIconPaths[index];
-              final String iconName = YgIcons.allIconNames[index];
+              final String iconPath = allIcons[index].values.first;
+              final String iconName = allIcons[index].keys.first;
 
               return YgListTile(
                 title: iconName,
@@ -37,7 +62,7 @@ class IconListScreen extends StatelessWidget {
                 ],
               );
             },
-            itemCount: YgIcons.allIconPaths.length,
+            itemCount: allIcons.length,
           ),
         ],
       ),
