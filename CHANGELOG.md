@@ -1,3 +1,9 @@
+# 1.6.1 [21.09.2023 16:05]
+
+[feature] Added new icons 21.09.23.
+[dev-improvement] Icon script now sorts icons.
+[dev-improvement] Icon script now adds const to YgIcons class.
+
 # 1.6.0 [14.09.2023 08:35]
 
 [feature] Added YgDropdownField and YgDropdownFormField components.
