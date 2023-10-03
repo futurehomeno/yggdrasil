@@ -77,7 +77,7 @@ workflows:
 
 
   create-custom-version:
-    name: Create version
+    name: Create custom version
     instance_type: mac_mini_m1
     max_build_duration: 10
     environment:
