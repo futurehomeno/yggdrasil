@@ -39,15 +39,17 @@ class YgTabBar extends StatelessWidget {
       isScrollable: isScrollable,
       physics: const ClampingScrollPhysics(),
       dividerColor: tabsTheme.dividerColor,
-      indicator: const YgUnderlineTabIndicator(),
+      indicator: YgUnderlineTabIndicator(
+        gradient: tabsTheme.indicatorGradient,
+        borderSide: BorderSide(width: tabsTheme.indicatorHeight),
+      ),
       indicatorWeight: tabsTheme.indicatorHeight,
       indicatorPadding: EdgeInsets.zero,
-      labelColor: tabsTheme.selectedIconColor,
-      labelStyle: tabsTheme.selectedLabelTextStyle,
       labelPadding: EdgeInsets.zero,
-      unselectedLabelColor: tabsTheme.unselectedIconColor,
+      labelStyle: tabsTheme.selectedLabelTextStyle,
+      labelColor: tabsTheme.selectedLabelColor,
       unselectedLabelStyle: tabsTheme.unselectedLabelTextStyle,
-      splashBorderRadius: tabsTheme.contentContainerBorderRadius,
+      unselectedLabelColor: tabsTheme.unselectedLabelColor,
       overlayColor: MaterialStateProperty.resolveWith<Color?>(
         (Set<MaterialState> states) {
           if (states.contains(MaterialState.focused)) {
@@ -58,7 +60,7 @@ class YgTabBar extends StatelessWidget {
             return tabsTheme.hoverBackgroundColor;
           }
 
-          return null;
+          return tabsTheme.tabBarBackgroundColor;
         },
       ),
     );

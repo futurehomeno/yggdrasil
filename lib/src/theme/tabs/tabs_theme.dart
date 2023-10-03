@@ -9,6 +9,8 @@ part 'tabs_theme.tailor.dart';
 
 @tailorComponent
 class _$YgTabsTheme {
+  // region Spacing and Padding
+
   /// Padding around the whole tab.
   static const List<EdgeInsets> tabPadding = <EdgeInsets>[
     EdgeInsets.symmetric(
@@ -29,12 +31,17 @@ class _$YgTabsTheme {
     ),
   ];
 
+  /// Spacing between the icon and the label in a column.
   static const List<double> iconLabelSpacing = <double>[
     consumer_light.FhDimensions.xxs,
     consumer_dark.FhDimensions.xxs,
     professional_light.FhDimensions.xxs,
     professional_dark.FhDimensions.xxs,
   ];
+
+  // endregion
+
+  // region Background
 
   static const List<Color> tabBarBackgroundColor = <Color>[
     consumer_light.FhColors.backgroundDefault,
@@ -64,39 +71,15 @@ class _$YgTabsTheme {
     professional_dark.FhColors.backgroundWeak,
   ];
 
-  static const List<Color> unselectedIconColor = <Color>[
-    consumer_light.FhColors.iconWeak,
-    consumer_dark.FhColors.iconWeak,
-    professional_light.FhColors.iconWeak,
-    professional_dark.FhColors.iconWeak,
-  ];
+  // endregion
 
-  static const List<Color> selectedIconColor = <Color>[
-    consumer_light.FhColors.iconDefault,
-    consumer_dark.FhColors.iconDefault,
-    professional_light.FhColors.iconDefault,
-    professional_dark.FhColors.iconDefault,
-  ];
+  // region Indicator
 
-  static const List<Color> indicatorColor = <Color>[
-    consumer_light.FhColors.interactiveHighlightDefault,
-    consumer_dark.FhColors.interactiveHighlightDefault,
-    professional_light.FhColors.interactiveHighlightDefault,
-    professional_dark.FhColors.interactiveHighlightDefault,
-  ];
-
-  static const List<Color> dividerColor = <Color>[
-    consumer_light.FhColors.borderDefault,
-    consumer_dark.FhColors.borderDefault,
-    professional_light.FhColors.borderDefault,
-    professional_dark.FhColors.borderDefault,
-  ];
-
-  static const List<double> iconSize = <double>[
-    consumer_light.FhDimensions.sm,
-    consumer_dark.FhDimensions.sm,
-    professional_light.FhDimensions.sm,
-    professional_dark.FhDimensions.sm,
+  static const List<Gradient> indicatorGradient = <Gradient>[
+    consumer_light.FhGradients.actionPrimaryDefault,
+    consumer_dark.FhGradients.actionPrimaryDefault,
+    professional_light.FhGradients.actionPrimaryDefault,
+    professional_dark.FhGradients.actionPrimaryDefault,
   ];
 
   static const List<double> indicatorHeight = <double>[
@@ -106,40 +89,55 @@ class _$YgTabsTheme {
     professional_dark.FhDimensions.xxs,
   ];
 
-  static const List<BorderRadius> contentContainerBorderRadius = <BorderRadius>[
-    consumer_light.FhRadii.xxs,
-    consumer_dark.FhRadii.xxs,
-    professional_light.FhRadii.xxs,
-    professional_dark.FhRadii.xxs,
+  // endregion
+
+  // region Divider
+
+  static const List<Color> dividerColor = <Color>[
+    consumer_light.FhColors.borderDefault,
+    consumer_dark.FhColors.borderDefault,
+    professional_light.FhColors.borderDefault,
+    professional_dark.FhColors.borderDefault,
+  ];
+
+  static const List<double> dividerHeight = <double>[
+    1.0,
+    1.0,
+    1.0,
+    1.0,
+  ];
+
+  // endregion
+
+  // region Label
+
+  static final List<TextStyle> selectedLabelTextStyle = <TextStyle>[
+    consumer_light.FhTextStyles.sectionHeading3Medium.copyWith(),
+    consumer_dark.FhTextStyles.sectionHeading3Medium.copyWith(),
+    professional_light.FhTextStyles.sectionHeading3Medium.copyWith(),
+    professional_dark.FhTextStyles.sectionHeading3Medium.copyWith(),
+  ];
+
+  static final List<Color> selectedLabelColor = <Color>[
+    consumer_light.FhColors.textDefault,
+    consumer_dark.FhColors.textDefault,
+    professional_light.FhColors.textDefault,
+    professional_dark.FhColors.textDefault,
   ];
 
   static final List<TextStyle> unselectedLabelTextStyle = <TextStyle>[
-    consumer_light.FhTextStyles.sectionHeading3Regular.copyWith(
-      color: consumer_light.FhColors.textWeak,
-    ),
-    consumer_dark.FhTextStyles.sectionHeading3Regular.copyWith(
-      color: consumer_light.FhColors.textWeak,
-    ),
-    professional_light.FhTextStyles.sectionHeading3Regular.copyWith(
-      color: consumer_light.FhColors.textWeak,
-    ),
-    professional_dark.FhTextStyles.sectionHeading3Regular.copyWith(
-      color: consumer_light.FhColors.textWeak,
-    ),
+    consumer_light.FhTextStyles.sectionHeading3Regular.copyWith(),
+    consumer_dark.FhTextStyles.sectionHeading3Regular.copyWith(),
+    professional_light.FhTextStyles.sectionHeading3Regular.copyWith(),
+    professional_dark.FhTextStyles.sectionHeading3Regular.copyWith(),
   ];
 
-  static final List<TextStyle> selectedLabelTextStyle = <TextStyle>[
-    consumer_light.FhTextStyles.sectionHeading3Medium.copyWith(
-      color: consumer_light.FhColors.textDefault,
-    ),
-    consumer_dark.FhTextStyles.sectionHeading3Medium.copyWith(
-      color: consumer_light.FhColors.textDefault,
-    ),
-    professional_light.FhTextStyles.sectionHeading3Medium.copyWith(
-      color: consumer_light.FhColors.textDefault,
-    ),
-    professional_dark.FhTextStyles.sectionHeading3Medium.copyWith(
-      color: consumer_light.FhColors.textDefault,
-    ),
+  static final List<Color> unselectedLabelColor = <Color>[
+    consumer_light.FhColors.textWeak,
+    consumer_dark.FhColors.textWeak,
+    professional_light.FhColors.textWeak,
+    professional_dark.FhColors.textWeak,
   ];
+
+  // endregion
 }

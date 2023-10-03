@@ -3,8 +3,6 @@
 // found in the LICENSE file.
 
 import 'package:flutter/material.dart';
-import 'package:yggdrasil/src/theme/tokens/extensions/_extensions.dart';
-import 'package:yggdrasil/src/theme/tokens/extensions/yg_gradients.dart';
 
 /// YGG version of [UnderlineTabIndicator].
 ///
@@ -13,9 +11,12 @@ import 'package:yggdrasil/src/theme/tokens/extensions/yg_gradients.dart';
 /// of the [TabBar].
 class YgUnderlineTabIndicator extends Decoration {
   const YgUnderlineTabIndicator({
-    this.borderSide = const BorderSide(width: 5.0),
+    required this.gradient,
+    required this.borderSide,
     this.insets = EdgeInsets.zero,
   });
+
+  final Gradient gradient;
 
   /// See [UnderlineTabIndicator].
   final BorderSide borderSide;
@@ -27,6 +28,7 @@ class YgUnderlineTabIndicator extends Decoration {
       return YgUnderlineTabIndicator(
         borderSide: BorderSide.lerp(a.borderSide, borderSide, t),
         insets: EdgeInsetsGeometry.lerp(a.insets, insets, t)!,
+        gradient: gradient,
       );
     }
 
@@ -39,6 +41,7 @@ class YgUnderlineTabIndicator extends Decoration {
       return YgUnderlineTabIndicator(
         borderSide: BorderSide.lerp(borderSide, b.borderSide, t),
         insets: EdgeInsetsGeometry.lerp(insets, b.insets, t)!,
+        gradient: gradient,
       );
     }
 
@@ -47,7 +50,7 @@ class YgUnderlineTabIndicator extends Decoration {
 
   @override
   BoxPainter createBoxPainter([VoidCallback? onChanged]) {
-    return _YgUnderlinePainter(this, onChanged);
+    return _YgUnderlinePainter(this, gradient, onChanged);
   }
 
   Rect _indicatorRectFor(Rect rect, TextDirection textDirection) {
@@ -70,10 +73,12 @@ class YgUnderlineTabIndicator extends Decoration {
 class _YgUnderlinePainter extends BoxPainter {
   const _YgUnderlinePainter(
     this.decoration,
+    this.gradient,
     super.onChanged,
   );
 
   final YgUnderlineTabIndicator decoration;
+  final Gradient gradient;
 
   @override
   void paint(Canvas canvas, Offset offset, ImageConfiguration configuration) {
@@ -94,7 +99,7 @@ class _YgUnderlinePainter extends BoxPainter {
     );
 
     final Paint paint;
-    paint = Paint()..shader = YgGradient.professionalLight.actionPrimaryDefault.createShader(rRect.outerRect);
+    paint = Paint()..shader = gradient.createShader(rRect.outerRect);
 
     canvas.drawRRect(rRect, paint);
   }
