@@ -142,7 +142,6 @@ class _YgGaugeState extends State<YgGauge> with TickerProviderStateMixin {
   Widget _buildContent(BuildContext context, BoxConstraints constraints) {
     final double topPaddingWithNotation = constraints.maxHeight / 100 * 30;
     final double topPaddingWithoutNotation = constraints.maxHeight / 100 * 35;
-    final double bottomPadding = constraints.maxHeight / 100 * 10;
 
     final String? title = widget.title;
     final String Function(double value)? buildTitle = widget.buildTitle;
@@ -165,16 +164,13 @@ class _YgGaugeState extends State<YgGauge> with TickerProviderStateMixin {
         ),
         Align(
           alignment: Alignment.bottomCenter,
-          child: Padding(
-            padding: EdgeInsets.only(bottom: bottomPadding),
-            child: Column(
-              mainAxisSize: MainAxisSize.min,
-              children: <Widget>[
-                if (widget.icon != null && widget.label == null && (widget.title != null && widget.label != null))
-                  _buildIcon(context),
-                if (widget.label != null) _buildLabel(context),
-              ],
-            ),
+          child: Column(
+            mainAxisSize: MainAxisSize.min,
+            children: <Widget>[
+              if (widget.icon != null && widget.label == null && (widget.title != null && widget.label != null))
+                _buildIcon(context),
+              if (widget.label != null) _buildLabel(context),
+            ],
           ),
         ),
       ],
@@ -295,11 +291,11 @@ class _YgGaugePainter extends CustomPainter {
       radius: (size.width - responsiveStrokeWidth) / 2 - responsivePadding,
     );
 
-    // The start of which to dra the arc.
-    const double startAngle = math.pi * 2 * 25 / 64;
+    // The start of which to draw the arc.
+    const double startAngle = math.pi * 2 * 26 / 64;
 
     // The end of which to draw the arc.
-    const double endAngle = math.pi * 2 * 46 / 64;
+    const double endAngle = math.pi * 2 * 44 / 64;
 
     final Paint trackPainter = Paint()
       ..color = trackColor

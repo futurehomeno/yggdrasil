@@ -10,17 +10,17 @@ part 'gauge_theme.tailor.dart';
 @tailorComponent
 class _$YgGaugeTheme {
   static const List<TextStyle> titleTextStyle = <TextStyle>[
-    consumer_light.FhTextStyles.paragraph1Medium,
-    consumer_dark.FhTextStyles.paragraph1Medium,
-    professional_light.FhTextStyles.paragraph1Medium,
-    professional_dark.FhTextStyles.paragraph1Medium,
+    consumer_light.FhTextStyles.pageHeading1Medium,
+    consumer_dark.FhTextStyles.pageHeading1Medium,
+    professional_light.FhTextStyles.pageHeading1Medium,
+    professional_dark.FhTextStyles.pageHeading1Medium,
   ];
 
   static const List<TextStyle> labelTextStyle = <TextStyle>[
-    consumer_light.FhTextStyles.caption1Medium,
-    consumer_dark.FhTextStyles.caption1Medium,
-    professional_light.FhTextStyles.caption1Medium,
-    professional_dark.FhTextStyles.caption1Medium,
+    consumer_light.FhTextStyles.paragraph3Medium,
+    consumer_dark.FhTextStyles.paragraph3Medium,
+    professional_light.FhTextStyles.paragraph3Medium,
+    professional_dark.FhTextStyles.paragraph3Medium,
   ];
 
   static final List<TextStyle> notationTextStyle = <TextStyle>[
