@@ -3,7 +3,7 @@ import 'package:yggdrasil/yggdrasil.dart';
 import 'package:yggdrasil_demo/core/_core.dart';
 import 'package:yggdrasil_demo/widgets/_widgets.dart';
 
-class TabsScreen extends StatelessWidget {
+class TabsScreen extends StatefulWidget {
   const TabsScreen({super.key});
 
   static const String routeName = 'TabsScreen';
@@ -16,81 +16,190 @@ class TabsScreen extends StatelessWidget {
   }
 
   @override
+  State<TabsScreen> createState() => _TabsScreenState();
+}
+
+class _TabsScreenState extends State<TabsScreen> with SingleTickerProviderStateMixin {
+  late TabController _tabController;
+
+  @override
+  void initState() {
+    super.initState();
+
+    _tabController = TabController(
+      length: 4,
+      initialIndex: 2,
+      vsync: this,
+    );
+  }
+
+  @override
+  void dispose() {
+    _tabController.dispose();
+
+    super.dispose();
+  }
+
+  @override
   Widget build(BuildContext context) {
-    return const DemoScreen(
+    return DemoScreen(
       componentName: 'Tabs',
       componentDesc: 'Tabs',
       supernovaLink: 'Link',
       child: Column(
         children: <Widget>[
-          YgListTile(
+          const YgSection.list(
             title: 'YgTabBar with label only',
-          ),
-          YgTabBar(
-            tabs: <YgTab>[
-              YgTab(
-                label: 'Tab',
-              ),
-              YgTab(
-                label: 'Tab',
-              ),
-              YgTab(
-                label: 'Tab',
-              ),
-              YgTab(
-                label: 'Tab',
+            children: <Widget>[
+              DefaultTabController(
+                length: 4,
+                child: Column(
+                  children: <Widget>[
+                    YgTabBar(
+                      tabs: <YgTab>[
+                        YgTab(label: 'Tab 1'),
+                        YgTab(label: 'Tab 2'),
+                        YgTab(label: 'Tab 3'),
+                        YgTab(label: 'Tab 4'),
+                      ],
+                    ),
+                    SizedBox(
+                      height: 100.0,
+                      child: TabBarView(
+                        physics: NeverScrollableScrollPhysics(),
+                        children: <Widget>[
+                          Center(child: Text('Tab 1')),
+                          Center(child: Text('Tab 2')),
+                          Center(child: Text('Tab 3')),
+                          Center(child: Text('Tab 4')),
+                        ],
+                      ),
+                    ),
+                  ],
+                ),
               ),
             ],
           ),
-          // SizedBox(height: 20.0),
-          // YgListTile(
-          //   title: 'YgTabBar with icon only',
-          // ),
-          // YgTabBar(
-          //   tabs: <YgTab>[
-          //     YgTab(
-          //       icon: YgIcon(YgIcons.deviceHub),
-          //     ),
-          //     YgTab(
-          //       icon: YgIcon(YgIcons.info),
-          //     ),
-          //     YgTab(
-          //       icon: YgIcon(YgIcons.alert),
-          //     ),
-          //     YgTab(
-          //       icon: YgIcon(YgIcons.map),
-          //     ),
-          //   ],
-          // ),
-          // SizedBox(height: 20.0),
-          // YgListTile(
-          //   title: 'YgTabBar with both label and icon, and scrollable',
-          // ),
-          // YgTabBar(
-          //   isScrollable: true,
-          //   tabs: <YgTab>[
-          //     YgTab(
-          //       label: 'Tab',
-          //       icon: YgIcon(YgIcons.deviceHub),
-          //     ),
-          //     YgTab(
-          //       label: 'Tab',
-          //       icon: YgIcon(YgIcons.info),
-          //     ),
-          //     YgTab(
-          //       label: 'Tab',
-          //       icon: YgIcon(YgIcons.alert),
-          //     ),
-          //     YgTab(
-          //       label: 'Tab',
-          //       icon: YgIcon(YgIcons.map),
-          //     ),
-          //     YgTab(
-          //       label: 'Tab',
-          //       icon: YgIcon(YgIcons.camera),
-          //     ),
-          //   ],
-          // ),
+          const YgSection.list(
+            title: 'YgTabBar with icon only',
+            children: <Widget>[
+              DefaultTabController(
+                length: 4,
+                child: Column(
+                  children: <Widget>[
+                    YgTabBar(
+                      tabs: <YgTab>[
+                        YgTab(icon: YgIcons.info),
+                        YgTab(icon: YgIcons.edit),
+                        YgTab(icon: YgIcons.check),
+                        YgTab(icon: YgIcons.bluetooth),
+                      ],
+                    ),
+                    SizedBox(
+                      height: 100.0,
+                      child: TabBarView(
+                        physics: NeverScrollableScrollPhysics(),
+                        children: <Widget>[
+                          Center(child: YgIcon(YgIcons.info)),
+                          Center(child: YgIcon(YgIcons.edit)),
+                          Center(child: YgIcon(YgIcons.check)),
+                          Center(child: YgIcon(YgIcons.bluetooth)),
+                        ],
+                      ),
+                    ),
+                  ],
+                ),
+              ),
+            ],
+          ),
+          const YgSection.list(
+            title: 'YgTabBar with both label and icon',
+            children: <Widget>[
+              DefaultTabController(
+                length: 4,
+                child: Column(
+                  children: <Widget>[
+                    YgTabBar(
+                      tabs: <YgTab>[
+                        YgTab(
+                          label: 'Tab 1',
+                          icon: YgIcons.info,
+                        ),
+                        YgTab(
+                          label: 'Tab 2',
+                          icon: YgIcons.edit,
+                        ),
+                        YgTab(
+                          label: 'Tab 3',
+                          icon: YgIcons.check,
+                        ),
+                        YgTab(
+                          label: 'Tab 4',
+                          icon: YgIcons.bluetooth,
+                        ),
+                      ],
+                    ),
+                    SizedBox(
+                      height: 100.0,
+                      child: TabBarView(
+                        physics: NeverScrollableScrollPhysics(),
+                        children: <Widget>[
+                          Center(child: Text('Tab 1')),
+                          Center(child: Text('Tab 2')),
+                          Center(child: Text('Tab 3')),
+                          Center(child: Text('Tab 4')),
+                        ],
+                      ),
+                    ),
+                  ],
+                ),
+              ),
+            ],
+          ),
+          YgSection.list(
+            title: 'YgTabBar with custom controller',
+            subtitle:
+                'Most cases should be covered by the default controller, but passing a custom controller is supported.',
+            children: <Widget>[
+              Column(
+                children: <Widget>[
+                  YgTabBar(
+                    controller: _tabController,
+                    tabs: const <YgTab>[
+                      YgTab(
+                        label: 'Tab 1',
+                        icon: YgIcons.info,
+                      ),
+                      YgTab(
+                        label: 'Tab 2',
+                        icon: YgIcons.edit,
+                      ),
+                      YgTab(
+                        label: 'Tab 3',
+                        icon: YgIcons.check,
+                      ),
+                      YgTab(
+                        label: 'Tab 4',
+                        icon: YgIcons.bluetooth,
+                      ),
+                    ],
+                  ),
+                  SizedBox(
+                    height: 100.0,
+                    child: TabBarView(
+                      controller: _tabController,
+                      children: const <Widget>[
+                        Center(child: Text('Tab 1')),
+                        Center(child: Text('Tab 2')),
+                        Center(child: Text('Tab 3')),
+                        Center(child: Text('Tab 4')),
+                      ],
+                    ),
+                  ),
+                ],
+              ),
+            ],
+          ),
         ],
       ),
     );

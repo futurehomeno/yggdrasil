@@ -14,16 +14,15 @@ class YgTabsTheme extends ThemeExtension<YgTabsTheme> {
     required this.dividerColor,
     required this.focusBackgroundColor,
     required this.hoverBackgroundColor,
-    required this.iconMargin,
+    required this.iconLabelSpacing,
     required this.iconSize,
     required this.indicatorColor,
     required this.indicatorHeight,
-    required this.indicatorPadding,
     required this.pressedBackgroundColor,
     required this.selectedIconColor,
     required this.selectedLabelTextStyle,
     required this.tabBarBackgroundColor,
-    required this.tabItemPadding,
+    required this.tabPadding,
     required this.unselectedIconColor,
     required this.unselectedLabelTextStyle,
   });
@@ -32,16 +31,17 @@ class YgTabsTheme extends ThemeExtension<YgTabsTheme> {
   final Color dividerColor;
   final Color focusBackgroundColor;
   final Color hoverBackgroundColor;
-  final EdgeInsets iconMargin;
+  final double iconLabelSpacing;
   final double iconSize;
   final Color indicatorColor;
   final double indicatorHeight;
-  final EdgeInsets indicatorPadding;
   final Color pressedBackgroundColor;
   final Color selectedIconColor;
   final TextStyle selectedLabelTextStyle;
   final Color tabBarBackgroundColor;
-  final EdgeInsets tabItemPadding;
+
+  /// Padding around the whole tab.
+  final EdgeInsets tabPadding;
   final Color unselectedIconColor;
   final TextStyle unselectedLabelTextStyle;
 
@@ -50,16 +50,15 @@ class YgTabsTheme extends ThemeExtension<YgTabsTheme> {
     dividerColor: _$YgTabsTheme.dividerColor[0],
     focusBackgroundColor: _$YgTabsTheme.focusBackgroundColor[0],
     hoverBackgroundColor: _$YgTabsTheme.hoverBackgroundColor[0],
-    iconMargin: _$YgTabsTheme.iconMargin[0],
+    iconLabelSpacing: _$YgTabsTheme.iconLabelSpacing[0],
     iconSize: _$YgTabsTheme.iconSize[0],
     indicatorColor: _$YgTabsTheme.indicatorColor[0],
     indicatorHeight: _$YgTabsTheme.indicatorHeight[0],
-    indicatorPadding: _$YgTabsTheme.indicatorPadding[0],
     pressedBackgroundColor: _$YgTabsTheme.pressedBackgroundColor[0],
     selectedIconColor: _$YgTabsTheme.selectedIconColor[0],
     selectedLabelTextStyle: _$YgTabsTheme.selectedLabelTextStyle[0],
     tabBarBackgroundColor: _$YgTabsTheme.tabBarBackgroundColor[0],
-    tabItemPadding: _$YgTabsTheme.tabItemPadding[0],
+    tabPadding: _$YgTabsTheme.tabPadding[0],
     unselectedIconColor: _$YgTabsTheme.unselectedIconColor[0],
     unselectedLabelTextStyle: _$YgTabsTheme.unselectedLabelTextStyle[0],
   );
@@ -69,16 +68,15 @@ class YgTabsTheme extends ThemeExtension<YgTabsTheme> {
     dividerColor: _$YgTabsTheme.dividerColor[1],
     focusBackgroundColor: _$YgTabsTheme.focusBackgroundColor[1],
     hoverBackgroundColor: _$YgTabsTheme.hoverBackgroundColor[1],
-    iconMargin: _$YgTabsTheme.iconMargin[1],
+    iconLabelSpacing: _$YgTabsTheme.iconLabelSpacing[1],
     iconSize: _$YgTabsTheme.iconSize[1],
     indicatorColor: _$YgTabsTheme.indicatorColor[1],
     indicatorHeight: _$YgTabsTheme.indicatorHeight[1],
-    indicatorPadding: _$YgTabsTheme.indicatorPadding[1],
     pressedBackgroundColor: _$YgTabsTheme.pressedBackgroundColor[1],
     selectedIconColor: _$YgTabsTheme.selectedIconColor[1],
     selectedLabelTextStyle: _$YgTabsTheme.selectedLabelTextStyle[1],
     tabBarBackgroundColor: _$YgTabsTheme.tabBarBackgroundColor[1],
-    tabItemPadding: _$YgTabsTheme.tabItemPadding[1],
+    tabPadding: _$YgTabsTheme.tabPadding[1],
     unselectedIconColor: _$YgTabsTheme.unselectedIconColor[1],
     unselectedLabelTextStyle: _$YgTabsTheme.unselectedLabelTextStyle[1],
   );
@@ -88,16 +86,15 @@ class YgTabsTheme extends ThemeExtension<YgTabsTheme> {
     dividerColor: _$YgTabsTheme.dividerColor[2],
     focusBackgroundColor: _$YgTabsTheme.focusBackgroundColor[2],
     hoverBackgroundColor: _$YgTabsTheme.hoverBackgroundColor[2],
-    iconMargin: _$YgTabsTheme.iconMargin[2],
+    iconLabelSpacing: _$YgTabsTheme.iconLabelSpacing[2],
     iconSize: _$YgTabsTheme.iconSize[2],
     indicatorColor: _$YgTabsTheme.indicatorColor[2],
     indicatorHeight: _$YgTabsTheme.indicatorHeight[2],
-    indicatorPadding: _$YgTabsTheme.indicatorPadding[2],
     pressedBackgroundColor: _$YgTabsTheme.pressedBackgroundColor[2],
     selectedIconColor: _$YgTabsTheme.selectedIconColor[2],
     selectedLabelTextStyle: _$YgTabsTheme.selectedLabelTextStyle[2],
     tabBarBackgroundColor: _$YgTabsTheme.tabBarBackgroundColor[2],
-    tabItemPadding: _$YgTabsTheme.tabItemPadding[2],
+    tabPadding: _$YgTabsTheme.tabPadding[2],
     unselectedIconColor: _$YgTabsTheme.unselectedIconColor[2],
     unselectedLabelTextStyle: _$YgTabsTheme.unselectedLabelTextStyle[2],
   );
@@ -107,16 +104,15 @@ class YgTabsTheme extends ThemeExtension<YgTabsTheme> {
     dividerColor: _$YgTabsTheme.dividerColor[3],
     focusBackgroundColor: _$YgTabsTheme.focusBackgroundColor[3],
     hoverBackgroundColor: _$YgTabsTheme.hoverBackgroundColor[3],
-    iconMargin: _$YgTabsTheme.iconMargin[3],
+    iconLabelSpacing: _$YgTabsTheme.iconLabelSpacing[3],
     iconSize: _$YgTabsTheme.iconSize[3],
     indicatorColor: _$YgTabsTheme.indicatorColor[3],
     indicatorHeight: _$YgTabsTheme.indicatorHeight[3],
-    indicatorPadding: _$YgTabsTheme.indicatorPadding[3],
     pressedBackgroundColor: _$YgTabsTheme.pressedBackgroundColor[3],
     selectedIconColor: _$YgTabsTheme.selectedIconColor[3],
     selectedLabelTextStyle: _$YgTabsTheme.selectedLabelTextStyle[3],
     tabBarBackgroundColor: _$YgTabsTheme.tabBarBackgroundColor[3],
-    tabItemPadding: _$YgTabsTheme.tabItemPadding[3],
+    tabPadding: _$YgTabsTheme.tabPadding[3],
     unselectedIconColor: _$YgTabsTheme.unselectedIconColor[3],
     unselectedLabelTextStyle: _$YgTabsTheme.unselectedLabelTextStyle[3],
   );
@@ -134,16 +130,15 @@ class YgTabsTheme extends ThemeExtension<YgTabsTheme> {
     Color? dividerColor,
     Color? focusBackgroundColor,
     Color? hoverBackgroundColor,
-    EdgeInsets? iconMargin,
+    double? iconLabelSpacing,
     double? iconSize,
     Color? indicatorColor,
     double? indicatorHeight,
-    EdgeInsets? indicatorPadding,
     Color? pressedBackgroundColor,
     Color? selectedIconColor,
     TextStyle? selectedLabelTextStyle,
     Color? tabBarBackgroundColor,
-    EdgeInsets? tabItemPadding,
+    EdgeInsets? tabPadding,
     Color? unselectedIconColor,
     TextStyle? unselectedLabelTextStyle,
   }) {
@@ -153,11 +148,10 @@ class YgTabsTheme extends ThemeExtension<YgTabsTheme> {
       dividerColor: dividerColor ?? this.dividerColor,
       focusBackgroundColor: focusBackgroundColor ?? this.focusBackgroundColor,
       hoverBackgroundColor: hoverBackgroundColor ?? this.hoverBackgroundColor,
-      iconMargin: iconMargin ?? this.iconMargin,
+      iconLabelSpacing: iconLabelSpacing ?? this.iconLabelSpacing,
       iconSize: iconSize ?? this.iconSize,
       indicatorColor: indicatorColor ?? this.indicatorColor,
       indicatorHeight: indicatorHeight ?? this.indicatorHeight,
-      indicatorPadding: indicatorPadding ?? this.indicatorPadding,
       pressedBackgroundColor:
           pressedBackgroundColor ?? this.pressedBackgroundColor,
       selectedIconColor: selectedIconColor ?? this.selectedIconColor,
@@ -165,7 +159,7 @@ class YgTabsTheme extends ThemeExtension<YgTabsTheme> {
           selectedLabelTextStyle ?? this.selectedLabelTextStyle,
       tabBarBackgroundColor:
           tabBarBackgroundColor ?? this.tabBarBackgroundColor,
-      tabItemPadding: tabItemPadding ?? this.tabItemPadding,
+      tabPadding: tabPadding ?? this.tabPadding,
       unselectedIconColor: unselectedIconColor ?? this.unselectedIconColor,
       unselectedLabelTextStyle:
           unselectedLabelTextStyle ?? this.unselectedLabelTextStyle,
@@ -184,11 +178,10 @@ class YgTabsTheme extends ThemeExtension<YgTabsTheme> {
           Color.lerp(focusBackgroundColor, other.focusBackgroundColor, t)!,
       hoverBackgroundColor:
           Color.lerp(hoverBackgroundColor, other.hoverBackgroundColor, t)!,
-      iconMargin: t < 0.5 ? iconMargin : other.iconMargin,
+      iconLabelSpacing: t < 0.5 ? iconLabelSpacing : other.iconLabelSpacing,
       iconSize: t < 0.5 ? iconSize : other.iconSize,
       indicatorColor: Color.lerp(indicatorColor, other.indicatorColor, t)!,
       indicatorHeight: t < 0.5 ? indicatorHeight : other.indicatorHeight,
-      indicatorPadding: t < 0.5 ? indicatorPadding : other.indicatorPadding,
       pressedBackgroundColor:
           Color.lerp(pressedBackgroundColor, other.pressedBackgroundColor, t)!,
       selectedIconColor:
@@ -197,7 +190,7 @@ class YgTabsTheme extends ThemeExtension<YgTabsTheme> {
           selectedLabelTextStyle, other.selectedLabelTextStyle, t)!,
       tabBarBackgroundColor:
           Color.lerp(tabBarBackgroundColor, other.tabBarBackgroundColor, t)!,
-      tabItemPadding: t < 0.5 ? tabItemPadding : other.tabItemPadding,
+      tabPadding: t < 0.5 ? tabPadding : other.tabPadding,
       unselectedIconColor:
           Color.lerp(unselectedIconColor, other.unselectedIconColor, t)!,
       unselectedLabelTextStyle: TextStyle.lerp(
@@ -219,14 +212,12 @@ class YgTabsTheme extends ThemeExtension<YgTabsTheme> {
             const DeepCollectionEquality()
                 .equals(hoverBackgroundColor, other.hoverBackgroundColor) &&
             const DeepCollectionEquality()
-                .equals(iconMargin, other.iconMargin) &&
+                .equals(iconLabelSpacing, other.iconLabelSpacing) &&
             const DeepCollectionEquality().equals(iconSize, other.iconSize) &&
             const DeepCollectionEquality()
                 .equals(indicatorColor, other.indicatorColor) &&
             const DeepCollectionEquality()
                 .equals(indicatorHeight, other.indicatorHeight) &&
-            const DeepCollectionEquality()
-                .equals(indicatorPadding, other.indicatorPadding) &&
             const DeepCollectionEquality()
                 .equals(pressedBackgroundColor, other.pressedBackgroundColor) &&
             const DeepCollectionEquality()
@@ -236,7 +227,7 @@ class YgTabsTheme extends ThemeExtension<YgTabsTheme> {
             const DeepCollectionEquality()
                 .equals(tabBarBackgroundColor, other.tabBarBackgroundColor) &&
             const DeepCollectionEquality()
-                .equals(tabItemPadding, other.tabItemPadding) &&
+                .equals(tabPadding, other.tabPadding) &&
             const DeepCollectionEquality()
                 .equals(unselectedIconColor, other.unselectedIconColor) &&
             const DeepCollectionEquality().equals(
@@ -251,16 +242,15 @@ class YgTabsTheme extends ThemeExtension<YgTabsTheme> {
       const DeepCollectionEquality().hash(dividerColor),
       const DeepCollectionEquality().hash(focusBackgroundColor),
       const DeepCollectionEquality().hash(hoverBackgroundColor),
-      const DeepCollectionEquality().hash(iconMargin),
+      const DeepCollectionEquality().hash(iconLabelSpacing),
       const DeepCollectionEquality().hash(iconSize),
       const DeepCollectionEquality().hash(indicatorColor),
       const DeepCollectionEquality().hash(indicatorHeight),
-      const DeepCollectionEquality().hash(indicatorPadding),
       const DeepCollectionEquality().hash(pressedBackgroundColor),
       const DeepCollectionEquality().hash(selectedIconColor),
       const DeepCollectionEquality().hash(selectedLabelTextStyle),
       const DeepCollectionEquality().hash(tabBarBackgroundColor),
-      const DeepCollectionEquality().hash(tabItemPadding),
+      const DeepCollectionEquality().hash(tabPadding),
       const DeepCollectionEquality().hash(unselectedIconColor),
       const DeepCollectionEquality().hash(unselectedLabelTextStyle),
     );

@@ -4,67 +4,47 @@ import 'package:yggdrasil/src/theme/tabs/_tabs.dart';
 import 'package:yggdrasil/yggdrasil.dart';
 
 /// Used for controlling views that consist of different tabs.
-class YgTabBar extends StatefulWidget {
+class YgTabBar extends StatelessWidget {
   const YgTabBar({
     super.key,
     required this.tabs,
+    this.controller,
     this.isScrollable = false,
-    this.onTabPressed,
-    this.initialIndex = 0,
+    this.onTap,
   });
 
   /// The tabs inside of the tab bar.
   final List<YgTab> tabs;
 
+  /// The controller for the tab bar.
+  ///
+  /// If a [TabController] is not provided, then there must be a
+  /// [DefaultTabController] ancestor.
+  final TabController? controller;
+
   /// Whether you can horizontally scroll in the tab bar.
   final bool isScrollable;
 
   /// Callback for when a tab is pressed.
-  final void Function(int)? onTabPressed;
-
-  /// Index of the currently selected tab.
-  final int initialIndex;
-
-  @override
-  State<YgTabBar> createState() => _YgTabBarState();
-}
-
-class _YgTabBarState extends State<YgTabBar> with TickerProviderStateMixin {
-  TabController? _tabController;
-
-  @override
-  void initState() {
-    super.initState();
-    _tabController = TabController(
-      vsync: this,
-      length: widget.tabs.length,
-      initialIndex: widget.initialIndex,
-    );
-  }
-
-  @override
-  void dispose() {
-    _tabController?.dispose();
-    super.dispose();
-  }
+  final ValueChanged<int>? onTap;
 
   @override
   Widget build(BuildContext context) {
     final YgTabsTheme tabsTheme = context.ygTheme.tabsTheme;
 
     return TabBar(
-      tabs: widget.tabs,
-      onTap: widget.onTabPressed,
-      controller: _tabController,
-      isScrollable: widget.isScrollable,
+      tabs: tabs,
+      onTap: onTap,
+      controller: controller,
+      isScrollable: isScrollable,
       physics: const ClampingScrollPhysics(),
       dividerColor: tabsTheme.dividerColor,
       indicator: const YgUnderlineTabIndicator(),
-      indicatorColor: tabsTheme.indicatorColor,
       indicatorWeight: tabsTheme.indicatorHeight,
-      indicatorPadding: tabsTheme.indicatorPadding,
+      indicatorPadding: EdgeInsets.zero,
       labelColor: tabsTheme.selectedIconColor,
       labelStyle: tabsTheme.selectedLabelTextStyle,
+      labelPadding: EdgeInsets.zero,
       unselectedLabelColor: tabsTheme.unselectedIconColor,
       unselectedLabelStyle: tabsTheme.unselectedLabelTextStyle,
       splashBorderRadius: tabsTheme.contentContainerBorderRadius,

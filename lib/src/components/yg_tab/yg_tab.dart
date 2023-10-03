@@ -14,25 +14,35 @@ class YgTab extends StatelessWidget {
   final String? label;
 
   /// Icon to show inside the tab.
-  final Widget? icon;
+  final String? icon;
 
   @override
   Widget build(BuildContext context) {
     final YgTabsTheme tabsTheme = context.ygTheme.tabsTheme;
 
     return Padding(
-      padding: tabsTheme.tabItemPadding,
-      child: Tab(
-        text: label,
-        iconMargin: tabsTheme.iconMargin,
-        icon: icon != null
-            ? SizedBox(
-                height: tabsTheme.iconSize,
-                width: tabsTheme.iconSize,
-                child: icon,
-              )
-            : null,
+      padding: tabsTheme.tabPadding,
+      child: Column(
+        children: <Widget>[
+          if (icon != null) _buildIcon(),
+          if (label != null) _buildLabel(),
+        ].withVerticalSpacing(tabsTheme.iconLabelSpacing),
       ),
+    );
+  }
+
+  YgIcon _buildIcon() {
+    return YgIcon(
+      icon,
+      size: YgIconSize.small,
+    );
+  }
+
+  // Test style is handled by [TabBar].
+  Widget _buildLabel() {
+    return Text(
+      label!,
+      overflow: TextOverflow.ellipsis,
     );
   }
 }

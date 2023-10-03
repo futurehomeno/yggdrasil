@@ -8,7 +8,7 @@ import 'package:yggdrasil/src/theme/tokens/extensions/yg_gradients.dart';
 
 /// YGG version of [UnderlineTabIndicator].
 ///
-/// The [UnderlineTabIndicator] contains an issue where if
+/// The M3 [UnderlineTabIndicator] contains an issue where if
 /// the indicator gets too large, it covers up the bottom border
 /// of the [TabBar].
 class YgUnderlineTabIndicator extends Decoration {
@@ -85,7 +85,7 @@ class _YgUnderlinePainter extends BoxPainter {
 
     final TextDirection textDirection = configuration.textDirection!;
     final Rect indicator = decoration._indicatorRectFor(rect, textDirection).inflate(decoration.borderSide.width / 4.0);
-    final RRect rrect = RRect.fromRectAndCorners(
+    final RRect rRect = RRect.fromRectAndCorners(
       indicator,
       topLeft: const Radius.circular(5.0),
       topRight: const Radius.circular(5.0),
@@ -94,8 +94,8 @@ class _YgUnderlinePainter extends BoxPainter {
     );
 
     final Paint paint;
-    paint = Paint()..shader = YgGradient.professionalLight.actionPrimaryDefault.createShader(rrect.outerRect);
+    paint = Paint()..shader = YgGradient.professionalLight.actionPrimaryDefault.createShader(rRect.outerRect);
 
-    canvas.drawRRect(rrect, paint);
+    canvas.drawRRect(rRect, paint);
   }
 }

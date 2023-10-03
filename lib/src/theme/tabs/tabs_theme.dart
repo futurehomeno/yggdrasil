@@ -9,49 +9,31 @@ part 'tabs_theme.tailor.dart';
 
 @tailorComponent
 class _$YgTabsTheme {
-  static const List<EdgeInsets> tabItemPadding = <EdgeInsets>[
-    EdgeInsets.symmetric(
-      horizontal: consumer_light.FhDimensions.md,
-    ),
-    EdgeInsets.symmetric(
-      horizontal: consumer_dark.FhDimensions.md,
-    ),
-    EdgeInsets.symmetric(
-      horizontal: professional_light.FhDimensions.md,
-    ),
-    EdgeInsets.symmetric(
-      horizontal: professional_dark.FhDimensions.md,
-    ),
-  ];
-
-  static const List<EdgeInsets> indicatorPadding = <EdgeInsets>[
+  /// Padding around the whole tab.
+  static const List<EdgeInsets> tabPadding = <EdgeInsets>[
     EdgeInsets.symmetric(
       horizontal: consumer_light.FhDimensions.xs,
+      vertical: consumer_light.FhDimensions.xs,
     ),
     EdgeInsets.symmetric(
       horizontal: consumer_dark.FhDimensions.xs,
+      vertical: consumer_dark.FhDimensions.xs,
     ),
     EdgeInsets.symmetric(
       horizontal: professional_light.FhDimensions.xs,
+      vertical: professional_light.FhDimensions.xs,
     ),
     EdgeInsets.symmetric(
       horizontal: professional_dark.FhDimensions.xs,
+      vertical: professional_dark.FhDimensions.xs,
     ),
   ];
 
-  static const List<EdgeInsets> iconMargin = <EdgeInsets>[
-    EdgeInsets.only(
-      bottom: consumer_light.FhDimensions.xxs,
-    ),
-    EdgeInsets.only(
-      bottom: consumer_dark.FhDimensions.xxs,
-    ),
-    EdgeInsets.only(
-      bottom: professional_light.FhDimensions.xxs,
-    ),
-    EdgeInsets.only(
-      bottom: professional_dark.FhDimensions.xxs,
-    ),
+  static const List<double> iconLabelSpacing = <double>[
+    consumer_light.FhDimensions.xxs,
+    consumer_dark.FhDimensions.xxs,
+    professional_light.FhDimensions.xxs,
+    professional_dark.FhDimensions.xxs,
   ];
 
   static const List<Color> tabBarBackgroundColor = <Color>[
