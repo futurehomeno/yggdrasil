@@ -103,7 +103,11 @@ workflows:
           cd $CM_BUILD_DIR/cli
           flutter pub get
 
-      - name: Creating version
+      - name: Creating version for example
+        working_directory: /Users/builder/clone/app_files/example
+        script: dart $CM_BUILD_DIR/cli/futurehome.dart ci cav $VERSION -nt -nc || exit 1
+
+      - name: Creating version for package
         working_directory: /Users/builder/clone/app_files
         script: dart $CM_BUILD_DIR/cli/futurehome.dart ci cav $VERSION -uc || exit 1
 
