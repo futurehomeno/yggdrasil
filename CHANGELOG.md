@@ -1,3 +1,6 @@
+# 1.6.7+1 [04.10.2023 13:51]
+
+
 # 1.6.5+10 [04.10.2023 13:18]
 
 - [fix] Fixed an svg parsing error for chargerQuestion and playQuestion.
