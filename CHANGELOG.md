@@ -1,3 +1,10 @@
+# 1.6.5+10 [04.10.2023 13:18]
+
+- [fix] Fixed an svg parsing error for chargerQuestion and playQuestion.
+- [improvement] Added search to icon list screen.
+- [dev-improvement] Improved the .gitingore file to ignore all unnecessary Flutter files. DEV-1366
+- [dev-improvement] Optimised exporting of Yg themes so they don't get exposed in applications that use YggDrasil. DEV-1969
+
 # 1.6.4+10 [04.10.2023 09:32]
 
 
