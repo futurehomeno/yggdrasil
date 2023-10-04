@@ -20,7 +20,7 @@ class IconListScreen extends StatefulWidget {
 }
 
 class _IconListScreenState extends State<IconListScreen> {
-  List<Map<String, String>> allIcons = YgIcons.allIcons;
+  List<MapEntry<String, String>> allIcons = YgIcons.allIcons.entries.toList();
 
   @override
   Widget build(BuildContext context) {
@@ -41,9 +41,10 @@ class _IconListScreenState extends State<IconListScreen> {
                 autocorrect: false,
                 textCapitalization: TextCapitalization.none,
                 onChanged: (String value) {
-                  allIcons = YgIcons.allIcons.where((Map<String, String> icon) {
-                    return icon.keys.first.contains(value) || icon.values.first.contains(value);
+                  allIcons = YgIcons.allIcons.entries.where((MapEntry<String, String> icon) {
+                    return icon.key.contains(value) || icon.value.contains(value);
                   }).toList();
+
                   setState(() {});
                 },
               ),
@@ -51,8 +52,8 @@ class _IconListScreenState extends State<IconListScreen> {
           ),
           SliverList.builder(
             itemBuilder: (BuildContext context, int index) {
-              final String iconPath = allIcons[index].values.first;
-              final String iconName = allIcons[index].keys.first;
+              final String iconName = allIcons[index].key;
+              final String iconPath = allIcons[index].value;
 
               return YgListTile(
                 title: iconName,
