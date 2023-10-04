@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:xml/xml.dart';
+import 'package:yggdrasil/src/extensions/hex_color.dart';
 import 'package:yggdrasil/src/theme/_theme.dart';
 import 'package:yggdrasil/yggdrasil.dart';
 
@@ -54,9 +57,6 @@ class YgIcon extends StatelessWidget with StatelessWidgetDebugMixin {
       );
     }
 
-    final Color? iconColor = color ?? materialIconTheme.color;
-    final ColorFilter? colorFilter = _getColorFilter(context, iconColor);
-
     if (icon == null) {
       return Semantics(
         label: semanticLabel,
@@ -67,26 +67,53 @@ class YgIcon extends StatelessWidget with StatelessWidgetDebugMixin {
       );
     }
 
-    return Semantics(
-      label: semanticLabel,
-      child: ExcludeSemantics(
-        child: SizedBox.square(
-          dimension: iconSize,
-          child: Center(
-            child: Align(
-              alignment: Alignment.center,
-              child: SvgPicture.asset(
-                icon,
-                package: 'yggdrasil',
-                colorFilter: colorFilter,
-                height: iconSize,
-                width: iconSize,
-                excludeFromSemantics: true,
+    final Color? iconColor = color ?? materialIconTheme.color;
+    final ColorFilter? colorFilter = _getColorFilter(context, iconColor);
+
+    return FutureBuilder<String>(
+      future: rootBundle.loadString('packages/yggdrasil/$icon'),
+      builder: (BuildContext context, AsyncSnapshot<String> snapshot) {
+        if (snapshot.data == null) {
+          // This is what we show when the icon is loading.
+          return Semantics(
+            label: semanticLabel,
+            child: SizedBox.square(
+              dimension: iconSize,
+            ),
+          );
+        }
+
+        final XmlDocument iconDocument = XmlDocument.parse(snapshot.data!);
+        final Iterable<XmlElement> paths = iconDocument.findAllElements('path');
+        for (final XmlElement path in paths) {
+          final String? yggColor = path.getAttribute('yggColor');
+          if (yggColor != null) {
+            final Color color = YgColorHelper.getColorFromString(context: context, colorName: yggColor);
+            path.setAttribute('fill', color.toHex());
+          }
+        }
+
+        return Semantics(
+          label: semanticLabel,
+          child: ExcludeSemantics(
+            child: SizedBox.square(
+              dimension: iconSize,
+              child: Center(
+                child: Align(
+                  alignment: Alignment.center,
+                  child: SvgPicture.string(
+                    iconDocument.toXmlString(),
+                    colorFilter: colorFilter,
+                    height: iconSize,
+                    width: iconSize,
+                    excludeFromSemantics: true,
+                  ),
+                ),
               ),
             ),
           ),
-        ),
-      ),
+        );
+      },
     );
   }
 

@@ -1,0 +1,261 @@
+import 'package:flutter/material.dart';
+import 'package:yggdrasil/yggdrasil.dart';
+
+class YgColorHelper {
+  static Color getColorFromString({
+    required BuildContext context,
+    required String colorName,
+  }) {
+    final Color? color = _getColor(
+      context: context,
+      colorName: colorName,
+    );
+    if (color == null) {
+      throw Exception('Color $colorName not found');
+    }
+
+    return color;
+  }
+
+  static Color? _getColor({
+    required String colorName,
+    required BuildContext context,
+  }) {
+    if (colorName == 'actionPrimaryDisabled') {
+      return context.ygTheme.tokens.colors.actionPrimaryDisabled;
+    }
+    if (colorName == 'actionSecondaryDisabled') {
+      return context.ygTheme.tokens.colors.actionSecondaryDisabled;
+    }
+    if (colorName == 'actionCriticalDefault') {
+      return context.ygTheme.tokens.colors.actionCriticalDefault;
+    }
+    if (colorName == 'actionCriticalHovered') {
+      return context.ygTheme.tokens.colors.actionCriticalHovered;
+    }
+    if (colorName == 'actionCriticalPressed') {
+      return context.ygTheme.tokens.colors.actionCriticalPressed;
+    }
+    if (colorName == 'actionCriticalSelected') {
+      return context.ygTheme.tokens.colors.actionCriticalSelected;
+    }
+    if (colorName == 'actionCriticalDisabled') {
+      return context.ygTheme.tokens.colors.actionCriticalDisabled;
+    }
+    if (colorName == 'interactiveCriticalDefault') {
+      return context.ygTheme.tokens.colors.interactiveCriticalDefault;
+    }
+    if (colorName == 'interactiveCriticalHovered') {
+      return context.ygTheme.tokens.colors.interactiveCriticalHovered;
+    }
+    if (colorName == 'interactiveCriticalPressed') {
+      return context.ygTheme.tokens.colors.interactiveCriticalPressed;
+    }
+    if (colorName == 'interactiveCriticalSelected') {
+      return context.ygTheme.tokens.colors.interactiveCriticalSelected;
+    }
+    if (colorName == 'interactiveCriticalDisabled') {
+      return context.ygTheme.tokens.colors.interactiveCriticalDisabled;
+    }
+    if (colorName == 'interactiveHighlightDefault') {
+      return context.ygTheme.tokens.colors.interactiveHighlightDefault;
+    }
+    if (colorName == 'interactiveHighlightHovered') {
+      return context.ygTheme.tokens.colors.interactiveHighlightHovered;
+    }
+    if (colorName == 'interactiveHighlightPressed') {
+      return context.ygTheme.tokens.colors.interactiveHighlightPressed;
+    }
+    if (colorName == 'interactiveHighlightSelected') {
+      return context.ygTheme.tokens.colors.interactiveHighlightSelected;
+    }
+    if (colorName == 'interactiveHighlightDisabled') {
+      return context.ygTheme.tokens.colors.interactiveHighlightDisabled;
+    }
+    if (colorName == 'borderDefault') {
+      return context.ygTheme.tokens.colors.borderDefault;
+    }
+    if (colorName == 'borderWeak') {
+      return context.ygTheme.tokens.colors.borderWeak;
+    }
+    if (colorName == 'borderDisabled') {
+      return context.ygTheme.tokens.colors.borderDisabled;
+    }
+    if (colorName == 'borderInverse') {
+      return context.ygTheme.tokens.colors.borderInverse;
+    }
+    if (colorName == 'borderTransparent') {
+      return context.ygTheme.tokens.colors.borderTransparent;
+    }
+    if (colorName == 'borderCriticalWeak') {
+      return context.ygTheme.tokens.colors.borderCriticalWeak;
+    }
+    if (colorName == 'borderCriticalDefault') {
+      return context.ygTheme.tokens.colors.borderCriticalDefault;
+    }
+    if (colorName == 'borderCriticalStrong') {
+      return context.ygTheme.tokens.colors.borderCriticalStrong;
+    }
+    if (colorName == 'borderWarningWeak') {
+      return context.ygTheme.tokens.colors.borderWarningWeak;
+    }
+    if (colorName == 'borderWarningDefault') {
+      return context.ygTheme.tokens.colors.borderWarningDefault;
+    }
+    if (colorName == 'borderWarningStrong') {
+      return context.ygTheme.tokens.colors.borderWarningStrong;
+    }
+    if (colorName == 'borderSuccessWeak') {
+      return context.ygTheme.tokens.colors.borderSuccessWeak;
+    }
+    if (colorName == 'borderSuccessDefault') {
+      return context.ygTheme.tokens.colors.borderSuccessDefault;
+    }
+    if (colorName == 'borderSuccessStrong') {
+      return context.ygTheme.tokens.colors.borderSuccessStrong;
+    }
+    if (colorName == 'borderHighlightWeak') {
+      return context.ygTheme.tokens.colors.borderHighlightWeak;
+    }
+    if (colorName == 'borderHighlightDefault') {
+      return context.ygTheme.tokens.colors.borderHighlightDefault;
+    }
+    if (colorName == 'borderHighlightStrong') {
+      return context.ygTheme.tokens.colors.borderHighlightStrong;
+    }
+    if (colorName == 'borderAccentWeak') {
+      return context.ygTheme.tokens.colors.borderAccentWeak;
+    }
+    if (colorName == 'borderAccentDefault') {
+      return context.ygTheme.tokens.colors.borderAccentDefault;
+    }
+    if (colorName == 'borderAccentStrong') {
+      return context.ygTheme.tokens.colors.borderAccentStrong;
+    }
+    if (colorName == 'backgroundDefault') {
+      return context.ygTheme.tokens.colors.backgroundDefault;
+    }
+    if (colorName == 'backgroundWeak') {
+      return context.ygTheme.tokens.colors.backgroundWeak;
+    }
+    if (colorName == 'backgroundDisabled') {
+      return context.ygTheme.tokens.colors.backgroundDisabled;
+    }
+    if (colorName == 'backgroundOverlay') {
+      return context.ygTheme.tokens.colors.backgroundOverlay;
+    }
+    if (colorName == 'backgroundInverse') {
+      return context.ygTheme.tokens.colors.backgroundInverse;
+    }
+    if (colorName == 'backgroundTransparent') {
+      return context.ygTheme.tokens.colors.backgroundTransparent;
+    }
+    if (colorName == 'backgroundCriticalWeak') {
+      return context.ygTheme.tokens.colors.backgroundCriticalWeak;
+    }
+    if (colorName == 'backgroundCriticalDefault') {
+      return context.ygTheme.tokens.colors.backgroundCriticalDefault;
+    }
+    if (colorName == 'backgroundCriticalStrong') {
+      return context.ygTheme.tokens.colors.backgroundCriticalStrong;
+    }
+    if (colorName == 'backgroundWarningWeak') {
+      return context.ygTheme.tokens.colors.backgroundWarningWeak;
+    }
+    if (colorName == 'backgroundWarningDefault') {
+      return context.ygTheme.tokens.colors.backgroundWarningDefault;
+    }
+    if (colorName == 'backgroundWarningStrong') {
+      return context.ygTheme.tokens.colors.backgroundWarningStrong;
+    }
+    if (colorName == 'backgroundSuccessWeak') {
+      return context.ygTheme.tokens.colors.backgroundSuccessWeak;
+    }
+    if (colorName == 'backgroundSuccessDefault') {
+      return context.ygTheme.tokens.colors.backgroundSuccessDefault;
+    }
+    if (colorName == 'backgroundSuccessStrong') {
+      return context.ygTheme.tokens.colors.backgroundSuccessStrong;
+    }
+    if (colorName == 'backgroundHighlightWeak') {
+      return context.ygTheme.tokens.colors.backgroundHighlightWeak;
+    }
+    if (colorName == 'backgroundHighlightDefault') {
+      return context.ygTheme.tokens.colors.backgroundHighlightDefault;
+    }
+    if (colorName == 'backgroundHighlightStrong') {
+      return context.ygTheme.tokens.colors.backgroundHighlightStrong;
+    }
+    if (colorName == 'backgroundAccentWeak') {
+      return context.ygTheme.tokens.colors.backgroundAccentWeak;
+    }
+    if (colorName == 'backgroundAccentDefault') {
+      return context.ygTheme.tokens.colors.backgroundAccentDefault;
+    }
+    if (colorName == 'backgroundAccentStrong') {
+      return context.ygTheme.tokens.colors.backgroundAccentStrong;
+    }
+    if (colorName == 'iconDefault') {
+      return context.ygTheme.tokens.colors.iconDefault;
+    }
+    if (colorName == 'iconWeak') {
+      return context.ygTheme.tokens.colors.iconWeak;
+    }
+    if (colorName == 'iconDisabled') {
+      return context.ygTheme.tokens.colors.iconDisabled;
+    }
+    if (colorName == 'iconInverse') {
+      return context.ygTheme.tokens.colors.iconInverse;
+    }
+    if (colorName == 'iconAccent') {
+      return context.ygTheme.tokens.colors.iconAccent;
+    }
+    if (colorName == 'iconHighlight') {
+      return context.ygTheme.tokens.colors.iconHighlight;
+    }
+    if (colorName == 'iconSuccess') {
+      return context.ygTheme.tokens.colors.iconSuccess;
+    }
+    if (colorName == 'iconWarning') {
+      return context.ygTheme.tokens.colors.iconWarning;
+    }
+    if (colorName == 'iconCritical') {
+      return context.ygTheme.tokens.colors.iconCritical;
+    }
+    if (colorName == 'iconTransparent') {
+      return context.ygTheme.tokens.colors.iconTransparent;
+    }
+    if (colorName == 'textDefault') {
+      return context.ygTheme.tokens.colors.textDefault;
+    }
+    if (colorName == 'textWeak') {
+      return context.ygTheme.tokens.colors.textWeak;
+    }
+    if (colorName == 'textDisabled') {
+      return context.ygTheme.tokens.colors.textDisabled;
+    }
+    if (colorName == 'textInverse') {
+      return context.ygTheme.tokens.colors.textInverse;
+    }
+    if (colorName == 'textAccent') {
+      return context.ygTheme.tokens.colors.textAccent;
+    }
+    if (colorName == 'textHighlight') {
+      return context.ygTheme.tokens.colors.textHighlight;
+    }
+    if (colorName == 'textSuccess') {
+      return context.ygTheme.tokens.colors.textSuccess;
+    }
+    if (colorName == 'textWarning') {
+      return context.ygTheme.tokens.colors.textWarning;
+    }
+    if (colorName == 'textCritical') {
+      return context.ygTheme.tokens.colors.textCritical;
+    }
+    if (colorName == 'textTransparent') {
+      return context.ygTheme.tokens.colors.textTransparent;
+    }
+
+    return null;
+  }
+}
