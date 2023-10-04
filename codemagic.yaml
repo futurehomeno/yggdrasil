@@ -109,7 +109,7 @@ workflows:
 
       - name: Creating version for package
         working_directory: /Users/builder/clone/app_files
-        script: dart $CM_BUILD_DIR/cli/futurehome.dart ci cav $VERSION -uc || exit 1
+        script: dart $CM_BUILD_DIR/cli/futurehome.dart ci cav $VERSION -uc -nsci || exit 1
 
 
   android-release:
