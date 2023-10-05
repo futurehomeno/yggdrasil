@@ -5,13 +5,13 @@ import '_yg_debug.dart';
 /// Wraps built widget in YgDebugWidget.
 mixin StatelessWidgetSliverDebugMixin on StatelessWidget {
   @override
-  StatelessElement createElement() => _YgDebugStatelessElement(this, () => debugType);
+  StatelessElement createElement() => _YgDebugStatelessElementForSlivers(this, () => debugType);
 
   YgDebugType get debugType => YgDebugType.other;
 }
 
-class _YgDebugStatelessElement extends StatelessElement {
-  _YgDebugStatelessElement(super.widget, this._getType);
+class _YgDebugStatelessElementForSlivers extends StatelessElement {
+  _YgDebugStatelessElementForSlivers(super.widget, this._getType);
 
   final YgDebugType Function() _getType;
 

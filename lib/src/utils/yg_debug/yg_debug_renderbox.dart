@@ -9,21 +9,21 @@ class _YgDebugRenderBox extends YgDebug {
 
   @override
   RenderObject createRenderObject(BuildContext context) {
-    return _YgDebugChild(
+    return _YgDebugRenderBoxChild(
       type: type,
     );
   }
 
   @override
   // ignore: library_private_types_in_public_api
-  void updateRenderObject(BuildContext context, covariant _YgDebugChild renderObject) {
+  void updateRenderObject(BuildContext context, covariant _YgDebugRenderBoxChild renderObject) {
     renderObject.type = type;
     super.updateRenderObject(context, renderObject);
   }
 }
 
-class _YgDebugChild extends RenderProxyBox with YgDebugPainter {
-  _YgDebugChild({
+class _YgDebugRenderBoxChild extends RenderProxyBox with YgDebugPainter {
+  _YgDebugRenderBoxChild({
     required YgDebugType type,
   }) {
     this.type = type;
@@ -42,5 +42,11 @@ class _YgDebugChild extends RenderProxyBox with YgDebugPainter {
 
     // We always first draw the child.
     context.paintChild(child, offset);
+
+    paintYgDebug(
+      context: context,
+      offset: offset,
+      size: size,
+    );
   }
 }

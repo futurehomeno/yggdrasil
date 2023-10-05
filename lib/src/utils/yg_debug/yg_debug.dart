@@ -104,7 +104,9 @@ abstract class YgDebug extends SingleChildRenderObjectWidget {
 
     final RenderObject? renderObject = element.renderObject;
 
-    if (renderObject is _YgDebugChild) {
+    if (renderObject is _YgDebugRenderBoxChild) {
+      renderObject.markNeedsPaint();
+    } else if (renderObject is _YgDebugSliverChild) {
       renderObject.markNeedsPaint();
     }
   }
