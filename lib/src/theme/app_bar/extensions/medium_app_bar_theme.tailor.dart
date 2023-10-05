@@ -13,21 +13,18 @@ class MediumAppBarTheme extends ThemeExtension<MediumAppBarTheme> {
     required this.bottomTitlePadding,
     required this.expandedHeight,
     required this.expandedTitleScale,
-    required this.titleTextStyle,
     required this.topTitlePadding,
   });
 
   final double bottomTitlePadding;
   final double expandedHeight;
   final double expandedTitleScale;
-  final TextStyle titleTextStyle;
   final double topTitlePadding;
 
   static final MediumAppBarTheme consumerLight = MediumAppBarTheme(
     bottomTitlePadding: _$MediumAppBarTheme.bottomTitlePadding[0],
     expandedHeight: _$MediumAppBarTheme.expandedHeight[0],
     expandedTitleScale: _$MediumAppBarTheme.expandedTitleScale[0],
-    titleTextStyle: _$MediumAppBarTheme.titleTextStyle[0],
     topTitlePadding: _$MediumAppBarTheme.topTitlePadding[0],
   );
 
@@ -35,7 +32,6 @@ class MediumAppBarTheme extends ThemeExtension<MediumAppBarTheme> {
     bottomTitlePadding: _$MediumAppBarTheme.bottomTitlePadding[1],
     expandedHeight: _$MediumAppBarTheme.expandedHeight[1],
     expandedTitleScale: _$MediumAppBarTheme.expandedTitleScale[1],
-    titleTextStyle: _$MediumAppBarTheme.titleTextStyle[1],
     topTitlePadding: _$MediumAppBarTheme.topTitlePadding[1],
   );
 
@@ -43,7 +39,6 @@ class MediumAppBarTheme extends ThemeExtension<MediumAppBarTheme> {
     bottomTitlePadding: _$MediumAppBarTheme.bottomTitlePadding[2],
     expandedHeight: _$MediumAppBarTheme.expandedHeight[2],
     expandedTitleScale: _$MediumAppBarTheme.expandedTitleScale[2],
-    titleTextStyle: _$MediumAppBarTheme.titleTextStyle[2],
     topTitlePadding: _$MediumAppBarTheme.topTitlePadding[2],
   );
 
@@ -51,7 +46,6 @@ class MediumAppBarTheme extends ThemeExtension<MediumAppBarTheme> {
     bottomTitlePadding: _$MediumAppBarTheme.bottomTitlePadding[3],
     expandedHeight: _$MediumAppBarTheme.expandedHeight[3],
     expandedTitleScale: _$MediumAppBarTheme.expandedTitleScale[3],
-    titleTextStyle: _$MediumAppBarTheme.titleTextStyle[3],
     topTitlePadding: _$MediumAppBarTheme.topTitlePadding[3],
   );
 
@@ -67,14 +61,12 @@ class MediumAppBarTheme extends ThemeExtension<MediumAppBarTheme> {
     double? bottomTitlePadding,
     double? expandedHeight,
     double? expandedTitleScale,
-    TextStyle? titleTextStyle,
     double? topTitlePadding,
   }) {
     return MediumAppBarTheme(
       bottomTitlePadding: bottomTitlePadding ?? this.bottomTitlePadding,
       expandedHeight: expandedHeight ?? this.expandedHeight,
       expandedTitleScale: expandedTitleScale ?? this.expandedTitleScale,
-      titleTextStyle: titleTextStyle ?? this.titleTextStyle,
       topTitlePadding: topTitlePadding ?? this.topTitlePadding,
     );
   }
@@ -89,7 +81,6 @@ class MediumAppBarTheme extends ThemeExtension<MediumAppBarTheme> {
       expandedHeight: t < 0.5 ? expandedHeight : other.expandedHeight,
       expandedTitleScale:
           t < 0.5 ? expandedTitleScale : other.expandedTitleScale,
-      titleTextStyle: TextStyle.lerp(titleTextStyle, other.titleTextStyle, t)!,
       topTitlePadding: t < 0.5 ? topTitlePadding : other.topTitlePadding,
     );
   }
@@ -106,8 +97,6 @@ class MediumAppBarTheme extends ThemeExtension<MediumAppBarTheme> {
             const DeepCollectionEquality()
                 .equals(expandedTitleScale, other.expandedTitleScale) &&
             const DeepCollectionEquality()
-                .equals(titleTextStyle, other.titleTextStyle) &&
-            const DeepCollectionEquality()
                 .equals(topTitlePadding, other.topTitlePadding));
   }
 
@@ -118,7 +107,6 @@ class MediumAppBarTheme extends ThemeExtension<MediumAppBarTheme> {
       const DeepCollectionEquality().hash(bottomTitlePadding),
       const DeepCollectionEquality().hash(expandedHeight),
       const DeepCollectionEquality().hash(expandedTitleScale),
-      const DeepCollectionEquality().hash(titleTextStyle),
       const DeepCollectionEquality().hash(topTitlePadding),
     );
   }

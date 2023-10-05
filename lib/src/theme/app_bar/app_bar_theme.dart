@@ -16,9 +16,6 @@ class _$YgAppBarTheme {
   @themeExtension
   static final List<MediumAppBarTheme> mediumAppBarTheme = MediumAppBarTheme.themes;
 
-  @themeExtension
-  static final List<SmallAppBarTheme> smallAppBarTheme = SmallAppBarTheme.themes;
-
   static const List<Color> backgroundColor = <Color>[
     consumer_light.FhColors.backgroundDefault,
     consumer_dark.FhColors.backgroundDefault,
@@ -54,6 +51,25 @@ class _$YgAppBarTheme {
     professional_dark.FhDimensions.xxs,
   ];
 
+  static final List<TextStyle> titleTextStyle = <TextStyle>[
+    consumer_light.FhTextStyles.pageHeading3Medium.copyWith(
+      color: consumer_light.FhColors.textDefault,
+      height: 1.2,
+    ),
+    consumer_dark.FhTextStyles.pageHeading3Medium.copyWith(
+      color: consumer_dark.FhColors.textDefault,
+      height: 1.2,
+    ),
+    professional_light.FhTextStyles.pageHeading3Medium.copyWith(
+      color: professional_light.FhColors.textDefault,
+      height: 1.2,
+    ),
+    professional_dark.FhTextStyles.pageHeading3Medium.copyWith(
+      color: professional_dark.FhColors.textDefault,
+      height: 1.2,
+    ),
+  ];
+
   // !--- IMPORTANT ---
   // If the size of the app bar changes, the size of the app bar must be updated in the
   // `preferredSize` getter in the widget as well.
@@ -65,7 +81,7 @@ class _$YgAppBarTheme {
     64.0,
   ];
 
-  // Strange things might happen if this is not the same as collapsedHeight.
+  // Strange things might happen if this is not the same as toolbarHeight.
   static const List<double> collapsedHeight = <double>[
     64.0,
     64.0,

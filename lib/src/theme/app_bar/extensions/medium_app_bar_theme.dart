@@ -9,21 +9,6 @@ part 'medium_app_bar_theme.tailor.dart';
 
 @tailorComponent
 class _$MediumAppBarTheme {
-  static final List<TextStyle> titleTextStyle = <TextStyle>[
-    consumer_light.FhTextStyles.pageHeading2Medium.copyWith(
-      color: consumer_light.FhColors.textDefault,
-    ),
-    consumer_dark.FhTextStyles.pageHeading2Medium.copyWith(
-      color: consumer_dark.FhColors.textDefault,
-    ),
-    professional_light.FhTextStyles.pageHeading2Medium.copyWith(
-      color: professional_light.FhColors.textDefault,
-    ),
-    professional_dark.FhTextStyles.pageHeading2Medium.copyWith(
-      color: professional_dark.FhColors.textDefault,
-    ),
-  ];
-
   static const List<double> expandedHeight = <double>[
     120.0,
     120.0,

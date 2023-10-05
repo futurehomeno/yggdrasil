@@ -57,10 +57,7 @@ class YgAppBar extends StatelessWidget with StatelessWidgetDebugMixin implements
       leadingWidth: theme.leadingWidth,
       centerTitle: _evaluateCenterTitle(leading),
       titleSpacing: theme.titleSpacing,
-      title: Text(
-        title,
-        style: theme.smallAppBarTheme.titleTextStyle,
-      ),
+      title: Text(title, style: theme.titleTextStyle),
     );
   }
 

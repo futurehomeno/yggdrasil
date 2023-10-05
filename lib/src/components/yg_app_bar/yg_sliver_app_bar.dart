@@ -65,13 +65,7 @@ class YgSliverAppBar extends StatelessWidget with StatelessWidgetDebugMixin {
           titleSpacing: theme.titleSpacing,
           leading: leading,
           leadingWidth: theme.leadingWidth,
-          title: Text(
-            title,
-            style: YgSliverAppBarMapper.getTitleTextStyle(
-              theme: theme,
-              variant: YgSliverAppBarVariant.small,
-            ),
-          ),
+          title: Text(title, style: theme.titleTextStyle),
         ),
       YgSliverAppBarVariant.medium => SliverAppBar(
           toolbarHeight: theme.toolbarHeight,
@@ -94,13 +88,7 @@ class YgSliverAppBar extends StatelessWidget with StatelessWidgetDebugMixin {
             centerTitle: centerTitle,
             topTitlePadding: theme.mediumAppBarTheme.topTitlePadding,
             bottomTitlePadding: theme.mediumAppBarTheme.bottomTitlePadding,
-            title: Text(
-              title,
-              style: YgSliverAppBarMapper.getTitleTextStyle(
-                theme: theme,
-                variant: YgSliverAppBarVariant.medium,
-              ),
-            ),
+            title: Text(title, style: theme.titleTextStyle),
           ),
         ),
       YgSliverAppBarVariant.large => SliverAppBar(
@@ -124,13 +112,7 @@ class YgSliverAppBar extends StatelessWidget with StatelessWidgetDebugMixin {
             centerTitle: centerTitle,
             topTitlePadding: theme.largeAppBarTheme.topTitlePadding,
             bottomTitlePadding: theme.largeAppBarTheme.bottomTitlePadding,
-            title: Text(
-              title,
-              style: YgSliverAppBarMapper.getTitleTextStyle(
-                theme: theme,
-                variant: YgSliverAppBarVariant.large,
-              ),
-            ),
+            title: Text(title, style: theme.titleTextStyle),
           ),
         ),
     };

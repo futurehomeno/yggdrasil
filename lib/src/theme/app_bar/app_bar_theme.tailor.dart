@@ -18,8 +18,8 @@ class YgAppBarTheme extends ThemeExtension<YgAppBarTheme> {
     required this.leadingIconSize,
     required this.leadingWidth,
     required this.mediumAppBarTheme,
-    required this.smallAppBarTheme,
     required this.titleSpacing,
+    required this.titleTextStyle,
     required this.toolbarHeight,
     required this.trailingIconSize,
   });
@@ -32,8 +32,8 @@ class YgAppBarTheme extends ThemeExtension<YgAppBarTheme> {
   final double leadingIconSize;
   final double leadingWidth;
   final MediumAppBarTheme mediumAppBarTheme;
-  final SmallAppBarTheme smallAppBarTheme;
   final double titleSpacing;
+  final TextStyle titleTextStyle;
   final double toolbarHeight;
   final double trailingIconSize;
 
@@ -46,8 +46,8 @@ class YgAppBarTheme extends ThemeExtension<YgAppBarTheme> {
     leadingIconSize: _$YgAppBarTheme.leadingIconSize[0],
     leadingWidth: _$YgAppBarTheme.leadingWidth[0],
     mediumAppBarTheme: _$YgAppBarTheme.mediumAppBarTheme[0],
-    smallAppBarTheme: _$YgAppBarTheme.smallAppBarTheme[0],
     titleSpacing: _$YgAppBarTheme.titleSpacing[0],
+    titleTextStyle: _$YgAppBarTheme.titleTextStyle[0],
     toolbarHeight: _$YgAppBarTheme.toolbarHeight[0],
     trailingIconSize: _$YgAppBarTheme.trailingIconSize[0],
   );
@@ -61,8 +61,8 @@ class YgAppBarTheme extends ThemeExtension<YgAppBarTheme> {
     leadingIconSize: _$YgAppBarTheme.leadingIconSize[1],
     leadingWidth: _$YgAppBarTheme.leadingWidth[1],
     mediumAppBarTheme: _$YgAppBarTheme.mediumAppBarTheme[1],
-    smallAppBarTheme: _$YgAppBarTheme.smallAppBarTheme[1],
     titleSpacing: _$YgAppBarTheme.titleSpacing[1],
+    titleTextStyle: _$YgAppBarTheme.titleTextStyle[1],
     toolbarHeight: _$YgAppBarTheme.toolbarHeight[1],
     trailingIconSize: _$YgAppBarTheme.trailingIconSize[1],
   );
@@ -76,8 +76,8 @@ class YgAppBarTheme extends ThemeExtension<YgAppBarTheme> {
     leadingIconSize: _$YgAppBarTheme.leadingIconSize[2],
     leadingWidth: _$YgAppBarTheme.leadingWidth[2],
     mediumAppBarTheme: _$YgAppBarTheme.mediumAppBarTheme[2],
-    smallAppBarTheme: _$YgAppBarTheme.smallAppBarTheme[2],
     titleSpacing: _$YgAppBarTheme.titleSpacing[2],
+    titleTextStyle: _$YgAppBarTheme.titleTextStyle[2],
     toolbarHeight: _$YgAppBarTheme.toolbarHeight[2],
     trailingIconSize: _$YgAppBarTheme.trailingIconSize[2],
   );
@@ -91,8 +91,8 @@ class YgAppBarTheme extends ThemeExtension<YgAppBarTheme> {
     leadingIconSize: _$YgAppBarTheme.leadingIconSize[3],
     leadingWidth: _$YgAppBarTheme.leadingWidth[3],
     mediumAppBarTheme: _$YgAppBarTheme.mediumAppBarTheme[3],
-    smallAppBarTheme: _$YgAppBarTheme.smallAppBarTheme[3],
     titleSpacing: _$YgAppBarTheme.titleSpacing[3],
+    titleTextStyle: _$YgAppBarTheme.titleTextStyle[3],
     toolbarHeight: _$YgAppBarTheme.toolbarHeight[3],
     trailingIconSize: _$YgAppBarTheme.trailingIconSize[3],
   );
@@ -114,8 +114,8 @@ class YgAppBarTheme extends ThemeExtension<YgAppBarTheme> {
     double? leadingIconSize,
     double? leadingWidth,
     MediumAppBarTheme? mediumAppBarTheme,
-    SmallAppBarTheme? smallAppBarTheme,
     double? titleSpacing,
+    TextStyle? titleTextStyle,
     double? toolbarHeight,
     double? trailingIconSize,
   }) {
@@ -128,8 +128,8 @@ class YgAppBarTheme extends ThemeExtension<YgAppBarTheme> {
       leadingIconSize: leadingIconSize ?? this.leadingIconSize,
       leadingWidth: leadingWidth ?? this.leadingWidth,
       mediumAppBarTheme: mediumAppBarTheme ?? this.mediumAppBarTheme,
-      smallAppBarTheme: smallAppBarTheme ?? this.smallAppBarTheme,
       titleSpacing: titleSpacing ?? this.titleSpacing,
+      titleTextStyle: titleTextStyle ?? this.titleTextStyle,
       toolbarHeight: toolbarHeight ?? this.toolbarHeight,
       trailingIconSize: trailingIconSize ?? this.trailingIconSize,
     );
@@ -149,9 +149,8 @@ class YgAppBarTheme extends ThemeExtension<YgAppBarTheme> {
       leadingWidth: t < 0.5 ? leadingWidth : other.leadingWidth,
       mediumAppBarTheme: mediumAppBarTheme.lerp(other.mediumAppBarTheme, t)
           as MediumAppBarTheme,
-      smallAppBarTheme:
-          smallAppBarTheme.lerp(other.smallAppBarTheme, t) as SmallAppBarTheme,
       titleSpacing: t < 0.5 ? titleSpacing : other.titleSpacing,
+      titleTextStyle: TextStyle.lerp(titleTextStyle, other.titleTextStyle, t)!,
       toolbarHeight: t < 0.5 ? toolbarHeight : other.toolbarHeight,
       trailingIconSize: t < 0.5 ? trailingIconSize : other.trailingIconSize,
     );
@@ -179,9 +178,9 @@ class YgAppBarTheme extends ThemeExtension<YgAppBarTheme> {
             const DeepCollectionEquality()
                 .equals(mediumAppBarTheme, other.mediumAppBarTheme) &&
             const DeepCollectionEquality()
-                .equals(smallAppBarTheme, other.smallAppBarTheme) &&
-            const DeepCollectionEquality()
                 .equals(titleSpacing, other.titleSpacing) &&
+            const DeepCollectionEquality()
+                .equals(titleTextStyle, other.titleTextStyle) &&
             const DeepCollectionEquality()
                 .equals(toolbarHeight, other.toolbarHeight) &&
             const DeepCollectionEquality()
@@ -200,8 +199,8 @@ class YgAppBarTheme extends ThemeExtension<YgAppBarTheme> {
       const DeepCollectionEquality().hash(leadingIconSize),
       const DeepCollectionEquality().hash(leadingWidth),
       const DeepCollectionEquality().hash(mediumAppBarTheme),
-      const DeepCollectionEquality().hash(smallAppBarTheme),
       const DeepCollectionEquality().hash(titleSpacing),
+      const DeepCollectionEquality().hash(titleTextStyle),
       const DeepCollectionEquality().hash(toolbarHeight),
       const DeepCollectionEquality().hash(trailingIconSize),
     );

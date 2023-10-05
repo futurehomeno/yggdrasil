@@ -47,14 +47,7 @@ class _AppBarScreenState extends State<AppBarScreen> {
               YgCheckboxListTile(
                 title: 'Center title',
                 value: _centerTitle,
-                onChanged: (bool? newValue) {
-                  _centerTitle = newValue!;
-                  if (_centerTitle) {
-                    _actionsRadioGroupValue = 2;
-                    _actions = _singleAction;
-                  }
-                  setState(() {});
-                },
+                onChanged: _toggleCenterTitle,
               ),
             ],
           ),
@@ -65,13 +58,7 @@ class _AppBarScreenState extends State<AppBarScreen> {
               YgCheckboxListTile(
                 title: 'Automatically imply leading',
                 value: _automaticallyImplyLeading,
-                onChanged: (bool? newValue) {
-                  _automaticallyImplyLeading = newValue!;
-                  if (_automaticallyImplyLeading) {
-                    _customLeading = false;
-                  }
-                  setState(() {});
-                },
+                onChanged: _toggleAutomaticallyImplyLeading,
               ),
             ],
           ),
@@ -82,13 +69,7 @@ class _AppBarScreenState extends State<AppBarScreen> {
               YgCheckboxListTile(
                 title: 'Custom leading',
                 value: _customLeading,
-                onChanged: (bool? newValue) {
-                  _customLeading = newValue!;
-                  if (_customLeading) {
-                    _automaticallyImplyLeading = false;
-                  }
-                  setState(() {});
-                },
+                onChanged: _toggleCustomLeading,
               ),
             ],
           ),
@@ -100,21 +81,13 @@ class _AppBarScreenState extends State<AppBarScreen> {
                 title: 'No actions',
                 value: 1,
                 groupValue: _actionsRadioGroupValue,
-                onChanged: (int? newValue) {
-                  _actionsRadioGroupValue = newValue!;
-                  _actions = <Widget>[];
-                  setState(() {});
-                },
+                onChanged: _setNoActions,
               ),
               YgRadioListTile<int>(
                 title: 'Single action',
                 value: 2,
                 groupValue: _actionsRadioGroupValue,
-                onChanged: (int? newValue) {
-                  _actionsRadioGroupValue = newValue!;
-                  _actions = _singleAction;
-                  setState(() {});
-                },
+                onChanged: _setSingleAction,
               ),
               Consumer<YgAppState>(
                 builder: (BuildContext context, YgAppState ygAppState, Widget? widget) {
@@ -123,10 +96,11 @@ class _AppBarScreenState extends State<AppBarScreen> {
                     value: 3,
                     groupValue: _actionsRadioGroupValue,
                     onChanged: (int? newValue) {
-                      _actionsRadioGroupValue = newValue!;
-                      _actions = _defaultActions(context, ygAppState);
-                      _centerTitle = false;
-                      setState(() {});
+                      _setMultipleActions(
+                        newValue: newValue,
+                        context: context,
+                        ygAppState: ygAppState,
+                      );
                     },
                   );
                 },
@@ -140,6 +114,54 @@ class _AppBarScreenState extends State<AppBarScreen> {
         ],
       ),
     );
+  }
+
+  void _setMultipleActions({
+    required int? newValue,
+    required BuildContext context,
+    required YgAppState ygAppState,
+  }) {
+    _actionsRadioGroupValue = newValue!;
+    _actions = _defaultActions(context, ygAppState);
+    _centerTitle = false;
+    setState(() {});
+  }
+
+  void _setSingleAction(int? newValue) {
+    _actionsRadioGroupValue = newValue!;
+    _actions = _singleAction;
+    setState(() {});
+  }
+
+  void _setNoActions(int? newValue) {
+    _actionsRadioGroupValue = newValue!;
+    _actions = <Widget>[];
+    setState(() {});
+  }
+
+  void _toggleCustomLeading(bool? newValue) {
+    _customLeading = newValue!;
+    if (_customLeading) {
+      _automaticallyImplyLeading = false;
+    }
+    setState(() {});
+  }
+
+  void _toggleAutomaticallyImplyLeading(bool? newValue) {
+    _automaticallyImplyLeading = newValue!;
+    if (_automaticallyImplyLeading) {
+      _customLeading = false;
+    }
+    setState(() {});
+  }
+
+  void _toggleCenterTitle(bool? newValue) {
+    _centerTitle = newValue!;
+    if (_centerTitle) {
+      _actionsRadioGroupValue = 2;
+      _actions = _singleAction;
+    }
+    setState(() {});
   }
 
   List<Widget> get _singleAction {

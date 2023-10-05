@@ -1,5 +1,5 @@
 enum YgSliverAppBarVariant {
-  large,
+  small,
   medium,
-  small;
+  large;
 }
