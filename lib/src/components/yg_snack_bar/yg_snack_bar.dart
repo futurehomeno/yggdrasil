@@ -2,8 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:yggdrasil/src/theme/_theme.dart';
 import 'package:yggdrasil/yggdrasil.dart';
 
-import 'mappers/_mappers.dart';
-
 /// A custom widget for styled SnackBar.
 class YgSnackBar extends SnackBar with StatefulWidgetDebugMixin {
   YgSnackBar({
@@ -59,16 +57,10 @@ class YgSnackBar extends SnackBar with StatefulWidgetDebugMixin {
     return DecoratedBox(
       decoration: BoxDecoration(
         shape: BoxShape.circle,
-        color: YgSnackBarMapper.getContainerIconColor(
-          theme: snackBarTheme,
-          snackBarVariant: variant,
-        ),
+        color: variant.getContainerIconColor(snackBarTheme),
       ),
       child: Center(
-        child: YgSnackBarMapper.getIcon(
-          theme: snackBarTheme,
-          snackBarVariant: variant,
-        ),
+        child: variant.getIcon(snackBarTheme),
       ),
     );
   }

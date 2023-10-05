@@ -1,7 +1,5 @@
 import 'package:flutter/material.dart' hide TextButtonTheme;
-import 'package:yggdrasil/src/components/yg_icon_button/mappers/_mappers.dart';
 import 'package:yggdrasil/src/theme/_theme.dart';
-import 'package:yggdrasil/src/theme/icon_button/_icon_button.dart';
 
 import 'enums/_enums.dart';
 import 'properties/_properties.dart';
@@ -37,8 +35,8 @@ class YgIconButtonStyle {
         return YgIconButtonStyle(
           backgroundColor: theme.backgroundColor,
           disabledBackgroundColor: theme.disabledBackgroundColor,
-          size: YgIconButtonMapper.buildSize(theme: iconButtonTheme, size: size),
-          iconSize: YgIconButtonMapper.buildIconSize(theme: iconButtonTheme, size: size),
+          size: size.buildSize(iconButtonTheme),
+          iconSize: size.buildIconSize(iconButtonTheme),
           iconColor: theme.iconColor,
           iconDisabledColor: theme.disabledIconColor,
           pressedColor: theme.pressedColor,
@@ -52,8 +50,8 @@ class YgIconButtonStyle {
         return YgIconButtonStyle(
           backgroundColor: theme.backgroundColor,
           disabledBackgroundColor: theme.disabledBackgroundColor,
-          size: YgIconButtonMapper.buildSize(theme: iconButtonTheme, size: size),
-          iconSize: YgIconButtonMapper.buildIconSize(theme: iconButtonTheme, size: size),
+          size: size.buildSize(iconButtonTheme),
+          iconSize: size.buildIconSize(iconButtonTheme),
           iconColor: theme.iconColor,
           iconDisabledColor: theme.disabledIconColor,
           pressedColor: theme.pressedColor,
@@ -67,8 +65,8 @@ class YgIconButtonStyle {
         return YgIconButtonStyle(
           backgroundColor: theme.backgroundColor,
           disabledBackgroundColor: theme.disabledBackgroundColor,
-          size: YgIconButtonMapper.buildSize(theme: iconButtonTheme, size: size),
-          iconSize: YgIconButtonMapper.buildIconSize(theme: iconButtonTheme, size: size),
+          size: size.buildSize(iconButtonTheme),
+          iconSize: size.buildIconSize(iconButtonTheme),
           iconColor: theme.iconColor,
           iconDisabledColor: theme.disabledIconColor,
           pressedColor: theme.pressedColor,
@@ -82,8 +80,8 @@ class YgIconButtonStyle {
         return YgIconButtonStyle(
           backgroundColor: theme.backgroundColor,
           disabledBackgroundColor: theme.disabledBackgroundColor,
-          size: YgIconButtonMapper.buildSize(theme: iconButtonTheme, size: size),
-          iconSize: YgIconButtonMapper.buildIconSize(theme: iconButtonTheme, size: size),
+          size: size.buildSize(iconButtonTheme),
+          iconSize: size.buildIconSize(iconButtonTheme),
           iconColor: theme.iconColor,
           iconDisabledColor: theme.disabledIconColor,
           pressedColor: theme.pressedColor,

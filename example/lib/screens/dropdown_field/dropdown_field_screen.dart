@@ -161,7 +161,7 @@ class _DropdownFieldScreenState extends State<DropdownFieldScreen> {
                   label: 'Single select',
                   entries: _generateEntries(4),
                   completeAction: YgCompleteAction.focusNext,
-                  autoValidate: YgAutoValidate.onComplete,
+                  autoValidate: YgAutovalidate.onComplete,
                   validators: <FormFieldValidator<String>>[
                     const NullValidator(nullError: 'This field is required!'),
                   ],
@@ -171,7 +171,7 @@ class _DropdownFieldScreenState extends State<DropdownFieldScreen> {
                   label: 'Multi select',
                   entries: _generateEntries(6),
                   completeAction: YgCompleteAction.focusNext,
-                  autoValidate: YgAutoValidate.onComplete,
+                  autoValidate: YgAutovalidate.onComplete,
                   validators: <FormFieldValidator<Set<String>>>[
                     const MultiSelectRequiredValidator(
                       requiredError: 'This field is required!',

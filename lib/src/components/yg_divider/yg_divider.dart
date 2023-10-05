@@ -26,8 +26,8 @@ class YgDivider extends StatelessWidget with StatelessWidgetDebugMixin {
         child: Container(
           height: 1.0,
           margin: EdgeInsetsDirectional.only(
-            start: YgDividerMapper.getIndent(indent, theme),
-            end: YgDividerMapper.getIndent(endIndent, theme),
+            start: indent.getIndent(theme),
+            end: endIndent.getIndent(theme),
           ),
           decoration: BoxDecoration(
             border: Border(

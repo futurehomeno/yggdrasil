@@ -13,6 +13,7 @@ export 'fields/_fields.dart';
 export 'gauge/_gauge.dart';
 export 'helpers/_helpers.dart';
 export 'icon/_icon.dart';
+export 'icon_button/_icon_button.dart';
 export 'internal/_internal.dart';
 export 'list_tile/_list_tile.dart';
 export 'progress_indicator/_progress_indicator.dart';

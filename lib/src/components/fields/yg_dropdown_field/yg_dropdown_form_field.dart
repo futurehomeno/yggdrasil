@@ -18,7 +18,7 @@ abstract class YgDropdownFormField<T extends Object> extends StatefulWidget {
     bool allowDeselect,
     VoidCallback onPressed,
     YgFieldSize size,
-    YgAutoValidate autoValidate,
+    YgAutovalidate autoValidate,
     YgCompleteAction completeAction,
     YgDropdownAction dropdownAction,
     YgFieldVariant variant,
@@ -42,7 +42,7 @@ abstract class YgDropdownFormField<T extends Object> extends StatefulWidget {
     bool allowDeselect,
     VoidCallback onPressed,
     YgFieldSize size,
-    YgAutoValidate autoValidate,
+    YgAutovalidate autoValidate,
     YgFieldVariant variant,
     YgDropdownAction dropdownAction,
     YgCompleteAction completeAction,
@@ -124,8 +124,8 @@ abstract class YgDropdownFormField<T extends Object> extends StatefulWidget {
 
   /// The auto validation mode used.
   ///
-  /// For more info see [YgAutoValidate].
-  final YgAutoValidate autoValidate;
+  /// For more info see [YgAutovalidate].
+  final YgAutovalidate autoValidate;
 
   // region FormFieldOverrides
 

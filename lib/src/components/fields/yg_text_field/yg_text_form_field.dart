@@ -31,7 +31,7 @@ class YgTextFormField extends FormField<String> {
     bool obscureText = false,
     bool showObscureTextButton = true,
     YgFieldSize size = YgFieldSize.large,
-    YgAutoValidate autoValidate = YgAutoValidate.disabled,
+    YgAutovalidate autoValidate = YgAutovalidate.disabled,
     YgFieldVariant variant = YgFieldVariant.standard,
     YgCompleteAction? completeAction,
   }) : super(
@@ -100,7 +100,7 @@ class YgTextFormField extends FormField<String> {
     bool disabled = false,
     bool readOnly = false,
     YgFieldSize size = YgFieldSize.large,
-    YgAutoValidate autoValidate = YgAutoValidate.disabled,
+    YgAutovalidate autoValidate = YgAutovalidate.disabled,
     YgFieldVariant variant = YgFieldVariant.standard,
     YgCompleteAction? completeAction,
   }) : this(
@@ -149,7 +149,7 @@ class YgTextFormField extends FormField<String> {
     bool readOnly = false,
     bool showObscureTextButton = true,
     YgFieldSize size = YgFieldSize.large,
-    YgAutoValidate autoValidate = YgAutoValidate.disabled,
+    YgAutovalidate autoValidate = YgAutovalidate.disabled,
     YgFieldVariant variant = YgFieldVariant.standard,
     YgCompleteAction? completeAction,
   }) : this(
@@ -201,7 +201,7 @@ class YgTextFormField extends FormField<String> {
     int? maxLines,
     int? minLines,
     YgFieldSize size = YgFieldSize.large,
-    YgAutoValidate autoValidate = YgAutoValidate.disabled,
+    YgAutovalidate autoValidate = YgAutovalidate.disabled,
     YgFieldVariant variant = YgFieldVariant.standard,
     TextCapitalization textCapitalization = TextCapitalization.sentences,
     YgCompleteAction? completeAction,

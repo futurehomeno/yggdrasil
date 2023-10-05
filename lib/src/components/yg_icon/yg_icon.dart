@@ -48,10 +48,7 @@ class YgIcon extends StatelessWidget with StatelessWidgetDebugMixin {
 
     double? iconSize = materialIconTheme.size;
     if (size != null) {
-      iconSize = YgIconMapper.getIconSize(
-        iconTheme: ygIconTheme,
-        iconSize: size,
-      );
+      iconSize = size.getIconSize(ygIconTheme);
     }
 
     final Color? iconColor = color ?? materialIconTheme.color;

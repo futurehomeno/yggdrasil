@@ -4,7 +4,7 @@ import 'package:flutter/material.dart';
 ///
 /// Similar to [AutovalidateMode], but different in that we have a [onComplete]
 /// mode which flutter by default does not.
-enum YgAutoValidate {
+enum YgAutovalidate {
   /// No auto validation will occur.
   disabled,
 
@@ -15,7 +15,6 @@ enum YgAutoValidate {
   /// Used to auto-validate the [FormField] even without user interaction.
   always,
 
-  /// Used to auto-validate the [FormField] only after each user
-  /// interaction.
+  /// Used to auto-validate the [FormField] only after each user interaction.
   onUserInteraction,
 }

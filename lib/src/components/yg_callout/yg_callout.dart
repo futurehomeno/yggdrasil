@@ -25,17 +25,11 @@ class YgCallout extends StatelessWidget with StatelessWidgetDebugMixin {
     final String? title = this.title;
 
     return Material(
-      color: YgCalloutMapper.getBackgroundColor(
-        theme: theme,
-        variant: variant,
-      ),
+      color: variant.getBackgroundColor(theme),
       shape: RoundedRectangleBorder(
         borderRadius: theme.borderRadius,
         side: BorderSide(
-          color: YgCalloutMapper.getBorderColor(
-            theme: theme,
-            variant: variant,
-          ),
+          color: variant.getBorderColor(theme),
         ),
       ),
       child: Padding(

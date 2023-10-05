@@ -3,7 +3,6 @@ import 'package:yggdrasil/src/theme/_theme.dart';
 import 'package:yggdrasil/src/utils/_utils.dart';
 
 import 'enums/_enums.dart';
-import 'mappers/_mappers.dart';
 
 /// Yggdrasil card component.
 ///
@@ -31,18 +30,9 @@ class YgCard extends StatelessWidget with StatelessWidgetDebugMixin {
 
     return Material(
       type: MaterialType.card,
-      color: YgCardMapper.getBackgroundColor(
-        theme: cardTheme,
-        variant: variant,
-      ),
-      shape: YgCardMapper.getShape(
-        theme: cardTheme,
-        variant: variant,
-      ),
-      elevation: YgCardMapper.getElevation(
-        theme: cardTheme,
-        variant: variant,
-      ),
+      color: variant.getBackgroundColor(cardTheme),
+      shape: variant.getShape(cardTheme),
+      elevation: variant.getElevation(cardTheme),
       borderOnForeground: false,
       clipBehavior: Clip.antiAlias,
       child: child,

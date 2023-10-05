@@ -42,10 +42,7 @@ class YgBadge extends StatelessWidget with StatelessWidgetDebugMixin {
             vertical: 2.0,
           ),
           decoration: BoxDecoration(
-            color: YgBadgeMapper.getBadgeColor(
-              theme: badgeTheme,
-              weight: weight,
-            ),
+            color: weight.getBadgeColor(badgeTheme),
             borderRadius: badgeTheme.borderRadius,
           ),
           constraints: const BoxConstraints(
@@ -56,10 +53,7 @@ class YgBadge extends StatelessWidget with StatelessWidgetDebugMixin {
             widthFactor: 1,
             child: Text(
               amount > _maxBadgeCount ? '$_maxBadgeCount+' : amount.toString(),
-              style: YgBadgeMapper.getTextStyle(
-                theme: badgeTheme,
-                weight: weight,
-              ),
+              style: weight.getTextStyle(badgeTheme),
             ),
           ),
         ),

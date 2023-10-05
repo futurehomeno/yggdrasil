@@ -15,7 +15,7 @@ class _YgDropdownFormFieldMultiSelect<T extends Object> extends YgDropdownFormFi
     super.variant = YgFieldVariant.standard,
     super.size = YgFieldSize.large,
     super.dropdownAction = YgDropdownAction.auto,
-    super.autoValidate = YgAutoValidate.disabled,
+    super.autoValidate = YgAutovalidate.disabled,
     super.completeAction = YgCompleteAction.unfocus,
     super.onFocusChanged,
     super.onPressed,

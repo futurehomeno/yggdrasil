@@ -4,7 +4,6 @@ import 'package:yggdrasil/src/components/yg_toggle_button/enums/yg_toggle_button
 import 'package:yggdrasil/src/theme/_theme.dart';
 import 'package:yggdrasil/yggdrasil.dart';
 
-import 'mappers/_mappers.dart';
 import 'yg_toggle_button_style.dart';
 
 /// Yggdrasil toggle button.
@@ -136,11 +135,7 @@ class _YgToggleButtonState extends State<YgToggleButton> {
             child: AnimatedContainer(
               duration: toggleButtonTheme.animationDuration,
               curve: toggleButtonTheme.animationCurve,
-              padding: YgToggleButtonMapper.buildPadding(
-                theme: toggleButtonTheme,
-                size: widget.size,
-                variant: variant,
-              ),
+              padding: variant.buildPadding(toggleButtonTheme, widget.size),
               decoration: BoxDecoration(
                 color: resolvedFillColor,
                 border: Border.fromBorderSide(
@@ -160,10 +155,7 @@ class _YgToggleButtonState extends State<YgToggleButton> {
                   if (text != null)
                     Text(
                       text,
-                      style: YgToggleButtonMapper.buildTextStyle(
-                        theme: toggleButtonTheme,
-                        size: widget.size,
-                      ).copyWith(color: resolvedTextColor),
+                      style: widget.size.buildTextStyle(toggleButtonTheme).copyWith(color: resolvedTextColor),
                     ),
                 ].withHorizontalSpacing(toggleButtonTheme.iconTextSpacing),
               ),

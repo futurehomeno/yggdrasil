@@ -45,10 +45,7 @@ class YgTagStyle {
           iconDisabledColor:
               weight == YgTagWeight.weak ? ygTagTheme.iconWeakDisabledColor : ygTagTheme.iconStrongDisabledColor,
           borderRadius: ygTagTheme.borderRadius,
-          padding: YgTagMapper.buildPadding(
-            context: context,
-            tagSize: size,
-          ),
+          padding: size.buildPadding(ygTagTheme),
         );
 
       case YgTagVariant.informative:
@@ -66,10 +63,7 @@ class YgTagStyle {
           iconDisabledColor:
               weight == YgTagWeight.weak ? ygTagTheme.iconWeakDisabledColor : ygTagTheme.iconStrongDisabledColor,
           borderRadius: ygTagTheme.borderRadius,
-          padding: YgTagMapper.buildPadding(
-            context: context,
-            tagSize: size,
-          ),
+          padding: size.buildPadding(ygTagTheme),
         );
 
       case YgTagVariant.positive:
@@ -86,10 +80,7 @@ class YgTagStyle {
           iconDisabledColor:
               weight == YgTagWeight.weak ? ygTagTheme.iconWeakDisabledColor : ygTagTheme.iconStrongDisabledColor,
           borderRadius: ygTagTheme.borderRadius,
-          padding: YgTagMapper.buildPadding(
-            context: context,
-            tagSize: size,
-          ),
+          padding: size.buildPadding(ygTagTheme),
         );
 
       case YgTagVariant.warning:
@@ -106,10 +97,7 @@ class YgTagStyle {
           iconDisabledColor:
               weight == YgTagWeight.weak ? ygTagTheme.iconWeakDisabledColor : ygTagTheme.iconStrongDisabledColor,
           borderRadius: ygTagTheme.borderRadius,
-          padding: YgTagMapper.buildPadding(
-            context: context,
-            tagSize: size,
-          ),
+          padding: size.buildPadding(ygTagTheme),
         );
 
       case YgTagVariant.negative:
@@ -126,10 +114,7 @@ class YgTagStyle {
           iconDisabledColor:
               weight == YgTagWeight.weak ? ygTagTheme.iconWeakDisabledColor : ygTagTheme.iconStrongDisabledColor,
           borderRadius: ygTagTheme.borderRadius,
-          padding: YgTagMapper.buildPadding(
-            context: context,
-            tagSize: size,
-          ),
+          padding: size.buildPadding(ygTagTheme),
         );
     }
   }
