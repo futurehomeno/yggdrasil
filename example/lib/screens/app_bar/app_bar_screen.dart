@@ -34,8 +34,7 @@ class _AppBarScreenState extends State<AppBarScreen> {
       appBar: YgAppBar(
         automaticallyImplyLeading: _automaticallyImplyLeading,
         leading: _customLeading ? YgIconButton(child: const YgIcon(YgIcons.info), onPressed: () {}) : null,
-        title:
-            'App bar but now with a good ol very long title of useless stuff that i typed here because i felt like it',
+        title: 'App bar',
         actions: _actions,
         centerTitle: _centerTitle,
       ),
