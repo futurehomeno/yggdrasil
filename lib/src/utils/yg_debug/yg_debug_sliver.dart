@@ -26,7 +26,7 @@ class _YgDebugSliver extends YgDebug {
   }
 }
 
-class _YgDebugSliverChild extends RenderProxySliver with YgDebugPainter {
+class _YgDebugSliverChild extends RenderProxySliver with YgDebugPainterRenderObjectMixin {
   _YgDebugSliverChild({
     required YgDebugType type,
   }) {

@@ -2,7 +2,7 @@ import 'package:flutter/rendering.dart';
 
 import '_yg_debug.dart';
 
-mixin YgDebugPainter on RenderObject {
+mixin YgDebugPainterRenderObjectMixin on RenderObject {
   YgDebugType _type = YgDebugType.other;
 
   YgDebugType get type => _type;

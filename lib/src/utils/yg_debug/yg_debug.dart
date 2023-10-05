@@ -4,7 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 
 import '_yg_debug.dart';
-import 'yg_debug_painter.dart';
+import 'yg_debug_painter_render_object_mixin.dart';
 
 part 'yg_debug_renderbox.dart';
 part 'yg_debug_sliver.dart';
@@ -104,9 +104,7 @@ abstract class YgDebug extends SingleChildRenderObjectWidget {
 
     final RenderObject? renderObject = element.renderObject;
 
-    if (renderObject is _YgDebugRenderBoxChild) {
-      renderObject.markNeedsPaint();
-    } else if (renderObject is _YgDebugSliverChild) {
+    if (renderObject is YgDebugPainterRenderObjectMixin) {
       renderObject.markNeedsPaint();
     }
   }
