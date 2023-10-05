@@ -43,10 +43,12 @@ class _YgDebugRenderBoxChild extends RenderProxyBox with YgRenderObjectDebugPain
     // We always first draw the child.
     context.paintChild(child, offset);
 
-    paintYgDebug(
-      context: context,
-      offset: offset,
-      size: size,
-    );
+    if (isDebuggingToggled()) {
+      paintYgDebug(
+        context: context,
+        offset: offset,
+        size: size,
+      );
+    }
   }
 }

@@ -12,14 +12,14 @@ mixin YgRenderObjectDebugPainterMixin on RenderObject {
       return;
     }
 
-    if (_isToggled() != _isToggled(newType) && attached) {
+    if (isDebuggingToggled() != isDebuggingToggled(newType) && attached) {
       markNeedsPaint();
     }
 
     _type = newType;
   }
 
-  bool _isToggled([YgDebugType? type]) => YgDebug.isEnabled(type: type ?? _type);
+  bool isDebuggingToggled([YgDebugType? type]) => YgDebug.isEnabled(type: type ?? _type);
 
   static final Paint _layoutPaint = Paint()
     ..color = const Color(0x800080ff)
@@ -44,22 +44,20 @@ mixin YgRenderObjectDebugPainterMixin on RenderObject {
     required Offset offset,
     required Size size,
   }) {
-    if (_isToggled()) {
-      final Path path = Path();
+    final Path path = Path();
 
-      path.moveTo(offset.dx, offset.dy);
-      path.lineTo(offset.dx + size.width, offset.dy);
-      path.lineTo(offset.dx + size.width, size.height + offset.dy);
-      path.lineTo(offset.dx, size.height + offset.dy);
-      path.lineTo(offset.dx, offset.dy);
+    path.moveTo(offset.dx, offset.dy);
+    path.lineTo(offset.dx + size.width, offset.dy);
+    path.lineTo(offset.dx + size.width, size.height + offset.dy);
+    path.lineTo(offset.dx, size.height + offset.dy);
+    path.lineTo(offset.dx, offset.dy);
 
-      final Paint paint = switch (_type) {
-        YgDebugType.intractable => _intractablePaint,
-        YgDebugType.layout => _layoutPaint,
-        YgDebugType.other => _otherPaint,
-      };
+    final Paint paint = switch (_type) {
+      YgDebugType.intractable => _intractablePaint,
+      YgDebugType.layout => _layoutPaint,
+      YgDebugType.other => _otherPaint,
+    };
 
-      context.canvas.drawPath(path, paint);
-    }
+    context.canvas.drawPath(path, paint);
   }
 }

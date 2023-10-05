@@ -44,15 +44,17 @@ class _YgDebugSliverChild extends RenderProxySliver with YgRenderObjectDebugPain
       return;
     }
 
-    final Size size = getAbsoluteSize();
-
     // We always first draw the child.
     context.paintChild(child, offset);
 
-    paintYgDebug(
-      context: context,
-      offset: offset,
-      size: size,
-    );
+    if (isDebuggingToggled()) {
+      final Size size = getAbsoluteSize();
+
+      paintYgDebug(
+        context: context,
+        offset: offset,
+        size: size,
+      );
+    }
   }
 }
