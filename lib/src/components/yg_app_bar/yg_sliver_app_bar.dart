@@ -4,7 +4,7 @@ import 'package:yggdrasil/yggdrasil.dart';
 import 'widgets/_widgets.dart';
 
 /// Customized version of the [SliverAppBar] widget.
-class YgSliverAppBar extends StatelessWidget {
+class YgSliverAppBar extends StatelessWidget with StatelessWidgetDebugMixin {
   const YgSliverAppBar({
     super.key,
     required this.title,
