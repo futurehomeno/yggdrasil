@@ -37,8 +37,9 @@ class _AppBarSliverScreenState extends State<AppBarSliverScreen> {
           YgSliverAppBar(
             variant: _variant,
             automaticallyImplyLeading: _automaticallyImplyLeading,
-            leading: _customLeading ? YgIconButton(child: const YgIcon(YgIcons.info), onPressed: () {}) : null,
-            title: 'App bar (sliver)',
+            leading: getLeading(),
+            title:
+                'App bar (sliver) super long title that should be truncated with ellipsis and not wrap to multiple lines and should be centered if centerTitle is true',
             actions: _actions,
             centerTitle: _centerTitle,
           ),
@@ -53,31 +54,28 @@ class _AppBarSliverScreenState extends State<AppBarSliverScreen> {
                       title: 'Small',
                       value: 1,
                       groupValue: _variantRadioGroupValue,
-                      onChanged: (int? newValue) {
-                        _variantRadioGroupValue = newValue!;
-                        _variant = YgSliverAppBarVariant.small;
-                        setState(() {});
-                      },
+                      onChanged: (int? newValue) => _setVariant(
+                        variant: YgSliverAppBarVariant.small,
+                        newValue: newValue,
+                      ),
                     ),
                     YgRadioListTile<int>(
                       title: 'Medium',
                       value: 2,
                       groupValue: _variantRadioGroupValue,
-                      onChanged: (int? newValue) {
-                        _variantRadioGroupValue = newValue!;
-                        _variant = YgSliverAppBarVariant.medium;
-                        setState(() {});
-                      },
+                      onChanged: (int? newValue) => _setVariant(
+                        variant: YgSliverAppBarVariant.medium,
+                        newValue: newValue,
+                      ),
                     ),
                     YgRadioListTile<int>(
                       title: 'Large',
                       value: 3,
                       groupValue: _variantRadioGroupValue,
-                      onChanged: (int? newValue) {
-                        _variantRadioGroupValue = newValue!;
-                        _variant = YgSliverAppBarVariant.large;
-                        setState(() {});
-                      },
+                      onChanged: (int? newValue) => _setVariant(
+                        variant: YgSliverAppBarVariant.large,
+                        newValue: newValue,
+                      ),
                     ),
                   ],
                 ),
@@ -88,14 +86,7 @@ class _AppBarSliverScreenState extends State<AppBarSliverScreen> {
                     YgCheckboxListTile(
                       title: 'Center title',
                       value: _centerTitle,
-                      onChanged: (bool? newValue) {
-                        _centerTitle = newValue!;
-                        if (_centerTitle) {
-                          _actionsRadioGroupValue = 2;
-                          _actions = _singleAction;
-                        }
-                        setState(() {});
-                      },
+                      onChanged: _toggleCenterTitle,
                     ),
                   ],
                 ),
@@ -107,13 +98,7 @@ class _AppBarSliverScreenState extends State<AppBarSliverScreen> {
                     YgCheckboxListTile(
                       title: 'Automatically imply leading',
                       value: _automaticallyImplyLeading,
-                      onChanged: (bool? newValue) {
-                        _automaticallyImplyLeading = newValue!;
-                        if (_automaticallyImplyLeading) {
-                          _customLeading = false;
-                        }
-                        setState(() {});
-                      },
+                      onChanged: _toggleAutomaticallyImplyLeading,
                     ),
                   ],
                 ),
@@ -124,13 +109,7 @@ class _AppBarSliverScreenState extends State<AppBarSliverScreen> {
                     YgCheckboxListTile(
                       title: 'Custom leading',
                       value: _customLeading,
-                      onChanged: (bool? newValue) {
-                        _customLeading = newValue!;
-                        if (_customLeading) {
-                          _automaticallyImplyLeading = false;
-                        }
-                        setState(() {});
-                      },
+                      onChanged: _toggleCustomLeading,
                     ),
                   ],
                 ),
@@ -142,21 +121,13 @@ class _AppBarSliverScreenState extends State<AppBarSliverScreen> {
                       title: 'No actions',
                       value: 1,
                       groupValue: _actionsRadioGroupValue,
-                      onChanged: (int? newValue) {
-                        _actionsRadioGroupValue = newValue!;
-                        _actions = <Widget>[];
-                        setState(() {});
-                      },
+                      onChanged: _setNoActions,
                     ),
                     YgRadioListTile<int>(
                       title: 'Single action',
                       value: 2,
                       groupValue: _actionsRadioGroupValue,
-                      onChanged: (int? newValue) {
-                        _actionsRadioGroupValue = newValue!;
-                        _actions = _singleAction;
-                        setState(() {});
-                      },
+                      onChanged: _setSingleAction,
                     ),
                     Consumer<YgAppState>(
                       builder: (BuildContext context, YgAppState ygAppState, Widget? widget) {
@@ -165,10 +136,11 @@ class _AppBarSliverScreenState extends State<AppBarSliverScreen> {
                           value: 3,
                           groupValue: _actionsRadioGroupValue,
                           onChanged: (int? newValue) {
-                            _actionsRadioGroupValue = newValue!;
-                            _actions = _defaultActions(context, ygAppState);
-                            _centerTitle = false;
-                            setState(() {});
+                            _setMultipleActions(
+                              newValue: newValue,
+                              context: context,
+                              ygAppState: ygAppState,
+                            );
                           },
                         );
                       },
@@ -187,6 +159,74 @@ class _AppBarSliverScreenState extends State<AppBarSliverScreen> {
         ],
       ),
     );
+  }
+
+  Widget? getLeading() {
+    if (_customLeading) {
+      return YgIconButton(
+        child: const YgIcon(YgIcons.info),
+        onPressed: () {},
+      );
+    }
+
+    return null;
+  }
+
+  void _setMultipleActions({
+    required int? newValue,
+    required BuildContext context,
+    required YgAppState ygAppState,
+  }) {
+    _actionsRadioGroupValue = newValue!;
+    _actions = _defaultActions(context, ygAppState);
+    _centerTitle = false;
+    setState(() {});
+  }
+
+  void _setSingleAction(int? newValue) {
+    _actionsRadioGroupValue = newValue!;
+    _actions = _singleAction;
+    setState(() {});
+  }
+
+  void _setNoActions(int? newValue) {
+    _actionsRadioGroupValue = newValue!;
+    _actions = <Widget>[];
+    setState(() {});
+  }
+
+  void _toggleCustomLeading(bool? newValue) {
+    _customLeading = newValue!;
+    if (_customLeading) {
+      _automaticallyImplyLeading = false;
+    }
+    setState(() {});
+  }
+
+  void _toggleAutomaticallyImplyLeading(bool? newValue) {
+    _automaticallyImplyLeading = newValue!;
+    if (_automaticallyImplyLeading) {
+      _customLeading = false;
+    }
+    setState(() {});
+  }
+
+  void _toggleCenterTitle(bool? newValue) {
+    _centerTitle = newValue!;
+    if (_centerTitle) {
+      _actionsRadioGroupValue = 2;
+      _actions = _singleAction;
+    }
+    setState(() {});
+  }
+
+  void _setVariant({
+    required YgSliverAppBarVariant variant,
+    required int? newValue,
+  }) {
+    _variantRadioGroupValue = newValue!;
+    _variant = variant;
+    setState(() {});
   }
 
   List<Widget> get _singleAction {

@@ -4,7 +4,7 @@ import 'package:yggdrasil/yggdrasil.dart';
 import 'widgets/_widgets.dart';
 
 /// Customized version of the [SliverAppBar] widget.
-class YgSliverAppBar extends StatelessWidget with StatelessWidgetDebugMixin {
+class YgSliverAppBar extends StatelessWidget {
   const YgSliverAppBar({
     super.key,
     required this.title,
@@ -65,7 +65,11 @@ class YgSliverAppBar extends StatelessWidget with StatelessWidgetDebugMixin {
           titleSpacing: theme.titleSpacing,
           leading: leading,
           leadingWidth: theme.leadingWidth,
-          title: Text(title, style: theme.titleTextStyle),
+          title: Text(
+            title,
+            style: theme.titleTextStyle,
+            overflow: TextOverflow.ellipsis,
+          ),
         ),
       YgSliverAppBarVariant.medium => SliverAppBar(
           toolbarHeight: theme.toolbarHeight,
@@ -88,7 +92,11 @@ class YgSliverAppBar extends StatelessWidget with StatelessWidgetDebugMixin {
             centerTitle: centerTitle,
             topTitlePadding: theme.mediumAppBarTheme.topTitlePadding,
             bottomTitlePadding: theme.mediumAppBarTheme.bottomTitlePadding,
-            title: Text(title, style: theme.titleTextStyle),
+            title: Text(
+              title,
+              style: theme.titleTextStyle,
+              overflow: TextOverflow.ellipsis,
+            ),
           ),
         ),
       YgSliverAppBarVariant.large => SliverAppBar(
@@ -112,7 +120,12 @@ class YgSliverAppBar extends StatelessWidget with StatelessWidgetDebugMixin {
             centerTitle: centerTitle,
             topTitlePadding: theme.largeAppBarTheme.topTitlePadding,
             bottomTitlePadding: theme.largeAppBarTheme.bottomTitlePadding,
-            title: Text(title, style: theme.titleTextStyle),
+            actionsCount: actions.length,
+            title: Text(
+              title,
+              style: theme.titleTextStyle,
+              overflow: TextOverflow.ellipsis,
+            ),
           ),
         ),
     };

@@ -3,6 +3,7 @@ import 'dart:ui' as ui;
 
 import 'package:flutter/foundation.dart' show clampDouble;
 import 'package:flutter/material.dart';
+import 'package:yggdrasil/yggdrasil.dart';
 
 import 'yg_flexible_space_header_opacity.dart';
 
@@ -22,6 +23,7 @@ class YgFlexibleSpaceBar extends StatelessWidget {
     this.collapseMode = CollapseMode.parallax,
     this.stretchModes = const <StretchMode>[StretchMode.zoomBackground],
     this.expandedTitleScale = 1.5,
+    this.actionsCount = 0,
   }) : assert(expandedTitleScale >= 1, 'expandedTitleScale must be >= 1');
 
   /// New fields.
@@ -35,6 +37,7 @@ class YgFlexibleSpaceBar extends StatelessWidget {
   final CollapseMode collapseMode;
   final List<StretchMode> stretchModes;
   final double expandedTitleScale;
+  final int actionsCount;
 
   double _getCollapsePadding(double t, FlexibleSpaceBarSettings settings) {
     switch (collapseMode) {
@@ -146,9 +149,13 @@ class YgFlexibleSpaceBar extends StatelessWidget {
               color: titleStyle.color!.withOpacity(opacity),
             );
             // TODO(bjhandeland): Replace with tokens.
+            final double paddingForActionButtons = actionsCount * context.iconButtonTheme.sizeMedium +
+                context.appBarTheme.titleSpacing +
+                context.appBarTheme.actionEdgeSpacing;
             final double startPaddingValue = Tween<double>(begin: 15.0, end: 60.0).transform(t);
             final double bottomPaddingValue = Tween<double>(begin: bottomTitlePadding, end: 20.0).transform(t);
             final double topPaddingValue = Tween<double>(begin: topTitlePadding, end: 20.0).transform(t);
+            final double endPaddingValue = Tween<double>(begin: 15.0, end: paddingForActionButtons).transform(t);
             final double scaleValue = Tween<double>(begin: expandedTitleScale, end: 1.0).transform(t);
             final Matrix4 scaleTransform = Matrix4.identity()..scale(scaleValue, scaleValue, 1.0);
             final Alignment titleAlignment = centerTitle ? Alignment.bottomCenter : Alignment.bottomLeft;
@@ -157,6 +164,7 @@ class YgFlexibleSpaceBar extends StatelessWidget {
               top: topPaddingValue,
               start: centerTitle ? 0.0 : startPaddingValue,
               bottom: bottomPaddingValue,
+              end: endPaddingValue,
             );
             children.add(Container(
               padding: padding,

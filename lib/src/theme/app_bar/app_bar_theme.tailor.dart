@@ -11,6 +11,7 @@ part of 'app_bar_theme.dart';
 class YgAppBarTheme extends ThemeExtension<YgAppBarTheme> {
   const YgAppBarTheme({
     required this.actionEdgeSpacing,
+    required this.actionIconSize,
     required this.backgroundColor,
     required this.borderColor,
     required this.collapsedHeight,
@@ -21,10 +22,10 @@ class YgAppBarTheme extends ThemeExtension<YgAppBarTheme> {
     required this.titleSpacing,
     required this.titleTextStyle,
     required this.toolbarHeight,
-    required this.trailingIconSize,
   });
 
   final double actionEdgeSpacing;
+  final double actionIconSize;
   final Color backgroundColor;
   final Color borderColor;
   final double collapsedHeight;
@@ -35,10 +36,10 @@ class YgAppBarTheme extends ThemeExtension<YgAppBarTheme> {
   final double titleSpacing;
   final TextStyle titleTextStyle;
   final double toolbarHeight;
-  final double trailingIconSize;
 
   static final YgAppBarTheme consumerLight = YgAppBarTheme(
     actionEdgeSpacing: _$YgAppBarTheme.actionEdgeSpacing[0],
+    actionIconSize: _$YgAppBarTheme.actionIconSize[0],
     backgroundColor: _$YgAppBarTheme.backgroundColor[0],
     borderColor: _$YgAppBarTheme.borderColor[0],
     collapsedHeight: _$YgAppBarTheme.collapsedHeight[0],
@@ -49,11 +50,11 @@ class YgAppBarTheme extends ThemeExtension<YgAppBarTheme> {
     titleSpacing: _$YgAppBarTheme.titleSpacing[0],
     titleTextStyle: _$YgAppBarTheme.titleTextStyle[0],
     toolbarHeight: _$YgAppBarTheme.toolbarHeight[0],
-    trailingIconSize: _$YgAppBarTheme.trailingIconSize[0],
   );
 
   static final YgAppBarTheme consumerDark = YgAppBarTheme(
     actionEdgeSpacing: _$YgAppBarTheme.actionEdgeSpacing[1],
+    actionIconSize: _$YgAppBarTheme.actionIconSize[1],
     backgroundColor: _$YgAppBarTheme.backgroundColor[1],
     borderColor: _$YgAppBarTheme.borderColor[1],
     collapsedHeight: _$YgAppBarTheme.collapsedHeight[1],
@@ -64,11 +65,11 @@ class YgAppBarTheme extends ThemeExtension<YgAppBarTheme> {
     titleSpacing: _$YgAppBarTheme.titleSpacing[1],
     titleTextStyle: _$YgAppBarTheme.titleTextStyle[1],
     toolbarHeight: _$YgAppBarTheme.toolbarHeight[1],
-    trailingIconSize: _$YgAppBarTheme.trailingIconSize[1],
   );
 
   static final YgAppBarTheme professionalLight = YgAppBarTheme(
     actionEdgeSpacing: _$YgAppBarTheme.actionEdgeSpacing[2],
+    actionIconSize: _$YgAppBarTheme.actionIconSize[2],
     backgroundColor: _$YgAppBarTheme.backgroundColor[2],
     borderColor: _$YgAppBarTheme.borderColor[2],
     collapsedHeight: _$YgAppBarTheme.collapsedHeight[2],
@@ -79,11 +80,11 @@ class YgAppBarTheme extends ThemeExtension<YgAppBarTheme> {
     titleSpacing: _$YgAppBarTheme.titleSpacing[2],
     titleTextStyle: _$YgAppBarTheme.titleTextStyle[2],
     toolbarHeight: _$YgAppBarTheme.toolbarHeight[2],
-    trailingIconSize: _$YgAppBarTheme.trailingIconSize[2],
   );
 
   static final YgAppBarTheme professionalDark = YgAppBarTheme(
     actionEdgeSpacing: _$YgAppBarTheme.actionEdgeSpacing[3],
+    actionIconSize: _$YgAppBarTheme.actionIconSize[3],
     backgroundColor: _$YgAppBarTheme.backgroundColor[3],
     borderColor: _$YgAppBarTheme.borderColor[3],
     collapsedHeight: _$YgAppBarTheme.collapsedHeight[3],
@@ -94,7 +95,6 @@ class YgAppBarTheme extends ThemeExtension<YgAppBarTheme> {
     titleSpacing: _$YgAppBarTheme.titleSpacing[3],
     titleTextStyle: _$YgAppBarTheme.titleTextStyle[3],
     toolbarHeight: _$YgAppBarTheme.toolbarHeight[3],
-    trailingIconSize: _$YgAppBarTheme.trailingIconSize[3],
   );
 
   static final themes = [
@@ -107,6 +107,7 @@ class YgAppBarTheme extends ThemeExtension<YgAppBarTheme> {
   @override
   YgAppBarTheme copyWith({
     double? actionEdgeSpacing,
+    double? actionIconSize,
     Color? backgroundColor,
     Color? borderColor,
     double? collapsedHeight,
@@ -117,10 +118,10 @@ class YgAppBarTheme extends ThemeExtension<YgAppBarTheme> {
     double? titleSpacing,
     TextStyle? titleTextStyle,
     double? toolbarHeight,
-    double? trailingIconSize,
   }) {
     return YgAppBarTheme(
       actionEdgeSpacing: actionEdgeSpacing ?? this.actionEdgeSpacing,
+      actionIconSize: actionIconSize ?? this.actionIconSize,
       backgroundColor: backgroundColor ?? this.backgroundColor,
       borderColor: borderColor ?? this.borderColor,
       collapsedHeight: collapsedHeight ?? this.collapsedHeight,
@@ -131,7 +132,6 @@ class YgAppBarTheme extends ThemeExtension<YgAppBarTheme> {
       titleSpacing: titleSpacing ?? this.titleSpacing,
       titleTextStyle: titleTextStyle ?? this.titleTextStyle,
       toolbarHeight: toolbarHeight ?? this.toolbarHeight,
-      trailingIconSize: trailingIconSize ?? this.trailingIconSize,
     );
   }
 
@@ -140,6 +140,7 @@ class YgAppBarTheme extends ThemeExtension<YgAppBarTheme> {
     if (other is! YgAppBarTheme) return this as YgAppBarTheme;
     return YgAppBarTheme(
       actionEdgeSpacing: t < 0.5 ? actionEdgeSpacing : other.actionEdgeSpacing,
+      actionIconSize: t < 0.5 ? actionIconSize : other.actionIconSize,
       backgroundColor: Color.lerp(backgroundColor, other.backgroundColor, t)!,
       borderColor: Color.lerp(borderColor, other.borderColor, t)!,
       collapsedHeight: t < 0.5 ? collapsedHeight : other.collapsedHeight,
@@ -152,7 +153,6 @@ class YgAppBarTheme extends ThemeExtension<YgAppBarTheme> {
       titleSpacing: t < 0.5 ? titleSpacing : other.titleSpacing,
       titleTextStyle: TextStyle.lerp(titleTextStyle, other.titleTextStyle, t)!,
       toolbarHeight: t < 0.5 ? toolbarHeight : other.toolbarHeight,
-      trailingIconSize: t < 0.5 ? trailingIconSize : other.trailingIconSize,
     );
   }
 
@@ -163,6 +163,8 @@ class YgAppBarTheme extends ThemeExtension<YgAppBarTheme> {
             other is YgAppBarTheme &&
             const DeepCollectionEquality()
                 .equals(actionEdgeSpacing, other.actionEdgeSpacing) &&
+            const DeepCollectionEquality()
+                .equals(actionIconSize, other.actionIconSize) &&
             const DeepCollectionEquality()
                 .equals(backgroundColor, other.backgroundColor) &&
             const DeepCollectionEquality()
@@ -182,9 +184,7 @@ class YgAppBarTheme extends ThemeExtension<YgAppBarTheme> {
             const DeepCollectionEquality()
                 .equals(titleTextStyle, other.titleTextStyle) &&
             const DeepCollectionEquality()
-                .equals(toolbarHeight, other.toolbarHeight) &&
-            const DeepCollectionEquality()
-                .equals(trailingIconSize, other.trailingIconSize));
+                .equals(toolbarHeight, other.toolbarHeight));
   }
 
   @override
@@ -192,6 +192,7 @@ class YgAppBarTheme extends ThemeExtension<YgAppBarTheme> {
     return Object.hash(
       runtimeType.hashCode,
       const DeepCollectionEquality().hash(actionEdgeSpacing),
+      const DeepCollectionEquality().hash(actionIconSize),
       const DeepCollectionEquality().hash(backgroundColor),
       const DeepCollectionEquality().hash(borderColor),
       const DeepCollectionEquality().hash(collapsedHeight),
@@ -202,7 +203,6 @@ class YgAppBarTheme extends ThemeExtension<YgAppBarTheme> {
       const DeepCollectionEquality().hash(titleSpacing),
       const DeepCollectionEquality().hash(titleTextStyle),
       const DeepCollectionEquality().hash(toolbarHeight),
-      const DeepCollectionEquality().hash(trailingIconSize),
     );
   }
 }

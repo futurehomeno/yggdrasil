@@ -37,7 +37,7 @@ class _$YgAppBarTheme {
     professional_dark.FhDimensions.md,
   ];
 
-  static const List<double> trailingIconSize = <double>[
+  static const List<double> actionIconSize = <double>[
     consumer_light.FhDimensions.md,
     consumer_dark.FhDimensions.md,
     professional_light.FhDimensions.md,

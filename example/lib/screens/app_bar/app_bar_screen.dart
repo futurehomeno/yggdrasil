@@ -33,7 +33,7 @@ class _AppBarScreenState extends State<AppBarScreen> {
     return DemoScreen(
       appBar: YgAppBar(
         automaticallyImplyLeading: _automaticallyImplyLeading,
-        leading: _customLeading ? YgIconButton(child: const YgIcon(YgIcons.info), onPressed: () {}) : null,
+        leading: getLeading(),
         title: 'App bar',
         actions: _actions,
         centerTitle: _centerTitle,
@@ -114,6 +114,17 @@ class _AppBarScreenState extends State<AppBarScreen> {
         ],
       ),
     );
+  }
+
+  Widget? getLeading() {
+    if (_customLeading) {
+      return YgIconButton(
+        child: const YgIcon(YgIcons.info),
+        onPressed: () {},
+      );
+    }
+
+    return null;
   }
 
   void _setMultipleActions({
