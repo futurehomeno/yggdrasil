@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:yggdrasil/yggdrasil.dart';
 
 /// Customized version of the [AppBar] widget.
-class YgAppBar extends StatelessWidget implements PreferredSizeWidget {
+class YgAppBar extends StatelessWidget with StatelessWidgetDebugMixin implements PreferredSizeWidget {
   const YgAppBar({
     super.key,
     required this.title,
