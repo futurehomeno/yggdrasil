@@ -22,7 +22,7 @@ class _YgDebugRenderBox extends YgDebug {
   }
 }
 
-class _YgDebugRenderBoxChild extends RenderProxyBox with YgDebugPainterRenderObjectMixin {
+class _YgDebugRenderBoxChild extends RenderProxyBox with YgRenderObjectDebugPainterMixin {
   _YgDebugRenderBoxChild({
     required YgDebugType type,
   }) {
