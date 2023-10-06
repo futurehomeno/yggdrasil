@@ -64,6 +64,7 @@ class YgIcons {
     'caretUp': caretUp,
     'cart': cart,
     'charger': charger,
+    'chargerDisabled': chargerDisabled,
     'chargerQuestion': chargerQuestion,
     'check': check,
     'childRoom': childRoom,
@@ -87,6 +88,7 @@ class YgIcons {
     'deviceEvCharger': deviceEvCharger,
     'deviceHub': deviceHub,
     'deviceHubAlt': deviceHubAlt,
+    'deviceHubChange': deviceHubChange,
     'deviceQrcode': deviceQrcode,
     'deviceSync': deviceSync,
     'deviceTransfer': deviceTransfer,
@@ -107,6 +109,7 @@ class YgIcons {
     'dry': dry,
     'edit': edit,
     'electricCar': electricCar,
+    'electricCarDisabled': electricCarDisabled,
     'email': email,
     'emergencyNo': emergencyNo,
     'energy': energy,
@@ -149,6 +152,7 @@ class YgIcons {
     'gear': gear,
     'general': general,
     'grandfather': grandfather,
+    'gust': gust,
     'hallway': hallway,
     'han': han,
     'handle': handle,
@@ -229,8 +233,8 @@ class YgIcons {
     'placeholder': placeholder,
     'planet': planet,
     'plant': plant,
-    'play1': play1,
     'play': play,
+    'playAlt': playAlt,
     'playQuestion': playQuestion,
     'playlist': playlist,
     'plus': plus,
@@ -253,6 +257,7 @@ class YgIcons {
     'rotate': rotate,
     'rotation': rotation,
     'safety': safety,
+    'scenes': scenes,
     'sea': sea,
     'search': search,
     'searchAlt': searchAlt,
@@ -311,6 +316,7 @@ class YgIcons {
     'trumpet': trumpet,
     'tv': tv,
     'ultravioletUv': ultravioletUv,
+    'umbrella': umbrella,
     'unlocked': unlocked,
     'upstairs': upstairs,
     'valves': valves,
@@ -320,12 +326,27 @@ class YgIcons {
     'waterFlow': waterFlow,
     'waterPressure': waterPressure,
     'watts': watts,
+    'weatherCloud': weatherCloud,
+    'weatherCloudColorful': weatherCloudColorful,
+    'weatherFog': weatherFog,
+    'weatherFogColorful': weatherFogColorful,
+    'weatherRain': weatherRain,
+    'weatherRainColorful': weatherRainColorful,
+    'weatherSnow': weatherSnow,
+    'weatherSnowColorful': weatherSnowColorful,
+    'weatherSun': weatherSun,
+    'weatherSunCloud': weatherSunCloud,
+    'weatherSunCloudColorful': weatherSunCloudColorful,
+    'weatherSunColorful': weatherSunColorful,
+    'weatherThunder': weatherThunder,
+    'weatherThunderColorful': weatherThunderColorful,
     'weight': weight,
     'wifiExcellent': wifiExcellent,
     'wifiNoSignal': wifiNoSignal,
     'wifiOk': wifiOk,
     'wifiUnknown': wifiUnknown,
     'wifiWeak': wifiWeak,
+    'wind': wind,
     'windowClosed': windowClosed,
     'windowClosedUnlocked': windowClosedUnlocked,
     'windowLocked': windowLocked,
@@ -397,6 +418,7 @@ class YgIcons {
   static const String caretUp = 'assets/icons/caret_up.svg';
   static const String cart = 'assets/icons/cart.svg';
   static const String charger = 'assets/icons/charger.svg';
+  static const String chargerDisabled = 'assets/icons/charger_disabled.svg';
   static const String chargerQuestion = 'assets/icons/charger_question.svg';
   static const String check = 'assets/icons/check.svg';
   static const String childRoom = 'assets/icons/child_room.svg';
@@ -420,6 +442,7 @@ class YgIcons {
   static const String deviceEvCharger = 'assets/icons/device_ev_charger.svg';
   static const String deviceHub = 'assets/icons/device_hub.svg';
   static const String deviceHubAlt = 'assets/icons/device_hub_alt.svg';
+  static const String deviceHubChange = 'assets/icons/device_hub_change.svg';
   static const String deviceQrcode = 'assets/icons/device_qrcode.svg';
   static const String deviceSync = 'assets/icons/device_sync.svg';
   static const String deviceTransfer = 'assets/icons/device_transfer.svg';
@@ -440,6 +463,7 @@ class YgIcons {
   static const String dry = 'assets/icons/dry.svg';
   static const String edit = 'assets/icons/edit.svg';
   static const String electricCar = 'assets/icons/electric_car.svg';
+  static const String electricCarDisabled = 'assets/icons/electric_car_disabled.svg';
   static const String email = 'assets/icons/email.svg';
   static const String emergencyNo = 'assets/icons/emergency_no.svg';
   static const String energy = 'assets/icons/energy.svg';
@@ -482,6 +506,7 @@ class YgIcons {
   static const String gear = 'assets/icons/gear.svg';
   static const String general = 'assets/icons/general.svg';
   static const String grandfather = 'assets/icons/grandfather.svg';
+  static const String gust = 'assets/icons/gust.svg';
   static const String hallway = 'assets/icons/hallway.svg';
   static const String han = 'assets/icons/han.svg';
   static const String handle = 'assets/icons/handle.svg';
@@ -562,8 +587,8 @@ class YgIcons {
   static const String placeholder = 'assets/icons/placeholder.svg';
   static const String planet = 'assets/icons/planet.svg';
   static const String plant = 'assets/icons/plant.svg';
-  static const String play1 = 'assets/icons/play-1.svg';
   static const String play = 'assets/icons/play.svg';
+  static const String playAlt = 'assets/icons/play_alt.svg';
   static const String playQuestion = 'assets/icons/play_question.svg';
   static const String playlist = 'assets/icons/playlist.svg';
   static const String plus = 'assets/icons/plus.svg';
@@ -586,6 +611,7 @@ class YgIcons {
   static const String rotate = 'assets/icons/rotate.svg';
   static const String rotation = 'assets/icons/rotation.svg';
   static const String safety = 'assets/icons/safety.svg';
+  static const String scenes = 'assets/icons/scenes.svg';
   static const String sea = 'assets/icons/sea.svg';
   static const String search = 'assets/icons/search.svg';
   static const String searchAlt = 'assets/icons/search_alt.svg';
@@ -644,6 +670,7 @@ class YgIcons {
   static const String trumpet = 'assets/icons/trumpet.svg';
   static const String tv = 'assets/icons/tv.svg';
   static const String ultravioletUv = 'assets/icons/ultraviolet_uv.svg';
+  static const String umbrella = 'assets/icons/umbrella.svg';
   static const String unlocked = 'assets/icons/unlocked.svg';
   static const String upstairs = 'assets/icons/upstairs.svg';
   static const String valves = 'assets/icons/valves.svg';
@@ -653,12 +680,27 @@ class YgIcons {
   static const String waterFlow = 'assets/icons/water_flow.svg';
   static const String waterPressure = 'assets/icons/water_pressure.svg';
   static const String watts = 'assets/icons/watts.svg';
+  static const String weatherCloud = 'assets/icons/weather_cloud.svg';
+  static const String weatherCloudColorful = 'assets/icons/weather_cloud_colorful.svg';
+  static const String weatherFog = 'assets/icons/weather_fog.svg';
+  static const String weatherFogColorful = 'assets/icons/weather_fog_colorful.svg';
+  static const String weatherRain = 'assets/icons/weather_rain.svg';
+  static const String weatherRainColorful = 'assets/icons/weather_rain_colorful.svg';
+  static const String weatherSnow = 'assets/icons/weather_snow.svg';
+  static const String weatherSnowColorful = 'assets/icons/weather_snow_colorful.svg';
+  static const String weatherSun = 'assets/icons/weather_sun.svg';
+  static const String weatherSunCloud = 'assets/icons/weather_sun_cloud.svg';
+  static const String weatherSunCloudColorful = 'assets/icons/weather_sun_cloud_colorful.svg';
+  static const String weatherSunColorful = 'assets/icons/weather_sun_colorful.svg';
+  static const String weatherThunder = 'assets/icons/weather_thunder.svg';
+  static const String weatherThunderColorful = 'assets/icons/weather_thunder_colorful.svg';
   static const String weight = 'assets/icons/weight.svg';
   static const String wifiExcellent = 'assets/icons/wifi_excellent.svg';
   static const String wifiNoSignal = 'assets/icons/wifi_no_signal.svg';
   static const String wifiOk = 'assets/icons/wifi_ok.svg';
   static const String wifiUnknown = 'assets/icons/wifi_unknown.svg';
   static const String wifiWeak = 'assets/icons/wifi_weak.svg';
+  static const String wind = 'assets/icons/wind.svg';
   static const String windowClosed = 'assets/icons/window_closed.svg';
   static const String windowClosedUnlocked = 'assets/icons/window_closed_unlocked.svg';
   static const String windowLocked = 'assets/icons/window_locked.svg';
