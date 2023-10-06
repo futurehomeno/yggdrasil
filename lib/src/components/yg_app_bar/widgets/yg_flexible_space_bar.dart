@@ -24,6 +24,7 @@ class YgFlexibleSpaceBar extends StatelessWidget {
     this.stretchModes = const <StretchMode>[StretchMode.zoomBackground],
     this.expandedTitleScale = 1.5,
     this.actionsCount = 0,
+    required this.hasLeading,
   }) : assert(expandedTitleScale >= 1, 'expandedTitleScale must be >= 1');
 
   /// New fields.
@@ -38,6 +39,7 @@ class YgFlexibleSpaceBar extends StatelessWidget {
   final List<StretchMode> stretchModes;
   final double expandedTitleScale;
   final int actionsCount;
+  final bool hasLeading;
 
   double _getCollapsePadding(double t, FlexibleSpaceBarSettings settings) {
     switch (collapseMode) {
@@ -148,14 +150,26 @@ class YgFlexibleSpaceBar extends StatelessWidget {
             titleStyle = titleStyle.copyWith(
               color: titleStyle.color!.withOpacity(opacity),
             );
-            // TODO(bjhandeland): Replace with tokens.
-            final double paddingForActionButtons = actionsCount * context.iconButtonTheme.sizeMedium +
+
+            // Calculate end padding for title based on number of action buttons.
+            final double titlePaddingDueToActionButtons = actionsCount * context.iconButtonTheme.sizeMedium +
                 context.appBarTheme.titleSpacing +
                 context.appBarTheme.actionEdgeSpacing;
-            final double startPaddingValue = Tween<double>(begin: 15.0, end: 60.0).transform(t);
+            final double endPaddingValue = Tween<double>(
+              begin: context.appBarTheme.titleExpandedPadding,
+              end: titlePaddingDueToActionButtons,
+            ).transform(t);
+
+            final double titlePaddingDueToLeadingButton = hasLeading
+                ? context.iconButtonTheme.sizeMedium + context.appBarTheme.titleSpacing * 2
+                : context.appBarTheme.titleExpandedPadding;
+            final double startPaddingValue = Tween<double>(
+              begin: context.appBarTheme.titleExpandedPadding,
+              end: titlePaddingDueToLeadingButton,
+            ).transform(t);
+
             final double bottomPaddingValue = Tween<double>(begin: bottomTitlePadding, end: 20.0).transform(t);
             final double topPaddingValue = Tween<double>(begin: topTitlePadding, end: 20.0).transform(t);
-            final double endPaddingValue = Tween<double>(begin: 15.0, end: paddingForActionButtons).transform(t);
             final double scaleValue = Tween<double>(begin: expandedTitleScale, end: 1.0).transform(t);
             final Matrix4 scaleTransform = Matrix4.identity()..scale(scaleValue, scaleValue, 1.0);
             final Alignment titleAlignment = centerTitle ? Alignment.bottomCenter : Alignment.bottomLeft;

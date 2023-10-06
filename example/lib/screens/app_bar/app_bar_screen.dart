@@ -34,7 +34,8 @@ class _AppBarScreenState extends State<AppBarScreen> {
       appBar: YgAppBar(
         automaticallyImplyLeading: _automaticallyImplyLeading,
         leading: getLeading(),
-        title: 'App bar',
+        title:
+            'App bar super long title that should be truncated with ellipsis and not wrap to multiple lines and should be centered if centerTitle is true',
         actions: _actions,
         centerTitle: _centerTitle,
       ),

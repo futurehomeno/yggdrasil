@@ -34,7 +34,6 @@ class YgAppBar extends StatelessWidget with StatelessWidgetDebugMixin implements
     final bool useCloseButton = parentRoute is PageRoute<Object?> && parentRoute.fullscreenDialog;
 
     final Widget? leading = _getLeadingWidget(
-      theme: theme,
       hasEndDrawer: hasEndDrawer,
       canPop: canPop,
       parentRoute: parentRoute,
@@ -54,10 +53,21 @@ class YgAppBar extends StatelessWidget with StatelessWidgetDebugMixin implements
       scrolledUnderElevation: 1.0,
       shadowColor: theme.borderColor,
       leading: leading,
-      leadingWidth: theme.leadingWidth,
+      leadingWidth: context.iconButtonTheme.sizeMedium + 10.0,
       centerTitle: _evaluateCenterTitle(leading),
       titleSpacing: theme.titleSpacing,
-      title: Text(title, style: theme.titleTextStyle),
+      title: SafeArea(
+        right: false,
+        top: false,
+        bottom: false,
+        minimum: EdgeInsets.only(
+          left: 15.0,
+        ),
+        child: Text(
+          title,
+          style: theme.titleTextStyle,
+        ),
+      ),
     );
   }
 
@@ -67,7 +77,6 @@ class YgAppBar extends StatelessWidget with StatelessWidgetDebugMixin implements
   }
 
   Widget? _getLeadingWidget({
-    required YgAppBarTheme theme,
     required bool hasEndDrawer,
     required bool canPop,
     required ModalRoute<Object?>? parentRoute,
@@ -78,8 +87,9 @@ class YgAppBar extends StatelessWidget with StatelessWidgetDebugMixin implements
       if (hasDrawer) {
         // TODO(DEV-1928): Turn this into an YgIcon whenever we introduce drawers in apps.
         return Center(
-          child: DrawerButton(
-            style: IconButton.styleFrom(iconSize: theme.leadingIconSize),
+          child: YgIconButton(
+            onPressed: () {},
+            child: const YgIcon(YgIcons.info),
           ),
         );
       } else if ((!hasEndDrawer && canPop) || (parentRoute?.impliesAppBarDismissal ?? false)) {

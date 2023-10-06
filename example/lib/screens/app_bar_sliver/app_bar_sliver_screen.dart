@@ -39,7 +39,7 @@ class _AppBarSliverScreenState extends State<AppBarSliverScreen> {
             automaticallyImplyLeading: _automaticallyImplyLeading,
             leading: getLeading(),
             title:
-                'App bar (sliver) super long title that should be truncated with ellipsis and not wrap to multiple lines and should be centered if centerTitle is true',
+                'App bar super long title that should be truncated with ellipsis and not wrap to multiple lines and should be centered if centerTitle is true',
             actions: _actions,
             centerTitle: _centerTitle,
           ),

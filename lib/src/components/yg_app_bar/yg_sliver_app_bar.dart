@@ -40,7 +40,6 @@ class YgSliverAppBar extends StatelessWidget with StatelessWidgetSliverDebugMixi
     final bool useCloseButton = parentRoute is PageRoute<Object?> && parentRoute.fullscreenDialog;
 
     final Widget? leading = _getLeadingWidget(
-      theme: theme,
       hasEndDrawer: hasEndDrawer,
       canPop: canPop,
       parentRoute: parentRoute,
@@ -64,11 +63,10 @@ class YgSliverAppBar extends StatelessWidget with StatelessWidgetSliverDebugMixi
           centerTitle: _evaluateCenterTitle(leading),
           titleSpacing: theme.titleSpacing,
           leading: leading,
-          leadingWidth: theme.leadingWidth,
+          leadingWidth: context.iconButtonTheme.sizeMedium,
           title: Text(
             title,
             style: theme.titleTextStyle,
-            overflow: TextOverflow.ellipsis,
           ),
         ),
       YgSliverAppBarVariant.medium => SliverAppBar(
@@ -86,12 +84,14 @@ class YgSliverAppBar extends StatelessWidget with StatelessWidgetSliverDebugMixi
           scrolledUnderElevation: 1.0,
           automaticallyImplyLeading: automaticallyImplyLeading,
           leading: leading,
-          leadingWidth: theme.leadingWidth,
+          leadingWidth: context.iconButtonTheme.sizeMedium + theme.titleSpacing * 2,
           flexibleSpace: YgFlexibleSpaceBar(
             expandedTitleScale: theme.mediumAppBarTheme.expandedTitleScale,
             centerTitle: centerTitle,
             topTitlePadding: theme.mediumAppBarTheme.topTitlePadding,
             bottomTitlePadding: theme.mediumAppBarTheme.bottomTitlePadding,
+            actionsCount: actions.length,
+            hasLeading: leading != null,
             title: Text(
               title,
               style: theme.titleTextStyle,
@@ -114,13 +114,14 @@ class YgSliverAppBar extends StatelessWidget with StatelessWidgetSliverDebugMixi
           scrolledUnderElevation: 1.0,
           automaticallyImplyLeading: automaticallyImplyLeading,
           leading: leading,
-          leadingWidth: theme.leadingWidth,
+          leadingWidth: context.iconButtonTheme.sizeMedium + theme.titleSpacing * 2,
           flexibleSpace: YgFlexibleSpaceBar(
             expandedTitleScale: theme.largeAppBarTheme.expandedTitleScale,
             centerTitle: centerTitle,
             topTitlePadding: theme.largeAppBarTheme.topTitlePadding,
             bottomTitlePadding: theme.largeAppBarTheme.bottomTitlePadding,
             actionsCount: actions.length,
+            hasLeading: leading != null,
             title: Text(
               title,
               style: theme.titleTextStyle,
@@ -137,7 +138,6 @@ class YgSliverAppBar extends StatelessWidget with StatelessWidgetSliverDebugMixi
   }
 
   Widget? _getLeadingWidget({
-    required YgAppBarTheme theme,
     required bool hasEndDrawer,
     required bool canPop,
     required ModalRoute<Object?>? parentRoute,
@@ -148,8 +148,9 @@ class YgSliverAppBar extends StatelessWidget with StatelessWidgetSliverDebugMixi
       if (hasDrawer) {
         // TODO(DEV-1928): Turn this into an YgIcon whenever we introduce drawers in apps.
         return Center(
-          child: DrawerButton(
-            style: IconButton.styleFrom(iconSize: theme.leadingIconSize),
+          child: YgIconButton(
+            onPressed: () {},
+            child: const YgIcon(YgIcons.info),
           ),
         );
       } else if ((!hasEndDrawer && canPop) || (parentRoute?.impliesAppBarDismissal ?? false)) {

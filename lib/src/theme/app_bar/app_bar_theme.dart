@@ -30,25 +30,19 @@ class _$YgAppBarTheme {
     professional_dark.FhColors.borderDefault,
   ];
 
-  static const List<double> leadingIconSize = <double>[
-    consumer_light.FhDimensions.md,
-    consumer_dark.FhDimensions.md,
-    professional_light.FhDimensions.md,
-    professional_dark.FhDimensions.md,
-  ];
-
-  static const List<double> actionIconSize = <double>[
-    consumer_light.FhDimensions.md,
-    consumer_dark.FhDimensions.md,
-    professional_light.FhDimensions.md,
-    professional_dark.FhDimensions.md,
-  ];
-
   static const List<double> titleSpacing = <double>[
     consumer_light.FhDimensions.xxs,
     consumer_dark.FhDimensions.xxs,
     professional_light.FhDimensions.xxs,
     professional_dark.FhDimensions.xxs,
+  ];
+
+  /// Spacing between edge and title on both sides when it's expanded.
+  static const List<double> titleExpandedPadding = <double>[
+    consumer_light.FhDimensions.sm,
+    consumer_dark.FhDimensions.sm,
+    professional_light.FhDimensions.sm,
+    professional_dark.FhDimensions.sm,
   ];
 
   static final List<TextStyle> titleTextStyle = <TextStyle>[
@@ -87,13 +81,6 @@ class _$YgAppBarTheme {
     64.0,
     64.0,
     64.0,
-  ];
-
-  static const List<double> leadingWidth = <double>[
-    60.0,
-    60.0,
-    60.0,
-    60.0,
   ];
 
   // Spacing between the action and the edge of the app bar.
