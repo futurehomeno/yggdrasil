@@ -72,7 +72,7 @@ class IconScreen extends StatelessWidget {
             subtitle: 'Override the default theme color. See warning below.',
             child: YgTag(
               child: YgIcon(
-                YgIcons.deviceHub,
+                YgIcons.deviceHubChange,
                 color: Colors.green,
                 size: YgIconSize.large,
               ),
@@ -83,8 +83,7 @@ class IconScreen extends StatelessWidget {
             subtitle: 'Color embedded in the SVG is used. See warning below.',
             child: YgTag(
               child: YgIcon(
-                YgIcons.deviceHub,
-                useEmbeddedColor: true,
+                YgIcons.deviceHubColorful,
                 size: YgIconSize.large,
               ),
             ),

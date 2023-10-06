@@ -13,7 +13,6 @@ class YgIcon extends StatelessWidget with StatelessWidgetDebugMixin {
     super.key,
     this.size,
     this.color,
-    this.useEmbeddedColor = false,
     this.semanticLabel,
   });
 
@@ -33,9 +32,6 @@ class YgIcon extends StatelessWidget with StatelessWidgetDebugMixin {
   /// Defaults to the nearest [IconTheme]'s [IconThemeData.color].
   final Color? color;
 
-  /// Uses the color embedded in the SVG instead of theme.
-  final bool useEmbeddedColor;
-
   /// Semantic label for the icon.
   ///
   /// This label does not show in the UI.
@@ -49,7 +45,8 @@ class YgIcon extends StatelessWidget with StatelessWidgetDebugMixin {
     final YgIconTheme ygIconTheme = context.iconTheme;
     final IconThemeData materialIconTheme = IconTheme.of(context);
 
-    double? iconSize = materialIconTheme.size;
+    // By default the size is inherited from the parent widget.
+    late double? iconSize = materialIconTheme.size;
     if (size != null) {
       iconSize = YgIconMapper.getIconSize(
         iconTheme: ygIconTheme,
@@ -57,6 +54,8 @@ class YgIcon extends StatelessWidget with StatelessWidgetDebugMixin {
       );
     }
 
+    // If no icon is specified, render an empty space with the size that
+    // the icon would have used.
     if (icon == null) {
       return Semantics(
         label: semanticLabel,
@@ -67,12 +66,23 @@ class YgIcon extends StatelessWidget with StatelessWidgetDebugMixin {
       );
     }
 
-    bool parsedUseEmbeddedColor = useEmbeddedColor;
-    if (icon.contains('colorful')) {
-      parsedUseEmbeddedColor = true;
+    // Check if the icon is colorful variant.
+    // If it is, make sure color has not been specified.
+    final bool isColorfulIcon = icon.contains('colorful');
+    if (isColorfulIcon && color != null) {
+      throw FlutterError(
+        'YgIcon: Colorful icons cannot be colored. '
+        'Please remove the color property or use a different icon.',
+      );
     }
-    final Color? iconColor = color ?? materialIconTheme.color;
-    final ColorFilter? colorFilter = _getColorFilter(context, iconColor, parsedUseEmbeddedColor);
+
+    // If the icon is not colorful, we need to apply the color filter.
+    // If colorFilter is null, the icon will be rendered with the embedded color.
+    late ColorFilter? colorFilter;
+    if (!isColorfulIcon) {
+      final Color? iconColor = color ?? materialIconTheme.color;
+      colorFilter = _getColorFilter(context, iconColor);
+    }
 
     return FutureBuilder<String>(
       future: rootBundle.loadString('packages/yggdrasil/$icon'),
@@ -87,14 +97,24 @@ class YgIcon extends StatelessWidget with StatelessWidgetDebugMixin {
           );
         }
 
-        final XmlDocument iconDocument = XmlDocument.parse(snapshot.data!);
-        final Iterable<XmlElement> paths = iconDocument.findAllElements('path');
-        for (final XmlElement path in paths) {
-          final String? yggColor = path.getAttribute('yggColor');
-          if (yggColor != null) {
-            final Color color = YgColorHelper.getColorFromString(context: context, colorName: yggColor);
-            path.setAttribute('fill', color.toHex());
-          }
+        late SvgPicture svgPicture;
+        if (isColorfulIcon) {
+          final XmlDocument iconDocument = _convertYggColorTagToFillColor(snapshot, context);
+          svgPicture = SvgPicture.string(
+            iconDocument.toXmlString(),
+            height: iconSize,
+            width: iconSize,
+            excludeFromSemantics: true,
+          );
+        } else {
+          svgPicture = SvgPicture.asset(
+            icon,
+            package: 'yggdrasil',
+            colorFilter: colorFilter,
+            height: iconSize,
+            width: iconSize,
+            excludeFromSemantics: true,
+          );
         }
 
         return Semantics(
@@ -105,13 +125,7 @@ class YgIcon extends StatelessWidget with StatelessWidgetDebugMixin {
               child: Center(
                 child: Align(
                   alignment: Alignment.center,
-                  child: SvgPicture.string(
-                    iconDocument.toXmlString(),
-                    colorFilter: colorFilter,
-                    height: iconSize,
-                    width: iconSize,
-                    excludeFromSemantics: true,
-                  ),
+                  child: svgPicture,
                 ),
               ),
             ),
@@ -121,15 +135,24 @@ class YgIcon extends StatelessWidget with StatelessWidgetDebugMixin {
     );
   }
 
-  ColorFilter? _getColorFilter(
-    BuildContext context,
-    Color? color,
-    bool parsedUseEmbeddedColor,
-  ) {
-    if (parsedUseEmbeddedColor) {
-      return null;
+  XmlDocument _convertYggColorTagToFillColor(AsyncSnapshot<String> snapshot, BuildContext context) {
+    final XmlDocument iconDocument = XmlDocument.parse(snapshot.data!);
+    final Iterable<XmlElement> paths = iconDocument.findAllElements('path');
+    for (final XmlElement path in paths) {
+      final String? yggColor = path.getAttribute('yggColor');
+      if (yggColor != null) {
+        final Color color = YgColorHelper.getColorFromString(context: context, colorName: yggColor);
+        path.setAttribute('fill', color.toHex());
+      }
     }
 
+    return iconDocument;
+  }
+
+  ColorFilter _getColorFilter(
+    BuildContext context,
+    Color? color,
+  ) {
     if (color == null) {
       return ColorFilter.mode(
         context.defaults.iconColor,
@@ -149,12 +172,6 @@ class YgIcon extends StatelessWidget with StatelessWidgetDebugMixin {
     properties.add(StringProperty('icon', icon, defaultValue: null));
     properties.add(EnumProperty<YgIconSize>('size', size, defaultValue: null));
     properties.add(ColorProperty('color', color, defaultValue: null));
-    properties.add(FlagProperty(
-      'useEmbeddedColor',
-      value: useEmbeddedColor,
-      ifTrue: 'Uses embedded color',
-      ifFalse: 'Uses theme or overwritten color',
-    ));
     properties.add(StringProperty('semanticLabel', semanticLabel, defaultValue: null));
   }
 }

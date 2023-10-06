@@ -84,14 +84,14 @@ class YgIcons {
     'dashboard': dashboard,
     'dashboardNo': dashboardNo,
     'decrease': decrease,
-    'deviceConnected': deviceConnected,
-    'deviceEvCharger': deviceEvCharger,
-    'deviceHub': deviceHub,
-    'deviceHubAlt': deviceHubAlt,
+    'deviceConnectedColorful': deviceConnectedColorful,
+    'deviceEvChargerColorful': deviceEvChargerColorful,
+    'deviceHubAltColorful': deviceHubAltColorful,
     'deviceHubChange': deviceHubChange,
+    'deviceHubColorful': deviceHubColorful,
     'deviceQrcode': deviceQrcode,
     'deviceSync': deviceSync,
-    'deviceTransfer': deviceTransfer,
+    'deviceTransferColorful': deviceTransferColorful,
     'deviceUpdateFailed': deviceUpdateFailed,
     'deviceUpdateSuccess': deviceUpdateSuccess,
     'dialPeakOff': dialPeakOff,
@@ -343,9 +343,9 @@ class YgIcons {
     'weight': weight,
     'wifiExcellent': wifiExcellent,
     'wifiNoSignal': wifiNoSignal,
-    'wifiOk': wifiOk,
+    'wifiOkColorful': wifiOkColorful,
     'wifiUnknown': wifiUnknown,
-    'wifiWeak': wifiWeak,
+    'wifiWeakColorful': wifiWeakColorful,
     'wind': wind,
     'windowClosed': windowClosed,
     'windowClosedUnlocked': windowClosedUnlocked,
@@ -438,14 +438,14 @@ class YgIcons {
   static const String dashboard = 'assets/icons/dashboard.svg';
   static const String dashboardNo = 'assets/icons/dashboard_no.svg';
   static const String decrease = 'assets/icons/decrease.svg';
-  static const String deviceConnected = 'assets/icons/device_connected.svg';
-  static const String deviceEvCharger = 'assets/icons/device_ev_charger.svg';
-  static const String deviceHub = 'assets/icons/device_hub.svg';
-  static const String deviceHubAlt = 'assets/icons/device_hub_alt.svg';
+  static const String deviceConnectedColorful = 'assets/icons/device_connected_colorful.svg';
+  static const String deviceEvChargerColorful = 'assets/icons/device_ev_charger_colorful.svg';
+  static const String deviceHubAltColorful = 'assets/icons/device_hub_alt_colorful.svg';
   static const String deviceHubChange = 'assets/icons/device_hub_change.svg';
+  static const String deviceHubColorful = 'assets/icons/device_hub_colorful.svg';
   static const String deviceQrcode = 'assets/icons/device_qrcode.svg';
   static const String deviceSync = 'assets/icons/device_sync.svg';
-  static const String deviceTransfer = 'assets/icons/device_transfer.svg';
+  static const String deviceTransferColorful = 'assets/icons/device_transfer_colorful.svg';
   static const String deviceUpdateFailed = 'assets/icons/device_update_failed.svg';
   static const String deviceUpdateSuccess = 'assets/icons/device_update_success.svg';
   static const String dialPeakOff = 'assets/icons/dial_peak_off.svg';
@@ -697,9 +697,9 @@ class YgIcons {
   static const String weight = 'assets/icons/weight.svg';
   static const String wifiExcellent = 'assets/icons/wifi_excellent.svg';
   static const String wifiNoSignal = 'assets/icons/wifi_no_signal.svg';
-  static const String wifiOk = 'assets/icons/wifi_ok.svg';
+  static const String wifiOkColorful = 'assets/icons/wifi_ok_colorful.svg';
   static const String wifiUnknown = 'assets/icons/wifi_unknown.svg';
-  static const String wifiWeak = 'assets/icons/wifi_weak.svg';
+  static const String wifiWeakColorful = 'assets/icons/wifi_weak_colorful.svg';
   static const String wind = 'assets/icons/wind.svg';
   static const String windowClosed = 'assets/icons/window_closed.svg';
   static const String windowClosedUnlocked = 'assets/icons/window_closed_unlocked.svg';

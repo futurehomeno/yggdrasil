@@ -39,10 +39,7 @@ class DeviceDetailsExample extends StatelessWidget {
                 title: 'ELVA charge controls!',
                 subtitle: 'Some cool controls inside this card.',
                 leadingWidgets: <Widget>[
-                  YgIcon(
-                    YgIcons.deviceEvCharger,
-                    useEmbeddedColor: true,
-                  ),
+                  YgIcon(YgIcons.deviceEvChargerColorful),
                 ],
               ),
             ),
