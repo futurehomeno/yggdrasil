@@ -93,13 +93,10 @@ class IconScreen extends StatelessWidget {
             title: 'Warning!',
             subtitle:
                 'Overriding color by using either useEmbeddedColor or just setting a specific color will prevent the parent widget from being able to dynamically change the color based on theme or state changes. Use with caution, as end result may end up like the example below.',
-            child: YgTag(
-              weight: YgTagWeight.strong,
-              child: YgIcon(
-                YgIcons.deviceHub,
-                useEmbeddedColor: true,
-                size: YgIconSize.large,
-              ),
+            child: YgIcon(
+              YgIcons.weatherThunderColorful,
+              color: Colors.green,
+              size: YgIconSize.large,
             ),
           ),
         ],

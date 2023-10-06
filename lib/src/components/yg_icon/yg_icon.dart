@@ -67,8 +67,12 @@ class YgIcon extends StatelessWidget with StatelessWidgetDebugMixin {
       );
     }
 
+    bool parsedUseEmbeddedColor = useEmbeddedColor;
+    if (icon.contains('colorful')) {
+      parsedUseEmbeddedColor = true;
+    }
     final Color? iconColor = color ?? materialIconTheme.color;
-    final ColorFilter? colorFilter = _getColorFilter(context, iconColor);
+    final ColorFilter? colorFilter = _getColorFilter(context, iconColor, parsedUseEmbeddedColor);
 
     return FutureBuilder<String>(
       future: rootBundle.loadString('packages/yggdrasil/$icon'),
@@ -117,8 +121,12 @@ class YgIcon extends StatelessWidget with StatelessWidgetDebugMixin {
     );
   }
 
-  ColorFilter? _getColorFilter(BuildContext context, Color? color) {
-    if (useEmbeddedColor) {
+  ColorFilter? _getColorFilter(
+    BuildContext context,
+    Color? color,
+    bool parsedUseEmbeddedColor,
+  ) {
+    if (parsedUseEmbeddedColor) {
       return null;
     }
 
