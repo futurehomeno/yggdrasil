@@ -3,6 +3,7 @@ import 'dart:math';
 import 'dart:ui';
 
 import 'package:flutter/material.dart';
+import 'package:yggdrasil/src/components/yg_gauge/extensions/path_add_arc_outline_extension.dart';
 import 'package:yggdrasil/src/theme/_theme.dart';
 import 'package:yggdrasil/yggdrasil.dart';
 
@@ -305,6 +306,10 @@ class _YgGaugePainter extends CustomPainter {
     // The end of which to draw the arc.
     const double endAngle = math.pi * 2 * 46 / 64;
 
+    // The offset that needs to be applied to the track to hide the end and
+    // start cap when value is 0
+    final double angleOffset = asin(responsiveStrokeWidth / radius);
+
     final Paint trackPainter = Paint()
       ..color = trackColor
       ..style = PaintingStyle.stroke
@@ -317,8 +322,6 @@ class _YgGaugePainter extends CustomPainter {
       ..strokeWidth = responsiveStrokeWidth
       ..strokeCap = StrokeCap.round;
 
-    final double angleOffset = asin(responsiveStrokeWidth / radius);
-
     canvas.drawArc(
       rect,
       startAngle,
@@ -327,21 +330,15 @@ class _YgGaugePainter extends CustomPainter {
       trackPainter,
     );
 
-    final Path path = Path();
-
-    path.addArcOutline(
-      fieldRadius: size.width / 2,
-      startAngle: startAngle,
-      sweepAngle: endAngle,
-      center: Offset(
-        size.width / 2,
-        size.height / 2,
-      ),
-      radius: radius,
-      strokeWidth: responsiveStrokeWidth,
+    canvas.clipPath(
+      Path()
+        ..addArcOutline(
+          rect: rect,
+          startAngle: startAngle,
+          sweepAngle: endAngle,
+          strokeWidth: responsiveStrokeWidth,
+        ),
     );
-
-    canvas.clipPath(path);
 
     canvas.drawArc(
       rect,
@@ -355,73 +352,5 @@ class _YgGaugePainter extends CustomPainter {
   @override
   bool shouldRepaint(covariant _YgGaugePainter oldDelegate) {
     return oldDelegate.gradient != gradient || oldDelegate.trackColor != trackColor;
-  }
-}
-
-extension PathExtension on Path {
-  void addArcOutline({
-    required double fieldRadius,
-    required double radius,
-    required Offset center,
-    required double startAngle,
-    required double sweepAngle,
-    required double strokeWidth,
-  }) {
-    Offset getPoint(double radius, double angle) {
-      return Offset(
-        fieldRadius - (cos(angle - pi) * radius),
-        fieldRadius - (sin(angle - pi) * radius),
-      );
-    }
-
-    final double halfStroke = strokeWidth / 2;
-    final Offset start = getPoint(radius - halfStroke, startAngle);
-    final Offset startCap = getPoint(radius, startAngle);
-    final Offset endCap = getPoint(radius, startAngle + sweepAngle);
-
-    // move to start
-    moveTo(start.dx, start.dy);
-    // start cap
-    arcTo(
-      Rect.fromCircle(
-        center: startCap,
-        radius: halfStroke,
-      ),
-      startAngle + pi,
-      pi,
-      false,
-    );
-    // outer line
-    arcTo(
-      Rect.fromCircle(
-        center: center,
-        radius: radius + halfStroke,
-      ),
-      startAngle,
-      sweepAngle,
-      false,
-    );
-    // end cap
-    arcTo(
-      Rect.fromCircle(
-        center: endCap,
-        radius: halfStroke,
-      ),
-      startAngle + sweepAngle,
-      pi,
-      false,
-    );
-    // inner line
-    arcTo(
-      Rect.fromCircle(
-        center: center,
-        radius: radius - halfStroke,
-      ),
-      startAngle + sweepAngle,
-      -sweepAngle,
-      false,
-    );
-    // close path
-    close();
   }
 }
