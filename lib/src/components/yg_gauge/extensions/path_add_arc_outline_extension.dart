@@ -48,13 +48,13 @@ extension PathAddArcOutlineExtension on Path {
       centerOffsetY - sin(rotatedEndAngle) * radius,
     );
 
-    // Move to start
+    // Move to start.
     moveTo(
       centerOffsetX - xArcOffsetStartFraction * radiusMinusHalfStroke,
       centerOffsetY - yArcOffsetStartFraction * radiusMinusHalfStroke,
     );
 
-    // Start cap
+    // Start cap.
     arcTo(
       Rect.fromCircle(
         center: startCapCenter,
@@ -65,7 +65,7 @@ extension PathAddArcOutlineExtension on Path {
       false,
     );
 
-    // Outer line
+    // Outer line.
     arcTo(
       Rect.fromCircle(
         center: center,
@@ -76,7 +76,7 @@ extension PathAddArcOutlineExtension on Path {
       false,
     );
 
-    // End cap
+    // End cap.
     arcTo(
       Rect.fromCircle(
         center: endCapCenter,
@@ -87,7 +87,7 @@ extension PathAddArcOutlineExtension on Path {
       false,
     );
 
-    // Inner line
+    // Inner line.
     arcTo(
       Rect.fromCircle(
         center: center,
@@ -98,7 +98,7 @@ extension PathAddArcOutlineExtension on Path {
       false,
     );
 
-    // Close path
+    // Close path.
     close();
   }
 }
