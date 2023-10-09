@@ -307,7 +307,7 @@ class _YgGaugePainter extends CustomPainter {
     const double endAngle = math.pi * 2 * 46 / 64;
 
     // The offset that needs to be applied to the track to hide the end and
-    // start cap when value is 0
+    // start cap when value is 0.
     final double angleOffset = asin(responsiveStrokeWidth / radius);
 
     final Paint trackPainter = Paint()
