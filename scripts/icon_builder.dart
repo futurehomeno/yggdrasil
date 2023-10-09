@@ -4,6 +4,12 @@ import 'dart:io';
 
 import 'script_helpers.dart';
 
+/// Generates [YgIcons] containing a constant reference to SVG icons located assets/icons.
+///
+/// [YgIcons] includes a map of icon names to their file paths and static constants
+/// for each individual icon.
+///
+/// Icons are sorted alphabetically by file name.
 void main() {
   const String inputPath = 'assets/icons';
   const String outputPath = 'lib/src/icons/yg_icons.dart';
@@ -12,10 +18,12 @@ void main() {
   generateIconFile(svgFileNames: svgFileNames, inputPath: inputPath, outputPath: outputPath);
 }
 
+// Retrieves the list of SVG file names in the specified directory.
 List<String> getSvgFileNamesFromDirectory({required String directoryPath}) {
   final Directory directory = Directory(directoryPath);
   final List<String> svgFileNames = <String>[];
 
+  // Iterating through each file in the directory and adding SVG files to the list
   for (final FileSystemEntity entity in directory.listSync(recursive: false, followLinks: false)) {
     if (entity is File && entity.path.endsWith('.svg')) {
       final String? fileName = entity.path.split(Platform.pathSeparator).lastOrNull;
@@ -28,6 +36,7 @@ List<String> getSvgFileNamesFromDirectory({required String directoryPath}) {
   return svgFileNames;
 }
 
+// Generates a Dart file with a class that contains static references to the SVG icons.
 void generateIconFile({required List<String> svgFileNames, required String inputPath, required String outputPath}) {
   final StringBuffer mainBuffer = StringBuffer()
     ..writeln('/// Class providing names of SVG icons as static const strings.')
@@ -41,6 +50,7 @@ void generateIconFile({required List<String> svgFileNames, required String input
 
   mainBuffer.writeln('  static const Map<String, String> allIcons = <String, String>{');
 
+  // Iterating through SVG file names to build the icon references and map entries.
   for (final String fileName in svgFileNames) {
     final String? iconName = fileName.split('.').firstOrNull;
     if (iconName == null) continue;
