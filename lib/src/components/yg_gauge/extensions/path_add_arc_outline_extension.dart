@@ -3,40 +3,61 @@ import 'dart:math';
 import 'package:flutter/material.dart';
 
 extension PathAddArcOutlineExtension on Path {
+  /// Adds the outline of a arc with rounded end caps to the path.
+  ///
+  /// Accepts [strokeWidth] to specify the width of the line of the arc of which
+  /// the outline is drawn.
   void addArcOutline({
     required Rect rect,
     required double startAngle,
     required double sweepAngle,
     required double strokeWidth,
   }) {
-    final double radius = rect.width / 2;
-    final double outerRadius = (rect.left + rect.right) / 2;
-    final Offset center = Offset(radius + rect.left, radius + rect.top);
-    final double halfStroke = strokeWidth / 2;
-    final double cosStartAngle = cos(startAngle - pi);
-    final double sinStartAngle = sin(startAngle - pi);
+    // Calculate the radius by taking the smallest axis divided by 2.
+    final double radius = min(rect.width, rect.height) / 2;
 
-    final Offset startCap = Offset(
-      outerRadius - cosStartAngle * radius,
-      outerRadius - sinStartAngle * radius,
+    // Calculate the center of the arc relative to global coordinates.
+    final double centerOffsetX = (rect.left + rect.right) / 2;
+    final double centerOffsetY = (rect.top + rect.bottom) / 2;
+    final Offset center = Offset(centerOffsetX, centerOffsetY);
+
+    // Calculate values that are used more than once for performance reasons.
+    final double halfStroke = strokeWidth / 2;
+    final double radiusMinusHalfStroke = radius - halfStroke;
+
+    // Sweep angle is relative to the start angle, so to get the actual end
+    // angle we have to add them together.
+    final double endAngle = startAngle + sweepAngle;
+
+    // Rotate the angles by 180 deg to move them in to the correct place.
+    final double rotatedEndAngle = endAngle - pi;
+    final double offsetStartAngle = startAngle - pi;
+
+    // Calculate fraction of the offset of the start of the arc. this has to be
+    // multiplied by a radius to get the actual starting offset of the arc.
+    final double xArcOffsetStartFraction = cos(offsetStartAngle);
+    final double yArcOffsetStartFraction = sin(offsetStartAngle);
+
+    final Offset startCapCenter = Offset(
+      centerOffsetX - xArcOffsetStartFraction * radius,
+      centerOffsetY - yArcOffsetStartFraction * radius,
     );
 
-    final double endAngle = startAngle + sweepAngle;
-    final Offset endCap = Offset(
-      outerRadius - cos(endAngle - pi) * radius,
-      outerRadius - sin(endAngle - pi) * radius,
+    final Offset endCapCenter = Offset(
+      centerOffsetX - cos(rotatedEndAngle) * radius,
+      centerOffsetY - sin(rotatedEndAngle) * radius,
     );
 
     // Move to start
     moveTo(
-      outerRadius - cosStartAngle * (radius - halfStroke),
-      outerRadius - sinStartAngle * (radius - halfStroke),
+      centerOffsetX - xArcOffsetStartFraction * radiusMinusHalfStroke,
+      centerOffsetY - yArcOffsetStartFraction * radiusMinusHalfStroke,
     );
 
     // Start cap
     arcTo(
       Rect.fromCircle(
-        center: startCap,
+        center: startCapCenter,
         radius: halfStroke,
       ),
       startAngle + pi,
@@ -58,10 +79,10 @@ extension PathAddArcOutlineExtension on Path {
     // End cap
     arcTo(
       Rect.fromCircle(
-        center: endCap,
+        center: endCapCenter,
         radius: halfStroke,
       ),
-      startAngle + sweepAngle,
+      endAngle,
       pi,
       false,
     );
@@ -70,9 +91,9 @@ extension PathAddArcOutlineExtension on Path {
     arcTo(
       Rect.fromCircle(
         center: center,
-        radius: radius - halfStroke,
+        radius: radiusMinusHalfStroke,
       ),
-      startAngle + sweepAngle,
+      endAngle,
       -sweepAngle,
       false,
     );
