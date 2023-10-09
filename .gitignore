@@ -1,5 +1,8 @@
 ### ------------------------- Flutter.gitignore ------------------------ ###
 
+# Flutter version manager
+.fvm
+
 # Miscellaneous
 *.class
 #*.lock
