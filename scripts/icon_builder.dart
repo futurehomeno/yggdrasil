@@ -12,7 +12,7 @@ import 'script_helpers.dart';
 /// Icons are sorted alphabetically by file name.
 void main() {
   const String inputPath = 'assets/icons';
-  const String outputPath = 'lib/src/icons/yg_icons.dart';
+  const String outputPath = 'lib/src/generated/icons/yg_icons.dart';
 
   final List<String> svgFileNames = getSvgFileNamesFromDirectory(directoryPath: inputPath);
   generateIconFile(svgFileNames: svgFileNames, inputPath: inputPath, outputPath: outputPath);
