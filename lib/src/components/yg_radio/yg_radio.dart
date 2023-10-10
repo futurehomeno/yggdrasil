@@ -51,7 +51,19 @@ class YgRadio<T> extends StatefulWidget with StatefulWidgetDebugMixin {
   }
 }
 
-class _YgRadioState<T> extends State<YgRadio<T>> {
+class _YgRadioState<T> extends State<YgRadio<T>> with TickerProviderStateMixin {
+  late final AnimationController _animationController = AnimationController(
+    vsync: this,
+    duration: context.radioTheme.animationDuration,
+  );
+
+  late final Tween<double> _tween = Tween<double>(
+    begin: widget._selected ? 1.0 : 0.0,
+    end: !widget._selected ? 1.0 : 0.0,
+  );
+
+  late final Animation<double> _animation = _animationController.drive(_tween);
+
   // region StatesController
   void _handleStatesControllerChange() {
     // Force a rebuild to resolve MaterialStateProperty properties.
@@ -77,6 +89,15 @@ class _YgRadioState<T> extends State<YgRadio<T>> {
     super.didUpdateWidget(oldWidget);
 
     if (widget._selected != oldWidget._selected) {
+      _tween.begin = _animation.value;
+      _tween.end = !widget._selected ? 1.0 : 0.0;
+      _animationController.value = 0.0;
+      _animationController.animateTo(
+        1.0,
+        curve: context.radioTheme.animationCurve,
+        duration: context.radioTheme.animationDuration,
+      );
+
       _statesController.update(MaterialState.selected, widget._selected);
     }
 
@@ -93,6 +114,7 @@ class _YgRadioState<T> extends State<YgRadio<T>> {
   void dispose() {
     _statesController.removeListener(_handleStatesControllerChange);
     _statesController.dispose();
+    _animationController.dispose();
     super.dispose();
   }
   // endregion StatesController
@@ -125,83 +147,22 @@ class _YgRadioState<T> extends State<YgRadio<T>> {
             mouseCursor: resolvedMouseCursor,
             enabled: widget._enabled,
             child: Padding(
-              padding: EdgeInsets.all(radioTheme.padding),
-              child: _buildBackground(
-                context: context,
-                size: radioTheme.size,
-                resolvedBackgroundColor: resolvedBackgroundColor,
-                resolvedHandleSize: resolvedHandleSize,
-                resolvedHandleColor: resolvedHandleColor,
-                resolvedHelperHandleSize: resolvedHelperHandleSize,
+              padding: EdgeInsets.all(context.radioTheme.padding),
+              child: CustomPaint(
+                size: Size.square(radioTheme.size),
+                painter: _YgRadioPainter(
+                  animation: _animation,
+                  radioSize: radioTheme.size,
+                  resolvedBackgroundColor: resolvedBackgroundColor,
+                  helperHandleColor: radioTheme.helperHandleColor,
+                  resolvedHandleColor: resolvedHandleColor,
+                  resolvedHandleSize: resolvedHandleSize,
+                  resolvedHelperHandleSize: resolvedHelperHandleSize,
+                ),
               ),
             ),
           ),
         ),
-      ),
-    );
-  }
-
-  Widget _buildBackground({
-    required BuildContext context,
-    required double? size,
-    required Color? resolvedBackgroundColor,
-    required double? resolvedHandleSize,
-    required Color? resolvedHandleColor,
-    required double? resolvedHelperHandleSize,
-  }) {
-    return AnimatedContainer(
-      duration: context.radioTheme.animationDuration,
-      width: size,
-      height: size,
-      decoration: BoxDecoration(
-        shape: BoxShape.circle,
-        color: resolvedBackgroundColor,
-      ),
-      child: Center(
-        child: _buildHandle(
-          context: context,
-          resolvedHandleSize: resolvedHandleSize,
-          resolvedHandleColor: resolvedHandleColor,
-          resolvedHelperHandleSize: resolvedHelperHandleSize,
-        ),
-      ),
-    );
-  }
-
-  Widget _buildHandle({
-    required BuildContext context,
-    required double? resolvedHandleSize,
-    required Color? resolvedHandleColor,
-    required double? resolvedHelperHandleSize,
-  }) {
-    return AnimatedContainer(
-      duration: context.radioTheme.animationDuration,
-      width: resolvedHandleSize,
-      height: resolvedHandleSize,
-      decoration: BoxDecoration(
-        shape: BoxShape.circle,
-        color: resolvedHandleColor,
-      ),
-      child: Center(
-        child: _buildHelperHandle(
-          context: context,
-          resolvedHelperHandleSize: resolvedHelperHandleSize,
-        ),
-      ),
-    );
-  }
-
-  Widget _buildHelperHandle({
-    required BuildContext context,
-    required double? resolvedHelperHandleSize,
-  }) {
-    return AnimatedContainer(
-      duration: context.radioTheme.animationDuration,
-      width: resolvedHelperHandleSize,
-      height: resolvedHelperHandleSize,
-      decoration: BoxDecoration(
-        shape: BoxShape.circle,
-        color: context.radioTheme.helperHandleColor,
       ),
     );
   }
@@ -219,5 +180,63 @@ class _YgRadioState<T> extends State<YgRadio<T>> {
     if (onChanged != null) {
       onChanged(widget.value);
     }
+  }
+}
+
+class _YgRadioPainter extends CustomPainter {
+  _YgRadioPainter({
+    required this.radioSize,
+    required this.resolvedBackgroundColor,
+    required this.helperHandleColor,
+    required this.resolvedHandleColor,
+    required this.resolvedHandleSize,
+    required this.resolvedHelperHandleSize,
+    required this.animation,
+  }) : super(repaint: animation);
+
+  final double radioSize;
+  final Color resolvedBackgroundColor;
+  final double resolvedHandleSize;
+  final Color resolvedHandleColor;
+  final double resolvedHelperHandleSize;
+  final Color helperHandleColor;
+  final Animation<double> animation;
+
+  @override
+  void paint(Canvas canvas, Size objectSize) {
+    final Paint backgroundPaint = Paint()
+      ..style = PaintingStyle.fill
+      ..color = resolvedBackgroundColor;
+
+    final Paint handlerPaint = Paint()
+      ..style = PaintingStyle.fill
+      ..color = resolvedHandleColor;
+
+    final Paint helperHandlePaint = Paint()
+      ..style = PaintingStyle.fill
+      ..color = helperHandleColor;
+
+    canvas.drawCircle(
+      Offset(objectSize.width / 2.0, objectSize.height / 2.0),
+      radioSize / 2.0,
+      backgroundPaint,
+    );
+
+    canvas.drawCircle(
+      Offset(objectSize.width / 2.0, objectSize.height / 2.0),
+      resolvedHandleSize / 2.0,
+      handlerPaint,
+    );
+
+    canvas.drawCircle(
+      Offset(objectSize.width / 2.0, objectSize.height / 2.0),
+      resolvedHelperHandleSize / 2.0,
+      helperHandlePaint,
+    );
+  }
+
+  @override
+  bool shouldRepaint(covariant CustomPainter oldDelegate) {
+    return true;
   }
 }
