@@ -9,12 +9,10 @@ typedef Interpolator<T> = T Function(double t, T from, T to);
 
 class YgAnimatedProperty<T extends Enum, V> extends Animation<V> with AnimationWithParentMixin<double> {
   YgAnimatedProperty.fromStyle(
-    YgAnimatedStyle<T> style,
+    YgAnimatedStyle<T> this.parent,
     this._resolve, [
     this._interpolator,
-  ]) : parent = style {
-    style.registerProperty<V>(this);
-  }
+  ]);
 
   @override
   final Animation<double> parent;

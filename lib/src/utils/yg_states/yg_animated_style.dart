@@ -6,38 +6,40 @@ import '_yg_states.dart';
 typedef YgDynamicAnimatedProperty<T extends Enum> = YgAnimatedProperty<T, dynamic>;
 typedef YgStatesResolver<T extends Enum, V> = V Function(Set<T> states);
 
-class YgAnimatedStyle<T extends Enum> extends Animation<double> with AnimationWithParentMixin<double> {
+abstract class YgAnimatedStyle<T extends Enum> extends Animation<double> with AnimationWithParentMixin<double> {
   YgAnimatedStyle({
-    required Curve curve,
     required YgStatesController<T> controller,
     required TickerProviderStateMixin vsync,
-    required Duration duration,
-  })  : _curve = curve,
-        _statesController = controller,
-        _animationController = AnimationController(
-          vsync: vsync,
-          duration: duration,
-        ),
+  })  : _statesController = controller,
         _state = vsync {
+    _animationController = AnimationController(
+      vsync: vsync,
+      duration: duration,
+    );
+
     _statesController.addListener(_handleStateChange);
+
+    for (final YgDynamicAnimatedProperty<T> property in properties) {
+      property.resolve(
+        _state.context,
+        controller.states,
+      );
+    }
   }
 
-  final YgStatesController<T> _statesController;
-  final AnimationController _animationController;
-  final State _state;
-  final Curve _curve;
+  late AnimationController _animationController;
+  late final Curve _curve = curve;
 
-  final Set<YgDynamicAnimatedProperty<T>> _properties = <YgDynamicAnimatedProperty<T>>{};
+  final YgStatesController<T> _statesController;
+  final State _state;
+
+  BuildContext get context => _state.context;
 
   @override
   Animation<double> get parent => _animationController;
 
   @override
   double get value => _curve.transform(_animationController.value);
-
-  bool registerProperty<V>(YgAnimatedProperty<T, V> property) {
-    return _properties.add(property);
-  }
 
   void dispose() {
     _statesController.removeListener(_handleStateChange);
@@ -46,10 +48,9 @@ class YgAnimatedStyle<T extends Enum> extends Animation<double> with AnimationWi
 
   void _handleStateChange() {
     final Set<T> states = _statesController.states;
-    final BuildContext context = _state.context;
     bool shouldAnimate = false;
 
-    for (final YgDynamicAnimatedProperty<T> property in _properties) {
+    for (final YgDynamicAnimatedProperty<T> property in properties) {
       shouldAnimate |= property.resolve(
         context,
         states,
@@ -60,4 +61,10 @@ class YgAnimatedStyle<T extends Enum> extends Animation<double> with AnimationWi
       _animationController.forward(from: 0);
     }
   }
+
+  Set<YgDynamicAnimatedProperty<T>> get properties;
+
+  Duration get duration;
+
+  Curve get curve;
 }

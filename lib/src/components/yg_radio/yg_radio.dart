@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:yggdrasil/src/components/yg_radio/enums/yg_radio_state.dart';
 import 'package:yggdrasil/src/theme/_theme.dart';
 import 'package:yggdrasil/src/utils/_utils.dart';
 
@@ -52,82 +53,36 @@ class YgRadio<T> extends StatefulWidget with StatefulWidgetDebugMixin {
 }
 
 class _YgRadioState<T> extends State<YgRadio<T>> with TickerProviderStateMixin {
-  late final AnimationController _animationController = AnimationController(
+  late final YgStatesController<YgRadioState> _statesController = YgStatesController<YgRadioState>(
+    <YgRadioState>{
+      if (!widget._enabled) YgRadioState.disabled,
+      if (widget._selected) YgRadioState.selected,
+    },
+  );
+
+  late final YgRadioStyle _style = YgRadioStyle(
+    controller: _statesController,
     vsync: this,
-    duration: context.radioTheme.animationDuration,
   );
-
-  late final Tween<double> _tween = Tween<double>(
-    begin: widget._selected ? 1.0 : 0.0,
-    end: !widget._selected ? 1.0 : 0.0,
-  );
-
-  late final Animation<double> _animation = _animationController.drive(_tween);
-
-  // region StatesController
-  void _handleStatesControllerChange() {
-    // Force a rebuild to resolve MaterialStateProperty properties.
-    setState(() {});
-  }
-
-  final MaterialStatesController _statesController = MaterialStatesController();
-
-  void _initStatesController() {
-    _statesController.update(MaterialState.disabled, !widget._enabled);
-    _statesController.update(MaterialState.selected, widget._selected);
-    _statesController.addListener(_handleStatesControllerChange);
-  }
-
-  @override
-  void initState() {
-    super.initState();
-    _initStatesController();
-  }
 
   @override
   void didUpdateWidget(covariant YgRadio<T> oldWidget) {
     super.didUpdateWidget(oldWidget);
 
-    if (widget._selected != oldWidget._selected) {
-      _tween.begin = _animation.value;
-      _tween.end = !widget._selected ? 1.0 : 0.0;
-      _animationController.value = 0.0;
-      _animationController.animateTo(
-        1.0,
-        curve: context.radioTheme.animationCurve,
-        duration: context.radioTheme.animationDuration,
-      );
-
-      _statesController.update(MaterialState.selected, widget._selected);
-    }
-
-    if (widget._enabled != oldWidget._enabled) {
-      _statesController.update(MaterialState.disabled, !widget._enabled);
-      if (!widget._enabled) {
-        // The radio may have been disabled while a press gesture is currently underway.
-        _statesController.update(MaterialState.pressed, false);
-      }
-    }
+    _statesController.update(YgRadioState.disabled, !widget._enabled);
+    _statesController.update(YgRadioState.selected, widget._selected);
   }
 
   @override
   void dispose() {
-    _statesController.removeListener(_handleStatesControllerChange);
     _statesController.dispose();
-    _animationController.dispose();
+    _style.dispose();
     super.dispose();
   }
-  // endregion StatesController
 
   @override
   Widget build(BuildContext context) {
     final YgRadioTheme radioTheme = context.radioTheme;
-    final YgRadioStyle radioStyle = YgRadioStyle.base(context);
-    final Color resolvedBackgroundColor = radioStyle.backgroundColor.resolve(_statesController.value);
-    final Color resolvedHandleColor = radioStyle.handleColor.resolve(_statesController.value);
-    final double resolvedHandleSize = radioStyle.handleSize.resolve(_statesController.value);
-    final double resolvedHelperHandleSize = radioStyle.helperHandleSize.resolve(_statesController.value);
-    final MouseCursor resolvedMouseCursor = radioStyle.mouseCursor.resolve(_statesController.value);
 
     return RepaintBoundary(
       child: Semantics(
@@ -144,20 +99,16 @@ class _YgRadioState<T> extends State<YgRadio<T>> with TickerProviderStateMixin {
             actions: <Type, Action<Intent>>{
               ActivateIntent: CallbackAction<Intent>(onInvoke: (_) => _onTap()),
             },
-            mouseCursor: resolvedMouseCursor,
+            mouseCursor: _style.mouseCursor.value,
             enabled: widget._enabled,
             child: Padding(
               padding: EdgeInsets.all(context.radioTheme.padding),
               child: CustomPaint(
                 size: Size.square(radioTheme.size),
                 painter: _YgRadioPainter(
-                  animation: _animation,
+                  style: _style,
                   radioSize: radioTheme.size,
-                  resolvedBackgroundColor: resolvedBackgroundColor,
                   helperHandleColor: radioTheme.helperHandleColor,
-                  resolvedHandleColor: resolvedHandleColor,
-                  resolvedHandleSize: resolvedHandleSize,
-                  resolvedHelperHandleSize: resolvedHelperHandleSize,
                 ),
               ),
             ),
@@ -168,11 +119,11 @@ class _YgRadioState<T> extends State<YgRadio<T>> with TickerProviderStateMixin {
   }
 
   void _onShowFocusHighlight(bool value) {
-    _statesController.update(MaterialState.focused, value);
+    _statesController.update(YgRadioState.focused, value);
   }
 
   void _onShowHoverHighlight(bool value) {
-    _statesController.update(MaterialState.hovered, value);
+    _statesController.update(YgRadioState.hovered, value);
   }
 
   void _onTap() {
@@ -185,32 +136,24 @@ class _YgRadioState<T> extends State<YgRadio<T>> with TickerProviderStateMixin {
 
 class _YgRadioPainter extends CustomPainter {
   _YgRadioPainter({
-    required this.radioSize,
-    required this.resolvedBackgroundColor,
+    required this.style,
     required this.helperHandleColor,
-    required this.resolvedHandleColor,
-    required this.resolvedHandleSize,
-    required this.resolvedHelperHandleSize,
-    required this.animation,
-  }) : super(repaint: animation);
+    required this.radioSize,
+  }) : super(repaint: style);
 
+  final YgRadioStyle style;
   final double radioSize;
-  final Color resolvedBackgroundColor;
-  final double resolvedHandleSize;
-  final Color resolvedHandleColor;
-  final double resolvedHelperHandleSize;
   final Color helperHandleColor;
-  final Animation<double> animation;
 
   @override
   void paint(Canvas canvas, Size objectSize) {
     final Paint backgroundPaint = Paint()
       ..style = PaintingStyle.fill
-      ..color = resolvedBackgroundColor;
+      ..color = style.backgroundColor.value;
 
     final Paint handlerPaint = Paint()
       ..style = PaintingStyle.fill
-      ..color = resolvedHandleColor;
+      ..color = style.handleColor.value;
 
     final Paint helperHandlePaint = Paint()
       ..style = PaintingStyle.fill
@@ -224,13 +167,13 @@ class _YgRadioPainter extends CustomPainter {
 
     canvas.drawCircle(
       Offset(objectSize.width / 2.0, objectSize.height / 2.0),
-      resolvedHandleSize / 2.0,
+      style.handleSize.value / 2.0,
       handlerPaint,
     );
 
     canvas.drawCircle(
       Offset(objectSize.width / 2.0, objectSize.height / 2.0),
-      resolvedHelperHandleSize / 2.0,
+      style.helperHandleSize.value / 2.0,
       helperHandlePaint,
     );
   }
