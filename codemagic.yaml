@@ -112,8 +112,8 @@ workflows:
         script: dart $CM_BUILD_DIR/cli/futurehome.dart ci cav $VERSION -uc -nsci || exit 1
 
 
-  android-release:
-    name: Android release
+  release:
+    name: Android & macOS release
     instance_type: mac_mini_m1
     max_build_duration: 30
 
@@ -144,10 +144,9 @@ workflows:
         working_directory: $CM_BUILD_DIR/example
         script: flutter build apk --release
 
-    artifacts:
-      - build/ios/ipa/*.ipa
-      - /tmp/xcodebuild_logs/*.log
-      - flutter_drive.log
+      - name: Build macOS with Flutter
+        working_directory: $CM_BUILD_DIR/example
+        script: flutter build macos --release
 
     publishing:
       scripts:
@@ -158,7 +157,8 @@ workflows:
   
             # Change these variables accordingly
             REPO="futurehomeno/yggdrasil"
-            ARTIFACT_PATH="build/app/outputs/flutter-apk/app-release.apk"
+            ANDROID_ARTIFACT_PATH="build/app/outputs/flutter-apk/app-release.apk"
+            MACOS_ARTIFACT_PATH="build/macos/Build/Products/Release/yggdrasil_demo.app"
   
             # Create a new release
             RELEASE_RESPONSE=$(
@@ -183,9 +183,16 @@ workflows:
               exit 1
             fi
   
-            # Upload the artifact
+            # Upload the android artifact
             curl -X POST \
               -H "Authorization: token $GITHUB_TOKEN" \
-              -H "Content-Type: $(file -b --mime-type $ARTIFACT_PATH)" \
-              --data-binary "@$ARTIFACT_PATH" \
-              "$UPLOAD_URL?name=$(basename $ARTIFACT_PATH)"
+              -H "Content-Type: $(file -b --mime-type ANDROID_ARTIFACT_PATH)" \
+              --data-binary "@ANDROID_ARTIFACT_PATH" \
+              "$UPLOAD_URL?name=$(basename ANDROID_ARTIFACT_PATH)"
+            
+            # Upload the macos artifact
+            curl -X POST \
+              -H "Authorization: token $GITHUB_TOKEN" \
+              -H "Content-Type: $(file -b --mime-type MACOS_ARTIFACT_PATH)" \
+              --data-binary "@MACOS_ARTIFACT_PATH" \
+              "$UPLOAD_URL?name=$(basename MACOS_ARTIFACT_PATH)"
