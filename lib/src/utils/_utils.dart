@@ -1,5 +1,4 @@
 export 'yg_child_size_observer.dart';
-export 'yg_color_helper/_yg_color_helper.dart';
 export 'yg_debug/_yg_debug.dart';
 export 'yg_no_focus.dart';
 export 'yg_rounded_rectangle_gradient_border.dart';

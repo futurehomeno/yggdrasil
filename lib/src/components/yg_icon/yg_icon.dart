@@ -141,7 +141,8 @@ class YgIcon extends StatelessWidget with StatelessWidgetDebugMixin {
     for (final XmlElement path in paths) {
       final String? yggColor = path.getAttribute('yggColor');
       if (yggColor != null) {
-        final Color color = YgColorHelper.getColorFromString(context: context, colorName: yggColor);
+        Color? color = YgColors.getColorFromString(context: context, colorName: yggColor);
+        color ??= context.defaults.iconColor;
         path.setAttribute('fill', color.toHex());
       }
     }
