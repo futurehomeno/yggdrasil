@@ -13,7 +13,8 @@ class YgSnackBar extends SnackBar with StatefulWidgetDebugMixin {
     YgSnackBarVariant variant = YgSnackBarVariant.highlight,
     VoidCallback? onPressed,
     GlobalKey<ScaffoldMessengerState>? scaffoldMessengerKey,
-  }) : super(
+  })  : assert(scaffoldMessengerKey == null || onPressed == null, 'Cannot use both onPressed and scaffoldMessengerKey'),
+        super(
           content: _buildSnackBarContent(
             context: context,
             message: message,
