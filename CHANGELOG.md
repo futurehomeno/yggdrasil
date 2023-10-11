@@ -1,3 +1,7 @@
+# 1.6.8+11 [11.10.2023 09:29]
+
+- [fix] YgGauge no longer indicates the wrong value
+
 # 1.6.7+1 [04.10.2023 13:51]
 
 
