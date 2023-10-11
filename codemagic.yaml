@@ -140,7 +140,7 @@ workflows:
         working_directory: $CM_BUILD_DIR/example
         script: flutter packages pub get
 
-      - name: Build AAB with Flutter
+      - name: Build Android apk with Flutter
         working_directory: $CM_BUILD_DIR/example
         script: flutter build apk --release
 
