@@ -186,13 +186,13 @@ workflows:
             # Upload the android artifact
             curl -X POST \
               -H "Authorization: token $GITHUB_TOKEN" \
-              -H "Content-Type: $(file -b --mime-type ANDROID_ARTIFACT_PATH)" \
-              --data-binary "@ANDROID_ARTIFACT_PATH" \
-              "$UPLOAD_URL?name=$(basename ANDROID_ARTIFACT_PATH)"
+              -H "Content-Type: $(file -b --mime-type $ANDROID_ARTIFACT_PATH)" \
+              --data-binary "@$ANDROID_ARTIFACT_PATH" \
+              "$UPLOAD_URL?name=$(basename $ANDROID_ARTIFACT_PATH)"
             
             # Upload the macos artifact
             curl -X POST \
               -H "Authorization: token $GITHUB_TOKEN" \
-              -H "Content-Type: $(file -b --mime-type MACOS_ARTIFACT_PATH)" \
-              --data-binary "@MACOS_ARTIFACT_PATH" \
-              "$UPLOAD_URL?name=$(basename MACOS_ARTIFACT_PATH)"
+              -H "Content-Type: $(file -b --mime-type $MACOS_ARTIFACT_PATH)" \
+              --data-binary "@$MACOS_ARTIFACT_PATH" \
+              "$UPLOAD_URL?name=$(basename $MACOS_ARTIFACT_PATH)"
