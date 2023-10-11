@@ -15,9 +15,11 @@ class YgSnackBarTheme extends ThemeExtension<YgSnackBarTheme> {
     required this.closeIconColor,
     required this.criticalSnackBarTheme,
     required this.highlightSnackBarTheme,
+    required this.iconContainerSize,
     required this.margin,
     required this.messageSpacing,
     required this.messageTextStyle,
+    required this.minTextHeight,
     required this.padding,
     required this.successSnackBarTheme,
   });
@@ -27,9 +29,11 @@ class YgSnackBarTheme extends ThemeExtension<YgSnackBarTheme> {
   final Color closeIconColor;
   final CriticalSnackBarTheme criticalSnackBarTheme;
   final HighlightSnackBarTheme highlightSnackBarTheme;
+  final double iconContainerSize;
   final EdgeInsets margin;
   final double messageSpacing;
   final TextStyle messageTextStyle;
+  final double minTextHeight;
   final EdgeInsets padding;
   final SuccessSnackBarTheme successSnackBarTheme;
 
@@ -39,9 +43,11 @@ class YgSnackBarTheme extends ThemeExtension<YgSnackBarTheme> {
     closeIconColor: _$YgSnackBarTheme.closeIconColor[0],
     criticalSnackBarTheme: _$YgSnackBarTheme.criticalSnackBarTheme[0],
     highlightSnackBarTheme: _$YgSnackBarTheme.highlightSnackBarTheme[0],
+    iconContainerSize: _$YgSnackBarTheme.iconContainerSize[0],
     margin: _$YgSnackBarTheme.margin[0],
     messageSpacing: _$YgSnackBarTheme.messageSpacing[0],
     messageTextStyle: _$YgSnackBarTheme.messageTextStyle[0],
+    minTextHeight: _$YgSnackBarTheme.minTextHeight[0],
     padding: _$YgSnackBarTheme.padding[0],
     successSnackBarTheme: _$YgSnackBarTheme.successSnackBarTheme[0],
   );
@@ -52,9 +58,11 @@ class YgSnackBarTheme extends ThemeExtension<YgSnackBarTheme> {
     closeIconColor: _$YgSnackBarTheme.closeIconColor[1],
     criticalSnackBarTheme: _$YgSnackBarTheme.criticalSnackBarTheme[1],
     highlightSnackBarTheme: _$YgSnackBarTheme.highlightSnackBarTheme[1],
+    iconContainerSize: _$YgSnackBarTheme.iconContainerSize[1],
     margin: _$YgSnackBarTheme.margin[1],
     messageSpacing: _$YgSnackBarTheme.messageSpacing[1],
     messageTextStyle: _$YgSnackBarTheme.messageTextStyle[1],
+    minTextHeight: _$YgSnackBarTheme.minTextHeight[1],
     padding: _$YgSnackBarTheme.padding[1],
     successSnackBarTheme: _$YgSnackBarTheme.successSnackBarTheme[1],
   );
@@ -65,9 +73,11 @@ class YgSnackBarTheme extends ThemeExtension<YgSnackBarTheme> {
     closeIconColor: _$YgSnackBarTheme.closeIconColor[2],
     criticalSnackBarTheme: _$YgSnackBarTheme.criticalSnackBarTheme[2],
     highlightSnackBarTheme: _$YgSnackBarTheme.highlightSnackBarTheme[2],
+    iconContainerSize: _$YgSnackBarTheme.iconContainerSize[2],
     margin: _$YgSnackBarTheme.margin[2],
     messageSpacing: _$YgSnackBarTheme.messageSpacing[2],
     messageTextStyle: _$YgSnackBarTheme.messageTextStyle[2],
+    minTextHeight: _$YgSnackBarTheme.minTextHeight[2],
     padding: _$YgSnackBarTheme.padding[2],
     successSnackBarTheme: _$YgSnackBarTheme.successSnackBarTheme[2],
   );
@@ -78,9 +88,11 @@ class YgSnackBarTheme extends ThemeExtension<YgSnackBarTheme> {
     closeIconColor: _$YgSnackBarTheme.closeIconColor[3],
     criticalSnackBarTheme: _$YgSnackBarTheme.criticalSnackBarTheme[3],
     highlightSnackBarTheme: _$YgSnackBarTheme.highlightSnackBarTheme[3],
+    iconContainerSize: _$YgSnackBarTheme.iconContainerSize[3],
     margin: _$YgSnackBarTheme.margin[3],
     messageSpacing: _$YgSnackBarTheme.messageSpacing[3],
     messageTextStyle: _$YgSnackBarTheme.messageTextStyle[3],
+    minTextHeight: _$YgSnackBarTheme.minTextHeight[3],
     padding: _$YgSnackBarTheme.padding[3],
     successSnackBarTheme: _$YgSnackBarTheme.successSnackBarTheme[3],
   );
@@ -99,9 +111,11 @@ class YgSnackBarTheme extends ThemeExtension<YgSnackBarTheme> {
     Color? closeIconColor,
     CriticalSnackBarTheme? criticalSnackBarTheme,
     HighlightSnackBarTheme? highlightSnackBarTheme,
+    double? iconContainerSize,
     EdgeInsets? margin,
     double? messageSpacing,
     TextStyle? messageTextStyle,
+    double? minTextHeight,
     EdgeInsets? padding,
     SuccessSnackBarTheme? successSnackBarTheme,
   }) {
@@ -113,9 +127,11 @@ class YgSnackBarTheme extends ThemeExtension<YgSnackBarTheme> {
           criticalSnackBarTheme ?? this.criticalSnackBarTheme,
       highlightSnackBarTheme:
           highlightSnackBarTheme ?? this.highlightSnackBarTheme,
+      iconContainerSize: iconContainerSize ?? this.iconContainerSize,
       margin: margin ?? this.margin,
       messageSpacing: messageSpacing ?? this.messageSpacing,
       messageTextStyle: messageTextStyle ?? this.messageTextStyle,
+      minTextHeight: minTextHeight ?? this.minTextHeight,
       padding: padding ?? this.padding,
       successSnackBarTheme: successSnackBarTheme ?? this.successSnackBarTheme,
     );
@@ -133,10 +149,12 @@ class YgSnackBarTheme extends ThemeExtension<YgSnackBarTheme> {
           other.criticalSnackBarTheme, t) as CriticalSnackBarTheme,
       highlightSnackBarTheme: highlightSnackBarTheme.lerp(
           other.highlightSnackBarTheme, t) as HighlightSnackBarTheme,
+      iconContainerSize: t < 0.5 ? iconContainerSize : other.iconContainerSize,
       margin: t < 0.5 ? margin : other.margin,
       messageSpacing: t < 0.5 ? messageSpacing : other.messageSpacing,
       messageTextStyle:
           TextStyle.lerp(messageTextStyle, other.messageTextStyle, t)!,
+      minTextHeight: t < 0.5 ? minTextHeight : other.minTextHeight,
       padding: t < 0.5 ? padding : other.padding,
       successSnackBarTheme: successSnackBarTheme.lerp(
           other.successSnackBarTheme, t) as SuccessSnackBarTheme,
@@ -158,11 +176,15 @@ class YgSnackBarTheme extends ThemeExtension<YgSnackBarTheme> {
                 .equals(criticalSnackBarTheme, other.criticalSnackBarTheme) &&
             const DeepCollectionEquality()
                 .equals(highlightSnackBarTheme, other.highlightSnackBarTheme) &&
+            const DeepCollectionEquality()
+                .equals(iconContainerSize, other.iconContainerSize) &&
             const DeepCollectionEquality().equals(margin, other.margin) &&
             const DeepCollectionEquality()
                 .equals(messageSpacing, other.messageSpacing) &&
             const DeepCollectionEquality()
                 .equals(messageTextStyle, other.messageTextStyle) &&
+            const DeepCollectionEquality()
+                .equals(minTextHeight, other.minTextHeight) &&
             const DeepCollectionEquality().equals(padding, other.padding) &&
             const DeepCollectionEquality()
                 .equals(successSnackBarTheme, other.successSnackBarTheme));
@@ -177,9 +199,11 @@ class YgSnackBarTheme extends ThemeExtension<YgSnackBarTheme> {
       const DeepCollectionEquality().hash(closeIconColor),
       const DeepCollectionEquality().hash(criticalSnackBarTheme),
       const DeepCollectionEquality().hash(highlightSnackBarTheme),
+      const DeepCollectionEquality().hash(iconContainerSize),
       const DeepCollectionEquality().hash(margin),
       const DeepCollectionEquality().hash(messageSpacing),
       const DeepCollectionEquality().hash(messageTextStyle),
+      const DeepCollectionEquality().hash(minTextHeight),
       const DeepCollectionEquality().hash(padding),
       const DeepCollectionEquality().hash(successSnackBarTheme),
     );
