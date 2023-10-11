@@ -183,7 +183,7 @@ workflows:
             )
   
             echo $RELEASE_RESPONSE
-                
+
             # Extract the upload URL from the release response
             UPLOAD_URL=$(echo $RELEASE_RESPONSE | jq -r .upload_url | sed -e "s/{?name,label}//")
   
