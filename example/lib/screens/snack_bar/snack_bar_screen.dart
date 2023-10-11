@@ -52,9 +52,11 @@ class SnackBarScreen extends StatelessWidget {
             title: 'Snack bar with root scaffold messenger key',
             child: Consumer<YgAppState>(
               builder: (BuildContext context, YgAppState ygAppState, Widget? widget) {
+                final GlobalKey<ScaffoldMessengerState> scaffoldMessengerKey = ygAppState.rootScaffoldMessengerKey;
+
                 return YgButton(
                   variant: YgButtonVariant.primary,
-                  onPressed: () => _showCustomKeySnackBar(context, ygAppState.rootScaffoldMessengerKey),
+                  onPressed: () => _showCustomKeySnackBar(context, scaffoldMessengerKey),
                   child: const Text('Show'),
                 );
               },
