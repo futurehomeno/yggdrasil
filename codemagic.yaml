@@ -118,6 +118,8 @@ workflows:
     max_build_duration: 30
 
     environment:
+      node: v20.2.0
+      npm: 9.6.6
       groups:
         - frontend
       android_signing:
@@ -133,6 +135,9 @@ workflows:
       cancel_previous_builds: true
 
     scripts:
+      - name: Install appdmg
+        script: npm install -g appdmg
+
       - name: Set up local.properties
         script: echo "flutter.sdk=$HOME/programs/flutter" > "$CM_BUILD_DIR/example/android/local.properties"
 
@@ -148,9 +153,9 @@ workflows:
         working_directory: $CM_BUILD_DIR/example
         script: flutter build macos --release
 
-      - name: Zip macOS build
-        working_directory: $CM_BUILD_DIR/example/build/macos/Build/Products/Release
-        script: zip yggdrasil_demo.app.zip yggdrasil_demo.app
+      - name: Create dmg for macos build
+        working_directory: $CM_BUILD_DIR/example/installers/dmg_creator
+        script: appdmg ./config.json ./yggdrasil.dmg
 
     publishing:
       scripts:
@@ -162,8 +167,7 @@ workflows:
             # Change these variables accordingly
             REPO="futurehomeno/yggdrasil"
             ANDROID_ARTIFACT_PATH="build/app/outputs/flutter-apk/app-release.apk"
-            MACOS_ARTIFACT_PATH="build/macos/Build/Products/Release/yggdrasil_demo.app.zip"
-            MACOS_ARTIFACT_TEST="build/macos/Build/Products/Release/yggdrasil_demo.app"
+            MACOS_ARTIFACT_PATH="installers/dmg_creator/yggdrasil.dmg"
             
             # Create a new release
             RELEASE_RESPONSE=$(
@@ -179,13 +183,7 @@ workflows:
             )
   
             echo $RELEASE_RESPONSE
-            
-            if [ -d "$MACOS_ARTIFACT_TEST " ]; then
-                echo "Directory exists."
-            else
-                echo "Directory does not exist."
-            fi
-  
+                
             # Extract the upload URL from the release response
             UPLOAD_URL=$(echo $RELEASE_RESPONSE | jq -r .upload_url | sed -e "s/{?name,label}//")
   
