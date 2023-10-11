@@ -158,7 +158,9 @@ workflows:
             # Change these variables accordingly
             REPO="futurehomeno/yggdrasil"
             ANDROID_ARTIFACT_PATH="build/app/outputs/flutter-apk/app-release.apk"
-            MACOS_ARTIFACT_PATH="build/macos/Build/Products/Release/yggdrasil_demo.app"
+            MACOS_ARTIFACT_PATH="build/macos/Build/Products/Release/yggdrasil_demo.app.zip"
+  
+            zip build/macos/Build/Products/Release/yggdrasil_demo.app.zip build/macos/Build/Products/Release/yggdrasil_demo.app
   
             # Create a new release
             RELEASE_RESPONSE=$(
@@ -182,7 +184,7 @@ workflows:
               echo "Failed to get upload URL"
               exit 1
             fi
-  
+
             # Upload the android artifact
             curl -X POST \
               -H "Authorization: token $GITHUB_TOKEN" \
