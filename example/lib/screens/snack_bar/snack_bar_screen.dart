@@ -4,7 +4,7 @@ import 'package:yggdrasil/yggdrasil.dart';
 import 'package:yggdrasil_demo/core/_core.dart';
 import 'package:yggdrasil_demo/widgets/_widgets.dart';
 
-class SnackBarScreen extends StatefulWidget {
+class SnackBarScreen extends StatelessWidget {
   const SnackBarScreen({super.key});
 
   static const String routeName = 'SnackBarScreen';
@@ -16,11 +16,6 @@ class SnackBarScreen extends StatefulWidget {
     );
   }
 
-  @override
-  State<SnackBarScreen> createState() => _SnackBarScreenState();
-}
-
-class _SnackBarScreenState extends State<SnackBarScreen> {
   @override
   Widget build(BuildContext context) {
     return DemoScreen(
