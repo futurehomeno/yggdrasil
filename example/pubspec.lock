@@ -1231,7 +1231,11 @@ packages:
       path: ".."
       relative: true
     source: path
+<<<<<<< HEAD
+    version: "1.6.10+13"
+=======
     version: "1.6.9+14"
+>>>>>>> main
 sdks:
   dart: "3.0.5"
   flutter: ">=3.10.5"
