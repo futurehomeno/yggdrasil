@@ -25,7 +25,7 @@ dev_dependencies:
   flutter_test:
     sdk: flutter
   theme_tailor:
-    git:
+    git: adsf asdf ads
       ref: main
       url: git@github.com:futurehomeno/theme_tailor.git
       path: packages/theme_tailor
