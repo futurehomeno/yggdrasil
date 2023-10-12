@@ -11,11 +11,16 @@ class YgSnackBar extends SnackBar with StatefulWidgetDebugMixin {
     required BuildContext context,
     required String message,
     YgSnackBarVariant variant = YgSnackBarVariant.highlight,
-  }) : super(
+    VoidCallback? onPressed,
+    GlobalKey<ScaffoldMessengerState>? scaffoldMessengerKey,
+  })  : assert(scaffoldMessengerKey == null || onPressed == null, 'Cannot use both onPressed and scaffoldMessengerKey'),
+        super(
           content: _buildSnackBarContent(
             context: context,
             message: message,
             variant: variant,
+            onPressed: onPressed,
+            scaffoldMessengerKey: scaffoldMessengerKey,
           ),
           backgroundColor: context.snackBarTheme.backgroundColor,
           behavior: SnackBarBehavior.floating,
@@ -30,6 +35,8 @@ class YgSnackBar extends SnackBar with StatefulWidgetDebugMixin {
     required BuildContext context,
     required String message,
     required YgSnackBarVariant variant,
+    required VoidCallback? onPressed,
+    required GlobalKey<ScaffoldMessengerState>? scaffoldMessengerKey,
   }) {
     final YgSnackBarTheme snackBarTheme = context.snackBarTheme;
 
@@ -38,25 +45,39 @@ class YgSnackBar extends SnackBar with StatefulWidgetDebugMixin {
       children: <Widget>[
         _buildDecorationIcon(snackBarTheme, variant),
         Expanded(
-          child: Text(
-            message,
-            style: snackBarTheme.messageTextStyle,
+          child: ConstrainedBox(
+            constraints: BoxConstraints(
+              minHeight: snackBarTheme.minTextHeight,
+            ),
+            child: Align(
+              alignment: Alignment.centerLeft,
+              child: Text(
+                message,
+                style: snackBarTheme.messageTextStyle,
+              ),
+            ),
           ),
         ),
         YgIconButton(
           size: YgIconButtonSize.small,
+          onPressed: () => _onPressed(
+            context: context,
+            onPressed: onPressed,
+            scaffoldMessengerKey: scaffoldMessengerKey,
+          ),
           child: YgIcon(
             YgIcons.cross,
             color: context.snackBarTheme.closeIconColor,
           ),
-          onPressed: () => ScaffoldMessenger.of(context).hideCurrentSnackBar(),
         ),
       ].withHorizontalSpacing(snackBarTheme.messageSpacing),
     );
   }
 
   static Widget _buildDecorationIcon(YgSnackBarTheme snackBarTheme, YgSnackBarVariant variant) {
-    return DecoratedBox(
+    return Container(
+      height: snackBarTheme.iconContainerSize,
+      width: snackBarTheme.iconContainerSize,
       decoration: BoxDecoration(
         shape: BoxShape.circle,
         color: YgSnackBarMapper.getContainerIconColor(
@@ -71,5 +92,19 @@ class YgSnackBar extends SnackBar with StatefulWidgetDebugMixin {
         ),
       ),
     );
+  }
+
+  static void _onPressed({
+    required BuildContext context,
+    VoidCallback? onPressed,
+    GlobalKey<ScaffoldMessengerState>? scaffoldMessengerKey,
+  }) {
+    if (onPressed != null) {
+      onPressed();
+    } else if (scaffoldMessengerKey != null) {
+      scaffoldMessengerKey.currentState!.hideCurrentSnackBar();
+    } else {
+      ScaffoldMessenger.of(context).hideCurrentSnackBar();
+    }
   }
 }

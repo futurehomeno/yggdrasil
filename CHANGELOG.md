@@ -1,5 +1,13 @@
-# 1.6.7+1 [04.10.2023 13:51]
+# 1.6.11+16 [12.10.2023 09:28]
 
+
+# 1.6.10+15 [11.10.2023 11:56]
+
+- [fix] Added zipping mac artifacts.
+
+# 1.6.8+11 [11.10.2023 09:29]
+
+- [fix] YgGauge no longer indicates the wrong value
 
 # 1.6.5+10 [04.10.2023 13:18]
 
@@ -7,12 +15,6 @@
 - [improvement] Added search to icon list screen.
 - [dev-improvement] Improved the .gitingore file to ignore all unnecessary Flutter files. DEV-1366
 - [dev-improvement] Optimised exporting of Yg themes so they don't get exposed in applications that use YggDrasil. DEV-1969
-
-# 1.6.4+10 [04.10.2023 09:32]
-
-
-# 1.6.2+8 [03.10.2023 13:49]
-
 
 # 1.6.1 [21.09.2023 16:05]
 

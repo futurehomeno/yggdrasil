@@ -1,7 +1,9 @@
 import 'dart:math' as math;
+import 'dart:math';
 import 'dart:ui';
 
 import 'package:flutter/material.dart';
+import 'package:yggdrasil/src/components/yg_gauge/extensions/path_add_arc_outline_extension.dart';
 import 'package:yggdrasil/src/theme/_theme.dart';
 import 'package:yggdrasil/yggdrasil.dart';
 
@@ -291,9 +293,11 @@ class _YgGaugePainter extends CustomPainter {
     const double paddingFactor = 100 / 5;
     final double responsivePadding = size.width / paddingFactor;
 
+    final double radius = (size.width - responsiveStrokeWidth) / 2 - responsivePadding;
+
     final Rect rect = Rect.fromCircle(
       center: Offset(size.width / 2, size.height / 2),
-      radius: (size.width - responsiveStrokeWidth) / 2 - responsivePadding,
+      radius: radius,
     );
 
     // The start of which to dra the arc.
@@ -301,6 +305,10 @@ class _YgGaugePainter extends CustomPainter {
 
     // The end of which to draw the arc.
     const double endAngle = math.pi * 2 * 46 / 64;
+
+    // The offset that needs to be applied to the track to hide the end and
+    // start cap when value is 0.
+    final double angleOffset = asin(responsiveStrokeWidth / radius);
 
     final Paint trackPainter = Paint()
       ..color = trackColor
@@ -322,10 +330,20 @@ class _YgGaugePainter extends CustomPainter {
       trackPainter,
     );
 
+    canvas.clipPath(
+      Path()
+        ..addArcOutline(
+          rect: rect,
+          startAngle: startAngle,
+          sweepAngle: endAngle,
+          strokeWidth: responsiveStrokeWidth,
+        ),
+    );
+
     canvas.drawArc(
       rect,
-      startAngle,
-      endAngle * clampDouble(((animation.value - minValue) / (maxValue - minValue)), 0, 1),
+      startAngle - angleOffset,
+      (endAngle + angleOffset) * clampDouble(((animation.value - minValue) / (maxValue - minValue)), 0, 1),
       false,
       arcPainter,
     );
