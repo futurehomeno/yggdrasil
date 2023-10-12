@@ -1,3 +1,27 @@
+# 1.6.11+16 [12.10.2023 09:28]
+
+
+# 1.6.10+15 [11.10.2023 11:56]
+
+- [fix] Added zipping mac artifacts.
+
+# 1.6.8+11 [11.10.2023 09:29]
+
+- [fix] YgGauge no longer indicates the wrong value
+
+# 1.6.5+10 [04.10.2023 13:18]
+
+- [fix] Fixed an svg parsing error for chargerQuestion and playQuestion.
+- [improvement] Added search to icon list screen.
+- [dev-improvement] Improved the .gitingore file to ignore all unnecessary Flutter files. DEV-1366
+- [dev-improvement] Optimised exporting of Yg themes so they don't get exposed in applications that use YggDrasil. DEV-1969
+
+# 1.6.1 [21.09.2023 16:05]
+
+[feature] Added new icons 21.09.23.
+[dev-improvement] Icon script now sorts icons.
+[dev-improvement] Icon script now adds const to YgIcons class.
+
 # 1.6.0 [14.09.2023 08:35]
 
 [feature] Added YgDropdownField and YgDropdownFormField components.

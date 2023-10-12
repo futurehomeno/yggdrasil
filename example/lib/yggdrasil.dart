@@ -17,6 +17,7 @@ class Yggdrasil extends StatelessWidget {
           home: const HomeScreen(),
           navigatorKey: YgRouter.navigatorKey,
           debugShowCheckedModeBanner: false,
+          scaffoldMessengerKey: ygAppState.rootScaffoldMessengerKey,
         );
       },
     );

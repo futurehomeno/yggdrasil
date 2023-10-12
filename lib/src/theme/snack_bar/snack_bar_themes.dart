@@ -34,6 +34,13 @@ class _$YgSnackBarTheme {
     professional_dark.FhColors.iconInverse,
   ];
 
+  static const List<double> iconContainerSize = <double>[
+    consumer_light.FhDimensions.lg,
+    consumer_dark.FhDimensions.lg,
+    professional_light.FhDimensions.lg,
+    professional_dark.FhDimensions.lg,
+  ];
+
   static const List<BorderRadius> borderRadius = <BorderRadius>[
     consumer_light.FhRadii.sm,
     consumer_dark.FhRadii.sm,
@@ -76,5 +83,12 @@ class _$YgSnackBarTheme {
     professional_dark.FhTextStyles.paragraph3Regular.copyWith(
       color: professional_dark.FhColors.textInverse,
     ),
+  ];
+
+  static const List<double> minTextHeight = <double>[
+    consumer_light.FhDimensions.lg,
+    consumer_dark.FhDimensions.lg,
+    professional_light.FhDimensions.lg,
+    professional_dark.FhDimensions.lg,
   ];
 }

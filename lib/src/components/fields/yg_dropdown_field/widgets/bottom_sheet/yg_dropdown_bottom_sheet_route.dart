@@ -52,7 +52,7 @@ class YgDropdownBottomSheetRoute<T extends Object> extends YgBottomSheetModalRou
             leadingWidget: entry.icon,
             groupValue: controller.value,
             value: entry.value,
-            onChanged: (_) => dropdownController.onEntryTapped(entry),
+            onChanged: (_) => dropdownController.onValueTapped(entry.value),
           ),
         );
       } else {
@@ -61,8 +61,8 @@ class YgDropdownBottomSheetRoute<T extends Object> extends YgBottomSheetModalRou
             title: entry.title,
             subtitle: entry.subtitle,
             leadingWidget: entry.icon,
-            onChanged: (_) => dropdownController.onEntryTapped(entry),
-            value: controller.isEntrySelected(entry),
+            onChanged: (_) => dropdownController.onValueTapped(entry.value),
+            value: controller.isValueSelected(entry.value),
           ),
         );
       }

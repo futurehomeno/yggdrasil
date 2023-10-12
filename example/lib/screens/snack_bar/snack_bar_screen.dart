@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 import 'package:yggdrasil/yggdrasil.dart';
 import 'package:yggdrasil_demo/core/_core.dart';
 import 'package:yggdrasil_demo/widgets/_widgets.dart';
@@ -47,6 +48,28 @@ class SnackBarScreen extends StatelessWidget {
               child: const Text('Show'),
             ),
           ),
+          YgSection.base(
+            title: 'Snack bar with root scaffold messenger key',
+            child: Consumer<YgAppState>(
+              builder: (BuildContext context, YgAppState ygAppState, Widget? widget) {
+                final GlobalKey<ScaffoldMessengerState> scaffoldMessengerKey = ygAppState.rootScaffoldMessengerKey;
+
+                return YgButton(
+                  variant: YgButtonVariant.primary,
+                  onPressed: () => _showCustomKeySnackBar(context, scaffoldMessengerKey),
+                  child: const Text('Show'),
+                );
+              },
+            ),
+          ),
+          YgSection.base(
+            title: 'Snack bar with custom close callback',
+            child: YgButton(
+              variant: YgButtonVariant.primary,
+              onPressed: () => _showCustomCallbackSnackBar(context),
+              child: const Text('Show'),
+            ),
+          ),
         ],
       ),
     );
@@ -56,7 +79,7 @@ class SnackBarScreen extends StatelessWidget {
     ScaffoldMessenger.of(context).showSnackBar(
       YgSnackBar(
         context: context,
-        message: 'Snack bars provide feedback after users take an action',
+        message: 'I\'m a highlight snack bar',
       ),
     );
   }
@@ -65,7 +88,7 @@ class SnackBarScreen extends StatelessWidget {
     ScaffoldMessenger.of(context).showSnackBar(
       YgSnackBar(
         context: context,
-        message: 'Snack bars provide feedback after users take an action',
+        message: 'I\'m a success snack bar',
         variant: YgSnackBarVariant.success,
       ),
     );
@@ -75,8 +98,36 @@ class SnackBarScreen extends StatelessWidget {
     ScaffoldMessenger.of(context).showSnackBar(
       YgSnackBar(
         context: context,
-        message: 'Snack bars provide feedback after users take an action',
+        message: 'I\'m a critical snack bar',
         variant: YgSnackBarVariant.critical,
+      ),
+    );
+  }
+
+  void _showCustomKeySnackBar(
+    BuildContext context,
+    GlobalKey<ScaffoldMessengerState> scaffoldMessengerKey,
+  ) {
+    scaffoldMessengerKey.currentState!.showSnackBar(
+      YgSnackBar(
+        context: context,
+        message: 'I am using the global scaffold messenger key',
+        variant: YgSnackBarVariant.highlight,
+        scaffoldMessengerKey: scaffoldMessengerKey,
+      ),
+    );
+  }
+
+  void _showCustomCallbackSnackBar(BuildContext context) {
+    ScaffoldMessenger.of(context).showSnackBar(
+      YgSnackBar(
+        context: context,
+        message: 'Closing me will trigger a critical snack bar',
+        variant: YgSnackBarVariant.highlight,
+        onPressed: () {
+          ScaffoldMessenger.of(context).hideCurrentSnackBar();
+          _showCriticalSnackBar(context);
+        },
       ),
     );
   }
