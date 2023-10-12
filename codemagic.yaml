@@ -209,7 +209,7 @@ workflows:
 
         - name: Sending message to Slack
           script: |            
-            curl --location '"$YGGDRASIL_SLACK_WEBHOOK"' \
+            curl --location $YGGDRASIL_SLACK_WEBHOOK \
             --header 'Content-Type: application/json' \
             --data '
               {
