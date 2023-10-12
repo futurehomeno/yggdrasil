@@ -1,3 +1,7 @@
+# 1.6.13+18 [12.10.2023 13:09]
+
+- [dev-fix] Fixed pubspec.lock file.
+
 # 1.6.12+17 [12.10.2023 12:49]
 
 - [dev-fix] Added slack notification when new version is released.
