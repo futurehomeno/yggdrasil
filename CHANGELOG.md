@@ -1,3 +1,11 @@
+# 1.6.12+17 [12.10.2023 12:49]
+
+- [dev-fix] Added slack notification when new version is released.
+- [fix] YgSnackBar text now correctly has a min height of lg.
+- [fix] YgSnackBar leading icon background now correctly has a diameter of lg.
+- [improvement] YgSnackBar now supports passing a custom onPressed callback.
+- [improvement] YgSnackBar now supports a custom scaffoldMessengerKey.
+
 # 1.6.11+16 [12.10.2023 09:28]
 
 
