@@ -1,7 +1,3 @@
-// Copyright 2014 The Flutter Authors. All rights reserved.
-// Use of this source code is governed by a BSD-style license that can be
-// found in the LICENSE file.
-
 import 'package:flutter/material.dart';
 
 /// YGG version of [UnderlineTabIndicator].
@@ -16,6 +12,7 @@ class YgUnderlineTabIndicator extends Decoration {
     this.insets = EdgeInsets.zero,
   });
 
+  /// Gradient og the TabBar indicator.
   final Gradient gradient;
 
   /// See [UnderlineTabIndicator].
