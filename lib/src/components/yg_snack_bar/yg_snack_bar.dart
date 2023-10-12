@@ -60,13 +60,11 @@ class YgSnackBar extends SnackBar with StatefulWidgetDebugMixin {
         ),
         YgIconButton(
           size: YgIconButtonSize.small,
-          onPressed: () {
-            _onPressed(
-              context: context,
-              onPressed: onPressed,
-              scaffoldMessengerKey: scaffoldMessengerKey,
-            );
-          },
+          onPressed: () => _onPressed(
+            context: context,
+            onPressed: onPressed,
+            scaffoldMessengerKey: scaffoldMessengerKey,
+          ),
           child: YgIcon(
             YgIcons.cross,
             color: context.snackBarTheme.closeIconColor,
