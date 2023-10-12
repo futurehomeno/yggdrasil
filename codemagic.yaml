@@ -122,6 +122,7 @@ workflows:
       npm: 9.6.6
       groups:
         - frontend
+        - slack
       android_signing:
         - yggdrasil_keystore
       flutter: 3.10.5
@@ -205,3 +206,40 @@ workflows:
               -H "Content-Type: $(file -b --mime-type $MACOS_ARTIFACT_PATH)" \
               --data-binary "@$MACOS_ARTIFACT_PATH" \
               "$UPLOAD_URL?name=$(basename $MACOS_ARTIFACT_PATH)"
+
+        - name: Sending message to Slack
+          script: |            
+            curl --location '"$YGGDRASIL_SLACK_WEBHOOK"' \
+            --header 'Content-Type: application/json' \
+            --data '
+              {
+                "text": "New version of Yggdrasil! ['"$CM_TAG"']",
+                "attachments": [
+                  {
+                    "blocks": [
+                      {
+                        "type": "section",
+                        "text": {
+                          "type": "mrkdwn",
+                          "text": "<https://github.com/futurehomeno/yggdrasil/releases/tag/'"$CM_TAG"'>"
+                        }
+                      },
+                      {
+                        "type": "section",
+                        "text": {
+                          "type": "mrkdwn",
+                          "text": "*Android app Link* <https://github.com/futurehomeno/yggdrasil/releases/download/'"$CM_TAG"'/app-release.apk|download>"
+                        }
+                      },
+                      {
+                        "type": "section",
+                        "text": {
+                          "type": "mrkdwn",
+                          "text": "*MacOS app Link* <https://github.com/futurehomeno/yggdrasil/releases/download/'"$CM_TAG"'/yggdrasil.dmg|download>"
+                        }
+                      }
+                    ]
+                  }
+                ]
+              }
+            '
