@@ -3,7 +3,7 @@ import 'package:yggdrasil/src/utils/yg_icon/yg_icon.dart';
 class Rocket extends YgIcon {
   Rocket()
       : super(
-          name: 'Rocket',
+          name: 'rocket',
           path: 'assets/icons/rocket.svg',
         );
 }

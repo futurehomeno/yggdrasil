@@ -3,7 +3,7 @@ import 'package:yggdrasil/src/utils/yg_icon/yg_icon.dart';
 class TamperBad extends YgIcon {
   TamperBad()
       : super(
-          name: 'TamperBad',
+          name: 'tamperBad',
           path: 'assets/icons/tamper_bad.svg',
         );
 }

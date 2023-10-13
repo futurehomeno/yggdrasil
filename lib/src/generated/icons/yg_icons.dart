@@ -356,4 +356,5 @@ class YgIcons {
   static final YgIcon work = Work();
   static final YgIcon zigbee = Zigbee();
   static final YgIcon zwave = Zwave();
-}
+  }
+  

@@ -3,7 +3,7 @@ import 'package:yggdrasil/src/utils/yg_icon/yg_icon.dart';
 class Tide extends YgIcon {
   Tide()
       : super(
-          name: 'Tide',
+          name: 'tide',
           path: 'assets/icons/tide.svg',
         );
 }

@@ -3,7 +3,7 @@ import 'package:yggdrasil/src/utils/yg_icon/yg_icon.dart';
 class PinCode extends YgIcon {
   PinCode()
       : super(
-          name: 'PinCode',
+          name: 'pinCode',
           path: 'assets/icons/pin_code.svg',
         );
 }

@@ -3,7 +3,7 @@ import 'package:yggdrasil/src/utils/yg_icon/yg_icon.dart';
 class Notification extends YgIcon {
   Notification()
       : super(
-          name: 'Notification',
+          name: 'notification',
           path: 'assets/icons/notification.svg',
         );
 }

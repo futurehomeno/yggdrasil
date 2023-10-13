@@ -6,6 +6,7 @@ abstract class YgIconData {
     required this.colorful,
   });
 
+  /// The name of the icon
   final String name;
   final String path;
   final bool colorful;

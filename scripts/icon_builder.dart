@@ -42,9 +42,10 @@ void generateIconFiles({
 
   for (final String fileName in svgFileNames) {
     final String iconName = fileName.split('.').firstOrNull ?? '';
+    final String camelCaseIconName = ScriptHelpers.toCamelCase(iconName);
     final String titleCaseIconName = ScriptHelpers.toTitleCase(iconName);
     final bool colored = fileName.contains('_colorful');
-    final String classType = colored ? 'YgColoredIcon' : 'YgIcon';
+    final String classType = colored ? 'YgColorfulIcon' : 'YgIcon';
     final String import = colored
         ? 'import \'package:yggdrasil/src/utils/yg_icon/yg_colorful_icon.dart\';'
         : 'import \'package:yggdrasil/src/utils/yg_icon/yg_icon.dart\';';
@@ -54,14 +55,13 @@ $import
 class $titleCaseIconName extends $classType {
   $titleCaseIconName()
       : super(
-          name: '$titleCaseIconName',
+          name: '$camelCaseIconName',
           path: '$inputPath/$fileName',
         );
 }
 ''';
 
     final File outputFile = File('$outputPath/icon_classes/$iconName.dart');
-    final String camelCaseIconName = ScriptHelpers.toCamelCase(iconName);
     outputFile
       ..createSync(recursive: true)
       ..writeAsStringSync(fileContent);

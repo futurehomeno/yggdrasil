@@ -3,7 +3,7 @@ import 'package:yggdrasil/src/utils/yg_icon/yg_icon.dart';
 class Corridor extends YgIcon {
   Corridor()
       : super(
-          name: 'Corridor',
+          name: 'corridor',
           path: 'assets/icons/corridor.svg',
         );
 }

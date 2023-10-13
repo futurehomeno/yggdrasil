@@ -5,6 +5,7 @@ import 'package:flutter_svg/flutter_svg.dart';
 import 'package:xml/xml.dart';
 import 'package:yggdrasil/src/extensions/hex_color.dart';
 import 'package:yggdrasil/src/theme/_theme.dart';
+import 'package:yggdrasil/src/utils/yg_icon/yg_colorful_icon.dart';
 import 'package:yggdrasil/src/utils/yg_icon/yg_icon_data.dart';
 import 'package:yggdrasil/yggdrasil.dart';
 
@@ -15,22 +16,31 @@ class YgIcon extends StatelessWidget with StatelessWidgetDebugMixin {
     this.size,
     this.color,
     this.semanticLabel,
-  });
+  }) : assert(color != null && iconData is YgColorfulIcon, 'Colorful icons cannot be colored.');
 
-  /// The icon to display.
+  /// The icon to show represented as [YgIconData].
   ///
-  /// The available icons are shown in the IconList screen.
+  /// Available can be gotten from [YgIcons].
   ///
   /// The icon can be null, in which case the widget will render as an empty
   /// space of the specified [size].
   final YgIconData? iconData;
 
   /// The size of the icon.
+  ///
+  /// If no size is specified, the nearest IconTheme of the current
+  /// context will be used. This is useful when a parent widget wants to
+  /// specify a size for the icon.
   final YgIconSize? size;
 
   /// The color to use when drawing the icon.
   ///
-  /// Defaults to the nearest [IconTheme]'s [IconThemeData.color].
+  /// If no size is specified, the nearest IconTheme of the current
+  /// context will be used. This is useful when a parent widget wants to
+  /// specify a color for the icon.
+  ///
+  /// Note that [YgColorfulIcon]s will never be colored regardless of
+  /// the parent widget specifying an [IconTheme].
   final Color? color;
 
   /// Semantic label for the icon.
@@ -66,16 +76,6 @@ class YgIcon extends StatelessWidget with StatelessWidgetDebugMixin {
         ),
       );
     }
-
-    // TODO(bjhandeland): Add this check back!
-    // // Check if the icon is colorful variant.
-    // // If it is, make sure color has not been specified.
-    // if (iconData.colorful && color != null) {
-    //   throw FlutterError(
-    //     'YgIcon: Colorful icons cannot be colored. '
-    //     'Please remove the color property or use a different icon.',
-    //   );
-    // }
 
     // If the icon is not colorful, we need to apply the color filter.
     // If colorFilter is null, the icon will be rendered with the embedded color.
