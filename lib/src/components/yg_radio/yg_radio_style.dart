@@ -23,54 +23,54 @@ class YgRadioStyle extends YgAnimatedStyle<YgRadioState> {
   Color _resolveBackgroundColor(BuildContext context, Set<YgRadioState> states) {
     if (states.contains(YgRadioState.selected)) {
       if (states.contains(YgRadioState.disabled)) {
-        return theme.selectedDisabledBackgroundColor;
+        return _theme.selectedDisabledBackgroundColor;
       }
       if (states.contains(YgRadioState.hovered) || states.contains(YgRadioState.focused)) {
-        return theme.selectedHoveredBackgroundColor;
+        return _theme.selectedHoveredBackgroundColor;
       }
 
-      return theme.selectedBackgroundColor;
+      return _theme.selectedBackgroundColor;
     }
 
     if (states.contains(YgRadioState.disabled)) {
-      return theme.deselectedDisabledBackgroundColor;
+      return _theme.deselectedDisabledBackgroundColor;
     }
     if (states.contains(YgRadioState.hovered) || states.contains(YgRadioState.focused)) {
-      return theme.deselectedHoveredBackgroundColor;
+      return _theme.deselectedHoveredBackgroundColor;
     }
 
-    return theme.deselectedBackgroundColor;
+    return _theme.deselectedBackgroundColor;
   }
 
   double _resolveHandleSize(BuildContext context, Set<YgRadioState> states) {
     if (states.contains(YgRadioState.disabled)) {
-      return theme.deselectedHandleSize;
+      return _theme.deselectedHandleSize;
     }
     if (states.contains(YgRadioState.selected)) {
-      return theme.selectedHandleSize;
+      return _theme.selectedHandleSize;
     }
 
-    return theme.deselectedHandleSize;
+    return _theme.deselectedHandleSize;
   }
 
   Color _resolveHandleColor(BuildContext context, Set<YgRadioState> states) {
     if (states.contains(YgRadioState.disabled)) {
-      return theme.disabledHandleColor;
+      return _theme.disabledHandleColor;
     }
     if (states.contains(YgRadioState.selected)) {
-      return theme.selectedHandleColor;
+      return _theme.selectedHandleColor;
     }
 
-    return theme.deselectedHandleColor;
+    return _theme.deselectedHandleColor;
   }
 
   double _resolveHelperHandleSize(BuildContext context, Set<YgRadioState> states) {
     if (states.contains(YgRadioState.disabled)) {
       if (states.contains(YgRadioState.selected)) {
-        return theme.disabledSelectedHelperHandleSize;
+        return _theme.disabledSelectedHelperHandleSize;
       }
 
-      return theme.disabledDeselectedHelperHandleSize;
+      return _theme.disabledDeselectedHelperHandleSize;
     }
     // Helper handle should only show for disabled states.
     // Returning `null` does not work as the widget will still render.
@@ -96,10 +96,10 @@ class YgRadioStyle extends YgAnimatedStyle<YgRadioState> {
       };
 
   @override
-  Curve get curve => theme.animationCurve;
+  Curve get curve => _theme.animationCurve;
 
   @override
-  Duration get duration => theme.animationDuration;
+  Duration get duration => _theme.animationDuration;
 
-  YgRadioTheme get theme => context.radioTheme;
+  YgRadioTheme get _theme => context.radioTheme;
 }

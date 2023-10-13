@@ -21,11 +21,9 @@ abstract class YgAnimatedStyle<T extends Enum> extends Animation<double> with An
 
     _statesController.addListener(_handleStateChange);
     _state.addDependenciesChangedListener(_handleDependenciesChange);
-    _previousStates = Set<T>.of(_statesController.states);
     properties.forEach(_initProperty);
   }
 
-  late Set<T> _previousStates;
   late AnimationController _animationController;
   late final Curve _curve = curve;
   final YgStatesController<T> _statesController;
@@ -64,16 +62,15 @@ abstract class YgAnimatedStyle<T extends Enum> extends Animation<double> with An
       }
       _animationController.forward(from: 0);
     }
-
-    _previousStates = Set<T>.of(_statesController.states);
   }
 
   _UpdateResult<T, V> _updateProperty<V>(YgAnimatedProperty<T, V> property) {
-    final Set<T> states = _statesController.states;
+    final Set<T> states = _statesController.value;
+    final Set<T> previousStates = _statesController.previous;
 
     final V previous = property.resolve(
       context,
-      _previousStates,
+      previousStates,
     );
 
     final V target = property.resolve(
@@ -106,7 +103,7 @@ abstract class YgAnimatedStyle<T extends Enum> extends Animation<double> with An
   }
 
   bool _updatePropertyTarget<V>(YgAnimatedProperty<T, V> property) {
-    final Set<T> states = _statesController.states;
+    final Set<T> states = _statesController.value;
 
     final V target = property.resolve(
       context,
@@ -125,7 +122,7 @@ abstract class YgAnimatedStyle<T extends Enum> extends Animation<double> with An
   void _initProperty<V>(YgAnimatedProperty<T, V> property) {
     final V initial = property.resolve(
       _state.context,
-      _statesController.states,
+      _statesController.value,
     );
 
     property.from = initial;

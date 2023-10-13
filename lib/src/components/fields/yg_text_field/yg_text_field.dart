@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:yggdrasil/src/components/fields/enums/field_state.dart';
+import 'package:yggdrasil/src/components/fields/enums/yg_field_state.dart';
 import 'package:yggdrasil/src/components/fields/helpers/yg_validate_helper.dart';
 import 'package:yggdrasil/yggdrasil.dart';
 
@@ -344,11 +344,13 @@ class YgTextField extends StatefulWidget with StatefulWidgetDebugMixin {
 
 class _YgTextFieldState extends State<YgTextField> {
   /// The current states of the textfield.
-  late final FieldStates _states = <FieldState>{
-    if (widget.error != null) FieldState.error,
-    if (widget.disabled) FieldState.disabled,
-    if (_controller.text.isNotEmpty == true) FieldState.filled,
-  };
+  late final YgStatesController<YgFieldState> _statesController = YgStatesController<YgFieldState>(<YgFieldState>{
+    if (widget.error != null) YgFieldState.error,
+    if (widget.disabled) YgFieldState.disabled,
+    if (_controller.text.isNotEmpty == true) YgFieldState.filled,
+    YgFieldState.fromSize(widget.size),
+    YgFieldState.fromVariant(widget.variant),
+  });
 
   /// Whether to hide the obscured text or not.
   bool _obscureTextToggled = true;
@@ -387,25 +389,15 @@ class _YgTextFieldState extends State<YgTextField> {
       _updateFocusNode(newFocusNode);
     }
 
-    _updateFieldState(FieldState.error, widget.error != null);
-    _updateFieldState(FieldState.disabled, widget.disabled);
+    _statesController.update(YgFieldState.error, widget.error != null);
+    _statesController.update(YgFieldState.disabled, widget.disabled);
 
     super.didUpdateWidget(oldWidget);
   }
 
-  void _updateFieldState(FieldState state, bool toggled) {
-    final bool isToggled = _states.contains(state);
-    if (isToggled != toggled) {
-      if (toggled) {
-        _states.add(state);
-      } else {
-        _states.remove(state);
-      }
-    }
-  }
-
   @override
   void dispose() {
+    _statesController.dispose();
     _controller.removeListener(_valueUpdated);
     if (widget.controller == null) {
       _controller.dispose();
@@ -424,10 +416,10 @@ class _YgTextFieldState extends State<YgTextField> {
         variant: widget.variant,
         size: widget.size,
         error: widget.error,
-        states: _states,
+        statesController: _statesController,
         suffix: _buildSuffix(),
         onPressed: null,
-        content: YgFieldTextContent(
+        content: YgFieldContent(
           value: YgTextFieldValue(
             autocorrect: widget.autocorrect,
             controller: _controller,
@@ -440,11 +432,11 @@ class _YgTextFieldState extends State<YgTextField> {
             onChanged: widget.onChanged,
             onEditingComplete: _onEditingComplete,
             readOnly: widget.readOnly,
-            states: _states,
+            statesController: _statesController,
             textCapitalization: widget.textCapitalization,
             textInputAction: widget.textInputAction,
           ),
-          states: _states,
+          statesController: _statesController,
           label: widget.label,
           minLines: widget.minLines,
           placeholder: widget.placeholder,
@@ -499,7 +491,7 @@ class _YgTextFieldState extends State<YgTextField> {
   }
 
   void _updateHoverState(bool toggled) {
-    _updateFieldState(FieldState.hovered, toggled);
+    _statesController.update(YgFieldState.hovered, toggled);
     setState(() {});
   }
 
@@ -572,30 +564,13 @@ class _YgTextFieldState extends State<YgTextField> {
 
   void _valueUpdated() {
     final bool filled = _controller.text.isNotEmpty;
-
-    if (filled != _states.filled) {
-      if (filled) {
-        _states.add(FieldState.filled);
-      } else {
-        _states.remove(FieldState.filled);
-      }
-      setState(() {});
-    }
+    _statesController.update(YgFieldState.filled, filled);
   }
 
   void _focusChanged() {
     final bool focused = _focusNode.hasFocus;
-
+    _statesController.update(YgFieldState.focused, focused);
     widget.onFocusChanged?.call(focused);
-
-    if (focused != _states.focused) {
-      if (focused) {
-        _states.add(FieldState.focused);
-      } else {
-        _states.remove(FieldState.focused);
-      }
-      setState(() {});
-    }
   }
 
   void _handleTap() {

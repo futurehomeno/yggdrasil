@@ -1,12 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:yggdrasil/src/components/fields/enums/field_state.dart';
+import 'package:yggdrasil/src/components/fields/enums/yg_field_state.dart';
 import 'package:yggdrasil/src/theme/_theme.dart';
+import 'package:yggdrasil/yggdrasil.dart';
 
 class YgTextFieldValue extends StatelessWidget {
   const YgTextFieldValue({
     super.key,
-    required this.states,
+    required this.statesController,
     required this.obscureText,
     required this.maxLines,
     required this.minLines,
@@ -24,7 +25,7 @@ class YgTextFieldValue extends StatelessWidget {
 
   final FocusNode focusNode;
   final TextEditingController controller;
-  final FieldStates states;
+  final YgStatesController<YgFieldState> statesController;
   final bool obscureText;
   final int? maxLines;
   final int? minLines;
@@ -39,56 +40,64 @@ class YgTextFieldValue extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final YgFieldContentTheme theme = context.fieldTheme.contentTheme;
+    return YgStatesBuilder<YgFieldState>(
+      controller: statesController,
+      filter: const <YgFieldState>{
+        YgFieldState.disabled,
+      },
+      builder: (BuildContext context, Set<YgFieldState> states) {
+        final YgFieldContentTheme theme = context.fieldTheme.contentTheme;
 
-    final TextStyle baseStyle = DefaultTextStyle.of(context).style;
+        final TextStyle baseStyle = DefaultTextStyle.of(context).style;
 
-    if (states.disabled) {
-      final int? minLines = this.minLines;
+        if (states.contains(YgFieldState.disabled)) {
+          final int? minLines = this.minLines;
 
-      Widget text = Text(
-        controller.text,
-        maxLines: maxLines,
-      );
+          Widget text = Text(
+            controller.text,
+            maxLines: maxLines,
+          );
 
-      if (minLines != null && minLines > 1) {
-        text = ConstrainedBox(
-          constraints: BoxConstraints(
-            minHeight: baseStyle.computedHeight * minLines,
+          if (minLines != null && minLines > 1) {
+            text = ConstrainedBox(
+              constraints: BoxConstraints(
+                minHeight: baseStyle.computedHeight * minLines,
+              ),
+              child: text,
+            );
+          }
+
+          return Align(
+            alignment: Alignment.centerLeft,
+            child: text,
+          );
+        }
+
+        return EditableText(
+          focusNode: focusNode,
+          backgroundCursorColor: theme.cursorColor,
+          controller: controller,
+          cursorColor: theme.cursorColor,
+          style: baseStyle.copyWith(
+            color: theme.valueDefaultColor,
           ),
-          child: text,
+          obscureText: obscureText,
+          cursorHeight: baseStyle.fontSize,
+          cursorOffset: _getCursorOffset(theme),
+          selectionColor: theme.cursorColor,
+          cursorWidth: 1.0,
+          keyboardType: keyboardType,
+          autocorrect: autocorrect,
+          textCapitalization: textCapitalization,
+          readOnly: readOnly,
+          maxLines: maxLines,
+          minLines: minLines,
+          inputFormatters: inputFormatters,
+          onChanged: onChanged,
+          onEditingComplete: onEditingComplete,
+          textInputAction: textInputAction,
         );
-      }
-
-      return Align(
-        alignment: Alignment.centerLeft,
-        child: text,
-      );
-    }
-
-    return EditableText(
-      focusNode: focusNode,
-      backgroundCursorColor: theme.cursorColor,
-      controller: controller,
-      cursorColor: theme.cursorColor,
-      style: baseStyle.copyWith(
-        color: theme.valueDefaultColor,
-      ),
-      obscureText: obscureText,
-      cursorHeight: baseStyle.fontSize,
-      cursorOffset: _getCursorOffset(theme),
-      selectionColor: theme.cursorColor,
-      cursorWidth: 1.0,
-      keyboardType: keyboardType,
-      autocorrect: autocorrect,
-      textCapitalization: textCapitalization,
-      readOnly: readOnly,
-      maxLines: maxLines,
-      minLines: minLines,
-      inputFormatters: inputFormatters,
-      onChanged: onChanged,
-      onEditingComplete: onEditingComplete,
-      textInputAction: textInputAction,
+      },
     );
   }
 
