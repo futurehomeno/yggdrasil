@@ -5,11 +5,12 @@ import 'package:flutter_svg/flutter_svg.dart';
 import 'package:xml/xml.dart';
 import 'package:yggdrasil/src/extensions/hex_color.dart';
 import 'package:yggdrasil/src/theme/_theme.dart';
+import 'package:yggdrasil/src/utils/yg_icon/yg_icon_data.dart';
 import 'package:yggdrasil/yggdrasil.dart';
 
 class YgIcon extends StatelessWidget with StatelessWidgetDebugMixin {
   const YgIcon(
-    this.icon, {
+    this.iconData, {
     super.key,
     this.size,
     this.color,
@@ -22,7 +23,7 @@ class YgIcon extends StatelessWidget with StatelessWidgetDebugMixin {
   ///
   /// The icon can be null, in which case the widget will render as an empty
   /// space of the specified [size].
-  final String? icon;
+  final YgIconData? iconData;
 
   /// The size of the icon.
   final YgIconSize? size;
@@ -39,7 +40,7 @@ class YgIcon extends StatelessWidget with StatelessWidgetDebugMixin {
 
   @override
   Widget build(BuildContext context) {
-    final String? icon = this.icon;
+    final YgIconData? iconData = this.iconData;
     final YgIconSize? size = this.size;
 
     final YgIconTheme ygIconTheme = context.iconTheme;
@@ -56,7 +57,7 @@ class YgIcon extends StatelessWidget with StatelessWidgetDebugMixin {
 
     // If no icon is specified, render an empty space with the size that
     // the icon would have used.
-    if (icon == null) {
+    if (iconData == null) {
       return Semantics(
         label: semanticLabel,
         child: SizedBox.square(
@@ -66,15 +67,15 @@ class YgIcon extends StatelessWidget with StatelessWidgetDebugMixin {
       );
     }
 
-    // Check if the icon is colorful variant.
-    // If it is, make sure color has not been specified.
-    final bool isColorfulIcon = icon.contains('colorful');
-    if (isColorfulIcon && color != null) {
-      throw FlutterError(
-        'YgIcon: Colorful icons cannot be colored. '
-        'Please remove the color property or use a different icon.',
-      );
-    }
+    // TODO(bjhandeland): Add this check back!
+    // // Check if the icon is colorful variant.
+    // // If it is, make sure color has not been specified.
+    // if (iconData.colorful && color != null) {
+    //   throw FlutterError(
+    //     'YgIcon: Colorful icons cannot be colored. '
+    //     'Please remove the color property or use a different icon.',
+    //   );
+    // }
 
     // If the icon is not colorful, we need to apply the color filter.
     // If colorFilter is null, the icon will be rendered with the embedded color.
