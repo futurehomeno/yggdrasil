@@ -52,7 +52,7 @@ class YgRadio<T> extends StatefulWidget with StatefulWidgetDebugMixin {
   }
 }
 
-class _YgRadioState<T> extends State<YgRadio<T>> with TickerProviderStateMixin {
+class _YgRadioState<T> extends State<YgRadio<T>> with TickerProviderStateMixin, YgUpdateMixin {
   late final YgStatesController<YgRadioState> _statesController = YgStatesController<YgRadioState>(
     <YgRadioState>{
       if (!widget._enabled) YgRadioState.disabled,
@@ -179,7 +179,9 @@ class _YgRadioPainter extends CustomPainter {
   }
 
   @override
-  bool shouldRepaint(covariant CustomPainter oldDelegate) {
-    return true;
+  bool shouldRepaint(covariant _YgRadioPainter oldDelegate) {
+    return style != oldDelegate.style ||
+        radioSize != oldDelegate.radioSize ||
+        helperHandleColor != oldDelegate.helperHandleColor;
   }
 }

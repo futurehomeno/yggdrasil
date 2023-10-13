@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:yggdrasil/src/utils/yg_states/yg_property.dart';
 
 import 'yg_animated_style.dart';
 
@@ -7,7 +8,9 @@ typedef DynamicAnimation = Animation<dynamic>;
 typedef YgPropertyResolver<T extends Enum, V> = V Function(BuildContext context, Set<T> states);
 typedef Interpolator<T> = T Function(double t, T from, T to);
 
-class YgAnimatedProperty<T extends Enum, V> extends Animation<V> with AnimationWithParentMixin<double> {
+class YgAnimatedProperty<T extends Enum, V> extends Animation<V>
+    with AnimationWithParentMixin<double>
+    implements YgProperty<T, V> {
   YgAnimatedProperty.fromStyle(
     YgAnimatedStyle<T> this.parent,
     this._resolve, [
@@ -24,10 +27,10 @@ class YgAnimatedProperty<T extends Enum, V> extends Animation<V> with AnimationW
   final Interpolator<V>? _interpolator;
 
   /// The value this property animates from.
-  V? _from;
+  V? from;
 
   /// The value this property animates to.
-  V? _to;
+  V? to;
 
   /// Interpolate between 2 values.
   ///
@@ -53,43 +56,29 @@ class YgAnimatedProperty<T extends Enum, V> extends Animation<V> with AnimationW
     return interpolator(t, from, to);
   }
 
-  /// Resolves the target value.
-  ///
-  /// Returns true when the target value is different from the current target
-  /// value.
-  bool resolve(
+  /// Resolves the value for given states.
+  @override
+  V resolve(
     BuildContext context,
     Set<T> states,
   ) {
-    final V target = _resolve(
+    return _resolve(
       context,
       states,
     );
-
-    if (_to == target || _from == null) {
-      _from = target;
-      _to = target;
-
-      return false;
-    }
-
-    _from = value;
-    _to = target;
-
-    return true;
   }
 
   @override
   V get value {
     assert(
-      _from != null && _to != null,
+      from != null && to != null,
       'value was accessed before ${toString()} was initialized',
     );
 
     return lerp(
       parent.value,
-      _from as V,
-      _to as V,
+      from as V,
+      to as V,
     );
   }
 }
