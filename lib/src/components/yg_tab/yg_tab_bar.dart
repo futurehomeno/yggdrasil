@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:yggdrasil/src/components/yg_tab/widgets/yg_underline_tab_indicator.dart';
 import 'package:yggdrasil/src/theme/tabs/_tabs.dart';
 import 'package:yggdrasil/yggdrasil.dart';
+
+import 'properties/_properties.dart';
+import 'widgets/_widgets.dart';
 
 /// Used for controlling views that consist of different tabs.
 class YgTabBar extends StatelessWidget {
@@ -50,18 +52,11 @@ class YgTabBar extends StatelessWidget {
       labelColor: tabsTheme.selectedLabelColor,
       unselectedLabelStyle: tabsTheme.unselectedLabelTextStyle,
       unselectedLabelColor: tabsTheme.unselectedLabelColor,
-      overlayColor: MaterialStateProperty.resolveWith<Color?>(
-        (Set<MaterialState> states) {
-          if (states.contains(MaterialState.focused)) {
-            return tabsTheme.focusBackgroundColor;
-          } else if (states.contains(MaterialState.pressed)) {
-            return tabsTheme.pressedBackgroundColor;
-          } else if (states.contains(MaterialState.hovered)) {
-            return tabsTheme.hoverBackgroundColor;
-          }
-
-          return tabsTheme.tabBarBackgroundColor;
-        },
+      overlayColor: YgTabBarOverlayColorProperty(
+        defaultColor: tabsTheme.tabBarBackgroundColor,
+        focusedColor: tabsTheme.focusBackgroundColor,
+        pressedColor: tabsTheme.pressedBackgroundColor,
+        hoveredColor: tabsTheme.hoverBackgroundColor,
       ),
     );
   }
