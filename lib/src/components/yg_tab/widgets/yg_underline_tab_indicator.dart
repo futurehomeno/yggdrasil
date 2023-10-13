@@ -12,7 +12,7 @@ class YgUnderlineTabIndicator extends Decoration {
     this.insets = EdgeInsets.zero,
   });
 
-  /// Gradient og the TabBar indicator.
+  /// Gradient on the TabBar indicator.
   final Gradient gradient;
 
   /// See [UnderlineTabIndicator].
