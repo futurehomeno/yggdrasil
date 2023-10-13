@@ -27,10 +27,10 @@ abstract class YgDropdownController<T extends Object, V, S extends YgDropdownFie
   String buildTitle(List<YgDropdownEntry<T>> entries);
 
   /// Handles a tap on a entry.
-  void onEntryTapped(YgDropdownEntry<T> entry);
+  void onValueTapped(T value);
 
-  /// Returns true when an entry is currently selected.
-  bool isEntrySelected(YgDropdownEntry<T> entry);
+  /// Returns true when a value is currently selected.
+  bool isValueSelected(T value);
 
   /// Whether the controller contains a value.
   bool get filled;

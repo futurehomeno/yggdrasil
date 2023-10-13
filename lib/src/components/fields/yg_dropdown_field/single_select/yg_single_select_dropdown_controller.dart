@@ -23,11 +23,11 @@ class YgSingleSelectDropdownController<T extends Object>
   }
 
   @override
-  void onEntryTapped(YgDropdownEntry<T> entry) {
+  void onValueTapped(T value) {
     final _YgDropdownFieldSingleSelectState<T>? fieldState = _fieldState;
     assert(
       fieldState != null,
-      'YgSingleSelectDropdownController.onEntryTapped was called while the controller was not attached to a single select dropdown!',
+      'YgSingleSelectDropdownController.onValueTapped was called while the controller was not attached to a single select dropdown!',
     );
     if (fieldState == null) {
       return;
@@ -35,13 +35,13 @@ class YgSingleSelectDropdownController<T extends Object>
 
     final _YgDropdownFieldSingleSelect<T> widget = fieldState.widget;
 
-    if (value == entry.value) {
+    if (this.value == value) {
       if (!widget.allowDeselect) {
         return;
       }
-      value = null;
+      this.value = null;
     } else {
-      value = entry.value;
+      this.value = value;
     }
 
     widget.onChange?.call(value);
@@ -52,5 +52,5 @@ class YgSingleSelectDropdownController<T extends Object>
   bool get filled => value != null;
 
   @override
-  bool isEntrySelected(YgDropdownEntry<T> entry) => entry.value == value;
+  bool isValueSelected(T value) => value == this.value;
 }

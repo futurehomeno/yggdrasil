@@ -1,3 +1,37 @@
+# 1.6.14+19 [12.10.2023 14:03]
+
+- [dev-fix] Fixed slack integration when new version is released.
+
+# 1.6.13+18 [12.10.2023 13:09]
+
+- [dev-fix] Fixed pubspec.lock file.
+
+# 1.6.12+17 [12.10.2023 12:49]
+
+- [dev-fix] Added slack notification when new version is released.
+- [fix] YgSnackBar text now correctly has a min height of lg.
+- [fix] YgSnackBar leading icon background now correctly has a diameter of lg.
+- [improvement] YgSnackBar now supports passing a custom onPressed callback.
+- [improvement] YgSnackBar now supports a custom scaffoldMessengerKey.
+
+# 1.6.11+16 [12.10.2023 09:28]
+
+
+# 1.6.10+15 [11.10.2023 11:56]
+
+- [fix] Added zipping mac artifacts.
+
+# 1.6.8+11 [11.10.2023 09:29]
+
+- [fix] YgGauge no longer indicates the wrong value
+
+# 1.6.5+10 [04.10.2023 13:18]
+
+- [fix] Fixed an svg parsing error for chargerQuestion and playQuestion.
+- [improvement] Added search to icon list screen.
+- [dev-improvement] Improved the .gitingore file to ignore all unnecessary Flutter files. DEV-1366
+- [dev-improvement] Optimised exporting of Yg themes so they don't get exposed in applications that use YggDrasil. DEV-1969
+
 # 1.6.1 [21.09.2023 16:05]
 
 [feature] Added new icons 21.09.23.

@@ -2,6 +2,7 @@ import 'dart:io';
 
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:yggdrasil/src/theme/_theme.dart';
 import 'package:yggdrasil/yggdrasil.dart';
 
 import '../enums/field_state.dart';
@@ -278,13 +279,13 @@ abstract class YgDropdownFieldState<T extends Object, W extends YgDropdownField<
         size: widget.size,
         error: widget.error,
         states: _states,
-        onPressed: widget.disabled ? null : open,
+        onPressed: widget.disabled ? null : _controller.open,
         suffix: AnimatedRotation(
           duration: theme.animationDuration,
           curve: theme.animationCurve,
           turns: _states.opened ? 0.5 : 0,
           child: YgIconButton(
-            onPressed: widget.disabled ? null : open,
+            onPressed: widget.disabled ? null : _controller.open,
             size: YgIconButtonSize.small,
             child: const YgIcon(
               YgIcons.caretDown,
