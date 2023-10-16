@@ -3,6 +3,9 @@
 # Flutter version manager
 .fvm
 
+# Don't check in golden tests failure output
+**/failures/*.png
+
 # Miscellaneous
 *.class
 #*.lock
