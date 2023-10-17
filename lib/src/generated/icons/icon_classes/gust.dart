@@ -1,9 +1,0 @@
-import 'package:yggdrasil/src/utils/yg_icon/yg_icon.dart';
-    
-class Gust extends YgIcon {
-  Gust()
-      : super(
-          name: 'gust',
-          path: 'assets/icons/gust.svg',
-        );
-}

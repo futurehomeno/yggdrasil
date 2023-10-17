@@ -25,7 +25,7 @@ class YgListTile extends StatelessWidget with StatelessWidgetDebugMixin {
   /// Convenience for generating links from YgListTiles.
   factory YgListTile.link({
     required String link,
-    required String iconPath,
+    required YgColorableIconData iconPath,
     required VoidCallback onTap,
   }) {
     return YgListTile(
@@ -67,7 +67,7 @@ class YgListTile extends StatelessWidget with StatelessWidgetDebugMixin {
   final VoidCallback? onTap;
 
   /// When provided, shows an info button next to the title.
-  /// 
+  ///
   /// Called when the button is pressed.
   final VoidCallback? onInfoTap;
 

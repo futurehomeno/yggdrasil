@@ -8,15 +8,15 @@ void main() {
   const String inputPath = 'assets/icons';
   const String outputPath = 'lib/src/generated/icons';
 
-  final List<String> svgFileNames = getSvgFileNamesFromDirectory(inputPath);
-  generateIconFiles(
+  final List<String> svgFileNames = _getSvgFileNamesFromDirectory(inputPath);
+  _generateIconFiles(
     svgFileNames: svgFileNames,
     inputPath: inputPath,
     outputPath: outputPath,
   );
 }
 
-List<String> getSvgFileNamesFromDirectory(String directoryPath) {
+List<String> _getSvgFileNamesFromDirectory(String directoryPath) {
   final Directory directory = Directory(directoryPath);
   final List<String> svgFileNames = <String>[];
 
@@ -32,55 +32,40 @@ List<String> getSvgFileNamesFromDirectory(String directoryPath) {
   return svgFileNames;
 }
 
-void generateIconFiles({
+void _generateIconFiles({
   required List<String> svgFileNames,
   required String inputPath,
   required String outputPath,
 }) {
-  final List<String> exports = <String>[];
   final List<String> iconClassMembers = <String>[];
+  final List<String> iconNamesList = <String>[];
 
   for (final String fileName in svgFileNames) {
     final String iconName = fileName.split('.').firstOrNull ?? '';
     final String camelCaseIconName = ScriptHelpers.toCamelCase(iconName);
-    final String titleCaseIconName = ScriptHelpers.toTitleCase(iconName);
     final bool colored = fileName.contains('_colorful');
-    final String classType = colored ? 'YgColorfulIcon' : 'YgIcon';
-    final String import = colored
-        ? 'import \'package:yggdrasil/src/utils/yg_icon/yg_colorful_icon.dart\';'
-        : 'import \'package:yggdrasil/src/utils/yg_icon/yg_icon.dart\';';
-    final String fileContent = '''
-$import
-    
-class $titleCaseIconName extends $classType {
-  $titleCaseIconName()
-      : super(
-          name: '$camelCaseIconName',
-          path: '$inputPath/$fileName',
-        );
-}
-''';
+    final String classType = colored ? 'YgIconData' : 'YgColorableIconData';
 
-    final File outputFile = File('$outputPath/icon_classes/$iconName.dart');
-    outputFile
-      ..createSync(recursive: true)
-      ..writeAsStringSync(fileContent);
-
-    exports.add("export '$iconName.dart';");
-    iconClassMembers.add('static final $classType $camelCaseIconName = $titleCaseIconName();');
+    iconClassMembers.add(
+      'static const $classType $camelCaseIconName = $classType(name: \'$camelCaseIconName\', path: \'$inputPath/$fileName\');',
+    );
+    iconNamesList.add(camelCaseIconName);
   }
 
-  // Generate for exporting main icons list class.
-  _generateExportBarrelFile(outputPath);
+  _generateIconsListFile(
+    iconClassMembers: iconClassMembers,
+    iconNamesList: iconNamesList,
+    outputPath: outputPath,
+  );
 
-  // Generate barrel file for all the icon classes.
-  _generateIconClassesBarrelFile(exports, outputPath);
-
-  // Generate file containing a static reference to all icons.
-  _generateIconsListFile(iconClassMembers, outputPath);
+  _generateExportBarrelFile(
+    outputPath: outputPath,
+  );
 }
 
-void _generateExportBarrelFile(String outputPath) {
+void _generateExportBarrelFile({
+  required String outputPath,
+}) {
   const String barrelContent = 'export \'yg_icons.dart\';';
   final File barrelFile = File('$outputPath/_icons.dart');
   barrelFile
@@ -88,24 +73,23 @@ void _generateExportBarrelFile(String outputPath) {
     ..writeAsStringSync(barrelContent);
 }
 
-void _generateIconClassesBarrelFile(List<String> exports, String outputPath) {
-  final String barrelContent = exports.join('\n');
-  final File barrelFile = File('$outputPath/icon_classes/_icon_classes.dart');
-  barrelFile
-    ..createSync(recursive: true)
-    ..writeAsStringSync(barrelContent);
-}
-
-void _generateIconsListFile(List<String> iconClassMembers, String outputPath) {
+void _generateIconsListFile({
+  required List<String> iconClassMembers,
+  required List<String> iconNamesList,
+  required String outputPath,
+}) {
   final String iconsListContent = '''
-import 'package:yggdrasil/src/utils/yg_icon/yg_colorful_icon.dart';
-import 'package:yggdrasil/src/utils/yg_icon/yg_icon.dart';
-
-import 'icon_classes/_icon_classes.dart';
+import 'package:yggdrasil/src/utils/yg_icon_data/_yg_icon_data.dart';
 
 class YgIcons {
+  const YgIcons._();
+
   ${iconClassMembers.join('\n  ')}
-  }
+  
+  static const List<YgIconData> allIcons = <YgIconData>[
+    ${iconNamesList.join(',\n    ')},
+  ];
+}
   ''';
 
   final File iconsListFile = File('$outputPath/yg_icons.dart');

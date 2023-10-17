@@ -20,7 +20,7 @@ class YgToggleButton extends StatefulWidget with StatefulWidgetDebugMixin {
 
   const YgToggleButton.onlyIcon({
     super.key,
-    required String this.icon,
+    required YgColorableIconData this.icon,
     required this.value,
     required this.onChanged,
     this.size = YgToggleButtonSize.medium,
@@ -39,7 +39,7 @@ class YgToggleButton extends StatefulWidget with StatefulWidgetDebugMixin {
   final YgToggleButtonSize size;
 
   /// Icon to show in the button.
-  final String? icon;
+  final YgColorableIconData? icon;
 
   /// Text to show in the button.
   final String? text;
@@ -113,7 +113,7 @@ class _YgToggleButtonState extends State<YgToggleButton> {
     final MouseCursor resolvedMouseCursor = toggleButtonStyle.mouseCursor.resolve(_statesController.value);
 
     final String? text = widget.text;
-    final String? icon = widget.icon;
+    final YgColorableIconData? icon = widget.icon;
     final YgToggleButtonVariant variant = _variant;
 
     return RepaintBoundary(

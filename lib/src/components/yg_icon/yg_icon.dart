@@ -2,21 +2,25 @@ import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_svg/flutter_svg.dart';
-import 'package:xml/xml.dart';
 import 'package:yggdrasil/src/extensions/hex_color.dart';
 import 'package:yggdrasil/src/theme/_theme.dart';
-import 'package:yggdrasil/src/utils/yg_icon/yg_colorful_icon.dart';
-import 'package:yggdrasil/src/utils/yg_icon/yg_icon_data.dart';
 import 'package:yggdrasil/yggdrasil.dart';
 
 class YgIcon extends StatelessWidget with StatelessWidgetDebugMixin {
   const YgIcon(
-    this.iconData, {
+    YgColorableIconData? this.iconData, {
     super.key,
     this.size,
     this.color,
     this.semanticLabel,
-  }) : assert(color != null && iconData is YgColorfulIcon, 'Colorful icons cannot be colored.');
+  });
+
+  const YgIcon.embeddedColor(
+    this.iconData, {
+    super.key,
+    this.size,
+    this.semanticLabel,
+  }) : color = null;
 
   /// The icon to show represented as [YgIconData].
   ///
@@ -39,7 +43,7 @@ class YgIcon extends StatelessWidget with StatelessWidgetDebugMixin {
   /// context will be used. This is useful when a parent widget wants to
   /// specify a color for the icon.
   ///
-  /// Note that [YgColorfulIcon]s will never be colored regardless of
+  /// Note that [YgIconData]s will never be colored regardless of
   /// the parent widget specifying an [IconTheme].
   final Color? color;
 
@@ -77,21 +81,21 @@ class YgIcon extends StatelessWidget with StatelessWidgetDebugMixin {
       );
     }
 
-    // If the icon is not colorful, we need to apply the color filter.
+    // If the icon is colorable, we need to apply the color filter.
     // If colorFilter is null, the icon will be rendered with the embedded color.
     late ColorFilter? colorFilter;
-    if (!isColorfulIcon) {
+    if (iconData is YgColorableIconData) {
       final Color? iconColor = color ?? materialIconTheme.color;
       colorFilter = _getColorFilter(context, iconColor);
     }
 
     return FutureBuilder<String>(
-      future: rootBundle.loadString('packages/yggdrasil/$icon'),
+      future: rootBundle.loadString('packages/yggdrasil/${iconData.path}'),
       builder: (BuildContext context, AsyncSnapshot<String> snapshot) {
         if (snapshot.data == null) {
           // This is what we show when the icon is loading.
           return Semantics(
-            label: semanticLabel,
+            label: semanticLabel ?? iconData.name,
             child: SizedBox.square(
               dimension: iconSize,
             ),
@@ -99,19 +103,19 @@ class YgIcon extends StatelessWidget with StatelessWidgetDebugMixin {
         }
 
         late SvgPicture svgPicture;
-        if (isColorfulIcon) {
-          final XmlDocument iconDocument = _convertYggColorTagToFillColor(snapshot, context);
-          svgPicture = SvgPicture.string(
-            iconDocument.toXmlString(),
+        if (iconData is YgColorableIconData) {
+          svgPicture = SvgPicture.asset(
+            iconData.path,
+            package: 'yggdrasil',
+            colorFilter: colorFilter,
             height: iconSize,
             width: iconSize,
             excludeFromSemantics: true,
           );
         } else {
-          svgPicture = SvgPicture.asset(
-            icon,
-            package: 'yggdrasil',
-            colorFilter: colorFilter,
+          final String iconDocument = _convertYggColorTagToFillColor(snapshot, context);
+          svgPicture = SvgPicture.string(
+            iconDocument,
             height: iconSize,
             width: iconSize,
             excludeFromSemantics: true,
@@ -119,7 +123,7 @@ class YgIcon extends StatelessWidget with StatelessWidgetDebugMixin {
         }
 
         return Semantics(
-          label: semanticLabel,
+          label: semanticLabel ?? iconData.name,
           child: ExcludeSemantics(
             child: SizedBox.square(
               dimension: iconSize,
@@ -136,19 +140,16 @@ class YgIcon extends StatelessWidget with StatelessWidgetDebugMixin {
     );
   }
 
-  XmlDocument _convertYggColorTagToFillColor(AsyncSnapshot<String> snapshot, BuildContext context) {
-    final XmlDocument iconDocument = XmlDocument.parse(snapshot.data!);
-    final Iterable<XmlElement> paths = iconDocument.findAllElements('path');
-    for (final XmlElement path in paths) {
-      final String? yggColor = path.getAttribute('yggColor');
-      if (yggColor != null) {
-        Color? color = YgColors.getColorFromString(context: context, colorName: yggColor);
-        color ??= context.defaults.iconColor;
-        path.setAttribute('fill', color.toHex());
-      }
-    }
+  String _convertYggColorTagToFillColor(AsyncSnapshot<String> snapshot, BuildContext context) {
+    return snapshot.data!.replaceAllMapped(RegExp(r'{{([^}]+)}}'), (Match match) {
+      final Color color = YgColors.getColorFromString(
+            context: context,
+            colorName: match.group(1)!,
+          ) ??
+          context.defaults.iconColor;
 
-    return iconDocument;
+      return '{{${color.toHex()}}}';
+    });
   }
 
   ColorFilter _getColorFilter(
@@ -171,7 +172,8 @@ class YgIcon extends StatelessWidget with StatelessWidgetDebugMixin {
   @override
   void debugFillProperties(DiagnosticPropertiesBuilder properties) {
     super.debugFillProperties(properties);
-    properties.add(StringProperty('icon', icon, defaultValue: null));
+    properties.add(StringProperty('iconName', iconData?.name, defaultValue: null));
+    properties.add(StringProperty('iconPath', iconData?.path, defaultValue: null));
     properties.add(EnumProperty<YgIconSize>('size', size, defaultValue: null));
     properties.add(ColorProperty('color', color, defaultValue: null));
     properties.add(StringProperty('semanticLabel', semanticLabel, defaultValue: null));

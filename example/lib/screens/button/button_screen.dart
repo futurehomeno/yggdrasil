@@ -117,7 +117,7 @@ class ButtonScreen extends StatelessWidget {
             subtitle: 'Spacing between buttons added manually.',
             children: <Widget>[
               YgButton.leadingIcon(
-                icon: const YgIcon(YgIcons.deviceHubColorful),
+                icon: const YgIcon.embeddedColor(YgIcons.deviceHubColorful),
                 onPressed: () {},
                 child: const Text('Default icon color'),
               ),

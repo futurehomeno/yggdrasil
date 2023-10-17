@@ -546,7 +546,7 @@ class _YgTextFieldState extends State<YgTextField> {
     return _obscureTextToggled;
   }
 
-  String get _suffixIcon {
+  YgColorableIconData get _suffixIcon {
     if (_obscureTextToggled) {
       return YgIcons.eyeOpen;
     }
