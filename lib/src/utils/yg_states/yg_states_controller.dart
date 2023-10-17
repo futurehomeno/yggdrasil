@@ -171,4 +171,8 @@ class StatesChange<T extends Enum> {
 
   final Set<T> added;
   final Set<T> removed;
+
+  bool contains(T state) {
+    return added.contains(state) || removed.contains(state);
+  }
 }

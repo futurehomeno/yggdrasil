@@ -1,84 +1,105 @@
-import 'package:flutter/material.dart';
-import 'package:yggdrasil/src/utils/yg_states/yg_property.dart';
+part of 'yg_property.dart';
 
-import 'yg_animated_style.dart';
+/// The result of [YgProperty.animate].
+///
+/// Contains the result of [YgProperty.resolve] using the given
+/// [YgStatesController] in [value] and animates to a new value when the
+/// resolved value changes.
+abstract class YgAnimatedProperty<V> implements Animation<V>, YgDrivenProperty<V> {
+  const YgAnimatedProperty();
+}
 
-// ignore: avoid-dynamic
-typedef DynamicAnimation = Animation<dynamic>;
-typedef YgPropertyResolver<T extends Enum, V> = V Function(BuildContext context, Set<T> states);
-typedef Interpolator<T> = T Function(double t, T from, T to);
-
-class YgAnimatedProperty<T extends Enum, V> extends Animation<V>
+class _YgAnimatedProperty<T extends Enum, V> extends Animation<V>
     with AnimationWithParentMixin<double>
-    implements YgProperty<T, V> {
-  YgAnimatedProperty.fromStyle(
-    YgAnimatedStyle<T> this.parent,
-    this._resolve, [
-    this._interpolator,
-  ]);
-
-  @override
-  final Animation<double> parent;
-
-  /// Resolves the value of the property given a set of states and a context.
-  final YgPropertyResolver<T, V> _resolve;
-
-  /// Interpolates between 2 values.
-  final Interpolator<V>? _interpolator;
-
-  /// The value this property animates from.
-  V? from;
-
-  /// The value this property animates to.
-  V? to;
-
-  /// Interpolate between 2 values.
-  ///
-  /// This method may be overwritten to implement custom typed properties.
-  V lerp(double t, V from, V to) {
-    final Interpolator<V>? interpolator = this._interpolator;
-
-    // Fall back on simple interpolation when there is no user specified one.
-    if (interpolator == null) {
-      if (to == null) {
-        return from;
-      } else if (from == null) {
-        return to;
-      }
-
-      if (t > 0.5) {
-        return to;
-      }
-
-      return from;
-    }
-
-    return interpolator(t, from, to);
+    implements YgAnimatedProperty<V> {
+  _YgAnimatedProperty({
+    required YgUpdateMixin<StatefulWidget> vsync,
+    required Curve curve,
+    required YgProperty<T, V> property,
+    required YgStatesController<T> controller,
+    required Duration duration,
+  })  : _statesController = controller,
+        _vsync = vsync,
+        _curve = curve,
+        _property = property,
+        _animationController = AnimationController(
+          vsync: vsync,
+          duration: duration,
+        ),
+        _tween = property.createTween(
+          property.resolve(
+            vsync.context,
+            controller.value,
+          ),
+        ) {
+    _statesController.addListener(_handleStateChange);
+    _vsync.addDependenciesChangedListener(_handleDependenciesChange);
   }
 
-  /// Resolves the value for given states.
+  final AnimationController _animationController;
+  final Tween<V> _tween;
+  final YgStatesController<T> _statesController;
+  final YgUpdateMixin _vsync;
+  final Curve _curve;
+  final YgProperty<T, V> _property;
+
   @override
-  V resolve(
-    BuildContext context,
-    Set<T> states,
-  ) {
-    return _resolve(
+  Animation<double> get parent => _animationController;
+
+  @override
+  V get value => _tween.transform(
+        _curve.transform(
+          _animationController.value,
+        ),
+      );
+
+  @override
+  void dispose() {
+    _statesController.removeListener(_handleStateChange);
+    _vsync.removeDependenciesChangedListener(_handleDependenciesChange);
+    _animationController.dispose();
+  }
+
+  void _handleStateChange() {
+    final Set<T> states = _statesController.value;
+    final Set<T> previousStates = _statesController.previous;
+    final BuildContext context = _vsync.context;
+
+    final V previous = _property.resolve(
+      context,
+      previousStates,
+    );
+
+    final V target = _property.resolve(
       context,
       states,
     );
+
+    final bool changed = previous != target;
+
+    if (changed) {
+      _tween.begin = _tween.evaluate(_animationController);
+      _tween.end = target;
+      _animationController.forward(from: 0);
+    }
   }
 
-  @override
-  V get value {
-    assert(
-      from != null && to != null,
-      'value was accessed before ${toString()} was initialized',
+  void _handleDependenciesChange() {
+    final Set<T> states = _statesController.value;
+    final BuildContext context = _vsync.context;
+
+    final V target = _property.resolve(
+      context,
+      states,
     );
 
-    return lerp(
-      parent.value,
-      from as V,
-      to as V,
-    );
+    final bool shouldUpdate = _tween.end != target;
+
+    if (shouldUpdate) {
+      // We have to update the listeners because the value of on of the child
+      // animations changed, even though the animation did not advance.
+      // ignore: invalid_use_of_protected_member
+      _animationController.notifyListeners();
+    }
   }
 }

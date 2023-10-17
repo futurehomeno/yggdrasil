@@ -1,81 +1,92 @@
-import 'package:flutter/material.dart';
-import 'package:yggdrasil/yggdrasil.dart';
+import 'package:flutter/widgets.dart';
 
-typedef AllResolver<T> = T Function(BuildContext context);
+import '_yg_states.dart';
 
-abstract class YgProperty<T extends Enum, V> implements Listenable {
+part 'yg_animated_property.dart';
+part 'yg_driven_property.dart';
+
+typedef YgStatesResolver<T extends Enum, V> = V Function(BuildContext, Set<T>);
+typedef YgStatesAllResolver<V> = V Function(BuildContext);
+
+abstract class YgProperty<T extends Enum, V> {
   const YgProperty();
 
-  factory YgProperty.all(
-    AllResolver<V> resolver,
-  ) = _YgPropertyAll<T, V>;
-
-  factory YgProperty.resolveWith(
-    YgPropertyResolver<T, V> resolver,
+  const factory YgProperty.resolveWith(
+    YgStatesResolver<T, V> resolver,
   ) = _YgPropertyResolveWith<T, V>;
 
-  V resolve(
-    BuildContext context,
-    Set<T> states,
-  );
+  const factory YgProperty.all(
+    YgStatesAllResolver<V> resolver,
+  ) = _YgPropertyResolveAll<T, V>;
 
-  V get value;
+  /// Resolves the value for a given set of [states].
+  V resolve(BuildContext context, Set<T> states);
+
+  /// Interpolates between values.
+  ///
+  /// Should be overwritten for any value which supports interpolation.
+  Tween<V> createTween(V initialValue) {
+    return Tween<V>(
+      begin: initialValue,
+      end: initialValue,
+    );
+  }
+
+  YgAnimatedProperty<V> animate({
+    required YgStatesController<T> controller,
+    required YgUpdateMixin updater,
+    required Duration duration,
+    required Curve curve,
+  }) {
+    return _YgAnimatedProperty<T, V>(
+      controller: controller,
+      vsync: updater,
+      curve: curve,
+      duration: duration,
+      property: this,
+    );
+  }
+
+  YgDrivenProperty<V> drive({
+    required YgStatesController<T> controller,
+    required YgUpdateMixin updater,
+  }) {
+    return _YgDrivenProperty<T, V>(
+      controller: controller,
+      vsync: updater,
+      property: this,
+    );
+  }
 }
 
-class _YgPropertyAll<T extends Enum, V> extends ChangeNotifier implements YgProperty<T, V> {
-  _YgPropertyAll(this._resolver);
-
-  final AllResolver<V> _resolver;
-
-  V? _value;
+mixin YgPropertyResolveWithMixin<T extends Enum, V> on YgProperty<T, V> {
+  YgStatesResolver<T, V> get resolver;
 
   @override
   V resolve(BuildContext context, Set<T> states) {
-    final V resolved = _resolver(context);
-    if (_value != resolved) {
-      _value = resolved;
-      notifyListeners();
-    }
-
-    return resolved;
-  }
-
-  @override
-  V get value {
-    assert(
-      _value != null,
-      'value was accessed before ${toString()} was initialized',
-    );
-
-    return _value!;
+    return resolver(context, states);
   }
 }
 
-class _YgPropertyResolveWith<T extends Enum, V> extends ChangeNotifier implements YgProperty<T, V> {
-  _YgPropertyResolveWith(this._resolver);
+class _YgPropertyResolveWith<T extends Enum, V> extends YgProperty<T, V> with YgPropertyResolveWithMixin<T, V> {
+  const _YgPropertyResolveWith(this.resolver);
 
-  final YgPropertyResolver<T, V> _resolver;
+  @override
+  final YgStatesResolver<T, V> resolver;
+}
 
-  V? _value;
+mixin YgPropertyResolveAllMixin<T extends Enum, V> on YgProperty<T, V> {
+  YgStatesAllResolver<V> get resolver;
 
   @override
   V resolve(BuildContext context, Set<T> states) {
-    final V resolved = _resolver(context, states);
-    if (_value != resolved) {
-      _value = resolved;
-      notifyListeners();
-    }
-
-    return resolved;
+    return resolver(context);
   }
+}
+
+class _YgPropertyResolveAll<T extends Enum, V> extends YgProperty<T, V> with YgPropertyResolveAllMixin<T, V> {
+  const _YgPropertyResolveAll(this.resolver);
 
   @override
-  V get value {
-    assert(
-      _value != null,
-      'value was accessed before ${toString()} was initialized',
-    );
-
-    return _value!;
-  }
+  final YgStatesAllResolver<V> resolver;
 }
