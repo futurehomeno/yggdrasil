@@ -5,7 +5,7 @@ import 'package:yggdrasil/src/theme/_theme.dart';
 class YgPumpDeviceBuilder {
   const YgPumpDeviceBuilder._();
 
-  static Future<void> customPumpDeviceBuilder({
+  static Future<void> goldenToolkitPumpDeviceBuilder({
     required WidgetTester widgetTester,
     required DeviceBuilder deviceBuilder,
   }) {

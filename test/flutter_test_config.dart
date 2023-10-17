@@ -1,9 +1,22 @@
 import 'dart:async';
 
-import 'package:golden_toolkit/golden_toolkit.dart';
+import 'package:alchemist/alchemist.dart';
+import 'package:yggdrasil/yggdrasil.dart';
 
 Future<void> testExecutable(FutureOr<void> Function() testMain) async {
-  await loadAppFonts();
+  // SETUP FOR GOLDEN TOOLKIT
+  // await loadAppFonts();
 
-  return testMain();
+  // return testMain();
+
+  // SETUP FOR ALCHEMIST
+  return AlchemistConfig.runWithConfig(
+    config: AlchemistConfig(
+      platformGoldensConfig: PlatformGoldensConfig(
+        theme: YgThemeDataHelper.getThemeData(YgTheme.consumerLight),
+      ),
+      theme: YgThemeDataHelper.getThemeData(YgTheme.consumerLight),
+    ),
+    run: testMain,
+  );
 }

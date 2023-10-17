@@ -25,6 +25,19 @@ void main() {
             ),
           )
           ..addScenario(
+            name: 'Without onClose',
+            widget: YgScenarioWidgetWrapper(
+              child: YgCallout(
+                title: 'Callout title',
+                description: 'Callout description',
+                textLink: YgTextLink(
+                  text: 'Text link',
+                  onPressed: () {},
+                ),
+              ),
+            ),
+          )
+          ..addScenario(
             name: 'Title and description',
             widget: const YgScenarioWidgetWrapper(
               child: YgCallout(
@@ -42,7 +55,7 @@ void main() {
             ),
           );
 
-        await YgPumpDeviceBuilder.customPumpDeviceBuilder(
+        await YgPumpDeviceBuilder.goldenToolkitPumpDeviceBuilder(
           deviceBuilder: builder,
           widgetTester: tester,
         );
