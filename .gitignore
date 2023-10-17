@@ -3,7 +3,7 @@
 # Flutter version manager
 .fvm
 
-# Don't check in golden tests failure output
+# Golden tests
 **/failures/*.png
 **/goldens/macos
 **/goldens/linux
