@@ -18,8 +18,8 @@ dependencies:
       url: git@github.com:futurehomeno/theme_tailor.git
       path: packages/theme_tailor_annotation
   flutter_svg: 2.0.7
-  golden_toolkit: 0.15.0 # flutter test --update-goldens --tags=golden
-  alchemist: 0.6.1 # flutter test --update-goldens
+  golden_toolkit: 0.15.0 
+  alchemist: 0.6.1 # flutter test --update-goldens --tags=golden
 
 dev_dependencies:
   # Run `flutter pub run build_runner build --delete-conflicting-outputs` in order to generate stuff.
