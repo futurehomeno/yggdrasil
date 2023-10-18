@@ -3,6 +3,9 @@ import 'package:flutter/material.dart';
 import '../_yg_states.dart';
 
 typedef YgMaterialProperty<V> = YgProperty<MaterialState, V>;
+
+// region Non Nullable
+
 typedef YgMaterialBoxConstraintsProperty = YgMaterialProperty<BoxConstraints>;
 typedef YgMaterialEdgeInsetsProperty = YgMaterialProperty<EdgeInsets>;
 typedef YgMaterialRelativeRectProperty = YgMaterialProperty<RelativeRect>;
@@ -23,3 +26,30 @@ typedef YgMaterialBorderRadiusProperty = YgMaterialProperty<BorderRadius>;
 typedef YgMaterialEdgeInsetsGeometryProperty = YgMaterialProperty<EdgeInsetsGeometry>;
 typedef YgMaterialRectProperty = YgMaterialProperty<Rect>;
 typedef YgMaterialTextStyleProperty = YgMaterialProperty<TextStyle>;
+
+// endregion
+
+// region Nullable
+
+typedef YgMaterialNullableBoxConstraintsProperty = YgMaterialProperty<BoxConstraints?>;
+typedef YgMaterialNullableEdgeInsetsProperty = YgMaterialProperty<EdgeInsets?>;
+typedef YgMaterialNullableRelativeRectProperty = YgMaterialProperty<RelativeRect?>;
+typedef YgMaterialNullableThemeDataProperty = YgMaterialProperty<ThemeData?>;
+typedef YgMaterialNullableAlignmentGeometryProperty = YgMaterialProperty<AlignmentGeometry?>;
+typedef YgMaterialNullableColorProperty = YgMaterialProperty<Color?>;
+typedef YgMaterialNullableFractionalOffsetProperty = YgMaterialProperty<FractionalOffset?>;
+typedef YgMaterialNullableShapeBorderProperty = YgMaterialProperty<ShapeBorder?>;
+typedef YgMaterialNullableAlignmentProperty = YgMaterialProperty<Alignment?>;
+typedef YgMaterialNullableDecorationProperty = YgMaterialProperty<Decoration?>;
+typedef YgMaterialNullableIntProperty = YgMaterialProperty<int?>;
+typedef YgMaterialNullableSizeProperty = YgMaterialProperty<Size?>;
+typedef YgMaterialNullableBorderProperty = YgMaterialProperty<Border?>;
+typedef YgMaterialNullableDoubleProperty = YgMaterialProperty<double?>;
+typedef YgMaterialNullableMatrix4Property = YgMaterialProperty<Matrix4?>;
+typedef YgMaterialNullableStepProperty = YgMaterialProperty<Step?>;
+typedef YgMaterialNullableBorderRadiusProperty = YgMaterialProperty<BorderRadius?>;
+typedef YgMaterialNullableEdgeInsetsGeometryProperty = YgMaterialProperty<EdgeInsetsGeometry?>;
+typedef YgMaterialNullableRectProperty = YgMaterialProperty<Rect?>;
+typedef YgMaterialNullableTextStyleProperty = YgMaterialProperty<TextStyle?>;
+
+// endregion
