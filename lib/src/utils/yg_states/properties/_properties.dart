@@ -5,6 +5,7 @@ export 'yg_border_radius_property.dart';
 export 'yg_box_constraints_property.dart';
 export 'yg_color_property.dart';
 export 'yg_decoration_property.dart';
+export 'yg_double_property.dart';
 export 'yg_edge_insets_geometry_property.dart';
 export 'yg_edge_insets_property.dart';
 export 'yg_fractional_offset_property.dart';

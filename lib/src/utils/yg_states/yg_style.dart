@@ -6,13 +6,13 @@ import 'package:yggdrasil/src/utils/_utils.dart';
 abstract class YgStyle<T extends Enum> extends ChangeNotifier {
   YgStyle({
     required this.controller,
-    required this.updater,
+    required this.vsync,
   }) {
     init();
   }
 
   final YgStatesController<T> controller;
-  final YgUpdateMixin updater;
+  final YgUpdateMixin vsync;
   final List<YgDrivenProperty<dynamic>> _properties = <YgDrivenProperty<dynamic>>[];
 
   void init();
@@ -33,7 +33,7 @@ abstract class YgStyle<T extends Enum> extends ChangeNotifier {
   }) {
     final YgAnimatedProperty<V> listenable = property.animate(
       controller: controller,
-      updater: updater,
+      vsync: vsync,
       curve: curve,
       duration: duration,
     );
@@ -47,7 +47,7 @@ abstract class YgStyle<T extends Enum> extends ChangeNotifier {
   YgDrivenProperty<V> drive<V>(YgProperty<T, V> property) {
     final YgDrivenProperty<V> listenable = property.drive(
       controller: controller,
-      updater: updater,
+      updater: vsync,
     );
 
     _properties.add(listenable);
@@ -55,4 +55,6 @@ abstract class YgStyle<T extends Enum> extends ChangeNotifier {
 
     return listenable;
   }
+
+  BuildContext get context => vsync.context;
 }

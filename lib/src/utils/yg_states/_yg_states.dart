@@ -1,4 +1,7 @@
+export 'nullable_properties/_nullable_properties.dart';
 export 'properties/_properties.dart';
+export 'yg_animated_properties.dart';
+export 'yg_driven_properties.dart';
 export 'yg_property.dart';
 export 'yg_states_builder.dart';
 export 'yg_states_controller.dart';

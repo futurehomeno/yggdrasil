@@ -1,19 +1,19 @@
 import 'package:flutter/material.dart';
 import 'package:yggdrasil/yggdrasil.dart';
 
-abstract class YgEdgeInsetsGeometryProperty<T extends Enum> extends YgProperty<T, EdgeInsetsGeometry?> {
+abstract class YgEdgeInsetsGeometryProperty<T extends Enum> extends YgProperty<T, EdgeInsetsGeometry> {
   const YgEdgeInsetsGeometryProperty();
 
   const factory YgEdgeInsetsGeometryProperty.resolveWith(
-    YgStatesResolver<T, EdgeInsetsGeometry?> resolver,
+    YgStatesResolver<T, EdgeInsetsGeometry> resolver,
   ) = _YgEdgeInsetsGeometryPropertyResolveWith<T>;
 
   const factory YgEdgeInsetsGeometryProperty.all(
-    YgStatesAllResolver<EdgeInsetsGeometry?> resolver,
+    YgStatesAllResolver<EdgeInsetsGeometry> resolver,
   ) = _YgEdgeInsetsGeometryPropertyAll<T>;
 
   @override
-  EdgeInsetsGeometryTween createTween(EdgeInsetsGeometry? initialValue) {
+  Tween<EdgeInsetsGeometry> createTween(EdgeInsetsGeometry initialValue) {
     return EdgeInsetsGeometryTween(
       begin: initialValue,
       end: initialValue,
@@ -22,17 +22,17 @@ abstract class YgEdgeInsetsGeometryProperty<T extends Enum> extends YgProperty<T
 }
 
 class _YgEdgeInsetsGeometryPropertyResolveWith<T extends Enum> extends YgEdgeInsetsGeometryProperty<T>
-    with YgPropertyResolveWithMixin<T, EdgeInsetsGeometry?> {
+    with YgPropertyResolveWithMixin<T, EdgeInsetsGeometry> {
   const _YgEdgeInsetsGeometryPropertyResolveWith(this.resolver);
 
   @override
-  final YgStatesResolver<T, EdgeInsetsGeometry?> resolver;
+  final YgStatesResolver<T, EdgeInsetsGeometry> resolver;
 }
 
 class _YgEdgeInsetsGeometryPropertyAll<T extends Enum> extends YgEdgeInsetsGeometryProperty<T>
-    with YgPropertyResolveAllMixin<T, EdgeInsetsGeometry?> {
+    with YgPropertyResolveAllMixin<T, EdgeInsetsGeometry> {
   const _YgEdgeInsetsGeometryPropertyAll(this.resolver);
 
   @override
-  final YgStatesAllResolver<EdgeInsetsGeometry?> resolver;
+  final YgStatesAllResolver<EdgeInsetsGeometry> resolver;
 }
