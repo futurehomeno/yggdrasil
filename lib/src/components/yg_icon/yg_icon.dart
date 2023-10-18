@@ -140,6 +140,7 @@ class YgIcon extends StatelessWidget with StatelessWidgetDebugMixin {
     );
   }
 
+  // Replace all fill with color from yggColor.
   String _convertYggColorTagToFillColor(AsyncSnapshot<String> snapshot, BuildContext context) {
     return snapshot.data!
         .replaceAllMapped(RegExp(r'fill="[^"]+"'), (Match match) => '')
