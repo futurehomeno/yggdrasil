@@ -93,8 +93,6 @@ class _YgRadioState<T> extends State<YgRadio<T>> with TickerProviderStateMixin, 
 
   @override
   Widget build(BuildContext context) {
-    final YgRadioTheme radioTheme = context.radioTheme;
-
     return RepaintBoundary(
       child: Semantics(
         checked: widget._selected,
@@ -115,11 +113,9 @@ class _YgRadioState<T> extends State<YgRadio<T>> with TickerProviderStateMixin, 
             child: Padding(
               padding: EdgeInsets.all(context.radioTheme.padding),
               child: CustomPaint(
-                size: Size.square(radioTheme.size),
+                size: Size.square(_style.radioSize.value),
                 painter: _YgRadioPainter(
                   style: _style,
-                  radioSize: radioTheme.size,
-                  helperHandleColor: radioTheme.helperHandleColor,
                 ),
               ),
             ),
@@ -148,13 +144,9 @@ class _YgRadioState<T> extends State<YgRadio<T>> with TickerProviderStateMixin, 
 class _YgRadioPainter extends CustomPainter {
   _YgRadioPainter({
     required this.style,
-    required this.helperHandleColor,
-    required this.radioSize,
   }) : super(repaint: style);
 
   final YgRadioStyle style;
-  final double radioSize;
-  final Color helperHandleColor;
 
   @override
   void paint(Canvas canvas, Size objectSize) {
@@ -168,11 +160,11 @@ class _YgRadioPainter extends CustomPainter {
 
     final Paint helperHandlePaint = Paint()
       ..style = PaintingStyle.fill
-      ..color = helperHandleColor;
+      ..color = style.helperHandleColor.value;
 
     canvas.drawCircle(
       Offset(objectSize.width / 2.0, objectSize.height / 2.0),
-      radioSize / 2.0,
+      style.radioSize.value / 2.0,
       backgroundPaint,
     );
 
@@ -191,8 +183,6 @@ class _YgRadioPainter extends CustomPainter {
 
   @override
   bool shouldRepaint(covariant _YgRadioPainter oldDelegate) {
-    return style != oldDelegate.style ||
-        radioSize != oldDelegate.radioSize ||
-        helperHandleColor != oldDelegate.helperHandleColor;
+    return style != oldDelegate.style;
   }
 }

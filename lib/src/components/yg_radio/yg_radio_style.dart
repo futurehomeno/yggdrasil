@@ -14,6 +14,8 @@ class YgRadioStyle extends YgStyle<YgRadioState> {
   late final YgAnimatedColorProperty handleColor;
   late final YgAnimatedDoubleProperty helperHandleSize;
   late final YgDrivenProperty<MouseCursor> mouseCursor;
+  late final YgDrivenDoubleProperty radioSize;
+  late final YgDrivenColorProperty helperHandleColor;
 
   @override
   void init() {
@@ -40,6 +42,20 @@ class YgRadioStyle extends YgStyle<YgRadioState> {
     mouseCursor = drive(
       YgProperty<YgRadioState, MouseCursor>.resolveWith(_resolveMouseCursor),
     );
+    radioSize = drive(
+      YgDoubleProperty<YgRadioState>.all(_resolveRadioSize),
+    );
+    helperHandleColor = drive(
+      YgColorProperty<YgRadioState>.all(_resolveHelperHandleColor),
+    );
+  }
+
+  double _resolveRadioSize(BuildContext context) {
+    return _theme.size;
+  }
+
+  Color _resolveHelperHandleColor(BuildContext context) {
+    return _theme.helperHandleColor;
   }
 
   Color _resolveBackgroundColor(BuildContext context, Set<YgRadioState> states) {

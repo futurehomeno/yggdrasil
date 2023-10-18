@@ -21,26 +21,40 @@ class _YgDrivenProperty<T extends Enum, V> extends ValueNotifier<V> implements Y
   })  : _property = property,
         _vsync = vsync,
         _controller = controller,
+        _usesStates = property is! YgPropertyResolveAllMixin<T, V>,
         super(
           property.resolve(
             vsync.context,
             controller.value,
           ),
         ) {
-    _controller.addListener(_handleChange);
+    if (_usesStates) {
+      _controller.addListener(_handleChange);
+    }
     _vsync.addDependenciesChangedListener(_handleChange);
   }
 
   @override
   void dispose() {
+    if (_usesStates) {
+      _controller.addListener(_handleChange);
+    }
     _controller.removeListener(_handleChange);
     _vsync.removeDependenciesChangedListener(_handleChange);
     super.dispose();
   }
 
+  /// The states controller which drives this property.
   final YgStatesController<T> _controller;
+
+  /// The vsync, update and context provider.
   final YgUpdateMixin _vsync;
+
+  /// The parent property.
   final YgProperty<T, V> _property;
+
+  /// Whether the property will resolve to the same value no matter the states.
+  final bool _usesStates;
 
   void _handleChange() {
     final Set<T> states = _controller.value;
