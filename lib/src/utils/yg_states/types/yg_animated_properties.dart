@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import '_yg_states.dart';
+import '../_yg_states.dart';
 
 // region Non nullable
 

@@ -66,6 +66,12 @@ class _YgRadioState<T> extends State<YgRadio<T>> with TickerProviderStateMixin, 
   );
 
   @override
+  void initState() {
+    super.initState();
+    _style.mouseCursor.addListener(_rebuild);
+  }
+
+  @override
   void didUpdateWidget(covariant YgRadio<T> oldWidget) {
     super.didUpdateWidget(oldWidget);
 
@@ -73,8 +79,13 @@ class _YgRadioState<T> extends State<YgRadio<T>> with TickerProviderStateMixin, 
     _statesController.update(YgRadioState.selected, widget._selected);
   }
 
+  void _rebuild() {
+    setState(() {});
+  }
+
   @override
   void dispose() {
+    _style.mouseCursor.removeListener(_rebuild);
     _statesController.dispose();
     _style.dispose();
     super.dispose();
