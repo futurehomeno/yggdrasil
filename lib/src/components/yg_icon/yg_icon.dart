@@ -141,14 +141,16 @@ class YgIcon extends StatelessWidget with StatelessWidgetDebugMixin {
   }
 
   String _convertYggColorTagToFillColor(AsyncSnapshot<String> snapshot, BuildContext context) {
-    return snapshot.data!.replaceAllMapped(RegExp(r'{{([^}]+)}}'), (Match match) {
+    return snapshot.data!
+        .replaceAllMapped(RegExp(r'fill="[^"]+"'), (Match match) => '')
+        .replaceAllMapped(RegExp(r'yggColor="([^"]+)"'), (Match match) {
       final Color color = YgColors.getColorFromString(
             context: context,
             colorName: match.group(1)!,
           ) ??
           context.defaults.iconColor;
 
-      return '{{${color.toHex()}}}';
+      return 'fill="${color.toHex()}"';
     });
   }
 

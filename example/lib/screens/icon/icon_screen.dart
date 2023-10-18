@@ -79,7 +79,7 @@ class IconScreen extends StatelessWidget {
             subtitle: 'Color embedded in the SVG is used.\nThe color will adapt to the theme.',
             child: YgTag(
               child: YgIcon.embeddedColor(
-                YgIcons.weatherThunderColorful,
+                YgIcons.deviceHubColorful,
                 size: YgIconSize.large,
               ),
             ),
