@@ -14,7 +14,10 @@ enum YgFieldState {
   error,
   filled,
   opened,
+
   placeholder,
+  suffix,
+  floatLabel,
 
   // Variants
   outlined,
@@ -43,4 +46,40 @@ enum YgFieldState {
         return medium;
     }
   }
+}
+
+extension YgFieldStatesExtension on Set<YgFieldState> {
+  YgFieldVariant get variant {
+    if (outlined) {
+      return YgFieldVariant.outlined;
+    }
+
+    return YgFieldVariant.standard;
+  }
+
+  YgFieldSize get size {
+    if (medium) {
+      return YgFieldSize.medium;
+    }
+
+    return YgFieldSize.large;
+  }
+
+  bool get focused => contains(YgFieldState.focused);
+  bool get hovered => contains(YgFieldState.hovered);
+  bool get disabled => contains(YgFieldState.disabled);
+  bool get error => contains(YgFieldState.error);
+  bool get filled => contains(YgFieldState.filled);
+  bool get opened => contains(YgFieldState.opened);
+
+  bool get placeholder => contains(YgFieldState.placeholder);
+  bool get suffix => contains(YgFieldState.suffix);
+
+  // Variants
+  bool get outlined => contains(YgFieldState.outlined);
+  bool get standard => contains(YgFieldState.standard);
+
+  // Sizes
+  bool get medium => contains(YgFieldState.medium);
+  bool get large => contains(YgFieldState.large);
 }

@@ -3,7 +3,7 @@ import 'package:yggdrasil/src/components/yg_radio/enums/yg_radio_state.dart';
 import 'package:yggdrasil/src/theme/radio/radio_theme.dart';
 import 'package:yggdrasil/yggdrasil.dart';
 
-class YgRadioStyle extends YgStyle<YgRadioState> {
+class YgRadioStyle extends YgStyleWithDefaults<YgRadioState> {
   YgRadioStyle({
     required super.controller,
     required super.vsync,
@@ -19,35 +19,13 @@ class YgRadioStyle extends YgStyle<YgRadioState> {
 
   @override
   void init() {
-    backgroundColor = animate(
-      YgColorProperty<YgRadioState>.resolveWith(_resolveBackgroundColor),
-      duration: duration,
-      curve: curve,
-    );
-    handleSize = animate(
-      YgDoubleProperty<YgRadioState>.resolveWith(_resolveHandleSize),
-      duration: duration,
-      curve: curve,
-    );
-    handleColor = animate(
-      YgColorProperty<YgRadioState>.resolveWith(_resolveHandleColor),
-      duration: duration,
-      curve: curve,
-    );
-    helperHandleSize = animate(
-      YgDoubleProperty<YgRadioState>.resolveWith(_resolveHelperHandleSize),
-      duration: duration,
-      curve: curve,
-    );
-    mouseCursor = drive(
-      YgProperty<YgRadioState, MouseCursor>.resolveWith(_resolveMouseCursor),
-    );
-    radioSize = drive(
-      YgDoubleProperty<YgRadioState>.all(_resolveRadioSize),
-    );
-    helperHandleColor = drive(
-      YgColorProperty<YgRadioState>.all(_resolveHelperHandleColor),
-    );
+    backgroundColor = animate(YgColorProperty<YgRadioState>.resolveWith(_resolveBackgroundColor));
+    handleSize = animate(YgDoubleProperty<YgRadioState>.resolveWith(_resolveHandleSize));
+    handleColor = animate(YgColorProperty<YgRadioState>.resolveWith(_resolveHandleColor));
+    helperHandleSize = animate(YgDoubleProperty<YgRadioState>.resolveWith(_resolveHelperHandleSize));
+    mouseCursor = drive(YgProperty<YgRadioState, MouseCursor>.resolveWith(_resolveMouseCursor));
+    radioSize = drive(YgDoubleProperty<YgRadioState>.all(_resolveRadioSize));
+    helperHandleColor = drive(YgColorProperty<YgRadioState>.all(_resolveHelperHandleColor));
   }
 
   double _resolveRadioSize(BuildContext context) {
@@ -124,8 +102,10 @@ class YgRadioStyle extends YgStyle<YgRadioState> {
     return SystemMouseCursors.click;
   }
 
+  @override
   Curve get curve => _theme.animationCurve;
 
+  @override
   Duration get duration => _theme.animationDuration;
 
   YgRadioTheme get _theme => context.radioTheme;

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 
+import '_yg_states.dart';
 import 'types/internal.dart';
 
 /// Factory to create tweens for specific value types.
@@ -258,6 +259,20 @@ class TweenFactory {
         initialValue as ThemeData;
 
         return ThemeDataTween(
+          begin: initialValue,
+          end: initialValue,
+        ) as Tween<T>;
+      case Offset:
+        initialValue as Offset;
+
+        return OffsetTween(
+          begin: initialValue,
+          end: initialValue,
+        ) as Tween<T>;
+      case NullableOffset:
+        initialValue as NullableOffset;
+
+        return OffsetTween(
           begin: initialValue,
           end: initialValue,
         ) as Tween<T>;

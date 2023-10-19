@@ -3,20 +3,32 @@ import 'package:yggdrasil/src/components/fields/enums/yg_field_state.dart';
 import 'package:yggdrasil/src/theme/_theme.dart';
 import 'package:yggdrasil/yggdrasil.dart';
 
-class YgFieldContentStyle extends YgAnimatedStyle<YgFieldState> {
+class YgFieldContentStyle extends YgStyleWithDefaults<YgFieldState> {
   YgFieldContentStyle({
     required super.controller,
     required super.vsync,
   });
 
-  late final YgAnimatedTextStyleProperty<YgFieldState> valueTextStyle =
-      YgAnimatedTextStyleProperty<YgFieldState>.fromStyle(this, _resolveValueTextStyle);
-  late final YgAnimatedTextStyleProperty<YgFieldState> placeholderTextStyle =
-      YgAnimatedTextStyleProperty<YgFieldState>.fromStyle(this, _resolvePlaceholderTextStyle);
-  late final YgAnimatedTextStyleProperty<YgFieldState> labelTextStyle =
-      YgAnimatedTextStyleProperty<YgFieldState>.fromStyle(this, _resolveLabelTextStyle);
-  late final YgAnimatedOffsetProperty<YgFieldState> labelOffset =
-      YgAnimatedOffsetProperty<YgFieldState>.fromStyle(this, _resolveLabelOffset);
+  late final YgAnimatedTextStyleProperty valueTextStyle;
+  late final YgAnimatedTextStyleProperty placeholderTextStyle;
+  late final YgAnimatedTextStyleProperty labelTextStyle;
+  late final YgAnimatedOffsetProperty labelOffset;
+
+  @override
+  void init() {
+    valueTextStyle = animate(
+      YgTextStyleProperty<YgFieldState>.resolveWith(_resolveValueTextStyle),
+    );
+    placeholderTextStyle = animate(
+      YgTextStyleProperty<YgFieldState>.resolveWith(_resolvePlaceholderTextStyle),
+    );
+    labelTextStyle = animate(
+      YgTextStyleProperty<YgFieldState>.resolveWith(_resolveLabelTextStyle),
+    );
+    labelOffset = animate(
+      YgOffsetProperty<YgFieldState>.resolveWith(_resolveLabelOffset),
+    );
+  }
 
   TextStyle _resolveValueTextStyle(BuildContext context, Set<YgFieldState> states) {
     final TextStyle baseStyle = _theme.valueTextStyle;
@@ -81,10 +93,7 @@ class YgFieldContentStyle extends YgAnimatedStyle<YgFieldState> {
     );
   }
 
-  bool _getFloatLabel(Set<YgFieldState> states) =>
-      states.contains(YgFieldState.filled) ||
-      states.contains(YgFieldState.focused) ||
-      states.contains(YgFieldState.placeholder);
+  bool _getFloatLabel(Set<YgFieldState> states) => states.filled || states.focused || states.placeholder;
 
   YgFieldTheme get _fieldTheme => context.fieldTheme;
 
@@ -97,12 +106,4 @@ class YgFieldContentStyle extends YgAnimatedStyle<YgFieldState> {
 
   @override
   Duration get duration => _fieldTheme.animationDuration;
-
-  @override
-  Set<YgDynamicAnimatedProperty<YgFieldState>> get properties => <YgDynamicAnimatedProperty<YgFieldState>>{
-        valueTextStyle,
-        placeholderTextStyle,
-        labelTextStyle,
-        labelOffset,
-      };
 }

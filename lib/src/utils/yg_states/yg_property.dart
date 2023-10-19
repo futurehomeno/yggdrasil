@@ -31,7 +31,7 @@ abstract class YgProperty<T extends Enum, V> {
 
   YgAnimatedProperty<V> animate({
     required YgStatesController<T> controller,
-    required YgUpdateMixin vsync,
+    required YgVsync vsync,
     required Duration duration,
     required Curve curve,
   }) {
@@ -46,11 +46,11 @@ abstract class YgProperty<T extends Enum, V> {
 
   YgDrivenProperty<V> drive({
     required YgStatesController<T> controller,
-    required YgUpdateMixin updater,
+    required YgVsync vsync,
   }) {
     return _YgDrivenProperty<T, V>(
       controller: controller,
-      vsync: updater,
+      vsync: vsync,
       property: this,
     );
   }

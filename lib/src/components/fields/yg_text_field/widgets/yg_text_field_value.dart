@@ -50,7 +50,7 @@ class YgTextFieldValue extends StatelessWidget {
 
         final TextStyle baseStyle = DefaultTextStyle.of(context).style;
 
-        if (states.contains(YgFieldState.disabled)) {
+        if (states.disabled) {
           final int? minLines = this.minLines;
 
           Widget text = Text(

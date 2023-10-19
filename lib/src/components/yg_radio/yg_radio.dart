@@ -52,7 +52,7 @@ class YgRadio<T> extends StatefulWidget with StatefulWidgetDebugMixin {
   }
 }
 
-class _YgRadioState<T> extends State<YgRadio<T>> with TickerProviderStateMixin, YgUpdateMixin {
+class _YgRadioState<T> extends State<YgRadio<T>> with TickerProviderStateMixin, YgVsyncMixin {
   late final YgStatesController<YgRadioState> _statesController = YgStatesController<YgRadioState>(
     <YgRadioState>{
       if (!widget._enabled) YgRadioState.disabled,

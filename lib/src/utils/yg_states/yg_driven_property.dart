@@ -1,5 +1,8 @@
 part of 'yg_property.dart';
 
+// ignore: avoid-dynamic
+typedef YgDynamicDrivenProperty = YgDrivenProperty<dynamic>;
+
 /// The result of [YgProperty.drive].
 ///
 /// Contains the result of [YgProperty.resolve] using the given
@@ -16,7 +19,7 @@ abstract class YgDrivenProperty<V> implements Listenable {
 class _YgDrivenProperty<T extends Enum, V> extends ValueNotifier<V> implements YgDrivenProperty<V> {
   _YgDrivenProperty({
     required YgStatesController<T> controller,
-    required YgUpdateMixin<StatefulWidget> vsync,
+    required YgVsync vsync,
     required YgProperty<T, V> property,
   })  : _property = property,
         _vsync = vsync,
@@ -48,7 +51,7 @@ class _YgDrivenProperty<T extends Enum, V> extends ValueNotifier<V> implements Y
   final YgStatesController<T> _controller;
 
   /// The vsync, update and context provider.
-  final YgUpdateMixin _vsync;
+  final YgVsync _vsync;
 
   /// The parent property.
   final YgProperty<T, V> _property;

@@ -13,7 +13,7 @@ class _YgAnimatedProperty<T extends Enum, V> extends Animation<V>
     with AnimationWithParentMixin<double>
     implements YgAnimatedProperty<V> {
   _YgAnimatedProperty({
-    required YgUpdateMixin<StatefulWidget> vsync,
+    required YgVsync vsync,
     required Curve curve,
     required YgProperty<T, V> property,
     required YgStatesController<T> controller,
@@ -39,7 +39,7 @@ class _YgAnimatedProperty<T extends Enum, V> extends Animation<V>
   final AnimationController _animationController;
   final Tween<V> _tween;
   final YgStatesController<T> _statesController;
-  final YgUpdateMixin _vsync;
+  final YgVsync _vsync;
   final Curve _curve;
   final YgProperty<T, V> _property;
 

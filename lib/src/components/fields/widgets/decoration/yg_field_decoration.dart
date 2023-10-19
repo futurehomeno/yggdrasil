@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:yggdrasil/src/components/fields/widgets/decoration/yg_field_decoration_style.dart';
 import 'package:yggdrasil/src/theme/_theme.dart';
 import 'package:yggdrasil/yggdrasil.dart';
 
@@ -55,60 +56,63 @@ class YgFieldDecoration extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final Widget? suffix = this.suffix;
-    final YgFieldTheme fieldTheme = context.fieldTheme;
-    final YgFieldDecorationTheme theme = fieldTheme.decorationTheme;
+    return YgStyleBuilder(
+      createStyle: (YgVsync vsync) => YgFieldDecorationStyle(
+        controller: statesController,
+        vsync: vsync,
+      ),
+      builder: (BuildContext context, YgFieldDecorationStyle style) {
+        final Widget? suffix = this.suffix;
+        final YgFieldTheme fieldTheme = context.fieldTheme;
+        final YgFieldDecorationTheme theme = fieldTheme.decorationTheme;
 
-    return Column(
-      mainAxisSize: MainAxisSize.min,
-      children: <Widget>[
-        Material(
-          borderRadius: _getBorderRadius(theme),
-          color: _getBackgroundColor(theme),
-          clipBehavior: Clip.antiAlias,
-          child: _maybeWrapWithInkwell(
-            child: Stack(
-              children: <Widget>[
-                Positioned.fill(
-                  child: AnimatedContainer(
-                    duration: fieldTheme.animationDuration,
-                    curve: fieldTheme.animationCurve,
-                    decoration: BoxDecoration(
-                      border: _getBorder(theme),
-                      borderRadius: _getDecorationBorderRadius(theme),
+        return Column(
+          mainAxisSize: MainAxisSize.min,
+          children: <Widget>[
+            YgAnimatedPhysicalModel(
+              borderRadius: style.borderRadius,
+              color: style.backgroundColor,
+              clipBehavior: Clip.antiAlias,
+              child: _maybeWrapWithInkwell(
+                child: Stack(
+                  children: <Widget>[
+                    Positioned.fill(
+                      child: YgAnimatedContainer(
+                        decoration: style.boxDecoration,
+                      ),
                     ),
-                  ),
+                    YgAnimatedPadding(
+                      padding: style.childPadding,
+                      child: Row(
+                        children: <Widget>[
+                          Expanded(child: content),
+                          if (suffix != null)
+                            YgAnimatedPadding(
+                              padding: style.suffixPadding,
+                              // We do not want the suffix to be traversable because
+                              // it breaks the next keyboard action.
+                              child: Focus(
+                                descendantsAreTraversable: false,
+                                skipTraversal: true,
+                                canRequestFocus: false,
+                                child: suffix,
+                              ),
+                            ),
+                        ],
+                      ),
+                    ),
+                  ],
                 ),
-                Padding(
-                  padding: _getChildPadding(theme),
-                  child: Row(
-                    children: <Widget>[
-                      Expanded(child: content),
-                      if (suffix != null)
-                        Padding(
-                          padding: _getSuffixPadding(theme),
-                          // We do not want the suffix to be traversable because
-                          // it breaks the next keyboard action.
-                          child: Focus(
-                            descendantsAreTraversable: false,
-                            skipTraversal: true,
-                            canRequestFocus: false,
-                            child: suffix,
-                          ),
-                        ),
-                    ],
-                  ),
-                ),
-              ],
+              ),
             ),
-          ),
-        ),
-        AnimatedSize(
-          duration: fieldTheme.animationDuration,
-          curve: fieldTheme.animationCurve,
-          child: _buildErrorMessage(theme),
-        ),
-      ],
+            AnimatedSize(
+              duration: fieldTheme.animationDuration,
+              curve: fieldTheme.animationCurve,
+              child: _buildErrorMessage(theme),
+            ),
+          ],
+        );
+      },
     );
   }
 
@@ -139,7 +143,7 @@ class YgFieldDecoration extends StatelessWidget {
   Widget _buildErrorMessage(YgFieldDecorationTheme theme) {
     final String? error = this.error;
 
-    if (statesController.contains(YgFieldState.disabled) || error == null) {
+    if (statesController.value.disabled || error == null) {
       return const FractionallySizedBox(
         widthFactor: 1,
       );

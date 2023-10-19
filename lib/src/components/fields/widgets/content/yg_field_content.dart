@@ -46,7 +46,7 @@ class YgFieldContent extends StatefulWidget {
   State<YgFieldContent> createState() => _YgFieldContentState();
 }
 
-class _YgFieldContentState extends State<YgFieldContent> with TickerProviderStateMixin, YgUpdateMixin {
+class _YgFieldContentState extends State<YgFieldContent> with TickerProviderStateMixin, YgVsyncMixin {
   final UniqueKey _valueKey = UniqueKey();
   final UniqueKey _placeholderKey = UniqueKey();
   final UniqueKey _labelKey = UniqueKey();
@@ -66,11 +66,11 @@ class _YgFieldContentState extends State<YgFieldContent> with TickerProviderStat
   Widget build(BuildContext context) {
     final String? placeholder = widget.placeholder;
     final double labelFloatingHeight = _style.labelFloatingHeight;
-    final Set<YgFieldState> states = widget.statesController.states;
+    final Set<YgFieldState> states = widget.statesController.value;
 
     return Stack(
       children: <Widget>[
-        if (placeholder != null && !states.contains(YgFieldState.filled))
+        if (placeholder != null && !states.filled)
           Padding(
             key: _placeholderKey,
             padding: EdgeInsets.only(top: labelFloatingHeight),
