@@ -3,8 +3,8 @@
 import 'package:flutter/material.dart';
 import 'package:yggdrasil/src/utils/_utils.dart';
 
-abstract class _YgStyleBase<T extends Enum> extends ChangeNotifier {
-  _YgStyleBase({
+abstract class YgStyleBase<T extends Enum> extends ChangeNotifier {
+  YgStyleBase({
     required this.controller,
     required this.vsync,
   }) {
@@ -29,7 +29,7 @@ abstract class _YgStyleBase<T extends Enum> extends ChangeNotifier {
   BuildContext get context => vsync.context;
 }
 
-abstract class YgStyle<T extends Enum> extends _YgStyleBase<T> {
+abstract class YgStyle<T extends Enum> extends YgStyleBase<T> {
   YgStyle({
     required super.controller,
     required super.vsync,
@@ -66,7 +66,7 @@ abstract class YgStyle<T extends Enum> extends _YgStyleBase<T> {
   }
 }
 
-abstract class YgStyleWithDefaults<T extends Enum> extends _YgStyleBase<T> {
+abstract class YgStyleWithDefaults<T extends Enum> extends YgStyleBase<T> {
   YgStyleWithDefaults({
     required super.controller,
     required super.vsync,

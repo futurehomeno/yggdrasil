@@ -52,24 +52,13 @@ class YgRadio<T> extends StatefulWidget with StatefulWidgetDebugMixin {
   }
 }
 
-class _YgRadioState<T> extends State<YgRadio<T>> with TickerProviderStateMixin, YgVsyncMixin {
+class _YgRadioState<T> extends State<YgRadio<T>> {
   late final YgStatesController<YgRadioState> _statesController = YgStatesController<YgRadioState>(
     <YgRadioState>{
       if (!widget._enabled) YgRadioState.disabled,
       if (widget._selected) YgRadioState.selected,
     },
   );
-
-  late final YgRadioStyle _style = YgRadioStyle(
-    controller: _statesController,
-    vsync: this,
-  );
-
-  @override
-  void initState() {
-    super.initState();
-    _style.mouseCursor.addListener(_rebuild);
-  }
 
   @override
   void didUpdateWidget(covariant YgRadio<T> oldWidget) {
@@ -79,49 +68,54 @@ class _YgRadioState<T> extends State<YgRadio<T>> with TickerProviderStateMixin, 
     _statesController.update(YgRadioState.selected, widget._selected);
   }
 
-  void _rebuild() {
-    setState(() {});
-  }
-
   @override
   void dispose() {
-    _style.mouseCursor.removeListener(_rebuild);
     _statesController.dispose();
-    _style.dispose();
     super.dispose();
   }
 
   @override
   Widget build(BuildContext context) {
-    return RepaintBoundary(
-      child: Semantics(
-        checked: widget._selected,
-        child: GestureDetector(
-          behavior: HitTestBehavior.opaque,
-          onTap: widget.onChanged == null ? null : _onTap,
-          child: FocusableActionDetector(
-            onShowHoverHighlight: _onShowHoverHighlight,
-            onShowFocusHighlight: _onShowFocusHighlight,
-            shortcuts: const <ShortcutActivator, Intent>{
-              SingleActivator(LogicalKeyboardKey.space, control: true): ActivateIntent(),
-            },
-            actions: <Type, Action<Intent>>{
-              ActivateIntent: CallbackAction<Intent>(onInvoke: (_) => _onTap()),
-            },
-            mouseCursor: _style.mouseCursor.value,
-            enabled: widget._enabled,
-            child: Padding(
-              padding: EdgeInsets.all(context.radioTheme.padding),
-              child: CustomPaint(
-                size: Size.square(_style.radioSize.value),
-                painter: _YgRadioPainter(
-                  style: _style,
+    return YgStyleBuilder<YgRadioStyle>(
+      createStyle: (YgVsync vsync) => YgRadioStyle(
+        controller: _statesController,
+        vsync: vsync,
+      ),
+      getWatchedProperties: (YgRadioStyle style) => <Listenable>{
+        style.mouseCursor,
+      },
+      builder: (BuildContext context, YgRadioStyle style) {
+        return RepaintBoundary(
+          child: Semantics(
+            checked: widget._selected,
+            child: GestureDetector(
+              behavior: HitTestBehavior.opaque,
+              onTap: widget.onChanged == null ? null : _onTap,
+              child: FocusableActionDetector(
+                onShowHoverHighlight: _onShowHoverHighlight,
+                onShowFocusHighlight: _onShowFocusHighlight,
+                shortcuts: const <ShortcutActivator, Intent>{
+                  SingleActivator(LogicalKeyboardKey.space, control: true): ActivateIntent(),
+                },
+                actions: <Type, Action<Intent>>{
+                  ActivateIntent: CallbackAction<Intent>(onInvoke: (_) => _onTap()),
+                },
+                mouseCursor: style.mouseCursor.value,
+                enabled: widget._enabled,
+                child: Padding(
+                  padding: EdgeInsets.all(context.radioTheme.padding),
+                  child: CustomPaint(
+                    size: Size.square(style.radioSize.value),
+                    painter: _YgRadioPainter(
+                      style: style,
+                    ),
+                  ),
                 ),
               ),
             ),
           ),
-        ),
-      ),
+        );
+      },
     );
   }
 
