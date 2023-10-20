@@ -14,6 +14,7 @@ class YgFieldContent extends StatefulWidget {
     required this.label,
     required this.statesController,
     required this.minLines,
+    required this.floatLabelOnFocus,
   });
 
   /// The value.
@@ -42,6 +43,9 @@ class YgFieldContent extends StatefulWidget {
   /// Only effects the height of the widget.
   final int? minLines;
 
+  /// Whether the label should float up if the widget gets focused.
+  final bool floatLabelOnFocus;
+
   @override
   State<YgFieldContent> createState() => _YgFieldContentState();
 }
@@ -53,6 +57,7 @@ class _YgFieldContentState extends State<YgFieldContent>
   final UniqueKey _labelKey = UniqueKey();
 
   late final YgFieldContentStyle _style = YgFieldContentStyle(
+    floatLabelOnFocus: widget.floatLabelOnFocus,
     controller: widget.statesController,
     vsync: this,
   );

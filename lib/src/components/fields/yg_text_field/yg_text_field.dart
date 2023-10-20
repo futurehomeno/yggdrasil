@@ -446,6 +446,7 @@ class _YgTextFieldState extends State<YgTextField> {
           label: widget.label,
           minLines: widget.minLines,
           placeholder: widget.placeholder,
+          floatLabelOnFocus: true,
         ),
       ),
     );

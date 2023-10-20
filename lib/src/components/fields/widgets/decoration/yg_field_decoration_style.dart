@@ -3,63 +3,27 @@ import 'package:yggdrasil/src/components/fields/enums/yg_field_state.dart';
 import 'package:yggdrasil/src/theme/_theme.dart';
 import 'package:yggdrasil/yggdrasil.dart';
 
-class YgFieldDecorationStyle extends YgStyle<YgFieldState> {
+class YgFieldDecorationStyle extends YgStyleWithDefaults<YgFieldState> {
   YgFieldDecorationStyle({
     required super.controller,
     required super.vsync,
   });
 
-  late final YgAnimatedEdgeInsetsProperty suffixPadding;
-  late final YgAnimatedEdgeInsetsProperty childPadding;
   late final YgAnimatedBorderProperty border;
   late final YgAnimatedColorProperty backgroundColor;
-  late final YgAnimatedBorderRadiusProperty borderRadius;
+  late final YgAnimatedEdgeInsetsProperty childPadding;
+  late final YgAnimatedEdgeInsetsProperty suffixPadding;
   late final YgAnimatedDecorationProperty boxDecoration;
+  late final YgAnimatedBorderRadiusProperty borderRadius;
 
   @override
   void init() {
-    suffixPadding = animate(
-      YgEdgeInsetsProperty<YgFieldState>.resolveWith(
-        _resolveSuffixPadding,
-      ),
-      duration: duration,
-      curve: curve,
-    );
-    childPadding = animate(
-      YgEdgeInsetsProperty<YgFieldState>.resolveWith(
-        _resolveChildPadding,
-      ),
-      duration: duration,
-      curve: curve,
-    );
-    borderRadius = animate(
-      YgBorderRadiusProperty<YgFieldState>.resolveWith(
-        _resolveBorderRadius,
-      ),
-      duration: duration,
-      curve: curve,
-    );
-    border = animate(
-      YgBorderProperty<YgFieldState>.resolveWith(
-        _resolveBorder,
-      ),
-      duration: duration,
-      curve: curve,
-    );
-    backgroundColor = animate(
-      YgColorProperty<YgFieldState>.resolveWith(
-        _resolveBackgroundColor,
-      ),
-      duration: duration,
-      curve: curve,
-    );
-    boxDecoration = animate(
-      YgDecorationProperty<YgFieldState>.resolveWith(
-        _resolveBoxDecoration,
-      ),
-      curve: curve,
-      duration: duration,
-    );
+    border = animate(YgBorderProperty<YgFieldState>.resolveWith(_resolveBorder));
+    childPadding = animate(YgEdgeInsetsProperty<YgFieldState>.resolveWith(_resolveChildPadding));
+    borderRadius = animate(YgBorderRadiusProperty<YgFieldState>.resolveWith(_resolveBorderRadius));
+    suffixPadding = animate(YgEdgeInsetsProperty<YgFieldState>.resolveWith(_resolveSuffixPadding));
+    boxDecoration = animate(YgDecorationProperty<YgFieldState>.resolveWith(_resolveBoxDecoration));
+    backgroundColor = animate(YgColorProperty<YgFieldState>.resolveWith(_resolveBackgroundColor));
   }
 
   EdgeInsets _resolveSuffixPadding(BuildContext context, Set<YgFieldState> states) {
@@ -168,9 +132,7 @@ class YgFieldDecorationStyle extends YgStyle<YgFieldState> {
     return BoxDecoration(
       border: switch (states.variant) {
         YgFieldVariant.outlined => base,
-        YgFieldVariant.standard => Border(
-            bottom: base.bottom,
-          ),
+        YgFieldVariant.standard => Border(bottom: base.bottom),
       },
       borderRadius: switch (states.variant) {
         YgFieldVariant.outlined => _theme.borderRadiusOutlined,
@@ -183,7 +145,9 @@ class YgFieldDecorationStyle extends YgStyle<YgFieldState> {
 
   YgFieldDecorationTheme get _theme => _fieldTheme.decorationTheme;
 
+  @override
   Curve get curve => _fieldTheme.animationCurve;
 
+  @override
   Duration get duration => _fieldTheme.animationDuration;
 }

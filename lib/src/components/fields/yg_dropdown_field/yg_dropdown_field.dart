@@ -213,11 +213,13 @@ abstract class YgDropdownFieldState<T extends Object, W extends YgDropdownField<
   late FocusNode _focusNode = widget.focusNode ?? FocusNode();
 
   late final YgStatesController<YgFieldState> _statesController = YgStatesController<YgFieldState>(<YgFieldState>{
+    if (widget.placeholder != null) YgFieldState.placeholder,
     if (widget.error != null) YgFieldState.error,
-    if (widget.disabled) YgFieldState.disabled,
     if (_controller.filled) YgFieldState.filled,
+    if (widget.disabled) YgFieldState.disabled,
     YgFieldState.fromSize(widget.size),
     YgFieldState.fromVariant(widget.variant),
+    YgFieldState.suffix,
   });
 
   @override
@@ -250,8 +252,11 @@ abstract class YgDropdownFieldState<T extends Object, W extends YgDropdownField<
       _updateController(newController);
     }
 
-    _statesController.update(YgFieldState.disabled, widget.disabled);
+    _statesController.update(YgFieldState.placeholder, widget.placeholder != null);
     _statesController.update(YgFieldState.error, widget.error != null);
+    _statesController.update(YgFieldState.disabled, widget.disabled);
+    _statesController.updateSize(widget.size);
+    _statesController.updateVariant(widget.variant);
 
     super.didUpdateWidget(oldWidget);
   }
@@ -303,6 +308,7 @@ abstract class YgDropdownFieldState<T extends Object, W extends YgDropdownField<
           label: widget.label,
           minLines: widget.minLines,
           placeholder: widget.placeholder,
+          floatLabelOnFocus: false,
         ),
       ),
     );

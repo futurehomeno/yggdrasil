@@ -73,35 +73,38 @@ class YgFieldDecoration extends StatelessWidget {
               borderRadius: style.borderRadius,
               color: style.backgroundColor,
               clipBehavior: Clip.antiAlias,
-              child: _maybeWrapWithInkwell(
-                child: Stack(
-                  children: <Widget>[
-                    Positioned.fill(
-                      child: YgAnimatedContainer(
-                        decoration: style.boxDecoration,
+              child: Material(
+                color: Colors.transparent,
+                child: _maybeWrapWithInkwell(
+                  child: Stack(
+                    children: <Widget>[
+                      Positioned.fill(
+                        child: YgAnimatedContainer(
+                          decoration: style.boxDecoration,
+                        ),
                       ),
-                    ),
-                    YgAnimatedPadding(
-                      padding: style.childPadding,
-                      child: Row(
-                        children: <Widget>[
-                          Expanded(child: content),
-                          if (suffix != null)
-                            YgAnimatedPadding(
-                              padding: style.suffixPadding,
-                              // We do not want the suffix to be traversable because
-                              // it breaks the next keyboard action.
-                              child: Focus(
-                                descendantsAreTraversable: false,
-                                skipTraversal: true,
-                                canRequestFocus: false,
-                                child: suffix,
+                      YgAnimatedPadding(
+                        padding: style.childPadding,
+                        child: Row(
+                          children: <Widget>[
+                            Expanded(child: content),
+                            if (suffix != null)
+                              YgAnimatedPadding(
+                                padding: style.suffixPadding,
+                                // We do not want the suffix to be traversable because
+                                // it breaks the next keyboard action.
+                                child: Focus(
+                                  descendantsAreTraversable: false,
+                                  skipTraversal: true,
+                                  canRequestFocus: false,
+                                  child: suffix,
+                                ),
                               ),
-                            ),
-                        ],
+                          ],
+                        ),
                       ),
-                    ),
-                  ],
+                    ],
+                  ),
                 ),
               ),
             ),

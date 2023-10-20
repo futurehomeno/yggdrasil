@@ -7,7 +7,10 @@ class YgFieldContentStyle extends YgStyleWithDefaults<YgFieldState> {
   YgFieldContentStyle({
     required super.controller,
     required super.vsync,
+    required this.floatLabelOnFocus,
   });
+
+  final bool floatLabelOnFocus;
 
   late final YgAnimatedTextStyleProperty valueTextStyle;
   late final YgAnimatedTextStyleProperty placeholderTextStyle;
@@ -93,7 +96,8 @@ class YgFieldContentStyle extends YgStyleWithDefaults<YgFieldState> {
     );
   }
 
-  bool _getFloatLabel(Set<YgFieldState> states) => states.filled || states.focused || states.placeholder;
+  bool _getFloatLabel(Set<YgFieldState> states) =>
+      states.filled || states.placeholder || (floatLabelOnFocus && states.focused);
 
   YgFieldTheme get _fieldTheme => context.fieldTheme;
 
