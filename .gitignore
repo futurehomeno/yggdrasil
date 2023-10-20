@@ -5,9 +5,6 @@
 
 # Golden tests
 **/failures/*.png
-**/goldens/macos
-**/goldens/linux
-**/goldens/windows
 
 # Miscellaneous
 *.class
