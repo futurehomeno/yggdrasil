@@ -25,17 +25,17 @@ class YgAnimatedContainer extends StatelessWidget {
         ),
         decoration = decoration ?? color?.toDecoration();
 
+  final Widget? child;
   final YgDrivenNullableDoubleProperty? width;
   final YgDrivenNullableDoubleProperty? height;
-  final Widget? child;
   final YgDrivenNullableAlignmentGeometryProperty? alignment;
   final YgDrivenNullableEdgeInsetsGeometryProperty? padding;
   final YgDrivenNullableDecorationProperty? decoration;
   final YgDrivenNullableDecorationProperty? foregroundDecoration;
   final YgDrivenNullableBoxConstraintsProperty? constraints;
   final YgDrivenNullableEdgeInsetsGeometryProperty? margin;
-  final YgDrivenNullableMatrix4Property? transform;
   final YgDrivenNullableAlignmentGeometryProperty? transformAlignment;
+  final YgDrivenMatrix4Property? transform;
   final Clip clipBehavior;
 
   @override

@@ -25,6 +25,7 @@ class _YgAnimatedProperty<T extends Enum, V> extends Animation<V>
         _animationController = AnimationController(
           vsync: vsync,
           duration: duration,
+          value: 1.0,
         ),
         _tween = property.createTween(
           property.resolve(
@@ -96,6 +97,8 @@ class _YgAnimatedProperty<T extends Enum, V> extends Animation<V>
     final bool shouldUpdate = _tween.end != target;
 
     if (shouldUpdate) {
+      _tween.end = target;
+
       // We have to update the listeners because the value of on of the child
       // animations changed, even though the animation did not advance.
       // ignore: invalid_use_of_protected_member

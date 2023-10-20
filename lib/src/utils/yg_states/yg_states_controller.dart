@@ -70,10 +70,10 @@ class YgStatesController<T extends Enum> extends ChangeNotifier {
       _states.remove(state);
     }
 
-    notifyListeners();
     _updatePreviousStates(
       StatesChange<T>.fromUpdate(state, added),
     );
+    notifyListeners();
 
     return added;
   }
@@ -86,10 +86,10 @@ class YgStatesController<T extends Enum> extends ChangeNotifier {
     final bool removed = _states.remove(state);
 
     if (removed) {
-      notifyListeners();
       _updatePreviousStates(
         StatesChange<T>.fromUpdate(state, false),
       );
+      notifyListeners();
     }
 
     return removed;
@@ -103,10 +103,10 @@ class YgStatesController<T extends Enum> extends ChangeNotifier {
     final bool added = _states.add(state);
 
     if (added) {
-      notifyListeners();
       _updatePreviousStates(
         StatesChange<T>.fromUpdate(state, true),
       );
+      notifyListeners();
     }
 
     return added;
@@ -118,10 +118,11 @@ class YgStatesController<T extends Enum> extends ChangeNotifier {
   void update(T state, bool toggled) {
     final bool valueChanged = toggled ? _states.add(state) : _states.remove(state);
     if (valueChanged) {
-      notifyListeners();
+      print('toggled: $toggled, state: $state');
       _updatePreviousStates(
         StatesChange<T>.fromUpdate(state, toggled),
       );
+      notifyListeners();
     }
   }
 
