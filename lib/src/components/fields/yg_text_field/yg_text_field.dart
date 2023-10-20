@@ -392,9 +392,9 @@ class _YgTextFieldState extends State<YgTextField> {
     }
 
     _statesController.update(YgFieldState.placeholder, widget.placeholder != null);
-    _statesController.update(YgFieldState.suffix, widget.suffix != null);
     _statesController.update(YgFieldState.error, widget.error != null);
     _statesController.update(YgFieldState.disabled, widget.disabled);
+    _statesController.update(YgFieldState.suffix, _hasSuffix);
     _statesController.updateSize(widget.size);
     _statesController.updateVariant(widget.variant);
 
@@ -545,6 +545,10 @@ class _YgTextFieldState extends State<YgTextField> {
     }
 
     return YgIcons.eyeClosed;
+  }
+
+  bool get _hasSuffix {
+    return widget.suffix != null || (widget.obscureText && widget.showObscureTextButton);
   }
 
   void _updateFocusNode(FocusNode focusNode) {
