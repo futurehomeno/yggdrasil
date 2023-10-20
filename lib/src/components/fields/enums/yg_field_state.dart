@@ -83,3 +83,15 @@ extension YgFieldStatesExtension on Set<YgFieldState> {
   bool get medium => contains(YgFieldState.medium);
   bool get large => contains(YgFieldState.large);
 }
+
+extension YgFieldStatesControllerExtension on YgStatesController<YgFieldState> {
+  void updateVariant(YgFieldVariant variant) {
+    update(YgFieldState.outlined, variant == YgFieldVariant.outlined);
+    update(YgFieldState.standard, variant == YgFieldVariant.standard);
+  }
+
+  void updateSize(YgFieldSize size) {
+    update(YgFieldState.medium, size == YgFieldSize.medium);
+    update(YgFieldState.large, size == YgFieldSize.large);
+  }
+}

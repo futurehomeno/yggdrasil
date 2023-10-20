@@ -46,7 +46,8 @@ class YgFieldContent extends StatefulWidget {
   State<YgFieldContent> createState() => _YgFieldContentState();
 }
 
-class _YgFieldContentState extends State<YgFieldContent> with TickerProviderStateMixin, YgVsyncMixin {
+class _YgFieldContentState extends State<YgFieldContent>
+    with TickerProviderStateMixin, YgVsyncMixin, YgStatesSubscriberMixin<YgFieldState, YgFieldContent> {
   final UniqueKey _valueKey = UniqueKey();
   final UniqueKey _placeholderKey = UniqueKey();
   final UniqueKey _labelKey = UniqueKey();
@@ -55,6 +56,14 @@ class _YgFieldContentState extends State<YgFieldContent> with TickerProviderStat
     controller: widget.statesController,
     vsync: this,
   );
+
+  @override
+  YgStatesController<YgFieldState> get controller => widget.statesController;
+
+  @override
+  Set<YgFieldState> get subscribedStates => <YgFieldState>{
+        YgFieldState.filled,
+      };
 
   @override
   void dispose() {

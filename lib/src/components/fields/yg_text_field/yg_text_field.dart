@@ -345,9 +345,11 @@ class YgTextField extends StatefulWidget with StatefulWidgetDebugMixin {
 class _YgTextFieldState extends State<YgTextField> {
   /// The current states of the textfield.
   late final YgStatesController<YgFieldState> _statesController = YgStatesController<YgFieldState>(<YgFieldState>{
+    if (_controller.text.isNotEmpty == true) YgFieldState.filled,
+    if (widget.placeholder != null) YgFieldState.placeholder,
+    if (widget.suffix != null) YgFieldState.suffix,
     if (widget.error != null) YgFieldState.error,
     if (widget.disabled) YgFieldState.disabled,
-    if (_controller.text.isNotEmpty == true) YgFieldState.filled,
     YgFieldState.fromSize(widget.size),
     YgFieldState.fromVariant(widget.variant),
   });
@@ -389,8 +391,12 @@ class _YgTextFieldState extends State<YgTextField> {
       _updateFocusNode(newFocusNode);
     }
 
+    _statesController.update(YgFieldState.placeholder, widget.placeholder != null);
+    _statesController.update(YgFieldState.suffix, widget.suffix != null);
     _statesController.update(YgFieldState.error, widget.error != null);
     _statesController.update(YgFieldState.disabled, widget.disabled);
+    _statesController.updateSize(widget.size);
+    _statesController.updateVariant(widget.variant);
 
     super.didUpdateWidget(oldWidget);
   }
@@ -449,8 +455,8 @@ class _YgTextFieldState extends State<YgTextField> {
     }
 
     return MouseRegion(
-      onEnter: (_) => _updateHoverState(true),
-      onExit: (_) => _updateHoverState(false),
+      onEnter: (_) => _statesController.update(YgFieldState.hovered, true),
+      onExit: (_) => _statesController.update(YgFieldState.hovered, false),
       cursor: SystemMouseCursors.text,
       child: GestureDetector(
         onTap: _handleTap,
@@ -488,11 +494,6 @@ class _YgTextFieldState extends State<YgTextField> {
       case YgCompleteAction.none:
         return;
     }
-  }
-
-  void _updateHoverState(bool toggled) {
-    _statesController.update(YgFieldState.hovered, toggled);
-    setState(() {});
   }
 
   Widget? _buildSuffix() {
