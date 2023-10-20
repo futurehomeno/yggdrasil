@@ -9,207 +9,239 @@ class TweenFactory {
 
   static Tween<T> createTween<T>(T initialValue) {
     switch (T) {
-      case NullableAlignmentGeometry:
-        initialValue as NullableAlignmentGeometry;
+      // region Templated
 
-        return AlignmentGeometryTween(
+      case Alignment:
+        initialValue as Alignment;
+
+        return NonNullableAlignmentTween(
           begin: initialValue,
           end: initialValue,
         ) as Tween<T>;
       case NullableAlignment:
-        initialValue as NullableAlignment;
+        initialValue as Alignment?;
 
-        return AlignmentTween(
+        return NullableAlignmentTween(
           begin: initialValue,
           end: initialValue,
         ) as Tween<T>;
-      case NullableBorder:
-        initialValue as NullableBorder;
-
-        return BorderTween(
-          begin: initialValue,
-          end: initialValue,
-        ) as Tween<T>;
-      case NullableBorderRadius:
-        initialValue as NullableBorderRadius;
-
-        return BorderRadiusTween(
-          begin: initialValue,
-          end: initialValue,
-        ) as Tween<T>;
-      case NullableBoxConstraints:
-        initialValue as NullableBoxConstraints;
-
-        return BoxConstraintsTween(
-          begin: initialValue,
-          end: initialValue,
-        ) as Tween<T>;
-      case NullableColor:
-        initialValue as NullableColor;
-
-        return ColorTween(
-          begin: initialValue,
-          end: initialValue,
-        ) as Tween<T>;
-      case NullableDecoration:
-        initialValue as NullableDecoration;
-
-        return DecorationTween(
-          begin: initialValue,
-          end: initialValue,
-        ) as Tween<T>;
-      case NullableDouble:
-        initialValue as NullableDouble;
-
-        return Tween<double>(
-          begin: initialValue,
-          end: initialValue,
-        ) as Tween<T>;
-      case NullableEdgeInsetsGeometry:
-        initialValue as NullableEdgeInsetsGeometry;
-
-        return EdgeInsetsGeometryTween(
-          begin: initialValue,
-          end: initialValue,
-        ) as Tween<T>;
-      case NullableEdgeInsets:
-        initialValue as NullableEdgeInsets;
-
-        return EdgeInsetsTween(
-          begin: initialValue,
-          end: initialValue,
-        ) as Tween<T>;
-      case NullableFractionalOffset:
-        initialValue as NullableFractionalOffset;
-
-        return FractionalOffsetTween(
-          begin: initialValue,
-          end: initialValue,
-        ) as Tween<T>;
-      case NullableMatrix4:
-        initialValue as NullableMatrix4;
-
-        return Matrix4Tween(
-          begin: initialValue,
-          end: initialValue,
-        ) as Tween<T>;
-      case NullableRect:
-        initialValue as NullableRect;
-
-        return RectTween(
-          begin: initialValue,
-          end: initialValue,
-        ) as Tween<T>;
-      case NullableRelativeRect:
-        initialValue as NullableRelativeRect;
-
-        return RelativeRectTween(
-          begin: initialValue,
-          end: initialValue,
-        ) as Tween<T>;
-      case NullableShapeBorder:
-        initialValue as NullableShapeBorder;
-
-        return ShapeBorderTween(
-          begin: initialValue,
-          end: initialValue,
-        ) as Tween<T>;
-      case NullableSize:
-        initialValue as NullableSize;
-
-        return SizeTween(
-          begin: initialValue,
-          end: initialValue,
-        ) as Tween<T>;
-      case NullableTextStyle:
-        initialValue as NullableTextStyle;
-
-        return TextStyleTween(
-          begin: initialValue,
-          end: initialValue,
-        ) as Tween<T>;
-      case NullableThemeData:
-        initialValue as NullableThemeData;
-
-        return ThemeDataTween(
-          begin: initialValue,
-          end: initialValue,
-        ) as Tween<T>;
-
       case AlignmentGeometry:
         initialValue as AlignmentGeometry;
 
-        return AlignmentGeometryTween(
+        return NonNullableAlignmentGeometryTween(
           begin: initialValue,
           end: initialValue,
         ) as Tween<T>;
-      case Alignment:
-        initialValue as Alignment;
+      case NullableAlignmentGeometry:
+        initialValue as AlignmentGeometry?;
 
-        return AlignmentTween(
+        return NullableAlignmentGeometryTween(
           begin: initialValue,
           end: initialValue,
         ) as Tween<T>;
       case Border:
         initialValue as Border;
 
-        return BorderTween(
+        return NonNullableBorderTween(
+          begin: initialValue,
+          end: initialValue,
+        ) as Tween<T>;
+      case NullableBorder:
+        initialValue as Border?;
+
+        return NullableBorderTween(
           begin: initialValue,
           end: initialValue,
         ) as Tween<T>;
       case BorderRadius:
         initialValue as BorderRadius;
 
-        return BorderRadiusTween(
+        return NonNullableBorderRadiusTween(
+          begin: initialValue,
+          end: initialValue,
+        ) as Tween<T>;
+      case NullableBorderRadius:
+        initialValue as BorderRadius?;
+
+        return NullableBorderRadiusTween(
           begin: initialValue,
           end: initialValue,
         ) as Tween<T>;
       case BoxConstraints:
         initialValue as BoxConstraints;
 
-        return BoxConstraintsTween(
+        return NonNullableBoxConstraintsTween(
+          begin: initialValue,
+          end: initialValue,
+        ) as Tween<T>;
+      case NullableBoxConstraints:
+        initialValue as BoxConstraints?;
+
+        return NullableBoxConstraintsTween(
           begin: initialValue,
           end: initialValue,
         ) as Tween<T>;
       case Color:
         initialValue as Color;
 
-        return ColorTween(
+        return NonNullableColorTween(
+          begin: initialValue,
+          end: initialValue,
+        ) as Tween<T>;
+      case NullableColor:
+        initialValue as Color?;
+
+        return NullableColorTween(
           begin: initialValue,
           end: initialValue,
         ) as Tween<T>;
       case Decoration:
         initialValue as Decoration;
 
-        return DecorationTween(
+        return NonNullableDecorationTween(
           begin: initialValue,
           end: initialValue,
         ) as Tween<T>;
-      case double:
-        initialValue as double;
+      case NullableDecoration:
+        initialValue as Decoration?;
 
-        return Tween<double>(
-          begin: initialValue,
-          end: initialValue,
-        ) as Tween<T>;
-      case EdgeInsetsGeometry:
-        initialValue as EdgeInsetsGeometry;
-
-        return EdgeInsetsGeometryTween(
+        return NullableDecorationTween(
           begin: initialValue,
           end: initialValue,
         ) as Tween<T>;
       case EdgeInsets:
         initialValue as EdgeInsets;
 
-        return EdgeInsetsTween(
+        return NonNullableEdgeInsetsTween(
+          begin: initialValue,
+          end: initialValue,
+        ) as Tween<T>;
+      case NullableEdgeInsets:
+        initialValue as EdgeInsets?;
+
+        return NullableEdgeInsetsTween(
+          begin: initialValue,
+          end: initialValue,
+        ) as Tween<T>;
+      case EdgeInsetsGeometry:
+        initialValue as EdgeInsetsGeometry;
+
+        return NonNullableEdgeInsetsGeometryTween(
+          begin: initialValue,
+          end: initialValue,
+        ) as Tween<T>;
+      case NullableEdgeInsetsGeometry:
+        initialValue as EdgeInsetsGeometry?;
+
+        return NullableEdgeInsetsGeometryTween(
           begin: initialValue,
           end: initialValue,
         ) as Tween<T>;
       case FractionalOffset:
         initialValue as FractionalOffset;
 
-        return FractionalOffsetTween(
+        return NonNullableFractionalOffsetTween(
+          begin: initialValue,
+          end: initialValue,
+        ) as Tween<T>;
+      case NullableFractionalOffset:
+        initialValue as FractionalOffset?;
+
+        return NullableFractionalOffsetTween(
+          begin: initialValue,
+          end: initialValue,
+        ) as Tween<T>;
+      case Offset:
+        initialValue as Offset;
+
+        return NonNullableOffsetTween(
+          begin: initialValue,
+          end: initialValue,
+        ) as Tween<T>;
+      case NullableOffset:
+        initialValue as Offset?;
+
+        return NullableOffsetTween(
+          begin: initialValue,
+          end: initialValue,
+        ) as Tween<T>;
+      case Rect:
+        initialValue as Rect;
+
+        return NonNullableRectTween(
+          begin: initialValue,
+          end: initialValue,
+        ) as Tween<T>;
+      case NullableRect:
+        initialValue as Rect?;
+
+        return NullableRectTween(
+          begin: initialValue,
+          end: initialValue,
+        ) as Tween<T>;
+      case RelativeRect:
+        initialValue as RelativeRect;
+
+        return NonNullableRelativeRectTween(
+          begin: initialValue,
+          end: initialValue,
+        ) as Tween<T>;
+      case NullableRelativeRect:
+        initialValue as RelativeRect?;
+
+        return NullableRelativeRectTween(
+          begin: initialValue,
+          end: initialValue,
+        ) as Tween<T>;
+      case ShapeBorder:
+        initialValue as ShapeBorder;
+
+        return NonNullableShapeBorderTween(
+          begin: initialValue,
+          end: initialValue,
+        ) as Tween<T>;
+      case NullableShapeBorder:
+        initialValue as ShapeBorder?;
+
+        return NullableShapeBorderTween(
+          begin: initialValue,
+          end: initialValue,
+        ) as Tween<T>;
+      case Size:
+        initialValue as Size;
+
+        return NonNullableSizeTween(
+          begin: initialValue,
+          end: initialValue,
+        ) as Tween<T>;
+      case NullableSize:
+        initialValue as Size?;
+
+        return NullableSizeTween(
+          begin: initialValue,
+          end: initialValue,
+        ) as Tween<T>;
+      case TextStyle:
+        initialValue as TextStyle;
+
+        return NonNullableTextStyleTween(
+          begin: initialValue,
+          end: initialValue,
+        ) as Tween<T>;
+      case NullableTextStyle:
+        initialValue as TextStyle?;
+
+        return NullableTextStyleTween(
+          begin: initialValue,
+          end: initialValue,
+        ) as Tween<T>;
+
+      // endregion
+
+      case int:
+        initialValue as int;
+
+        return IntTween(
           begin: initialValue,
           end: initialValue,
         ) as Tween<T>;
@@ -217,62 +249,6 @@ class TweenFactory {
         initialValue as Matrix4;
 
         return Matrix4Tween(
-          begin: initialValue,
-          end: initialValue,
-        ) as Tween<T>;
-      case Rect:
-        initialValue as Rect;
-
-        return RectTween(
-          begin: initialValue,
-          end: initialValue,
-        ) as Tween<T>;
-      case RelativeRect:
-        initialValue as RelativeRect;
-
-        return RelativeRectTween(
-          begin: initialValue,
-          end: initialValue,
-        ) as Tween<T>;
-      case ShapeBorder:
-        initialValue as ShapeBorder;
-
-        return ShapeBorderTween(
-          begin: initialValue,
-          end: initialValue,
-        ) as Tween<T>;
-      case Size:
-        initialValue as Size;
-
-        return SizeTween(
-          begin: initialValue,
-          end: initialValue,
-        ) as Tween<T>;
-      case TextStyle:
-        initialValue as TextStyle;
-
-        return TextStyleTween(
-          begin: initialValue,
-          end: initialValue,
-        ) as Tween<T>;
-      case ThemeData:
-        initialValue as ThemeData;
-
-        return ThemeDataTween(
-          begin: initialValue,
-          end: initialValue,
-        ) as Tween<T>;
-      case Offset:
-        initialValue as Offset;
-
-        return OffsetTween(
-          begin: initialValue,
-          end: initialValue,
-        ) as Tween<T>;
-      case NullableOffset:
-        initialValue as NullableOffset;
-
-        return OffsetTween(
           begin: initialValue,
           end: initialValue,
         ) as Tween<T>;

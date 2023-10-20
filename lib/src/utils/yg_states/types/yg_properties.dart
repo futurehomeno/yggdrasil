@@ -33,7 +33,6 @@ typedef YgTextStyleProperty<T extends Enum> = YgProperty<T, TextStyle>;
 typedef YgNullableBoxConstraintsProperty<T extends Enum> = YgProperty<T, BoxConstraints?>;
 typedef YgNullableEdgeInsetsProperty<T extends Enum> = YgProperty<T, EdgeInsets?>;
 typedef YgNullableRelativeRectProperty<T extends Enum> = YgProperty<T, RelativeRect?>;
-typedef YgNullableThemeDataProperty<T extends Enum> = YgProperty<T, ThemeData?>;
 typedef YgNullableAlignmentGeometryProperty<T extends Enum> = YgProperty<T, AlignmentGeometry?>;
 typedef YgNullableColorProperty<T extends Enum> = YgProperty<T, Color?>;
 typedef YgNullableFractionalOffsetProperty<T extends Enum> = YgProperty<T, FractionalOffset?>;

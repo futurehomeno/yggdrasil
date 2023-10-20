@@ -33,7 +33,6 @@ typedef YgAnimatedTextStyleProperty = YgAnimatedProperty<TextStyle>;
 typedef YgAnimatedNullableBoxConstraintsProperty = YgAnimatedProperty<BoxConstraints?>;
 typedef YgAnimatedNullableEdgeInsetsProperty = YgAnimatedProperty<EdgeInsets?>;
 typedef YgAnimatedNullableRelativeRectProperty = YgAnimatedProperty<RelativeRect?>;
-typedef YgAnimatedNullableThemeDataProperty = YgAnimatedProperty<ThemeData?>;
 typedef YgAnimatedNullableAlignmentGeometryProperty = YgAnimatedProperty<AlignmentGeometry?>;
 typedef YgAnimatedNullableColorProperty = YgAnimatedProperty<Color?>;
 typedef YgAnimatedNullableFractionalOffsetProperty = YgAnimatedProperty<FractionalOffset?>;

@@ -17,5 +17,4 @@ typedef NullableRelativeRect = RelativeRect?;
 typedef NullableShapeBorder = ShapeBorder?;
 typedef NullableSize = Size?;
 typedef NullableTextStyle = TextStyle?;
-typedef NullableThemeData = ThemeData?;
 typedef NullableOffset = Offset?;

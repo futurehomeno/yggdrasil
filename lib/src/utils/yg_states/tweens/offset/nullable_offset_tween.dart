@@ -1,7 +1,7 @@
-import 'package:flutter/animation.dart';
+import 'package:flutter/material.dart';
 
-class OffsetTween extends Tween<Offset?> {
-  OffsetTween({
+class NullableOffsetTween extends Tween<Offset?> {
+  NullableOffsetTween({
     super.begin,
     super.end,
   });

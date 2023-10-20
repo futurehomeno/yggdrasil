@@ -33,7 +33,6 @@ typedef YgDrivenTextStyleProperty = YgDrivenProperty<TextStyle>;
 typedef YgDrivenNullableBoxConstraintsProperty = YgDrivenProperty<BoxConstraints?>;
 typedef YgDrivenNullableEdgeInsetsProperty = YgDrivenProperty<EdgeInsets?>;
 typedef YgDrivenNullableRelativeRectProperty = YgDrivenProperty<RelativeRect?>;
-typedef YgDrivenNullableThemeDataProperty = YgDrivenProperty<ThemeData?>;
 typedef YgDrivenNullableAlignmentGeometryProperty = YgDrivenProperty<AlignmentGeometry?>;
 typedef YgDrivenNullableColorProperty = YgDrivenProperty<Color?>;
 typedef YgDrivenNullableFractionalOffsetProperty = YgDrivenProperty<FractionalOffset?>;

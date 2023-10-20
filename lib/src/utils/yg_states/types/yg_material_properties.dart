@@ -35,7 +35,6 @@ typedef YgMaterialTextStyleProperty = YgMaterialProperty<TextStyle>;
 typedef YgMaterialNullableBoxConstraintsProperty = YgMaterialProperty<BoxConstraints?>;
 typedef YgMaterialNullableEdgeInsetsProperty = YgMaterialProperty<EdgeInsets?>;
 typedef YgMaterialNullableRelativeRectProperty = YgMaterialProperty<RelativeRect?>;
-typedef YgMaterialNullableThemeDataProperty = YgMaterialProperty<ThemeData?>;
 typedef YgMaterialNullableAlignmentGeometryProperty = YgMaterialProperty<AlignmentGeometry?>;
 typedef YgMaterialNullableColorProperty = YgMaterialProperty<Color?>;
 typedef YgMaterialNullableFractionalOffsetProperty = YgMaterialProperty<FractionalOffset?>;
