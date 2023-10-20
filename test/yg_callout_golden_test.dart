@@ -10,49 +10,51 @@ void main() {
   group(
     'YgCalloutGoldenTest',
     () {
+      final GoldenTestGroup ygCalloutGoldenTestGroup = GoldenTestGroup(
+        children: <GoldenTestScenario>[
+          GoldenTestScenario(
+            name: 'All parameters',
+            child: YgCallout(
+              title: 'Callout title',
+              description: 'Callout description',
+              onClose: () {},
+              textLink: YgTextLink(
+                text: 'Text link',
+                onPressed: () {},
+              ),
+            ),
+          ),
+          GoldenTestScenario(
+            name: 'Without onClose',
+            child: YgCallout(
+              title: 'Callout title',
+              description: 'Callout description',
+              textLink: YgTextLink(
+                text: 'Text link',
+                onPressed: () {},
+              ),
+            ),
+          ),
+          GoldenTestScenario(
+            name: 'Title and description',
+            child: const YgCallout(
+              title: 'Callout title',
+              description: 'Callout description',
+            ),
+          ),
+          GoldenTestScenario(
+            name: 'Description only',
+            child: const YgCallout(
+              description: 'Callout description',
+            ),
+          ),
+        ],
+      );
+
       goldenTest(
         'YgCallout consumer_light',
         fileName: 'yg_callout_light',
-        builder: () => GoldenTestGroup(
-          children: <GoldenTestScenario>[
-            GoldenTestScenario(
-              name: 'All parameters',
-              child: YgCallout(
-                title: 'Callout title',
-                description: 'Callout description',
-                onClose: () {},
-                textLink: YgTextLink(
-                  text: 'Text link',
-                  onPressed: () {},
-                ),
-              ),
-            ),
-            GoldenTestScenario(
-              name: 'Without onClose',
-              child: YgCallout(
-                title: 'Callout title',
-                description: 'Callout description',
-                textLink: YgTextLink(
-                  text: 'Text link',
-                  onPressed: () {},
-                ),
-              ),
-            ),
-            GoldenTestScenario(
-              name: 'Title and description',
-              child: const YgCallout(
-                title: 'Callout title',
-                description: 'Callout description',
-              ),
-            ),
-            GoldenTestScenario(
-              name: 'Description only',
-              child: const YgCallout(
-                description: 'Callout description',
-              ),
-            ),
-          ],
-        ),
+        builder: () => ygCalloutGoldenTestGroup,
         pumpWidget: (WidgetTester tester, Widget widget) {
           return YgThemePumper.pumpWidgetWithYgTheme(
             widgetTester: tester,
@@ -65,46 +67,7 @@ void main() {
       goldenTest(
         'YgCallout consumer_dark',
         fileName: 'yg_callout_dark',
-        builder: () => GoldenTestGroup(
-          children: <GoldenTestScenario>[
-            GoldenTestScenario(
-              name: 'All parameters',
-              child: YgCallout(
-                title: 'Callout title',
-                description: 'Callout description',
-                onClose: () {},
-                textLink: YgTextLink(
-                  text: 'Text link',
-                  onPressed: () {},
-                ),
-              ),
-            ),
-            GoldenTestScenario(
-              name: 'Without onClose',
-              child: YgCallout(
-                title: 'Callout title',
-                description: 'Callout description',
-                textLink: YgTextLink(
-                  text: 'Text link',
-                  onPressed: () {},
-                ),
-              ),
-            ),
-            GoldenTestScenario(
-              name: 'Title and description',
-              child: const YgCallout(
-                title: 'Callout title',
-                description: 'Callout description',
-              ),
-            ),
-            GoldenTestScenario(
-              name: 'Description only',
-              child: const YgCallout(
-                description: 'Callout description',
-              ),
-            ),
-          ],
-        ),
+        builder: () => ygCalloutGoldenTestGroup,
         pumpWidget: (WidgetTester tester, Widget widget) {
           return YgThemePumper.pumpWidgetWithYgTheme(
             widgetTester: tester,
