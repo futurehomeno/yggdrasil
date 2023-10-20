@@ -223,7 +223,7 @@ class _DropdownFieldScreenState extends State<DropdownFieldScreen> {
     return List<YgDropdownEntry<String>>.generate(
       amount,
       (int index) => YgDropdownEntry<String>(
-        // icon: YgIcon.col(YgIcons.allIcons.entries.toList()[index].value),
+        icon: YgIcon.embeddedColor(YgIcons.allIcons[index]),
         subtitle: 'Subtitle of value $index',
         title: 'Value $index',
         value: 'value$index',

@@ -25,12 +25,12 @@ class YgListTile extends StatelessWidget with StatelessWidgetDebugMixin {
   /// Convenience for generating links from YgListTiles.
   factory YgListTile.link({
     required String link,
-    required YgColorableIconData iconPath,
+    required YgIconData iconData,
     required VoidCallback onTap,
   }) {
     return YgListTile(
       title: link,
-      leadingWidgets: <Widget>[YgIcon(iconPath)],
+      leadingWidgets: <Widget>[YgIcon.embeddedColor(iconData)],
       trailingWidgets: const <Widget>[YgIcon(YgIcons.caretRight)],
       onTap: onTap,
     );

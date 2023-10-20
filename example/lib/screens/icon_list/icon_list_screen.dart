@@ -53,8 +53,8 @@ class _IconListScreenState extends State<IconListScreen> {
           SliverList.builder(
             itemBuilder: (BuildContext context, int index) {
               final YgIconData iconData = allIcons[index];
-              final String iconName = allIcons[index].name;
-              final String iconPath = allIcons[index].path;
+              final String iconName = iconData.name;
+              final String iconPath = iconData.path;
 
               return YgListTile(
                 title: iconName,
