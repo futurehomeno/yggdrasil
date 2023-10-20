@@ -4,11 +4,10 @@ import 'package:yggdrasil/yggdrasil.dart';
 
 extension WidgetTesterExtension on WidgetTester {
   Future<void> pumpWidgetWithYgTheme({
-    required WidgetTester widgetTester,
     required Widget widget,
     required YgTheme ygTheme,
   }) {
-    return widgetTester.pumpWidget(
+    return pumpWidget(
       MaterialApp(
         theme: YgThemeDataHelper.getThemeData(ygTheme),
         home: widget,

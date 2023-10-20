@@ -57,7 +57,6 @@ void main() {
         builder: () => ygCalloutGoldenTestGroup,
         pumpWidget: (WidgetTester widgetTester, Widget widget) {
           return widgetTester.pumpWidgetWithYgTheme(
-            widgetTester: widgetTester,
             widget: widget,
             ygTheme: YgTheme.consumerLight,
           );
@@ -70,7 +69,6 @@ void main() {
         builder: () => ygCalloutGoldenTestGroup,
         pumpWidget: (WidgetTester widgetTester, Widget widget) {
           return widgetTester.pumpWidgetWithYgTheme(
-            widgetTester: widgetTester,
             widget: widget,
             ygTheme: YgTheme.consumerDark,
           );
