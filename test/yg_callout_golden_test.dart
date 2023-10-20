@@ -4,7 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:yggdrasil/yggdrasil.dart';
 
-import 'utils/_utils.dart';
+import 'extensions/_extensions.dart';
 
 void main() {
   group(
@@ -55,9 +55,9 @@ void main() {
         'YgCallout consumer_light',
         fileName: 'yg_callout_light',
         builder: () => ygCalloutGoldenTestGroup,
-        pumpWidget: (WidgetTester tester, Widget widget) {
-          return YgThemePumper.pumpWidgetWithYgTheme(
-            widgetTester: tester,
+        pumpWidget: (WidgetTester widgetTester, Widget widget) {
+          return widgetTester.pumpWidgetWithYgTheme(
+            widgetTester: widgetTester,
             widget: widget,
             ygTheme: YgTheme.consumerLight,
           );
@@ -68,9 +68,9 @@ void main() {
         'YgCallout consumer_dark',
         fileName: 'yg_callout_dark',
         builder: () => ygCalloutGoldenTestGroup,
-        pumpWidget: (WidgetTester tester, Widget widget) {
-          return YgThemePumper.pumpWidgetWithYgTheme(
-            widgetTester: tester,
+        pumpWidget: (WidgetTester widgetTester, Widget widget) {
+          return widgetTester.pumpWidgetWithYgTheme(
+            widgetTester: widgetTester,
             widget: widget,
             ygTheme: YgTheme.consumerDark,
           );
