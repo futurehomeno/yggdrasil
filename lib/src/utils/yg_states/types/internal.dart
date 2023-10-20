@@ -11,7 +11,6 @@ typedef NullableDouble = double?;
 typedef NullableEdgeInsetsGeometry = EdgeInsetsGeometry?;
 typedef NullableEdgeInsets = EdgeInsets?;
 typedef NullableFractionalOffset = FractionalOffset?;
-typedef NullableMatrix4 = Matrix4?;
 typedef NullableRect = Rect?;
 typedef NullableRelativeRect = RelativeRect?;
 typedef NullableShapeBorder = ShapeBorder?;
