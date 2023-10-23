@@ -92,7 +92,7 @@ void main() {
 
       for (final YgThemeTestData themeTestData in YgGoldenTestValues.themesToTest) {
         goldenTest(
-          'YgCallout ${themeTestData.themeName}',
+          'YgCallout - ${themeTestData.themeName}',
           fileName: 'yg_callout_${themeTestData.fileName}',
           builder: () => ygCalloutGoldenTestGroup,
           pumpWidget: (WidgetTester widgetTester, Widget widget) {
