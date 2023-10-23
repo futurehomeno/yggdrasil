@@ -21,6 +21,7 @@ dependencies:
 
 dev_dependencies:
   # Run `flutter test --tags golden` to run all golden tests.
+  # Run `flutter test --update-goldens` to regenerate goldens.
   alchemist: 0.6.1
   # Run `flutter pub run build_runner build --delete-conflicting-outputs` in order to generate stuff.
   build_runner: 2.4.6

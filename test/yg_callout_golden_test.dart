@@ -5,47 +5,86 @@ import 'package:flutter_test/flutter_test.dart';
 import 'package:yggdrasil/yggdrasil.dart';
 
 import 'extensions/_extensions.dart';
+import 'utils/yg_golden_test_values.dart';
 
 void main() {
   group(
     'YgCalloutGoldenTest',
     () {
       final GoldenTestGroup ygCalloutGoldenTestGroup = GoldenTestGroup(
+        columns: 2,
+        scenarioConstraints: YgGoldenTestValues.scenarioConstraints,
         children: <GoldenTestScenario>[
           GoldenTestScenario(
-            name: 'All parameters',
+            name: 'With title, description, onClose and textLink',
             child: YgCallout(
-              title: 'Callout title',
-              description: 'Callout description',
+              title: YgGoldenTestValues.shortText,
+              description: YgGoldenTestValues.mediumText,
               onClose: () {},
               textLink: YgTextLink(
-                text: 'Text link',
+                text: YgGoldenTestValues.shortText,
                 onPressed: () {},
               ),
             ),
           ),
           GoldenTestScenario(
-            name: 'Without onClose',
+            name: 'With title, description and textLink',
             child: YgCallout(
-              title: 'Callout title',
-              description: 'Callout description',
+              title: YgGoldenTestValues.shortText,
+              description: YgGoldenTestValues.mediumText,
               textLink: YgTextLink(
-                text: 'Text link',
+                text: YgGoldenTestValues.shortText,
                 onPressed: () {},
               ),
             ),
           ),
           GoldenTestScenario(
-            name: 'Title and description',
+            name: 'With title and description',
             child: const YgCallout(
-              title: 'Callout title',
-              description: 'Callout description',
+              title: YgGoldenTestValues.shortText,
+              description: YgGoldenTestValues.longText,
             ),
           ),
           GoldenTestScenario(
-            name: 'Description only',
+            name: 'With description only',
             child: const YgCallout(
-              description: 'Callout description',
+              description: YgGoldenTestValues.longText,
+            ),
+          ),
+          GoldenTestScenario(
+            name: 'With long title and description',
+            child: const YgCallout(
+              title: YgGoldenTestValues.longText,
+              description: YgGoldenTestValues.longText,
+            ),
+          ),
+          GoldenTestScenario(
+            name: 'With long title and very long description',
+            child: const YgCallout(
+              title: YgGoldenTestValues.longText,
+              description: YgGoldenTestValues.veryLongText,
+            ),
+          ),
+          GoldenTestScenario(
+            name: 'With title, description and long textLink',
+            child: YgCallout(
+              title: YgGoldenTestValues.shortText,
+              description: YgGoldenTestValues.mediumText,
+              textLink: YgTextLink(
+                text: YgGoldenTestValues.longText,
+                onPressed: () {},
+              ),
+            ),
+          ),
+          GoldenTestScenario(
+            name: 'With very long title, description and textLink',
+            child: YgCallout(
+              title: YgGoldenTestValues.veryLongText,
+              description: YgGoldenTestValues.veryLongText,
+              textLink: YgTextLink(
+                text: YgGoldenTestValues.veryLongText,
+                onPressed: () {},
+              ),
             ),
           ),
         ],
