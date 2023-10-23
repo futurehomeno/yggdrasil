@@ -5,7 +5,7 @@ import 'package:flutter_test/flutter_test.dart';
 import 'package:yggdrasil/yggdrasil.dart';
 
 import 'extensions/_extensions.dart';
-import 'utils/yg_golden_test_values.dart';
+import 'utils/_utils.dart';
 
 void main() {
   group(
@@ -62,7 +62,7 @@ void main() {
             name: 'With long title and very long description',
             child: const YgCallout(
               title: YgGoldenTestValues.longText,
-              description: YgGoldenTestValues.veryLongText,
+              description: YgGoldenTestValues.longText,
             ),
           ),
           GoldenTestScenario(
@@ -79,10 +79,10 @@ void main() {
           GoldenTestScenario(
             name: 'With very long title, description and textLink',
             child: YgCallout(
-              title: YgGoldenTestValues.veryLongText,
-              description: YgGoldenTestValues.veryLongText,
+              title: YgGoldenTestValues.longText,
+              description: YgGoldenTestValues.longText,
               textLink: YgTextLink(
-                text: YgGoldenTestValues.veryLongText,
+                text: YgGoldenTestValues.longText,
                 onPressed: () {},
               ),
             ),
@@ -90,29 +90,19 @@ void main() {
         ],
       );
 
-      goldenTest(
-        'YgCallout consumer_light',
-        fileName: 'yg_callout_light',
-        builder: () => ygCalloutGoldenTestGroup,
-        pumpWidget: (WidgetTester widgetTester, Widget widget) {
-          return widgetTester.pumpWidgetWithYgTheme(
-            widget: widget,
-            ygTheme: YgTheme.consumerLight,
-          );
-        },
-      );
-
-      goldenTest(
-        'YgCallout consumer_dark',
-        fileName: 'yg_callout_dark',
-        builder: () => ygCalloutGoldenTestGroup,
-        pumpWidget: (WidgetTester widgetTester, Widget widget) {
-          return widgetTester.pumpWidgetWithYgTheme(
-            widget: widget,
-            ygTheme: YgTheme.consumerDark,
-          );
-        },
-      );
+      for (final YgThemeTestData themeTestData in YgGoldenTestValues.themesToTest) {
+        goldenTest(
+          'YgCallout ${themeTestData.themeName}',
+          fileName: 'yg_callout_${themeTestData.fileName}',
+          builder: () => ygCalloutGoldenTestGroup,
+          pumpWidget: (WidgetTester widgetTester, Widget widget) {
+            return widgetTester.pumpWidgetWithYgTheme(
+              widget: widget,
+              ygTheme: themeTestData.theme,
+            );
+          },
+        );
+      }
     },
   );
 }
