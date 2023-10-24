@@ -1,4 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:yggdrasil/src/utils/_utils.dart';
+
+typedef YgEdgeInsetsGeometryProperty<T extends Enum> = YgProperty<T, EdgeInsetsGeometry>;
+typedef YgMaterialEdgeInsetsGeometryProperty = YgMaterialProperty<EdgeInsetsGeometry>;
+typedef YgAnimatedEdgeInsetsGeometryProperty = YgAnimatedProperty<EdgeInsetsGeometry>;
+typedef YgDrivenEdgeInsetsGeometryProperty = YgDrivenProperty<EdgeInsetsGeometry>;
 
 class NonNullableEdgeInsetsGeometryTween extends Tween<EdgeInsetsGeometry> {
   NonNullableEdgeInsetsGeometryTween({

@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 
 import '_yg_states.dart';
-import 'types/internal.dart';
 
 /// Factory to create tweens for specific value types.
 class TweenFactory {
@@ -232,6 +231,34 @@ class TweenFactory {
         initialValue as TextStyle?;
 
         return NullableTextStyleTween(
+          begin: initialValue,
+          end: initialValue,
+        ) as Tween<T>;
+      case BorderSide:
+        initialValue as BorderSide;
+
+        return NonNullableBorderSideTween(
+          begin: initialValue,
+          end: initialValue,
+        ) as Tween<T>;
+      case NullableBorderSide:
+        initialValue as BorderSide?;
+
+        return NullableBorderSideTween(
+          begin: initialValue,
+          end: initialValue,
+        ) as Tween<T>;
+      case IconThemeData:
+        initialValue as IconThemeData;
+
+        return NonNullableIconThemeDataTween(
+          begin: initialValue,
+          end: initialValue,
+        ) as Tween<T>;
+      case NullableIconThemeData:
+        initialValue as IconThemeData?;
+
+        return NullableIconThemeDataTween(
           begin: initialValue,
           end: initialValue,
         ) as Tween<T>;

@@ -1,4 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:yggdrasil/src/utils/_utils.dart';
+
+typedef YgAlignmentProperty<T extends Enum> = YgProperty<T, Alignment>;
+typedef YgMaterialAlignmentProperty = YgMaterialProperty<Alignment>;
+typedef YgAnimatedAlignmentProperty = YgAnimatedProperty<Alignment>;
+typedef YgDrivenAlignmentProperty = YgDrivenProperty<Alignment>;
 
 class NonNullableAlignmentTween extends Tween<Alignment> {
   NonNullableAlignmentTween({

@@ -1,4 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:yggdrasil/src/utils/_utils.dart';
+
+typedef YgTextStyleProperty<T extends Enum> = YgProperty<T, TextStyle>;
+typedef YgMaterialTextStyleProperty = YgMaterialProperty<TextStyle>;
+typedef YgAnimatedTextStyleProperty = YgAnimatedProperty<TextStyle>;
+typedef YgDrivenTextStyleProperty = YgDrivenProperty<TextStyle>;
 
 class NonNullableTextStyleTween extends Tween<TextStyle> {
   NonNullableTextStyleTween({

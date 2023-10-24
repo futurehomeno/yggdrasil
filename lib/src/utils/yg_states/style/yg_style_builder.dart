@@ -1,15 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:yggdrasil/src/utils/_utils.dart';
 
-// ignore: always_specify_types
-typedef YgAnyStyle = YgStyleBase;
-
-typedef YgWatchedPropertiesGetter<S extends YgAnyStyle> = Set<Listenable> Function(S style);
-typedef YgStyleCreator<S extends YgAnyStyle> = S Function(YgVsync vsync);
-typedef YgStyleChildBuilder<S extends YgAnyStyle> = Widget Function(BuildContext context, S style);
+typedef YgWatchedPropertiesGetter<S extends YgStyleBase<Enum>> = Set<Listenable> Function(S style);
+typedef YgStyleCreator<S extends YgStyleBase<Enum>> = S Function(YgVsync vsync);
+typedef YgStyleChildBuilder<S extends YgStyleBase<Enum>> = Widget Function(BuildContext context, S style);
 
 @optionalTypeArgs
-class YgStyleBuilder<S extends YgAnyStyle> extends StatefulWidget {
+class YgStyleBuilder<S extends YgStyleBase<Enum>> extends StatefulWidget {
   const YgStyleBuilder({
     super.key,
     required this.createStyle,
@@ -25,7 +22,7 @@ class YgStyleBuilder<S extends YgAnyStyle> extends StatefulWidget {
   State<YgStyleBuilder<S>> createState() => _YgStyleBuilderState<S>();
 }
 
-class _YgStyleBuilderState<S extends YgAnyStyle> extends State<YgStyleBuilder<S>>
+class _YgStyleBuilderState<S extends YgStyleBase<Enum>> extends State<YgStyleBuilder<S>>
     with TickerProviderStateMixin, YgVsyncMixin {
   S? _style;
   final Set<Listenable> _subscriptions = <Listenable>{};

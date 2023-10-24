@@ -1,0 +1,53 @@
+import 'package:flutter/material.dart';
+import 'package:yggdrasil/src/utils/_utils.dart';
+
+class YgAnimatedShaperBorderPainter extends StatelessWidget {
+  const YgAnimatedShaperBorderPainter({
+    super.key,
+    required this.child,
+    required this.shape,
+    this.borderOnForeground = true,
+  });
+
+  final Widget child;
+  final YgDrivenNullableShapeBorderProperty shape;
+  final bool borderOnForeground;
+
+  @override
+  Widget build(BuildContext context) {
+    final _ShapeBorderPainter painter = _ShapeBorderPainter(
+      textDirection: Directionality.maybeOf(context),
+      shapeBorder: shape,
+    );
+
+    return CustomPaint(
+      painter: borderOnForeground ? null : painter,
+      foregroundPainter: borderOnForeground ? painter : null,
+      child: child,
+    );
+  }
+}
+
+class _ShapeBorderPainter extends CustomPainter {
+  _ShapeBorderPainter({
+    required this.shapeBorder,
+    required this.textDirection,
+  }) : super(repaint: shapeBorder);
+
+  final YgDrivenNullableShapeBorderProperty shapeBorder;
+  final TextDirection? textDirection;
+
+  @override
+  void paint(Canvas canvas, Size size) {
+    shapeBorder.value?.paint(
+      canvas,
+      Offset.zero & size,
+      textDirection: textDirection,
+    );
+  }
+
+  @override
+  bool shouldRepaint(_ShapeBorderPainter oldDelegate) {
+    return oldDelegate.shapeBorder != shapeBorder;
+  }
+}

@@ -1,4 +1,11 @@
 import 'package:flutter/material.dart';
+import 'package:yggdrasil/src/utils/_utils.dart';
+
+typedef NullableBorderRadius = BorderRadius?;
+typedef YgNullableBorderRadiusProperty<T extends Enum> = YgProperty<T, BorderRadius?>;
+typedef YgMaterialNullableBorderRadiusProperty = YgMaterialProperty<BorderRadius?>;
+typedef YgAnimatedNullableBorderRadiusProperty = YgAnimatedProperty<BorderRadius?>;
+typedef YgDrivenNullableBorderRadiusProperty = YgDrivenProperty<BorderRadius?>;
 
 class NullableBorderRadiusTween extends Tween<BorderRadius?> {
   NullableBorderRadiusTween({

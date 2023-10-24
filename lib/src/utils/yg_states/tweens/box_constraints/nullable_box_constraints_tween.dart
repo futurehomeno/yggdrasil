@@ -1,4 +1,11 @@
 import 'package:flutter/material.dart';
+import 'package:yggdrasil/src/utils/_utils.dart';
+
+typedef NullableBoxConstraints = BoxConstraints?;
+typedef YgNullableBoxConstraintsProperty<T extends Enum> = YgProperty<T, BoxConstraints?>;
+typedef YgMaterialNullableBoxConstraintsProperty = YgMaterialProperty<BoxConstraints?>;
+typedef YgAnimatedNullableBoxConstraintsProperty = YgAnimatedProperty<BoxConstraints?>;
+typedef YgDrivenNullableBoxConstraintsProperty = YgDrivenProperty<BoxConstraints?>;
 
 class NullableBoxConstraintsTween extends Tween<BoxConstraints?> {
   NullableBoxConstraintsTween({

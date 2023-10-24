@@ -3,6 +3,8 @@ part of 'yg_property.dart';
 // ignore: avoid-dynamic
 typedef YgDynamicDrivenProperty = YgDrivenProperty<dynamic>;
 
+typedef ValueMapper<From, To> = To Function(From value);
+
 /// The result of [YgProperty.drive].
 ///
 /// Contains the result of [YgProperty.resolve] using the given
@@ -11,12 +13,16 @@ typedef YgDynamicDrivenProperty = YgDrivenProperty<dynamic>;
 abstract class YgDrivenProperty<V> implements Listenable {
   const YgDrivenProperty();
 
-  void dispose();
-
   V get value;
+
+  YgDrivenProperty<T> map<T>(ValueMapper<V, T> mapper);
 }
 
-class _YgDrivenProperty<T extends Enum, V> extends ValueNotifier<V> implements YgDrivenProperty<V> {
+abstract class YgDisposableDrivenProperty<V> extends YgDrivenProperty<V> {
+  void dispose();
+}
+
+class _YgDrivenProperty<T extends Enum, V> extends ValueNotifier<V> implements YgDisposableDrivenProperty<V> {
   _YgDrivenProperty({
     required YgStatesController<T> controller,
     required YgVsync vsync,
@@ -68,4 +74,72 @@ class _YgDrivenProperty<T extends Enum, V> extends ValueNotifier<V> implements Y
       states,
     );
   }
+
+  @override
+  YgDrivenProperty<R> map<R>(ValueMapper<V, R> mapper) {
+    return _YgMappedDrivenProperty<V, R>(
+      mapper: mapper,
+      parent: this,
+    );
+  }
 }
+
+class _YgMappedDrivenProperty<From, To> implements YgDrivenProperty<To> {
+  const _YgMappedDrivenProperty({
+    required this.parent,
+    required this.mapper,
+  });
+
+  final YgDrivenProperty<From> parent;
+  final ValueMapper<From, To> mapper;
+
+  @override
+  YgDrivenProperty<R> map<R>(ValueMapper<To, R> mapper) {
+    return _YgMappedDrivenProperty<To, R>(
+      mapper: mapper,
+      parent: this,
+    );
+  }
+
+  @override
+  To get value => mapper(parent.value);
+
+  @override
+  void addListener(VoidCallback listener) {
+    parent.addListener(listener);
+  }
+
+  @override
+  void removeListener(VoidCallback listener) {
+    parent.removeListener(listener);
+  }
+}
+
+// class _YgPropertyCombine<V, T extends Iterable<YgDrivenProperty>> implements YgDrivenProperty<V> {
+//   const _YgPropertyCombine({
+//     required this.combiner,
+//     required this.iterable,
+//   });
+
+//   final V Function(T iterable) combiner;
+//   final T iterable;
+// }
+
+// /// Schedules a microtask when calling [notifyListeners] and doesn't fire 
+// /// another one until the scheduled one has executed.
+// class DebouncedChangeNotifier extends ChangeNotifier {
+//   bool _fired = false;
+
+//   @override
+//   void notifyListeners() {
+//     if (_fired) {
+//       return;
+//     }
+
+//     _fired = true;
+//     scheduleMicrotask(() {
+//       _fired = false;
+//       super.notifyListeners();
+//     });
+//   }
+// }

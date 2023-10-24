@@ -1,4 +1,11 @@
 import 'package:flutter/material.dart';
+import 'package:yggdrasil/src/utils/_utils.dart';
+
+typedef NullableColor = Color?;
+typedef YgNullableColorProperty<T extends Enum> = YgProperty<T, Color?>;
+typedef YgMaterialNullableColorProperty = YgMaterialProperty<Color?>;
+typedef YgAnimatedNullableColorProperty = YgAnimatedProperty<Color?>;
+typedef YgDrivenNullableColorProperty = YgDrivenProperty<Color?>;
 
 class NullableColorTween extends Tween<Color?> {
   NullableColorTween({

@@ -1,4 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:yggdrasil/src/utils/_utils.dart';
+
+typedef YgShapeBorderProperty<T extends Enum> = YgProperty<T, ShapeBorder>;
+typedef YgMaterialShapeBorderProperty = YgMaterialProperty<ShapeBorder>;
+typedef YgAnimatedShapeBorderProperty = YgAnimatedProperty<ShapeBorder>;
+typedef YgDrivenShapeBorderProperty = YgDrivenProperty<ShapeBorder>;
 
 class NonNullableShapeBorderTween extends Tween<ShapeBorder> {
   NonNullableShapeBorderTween({

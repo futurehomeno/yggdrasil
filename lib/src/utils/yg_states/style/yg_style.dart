@@ -11,7 +11,7 @@ abstract class YgStyle<T extends Enum> extends YgStyleBase<T> {
     required Duration duration,
     required Curve curve,
   }) {
-    final YgAnimatedProperty<V> listenable = property.animate(
+    final YgDisposableAnimatedProperty<V> listenable = property.animate(
       controller: controller,
       vsync: vsync,
       curve: curve,
@@ -25,7 +25,7 @@ abstract class YgStyle<T extends Enum> extends YgStyleBase<T> {
   }
 
   YgDrivenProperty<V> drive<V>(YgProperty<T, V> property) {
-    final YgDrivenProperty<V> listenable = property.drive(
+    final YgDisposableDrivenProperty<V> listenable = property.drive(
       controller: controller,
       vsync: vsync,
     );

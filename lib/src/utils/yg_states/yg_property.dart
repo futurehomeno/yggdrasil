@@ -8,6 +8,7 @@ part 'yg_driven_property.dart';
 
 typedef YgStatesResolver<T extends Enum, V> = V Function(BuildContext, Set<T>);
 typedef YgStatesAllResolver<V> = V Function(BuildContext);
+typedef YgMaterialProperty<V> = YgProperty<MaterialState, V>;
 
 abstract class YgProperty<T extends Enum, V> {
   const YgProperty();
@@ -29,7 +30,7 @@ abstract class YgProperty<T extends Enum, V> {
     );
   }
 
-  YgAnimatedProperty<V> animate({
+  YgDisposableAnimatedProperty<V> animate({
     required YgStatesController<T> controller,
     required YgVsync vsync,
     required Duration duration,
@@ -44,7 +45,7 @@ abstract class YgProperty<T extends Enum, V> {
     );
   }
 
-  YgDrivenProperty<V> drive({
+  YgDisposableDrivenProperty<V> drive({
     required YgStatesController<T> controller,
     required YgVsync vsync,
   }) {

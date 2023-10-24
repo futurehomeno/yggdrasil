@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:yggdrasil/src/utils/_utils.dart';
-import 'package:yggdrasil/src/utils/yg_states/extensions/yg_driven_color_property_extension.dart';
 
 class YgAnimatedContainer extends StatelessWidget {
   YgAnimatedContainer({
@@ -23,7 +22,7 @@ class YgAnimatedContainer extends StatelessWidget {
           'Cannot provide both a color and a decoration\n'
           'The color argument is just a shorthand for "decoration: BoxDecoration(color: color)".',
         ),
-        decoration = decoration ?? color?.toDecoration();
+        decoration = decoration ?? color?.map((Color color) => BoxDecoration(color: color));
 
   final Widget? child;
   final YgDrivenNullableDoubleProperty? width;

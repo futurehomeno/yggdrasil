@@ -1,4 +1,11 @@
 import 'package:flutter/material.dart';
+import 'package:yggdrasil/src/utils/_utils.dart';
+
+typedef NullableEdgeInsets = EdgeInsets?;
+typedef YgNullableEdgeInsetsProperty<T extends Enum> = YgProperty<T, EdgeInsets?>;
+typedef YgMaterialNullableEdgeInsetsProperty = YgMaterialProperty<EdgeInsets?>;
+typedef YgAnimatedNullableEdgeInsetsProperty = YgAnimatedProperty<EdgeInsets?>;
+typedef YgDrivenNullableEdgeInsetsProperty = YgDrivenProperty<EdgeInsets?>;
 
 class NullableEdgeInsetsTween extends Tween<EdgeInsets?> {
   NullableEdgeInsetsTween({

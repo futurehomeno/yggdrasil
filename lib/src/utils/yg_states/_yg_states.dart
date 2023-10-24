@@ -1,11 +1,11 @@
+export 'additional_property_types.dart';
 export 'animated_widgets/_animated_widgets.dart';
 export 'style/_style.dart';
 export 'tweens/_tweens.dart';
-export 'types/_types.dart';
 export 'yg_animated_builder.dart';
-export 'yg_driven_property_with_parent.dart';
 export 'yg_property.dart';
 export 'yg_states_builder.dart';
 export 'yg_states_controller.dart';
+export 'yg_states_material_states_proxy_controller.dart';
 export 'yg_states_subscriber_mixin.dart';
 export 'yg_vsync.dart';

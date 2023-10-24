@@ -7,11 +7,16 @@ part of 'yg_property.dart';
 /// resolved value changes.
 abstract class YgAnimatedProperty<V> implements Animation<V>, YgDrivenProperty<V> {
   const YgAnimatedProperty();
+
+  @override
+  YgAnimatedProperty<R> map<R>(ValueMapper<V, R> mapper);
 }
+
+abstract class YgDisposableAnimatedProperty<V> extends YgAnimatedProperty<V> implements YgDisposableDrivenProperty<V> {}
 
 class _YgAnimatedProperty<T extends Enum, V> extends Animation<V>
     with AnimationWithParentMixin<double>
-    implements YgAnimatedProperty<V> {
+    implements YgDisposableAnimatedProperty<V> {
   _YgAnimatedProperty({
     required YgVsync vsync,
     required Curve curve,
@@ -61,6 +66,14 @@ class _YgAnimatedProperty<T extends Enum, V> extends Animation<V>
     _animationController.dispose();
   }
 
+  @override
+  YgAnimatedProperty<R> map<R>(ValueMapper<V, R> mapper) {
+    return _YgMappedAnimatedProperty<V, R>(
+      parent: this,
+      mapper: mapper,
+    );
+  }
+
   void _handleStateChange() {
     final Set<T> states = _statesController.value;
     final Set<T> previousStates = _statesController.previous;
@@ -105,4 +118,28 @@ class _YgAnimatedProperty<T extends Enum, V> extends Animation<V>
       _animationController.notifyListeners();
     }
   }
+}
+
+class _YgMappedAnimatedProperty<From, To> extends Animation<To>
+    with AnimationWithParentMixin<From>
+    implements YgAnimatedProperty<To> {
+  const _YgMappedAnimatedProperty({
+    required this.parent,
+    required this.mapper,
+  });
+
+  @override
+  final YgAnimatedProperty<From> parent;
+  final ValueMapper<From, To> mapper;
+
+  @override
+  YgAnimatedProperty<R> map<R>(ValueMapper<To, R> mapper) {
+    return _YgMappedAnimatedProperty<To, R>(
+      parent: this,
+      mapper: mapper,
+    );
+  }
+
+  @override
+  To get value => mapper(parent.value);
 }

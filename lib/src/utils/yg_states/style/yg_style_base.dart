@@ -16,13 +16,13 @@ abstract class YgStyleBase<T extends Enum> extends ChangeNotifier {
 
   final YgStatesController<T> controller;
   final YgVsync vsync;
-  final List<YgDrivenProperty<dynamic>> _properties = <YgDrivenProperty<dynamic>>[];
+  final List<YgDisposableDrivenProperty<dynamic>> _properties = <YgDisposableDrivenProperty<dynamic>>[];
 
   void init();
 
   @override
   void dispose() {
-    for (final YgDrivenProperty<dynamic> property in _properties) {
+    for (final YgDisposableDrivenProperty<dynamic> property in _properties) {
       property.removeListener(notifyListeners);
       property.dispose();
     }

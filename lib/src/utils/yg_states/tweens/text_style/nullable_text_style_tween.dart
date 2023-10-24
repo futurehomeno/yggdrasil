@@ -1,4 +1,11 @@
 import 'package:flutter/material.dart';
+import 'package:yggdrasil/src/utils/_utils.dart';
+
+typedef NullableTextStyle = TextStyle?;
+typedef YgNullableTextStyleProperty<T extends Enum> = YgProperty<T, TextStyle?>;
+typedef YgMaterialNullableTextStyleProperty = YgMaterialProperty<TextStyle?>;
+typedef YgAnimatedNullableTextStyleProperty = YgAnimatedProperty<TextStyle?>;
+typedef YgDrivenNullableTextStyleProperty = YgDrivenProperty<TextStyle?>;
 
 class NullableTextStyleTween extends Tween<TextStyle?> {
   NullableTextStyleTween({

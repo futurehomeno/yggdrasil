@@ -1,4 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:yggdrasil/src/utils/_utils.dart';
+
+typedef YgOffsetProperty<T extends Enum> = YgProperty<T, Offset>;
+typedef YgMaterialOffsetProperty = YgMaterialProperty<Offset>;
+typedef YgAnimatedOffsetProperty = YgAnimatedProperty<Offset>;
+typedef YgDrivenOffsetProperty = YgDrivenProperty<Offset>;
 
 class NonNullableOffsetTween extends Tween<Offset> {
   NonNullableOffsetTween({
