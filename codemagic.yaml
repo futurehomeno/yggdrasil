@@ -222,6 +222,8 @@ workflows:
             commit_tag=$(git rev-list -1 $second_last_tag)
             changelog_since_tag=$(dart $CM_BUILD_DIR/cli/futurehome.dart ci gc $commit_tag)
             
+            echo $second_last_tag
+            echo $commit_tag
             echo $changelog_since_tag
             echo $CM_TAG
             
