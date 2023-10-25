@@ -222,6 +222,9 @@ workflows:
             commit_tag=$(git rev-list -1 $second_last_tag)
             changelog_since_tag=$(dart $CM_BUILD_DIR/cli/futurehome.dart ci gc $commit_tag)
             
+            echo $changelog_since_tag
+            echo $CM_TAG
+            
             curl --location $YGGDRASIL_SLACK_WEBHOOK \
             --header 'Content-Type: application/json' \
             --data '
