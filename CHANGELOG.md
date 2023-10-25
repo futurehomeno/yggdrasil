@@ -1,3 +1,8 @@
+# 1.6.14+21 [12.10.2023 16:23]
+
+- [fix] Fix pubspec.
+- [fix] Test fix.
+
 # 1.6.14+19 [12.10.2023 14:03]
 
 - [dev-fix] Fixed slack integration when new version is released.
