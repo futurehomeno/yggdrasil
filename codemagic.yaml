@@ -241,7 +241,7 @@ workflows:
                         "type": "section",
                         "text": {
                           "type": "mrkdwn",
-                          "text": "$changelog_since_tag"
+                          "text": $changelog_since_tag
                         }
                       },
                       {
