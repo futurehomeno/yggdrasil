@@ -1,3 +1,8 @@
+# 1.6.17+22 [25.10.2023 12:52]
+
+- [dev-fix] Fixed changelog sent to slack.
+- [feature] Added leadingWidget parameter to YgSwitchListTile.
+
 # 1.6.16+21 [25.10.2023 11:58]
 
 - [dev-fix] Fixed slack messages.
