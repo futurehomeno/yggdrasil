@@ -226,17 +226,10 @@ workflows:
             --header 'Content-Type: application/json' \
             --data '
               {
-                "text": "New version of Yggdrasil! ['"$CM_TAG"']",
+                "text": "New version of Yggdrasil! ['"$CM_TAG"']\nhttps://github.com/futurehomeno/yggdrasil/releases/tag/'"$CM_TAG"'",
                 "attachments": [
                   {
                     "blocks": [
-                      {
-                        "type": "section",
-                        "text": {
-                          "type": "mrkdwn",
-                          "text": "<https://github.com/futurehomeno/yggdrasil/releases/tag/'"$CM_TAG"'>"
-                        }
-                      },
                       {
                         "type": "section",
                         "text": {
@@ -245,18 +238,37 @@ workflows:
                         }
                       },
                       {
-                        "type": "section",
-                        "text": {
-                          "type": "mrkdwn",
-                          "text": "*Android app Link* <https://github.com/futurehomeno/yggdrasil/releases/download/'"$CM_TAG"'/app-release.apk|download>"
-                        }
-                      },
-                      {
-                        "type": "section",
-                        "text": {
-                          "type": "mrkdwn",
-                          "text": "*MacOS app Link* <https://github.com/futurehomeno/yggdrasil/releases/download/'"$CM_TAG"'/yggdrasil.dmg|download>"
-                        }
+                        "type": "actions",
+                        "block_id": "actionblock",
+                        "elements": [
+                          {
+                            "type": "button",
+                            "text": {
+                              "type": "plain_text",
+                              "text": "Mac dmg :computer:"
+                            },
+                            "style": "primary",
+                            "url": "https://github.com/futurehomeno/yggdrasil/releases/download/'"$CM_TAG"'/yggdrasil.dmg"
+                          },
+                          {
+                            "type": "button",
+                            "text": {
+                              "type": "plain_text",
+                              "text": "Android apk :iphone:"
+                            },
+                            "style": "primary",
+                            "url": "https://github.com/futurehomeno/yggdrasil/releases/download/'"$CM_TAG"'/app-release.apk"
+                          },
+                          {
+                            "type": "button",
+                            "text": {
+                              "type": "plain_text",
+                              "text": "Support :technologist:"
+                            },
+                            "style": "primary",
+                            "url": "https://app.slack.com/client/T025ENQJR/D0235KBKX2B"
+                          }
+                        ]
                       }
                     ]
                   }
