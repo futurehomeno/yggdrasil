@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:yggdrasil/src/theme/_theme.dart';
-import 'package:yggdrasil/src/theme/tokens/extensions/yg_color.dart';
 import 'package:yggdrasil/src/utils/_utils.dart';
 
 abstract class YgBaseButtonStyle<T extends Enum> extends YgStyleWithDefaults<T> {
@@ -14,6 +13,7 @@ abstract class YgBaseButtonStyle<T extends Enum> extends YgStyleWithDefaults<T> 
   late YgAnimatedBoxConstraintsProperty constraints;
   late YgAnimatedColorProperty color;
   late YgAnimatedColorProperty iconColor;
+  late YgAnimatedDoubleProperty iconSize;
   late YgAnimatedTextStyleProperty textStyle;
   late YgAnimatedEdgeInsetsProperty padding;
   late YgAnimatedAlignmentProperty alignment;
@@ -26,12 +26,13 @@ abstract class YgBaseButtonStyle<T extends Enum> extends YgStyleWithDefaults<T> 
     constraints = animate(YgBoxConstraintsProperty<T>.resolveWith(resolveConstraints));
     color = animate(YgColorProperty<T>.resolveWith(resolveColor));
     iconColor = animate(YgColorProperty<T>.resolveWith(resolveIconColor));
+    iconSize = animate(YgDoubleProperty<T>.resolveWith(resolveIconSize));
     textStyle = animate(YgTextStyleProperty<T>.resolveWith(resolveTextStyle));
     padding = animate(YgEdgeInsetsProperty<T>.resolveWith(resolvePadding));
     alignment = animate(YgAlignmentProperty<T>.resolveWith(resolveAlignment));
     borderSide = animate(YgNullableBorderSideProperty<T>.resolveWith(resolveBorderSide));
     elevation = animate(YgDoubleProperty<T>.resolveWith(resolveElevation));
-    shape = animate(YgProperty<T, OutlinedBorder?>.resolveWith(resolveShape));
+    shape = animate(YgProperty<T, OutlinedBorder?>.resolveWith(resolveOutlinedBorder));
     cursor = drive(YgProperty<T, MouseCursor?>.resolveWith(resolveCursor));
     splashFactory = drive(YgProperty<T, InteractiveInkFeatureFactory>.resolveWith(resolveSplashFactory));
   }
@@ -44,7 +45,7 @@ abstract class YgBaseButtonStyle<T extends Enum> extends YgStyleWithDefaults<T> 
     return const BoxConstraints();
   }
 
-  OutlinedBorder? resolveShape(BuildContext context, Set<T> states) {
+  OutlinedBorder? resolveOutlinedBorder(BuildContext context, Set<T> states) {
     return null;
   }
 
@@ -52,7 +53,7 @@ abstract class YgBaseButtonStyle<T extends Enum> extends YgStyleWithDefaults<T> 
     return const EdgeInsets.all(0);
   }
 
-  MouseCursor? resolveCursor(BuildContext context, Set<T> states) {
+  MouseCursor resolveCursor(BuildContext context, Set<T> states) {
     return SystemMouseCursors.click;
   }
 
@@ -69,9 +70,11 @@ abstract class YgBaseButtonStyle<T extends Enum> extends YgStyleWithDefaults<T> 
   }
 
   Color resolveIconColor(BuildContext context, Set<T> states) {
-    final YgColor colors = context.ygTheme.tokens.colors;
+    return context.ygTheme.tokens.colors.iconDefault;
+  }
 
-    return colors.iconDefault;
+  double resolveIconSize(BuildContext context, Set<T> states) {
+    return context.ygTheme.tokens.dimensions.lg;
   }
 
   InteractiveInkFeatureFactory resolveSplashFactory(BuildContext context, Set<T> states) {

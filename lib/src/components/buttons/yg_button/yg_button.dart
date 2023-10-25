@@ -1,11 +1,20 @@
 import 'package:flutter/material.dart';
 import 'package:yggdrasil/src/components/buttons/widgets/_widgets.dart';
+import 'package:yggdrasil/src/components/buttons/yg_button/enum/yg_button_state.dart';
+import 'package:yggdrasil/yggdrasil.dart';
 
-class YgButton extends StatelessWidget {
-  const YgButton({
+import 'yg_button_style.dart';
+
+part 'yg_button_with_leading_icon.dart';
+part 'yg_button_with_trailing_icon.dart';
+
+class YgButtonNew extends StatefulWidget {
+  const YgButtonNew({
     super.key,
     required this.child,
     required this.onPressed,
+    this.size = YgButtonSize.medium,
+    this.variant = YgButtonVariant.primary,
     this.onLongPress,
     this.onHover,
     this.onFocusChange,
@@ -13,7 +22,37 @@ class YgButton extends StatelessWidget {
     this.autofocus = false,
   });
 
+  const factory YgButtonNew.leadingIcon({
+    bool autofocus,
+    required Widget child,
+    FocusNode? focusNode,
+    required YgIcon icon,
+    Key? key,
+    void Function(bool)? onFocusChange,
+    void Function(bool)? onHover,
+    void Function()? onLongPress,
+    required void Function()? onPressed,
+    YgButtonSize size,
+    YgButtonVariant variant,
+  }) = _YgButtonWithLeadingIcon;
+
+  const factory YgButtonNew.trailingIcon({
+    bool autofocus,
+    required Widget child,
+    FocusNode? focusNode,
+    required YgIcon icon,
+    Key? key,
+    void Function(bool)? onFocusChange,
+    void Function(bool)? onHover,
+    void Function()? onLongPress,
+    required void Function()? onPressed,
+    YgButtonSize size,
+    YgButtonVariant variant,
+  }) = _YgButtonWithTrailingIcon;
+
   final Widget child;
+  final YgButtonVariant variant;
+  final YgButtonSize size;
   final VoidCallback? onPressed;
   final VoidCallback? onLongPress;
   final ValueChanged<bool>? onHover;
@@ -22,24 +61,56 @@ class YgButton extends StatelessWidget {
   final bool autofocus;
 
   @override
+  State<YgButtonNew> createState() => _YgButtonNewState<YgButtonNew>();
+}
+
+class _YgButtonNewState<T extends YgButtonNew> extends State<T> {
+  // ignore: avoid-missing-enum-constant-in-map
+  static const Map<YgButtonState, MaterialState> _statesMap = <YgButtonState, MaterialState>{
+    YgButtonState.disabled: MaterialState.disabled,
+    YgButtonState.focused: MaterialState.focused,
+    YgButtonState.hovered: MaterialState.hovered,
+    YgButtonState.pressed: MaterialState.pressed,
+  };
+
+  late final YgStatesController<YgButtonState> _controller = YgStatesController<YgButtonState>({
+    if (widget.onPressed == null) YgButtonState.disabled,
+    YgButtonState.fromSize(widget.size),
+    YgButtonState.fromVariant(widget.variant),
+  });
+
+  @override
+  void dispose() {
+    _controller.dispose();
+    super.dispose();
+  }
+
+  @override
   Widget build(BuildContext context) {
-    return YgBaseButton(
-      createStyle: createStyle,
-      onPressed: onPressed,
-      onLongPress: onLongPress,
-      onHover: onHover,
-      onFocusChange: onFocusChange,
-      focusNode: focusNode,
-      autofocus: autofocus,
-      child: buildChild(context),
+    return YgBaseButton<YgButtonState>(
+      createStyle: _createStyle,
+      controller: _controller,
+      statesToMaterialMap: _statesMap,
+      onPressed: widget.onPressed,
+      onLongPress: widget.onLongPress,
+      onHover: widget.onHover,
+      onFocusChange: widget.onFocusChange,
+      focusNode: widget.focusNode,
+      autofocus: widget.autofocus,
+      child: _buildChild(context),
     );
   }
 
-  _createStyle() {}
+  YgButtonStyle _createStyle(YgVsync vsync) {
+    return YgButtonStyle(
+      controller: _controller,
+      vsync: vsync,
+    );
+  }
 
-  Widget buildChild(BuildContext context) {}
+  // context is used in overwriting classes.
+  // ignore: avoid-unused-parameters
+  Widget _buildChild(BuildContext context) {
+    return widget.child;
+  }
 }
-
-class _YgButtonWithLeadingIconChild extends YgButton {}
-
-class _YgButtonWithTrailingIconChild extends YgButton {}

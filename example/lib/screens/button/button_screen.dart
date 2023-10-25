@@ -31,6 +31,36 @@ class ButtonScreen extends StatelessWidget {
             ),
           ),
           YgSection.column(
+            title: 'NEW',
+            subtitle: 'Spacing between buttons added manually.',
+            children: <Widget>[
+              YgButtonNew(
+                onPressed: () {},
+                child: const Text('Primary'),
+              ),
+              YgButtonNew(
+                variant: YgButtonVariant.secondary,
+                onPressed: () {},
+                child: const Text('Secondary'),
+              ),
+              YgButtonNew(
+                variant: YgButtonVariant.text,
+                onPressed: () {},
+                child: const Text('Text'),
+              ),
+              YgButtonNew(
+                variant: YgButtonVariant.link,
+                onPressed: () {},
+                child: const Text('Link'),
+              ),
+              YgButtonNew(
+                variant: YgButtonVariant.critical,
+                onPressed: () {},
+                child: const Text('Critical'),
+              ),
+            ].withVerticalSpacing(10.0),
+          ),
+          YgSection.column(
             title: 'Variants',
             subtitle: 'Spacing between buttons added manually.',
             children: <Widget>[

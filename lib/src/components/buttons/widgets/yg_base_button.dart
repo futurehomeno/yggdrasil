@@ -3,10 +3,7 @@ import 'package:yggdrasil/src/utils/_utils.dart';
 
 import '_widgets.dart';
 
-typedef YbButtonStyleCreator<T extends Enum> = YgBaseButtonStyle<T> Function(
-  YgVsync vsync,
-  YgStatesController<T> controller,
-);
+typedef YbButtonStyleCreator<T extends Enum> = YgBaseButtonStyle<T> Function(YgVsync vsync);
 
 class YgBaseButton<T extends Enum> extends StatefulWidget with StatefulWidgetDebugMixin {
   const YgBaseButton({
@@ -53,7 +50,7 @@ class _YgBaseButtonState<T extends Enum> extends State<YgBaseButton<T>> {
   @override
   Widget build(BuildContext context) {
     return YgStyleBuilder<YgBaseButtonStyle<T>>(
-      createStyle: (YgVsync vsync) => widget.createStyle(vsync, widget.controller),
+      createStyle: widget.createStyle,
       getWatchedProperties: (YgBaseButtonStyle<T> style) => <YgDynamicDrivenProperty>{
         style.splashFactory,
         style.cursor,
