@@ -1,3 +1,7 @@
+# 1.6.18+23 [25.10.2023 14:13]
+
+- [dev-fix] Fixed slack messages.
+
 # 1.6.17+22 [25.10.2023 12:52]
 
 - [dev-fix] Fixed changelog sent to slack.
