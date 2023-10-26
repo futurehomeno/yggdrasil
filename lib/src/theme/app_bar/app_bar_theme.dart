@@ -64,6 +64,22 @@ class _$YgAppBarTheme {
     ),
   ];
 
+  /// Elevation when the app bar is at the top.
+  static const List<double> elevation = <double>[
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+  ];
+
+  /// Elevation when there's content "under" the app bar.
+  static const List<double> scrolledUnderElevation = <double>[
+    1.0,
+    1.0,
+    1.0,
+    1.0,
+  ];
+
   // !--- IMPORTANT ---
   // If the size of the app bar changes, the size of the app bar must be updated in the
   // `preferredSize` getter in the widget as well.

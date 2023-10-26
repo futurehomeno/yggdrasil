@@ -29,7 +29,7 @@ class DemoScreen extends StatelessWidget {
       builder: (BuildContext context, YgAppState ygAppState, Widget? widget) {
         return Scaffold(
           appBar: appBar ??
-              YgAppBar(
+              YgAppBarOld(
                 title: componentName ?? '',
                 centerTitle: false,
                 actions: <Widget>[

@@ -6,6 +6,7 @@ part 'yg_section_base.dart';
 part 'yg_section_column.dart';
 part 'yg_section_header.dart';
 part 'yg_section_list.dart';
+part 'yg_section_list_builder.dart';
 part 'yg_section_padding.dart';
 
 /// Responsible for applying correct padding to collections of widgets.
