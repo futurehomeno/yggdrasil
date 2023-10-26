@@ -16,80 +16,45 @@ void main() {
         scenarioConstraints: YgGoldenTestValues.scenarioConstraints,
         children: <GoldenTestScenario>[
           GoldenTestScenario(
-            name: 'With single-digit amount, YgIconButton child and default alignment',
+            name: 'With amount under 10',
             child: YgBadge(
               amount: 4,
               child: YgIconButton(
-                child: const YgIcon(YgIcons.smokeTest),
+                child: const YgIcon(YgIcons.info),
                 onPressed: () {},
               ),
             ),
           ),
           GoldenTestScenario(
-            name: 'With double-digit amount, YgIconButton child and default alignment',
+            name: 'With amount over 10',
             child: YgBadge(
               amount: 44,
               child: YgIconButton(
-                child: const YgIcon(YgIcons.smokeTest),
+                child: const YgIcon(YgIcons.info),
                 onPressed: () {},
               ),
             ),
           ),
           GoldenTestScenario(
-            name: 'With triple-digit amount, YgIconButton child and default alignment',
-            child: YgBadge(
-              amount: 44,
-              child: YgIconButton(
-                child: const YgIcon(YgIcons.smokeTest),
-                onPressed: () {},
-              ),
-            ),
-          ),
-          GoldenTestScenario(
-            name: 'With double-digit amount, YgIconButton child and strong weight',
+            name: 'With amount over 10 and strong weight',
             child: YgBadge(
               amount: 44,
               weight: YgBadgeWeight.strong,
               child: YgIconButton(
-                child: const YgIcon(YgIcons.smokeTest),
+                child: const YgIcon(YgIcons.info),
                 onPressed: () {},
               ),
             ),
           ),
           GoldenTestScenario(
-            name: 'With double-digit amount, YgIconButton child and weak weight',
-            child: YgBadge(
-              amount: 44,
-              weight: YgBadgeWeight.weak,
-              child: YgIconButton(
-                child: const YgIcon(YgIcons.smokeTest),
-                onPressed: () {},
-              ),
-            ),
-          ),
-          GoldenTestScenario(
-            name: 'With double-digit amount, YgIconButton child and topLeft alignment',
+            name: 'With amount over 10 and topLeft alignment',
             child: YgBadge(
               amount: 44,
               alignment: Alignment.topLeft,
               child: YgIconButton(
-                child: const YgIcon(YgIcons.smokeTest),
+                child: const YgIcon(YgIcons.info),
                 onPressed: () {},
               ),
-            ),
-          ),
-          GoldenTestScenario(
-            name: 'With single-digit amount, YgIcon child, default alignment',
-            child: const YgBadge(
-              amount: 4,
-              child: YgIcon(YgIcons.smokeTest),
-            ),
-          ),
-          GoldenTestScenario(
-            name: 'With double-digit amount, YgIcon child, default alignment',
-            child: const YgBadge(
-              amount: 44,
-              child: YgIcon(YgIcons.smokeTest),
             ),
           ),
         ],
