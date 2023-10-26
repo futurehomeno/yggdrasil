@@ -3,7 +3,7 @@ import 'package:yggdrasil/yggdrasil.dart';
 import 'package:yggdrasil_demo/core/_core.dart';
 import 'package:yggdrasil_demo/widgets/_widgets.dart';
 
-class ButtonScreen extends StatelessWidget {
+class ButtonScreen extends StatefulWidget {
   const ButtonScreen({super.key});
 
   static const String routeName = 'ButtonsScreen';
@@ -14,6 +14,13 @@ class ButtonScreen extends StatelessWidget {
       screen: const ButtonScreen(),
     );
   }
+
+  @override
+  State<ButtonScreen> createState() => _ButtonScreenState();
+}
+
+class _ButtonScreenState extends State<ButtonScreen> {
+  YgButtonVariant variant = YgButtonVariant.primary;
 
   @override
   Widget build(BuildContext context) {
@@ -35,8 +42,14 @@ class ButtonScreen extends StatelessWidget {
             subtitle: 'Spacing between buttons added manually.',
             children: <Widget>[
               YgButtonNew(
-                onPressed: () {},
-                child: const Text('Primary'),
+                onPressed: () {
+                  variant = YgButtonVariant
+                      .values[(YgButtonVariant.values.indexOf(variant) + 1) % YgButtonVariant.values.length];
+                  setState(() {});
+                  print(variant);
+                },
+                variant: variant,
+                child: const Text('Animated'),
               ),
               YgButtonNew(
                 variant: YgButtonVariant.secondary,

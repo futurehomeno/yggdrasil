@@ -7,16 +7,17 @@ typedef YgMaterialNullable[FTName | pascalcase]Property = YgMaterialProperty<[FT
 typedef YgAnimatedNullable[FTName | pascalcase]Property = YgAnimatedProperty<[FTName | pascalcase]?>;
 typedef YgDrivenNullable[FTName | pascalcase]Property = YgDrivenProperty<[FTName | pascalcase]?>;
 
-class Nullable[FTName | pascalcase]Tween extends Tween<[FTName | pascalcase]?> {
+class Nullable[FTName | pascalcase]Tween<T extends [FTName | pascalcase]> extends Tween<T?> {
   Nullable[FTName | pascalcase]Tween({
     super.begin,
     super.end,
   });
 
   @override
-  [FTName | pascalcase]? lerp(double t) => [FTName | pascalcase].lerp(
+  T? lerp(double t) => [FTName | pascalcase].lerp(
         begin,
         end,
         t,
-      );
+      ) as T?;
 }
+

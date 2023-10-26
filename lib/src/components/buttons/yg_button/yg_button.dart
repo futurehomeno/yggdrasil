@@ -86,6 +86,13 @@ class _YgButtonNewState<T extends YgButtonNew> extends State<T> {
   }
 
   @override
+  void didUpdateWidget(covariant T oldWidget) {
+    _controller.updateSize(widget.size);
+    _controller.updateVariant(widget.variant);
+    super.didUpdateWidget(oldWidget);
+  }
+
+  @override
   Widget build(BuildContext context) {
     return YgBaseButton<YgButtonState>(
       createStyle: _createStyle,

@@ -6,16 +6,17 @@ typedef YgMaterial[FTName | pascalcase]Property = YgMaterialProperty<[FTName | p
 typedef YgAnimated[FTName | pascalcase]Property = YgAnimatedProperty<[FTName | pascalcase]>;
 typedef YgDriven[FTName | pascalcase]Property = YgDrivenProperty<[FTName | pascalcase]>;
 
-class NonNullable[FTName | pascalcase]Tween extends Tween<[FTName | pascalcase]> {
+class NonNullable[FTName | pascalcase]Tween<T extends [FTName | pascalcase]> extends Tween<T> {
   NonNullable[FTName | pascalcase]Tween({
-    required super.begin,
-    required super.end,
+    required T super.begin,
+    required T super.end,
   });
 
   @override
-  [FTName | pascalcase] lerp(double t) => [FTName | pascalcase].lerp(
+  T lerp(double t) => [FTName | pascalcase].lerp(
         begin,
         end,
         t,
-      )!;
+      ) as T;
 }
+
