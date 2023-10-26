@@ -61,7 +61,7 @@ class YgAppBarOld extends StatelessWidget with StatelessWidgetDebugMixin impleme
         right: false,
         top: false,
         bottom: false,
-        minimum: EdgeInsets.only(
+        minimum: const EdgeInsets.only(
           left: 15.0,
         ),
         child: Text(
