@@ -7,9 +7,7 @@ class TweenFactory {
   const TweenFactory._();
 
   static Tween<T> createTween<T>(T initialValue) {
-    final _T<T> t = _T<T>(
-      initialValue: initialValue,
-    );
+    final _T<T> t = _T<T>();
 
     switch (t) {
       // region Templated
@@ -17,21 +15,25 @@ class TweenFactory {
       case _T<FractionalOffset>():
         initialValue as FractionalOffset;
 
-        return NonNullableFractionalOffsetTween(
-          begin: initialValue,
-          end: initialValue,
-        ) as Tween<T>;
+        return _AdapterTween<FractionalOffset, T>(
+          parent: NonNullableFractionalOffsetTween(
+            begin: initialValue,
+            end: initialValue,
+          ),
+        );
       case _T<NullableFractionalOffset>():
-        initialValue as FractionalOffset?;
+        initialValue as NullableFractionalOffset;
 
-        return NullableFractionalOffsetTween(
-          begin: initialValue,
-          end: initialValue,
-        ) as Tween<T>;
+        return _AdapterTween<NullableFractionalOffset, T>(
+          parent: NullableFractionalOffsetTween(
+            begin: initialValue,
+            end: initialValue,
+          ),
+        );
       case _T<Alignment>():
         initialValue as Alignment;
 
-        return AdapterTween<Alignment, T>(
+        return _AdapterTween<Alignment, T>(
           parent: NonNullableAlignmentTween(
             begin: initialValue,
             end: initialValue,
@@ -40,7 +42,7 @@ class TweenFactory {
       case _T<NullableAlignment>():
         initialValue as NullableAlignment;
 
-        return AdapterTween<NullableAlignment, T>(
+        return _AdapterTween<NullableAlignment, T>(
           parent: NullableAlignmentTween(
             begin: initialValue,
             end: initialValue,
@@ -49,170 +51,214 @@ class TweenFactory {
       case _T<AlignmentGeometry>():
         initialValue as AlignmentGeometry;
 
-        return NonNullableAlignmentGeometryTween(
-          begin: initialValue,
-          end: initialValue,
-        ) as Tween<T>;
+        return _AdapterTween<AlignmentGeometry, T>(
+          parent: NonNullableAlignmentGeometryTween(
+            begin: initialValue,
+            end: initialValue,
+          ),
+        );
       case _T<NullableAlignmentGeometry>():
-        initialValue as AlignmentGeometry?;
+        initialValue as NullableAlignmentGeometry;
 
-        return NullableAlignmentGeometryTween(
-          begin: initialValue,
-          end: initialValue,
-        ) as Tween<T>;
+        return _AdapterTween<NullableAlignmentGeometry, T>(
+          parent: NullableAlignmentGeometryTween(
+            begin: initialValue,
+            end: initialValue,
+          ),
+        );
       case _T<Border>():
         initialValue as Border;
 
-        return NonNullableBorderTween(
-          begin: initialValue,
-          end: initialValue,
-        ) as Tween<T>;
+        return _AdapterTween<Border, T>(
+          parent: NonNullableBorderTween(
+            begin: initialValue,
+            end: initialValue,
+          ),
+        );
       case _T<NullableBorder>():
-        initialValue as Border?;
+        initialValue as NullableBorder;
 
-        return NullableBorderTween(
-          begin: initialValue,
-          end: initialValue,
-        ) as Tween<T>;
+        return _AdapterTween<NullableBorder, T>(
+          parent: NullableBorderTween(
+            begin: initialValue,
+            end: initialValue,
+          ),
+        );
       case _T<BorderRadius>():
         initialValue as BorderRadius;
 
-        return NonNullableBorderRadiusTween(
-          begin: initialValue,
-          end: initialValue,
-        ) as Tween<T>;
+        return _AdapterTween<BorderRadius, T>(
+          parent: NonNullableBorderRadiusTween(
+            begin: initialValue,
+            end: initialValue,
+          ),
+        );
       case _T<NullableBorderRadius>():
-        initialValue as BorderRadius?;
+        initialValue as NullableBorderRadius;
 
-        return NullableBorderRadiusTween(
-          begin: initialValue,
-          end: initialValue,
-        ) as Tween<T>;
+        return _AdapterTween<NullableBorderRadius, T>(
+          parent: NullableBorderRadiusTween(
+            begin: initialValue,
+            end: initialValue,
+          ),
+        );
       case _T<BoxConstraints>():
         initialValue as BoxConstraints;
 
-        return NonNullableBoxConstraintsTween(
-          begin: initialValue,
-          end: initialValue,
-        ) as Tween<T>;
+        return _AdapterTween<BoxConstraints, T>(
+          parent: NonNullableBoxConstraintsTween(
+            begin: initialValue,
+            end: initialValue,
+          ),
+        );
       case _T<NullableBoxConstraints>():
-        initialValue as BoxConstraints?;
+        initialValue as NullableBoxConstraints;
 
-        return NullableBoxConstraintsTween(
-          begin: initialValue,
-          end: initialValue,
-        ) as Tween<T>;
+        return _AdapterTween<NullableBoxConstraints, T>(
+          parent: NullableBoxConstraintsTween(
+            begin: initialValue,
+            end: initialValue,
+          ),
+        );
       case _T<Color>():
         initialValue as Color;
 
-        return NonNullableColorTween(
-          begin: initialValue,
-          end: initialValue,
-        ) as Tween<T>;
+        return _AdapterTween<Color, T>(
+          parent: NonNullableColorTween(
+            begin: initialValue,
+            end: initialValue,
+          ),
+        );
       case _T<NullableColor>():
-        initialValue as Color?;
+        initialValue as NullableColor;
 
-        return NullableColorTween(
-          begin: initialValue,
-          end: initialValue,
-        ) as Tween<T>;
+        return _AdapterTween<NullableColor, T>(
+          parent: NullableColorTween(
+            begin: initialValue,
+            end: initialValue,
+          ),
+        );
       case _T<Decoration>():
         initialValue as Decoration;
 
-        return NonNullableDecorationTween(
-          begin: initialValue,
-          end: initialValue,
-        ) as Tween<T>;
+        return _AdapterTween<Decoration, T>(
+          parent: NonNullableDecorationTween(
+            begin: initialValue,
+            end: initialValue,
+          ),
+        );
       case _T<NullableDecoration>():
-        initialValue as Decoration?;
+        initialValue as NullableDecoration;
 
-        return NullableDecorationTween(
-          begin: initialValue,
-          end: initialValue,
-        ) as Tween<T>;
+        return _AdapterTween<NullableDecoration, T>(
+          parent: NullableDecorationTween(
+            begin: initialValue,
+            end: initialValue,
+          ),
+        );
       case _T<EdgeInsets>():
         initialValue as EdgeInsets;
 
-        return NonNullableEdgeInsetsTween(
-          begin: initialValue,
-          end: initialValue,
-        ) as Tween<T>;
+        return _AdapterTween<EdgeInsets, T>(
+          parent: NonNullableEdgeInsetsTween(
+            begin: initialValue,
+            end: initialValue,
+          ),
+        );
       case _T<NullableEdgeInsets>():
-        initialValue as EdgeInsets?;
+        initialValue as NullableEdgeInsets;
 
-        return NullableEdgeInsetsTween(
-          begin: initialValue,
-          end: initialValue,
-        ) as Tween<T>;
+        return _AdapterTween<NullableEdgeInsets, T>(
+          parent: NullableEdgeInsetsTween(
+            begin: initialValue,
+            end: initialValue,
+          ),
+        );
       case _T<EdgeInsetsGeometry>():
         initialValue as EdgeInsetsGeometry;
 
-        return NonNullableEdgeInsetsGeometryTween(
-          begin: initialValue,
-          end: initialValue,
-        ) as Tween<T>;
+        return _AdapterTween<EdgeInsetsGeometry, T>(
+          parent: NonNullableEdgeInsetsGeometryTween(
+            begin: initialValue,
+            end: initialValue,
+          ),
+        );
       case _T<NullableEdgeInsetsGeometry>():
-        initialValue as EdgeInsetsGeometry?;
+        initialValue as NullableEdgeInsetsGeometry;
 
-        return NullableEdgeInsetsGeometryTween(
-          begin: initialValue,
-          end: initialValue,
-        ) as Tween<T>;
+        return _AdapterTween<NullableEdgeInsetsGeometry, T>(
+          parent: NullableEdgeInsetsGeometryTween(
+            begin: initialValue,
+            end: initialValue,
+          ),
+        );
       case _T<Offset>():
         initialValue as Offset;
 
-        return NonNullableOffsetTween(
-          begin: initialValue,
-          end: initialValue,
-        ) as Tween<T>;
+        return _AdapterTween<Offset, T>(
+          parent: NonNullableOffsetTween(
+            begin: initialValue,
+            end: initialValue,
+          ),
+        );
       case _T<NullableOffset>():
-        initialValue as Offset?;
+        initialValue as NullableOffset;
 
-        return NullableOffsetTween(
-          begin: initialValue,
-          end: initialValue,
-        ) as Tween<T>;
+        return _AdapterTween<NullableOffset, T>(
+          parent: NullableOffsetTween(
+            begin: initialValue,
+            end: initialValue,
+          ),
+        );
       case _T<Rect>():
         initialValue as Rect;
 
-        return NonNullableRectTween(
-          begin: initialValue,
-          end: initialValue,
-        ) as Tween<T>;
+        return _AdapterTween<Rect, T>(
+          parent: NonNullableRectTween(
+            begin: initialValue,
+            end: initialValue,
+          ),
+        );
       case _T<NullableRect>():
-        initialValue as Rect?;
+        initialValue as NullableRect;
 
-        return NullableRectTween(
-          begin: initialValue,
-          end: initialValue,
-        ) as Tween<T>;
+        return _AdapterTween<NullableRect, T>(
+          parent: NullableRectTween(
+            begin: initialValue,
+            end: initialValue,
+          ),
+        );
       case _T<RelativeRect>():
         initialValue as RelativeRect;
 
-        return NonNullableRelativeRectTween(
-          begin: initialValue,
-          end: initialValue,
-        ) as Tween<T>;
+        return _AdapterTween<RelativeRect, T>(
+          parent: NonNullableRelativeRectTween(
+            begin: initialValue,
+            end: initialValue,
+          ),
+        );
       case _T<NullableRelativeRect>():
-        initialValue as RelativeRect?;
+        initialValue as NullableRelativeRect;
 
-        return NullableRelativeRectTween(
-          begin: initialValue,
-          end: initialValue,
-        ) as Tween<T>;
+        return _AdapterTween<NullableRelativeRect, T>(
+          parent: NullableRelativeRectTween(
+            begin: initialValue,
+            end: initialValue,
+          ),
+        );
       case _T<ShapeBorder>():
         initialValue as ShapeBorder;
 
-        return AdapterTween<ShapeBorder, T>(
+        return _AdapterTween<ShapeBorder, T>(
           parent: NonNullableShapeBorderTween(
             begin: initialValue,
             end: initialValue,
           ),
         );
       case _T<NullableShapeBorder>():
-        initialValue as ShapeBorder?;
+        initialValue as NullableShapeBorder;
 
-        return AdapterTween<ShapeBorder?, T>(
+        return _AdapterTween<NullableShapeBorder, T>(
           parent: NullableShapeBorderTween(
             begin: initialValue,
             end: initialValue,
@@ -221,59 +267,75 @@ class TweenFactory {
       case _T<Size>():
         initialValue as Size;
 
-        return NonNullableSizeTween(
-          begin: initialValue,
-          end: initialValue,
-        ) as Tween<T>;
+        return _AdapterTween<Size, T>(
+          parent: NonNullableSizeTween(
+            begin: initialValue,
+            end: initialValue,
+          ),
+        );
       case _T<NullableSize>():
-        initialValue as Size?;
+        initialValue as NullableSize;
 
-        return NullableSizeTween(
-          begin: initialValue,
-          end: initialValue,
-        ) as Tween<T>;
+        return _AdapterTween<NullableSize, T>(
+          parent: NullableSizeTween(
+            begin: initialValue,
+            end: initialValue,
+          ),
+        );
       case _T<TextStyle>():
         initialValue as TextStyle;
 
-        return NonNullableTextStyleTween(
-          begin: initialValue,
-          end: initialValue,
-        ) as Tween<T>;
+        return _AdapterTween<TextStyle, T>(
+          parent: NonNullableTextStyleTween(
+            begin: initialValue,
+            end: initialValue,
+          ),
+        );
       case _T<NullableTextStyle>():
-        initialValue as TextStyle?;
+        initialValue as NullableTextStyle;
 
-        return NullableTextStyleTween(
-          begin: initialValue,
-          end: initialValue,
-        ) as Tween<T>;
+        return _AdapterTween<NullableTextStyle, T>(
+          parent: NullableTextStyleTween(
+            begin: initialValue,
+            end: initialValue,
+          ),
+        );
       case _T<BorderSide>():
         initialValue as BorderSide;
 
-        return NonNullableBorderSideTween(
-          begin: initialValue,
-          end: initialValue,
-        ) as Tween<T>;
+        return _AdapterTween<BorderSide, T>(
+          parent: NonNullableBorderSideTween(
+            begin: initialValue,
+            end: initialValue,
+          ),
+        );
       case _T<NullableBorderSide>():
-        initialValue as BorderSide?;
+        initialValue as NullableBorderSide;
 
-        return NullableBorderSideTween(
-          begin: initialValue,
-          end: initialValue,
-        ) as Tween<T>;
+        return _AdapterTween<NullableBorderSide, T>(
+          parent: NullableBorderSideTween(
+            begin: initialValue,
+            end: initialValue,
+          ),
+        );
       case _T<IconThemeData>():
         initialValue as IconThemeData;
 
-        return NonNullableIconThemeDataTween(
-          begin: initialValue,
-          end: initialValue,
-        ) as Tween<T>;
+        return _AdapterTween<IconThemeData, T>(
+          parent: NonNullableIconThemeDataTween(
+            begin: initialValue,
+            end: initialValue,
+          ),
+        );
       case _T<NullableIconThemeData>():
-        initialValue as IconThemeData?;
+        initialValue as NullableIconThemeData;
 
-        return NullableIconThemeDataTween(
-          begin: initialValue,
-          end: initialValue,
-        ) as Tween<T>;
+        return _AdapterTween<NullableIconThemeData, T>(
+          parent: NullableIconThemeDataTween(
+            begin: initialValue,
+            end: initialValue,
+          ),
+        );
 
       // endregion
 
@@ -300,18 +362,16 @@ class TweenFactory {
   }
 }
 
-typedef SubtypeTweenCreator<T, S extends T> = Tween<S> Function(T initialValue);
-
+/// Type argument type check helper class.
 class _T<T> {
-  const _T({
-    required this.initialValue,
-  });
-
-  final T initialValue;
+  const _T();
 }
 
-class AdapterTween<From, To> extends Tween<To> {
-  AdapterTween({
+/// Adapts a tween of one type to another type.
+///
+/// Can only be used to adapt from a base type to an extended type.
+class _AdapterTween<From, To> extends Tween<To> {
+  _AdapterTween({
     required this.parent,
   });
 
