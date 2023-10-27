@@ -11,7 +11,7 @@ void main() {
   group(
     'YgListTileGoldenTest',
     () {
-      final GoldenTestGroup ygCalloutGoldenTestGroup = GoldenTestGroup(
+      final GoldenTestGroup ygListTileGoldenTestGroup = GoldenTestGroup(
         columns: 2,
         scenarioConstraints: YgGoldenTestValues.scenarioConstraints,
         children: <GoldenTestScenario>[
@@ -135,7 +135,7 @@ void main() {
         goldenTest(
           'YgListTile - ${themeTestData.themeName}',
           fileName: 'yg_list_tile_${themeTestData.fileName}',
-          builder: () => ygCalloutGoldenTestGroup,
+          builder: () => ygListTileGoldenTestGroup,
           pumpWidget: (WidgetTester widgetTester, Widget widget) {
             return widgetTester.pumpWidgetWithYgTheme(
               widget: widget,
