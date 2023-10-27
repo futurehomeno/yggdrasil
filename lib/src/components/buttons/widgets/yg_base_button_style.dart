@@ -19,6 +19,7 @@ abstract class YgBaseButtonStyle<T extends Enum> extends YgStyleWithDefaults<T> 
   late YgAnimatedAlignmentProperty alignment;
   late YgAnimatedDoubleProperty elevation;
   late YgDrivenProperty<MouseCursor?> cursor;
+  late YgDrivenColorProperty splashColor;
   late YgDrivenProperty<InteractiveInkFeatureFactory> splashFactory;
 
   @override
@@ -34,6 +35,7 @@ abstract class YgBaseButtonStyle<T extends Enum> extends YgStyleWithDefaults<T> 
     elevation = animate(YgDoubleProperty<T>.resolveWith(resolveElevation));
     shape = animate(YgProperty<T, OutlinedBorder?>.resolveWith(resolveOutlinedBorder));
     cursor = drive(YgProperty<T, MouseCursor?>.resolveWith(resolveCursor));
+    splashColor = drive(YgColorProperty<T>.resolveWith(resolveSplashColor));
     splashFactory = drive(YgProperty<T, InteractiveInkFeatureFactory>.resolveWith(resolveSplashFactory));
   }
 
@@ -78,6 +80,16 @@ abstract class YgBaseButtonStyle<T extends Enum> extends YgStyleWithDefaults<T> 
   }
 
   InteractiveInkFeatureFactory resolveSplashFactory(BuildContext context, Set<T> states) {
-    return InkRipple.splashFactory;
+    return InkSparkle.splashFactory;
+  }
+
+  Color resolveSplashColor(BuildContext context, Set<T> states) {
+    final Color color = resolveColor(context, states);
+
+    if (color.computeLuminance() > 0.5) {
+      return Colors.black.withOpacity(0.08);
+    }
+
+    return Colors.white.withOpacity(0.08);
   }
 }

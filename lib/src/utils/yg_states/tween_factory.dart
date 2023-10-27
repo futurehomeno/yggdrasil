@@ -381,7 +381,13 @@ class _AdapterTween<From, To> extends Tween<To> {
   To? get begin => parent.begin as To?;
 
   @override
+  set begin(To? newValue) => parent.begin = newValue as From;
+
+  @override
   To? get end => parent.end as To?;
+
+  @override
+  set end(To? newValue) => parent.end = newValue as From;
 
   @override
   To lerp(double t) {

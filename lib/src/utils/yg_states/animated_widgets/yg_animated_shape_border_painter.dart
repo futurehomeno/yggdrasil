@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:yggdrasil/src/utils/_utils.dart';
 
-class YgAnimatedShaperBorderPainter extends StatelessWidget {
-  const YgAnimatedShaperBorderPainter({
+class YgAnimatedShapeBorderPainter extends StatelessWidget {
+  const YgAnimatedShapeBorderPainter({
     super.key,
     required this.child,
     required this.shape,

@@ -54,39 +54,45 @@ class _YgBaseButtonState<T extends Enum> extends State<YgBaseButton<T>> {
       getWatchedProperties: (YgBaseButtonStyle<T> style) => <YgDynamicDrivenProperty>{
         style.splashFactory,
         style.cursor,
+        style.splashColor,
       },
       builder: (BuildContext context, YgBaseButtonStyle<T> style) {
         return YgAnimatedConstrainedBox(
           constraints: style.constraints,
-          child: YgAnimatedPhysicalModel(
-            color: style.color,
-            elevation: style.elevation,
-            child: YgAnimatedShaperBorderPainter(
-              shape: style.shape,
+          child: YgAnimatedShapeBorderClipper(
+            shape: style.shape,
+            child: YgAnimatedPhysicalModel(
+              color: style.color,
+              elevation: style.elevation,
               child: Material(
                 color: Colors.transparent,
-                child: InkWell(
-                  statesController: _proxyController,
-                  splashFactory: style.splashFactory.value,
-                  onLongPress: widget.onLongPress,
-                  onTap: widget.onPressed,
-                  onHover: widget.onHover,
-                  onFocusChange: widget.onFocusChange,
-                  autofocus: widget.autofocus,
-                  focusNode: widget.focusNode,
-                  canRequestFocus: widget.onPressed != null,
-                  mouseCursor: style.cursor.value,
-                  child: YgAnimatedPadding(
-                    padding: style.padding,
-                    child: AlignTransition(
-                      widthFactor: 1,
-                      heightFactor: 1,
-                      alignment: style.alignment,
-                      child: DefaultTextStyleTransition(
-                        style: style.textStyle,
-                        child: YgAnimatedIconTheme(
-                          iconTheme: _getMappedIconTheme(style, context),
-                          child: widget.child,
+                child: YgAnimatedShapeBorderPainter(
+                  shape: style.shape,
+                  child: InkWell(
+                    statesController: _proxyController,
+                    splashFactory: style.splashFactory.value,
+                    onLongPress: widget.onLongPress,
+                    onTap: widget.onPressed,
+                    onHover: widget.onHover,
+                    onFocusChange: widget.onFocusChange,
+                    autofocus: widget.autofocus,
+                    focusNode: widget.focusNode,
+                    canRequestFocus: widget.onPressed != null,
+                    mouseCursor: style.cursor.value,
+                    overlayColor: MaterialStatePropertyAll<Color>(style.splashColor.value),
+                    splashColor: Colors.transparent,
+                    child: YgAnimatedPadding(
+                      padding: style.padding,
+                      child: AlignTransition(
+                        widthFactor: 1,
+                        heightFactor: 1,
+                        alignment: style.alignment,
+                        child: DefaultTextStyleTransition(
+                          style: style.textStyle,
+                          child: YgAnimatedIconTheme(
+                            iconTheme: _getMappedIconTheme(style, context),
+                            child: widget.child,
+                          ),
                         ),
                       ),
                     ),
@@ -100,7 +106,10 @@ class _YgBaseButtonState<T extends Enum> extends State<YgBaseButton<T>> {
     );
   }
 
-  YgAnimatedProperty<IconThemeData> _getMappedIconTheme(YgBaseButtonStyle<T> style, BuildContext context) {
+  YgAnimatedProperty<IconThemeData> _getMappedIconTheme(
+    YgBaseButtonStyle<T> style,
+    BuildContext context,
+  ) {
     return style.iconColor.map(
       (Color color) => IconTheme.of(context).copyWith(
         color: color,

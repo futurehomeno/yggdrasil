@@ -29,10 +29,12 @@ class YgRadioStyle extends YgStyleWithDefaults<YgRadioState> {
   }
 
   double _resolveRadioSize(BuildContext context) {
+    print('_resolveRadioSize');
     return _theme.size;
   }
 
   Color _resolveHelperHandleColor(BuildContext context) {
+    print('_resolveHelperHandleColor');
     return _theme.helperHandleColor;
   }
 
@@ -59,6 +61,7 @@ class YgRadioStyle extends YgStyleWithDefaults<YgRadioState> {
   }
 
   double _resolveHandleSize(BuildContext context, Set<YgRadioState> states) {
+    print('_resolveHandleSize');
     if (states.contains(YgRadioState.disabled)) {
       return _theme.deselectedHandleSize;
     }
@@ -70,6 +73,7 @@ class YgRadioStyle extends YgStyleWithDefaults<YgRadioState> {
   }
 
   Color _resolveHandleColor(BuildContext context, Set<YgRadioState> states) {
+    print('_resolveHandleColor');
     if (states.contains(YgRadioState.disabled)) {
       return _theme.disabledHandleColor;
     }
@@ -81,6 +85,7 @@ class YgRadioStyle extends YgStyleWithDefaults<YgRadioState> {
   }
 
   double _resolveHelperHandleSize(BuildContext context, Set<YgRadioState> states) {
+    print('_resolveHelperHandleSize');
     if (states.contains(YgRadioState.disabled)) {
       if (states.contains(YgRadioState.selected)) {
         return _theme.disabledSelectedHelperHandleSize;
@@ -95,6 +100,7 @@ class YgRadioStyle extends YgStyleWithDefaults<YgRadioState> {
   }
 
   MouseCursor _resolveMouseCursor(BuildContext context, Set<YgRadioState> states) {
+    print('_resolveMouseCursor');
     if (states.contains(YgRadioState.disabled)) {
       return SystemMouseCursors.basic;
     }

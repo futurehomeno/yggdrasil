@@ -73,7 +73,7 @@ class _YgButtonNewState<T extends YgButtonNew> extends State<T> {
     YgButtonState.pressed: MaterialState.pressed,
   };
 
-  late final YgStatesController<YgButtonState> _controller = YgStatesController<YgButtonState>({
+  late final YgStatesController<YgButtonState> _controller = YgStatesController<YgButtonState>(<YgButtonState>{
     if (widget.onPressed == null) YgButtonState.disabled,
     YgButtonState.fromSize(widget.size),
     YgButtonState.fromVariant(widget.variant),

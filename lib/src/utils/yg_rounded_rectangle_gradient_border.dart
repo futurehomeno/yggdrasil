@@ -113,4 +113,18 @@ class YgRoundedRectangleGradientBorder extends OutlinedBorder {
 
     return a.scale(t * 2);
   }
+
+  @override
+  bool operator ==(Object other) =>
+      other is YgRoundedRectangleGradientBorder &&
+      other.borderRadius == borderRadius &&
+      other.gradient == gradient &&
+      other.width == width;
+
+  @override
+  int get hashCode => Object.hash(
+        borderRadius,
+        gradient,
+        width,
+      );
 }

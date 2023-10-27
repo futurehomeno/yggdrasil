@@ -118,7 +118,6 @@ class YgStatesController<T extends Enum> extends ChangeNotifier {
   void update(T state, bool toggled) {
     final bool valueChanged = toggled ? _states.add(state) : _states.remove(state);
     if (valueChanged) {
-      print('toggled: $toggled, state: $state');
       _updatePreviousStates(
         StatesChange<T>.fromUpdate(state, toggled),
       );

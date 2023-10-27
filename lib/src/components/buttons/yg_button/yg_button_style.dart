@@ -34,14 +34,6 @@ class YgButtonStyle extends YgBaseButtonStyle<YgButtonState> {
     }
   }
 
-  // @override
-  // BoxConstraints resolveConstraints(BuildContext context, Set<YgButtonState> states) {
-  //   return const BoxConstraints(
-  //     minWidth: 80,
-  //     minHeight: 26,
-  //   );
-  // }
-
   @override
   Color resolveIconColor(BuildContext context, Set<YgButtonState> states) {
     final ButtonVariantTheme variantTheme = getVariantTheme(states);
