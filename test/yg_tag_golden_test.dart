@@ -11,7 +11,7 @@ void main() {
   group(
     'YgTagGoldenTest',
     () {
-      final GoldenTestGroup ygCalloutGoldenTestGroup = GoldenTestGroup(
+      final GoldenTestGroup ygTagGoldenTestGroup = GoldenTestGroup(
         columns: 2,
         scenarioConstraints: YgGoldenTestValues.scenarioConstraints,
         children: <GoldenTestScenario>[
@@ -103,7 +103,7 @@ void main() {
         goldenTest(
           'YgTag - ${themeTestData.themeName}',
           fileName: 'yg_tag_${themeTestData.fileName}',
-          builder: () => ygCalloutGoldenTestGroup,
+          builder: () => ygTagGoldenTestGroup,
           pumpWidget: (WidgetTester widgetTester, Widget widget) {
             return widgetTester.pumpWidgetWithYgTheme(
               widget: widget,
