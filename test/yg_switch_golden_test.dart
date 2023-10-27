@@ -11,7 +11,7 @@ void main() {
   group(
     'YgSwitchGoldenTest',
     () {
-      final GoldenTestGroup ygCalloutGoldenTestGroup = GoldenTestGroup(
+      final GoldenTestGroup ygSwitchGoldenTestGroup = GoldenTestGroup(
         columns: 2,
         scenarioConstraints: YgGoldenTestValues.scenarioConstraints,
         children: <GoldenTestScenario>[
@@ -44,7 +44,7 @@ void main() {
         goldenTest(
           'YgSwitch - ${themeTestData.themeName}',
           fileName: 'yg_switch_${themeTestData.fileName}',
-          builder: () => ygCalloutGoldenTestGroup,
+          builder: () => ygSwitchGoldenTestGroup,
           pumpWidget: (WidgetTester widgetTester, Widget widget) {
             return widgetTester.pumpWidgetWithYgTheme(
               widget: widget,
