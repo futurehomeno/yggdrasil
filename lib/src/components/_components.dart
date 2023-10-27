@@ -2,7 +2,6 @@ export 'buttons/_buttons.dart';
 export 'fields/_fields.dart';
 export 'yg_badge/_yg_badge.dart';
 export 'yg_bottom_sheet/_yg_bottom_sheet.dart';
-export 'yg_button/_yg_button.dart';
 export 'yg_button_group/_yg_button_group.dart';
 export 'yg_callout/_yg_callout.dart';
 export 'yg_card/_yg_card.dart';

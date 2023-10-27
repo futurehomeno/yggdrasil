@@ -114,32 +114,3 @@ class _YgMappedDrivenProperty<From, To> implements YgDrivenProperty<To> {
     parent.removeListener(listener);
   }
 }
-
-// class _YgPropertyCombine<V, T extends Iterable<YgDrivenProperty>> implements YgDrivenProperty<V> {
-//   const _YgPropertyCombine({
-//     required this.combiner,
-//     required this.iterable,
-//   });
-
-//   final V Function(T iterable) combiner;
-//   final T iterable;
-// }
-
-// /// Schedules a microtask when calling [notifyListeners] and doesn't fire 
-// /// another one until the scheduled one has executed.
-// class DebouncedChangeNotifier extends ChangeNotifier {
-//   bool _fired = false;
-
-//   @override
-//   void notifyListeners() {
-//     if (_fired) {
-//       return;
-//     }
-
-//     _fired = true;
-//     scheduleMicrotask(() {
-//       _fired = false;
-//       super.notifyListeners();
-//     });
-//   }
-// }

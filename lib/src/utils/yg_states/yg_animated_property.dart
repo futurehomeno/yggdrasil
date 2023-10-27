@@ -76,26 +76,16 @@ class _YgAnimatedProperty<T extends Enum, V> extends Animation<V>
 
   void _handleStateChange() {
     final Set<T> states = _statesController.value;
-    final Set<T> previousStates = _statesController.previous;
     final BuildContext context = _vsync.context;
-
-    final V previous = _property.resolve(
-      context,
-      previousStates,
-    );
 
     final V target = _property.resolve(
       context,
       states,
     );
 
-    final bool changed = previous != target;
-
-    if (changed) {
-      _tween.begin = _tween.evaluate(_animationController);
-      _tween.end = target;
-      _animationController.forward(from: 0);
-    }
+    _tween.begin = _tween.evaluate(_animationController);
+    _tween.end = target;
+    _animationController.forward(from: 0);
   }
 
   void _handleDependenciesChange() {

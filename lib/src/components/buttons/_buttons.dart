@@ -1,1 +1,1 @@
-export 'yg_button/_yg_button.dart';
+export 'yg_button/_yg_button.dart' hide YgButtonState;

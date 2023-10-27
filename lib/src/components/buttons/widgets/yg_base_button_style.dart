@@ -12,8 +12,7 @@ abstract class YgBaseButtonStyle<T extends Enum> extends YgStyleWithDefaults<T> 
   late YgAnimatedNullableShapeBorderProperty shape;
   late YgAnimatedBoxConstraintsProperty constraints;
   late YgAnimatedColorProperty color;
-  late YgAnimatedColorProperty iconColor;
-  late YgAnimatedDoubleProperty iconSize;
+  late YgAnimatedIconThemeDataProperty iconTheme;
   late YgAnimatedTextStyleProperty textStyle;
   late YgAnimatedEdgeInsetsProperty padding;
   late YgAnimatedAlignmentProperty alignment;
@@ -26,8 +25,7 @@ abstract class YgBaseButtonStyle<T extends Enum> extends YgStyleWithDefaults<T> 
   void init() {
     constraints = animate(YgBoxConstraintsProperty<T>.resolveWith(resolveConstraints));
     color = animate(YgColorProperty<T>.resolveWith(resolveColor));
-    iconColor = animate(YgColorProperty<T>.resolveWith(resolveIconColor));
-    iconSize = animate(YgDoubleProperty<T>.resolveWith(resolveIconSize));
+    iconTheme = animate(YgIconThemeDataProperty<T>.resolveWith(_resolveIconTheme));
     textStyle = animate(YgTextStyleProperty<T>.resolveWith(resolveTextStyle));
     padding = animate(YgEdgeInsetsProperty<T>.resolveWith(resolvePadding));
     alignment = animate(YgAlignmentProperty<T>.resolveWith(resolveAlignment));
@@ -71,6 +69,13 @@ abstract class YgBaseButtonStyle<T extends Enum> extends YgStyleWithDefaults<T> 
     return 0.0;
   }
 
+  IconThemeData _resolveIconTheme(BuildContext context, Set<T> states) {
+    return IconTheme.of(context).copyWith(
+      color: resolveIconColor(context, states),
+      size: resolveIconSize(context, states),
+    );
+  }
+
   Color resolveIconColor(BuildContext context, Set<T> states) {
     return context.ygTheme.tokens.colors.iconDefault;
   }
@@ -80,7 +85,7 @@ abstract class YgBaseButtonStyle<T extends Enum> extends YgStyleWithDefaults<T> 
   }
 
   InteractiveInkFeatureFactory resolveSplashFactory(BuildContext context, Set<T> states) {
-    return InkSparkle.splashFactory;
+    return InkSplash.splashFactory;
   }
 
   Color resolveSplashColor(BuildContext context, Set<T> states) {

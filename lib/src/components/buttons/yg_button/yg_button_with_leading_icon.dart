@@ -1,6 +1,6 @@
 part of 'yg_button.dart';
 
-class _YgButtonWithLeadingIcon extends YgButtonNew {
+class _YgButtonWithLeadingIcon extends YgButton {
   const _YgButtonWithLeadingIcon({
     super.key,
     required super.child,
@@ -21,14 +21,14 @@ class _YgButtonWithLeadingIcon extends YgButtonNew {
   State<_YgButtonWithLeadingIcon> createState() => _YgButtonWithLeadingIconState();
 }
 
-class _YgButtonWithLeadingIconState extends _YgButtonNewState<_YgButtonWithLeadingIcon> {
+class _YgButtonWithLeadingIconState extends _YgButtonState<_YgButtonWithLeadingIcon> {
   @override
   Widget _buildChild(BuildContext context) {
     return Row(
       mainAxisSize: MainAxisSize.min,
       children: <Widget>[
-        Flexible(child: super._buildChild(context)),
         widget.icon,
+        Flexible(child: super._buildChild(context)),
       ].withHorizontalSpacing(context.buttonTheme.iconSpacing),
     );
   }

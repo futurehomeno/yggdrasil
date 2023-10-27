@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:yggdrasil/src/components/buttons/widgets/_widgets.dart';
-import 'package:yggdrasil/src/components/buttons/yg_button/enum/yg_button_state.dart';
+import 'package:yggdrasil/src/components/buttons/yg_button/enums/yg_button_state.dart';
 import 'package:yggdrasil/yggdrasil.dart';
 
 import 'yg_button_style.dart';
@@ -8,8 +8,8 @@ import 'yg_button_style.dart';
 part 'yg_button_with_leading_icon.dart';
 part 'yg_button_with_trailing_icon.dart';
 
-class YgButtonNew extends StatefulWidget {
-  const YgButtonNew({
+class YgButton extends StatefulWidget {
+  const YgButton({
     super.key,
     required this.child,
     required this.onPressed,
@@ -22,7 +22,7 @@ class YgButtonNew extends StatefulWidget {
     this.autofocus = false,
   });
 
-  const factory YgButtonNew.leadingIcon({
+  const factory YgButton.leadingIcon({
     bool autofocus,
     required Widget child,
     FocusNode? focusNode,
@@ -36,7 +36,7 @@ class YgButtonNew extends StatefulWidget {
     YgButtonVariant variant,
   }) = _YgButtonWithLeadingIcon;
 
-  const factory YgButtonNew.trailingIcon({
+  const factory YgButton.trailingIcon({
     bool autofocus,
     required Widget child,
     FocusNode? focusNode,
@@ -61,10 +61,10 @@ class YgButtonNew extends StatefulWidget {
   final bool autofocus;
 
   @override
-  State<YgButtonNew> createState() => _YgButtonNewState<YgButtonNew>();
+  State<YgButton> createState() => _YgButtonState<YgButton>();
 }
 
-class _YgButtonNewState<T extends YgButtonNew> extends State<T> {
+class _YgButtonState<T extends YgButton> extends State<T> {
   // ignore: avoid-missing-enum-constant-in-map
   static const Map<YgButtonState, MaterialState> _statesMap = <YgButtonState, MaterialState>{
     YgButtonState.disabled: MaterialState.disabled,

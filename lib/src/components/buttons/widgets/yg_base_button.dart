@@ -90,7 +90,7 @@ class _YgBaseButtonState<T extends Enum> extends State<YgBaseButton<T>> {
                         child: DefaultTextStyleTransition(
                           style: style.textStyle,
                           child: YgAnimatedIconTheme(
-                            iconTheme: _getMappedIconTheme(style, context),
+                            iconTheme: style.iconTheme,
                             child: widget.child,
                           ),
                         ),
@@ -103,17 +103,6 @@ class _YgBaseButtonState<T extends Enum> extends State<YgBaseButton<T>> {
           ),
         );
       },
-    );
-  }
-
-  YgAnimatedProperty<IconThemeData> _getMappedIconTheme(
-    YgBaseButtonStyle<T> style,
-    BuildContext context,
-  ) {
-    return style.iconColor.map(
-      (Color color) => IconTheme.of(context).copyWith(
-        color: color,
-      ),
     );
   }
 }
