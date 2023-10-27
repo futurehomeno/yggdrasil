@@ -94,7 +94,7 @@ class _YgButtonState<T extends YgButton> extends State<T> {
 
   @override
   Widget build(BuildContext context) {
-    return YgBaseButton<YgButtonState>(
+    return YgButtonBase<YgButtonState>(
       createStyle: _createStyle,
       controller: _controller,
       statesToMaterialMap: _statesMap,

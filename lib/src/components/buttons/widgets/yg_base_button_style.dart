@@ -53,9 +53,7 @@ abstract class YgBaseButtonStyle<T extends Enum> extends YgStyleWithDefaults<T> 
     return const EdgeInsets.all(0);
   }
 
-  MouseCursor resolveCursor(BuildContext context, Set<T> states) {
-    return SystemMouseCursors.click;
-  }
+  MouseCursor resolveCursor(BuildContext context, Set<T> states);
 
   Alignment resolveAlignment(BuildContext context, Set<T> states) {
     return Alignment.center;

@@ -5,8 +5,8 @@ import '_widgets.dart';
 
 typedef YbButtonStyleCreator<T extends Enum> = YgBaseButtonStyle<T> Function(YgVsync vsync);
 
-class YgBaseButton<T extends Enum> extends StatefulWidget with StatefulWidgetDebugMixin {
-  const YgBaseButton({
+class YgButtonBase<T extends Enum> extends StatefulWidget with StatefulWidgetDebugMixin {
+  const YgButtonBase({
     super.key,
     required this.child,
     required this.controller,
@@ -32,10 +32,19 @@ class YgBaseButton<T extends Enum> extends StatefulWidget with StatefulWidgetDeb
   final bool autofocus;
 
   @override
-  State<YgBaseButton<T>> createState() => _YgBaseButtonState<T>();
+  YgDebugType get debugType {
+    if (onPressed == null) {
+      return YgDebugType.other;
+    }
+
+    return YgDebugType.intractable;
+  }
+
+  @override
+  State<YgButtonBase<T>> createState() => _YgButtonBaseState<T>();
 }
 
-class _YgBaseButtonState<T extends Enum> extends State<YgBaseButton<T>> {
+class _YgButtonBaseState<T extends Enum> extends State<YgButtonBase<T>> {
   late final YgStatesMaterialStatesProxyController<T> _proxyController = YgStatesMaterialStatesProxyController<T>(
     parentController: widget.controller,
     statesMap: widget.statesToMaterialMap,
@@ -79,7 +88,9 @@ class _YgBaseButtonState<T extends Enum> extends State<YgBaseButton<T>> {
                     focusNode: widget.focusNode,
                     canRequestFocus: widget.onPressed != null,
                     mouseCursor: style.cursor.value,
-                    overlayColor: MaterialStatePropertyAll<Color>(style.splashColor.value),
+                    overlayColor: MaterialStatePropertyAll<Color>(
+                      style.splashColor.value,
+                    ),
                     splashColor: Colors.transparent,
                     child: YgAnimatedPadding(
                       padding: style.padding,
