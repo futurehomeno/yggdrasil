@@ -29,9 +29,16 @@ class DemoScreen extends StatelessWidget {
       builder: (BuildContext context, YgAppState ygAppState, Widget? widget) {
         return Scaffold(
           appBar: appBar ??
-              YgAppBarOld(
+              YgAppBar(
                 title: componentName ?? '',
                 centerTitle: false,
+                leading: YgIconButton(
+                  onPressed: () => {},
+                  child: const YgIcon(
+                    YgIcons.ygg,
+                    useEmbeddedColor: true,
+                  ),
+                ),
                 actions: <Widget>[
                   YgIconButton(
                     onPressed: () => YgDebug.toggleDebugging(context),
