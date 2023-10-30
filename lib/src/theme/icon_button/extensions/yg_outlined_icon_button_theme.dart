@@ -5,10 +5,10 @@ import 'package:yggdrasil/src/tokens/consumer_light/_consumer_light.dart' as con
 import 'package:yggdrasil/src/tokens/professional_dark/_professional_dark.dart' as professional_dark;
 import 'package:yggdrasil/src/tokens/professional_light/_professional_light.dart' as professional_light;
 
-part 'outlined_icon_button_theme.tailor.dart';
+part 'yg_outlined_icon_button_theme.tailor.dart';
 
 @tailorComponent
-class _$OutlinedIconButtonTheme {
+class _$YgOutlinedIconButtonTheme {
   static const List<Color> iconColor = <Color>[
     consumer_light.FhColors.iconDefault,
     consumer_dark.FhColors.iconDefault,

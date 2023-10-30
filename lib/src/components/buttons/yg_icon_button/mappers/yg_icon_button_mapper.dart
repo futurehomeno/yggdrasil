@@ -1,4 +1,4 @@
-import 'package:yggdrasil/src/components/yg_icon_button/enums/_enums.dart';
+import 'package:yggdrasil/src/components/buttons/yg_icon_button/enums/_enums.dart';
 import 'package:yggdrasil/src/theme/icon_button/icon_button_theme.dart';
 
 class YgIconButtonMapper {

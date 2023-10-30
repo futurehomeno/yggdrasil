@@ -2,14 +2,14 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 // ignore_for_file: type=lint, unused_element, unnecessary_cast
 
-part of 'filled_icon_button_theme.dart';
+part of 'yg_tonal_icon_button_theme.dart';
 
 // **************************************************************************
 // TailorAnnotationsGenerator
 // **************************************************************************
 
-class FilledIconButtonTheme extends ThemeExtension<FilledIconButtonTheme> {
-  const FilledIconButtonTheme({
+class YgTonalIconButtonTheme extends ThemeExtension<YgTonalIconButtonTheme> {
+  const YgTonalIconButtonTheme({
     required this.backgroundColor,
     required this.disabledBackgroundColor,
     required this.disabledIconColor,
@@ -23,36 +23,41 @@ class FilledIconButtonTheme extends ThemeExtension<FilledIconButtonTheme> {
   final Color iconColor;
   final Color pressedColor;
 
-  static final FilledIconButtonTheme consumerLight = FilledIconButtonTheme(
-    backgroundColor: _$FilledIconButtonTheme.backgroundColor[0],
-    disabledBackgroundColor: _$FilledIconButtonTheme.disabledBackgroundColor[0],
-    disabledIconColor: _$FilledIconButtonTheme.disabledIconColor[0],
-    iconColor: _$FilledIconButtonTheme.iconColor[0],
-    pressedColor: _$FilledIconButtonTheme.pressedColor[0],
+  static final YgTonalIconButtonTheme consumerLight = YgTonalIconButtonTheme(
+    backgroundColor: _$YgTonalIconButtonTheme.backgroundColor[0],
+    disabledBackgroundColor:
+        _$YgTonalIconButtonTheme.disabledBackgroundColor[0],
+    disabledIconColor: _$YgTonalIconButtonTheme.disabledIconColor[0],
+    iconColor: _$YgTonalIconButtonTheme.iconColor[0],
+    pressedColor: _$YgTonalIconButtonTheme.pressedColor[0],
   );
 
-  static final FilledIconButtonTheme consumerDark = FilledIconButtonTheme(
-    backgroundColor: _$FilledIconButtonTheme.backgroundColor[1],
-    disabledBackgroundColor: _$FilledIconButtonTheme.disabledBackgroundColor[1],
-    disabledIconColor: _$FilledIconButtonTheme.disabledIconColor[1],
-    iconColor: _$FilledIconButtonTheme.iconColor[1],
-    pressedColor: _$FilledIconButtonTheme.pressedColor[1],
+  static final YgTonalIconButtonTheme consumerDark = YgTonalIconButtonTheme(
+    backgroundColor: _$YgTonalIconButtonTheme.backgroundColor[1],
+    disabledBackgroundColor:
+        _$YgTonalIconButtonTheme.disabledBackgroundColor[1],
+    disabledIconColor: _$YgTonalIconButtonTheme.disabledIconColor[1],
+    iconColor: _$YgTonalIconButtonTheme.iconColor[1],
+    pressedColor: _$YgTonalIconButtonTheme.pressedColor[1],
   );
 
-  static final FilledIconButtonTheme professionalLight = FilledIconButtonTheme(
-    backgroundColor: _$FilledIconButtonTheme.backgroundColor[2],
-    disabledBackgroundColor: _$FilledIconButtonTheme.disabledBackgroundColor[2],
-    disabledIconColor: _$FilledIconButtonTheme.disabledIconColor[2],
-    iconColor: _$FilledIconButtonTheme.iconColor[2],
-    pressedColor: _$FilledIconButtonTheme.pressedColor[2],
+  static final YgTonalIconButtonTheme professionalLight =
+      YgTonalIconButtonTheme(
+    backgroundColor: _$YgTonalIconButtonTheme.backgroundColor[2],
+    disabledBackgroundColor:
+        _$YgTonalIconButtonTheme.disabledBackgroundColor[2],
+    disabledIconColor: _$YgTonalIconButtonTheme.disabledIconColor[2],
+    iconColor: _$YgTonalIconButtonTheme.iconColor[2],
+    pressedColor: _$YgTonalIconButtonTheme.pressedColor[2],
   );
 
-  static final FilledIconButtonTheme professionalDark = FilledIconButtonTheme(
-    backgroundColor: _$FilledIconButtonTheme.backgroundColor[3],
-    disabledBackgroundColor: _$FilledIconButtonTheme.disabledBackgroundColor[3],
-    disabledIconColor: _$FilledIconButtonTheme.disabledIconColor[3],
-    iconColor: _$FilledIconButtonTheme.iconColor[3],
-    pressedColor: _$FilledIconButtonTheme.pressedColor[3],
+  static final YgTonalIconButtonTheme professionalDark = YgTonalIconButtonTheme(
+    backgroundColor: _$YgTonalIconButtonTheme.backgroundColor[3],
+    disabledBackgroundColor:
+        _$YgTonalIconButtonTheme.disabledBackgroundColor[3],
+    disabledIconColor: _$YgTonalIconButtonTheme.disabledIconColor[3],
+    iconColor: _$YgTonalIconButtonTheme.iconColor[3],
+    pressedColor: _$YgTonalIconButtonTheme.pressedColor[3],
   );
 
   static final themes = [
@@ -63,14 +68,14 @@ class FilledIconButtonTheme extends ThemeExtension<FilledIconButtonTheme> {
   ];
 
   @override
-  FilledIconButtonTheme copyWith({
+  YgTonalIconButtonTheme copyWith({
     Color? backgroundColor,
     Color? disabledBackgroundColor,
     Color? disabledIconColor,
     Color? iconColor,
     Color? pressedColor,
   }) {
-    return FilledIconButtonTheme(
+    return YgTonalIconButtonTheme(
       backgroundColor: backgroundColor ?? this.backgroundColor,
       disabledBackgroundColor:
           disabledBackgroundColor ?? this.disabledBackgroundColor,
@@ -81,10 +86,10 @@ class FilledIconButtonTheme extends ThemeExtension<FilledIconButtonTheme> {
   }
 
   @override
-  FilledIconButtonTheme lerp(
-      covariant ThemeExtension<FilledIconButtonTheme>? other, double t) {
-    if (other is! FilledIconButtonTheme) return this as FilledIconButtonTheme;
-    return FilledIconButtonTheme(
+  YgTonalIconButtonTheme lerp(
+      covariant ThemeExtension<YgTonalIconButtonTheme>? other, double t) {
+    if (other is! YgTonalIconButtonTheme) return this as YgTonalIconButtonTheme;
+    return YgTonalIconButtonTheme(
       backgroundColor: Color.lerp(backgroundColor, other.backgroundColor, t)!,
       disabledBackgroundColor: Color.lerp(
           disabledBackgroundColor, other.disabledBackgroundColor, t)!,
@@ -99,7 +104,7 @@ class FilledIconButtonTheme extends ThemeExtension<FilledIconButtonTheme> {
   bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is FilledIconButtonTheme &&
+            other is YgTonalIconButtonTheme &&
             const DeepCollectionEquality()
                 .equals(backgroundColor, other.backgroundColor) &&
             const DeepCollectionEquality().equals(

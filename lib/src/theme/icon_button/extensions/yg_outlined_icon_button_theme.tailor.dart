@@ -2,14 +2,15 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 // ignore_for_file: type=lint, unused_element, unnecessary_cast
 
-part of 'outlined_icon_button_theme.dart';
+part of 'yg_outlined_icon_button_theme.dart';
 
 // **************************************************************************
 // TailorAnnotationsGenerator
 // **************************************************************************
 
-class OutlinedIconButtonTheme extends ThemeExtension<OutlinedIconButtonTheme> {
-  const OutlinedIconButtonTheme({
+class YgOutlinedIconButtonTheme
+    extends ThemeExtension<YgOutlinedIconButtonTheme> {
+  const YgOutlinedIconButtonTheme({
     required this.backgroundColor,
     required this.borderColor,
     required this.disabledBackgroundColor,
@@ -27,50 +28,52 @@ class OutlinedIconButtonTheme extends ThemeExtension<OutlinedIconButtonTheme> {
   final Color iconColor;
   final Color pressedColor;
 
-  static final OutlinedIconButtonTheme consumerLight = OutlinedIconButtonTheme(
-    backgroundColor: _$OutlinedIconButtonTheme.backgroundColor[0],
-    borderColor: _$OutlinedIconButtonTheme.borderColor[0],
+  static final YgOutlinedIconButtonTheme consumerLight =
+      YgOutlinedIconButtonTheme(
+    backgroundColor: _$YgOutlinedIconButtonTheme.backgroundColor[0],
+    borderColor: _$YgOutlinedIconButtonTheme.borderColor[0],
     disabledBackgroundColor:
-        _$OutlinedIconButtonTheme.disabledBackgroundColor[0],
-    disabledBorderColor: _$OutlinedIconButtonTheme.disabledBorderColor[0],
-    disabledIconColor: _$OutlinedIconButtonTheme.disabledIconColor[0],
-    iconColor: _$OutlinedIconButtonTheme.iconColor[0],
-    pressedColor: _$OutlinedIconButtonTheme.pressedColor[0],
+        _$YgOutlinedIconButtonTheme.disabledBackgroundColor[0],
+    disabledBorderColor: _$YgOutlinedIconButtonTheme.disabledBorderColor[0],
+    disabledIconColor: _$YgOutlinedIconButtonTheme.disabledIconColor[0],
+    iconColor: _$YgOutlinedIconButtonTheme.iconColor[0],
+    pressedColor: _$YgOutlinedIconButtonTheme.pressedColor[0],
   );
 
-  static final OutlinedIconButtonTheme consumerDark = OutlinedIconButtonTheme(
-    backgroundColor: _$OutlinedIconButtonTheme.backgroundColor[1],
-    borderColor: _$OutlinedIconButtonTheme.borderColor[1],
+  static final YgOutlinedIconButtonTheme consumerDark =
+      YgOutlinedIconButtonTheme(
+    backgroundColor: _$YgOutlinedIconButtonTheme.backgroundColor[1],
+    borderColor: _$YgOutlinedIconButtonTheme.borderColor[1],
     disabledBackgroundColor:
-        _$OutlinedIconButtonTheme.disabledBackgroundColor[1],
-    disabledBorderColor: _$OutlinedIconButtonTheme.disabledBorderColor[1],
-    disabledIconColor: _$OutlinedIconButtonTheme.disabledIconColor[1],
-    iconColor: _$OutlinedIconButtonTheme.iconColor[1],
-    pressedColor: _$OutlinedIconButtonTheme.pressedColor[1],
+        _$YgOutlinedIconButtonTheme.disabledBackgroundColor[1],
+    disabledBorderColor: _$YgOutlinedIconButtonTheme.disabledBorderColor[1],
+    disabledIconColor: _$YgOutlinedIconButtonTheme.disabledIconColor[1],
+    iconColor: _$YgOutlinedIconButtonTheme.iconColor[1],
+    pressedColor: _$YgOutlinedIconButtonTheme.pressedColor[1],
   );
 
-  static final OutlinedIconButtonTheme professionalLight =
-      OutlinedIconButtonTheme(
-    backgroundColor: _$OutlinedIconButtonTheme.backgroundColor[2],
-    borderColor: _$OutlinedIconButtonTheme.borderColor[2],
+  static final YgOutlinedIconButtonTheme professionalLight =
+      YgOutlinedIconButtonTheme(
+    backgroundColor: _$YgOutlinedIconButtonTheme.backgroundColor[2],
+    borderColor: _$YgOutlinedIconButtonTheme.borderColor[2],
     disabledBackgroundColor:
-        _$OutlinedIconButtonTheme.disabledBackgroundColor[2],
-    disabledBorderColor: _$OutlinedIconButtonTheme.disabledBorderColor[2],
-    disabledIconColor: _$OutlinedIconButtonTheme.disabledIconColor[2],
-    iconColor: _$OutlinedIconButtonTheme.iconColor[2],
-    pressedColor: _$OutlinedIconButtonTheme.pressedColor[2],
+        _$YgOutlinedIconButtonTheme.disabledBackgroundColor[2],
+    disabledBorderColor: _$YgOutlinedIconButtonTheme.disabledBorderColor[2],
+    disabledIconColor: _$YgOutlinedIconButtonTheme.disabledIconColor[2],
+    iconColor: _$YgOutlinedIconButtonTheme.iconColor[2],
+    pressedColor: _$YgOutlinedIconButtonTheme.pressedColor[2],
   );
 
-  static final OutlinedIconButtonTheme professionalDark =
-      OutlinedIconButtonTheme(
-    backgroundColor: _$OutlinedIconButtonTheme.backgroundColor[3],
-    borderColor: _$OutlinedIconButtonTheme.borderColor[3],
+  static final YgOutlinedIconButtonTheme professionalDark =
+      YgOutlinedIconButtonTheme(
+    backgroundColor: _$YgOutlinedIconButtonTheme.backgroundColor[3],
+    borderColor: _$YgOutlinedIconButtonTheme.borderColor[3],
     disabledBackgroundColor:
-        _$OutlinedIconButtonTheme.disabledBackgroundColor[3],
-    disabledBorderColor: _$OutlinedIconButtonTheme.disabledBorderColor[3],
-    disabledIconColor: _$OutlinedIconButtonTheme.disabledIconColor[3],
-    iconColor: _$OutlinedIconButtonTheme.iconColor[3],
-    pressedColor: _$OutlinedIconButtonTheme.pressedColor[3],
+        _$YgOutlinedIconButtonTheme.disabledBackgroundColor[3],
+    disabledBorderColor: _$YgOutlinedIconButtonTheme.disabledBorderColor[3],
+    disabledIconColor: _$YgOutlinedIconButtonTheme.disabledIconColor[3],
+    iconColor: _$YgOutlinedIconButtonTheme.iconColor[3],
+    pressedColor: _$YgOutlinedIconButtonTheme.pressedColor[3],
   );
 
   static final themes = [
@@ -81,7 +84,7 @@ class OutlinedIconButtonTheme extends ThemeExtension<OutlinedIconButtonTheme> {
   ];
 
   @override
-  OutlinedIconButtonTheme copyWith({
+  YgOutlinedIconButtonTheme copyWith({
     Color? backgroundColor,
     Color? borderColor,
     Color? disabledBackgroundColor,
@@ -90,7 +93,7 @@ class OutlinedIconButtonTheme extends ThemeExtension<OutlinedIconButtonTheme> {
     Color? iconColor,
     Color? pressedColor,
   }) {
-    return OutlinedIconButtonTheme(
+    return YgOutlinedIconButtonTheme(
       backgroundColor: backgroundColor ?? this.backgroundColor,
       borderColor: borderColor ?? this.borderColor,
       disabledBackgroundColor:
@@ -103,11 +106,11 @@ class OutlinedIconButtonTheme extends ThemeExtension<OutlinedIconButtonTheme> {
   }
 
   @override
-  OutlinedIconButtonTheme lerp(
-      covariant ThemeExtension<OutlinedIconButtonTheme>? other, double t) {
-    if (other is! OutlinedIconButtonTheme)
-      return this as OutlinedIconButtonTheme;
-    return OutlinedIconButtonTheme(
+  YgOutlinedIconButtonTheme lerp(
+      covariant ThemeExtension<YgOutlinedIconButtonTheme>? other, double t) {
+    if (other is! YgOutlinedIconButtonTheme)
+      return this as YgOutlinedIconButtonTheme;
+    return YgOutlinedIconButtonTheme(
       backgroundColor: Color.lerp(backgroundColor, other.backgroundColor, t)!,
       borderColor: Color.lerp(borderColor, other.borderColor, t)!,
       disabledBackgroundColor: Color.lerp(
@@ -125,7 +128,7 @@ class OutlinedIconButtonTheme extends ThemeExtension<OutlinedIconButtonTheme> {
   bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is OutlinedIconButtonTheme &&
+            other is YgOutlinedIconButtonTheme &&
             const DeepCollectionEquality()
                 .equals(backgroundColor, other.backgroundColor) &&
             const DeepCollectionEquality()

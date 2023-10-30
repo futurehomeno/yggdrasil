@@ -2,14 +2,15 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 // ignore_for_file: type=lint, unused_element, unnecessary_cast
 
-part of 'standard_icon_button_theme.dart';
+part of 'yg_standard_icon_button_theme.dart';
 
 // **************************************************************************
 // TailorAnnotationsGenerator
 // **************************************************************************
 
-class StandardIconButtonTheme extends ThemeExtension<StandardIconButtonTheme> {
-  const StandardIconButtonTheme({
+class YgStandardIconButtonTheme
+    extends ThemeExtension<YgStandardIconButtonTheme> {
+  const YgStandardIconButtonTheme({
     required this.backgroundColor,
     required this.disabledBackgroundColor,
     required this.disabledIconColor,
@@ -23,42 +24,44 @@ class StandardIconButtonTheme extends ThemeExtension<StandardIconButtonTheme> {
   final Color iconColor;
   final Color pressedColor;
 
-  static final StandardIconButtonTheme consumerLight = StandardIconButtonTheme(
-    backgroundColor: _$StandardIconButtonTheme.backgroundColor[0],
+  static final YgStandardIconButtonTheme consumerLight =
+      YgStandardIconButtonTheme(
+    backgroundColor: _$YgStandardIconButtonTheme.backgroundColor[0],
     disabledBackgroundColor:
-        _$StandardIconButtonTheme.disabledBackgroundColor[0],
-    disabledIconColor: _$StandardIconButtonTheme.disabledIconColor[0],
-    iconColor: _$StandardIconButtonTheme.iconColor[0],
-    pressedColor: _$StandardIconButtonTheme.pressedColor[0],
+        _$YgStandardIconButtonTheme.disabledBackgroundColor[0],
+    disabledIconColor: _$YgStandardIconButtonTheme.disabledIconColor[0],
+    iconColor: _$YgStandardIconButtonTheme.iconColor[0],
+    pressedColor: _$YgStandardIconButtonTheme.pressedColor[0],
   );
 
-  static final StandardIconButtonTheme consumerDark = StandardIconButtonTheme(
-    backgroundColor: _$StandardIconButtonTheme.backgroundColor[1],
+  static final YgStandardIconButtonTheme consumerDark =
+      YgStandardIconButtonTheme(
+    backgroundColor: _$YgStandardIconButtonTheme.backgroundColor[1],
     disabledBackgroundColor:
-        _$StandardIconButtonTheme.disabledBackgroundColor[1],
-    disabledIconColor: _$StandardIconButtonTheme.disabledIconColor[1],
-    iconColor: _$StandardIconButtonTheme.iconColor[1],
-    pressedColor: _$StandardIconButtonTheme.pressedColor[1],
+        _$YgStandardIconButtonTheme.disabledBackgroundColor[1],
+    disabledIconColor: _$YgStandardIconButtonTheme.disabledIconColor[1],
+    iconColor: _$YgStandardIconButtonTheme.iconColor[1],
+    pressedColor: _$YgStandardIconButtonTheme.pressedColor[1],
   );
 
-  static final StandardIconButtonTheme professionalLight =
-      StandardIconButtonTheme(
-    backgroundColor: _$StandardIconButtonTheme.backgroundColor[2],
+  static final YgStandardIconButtonTheme professionalLight =
+      YgStandardIconButtonTheme(
+    backgroundColor: _$YgStandardIconButtonTheme.backgroundColor[2],
     disabledBackgroundColor:
-        _$StandardIconButtonTheme.disabledBackgroundColor[2],
-    disabledIconColor: _$StandardIconButtonTheme.disabledIconColor[2],
-    iconColor: _$StandardIconButtonTheme.iconColor[2],
-    pressedColor: _$StandardIconButtonTheme.pressedColor[2],
+        _$YgStandardIconButtonTheme.disabledBackgroundColor[2],
+    disabledIconColor: _$YgStandardIconButtonTheme.disabledIconColor[2],
+    iconColor: _$YgStandardIconButtonTheme.iconColor[2],
+    pressedColor: _$YgStandardIconButtonTheme.pressedColor[2],
   );
 
-  static final StandardIconButtonTheme professionalDark =
-      StandardIconButtonTheme(
-    backgroundColor: _$StandardIconButtonTheme.backgroundColor[3],
+  static final YgStandardIconButtonTheme professionalDark =
+      YgStandardIconButtonTheme(
+    backgroundColor: _$YgStandardIconButtonTheme.backgroundColor[3],
     disabledBackgroundColor:
-        _$StandardIconButtonTheme.disabledBackgroundColor[3],
-    disabledIconColor: _$StandardIconButtonTheme.disabledIconColor[3],
-    iconColor: _$StandardIconButtonTheme.iconColor[3],
-    pressedColor: _$StandardIconButtonTheme.pressedColor[3],
+        _$YgStandardIconButtonTheme.disabledBackgroundColor[3],
+    disabledIconColor: _$YgStandardIconButtonTheme.disabledIconColor[3],
+    iconColor: _$YgStandardIconButtonTheme.iconColor[3],
+    pressedColor: _$YgStandardIconButtonTheme.pressedColor[3],
   );
 
   static final themes = [
@@ -69,14 +72,14 @@ class StandardIconButtonTheme extends ThemeExtension<StandardIconButtonTheme> {
   ];
 
   @override
-  StandardIconButtonTheme copyWith({
+  YgStandardIconButtonTheme copyWith({
     Color? backgroundColor,
     Color? disabledBackgroundColor,
     Color? disabledIconColor,
     Color? iconColor,
     Color? pressedColor,
   }) {
-    return StandardIconButtonTheme(
+    return YgStandardIconButtonTheme(
       backgroundColor: backgroundColor ?? this.backgroundColor,
       disabledBackgroundColor:
           disabledBackgroundColor ?? this.disabledBackgroundColor,
@@ -87,11 +90,11 @@ class StandardIconButtonTheme extends ThemeExtension<StandardIconButtonTheme> {
   }
 
   @override
-  StandardIconButtonTheme lerp(
-      covariant ThemeExtension<StandardIconButtonTheme>? other, double t) {
-    if (other is! StandardIconButtonTheme)
-      return this as StandardIconButtonTheme;
-    return StandardIconButtonTheme(
+  YgStandardIconButtonTheme lerp(
+      covariant ThemeExtension<YgStandardIconButtonTheme>? other, double t) {
+    if (other is! YgStandardIconButtonTheme)
+      return this as YgStandardIconButtonTheme;
+    return YgStandardIconButtonTheme(
       backgroundColor: Color.lerp(backgroundColor, other.backgroundColor, t)!,
       disabledBackgroundColor: Color.lerp(
           disabledBackgroundColor, other.disabledBackgroundColor, t)!,
@@ -106,7 +109,7 @@ class StandardIconButtonTheme extends ThemeExtension<StandardIconButtonTheme> {
   bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is StandardIconButtonTheme &&
+            other is YgStandardIconButtonTheme &&
             const DeepCollectionEquality()
                 .equals(backgroundColor, other.backgroundColor) &&
             const DeepCollectionEquality().equals(

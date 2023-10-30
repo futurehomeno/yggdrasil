@@ -39,7 +39,9 @@ abstract class YgButtonBaseStyle<T extends Enum> extends YgStyleWithDefaults<T> 
 
   Color resolveColor(BuildContext context, Set<T> states);
 
-  TextStyle resolveTextStyle(BuildContext context, Set<T> states);
+  TextStyle resolveTextStyle(BuildContext context, Set<T> states) {
+    return DefaultTextStyle.of(context).style;
+  }
 
   BoxConstraints resolveConstraints(BuildContext context, Set<T> states) {
     return const BoxConstraints();
