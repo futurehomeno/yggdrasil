@@ -17,5 +17,4 @@ export 'yg_radio/_yg_radio.dart';
 export 'yg_section/_yg_section.dart';
 export 'yg_snack_bar/_yg_snack_bar.dart';
 export 'yg_switch/_yg_switch.dart';
-export 'yg_tag/_yg_tag.dart';
 export 'yg_toggle_button/_yg_toggle_button.dart';

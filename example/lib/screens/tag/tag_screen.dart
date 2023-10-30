@@ -88,7 +88,6 @@ class TagScreen extends StatelessWidget {
               children: <Widget>[
                 YgTag.leadingIcon(
                   icon: const YgIcon(YgIcons.info),
-                  onPressed: () {},
                   child: const Text('Click me!'),
                 ),
                 YgTag.leadingIcon(

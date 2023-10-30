@@ -36,13 +36,13 @@ class YgTextLinkStyle extends YgButtonBaseStyle<YgTextLinkState> {
           color: _theme.focusColor,
           width: 2,
         ),
-        borderRadius: const BorderRadius.all(Radius.circular(5.0)),
+        borderRadius: _theme.borderRadius,
       );
     }
 
-    return const RoundedRectangleBorder(
+    return RoundedRectangleBorder(
       side: BorderSide.none,
-      borderRadius: BorderRadius.all(Radius.circular(5.0)),
+      borderRadius: _theme.borderRadius,
     );
   }
 

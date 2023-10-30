@@ -92,4 +92,11 @@ class _$YgTextLinkTheme {
     professional_light.FhColors.interactiveHighlightDefault,
     professional_dark.FhColors.interactiveHighlightDefault,
   ];
+
+  static const List<BorderRadius> borderRadius = <BorderRadius>[
+    consumer_light.FhRadii.xxs,
+    consumer_dark.FhRadii.xxs,
+    professional_light.FhRadii.xxs,
+    professional_dark.FhRadii.xxs,
+  ];
 }

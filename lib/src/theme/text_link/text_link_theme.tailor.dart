@@ -10,6 +10,7 @@ part of 'text_link_theme.dart';
 
 class YgTextLinkTheme extends ThemeExtension<YgTextLinkTheme> {
   const YgTextLinkTheme({
+    required this.borderRadius,
     required this.defaultColor,
     required this.disabledColor,
     required this.focusColor,
@@ -24,6 +25,7 @@ class YgTextLinkTheme extends ThemeExtension<YgTextLinkTheme> {
     required this.smallWeakTextStyle,
   });
 
+  final BorderRadius borderRadius;
   final Color defaultColor;
   final Color disabledColor;
   final Color focusColor;
@@ -38,6 +40,7 @@ class YgTextLinkTheme extends ThemeExtension<YgTextLinkTheme> {
   final TextStyle smallWeakTextStyle;
 
   static final YgTextLinkTheme consumerLight = YgTextLinkTheme(
+    borderRadius: _$YgTextLinkTheme.borderRadius[0],
     defaultColor: _$YgTextLinkTheme.defaultColor[0],
     disabledColor: _$YgTextLinkTheme.disabledColor[0],
     focusColor: _$YgTextLinkTheme.focusColor[0],
@@ -53,6 +56,7 @@ class YgTextLinkTheme extends ThemeExtension<YgTextLinkTheme> {
   );
 
   static final YgTextLinkTheme consumerDark = YgTextLinkTheme(
+    borderRadius: _$YgTextLinkTheme.borderRadius[1],
     defaultColor: _$YgTextLinkTheme.defaultColor[1],
     disabledColor: _$YgTextLinkTheme.disabledColor[1],
     focusColor: _$YgTextLinkTheme.focusColor[1],
@@ -68,6 +72,7 @@ class YgTextLinkTheme extends ThemeExtension<YgTextLinkTheme> {
   );
 
   static final YgTextLinkTheme professionalLight = YgTextLinkTheme(
+    borderRadius: _$YgTextLinkTheme.borderRadius[2],
     defaultColor: _$YgTextLinkTheme.defaultColor[2],
     disabledColor: _$YgTextLinkTheme.disabledColor[2],
     focusColor: _$YgTextLinkTheme.focusColor[2],
@@ -83,6 +88,7 @@ class YgTextLinkTheme extends ThemeExtension<YgTextLinkTheme> {
   );
 
   static final YgTextLinkTheme professionalDark = YgTextLinkTheme(
+    borderRadius: _$YgTextLinkTheme.borderRadius[3],
     defaultColor: _$YgTextLinkTheme.defaultColor[3],
     disabledColor: _$YgTextLinkTheme.disabledColor[3],
     focusColor: _$YgTextLinkTheme.focusColor[3],
@@ -106,6 +112,7 @@ class YgTextLinkTheme extends ThemeExtension<YgTextLinkTheme> {
 
   @override
   YgTextLinkTheme copyWith({
+    BorderRadius? borderRadius,
     Color? defaultColor,
     Color? disabledColor,
     Color? focusColor,
@@ -120,6 +127,7 @@ class YgTextLinkTheme extends ThemeExtension<YgTextLinkTheme> {
     TextStyle? smallWeakTextStyle,
   }) {
     return YgTextLinkTheme(
+      borderRadius: borderRadius ?? this.borderRadius,
       defaultColor: defaultColor ?? this.defaultColor,
       disabledColor: disabledColor ?? this.disabledColor,
       focusColor: focusColor ?? this.focusColor,
@@ -141,6 +149,7 @@ class YgTextLinkTheme extends ThemeExtension<YgTextLinkTheme> {
       covariant ThemeExtension<YgTextLinkTheme>? other, double t) {
     if (other is! YgTextLinkTheme) return this as YgTextLinkTheme;
     return YgTextLinkTheme(
+      borderRadius: t < 0.5 ? borderRadius : other.borderRadius,
       defaultColor: Color.lerp(defaultColor, other.defaultColor, t)!,
       disabledColor: Color.lerp(disabledColor, other.disabledColor, t)!,
       focusColor: Color.lerp(focusColor, other.focusColor, t)!,
@@ -165,6 +174,8 @@ class YgTextLinkTheme extends ThemeExtension<YgTextLinkTheme> {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is YgTextLinkTheme &&
+            const DeepCollectionEquality()
+                .equals(borderRadius, other.borderRadius) &&
             const DeepCollectionEquality()
                 .equals(defaultColor, other.defaultColor) &&
             const DeepCollectionEquality()
@@ -193,6 +204,7 @@ class YgTextLinkTheme extends ThemeExtension<YgTextLinkTheme> {
   int get hashCode {
     return Object.hash(
       runtimeType.hashCode,
+      const DeepCollectionEquality().hash(borderRadius),
       const DeepCollectionEquality().hash(defaultColor),
       const DeepCollectionEquality().hash(disabledColor),
       const DeepCollectionEquality().hash(focusColor),

@@ -8,8 +8,8 @@ part of 'informative_tag_theme.dart';
 // TailorAnnotationsGenerator
 // **************************************************************************
 
-class InformativeTagTheme extends ThemeExtension<InformativeTagTheme> {
-  const InformativeTagTheme({
+class YgInformativeTagTheme extends ThemeExtension<YgInformativeTagTheme> {
+  const YgInformativeTagTheme({
     required this.backgroundColor,
     required this.disabledBackgroundColor,
     required this.strongBackgroundColor,
@@ -19,28 +19,28 @@ class InformativeTagTheme extends ThemeExtension<InformativeTagTheme> {
   final Color disabledBackgroundColor;
   final Color strongBackgroundColor;
 
-  static final InformativeTagTheme consumerLight = InformativeTagTheme(
-    backgroundColor: _$InformativeTagTheme.backgroundColor[0],
-    disabledBackgroundColor: _$InformativeTagTheme.disabledBackgroundColor[0],
-    strongBackgroundColor: _$InformativeTagTheme.strongBackgroundColor[0],
+  static final YgInformativeTagTheme consumerLight = YgInformativeTagTheme(
+    backgroundColor: _$YgInformativeTagTheme.backgroundColor[0],
+    disabledBackgroundColor: _$YgInformativeTagTheme.disabledBackgroundColor[0],
+    strongBackgroundColor: _$YgInformativeTagTheme.strongBackgroundColor[0],
   );
 
-  static final InformativeTagTheme consumerDark = InformativeTagTheme(
-    backgroundColor: _$InformativeTagTheme.backgroundColor[1],
-    disabledBackgroundColor: _$InformativeTagTheme.disabledBackgroundColor[1],
-    strongBackgroundColor: _$InformativeTagTheme.strongBackgroundColor[1],
+  static final YgInformativeTagTheme consumerDark = YgInformativeTagTheme(
+    backgroundColor: _$YgInformativeTagTheme.backgroundColor[1],
+    disabledBackgroundColor: _$YgInformativeTagTheme.disabledBackgroundColor[1],
+    strongBackgroundColor: _$YgInformativeTagTheme.strongBackgroundColor[1],
   );
 
-  static final InformativeTagTheme professionalLight = InformativeTagTheme(
-    backgroundColor: _$InformativeTagTheme.backgroundColor[2],
-    disabledBackgroundColor: _$InformativeTagTheme.disabledBackgroundColor[2],
-    strongBackgroundColor: _$InformativeTagTheme.strongBackgroundColor[2],
+  static final YgInformativeTagTheme professionalLight = YgInformativeTagTheme(
+    backgroundColor: _$YgInformativeTagTheme.backgroundColor[2],
+    disabledBackgroundColor: _$YgInformativeTagTheme.disabledBackgroundColor[2],
+    strongBackgroundColor: _$YgInformativeTagTheme.strongBackgroundColor[2],
   );
 
-  static final InformativeTagTheme professionalDark = InformativeTagTheme(
-    backgroundColor: _$InformativeTagTheme.backgroundColor[3],
-    disabledBackgroundColor: _$InformativeTagTheme.disabledBackgroundColor[3],
-    strongBackgroundColor: _$InformativeTagTheme.strongBackgroundColor[3],
+  static final YgInformativeTagTheme professionalDark = YgInformativeTagTheme(
+    backgroundColor: _$YgInformativeTagTheme.backgroundColor[3],
+    disabledBackgroundColor: _$YgInformativeTagTheme.disabledBackgroundColor[3],
+    strongBackgroundColor: _$YgInformativeTagTheme.strongBackgroundColor[3],
   );
 
   static final themes = [
@@ -51,12 +51,12 @@ class InformativeTagTheme extends ThemeExtension<InformativeTagTheme> {
   ];
 
   @override
-  InformativeTagTheme copyWith({
+  YgInformativeTagTheme copyWith({
     Color? backgroundColor,
     Color? disabledBackgroundColor,
     Color? strongBackgroundColor,
   }) {
-    return InformativeTagTheme(
+    return YgInformativeTagTheme(
       backgroundColor: backgroundColor ?? this.backgroundColor,
       disabledBackgroundColor:
           disabledBackgroundColor ?? this.disabledBackgroundColor,
@@ -66,10 +66,10 @@ class InformativeTagTheme extends ThemeExtension<InformativeTagTheme> {
   }
 
   @override
-  InformativeTagTheme lerp(
-      covariant ThemeExtension<InformativeTagTheme>? other, double t) {
-    if (other is! InformativeTagTheme) return this as InformativeTagTheme;
-    return InformativeTagTheme(
+  YgInformativeTagTheme lerp(
+      covariant ThemeExtension<YgInformativeTagTheme>? other, double t) {
+    if (other is! YgInformativeTagTheme) return this as YgInformativeTagTheme;
+    return YgInformativeTagTheme(
       backgroundColor: Color.lerp(backgroundColor, other.backgroundColor, t)!,
       disabledBackgroundColor: Color.lerp(
           disabledBackgroundColor, other.disabledBackgroundColor, t)!,
@@ -82,7 +82,7 @@ class InformativeTagTheme extends ThemeExtension<InformativeTagTheme> {
   bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is InformativeTagTheme &&
+            other is YgInformativeTagTheme &&
             const DeepCollectionEquality()
                 .equals(backgroundColor, other.backgroundColor) &&
             const DeepCollectionEquality().equals(

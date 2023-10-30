@@ -41,15 +41,15 @@ class YgTagTheme extends ThemeExtension<YgTagTheme> {
   final Color iconStrongDisabledColor;
   final Color iconWeakColor;
   final Color iconWeakDisabledColor;
-  final InformativeTagTheme informativeTagTheme;
-  final NegativeTagTheme negativeTagTheme;
-  final NeutralTagTheme neutralTagTheme;
+  final YgInformativeTagTheme informativeTagTheme;
+  final YgNegativeTagTheme negativeTagTheme;
+  final YgNeutralTagTheme neutralTagTheme;
   final EdgeInsets paddingMedium;
   final EdgeInsets paddingSmall;
-  final PositiveTagTheme positiveTagTheme;
+  final YgPositiveTagTheme positiveTagTheme;
   final TextStyle strongTextStyle;
   final TextStyle textStyle;
-  final WarningTagTheme warningTagTheme;
+  final YgWarningTagTheme warningTagTheme;
 
   static final YgTagTheme consumerLight = YgTagTheme(
     borderRadius: _$YgTagTheme.borderRadius[0],
@@ -158,15 +158,15 @@ class YgTagTheme extends ThemeExtension<YgTagTheme> {
     Color? iconStrongDisabledColor,
     Color? iconWeakColor,
     Color? iconWeakDisabledColor,
-    InformativeTagTheme? informativeTagTheme,
-    NegativeTagTheme? negativeTagTheme,
-    NeutralTagTheme? neutralTagTheme,
+    YgInformativeTagTheme? informativeTagTheme,
+    YgNegativeTagTheme? negativeTagTheme,
+    YgNeutralTagTheme? neutralTagTheme,
     EdgeInsets? paddingMedium,
     EdgeInsets? paddingSmall,
-    PositiveTagTheme? positiveTagTheme,
+    YgPositiveTagTheme? positiveTagTheme,
     TextStyle? strongTextStyle,
     TextStyle? textStyle,
-    WarningTagTheme? warningTagTheme,
+    YgWarningTagTheme? warningTagTheme,
   }) {
     return YgTagTheme(
       borderRadius: borderRadius ?? this.borderRadius,
@@ -213,20 +213,20 @@ class YgTagTheme extends ThemeExtension<YgTagTheme> {
       iconWeakDisabledColor:
           Color.lerp(iconWeakDisabledColor, other.iconWeakDisabledColor, t)!,
       informativeTagTheme: informativeTagTheme.lerp(
-          other.informativeTagTheme, t) as InformativeTagTheme,
-      negativeTagTheme:
-          negativeTagTheme.lerp(other.negativeTagTheme, t) as NegativeTagTheme,
+          other.informativeTagTheme, t) as YgInformativeTagTheme,
+      negativeTagTheme: negativeTagTheme.lerp(other.negativeTagTheme, t)
+          as YgNegativeTagTheme,
       neutralTagTheme:
-          neutralTagTheme.lerp(other.neutralTagTheme, t) as NeutralTagTheme,
+          neutralTagTheme.lerp(other.neutralTagTheme, t) as YgNeutralTagTheme,
       paddingMedium: t < 0.5 ? paddingMedium : other.paddingMedium,
       paddingSmall: t < 0.5 ? paddingSmall : other.paddingSmall,
-      positiveTagTheme:
-          positiveTagTheme.lerp(other.positiveTagTheme, t) as PositiveTagTheme,
+      positiveTagTheme: positiveTagTheme.lerp(other.positiveTagTheme, t)
+          as YgPositiveTagTheme,
       strongTextStyle:
           TextStyle.lerp(strongTextStyle, other.strongTextStyle, t)!,
       textStyle: TextStyle.lerp(textStyle, other.textStyle, t)!,
       warningTagTheme:
-          warningTagTheme.lerp(other.warningTagTheme, t) as WarningTagTheme,
+          warningTagTheme.lerp(other.warningTagTheme, t) as YgWarningTagTheme,
     );
   }
 
