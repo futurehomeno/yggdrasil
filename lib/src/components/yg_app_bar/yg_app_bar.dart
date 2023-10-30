@@ -13,7 +13,6 @@ class _PreferredAppBarSize extends Size {
 /// Custom app based based on [AppBar] from Material.
 ///
 /// Changes were made to:
-/// - allow the title to seamlessly transition from expanded to folded version.
 /// - remove all unused code that caused headaches to work around.
 class YgAppBar extends StatefulWidget implements PreferredSizeWidget {
   YgAppBar({

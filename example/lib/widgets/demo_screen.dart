@@ -32,9 +32,9 @@ class DemoScreen extends StatelessWidget {
               YgAppBar(
                 title: componentName ?? '',
                 centerTitle: false,
-                leading: YgIconButton(
-                  onPressed: () => {},
-                  child: const YgIcon(
+                leading: const YgIconButton(
+                  onPressed: null,
+                  child: YgIcon(
                     YgIcons.ygg,
                     useEmbeddedColor: true,
                   ),
