@@ -1,10 +1,7 @@
 import 'package:yggdrasil/yggdrasil.dart';
 
-import '_enums.dart';
-
 enum YgTagState {
   // States
-  disabled,
   focused,
   hovered,
   pressed,
@@ -92,7 +89,6 @@ extension YgTagStateSetExtension on Set<YgTagState> {
     return YgTagSize.medium;
   }
 
-  bool get disabled => contains(YgTagState.disabled);
   bool get focused => contains(YgTagState.focused);
   bool get hovered => contains(YgTagState.hovered);
   bool get pressed => contains(YgTagState.pressed);

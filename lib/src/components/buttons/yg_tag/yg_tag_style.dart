@@ -24,44 +24,21 @@ class YgTagStyle extends YgButtonBaseStyle<YgTagState> {
   Color resolveColor(BuildContext context, Set<YgTagState> states) {
     final YgTagVariantStyle variantTheme = _getVariantTheme(states.variant);
 
-    if (states.disabled) {
-      print('${states.variant}: ${variantTheme.disabledBackgroundColor}');
-
-      return variantTheme.disabledBackgroundColor;
-    }
-
     switch (states.weight) {
       case YgTagWeight.strong:
-        print('${states.variant}: ${variantTheme.strongBackgroundColor}');
-
         return variantTheme.strongBackgroundColor;
       case YgTagWeight.weak:
-        print('${states.variant}: ${variantTheme.backgroundColor}');
-
         return variantTheme.backgroundColor;
     }
   }
 
   @override
   MouseCursor resolveCursor(BuildContext context, Set<YgTagState> states) {
-    if (states.disabled) {
-      return SystemMouseCursors.basic;
-    }
-
     return SystemMouseCursors.click;
   }
 
   @override
   TextStyle resolveTextStyle(BuildContext context, Set<YgTagState> states) {
-    if (states.disabled) {
-      switch (states.weight) {
-        case YgTagWeight.strong:
-          return _theme.disabledStrongTextStyle;
-        case YgTagWeight.weak:
-          return _theme.disabledTextStyle;
-      }
-    }
-
     switch (states.weight) {
       case YgTagWeight.strong:
         return _theme.strongTextStyle;
@@ -77,15 +54,6 @@ class YgTagStyle extends YgButtonBaseStyle<YgTagState> {
 
   @override
   Color resolveIconColor(BuildContext context, Set<YgTagState> states) {
-    if (states.disabled) {
-      switch (states.weight) {
-        case YgTagWeight.strong:
-          return _theme.iconStrongDisabledColor;
-        case YgTagWeight.weak:
-          return _theme.iconWeakDisabledColor;
-      }
-    }
-
     switch (states.weight) {
       case YgTagWeight.strong:
         return _theme.iconStrongColor;

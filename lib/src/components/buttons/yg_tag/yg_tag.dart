@@ -97,8 +97,7 @@ class YgTag extends StatefulWidget {
 }
 
 class _YgTagState<W extends YgTag> extends State<W> {
-  late final YgStatesController<YgTagState> _controller = YgStatesController<YgTagState>({
-    if (widget.onPressed == null) YgTagState.disabled,
+  late final YgStatesController<YgTagState> _controller = YgStatesController<YgTagState>(<YgTagState>{
     YgTagState.fromSize(widget.size),
     YgTagState.fromVariant(widget.variant),
     YgTagState.fromWeight(widget.weight),
@@ -112,7 +111,6 @@ class _YgTagState<W extends YgTag> extends State<W> {
 
   @override
   void didUpdateWidget(covariant W oldWidget) {
-    _controller.update(YgTagState.disabled, widget.onPressed == null);
     _controller.updateSize(widget.size);
     _controller.updateVariant(widget.variant);
     _controller.updateWeight(widget.weight);
