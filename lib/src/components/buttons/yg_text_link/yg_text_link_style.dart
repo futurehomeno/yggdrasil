@@ -31,6 +31,8 @@ class YgTextLinkStyle extends YgBaseButtonStyle<YgTextLinkState> {
   @override
   OutlinedBorder resolveOutlinedBorder(BuildContext context, Set<YgTextLinkState> states) {
     if (states.focused) {
+      print('focused');
+
       return RoundedRectangleBorder(
         side: BorderSide(
           color: _theme.focusColor,
@@ -39,6 +41,8 @@ class YgTextLinkStyle extends YgBaseButtonStyle<YgTextLinkState> {
         borderRadius: const BorderRadius.all(Radius.circular(5.0)),
       );
     }
+
+    print('unfocused');
 
     return const RoundedRectangleBorder(
       side: BorderSide.none,
@@ -88,5 +92,10 @@ class YgTextLinkStyle extends YgBaseButtonStyle<YgTextLinkState> {
     }
 
     return SystemMouseCursors.click;
+  }
+
+  @override
+  EdgeInsets resolvePadding(BuildContext context, Set<YgTextLinkState> states) {
+    return context.textLinkTheme.padding;
   }
 }

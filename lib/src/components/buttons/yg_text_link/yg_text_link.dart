@@ -9,8 +9,8 @@ import '_yg_text_link.dart';
 part 'yg_text_link_content.dart';
 
 /// Text link button implementation.
-class YgTextLink extends StatefulWidget with StatefulWidgetDebugMixin {
-  YgTextLink({
+class YgTextLink extends StatefulWidget {
+  const YgTextLink({
     super.key,
     required this.text,
     required this.onPressed,
@@ -36,25 +36,16 @@ class YgTextLink extends StatefulWidget with StatefulWidgetDebugMixin {
   final bool autofocus;
 
   @override
-  YgDebugType get debugType {
-    if (onPressed == null) {
-      return YgDebugType.other;
-    }
-
-    return YgDebugType.intractable;
-  }
-
-  @override
   State<YgTextLink> createState() => _YgTextLinkState();
 }
 
 class _YgTextLinkState extends State<YgTextLink> {
   // ignore: avoid-missing-enum-constant-in-map
-  static const Map<YgTextLinkState, MaterialState> _materialStateMap = <YgTextLinkState, MaterialState>{
-    YgTextLinkState.disabled: MaterialState.disabled,
-    YgTextLinkState.focused: MaterialState.focused,
-    YgTextLinkState.hovered: MaterialState.hovered,
-    YgTextLinkState.pressed: MaterialState.pressed,
+  static const Map<MaterialState, YgTextLinkState> _materialStateMap = <MaterialState, YgTextLinkState>{
+    MaterialState.disabled: YgTextLinkState.disabled,
+    MaterialState.focused: YgTextLinkState.focused,
+    MaterialState.hovered: YgTextLinkState.hovered,
+    MaterialState.pressed: YgTextLinkState.pressed,
   };
 
   late final YgStatesController<YgTextLinkState> _controller = YgStatesController<YgTextLinkState>(<YgTextLinkState>{

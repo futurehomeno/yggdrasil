@@ -18,6 +18,7 @@ class YgTextLinkTheme extends ThemeExtension<YgTextLinkTheme> {
     required this.iconPadding,
     required this.mediumStrongTextStyle,
     required this.mediumWeakTextStyle,
+    required this.padding,
     required this.pressedColor,
     required this.smallStrongTextStyle,
     required this.smallWeakTextStyle,
@@ -31,6 +32,7 @@ class YgTextLinkTheme extends ThemeExtension<YgTextLinkTheme> {
   final EdgeInsets iconPadding;
   final TextStyle mediumStrongTextStyle;
   final TextStyle mediumWeakTextStyle;
+  final EdgeInsets padding;
   final Color pressedColor;
   final TextStyle smallStrongTextStyle;
   final TextStyle smallWeakTextStyle;
@@ -44,6 +46,7 @@ class YgTextLinkTheme extends ThemeExtension<YgTextLinkTheme> {
     iconPadding: _$YgTextLinkTheme.iconPadding[0],
     mediumStrongTextStyle: _$YgTextLinkTheme.mediumStrongTextStyle[0],
     mediumWeakTextStyle: _$YgTextLinkTheme.mediumWeakTextStyle[0],
+    padding: _$YgTextLinkTheme.padding[0],
     pressedColor: _$YgTextLinkTheme.pressedColor[0],
     smallStrongTextStyle: _$YgTextLinkTheme.smallStrongTextStyle[0],
     smallWeakTextStyle: _$YgTextLinkTheme.smallWeakTextStyle[0],
@@ -58,6 +61,7 @@ class YgTextLinkTheme extends ThemeExtension<YgTextLinkTheme> {
     iconPadding: _$YgTextLinkTheme.iconPadding[1],
     mediumStrongTextStyle: _$YgTextLinkTheme.mediumStrongTextStyle[1],
     mediumWeakTextStyle: _$YgTextLinkTheme.mediumWeakTextStyle[1],
+    padding: _$YgTextLinkTheme.padding[1],
     pressedColor: _$YgTextLinkTheme.pressedColor[1],
     smallStrongTextStyle: _$YgTextLinkTheme.smallStrongTextStyle[1],
     smallWeakTextStyle: _$YgTextLinkTheme.smallWeakTextStyle[1],
@@ -72,6 +76,7 @@ class YgTextLinkTheme extends ThemeExtension<YgTextLinkTheme> {
     iconPadding: _$YgTextLinkTheme.iconPadding[2],
     mediumStrongTextStyle: _$YgTextLinkTheme.mediumStrongTextStyle[2],
     mediumWeakTextStyle: _$YgTextLinkTheme.mediumWeakTextStyle[2],
+    padding: _$YgTextLinkTheme.padding[2],
     pressedColor: _$YgTextLinkTheme.pressedColor[2],
     smallStrongTextStyle: _$YgTextLinkTheme.smallStrongTextStyle[2],
     smallWeakTextStyle: _$YgTextLinkTheme.smallWeakTextStyle[2],
@@ -86,6 +91,7 @@ class YgTextLinkTheme extends ThemeExtension<YgTextLinkTheme> {
     iconPadding: _$YgTextLinkTheme.iconPadding[3],
     mediumStrongTextStyle: _$YgTextLinkTheme.mediumStrongTextStyle[3],
     mediumWeakTextStyle: _$YgTextLinkTheme.mediumWeakTextStyle[3],
+    padding: _$YgTextLinkTheme.padding[3],
     pressedColor: _$YgTextLinkTheme.pressedColor[3],
     smallStrongTextStyle: _$YgTextLinkTheme.smallStrongTextStyle[3],
     smallWeakTextStyle: _$YgTextLinkTheme.smallWeakTextStyle[3],
@@ -108,6 +114,7 @@ class YgTextLinkTheme extends ThemeExtension<YgTextLinkTheme> {
     EdgeInsets? iconPadding,
     TextStyle? mediumStrongTextStyle,
     TextStyle? mediumWeakTextStyle,
+    EdgeInsets? padding,
     Color? pressedColor,
     TextStyle? smallStrongTextStyle,
     TextStyle? smallWeakTextStyle,
@@ -122,6 +129,7 @@ class YgTextLinkTheme extends ThemeExtension<YgTextLinkTheme> {
       mediumStrongTextStyle:
           mediumStrongTextStyle ?? this.mediumStrongTextStyle,
       mediumWeakTextStyle: mediumWeakTextStyle ?? this.mediumWeakTextStyle,
+      padding: padding ?? this.padding,
       pressedColor: pressedColor ?? this.pressedColor,
       smallStrongTextStyle: smallStrongTextStyle ?? this.smallStrongTextStyle,
       smallWeakTextStyle: smallWeakTextStyle ?? this.smallWeakTextStyle,
@@ -143,6 +151,7 @@ class YgTextLinkTheme extends ThemeExtension<YgTextLinkTheme> {
           mediumStrongTextStyle, other.mediumStrongTextStyle, t)!,
       mediumWeakTextStyle:
           TextStyle.lerp(mediumWeakTextStyle, other.mediumWeakTextStyle, t)!,
+      padding: t < 0.5 ? padding : other.padding,
       pressedColor: Color.lerp(pressedColor, other.pressedColor, t)!,
       smallStrongTextStyle:
           TextStyle.lerp(smallStrongTextStyle, other.smallStrongTextStyle, t)!,
@@ -171,6 +180,7 @@ class YgTextLinkTheme extends ThemeExtension<YgTextLinkTheme> {
                 .equals(mediumStrongTextStyle, other.mediumStrongTextStyle) &&
             const DeepCollectionEquality()
                 .equals(mediumWeakTextStyle, other.mediumWeakTextStyle) &&
+            const DeepCollectionEquality().equals(padding, other.padding) &&
             const DeepCollectionEquality()
                 .equals(pressedColor, other.pressedColor) &&
             const DeepCollectionEquality()
@@ -191,6 +201,7 @@ class YgTextLinkTheme extends ThemeExtension<YgTextLinkTheme> {
       const DeepCollectionEquality().hash(iconPadding),
       const DeepCollectionEquality().hash(mediumStrongTextStyle),
       const DeepCollectionEquality().hash(mediumWeakTextStyle),
+      const DeepCollectionEquality().hash(padding),
       const DeepCollectionEquality().hash(pressedColor),
       const DeepCollectionEquality().hash(smallStrongTextStyle),
       const DeepCollectionEquality().hash(smallWeakTextStyle),

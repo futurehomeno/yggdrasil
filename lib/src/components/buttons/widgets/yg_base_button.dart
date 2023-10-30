@@ -22,7 +22,7 @@ class YgButtonBase<T extends Enum> extends StatefulWidget with StatefulWidgetDeb
 
   final YbButtonStyleCreator<T> createStyle;
   final YgStatesController<T> controller;
-  final Map<T, MaterialState> statesToMaterialMap;
+  final Map<MaterialState, T> statesToMaterialMap;
   final Widget child;
   final VoidCallback? onPressed;
   final VoidCallback? onLongPress;

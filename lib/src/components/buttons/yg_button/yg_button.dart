@@ -66,11 +66,11 @@ class YgButton extends StatefulWidget {
 
 class _YgButtonState<T extends YgButton> extends State<T> {
   // ignore: avoid-missing-enum-constant-in-map
-  static const Map<YgButtonState, MaterialState> _statesMap = <YgButtonState, MaterialState>{
-    YgButtonState.disabled: MaterialState.disabled,
-    YgButtonState.focused: MaterialState.focused,
-    YgButtonState.hovered: MaterialState.hovered,
-    YgButtonState.pressed: MaterialState.pressed,
+  static const Map<MaterialState, YgButtonState> _statesMap = <MaterialState, YgButtonState>{
+    MaterialState.disabled: YgButtonState.disabled,
+    MaterialState.focused: YgButtonState.focused,
+    MaterialState.hovered: YgButtonState.hovered,
+    MaterialState.pressed: YgButtonState.pressed,
   };
 
   late final YgStatesController<YgButtonState> _controller = YgStatesController<YgButtonState>(<YgButtonState>{
