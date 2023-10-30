@@ -3,16 +3,18 @@ import 'package:yggdrasil/src/utils/_utils.dart';
 
 import '_widgets.dart';
 
-typedef YbButtonStyleCreator<T extends Enum> = YgBaseButtonStyle<T> Function(YgVsync vsync);
+typedef YbButtonStyleCreator<T extends Enum> = YgButtonBaseStyle<T> Function(YgVsync vsync);
 
 class YgButtonBase<T extends Enum> extends StatefulWidget with StatefulWidgetDebugMixin {
   const YgButtonBase({
     super.key,
     required this.child,
     required this.controller,
-    required this.statesToMaterialMap,
     required this.onPressed,
     required this.createStyle,
+    required this.focusedState,
+    required this.pressedState,
+    required this.hoveredState,
     this.onLongPress,
     this.onHover,
     this.onFocusChange,
@@ -20,9 +22,12 @@ class YgButtonBase<T extends Enum> extends StatefulWidget with StatefulWidgetDeb
     this.autofocus = false,
   });
 
+  final T focusedState;
+  final T pressedState;
+  final T hoveredState;
+
   final YbButtonStyleCreator<T> createStyle;
   final YgStatesController<T> controller;
-  final Map<MaterialState, T> statesToMaterialMap;
   final Widget child;
   final VoidCallback? onPressed;
   final VoidCallback? onLongPress;
@@ -45,27 +50,45 @@ class YgButtonBase<T extends Enum> extends StatefulWidget with StatefulWidgetDeb
 }
 
 class _YgButtonBaseState<T extends Enum> extends State<YgButtonBase<T>> {
-  late final YgStatesMaterialStatesProxyController<T> _proxyController = YgStatesMaterialStatesProxyController<T>(
-    parentController: widget.controller,
-    statesMap: widget.statesToMaterialMap,
+  late final YgMaterialStatesControllerWithChangeCallback<T> _materialController =
+      YgMaterialStatesControllerWithChangeCallback<T>(
+    onStateChange: _handleMaterialStateChange,
   );
+
+  void _handleMaterialStateChange(MaterialState state, bool toggled) {
+    final T? parentState = switch (state) {
+      MaterialState.focused => widget.focusedState,
+      MaterialState.pressed => widget.pressedState,
+      MaterialState.hovered => widget.hoveredState,
+      _ => null,
+    };
+
+    if (parentState == null) {
+      return;
+    }
+
+    widget.controller.update(
+      parentState,
+      toggled,
+    );
+  }
 
   @override
   void dispose() {
-    _proxyController.dispose();
+    _materialController.dispose();
     super.dispose();
   }
 
   @override
   Widget build(BuildContext context) {
-    return YgStyleBuilder<YgBaseButtonStyle<T>>(
+    return YgStyleBuilder<YgButtonBaseStyle<T>>(
       createStyle: widget.createStyle,
-      getWatchedProperties: (YgBaseButtonStyle<T> style) => <YgDynamicDrivenProperty>{
+      getWatchedProperties: (YgButtonBaseStyle<T> style) => <YgDynamicDrivenProperty>{
         style.splashFactory,
         style.cursor,
         style.splashColor,
       },
-      builder: (BuildContext context, YgBaseButtonStyle<T> style) {
+      builder: (BuildContext context, YgButtonBaseStyle<T> style) {
         return YgAnimatedConstrainedBox(
           constraints: style.constraints,
           child: YgAnimatedShapeBorderClipper(
@@ -78,7 +101,7 @@ class _YgButtonBaseState<T extends Enum> extends State<YgButtonBase<T>> {
                 child: YgAnimatedShapeBorderPainter(
                   shape: style.shape,
                   child: InkWell(
-                    statesController: _proxyController,
+                    statesController: _materialController,
                     splashFactory: style.splashFactory.value,
                     onLongPress: widget.onLongPress,
                     onTap: widget.onPressed,

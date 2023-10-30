@@ -4,7 +4,7 @@ import 'package:yggdrasil/src/components/buttons/yg_text_link/enums/yg_text_link
 import 'package:yggdrasil/src/theme/_theme.dart';
 import 'package:yggdrasil/yggdrasil.dart';
 
-class YgTextLinkStyle extends YgBaseButtonStyle<YgTextLinkState> {
+class YgTextLinkStyle extends YgButtonBaseStyle<YgTextLinkState> {
   YgTextLinkStyle({
     required super.controller,
     required super.vsync,
@@ -31,8 +31,6 @@ class YgTextLinkStyle extends YgBaseButtonStyle<YgTextLinkState> {
   @override
   OutlinedBorder resolveOutlinedBorder(BuildContext context, Set<YgTextLinkState> states) {
     if (states.focused) {
-      print('focused');
-
       return RoundedRectangleBorder(
         side: BorderSide(
           color: _theme.focusColor,
@@ -41,8 +39,6 @@ class YgTextLinkStyle extends YgBaseButtonStyle<YgTextLinkState> {
         borderRadius: const BorderRadius.all(Radius.circular(5.0)),
       );
     }
-
-    print('unfocused');
 
     return const RoundedRectangleBorder(
       side: BorderSide.none,

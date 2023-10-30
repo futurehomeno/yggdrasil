@@ -2,8 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:yggdrasil/src/theme/_theme.dart';
 import 'package:yggdrasil/src/utils/_utils.dart';
 
-abstract class YgBaseButtonStyle<T extends Enum> extends YgStyleWithDefaults<T> {
-  YgBaseButtonStyle({
+abstract class YgButtonBaseStyle<T extends Enum> extends YgStyleWithDefaults<T> {
+  YgButtonBaseStyle({
     required super.controller,
     required super.vsync,
   });

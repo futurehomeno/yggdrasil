@@ -6,8 +6,6 @@ import 'package:yggdrasil/yggdrasil.dart';
 
 import '_yg_text_link.dart';
 
-part 'yg_text_link_content.dart';
-
 /// Text link button implementation.
 class YgTextLink extends StatefulWidget {
   const YgTextLink({
@@ -40,14 +38,6 @@ class YgTextLink extends StatefulWidget {
 }
 
 class _YgTextLinkState extends State<YgTextLink> {
-  // ignore: avoid-missing-enum-constant-in-map
-  static const Map<MaterialState, YgTextLinkState> _materialStateMap = <MaterialState, YgTextLinkState>{
-    MaterialState.disabled: YgTextLinkState.disabled,
-    MaterialState.focused: YgTextLinkState.focused,
-    MaterialState.hovered: YgTextLinkState.hovered,
-    MaterialState.pressed: YgTextLinkState.pressed,
-  };
-
   late final YgStatesController<YgTextLinkState> _controller = YgStatesController<YgTextLinkState>(<YgTextLinkState>{
     if (widget.onPressed == null) YgTextLinkState.disabled,
     YgTextLinkState.fromSize(widget.size),
@@ -71,8 +61,10 @@ class _YgTextLinkState extends State<YgTextLink> {
   @override
   Widget build(BuildContext context) {
     return YgButtonBase<YgTextLinkState>(
+      focusedState: YgTextLinkState.focused,
+      hoveredState: YgTextLinkState.hovered,
+      pressedState: YgTextLinkState.pressed,
       controller: _controller,
-      statesToMaterialMap: _materialStateMap,
       createStyle: _createStyle,
       onPressed: widget.onPressed,
       onLongPress: widget.onLongPress,

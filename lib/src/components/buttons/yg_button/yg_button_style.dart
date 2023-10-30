@@ -4,7 +4,7 @@ import 'package:yggdrasil/src/components/buttons/yg_button/enums/yg_button_state
 import 'package:yggdrasil/src/theme/button/button_theme.dart';
 import 'package:yggdrasil/yggdrasil.dart';
 
-class YgButtonStyle extends YgBaseButtonStyle<YgButtonState> {
+class YgButtonStyle extends YgButtonBaseStyle<YgButtonState> {
   YgButtonStyle({
     required super.controller,
     required super.vsync,
