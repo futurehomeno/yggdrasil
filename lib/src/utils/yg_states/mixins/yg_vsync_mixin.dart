@@ -2,6 +2,7 @@ import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:yggdrasil/src/utils/yg_states/_yg_states.dart';
 
+/// Adds the YgVsync interface to a widget state.
 @optionalTypeArgs
 mixin YgVsyncMixin<T extends StatefulWidget> on TickerProviderStateMixin<T> implements YgVsync {
   final ObserverList<VoidCallback> _listeners = ObserverList<VoidCallback>();

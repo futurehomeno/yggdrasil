@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:yggdrasil/src/utils/yg_states/_yg_states.dart';
 
+/// Build a [Padding] using [padding].
 class YgAnimatedPadding extends StatelessWidget {
   const YgAnimatedPadding({
     super.key,
@@ -8,7 +9,10 @@ class YgAnimatedPadding extends StatelessWidget {
     required this.child,
   });
 
+  /// See [Padding.padding].
   final YgDrivenEdgeInsetsProperty padding;
+
+  /// See [Padding.child].
   final Widget child;
 
   @override

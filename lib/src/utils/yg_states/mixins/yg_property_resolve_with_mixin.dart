@@ -1,4 +1,5 @@
-part of 'yg_property.dart';
+import 'package:flutter/material.dart';
+import 'package:yggdrasil/src/utils/yg_states/_yg_states.dart';
 
 /// Mixin which slightly simplifies implementing a custom property with a
 /// resolveWith static method.
@@ -9,11 +10,4 @@ mixin YgPropertyResolveWithMixin<T extends Enum, V> on YgProperty<T, V> {
   V resolve(BuildContext context, Set<T> states) {
     return resolver(context, states);
   }
-}
-
-class _YgPropertyResolveWith<T extends Enum, V> extends YgProperty<T, V> with YgPropertyResolveWithMixin<T, V> {
-  const _YgPropertyResolveWith(this.resolver);
-
-  @override
-  final YgStatesResolver<T, V> resolver;
 }

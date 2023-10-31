@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:yggdrasil/src/utils/yg_states/_yg_states.dart';
 
+/// Build a [PhysicalModel] with animated properties.
 class YgAnimatedPhysicalModel extends StatelessWidget {
   const YgAnimatedPhysicalModel({
     super.key,
@@ -13,12 +14,25 @@ class YgAnimatedPhysicalModel extends StatelessWidget {
     this.child,
   });
 
+  /// See [PhysicalModel.child].
   final Widget? child;
+
+  /// See [PhysicalModel.shape].
   final BoxShape shape;
+
+  /// See [PhysicalModel.clipBehavior].
   final Clip clipBehavior;
+
+  /// See [PhysicalModel.color].
   final YgDrivenColorProperty color;
+
+  /// See [PhysicalModel.borderRadius].
   final YgDrivenNullableBorderRadiusProperty? borderRadius;
+
+  /// See [PhysicalModel.elevation].
   final YgDrivenNullableDoubleProperty? elevation;
+
+  /// See [PhysicalModel.shadowColor].
   final YgDrivenNullableColorProperty? shadowColor;
 
   @override

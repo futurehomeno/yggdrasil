@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:yggdrasil/src/utils/yg_states/_yg_states.dart';
 
+/// Build a [ConstrainedBox] using [constraints].
 class YgAnimatedConstrainedBox extends StatelessWidget {
   const YgAnimatedConstrainedBox({
     super.key,
@@ -8,7 +9,10 @@ class YgAnimatedConstrainedBox extends StatelessWidget {
     required this.child,
   });
 
+  /// The additional constraints to impose on the child.
   final YgDrivenBoxConstraintsProperty constraints;
+
+  /// The widget below this widget in the tree.
   final Widget child;
 
   @override

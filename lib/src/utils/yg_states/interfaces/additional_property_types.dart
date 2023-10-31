@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:yggdrasil/src/utils/yg_states/_yg_states.dart';
 
+// These are addition types which support animation but for which we do not need
+// or want custom tweens.
+
 // region double
 
 typedef NullableDouble = double?;

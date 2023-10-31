@@ -4,8 +4,9 @@ import 'package:yggdrasil/src/utils/yg_states/helpers/_helpers.dart';
 
 part 'yg_animated_property.dart';
 part 'yg_driven_property.dart';
-part 'yg_property_resolve_all_mixin.dart';
-part 'yg_property_resolve_with_mixin.dart';
+part 'yg_driven_property_all.dart';
+part 'yg_property_resolve_all.dart';
+part 'yg_property_resolve_with.dart';
 
 typedef YgStatesResolver<T extends Enum, V> = V Function(BuildContext, Set<T>);
 typedef YgStatesAllResolver<V> = V Function(BuildContext);

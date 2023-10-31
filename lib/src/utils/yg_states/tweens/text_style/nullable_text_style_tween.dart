@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:yggdrasil/src/utils/yg_states/_yg_states.dart';
 
-typedef NullableTextStyle = TextStyle?;
 typedef YgNullableTextStyleProperty<T extends Enum> = YgProperty<T, TextStyle?>;
 typedef YgMaterialNullableTextStyleProperty = YgMaterialProperty<TextStyle?>;
 typedef YgAnimatedNullableTextStyleProperty = YgAnimatedProperty<TextStyle?>;

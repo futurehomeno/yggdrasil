@@ -6,6 +6,9 @@ class YgMaterialStatesControllerWithChangeCallback<T extends Enum> extends Mater
     required this.onStateChange,
   });
 
+  /// Callback gets called when any state changes.
+  ///
+  /// Gets called with the state and the new value of the state.
   final void Function(MaterialState state, bool add) onStateChange;
 
   @override

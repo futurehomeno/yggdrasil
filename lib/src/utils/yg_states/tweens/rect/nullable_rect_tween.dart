@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:yggdrasil/src/utils/yg_states/_yg_states.dart';
 
-typedef NullableRect = Rect?;
 typedef YgNullableRectProperty<T extends Enum> = YgProperty<T, Rect?>;
 typedef YgMaterialNullableRectProperty = YgMaterialProperty<Rect?>;
 typedef YgAnimatedNullableRectProperty = YgAnimatedProperty<Rect?>;

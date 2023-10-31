@@ -1,10 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:yggdrasil/src/components/fields/enums/yg_field_state.dart';
 import 'package:yggdrasil/src/components/fields/widgets/decoration/yg_field_decoration_style.dart';
 import 'package:yggdrasil/src/theme/_theme.dart';
 import 'package:yggdrasil/yggdrasil.dart';
-
-import '../../enums/yg_field_state.dart';
-import '../content/yg_field_content.dart';
 
 /// The decoration of any yggdrasil field widget.
 ///
@@ -56,7 +54,7 @@ class YgFieldDecoration extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return YgStyleBuilder(
+    return YgStyleBuilder<YgFieldDecorationStyle>(
       createStyle: (YgVsync vsync) => YgFieldDecorationStyle(
         controller: statesController,
         vsync: vsync,

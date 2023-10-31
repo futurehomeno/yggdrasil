@@ -12,6 +12,7 @@ abstract class YgAnimatedProperty<V> implements Animation<V>, YgDrivenProperty<V
   YgAnimatedProperty<R> map<R>(ValueMapper<V, R> mapper);
 }
 
+/// Abstract class extended by animated properties that have to be disposed.
 abstract class YgDisposableAnimatedProperty<V> extends YgAnimatedProperty<V> implements YgDisposableDrivenProperty<V> {}
 
 class _YgAnimatedProperty<T extends Enum, V> extends Animation<V>

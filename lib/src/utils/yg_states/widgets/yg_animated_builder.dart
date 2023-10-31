@@ -2,6 +2,7 @@
 
 import 'package:flutter/material.dart';
 
+/// Similar to [AnimatedBuilder] but accepts multiple properties instead.
 class YgAnimatedBuilder extends StatefulWidget {
   const YgAnimatedBuilder({
     super.key,

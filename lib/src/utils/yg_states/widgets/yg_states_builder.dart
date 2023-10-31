@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:yggdrasil/yggdrasil.dart';
 
+/// Rebuilds when states get changed.
 class YgStatesBuilder<T extends Enum> extends StatefulWidget {
   const YgStatesBuilder({
     super.key,

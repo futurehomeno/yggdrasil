@@ -1,17 +1,19 @@
 import 'package:flutter/material.dart';
 import 'package:yggdrasil/src/utils/yg_states/_yg_states.dart';
 
+/// Clips [child] using [shape].
 class YgAnimatedShapeBorderClipper extends StatelessWidget {
   const YgAnimatedShapeBorderClipper({
     super.key,
     required this.child,
     required this.shape,
-    this.borderOnForeground = true,
   });
 
+  /// See [ClipPath.child].
   final Widget child;
+
+  /// See [ShapeBorderClipper.shape]
   final YgDrivenNullableShapeBorderProperty shape;
-  final bool borderOnForeground;
 
   @override
   Widget build(BuildContext context) {

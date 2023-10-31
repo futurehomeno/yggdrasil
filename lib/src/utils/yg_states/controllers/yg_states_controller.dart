@@ -2,6 +2,9 @@ import 'dart:collection';
 
 import 'package:flutter/material.dart';
 
+// TODO(Tim): Some stuff here may not actually be required anymore, potentially
+// cleanup when widgets have been moved and its clear what is and isn't required.
+
 class YgStatesController<T extends Enum> extends ChangeNotifier {
   YgStatesController([
     Set<T>? initialStates,
@@ -142,6 +145,7 @@ class YgStatesController<T extends Enum> extends ChangeNotifier {
 /// A [YgStatesController] which implements [MaterialStatesController].
 class YgMaterialStatesController extends YgStatesController<MaterialState> implements MaterialStatesController {}
 
+/// A change on [YgStateController].
 class StatesChange<T extends Enum> {
   factory StatesChange({
     required Set<T> added,
@@ -169,7 +173,10 @@ class StatesChange<T extends Enum> {
     required this.removed,
   });
 
+  /// The states that were added.
   final Set<T> added;
+
+  /// The states that were removed.
   final Set<T> removed;
 
   bool contains(T state) {

@@ -5,7 +5,7 @@ typedef YgWatchedPropertiesGetter<S extends YgStyleBase<Enum>> = Set<Listenable>
 typedef YgStyleCreator<S extends YgStyleBase<Enum>> = S Function(YgVsync vsync);
 typedef YgStyleChildBuilder<S extends YgStyleBase<Enum>> = Widget Function(BuildContext context, S style);
 
-@optionalTypeArgs
+/// Creates style and provides it to [builder].
 class YgStyleBuilder<S extends YgStyleBase<Enum>> extends StatefulWidget {
   const YgStyleBuilder({
     super.key,
@@ -14,8 +14,23 @@ class YgStyleBuilder<S extends YgStyleBase<Enum>> extends StatefulWidget {
     required this.builder,
   });
 
+  /// Creates style on init.
+  ///
+  /// The style will be provided to [builder] for the lifetime of this widget.
   final YgStyleCreator<S> createStyle;
+
+  /// Optionally select properties to trigger a rebuild when changed.
+  ///
+  /// !--- Warning ---
+  /// Not the most performant way to animate properties as this will rebuild the
+  /// entire widget every type any of the watched properties is changed. Ideally
+  /// you should only use this for properties which are driven and can not be
+  /// animated. If you want to animate properties use the one of the animated
+  /// widgets, any of the build in Transition widgets, a [AnimatedBuilder] or a
+  /// [YgAnimatedBuilder] instead.
   final YgWatchedPropertiesGetter<S>? getWatchedProperties;
+
+  /// Builds children.
   final YgStyleChildBuilder<S> builder;
 
   @override

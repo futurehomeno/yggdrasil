@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:yggdrasil/src/utils/yg_states/_yg_states.dart';
 
-typedef NullableOffset = Offset?;
 typedef YgNullableOffsetProperty<T extends Enum> = YgProperty<T, Offset?>;
 typedef YgMaterialNullableOffsetProperty = YgMaterialProperty<Offset?>;
 typedef YgAnimatedNullableOffsetProperty = YgAnimatedProperty<Offset?>;

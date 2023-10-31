@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:yggdrasil/src/utils/yg_states/_yg_states.dart';
 
+/// Paints a [ShapeBorder] using [shape].
 class YgAnimatedShapeBorderPainter extends StatelessWidget {
   const YgAnimatedShapeBorderPainter({
     super.key,
@@ -9,8 +10,13 @@ class YgAnimatedShapeBorderPainter extends StatelessWidget {
     this.borderOnForeground = true,
   });
 
+  /// The widget below this widget in the tree.
   final Widget child;
+
+  /// The shape which gets painted.
   final YgDrivenNullableShapeBorderProperty shape;
+
+  /// Whether the [shape] should be painted in front or behind [child].
   final bool borderOnForeground;
 
   @override

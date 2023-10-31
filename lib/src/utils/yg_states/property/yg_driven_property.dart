@@ -12,6 +12,10 @@ typedef ValueMapper<From, To> = To Function(From value);
 abstract class YgDrivenProperty<V> implements Listenable {
   const YgDrivenProperty();
 
+  const factory YgDrivenProperty.all({
+    required V value,
+  }) = _YgDrivenPropertyAll<V>;
+
   /// The current value of this property.
   V get value;
 
@@ -19,6 +23,7 @@ abstract class YgDrivenProperty<V> implements Listenable {
   YgDrivenProperty<T> map<T>(ValueMapper<V, T> mapper);
 }
 
+/// Abstract class extended by driven properties that have to be disposed.
 abstract class YgDisposableDrivenProperty<V> extends YgDrivenProperty<V> {
   /// Dispose of this property.
   ///

@@ -35,7 +35,8 @@ class YgIconButton extends StatefulWidget {
 }
 
 class _YgIconButtonState extends State<YgIconButton> {
-  late final YgStatesController<YgIconButtonState> _controller = YgStatesController<YgIconButtonState>({
+  late final YgStatesController<YgIconButtonState> _controller =
+      YgStatesController<YgIconButtonState>(<YgIconButtonState>{
     if (widget.onPressed == null) YgIconButtonState.disabled,
     YgIconButtonState.fromSize(widget.size),
     YgIconButtonState.fromVariant(widget.variant),

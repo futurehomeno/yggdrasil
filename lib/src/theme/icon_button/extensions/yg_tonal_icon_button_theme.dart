@@ -37,7 +37,7 @@ class _$YgTonalIconButtonTheme {
     professional_dark.FhColors.backgroundDisabled,
   ];
 
-  static List<Color> splashColor = <Color>[
+  static final List<Color> splashColor = <Color>[
     consumer_light.FhColors.backgroundDisabled.withOpacity(0.25),
     consumer_dark.FhColors.backgroundDisabled.withOpacity(0.25),
     professional_light.FhColors.backgroundDisabled.withOpacity(0.25),

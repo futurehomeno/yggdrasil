@@ -6,6 +6,9 @@ import 'package:yggdrasil/src/utils/yg_states/_yg_states.dart';
 part 'yg_style.dart';
 part 'yg_style_with_defaults.dart';
 
+/// Base class for any [YgStyle].
+///
+/// Can not be used directly, use [YgStyle] or [YgStyleWithDefaults] instead.
 abstract class YgStyleBase<T extends Enum> extends ChangeNotifier {
   YgStyleBase({
     required this.controller,

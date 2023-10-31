@@ -1,4 +1,3 @@
-import 'package:yggdrasil/src/components/buttons/yg_icon_button/_yg_icon_button.dart';
 import 'package:yggdrasil/yggdrasil.dart';
 
 enum YgIconButtonState {
