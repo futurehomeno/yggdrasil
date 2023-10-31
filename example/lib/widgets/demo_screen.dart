@@ -54,6 +54,7 @@ class DemoScreen extends StatelessWidget {
                     child: const YgIcon(YgIcons.refresh),
                   ),
                 ],
+                toolbarHeight: context.appBarTheme.toolbarHeight,
               ),
           body: scrollable ? SingleChildScrollView(child: child) : child,
         );

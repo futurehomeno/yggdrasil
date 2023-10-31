@@ -5,7 +5,7 @@ import 'package:yggdrasil/yggdrasil.dart';
 
 class _PreferredAppBarSize extends Size {
   _PreferredAppBarSize(this.toolbarHeight, this.bottomHeight)
-      : super.fromHeight((toolbarHeight ?? kToolbarHeight) + (bottomHeight ?? 0));
+      : super.fromHeight((toolbarHeight ?? 0) + (bottomHeight ?? 0));
 
   final double? toolbarHeight;
   final double? bottomHeight;
@@ -25,9 +25,15 @@ class YgAppBar extends StatefulWidget implements PreferredSizeWidget {
     this.actions,
     this.flexibleSpace,
     this.bottom,
-  }) : preferredSize = _PreferredAppBarSize(64.0, bottom?.preferredSize.height);
+    required this.toolbarHeight,
+  }) : preferredSize = _PreferredAppBarSize(toolbarHeight, bottom?.preferredSize.height);
 
   // region Values
+
+  /// The primary widget displayed in the app bar.
+  ///
+  /// Becomes the middle component of the [NavigationToolbar] built by this widget.
+  final String? title;
 
   /// A widget to display before the toolbar's [title].
   ///
@@ -44,11 +50,6 @@ class YgAppBar extends StatefulWidget implements PreferredSizeWidget {
   ///
   /// If false and [leading] is null, title will be centered.
   final bool automaticallyImplyLeading;
-
-  /// The primary widget displayed in the app bar.
-  ///
-  /// Becomes the middle component of the [NavigationToolbar] built by this widget.
-  final String? title;
 
   /// A list of Widgets to display in a row after the [title] widget.
   ///
@@ -69,6 +70,11 @@ class YgAppBar extends StatefulWidget implements PreferredSizeWidget {
   /// Its height will be the same as the app bar's overall height.
   /// Used when making sliver app bars, see [YgSliverAppBar].
   final Widget? flexibleSpace;
+
+  /// The height of the toolbar component of the app bar.
+  ///
+  /// Preferred size does not support context, so we need to pass this.
+  final double? toolbarHeight;
 
   /// A size whose height is the sum of [toolbarHeight] and the [bottom] widget's
   /// preferred height.
