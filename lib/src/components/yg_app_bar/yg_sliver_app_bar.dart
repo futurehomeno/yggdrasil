@@ -18,10 +18,19 @@ class YgSliverAppBar extends StatelessWidget {
 
   // region Values
 
-  final String title;
+  /// The variant of the sliver app bar.
   final YgSliverAppBarVariant variant;
+
+  /// See [YgAppBar.title].
+  final String title;
+
+  /// See [YgAppBar.leading].
   final Widget? leading;
+
+  /// See [YgAppBar.automaticallyImplyLeading].
   final bool automaticallyImplyLeading;
+
+  /// See [YgAppBar.actions].
   final List<Widget> actions;
 
   // endregion
@@ -33,78 +42,66 @@ class YgSliverAppBar extends StatelessWidget {
     final double topPadding = MediaQuery.paddingOf(context).top;
     final double collapsedHeight = theme.toolbarHeight + topPadding;
 
-    return switch (variant) {
-      YgSliverAppBarVariant.small => MediaQuery.removePadding(
-          context: context,
-          removeBottom: true,
-          child: SliverPersistentHeader(
-            pinned: true,
-            delegate: _SliverAppBarDelegate(
-              leading: leading,
-              automaticallyImplyLeading: automaticallyImplyLeading,
-              title: title,
-              actions: actions,
-              topPadding: topPadding,
-              collapsedHeight: collapsedHeight,
-              expandedHeight: collapsedHeight,
+    final _SliverAppBarDelegate sliverAppBarDelegate = switch (variant) {
+      YgSliverAppBarVariant.small => _SliverAppBarDelegate(
+          leading: leading,
+          automaticallyImplyLeading: automaticallyImplyLeading,
+          title: title,
+          actions: actions,
+          topPadding: topPadding,
+          collapsedHeight: collapsedHeight,
+          expandedHeight: collapsedHeight,
+        ),
+      YgSliverAppBarVariant.medium => _SliverAppBarDelegate(
+          leading: leading,
+          automaticallyImplyLeading: automaticallyImplyLeading,
+          actions: actions,
+          topPadding: topPadding,
+          collapsedHeight: collapsedHeight,
+          expandedHeight: theme.mediumAppBarTheme.expandedHeight,
+          flexibleSpace: YgFlexibleSpaceBar(
+            expandedTitleScale: theme.mediumAppBarTheme.expandedTitleScale,
+            topTitlePadding: theme.mediumAppBarTheme.topTitlePadding,
+            bottomTitlePadding: theme.mediumAppBarTheme.bottomTitlePadding,
+            actionsCount: actions.length,
+            hasLeading: leading != null || automaticallyImplyLeading,
+            title: Text(
+              title,
+              style: theme.titleTextStyle,
+              overflow: TextOverflow.ellipsis,
             ),
           ),
         ),
-      YgSliverAppBarVariant.medium => MediaQuery.removePadding(
-          context: context,
-          removeBottom: true,
-          child: SliverPersistentHeader(
-            pinned: true,
-            delegate: _SliverAppBarDelegate(
-              leading: leading,
-              automaticallyImplyLeading: automaticallyImplyLeading,
-              actions: actions,
-              topPadding: topPadding,
-              collapsedHeight: collapsedHeight,
-              expandedHeight: theme.mediumAppBarTheme.expandedHeight,
-              flexibleSpace: YgFlexibleSpaceBar(
-                expandedTitleScale: theme.mediumAppBarTheme.expandedTitleScale,
-                topTitlePadding: theme.mediumAppBarTheme.topTitlePadding,
-                bottomTitlePadding: theme.mediumAppBarTheme.bottomTitlePadding,
-                actionsCount: actions.length,
-                hasLeading: leading != null || automaticallyImplyLeading,
-                title: Text(
-                  title,
-                  style: theme.titleTextStyle,
-                  overflow: TextOverflow.ellipsis,
-                ),
-              ),
-            ),
-          ),
-        ),
-      YgSliverAppBarVariant.large => MediaQuery.removePadding(
-          context: context,
-          removeBottom: true,
-          child: SliverPersistentHeader(
-            pinned: true,
-            delegate: _SliverAppBarDelegate(
-              leading: leading,
-              automaticallyImplyLeading: automaticallyImplyLeading,
-              actions: actions,
-              topPadding: topPadding,
-              collapsedHeight: collapsedHeight,
-              expandedHeight: theme.largeAppBarTheme.expandedHeight,
-              flexibleSpace: YgFlexibleSpaceBar(
-                expandedTitleScale: theme.largeAppBarTheme.expandedTitleScale,
-                topTitlePadding: theme.largeAppBarTheme.topTitlePadding,
-                bottomTitlePadding: theme.largeAppBarTheme.bottomTitlePadding,
-                actionsCount: actions.length,
-                hasLeading: leading != null || automaticallyImplyLeading,
-                title: Text(
-                  title,
-                  style: theme.titleTextStyle,
-                  overflow: TextOverflow.ellipsis,
-                ),
-              ),
+      YgSliverAppBarVariant.large => _SliverAppBarDelegate(
+          leading: leading,
+          automaticallyImplyLeading: automaticallyImplyLeading,
+          actions: actions,
+          topPadding: topPadding,
+          collapsedHeight: collapsedHeight,
+          expandedHeight: theme.largeAppBarTheme.expandedHeight,
+          flexibleSpace: YgFlexibleSpaceBar(
+            expandedTitleScale: theme.largeAppBarTheme.expandedTitleScale,
+            topTitlePadding: theme.largeAppBarTheme.topTitlePadding,
+            bottomTitlePadding: theme.largeAppBarTheme.bottomTitlePadding,
+            actionsCount: actions.length,
+            hasLeading: leading != null || automaticallyImplyLeading,
+            title: Text(
+              title,
+              style: theme.titleTextStyle,
+              overflow: TextOverflow.ellipsis,
             ),
           ),
         ),
     };
+
+    return MediaQuery.removePadding(
+      context: context,
+      removeBottom: true,
+      child: SliverPersistentHeader(
+        pinned: true,
+        delegate: sliverAppBarDelegate,
+      ),
+    );
   }
 }
 

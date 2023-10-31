@@ -30,7 +30,7 @@ class YgAppBar extends StatefulWidget implements PreferredSizeWidget {
 
   // region Values
 
-  /// The primary widget displayed in the app bar.
+  /// The primary text displayed in the app bar.
   ///
   /// Becomes the middle component of the [NavigationToolbar] built by this widget.
   final String? title;
