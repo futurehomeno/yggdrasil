@@ -15,14 +15,14 @@ class YgStandardIconButtonTheme
     required this.disabledBackgroundColor,
     required this.disabledIconColor,
     required this.iconColor,
-    required this.pressedColor,
+    required this.splashColor,
   });
 
   final Color backgroundColor;
   final Color disabledBackgroundColor;
   final Color disabledIconColor;
   final Color iconColor;
-  final Color pressedColor;
+  final Color splashColor;
 
   static final YgStandardIconButtonTheme consumerLight =
       YgStandardIconButtonTheme(
@@ -31,7 +31,7 @@ class YgStandardIconButtonTheme
         _$YgStandardIconButtonTheme.disabledBackgroundColor[0],
     disabledIconColor: _$YgStandardIconButtonTheme.disabledIconColor[0],
     iconColor: _$YgStandardIconButtonTheme.iconColor[0],
-    pressedColor: _$YgStandardIconButtonTheme.pressedColor[0],
+    splashColor: _$YgStandardIconButtonTheme.splashColor[0],
   );
 
   static final YgStandardIconButtonTheme consumerDark =
@@ -41,7 +41,7 @@ class YgStandardIconButtonTheme
         _$YgStandardIconButtonTheme.disabledBackgroundColor[1],
     disabledIconColor: _$YgStandardIconButtonTheme.disabledIconColor[1],
     iconColor: _$YgStandardIconButtonTheme.iconColor[1],
-    pressedColor: _$YgStandardIconButtonTheme.pressedColor[1],
+    splashColor: _$YgStandardIconButtonTheme.splashColor[1],
   );
 
   static final YgStandardIconButtonTheme professionalLight =
@@ -51,7 +51,7 @@ class YgStandardIconButtonTheme
         _$YgStandardIconButtonTheme.disabledBackgroundColor[2],
     disabledIconColor: _$YgStandardIconButtonTheme.disabledIconColor[2],
     iconColor: _$YgStandardIconButtonTheme.iconColor[2],
-    pressedColor: _$YgStandardIconButtonTheme.pressedColor[2],
+    splashColor: _$YgStandardIconButtonTheme.splashColor[2],
   );
 
   static final YgStandardIconButtonTheme professionalDark =
@@ -61,7 +61,7 @@ class YgStandardIconButtonTheme
         _$YgStandardIconButtonTheme.disabledBackgroundColor[3],
     disabledIconColor: _$YgStandardIconButtonTheme.disabledIconColor[3],
     iconColor: _$YgStandardIconButtonTheme.iconColor[3],
-    pressedColor: _$YgStandardIconButtonTheme.pressedColor[3],
+    splashColor: _$YgStandardIconButtonTheme.splashColor[3],
   );
 
   static final themes = [
@@ -77,7 +77,7 @@ class YgStandardIconButtonTheme
     Color? disabledBackgroundColor,
     Color? disabledIconColor,
     Color? iconColor,
-    Color? pressedColor,
+    Color? splashColor,
   }) {
     return YgStandardIconButtonTheme(
       backgroundColor: backgroundColor ?? this.backgroundColor,
@@ -85,7 +85,7 @@ class YgStandardIconButtonTheme
           disabledBackgroundColor ?? this.disabledBackgroundColor,
       disabledIconColor: disabledIconColor ?? this.disabledIconColor,
       iconColor: iconColor ?? this.iconColor,
-      pressedColor: pressedColor ?? this.pressedColor,
+      splashColor: splashColor ?? this.splashColor,
     );
   }
 
@@ -101,7 +101,7 @@ class YgStandardIconButtonTheme
       disabledIconColor:
           Color.lerp(disabledIconColor, other.disabledIconColor, t)!,
       iconColor: Color.lerp(iconColor, other.iconColor, t)!,
-      pressedColor: Color.lerp(pressedColor, other.pressedColor, t)!,
+      splashColor: Color.lerp(splashColor, other.splashColor, t)!,
     );
   }
 
@@ -118,7 +118,7 @@ class YgStandardIconButtonTheme
                 .equals(disabledIconColor, other.disabledIconColor) &&
             const DeepCollectionEquality().equals(iconColor, other.iconColor) &&
             const DeepCollectionEquality()
-                .equals(pressedColor, other.pressedColor));
+                .equals(splashColor, other.splashColor));
   }
 
   @override
@@ -129,7 +129,7 @@ class YgStandardIconButtonTheme
       const DeepCollectionEquality().hash(disabledBackgroundColor),
       const DeepCollectionEquality().hash(disabledIconColor),
       const DeepCollectionEquality().hash(iconColor),
-      const DeepCollectionEquality().hash(pressedColor),
+      const DeepCollectionEquality().hash(splashColor),
     );
   }
 }

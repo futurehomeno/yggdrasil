@@ -17,7 +17,7 @@ class YgOutlinedIconButtonTheme
     required this.disabledBorderColor,
     required this.disabledIconColor,
     required this.iconColor,
-    required this.pressedColor,
+    required this.splashColor,
   });
 
   final Color backgroundColor;
@@ -26,7 +26,7 @@ class YgOutlinedIconButtonTheme
   final Color disabledBorderColor;
   final Color disabledIconColor;
   final Color iconColor;
-  final Color pressedColor;
+  final Color splashColor;
 
   static final YgOutlinedIconButtonTheme consumerLight =
       YgOutlinedIconButtonTheme(
@@ -37,7 +37,7 @@ class YgOutlinedIconButtonTheme
     disabledBorderColor: _$YgOutlinedIconButtonTheme.disabledBorderColor[0],
     disabledIconColor: _$YgOutlinedIconButtonTheme.disabledIconColor[0],
     iconColor: _$YgOutlinedIconButtonTheme.iconColor[0],
-    pressedColor: _$YgOutlinedIconButtonTheme.pressedColor[0],
+    splashColor: _$YgOutlinedIconButtonTheme.splashColor[0],
   );
 
   static final YgOutlinedIconButtonTheme consumerDark =
@@ -49,7 +49,7 @@ class YgOutlinedIconButtonTheme
     disabledBorderColor: _$YgOutlinedIconButtonTheme.disabledBorderColor[1],
     disabledIconColor: _$YgOutlinedIconButtonTheme.disabledIconColor[1],
     iconColor: _$YgOutlinedIconButtonTheme.iconColor[1],
-    pressedColor: _$YgOutlinedIconButtonTheme.pressedColor[1],
+    splashColor: _$YgOutlinedIconButtonTheme.splashColor[1],
   );
 
   static final YgOutlinedIconButtonTheme professionalLight =
@@ -61,7 +61,7 @@ class YgOutlinedIconButtonTheme
     disabledBorderColor: _$YgOutlinedIconButtonTheme.disabledBorderColor[2],
     disabledIconColor: _$YgOutlinedIconButtonTheme.disabledIconColor[2],
     iconColor: _$YgOutlinedIconButtonTheme.iconColor[2],
-    pressedColor: _$YgOutlinedIconButtonTheme.pressedColor[2],
+    splashColor: _$YgOutlinedIconButtonTheme.splashColor[2],
   );
 
   static final YgOutlinedIconButtonTheme professionalDark =
@@ -73,7 +73,7 @@ class YgOutlinedIconButtonTheme
     disabledBorderColor: _$YgOutlinedIconButtonTheme.disabledBorderColor[3],
     disabledIconColor: _$YgOutlinedIconButtonTheme.disabledIconColor[3],
     iconColor: _$YgOutlinedIconButtonTheme.iconColor[3],
-    pressedColor: _$YgOutlinedIconButtonTheme.pressedColor[3],
+    splashColor: _$YgOutlinedIconButtonTheme.splashColor[3],
   );
 
   static final themes = [
@@ -91,7 +91,7 @@ class YgOutlinedIconButtonTheme
     Color? disabledBorderColor,
     Color? disabledIconColor,
     Color? iconColor,
-    Color? pressedColor,
+    Color? splashColor,
   }) {
     return YgOutlinedIconButtonTheme(
       backgroundColor: backgroundColor ?? this.backgroundColor,
@@ -101,7 +101,7 @@ class YgOutlinedIconButtonTheme
       disabledBorderColor: disabledBorderColor ?? this.disabledBorderColor,
       disabledIconColor: disabledIconColor ?? this.disabledIconColor,
       iconColor: iconColor ?? this.iconColor,
-      pressedColor: pressedColor ?? this.pressedColor,
+      splashColor: splashColor ?? this.splashColor,
     );
   }
 
@@ -120,7 +120,7 @@ class YgOutlinedIconButtonTheme
       disabledIconColor:
           Color.lerp(disabledIconColor, other.disabledIconColor, t)!,
       iconColor: Color.lerp(iconColor, other.iconColor, t)!,
-      pressedColor: Color.lerp(pressedColor, other.pressedColor, t)!,
+      splashColor: Color.lerp(splashColor, other.splashColor, t)!,
     );
   }
 
@@ -141,7 +141,7 @@ class YgOutlinedIconButtonTheme
                 .equals(disabledIconColor, other.disabledIconColor) &&
             const DeepCollectionEquality().equals(iconColor, other.iconColor) &&
             const DeepCollectionEquality()
-                .equals(pressedColor, other.pressedColor));
+                .equals(splashColor, other.splashColor));
   }
 
   @override
@@ -154,7 +154,7 @@ class YgOutlinedIconButtonTheme
       const DeepCollectionEquality().hash(disabledBorderColor),
       const DeepCollectionEquality().hash(disabledIconColor),
       const DeepCollectionEquality().hash(iconColor),
-      const DeepCollectionEquality().hash(pressedColor),
+      const DeepCollectionEquality().hash(splashColor),
     );
   }
 }

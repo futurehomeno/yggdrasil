@@ -51,10 +51,10 @@ class _$YgOutlinedIconButtonTheme {
     professional_dark.FhColors.borderDisabled,
   ];
 
-  static const List<Color> pressedColor = <Color>[
-    consumer_light.FhColors.backgroundDisabled,
-    consumer_dark.FhColors.backgroundDisabled,
-    professional_light.FhColors.backgroundDisabled,
-    professional_dark.FhColors.backgroundDisabled,
+  static List<Color> splashColor = <Color>[
+    consumer_light.FhColors.backgroundDisabled.withOpacity(0.25),
+    consumer_dark.FhColors.backgroundDisabled.withOpacity(0.25),
+    professional_light.FhColors.backgroundDisabled.withOpacity(0.25),
+    professional_dark.FhColors.backgroundDisabled.withOpacity(0.25),
   ];
 }

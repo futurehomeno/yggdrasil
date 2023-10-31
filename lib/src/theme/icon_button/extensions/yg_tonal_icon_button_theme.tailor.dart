@@ -14,14 +14,14 @@ class YgTonalIconButtonTheme extends ThemeExtension<YgTonalIconButtonTheme> {
     required this.disabledBackgroundColor,
     required this.disabledIconColor,
     required this.iconColor,
-    required this.pressedColor,
+    required this.splashColor,
   });
 
   final Color backgroundColor;
   final Color disabledBackgroundColor;
   final Color disabledIconColor;
   final Color iconColor;
-  final Color pressedColor;
+  final Color splashColor;
 
   static final YgTonalIconButtonTheme consumerLight = YgTonalIconButtonTheme(
     backgroundColor: _$YgTonalIconButtonTheme.backgroundColor[0],
@@ -29,7 +29,7 @@ class YgTonalIconButtonTheme extends ThemeExtension<YgTonalIconButtonTheme> {
         _$YgTonalIconButtonTheme.disabledBackgroundColor[0],
     disabledIconColor: _$YgTonalIconButtonTheme.disabledIconColor[0],
     iconColor: _$YgTonalIconButtonTheme.iconColor[0],
-    pressedColor: _$YgTonalIconButtonTheme.pressedColor[0],
+    splashColor: _$YgTonalIconButtonTheme.splashColor[0],
   );
 
   static final YgTonalIconButtonTheme consumerDark = YgTonalIconButtonTheme(
@@ -38,7 +38,7 @@ class YgTonalIconButtonTheme extends ThemeExtension<YgTonalIconButtonTheme> {
         _$YgTonalIconButtonTheme.disabledBackgroundColor[1],
     disabledIconColor: _$YgTonalIconButtonTheme.disabledIconColor[1],
     iconColor: _$YgTonalIconButtonTheme.iconColor[1],
-    pressedColor: _$YgTonalIconButtonTheme.pressedColor[1],
+    splashColor: _$YgTonalIconButtonTheme.splashColor[1],
   );
 
   static final YgTonalIconButtonTheme professionalLight =
@@ -48,7 +48,7 @@ class YgTonalIconButtonTheme extends ThemeExtension<YgTonalIconButtonTheme> {
         _$YgTonalIconButtonTheme.disabledBackgroundColor[2],
     disabledIconColor: _$YgTonalIconButtonTheme.disabledIconColor[2],
     iconColor: _$YgTonalIconButtonTheme.iconColor[2],
-    pressedColor: _$YgTonalIconButtonTheme.pressedColor[2],
+    splashColor: _$YgTonalIconButtonTheme.splashColor[2],
   );
 
   static final YgTonalIconButtonTheme professionalDark = YgTonalIconButtonTheme(
@@ -57,7 +57,7 @@ class YgTonalIconButtonTheme extends ThemeExtension<YgTonalIconButtonTheme> {
         _$YgTonalIconButtonTheme.disabledBackgroundColor[3],
     disabledIconColor: _$YgTonalIconButtonTheme.disabledIconColor[3],
     iconColor: _$YgTonalIconButtonTheme.iconColor[3],
-    pressedColor: _$YgTonalIconButtonTheme.pressedColor[3],
+    splashColor: _$YgTonalIconButtonTheme.splashColor[3],
   );
 
   static final themes = [
@@ -73,7 +73,7 @@ class YgTonalIconButtonTheme extends ThemeExtension<YgTonalIconButtonTheme> {
     Color? disabledBackgroundColor,
     Color? disabledIconColor,
     Color? iconColor,
-    Color? pressedColor,
+    Color? splashColor,
   }) {
     return YgTonalIconButtonTheme(
       backgroundColor: backgroundColor ?? this.backgroundColor,
@@ -81,7 +81,7 @@ class YgTonalIconButtonTheme extends ThemeExtension<YgTonalIconButtonTheme> {
           disabledBackgroundColor ?? this.disabledBackgroundColor,
       disabledIconColor: disabledIconColor ?? this.disabledIconColor,
       iconColor: iconColor ?? this.iconColor,
-      pressedColor: pressedColor ?? this.pressedColor,
+      splashColor: splashColor ?? this.splashColor,
     );
   }
 
@@ -96,7 +96,7 @@ class YgTonalIconButtonTheme extends ThemeExtension<YgTonalIconButtonTheme> {
       disabledIconColor:
           Color.lerp(disabledIconColor, other.disabledIconColor, t)!,
       iconColor: Color.lerp(iconColor, other.iconColor, t)!,
-      pressedColor: Color.lerp(pressedColor, other.pressedColor, t)!,
+      splashColor: Color.lerp(splashColor, other.splashColor, t)!,
     );
   }
 
@@ -113,7 +113,7 @@ class YgTonalIconButtonTheme extends ThemeExtension<YgTonalIconButtonTheme> {
                 .equals(disabledIconColor, other.disabledIconColor) &&
             const DeepCollectionEquality().equals(iconColor, other.iconColor) &&
             const DeepCollectionEquality()
-                .equals(pressedColor, other.pressedColor));
+                .equals(splashColor, other.splashColor));
   }
 
   @override
@@ -124,7 +124,7 @@ class YgTonalIconButtonTheme extends ThemeExtension<YgTonalIconButtonTheme> {
       const DeepCollectionEquality().hash(disabledBackgroundColor),
       const DeepCollectionEquality().hash(disabledIconColor),
       const DeepCollectionEquality().hash(iconColor),
-      const DeepCollectionEquality().hash(pressedColor),
+      const DeepCollectionEquality().hash(splashColor),
     );
   }
 }

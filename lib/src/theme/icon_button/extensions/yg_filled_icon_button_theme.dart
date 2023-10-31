@@ -37,10 +37,10 @@ class _$YgFilledIconButtonTheme {
     professional_dark.FhColors.backgroundDisabled,
   ];
 
-  static const List<Color> pressedColor = <Color>[
-    consumer_light.FhColors.backgroundInverse,
-    consumer_dark.FhColors.backgroundInverse,
-    professional_light.FhColors.backgroundInverse,
-    professional_dark.FhColors.backgroundInverse,
+  static List<Color> splashColor = <Color>[
+    consumer_light.FhColors.backgroundDisabled.withOpacity(0.25),
+    consumer_dark.FhColors.backgroundDisabled.withOpacity(0.25),
+    professional_light.FhColors.backgroundDisabled.withOpacity(0.25),
+    professional_dark.FhColors.backgroundDisabled.withOpacity(0.25),
   ];
 }

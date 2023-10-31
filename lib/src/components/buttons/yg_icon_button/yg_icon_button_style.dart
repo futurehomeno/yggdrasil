@@ -75,11 +75,22 @@ class YgIconButtonStyle extends YgButtonBaseStyle<YgIconButtonState> {
   Color resolveSplashColor(BuildContext context, Set<YgIconButtonState> states) {
     final YgIconButtonVariantTheme variantTheme = _getVariantTheme(states);
 
-    return variantTheme.pressedColor;
+    return variantTheme.splashColor;
   }
 
   @override
   OutlinedBorder resolveOutlinedBorder(BuildContext context, Set<YgIconButtonState> states) {
+    final YgOutlinedIconButtonTheme theme = _theme.outlinedIconButtonTheme;
+
+    if (states.outlined) {
+      return CircleBorder(
+        side: BorderSide(
+          color: states.disabled ? theme.disabledBorderColor : theme.borderColor,
+          width: 1,
+        ),
+      );
+    }
+
     return const CircleBorder();
   }
 
@@ -99,13 +110,14 @@ class YgIconButtonStyle extends YgButtonBaseStyle<YgIconButtonState> {
   }
 }
 
+// TODO(DEV-1915): Remove this when theme extensions can extend interfaces
 class YgIconButtonVariantTheme {
   const YgIconButtonVariantTheme({
     required this.backgroundColor,
     required this.disabledBackgroundColor,
     required this.disabledIconColor,
     required this.iconColor,
-    required this.pressedColor,
+    required this.splashColor,
   });
 
   factory YgIconButtonVariantTheme.standard(YgStandardIconButtonTheme theme) => YgIconButtonVariantTheme(
@@ -113,7 +125,7 @@ class YgIconButtonVariantTheme {
         disabledBackgroundColor: theme.disabledBackgroundColor,
         disabledIconColor: theme.disabledIconColor,
         iconColor: theme.iconColor,
-        pressedColor: theme.pressedColor,
+        splashColor: theme.splashColor,
       );
 
   factory YgIconButtonVariantTheme.filled(YgFilledIconButtonTheme theme) => YgIconButtonVariantTheme(
@@ -121,7 +133,7 @@ class YgIconButtonVariantTheme {
         disabledBackgroundColor: theme.disabledBackgroundColor,
         disabledIconColor: theme.disabledIconColor,
         iconColor: theme.iconColor,
-        pressedColor: theme.pressedColor,
+        splashColor: theme.splashColor,
       );
 
   factory YgIconButtonVariantTheme.tonal(YgTonalIconButtonTheme theme) => YgIconButtonVariantTheme(
@@ -129,7 +141,7 @@ class YgIconButtonVariantTheme {
         disabledBackgroundColor: theme.disabledBackgroundColor,
         disabledIconColor: theme.disabledIconColor,
         iconColor: theme.iconColor,
-        pressedColor: theme.pressedColor,
+        splashColor: theme.splashColor,
       );
 
   factory YgIconButtonVariantTheme.outlined(YgOutlinedIconButtonTheme theme) => YgIconButtonVariantTheme(
@@ -137,12 +149,12 @@ class YgIconButtonVariantTheme {
         disabledBackgroundColor: theme.disabledBackgroundColor,
         disabledIconColor: theme.disabledIconColor,
         iconColor: theme.iconColor,
-        pressedColor: theme.pressedColor,
+        splashColor: theme.splashColor,
       );
 
   final Color backgroundColor;
   final Color disabledBackgroundColor;
   final Color disabledIconColor;
   final Color iconColor;
-  final Color pressedColor;
+  final Color splashColor;
 }

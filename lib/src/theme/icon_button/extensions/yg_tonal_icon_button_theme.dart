@@ -37,10 +37,10 @@ class _$YgTonalIconButtonTheme {
     professional_dark.FhColors.backgroundDisabled,
   ];
 
-  static const List<Color> pressedColor = <Color>[
-    consumer_light.FhColors.backgroundWeak,
-    consumer_dark.FhColors.backgroundWeak,
-    professional_light.FhColors.backgroundWeak,
-    professional_dark.FhColors.backgroundWeak,
+  static List<Color> splashColor = <Color>[
+    consumer_light.FhColors.backgroundDisabled.withOpacity(0.25),
+    consumer_dark.FhColors.backgroundDisabled.withOpacity(0.25),
+    professional_light.FhColors.backgroundDisabled.withOpacity(0.25),
+    professional_dark.FhColors.backgroundDisabled.withOpacity(0.25),
   ];
 }

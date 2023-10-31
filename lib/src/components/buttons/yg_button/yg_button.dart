@@ -8,6 +8,8 @@ import 'yg_button_style.dart';
 part 'yg_button_with_leading_icon.dart';
 part 'yg_button_with_trailing_icon.dart';
 
+// TODO(Tim): Look in to internalizing the state controller if support for
+// multiple variant enums has been added to YgStatesController.
 class YgButton extends StatefulWidget {
   const YgButton({
     super.key,
