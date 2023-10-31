@@ -5,8 +5,8 @@ import 'package:yggdrasil/src/components/yg_app_bar/widgets/_widgets.dart';
 import 'package:yggdrasil/src/theme/_theme.dart';
 import 'package:yggdrasil/yggdrasil.dart';
 
+/// App bar that can be placed in a [CustomScrollView].
 class YgSliverAppBar extends StatelessWidget {
-  /// App bar that can be placed in a [CustomScrollView].
   const YgSliverAppBar({
     super.key,
     required this.title,

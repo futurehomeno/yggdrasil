@@ -167,6 +167,22 @@ class _YgAppBarState extends State<YgAppBar> {
       child: toolbar,
     );
 
+    // Add the bottom widget if provided.
+    if (widget.bottom != null) {
+      appBar = Column(
+        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+        children: <Widget>[
+          Flexible(
+            child: ConstrainedBox(
+              constraints: BoxConstraints(maxHeight: theme.toolbarHeight),
+              child: appBar,
+            ),
+          ),
+          widget.bottom!
+        ],
+      );
+    }
+
     // Add horizontal padding as per the design.
     appBar = SafeArea(
       bottom: false,
