@@ -22,18 +22,40 @@ class YgButtonBase<T extends Enum> extends StatefulWidget with StatefulWidgetDeb
     this.autofocus = false,
   });
 
+  /// State of type [T] which represents the button being focused.
   final T focusedState;
+
+  /// State of type [T] which represents the button being pressed.
   final T pressedState;
+
+  /// State of type [T] which represents the button being hovered.
   final T hoveredState;
 
+  /// Callback to create a [YgButtonBaseStyle].
   final YbButtonStyleCreator<T> createStyle;
+
+  /// YgStatesController used to resolve style properties.
   final YgStatesController<T> controller;
+
+  /// The child of the button.
   final Widget child;
+
+  /// Called when the user presses the button.
   final VoidCallback? onPressed;
+
+  /// Called when the user long presses the button.
   final VoidCallback? onLongPress;
+
+  /// Called when the user hovers over the button.
   final ValueChanged<bool>? onHover;
+
+  /// Called when the user focuses the button.
   final ValueChanged<bool>? onFocusChange;
+
+  /// The [FocusNode] in charge of managing focus for this button.
   final FocusNode? focusNode;
+
+  /// Whether the button should focus on first build.
   final bool autofocus;
 
   @override
