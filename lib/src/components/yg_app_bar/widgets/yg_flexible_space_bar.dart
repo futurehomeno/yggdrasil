@@ -174,6 +174,7 @@ class YgFlexibleSpaceBar extends StatelessWidget {
             final Matrix4 scaleTransform = Matrix4.identity()..scale(scaleValue, scaleValue, 1.0);
             final Alignment titleAlignment = centerTitle ? Alignment.bottomCenter : Alignment.bottomLeft;
             // TODO(bjhandeland): Replace with tokens.
+
             final EdgeInsetsGeometry padding = EdgeInsetsDirectional.only(
               top: topPaddingValue,
               start: centerTitle ? 0.0 : startPaddingValue,

@@ -32,9 +32,9 @@ class _AppBarScreenState extends State<AppBarScreen> {
   Widget build(BuildContext context) {
     return DemoScreen(
       appBar: YgAppBar(
-        automaticallyImplyLeading: _automaticallyImplyLeading,
-        leading: getLeading(),
         title: 'App bar',
+        leading: getLeading(),
+        automaticallyImplyLeading: _automaticallyImplyLeading,
         actions: _actions,
         centerTitle: _centerTitle,
       ),

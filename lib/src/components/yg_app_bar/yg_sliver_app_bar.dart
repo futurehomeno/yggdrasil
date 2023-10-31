@@ -1,175 +1,169 @@
+import 'dart:math' as math;
+
 import 'package:flutter/material.dart';
+import 'package:yggdrasil/src/components/yg_app_bar/widgets/_widgets.dart';
 import 'package:yggdrasil/src/theme/_theme.dart';
 import 'package:yggdrasil/yggdrasil.dart';
 
-import 'widgets/_widgets.dart';
-
-/// Customized version of the [SliverAppBar] widget.
-class YgSliverAppBar extends StatelessWidget with StatelessWidgetSliverDebugMixin {
+class YgSliverAppBar extends StatelessWidget {
+  /// App bar that can be placed in a [CustomScrollView].
   const YgSliverAppBar({
     super.key,
     required this.title,
     required this.variant,
-    this.actions = const <Widget>[],
     this.leading,
-    this.pinned = true,
-    this.centerTitle = false,
-    this.hasDrawer = false,
     this.automaticallyImplyLeading = true,
-  }) : assert(
-          centerTitle && actions.length <= 1 || !centerTitle && actions.length <= 3,
-          'When the title is in the center, app bar can only have 1 action.',
-        );
+    this.actions = const <Widget>[],
+  });
+
+  // region Values
 
   final String title;
-  final bool pinned;
-  final bool centerTitle;
-  final bool hasDrawer;
+  final YgSliverAppBarVariant variant;
   final Widget? leading;
   final bool automaticallyImplyLeading;
   final List<Widget> actions;
-  final YgSliverAppBarVariant variant;
+
+  // endregion
 
   @override
   Widget build(BuildContext context) {
     final YgAppBarTheme theme = context.appBarTheme;
-    const Color surfaceTintColor = Colors.transparent;
-    final ScaffoldState? scaffold = Scaffold.maybeOf(context);
-    final ModalRoute<Object?>? parentRoute = ModalRoute.of(context);
-    final bool canPop = parentRoute?.canPop ?? false;
-    final bool hasEndDrawer = scaffold?.hasEndDrawer ?? false;
-    final bool useCloseButton = parentRoute is PageRoute<Object?> && parentRoute.fullscreenDialog;
 
-    final Widget? leading = _getLeadingWidget(
-      hasEndDrawer: hasEndDrawer,
-      canPop: canPop,
-      parentRoute: parentRoute,
-      context: context,
-      useCloseButton: useCloseButton,
-    );
+    final double topPadding = MediaQuery.paddingOf(context).top;
+    final double collapsedHeight = theme.toolbarHeight + topPadding;
 
     return switch (variant) {
-      YgSliverAppBarVariant.small => SliverAppBar(
-          toolbarHeight: theme.toolbarHeight,
-          actions: <Widget>[
-            ...actions,
-            SizedBox(width: theme.actionEdgeSpacing),
-          ],
-          pinned: pinned,
-          shadowColor: theme.borderColor,
-          surfaceTintColor: surfaceTintColor,
-          backgroundColor: theme.backgroundColor,
-          scrolledUnderElevation: 1.0,
-          automaticallyImplyLeading: automaticallyImplyLeading,
-          centerTitle: _evaluateCenterTitle(leading),
-          titleSpacing: theme.titleSpacing,
-          leading: leading,
-          leadingWidth: context.iconButtonTheme.sizeMedium,
-          title: Text(
-            title,
-            style: theme.titleTextStyle,
-          ),
-        ),
-      YgSliverAppBarVariant.medium => SliverAppBar(
-          toolbarHeight: theme.toolbarHeight,
-          collapsedHeight: theme.collapsedHeight,
-          expandedHeight: theme.mediumAppBarTheme.expandedHeight,
-          actions: <Widget>[
-            ...actions,
-            SizedBox(width: theme.actionEdgeSpacing),
-          ],
-          pinned: pinned,
-          shadowColor: theme.borderColor,
-          surfaceTintColor: surfaceTintColor,
-          backgroundColor: theme.backgroundColor,
-          scrolledUnderElevation: 1.0,
-          automaticallyImplyLeading: automaticallyImplyLeading,
-          leading: leading,
-          leadingWidth: context.iconButtonTheme.sizeMedium + theme.titleSpacing * 2,
-          flexibleSpace: YgFlexibleSpaceBar(
-            expandedTitleScale: theme.mediumAppBarTheme.expandedTitleScale,
-            centerTitle: centerTitle,
-            topTitlePadding: theme.mediumAppBarTheme.topTitlePadding,
-            bottomTitlePadding: theme.mediumAppBarTheme.bottomTitlePadding,
-            actionsCount: actions.length,
-            hasLeading: leading != null,
-            title: Text(
-              title,
-              style: theme.titleTextStyle,
-              overflow: TextOverflow.ellipsis,
+      YgSliverAppBarVariant.small => MediaQuery.removePadding(
+          context: context,
+          removeBottom: true,
+          child: SliverPersistentHeader(
+            pinned: true,
+            delegate: _SliverAppBarDelegate(
+              leading: leading,
+              automaticallyImplyLeading: automaticallyImplyLeading,
+              title: title,
+              actions: actions,
+              topPadding: topPadding,
+              collapsedHeight: collapsedHeight,
+              expandedHeight: collapsedHeight,
             ),
           ),
         ),
-      YgSliverAppBarVariant.large => SliverAppBar(
-          toolbarHeight: theme.toolbarHeight,
-          collapsedHeight: theme.collapsedHeight,
-          expandedHeight: theme.largeAppBarTheme.expandedHeight,
-          actions: <Widget>[
-            ...actions,
-            SizedBox(width: theme.actionEdgeSpacing),
-          ],
-          pinned: pinned,
-          shadowColor: theme.borderColor,
-          backgroundColor: theme.backgroundColor,
-          surfaceTintColor: surfaceTintColor,
-          scrolledUnderElevation: 1.0,
-          automaticallyImplyLeading: automaticallyImplyLeading,
-          leading: leading,
-          leadingWidth: context.iconButtonTheme.sizeMedium + theme.titleSpacing * 2,
-          flexibleSpace: YgFlexibleSpaceBar(
-            expandedTitleScale: theme.largeAppBarTheme.expandedTitleScale,
-            centerTitle: centerTitle,
-            topTitlePadding: theme.largeAppBarTheme.topTitlePadding,
-            bottomTitlePadding: theme.largeAppBarTheme.bottomTitlePadding,
-            actionsCount: actions.length,
-            hasLeading: leading != null,
-            title: Text(
-              title,
-              style: theme.titleTextStyle,
-              overflow: TextOverflow.ellipsis,
+      YgSliverAppBarVariant.medium => MediaQuery.removePadding(
+          context: context,
+          removeBottom: true,
+          child: SliverPersistentHeader(
+            pinned: true,
+            delegate: _SliverAppBarDelegate(
+              leading: leading,
+              automaticallyImplyLeading: automaticallyImplyLeading,
+              actions: actions,
+              topPadding: topPadding,
+              collapsedHeight: collapsedHeight,
+              expandedHeight: theme.mediumAppBarTheme.expandedHeight,
+              flexibleSpace: YgFlexibleSpaceBar(
+                expandedTitleScale: theme.mediumAppBarTheme.expandedTitleScale,
+                topTitlePadding: theme.mediumAppBarTheme.topTitlePadding,
+                bottomTitlePadding: theme.mediumAppBarTheme.bottomTitlePadding,
+                actionsCount: actions.length,
+                hasLeading: leading != null || automaticallyImplyLeading,
+                title: Text(
+                  title,
+                  style: theme.titleTextStyle,
+                  overflow: TextOverflow.ellipsis,
+                ),
+              ),
+            ),
+          ),
+        ),
+      YgSliverAppBarVariant.large => MediaQuery.removePadding(
+          context: context,
+          removeBottom: true,
+          child: SliverPersistentHeader(
+            pinned: true,
+            delegate: _SliverAppBarDelegate(
+              leading: leading,
+              automaticallyImplyLeading: automaticallyImplyLeading,
+              actions: actions,
+              topPadding: topPadding,
+              collapsedHeight: collapsedHeight,
+              expandedHeight: theme.largeAppBarTheme.expandedHeight,
+              flexibleSpace: YgFlexibleSpaceBar(
+                expandedTitleScale: theme.largeAppBarTheme.expandedTitleScale,
+                topTitlePadding: theme.largeAppBarTheme.topTitlePadding,
+                bottomTitlePadding: theme.largeAppBarTheme.bottomTitlePadding,
+                actionsCount: actions.length,
+                hasLeading: leading != null || automaticallyImplyLeading,
+                title: Text(
+                  title,
+                  style: theme.titleTextStyle,
+                  overflow: TextOverflow.ellipsis,
+                ),
+              ),
             ),
           ),
         ),
     };
   }
+}
 
-  /// Enforces center title if we have no leading.
-  bool _evaluateCenterTitle(Widget? leading) {
-    return leading == null ? true : centerTitle;
+class _SliverAppBarDelegate extends SliverPersistentHeaderDelegate {
+  _SliverAppBarDelegate({
+    this.title,
+    required this.leading,
+    required this.automaticallyImplyLeading,
+    required this.actions,
+    required this.topPadding,
+    required this.collapsedHeight,
+    required this.expandedHeight,
+    this.flexibleSpace,
+  });
+
+  final String? title;
+  final Widget? leading;
+  final bool automaticallyImplyLeading;
+  final List<Widget> actions;
+  final double topPadding;
+
+  /// Size of the app bar when collapsed.
+  final double collapsedHeight;
+
+  /// Size of the app bar when expanded.
+  final double expandedHeight;
+  final Widget? flexibleSpace;
+
+  @override
+  double get minExtent => collapsedHeight;
+
+  @override
+  double get maxExtent => math.max((expandedHeight + topPadding), minExtent);
+
+  @override
+  Widget build(BuildContext context, double shrinkOffset, bool overlapsContent) {
+    final bool isScrolledUnder = overlapsContent || shrinkOffset > maxExtent - minExtent;
+
+    return FlexibleSpaceBar.createSettings(
+      minExtent: minExtent,
+      maxExtent: maxExtent,
+      currentExtent: math.max(minExtent, maxExtent - shrinkOffset),
+      toolbarOpacity: 1.0,
+      isScrolledUnder: isScrolledUnder,
+      child: YgAppBar(
+        leading: leading,
+        automaticallyImplyLeading: automaticallyImplyLeading,
+        title: title,
+        actions: actions,
+        flexibleSpace: (title == null && flexibleSpace != null)
+            ? Semantics(
+                header: true,
+                child: flexibleSpace,
+              )
+            : flexibleSpace,
+      ),
+    );
   }
 
-  Widget? _getLeadingWidget({
-    required bool hasEndDrawer,
-    required bool canPop,
-    required ModalRoute<Object?>? parentRoute,
-    required BuildContext context,
-    required bool useCloseButton,
-  }) {
-    if (automaticallyImplyLeading) {
-      if (hasDrawer) {
-        // TODO(DEV-1928): Turn this into an YgIcon whenever we introduce drawers in apps.
-        return Center(
-          child: YgIconButton(
-            onPressed: () {},
-            child: const YgIcon(YgIcons.info),
-          ),
-        );
-      } else if ((!hasEndDrawer && canPop) || (parentRoute?.impliesAppBarDismissal ?? false)) {
-        return Center(
-          child: YgIconButton(
-            onPressed: () => Navigator.maybePop(context),
-            child: YgIcon(useCloseButton ? YgIcons.coverRemove : YgIcons.caretLeft),
-          ),
-        );
-      }
-    }
-
-    if (leading != null) {
-      return Center(
-        child: leading,
-      );
-    }
-
-    return null;
-  }
+  @override
+  bool shouldRebuild(covariant SliverPersistentHeaderDelegate oldDelegate) => true;
 }

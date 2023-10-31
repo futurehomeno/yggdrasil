@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/rendering.dart';
 import 'package:yggdrasil/src/theme/_theme.dart';
 import 'package:yggdrasil/yggdrasil.dart';
 
@@ -18,14 +19,15 @@ class YgAppBar extends StatefulWidget implements PreferredSizeWidget {
   YgAppBar({
     super.key,
     this.title,
+    this.centerTitle = false,
     this.leading,
     this.automaticallyImplyLeading = true,
     this.actions,
+    this.flexibleSpace,
     this.bottom,
-    this.centerTitle = false,
   }) : preferredSize = _PreferredAppBarSize(64.0, bottom?.preferredSize.height);
 
-  // region values
+  // region Values
 
   /// A widget to display before the toolbar's [title].
   ///
@@ -35,8 +37,6 @@ class YgAppBar extends StatefulWidget implements PreferredSizeWidget {
   /// by this widget.
   final Widget? leading;
 
-  // TODO(bjhandeland): false and leading is null, title should be centered.
-  // TODO(bjhandeland): should not be able to set this true and specify a leading.
   /// Controls whether we should try to imply the leading widget if null.
   ///
   /// If true and [leading] is null, automatically try to deduce what the leading
@@ -63,6 +63,12 @@ class YgAppBar extends StatefulWidget implements PreferredSizeWidget {
 
   /// Whether the title should be centered.
   final bool centerTitle;
+
+  /// This widget is stacked behind the toolbar and the tab bar.
+  ///
+  /// Its height will be the same as the app bar's overall height.
+  /// Used when making sliver app bars, see [YgSliverAppBar].
+  final Widget? flexibleSpace;
 
   /// A size whose height is the sum of [toolbarHeight] and the [bottom] widget's
   /// preferred height.
@@ -117,9 +123,8 @@ class _YgAppBarState extends State<YgAppBar> {
       }
 
       if (_scrolledUnder != oldScrolledUnder) {
-        setState(() {
-          // React to a change in MaterialState.scrolledUnder
-        });
+        // React to a change in MaterialState.scrolledUnder
+        setState(() {});
       }
     }
   }
@@ -131,7 +136,6 @@ class _YgAppBarState extends State<YgAppBar> {
     final Set<MaterialState> states = <MaterialState>{
       if (settings?.isScrolledUnder ?? _scrolledUnder) MaterialState.scrolledUnder,
     };
-
     final double effectiveElevation =
         states.contains(MaterialState.scrolledUnder) ? theme.scrolledUnderElevation : theme.elevation;
 
@@ -150,15 +154,50 @@ class _YgAppBarState extends State<YgAppBar> {
       middleSpacing: theme.titleSpacing,
     );
 
-    final Widget appBar = SafeArea(
+    // Ensure that the toolbar is positioned correctly when
+    // using flexible space.
+    Widget appBar = CustomSingleChildLayout(
+      delegate: _ToolbarContainerLayout(theme.toolbarHeight),
+      child: toolbar,
+    );
+
+    // Add horizontal padding as per the design.
+    appBar = SafeArea(
       bottom: false,
-      child: Padding(
-        padding: EdgeInsets.symmetric(
-          horizontal: theme.actionEdgeSpacing,
+      child: Align(
+        alignment: Alignment.topCenter,
+        child: Padding(
+          padding: EdgeInsets.symmetric(
+            horizontal: theme.actionEdgeSpacing,
+          ),
+          child: appBar,
         ),
-        child: toolbar,
       ),
     );
+
+    // Add flexible space if provided.
+    if (widget.flexibleSpace != null) {
+      appBar = Stack(
+        fit: StackFit.passthrough,
+        children: <Widget>[
+          Semantics(
+            sortKey: const OrdinalSortKey(1.0),
+            explicitChildNodes: true,
+            child: widget.flexibleSpace,
+          ),
+          Semantics(
+            sortKey: const OrdinalSortKey(0.0),
+            explicitChildNodes: true,
+            // Creates a material widget to prevent the flexibleSpace from
+            // obscuring the ink splashes produced by appBar children.
+            child: Material(
+              type: MaterialType.transparency,
+              child: appBar,
+            ),
+          ),
+        ],
+      );
+    }
 
     return Semantics(
       container: true,
@@ -218,4 +257,29 @@ class _YgAppBarState extends State<YgAppBar> {
 
     return null;
   }
+}
+
+// Bottom justify the toolbarHeight child which may overflow the top.
+class _ToolbarContainerLayout extends SingleChildLayoutDelegate {
+  const _ToolbarContainerLayout(this.toolbarHeight);
+
+  final double toolbarHeight;
+
+  @override
+  BoxConstraints getConstraintsForChild(BoxConstraints constraints) {
+    return constraints.tighten(height: toolbarHeight);
+  }
+
+  @override
+  Size getSize(BoxConstraints constraints) {
+    return Size(constraints.maxWidth, toolbarHeight);
+  }
+
+  @override
+  Offset getPositionForChild(Size size, Size childSize) {
+    return Offset(0.0, size.height - childSize.height);
+  }
+
+  @override
+  bool shouldRelayout(_ToolbarContainerLayout oldDelegate) => toolbarHeight != oldDelegate.toolbarHeight;
 }

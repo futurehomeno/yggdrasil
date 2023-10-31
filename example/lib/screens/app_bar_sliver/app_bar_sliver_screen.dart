@@ -24,7 +24,6 @@ class _AppBarSliverScreenState extends State<AppBarSliverScreen> {
   YgSliverAppBarVariant _variant = YgSliverAppBarVariant.small;
   int _variantRadioGroupValue = 1;
   bool _customLeading = false;
-  bool _centerTitle = false;
   bool _automaticallyImplyLeading = true;
   List<Widget> _actions = <Widget>[];
   int _actionsRadioGroupValue = 1;
@@ -35,13 +34,11 @@ class _AppBarSliverScreenState extends State<AppBarSliverScreen> {
       body: CustomScrollView(
         slivers: <Widget>[
           YgSliverAppBar(
-            variant: _variant,
-            automaticallyImplyLeading: _automaticallyImplyLeading,
+            title: 'App bar',
             leading: getLeading(),
-            title:
-                'App bar super long title that should be truncated with ellipsis and not wrap to multiple lines and should be centered if centerTitle is true',
+            automaticallyImplyLeading: _automaticallyImplyLeading,
             actions: _actions,
-            centerTitle: _centerTitle,
+            variant: _variant,
           ),
           SliverToBoxAdapter(
             child: Column(
@@ -76,17 +73,6 @@ class _AppBarSliverScreenState extends State<AppBarSliverScreen> {
                         variant: YgSliverAppBarVariant.large,
                         newValue: newValue,
                       ),
-                    ),
-                  ],
-                ),
-                YgSection.list(
-                  title: 'Center title',
-                  subtitle: 'Whether the title should be centered.',
-                  children: <Widget>[
-                    YgCheckboxListTile(
-                      title: 'Center title',
-                      value: _centerTitle,
-                      onChanged: _toggleCenterTitle,
                     ),
                   ],
                 ),
@@ -179,7 +165,6 @@ class _AppBarSliverScreenState extends State<AppBarSliverScreen> {
   }) {
     _actionsRadioGroupValue = newValue!;
     _actions = _defaultActions(context, ygAppState);
-    _centerTitle = false;
     setState(() {});
   }
 
@@ -207,15 +192,6 @@ class _AppBarSliverScreenState extends State<AppBarSliverScreen> {
     _automaticallyImplyLeading = newValue!;
     if (_automaticallyImplyLeading) {
       _customLeading = false;
-    }
-    setState(() {});
-  }
-
-  void _toggleCenterTitle(bool? newValue) {
-    _centerTitle = newValue!;
-    if (_centerTitle) {
-      _actionsRadioGroupValue = 2;
-      _actions = _singleAction;
     }
     setState(() {});
   }
