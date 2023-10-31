@@ -26,6 +26,8 @@ class YgTagTheme extends ThemeExtension<YgTagTheme> {
     required this.paddingMedium,
     required this.paddingSmall,
     required this.positiveTagTheme,
+    required this.splashStrongColor,
+    required this.splashWeakColor,
     required this.strongTextStyle,
     required this.textStyle,
     required this.warningTagTheme,
@@ -47,6 +49,8 @@ class YgTagTheme extends ThemeExtension<YgTagTheme> {
   final EdgeInsets paddingMedium;
   final EdgeInsets paddingSmall;
   final YgPositiveTagTheme positiveTagTheme;
+  final Color splashStrongColor;
+  final Color splashWeakColor;
   final TextStyle strongTextStyle;
   final TextStyle textStyle;
   final YgWarningTagTheme warningTagTheme;
@@ -68,6 +72,8 @@ class YgTagTheme extends ThemeExtension<YgTagTheme> {
     paddingMedium: _$YgTagTheme.paddingMedium[0],
     paddingSmall: _$YgTagTheme.paddingSmall[0],
     positiveTagTheme: _$YgTagTheme.positiveTagTheme[0],
+    splashStrongColor: _$YgTagTheme.splashStrongColor[0],
+    splashWeakColor: _$YgTagTheme.splashWeakColor[0],
     strongTextStyle: _$YgTagTheme.strongTextStyle[0],
     textStyle: _$YgTagTheme.textStyle[0],
     warningTagTheme: _$YgTagTheme.warningTagTheme[0],
@@ -90,6 +96,8 @@ class YgTagTheme extends ThemeExtension<YgTagTheme> {
     paddingMedium: _$YgTagTheme.paddingMedium[1],
     paddingSmall: _$YgTagTheme.paddingSmall[1],
     positiveTagTheme: _$YgTagTheme.positiveTagTheme[1],
+    splashStrongColor: _$YgTagTheme.splashStrongColor[1],
+    splashWeakColor: _$YgTagTheme.splashWeakColor[1],
     strongTextStyle: _$YgTagTheme.strongTextStyle[1],
     textStyle: _$YgTagTheme.textStyle[1],
     warningTagTheme: _$YgTagTheme.warningTagTheme[1],
@@ -112,6 +120,8 @@ class YgTagTheme extends ThemeExtension<YgTagTheme> {
     paddingMedium: _$YgTagTheme.paddingMedium[2],
     paddingSmall: _$YgTagTheme.paddingSmall[2],
     positiveTagTheme: _$YgTagTheme.positiveTagTheme[2],
+    splashStrongColor: _$YgTagTheme.splashStrongColor[2],
+    splashWeakColor: _$YgTagTheme.splashWeakColor[2],
     strongTextStyle: _$YgTagTheme.strongTextStyle[2],
     textStyle: _$YgTagTheme.textStyle[2],
     warningTagTheme: _$YgTagTheme.warningTagTheme[2],
@@ -134,6 +144,8 @@ class YgTagTheme extends ThemeExtension<YgTagTheme> {
     paddingMedium: _$YgTagTheme.paddingMedium[3],
     paddingSmall: _$YgTagTheme.paddingSmall[3],
     positiveTagTheme: _$YgTagTheme.positiveTagTheme[3],
+    splashStrongColor: _$YgTagTheme.splashStrongColor[3],
+    splashWeakColor: _$YgTagTheme.splashWeakColor[3],
     strongTextStyle: _$YgTagTheme.strongTextStyle[3],
     textStyle: _$YgTagTheme.textStyle[3],
     warningTagTheme: _$YgTagTheme.warningTagTheme[3],
@@ -164,6 +176,8 @@ class YgTagTheme extends ThemeExtension<YgTagTheme> {
     EdgeInsets? paddingMedium,
     EdgeInsets? paddingSmall,
     YgPositiveTagTheme? positiveTagTheme,
+    Color? splashStrongColor,
+    Color? splashWeakColor,
     TextStyle? strongTextStyle,
     TextStyle? textStyle,
     YgWarningTagTheme? warningTagTheme,
@@ -188,6 +202,8 @@ class YgTagTheme extends ThemeExtension<YgTagTheme> {
       paddingMedium: paddingMedium ?? this.paddingMedium,
       paddingSmall: paddingSmall ?? this.paddingSmall,
       positiveTagTheme: positiveTagTheme ?? this.positiveTagTheme,
+      splashStrongColor: splashStrongColor ?? this.splashStrongColor,
+      splashWeakColor: splashWeakColor ?? this.splashWeakColor,
       strongTextStyle: strongTextStyle ?? this.strongTextStyle,
       textStyle: textStyle ?? this.textStyle,
       warningTagTheme: warningTagTheme ?? this.warningTagTheme,
@@ -222,6 +238,9 @@ class YgTagTheme extends ThemeExtension<YgTagTheme> {
       paddingSmall: t < 0.5 ? paddingSmall : other.paddingSmall,
       positiveTagTheme: positiveTagTheme.lerp(other.positiveTagTheme, t)
           as YgPositiveTagTheme,
+      splashStrongColor:
+          Color.lerp(splashStrongColor, other.splashStrongColor, t)!,
+      splashWeakColor: Color.lerp(splashWeakColor, other.splashWeakColor, t)!,
       strongTextStyle:
           TextStyle.lerp(strongTextStyle, other.strongTextStyle, t)!,
       textStyle: TextStyle.lerp(textStyle, other.textStyle, t)!,
@@ -267,6 +286,10 @@ class YgTagTheme extends ThemeExtension<YgTagTheme> {
             const DeepCollectionEquality()
                 .equals(positiveTagTheme, other.positiveTagTheme) &&
             const DeepCollectionEquality()
+                .equals(splashStrongColor, other.splashStrongColor) &&
+            const DeepCollectionEquality()
+                .equals(splashWeakColor, other.splashWeakColor) &&
+            const DeepCollectionEquality()
                 .equals(strongTextStyle, other.strongTextStyle) &&
             const DeepCollectionEquality().equals(textStyle, other.textStyle) &&
             const DeepCollectionEquality()
@@ -275,7 +298,7 @@ class YgTagTheme extends ThemeExtension<YgTagTheme> {
 
   @override
   int get hashCode {
-    return Object.hash(
+    return Object.hashAll([
       runtimeType.hashCode,
       const DeepCollectionEquality().hash(borderRadius),
       const DeepCollectionEquality().hash(borderWidth),
@@ -293,9 +316,11 @@ class YgTagTheme extends ThemeExtension<YgTagTheme> {
       const DeepCollectionEquality().hash(paddingMedium),
       const DeepCollectionEquality().hash(paddingSmall),
       const DeepCollectionEquality().hash(positiveTagTheme),
+      const DeepCollectionEquality().hash(splashStrongColor),
+      const DeepCollectionEquality().hash(splashWeakColor),
       const DeepCollectionEquality().hash(strongTextStyle),
       const DeepCollectionEquality().hash(textStyle),
       const DeepCollectionEquality().hash(warningTagTheme),
-    );
+    ]);
   }
 }

@@ -80,6 +80,16 @@ class YgTagStyle extends YgButtonBaseStyle<YgTagState> {
     }
   }
 
+  @override
+  Color resolveSplashColor(BuildContext context, Set<YgTagState> states) {
+    switch (states.weight) {
+      case YgTagWeight.strong:
+        return _theme.splashStrongColor;
+      case YgTagWeight.weak:
+        return _theme.splashWeakColor;
+    }
+  }
+
   YgTagVariantStyle _getVariantTheme(YgTagVariant variant) {
     switch (variant) {
       case YgTagVariant.neutral:

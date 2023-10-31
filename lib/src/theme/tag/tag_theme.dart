@@ -99,6 +99,20 @@ class _$YgTagTheme {
     professional_dark.FhColors.iconInverse,
   ];
 
+  static final List<Color> splashStrongColor = <Color>[
+    consumer_light.FhColors.backgroundDefault.withOpacity(0.2),
+    consumer_dark.FhColors.backgroundDefault.withOpacity(0.2),
+    professional_light.FhColors.backgroundDefault.withOpacity(0.2),
+    professional_dark.FhColors.backgroundDefault.withOpacity(0.2),
+  ];
+
+  static final List<Color> splashWeakColor = <Color>[
+    consumer_light.FhColors.backgroundInverse.withOpacity(0.2),
+    consumer_dark.FhColors.backgroundInverse.withOpacity(0.2),
+    professional_light.FhColors.backgroundInverse.withOpacity(0.2),
+    professional_dark.FhColors.backgroundInverse.withOpacity(0.2),
+  ];
+
   static const List<double> iconSize = <double>[
     consumer_light.FhDimensions.sm,
     consumer_dark.FhDimensions.sm,
