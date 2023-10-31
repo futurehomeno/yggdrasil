@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:yggdrasil/src/utils/_utils.dart';
+import 'package:yggdrasil/src/utils/yg_states/_yg_states.dart';
 
 mixin YgStatesSubscriberMixin<T extends Enum, W extends StatefulWidget> on State<W> {
   YgStatesController<T> get controller;

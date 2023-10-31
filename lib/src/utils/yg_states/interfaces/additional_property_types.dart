@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
-
-import '_yg_states.dart';
+import 'package:yggdrasil/src/utils/yg_states/_yg_states.dart';
 
 // region double
 
@@ -25,7 +24,7 @@ typedef YgDrivenMatrix4Property = YgDrivenProperty<Matrix4>;
 
 // endregion
 
-// region Matrix4
+// region int
 
 typedef YgIntProperty<T extends Enum> = YgProperty<T, int>;
 typedef YgMaterialIntProperty = YgMaterialProperty<int>;

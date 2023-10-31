@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
-
-import '_yg_states.dart';
+import 'package:yggdrasil/src/utils/yg_states/_yg_states.dart';
 
 /// Factory to create tweens for specific value types.
 class TweenFactory {

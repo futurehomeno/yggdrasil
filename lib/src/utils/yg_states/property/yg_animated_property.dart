@@ -42,11 +42,27 @@ class _YgAnimatedProperty<T extends Enum, V> extends Animation<V>
     _vsync.addDependenciesChangedListener(_handleDependenciesChange);
   }
 
+  /// Internal animation controller
+  ///
+  /// Drives the animations between values.
   final AnimationController _animationController;
+
+  /// The tween used for interpolating between values.
   final Tween<V> _tween;
+
+  /// The states controller which is used for resolving the [_property].
   final YgStatesController<T> _statesController;
+
+  /// Provides a [BuildContext], implements [TickerProvider] and notifies about
+  /// dependency changes.
   final YgVsync _vsync;
+
+  /// Curve applied to the [_animationController] value.
   final Curve _curve;
+
+  /// The property which created this animated property.
+  ///
+  /// Gets used to resolve the value of this animated property.
   final YgProperty<T, V> _property;
 
   @override
@@ -102,7 +118,7 @@ class _YgAnimatedProperty<T extends Enum, V> extends Animation<V>
     if (shouldUpdate) {
       _tween.end = target;
 
-      // We have to update the listeners because the value of on of the child
+      // We have to update the listeners because the value of one of the child
       // animations changed, even though the animation did not advance.
       // ignore: invalid_use_of_protected_member
       _animationController.notifyListeners();

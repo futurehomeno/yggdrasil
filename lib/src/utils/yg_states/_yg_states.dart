@@ -1,11 +1,9 @@
-export 'additional_property_types.dart';
 export 'animated_widgets/_animated_widgets.dart';
+export 'controllers/_controllers.dart';
+export 'extensions/_extensions.dart';
+export 'interfaces/_interfaces.dart';
+export 'mixins/_mixins.dart';
+export 'property/_property.dart';
 export 'style/_style.dart';
 export 'tweens/_tweens.dart';
-export 'yg_animated_builder.dart';
-export 'yg_material_states_controller_with_change_callback.dart';
-export 'yg_property.dart';
-export 'yg_states_builder.dart';
-export 'yg_states_controller.dart';
-export 'yg_states_subscriber_mixin.dart';
-export 'yg_vsync.dart';
+export 'widgets/_widgets.dart';

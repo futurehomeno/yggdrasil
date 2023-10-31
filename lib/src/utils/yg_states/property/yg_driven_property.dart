@@ -2,7 +2,6 @@ part of 'yg_property.dart';
 
 // ignore: avoid-dynamic
 typedef YgDynamicDrivenProperty = YgDrivenProperty<dynamic>;
-
 typedef ValueMapper<From, To> = To Function(From value);
 
 /// The result of [YgProperty.drive].
@@ -13,12 +12,19 @@ typedef ValueMapper<From, To> = To Function(From value);
 abstract class YgDrivenProperty<V> implements Listenable {
   const YgDrivenProperty();
 
+  /// The current value of this property.
   V get value;
 
+  /// Creates a new property with its value mapped using [mapper].
   YgDrivenProperty<T> map<T>(ValueMapper<V, T> mapper);
 }
 
 abstract class YgDisposableDrivenProperty<V> extends YgDrivenProperty<V> {
+  /// Dispose of this property.
+  ///
+  /// Must be called when no longer using this property, otherwise it may lead
+  /// to a memory leak. When using [YgStyle] this is done automatically when the
+  /// style is disposed.
   void dispose();
 }
 

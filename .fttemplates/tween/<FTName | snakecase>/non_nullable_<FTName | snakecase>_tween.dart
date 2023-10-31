@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:yggdrasil/src/utils/_utils.dart';
+import 'package:yggdrasil/src/utils/yg_states/_yg_states.dart';
 
 typedef Yg[FTName | pascalcase]Property<T extends Enum> = YgProperty<T, [FTName | pascalcase]>;
 typedef YgMaterial[FTName | pascalcase]Property = YgMaterialProperty<[FTName | pascalcase]>;

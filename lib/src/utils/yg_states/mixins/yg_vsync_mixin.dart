@@ -1,11 +1,6 @@
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
-
-abstract interface class YgVsync implements TickerProvider {
-  void addDependenciesChangedListener(VoidCallback callback);
-  void removeDependenciesChangedListener(VoidCallback callback);
-  BuildContext get context;
-}
+import 'package:yggdrasil/src/utils/yg_states/_yg_states.dart';
 
 @optionalTypeArgs
 mixin YgVsyncMixin<T extends StatefulWidget> on TickerProviderStateMixin<T> implements YgVsync {

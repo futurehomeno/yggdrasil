@@ -1,7 +1,7 @@
 // ignore_for_file: avoid-dynamic
 
 import 'package:flutter/widgets.dart';
-import 'package:yggdrasil/src/utils/_utils.dart';
+import 'package:yggdrasil/src/utils/yg_states/_yg_states.dart';
 
 part 'yg_style.dart';
 part 'yg_style_with_defaults.dart';
