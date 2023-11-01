@@ -32,7 +32,7 @@ class _$YgAppBarTheme {
   ];
 
   // Spacing between the action and the edge of the app bar.
-  static const List<double> actionEdgeSpacing = <double>[
+  static const List<double> appBarPadding = <double>[
     consumer_light.FhDimensions.xxs,
     consumer_dark.FhDimensions.xxs,
     professional_light.FhDimensions.xxs,
@@ -82,6 +82,7 @@ class _$YgAppBarTheme {
     1.0,
   ];
 
+  /// For all intents and purposes, this is the height of the app bar.
   static const List<double> toolbarHeight = <double>[
     64.0,
     64.0,

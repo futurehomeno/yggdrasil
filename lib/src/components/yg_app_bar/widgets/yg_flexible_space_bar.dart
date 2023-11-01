@@ -45,33 +45,10 @@ class YgFlexibleSpaceBar extends StatelessWidget {
         // 1.0 -> Collapsed to toolbar
         final double t = clampDouble(1.0 - (settings.currentExtent - settings.minExtent) / deltaExtent, 0.0, 1.0);
 
-        final ThemeData theme = Theme.of(context);
-
-        Widget? parsedTitle;
-        switch (theme.platform) {
-          case TargetPlatform.iOS:
-          case TargetPlatform.macOS:
-            parsedTitle = title;
-          case TargetPlatform.android:
-          case TargetPlatform.fuchsia:
-          case TargetPlatform.linux:
-          case TargetPlatform.windows:
-            parsedTitle = Semantics(
-              namesRoute: true,
-              child: title,
-            );
-        }
-
-        final double opacity = settings.toolbarOpacity;
-        TextStyle titleStyle = theme.primaryTextTheme.titleLarge!;
-        titleStyle = titleStyle.copyWith(
-          color: titleStyle.color!.withOpacity(opacity),
-        );
-
         // Calculate end padding for title based on number of action buttons.
         final double titlePaddingDueToActionButtons = actionsCount * context.iconButtonTheme.sizeMedium +
             context.appBarTheme.titleSpacing +
-            context.appBarTheme.actionEdgeSpacing;
+            context.appBarTheme.appBarPadding;
         final double endPaddingValue = Tween<double>(
           begin: context.appBarTheme.titleExpandedPadding,
           end: titlePaddingDueToActionButtons,
@@ -104,17 +81,14 @@ class YgFlexibleSpaceBar extends StatelessWidget {
             transform: scaleTransform,
             child: Align(
               alignment: titleAlignment,
-              child: DefaultTextStyle(
-                style: titleStyle,
-                child: LayoutBuilder(
-                  builder: (BuildContext context, BoxConstraints constraints) {
-                    return Container(
-                      width: constraints.maxWidth / scaleValue,
-                      alignment: titleAlignment,
-                      child: parsedTitle,
-                    );
-                  },
-                ),
+              child: LayoutBuilder(
+                builder: (BuildContext context, BoxConstraints constraints) {
+                  return Container(
+                    width: constraints.maxWidth / scaleValue,
+                    alignment: titleAlignment,
+                    child: title,
+                  );
+                },
               ),
             ),
           ),

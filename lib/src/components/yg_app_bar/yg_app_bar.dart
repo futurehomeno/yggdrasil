@@ -31,14 +31,15 @@ class YgAppBar extends StatefulWidget implements PreferredSizeWidget {
   ///
   /// Typically the [leading] widget is an [Icon] or an [IconButton].
   ///
-  /// Becomes the leading component of the [NavigationToolbar] built
-  /// by this widget.
+  /// If set and [automaticallyImplyLeading] is true, then a [BackButton] will
+  /// be shown instead of the [leading] widget when possible.
   final Widget? leading;
 
   /// Controls whether we should try to imply the leading widget if null.
   ///
-  /// If true and [leading] is null, automatically try to deduce what the leading
-  /// widget should be.
+  /// If true and even if [leading] is set, automatically try to deduce what the leading
+  /// widget should be. If no leading widget can be automatically deduced, the
+  /// [leading] will be shown.
   ///
   /// If false and [leading] is null, title will be centered.
   final bool automaticallyImplyLeading;
@@ -182,7 +183,7 @@ class _YgAppBarState extends State<YgAppBar> {
         alignment: Alignment.topCenter,
         child: Padding(
           padding: EdgeInsets.symmetric(
-            horizontal: theme.actionEdgeSpacing,
+            horizontal: theme.appBarPadding,
           ),
           child: appBar,
         ),
@@ -228,20 +229,24 @@ class _YgAppBarState extends State<YgAppBar> {
   }
 
   Widget? _getLeading() {
-    if (widget.leading != null || !widget.automaticallyImplyLeading) {
-      return widget.leading;
+    Widget? leading;
+
+    if (widget.automaticallyImplyLeading) {
+      // ignore: avoid-dynamic
+      final ModalRoute<dynamic>? parentRoute = ModalRoute.of(context);
+      if (parentRoute?.canPop == true || parentRoute?.impliesAppBarDismissal == true) {
+        leading = YgIconButton(
+          onPressed: () => Navigator.maybePop(context),
+          child: const YgIcon(YgIcons.caretLeft),
+        );
+      }
     }
 
-    // ignore: avoid-dynamic
-    final ModalRoute<dynamic>? parentRoute = ModalRoute.of(context);
-    if (parentRoute?.canPop == true || parentRoute?.impliesAppBarDismissal == true) {
-      return YgIconButton(
-        onPressed: () => Navigator.maybePop(context),
-        child: const YgIcon(YgIcons.caretLeft),
-      );
+    if (leading == null && widget.leading != null) {
+      leading = widget.leading;
     }
 
-    return null;
+    return leading;
   }
 
   Widget? _getTitle() {

@@ -10,7 +10,7 @@ part of 'app_bar_theme.dart';
 
 class YgAppBarTheme extends ThemeExtension<YgAppBarTheme> {
   const YgAppBarTheme({
-    required this.actionEdgeSpacing,
+    required this.appBarPadding,
     required this.backgroundColor,
     required this.elevation,
     required this.largeAppBarTheme,
@@ -22,7 +22,7 @@ class YgAppBarTheme extends ThemeExtension<YgAppBarTheme> {
     required this.toolbarHeight,
   });
 
-  final double actionEdgeSpacing;
+  final double appBarPadding;
   final Color backgroundColor;
 
   /// Elevation when the app bar is at the top.
@@ -37,10 +37,12 @@ class YgAppBarTheme extends ThemeExtension<YgAppBarTheme> {
   final double titleExpandedPadding;
   final double titleSpacing;
   final TextStyle titleTextStyle;
+
+  /// For all intents and purposes, this is the height of the app bar.
   final double toolbarHeight;
 
   static final YgAppBarTheme consumerLight = YgAppBarTheme(
-    actionEdgeSpacing: _$YgAppBarTheme.actionEdgeSpacing[0],
+    appBarPadding: _$YgAppBarTheme.appBarPadding[0],
     backgroundColor: _$YgAppBarTheme.backgroundColor[0],
     elevation: _$YgAppBarTheme.elevation[0],
     largeAppBarTheme: _$YgAppBarTheme.largeAppBarTheme[0],
@@ -53,7 +55,7 @@ class YgAppBarTheme extends ThemeExtension<YgAppBarTheme> {
   );
 
   static final YgAppBarTheme consumerDark = YgAppBarTheme(
-    actionEdgeSpacing: _$YgAppBarTheme.actionEdgeSpacing[1],
+    appBarPadding: _$YgAppBarTheme.appBarPadding[1],
     backgroundColor: _$YgAppBarTheme.backgroundColor[1],
     elevation: _$YgAppBarTheme.elevation[1],
     largeAppBarTheme: _$YgAppBarTheme.largeAppBarTheme[1],
@@ -66,7 +68,7 @@ class YgAppBarTheme extends ThemeExtension<YgAppBarTheme> {
   );
 
   static final YgAppBarTheme professionalLight = YgAppBarTheme(
-    actionEdgeSpacing: _$YgAppBarTheme.actionEdgeSpacing[2],
+    appBarPadding: _$YgAppBarTheme.appBarPadding[2],
     backgroundColor: _$YgAppBarTheme.backgroundColor[2],
     elevation: _$YgAppBarTheme.elevation[2],
     largeAppBarTheme: _$YgAppBarTheme.largeAppBarTheme[2],
@@ -79,7 +81,7 @@ class YgAppBarTheme extends ThemeExtension<YgAppBarTheme> {
   );
 
   static final YgAppBarTheme professionalDark = YgAppBarTheme(
-    actionEdgeSpacing: _$YgAppBarTheme.actionEdgeSpacing[3],
+    appBarPadding: _$YgAppBarTheme.appBarPadding[3],
     backgroundColor: _$YgAppBarTheme.backgroundColor[3],
     elevation: _$YgAppBarTheme.elevation[3],
     largeAppBarTheme: _$YgAppBarTheme.largeAppBarTheme[3],
@@ -100,7 +102,7 @@ class YgAppBarTheme extends ThemeExtension<YgAppBarTheme> {
 
   @override
   YgAppBarTheme copyWith({
-    double? actionEdgeSpacing,
+    double? appBarPadding,
     Color? backgroundColor,
     double? elevation,
     LargeAppBarTheme? largeAppBarTheme,
@@ -112,7 +114,7 @@ class YgAppBarTheme extends ThemeExtension<YgAppBarTheme> {
     double? toolbarHeight,
   }) {
     return YgAppBarTheme(
-      actionEdgeSpacing: actionEdgeSpacing ?? this.actionEdgeSpacing,
+      appBarPadding: appBarPadding ?? this.appBarPadding,
       backgroundColor: backgroundColor ?? this.backgroundColor,
       elevation: elevation ?? this.elevation,
       largeAppBarTheme: largeAppBarTheme ?? this.largeAppBarTheme,
@@ -130,7 +132,7 @@ class YgAppBarTheme extends ThemeExtension<YgAppBarTheme> {
   YgAppBarTheme lerp(covariant ThemeExtension<YgAppBarTheme>? other, double t) {
     if (other is! YgAppBarTheme) return this as YgAppBarTheme;
     return YgAppBarTheme(
-      actionEdgeSpacing: t < 0.5 ? actionEdgeSpacing : other.actionEdgeSpacing,
+      appBarPadding: t < 0.5 ? appBarPadding : other.appBarPadding,
       backgroundColor: Color.lerp(backgroundColor, other.backgroundColor, t)!,
       elevation: t < 0.5 ? elevation : other.elevation,
       largeAppBarTheme:
@@ -153,7 +155,7 @@ class YgAppBarTheme extends ThemeExtension<YgAppBarTheme> {
         (other.runtimeType == runtimeType &&
             other is YgAppBarTheme &&
             const DeepCollectionEquality()
-                .equals(actionEdgeSpacing, other.actionEdgeSpacing) &&
+                .equals(appBarPadding, other.appBarPadding) &&
             const DeepCollectionEquality()
                 .equals(backgroundColor, other.backgroundColor) &&
             const DeepCollectionEquality().equals(elevation, other.elevation) &&
@@ -177,7 +179,7 @@ class YgAppBarTheme extends ThemeExtension<YgAppBarTheme> {
   int get hashCode {
     return Object.hash(
       runtimeType.hashCode,
-      const DeepCollectionEquality().hash(actionEdgeSpacing),
+      const DeepCollectionEquality().hash(appBarPadding),
       const DeepCollectionEquality().hash(backgroundColor),
       const DeepCollectionEquality().hash(elevation),
       const DeepCollectionEquality().hash(largeAppBarTheme),

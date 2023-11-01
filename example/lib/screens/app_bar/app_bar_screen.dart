@@ -153,17 +153,11 @@ class _AppBarScreenState extends State<AppBarScreen> {
 
   void _toggleCustomLeading(bool? newValue) {
     _customLeading = newValue!;
-    if (_customLeading) {
-      _automaticallyImplyLeading = false;
-    }
     setState(() {});
   }
 
   void _toggleAutomaticallyImplyLeading(bool? newValue) {
     _automaticallyImplyLeading = newValue!;
-    if (_automaticallyImplyLeading) {
-      _customLeading = false;
-    }
     setState(() {});
   }
 
