@@ -171,7 +171,7 @@ class _YgAppBarState extends State<YgAppBar> {
               child: appBar,
             ),
           ),
-          widget.bottom!
+          widget.bottom!,
         ],
       );
     }
@@ -183,7 +183,7 @@ class _YgAppBarState extends State<YgAppBar> {
         alignment: Alignment.topCenter,
         child: Padding(
           padding: EdgeInsets.symmetric(
-            horizontal: theme.appBarPadding,
+            horizontal: theme.appBarHorizontalPadding,
           ),
           child: appBar,
         ),

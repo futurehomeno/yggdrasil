@@ -79,25 +79,27 @@ class YgFlexibleSpaceBar extends StatelessWidget {
           bottom: bottomPaddingValue,
           end: endPaddingValue,
         );
-        children.add(Container(
-          padding: padding,
-          child: Transform(
-            alignment: titleAlignment,
-            transform: scaleTransform,
-            child: Align(
+        children.add(
+          Container(
+            padding: padding,
+            child: Transform(
               alignment: titleAlignment,
-              child: LayoutBuilder(
-                builder: (BuildContext context, BoxConstraints constraints) {
-                  return Container(
-                    width: constraints.maxWidth / scaleValue,
-                    alignment: titleAlignment,
-                    child: title,
-                  );
-                },
+              transform: scaleTransform,
+              child: Align(
+                alignment: titleAlignment,
+                child: LayoutBuilder(
+                  builder: (BuildContext context, BoxConstraints constraints) {
+                    return Container(
+                      width: constraints.maxWidth / scaleValue,
+                      alignment: titleAlignment,
+                      child: title,
+                    );
+                  },
+                ),
               ),
             ),
           ),
-        ));
+        );
 
         return ClipRect(
           child: Stack(

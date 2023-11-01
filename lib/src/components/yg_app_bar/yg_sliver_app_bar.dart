@@ -106,7 +106,7 @@ class YgSliverAppBar extends StatelessWidget {
 }
 
 class _SliverAppBarDelegate extends SliverPersistentHeaderDelegate {
-  _SliverAppBarDelegate({
+  const _SliverAppBarDelegate({
     this.title,
     required this.leading,
     required this.automaticallyImplyLeading,
