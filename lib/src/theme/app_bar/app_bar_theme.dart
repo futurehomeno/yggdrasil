@@ -23,14 +23,16 @@ class _$YgAppBarTheme {
     professional_dark.FhColors.backgroundDefault,
   ];
 
-  static const List<Color> borderColor = <Color>[
-    consumer_light.FhColors.borderDefault,
-    consumer_dark.FhColors.borderDefault,
-    professional_light.FhColors.borderDefault,
-    professional_dark.FhColors.borderDefault,
+  // Spacing around the title in the toolbar.
+  static const List<double> titleSpacing = <double>[
+    consumer_light.FhDimensions.xxs,
+    consumer_dark.FhDimensions.xxs,
+    professional_light.FhDimensions.xxs,
+    professional_dark.FhDimensions.xxs,
   ];
 
-  static const List<double> titleSpacing = <double>[
+  // Spacing between the action and the edge of the app bar.
+  static const List<double> actionEdgeSpacing = <double>[
     consumer_light.FhDimensions.xxs,
     consumer_dark.FhDimensions.xxs,
     professional_light.FhDimensions.xxs,
@@ -80,30 +82,10 @@ class _$YgAppBarTheme {
     1.0,
   ];
 
-  // !--- IMPORTANT ---
-  // If the size of the app bar changes, the size of the app bar must be updated in the
-  // `preferredSize` getter in the widget as well.
-  // Strange things might happen if this is not the same as collapsedHeight.
   static const List<double> toolbarHeight = <double>[
     64.0,
     64.0,
     64.0,
     64.0,
-  ];
-
-  // Strange things might happen if this is not the same as toolbarHeight.
-  static const List<double> collapsedHeight = <double>[
-    64.0,
-    64.0,
-    64.0,
-    64.0,
-  ];
-
-  // Spacing between the action and the edge of the app bar.
-  static const List<double> actionEdgeSpacing = <double>[
-    consumer_light.FhDimensions.xxs,
-    consumer_dark.FhDimensions.xxs,
-    professional_light.FhDimensions.xxs,
-    professional_dark.FhDimensions.xxs,
   ];
 }
