@@ -31,8 +31,16 @@ class _$YgAppBarTheme {
     professional_dark.FhDimensions.xxs,
   ];
 
-  // Spacing between the action and the edge of the app bar.
-  static const List<double> appBarPadding = <double>[
+  // Vertical padding of the app bar (when collapsed).
+  static const List<double> titleVerticalPadding = <double>[
+    consumer_light.FhDimensions.md,
+    consumer_dark.FhDimensions.md,
+    professional_light.FhDimensions.md,
+    professional_dark.FhDimensions.md,
+  ];
+
+  // Horizontal padding of the app bar.
+  static const List<double> appBarHorizontalPadding = <double>[
     consumer_light.FhDimensions.xxs,
     consumer_dark.FhDimensions.xxs,
     professional_light.FhDimensions.xxs,
@@ -40,7 +48,7 @@ class _$YgAppBarTheme {
   ];
 
   /// Spacing between edge and title on both sides when it's expanded.
-  static const List<double> titleExpandedPadding = <double>[
+  static const List<double> titleExpandedHorizontalPadding = <double>[
     consumer_light.FhDimensions.sm,
     consumer_dark.FhDimensions.sm,
     professional_light.FhDimensions.sm,

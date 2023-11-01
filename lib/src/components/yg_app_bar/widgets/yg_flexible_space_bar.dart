@@ -1,6 +1,7 @@
 import 'package:flutter/foundation.dart' show clampDouble;
 import 'package:flutter/material.dart';
 import 'package:yggdrasil/src/theme/_theme.dart';
+import 'package:yggdrasil/src/theme/icon_button/_icon_button.dart';
 
 /// YGG version of [FlexibleSpaceBar].
 ///
@@ -45,25 +46,29 @@ class YgFlexibleSpaceBar extends StatelessWidget {
         // 1.0 -> Collapsed to toolbar
         final double t = clampDouble(1.0 - (settings.currentExtent - settings.minExtent) / deltaExtent, 0.0, 1.0);
 
+        final YgAppBarTheme appBarTheme = context.appBarTheme;
+        final YgIconButtonTheme iconButtonTheme = context.iconButtonTheme;
+
         // Calculate end padding for title based on number of action buttons.
-        final double titlePaddingDueToActionButtons = actionsCount * context.iconButtonTheme.sizeMedium +
-            context.appBarTheme.titleSpacing +
-            context.appBarTheme.appBarPadding;
+        final double titlePaddingDueToActionButtons =
+            actionsCount * iconButtonTheme.sizeMedium + appBarTheme.titleSpacing + appBarTheme.appBarHorizontalPadding;
         final double endPaddingValue = Tween<double>(
-          begin: context.appBarTheme.titleExpandedPadding,
+          begin: appBarTheme.titleExpandedHorizontalPadding,
           end: titlePaddingDueToActionButtons,
         ).transform(t);
 
         final double titlePaddingDueToLeadingButton = hasLeading
-            ? context.iconButtonTheme.sizeMedium + context.appBarTheme.titleSpacing * 2
-            : context.appBarTheme.titleExpandedPadding;
+            ? iconButtonTheme.sizeMedium + appBarTheme.titleSpacing * 2
+            : appBarTheme.titleExpandedHorizontalPadding;
         final double startPaddingValue = Tween<double>(
-          begin: context.appBarTheme.titleExpandedPadding,
+          begin: appBarTheme.titleExpandedHorizontalPadding,
           end: titlePaddingDueToLeadingButton,
         ).transform(t);
 
-        final double bottomPaddingValue = Tween<double>(begin: bottomTitlePadding, end: 20.0).transform(t);
-        final double topPaddingValue = Tween<double>(begin: topTitlePadding, end: 20.0).transform(t);
+        final double bottomPaddingValue =
+            Tween<double>(begin: bottomTitlePadding, end: appBarTheme.titleVerticalPadding).transform(t);
+        final double topPaddingValue =
+            Tween<double>(begin: topTitlePadding, end: appBarTheme.titleVerticalPadding).transform(t);
         final double scaleValue = Tween<double>(begin: expandedTitleScale, end: 1.0).transform(t);
         final Matrix4 scaleTransform = Matrix4.identity()..scale(scaleValue, scaleValue, 1.0);
         const Alignment titleAlignment = Alignment.bottomLeft;

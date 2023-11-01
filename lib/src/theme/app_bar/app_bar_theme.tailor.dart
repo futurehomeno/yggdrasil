@@ -10,19 +10,20 @@ part of 'app_bar_theme.dart';
 
 class YgAppBarTheme extends ThemeExtension<YgAppBarTheme> {
   const YgAppBarTheme({
-    required this.appBarPadding,
+    required this.appBarHorizontalPadding,
     required this.backgroundColor,
     required this.elevation,
     required this.largeAppBarTheme,
     required this.mediumAppBarTheme,
     required this.scrolledUnderElevation,
-    required this.titleExpandedPadding,
+    required this.titleExpandedHorizontalPadding,
     required this.titleSpacing,
     required this.titleTextStyle,
+    required this.titleVerticalPadding,
     required this.toolbarHeight,
   });
 
-  final double appBarPadding;
+  final double appBarHorizontalPadding;
   final Color backgroundColor;
 
   /// Elevation when the app bar is at the top.
@@ -34,62 +35,71 @@ class YgAppBarTheme extends ThemeExtension<YgAppBarTheme> {
   final double scrolledUnderElevation;
 
   /// Spacing between edge and title on both sides when it's expanded.
-  final double titleExpandedPadding;
+  final double titleExpandedHorizontalPadding;
   final double titleSpacing;
   final TextStyle titleTextStyle;
+  final double titleVerticalPadding;
 
   /// For all intents and purposes, this is the height of the app bar.
   final double toolbarHeight;
 
   static final YgAppBarTheme consumerLight = YgAppBarTheme(
-    appBarPadding: _$YgAppBarTheme.appBarPadding[0],
+    appBarHorizontalPadding: _$YgAppBarTheme.appBarHorizontalPadding[0],
     backgroundColor: _$YgAppBarTheme.backgroundColor[0],
     elevation: _$YgAppBarTheme.elevation[0],
     largeAppBarTheme: _$YgAppBarTheme.largeAppBarTheme[0],
     mediumAppBarTheme: _$YgAppBarTheme.mediumAppBarTheme[0],
     scrolledUnderElevation: _$YgAppBarTheme.scrolledUnderElevation[0],
-    titleExpandedPadding: _$YgAppBarTheme.titleExpandedPadding[0],
+    titleExpandedHorizontalPadding:
+        _$YgAppBarTheme.titleExpandedHorizontalPadding[0],
     titleSpacing: _$YgAppBarTheme.titleSpacing[0],
     titleTextStyle: _$YgAppBarTheme.titleTextStyle[0],
+    titleVerticalPadding: _$YgAppBarTheme.titleVerticalPadding[0],
     toolbarHeight: _$YgAppBarTheme.toolbarHeight[0],
   );
 
   static final YgAppBarTheme consumerDark = YgAppBarTheme(
-    appBarPadding: _$YgAppBarTheme.appBarPadding[1],
+    appBarHorizontalPadding: _$YgAppBarTheme.appBarHorizontalPadding[1],
     backgroundColor: _$YgAppBarTheme.backgroundColor[1],
     elevation: _$YgAppBarTheme.elevation[1],
     largeAppBarTheme: _$YgAppBarTheme.largeAppBarTheme[1],
     mediumAppBarTheme: _$YgAppBarTheme.mediumAppBarTheme[1],
     scrolledUnderElevation: _$YgAppBarTheme.scrolledUnderElevation[1],
-    titleExpandedPadding: _$YgAppBarTheme.titleExpandedPadding[1],
+    titleExpandedHorizontalPadding:
+        _$YgAppBarTheme.titleExpandedHorizontalPadding[1],
     titleSpacing: _$YgAppBarTheme.titleSpacing[1],
     titleTextStyle: _$YgAppBarTheme.titleTextStyle[1],
+    titleVerticalPadding: _$YgAppBarTheme.titleVerticalPadding[1],
     toolbarHeight: _$YgAppBarTheme.toolbarHeight[1],
   );
 
   static final YgAppBarTheme professionalLight = YgAppBarTheme(
-    appBarPadding: _$YgAppBarTheme.appBarPadding[2],
+    appBarHorizontalPadding: _$YgAppBarTheme.appBarHorizontalPadding[2],
     backgroundColor: _$YgAppBarTheme.backgroundColor[2],
     elevation: _$YgAppBarTheme.elevation[2],
     largeAppBarTheme: _$YgAppBarTheme.largeAppBarTheme[2],
     mediumAppBarTheme: _$YgAppBarTheme.mediumAppBarTheme[2],
     scrolledUnderElevation: _$YgAppBarTheme.scrolledUnderElevation[2],
-    titleExpandedPadding: _$YgAppBarTheme.titleExpandedPadding[2],
+    titleExpandedHorizontalPadding:
+        _$YgAppBarTheme.titleExpandedHorizontalPadding[2],
     titleSpacing: _$YgAppBarTheme.titleSpacing[2],
     titleTextStyle: _$YgAppBarTheme.titleTextStyle[2],
+    titleVerticalPadding: _$YgAppBarTheme.titleVerticalPadding[2],
     toolbarHeight: _$YgAppBarTheme.toolbarHeight[2],
   );
 
   static final YgAppBarTheme professionalDark = YgAppBarTheme(
-    appBarPadding: _$YgAppBarTheme.appBarPadding[3],
+    appBarHorizontalPadding: _$YgAppBarTheme.appBarHorizontalPadding[3],
     backgroundColor: _$YgAppBarTheme.backgroundColor[3],
     elevation: _$YgAppBarTheme.elevation[3],
     largeAppBarTheme: _$YgAppBarTheme.largeAppBarTheme[3],
     mediumAppBarTheme: _$YgAppBarTheme.mediumAppBarTheme[3],
     scrolledUnderElevation: _$YgAppBarTheme.scrolledUnderElevation[3],
-    titleExpandedPadding: _$YgAppBarTheme.titleExpandedPadding[3],
+    titleExpandedHorizontalPadding:
+        _$YgAppBarTheme.titleExpandedHorizontalPadding[3],
     titleSpacing: _$YgAppBarTheme.titleSpacing[3],
     titleTextStyle: _$YgAppBarTheme.titleTextStyle[3],
+    titleVerticalPadding: _$YgAppBarTheme.titleVerticalPadding[3],
     toolbarHeight: _$YgAppBarTheme.toolbarHeight[3],
   );
 
@@ -102,28 +112,32 @@ class YgAppBarTheme extends ThemeExtension<YgAppBarTheme> {
 
   @override
   YgAppBarTheme copyWith({
-    double? appBarPadding,
+    double? appBarHorizontalPadding,
     Color? backgroundColor,
     double? elevation,
     LargeAppBarTheme? largeAppBarTheme,
     MediumAppBarTheme? mediumAppBarTheme,
     double? scrolledUnderElevation,
-    double? titleExpandedPadding,
+    double? titleExpandedHorizontalPadding,
     double? titleSpacing,
     TextStyle? titleTextStyle,
+    double? titleVerticalPadding,
     double? toolbarHeight,
   }) {
     return YgAppBarTheme(
-      appBarPadding: appBarPadding ?? this.appBarPadding,
+      appBarHorizontalPadding:
+          appBarHorizontalPadding ?? this.appBarHorizontalPadding,
       backgroundColor: backgroundColor ?? this.backgroundColor,
       elevation: elevation ?? this.elevation,
       largeAppBarTheme: largeAppBarTheme ?? this.largeAppBarTheme,
       mediumAppBarTheme: mediumAppBarTheme ?? this.mediumAppBarTheme,
       scrolledUnderElevation:
           scrolledUnderElevation ?? this.scrolledUnderElevation,
-      titleExpandedPadding: titleExpandedPadding ?? this.titleExpandedPadding,
+      titleExpandedHorizontalPadding:
+          titleExpandedHorizontalPadding ?? this.titleExpandedHorizontalPadding,
       titleSpacing: titleSpacing ?? this.titleSpacing,
       titleTextStyle: titleTextStyle ?? this.titleTextStyle,
+      titleVerticalPadding: titleVerticalPadding ?? this.titleVerticalPadding,
       toolbarHeight: toolbarHeight ?? this.toolbarHeight,
     );
   }
@@ -132,7 +146,8 @@ class YgAppBarTheme extends ThemeExtension<YgAppBarTheme> {
   YgAppBarTheme lerp(covariant ThemeExtension<YgAppBarTheme>? other, double t) {
     if (other is! YgAppBarTheme) return this as YgAppBarTheme;
     return YgAppBarTheme(
-      appBarPadding: t < 0.5 ? appBarPadding : other.appBarPadding,
+      appBarHorizontalPadding:
+          t < 0.5 ? appBarHorizontalPadding : other.appBarHorizontalPadding,
       backgroundColor: Color.lerp(backgroundColor, other.backgroundColor, t)!,
       elevation: t < 0.5 ? elevation : other.elevation,
       largeAppBarTheme:
@@ -141,10 +156,13 @@ class YgAppBarTheme extends ThemeExtension<YgAppBarTheme> {
           as MediumAppBarTheme,
       scrolledUnderElevation:
           t < 0.5 ? scrolledUnderElevation : other.scrolledUnderElevation,
-      titleExpandedPadding:
-          t < 0.5 ? titleExpandedPadding : other.titleExpandedPadding,
+      titleExpandedHorizontalPadding: t < 0.5
+          ? titleExpandedHorizontalPadding
+          : other.titleExpandedHorizontalPadding,
       titleSpacing: t < 0.5 ? titleSpacing : other.titleSpacing,
       titleTextStyle: TextStyle.lerp(titleTextStyle, other.titleTextStyle, t)!,
+      titleVerticalPadding:
+          t < 0.5 ? titleVerticalPadding : other.titleVerticalPadding,
       toolbarHeight: t < 0.5 ? toolbarHeight : other.toolbarHeight,
     );
   }
@@ -154,8 +172,8 @@ class YgAppBarTheme extends ThemeExtension<YgAppBarTheme> {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is YgAppBarTheme &&
-            const DeepCollectionEquality()
-                .equals(appBarPadding, other.appBarPadding) &&
+            const DeepCollectionEquality().equals(
+                appBarHorizontalPadding, other.appBarHorizontalPadding) &&
             const DeepCollectionEquality()
                 .equals(backgroundColor, other.backgroundColor) &&
             const DeepCollectionEquality().equals(elevation, other.elevation) &&
@@ -165,12 +183,15 @@ class YgAppBarTheme extends ThemeExtension<YgAppBarTheme> {
                 .equals(mediumAppBarTheme, other.mediumAppBarTheme) &&
             const DeepCollectionEquality()
                 .equals(scrolledUnderElevation, other.scrolledUnderElevation) &&
-            const DeepCollectionEquality()
-                .equals(titleExpandedPadding, other.titleExpandedPadding) &&
+            const DeepCollectionEquality().equals(
+                titleExpandedHorizontalPadding,
+                other.titleExpandedHorizontalPadding) &&
             const DeepCollectionEquality()
                 .equals(titleSpacing, other.titleSpacing) &&
             const DeepCollectionEquality()
                 .equals(titleTextStyle, other.titleTextStyle) &&
+            const DeepCollectionEquality()
+                .equals(titleVerticalPadding, other.titleVerticalPadding) &&
             const DeepCollectionEquality()
                 .equals(toolbarHeight, other.toolbarHeight));
   }
@@ -179,15 +200,16 @@ class YgAppBarTheme extends ThemeExtension<YgAppBarTheme> {
   int get hashCode {
     return Object.hash(
       runtimeType.hashCode,
-      const DeepCollectionEquality().hash(appBarPadding),
+      const DeepCollectionEquality().hash(appBarHorizontalPadding),
       const DeepCollectionEquality().hash(backgroundColor),
       const DeepCollectionEquality().hash(elevation),
       const DeepCollectionEquality().hash(largeAppBarTheme),
       const DeepCollectionEquality().hash(mediumAppBarTheme),
       const DeepCollectionEquality().hash(scrolledUnderElevation),
-      const DeepCollectionEquality().hash(titleExpandedPadding),
+      const DeepCollectionEquality().hash(titleExpandedHorizontalPadding),
       const DeepCollectionEquality().hash(titleSpacing),
       const DeepCollectionEquality().hash(titleTextStyle),
+      const DeepCollectionEquality().hash(titleVerticalPadding),
       const DeepCollectionEquality().hash(toolbarHeight),
     );
   }
