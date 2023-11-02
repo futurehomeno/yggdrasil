@@ -128,26 +128,28 @@ class _YgCheckboxState extends State<YgCheckbox> {
             },
             mouseCursor: resolvedMouseCursor,
             enabled: widget._enabled,
-            child: Padding(
-              padding: EdgeInsets.all(checkboxTheme.padding),
-              child: AnimatedContainer(
-                duration: checkboxTheme.animationDuration,
-                curve: checkboxTheme.animationCurve,
-                width: checkboxTheme.size,
-                height: checkboxTheme.size,
-                decoration: BoxDecoration(
-                  color: widget.value == null ? checkboxTheme.selectedFillColor : resolvedFillColor,
-                  borderRadius: const BorderRadius.all(Radius.circular(5.0)),
-                  border: Border.fromBorderSide(BorderSide(
-                    width: 2.0,
-                    color: resolvedBorderColor ?? Colors.transparent,
-                  )),
-                ),
-                child: AnimatedSwitcher(
+            child: Center(
+              child: Padding(
+                padding: EdgeInsets.all(checkboxTheme.padding),
+                child: AnimatedContainer(
                   duration: checkboxTheme.animationDuration,
-                  switchInCurve: checkboxTheme.animationCurve,
-                  switchOutCurve: checkboxTheme.animationCurve,
-                  child: _getCheckmark(resolvedCheckColor),
+                  curve: checkboxTheme.animationCurve,
+                  width: checkboxTheme.size,
+                  height: checkboxTheme.size,
+                  decoration: BoxDecoration(
+                    color: widget.value == null ? checkboxTheme.selectedFillColor : resolvedFillColor,
+                    borderRadius: const BorderRadius.all(Radius.circular(5.0)),
+                    border: Border.fromBorderSide(BorderSide(
+                      width: 2.0,
+                      color: resolvedBorderColor ?? Colors.transparent,
+                    )),
+                  ),
+                  child: AnimatedSwitcher(
+                    duration: checkboxTheme.animationDuration,
+                    switchInCurve: checkboxTheme.animationCurve,
+                    switchOutCurve: checkboxTheme.animationCurve,
+                    child: _getCheckmark(resolvedCheckColor),
+                  ),
                 ),
               ),
             ),
