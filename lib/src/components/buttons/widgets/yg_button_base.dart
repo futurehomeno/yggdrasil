@@ -3,8 +3,6 @@ import 'package:yggdrasil/src/utils/_utils.dart';
 
 import '_widgets.dart';
 
-typedef YbButtonStyleCreator<T extends YgButtonBaseState> = YgButtonBaseStyle<T> Function(YgVsync vsync);
-
 abstract class YgButtonBase<T extends YgButtonBaseState> extends StatefulWidget with StatefulWidgetDebugMixin {
   const YgButtonBase({
     super.key,
