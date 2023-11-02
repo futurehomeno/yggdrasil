@@ -38,10 +38,27 @@ void main() {
             ),
           ),
           GoldenTestScenario(
-            name: 'With value: false and hasErrorState',
+            name: 'With value: true and hasError: true',
+            child: YgCheckbox(
+              onChanged: (_) {},
+              value: true,
+              hasError: true,
+            ),
+          ),
+          GoldenTestScenario(
+            name: 'With value: false and hasError: true',
             child: YgCheckbox(
               onChanged: (_) {},
               value: false,
+              hasError: true,
+            ),
+          ),
+          GoldenTestScenario(
+            name: 'With value: null (triState: true) and hasError: true',
+            child: YgCheckbox(
+              onChanged: (_) {},
+              value: null,
+              triState: true,
               hasError: true,
             ),
           ),
