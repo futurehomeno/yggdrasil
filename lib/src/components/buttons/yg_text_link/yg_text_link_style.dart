@@ -1,12 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:yggdrasil/src/components/buttons/widgets/_widgets.dart';
-import 'package:yggdrasil/src/components/buttons/yg_text_link/enums/yg_text_link_state.dart';
 import 'package:yggdrasil/src/theme/_theme.dart';
 import 'package:yggdrasil/yggdrasil.dart';
 
+import 'yg_text_link_state.dart';
+
 class YgTextLinkStyle extends YgButtonBaseStyle<YgTextLinkState> {
   YgTextLinkStyle({
-    required super.controller,
+    required super.state,
     required super.vsync,
   });
 
@@ -17,20 +18,20 @@ class YgTextLinkStyle extends YgButtonBaseStyle<YgTextLinkState> {
   Duration get duration => const Duration(milliseconds: 200);
 
   @override
-  Color resolveColor(BuildContext context, Set<YgTextLinkState> states) {
+  Color resolveColor(BuildContext context, YgTextLinkState state) {
     return Colors.transparent;
   }
 
   @override
-  TextStyle resolveTextStyle(BuildContext context, Set<YgTextLinkState> states) {
-    return _getBaseTextStyle(states).copyWith(
-      color: _resolveColor(states),
+  TextStyle resolveTextStyle(BuildContext context, YgTextLinkState state) {
+    return _getBaseTextStyle(state).copyWith(
+      color: _resolveColor(state),
     );
   }
 
   @override
-  OutlinedBorder resolveOutlinedBorder(BuildContext context, Set<YgTextLinkState> states) {
-    if (states.focused) {
+  OutlinedBorder resolveOutlinedBorder(BuildContext context, YgTextLinkState state) {
+    if (state.focused.value) {
       return RoundedRectangleBorder(
         side: BorderSide(
           color: _theme.focusColor,
@@ -46,31 +47,31 @@ class YgTextLinkStyle extends YgButtonBaseStyle<YgTextLinkState> {
     );
   }
 
-  Color _resolveColor(Set<YgTextLinkState> states) {
-    if (states.disabled) {
+  Color _resolveColor(YgTextLinkState state) {
+    if (state.disabled.value) {
       return _theme.disabledColor;
-    } else if (states.pressed) {
+    } else if (state.pressed.value) {
       return _theme.pressedColor;
-    } else if (states.hovered) {
+    } else if (state.hovered.value) {
       return _theme.hoverColor;
-    } else if (states.focused) {
+    } else if (state.focused.value) {
       return _theme.focusColor;
     }
 
     return _theme.defaultColor;
   }
 
-  TextStyle _getBaseTextStyle(Set<YgTextLinkState> states) {
-    switch (states.size) {
+  TextStyle _getBaseTextStyle(YgTextLinkState state) {
+    switch (state.size.value) {
       case YgTextLinkSize.small:
-        switch (states.weight) {
+        switch (state.weight.value) {
           case YgTextLinkWeight.weak:
             return _theme.smallWeakTextStyle;
           case YgTextLinkWeight.strong:
             return _theme.smallStrongTextStyle;
         }
       case YgTextLinkSize.medium:
-        switch (states.weight) {
+        switch (state.weight.value) {
           case YgTextLinkWeight.weak:
             return _theme.mediumWeakTextStyle;
           case YgTextLinkWeight.strong:
@@ -82,8 +83,8 @@ class YgTextLinkStyle extends YgButtonBaseStyle<YgTextLinkState> {
   YgTextLinkTheme get _theme => context.textLinkTheme;
 
   @override
-  MouseCursor resolveCursor(BuildContext context, Set<YgTextLinkState> states) {
-    if (states.disabled) {
+  MouseCursor resolveCursor(BuildContext context, YgTextLinkState state) {
+    if (state.disabled.value) {
       return SystemMouseCursors.basic;
     }
 
@@ -91,7 +92,7 @@ class YgTextLinkStyle extends YgButtonBaseStyle<YgTextLinkState> {
   }
 
   @override
-  EdgeInsets resolvePadding(BuildContext context, Set<YgTextLinkState> states) {
+  EdgeInsets resolvePadding(BuildContext context, YgTextLinkState state) {
     return context.textLinkTheme.padding;
   }
 }

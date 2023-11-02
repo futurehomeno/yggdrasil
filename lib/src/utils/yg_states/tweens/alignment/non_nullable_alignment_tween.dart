@@ -1,8 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:yggdrasil/src/utils/yg_states/_yg_states.dart';
 
-typedef YgAlignmentProperty<T extends Enum> = YgProperty<T, Alignment>;
-typedef YgMaterialAlignmentProperty = YgMaterialProperty<Alignment>;
+typedef YgAlignmentProperty<T extends YgState> = YgProperty<T, Alignment>;
 typedef YgAnimatedAlignmentProperty = YgAnimatedProperty<Alignment>;
 typedef YgDrivenAlignmentProperty = YgDrivenProperty<Alignment>;
 

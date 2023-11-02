@@ -19,17 +19,12 @@ class _YgTagWithLeadingIcon extends YgTag {
   final YgIcon icon;
 
   @override
-  State<_YgTagWithLeadingIcon> createState() => _YgTagWithLeadingIconState();
-}
-
-class _YgTagWithLeadingIconState extends _YgTagState<_YgTagWithLeadingIcon> {
-  @override
-  Widget _buildChild(BuildContext context) {
+  Widget buildChild(BuildContext context) {
     return Row(
       mainAxisSize: MainAxisSize.min,
       children: <Widget>[
-        widget.icon,
-        Flexible(child: widget.child),
+        icon,
+        Flexible(child: child),
       ].withHorizontalSpacing(context.tagTheme.iconSpacing),
     );
   }

@@ -1,8 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:yggdrasil/src/utils/yg_states/_yg_states.dart';
 
-typedef YgBoxConstraintsProperty<T extends Enum> = YgProperty<T, BoxConstraints>;
-typedef YgMaterialBoxConstraintsProperty = YgMaterialProperty<BoxConstraints>;
+typedef YgBoxConstraintsProperty<T extends YgState> = YgProperty<T, BoxConstraints>;
 typedef YgAnimatedBoxConstraintsProperty = YgAnimatedProperty<BoxConstraints>;
 typedef YgDrivenBoxConstraintsProperty = YgDrivenProperty<BoxConstraints>;
 

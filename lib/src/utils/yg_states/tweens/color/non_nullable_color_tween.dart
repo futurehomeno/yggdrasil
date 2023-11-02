@@ -1,8 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:yggdrasil/src/utils/yg_states/_yg_states.dart';
 
-typedef YgColorProperty<T extends Enum> = YgProperty<T, Color>;
-typedef YgMaterialColorProperty = YgMaterialProperty<Color>;
+typedef YgColorProperty<T extends YgState> = YgProperty<T, Color>;
 typedef YgAnimatedColorProperty = YgAnimatedProperty<Color>;
 typedef YgDrivenColorProperty = YgDrivenProperty<Color>;
 

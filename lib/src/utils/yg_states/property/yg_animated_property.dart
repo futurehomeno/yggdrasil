@@ -15,16 +15,16 @@ abstract class YgAnimatedProperty<V> implements Animation<V>, YgDrivenProperty<V
 /// Abstract class extended by animated properties that have to be disposed.
 abstract class YgDisposableAnimatedProperty<V> extends YgAnimatedProperty<V> implements YgDisposableDrivenProperty<V> {}
 
-class _YgAnimatedProperty<T extends Enum, V> extends Animation<V>
+class _YgAnimatedProperty<T extends YgState, V> extends Animation<V>
     with AnimationWithParentMixin<double>
     implements YgDisposableAnimatedProperty<V> {
   _YgAnimatedProperty({
     required YgVsync vsync,
     required Curve curve,
     required YgProperty<T, V> property,
-    required YgStatesController<T> controller,
+    required T state,
     required Duration duration,
-  })  : _statesController = controller,
+  })  : _state = state,
         _vsync = vsync,
         _curve = curve,
         _property = property,
@@ -36,10 +36,10 @@ class _YgAnimatedProperty<T extends Enum, V> extends Animation<V>
         _tween = property.createTween(
           property.resolve(
             vsync.context,
-            controller.value,
+            state,
           ),
         ) {
-    _statesController.addListener(_handleStateChange);
+    _state.addListener(_handleStateChange);
     _vsync.addDependenciesChangedListener(_handleDependenciesChange);
   }
 
@@ -52,7 +52,7 @@ class _YgAnimatedProperty<T extends Enum, V> extends Animation<V>
   final Tween<V> _tween;
 
   /// The states controller which is used for resolving the [_property].
-  final YgStatesController<T> _statesController;
+  final T _state;
 
   /// Provides a [BuildContext], implements [TickerProvider] and notifies about
   /// dependency changes.
@@ -78,7 +78,7 @@ class _YgAnimatedProperty<T extends Enum, V> extends Animation<V>
 
   @override
   void dispose() {
-    _statesController.removeListener(_handleStateChange);
+    _state.removeListener(_handleStateChange);
     _vsync.removeDependenciesChangedListener(_handleDependenciesChange);
     _animationController.dispose();
   }
@@ -92,12 +92,11 @@ class _YgAnimatedProperty<T extends Enum, V> extends Animation<V>
   }
 
   void _handleStateChange() {
-    final Set<T> states = _statesController.value;
     final BuildContext context = _vsync.context;
 
     final V target = _property.resolve(
       context,
-      states,
+      _state,
     );
 
     _tween.begin = _tween.evaluate(_animationController);
@@ -106,12 +105,11 @@ class _YgAnimatedProperty<T extends Enum, V> extends Animation<V>
   }
 
   void _handleDependenciesChange() {
-    final Set<T> states = _statesController.value;
     final BuildContext context = _vsync.context;
 
     final V target = _property.resolve(
       context,
-      states,
+      _state,
     );
 
     final bool shouldUpdate = _tween.end != target;

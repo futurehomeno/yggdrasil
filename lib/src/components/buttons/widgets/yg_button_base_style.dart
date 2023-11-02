@@ -2,9 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:yggdrasil/src/theme/_theme.dart';
 import 'package:yggdrasil/src/utils/_utils.dart';
 
-abstract class YgButtonBaseStyle<T extends Enum> extends YgStyleWithDefaults<T> {
+abstract class YgButtonBaseStyle<T extends YgState> extends YgStyleWithDefaults<T> {
   YgButtonBaseStyle({
-    required super.controller,
+    required super.state,
     required super.vsync,
   });
 
@@ -37,59 +37,59 @@ abstract class YgButtonBaseStyle<T extends Enum> extends YgStyleWithDefaults<T> 
     splashFactory = drive(YgProperty<T, InteractiveInkFeatureFactory>.resolveWith(resolveSplashFactory));
   }
 
-  Color resolveColor(BuildContext context, Set<T> states);
+  Color resolveColor(BuildContext context, T state);
 
-  TextStyle resolveTextStyle(BuildContext context, Set<T> states) {
+  TextStyle resolveTextStyle(BuildContext context, T state) {
     return DefaultTextStyle.of(context).style;
   }
 
-  BoxConstraints resolveConstraints(BuildContext context, Set<T> states) {
+  BoxConstraints resolveConstraints(BuildContext context, T state) {
     return const BoxConstraints();
   }
 
-  OutlinedBorder? resolveOutlinedBorder(BuildContext context, Set<T> states) {
+  OutlinedBorder? resolveOutlinedBorder(BuildContext context, T state) {
     return null;
   }
 
-  EdgeInsets resolvePadding(BuildContext context, Set<T> states) {
+  EdgeInsets resolvePadding(BuildContext context, T state) {
     return const EdgeInsets.all(0);
   }
 
-  MouseCursor resolveCursor(BuildContext context, Set<T> states);
+  MouseCursor resolveCursor(BuildContext context, T state);
 
-  Alignment resolveAlignment(BuildContext context, Set<T> states) {
+  Alignment resolveAlignment(BuildContext context, T state) {
     return Alignment.center;
   }
 
-  BorderSide? resolveBorderSide(BuildContext context, Set<T> states) {
+  BorderSide? resolveBorderSide(BuildContext context, T state) {
     return null;
   }
 
-  double resolveElevation(BuildContext context, Set<T> states) {
+  double resolveElevation(BuildContext context, T state) {
     return 0.0;
   }
 
-  IconThemeData _resolveIconTheme(BuildContext context, Set<T> states) {
+  IconThemeData _resolveIconTheme(BuildContext context, T state) {
     return IconTheme.of(context).copyWith(
-      color: resolveIconColor(context, states),
-      size: resolveIconSize(context, states),
+      color: resolveIconColor(context, state),
+      size: resolveIconSize(context, state),
     );
   }
 
-  Color resolveIconColor(BuildContext context, Set<T> states) {
+  Color resolveIconColor(BuildContext context, T state) {
     return context.ygTheme.tokens.colors.iconDefault;
   }
 
-  double resolveIconSize(BuildContext context, Set<T> states) {
+  double resolveIconSize(BuildContext context, T state) {
     return context.ygTheme.tokens.dimensions.lg;
   }
 
-  InteractiveInkFeatureFactory resolveSplashFactory(BuildContext context, Set<T> states) {
+  InteractiveInkFeatureFactory resolveSplashFactory(BuildContext context, T state) {
     return InkSplash.splashFactory;
   }
 
-  Color resolveSplashColor(BuildContext context, Set<T> states) {
-    final Color color = resolveColor(context, states);
+  Color resolveSplashColor(BuildContext context, T state) {
+    final Color color = resolveColor(context, state);
 
     if (color.computeLuminance() > 0.5) {
       return Colors.black.withOpacity(0.08);

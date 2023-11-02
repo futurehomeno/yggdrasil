@@ -1,30 +1,31 @@
 import 'package:flutter/material.dart';
 import 'package:yggdrasil/src/components/buttons/widgets/_widgets.dart';
-import 'package:yggdrasil/src/components/buttons/yg_button/enums/yg_button_state.dart';
 import 'package:yggdrasil/src/theme/_theme.dart';
 import 'package:yggdrasil/yggdrasil.dart';
 
+import 'yg_button_state.dart';
+
 class YgButtonStyle extends YgButtonBaseStyle<YgButtonState> {
   YgButtonStyle({
-    required super.controller,
+    required super.state,
     required super.vsync,
   });
 
   @override
-  Color resolveColor(BuildContext context, Set<YgButtonState> states) {
-    final ButtonVariantTheme variantTheme = getVariantTheme(states);
+  Color resolveColor(BuildContext context, YgButtonState state) {
+    final ButtonVariantTheme variantTheme = getVariantTheme(state);
 
     return variantTheme.backgroundColor;
   }
 
   @override
-  double resolveIconSize(BuildContext context, Set<YgButtonState> states) {
+  double resolveIconSize(BuildContext context, YgButtonState state) {
     return _theme.iconSize;
   }
 
   @override
-  EdgeInsets resolvePadding(BuildContext context, Set<YgButtonState> states) {
-    switch (states.size) {
+  EdgeInsets resolvePadding(BuildContext context, YgButtonState state) {
+    switch (state.size.value) {
       case YgButtonSize.small:
         return _theme.paddingSmall;
       case YgButtonSize.medium:
@@ -35,10 +36,10 @@ class YgButtonStyle extends YgButtonBaseStyle<YgButtonState> {
   }
 
   @override
-  Color resolveIconColor(BuildContext context, Set<YgButtonState> states) {
-    final ButtonVariantTheme variantTheme = getVariantTheme(states);
+  Color resolveIconColor(BuildContext context, YgButtonState state) {
+    final ButtonVariantTheme variantTheme = getVariantTheme(state);
 
-    if (states.disabled) {
+    if (state.disabled.value) {
       return variantTheme.iconDisabledColor;
     }
 
@@ -46,9 +47,9 @@ class YgButtonStyle extends YgButtonBaseStyle<YgButtonState> {
   }
 
   @override
-  TextStyle resolveTextStyle(BuildContext context, Set<YgButtonState> states) {
-    final ButtonVariantTheme variantTheme = getVariantTheme(states);
-    if (states.contains(YgButtonState.disabled)) {
+  TextStyle resolveTextStyle(BuildContext context, YgButtonState state) {
+    final ButtonVariantTheme variantTheme = getVariantTheme(state);
+    if (state.disabled.value) {
       return variantTheme.disabledTextStyle;
     }
 
@@ -56,8 +57,8 @@ class YgButtonStyle extends YgButtonBaseStyle<YgButtonState> {
   }
 
   @override
-  MouseCursor resolveCursor(BuildContext context, Set<YgButtonState> states) {
-    if (states.contains(YgButtonState.disabled)) {
+  MouseCursor resolveCursor(BuildContext context, YgButtonState state) {
+    if (state.disabled.value) {
       return SystemMouseCursors.basic;
     }
 
@@ -65,10 +66,10 @@ class YgButtonStyle extends YgButtonBaseStyle<YgButtonState> {
   }
 
   @override
-  OutlinedBorder resolveOutlinedBorder(BuildContext context, Set<YgButtonState> states) {
-    final ButtonVariantTheme variantTheme = getVariantTheme(states);
+  OutlinedBorder resolveOutlinedBorder(BuildContext context, YgButtonState state) {
+    final ButtonVariantTheme variantTheme = getVariantTheme(state);
 
-    if (states.contains(YgButtonState.disabled)) {
+    if (state.disabled.value) {
       return YgRoundedRectangleGradientBorder(
         gradient: variantTheme.disabledBorderGradient,
         borderRadius: _theme.borderRadius,
@@ -83,8 +84,8 @@ class YgButtonStyle extends YgButtonBaseStyle<YgButtonState> {
     );
   }
 
-  ButtonVariantTheme getVariantTheme(Set<YgButtonState> states) {
-    switch (states.variant) {
+  ButtonVariantTheme getVariantTheme(YgButtonState state) {
+    switch (state.variant.value) {
       case YgButtonVariant.primary:
         return ButtonVariantTheme.primary(_theme.primaryButtonTheme);
       case YgButtonVariant.secondary:

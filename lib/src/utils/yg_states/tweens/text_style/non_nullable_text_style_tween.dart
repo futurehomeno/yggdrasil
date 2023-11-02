@@ -1,8 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:yggdrasil/src/utils/yg_states/_yg_states.dart';
 
-typedef YgTextStyleProperty<T extends Enum> = YgProperty<T, TextStyle>;
-typedef YgMaterialTextStyleProperty = YgMaterialProperty<TextStyle>;
+typedef YgTextStyleProperty<T extends YgState> = YgProperty<T, TextStyle>;
 typedef YgAnimatedTextStyleProperty = YgAnimatedProperty<TextStyle>;
 typedef YgDrivenTextStyleProperty = YgDrivenProperty<TextStyle>;
 

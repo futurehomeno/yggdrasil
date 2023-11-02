@@ -1,8 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:yggdrasil/src/utils/yg_states/_yg_states.dart';
 
-typedef YgNullableBorderSideProperty<T extends Enum> = YgProperty<T, BorderSide?>;
-typedef YgMaterialNullableBorderSideProperty = YgMaterialProperty<BorderSide?>;
+typedef YgNullableBorderSideProperty<T extends YgState> = YgProperty<T, BorderSide?>;
 typedef YgAnimatedNullableBorderSideProperty = YgAnimatedProperty<BorderSide?>;
 typedef YgDrivenNullableBorderSideProperty = YgDrivenProperty<BorderSide?>;
 

@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:yggdrasil/src/components/buttons/widgets/_widgets.dart';
-import 'package:yggdrasil/src/components/buttons/yg_button/enums/yg_button_state.dart';
 import 'package:yggdrasil/yggdrasil.dart';
 
+import 'yg_button_state.dart';
 import 'yg_button_style.dart';
 
 part 'yg_button_with_leading_icon.dart';
@@ -10,18 +10,18 @@ part 'yg_button_with_trailing_icon.dart';
 
 // TODO(Tim): Look in to internalizing the state controller if support for
 // multiple variant enums has been added to YgStatesController.
-class YgButton extends StatefulWidget {
+class YgButton extends YgButtonBase<YgButtonState> {
   const YgButton({
     super.key,
     required this.child,
-    required this.onPressed,
+    required super.onPressed,
+    super.onLongPress,
+    super.onHover,
+    super.onFocusChange,
+    super.focusNode,
+    super.autofocus = false,
     this.size = YgButtonSize.medium,
     this.variant = YgButtonVariant.primary,
-    this.onLongPress,
-    this.onHover,
-    this.onFocusChange,
-    this.focusNode,
-    this.autofocus = false,
   });
 
   const factory YgButton.leadingIcon({
@@ -52,68 +52,35 @@ class YgButton extends StatefulWidget {
     YgButtonVariant variant,
   }) = _YgButtonWithTrailingIcon;
 
-  final Widget child;
   final YgButtonVariant variant;
   final YgButtonSize size;
-  final VoidCallback? onPressed;
-  final VoidCallback? onLongPress;
-  final ValueChanged<bool>? onHover;
-  final ValueChanged<bool>? onFocusChange;
-  final FocusNode? focusNode;
-  final bool autofocus;
+  final Widget child;
 
   @override
-  State<YgButton> createState() => _YgButtonState<YgButton>();
-}
-
-class _YgButtonState<T extends YgButton> extends State<T> {
-  late final YgStatesController<YgButtonState> _controller = YgStatesController<YgButtonState>(<YgButtonState>{
-    if (widget.onPressed == null) YgButtonState.disabled,
-    YgButtonState.fromSize(widget.size),
-    YgButtonState.fromVariant(widget.variant),
-  });
-
-  @override
-  void dispose() {
-    _controller.dispose();
-    super.dispose();
-  }
-
-  @override
-  void didUpdateWidget(covariant T oldWidget) {
-    _controller.updateSize(widget.size);
-    _controller.updateVariant(widget.variant);
-    super.didUpdateWidget(oldWidget);
-  }
-
-  @override
-  Widget build(BuildContext context) {
-    return YgButtonBase<YgButtonState>(
-      focusedState: YgButtonState.focused,
-      hoveredState: YgButtonState.hovered,
-      pressedState: YgButtonState.pressed,
-      createStyle: _createStyle,
-      controller: _controller,
-      onPressed: widget.onPressed,
-      onLongPress: widget.onLongPress,
-      onHover: widget.onHover,
-      onFocusChange: widget.onFocusChange,
-      focusNode: widget.focusNode,
-      autofocus: widget.autofocus,
-      child: _buildChild(context),
+  YgButtonState createButtonState() {
+    return YgButtonState(
+      disabled: onPressed == null,
+      size: size,
+      variant: variant,
     );
   }
 
-  YgButtonStyle _createStyle(YgVsync vsync) {
+  @override
+  void updateState(YgButtonState state) {
+    state.size.value = size;
+    state.variant.value = variant;
+  }
+
+  @override
+  YgButtonBaseStyle<YgButtonState> createStyle(YgVsync vsync, YgButtonState state) {
     return YgButtonStyle(
-      controller: _controller,
+      state: state,
       vsync: vsync,
     );
   }
 
-  // context is used in overwriting classes.
-  // ignore: avoid-unused-parameters
-  Widget _buildChild(BuildContext context) {
-    return widget.child;
+  @override
+  Widget buildChild(BuildContext context) {
+    return child;
   }
 }

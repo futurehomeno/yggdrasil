@@ -4,86 +4,38 @@ import 'package:yggdrasil/src/components/buttons/yg_text_link/yg_text_link_style
 import 'package:yggdrasil/src/theme/_theme.dart';
 import 'package:yggdrasil/yggdrasil.dart';
 
-import '_yg_text_link.dart';
+import 'yg_text_link_state.dart';
 
 /// Text link button implementation.
-class YgTextLink extends StatefulWidget {
+class YgTextLink extends YgButtonBase<YgTextLinkState> {
   const YgTextLink({
     super.key,
     required this.text,
-    required this.onPressed,
+    required super.onPressed,
     this.size = YgTextLinkSize.small,
     this.weight = YgTextLinkWeight.weak,
     this.external = false,
-    this.autofocus = false,
-    this.onLongPress,
-    this.onHover,
-    this.onFocusChange,
-    this.focusNode,
+    super.autofocus = false,
+    super.onLongPress,
+    super.onHover,
+    super.onFocusChange,
+    super.focusNode,
   });
 
   final String text;
   final YgTextLinkSize size;
   final YgTextLinkWeight weight;
   final bool external;
-  final VoidCallback? onPressed;
-  final VoidCallback? onLongPress;
-  final ValueChanged<bool>? onHover;
-  final ValueChanged<bool>? onFocusChange;
-  final FocusNode? focusNode;
-  final bool autofocus;
 
   @override
-  State<YgTextLink> createState() => _YgTextLinkState();
-}
-
-class _YgTextLinkState extends State<YgTextLink> {
-  late final YgStatesController<YgTextLinkState> _controller = YgStatesController<YgTextLinkState>(<YgTextLinkState>{
-    if (widget.onPressed == null) YgTextLinkState.disabled,
-    YgTextLinkState.fromSize(widget.size),
-    YgTextLinkState.fromWeight(widget.weight),
-  });
-
-  @override
-  void dispose() {
-    _controller.dispose();
-    super.dispose();
-  }
-
-  @override
-  void didUpdateWidget(covariant YgTextLink oldWidget) {
-    _controller.update(YgTextLinkState.disabled, widget.onPressed == null);
-    _controller.updateSize(widget.size);
-    _controller.updateWeight(widget.weight);
-    super.didUpdateWidget(oldWidget);
-  }
-
-  @override
-  Widget build(BuildContext context) {
-    return YgButtonBase<YgTextLinkState>(
-      focusedState: YgTextLinkState.focused,
-      hoveredState: YgTextLinkState.hovered,
-      pressedState: YgTextLinkState.pressed,
-      controller: _controller,
-      createStyle: _createStyle,
-      onPressed: widget.onPressed,
-      onLongPress: widget.onLongPress,
-      onHover: widget.onHover,
-      onFocusChange: widget.onFocusChange,
-      focusNode: widget.focusNode,
-      autofocus: widget.autofocus,
-      child: _buildChild(),
-    );
-  }
-
-  Widget _buildChild() {
+  Widget buildChild(BuildContext context) {
     final YgTextLinkTheme theme = context.textLinkTheme;
 
     final Text text = Text(
-      widget.text,
+      this.text,
     );
 
-    if (!widget.external) {
+    if (!external) {
       return text;
     }
 
@@ -106,10 +58,27 @@ class _YgTextLinkState extends State<YgTextLink> {
     );
   }
 
-  YgTextLinkStyle _createStyle(YgVsync vsync) {
+  @override
+  YgButtonBaseStyle<YgTextLinkState> createStyle(YgVsync vsync, YgTextLinkState state) {
     return YgTextLinkStyle(
-      controller: _controller,
+      state: state,
       vsync: vsync,
     );
+  }
+
+  @override
+  YgTextLinkState createButtonState() {
+    return YgTextLinkState(
+      disabled: onPressed == null,
+      size: size,
+      weight: weight,
+    );
+  }
+
+  @override
+  void updateState(YgTextLinkState state) {
+    state.disabled.value = onPressed == null;
+    state.size.value = size;
+    state.weight.value = weight;
   }
 }

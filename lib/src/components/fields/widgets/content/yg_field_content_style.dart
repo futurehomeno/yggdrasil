@@ -1,11 +1,12 @@
 import 'package:flutter/material.dart';
-import 'package:yggdrasil/src/components/fields/enums/yg_field_state.dart';
 import 'package:yggdrasil/src/theme/_theme.dart';
 import 'package:yggdrasil/yggdrasil.dart';
 
+import '../../yg_field_state.dart';
+
 class YgFieldContentStyle extends YgStyleWithDefaults<YgFieldState> {
   YgFieldContentStyle({
-    required super.controller,
+    required super.state,
     required super.vsync,
     required this.floatLabelOnFocus,
   });
@@ -19,24 +20,16 @@ class YgFieldContentStyle extends YgStyleWithDefaults<YgFieldState> {
 
   @override
   void init() {
-    valueTextStyle = animate(
-      YgTextStyleProperty<YgFieldState>.resolveWith(_resolveValueTextStyle),
-    );
-    placeholderTextStyle = animate(
-      YgTextStyleProperty<YgFieldState>.resolveWith(_resolvePlaceholderTextStyle),
-    );
-    labelTextStyle = animate(
-      YgTextStyleProperty<YgFieldState>.resolveWith(_resolveLabelTextStyle),
-    );
-    labelOffset = animate(
-      YgOffsetProperty<YgFieldState>.resolveWith(_resolveLabelOffset),
-    );
+    valueTextStyle = animate(YgTextStyleProperty<YgFieldState>.resolveWith(_resolveValueTextStyle));
+    placeholderTextStyle = animate(YgTextStyleProperty<YgFieldState>.resolveWith(_resolvePlaceholderTextStyle));
+    labelTextStyle = animate(YgTextStyleProperty<YgFieldState>.resolveWith(_resolveLabelTextStyle));
+    labelOffset = animate(YgOffsetProperty<YgFieldState>.resolveWith(_resolveLabelOffset));
   }
 
-  TextStyle _resolveValueTextStyle(BuildContext context, Set<YgFieldState> states) {
+  TextStyle _resolveValueTextStyle(BuildContext context, YgFieldState state) {
     final TextStyle baseStyle = _theme.valueTextStyle;
 
-    if (states.disabled) {
+    if (state.disabled.value) {
       return baseStyle.copyWith(
         color: _theme.valueDisabledColor,
       );
@@ -47,8 +40,8 @@ class YgFieldContentStyle extends YgStyleWithDefaults<YgFieldState> {
     );
   }
 
-  TextStyle _resolvePlaceholderTextStyle(BuildContext context, Set<YgFieldState> states) {
-    if (states.disabled) {
+  TextStyle _resolvePlaceholderTextStyle(BuildContext context, YgFieldState state) {
+    if (state.disabled.value) {
       return _theme.placeholderTextStyle.copyWith(
         color: _theme.placeholderDisabledColor,
       );
@@ -59,17 +52,16 @@ class YgFieldContentStyle extends YgStyleWithDefaults<YgFieldState> {
     );
   }
 
-  TextStyle _resolveLabelTextStyle(BuildContext context, Set<YgFieldState> states) {
-    final TextStyle baseStyle =
-        _getFloatLabel(states) ? _theme.labelFocusFilledTextStyle : _theme.labelDefaultTextStyle;
+  TextStyle _resolveLabelTextStyle(BuildContext context, YgFieldState state) {
+    final TextStyle baseStyle = _getFloatLabel(state) ? _theme.labelFocusFilledTextStyle : _theme.labelDefaultTextStyle;
 
-    if (states.disabled) {
+    if (state.disabled.value) {
       return baseStyle.copyWith(
         color: _theme.labelDisabledColor,
       );
     }
 
-    if (states.focused || states.filled || states.opened) {
+    if (state.focused.value || state.filled.value || state.opened.value) {
       return baseStyle.copyWith(
         color: _theme.labelFocusFilledColor,
       );
@@ -80,8 +72,8 @@ class YgFieldContentStyle extends YgStyleWithDefaults<YgFieldState> {
     );
   }
 
-  Offset _resolveLabelOffset(BuildContext context, Set<YgFieldState> states) {
-    if (_getFloatLabel(states)) {
+  Offset _resolveLabelOffset(BuildContext context, YgFieldState state) {
+    if (_getFloatLabel(state)) {
       return Offset.zero;
     }
 
@@ -96,8 +88,8 @@ class YgFieldContentStyle extends YgStyleWithDefaults<YgFieldState> {
     );
   }
 
-  bool _getFloatLabel(Set<YgFieldState> states) =>
-      states.filled || states.placeholder || (floatLabelOnFocus && states.focused);
+  bool _getFloatLabel(YgFieldState state) =>
+      state.filled.value || state.placeholder.value || (floatLabelOnFocus && state.focused.value);
 
   YgFieldTheme get _fieldTheme => context.fieldTheme;
 

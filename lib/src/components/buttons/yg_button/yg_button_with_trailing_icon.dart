@@ -18,17 +18,12 @@ class _YgButtonWithTrailingIcon extends YgButton {
   final YgIcon icon;
 
   @override
-  State<_YgButtonWithTrailingIcon> createState() => _YgButtonWithTrailingIconState();
-}
-
-class _YgButtonWithTrailingIconState extends _YgButtonState<_YgButtonWithTrailingIcon> {
-  @override
-  Widget _buildChild(BuildContext context) {
+  Widget buildChild(BuildContext context) {
     return Row(
       mainAxisSize: MainAxisSize.min,
       children: <Widget>[
-        Flexible(child: super._buildChild(context)),
-        widget.icon,
+        Flexible(child: super.buildChild(context)),
+        icon,
       ].withHorizontalSpacing(context.buttonTheme.iconSpacing),
     );
   }

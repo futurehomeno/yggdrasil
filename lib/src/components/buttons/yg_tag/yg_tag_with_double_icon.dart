@@ -21,18 +21,13 @@ class _YgTagWithDoubleIcon extends YgTag {
   final YgIcon trailingIcon;
 
   @override
-  State<_YgTagWithDoubleIcon> createState() => _YgTagWithDoubleIconState();
-}
-
-class _YgTagWithDoubleIconState extends _YgTagState<_YgTagWithDoubleIcon> {
-  @override
-  Widget _buildChild(BuildContext context) {
+  Widget buildChild(BuildContext context) {
     return Row(
       mainAxisSize: MainAxisSize.min,
       children: <Widget>[
-        widget.leadingIcon,
-        Flexible(child: widget.child),
-        widget.trailingIcon,
+        leadingIcon,
+        Flexible(child: child),
+        trailingIcon,
       ].withHorizontalSpacing(context.tagTheme.iconSpacing),
     );
   }

@@ -33,23 +33,23 @@ abstract class YgDisposableDrivenProperty<V> extends YgDrivenProperty<V> {
   void dispose();
 }
 
-class _YgDrivenProperty<T extends Enum, V> extends ValueNotifier<V> implements YgDisposableDrivenProperty<V> {
+class _YgDrivenProperty<T extends YgState, V> extends ValueNotifier<V> implements YgDisposableDrivenProperty<V> {
   _YgDrivenProperty({
-    required YgStatesController<T> controller,
+    required T state,
     required YgVsync vsync,
     required YgProperty<T, V> property,
   })  : _property = property,
         _vsync = vsync,
-        _controller = controller,
+        _state = state,
         _usesStates = property is! YgPropertyResolveAllMixin<T, V>,
         super(
           property.resolve(
             vsync.context,
-            controller.value,
+            state,
           ),
         ) {
     if (_usesStates) {
-      _controller.addListener(_handleChange);
+      _state.addListener(_handleChange);
     }
     _vsync.addDependenciesChangedListener(_handleChange);
   }
@@ -57,15 +57,15 @@ class _YgDrivenProperty<T extends Enum, V> extends ValueNotifier<V> implements Y
   @override
   void dispose() {
     if (_usesStates) {
-      _controller.addListener(_handleChange);
+      _state.addListener(_handleChange);
     }
-    _controller.removeListener(_handleChange);
+    _state.removeListener(_handleChange);
     _vsync.removeDependenciesChangedListener(_handleChange);
     super.dispose();
   }
 
   /// The states controller which drives this property.
-  final YgStatesController<T> _controller;
+  final T _state;
 
   /// The vsync, update and context provider.
   final YgVsync _vsync;
@@ -77,12 +77,11 @@ class _YgDrivenProperty<T extends Enum, V> extends ValueNotifier<V> implements Y
   final bool _usesStates;
 
   void _handleChange() {
-    final Set<T> states = _controller.value;
     final BuildContext context = _vsync.context;
 
     value = _property.resolve(
       context,
-      states,
+      _state,
     );
   }
 

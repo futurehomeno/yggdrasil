@@ -3,6 +3,7 @@ import 'package:yggdrasil/src/components/buttons/widgets/_widgets.dart';
 import 'package:yggdrasil/src/theme/_theme.dart';
 
 import '_yg_tag.dart';
+import 'yg_tag_state.dart';
 
 /// Tag style for YgTags.
 ///
@@ -10,7 +11,7 @@ import '_yg_tag.dart';
 /// Use [toButtonStyle] to convert to material [ButtonStyle].
 class YgTagStyle extends YgButtonBaseStyle<YgTagState> {
   YgTagStyle({
-    required super.controller,
+    required super.state,
     required super.vsync,
   });
 
@@ -21,10 +22,10 @@ class YgTagStyle extends YgButtonBaseStyle<YgTagState> {
   Duration get duration => const Duration(milliseconds: 200);
 
   @override
-  Color resolveColor(BuildContext context, Set<YgTagState> states) {
-    final YgTagVariantStyle variantTheme = _getVariantTheme(states.variant);
+  Color resolveColor(BuildContext context, YgTagState state) {
+    final YgTagVariantStyle variantTheme = _getVariantTheme(state.variant.value);
 
-    switch (states.weight) {
+    switch (state.weight.value) {
       case YgTagWeight.strong:
         return variantTheme.strongBackgroundColor;
       case YgTagWeight.weak:
@@ -33,13 +34,13 @@ class YgTagStyle extends YgButtonBaseStyle<YgTagState> {
   }
 
   @override
-  MouseCursor resolveCursor(BuildContext context, Set<YgTagState> states) {
+  MouseCursor resolveCursor(BuildContext context, YgTagState state) {
     return SystemMouseCursors.click;
   }
 
   @override
-  TextStyle resolveTextStyle(BuildContext context, Set<YgTagState> states) {
-    switch (states.weight) {
+  TextStyle resolveTextStyle(BuildContext context, YgTagState state) {
+    switch (state.weight.value) {
       case YgTagWeight.strong:
         return _theme.strongTextStyle;
       case YgTagWeight.weak:
@@ -48,13 +49,13 @@ class YgTagStyle extends YgButtonBaseStyle<YgTagState> {
   }
 
   @override
-  double resolveIconSize(BuildContext context, Set<YgTagState> states) {
+  double resolveIconSize(BuildContext context, YgTagState state) {
     return _theme.iconSize;
   }
 
   @override
-  Color resolveIconColor(BuildContext context, Set<YgTagState> states) {
-    switch (states.weight) {
+  Color resolveIconColor(BuildContext context, YgTagState state) {
+    switch (state.weight.value) {
       case YgTagWeight.strong:
         return _theme.iconStrongColor;
       case YgTagWeight.weak:
@@ -63,7 +64,7 @@ class YgTagStyle extends YgButtonBaseStyle<YgTagState> {
   }
 
   @override
-  OutlinedBorder resolveOutlinedBorder(BuildContext context, Set<YgTagState> states) {
+  OutlinedBorder resolveOutlinedBorder(BuildContext context, YgTagState state) {
     return RoundedRectangleBorder(
       side: BorderSide.none,
       borderRadius: _theme.borderRadius,
@@ -71,8 +72,8 @@ class YgTagStyle extends YgButtonBaseStyle<YgTagState> {
   }
 
   @override
-  EdgeInsets resolvePadding(BuildContext context, Set<YgTagState> states) {
-    switch (states.size) {
+  EdgeInsets resolvePadding(BuildContext context, YgTagState state) {
+    switch (state.size.value) {
       case YgTagSize.small:
         return _theme.paddingSmall;
       case YgTagSize.medium:
@@ -81,8 +82,8 @@ class YgTagStyle extends YgButtonBaseStyle<YgTagState> {
   }
 
   @override
-  Color resolveSplashColor(BuildContext context, Set<YgTagState> states) {
-    switch (states.weight) {
+  Color resolveSplashColor(BuildContext context, YgTagState state) {
+    switch (state.weight.value) {
       case YgTagWeight.strong:
         return _theme.splashStrongColor;
       case YgTagWeight.weak:

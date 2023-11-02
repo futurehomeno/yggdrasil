@@ -19,17 +19,12 @@ class _YgTagWithTrailingIcon extends YgTag {
   final YgIcon icon;
 
   @override
-  State<_YgTagWithTrailingIcon> createState() => _YgTagWithTrailingIconState();
-}
-
-class _YgTagWithTrailingIconState extends _YgTagState<_YgTagWithTrailingIcon> {
-  @override
-  Widget _buildChild(BuildContext context) {
+  Widget buildChild(BuildContext context) {
     return Row(
       mainAxisSize: MainAxisSize.min,
       children: <Widget>[
-        Flexible(child: widget.child),
-        widget.icon,
+        Flexible(child: child),
+        icon,
       ].withHorizontalSpacing(context.tagTheme.iconSpacing),
     );
   }

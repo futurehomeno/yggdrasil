@@ -1,8 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:yggdrasil/src/utils/yg_states/_yg_states.dart';
 
-typedef YgSizeProperty<T extends Enum> = YgProperty<T, Size>;
-typedef YgMaterialSizeProperty = YgMaterialProperty<Size>;
+typedef YgSizeProperty<T extends YgState> = YgProperty<T, Size>;
 typedef YgAnimatedSizeProperty = YgAnimatedProperty<Size>;
 typedef YgDrivenSizeProperty = YgDrivenProperty<Size>;
 

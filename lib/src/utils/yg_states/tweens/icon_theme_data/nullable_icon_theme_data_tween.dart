@@ -1,8 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:yggdrasil/src/utils/yg_states/_yg_states.dart';
 
-typedef YgNullableIconThemeDataProperty<T extends Enum> = YgProperty<T, IconThemeData?>;
-typedef YgMaterialNullableIconThemeDataProperty = YgMaterialProperty<IconThemeData?>;
+typedef YgNullableIconThemeDataProperty<T extends YgState> = YgProperty<T, IconThemeData?>;
 typedef YgAnimatedNullableIconThemeDataProperty = YgAnimatedProperty<IconThemeData?>;
 typedef YgDrivenNullableIconThemeDataProperty = YgDrivenProperty<IconThemeData?>;
 
