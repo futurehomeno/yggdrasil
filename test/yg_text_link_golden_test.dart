@@ -69,7 +69,7 @@ void main() {
             ),
           ),
           GoldenTestScenario(
-            name: 'With medium text, medium size,
+            name: 'With medium text, medium size',
             child: YgTextLink(
               text: YgGoldenTestValues.mediumText,
               onPressed: () {},
@@ -77,11 +77,11 @@ void main() {
             ),
           ),
           GoldenTestScenario(
-            name: 'With short text, strong weight,
+            name: 'With short text, strong weight',
             child: YgTextLink(
               text: YgGoldenTestValues.mediumText,
               onPressed: () {},
-              YgTextLinkWeight.strong,
+              weight: YgTextLinkWeight.strong,
             ),
           ),
         ],
