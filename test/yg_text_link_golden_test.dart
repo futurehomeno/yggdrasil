@@ -38,10 +38,26 @@ void main() {
             ),
           ),
           GoldenTestScenario(
+            name: 'With medium text and external: true',
+            child: YgTextLink(
+              text: YgGoldenTestValues.mediumText,
+              onPressed: () {},
+              external: true,
+            ),
+          ),
+          GoldenTestScenario(
+            name: 'With long text',
+            child: YgTextLink(
+              text: YgGoldenTestValues.longText,
+              onPressed: () {},
+            ),
+          ),
+          GoldenTestScenario(
             name: 'With long text and external: true',
             child: YgTextLink(
               text: YgGoldenTestValues.longText,
               onPressed: () {},
+              external: true,
             ),
           ),
           GoldenTestScenario(
@@ -53,13 +69,19 @@ void main() {
             ),
           ),
           GoldenTestScenario(
-            name: 'With medium text, medium size, strong weight and external: true',
+            name: 'With medium text, medium size,
             child: YgTextLink(
               text: YgGoldenTestValues.mediumText,
               onPressed: () {},
-              external: true,
               size: YgTextLinkSize.medium,
-              weight: YgTextLinkWeight.strong,
+            ),
+          ),
+          GoldenTestScenario(
+            name: 'With short text, strong weight,
+            child: YgTextLink(
+              text: YgGoldenTestValues.mediumText,
+              onPressed: () {},
+              YgTextLinkWeight.strong,
             ),
           ),
         ],
