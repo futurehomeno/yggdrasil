@@ -44,7 +44,7 @@ class YgAnimatedPhysicalModel extends StatelessWidget {
         color,
         shadowColor,
       },
-      builder: (BuildContext context) {
+      builder: (BuildContext context, _) {
         return PhysicalModel(
           color: color.value,
           borderRadius: borderRadius?.value,

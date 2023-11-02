@@ -8,10 +8,12 @@ class YgAnimatedBuilder extends StatefulWidget {
     super.key,
     required this.properties,
     required this.builder,
+    this.child,
   });
 
   final Set<Listenable?> properties;
-  final WidgetBuilder builder;
+  final TransitionBuilder builder;
+  final Widget? child;
 
   @override
   State<YgAnimatedBuilder> createState() => _YgAnimatedBuilderState();
@@ -56,6 +58,9 @@ class _YgAnimatedBuilderState extends State<YgAnimatedBuilder> {
 
   @override
   Widget build(BuildContext context) {
-    return widget.builder(context);
+    return widget.builder(
+      context,
+      widget.child,
+    );
   }
 }

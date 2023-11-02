@@ -5,13 +5,13 @@ import 'package:yggdrasil/src/utils/yg_states/_yg_states.dart';
 class YgAnimatedShapeBorderPainter extends StatelessWidget {
   const YgAnimatedShapeBorderPainter({
     super.key,
-    required this.child,
+    this.child,
     required this.shape,
     this.borderOnForeground = true,
   });
 
   /// The widget below this widget in the tree.
-  final Widget child;
+  final Widget? child;
 
   /// The shape which gets painted.
   final YgDrivenNullableShapeBorderProperty shape;
