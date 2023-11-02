@@ -1,9 +1,9 @@
-import 'package:flutter/src/widgets/framework.dart';
+import 'package:flutter/material.dart';
 import 'package:yggdrasil/src/components/buttons/widgets/_widgets.dart';
-import 'package:yggdrasil/src/components/buttons/yg_icon_button/yg_icon_button_style.dart';
 import 'package:yggdrasil/yggdrasil.dart';
 
 import 'yg_icon_button_state.dart';
+import 'yg_icon_button_style.dart';
 
 /// Base class for creating all YgIconButtons.
 class YgIconButton extends YgButtonBase<YgIconButtonState> {
