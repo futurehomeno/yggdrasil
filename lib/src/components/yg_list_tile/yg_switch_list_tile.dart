@@ -48,7 +48,7 @@ class YgSwitchListTile extends StatelessWidget {
       subtitle: subtitle,
       subtitleIcon: subtitleIcon,
       onTap: onChanged == null ? null : _onTap,
-      leadingWidgets: [
+      leadingWidgets: <Widget>[
         if (leadingWidget != null) leadingWidget!,
       ],
       trailingWidgets: <Widget>[
