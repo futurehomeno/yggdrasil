@@ -85,6 +85,12 @@ class _YgButtonBaseState<T extends YgButtonBaseState> extends State<YgButtonBase
   }
 
   @override
+  void didUpdateWidget(covariant YgButtonBase<T> oldWidget) {
+    widget.updateState(_state);
+    super.didUpdateWidget(oldWidget);
+  }
+
+  @override
   Widget build(BuildContext context) {
     return YgStyleBuilder<YgButtonBaseStyle<T>>(
       createStyle: (YgVsync vsync) => widget.createStyle(vsync, _state),
