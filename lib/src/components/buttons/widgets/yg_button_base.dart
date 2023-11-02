@@ -114,7 +114,7 @@ class _YgButtonBaseState<T extends YgButtonBaseState> extends State<YgButtonBase
             elevation: style.elevation,
             shape: style.shape,
             child: Material(
-              color: Colors.transparent,
+              type: MaterialType.transparency,
               child: InkWell(
                 statesController: _materialController,
                 splashFactory: style.splashFactory.value,
