@@ -8,8 +8,7 @@ import 'yg_button_style.dart';
 part 'yg_button_with_leading_icon.dart';
 part 'yg_button_with_trailing_icon.dart';
 
-// TODO(Tim): Look in to internalizing the state controller if support for
-// multiple variant enums has been added to YgStatesController.
+/// Base class for creating all Yg buttons.
 class YgButton extends YgButtonBase<YgButtonState> {
   const YgButton({
     super.key,
@@ -24,6 +23,7 @@ class YgButton extends YgButtonBase<YgButtonState> {
     this.variant = YgButtonVariant.primary,
   });
 
+  /// Button with a leading icon
   const factory YgButton.leadingIcon({
     bool autofocus,
     required Widget child,
@@ -38,6 +38,7 @@ class YgButton extends YgButtonBase<YgButtonState> {
     YgButtonVariant variant,
   }) = _YgButtonWithLeadingIcon;
 
+  /// Button with a trailing icon.
   const factory YgButton.trailingIcon({
     bool autofocus,
     required Widget child,
@@ -52,8 +53,17 @@ class YgButton extends YgButtonBase<YgButtonState> {
     YgButtonVariant variant,
   }) = _YgButtonWithTrailingIcon;
 
+  /// The variant of the button.
+  ///
+  /// For specific info see [YgButtonVariant].
   final YgButtonVariant variant;
+
+  /// The size of the button.
+  ///
+  /// For specific info see [YgButtonSize].
   final YgButtonSize size;
+
+  /// The widget rendered under this widget in the widget tree.
   final Widget child;
 
   @override

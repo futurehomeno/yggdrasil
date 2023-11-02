@@ -48,17 +48,21 @@ abstract class YgButtonBase<T extends YgButtonBaseState> extends StatefulWidget 
   State<YgButtonBase<T>> createState() => _YgButtonBaseState<T>();
 
   /// Updates the button state whenever the widget gets updated.
+  @protected
   void updateState(T state);
 
   /// Builds the child widget for the button.
+  @protected
   Widget buildChild(BuildContext context);
 
   /// Creates the style applied to this button.
+  @protected
   YgButtonBaseStyle<T> createStyle(YgVsync vsync, T state);
 
   /// Creates the button state for this widget.
   ///
   /// Must extend [YgButtonBaseState].
+  @protected
   T createButtonState();
 }
 
