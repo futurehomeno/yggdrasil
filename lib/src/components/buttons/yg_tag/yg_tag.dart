@@ -13,19 +13,19 @@ part 'yg_tag_with_trailing_icon.dart';
 ///
 /// Tags are based on [ButtonStyleButton] and [ButtonStyle]
 /// as the style is practically the same.
-class YgTag extends StatefulWidget {
+class YgTag extends YgButtonBase<YgTagState> {
   const YgTag({
     super.key,
     required this.child,
+    super.onPressed,
+    super.onLongPress,
+    super.onHover,
+    super.onFocusChange,
+    super.focusNode,
+    super.autofocus = false,
     this.size = YgTagSize.medium,
     this.variant = YgTagVariant.neutral,
     this.weight = YgTagWeight.weak,
-    this.autofocus = false,
-    this.focusNode,
-    this.onFocusChange,
-    this.onHover,
-    this.onLongPress,
-    this.onPressed,
   });
 
   // region Leading icon
@@ -84,64 +84,34 @@ class YgTag extends StatefulWidget {
   final YgTagVariant variant;
   final YgTagSize size;
   final YgTagWeight weight;
-  final VoidCallback? onPressed;
-  final VoidCallback? onLongPress;
-  final ValueChanged<bool>? onHover;
-  final ValueChanged<bool>? onFocusChange;
-  final FocusNode? focusNode;
-  final bool autofocus;
   final Widget child;
 
   @override
-  State<YgTag> createState() => _YgTagState<YgTag>();
-}
-
-class _YgTagState<W extends YgTag> extends State<W> {
-  late final YgTagState _controller = YgTagState(
-    size: widget.size,
-    variant: widget.variant,
-    weight: widget.weight,
-  );
-
-  @override
-  void dispose() {
-    _controller.dispose();
-    super.dispose();
-  }
-
-  @override
-  void didUpdateWidget(covariant W oldWidget) {
-    _controller.size.value = widget.size;
-    _controller.variant.value = widget.variant;
-    _controller.weight.value = widget.weight;
-    super.didUpdateWidget(oldWidget);
-  }
-
-  @override
-  Widget build(BuildContext context) {
-    return YgButtonBase<YgTagState>(
-      onPressed: widget.onPressed,
-      onLongPress: widget.onLongPress,
-      onHover: widget.onHover,
-      onFocusChange: widget.onFocusChange,
-      focusNode: widget.focusNode,
-      autofocus: widget.autofocus,
-      state: _controller,
-      createStyle: _createStyle,
-      child: _buildChild(context),
+  YgTagState createButtonState() {
+    return YgTagState(
+      size: size,
+      variant: variant,
+      weight: weight,
     );
   }
 
-  YgTagStyle _createStyle(YgVsync vsync) {
+  @override
+  void updateState(YgTagState state) {
+    state.variant.value = variant;
+    state.weight.value = weight;
+    state.size.value = size;
+  }
+
+  @override
+  YgButtonBaseStyle<YgTagState> createStyle(YgVsync vsync, YgTagState state) {
     return YgTagStyle(
-      state: _controller,
+      state: state,
       vsync: vsync,
     );
   }
 
-  // Has to be ignored since context is needed in classes overwriting this.
-  // ignore: avoid-unused-parameters
-  Widget _buildChild(BuildContext context) {
-    return widget.child;
+  @override
+  Widget buildChild(BuildContext context) {
+    return child;
   }
 }

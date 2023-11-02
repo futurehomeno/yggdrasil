@@ -18,17 +18,12 @@ class _YgButtonWithLeadingIcon extends YgButton {
   final YgIcon icon;
 
   @override
-  State<_YgButtonWithLeadingIcon> createState() => _YgButtonWithLeadingIconState();
-}
-
-class _YgButtonWithLeadingIconState extends _YgButtonState<_YgButtonWithLeadingIcon> {
-  @override
-  Widget _buildChild(BuildContext context) {
+  Widget buildChild(BuildContext context) {
     return Row(
       mainAxisSize: MainAxisSize.min,
       children: <Widget>[
-        widget.icon,
-        Flexible(child: super._buildChild(context)),
+        icon,
+        Flexible(child: child),
       ].withHorizontalSpacing(context.buttonTheme.iconSpacing),
     );
   }

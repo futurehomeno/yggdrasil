@@ -1,33 +1,20 @@
 import 'package:flutter/material.dart';
-import 'package:yggdrasil/src/components/buttons/widgets/yg_button_base_state.dart';
 import 'package:yggdrasil/src/utils/_utils.dart';
 
 import '_widgets.dart';
 
 typedef YbButtonStyleCreator<T extends YgButtonBaseState> = YgButtonBaseStyle<T> Function(YgVsync vsync);
 
-class YgButtonBase<T extends YgButtonBaseState> extends StatefulWidget with StatefulWidgetDebugMixin {
+abstract class YgButtonBase<T extends YgButtonBaseState> extends StatefulWidget with StatefulWidgetDebugMixin {
   const YgButtonBase({
     super.key,
-    required this.child,
-    required this.state,
     required this.onPressed,
-    required this.createStyle,
     this.onLongPress,
     this.onHover,
     this.onFocusChange,
     this.focusNode,
     this.autofocus = false,
   });
-
-  /// Callback to create a [YgButtonBaseStyle].
-  final YbButtonStyleCreator<T> createStyle;
-
-  /// YgStatesController used to resolve style properties.
-  final YgButtonBaseState state;
-
-  /// The child of the button.
-  final Widget child;
 
   /// Called when the user presses the button.
   final VoidCallback? onPressed;
@@ -58,6 +45,14 @@ class YgButtonBase<T extends YgButtonBaseState> extends StatefulWidget with Stat
 
   @override
   State<YgButtonBase<T>> createState() => _YgButtonBaseState<T>();
+
+  void updateState(T state);
+
+  Widget buildChild(BuildContext context);
+
+  YgButtonBaseStyle<T> createStyle(YgVsync vsync, T state);
+
+  T createButtonState();
 }
 
 class _YgButtonBaseState<T extends YgButtonBaseState> extends State<YgButtonBase<T>> {
@@ -66,16 +61,18 @@ class _YgButtonBaseState<T extends YgButtonBaseState> extends State<YgButtonBase
     onStateChange: _handleMaterialStateChange,
   );
 
+  late final T _state = widget.createButtonState();
+
   void _handleMaterialStateChange(MaterialState state, bool toggled) {
     switch (state) {
       case MaterialState.focused:
-        widget.state.focused.value = toggled;
+        _state.focused.value = toggled;
         break;
       case MaterialState.hovered:
-        widget.state.hovered.value = toggled;
+        _state.hovered.value = toggled;
         break;
       case MaterialState.pressed:
-        widget.state.pressed.value = toggled;
+        _state.pressed.value = toggled;
         break;
       default:
     }
@@ -90,7 +87,7 @@ class _YgButtonBaseState<T extends YgButtonBaseState> extends State<YgButtonBase
   @override
   Widget build(BuildContext context) {
     return YgStyleBuilder<YgButtonBaseStyle<T>>(
-      createStyle: widget.createStyle,
+      createStyle: (YgVsync vsync) => widget.createStyle(vsync, _state),
       getWatchedProperties: (YgButtonBaseStyle<T> style) => <YgDynamicDrivenProperty>{
         style.splashFactory,
         style.cursor,
@@ -133,7 +130,7 @@ class _YgButtonBaseState<T extends YgButtonBaseState> extends State<YgButtonBase
                           style: style.textStyle,
                           child: YgAnimatedIconTheme(
                             iconTheme: style.iconTheme,
-                            child: widget.child,
+                            child: widget.buildChild(context),
                           ),
                         ),
                       ),

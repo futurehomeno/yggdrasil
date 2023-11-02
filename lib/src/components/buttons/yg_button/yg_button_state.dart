@@ -1,4 +1,4 @@
-import 'package:yggdrasil/src/components/buttons/widgets/yg_button_base_state.dart';
+import 'package:yggdrasil/src/components/buttons/widgets/_widgets.dart';
 import 'package:yggdrasil/src/utils/_utils.dart';
 
 import '_yg_button.dart';
