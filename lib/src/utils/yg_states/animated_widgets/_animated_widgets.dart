@@ -3,5 +3,6 @@ export 'yg_animated_container.dart';
 export 'yg_animated_icon_theme.dart';
 export 'yg_animated_padding.dart';
 export 'yg_animated_physical_model.dart';
+export 'yg_animated_physical_shape.dart';
 export 'yg_animated_shape_border_clipper.dart';
 export 'yg_animated_shape_border_painter.dart';
