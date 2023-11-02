@@ -5,9 +5,9 @@ import 'package:flutter/services.dart';
 import 'package:yggdrasil/src/theme/_theme.dart';
 import 'package:yggdrasil/yggdrasil.dart';
 
-import '../enums/yg_field_state.dart';
 import '../helpers/_helpers.dart';
 import '../widgets/_widgets.dart';
+import '../yg_field_state.dart';
 import 'widgets/_widgets.dart';
 
 // This is really not ideal, but this is the only way to prevent us from
@@ -212,15 +212,15 @@ abstract class YgDropdownFieldState<T extends Object, W extends YgDropdownField<
   /// The current [FocusNode] of the dropdown, either user specified of a default one.
   late FocusNode _focusNode = widget.focusNode ?? FocusNode();
 
-  late final YgStatesController<YgFieldState> _statesController = YgStatesController<YgFieldState>(<YgFieldState>{
-    if (widget.placeholder != null) YgFieldState.placeholder,
-    if (widget.error != null) YgFieldState.error,
-    if (_controller.filled) YgFieldState.filled,
-    if (widget.disabled) YgFieldState.disabled,
-    YgFieldState.fromSize(widget.size),
-    YgFieldState.fromVariant(widget.variant),
-    YgFieldState.suffix,
-  });
+  late final YgFieldState _state = YgFieldState(
+    placeholder: widget.placeholder != null,
+    error: widget.error != null,
+    filled: _controller.filled,
+    disabled: widget.disabled,
+    size: widget.size,
+    variant: widget.variant,
+    suffix: true,
+  );
 
   @override
   void initState() {
@@ -252,18 +252,18 @@ abstract class YgDropdownFieldState<T extends Object, W extends YgDropdownField<
       _updateController(newController);
     }
 
-    _statesController.update(YgFieldState.placeholder, widget.placeholder != null);
-    _statesController.update(YgFieldState.error, widget.error != null);
-    _statesController.update(YgFieldState.disabled, widget.disabled);
-    _statesController.updateSize(widget.size);
-    _statesController.updateVariant(widget.variant);
+    _state.placeholder.value = widget.placeholder != null;
+    _state.error.value = widget.error != null;
+    _state.disabled.value = widget.disabled;
+    _state.size.value = widget.size;
+    _state.variant.value = widget.variant;
 
     super.didUpdateWidget(oldWidget);
   }
 
   @override
   void dispose() {
-    _statesController.dispose();
+    _state.dispose();
     _controller.removeListener(_controllerListener);
     _controller._detach();
     if (widget.controller == null) {
@@ -285,12 +285,12 @@ abstract class YgDropdownFieldState<T extends Object, W extends YgDropdownField<
         variant: widget.variant,
         size: widget.size,
         error: widget.error,
-        statesController: _statesController,
+        state: _state,
         onPressed: widget.disabled ? null : _controller.open,
         suffix: AnimatedRotation(
           duration: theme.animationDuration,
           curve: theme.animationCurve,
-          turns: _statesController.value.opened ? 0.5 : 0,
+          turns: _state.opened.value ? 0.5 : 0,
           child: YgIconButton(
             onPressed: widget.disabled ? null : _controller.open,
             size: YgIconButtonSize.small,
@@ -304,7 +304,7 @@ abstract class YgDropdownFieldState<T extends Object, W extends YgDropdownField<
             listenable: _controller,
             builder: _buildText,
           ),
-          statesController: _statesController,
+          state: _state,
           label: widget.label,
           minLines: widget.minLines,
           placeholder: widget.placeholder,
@@ -321,7 +321,7 @@ abstract class YgDropdownFieldState<T extends Object, W extends YgDropdownField<
       mouseCursor: SystemMouseCursors.click,
       focusNode: _focusNode,
       onFocusChange: _onFocusChanged,
-      onShowHoverHighlight: (bool hovered) => _statesController.update(YgFieldState.hovered, hovered),
+      onShowHoverHighlight: (bool hovered) => _state.hovered.value = hovered,
       shortcuts: const <ShortcutActivator, Intent>{
         SingleActivator(LogicalKeyboardKey.space, control: false): ActivateIntent(),
       },
@@ -377,7 +377,7 @@ abstract class YgDropdownFieldState<T extends Object, W extends YgDropdownField<
         onClose: _onClosed,
       ),
     );
-    _statesController.update(YgFieldState.opened, true);
+    _state.opened.value = true;
   }
 
   void openBottomSheet() {
@@ -389,7 +389,7 @@ abstract class YgDropdownFieldState<T extends Object, W extends YgDropdownField<
         onClose: _onClosed,
       ),
     );
-    _statesController.update(YgFieldState.opened, true);
+    _state.opened.value = true;
   }
 
   void open() {
@@ -417,11 +417,11 @@ abstract class YgDropdownFieldState<T extends Object, W extends YgDropdownField<
   }
 
   bool get isOpen {
-    return _statesController.value.opened;
+    return _state.opened.value;
   }
 
   void _onClosed() {
-    _statesController.update(YgFieldState.opened, false);
+    _state.opened.value = false;
 
     final VoidCallback? onEditingComplete = widget.onEditingComplete;
 
@@ -459,7 +459,7 @@ abstract class YgDropdownFieldState<T extends Object, W extends YgDropdownField<
 
   void _onFocusChanged(bool focused) {
     widget.onFocusChanged?.call(focused);
-    _statesController.update(YgFieldState.focused, focused);
+    _state.focused.value = focused;
   }
 
   void _updateController(YgDynamicDropdownController<T> controller) {
@@ -471,6 +471,6 @@ abstract class YgDropdownFieldState<T extends Object, W extends YgDropdownField<
   }
 
   void _controllerListener() {
-    _statesController.update(YgFieldState.filled, _controller.filled);
+    _state.filled.value = _controller.filled;
   }
 }

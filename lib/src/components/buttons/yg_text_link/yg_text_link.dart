@@ -4,7 +4,7 @@ import 'package:yggdrasil/src/components/buttons/yg_text_link/yg_text_link_style
 import 'package:yggdrasil/src/theme/_theme.dart';
 import 'package:yggdrasil/yggdrasil.dart';
 
-import '_yg_text_link.dart';
+import 'yg_text_link_state.dart';
 
 /// Text link button implementation.
 class YgTextLink extends StatefulWidget {
@@ -38,33 +38,30 @@ class YgTextLink extends StatefulWidget {
 }
 
 class _YgTextLinkState extends State<YgTextLink> {
-  late final YgStatesController<YgTextLinkState> _controller = YgStatesController<YgTextLinkState>(<YgTextLinkState>{
-    if (widget.onPressed == null) YgTextLinkState.disabled,
-    YgTextLinkState.fromSize(widget.size),
-    YgTextLinkState.fromWeight(widget.weight),
-  });
+  late final YgTextLinkState _state = YgTextLinkState(
+    disabled: widget.onPressed == null,
+    size: widget.size,
+    weight: widget.weight,
+  );
 
   @override
   void dispose() {
-    _controller.dispose();
+    _state.dispose();
     super.dispose();
   }
 
   @override
   void didUpdateWidget(covariant YgTextLink oldWidget) {
-    _controller.update(YgTextLinkState.disabled, widget.onPressed == null);
-    _controller.updateSize(widget.size);
-    _controller.updateWeight(widget.weight);
+    _state.disabled.value = widget.onPressed == null;
+    _state.size.value = widget.size;
+    _state.weight.value = widget.weight;
     super.didUpdateWidget(oldWidget);
   }
 
   @override
   Widget build(BuildContext context) {
     return YgButtonBase<YgTextLinkState>(
-      focusedState: YgTextLinkState.focused,
-      hoveredState: YgTextLinkState.hovered,
-      pressedState: YgTextLinkState.pressed,
-      controller: _controller,
+      state: _state,
       createStyle: _createStyle,
       onPressed: widget.onPressed,
       onLongPress: widget.onLongPress,
@@ -108,7 +105,7 @@ class _YgTextLinkState extends State<YgTextLink> {
 
   YgTextLinkStyle _createStyle(YgVsync vsync) {
     return YgTextLinkStyle(
-      controller: _controller,
+      state: _state,
       vsync: vsync,
     );
   }

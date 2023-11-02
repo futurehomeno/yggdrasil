@@ -4,10 +4,11 @@ import 'package:yggdrasil/src/theme/_theme.dart';
 import 'package:yggdrasil/src/theme/icon_button/_icon_button.dart';
 
 import 'enums/_enums.dart';
+import 'yg_icon_button_state.dart';
 
 class YgIconButtonStyle extends YgButtonBaseStyle<YgIconButtonState> {
   YgIconButtonStyle({
-    required super.controller,
+    required super.state,
     required super.vsync,
   });
 
@@ -18,10 +19,10 @@ class YgIconButtonStyle extends YgButtonBaseStyle<YgIconButtonState> {
   Duration get duration => const Duration(milliseconds: 200);
 
   @override
-  Color resolveColor(BuildContext context, Set<YgIconButtonState> states) {
-    final YgIconButtonVariantTheme variantTheme = _getVariantTheme(states);
+  Color resolveColor(BuildContext context, YgIconButtonState state) {
+    final YgIconButtonVariantTheme variantTheme = _getVariantTheme(state);
 
-    if (states.disabled) {
+    if (state.disabled.value) {
       return variantTheme.disabledBackgroundColor;
     }
 
@@ -29,8 +30,8 @@ class YgIconButtonStyle extends YgButtonBaseStyle<YgIconButtonState> {
   }
 
   @override
-  MouseCursor resolveCursor(BuildContext context, Set<YgIconButtonState> states) {
-    if (states.disabled) {
+  MouseCursor resolveCursor(BuildContext context, YgIconButtonState state) {
+    if (state.disabled.value) {
       return SystemMouseCursors.basic;
     }
 
@@ -38,8 +39,8 @@ class YgIconButtonStyle extends YgButtonBaseStyle<YgIconButtonState> {
   }
 
   @override
-  BoxConstraints resolveConstraints(BuildContext context, Set<YgIconButtonState> states) {
-    final double size = switch (states.size) {
+  BoxConstraints resolveConstraints(BuildContext context, YgIconButtonState state) {
+    final double size = switch (state.size.value) {
       YgIconButtonSize.small => _theme.sizeSmall,
       YgIconButtonSize.medium => _theme.sizeMedium,
     };
@@ -51,8 +52,8 @@ class YgIconButtonStyle extends YgButtonBaseStyle<YgIconButtonState> {
   }
 
   @override
-  double resolveIconSize(BuildContext context, Set<YgIconButtonState> states) {
-    switch (states.size) {
+  double resolveIconSize(BuildContext context, YgIconButtonState state) {
+    switch (state.size.value) {
       case YgIconButtonSize.small:
         return _theme.iconSizeSmall;
       case YgIconButtonSize.medium:
@@ -61,10 +62,10 @@ class YgIconButtonStyle extends YgButtonBaseStyle<YgIconButtonState> {
   }
 
   @override
-  Color resolveIconColor(BuildContext context, Set<YgIconButtonState> states) {
-    final YgIconButtonVariantTheme variantTheme = _getVariantTheme(states);
+  Color resolveIconColor(BuildContext context, YgIconButtonState state) {
+    final YgIconButtonVariantTheme variantTheme = _getVariantTheme(state);
 
-    if (states.disabled) {
+    if (state.disabled.value) {
       return variantTheme.disabledIconColor;
     }
 
@@ -72,20 +73,20 @@ class YgIconButtonStyle extends YgButtonBaseStyle<YgIconButtonState> {
   }
 
   @override
-  Color resolveSplashColor(BuildContext context, Set<YgIconButtonState> states) {
-    final YgIconButtonVariantTheme variantTheme = _getVariantTheme(states);
+  Color resolveSplashColor(BuildContext context, YgIconButtonState state) {
+    final YgIconButtonVariantTheme variantTheme = _getVariantTheme(state);
 
     return variantTheme.splashColor;
   }
 
   @override
-  OutlinedBorder resolveOutlinedBorder(BuildContext context, Set<YgIconButtonState> states) {
+  OutlinedBorder resolveOutlinedBorder(BuildContext context, YgIconButtonState state) {
     final YgOutlinedIconButtonTheme theme = _theme.outlinedIconButtonTheme;
 
-    if (states.outlined) {
+    if (state.variant.value == YgIconButtonVariant.outlined) {
       return CircleBorder(
         side: BorderSide(
-          color: states.disabled ? theme.disabledBorderColor : theme.borderColor,
+          color: state.disabled.value ? theme.disabledBorderColor : theme.borderColor,
           width: 1,
         ),
       );
@@ -96,8 +97,8 @@ class YgIconButtonStyle extends YgButtonBaseStyle<YgIconButtonState> {
 
   YgIconButtonTheme get _theme => context.iconButtonTheme;
 
-  YgIconButtonVariantTheme _getVariantTheme(Set<YgIconButtonState> states) {
-    switch (states.variant) {
+  YgIconButtonVariantTheme _getVariantTheme(YgIconButtonState state) {
+    switch (state.variant.value) {
       case YgIconButtonVariant.filled:
         return YgIconButtonVariantTheme.filled(_theme.filledIconButtonTheme);
       case YgIconButtonVariant.outlined:

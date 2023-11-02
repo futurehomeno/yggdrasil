@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:yggdrasil/src/components/buttons/widgets/_widgets.dart';
-import 'package:yggdrasil/src/components/buttons/yg_button/enums/yg_button_state.dart';
 import 'package:yggdrasil/yggdrasil.dart';
 
+import 'yg_button_state.dart';
 import 'yg_button_style.dart';
 
 part 'yg_button_with_leading_icon.dart';
@@ -67,33 +67,30 @@ class YgButton extends StatefulWidget {
 }
 
 class _YgButtonState<T extends YgButton> extends State<T> {
-  late final YgStatesController<YgButtonState> _controller = YgStatesController<YgButtonState>(<YgButtonState>{
-    if (widget.onPressed == null) YgButtonState.disabled,
-    YgButtonState.fromSize(widget.size),
-    YgButtonState.fromVariant(widget.variant),
-  });
+  late final YgButtonState _state = YgButtonState(
+    disabled: widget.onPressed == null,
+    size: widget.size,
+    variant: widget.variant,
+  );
 
   @override
   void dispose() {
-    _controller.dispose();
+    _state.dispose();
     super.dispose();
   }
 
   @override
   void didUpdateWidget(covariant T oldWidget) {
-    _controller.updateSize(widget.size);
-    _controller.updateVariant(widget.variant);
+    _state.size.value = widget.size;
+    _state.variant.value = widget.variant;
     super.didUpdateWidget(oldWidget);
   }
 
   @override
   Widget build(BuildContext context) {
     return YgButtonBase<YgButtonState>(
-      focusedState: YgButtonState.focused,
-      hoveredState: YgButtonState.hovered,
-      pressedState: YgButtonState.pressed,
       createStyle: _createStyle,
-      controller: _controller,
+      state: _state,
       onPressed: widget.onPressed,
       onLongPress: widget.onLongPress,
       onHover: widget.onHover,
@@ -106,7 +103,7 @@ class _YgButtonState<T extends YgButton> extends State<T> {
 
   YgButtonStyle _createStyle(YgVsync vsync) {
     return YgButtonStyle(
-      controller: _controller,
+      state: _state,
       vsync: vsync,
     );
   }

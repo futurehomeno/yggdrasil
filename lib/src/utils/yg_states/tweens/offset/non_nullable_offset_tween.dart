@@ -1,8 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:yggdrasil/src/utils/yg_states/_yg_states.dart';
 
-typedef YgOffsetProperty<T extends Enum> = YgProperty<T, Offset>;
-typedef YgMaterialOffsetProperty = YgMaterialProperty<Offset>;
+typedef YgOffsetProperty<T extends YgState> = YgProperty<T, Offset>;
 typedef YgAnimatedOffsetProperty = YgAnimatedProperty<Offset>;
 typedef YgDrivenOffsetProperty = YgDrivenProperty<Offset>;
 

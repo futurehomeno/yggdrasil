@@ -1,8 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:yggdrasil/src/utils/yg_states/_yg_states.dart';
 
-typedef YgFractionalOffsetProperty<T extends Enum> = YgProperty<T, FractionalOffset>;
-typedef YgMaterialFractionalOffsetProperty = YgMaterialProperty<FractionalOffset>;
+typedef YgFractionalOffsetProperty<T extends YgState> = YgProperty<T, FractionalOffset>;
 typedef YgAnimatedFractionalOffsetProperty = YgAnimatedProperty<FractionalOffset>;
 typedef YgDrivenFractionalOffsetProperty = YgDrivenProperty<FractionalOffset>;
 

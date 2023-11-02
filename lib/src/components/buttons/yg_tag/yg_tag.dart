@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:yggdrasil/src/components/buttons/widgets/_widgets.dart';
 import 'package:yggdrasil/yggdrasil.dart';
 
-import '_yg_tag.dart';
+import 'yg_tag_state.dart';
 import 'yg_tag_style.dart';
 
 part 'yg_tag_with_double_icon.dart';
@@ -97,11 +97,11 @@ class YgTag extends StatefulWidget {
 }
 
 class _YgTagState<W extends YgTag> extends State<W> {
-  late final YgStatesController<YgTagState> _controller = YgStatesController<YgTagState>(<YgTagState>{
-    YgTagState.fromSize(widget.size),
-    YgTagState.fromVariant(widget.variant),
-    YgTagState.fromWeight(widget.weight),
-  });
+  late final YgTagState _controller = YgTagState(
+    size: widget.size,
+    variant: widget.variant,
+    weight: widget.weight,
+  );
 
   @override
   void dispose() {
@@ -111,9 +111,9 @@ class _YgTagState<W extends YgTag> extends State<W> {
 
   @override
   void didUpdateWidget(covariant W oldWidget) {
-    _controller.updateSize(widget.size);
-    _controller.updateVariant(widget.variant);
-    _controller.updateWeight(widget.weight);
+    _controller.size.value = widget.size;
+    _controller.variant.value = widget.variant;
+    _controller.weight.value = widget.weight;
     super.didUpdateWidget(oldWidget);
   }
 
@@ -126,18 +126,15 @@ class _YgTagState<W extends YgTag> extends State<W> {
       onFocusChange: widget.onFocusChange,
       focusNode: widget.focusNode,
       autofocus: widget.autofocus,
-      controller: _controller,
+      state: _controller,
       createStyle: _createStyle,
-      focusedState: YgTagState.focused,
-      pressedState: YgTagState.pressed,
-      hoveredState: YgTagState.hovered,
       child: _buildChild(context),
     );
   }
 
   YgTagStyle _createStyle(YgVsync vsync) {
     return YgTagStyle(
-      controller: _controller,
+      state: _controller,
       vsync: vsync,
     );
   }

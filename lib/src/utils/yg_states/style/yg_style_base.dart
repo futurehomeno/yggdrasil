@@ -9,15 +9,15 @@ part 'yg_style_with_defaults.dart';
 /// Base class for any [YgStyle].
 ///
 /// Can not be used directly, use [YgStyle] or [YgStyleWithDefaults] instead.
-abstract class YgStyleBase<T extends Enum> extends ChangeNotifier {
+abstract class YgStyleBase<T extends YgState> extends ChangeNotifier {
   YgStyleBase({
-    required this.controller,
+    required this.state,
     required this.vsync,
   }) {
     init();
   }
 
-  final YgStatesController<T> controller;
+  final T state;
   final YgVsync vsync;
   final List<YgDisposableDrivenProperty<dynamic>> _properties = <YgDisposableDrivenProperty<dynamic>>[];
 

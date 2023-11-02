@@ -8,9 +8,8 @@ part 'yg_driven_property_all.dart';
 part 'yg_property_resolve_all.dart';
 part 'yg_property_resolve_with.dart';
 
-typedef YgStatesResolver<T extends Enum, V> = V Function(BuildContext, Set<T>);
+typedef YgStatesResolver<T extends YgState, V> = V Function(BuildContext, T);
 typedef YgStatesAllResolver<V> = V Function(BuildContext);
-typedef YgMaterialProperty<V> = YgProperty<MaterialState, V>;
 
 /// A property which resolves it's value using a set of states.
 ///
@@ -19,7 +18,7 @@ typedef YgMaterialProperty<V> = YgProperty<MaterialState, V>;
 ///
 /// Is not compatible with [MaterialStateProperty] since this property will
 /// provide the resolve function with a [BuildContext].
-abstract class YgProperty<T extends Enum, V> {
+abstract class YgProperty<T extends YgState, V> {
   const YgProperty();
 
   /// Resolves this property using the passed [resolver].
@@ -40,7 +39,7 @@ abstract class YgProperty<T extends Enum, V> {
   ) = _YgPropertyResolveAll<T, V>;
 
   /// Resolves the value for a given set of [states].
-  V resolve(BuildContext context, Set<T> states);
+  V resolve(BuildContext context, T states);
 
   /// Creates a tween which interpolates between 2 value of type [V].
   ///
@@ -59,13 +58,13 @@ abstract class YgProperty<T extends Enum, V> {
   /// Will resolve the value when states change and start animating to the new
   /// value if the value has changed.
   YgDisposableAnimatedProperty<V> animate({
-    required YgStatesController<T> controller,
+    required T state,
     required YgVsync vsync,
     required Duration duration,
     required Curve curve,
   }) {
     return _YgAnimatedProperty<T, V>(
-      controller: controller,
+      state: state,
       vsync: vsync,
       curve: curve,
       duration: duration,
@@ -80,11 +79,11 @@ abstract class YgProperty<T extends Enum, V> {
   /// of this property changes. Use this when you have a value which depends on
   /// states but can no be animated, for example, a [MouseCursor].
   YgDisposableDrivenProperty<V> drive({
-    required YgStatesController<T> controller,
+    required T state,
     required YgVsync vsync,
   }) {
     return _YgDrivenProperty<T, V>(
-      controller: controller,
+      state: state,
       vsync: vsync,
       property: this,
     );

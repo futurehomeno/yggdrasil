@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:yggdrasil/src/components/fields/enums/yg_field_state.dart';
 import 'package:yggdrasil/src/components/fields/widgets/decoration/yg_field_decoration_style.dart';
 import 'package:yggdrasil/src/theme/_theme.dart';
 import 'package:yggdrasil/yggdrasil.dart';
+
+import '../../yg_field_state.dart';
 
 /// The decoration of any yggdrasil field widget.
 ///
@@ -16,7 +17,7 @@ class YgFieldDecoration extends StatelessWidget {
     required this.content,
     required this.variant,
     required this.error,
-    required this.statesController,
+    required this.state,
     required this.suffix,
     required this.size,
     required this.onPressed,
@@ -41,7 +42,7 @@ class YgFieldDecoration extends StatelessWidget {
   final YgFieldVariant variant;
 
   /// The current states of the field.
-  final YgStatesController<YgFieldState> statesController;
+  final YgFieldState state;
 
   /// Called when the field is pressed.
   ///
@@ -56,7 +57,7 @@ class YgFieldDecoration extends StatelessWidget {
   Widget build(BuildContext context) {
     return YgStyleBuilder<YgFieldDecorationStyle>(
       createStyle: (YgVsync vsync) => YgFieldDecorationStyle(
-        controller: statesController,
+        state: state,
         vsync: vsync,
       ),
       builder: (BuildContext context, YgFieldDecorationStyle style) {
@@ -144,7 +145,7 @@ class YgFieldDecoration extends StatelessWidget {
   Widget _buildErrorMessage(YgFieldDecorationTheme theme) {
     final String? error = this.error;
 
-    if (statesController.value.disabled || error == null) {
+    if (state.disabled.value || error == null) {
       return const FractionallySizedBox(
         widthFactor: 1,
       );

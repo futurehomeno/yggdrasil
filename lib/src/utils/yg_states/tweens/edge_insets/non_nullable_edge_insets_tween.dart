@@ -1,8 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:yggdrasil/src/utils/yg_states/_yg_states.dart';
 
-typedef YgEdgeInsetsProperty<T extends Enum> = YgProperty<T, EdgeInsets>;
-typedef YgMaterialEdgeInsetsProperty = YgMaterialProperty<EdgeInsets>;
+typedef YgEdgeInsetsProperty<T extends YgState> = YgProperty<T, EdgeInsets>;
 typedef YgAnimatedEdgeInsetsProperty = YgAnimatedProperty<EdgeInsets>;
 typedef YgDrivenEdgeInsetsProperty = YgDrivenProperty<EdgeInsets>;
 

@@ -1,13 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:yggdrasil/src/components/fields/enums/yg_field_state.dart';
 import 'package:yggdrasil/src/theme/_theme.dart';
-import 'package:yggdrasil/yggdrasil.dart';
+
+import '../../yg_field_state.dart';
 
 class YgTextFieldValue extends StatelessWidget {
   const YgTextFieldValue({
     super.key,
-    required this.statesController,
+    required this.state,
     required this.obscureText,
     required this.maxLines,
     required this.minLines,
@@ -25,7 +25,7 @@ class YgTextFieldValue extends StatelessWidget {
 
   final FocusNode focusNode;
   final TextEditingController controller;
-  final YgStatesController<YgFieldState> statesController;
+  final YgFieldState state;
   final bool obscureText;
   final int? maxLines;
   final int? minLines;
@@ -40,17 +40,14 @@ class YgTextFieldValue extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return YgStatesBuilder<YgFieldState>(
-      controller: statesController,
-      filter: const <YgFieldState>{
-        YgFieldState.disabled,
-      },
-      builder: (BuildContext context, Set<YgFieldState> states) {
+    return AnimatedBuilder(
+      animation: state.disabled,
+      builder: (BuildContext context, Widget? child) {
         final YgFieldContentTheme theme = context.fieldTheme.contentTheme;
 
         final TextStyle baseStyle = DefaultTextStyle.of(context).style;
 
-        if (states.disabled) {
+        if (state.disabled.value) {
           final int? minLines = this.minLines;
 
           Widget text = Text(

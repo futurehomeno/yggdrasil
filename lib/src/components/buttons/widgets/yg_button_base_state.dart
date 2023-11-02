@@ -1,3 +1,4 @@
+import 'package:flutter/material.dart';
 import 'package:yggdrasil/yggdrasil.dart';
 
 class YgButtonBaseState extends YgState {
@@ -6,10 +7,10 @@ class YgButtonBaseState extends YgState {
     bool hovered = false,
     bool disabled = false,
     bool pressed = false,
-  })  : focused = YgStateValue<bool>(initialValue: focused),
-        hovered = YgStateValue<bool>(initialValue: hovered),
-        disabled = YgStateValue<bool>(initialValue: disabled),
-        pressed = YgStateValue<bool>(initialValue: pressed);
+  })  : focused = YgStateValue<bool>(focused),
+        hovered = YgStateValue<bool>(hovered),
+        disabled = YgStateValue<bool>(disabled),
+        pressed = YgStateValue<bool>(pressed);
 
   final YgStateValue<bool> focused;
   final YgStateValue<bool> hovered;
@@ -17,6 +18,7 @@ class YgButtonBaseState extends YgState {
   final YgStateValue<bool> pressed;
 
   @override
+  @mustCallSuper
   List<YgStateValue<Object>> get props => <YgStateValue<Object>>[
         focused,
         hovered,

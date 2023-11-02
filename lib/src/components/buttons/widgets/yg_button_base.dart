@@ -1,20 +1,18 @@
 import 'package:flutter/material.dart';
+import 'package:yggdrasil/src/components/buttons/widgets/yg_button_base_state.dart';
 import 'package:yggdrasil/src/utils/_utils.dart';
 
 import '_widgets.dart';
 
-typedef YbButtonStyleCreator<T extends Enum> = YgButtonBaseStyle<T> Function(YgVsync vsync);
+typedef YbButtonStyleCreator<T extends YgButtonBaseState> = YgButtonBaseStyle<T> Function(YgVsync vsync);
 
-class YgButtonBase<T extends Enum> extends StatefulWidget with StatefulWidgetDebugMixin {
+class YgButtonBase<T extends YgButtonBaseState> extends StatefulWidget with StatefulWidgetDebugMixin {
   const YgButtonBase({
     super.key,
     required this.child,
-    required this.controller,
+    required this.state,
     required this.onPressed,
     required this.createStyle,
-    required this.focusedState,
-    required this.pressedState,
-    required this.hoveredState,
     this.onLongPress,
     this.onHover,
     this.onFocusChange,
@@ -22,20 +20,11 @@ class YgButtonBase<T extends Enum> extends StatefulWidget with StatefulWidgetDeb
     this.autofocus = false,
   });
 
-  /// State of type [T] which represents the button being focused.
-  final T focusedState;
-
-  /// State of type [T] which represents the button being pressed.
-  final T pressedState;
-
-  /// State of type [T] which represents the button being hovered.
-  final T hoveredState;
-
   /// Callback to create a [YgButtonBaseStyle].
   final YbButtonStyleCreator<T> createStyle;
 
   /// YgStatesController used to resolve style properties.
-  final YgStatesController<T> controller;
+  final YgButtonBaseState state;
 
   /// The child of the button.
   final Widget child;
@@ -71,28 +60,25 @@ class YgButtonBase<T extends Enum> extends StatefulWidget with StatefulWidgetDeb
   State<YgButtonBase<T>> createState() => _YgButtonBaseState<T>();
 }
 
-class _YgButtonBaseState<T extends Enum> extends State<YgButtonBase<T>> {
-  late final YgMaterialStatesControllerWithChangeCallback<T> _materialController =
-      YgMaterialStatesControllerWithChangeCallback<T>(
+class _YgButtonBaseState<T extends YgButtonBaseState> extends State<YgButtonBase<T>> {
+  late final YgMaterialStatesControllerWithChangeCallback _materialController =
+      YgMaterialStatesControllerWithChangeCallback(
     onStateChange: _handleMaterialStateChange,
   );
 
   void _handleMaterialStateChange(MaterialState state, bool toggled) {
-    final T? parentState = switch (state) {
-      MaterialState.focused => widget.focusedState,
-      MaterialState.pressed => widget.pressedState,
-      MaterialState.hovered => widget.hoveredState,
-      _ => null,
-    };
-
-    if (parentState == null) {
-      return;
+    switch (state) {
+      case MaterialState.focused:
+        widget.state.focused.value = toggled;
+        break;
+      case MaterialState.hovered:
+        widget.state.hovered.value = toggled;
+        break;
+      case MaterialState.pressed:
+        widget.state.pressed.value = toggled;
+        break;
+      default:
     }
-
-    widget.controller.update(
-      parentState,
-      toggled,
-    );
   }
 
   @override

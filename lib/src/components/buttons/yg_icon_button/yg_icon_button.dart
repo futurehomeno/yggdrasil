@@ -3,7 +3,7 @@ import 'package:yggdrasil/src/components/buttons/widgets/_widgets.dart';
 import 'package:yggdrasil/src/components/buttons/yg_icon_button/yg_icon_button_style.dart';
 import 'package:yggdrasil/yggdrasil.dart';
 
-import '_yg_icon_button.dart';
+import 'yg_icon_button_state.dart';
 
 /// Base class for creating all YgIconButtons.
 class YgIconButton extends StatefulWidget {
@@ -35,35 +35,31 @@ class YgIconButton extends StatefulWidget {
 }
 
 class _YgIconButtonState extends State<YgIconButton> {
-  late final YgStatesController<YgIconButtonState> _controller =
-      YgStatesController<YgIconButtonState>(<YgIconButtonState>{
-    if (widget.onPressed == null) YgIconButtonState.disabled,
-    YgIconButtonState.fromSize(widget.size),
-    YgIconButtonState.fromVariant(widget.variant),
-  });
+  late final YgIconButtonState _state = YgIconButtonState(
+    disabled: widget.onPressed == null,
+    size: widget.size,
+    variant: widget.variant,
+  );
 
   @override
   void dispose() {
-    _controller.dispose();
+    _state.dispose();
     super.dispose();
   }
 
   @override
   void didUpdateWidget(covariant YgIconButton oldWidget) {
-    _controller.update(YgIconButtonState.disabled, widget.onPressed == null);
-    _controller.updateVariant(widget.variant);
-    _controller.updateSize(widget.size);
+    _state.disabled.value = widget.onPressed == null;
+    _state.variant.value = widget.variant;
+    _state.size.value = widget.size;
     super.didUpdateWidget(oldWidget);
   }
 
   @override
   Widget build(BuildContext context) {
     return YgButtonBase<YgIconButtonState>(
-      controller: _controller,
+      state: _state,
       createStyle: _createStyle,
-      focusedState: YgIconButtonState.focused,
-      hoveredState: YgIconButtonState.hovered,
-      pressedState: YgIconButtonState.pressed,
       onPressed: widget.onPressed,
       onLongPress: widget.onLongPress,
       onHover: widget.onHover,
@@ -76,7 +72,7 @@ class _YgIconButtonState extends State<YgIconButton> {
 
   YgIconButtonStyle _createStyle(YgVsync vsync) {
     return YgIconButtonStyle(
-      controller: _controller,
+      state: _state,
       vsync: vsync,
     );
   }

@@ -1,8 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:yggdrasil/src/utils/yg_states/_yg_states.dart';
 
-typedef YgNullableDecorationProperty<T extends Enum> = YgProperty<T, Decoration?>;
-typedef YgMaterialNullableDecorationProperty = YgMaterialProperty<Decoration?>;
+typedef YgNullableDecorationProperty<T extends YgState> = YgProperty<T, Decoration?>;
 typedef YgAnimatedNullableDecorationProperty = YgAnimatedProperty<Decoration?>;
 typedef YgDrivenNullableDecorationProperty = YgDrivenProperty<Decoration?>;
 

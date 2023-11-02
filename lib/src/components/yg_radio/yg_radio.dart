@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:yggdrasil/src/components/yg_radio/enums/yg_radio_state.dart';
 import 'package:yggdrasil/src/theme/_theme.dart';
 import 'package:yggdrasil/src/utils/_utils.dart';
 
+import 'yg_radio_state.dart';
 import 'yg_radio_style.dart';
 
 /// Yggdrasil radio button.
@@ -53,24 +53,22 @@ class YgRadio<T> extends StatefulWidget with StatefulWidgetDebugMixin {
 }
 
 class _YgRadioState<T> extends State<YgRadio<T>> {
-  late final YgStatesController<YgRadioState> _statesController = YgStatesController<YgRadioState>(
-    <YgRadioState>{
-      if (!widget._enabled) YgRadioState.disabled,
-      if (widget._selected) YgRadioState.selected,
-    },
+  late final YgRadioState _state = YgRadioState(
+    disabled: !widget._enabled,
+    selected: widget._selected,
   );
 
   @override
   void didUpdateWidget(covariant YgRadio<T> oldWidget) {
     super.didUpdateWidget(oldWidget);
 
-    _statesController.update(YgRadioState.disabled, !widget._enabled);
-    _statesController.update(YgRadioState.selected, widget._selected);
+    _state.disabled.value = !widget._enabled;
+    _state.selected.value = widget._selected;
   }
 
   @override
   void dispose() {
-    _statesController.dispose();
+    _state.dispose();
     super.dispose();
   }
 
@@ -78,7 +76,7 @@ class _YgRadioState<T> extends State<YgRadio<T>> {
   Widget build(BuildContext context) {
     return YgStyleBuilder<YgRadioStyle>(
       createStyle: (YgVsync vsync) => YgRadioStyle(
-        controller: _statesController,
+        state: _state,
         vsync: vsync,
       ),
       getWatchedProperties: (YgRadioStyle style) => <Listenable>{
@@ -92,8 +90,8 @@ class _YgRadioState<T> extends State<YgRadio<T>> {
               behavior: HitTestBehavior.opaque,
               onTap: widget.onChanged == null ? null : _onTap,
               child: FocusableActionDetector(
-                onShowHoverHighlight: _onShowHoverHighlight,
-                onShowFocusHighlight: _onShowFocusHighlight,
+                onShowHoverHighlight: _state.hovered.update,
+                onShowFocusHighlight: _state.focused.update,
                 shortcuts: const <ShortcutActivator, Intent>{
                   SingleActivator(LogicalKeyboardKey.space, control: true): ActivateIntent(),
                 },
@@ -117,14 +115,6 @@ class _YgRadioState<T> extends State<YgRadio<T>> {
         );
       },
     );
-  }
-
-  void _onShowFocusHighlight(bool value) {
-    _statesController.update(YgRadioState.focused, value);
-  }
-
-  void _onShowHoverHighlight(bool value) {
-    _statesController.update(YgRadioState.hovered, value);
   }
 
   void _onTap() {

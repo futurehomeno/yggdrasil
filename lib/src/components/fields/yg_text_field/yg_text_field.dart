@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:yggdrasil/src/components/fields/enums/yg_field_state.dart';
 import 'package:yggdrasil/src/components/fields/helpers/yg_validate_helper.dart';
 import 'package:yggdrasil/yggdrasil.dart';
 
 import '../widgets/_widgets.dart';
+import '../yg_field_state.dart';
 import 'widgets/_widgets.dart';
 
 class YgTextField extends StatefulWidget with StatefulWidgetDebugMixin {
@@ -343,16 +343,14 @@ class YgTextField extends StatefulWidget with StatefulWidgetDebugMixin {
 }
 
 class _YgTextFieldState extends State<YgTextField> {
-  /// The current states of the textfield.
-  late final YgStatesController<YgFieldState> _statesController = YgStatesController<YgFieldState>(<YgFieldState>{
-    if (_controller.text.isNotEmpty == true) YgFieldState.filled,
-    if (widget.placeholder != null) YgFieldState.placeholder,
-    if (widget.suffix != null) YgFieldState.suffix,
-    if (widget.error != null) YgFieldState.error,
-    if (widget.disabled) YgFieldState.disabled,
-    YgFieldState.fromSize(widget.size),
-    YgFieldState.fromVariant(widget.variant),
-  });
+  /// The state of the field.
+  late final YgFieldState _state = YgFieldState(
+    filled: _controller.text.isNotEmpty == true,
+    placeholder: widget.placeholder != null,
+    suffix: widget.suffix != null,
+    error: widget.error != null,
+    disabled: widget.disabled,
+  );
 
   /// Whether to hide the obscured text or not.
   bool _obscureTextToggled = true;
@@ -391,19 +389,19 @@ class _YgTextFieldState extends State<YgTextField> {
       _updateFocusNode(newFocusNode);
     }
 
-    _statesController.update(YgFieldState.placeholder, widget.placeholder != null);
-    _statesController.update(YgFieldState.error, widget.error != null);
-    _statesController.update(YgFieldState.disabled, widget.disabled);
-    _statesController.update(YgFieldState.suffix, _hasSuffix);
-    _statesController.updateSize(widget.size);
-    _statesController.updateVariant(widget.variant);
+    _state.placeholder.value = widget.placeholder != null;
+    _state.error.value = widget.error != null;
+    _state.disabled.value = widget.disabled;
+    _state.suffix.value = _hasSuffix;
+    _state.size.value = widget.size;
+    _state.variant.value = widget.variant;
 
     super.didUpdateWidget(oldWidget);
   }
 
   @override
   void dispose() {
-    _statesController.dispose();
+    _state.dispose();
     _controller.removeListener(_valueUpdated);
     if (widget.controller == null) {
       _controller.dispose();
@@ -422,7 +420,7 @@ class _YgTextFieldState extends State<YgTextField> {
         variant: widget.variant,
         size: widget.size,
         error: widget.error,
-        statesController: _statesController,
+        state: _state,
         suffix: _buildSuffix(),
         onPressed: null,
         content: YgFieldContent(
@@ -438,11 +436,11 @@ class _YgTextFieldState extends State<YgTextField> {
             onChanged: widget.onChanged,
             onEditingComplete: _onEditingComplete,
             readOnly: widget.readOnly,
-            statesController: _statesController,
+            state: _state,
             textCapitalization: widget.textCapitalization,
             textInputAction: widget.textInputAction,
           ),
-          statesController: _statesController,
+          state: _state,
           label: widget.label,
           minLines: widget.minLines,
           placeholder: widget.placeholder,
@@ -456,8 +454,8 @@ class _YgTextFieldState extends State<YgTextField> {
     }
 
     return MouseRegion(
-      onEnter: (_) => _statesController.update(YgFieldState.hovered, true),
-      onExit: (_) => _statesController.update(YgFieldState.hovered, false),
+      onEnter: (_) => _state.hovered.value = true,
+      onExit: (_) => _state.hovered.value = false,
       cursor: SystemMouseCursors.text,
       child: GestureDetector(
         onTap: _handleTap,
@@ -570,12 +568,12 @@ class _YgTextFieldState extends State<YgTextField> {
 
   void _valueUpdated() {
     final bool filled = _controller.text.isNotEmpty;
-    _statesController.update(YgFieldState.filled, filled);
+    _state.filled.value = filled;
   }
 
   void _focusChanged() {
     final bool focused = _focusNode.hasFocus;
-    _statesController.update(YgFieldState.focused, focused);
+    _state.focused.value = focused;
     widget.onFocusChanged?.call(focused);
   }
 
