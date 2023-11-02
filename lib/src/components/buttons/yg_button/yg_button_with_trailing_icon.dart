@@ -22,7 +22,7 @@ class _YgButtonWithTrailingIcon extends YgButton {
     return Row(
       mainAxisSize: MainAxisSize.min,
       children: <Widget>[
-        Flexible(child: super.buildChild(context)),
+        Flexible(child: child),
         icon,
       ].withHorizontalSpacing(context.buttonTheme.iconSpacing),
     );
