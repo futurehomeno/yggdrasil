@@ -1,12 +1,11 @@
-import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:yggdrasil/src/utils/_utils.dart';
 
-mixin YgStyleBuilderMixin<W extends StatefulWidget, T extends YgState, S extends YgStyleBase<T>>
-    on TickerProviderStateMixin<W> implements YgVsync {
-  final ObserverList<VoidCallback> _listeners = ObserverList<VoidCallback>();
+/// Mixin to simplify working with [YgStyle].
+mixin YgStyleBuilderMixin<W extends StatefulWidget, S extends YgStyleBase<YgState>> on YgVsyncMixin<W>
+    implements YgVsync {
   late final S _style = createStyle();
-  late final Set<YgDynamicDrivenProperty> _watchedProperties = getWatchedProperties();
+  late final Set<Listenable> _watchedProperties = getWatchedProperties();
 
   S get style => _style;
 
@@ -14,7 +13,7 @@ mixin YgStyleBuilderMixin<W extends StatefulWidget, T extends YgState, S extends
   void initState() {
     super.initState();
 
-    for (final YgDynamicDrivenProperty property in _watchedProperties) {
+    for (final Listenable property in _watchedProperties) {
       property.addListener(_rebuild);
     }
   }
@@ -26,33 +25,26 @@ mixin YgStyleBuilderMixin<W extends StatefulWidget, T extends YgState, S extends
   @override
   void dispose() {
     _style.dispose();
-    for (final YgDynamicDrivenProperty property in _watchedProperties) {
+    for (final Listenable property in _watchedProperties) {
       property.removeListener(_rebuild);
     }
 
     super.dispose();
   }
 
-  @override
-  void didChangeDependencies() {
-    for (final VoidCallback listener in _listeners) {
-      listener();
-    }
-
-    super.didChangeDependencies();
-  }
-
-  @override
-  void addDependenciesChangedListener(VoidCallback callback) {
-    _listeners.add(callback);
-  }
-
-  @override
-  void removeDependenciesChangedListener(VoidCallback callback) {
-    _listeners.remove(callback);
-  }
-
+  /// Creates style on init.
+  ///
+  /// The style will be provided to [builder] for the lifetime of this widget.
   S createStyle();
 
-  Set<YgDynamicDrivenProperty> getWatchedProperties() => <YgDynamicDrivenProperty>{};
+  /// Optionally select properties to trigger a rebuild when changed.
+  ///
+  /// !--- Warning ---
+  /// Not the most performant way to animate properties as this will rebuild the
+  /// entire widget every type any of the watched properties is changed. Ideally
+  /// you should only use this for properties which are driven and can not be
+  /// animated. If you want to animate properties use the one of the animated
+  /// widgets, any of the build in Transition widgets, a [AnimatedBuilder] or a
+  /// [YgAnimatedBuilder] instead.
+  Set<Listenable> getWatchedProperties() => <Listenable>{};
 }

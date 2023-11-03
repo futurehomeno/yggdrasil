@@ -63,8 +63,7 @@ abstract class YgButtonBase<T extends YgButtonBaseState> extends StatefulWidget 
   T createButtonState();
 }
 
-class _YgButtonBaseState<T extends YgButtonBaseState>
-    extends StateWithYgStyle<YgButtonBase<T>, T, YgButtonBaseStyle<T>> {
+class _YgButtonBaseState<T extends YgButtonBaseState> extends StateWithYgStyle<YgButtonBase<T>, YgButtonBaseStyle<T>> {
   late final YgMaterialStatesControllerWithChangeCallback _materialController =
       YgMaterialStatesControllerWithChangeCallback(
     onStateChange: _handleMaterialStateChange,
