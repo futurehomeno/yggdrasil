@@ -77,7 +77,7 @@ workflows:
 
 
   create-custom-version:
-    name: Create custom version
+    name: Create custom version (Only VM usage)
     instance_type: mac_mini_m1
     max_build_duration: 10
     environment:
@@ -112,14 +112,17 @@ workflows:
         script: dart $CM_BUILD_DIR/cli/futurehome.dart ci cav $VERSION -uc -nsci || exit 1
 
 
-  android-release:
-    name: Android release
+  release:
+    name: Android & macOS release
     instance_type: mac_mini_m1
     max_build_duration: 30
 
     environment:
+      node: v21.1.0
+      npm: 9.6.6
       groups:
         - frontend
+        - slack
       android_signing:
         - yggdrasil_keystore
       flutter: 3.10.5
@@ -133,6 +136,15 @@ workflows:
       cancel_previous_builds: true
 
     scripts:
+      - name: Downloading flutter cli
+        script: |
+          git clone git@github.com:futurehomeno/flutter-cli.git $CM_BUILD_DIR/cli
+          cd $CM_BUILD_DIR/cli
+          flutter pub get
+
+      - name: Install appdmg
+        script: npm install -g appdmg
+
       - name: Set up local.properties
         script: echo "flutter.sdk=$HOME/programs/flutter" > "$CM_BUILD_DIR/example/android/local.properties"
 
@@ -140,14 +152,17 @@ workflows:
         working_directory: $CM_BUILD_DIR/example
         script: flutter packages pub get
 
-      - name: Build AAB with Flutter
+      - name: Build Android apk with Flutter
         working_directory: $CM_BUILD_DIR/example
         script: flutter build apk --release
 
-    artifacts:
-      - build/ios/ipa/*.ipa
-      - /tmp/xcodebuild_logs/*.log
-      - flutter_drive.log
+      - name: Build macOS with Flutter
+        working_directory: $CM_BUILD_DIR/example
+        script: flutter build macos --release
+
+      - name: Create dmg for macos build
+        working_directory: $CM_BUILD_DIR/example/installers/dmg_creator
+        script: appdmg ./config.json ./yggdrasil.dmg
 
     publishing:
       scripts:
@@ -158,8 +173,9 @@ workflows:
   
             # Change these variables accordingly
             REPO="futurehomeno/yggdrasil"
-            ARTIFACT_PATH="build/app/outputs/flutter-apk/app-release.apk"
-  
+            ANDROID_ARTIFACT_PATH="build/app/outputs/flutter-apk/app-release.apk"
+            MACOS_ARTIFACT_PATH="installers/dmg_creator/yggdrasil.dmg"
+            
             # Create a new release
             RELEASE_RESPONSE=$(
               curl --data "{
@@ -174,7 +190,7 @@ workflows:
             )
   
             echo $RELEASE_RESPONSE
-  
+
             # Extract the upload URL from the release response
             UPLOAD_URL=$(echo $RELEASE_RESPONSE | jq -r .upload_url | sed -e "s/{?name,label}//")
   
@@ -182,10 +198,90 @@ workflows:
               echo "Failed to get upload URL"
               exit 1
             fi
-  
-            # Upload the artifact
+
+            # Upload the android artifact
             curl -X POST \
               -H "Authorization: token $GITHUB_TOKEN" \
-              -H "Content-Type: $(file -b --mime-type $ARTIFACT_PATH)" \
-              --data-binary "@$ARTIFACT_PATH" \
-              "$UPLOAD_URL?name=$(basename $ARTIFACT_PATH)"
+              -H "Content-Type: $(file -b --mime-type $ANDROID_ARTIFACT_PATH)" \
+              --data-binary "@$ANDROID_ARTIFACT_PATH" \
+              "$UPLOAD_URL?name=$(basename $ANDROID_ARTIFACT_PATH)"
+            
+            # Upload the macos artifact
+            curl -X POST \
+              -H "Authorization: token $GITHUB_TOKEN" \
+              -H "Content-Type: $(file -b --mime-type $MACOS_ARTIFACT_PATH)" \
+              --data-binary "@$MACOS_ARTIFACT_PATH" \
+              "$UPLOAD_URL?name=$(basename $MACOS_ARTIFACT_PATH)"
+
+        - name: Sending message to Slack
+          script: |            
+            git clone https://futurehomeno@github.com/futurehomeno/yggdrasil temp
+            cd temp
+            
+            last_tag_before=$(git tag | grep -E '^[0-9]+\.[0-9]+\.[0-9]+\+[0-9]+$' |
+            sort -t. -k1,1n -k2,2n -k3,3n -t+ -k2,2n |
+            awk -v tag="$CM_TAG" '$0 == tag {exit} 1' |
+            tail -1)
+  
+            commit_tag=$(git rev-list -1 $last_tag_before)
+            changelog_since_tag=$(dart $CM_BUILD_DIR/cli/futurehome.dart ci gc $commit_tag)
+            
+            curl --location $YGGDRASIL_SLACK_WEBHOOK \
+            --header 'Content-Type: application/json' \
+            --data '
+              {
+                "text": "New version of Yggdrasil! ['"$CM_TAG"']\nhttps://github.com/futurehomeno/yggdrasil/releases/tag/'"$CM_TAG"'",
+                "attachments": [
+                  {
+                    "blocks": [
+                      {
+                          "type": "divider"
+                      },
+                      {
+                        "type": "section",
+                        "text": {
+                          "type": "mrkdwn",
+                          "text": "'"$changelog_since_tag"'"
+                        }
+                      },
+                      {
+                          "type": "divider"
+                      },
+                      {
+                        "type": "actions",
+                        "block_id": "actionblock",
+                        "elements": [
+                          {
+                            "type": "button",
+                            "text": {
+                              "type": "plain_text",
+                              "text": "Mac dmg :computer:"
+                            },
+                            "style": "primary",
+                            "url": "https://github.com/futurehomeno/yggdrasil/releases/download/'"$CM_TAG"'/yggdrasil.dmg"
+                          },
+                          {
+                            "type": "button",
+                            "text": {
+                              "type": "plain_text",
+                              "text": "Android apk :iphone:"
+                            },
+                            "style": "primary",
+                            "url": "https://github.com/futurehomeno/yggdrasil/releases/download/'"$CM_TAG"'/app-release.apk"
+                          },
+                          {
+                            "type": "button",
+                            "text": {
+                              "type": "plain_text",
+                              "text": "Support :technologist:"
+                            },
+                            "style": "primary",
+                            "url": "https://app.slack.com/client/T025ENQJR/D0235KBKX2B"
+                          }
+                        ]
+                      }
+                    ]
+                  }
+                ]
+              }
+            '
