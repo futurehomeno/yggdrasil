@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-/// A material states controller which notifies you about state changes.
+/// A material state which notifies you about state changes.
 class YgMaterialStatesControllerWithChangeCallback extends MaterialStatesController {
   YgMaterialStatesControllerWithChangeCallback({
     required this.onStateChange,

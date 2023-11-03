@@ -111,6 +111,7 @@ class _YgButtonBaseState<T extends YgButtonBaseState> extends State<YgButtonBase
         return YgAnimatedConstrainedBox(
           constraints: style.constraints,
           child: YgAnimatedPhysicalShape(
+            clipBehavior: Clip.antiAlias,
             color: style.color,
             elevation: style.elevation,
             shape: style.shape,

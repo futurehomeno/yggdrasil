@@ -41,7 +41,7 @@ class YgFieldDecoration extends StatelessWidget {
   /// The variant of the field.
   final YgFieldVariant variant;
 
-  /// The current states of the field.
+  /// The current state of the field.
   final YgFieldState state;
 
   /// Called when the field is pressed.

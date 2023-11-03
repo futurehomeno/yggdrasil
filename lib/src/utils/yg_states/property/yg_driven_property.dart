@@ -6,9 +6,8 @@ typedef ValueMapper<From, To> = To Function(From value);
 
 /// The result of [YgProperty.drive].
 ///
-/// Contains the result of [YgProperty.resolve] using the given
-/// [YgStatesController] in [value] and will notify its listeners when the
-/// resolved value changes.
+/// Contains the result of [YgProperty.resolve] using the given [YgState] in
+/// [value] and will notify its listeners when the resolved value changes.
 abstract class YgDrivenProperty<V> implements Listenable {
   const YgDrivenProperty();
 
@@ -64,7 +63,7 @@ class _YgDrivenProperty<T extends YgState, V> extends ValueNotifier<V> implement
     super.dispose();
   }
 
-  /// The states controller which drives this property.
+  /// The state which drives this property.
   final T _state;
 
   /// The vsync, update and context provider.

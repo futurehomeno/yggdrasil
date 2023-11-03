@@ -2,9 +2,8 @@ part of 'yg_property.dart';
 
 /// The result of [YgProperty.animate].
 ///
-/// Contains the result of [YgProperty.resolve] using the given
-/// [YgStatesController] in [value] and animates to a new value when the
-/// resolved value changes.
+/// Contains the result of [YgProperty.resolve] using the given [YgState] in
+/// [value] and animates to a new value when the resolved value changes.
 abstract class YgAnimatedProperty<V> implements Animation<V>, YgDrivenProperty<V> {
   const YgAnimatedProperty();
 
@@ -51,7 +50,7 @@ class _YgAnimatedProperty<T extends YgState, V> extends Animation<V>
   /// The tween used for interpolating between values.
   final Tween<V> _tween;
 
-  /// The states controller which is used for resolving the [_property].
+  /// The state which is used for resolving the [_property].
   final T _state;
 
   /// Provides a [BuildContext], implements [TickerProvider] and notifies about

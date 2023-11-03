@@ -36,7 +36,7 @@ class YgFieldContent extends StatefulWidget {
   /// [YgFieldState.opened].
   final String label;
 
-  /// The current states of the field.
+  /// The current state of the field.
   final YgFieldState state;
 
   /// The minium height of the value in an amount of lines.
