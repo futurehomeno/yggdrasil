@@ -11,7 +11,7 @@ part 'yg_property_resolve_with.dart';
 typedef YgStatesResolver<T extends YgState, V> = V Function(BuildContext, T);
 typedef YgStatesAllResolver<V> = V Function(BuildContext);
 
-/// A property which resolves it's value using a set of states.
+/// A property which resolves its value using a set of states.
 ///
 /// Can be animated using [animate] or using [YgStyle.animate].
 /// Can be driven using [drive] or using [YgStyle.drive].

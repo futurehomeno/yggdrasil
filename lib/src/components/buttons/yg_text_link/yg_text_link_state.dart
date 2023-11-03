@@ -14,4 +14,11 @@ class YgTextLinkState extends YgButtonBaseState {
 
   final YgStateValue<YgTextLinkWeight> weight;
   final YgStateValue<YgTextLinkSize> size;
+
+  @override
+  List<YgStateValue<Object>> get props => <YgStateValue<Object>>[
+        ...super.props,
+        weight,
+        size,
+      ];
 }

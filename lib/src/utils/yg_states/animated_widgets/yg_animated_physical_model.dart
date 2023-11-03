@@ -5,11 +5,11 @@ import 'package:yggdrasil/src/utils/yg_states/_yg_states.dart';
 class YgAnimatedPhysicalModel extends StatelessWidget {
   const YgAnimatedPhysicalModel({
     super.key,
+    required this.color,
     this.shape = BoxShape.rectangle,
     this.clipBehavior = Clip.none,
     this.borderRadius,
     this.elevation,
-    required this.color,
     this.shadowColor,
     this.child,
   });

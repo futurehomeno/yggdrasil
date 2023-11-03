@@ -16,6 +16,7 @@ class _YgTagWithTrailingIcon extends YgTag {
     required this.icon,
   });
 
+  /// The icon trailing the text of the tag.
   final YgIcon icon;
 
   @override

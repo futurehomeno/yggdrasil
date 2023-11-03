@@ -16,6 +16,7 @@ class _YgTagWithLeadingIcon extends YgTag {
     required this.icon,
   });
 
+  /// The icon leading the text of the tag.
   final YgIcon icon;
 
   @override

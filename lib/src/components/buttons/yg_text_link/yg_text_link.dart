@@ -22,9 +22,16 @@ class YgTextLink extends YgButtonBase<YgTextLinkState> {
     super.focusNode,
   });
 
+  /// Text shown in the text link button.
   final String text;
+
+  /// The side of the text link.
   final YgTextLinkSize size;
+
+  /// The weight of the text link.
   final YgTextLinkWeight weight;
+
+  /// Whether the text link links to something outside of the app.
   final bool external;
 
   @override

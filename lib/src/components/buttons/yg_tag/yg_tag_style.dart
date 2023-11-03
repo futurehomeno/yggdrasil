@@ -6,9 +6,6 @@ import '_yg_tag.dart';
 import 'yg_tag_state.dart';
 
 /// Tag style for YgTags.
-///
-/// Variation of the [ButtonStyle] to better fit [YgTags].
-/// Use [toButtonStyle] to convert to material [ButtonStyle].
 class YgTagStyle extends YgButtonBaseStyle<YgTagState> {
   YgTagStyle({
     required super.state,

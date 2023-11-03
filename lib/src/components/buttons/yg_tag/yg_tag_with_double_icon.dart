@@ -17,7 +17,10 @@ class _YgTagWithDoubleIcon extends YgTag {
     required this.trailingIcon,
   });
 
+  /// The icon leading the text of the tag.
   final YgIcon leadingIcon;
+
+  /// The icon trailing the text of the tag.
   final YgIcon trailingIcon;
 
   @override
