@@ -63,7 +63,8 @@ abstract class YgButtonBase<T extends YgButtonBaseState> extends StatefulWidget 
   T createButtonState();
 }
 
-class _YgButtonBaseState<T extends YgButtonBaseState> extends State<YgButtonBase<T>> {
+class _YgButtonBaseState<T extends YgButtonBaseState>
+    extends StateWithYgStyle<YgButtonBase<T>, T, YgButtonBaseStyle<T>> {
   late final YgMaterialStatesControllerWithChangeCallback _materialController =
       YgMaterialStatesControllerWithChangeCallback(
     onStateChange: _handleMaterialStateChange,
@@ -99,59 +100,59 @@ class _YgButtonBaseState<T extends YgButtonBaseState> extends State<YgButtonBase
   }
 
   @override
-  Widget build(BuildContext context) {
-    return YgStyleBuilder<YgButtonBaseStyle<T>>(
-      createStyle: (YgVsync vsync) => widget.createStyle(vsync, _state),
-      getWatchedProperties: (YgButtonBaseStyle<T> style) => <YgDynamicDrivenProperty>{
+  YgButtonBaseStyle<T> createStyle() => widget.createStyle(this, _state);
+
+  @override
+  Set<YgDynamicDrivenProperty> getWatchedProperties() => <YgDynamicDrivenProperty>{
         style.splashFactory,
         style.cursor,
         style.splashColor,
-      },
-      builder: (BuildContext context, YgButtonBaseStyle<T> style) {
-        return YgAnimatedConstrainedBox(
-          constraints: style.constraints,
-          child: YgAnimatedPhysicalShape(
-            clipBehavior: Clip.antiAlias,
-            color: style.color,
-            elevation: style.elevation,
-            shape: style.shape,
-            child: Material(
-              type: MaterialType.transparency,
-              child: InkWell(
-                statesController: _materialController,
-                splashFactory: style.splashFactory.value,
-                onLongPress: widget.onLongPress,
-                onTap: widget.onPressed,
-                onHover: widget.onHover,
-                onFocusChange: widget.onFocusChange,
-                autofocus: widget.autofocus,
-                focusNode: widget.focusNode,
-                canRequestFocus: widget.onPressed != null,
-                mouseCursor: style.cursor.value,
-                overlayColor: MaterialStatePropertyAll<Color>(
-                  style.splashColor.value,
-                ),
-                splashColor: Colors.transparent,
-                child: YgAnimatedPadding(
-                  padding: style.padding,
-                  child: AlignTransition(
-                    widthFactor: 1,
-                    heightFactor: 1,
-                    alignment: style.alignment,
-                    child: DefaultTextStyleTransition(
-                      style: style.textStyle,
-                      child: YgAnimatedIconTheme(
-                        iconTheme: style.iconTheme,
-                        child: widget.buildChild(context),
-                      ),
-                    ),
+      };
+
+  @override
+  Widget build(BuildContext context) {
+    return YgAnimatedConstrainedBox(
+      constraints: style.constraints,
+      child: YgAnimatedPhysicalShape(
+        clipBehavior: Clip.antiAlias,
+        color: style.color,
+        elevation: style.elevation,
+        shape: style.shape,
+        child: Material(
+          type: MaterialType.transparency,
+          child: InkWell(
+            statesController: _materialController,
+            splashFactory: style.splashFactory.value,
+            onLongPress: widget.onLongPress,
+            onTap: widget.onPressed,
+            onHover: widget.onHover,
+            onFocusChange: widget.onFocusChange,
+            autofocus: widget.autofocus,
+            focusNode: widget.focusNode,
+            canRequestFocus: widget.onPressed != null,
+            mouseCursor: style.cursor.value,
+            overlayColor: MaterialStatePropertyAll<Color>(
+              style.splashColor.value,
+            ),
+            splashColor: Colors.transparent,
+            child: YgAnimatedPadding(
+              padding: style.padding,
+              child: AlignTransition(
+                widthFactor: 1,
+                heightFactor: 1,
+                alignment: style.alignment,
+                child: DefaultTextStyleTransition(
+                  style: style.textStyle,
+                  child: YgAnimatedIconTheme(
+                    iconTheme: style.iconTheme,
+                    child: widget.buildChild(context),
                   ),
                 ),
               ),
             ),
           ),
-        );
-      },
+        ),
+      ),
     );
   }
 }
