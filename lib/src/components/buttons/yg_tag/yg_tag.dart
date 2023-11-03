@@ -9,10 +9,7 @@ part 'yg_tag_with_double_icon.dart';
 part 'yg_tag_with_leading_icon.dart';
 part 'yg_tag_with_trailing_icon.dart';
 
-/// Base class for creating all [YgTag]s.
-///
-/// Tags are based on [ButtonStyleButton] and [ButtonStyle]
-/// as the style is practically the same.
+/// The implementation of YgTag.
 class YgTag extends YgButtonBase<YgTagState> {
   const YgTag({
     super.key,
@@ -28,7 +25,7 @@ class YgTag extends YgButtonBase<YgTagState> {
     this.weight = YgTagWeight.weak,
   });
 
-  // region Leading icon
+  /// YgTag with a leading icon.
   const factory YgTag.leadingIcon({
     bool autofocus,
     required Widget child,
@@ -43,9 +40,8 @@ class YgTag extends YgButtonBase<YgTagState> {
     YgTagVariant variant,
     YgTagWeight weight,
   }) = _YgTagWithLeadingIcon;
-  // endregion Leading icon
 
-  // region Trailing icon
+  /// YgTag with a trailing icon.
   const factory YgTag.trailingIcon({
     bool autofocus,
     required Widget child,
@@ -61,9 +57,7 @@ class YgTag extends YgButtonBase<YgTagState> {
     YgTagWeight weight,
   }) = _YgTagWithTrailingIcon;
 
-  // endregion Trailing icon
-
-  // region Double icon
+  /// YgTag with a leading and trailing icon.
   const factory YgTag.doubleIcon({
     bool autofocus,
     required Widget child,
@@ -79,11 +73,17 @@ class YgTag extends YgButtonBase<YgTagState> {
     YgTagVariant variant,
     YgTagWeight weight,
   }) = _YgTagWithDoubleIcon;
-  // endregion Double icon
 
-  final YgTagVariant variant;
+  /// The size of the YgTag.
   final YgTagSize size;
+
+  /// The variant of the YgTag.
+  final YgTagVariant variant;
+
+  /// The weight of the YgTag.
   final YgTagWeight weight;
+
+  /// The child widget of the YgTag.
   final Widget child;
 
   @override
