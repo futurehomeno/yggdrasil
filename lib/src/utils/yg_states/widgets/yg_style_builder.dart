@@ -39,37 +39,32 @@ class YgStyleBuilder<S extends YgStyleBase<YgState>> extends StatefulWidget {
 
 class _YgStyleBuilderState<S extends YgStyleBase<YgState>> extends State<YgStyleBuilder<S>>
     with TickerProviderStateMixin, YgVsyncMixin {
-  S? _style;
+  late final S _style = widget.createStyle(this);
   final Set<Listenable> _subscriptions = <Listenable>{};
 
-  S _getStyle() {
-    S? style = _style;
+  @override
+  void initState() {
+    super.initState();
 
-    if (style == null) {
-      style = widget.createStyle(this);
+    final YgWatchedPropertiesGetter<S>? getWatchedProperties = widget.getWatchedProperties;
+    if (getWatchedProperties != null) {
+      _subscriptions.addAll(
+        getWatchedProperties(_style),
+      );
 
-      final YgWatchedPropertiesGetter<S>? getWatchedProperties = widget.getWatchedProperties;
-      if (getWatchedProperties != null) {
-        _subscriptions.addAll(
-          getWatchedProperties(style),
-        );
-
-        for (final Listenable subscription in _subscriptions) {
-          subscription.addListener(_rebuild);
-        }
+      for (final Listenable subscription in _subscriptions) {
+        subscription.addListener(_rebuild);
       }
     }
-
-    _style = style;
-
-    return style;
   }
 
-  void _rebuild() {}
+  void _rebuild() {
+    setState(() {});
+  }
 
   @override
   void dispose() {
-    _style?.dispose();
+    _style.dispose();
     for (final Listenable subscription in _subscriptions) {
       subscription.removeListener(_rebuild);
     }
@@ -81,7 +76,7 @@ class _YgStyleBuilderState<S extends YgStyleBase<YgState>> extends State<YgStyle
   Widget build(BuildContext context) {
     return widget.builder(
       context,
-      _getStyle(),
+      _style,
     );
   }
 }

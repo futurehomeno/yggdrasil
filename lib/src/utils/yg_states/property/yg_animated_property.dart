@@ -31,12 +31,6 @@ class _YgAnimatedProperty<T extends YgState, V> extends Animation<V>
           vsync: vsync,
           duration: duration,
           value: 1.0,
-        ),
-        _tween = property.createTween(
-          property.resolve(
-            vsync.context,
-            state,
-          ),
         ) {
     _state.addListener(_handleStateChange);
     _vsync.addDependenciesChangedListener(_handleDependenciesChange);
@@ -49,7 +43,7 @@ class _YgAnimatedProperty<T extends YgState, V> extends Animation<V>
   final AnimationController _animationController;
 
   /// The tween used for interpolating between values.
-  final Tween<V> _tween;
+  Tween<V>? _tween;
 
   /// The state which is used for resolving the [_property].
   final T _state;
@@ -82,7 +76,7 @@ class _YgAnimatedProperty<T extends YgState, V> extends Animation<V>
       return value;
     }
 
-    final V newValue = _tween.transform(
+    final V newValue = _getTween().transform(
       _curve.transform(
         _animationController.value,
       ),
@@ -90,6 +84,23 @@ class _YgAnimatedProperty<T extends YgState, V> extends Animation<V>
     _cachedValue = newValue;
 
     return newValue;
+  }
+
+  Tween<V> _getTween() {
+    Tween<V>? tween = _tween;
+
+    if (tween == null) {
+      tween = _property.createTween(
+        _property.resolve(
+          _vsync.context,
+          _state,
+        ),
+      );
+
+      _tween = tween;
+    }
+
+    return tween;
   }
 
   @override
@@ -110,29 +121,31 @@ class _YgAnimatedProperty<T extends YgState, V> extends Animation<V>
 
   void _handleStateChange() {
     final BuildContext context = _vsync.context;
+    final Tween<V> tween = _getTween();
 
     final V target = _property.resolve(
       context,
       _state,
     );
 
-    _tween.begin = _tween.evaluate(_animationController);
-    _tween.end = target;
+    tween.begin = tween.evaluate(_animationController);
+    tween.end = target;
     _animationController.forward(from: 0);
   }
 
   void _handleDependenciesChange() {
     final BuildContext context = _vsync.context;
+    final Tween<V> tween = _getTween();
 
     final V target = _property.resolve(
       context,
       _state,
     );
 
-    final bool shouldUpdate = _tween.end != target;
+    final bool shouldUpdate = tween.end != target;
 
     if (shouldUpdate) {
-      _tween.end = target;
+      tween.end = target;
 
       // We have to update the listeners because the value of one of the child
       // animations changed, even though the animation did not advance.
