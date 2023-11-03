@@ -11,7 +11,7 @@ part 'yg_property_resolve_with.dart';
 typedef YgStatesResolver<T extends YgState, V> = V Function(BuildContext, T);
 typedef YgStatesAllResolver<V> = V Function(BuildContext);
 
-/// A property which resolves its value using a set of states.
+/// A property which resolves its value using a [YgState].
 ///
 /// Can be animated using [animate] or using [YgStyle.animate].
 /// Can be driven using [drive] or using [YgStyle.drive].
@@ -30,15 +30,15 @@ abstract class YgProperty<T extends YgState, V> {
 
   /// Resolves this property using the passed [resolver].
   ///
-  /// Only resolves the property on build and dependency changes as states do
-  /// not influence the values of this property. May be useful when using
+  /// Only resolves the property on build and dependency changes as the state
+  /// does not influence the values of this property. May be useful when using
   /// [YgStyle] while having some logic that has to be applied to a theme value
   /// which you do not want to place inside the widget.
   const factory YgProperty.all(
     YgStatesAllResolver<V> resolver,
   ) = _YgPropertyResolveAll<T, V>;
 
-  /// Resolves the value for a given set of [states].
+  /// Resolves the value for a given a [YgState].
   V resolve(BuildContext context, T states);
 
   /// Creates a tween which interpolates between 2 value of type [V].
@@ -55,7 +55,7 @@ abstract class YgProperty<T extends YgState, V> {
 
   /// Animate this property.
   ///
-  /// Will resolve the value when states change and start animating to the new
+  /// Will resolve the value when state changes and starts animating to the new
   /// value if the value has changed.
   YgDisposableAnimatedProperty<V> animate({
     required T state,
@@ -74,10 +74,10 @@ abstract class YgProperty<T extends YgState, V> {
 
   /// Drive this property.
   ///
-  /// Will resolve the value when states change. Does not animate this property,
-  /// but creates a [YgDrivenProperty] which notifies you about when the value
-  /// of this property changes. Use this when you have a value which depends on
-  /// states but can no be animated, for example, a [MouseCursor].
+  /// Will resolve the value when the state changes. Does not animate this
+  /// property, but creates a [YgDrivenProperty] which notifies you about when
+  /// the value of this property changes. Use this when you have a value which
+  /// depends on the state but can not be animated, for example, a [MouseCursor].
   YgDisposableDrivenProperty<V> drive({
     required T state,
     required YgVsync vsync,

@@ -72,7 +72,7 @@ class _YgDrivenProperty<T extends YgState, V> extends ValueNotifier<V> implement
   /// The parent property.
   final YgProperty<T, V> _property;
 
-  /// Whether the property will resolve to the same value no matter the states.
+  /// Whether the property will resolve to the same value no matter the state.
   final bool _usesStates;
 
   void _handleChange() {
