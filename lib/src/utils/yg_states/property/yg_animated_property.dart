@@ -40,6 +40,7 @@ class _YgAnimatedProperty<T extends YgState, V> extends Animation<V>
         ) {
     _state.addListener(_handleStateChange);
     _vsync.addDependenciesChangedListener(_handleDependenciesChange);
+    _animationController.addListener(_handleAnimationTick);
   }
 
   /// Internal animation controller
@@ -65,20 +66,39 @@ class _YgAnimatedProperty<T extends YgState, V> extends Animation<V>
   /// Gets used to resolve the value of this animated property.
   final YgProperty<T, V> _property;
 
+  /// The current cached value.
+  ///
+  /// Gets cleared whenever the animation updates. Gets set whenever the value
+  /// is requested, if the value is never requested it will never be evaluated.
+  V? _cachedValue;
+
   @override
   Animation<double> get parent => _animationController;
 
   @override
-  V get value => _tween.transform(
-        _curve.transform(
-          _animationController.value,
-        ),
-      );
+  V get value {
+    final V? value = _cachedValue;
+
+    if (value != null) {
+      return value;
+    }
+
+    final V newValue = _tween.transform(
+      _curve.transform(
+        _animationController.value,
+      ),
+    );
+
+    _cachedValue = newValue;
+
+    return newValue;
+  }
 
   @override
   void dispose() {
     _state.removeListener(_handleStateChange);
     _vsync.removeDependenciesChangedListener(_handleDependenciesChange);
+    _animationController.removeListener(_handleAnimationTick);
     _animationController.dispose();
   }
 
@@ -121,6 +141,10 @@ class _YgAnimatedProperty<T extends YgState, V> extends Animation<V>
       // ignore: invalid_use_of_protected_member
       _animationController.notifyListeners();
     }
+  }
+
+  void _handleAnimationTick() {
+    _cachedValue = null;
   }
 }
 
