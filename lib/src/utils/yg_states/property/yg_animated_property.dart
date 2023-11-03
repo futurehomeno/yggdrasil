@@ -78,7 +78,6 @@ class _YgAnimatedProperty<T extends YgState, V> extends Animation<V>
   @override
   V get value {
     final V? value = _cachedValue;
-
     if (value != null) {
       return value;
     }
@@ -88,7 +87,6 @@ class _YgAnimatedProperty<T extends YgState, V> extends Animation<V>
         _animationController.value,
       ),
     );
-
     _cachedValue = newValue;
 
     return newValue;

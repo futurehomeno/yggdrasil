@@ -32,7 +32,7 @@ abstract class YgDisposableDrivenProperty<V> extends YgDrivenProperty<V> {
   void dispose();
 }
 
-class _YgDrivenProperty<T extends YgState, V> extends ValueNotifier<V> implements YgDisposableDrivenProperty<V> {
+class _YgDrivenProperty<T extends YgState, V> extends ChangeNotifier implements YgDisposableDrivenProperty<V> {
   _YgDrivenProperty({
     required T state,
     required YgVsync vsync,
@@ -40,13 +40,7 @@ class _YgDrivenProperty<T extends YgState, V> extends ValueNotifier<V> implement
   })  : _property = property,
         _vsync = vsync,
         _state = state,
-        _usesStates = property is! YgPropertyResolveAllMixin<T, V>,
-        super(
-          property.resolve(
-            vsync.context,
-            state,
-          ),
-        ) {
+        _usesStates = property is! YgPropertyResolveAllMixin<T, V> {
     if (_usesStates) {
       _state.addListener(_handleChange);
     }
@@ -75,21 +69,39 @@ class _YgDrivenProperty<T extends YgState, V> extends ValueNotifier<V> implement
   /// Whether the property will resolve to the same value no matter the state.
   final bool _usesStates;
 
-  void _handleChange() {
-    final BuildContext context = _vsync.context;
-
-    value = _property.resolve(
-      context,
-      _state,
-    );
-  }
-
   @override
   YgDrivenProperty<R> map<R>(ValueMapper<V, R> mapper) {
     return _YgMappedDrivenProperty<V, R>(
       mapper: mapper,
       parent: this,
     );
+  }
+
+  /// The current cached value.
+  ///
+  /// Gets cleared whenever the state updates. Gets set whenever the value is
+  /// requested, if the value is never requested it will never be evaluated.
+  V? _cachedValue;
+
+  @override
+  V get value {
+    final V? value = _cachedValue;
+    if (value != null) {
+      return value;
+    }
+
+    final V newValue = _property.resolve(
+      _vsync.context,
+      _state,
+    );
+    _cachedValue = newValue;
+
+    return newValue;
+  }
+
+  void _handleChange() {
+    _cachedValue = null;
+    notifyListeners();
   }
 }
 
