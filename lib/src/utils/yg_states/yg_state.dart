@@ -2,6 +2,12 @@ import 'package:flutter/material.dart';
 
 import 'yg_state_value.dart';
 
+/// A base class for every Yggdrasil widget which has to maintain its own state.
+///
+/// [props] has to be overwritten and has to return a list with every
+/// [YgStateValue]. This ensures you can listen to just the state when you want
+/// to know about any single state change. Also automatically disposes of the
+/// properties when the state gets disposed.
 abstract class YgState extends ChangeNotifier {
   YgState() {
     for (final YgStateValue<Object> prop in props) {
