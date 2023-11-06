@@ -51,21 +51,18 @@ class YgFieldContent extends StatefulWidget {
   State<YgFieldContent> createState() => _YgFieldContentState();
 }
 
-class _YgFieldContentState extends State<YgFieldContent> with TickerProviderStateMixin, YgVsyncMixin {
+class _YgFieldContentState extends StateWithYgStyle<YgFieldContent, YgFieldContentStyle> {
   final UniqueKey _valueKey = UniqueKey();
   final UniqueKey _placeholderKey = UniqueKey();
   final UniqueKey _labelKey = UniqueKey();
 
-  late final YgFieldContentStyle _style = YgFieldContentStyle(
-    floatLabelOnFocus: widget.floatLabelOnFocus,
-    state: widget.state,
-    vsync: this,
-  );
-
   @override
-  void dispose() {
-    _style.dispose();
-    super.dispose();
+  YgFieldContentStyle createStyle() {
+    return YgFieldContentStyle(
+      floatLabelOnFocus: widget.floatLabelOnFocus,
+      state: widget.state,
+      vsync: this,
+    );
   }
 
   @override
@@ -74,7 +71,7 @@ class _YgFieldContentState extends State<YgFieldContent> with TickerProviderStat
       animation: widget.state.filled,
       builder: (BuildContext context, Widget? child) {
         final String? placeholder = widget.placeholder;
-        final double labelFloatingHeight = _style.labelFloatingHeight;
+        final double labelFloatingHeight = style.labelFloatingHeight;
         final YgFieldState state = widget.state;
 
         return Stack(
@@ -84,7 +81,7 @@ class _YgFieldContentState extends State<YgFieldContent> with TickerProviderStat
                 key: _placeholderKey,
                 padding: EdgeInsets.only(top: labelFloatingHeight),
                 child: DefaultTextStyleTransition(
-                  style: _style.placeholderTextStyle,
+                  style: style.placeholderTextStyle,
                   child: Text(
                     placeholder,
                     maxLines: widget.minLines ?? 1,
@@ -96,15 +93,15 @@ class _YgFieldContentState extends State<YgFieldContent> with TickerProviderStat
               key: _valueKey,
               padding: EdgeInsets.only(top: labelFloatingHeight),
               child: DefaultTextStyleTransition(
-                style: _style.valueTextStyle,
+                style: style.valueTextStyle,
                 child: widget.value,
               ),
             ),
             SlideTransition(
               key: _labelKey,
-              position: _style.labelOffset,
+              position: style.labelOffset,
               child: DefaultTextStyleTransition(
-                style: _style.labelTextStyle,
+                style: style.labelTextStyle,
                 child: Text(
                   widget.label,
                 ),
