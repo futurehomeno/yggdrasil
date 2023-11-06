@@ -99,14 +99,21 @@ class _YgButtonBaseState<T extends YgButtonBaseState> extends StateWithYgStyle<Y
   }
 
   @override
-  YgButtonBaseStyle<T> createStyle() => widget.createStyle(this, _state);
+  YgButtonBaseStyle<T> createStyle() {
+    return widget.createStyle(
+      this,
+      _state,
+    );
+  }
 
   @override
-  Set<YgDynamicDrivenProperty> getWatchedProperties() => <YgDynamicDrivenProperty>{
-        style.splashFactory,
-        style.cursor,
-        style.splashColor,
-      };
+  Set<YgDynamicDrivenProperty> getWatchedProperties() {
+    return <YgDynamicDrivenProperty>{
+      style.splashFactory,
+      style.cursor,
+      style.splashColor,
+    };
+  }
 
   @override
   Widget build(BuildContext context) {
