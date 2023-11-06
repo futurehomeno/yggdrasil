@@ -10,7 +10,6 @@ class YgFieldDecorationStyle extends YgStyleWithDefaults<YgFieldState> {
     required super.vsync,
   });
 
-  late final YgAnimatedBorderProperty border;
   late final YgAnimatedColorProperty backgroundColor;
   late final YgAnimatedEdgeInsetsProperty childPadding;
   late final YgAnimatedEdgeInsetsProperty suffixPadding;
@@ -19,7 +18,6 @@ class YgFieldDecorationStyle extends YgStyleWithDefaults<YgFieldState> {
 
   @override
   void init() {
-    border = animate(YgBorderProperty<YgFieldState>.resolveWith(_resolveBorder));
     childPadding = animate(YgEdgeInsetsProperty<YgFieldState>.resolveWith(_resolveChildPadding));
     borderRadius = animate(YgBorderRadiusProperty<YgFieldState>.resolveWith(_resolveBorderRadius));
     suffixPadding = animate(YgEdgeInsetsProperty<YgFieldState>.resolveWith(_resolveSuffixPadding));
@@ -50,7 +48,7 @@ class YgFieldDecorationStyle extends YgStyleWithDefaults<YgFieldState> {
         ),
     };
 
-    final EdgeInsets base = switch (variant) {
+    final EdgeInsets basePadding = switch (variant) {
       YgFieldVariant.outlined => switch (size) {
           YgFieldSize.large => _theme.largeOutlinedContentPadding,
           YgFieldSize.medium => _theme.mediumOutlinedContentPadding,
@@ -62,10 +60,10 @@ class YgFieldDecorationStyle extends YgStyleWithDefaults<YgFieldState> {
     };
 
     if (state.suffix.value) {
-      return base + borderPadding;
+      return basePadding + borderPadding;
     }
 
-    return base.copyWith(
+    return basePadding.copyWith(
           right: 0,
         ) +
         borderPadding;
@@ -78,28 +76,6 @@ class YgFieldDecorationStyle extends YgStyleWithDefaults<YgFieldState> {
       case YgFieldVariant.standard:
         return _theme.borderRadiusDefault;
     }
-  }
-
-  Border _resolveBorder(BuildContext context, YgFieldState state) {
-    Border base = _theme.borderDefault;
-
-    if (state.disabled.value) {
-      base = _theme.borderDisabled;
-    } else if (state.error.value) {
-      base = _theme.borderError;
-    } else if (state.focused.value || state.opened.value) {
-      base = _theme.borderFocus;
-    } else if (state.hovered.value) {
-      base = _theme.borderHover;
-    }
-
-    if (state.variant.value == YgFieldVariant.outlined) {
-      return base;
-    }
-
-    return Border(
-      bottom: base.bottom,
-    );
   }
 
   Color _resolveBackgroundColor(BuildContext context, YgFieldState state) {
@@ -118,22 +94,22 @@ class YgFieldDecorationStyle extends YgStyleWithDefaults<YgFieldState> {
   }
 
   BoxDecoration _resolveBoxDecoration(BuildContext context, YgFieldState state) {
-    Border base = _theme.borderDefault;
+    Border border = _theme.borderDefault;
 
     if (state.disabled.value) {
-      base = _theme.borderDisabled;
+      border = _theme.borderDisabled;
     } else if (state.error.value) {
-      base = _theme.borderError;
+      border = _theme.borderError;
     } else if (state.focused.value || state.opened.value) {
-      base = _theme.borderFocus;
+      border = _theme.borderFocus;
     } else if (state.hovered.value) {
-      base = _theme.borderHover;
+      border = _theme.borderHover;
     }
 
     return BoxDecoration(
       border: switch (state.variant.value) {
-        YgFieldVariant.outlined => base,
-        YgFieldVariant.standard => Border(bottom: base.bottom),
+        YgFieldVariant.outlined => border,
+        YgFieldVariant.standard => Border(bottom: border.bottom),
       },
       borderRadius: switch (state.variant.value) {
         YgFieldVariant.outlined => _theme.borderRadiusOutlined,
