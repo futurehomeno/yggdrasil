@@ -85,6 +85,10 @@ class _YgDrivenProperty<T extends YgState, V> extends ChangeNotifier implements 
 
   @override
   V get value {
+    // When first getting the _cachedValue it should be null because we do not
+    // want to resolve the value before it is requested, as this would mean the
+    // resolve is called before first build, at which point we can not get the
+    // theme yet.
     final V? value = _cachedValue;
     if (value != null) {
       return value;
@@ -100,8 +104,15 @@ class _YgDrivenProperty<T extends YgState, V> extends ChangeNotifier implements 
   }
 
   void _handleChange() {
-    _cachedValue = null;
-    notifyListeners();
+    final V newValue = _property.resolve(
+      _vsync.context,
+      _state,
+    );
+
+    if (_cachedValue != newValue) {
+      _cachedValue = newValue;
+      notifyListeners();
+    }
   }
 }
 

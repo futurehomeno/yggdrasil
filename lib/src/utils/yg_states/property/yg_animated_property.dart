@@ -128,9 +128,11 @@ class _YgAnimatedProperty<T extends YgState, V> extends Animation<V>
       _state,
     );
 
-    tween.begin = tween.evaluate(_animationController);
-    tween.end = target;
-    _animationController.forward(from: 0);
+    if (tween.end != target) {
+      tween.begin = tween.evaluate(_animationController);
+      tween.end = target;
+      _animationController.forward(from: 0);
+    }
   }
 
   void _handleDependenciesChange() {
