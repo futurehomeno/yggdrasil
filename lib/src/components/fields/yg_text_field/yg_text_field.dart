@@ -567,8 +567,7 @@ class _YgTextFieldState extends State<YgTextField> {
       );
 
   void _valueUpdated() {
-    final bool filled = _controller.text.isNotEmpty;
-    _state.filled.value = filled;
+    _state.filled.value = _controller.text.isNotEmpty;
   }
 
   void _focusChanged() {
