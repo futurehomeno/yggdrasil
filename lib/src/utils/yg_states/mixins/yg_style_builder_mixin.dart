@@ -4,10 +4,20 @@ import 'package:yggdrasil/src/utils/_utils.dart';
 /// Mixin to simplify working with [YgStyle].
 mixin YgStyleBuilderMixin<W extends StatefulWidget, S extends YgStyleBase<YgState>> on YgVsyncMixin<W>
     implements YgVsync {
-  late final S _style = createStyle();
-  late final Set<Listenable> _watchedProperties = getWatchedProperties();
+  late final Set<Listenable> _watchedProperties = <Listenable>{};
+  S? _style;
 
-  S get style => _style;
+  S get style {
+    S? style = _style;
+    if (style != null) {
+      return style;
+    }
+
+    style = createStyle();
+    _style = style;
+
+    return style;
+  }
 
   @override
   void initState() {
@@ -16,6 +26,10 @@ mixin YgStyleBuilderMixin<W extends StatefulWidget, S extends YgStyleBase<YgStat
     for (final Listenable property in _watchedProperties) {
       property.addListener(_rebuild);
     }
+
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+      _watchedProperties.addAll(getWatchedProperties());
+    });
   }
 
   void _rebuild() {
@@ -24,7 +38,7 @@ mixin YgStyleBuilderMixin<W extends StatefulWidget, S extends YgStyleBase<YgStat
 
   @override
   void dispose() {
-    _style.dispose();
+    style.dispose();
     for (final Listenable property in _watchedProperties) {
       property.removeListener(_rebuild);
     }
