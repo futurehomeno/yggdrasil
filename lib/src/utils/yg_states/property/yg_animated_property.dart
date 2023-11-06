@@ -144,9 +144,7 @@ class _YgAnimatedProperty<T extends YgState, V> extends Animation<V>
       _state,
     );
 
-    final bool shouldUpdate = tween.end != target;
-
-    if (shouldUpdate) {
+    if (tween.end != target) {
       tween.end = target;
 
       // We have to update the listeners because the value of one of the child
