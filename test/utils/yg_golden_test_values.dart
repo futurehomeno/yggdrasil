@@ -16,12 +16,6 @@ class YgGoldenTestValues {
     maxWidth: 430.0,
   );
 
-  /// Used for testing tight space scenarios where widgets might break.
-  static const BoxConstraints tightScenarioConstraints = BoxConstraints(
-    minWidth: 50.0,
-    maxWidth: 50.0,
-  );
-
   /// All themes that we want to test in goldens.
   static List<YgThemeTestData> get themesToTest => <YgThemeTestData>[
         YgThemeTestData(

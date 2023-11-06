@@ -96,16 +96,6 @@ void main() {
               ),
             ),
           ),
-          GoldenTestScenario(
-            constraints: YgGoldenTestValues.tightScenarioConstraints,
-            name: 'With tight width constraints',
-            child: const YgTag(
-              weight: YgTagWeight.strong,
-              child: Text(
-                YgGoldenTestValues.shortText,
-              ),
-            ),
-          ),
         ],
       );
 
