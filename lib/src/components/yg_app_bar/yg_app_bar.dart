@@ -1,3 +1,5 @@
+// ignore_for_file: deprecated_member_use_from_same_package
+
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 import 'package:yggdrasil/src/theme/_theme.dart';
@@ -62,6 +64,7 @@ class YgAppBar extends StatefulWidget implements PreferredSizeWidget {
   ///
   /// Its height will be the same as the app bar's overall height.
   /// Used when making sliver app bars, see [YgSliverAppBar].
+  @Deprecated('Do not use this.')
   final Widget? flexibleSpace;
 
   /// The height of the toolbar component of the app bar.
@@ -149,12 +152,13 @@ class _YgAppBarState extends State<YgAppBar> {
       leading: leading,
       middle: title,
       trailing: actions,
-      centerMiddle: widget.centerTitle || _getLeading() == null,
+      centerMiddle: widget.centerTitle || leading == null,
       middleSpacing: theme.titleSpacing,
     );
 
     // Ensure that the toolbar is positioned correctly when
     // using flexible space.
+    // TODO(bjhandeland): Disable when flex is not there.
     Widget appBar = CustomSingleChildLayout(
       delegate: _ToolbarContainerLayout(theme.toolbarHeight),
       child: toolbar,
@@ -242,6 +246,8 @@ class _YgAppBarState extends State<YgAppBar> {
       }
     }
 
+    // If no leading can be determine from automaticallyImplyLeading,
+    // use the provided leading.
     if (leading == null && widget.leading != null) {
       leading = widget.leading;
     }
