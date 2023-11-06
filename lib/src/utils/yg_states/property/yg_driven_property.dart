@@ -50,7 +50,7 @@ class _YgDrivenProperty<T extends YgState, V> extends ChangeNotifier implements 
   @override
   void dispose() {
     if (_usesStates) {
-      _state.addListener(_handleChange);
+      _state.removeListener(_handleChange);
     }
     _state.removeListener(_handleChange);
     _vsync.removeDependenciesChangedListener(_handleChange);
