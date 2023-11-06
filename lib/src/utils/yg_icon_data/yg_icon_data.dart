@@ -14,4 +14,7 @@ class YgIconData {
 
   /// The path to the icon.
   final String path;
+
+  @override
+  String toString() => 'YgIconData(name: $name, path: $path)';
 }

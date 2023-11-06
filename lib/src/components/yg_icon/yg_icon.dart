@@ -175,8 +175,7 @@ class YgIcon extends StatelessWidget with StatelessWidgetDebugMixin {
   @override
   void debugFillProperties(DiagnosticPropertiesBuilder properties) {
     super.debugFillProperties(properties);
-    properties.add(StringProperty('iconName', iconData?.name, defaultValue: null));
-    properties.add(StringProperty('iconPath', iconData?.path, defaultValue: null));
+    properties.add(StringProperty('iconData', iconData?.toString(), defaultValue: null));
     properties.add(EnumProperty<YgIconSize>('size', size, defaultValue: null));
     properties.add(ColorProperty('color', color, defaultValue: null));
     properties.add(StringProperty('semanticLabel', semanticLabel, defaultValue: null));
