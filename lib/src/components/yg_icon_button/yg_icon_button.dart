@@ -5,12 +5,13 @@ import 'yg_icon_button_style.dart';
 
 /// Base class for creating all YgIconButtons.
 class YgIconButton extends ButtonStyleButton with StatefulWidgetDebugMixin {
-  const YgIconButton({
+  YgIconButton({
     super.key,
-    required YgIcon child,
+    required YgColorableIconData colorableIconData,
     required super.onPressed,
     this.size = YgIconButtonSize.medium,
     this.variant = YgIconButtonVariant.standard,
+    this.iconColor,
     super.autofocus = false,
     super.clipBehavior = Clip.none,
     super.focusNode,
@@ -19,10 +20,16 @@ class YgIconButton extends ButtonStyleButton with StatefulWidgetDebugMixin {
     super.onLongPress,
     super.statesController,
     super.style,
-  }) : super(child: child);
+  }) : super(
+          child: YgIcon(
+            colorableIconData,
+            color: iconColor,
+          ),
+        );
 
   final YgIconButtonVariant variant;
   final YgIconButtonSize size;
+  final Color? iconColor;
 
   @override
   ButtonStyle defaultStyleOf(BuildContext context) {

@@ -16,6 +16,7 @@ class YgToggleButton extends StatefulWidget with StatefulWidgetDebugMixin {
     required this.onChanged,
     this.size = YgToggleButtonSize.medium,
     this.icon,
+    this.iconColor,
   });
 
   const YgToggleButton.onlyIcon({
@@ -24,6 +25,7 @@ class YgToggleButton extends StatefulWidget with StatefulWidgetDebugMixin {
     required this.value,
     required this.onChanged,
     this.size = YgToggleButtonSize.medium,
+    this.iconColor,
   }) : text = null;
 
   /// The current value of the button.
@@ -40,6 +42,9 @@ class YgToggleButton extends StatefulWidget with StatefulWidgetDebugMixin {
 
   /// Icon to show in the button.
   final YgColorableIconData? icon;
+
+  /// Color of the icon.
+  final Color? iconColor;
 
   /// Text to show in the button.
   final String? text;

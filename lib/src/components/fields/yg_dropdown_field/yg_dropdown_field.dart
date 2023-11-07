@@ -287,9 +287,7 @@ abstract class YgDropdownFieldState<T extends Object, W extends YgDropdownField<
           child: YgIconButton(
             onPressed: widget.disabled ? null : _controller.open,
             size: YgIconButtonSize.small,
-            child: const YgIcon(
-              YgIcons.caretDown,
-            ),
+            colorableIconData: YgIcons.caretDown,
           ),
         ),
         content: YgFieldTextContent(

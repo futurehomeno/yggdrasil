@@ -145,7 +145,7 @@ class YgListTile extends StatelessWidget with StatelessWidgetDebugMixin {
     return YgIconButton(
       onPressed: onInfoTap,
       size: YgIconButtonSize.small,
-      child: const YgIcon(YgIcons.info),
+      colorableIconData: YgIcons.info,
     );
   }
 

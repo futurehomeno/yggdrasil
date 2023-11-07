@@ -224,7 +224,7 @@ class YgTextField extends StatefulWidget with StatefulWidgetDebugMixin {
   ///
   /// !--- IMPORTANT ---
   /// If [suffix] is defined [onSuffixPressed] also has to be defined.
-  final YgIcon? suffix;
+  final YgColorableIconData? suffix;
 
   /// Whether the text field is disabled.
   ///
@@ -504,14 +504,12 @@ class _YgTextFieldState extends State<YgTextField> {
   }
 
   Widget? _buildSuffix() {
-    YgIcon? suffix = widget.suffix;
+    YgColorableIconData? suffix = widget.suffix;
 
     final bool renderShowObscureTextIcon = suffix == null && widget.obscureText && widget.showObscureTextButton;
 
     if (renderShowObscureTextIcon) {
-      suffix = YgIcon(
-        _suffixIcon,
-      );
+      suffix = _suffixIcon;
     }
 
     if (suffix != null) {
@@ -527,7 +525,7 @@ class _YgTextFieldState extends State<YgTextField> {
                   widget.onSuffixPressed?.call();
                 }
               },
-        child: suffix,
+        colorableIconData: suffix,
       );
     }
 

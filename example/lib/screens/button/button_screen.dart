@@ -85,12 +85,12 @@ class ButtonScreen extends StatelessWidget {
             subtitle: 'Spacing between buttons added manually.',
             children: <Widget>[
               YgButton.leadingIcon(
-                icon: const YgIcon(YgIcons.info),
+                colorableIconData: YgIcons.info,
                 onPressed: () {},
                 child: const Text('Leading icon'),
               ),
               YgButton.trailingIcon(
-                icon: const YgIcon(YgIcons.info),
+                colorableIconData: YgIcons.info,
                 onPressed: () {},
                 child: const Text('Trailing icon'),
               ),
@@ -101,37 +101,14 @@ class ButtonScreen extends StatelessWidget {
             subtitle: 'Spacing between buttons added manually.',
             children: <Widget>[
               YgButton.trailingIcon(
-                icon: const YgIcon(YgIcons.check),
+                colorableIconData: YgIcons.check,
                 onPressed: () {},
                 child: const Text('Enabled'),
               ),
               YgButton.trailingIcon(
-                icon: const YgIcon(YgIcons.cross),
+                colorableIconData: YgIcons.cross,
                 onPressed: null,
                 child: const Text('Disabled'),
-              ),
-            ].withVerticalSpacing(10.0),
-          ),
-          YgSection.column(
-            title: 'Icon color variations',
-            subtitle: 'Spacing between buttons added manually.',
-            children: <Widget>[
-              YgButton.leadingIcon(
-                icon: const YgIcon.embeddedColor(YgIcons.deviceHubColorful),
-                onPressed: () {},
-                child: const Text('Default icon color'),
-              ),
-              YgButton.leadingIcon(
-                variant: YgButtonVariant.link,
-                icon: const YgIcon(YgIcons.info),
-                onPressed: () {},
-                child: const Text('Link icon color'),
-              ),
-              YgButton.leadingIcon(
-                variant: YgButtonVariant.text,
-                icon: const YgIcon(YgIcons.info),
-                onPressed: () {},
-                child: const Text('Text icon color'),
               ),
             ].withVerticalSpacing(10.0),
           ),
