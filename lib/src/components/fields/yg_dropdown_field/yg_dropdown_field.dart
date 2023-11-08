@@ -1,7 +1,6 @@
 import 'dart:io';
 
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
 import 'package:yggdrasil/src/theme/_theme.dart';
 import 'package:yggdrasil/yggdrasil.dart';
 
@@ -273,56 +272,49 @@ abstract class YgDropdownFieldState<T extends Object, W extends YgDropdownField<
   Widget build(BuildContext context) {
     final YgFieldTheme theme = context.fieldTheme;
 
-    final Widget layout = RepaintBoundary(
-      child: YgFieldDecoration(
-        variant: widget.variant,
-        size: widget.size,
-        error: widget.error,
-        states: _states,
-        onPressed: widget.disabled ? null : _controller.open,
-        suffix: AnimatedRotation(
-          duration: theme.animationDuration,
-          curve: theme.animationCurve,
-          turns: _states.opened ? 0.5 : 0,
-          child: YgIconButton(
-            onPressed: widget.disabled ? null : _controller.open,
-            size: YgIconButtonSize.small,
-            child: const YgIcon(
-              YgIcons.caretDown,
-            ),
+    return YgFieldDecoration(
+      variant: widget.variant,
+      size: widget.size,
+      error: widget.error,
+      states: _states,
+      builder: (BuildContext context, Widget child) {
+        if (widget.disabled) {
+          return child;
+        }
+
+        return InkWell(
+          onFocusChange: _onFocusChanged,
+          onHover: (bool hovered) => _updateFieldStateAndRebuild(
+            FieldState.hovered,
+            hovered,
           ),
-        ),
-        content: YgFieldTextContent(
-          value: ListenableBuilder(
-            listenable: _controller,
-            builder: _buildText,
+          onTap: _controller.open,
+          focusNode: _focusNode,
+          focusColor: Colors.transparent,
+          child: child,
+        );
+      },
+      suffix: AnimatedRotation(
+        duration: theme.animationDuration,
+        curve: theme.animationCurve,
+        turns: _states.opened ? 0.5 : 0,
+        child: YgIconButton(
+          onPressed: widget.disabled ? null : _controller.open,
+          size: YgIconButtonSize.small,
+          child: const YgIcon(
+            YgIcons.caretDown,
           ),
-          states: _states.without(FieldState.focused),
-          label: widget.label,
-          minLines: widget.minLines,
-          placeholder: widget.placeholder,
         ),
       ),
-    );
-
-    if (widget.disabled) {
-      return layout;
-    }
-
-    return FocusableActionDetector(
-      mouseCursor: SystemMouseCursors.click,
-      focusNode: _focusNode,
-      onFocusChange: _onFocusChanged,
-      onShowHoverHighlight: (bool hovered) => _updateFieldStateAndRebuild(FieldState.hovered, hovered),
-      shortcuts: const <ShortcutActivator, Intent>{
-        SingleActivator(LogicalKeyboardKey.space, control: false): ActivateIntent(),
-      },
-      actions: <Type, Action<Intent>>{
-        ActivateIntent: CallbackAction<Intent>(onInvoke: (_) => open()),
-      },
-      child: GestureDetector(
-        onTap: open,
-        child: layout,
+      content: YgFieldTextContent(
+        value: ListenableBuilder(
+          listenable: _controller,
+          builder: _buildText,
+        ),
+        states: _states.without(FieldState.focused),
+        label: widget.label,
+        minLines: widget.minLines,
+        placeholder: widget.placeholder,
       ),
     );
   }

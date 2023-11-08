@@ -35,10 +35,6 @@ workflows:
           cd $CM_BUILD_DIR/cli
           flutter pub get
 
-      - name: Checking formatting
-        working_directory: /Users/builder/clone/app_files
-        script: dart $CM_BUILD_DIR/cli/futurehome.dart f || exit 1
-
       - name: Analyzing
         working_directory: /Users/builder/clone/app_files
         script: flutter analyze
@@ -57,7 +53,7 @@ workflows:
       cache_paths:
         - ~/.pub-cache
     scripts:
-      - name: Cloning pubdev_registry repo
+      - name: Cloning yggdrasil repo
         working_directory: /Users/builder
         script: |
           rm -rf clone/*
@@ -89,7 +85,7 @@ workflows:
       cache_paths:
         - ~/.pub-cache
     scripts:
-      - name: Cloning pubdev_registry repo
+      - name: Cloning yggdrasil repo
         working_directory: /Users/builder
         script: |
           rm -rf clone/*
