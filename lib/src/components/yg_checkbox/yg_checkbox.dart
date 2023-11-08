@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
 import 'package:yggdrasil/src/theme/_theme.dart';
 import 'package:yggdrasil/src/utils/_utils.dart';
 
@@ -114,42 +113,34 @@ class _YgCheckboxState extends State<YgCheckbox> {
     return RepaintBoundary(
       child: Semantics(
         checked: widget._selected,
-        child: GestureDetector(
+        child: YgFocusableActionDetector(
           behavior: HitTestBehavior.opaque,
-          onTap: widget.onChanged == null ? null : _onTap,
-          child: FocusableActionDetector(
-            onShowHoverHighlight: _onShowHoverHighlight,
-            onShowFocusHighlight: _onShowFocusHighlight,
-            shortcuts: const <ShortcutActivator, Intent>{
-              SingleActivator(LogicalKeyboardKey.space, control: true): ActivateIntent(),
-            },
-            actions: <Type, Action<Intent>>{
-              ActivateIntent: CallbackAction<Intent>(onInvoke: (_) => _onTap()),
-            },
-            mouseCursor: resolvedMouseCursor,
-            enabled: widget._enabled,
-            child: Center(
-              child: Padding(
-                padding: EdgeInsets.all(checkboxTheme.padding),
-                child: AnimatedContainer(
+          onActivate: _onTap,
+          onHoverChanged: _onShowHoverHighlight,
+          onFocusChanged: _onShowFocusHighlight,
+          mouseCursor: resolvedMouseCursor,
+          enabled: widget._enabled,
+          child: Center(
+            child: Padding(
+              padding: EdgeInsets.all(checkboxTheme.padding),
+              child: AnimatedContainer(
+                duration: checkboxTheme.animationDuration,
+                curve: checkboxTheme.animationCurve,
+                width: checkboxTheme.size,
+                height: checkboxTheme.size,
+                decoration: BoxDecoration(
+                  color: widget.value == null ? checkboxTheme.selectedFillColor : resolvedFillColor,
+                  borderRadius: const BorderRadius.all(Radius.circular(5.0)),
+                  border: Border.fromBorderSide(BorderSide(
+                    width: 2.0,
+                    color: resolvedBorderColor ?? Colors.transparent,
+                  )),
+                ),
+                child: AnimatedSwitcher(
                   duration: checkboxTheme.animationDuration,
-                  curve: checkboxTheme.animationCurve,
-                  width: checkboxTheme.size,
-                  height: checkboxTheme.size,
-                  decoration: BoxDecoration(
-                    color: widget.value == null ? checkboxTheme.selectedFillColor : resolvedFillColor,
-                    borderRadius: const BorderRadius.all(Radius.circular(5.0)),
-                    border: Border.fromBorderSide(BorderSide(
-                      width: 2.0,
-                      color: resolvedBorderColor ?? Colors.transparent,
-                    )),
-                  ),
-                  child: AnimatedSwitcher(
-                    duration: checkboxTheme.animationDuration,
-                    switchInCurve: checkboxTheme.animationCurve,
-                    switchOutCurve: checkboxTheme.animationCurve,
-                    child: _getCheckmark(resolvedCheckColor),
-                  ),
+                  switchInCurve: checkboxTheme.animationCurve,
+                  switchOutCurve: checkboxTheme.animationCurve,
+                  child: _getCheckmark(resolvedCheckColor),
                 ),
               ),
             ),
