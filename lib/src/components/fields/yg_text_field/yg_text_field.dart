@@ -525,7 +525,7 @@ class _YgTextFieldState extends State<YgTextField> {
                   widget.onSuffixPressed?.call();
                 }
               },
-        colorableIconData: suffix,
+        icon: suffix,
       );
     }
 

@@ -7,7 +7,7 @@ import 'yg_icon_button_style.dart';
 class YgIconButton extends ButtonStyleButton with StatefulWidgetDebugMixin {
   YgIconButton({
     super.key,
-    required YgColorableIconData colorableIconData,
+    required YgColorableIconData icon,
     required super.onPressed,
     this.size = YgIconButtonSize.medium,
     this.variant = YgIconButtonVariant.standard,
@@ -22,7 +22,7 @@ class YgIconButton extends ButtonStyleButton with StatefulWidgetDebugMixin {
     super.style,
   }) : super(
           child: YgIcon(
-            colorableIconData,
+            icon,
             color: iconColor,
           ),
         );

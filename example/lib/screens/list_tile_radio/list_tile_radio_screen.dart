@@ -62,7 +62,7 @@ class _ListTileRadioScreenState extends State<ListTileRadioScreen> {
                 subtitle: 'Mostly used to add a YgIconButton.',
                 leadingWidget: YgIconButton(
                   onPressed: () {},
-                  colorableIconData: YgIcons.info,
+                  icon: YgIcons.info,
                 ),
                 value: 3,
                 groupValue: radioGroupValue,
