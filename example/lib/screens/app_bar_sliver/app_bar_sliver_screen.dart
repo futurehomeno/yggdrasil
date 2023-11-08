@@ -25,7 +25,7 @@ class _AppBarSliverScreenState extends State<AppBarSliverScreen> {
   int _variantRadioGroupValue = 1;
   bool _customLeading = false;
   bool _automaticallyImplyLeading = true;
-  List<Widget> _actions = <Widget>[];
+  List<YgIconButton> _actions = <YgIconButton>[];
   int _actionsRadioGroupValue = 1;
 
   @override
@@ -176,7 +176,7 @@ class _AppBarSliverScreenState extends State<AppBarSliverScreen> {
 
   void _setNoActions(int? newValue) {
     _actionsRadioGroupValue = newValue!;
-    _actions = <Widget>[];
+    _actions = <YgIconButton>[];
     setState(() {});
   }
 
@@ -199,8 +199,8 @@ class _AppBarSliverScreenState extends State<AppBarSliverScreen> {
     setState(() {});
   }
 
-  List<Widget> get _singleAction {
-    return <Widget>[
+  List<YgIconButton> get _singleAction {
+    return <YgIconButton>[
       YgIconButton(
         child: const YgIcon(YgIcons.info),
         onPressed: () {},
@@ -208,8 +208,8 @@ class _AppBarSliverScreenState extends State<AppBarSliverScreen> {
     ];
   }
 
-  List<Widget> _defaultActions(BuildContext context, YgAppState ygAppState) {
-    return <Widget>[
+  List<YgIconButton> _defaultActions(BuildContext context, YgAppState ygAppState) {
+    return <YgIconButton>[
       YgIconButton(
         onPressed: () => YgDebug.toggleDebugging(context),
         onLongPress: () => Navigator.of(context).push(DebugBottomSheet()),

@@ -13,7 +13,7 @@ class YgSliverAppBar extends StatelessWidget {
     required this.variant,
     this.leading,
     this.automaticallyImplyLeading = true,
-    this.actions = const <Widget>[],
+    this.actions = const <YgIconButton>[],
   });
 
   // region Values
@@ -31,7 +31,7 @@ class YgSliverAppBar extends StatelessWidget {
   final bool automaticallyImplyLeading;
 
   /// See [YgAppBar.actions].
-  final List<Widget> actions;
+  final List<YgIconButton> actions;
 
   // endregion
 
@@ -120,7 +120,7 @@ class _SliverAppBarDelegate extends SliverPersistentHeaderDelegate {
   final String? title;
   final Widget? leading;
   final bool automaticallyImplyLeading;
-  final List<Widget> actions;
+  final List<YgIconButton> actions;
   final double topPadding;
 
   /// Size of the app bar when collapsed.

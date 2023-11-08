@@ -48,8 +48,8 @@ class YgAppBar extends StatefulWidget implements PreferredSizeWidget {
 
   /// A list of Widgets to display in a row after the [title] widget.
   ///
-  /// Typically these widgets are [IconButton]s representing common operations.
-  final List<Widget>? actions;
+  /// These widgets are [YgIconButton]s representing common operations.
+  final List<YgIconButton>? actions;
 
   /// This widget appears across the bottom of the app bar.
   ///

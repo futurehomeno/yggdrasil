@@ -39,7 +39,7 @@ class DemoScreen extends StatelessWidget {
                     useEmbeddedColor: true,
                   ),
                 ),
-                actions: <Widget>[
+                actions: <YgIconButton>[
                   YgIconButton(
                     onPressed: () => YgDebug.toggleDebugging(context),
                     onLongPress: () => Navigator.of(context).push(DebugBottomSheet()),
