@@ -29,8 +29,6 @@ class _ListTileSwitchScreenState extends State<ListTileSwitchScreen> {
   Widget build(BuildContext context) {
     return DemoScreen(
       componentName: 'SwitchListTile',
-      componentDesc: 'Switch list tiles',
-      supernovaLink: 'Link',
       child: Column(
         children: <Widget>[
           const YgSection.base(

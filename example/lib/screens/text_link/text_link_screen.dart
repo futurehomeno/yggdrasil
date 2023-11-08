@@ -19,8 +19,6 @@ class TextLinkScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return DemoScreen(
       componentName: 'TextLink',
-      componentDesc: 'Text links',
-      supernovaLink: 'Link',
       child: Column(
         children: <Widget>[
           YgSection.base(

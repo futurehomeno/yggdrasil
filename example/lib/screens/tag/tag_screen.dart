@@ -19,8 +19,6 @@ class TagScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return DemoScreen(
       componentName: 'Tag',
-      componentDesc: 'Tags',
-      supernovaLink: 'Link',
       child: Column(
         children: <Widget>[
           YgSection.column(

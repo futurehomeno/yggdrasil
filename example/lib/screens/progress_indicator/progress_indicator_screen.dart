@@ -19,8 +19,6 @@ class ProgressIndicatorScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return DemoScreen(
       componentName: 'ProgressIndicator',
-      componentDesc: 'ProgressIndicators',
-      supernovaLink: 'Link',
       child: Column(
         children: <Widget>[
           const YgSection.base(

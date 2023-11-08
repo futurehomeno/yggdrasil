@@ -35,8 +35,6 @@ class _CheckboxScreenState extends State<CheckboxScreen> {
   Widget build(BuildContext context) {
     return DemoScreen(
       componentName: 'Checkbox',
-      componentDesc: 'Checkboxes',
-      supernovaLink: 'Link',
       child: Column(
         children: <Widget>[
           YgSection.base(

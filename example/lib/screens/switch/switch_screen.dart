@@ -31,8 +31,6 @@ class _SwitchScreenState extends State<SwitchScreen> {
   Widget build(BuildContext context) {
     return DemoScreen(
       componentName: 'Switch',
-      componentDesc: 'Switches',
-      supernovaLink: 'Link',
       child: Column(
         children: <Widget>[
           YgSection.base(
