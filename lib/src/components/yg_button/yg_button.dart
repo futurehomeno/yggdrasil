@@ -28,7 +28,7 @@ class YgButton extends ButtonStyleButton with StatefulWidgetDebugMixin {
   YgButton.leadingIcon({
     super.key,
     required super.onPressed,
-    required YgColorableIconData colorableIconData,
+    required YgColorableIconData icon,
     required Widget child,
     Color? iconColor,
     super.autofocus = false,
@@ -43,7 +43,7 @@ class YgButton extends ButtonStyleButton with StatefulWidgetDebugMixin {
     super.style,
   }) : super(
           child: _YgButtonWithLeadingIconChild(
-            colorableIconData: colorableIconData,
+            icon: icon,
             iconColor: iconColor,
             child: child,
           ),
@@ -55,7 +55,7 @@ class YgButton extends ButtonStyleButton with StatefulWidgetDebugMixin {
   YgButton.trailingIcon({
     super.key,
     required super.onPressed,
-    required YgColorableIconData colorableIconData,
+    required YgColorableIconData icon,
     required Widget child,
     Color? iconColor,
     super.autofocus = false,
@@ -70,7 +70,7 @@ class YgButton extends ButtonStyleButton with StatefulWidgetDebugMixin {
     super.style,
   }) : super(
           child: _YgButtonWithTrailingIconChild(
-            colorableIconData: colorableIconData,
+            icon: icon,
             iconColor: iconColor,
             child: child,
           ),
