@@ -32,11 +32,11 @@ class IconButtonScreen extends StatelessWidget {
                 children: <Widget>[
                   YgIconButton(
                     onPressed: () {},
-                    colorableIconData: YgIcons.info,
+                    icon: YgIcons.info,
                   ),
                   YgIconButton(
                     onPressed: null,
-                    colorableIconData: YgIcons.info,
+                    icon: YgIcons.info,
                   ),
                 ].withHorizontalSpacing(10.0),
               ),
@@ -46,12 +46,12 @@ class IconButtonScreen extends StatelessWidget {
                   YgIconButton(
                     onPressed: () {},
                     variant: YgIconButtonVariant.filled,
-                    colorableIconData: YgIcons.info,
+                    icon: YgIcons.info,
                   ),
                   YgIconButton(
                     onPressed: null,
                     variant: YgIconButtonVariant.filled,
-                    colorableIconData: YgIcons.info,
+                    icon: YgIcons.info,
                   ),
                 ].withHorizontalSpacing(10.0),
               ),
@@ -61,12 +61,12 @@ class IconButtonScreen extends StatelessWidget {
                   YgIconButton(
                     onPressed: () {},
                     variant: YgIconButtonVariant.tonal,
-                    colorableIconData: YgIcons.info,
+                    icon: YgIcons.info,
                   ),
                   YgIconButton(
                     onPressed: null,
                     variant: YgIconButtonVariant.tonal,
-                    colorableIconData: YgIcons.info,
+                    icon: YgIcons.info,
                   ),
                 ].withHorizontalSpacing(10.0),
               ),
@@ -76,12 +76,12 @@ class IconButtonScreen extends StatelessWidget {
                   YgIconButton(
                     onPressed: () {},
                     variant: YgIconButtonVariant.outlined,
-                    colorableIconData: YgIcons.info,
+                    icon: YgIcons.info,
                   ),
                   YgIconButton(
                     onPressed: null,
                     variant: YgIconButtonVariant.outlined,
-                    colorableIconData: YgIcons.info,
+                    icon: YgIcons.info,
                   ),
                 ].withHorizontalSpacing(10.0),
               ),
@@ -97,12 +97,12 @@ class IconButtonScreen extends StatelessWidget {
                   onPressed: () {},
                   variant: YgIconButtonVariant.filled,
                   size: YgIconButtonSize.small,
-                  colorableIconData: YgIcons.info,
+                  icon: YgIcons.info,
                 ),
                 YgIconButton(
                   onPressed: () {},
                   variant: YgIconButtonVariant.filled,
-                  colorableIconData: YgIcons.info,
+                  icon: YgIcons.info,
                 ),
               ].withHorizontalSpacing(10.0),
             ),

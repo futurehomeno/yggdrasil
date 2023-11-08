@@ -72,7 +72,7 @@ class _ListTileSwitchScreenState extends State<ListTileSwitchScreen> {
                 subtitle: 'Mostly used to add a YgIconButton.',
                 trailingWidget: YgIconButton(
                   onPressed: () {},
-                  colorableIconData: YgIcons.info,
+                  icon: YgIcons.info,
                 ),
                 value: switchListTileTrailingWidgetValue,
                 onChanged: (bool? newValue) {

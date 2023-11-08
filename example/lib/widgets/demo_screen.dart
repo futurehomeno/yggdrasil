@@ -36,15 +36,15 @@ class DemoScreen extends StatelessWidget {
               YgIconButton(
                 onPressed: () => YgDebug.toggleDebugging(context),
                 onLongPress: () => Navigator.of(context).push(DebugBottomSheet()),
-                colorableIconData: YgIcons.eyeOpen,
+                icon: YgIcons.eyeOpen,
               ),
               YgIconButton(
                 onPressed: ygAppState.toggleProfessionalTheme,
-                colorableIconData: YgIcons.power,
+                icon: YgIcons.power,
               ),
               YgIconButton(
                 onPressed: ygAppState.toggleDarkMode,
-                colorableIconData: YgIcons.refresh,
+                icon: YgIcons.refresh,
               ),
             ],
           ),
