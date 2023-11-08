@@ -35,10 +35,6 @@ workflows:
           cd $CM_BUILD_DIR/cli
           flutter pub get
 
-      - name: Checking formatting
-        working_directory: /Users/builder/clone/app_files
-        script: dart $CM_BUILD_DIR/cli/futurehome.dart f || exit 1
-
       - name: Analyzing
         working_directory: /Users/builder/clone/app_files
         script: flutter analyze
@@ -57,7 +53,7 @@ workflows:
       cache_paths:
         - ~/.pub-cache
     scripts:
-      - name: Cloning pubdev_registry repo
+      - name: Cloning yggdrasil repo
         working_directory: /Users/builder
         script: |
           rm -rf clone/*
@@ -89,7 +85,7 @@ workflows:
       cache_paths:
         - ~/.pub-cache
     scripts:
-      - name: Cloning pubdev_registry repo
+      - name: Cloning yggdrasil repo
         working_directory: /Users/builder
         script: |
           rm -rf clone/*
@@ -118,7 +114,7 @@ workflows:
     max_build_duration: 30
 
     environment:
-      node: v20.2.0
+      node: v21.1.0
       npm: 9.6.6
       groups:
         - frontend
@@ -136,6 +132,12 @@ workflows:
       cancel_previous_builds: true
 
     scripts:
+      - name: Downloading flutter cli
+        script: |
+          git clone git@github.com:futurehomeno/flutter-cli.git $CM_BUILD_DIR/cli
+          cd $CM_BUILD_DIR/cli
+          flutter pub get
+
       - name: Install appdmg
         script: npm install -g appdmg
 
@@ -209,34 +211,70 @@ workflows:
 
         - name: Sending message to Slack
           script: |            
+            git clone https://futurehomeno@github.com/futurehomeno/yggdrasil temp
+            cd temp
+            
+            last_tag_before=$(git tag | grep -E '^[0-9]+\.[0-9]+\.[0-9]+\+[0-9]+$' |
+            sort -t. -k1,1n -k2,2n -k3,3n -t+ -k2,2n |
+            awk -v tag="$CM_TAG" '$0 == tag {exit} 1' |
+            tail -1)
+  
+            commit_tag=$(git rev-list -1 $last_tag_before)
+            changelog_since_tag=$(dart $CM_BUILD_DIR/cli/futurehome.dart ci gc $commit_tag)
+            
             curl --location $YGGDRASIL_SLACK_WEBHOOK \
             --header 'Content-Type: application/json' \
             --data '
               {
-                "text": "New version of Yggdrasil! ['"$CM_TAG"']",
+                "text": "New version of Yggdrasil! ['"$CM_TAG"']\nhttps://github.com/futurehomeno/yggdrasil/releases/tag/'"$CM_TAG"'",
                 "attachments": [
                   {
                     "blocks": [
                       {
-                        "type": "section",
-                        "text": {
-                          "type": "mrkdwn",
-                          "text": "<https://github.com/futurehomeno/yggdrasil/releases/tag/'"$CM_TAG"'>"
-                        }
+                          "type": "divider"
                       },
                       {
                         "type": "section",
                         "text": {
                           "type": "mrkdwn",
-                          "text": "*Android app Link* <https://github.com/futurehomeno/yggdrasil/releases/download/'"$CM_TAG"'/app-release.apk|download>"
+                          "text": "'"$changelog_since_tag"'"
                         }
                       },
                       {
-                        "type": "section",
-                        "text": {
-                          "type": "mrkdwn",
-                          "text": "*MacOS app Link* <https://github.com/futurehomeno/yggdrasil/releases/download/'"$CM_TAG"'/yggdrasil.dmg|download>"
-                        }
+                          "type": "divider"
+                      },
+                      {
+                        "type": "actions",
+                        "block_id": "actionblock",
+                        "elements": [
+                          {
+                            "type": "button",
+                            "text": {
+                              "type": "plain_text",
+                              "text": "Mac dmg :computer:"
+                            },
+                            "style": "primary",
+                            "url": "https://github.com/futurehomeno/yggdrasil/releases/download/'"$CM_TAG"'/yggdrasil.dmg"
+                          },
+                          {
+                            "type": "button",
+                            "text": {
+                              "type": "plain_text",
+                              "text": "Android apk :iphone:"
+                            },
+                            "style": "primary",
+                            "url": "https://github.com/futurehomeno/yggdrasil/releases/download/'"$CM_TAG"'/app-release.apk"
+                          },
+                          {
+                            "type": "button",
+                            "text": {
+                              "type": "plain_text",
+                              "text": "Support :technologist:"
+                            },
+                            "style": "primary",
+                            "url": "https://app.slack.com/client/T025ENQJR/D0235KBKX2B"
+                          }
+                        ]
                       }
                     ]
                   }

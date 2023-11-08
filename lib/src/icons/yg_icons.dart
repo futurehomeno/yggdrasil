@@ -334,6 +334,7 @@ class YgIcons {
     'windowOpenAlt': windowOpenAlt,
     'windowOpenUnlocked': windowOpenUnlocked,
     'work': work,
+    'ygg': ygg,
     'zigbee': zigbee,
     'zwave': zwave,
   };
@@ -667,6 +668,7 @@ class YgIcons {
   static const String windowOpenAlt = 'assets/icons/window_open_alt.svg';
   static const String windowOpenUnlocked = 'assets/icons/window_open_unlocked.svg';
   static const String work = 'assets/icons/work.svg';
+  static const String ygg = 'assets/icons/ygg.svg';
   static const String zigbee = 'assets/icons/zigbee.svg';
   static const String zwave = 'assets/icons/zwave.svg';
 }

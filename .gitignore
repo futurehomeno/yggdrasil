@@ -3,6 +3,14 @@
 # Flutter version manager
 .fvm
 
+# Golden test failures
+**/failures/*.png
+
+# Ignore platform-specific goldens
+**/goldens/macos
+**/goldens/linux
+**/goldens/windows
+
 # Miscellaneous
 *.class
 #*.lock

@@ -20,8 +20,6 @@ class SnackBarScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return DemoScreen(
       componentName: 'SnackBar',
-      componentDesc: 'Snack Bars',
-      supernovaLink: 'Link',
       child: Column(
         children: <Widget>[
           YgSection.base(

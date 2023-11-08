@@ -24,8 +24,6 @@ class HomeScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return DemoScreen(
       componentName: 'Yggdrasil Components',
-      componentDesc: 'List of supported components.',
-      supernovaLink: '-',
       child: Column(
         children: <Widget>[
           YgSection.list(
@@ -43,6 +41,16 @@ class HomeScreen extends StatelessWidget {
             title: 'Components',
             subtitle: 'Complete list of Yggdrasil components.',
             children: <YgListTile>[
+              YgListTile(
+                title: 'AppBar',
+                onTap: () => sl<YgRouter>().push(AppBarScreen.route()),
+                trailingWidgets: const <YgIcon>[YgIcon(YgIcons.caretRight)],
+              ),
+              YgListTile(
+                title: 'AppBar (sliver)',
+                onTap: () => sl<YgRouter>().push(AppBarSliverScreen.route()),
+                trailingWidgets: const <YgIcon>[YgIcon(YgIcons.caretRight)],
+              ),
               YgListTile(
                 title: 'Badge',
                 onTap: () => sl<YgRouter>().push(BadgeScreen.route()),
