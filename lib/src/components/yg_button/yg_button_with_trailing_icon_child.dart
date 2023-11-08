@@ -2,12 +2,12 @@ part of 'yg_button.dart';
 
 class _YgButtonWithTrailingIconChild extends StatelessWidget {
   const _YgButtonWithTrailingIconChild({
-    required this.colorableIconData,
+    required this.icon,
     required this.child,
     this.iconColor,
   });
 
-  final YgColorableIconData colorableIconData;
+  final YgColorableIconData icon;
   final Widget child;
   final Color? iconColor;
 
@@ -17,7 +17,7 @@ class _YgButtonWithTrailingIconChild extends StatelessWidget {
       mainAxisSize: MainAxisSize.min,
       children: <Widget>[
         Flexible(child: child),
-        YgIcon(colorableIconData),
+        YgIcon(icon),
       ].withHorizontalSpacing(context.buttonTheme.iconSpacing),
     );
   }

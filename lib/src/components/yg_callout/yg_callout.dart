@@ -65,7 +65,7 @@ class YgCallout extends StatelessWidget with StatelessWidgetDebugMixin {
     return YgIconButton(
       onPressed: onClose,
       size: YgIconButtonSize.small,
-      colorableIconData: YgIcons.cross,
+      icon: YgIcons.cross,
     );
   }
 

@@ -33,7 +33,7 @@ class BadgeScreen extends StatelessWidget {
                   weight: YgBadgeWeight.strong,
                   child: YgIconButton(
                     onPressed: () {},
-                    colorableIconData: YgIcons.info,
+                    icon: YgIcons.info,
                   ),
                 ),
                 YgBadge(
@@ -41,7 +41,7 @@ class BadgeScreen extends StatelessWidget {
                   weight: YgBadgeWeight.strong,
                   child: YgIconButton(
                     onPressed: () {},
-                    colorableIconData: YgIcons.info,
+                    icon: YgIcons.info,
                   ),
                 ),
                 YgBadge(
@@ -49,7 +49,7 @@ class BadgeScreen extends StatelessWidget {
                   weight: YgBadgeWeight.strong,
                   child: YgIconButton(
                     onPressed: () {},
-                    colorableIconData: YgIcons.info,
+                    icon: YgIcons.info,
                   ),
                 ),
                 YgBadge(
@@ -57,7 +57,7 @@ class BadgeScreen extends StatelessWidget {
                   weight: YgBadgeWeight.strong,
                   child: YgIconButton(
                     onPressed: () {},
-                    colorableIconData: YgIcons.info,
+                    icon: YgIcons.info,
                   ),
                 ),
               ],
@@ -70,7 +70,7 @@ class BadgeScreen extends StatelessWidget {
               weight: YgBadgeWeight.weak,
               child: YgIconButton(
                 onPressed: () {},
-                colorableIconData: YgIcons.info,
+                icon: YgIcons.info,
               ),
             ),
           ),

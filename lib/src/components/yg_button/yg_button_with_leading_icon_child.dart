@@ -2,12 +2,12 @@ part of 'yg_button.dart';
 
 class _YgButtonWithLeadingIconChild extends StatelessWidget {
   const _YgButtonWithLeadingIconChild({
-    required this.colorableIconData,
+    required this.icon,
     required this.child,
     this.iconColor,
   });
 
-  final YgColorableIconData colorableIconData;
+  final YgColorableIconData icon;
   final Widget child;
   final Color? iconColor;
 
@@ -17,7 +17,7 @@ class _YgButtonWithLeadingIconChild extends StatelessWidget {
       mainAxisSize: MainAxisSize.min,
       children: <Widget>[
         YgIcon(
-          colorableIconData,
+          icon,
           color: iconColor,
         ),
         Flexible(child: child),

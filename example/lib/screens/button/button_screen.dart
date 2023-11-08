@@ -85,12 +85,12 @@ class ButtonScreen extends StatelessWidget {
             subtitle: 'Spacing between buttons added manually.',
             children: <Widget>[
               YgButton.leadingIcon(
-                colorableIconData: YgIcons.info,
+                icon: YgIcons.info,
                 onPressed: () {},
                 child: const Text('Leading icon'),
               ),
               YgButton.trailingIcon(
-                colorableIconData: YgIcons.info,
+                icon: YgIcons.info,
                 onPressed: () {},
                 child: const Text('Trailing icon'),
               ),
@@ -101,12 +101,12 @@ class ButtonScreen extends StatelessWidget {
             subtitle: 'Spacing between buttons added manually.',
             children: <Widget>[
               YgButton.trailingIcon(
-                colorableIconData: YgIcons.check,
+                icon: YgIcons.check,
                 onPressed: () {},
                 child: const Text('Enabled'),
               ),
               YgButton.trailingIcon(
-                colorableIconData: YgIcons.cross,
+                icon: YgIcons.cross,
                 onPressed: null,
                 child: const Text('Disabled'),
               ),

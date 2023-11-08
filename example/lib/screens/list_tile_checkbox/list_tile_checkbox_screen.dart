@@ -72,7 +72,7 @@ class _ListTileCheckboxScreenState extends State<ListTileCheckboxScreen> {
                 subtitle: 'Mostly used to add a YgIconButton.',
                 leadingWidget: YgIconButton(
                   onPressed: () {},
-                  colorableIconData: YgIcons.info,
+                  icon: YgIcons.info,
                 ),
                 value: checkboxListTileTrailingWidgetValue,
                 onChanged: (bool? newValue) {
