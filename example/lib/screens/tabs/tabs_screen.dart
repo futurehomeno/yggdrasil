@@ -44,8 +44,6 @@ class _TabsScreenState extends State<TabsScreen> with SingleTickerProviderStateM
   Widget build(BuildContext context) {
     return DemoScreen(
       componentName: 'Tabs',
-      componentDesc: 'Tabs',
-      supernovaLink: 'Link',
       child: Column(
         children: <Widget>[
           const YgSection.list(

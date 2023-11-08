@@ -6,7 +6,7 @@ import 'properties/_properties.dart';
 import 'widgets/_widgets.dart';
 
 /// Used for controlling views that consist of different tabs.
-class YgTabBar extends StatelessWidget {
+class YgTabBar extends StatelessWidget implements PreferredSizeWidget {
   const YgTabBar({
     super.key,
     required this.tabs,
@@ -60,4 +60,7 @@ class YgTabBar extends StatelessWidget {
       ),
     );
   }
+
+  @override
+  Size get preferredSize => const Size.fromHeight(44.0);
 }
