@@ -18,17 +18,45 @@ class YgFocusableActionDetector extends StatelessWidget {
     this.enabled = true,
   });
 
-  final HitTestBehavior? behavior;
+  /// The widget below this widget in the tree.
   final Widget child;
+
+  /// See [GestureDetector.behavior].
+  final HitTestBehavior? behavior;
+
+  /// See [FocusableActionDetector.mouseCursor].
   final MouseCursor mouseCursor;
+
+  /// Called when the focus state changed.
   final ValueChanged<bool>? onFocusChanged;
+
+  /// Called when the hover state changed.
   final ValueChanged<bool>? onHoverChanged;
+
+  /// See [GestureDetector.onLongPress].
   final VoidCallback? onLongPress;
+
+  /// Called when the widget is clicked or activated through the keyboard.
   final VoidCallback? onActivate;
+
+  /// See [FocusableActionDetector.autofocus].
   final bool autofocus;
+
+  /// See [FocusableActionDetector.descendantsAreFocusable].
   final bool descendantsAreFocusable;
+
+  /// See [FocusableActionDetector.descendantsAreTraversable].
   final bool descendantsAreTraversable;
+
+  /// See [FocusableActionDetector.focusNode].
   final FocusNode? focusNode;
+
+  /// Whether the widget is enabled.
+  ///
+  /// When set to false the widget will no longer:
+  ///  - Be focusable
+  ///  - Detect any gestures
+  ///  - Call any callbacks
   final bool enabled;
 
   @override
