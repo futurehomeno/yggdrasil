@@ -1,3 +1,5 @@
+import 'dart:ui';
+
 import 'package:flutter/foundation.dart' show clampDouble;
 import 'package:flutter/material.dart';
 import 'package:yggdrasil/src/theme/_theme.dart';
@@ -52,23 +54,23 @@ class YgFlexibleSpaceBar extends StatelessWidget {
         // Calculate end padding for title based on number of action buttons.
         final double titlePaddingDueToActionButtons =
             actionsCount * iconButtonTheme.sizeMedium + appBarTheme.titleSpacing + appBarTheme.appBarHorizontalPadding;
-        final double endPaddingValue = Tween<double>(
-          begin: appBarTheme.titleExpandedHorizontalPadding,
-          end: titlePaddingDueToActionButtons,
-        ).transform(t);
+        final double endPaddingValue = lerpDouble(
+          appBarTheme.titleExpandedHorizontalPadding,
+          titlePaddingDueToActionButtons,
+          t,
+        )!;
 
         final double titlePaddingDueToLeadingButton = hasLeading
             ? iconButtonTheme.sizeMedium + appBarTheme.titleSpacing * 2
             : appBarTheme.titleExpandedHorizontalPadding;
-        final double startPaddingValue = Tween<double>(
-          begin: appBarTheme.titleExpandedHorizontalPadding,
-          end: titlePaddingDueToLeadingButton,
-        ).transform(t);
+        final double startPaddingValue = lerpDouble(
+          appBarTheme.titleExpandedHorizontalPadding,
+          titlePaddingDueToLeadingButton,
+          t,
+        )!;
 
-        final double bottomPaddingValue =
-            Tween<double>(begin: bottomTitlePadding, end: appBarTheme.titleVerticalPadding).transform(t);
-        final double topPaddingValue =
-            Tween<double>(begin: topTitlePadding, end: appBarTheme.titleVerticalPadding).transform(t);
+        final double bottomPaddingValue = lerpDouble(bottomTitlePadding, appBarTheme.titleVerticalPadding, t)!;
+        final double topPaddingValue = lerpDouble(topTitlePadding, appBarTheme.titleVerticalPadding, t)!;
         final double scaleValue = Tween<double>(begin: expandedTitleScale, end: 1.0).transform(t);
         final Matrix4 scaleTransform = Matrix4.identity()..scale(scaleValue, scaleValue, 1.0);
         const Alignment titleAlignment = Alignment.bottomLeft;
