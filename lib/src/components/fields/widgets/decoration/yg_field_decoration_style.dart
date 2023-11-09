@@ -100,7 +100,7 @@ class YgFieldDecorationStyle extends YgStyleWithDefaults<YgFieldState> {
       border = _theme.borderDisabled;
     } else if (state.error.value) {
       border = _theme.borderError;
-    } else if (state.focused.value || state.opened.value) {
+    } else if (state.showFocusHighlight) {
       border = _theme.borderFocus;
     } else if (state.hovered.value) {
       border = _theme.borderHover;

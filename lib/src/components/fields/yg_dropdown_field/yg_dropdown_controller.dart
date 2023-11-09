@@ -5,7 +5,7 @@ part of 'yg_dropdown_field.dart';
 /// We sometimes need to be able to accept a dropdown controller without knowing
 /// the value type
 typedef YgDynamicDropdownController<T extends Object>
-    = YgDropdownController<T, dynamic, YgDropdownFieldState<T, YgDropdownField<T>>>;
+    = YgDropdownController<T, dynamic, YgDropdownFieldWidgetState<T, YgDropdownField<T>>>;
 
 /// The base class controller for a [YgDropdownField].
 ///
@@ -14,7 +14,7 @@ typedef YgDynamicDropdownController<T extends Object>
 ///
 ///  - [YgSingleSelectDropdownController].
 ///  - [YgMultiSelectDropdownController].
-abstract class YgDropdownController<T extends Object, V, S extends YgDropdownFieldState<T, YgDropdownField<T>>>
+abstract class YgDropdownController<T extends Object, V, S extends YgDropdownFieldWidgetState<T, YgDropdownField<T>>>
     extends ValueNotifier<V> {
   YgDropdownController({
     required V initialValue,

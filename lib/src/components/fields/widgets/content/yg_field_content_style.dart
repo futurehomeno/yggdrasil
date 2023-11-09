@@ -61,7 +61,7 @@ class YgFieldContentStyle extends YgStyleWithDefaults<YgFieldState> {
       );
     }
 
-    if (state.focused.value || state.filled.value || state.opened.value) {
+    if (state.filled.value || state.showFocusHighlight) {
       return baseStyle.copyWith(
         color: _theme.labelFocusFilledColor,
       );
@@ -89,7 +89,7 @@ class YgFieldContentStyle extends YgStyleWithDefaults<YgFieldState> {
   }
 
   bool _getFloatLabel(YgFieldState state) =>
-      state.filled.value || state.placeholder.value || (floatLabelOnFocus && state.focused.value);
+      state.filled.value || state.placeholder.value || (floatLabelOnFocus && state.showFocusHighlight);
 
   YgFieldTheme get _fieldTheme => context.fieldTheme;
 

@@ -8,7 +8,6 @@ class YgFieldState extends YgState {
     bool disabled = false,
     bool error = false,
     bool filled = false,
-    bool opened = false,
     bool placeholder = false,
     bool suffix = false,
     YgFieldVariant variant = YgFieldVariant.standard,
@@ -18,7 +17,6 @@ class YgFieldState extends YgState {
         disabled = YgStateValue<bool>(disabled),
         error = YgStateValue<bool>(error),
         filled = YgStateValue<bool>(filled),
-        opened = YgStateValue<bool>(opened),
         placeholder = YgStateValue<bool>(placeholder),
         suffix = YgStateValue<bool>(suffix),
         variant = YgStateValue<YgFieldVariant>(variant),
@@ -29,13 +27,14 @@ class YgFieldState extends YgState {
   final YgStateValue<bool> disabled;
   final YgStateValue<bool> error;
   final YgStateValue<bool> filled;
-  final YgStateValue<bool> opened;
 
   final YgStateValue<bool> placeholder;
   final YgStateValue<bool> suffix;
 
   final YgStateValue<YgFieldVariant> variant;
   final YgStateValue<YgFieldSize> size;
+
+  bool get showFocusHighlight => focused.value;
 
   @override
   List<YgStateValue<Object>> get props => <YgStateValue<Object>>[
@@ -44,7 +43,6 @@ class YgFieldState extends YgState {
         disabled,
         error,
         filled,
-        opened,
         placeholder,
         suffix,
         variant,

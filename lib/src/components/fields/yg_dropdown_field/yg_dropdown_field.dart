@@ -6,8 +6,10 @@ import 'package:yggdrasil/yggdrasil.dart';
 
 import '../helpers/_helpers.dart';
 import '../widgets/_widgets.dart';
-import '../yg_field_state.dart';
 import 'widgets/_widgets.dart';
+import 'yg_dropdown_field_state.dart';
+
+// import 'yg_dropdown_field_state.dart';
 
 // This is really not ideal, but this is the only way to prevent us from
 // polluting the exports with classes that really should be private.
@@ -204,14 +206,17 @@ abstract class YgDropdownField<T extends Object> extends StatefulWidget with Sta
   }
 }
 
-abstract class YgDropdownFieldState<T extends Object, W extends YgDropdownField<T>> extends State<W> {
+abstract class YgDropdownFieldWidgetState<T extends Object, W extends YgDropdownField<T>> extends State<W> {
   /// The current controller of the dropdown, either user specified or a default one.
-  late YgDynamicDropdownController<T> _controller;
+  late YgDynamicDropdownController<T> _controller = widget.controller ?? createController();
 
   /// The current [FocusNode] of the dropdown, either user specified of a default one.
   late FocusNode _focusNode = widget.focusNode ?? FocusNode();
 
-  late final YgFieldState _state = YgFieldState(
+  /// Whether the widget is visually focused (either focused of opened).
+  late bool _visuallyFocused;
+
+  late final YgDropdownFieldState _state = YgDropdownFieldState(
     placeholder: widget.placeholder != null,
     error: widget.error != null,
     filled: _controller.filled,
@@ -225,9 +230,18 @@ abstract class YgDropdownFieldState<T extends Object, W extends YgDropdownField<
   void initState() {
     super.initState();
 
-    _controller = widget.controller ?? createController();
     _controller.addListener(_controllerListener);
     _controller._attach(this);
+    _state.addListener(_handleStateChanged);
+    _visuallyFocused = _state.showFocusHighlight;
+  }
+
+  void _handleStateChanged() {
+    final bool newVisuallyFocused = _state.showFocusHighlight;
+    if (_visuallyFocused != newVisuallyFocused) {
+      _visuallyFocused = newVisuallyFocused;
+      widget.onFocusChanged?.call(newVisuallyFocused);
+    }
   }
 
   @override
@@ -262,6 +276,7 @@ abstract class YgDropdownFieldState<T extends Object, W extends YgDropdownField<
 
   @override
   void dispose() {
+    _state.removeListener(_handleStateChanged);
     _state.dispose();
     _controller.removeListener(_controllerListener);
     _controller._detach();
@@ -290,8 +305,8 @@ abstract class YgDropdownFieldState<T extends Object, W extends YgDropdownField<
         }
 
         return InkWell(
-          onFocusChange: _onFocusChanged,
-          onHover: (bool hovered) => _state.hovered.value = hovered,
+          onFocusChange: _state.focused.update,
+          onHover: _state.hovered.update,
           onTap: _controller.open,
           focusNode: _focusNode,
           focusColor: Colors.transparent,
@@ -423,18 +438,14 @@ abstract class YgDropdownFieldState<T extends Object, W extends YgDropdownField<
     switch (widget.completeAction) {
       case YgCompleteAction.focusNext:
         _focusNode.nextFocus();
-
-        return;
+        break;
       case YgCompleteAction.focusPrevious:
         _focusNode.previousFocus();
-
-        return;
+        break;
       case YgCompleteAction.unfocus:
         _focusNode.unfocus();
-
-        return;
+        break;
       case YgCompleteAction.none:
-        return;
     }
   }
 
@@ -444,11 +455,6 @@ abstract class YgDropdownFieldState<T extends Object, W extends YgDropdownField<
     } else {
       openMenu();
     }
-  }
-
-  void _onFocusChanged(bool focused) {
-    widget.onFocusChanged?.call(focused);
-    _state.focused.value = focused;
   }
 
   void _updateController(YgDynamicDropdownController<T> controller) {
