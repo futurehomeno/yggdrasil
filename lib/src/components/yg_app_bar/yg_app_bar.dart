@@ -23,7 +23,7 @@ class YgAppBar extends StatefulWidget implements PreferredSizeWidget {
     this.actions,
     this.flexibleSpace,
     this.bottom,
-  }) : preferredSize = _PreferredAppBarSize(64.0, bottom?.preferredSize.height);
+  }) : preferredSize = _PreferredAppBarSize(64.0, bottom?.preferredSize.height); // See IMPORTANT above.
 
   // region Values
 

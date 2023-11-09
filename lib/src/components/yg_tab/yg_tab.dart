@@ -3,18 +3,26 @@ import 'package:yggdrasil/src/theme/tabs/_tabs.dart';
 import 'package:yggdrasil/yggdrasil.dart';
 
 /// Used as base widget for `YgTabBar`.
-class YgTab extends StatelessWidget {
+///
+/// !-- IMPORTANT --!
+/// There's no good way to make preferredSize use context to determine
+/// the size from the theme.
+class YgTab extends StatelessWidget with StatelessWidgetDebugMixin implements PreferredSizeWidget {
   const YgTab({
     super.key,
     this.label,
     this.icon,
-  });
+  }) : preferredSize = const Size.fromHeight(44.0); // See IMPORTANT above.
 
   /// Text to show inside the tab.
   final String? label;
 
   /// Icon to show inside the tab.
   final String? icon;
+
+  /// The size of the tab.
+  @override
+  final Size preferredSize;
 
   @override
   Widget build(BuildContext context) {
@@ -45,4 +53,7 @@ class YgTab extends StatelessWidget {
       overflow: TextOverflow.ellipsis,
     );
   }
+
+  @override
+  YgDebugType get debugType => YgDebugType.intractable;
 }

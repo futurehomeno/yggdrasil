@@ -10,14 +10,14 @@ import 'widgets/_widgets.dart';
 /// !-- IMPORTANT --!
 /// There's no good way to make preferredSize use context to determine
 /// the size from the theme.
-class YgTabBar extends StatelessWidget implements PreferredSizeWidget {
+class YgTabBar extends StatelessWidget with StatelessWidgetDebugMixin implements PreferredSizeWidget {
   const YgTabBar({
     super.key,
     required this.tabs,
     this.controller,
     this.isScrollable = false,
     this.onTap,
-  }) : preferredSize = const Size.fromHeight(44.0);
+  }) : preferredSize = const Size.fromHeight(44.0); // See IMPORTANT above.
 
   /// The tabs inside of the tab bar.
   final List<YgTab> tabs;
@@ -69,6 +69,6 @@ class YgTabBar extends StatelessWidget implements PreferredSizeWidget {
     );
   }
 
-  // @override
-  // Size get preferredSize => const Size.fromHeight(44.0);
+  @override
+  YgDebugType get debugType => YgDebugType.layout;
 }
