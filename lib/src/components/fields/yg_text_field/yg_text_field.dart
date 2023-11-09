@@ -422,7 +422,6 @@ class _YgTextFieldState extends State<YgTextField> {
         error: widget.error,
         state: _state,
         suffix: _buildSuffix(),
-        onPressed: null,
         content: YgFieldContent(
           value: YgTextFieldValue(
             autocorrect: widget.autocorrect,

@@ -19,8 +19,6 @@ class IconScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return const DemoScreen(
       componentName: 'Icon',
-      componentDesc: 'Icons',
-      supernovaLink: 'Link',
       child: Column(
         children: <Widget>[
           YgSection.base(

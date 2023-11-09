@@ -27,8 +27,6 @@ class _ListTileRadioScreenState extends State<ListTileRadioScreen> {
   Widget build(BuildContext context) {
     return DemoScreen(
       componentName: 'ListTile - Radio',
-      componentDesc: 'Radio list tiles',
-      supernovaLink: 'Link',
       child: Column(
         children: <Widget>[
           const YgSection.base(

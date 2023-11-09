@@ -32,8 +32,6 @@ class _TextFieldScreenState extends State<TextFieldScreen> {
       onTap: () => FocusScope.of(context).unfocus(),
       child: DemoScreen(
         componentName: 'TextField',
-        componentDesc: 'Text Field',
-        supernovaLink: 'Link',
         child: Column(
           children: <Widget>[
             YgSection.column(

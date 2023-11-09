@@ -28,8 +28,6 @@ class _ButtonScreenState extends State<ButtonScreen> {
   Widget build(BuildContext context) {
     return DemoScreen(
       componentName: 'Button',
-      componentDesc: 'Buttons',
-      supernovaLink: 'Link',
       child: Column(
         children: <Widget>[
           const YgSection.base(
