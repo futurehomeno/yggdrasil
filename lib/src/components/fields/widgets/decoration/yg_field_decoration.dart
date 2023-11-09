@@ -5,6 +5,8 @@ import 'package:yggdrasil/yggdrasil.dart';
 
 import '../../yg_field_state.dart';
 
+typedef ChildWrapperBuilder = Widget Function(BuildContext context, Widget child);
+
 /// The decoration of any yggdrasil field widget.
 ///
 /// Only decorates the outside of the field, the content will most likely be a
@@ -20,8 +22,10 @@ class YgFieldDecoration extends StatelessWidget {
     required this.state,
     required this.suffix,
     required this.size,
-    required this.onPressed,
+    this.builder,
   });
+
+  final ChildWrapperBuilder? builder;
 
   /// The primary content in the field.
   final Widget content;
@@ -44,15 +48,6 @@ class YgFieldDecoration extends StatelessWidget {
   /// The current state of the field.
   final YgFieldState state;
 
-  /// Called when the field is pressed.
-  ///
-  /// !--- WARNING ---
-  /// Only use when the field decoration functions as a button, rather than a
-  /// container for child widgets which can request focus or handle clicks by
-  /// themselves, as these will not, and should not, trigger this callback and
-  /// its accompanying ink ripple.
-  final VoidCallback? onPressed;
-
   @override
   Widget build(BuildContext context) {
     return YgStyleBuilder<YgFieldDecorationStyle>(
@@ -74,7 +69,8 @@ class YgFieldDecoration extends StatelessWidget {
               clipBehavior: Clip.antiAlias,
               child: Material(
                 color: Colors.transparent,
-                child: _maybeWrapWithInkwell(
+                child: _maybeUseBuilder(
+                  context: context,
                   child: Stack(
                     children: <Widget>[
                       Positioned.fill(
@@ -118,28 +114,17 @@ class YgFieldDecoration extends StatelessWidget {
     );
   }
 
-  Widget _maybeWrapWithInkwell({
+  Widget _maybeUseBuilder({
+    required BuildContext context,
     required Widget child,
   }) {
-    if (onPressed == null) {
+    final ChildWrapperBuilder? builder = this.builder;
+
+    if (builder == null) {
       return child;
     }
 
-    return LayoutBuilder(
-      builder: (BuildContext context, BoxConstraints constraints) {
-        return YgNoFocus(
-          child: InkResponse(
-            splashFactory: InkRipple.splashFactory,
-            radius: constraints.maxWidth,
-            mouseCursor: SystemMouseCursors.click,
-            onTap: onPressed,
-            canRequestFocus: false,
-            hoverColor: Colors.transparent,
-            child: child,
-          ),
-        );
-      },
-    );
+    return builder(context, child);
   }
 
   Widget _buildErrorMessage(YgFieldDecorationTheme theme) {
