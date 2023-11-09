@@ -57,7 +57,6 @@ class DemoScreen extends StatelessWidget {
                   ),
                 ],
                 bottom: bottom,
-                toolbarHeight: context.appBarTheme.toolbarHeight,
               ),
           body: scrollable ? SingleChildScrollView(child: child) : child,
         );

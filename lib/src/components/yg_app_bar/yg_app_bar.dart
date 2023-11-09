@@ -9,6 +9,10 @@ import 'package:yggdrasil/yggdrasil.dart';
 ///
 /// Changes were made to:
 /// - remove all unused code that caused headaches to work around.
+///
+/// !-- IMPORTANT --!
+/// There's no good way to make preferredSize use context to determine
+/// the size from the theme.
 class YgAppBar extends StatefulWidget implements PreferredSizeWidget {
   YgAppBar({
     super.key,
@@ -19,8 +23,7 @@ class YgAppBar extends StatefulWidget implements PreferredSizeWidget {
     this.actions,
     this.flexibleSpace,
     this.bottom,
-    required this.toolbarHeight,
-  }) : preferredSize = _PreferredAppBarSize(toolbarHeight, bottom?.preferredSize.height);
+  }) : preferredSize = _PreferredAppBarSize(64.0, bottom?.preferredSize.height);
 
   // region Values
 
@@ -66,11 +69,6 @@ class YgAppBar extends StatefulWidget implements PreferredSizeWidget {
   /// Used when making sliver app bars, see [YgSliverAppBar].
   @Deprecated('Do not use this.')
   final Widget? flexibleSpace;
-
-  /// The height of the toolbar component of the app bar.
-  ///
-  /// Preferred size does not support context, so we need to pass this.
-  final double? toolbarHeight;
 
   /// A size whose height is the sum of [toolbarHeight] and the [bottom] widget's
   /// preferred height.

@@ -37,7 +37,6 @@ class _AppBarScreenState extends State<AppBarScreen> {
         automaticallyImplyLeading: _automaticallyImplyLeading,
         actions: _actions,
         centerTitle: _centerTitle,
-        toolbarHeight: context.appBarTheme.toolbarHeight,
       ),
       child: Column(
         children: <Widget>[
