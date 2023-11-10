@@ -83,7 +83,7 @@ class _SwitchScreenState extends State<SwitchScreen> {
             ),
           ),
           YgSection.list(
-            children: <Widget>[
+            children: <YgListTile>[
               YgListTile(
                 title: 'Switch in a list tile',
                 subtitle: 'Only the Switch is tappable.',

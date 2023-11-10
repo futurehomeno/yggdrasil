@@ -1,6 +1,13 @@
 import 'package:flutter/material.dart';
+import 'package:yggdrasil/src/components/yg_switch/helpers/_yg_switch_helpers.dart';
 import 'package:yggdrasil/src/theme/_theme.dart';
 import 'package:yggdrasil/yggdrasil.dart';
+
+part 'yg_checkbox_list_tile.dart';
+part 'yg_list_tile_with_child_and_optional_leading.dart';
+part 'yg_radio_list_tile.dart';
+part 'yg_regular_list_tile.dart';
+part 'yg_switch_list_tile.dart';
 
 /// List tile component based on [ListTile] from M3.
 ///
@@ -9,18 +16,28 @@ import 'package:yggdrasil/yggdrasil.dart';
 /// Supports 2 leading, 2 trailing and 2 supporting widgets,
 /// however, this differs from design in Figma. This is so
 /// we do not encourage designers to use more than 2 widgets.
-class YgListTile extends StatelessWidget with StatelessWidgetDebugMixin {
-  const YgListTile({
+abstract class YgListTile extends StatelessWidget with StatelessWidgetDebugMixin {
+  const factory YgListTile({
+    List<Widget> leadingWidgets,
+    void Function()? onInfoTap,
+    void Function()? onTap,
+    String? subtitle,
+    Widget? subtitleIcon,
+    List<Widget> supportingWidgets,
+    required String title,
+    List<Widget> trailingWidgets,
+  }) = _YgRegularListTile;
+
+  const YgListTile._({
     super.key,
     required this.title,
     this.subtitle,
     this.subtitleIcon,
-    this.leadingWidgets = const <YgIcon>[],
-    this.trailingWidgets = const <YgIcon>[],
-    this.supportingWidgets = const <Widget>[],
-    this.onTap,
-    this.onInfoTap,
-  }) : assert(subtitleIcon == null || subtitle != null, 'Can not add a subtitleIcon without a subtitle');
+    this.disabled = false,
+  }) : assert(
+          subtitleIcon == null || subtitle != null,
+          'Can not add a subtitleIcon without a subtitle',
+        );
 
   /// Convenience for generating links from YgListTiles.
   factory YgListTile.link({
@@ -52,59 +69,35 @@ class YgListTile extends StatelessWidget with StatelessWidgetDebugMixin {
   /// Can not be provided when there is no subtitle.
   final Widget? subtitleIcon;
 
-  /// Widgets which will be placed at the front of the list tile.
-  final List<Widget> leadingWidgets;
-
-  /// Widgets which will be placed at the end of the list tile.
-  final List<Widget> trailingWidgets;
-
-  /// Up to 2 widgets which will be placed between the content and the trailing widget.
-  ///
-  /// Will be stacked on top of each other when there is more than one specified.
-  final List<Widget> supportingWidgets;
-
-  /// Called when the list tile is pressed.
-  final VoidCallback? onTap;
-
-  /// When provided, shows an info button next to the title.
-  /// 
-  /// Called when the button is pressed.
-  final VoidCallback? onInfoTap;
-
-  static const int _allowedNumberOfLeadingWidgets = 2;
-  static const int _allowedNumberOfTrailingWidgets = 2;
-  static const int _allowedNumberOfSupportingWidgets = 2;
+  final bool disabled;
 
   @override
   Widget build(BuildContext context) {
-    // TODO(DEV-1920): This is not ideal, maybe look in to something using records so we can create a limit in widgets without asserts?
-    assert(leadingWidgets.length <= _allowedNumberOfLeadingWidgets, 'Cannot have more than 2 leading widgets.');
-    assert(trailingWidgets.length <= _allowedNumberOfTrailingWidgets, 'Cannot have more than 2 trailing widget.');
-    assert(
-        supportingWidgets.length <= _allowedNumberOfSupportingWidgets, 'Cannot have more than 2 supporting widgets.');
-
     final YgListTileTheme listTileTheme = context.listTileTheme;
+    final Widget? leadingWidgets = _buildLeadingWidgets(context);
+    final Widget? supportingWidgets = _buildSupportingWidgets(context);
+    final Widget? trailingWidgets = _buildTrailingWidgets(context);
 
     return Material(
       type: MaterialType.transparency,
       child: InkWell(
-        onTap: onTap,
+        onTap: disabled ? null : _onTap,
         child: Padding(
           padding: listTileTheme.outerPadding,
           child: Row(
             children: <Widget>[
-              if (leadingWidgets.isNotEmpty) _buildLeadingWidgets(listTileTheme),
+              if (leadingWidgets != null) leadingWidgets,
               Expanded(
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: <Widget>[
-                    _buildTitle(listTileTheme),
+                    _buildTitle(context),
                     if (subtitle != null) _buildSubtitle(listTileTheme),
                   ].withVerticalSpacing(listTileTheme.titleSubtitleSpacing),
                 ),
               ),
-              if (supportingWidgets.isNotEmpty) _buildSupportingWidgets(listTileTheme),
-              if (trailingWidgets.isNotEmpty) _buildTrailingWidgets(listTileTheme),
+              if (supportingWidgets != null) supportingWidgets,
+              if (trailingWidgets != null) trailingWidgets,
             ].withHorizontalSpacing(listTileTheme.contentSpacing),
           ),
         ),
@@ -112,7 +105,10 @@ class YgListTile extends StatelessWidget with StatelessWidgetDebugMixin {
     );
   }
 
-  Widget _buildTitle(YgListTileTheme listTileTheme) {
+  Widget _buildTitle(BuildContext context) {
+    final Widget? infoButton = _buildInfoButton(context);
+    final YgListTileTheme listTileTheme = context.listTileTheme;
+
     return Row(
       children: <Widget>[
         Flexible(
@@ -122,7 +118,7 @@ class YgListTile extends StatelessWidget with StatelessWidgetDebugMixin {
             overflow: TextOverflow.ellipsis,
           ),
         ),
-        if (onInfoTap != null) _buildInfoButton(),
+        if (infoButton != null) infoButton,
       ].withHorizontalSpacing(listTileTheme.titleInfoSpacing),
     );
   }
@@ -141,35 +137,23 @@ class YgListTile extends StatelessWidget with StatelessWidgetDebugMixin {
     );
   }
 
-  Widget _buildInfoButton() {
-    return YgIconButton(
-      onPressed: onInfoTap,
-      size: YgIconButtonSize.small,
-      child: const YgIcon(YgIcons.info),
-    );
-  }
+  @protected
+  Widget? _buildLeadingWidgets(BuildContext context) => null;
 
-  Widget _buildLeadingWidgets(YgListTileTheme listTileTheme) {
-    return Row(
-      children: leadingWidgets.withHorizontalSpacing(listTileTheme.contentSpacing),
-    );
-  }
+  @protected
+  Widget? _buildTrailingWidgets(BuildContext context) => null;
 
-  Widget _buildTrailingWidgets(YgListTileTheme listTileTheme) {
-    return Row(
-      children: trailingWidgets.withHorizontalSpacing(listTileTheme.contentSpacing),
-    );
-  }
+  @protected
+  Widget? _buildSupportingWidgets(BuildContext context) => null;
 
-  Widget _buildSupportingWidgets(YgListTileTheme listTileTheme) {
-    return Column(
-      children: supportingWidgets.withVerticalSpacing(listTileTheme.contentSpacing),
-    );
-  }
+  @protected
+  Widget? _buildInfoButton(BuildContext context) => null;
+
+  void _onTap();
 
   @override
   YgDebugType get debugType {
-    if (onTap == null) {
+    if (disabled) {
       return YgDebugType.other;
     }
 
