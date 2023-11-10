@@ -25,7 +25,7 @@ class YgRadioListTile<T> extends _YgListTileWithChildAndOptionalLeading {
   final ValueChanged<T?>? onChanged;
 
   @override
-  Widget buildChild(BuildContext context) {
+  Widget _buildChild(BuildContext context) {
     return AbsorbPointer(
       child: YgNoFocus(
         child: YgRadio<T>(

@@ -69,6 +69,9 @@ abstract class YgListTile extends StatelessWidget with StatelessWidgetDebugMixin
   /// Can not be provided when there is no subtitle.
   final Widget? subtitleIcon;
 
+  /// Disables touch interaction when true.
+  ///
+  /// Does not create any visual changes.
   final bool disabled;
 
   @override

@@ -31,7 +31,7 @@ class YgCheckboxListTile extends _YgListTileWithChildAndOptionalLeading {
   }
 
   @override
-  Widget buildChild(BuildContext context) {
+  Widget _buildChild(BuildContext context) {
     return AbsorbPointer(
       child: YgNoFocus(
         child: YgCheckbox(

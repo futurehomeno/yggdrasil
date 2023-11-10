@@ -13,6 +13,7 @@ abstract class _YgListTileWithChildAndOptionalLeading extends YgListTile {
     this.leadingWidget,
   }) : super._();
 
+  /// Optional widget which will be placed at the front of the list tile.
   final Widget? leadingWidget;
 
   @override
@@ -20,7 +21,7 @@ abstract class _YgListTileWithChildAndOptionalLeading extends YgListTile {
     final Widget? leadingWidget = this.leadingWidget;
 
     if (leadingWidget == null) {
-      return buildChild(context);
+      return _buildChild(context);
     }
 
     return leadingWidget;
@@ -34,8 +35,8 @@ abstract class _YgListTileWithChildAndOptionalLeading extends YgListTile {
       return null;
     }
 
-    return buildChild(context);
+    return _buildChild(context);
   }
 
-  Widget buildChild(BuildContext context);
+  Widget _buildChild(BuildContext context);
 }
