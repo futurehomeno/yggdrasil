@@ -9,8 +9,6 @@ import '../widgets/_widgets.dart';
 import 'widgets/_widgets.dart';
 import 'yg_dropdown_field_state.dart';
 
-// import 'yg_dropdown_field_state.dart';
-
 // This is really not ideal, but this is the only way to prevent us from
 // polluting the exports with classes that really should be private.
 part 'multi_select/yg_dropdown_field_multi_select.dart';
