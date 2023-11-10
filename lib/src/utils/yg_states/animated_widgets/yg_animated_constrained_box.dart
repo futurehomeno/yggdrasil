@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:yggdrasil/src/utils/yg_states/_yg_states.dart';
 
-/// Build a [ConstrainedBox] using [constraints].
+/// Builds a [ConstrainedBox] using [constraints].
 class YgAnimatedConstrainedBox extends StatelessWidget {
   const YgAnimatedConstrainedBox({
     super.key,
