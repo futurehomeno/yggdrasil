@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:yggdrasil/yggdrasil.dart';
 
+/// Builds a [PhysicalShape] with animated properties.
 class YgAnimatedPhysicalShape extends StatelessWidget {
   const YgAnimatedPhysicalShape({
     super.key,
@@ -31,7 +32,7 @@ class YgAnimatedPhysicalShape extends StatelessWidget {
   /// See [PhysicalShape.shadowColor].
   final YgDrivenNullableColorProperty? shadowColor;
 
-  /// See [YgAnimatedShapeBorderPainter.borderOnForeground]
+  /// See [YgAnimatedShapeBorderPainter.paintOnForeground]
   final bool borderOnForeground;
 
   @override
@@ -72,7 +73,7 @@ class YgAnimatedPhysicalShape extends StatelessWidget {
       },
       child: YgAnimatedShapeBorderPainter(
         shape: shape,
-        borderOnForeground: borderOnForeground,
+        paintOnForeground: borderOnForeground,
         child: child,
       ),
     );

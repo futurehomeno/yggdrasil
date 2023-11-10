@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:yggdrasil/src/utils/yg_states/_yg_states.dart';
 
-/// Mixin which slightly simplifies implementing a custom property with a
+/// Mixin which slightly simplifies implementing a custom property with an
 /// all static method.
 mixin YgPropertyResolveAllMixin<T extends YgState, V> on YgProperty<T, V> {
   YgStatesAllResolver<V> get resolver;

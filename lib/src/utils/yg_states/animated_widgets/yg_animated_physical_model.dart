@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:yggdrasil/src/utils/yg_states/_yg_states.dart';
 
-/// Build a [PhysicalModel] with animated properties.
+/// Builds a [PhysicalModel] with animated properties.
 class YgAnimatedPhysicalModel extends StatelessWidget {
   const YgAnimatedPhysicalModel({
     super.key,

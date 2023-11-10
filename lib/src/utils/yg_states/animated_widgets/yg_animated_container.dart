@@ -1,9 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:yggdrasil/src/utils/yg_states/_yg_states.dart';
 
-/// Container which accepts animated properties
+/// Container which accepts animated properties.
 ///
-/// For more info see [Container].
+/// Does not animate its own properties like [AnimatedContainer], instead
+/// accepts [YgDrivenProperty] for its properties which are already animated.
+/// For more info on the specific properties see [Container].
 class YgAnimatedContainer extends StatelessWidget {
   YgAnimatedContainer({
     super.key,

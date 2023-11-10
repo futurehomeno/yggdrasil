@@ -37,7 +37,7 @@ class _YgAnimatedProperty<T extends YgState, V> extends Animation<V>
     _animationController.addListener(_handleAnimationTick);
   }
 
-  /// Internal animation controller
+  /// Internal animation controller.
   ///
   /// Drives the animations between values.
   final AnimationController _animationController;
@@ -57,13 +57,13 @@ class _YgAnimatedProperty<T extends YgState, V> extends Animation<V>
 
   /// The property which created this animated property.
   ///
-  /// Gets used to resolve the value of this animated property.
+  /// Used to resolve the value of this animated property.
   final YgProperty<T, V> _property;
 
   /// The current cached value.
   ///
-  /// Gets cleared whenever the animation updates. Gets set whenever the value
-  /// is requested, if the value is never requested it will never be evaluated.
+  /// Cleared whenever the animation updates. Set whenever the value
+  /// is requested. If the value is never requested it will never be evaluated.
   V? _cachedValue;
 
   @override

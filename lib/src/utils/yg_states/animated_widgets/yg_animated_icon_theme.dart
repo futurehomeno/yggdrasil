@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:yggdrasil/src/utils/yg_states/_yg_states.dart';
 
-/// Build a [IconTheme] using [iconTheme].
+/// Builds an [IconTheme] using [iconTheme].
 class YgAnimatedIconTheme extends StatelessWidget {
   const YgAnimatedIconTheme({
     super.key,

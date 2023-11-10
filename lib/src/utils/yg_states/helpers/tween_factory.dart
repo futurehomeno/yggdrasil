@@ -7,7 +7,7 @@ class TweenFactory {
 
   /// Creates [Tween] of type [T].
   ///
-  /// May find a [Tween] specialized in interpolating [T], otherwise will create
+  /// Finds a [Tween] specialized in interpolating [T], otherwise will create
   /// a normal [Tween] of type [T].
   ///
   /// Supports any of the following classes or any class implementing them where
@@ -389,6 +389,10 @@ class TweenFactory {
 }
 
 /// Type argument type check helper class.
+///
+/// We can not do `T is AnotherType` because `T is Type` is always true, so we
+/// need to do `_T<T>() is _T<AnotherType>()` instead to check type inheritance
+/// for type arguments, until dart comes up with a better idea.
 class _T<T> {
   const _T();
 }

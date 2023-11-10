@@ -1,7 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:yggdrasil/src/utils/yg_states/_yg_states.dart';
 
-/// Build a [Padding] using [padding].
+/// Builds a [Padding] using [padding].
+///
+/// Does not animate its own properties like [AnimatedPadding], instead accepts
+/// [YgNullableEdgeInsetsProperty] for padding which is already animated.
 class YgAnimatedPadding extends StatelessWidget {
   const YgAnimatedPadding({
     super.key,

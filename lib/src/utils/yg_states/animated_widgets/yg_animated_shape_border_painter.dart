@@ -7,7 +7,7 @@ class YgAnimatedShapeBorderPainter extends StatelessWidget {
     super.key,
     this.child,
     required this.shape,
-    this.borderOnForeground = true,
+    this.paintOnForeground = true,
   });
 
   /// The widget below this widget in the tree.
@@ -17,7 +17,7 @@ class YgAnimatedShapeBorderPainter extends StatelessWidget {
   final YgDrivenNullableShapeBorderProperty shape;
 
   /// Whether the [shape] should be painted in front or behind [child].
-  final bool borderOnForeground;
+  final bool paintOnForeground;
 
   @override
   Widget build(BuildContext context) {
@@ -27,8 +27,8 @@ class YgAnimatedShapeBorderPainter extends StatelessWidget {
     );
 
     return CustomPaint(
-      painter: borderOnForeground ? null : painter,
-      foregroundPainter: borderOnForeground ? painter : null,
+      painter: paintOnForeground ? null : painter,
+      foregroundPainter: paintOnForeground ? painter : null,
       child: child,
     );
   }
