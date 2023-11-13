@@ -106,15 +106,6 @@ class _YgRegularListTile extends YgListTile {
   }
 
   @override
-  YgDebugType get debugType {
-    if (onTap == null) {
-      return YgDebugType.other;
-    }
-
-    return YgDebugType.intractable;
-  }
-
-  @override
   void _onTap() {
     onTap?.call();
   }
