@@ -1,6 +1,6 @@
 part of 'yg_style_base.dart';
 
-/// Slightly simplifies animating or driving properties.
+/// Simplifies animating or driving properties.
 ///
 /// Primarily used to clean up the use of [YgProperty]. Using [YgStyle.animate]
 /// or [YgStyle.drive] instead of [YgProperty.animate] or [YgProperty.drive] has

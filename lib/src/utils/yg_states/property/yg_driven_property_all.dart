@@ -1,5 +1,9 @@
 part of 'yg_property.dart';
 
+/// Implementation of [YgDrivenProperty] with a constant value.
+///
+/// Useful when a widget only accepts a driven property but the value never
+/// changes based on states or theme.
 class _YgDrivenPropertyAll<V> implements YgDrivenProperty<V> {
   const _YgDrivenPropertyAll({
     required this.value,
