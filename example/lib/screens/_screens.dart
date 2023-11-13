@@ -27,3 +27,4 @@ export 'switch/_switch.dart';
 export 'tag/_tag.dart';
 export 'text_field/_text_field.dart';
 export 'text_link/_text_link.dart';
+export 'wizard_header_screen/_wizard_header_screen.dart';

@@ -185,6 +185,11 @@ class HomeScreen extends StatelessWidget {
                 onTap: () => sl<YgRouter>().push(ToggleButtonScreen.route()),
                 trailingWidgets: const <YgIcon>[YgIcon(YgIcons.caretRight)],
               ),
+              YgListTile(
+                title: 'WizardHeader',
+                onTap: () => sl<YgRouter>().push(WizardHeaderScreen.route()),
+                trailingWidgets: const <YgIcon>[YgIcon(YgIcons.caretRight)],
+              ),
             ],
           ),
         ],
