@@ -24,7 +24,7 @@ void main() {
                   counterBuilder: counterBuilder,
                   step: step,
                   steps: steps,
-                  title: YgGoldenTestValues.shortText,
+                  titleBuilder: (_) => YgGoldenTestValues.shortText,
                 ),
               ),
               GoldenTestScenario(
@@ -33,7 +33,7 @@ void main() {
                   counterBuilder: counterBuilder,
                   step: step,
                   steps: steps,
-                  title: YgGoldenTestValues.longText,
+                  titleBuilder: (_) => YgGoldenTestValues.longText,
                 ),
               ),
             ],

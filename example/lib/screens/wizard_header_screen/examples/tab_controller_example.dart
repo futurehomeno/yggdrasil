@@ -30,7 +30,7 @@ class _TabControllerExampleState extends State<TabControllerExample> with Ticker
       children: <Widget>[
         YgWizardHeader.fromTabController(
           controller: _controller,
-          title: 'A TabController controlled YgWizardHeader',
+          titleBuilder: (_) => 'A TabController controlled YgWizardHeader',
           counterBuilder: (int p0, int p1) => 'Step $p0 of $p1',
         ),
         SizedBox(

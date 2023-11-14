@@ -3,7 +3,7 @@ part of 'yg_wizard_header.dart';
 class _YgWizardHeaderFromTabController extends YgWizardHeader {
   const _YgWizardHeaderFromTabController({
     required super.counterBuilder,
-    required super.title,
+    required super.titleBuilder,
     required this.controller,
   }) : super._();
 
@@ -19,8 +19,8 @@ class _YgWizardHeaderStateFromTabController extends _YgWizardHeaderState<_YgWiza
   Animation<double> get _valueAnimation => widget.controller.animation!;
 
   @override
-  int _getSteps() => widget.controller.length;
+  int get _steps => widget.controller.length;
 
   @override
-  int _getStep() => _valueAnimation.value.round();
+  int get _step => _valueAnimation.value.round();
 }

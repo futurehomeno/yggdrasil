@@ -3,7 +3,7 @@ part of 'yg_wizard_header.dart';
 class _YgWizardHeaderRegular extends YgWizardHeader {
   const _YgWizardHeaderRegular({
     required super.counterBuilder,
-    required super.title,
+    required super.titleBuilder,
     required this.step,
     required this.steps,
   })  : assert(
@@ -37,10 +37,10 @@ class _YgWizardHeaderStateRegular extends _YgWizardHeaderState<_YgWizardHeaderRe
   );
 
   @override
-  int _getSteps() => widget.steps;
+  int get _steps => widget.steps;
 
   @override
-  int _getStep() => widget.step;
+  int get _step => widget.step;
 
   @override
   void didUpdateWidget(covariant _YgWizardHeaderRegular oldWidget) {

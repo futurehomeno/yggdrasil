@@ -8,6 +8,7 @@ part 'yg_wizard_header_from_tab_controller.dart';
 part 'yg_wizard_header_regular.dart';
 
 typedef CounterBuilderCallback = String Function(int step, int steps);
+typedef TitleBuilderCallback = String Function(int step);
 
 /// Implementation of the WizardHeader.
 ///
@@ -26,7 +27,7 @@ abstract class YgWizardHeader extends StatefulWidget {
     required CounterBuilderCallback counterBuilder,
     required int step,
     required int steps,
-    required String title,
+    required TitleBuilderCallback titleBuilder,
   }) = _YgWizardHeaderRegular;
 
   /// YgWizardHeader controlled by a TabController.
@@ -35,20 +36,22 @@ abstract class YgWizardHeader extends StatefulWidget {
   const factory YgWizardHeader.fromTabController({
     required CounterBuilderCallback counterBuilder,
     required TabController controller,
-    required String title,
+    required TitleBuilderCallback titleBuilder,
   }) = _YgWizardHeaderFromTabController;
 
   const YgWizardHeader._({
     required this.counterBuilder,
-    required this.title,
+    required this.titleBuilder,
   });
 
   /// The title of the Wizard header.
-  final String title;
+  final TitleBuilderCallback titleBuilder;
 
   /// Builds the current counter.
   ///
-  /// Gets passed the current step and the total amount of steps.
+  /// Gets passed the current step and the total amount of steps. [step] is the
+  /// internal step value + 1 to represent the value that should actually be
+  /// displayed.
   final CounterBuilderCallback counterBuilder;
 }
 
@@ -58,16 +61,58 @@ abstract class _YgWizardHeaderState<W extends YgWizardHeader> extends State<W> w
 
   /// The animation used to drive the animations in this widget.
   Animation<double> get _valueAnimation;
+  late Animation<double> _currentValueAnimation;
 
   /// Gets the current total steps.
-  int _getSteps();
+  int get _steps;
+  late int _currentSteps;
 
   /// Gets the current step displayed in the counter.
-  int _getStep();
+  int get _step;
+  late int _currentStep;
+
+  @override
+  void initState() {
+    super.initState();
+    _currentStep = _step;
+    _currentSteps = _steps;
+    _currentValueAnimation = _valueAnimation;
+  }
+
+  @override
+  void didUpdateWidget(covariant W oldWidget) {
+    super.didUpdateWidget(oldWidget);
+    _currentStep = _step;
+    _currentSteps = _steps;
+    if (_currentValueAnimation != _valueAnimation) {
+      _currentValueAnimation.removeListener(_checkRebuild);
+      _currentValueAnimation = _valueAnimation;
+      _currentValueAnimation.addListener(_checkRebuild);
+    }
+  }
+
+  void _checkRebuild() {
+    final bool stepChanged = _step != _currentStep;
+    final bool stepsChanged = _steps != _currentSteps;
+    if (stepChanged) {
+      _currentStep = _step;
+    }
+    if (stepsChanged) {
+      _currentSteps = _steps;
+    }
+    if (stepChanged || stepsChanged) {
+      setState(() {});
+    }
+  }
+
+  @override
+  void dispose() {
+    _currentValueAnimation.removeListener(_checkRebuild);
+    super.dispose();
+  }
 
   @override
   Widget build(BuildContext context) {
-    final int steps = _getSteps();
     final YgWizardHeaderTheme theme = context.wizardHeaderTheme;
 
     return Container(
@@ -78,7 +123,7 @@ abstract class _YgWizardHeaderState<W extends YgWizardHeader> extends State<W> w
         children: <Widget>[
           Row(
             children: <Widget>[
-              if (steps <= _maxVisibleSteps)
+              if (_currentSteps <= _maxVisibleSteps)
                 Expanded(
                   child: Padding(
                     padding: theme.barPadding,
@@ -86,7 +131,7 @@ abstract class _YgWizardHeaderState<W extends YgWizardHeader> extends State<W> w
                       height: theme.barStroke,
                       child: CustomPaint(
                         painter: WizardProgressPainter(
-                          steps: steps,
+                          steps: _currentSteps,
                           value: _valueAnimation,
                           stroke: theme.barStroke,
                           gap: theme.barSegmentGap,
@@ -97,18 +142,19 @@ abstract class _YgWizardHeaderState<W extends YgWizardHeader> extends State<W> w
                     ),
                   ),
                 ),
-              CounterBuilder(
-                animation: _valueAnimation,
-                getStep: _getStep,
-                getSteps: _getSteps,
-                buildCounter: widget.counterBuilder,
+              Text(
+                widget.counterBuilder(
+                  _currentStep + 1,
+                  _currentSteps,
+                ),
+                style: context.wizardHeaderTheme.counterTextStyle,
               ),
             ],
           ),
           Padding(
             padding: theme.titlePadding,
             child: Text(
-              widget.title,
+              widget.titleBuilder(_currentStep),
               style: theme.titleTextStyle,
             ),
           ),
