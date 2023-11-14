@@ -44,7 +44,6 @@ class YgButton extends ButtonStyleButton with StatefulWidgetDebugMixin {
   }) : super(
           child: _YgButtonWithLeadingIconChild(
             icon: icon,
-            iconColor: iconColor,
             child: child,
           ),
         );
@@ -71,7 +70,6 @@ class YgButton extends ButtonStyleButton with StatefulWidgetDebugMixin {
   }) : super(
           child: _YgButtonWithTrailingIconChild(
             icon: icon,
-            iconColor: iconColor,
             child: child,
           ),
         );

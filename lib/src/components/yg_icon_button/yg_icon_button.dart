@@ -11,7 +11,6 @@ class YgIconButton extends ButtonStyleButton with StatefulWidgetDebugMixin {
     required super.onPressed,
     this.size = YgIconButtonSize.medium,
     this.variant = YgIconButtonVariant.standard,
-    this.iconColor,
     super.autofocus = false,
     super.clipBehavior = Clip.none,
     super.focusNode,
@@ -20,16 +19,10 @@ class YgIconButton extends ButtonStyleButton with StatefulWidgetDebugMixin {
     super.onLongPress,
     super.statesController,
     super.style,
-  }) : super(
-          child: YgIcon(
-            icon,
-            color: iconColor,
-          ),
-        );
+  }) : super(child: YgIcon(icon));
 
   final YgIconButtonVariant variant;
   final YgIconButtonSize size;
-  final Color? iconColor;
 
   @override
   ButtonStyle defaultStyleOf(BuildContext context) {

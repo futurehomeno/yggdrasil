@@ -27,7 +27,7 @@ class DeviceDetailsExample extends StatelessWidget {
             children: <YgListTile>[
               YgListTile.link(
                 link: 'Customize',
-                iconData: YgIcons.edit,
+                icon: YgIcons.edit,
                 onTap: () {},
               ),
             ],
@@ -96,12 +96,12 @@ class DeviceDetailsExample extends StatelessWidget {
             children: <YgListTile>[
               YgListTile.link(
                 link: 'System data',
-                iconData: YgIcons.support,
+                icon: YgIcons.support,
                 onTap: () {},
               ),
               YgListTile.link(
                 link: 'Settings',
-                iconData: YgIcons.support,
+                icon: YgIcons.support,
                 onTap: () {},
               ),
             ],

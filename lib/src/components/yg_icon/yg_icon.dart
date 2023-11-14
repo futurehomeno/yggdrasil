@@ -4,6 +4,7 @@ import 'package:flutter/services.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:yggdrasil/src/extensions/hex_color.dart';
 import 'package:yggdrasil/src/theme/_theme.dart';
+import 'package:yggdrasil/src/theme/tokens/extensions/yg_color.dart';
 import 'package:yggdrasil/yggdrasil.dart';
 
 class YgIcon extends StatelessWidget with StatelessWidgetDebugMixin {
@@ -145,8 +146,9 @@ class YgIcon extends StatelessWidget with StatelessWidgetDebugMixin {
     return snapshot.data!
         .replaceAllMapped(RegExp(r'fill="[^"]+"'), (Match match) => '')
         .replaceAllMapped(RegExp(r'yggColor="([^"]+)"'), (Match match) {
+      final YgColor colors = context.tokens.colors;
       final Color color = YgColors.getColorFromString(
-            context: context,
+            colors: colors,
             colorName: match.group(1)!,
           ) ??
           context.defaults.iconColor;
