@@ -122,10 +122,10 @@ class _$YgWizardHeaderTheme {
   // region Animation
 
   static const List<Duration> animationDuration = <Duration>[
-    Duration(microseconds: 300),
-    Duration(microseconds: 300),
-    Duration(microseconds: 300),
-    Duration(microseconds: 300),
+    Duration(milliseconds: 300),
+    Duration(milliseconds: 300),
+    Duration(milliseconds: 300),
+    Duration(milliseconds: 300),
   ];
 
   static const List<Curve> animationCurve = <Curve>[
