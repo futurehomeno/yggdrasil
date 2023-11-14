@@ -113,7 +113,7 @@ class YgIcon extends StatelessWidget with StatelessWidgetDebugMixin {
     super.debugFillProperties(properties);
     properties.add(StringProperty('icon', icon, defaultValue: null));
     properties.add(EnumProperty<YgIconSize>('size', size, defaultValue: null));
-    properties.add(ColorProperty('color', color, defaultValue: null));
+    properties.add(ColorProperty('yggColor', color, defaultValue: null));
     properties.add(FlagProperty(
       'useEmbeddedColor',
       value: useEmbeddedColor,
