@@ -10,6 +10,8 @@ part of 'wizard_header_theme.dart';
 
 class YgWizardHeaderTheme extends ThemeExtension<YgWizardHeaderTheme> {
   const YgWizardHeaderTheme({
+    required this.animationCurve,
+    required this.animationDuration,
     required this.backgroundColor,
     required this.barBackgroundColor,
     required this.barForegroundColor,
@@ -22,6 +24,8 @@ class YgWizardHeaderTheme extends ThemeExtension<YgWizardHeaderTheme> {
     required this.titleTextStyle,
   });
 
+  final Curve animationCurve;
+  final Duration animationDuration;
   final Color backgroundColor;
   final Color barBackgroundColor;
   final Color barForegroundColor;
@@ -34,6 +38,8 @@ class YgWizardHeaderTheme extends ThemeExtension<YgWizardHeaderTheme> {
   final TextStyle titleTextStyle;
 
   static final YgWizardHeaderTheme consumerLight = YgWizardHeaderTheme(
+    animationCurve: _$YgWizardHeaderTheme.animationCurve[0],
+    animationDuration: _$YgWizardHeaderTheme.animationDuration[0],
     backgroundColor: _$YgWizardHeaderTheme.backgroundColor[0],
     barBackgroundColor: _$YgWizardHeaderTheme.barBackgroundColor[0],
     barForegroundColor: _$YgWizardHeaderTheme.barForegroundColor[0],
@@ -47,6 +53,8 @@ class YgWizardHeaderTheme extends ThemeExtension<YgWizardHeaderTheme> {
   );
 
   static final YgWizardHeaderTheme consumerDark = YgWizardHeaderTheme(
+    animationCurve: _$YgWizardHeaderTheme.animationCurve[1],
+    animationDuration: _$YgWizardHeaderTheme.animationDuration[1],
     backgroundColor: _$YgWizardHeaderTheme.backgroundColor[1],
     barBackgroundColor: _$YgWizardHeaderTheme.barBackgroundColor[1],
     barForegroundColor: _$YgWizardHeaderTheme.barForegroundColor[1],
@@ -60,6 +68,8 @@ class YgWizardHeaderTheme extends ThemeExtension<YgWizardHeaderTheme> {
   );
 
   static final YgWizardHeaderTheme professionalLight = YgWizardHeaderTheme(
+    animationCurve: _$YgWizardHeaderTheme.animationCurve[2],
+    animationDuration: _$YgWizardHeaderTheme.animationDuration[2],
     backgroundColor: _$YgWizardHeaderTheme.backgroundColor[2],
     barBackgroundColor: _$YgWizardHeaderTheme.barBackgroundColor[2],
     barForegroundColor: _$YgWizardHeaderTheme.barForegroundColor[2],
@@ -73,6 +83,8 @@ class YgWizardHeaderTheme extends ThemeExtension<YgWizardHeaderTheme> {
   );
 
   static final YgWizardHeaderTheme professionalDark = YgWizardHeaderTheme(
+    animationCurve: _$YgWizardHeaderTheme.animationCurve[3],
+    animationDuration: _$YgWizardHeaderTheme.animationDuration[3],
     backgroundColor: _$YgWizardHeaderTheme.backgroundColor[3],
     barBackgroundColor: _$YgWizardHeaderTheme.barBackgroundColor[3],
     barForegroundColor: _$YgWizardHeaderTheme.barForegroundColor[3],
@@ -94,6 +106,8 @@ class YgWizardHeaderTheme extends ThemeExtension<YgWizardHeaderTheme> {
 
   @override
   YgWizardHeaderTheme copyWith({
+    Curve? animationCurve,
+    Duration? animationDuration,
     Color? backgroundColor,
     Color? barBackgroundColor,
     Color? barForegroundColor,
@@ -106,6 +120,8 @@ class YgWizardHeaderTheme extends ThemeExtension<YgWizardHeaderTheme> {
     TextStyle? titleTextStyle,
   }) {
     return YgWizardHeaderTheme(
+      animationCurve: animationCurve ?? this.animationCurve,
+      animationDuration: animationDuration ?? this.animationDuration,
       backgroundColor: backgroundColor ?? this.backgroundColor,
       barBackgroundColor: barBackgroundColor ?? this.barBackgroundColor,
       barForegroundColor: barForegroundColor ?? this.barForegroundColor,
@@ -124,6 +140,8 @@ class YgWizardHeaderTheme extends ThemeExtension<YgWizardHeaderTheme> {
       covariant ThemeExtension<YgWizardHeaderTheme>? other, double t) {
     if (other is! YgWizardHeaderTheme) return this as YgWizardHeaderTheme;
     return YgWizardHeaderTheme(
+      animationCurve: t < 0.5 ? animationCurve : other.animationCurve,
+      animationDuration: t < 0.5 ? animationDuration : other.animationDuration,
       backgroundColor: Color.lerp(backgroundColor, other.backgroundColor, t)!,
       barBackgroundColor:
           Color.lerp(barBackgroundColor, other.barBackgroundColor, t)!,
@@ -145,6 +163,10 @@ class YgWizardHeaderTheme extends ThemeExtension<YgWizardHeaderTheme> {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is YgWizardHeaderTheme &&
+            const DeepCollectionEquality()
+                .equals(animationCurve, other.animationCurve) &&
+            const DeepCollectionEquality()
+                .equals(animationDuration, other.animationDuration) &&
             const DeepCollectionEquality()
                 .equals(backgroundColor, other.backgroundColor) &&
             const DeepCollectionEquality()
@@ -169,6 +191,8 @@ class YgWizardHeaderTheme extends ThemeExtension<YgWizardHeaderTheme> {
   int get hashCode {
     return Object.hash(
       runtimeType.hashCode,
+      const DeepCollectionEquality().hash(animationCurve),
+      const DeepCollectionEquality().hash(animationDuration),
       const DeepCollectionEquality().hash(backgroundColor),
       const DeepCollectionEquality().hash(barBackgroundColor),
       const DeepCollectionEquality().hash(barForegroundColor),

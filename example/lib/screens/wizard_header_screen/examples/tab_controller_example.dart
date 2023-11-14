@@ -14,7 +14,7 @@ class _TabControllerExampleState extends State<TabControllerExample> with Ticker
   late final TabController _controller = TabController(
     vsync: this,
     length: 5,
-    animationDuration: const Duration(milliseconds: 500),
+    animationDuration: const Duration(milliseconds: 300),
     initialIndex: 0,
   );
 

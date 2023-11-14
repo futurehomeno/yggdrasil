@@ -118,4 +118,22 @@ class _$YgWizardHeaderTheme {
   ];
 
   // endregion
+
+  // region Animation
+
+  static const List<Duration> animationDuration = <Duration>[
+    Duration(microseconds: 300),
+    Duration(microseconds: 300),
+    Duration(microseconds: 300),
+    Duration(microseconds: 300),
+  ];
+
+  static const List<Curve> animationCurve = <Curve>[
+    Cubic(0.42, 0, 0.58, 1),
+    Cubic(0.42, 0, 0.58, 1),
+    Cubic(0.42, 0, 0.58, 1),
+    Cubic(0.42, 0, 0.58, 1),
+  ];
+
+  // endregion
 }
