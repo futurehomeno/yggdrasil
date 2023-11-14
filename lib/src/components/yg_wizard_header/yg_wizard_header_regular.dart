@@ -1,0 +1,61 @@
+part of 'yg_wizard_header.dart';
+
+class _YgWizardHeaderRegular extends YgWizardHeader {
+  const _YgWizardHeaderRegular({
+    required super.buildCounter,
+    required super.title,
+    required this.step,
+    required this.steps,
+  })  : assert(
+          step <= steps,
+          'step can not be more than steps',
+        ),
+        assert(
+          steps > 1,
+          'Wizard header must have at least 2 steps',
+        ),
+        super._();
+
+  /// The amount of steps.
+  ///
+  /// Shows a progress bar with up to 5 steps, when there are more than 5 steps
+  /// only the counter is shown.
+  final int steps;
+
+  /// The current step.
+  final int step;
+
+  @override
+  State<StatefulWidget> createState() => _YgWizardHeaderStateRegular();
+}
+
+class _YgWizardHeaderStateRegular extends _YgWizardHeaderState<_YgWizardHeaderRegular> {
+  @override
+  late final AnimationController _valueAnimation = AnimationController.unbounded(
+    value: widget.step.toDouble(),
+    vsync: this,
+  );
+
+  @override
+  int get _steps => widget.steps;
+
+  @override
+  void didUpdateWidget(covariant _YgWizardHeaderRegular oldWidget) {
+    if (widget.steps != oldWidget.steps) {
+      _valueAnimation.value = widget.step.toDouble();
+    } else if (widget.step != oldWidget.step) {
+      _valueAnimation.animateTo(
+        widget.step.toDouble(),
+        curve: Curves.easeInOut,
+        duration: const Duration(milliseconds: 500),
+      );
+    }
+    super.didUpdateWidget(oldWidget);
+  }
+
+  @override
+  void dispose() {
+    _valueAnimation.dispose();
+    super.dispose();
+  }
+}
