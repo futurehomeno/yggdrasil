@@ -32,9 +32,15 @@ class YgIcons {
   static const YgColorableIconData axisY = YgColorableIconData(name: 'axisY', path: 'assets/icons/axis_y.svg');
   static const YgColorableIconData axisZ = YgColorableIconData(name: 'axisZ', path: 'assets/icons/axis_z.svg');
   static const YgColorableIconData backyard = YgColorableIconData(name: 'backyard', path: 'assets/icons/backyard.svg');
+  static const YgColorableIconData badgeLeft = YgColorableIconData(name: 'badgeLeft', path: 'assets/icons/badge_left.svg');
+  static const YgColorableIconData badgeRight = YgColorableIconData(name: 'badgeRight', path: 'assets/icons/badge_right.svg');
   static const YgColorableIconData basement = YgColorableIconData(name: 'basement', path: 'assets/icons/basement.svg');
   static const YgColorableIconData bathroom = YgColorableIconData(name: 'bathroom', path: 'assets/icons/bathroom.svg');
   static const YgColorableIconData battery = YgColorableIconData(name: 'battery', path: 'assets/icons/battery.svg');
+  static const YgIconData battery0PercentColorful = YgIconData(name: 'battery0PercentColorful', path: 'assets/icons/battery_0_percent_colorful.svg');
+  static const YgIconData battery100PercentColorful = YgIconData(name: 'battery100PercentColorful', path: 'assets/icons/battery_100_percent_colorful.svg');
+  static const YgIconData battery50PercentColorful = YgIconData(name: 'battery50PercentColorful', path: 'assets/icons/battery_50_percent_colorful.svg');
+  static const YgIconData batteryOffColorful = YgIconData(name: 'batteryOffColorful', path: 'assets/icons/battery_off_colorful.svg');
   static const YgColorableIconData bedroom = YgColorableIconData(name: 'bedroom', path: 'assets/icons/bedroom.svg');
   static const YgColorableIconData bedroomGuest = YgColorableIconData(name: 'bedroomGuest', path: 'assets/icons/bedroom_guest.svg');
   static const YgColorableIconData bee = YgColorableIconData(name: 'bee', path: 'assets/icons/bee.svg');
@@ -68,6 +74,10 @@ class YgIcons {
   static const YgColorableIconData childRoom = YgColorableIconData(name: 'childRoom', path: 'assets/icons/child_room.svg');
   static const YgColorableIconData circle = YgColorableIconData(name: 'circle', path: 'assets/icons/circle.svg');
   static const YgColorableIconData circleDouble = YgColorableIconData(name: 'circleDouble', path: 'assets/icons/circle_double.svg');
+  static const YgColorableIconData circleDoubleRing = YgColorableIconData(name: 'circleDoubleRing', path: 'assets/icons/circle_double_ring.svg');
+  static const YgColorableIconData circleRing = YgColorableIconData(name: 'circleRing', path: 'assets/icons/circle_ring.svg');
+  static const YgColorableIconData circleSolid = YgColorableIconData(name: 'circleSolid', path: 'assets/icons/circle_solid.svg');
+  static const YgColorableIconData circleStroke = YgColorableIconData(name: 'circleStroke', path: 'assets/icons/circle_stroke.svg');
   static const YgColorableIconData circuitBreaker = YgColorableIconData(name: 'circuitBreaker', path: 'assets/icons/circuit_breaker.svg');
   static const YgColorableIconData climate = YgColorableIconData(name: 'climate', path: 'assets/icons/climate.svg');
   static const YgColorableIconData closet = YgColorableIconData(name: 'closet', path: 'assets/icons/closet.svg');
@@ -92,7 +102,11 @@ class YgIcons {
   static const YgIconData deviceTransferColorful = YgIconData(name: 'deviceTransferColorful', path: 'assets/icons/device_transfer_colorful.svg');
   static const YgColorableIconData deviceUpdateFailed = YgColorableIconData(name: 'deviceUpdateFailed', path: 'assets/icons/device_update_failed.svg');
   static const YgColorableIconData deviceUpdateSuccess = YgColorableIconData(name: 'deviceUpdateSuccess', path: 'assets/icons/device_update_success.svg');
+  static const YgIconData dialMaxColorful = YgIconData(name: 'dialMaxColorful', path: 'assets/icons/dial_max_colorful.svg');
+  static const YgColorableIconData dialMedium = YgColorableIconData(name: 'dialMedium', path: 'assets/icons/dial_medium.svg');
+  static const YgIconData dialMediumColorful = YgIconData(name: 'dialMediumColorful', path: 'assets/icons/dial_medium_colorful.svg');
   static const YgColorableIconData dialPeakOff = YgColorableIconData(name: 'dialPeakOff', path: 'assets/icons/dial_peak_off.svg');
+  static const YgColorableIconData dialPeakOn = YgColorableIconData(name: 'dialPeakOn', path: 'assets/icons/dial_peak_on.svg');
   static const YgColorableIconData diningRoom = YgColorableIconData(name: 'diningRoom', path: 'assets/icons/dining_room.svg');
   static const YgColorableIconData direction = YgColorableIconData(name: 'direction', path: 'assets/icons/direction.svg');
   static const YgColorableIconData donut = YgColorableIconData(name: 'donut', path: 'assets/icons/donut.svg');
@@ -104,6 +118,10 @@ class YgIcons {
   static const YgColorableIconData doorOpenUnlocked = YgColorableIconData(name: 'doorOpenUnlocked', path: 'assets/icons/door_open_unlocked.svg');
   static const YgColorableIconData downstairs = YgColorableIconData(name: 'downstairs', path: 'assets/icons/downstairs.svg');
   static const YgColorableIconData dracula = YgColorableIconData(name: 'dracula', path: 'assets/icons/dracula.svg');
+  static const YgColorableIconData dropBottomLeft = YgColorableIconData(name: 'dropBottomLeft', path: 'assets/icons/drop_bottom_left.svg');
+  static const YgColorableIconData dropDouble = YgColorableIconData(name: 'dropDouble', path: 'assets/icons/drop_double.svg');
+  static const YgColorableIconData dropTopLeft = YgColorableIconData(name: 'dropTopLeft', path: 'assets/icons/drop_top_left.svg');
+  static const YgColorableIconData dropTopRight = YgColorableIconData(name: 'dropTopRight', path: 'assets/icons/drop_top_right.svg');
   static const YgColorableIconData dry = YgColorableIconData(name: 'dry', path: 'assets/icons/dry.svg');
   static const YgColorableIconData edit = YgColorableIconData(name: 'edit', path: 'assets/icons/edit.svg');
   static const YgColorableIconData electricCar = YgColorableIconData(name: 'electricCar', path: 'assets/icons/electric_car.svg');
@@ -113,6 +131,9 @@ class YgIcons {
   static const YgColorableIconData energy = YgColorableIconData(name: 'energy', path: 'assets/icons/energy.svg');
   static const YgColorableIconData energyBattery = YgColorableIconData(name: 'energyBattery', path: 'assets/icons/energy_battery.svg');
   static const YgColorableIconData energyGrid = YgColorableIconData(name: 'energyGrid', path: 'assets/icons/energy_grid.svg');
+  static const YgColorableIconData energyLevel1 = YgColorableIconData(name: 'energyLevel1', path: 'assets/icons/energy_level_1.svg');
+  static const YgColorableIconData energyLevel2 = YgColorableIconData(name: 'energyLevel2', path: 'assets/icons/energy_level_2.svg');
+  static const YgColorableIconData energyLevel3 = YgColorableIconData(name: 'energyLevel3', path: 'assets/icons/energy_level_3.svg');
   static const YgColorableIconData energyMeter = YgColorableIconData(name: 'energyMeter', path: 'assets/icons/energy_meter.svg');
   static const YgColorableIconData energySolar = YgColorableIconData(name: 'energySolar', path: 'assets/icons/energy_solar.svg');
   static const YgColorableIconData energyWind = YgColorableIconData(name: 'energyWind', path: 'assets/icons/energy_wind.svg');
@@ -192,6 +213,7 @@ class YgIcons {
   static const YgColorableIconData lockOpen = YgColorableIconData(name: 'lockOpen', path: 'assets/icons/lock_open.svg');
   static const YgColorableIconData locked = YgColorableIconData(name: 'locked', path: 'assets/icons/locked.svg');
   static const YgColorableIconData login = YgColorableIconData(name: 'login', path: 'assets/icons/login.svg');
+  static const YgColorableIconData logout = YgColorableIconData(name: 'logout', path: 'assets/icons/logout.svg');
   static const YgColorableIconData lounge = YgColorableIconData(name: 'lounge', path: 'assets/icons/lounge.svg');
   static const YgColorableIconData luminance = YgColorableIconData(name: 'luminance', path: 'assets/icons/luminance.svg');
   static const YgColorableIconData manualBook = YgColorableIconData(name: 'manualBook', path: 'assets/icons/manual_book.svg');
@@ -238,6 +260,7 @@ class YgIcons {
   static const YgColorableIconData plus = YgColorableIconData(name: 'plus', path: 'assets/icons/plus.svg');
   static const YgColorableIconData power = YgColorableIconData(name: 'power', path: 'assets/icons/power.svg');
   static const YgColorableIconData powerDisabled = YgColorableIconData(name: 'powerDisabled', path: 'assets/icons/power_disabled.svg');
+  static const YgColorableIconData powerOff = YgColorableIconData(name: 'powerOff', path: 'assets/icons/power_off.svg');
   static const YgColorableIconData pressure = YgColorableIconData(name: 'pressure', path: 'assets/icons/pressure.svg');
   static const YgColorableIconData pressureAlt = YgColorableIconData(name: 'pressureAlt', path: 'assets/icons/pressure_alt.svg');
   static const YgColorableIconData qrCode = YgColorableIconData(name: 'qrCode', path: 'assets/icons/qr_code.svg');
@@ -255,6 +278,7 @@ class YgIcons {
   static const YgColorableIconData rotate = YgColorableIconData(name: 'rotate', path: 'assets/icons/rotate.svg');
   static const YgColorableIconData rotation = YgColorableIconData(name: 'rotation', path: 'assets/icons/rotation.svg');
   static const YgColorableIconData safety = YgColorableIconData(name: 'safety', path: 'assets/icons/safety.svg');
+  static const YgColorableIconData scenarioRed = YgColorableIconData(name: 'scenarioRed', path: 'assets/icons/scenario_red.svg');
   static const YgColorableIconData scenes = YgColorableIconData(name: 'scenes', path: 'assets/icons/scenes.svg');
   static const YgColorableIconData sea = YgColorableIconData(name: 'sea', path: 'assets/icons/sea.svg');
   static const YgColorableIconData search = YgColorableIconData(name: 'search', path: 'assets/icons/search.svg');
@@ -386,9 +410,15 @@ class YgIcons {
     axisY,
     axisZ,
     backyard,
+    badgeLeft,
+    badgeRight,
     basement,
     bathroom,
     battery,
+    battery0PercentColorful,
+    battery100PercentColorful,
+    battery50PercentColorful,
+    batteryOffColorful,
     bedroom,
     bedroomGuest,
     bee,
@@ -422,6 +452,10 @@ class YgIcons {
     childRoom,
     circle,
     circleDouble,
+    circleDoubleRing,
+    circleRing,
+    circleSolid,
+    circleStroke,
     circuitBreaker,
     climate,
     closet,
@@ -446,7 +480,11 @@ class YgIcons {
     deviceTransferColorful,
     deviceUpdateFailed,
     deviceUpdateSuccess,
+    dialMaxColorful,
+    dialMedium,
+    dialMediumColorful,
     dialPeakOff,
+    dialPeakOn,
     diningRoom,
     direction,
     donut,
@@ -458,6 +496,10 @@ class YgIcons {
     doorOpenUnlocked,
     downstairs,
     dracula,
+    dropBottomLeft,
+    dropDouble,
+    dropTopLeft,
+    dropTopRight,
     dry,
     edit,
     electricCar,
@@ -467,6 +509,9 @@ class YgIcons {
     energy,
     energyBattery,
     energyGrid,
+    energyLevel1,
+    energyLevel2,
+    energyLevel3,
     energyMeter,
     energySolar,
     energyWind,
@@ -546,6 +591,7 @@ class YgIcons {
     lockOpen,
     locked,
     login,
+    logout,
     lounge,
     luminance,
     manualBook,
@@ -592,6 +638,7 @@ class YgIcons {
     plus,
     power,
     powerDisabled,
+    powerOff,
     pressure,
     pressureAlt,
     qrCode,
@@ -609,6 +656,7 @@ class YgIcons {
     rotate,
     rotation,
     safety,
+    scenarioRed,
     scenes,
     sea,
     search,
