@@ -47,6 +47,7 @@ class _YgWizardHeaderStateRegular extends _YgWizardHeaderState<_YgWizardHeaderRe
     if (widget.steps != oldWidget.steps) {
       _valueAnimation.value = widget.step.toDouble();
     } else if (widget.step != oldWidget.step) {
+      // TODO(Tim): Figure out correct animation values.
       _valueAnimation.animateTo(
         widget.step.toDouble(),
         curve: Curves.easeInOut,
