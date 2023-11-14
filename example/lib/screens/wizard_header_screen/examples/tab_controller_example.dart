@@ -11,7 +11,7 @@ class TabControllerExample extends StatefulWidget {
 }
 
 class _TabControllerExampleState extends State<TabControllerExample> with TickerProviderStateMixin {
-  late final TabController controller = TabController(
+  late final TabController _controller = TabController(
     vsync: this,
     length: 5,
     animationDuration: const Duration(milliseconds: 500),
@@ -20,7 +20,7 @@ class _TabControllerExampleState extends State<TabControllerExample> with Ticker
 
   @override
   void dispose() {
-    controller.dispose();
+    _controller.dispose();
     super.dispose();
   }
 
@@ -29,21 +29,21 @@ class _TabControllerExampleState extends State<TabControllerExample> with Ticker
     return Column(
       children: <Widget>[
         YgWizardHeader.fromTabController(
-          controller: controller,
+          controller: _controller,
           title: 'A TabController controlled YgWizardHeader',
           counterBuilder: (int p0, int p1) => 'Step $p0 of $p1',
         ),
         SizedBox(
           height: 60,
           child: TabBarView(
-            controller: controller,
+            controller: _controller,
             children: List<Widget>.generate(
-              controller.length,
+              _controller.length,
               (int index) => StepNavigator(
-                onPrevious: () => controller.animateTo(index - 1),
-                onNext: () => controller.animateTo(index + 1),
+                onPrevious: () => _controller.animateTo(index - 1),
+                onNext: () => _controller.animateTo(index + 1),
                 step: index,
-                steps: controller.length,
+                steps: _controller.length,
               ),
             ),
           ),

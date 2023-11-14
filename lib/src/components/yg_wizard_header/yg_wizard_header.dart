@@ -108,7 +108,7 @@ abstract class _YgWizardHeaderState<W extends YgWizardHeader> extends State<W> w
             padding: theme.titlePadding,
             child: Text(
               widget.title,
-              style: context.tokens.textStyles.sectionHeading2Medium,
+              style: theme.titleTextStyle,
             ),
           ),
         ],

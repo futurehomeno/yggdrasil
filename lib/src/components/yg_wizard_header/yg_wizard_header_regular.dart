@@ -7,8 +7,8 @@ class _YgWizardHeaderRegular extends YgWizardHeader {
     required this.step,
     required this.steps,
   })  : assert(
-          step <= steps,
-          'step can not be more than steps',
+          step < steps,
+          'step has to be less than steps',
         ),
         assert(
           steps > 1,

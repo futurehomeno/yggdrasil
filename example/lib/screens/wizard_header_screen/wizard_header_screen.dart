@@ -29,7 +29,7 @@ class WizardHeaderScreen extends StatelessWidget {
             5,
             (int index) => WizardHeaderExample(
               steps: index + 2,
-              title: 'WizardHeader with ${index + 2} steps',
+              title: 'WizardHeader with ${index + 2} steps aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa',
             ),
           ),
         ],

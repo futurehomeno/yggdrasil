@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:yggdrasil/src/theme/_theme.dart';
 
 import '../_yg_wizard_header.dart';
 
@@ -65,7 +66,11 @@ class _CounterBuilderState extends State<CounterBuilder> {
   @override
   Widget build(BuildContext context) {
     return Text(
-      widget.buildCounter(_step + 1, _steps),
+      widget.buildCounter(
+        _step + 1,
+        _steps,
+      ),
+      style: context.wizardHeaderTheme.counterTextStyle,
     );
   }
 
@@ -73,12 +78,17 @@ class _CounterBuilderState extends State<CounterBuilder> {
     final int newStep = widget.getStep();
     final int newSteps = widget.getSteps();
 
-    if (newStep != _step) {
+    final bool stepChanged = newStep != _step;
+    final bool stepsChanged = newSteps != _steps;
+
+    if (stepChanged) {
       _step = newStep;
-      setState(() {});
     }
-    if (newSteps != _steps) {
+    if (stepsChanged) {
       _steps = newSteps;
+    }
+
+    if (stepChanged || stepsChanged) {
       setState(() {});
     }
   }
