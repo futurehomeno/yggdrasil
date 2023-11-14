@@ -53,6 +53,7 @@ abstract class YgWizardHeader extends StatefulWidget {
 }
 
 abstract class _YgWizardHeaderState<W extends YgWizardHeader> extends State<W> with TickerProviderStateMixin {
+  /// The maximum amount of steps that will be rendered as a progress bar.
   static const int _maxVisibleSteps = 5;
 
   /// The animation used to drive the animations in this widget.
