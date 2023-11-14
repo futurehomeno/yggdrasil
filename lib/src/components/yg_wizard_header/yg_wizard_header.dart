@@ -43,6 +43,7 @@ abstract class YgWizardHeader extends StatefulWidget {
 abstract class _YgWizardHeaderState<W extends YgWizardHeader> extends State<W> with TickerProviderStateMixin {
   Animation<double> get _valueAnimation;
   int get _steps;
+  int get _step;
 
   @override
   Widget build(BuildContext context) {
@@ -61,27 +62,27 @@ abstract class _YgWizardHeaderState<W extends YgWizardHeader> extends State<W> w
             children: <Widget>[
               if (_steps < 6)
                 Expanded(
-                  child: SizedBox(
-                    height: 4,
-                    child: CustomPaint(
-                      painter: WizardProgressPainter(
-                        steps: _steps,
-                        value: _valueAnimation,
-                        stroke: 4,
-                        padding: 5,
+                  child: Padding(
+                    padding: const EdgeInsets.only(right: 10.0),
+                    child: SizedBox(
+                      height: 4,
+                      child: CustomPaint(
+                        painter: WizardProgressPainter(
+                          steps: _steps,
+                          value: _valueAnimation,
+                          stroke: 4,
+                          padding: 5,
+                        ),
                       ),
                     ),
                   ),
                 ),
-              const SizedBox(
-                width: 10,
-              ),
               AnimatedBuilder(
                 animation: _valueAnimation,
                 builder: (BuildContext context, _) {
                   return Text(
                     widget.buildCounter(
-                      (1 + _valueAnimation.value).round(),
+                      (1 + _step).round(),
                       _steps,
                     ),
                   );

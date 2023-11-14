@@ -40,6 +40,9 @@ class _YgWizardHeaderStateRegular extends _YgWizardHeaderState<_YgWizardHeaderRe
   int get _steps => widget.steps;
 
   @override
+  int get _step => widget.step;
+
+  @override
   void didUpdateWidget(covariant _YgWizardHeaderRegular oldWidget) {
     if (widget.steps != oldWidget.steps) {
       _valueAnimation.value = widget.step.toDouble();

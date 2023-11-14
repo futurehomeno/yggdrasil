@@ -19,4 +19,7 @@ class _YgWizardHeaderStateFromTabController extends _YgWizardHeaderState<_YgWiza
 
   @override
   int get _steps => widget.controller.length;
+
+  @override
+  int get _step => _valueAnimation.value.round();
 }
