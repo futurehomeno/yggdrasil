@@ -9,6 +9,15 @@ part 'yg_wizard_header_regular.dart';
 
 typedef CounterBuilderCallback = String Function(int step, int steps);
 
+/// Implementation of the WizardHeader.
+///
+/// Can be used with a TabController though the [YgWizardHeader.fromTabController]
+/// constructor or by manually specifying the current step and total steps.
+///
+/// Will animate the current step as shown in the progress bar. When used with a
+/// tab controller will use the animations provided by the controller.
+///
+/// Hides the progress bar when there are more than 5 steps.
 abstract class YgWizardHeader extends StatefulWidget {
   /// Self animated YgWizardHeader.
   ///
