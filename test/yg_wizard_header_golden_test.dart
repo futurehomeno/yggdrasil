@@ -16,8 +16,8 @@ void main() {
         columns: 2,
         scenarioConstraints: YgGoldenTestValues.scenarioConstraints,
         children: <GoldenTestScenario>[
-          for (int steps = 2; steps < 6; steps++)
-            for (int step = 0; step < steps - 1; step++) ...<GoldenTestScenario>[
+          for (int steps = 2; steps <= 6; steps++)
+            for (int step = 0; step <= steps - 1; step++) ...<GoldenTestScenario>[
               GoldenTestScenario(
                 name: 'With short title, step $step of $steps',
                 child: YgWizardHeader(
