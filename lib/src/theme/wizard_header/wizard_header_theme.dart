@@ -24,26 +24,7 @@ class _$YgWizardHeaderTheme {
     ),
   ];
 
-  static const List<TextStyle> titleTextStyle = <TextStyle>[
-    consumer_light.FhTextStyles.sectionHeading2Medium,
-    consumer_dark.FhTextStyles.sectionHeading2Medium,
-    professional_light.FhTextStyles.sectionHeading2Medium,
-    professional_dark.FhTextStyles.sectionHeading2Medium,
-  ];
-
-  static const List<Color> barForegroundColor = <Color>[
-    consumer_light.FhColors.interactiveHighlightDefault,
-    consumer_dark.FhColors.interactiveHighlightDefault,
-    professional_light.FhColors.interactiveHighlightDefault,
-    professional_dark.FhColors.interactiveHighlightDefault,
-  ];
-
-  static const List<Color> barBackgroundColor = <Color>[
-    consumer_light.FhColors.backgroundDisabled,
-    consumer_dark.FhColors.backgroundDisabled,
-    professional_light.FhColors.backgroundDisabled,
-    professional_dark.FhColors.backgroundDisabled,
-  ];
+  // region Container
 
   static const List<Color> backgroundColor = <Color>[
     consumer_light.FhColors.backgroundDefault,
@@ -79,11 +60,15 @@ class _$YgWizardHeaderTheme {
     ),
   ];
 
-  static const List<EdgeInsets> barPadding = <EdgeInsets>[
-    EdgeInsets.only(right: consumer_light.FhDimensions.xs),
-    EdgeInsets.only(right: consumer_dark.FhDimensions.xs),
-    EdgeInsets.only(right: professional_light.FhDimensions.xs),
-    EdgeInsets.only(right: professional_dark.FhDimensions.xs),
+  // endregion
+
+  // region Title
+
+  static const List<TextStyle> titleTextStyle = <TextStyle>[
+    consumer_light.FhTextStyles.sectionHeading2Medium,
+    consumer_dark.FhTextStyles.sectionHeading2Medium,
+    professional_light.FhTextStyles.sectionHeading2Medium,
+    professional_dark.FhTextStyles.sectionHeading2Medium,
   ];
 
   static const List<EdgeInsets> titlePadding = <EdgeInsets>[
@@ -91,6 +76,31 @@ class _$YgWizardHeaderTheme {
     EdgeInsets.only(top: consumer_dark.FhDimensions.xxs),
     EdgeInsets.only(top: professional_light.FhDimensions.xxs),
     EdgeInsets.only(top: professional_dark.FhDimensions.xxs),
+  ];
+
+  // endregion
+
+  // region Progress bar
+
+  static const List<Color> barForegroundColor = <Color>[
+    consumer_light.FhColors.interactiveHighlightDefault,
+    consumer_dark.FhColors.interactiveHighlightDefault,
+    professional_light.FhColors.interactiveHighlightDefault,
+    professional_dark.FhColors.interactiveHighlightDefault,
+  ];
+
+  static const List<Color> barBackgroundColor = <Color>[
+    consumer_light.FhColors.backgroundDisabled,
+    consumer_dark.FhColors.backgroundDisabled,
+    professional_light.FhColors.backgroundDisabled,
+    professional_dark.FhColors.backgroundDisabled,
+  ];
+
+  static const List<EdgeInsets> barPadding = <EdgeInsets>[
+    EdgeInsets.only(right: consumer_light.FhDimensions.xs),
+    EdgeInsets.only(right: consumer_dark.FhDimensions.xs),
+    EdgeInsets.only(right: professional_light.FhDimensions.xs),
+    EdgeInsets.only(right: professional_dark.FhDimensions.xs),
   ];
 
   static const List<double> barSegmentGap = <double>[
@@ -106,4 +116,6 @@ class _$YgWizardHeaderTheme {
     4.0,
     4.0,
   ];
+
+  // endregion
 }
