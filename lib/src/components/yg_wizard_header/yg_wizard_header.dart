@@ -1,9 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:yggdrasil/src/components/yg_wizard_header/counter_builder.dart';
 import 'package:yggdrasil/src/theme/_theme.dart';
 import 'package:yggdrasil/src/theme/wizard_header/wizard_header_theme.dart';
 
-import 'wizard_progress_painter.dart';
+import 'widgets/_widgets.dart';
 
 part 'yg_wizard_header_from_tab_controller.dart';
 part 'yg_wizard_header_regular.dart';

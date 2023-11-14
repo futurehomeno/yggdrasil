@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import '_yg_wizard_header.dart';
+import '../_yg_wizard_header.dart';
 
 /// Builds the current step counter.
 ///
