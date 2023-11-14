@@ -38,7 +38,7 @@ class DeviceDetailsExample extends StatelessWidget {
                 subtitle: 'Some cool controls inside this card.',
                 leadingWidgets: <Widget>[
                   YgIcon(
-                    YgIcons.deviceEvCharger,
+                    YgIcons.deviceEvChargerColorful,
                     useEmbeddedColor: true,
                   ),
                 ],
