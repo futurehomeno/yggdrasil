@@ -31,10 +31,10 @@ class _TabControllerExampleState extends State<TabControllerExample> with Ticker
         YgWizardHeader.fromTabController(
           controller: controller,
           title: 'A TabController controlled YgWizardHeader',
-          buildCounter: (int p0, int p1) => 'Step $p0 of $p1',
+          counterBuilder: (int p0, int p1) => 'Step $p0 of $p1',
         ),
         SizedBox(
-          height: 100,
+          height: 60,
           child: TabBarView(
             controller: controller,
             children: List<Widget>.generate(
