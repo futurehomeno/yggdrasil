@@ -4,6 +4,8 @@ import 'package:yggdrasil/src/theme/wizard_header/wizard_header_theme.dart';
 
 import 'widgets/_widgets.dart';
 
+part 'yg_wizard_header_from_animation.dart';
+part 'yg_wizard_header_from_page_controller.dart';
 part 'yg_wizard_header_from_tab_controller.dart';
 part 'yg_wizard_header_regular.dart';
 
@@ -39,6 +41,26 @@ abstract class YgWizardHeader extends StatefulWidget {
     required TitleBuilderCallback titleBuilder,
   }) = _YgWizardHeaderFromTabController;
 
+  /// YgWizardHeader controlled by a PageController.
+  ///
+  /// Animates the current step together with the pages.
+  const factory YgWizardHeader.fromPageController({
+    required PageController controller,
+    required CounterBuilderCallback counterBuilder,
+    required int steps,
+    required TitleBuilderCallback titleBuilder,
+  }) = _YgWizardHeaderFromPageController;
+
+  /// YgWizardHeader controlled by a TabController.
+  ///
+  /// Animates the current step together with the tabs.
+  const factory YgWizardHeader.fromAnimation({
+    required Animation<double> animation,
+    required CounterBuilderCallback counterBuilder,
+    required int steps,
+    required TitleBuilderCallback titleBuilder,
+  }) = _YgWizardHeaderFromAnimation;
+
   const YgWizardHeader._({
     required this.counterBuilder,
     required this.titleBuilder,
@@ -65,18 +87,17 @@ abstract class _YgWizardHeaderState<W extends YgWizardHeader> extends State<W> w
 
   /// Gets the current total steps.
   int get _steps;
-  late int _currentSteps;
+  late int _currentSteps = _steps;
 
   /// Gets the current step displayed in the counter.
   int get _step;
-  late int _currentStep;
+  late int _currentStep = _step;
 
   @override
   void initState() {
     super.initState();
-    _currentStep = _step;
-    _currentSteps = _steps;
     _currentValueAnimation = _valueAnimation;
+    _currentValueAnimation.addListener(_checkRebuild);
   }
 
   @override

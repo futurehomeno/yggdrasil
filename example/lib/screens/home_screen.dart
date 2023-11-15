@@ -34,6 +34,11 @@ class HomeScreen extends StatelessWidget {
                 onTap: () => sl<YgRouter>().push(DeviceDetailsExample.route()),
                 trailingWidgets: const <YgIcon>[YgIcon(YgIcons.caretRight)],
               ),
+              YgListTile(
+                title: 'Smarthub wizard',
+                onTap: () => sl<YgRouter>().push(SmarthubWizardExample.route()),
+                trailingWidgets: const <YgIcon>[YgIcon(YgIcons.caretRight)],
+              ),
             ],
           ),
           YgSection.list(
@@ -188,6 +193,11 @@ class HomeScreen extends StatelessWidget {
               YgListTile(
                 title: 'WizardHeader',
                 onTap: () => sl<YgRouter>().push(WizardHeaderScreen.route()),
+                trailingWidgets: const <YgIcon>[YgIcon(YgIcons.caretRight)],
+              ),
+              YgListTile(
+                title: 'Wizard',
+                onTap: () => sl<YgRouter>().push(WizardScreen.route()),
                 trailingWidgets: const <YgIcon>[YgIcon(YgIcons.caretRight)],
               ),
             ],

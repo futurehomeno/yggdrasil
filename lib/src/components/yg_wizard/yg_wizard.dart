@@ -1,43 +1,80 @@
 import 'package:flutter/material.dart';
-import 'package:yggdrasil/src/components/_components.dart';
-import 'package:yggdrasil/src/components/yg_wizard/models/yg_wizard_step.dart';
+import 'package:yggdrasil/yggdrasil.dart';
 
-class YgWizard extends StatefulWidget {
+import 'yg_wizard_controller.dart';
+
+class YgWizard extends StatelessWidget with StatelessWidgetDebugMixin {
   const YgWizard({
     super.key,
     required this.steps,
     required this.counterBuilder,
+    required this.controller,
   });
 
   final List<YgWizardStep> steps;
   final CounterBuilderCallback counterBuilder;
-
-  @override
-  State<YgWizard> createState() => _YgWizardState();
-}
-
-class _YgWizardState extends State<YgWizard> with TickerProviderStateMixin {
-  late final TabController _controller = TabController(
-    length: widget.steps.length,
-    vsync: this,
-  );
-
-  @override
-  void dispose() {
-    _controller.dispose();
-    super.dispose();
-  }
+  final YgWizardController controller;
 
   @override
   Widget build(BuildContext context) {
     return Column(
+      mainAxisSize: MainAxisSize.min,
       children: <Widget>[
-        YgWizardHeader.fromTabController(
-          controller: _controller,
-          counterBuilder: widget.counterBuilder,
-          titleBuilder: (int step) => widget.steps[step].title,
+        YgWizardHeader.fromPageController(
+          controller: controller.pageController,
+          counterBuilder: counterBuilder,
+          titleBuilder: (int step) => steps[step].title,
+          steps: steps.length,
+        ),
+        Expanded(
+          child: PageView.builder(
+            itemCount: steps.length,
+            controller: controller.pageController,
+            itemBuilder: _buildChild,
+            physics: const NeverScrollableScrollPhysics(),
+          ),
         ),
       ],
     );
   }
+
+  Widget _buildChild(BuildContext context, int index) {
+    final YgWizardStep step = steps[index];
+
+    return Column(
+      mainAxisSize: MainAxisSize.min,
+      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+      children: <Widget>[
+        Expanded(
+          child: LayoutBuilder(
+            builder: (BuildContext context, BoxConstraints constraints) {
+              return YgScrollShadow.builder(
+                builder: (BuildContext context, ScrollController controller) {
+                  return SingleChildScrollView(
+                    controller: controller,
+                    child: ConstrainedBox(
+                      constraints: BoxConstraints(
+                        maxHeight: double.infinity,
+                        maxWidth: constraints.maxWidth,
+                        minWidth: constraints.minWidth,
+                        minHeight: constraints.maxHeight,
+                      ),
+                      child: step.contentBuilder(context),
+                    ),
+                  );
+                },
+              );
+            },
+          ),
+        ),
+        Padding(
+          padding: const EdgeInsets.all(20.0),
+          child: step.buttons,
+        ),
+      ],
+    );
+  }
+
+  @override
+  YgDebugType get debugType => YgDebugType.layout;
 }
