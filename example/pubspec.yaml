@@ -2,7 +2,7 @@ name: yggdrasil_demo
 description: A demo app for Yggdrasil.
 publish_to: 'none'
 
-version: 1.6.21+26
+version: 1.6.22+27
 
 environment:
   sdk: ^3.0.5
@@ -22,7 +22,7 @@ dev_dependencies:
     sdk: flutter
   pubdev_registry:
     git:
-      ref: tim/validators # to-branch-script-tag
+      ref: master
       url: git@github.com:futurehomeno/pubdev_registry.git
   flutter_lints: ^2.0.1
 

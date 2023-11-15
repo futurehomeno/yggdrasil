@@ -1,3 +1,26 @@
+# 1.6.22+27 [15.11.2023 09:27]
+
+- [dev-improvement] Added golden tests for YgRadioItem component DEV-2356.
+- [feature] Added new icons 14.11.23.
+- [dev-improvement] Added golden tests for YgDialog component [DEV-2377].
+- [dev-improvement] Added golden tests for YgBottomSheet component [DEV-2376].
+- [dev-feature] Added custom YgFocusableActionDetector widget.
+- [fix] Dropdown field now shows ink ripple when activated using keyboard.
+- [feature] Created the YgTopAppBar component with sliver and non-sliver variants [DEV-1143].
+- [dev-improvement] Added support for sliver debugging.
+- [dev-improvement] Added golden tests for YgDivider component [DEV-2364].
+- [dev-improvement] Added golden tests for YgRadio component [DEV-2345].
+- [dev-improvement] Added golden tests for YgCheckboxListTile component [DEV-2344].
+- [dev-improvement] Added golden tests for YgRadioListTile component [DEV-2345].
+- [dev-improvement] Added golden tests for YgSwitchListTile component [DEV-2346].
+- [dev-improvement] Added golden tests for YgCheckbox component [DEV-2262].
+- [fix] YgCheckbox no longer expands to take up as much space as possible.
+- [dev-improvement] Added golden tests for YgProgressIndicators components [DEV-2313].
+- [dev-improvement] Added golden tests for YgGauge component [DEV-2307].
+- [dev-improvement] Added golden tests for YgListTile component [DEV-2249].
+- [dev-improvement] Added golden tests for YgCard component [DEV-2246].
+- [dev-improvement] Added golden tests for YgBadge component [DEV-2244].
+
 # 1.6.21+26 [26.10.2023 13:14]
 
 - [dev-fix] Fixed changelog message.
