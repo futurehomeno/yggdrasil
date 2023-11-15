@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:yggdrasil/yggdrasil.dart';
 
-import '../widgets/_widgets.dart';
+import '_widgets.dart';
 
 class WizardHeaderExample extends StatefulWidget {
   const WizardHeaderExample({

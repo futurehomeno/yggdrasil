@@ -4,7 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:yggdrasil_demo/core/_core.dart';
 import 'package:yggdrasil_demo/widgets/_widgets.dart';
 
-import 'examples/_examples.dart';
+import 'widgets/_widgets.dart';
 
 class WizardHeaderScreen extends StatelessWidget {
   const WizardHeaderScreen({super.key});
@@ -24,7 +24,6 @@ class WizardHeaderScreen extends StatelessWidget {
       componentName: 'WizardHeader',
       child: Column(
         children: <Widget>[
-          const TabControllerExample(),
           ...List<Widget>.generate(
             5,
             (int index) => WizardHeaderExample(
