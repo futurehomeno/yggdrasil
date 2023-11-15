@@ -21,5 +21,4 @@ export 'yg_switch/_yg_switch.dart';
 export 'yg_tag/_yg_tag.dart';
 export 'yg_text_link/_yg_text_link.dart';
 export 'yg_toggle_button/_yg_toggle_button.dart';
-export 'yg_wizard/_yg_wizard.dart';
 export 'yg_wizard_header/_yg_wizard_header.dart';
