@@ -11,6 +11,10 @@ class _YgWizardHeaderFromAnimation extends YgWizardHeader {
   /// Controls the animations and value of this [YgWizardHeader].
   final Animation<double> animation;
 
+  /// The amount of steps.
+  ///
+  /// Shows a progress bar with up to 5 steps, when there are more than 5 steps
+  /// only the counter is shown.
   final int steps;
 
   @override
