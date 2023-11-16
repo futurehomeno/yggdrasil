@@ -14,7 +14,7 @@ import 'widgets/_widgets.dart';
 /// !-- IMPORTANT --!
 /// 5 px have been added to the preferredSize height to account for the
 /// indicator height. This is a hack and should be fixed.
-// TODO(dev): fix the preferredSize hack by making a custom YgTabBar.
+// TODO(DEV-2389): fix the preferredSize hack by making a custom YgTabBar.
 class YgTabBar extends StatelessWidget with StatelessWidgetDebugMixin implements PreferredSizeWidget {
   const YgTabBar({
     super.key,
