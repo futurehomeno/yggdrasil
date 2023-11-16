@@ -36,8 +36,8 @@ abstract class YgWizardHeader extends StatefulWidget {
   /// Animates the current step together with the tabs.
   const factory YgWizardHeader.fromTabController({
     required CounterBuilderCallback counterBuilder,
-    required TabController controller,
     required TitleBuilderCallback titleBuilder,
+    TabController controller,
   }) = _YgWizardHeaderFromTabController;
 
   /// YgWizardHeader controlled by a PageController.

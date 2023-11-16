@@ -4,22 +4,36 @@ class _YgWizardHeaderFromTabController extends YgWizardHeader {
   const _YgWizardHeaderFromTabController({
     required super.counterBuilder,
     required super.titleBuilder,
-    required this.controller,
+    this.controller,
   }) : super._();
 
   /// Controls the animations and value of this [YgWizardHeader].
-  final TabController controller;
+  ///
+  /// !--- IMPORTANT ---
+  /// When not provided this will use [DefaultTabController.of] instead but this
+  /// will throw when no [DefaultTabController] is in the widget tree.
+  final TabController? controller;
 
   @override
   State<StatefulWidget> createState() => _YgWizardHeaderStateFromTabController();
 }
 
 class _YgWizardHeaderStateFromTabController extends _YgWizardHeaderState<_YgWizardHeaderFromTabController> {
-  @override
-  Animation<double> get _valueAnimation => widget.controller.animation!;
+  TabController get _controller {
+    final TabController? controller = widget.controller;
+
+    if (controller != null) {
+      return controller;
+    }
+
+    return DefaultTabController.of(context);
+  }
 
   @override
-  int get _steps => widget.controller.length;
+  Animation<double> get _valueAnimation => _controller.animation!;
+
+  @override
+  int get _steps => _controller.length;
 
   @override
   int get _step => _valueAnimation.value.round();
