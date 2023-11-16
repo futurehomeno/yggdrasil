@@ -5,6 +5,7 @@ import 'package:yggdrasil/src/components/buttons/yg_stepper_button/_yg_stepper_b
 import 'package:yggdrasil/src/theme/stepper/stepper_theme.dart';
 import 'package:yggdrasil/yggdrasil.dart';
 
+/// Implementation of the Stepper component
 class YgStepper extends StatelessWidget with StatelessWidgetDebugMixin {
   const YgStepper({
     super.key,
