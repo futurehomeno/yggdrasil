@@ -129,8 +129,8 @@ class _YgButtonBaseState<T extends YgButtonBaseState> extends StateWithYgStyle<Y
           child: InkWell(
             statesController: _materialController,
             splashFactory: style.splashFactory.value,
-            onLongPress: widget.onLongPress,
-            onTap: widget.onPressed,
+            onLongPress: _state.disabled.value ? null : widget.onLongPress,
+            onTap: _state.disabled.value ? null : widget.onPressed,
             onHover: widget.onHover,
             onFocusChange: widget.onFocusChange,
             autofocus: widget.autofocus,
