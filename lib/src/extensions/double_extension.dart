@@ -1,4 +1,5 @@
 extension DoubleExtension on double {
+  /// The amount of decimals this double has.
   int get precision {
     final String string = (this % 1).toString();
 

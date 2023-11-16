@@ -60,7 +60,7 @@ class YgStepper extends StatelessWidget with StatelessWidgetDebugMixin {
   /// The optional metric shown under the value.
   final String? metric;
 
-  /// The precision of the value.
+  /// The amount of decimals that will be shown for the value.
   ///
   /// If not provided the precision will be extracted from the [stepSize]
   /// instead.
