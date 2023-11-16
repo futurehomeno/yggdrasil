@@ -31,6 +31,7 @@ class YgTheme extends ThemeExtension<YgTheme> {
     required this.radioTheme,
     required this.sectionTheme,
     required this.snackBarTheme,
+    required this.stepperTheme,
     required this.switchTheme,
     required this.tagTheme,
     required this.textLinkTheme,
@@ -60,6 +61,7 @@ class YgTheme extends ThemeExtension<YgTheme> {
   final YgRadioTheme radioTheme;
   final YgSectionTheme sectionTheme;
   final YgSnackBarTheme snackBarTheme;
+  final YgStepperTheme stepperTheme;
   final YgSwitchTheme switchTheme;
   final YgTagTheme tagTheme;
   final YgTextLinkTheme textLinkTheme;
@@ -89,6 +91,7 @@ class YgTheme extends ThemeExtension<YgTheme> {
     radioTheme: _$YgTheme.radioTheme[0],
     sectionTheme: _$YgTheme.sectionTheme[0],
     snackBarTheme: _$YgTheme.snackBarTheme[0],
+    stepperTheme: _$YgTheme.stepperTheme[0],
     switchTheme: _$YgTheme.switchTheme[0],
     tagTheme: _$YgTheme.tagTheme[0],
     textLinkTheme: _$YgTheme.textLinkTheme[0],
@@ -119,6 +122,7 @@ class YgTheme extends ThemeExtension<YgTheme> {
     radioTheme: _$YgTheme.radioTheme[1],
     sectionTheme: _$YgTheme.sectionTheme[1],
     snackBarTheme: _$YgTheme.snackBarTheme[1],
+    stepperTheme: _$YgTheme.stepperTheme[1],
     switchTheme: _$YgTheme.switchTheme[1],
     tagTheme: _$YgTheme.tagTheme[1],
     textLinkTheme: _$YgTheme.textLinkTheme[1],
@@ -149,6 +153,7 @@ class YgTheme extends ThemeExtension<YgTheme> {
     radioTheme: _$YgTheme.radioTheme[2],
     sectionTheme: _$YgTheme.sectionTheme[2],
     snackBarTheme: _$YgTheme.snackBarTheme[2],
+    stepperTheme: _$YgTheme.stepperTheme[2],
     switchTheme: _$YgTheme.switchTheme[2],
     tagTheme: _$YgTheme.tagTheme[2],
     textLinkTheme: _$YgTheme.textLinkTheme[2],
@@ -179,6 +184,7 @@ class YgTheme extends ThemeExtension<YgTheme> {
     radioTheme: _$YgTheme.radioTheme[3],
     sectionTheme: _$YgTheme.sectionTheme[3],
     snackBarTheme: _$YgTheme.snackBarTheme[3],
+    stepperTheme: _$YgTheme.stepperTheme[3],
     switchTheme: _$YgTheme.switchTheme[3],
     tagTheme: _$YgTheme.tagTheme[3],
     textLinkTheme: _$YgTheme.textLinkTheme[3],
@@ -217,6 +223,7 @@ class YgTheme extends ThemeExtension<YgTheme> {
     YgRadioTheme? radioTheme,
     YgSectionTheme? sectionTheme,
     YgSnackBarTheme? snackBarTheme,
+    YgStepperTheme? stepperTheme,
     YgSwitchTheme? switchTheme,
     YgTagTheme? tagTheme,
     YgTextLinkTheme? textLinkTheme,
@@ -247,6 +254,7 @@ class YgTheme extends ThemeExtension<YgTheme> {
       radioTheme: radioTheme ?? this.radioTheme,
       sectionTheme: sectionTheme ?? this.sectionTheme,
       snackBarTheme: snackBarTheme ?? this.snackBarTheme,
+      stepperTheme: stepperTheme ?? this.stepperTheme,
       switchTheme: switchTheme ?? this.switchTheme,
       tagTheme: tagTheme ?? this.tagTheme,
       textLinkTheme: textLinkTheme ?? this.textLinkTheme,
@@ -289,6 +297,7 @@ class YgTheme extends ThemeExtension<YgTheme> {
       sectionTheme: sectionTheme.lerp(other.sectionTheme, t) as YgSectionTheme,
       snackBarTheme:
           snackBarTheme.lerp(other.snackBarTheme, t) as YgSnackBarTheme,
+      stepperTheme: stepperTheme.lerp(other.stepperTheme, t) as YgStepperTheme,
       switchTheme: switchTheme.lerp(other.switchTheme, t) as YgSwitchTheme,
       tagTheme: tagTheme.lerp(other.tagTheme, t) as YgTagTheme,
       textLinkTheme:
@@ -346,6 +355,8 @@ class YgTheme extends ThemeExtension<YgTheme> {
             const DeepCollectionEquality()
                 .equals(snackBarTheme, other.snackBarTheme) &&
             const DeepCollectionEquality()
+                .equals(stepperTheme, other.stepperTheme) &&
+            const DeepCollectionEquality()
                 .equals(switchTheme, other.switchTheme) &&
             const DeepCollectionEquality().equals(tagTheme, other.tagTheme) &&
             const DeepCollectionEquality()
@@ -382,6 +393,7 @@ class YgTheme extends ThemeExtension<YgTheme> {
       const DeepCollectionEquality().hash(radioTheme),
       const DeepCollectionEquality().hash(sectionTheme),
       const DeepCollectionEquality().hash(snackBarTheme),
+      const DeepCollectionEquality().hash(stepperTheme),
       const DeepCollectionEquality().hash(switchTheme),
       const DeepCollectionEquality().hash(tagTheme),
       const DeepCollectionEquality().hash(textLinkTheme),
@@ -416,6 +428,7 @@ extension YgThemeBuildContextProps on BuildContext {
   YgRadioTheme get radioTheme => ygTheme.radioTheme;
   YgSectionTheme get sectionTheme => ygTheme.sectionTheme;
   YgSnackBarTheme get snackBarTheme => ygTheme.snackBarTheme;
+  YgStepperTheme get stepperTheme => ygTheme.stepperTheme;
   YgSwitchTheme get switchTheme => ygTheme.switchTheme;
   YgTagTheme get tagTheme => ygTheme.tagTheme;
   YgTextLinkTheme get textLinkTheme => ygTheme.textLinkTheme;

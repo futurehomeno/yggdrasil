@@ -156,6 +156,11 @@ class HomeScreen extends StatelessWidget {
                 trailingWidgets: const <YgIcon>[YgIcon(YgIcons.caretRight)],
               ),
               YgListTile(
+                title: 'Stepper',
+                onTap: () => sl<YgRouter>().push(StepperScreen.route()),
+                trailingWidgets: const <YgIcon>[YgIcon(YgIcons.caretRight)],
+              ),
+              YgListTile(
                 title: 'Switch',
                 onTap: () => sl<YgRouter>().push(SwitchScreen.route()),
                 trailingWidgets: const <YgIcon>[YgIcon(YgIcons.caretRight)],

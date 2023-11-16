@@ -20,6 +20,7 @@ export 'progress_indicator/_progress_indicator.dart';
 export 'radio/_radio.dart';
 export 'section/_section.dart';
 export 'snack_bar/_snack_bar.dart';
+export 'stepper/_stepper.dart';
 export 'switch/_switch.dart';
 export 'tag/_tag.dart';
 export 'text_link/_text_link.dart';

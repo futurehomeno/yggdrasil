@@ -23,6 +23,7 @@ import 'progress_indicator/_progress_indicator.dart';
 import 'radio/_radio.dart';
 import 'section/_section.dart';
 import 'snack_bar/_snack_bar.dart';
+import 'stepper/_stepper.dart';
 import 'switch/_switch.dart';
 import 'tag/_tag.dart';
 import 'text_link/_text_link.dart';
@@ -105,6 +106,9 @@ class _$YgTheme {
 
   @themeExtension
   static final List<YgSnackBarTheme> snackBarTheme = YgSnackBarTheme.themes;
+
+  @themeExtension
+  static final List<YgStepperTheme> stepperTheme = YgStepperTheme.themes;
 
   @themeExtension
   static final List<YgSwitchTheme> switchTheme = YgSwitchTheme.themes;
