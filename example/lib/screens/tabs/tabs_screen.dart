@@ -46,7 +46,7 @@ class _TabsScreenState extends State<TabsScreen> with SingleTickerProviderStateM
       componentName: 'Tabs',
       child: Column(
         children: <Widget>[
-          const YgSection.list(
+          const YgSection.column(
             title: 'YgTabBar with label only',
             children: <Widget>[
               DefaultTabController(
@@ -77,7 +77,7 @@ class _TabsScreenState extends State<TabsScreen> with SingleTickerProviderStateM
               ),
             ],
           ),
-          const YgSection.list(
+          const YgSection.column(
             title: 'YgTabBar with icon only',
             children: <Widget>[
               DefaultTabController(
@@ -108,7 +108,7 @@ class _TabsScreenState extends State<TabsScreen> with SingleTickerProviderStateM
               ),
             ],
           ),
-          const YgSection.list(
+          const YgSection.column(
             title: 'YgTabBar with both label and icon',
             children: <Widget>[
               DefaultTabController(
@@ -151,7 +151,7 @@ class _TabsScreenState extends State<TabsScreen> with SingleTickerProviderStateM
               ),
             ],
           ),
-          YgSection.list(
+          YgSection.column(
             title: 'YgTabBar with custom controller',
             subtitle:
                 'Most cases should be covered by the default controller, but passing a custom controller is supported.',

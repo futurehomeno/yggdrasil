@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:theme_tailor_annotation/theme_tailor_annotation.dart';
+import 'package:yggdrasil/src/theme/wizard_header/_wizard_header.dart';
 
 import 'app_bar/_app_bar.dart';
 import 'badge/_badge.dart';
@@ -22,6 +23,7 @@ import 'progress_indicator/_progress_indicator.dart';
 import 'radio/_radio.dart';
 import 'section/_section.dart';
 import 'snack_bar/_snack_bar.dart';
+import 'stepper/_stepper.dart';
 import 'switch/_switch.dart';
 import 'tabs/_tabs.dart';
 import 'tag/_tag.dart';
@@ -107,6 +109,9 @@ class _$YgTheme {
   static final List<YgSnackBarTheme> snackBarTheme = YgSnackBarTheme.themes;
 
   @themeExtension
+  static final List<YgStepperTheme> stepperTheme = YgStepperTheme.themes;
+
+  @themeExtension
   static final List<YgSwitchTheme> switchTheme = YgSwitchTheme.themes;
 
   @themeExtension
@@ -120,6 +125,9 @@ class _$YgTheme {
 
   @themeExtension
   static final List<YgToggleButtonTheme> toggleButtonTheme = YgToggleButtonTheme.themes;
+
+  @themeExtension
+  static final List<YgWizardHeaderTheme> wizardHeaderTheme = YgWizardHeaderTheme.themes;
 
   // endregion
 }

@@ -3,10 +3,7 @@ import 'package:yggdrasil/yggdrasil.dart';
 import 'package:yggdrasil_demo/core/_core.dart';
 import 'package:yggdrasil_demo/screens/_screens.dart';
 import 'package:yggdrasil_demo/screens/layout_examples/_examples.dart';
-import 'package:yggdrasil_demo/screens/tabs/tabs_screen.dart';
 import 'package:yggdrasil_demo/widgets/_widgets.dart';
-
-import 'toggle_button/_toggle_button.dart';
 
 class HomeScreen extends StatelessWidget {
   const HomeScreen({super.key});
@@ -154,6 +151,11 @@ class HomeScreen extends StatelessWidget {
                     trailingWidgets: const <YgIcon>[YgIcon(YgIcons.caretRight)],
                   ),
                   YgListTile(
+                    title: 'Stepper',
+                    onTap: () => sl<YgRouter>().push(StepperScreen.route()),
+                    trailingWidgets: const <YgIcon>[YgIcon(YgIcons.caretRight)],
+                  ),
+                  YgListTile(
                     title: 'Switch',
                     onTap: () => sl<YgRouter>().push(SwitchScreen.route()),
                     trailingWidgets: const <YgIcon>[YgIcon(YgIcons.caretRight)],
@@ -186,6 +188,11 @@ class HomeScreen extends StatelessWidget {
                   YgListTile(
                     title: 'ToggleButton',
                     onTap: () => sl<YgRouter>().push(ToggleButtonScreen.route()),
+                    trailingWidgets: const <YgIcon>[YgIcon(YgIcons.caretRight)],
+                  ),
+                  YgListTile(
+                    title: 'WizardHeader',
+                    onTap: () => sl<YgRouter>().push(WizardHeaderScreen.route()),
                     trailingWidgets: const <YgIcon>[YgIcon(YgIcons.caretRight)],
                   ),
                 ],

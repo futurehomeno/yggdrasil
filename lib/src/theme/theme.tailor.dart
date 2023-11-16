@@ -31,12 +31,14 @@ class YgTheme extends ThemeExtension<YgTheme> {
     required this.radioTheme,
     required this.sectionTheme,
     required this.snackBarTheme,
+    required this.stepperTheme,
     required this.switchTheme,
     required this.tabsTheme,
     required this.tagTheme,
     required this.textLinkTheme,
     required this.toggleButtonTheme,
     required this.tokens,
+    required this.wizardHeaderTheme,
   });
 
   final YgAppBarTheme appBarTheme;
@@ -60,12 +62,14 @@ class YgTheme extends ThemeExtension<YgTheme> {
   final YgRadioTheme radioTheme;
   final YgSectionTheme sectionTheme;
   final YgSnackBarTheme snackBarTheme;
+  final YgStepperTheme stepperTheme;
   final YgSwitchTheme switchTheme;
   final YgTabsTheme tabsTheme;
   final YgTagTheme tagTheme;
   final YgTextLinkTheme textLinkTheme;
   final YgToggleButtonTheme toggleButtonTheme;
   final YgTokens tokens;
+  final YgWizardHeaderTheme wizardHeaderTheme;
 
   static final YgTheme consumerLight = YgTheme(
     appBarTheme: _$YgTheme.appBarTheme[0],
@@ -89,12 +93,14 @@ class YgTheme extends ThemeExtension<YgTheme> {
     radioTheme: _$YgTheme.radioTheme[0],
     sectionTheme: _$YgTheme.sectionTheme[0],
     snackBarTheme: _$YgTheme.snackBarTheme[0],
+    stepperTheme: _$YgTheme.stepperTheme[0],
     switchTheme: _$YgTheme.switchTheme[0],
     tabsTheme: _$YgTheme.tabsTheme[0],
     tagTheme: _$YgTheme.tagTheme[0],
     textLinkTheme: _$YgTheme.textLinkTheme[0],
     toggleButtonTheme: _$YgTheme.toggleButtonTheme[0],
     tokens: _$YgTheme.tokens[0],
+    wizardHeaderTheme: _$YgTheme.wizardHeaderTheme[0],
   );
 
   static final YgTheme consumerDark = YgTheme(
@@ -119,12 +125,14 @@ class YgTheme extends ThemeExtension<YgTheme> {
     radioTheme: _$YgTheme.radioTheme[1],
     sectionTheme: _$YgTheme.sectionTheme[1],
     snackBarTheme: _$YgTheme.snackBarTheme[1],
+    stepperTheme: _$YgTheme.stepperTheme[1],
     switchTheme: _$YgTheme.switchTheme[1],
     tabsTheme: _$YgTheme.tabsTheme[1],
     tagTheme: _$YgTheme.tagTheme[1],
     textLinkTheme: _$YgTheme.textLinkTheme[1],
     toggleButtonTheme: _$YgTheme.toggleButtonTheme[1],
     tokens: _$YgTheme.tokens[1],
+    wizardHeaderTheme: _$YgTheme.wizardHeaderTheme[1],
   );
 
   static final YgTheme professionalLight = YgTheme(
@@ -149,12 +157,14 @@ class YgTheme extends ThemeExtension<YgTheme> {
     radioTheme: _$YgTheme.radioTheme[2],
     sectionTheme: _$YgTheme.sectionTheme[2],
     snackBarTheme: _$YgTheme.snackBarTheme[2],
+    stepperTheme: _$YgTheme.stepperTheme[2],
     switchTheme: _$YgTheme.switchTheme[2],
     tabsTheme: _$YgTheme.tabsTheme[2],
     tagTheme: _$YgTheme.tagTheme[2],
     textLinkTheme: _$YgTheme.textLinkTheme[2],
     toggleButtonTheme: _$YgTheme.toggleButtonTheme[2],
     tokens: _$YgTheme.tokens[2],
+    wizardHeaderTheme: _$YgTheme.wizardHeaderTheme[2],
   );
 
   static final YgTheme professionalDark = YgTheme(
@@ -179,12 +189,14 @@ class YgTheme extends ThemeExtension<YgTheme> {
     radioTheme: _$YgTheme.radioTheme[3],
     sectionTheme: _$YgTheme.sectionTheme[3],
     snackBarTheme: _$YgTheme.snackBarTheme[3],
+    stepperTheme: _$YgTheme.stepperTheme[3],
     switchTheme: _$YgTheme.switchTheme[3],
     tabsTheme: _$YgTheme.tabsTheme[3],
     tagTheme: _$YgTheme.tagTheme[3],
     textLinkTheme: _$YgTheme.textLinkTheme[3],
     toggleButtonTheme: _$YgTheme.toggleButtonTheme[3],
     tokens: _$YgTheme.tokens[3],
+    wizardHeaderTheme: _$YgTheme.wizardHeaderTheme[3],
   );
 
   static final themes = [
@@ -217,12 +229,14 @@ class YgTheme extends ThemeExtension<YgTheme> {
     YgRadioTheme? radioTheme,
     YgSectionTheme? sectionTheme,
     YgSnackBarTheme? snackBarTheme,
+    YgStepperTheme? stepperTheme,
     YgSwitchTheme? switchTheme,
     YgTabsTheme? tabsTheme,
     YgTagTheme? tagTheme,
     YgTextLinkTheme? textLinkTheme,
     YgToggleButtonTheme? toggleButtonTheme,
     YgTokens? tokens,
+    YgWizardHeaderTheme? wizardHeaderTheme,
   }) {
     return YgTheme(
       appBarTheme: appBarTheme ?? this.appBarTheme,
@@ -247,12 +261,14 @@ class YgTheme extends ThemeExtension<YgTheme> {
       radioTheme: radioTheme ?? this.radioTheme,
       sectionTheme: sectionTheme ?? this.sectionTheme,
       snackBarTheme: snackBarTheme ?? this.snackBarTheme,
+      stepperTheme: stepperTheme ?? this.stepperTheme,
       switchTheme: switchTheme ?? this.switchTheme,
       tabsTheme: tabsTheme ?? this.tabsTheme,
       tagTheme: tagTheme ?? this.tagTheme,
       textLinkTheme: textLinkTheme ?? this.textLinkTheme,
       toggleButtonTheme: toggleButtonTheme ?? this.toggleButtonTheme,
       tokens: tokens ?? this.tokens,
+      wizardHeaderTheme: wizardHeaderTheme ?? this.wizardHeaderTheme,
     );
   }
 
@@ -289,6 +305,7 @@ class YgTheme extends ThemeExtension<YgTheme> {
       sectionTheme: sectionTheme.lerp(other.sectionTheme, t) as YgSectionTheme,
       snackBarTheme:
           snackBarTheme.lerp(other.snackBarTheme, t) as YgSnackBarTheme,
+      stepperTheme: stepperTheme.lerp(other.stepperTheme, t) as YgStepperTheme,
       switchTheme: switchTheme.lerp(other.switchTheme, t) as YgSwitchTheme,
       tabsTheme: tabsTheme.lerp(other.tabsTheme, t) as YgTabsTheme,
       tagTheme: tagTheme.lerp(other.tagTheme, t) as YgTagTheme,
@@ -297,6 +314,8 @@ class YgTheme extends ThemeExtension<YgTheme> {
       toggleButtonTheme: toggleButtonTheme.lerp(other.toggleButtonTheme, t)
           as YgToggleButtonTheme,
       tokens: tokens.lerp(other.tokens, t) as YgTokens,
+      wizardHeaderTheme: wizardHeaderTheme.lerp(other.wizardHeaderTheme, t)
+          as YgWizardHeaderTheme,
     );
   }
 
@@ -345,6 +364,8 @@ class YgTheme extends ThemeExtension<YgTheme> {
             const DeepCollectionEquality()
                 .equals(snackBarTheme, other.snackBarTheme) &&
             const DeepCollectionEquality()
+                .equals(stepperTheme, other.stepperTheme) &&
+            const DeepCollectionEquality()
                 .equals(switchTheme, other.switchTheme) &&
             const DeepCollectionEquality().equals(tabsTheme, other.tabsTheme) &&
             const DeepCollectionEquality().equals(tagTheme, other.tagTheme) &&
@@ -352,7 +373,9 @@ class YgTheme extends ThemeExtension<YgTheme> {
                 .equals(textLinkTheme, other.textLinkTheme) &&
             const DeepCollectionEquality()
                 .equals(toggleButtonTheme, other.toggleButtonTheme) &&
-            const DeepCollectionEquality().equals(tokens, other.tokens));
+            const DeepCollectionEquality().equals(tokens, other.tokens) &&
+            const DeepCollectionEquality()
+                .equals(wizardHeaderTheme, other.wizardHeaderTheme));
   }
 
   @override
@@ -380,12 +403,14 @@ class YgTheme extends ThemeExtension<YgTheme> {
       const DeepCollectionEquality().hash(radioTheme),
       const DeepCollectionEquality().hash(sectionTheme),
       const DeepCollectionEquality().hash(snackBarTheme),
+      const DeepCollectionEquality().hash(stepperTheme),
       const DeepCollectionEquality().hash(switchTheme),
       const DeepCollectionEquality().hash(tabsTheme),
       const DeepCollectionEquality().hash(tagTheme),
       const DeepCollectionEquality().hash(textLinkTheme),
       const DeepCollectionEquality().hash(toggleButtonTheme),
       const DeepCollectionEquality().hash(tokens),
+      const DeepCollectionEquality().hash(wizardHeaderTheme),
     ]);
   }
 }
@@ -414,10 +439,12 @@ extension YgThemeBuildContextProps on BuildContext {
   YgRadioTheme get radioTheme => ygTheme.radioTheme;
   YgSectionTheme get sectionTheme => ygTheme.sectionTheme;
   YgSnackBarTheme get snackBarTheme => ygTheme.snackBarTheme;
+  YgStepperTheme get stepperTheme => ygTheme.stepperTheme;
   YgSwitchTheme get switchTheme => ygTheme.switchTheme;
   YgTabsTheme get tabsTheme => ygTheme.tabsTheme;
   YgTagTheme get tagTheme => ygTheme.tagTheme;
   YgTextLinkTheme get textLinkTheme => ygTheme.textLinkTheme;
   YgToggleButtonTheme get toggleButtonTheme => ygTheme.toggleButtonTheme;
   YgTokens get tokens => ygTheme.tokens;
+  YgWizardHeaderTheme get wizardHeaderTheme => ygTheme.wizardHeaderTheme;
 }

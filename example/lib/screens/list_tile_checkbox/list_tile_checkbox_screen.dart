@@ -39,7 +39,7 @@ class _ListTileCheckboxScreenState extends State<ListTileCheckboxScreen> {
             ),
           ),
           YgSection.list(
-            children: <Widget>[
+            children: <YgListTile>[
               YgCheckboxListTile(
                 title: 'CheckboxListTile',
                 subtitle: 'The whole ListTile and Checkbox is tappable.',
