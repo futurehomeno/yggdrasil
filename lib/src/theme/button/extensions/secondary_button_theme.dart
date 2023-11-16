@@ -8,7 +8,7 @@ import 'package:yggdrasil/src/tokens/professional_light/_professional_light.dart
 part 'secondary_button_theme.tailor.dart';
 
 @tailorComponent
-class _$SecondaryButtonTheme {
+class _$YgSecondaryButtonTheme {
   static const List<Color> backgroundColor = <Color>[
     consumer_light.FhColors.backgroundTransparent,
     consumer_dark.FhColors.backgroundTransparent,

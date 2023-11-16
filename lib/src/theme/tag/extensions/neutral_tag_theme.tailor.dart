@@ -8,8 +8,8 @@ part of 'neutral_tag_theme.dart';
 // TailorAnnotationsGenerator
 // **************************************************************************
 
-class NeutralTagTheme extends ThemeExtension<NeutralTagTheme> {
-  const NeutralTagTheme({
+class YgNeutralTagTheme extends ThemeExtension<YgNeutralTagTheme> {
+  const YgNeutralTagTheme({
     required this.backgroundColor,
     required this.disabledBackgroundColor,
     required this.strongBackgroundColor,
@@ -19,28 +19,28 @@ class NeutralTagTheme extends ThemeExtension<NeutralTagTheme> {
   final Color disabledBackgroundColor;
   final Color strongBackgroundColor;
 
-  static final NeutralTagTheme consumerLight = NeutralTagTheme(
-    backgroundColor: _$NeutralTagTheme.backgroundColor[0],
-    disabledBackgroundColor: _$NeutralTagTheme.disabledBackgroundColor[0],
-    strongBackgroundColor: _$NeutralTagTheme.strongBackgroundColor[0],
+  static final YgNeutralTagTheme consumerLight = YgNeutralTagTheme(
+    backgroundColor: _$YgNeutralTagTheme.backgroundColor[0],
+    disabledBackgroundColor: _$YgNeutralTagTheme.disabledBackgroundColor[0],
+    strongBackgroundColor: _$YgNeutralTagTheme.strongBackgroundColor[0],
   );
 
-  static final NeutralTagTheme consumerDark = NeutralTagTheme(
-    backgroundColor: _$NeutralTagTheme.backgroundColor[1],
-    disabledBackgroundColor: _$NeutralTagTheme.disabledBackgroundColor[1],
-    strongBackgroundColor: _$NeutralTagTheme.strongBackgroundColor[1],
+  static final YgNeutralTagTheme consumerDark = YgNeutralTagTheme(
+    backgroundColor: _$YgNeutralTagTheme.backgroundColor[1],
+    disabledBackgroundColor: _$YgNeutralTagTheme.disabledBackgroundColor[1],
+    strongBackgroundColor: _$YgNeutralTagTheme.strongBackgroundColor[1],
   );
 
-  static final NeutralTagTheme professionalLight = NeutralTagTheme(
-    backgroundColor: _$NeutralTagTheme.backgroundColor[2],
-    disabledBackgroundColor: _$NeutralTagTheme.disabledBackgroundColor[2],
-    strongBackgroundColor: _$NeutralTagTheme.strongBackgroundColor[2],
+  static final YgNeutralTagTheme professionalLight = YgNeutralTagTheme(
+    backgroundColor: _$YgNeutralTagTheme.backgroundColor[2],
+    disabledBackgroundColor: _$YgNeutralTagTheme.disabledBackgroundColor[2],
+    strongBackgroundColor: _$YgNeutralTagTheme.strongBackgroundColor[2],
   );
 
-  static final NeutralTagTheme professionalDark = NeutralTagTheme(
-    backgroundColor: _$NeutralTagTheme.backgroundColor[3],
-    disabledBackgroundColor: _$NeutralTagTheme.disabledBackgroundColor[3],
-    strongBackgroundColor: _$NeutralTagTheme.strongBackgroundColor[3],
+  static final YgNeutralTagTheme professionalDark = YgNeutralTagTheme(
+    backgroundColor: _$YgNeutralTagTheme.backgroundColor[3],
+    disabledBackgroundColor: _$YgNeutralTagTheme.disabledBackgroundColor[3],
+    strongBackgroundColor: _$YgNeutralTagTheme.strongBackgroundColor[3],
   );
 
   static final themes = [
@@ -51,12 +51,12 @@ class NeutralTagTheme extends ThemeExtension<NeutralTagTheme> {
   ];
 
   @override
-  NeutralTagTheme copyWith({
+  YgNeutralTagTheme copyWith({
     Color? backgroundColor,
     Color? disabledBackgroundColor,
     Color? strongBackgroundColor,
   }) {
-    return NeutralTagTheme(
+    return YgNeutralTagTheme(
       backgroundColor: backgroundColor ?? this.backgroundColor,
       disabledBackgroundColor:
           disabledBackgroundColor ?? this.disabledBackgroundColor,
@@ -66,10 +66,10 @@ class NeutralTagTheme extends ThemeExtension<NeutralTagTheme> {
   }
 
   @override
-  NeutralTagTheme lerp(
-      covariant ThemeExtension<NeutralTagTheme>? other, double t) {
-    if (other is! NeutralTagTheme) return this as NeutralTagTheme;
-    return NeutralTagTheme(
+  YgNeutralTagTheme lerp(
+      covariant ThemeExtension<YgNeutralTagTheme>? other, double t) {
+    if (other is! YgNeutralTagTheme) return this as YgNeutralTagTheme;
+    return YgNeutralTagTheme(
       backgroundColor: Color.lerp(backgroundColor, other.backgroundColor, t)!,
       disabledBackgroundColor: Color.lerp(
           disabledBackgroundColor, other.disabledBackgroundColor, t)!,
@@ -82,7 +82,7 @@ class NeutralTagTheme extends ThemeExtension<NeutralTagTheme> {
   bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is NeutralTagTheme &&
+            other is YgNeutralTagTheme &&
             const DeepCollectionEquality()
                 .equals(backgroundColor, other.backgroundColor) &&
             const DeepCollectionEquality().equals(

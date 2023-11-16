@@ -8,7 +8,7 @@ import 'package:yggdrasil/src/tokens/professional_light/_professional_light.dart
 part 'warning_tag_theme.tailor.dart';
 
 @tailorComponent
-class _$WarningTagTheme {
+class _$YgWarningTagTheme {
   static const List<Color> backgroundColor = <Color>[
     consumer_light.FhColors.backgroundWarningWeak,
     consumer_dark.FhColors.backgroundWarningWeak,

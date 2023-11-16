@@ -20,14 +20,14 @@ class YgIconButtonTheme extends ThemeExtension<YgIconButtonTheme> {
     required this.tonalIconButtonTheme,
   });
 
-  final FilledIconButtonTheme filledIconButtonTheme;
+  final YgFilledIconButtonTheme filledIconButtonTheme;
   final double iconSizeMedium;
   final double iconSizeSmall;
-  final OutlinedIconButtonTheme outlinedIconButtonTheme;
+  final YgOutlinedIconButtonTheme outlinedIconButtonTheme;
   final double sizeMedium;
   final double sizeSmall;
-  final StandardIconButtonTheme standardIconButtonTheme;
-  final TonalIconButtonTheme tonalIconButtonTheme;
+  final YgStandardIconButtonTheme standardIconButtonTheme;
+  final YgTonalIconButtonTheme tonalIconButtonTheme;
 
   static final YgIconButtonTheme consumerLight = YgIconButtonTheme(
     filledIconButtonTheme: _$YgIconButtonTheme.filledIconButtonTheme[0],
@@ -82,14 +82,14 @@ class YgIconButtonTheme extends ThemeExtension<YgIconButtonTheme> {
 
   @override
   YgIconButtonTheme copyWith({
-    FilledIconButtonTheme? filledIconButtonTheme,
+    YgFilledIconButtonTheme? filledIconButtonTheme,
     double? iconSizeMedium,
     double? iconSizeSmall,
-    OutlinedIconButtonTheme? outlinedIconButtonTheme,
+    YgOutlinedIconButtonTheme? outlinedIconButtonTheme,
     double? sizeMedium,
     double? sizeSmall,
-    StandardIconButtonTheme? standardIconButtonTheme,
-    TonalIconButtonTheme? tonalIconButtonTheme,
+    YgStandardIconButtonTheme? standardIconButtonTheme,
+    YgTonalIconButtonTheme? tonalIconButtonTheme,
   }) {
     return YgIconButtonTheme(
       filledIconButtonTheme:
@@ -112,17 +112,17 @@ class YgIconButtonTheme extends ThemeExtension<YgIconButtonTheme> {
     if (other is! YgIconButtonTheme) return this as YgIconButtonTheme;
     return YgIconButtonTheme(
       filledIconButtonTheme: filledIconButtonTheme.lerp(
-          other.filledIconButtonTheme, t) as FilledIconButtonTheme,
+          other.filledIconButtonTheme, t) as YgFilledIconButtonTheme,
       iconSizeMedium: t < 0.5 ? iconSizeMedium : other.iconSizeMedium,
       iconSizeSmall: t < 0.5 ? iconSizeSmall : other.iconSizeSmall,
       outlinedIconButtonTheme: outlinedIconButtonTheme.lerp(
-          other.outlinedIconButtonTheme, t) as OutlinedIconButtonTheme,
+          other.outlinedIconButtonTheme, t) as YgOutlinedIconButtonTheme,
       sizeMedium: t < 0.5 ? sizeMedium : other.sizeMedium,
       sizeSmall: t < 0.5 ? sizeSmall : other.sizeSmall,
       standardIconButtonTheme: standardIconButtonTheme.lerp(
-          other.standardIconButtonTheme, t) as StandardIconButtonTheme,
+          other.standardIconButtonTheme, t) as YgStandardIconButtonTheme,
       tonalIconButtonTheme: tonalIconButtonTheme.lerp(
-          other.tonalIconButtonTheme, t) as TonalIconButtonTheme,
+          other.tonalIconButtonTheme, t) as YgTonalIconButtonTheme,
     );
   }
 

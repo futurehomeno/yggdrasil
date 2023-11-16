@@ -1,0 +1,19 @@
+import 'package:flutter/material.dart';
+
+/// A material states controller which notifies you about state changes.
+class YgMaterialStatesControllerWithChangeCallback extends MaterialStatesController {
+  YgMaterialStatesControllerWithChangeCallback({
+    required this.onStateChange,
+  });
+
+  /// Callback gets called when any state changes.
+  ///
+  /// Gets called with the state and the new value of the state.
+  final void Function(MaterialState state, bool add) onStateChange;
+
+  @override
+  void update(MaterialState state, bool add) {
+    super.update(state, add);
+    onStateChange(state, add);
+  }
+}
