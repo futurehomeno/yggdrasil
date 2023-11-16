@@ -4,7 +4,7 @@ import 'package:yggdrasil/yggdrasil.dart';
 
 import 'yg_stepper_button_style.dart';
 
-/// Implementation of the button used specifically in [YgStepper]
+/// Implementation of the button used specifically in [YgStepper].
 class YgStepperButton extends YgButtonBase<YgButtonBaseState> {
   const YgStepperButton({
     super.key,
