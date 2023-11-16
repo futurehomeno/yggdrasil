@@ -46,7 +46,7 @@ class _AppBarSliverScreenState extends State<AppBarSliverScreen> {
                 YgSection.list(
                   title: 'Variant',
                   subtitle: 'The variant (size) of the sliver app bar.',
-                  children: <Widget>[
+                  children: <YgListTile>[
                     YgRadioListTile<int>(
                       title: 'Small',
                       value: 1,
@@ -80,7 +80,7 @@ class _AppBarSliverScreenState extends State<AppBarSliverScreen> {
                   title: 'Automatically imply leading',
                   subtitle:
                       'If true and leading is null, automatically try to deduce what the leading widget should be.',
-                  children: <Widget>[
+                  children: <YgListTile>[
                     YgCheckboxListTile(
                       title: 'Automatically imply leading',
                       value: _automaticallyImplyLeading,
@@ -91,7 +91,7 @@ class _AppBarSliverScreenState extends State<AppBarSliverScreen> {
                 YgSection.list(
                   title: 'Leading',
                   subtitle: 'Widget to show before the title.',
-                  children: <Widget>[
+                  children: <YgListTile>[
                     YgCheckboxListTile(
                       title: 'Custom leading',
                       value: _customLeading,
@@ -99,25 +99,25 @@ class _AppBarSliverScreenState extends State<AppBarSliverScreen> {
                     ),
                   ],
                 ),
-                YgSection.list(
-                  title: 'Actions',
-                  subtitle: 'Widgets to show after the title.',
-                  children: <Widget>[
-                    YgRadioListTile<int>(
-                      title: 'No actions',
-                      value: 1,
-                      groupValue: _actionsRadioGroupValue,
-                      onChanged: _setNoActions,
-                    ),
-                    YgRadioListTile<int>(
-                      title: 'Single action',
-                      value: 2,
-                      groupValue: _actionsRadioGroupValue,
-                      onChanged: _setSingleAction,
-                    ),
-                    Consumer<YgAppState>(
-                      builder: (BuildContext context, YgAppState ygAppState, Widget? widget) {
-                        return YgRadioListTile<int>(
+                Consumer<YgAppState>(
+                  builder: (BuildContext context, YgAppState ygAppState, Widget? widget) {
+                    return YgSection.list(
+                      title: 'Actions',
+                      subtitle: 'Widgets to show after the title.',
+                      children: <YgListTile>[
+                        YgRadioListTile<int>(
+                          title: 'No actions',
+                          value: 1,
+                          groupValue: _actionsRadioGroupValue,
+                          onChanged: _setNoActions,
+                        ),
+                        YgRadioListTile<int>(
+                          title: 'Single action',
+                          value: 2,
+                          groupValue: _actionsRadioGroupValue,
+                          onChanged: _setSingleAction,
+                        ),
+                        YgRadioListTile<int>(
                           title: 'Multiple actions (default for demo app)',
                           value: 3,
                           groupValue: _actionsRadioGroupValue,
@@ -128,10 +128,10 @@ class _AppBarSliverScreenState extends State<AppBarSliverScreen> {
                               ygAppState: ygAppState,
                             );
                           },
-                        );
-                      },
-                    ),
-                  ],
+                        ),
+                      ],
+                    );
+                  },
                 ),
               ],
             ),
