@@ -157,7 +157,6 @@ class _SliverAppBarDelegate extends SliverPersistentHeaderDelegate {
                 child: flexibleSpace,
               )
             : flexibleSpace,
-        toolbarHeight: context.appBarTheme.toolbarHeight,
       ),
     );
   }

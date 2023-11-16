@@ -4,13 +4,14 @@ import 'package:flutter/foundation.dart' show clampDouble;
 import 'package:flutter/material.dart';
 import 'package:yggdrasil/src/theme/_theme.dart';
 import 'package:yggdrasil/src/theme/icon_button/_icon_button.dart';
+import 'package:yggdrasil/src/utils/_utils.dart';
 
 /// YGG version of [FlexibleSpaceBar].
 ///
 /// Made to be able to modify how the text folds when scrolling.
 ///
 /// See [FlexibleSpaceBar] for more information.
-class YgFlexibleSpaceBar extends StatelessWidget {
+class YgFlexibleSpaceBar extends StatelessWidget with StatelessWidgetDebugMixin {
   const YgFlexibleSpaceBar({
     super.key,
     required this.title,
@@ -111,4 +112,7 @@ class YgFlexibleSpaceBar extends StatelessWidget {
       },
     );
   }
+
+  @override
+  YgDebugType get debugType => YgDebugType.layout;
 }

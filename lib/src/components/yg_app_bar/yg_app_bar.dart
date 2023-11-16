@@ -9,7 +9,11 @@ import 'package:yggdrasil/yggdrasil.dart';
 ///
 /// Changes were made to:
 /// - remove all unused code that caused headaches to work around.
-class YgAppBar extends StatefulWidget implements PreferredSizeWidget {
+///
+/// !-- IMPORTANT --!
+/// There's no good way to make preferredSize use context to determine
+/// the size from the theme.
+class YgAppBar extends StatefulWidget with StatefulWidgetDebugMixin implements PreferredSizeWidget {
   YgAppBar({
     super.key,
     this.title,
@@ -19,8 +23,7 @@ class YgAppBar extends StatefulWidget implements PreferredSizeWidget {
     this.actions,
     this.flexibleSpace,
     this.bottom,
-    required this.toolbarHeight,
-  }) : preferredSize = _PreferredAppBarSize(toolbarHeight, bottom?.preferredSize.height);
+  }) : preferredSize = _PreferredAppBarSize(64.0, bottom?.preferredSize.height); // See IMPORTANT above.
 
   // region Values
 
@@ -67,11 +70,6 @@ class YgAppBar extends StatefulWidget implements PreferredSizeWidget {
   @Deprecated('Do not use this.')
   final Widget? flexibleSpace;
 
-  /// The height of the toolbar component of the app bar.
-  ///
-  /// Preferred size does not support context, so we need to pass this.
-  final double? toolbarHeight;
-
   /// A size whose height is the sum of [toolbarHeight] and the [bottom] widget's
   /// preferred height.
   ///
@@ -83,6 +81,9 @@ class YgAppBar extends StatefulWidget implements PreferredSizeWidget {
 
   @override
   State<YgAppBar> createState() => _YgAppBarState();
+
+  @override
+  YgDebugType get debugType => YgDebugType.layout;
 }
 
 class _YgAppBarState extends State<YgAppBar> {
@@ -156,24 +157,24 @@ class _YgAppBarState extends State<YgAppBar> {
       middleSpacing: theme.titleSpacing,
     );
 
+    Widget appBar = toolbar;
+
     // Ensure that the toolbar is positioned correctly when
     // using flexible space.
-    // TODO(bjhandeland): Disable when flex is not there.
-    Widget appBar = CustomSingleChildLayout(
-      delegate: _ToolbarContainerLayout(theme.toolbarHeight),
-      child: toolbar,
-    );
+    if (widget.flexibleSpace != null) {
+      appBar = CustomSingleChildLayout(
+        delegate: _ToolbarContainerLayout(theme.toolbarHeight),
+        child: appBar,
+      );
+    }
 
     // Add the bottom widget if provided.
     if (widget.bottom != null) {
       appBar = Column(
-        mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: <Widget>[
-          Flexible(
-            child: ConstrainedBox(
-              constraints: BoxConstraints(maxHeight: theme.toolbarHeight),
-              child: appBar,
-            ),
+          ConstrainedBox(
+            constraints: BoxConstraints(maxHeight: theme.toolbarHeight),
+            child: appBar,
           ),
           widget.bottom!,
         ],

@@ -18,5 +18,6 @@ export 'yg_section/_yg_section.dart';
 export 'yg_snack_bar/_yg_snack_bar.dart';
 export 'yg_stepper/_yg_stepper.dart';
 export 'yg_switch/_yg_switch.dart';
+export 'yg_tab/_yg_tab.dart';
 export 'yg_toggle_button/_yg_toggle_button.dart';
 export 'yg_wizard_header/_yg_wizard_header.dart';

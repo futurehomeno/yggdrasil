@@ -12,12 +12,14 @@ class DemoScreen extends StatelessWidget {
     this.componentName,
     this.appBar,
     this.scrollable = true,
+    this.bottom,
   }) : assert(componentName != null || appBar != null, 'Either componentName or appBar must be provided.');
 
   final Widget child;
   final String? componentName;
   final YgAppBar? appBar;
   final bool scrollable;
+  final PreferredSizeWidget? bottom;
 
   @override
   Widget build(BuildContext context) {
@@ -54,7 +56,7 @@ class DemoScreen extends StatelessWidget {
                     child: const YgIcon(YgIcons.refresh),
                   ),
                 ],
-                toolbarHeight: context.appBarTheme.toolbarHeight,
+                bottom: bottom,
               ),
           body: scrollable ? SingleChildScrollView(child: child) : child,
         );
