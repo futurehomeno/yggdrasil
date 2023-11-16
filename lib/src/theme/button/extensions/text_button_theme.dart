@@ -8,7 +8,7 @@ import 'package:yggdrasil/src/tokens/professional_light/_professional_light.dart
 part 'text_button_theme.tailor.dart';
 
 @tailorComponent
-class _$TextButtonTheme {
+class _$YgTextButtonTheme {
   static const List<Color> backgroundColor = <Color>[
     consumer_light.FhColors.backgroundTransparent,
     consumer_dark.FhColors.backgroundTransparent,

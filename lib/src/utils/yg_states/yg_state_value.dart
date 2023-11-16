@@ -1,0 +1,18 @@
+import 'package:flutter/material.dart';
+import 'package:yggdrasil/yggdrasil.dart';
+
+/// A value to be used in [YgState].
+///
+/// Notifies its listeners when a new value is set.
+class YgStateValue<T> extends ValueNotifier<T> {
+  YgStateValue(super._value);
+
+  bool update(T value) {
+    final bool shouldUpdate = this.value != value;
+    if (shouldUpdate) {
+      this.value = value;
+    }
+
+    return shouldUpdate;
+  }
+}

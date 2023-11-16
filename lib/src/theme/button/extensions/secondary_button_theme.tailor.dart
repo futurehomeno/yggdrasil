@@ -8,8 +8,8 @@ part of 'secondary_button_theme.dart';
 // TailorAnnotationsGenerator
 // **************************************************************************
 
-class SecondaryButtonTheme extends ThemeExtension<SecondaryButtonTheme> {
-  const SecondaryButtonTheme({
+class YgSecondaryButtonTheme extends ThemeExtension<YgSecondaryButtonTheme> {
+  const YgSecondaryButtonTheme({
     required this.backgroundColor,
     required this.borderGradient,
     required this.disabledBorderGradient,
@@ -27,44 +27,45 @@ class SecondaryButtonTheme extends ThemeExtension<SecondaryButtonTheme> {
   final Color iconDisabledColor;
   final TextStyle textStyle;
 
-  static final SecondaryButtonTheme consumerLight = SecondaryButtonTheme(
-    backgroundColor: _$SecondaryButtonTheme.backgroundColor[0],
-    borderGradient: _$SecondaryButtonTheme.borderGradient[0],
-    disabledBorderGradient: _$SecondaryButtonTheme.disabledBorderGradient[0],
-    disabledTextStyle: _$SecondaryButtonTheme.disabledTextStyle[0],
-    iconDefaultColor: _$SecondaryButtonTheme.iconDefaultColor[0],
-    iconDisabledColor: _$SecondaryButtonTheme.iconDisabledColor[0],
-    textStyle: _$SecondaryButtonTheme.textStyle[0],
+  static final YgSecondaryButtonTheme consumerLight = YgSecondaryButtonTheme(
+    backgroundColor: _$YgSecondaryButtonTheme.backgroundColor[0],
+    borderGradient: _$YgSecondaryButtonTheme.borderGradient[0],
+    disabledBorderGradient: _$YgSecondaryButtonTheme.disabledBorderGradient[0],
+    disabledTextStyle: _$YgSecondaryButtonTheme.disabledTextStyle[0],
+    iconDefaultColor: _$YgSecondaryButtonTheme.iconDefaultColor[0],
+    iconDisabledColor: _$YgSecondaryButtonTheme.iconDisabledColor[0],
+    textStyle: _$YgSecondaryButtonTheme.textStyle[0],
   );
 
-  static final SecondaryButtonTheme consumerDark = SecondaryButtonTheme(
-    backgroundColor: _$SecondaryButtonTheme.backgroundColor[1],
-    borderGradient: _$SecondaryButtonTheme.borderGradient[1],
-    disabledBorderGradient: _$SecondaryButtonTheme.disabledBorderGradient[1],
-    disabledTextStyle: _$SecondaryButtonTheme.disabledTextStyle[1],
-    iconDefaultColor: _$SecondaryButtonTheme.iconDefaultColor[1],
-    iconDisabledColor: _$SecondaryButtonTheme.iconDisabledColor[1],
-    textStyle: _$SecondaryButtonTheme.textStyle[1],
+  static final YgSecondaryButtonTheme consumerDark = YgSecondaryButtonTheme(
+    backgroundColor: _$YgSecondaryButtonTheme.backgroundColor[1],
+    borderGradient: _$YgSecondaryButtonTheme.borderGradient[1],
+    disabledBorderGradient: _$YgSecondaryButtonTheme.disabledBorderGradient[1],
+    disabledTextStyle: _$YgSecondaryButtonTheme.disabledTextStyle[1],
+    iconDefaultColor: _$YgSecondaryButtonTheme.iconDefaultColor[1],
+    iconDisabledColor: _$YgSecondaryButtonTheme.iconDisabledColor[1],
+    textStyle: _$YgSecondaryButtonTheme.textStyle[1],
   );
 
-  static final SecondaryButtonTheme professionalLight = SecondaryButtonTheme(
-    backgroundColor: _$SecondaryButtonTheme.backgroundColor[2],
-    borderGradient: _$SecondaryButtonTheme.borderGradient[2],
-    disabledBorderGradient: _$SecondaryButtonTheme.disabledBorderGradient[2],
-    disabledTextStyle: _$SecondaryButtonTheme.disabledTextStyle[2],
-    iconDefaultColor: _$SecondaryButtonTheme.iconDefaultColor[2],
-    iconDisabledColor: _$SecondaryButtonTheme.iconDisabledColor[2],
-    textStyle: _$SecondaryButtonTheme.textStyle[2],
+  static final YgSecondaryButtonTheme professionalLight =
+      YgSecondaryButtonTheme(
+    backgroundColor: _$YgSecondaryButtonTheme.backgroundColor[2],
+    borderGradient: _$YgSecondaryButtonTheme.borderGradient[2],
+    disabledBorderGradient: _$YgSecondaryButtonTheme.disabledBorderGradient[2],
+    disabledTextStyle: _$YgSecondaryButtonTheme.disabledTextStyle[2],
+    iconDefaultColor: _$YgSecondaryButtonTheme.iconDefaultColor[2],
+    iconDisabledColor: _$YgSecondaryButtonTheme.iconDisabledColor[2],
+    textStyle: _$YgSecondaryButtonTheme.textStyle[2],
   );
 
-  static final SecondaryButtonTheme professionalDark = SecondaryButtonTheme(
-    backgroundColor: _$SecondaryButtonTheme.backgroundColor[3],
-    borderGradient: _$SecondaryButtonTheme.borderGradient[3],
-    disabledBorderGradient: _$SecondaryButtonTheme.disabledBorderGradient[3],
-    disabledTextStyle: _$SecondaryButtonTheme.disabledTextStyle[3],
-    iconDefaultColor: _$SecondaryButtonTheme.iconDefaultColor[3],
-    iconDisabledColor: _$SecondaryButtonTheme.iconDisabledColor[3],
-    textStyle: _$SecondaryButtonTheme.textStyle[3],
+  static final YgSecondaryButtonTheme professionalDark = YgSecondaryButtonTheme(
+    backgroundColor: _$YgSecondaryButtonTheme.backgroundColor[3],
+    borderGradient: _$YgSecondaryButtonTheme.borderGradient[3],
+    disabledBorderGradient: _$YgSecondaryButtonTheme.disabledBorderGradient[3],
+    disabledTextStyle: _$YgSecondaryButtonTheme.disabledTextStyle[3],
+    iconDefaultColor: _$YgSecondaryButtonTheme.iconDefaultColor[3],
+    iconDisabledColor: _$YgSecondaryButtonTheme.iconDisabledColor[3],
+    textStyle: _$YgSecondaryButtonTheme.textStyle[3],
   );
 
   static final themes = [
@@ -75,7 +76,7 @@ class SecondaryButtonTheme extends ThemeExtension<SecondaryButtonTheme> {
   ];
 
   @override
-  SecondaryButtonTheme copyWith({
+  YgSecondaryButtonTheme copyWith({
     Color? backgroundColor,
     LinearGradient? borderGradient,
     LinearGradient? disabledBorderGradient,
@@ -84,7 +85,7 @@ class SecondaryButtonTheme extends ThemeExtension<SecondaryButtonTheme> {
     Color? iconDisabledColor,
     TextStyle? textStyle,
   }) {
-    return SecondaryButtonTheme(
+    return YgSecondaryButtonTheme(
       backgroundColor: backgroundColor ?? this.backgroundColor,
       borderGradient: borderGradient ?? this.borderGradient,
       disabledBorderGradient:
@@ -97,10 +98,10 @@ class SecondaryButtonTheme extends ThemeExtension<SecondaryButtonTheme> {
   }
 
   @override
-  SecondaryButtonTheme lerp(
-      covariant ThemeExtension<SecondaryButtonTheme>? other, double t) {
-    if (other is! SecondaryButtonTheme) return this as SecondaryButtonTheme;
-    return SecondaryButtonTheme(
+  YgSecondaryButtonTheme lerp(
+      covariant ThemeExtension<YgSecondaryButtonTheme>? other, double t) {
+    if (other is! YgSecondaryButtonTheme) return this as YgSecondaryButtonTheme;
+    return YgSecondaryButtonTheme(
       backgroundColor: Color.lerp(backgroundColor, other.backgroundColor, t)!,
       borderGradient: t < 0.5 ? borderGradient : other.borderGradient,
       disabledBorderGradient:
@@ -119,7 +120,7 @@ class SecondaryButtonTheme extends ThemeExtension<SecondaryButtonTheme> {
   bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is SecondaryButtonTheme &&
+            other is YgSecondaryButtonTheme &&
             const DeepCollectionEquality()
                 .equals(backgroundColor, other.backgroundColor) &&
             const DeepCollectionEquality()

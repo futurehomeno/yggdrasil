@@ -1,50 +1,113 @@
-import 'package:flutter/cupertino.dart';
-import 'package:yggdrasil/src/components/yg_radio/properties/_properties.dart';
-import 'package:yggdrasil/src/theme/_theme.dart';
+import 'package:flutter/material.dart';
+import 'package:yggdrasil/src/theme/radio/radio_theme.dart';
+import 'package:yggdrasil/yggdrasil.dart';
 
-class YgRadioStyle {
-  const YgRadioStyle({
-    required this.backgroundColor,
-    required this.handleSize,
-    required this.handleColor,
-    required this.helperHandleSize,
-    required this.mouseCursor,
+import 'yg_radio_state.dart';
+
+class YgRadioStyle extends YgStyleWithDefaults<YgRadioState> {
+  YgRadioStyle({
+    required super.state,
+    required super.vsync,
   });
 
-  factory YgRadioStyle.base(BuildContext context) {
-    return YgRadioStyle(
-      backgroundColor: YgRadioBackgroundColorProperty(
-        selected: context.radioTheme.selectedBackgroundColor,
-        selectedHovered: context.radioTheme.selectedHoveredBackgroundColor,
-        selectedDisabled: context.radioTheme.selectedDisabledBackgroundColor,
-        deselected: context.radioTheme.deselectedBackgroundColor,
-        deselectedHovered: context.radioTheme.deselectedHoveredBackgroundColor,
-        deselectedDisabled: context.radioTheme.deselectedDisabledBackgroundColor,
-      ),
-      handleSize: YgRadioHandleSizeProperty(
-        selected: context.radioTheme.selectedHandleSize,
-        deselected: context.radioTheme.deselectedHandleSize,
-        disabled: context.radioTheme.deselectedHandleSize,
-      ),
-      handleColor: YgRadioHandleColorProperty(
-        selected: context.radioTheme.selectedHandleColor,
-        deselected: context.radioTheme.deselectedHandleColor,
-        disabled: context.radioTheme.disabledHandleColor,
-      ),
-      helperHandleSize: YgRadioHelperHandleSizeProperty(
-        disabledDeselected: context.radioTheme.disabledDeselectedHelperHandleSize,
-        disabledSelected: context.radioTheme.disabledSelectedHelperHandleSize,
-      ),
-      mouseCursor: YgRadioMouseCursorProperty(
-        enabled: SystemMouseCursors.click,
-        disabled: SystemMouseCursors.basic,
-      ),
-    );
+  late final YgAnimatedColorProperty backgroundColor;
+  late final YgAnimatedDoubleProperty handleSize;
+  late final YgAnimatedColorProperty handleColor;
+  late final YgAnimatedDoubleProperty helperHandleSize;
+  late final YgDrivenProperty<MouseCursor> mouseCursor;
+  late final YgDrivenDoubleProperty radioSize;
+  late final YgDrivenColorProperty helperHandleColor;
+
+  @override
+  void init() {
+    backgroundColor = animate(YgColorProperty<YgRadioState>.resolveWith(_resolveBackgroundColor));
+    handleSize = animate(YgDoubleProperty<YgRadioState>.resolveWith(_resolveHandleSize));
+    handleColor = animate(YgColorProperty<YgRadioState>.resolveWith(_resolveHandleColor));
+    helperHandleSize = animate(YgDoubleProperty<YgRadioState>.resolveWith(_resolveHelperHandleSize));
+    mouseCursor = drive(YgProperty<YgRadioState, MouseCursor>.resolveWith(_resolveMouseCursor));
+    radioSize = drive(YgDoubleProperty<YgRadioState>.all(_resolveRadioSize));
+    helperHandleColor = drive(YgColorProperty<YgRadioState>.all(_resolveHelperHandleColor));
   }
 
-  final YgRadioBackgroundColorProperty backgroundColor;
-  final YgRadioHandleSizeProperty handleSize;
-  final YgRadioHandleColorProperty handleColor;
-  final YgRadioHelperHandleSizeProperty helperHandleSize;
-  final YgRadioMouseCursorProperty mouseCursor;
+  double _resolveRadioSize(BuildContext context) {
+    return _theme.size;
+  }
+
+  Color _resolveHelperHandleColor(BuildContext context) {
+    return _theme.helperHandleColor;
+  }
+
+  Color _resolveBackgroundColor(BuildContext context, YgRadioState state) {
+    if (state.selected.value) {
+      if (state.disabled.value) {
+        return _theme.selectedDisabledBackgroundColor;
+      }
+      if (state.hovered.value || state.focused.value) {
+        return _theme.selectedHoveredBackgroundColor;
+      }
+
+      return _theme.selectedBackgroundColor;
+    }
+
+    if (state.disabled.value) {
+      return _theme.deselectedDisabledBackgroundColor;
+    }
+    if (state.hovered.value || state.focused.value) {
+      return _theme.deselectedHoveredBackgroundColor;
+    }
+
+    return _theme.deselectedBackgroundColor;
+  }
+
+  double _resolveHandleSize(BuildContext context, YgRadioState state) {
+    if (state.disabled.value) {
+      return _theme.deselectedHandleSize;
+    }
+    if (state.selected.value) {
+      return _theme.selectedHandleSize;
+    }
+
+    return _theme.deselectedHandleSize;
+  }
+
+  Color _resolveHandleColor(BuildContext context, YgRadioState state) {
+    if (state.disabled.value) {
+      return _theme.disabledHandleColor;
+    }
+    if (state.selected.value) {
+      return _theme.selectedHandleColor;
+    }
+
+    return _theme.deselectedHandleColor;
+  }
+
+  double _resolveHelperHandleSize(BuildContext context, YgRadioState state) {
+    if (state.disabled.value) {
+      if (state.selected.value) {
+        return _theme.disabledSelectedHelperHandleSize;
+      }
+
+      return _theme.disabledDeselectedHelperHandleSize;
+    }
+    // Helper handle should only show for disabled state.
+    // Returning `null` does not work as the widget will still render.
+
+    return 0.0;
+  }
+
+  MouseCursor _resolveMouseCursor(BuildContext context, YgRadioState state) {
+    if (state.disabled.value) {
+      return SystemMouseCursors.basic;
+    }
+
+    return SystemMouseCursors.click;
+  }
+
+  @override
+  Curve get curve => _theme.animationCurve;
+
+  @override
+  Duration get duration => _theme.animationDuration;
+
+  YgRadioTheme get _theme => context.radioTheme;
 }

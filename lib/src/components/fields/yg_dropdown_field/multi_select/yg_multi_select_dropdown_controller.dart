@@ -6,7 +6,7 @@ class YgMultiSelectDropdownController<T extends Object>
   YgMultiSelectDropdownController({
     Set<T>? initialValue,
   }) : super(
-          initialValue: initialValue ?? <T>{},
+          initialValue: Set<T>.of(initialValue ?? <T>{}),
         );
 
   @override
