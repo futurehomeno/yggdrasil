@@ -871,10 +871,10 @@ packages:
     description:
       path: "."
       ref: master
-      resolved-ref: feea4e8ffb6687f61cd731c249235ff6be543795
+      resolved-ref: "313993abd58b0b9d53d8d5b8b1901ba1b4912ec7"
       url: "git@github.com:futurehomeno/pubdev_registry.git"
     source: git
-    version: "2.2.1+68"
+    version: "2.2.1+70"
   quiver:
     dependency: transitive
     description:

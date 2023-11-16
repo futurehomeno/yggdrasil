@@ -4,4 +4,5 @@ export 'yg_focusable_action_detector.dart';
 export 'yg_no_focus.dart';
 export 'yg_rounded_rectangle_gradient_border.dart';
 export 'yg_scroll_shadow/yg_scroll_shadow.dart';
+export 'yg_states/_yg_states.dart';
 export 'yg_suspended_curve.dart';
