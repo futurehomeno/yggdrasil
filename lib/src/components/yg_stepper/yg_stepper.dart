@@ -10,7 +10,7 @@ class YgStepper extends StatelessWidget with StatelessWidgetDebugMixin {
   const YgStepper({
     super.key,
     required this.value,
-    required this.onChange,
+    required this.onChanged,
     this.stepSize = 1,
     this.min = 0,
     this.max = 100,
@@ -55,7 +55,7 @@ class YgStepper extends StatelessWidget with StatelessWidgetDebugMixin {
   final double stepSize;
 
   /// Called with the new value when the user interacts with the stepper.
-  final ValueChanged<double> onChange;
+  final ValueChanged<double> onChanged;
 
   /// The optional metric shown under the value.
   final String? metric;
@@ -113,7 +113,7 @@ class YgStepper extends StatelessWidget with StatelessWidgetDebugMixin {
   }
 
   void _handleIncrease() {
-    onChange(
+    onChanged(
       math.min(
         max,
         value + stepSize,
@@ -122,7 +122,7 @@ class YgStepper extends StatelessWidget with StatelessWidgetDebugMixin {
   }
 
   void _handleDecrease() {
-    onChange(
+    onChanged(
       math.max(
         min,
         value - stepSize,

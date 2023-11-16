@@ -20,7 +20,7 @@ void main() {
               value: 0.0,
               min: 0.0,
               max: 10.0,
-              onChange: (_) {},
+              onChanged: (_) {},
             ),
           ),
           GoldenTestScenario(
@@ -29,7 +29,7 @@ void main() {
               value: 5.0,
               min: 0.0,
               max: 10.0,
-              onChange: (_) {},
+              onChanged: (_) {},
             ),
           ),
           GoldenTestScenario(
@@ -38,7 +38,7 @@ void main() {
               value: 10.0,
               min: 0.0,
               max: 10.0,
-              onChange: (_) {},
+              onChanged: (_) {},
             ),
           ),
           GoldenTestScenario(
@@ -48,7 +48,7 @@ void main() {
               min: 0.0,
               max: 10.0,
               precision: 10,
-              onChange: (_) {},
+              onChanged: (_) {},
             ),
           ),
           GoldenTestScenario(
@@ -59,7 +59,7 @@ void main() {
               max: 10.0,
               precision: 10,
               metric: YgGoldenTestValues.shortText,
-              onChange: (_) {},
+              onChanged: (_) {},
             ),
           ),
           GoldenTestScenario(
@@ -70,7 +70,7 @@ void main() {
               max: 10.0,
               precision: 10,
               metric: YgGoldenTestValues.longText,
-              onChange: (_) {},
+              onChanged: (_) {},
             ),
           ),
         ],

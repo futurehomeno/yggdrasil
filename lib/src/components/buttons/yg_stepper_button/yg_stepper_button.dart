@@ -4,7 +4,7 @@ import 'package:yggdrasil/yggdrasil.dart';
 
 import 'yg_stepper_button_style.dart';
 
-/// Base class for creating all YgIconButtons.
+/// Implementation of the button used specifically in [YgStepper]
 class YgStepperButton extends YgButtonBase<YgButtonBaseState> {
   const YgStepperButton({
     super.key,
@@ -18,7 +18,10 @@ class YgStepperButton extends YgButtonBase<YgButtonBaseState> {
     this.disabled = false,
   });
 
+  /// Widget under this widget in the widget tree.
   final YgIcon child;
+
+  /// Disables all interaction and applies disabled styling when true.
   final bool disabled;
 
   @override

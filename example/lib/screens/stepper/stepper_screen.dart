@@ -35,7 +35,7 @@ class _StepperScreenState extends State<StepperScreen> {
             title: 'Default stepper',
             child: YgStepper(
               value: value,
-              onChange: (double value) => setState(
+              onChanged: (double value) => setState(
                 () => this.value = value,
               ),
               max: 10,
@@ -45,7 +45,7 @@ class _StepperScreenState extends State<StepperScreen> {
             title: 'Stepper with metric',
             child: YgStepper(
               value: value2,
-              onChange: (double value) => setState(
+              onChanged: (double value) => setState(
                 () => value2 = value,
               ),
               max: 10,
@@ -57,7 +57,7 @@ class _StepperScreenState extends State<StepperScreen> {
             children: <Widget>[
               YgStepper(
                 value: value3,
-                onChange: (double value) => setState(
+                onChanged: (double value) => setState(
                   () => value3 = value,
                 ),
                 max: 1,
@@ -65,7 +65,7 @@ class _StepperScreenState extends State<StepperScreen> {
               ),
               YgStepper(
                 value: value4,
-                onChange: (double value) => setState(
+                onChanged: (double value) => setState(
                   () => value4 = value,
                 ),
                 max: 100,
