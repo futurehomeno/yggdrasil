@@ -23,6 +23,7 @@ export 'list_tile_switch/_list_tile_switch.dart';
 export 'progress_indicator/_progress_indicator.dart';
 export 'radio/_radio.dart';
 export 'snack_bar/_snack_bar.dart';
+export 'stepper/_stepper.dart';
 export 'switch/_switch.dart';
 export 'tag/_tag.dart';
 export 'text_field/_text_field.dart';
