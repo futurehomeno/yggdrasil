@@ -154,24 +154,24 @@ class _YgAppBarState extends State<YgAppBar> {
       middleSpacing: theme.titleSpacing,
     );
 
+    Widget appBar = toolbar;
+
     // Ensure that the toolbar is positioned correctly when
     // using flexible space.
-    // TODO(bjhandeland): Disable when flex is not there.
-    Widget appBar = CustomSingleChildLayout(
-      delegate: _ToolbarContainerLayout(theme.toolbarHeight),
-      child: toolbar,
-    );
+    if (widget.flexibleSpace != null) {
+      appBar = CustomSingleChildLayout(
+        delegate: _ToolbarContainerLayout(theme.toolbarHeight),
+        child: appBar,
+      );
+    }
 
     // Add the bottom widget if provided.
     if (widget.bottom != null) {
       appBar = Column(
-        mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: <Widget>[
-          Flexible(
-            child: ConstrainedBox(
-              constraints: BoxConstraints(maxHeight: theme.toolbarHeight),
-              child: appBar,
-            ),
+          ConstrainedBox(
+            constraints: BoxConstraints(maxHeight: theme.toolbarHeight),
+            child: appBar,
           ),
           widget.bottom!,
         ],

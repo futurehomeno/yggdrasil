@@ -10,6 +10,11 @@ import 'widgets/_widgets.dart';
 /// !-- IMPORTANT --!
 /// There's no good way to make preferredSize use context to determine
 /// the size from the theme.
+///
+/// !-- IMPORTANT --!
+/// 5 px have been added to the preferredSize height to account for the
+/// indicator height. This is a hack and should be fixed.
+// TODO(dev): fix the preferredSize hack by making a custom YgTabBar.
 class YgTabBar extends StatelessWidget with StatelessWidgetDebugMixin implements PreferredSizeWidget {
   const YgTabBar({
     super.key,
@@ -17,7 +22,7 @@ class YgTabBar extends StatelessWidget with StatelessWidgetDebugMixin implements
     this.controller,
     this.isScrollable = false,
     this.onTap,
-  }) : preferredSize = const Size.fromHeight(44.0); // See IMPORTANT above.
+  }) : preferredSize = const Size.fromHeight(49.0); // See IMPORTANT above.
 
   /// The tabs inside of the tab bar.
   final List<YgTab> tabs;
