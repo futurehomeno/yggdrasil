@@ -105,7 +105,7 @@ class _RadioScreenState extends State<RadioScreen> {
             ),
           ),
           YgSection.list(
-            children: <Widget>[
+            children: <YgListTile>[
               YgListTile(
                 title: 'Radio in a list tile',
                 subtitle: 'Only the Radio is tappable.',

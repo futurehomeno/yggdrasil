@@ -16,7 +16,7 @@ class _YgSectionList extends YgSection {
   final MainAxisAlignment mainAxisAlignment;
   final MainAxisSize mainAxisSize;
   final CrossAxisAlignment crossAxisAlignment;
-  final List<Widget> children;
+  final List<YgListTile> children;
 
   @override
   Widget buildChild(BuildContext context) {

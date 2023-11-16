@@ -37,7 +37,7 @@ class _ListTileRadioScreenState extends State<ListTileRadioScreen> {
             ),
           ),
           YgSection.list(
-            children: <Widget>[
+            children: <YgListTile>[
               YgRadioListTile<int>(
                 title: 'RadioListTile',
                 subtitle: 'The whole ListTile and Radio is tappable.',
