@@ -64,11 +64,12 @@ class _$YgWizardHeaderTheme {
 
   // region Title
 
-  static const List<TextStyle> titleTextStyle = <TextStyle>[
-    consumer_light.FhTextStyles.sectionHeading2Medium,
-    consumer_dark.FhTextStyles.sectionHeading2Medium,
-    professional_light.FhTextStyles.sectionHeading2Medium,
-    professional_dark.FhTextStyles.sectionHeading2Medium,
+  // TODO(DEV-2436): Remove height when tokens have been updated.
+  static final List<TextStyle> titleTextStyle = <TextStyle>[
+    consumer_light.FhTextStyles.sectionHeading2Medium.copyWith(height: 24 / 20),
+    consumer_dark.FhTextStyles.sectionHeading2Medium.copyWith(height: 24 / 20),
+    professional_light.FhTextStyles.sectionHeading2Medium.copyWith(height: 24 / 20),
+    professional_dark.FhTextStyles.sectionHeading2Medium.copyWith(height: 24 / 20),
   ];
 
   static const List<EdgeInsets> titlePadding = <EdgeInsets>[
