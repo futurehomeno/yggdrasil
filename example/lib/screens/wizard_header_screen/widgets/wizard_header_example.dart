@@ -27,13 +27,13 @@ class _WizardHeaderExampleState extends State<WizardHeaderExample> {
         YgWizardHeader(
           titleBuilder: (_) => widget.title,
           counterBuilder: (int p0, int p1) => 'Step $p0 of $p1',
-          step: _step,
+          currentStep: _step,
           steps: widget.steps,
         ),
         StepNavigator(
           onNext: _nextStep,
           onPrevious: _previousStep,
-          step: _step,
+          currentStep: _step,
           steps: widget.steps,
         ),
       ],

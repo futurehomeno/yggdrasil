@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:yggdrasil/src/theme/_theme.dart';
-import 'package:yggdrasil/src/theme/wizard_header/wizard_header_theme.dart';
 
 import 'widgets/_widgets.dart';
 
@@ -9,8 +8,8 @@ part 'yg_wizard_header_from_page_controller.dart';
 part 'yg_wizard_header_from_tab_controller.dart';
 part 'yg_wizard_header_regular.dart';
 
-typedef CounterBuilderCallback = String Function(int step, int steps);
-typedef TitleBuilderCallback = String Function(int step);
+typedef CounterBuilderCallback = String Function(int currentStep, int steps);
+typedef TitleBuilderCallback = String Function(int currentStep);
 
 /// Implementation of the WizardHeader.
 ///
@@ -24,10 +23,10 @@ typedef TitleBuilderCallback = String Function(int step);
 abstract class YgWizardHeader extends StatefulWidget {
   /// Self animated YgWizardHeader.
   ///
-  /// Animates the [step] value. Changing the amount of steps is not animated.
+  /// Animates the [currentStep] value. Changing the amount of steps is not animated.
   const factory YgWizardHeader({
     required CounterBuilderCallback counterBuilder,
-    required int step,
+    required int currentStep,
     required int steps,
     required TitleBuilderCallback titleBuilder,
   }) = _YgWizardHeaderRegular;
@@ -71,9 +70,9 @@ abstract class YgWizardHeader extends StatefulWidget {
 
   /// Builds the current counter.
   ///
-  /// Gets passed the current step and the total amount of steps. [step] is the
-  /// internal step value + 1 to represent the value that should actually be
-  /// displayed.
+  /// Gets passed the current step and the total amount of steps. [currentStep]
+  /// is the internal step value + 1 to represent the value that should actually
+  /// be displayed.
   final CounterBuilderCallback counterBuilder;
 }
 

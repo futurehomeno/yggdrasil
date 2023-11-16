@@ -4,11 +4,11 @@ class _YgWizardHeaderRegular extends YgWizardHeader {
   const _YgWizardHeaderRegular({
     required super.counterBuilder,
     required super.titleBuilder,
-    required this.step,
+    required this.currentStep,
     required this.steps,
   })  : assert(
-          step < steps,
-          'step has to be less than steps',
+          currentStep < steps,
+          'currentStep has to be less than steps',
         ),
         assert(
           steps > 1,
@@ -23,7 +23,7 @@ class _YgWizardHeaderRegular extends YgWizardHeader {
   final int steps;
 
   /// The current step.
-  final int step;
+  final int currentStep;
 
   @override
   State<StatefulWidget> createState() => _YgWizardHeaderStateRegular();
@@ -32,7 +32,7 @@ class _YgWizardHeaderRegular extends YgWizardHeader {
 class _YgWizardHeaderStateRegular extends _YgWizardHeaderState<_YgWizardHeaderRegular> {
   @override
   late final AnimationController _valueAnimation = AnimationController.unbounded(
-    value: widget.step.toDouble(),
+    value: widget.currentStep.toDouble(),
     vsync: this,
   );
 
@@ -40,17 +40,17 @@ class _YgWizardHeaderStateRegular extends _YgWizardHeaderState<_YgWizardHeaderRe
   int get _steps => widget.steps;
 
   @override
-  int get _step => widget.step;
+  int get _step => widget.currentStep;
 
   @override
   void didUpdateWidget(covariant _YgWizardHeaderRegular oldWidget) {
     if (widget.steps != oldWidget.steps) {
-      _valueAnimation.value = widget.step.toDouble();
-    } else if (widget.step != oldWidget.step) {
+      _valueAnimation.value = widget.currentStep.toDouble();
+    } else if (widget.currentStep != oldWidget.currentStep) {
       final YgWizardHeaderTheme theme = context.wizardHeaderTheme;
 
       _valueAnimation.animateTo(
-        widget.step.toDouble(),
+        widget.currentStep.toDouble(),
         curve: theme.animationCurve,
         duration: theme.animationDuration,
       );

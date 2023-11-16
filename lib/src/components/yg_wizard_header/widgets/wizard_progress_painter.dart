@@ -32,9 +32,8 @@ class WizardProgressPainter extends CustomPainter {
 
   @override
   void paint(Canvas canvas, Size size) {
-    final int correctedSteps = steps - 1;
     final double halfStroke = stroke / 2;
-    final double stepWidth = (size.width - correctedSteps * gap) / steps;
+    final double stepWidth = (size.width - (steps - 1) * gap) / steps;
 
     // Create and set the clip path for the bar segments.
     final Path path = Path();

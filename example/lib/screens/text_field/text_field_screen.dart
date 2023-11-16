@@ -161,10 +161,10 @@ class _TextFieldScreenState extends State<TextFieldScreen> {
                         const RequiredValidator(
                           requiredError: 'This field is required!',
                         ),
-                        // MatchValidator<String>(
-                        //   otherFieldKey: _passwordKey,
-                        //   error: 'Passwords do not match!',
-                        // ),
+                        MatchValidator<String>(
+                          otherFieldKey: _passwordKey,
+                          error: 'Passwords do not match!',
+                        ),
                       ],
                     ),
                     YgButton(
