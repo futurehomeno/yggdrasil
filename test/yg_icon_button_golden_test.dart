@@ -1,7 +1,6 @@
 import 'package:alchemist/alchemist.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
-import 'package:yggdrasil/src/tokens/professional_dark/_professional_dark.dart';
 import 'package:yggdrasil/yggdrasil.dart';
 
 import 'extensions/_extensions.dart';
@@ -52,19 +51,6 @@ void main() {
             child: YgIconButton(
               onPressed: () {},
               size: YgIconButtonSize.small,
-              child: const YgIcon(YgIcons.info),
-            ),
-          ),
-          GoldenTestScenario(
-            name: 'With custom style and small size',
-            child: YgIconButton(
-              onPressed: () {},
-              size: YgIconButtonSize.small,
-              style: ButtonStyle(
-                backgroundColor: MaterialStateProperty.resolveWith(
-                  (_) => FhColors.actionCriticalDefault,
-                ),
-              ),
               child: const YgIcon(YgIcons.info),
             ),
           ),

@@ -26,3 +26,4 @@ export 'tag/_tag.dart';
 export 'text_link/_text_link.dart';
 export 'theme.dart';
 export 'toggle_button/_toggle_button.dart';
+export 'wizard_header/_wizard_header.dart';

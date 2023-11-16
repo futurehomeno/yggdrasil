@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:theme_tailor_annotation/theme_tailor_annotation.dart';
+import 'package:yggdrasil/src/theme/wizard_header/_wizard_header.dart';
 
 import 'app_bar/_app_bar.dart';
 import 'badge/_badge.dart';
@@ -120,6 +121,9 @@ class _$YgTheme {
 
   @themeExtension
   static final List<YgToggleButtonTheme> toggleButtonTheme = YgToggleButtonTheme.themes;
+
+  @themeExtension
+  static final List<YgWizardHeaderTheme> wizardHeaderTheme = YgWizardHeaderTheme.themes;
 
   // endregion
 }

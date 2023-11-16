@@ -871,10 +871,10 @@ packages:
     description:
       path: "."
       ref: master
-      resolved-ref: "313993abd58b0b9d53d8d5b8b1901ba1b4912ec7"
+      resolved-ref: "40a9edde264e16e87c247a67b0845ad93c6f9bb3"
       url: "git@github.com:futurehomeno/pubdev_registry.git"
     source: git
-    version: "2.2.1+70"
+    version: "2.2.1+71"
   quiver:
     dependency: transitive
     description:
@@ -1231,7 +1231,7 @@ packages:
       path: ".."
       relative: true
     source: path
-    version: "1.6.21+26"
+    version: "1.6.22+27"
 sdks:
   dart: "3.0.5"
   flutter: ">=3.10.5"

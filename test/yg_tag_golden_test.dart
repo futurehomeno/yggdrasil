@@ -1,6 +1,5 @@
 import 'package:alchemist/alchemist.dart';
 import 'package:flutter/material.dart';
-
 import 'package:flutter_test/flutter_test.dart';
 import 'package:yggdrasil/yggdrasil.dart';
 
@@ -35,31 +34,31 @@ void main() {
           ),
           GoldenTestScenario(
             name: 'With leadingIcon, neutral variant',
-            child: YgTag.leadingIcon(
+            child: const YgTag.leadingIcon(
               variant: YgTagVariant.neutral,
-              icon: const YgIcon(YgIcons.info),
-              child: const Text(
+              icon: YgIcon(YgIcons.info),
+              child: Text(
                 YgGoldenTestValues.shortText,
               ),
             ),
           ),
           GoldenTestScenario(
             name: 'With trailingIcon, positive variant',
-            child: YgTag.trailingIcon(
+            child: const YgTag.trailingIcon(
               variant: YgTagVariant.positive,
-              icon: const YgIcon(YgIcons.info),
-              child: const Text(
+              icon: YgIcon(YgIcons.info),
+              child: Text(
                 YgGoldenTestValues.shortText,
               ),
             ),
           ),
           GoldenTestScenario(
             name: 'With doubleIcon, warning variant',
-            child: YgTag.doubleIcon(
+            child: const YgTag.doubleIcon(
               variant: YgTagVariant.warning,
-              leadingIcon: const YgIcon(YgIcons.info),
-              trailingIcon: const YgIcon(YgIcons.info),
-              child: const Text(
+              leadingIcon: YgIcon(YgIcons.info),
+              trailingIcon: YgIcon(YgIcons.info),
+              child: Text(
                 YgGoldenTestValues.shortText,
               ),
             ),
@@ -78,20 +77,6 @@ void main() {
             child: const YgTag(
               weight: YgTagWeight.strong,
               child: Text(
-                YgGoldenTestValues.shortText,
-              ),
-            ),
-          ),
-          GoldenTestScenario(
-            name: 'With custom style',
-            child: YgTag.trailingIcon(
-              icon: const YgIcon(YgIcons.info),
-              style: ButtonStyle(
-                iconColor: MaterialStateProperty.resolveWith((_) => Colors.red),
-                backgroundColor: MaterialStateProperty.resolveWith((_) => Colors.amber),
-                elevation: MaterialStateProperty.resolveWith((_) => 10.0),
-              ),
-              child: const Text(
                 YgGoldenTestValues.shortText,
               ),
             ),

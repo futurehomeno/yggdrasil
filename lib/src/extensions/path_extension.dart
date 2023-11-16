@@ -2,17 +2,64 @@ import 'dart:math';
 
 import 'package:flutter/material.dart';
 
-extension PathAddArcOutlineExtension on Path {
+import '_extensions.dart';
+
+extension PathExtension on Path {
+  /// Adds the outline of a line with rounded end caps to the path.
+  ///
+  /// Accepts [strokeWidth] to specify the width of the line of which the
+  /// outline is drawn.
+  void addLineOutline(
+    Offset p1,
+    Offset p2,
+    double strokeWidth,
+  ) {
+    final double angle = p1.angleTo(p2) + (pi / 2);
+    final double halfStroke = strokeWidth / 2;
+    final Offset start = p1.translateWithAngle(angle, halfStroke);
+
+    // Move to start.
+    moveTo(
+      start.dx,
+      start.dy,
+    );
+
+    // Start cap.
+    arcTo(
+      Rect.fromCircle(
+        center: p1,
+        radius: halfStroke,
+      ),
+      angle,
+      pi,
+      false,
+    );
+
+    // End cap.
+    arcTo(
+      Rect.fromCircle(
+        center: p2,
+        radius: halfStroke,
+      ),
+      angle + pi,
+      pi,
+      false,
+    );
+
+    // Close path.
+    close();
+  }
+
   /// Adds the outline of a arc with rounded end caps to the path.
   ///
   /// Accepts [strokeWidth] to specify the width of the line of the arc of which
   /// the outline is drawn.
-  void addArcOutline({
-    required Rect rect,
-    required double startAngle,
-    required double sweepAngle,
-    required double strokeWidth,
-  }) {
+  void addArcOutline(
+    Rect rect,
+    double startAngle,
+    double sweepAngle,
+    double strokeWidth,
+  ) {
     // Calculate the radius by taking the smallest axis divided by 2.
     final double radius = min(rect.width, rect.height) / 2;
 
