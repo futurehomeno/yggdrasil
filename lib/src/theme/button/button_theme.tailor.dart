@@ -26,16 +26,16 @@ class YgButtonTheme extends ThemeExtension<YgButtonTheme> {
 
   final BorderRadius borderRadius;
   final double borderWidth;
-  final CriticalButtonTheme criticalButtonTheme;
+  final YgCriticalButtonTheme criticalButtonTheme;
   final double iconSize;
   final double iconSpacing;
-  final LinkButtonTheme linkButtonTheme;
+  final YgLinkButtonTheme linkButtonTheme;
   final EdgeInsets paddingLarge;
   final EdgeInsets paddingMedium;
   final EdgeInsets paddingSmall;
-  final PrimaryButtonTheme primaryButtonTheme;
-  final SecondaryButtonTheme secondaryButtonTheme;
-  final TextButtonTheme textButtonTheme;
+  final YgPrimaryButtonTheme primaryButtonTheme;
+  final YgSecondaryButtonTheme secondaryButtonTheme;
+  final YgTextButtonTheme textButtonTheme;
 
   static final YgButtonTheme consumerLight = YgButtonTheme(
     borderRadius: _$YgButtonTheme.borderRadius[0],
@@ -108,16 +108,16 @@ class YgButtonTheme extends ThemeExtension<YgButtonTheme> {
   YgButtonTheme copyWith({
     BorderRadius? borderRadius,
     double? borderWidth,
-    CriticalButtonTheme? criticalButtonTheme,
+    YgCriticalButtonTheme? criticalButtonTheme,
     double? iconSize,
     double? iconSpacing,
-    LinkButtonTheme? linkButtonTheme,
+    YgLinkButtonTheme? linkButtonTheme,
     EdgeInsets? paddingLarge,
     EdgeInsets? paddingMedium,
     EdgeInsets? paddingSmall,
-    PrimaryButtonTheme? primaryButtonTheme,
-    SecondaryButtonTheme? secondaryButtonTheme,
-    TextButtonTheme? textButtonTheme,
+    YgPrimaryButtonTheme? primaryButtonTheme,
+    YgSecondaryButtonTheme? secondaryButtonTheme,
+    YgTextButtonTheme? textButtonTheme,
   }) {
     return YgButtonTheme(
       borderRadius: borderRadius ?? this.borderRadius,
@@ -142,20 +142,20 @@ class YgButtonTheme extends ThemeExtension<YgButtonTheme> {
       borderRadius: t < 0.5 ? borderRadius : other.borderRadius,
       borderWidth: t < 0.5 ? borderWidth : other.borderWidth,
       criticalButtonTheme: criticalButtonTheme.lerp(
-          other.criticalButtonTheme, t) as CriticalButtonTheme,
+          other.criticalButtonTheme, t) as YgCriticalButtonTheme,
       iconSize: t < 0.5 ? iconSize : other.iconSize,
       iconSpacing: t < 0.5 ? iconSpacing : other.iconSpacing,
       linkButtonTheme:
-          linkButtonTheme.lerp(other.linkButtonTheme, t) as LinkButtonTheme,
+          linkButtonTheme.lerp(other.linkButtonTheme, t) as YgLinkButtonTheme,
       paddingLarge: t < 0.5 ? paddingLarge : other.paddingLarge,
       paddingMedium: t < 0.5 ? paddingMedium : other.paddingMedium,
       paddingSmall: t < 0.5 ? paddingSmall : other.paddingSmall,
       primaryButtonTheme: primaryButtonTheme.lerp(other.primaryButtonTheme, t)
-          as PrimaryButtonTheme,
+          as YgPrimaryButtonTheme,
       secondaryButtonTheme: secondaryButtonTheme.lerp(
-          other.secondaryButtonTheme, t) as SecondaryButtonTheme,
+          other.secondaryButtonTheme, t) as YgSecondaryButtonTheme,
       textButtonTheme:
-          textButtonTheme.lerp(other.textButtonTheme, t) as TextButtonTheme,
+          textButtonTheme.lerp(other.textButtonTheme, t) as YgTextButtonTheme,
     );
   }
 

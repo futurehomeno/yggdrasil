@@ -9,6 +9,13 @@ part 'text_link_theme.tailor.dart';
 
 @tailorComponent
 class _$YgTextLinkTheme {
+  static const List<EdgeInsets> padding = <EdgeInsets>[
+    EdgeInsets.all(consumer_light.FhDimensions.xxs),
+    EdgeInsets.all(consumer_dark.FhDimensions.xxs),
+    EdgeInsets.all(professional_light.FhDimensions.xxs),
+    EdgeInsets.all(professional_dark.FhDimensions.xxs),
+  ];
+
   static const List<TextStyle> smallWeakTextStyle = <TextStyle>[
     consumer_light.FhTextStyles.caption1Regular,
     consumer_dark.FhTextStyles.caption1Regular,
@@ -16,11 +23,11 @@ class _$YgTextLinkTheme {
     professional_dark.FhTextStyles.caption1Regular,
   ];
 
-  static const List<TextStyle> mediumWeakTextStyle = <TextStyle>[
-    consumer_light.FhTextStyles.paragraph2Regular,
-    consumer_dark.FhTextStyles.paragraph2Regular,
-    professional_light.FhTextStyles.paragraph2Regular,
-    professional_dark.FhTextStyles.paragraph2Regular,
+  static final List<TextStyle> mediumWeakTextStyle = <TextStyle>[
+    consumer_light.FhTextStyles.paragraph2Regular.copyWith(height: 1.25),
+    consumer_dark.FhTextStyles.paragraph2Regular.copyWith(height: 1.25),
+    professional_light.FhTextStyles.paragraph2Regular.copyWith(height: 1.25),
+    professional_dark.FhTextStyles.paragraph2Regular.copyWith(height: 1.25),
   ];
 
   static const List<TextStyle> smallStrongTextStyle = <TextStyle>[
@@ -30,11 +37,11 @@ class _$YgTextLinkTheme {
     professional_dark.FhTextStyles.caption1Medium,
   ];
 
-  static const List<TextStyle> mediumStrongTextStyle = <TextStyle>[
-    consumer_light.FhTextStyles.paragraph2Medium,
-    consumer_dark.FhTextStyles.paragraph2Medium,
-    professional_light.FhTextStyles.paragraph2Medium,
-    professional_dark.FhTextStyles.paragraph2Medium,
+  static final List<TextStyle> mediumStrongTextStyle = <TextStyle>[
+    consumer_light.FhTextStyles.paragraph2Medium.copyWith(height: 1.25),
+    consumer_dark.FhTextStyles.paragraph2Medium.copyWith(height: 1.25),
+    professional_light.FhTextStyles.paragraph2Medium.copyWith(height: 1.25),
+    professional_dark.FhTextStyles.paragraph2Medium.copyWith(height: 1.25),
   ];
 
   static const List<Color> defaultColor = <Color>[
@@ -84,5 +91,12 @@ class _$YgTextLinkTheme {
     consumer_dark.FhColors.interactiveHighlightDefault,
     professional_light.FhColors.interactiveHighlightDefault,
     professional_dark.FhColors.interactiveHighlightDefault,
+  ];
+
+  static const List<BorderRadius> borderRadius = <BorderRadius>[
+    consumer_light.FhRadii.xxs,
+    consumer_dark.FhRadii.xxs,
+    professional_light.FhRadii.xxs,
+    professional_dark.FhRadii.xxs,
   ];
 }

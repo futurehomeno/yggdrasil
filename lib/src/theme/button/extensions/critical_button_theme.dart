@@ -8,7 +8,7 @@ import 'package:yggdrasil/src/tokens/professional_light/_professional_light.dart
 part 'critical_button_theme.tailor.dart';
 
 @tailorComponent
-class _$CriticalButtonTheme {
+class _$YgCriticalButtonTheme {
   static const List<Color> backgroundColor = <Color>[
     consumer_light.FhColors.backgroundTransparent,
     consumer_dark.FhColors.backgroundTransparent,

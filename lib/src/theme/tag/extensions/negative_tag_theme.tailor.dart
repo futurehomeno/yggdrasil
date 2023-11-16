@@ -8,8 +8,8 @@ part of 'negative_tag_theme.dart';
 // TailorAnnotationsGenerator
 // **************************************************************************
 
-class NegativeTagTheme extends ThemeExtension<NegativeTagTheme> {
-  const NegativeTagTheme({
+class YgNegativeTagTheme extends ThemeExtension<YgNegativeTagTheme> {
+  const YgNegativeTagTheme({
     required this.backgroundColor,
     required this.disabledBackgroundColor,
     required this.strongBackgroundColor,
@@ -19,28 +19,28 @@ class NegativeTagTheme extends ThemeExtension<NegativeTagTheme> {
   final Color disabledBackgroundColor;
   final Color strongBackgroundColor;
 
-  static final NegativeTagTheme consumerLight = NegativeTagTheme(
-    backgroundColor: _$NegativeTagTheme.backgroundColor[0],
-    disabledBackgroundColor: _$NegativeTagTheme.disabledBackgroundColor[0],
-    strongBackgroundColor: _$NegativeTagTheme.strongBackgroundColor[0],
+  static final YgNegativeTagTheme consumerLight = YgNegativeTagTheme(
+    backgroundColor: _$YgNegativeTagTheme.backgroundColor[0],
+    disabledBackgroundColor: _$YgNegativeTagTheme.disabledBackgroundColor[0],
+    strongBackgroundColor: _$YgNegativeTagTheme.strongBackgroundColor[0],
   );
 
-  static final NegativeTagTheme consumerDark = NegativeTagTheme(
-    backgroundColor: _$NegativeTagTheme.backgroundColor[1],
-    disabledBackgroundColor: _$NegativeTagTheme.disabledBackgroundColor[1],
-    strongBackgroundColor: _$NegativeTagTheme.strongBackgroundColor[1],
+  static final YgNegativeTagTheme consumerDark = YgNegativeTagTheme(
+    backgroundColor: _$YgNegativeTagTheme.backgroundColor[1],
+    disabledBackgroundColor: _$YgNegativeTagTheme.disabledBackgroundColor[1],
+    strongBackgroundColor: _$YgNegativeTagTheme.strongBackgroundColor[1],
   );
 
-  static final NegativeTagTheme professionalLight = NegativeTagTheme(
-    backgroundColor: _$NegativeTagTheme.backgroundColor[2],
-    disabledBackgroundColor: _$NegativeTagTheme.disabledBackgroundColor[2],
-    strongBackgroundColor: _$NegativeTagTheme.strongBackgroundColor[2],
+  static final YgNegativeTagTheme professionalLight = YgNegativeTagTheme(
+    backgroundColor: _$YgNegativeTagTheme.backgroundColor[2],
+    disabledBackgroundColor: _$YgNegativeTagTheme.disabledBackgroundColor[2],
+    strongBackgroundColor: _$YgNegativeTagTheme.strongBackgroundColor[2],
   );
 
-  static final NegativeTagTheme professionalDark = NegativeTagTheme(
-    backgroundColor: _$NegativeTagTheme.backgroundColor[3],
-    disabledBackgroundColor: _$NegativeTagTheme.disabledBackgroundColor[3],
-    strongBackgroundColor: _$NegativeTagTheme.strongBackgroundColor[3],
+  static final YgNegativeTagTheme professionalDark = YgNegativeTagTheme(
+    backgroundColor: _$YgNegativeTagTheme.backgroundColor[3],
+    disabledBackgroundColor: _$YgNegativeTagTheme.disabledBackgroundColor[3],
+    strongBackgroundColor: _$YgNegativeTagTheme.strongBackgroundColor[3],
   );
 
   static final themes = [
@@ -51,12 +51,12 @@ class NegativeTagTheme extends ThemeExtension<NegativeTagTheme> {
   ];
 
   @override
-  NegativeTagTheme copyWith({
+  YgNegativeTagTheme copyWith({
     Color? backgroundColor,
     Color? disabledBackgroundColor,
     Color? strongBackgroundColor,
   }) {
-    return NegativeTagTheme(
+    return YgNegativeTagTheme(
       backgroundColor: backgroundColor ?? this.backgroundColor,
       disabledBackgroundColor:
           disabledBackgroundColor ?? this.disabledBackgroundColor,
@@ -66,10 +66,10 @@ class NegativeTagTheme extends ThemeExtension<NegativeTagTheme> {
   }
 
   @override
-  NegativeTagTheme lerp(
-      covariant ThemeExtension<NegativeTagTheme>? other, double t) {
-    if (other is! NegativeTagTheme) return this as NegativeTagTheme;
-    return NegativeTagTheme(
+  YgNegativeTagTheme lerp(
+      covariant ThemeExtension<YgNegativeTagTheme>? other, double t) {
+    if (other is! YgNegativeTagTheme) return this as YgNegativeTagTheme;
+    return YgNegativeTagTheme(
       backgroundColor: Color.lerp(backgroundColor, other.backgroundColor, t)!,
       disabledBackgroundColor: Color.lerp(
           disabledBackgroundColor, other.disabledBackgroundColor, t)!,
@@ -82,7 +82,7 @@ class NegativeTagTheme extends ThemeExtension<NegativeTagTheme> {
   bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is NegativeTagTheme &&
+            other is YgNegativeTagTheme &&
             const DeepCollectionEquality()
                 .equals(backgroundColor, other.backgroundColor) &&
             const DeepCollectionEquality().equals(

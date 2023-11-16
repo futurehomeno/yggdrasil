@@ -19,8 +19,6 @@ class IconScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return const DemoScreen(
       componentName: 'Icon',
-      componentDesc: 'Icons',
-      supernovaLink: 'Link',
       child: Column(
         children: <Widget>[
           YgSection.base(
@@ -72,7 +70,7 @@ class IconScreen extends StatelessWidget {
             subtitle: 'Override the default theme color. See warning below.',
             child: YgTag(
               child: YgIcon(
-                YgIcons.deviceHub,
+                YgIcons.deviceHubColorful,
                 color: Colors.green,
                 size: YgIconSize.large,
               ),
@@ -83,7 +81,7 @@ class IconScreen extends StatelessWidget {
             subtitle: 'Color embedded in the SVG is used. See warning below.',
             child: YgTag(
               child: YgIcon(
-                YgIcons.deviceHub,
+                YgIcons.deviceHubColorful,
                 useEmbeddedColor: true,
                 size: YgIconSize.large,
               ),
@@ -96,7 +94,7 @@ class IconScreen extends StatelessWidget {
             child: YgTag(
               weight: YgTagWeight.strong,
               child: YgIcon(
-                YgIcons.deviceHub,
+                YgIcons.deviceHubColorful,
                 useEmbeddedColor: true,
                 size: YgIconSize.large,
               ),

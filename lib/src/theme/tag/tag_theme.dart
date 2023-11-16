@@ -12,19 +12,19 @@ part 'tag_theme.tailor.dart';
 @tailorComponent
 class _$YgTagTheme {
   @themeExtension
-  static final List<NeutralTagTheme> neutralTagTheme = NeutralTagTheme.themes;
+  static final List<YgNeutralTagTheme> neutralTagTheme = YgNeutralTagTheme.themes;
 
   @themeExtension
-  static final List<InformativeTagTheme> informativeTagTheme = InformativeTagTheme.themes;
+  static final List<YgInformativeTagTheme> informativeTagTheme = YgInformativeTagTheme.themes;
 
   @themeExtension
-  static final List<PositiveTagTheme> positiveTagTheme = PositiveTagTheme.themes;
+  static final List<YgPositiveTagTheme> positiveTagTheme = YgPositiveTagTheme.themes;
 
   @themeExtension
-  static final List<WarningTagTheme> warningTagTheme = WarningTagTheme.themes;
+  static final List<YgWarningTagTheme> warningTagTheme = YgWarningTagTheme.themes;
 
   @themeExtension
-  static final List<NegativeTagTheme> negativeTagTheme = NegativeTagTheme.themes;
+  static final List<YgNegativeTagTheme> negativeTagTheme = YgNegativeTagTheme.themes;
 
   static const List<EdgeInsets> paddingSmall = <EdgeInsets>[
     EdgeInsets.symmetric(
@@ -97,6 +97,20 @@ class _$YgTagTheme {
     consumer_dark.FhColors.iconInverse,
     professional_light.FhColors.iconInverse,
     professional_dark.FhColors.iconInverse,
+  ];
+
+  static final List<Color> splashStrongColor = <Color>[
+    consumer_light.FhColors.backgroundDefault.withOpacity(0.2),
+    consumer_dark.FhColors.backgroundDefault.withOpacity(0.2),
+    professional_light.FhColors.backgroundDefault.withOpacity(0.2),
+    professional_dark.FhColors.backgroundDefault.withOpacity(0.2),
+  ];
+
+  static final List<Color> splashWeakColor = <Color>[
+    consumer_light.FhColors.backgroundInverse.withOpacity(0.2),
+    consumer_dark.FhColors.backgroundInverse.withOpacity(0.2),
+    professional_light.FhColors.backgroundInverse.withOpacity(0.2),
+    professional_dark.FhColors.backgroundInverse.withOpacity(0.2),
   ];
 
   static const List<double> iconSize = <double>[

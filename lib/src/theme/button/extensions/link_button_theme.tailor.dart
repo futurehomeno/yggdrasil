@@ -8,8 +8,8 @@ part of 'link_button_theme.dart';
 // TailorAnnotationsGenerator
 // **************************************************************************
 
-class LinkButtonTheme extends ThemeExtension<LinkButtonTheme> {
-  const LinkButtonTheme({
+class YgLinkButtonTheme extends ThemeExtension<YgLinkButtonTheme> {
+  const YgLinkButtonTheme({
     required this.backgroundColor,
     required this.borderGradient,
     required this.disabledBorderGradient,
@@ -27,44 +27,44 @@ class LinkButtonTheme extends ThemeExtension<LinkButtonTheme> {
   final Color iconDisabledColor;
   final TextStyle textStyle;
 
-  static final LinkButtonTheme consumerLight = LinkButtonTheme(
-    backgroundColor: _$LinkButtonTheme.backgroundColor[0],
-    borderGradient: _$LinkButtonTheme.borderGradient[0],
-    disabledBorderGradient: _$LinkButtonTheme.disabledBorderGradient[0],
-    disabledTextStyle: _$LinkButtonTheme.disabledTextStyle[0],
-    iconDefaultColor: _$LinkButtonTheme.iconDefaultColor[0],
-    iconDisabledColor: _$LinkButtonTheme.iconDisabledColor[0],
-    textStyle: _$LinkButtonTheme.textStyle[0],
+  static final YgLinkButtonTheme consumerLight = YgLinkButtonTheme(
+    backgroundColor: _$YgLinkButtonTheme.backgroundColor[0],
+    borderGradient: _$YgLinkButtonTheme.borderGradient[0],
+    disabledBorderGradient: _$YgLinkButtonTheme.disabledBorderGradient[0],
+    disabledTextStyle: _$YgLinkButtonTheme.disabledTextStyle[0],
+    iconDefaultColor: _$YgLinkButtonTheme.iconDefaultColor[0],
+    iconDisabledColor: _$YgLinkButtonTheme.iconDisabledColor[0],
+    textStyle: _$YgLinkButtonTheme.textStyle[0],
   );
 
-  static final LinkButtonTheme consumerDark = LinkButtonTheme(
-    backgroundColor: _$LinkButtonTheme.backgroundColor[1],
-    borderGradient: _$LinkButtonTheme.borderGradient[1],
-    disabledBorderGradient: _$LinkButtonTheme.disabledBorderGradient[1],
-    disabledTextStyle: _$LinkButtonTheme.disabledTextStyle[1],
-    iconDefaultColor: _$LinkButtonTheme.iconDefaultColor[1],
-    iconDisabledColor: _$LinkButtonTheme.iconDisabledColor[1],
-    textStyle: _$LinkButtonTheme.textStyle[1],
+  static final YgLinkButtonTheme consumerDark = YgLinkButtonTheme(
+    backgroundColor: _$YgLinkButtonTheme.backgroundColor[1],
+    borderGradient: _$YgLinkButtonTheme.borderGradient[1],
+    disabledBorderGradient: _$YgLinkButtonTheme.disabledBorderGradient[1],
+    disabledTextStyle: _$YgLinkButtonTheme.disabledTextStyle[1],
+    iconDefaultColor: _$YgLinkButtonTheme.iconDefaultColor[1],
+    iconDisabledColor: _$YgLinkButtonTheme.iconDisabledColor[1],
+    textStyle: _$YgLinkButtonTheme.textStyle[1],
   );
 
-  static final LinkButtonTheme professionalLight = LinkButtonTheme(
-    backgroundColor: _$LinkButtonTheme.backgroundColor[2],
-    borderGradient: _$LinkButtonTheme.borderGradient[2],
-    disabledBorderGradient: _$LinkButtonTheme.disabledBorderGradient[2],
-    disabledTextStyle: _$LinkButtonTheme.disabledTextStyle[2],
-    iconDefaultColor: _$LinkButtonTheme.iconDefaultColor[2],
-    iconDisabledColor: _$LinkButtonTheme.iconDisabledColor[2],
-    textStyle: _$LinkButtonTheme.textStyle[2],
+  static final YgLinkButtonTheme professionalLight = YgLinkButtonTheme(
+    backgroundColor: _$YgLinkButtonTheme.backgroundColor[2],
+    borderGradient: _$YgLinkButtonTheme.borderGradient[2],
+    disabledBorderGradient: _$YgLinkButtonTheme.disabledBorderGradient[2],
+    disabledTextStyle: _$YgLinkButtonTheme.disabledTextStyle[2],
+    iconDefaultColor: _$YgLinkButtonTheme.iconDefaultColor[2],
+    iconDisabledColor: _$YgLinkButtonTheme.iconDisabledColor[2],
+    textStyle: _$YgLinkButtonTheme.textStyle[2],
   );
 
-  static final LinkButtonTheme professionalDark = LinkButtonTheme(
-    backgroundColor: _$LinkButtonTheme.backgroundColor[3],
-    borderGradient: _$LinkButtonTheme.borderGradient[3],
-    disabledBorderGradient: _$LinkButtonTheme.disabledBorderGradient[3],
-    disabledTextStyle: _$LinkButtonTheme.disabledTextStyle[3],
-    iconDefaultColor: _$LinkButtonTheme.iconDefaultColor[3],
-    iconDisabledColor: _$LinkButtonTheme.iconDisabledColor[3],
-    textStyle: _$LinkButtonTheme.textStyle[3],
+  static final YgLinkButtonTheme professionalDark = YgLinkButtonTheme(
+    backgroundColor: _$YgLinkButtonTheme.backgroundColor[3],
+    borderGradient: _$YgLinkButtonTheme.borderGradient[3],
+    disabledBorderGradient: _$YgLinkButtonTheme.disabledBorderGradient[3],
+    disabledTextStyle: _$YgLinkButtonTheme.disabledTextStyle[3],
+    iconDefaultColor: _$YgLinkButtonTheme.iconDefaultColor[3],
+    iconDisabledColor: _$YgLinkButtonTheme.iconDisabledColor[3],
+    textStyle: _$YgLinkButtonTheme.textStyle[3],
   );
 
   static final themes = [
@@ -75,7 +75,7 @@ class LinkButtonTheme extends ThemeExtension<LinkButtonTheme> {
   ];
 
   @override
-  LinkButtonTheme copyWith({
+  YgLinkButtonTheme copyWith({
     Color? backgroundColor,
     LinearGradient? borderGradient,
     LinearGradient? disabledBorderGradient,
@@ -84,7 +84,7 @@ class LinkButtonTheme extends ThemeExtension<LinkButtonTheme> {
     Color? iconDisabledColor,
     TextStyle? textStyle,
   }) {
-    return LinkButtonTheme(
+    return YgLinkButtonTheme(
       backgroundColor: backgroundColor ?? this.backgroundColor,
       borderGradient: borderGradient ?? this.borderGradient,
       disabledBorderGradient:
@@ -97,10 +97,10 @@ class LinkButtonTheme extends ThemeExtension<LinkButtonTheme> {
   }
 
   @override
-  LinkButtonTheme lerp(
-      covariant ThemeExtension<LinkButtonTheme>? other, double t) {
-    if (other is! LinkButtonTheme) return this as LinkButtonTheme;
-    return LinkButtonTheme(
+  YgLinkButtonTheme lerp(
+      covariant ThemeExtension<YgLinkButtonTheme>? other, double t) {
+    if (other is! YgLinkButtonTheme) return this as YgLinkButtonTheme;
+    return YgLinkButtonTheme(
       backgroundColor: Color.lerp(backgroundColor, other.backgroundColor, t)!,
       borderGradient: t < 0.5 ? borderGradient : other.borderGradient,
       disabledBorderGradient:
@@ -119,7 +119,7 @@ class LinkButtonTheme extends ThemeExtension<LinkButtonTheme> {
   bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is LinkButtonTheme &&
+            other is YgLinkButtonTheme &&
             const DeepCollectionEquality()
                 .equals(backgroundColor, other.backgroundColor) &&
             const DeepCollectionEquality()

@@ -1,30 +1,20 @@
-import 'package:flutter/material.dart';
-import 'package:yggdrasil/src/components/_components.dart';
-import 'package:yggdrasil/src/components/yg_switch/helpers/_yg_switch_helpers.dart';
-import 'package:yggdrasil/src/utils/_utils.dart';
+part of 'yg_list_tile.dart';
 
 /// Binary (or optionally tri-state) switch.
-class YgSwitchListTile extends StatelessWidget {
+class YgSwitchListTile extends YgListTile {
   const YgSwitchListTile({
     super.key,
-    required this.title,
+    required super.title,
     required this.value,
     required this.onChanged,
-    this.subtitle,
-    this.subtitleIcon,
+    super.subtitle,
+    super.subtitleIcon,
     this.leadingWidget,
     this.trailingWidget,
     this.triState = false,
-  });
-
-  /// See [YgListTile] documentation.
-  final String title;
-
-  /// See [YgListTile] documentation.
-  final String? subtitle;
-
-  /// See [YgListTile] documentation.
-  final Widget? subtitleIcon;
+  }) : super._(
+          disabled: onChanged == null,
+        );
 
   /// See [YgSwitch] documentation.
   final bool? value;
@@ -42,16 +32,14 @@ class YgSwitchListTile extends StatelessWidget {
   final Widget? trailingWidget;
 
   @override
-  Widget build(BuildContext context) {
-    return YgListTile(
-      title: title,
-      subtitle: subtitle,
-      subtitleIcon: subtitleIcon,
-      onTap: onChanged == null ? null : _onTap,
-      leadingWidgets: <Widget>[
-        if (leadingWidget != null) leadingWidget!,
-      ],
-      trailingWidgets: <Widget>[
+  Widget? _buildLeadingWidgets(BuildContext context) {
+    return leadingWidget;
+  }
+
+  @override
+  Widget _buildTrailingWidgets(BuildContext context) {
+    return Row(
+      children: <Widget>[
         if (trailingWidget != null) trailingWidget!,
         AbsorbPointer(
           child: YgNoFocus(
@@ -66,6 +54,7 @@ class YgSwitchListTile extends StatelessWidget {
     );
   }
 
+  @override
   void _onTap() {
     final bool? nextValue = YgSwitchHelpers.getNextValue(value, triState);
     onChanged?.call(nextValue);

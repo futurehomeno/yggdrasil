@@ -31,8 +31,6 @@ class _SwitchScreenState extends State<SwitchScreen> {
   Widget build(BuildContext context) {
     return DemoScreen(
       componentName: 'Switch',
-      componentDesc: 'Switches',
-      supernovaLink: 'Link',
       child: Column(
         children: <Widget>[
           YgSection.base(
@@ -85,7 +83,7 @@ class _SwitchScreenState extends State<SwitchScreen> {
             ),
           ),
           YgSection.list(
-            children: <Widget>[
+            children: <YgListTile>[
               YgListTile(
                 title: 'Switch in a list tile',
                 subtitle: 'Only the Switch is tappable.',

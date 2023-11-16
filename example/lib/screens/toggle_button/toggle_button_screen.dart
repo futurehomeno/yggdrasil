@@ -36,8 +36,6 @@ class _ToggleButtonScreenState extends State<ToggleButtonScreen> {
   Widget build(BuildContext context) {
     return DemoScreen(
       componentName: 'ToggleButton',
-      componentDesc: 'ToggleButtons',
-      supernovaLink: 'Link',
       child: Column(
         children: <Widget>[
           YgSection.base(

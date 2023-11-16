@@ -8,8 +8,8 @@ part of 'warning_tag_theme.dart';
 // TailorAnnotationsGenerator
 // **************************************************************************
 
-class WarningTagTheme extends ThemeExtension<WarningTagTheme> {
-  const WarningTagTheme({
+class YgWarningTagTheme extends ThemeExtension<YgWarningTagTheme> {
+  const YgWarningTagTheme({
     required this.backgroundColor,
     required this.disabledBackgroundColor,
     required this.strongBackgroundColor,
@@ -19,28 +19,28 @@ class WarningTagTheme extends ThemeExtension<WarningTagTheme> {
   final Color disabledBackgroundColor;
   final Color strongBackgroundColor;
 
-  static final WarningTagTheme consumerLight = WarningTagTheme(
-    backgroundColor: _$WarningTagTheme.backgroundColor[0],
-    disabledBackgroundColor: _$WarningTagTheme.disabledBackgroundColor[0],
-    strongBackgroundColor: _$WarningTagTheme.strongBackgroundColor[0],
+  static final YgWarningTagTheme consumerLight = YgWarningTagTheme(
+    backgroundColor: _$YgWarningTagTheme.backgroundColor[0],
+    disabledBackgroundColor: _$YgWarningTagTheme.disabledBackgroundColor[0],
+    strongBackgroundColor: _$YgWarningTagTheme.strongBackgroundColor[0],
   );
 
-  static final WarningTagTheme consumerDark = WarningTagTheme(
-    backgroundColor: _$WarningTagTheme.backgroundColor[1],
-    disabledBackgroundColor: _$WarningTagTheme.disabledBackgroundColor[1],
-    strongBackgroundColor: _$WarningTagTheme.strongBackgroundColor[1],
+  static final YgWarningTagTheme consumerDark = YgWarningTagTheme(
+    backgroundColor: _$YgWarningTagTheme.backgroundColor[1],
+    disabledBackgroundColor: _$YgWarningTagTheme.disabledBackgroundColor[1],
+    strongBackgroundColor: _$YgWarningTagTheme.strongBackgroundColor[1],
   );
 
-  static final WarningTagTheme professionalLight = WarningTagTheme(
-    backgroundColor: _$WarningTagTheme.backgroundColor[2],
-    disabledBackgroundColor: _$WarningTagTheme.disabledBackgroundColor[2],
-    strongBackgroundColor: _$WarningTagTheme.strongBackgroundColor[2],
+  static final YgWarningTagTheme professionalLight = YgWarningTagTheme(
+    backgroundColor: _$YgWarningTagTheme.backgroundColor[2],
+    disabledBackgroundColor: _$YgWarningTagTheme.disabledBackgroundColor[2],
+    strongBackgroundColor: _$YgWarningTagTheme.strongBackgroundColor[2],
   );
 
-  static final WarningTagTheme professionalDark = WarningTagTheme(
-    backgroundColor: _$WarningTagTheme.backgroundColor[3],
-    disabledBackgroundColor: _$WarningTagTheme.disabledBackgroundColor[3],
-    strongBackgroundColor: _$WarningTagTheme.strongBackgroundColor[3],
+  static final YgWarningTagTheme professionalDark = YgWarningTagTheme(
+    backgroundColor: _$YgWarningTagTheme.backgroundColor[3],
+    disabledBackgroundColor: _$YgWarningTagTheme.disabledBackgroundColor[3],
+    strongBackgroundColor: _$YgWarningTagTheme.strongBackgroundColor[3],
   );
 
   static final themes = [
@@ -51,12 +51,12 @@ class WarningTagTheme extends ThemeExtension<WarningTagTheme> {
   ];
 
   @override
-  WarningTagTheme copyWith({
+  YgWarningTagTheme copyWith({
     Color? backgroundColor,
     Color? disabledBackgroundColor,
     Color? strongBackgroundColor,
   }) {
-    return WarningTagTheme(
+    return YgWarningTagTheme(
       backgroundColor: backgroundColor ?? this.backgroundColor,
       disabledBackgroundColor:
           disabledBackgroundColor ?? this.disabledBackgroundColor,
@@ -66,10 +66,10 @@ class WarningTagTheme extends ThemeExtension<WarningTagTheme> {
   }
 
   @override
-  WarningTagTheme lerp(
-      covariant ThemeExtension<WarningTagTheme>? other, double t) {
-    if (other is! WarningTagTheme) return this as WarningTagTheme;
-    return WarningTagTheme(
+  YgWarningTagTheme lerp(
+      covariant ThemeExtension<YgWarningTagTheme>? other, double t) {
+    if (other is! YgWarningTagTheme) return this as YgWarningTagTheme;
+    return YgWarningTagTheme(
       backgroundColor: Color.lerp(backgroundColor, other.backgroundColor, t)!,
       disabledBackgroundColor: Color.lerp(
           disabledBackgroundColor, other.disabledBackgroundColor, t)!,
@@ -82,7 +82,7 @@ class WarningTagTheme extends ThemeExtension<WarningTagTheme> {
   bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is WarningTagTheme &&
+            other is YgWarningTagTheme &&
             const DeepCollectionEquality()
                 .equals(backgroundColor, other.backgroundColor) &&
             const DeepCollectionEquality().equals(

@@ -23,8 +23,6 @@ class HomeScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return DemoScreen(
       componentName: 'Yggdrasil Components',
-      componentDesc: 'List of supported components.',
-      supernovaLink: '-',
       child: Column(
         children: <Widget>[
           YgSection.list(
@@ -42,6 +40,16 @@ class HomeScreen extends StatelessWidget {
             title: 'Components',
             subtitle: 'Complete list of Yggdrasil components.',
             children: <YgListTile>[
+              YgListTile(
+                title: 'AppBar',
+                onTap: () => sl<YgRouter>().push(AppBarScreen.route()),
+                trailingWidgets: const <YgIcon>[YgIcon(YgIcons.caretRight)],
+              ),
+              YgListTile(
+                title: 'AppBar (sliver)',
+                onTap: () => sl<YgRouter>().push(AppBarSliverScreen.route()),
+                trailingWidgets: const <YgIcon>[YgIcon(YgIcons.caretRight)],
+              ),
               YgListTile(
                 title: 'Badge',
                 onTap: () => sl<YgRouter>().push(BadgeScreen.route()),
@@ -148,6 +156,11 @@ class HomeScreen extends StatelessWidget {
                 trailingWidgets: const <YgIcon>[YgIcon(YgIcons.caretRight)],
               ),
               YgListTile(
+                title: 'Stepper',
+                onTap: () => sl<YgRouter>().push(StepperScreen.route()),
+                trailingWidgets: const <YgIcon>[YgIcon(YgIcons.caretRight)],
+              ),
+              YgListTile(
                 title: 'Switch',
                 onTap: () => sl<YgRouter>().push(SwitchScreen.route()),
                 trailingWidgets: const <YgIcon>[YgIcon(YgIcons.caretRight)],
@@ -175,6 +188,11 @@ class HomeScreen extends StatelessWidget {
               YgListTile(
                 title: 'ToggleButton',
                 onTap: () => sl<YgRouter>().push(ToggleButtonScreen.route()),
+                trailingWidgets: const <YgIcon>[YgIcon(YgIcons.caretRight)],
+              ),
+              YgListTile(
+                title: 'WizardHeader',
+                onTap: () => sl<YgRouter>().push(WizardHeaderScreen.route()),
                 trailingWidgets: const <YgIcon>[YgIcon(YgIcons.caretRight)],
               ),
             ],
