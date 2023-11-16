@@ -29,9 +29,9 @@ class _$YgStepperTheme {
   ];
 
   static const List<EdgeInsets> contentPadding = <EdgeInsets>[
-    EdgeInsets.symmetric(horizontal: consumer_light.FhDimensions.xs),
-    EdgeInsets.symmetric(horizontal: consumer_dark.FhDimensions.xs),
-    EdgeInsets.symmetric(horizontal: professional_light.FhDimensions.xs),
-    EdgeInsets.symmetric(horizontal: professional_dark.FhDimensions.xs),
+    EdgeInsets.all(consumer_light.FhDimensions.xs),
+    EdgeInsets.all(consumer_dark.FhDimensions.xs),
+    EdgeInsets.all(professional_light.FhDimensions.xs),
+    EdgeInsets.all(professional_dark.FhDimensions.xs),
   ];
 }
