@@ -61,7 +61,7 @@ class TextLinkScreen extends StatelessWidget {
               ].withHorizontalSpacing(10.0),
             ),
           ),
-          YgSection.base(
+          const YgSection.base(
             title: 'Disabled text link',
             child: YgTextLink(
               text: 'Disabled',
