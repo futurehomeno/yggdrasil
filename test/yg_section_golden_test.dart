@@ -10,6 +10,7 @@ void main() {
   group(
     'YgSectionGoldenTest',
     () {
+      // Using basic widgets to avoid having the tests break when things change.
       const List<Widget> childrenToTest = <Widget>[
         SizedBox.square(
           dimension: 100.0,
