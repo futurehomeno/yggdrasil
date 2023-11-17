@@ -2,7 +2,7 @@ import 'package:flutter/widgets.dart';
 
 import '_yg_debug.dart';
 
-/// Wraps built widget in YgDebugWidget.
+/// Wraps built widget in [YgDebug].
 mixin StatelessWidgetDebugMixin on StatelessWidget {
   @override
   StatelessElement createElement() => _YgDebugStatelessElement(this, () => debugType);

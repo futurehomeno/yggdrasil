@@ -1,0 +1,20 @@
+import 'package:flutter/material.dart';
+import 'package:yggdrasil/src/utils/yg_states/_yg_states.dart';
+
+typedef YgNullableBorderRadiusProperty<T extends YgState> = YgProperty<T, BorderRadius?>;
+typedef YgAnimatedNullableBorderRadiusProperty = YgAnimatedProperty<BorderRadius?>;
+typedef YgDrivenNullableBorderRadiusProperty = YgDrivenProperty<BorderRadius?>;
+
+class NullableBorderRadiusTween extends Tween<BorderRadius?> {
+  NullableBorderRadiusTween({
+    super.begin,
+    super.end,
+  });
+
+  @override
+  BorderRadius? lerp(double t) => BorderRadius.lerp(
+        begin,
+        end,
+        t,
+      );
+}

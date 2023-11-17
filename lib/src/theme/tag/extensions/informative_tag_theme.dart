@@ -8,7 +8,7 @@ import 'package:yggdrasil/src/tokens/professional_light/_professional_light.dart
 part 'informative_tag_theme.tailor.dart';
 
 @tailorComponent
-class _$InformativeTagTheme {
+class _$YgInformativeTagTheme {
   static const List<Color> backgroundColor = <Color>[
     consumer_light.FhColors.backgroundHighlightWeak,
     consumer_dark.FhColors.backgroundHighlightWeak,

@@ -3,7 +3,6 @@ import 'dart:math';
 import 'dart:ui';
 
 import 'package:flutter/material.dart';
-import 'package:yggdrasil/src/components/yg_gauge/extensions/path_add_arc_outline_extension.dart';
 import 'package:yggdrasil/src/theme/_theme.dart';
 import 'package:yggdrasil/yggdrasil.dart';
 
@@ -333,10 +332,10 @@ class _YgGaugePainter extends CustomPainter {
     canvas.clipPath(
       Path()
         ..addArcOutline(
-          rect: rect,
-          startAngle: startAngle,
-          sweepAngle: endAngle,
-          strokeWidth: responsiveStrokeWidth,
+          rect,
+          startAngle,
+          endAngle,
+          responsiveStrokeWidth,
         ),
     );
 

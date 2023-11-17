@@ -8,7 +8,7 @@ import 'package:yggdrasil/src/tokens/professional_light/_professional_light.dart
 part 'negative_tag_theme.tailor.dart';
 
 @tailorComponent
-class _$NegativeTagTheme {
+class _$YgNegativeTagTheme {
   static const List<Color> backgroundColor = <Color>[
     consumer_light.FhColors.backgroundCriticalWeak,
     consumer_dark.FhColors.backgroundCriticalWeak,

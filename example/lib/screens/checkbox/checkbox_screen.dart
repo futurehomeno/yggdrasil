@@ -35,8 +35,6 @@ class _CheckboxScreenState extends State<CheckboxScreen> {
   Widget build(BuildContext context) {
     return DemoScreen(
       componentName: 'Checkbox',
-      componentDesc: 'Checkboxes',
-      supernovaLink: 'Link',
       child: Column(
         children: <Widget>[
           YgSection.base(
@@ -131,7 +129,7 @@ class _CheckboxScreenState extends State<CheckboxScreen> {
             ),
           ),
           YgSection.list(
-            children: <Widget>[
+            children: <YgListTile>[
               YgListTile(
                 title: 'Checkbox in a list tile',
                 subtitle: 'Only the Checkbox is tappable.',

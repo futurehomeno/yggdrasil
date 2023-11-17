@@ -32,8 +32,6 @@ class _TextFieldScreenState extends State<TextFieldScreen> {
       onTap: () => FocusScope.of(context).unfocus(),
       child: DemoScreen(
         componentName: 'TextField',
-        componentDesc: 'Text Field',
-        supernovaLink: 'Link',
         child: Column(
           children: <Widget>[
             YgSection.column(
@@ -62,11 +60,13 @@ class _TextFieldScreenState extends State<TextFieldScreen> {
                   textCapitalization: TextCapitalization.words,
                   autocorrect: true,
                 ),
-                const YgTextField(
+                YgTextField(
                   label: 'Custom suffix',
                   keyboardType: TextInputType.text,
                   textInputAction: TextInputAction.next,
                   textCapitalization: TextCapitalization.words,
+                  suffix: const YgIcon(YgIcons.placeholder),
+                  onSuffixPressed: () {},
                   autocorrect: true,
                 ),
                 const YgTextField(
