@@ -2,7 +2,7 @@ name: yggdrasil
 description: Design system for Futurehome.
 publish_to: none
 
-version: 1.6.22+27
+version: 1.7.0
 
 environment:
   sdk: ^3.0.5
