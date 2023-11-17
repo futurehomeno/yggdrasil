@@ -19,8 +19,6 @@ class ButtonGroupScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return DemoScreen(
       componentName: 'ButtonGroup',
-      componentDesc: 'ButtonGroups',
-      supernovaLink: 'Link',
       child: Column(
         children: <Widget>[
           YgSection.base(

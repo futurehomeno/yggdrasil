@@ -27,8 +27,6 @@ class _IconListScreenState extends State<IconListScreen> {
     return DemoScreen(
       scrollable: false,
       componentName: 'Icon',
-      componentDesc: 'Icons',
-      supernovaLink: 'Link',
       child: CustomScrollView(
         slivers: <Widget>[
           SliverToBoxAdapter(

@@ -1,3 +1,43 @@
+# 1.7.0 [17.11.2023 09:03]
+
+## Breaking Changes
+
+Added `colorful` suffix to some icons indicating that they have embedded colors and should not be overwritten.
+
+## Other Changes
+
+- [dev-feature] Added YgStatesController [DEV-1654].
+- [dev-feature] Added custom YgFocusableActionDetector widget [DEV-1712].
+- [dev-improvement] Added golden tests for YgBadge component [DEV-2244].
+- [dev-improvement] Added golden tests for YgBottomSheet component [DEV-2376].
+- [dev-improvement] Added golden tests for YgCard component [DEV-2246].
+- [dev-improvement] Added golden tests for YgCheckbox component [DEV-2262].
+- [dev-improvement] Added golden tests for YgCheckboxListTile component [DEV-2344].
+- [dev-improvement] Added golden tests for YgDialog component [DEV-2377].
+- [dev-improvement] Added golden tests for YgDivider component [DEV-2364].
+- [dev-improvement] Added golden tests for YgGauge component [DEV-2307].
+- [dev-improvement] Added golden tests for YgIcon component [DEV-2359].
+- [dev-improvement] Added golden tests for YgIconButton component [DEV-2360].
+- [dev-improvement] Added golden tests for YgListTile component [DEV-2249].
+- [dev-improvement] Added golden tests for YgProgressIndicators components [DEV-2313].
+- [dev-improvement] Added golden tests for YgRadio component [DEV-2345].
+- [dev-improvement] Added golden tests for YgRadioGroup component [DEV-2357].
+- [dev-improvement] Added golden tests for YgRadioItem component [DEV-2356].
+- [dev-improvement] Added golden tests for YgRadioListTile component [DEV-2345].
+- [dev-improvement] Added golden tests for YgSwitchListTile component [DEV-2346].
+- [dev-improvement] Added golden tests for YgTag component [DEV-2248].
+- [dev-improvement] Added support for sliver debugging.
+- [dev-improvement] Moved YgButton, YgTextLink, YgIconButton, YgTag, YgRadio, YgTextField and YgDropdownField to YgStates.
+- [feature] Added YgAppBar and YgSliverAppBar components [DEV-1143].
+- [feature] Added YgStepper component [DEV-2333].
+- [feature] Added YgTab and YgTabBar components [DEV-1137].
+- [feature] Added YgWizardHeader component [DEV-1144].
+- [feature] Added new icons: 14.11.23.
+- [fix] Dropdown field now shows ink ripple when activated using keyboard.
+- [fix] YgCheckbox no longer expands to take up as much space as possible.
+
+# 1.6.22+27 [15.11.2023 09:27]
+
 # 1.6.21+26 [26.10.2023 13:14]
 
 - [dev-fix] Fixed changelog message.

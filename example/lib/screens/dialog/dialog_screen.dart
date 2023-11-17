@@ -26,8 +26,6 @@ class _DialogScreenState extends State<DialogScreen> with TickerProviderStateMix
   Widget build(BuildContext context) {
     return DemoScreen(
       componentName: 'Dialog',
-      componentDesc: 'Dialogs',
-      supernovaLink: 'Link',
       child: Column(
         children: <Widget>[
           YgSection.base(

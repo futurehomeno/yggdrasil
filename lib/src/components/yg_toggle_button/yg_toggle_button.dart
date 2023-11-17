@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
 import 'package:yggdrasil/src/components/yg_toggle_button/enums/yg_toggle_button_variant.dart';
 import 'package:yggdrasil/src/theme/_theme.dart';
 import 'package:yggdrasil/yggdrasil.dart';
@@ -116,23 +115,17 @@ class _YgToggleButtonState extends State<YgToggleButton> {
     final String? icon = widget.icon;
     final YgToggleButtonVariant variant = _variant;
 
-    return RepaintBoundary(
-      child: Semantics(
-        checked: widget._selected,
-        child: GestureDetector(
-          behavior: HitTestBehavior.opaque,
-          onTap: widget.onChanged == null ? null : _onTap,
-          child: FocusableActionDetector(
-            onShowHoverHighlight: _onShowHoverHighlight,
-            onShowFocusHighlight: _onShowFocusHighlight,
-            shortcuts: const <ShortcutActivator, Intent>{
-              SingleActivator(LogicalKeyboardKey.space, control: true): ActivateIntent(),
-            },
-            actions: <Type, Action<Intent>>{
-              ActivateIntent: CallbackAction<Intent>(onInvoke: (_) => _onTap()),
-            },
-            mouseCursor: resolvedMouseCursor,
+    return Center(
+      child: RepaintBoundary(
+        child: Semantics(
+          checked: widget._selected,
+          child: YgFocusableActionDetector(
             enabled: widget._enabled,
+            mouseCursor: resolvedMouseCursor,
+            onActivate: _onTap,
+            behavior: HitTestBehavior.opaque,
+            onFocusChanged: _onShowFocusHighlight,
+            onHoverChanged: _onShowHoverHighlight,
             child: AnimatedContainer(
               duration: toggleButtonTheme.animationDuration,
               curve: toggleButtonTheme.animationCurve,
@@ -158,12 +151,14 @@ class _YgToggleButtonState extends State<YgToggleButton> {
                       size: _iconSize,
                     ),
                   if (text != null)
-                    Text(
-                      text,
-                      style: YgToggleButtonMapper.buildTextStyle(
-                        theme: toggleButtonTheme,
-                        size: widget.size,
-                      ).copyWith(color: resolvedTextColor),
+                    Flexible(
+                      child: Text(
+                        text,
+                        style: YgToggleButtonMapper.buildTextStyle(
+                          theme: toggleButtonTheme,
+                          size: widget.size,
+                        ).copyWith(color: resolvedTextColor),
+                      ),
                     ),
                 ].withHorizontalSpacing(toggleButtonTheme.iconTextSpacing),
               ),
