@@ -1,3 +1,5 @@
+import 'dart:ui';
+
 import 'package:flutter/widgets.dart';
 
 /// Rounded rectangle border with gradient.
@@ -36,7 +38,11 @@ class YgRoundedRectangleGradientBorder extends OutlinedBorder {
 
   @override
   ShapeBorder scale(double t) {
-    return this;
+    return YgRoundedRectangleGradientBorder(
+      gradient: gradient,
+      borderRadius: borderRadius * t,
+      width: width * t,
+    );
   }
 
   @override
@@ -57,4 +63,68 @@ class YgRoundedRectangleGradientBorder extends OutlinedBorder {
   Path getOuterPath(Rect rect, {TextDirection? textDirection}) {
     return Path()..addRRect(borderRadius.resolve(textDirection).toRRect(rect));
   }
+
+  @override
+  ShapeBorder? lerpTo(ShapeBorder? b, double t) {
+    if (b == null) {
+      if (t == 1) {
+        return null;
+      }
+
+      return scale(t);
+    }
+
+    if (b is YgRoundedRectangleGradientBorder) {
+      return YgRoundedRectangleGradientBorder(
+        gradient: Gradient.lerp(gradient, b.gradient, t)!,
+        borderRadius: BorderRadiusGeometry.lerp(borderRadius, b.borderRadius, t)!,
+        width: lerpDouble(width, b.width, t)!,
+      );
+    }
+
+    if (t < 0.5) {
+      return scale(t * 2);
+    }
+
+    return b.scale((t * 2) - 1);
+  }
+
+  @override
+  ShapeBorder? lerpFrom(ShapeBorder? a, double t) {
+    if (a == null) {
+      if (t == 0) {
+        return null;
+      }
+
+      return scale(t);
+    }
+
+    if (a is YgRoundedRectangleGradientBorder) {
+      return YgRoundedRectangleGradientBorder(
+        gradient: Gradient.lerp(a.gradient, gradient, t)!,
+        borderRadius: BorderRadiusGeometry.lerp(a.borderRadius, borderRadius, t)!,
+        width: lerpDouble(a.width, width, t)!,
+      );
+    }
+
+    if (t > 0.5) {
+      return scale((t * 2) - 1);
+    }
+
+    return a.scale(t * 2);
+  }
+
+  @override
+  bool operator ==(Object other) =>
+      other is YgRoundedRectangleGradientBorder &&
+      other.borderRadius == borderRadius &&
+      other.gradient == gradient &&
+      other.width == width;
+
+  @override
+  int get hashCode => Object.hash(
+        borderRadius,
+        gradient,
+        width,
+      );
 }

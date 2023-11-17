@@ -19,8 +19,6 @@ class TextLinkScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return DemoScreen(
       componentName: 'TextLink',
-      componentDesc: 'Text links',
-      supernovaLink: 'Link',
       child: Column(
         children: <Widget>[
           YgSection.base(
@@ -63,7 +61,7 @@ class TextLinkScreen extends StatelessWidget {
               ].withHorizontalSpacing(10.0),
             ),
           ),
-          YgSection.base(
+          const YgSection.base(
             title: 'Disabled text link',
             child: YgTextLink(
               text: 'Disabled',

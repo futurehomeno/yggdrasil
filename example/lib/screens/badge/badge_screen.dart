@@ -19,8 +19,6 @@ class BadgeScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return DemoScreen(
       componentName: 'Badge',
-      componentDesc: 'Badges',
-      supernovaLink: 'Link',
       child: Column(
         children: <Widget>[
           YgSection.base(

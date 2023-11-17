@@ -20,8 +20,6 @@ class ListScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return const DemoScreen(
       componentName: 'List',
-      componentDesc: 'Lists',
-      supernovaLink: 'Link',
       scrollable: false,
       child: YgSection.base(
         child: YgCallout(

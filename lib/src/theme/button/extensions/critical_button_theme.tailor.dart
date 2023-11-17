@@ -8,8 +8,8 @@ part of 'critical_button_theme.dart';
 // TailorAnnotationsGenerator
 // **************************************************************************
 
-class CriticalButtonTheme extends ThemeExtension<CriticalButtonTheme> {
-  const CriticalButtonTheme({
+class YgCriticalButtonTheme extends ThemeExtension<YgCriticalButtonTheme> {
+  const YgCriticalButtonTheme({
     required this.backgroundColor,
     required this.borderGradient,
     required this.disabledBorderGradient,
@@ -27,44 +27,44 @@ class CriticalButtonTheme extends ThemeExtension<CriticalButtonTheme> {
   final Color iconDisabledColor;
   final TextStyle textStyle;
 
-  static final CriticalButtonTheme consumerLight = CriticalButtonTheme(
-    backgroundColor: _$CriticalButtonTheme.backgroundColor[0],
-    borderGradient: _$CriticalButtonTheme.borderGradient[0],
-    disabledBorderGradient: _$CriticalButtonTheme.disabledBorderGradient[0],
-    disabledTextStyle: _$CriticalButtonTheme.disabledTextStyle[0],
-    iconDefaultColor: _$CriticalButtonTheme.iconDefaultColor[0],
-    iconDisabledColor: _$CriticalButtonTheme.iconDisabledColor[0],
-    textStyle: _$CriticalButtonTheme.textStyle[0],
+  static final YgCriticalButtonTheme consumerLight = YgCriticalButtonTheme(
+    backgroundColor: _$YgCriticalButtonTheme.backgroundColor[0],
+    borderGradient: _$YgCriticalButtonTheme.borderGradient[0],
+    disabledBorderGradient: _$YgCriticalButtonTheme.disabledBorderGradient[0],
+    disabledTextStyle: _$YgCriticalButtonTheme.disabledTextStyle[0],
+    iconDefaultColor: _$YgCriticalButtonTheme.iconDefaultColor[0],
+    iconDisabledColor: _$YgCriticalButtonTheme.iconDisabledColor[0],
+    textStyle: _$YgCriticalButtonTheme.textStyle[0],
   );
 
-  static final CriticalButtonTheme consumerDark = CriticalButtonTheme(
-    backgroundColor: _$CriticalButtonTheme.backgroundColor[1],
-    borderGradient: _$CriticalButtonTheme.borderGradient[1],
-    disabledBorderGradient: _$CriticalButtonTheme.disabledBorderGradient[1],
-    disabledTextStyle: _$CriticalButtonTheme.disabledTextStyle[1],
-    iconDefaultColor: _$CriticalButtonTheme.iconDefaultColor[1],
-    iconDisabledColor: _$CriticalButtonTheme.iconDisabledColor[1],
-    textStyle: _$CriticalButtonTheme.textStyle[1],
+  static final YgCriticalButtonTheme consumerDark = YgCriticalButtonTheme(
+    backgroundColor: _$YgCriticalButtonTheme.backgroundColor[1],
+    borderGradient: _$YgCriticalButtonTheme.borderGradient[1],
+    disabledBorderGradient: _$YgCriticalButtonTheme.disabledBorderGradient[1],
+    disabledTextStyle: _$YgCriticalButtonTheme.disabledTextStyle[1],
+    iconDefaultColor: _$YgCriticalButtonTheme.iconDefaultColor[1],
+    iconDisabledColor: _$YgCriticalButtonTheme.iconDisabledColor[1],
+    textStyle: _$YgCriticalButtonTheme.textStyle[1],
   );
 
-  static final CriticalButtonTheme professionalLight = CriticalButtonTheme(
-    backgroundColor: _$CriticalButtonTheme.backgroundColor[2],
-    borderGradient: _$CriticalButtonTheme.borderGradient[2],
-    disabledBorderGradient: _$CriticalButtonTheme.disabledBorderGradient[2],
-    disabledTextStyle: _$CriticalButtonTheme.disabledTextStyle[2],
-    iconDefaultColor: _$CriticalButtonTheme.iconDefaultColor[2],
-    iconDisabledColor: _$CriticalButtonTheme.iconDisabledColor[2],
-    textStyle: _$CriticalButtonTheme.textStyle[2],
+  static final YgCriticalButtonTheme professionalLight = YgCriticalButtonTheme(
+    backgroundColor: _$YgCriticalButtonTheme.backgroundColor[2],
+    borderGradient: _$YgCriticalButtonTheme.borderGradient[2],
+    disabledBorderGradient: _$YgCriticalButtonTheme.disabledBorderGradient[2],
+    disabledTextStyle: _$YgCriticalButtonTheme.disabledTextStyle[2],
+    iconDefaultColor: _$YgCriticalButtonTheme.iconDefaultColor[2],
+    iconDisabledColor: _$YgCriticalButtonTheme.iconDisabledColor[2],
+    textStyle: _$YgCriticalButtonTheme.textStyle[2],
   );
 
-  static final CriticalButtonTheme professionalDark = CriticalButtonTheme(
-    backgroundColor: _$CriticalButtonTheme.backgroundColor[3],
-    borderGradient: _$CriticalButtonTheme.borderGradient[3],
-    disabledBorderGradient: _$CriticalButtonTheme.disabledBorderGradient[3],
-    disabledTextStyle: _$CriticalButtonTheme.disabledTextStyle[3],
-    iconDefaultColor: _$CriticalButtonTheme.iconDefaultColor[3],
-    iconDisabledColor: _$CriticalButtonTheme.iconDisabledColor[3],
-    textStyle: _$CriticalButtonTheme.textStyle[3],
+  static final YgCriticalButtonTheme professionalDark = YgCriticalButtonTheme(
+    backgroundColor: _$YgCriticalButtonTheme.backgroundColor[3],
+    borderGradient: _$YgCriticalButtonTheme.borderGradient[3],
+    disabledBorderGradient: _$YgCriticalButtonTheme.disabledBorderGradient[3],
+    disabledTextStyle: _$YgCriticalButtonTheme.disabledTextStyle[3],
+    iconDefaultColor: _$YgCriticalButtonTheme.iconDefaultColor[3],
+    iconDisabledColor: _$YgCriticalButtonTheme.iconDisabledColor[3],
+    textStyle: _$YgCriticalButtonTheme.textStyle[3],
   );
 
   static final themes = [
@@ -75,7 +75,7 @@ class CriticalButtonTheme extends ThemeExtension<CriticalButtonTheme> {
   ];
 
   @override
-  CriticalButtonTheme copyWith({
+  YgCriticalButtonTheme copyWith({
     Color? backgroundColor,
     LinearGradient? borderGradient,
     LinearGradient? disabledBorderGradient,
@@ -84,7 +84,7 @@ class CriticalButtonTheme extends ThemeExtension<CriticalButtonTheme> {
     Color? iconDisabledColor,
     TextStyle? textStyle,
   }) {
-    return CriticalButtonTheme(
+    return YgCriticalButtonTheme(
       backgroundColor: backgroundColor ?? this.backgroundColor,
       borderGradient: borderGradient ?? this.borderGradient,
       disabledBorderGradient:
@@ -97,10 +97,10 @@ class CriticalButtonTheme extends ThemeExtension<CriticalButtonTheme> {
   }
 
   @override
-  CriticalButtonTheme lerp(
-      covariant ThemeExtension<CriticalButtonTheme>? other, double t) {
-    if (other is! CriticalButtonTheme) return this as CriticalButtonTheme;
-    return CriticalButtonTheme(
+  YgCriticalButtonTheme lerp(
+      covariant ThemeExtension<YgCriticalButtonTheme>? other, double t) {
+    if (other is! YgCriticalButtonTheme) return this as YgCriticalButtonTheme;
+    return YgCriticalButtonTheme(
       backgroundColor: Color.lerp(backgroundColor, other.backgroundColor, t)!,
       borderGradient: t < 0.5 ? borderGradient : other.borderGradient,
       disabledBorderGradient:
@@ -119,7 +119,7 @@ class CriticalButtonTheme extends ThemeExtension<CriticalButtonTheme> {
   bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is CriticalButtonTheme &&
+            other is YgCriticalButtonTheme &&
             const DeepCollectionEquality()
                 .equals(backgroundColor, other.backgroundColor) &&
             const DeepCollectionEquality()

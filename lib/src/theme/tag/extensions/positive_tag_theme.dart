@@ -8,7 +8,7 @@ import 'package:yggdrasil/src/tokens/professional_light/_professional_light.dart
 part 'positive_tag_theme.tailor.dart';
 
 @tailorComponent
-class _$PositiveTagTheme {
+class _$YgPositiveTagTheme {
   static const List<Color> backgroundColor = <Color>[
     consumer_light.FhColors.backgroundSuccessWeak,
     consumer_dark.FhColors.backgroundSuccessWeak,

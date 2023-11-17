@@ -8,18 +8,18 @@ import 'package:yggdrasil_demo/widgets/debug_bottom_sheet.dart';
 class DemoScreen extends StatelessWidget {
   const DemoScreen({
     super.key,
-    required this.componentName,
-    required this.componentDesc,
-    required this.supernovaLink,
     required this.child,
+    this.componentName,
+    this.appBar,
     this.scrollable = true,
-  });
+    this.bottom,
+  }) : assert(componentName != null || appBar != null, 'Either componentName or appBar must be provided.');
 
-  final String componentName;
-  final String componentDesc;
-  final String supernovaLink;
-  final bool scrollable;
   final Widget child;
+  final String? componentName;
+  final YgAppBar? appBar;
+  final bool scrollable;
+  final PreferredSizeWidget? bottom;
 
   @override
   Widget build(BuildContext context) {
@@ -30,24 +30,34 @@ class DemoScreen extends StatelessWidget {
     return Consumer<YgAppState>(
       builder: (BuildContext context, YgAppState ygAppState, Widget? widget) {
         return Scaffold(
-          appBar: AppBar(
-            title: Text(componentName),
-            actions: <Widget>[
-              YgIconButton(
-                onPressed: () => YgDebug.toggleDebugging(context),
-                onLongPress: () => Navigator.of(context).push(DebugBottomSheet()),
-                child: const YgIcon(YgIcons.eyeOpen),
+          appBar: appBar ??
+              YgAppBar(
+                title: componentName ?? '',
+                centerTitle: false,
+                leading: const YgIconButton(
+                  onPressed: null,
+                  child: YgIcon(
+                    YgIcons.ygg,
+                    useEmbeddedColor: true,
+                  ),
+                ),
+                actions: <YgIconButton>[
+                  YgIconButton(
+                    onPressed: () => YgDebug.toggleDebugging(context),
+                    onLongPress: () => Navigator.of(context).push(DebugBottomSheet()),
+                    child: const YgIcon(YgIcons.eyeOpen),
+                  ),
+                  YgIconButton(
+                    onPressed: ygAppState.toggleProfessionalTheme,
+                    child: const YgIcon(YgIcons.power),
+                  ),
+                  YgIconButton(
+                    onPressed: ygAppState.toggleDarkMode,
+                    child: const YgIcon(YgIcons.refresh),
+                  ),
+                ],
+                bottom: bottom,
               ),
-              YgIconButton(
-                onPressed: ygAppState.toggleProfessionalTheme,
-                child: const YgIcon(YgIcons.power),
-              ),
-              YgIconButton(
-                onPressed: ygAppState.toggleDarkMode,
-                child: const YgIcon(YgIcons.refresh),
-              ),
-            ],
-          ),
           body: scrollable ? SingleChildScrollView(child: child) : child,
         );
       },
