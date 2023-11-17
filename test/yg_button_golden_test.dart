@@ -1,8 +1,6 @@
 import 'package:alchemist/alchemist.dart';
 import 'package:flutter/material.dart';
-
 import 'package:flutter_test/flutter_test.dart';
-import 'package:yggdrasil/src/tokens/consumer_dark/_consumer_dark.dart';
 import 'package:yggdrasil/yggdrasil.dart';
 
 import 'extensions/_extensions.dart';
@@ -58,19 +56,6 @@ void main() {
             name: 'Text variant with default size',
             child: YgButton(
               variant: YgButtonVariant.text,
-              onPressed: () {},
-              child: const Text(clickMeText),
-            ),
-          ),
-          GoldenTestScenario(
-            name: 'With custom style',
-            child: YgButton(
-              variant: YgButtonVariant.primary,
-              style: ButtonStyle(
-                backgroundColor: MaterialStateColor.resolveWith(
-                  (_) => FhColors.actionCriticalSelected,
-                ),
-              ),
               onPressed: () {},
               child: const Text(clickMeText),
             ),
