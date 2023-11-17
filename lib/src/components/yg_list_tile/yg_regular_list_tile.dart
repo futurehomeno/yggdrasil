@@ -59,11 +59,15 @@ class _YgRegularListTile extends YgListTile {
   }
 
   @override
-  Widget _buildLeadingWidgets(BuildContext context) {
+  Widget? _buildLeadingWidgets(BuildContext context) {
     assert(
       leadingWidgets.length <= _allowedNumberOfLeadingWidgets,
       'Cannot have more than 2 leading widgets.',
     );
+
+    if (leadingWidgets.isEmpty) {
+      return null;
+    }
 
     final YgListTileTheme listTileTheme = context.listTileTheme;
 
@@ -75,11 +79,15 @@ class _YgRegularListTile extends YgListTile {
   }
 
   @override
-  Widget _buildTrailingWidgets(BuildContext context) {
+  Widget? _buildTrailingWidgets(BuildContext context) {
     assert(
       trailingWidgets.length <= _allowedNumberOfTrailingWidgets,
       'Cannot have more than 2 trailing widget.',
     );
+
+    if (trailingWidgets.isEmpty) {
+      return null;
+    }
 
     final YgListTileTheme listTileTheme = context.listTileTheme;
 
@@ -91,11 +99,15 @@ class _YgRegularListTile extends YgListTile {
   }
 
   @override
-  Widget _buildSupportingWidgets(BuildContext context) {
+  Widget? _buildSupportingWidgets(BuildContext context) {
     assert(
       supportingWidgets.length <= _allowedNumberOfSupportingWidgets,
       'Cannot have more than 2 supporting widgets.',
     );
+
+    if (supportingWidgets.isEmpty) {
+      return null;
+    }
 
     final YgListTileTheme listTileTheme = context.listTileTheme;
 
