@@ -29,8 +29,6 @@ class _GaugeScreenState extends State<GaugeScreen> {
   Widget build(BuildContext context) {
     return DemoScreen(
       componentName: 'Gauge',
-      componentDesc: 'Gauges',
-      supernovaLink: 'Link',
       child: Column(
         children: <Widget>[
           const YgSection.column(

@@ -19,10 +19,8 @@ class ListTileScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return DemoScreen(
       componentName: 'ListTile',
-      componentDesc: 'List Tiles',
-      supernovaLink: 'Link',
       child: YgSection.list(
-        children: <Widget>[
+        children: <YgListTile>[
           const YgListTile(
             title: 'Title',
           ),

@@ -1,29 +1,19 @@
-import 'package:flutter/material.dart';
-import 'package:yggdrasil/src/components/_components.dart';
-import 'package:yggdrasil/src/components/yg_switch/helpers/_yg_switch_helpers.dart';
-import 'package:yggdrasil/src/utils/_utils.dart';
+part of 'yg_list_tile.dart';
 
 /// Binary (or optionally tri-state) switch.
-class YgCheckboxListTile extends StatelessWidget {
+class YgCheckboxListTile extends _YgListTileWithChildAndOptionalLeading {
   const YgCheckboxListTile({
     super.key,
-    required this.title,
+    required super.title,
     required this.value,
     required this.onChanged,
-    this.subtitle,
-    this.subtitleIcon,
-    this.leadingWidget,
+    super.leadingWidget,
+    super.subtitle,
+    super.subtitleIcon,
     this.triState = false,
-  });
-
-  /// See [YgListTile] documentation.
-  final String title;
-
-  /// See [YgListTile] documentation.
-  final String? subtitle;
-
-  /// See [YgListTile] documentation.
-  final Widget? subtitleIcon;
+  }) : super(
+          disabled: onChanged == null,
+        );
 
   /// See [YgCheckbox] documentation.
   final bool? value;
@@ -34,14 +24,15 @@ class YgCheckboxListTile extends StatelessWidget {
   /// See [YgCheckbox] documentation.
   final bool triState;
 
-  /// Optional widget to display before the switch.
-  final Widget? leadingWidget;
+  @override
+  void _onTap() {
+    final bool? nextValue = YgSwitchHelpers.getNextValue(value, triState);
+    onChanged?.call(nextValue);
+  }
 
   @override
-  Widget build(BuildContext context) {
-    final Widget? leadingWidget = this.leadingWidget;
-
-    final AbsorbPointer checkbox = AbsorbPointer(
+  Widget _buildChild(BuildContext context) {
+    return AbsorbPointer(
       child: YgNoFocus(
         child: YgCheckbox(
           value: value,
@@ -50,23 +41,5 @@ class YgCheckboxListTile extends StatelessWidget {
         ),
       ),
     );
-
-    return YgListTile(
-      title: title,
-      subtitle: subtitle,
-      subtitleIcon: subtitleIcon,
-      onTap: onChanged == null ? null : _onTap,
-      leadingWidgets: <Widget>[
-        if (leadingWidget == null) checkbox else leadingWidget,
-      ],
-      trailingWidgets: <Widget>[
-        if (leadingWidget != null) checkbox,
-      ],
-    );
-  }
-
-  void _onTap() {
-    final bool? nextValue = YgSwitchHelpers.getNextValue(value, triState);
-    onChanged?.call(nextValue);
   }
 }

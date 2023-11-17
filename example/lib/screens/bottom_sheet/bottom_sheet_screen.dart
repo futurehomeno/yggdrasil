@@ -26,8 +26,6 @@ class _BottomSheetScreenState extends State<BottomSheetScreen> with TickerProvid
   Widget build(BuildContext context) {
     return DemoScreen(
       componentName: 'BottomSheet',
-      componentDesc: 'Bottom sheets',
-      supernovaLink: 'Link',
       child: Column(
         children: <Widget>[
           YgSection.base(

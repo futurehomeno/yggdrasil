@@ -8,8 +8,8 @@ part of 'text_button_theme.dart';
 // TailorAnnotationsGenerator
 // **************************************************************************
 
-class TextButtonTheme extends ThemeExtension<TextButtonTheme> {
-  const TextButtonTheme({
+class YgTextButtonTheme extends ThemeExtension<YgTextButtonTheme> {
+  const YgTextButtonTheme({
     required this.backgroundColor,
     required this.borderGradient,
     required this.disabledBorderGradient,
@@ -27,44 +27,44 @@ class TextButtonTheme extends ThemeExtension<TextButtonTheme> {
   final Color iconDisabledColor;
   final TextStyle textStyle;
 
-  static final TextButtonTheme consumerLight = TextButtonTheme(
-    backgroundColor: _$TextButtonTheme.backgroundColor[0],
-    borderGradient: _$TextButtonTheme.borderGradient[0],
-    disabledBorderGradient: _$TextButtonTheme.disabledBorderGradient[0],
-    disabledTextStyle: _$TextButtonTheme.disabledTextStyle[0],
-    iconDefaultColor: _$TextButtonTheme.iconDefaultColor[0],
-    iconDisabledColor: _$TextButtonTheme.iconDisabledColor[0],
-    textStyle: _$TextButtonTheme.textStyle[0],
+  static final YgTextButtonTheme consumerLight = YgTextButtonTheme(
+    backgroundColor: _$YgTextButtonTheme.backgroundColor[0],
+    borderGradient: _$YgTextButtonTheme.borderGradient[0],
+    disabledBorderGradient: _$YgTextButtonTheme.disabledBorderGradient[0],
+    disabledTextStyle: _$YgTextButtonTheme.disabledTextStyle[0],
+    iconDefaultColor: _$YgTextButtonTheme.iconDefaultColor[0],
+    iconDisabledColor: _$YgTextButtonTheme.iconDisabledColor[0],
+    textStyle: _$YgTextButtonTheme.textStyle[0],
   );
 
-  static final TextButtonTheme consumerDark = TextButtonTheme(
-    backgroundColor: _$TextButtonTheme.backgroundColor[1],
-    borderGradient: _$TextButtonTheme.borderGradient[1],
-    disabledBorderGradient: _$TextButtonTheme.disabledBorderGradient[1],
-    disabledTextStyle: _$TextButtonTheme.disabledTextStyle[1],
-    iconDefaultColor: _$TextButtonTheme.iconDefaultColor[1],
-    iconDisabledColor: _$TextButtonTheme.iconDisabledColor[1],
-    textStyle: _$TextButtonTheme.textStyle[1],
+  static final YgTextButtonTheme consumerDark = YgTextButtonTheme(
+    backgroundColor: _$YgTextButtonTheme.backgroundColor[1],
+    borderGradient: _$YgTextButtonTheme.borderGradient[1],
+    disabledBorderGradient: _$YgTextButtonTheme.disabledBorderGradient[1],
+    disabledTextStyle: _$YgTextButtonTheme.disabledTextStyle[1],
+    iconDefaultColor: _$YgTextButtonTheme.iconDefaultColor[1],
+    iconDisabledColor: _$YgTextButtonTheme.iconDisabledColor[1],
+    textStyle: _$YgTextButtonTheme.textStyle[1],
   );
 
-  static final TextButtonTheme professionalLight = TextButtonTheme(
-    backgroundColor: _$TextButtonTheme.backgroundColor[2],
-    borderGradient: _$TextButtonTheme.borderGradient[2],
-    disabledBorderGradient: _$TextButtonTheme.disabledBorderGradient[2],
-    disabledTextStyle: _$TextButtonTheme.disabledTextStyle[2],
-    iconDefaultColor: _$TextButtonTheme.iconDefaultColor[2],
-    iconDisabledColor: _$TextButtonTheme.iconDisabledColor[2],
-    textStyle: _$TextButtonTheme.textStyle[2],
+  static final YgTextButtonTheme professionalLight = YgTextButtonTheme(
+    backgroundColor: _$YgTextButtonTheme.backgroundColor[2],
+    borderGradient: _$YgTextButtonTheme.borderGradient[2],
+    disabledBorderGradient: _$YgTextButtonTheme.disabledBorderGradient[2],
+    disabledTextStyle: _$YgTextButtonTheme.disabledTextStyle[2],
+    iconDefaultColor: _$YgTextButtonTheme.iconDefaultColor[2],
+    iconDisabledColor: _$YgTextButtonTheme.iconDisabledColor[2],
+    textStyle: _$YgTextButtonTheme.textStyle[2],
   );
 
-  static final TextButtonTheme professionalDark = TextButtonTheme(
-    backgroundColor: _$TextButtonTheme.backgroundColor[3],
-    borderGradient: _$TextButtonTheme.borderGradient[3],
-    disabledBorderGradient: _$TextButtonTheme.disabledBorderGradient[3],
-    disabledTextStyle: _$TextButtonTheme.disabledTextStyle[3],
-    iconDefaultColor: _$TextButtonTheme.iconDefaultColor[3],
-    iconDisabledColor: _$TextButtonTheme.iconDisabledColor[3],
-    textStyle: _$TextButtonTheme.textStyle[3],
+  static final YgTextButtonTheme professionalDark = YgTextButtonTheme(
+    backgroundColor: _$YgTextButtonTheme.backgroundColor[3],
+    borderGradient: _$YgTextButtonTheme.borderGradient[3],
+    disabledBorderGradient: _$YgTextButtonTheme.disabledBorderGradient[3],
+    disabledTextStyle: _$YgTextButtonTheme.disabledTextStyle[3],
+    iconDefaultColor: _$YgTextButtonTheme.iconDefaultColor[3],
+    iconDisabledColor: _$YgTextButtonTheme.iconDisabledColor[3],
+    textStyle: _$YgTextButtonTheme.textStyle[3],
   );
 
   static final themes = [
@@ -75,7 +75,7 @@ class TextButtonTheme extends ThemeExtension<TextButtonTheme> {
   ];
 
   @override
-  TextButtonTheme copyWith({
+  YgTextButtonTheme copyWith({
     Color? backgroundColor,
     LinearGradient? borderGradient,
     LinearGradient? disabledBorderGradient,
@@ -84,7 +84,7 @@ class TextButtonTheme extends ThemeExtension<TextButtonTheme> {
     Color? iconDisabledColor,
     TextStyle? textStyle,
   }) {
-    return TextButtonTheme(
+    return YgTextButtonTheme(
       backgroundColor: backgroundColor ?? this.backgroundColor,
       borderGradient: borderGradient ?? this.borderGradient,
       disabledBorderGradient:
@@ -97,10 +97,10 @@ class TextButtonTheme extends ThemeExtension<TextButtonTheme> {
   }
 
   @override
-  TextButtonTheme lerp(
-      covariant ThemeExtension<TextButtonTheme>? other, double t) {
-    if (other is! TextButtonTheme) return this as TextButtonTheme;
-    return TextButtonTheme(
+  YgTextButtonTheme lerp(
+      covariant ThemeExtension<YgTextButtonTheme>? other, double t) {
+    if (other is! YgTextButtonTheme) return this as YgTextButtonTheme;
+    return YgTextButtonTheme(
       backgroundColor: Color.lerp(backgroundColor, other.backgroundColor, t)!,
       borderGradient: t < 0.5 ? borderGradient : other.borderGradient,
       disabledBorderGradient:
@@ -119,7 +119,7 @@ class TextButtonTheme extends ThemeExtension<TextButtonTheme> {
   bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is TextButtonTheme &&
+            other is YgTextButtonTheme &&
             const DeepCollectionEquality()
                 .equals(backgroundColor, other.backgroundColor) &&
             const DeepCollectionEquality()

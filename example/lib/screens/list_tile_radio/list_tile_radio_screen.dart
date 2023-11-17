@@ -27,8 +27,6 @@ class _ListTileRadioScreenState extends State<ListTileRadioScreen> {
   Widget build(BuildContext context) {
     return DemoScreen(
       componentName: 'ListTile - Radio',
-      componentDesc: 'Radio list tiles',
-      supernovaLink: 'Link',
       child: Column(
         children: <Widget>[
           const YgSection.base(
@@ -39,7 +37,7 @@ class _ListTileRadioScreenState extends State<ListTileRadioScreen> {
             ),
           ),
           YgSection.list(
-            children: <Widget>[
+            children: <YgListTile>[
               YgRadioListTile<int>(
                 title: 'RadioListTile',
                 subtitle: 'The whole ListTile and Radio is tappable.',
