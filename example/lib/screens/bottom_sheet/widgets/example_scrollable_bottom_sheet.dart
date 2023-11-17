@@ -19,7 +19,7 @@ class ExampleScrollableBottomSheet extends YgBottomSheetModalRoute {
           ),
         ),
       ),
-      footerButtons: YgButtonGroup(
+      footerButtons: YgButtonGroup.vertical(
         children: <YgButton>[
           YgButton(
             variant: YgButtonVariant.primary,

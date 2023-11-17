@@ -11,7 +11,7 @@ class ExampleDialog extends YgDialogRoute {
       header: const YgIcon(YgIcons.info),
       title: 'Example dialog',
       description: 'The description should provide the necessary information needed to make an informed decision.',
-      ygButtonGroup: YgButtonGroup(
+      ygButtonGroup: YgButtonGroup.vertical(
         children: <YgButton>[
           YgButton(
             variant: YgButtonVariant.primary,

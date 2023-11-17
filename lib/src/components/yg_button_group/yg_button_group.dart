@@ -5,19 +5,70 @@ class YgButtonGroup extends StatelessWidget with StatelessWidgetDebugMixin {
   const YgButtonGroup({
     super.key,
     required this.children,
-    this.axis = Axis.vertical,
-    this.mainAxisAlignment = MainAxisAlignment.start,
-    this.mainAxisSize = MainAxisSize.max,
-    this.crossAxisAlignment = CrossAxisAlignment.stretch,
+    required this.mainAxisAlignment,
+    required this.mainAxisSize,
+    required this.crossAxisAlignment,
+    required this.axis,
   });
 
-  factory YgButtonGroup.actionOrCancel({
+  factory YgButtonGroup.vertical({
+    required List<YgButton> children,
+    MainAxisAlignment mainAxisAlignment = MainAxisAlignment.start,
+    MainAxisSize mainAxisSize = MainAxisSize.max,
+    CrossAxisAlignment crossAxisAlignment = CrossAxisAlignment.stretch,
+  }) {
+    return YgButtonGroup(
+      mainAxisAlignment: mainAxisAlignment,
+      mainAxisSize: mainAxisSize,
+      crossAxisAlignment: crossAxisAlignment,
+      axis: Axis.vertical,
+      children: children,
+    );
+  }
+
+  factory YgButtonGroup.verticalActionOrCancel({
     required String actionText,
     required String cancelText,
     required VoidCallback onActionPressed,
     required VoidCallback onCancelPressed,
   }) {
+    return YgButtonGroup.vertical(
+      children: <YgButton>[
+        YgButton(
+          onPressed: onActionPressed,
+          child: Text(actionText),
+        ),
+        YgButton(
+          variant: YgButtonVariant.link,
+          onPressed: onCancelPressed,
+          child: Text(cancelText),
+        ),
+      ],
+    );
+  }
+
+  factory YgButtonGroup.horizontal({
+    required List<YgButton> children,
+    MainAxisAlignment mainAxisAlignment = MainAxisAlignment.center,
+    MainAxisSize mainAxisSize = MainAxisSize.max,
+    CrossAxisAlignment crossAxisAlignment = CrossAxisAlignment.stretch,
+  }) {
     return YgButtonGroup(
+      mainAxisAlignment: mainAxisAlignment,
+      mainAxisSize: mainAxisSize,
+      crossAxisAlignment: crossAxisAlignment,
+      axis: Axis.horizontal,
+      children: children,
+    );
+  }
+
+  factory YgButtonGroup.horizontalActionOrCancel({
+    required String actionText,
+    required String cancelText,
+    required VoidCallback onActionPressed,
+    required VoidCallback onCancelPressed,
+  }) {
+    return YgButtonGroup.horizontal(
       children: <YgButton>[
         YgButton(
           onPressed: onActionPressed,
@@ -53,10 +104,11 @@ class YgButtonGroup extends StatelessWidget with StatelessWidgetDebugMixin {
     }
 
     return Row(
-      mainAxisAlignment: mainAxisAlignment,
-      mainAxisSize: mainAxisSize,
-      crossAxisAlignment: crossAxisAlignment,
-      children: children.withHorizontalSpacing(context.buttonGroupTheme.buttonSpacing),
+      mainAxisAlignment: MainAxisAlignment.center,
+      children: children
+          .map((Widget child) => Flexible(child: child))
+          .toList()
+          .withHorizontalSpacing(context.buttonGroupTheme.buttonSpacing),
     );
   }
 
