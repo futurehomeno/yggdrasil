@@ -150,12 +150,14 @@ class _YgToggleButtonState extends State<YgToggleButton> {
                     size: _iconSize,
                   ),
                 if (text != null)
-                  Text(
-                    text,
-                    style: YgToggleButtonMapper.buildTextStyle(
-                      theme: toggleButtonTheme,
-                      size: widget.size,
-                    ).copyWith(color: resolvedTextColor),
+                  Flexible(
+                    child: Text(
+                      text,
+                      style: YgToggleButtonMapper.buildTextStyle(
+                        theme: toggleButtonTheme,
+                        size: widget.size,
+                      ).copyWith(color: resolvedTextColor),
+                    ),
                   ),
               ].withHorizontalSpacing(toggleButtonTheme.iconTextSpacing),
             ),
