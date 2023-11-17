@@ -29,8 +29,6 @@ class _ListTileCheckboxScreenState extends State<ListTileCheckboxScreen> {
   Widget build(BuildContext context) {
     return DemoScreen(
       componentName: 'CheckboxListTile',
-      componentDesc: 'Checkbox list tiles',
-      supernovaLink: 'Link',
       child: Column(
         children: <Widget>[
           const YgSection.base(
@@ -41,7 +39,7 @@ class _ListTileCheckboxScreenState extends State<ListTileCheckboxScreen> {
             ),
           ),
           YgSection.list(
-            children: <Widget>[
+            children: <YgListTile>[
               YgCheckboxListTile(
                 title: 'CheckboxListTile',
                 subtitle: 'The whole ListTile and Checkbox is tappable.',

@@ -1,9 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:yggdrasil/yggdrasil.dart';
 import 'package:yggdrasil_demo/core/_core.dart';
+import 'package:yggdrasil_demo/utils/_utils.dart';
 import 'package:yggdrasil_demo/widgets/_widgets.dart';
 
-class ButtonScreen extends StatelessWidget {
+class ButtonScreen extends StatefulWidget {
   const ButtonScreen({super.key});
 
   static const String routeName = 'ButtonsScreen';
@@ -16,11 +17,17 @@ class ButtonScreen extends StatelessWidget {
   }
 
   @override
+  State<ButtonScreen> createState() => _ButtonScreenState();
+}
+
+class _ButtonScreenState extends State<ButtonScreen> {
+  YgButtonVariant variant = YgButtonVariant.primary;
+  YgButtonSize size = YgButtonSize.medium;
+
+  @override
   Widget build(BuildContext context) {
     return DemoScreen(
       componentName: 'Button',
-      componentDesc: 'Buttons',
-      supernovaLink: 'Link',
       child: Column(
         children: <Widget>[
           const YgSection.base(
@@ -105,10 +112,10 @@ class ButtonScreen extends StatelessWidget {
                 onPressed: () {},
                 child: const Text('Enabled'),
               ),
-              YgButton.trailingIcon(
-                icon: const YgIcon(YgIcons.cross),
+              const YgButton.trailingIcon(
+                icon: YgIcon(YgIcons.cross),
                 onPressed: null,
-                child: const Text('Disabled'),
+                child: Text('Disabled'),
               ),
             ].withVerticalSpacing(10.0),
           ),
@@ -117,7 +124,7 @@ class ButtonScreen extends StatelessWidget {
             subtitle: 'Spacing between buttons added manually.',
             children: <Widget>[
               YgButton.leadingIcon(
-                icon: const YgIcon(YgIcons.deviceHub),
+                icon: const YgIcon(YgIcons.deviceHubChange),
                 onPressed: () {},
                 child: const Text('Default icon color'),
               ),
@@ -132,6 +139,28 @@ class ButtonScreen extends StatelessWidget {
                 icon: const YgIcon(YgIcons.info),
                 onPressed: () {},
                 child: const Text('Text icon color'),
+              ),
+            ].withVerticalSpacing(10.0),
+          ),
+          YgSection.column(
+            title: 'Animated',
+            subtitle: 'Animating between different variants and sizes.',
+            children: <Widget>[
+              YgButton(
+                onPressed: () {
+                  variant = YgButtonVariant.values.next(variant);
+                  setState(() {});
+                },
+                variant: variant,
+                child: const Text('Animated variant'),
+              ),
+              YgButton(
+                size: size,
+                onPressed: () {
+                  size = YgButtonSize.values.next(size);
+                  setState(() {});
+                },
+                child: const Text('Animated Size'),
               ),
             ].withVerticalSpacing(10.0),
           ),

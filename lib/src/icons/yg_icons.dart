@@ -34,9 +34,15 @@ class YgIcons {
     'axisY': axisY,
     'axisZ': axisZ,
     'backyard': backyard,
+    'badgeLeft': badgeLeft,
+    'badgeRight': badgeRight,
     'basement': basement,
     'bathroom': bathroom,
     'battery': battery,
+    'battery0PercentColorful': battery0PercentColorful,
+    'battery100PercentColorful': battery100PercentColorful,
+    'battery50PercentColorful': battery50PercentColorful,
+    'batteryOffColorful': batteryOffColorful,
     'bedroom': bedroom,
     'bedroomGuest': bedroomGuest,
     'bee': bee,
@@ -64,11 +70,16 @@ class YgIcons {
     'caretUp': caretUp,
     'cart': cart,
     'charger': charger,
+    'chargerDisabled': chargerDisabled,
     'chargerQuestion': chargerQuestion,
     'check': check,
     'childRoom': childRoom,
     'circle': circle,
     'circleDouble': circleDouble,
+    'circleDoubleRing': circleDoubleRing,
+    'circleRing': circleRing,
+    'circleSolid': circleSolid,
+    'circleStroke': circleStroke,
     'circuitBreaker': circuitBreaker,
     'climate': climate,
     'closet': closet,
@@ -83,16 +94,21 @@ class YgIcons {
     'dashboard': dashboard,
     'dashboardNo': dashboardNo,
     'decrease': decrease,
-    'deviceConnected': deviceConnected,
-    'deviceEvCharger': deviceEvCharger,
-    'deviceHub': deviceHub,
-    'deviceHubAlt': deviceHubAlt,
+    'deviceConnectedColorful': deviceConnectedColorful,
+    'deviceEvChargerColorful': deviceEvChargerColorful,
+    'deviceHubAltColorful': deviceHubAltColorful,
+    'deviceHubChange': deviceHubChange,
+    'deviceHubColorful': deviceHubColorful,
     'deviceQrcode': deviceQrcode,
     'deviceSync': deviceSync,
-    'deviceTransfer': deviceTransfer,
+    'deviceTransferColorful': deviceTransferColorful,
     'deviceUpdateFailed': deviceUpdateFailed,
     'deviceUpdateSuccess': deviceUpdateSuccess,
+    'dialMaxColorful': dialMaxColorful,
+    'dialMedium': dialMedium,
+    'dialMediumColorful': dialMediumColorful,
     'dialPeakOff': dialPeakOff,
+    'dialPeakOn': dialPeakOn,
     'diningRoom': diningRoom,
     'direction': direction,
     'donut': donut,
@@ -104,14 +120,22 @@ class YgIcons {
     'doorOpenUnlocked': doorOpenUnlocked,
     'downstairs': downstairs,
     'dracula': dracula,
+    'dropBottomLeft': dropBottomLeft,
+    'dropDouble': dropDouble,
+    'dropTopLeft': dropTopLeft,
+    'dropTopRight': dropTopRight,
     'dry': dry,
     'edit': edit,
     'electricCar': electricCar,
+    'electricCarDisabled': electricCarDisabled,
     'email': email,
     'emergencyNo': emergencyNo,
     'energy': energy,
     'energyBattery': energyBattery,
     'energyGrid': energyGrid,
+    'energyLevel1': energyLevel1,
+    'energyLevel2': energyLevel2,
+    'energyLevel3': energyLevel3,
     'energyMeter': energyMeter,
     'energySolar': energySolar,
     'energyWind': energyWind,
@@ -149,6 +173,7 @@ class YgIcons {
     'gear': gear,
     'general': general,
     'grandfather': grandfather,
+    'gust': gust,
     'hallway': hallway,
     'han': han,
     'handle': handle,
@@ -190,6 +215,7 @@ class YgIcons {
     'lockOpen': lockOpen,
     'locked': locked,
     'login': login,
+    'logout': logout,
     'lounge': lounge,
     'luminance': luminance,
     'manualBook': manualBook,
@@ -229,13 +255,14 @@ class YgIcons {
     'placeholder': placeholder,
     'planet': planet,
     'plant': plant,
-    'play1': play1,
     'play': play,
+    'playAlt': playAlt,
     'playQuestion': playQuestion,
     'playlist': playlist,
     'plus': plus,
     'power': power,
     'powerDisabled': powerDisabled,
+    'powerOff': powerOff,
     'pressure': pressure,
     'pressureAlt': pressureAlt,
     'qrCode': qrCode,
@@ -253,6 +280,8 @@ class YgIcons {
     'rotate': rotate,
     'rotation': rotation,
     'safety': safety,
+    'scenarioRed': scenarioRed,
+    'scenes': scenes,
     'sea': sea,
     'search': search,
     'searchAlt': searchAlt,
@@ -311,6 +340,7 @@ class YgIcons {
     'trumpet': trumpet,
     'tv': tv,
     'ultravioletUv': ultravioletUv,
+    'umbrella': umbrella,
     'unlocked': unlocked,
     'upstairs': upstairs,
     'valves': valves,
@@ -320,12 +350,27 @@ class YgIcons {
     'waterFlow': waterFlow,
     'waterPressure': waterPressure,
     'watts': watts,
+    'weatherCloud': weatherCloud,
+    'weatherCloudColorful': weatherCloudColorful,
+    'weatherFog': weatherFog,
+    'weatherFogColorful': weatherFogColorful,
+    'weatherRain': weatherRain,
+    'weatherRainColorful': weatherRainColorful,
+    'weatherSnow': weatherSnow,
+    'weatherSnowColorful': weatherSnowColorful,
+    'weatherSun': weatherSun,
+    'weatherSunCloud': weatherSunCloud,
+    'weatherSunCloudColorful': weatherSunCloudColorful,
+    'weatherSunColorful': weatherSunColorful,
+    'weatherThunder': weatherThunder,
+    'weatherThunderColorful': weatherThunderColorful,
     'weight': weight,
     'wifiExcellent': wifiExcellent,
     'wifiNoSignal': wifiNoSignal,
-    'wifiOk': wifiOk,
+    'wifiOkColorful': wifiOkColorful,
     'wifiUnknown': wifiUnknown,
-    'wifiWeak': wifiWeak,
+    'wifiWeakColorful': wifiWeakColorful,
+    'wind': wind,
     'windowClosed': windowClosed,
     'windowClosedUnlocked': windowClosedUnlocked,
     'windowLocked': windowLocked,
@@ -334,6 +379,7 @@ class YgIcons {
     'windowOpenAlt': windowOpenAlt,
     'windowOpenUnlocked': windowOpenUnlocked,
     'work': work,
+    'ygg': ygg,
     'zigbee': zigbee,
     'zwave': zwave,
   };
@@ -367,9 +413,15 @@ class YgIcons {
   static const String axisY = 'assets/icons/axis_y.svg';
   static const String axisZ = 'assets/icons/axis_z.svg';
   static const String backyard = 'assets/icons/backyard.svg';
+  static const String badgeLeft = 'assets/icons/badge_left.svg';
+  static const String badgeRight = 'assets/icons/badge_right.svg';
   static const String basement = 'assets/icons/basement.svg';
   static const String bathroom = 'assets/icons/bathroom.svg';
   static const String battery = 'assets/icons/battery.svg';
+  static const String battery0PercentColorful = 'assets/icons/battery_0_percent_colorful.svg';
+  static const String battery100PercentColorful = 'assets/icons/battery_100_percent_colorful.svg';
+  static const String battery50PercentColorful = 'assets/icons/battery_50_percent_colorful.svg';
+  static const String batteryOffColorful = 'assets/icons/battery_off_colorful.svg';
   static const String bedroom = 'assets/icons/bedroom.svg';
   static const String bedroomGuest = 'assets/icons/bedroom_guest.svg';
   static const String bee = 'assets/icons/bee.svg';
@@ -397,11 +449,16 @@ class YgIcons {
   static const String caretUp = 'assets/icons/caret_up.svg';
   static const String cart = 'assets/icons/cart.svg';
   static const String charger = 'assets/icons/charger.svg';
+  static const String chargerDisabled = 'assets/icons/charger_disabled.svg';
   static const String chargerQuestion = 'assets/icons/charger_question.svg';
   static const String check = 'assets/icons/check.svg';
   static const String childRoom = 'assets/icons/child_room.svg';
   static const String circle = 'assets/icons/circle.svg';
   static const String circleDouble = 'assets/icons/circle_double.svg';
+  static const String circleDoubleRing = 'assets/icons/circle_double_ring.svg';
+  static const String circleRing = 'assets/icons/circle_ring.svg';
+  static const String circleSolid = 'assets/icons/circle_solid.svg';
+  static const String circleStroke = 'assets/icons/circle_stroke.svg';
   static const String circuitBreaker = 'assets/icons/circuit_breaker.svg';
   static const String climate = 'assets/icons/climate.svg';
   static const String closet = 'assets/icons/closet.svg';
@@ -416,16 +473,21 @@ class YgIcons {
   static const String dashboard = 'assets/icons/dashboard.svg';
   static const String dashboardNo = 'assets/icons/dashboard_no.svg';
   static const String decrease = 'assets/icons/decrease.svg';
-  static const String deviceConnected = 'assets/icons/device_connected.svg';
-  static const String deviceEvCharger = 'assets/icons/device_ev_charger.svg';
-  static const String deviceHub = 'assets/icons/device_hub.svg';
-  static const String deviceHubAlt = 'assets/icons/device_hub_alt.svg';
+  static const String deviceConnectedColorful = 'assets/icons/device_connected_colorful.svg';
+  static const String deviceEvChargerColorful = 'assets/icons/device_ev_charger_colorful.svg';
+  static const String deviceHubAltColorful = 'assets/icons/device_hub_alt_colorful.svg';
+  static const String deviceHubChange = 'assets/icons/device_hub_change.svg';
+  static const String deviceHubColorful = 'assets/icons/device_hub_colorful.svg';
   static const String deviceQrcode = 'assets/icons/device_qrcode.svg';
   static const String deviceSync = 'assets/icons/device_sync.svg';
-  static const String deviceTransfer = 'assets/icons/device_transfer.svg';
+  static const String deviceTransferColorful = 'assets/icons/device_transfer_colorful.svg';
   static const String deviceUpdateFailed = 'assets/icons/device_update_failed.svg';
   static const String deviceUpdateSuccess = 'assets/icons/device_update_success.svg';
+  static const String dialMaxColorful = 'assets/icons/dial_max_colorful.svg';
+  static const String dialMedium = 'assets/icons/dial_medium.svg';
+  static const String dialMediumColorful = 'assets/icons/dial_medium_colorful.svg';
   static const String dialPeakOff = 'assets/icons/dial_peak_off.svg';
+  static const String dialPeakOn = 'assets/icons/dial_peak_on.svg';
   static const String diningRoom = 'assets/icons/dining_room.svg';
   static const String direction = 'assets/icons/direction.svg';
   static const String donut = 'assets/icons/donut.svg';
@@ -437,14 +499,22 @@ class YgIcons {
   static const String doorOpenUnlocked = 'assets/icons/door_open_unlocked.svg';
   static const String downstairs = 'assets/icons/downstairs.svg';
   static const String dracula = 'assets/icons/dracula.svg';
+  static const String dropBottomLeft = 'assets/icons/drop_bottom_left.svg';
+  static const String dropDouble = 'assets/icons/drop_double.svg';
+  static const String dropTopLeft = 'assets/icons/drop_top_left.svg';
+  static const String dropTopRight = 'assets/icons/drop_top_right.svg';
   static const String dry = 'assets/icons/dry.svg';
   static const String edit = 'assets/icons/edit.svg';
   static const String electricCar = 'assets/icons/electric_car.svg';
+  static const String electricCarDisabled = 'assets/icons/electric_car_disabled.svg';
   static const String email = 'assets/icons/email.svg';
   static const String emergencyNo = 'assets/icons/emergency_no.svg';
   static const String energy = 'assets/icons/energy.svg';
   static const String energyBattery = 'assets/icons/energy_battery.svg';
   static const String energyGrid = 'assets/icons/energy_grid.svg';
+  static const String energyLevel1 = 'assets/icons/energy_level_1.svg';
+  static const String energyLevel2 = 'assets/icons/energy_level_2.svg';
+  static const String energyLevel3 = 'assets/icons/energy_level_3.svg';
   static const String energyMeter = 'assets/icons/energy_meter.svg';
   static const String energySolar = 'assets/icons/energy_solar.svg';
   static const String energyWind = 'assets/icons/energy_wind.svg';
@@ -482,6 +552,7 @@ class YgIcons {
   static const String gear = 'assets/icons/gear.svg';
   static const String general = 'assets/icons/general.svg';
   static const String grandfather = 'assets/icons/grandfather.svg';
+  static const String gust = 'assets/icons/gust.svg';
   static const String hallway = 'assets/icons/hallway.svg';
   static const String han = 'assets/icons/han.svg';
   static const String handle = 'assets/icons/handle.svg';
@@ -523,6 +594,7 @@ class YgIcons {
   static const String lockOpen = 'assets/icons/lock_open.svg';
   static const String locked = 'assets/icons/locked.svg';
   static const String login = 'assets/icons/login.svg';
+  static const String logout = 'assets/icons/logout.svg';
   static const String lounge = 'assets/icons/lounge.svg';
   static const String luminance = 'assets/icons/luminance.svg';
   static const String manualBook = 'assets/icons/manual_book.svg';
@@ -562,13 +634,14 @@ class YgIcons {
   static const String placeholder = 'assets/icons/placeholder.svg';
   static const String planet = 'assets/icons/planet.svg';
   static const String plant = 'assets/icons/plant.svg';
-  static const String play1 = 'assets/icons/play-1.svg';
   static const String play = 'assets/icons/play.svg';
+  static const String playAlt = 'assets/icons/play_alt.svg';
   static const String playQuestion = 'assets/icons/play_question.svg';
   static const String playlist = 'assets/icons/playlist.svg';
   static const String plus = 'assets/icons/plus.svg';
   static const String power = 'assets/icons/power.svg';
   static const String powerDisabled = 'assets/icons/power_disabled.svg';
+  static const String powerOff = 'assets/icons/power_off.svg';
   static const String pressure = 'assets/icons/pressure.svg';
   static const String pressureAlt = 'assets/icons/pressure_alt.svg';
   static const String qrCode = 'assets/icons/qr_code.svg';
@@ -586,6 +659,8 @@ class YgIcons {
   static const String rotate = 'assets/icons/rotate.svg';
   static const String rotation = 'assets/icons/rotation.svg';
   static const String safety = 'assets/icons/safety.svg';
+  static const String scenarioRed = 'assets/icons/scenario_red.svg';
+  static const String scenes = 'assets/icons/scenes.svg';
   static const String sea = 'assets/icons/sea.svg';
   static const String search = 'assets/icons/search.svg';
   static const String searchAlt = 'assets/icons/search_alt.svg';
@@ -644,6 +719,7 @@ class YgIcons {
   static const String trumpet = 'assets/icons/trumpet.svg';
   static const String tv = 'assets/icons/tv.svg';
   static const String ultravioletUv = 'assets/icons/ultraviolet_uv.svg';
+  static const String umbrella = 'assets/icons/umbrella.svg';
   static const String unlocked = 'assets/icons/unlocked.svg';
   static const String upstairs = 'assets/icons/upstairs.svg';
   static const String valves = 'assets/icons/valves.svg';
@@ -653,12 +729,27 @@ class YgIcons {
   static const String waterFlow = 'assets/icons/water_flow.svg';
   static const String waterPressure = 'assets/icons/water_pressure.svg';
   static const String watts = 'assets/icons/watts.svg';
+  static const String weatherCloud = 'assets/icons/weather_cloud.svg';
+  static const String weatherCloudColorful = 'assets/icons/weather_cloud_colorful.svg';
+  static const String weatherFog = 'assets/icons/weather_fog.svg';
+  static const String weatherFogColorful = 'assets/icons/weather_fog_colorful.svg';
+  static const String weatherRain = 'assets/icons/weather_rain.svg';
+  static const String weatherRainColorful = 'assets/icons/weather_rain_colorful.svg';
+  static const String weatherSnow = 'assets/icons/weather_snow.svg';
+  static const String weatherSnowColorful = 'assets/icons/weather_snow_colorful.svg';
+  static const String weatherSun = 'assets/icons/weather_sun.svg';
+  static const String weatherSunCloud = 'assets/icons/weather_sun_cloud.svg';
+  static const String weatherSunCloudColorful = 'assets/icons/weather_sun_cloud_colorful.svg';
+  static const String weatherSunColorful = 'assets/icons/weather_sun_colorful.svg';
+  static const String weatherThunder = 'assets/icons/weather_thunder.svg';
+  static const String weatherThunderColorful = 'assets/icons/weather_thunder_colorful.svg';
   static const String weight = 'assets/icons/weight.svg';
   static const String wifiExcellent = 'assets/icons/wifi_excellent.svg';
   static const String wifiNoSignal = 'assets/icons/wifi_no_signal.svg';
-  static const String wifiOk = 'assets/icons/wifi_ok.svg';
+  static const String wifiOkColorful = 'assets/icons/wifi_ok_colorful.svg';
   static const String wifiUnknown = 'assets/icons/wifi_unknown.svg';
-  static const String wifiWeak = 'assets/icons/wifi_weak.svg';
+  static const String wifiWeakColorful = 'assets/icons/wifi_weak_colorful.svg';
+  static const String wind = 'assets/icons/wind.svg';
   static const String windowClosed = 'assets/icons/window_closed.svg';
   static const String windowClosedUnlocked = 'assets/icons/window_closed_unlocked.svg';
   static const String windowLocked = 'assets/icons/window_locked.svg';
@@ -667,6 +758,7 @@ class YgIcons {
   static const String windowOpenAlt = 'assets/icons/window_open_alt.svg';
   static const String windowOpenUnlocked = 'assets/icons/window_open_unlocked.svg';
   static const String work = 'assets/icons/work.svg';
+  static const String ygg = 'assets/icons/ygg.svg';
   static const String zigbee = 'assets/icons/zigbee.svg';
   static const String zwave = 'assets/icons/zwave.svg';
 }

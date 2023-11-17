@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
 import 'package:yggdrasil/src/components/yg_toggle_button/enums/yg_toggle_button_variant.dart';
 import 'package:yggdrasil/src/theme/_theme.dart';
 import 'package:yggdrasil/yggdrasil.dart';
@@ -119,56 +118,46 @@ class _YgToggleButtonState extends State<YgToggleButton> {
     return RepaintBoundary(
       child: Semantics(
         checked: widget._selected,
-        child: GestureDetector(
+        child: YgFocusableActionDetector(
+          enabled: widget._enabled,
+          mouseCursor: resolvedMouseCursor,
+          onActivate: _onTap,
           behavior: HitTestBehavior.opaque,
-          onTap: widget.onChanged == null ? null : _onTap,
-          child: FocusableActionDetector(
-            onShowHoverHighlight: _onShowHoverHighlight,
-            onShowFocusHighlight: _onShowFocusHighlight,
-            shortcuts: const <ShortcutActivator, Intent>{
-              SingleActivator(LogicalKeyboardKey.space, control: true): ActivateIntent(),
-            },
-            actions: <Type, Action<Intent>>{
-              ActivateIntent: CallbackAction<Intent>(onInvoke: (_) => _onTap()),
-            },
-            mouseCursor: resolvedMouseCursor,
-            enabled: widget._enabled,
-            child: AnimatedContainer(
-              duration: toggleButtonTheme.animationDuration,
-              curve: toggleButtonTheme.animationCurve,
-              padding: YgToggleButtonMapper.buildPadding(
-                theme: toggleButtonTheme,
-                size: widget.size,
-                variant: variant,
+          onFocusChanged: _onShowFocusHighlight,
+          onHoverChanged: _onShowHoverHighlight,
+          child: AnimatedContainer(
+            duration: toggleButtonTheme.animationDuration,
+            curve: toggleButtonTheme.animationCurve,
+            padding: YgToggleButtonMapper.buildPadding(
+              theme: toggleButtonTheme,
+              size: widget.size,
+              variant: variant,
+            ),
+            decoration: BoxDecoration(
+              color: resolvedFillColor,
+              border: Border.fromBorderSide(
+                BorderSide(color: resolvedBorderColor ?? Colors.transparent),
               ),
-              decoration: BoxDecoration(
-                color: resolvedFillColor,
-                border: Border.fromBorderSide(
-                  BorderSide(color: resolvedBorderColor ?? Colors.transparent),
-                ),
-                borderRadius: BorderRadius.all(Radius.circular(toggleButtonTheme.borderRadius)),
-              ),
-              child: Row(
-                mainAxisSize: MainAxisSize.min,
-                children: <Widget>[
-                  if (icon != null)
-                    YgIcon(
-                      widget.icon,
-                      color: resolvedIconColor,
-                      size: _iconSize,
-                    ),
-                  if (text != null)
-                    Flexible(
-                      child: Text(
-                        text,
-                        style: YgToggleButtonMapper.buildTextStyle(
-                          theme: toggleButtonTheme,
-                          size: widget.size,
-                        ).copyWith(color: resolvedTextColor),
-                      ),
-                    ),
-                ].withHorizontalSpacing(toggleButtonTheme.iconTextSpacing),
-              ),
+              borderRadius: BorderRadius.all(Radius.circular(toggleButtonTheme.borderRadius)),
+            ),
+            child: Row(
+              mainAxisSize: MainAxisSize.min,
+              children: <Widget>[
+                if (icon != null)
+                  YgIcon(
+                    widget.icon,
+                    color: resolvedIconColor,
+                    size: _iconSize,
+                  ),
+                if (text != null)
+                  Text(
+                    text,
+                    style: YgToggleButtonMapper.buildTextStyle(
+                      theme: toggleButtonTheme,
+                      size: widget.size,
+                    ).copyWith(color: resolvedTextColor),
+                  ),
+              ].withHorizontalSpacing(toggleButtonTheme.iconTextSpacing),
             ),
           ),
         ),
