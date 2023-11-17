@@ -18,6 +18,7 @@ part 'yg_switch_list_tile.dart';
 /// we do not encourage designers to use more than 2 widgets.
 abstract class YgListTile extends StatelessWidget with StatelessWidgetDebugMixin {
   const factory YgListTile({
+    Key key,
     required String title,
     List<Widget> leadingWidgets,
     List<Widget> supportingWidgets,
