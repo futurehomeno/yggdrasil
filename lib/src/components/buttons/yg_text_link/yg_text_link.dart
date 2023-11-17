@@ -38,9 +38,7 @@ class YgTextLink extends YgButtonBase<YgTextLinkState> {
   Widget buildChild(BuildContext context) {
     final YgTextLinkTheme theme = context.textLinkTheme;
 
-    final Text text = Text(
-      this.text,
-    );
+    final Text text = Text(this.text);
 
     if (!external) {
       return text;
@@ -48,7 +46,6 @@ class YgTextLink extends YgButtonBase<YgTextLinkState> {
 
     return Row(
       mainAxisSize: MainAxisSize.min,
-      crossAxisAlignment: CrossAxisAlignment.center,
       children: <Widget>[
         Flexible(
           child: text,
