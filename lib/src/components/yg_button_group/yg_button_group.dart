@@ -5,22 +5,13 @@ class YgButtonGroup extends StatelessWidget with StatelessWidgetDebugMixin {
   const YgButtonGroup({
     super.key,
     required this.children,
-    required this.mainAxisAlignment,
-    required this.mainAxisSize,
-    required this.crossAxisAlignment,
     required this.axis,
   });
 
   factory YgButtonGroup.vertical({
     required List<YgButton> children,
-    MainAxisAlignment mainAxisAlignment = MainAxisAlignment.start,
-    MainAxisSize mainAxisSize = MainAxisSize.max,
-    CrossAxisAlignment crossAxisAlignment = CrossAxisAlignment.stretch,
   }) {
     return YgButtonGroup(
-      mainAxisAlignment: mainAxisAlignment,
-      mainAxisSize: mainAxisSize,
-      crossAxisAlignment: crossAxisAlignment,
       axis: Axis.vertical,
       children: children,
     );
@@ -49,14 +40,8 @@ class YgButtonGroup extends StatelessWidget with StatelessWidgetDebugMixin {
 
   factory YgButtonGroup.horizontal({
     required List<YgButton> children,
-    MainAxisAlignment mainAxisAlignment = MainAxisAlignment.center,
-    MainAxisSize mainAxisSize = MainAxisSize.max,
-    CrossAxisAlignment crossAxisAlignment = CrossAxisAlignment.stretch,
   }) {
     return YgButtonGroup(
-      mainAxisAlignment: mainAxisAlignment,
-      mainAxisSize: mainAxisSize,
-      crossAxisAlignment: crossAxisAlignment,
       axis: Axis.horizontal,
       children: children,
     );
@@ -85,9 +70,6 @@ class YgButtonGroup extends StatelessWidget with StatelessWidgetDebugMixin {
 
   final List<YgButton> children;
   final Axis axis;
-  final MainAxisAlignment mainAxisAlignment;
-  final MainAxisSize mainAxisSize;
-  final CrossAxisAlignment crossAxisAlignment;
 
   @override
   Widget build(BuildContext context) {
@@ -96,9 +78,7 @@ class YgButtonGroup extends StatelessWidget with StatelessWidgetDebugMixin {
 
     if (axis == Axis.vertical) {
       return Column(
-        mainAxisAlignment: mainAxisAlignment,
-        mainAxisSize: mainAxisSize,
-        crossAxisAlignment: crossAxisAlignment,
+        crossAxisAlignment: CrossAxisAlignment.stretch,
         children: children.withVerticalSpacing(context.buttonGroupTheme.buttonSpacing),
       );
     }
