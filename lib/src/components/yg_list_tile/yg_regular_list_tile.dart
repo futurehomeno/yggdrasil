@@ -9,6 +9,7 @@ part of 'yg_list_tile.dart';
 /// we do not encourage designers to use more than 2 widgets.
 class _YgRegularListTile extends YgListTile {
   const _YgRegularListTile({
+    super.key,
     required super.title,
     super.subtitle,
     super.subtitleIcon,
