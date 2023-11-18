@@ -31,7 +31,7 @@ class _ListTileSwitchScreenState extends State<ListTileSwitchScreen> {
       componentName: 'SwitchListTile',
       child: Column(
         children: <Widget>[
-          const YgSection.base(
+          const YgSection(
             child: YgCallout(
               title: 'Note',
               description:

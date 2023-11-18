@@ -21,7 +21,7 @@ class BadgeScreen extends StatelessWidget {
       componentName: 'Badge',
       child: Column(
         children: <Widget>[
-          YgSection.base(
+          YgSection(
             title: 'Badges with count 0 - 9',
             child: Row(
               mainAxisAlignment: MainAxisAlignment.center,
@@ -61,7 +61,7 @@ class BadgeScreen extends StatelessWidget {
               ],
             ),
           ),
-          YgSection.base(
+          YgSection(
             title: 'Badge with more than 9',
             child: YgBadge(
               amount: 10,
@@ -72,7 +72,7 @@ class BadgeScreen extends StatelessWidget {
               ),
             ),
           ),
-          const YgSection.base(
+          const YgSection(
             title: 'Dot badge',
             child: YgDotBadge(),
           ),

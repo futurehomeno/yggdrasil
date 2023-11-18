@@ -37,7 +37,7 @@ class _CheckboxScreenState extends State<CheckboxScreen> {
       componentName: 'Checkbox',
       child: Column(
         children: <Widget>[
-          YgSection.base(
+          YgSection(
             title: 'Binary checkbox',
             child: YgCheckbox(
               value: binaryValue,
@@ -47,7 +47,7 @@ class _CheckboxScreenState extends State<CheckboxScreen> {
               },
             ),
           ),
-          YgSection.base(
+          YgSection(
             title: 'Tri-state checkbox',
             child: YgCheckbox(
               value: triStateValue,
@@ -58,7 +58,7 @@ class _CheckboxScreenState extends State<CheckboxScreen> {
               },
             ),
           ),
-          YgSection.base(
+          YgSection(
             title: 'Error checkbox',
             child: YgCheckbox(
               value: errorValue,
@@ -69,7 +69,7 @@ class _CheckboxScreenState extends State<CheckboxScreen> {
               hasError: true,
             ),
           ),
-          const YgSection.base(
+          const YgSection(
             title: 'Disabled checkbox, selected / unselected',
             child: Row(
               mainAxisSize: MainAxisSize.min,
@@ -85,7 +85,7 @@ class _CheckboxScreenState extends State<CheckboxScreen> {
               ],
             ),
           ),
-          YgSection.base(
+          YgSection(
             title: 'Checkbox item',
             child: YgCheckboxItem(
               title: 'Some title',
@@ -96,7 +96,7 @@ class _CheckboxScreenState extends State<CheckboxScreen> {
               },
             ),
           ),
-          YgSection.base(
+          YgSection(
             title: 'Checkbox group',
             child: YgCheckboxGroup(
               label: 'Some label',
@@ -120,7 +120,7 @@ class _CheckboxScreenState extends State<CheckboxScreen> {
               ],
             ),
           ),
-          const YgSection.base(
+          const YgSection(
             title: 'Checkbox in a list tile',
             child: YgCallout(
               variant: YgCalloutVariant.warning,

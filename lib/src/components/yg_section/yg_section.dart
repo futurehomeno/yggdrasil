@@ -1,36 +1,42 @@
 import 'package:flutter/material.dart';
+import 'package:yggdrasil/src/components/buttons/yg_icon_button/_yg_icon_button.dart';
+import 'package:yggdrasil/src/components/buttons/yg_tag/yg_tag.dart';
+import 'package:yggdrasil/src/components/yg_icon/yg_icon.dart';
 import 'package:yggdrasil/src/components/yg_list_tile/yg_list_tile.dart';
+import 'package:yggdrasil/src/components/yg_section/expanding/yg_expansion_controller.dart';
+import 'package:yggdrasil/src/extensions/widget_list_extension.dart';
+import 'package:yggdrasil/src/icons/_icons.dart';
 import 'package:yggdrasil/src/theme/theme.dart';
 import 'package:yggdrasil/src/utils/_utils.dart';
 
-part 'yg_section_base.dart';
-part 'yg_section_column.dart';
-part 'yg_section_header.dart';
-part 'yg_section_list.dart';
-part 'yg_section_padding.dart';
+import 'expanding/yg_expander.dart';
+
+part 'expanding/yg_expanding_section.dart';
+part 'expanding/yg_expanding_section_base.dart';
+part 'expanding/yg_expanding_section_column.dart';
+part 'expanding/yg_expanding_section_list.dart';
+part 'regular/yg_section_base.dart';
+part 'regular/yg_section_column.dart';
+part 'regular/yg_section_list.dart';
+part 'regular/yg_section_regular.dart';
+part 'widgets/yg_section_header.dart';
 
 /// Responsible for applying correct padding to collections of widgets.
 abstract class YgSection extends StatelessWidget with StatelessWidgetDebugMixin {
-  const YgSection._({
-    this.title,
-    this.subtitle,
-  }) : assert(title != null || subtitle == null, 'Subtitle cannot be set without a title.');
-
   /// When you have a single widgets that need to be padded.
-  const factory YgSection.base({
+  const factory YgSection({
     required Widget child,
-    String? title,
     String? subtitle,
-  }) = _YgSectionBase;
+    YgTag? tag,
+    String? title,
+  }) = _YgSectionRegular;
 
   /// When you have a column of widgets that need to be padded.
   const factory YgSection.column({
     required List<Widget> children,
-    String? title,
     String? subtitle,
-    MainAxisAlignment mainAxisAlignment,
-    MainAxisSize mainAxisSize,
-    CrossAxisAlignment crossAxisAlignment,
+    YgTag? tag,
+    String? title,
   }) = _YgSectionColumn;
 
   /// When you have a list of [YgListTiles] that should be in a section.
@@ -38,12 +44,50 @@ abstract class YgSection extends StatelessWidget with StatelessWidgetDebugMixin 
   /// There's no padding here as we want [YgListTiles] to be edge to edge.
   const factory YgSection.list({
     required List<YgListTile> children,
-    String? title,
     String? subtitle,
-    MainAxisAlignment mainAxisAlignment,
-    MainAxisSize mainAxisSize,
-    CrossAxisAlignment crossAxisAlignment,
+    YgTag? tag,
+    String? title,
   }) = _YgSectionList;
+
+  const factory YgSection.expanding({
+    required Widget child,
+    YgExpansionController? controller,
+    bool initiallyExpanded,
+    Key? key,
+    String? subtitle,
+    YgTag? tag,
+    required String title,
+  }) = _YgExpandingSection;
+
+  const factory YgSection.expandingList({
+    required List<YgListTile> children,
+    YgExpansionController? controller,
+    bool initiallyExpanded,
+    Key? key,
+    String? subtitle,
+    YgTag? tag,
+    required String title,
+  }) = _YgExpandingSectionList;
+
+  const factory YgSection.expandingColumn({
+    required List<YgListTile> children,
+    YgExpansionController? controller,
+    bool initiallyExpanded,
+    Key? key,
+    String? subtitle,
+    YgTag? tag,
+    required String title,
+  }) = _YgExpandingSectionColumn;
+
+  const YgSection._({
+    super.key,
+    this.title,
+    this.subtitle,
+    this.tag,
+  }) : assert(
+          title != null || (subtitle == null && tag == null),
+          'Subtitle and tag cannot be set without a title.',
+        );
 
   /// Title of the section.
   final String? title;
@@ -53,27 +97,10 @@ abstract class YgSection extends StatelessWidget with StatelessWidgetDebugMixin 
   /// You cannot have a subtitle without a title.
   final String? subtitle;
 
-  @override
-  Widget build(BuildContext context) {
-    final String? title = this.title;
-    final String? subtitle = this.subtitle;
-    final Widget child = buildChild(context);
+  /// The tag trailing the section.
+  final YgTag? tag;
 
-    if (title == null) {
-      return child;
-    }
-
-    return Column(
-      children: <Widget>[
-        _YgSectionHeader(
-          title: title,
-          subtitle: subtitle,
-        ),
-        child,
-      ],
-    );
-  }
-
+  /// Builds the child widget.
   Widget buildChild(BuildContext context);
 
   @override

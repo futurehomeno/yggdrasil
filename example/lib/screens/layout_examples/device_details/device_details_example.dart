@@ -30,7 +30,7 @@ class DeviceDetailsExample extends StatelessWidget {
               ),
             ],
           ),
-          const YgSection.base(
+          const YgSection(
             child: YgCard(
               variant: YgCardVariant.outlined,
               child: YgListTile(
@@ -45,7 +45,7 @@ class DeviceDetailsExample extends StatelessWidget {
               ),
             ),
           ),
-          YgSection.base(
+          YgSection(
             child: YgCallout(
               variant: YgCalloutVariant.warning,
               description:

@@ -81,7 +81,7 @@ class _GaugeScreenState extends State<GaugeScreen> {
               ),
             ],
           ),
-          const YgSection.base(
+          const YgSection(
             title: 'Disabled gauge',
             child: Row(
               mainAxisAlignment: MainAxisAlignment.center,
@@ -168,7 +168,7 @@ class _GaugeScreenState extends State<GaugeScreen> {
               ),
             ],
           ),
-          const YgSection.base(
+          const YgSection(
             title: 'Responsive between ~90px and ~120px',
             child: Row(
               mainAxisAlignment: MainAxisAlignment.center,
@@ -197,7 +197,7 @@ class _GaugeScreenState extends State<GaugeScreen> {
               ],
             ),
           ),
-          const YgSection.base(
+          const YgSection(
             title: 'Flexible min / max',
             child: Row(
               mainAxisAlignment: MainAxisAlignment.center,
@@ -248,7 +248,7 @@ class _GaugeScreenState extends State<GaugeScreen> {
               ),
             ],
           ),
-          const YgSection.base(
+          const YgSection(
             title: 'Gauge in a 100x200 container',
             child: SizedBox(
               height: 100.0,
@@ -260,7 +260,7 @@ class _GaugeScreenState extends State<GaugeScreen> {
               ),
             ),
           ),
-          const YgSection.base(
+          const YgSection(
             title: 'Gauge in a 200x100 container',
             child: SizedBox(
               height: 200.0,

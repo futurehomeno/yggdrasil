@@ -33,7 +33,7 @@ class _SwitchScreenState extends State<SwitchScreen> {
       componentName: 'Switch',
       child: Column(
         children: <Widget>[
-          YgSection.base(
+          YgSection(
             title: 'Binary switch',
             child: YgSwitch(
               value: binaryValue,
@@ -43,7 +43,7 @@ class _SwitchScreenState extends State<SwitchScreen> {
               },
             ),
           ),
-          YgSection.base(
+          YgSection(
             title: 'Tri-state switch',
             child: YgSwitch(
               value: triStateValue,
@@ -54,7 +54,7 @@ class _SwitchScreenState extends State<SwitchScreen> {
               },
             ),
           ),
-          YgSection.base(
+          YgSection(
             title: 'Disabled switch',
             child: Row(
               mainAxisSize: MainAxisSize.min,
@@ -74,7 +74,7 @@ class _SwitchScreenState extends State<SwitchScreen> {
               ].withHorizontalSpacing(10.0),
             ),
           ),
-          const YgSection.base(
+          const YgSection(
             title: 'Switch in a list tile',
             child: YgCallout(
               variant: YgCalloutVariant.warning,

@@ -31,7 +31,7 @@ class _StepperScreenState extends State<StepperScreen> {
       componentName: 'Stepper',
       child: Column(
         children: <Widget>[
-          YgSection.base(
+          YgSection(
             title: 'Default stepper',
             child: YgStepper(
               value: value,
@@ -41,7 +41,7 @@ class _StepperScreenState extends State<StepperScreen> {
               max: 10,
             ),
           ),
-          YgSection.base(
+          YgSection(
             title: 'Stepper with metric',
             child: YgStepper(
               value: value2,

@@ -45,7 +45,7 @@ class TagScreen extends StatelessWidget {
               ),
             ].withVerticalSpacing(10.0),
           ),
-          YgSection.base(
+          YgSection(
             title: 'Sizes',
             child: Row(
               mainAxisSize: MainAxisSize.min,
@@ -79,7 +79,7 @@ class TagScreen extends StatelessWidget {
               ),
             ].withVerticalSpacing(10.0),
           ),
-          YgSection.base(
+          YgSection(
             title: 'Clickable',
             child: Row(
               mainAxisSize: MainAxisSize.min,

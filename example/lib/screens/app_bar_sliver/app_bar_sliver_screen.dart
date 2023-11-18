@@ -137,7 +137,7 @@ class _AppBarSliverScreenState extends State<AppBarSliverScreen> {
             ),
           ),
           const SliverToBoxAdapter(
-            child: YgSection.base(
+            child: YgSection(
               title: 'Padding to allow the screen to scroll',
               child: SizedBox(height: 666.0),
             ),

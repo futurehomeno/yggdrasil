@@ -47,7 +47,7 @@ class CardScreen extends StatelessWidget {
               ),
             ].withVerticalSpacing(10.0),
           ),
-          YgSection.base(
+          YgSection(
             title: 'Content',
             subtitle:
                 'Cards are only containers for other widgets and thus do not have any styling of their own. Most commonly you\'ll be adding a ListTile inside of them, as seen in the examples here.',

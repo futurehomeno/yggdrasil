@@ -21,13 +21,13 @@ class IconScreen extends StatelessWidget {
       componentName: 'Icon',
       child: Column(
         children: <Widget>[
-          YgSection.base(
+          YgSection(
             title: 'Available icons',
             child: YgCallout(
               description: 'All currently supported icons can be seen on the icons list screen.',
             ),
           ),
-          YgSection.base(
+          YgSection(
             title: 'Sizes',
             child: Row(
               mainAxisSize: MainAxisSize.min,
@@ -43,7 +43,7 @@ class IconScreen extends StatelessWidget {
               ],
             ),
           ),
-          YgSection.base(
+          YgSection(
             title: 'Inherited color',
             subtitle: 'Color switching is handled by the parent widget.',
             child: YgTag(
@@ -54,7 +54,7 @@ class IconScreen extends StatelessWidget {
               ),
             ),
           ),
-          YgSection.base(
+          YgSection(
             title: 'Disabled color',
             subtitle: 'Color switching for state is handled by the parent widget.',
             child: YgButton(
@@ -65,7 +65,7 @@ class IconScreen extends StatelessWidget {
               ),
             ),
           ),
-          YgSection.base(
+          YgSection(
             title: 'Override color',
             subtitle: 'Override the default theme color. See warning below.',
             child: YgTag(
@@ -76,7 +76,7 @@ class IconScreen extends StatelessWidget {
               ),
             ),
           ),
-          YgSection.base(
+          YgSection(
             title: 'Use embedded color',
             subtitle: 'Color embedded in the SVG is used. See warning below.',
             child: YgTag(
@@ -87,7 +87,7 @@ class IconScreen extends StatelessWidget {
               ),
             ),
           ),
-          YgSection.base(
+          YgSection(
             title: 'Warning!',
             subtitle:
                 'Overriding color by using either useEmbeddedColor or just setting a specific color will prevent the parent widget from being able to dynamically change the color based on theme or state changes. Use with caution, as end result may end up like the example below.',

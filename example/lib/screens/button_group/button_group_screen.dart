@@ -21,7 +21,7 @@ class ButtonGroupScreen extends StatelessWidget {
       componentName: 'ButtonGroup',
       child: Column(
         children: <Widget>[
-          YgSection.base(
+          YgSection(
             title: 'Button group with 1 button',
             child: YgButtonGroup(
               children: <YgButton>[
@@ -34,7 +34,7 @@ class ButtonGroupScreen extends StatelessWidget {
               ],
             ),
           ),
-          YgSection.base(
+          YgSection(
             title: 'Button group with 2 buttons',
             child: YgButtonGroup(
               children: <YgButton>[
@@ -53,7 +53,7 @@ class ButtonGroupScreen extends StatelessWidget {
               ],
             ),
           ),
-          YgSection.base(
+          YgSection(
             title: 'Button group with 3 buttons',
             child: YgButtonGroup(
               children: <YgButton>[
@@ -78,7 +78,7 @@ class ButtonGroupScreen extends StatelessWidget {
               ],
             ),
           ),
-          YgSection.base(
+          YgSection(
             title: 'Action or cancel group.',
             child: YgButtonGroup.actionOrCancel(
               actionText: 'Save',

@@ -30,7 +30,7 @@ class _ButtonScreenState extends State<ButtonScreen> {
       componentName: 'Button',
       child: Column(
         children: <Widget>[
-          const YgSection.base(
+          const YgSection(
             title: 'Buttons in a group',
             child: YgCallout(
               variant: YgCalloutVariant.warning,
