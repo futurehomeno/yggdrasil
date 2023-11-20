@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:yggdrasil/src/components/buttons/yg_icon_button/_yg_icon_button.dart';
 import 'package:yggdrasil/src/components/buttons/yg_tag/yg_tag.dart';
 import 'package:yggdrasil/src/components/yg_icon/yg_icon.dart';
 import 'package:yggdrasil/src/components/yg_list_tile/yg_list_tile.dart';
@@ -16,7 +15,7 @@ part 'regular/yg_section_base.dart';
 part 'regular/yg_section_column.dart';
 part 'regular/yg_section_list.dart';
 part 'regular/yg_section_regular.dart';
-part 'widgets/yg_section_header.dart';
+part 'yg_section_header.dart';
 
 /// Responsible for applying correct padding to collections of widgets.
 abstract class YgSection extends StatelessWidget with StatelessWidgetDebugMixin {

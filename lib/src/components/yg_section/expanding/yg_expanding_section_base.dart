@@ -18,12 +18,13 @@ abstract class _YgExpandingSectionBase extends YgSection {
 
   @override
   Widget build(BuildContext context) {
+    final String title = this.title ?? '';
     final YgTag? tag = this.tag;
 
     return YgExpander(
       headerBuilder: (BuildContext context, YgExpansionController controller) {
         return _YgSectionHeader(
-          title: title ?? '',
+          title: title,
           subtitle: subtitle,
           trailing: <Widget>[
             if (tag != null) tag,
@@ -38,22 +39,22 @@ abstract class _YgExpandingSectionBase extends YgSection {
   }
 
   Widget _buildExpandButton(YgExpansionController controller) {
-    return ListenableBuilder(
-      listenable: controller,
-      builder: (BuildContext context, Widget? child) {
-        return AnimatedRotation(
-          turns: controller.expanded ? 0.5 : 0,
-          duration: const Duration(milliseconds: 200),
-          child: InkResponse(
-            onTap: controller.toggle,
-            radius: 20,
-            splashFactory: InkSplash.splashFactory,
+    return InkResponse(
+      onTap: controller.toggle,
+      radius: 20,
+      splashFactory: InkSplash.splashFactory,
+      child: ListenableBuilder(
+        listenable: controller,
+        builder: (BuildContext context, Widget? child) {
+          return AnimatedRotation(
+            turns: controller.expanded ? 0.5 : 0,
+            duration: const Duration(milliseconds: 200),
             child: const YgIcon(
               YgIcons.caretDown,
             ),
-          ),
-        );
-      },
+          );
+        },
+      ),
     );
   }
 }

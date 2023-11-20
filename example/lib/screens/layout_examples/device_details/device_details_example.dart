@@ -94,6 +94,8 @@ class DeviceDetailsExample extends StatelessWidget {
           ),
           YgSection.expandingList(
             title: 'General settings',
+            subtitle:
+                'A subtitle with enough text so it should wrap to the next line while going under the trailing stuff',
             tag: const YgTag(
               size: YgTagSize.small,
               variant: YgTagVariant.informative,

@@ -9,11 +9,19 @@ part 'section_header_theme.tailor.dart';
 
 @tailorComponent
 class _$YgSectionHeaderTheme {
-  static const List<TextStyle> titleTextStyle = <TextStyle>[
-    consumer_light.FhTextStyles.sectionHeading2Medium,
-    consumer_dark.FhTextStyles.sectionHeading2Medium,
-    professional_light.FhTextStyles.sectionHeading2Medium,
-    professional_dark.FhTextStyles.sectionHeading2Medium,
+  static final List<TextStyle> titleTextStyle = <TextStyle>[
+    consumer_light.FhTextStyles.sectionHeading2Medium.copyWith(
+      height: 1.2,
+    ),
+    consumer_dark.FhTextStyles.sectionHeading2Medium.copyWith(
+      height: 1.2,
+    ),
+    professional_light.FhTextStyles.sectionHeading2Medium.copyWith(
+      height: 1.2,
+    ),
+    professional_dark.FhTextStyles.sectionHeading2Medium.copyWith(
+      height: 1.2,
+    ),
   ];
 
   static final List<TextStyle> subtitleTextStyle = <TextStyle>[
