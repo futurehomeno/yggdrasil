@@ -1,3 +1,22 @@
+# 1.8.0 [20.11.2023 08:37]
+
+## Breaking Changes
+
+YgButtonGroup no longer accepts mainAxisAlignment, mainAxisSize and crossAxisAlignment, and Axis is now required. This is done to support the new vertical and horizontal constructors instead. For most cases, adding `.vertical` should be enough to update as we almost exclusively have vertical button groups.
+
+- [dev-fix] Add key property back to list tiles.
+- [dev-improvement] Added golden tests for YgButton component [DEV-2263].
+- [dev-improvement] Added golden tests for YgButtonGroup [DEV-2284].
+- [dev-improvement] Added golden tests for YgSection component [DEV-2373].
+- [dev-improvement] Added golden tests for YgSwitch component [DEV-2264].
+- [dev-improvement] Added golden tests for YgTextLink component [DEV-2315].
+- [dev-improvement] Added golden tests for YgToggleButton component [DEV-2340].
+- [fix] Fixed an issue where YgToggleButton would take up too much space.
+- [fix] Fixed an issue where YgToggleButton with long text did not render correctly.
+- [fix] Fixed incorrect padding on list tiles without leading or trailing widgets.
+- [improvement] Added vertical and horizontal constructors for YgButtonGroup.
+- [improvement] Ensure correct spacing for horizontal buttons in YgButtonGroup.
+
 # 1.7.0 [17.11.2023 09:03]
 
 ## Breaking Changes
