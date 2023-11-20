@@ -33,7 +33,7 @@ void main() {
             child: YgBottomSheet(
               title: YgGoldenTestValues.shortText,
               content: const Text(YgGoldenTestValues.longText),
-              footerButtons: YgButtonGroup(
+              footerButtons: YgButtonGroup.vertical(
                 children: <YgButton>[
                   YgButton(
                     onPressed: () {},
