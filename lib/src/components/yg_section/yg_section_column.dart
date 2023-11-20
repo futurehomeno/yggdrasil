@@ -6,12 +6,9 @@ class _YgSectionColumn extends YgSection {
     this.mainAxisSize = MainAxisSize.max,
     this.crossAxisAlignment = CrossAxisAlignment.center,
     required this.children,
-    String? title,
-    String? subtitle,
-  }) : super._(
-          subtitle: subtitle,
-          title: title,
-        );
+    super.title,
+    super.subtitle,
+  }) : super._();
 
   final MainAxisAlignment mainAxisAlignment;
   final MainAxisSize mainAxisSize;

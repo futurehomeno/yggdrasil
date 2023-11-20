@@ -18,6 +18,8 @@ class YgDropdownBottomSheetRoute<T extends Object> extends YgBottomSheetModalRou
   Future<RoutePopDisposition> willPop() {
     onClose();
 
+    // TODO(DEV-2458): Find alternative way to intercept willPop.
+    // ignore: deprecated_member_use
     return super.willPop();
   }
 

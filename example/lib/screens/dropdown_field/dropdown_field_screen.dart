@@ -161,7 +161,7 @@ class _DropdownFieldScreenState extends State<DropdownFieldScreen> {
                   completeAction: YgCompleteAction.focusNext,
                   autoValidate: YgAutoValidate.onComplete,
                   validators: <FormFieldValidator<String>>[
-                    const NullValidator(nullError: 'This field is required!'),
+                    const NullValidator(nullError: 'This field is required!').call,
                   ],
                 ),
                 YgDropdownFormField<String>.multiSelect(
@@ -173,11 +173,11 @@ class _DropdownFieldScreenState extends State<DropdownFieldScreen> {
                   validators: <FormFieldValidator<Set<String>>>[
                     const MultiSelectRequiredValidator(
                       requiredError: 'This field is required!',
-                    ),
+                    ).call,
                     const MultiSelectMaxItemsValidator(
                       tooManyItemsError: 'Can not select more than 3 items!',
                       maxItems: 3,
-                    ),
+                    ).call,
                   ],
                 ),
                 YgButton(

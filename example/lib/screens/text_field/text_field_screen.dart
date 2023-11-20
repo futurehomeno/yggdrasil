@@ -134,10 +134,10 @@ class _TextFieldScreenState extends State<TextFieldScreen> {
                       validators: <FormFieldValidator<String>>[
                         const RequiredValidator(
                           requiredError: 'This field is required!',
-                        ),
+                        ).call,
                         const EmailValidator(
                           invalidEmailError: 'Invalid email',
-                        ),
+                        ).call,
                       ],
                     ),
                     YgTextFormField.password(
@@ -147,10 +147,10 @@ class _TextFieldScreenState extends State<TextFieldScreen> {
                       validators: <FormFieldValidator<String>>[
                         const RequiredValidator(
                           requiredError: 'This field is required!',
-                        ),
+                        ).call,
                         PasswordValidator(
                           passwordTooShortError: 'Password is too short!',
-                        ),
+                        ).call,
                       ],
                     ),
                     YgTextFormField.password(
@@ -160,11 +160,11 @@ class _TextFieldScreenState extends State<TextFieldScreen> {
                       validators: <FormFieldValidator<String>>[
                         const RequiredValidator(
                           requiredError: 'This field is required!',
-                        ),
+                        ).call,
                         MatchValidator<String>(
                           otherFieldKey: _passwordKey,
                           error: 'Passwords do not match!',
-                        ),
+                        ).call,
                       ],
                     ),
                     YgButton(

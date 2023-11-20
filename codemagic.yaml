@@ -1,3 +1,6 @@
+flutter_ver: &flutter_ver 3.16.0
+xcode_ver: &xcode_ver latest
+
 workflows:
   pr-builder:
     name: PR builder
@@ -6,8 +9,8 @@ workflows:
     environment:
       groups:
         - frontend
-      flutter: 3.10.5
-      xcode: latest
+      flutter: *flutter_ver
+      xcode: *xcode_ver
     cache:
       cache_paths:
         - ~/.pub-cache
@@ -47,8 +50,8 @@ workflows:
     environment:
       groups:
         - frontend
-      flutter: 3.10.5
-      xcode: latest
+      flutter: *flutter_ver
+      xcode: *xcode_ver
     cache:
       cache_paths:
         - ~/.pub-cache
@@ -79,8 +82,8 @@ workflows:
     environment:
       groups:
         - frontend
-      flutter: 3.10.5
-      xcode: latest
+      flutter: *flutter_ver
+      xcode: *xcode_ver
     cache:
       cache_paths:
         - ~/.pub-cache
@@ -121,7 +124,7 @@ workflows:
         - slack
       android_signing:
         - yggdrasil_keystore
-      flutter: 3.10.5
+      flutter: *flutter_ver
 
     triggering:
       events:
