@@ -1,17 +1,17 @@
 part of 'yg_list_tile.dart';
 
 /// Binary (or optionally tri-state) switch.
-class YgCheckboxListTile extends _YgListTileWithChildAndOptionalLeading {
+final class YgCheckboxListTile extends YgListTile {
   const YgCheckboxListTile({
     super.key,
     required super.title,
     required this.value,
     required this.onChanged,
-    super.leadingWidget,
     super.subtitle,
     super.subtitleIcon,
+    this.leadingWidget,
     this.triState = false,
-  }) : super(
+  }) : super._(
           disabled: onChanged == null,
         );
 
@@ -24,20 +24,34 @@ class YgCheckboxListTile extends _YgListTileWithChildAndOptionalLeading {
   /// See [YgCheckbox] documentation.
   final bool triState;
 
-  @override
+  /// Optional leading widget.
+  ///
+  /// When provided the [YgCheckbox] will be moved to the trailing position.
+  final Widget? leadingWidget;
+
   void _onTap() {
     final bool? nextValue = YgSwitchHelpers.getNextValue(value, triState);
     onChanged?.call(nextValue);
   }
 
   @override
-  Widget _buildChild(BuildContext context) {
-    return AbsorbPointer(
-      child: YgNoFocus(
-        child: YgCheckbox(
-          value: value,
-          onChanged: onChanged,
-          triState: triState,
+  Widget build(BuildContext context) {
+    return _YgListTileBody.withChildAndOptionalLeading(
+      title: title,
+      subtitle: subtitle,
+      subtitleIcon: subtitleIcon,
+      disabled: onChanged == null,
+      onTap: _onTap,
+      leading: leadingWidget,
+      supporting: null,
+      infoButton: null,
+      child: AbsorbPointer(
+        child: YgNoFocus(
+          child: YgCheckbox(
+            value: value,
+            onChanged: onChanged,
+            triState: triState,
+          ),
         ),
       ),
     );

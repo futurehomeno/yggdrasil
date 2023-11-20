@@ -5,7 +5,8 @@ import 'package:yggdrasil/src/utils/_utils.dart';
 import 'package:yggdrasil/yggdrasil.dart';
 
 part 'yg_checkbox_list_tile.dart';
-part 'yg_list_tile_with_child_and_optional_leading.dart';
+part 'yg_expanding_list_tile.dart';
+part 'yg_list_tile_body.dart';
 part 'yg_radio_list_tile.dart';
 part 'yg_regular_list_tile.dart';
 part 'yg_switch_list_tile.dart';
@@ -17,25 +18,38 @@ part 'yg_switch_list_tile.dart';
 /// Supports 2 leading, 2 trailing and 2 supporting widgets,
 /// however, this differs from design in Figma. This is so
 /// we do not encourage designers to use more than 2 widgets.
-abstract class YgListTile extends StatelessWidget with StatelessWidgetDebugMixin {
+abstract base class YgListTile extends StatelessWidget with StatelessWidgetDebugMixin {
   const factory YgListTile({
-    Key key,
-    required String title,
-    List<Widget> leadingWidgets,
-    List<Widget> supportingWidgets,
-    List<Widget> trailingWidgets,
-    VoidCallback? onInfoTap,
-    VoidCallback? onTap,
+    Key? key,
+    List<Widget>? leadingWidgets,
+    void Function()? onInfoTap,
+    void Function()? onTap,
     String? subtitle,
     Widget? subtitleIcon,
+    List<Widget>? supportingWidgets,
+    required String title,
+    List<Widget>? trailingWidgets,
   }) = _YgRegularListTile;
+
+  const factory YgListTile.expanding({
+    required Widget child,
+    YgExpansionController? controller,
+    bool initiallyExpanded,
+    Key? key,
+    List<Widget>? leadingWidgets,
+    void Function()? onInfoTap,
+    String? subtitle,
+    Widget? subtitleIcon,
+    List<Widget>? supportingWidgets,
+    required String title,
+  }) = _YgExpandingListTile;
 
   const YgListTile._({
     super.key,
     required this.title,
-    this.subtitle,
-    this.subtitleIcon,
-    this.disabled = false,
+    required this.subtitle,
+    required this.subtitleIcon,
+    required this.disabled,
   }) : assert(
           subtitleIcon == null || subtitle != null,
           'Can not add a subtitleIcon without a subtitle',
@@ -49,11 +63,15 @@ abstract class YgListTile extends StatelessWidget with StatelessWidgetDebugMixin
   }) {
     return YgListTile(
       title: link,
-      leadingWidgets: <Widget>[YgIcon(iconPath)],
-      trailingWidgets: const <Widget>[YgIcon(YgIcons.caretRight)],
+      leadingWidgets: <YgIcon>[YgIcon(iconPath)],
+      trailingWidgets: const <YgIcon>[YgIcon(YgIcons.caretRight)],
       onTap: onTap,
     );
   }
+
+  static const int _allowedNumberOfLeadingWidgets = 2;
+  static const int _allowedNumberOfTrailingWidgets = 2;
+  static const int _allowedNumberOfSupportingWidgets = 2;
 
   /// The title.
   ///
@@ -75,86 +93,6 @@ abstract class YgListTile extends StatelessWidget with StatelessWidgetDebugMixin
   ///
   /// Does not create any visual changes.
   final bool disabled;
-
-  @override
-  Widget build(BuildContext context) {
-    final YgListTileTheme listTileTheme = context.listTileTheme;
-    final Widget? leadingWidgets = _buildLeadingWidgets(context);
-    final Widget? supportingWidgets = _buildSupportingWidgets(context);
-    final Widget? trailingWidgets = _buildTrailingWidgets(context);
-
-    return Material(
-      type: MaterialType.transparency,
-      child: InkWell(
-        onTap: disabled ? null : _onTap,
-        child: Padding(
-          padding: listTileTheme.outerPadding,
-          child: Row(
-            children: <Widget>[
-              if (leadingWidgets != null) leadingWidgets,
-              Expanded(
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: <Widget>[
-                    _buildTitle(context),
-                    if (subtitle != null) _buildSubtitle(listTileTheme),
-                  ].withVerticalSpacing(listTileTheme.titleSubtitleSpacing),
-                ),
-              ),
-              if (supportingWidgets != null) supportingWidgets,
-              if (trailingWidgets != null) trailingWidgets,
-            ].withHorizontalSpacing(listTileTheme.contentSpacing),
-          ),
-        ),
-      ),
-    );
-  }
-
-  Widget _buildTitle(BuildContext context) {
-    final Widget? infoButton = _buildInfoButton(context);
-    final YgListTileTheme listTileTheme = context.listTileTheme;
-
-    return Row(
-      children: <Widget>[
-        Flexible(
-          child: Text(
-            title,
-            style: listTileTheme.titleTextStyle,
-            overflow: TextOverflow.ellipsis,
-          ),
-        ),
-        if (infoButton != null) infoButton,
-      ].withHorizontalSpacing(listTileTheme.titleInfoSpacing),
-    );
-  }
-
-  Widget _buildSubtitle(YgListTileTheme listTileTheme) {
-    return Row(
-      children: <Widget>[
-        if (subtitleIcon != null) subtitleIcon!,
-        Flexible(
-          child: Text(
-            subtitle!,
-            style: listTileTheme.subtitleTextStyle,
-          ),
-        ),
-      ].withHorizontalSpacing(listTileTheme.subtitleSubtitleIconSpacing),
-    );
-  }
-
-  @protected
-  Widget? _buildLeadingWidgets(BuildContext context) => null;
-
-  @protected
-  Widget? _buildTrailingWidgets(BuildContext context) => null;
-
-  @protected
-  Widget? _buildSupportingWidgets(BuildContext context) => null;
-
-  @protected
-  Widget? _buildInfoButton(BuildContext context) => null;
-
-  void _onTap();
 
   @override
   YgDebugType get debugType {

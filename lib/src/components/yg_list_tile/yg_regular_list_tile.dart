@@ -7,35 +7,31 @@ part of 'yg_list_tile.dart';
 /// Supports 2 leading, 2 trailing and 2 supporting widgets,
 /// however, this differs from design in Figma. This is so
 /// we do not encourage designers to use more than 2 widgets.
-class _YgRegularListTile extends YgListTile {
+final class _YgRegularListTile extends YgListTile {
   const _YgRegularListTile({
     super.key,
     required super.title,
     super.subtitle,
     super.subtitleIcon,
-    this.leadingWidgets = const <YgIcon>[],
-    this.trailingWidgets = const <YgIcon>[],
-    this.supportingWidgets = const <Widget>[],
+    this.leadingWidgets,
+    this.trailingWidgets,
+    this.supportingWidgets,
     this.onTap,
     this.onInfoTap,
   }) : super._(
           disabled: onTap == null,
         );
 
-  static const int _allowedNumberOfLeadingWidgets = 2;
-  static const int _allowedNumberOfTrailingWidgets = 2;
-  static const int _allowedNumberOfSupportingWidgets = 2;
-
   /// Widgets which will be placed at the front of the list tile.
-  final List<Widget> leadingWidgets;
+  final List<Widget>? leadingWidgets;
 
   /// Widgets which will be placed at the end of the list tile.
-  final List<Widget> trailingWidgets;
+  final List<Widget>? trailingWidgets;
 
   /// Up to 2 widgets which will be placed between the content and the trailing widget.
   ///
   /// Will be stacked on top of each other when there is more than one specified.
-  final List<Widget> supportingWidgets;
+  final List<Widget>? supportingWidgets;
 
   /// Called when the list tile is pressed.
   final VoidCallback? onTap;
@@ -46,68 +42,19 @@ class _YgRegularListTile extends YgListTile {
   final VoidCallback? onInfoTap;
 
   @override
-  Widget? _buildInfoButton(BuildContext context) {
-    if (onInfoTap == null) {
-      return null;
-    }
+  Widget build(BuildContext context) {
+    final YgListTileTheme theme = context.listTileTheme;
 
-    return YgIconButton(
-      onPressed: onInfoTap,
-      size: YgIconButtonSize.small,
-      child: const YgIcon(YgIcons.info),
+    return _YgListTileBody(
+      title: title,
+      subtitle: subtitle,
+      subtitleIcon: subtitleIcon,
+      disabled: disabled,
+      onTap: onTap,
+      infoButton: _YgListTileBody._buildInfoButton(onInfoTap),
+      leading: _YgListTileBody._buildLeading(theme, leadingWidgets),
+      trailing: _YgListTileBody._buildTrailing(theme, trailingWidgets),
+      supporting: _YgListTileBody._buildSupporting(theme, supportingWidgets),
     );
-  }
-
-  @override
-  Widget _buildLeadingWidgets(BuildContext context) {
-    assert(
-      leadingWidgets.length <= _allowedNumberOfLeadingWidgets,
-      'Cannot have more than 2 leading widgets.',
-    );
-
-    final YgListTileTheme listTileTheme = context.listTileTheme;
-
-    return Row(
-      children: leadingWidgets.withHorizontalSpacing(
-        listTileTheme.contentSpacing,
-      ),
-    );
-  }
-
-  @override
-  Widget _buildTrailingWidgets(BuildContext context) {
-    assert(
-      trailingWidgets.length <= _allowedNumberOfTrailingWidgets,
-      'Cannot have more than 2 trailing widget.',
-    );
-
-    final YgListTileTheme listTileTheme = context.listTileTheme;
-
-    return Row(
-      children: trailingWidgets.withHorizontalSpacing(
-        listTileTheme.contentSpacing,
-      ),
-    );
-  }
-
-  @override
-  Widget _buildSupportingWidgets(BuildContext context) {
-    assert(
-      supportingWidgets.length <= _allowedNumberOfSupportingWidgets,
-      'Cannot have more than 2 supporting widgets.',
-    );
-
-    final YgListTileTheme listTileTheme = context.listTileTheme;
-
-    return Column(
-      children: supportingWidgets.withVerticalSpacing(
-        listTileTheme.contentSpacing,
-      ),
-    );
-  }
-
-  @override
-  void _onTap() {
-    onTap?.call();
   }
 }

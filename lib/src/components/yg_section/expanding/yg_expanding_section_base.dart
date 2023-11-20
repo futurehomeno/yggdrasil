@@ -51,11 +51,12 @@ abstract class _YgExpandingSectionBase extends YgSection {
           return AnimatedRotation(
             turns: controller.expanded ? 0.5 : 0,
             duration: const Duration(milliseconds: 200),
-            child: const YgIcon(
-              YgIcons.caretDown,
-            ),
+            child: child,
           );
         },
+        child: const YgIcon(
+          YgIcons.caretDown,
+        ),
       ),
     );
   }

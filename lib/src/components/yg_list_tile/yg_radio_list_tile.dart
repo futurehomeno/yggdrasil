@@ -1,7 +1,7 @@
 part of 'yg_list_tile.dart';
 
 /// Radio button inside a list tile.
-class YgRadioListTile<T> extends _YgListTileWithChildAndOptionalLeading {
+final class YgRadioListTile<T> extends YgListTile {
   const YgRadioListTile({
     super.key,
     required super.title,
@@ -10,8 +10,8 @@ class YgRadioListTile<T> extends _YgListTileWithChildAndOptionalLeading {
     required this.onChanged,
     super.subtitle,
     super.subtitleIcon,
-    super.leadingWidget,
-  }) : super(
+    this.leadingWidget,
+  }) : super._(
           disabled: onChanged == null,
         );
 
@@ -24,20 +24,34 @@ class YgRadioListTile<T> extends _YgListTileWithChildAndOptionalLeading {
   /// See [YgRadio.onChanged].
   final ValueChanged<T?>? onChanged;
 
+  /// Optional leading widget.
+  ///
+  /// When provided the [YgRadio] will be moved to the trailing position.
+  final Widget? leadingWidget;
+
   @override
-  Widget _buildChild(BuildContext context) {
-    return AbsorbPointer(
-      child: YgNoFocus(
-        child: YgRadio<T>(
-          value: value,
-          groupValue: groupValue,
-          onChanged: onChanged,
+  Widget build(BuildContext context) {
+    return _YgListTileBody.withChildAndOptionalLeading(
+      title: title,
+      subtitle: subtitle,
+      subtitleIcon: subtitleIcon,
+      disabled: onChanged == null,
+      onTap: _onTap,
+      leading: leadingWidget,
+      supporting: null,
+      infoButton: null,
+      child: AbsorbPointer(
+        child: YgNoFocus(
+          child: YgRadio<T>(
+            value: value,
+            groupValue: groupValue,
+            onChanged: onChanged,
+          ),
         ),
       ),
     );
   }
 
-  @override
   void _onTap() {
     onChanged?.call(value);
   }

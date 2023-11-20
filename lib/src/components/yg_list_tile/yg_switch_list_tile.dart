@@ -1,7 +1,7 @@
 part of 'yg_list_tile.dart';
 
 /// Binary (or optionally tri-state) switch.
-class YgSwitchListTile extends YgListTile {
+final class YgSwitchListTile extends YgListTile {
   const YgSwitchListTile({
     super.key,
     required super.title,
@@ -32,29 +32,33 @@ class YgSwitchListTile extends YgListTile {
   final Widget? trailingWidget;
 
   @override
-  Widget? _buildLeadingWidgets(BuildContext context) {
-    return leadingWidget;
-  }
-
-  @override
-  Widget _buildTrailingWidgets(BuildContext context) {
-    return Row(
-      children: <Widget>[
-        if (trailingWidget != null) trailingWidget!,
-        AbsorbPointer(
-          child: YgNoFocus(
-            child: YgSwitch(
-              value: value,
-              onChanged: onChanged,
-              triState: triState,
+  Widget build(BuildContext context) {
+    return _YgListTileBody(
+      title: title,
+      subtitle: subtitle,
+      subtitleIcon: subtitleIcon,
+      disabled: disabled,
+      onTap: _onTap,
+      leading: leadingWidget,
+      trailing: Row(
+        children: <Widget>[
+          if (trailingWidget != null) trailingWidget!,
+          AbsorbPointer(
+            child: YgNoFocus(
+              child: YgSwitch(
+                value: value,
+                onChanged: onChanged,
+                triState: triState,
+              ),
             ),
           ),
-        ),
-      ],
+        ],
+      ),
+      supporting: null,
+      infoButton: null,
     );
   }
 
-  @override
   void _onTap() {
     final bool? nextValue = YgSwitchHelpers.getNextValue(value, triState);
     onChanged?.call(nextValue);
