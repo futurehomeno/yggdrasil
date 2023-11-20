@@ -595,16 +595,20 @@ packages:
   theme_tailor:
     dependency: "direct dev"
     description:
-      path: "../theme_tailor/packages/theme_tailor"
-      relative: true
-    source: path
+      path: "packages/theme_tailor"
+      ref: main
+      resolved-ref: e458e5bf767f8201bc9116ce1dd155e3d8c6fa1f
+      url: "git@github.com:futurehomeno/theme_tailor.git"
+    source: git
     version: "2.0.0"
   theme_tailor_annotation:
     dependency: "direct main"
     description:
-      path: "../theme_tailor/packages/theme_tailor_annotation"
-      relative: true
-    source: path
+      path: "packages/theme_tailor_annotation"
+      ref: main
+      resolved-ref: e458e5bf767f8201bc9116ce1dd155e3d8c6fa1f
+      url: "git@github.com:futurehomeno/theme_tailor.git"
+    source: git
     version: "2.0.0"
   timing:
     dependency: transitive

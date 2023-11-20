@@ -869,10 +869,12 @@ packages:
   pubdev_registry:
     dependency: "direct dev"
     description:
-      path: "../../pubdev_registry"
-      relative: true
-    source: path
-    version: "2.2.1+71"
+      path: "."
+      ref: master
+      resolved-ref: "8bcb3ee46cf0b9bbe9f31ffa4ce3753e49590b35"
+      url: "git@github.com:futurehomeno/pubdev_registry.git"
+    source: git
+    version: "2.2.1+72"
   quiver:
     dependency: transitive
     description:
@@ -1057,9 +1059,11 @@ packages:
   theme_tailor_annotation:
     dependency: transitive
     description:
-      path: "../../theme_tailor/packages/theme_tailor_annotation"
-      relative: true
-    source: path
+      path: "packages/theme_tailor_annotation"
+      ref: main
+      resolved-ref: e458e5bf767f8201bc9116ce1dd155e3d8c6fa1f
+      url: "git@github.com:futurehomeno/theme_tailor.git"
+    source: git
     version: "2.0.0"
   tuple:
     dependency: transitive
@@ -1243,7 +1247,7 @@ packages:
       path: ".."
       relative: true
     source: path
-    version: "1.7.0"
+    version: "1.8.0"
 sdks:
   dart: ">=3.2.0 <4.0.0"
   flutter: ">=3.16.0"
