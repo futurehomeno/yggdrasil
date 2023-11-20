@@ -1,5 +1,6 @@
 export 'yg_child_size_observer.dart';
 export 'yg_debug/_yg_debug.dart';
+export 'yg_expander/yg_expander.dart';
 export 'yg_focusable_action_detector.dart';
 export 'yg_no_focus.dart';
 export 'yg_rounded_rectangle_gradient_border.dart';

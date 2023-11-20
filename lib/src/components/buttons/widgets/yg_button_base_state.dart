@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:yggdrasil/yggdrasil.dart';
+import 'package:yggdrasil/src/utils/_utils.dart';
 
 class YgButtonBaseState extends YgState {
   YgButtonBaseState({

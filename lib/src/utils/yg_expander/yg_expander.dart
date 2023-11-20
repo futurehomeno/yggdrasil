@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:yggdrasil/src/components/yg_section/expanding/yg_expansion_controller.dart';
+
+part 'yg_expansion_controller.dart';
 
 class YgExpander extends StatefulWidget {
   const YgExpander({
@@ -27,6 +28,12 @@ class _YgExpanderState extends State<YgExpander> {
   late YgExpansionController _controller = widget.controller ?? _createController();
 
   @override
+  void initState() {
+    super.initState();
+    _controller.addListener(_rebuild);
+  }
+
+  @override
   void didUpdateWidget(covariant YgExpander oldWidget) {
     final YgExpansionController? newController = widget.controller;
 
@@ -52,17 +59,21 @@ class _YgExpanderState extends State<YgExpander> {
 
   @override
   Widget build(BuildContext context) {
+    print('heightFactor: ${_getFactorForAxis(Axis.vertical)},\nwidthFactor: ${_getFactorForAxis(Axis.horizontal)}');
+
     return Flex(
       direction: widget.axis,
       children: <Widget>[
         widget.headerBuilder(context, _controller),
-        AnimatedAlign(
-          alignment: widget.alignment,
-          duration: const Duration(milliseconds: 200),
-          curve: Curves.easeInOut,
-          heightFactor: _getFactorForAxis(Axis.horizontal),
-          widthFactor: _getFactorForAxis(Axis.vertical),
-          child: widget.child,
+        ClipRect(
+          child: AnimatedAlign(
+            alignment: widget.alignment,
+            duration: const Duration(milliseconds: 200),
+            curve: Curves.easeInOut,
+            heightFactor: _getFactorForAxis(Axis.vertical),
+            widthFactor: _getFactorForAxis(Axis.horizontal),
+            child: widget.child,
+          ),
         ),
       ],
     );
@@ -83,6 +94,7 @@ class _YgExpanderState extends State<YgExpander> {
   }
 
   void _rebuild() {
+    print('cookie');
     setState(() {});
   }
 

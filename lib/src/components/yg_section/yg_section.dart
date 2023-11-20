@@ -3,13 +3,10 @@ import 'package:yggdrasil/src/components/buttons/yg_icon_button/_yg_icon_button.
 import 'package:yggdrasil/src/components/buttons/yg_tag/yg_tag.dart';
 import 'package:yggdrasil/src/components/yg_icon/yg_icon.dart';
 import 'package:yggdrasil/src/components/yg_list_tile/yg_list_tile.dart';
-import 'package:yggdrasil/src/components/yg_section/expanding/yg_expansion_controller.dart';
 import 'package:yggdrasil/src/extensions/widget_list_extension.dart';
 import 'package:yggdrasil/src/icons/_icons.dart';
 import 'package:yggdrasil/src/theme/theme.dart';
 import 'package:yggdrasil/src/utils/_utils.dart';
-
-import 'expanding/yg_expander.dart';
 
 part 'expanding/yg_expanding_section.dart';
 part 'expanding/yg_expanding_section_base.dart';

@@ -20,19 +20,21 @@ class _YgSectionHeader extends StatelessWidget {
       padding: context.sectionTheme.sectionHeader.padding,
       child: Row(
         children: <Widget>[
-          Column(
-            crossAxisAlignment: CrossAxisAlignment.stretch,
-            children: <Widget>[
-              Text(
-                title,
-                style: context.sectionTheme.sectionHeader.titleTextStyle,
-              ),
-              if (subtitle != null)
+          Expanded(
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.stretch,
+              children: <Widget>[
                 Text(
-                  subtitle,
-                  style: context.sectionTheme.sectionHeader.subtitleTextStyle,
+                  title,
+                  style: context.sectionTheme.sectionHeader.titleTextStyle,
                 ),
-            ],
+                if (subtitle != null)
+                  Text(
+                    subtitle,
+                    style: context.sectionTheme.sectionHeader.subtitleTextStyle,
+                  ),
+              ],
+            ),
           ),
           if (trailing != null) ...trailing,
         ].withHorizontalSpacing(10.0),

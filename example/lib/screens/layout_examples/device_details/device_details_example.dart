@@ -92,8 +92,13 @@ class DeviceDetailsExample extends StatelessWidget {
               ),
             ],
           ),
-          YgSection.list(
+          YgSection.expandingList(
             title: 'General settings',
+            tag: const YgTag(
+              size: YgTagSize.small,
+              variant: YgTagVariant.informative,
+              child: Text('Tag Basic'),
+            ),
             children: <YgListTile>[
               YgListTile.link(
                 link: 'System data',
