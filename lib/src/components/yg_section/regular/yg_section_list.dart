@@ -6,6 +6,7 @@ class _YgSectionList extends _YgSectionBase {
     super.title,
     super.subtitle,
     super.tag,
+    super.icon,
   });
 
   /// The widgets below this widget in the tree.

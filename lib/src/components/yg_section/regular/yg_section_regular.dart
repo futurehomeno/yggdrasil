@@ -6,6 +6,7 @@ class _YgSectionRegular extends _YgSectionBase {
     super.title,
     super.subtitle,
     super.tag,
+    super.icon,
   });
 
   /// The widget below this widget in the tree.

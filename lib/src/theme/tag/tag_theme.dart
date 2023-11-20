@@ -28,39 +28,39 @@ class _$YgTagTheme {
 
   static const List<EdgeInsets> paddingSmall = <EdgeInsets>[
     EdgeInsets.symmetric(
-      vertical: consumer_light.FhDimensions.xxs,
-      horizontal: consumer_light.FhDimensions.md,
+      vertical: 4,
+      horizontal: 6,
     ),
     EdgeInsets.symmetric(
-      vertical: consumer_dark.FhDimensions.xxs,
-      horizontal: consumer_dark.FhDimensions.md,
+      vertical: 4,
+      horizontal: 6,
     ),
     EdgeInsets.symmetric(
-      vertical: professional_light.FhDimensions.xxs,
-      horizontal: professional_light.FhDimensions.md,
+      vertical: 4,
+      horizontal: 6,
     ),
     EdgeInsets.symmetric(
-      vertical: professional_dark.FhDimensions.xxs,
-      horizontal: professional_dark.FhDimensions.md,
+      vertical: 4,
+      horizontal: 6,
     ),
   ];
 
   static const List<EdgeInsets> paddingMedium = <EdgeInsets>[
     EdgeInsets.symmetric(
-      vertical: consumer_light.FhDimensions.xs,
-      horizontal: consumer_light.FhDimensions.lg,
+      vertical: consumer_light.FhDimensions.xxs,
+      horizontal: consumer_light.FhDimensions.xs,
     ),
     EdgeInsets.symmetric(
-      vertical: consumer_dark.FhDimensions.xs,
-      horizontal: consumer_dark.FhDimensions.lg,
+      vertical: consumer_dark.FhDimensions.xxs,
+      horizontal: consumer_dark.FhDimensions.xs,
     ),
     EdgeInsets.symmetric(
-      vertical: professional_light.FhDimensions.xs,
-      horizontal: professional_light.FhDimensions.lg,
+      vertical: professional_light.FhDimensions.xxs,
+      horizontal: professional_light.FhDimensions.xs,
     ),
     EdgeInsets.symmetric(
-      vertical: professional_dark.FhDimensions.xs,
-      horizontal: professional_dark.FhDimensions.lg,
+      vertical: professional_dark.FhDimensions.xxs,
+      horizontal: professional_dark.FhDimensions.xs,
     ),
   ];
 

@@ -5,49 +5,58 @@ class _YgSectionHeader extends StatelessWidget {
     required this.title,
     this.subtitle,
     this.trailing,
+    this.icon,
   });
 
   final String title;
   final String? subtitle;
   final List<Widget>? trailing;
+  final YgIcon? icon;
 
   @override
   Widget build(BuildContext context) {
     final String? subtitle = this.subtitle;
     final List<Widget>? trailing = this.trailing;
+    final YgIcon? icon = this.icon;
+    final YgSectionHeaderTheme theme = context.sectionTheme.sectionHeader;
 
     return Padding(
-      padding: context.sectionTheme.sectionHeader.padding,
-      child: Expanded(
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.stretch,
-          children: <Widget>[
-            Row(
-              crossAxisAlignment: CrossAxisAlignment.end,
-              children: <Widget>[
-                Expanded(
-                  child: Text(
-                    title,
-                    style: context.sectionTheme.sectionHeader.titleTextStyle,
-                  ),
-                ),
-                if (trailing != null)
-                  Row(
-                    mainAxisSize: MainAxisSize.min,
-                    children: trailing.withHorizontalSpacing(10.0),
-                  ),
-              ].withHorizontalSpacing(10.0),
+      padding: theme.padding,
+      child: Row(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: <Widget>[
+          if (icon != null)
+            Padding(
+              padding: const EdgeInsets.only(right: 10.0),
+              child: icon,
             ),
-            if (subtitle != null)
-              Padding(
-                padding: const EdgeInsets.only(top: 5.0),
-                child: Text(
-                  subtitle,
-                  style: context.sectionTheme.sectionHeader.subtitleTextStyle,
+          Expanded(
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.stretch,
+              children: <Widget>[
+                Row(
+                  children: <Widget>[
+                    Expanded(
+                      child: Text(
+                        title,
+                        style: theme.titleTextStyle,
+                      ),
+                    ),
+                    if (trailing != null) ...trailing,
+                  ].withHorizontalSpacing(10.0),
                 ),
-              ),
-          ],
-        ),
+                if (subtitle != null)
+                  Padding(
+                    padding: const EdgeInsets.only(top: 5.0),
+                    child: Text(
+                      subtitle,
+                      style: theme.subtitleTextStyle,
+                    ),
+                  ),
+              ],
+            ),
+          ),
+        ],
       ),
     );
   }

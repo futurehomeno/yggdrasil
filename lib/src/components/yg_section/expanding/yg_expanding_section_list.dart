@@ -9,6 +9,7 @@ class _YgExpandingSectionList extends _YgExpandingSectionBase {
     super.subtitle,
     super.tag,
     super.key,
+    super.icon,
   });
 
   /// The widgets below this widget in the tree.

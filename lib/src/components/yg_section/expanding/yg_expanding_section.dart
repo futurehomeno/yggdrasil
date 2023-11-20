@@ -9,6 +9,7 @@ class _YgExpandingSection extends _YgExpandingSectionBase {
     super.subtitle,
     super.tag,
     super.key,
+    super.icon,
   });
 
   final Widget child;

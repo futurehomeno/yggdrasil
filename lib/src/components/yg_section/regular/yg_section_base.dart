@@ -5,6 +5,7 @@ abstract class _YgSectionBase extends YgSection {
     super.title,
     super.subtitle,
     super.tag,
+    super.icon,
   }) : super._();
 
   @override
@@ -22,6 +23,7 @@ abstract class _YgSectionBase extends YgSection {
         _YgSectionHeader(
           title: title,
           subtitle: subtitle,
+          icon: icon,
           trailing: buildTrailing(),
         ),
         child,

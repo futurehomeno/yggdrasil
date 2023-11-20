@@ -6,6 +6,7 @@ abstract class _YgExpandingSectionBase extends YgSection {
     required String super.title,
     super.subtitle,
     super.tag,
+    super.icon,
     this.controller,
     this.initiallyExpanded = false,
   }) : super._();
@@ -26,6 +27,7 @@ abstract class _YgExpandingSectionBase extends YgSection {
         return _YgSectionHeader(
           title: title,
           subtitle: subtitle,
+          icon: icon,
           trailing: <Widget>[
             if (tag != null) tag,
             _buildExpandButton(controller),
