@@ -5,17 +5,18 @@ publish_to: 'none'
 version: 1.6.22+27
 
 environment:
-  sdk: ^3.0.5
-  flutter: 3.10.5
+  sdk: ^3.2.0
+  flutter: 3.16.0
 
 dependencies:
   flutter:
     sdk: flutter
   yggdrasil:
     path: ../
-  get_it: 7.6.0
+  get_it: 7.6.4
+  # Don't update due to the flutter_bloc in other repose.
   provider: 5.0.0
-  mockito: 5.4.2
+  mockito: 5.4.3
 
 dev_dependencies:
   flutter_test:
@@ -25,7 +26,7 @@ dev_dependencies:
       ref: master # to-branch-script-tag
       url: git@github.com:futurehomeno/pubdev_registry.git
       path: . # keep it so that the scripts work
-  flutter_lints: ^2.0.1
+  flutter_lints: 3.0.1
 
 flutter:
   uses-material-design: true
