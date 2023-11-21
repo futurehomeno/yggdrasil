@@ -58,6 +58,7 @@ abstract class YgSection extends StatelessWidget with StatelessWidgetDebugMixin 
     String? subtitle,
     YgTag? tag,
     YgIcon? icon,
+    ValueChanged<bool>? onExpandedChanged,
   }) = _YgExpandingSection;
 
   const factory YgSection.expandingList({
@@ -69,6 +70,7 @@ abstract class YgSection extends StatelessWidget with StatelessWidgetDebugMixin 
     String? subtitle,
     YgTag? tag,
     YgIcon? icon,
+    ValueChanged<bool>? onExpandedChanged,
   }) = _YgExpandingSectionList;
 
   const factory YgSection.expandingColumn({
@@ -80,6 +82,7 @@ abstract class YgSection extends StatelessWidget with StatelessWidgetDebugMixin 
     String? subtitle,
     YgTag? tag,
     YgIcon? icon,
+    ValueChanged<bool>? onExpandedChanged,
   }) = _YgExpandingSectionColumn;
 
   const YgSection._({

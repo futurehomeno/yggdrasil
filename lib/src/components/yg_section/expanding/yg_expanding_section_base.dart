@@ -8,6 +8,7 @@ abstract class _YgExpandingSectionBase extends YgSection {
     super.tag,
     super.icon,
     this.controller,
+    this.onExpandedChanged,
     this.initiallyExpanded = false,
   }) : super._();
 
@@ -16,6 +17,9 @@ abstract class _YgExpandingSectionBase extends YgSection {
 
   /// Whether the section is expanded on initial load.
   final bool initiallyExpanded;
+
+  /// Called when the expanded state changes.
+  final ValueChanged<bool>? onExpandedChanged;
 
   @override
   Widget build(BuildContext context) {
@@ -36,6 +40,7 @@ abstract class _YgExpandingSectionBase extends YgSection {
       },
       controller: controller,
       initiallyExpanded: initiallyExpanded,
+      onExpandedChanged: onExpandedChanged,
       child: buildChild(context),
     );
   }

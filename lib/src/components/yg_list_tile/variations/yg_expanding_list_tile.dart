@@ -16,8 +16,9 @@ final class YgExpandingListTile extends YgListTile {
     super.subtitleIcon,
     this.leadingWidgets,
     this.supportingWidgets,
-    this.controller,
     this.onInfoTap,
+    this.controller,
+    this.onExpandedChanged,
     this.initiallyExpanded = false,
   }) : super._(
           disabled: false,
@@ -44,6 +45,9 @@ final class YgExpandingListTile extends YgListTile {
   ///
   /// Called when the button is pressed.
   final VoidCallback? onInfoTap;
+
+  /// Called when the expanded state changes.
+  final ValueChanged<bool>? onExpandedChanged;
 
   @override
   Widget build(BuildContext context) {
@@ -77,6 +81,7 @@ final class YgExpandingListTile extends YgListTile {
       },
       controller: controller,
       initiallyExpanded: initiallyExpanded,
+      onExpandedChanged: onExpandedChanged,
       child: Padding(
         padding: theme.outerPadding.copyWith(
           top: 0,

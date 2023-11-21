@@ -8,6 +8,7 @@ class YgExpander extends StatefulWidget {
     required this.child,
     required this.headerBuilder,
     this.controller,
+    this.onExpandedChanged,
     this.initiallyExpanded = false,
     this.alignment = Alignment.topCenter,
     this.axis = Axis.vertical,
@@ -19,6 +20,7 @@ class YgExpander extends StatefulWidget {
   final Alignment alignment;
   final Axis axis;
   final Widget child;
+  final ValueChanged<bool>? onExpandedChanged;
 
   @override
   State<YgExpander> createState() => _YgExpanderState();
@@ -26,11 +28,13 @@ class YgExpander extends StatefulWidget {
 
 class _YgExpanderState extends State<YgExpander> {
   late YgExpansionController _controller = widget.controller ?? _createController();
+  late bool _currentlyExpanded;
 
   @override
   void initState() {
     super.initState();
     _controller.addListener(_rebuild);
+    _currentlyExpanded = _controller.expanded;
   }
 
   @override
@@ -59,8 +63,6 @@ class _YgExpanderState extends State<YgExpander> {
 
   @override
   Widget build(BuildContext context) {
-    print('heightFactor: ${_getFactorForAxis(Axis.vertical)},\nwidthFactor: ${_getFactorForAxis(Axis.horizontal)}');
-
     return Flex(
       direction: widget.axis,
       children: <Widget>[
@@ -91,10 +93,19 @@ class _YgExpanderState extends State<YgExpander> {
     _controller.removeListener(_rebuild);
     _controller = controller;
     _controller.addListener(_rebuild);
+    _checkExpandedChange();
+  }
+
+  void _checkExpandedChange() {
+    final bool newExpanded = _controller.expanded;
+    if (_currentlyExpanded != newExpanded) {
+      _currentlyExpanded = newExpanded;
+      widget.onExpandedChanged?.call(newExpanded);
+    }
   }
 
   void _rebuild() {
-    print('cookie');
+    _checkExpandedChange();
     setState(() {});
   }
 

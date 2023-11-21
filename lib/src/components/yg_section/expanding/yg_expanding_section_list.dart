@@ -6,6 +6,7 @@ class _YgExpandingSectionList extends _YgExpandingSectionBase {
     required this.children,
     super.controller,
     super.initiallyExpanded,
+    super.onExpandedChanged,
     super.subtitle,
     super.tag,
     super.key,

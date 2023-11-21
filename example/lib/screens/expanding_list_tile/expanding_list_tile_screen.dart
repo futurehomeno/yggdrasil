@@ -17,13 +17,7 @@ class ExpandingListTileScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    const Widget child = YgCard(
-      variant: YgCardVariant.outlined,
-      child: YgListTile(
-        title: 'Content',
-        subtitle: 'The child content which is only visible when the list tile is expanded.',
-      ),
-    );
+    const Widget child = DemoPlaceholder();
 
     return DemoScreen(
       componentName: 'ListTile',
