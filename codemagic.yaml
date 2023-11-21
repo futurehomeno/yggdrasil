@@ -213,17 +213,8 @@ workflows:
               "$UPLOAD_URL?name=$(basename $MACOS_ARTIFACT_PATH)"
 
         - name: Sending message to Slack
-          script: |            
-            git clone https://futurehomeno@github.com/futurehomeno/yggdrasil temp
-            cd temp
-            
-            last_tag_before=$(git tag | grep -E '^[0-9]+\.[0-9]+\.[0-9]+\+[0-9]+$' |
-            sort -t. -k1,1n -k2,2n -k3,3n -t+ -k2,2n |
-            awk -v tag="$CM_TAG" '$0 == tag {exit} 1' |
-            tail -1)
-  
-            commit_tag=$(git rev-list -1 $last_tag_before)
-            changelog_since_tag=$(dart $CM_BUILD_DIR/cli/futurehome.dart ci gc $commit_tag)
+          script: |
+            changelog=$(dart $CM_BUILD_DIR/cli/futurehome.dart ci gc)
             
             curl --location $YGGDRASIL_SLACK_WEBHOOK \
             --header 'Content-Type: application/json' \
@@ -240,7 +231,7 @@ workflows:
                         "type": "section",
                         "text": {
                           "type": "mrkdwn",
-                          "text": "'"$changelog_since_tag"'"
+                          "text": "'"$changelog"'"
                         }
                       },
                       {
