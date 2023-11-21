@@ -1,6 +1,6 @@
-part of '../yg_section.dart';
+part of 'yg_expanding_section.dart';
 
-class _YgExpandingSection extends _YgExpandingSectionBase {
+class _YgExpandingSection extends YgExpandingSection {
   const _YgExpandingSection({
     required super.title,
     required this.child,
@@ -11,8 +11,9 @@ class _YgExpandingSection extends _YgExpandingSectionBase {
     super.tag,
     super.key,
     super.icon,
-  });
+  }) : super._();
 
+  /// The widget below this widget in the tree.
   final Widget child;
 
   @override

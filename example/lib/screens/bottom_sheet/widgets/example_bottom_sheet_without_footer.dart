@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:yggdrasil/yggdrasil.dart';
+import 'package:yggdrasil_demo/widgets/demo_placeholder.dart';
 
 class ExampleBottomSheetWithoutFooter extends YgBottomSheetModalRoute {
   @override
@@ -10,12 +11,8 @@ class ExampleBottomSheetWithoutFooter extends YgBottomSheetModalRoute {
     return const YgBottomSheet(
       title: 'Example Bottom Sheet',
       content: YgSection(
-        child: YgCard(
-          variant: YgCardVariant.filled,
-          child: YgListTile(
-            title: 'Example content',
-            subtitle: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit.',
-          ),
+        child: DemoPlaceholder(
+          height: 200,
         ),
       ),
     );

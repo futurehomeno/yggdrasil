@@ -13,7 +13,7 @@ part 'variations/yg_radio_list_tile.dart';
 part 'variations/yg_regular_list_tile.dart';
 part 'variations/yg_switch_list_tile.dart';
 
-/// List tile component based on [ListTile] from M3.
+/// List tile component.
 ///
 /// This component is used to display a list of items.
 ///
@@ -22,14 +22,14 @@ part 'variations/yg_switch_list_tile.dart';
 /// we do not encourage designers to use more than 2 widgets.
 abstract base class YgListTile extends StatelessWidget with StatelessWidgetDebugMixin {
   const factory YgListTile({
+    required String title,
     Key? key,
-    List<Widget>? leadingWidgets,
-    void Function()? onInfoTap,
-    void Function()? onTap,
     String? subtitle,
     Widget? subtitleIcon,
+    VoidCallback? onInfoTap,
+    VoidCallback? onTap,
+    List<Widget>? leadingWidgets,
     List<Widget>? supportingWidgets,
-    required String title,
     List<Widget>? trailingWidgets,
   }) = _YgRegularListTile;
 

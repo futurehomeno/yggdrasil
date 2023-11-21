@@ -3,37 +3,34 @@ import 'package:yggdrasil/yggdrasil.dart';
 import 'package:yggdrasil_demo/core/_core.dart';
 import 'package:yggdrasil_demo/widgets/_widgets.dart';
 
-class SectionScreen extends StatelessWidget {
-  const SectionScreen({super.key});
+class ExpandingSectionScreen extends StatelessWidget {
+  const ExpandingSectionScreen({super.key});
 
-  static const String routeName = 'SectionScreen';
+  static const String routeName = 'ExpandingSectionScreen';
 
   static PageRouteBuilder<Widget> route() {
     return const YgRouteBuilder().fadeTransition(
       settings: const RouteSettings(name: routeName),
-      screen: const SectionScreen(),
+      screen: const ExpandingSectionScreen(),
     );
   }
 
   @override
   Widget build(BuildContext context) {
     return const DemoScreen(
-      componentName: 'Section',
+      componentName: 'ExpandingSection',
       child: Column(
         children: <Widget>[
-          YgSection(
-            child: DemoPlaceholder(),
-          ),
-          YgSection(
+          YgExpandingSection(
             title: 'With title',
             child: DemoPlaceholder(),
           ),
-          YgSection(
+          YgExpandingSection(
             title: 'With title and subtitle',
             subtitle: 'The subtitle',
             child: DemoPlaceholder(),
           ),
-          YgSection(
+          YgExpandingSection(
             title: 'With title and tag',
             tag: YgTag(
               variant: YgTagVariant.informative,
@@ -42,14 +39,15 @@ class SectionScreen extends StatelessWidget {
             ),
             child: DemoPlaceholder(),
           ),
-          YgSection(
+          YgExpandingSection(
             title: 'With title and icon',
             icon: YgIcon(YgIcons.placeholder),
             child: DemoPlaceholder(),
           ),
-          YgSection(
+          YgExpandingSection(
             title: 'With title, icon, tag and long subtitle',
-            subtitle: 'Cupidatat ea voluptate exercitation irure ea occaecat pariatur elit minim non incididunt in.',
+            subtitle:
+                'Minim nisi exercitation ipsum voluptate proident irure irure ut tempor magna ipsum officia et ut.',
             icon: YgIcon(YgIcons.placeholder),
             tag: YgTag(
               variant: YgTagVariant.informative,

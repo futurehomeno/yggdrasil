@@ -1,17 +1,13 @@
-part of '../yg_section.dart';
+part of 'yg_section.dart';
 
-class _YgExpandingSectionList extends _YgExpandingSectionBase {
-  const _YgExpandingSectionList({
-    required super.title,
+class _YgSectionList extends YgSection {
+  const _YgSectionList({
     required this.children,
-    super.controller,
-    super.initiallyExpanded,
-    super.onExpandedChanged,
+    super.title,
     super.subtitle,
     super.tag,
-    super.key,
     super.icon,
-  });
+  }) : super._();
 
   /// The widgets below this widget in the tree.
   final List<YgListTile> children;

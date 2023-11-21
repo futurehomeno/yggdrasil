@@ -20,7 +20,7 @@ class ExpandingListTileScreen extends StatelessWidget {
     const Widget child = DemoPlaceholder();
 
     return DemoScreen(
-      componentName: 'ListTile',
+      componentName: 'ExpandingListTile',
       child: YgSection.list(
         children: <YgExpandingListTile>[
           const YgExpandingListTile(

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:yggdrasil_demo/core/_core.dart';
+import 'package:yggdrasil_demo/widgets/_widgets.dart';
 
 class [FTName | pascalcase]Screen extends StatelessWidget {
   const [FTName | pascalcase]Screen({super.key});
@@ -15,6 +16,11 @@ class [FTName | pascalcase]Screen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container();
+    return const DemoScreen(
+      componentName: '[FTName | pascalcase]',
+      child: Column(
+        children: <Widget>[],
+      ),
+    );
   }
 }

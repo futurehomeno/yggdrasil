@@ -1,13 +1,13 @@
-part of '../yg_section.dart';
+part of 'yg_section.dart';
 
-class _YgSectionRegular extends _YgSectionBase {
+class _YgSectionRegular extends YgSection {
   const _YgSectionRegular({
     required this.child,
     super.title,
     super.subtitle,
     super.tag,
     super.icon,
-  });
+  }) : super._();
 
   /// The widget below this widget in the tree.
   final Widget child;

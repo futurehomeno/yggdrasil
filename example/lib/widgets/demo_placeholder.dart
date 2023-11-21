@@ -2,6 +2,10 @@ import 'package:dotted_border/dotted_border.dart';
 import 'package:flutter/material.dart';
 import 'package:yggdrasil/yggdrasil.dart';
 
+/// Placeholder widget.
+///
+/// Mimics the style of the placeholder widget in figma to make it clear for
+/// designers that this is a placeholder.
 class DemoPlaceholder extends StatelessWidget {
   const DemoPlaceholder({
     super.key,
@@ -9,7 +13,18 @@ class DemoPlaceholder extends StatelessWidget {
     this.height,
   });
 
+  /// The width of the placeholder.
+  ///
+  /// When not provided and width constraints are finite will take up the
+  /// maximum possible width. Will take up the minimum amount of space possible
+  /// required to properly render the icon if width constraints are infinite.
   final double? width;
+
+  /// The height of the placeholder.
+  ///
+  /// When not provided and height constraints are finite will take up the
+  /// maximum possible height. Will take up the minimum amount of space possible
+  /// required to properly render the icon if height constraints are infinite.
   final double? height;
 
   @override

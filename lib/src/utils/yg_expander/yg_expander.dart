@@ -1,6 +1,8 @@
+// ignore_for_file: prefer-widget-private-members
+
 import 'package:flutter/material.dart';
 
-part 'yg_expansion_controller.dart';
+import 'yg_expansion_controller.dart';
 
 /// Internal widget used for creating expanding widgets.
 class YgExpander extends StatefulWidget {
@@ -48,11 +50,13 @@ class YgExpander extends StatefulWidget {
   final ValueChanged<bool>? onExpandedChanged;
 
   @override
-  State<YgExpander> createState() => _YgExpanderState();
+  State<YgExpander> createState() => YgExpanderState();
 }
 
-class _YgExpanderState extends State<YgExpander> {
+class YgExpanderState extends State<YgExpander> {
   late YgExpansionController _controller = widget.controller ?? _createController();
+  YgExpansionController get controller => _controller;
+
   late bool _currentlyExpanded;
 
   @override

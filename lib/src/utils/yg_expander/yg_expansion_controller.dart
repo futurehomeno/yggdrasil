@@ -1,4 +1,6 @@
-part of 'yg_expander.dart';
+import 'package:flutter/widgets.dart';
+
+import 'yg_expander.dart';
 
 class YgExpansionController extends ChangeNotifier {
   YgExpansionController({
@@ -31,9 +33,9 @@ class YgExpansionController extends ChangeNotifier {
   ///
   /// Use this only within a child of [YgExpander].
   static YgExpansionController of(BuildContext context) {
-    final _YgExpanderState? result = context.findAncestorStateOfType<_YgExpanderState>();
+    final YgExpanderState? result = context.findAncestorStateOfType<YgExpanderState>();
     if (result != null) {
-      return result._controller;
+      return result.controller;
     }
 
     throw Exception(

@@ -1,12 +1,14 @@
 part of '../yg_list_tile.dart';
 
-/// List tile component based on [ListTile] from M3.
+/// Expanding list tile component.
 ///
 /// This component is used to display a list of items.
 ///
-/// Supports 2 leading, 2 trailing and 2 supporting widgets,
-/// however, this differs from design in Figma. This is so
-/// we do not encourage designers to use more than 2 widgets.
+/// Supports 2 leading and 2 supporting widgets, however, this differs from
+/// design in Figma. This is so we do not encourage designers to use more than
+/// 2 widgets.
+///
+/// Also supports
 final class YgExpandingListTile extends YgListTile {
   const YgExpandingListTile({
     super.key,

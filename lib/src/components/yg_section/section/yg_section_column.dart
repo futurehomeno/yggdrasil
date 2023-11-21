@@ -1,20 +1,16 @@
-part of '../yg_section.dart';
+part of 'yg_section.dart';
 
-class _YgExpandingSectionColumn extends _YgExpandingSectionBase {
-  const _YgExpandingSectionColumn({
-    required super.title,
+class _YgSectionColumn extends YgSection {
+  const _YgSectionColumn({
     required this.children,
-    super.controller,
-    super.initiallyExpanded,
-    super.onExpandedChanged,
+    super.title,
     super.subtitle,
     super.tag,
-    super.key,
     super.icon,
-  });
+  }) : super._();
 
   /// The widgets below this widget in the tree.
-  final List<YgListTile> children;
+  final List<Widget> children;
 
   @override
   Widget buildChild(BuildContext context) {
