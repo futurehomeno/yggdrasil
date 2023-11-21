@@ -2,13 +2,10 @@ part of 'yg_scroll_shadow.dart';
 
 class _YgScrollShadowChild extends YgScrollShadow {
   const _YgScrollShadowChild({
-    Key? key,
+    super.key,
     required this.child,
-    required ScrollController controller,
-  }) : super._(
-          controller: controller,
-          key: key,
-        );
+    required super.controller,
+  }) : super._();
 
   final Widget child;
 

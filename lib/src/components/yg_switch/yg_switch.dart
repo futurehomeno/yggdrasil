@@ -30,28 +30,30 @@ class YgSwitch extends StatelessWidget with StatelessWidgetDebugMixin {
 
   @override
   Widget build(BuildContext context) {
-    return RepaintBoundary(
-      child: Semantics(
-        toggled: value,
-        child: GestureDetector(
-          onTap: onChanged == null ? null : _onTap,
-          child: DecoratedBox(
-            decoration: BoxDecoration(
-              color: _getTrackColor(context),
-              borderRadius: context.switchTheme.borderRadius,
-            ),
-            child: SizedBox(
-              width: context.switchTheme.width,
-              height: context.switchTheme.height,
-              child: Padding(
-                // Moves the switch away from the edges.
-                padding: context.switchTheme.trackPadding,
-                child: AnimatedAlign(
-                  curve: context.switchTheme.animationCurve,
-                  alignment: _getHandleAlignment(),
-                  duration: context.switchTheme.animationDuration,
-                  child: YgSwitchThumb(
-                    color: _getThumbColor(context),
+    return Center(
+      child: RepaintBoundary(
+        child: Semantics(
+          toggled: value,
+          child: GestureDetector(
+            onTap: onChanged == null ? null : _onTap,
+            child: DecoratedBox(
+              decoration: BoxDecoration(
+                color: _getTrackColor(context),
+                borderRadius: context.switchTheme.borderRadius,
+              ),
+              child: SizedBox(
+                width: context.switchTheme.width,
+                height: context.switchTheme.height,
+                child: Padding(
+                  // Moves the switch away from the edges.
+                  padding: context.switchTheme.trackPadding,
+                  child: AnimatedAlign(
+                    curve: context.switchTheme.animationCurve,
+                    alignment: _getHandleAlignment(),
+                    duration: context.switchTheme.animationDuration,
+                    child: YgSwitchThumb(
+                      color: _getThumbColor(context),
+                    ),
                   ),
                 ),
               ),

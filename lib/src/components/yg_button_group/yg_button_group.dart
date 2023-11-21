@@ -6,19 +6,55 @@ class YgButtonGroup extends StatelessWidget with StatelessWidgetDebugMixin {
   const YgButtonGroup({
     super.key,
     required this.children,
-    this.axis = Axis.vertical,
-    this.mainAxisAlignment = MainAxisAlignment.start,
-    this.mainAxisSize = MainAxisSize.max,
-    this.crossAxisAlignment = CrossAxisAlignment.stretch,
+    required this.axis,
   });
 
-  factory YgButtonGroup.actionOrCancel({
+  factory YgButtonGroup.vertical({
+    required List<YgButton> children,
+  }) {
+    return YgButtonGroup(
+      axis: Axis.vertical,
+      children: children,
+    );
+  }
+
+  factory YgButtonGroup.verticalActionOrCancel({
     required String actionText,
     required String cancelText,
     required VoidCallback onActionPressed,
     required VoidCallback onCancelPressed,
   }) {
+    return YgButtonGroup.vertical(
+      children: <YgButton>[
+        YgButton(
+          onPressed: onActionPressed,
+          child: Text(actionText),
+        ),
+        YgButton(
+          variant: YgButtonVariant.link,
+          onPressed: onCancelPressed,
+          child: Text(cancelText),
+        ),
+      ],
+    );
+  }
+
+  factory YgButtonGroup.horizontal({
+    required List<YgButton> children,
+  }) {
     return YgButtonGroup(
+      axis: Axis.horizontal,
+      children: children,
+    );
+  }
+
+  factory YgButtonGroup.horizontalActionOrCancel({
+    required String actionText,
+    required String cancelText,
+    required VoidCallback onActionPressed,
+    required VoidCallback onCancelPressed,
+  }) {
+    return YgButtonGroup.horizontal(
       children: <YgButton>[
         YgButton(
           onPressed: onActionPressed,
@@ -35,9 +71,6 @@ class YgButtonGroup extends StatelessWidget with StatelessWidgetDebugMixin {
 
   final List<YgButton> children;
   final Axis axis;
-  final MainAxisAlignment mainAxisAlignment;
-  final MainAxisSize mainAxisSize;
-  final CrossAxisAlignment crossAxisAlignment;
 
   @override
   Widget build(BuildContext context) {
@@ -46,18 +79,17 @@ class YgButtonGroup extends StatelessWidget with StatelessWidgetDebugMixin {
 
     if (axis == Axis.vertical) {
       return Column(
-        mainAxisAlignment: mainAxisAlignment,
-        mainAxisSize: mainAxisSize,
-        crossAxisAlignment: crossAxisAlignment,
+        crossAxisAlignment: CrossAxisAlignment.stretch,
         children: children.withVerticalSpacing(context.buttonGroupTheme.buttonSpacing),
       );
     }
 
     return Row(
-      mainAxisAlignment: mainAxisAlignment,
-      mainAxisSize: mainAxisSize,
-      crossAxisAlignment: crossAxisAlignment,
-      children: children.withHorizontalSpacing(context.buttonGroupTheme.buttonSpacing),
+      mainAxisAlignment: MainAxisAlignment.center,
+      children: children
+          .map((Widget child) => Flexible(child: child))
+          .toList()
+          .withHorizontalSpacing(context.buttonGroupTheme.buttonSpacing),
     );
   }
 

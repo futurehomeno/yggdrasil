@@ -116,49 +116,53 @@ class _YgToggleButtonState extends State<YgToggleButton> {
     final String? icon = widget.icon;
     final YgToggleButtonVariant variant = _variant;
 
-    return RepaintBoundary(
-      child: Semantics(
-        checked: widget._selected,
-        child: YgFocusableActionDetector(
-          enabled: widget._enabled,
-          mouseCursor: resolvedMouseCursor,
-          onActivate: _onTap,
-          behavior: HitTestBehavior.opaque,
-          onFocusChanged: _onShowFocusHighlight,
-          onHoverChanged: _onShowHoverHighlight,
-          child: AnimatedContainer(
-            duration: toggleButtonTheme.animationDuration,
-            curve: toggleButtonTheme.animationCurve,
-            padding: YgToggleButtonMapper.buildPadding(
-              theme: toggleButtonTheme,
-              size: widget.size,
-              variant: variant,
-            ),
-            decoration: BoxDecoration(
-              color: resolvedFillColor,
-              border: Border.fromBorderSide(
-                BorderSide(color: resolvedBorderColor ?? Colors.transparent),
+    return Center(
+      child: RepaintBoundary(
+        child: Semantics(
+          checked: widget._selected,
+          child: YgFocusableActionDetector(
+            enabled: widget._enabled,
+            mouseCursor: resolvedMouseCursor,
+            onActivate: _onTap,
+            behavior: HitTestBehavior.opaque,
+            onFocusChanged: _onShowFocusHighlight,
+            onHoverChanged: _onShowHoverHighlight,
+            child: AnimatedContainer(
+              duration: toggleButtonTheme.animationDuration,
+              curve: toggleButtonTheme.animationCurve,
+              padding: YgToggleButtonMapper.buildPadding(
+                theme: toggleButtonTheme,
+                size: widget.size,
+                variant: variant,
               ),
-              borderRadius: BorderRadius.all(Radius.circular(toggleButtonTheme.borderRadius)),
-            ),
-            child: Row(
-              mainAxisSize: MainAxisSize.min,
-              children: <Widget>[
-                if (icon != null)
-                  YgIcon(
-                    widget.icon,
-                    color: resolvedIconColor,
-                    size: _iconSize,
-                  ),
-                if (text != null)
-                  Text(
-                    text,
-                    style: YgToggleButtonMapper.buildTextStyle(
-                      theme: toggleButtonTheme,
-                      size: widget.size,
-                    ).copyWith(color: resolvedTextColor),
-                  ),
-              ].withHorizontalSpacing(toggleButtonTheme.iconTextSpacing),
+              decoration: BoxDecoration(
+                color: resolvedFillColor,
+                border: Border.fromBorderSide(
+                  BorderSide(color: resolvedBorderColor ?? Colors.transparent),
+                ),
+                borderRadius: BorderRadius.all(Radius.circular(toggleButtonTheme.borderRadius)),
+              ),
+              child: Row(
+                mainAxisSize: MainAxisSize.min,
+                children: <Widget>[
+                  if (icon != null)
+                    YgIcon(
+                      widget.icon,
+                      color: resolvedIconColor,
+                      size: _iconSize,
+                    ),
+                  if (text != null)
+                    Flexible(
+                      child: Text(
+                        text,
+                        style: YgToggleButtonMapper.buildTextStyle(
+                          theme: toggleButtonTheme,
+                          size: widget.size,
+                        ).copyWith(color: resolvedTextColor),
+                      ),
+                    ),
+                ].withHorizontalSpacing(toggleButtonTheme.iconTextSpacing),
+              ),
             ),
           ),
         ),

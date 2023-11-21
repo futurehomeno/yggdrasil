@@ -22,7 +22,7 @@ class ExampleBottomSheet extends YgBottomSheetModalRoute {
           ),
         ].separatedBy(const Divider()),
       ),
-      footerButtons: YgButtonGroup(
+      footerButtons: YgButtonGroup.vertical(
         children: <YgButton>[
           YgButton(
             variant: YgButtonVariant.primary,

@@ -2,27 +2,27 @@ name: yggdrasil
 description: Design system for Futurehome.
 publish_to: none
 
-version: 1.7.0
+version: 1.8.1
 
 environment:
-  sdk: ^3.0.5
-  flutter: 3.10.5
+  sdk: ^3.2.0
+  flutter: 3.16.0
 
 dependencies:
   flutter:
     sdk: flutter
-  flutter_lints: 2.0.1
-  theme_tailor_annotation: 
+  flutter_lints: 3.0.1
+  theme_tailor_annotation:
     git:
       ref: main
       url: git@github.com:futurehomeno/theme_tailor.git
       path: packages/theme_tailor_annotation
-  flutter_svg: 2.0.7
+  flutter_svg: 2.0.9
 
 dev_dependencies:
   # Run `flutter test --tags golden` to run all golden tests.
   # Run `flutter test --update-goldens` to regenerate goldens.
-  alchemist: 0.6.1
+  alchemist: 0.7.0
   # Run `flutter pub run build_runner build --delete-conflicting-outputs` in order to generate stuff.
   build_runner: 2.4.6
   flutter_test:

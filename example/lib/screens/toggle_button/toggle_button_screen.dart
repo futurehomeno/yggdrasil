@@ -29,6 +29,7 @@ class _ToggleButtonScreenState extends State<ToggleButtonScreen> {
   bool iconTextValue1 = false;
   bool iconTextValue2 = false;
   bool iconTextValue3 = false;
+  bool longTextValue1 = false;
   bool enabled = true;
   bool disabled = false;
 
@@ -164,6 +165,20 @@ class _ToggleButtonScreenState extends State<ToggleButtonScreen> {
                 onChanged: null,
               ),
             ].withVerticalSpacing(10.0),
+          ),
+          YgSection.column(
+            title: 'With very long text',
+            children: <Widget>[
+              YgToggleButton(
+                text: 'Toggle button such a long text that it wraps to the next line. Why would you even want this?',
+                value: longTextValue1,
+                size: YgToggleButtonSize.medium,
+                onChanged: (bool newValue) {
+                  longTextValue1 = newValue;
+                  setState(() {});
+                },
+              ),
+            ],
           ),
         ],
       ),

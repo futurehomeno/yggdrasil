@@ -36,7 +36,7 @@ void main() {
               header: const YgIcon(YgIcons.info),
               title: YgGoldenTestValues.shortText,
               description: YgGoldenTestValues.mediumText,
-              ygButtonGroup: YgButtonGroup(
+              ygButtonGroup: YgButtonGroup.vertical(
                 children: <YgButton>[
                   YgButton(
                     onPressed: () {},
