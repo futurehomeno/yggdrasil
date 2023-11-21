@@ -95,6 +95,7 @@ class _YgButtonBaseState<T extends YgButtonBaseState> extends StateWithYgStyle<Y
   @override
   void didUpdateWidget(covariant YgButtonBase<T> oldWidget) {
     widget.updateState(_state);
+    _state.disabled.value = widget.onPressed == null;
     super.didUpdateWidget(oldWidget);
   }
 
