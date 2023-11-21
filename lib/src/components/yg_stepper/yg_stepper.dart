@@ -3,7 +3,6 @@ import 'dart:math' as math;
 import 'package:flutter/material.dart';
 import 'package:yggdrasil/src/components/buttons/yg_stepper_button/_yg_stepper_button.dart';
 import 'package:yggdrasil/src/theme/stepper/stepper_theme.dart';
-import 'package:yggdrasil/src/utils/_utils.dart';
 import 'package:yggdrasil/yggdrasil.dart';
 
 /// Implementation of the Stepper component

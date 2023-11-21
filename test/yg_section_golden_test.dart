@@ -32,8 +32,8 @@ void main() {
         scenarioConstraints: YgGoldenTestValues.scenarioConstraints,
         children: <GoldenTestScenario>[
           GoldenTestScenario(
-            name: 'YgSection.base without title and subtitle',
-            child: const YgSection.base(
+            name: 'YgSection without title and subtitle',
+            child: const YgSection(
               child: Row(
                 children: childrenToTest,
               ),
@@ -42,20 +42,18 @@ void main() {
           GoldenTestScenario(
             name: 'YgSection.column without title and subtitle',
             child: const YgSection.column(
-              mainAxisSize: MainAxisSize.min,
               children: childrenToTest,
             ),
           ),
           GoldenTestScenario(
             name: 'YgSection.list without title and subtitle',
             child: const YgSection.list(
-              mainAxisSize: MainAxisSize.min,
               children: <YgListTile>[YgListTile(title: 'YgListTile')],
             ),
           ),
           GoldenTestScenario(
-            name: 'YgSection.base with short title and short subtitle',
-            child: const YgSection.base(
+            name: 'YgSection with short title and short subtitle',
+            child: const YgSection(
               title: YgGoldenTestValues.shortText,
               subtitle: YgGoldenTestValues.shortText,
               child: Row(
@@ -68,7 +66,6 @@ void main() {
             child: const YgSection.column(
               title: YgGoldenTestValues.shortText,
               subtitle: YgGoldenTestValues.shortText,
-              mainAxisSize: MainAxisSize.min,
               children: childrenToTest,
             ),
           ),
@@ -77,13 +74,12 @@ void main() {
             child: const YgSection.list(
               title: YgGoldenTestValues.shortText,
               subtitle: YgGoldenTestValues.shortText,
-              mainAxisSize: MainAxisSize.min,
               children: <YgListTile>[YgListTile(title: 'YgListTile')],
             ),
           ),
           GoldenTestScenario(
-            name: 'YgSection.base with long title and long subtitle',
-            child: const YgSection.base(
+            name: 'YgSection with long title and long subtitle',
+            child: const YgSection(
               title: YgGoldenTestValues.longText,
               subtitle: YgGoldenTestValues.longText,
               child: Row(
@@ -96,7 +92,6 @@ void main() {
             child: const YgSection.column(
               title: YgGoldenTestValues.longText,
               subtitle: YgGoldenTestValues.longText,
-              mainAxisSize: MainAxisSize.min,
               children: childrenToTest,
             ),
           ),
@@ -105,7 +100,6 @@ void main() {
             child: const YgSection.list(
               title: YgGoldenTestValues.longText,
               subtitle: YgGoldenTestValues.longText,
-              mainAxisSize: MainAxisSize.min,
               children: <YgListTile>[YgListTile(title: 'YgListTile')],
             ),
           ),

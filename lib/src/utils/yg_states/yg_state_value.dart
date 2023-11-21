@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:yggdrasil/yggdrasil.dart';
 
 /// A value to be used in [YgState].
 ///

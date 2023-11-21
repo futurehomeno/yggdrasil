@@ -32,7 +32,7 @@ class DemoPlaceholder extends StatelessWidget {
             borderType: BorderType.RRect,
             color: const Color(0xffA341FF),
             strokeCap: StrokeCap.round,
-            dashPattern: const [3, 5],
+            dashPattern: const <double>[3, 5],
             radius: const Radius.circular(10),
             child: const Center(
               child: YgIcon(
