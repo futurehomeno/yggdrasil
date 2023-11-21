@@ -1,3 +1,10 @@
+# 1.8.1 [21.11.2023 13:54]
+
+- [dev-fix] Applied changes needed due to the flutter and dependency updates.
+- [dev-improvement] Added "variables" to Codemagic config.
+- [dev-improvement] Updated flutter and dependencies.
+- [fix] Fixed buttons of any type not responding to a change in disabled state.
+
 # 1.8.0 [20.11.2023 08:37]
 
 ## Breaking Changes
