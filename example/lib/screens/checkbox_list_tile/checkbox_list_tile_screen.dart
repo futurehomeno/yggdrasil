@@ -3,23 +3,23 @@ import 'package:yggdrasil/yggdrasil.dart';
 import 'package:yggdrasil_demo/core/_core.dart';
 import 'package:yggdrasil_demo/widgets/_widgets.dart';
 
-class ListTileCheckboxScreen extends StatefulWidget {
-  const ListTileCheckboxScreen({super.key});
+class CheckboxListTileScreen extends StatefulWidget {
+  const CheckboxListTileScreen({super.key});
 
-  static const String routeName = 'ListTileCheckboxScreen';
+  static const String routeName = 'CheckboxListTileScreen';
 
   static PageRouteBuilder<Widget> route() {
     return const YgRouteBuilder().fadeTransition(
       settings: const RouteSettings(name: routeName),
-      screen: const ListTileCheckboxScreen(),
+      screen: const CheckboxListTileScreen(),
     );
   }
 
   @override
-  State<ListTileCheckboxScreen> createState() => _ListTileCheckboxScreenState();
+  State<CheckboxListTileScreen> createState() => CheckboxListTileScreenState();
 }
 
-class _ListTileCheckboxScreenState extends State<ListTileCheckboxScreen> {
+class CheckboxListTileScreenState extends State<CheckboxListTileScreen> {
   bool? checkboxListTileValue = false;
   bool? checkboxListTileTriStateValue = false;
   bool? checkboxListTileDisabledValue = false;

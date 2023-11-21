@@ -1,4 +1,4 @@
-part of 'yg_list_tile.dart';
+part of '../yg_list_tile.dart';
 
 /// List tile component based on [ListTile] from M3.
 ///
@@ -45,16 +45,16 @@ final class _YgRegularListTile extends YgListTile {
   Widget build(BuildContext context) {
     final YgListTileTheme theme = context.listTileTheme;
 
-    return _YgListTileBody(
+    return YgListTileBody(
       title: title,
       subtitle: subtitle,
       subtitleIcon: subtitleIcon,
       disabled: disabled,
       onTap: onTap,
-      infoButton: _YgListTileBody._buildInfoButton(onInfoTap),
-      leading: _YgListTileBody._buildLeading(theme, leadingWidgets),
-      trailing: _YgListTileBody._buildTrailing(theme, trailingWidgets),
-      supporting: _YgListTileBody._buildSupporting(theme, supportingWidgets),
+      infoButton: YgListTileHelpers.buildInfoButton(onInfoTap),
+      leading: YgListTileHelpers.buildLeading(theme, leadingWidgets),
+      trailing: YgListTileHelpers.buildTrailing(theme, trailingWidgets),
+      supporting: YgListTileHelpers.buildSupporting(theme, supportingWidgets),
     );
   }
 }

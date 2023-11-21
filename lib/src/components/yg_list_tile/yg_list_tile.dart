@@ -4,12 +4,14 @@ import 'package:yggdrasil/src/theme/_theme.dart';
 import 'package:yggdrasil/src/utils/_utils.dart';
 import 'package:yggdrasil/yggdrasil.dart';
 
-part 'yg_checkbox_list_tile.dart';
-part 'yg_expanding_list_tile.dart';
-part 'yg_list_tile_body.dart';
-part 'yg_radio_list_tile.dart';
-part 'yg_regular_list_tile.dart';
-part 'yg_switch_list_tile.dart';
+import 'helpers/yg_list_tile_helpers.dart';
+import 'widgets/yg_list_tile_body.dart';
+
+part 'variations/yg_checkbox_list_tile.dart';
+part 'variations/yg_expanding_list_tile.dart';
+part 'variations/yg_radio_list_tile.dart';
+part 'variations/yg_regular_list_tile.dart';
+part 'variations/yg_switch_list_tile.dart';
 
 /// List tile component based on [ListTile] from M3.
 ///
@@ -30,19 +32,6 @@ abstract base class YgListTile extends StatelessWidget with StatelessWidgetDebug
     required String title,
     List<Widget>? trailingWidgets,
   }) = _YgRegularListTile;
-
-  const factory YgListTile.expanding({
-    required Widget child,
-    YgExpansionController? controller,
-    bool initiallyExpanded,
-    Key? key,
-    List<Widget>? leadingWidgets,
-    void Function()? onInfoTap,
-    String? subtitle,
-    Widget? subtitleIcon,
-    List<Widget>? supportingWidgets,
-    required String title,
-  }) = _YgExpandingListTile;
 
   const YgListTile._({
     super.key,
@@ -68,10 +57,6 @@ abstract base class YgListTile extends StatelessWidget with StatelessWidgetDebug
       onTap: onTap,
     );
   }
-
-  static const int _allowedNumberOfLeadingWidgets = 2;
-  static const int _allowedNumberOfTrailingWidgets = 2;
-  static const int _allowedNumberOfSupportingWidgets = 2;
 
   /// The title.
   ///

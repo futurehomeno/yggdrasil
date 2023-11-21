@@ -1,4 +1,4 @@
-part of 'yg_list_tile.dart';
+part of '../yg_list_tile.dart';
 
 /// Radio button inside a list tile.
 final class YgRadioListTile<T> extends YgListTile {
@@ -31,7 +31,7 @@ final class YgRadioListTile<T> extends YgListTile {
 
   @override
   Widget build(BuildContext context) {
-    return _YgListTileBody.withChildAndOptionalLeading(
+    return YgListTileBody.withChildAndOptionalLeading(
       title: title,
       subtitle: subtitle,
       subtitleIcon: subtitleIcon,

@@ -3,23 +3,23 @@ import 'package:yggdrasil/yggdrasil.dart';
 import 'package:yggdrasil_demo/core/_core.dart';
 import 'package:yggdrasil_demo/widgets/_widgets.dart';
 
-class ListTileRadioScreen extends StatefulWidget {
-  const ListTileRadioScreen({super.key});
+class RadioListTileScreen extends StatefulWidget {
+  const RadioListTileScreen({super.key});
 
-  static const String routeName = 'ListTileRadioScreen';
+  static const String routeName = 'RadioListTileScreen';
 
   static PageRouteBuilder<Widget> route() {
     return const YgRouteBuilder().fadeTransition(
       settings: const RouteSettings(name: routeName),
-      screen: const ListTileRadioScreen(),
+      screen: const RadioListTileScreen(),
     );
   }
 
   @override
-  State<ListTileRadioScreen> createState() => _ListTileRadioScreenState();
+  State<RadioListTileScreen> createState() => RadioListTileScreenState();
 }
 
-class _ListTileRadioScreenState extends State<ListTileRadioScreen> {
+class RadioListTileScreenState extends State<RadioListTileScreen> {
   int radioGroupValue = 1;
   int disabledRadioGroupValue = 1;
 

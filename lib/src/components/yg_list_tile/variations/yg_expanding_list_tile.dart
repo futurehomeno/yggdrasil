@@ -1,4 +1,4 @@
-part of 'yg_list_tile.dart';
+part of '../yg_list_tile.dart';
 
 /// List tile component based on [ListTile] from M3.
 ///
@@ -7,8 +7,8 @@ part of 'yg_list_tile.dart';
 /// Supports 2 leading, 2 trailing and 2 supporting widgets,
 /// however, this differs from design in Figma. This is so
 /// we do not encourage designers to use more than 2 widgets.
-final class _YgExpandingListTile extends YgListTile {
-  const _YgExpandingListTile({
+final class YgExpandingListTile extends YgListTile {
+  const YgExpandingListTile({
     super.key,
     required super.title,
     required this.child,
@@ -51,31 +51,26 @@ final class _YgExpandingListTile extends YgListTile {
 
     return YgExpander(
       headerBuilder: (BuildContext context, YgExpansionController controller) {
-        return _YgListTileBody(
+        return YgListTileBody(
           title: title,
           subtitle: subtitle,
           subtitleIcon: subtitleIcon,
           disabled: false,
           onTap: controller.toggle,
-          infoButton: _YgListTileBody._buildInfoButton(onInfoTap),
-          leading: _YgListTileBody._buildLeading(theme, leadingWidgets),
-          supporting: _YgListTileBody._buildSupporting(theme, supportingWidgets),
-          trailing: InkResponse(
-            onTap: controller.toggle,
-            radius: 20,
-            splashFactory: InkSplash.splashFactory,
-            child: ListenableBuilder(
-              listenable: controller,
-              builder: (BuildContext context, Widget? child) {
-                return AnimatedRotation(
-                  turns: controller.expanded ? 0.5 : 0,
-                  duration: const Duration(milliseconds: 200),
-                  child: child,
-                );
-              },
-              child: const YgIcon(
-                YgIcons.caretDown,
-              ),
+          infoButton: YgListTileHelpers.buildInfoButton(onInfoTap),
+          leading: YgListTileHelpers.buildLeading(theme, leadingWidgets),
+          supporting: YgListTileHelpers.buildSupporting(theme, supportingWidgets),
+          trailing: ListenableBuilder(
+            listenable: controller,
+            builder: (BuildContext context, Widget? child) {
+              return AnimatedRotation(
+                turns: controller.expanded ? 0.5 : 0,
+                duration: const Duration(milliseconds: 200),
+                child: child,
+              );
+            },
+            child: const YgIcon(
+              YgIcons.caretDown,
             ),
           ),
         );

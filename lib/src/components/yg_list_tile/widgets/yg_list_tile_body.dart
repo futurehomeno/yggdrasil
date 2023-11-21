@@ -1,7 +1,10 @@
-part of 'yg_list_tile.dart';
+import 'package:flutter/material.dart';
+import 'package:yggdrasil/src/theme/_theme.dart';
+import 'package:yggdrasil/yggdrasil.dart';
 
-class _YgListTileBody extends StatelessWidget {
-  const _YgListTileBody({
+class YgListTileBody extends StatelessWidget {
+  const YgListTileBody({
+    super.key,
     required this.title,
     required this.subtitle,
     required this.subtitleIcon,
@@ -13,7 +16,8 @@ class _YgListTileBody extends StatelessWidget {
     required this.onTap,
   });
 
-  const _YgListTileBody.withChildAndOptionalLeading({
+  const YgListTileBody.withChildAndOptionalLeading({
+    super.key,
     required this.title,
     required this.subtitle,
     required this.subtitleIcon,
@@ -25,78 +29,6 @@ class _YgListTileBody extends StatelessWidget {
     required Widget? leading,
   })  : leading = leading ?? child,
         trailing = leading == null ? null : child;
-
-  static Widget? _buildInfoButton(VoidCallback? onInfoTap) {
-    if (onInfoTap == null) {
-      return null;
-    }
-
-    return YgIconButton(
-      onPressed: onInfoTap,
-      size: YgIconButtonSize.small,
-      child: const YgIcon(YgIcons.info),
-    );
-  }
-
-  static Widget? _buildLeading(
-    YgListTileTheme theme,
-    List<Widget>? leadingWidgets,
-  ) {
-    if (leadingWidgets == null || leadingWidgets.isEmpty) {
-      return null;
-    }
-
-    assert(
-      leadingWidgets.length <= YgListTile._allowedNumberOfLeadingWidgets,
-      'Cannot have more than 2 leading widgets.',
-    );
-
-    return Row(
-      children: leadingWidgets.withHorizontalSpacing(
-        theme.contentSpacing,
-      ),
-    );
-  }
-
-  static Widget? _buildTrailing(
-    YgListTileTheme theme,
-    List<Widget>? trailingWidgets,
-  ) {
-    if (trailingWidgets == null || trailingWidgets.isEmpty) {
-      return null;
-    }
-
-    assert(
-      trailingWidgets.length <= YgListTile._allowedNumberOfTrailingWidgets,
-      'Cannot have more than 2 trailing widget.',
-    );
-
-    return Row(
-      children: trailingWidgets.withHorizontalSpacing(
-        theme.contentSpacing,
-      ),
-    );
-  }
-
-  static Widget? _buildSupporting(
-    YgListTileTheme theme,
-    List<Widget>? supportingWidgets,
-  ) {
-    if (supportingWidgets == null || supportingWidgets.isEmpty) {
-      return null;
-    }
-
-    assert(
-      supportingWidgets.length <= YgListTile._allowedNumberOfSupportingWidgets,
-      'Cannot have more than 2 supporting widgets.',
-    );
-
-    return Column(
-      children: supportingWidgets.withVerticalSpacing(
-        theme.contentSpacing,
-      ),
-    );
-  }
 
   final String title;
   final String? subtitle;

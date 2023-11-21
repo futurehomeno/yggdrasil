@@ -1,4 +1,4 @@
-part of 'yg_list_tile.dart';
+part of '../yg_list_tile.dart';
 
 /// Binary (or optionally tri-state) switch.
 final class YgSwitchListTile extends YgListTile {
@@ -33,7 +33,7 @@ final class YgSwitchListTile extends YgListTile {
 
   @override
   Widget build(BuildContext context) {
-    return _YgListTileBody(
+    return YgListTileBody(
       title: title,
       subtitle: subtitle,
       subtitleIcon: subtitleIcon,

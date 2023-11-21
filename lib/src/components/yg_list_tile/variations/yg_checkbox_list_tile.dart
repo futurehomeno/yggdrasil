@@ -1,4 +1,4 @@
-part of 'yg_list_tile.dart';
+part of '../yg_list_tile.dart';
 
 /// Binary (or optionally tri-state) switch.
 final class YgCheckboxListTile extends YgListTile {
@@ -36,7 +36,7 @@ final class YgCheckboxListTile extends YgListTile {
 
   @override
   Widget build(BuildContext context) {
-    return _YgListTileBody.withChildAndOptionalLeading(
+    return YgListTileBody.withChildAndOptionalLeading(
       title: title,
       subtitle: subtitle,
       subtitleIcon: subtitleIcon,
