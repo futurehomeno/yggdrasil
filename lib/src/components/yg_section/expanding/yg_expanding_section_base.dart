@@ -28,14 +28,20 @@ abstract class _YgExpandingSectionBase extends YgSection {
 
     return YgExpander(
       headerBuilder: (BuildContext context, YgExpansionController controller) {
-        return _YgSectionHeader(
-          title: title,
-          subtitle: subtitle,
-          icon: icon,
-          trailing: <Widget>[
-            if (tag != null) tag,
-            _buildExpandButton(controller),
-          ],
+        return Material(
+          type: MaterialType.transparency,
+          child: InkWell(
+            onTap: controller.toggle,
+            child: _YgSectionHeader(
+              title: title,
+              subtitle: subtitle,
+              icon: icon,
+              trailing: <Widget>[
+                if (tag != null) tag,
+                _buildExpandButton(controller),
+              ],
+            ),
+          ),
         );
       },
       controller: controller,
@@ -46,22 +52,17 @@ abstract class _YgExpandingSectionBase extends YgSection {
   }
 
   Widget _buildExpandButton(YgExpansionController controller) {
-    return InkResponse(
-      onTap: controller.toggle,
-      radius: 20,
-      splashFactory: InkSplash.splashFactory,
-      child: ListenableBuilder(
-        listenable: controller,
-        builder: (BuildContext context, Widget? child) {
-          return AnimatedRotation(
-            turns: controller.expanded ? 0.5 : 0,
-            duration: const Duration(milliseconds: 200),
-            child: child,
-          );
-        },
-        child: const YgIcon(
-          YgIcons.caretDown,
-        ),
+    return ListenableBuilder(
+      listenable: controller,
+      builder: (BuildContext context, Widget? child) {
+        return AnimatedRotation(
+          turns: controller.expanded ? 0.5 : 0,
+          duration: const Duration(milliseconds: 200),
+          child: child,
+        );
+      },
+      child: const YgIcon(
+        YgIcons.caretDown,
       ),
     );
   }

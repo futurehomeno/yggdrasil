@@ -4,8 +4,8 @@ import 'package:yggdrasil/src/theme/_theme.dart';
 import 'package:yggdrasil/src/utils/_utils.dart';
 import 'package:yggdrasil/yggdrasil.dart';
 
-import 'helpers/yg_list_tile_helpers.dart';
-import 'widgets/yg_list_tile_body.dart';
+import 'helpers/_helpers.dart';
+import 'widgets/_widgets.dart';
 
 part 'variations/yg_checkbox_list_tile.dart';
 part 'variations/yg_expanding_list_tile.dart';
