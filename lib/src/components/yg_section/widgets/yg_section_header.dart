@@ -37,12 +37,13 @@ class YgSectionHeader extends StatelessWidget {
         children: <Widget>[
           if (icon != null)
             Padding(
-              padding: const EdgeInsets.only(right: 10.0),
+              padding: theme.iconPadding,
               child: icon,
             ),
           Expanded(
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.stretch,
+              mainAxisSize: MainAxisSize.min,
               children: <Widget>[
                 Row(
                   crossAxisAlignment: CrossAxisAlignment.start,
@@ -54,11 +55,11 @@ class YgSectionHeader extends StatelessWidget {
                       ),
                     ),
                     if (trailing != null) ...trailing,
-                  ].withHorizontalSpacing(10.0),
+                  ].withHorizontalSpacing(theme.trailingSpacing),
                 ),
                 if (subtitle != null)
                   Padding(
-                    padding: const EdgeInsets.only(top: 5.0),
+                    padding: theme.subtitlePadding,
                     child: Text(
                       subtitle,
                       style: theme.subtitleTextStyle,

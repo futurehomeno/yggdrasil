@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:yggdrasil/src/theme/_theme.dart';
 import 'package:yggdrasil/yggdrasil.dart';
 
+/// Internal widget used in [YgListTile] variants.
 class YgListTileBody extends StatelessWidget {
   const YgListTileBody({
     super.key,
@@ -30,14 +31,31 @@ class YgListTileBody extends StatelessWidget {
   })  : leading = leading ?? child,
         trailing = leading == null ? null : child;
 
+  /// The title of the list tile.
   final String title;
+
+  /// The subtitle of the list tile.
   final String? subtitle;
+
+  /// The icon shown in from of the subtitle.
   final Widget? subtitleIcon;
+
+  /// The leading widget.
   final Widget? leading;
+
+  /// The trailing widget.
   final Widget? trailing;
+
+  /// The supporting widget.
   final Widget? supporting;
+
+  /// The button shown directly behind the title.
   final Widget? infoButton;
+
+  /// Whether to respond to touch input.
   final bool disabled;
+
+  /// Called when the widget was tapped.
   final VoidCallback? onTap;
 
   @override

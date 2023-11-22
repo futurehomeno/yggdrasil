@@ -10,11 +10,13 @@ class YgExpander extends StatefulWidget {
     super.key,
     required this.child,
     required this.headerBuilder,
+    required this.duration,
     this.controller,
     this.onExpandedChanged,
     this.initiallyExpanded = false,
-    this.childAlignment = Alignment.topCenter,
+    this.alignment = Alignment.center,
     this.axis = Axis.vertical,
+    this.curve = Curves.linear,
   });
 
   /// Builds the header of the expanding widget.
@@ -38,7 +40,7 @@ class YgExpander extends StatefulWidget {
   ///
   /// Mainly influences how the child will become visible, if it moves with the
   /// expansion animation of whether it gets revealed by the animation.
-  final Alignment childAlignment;
+  final Alignment alignment;
 
   /// Axis on which the widget will expand.
   final Axis axis;
@@ -48,6 +50,12 @@ class YgExpander extends StatefulWidget {
 
   /// Gets called when the expanded state changes.
   final ValueChanged<bool>? onExpandedChanged;
+
+  /// The animation duration.
+  final Duration duration;
+
+  /// The animation curve.
+  final Curve curve;
 
   @override
   State<YgExpander> createState() => YgExpanderState();
@@ -93,14 +101,15 @@ class YgExpanderState extends State<YgExpander> {
   @override
   Widget build(BuildContext context) {
     return Flex(
+      mainAxisSize: MainAxisSize.min,
       direction: widget.axis,
       children: <Widget>[
         widget.headerBuilder(context, _controller),
         ClipRect(
           child: AnimatedAlign(
-            alignment: widget.childAlignment,
-            duration: const Duration(milliseconds: 200),
-            curve: Curves.easeInOut,
+            alignment: widget.alignment,
+            duration: widget.duration,
+            curve: widget.curve,
             heightFactor: _getFactorForAxis(Axis.vertical),
             widthFactor: _getFactorForAxis(Axis.horizontal),
             child: widget.child,

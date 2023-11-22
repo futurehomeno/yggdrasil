@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:yggdrasil/src/components/yg_section/widgets/_widgets.dart';
+import 'package:yggdrasil/src/theme/_theme.dart';
 import 'package:yggdrasil/src/utils/_utils.dart';
 import 'package:yggdrasil/yggdrasil.dart';
 
@@ -19,7 +20,7 @@ abstract class YgExpandingSection extends StatelessWidget {
     YgTag? tag,
     YgIcon? icon,
     ValueChanged<bool>? onExpandedChanged,
-  }) = _YgExpandingSection;
+  }) = _YgExpandingSectionRegular;
 
   /// A section that can be expanded with a column of children.
   const factory YgExpandingSection.column({
@@ -76,20 +77,23 @@ abstract class YgExpandingSection extends StatelessWidget {
   /// The icon leading the section.
   final YgIcon? icon;
 
-  /// Controls the expansion of the section.
+  /// See [YgExpander.controller].
   final YgExpansionController? controller;
 
-  /// Whether the section is expanded on initial load.
+  /// See [YgExpander.initiallyExpanded].
   final bool initiallyExpanded;
 
-  /// Called when the expanded state changes.
+  /// See [YgExpander.onExpandedChanged].
   final ValueChanged<bool>? onExpandedChanged;
 
   @override
   Widget build(BuildContext context) {
+    final YgSectionTheme theme = context.sectionTheme;
     final YgTag? tag = this.tag;
 
     return YgExpander(
+      duration: theme.animationDuration,
+      curve: theme.animationCurve,
       headerBuilder: (BuildContext context, YgExpansionController controller) {
         return Material(
           type: MaterialType.transparency,
@@ -101,7 +105,7 @@ abstract class YgExpandingSection extends StatelessWidget {
               icon: icon,
               trailing: <Widget>[
                 if (tag != null) tag,
-                _buildExpandButton(controller),
+                _buildExpandButton(theme, controller),
               ],
             ),
           ),
@@ -114,16 +118,15 @@ abstract class YgExpandingSection extends StatelessWidget {
     );
   }
 
-  Widget _buildExpandButton(YgExpansionController controller) {
+  Widget _buildExpandButton(YgSectionTheme theme, YgExpansionController controller) {
     return ListenableBuilder(
       listenable: controller,
-      builder: (BuildContext context, Widget? child) {
-        return AnimatedRotation(
-          turns: controller.expanded ? 0.5 : 0,
-          duration: const Duration(milliseconds: 200),
-          child: child,
-        );
-      },
+      builder: (_, Widget? child) => AnimatedRotation(
+        turns: controller.expanded ? 0.5 : 0,
+        duration: theme.animationDuration,
+        curve: theme.animationCurve,
+        child: child,
+      ),
       child: const YgIcon(
         YgIcons.caretDown,
       ),

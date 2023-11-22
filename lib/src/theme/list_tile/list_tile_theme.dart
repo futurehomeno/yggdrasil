@@ -92,4 +92,18 @@ class _$YgListTileTheme {
     professional_light.FhDimensions.lg,
     professional_dark.FhDimensions.lg,
   ];
+
+  static const List<Duration> animationDuration = <Duration>[
+    Duration(milliseconds: 200),
+    Duration(milliseconds: 200),
+    Duration(milliseconds: 200),
+    Duration(milliseconds: 200),
+  ];
+
+  static const List<Curve> animationCurve = <Curve>[
+    Curves.easeInOut,
+    Curves.easeInOut,
+    Curves.easeInOut,
+    Curves.easeInOut,
+  ];
 }

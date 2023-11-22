@@ -2,13 +2,12 @@ part of '../yg_list_tile.dart';
 
 /// Expanding list tile component.
 ///
-/// This component is used to display a list of items.
+/// This component is used in lists when certain content needs to be hidden
+/// until the user expands the widget.
 ///
 /// Supports 2 leading and 2 supporting widgets, however, this differs from
 /// design in Figma. This is so we do not encourage designers to use more than
 /// 2 widgets.
-///
-/// Also supports
 final class YgExpandingListTile extends YgListTile {
   const YgExpandingListTile({
     super.key,
@@ -26,14 +25,8 @@ final class YgExpandingListTile extends YgListTile {
           disabled: false,
         );
 
-  /// The widget rendered below the list tile.
+  /// The widget rendered below the list tile when it is expanded..
   final Widget child;
-
-  /// Controls the expansion of the section.
-  final YgExpansionController? controller;
-
-  /// Whether the section is expanded on initial load.
-  final bool initiallyExpanded;
 
   /// Widgets which will be placed at the front of the list tile.
   final List<Widget>? leadingWidgets;
@@ -48,7 +41,13 @@ final class YgExpandingListTile extends YgListTile {
   /// Called when the button is pressed.
   final VoidCallback? onInfoTap;
 
-  /// Called when the expanded state changes.
+  /// See [YgExpander.controller].
+  final YgExpansionController? controller;
+
+  /// See [YgExpander.initiallyExpanded].
+  final bool initiallyExpanded;
+
+  /// See [YgExpander.onExpandedChanged].
   final ValueChanged<bool>? onExpandedChanged;
 
   @override
@@ -56,6 +55,8 @@ final class YgExpandingListTile extends YgListTile {
     final YgListTileTheme theme = context.listTileTheme;
 
     return YgExpander(
+      duration: theme.animationDuration,
+      curve: theme.animationCurve,
       headerBuilder: (BuildContext context, YgExpansionController controller) {
         return YgListTileBody(
           title: title,

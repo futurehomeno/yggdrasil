@@ -10,6 +10,8 @@ part of 'list_tile_theme.dart';
 
 class YgListTileTheme extends ThemeExtension<YgListTileTheme> {
   const YgListTileTheme({
+    required this.animationCurve,
+    required this.animationDuration,
     required this.contentSpacing,
     required this.iconSize,
     required this.outerPadding,
@@ -20,6 +22,8 @@ class YgListTileTheme extends ThemeExtension<YgListTileTheme> {
     required this.titleTextStyle,
   });
 
+  final Curve animationCurve;
+  final Duration animationDuration;
   final double contentSpacing;
   final double iconSize;
   final EdgeInsets outerPadding;
@@ -30,6 +34,8 @@ class YgListTileTheme extends ThemeExtension<YgListTileTheme> {
   final TextStyle titleTextStyle;
 
   static final YgListTileTheme consumerLight = YgListTileTheme(
+    animationCurve: _$YgListTileTheme.animationCurve[0],
+    animationDuration: _$YgListTileTheme.animationDuration[0],
     contentSpacing: _$YgListTileTheme.contentSpacing[0],
     iconSize: _$YgListTileTheme.iconSize[0],
     outerPadding: _$YgListTileTheme.outerPadding[0],
@@ -42,6 +48,8 @@ class YgListTileTheme extends ThemeExtension<YgListTileTheme> {
   );
 
   static final YgListTileTheme consumerDark = YgListTileTheme(
+    animationCurve: _$YgListTileTheme.animationCurve[1],
+    animationDuration: _$YgListTileTheme.animationDuration[1],
     contentSpacing: _$YgListTileTheme.contentSpacing[1],
     iconSize: _$YgListTileTheme.iconSize[1],
     outerPadding: _$YgListTileTheme.outerPadding[1],
@@ -54,6 +62,8 @@ class YgListTileTheme extends ThemeExtension<YgListTileTheme> {
   );
 
   static final YgListTileTheme professionalLight = YgListTileTheme(
+    animationCurve: _$YgListTileTheme.animationCurve[2],
+    animationDuration: _$YgListTileTheme.animationDuration[2],
     contentSpacing: _$YgListTileTheme.contentSpacing[2],
     iconSize: _$YgListTileTheme.iconSize[2],
     outerPadding: _$YgListTileTheme.outerPadding[2],
@@ -66,6 +76,8 @@ class YgListTileTheme extends ThemeExtension<YgListTileTheme> {
   );
 
   static final YgListTileTheme professionalDark = YgListTileTheme(
+    animationCurve: _$YgListTileTheme.animationCurve[3],
+    animationDuration: _$YgListTileTheme.animationDuration[3],
     contentSpacing: _$YgListTileTheme.contentSpacing[3],
     iconSize: _$YgListTileTheme.iconSize[3],
     outerPadding: _$YgListTileTheme.outerPadding[3],
@@ -86,6 +98,8 @@ class YgListTileTheme extends ThemeExtension<YgListTileTheme> {
 
   @override
   YgListTileTheme copyWith({
+    Curve? animationCurve,
+    Duration? animationDuration,
     double? contentSpacing,
     double? iconSize,
     EdgeInsets? outerPadding,
@@ -96,6 +110,8 @@ class YgListTileTheme extends ThemeExtension<YgListTileTheme> {
     TextStyle? titleTextStyle,
   }) {
     return YgListTileTheme(
+      animationCurve: animationCurve ?? this.animationCurve,
+      animationDuration: animationDuration ?? this.animationDuration,
       contentSpacing: contentSpacing ?? this.contentSpacing,
       iconSize: iconSize ?? this.iconSize,
       outerPadding: outerPadding ?? this.outerPadding,
@@ -113,6 +129,8 @@ class YgListTileTheme extends ThemeExtension<YgListTileTheme> {
       covariant ThemeExtension<YgListTileTheme>? other, double t) {
     if (other is! YgListTileTheme) return this as YgListTileTheme;
     return YgListTileTheme(
+      animationCurve: t < 0.5 ? animationCurve : other.animationCurve,
+      animationDuration: t < 0.5 ? animationDuration : other.animationDuration,
       contentSpacing: t < 0.5 ? contentSpacing : other.contentSpacing,
       iconSize: t < 0.5 ? iconSize : other.iconSize,
       outerPadding: t < 0.5 ? outerPadding : other.outerPadding,
@@ -134,6 +152,10 @@ class YgListTileTheme extends ThemeExtension<YgListTileTheme> {
         (other.runtimeType == runtimeType &&
             other is YgListTileTheme &&
             const DeepCollectionEquality()
+                .equals(animationCurve, other.animationCurve) &&
+            const DeepCollectionEquality()
+                .equals(animationDuration, other.animationDuration) &&
+            const DeepCollectionEquality()
                 .equals(contentSpacing, other.contentSpacing) &&
             const DeepCollectionEquality().equals(iconSize, other.iconSize) &&
             const DeepCollectionEquality()
@@ -154,6 +176,8 @@ class YgListTileTheme extends ThemeExtension<YgListTileTheme> {
   int get hashCode {
     return Object.hash(
       runtimeType.hashCode,
+      const DeepCollectionEquality().hash(animationCurve),
+      const DeepCollectionEquality().hash(animationDuration),
       const DeepCollectionEquality().hash(contentSpacing),
       const DeepCollectionEquality().hash(iconSize),
       const DeepCollectionEquality().hash(outerPadding),

@@ -1,7 +1,7 @@
 part of 'yg_expanding_section.dart';
 
-class _YgExpandingSection extends YgExpandingSection {
-  const _YgExpandingSection({
+class _YgExpandingSectionRegular extends YgExpandingSection {
+  const _YgExpandingSectionRegular({
     required super.title,
     required this.child,
     super.controller,

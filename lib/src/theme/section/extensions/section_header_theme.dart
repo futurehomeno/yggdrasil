@@ -58,10 +58,40 @@ class _$YgSectionHeaderTheme {
     ),
   ];
 
-  static const List<double> titleSubtitleSpacing = <double>[
-    consumer_light.FhDimensions.xxs,
-    consumer_dark.FhDimensions.xxs,
-    professional_light.FhDimensions.xxs,
-    professional_dark.FhDimensions.xxs,
+  static const List<EdgeInsets> iconPadding = <EdgeInsets>[
+    EdgeInsets.only(
+      right: consumer_light.FhDimensions.xs,
+    ),
+    EdgeInsets.only(
+      right: consumer_dark.FhDimensions.xs,
+    ),
+    EdgeInsets.only(
+      right: professional_light.FhDimensions.xs,
+    ),
+    EdgeInsets.only(
+      right: professional_dark.FhDimensions.xs,
+    ),
+  ];
+
+  static const List<EdgeInsets> subtitlePadding = <EdgeInsets>[
+    EdgeInsets.only(
+      top: consumer_light.FhDimensions.xxs,
+    ),
+    EdgeInsets.only(
+      top: consumer_dark.FhDimensions.xxs,
+    ),
+    EdgeInsets.only(
+      top: professional_light.FhDimensions.xxs,
+    ),
+    EdgeInsets.only(
+      top: professional_dark.FhDimensions.xxs,
+    ),
+  ];
+
+  static const List<double> trailingSpacing = <double>[
+    consumer_light.FhDimensions.xs,
+    consumer_dark.FhDimensions.xs,
+    professional_light.FhDimensions.xs,
+    professional_dark.FhDimensions.xs,
   ];
 }
