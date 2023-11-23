@@ -72,6 +72,8 @@ abstract class YgExpandingSection extends StatelessWidget {
   final String? subtitle;
 
   /// The tag trailing the section.
+  ///
+  /// You cannot have a tag without a title.
   final YgTag? tag;
 
   /// The icon leading the section.
