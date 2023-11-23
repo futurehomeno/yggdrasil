@@ -75,6 +75,8 @@ abstract class YgExpandingSection extends StatelessWidget {
   final YgTag? tag;
 
   /// The icon leading the section.
+  ///
+  /// You cannot have an icon without a title.
   final YgIcon? icon;
 
   /// See [YgExpander.controller].
