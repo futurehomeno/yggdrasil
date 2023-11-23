@@ -99,6 +99,8 @@ abstract class YgSection extends StatelessWidget with StatelessWidgetDebugMixin 
   final YgTag? tag;
 
   /// The icon leading the section.
+  ///
+  /// You cannot have an icon without a title.
   final YgIcon? icon;
 
   /// Builds the child widget.
