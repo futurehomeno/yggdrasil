@@ -9,6 +9,7 @@ part 'section_header_theme.tailor.dart';
 
 @tailorComponent
 class _$YgSectionHeaderTheme {
+  // TODO(tim): Remove height when tokens are updated.
   static final List<TextStyle> titleTextStyle = <TextStyle>[
     consumer_light.FhTextStyles.sectionHeading2Medium.copyWith(
       height: 1.2,
