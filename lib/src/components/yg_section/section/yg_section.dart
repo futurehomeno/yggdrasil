@@ -28,9 +28,9 @@ abstract class YgSection extends StatelessWidget with StatelessWidgetDebugMixin 
 
   /// A section with a list of [YgListTile] widgets.
   ///
-  /// Unlike the other constructors does not apply padding to its children as
+  /// Unlike the other constructors, does not apply padding to its children as
   /// list tiles are responsible for providing their own padding and should
-  /// reach to the edges of the screen.
+  /// extend to the edges of the screen.
   const factory YgSection.list({
     required List<YgListTile> children,
     String? subtitle,
