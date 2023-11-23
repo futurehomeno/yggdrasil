@@ -42,7 +42,7 @@ class YgExpander extends StatefulWidget {
   /// expansion animation of whether it gets revealed by the animation.
   final Alignment alignment;
 
-  /// Axis on which the widget will expand.
+  /// Axis along which the widget will expand.
   final Axis axis;
 
   /// The widget rendered below the header when the widget has expanded.
