@@ -24,7 +24,7 @@ abstract class YgExpandingSection extends StatelessWidget {
 
   /// A section that can be expanded with a column of children.
   const factory YgExpandingSection.column({
-    required List<YgListTile> children,
+    required List<Widget> children,
     required String title,
     YgExpansionController? controller,
     bool initiallyExpanded,

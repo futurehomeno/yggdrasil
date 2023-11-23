@@ -14,7 +14,7 @@ class _YgExpandingSectionColumn extends YgExpandingSection {
   }) : super._();
 
   /// The widgets below this widget in the tree.
-  final List<YgListTile> children;
+  final List<Widget> children;
 
   @override
   Widget buildChild(BuildContext context) {

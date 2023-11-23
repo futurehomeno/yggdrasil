@@ -3,6 +3,8 @@ import 'package:yggdrasil/yggdrasil.dart';
 import 'package:yggdrasil_demo/core/_core.dart';
 import 'package:yggdrasil_demo/widgets/_widgets.dart';
 
+import 'examples/_examples.dart';
+
 class ExpandingSectionScreen extends StatelessWidget {
   const ExpandingSectionScreen({super.key});
 
@@ -17,46 +19,25 @@ class ExpandingSectionScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const DemoScreen(
-      componentName: 'ExpandingSection',
-      child: Column(
-        children: <Widget>[
-          YgExpandingSection(
-            title: 'With title',
-            child: DemoPlaceholder(),
-          ),
-          YgExpandingSection(
-            title: 'With title and subtitle',
-            subtitle: 'The subtitle',
-            child: DemoPlaceholder(),
-          ),
-          YgExpandingSection(
-            title: 'With title and tag',
-            tag: YgTag(
-              variant: YgTagVariant.informative,
-              size: YgTagSize.small,
-              child: Text('Tag Basic'),
-            ),
-            child: DemoPlaceholder(),
-          ),
-          YgExpandingSection(
-            title: 'With title and icon',
-            icon: YgIcon(YgIcons.placeholder),
-            child: DemoPlaceholder(),
-          ),
-          YgExpandingSection(
-            title: 'With title, icon, tag and long subtitle',
-            subtitle:
-                'Minim nisi exercitation ipsum voluptate proident irure irure ut tempor magna ipsum officia et ut.',
-            icon: YgIcon(YgIcons.placeholder),
-            tag: YgTag(
-              variant: YgTagVariant.informative,
-              size: YgTagSize.small,
-              child: Text('Tag Basic'),
-            ),
-            child: DemoPlaceholder(),
-          ),
-        ],
+    return const DefaultTabController(
+      length: 3,
+      child: DemoScreen(
+        componentName: 'ExpandingSection',
+        scrollable: false,
+        bottom: YgTabBar(
+          tabs: <YgTab>[
+            YgTab(label: 'Regular'),
+            YgTab(label: 'Column'),
+            YgTab(label: 'List'),
+          ],
+        ),
+        child: TabBarView(
+          children: <Widget>[
+            SingleChildScrollView(child: RegularExample()),
+            SingleChildScrollView(child: ColumnExample()),
+            SingleChildScrollView(child: ListExample()),
+          ],
+        ),
       ),
     );
   }
