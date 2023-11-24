@@ -32,7 +32,7 @@ class ColumnExample extends StatelessWidget {
           tag: YgTag(
             variant: YgTagVariant.informative,
             size: YgTagSize.small,
-            child: Text('Tag Basic'),
+            text: 'Tag Basic',
           ),
           children: children,
         ),
@@ -48,7 +48,7 @@ class ColumnExample extends StatelessWidget {
           tag: YgTag(
             variant: YgTagVariant.informative,
             size: YgTagSize.small,
-            child: Text('Tag Basic'),
+            text: 'Tag Basic',
           ),
           children: children,
         ),

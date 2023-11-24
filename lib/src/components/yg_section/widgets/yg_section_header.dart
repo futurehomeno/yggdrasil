@@ -2,12 +2,15 @@ import 'package:flutter/material.dart';
 import 'package:yggdrasil/src/theme/section/extensions/section_header_theme.dart';
 import 'package:yggdrasil/yggdrasil.dart';
 
+import '_widgets.dart';
+
 class YgSectionHeader extends StatelessWidget {
   const YgSectionHeader({
     super.key,
     required this.title,
     this.subtitle,
     this.trailing,
+    this.tag,
     this.icon,
   });
 
@@ -17,8 +20,9 @@ class YgSectionHeader extends StatelessWidget {
   /// The subtitle of the section.
   final String? subtitle;
 
-  /// The widgets trailing the title.
-  final List<Widget>? trailing;
+  final Widget? trailing;
+
+  final Widget? tag;
 
   /// The icon in front of the title and subtitle.
   final YgIcon? icon;
@@ -26,9 +30,10 @@ class YgSectionHeader extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final YgSectionHeaderTheme theme = context.sectionTheme.sectionHeader;
-    final List<Widget>? trailing = this.trailing;
     final String? subtitle = this.subtitle;
     final YgIcon? icon = this.icon;
+    final Widget? tag = this.tag;
+    final Widget? trailing = this.trailing;
 
     return Padding(
       padding: theme.padding,
@@ -45,17 +50,15 @@ class YgSectionHeader extends StatelessWidget {
               crossAxisAlignment: CrossAxisAlignment.stretch,
               mainAxisSize: MainAxisSize.min,
               children: <Widget>[
-                Row(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: <Widget>[
-                    Expanded(
-                      child: Text(
-                        title,
-                        style: theme.titleTextStyle,
-                      ),
-                    ),
-                    if (trailing != null) ...trailing,
-                  ].withHorizontalSpacing(theme.trailingSpacing),
+                YgSectionTitleBar(
+                  title: Text(
+                    title,
+                    style: theme.titleTextStyle,
+                  ),
+                  tag: tag,
+                  trailing: trailing,
+                  minAvailableTagWidth: 100,
+                  gap: 10,
                 ),
                 if (subtitle != null)
                   Padding(

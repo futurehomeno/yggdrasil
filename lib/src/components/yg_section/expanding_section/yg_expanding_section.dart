@@ -107,10 +107,8 @@ abstract class YgExpandingSection extends StatelessWidget {
               title: title,
               subtitle: subtitle,
               icon: icon,
-              trailing: <Widget>[
-                if (tag != null) tag,
-                _buildExpandButton(theme, controller),
-              ],
+              tag: tag,
+              trailing: _buildExpandButton(theme, controller),
             ),
           ),
         );

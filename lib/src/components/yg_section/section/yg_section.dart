@@ -67,24 +67,12 @@ abstract class YgSection extends StatelessWidget with StatelessWidgetDebugMixin 
           title: title,
           subtitle: subtitle,
           icon: icon,
-          trailing: buildTrailing(),
+          tag: tag,
+          trailing: null,
         ),
         child,
       ],
     );
-  }
-
-  /// Builds the trailing widgets.
-  List<Widget>? buildTrailing() {
-    final YgTag? tag = this.tag;
-
-    if (tag == null) {
-      return null;
-    }
-
-    return <Widget>[
-      tag,
-    ];
   }
 
   /// Title of the section.

@@ -3,7 +3,7 @@ part of 'yg_tag.dart';
 class _YgTagWithLeadingIcon extends YgTag {
   const _YgTagWithLeadingIcon({
     super.key,
-    required super.child,
+    required super.text,
     super.size = YgTagSize.medium,
     super.variant = YgTagVariant.neutral,
     super.weight = YgTagWeight.weak,
@@ -25,7 +25,7 @@ class _YgTagWithLeadingIcon extends YgTag {
       mainAxisSize: MainAxisSize.min,
       children: <Widget>[
         icon,
-        Flexible(child: child),
+        Text(text),
       ].withHorizontalSpacing(context.tagTheme.iconSpacing),
     );
   }

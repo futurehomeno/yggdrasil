@@ -3,7 +3,7 @@ part of 'yg_tag.dart';
 class _YgTagWithDoubleIcon extends YgTag {
   const _YgTagWithDoubleIcon({
     super.key,
-    required super.child,
+    required super.text,
     super.size = YgTagSize.medium,
     super.variant = YgTagVariant.neutral,
     super.weight = YgTagWeight.weak,
@@ -29,7 +29,7 @@ class _YgTagWithDoubleIcon extends YgTag {
       mainAxisSize: MainAxisSize.min,
       children: <Widget>[
         leadingIcon,
-        Flexible(child: child),
+        Text(text),
         trailingIcon,
       ].withHorizontalSpacing(context.tagTheme.iconSpacing),
     );

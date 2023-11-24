@@ -149,6 +149,8 @@ class _YgButtonBaseState<T extends YgButtonBaseState> extends StateWithYgStyle<Y
                 heightFactor: 1,
                 alignment: style.alignment,
                 child: DefaultTextStyleTransition(
+                  maxLines: 1,
+                  overflow: TextOverflow.ellipsis,
                   style: style.textStyle,
                   child: YgAnimatedIconTheme(
                     iconTheme: style.iconTheme,
