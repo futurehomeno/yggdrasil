@@ -39,7 +39,7 @@ class RegularExample extends StatelessWidget {
           tag: YgTag(
             variant: YgTagVariant.informative,
             size: YgTagSize.small,
-            child: Text('Tag Basic'),
+            child: Text('Tag Basic but with some more stuff in it'),
           ),
           child: DemoPlaceholder(),
         ),

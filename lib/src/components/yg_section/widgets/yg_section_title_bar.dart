@@ -179,15 +179,23 @@ class YgSectionTitleBarRenderer extends RenderBox
     // If there's a tag, get its preferred size and subtract its width from the
     // available width.
     if (tag != null) {
+      // We have another gap between the title and tag.
+      availableWidth -= _gap;
+
       final Size preferredSize = tag.getDryLayout(
         childConstraints.copyWith(
           maxWidth: availableWidth,
         ),
       );
 
+      // Use the min width, except if the min width is more than half of the
+      // total section width.
       final double minimumWidth = min(
-        _minAvailableTagWidth,
-        preferredSize.width,
+        min(
+          _minAvailableTagWidth,
+          preferredSize.width,
+        ),
+        availableWidth * 0.5,
       );
 
       availableWidth -= minimumWidth;

@@ -20,8 +20,10 @@ class YgSectionHeader extends StatelessWidget {
   /// The subtitle of the section.
   final String? subtitle;
 
+  /// The widget trailing the title and tag.
   final Widget? trailing;
 
+  /// The tag.
   final Widget? tag;
 
   /// The icon in front of the title and subtitle.
@@ -57,8 +59,8 @@ class YgSectionHeader extends StatelessWidget {
                   ),
                   tag: tag,
                   trailing: trailing,
-                  minAvailableTagWidth: 100,
-                  gap: 10,
+                  minAvailableTagWidth: theme.minAvailableTagWidth,
+                  gap: theme.trailingSpacing,
                 ),
                 if (subtitle != null)
                   Padding(

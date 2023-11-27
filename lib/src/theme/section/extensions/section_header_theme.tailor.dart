@@ -11,6 +11,7 @@ part of 'section_header_theme.dart';
 class YgSectionHeaderTheme extends ThemeExtension<YgSectionHeaderTheme> {
   const YgSectionHeaderTheme({
     required this.iconPadding,
+    required this.minAvailableTagWidth,
     required this.padding,
     required this.subtitlePadding,
     required this.subtitleTextStyle,
@@ -19,6 +20,7 @@ class YgSectionHeaderTheme extends ThemeExtension<YgSectionHeaderTheme> {
   });
 
   final EdgeInsets iconPadding;
+  final double minAvailableTagWidth;
   final EdgeInsets padding;
   final EdgeInsets subtitlePadding;
   final TextStyle subtitleTextStyle;
@@ -27,6 +29,7 @@ class YgSectionHeaderTheme extends ThemeExtension<YgSectionHeaderTheme> {
 
   static final YgSectionHeaderTheme consumerLight = YgSectionHeaderTheme(
     iconPadding: _$YgSectionHeaderTheme.iconPadding[0],
+    minAvailableTagWidth: _$YgSectionHeaderTheme.minAvailableTagWidth[0],
     padding: _$YgSectionHeaderTheme.padding[0],
     subtitlePadding: _$YgSectionHeaderTheme.subtitlePadding[0],
     subtitleTextStyle: _$YgSectionHeaderTheme.subtitleTextStyle[0],
@@ -36,6 +39,7 @@ class YgSectionHeaderTheme extends ThemeExtension<YgSectionHeaderTheme> {
 
   static final YgSectionHeaderTheme consumerDark = YgSectionHeaderTheme(
     iconPadding: _$YgSectionHeaderTheme.iconPadding[1],
+    minAvailableTagWidth: _$YgSectionHeaderTheme.minAvailableTagWidth[1],
     padding: _$YgSectionHeaderTheme.padding[1],
     subtitlePadding: _$YgSectionHeaderTheme.subtitlePadding[1],
     subtitleTextStyle: _$YgSectionHeaderTheme.subtitleTextStyle[1],
@@ -45,6 +49,7 @@ class YgSectionHeaderTheme extends ThemeExtension<YgSectionHeaderTheme> {
 
   static final YgSectionHeaderTheme professionalLight = YgSectionHeaderTheme(
     iconPadding: _$YgSectionHeaderTheme.iconPadding[2],
+    minAvailableTagWidth: _$YgSectionHeaderTheme.minAvailableTagWidth[2],
     padding: _$YgSectionHeaderTheme.padding[2],
     subtitlePadding: _$YgSectionHeaderTheme.subtitlePadding[2],
     subtitleTextStyle: _$YgSectionHeaderTheme.subtitleTextStyle[2],
@@ -54,6 +59,7 @@ class YgSectionHeaderTheme extends ThemeExtension<YgSectionHeaderTheme> {
 
   static final YgSectionHeaderTheme professionalDark = YgSectionHeaderTheme(
     iconPadding: _$YgSectionHeaderTheme.iconPadding[3],
+    minAvailableTagWidth: _$YgSectionHeaderTheme.minAvailableTagWidth[3],
     padding: _$YgSectionHeaderTheme.padding[3],
     subtitlePadding: _$YgSectionHeaderTheme.subtitlePadding[3],
     subtitleTextStyle: _$YgSectionHeaderTheme.subtitleTextStyle[3],
@@ -71,6 +77,7 @@ class YgSectionHeaderTheme extends ThemeExtension<YgSectionHeaderTheme> {
   @override
   YgSectionHeaderTheme copyWith({
     EdgeInsets? iconPadding,
+    double? minAvailableTagWidth,
     EdgeInsets? padding,
     EdgeInsets? subtitlePadding,
     TextStyle? subtitleTextStyle,
@@ -79,6 +86,7 @@ class YgSectionHeaderTheme extends ThemeExtension<YgSectionHeaderTheme> {
   }) {
     return YgSectionHeaderTheme(
       iconPadding: iconPadding ?? this.iconPadding,
+      minAvailableTagWidth: minAvailableTagWidth ?? this.minAvailableTagWidth,
       padding: padding ?? this.padding,
       subtitlePadding: subtitlePadding ?? this.subtitlePadding,
       subtitleTextStyle: subtitleTextStyle ?? this.subtitleTextStyle,
@@ -93,6 +101,8 @@ class YgSectionHeaderTheme extends ThemeExtension<YgSectionHeaderTheme> {
     if (other is! YgSectionHeaderTheme) return this as YgSectionHeaderTheme;
     return YgSectionHeaderTheme(
       iconPadding: t < 0.5 ? iconPadding : other.iconPadding,
+      minAvailableTagWidth:
+          t < 0.5 ? minAvailableTagWidth : other.minAvailableTagWidth,
       padding: t < 0.5 ? padding : other.padding,
       subtitlePadding: t < 0.5 ? subtitlePadding : other.subtitlePadding,
       subtitleTextStyle:
@@ -109,6 +119,8 @@ class YgSectionHeaderTheme extends ThemeExtension<YgSectionHeaderTheme> {
             other is YgSectionHeaderTheme &&
             const DeepCollectionEquality()
                 .equals(iconPadding, other.iconPadding) &&
+            const DeepCollectionEquality()
+                .equals(minAvailableTagWidth, other.minAvailableTagWidth) &&
             const DeepCollectionEquality().equals(padding, other.padding) &&
             const DeepCollectionEquality()
                 .equals(subtitlePadding, other.subtitlePadding) &&
@@ -125,6 +137,7 @@ class YgSectionHeaderTheme extends ThemeExtension<YgSectionHeaderTheme> {
     return Object.hash(
       runtimeType.hashCode,
       const DeepCollectionEquality().hash(iconPadding),
+      const DeepCollectionEquality().hash(minAvailableTagWidth),
       const DeepCollectionEquality().hash(padding),
       const DeepCollectionEquality().hash(subtitlePadding),
       const DeepCollectionEquality().hash(subtitleTextStyle),

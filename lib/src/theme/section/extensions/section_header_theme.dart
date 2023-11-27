@@ -95,4 +95,11 @@ class _$YgSectionHeaderTheme {
     professional_light.FhDimensions.xs,
     professional_dark.FhDimensions.xs,
   ];
+
+  static const List<double> minAvailableTagWidth = <double>[
+    75,
+    75,
+    75,
+    75,
+  ];
 }
