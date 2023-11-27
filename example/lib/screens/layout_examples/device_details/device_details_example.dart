@@ -86,7 +86,7 @@ class DeviceDetailsExample extends StatelessWidget {
                   YgTag(
                     size: YgTagSize.small,
                     variant: YgTagVariant.warning,
-                    text: 'Danger!',
+                    child: Text('Danger!'),
                   ),
                 ],
               ),

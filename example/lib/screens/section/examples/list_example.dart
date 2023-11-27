@@ -33,7 +33,7 @@ class ListExample extends StatelessWidget {
           tag: const YgTag(
             variant: YgTagVariant.informative,
             size: YgTagSize.small,
-            text: 'Tag Basic',
+            child: Text('Tag Basic'),
           ),
           children: children,
         ),
@@ -49,7 +49,7 @@ class ListExample extends StatelessWidget {
           tag: const YgTag(
             variant: YgTagVariant.informative,
             size: YgTagSize.small,
-            text: 'Tag Basic',
+            child: Text('Tag Basic'),
           ),
           children: children,
         ),

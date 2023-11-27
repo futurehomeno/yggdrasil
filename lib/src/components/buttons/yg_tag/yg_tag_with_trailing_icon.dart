@@ -3,7 +3,7 @@ part of 'yg_tag.dart';
 class _YgTagWithTrailingIcon extends YgTag {
   const _YgTagWithTrailingIcon({
     super.key,
-    required super.text,
+    required super.child,
     super.size = YgTagSize.medium,
     super.variant = YgTagVariant.neutral,
     super.weight = YgTagWeight.weak,
@@ -24,7 +24,7 @@ class _YgTagWithTrailingIcon extends YgTag {
     return Row(
       mainAxisSize: MainAxisSize.min,
       children: <Widget>[
-        Text(text),
+        child,
         icon,
       ].withHorizontalSpacing(context.tagTheme.iconSpacing),
     );

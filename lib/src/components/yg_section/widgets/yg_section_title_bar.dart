@@ -3,6 +3,7 @@ import 'dart:math';
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 
+/// Lays out the title, tag and trailing for the section header.
 class YgSectionTitleBar extends MultiChildRenderObjectWidget {
   YgSectionTitleBar({
     super.key,
@@ -21,9 +22,22 @@ class YgSectionTitleBar extends MultiChildRenderObjectWidget {
           ],
         );
 
+  /// Whether there is a tag.
   final bool tag;
+
+  /// Whether there is a trailing.
   final bool trailing;
+
+  /// The gap between the widgets.
   final double gap;
+
+  /// The minimum width that the tag should be allowed to use.
+  ///
+  /// This is not the minimum width of the tag, if the tag needs less space than
+  /// this it will use less space. If the title does not take up all the
+  /// available space the tag is allowed to expand beyond this amount. Only when
+  /// both the title and tag take up more than the available width will this
+  /// number dictate the width of the tag.
   final double minAvailableTagWidth;
 
   @override
@@ -58,6 +72,8 @@ class YgSectionTitleBarRenderer extends RenderBox
         _tag = tag,
         _minAvailableTagWidth = minAvailableTagWidth,
         _gap = gap;
+
+  // region Values
 
   double _minAvailableTagWidth;
   double get minAvailableTagWidth => _minAvailableTagWidth;
@@ -95,6 +111,8 @@ class YgSectionTitleBarRenderer extends RenderBox
     }
   }
 
+  // endregion
+
   @override
   void setupParentData(covariant RenderObject child) {
     child.parentData = YgSectionTitleBarParentData();
@@ -115,6 +133,8 @@ class YgSectionTitleBarRenderer extends RenderBox
       );
     }
 
+    // Trailing will always be the last child if it exists, tag will always be
+    // after the title if it exists.
     return (
       title: title,
       tag: tag ? childAfter(title) : null,
@@ -130,10 +150,13 @@ class YgSectionTitleBarRenderer extends RenderBox
       :RenderBox? trailing,
     ) = _getChildren();
 
+    // If there's no title, there's nothing to layout.
     if (title == null) {
       return;
     }
 
+    // Copy the constraints of the parent widget, except allow the child widgets
+    // to have a width as small as they want.
     final BoxConstraints childConstraints = constraints.copyWith(
       minWidth: 0,
     );
@@ -141,14 +164,20 @@ class YgSectionTitleBarRenderer extends RenderBox
     double availableWidth = childConstraints.maxWidth;
     double height = 0;
 
+    // If there's a trailing widget, lay it out and subtract its width from the.
+    // available width.
     if (trailing != null) {
       trailing.layout(childConstraints, parentUsesSize: true);
       availableWidth -= trailing.size.width + _gap;
+
+      // Update the height if the trailing widget is taller than the current height.
       if (trailing.size.height > height) {
         height = trailing.size.height;
       }
     }
 
+    // If there's a tag, get its preferred size and subtract its width from the
+    // available width.
     if (tag != null) {
       final Size preferredSize = tag.getDryLayout(
         childConstraints.copyWith(
@@ -164,6 +193,7 @@ class YgSectionTitleBarRenderer extends RenderBox
       availableWidth -= minimumWidth;
     }
 
+    // Layout the title with the remaining width.
     title.layout(
       childConstraints.copyWith(
         maxWidth: availableWidth,
@@ -171,10 +201,13 @@ class YgSectionTitleBarRenderer extends RenderBox
       parentUsesSize: true,
     );
 
+    // Update the height if the title is taller than the current height.
     if (title.size.height > height) {
       height = title.size.height;
     }
 
+    // If there's a tag, lay it out with the remaining width after subtracting
+    // the title and trailing widths.
     if (tag != null) {
       double tagWidth = childConstraints.maxWidth - title.size.width - _gap;
 
@@ -189,6 +222,7 @@ class YgSectionTitleBarRenderer extends RenderBox
         parentUsesSize: true,
       );
 
+      // Update the height if the tag is taller than the current height
       if (tag.size.height > height) {
         height = tag.size.height;
       }
@@ -208,12 +242,15 @@ class YgSectionTitleBarRenderer extends RenderBox
       :RenderBox? trailing,
     ) = _getChildren();
 
+    // If there's no title, there's nothing to paint.
     if (title == null) {
       return;
     }
 
+    // Paint the title at the top left.
     title.paint(context, offset);
 
+    // If there's a trailing widget, paint it at the right edge.
     if (trailing != null) {
       trailing.paint(
         context,
@@ -224,9 +261,12 @@ class YgSectionTitleBarRenderer extends RenderBox
       );
     }
 
+    // If there's a tag, paint it to the left of the trailing widget (or at the
+    // right edge if there's no trailing widget).
     if (tag != null) {
       double xOffset = offset.dx + constraints.maxWidth - tag.size.width;
 
+      // If there's a trailing widget, adjust the xOffset for the tag
       if (trailing != null) {
         xOffset -= trailing.size.width + _gap;
       }

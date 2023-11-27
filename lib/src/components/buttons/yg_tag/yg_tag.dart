@@ -14,7 +14,7 @@ part 'yg_tag_with_trailing_icon.dart';
 class YgTag extends YgButtonBase<YgTagState> {
   const YgTag({
     super.key,
-    required this.text,
+    required this.child,
     super.onPressed,
     super.onLongPress,
     super.onHover,
@@ -29,7 +29,7 @@ class YgTag extends YgButtonBase<YgTagState> {
   /// YgTag with a leading icon.
   const factory YgTag.leadingIcon({
     bool autofocus,
-    required String text,
+    required Widget child,
     FocusNode? focusNode,
     required YgIcon icon,
     Key? key,
@@ -45,7 +45,7 @@ class YgTag extends YgButtonBase<YgTagState> {
   /// YgTag with a trailing icon.
   const factory YgTag.trailingIcon({
     bool autofocus,
-    required String text,
+    required Widget child,
     FocusNode? focusNode,
     required YgIcon icon,
     Key? key,
@@ -61,7 +61,7 @@ class YgTag extends YgButtonBase<YgTagState> {
   /// YgTag with a leading and trailing icon.
   const factory YgTag.doubleIcon({
     bool autofocus,
-    required String text,
+    required Widget child,
     FocusNode? focusNode,
     Key? key,
     required YgIcon leadingIcon,
@@ -85,7 +85,7 @@ class YgTag extends YgButtonBase<YgTagState> {
   final YgTagWeight weight;
 
   /// The child widget of the YgTag.
-  final String text;
+  final Widget child;
 
   @override
   YgTagState createButtonState() {
@@ -113,6 +113,6 @@ class YgTag extends YgButtonBase<YgTagState> {
 
   @override
   Widget buildChild(BuildContext context) {
-    return Text(text);
+    return child;
   }
 }
