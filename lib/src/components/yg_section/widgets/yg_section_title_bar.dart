@@ -163,11 +163,9 @@ class YgSectionTitleBarRenderer extends RenderBox
 
     // Calculate the the minimum amount of space which will be used by the tag.
     if (tag != null) {
-      availableWidth -= _gap;
-
       final Size preferredSize = tag.getDryLayout(
         constraints.copyWith(
-          maxWidth: availableWidth,
+          maxWidth: availableWidth - _gap,
         ),
       );
 
@@ -176,14 +174,14 @@ class YgSectionTitleBarRenderer extends RenderBox
       // available space in very constrained circumstances.
       final double minimumWidth = min(
         min(
-          _minAvailableTagWidth,
+          _minAvailableTagWidth + _gap,
           preferredSize.width,
         ),
         availableWidth * 0.5,
       );
 
       // Subtract the minimum width from the available width.
-      availableWidth -= minimumWidth;
+      availableWidth -= minimumWidth + _gap;
     }
 
     // Layout the title with the remaining width.
