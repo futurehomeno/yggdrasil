@@ -72,7 +72,8 @@ final class YgExpandingListTile extends YgListTile {
             builder: (BuildContext context, Widget? child) {
               return AnimatedRotation(
                 turns: controller.expanded ? 0.5 : 0,
-                duration: const Duration(milliseconds: 200),
+                duration: theme.animationDuration,
+                curve: theme.animationCurve,
                 child: child,
               );
             },
