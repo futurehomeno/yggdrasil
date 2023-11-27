@@ -118,78 +118,62 @@ class YgSectionTitleBarRenderer extends RenderBox
     child.parentData = YgSectionTitleBarParentData();
   }
 
-  ({
-    RenderBox? tag,
-    RenderBox? title,
-    RenderBox? trailing,
-  }) _getChildren() {
-    final RenderBox? title = firstChild;
-
-    if (title == null) {
-      return (
-        title: null,
-        tag: null,
-        trailing: null,
-      );
-    }
-
-    // Trailing will always be the last child if it exists, tag will always be
-    // after the title if it exists.
-    return (
-      title: title,
-      tag: tag ? childAfter(title) : null,
-      trailing: trailing ? lastChild : null,
-    );
-  }
-
   @override
   void performLayout() {
-    final (
-      :RenderBox? tag,
-      :RenderBox? title,
-      :RenderBox? trailing,
-    ) = _getChildren();
+    final RenderBox? title = firstChild;
 
-    // If there's no title, there's nothing to layout.
+    // If there's no title, exit the function early.
     if (title == null) {
       return;
     }
 
-    // Copy the constraints of the parent widget, except allow the child widgets
-    // to have a width as small as they want.
-    final BoxConstraints childConstraints = constraints.copyWith(
-      minWidth: 0,
-    );
+    // Get the tag and trailing widgets if they exist.
+    final RenderBox? tag = _tag ? childAfter(title) : null;
+    final RenderBox? trailing = _trailing ? lastChild : null;
 
-    double availableWidth = childConstraints.maxWidth;
+    // Create a new set of constraints for the children. This allows the child
+    // widgets to have a width as small as they want.
+    final BoxConstraints constraints = this.constraints.copyWith(
+          minWidth: 0,
+        );
+
+    // Initialize the available width and height.
+    double availableWidth = constraints.maxWidth;
     double height = 0;
 
-    // If there's a trailing widget, lay it out and subtract its width from the.
-    // available width.
+    // Layout the trailing widget if it exists.
     if (trailing != null) {
-      trailing.layout(childConstraints, parentUsesSize: true);
-      availableWidth -= trailing.size.width + _gap;
+      trailing.layout(constraints, parentUsesSize: true);
 
-      // Update the height if the trailing widget is taller than the current height.
-      if (trailing.size.height > height) {
-        height = trailing.size.height;
-      }
+      // Calculate the total width of the trailing widget and the gap and
+      // subtract this from the available width.
+      final double totalWidth = trailing.size.width + _gap;
+      availableWidth -= totalWidth;
+
+      // Save the offset of the trailing widget.
+      trailing.offset = Offset(
+        constraints.maxWidth - totalWidth,
+        0,
+      );
+
+      // Update the height if the trailing widget is taller than the current
+      // height to ensure the bar is tall enough to contain all its children.
+      height = max(height, trailing.size.height);
     }
 
-    // If there's a tag, get its preferred size and subtract its width from the
-    // available width.
+    // Calculate the the minimum amount of space which will be used by the tag.
     if (tag != null) {
-      // We have another gap between the title and tag.
       availableWidth -= _gap;
 
       final Size preferredSize = tag.getDryLayout(
-        childConstraints.copyWith(
+        constraints.copyWith(
           maxWidth: availableWidth,
         ),
       );
 
-      // Use the min width, except if the min width is more than half of the
-      // total section width.
+      // Calculate the minimum width for the tag. Ensures the tag gets at least
+      // the minimum amount of space required by the design or half of the
+      // available space in very constrained circumstances.
       final double minimumWidth = min(
         min(
           _minAvailableTagWidth,
@@ -198,44 +182,50 @@ class YgSectionTitleBarRenderer extends RenderBox
         availableWidth * 0.5,
       );
 
+      // Subtract the minimum width from the available width.
       availableWidth -= minimumWidth;
     }
 
     // Layout the title with the remaining width.
     title.layout(
-      childConstraints.copyWith(
+      constraints.copyWith(
         maxWidth: availableWidth,
       ),
       parentUsesSize: true,
     );
 
-    // Update the height if the title is taller than the current height.
-    if (title.size.height > height) {
-      height = title.size.height;
-    }
+    // Update the height if the title is taller than the current height to
+    // ensure the bar is tall enough to contain all its children.
+    height = max(height, title.size.height);
 
-    // If there's a tag, lay it out with the remaining width after subtracting
-    // the title and trailing widths.
+    // Layout the tag with the space not used by either the title or trailing
+    // widget.
     if (tag != null) {
-      double tagWidth = childConstraints.maxWidth - title.size.width - _gap;
+      double offset = constraints.maxWidth - _gap;
 
       if (trailing != null) {
-        tagWidth -= trailing.size.width + _gap;
+        offset -= trailing.size.width + _gap;
       }
 
       tag.layout(
-        childConstraints.copyWith(
-          maxWidth: tagWidth,
+        constraints.copyWith(
+          maxWidth: offset - (title.size.width + _gap),
         ),
         parentUsesSize: true,
       );
 
-      // Update the height if the tag is taller than the current height
-      if (tag.size.height > height) {
-        height = tag.size.height;
-      }
+      // Update the height if the tag is taller than the current height to
+      // ensure the bar is tall enough to contain all its children.
+      height = max(height, tag.size.height);
+
+      // Save the offset of the tag.
+      tag.offset = Offset(
+        offset - tag.size.width,
+        0,
+      );
     }
 
+    // Set the size of the render object.
     size = Size(
       constraints.maxWidth,
       height,
@@ -244,48 +234,45 @@ class YgSectionTitleBarRenderer extends RenderBox
 
   @override
   void paint(PaintingContext context, Offset offset) {
-    final (
-      :RenderBox? tag,
-      :RenderBox? title,
-      :RenderBox? trailing,
-    ) = _getChildren();
-
-    // If there's no title, there's nothing to paint.
-    if (title == null) {
-      return;
-    }
-
-    // Paint the title at the top left.
-    title.paint(context, offset);
-
-    // If there's a trailing widget, paint it at the right edge.
-    if (trailing != null) {
-      trailing.paint(
-        context,
-        Offset(
-          (offset.dx + constraints.maxWidth) - trailing.size.width,
-          offset.dy,
-        ),
-      );
-    }
-
-    // If there's a tag, paint it to the left of the trailing widget (or at the
-    // right edge if there's no trailing widget).
-    if (tag != null) {
-      double xOffset = offset.dx + constraints.maxWidth - tag.size.width;
-
-      // If there's a trailing widget, adjust the xOffset for the tag
-      if (trailing != null) {
-        xOffset -= trailing.size.width + _gap;
-      }
-
-      tag.paint(
-        context,
-        Offset(
-          xOffset,
-          offset.dy,
-        ),
-      );
+    // Loop through every child and paint it using the saved offset.
+    RenderBox? child = firstChild;
+    while (child != null) {
+      child.paint(context, offset + child.offset);
+      child = childAfter(child);
     }
   }
+
+  @override
+  bool hitTestChildren(BoxHitTestResult result, {required Offset position}) {
+    // Loop through every child until a hit has been detected using the saved
+    // offset.
+    RenderBox? child = firstChild;
+    while (child != null) {
+      if (child.hitTest(result, position: position - child.offset)) {
+        return true;
+      }
+      child = childAfter(child);
+    }
+
+    return false;
+  }
+
+  @override
+  void applyPaintTransform(covariant RenderObject child, Matrix4 transform) {
+    // Translate the transform using the saved offset.
+    transform.translate(
+      child.offset.dx,
+      child.offset.dy,
+    );
+  }
+}
+
+/// Private extension to make interacting with parentData easier.
+extension on RenderObject {
+  Offset get offset => data.offset;
+  set offset(Offset newOffset) {
+    data.offset = newOffset;
+  }
+
+  YgSectionTitleBarParentData get data => (parentData as YgSectionTitleBarParentData);
 }
