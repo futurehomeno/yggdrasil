@@ -25,7 +25,7 @@ class _YgTagWithLeadingIcon extends YgTag {
       mainAxisSize: MainAxisSize.min,
       children: <Widget>[
         icon,
-        child,
+        Flexible(child: child),
       ].withHorizontalSpacing(context.tagTheme.iconSpacing),
     );
   }

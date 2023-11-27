@@ -29,7 +29,7 @@ class _YgTagWithDoubleIcon extends YgTag {
       mainAxisSize: MainAxisSize.min,
       children: <Widget>[
         leadingIcon,
-        child,
+        Flexible(child: child),
         trailingIcon,
       ].withHorizontalSpacing(context.tagTheme.iconSpacing),
     );

@@ -24,7 +24,7 @@ class _YgTagWithTrailingIcon extends YgTag {
     return Row(
       mainAxisSize: MainAxisSize.min,
       children: <Widget>[
-        child,
+        Flexible(child: child),
         icon,
       ].withHorizontalSpacing(context.tagTheme.iconSpacing),
     );
