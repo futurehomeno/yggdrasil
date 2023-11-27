@@ -33,7 +33,7 @@ class RegularExample extends StatelessWidget {
           child: DemoPlaceholder(),
         ),
         YgExpandingSection(
-          title: 'With title, icon, tag and long subtitle aa',
+          title: 'With title, icon, tag and long subtitle',
           subtitle: 'Cupidatat ea voluptate exercitation irure ea occaecat pariatur elit minim non incididunt in.',
           icon: YgIcon(YgIcons.placeholder),
           tag: YgTag(
