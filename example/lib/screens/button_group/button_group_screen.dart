@@ -21,7 +21,7 @@ class ButtonGroupScreen extends StatelessWidget {
       componentName: 'ButtonGroup',
       child: Column(
         children: <Widget>[
-          YgSection.base(
+          YgSection(
             title: 'Vertical group with 1 button',
             child: YgButtonGroup.vertical(
               children: <YgButton>[
@@ -34,7 +34,7 @@ class ButtonGroupScreen extends StatelessWidget {
               ],
             ),
           ),
-          YgSection.base(
+          YgSection(
             title: 'Vertical group with 2 buttons',
             child: YgButtonGroup.vertical(
               children: <YgButton>[
@@ -53,7 +53,7 @@ class ButtonGroupScreen extends StatelessWidget {
               ],
             ),
           ),
-          YgSection.base(
+          YgSection(
             title: 'Vertical group with 3 buttons',
             child: YgButtonGroup.vertical(
               children: <YgButton>[
@@ -78,7 +78,7 @@ class ButtonGroupScreen extends StatelessWidget {
               ],
             ),
           ),
-          YgSection.base(
+          YgSection(
             title: 'Vertical action or cancel group.',
             child: YgButtonGroup.verticalActionOrCancel(
               actionText: 'Save',
@@ -87,7 +87,7 @@ class ButtonGroupScreen extends StatelessWidget {
               onCancelPressed: () {},
             ),
           ),
-          YgSection.base(
+          YgSection(
             title: 'Horizontal button group with 2 buttons.',
             child: YgButtonGroup.horizontal(
               children: <YgButton>[
@@ -106,7 +106,7 @@ class ButtonGroupScreen extends StatelessWidget {
               ],
             ),
           ),
-          YgSection.base(
+          YgSection(
             title: 'Horizontal button group with 3 buttons.',
             subtitle: 'Note that you have to specify overlflow.',
             child: YgButtonGroup.horizontal(

@@ -11,11 +11,11 @@ class YgSuspendedCurve extends ParametricCurve<double> {
   });
 
   /// The progress value at which [curve] should begin.
-  ///
-  /// This defaults to [Curves.easeOutCubic].
   final double startingPoint;
 
   /// The curve to use when [startingPoint] is reached.
+  ///
+  /// This defaults to [Curves.easeOutCubic].
   final Curve curve;
 
   @override

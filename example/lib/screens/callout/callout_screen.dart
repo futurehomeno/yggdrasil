@@ -47,7 +47,7 @@ class CalloutScreen extends StatelessWidget {
               ),
             ].withVerticalSpacing(10.0),
           ),
-          YgSection.base(
+          YgSection(
             title: 'With close button',
             subtitle:
                 'When used with a close button, the information about closing the button needs to be saved somewhere.',
@@ -58,14 +58,14 @@ class CalloutScreen extends StatelessWidget {
               onClose: () {},
             ),
           ),
-          const YgSection.base(
+          const YgSection(
             title: 'Only description',
             child: YgCallout(
               variant: YgCalloutVariant.highlight,
               description: 'Callout with description only',
             ),
           ),
-          YgSection.base(
+          YgSection(
             title: 'With text link button',
             child: YgCallout(
               variant: YgCalloutVariant.highlight,

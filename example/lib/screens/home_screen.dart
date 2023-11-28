@@ -122,17 +122,22 @@ class HomeScreen extends StatelessWidget {
                   ),
                   YgListTile(
                     title: 'ListTile - CheckboxListTile',
-                    onTap: () => sl<YgRouter>().push(ListTileCheckboxScreen.route()),
+                    onTap: () => sl<YgRouter>().push(CheckboxListTileScreen.route()),
                     trailingWidgets: const <YgIcon>[YgIcon(YgIcons.caretRight)],
                   ),
                   YgListTile(
                     title: 'ListTile - RadioListTile',
-                    onTap: () => sl<YgRouter>().push(ListTileRadioScreen.route()),
+                    onTap: () => sl<YgRouter>().push(RadioListTileScreen.route()),
                     trailingWidgets: const <YgIcon>[YgIcon(YgIcons.caretRight)],
                   ),
                   YgListTile(
                     title: 'ListTile - SwitchListTile',
-                    onTap: () => sl<YgRouter>().push(ListTileSwitchScreen.route()),
+                    onTap: () => sl<YgRouter>().push(SwitchListTileScreen.route()),
+                    trailingWidgets: const <YgIcon>[YgIcon(YgIcons.caretRight)],
+                  ),
+                  YgListTile(
+                    title: 'ListTile - ExpandingListTile',
+                    onTap: () => sl<YgRouter>().push(ExpandingListTileScreen.route()),
                     trailingWidgets: const <YgIcon>[YgIcon(YgIcons.caretRight)],
                   ),
                   YgListTile(
@@ -143,6 +148,16 @@ class HomeScreen extends StatelessWidget {
                   YgListTile(
                     title: 'Radio',
                     onTap: () => sl<YgRouter>().push(RadioScreen.route()),
+                    trailingWidgets: const <YgIcon>[YgIcon(YgIcons.caretRight)],
+                  ),
+                  YgListTile(
+                    title: 'Section',
+                    onTap: () => sl<YgRouter>().push(SectionScreen.route()),
+                    trailingWidgets: const <YgIcon>[YgIcon(YgIcons.caretRight)],
+                  ),
+                  YgListTile(
+                    title: 'Section - Expanding',
+                    onTap: () => sl<YgRouter>().push(ExpandingSectionScreen.route()),
                     trailingWidgets: const <YgIcon>[YgIcon(YgIcons.caretRight)],
                   ),
                   YgListTile(

@@ -96,7 +96,7 @@ class _RadioScreenState extends State<RadioScreen> {
               ),
             ],
           ),
-          const YgSection.base(
+          const YgSection(
             title: 'Radio in a list tile',
             child: YgCallout(
               variant: YgCalloutVariant.warning,

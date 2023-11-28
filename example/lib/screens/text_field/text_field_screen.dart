@@ -120,7 +120,7 @@ class _TextFieldScreenState extends State<TextFieldScreen> {
                 ),
               ].withVerticalSpacing(10.0),
             ),
-            YgSection.base(
+            YgSection(
               title: 'Login form example',
               subtitle: 'See example code for best-practice usage.',
               child: Form(

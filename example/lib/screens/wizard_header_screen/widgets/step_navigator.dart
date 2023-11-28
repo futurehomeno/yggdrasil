@@ -20,7 +20,7 @@ class StepNavigator extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return YgSection.base(
+    return YgSection(
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: <Widget>[

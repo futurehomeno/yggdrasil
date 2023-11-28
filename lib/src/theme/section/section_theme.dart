@@ -36,4 +36,18 @@ class _$YgSectionTheme {
       bottom: professional_dark.FhDimensions.md,
     ),
   ];
+
+  static const List<Duration> animationDuration = <Duration>[
+    Duration(milliseconds: 400),
+    Duration(milliseconds: 400),
+    Duration(milliseconds: 400),
+    Duration(milliseconds: 400),
+  ];
+
+  static const List<Curve> animationCurve = <Curve>[
+    Cubic(0.42, 0, 0.58, 1),
+    Cubic(0.42, 0, 0.58, 1),
+    Cubic(0.42, 0, 0.58, 1),
+    Cubic(0.42, 0, 0.58, 1),
+  ];
 }

@@ -28,7 +28,7 @@ class _DialogScreenState extends State<DialogScreen> with TickerProviderStateMix
       componentName: 'Dialog',
       child: Column(
         children: <Widget>[
-          YgSection.base(
+          YgSection(
             title: 'Normal dialog',
             child: YgButton(
               variant: YgButtonVariant.primary,
@@ -36,7 +36,7 @@ class _DialogScreenState extends State<DialogScreen> with TickerProviderStateMix
               child: const Text('Show'),
             ),
           ),
-          YgSection.base(
+          YgSection(
             title: 'Non-dismissible dialog',
             child: YgButton(
               variant: YgButtonVariant.primary,
@@ -44,7 +44,7 @@ class _DialogScreenState extends State<DialogScreen> with TickerProviderStateMix
               child: const Text('Show'),
             ),
           ),
-          YgSection.base(
+          YgSection(
             title: 'No-buttons dialog',
             child: YgButton(
               variant: YgButtonVariant.primary,

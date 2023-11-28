@@ -1,0 +1,6 @@
+{
+  "omitParentDirectory": true,
+  "openFilesWhenDone": [
+    "[FTName | snakecase]/[FTName | snakecase]_screen.dart"
+  ]
+}

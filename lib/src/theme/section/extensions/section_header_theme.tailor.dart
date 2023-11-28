@@ -10,43 +10,61 @@ part of 'section_header_theme.dart';
 
 class YgSectionHeaderTheme extends ThemeExtension<YgSectionHeaderTheme> {
   const YgSectionHeaderTheme({
+    required this.iconPadding,
+    required this.minAvailableTagWidth,
     required this.padding,
+    required this.subtitlePadding,
     required this.subtitleTextStyle,
-    required this.titleSubtitleSpacing,
     required this.titleTextStyle,
+    required this.trailingSpacing,
   });
 
+  final EdgeInsets iconPadding;
+  final double minAvailableTagWidth;
   final EdgeInsets padding;
+  final EdgeInsets subtitlePadding;
   final TextStyle subtitleTextStyle;
-  final double titleSubtitleSpacing;
   final TextStyle titleTextStyle;
+  final double trailingSpacing;
 
   static final YgSectionHeaderTheme consumerLight = YgSectionHeaderTheme(
+    iconPadding: _$YgSectionHeaderTheme.iconPadding[0],
+    minAvailableTagWidth: _$YgSectionHeaderTheme.minAvailableTagWidth[0],
     padding: _$YgSectionHeaderTheme.padding[0],
+    subtitlePadding: _$YgSectionHeaderTheme.subtitlePadding[0],
     subtitleTextStyle: _$YgSectionHeaderTheme.subtitleTextStyle[0],
-    titleSubtitleSpacing: _$YgSectionHeaderTheme.titleSubtitleSpacing[0],
     titleTextStyle: _$YgSectionHeaderTheme.titleTextStyle[0],
+    trailingSpacing: _$YgSectionHeaderTheme.trailingSpacing[0],
   );
 
   static final YgSectionHeaderTheme consumerDark = YgSectionHeaderTheme(
+    iconPadding: _$YgSectionHeaderTheme.iconPadding[1],
+    minAvailableTagWidth: _$YgSectionHeaderTheme.minAvailableTagWidth[1],
     padding: _$YgSectionHeaderTheme.padding[1],
+    subtitlePadding: _$YgSectionHeaderTheme.subtitlePadding[1],
     subtitleTextStyle: _$YgSectionHeaderTheme.subtitleTextStyle[1],
-    titleSubtitleSpacing: _$YgSectionHeaderTheme.titleSubtitleSpacing[1],
     titleTextStyle: _$YgSectionHeaderTheme.titleTextStyle[1],
+    trailingSpacing: _$YgSectionHeaderTheme.trailingSpacing[1],
   );
 
   static final YgSectionHeaderTheme professionalLight = YgSectionHeaderTheme(
+    iconPadding: _$YgSectionHeaderTheme.iconPadding[2],
+    minAvailableTagWidth: _$YgSectionHeaderTheme.minAvailableTagWidth[2],
     padding: _$YgSectionHeaderTheme.padding[2],
+    subtitlePadding: _$YgSectionHeaderTheme.subtitlePadding[2],
     subtitleTextStyle: _$YgSectionHeaderTheme.subtitleTextStyle[2],
-    titleSubtitleSpacing: _$YgSectionHeaderTheme.titleSubtitleSpacing[2],
     titleTextStyle: _$YgSectionHeaderTheme.titleTextStyle[2],
+    trailingSpacing: _$YgSectionHeaderTheme.trailingSpacing[2],
   );
 
   static final YgSectionHeaderTheme professionalDark = YgSectionHeaderTheme(
+    iconPadding: _$YgSectionHeaderTheme.iconPadding[3],
+    minAvailableTagWidth: _$YgSectionHeaderTheme.minAvailableTagWidth[3],
     padding: _$YgSectionHeaderTheme.padding[3],
+    subtitlePadding: _$YgSectionHeaderTheme.subtitlePadding[3],
     subtitleTextStyle: _$YgSectionHeaderTheme.subtitleTextStyle[3],
-    titleSubtitleSpacing: _$YgSectionHeaderTheme.titleSubtitleSpacing[3],
     titleTextStyle: _$YgSectionHeaderTheme.titleTextStyle[3],
+    trailingSpacing: _$YgSectionHeaderTheme.trailingSpacing[3],
   );
 
   static final themes = [
@@ -58,16 +76,22 @@ class YgSectionHeaderTheme extends ThemeExtension<YgSectionHeaderTheme> {
 
   @override
   YgSectionHeaderTheme copyWith({
+    EdgeInsets? iconPadding,
+    double? minAvailableTagWidth,
     EdgeInsets? padding,
+    EdgeInsets? subtitlePadding,
     TextStyle? subtitleTextStyle,
-    double? titleSubtitleSpacing,
     TextStyle? titleTextStyle,
+    double? trailingSpacing,
   }) {
     return YgSectionHeaderTheme(
+      iconPadding: iconPadding ?? this.iconPadding,
+      minAvailableTagWidth: minAvailableTagWidth ?? this.minAvailableTagWidth,
       padding: padding ?? this.padding,
+      subtitlePadding: subtitlePadding ?? this.subtitlePadding,
       subtitleTextStyle: subtitleTextStyle ?? this.subtitleTextStyle,
-      titleSubtitleSpacing: titleSubtitleSpacing ?? this.titleSubtitleSpacing,
       titleTextStyle: titleTextStyle ?? this.titleTextStyle,
+      trailingSpacing: trailingSpacing ?? this.trailingSpacing,
     );
   }
 
@@ -76,12 +100,15 @@ class YgSectionHeaderTheme extends ThemeExtension<YgSectionHeaderTheme> {
       covariant ThemeExtension<YgSectionHeaderTheme>? other, double t) {
     if (other is! YgSectionHeaderTheme) return this as YgSectionHeaderTheme;
     return YgSectionHeaderTheme(
+      iconPadding: t < 0.5 ? iconPadding : other.iconPadding,
+      minAvailableTagWidth:
+          t < 0.5 ? minAvailableTagWidth : other.minAvailableTagWidth,
       padding: t < 0.5 ? padding : other.padding,
+      subtitlePadding: t < 0.5 ? subtitlePadding : other.subtitlePadding,
       subtitleTextStyle:
           TextStyle.lerp(subtitleTextStyle, other.subtitleTextStyle, t)!,
-      titleSubtitleSpacing:
-          t < 0.5 ? titleSubtitleSpacing : other.titleSubtitleSpacing,
       titleTextStyle: TextStyle.lerp(titleTextStyle, other.titleTextStyle, t)!,
+      trailingSpacing: t < 0.5 ? trailingSpacing : other.trailingSpacing,
     );
   }
 
@@ -90,23 +117,32 @@ class YgSectionHeaderTheme extends ThemeExtension<YgSectionHeaderTheme> {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is YgSectionHeaderTheme &&
+            const DeepCollectionEquality()
+                .equals(iconPadding, other.iconPadding) &&
+            const DeepCollectionEquality()
+                .equals(minAvailableTagWidth, other.minAvailableTagWidth) &&
             const DeepCollectionEquality().equals(padding, other.padding) &&
+            const DeepCollectionEquality()
+                .equals(subtitlePadding, other.subtitlePadding) &&
             const DeepCollectionEquality()
                 .equals(subtitleTextStyle, other.subtitleTextStyle) &&
             const DeepCollectionEquality()
-                .equals(titleSubtitleSpacing, other.titleSubtitleSpacing) &&
+                .equals(titleTextStyle, other.titleTextStyle) &&
             const DeepCollectionEquality()
-                .equals(titleTextStyle, other.titleTextStyle));
+                .equals(trailingSpacing, other.trailingSpacing));
   }
 
   @override
   int get hashCode {
     return Object.hash(
       runtimeType.hashCode,
+      const DeepCollectionEquality().hash(iconPadding),
+      const DeepCollectionEquality().hash(minAvailableTagWidth),
       const DeepCollectionEquality().hash(padding),
+      const DeepCollectionEquality().hash(subtitlePadding),
       const DeepCollectionEquality().hash(subtitleTextStyle),
-      const DeepCollectionEquality().hash(titleSubtitleSpacing),
       const DeepCollectionEquality().hash(titleTextStyle),
+      const DeepCollectionEquality().hash(trailingSpacing),
     );
   }
 }

@@ -39,7 +39,7 @@ class _ToggleButtonScreenState extends State<ToggleButtonScreen> {
       componentName: 'ToggleButton',
       child: Column(
         children: <Widget>[
-          YgSection.base(
+          YgSection(
             title: 'Icon toggle button',
             child: Row(
               mainAxisSize: MainAxisSize.min,
@@ -74,7 +74,7 @@ class _ToggleButtonScreenState extends State<ToggleButtonScreen> {
               ].withHorizontalSpacing(10.0),
             ),
           ),
-          YgSection.base(
+          YgSection(
             title: 'Text toggle button',
             child: Row(
               mainAxisSize: MainAxisSize.min,
@@ -109,7 +109,7 @@ class _ToggleButtonScreenState extends State<ToggleButtonScreen> {
               ].withHorizontalSpacing(10.0),
             ),
           ),
-          YgSection.base(
+          YgSection(
             title: 'Icon & text toggle button',
             child: Row(
               mainAxisSize: MainAxisSize.min,

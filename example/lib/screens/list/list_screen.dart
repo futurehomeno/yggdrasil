@@ -21,7 +21,7 @@ class ListScreen extends StatelessWidget {
     return const DemoScreen(
       componentName: 'List',
       scrollable: false,
-      child: YgSection.base(
+      child: YgSection(
         child: YgCallout(
           title: 'Nothing here yet.',
           description: 'Best practices for how to make lists with slivers are a work in progress.',

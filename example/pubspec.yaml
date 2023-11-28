@@ -1,6 +1,6 @@
 name: yggdrasil_demo
 description: A demo app for Yggdrasil.
-publish_to: 'none'
+publish_to: "none"
 
 version: 1.6.22+27
 
@@ -16,6 +16,7 @@ dependencies:
   get_it: 7.6.4
   # Don't update due to the flutter_bloc in other repose.
   provider: 5.0.0
+  dotted_border: 2.1.0
   mockito: 5.4.3
 
 dev_dependencies:

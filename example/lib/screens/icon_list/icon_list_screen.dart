@@ -30,7 +30,7 @@ class _IconListScreenState extends State<IconListScreen> {
       child: CustomScrollView(
         slivers: <Widget>[
           SliverToBoxAdapter(
-            child: YgSection.base(
+            child: YgSection(
               title: 'List of all icons in YGG',
               child: YgTextField(
                 label: 'Search',
