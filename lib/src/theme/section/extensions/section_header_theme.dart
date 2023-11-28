@@ -97,9 +97,9 @@ class _$YgSectionHeaderTheme {
   ];
 
   static const List<double> minAvailableTagWidth = <double>[
-    75,
-    75,
-    75,
-    75,
+    80,
+    80,
+    80,
+    80,
   ];
 }

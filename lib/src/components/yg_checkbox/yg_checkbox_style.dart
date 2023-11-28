@@ -1,53 +1,118 @@
-import 'package:flutter/cupertino.dart';
+import 'package:flutter/material.dart';
+import 'package:yggdrasil/src/components/yg_checkbox/yg_checkbox_state.dart';
 import 'package:yggdrasil/src/theme/_theme.dart';
+import 'package:yggdrasil/src/utils/_utils.dart';
 
-import 'properties/_properties.dart';
-
-class YgCheckboxStyle {
-  const YgCheckboxStyle({
-    required this.fillColor,
-    required this.borderColor,
-    required this.checkColor,
-    required this.mouseCursor,
+class YgCheckboxStyle extends YgStyleWithDefaults<YgCheckboxState> {
+  YgCheckboxStyle({
+    required super.state,
+    required super.vsync,
   });
 
-  factory YgCheckboxStyle.base(BuildContext context) {
-    final YgCheckboxTheme checkboxTheme = context.checkboxTheme;
+  late YgAnimatedColorProperty borderColor;
+  late YgAnimatedColorProperty backgroundColor;
+  late YgAnimatedColorProperty iconColor;
+  late YgAnimatedDoubleProperty borderToCenterFraction;
+  late YgAnimatedDoubleProperty checkToMinusFraction;
+  late YgDrivenDoubleProperty size;
+  late YgDrivenDoubleProperty borderWidth;
+  late YgDrivenBorderRadiusProperty borderRadius;
 
-    return YgCheckboxStyle(
-      fillColor: YgCheckboxFillColorProperty(
-        selected: checkboxTheme.selectedFillColor,
-        selectedHovered: checkboxTheme.selectedHoveredFillColor,
-        selectedPressed: checkboxTheme.selectedPressedFillColor,
-        selectedError: checkboxTheme.selectedErrorFillColor,
-        selectedDisabled: checkboxTheme.selectedDisabledFillColor,
-        deselected: checkboxTheme.deselectedFillColor,
-        deselectedHovered: checkboxTheme.deselectedHoveredFillColor,
-        deselectedPressed: checkboxTheme.deselectedPressedFillColor,
-        deselectedError: checkboxTheme.deselectedErrorFillColor,
-        deselectedDisabled: checkboxTheme.deselectedDisabledFillColor,
-      ),
-      borderColor: YgCheckboxBorderColorProperty(
-        selectedDisabled: checkboxTheme.selectedDisabledBorderColor,
-        deselected: checkboxTheme.deselectedBorderColor,
-        deselectedHovered: checkboxTheme.deselectedHoveredBorderColor,
-        deselectedPressed: checkboxTheme.deselectedPressedBorderColor,
-        deselectedError: checkboxTheme.deselectedErrorBorderColor,
-        deselectedDisabled: checkboxTheme.deselectedDisabledBorderColor,
-      ),
-      checkColor: YgCheckboxCheckColorProperty(
-        selected: context.checkboxTheme.selectedCheckColor,
-        disabled: context.checkboxTheme.selectedDisabledCheckColor,
-      ),
-      mouseCursor: YgCheckboxMouseCursorProperty(
-        enabled: SystemMouseCursors.click,
-        disabled: SystemMouseCursors.basic,
-      ),
-    );
+  @override
+  void init() {
+    borderColor = animate(YgColorProperty<YgCheckboxState>.resolveWith(_resolveBorderColor));
+    backgroundColor = animate(YgColorProperty<YgCheckboxState>.resolveWith(_resolveBackgroundColor));
+    iconColor = animate(YgColorProperty<YgCheckboxState>.resolveWith(_resolveIconColor));
+    borderToCenterFraction = animate(YgDoubleProperty<YgCheckboxState>.resolveWith(_resolveBorderToCenterFraction));
+    checkToMinusFraction = animate(YgDoubleProperty<YgCheckboxState>.resolveWith(_resolveCheckToMinusFraction));
+    size = drive(YgDoubleProperty<YgCheckboxState>.all(_resolveSize));
+    borderWidth = drive(YgDoubleProperty<YgCheckboxState>.all(_resolveBorderWidth));
+    borderRadius = drive(YgBorderRadiusProperty<YgCheckboxState>.all(_resolveBorderRadius));
   }
 
-  final YgCheckboxFillColorProperty fillColor;
-  final YgCheckboxBorderColorProperty borderColor;
-  final YgCheckboxCheckColorProperty checkColor;
-  final YgCheckboxMouseCursorProperty mouseCursor;
+  BorderRadius _resolveBorderRadius(BuildContext context) {
+    return _theme.borderRadius;
+  }
+
+  double _resolveSize(BuildContext context) {
+    return _theme.size;
+  }
+
+  double _resolveBorderWidth(BuildContext context) {
+    return _theme.borderWidth;
+  }
+
+  Color _resolveBorderColor(BuildContext context, YgCheckboxState state) {
+    if (state.disabled.value) {
+      return _theme.disabledBorderColor;
+    }
+
+    final bool interacted = state.focused.value || state.hovered.value;
+
+    if (state.error.value) {
+      if (interacted) {
+        return _theme.errorFocusHoverBorderColor;
+      }
+
+      return _theme.errorBorderColor;
+    }
+
+    if (state.checked.value != false) {
+      if (interacted) {
+        return _theme.checkedFocusHoverBorderColor;
+      }
+
+      return _theme.checkedBorderColor;
+    }
+
+    if (interacted) {
+      return _theme.focusHoverBorderColor;
+    }
+
+    return _theme.defaultBorderColor;
+  }
+
+  Color _resolveBackgroundColor(BuildContext context, YgCheckboxState state) {
+    if (state.disabled.value) {
+      return _theme.disabledBackgroundColor;
+    }
+
+    return _theme.defaultBackgroundColor;
+  }
+
+  Color _resolveIconColor(BuildContext context, YgCheckboxState state) {
+    if (state.checked.value == false) {
+      return Colors.transparent;
+    }
+
+    if (state.disabled.value) {
+      return _theme.disabledIconColor;
+    }
+
+    return _theme.defaultIconColor;
+  }
+
+  double _resolveBorderToCenterFraction(BuildContext context, YgCheckboxState state) {
+    if (state.disabled.value || (state.checked.value == false)) {
+      return 0;
+    }
+
+    return 1;
+  }
+
+  double _resolveCheckToMinusFraction(BuildContext context, YgCheckboxState state) {
+    if (state.checked.value == true || !state.triState.value) {
+      return 1;
+    }
+
+    return 0;
+  }
+
+  YgCheckboxTheme get _theme => context.checkboxTheme;
+
+  @override
+  Curve get curve => _theme.animationCurve;
+
+  @override
+  Duration get duration => _theme.animationDuration;
 }

@@ -1,5 +1,3 @@
-import 'dart:ui';
-
 import 'package:flutter/material.dart';
 import 'package:yggdrasil/src/components/yg_switch/yg_switch_state.dart';
 import 'package:yggdrasil/src/utils/_utils.dart';
@@ -103,35 +101,38 @@ class _YgSwitchPainter extends CustomPainter {
     required this.style,
   }) : super(repaint: style);
 
+  /// The style used to paint the switch.
   final YgSwitchStyle style;
+
+  /// Paint used to paint the track.
+  final Paint _trackPaint = Paint()
+    ..style = PaintingStyle.stroke
+    ..strokeCap = StrokeCap.round;
+
+  /// Paint used to paint the handle.
+  final Paint _handlePaint = Paint();
 
   @override
   void paint(Canvas canvas, Size size) {
-    final double offset = style.handlePadding.value + (style.handleRadius.value / 2);
-    final double offsetEnd = style.width.value - offset;
+    // Calculate half width/height and total radius of the handle.
+    final double halfWidth = size.width / 2;
+    final double halfHeight = size.height / 2;
+    final double totalRadius = style.handlePadding.value + (style.handleDiameter.value / 2);
+    final double xOffset = (style.width.value / 2) - totalRadius;
 
-    final Paint trackPaint = Paint()
-      ..color = style.trackColor.value
-      ..style = PaintingStyle.stroke
-      ..strokeWidth = offset * 2
-      ..strokeCap = StrokeCap.round;
+    // Define start/end points and handle position.
+    final Offset start = Offset(halfWidth - xOffset, halfHeight);
+    final Offset end = Offset(halfWidth + xOffset, halfHeight);
+    final Offset handlePosition = Offset.lerp(start, end, style.handlePositionFraction.value)!;
 
-    canvas.drawLine(
-      Offset(offset, offset),
-      Offset(offsetEnd, offset),
-      trackPaint,
-    );
+    // Set track stroke width/color and handle color.
+    _trackPaint.strokeWidth = totalRadius * 2;
+    _trackPaint.color = style.trackColor.value;
+    _handlePaint.color = style.handleColor.value;
 
-    final Paint handlePaint = Paint()..color = style.handleColor.value;
-
-    canvas.drawCircle(
-      Offset(
-        lerpDouble(offset, offsetEnd, style.handlePositionFraction.value)!,
-        offset,
-      ),
-      style.handleRadius.value / 2,
-      handlePaint,
-    );
+    // Draw track line and handle circle.
+    canvas.drawLine(start, end, _trackPaint);
+    canvas.drawCircle(handlePosition, style.handleDiameter.value / 2, _handlePaint);
   }
 
   @override

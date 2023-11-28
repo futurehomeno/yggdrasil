@@ -12,7 +12,7 @@ class YgSwitchStyle extends YgStyleWithDefaults<YgSwitchState> {
   });
 
   late YgDrivenDoubleProperty handlePositionFraction;
-  late YgDrivenDoubleProperty handleRadius;
+  late YgDrivenDoubleProperty handleDiameter;
   late YgDrivenDoubleProperty handlePadding;
 
   late YgAnimatedColorProperty trackColor;
@@ -25,7 +25,7 @@ class YgSwitchStyle extends YgStyleWithDefaults<YgSwitchState> {
     trackColor = animate(YgColorProperty<YgSwitchState>.resolveWith(_resolveTrackColor));
     handleColor = animate(YgColorProperty<YgSwitchState>.resolveWith(_resolveHandleColor));
     handlePadding = drive(YgDoubleProperty<YgSwitchState>.all(_resolveHandlePadding));
-    handleRadius = drive(YgDoubleProperty<YgSwitchState>.all(_resolveHandleRadius));
+    handleDiameter = drive(YgDoubleProperty<YgSwitchState>.all(_resolveHandleDiameter));
     width = drive(YgDoubleProperty<YgSwitchState>.all(_resolveWidth));
   }
 
@@ -33,7 +33,7 @@ class YgSwitchStyle extends YgStyleWithDefaults<YgSwitchState> {
     return _theme.handlePadding;
   }
 
-  double _resolveHandleRadius(BuildContext context) {
+  double _resolveHandleDiameter(BuildContext context) {
     return _theme.handleSize;
   }
 

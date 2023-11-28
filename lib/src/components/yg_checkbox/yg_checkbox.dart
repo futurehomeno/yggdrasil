@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:yggdrasil/src/components/yg_checkbox/yg_checkbox_state.dart';
 import 'package:yggdrasil/src/theme/_theme.dart';
 import 'package:yggdrasil/src/utils/_utils.dart';
 
 import 'helpers/_helpers.dart';
-import 'widgets/_widgets.dart';
 import 'yg_checkbox_style.dart';
 
 /// Yggdrasil checkbox button.
@@ -33,10 +33,6 @@ class YgCheckbox extends StatefulWidget with StatefulWidgetDebugMixin {
   /// Whether the checkbox is in an error state.
   final bool hasError;
 
-  bool get _enabled => onChanged != null;
-
-  bool get _selected => value == true;
-
   @override
   State<YgCheckbox> createState() => _YgCheckboxState();
 
@@ -50,120 +46,58 @@ class YgCheckbox extends StatefulWidget with StatefulWidgetDebugMixin {
   }
 }
 
-class _YgCheckboxState extends State<YgCheckbox> {
-  // region StatesController
-  void _handleStatesControllerChange() {
-    // Force a rebuild to resolve MaterialStateProperty properties.
-    setState(() {});
-  }
-
-  final MaterialStatesController _statesController = MaterialStatesController();
-
-  void _initStatesController() {
-    _statesController.update(MaterialState.error, widget.hasError);
-    _statesController.update(MaterialState.disabled, !widget._enabled);
-    _statesController.update(MaterialState.selected, widget._selected);
-    _statesController.addListener(_handleStatesControllerChange);
-  }
+class _YgCheckboxState extends StateWithYgStyle<YgCheckbox, YgCheckboxStyle> {
+  late final YgCheckboxState _state = YgCheckboxState(
+    checked: widget.value,
+    disabled: widget.onChanged == null,
+    error: widget.hasError,
+    triState: widget.triState,
+  );
 
   @override
-  void initState() {
-    super.initState();
-    _initStatesController();
+  YgCheckboxStyle createStyle() {
+    return YgCheckboxStyle(
+      state: _state,
+      vsync: this,
+    );
   }
 
   @override
   void didUpdateWidget(covariant YgCheckbox oldWidget) {
+    _state.checked.value = widget.value;
+    _state.disabled.value = widget.onChanged == null;
+    _state.error.value = widget.hasError;
+    _state.triState.value = widget.triState;
     super.didUpdateWidget(oldWidget);
-
-    if (widget._selected != oldWidget._selected) {
-      _statesController.update(MaterialState.selected, widget._selected);
-    }
-
-    if (widget._enabled != oldWidget._enabled) {
-      _statesController.update(MaterialState.disabled, !widget._enabled);
-      if (!widget._enabled) {
-        // The checkbox may have been disabled while a press gesture is currently underway.
-        _statesController.update(MaterialState.pressed, false);
-      }
-    }
-
-    if (widget.hasError != oldWidget.hasError) {
-      _statesController.update(MaterialState.error, !widget.hasError);
-    }
   }
 
   @override
   void dispose() {
-    _statesController.removeListener(_handleStatesControllerChange);
-    _statesController.dispose();
+    _state.dispose();
     super.dispose();
   }
-  // endregion StatesController
 
   @override
   Widget build(BuildContext context) {
-    final YgCheckboxTheme checkboxTheme = context.checkboxTheme;
-    final YgCheckboxStyle checkboxStyle = YgCheckboxStyle.base(context);
-    final Color resolvedFillColor = checkboxStyle.fillColor.resolveWith(_statesController.value, widget.value);
-    final Color? resolvedBorderColor = checkboxStyle.borderColor.resolveWith(_statesController.value, widget.value);
-    final Color resolvedCheckColor = checkboxStyle.checkColor.resolve(_statesController.value);
-    final MouseCursor resolvedMouseCursor = checkboxStyle.mouseCursor.resolve(_statesController.value);
+    final YgCheckboxTheme theme = context.checkboxTheme;
 
-    return RepaintBoundary(
-      child: Semantics(
-        checked: widget._selected,
-        child: YgFocusableActionDetector(
-          behavior: HitTestBehavior.opaque,
-          onActivate: _onTap,
-          onHoverChanged: _onShowHoverHighlight,
-          onFocusChanged: _onShowFocusHighlight,
-          mouseCursor: resolvedMouseCursor,
-          enabled: widget._enabled,
-          child: Center(
-            child: Padding(
-              padding: EdgeInsets.all(checkboxTheme.padding),
-              child: AnimatedContainer(
-                duration: checkboxTheme.animationDuration,
-                curve: checkboxTheme.animationCurve,
-                width: checkboxTheme.size,
-                height: checkboxTheme.size,
-                decoration: BoxDecoration(
-                  color: widget.value == null ? checkboxTheme.selectedFillColor : resolvedFillColor,
-                  borderRadius: const BorderRadius.all(Radius.circular(5.0)),
-                  border: Border.fromBorderSide(BorderSide(
-                    width: 2.0,
-                    color: resolvedBorderColor ?? Colors.transparent,
-                  )),
-                ),
-                child: AnimatedSwitcher(
-                  duration: checkboxTheme.animationDuration,
-                  switchInCurve: checkboxTheme.animationCurve,
-                  switchOutCurve: checkboxTheme.animationCurve,
-                  child: _getCheckmark(resolvedCheckColor),
-                ),
-              ),
+    return YgFocusableActionDetector(
+      onActivate: _onTap,
+      onFocusChanged: _state.focused.update,
+      onHoverChanged: _state.hovered.update,
+      enabled: !_state.disabled.value,
+      child: Padding(
+        padding: theme.padding,
+        child: SizedBox.square(
+          dimension: theme.size,
+          child: CustomPaint(
+            painter: YgCheckboxPainter(
+              style: style,
             ),
           ),
         ),
       ),
     );
-  }
-
-  Widget? _getCheckmark(Color? resolvedCheckColor) {
-    if (widget.value == null) {
-      return YgCheckboxLine(color: resolvedCheckColor ?? Colors.transparent);
-    }
-
-    return widget._selected ? YgCheckboxCheckmark(color: resolvedCheckColor ?? Colors.transparent) : null;
-  }
-
-  void _onShowFocusHighlight(bool value) {
-    _statesController.update(MaterialState.focused, value);
-  }
-
-  void _onShowHoverHighlight(bool value) {
-    _statesController.update(MaterialState.hovered, value);
   }
 
   void _onTap() {
@@ -172,5 +106,89 @@ class _YgCheckboxState extends State<YgCheckbox> {
       final bool? nextValue = YgCheckboxHelpers.getNextValue(widget.value, widget.triState);
       widget.onChanged?.call(nextValue);
     }
+  }
+}
+
+class YgCheckboxPainter extends CustomPainter {
+  YgCheckboxPainter({
+    required this.style,
+  }) : super(repaint: style);
+
+  final YgCheckboxStyle style;
+
+  final Paint _borderPaint = Paint();
+  final Paint _backgroundPaint = Paint();
+  final Paint _iconPaint = Paint()
+    ..style = PaintingStyle.stroke
+    ..strokeCap = StrokeCap.round
+    ..strokeJoin = StrokeJoin.round
+    ..strokeWidth = 2;
+
+  @override
+  void paint(Canvas canvas, Size size) {
+    final Offset center = size.center(Offset.zero);
+    final double realSize = style.size.value;
+    final double borderWidth = style.borderWidth.value;
+    final BorderRadius borderRadius = style.borderRadius.value;
+
+    final Rect rect = Rect.fromCenter(
+      center: center,
+      width: realSize,
+      height: realSize,
+    );
+
+    final double borderToCenterFraction = style.borderToCenterFraction.value;
+    final double distanceToMiddle = (realSize / 2) - borderWidth;
+    final double deflation = distanceToMiddle * borderToCenterFraction;
+
+    final RRect outerRRect = borderRadius.toRRect(rect);
+    final RRect innerRRect = borderRadius.toRRect(rect.deflate(deflation)).deflate(borderWidth);
+
+    _borderPaint.color = style.borderColor.value;
+    _backgroundPaint.color = style.backgroundColor.value;
+    _iconPaint.color = style.iconColor.value;
+
+    canvas.drawRRect(outerRRect, _backgroundPaint);
+    canvas.drawDRRect(outerRRect, innerRRect, _borderPaint);
+
+    final Path iconPath = IconPathCreator.createPath(
+      style.checkToMinusFraction.value,
+      center,
+    );
+
+    canvas.drawPath(iconPath, _iconPaint);
+  }
+
+  @override
+  bool shouldRepaint(covariant YgCheckboxPainter oldDelegate) => oldDelegate.style != style;
+}
+
+class IconPathCreator {
+  static const Size iconSize = Size(8, 6);
+
+  static const Offset checkP1 = Offset(0, 3);
+  static const Offset checkP2 = Offset(3, 6);
+  static const Offset checkP3 = Offset(8, 0);
+
+  static const Offset lineP1 = Offset(0, 3);
+  static const Offset lineP2 = Offset(3, 3);
+  static const Offset lineP3 = Offset(8, 3);
+
+  static Path createPath(double t, Offset center) {
+    final Offset offset = Offset(
+      center.dx - (iconSize.width / 2),
+      center.dy - (iconSize.height / 2),
+    );
+
+    final Offset p1 = Offset.lerp(lineP1, checkP1, t)! + offset;
+    final Offset p2 = Offset.lerp(lineP2, checkP2, t)! + offset;
+    final Offset p3 = Offset.lerp(lineP3, checkP3, t)! + offset;
+
+    final Path path = Path()
+      ..moveTo(p1.dx, p1.dy)
+      ..lineTo(p2.dx, p2.dy)
+      ..lineTo(p3.dx, p3.dy);
+
+    return path;
   }
 }
