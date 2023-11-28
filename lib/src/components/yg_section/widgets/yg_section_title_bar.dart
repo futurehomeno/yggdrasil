@@ -4,6 +4,12 @@ import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 
 /// Lays out the title, tag and trailing for the section header.
+///
+/// We cannot use simple rows with flexible widgets here.
+/// Both the title and tag contain text that will compete for
+/// the space. To ensure that the title takes up as much space
+/// as needed, and that the tag has a min size, but takes up
+/// more space if title allows it, a custom renderer was needed.
 class YgSectionTitleBar extends MultiChildRenderObjectWidget {
   YgSectionTitleBar({
     super.key,
