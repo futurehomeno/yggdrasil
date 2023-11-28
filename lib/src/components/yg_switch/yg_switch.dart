@@ -1,11 +1,14 @@
+import 'dart:ui';
+
 import 'package:flutter/material.dart';
-import 'package:yggdrasil/yggdrasil.dart';
+import 'package:yggdrasil/src/components/yg_switch/yg_switch_state.dart';
+import 'package:yggdrasil/src/utils/_utils.dart';
 
 import 'helpers/_yg_switch_helpers.dart';
-import 'yg_switch_thumb.dart';
+import 'yg_switch_style.dart';
 
 /// Binary (or optionally tri-state) switch.
-class YgSwitch extends StatelessWidget with StatelessWidgetDebugMixin {
+class YgSwitch extends StatefulWidget with StatefulWidgetDebugMixin {
   const YgSwitch({
     super.key,
     required this.value,
@@ -28,89 +31,7 @@ class YgSwitch extends StatelessWidget with StatelessWidgetDebugMixin {
   final bool triState;
 
   @override
-  Widget build(BuildContext context) {
-    return Center(
-      child: RepaintBoundary(
-        child: Semantics(
-          toggled: value,
-          child: GestureDetector(
-            onTap: onChanged == null ? null : _onTap,
-            child: DecoratedBox(
-              decoration: BoxDecoration(
-                color: _getTrackColor(context),
-                borderRadius: context.switchTheme.borderRadius,
-              ),
-              child: SizedBox(
-                width: context.switchTheme.width,
-                height: context.switchTheme.height,
-                child: Padding(
-                  // Moves the switch away from the edges.
-                  padding: context.switchTheme.trackPadding,
-                  child: AnimatedAlign(
-                    curve: context.switchTheme.animationCurve,
-                    alignment: _getHandleAlignment(),
-                    duration: context.switchTheme.animationDuration,
-                    child: YgSwitchThumb(
-                      color: _getThumbColor(context),
-                    ),
-                  ),
-                ),
-              ),
-            ),
-          ),
-        ),
-      ),
-    );
-  }
-
-  void _onTap() {
-    final bool? nextValue = YgSwitchHelpers.getNextValue(value, triState);
-    onChanged?.call(nextValue);
-  }
-
-  Alignment _getHandleAlignment() {
-    if (value == true) {
-      return Alignment.centerRight;
-    }
-
-    if (value == false) {
-      return Alignment.centerLeft;
-    }
-
-    return Alignment.center;
-  }
-
-  Color _getTrackColor(BuildContext context) {
-    if (onChanged == null) {
-      return context.switchTheme.trackDisabledColor;
-    }
-
-    if (value == true) {
-      return context.switchTheme.trackToggledColor;
-    }
-
-    if (value == false) {
-      return context.switchTheme.trackNotToggledColor;
-    }
-
-    return context.switchTheme.trackNullColor;
-  }
-
-  Color _getThumbColor(BuildContext context) {
-    if (onChanged == null) {
-      return context.switchTheme.thumbDisabledColor;
-    }
-
-    if (value == true) {
-      return context.switchTheme.thumbToggledColor;
-    }
-
-    if (value == false) {
-      return context.switchTheme.thumbNotToggledColor;
-    }
-
-    return context.switchTheme.thumbNullColor;
-  }
+  State<YgSwitch> createState() => _YgSwitchState();
 
   @override
   YgDebugType get debugType {
@@ -120,4 +41,102 @@ class YgSwitch extends StatelessWidget with StatelessWidgetDebugMixin {
 
     return YgDebugType.intractable;
   }
+}
+
+class _YgSwitchState extends StateWithYgStyle<YgSwitch, YgSwitchStyle> {
+  late final YgSwitchState _state = YgSwitchState(
+    disabled: widget.onChanged == null,
+    selected: widget.value,
+  );
+
+  @override
+  YgSwitchStyle createStyle() {
+    return YgSwitchStyle(state: _state, vsync: this);
+  }
+
+  @override
+  void dispose() {
+    _state.dispose();
+    super.dispose();
+  }
+
+  @override
+  void didUpdateWidget(covariant YgSwitch oldWidget) {
+    _state.disabled.value = widget.onChanged == null;
+    _state.selected.value = widget.value;
+    super.didUpdateWidget(oldWidget);
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return YgFocusableActionDetector(
+      onActivate: _onTap,
+      enabled: !_state.disabled.value,
+      onHoverChanged: _state.hovered.update,
+      onFocusChanged: _state.focused.update,
+      mouseCursor: MaterialStateMouseCursor.clickable,
+      child: Semantics(
+        toggled: widget.value,
+        child: ConstrainedBox(
+          constraints: const BoxConstraints.expand(
+            width: 50,
+            height: 30,
+          ),
+          child: CustomPaint(
+            painter: _YgSwitchPainter(
+              style: style,
+            ),
+          ),
+        ),
+      ),
+    );
+  }
+
+  void _onTap() {
+    final bool? nextValue = YgSwitchHelpers.getNextValue(widget.value, widget.triState);
+    widget.onChanged?.call(nextValue);
+  }
+}
+
+class _YgSwitchPainter extends CustomPainter {
+  _YgSwitchPainter({
+    required this.style,
+  }) : super(repaint: style);
+
+  final YgSwitchStyle style;
+
+  @override
+  void paint(Canvas canvas, Size size) {
+    final double offset = style.handlePadding.value + (style.handleRadius.value / 2);
+    final double offsetEnd = style.width.value - offset;
+
+    final Paint trackPaint = Paint()
+      ..color = style.trackColor.value
+      ..style = PaintingStyle.stroke
+      ..strokeWidth = offset * 2
+      ..strokeCap = StrokeCap.round;
+
+    canvas.drawLine(
+      Offset(offset, offset),
+      Offset(offsetEnd, offset),
+      trackPaint,
+    );
+
+    final Paint handlePaint = Paint()..color = style.handleColor.value;
+
+    canvas.drawCircle(
+      Offset(
+        lerpDouble(offset, offsetEnd, style.handlePositionFraction.value)!,
+        offset,
+      ),
+      style.handleRadius.value / 2,
+      handlePaint,
+    );
+  }
+
+  @override
+  bool shouldRepaint(_YgSwitchPainter oldDelegate) => oldDelegate.style != style;
+
+  @override
+  bool shouldRebuildSemantics(_YgSwitchPainter oldDelegate) => false;
 }

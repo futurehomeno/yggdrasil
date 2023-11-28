@@ -38,6 +38,7 @@ class _SwitchScreenState extends State<SwitchScreen> {
             child: YgSwitch(
               value: binaryValue,
               onChanged: (bool? newValue) {
+                print(newValue);
                 binaryValue = newValue;
                 setState(() {});
               },
