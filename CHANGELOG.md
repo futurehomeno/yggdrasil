@@ -1,3 +1,10 @@
+# 1.8.2 [2023-11-29T18:03:14.119511]
+
+[dev-change] No longer exporting internal utils.
+[dev-change] Renamed YgSection.base has been moved to the primary constructor.
+[feature] Added YgExpandingListTile.
+[feature] Added YgExpandingSection.
+
 # 1.8.1 [21.11.2023 13:54]
 
 - [dev-fix] Applied changes needed due to the flutter and dependency updates.
