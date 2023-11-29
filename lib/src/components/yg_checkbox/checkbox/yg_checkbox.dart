@@ -1,35 +1,34 @@
 import 'package:flutter/material.dart';
-import 'package:yggdrasil/src/components/yg_checkbox/yg_checkbox_state.dart';
+import 'package:yggdrasil/src/components/yg_checkbox/checkbox/yg_checkbox_state.dart';
 import 'package:yggdrasil/src/theme/_theme.dart';
 import 'package:yggdrasil/src/utils/_utils.dart';
 
-import 'helpers/_helpers.dart';
 import 'yg_checkbox_painter.dart';
 import 'yg_checkbox_style.dart';
 
+part 'yg_checkbox_dual_state.dart';
+part 'yg_checkbox_tri_state.dart';
+
 /// Yggdrasil checkbox button.
-class YgCheckbox extends StatefulWidget with StatefulWidgetDebugMixin {
-  const YgCheckbox({
+abstract class YgCheckbox extends StatefulWidget with StatefulWidgetDebugMixin implements YgToggleable {
+  const factory YgCheckbox({
+    bool hasError,
+    Key? key,
+    required ValueChanged<bool>? onChanged,
+    required bool value,
+  }) = YgCheckboxDualState;
+
+  const factory YgCheckbox.triState({
+    bool hasError,
+    Key? key,
+    required ValueChanged<bool?>? onChanged,
+    required bool? value,
+  }) = YgCheckboxTriState;
+
+  const YgCheckbox._({
     super.key,
-    required this.value,
-    required this.onChanged,
-    this.triState = false,
     this.hasError = false,
   });
-
-  /// The current value of the checkbox.
-  final bool? value;
-
-  /// Callback to trigger when the value of the checkbox changes.
-  ///
-  /// The checkbox itself does not maintain any state. Instead, when the state of
-  /// the checkbox changes, the widget calls the [onChanged] callback.
-  final ValueChanged<bool?>? onChanged;
-
-  /// Enables `null` as a valid third state for the checkbox.
-  ///
-  /// The checkbox will then cycle through false --> null --> true --> false --> ...
-  final bool triState;
 
   /// Whether the checkbox is in an error state.
   final bool hasError;
@@ -39,7 +38,7 @@ class YgCheckbox extends StatefulWidget with StatefulWidgetDebugMixin {
 
   @override
   YgDebugType get debugType {
-    if (onChanged == null) {
+    if (enabled) {
       return YgDebugType.other;
     }
 
@@ -50,9 +49,8 @@ class YgCheckbox extends StatefulWidget with StatefulWidgetDebugMixin {
 class _YgCheckboxState extends StateWithYgStyle<YgCheckbox, YgCheckboxStyle> {
   late final YgCheckboxState _state = YgCheckboxState(
     checked: widget.value,
-    disabled: widget.onChanged == null,
+    disabled: !widget.enabled,
     error: widget.hasError,
-    triState: widget.triState,
   );
 
   @override
@@ -66,9 +64,8 @@ class _YgCheckboxState extends StateWithYgStyle<YgCheckbox, YgCheckboxStyle> {
   @override
   void didUpdateWidget(covariant YgCheckbox oldWidget) {
     _state.checked.value = widget.value;
-    _state.disabled.value = widget.onChanged == null;
+    _state.disabled.value = !widget.enabled;
     _state.error.value = widget.hasError;
-    _state.triState.value = widget.triState;
     super.didUpdateWidget(oldWidget);
   }
 
@@ -83,7 +80,7 @@ class _YgCheckboxState extends StateWithYgStyle<YgCheckbox, YgCheckboxStyle> {
     final YgCheckboxTheme theme = context.checkboxTheme;
 
     return YgFocusableActionDetector(
-      onActivate: _onTap,
+      onActivate: widget.toggle,
       onFocusChanged: _state.focused.update,
       onHoverChanged: _state.hovered.update,
       enabled: !_state.disabled.value,
@@ -101,13 +98,5 @@ class _YgCheckboxState extends StateWithYgStyle<YgCheckbox, YgCheckboxStyle> {
         ),
       ),
     );
-  }
-
-  void _onTap() {
-    final ValueChanged<bool>? onChanged = widget.onChanged;
-    if (onChanged != null) {
-      final bool? nextValue = YgCheckboxHelpers.getNextValue(widget.value, widget.triState);
-      widget.onChanged?.call(nextValue);
-    }
   }
 }

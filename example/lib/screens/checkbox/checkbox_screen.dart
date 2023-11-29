@@ -20,16 +20,16 @@ class CheckboxScreen extends StatefulWidget {
 }
 
 class _CheckboxScreenState extends State<CheckboxScreen> {
-  bool? binaryValue = false;
+  bool binaryValue = false;
   bool? triStateValue = false;
-  bool? errorValue = false;
+  bool errorValue = false;
 
-  bool? checkboxItem = false;
-  bool? checkboxItemWithDescription = false;
-  bool? checkboxGroup1 = false;
-  bool? checkboxGroup2 = false;
+  bool checkboxItem = false;
+  bool checkboxItemWithDescription = false;
+  bool checkboxGroup1 = false;
+  bool checkboxGroup2 = false;
 
-  bool? listTileValue = false;
+  bool listTileValue = false;
 
   @override
   Widget build(BuildContext context) {
@@ -41,7 +41,7 @@ class _CheckboxScreenState extends State<CheckboxScreen> {
             title: 'Binary checkbox',
             child: YgCheckbox(
               value: binaryValue,
-              onChanged: (bool? newValue) {
+              onChanged: (bool newValue) {
                 binaryValue = newValue;
                 setState(() {});
               },
@@ -49,9 +49,8 @@ class _CheckboxScreenState extends State<CheckboxScreen> {
           ),
           YgSection(
             title: 'Tri-state checkbox',
-            child: YgCheckbox(
+            child: YgCheckbox.triState(
               value: triStateValue,
-              triState: true,
               onChanged: (bool? newValue) {
                 triStateValue = newValue;
                 setState(() {});
@@ -62,7 +61,7 @@ class _CheckboxScreenState extends State<CheckboxScreen> {
             title: 'Error checkbox',
             child: YgCheckbox(
               value: errorValue,
-              onChanged: (bool? newValue) {
+              onChanged: (bool newValue) {
                 errorValue = newValue;
                 setState(() {});
               },
@@ -90,7 +89,7 @@ class _CheckboxScreenState extends State<CheckboxScreen> {
             child: YgCheckboxItem(
               title: 'Some title',
               value: checkboxItem,
-              onChanged: (bool? newValue) {
+              onChanged: (bool newValue) {
                 checkboxItem = newValue;
                 setState(() {});
               },
@@ -104,7 +103,7 @@ class _CheckboxScreenState extends State<CheckboxScreen> {
                 YgCheckboxItem(
                   title: 'Some title',
                   value: checkboxGroup1,
-                  onChanged: (bool? newValue) {
+                  onChanged: (bool newValue) {
                     checkboxGroup1 = newValue;
                     setState(() {});
                   },
@@ -112,7 +111,7 @@ class _CheckboxScreenState extends State<CheckboxScreen> {
                 YgCheckboxItem(
                   title: 'Some title',
                   value: checkboxGroup2,
-                  onChanged: (bool? newValue) {
+                  onChanged: (bool newValue) {
                     checkboxGroup2 = newValue;
                     setState(() {});
                   },
@@ -136,7 +135,7 @@ class _CheckboxScreenState extends State<CheckboxScreen> {
                 trailingWidgets: <Widget>[
                   YgCheckbox(
                     value: listTileValue,
-                    onChanged: (bool? newValue) {
+                    onChanged: (bool newValue) {
                       listTileValue = newValue;
                       setState(() {});
                     },

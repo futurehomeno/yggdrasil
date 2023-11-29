@@ -3,29 +3,33 @@ import 'package:yggdrasil/src/extensions/_extensions.dart';
 import 'package:yggdrasil/src/theme/_theme.dart';
 import 'package:yggdrasil/src/utils/_utils.dart';
 
-import 'helpers/_helpers.dart';
-import 'yg_checkbox.dart';
+import '../checkbox/yg_checkbox.dart';
 
-class YgCheckboxItem extends StatelessWidget with StatelessWidgetDebugMixin {
-  const YgCheckboxItem({
+part 'yg_checkbox_item_dual_state.dart';
+part 'yg_checkbox_item_tri_state.dart';
+
+abstract base class YgCheckboxItem extends StatelessWidget with StatelessWidgetDebugMixin implements YgToggleable {
+  const factory YgCheckboxItem({
+    Key? key,
+    required ValueChanged<bool>? onChanged,
+    required String title,
+    required bool value,
+  }) = YgCheckboxItemDualState;
+
+  const factory YgCheckboxItem.triState({
+    Key? key,
+    required ValueChanged<bool?>? onChanged,
+    required String title,
+    required bool? value,
+  }) = YgCheckboxItemTriState;
+
+  const YgCheckboxItem._({
     super.key,
     required this.title,
-    required this.value,
-    required this.onChanged,
-    this.triState = false,
   });
 
   /// Title to show to the right of the checkbox.
   final String title;
-
-  /// See [YgCheckbox] documentation.
-  final bool? value;
-
-  /// See [YgCheckbox] documentation.
-  final Function(bool? newValue)? onChanged;
-
-  /// See [YgCheckbox] documentation.
-  final bool triState;
 
   @override
   Widget build(BuildContext context) {
@@ -34,16 +38,12 @@ class YgCheckboxItem extends StatelessWidget with StatelessWidgetDebugMixin {
     return Material(
       type: MaterialType.transparency,
       child: InkWell(
-        onTap: onChanged == null ? null : _onTap,
+        onTap: toggle,
         child: Row(
           children: <Widget>[
             AbsorbPointer(
               child: YgNoFocus(
-                child: YgCheckbox(
-                  value: value,
-                  onChanged: onChanged,
-                  triState: triState,
-                ),
+                child: _buildCheckbox(),
               ),
             ),
             Expanded(
@@ -61,14 +61,11 @@ class YgCheckboxItem extends StatelessWidget with StatelessWidgetDebugMixin {
     );
   }
 
-  void _onTap() {
-    final bool? nextValue = YgCheckboxHelpers.getNextValue(value, triState);
-    onChanged?.call(nextValue);
-  }
+  YgCheckbox _buildCheckbox();
 
   @override
   YgDebugType get debugType {
-    if (onChanged == null) {
+    if (!enabled) {
       return YgDebugType.other;
     }
 

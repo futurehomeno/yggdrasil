@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:yggdrasil/src/components/yg_checkbox/yg_checkbox_state.dart';
+import 'package:yggdrasil/src/components/yg_checkbox/checkbox/yg_checkbox_state.dart';
 import 'package:yggdrasil/src/theme/_theme.dart';
 import 'package:yggdrasil/src/utils/_utils.dart';
 
@@ -101,7 +101,7 @@ class YgCheckboxStyle extends YgStyleWithDefaults<YgCheckboxState> {
   }
 
   double _resolveCheckToMinusFraction(BuildContext context, YgCheckboxState state) {
-    if (state.checked.value == true || !state.triState.value) {
+    if (state.checked.value != null) {
       return 1;
     }
 
