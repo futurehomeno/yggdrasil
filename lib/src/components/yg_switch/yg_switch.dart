@@ -75,14 +75,14 @@ class _YgSwitchState extends StateWithYgStyle<YgSwitch, YgSwitchStyle> {
       mouseCursor: MaterialStateMouseCursor.clickable,
       child: Semantics(
         toggled: widget.value,
-        child: ConstrainedBox(
-          constraints: const BoxConstraints.expand(
-            width: 50,
-            height: 30,
-          ),
-          child: CustomPaint(
-            painter: _YgSwitchPainter(
-              style: style,
+        child: SizedBox(
+          width: 50,
+          height: 30,
+          child: RepaintBoundary(
+            child: CustomPaint(
+              painter: _YgSwitchPainter(
+                style: style,
+              ),
             ),
           ),
         ),

@@ -9,20 +9,22 @@ class YgCheckboxStyle extends YgStyleWithDefaults<YgCheckboxState> {
     required super.vsync,
   });
 
-  late YgAnimatedColorProperty borderColor;
-  late YgAnimatedColorProperty backgroundColor;
-  late YgAnimatedColorProperty iconColor;
-  late YgAnimatedDoubleProperty borderToCenterFraction;
   late YgAnimatedDoubleProperty checkToMinusFraction;
-  late YgDrivenDoubleProperty size;
+  late YgAnimatedColorProperty iconColor;
+  late YgAnimatedDoubleProperty iconScale;
+  late YgAnimatedColorProperty borderColor;
+  late YgAnimatedDoubleProperty borderToCenterFraction;
+  late YgAnimatedColorProperty backgroundColor;
   late YgDrivenDoubleProperty borderWidth;
   late YgDrivenBorderRadiusProperty borderRadius;
+  late YgDrivenDoubleProperty size;
 
   @override
   void init() {
     borderColor = animate(YgColorProperty<YgCheckboxState>.resolveWith(_resolveBorderColor));
     backgroundColor = animate(YgColorProperty<YgCheckboxState>.resolveWith(_resolveBackgroundColor));
     iconColor = animate(YgColorProperty<YgCheckboxState>.resolveWith(_resolveIconColor));
+    iconScale = animate(YgDoubleProperty<YgCheckboxState>.resolveWith(_resolveIconScale));
     borderToCenterFraction = animate(YgDoubleProperty<YgCheckboxState>.resolveWith(_resolveBorderToCenterFraction));
     checkToMinusFraction = animate(YgDoubleProperty<YgCheckboxState>.resolveWith(_resolveCheckToMinusFraction));
     size = drive(YgDoubleProperty<YgCheckboxState>.all(_resolveSize));
@@ -30,12 +32,10 @@ class YgCheckboxStyle extends YgStyleWithDefaults<YgCheckboxState> {
     borderRadius = drive(YgBorderRadiusProperty<YgCheckboxState>.all(_resolveBorderRadius));
   }
 
+  // region Border
+
   BorderRadius _resolveBorderRadius(BuildContext context) {
     return _theme.borderRadius;
-  }
-
-  double _resolveSize(BuildContext context) {
-    return _theme.size;
   }
 
   double _resolveBorderWidth(BuildContext context) {
@@ -72,26 +72,6 @@ class YgCheckboxStyle extends YgStyleWithDefaults<YgCheckboxState> {
     return _theme.defaultBorderColor;
   }
 
-  Color _resolveBackgroundColor(BuildContext context, YgCheckboxState state) {
-    if (state.disabled.value) {
-      return _theme.disabledBackgroundColor;
-    }
-
-    return _theme.defaultBackgroundColor;
-  }
-
-  Color _resolveIconColor(BuildContext context, YgCheckboxState state) {
-    if (state.checked.value == false) {
-      return Colors.transparent;
-    }
-
-    if (state.disabled.value) {
-      return _theme.disabledIconColor;
-    }
-
-    return _theme.defaultIconColor;
-  }
-
   double _resolveBorderToCenterFraction(BuildContext context, YgCheckboxState state) {
     if (state.disabled.value || (state.checked.value == false)) {
       return 0;
@@ -100,12 +80,46 @@ class YgCheckboxStyle extends YgStyleWithDefaults<YgCheckboxState> {
     return 1;
   }
 
+  // endregion
+
+  // region Icon
+
+  double _resolveIconScale(BuildContext context, YgCheckboxState state) {
+    if (state.checked.value == false) {
+      return 0;
+    }
+
+    return 1;
+  }
+
+  Color _resolveIconColor(BuildContext context, YgCheckboxState state) {
+    if (state.disabled.value) {
+      return _theme.disabledIconColor;
+    }
+
+    return _theme.defaultIconColor;
+  }
+
   double _resolveCheckToMinusFraction(BuildContext context, YgCheckboxState state) {
     if (state.checked.value == true || !state.triState.value) {
       return 1;
     }
 
     return 0;
+  }
+
+  // endregion
+
+  Color _resolveBackgroundColor(BuildContext context, YgCheckboxState state) {
+    if (state.disabled.value) {
+      return _theme.disabledBackgroundColor;
+    }
+
+    return _theme.defaultBackgroundColor;
+  }
+
+  double _resolveSize(BuildContext context) {
+    return _theme.size;
   }
 
   YgCheckboxTheme get _theme => context.checkboxTheme;
