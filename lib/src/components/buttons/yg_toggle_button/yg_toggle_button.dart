@@ -7,9 +7,9 @@ import '_yg_toggle_button.dart';
 import 'yg_toggle_button_state.dart';
 import 'yg_toggle_button_style.dart';
 
-part 'yg_toggle_button_with_leading_icon.dart';
-part 'yg_toggle_icon_button.dart';
-part 'yg_toggle_text_button.dart';
+part 'variants/yg_toggle_button_with_leading_icon.dart';
+part 'variants/yg_toggle_icon_button.dart';
+part 'variants/yg_toggle_text_button.dart';
 
 /// Yggdrasil toggle button.
 abstract base class YgToggleButton extends YgButtonBase<YgToggleButtonState> with YgDualStateToggleableMixin {
@@ -24,7 +24,7 @@ abstract base class YgToggleButton extends YgButtonBase<YgToggleButtonState> wit
     ValueChanged<bool>? onFocusChange,
     ValueChanged<bool>? onHover,
     VoidCallback? onLongPress,
-  }) = YgToggleTextButton;
+  }) = _YgToggleTextButton;
 
   const factory YgToggleButton.onlyIcon({
     Key? key,
@@ -37,7 +37,7 @@ abstract base class YgToggleButton extends YgButtonBase<YgToggleButtonState> wit
     ValueChanged<bool>? onFocusChange,
     ValueChanged<bool>? onHover,
     VoidCallback? onLongPress,
-  }) = YgToggleIconButton;
+  }) = _YgToggleIconButton;
 
   const factory YgToggleButton.leadingIcon({
     Key? key,
@@ -51,7 +51,7 @@ abstract base class YgToggleButton extends YgButtonBase<YgToggleButtonState> wit
     ValueChanged<bool>? onFocusChange,
     ValueChanged<bool>? onHover,
     VoidCallback? onLongPress,
-  }) = YgToggleButtonWithLeadingIcon;
+  }) = _YgToggleButtonWithLeadingIcon;
 
   const YgToggleButton._({
     super.key,

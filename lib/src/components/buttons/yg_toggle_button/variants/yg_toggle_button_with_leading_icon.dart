@@ -1,7 +1,7 @@
-part of 'yg_toggle_button.dart';
+part of '../yg_toggle_button.dart';
 
-final class YgToggleButtonWithLeadingIcon extends YgToggleButton {
-  const YgToggleButtonWithLeadingIcon({
+final class _YgToggleButtonWithLeadingIcon extends YgToggleButton {
+  const _YgToggleButtonWithLeadingIcon({
     super.key,
     required super.value,
     required super.onChanged,
