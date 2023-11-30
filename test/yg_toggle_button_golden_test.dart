@@ -48,7 +48,7 @@ void main() {
           ),
           GoldenTestScenario(
             name: 'With short text, value true and icon',
-            child: YgToggleButton(
+            child: YgToggleButton.leadingIcon(
               text: YgGoldenTestValues.shortText,
               value: true,
               icon: YgIcons.info,
@@ -57,7 +57,7 @@ void main() {
           ),
           GoldenTestScenario(
             name: 'With short text, value true and large size',
-            child: YgToggleButton(
+            child: YgToggleButton.leadingIcon(
               text: YgGoldenTestValues.shortText,
               value: true,
               icon: YgIcons.info,
@@ -67,7 +67,7 @@ void main() {
           ),
           GoldenTestScenario(
             name: 'With short text, value true and small size',
-            child: YgToggleButton(
+            child: YgToggleButton.leadingIcon(
               text: YgGoldenTestValues.shortText,
               value: true,
               icon: YgIcons.info,

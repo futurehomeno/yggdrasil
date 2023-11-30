@@ -30,10 +30,9 @@ void main() {
           ),
           GoldenTestScenario(
             name: 'With value: null (triState: true)',
-            child: YgCheckbox(
+            child: YgCheckbox.triState(
               onChanged: (_) {},
               value: null,
-              triState: true,
             ),
           ),
           GoldenTestScenario(
@@ -54,10 +53,9 @@ void main() {
           ),
           GoldenTestScenario(
             name: 'With value: null (triState: true) and hasError: true',
-            child: YgCheckbox(
+            child: YgCheckbox.triState(
               onChanged: (_) {},
               value: null,
-              triState: true,
               hasError: true,
             ),
           ),

@@ -16,7 +16,7 @@ final class _YgToggleButtonWithLeadingIcon extends YgToggleButton {
   }) : super._();
 
   /// The icon shown in front of the [text].
-  final YgIcon icon;
+  final String icon;
 
   /// The text shown in the button, behind the [icon].
   final String text;
@@ -25,7 +25,7 @@ final class _YgToggleButtonWithLeadingIcon extends YgToggleButton {
   Widget buildChild(BuildContext context) {
     return Row(
       children: <Widget>[
-        icon,
+        YgIcon(icon),
         SizedBox(
           width: context.toggleButtonTheme.iconTextSpacing,
         ),

@@ -29,7 +29,7 @@ abstract base class YgToggleButton extends YgButtonBase<YgToggleButtonState> wit
   const factory YgToggleButton.onlyIcon({
     Key? key,
     required bool value,
-    required YgIcon icon,
+    required String icon,
     required ValueChanged<bool>? onChanged,
     YgToggleButtonSize size,
     bool autofocus,
@@ -43,7 +43,7 @@ abstract base class YgToggleButton extends YgButtonBase<YgToggleButtonState> wit
     Key? key,
     required bool value,
     required String text,
-    required YgIcon icon,
+    required String icon,
     required ValueChanged<bool>? onChanged,
     YgToggleButtonSize size,
     bool autofocus,

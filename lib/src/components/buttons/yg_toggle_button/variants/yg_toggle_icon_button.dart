@@ -15,11 +15,11 @@ final class _YgToggleIconButton extends YgToggleButton {
   }) : super._();
 
   /// The icon shown in the button.
-  final YgIcon icon;
+  final String icon;
 
   @override
   Widget buildChild(BuildContext context) {
-    return icon;
+    return YgIcon(icon);
   }
 
   @override

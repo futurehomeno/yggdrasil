@@ -1,6 +1,5 @@
 import 'package:alchemist/alchemist.dart';
 import 'package:flutter/material.dart';
-
 import 'package:flutter_test/flutter_test.dart';
 import 'package:yggdrasil/yggdrasil.dart';
 
@@ -31,10 +30,9 @@ void main() {
           ),
           GoldenTestScenario(
             name: 'With value: null (triState: true)',
-            child: YgSwitch(
+            child: YgSwitch.triState(
               onChanged: (_) {},
               value: null,
-              triState: true,
             ),
           ),
         ],
