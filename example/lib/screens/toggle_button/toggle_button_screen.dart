@@ -50,7 +50,6 @@ class _ToggleButtonScreenState extends State<ToggleButtonScreen> {
                   size: YgToggleButtonSize.small,
                   onChanged: (bool newValue) {
                     iconValue1 = newValue;
-                    print(<bool>[iconValue1, newValue]);
                     setState(() {});
                   },
                 ),

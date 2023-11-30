@@ -25,5 +25,6 @@ class YgToggleButtonState extends YgButtonBaseState {
         ...super.props,
         variant,
         size,
+        toggled,
       ];
 }
