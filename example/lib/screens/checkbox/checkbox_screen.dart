@@ -69,16 +69,20 @@ class _CheckboxScreenState extends State<CheckboxScreen> {
             ),
           ),
           const YgSection(
-            title: 'Disabled checkbox, selected / unselected',
+            title: 'Disabled checkbox, selected / unselected / indeterminate',
             child: Row(
               mainAxisSize: MainAxisSize.min,
               children: <Widget>[
                 YgCheckbox(
-                  value: true,
+                  value: false,
                   onChanged: null,
                 ),
                 YgCheckbox(
-                  value: false,
+                  value: true,
+                  onChanged: null,
+                ),
+                YgCheckbox.triState(
+                  value: null,
                   onChanged: null,
                 ),
               ],

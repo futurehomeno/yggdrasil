@@ -24,7 +24,7 @@ class YgRadioItem<T> extends StatelessWidget with StatelessWidgetDebugMixin {
   final T? groupValue;
 
   /// See [YgRadio] documentation.
-  final ValueChanged<T?>? onChanged;
+  final ValueChanged<T>? onChanged;
 
   @override
   Widget build(BuildContext context) {

@@ -12,88 +12,88 @@ class YgRadioStyle extends YgStyleWithDefaults<YgRadioState> {
   });
 
   late final YgAnimatedColorProperty backgroundColor;
-  late final YgAnimatedDoubleProperty handleSize;
-  late final YgAnimatedColorProperty handleColor;
-  late final YgAnimatedDoubleProperty helperHandleSize;
+  late final YgAnimatedColorProperty centerDotColor;
+  late final YgAnimatedDoubleProperty borderSize;
+  late final YgAnimatedColorProperty borderColor;
+  late final YgAnimatedDoubleProperty centerDotSize;
   late final YgDrivenProperty<MouseCursor> mouseCursor;
   late final YgDrivenDoubleProperty radioSize;
-  late final YgDrivenColorProperty helperHandleColor;
 
   @override
   void init() {
+    centerDotColor = animate(YgColorProperty<YgRadioState>.resolveWith(_resolveCenterDotColor));
     backgroundColor = animate(YgColorProperty<YgRadioState>.resolveWith(_resolveBackgroundColor));
-    handleSize = animate(YgDoubleProperty<YgRadioState>.resolveWith(_resolveHandleSize));
-    handleColor = animate(YgColorProperty<YgRadioState>.resolveWith(_resolveHandleColor));
-    helperHandleSize = animate(YgDoubleProperty<YgRadioState>.resolveWith(_resolveHelperHandleSize));
+    borderSize = animate(YgDoubleProperty<YgRadioState>.resolveWith(_resolveBorderSize));
+    borderColor = animate(YgColorProperty<YgRadioState>.resolveWith(_resolveBorderColor));
+    centerDotSize = animate(YgDoubleProperty<YgRadioState>.resolveWith(_resolveCenterDotSize));
     mouseCursor = drive(YgProperty<YgRadioState, MouseCursor>.resolveWith(_resolveMouseCursor));
     radioSize = drive(YgDoubleProperty<YgRadioState>.all(_resolveRadioSize));
-    helperHandleColor = drive(YgColorProperty<YgRadioState>.all(_resolveHelperHandleColor));
   }
 
   double _resolveRadioSize(BuildContext context) {
     return _theme.size;
   }
 
-  Color _resolveHelperHandleColor(BuildContext context) {
-    return _theme.helperHandleColor;
+  Color _resolveCenterDotColor(BuildContext context, YgRadioState state) {
+    if (state.disabled.value) {
+      return _theme.centerDotDisabledColor;
+    }
+
+    return _theme.centerDotDefaultColor;
   }
 
   Color _resolveBackgroundColor(BuildContext context, YgRadioState state) {
-    if (state.selected.value) {
-      if (state.disabled.value) {
-        return _theme.selectedDisabledBackgroundColor;
-      }
-      if (state.hovered.value || state.focused.value) {
-        return _theme.selectedHoveredBackgroundColor;
-      }
-
-      return _theme.selectedBackgroundColor;
-    }
-
     if (state.disabled.value) {
-      return _theme.deselectedDisabledBackgroundColor;
-    }
-    if (state.hovered.value || state.focused.value) {
-      return _theme.deselectedHoveredBackgroundColor;
+      return _theme.backgroundDisabledColor;
     }
 
-    return _theme.deselectedBackgroundColor;
+    return _theme.backgroundDefaultColor;
   }
 
-  double _resolveHandleSize(BuildContext context, YgRadioState state) {
-    if (state.disabled.value) {
-      return _theme.deselectedHandleSize;
-    }
-    if (state.selected.value) {
-      return _theme.selectedHandleSize;
+  double _resolveBorderSize(BuildContext context, YgRadioState state) {
+    if (!state.disabled.value && state.selected.value) {
+      return _theme.borderSelectedSize;
     }
 
-    return _theme.deselectedHandleSize;
+    return _theme.borderDefaultOrDisabledSize;
   }
 
-  Color _resolveHandleColor(BuildContext context, YgRadioState state) {
+  Color _resolveBorderColor(BuildContext context, YgRadioState state) {
     if (state.disabled.value) {
-      return _theme.disabledHandleColor;
-    }
-    if (state.selected.value) {
-      return _theme.selectedHandleColor;
+      return _theme.borderDisabledColor;
     }
 
-    return _theme.deselectedHandleColor;
-  }
+    final bool interacted = state.focused.value || state.hovered.value;
 
-  double _resolveHelperHandleSize(BuildContext context, YgRadioState state) {
-    if (state.disabled.value) {
-      if (state.selected.value) {
-        return _theme.disabledSelectedHelperHandleSize;
+    if (state.error.value) {
+      if (interacted) {
+        return _theme.borderErrorFocusHoverColor;
       }
 
-      return _theme.disabledDeselectedHelperHandleSize;
+      return _theme.borderErrorColor;
     }
-    // Helper handle should only show for disabled state.
-    // Returning `null` does not work as the widget will still render.
 
-    return 0.0;
+    if (state.selected.value) {
+      if (interacted) {
+        return _theme.borderSelectedFocusHoverColor;
+      }
+
+      return _theme.borderSelectedColor;
+    }
+
+    if (interacted) {
+      return _theme.borderFocusHoverColor;
+    }
+
+    return _theme.borderDefaultColor;
+  }
+
+  double _resolveCenterDotSize(BuildContext context, YgRadioState state) {
+    if (state.selected.value) {
+      return _theme.centerDotSelectedSize;
+    }
+
+    return _theme.centerDotDefaultSize;
   }
 
   MouseCursor _resolveMouseCursor(BuildContext context, YgRadioState state) {

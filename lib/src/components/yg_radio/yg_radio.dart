@@ -3,6 +3,7 @@ import 'package:flutter/services.dart';
 import 'package:yggdrasil/src/theme/_theme.dart';
 import 'package:yggdrasil/src/utils/_utils.dart';
 
+import 'yg_radio_painter.dart';
 import 'yg_radio_state.dart';
 import 'yg_radio_style.dart';
 
@@ -18,6 +19,7 @@ class YgRadio<T> extends StatefulWidget with StatefulWidgetDebugMixin {
     required this.value,
     required this.groupValue,
     required this.onChanged,
+    this.hasError = false,
   });
 
   /// The value represented by this radio button.
@@ -33,7 +35,10 @@ class YgRadio<T> extends StatefulWidget with StatefulWidgetDebugMixin {
   ///
   /// The radio itself does not maintain any state. Instead, when the state of
   /// the radio changes, the widget calls the [onChanged] callback.
-  final ValueChanged<T?>? onChanged;
+  final ValueChanged<T>? onChanged;
+
+  /// When true visually shows the user there is an error.
+  final bool hasError;
 
   bool get _enabled => onChanged != null;
 
@@ -56,6 +61,7 @@ class _YgRadioState<T> extends StateWithYgStyle<YgRadio<T>, YgRadioStyle> {
   late final YgRadioState _state = YgRadioState(
     disabled: !widget._enabled,
     selected: widget._selected,
+    error: widget.hasError,
   );
 
   @override
@@ -64,6 +70,7 @@ class _YgRadioState<T> extends StateWithYgStyle<YgRadio<T>, YgRadioStyle> {
 
     _state.disabled.value = !widget._enabled;
     _state.selected.value = widget._selected;
+    _state.error.value = widget.hasError;
   }
 
   @override
@@ -115,7 +122,7 @@ class _YgRadioState<T> extends StateWithYgStyle<YgRadio<T>, YgRadioStyle> {
               padding: EdgeInsets.all(context.radioTheme.padding),
               child: CustomPaint(
                 size: Size.square(style.radioSize.value),
-                painter: _YgRadioPainter(
+                painter: YgRadioPainter(
                   style: style,
                 ),
               ),
@@ -127,55 +134,9 @@ class _YgRadioState<T> extends StateWithYgStyle<YgRadio<T>, YgRadioStyle> {
   }
 
   void _onTap() {
-    final ValueChanged<T?>? onChanged = widget.onChanged;
+    final ValueChanged<T>? onChanged = widget.onChanged;
     if (onChanged != null) {
       onChanged(widget.value);
     }
-  }
-}
-
-class _YgRadioPainter extends CustomPainter {
-  _YgRadioPainter({
-    required this.style,
-  }) : super(repaint: style);
-
-  final YgRadioStyle style;
-
-  @override
-  void paint(Canvas canvas, Size objectSize) {
-    final Paint backgroundPaint = Paint()
-      ..style = PaintingStyle.fill
-      ..color = style.backgroundColor.value;
-
-    final Paint handlerPaint = Paint()
-      ..style = PaintingStyle.fill
-      ..color = style.handleColor.value;
-
-    final Paint helperHandlePaint = Paint()
-      ..style = PaintingStyle.fill
-      ..color = style.helperHandleColor.value;
-
-    canvas.drawCircle(
-      Offset(objectSize.width / 2.0, objectSize.height / 2.0),
-      style.radioSize.value / 2.0,
-      backgroundPaint,
-    );
-
-    canvas.drawCircle(
-      Offset(objectSize.width / 2.0, objectSize.height / 2.0),
-      style.handleSize.value / 2.0,
-      handlerPaint,
-    );
-
-    canvas.drawCircle(
-      Offset(objectSize.width / 2.0, objectSize.height / 2.0),
-      style.helperHandleSize.value / 2.0,
-      helperHandlePaint,
-    );
-  }
-
-  @override
-  bool shouldRepaint(covariant _YgRadioPainter oldDelegate) {
-    return style != oldDelegate.style;
   }
 }
