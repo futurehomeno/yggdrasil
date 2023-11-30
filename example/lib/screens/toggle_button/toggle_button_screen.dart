@@ -45,16 +45,17 @@ class _ToggleButtonScreenState extends State<ToggleButtonScreen> {
               mainAxisSize: MainAxisSize.min,
               children: <Widget>[
                 YgToggleButton.onlyIcon(
-                  icon: YgIcons.info,
+                  icon: const YgIcon(YgIcons.info),
                   value: iconValue1,
                   size: YgToggleButtonSize.small,
                   onChanged: (bool newValue) {
                     iconValue1 = newValue;
+                    print(<bool>[iconValue1, newValue]);
                     setState(() {});
                   },
                 ),
                 YgToggleButton.onlyIcon(
-                  icon: YgIcons.info,
+                  icon: const YgIcon(YgIcons.info),
                   value: iconValue2,
                   size: YgToggleButtonSize.medium,
                   onChanged: (bool newValue) {
@@ -63,7 +64,7 @@ class _ToggleButtonScreenState extends State<ToggleButtonScreen> {
                   },
                 ),
                 YgToggleButton.onlyIcon(
-                  icon: YgIcons.info,
+                  icon: const YgIcon(YgIcons.info),
                   value: iconValue3,
                   size: YgToggleButtonSize.large,
                   onChanged: (bool newValue) {
@@ -114,8 +115,8 @@ class _ToggleButtonScreenState extends State<ToggleButtonScreen> {
             child: Row(
               mainAxisSize: MainAxisSize.min,
               children: <Widget>[
-                YgToggleButton(
-                  icon: YgIcons.info,
+                YgToggleButton.leadingIcon(
+                  icon: const YgIcon(YgIcons.info),
                   text: 'Toggle',
                   value: iconTextValue1,
                   size: YgToggleButtonSize.small,
@@ -124,8 +125,8 @@ class _ToggleButtonScreenState extends State<ToggleButtonScreen> {
                     setState(() {});
                   },
                 ),
-                YgToggleButton(
-                  icon: YgIcons.info,
+                YgToggleButton.leadingIcon(
+                  icon: const YgIcon(YgIcons.info),
                   text: 'Toggle',
                   value: iconTextValue2,
                   size: YgToggleButtonSize.medium,
@@ -134,8 +135,8 @@ class _ToggleButtonScreenState extends State<ToggleButtonScreen> {
                     setState(() {});
                   },
                 ),
-                YgToggleButton(
-                  icon: YgIcons.info,
+                YgToggleButton.leadingIcon(
+                  icon: const YgIcon(YgIcons.info),
                   text: 'Toggle',
                   value: iconTextValue3,
                   size: YgToggleButtonSize.large,
@@ -150,15 +151,15 @@ class _ToggleButtonScreenState extends State<ToggleButtonScreen> {
           YgSection.column(
             title: 'Disabled',
             children: <Widget>[
-              YgToggleButton(
-                icon: YgIcons.info,
+              YgToggleButton.leadingIcon(
+                icon: const YgIcon(YgIcons.info),
                 text: 'Disabled (selected)',
                 value: enabled,
                 size: YgToggleButtonSize.medium,
                 onChanged: null,
               ),
-              YgToggleButton(
-                icon: YgIcons.info,
+              YgToggleButton.leadingIcon(
+                icon: const YgIcon(YgIcons.info),
                 text: 'Disabled (deselected)',
                 value: disabled,
                 size: YgToggleButtonSize.medium,

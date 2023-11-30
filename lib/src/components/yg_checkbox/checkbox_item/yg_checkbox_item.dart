@@ -65,7 +65,7 @@ abstract base class YgCheckboxItem extends StatelessWidget with StatelessWidgetD
 
   @override
   YgDebugType get debugType {
-    if (!enabled) {
+    if (disabled) {
       return YgDebugType.other;
     }
 

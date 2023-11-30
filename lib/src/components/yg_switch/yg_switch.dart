@@ -8,6 +8,8 @@ import 'yg_switch_style.dart';
 part 'yg_switch_dual_state.dart';
 part 'yg_switch_tri_state.dart';
 
+// TODO(Tim): Add mouse cursor support.
+
 /// Binary (or optionally tri-state) switch.
 abstract base class YgSwitch extends StatefulWidget with StatefulWidgetDebugMixin implements YgToggleable {
   const factory YgSwitch({
@@ -31,7 +33,7 @@ abstract base class YgSwitch extends StatefulWidget with StatefulWidgetDebugMixi
 
   @override
   YgDebugType get debugType {
-    if (enabled) {
+    if (disabled) {
       return YgDebugType.other;
     }
 
@@ -41,7 +43,7 @@ abstract base class YgSwitch extends StatefulWidget with StatefulWidgetDebugMixi
 
 class _YgSwitchState extends StateWithYgStyle<YgSwitch, YgSwitchStyle> {
   late final YgSwitchState _state = YgSwitchState(
-    disabled: !widget.enabled,
+    disabled: widget.disabled,
     selected: widget.value,
   );
 
@@ -58,7 +60,7 @@ class _YgSwitchState extends StateWithYgStyle<YgSwitch, YgSwitchStyle> {
 
   @override
   void didUpdateWidget(covariant YgSwitch oldWidget) {
-    _state.disabled.value = !widget.enabled;
+    _state.disabled.value = widget.disabled;
     _state.selected.value = widget.value;
     super.didUpdateWidget(oldWidget);
   }

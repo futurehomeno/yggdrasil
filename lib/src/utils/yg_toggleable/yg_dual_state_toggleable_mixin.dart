@@ -9,14 +9,14 @@ mixin YgDualStateToggleableMixin on Widget implements YgToggleable {
   ValueChanged<bool>? get onChanged;
 
   @override
-  bool get enabled => onChanged != null;
+  bool get disabled => onChanged == null;
 
   @override
   bool get triState => false;
 
   @override
   VoidCallback? get toggle {
-    if (!enabled) {
+    if (disabled) {
       return null;
     }
 
