@@ -16,6 +16,7 @@ abstract base class YgCheckboxItem extends StatelessWidget with StatelessWidgetD
     required bool value,
   }) = YgCheckboxItemDualState;
 
+  /// Supports a nullable value "indeterminate".
   const factory YgCheckboxItem.triState({
     Key? key,
     required ValueChanged<bool?>? onChanged,

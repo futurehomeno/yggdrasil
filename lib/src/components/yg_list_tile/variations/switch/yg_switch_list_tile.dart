@@ -13,6 +13,7 @@ abstract base class YgSwitchListTile extends YgListTile implements YgToggleable 
     Widget? trailingWidget,
   }) = YgSwitchListTileDualState;
 
+  /// Supports a nullable value "indeterminate".
   const factory YgSwitchListTile.triState({
     required bool? value,
     required String title,
