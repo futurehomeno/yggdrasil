@@ -30,26 +30,28 @@ class YgCheckboxIconPainter {
 
   void paint(Canvas canvas, Offset center) {
     final double scale = style.iconScale.value;
-    if (scale > 0) {
-      final double t = style.checkToMinusFraction.value;
-      final Offset offset = center - (iconSize * scale * 0.5);
-
-      // Update the paint values.
-      _iconPaint.color = style.iconColor.value;
-      _iconPaint.strokeWidth = strokeWidth * scale;
-
-      // Interpolate between the points, scale them and add offset to center them.
-      final Offset p1 = (Offset.lerp(lineP1, checkP1, t)! * scale) + offset;
-      final Offset p2 = (Offset.lerp(lineP2, checkP2, t)! * scale) + offset;
-      final Offset p3 = (Offset.lerp(lineP3, checkP3, t)! * scale) + offset;
-
-      // Create and draw the path using the path points.
-      final Path path = Path()
-        ..moveTo(p1.dx, p1.dy)
-        ..lineTo(p2.dx, p2.dy)
-        ..lineTo(p3.dx, p3.dy);
-
-      canvas.drawPath(path, _iconPaint);
+    if (scale <= 0) {
+      return;
     }
+
+    final double t = style.checkToMinusFraction.value;
+    final Offset offset = center - (iconSize * scale * 0.5);
+
+    // Update the paint values.
+    _iconPaint.color = style.iconColor.value;
+    _iconPaint.strokeWidth = strokeWidth * scale;
+
+    // Interpolate between the points, scale them and add offset to center them.
+    final Offset p1 = (Offset.lerp(lineP1, checkP1, t)! * scale) + offset;
+    final Offset p2 = (Offset.lerp(lineP2, checkP2, t)! * scale) + offset;
+    final Offset p3 = (Offset.lerp(lineP3, checkP3, t)! * scale) + offset;
+
+    // Create and draw the path using the path points.
+    final Path path = Path()
+      ..moveTo(p1.dx, p1.dy)
+      ..lineTo(p2.dx, p2.dy)
+      ..lineTo(p3.dx, p3.dy);
+
+    canvas.drawPath(path, _iconPaint);
   }
 }
