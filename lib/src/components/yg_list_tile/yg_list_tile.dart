@@ -6,15 +6,15 @@ import 'package:yggdrasil/yggdrasil.dart';
 import 'helpers/_helpers.dart';
 import 'widgets/_widgets.dart';
 
-part 'variations/checkbox/yg_checkbox_list_tile.dart';
-part 'variations/checkbox/yg_checkbox_list_tile_dual_state.dart';
-part 'variations/checkbox/yg_checkbox_list_tile_tri_state.dart';
-part 'variations/switch/yg_switch_list_tile.dart';
-part 'variations/switch/yg_switch_list_tile_dual_state.dart';
-part 'variations/switch/yg_switch_list_tile_tri_state.dart';
-part 'variations/yg_expanding_list_tile.dart';
-part 'variations/yg_radio_list_tile.dart';
-part 'variations/yg_regular_list_tile.dart';
+part 'variants/checkbox/yg_checkbox_list_tile.dart';
+part 'variants/checkbox/yg_checkbox_list_tile_dual_state.dart';
+part 'variants/checkbox/yg_checkbox_list_tile_tri_state.dart';
+part 'variants/switch/yg_switch_list_tile.dart';
+part 'variants/switch/yg_switch_list_tile_dual_state.dart';
+part 'variants/switch/yg_switch_list_tile_tri_state.dart';
+part 'variants/yg_expanding_list_tile.dart';
+part 'variants/yg_radio_list_tile.dart';
+part 'variants/yg_regular_list_tile.dart';
 
 /// List tile component.
 ///
