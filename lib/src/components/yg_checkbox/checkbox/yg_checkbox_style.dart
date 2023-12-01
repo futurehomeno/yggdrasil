@@ -36,14 +36,6 @@ class YgCheckboxStyle extends YgStyleWithDefaults<YgCheckboxState> {
 
   // region Border
 
-  MouseCursor _resolveMouseCursor(BuildContext context, YgCheckboxState state) {
-    if (state.disabled.value) {
-      return SystemMouseCursors.basic;
-    }
-
-    return SystemMouseCursors.click;
-  }
-
   BorderRadius _resolveBorderRadius(BuildContext context) {
     return _theme.borderRadius;
   }
@@ -119,6 +111,14 @@ class YgCheckboxStyle extends YgStyleWithDefaults<YgCheckboxState> {
   }
 
   // endregion
+
+  MouseCursor _resolveMouseCursor(BuildContext context, YgCheckboxState state) {
+    if (state.disabled.value) {
+      return SystemMouseCursors.basic;
+    }
+
+    return SystemMouseCursors.click;
+  }
 
   Color _resolveBackgroundColor(BuildContext context, YgCheckboxState state) {
     if (state.disabled.value) {
