@@ -1,7 +1,7 @@
 part of '../../yg_list_tile.dart';
 
-final class YgSwitchListTileTriState extends YgSwitchListTile with YgTriStateToggleableMixin {
-  const YgSwitchListTileTriState({
+final class _YgSwitchListTileTriState extends YgSwitchListTile with YgTriStateToggleableMixin {
+  const _YgSwitchListTileTriState({
     super.key,
     required super.title,
     required this.value,

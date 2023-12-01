@@ -1,7 +1,7 @@
 part of '../../yg_list_tile.dart';
 
-final class YgCheckboxListTileTriState extends YgCheckboxListTile with YgTriStateToggleableMixin {
-  const YgCheckboxListTileTriState({
+final class _YgCheckboxListTileTriState extends YgCheckboxListTile with YgTriStateToggleableMixin {
+  const _YgCheckboxListTileTriState({
     super.key,
     required super.title,
     required this.value,

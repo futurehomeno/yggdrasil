@@ -1,7 +1,7 @@
 part of '../../yg_list_tile.dart';
 
-final class YgSwitchListTileDualState extends YgSwitchListTile with YgDualStateToggleableMixin {
-  const YgSwitchListTileDualState({
+final class _YgSwitchListTileDualState extends YgSwitchListTile with YgDualStateToggleableMixin {
+  const _YgSwitchListTileDualState({
     super.key,
     required super.title,
     required this.value,
