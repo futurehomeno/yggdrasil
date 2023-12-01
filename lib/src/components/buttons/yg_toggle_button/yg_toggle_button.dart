@@ -26,6 +26,7 @@ abstract base class YgToggleButton extends YgButtonBase<YgToggleButtonState> wit
     VoidCallback? onLongPress,
   }) = _YgToggleTextButton;
 
+  /// The [YgToggleButton] equivalent of an icon button.
   const factory YgToggleButton.onlyIcon({
     Key? key,
     required bool value,
@@ -39,6 +40,7 @@ abstract base class YgToggleButton extends YgButtonBase<YgToggleButtonState> wit
     VoidCallback? onLongPress,
   }) = _YgToggleIconButton;
 
+  /// Shows an [icon] leading the [text].
   const factory YgToggleButton.leadingIcon({
     Key? key,
     required bool value,
