@@ -22,7 +22,6 @@ final class YgSwitchListTileDualState extends YgSwitchListTile with YgDualStateT
   @override
   final ValueChanged<bool>? onChanged;
 
-  /// See [YgSwitch] documentation.
   @override
   YgSwitch _buildSwitch() {
     return YgSwitch(

@@ -22,7 +22,6 @@ final class YgSwitchListTileTriState extends YgSwitchListTile with YgTriStateTog
   @override
   final ValueChanged<bool?>? onChanged;
 
-  /// See [YgSwitch] documentation.
   @override
   YgSwitch _buildSwitch() {
     return YgSwitch.triState(

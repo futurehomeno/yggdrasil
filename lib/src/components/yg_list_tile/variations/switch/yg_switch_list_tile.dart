@@ -3,10 +3,10 @@ part of '../../yg_list_tile.dart';
 /// Binary (or optionally tri-state) switch.
 abstract base class YgSwitchListTile extends YgListTile implements YgToggleable {
   const factory YgSwitchListTile({
+    Key? key,
     required bool value,
     required String title,
     required ValueChanged<bool>? onChanged,
-    Key? key,
     Widget? leadingWidget,
     String? subtitle,
     Widget? subtitleIcon,
@@ -15,10 +15,10 @@ abstract base class YgSwitchListTile extends YgListTile implements YgToggleable 
 
   /// Supports a nullable value "indeterminate".
   const factory YgSwitchListTile.triState({
+    Key? key,
     required bool? value,
     required String title,
     required ValueChanged<bool?>? onChanged,
-    Key? key,
     Widget? leadingWidget,
     String? subtitle,
     Widget? subtitleIcon,
