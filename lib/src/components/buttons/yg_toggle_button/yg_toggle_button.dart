@@ -69,7 +69,7 @@ abstract base class YgToggleButton extends YgButtonBase<YgToggleButtonState> wit
   @override
   final bool value;
 
-  /// Callback to trigger when the value of the button changes.
+  /// Callback to triggered when the value of the button changes.
   ///
   /// The button itself does not maintain any state. Instead, when the state of
   /// the button changes, the widget calls the [onChanged] callback.
@@ -78,15 +78,6 @@ abstract base class YgToggleButton extends YgButtonBase<YgToggleButtonState> wit
 
   /// The size of the toggle button.
   final YgToggleButtonSize size;
-
-  @override
-  YgDebugType get debugType {
-    if (onChanged == null) {
-      return YgDebugType.other;
-    }
-
-    return YgDebugType.intractable;
-  }
 
   @override
   YgToggleButtonState createButtonState() {
@@ -116,5 +107,9 @@ abstract base class YgToggleButton extends YgButtonBase<YgToggleButtonState> wit
   @override
   VoidCallback? get onPressed => toggle;
 
+  /// The variant of the widget.
+  ///
+  /// Not specified by the user as a argument but provided by the different
+  /// implementations of [YgToggleButton].
   YgToggleButtonVariant get variant;
 }

@@ -18,6 +18,13 @@ class _$YgSwitchTheme {
     professional_dark.FhDimensions.xxl,
   ];
 
+  static const List<Color> trackDefaultColor = <Color>[
+    consumer_light.FhColors.backgroundDisabled,
+    consumer_dark.FhColors.backgroundDisabled,
+    professional_light.FhColors.backgroundDisabled,
+    professional_dark.FhColors.backgroundDisabled,
+  ];
+
   static const List<Color> trackToggledColor = <Color>[
     consumer_light.FhColors.backgroundHighlightDefault,
     consumer_dark.FhColors.backgroundHighlightDefault,
@@ -25,18 +32,11 @@ class _$YgSwitchTheme {
     professional_dark.FhColors.backgroundHighlightDefault,
   ];
 
-  static const List<Color> trackNotToggledColor = <Color>[
-    consumer_light.FhColors.backgroundDisabled,
-    consumer_dark.FhColors.backgroundDisabled,
-    professional_light.FhColors.backgroundDisabled,
-    professional_dark.FhColors.backgroundDisabled,
-  ];
-
-  static const List<Color> trackUnsetColor = <Color>[
-    consumer_light.FhColors.backgroundDisabled,
-    consumer_dark.FhColors.backgroundDisabled,
-    professional_light.FhColors.backgroundDisabled,
-    professional_dark.FhColors.backgroundDisabled,
+  static const List<Color> trackToggledFocusedHoveredColor = <Color>[
+    consumer_light.FhColors.interactiveHighlightHovered,
+    consumer_dark.FhColors.interactiveHighlightHovered,
+    professional_light.FhColors.interactiveHighlightHovered,
+    professional_dark.FhColors.interactiveHighlightHovered,
   ];
 
   static const List<Color> trackDisabledColor = <Color>[

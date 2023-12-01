@@ -8,8 +8,6 @@ import 'yg_switch_style.dart';
 part 'yg_switch_dual_state.dart';
 part 'yg_switch_tri_state.dart';
 
-// TODO(Tim): Add mouse cursor support.
-
 /// Binary (or optionally tri-state) switch.
 abstract base class YgSwitch extends StatefulWidget with StatefulWidgetDebugMixin implements YgToggleable {
   const factory YgSwitch({
@@ -18,6 +16,7 @@ abstract base class YgSwitch extends StatefulWidget with StatefulWidgetDebugMixi
     required bool value,
   }) = YgSwitchDualState;
 
+  /// Supports a nullable value "indeterminate".
   const factory YgSwitch.triState({
     Key? key,
     required ValueChanged<bool?>? onChanged,
@@ -44,12 +43,24 @@ abstract base class YgSwitch extends StatefulWidget with StatefulWidgetDebugMixi
 class _YgSwitchState extends StateWithYgStyle<YgSwitch, YgSwitchStyle> {
   late final YgSwitchState _state = YgSwitchState(
     disabled: widget.disabled,
-    selected: widget.value,
+    toggled: widget.value,
   );
 
   @override
   YgSwitchStyle createStyle() {
-    return YgSwitchStyle(state: _state, vsync: this);
+    return YgSwitchStyle(
+      state: _state,
+      vsync: this,
+    );
+  }
+
+  @override
+  Set<Listenable> getWatchedProperties() {
+    return <Listenable>{
+      style.mouseCursor,
+      style.handleDiameter,
+      style.handlePadding,
+    };
   }
 
   @override
@@ -61,23 +72,28 @@ class _YgSwitchState extends StateWithYgStyle<YgSwitch, YgSwitchStyle> {
   @override
   void didUpdateWidget(covariant YgSwitch oldWidget) {
     _state.disabled.value = widget.disabled;
-    _state.selected.value = widget.value;
+    _state.toggled.value = widget.value;
     super.didUpdateWidget(oldWidget);
   }
 
   @override
   Widget build(BuildContext context) {
+    final double handleDiameter = style.handleDiameter.value;
+    final double handlePadding = style.handlePadding.value;
+    final double computedHeight = handleDiameter + (handlePadding * 2);
+
     return YgFocusableActionDetector(
       onActivate: widget.toggle,
       enabled: !_state.disabled.value,
       onHoverChanged: _state.hovered.update,
       onFocusChanged: _state.focused.update,
-      mouseCursor: MaterialStateMouseCursor.clickable,
+      mouseCursor: style.mouseCursor.value,
       child: Semantics(
-        toggled: widget.value,
+        toggled: _state.toggled.value,
+        enabled: _state.disabled.value,
         child: SizedBox(
-          width: 50,
-          height: 30,
+          width: style.width.value,
+          height: computedHeight,
           child: RepaintBoundary(
             child: CustomPaint(
               painter: YgSwitchPainter(

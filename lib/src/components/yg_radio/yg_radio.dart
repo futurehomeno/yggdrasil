@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
 import 'package:yggdrasil/src/theme/_theme.dart';
 import 'package:yggdrasil/src/utils/_utils.dart';
 
@@ -96,35 +95,21 @@ class _YgRadioState<T> extends StateWithYgStyle<YgRadio<T>, YgRadioStyle> {
 
   @override
   Widget build(BuildContext context) {
-    return RepaintBoundary(
-      child: Semantics(
-        checked: widget._selected,
-        child: GestureDetector(
-          behavior: HitTestBehavior.opaque,
-          onTap: widget.onChanged == null ? null : _onTap,
-          child: FocusableActionDetector(
-            onShowHoverHighlight: _state.hovered.update,
-            onShowFocusHighlight: _state.focused.update,
-            shortcuts: const <ShortcutActivator, Intent>{
-              SingleActivator(
-                LogicalKeyboardKey.space,
-                control: true,
-              ): ActivateIntent(),
-            },
-            actions: <Type, Action<Intent>>{
-              ActivateIntent: CallbackAction<Intent>(
-                onInvoke: (_) => _onTap(),
-              ),
-            },
-            mouseCursor: style.mouseCursor.value,
-            enabled: widget._enabled,
-            child: Padding(
-              padding: EdgeInsets.all(context.radioTheme.padding),
-              child: CustomPaint(
-                size: Size.square(style.radioSize.value),
-                painter: YgRadioPainter(
-                  style: style,
-                ),
+    return Semantics(
+      checked: widget._selected,
+      child: YgFocusableActionDetector(
+        mouseCursor: style.mouseCursor.value,
+        enabled: widget._enabled,
+        onActivate: _onTap,
+        onFocusChanged: _state.focused.update,
+        onHoverChanged: _state.hovered.update,
+        child: Padding(
+          padding: EdgeInsets.all(context.radioTheme.padding),
+          child: RepaintBoundary(
+            child: CustomPaint(
+              size: Size.square(style.radioSize.value),
+              painter: YgRadioPainter(
+                style: style,
               ),
             ),
           ),
@@ -134,9 +119,6 @@ class _YgRadioState<T> extends StateWithYgStyle<YgRadio<T>, YgRadioStyle> {
   }
 
   void _onTap() {
-    final ValueChanged<T>? onChanged = widget.onChanged;
-    if (onChanged != null) {
-      onChanged(widget.value);
-    }
+    widget.onChanged?.call(widget.value);
   }
 }

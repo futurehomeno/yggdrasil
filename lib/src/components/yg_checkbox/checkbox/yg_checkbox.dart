@@ -9,7 +9,6 @@ import 'yg_checkbox_style.dart';
 part 'yg_checkbox_dual_state.dart';
 part 'yg_checkbox_tri_state.dart';
 
-// TODO(Tim): Add mouse cursor support.
 /// Yggdrasil checkbox button.
 abstract class YgCheckbox extends StatefulWidget with StatefulWidgetDebugMixin implements YgToggleable {
   const factory YgCheckbox({
@@ -19,6 +18,7 @@ abstract class YgCheckbox extends StatefulWidget with StatefulWidgetDebugMixin i
     required bool value,
   }) = YgCheckboxDualState;
 
+  /// Supports a nullable value "indeterminate".
   const factory YgCheckbox.triState({
     bool hasError,
     Key? key,
@@ -63,6 +63,13 @@ class _YgCheckboxState extends StateWithYgStyle<YgCheckbox, YgCheckboxStyle> {
   }
 
   @override
+  Set<Listenable> getWatchedProperties() {
+    return <Listenable>{
+      style.mouseCursor,
+    };
+  }
+
+  @override
   void didUpdateWidget(covariant YgCheckbox oldWidget) {
     _state.checked.value = widget.value;
     _state.disabled.value = widget.disabled;
@@ -85,6 +92,7 @@ class _YgCheckboxState extends StateWithYgStyle<YgCheckbox, YgCheckboxStyle> {
       onFocusChanged: _state.focused.update,
       onHoverChanged: _state.hovered.update,
       enabled: !_state.disabled.value,
+      mouseCursor: style.mouseCursor.value,
       child: Padding(
         padding: theme.padding,
         child: SizedBox.square(
