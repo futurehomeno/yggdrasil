@@ -23,7 +23,8 @@ class YgSwitchPainter extends CustomPainter {
     // Calculate half width/height and total radius of the handle.
     final double halfWidth = size.width / 2;
     final double halfHeight = size.height / 2;
-    final double totalRadius = style.handlePadding.value + (style.handleDiameter.value / 2);
+    final double handleRadius = style.handleDiameter.value / 2;
+    final double totalRadius = style.handlePadding.value + handleRadius;
     final double xOffset = (style.width.value / 2) - totalRadius;
 
     // Define start/end points and handle position.
@@ -38,7 +39,7 @@ class YgSwitchPainter extends CustomPainter {
 
     // Draw track line and handle circle.
     canvas.drawLine(start, end, _trackPaint);
-    canvas.drawCircle(handlePosition, style.handleDiameter.value / 2, _handlePaint);
+    canvas.drawCircle(handlePosition, handleRadius, _handlePaint);
   }
 
   @override

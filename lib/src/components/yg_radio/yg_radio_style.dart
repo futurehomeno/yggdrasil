@@ -51,11 +51,11 @@ class YgRadioStyle extends YgStyleWithDefaults<YgRadioState> {
   }
 
   double _resolveBorderSize(BuildContext context, YgRadioState state) {
-    if (!state.disabled.value && state.selected.value) {
-      return _theme.borderSelectedSize;
+    if (state.disabled.value || !state.selected.value) {
+      return _theme.borderDefaultOrDisabledSize;
     }
 
-    return _theme.borderDefaultOrDisabledSize;
+    return _theme.borderSelectedSize;
   }
 
   Color _resolveBorderColor(BuildContext context, YgRadioState state) {

@@ -83,15 +83,7 @@ class YgSwitchStyle extends YgStyleWithDefaults<YgSwitchState> {
       return _theme.handleDisabledColor;
     }
 
-    if (state.toggled.value == true) {
-      return _theme.handleToggledColor;
-    }
-
-    if (state.toggled.value == false) {
-      return _theme.handleNotToggledColor;
-    }
-
-    return _theme.handleNullColor;
+    return _theme.handleDefaultColor;
   }
 
   @override

@@ -20,35 +20,7 @@ class _$YgToggleButtonTheme {
   @themeExtension
   static final List<ToggleIconTextButtonTheme> toggleIconTextButtonTheme = ToggleIconTextButtonTheme.themes;
 
-  static const List<double> iconDefaultSize = <double>[
-    consumer_light.FhDimensions.sm,
-    consumer_dark.FhDimensions.sm,
-    professional_light.FhDimensions.sm,
-    professional_dark.FhDimensions.sm,
-  ];
-
-  static const List<double> iconLargeIconOnlySize = <double>[
-    consumer_light.FhDimensions.lg,
-    consumer_dark.FhDimensions.lg,
-    professional_light.FhDimensions.lg,
-    professional_dark.FhDimensions.lg,
-  ];
-
-  static const List<double> iconTextSpacing = <double>[
-    consumer_light.FhDimensions.xxs,
-    consumer_dark.FhDimensions.xxs,
-    professional_light.FhDimensions.xxs,
-    professional_dark.FhDimensions.xxs,
-  ];
-
-  static const List<BorderRadius> borderRadius = <BorderRadius>[
-    consumer_light.FhRadii.xxl,
-    consumer_dark.FhRadii.xxl,
-    professional_light.FhRadii.xxl,
-    professional_dark.FhRadii.xxl,
-  ];
-
-  // region border color
+  // region border
 
   static const List<Color> borderDefaultColor = <Color>[
     consumer_light.FhColors.borderDefault,
@@ -85,6 +57,13 @@ class _$YgToggleButtonTheme {
     professional_dark.FhColors.borderDefault,
   ];
 
+  static const List<BorderRadius> borderRadius = <BorderRadius>[
+    consumer_light.FhRadii.xxl,
+    consumer_dark.FhRadii.xxl,
+    professional_light.FhRadii.xxl,
+    professional_dark.FhRadii.xxl,
+  ];
+
   // endregion
 
   // region background
@@ -119,7 +98,7 @@ class _$YgToggleButtonTheme {
 
   // endregion
 
-  // region Icon color
+  // region Icon
 
   static const List<Color> iconToggledColor = <Color>[
     consumer_light.FhColors.iconInverse,
@@ -140,6 +119,20 @@ class _$YgToggleButtonTheme {
     consumer_dark.FhColors.iconDisabled,
     professional_light.FhColors.iconDisabled,
     professional_dark.FhColors.iconDisabled,
+  ];
+
+  static const List<double> iconDefaultSize = <double>[
+    consumer_light.FhDimensions.sm,
+    consumer_dark.FhDimensions.sm,
+    professional_light.FhDimensions.sm,
+    professional_dark.FhDimensions.sm,
+  ];
+
+  static const List<double> iconLargeIconOnlySize = <double>[
+    consumer_light.FhDimensions.lg,
+    consumer_dark.FhDimensions.lg,
+    professional_light.FhDimensions.lg,
+    professional_dark.FhDimensions.lg,
   ];
 
   // endregion
@@ -193,6 +186,13 @@ class _$YgToggleButtonTheme {
   ];
 
   // endregion
+
+  static const List<double> iconTextSpacing = <double>[
+    consumer_light.FhDimensions.xxs,
+    consumer_dark.FhDimensions.xxs,
+    professional_light.FhDimensions.xxs,
+    professional_dark.FhDimensions.xxs,
+  ];
 
   // TODO(bjhandeland): Replace with theme token.
   static const List<Duration> animationDuration = <Duration>[

@@ -11,7 +11,7 @@ void main() {
     'YgCheckboxGoldenTest',
     () {
       final GoldenTestGroup ygCheckboxGoldenTestGroup = GoldenTestGroup(
-        columns: 2,
+        columns: 3,
         scenarioConstraints: YgGoldenTestValues.scenarioConstraints,
         children: <GoldenTestScenario>[
           GoldenTestScenario(

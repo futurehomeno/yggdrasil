@@ -12,12 +12,10 @@ class YgSwitchTheme extends ThemeExtension<YgSwitchTheme> {
   const YgSwitchTheme({
     required this.animationCurve,
     required this.animationDuration,
+    required this.handleDefaultColor,
     required this.handleDisabledColor,
-    required this.handleNotToggledColor,
-    required this.handleNullColor,
     required this.handlePadding,
     required this.handleSize,
-    required this.handleToggledColor,
     required this.trackDefaultColor,
     required this.trackDisabledColor,
     required this.trackToggledColor,
@@ -27,12 +25,10 @@ class YgSwitchTheme extends ThemeExtension<YgSwitchTheme> {
 
   final Curve animationCurve;
   final Duration animationDuration;
+  final Color handleDefaultColor;
   final Color handleDisabledColor;
-  final Color handleNotToggledColor;
-  final Color handleNullColor;
   final double handlePadding;
   final double handleSize;
-  final Color handleToggledColor;
   final Color trackDefaultColor;
   final Color trackDisabledColor;
   final Color trackToggledColor;
@@ -42,12 +38,10 @@ class YgSwitchTheme extends ThemeExtension<YgSwitchTheme> {
   static final YgSwitchTheme consumerLight = YgSwitchTheme(
     animationCurve: _$YgSwitchTheme.animationCurve[0],
     animationDuration: _$YgSwitchTheme.animationDuration[0],
+    handleDefaultColor: _$YgSwitchTheme.handleDefaultColor[0],
     handleDisabledColor: _$YgSwitchTheme.handleDisabledColor[0],
-    handleNotToggledColor: _$YgSwitchTheme.handleNotToggledColor[0],
-    handleNullColor: _$YgSwitchTheme.handleNullColor[0],
     handlePadding: _$YgSwitchTheme.handlePadding[0],
     handleSize: _$YgSwitchTheme.handleSize[0],
-    handleToggledColor: _$YgSwitchTheme.handleToggledColor[0],
     trackDefaultColor: _$YgSwitchTheme.trackDefaultColor[0],
     trackDisabledColor: _$YgSwitchTheme.trackDisabledColor[0],
     trackToggledColor: _$YgSwitchTheme.trackToggledColor[0],
@@ -59,12 +53,10 @@ class YgSwitchTheme extends ThemeExtension<YgSwitchTheme> {
   static final YgSwitchTheme consumerDark = YgSwitchTheme(
     animationCurve: _$YgSwitchTheme.animationCurve[1],
     animationDuration: _$YgSwitchTheme.animationDuration[1],
+    handleDefaultColor: _$YgSwitchTheme.handleDefaultColor[1],
     handleDisabledColor: _$YgSwitchTheme.handleDisabledColor[1],
-    handleNotToggledColor: _$YgSwitchTheme.handleNotToggledColor[1],
-    handleNullColor: _$YgSwitchTheme.handleNullColor[1],
     handlePadding: _$YgSwitchTheme.handlePadding[1],
     handleSize: _$YgSwitchTheme.handleSize[1],
-    handleToggledColor: _$YgSwitchTheme.handleToggledColor[1],
     trackDefaultColor: _$YgSwitchTheme.trackDefaultColor[1],
     trackDisabledColor: _$YgSwitchTheme.trackDisabledColor[1],
     trackToggledColor: _$YgSwitchTheme.trackToggledColor[1],
@@ -76,12 +68,10 @@ class YgSwitchTheme extends ThemeExtension<YgSwitchTheme> {
   static final YgSwitchTheme professionalLight = YgSwitchTheme(
     animationCurve: _$YgSwitchTheme.animationCurve[2],
     animationDuration: _$YgSwitchTheme.animationDuration[2],
+    handleDefaultColor: _$YgSwitchTheme.handleDefaultColor[2],
     handleDisabledColor: _$YgSwitchTheme.handleDisabledColor[2],
-    handleNotToggledColor: _$YgSwitchTheme.handleNotToggledColor[2],
-    handleNullColor: _$YgSwitchTheme.handleNullColor[2],
     handlePadding: _$YgSwitchTheme.handlePadding[2],
     handleSize: _$YgSwitchTheme.handleSize[2],
-    handleToggledColor: _$YgSwitchTheme.handleToggledColor[2],
     trackDefaultColor: _$YgSwitchTheme.trackDefaultColor[2],
     trackDisabledColor: _$YgSwitchTheme.trackDisabledColor[2],
     trackToggledColor: _$YgSwitchTheme.trackToggledColor[2],
@@ -93,12 +83,10 @@ class YgSwitchTheme extends ThemeExtension<YgSwitchTheme> {
   static final YgSwitchTheme professionalDark = YgSwitchTheme(
     animationCurve: _$YgSwitchTheme.animationCurve[3],
     animationDuration: _$YgSwitchTheme.animationDuration[3],
+    handleDefaultColor: _$YgSwitchTheme.handleDefaultColor[3],
     handleDisabledColor: _$YgSwitchTheme.handleDisabledColor[3],
-    handleNotToggledColor: _$YgSwitchTheme.handleNotToggledColor[3],
-    handleNullColor: _$YgSwitchTheme.handleNullColor[3],
     handlePadding: _$YgSwitchTheme.handlePadding[3],
     handleSize: _$YgSwitchTheme.handleSize[3],
-    handleToggledColor: _$YgSwitchTheme.handleToggledColor[3],
     trackDefaultColor: _$YgSwitchTheme.trackDefaultColor[3],
     trackDisabledColor: _$YgSwitchTheme.trackDisabledColor[3],
     trackToggledColor: _$YgSwitchTheme.trackToggledColor[3],
@@ -118,12 +106,10 @@ class YgSwitchTheme extends ThemeExtension<YgSwitchTheme> {
   YgSwitchTheme copyWith({
     Curve? animationCurve,
     Duration? animationDuration,
+    Color? handleDefaultColor,
     Color? handleDisabledColor,
-    Color? handleNotToggledColor,
-    Color? handleNullColor,
     double? handlePadding,
     double? handleSize,
-    Color? handleToggledColor,
     Color? trackDefaultColor,
     Color? trackDisabledColor,
     Color? trackToggledColor,
@@ -133,13 +119,10 @@ class YgSwitchTheme extends ThemeExtension<YgSwitchTheme> {
     return YgSwitchTheme(
       animationCurve: animationCurve ?? this.animationCurve,
       animationDuration: animationDuration ?? this.animationDuration,
+      handleDefaultColor: handleDefaultColor ?? this.handleDefaultColor,
       handleDisabledColor: handleDisabledColor ?? this.handleDisabledColor,
-      handleNotToggledColor:
-          handleNotToggledColor ?? this.handleNotToggledColor,
-      handleNullColor: handleNullColor ?? this.handleNullColor,
       handlePadding: handlePadding ?? this.handlePadding,
       handleSize: handleSize ?? this.handleSize,
-      handleToggledColor: handleToggledColor ?? this.handleToggledColor,
       trackDefaultColor: trackDefaultColor ?? this.trackDefaultColor,
       trackDisabledColor: trackDisabledColor ?? this.trackDisabledColor,
       trackToggledColor: trackToggledColor ?? this.trackToggledColor,
@@ -155,15 +138,12 @@ class YgSwitchTheme extends ThemeExtension<YgSwitchTheme> {
     return YgSwitchTheme(
       animationCurve: t < 0.5 ? animationCurve : other.animationCurve,
       animationDuration: t < 0.5 ? animationDuration : other.animationDuration,
+      handleDefaultColor:
+          Color.lerp(handleDefaultColor, other.handleDefaultColor, t)!,
       handleDisabledColor:
           Color.lerp(handleDisabledColor, other.handleDisabledColor, t)!,
-      handleNotToggledColor:
-          Color.lerp(handleNotToggledColor, other.handleNotToggledColor, t)!,
-      handleNullColor: Color.lerp(handleNullColor, other.handleNullColor, t)!,
       handlePadding: t < 0.5 ? handlePadding : other.handlePadding,
       handleSize: t < 0.5 ? handleSize : other.handleSize,
-      handleToggledColor:
-          Color.lerp(handleToggledColor, other.handleToggledColor, t)!,
       trackDefaultColor:
           Color.lerp(trackDefaultColor, other.trackDefaultColor, t)!,
       trackDisabledColor:
@@ -188,17 +168,13 @@ class YgSwitchTheme extends ThemeExtension<YgSwitchTheme> {
             const DeepCollectionEquality()
                 .equals(animationDuration, other.animationDuration) &&
             const DeepCollectionEquality()
+                .equals(handleDefaultColor, other.handleDefaultColor) &&
+            const DeepCollectionEquality()
                 .equals(handleDisabledColor, other.handleDisabledColor) &&
-            const DeepCollectionEquality()
-                .equals(handleNotToggledColor, other.handleNotToggledColor) &&
-            const DeepCollectionEquality()
-                .equals(handleNullColor, other.handleNullColor) &&
             const DeepCollectionEquality()
                 .equals(handlePadding, other.handlePadding) &&
             const DeepCollectionEquality()
                 .equals(handleSize, other.handleSize) &&
-            const DeepCollectionEquality()
-                .equals(handleToggledColor, other.handleToggledColor) &&
             const DeepCollectionEquality()
                 .equals(trackDefaultColor, other.trackDefaultColor) &&
             const DeepCollectionEquality()
@@ -217,12 +193,10 @@ class YgSwitchTheme extends ThemeExtension<YgSwitchTheme> {
       runtimeType.hashCode,
       const DeepCollectionEquality().hash(animationCurve),
       const DeepCollectionEquality().hash(animationDuration),
+      const DeepCollectionEquality().hash(handleDefaultColor),
       const DeepCollectionEquality().hash(handleDisabledColor),
-      const DeepCollectionEquality().hash(handleNotToggledColor),
-      const DeepCollectionEquality().hash(handleNullColor),
       const DeepCollectionEquality().hash(handlePadding),
       const DeepCollectionEquality().hash(handleSize),
-      const DeepCollectionEquality().hash(handleToggledColor),
       const DeepCollectionEquality().hash(trackDefaultColor),
       const DeepCollectionEquality().hash(trackDisabledColor),
       const DeepCollectionEquality().hash(trackToggledColor),

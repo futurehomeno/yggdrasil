@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:yggdrasil/src/components/yg_switch/yg_switch_state.dart';
+import 'package:yggdrasil/src/theme/switch/switch_theme.dart';
+import 'package:yggdrasil/src/theme/theme.dart';
 import 'package:yggdrasil/src/utils/_utils.dart';
 
 import 'yg_switch_painter.dart';
@@ -58,8 +60,6 @@ class _YgSwitchState extends StateWithYgStyle<YgSwitch, YgSwitchStyle> {
   Set<Listenable> getWatchedProperties() {
     return <Listenable>{
       style.mouseCursor,
-      style.handleDiameter,
-      style.handlePadding,
     };
   }
 
@@ -78,9 +78,8 @@ class _YgSwitchState extends StateWithYgStyle<YgSwitch, YgSwitchStyle> {
 
   @override
   Widget build(BuildContext context) {
-    final double handleDiameter = style.handleDiameter.value;
-    final double handlePadding = style.handlePadding.value;
-    final double computedHeight = handleDiameter + (handlePadding * 2);
+    final YgSwitchTheme theme = context.switchTheme;
+    final double computedHeight = theme.handleSize + (theme.handlePadding * 2);
 
     return YgFocusableActionDetector(
       onActivate: widget.toggle,

@@ -64,21 +64,7 @@ class _$YgSwitchTheme {
     professional_dark.FhDimensions.xxs,
   ];
 
-  static const List<Color> handleToggledColor = <Color>[
-    consumer_light.FhColors.iconInverse,
-    consumer_dark.FhColors.iconInverse,
-    professional_light.FhColors.iconInverse,
-    professional_dark.FhColors.iconInverse,
-  ];
-
-  static const List<Color> handleNotToggledColor = <Color>[
-    consumer_light.FhColors.iconInverse,
-    consumer_dark.FhColors.iconInverse,
-    professional_light.FhColors.iconInverse,
-    professional_dark.FhColors.iconInverse,
-  ];
-
-  static const List<Color> handleNullColor = <Color>[
+  static const List<Color> handleDefaultColor = <Color>[
     consumer_light.FhColors.iconInverse,
     consumer_dark.FhColors.iconInverse,
     professional_light.FhColors.iconInverse,
