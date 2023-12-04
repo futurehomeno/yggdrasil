@@ -111,6 +111,7 @@ class _YgStepperState extends StateWithYgStyle<YgStepper, YgStepperStyle> {
     return SizedBox(
       height: theme.height,
       child: Row(
+        crossAxisAlignment: CrossAxisAlignment.center,
         children: <Widget>[
           YgStepperButton(
             onPressed: canDecrease ? _handleDecrease : null,
@@ -119,21 +120,19 @@ class _YgStepperState extends StateWithYgStyle<YgStepper, YgStepperStyle> {
             ),
           ),
           Expanded(
-            child: Padding(
-              padding: theme.contentPadding,
-              child: Column(
-                children: <Widget>[
+            child: Column(
+              mainAxisSize: MainAxisSize.min,
+              children: <Widget>[
+                DefaultTextStyleTransition(
+                  style: style.valueStyle,
+                  child: Text(valueString),
+                ),
+                if (metric != null)
                   DefaultTextStyleTransition(
-                    style: style.valueStyle,
-                    child: Text(valueString),
+                    style: style.metricStyle,
+                    child: Text(metric),
                   ),
-                  if (metric != null)
-                    DefaultTextStyleTransition(
-                      style: style.metricStyle,
-                      child: Text(metric),
-                    ),
-                ],
-              ),
+              ],
             ),
           ),
           YgStepperButton(

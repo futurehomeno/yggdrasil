@@ -35,13 +35,6 @@ class _$YgStepperTheme {
     professional_dark.FhColors.textDisabled,
   ];
 
-  static const List<EdgeInsets> contentPadding = <EdgeInsets>[
-    EdgeInsets.all(consumer_light.FhDimensions.xs),
-    EdgeInsets.all(consumer_dark.FhDimensions.xs),
-    EdgeInsets.all(professional_light.FhDimensions.xs),
-    EdgeInsets.all(professional_dark.FhDimensions.xs),
-  ];
-
   static const List<double> height = <double>[
     80.0,
     80.0,
