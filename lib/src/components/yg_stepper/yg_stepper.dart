@@ -2,20 +2,23 @@ import 'dart:math' as math;
 
 import 'package:flutter/material.dart';
 import 'package:yggdrasil/src/components/buttons/yg_stepper_button/_yg_stepper_button.dart';
+import 'package:yggdrasil/src/components/yg_stepper/yg_stepper_state.dart';
+import 'package:yggdrasil/src/components/yg_stepper/yg_stepper_style.dart';
 import 'package:yggdrasil/src/theme/stepper/stepper_theme.dart';
+import 'package:yggdrasil/src/utils/_utils.dart';
 import 'package:yggdrasil/yggdrasil.dart';
 
 /// Implementation of the Stepper component
-class YgStepper extends StatelessWidget with StatelessWidgetDebugMixin {
+class YgStepper extends StatefulWidget with StatefulWidgetDebugMixin {
   const YgStepper({
     super.key,
     required this.value,
     required this.onChanged,
+    this.metric,
+    this.precision,
     this.stepSize = 1,
     this.min = 0,
     this.max = 100,
-    this.metric,
-    this.precision,
   })  : assert(
           stepSize > 0,
           'step size has to be more than 0',
@@ -55,7 +58,7 @@ class YgStepper extends StatelessWidget with StatelessWidgetDebugMixin {
   final double stepSize;
 
   /// Called with the new value when the user interacts with the stepper.
-  final ValueChanged<double> onChanged;
+  final ValueChanged<double>? onChanged;
 
   /// The optional metric shown under the value.
   final String? metric;
@@ -67,17 +70,48 @@ class YgStepper extends StatelessWidget with StatelessWidgetDebugMixin {
   final int? precision;
 
   @override
+  State<YgStepper> createState() => _YgStepperState();
+}
+
+class _YgStepperState extends StateWithYgStyle<YgStepper, YgStepperStyle> {
+  late final YgStepperState _state = YgStepperState(
+    disabled: widget.onChanged == null,
+  );
+
+  @override
+  YgStepperStyle createStyle() {
+    return YgStepperStyle(
+      state: _state,
+      vsync: this,
+    );
+  }
+
+  @override
+  void dispose() {
+    _state.dispose();
+    super.dispose();
+  }
+
+  @override
+  void didUpdateWidget(covariant YgStepper oldWidget) {
+    _state.disabled.value = widget.onChanged == null;
+    super.didUpdateWidget(oldWidget);
+  }
+
+  @override
   Widget build(BuildContext context) {
     final YgStepperTheme theme = context.stepperTheme;
-    final String? metric = this.metric;
-    final String valueString = value.toStringAsFixed(
-      precision ?? stepSize.precision,
+    final bool canDecrease = widget.value > widget.min && !_state.disabled.value;
+    final bool canIncrease = widget.value < widget.max && !_state.disabled.value;
+    final String? metric = widget.metric;
+    final String valueString = widget.value.toStringAsFixed(
+      widget.precision ?? widget.stepSize.precision,
     );
 
     return Row(
       children: <Widget>[
         YgStepperButton(
-          onPressed: value <= min ? null : _handleDecrease,
+          onPressed: canDecrease ? _handleDecrease : null,
           child: const YgIcon(
             YgIcons.minus,
           ),
@@ -87,21 +121,21 @@ class YgStepper extends StatelessWidget with StatelessWidgetDebugMixin {
             padding: theme.contentPadding,
             child: Column(
               children: <Widget>[
-                Text(
-                  valueString,
-                  style: theme.valueTextStyle,
+                DefaultTextStyleTransition(
+                  style: style.valueStyle,
+                  child: Text(valueString),
                 ),
                 if (metric != null)
-                  Text(
-                    metric,
-                    style: theme.metricTextStyle,
+                  DefaultTextStyleTransition(
+                    style: style.metricStyle,
+                    child: Text(metric),
                   ),
               ],
             ),
           ),
         ),
         YgStepperButton(
-          onPressed: value >= max ? null : _handleIncrease,
+          onPressed: canIncrease ? _handleIncrease : null,
           child: const YgIcon(
             YgIcons.plus,
           ),
@@ -111,19 +145,19 @@ class YgStepper extends StatelessWidget with StatelessWidgetDebugMixin {
   }
 
   void _handleIncrease() {
-    onChanged(
+    widget.onChanged?.call(
       math.min(
-        max,
-        value + stepSize,
+        widget.max,
+        widget.value + widget.stepSize,
       ),
     );
   }
 
   void _handleDecrease() {
-    onChanged(
+    widget.onChanged?.call(
       math.max(
-        min,
-        value - stepSize,
+        widget.min,
+        widget.value - widget.stepSize,
       ),
     );
   }
