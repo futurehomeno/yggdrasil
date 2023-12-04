@@ -42,6 +42,13 @@ class _$YgStepperTheme {
     EdgeInsets.all(professional_dark.FhDimensions.xs),
   ];
 
+  static const List<double> height = <double>[
+    80.0,
+    80.0,
+    80.0,
+    80.0,
+  ];
+
   static const List<Curve> animationCurve = <Curve>[
     Curves.easeInOut,
     Curves.easeInOut,

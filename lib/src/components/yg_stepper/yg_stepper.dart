@@ -108,39 +108,42 @@ class _YgStepperState extends StateWithYgStyle<YgStepper, YgStepperStyle> {
       widget.precision ?? widget.stepSize.precision,
     );
 
-    return Row(
-      children: <Widget>[
-        YgStepperButton(
-          onPressed: canDecrease ? _handleDecrease : null,
-          child: const YgIcon(
-            YgIcons.minus,
-          ),
-        ),
-        Expanded(
-          child: Padding(
-            padding: theme.contentPadding,
-            child: Column(
-              children: <Widget>[
-                DefaultTextStyleTransition(
-                  style: style.valueStyle,
-                  child: Text(valueString),
-                ),
-                if (metric != null)
-                  DefaultTextStyleTransition(
-                    style: style.metricStyle,
-                    child: Text(metric),
-                  ),
-              ],
+    return SizedBox(
+      height: theme.height,
+      child: Row(
+        children: <Widget>[
+          YgStepperButton(
+            onPressed: canDecrease ? _handleDecrease : null,
+            child: const YgIcon(
+              YgIcons.minus,
             ),
           ),
-        ),
-        YgStepperButton(
-          onPressed: canIncrease ? _handleIncrease : null,
-          child: const YgIcon(
-            YgIcons.plus,
+          Expanded(
+            child: Padding(
+              padding: theme.contentPadding,
+              child: Column(
+                children: <Widget>[
+                  DefaultTextStyleTransition(
+                    style: style.valueStyle,
+                    child: Text(valueString),
+                  ),
+                  if (metric != null)
+                    DefaultTextStyleTransition(
+                      style: style.metricStyle,
+                      child: Text(metric),
+                    ),
+                ],
+              ),
+            ),
           ),
-        ),
-      ],
+          YgStepperButton(
+            onPressed: canIncrease ? _handleIncrease : null,
+            child: const YgIcon(
+              YgIcons.plus,
+            ),
+          ),
+        ],
+      ),
     );
   }
 

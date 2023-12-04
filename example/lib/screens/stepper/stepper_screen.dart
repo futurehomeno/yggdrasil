@@ -80,7 +80,7 @@ class _StepperScreenState extends State<StepperScreen> {
                 max: 100,
                 stepSize: 10,
               ),
-            ].withVerticalSpacing(20),
+            ],
           ),
         ],
       ),
