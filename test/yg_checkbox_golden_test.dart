@@ -60,18 +60,18 @@ void main() {
             ),
           ),
           GoldenTestScenario(
-            name: 'Disabled with value: false',
-            child: const YgCheckbox(
-              onChanged: null,
-              value: false,
-              hasError: true,
-            ),
-          ),
-          GoldenTestScenario(
             name: 'Disabled with value: true',
             child: const YgCheckbox(
               onChanged: null,
               value: true,
+              hasError: true,
+            ),
+          ),
+          GoldenTestScenario(
+            name: 'Disabled with value: false',
+            child: const YgCheckbox(
+              onChanged: null,
+              value: false,
               hasError: true,
             ),
           ),
