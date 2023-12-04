@@ -52,10 +52,10 @@ class _StepperScreenState extends State<StepperScreen> {
               metric: 'KwH',
             ),
           ),
-          YgSection(
+          const YgSection(
             title: 'Disabled stepper with metric',
             child: YgStepper(
-              value: value,
+              value: 0,
               onChanged: null,
               max: 10,
               metric: 'KwH',
