@@ -1,10 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:yggdrasil/src/components/_components.dart';
+import 'package:yggdrasil/src/components/yg_badge/yg_badge_state.dart';
+import 'package:yggdrasil/src/components/yg_badge/yg_badge_style.dart';
 import 'package:yggdrasil/src/theme/_theme.dart';
 import 'package:yggdrasil/src/utils/_utils.dart';
 
 /// [YgBadge] takes a child widget and overlays it with a badge.
-class YgBadge extends StatelessWidget with StatelessWidgetDebugMixin {
+class YgBadge extends StatefulWidget with StatefulWidgetDebugMixin {
   const YgBadge({
     super.key,
     required this.amount,
@@ -29,36 +31,67 @@ class YgBadge extends StatelessWidget with StatelessWidgetDebugMixin {
   static const int _maxBadgeCount = 9;
 
   @override
+  State<YgBadge> createState() => _YgBadgeState();
+}
+
+class _YgBadgeState extends StateWithYgStyle<YgBadge, YgBadgeStyle> {
+  late final YgBadgeState _state = YgBadgeState(
+    weight: widget.weight,
+  );
+
+  @override
+  YgBadgeStyle createStyle() {
+    return YgBadgeStyle(
+      state: _state,
+      vsync: this,
+    );
+  }
+
+  @override
+  void didUpdateWidget(covariant YgBadge oldWidget) {
+    _state.weight.value = widget.weight;
+    super.didUpdateWidget(oldWidget);
+  }
+
+  @override
+  void dispose() {
+    _state.dispose();
+    super.dispose();
+  }
+
+  @override
   Widget build(BuildContext context) {
     final YgBadgeTheme badgeTheme = context.badgeTheme;
 
     return Stack(
-      alignment: alignment,
+      alignment: widget.alignment,
       children: <Widget>[
-        child,
-        Container(
-          padding: const EdgeInsets.symmetric(
-            horizontal: 5.0,
-            vertical: 2.0,
-          ),
-          decoration: BoxDecoration(
-            color: YgBadgeMapper.getBadgeColor(
-              theme: badgeTheme,
-              weight: weight,
+        widget.child,
+        YgAnimatedContainer(
+          padding: const YgDrivenEdgeInsetsProperty.all(
+            value: EdgeInsets.symmetric(
+              horizontal: 5.0,
+              vertical: 2.0,
             ),
-            borderRadius: badgeTheme.borderRadius,
           ),
-          constraints: const BoxConstraints(
-            minWidth: _badgeMinSize,
-            minHeight: _badgeMinSize,
+          decoration: style.badgeColor.map(
+            (Color color) => BoxDecoration(
+              color: color,
+              borderRadius: badgeTheme.borderRadius,
+            ),
+          ),
+          constraints: const YgDrivenBoxConstraintsProperty.all(
+            value: BoxConstraints(
+              minWidth: YgBadge._badgeMinSize,
+              minHeight: YgBadge._badgeMinSize,
+            ),
           ),
           child: Center(
             widthFactor: 1,
-            child: Text(
-              amount > _maxBadgeCount ? '$_maxBadgeCount+' : amount.toString(),
-              style: YgBadgeMapper.getTextStyle(
-                theme: badgeTheme,
-                weight: weight,
+            child: DefaultTextStyleTransition(
+              style: style.textStyle,
+              child: Text(
+                widget.amount > YgBadge._maxBadgeCount ? '${YgBadge._maxBadgeCount}+' : widget.amount.toString(),
               ),
             ),
           ),
