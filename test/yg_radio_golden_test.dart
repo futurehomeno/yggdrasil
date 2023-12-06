@@ -30,6 +30,40 @@ void main() {
               groupValue: false,
             ),
           ),
+          GoldenTestScenario(
+            name: 'With selected value and hasError: true',
+            child: YgRadio<bool>(
+              onChanged: (_) {},
+              value: true,
+              groupValue: true,
+              hasError: true,
+            ),
+          ),
+          GoldenTestScenario(
+            name: 'With unselected value and hasError: true',
+            child: YgRadio<bool>(
+              onChanged: (_) {},
+              value: true,
+              groupValue: false,
+              hasError: true,
+            ),
+          ),
+          GoldenTestScenario(
+            name: 'Disabled with selected value',
+            child: const YgRadio<bool>(
+              onChanged: null,
+              value: true,
+              groupValue: true,
+            ),
+          ),
+          GoldenTestScenario(
+            name: 'Disabled with unselected value',
+            child: const YgRadio<bool>(
+              onChanged: null,
+              value: true,
+              groupValue: false,
+            ),
+          ),
         ],
       );
 

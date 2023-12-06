@@ -20,12 +20,12 @@ class SwitchScreen extends StatefulWidget {
 }
 
 class _SwitchScreenState extends State<SwitchScreen> {
-  bool? binaryValue = false;
+  bool binaryValue = false;
   bool? triStateValue = false;
-  bool? disabledFalseValue = false;
-  bool? disabledTrueValue = true;
+  bool disabledFalseValue = false;
+  bool disabledTrueValue = true;
   bool? disabledNullValue;
-  bool? listTileValue = false;
+  bool listTileValue = false;
 
   @override
   Widget build(BuildContext context) {
@@ -37,7 +37,7 @@ class _SwitchScreenState extends State<SwitchScreen> {
             title: 'Binary switch',
             child: YgSwitch(
               value: binaryValue,
-              onChanged: (bool? newValue) {
+              onChanged: (bool newValue) {
                 binaryValue = newValue;
                 setState(() {});
               },
@@ -45,9 +45,8 @@ class _SwitchScreenState extends State<SwitchScreen> {
           ),
           YgSection(
             title: 'Tri-state switch',
-            child: YgSwitch(
+            child: YgSwitch.triState(
               value: triStateValue,
-              triState: true,
               onChanged: (bool? newValue) {
                 triStateValue = newValue;
                 setState(() {});
@@ -63,7 +62,7 @@ class _SwitchScreenState extends State<SwitchScreen> {
                   value: disabledFalseValue,
                   onChanged: null,
                 ),
-                YgSwitch(
+                YgSwitch.triState(
                   value: disabledNullValue,
                   onChanged: null,
                 ),
@@ -90,7 +89,7 @@ class _SwitchScreenState extends State<SwitchScreen> {
                 trailingWidgets: <Widget>[
                   YgSwitch(
                     value: listTileValue,
-                    onChanged: (bool? newValue) {
+                    onChanged: (bool newValue) {
                       listTileValue = newValue;
                       setState(() {});
                     },

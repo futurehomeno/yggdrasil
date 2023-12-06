@@ -16,14 +16,10 @@ class YgStepperButton extends YgButtonBase<YgButtonBaseState> {
     super.onFocusChange,
     super.focusNode,
     super.autofocus = false,
-    this.disabled = false,
   });
 
   /// Widget under this widget in the widget tree.
   final YgIcon child;
-
-  /// Disables all interaction and applies disabled styling when true.
-  final bool disabled;
 
   @override
   YgButtonBaseState createButtonState() {

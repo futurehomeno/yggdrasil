@@ -20,10 +20,10 @@ class CheckboxListTileScreen extends StatefulWidget {
 }
 
 class CheckboxListTileScreenState extends State<CheckboxListTileScreen> {
-  bool? checkboxListTileValue = false;
+  bool checkboxListTileValue = false;
   bool? checkboxListTileTriStateValue = false;
-  bool? checkboxListTileDisabledValue = false;
-  bool? checkboxListTileTrailingWidgetValue = false;
+  bool checkboxListTileDisabledValue = false;
+  bool checkboxListTileTrailingWidgetValue = false;
 
   @override
   Widget build(BuildContext context) {
@@ -44,16 +44,15 @@ class CheckboxListTileScreenState extends State<CheckboxListTileScreen> {
                 title: 'CheckboxListTile',
                 subtitle: 'The whole ListTile and Checkbox is tappable.',
                 value: checkboxListTileValue,
-                onChanged: (bool? newValue) {
+                onChanged: (bool newValue) {
                   checkboxListTileValue = newValue;
                   setState(() {});
                 },
               ),
-              YgCheckboxListTile(
+              YgCheckboxListTile.triState(
                 title: 'Tri-state CheckboxListTile',
                 subtitle: 'The whole ListTile and Checkbox is tappable.',
                 value: checkboxListTileTriStateValue,
-                triState: true,
                 onChanged: (bool? newValue) {
                   checkboxListTileTriStateValue = newValue;
                   setState(() {});
@@ -73,7 +72,7 @@ class CheckboxListTileScreenState extends State<CheckboxListTileScreen> {
                   child: const YgIcon(YgIcons.info),
                 ),
                 value: checkboxListTileTrailingWidgetValue,
-                onChanged: (bool? newValue) {
+                onChanged: (bool newValue) {
                   checkboxListTileTrailingWidgetValue = newValue;
                   setState(() {});
                 },

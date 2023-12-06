@@ -10,18 +10,18 @@ import 'yg_state_value.dart';
 /// properties when the state gets disposed.
 abstract class YgState extends ChangeNotifier {
   YgState() {
-    for (final YgStateValue<Object> prop in props) {
+    for (final YgStateValue<Object?> prop in props) {
       prop.addListener(notifyListeners);
     }
   }
 
   @override
   void dispose() {
-    for (final YgStateValue<Object> value in props) {
+    for (final YgStateValue<Object?> value in props) {
       value.dispose();
     }
     super.dispose();
   }
 
-  List<YgStateValue<Object>> get props;
+  List<YgStateValue<Object?>> get props;
 }

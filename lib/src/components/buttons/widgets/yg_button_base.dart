@@ -34,11 +34,16 @@ abstract class YgButtonBase<T extends YgButtonBaseState> extends StatefulWidget 
 
   @override
   YgDebugType get debugType {
-    if (onPressed == null) {
+    if (disabled) {
       return YgDebugType.other;
     }
 
     return YgDebugType.intractable;
+  }
+
+  /// Whether the buttons is visually disabled.
+  bool get disabled {
+    return onPressed == null;
   }
 
   @override
@@ -95,7 +100,7 @@ class _YgButtonBaseState<T extends YgButtonBaseState> extends StateWithYgStyle<Y
   @override
   void didUpdateWidget(covariant YgButtonBase<T> oldWidget) {
     widget.updateState(_state);
-    _state.disabled.value = widget.onPressed == null;
+    _state.disabled.value = widget.disabled;
     super.didUpdateWidget(oldWidget);
   }
 

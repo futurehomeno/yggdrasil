@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:yggdrasil/src/components/yg_switch/helpers/_yg_switch_helpers.dart';
 import 'package:yggdrasil/src/theme/_theme.dart';
 import 'package:yggdrasil/src/utils/_utils.dart';
 import 'package:yggdrasil/yggdrasil.dart';
@@ -7,11 +6,15 @@ import 'package:yggdrasil/yggdrasil.dart';
 import 'helpers/_helpers.dart';
 import 'widgets/_widgets.dart';
 
-part 'variations/yg_checkbox_list_tile.dart';
-part 'variations/yg_expanding_list_tile.dart';
-part 'variations/yg_radio_list_tile.dart';
-part 'variations/yg_regular_list_tile.dart';
-part 'variations/yg_switch_list_tile.dart';
+part 'variants/checkbox/yg_checkbox_list_tile.dart';
+part 'variants/checkbox/yg_checkbox_list_tile_dual_state.dart';
+part 'variants/checkbox/yg_checkbox_list_tile_tri_state.dart';
+part 'variants/switch/yg_switch_list_tile.dart';
+part 'variants/switch/yg_switch_list_tile_dual_state.dart';
+part 'variants/switch/yg_switch_list_tile_tri_state.dart';
+part 'variants/yg_expanding_list_tile.dart';
+part 'variants/yg_radio_list_tile.dart';
+part 'variants/yg_regular_list_tile.dart';
 
 /// List tile component.
 ///

@@ -20,10 +20,10 @@ class SwitchListTileScreen extends StatefulWidget {
 }
 
 class SwitchListTileScreenState extends State<SwitchListTileScreen> {
-  bool? switchListTileValue = false;
+  bool switchListTileValue = false;
   bool? switchListTileTriStateValue = false;
-  bool? switchListTileDisabledValue = false;
-  bool? switchListTileTrailingWidgetValue = false;
+  bool switchListTileDisabledValue = false;
+  bool switchListTileTrailingWidgetValue = false;
 
   @override
   Widget build(BuildContext context) {
@@ -44,16 +44,15 @@ class SwitchListTileScreenState extends State<SwitchListTileScreen> {
                 title: 'SwitchListTile',
                 subtitle: 'The whole ListTile and Switch is tappable.',
                 value: switchListTileValue,
-                onChanged: (bool? newValue) {
+                onChanged: (bool newValue) {
                   switchListTileValue = newValue;
                   setState(() {});
                 },
               ),
-              YgSwitchListTile(
+              YgSwitchListTile.triState(
                 title: 'Tri-state SwitchListTile',
                 subtitle: 'The whole ListTile and Switch is tappable.',
                 value: switchListTileTriStateValue,
-                triState: true,
                 onChanged: (bool? newValue) {
                   switchListTileTriStateValue = newValue;
                   setState(() {});
@@ -73,7 +72,7 @@ class SwitchListTileScreenState extends State<SwitchListTileScreen> {
                   child: const YgIcon(YgIcons.info),
                 ),
                 value: switchListTileTrailingWidgetValue,
-                onChanged: (bool? newValue) {
+                onChanged: (bool newValue) {
                   switchListTileTrailingWidgetValue = newValue;
                   setState(() {});
                 },

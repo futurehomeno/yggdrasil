@@ -7,3 +7,4 @@ export 'yg_rounded_rectangle_gradient_border.dart';
 export 'yg_scroll_shadow/yg_scroll_shadow.dart';
 export 'yg_states/_yg_states.dart';
 export 'yg_suspended_curve.dart';
+export 'yg_toggleable/_yg_toggleable.dart';

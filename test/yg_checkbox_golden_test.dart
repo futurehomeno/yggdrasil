@@ -11,7 +11,7 @@ void main() {
     'YgCheckboxGoldenTest',
     () {
       final GoldenTestGroup ygCheckboxGoldenTestGroup = GoldenTestGroup(
-        columns: 2,
+        columns: 3,
         scenarioConstraints: YgGoldenTestValues.scenarioConstraints,
         children: <GoldenTestScenario>[
           GoldenTestScenario(
@@ -30,10 +30,9 @@ void main() {
           ),
           GoldenTestScenario(
             name: 'With value: null (triState: true)',
-            child: YgCheckbox(
+            child: YgCheckbox.triState(
               onChanged: (_) {},
               value: null,
-              triState: true,
             ),
           ),
           GoldenTestScenario(
@@ -54,10 +53,33 @@ void main() {
           ),
           GoldenTestScenario(
             name: 'With value: null (triState: true) and hasError: true',
-            child: YgCheckbox(
+            child: YgCheckbox.triState(
               onChanged: (_) {},
               value: null,
-              triState: true,
+              hasError: true,
+            ),
+          ),
+          GoldenTestScenario(
+            name: 'Disabled with value: true',
+            child: const YgCheckbox(
+              onChanged: null,
+              value: true,
+              hasError: true,
+            ),
+          ),
+          GoldenTestScenario(
+            name: 'Disabled with value: false',
+            child: const YgCheckbox(
+              onChanged: null,
+              value: false,
+              hasError: true,
+            ),
+          ),
+          GoldenTestScenario(
+            name: 'Disabled with value: null',
+            child: const YgCheckbox.triState(
+              onChanged: null,
+              value: null,
               hasError: true,
             ),
           ),

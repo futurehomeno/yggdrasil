@@ -77,8 +77,7 @@ class YgStepper extends StatelessWidget with StatelessWidgetDebugMixin {
     return Row(
       children: <Widget>[
         YgStepperButton(
-          onPressed: _handleDecrease,
-          disabled: value <= min,
+          onPressed: value <= min ? null : _handleDecrease,
           child: const YgIcon(
             YgIcons.minus,
           ),
@@ -102,8 +101,7 @@ class YgStepper extends StatelessWidget with StatelessWidgetDebugMixin {
           ),
         ),
         YgStepperButton(
-          onPressed: _handleIncrease,
-          disabled: value >= max,
+          onPressed: value >= max ? null : _handleIncrease,
           child: const YgIcon(
             YgIcons.plus,
           ),
