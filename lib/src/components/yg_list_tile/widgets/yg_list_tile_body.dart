@@ -65,27 +65,29 @@ class YgListTileBody extends StatelessWidget {
     final Widget? trailing = this.trailing;
     final Widget? supporting = this.supporting;
 
-    return Material(
-      type: MaterialType.transparency,
-      child: InkWell(
-        onTap: disabled ? null : onTap,
-        child: Padding(
-          padding: theme.outerPadding,
-          child: Row(
-            children: <Widget>[
-              if (leading != null) leading,
-              Expanded(
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: <Widget>[
-                    _buildTitle(theme),
-                    if (subtitle != null) _buildSubtitle(theme),
-                  ].withVerticalSpacing(theme.titleSubtitleSpacing),
+    return RepaintBoundary(
+      child: Material(
+        type: MaterialType.transparency,
+        child: InkWell(
+          onTap: disabled ? null : onTap,
+          child: Padding(
+            padding: theme.outerPadding,
+            child: Row(
+              children: <Widget>[
+                if (leading != null) leading,
+                Expanded(
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: <Widget>[
+                      _buildTitle(theme),
+                      if (subtitle != null) _buildSubtitle(theme),
+                    ].withVerticalSpacing(theme.titleSubtitleSpacing),
+                  ),
                 ),
-              ),
-              if (supporting != null) supporting,
-              if (trailing != null) trailing,
-            ].withHorizontalSpacing(theme.contentSpacing),
+                if (supporting != null) supporting,
+                if (trailing != null) trailing,
+              ].withHorizontalSpacing(theme.contentSpacing),
+            ),
           ),
         ),
       ),

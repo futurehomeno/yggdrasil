@@ -141,35 +141,37 @@ abstract class _YgWizardHeaderState<W extends YgWizardHeader> extends State<W> w
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: <Widget>[
-          Row(
-            children: <Widget>[
-              if (_currentSteps <= _maxVisibleSteps)
-                Expanded(
-                  child: Padding(
-                    padding: theme.barPadding,
-                    child: SizedBox(
-                      height: theme.barStroke,
-                      child: CustomPaint(
-                        painter: WizardProgressPainter(
-                          steps: _currentSteps,
-                          value: _valueAnimation,
-                          stroke: theme.barStroke,
-                          gap: theme.barSegmentGap,
-                          backgroundColor: theme.barBackgroundColor,
-                          foregroundColor: theme.barForegroundColor,
+          RepaintBoundary(
+            child: Row(
+              children: <Widget>[
+                if (_currentSteps <= _maxVisibleSteps)
+                  Expanded(
+                    child: Padding(
+                      padding: theme.barPadding,
+                      child: SizedBox(
+                        height: theme.barStroke,
+                        child: CustomPaint(
+                          painter: WizardProgressPainter(
+                            steps: _currentSteps,
+                            value: _valueAnimation,
+                            stroke: theme.barStroke,
+                            gap: theme.barSegmentGap,
+                            backgroundColor: theme.barBackgroundColor,
+                            foregroundColor: theme.barForegroundColor,
+                          ),
                         ),
                       ),
                     ),
                   ),
+                Text(
+                  widget.counterBuilder(
+                    _currentStep + 1,
+                    _currentSteps,
+                  ),
+                  style: context.wizardHeaderTheme.counterTextStyle,
                 ),
-              Text(
-                widget.counterBuilder(
-                  _currentStep + 1,
-                  _currentSteps,
-                ),
-                style: context.wizardHeaderTheme.counterTextStyle,
-              ),
-            ],
+              ],
+            ),
           ),
           Padding(
             padding: theme.titlePadding,

@@ -118,43 +118,45 @@ class _YgButtonBaseState<T extends YgButtonBaseState> extends StateWithYgStyle<Y
 
   @override
   Widget build(BuildContext context) {
-    return YgAnimatedConstrainedBox(
-      constraints: style.constraints,
-      child: YgAnimatedPhysicalShape(
-        clipBehavior: Clip.antiAlias,
-        color: style.color,
-        elevation: style.elevation,
-        shape: style.shape,
-        child: Material(
-          type: MaterialType.transparency,
-          child: InkWell(
-            statesController: _materialController,
-            splashFactory: style.splashFactory.value,
-            onLongPress: _state.disabled.value ? null : widget.onLongPress,
-            onTap: _state.disabled.value ? null : widget.onPressed,
-            onHover: widget.onHover,
-            onFocusChange: widget.onFocusChange,
-            autofocus: widget.autofocus,
-            focusNode: widget.focusNode,
-            canRequestFocus: widget.onPressed != null,
-            mouseCursor: style.cursor.value,
-            overlayColor: MaterialStatePropertyAll<Color>(
-              style.splashColor.value,
-            ),
-            splashColor: Colors.transparent,
-            child: YgAnimatedPadding(
-              padding: style.padding,
-              child: AlignTransition(
-                widthFactor: 1,
-                heightFactor: 1,
-                alignment: style.alignment,
-                child: DefaultTextStyleTransition(
-                  maxLines: 1,
-                  overflow: TextOverflow.ellipsis,
-                  style: style.textStyle,
-                  child: YgAnimatedIconTheme(
-                    iconTheme: style.iconTheme,
-                    child: widget.buildChild(context),
+    return RepaintBoundary(
+      child: YgAnimatedConstrainedBox(
+        constraints: style.constraints,
+        child: YgAnimatedPhysicalShape(
+          clipBehavior: Clip.antiAlias,
+          color: style.color,
+          elevation: style.elevation,
+          shape: style.shape,
+          child: Material(
+            type: MaterialType.transparency,
+            child: InkWell(
+              statesController: _materialController,
+              splashFactory: style.splashFactory.value,
+              onLongPress: _state.disabled.value ? null : widget.onLongPress,
+              onTap: _state.disabled.value ? null : widget.onPressed,
+              onHover: widget.onHover,
+              onFocusChange: widget.onFocusChange,
+              autofocus: widget.autofocus,
+              focusNode: widget.focusNode,
+              canRequestFocus: widget.onPressed != null,
+              mouseCursor: style.cursor.value,
+              overlayColor: MaterialStatePropertyAll<Color>(
+                style.splashColor.value,
+              ),
+              splashColor: Colors.transparent,
+              child: YgAnimatedPadding(
+                padding: style.padding,
+                child: AlignTransition(
+                  widthFactor: 1,
+                  heightFactor: 1,
+                  alignment: style.alignment,
+                  child: DefaultTextStyleTransition(
+                    maxLines: 1,
+                    overflow: TextOverflow.ellipsis,
+                    style: style.textStyle,
+                    child: YgAnimatedIconTheme(
+                      iconTheme: style.iconTheme,
+                      child: widget.buildChild(context),
+                    ),
                   ),
                 ),
               ),

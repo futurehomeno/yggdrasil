@@ -30,31 +30,33 @@ class YgRadioItem<T> extends StatelessWidget with StatelessWidgetDebugMixin {
   Widget build(BuildContext context) {
     final YgRadioTheme radioTheme = context.radioTheme;
 
-    return Material(
-      type: MaterialType.transparency,
-      child: InkWell(
-        onTap: onChanged == null ? null : _onTap,
-        child: Row(
-          children: <Widget>[
-            AbsorbPointer(
-              child: YgNoFocus(
-                child: YgRadio<T>(
-                  value: value,
-                  groupValue: groupValue,
-                  onChanged: onChanged,
+    return RepaintBoundary(
+      child: Material(
+        type: MaterialType.transparency,
+        child: InkWell(
+          onTap: onChanged == null ? null : _onTap,
+          child: Row(
+            children: <Widget>[
+              AbsorbPointer(
+                child: YgNoFocus(
+                  child: YgRadio<T>(
+                    value: value,
+                    groupValue: groupValue,
+                    onChanged: onChanged,
+                  ),
                 ),
               ),
-            ),
-            Expanded(
-              child: Padding(
-                padding: radioTheme.radioItemTheme.titlePadding,
-                child: Text(
-                  title,
-                  style: radioTheme.radioItemTheme.titleTextStyle,
+              Expanded(
+                child: Padding(
+                  padding: radioTheme.radioItemTheme.titlePadding,
+                  child: Text(
+                    title,
+                    style: radioTheme.radioItemTheme.titleTextStyle,
+                  ),
                 ),
               ),
-            ),
-          ].withHorizontalSpacing(radioTheme.radioItemTheme.radioTitleSpacing),
+            ].withHorizontalSpacing(radioTheme.radioItemTheme.radioTitleSpacing),
+          ),
         ),
       ),
     );

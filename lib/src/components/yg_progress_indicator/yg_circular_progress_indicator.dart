@@ -20,15 +20,17 @@ class YgCircularProgressIndicator extends StatelessWidget with StatelessWidgetDe
     final CircularProgressIndicatorTheme circularProgressIndicatorTheme =
         context.progressIndicatorTheme.circularProgressIndicatorTheme;
 
-    return SizedBox.square(
-      dimension: circularProgressIndicatorTheme.containerSize,
-      child: Center(
-        child: SizedBox.square(
-          dimension: circularProgressIndicatorTheme.size,
-          child: CircularProgressIndicator(
-            value: value,
-            color: circularProgressIndicatorTheme.color,
-            strokeWidth: circularProgressIndicatorTheme.strokeWidth,
+    return RepaintBoundary(
+      child: SizedBox.square(
+        dimension: circularProgressIndicatorTheme.containerSize,
+        child: Center(
+          child: SizedBox.square(
+            dimension: circularProgressIndicatorTheme.size,
+            child: CircularProgressIndicator(
+              value: value,
+              color: circularProgressIndicatorTheme.color,
+              strokeWidth: circularProgressIndicatorTheme.strokeWidth,
+            ),
           ),
         ),
       ),

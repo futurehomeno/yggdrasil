@@ -20,14 +20,16 @@ class YgLinearProgressIndicator extends StatelessWidget with StatelessWidgetDebu
     final LinearProgressIndicatorTheme linearProgressIndicatorTheme =
         context.progressIndicatorTheme.linearProgressIndicatorTheme;
 
-    return ClipRRect(
-      borderRadius: linearProgressIndicatorTheme.borderRadius,
-      child: SizedBox(
-        height: linearProgressIndicatorTheme.height,
-        child: LinearProgressIndicator(
-          value: value,
-          color: linearProgressIndicatorTheme.color,
-          backgroundColor: linearProgressIndicatorTheme.backgroundColor,
+    return RepaintBoundary(
+      child: ClipRRect(
+        borderRadius: linearProgressIndicatorTheme.borderRadius,
+        child: SizedBox(
+          height: linearProgressIndicatorTheme.height,
+          child: LinearProgressIndicator(
+            value: value,
+            color: linearProgressIndicatorTheme.color,
+            backgroundColor: linearProgressIndicatorTheme.backgroundColor,
+          ),
         ),
       ),
     );
