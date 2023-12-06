@@ -24,6 +24,7 @@ final class _YgToggleButtonWithLeadingIcon extends YgToggleButton {
   @override
   Widget buildChild(BuildContext context) {
     return Row(
+      mainAxisSize: MainAxisSize.min,
       children: <Widget>[
         YgIcon(icon),
         SizedBox(
