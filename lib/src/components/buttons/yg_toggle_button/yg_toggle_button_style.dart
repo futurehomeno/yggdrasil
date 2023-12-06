@@ -36,7 +36,7 @@ class YgToggleButtonStyle extends YgButtonBaseStyle<YgToggleButtonState> {
 
   @override
   double resolveIconSize(BuildContext context, YgToggleButtonState state) {
-    if (state.variant.value == YgToggleButtonVariant.icon && state.size.value == YgToggleButtonSize.large) {
+    if (state.variant.value == YgToggleButtonVariant.iconOnly && state.size.value == YgToggleButtonSize.large) {
       return _theme.iconLargeIconOnlySize;
     }
 
@@ -111,7 +111,7 @@ class YgToggleButtonStyle extends YgButtonBaseStyle<YgToggleButtonState> {
       width: 1,
     );
 
-    if (state.variant.value == YgToggleButtonVariant.icon) {
+    if (state.variant.value == YgToggleButtonVariant.iconOnly) {
       return CircleBorder(
         side: borderSide,
       );
@@ -145,7 +145,7 @@ class YgToggleButtonStyle extends YgButtonBaseStyle<YgToggleButtonState> {
 
   YgToggleButtonVariantTheme _getVariantTheme(YgToggleButtonState state) {
     switch (state.variant.value) {
-      case YgToggleButtonVariant.icon:
+      case YgToggleButtonVariant.iconOnly:
         return YgToggleButtonVariantTheme.icon(_theme.toggleIconButtonTheme);
       case YgToggleButtonVariant.leadingIcon:
         return YgToggleButtonVariantTheme.iconText(_theme.toggleIconTextButtonTheme);

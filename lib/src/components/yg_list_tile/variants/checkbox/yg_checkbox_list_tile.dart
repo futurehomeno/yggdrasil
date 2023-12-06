@@ -1,6 +1,6 @@
 part of '../../yg_list_tile.dart';
 
-/// Binary (or optionally tri-state) switch.
+/// Binary (or optionally tri-state) checkbox.
 abstract base class YgCheckboxListTile extends YgListTile implements YgToggleable {
   const factory YgCheckboxListTile({
     required bool value,
@@ -12,7 +12,7 @@ abstract base class YgCheckboxListTile extends YgListTile implements YgToggleabl
     Widget? subtitleIcon,
   }) = _YgCheckboxListTileDualState;
 
-  /// Supports a nullable value "indeterminate".
+  /// Supports a nullable value, i.e. "indeterminate".
   const factory YgCheckboxListTile.triState({
     required bool? value,
     required String title,

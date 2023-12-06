@@ -10,7 +10,7 @@ class YgSwitchPainter extends CustomPainter {
   /// The style used to paint the switch.
   final YgSwitchStyle style;
 
-  /// Paint used to paint the track.
+  /// Paint used to paint the track (area behind the handle).
   final Paint _trackPaint = Paint()
     ..style = PaintingStyle.stroke
     ..strokeCap = StrokeCap.round;

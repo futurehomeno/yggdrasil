@@ -11,7 +11,10 @@ part 'variants/yg_toggle_button_with_leading_icon.dart';
 part 'variants/yg_toggle_icon_button.dart';
 part 'variants/yg_toggle_text_button.dart';
 
-/// Yggdrasil toggle button.
+/// Button that can be toggled between enabled or disabled.
+///
+/// Functionality-wise, this is similar to a checkbox, but the use-case is
+/// different and this widget does not have a tri-state variant.
 abstract base class YgToggleButton extends YgButtonBase<YgToggleButtonState> with YgDualStateToggleableMixin {
   const factory YgToggleButton({
     Key? key,

@@ -9,7 +9,7 @@ import 'yg_checkbox_style.dart';
 part 'yg_checkbox_dual_state.dart';
 part 'yg_checkbox_tri_state.dart';
 
-/// Yggdrasil checkbox button.
+/// Yggdrasil checkbox.
 abstract class YgCheckbox extends StatefulWidget with StatefulWidgetDebugMixin implements YgToggleable {
   const factory YgCheckbox({
     bool hasError,
@@ -18,7 +18,7 @@ abstract class YgCheckbox extends StatefulWidget with StatefulWidgetDebugMixin i
     required bool value,
   }) = YgCheckboxDualState;
 
-  /// Supports a nullable value "indeterminate".
+  /// Supports a nullable value, i.e. "indeterminate".
   const factory YgCheckbox.triState({
     bool hasError,
     Key? key,

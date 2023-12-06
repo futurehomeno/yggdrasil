@@ -23,5 +23,5 @@ final class _YgToggleIconButton extends YgToggleButton {
   }
 
   @override
-  YgToggleButtonVariant get variant => YgToggleButtonVariant.icon;
+  YgToggleButtonVariant get variant => YgToggleButtonVariant.iconOnly;
 }

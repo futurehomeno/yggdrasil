@@ -18,7 +18,7 @@ abstract base class YgSwitch extends StatefulWidget with StatefulWidgetDebugMixi
     required bool value,
   }) = YgSwitchDualState;
 
-  /// Supports a nullable value "indeterminate".
+  /// Supports a nullable value, i.e. "indeterminate".
   const factory YgSwitch.triState({
     Key? key,
     required ValueChanged<bool?>? onChanged,

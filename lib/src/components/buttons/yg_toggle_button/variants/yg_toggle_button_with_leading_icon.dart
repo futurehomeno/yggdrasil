@@ -15,10 +15,10 @@ final class _YgToggleButtonWithLeadingIcon extends YgToggleButton {
     super.onLongPress,
   }) : super._();
 
-  /// The icon shown in front of the [text].
+  /// The icon shown before (leading) the [text].
   final String icon;
 
-  /// The text shown in the button, behind the [icon].
+  /// The text shown in the button, after (trailing) the [icon].
   final String text;
 
   @override

@@ -1,6 +1,6 @@
 /// Internal only. Do not export.
 enum YgToggleButtonVariant {
-  icon,
+  iconOnly,
   text,
   leadingIcon;
 }
