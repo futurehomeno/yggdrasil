@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart' hide TextButtonTheme;
 import 'package:yggdrasil/src/components/buttons/widgets/_widgets.dart';
 import 'package:yggdrasil/src/theme/_theme.dart';
-import 'package:yggdrasil/src/theme/icon_button/_icon_button.dart';
 
 import 'enums/_enums.dart';
 import 'yg_icon_button_state.dart';
@@ -27,15 +26,6 @@ class YgIconButtonStyle extends YgButtonBaseStyle<YgIconButtonState> {
     }
 
     return variantTheme.backgroundColor;
-  }
-
-  @override
-  MouseCursor resolveCursor(BuildContext context, YgIconButtonState state) {
-    if (state.disabled.value) {
-      return SystemMouseCursors.basic;
-    }
-
-    return SystemMouseCursors.click;
   }
 
   @override

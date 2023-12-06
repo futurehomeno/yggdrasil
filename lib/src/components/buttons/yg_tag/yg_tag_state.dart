@@ -20,7 +20,7 @@ class YgTagState extends YgButtonBaseState {
   final YgStateValue<YgTagSize> size;
 
   @override
-  List<YgStateValue<Object>> get props => <YgStateValue<Object>>[
+  List<YgStateValue<Object?>> get props => <YgStateValue<Object?>>[
         ...super.props,
         weight,
         variant,

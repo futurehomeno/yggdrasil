@@ -2,13 +2,14 @@ import 'package:flutter/material.dart';
 import 'package:yggdrasil/src/theme/_theme.dart';
 import 'package:yggdrasil/src/utils/_utils.dart';
 
-abstract class YgButtonBaseStyle<T extends YgState> extends YgStyleWithDefaults<T> {
+import '_widgets.dart';
+
+abstract class YgButtonBaseStyle<T extends YgButtonBaseState> extends YgStyleWithDefaults<T> {
   YgButtonBaseStyle({
     required super.state,
     required super.vsync,
   });
 
-  late YgAnimatedNullableBorderSideProperty borderSide;
   late YgAnimatedNullableShapeBorderProperty shape;
   late YgAnimatedBoxConstraintsProperty constraints;
   late YgAnimatedColorProperty color;
@@ -29,7 +30,6 @@ abstract class YgButtonBaseStyle<T extends YgState> extends YgStyleWithDefaults<
     textStyle = animate(YgTextStyleProperty<T>.resolveWith(resolveTextStyle));
     padding = animate(YgEdgeInsetsProperty<T>.resolveWith(resolvePadding));
     alignment = animate(YgAlignmentProperty<T>.resolveWith(resolveAlignment));
-    borderSide = animate(YgNullableBorderSideProperty<T>.resolveWith(resolveBorderSide));
     elevation = animate(YgDoubleProperty<T>.resolveWith(resolveElevation));
     shape = animate(YgProperty<T, OutlinedBorder?>.resolveWith(resolveOutlinedBorder));
     cursor = drive(YgProperty<T, MouseCursor?>.resolveWith(resolveCursor));
@@ -55,14 +55,16 @@ abstract class YgButtonBaseStyle<T extends YgState> extends YgStyleWithDefaults<
     return const EdgeInsets.all(0);
   }
 
-  MouseCursor resolveCursor(BuildContext context, T state);
+  MouseCursor resolveCursor(BuildContext context, T state) {
+    if (state.disabled.value) {
+      return SystemMouseCursors.basic;
+    }
+
+    return SystemMouseCursors.click;
+  }
 
   Alignment resolveAlignment(BuildContext context, T state) {
     return Alignment.center;
-  }
-
-  BorderSide? resolveBorderSide(BuildContext context, T state) {
-    return null;
   }
 
   double resolveElevation(BuildContext context, T state) {

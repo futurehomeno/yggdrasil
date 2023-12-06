@@ -31,11 +31,6 @@ class YgTagStyle extends YgButtonBaseStyle<YgTagState> {
   }
 
   @override
-  MouseCursor resolveCursor(BuildContext context, YgTagState state) {
-    return SystemMouseCursors.click;
-  }
-
-  @override
   TextStyle resolveTextStyle(BuildContext context, YgTagState state) {
     switch (state.weight.value) {
       case YgTagWeight.strong:
