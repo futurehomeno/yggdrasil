@@ -10,17 +10,18 @@ abstract class YgButtonBaseStyle<T extends YgButtonBaseState> extends YgStyleWit
     required super.vsync,
   });
 
-  late YgAnimatedNullableShapeBorderProperty shape;
-  late YgAnimatedBoxConstraintsProperty constraints;
-  late YgAnimatedColorProperty color;
-  late YgAnimatedIconThemeDataProperty iconTheme;
-  late YgAnimatedTextStyleProperty textStyle;
-  late YgAnimatedEdgeInsetsProperty padding;
-  late YgAnimatedAlignmentProperty alignment;
-  late YgAnimatedDoubleProperty elevation;
-  late YgDrivenProperty<MouseCursor?> cursor;
-  late YgDrivenColorProperty splashColor;
-  late YgDrivenProperty<InteractiveInkFeatureFactory> splashFactory;
+  late final YgAnimatedNullableShapeBorderProperty shape;
+  late final YgAnimatedBoxConstraintsProperty constraints;
+  late final YgAnimatedColorProperty color;
+  late final YgAnimatedIconThemeDataProperty iconTheme;
+  late final YgAnimatedTextStyleProperty textStyle;
+  late final YgAnimatedEdgeInsetsProperty padding;
+  late final YgAnimatedAlignmentProperty alignment;
+  late final YgAnimatedDoubleProperty elevation;
+  late final YgDrivenProperty<MouseCursor?> cursor;
+  late final YgDrivenColorProperty splashColor;
+  late final YgDrivenProperty<InteractiveInkFeatureFactory> splashFactory;
+  late final YgDrivenProperty<Clip> clip;
 
   @override
   void init() {
@@ -35,6 +36,7 @@ abstract class YgButtonBaseStyle<T extends YgButtonBaseState> extends YgStyleWit
     cursor = drive(YgProperty<T, MouseCursor?>.resolveWith(resolveCursor));
     splashColor = drive(YgColorProperty<T>.resolveWith(resolveSplashColor));
     splashFactory = drive(YgProperty<T, InteractiveInkFeatureFactory>.resolveWith(resolveSplashFactory));
+    clip = drive(YgProperty<T, Clip>.resolveWith(resolveClip));
   }
 
   Color resolveColor(BuildContext context, T state);
@@ -98,5 +100,9 @@ abstract class YgButtonBaseStyle<T extends YgButtonBaseState> extends YgStyleWit
     }
 
     return Colors.white.withOpacity(0.08);
+  }
+
+  Clip resolveClip(BuildContext context, T state) {
+    return Clip.none;
   }
 }

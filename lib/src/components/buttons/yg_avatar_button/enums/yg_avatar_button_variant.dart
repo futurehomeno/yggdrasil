@@ -1,0 +1,4 @@
+enum YgAvatarButtonVariant {
+  person,
+  company,
+}

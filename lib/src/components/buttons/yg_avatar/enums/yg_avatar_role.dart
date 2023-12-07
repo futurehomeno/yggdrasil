@@ -1,4 +1,0 @@
-enum YgAvatarRole {
-  fullAccess,
-  owner,
-}

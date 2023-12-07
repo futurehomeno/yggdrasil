@@ -9,7 +9,7 @@ part 'company_avatar_theme.tailor.dart';
 
 @tailorComponent
 class _$YgCompanyAvatarTheme {
-  static const List<BorderRadius> badgePadding = <BorderRadius>[
+  static const List<BorderRadius> borderRadius = <BorderRadius>[
     consumer_light.FhRadii.xs,
     consumer_dark.FhRadii.xs,
     professional_light.FhRadii.xs,

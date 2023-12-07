@@ -18,6 +18,9 @@ class YgAvatarTheme extends ThemeExtension<YgAvatarTheme> {
     required this.diameterLarge,
     required this.diameterMedium,
     required this.diameterSmall,
+    required this.imageBackgroundColor,
+    required this.initialsTextStyle,
+    required this.padding,
     required this.personAvatarTheme,
   });
 
@@ -29,6 +32,9 @@ class YgAvatarTheme extends ThemeExtension<YgAvatarTheme> {
   final double diameterLarge;
   final double diameterMedium;
   final double diameterSmall;
+  final Color imageBackgroundColor;
+  final TextStyle initialsTextStyle;
+  final EdgeInsets padding;
   final YgPersonAvatarTheme personAvatarTheme;
 
   static final YgAvatarTheme consumerLight = YgAvatarTheme(
@@ -40,6 +46,9 @@ class YgAvatarTheme extends ThemeExtension<YgAvatarTheme> {
     diameterLarge: _$YgAvatarTheme.diameterLarge[0],
     diameterMedium: _$YgAvatarTheme.diameterMedium[0],
     diameterSmall: _$YgAvatarTheme.diameterSmall[0],
+    imageBackgroundColor: _$YgAvatarTheme.imageBackgroundColor[0],
+    initialsTextStyle: _$YgAvatarTheme.initialsTextStyle[0],
+    padding: _$YgAvatarTheme.padding[0],
     personAvatarTheme: _$YgAvatarTheme.personAvatarTheme[0],
   );
 
@@ -52,6 +61,9 @@ class YgAvatarTheme extends ThemeExtension<YgAvatarTheme> {
     diameterLarge: _$YgAvatarTheme.diameterLarge[1],
     diameterMedium: _$YgAvatarTheme.diameterMedium[1],
     diameterSmall: _$YgAvatarTheme.diameterSmall[1],
+    imageBackgroundColor: _$YgAvatarTheme.imageBackgroundColor[1],
+    initialsTextStyle: _$YgAvatarTheme.initialsTextStyle[1],
+    padding: _$YgAvatarTheme.padding[1],
     personAvatarTheme: _$YgAvatarTheme.personAvatarTheme[1],
   );
 
@@ -64,6 +76,9 @@ class YgAvatarTheme extends ThemeExtension<YgAvatarTheme> {
     diameterLarge: _$YgAvatarTheme.diameterLarge[2],
     diameterMedium: _$YgAvatarTheme.diameterMedium[2],
     diameterSmall: _$YgAvatarTheme.diameterSmall[2],
+    imageBackgroundColor: _$YgAvatarTheme.imageBackgroundColor[2],
+    initialsTextStyle: _$YgAvatarTheme.initialsTextStyle[2],
+    padding: _$YgAvatarTheme.padding[2],
     personAvatarTheme: _$YgAvatarTheme.personAvatarTheme[2],
   );
 
@@ -76,6 +91,9 @@ class YgAvatarTheme extends ThemeExtension<YgAvatarTheme> {
     diameterLarge: _$YgAvatarTheme.diameterLarge[3],
     diameterMedium: _$YgAvatarTheme.diameterMedium[3],
     diameterSmall: _$YgAvatarTheme.diameterSmall[3],
+    imageBackgroundColor: _$YgAvatarTheme.imageBackgroundColor[3],
+    initialsTextStyle: _$YgAvatarTheme.initialsTextStyle[3],
+    padding: _$YgAvatarTheme.padding[3],
     personAvatarTheme: _$YgAvatarTheme.personAvatarTheme[3],
   );
 
@@ -96,6 +114,9 @@ class YgAvatarTheme extends ThemeExtension<YgAvatarTheme> {
     double? diameterLarge,
     double? diameterMedium,
     double? diameterSmall,
+    Color? imageBackgroundColor,
+    TextStyle? initialsTextStyle,
+    EdgeInsets? padding,
     YgPersonAvatarTheme? personAvatarTheme,
   }) {
     return YgAvatarTheme(
@@ -107,6 +128,9 @@ class YgAvatarTheme extends ThemeExtension<YgAvatarTheme> {
       diameterLarge: diameterLarge ?? this.diameterLarge,
       diameterMedium: diameterMedium ?? this.diameterMedium,
       diameterSmall: diameterSmall ?? this.diameterSmall,
+      imageBackgroundColor: imageBackgroundColor ?? this.imageBackgroundColor,
+      initialsTextStyle: initialsTextStyle ?? this.initialsTextStyle,
+      padding: padding ?? this.padding,
       personAvatarTheme: personAvatarTheme ?? this.personAvatarTheme,
     );
   }
@@ -124,6 +148,11 @@ class YgAvatarTheme extends ThemeExtension<YgAvatarTheme> {
       diameterLarge: t < 0.5 ? diameterLarge : other.diameterLarge,
       diameterMedium: t < 0.5 ? diameterMedium : other.diameterMedium,
       diameterSmall: t < 0.5 ? diameterSmall : other.diameterSmall,
+      imageBackgroundColor:
+          Color.lerp(imageBackgroundColor, other.imageBackgroundColor, t)!,
+      initialsTextStyle:
+          TextStyle.lerp(initialsTextStyle, other.initialsTextStyle, t)!,
+      padding: t < 0.5 ? padding : other.padding,
       personAvatarTheme: personAvatarTheme.lerp(other.personAvatarTheme, t)
           as YgPersonAvatarTheme,
     );
@@ -151,6 +180,11 @@ class YgAvatarTheme extends ThemeExtension<YgAvatarTheme> {
             const DeepCollectionEquality()
                 .equals(diameterSmall, other.diameterSmall) &&
             const DeepCollectionEquality()
+                .equals(imageBackgroundColor, other.imageBackgroundColor) &&
+            const DeepCollectionEquality()
+                .equals(initialsTextStyle, other.initialsTextStyle) &&
+            const DeepCollectionEquality().equals(padding, other.padding) &&
+            const DeepCollectionEquality()
                 .equals(personAvatarTheme, other.personAvatarTheme));
   }
 
@@ -166,6 +200,9 @@ class YgAvatarTheme extends ThemeExtension<YgAvatarTheme> {
       const DeepCollectionEquality().hash(diameterLarge),
       const DeepCollectionEquality().hash(diameterMedium),
       const DeepCollectionEquality().hash(diameterSmall),
+      const DeepCollectionEquality().hash(imageBackgroundColor),
+      const DeepCollectionEquality().hash(initialsTextStyle),
+      const DeepCollectionEquality().hash(padding),
       const DeepCollectionEquality().hash(personAvatarTheme),
     );
   }

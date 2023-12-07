@@ -18,32 +18,64 @@ class _$YgAvatarTheme {
   static final List<YgCompanyAvatarTheme> companyAvatarTheme = YgCompanyAvatarTheme.themes;
 
   static const List<Color> backgroundColor = <Color>[
+    consumer_light.FhColors.backgroundInverse,
+    consumer_dark.FhColors.backgroundInverse,
+    professional_light.FhColors.backgroundInverse,
+    professional_dark.FhColors.backgroundInverse,
+  ];
+
+  static const List<Color> imageBackgroundColor = <Color>[
     consumer_light.FhColors.backgroundDefault,
     consumer_dark.FhColors.backgroundDefault,
     professional_light.FhColors.backgroundDefault,
     professional_dark.FhColors.backgroundDefault,
   ];
 
+  static const List<EdgeInsets> padding = <EdgeInsets>[
+    EdgeInsets.all(consumer_light.FhDimensions.xxs),
+    EdgeInsets.all(consumer_dark.FhDimensions.xxs),
+    EdgeInsets.all(professional_light.FhDimensions.xxs),
+    EdgeInsets.all(professional_dark.FhDimensions.xxs),
+  ];
+
+  static final List<TextStyle> initialsTextStyle = <TextStyle>[
+    consumer_light.FhTextStyles.pageHeading3Medium.copyWith(
+      color: consumer_light.FhColors.textInverse,
+    ),
+    consumer_dark.FhTextStyles.pageHeading3Medium.copyWith(
+      color: consumer_dark.FhColors.textInverse,
+    ),
+    professional_light.FhTextStyles.pageHeading3Medium.copyWith(
+      color: professional_light.FhColors.textInverse,
+    ),
+    professional_dark.FhTextStyles.pageHeading3Medium.copyWith(
+      color: professional_dark.FhColors.textInverse,
+    ),
+  ];
+
+  // This is different from what is in the design because of an edge bleeding
+  // issue. Instead of having the border at the side of the avatar it has to
+  // extend beyond the avatar and be clipped to size in order to render correctly.
   static const List<BorderSide> borderSide = <BorderSide>[
     BorderSide(
       color: consumer_light.FhColors.borderDefault,
-      strokeAlign: BorderSide.strokeAlignInside,
-      width: 1,
+      strokeAlign: BorderSide.strokeAlignCenter,
+      width: 2,
     ),
     BorderSide(
       color: consumer_dark.FhColors.borderDefault,
-      strokeAlign: BorderSide.strokeAlignInside,
-      width: 1,
+      strokeAlign: BorderSide.strokeAlignCenter,
+      width: 2,
     ),
     BorderSide(
       color: professional_light.FhColors.borderDefault,
-      strokeAlign: BorderSide.strokeAlignInside,
-      width: 1,
+      strokeAlign: BorderSide.strokeAlignCenter,
+      width: 2,
     ),
     BorderSide(
       color: professional_dark.FhColors.borderDefault,
-      strokeAlign: BorderSide.strokeAlignInside,
-      width: 1,
+      strokeAlign: BorderSide.strokeAlignCenter,
+      width: 2,
     ),
   ];
 

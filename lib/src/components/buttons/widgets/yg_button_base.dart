@@ -57,6 +57,10 @@ abstract class YgButtonBase<T extends YgButtonBaseState> extends StatefulWidget 
   @protected
   Widget buildChild(BuildContext context);
 
+  /// Builds a wrapper for the button.
+  @protected
+  Widget buildWrapper(BuildContext context, Widget child) => child;
+
   /// Creates the style applied to this button.
   @protected
   YgButtonBaseStyle<T> createStyle(YgVsync vsync, T state);
@@ -118,6 +122,7 @@ class _YgButtonBaseState<T extends YgButtonBaseState> extends StateWithYgStyle<Y
       style.splashFactory,
       style.cursor,
       style.splashColor,
+      style.clip,
     };
   }
 
@@ -126,7 +131,7 @@ class _YgButtonBaseState<T extends YgButtonBaseState> extends StateWithYgStyle<Y
     return YgAnimatedConstrainedBox(
       constraints: style.constraints,
       child: YgAnimatedPhysicalShape(
-        clipBehavior: Clip.antiAlias,
+        clipBehavior: style.clip.value,
         color: style.color,
         elevation: style.elevation,
         shape: style.shape,

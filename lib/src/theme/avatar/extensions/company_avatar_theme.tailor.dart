@@ -10,25 +10,25 @@ part of 'company_avatar_theme.dart';
 
 class YgCompanyAvatarTheme extends ThemeExtension<YgCompanyAvatarTheme> {
   const YgCompanyAvatarTheme({
-    required this.badgePadding,
+    required this.borderRadius,
   });
 
-  final BorderRadius badgePadding;
+  final BorderRadius borderRadius;
 
   static final YgCompanyAvatarTheme consumerLight = YgCompanyAvatarTheme(
-    badgePadding: _$YgCompanyAvatarTheme.badgePadding[0],
+    borderRadius: _$YgCompanyAvatarTheme.borderRadius[0],
   );
 
   static final YgCompanyAvatarTheme consumerDark = YgCompanyAvatarTheme(
-    badgePadding: _$YgCompanyAvatarTheme.badgePadding[1],
+    borderRadius: _$YgCompanyAvatarTheme.borderRadius[1],
   );
 
   static final YgCompanyAvatarTheme professionalLight = YgCompanyAvatarTheme(
-    badgePadding: _$YgCompanyAvatarTheme.badgePadding[2],
+    borderRadius: _$YgCompanyAvatarTheme.borderRadius[2],
   );
 
   static final YgCompanyAvatarTheme professionalDark = YgCompanyAvatarTheme(
-    badgePadding: _$YgCompanyAvatarTheme.badgePadding[3],
+    borderRadius: _$YgCompanyAvatarTheme.borderRadius[3],
   );
 
   static final themes = [
@@ -40,10 +40,10 @@ class YgCompanyAvatarTheme extends ThemeExtension<YgCompanyAvatarTheme> {
 
   @override
   YgCompanyAvatarTheme copyWith({
-    BorderRadius? badgePadding,
+    BorderRadius? borderRadius,
   }) {
     return YgCompanyAvatarTheme(
-      badgePadding: badgePadding ?? this.badgePadding,
+      borderRadius: borderRadius ?? this.borderRadius,
     );
   }
 
@@ -52,7 +52,7 @@ class YgCompanyAvatarTheme extends ThemeExtension<YgCompanyAvatarTheme> {
       covariant ThemeExtension<YgCompanyAvatarTheme>? other, double t) {
     if (other is! YgCompanyAvatarTheme) return this as YgCompanyAvatarTheme;
     return YgCompanyAvatarTheme(
-      badgePadding: t < 0.5 ? badgePadding : other.badgePadding,
+      borderRadius: t < 0.5 ? borderRadius : other.borderRadius,
     );
   }
 
@@ -62,14 +62,14 @@ class YgCompanyAvatarTheme extends ThemeExtension<YgCompanyAvatarTheme> {
         (other.runtimeType == runtimeType &&
             other is YgCompanyAvatarTheme &&
             const DeepCollectionEquality()
-                .equals(badgePadding, other.badgePadding));
+                .equals(borderRadius, other.borderRadius));
   }
 
   @override
   int get hashCode {
     return Object.hash(
       runtimeType.hashCode,
-      const DeepCollectionEquality().hash(badgePadding),
+      const DeepCollectionEquality().hash(borderRadius),
     );
   }
 }

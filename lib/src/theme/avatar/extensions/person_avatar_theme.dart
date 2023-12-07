@@ -22,4 +22,18 @@ class _$YgPersonAvatarTheme {
     professional_light.FhColors.backgroundHighlightWeak,
     professional_dark.FhColors.backgroundHighlightWeak,
   ];
+
+  static const List<Border> badgeBorder = <Border>[
+    consumer_light.FhBorders.sm,
+    consumer_dark.FhBorders.sm,
+    professional_light.FhBorders.sm,
+    professional_dark.FhBorders.sm,
+  ];
+
+  static const List<BorderRadius> borderRadius = <BorderRadius>[
+    consumer_light.FhRadii.xxl,
+    consumer_dark.FhRadii.xxl,
+    professional_light.FhRadii.xxl,
+    professional_dark.FhRadii.xxl,
+  ];
 }

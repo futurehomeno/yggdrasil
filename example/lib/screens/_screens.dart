@@ -1,5 +1,6 @@
 export 'app_bar/_app_bar.dart';
 export 'app_bar_sliver/_app_bar_sliver.dart';
+export 'avatar/_avatar.dart';
 export 'badge/_badge.dart';
 export 'bottom_sheet/_bottom_sheet.dart';
 export 'button/_button.dart';
