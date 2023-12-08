@@ -24,10 +24,22 @@ class _$YgPersonAvatarTheme {
   ];
 
   static const List<Border> badgeBorder = <Border>[
-    consumer_light.FhBorders.sm,
-    consumer_dark.FhBorders.sm,
-    professional_light.FhBorders.sm,
-    professional_dark.FhBorders.sm,
+    Border.fromBorderSide(BorderSide(
+      color: consumer_light.FhColors.borderDefault,
+      strokeAlign: BorderSide.strokeAlignCenter,
+    )),
+    Border.fromBorderSide(BorderSide(
+      color: consumer_dark.FhColors.borderDefault,
+      strokeAlign: BorderSide.strokeAlignCenter,
+    )),
+    Border.fromBorderSide(BorderSide(
+      color: professional_light.FhColors.borderDefault,
+      strokeAlign: BorderSide.strokeAlignCenter,
+    )),
+    Border.fromBorderSide(BorderSide(
+      color: professional_dark.FhColors.borderDefault,
+      strokeAlign: BorderSide.strokeAlignCenter,
+    )),
   ];
 
   static const List<BorderRadius> borderRadius = <BorderRadius>[

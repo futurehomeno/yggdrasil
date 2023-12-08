@@ -22,15 +22,27 @@ class AvatarScreen extends StatelessWidget {
       child: Column(
         children: <Widget>[
           const YgSection(
-            title: 'Default Avatar',
-            child: YgAvatar(
-              name: 'User',
+            title: 'Default Avatars',
+            child: Row(
+              mainAxisSize: MainAxisSize.min,
+              children: <Widget>[
+                YgAvatar(
+                  name: 'User',
+                ),
+                YgAvatar.company(
+                  name: 'Company',
+                ),
+              ],
             ),
           ),
           const YgSection(
-            title: 'Company Avatar',
-            child: YgAvatar.company(
-              name: 'Company',
+            title: 'Avatar with badge',
+            subtitle: 'The badge is not supported by the company avatar variant, only by the default one.',
+            child: YgAvatar(
+              name: 'User',
+              badge: YgIcon(
+                YgIcons.access,
+              ),
             ),
           ),
           const YgSection(
@@ -57,15 +69,15 @@ class AvatarScreen extends StatelessWidget {
                 Column(
                   children: <Widget>[
                     YgAvatar.company(
-                      name: 'User',
+                      name: 'Company',
                       size: YgAvatarSize.large,
                     ),
                     YgAvatar.company(
-                      name: 'User',
+                      name: 'Company',
                       size: YgAvatarSize.medium,
                     ),
                     YgAvatar.company(
-                      name: 'User',
+                      name: 'Company',
                       size: YgAvatarSize.small,
                     ),
                   ],
@@ -73,45 +85,69 @@ class AvatarScreen extends StatelessWidget {
               ],
             ),
           ),
-          const YgSection(
-            title: 'Avatar with role',
-            child: YgAvatar(
-              name: 'User',
-              badge: YgIcon(
-                YgIcons.access,
-              ),
-            ),
-          ),
           YgSection(
             title: 'Avatar with image',
-            child: YgAvatar(
-              name: 'User',
-              image: Image.asset(
-                'assets/images/example_avatar.png',
-                semanticLabel: 'example_avatar',
-              ),
+            child: Row(
+              mainAxisSize: MainAxisSize.min,
+              children: <Widget>[
+                YgAvatar(
+                  name: 'User',
+                  image: Image.asset(
+                    'assets/images/example_avatar.png',
+                    semanticLabel: 'example_avatar',
+                  ),
+                ),
+                YgAvatar.company(
+                  name: 'Company',
+                  image: Image.asset(
+                    'assets/images/example_company_avatar.png',
+                    semanticLabel: 'example_avatar',
+                  ),
+                ),
+              ],
             ),
           ),
           YgSection(
             title: 'Clickable Avatar',
-            child: YgAvatar(
-              name: 'User',
-              onPressed: () {
-                print('test');
-              },
+            child: Row(
+              mainAxisSize: MainAxisSize.min,
+              children: <Widget>[
+                YgAvatar(
+                  name: 'User',
+                  onPressed: () {},
+                ),
+                YgAvatar.company(
+                  name: 'Company',
+                  onPressed: () {},
+                ),
+              ],
             ),
           ),
           YgSection(
-            title: 'Avatar with image and role',
-            child: YgAvatar(
-              name: 'User',
-              badge: const YgIcon(
-                YgIcons.access,
-              ),
-              image: Image.asset(
-                'assets/images/example_avatar.png',
-                semanticLabel: 'example_avatar',
-              ),
+            title: 'Avatars with all options',
+            child: Row(
+              mainAxisSize: MainAxisSize.min,
+              children: <Widget>[
+                YgAvatar(
+                  name: 'User',
+                  badge: const YgIcon(
+                    YgIcons.access,
+                  ),
+                  image: Image.asset(
+                    'assets/images/example_avatar.png',
+                    semanticLabel: 'example_avatar',
+                  ),
+                  onPressed: () {},
+                ),
+                YgAvatar.company(
+                  name: 'Company',
+                  image: Image.asset(
+                    'assets/images/example_company_avatar.png',
+                    semanticLabel: 'example_avatar',
+                  ),
+                  onPressed: () {},
+                ),
+              ],
             ),
           ),
         ],

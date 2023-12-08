@@ -15,7 +15,7 @@ class _YgPersonAvatar extends YgAvatar {
     this.badge,
   })  : assert(
           badge == null || size != YgAvatarSize.small,
-          'Can not have role on a small avatar',
+          'Can not have badge on a small avatar',
         ),
         super.company();
 
@@ -44,19 +44,24 @@ class _YgPersonAvatar extends YgAvatar {
     return Positioned(
       top: 0,
       right: 0,
-      child: Container(
-        clipBehavior: Clip.antiAliasWithSaveLayer,
-        padding: theme.badgePadding,
-        decoration: BoxDecoration(
-          border: theme.badgeBorder,
-          borderRadius: theme.borderRadius,
-          color: theme.badgeColor,
-        ),
-        child: IconTheme(
-          data: IconTheme.of(context).copyWith(
-            size: 15.0,
+      child: IgnorePointer(
+        child: Container(
+          clipBehavior: Clip.antiAliasWithSaveLayer,
+          padding: theme.badgePadding,
+          decoration: BoxDecoration(
+            borderRadius: theme.borderRadius,
+            color: theme.badgeColor,
           ),
-          child: badge,
+          foregroundDecoration: BoxDecoration(
+            border: theme.badgeBorder,
+            borderRadius: theme.borderRadius,
+          ),
+          child: IconTheme(
+            data: IconTheme.of(context).copyWith(
+              size: 15.0,
+            ),
+            child: badge,
+          ),
         ),
       ),
     );

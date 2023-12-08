@@ -58,6 +58,15 @@ class YgAvatarButtonStyle extends YgButtonBaseStyle<YgAvatarButtonState> {
     );
   }
 
+  @override
+  Color resolveSplashColor(BuildContext context, YgAvatarButtonState state) {
+    if (state.image.value) {
+      return Colors.black.withOpacity(0.08);
+    }
+
+    return super.resolveSplashColor(context, state);
+  }
+
   YgAvatarTheme get theme => context.avatarTheme;
 
   @override

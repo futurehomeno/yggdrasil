@@ -29,15 +29,18 @@ class YgAvatarButton extends YgButtonBase<YgAvatarButtonState> {
 
   @override
   Widget buildChild(BuildContext context) {
-    final Widget? child = this.child;
-
     if (child != null) {
-      return child;
+      return const SizedBox();
     }
 
     return Text(
       name.isEmpty ? '?' : name[0].toUpperCase(),
     );
+  }
+
+  @override
+  Widget? buildBackground(BuildContext context) {
+    return child;
   }
 
   @override

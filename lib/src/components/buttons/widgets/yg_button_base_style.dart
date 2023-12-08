@@ -103,6 +103,6 @@ abstract class YgButtonBaseStyle<T extends YgButtonBaseState> extends YgStyleWit
   }
 
   Clip resolveClip(BuildContext context, T state) {
-    return Clip.none;
+    return Clip.antiAlias;
   }
 }
