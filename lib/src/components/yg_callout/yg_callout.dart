@@ -34,9 +34,9 @@ class YgCallout extends StatefulWidget with StatefulWidgetDebugMixin {
 
   /// Called when the user clicks the close button.
   ///
-  /// Close button only exists if this callback is provided. The callout does
-  /// not hide it self, it has to be removed from the widget tree manually when
-  /// this callback is called.
+  /// Close button only exists if this callback is provided.
+  /// The callout does not hide itself, it has to be removed from the widget tree 
+  /// manually when this callback is called.
   final VoidCallback? onClose;
 
   @override
