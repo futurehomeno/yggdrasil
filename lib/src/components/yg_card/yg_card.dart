@@ -10,7 +10,6 @@ import 'enums/_enums.dart';
 /// Simplified stateless version of [Card] from Material Design.
 ///
 /// By design, this card does not have any padding.
-// TODO(bjhandeland): Make this component stateful or make a stateful card.
 // TODO(bjhandeland): Add support for semanticContainer.
 class YgCard extends StatefulWidget {
   const YgCard({
