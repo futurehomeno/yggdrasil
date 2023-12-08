@@ -10,44 +10,44 @@ import 'yg_avatar_button_state.dart';
 class YgAvatarButton extends YgButtonBase<YgAvatarButtonState> {
   const YgAvatarButton({
     super.key,
-    required super.autofocus,
-    required super.focusNode,
-    required super.onFocusChange,
-    required super.onHover,
-    required super.onLongPress,
-    required super.onPressed,
-    required this.name,
+    required this.text,
     required this.size,
     required this.variant,
-    required this.child,
+    this.image,
+    super.autofocus,
+    super.focusNode,
+    super.onFocusChange,
+    super.onHover,
+    super.onLongPress,
+    super.onPressed,
   });
 
   final YgAvatarSize size;
   final YgAvatarButtonVariant variant;
-  final String name;
-  final Widget? child;
+  final String text;
+  final Widget? image;
 
   @override
   Widget buildChild(BuildContext context) {
-    if (child != null) {
+    if (image != null) {
       return const SizedBox();
     }
 
     return Text(
-      name.isEmpty ? '?' : name[0].toUpperCase(),
+      text,
     );
   }
 
   @override
   Widget? buildBackground(BuildContext context) {
-    return child;
+    return image;
   }
 
   @override
   YgAvatarButtonState createButtonState() {
     return YgAvatarButtonState(
       disabled: disabled,
-      image: child != null,
+      image: image != null,
       size: size,
       variant: variant,
     );
@@ -64,7 +64,7 @@ class YgAvatarButton extends YgButtonBase<YgAvatarButtonState> {
   @override
   void updateState(YgAvatarButtonState state) {
     state.disabled.value = disabled;
-    state.image.value = child != null;
+    state.image.value = image != null;
     state.size.value = size;
     state.variant.value = variant;
   }

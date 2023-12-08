@@ -65,6 +65,7 @@ class YgAvatar extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final YgAvatarTheme theme = context.avatarTheme;
+    final String initials = name.isEmpty ? '?' : name[0].toUpperCase();
 
     return Padding(
       padding: theme.padding,
@@ -76,9 +77,9 @@ class YgAvatar extends StatelessWidget {
         focusNode: focusNode,
         autofocus: autofocus,
         size: size,
-        name: name,
+        text: initials,
         variant: _variant,
-        child: image,
+        image: image,
       ),
     );
   }

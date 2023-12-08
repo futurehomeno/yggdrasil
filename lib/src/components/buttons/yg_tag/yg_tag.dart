@@ -11,7 +11,7 @@ part 'yg_tag_with_leading_icon.dart';
 part 'yg_tag_with_trailing_icon.dart';
 
 /// The implementation of YgTag.
-class YgTag extends YgButtonBase<YgTagState> {
+class YgTag extends YgButtonBase<YgTagState> with StatefulWidgetDebugMixin {
   const YgTag({
     super.key,
     required this.child,

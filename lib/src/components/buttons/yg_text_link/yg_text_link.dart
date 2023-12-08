@@ -8,7 +8,7 @@ import 'package:yggdrasil/yggdrasil.dart';
 import 'yg_text_link_state.dart';
 
 /// Text link button implementation.
-class YgTextLink extends YgButtonBase<YgTextLinkState> {
+class YgTextLink extends YgButtonBase<YgTextLinkState> with StatefulWidgetDebugMixin {
   const YgTextLink({
     super.key,
     required this.text,

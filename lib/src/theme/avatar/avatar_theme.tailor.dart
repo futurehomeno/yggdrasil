@@ -12,6 +12,7 @@ class YgAvatarTheme extends ThemeExtension<YgAvatarTheme> {
   const YgAvatarTheme({
     required this.animationCurve,
     required this.animationDuration,
+    required this.avatarStackTheme,
     required this.backgroundColor,
     required this.borderSide,
     required this.companyAvatarTheme,
@@ -26,6 +27,7 @@ class YgAvatarTheme extends ThemeExtension<YgAvatarTheme> {
 
   final Curve animationCurve;
   final Duration animationDuration;
+  final YgAvatarStackTheme avatarStackTheme;
   final Color backgroundColor;
   final BorderSide borderSide;
   final YgCompanyAvatarTheme companyAvatarTheme;
@@ -40,6 +42,7 @@ class YgAvatarTheme extends ThemeExtension<YgAvatarTheme> {
   static final YgAvatarTheme consumerLight = YgAvatarTheme(
     animationCurve: _$YgAvatarTheme.animationCurve[0],
     animationDuration: _$YgAvatarTheme.animationDuration[0],
+    avatarStackTheme: _$YgAvatarTheme.avatarStackTheme[0],
     backgroundColor: _$YgAvatarTheme.backgroundColor[0],
     borderSide: _$YgAvatarTheme.borderSide[0],
     companyAvatarTheme: _$YgAvatarTheme.companyAvatarTheme[0],
@@ -55,6 +58,7 @@ class YgAvatarTheme extends ThemeExtension<YgAvatarTheme> {
   static final YgAvatarTheme consumerDark = YgAvatarTheme(
     animationCurve: _$YgAvatarTheme.animationCurve[1],
     animationDuration: _$YgAvatarTheme.animationDuration[1],
+    avatarStackTheme: _$YgAvatarTheme.avatarStackTheme[1],
     backgroundColor: _$YgAvatarTheme.backgroundColor[1],
     borderSide: _$YgAvatarTheme.borderSide[1],
     companyAvatarTheme: _$YgAvatarTheme.companyAvatarTheme[1],
@@ -70,6 +74,7 @@ class YgAvatarTheme extends ThemeExtension<YgAvatarTheme> {
   static final YgAvatarTheme professionalLight = YgAvatarTheme(
     animationCurve: _$YgAvatarTheme.animationCurve[2],
     animationDuration: _$YgAvatarTheme.animationDuration[2],
+    avatarStackTheme: _$YgAvatarTheme.avatarStackTheme[2],
     backgroundColor: _$YgAvatarTheme.backgroundColor[2],
     borderSide: _$YgAvatarTheme.borderSide[2],
     companyAvatarTheme: _$YgAvatarTheme.companyAvatarTheme[2],
@@ -85,6 +90,7 @@ class YgAvatarTheme extends ThemeExtension<YgAvatarTheme> {
   static final YgAvatarTheme professionalDark = YgAvatarTheme(
     animationCurve: _$YgAvatarTheme.animationCurve[3],
     animationDuration: _$YgAvatarTheme.animationDuration[3],
+    avatarStackTheme: _$YgAvatarTheme.avatarStackTheme[3],
     backgroundColor: _$YgAvatarTheme.backgroundColor[3],
     borderSide: _$YgAvatarTheme.borderSide[3],
     companyAvatarTheme: _$YgAvatarTheme.companyAvatarTheme[3],
@@ -108,6 +114,7 @@ class YgAvatarTheme extends ThemeExtension<YgAvatarTheme> {
   YgAvatarTheme copyWith({
     Curve? animationCurve,
     Duration? animationDuration,
+    YgAvatarStackTheme? avatarStackTheme,
     Color? backgroundColor,
     BorderSide? borderSide,
     YgCompanyAvatarTheme? companyAvatarTheme,
@@ -122,6 +129,7 @@ class YgAvatarTheme extends ThemeExtension<YgAvatarTheme> {
     return YgAvatarTheme(
       animationCurve: animationCurve ?? this.animationCurve,
       animationDuration: animationDuration ?? this.animationDuration,
+      avatarStackTheme: avatarStackTheme ?? this.avatarStackTheme,
       backgroundColor: backgroundColor ?? this.backgroundColor,
       borderSide: borderSide ?? this.borderSide,
       companyAvatarTheme: companyAvatarTheme ?? this.companyAvatarTheme,
@@ -141,6 +149,8 @@ class YgAvatarTheme extends ThemeExtension<YgAvatarTheme> {
     return YgAvatarTheme(
       animationCurve: t < 0.5 ? animationCurve : other.animationCurve,
       animationDuration: t < 0.5 ? animationDuration : other.animationDuration,
+      avatarStackTheme: avatarStackTheme.lerp(other.avatarStackTheme, t)
+          as YgAvatarStackTheme,
       backgroundColor: Color.lerp(backgroundColor, other.backgroundColor, t)!,
       borderSide: t < 0.5 ? borderSide : other.borderSide,
       companyAvatarTheme: companyAvatarTheme.lerp(other.companyAvatarTheme, t)
@@ -168,6 +178,8 @@ class YgAvatarTheme extends ThemeExtension<YgAvatarTheme> {
             const DeepCollectionEquality()
                 .equals(animationDuration, other.animationDuration) &&
             const DeepCollectionEquality()
+                .equals(avatarStackTheme, other.avatarStackTheme) &&
+            const DeepCollectionEquality()
                 .equals(backgroundColor, other.backgroundColor) &&
             const DeepCollectionEquality()
                 .equals(borderSide, other.borderSide) &&
@@ -194,6 +206,7 @@ class YgAvatarTheme extends ThemeExtension<YgAvatarTheme> {
       runtimeType.hashCode,
       const DeepCollectionEquality().hash(animationCurve),
       const DeepCollectionEquality().hash(animationDuration),
+      const DeepCollectionEquality().hash(avatarStackTheme),
       const DeepCollectionEquality().hash(backgroundColor),
       const DeepCollectionEquality().hash(borderSide),
       const DeepCollectionEquality().hash(companyAvatarTheme),

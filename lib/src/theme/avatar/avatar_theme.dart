@@ -17,6 +17,9 @@ class _$YgAvatarTheme {
   @themeExtension
   static final List<YgCompanyAvatarTheme> companyAvatarTheme = YgCompanyAvatarTheme.themes;
 
+  @themeExtension
+  static final List<YgAvatarStackTheme> avatarStackTheme = YgAvatarStackTheme.themes;
+
   static const List<Color> backgroundColor = <Color>[
     consumer_light.FhColors.backgroundInverse,
     consumer_dark.FhColors.backgroundInverse,

@@ -10,7 +10,7 @@ part 'yg_button_with_leading_icon.dart';
 part 'yg_button_with_trailing_icon.dart';
 
 /// Base class for creating all Yg buttons.
-class YgButton extends YgButtonBase<YgButtonState> {
+class YgButton extends YgButtonBase<YgButtonState> with StatefulWidgetDebugMixin {
   const YgButton({
     super.key,
     required this.child,
