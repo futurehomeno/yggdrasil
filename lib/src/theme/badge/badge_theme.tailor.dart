@@ -10,6 +10,8 @@ part of 'badge_theme.dart';
 
 class YgBadgeTheme extends ThemeExtension<YgBadgeTheme> {
   const YgBadgeTheme({
+    required this.animationCurve,
+    required this.animationDuration,
     required this.borderRadius,
     required this.iconPadding,
     required this.iconSize,
@@ -24,6 +26,8 @@ class YgBadgeTheme extends ThemeExtension<YgBadgeTheme> {
     required this.weakTextStyle,
   });
 
+  final Curve animationCurve;
+  final Duration animationDuration;
   final BorderRadius borderRadius;
   final EdgeInsets iconPadding;
   final double iconSize;
@@ -38,6 +42,8 @@ class YgBadgeTheme extends ThemeExtension<YgBadgeTheme> {
   final TextStyle weakTextStyle;
 
   static final YgBadgeTheme consumerLight = YgBadgeTheme(
+    animationCurve: _$YgBadgeTheme.animationCurve[0],
+    animationDuration: _$YgBadgeTheme.animationDuration[0],
     borderRadius: _$YgBadgeTheme.borderRadius[0],
     iconPadding: _$YgBadgeTheme.iconPadding[0],
     iconSize: _$YgBadgeTheme.iconSize[0],
@@ -53,6 +59,8 @@ class YgBadgeTheme extends ThemeExtension<YgBadgeTheme> {
   );
 
   static final YgBadgeTheme consumerDark = YgBadgeTheme(
+    animationCurve: _$YgBadgeTheme.animationCurve[1],
+    animationDuration: _$YgBadgeTheme.animationDuration[1],
     borderRadius: _$YgBadgeTheme.borderRadius[1],
     iconPadding: _$YgBadgeTheme.iconPadding[1],
     iconSize: _$YgBadgeTheme.iconSize[1],
@@ -68,6 +76,8 @@ class YgBadgeTheme extends ThemeExtension<YgBadgeTheme> {
   );
 
   static final YgBadgeTheme professionalLight = YgBadgeTheme(
+    animationCurve: _$YgBadgeTheme.animationCurve[2],
+    animationDuration: _$YgBadgeTheme.animationDuration[2],
     borderRadius: _$YgBadgeTheme.borderRadius[2],
     iconPadding: _$YgBadgeTheme.iconPadding[2],
     iconSize: _$YgBadgeTheme.iconSize[2],
@@ -83,6 +93,8 @@ class YgBadgeTheme extends ThemeExtension<YgBadgeTheme> {
   );
 
   static final YgBadgeTheme professionalDark = YgBadgeTheme(
+    animationCurve: _$YgBadgeTheme.animationCurve[3],
+    animationDuration: _$YgBadgeTheme.animationDuration[3],
     borderRadius: _$YgBadgeTheme.borderRadius[3],
     iconPadding: _$YgBadgeTheme.iconPadding[3],
     iconSize: _$YgBadgeTheme.iconSize[3],
@@ -106,6 +118,8 @@ class YgBadgeTheme extends ThemeExtension<YgBadgeTheme> {
 
   @override
   YgBadgeTheme copyWith({
+    Curve? animationCurve,
+    Duration? animationDuration,
     BorderRadius? borderRadius,
     EdgeInsets? iconPadding,
     double? iconSize,
@@ -120,6 +134,8 @@ class YgBadgeTheme extends ThemeExtension<YgBadgeTheme> {
     TextStyle? weakTextStyle,
   }) {
     return YgBadgeTheme(
+      animationCurve: animationCurve ?? this.animationCurve,
+      animationDuration: animationDuration ?? this.animationDuration,
       borderRadius: borderRadius ?? this.borderRadius,
       iconPadding: iconPadding ?? this.iconPadding,
       iconSize: iconSize ?? this.iconSize,
@@ -140,6 +156,8 @@ class YgBadgeTheme extends ThemeExtension<YgBadgeTheme> {
   YgBadgeTheme lerp(covariant ThemeExtension<YgBadgeTheme>? other, double t) {
     if (other is! YgBadgeTheme) return this as YgBadgeTheme;
     return YgBadgeTheme(
+      animationCurve: t < 0.5 ? animationCurve : other.animationCurve,
+      animationDuration: t < 0.5 ? animationDuration : other.animationDuration,
       borderRadius: t < 0.5 ? borderRadius : other.borderRadius,
       iconPadding: t < 0.5 ? iconPadding : other.iconPadding,
       iconSize: t < 0.5 ? iconSize : other.iconSize,
@@ -162,6 +180,10 @@ class YgBadgeTheme extends ThemeExtension<YgBadgeTheme> {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is YgBadgeTheme &&
+            const DeepCollectionEquality()
+                .equals(animationCurve, other.animationCurve) &&
+            const DeepCollectionEquality()
+                .equals(animationDuration, other.animationDuration) &&
             const DeepCollectionEquality()
                 .equals(borderRadius, other.borderRadius) &&
             const DeepCollectionEquality()
@@ -190,6 +212,8 @@ class YgBadgeTheme extends ThemeExtension<YgBadgeTheme> {
   int get hashCode {
     return Object.hash(
       runtimeType.hashCode,
+      const DeepCollectionEquality().hash(animationCurve),
+      const DeepCollectionEquality().hash(animationDuration),
       const DeepCollectionEquality().hash(borderRadius),
       const DeepCollectionEquality().hash(iconPadding),
       const DeepCollectionEquality().hash(iconSize),

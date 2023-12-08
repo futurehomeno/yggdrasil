@@ -82,4 +82,18 @@ class _$YgCalloutTheme {
     professional_light.FhTextStyles.paragraph3Regular,
     professional_dark.FhTextStyles.paragraph3Regular,
   ];
+
+  static const List<Curve> animationCurve = <Curve>[
+    Curves.easeInOut,
+    Curves.easeInOut,
+    Curves.easeInOut,
+    Curves.easeInOut,
+  ];
+
+  static const List<Duration> animationDuration = <Duration>[
+    Duration(milliseconds: 200),
+    Duration(milliseconds: 200),
+    Duration(milliseconds: 200),
+    Duration(milliseconds: 200),
+  ];
 }

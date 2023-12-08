@@ -1,3 +1,27 @@
+# 1.8.6 [2023-12-08T13:06:48.355983]
+
+## Changes
+
+- [fix] YgStepper now has a consistent height with and without a metric DEV-2513.
+- [fix] YgWizardHeader title no longer wraps DEV-2514.
+- [improvement] YgStepper now supports a disabled state DEV-2513.
+
+# 1.8.5 [2023-12-06T15:57:06.717309]
+
+## Changes
+
+- [fix] Checkbox now paints correctly under constraints with a width bigger than the preferred width [DEV-2484].
+- [fix] Switch now paints correctly under constraints with a width bigger than the preferred width [DEV-2485].
+
+## Dev changes
+
+- [dev-improvement] Combined toggleable widget logic in to a mixin and interface (YgToggleable) [DEV-1691].
+- [dev-improvement] Created separate constructors for tri state widgets [DEV-1966].
+- [dev-improvement] Moved checkbox to custom painter [DEV-2484].
+- [dev-improvement] Moved switch to custom painter [DEV-2485].
+- [dev-improvement] Moved toggle button to YgStates + YgToggleable [DEV-2515].
+- [dev-improvement] Updated YgSwitch to use YgStates [DEV-1660].
+
 # 1.8.2 [2023-11-29T18:03:14.119511]
 
 - [dev-change] No longer exporting internal utils.

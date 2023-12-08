@@ -10,6 +10,8 @@ part of 'card_theme.dart';
 
 class YgCardTheme extends ThemeExtension<YgCardTheme> {
   const YgCardTheme({
+    required this.animationCurve,
+    required this.animationDuration,
     required this.borderRadius,
     required this.elevatedCardTheme,
     required this.elevation,
@@ -17,6 +19,8 @@ class YgCardTheme extends ThemeExtension<YgCardTheme> {
     required this.outlinedCardTheme,
   });
 
+  final Curve animationCurve;
+  final Duration animationDuration;
   final BorderRadius borderRadius;
   final ElevatedCardTheme elevatedCardTheme;
   final double elevation;
@@ -24,6 +28,8 @@ class YgCardTheme extends ThemeExtension<YgCardTheme> {
   final OutlinedCardTheme outlinedCardTheme;
 
   static final YgCardTheme consumerLight = YgCardTheme(
+    animationCurve: _$YgCardTheme.animationCurve[0],
+    animationDuration: _$YgCardTheme.animationDuration[0],
     borderRadius: _$YgCardTheme.borderRadius[0],
     elevatedCardTheme: _$YgCardTheme.elevatedCardTheme[0],
     elevation: _$YgCardTheme.elevation[0],
@@ -32,6 +38,8 @@ class YgCardTheme extends ThemeExtension<YgCardTheme> {
   );
 
   static final YgCardTheme consumerDark = YgCardTheme(
+    animationCurve: _$YgCardTheme.animationCurve[1],
+    animationDuration: _$YgCardTheme.animationDuration[1],
     borderRadius: _$YgCardTheme.borderRadius[1],
     elevatedCardTheme: _$YgCardTheme.elevatedCardTheme[1],
     elevation: _$YgCardTheme.elevation[1],
@@ -40,6 +48,8 @@ class YgCardTheme extends ThemeExtension<YgCardTheme> {
   );
 
   static final YgCardTheme professionalLight = YgCardTheme(
+    animationCurve: _$YgCardTheme.animationCurve[2],
+    animationDuration: _$YgCardTheme.animationDuration[2],
     borderRadius: _$YgCardTheme.borderRadius[2],
     elevatedCardTheme: _$YgCardTheme.elevatedCardTheme[2],
     elevation: _$YgCardTheme.elevation[2],
@@ -48,6 +58,8 @@ class YgCardTheme extends ThemeExtension<YgCardTheme> {
   );
 
   static final YgCardTheme professionalDark = YgCardTheme(
+    animationCurve: _$YgCardTheme.animationCurve[3],
+    animationDuration: _$YgCardTheme.animationDuration[3],
     borderRadius: _$YgCardTheme.borderRadius[3],
     elevatedCardTheme: _$YgCardTheme.elevatedCardTheme[3],
     elevation: _$YgCardTheme.elevation[3],
@@ -64,6 +76,8 @@ class YgCardTheme extends ThemeExtension<YgCardTheme> {
 
   @override
   YgCardTheme copyWith({
+    Curve? animationCurve,
+    Duration? animationDuration,
     BorderRadius? borderRadius,
     ElevatedCardTheme? elevatedCardTheme,
     double? elevation,
@@ -71,6 +85,8 @@ class YgCardTheme extends ThemeExtension<YgCardTheme> {
     OutlinedCardTheme? outlinedCardTheme,
   }) {
     return YgCardTheme(
+      animationCurve: animationCurve ?? this.animationCurve,
+      animationDuration: animationDuration ?? this.animationDuration,
       borderRadius: borderRadius ?? this.borderRadius,
       elevatedCardTheme: elevatedCardTheme ?? this.elevatedCardTheme,
       elevation: elevation ?? this.elevation,
@@ -83,6 +99,8 @@ class YgCardTheme extends ThemeExtension<YgCardTheme> {
   YgCardTheme lerp(covariant ThemeExtension<YgCardTheme>? other, double t) {
     if (other is! YgCardTheme) return this as YgCardTheme;
     return YgCardTheme(
+      animationCurve: t < 0.5 ? animationCurve : other.animationCurve,
+      animationDuration: t < 0.5 ? animationDuration : other.animationDuration,
       borderRadius: t < 0.5 ? borderRadius : other.borderRadius,
       elevatedCardTheme: elevatedCardTheme.lerp(other.elevatedCardTheme, t)
           as ElevatedCardTheme,
@@ -100,6 +118,10 @@ class YgCardTheme extends ThemeExtension<YgCardTheme> {
         (other.runtimeType == runtimeType &&
             other is YgCardTheme &&
             const DeepCollectionEquality()
+                .equals(animationCurve, other.animationCurve) &&
+            const DeepCollectionEquality()
+                .equals(animationDuration, other.animationDuration) &&
+            const DeepCollectionEquality()
                 .equals(borderRadius, other.borderRadius) &&
             const DeepCollectionEquality()
                 .equals(elevatedCardTheme, other.elevatedCardTheme) &&
@@ -114,6 +136,8 @@ class YgCardTheme extends ThemeExtension<YgCardTheme> {
   int get hashCode {
     return Object.hash(
       runtimeType.hashCode,
+      const DeepCollectionEquality().hash(animationCurve),
+      const DeepCollectionEquality().hash(animationDuration),
       const DeepCollectionEquality().hash(borderRadius),
       const DeepCollectionEquality().hash(elevatedCardTheme),
       const DeepCollectionEquality().hash(elevation),

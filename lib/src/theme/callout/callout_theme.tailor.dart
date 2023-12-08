@@ -10,6 +10,8 @@ part of 'callout_theme.dart';
 
 class YgCalloutTheme extends ThemeExtension<YgCalloutTheme> {
   const YgCalloutTheme({
+    required this.animationCurve,
+    required this.animationDuration,
     required this.borderRadius,
     required this.closeButtonSpacing,
     required this.criticalCalloutTheme,
@@ -23,6 +25,8 @@ class YgCalloutTheme extends ThemeExtension<YgCalloutTheme> {
     required this.warningCalloutTheme,
   });
 
+  final Curve animationCurve;
+  final Duration animationDuration;
   final BorderRadius borderRadius;
   final double closeButtonSpacing;
   final CriticalCalloutTheme criticalCalloutTheme;
@@ -36,6 +40,8 @@ class YgCalloutTheme extends ThemeExtension<YgCalloutTheme> {
   final WarningCalloutTheme warningCalloutTheme;
 
   static final YgCalloutTheme consumerLight = YgCalloutTheme(
+    animationCurve: _$YgCalloutTheme.animationCurve[0],
+    animationDuration: _$YgCalloutTheme.animationDuration[0],
     borderRadius: _$YgCalloutTheme.borderRadius[0],
     closeButtonSpacing: _$YgCalloutTheme.closeButtonSpacing[0],
     criticalCalloutTheme: _$YgCalloutTheme.criticalCalloutTheme[0],
@@ -50,6 +56,8 @@ class YgCalloutTheme extends ThemeExtension<YgCalloutTheme> {
   );
 
   static final YgCalloutTheme consumerDark = YgCalloutTheme(
+    animationCurve: _$YgCalloutTheme.animationCurve[1],
+    animationDuration: _$YgCalloutTheme.animationDuration[1],
     borderRadius: _$YgCalloutTheme.borderRadius[1],
     closeButtonSpacing: _$YgCalloutTheme.closeButtonSpacing[1],
     criticalCalloutTheme: _$YgCalloutTheme.criticalCalloutTheme[1],
@@ -64,6 +72,8 @@ class YgCalloutTheme extends ThemeExtension<YgCalloutTheme> {
   );
 
   static final YgCalloutTheme professionalLight = YgCalloutTheme(
+    animationCurve: _$YgCalloutTheme.animationCurve[2],
+    animationDuration: _$YgCalloutTheme.animationDuration[2],
     borderRadius: _$YgCalloutTheme.borderRadius[2],
     closeButtonSpacing: _$YgCalloutTheme.closeButtonSpacing[2],
     criticalCalloutTheme: _$YgCalloutTheme.criticalCalloutTheme[2],
@@ -78,6 +88,8 @@ class YgCalloutTheme extends ThemeExtension<YgCalloutTheme> {
   );
 
   static final YgCalloutTheme professionalDark = YgCalloutTheme(
+    animationCurve: _$YgCalloutTheme.animationCurve[3],
+    animationDuration: _$YgCalloutTheme.animationDuration[3],
     borderRadius: _$YgCalloutTheme.borderRadius[3],
     closeButtonSpacing: _$YgCalloutTheme.closeButtonSpacing[3],
     criticalCalloutTheme: _$YgCalloutTheme.criticalCalloutTheme[3],
@@ -100,6 +112,8 @@ class YgCalloutTheme extends ThemeExtension<YgCalloutTheme> {
 
   @override
   YgCalloutTheme copyWith({
+    Curve? animationCurve,
+    Duration? animationDuration,
     BorderRadius? borderRadius,
     double? closeButtonSpacing,
     CriticalCalloutTheme? criticalCalloutTheme,
@@ -113,6 +127,8 @@ class YgCalloutTheme extends ThemeExtension<YgCalloutTheme> {
     WarningCalloutTheme? warningCalloutTheme,
   }) {
     return YgCalloutTheme(
+      animationCurve: animationCurve ?? this.animationCurve,
+      animationDuration: animationDuration ?? this.animationDuration,
       borderRadius: borderRadius ?? this.borderRadius,
       closeButtonSpacing: closeButtonSpacing ?? this.closeButtonSpacing,
       criticalCalloutTheme: criticalCalloutTheme ?? this.criticalCalloutTheme,
@@ -133,6 +149,8 @@ class YgCalloutTheme extends ThemeExtension<YgCalloutTheme> {
       covariant ThemeExtension<YgCalloutTheme>? other, double t) {
     if (other is! YgCalloutTheme) return this as YgCalloutTheme;
     return YgCalloutTheme(
+      animationCurve: t < 0.5 ? animationCurve : other.animationCurve,
+      animationDuration: t < 0.5 ? animationDuration : other.animationDuration,
       borderRadius: t < 0.5 ? borderRadius : other.borderRadius,
       closeButtonSpacing:
           t < 0.5 ? closeButtonSpacing : other.closeButtonSpacing,
@@ -158,6 +176,10 @@ class YgCalloutTheme extends ThemeExtension<YgCalloutTheme> {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is YgCalloutTheme &&
+            const DeepCollectionEquality()
+                .equals(animationCurve, other.animationCurve) &&
+            const DeepCollectionEquality()
+                .equals(animationDuration, other.animationDuration) &&
             const DeepCollectionEquality()
                 .equals(borderRadius, other.borderRadius) &&
             const DeepCollectionEquality()
@@ -185,6 +207,8 @@ class YgCalloutTheme extends ThemeExtension<YgCalloutTheme> {
   int get hashCode {
     return Object.hash(
       runtimeType.hashCode,
+      const DeepCollectionEquality().hash(animationCurve),
+      const DeepCollectionEquality().hash(animationDuration),
       const DeepCollectionEquality().hash(borderRadius),
       const DeepCollectionEquality().hash(closeButtonSpacing),
       const DeepCollectionEquality().hash(criticalCalloutTheme),

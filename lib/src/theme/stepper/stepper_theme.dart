@@ -28,10 +28,31 @@ class _$YgStepperTheme {
     professional_dark.FhTextStyles.sectionHeading3Regular,
   ];
 
-  static const List<EdgeInsets> contentPadding = <EdgeInsets>[
-    EdgeInsets.all(consumer_light.FhDimensions.xs),
-    EdgeInsets.all(consumer_dark.FhDimensions.xs),
-    EdgeInsets.all(professional_light.FhDimensions.xs),
-    EdgeInsets.all(professional_dark.FhDimensions.xs),
+  static const List<Color> textDisabledColor = <Color>[
+    consumer_light.FhColors.textDisabled,
+    consumer_dark.FhColors.textDisabled,
+    professional_light.FhColors.textDisabled,
+    professional_dark.FhColors.textDisabled,
+  ];
+
+  static const List<double> height = <double>[
+    80.0,
+    80.0,
+    80.0,
+    80.0,
+  ];
+
+  static const List<Curve> animationCurve = <Curve>[
+    Curves.easeInOut,
+    Curves.easeInOut,
+    Curves.easeInOut,
+    Curves.easeInOut,
+  ];
+
+  static const List<Duration> animationDuration = <Duration>[
+    Duration(milliseconds: 200),
+    Duration(milliseconds: 200),
+    Duration(milliseconds: 200),
+    Duration(milliseconds: 200),
   ];
 }
