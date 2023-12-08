@@ -3,18 +3,33 @@ import 'package:yggdrasil/src/components/_components.dart';
 import 'package:yggdrasil/src/theme/_theme.dart';
 import 'package:yggdrasil/src/utils/_utils.dart';
 
+part 'yg_icon_badge.dart';
+part 'yg_number_badge.dart';
+
 /// [YgBadge] takes a child widget and overlays it with a badge.
-class YgBadge extends StatelessWidget with StatelessWidgetDebugMixin {
-  const YgBadge({
+abstract base class YgBadge extends StatelessWidget with StatelessWidgetDebugMixin {
+  const factory YgBadge({
+    Key? key,
+    required int amount,
+    required Widget child,
+    YgBadgeWeight weight,
+    Alignment alignment,
+  }) = YgNumberBadge;
+
+  const factory YgBadge.icon({
+    Key? key,
+    required Widget child,
+    required YgIcon icon,
+    YgBadgeWeight weight,
+    Alignment alignment,
+  }) = YgIconBadge;
+
+  const YgBadge._({
     super.key,
-    required this.amount,
     required this.child,
     this.weight = YgBadgeWeight.weak,
     this.alignment = Alignment.topRight,
   });
-
-  /// The amount of items the badge should show.
-  final int amount;
 
   /// The child widget that the badge should show up on.
   final Widget child;
@@ -25,9 +40,6 @@ class YgBadge extends StatelessWidget with StatelessWidgetDebugMixin {
   /// The alignment of the badge relative to the child.
   final Alignment alignment;
 
-  static const double _badgeMinSize = 20.0;
-  static const int _maxBadgeCount = 9;
-
   @override
   Widget build(BuildContext context) {
     final YgBadgeTheme badgeTheme = context.badgeTheme;
@@ -35,35 +47,24 @@ class YgBadge extends StatelessWidget with StatelessWidgetDebugMixin {
     return Stack(
       alignment: alignment,
       children: <Widget>[
-        child,
-        Container(
-          padding: const EdgeInsets.symmetric(
-            horizontal: 5.0,
-            vertical: 2.0,
-          ),
-          decoration: BoxDecoration(
-            color: YgBadgeMapper.getBadgeColor(
-              theme: badgeTheme,
-              weight: weight,
-            ),
-            borderRadius: badgeTheme.borderRadius,
-          ),
-          constraints: const BoxConstraints(
-            minWidth: _badgeMinSize,
-            minHeight: _badgeMinSize,
-          ),
-          child: Center(
-            widthFactor: 1,
-            child: Text(
-              amount > _maxBadgeCount ? '$_maxBadgeCount+' : amount.toString(),
-              style: YgBadgeMapper.getTextStyle(
+        _buildChild(context),
+        IgnorePointer(
+          child: Container(
+            decoration: BoxDecoration(
+              color: YgBadgeMapper.getBadgeColor(
                 theme: badgeTheme,
                 weight: weight,
               ),
+              borderRadius: badgeTheme.borderRadius,
             ),
+            child: _buildBadgeContent(context),
           ),
         ),
       ],
     );
   }
+
+  Widget _buildBadgeContent(BuildContext context);
+
+  Widget _buildChild(BuildContext context) => child;
 }

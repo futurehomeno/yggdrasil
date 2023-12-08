@@ -1,0 +1,4 @@
+enum YgAvatarVariant {
+  person,
+  company,
+}

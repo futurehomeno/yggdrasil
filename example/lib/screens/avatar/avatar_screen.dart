@@ -21,68 +21,75 @@ class AvatarScreen extends StatelessWidget {
       componentName: 'Avatar',
       child: Column(
         children: <Widget>[
-          const YgSection(
+          YgSection(
             title: 'Default Avatars',
             child: Row(
               mainAxisSize: MainAxisSize.min,
               children: <Widget>[
-                YgAvatar(
-                  name: 'User',
+                const YgAvatar(
+                  initials: 'U',
                 ),
-                YgAvatar.company(
-                  name: 'Company',
+                const YgAvatar(
+                  initials: 'C',
+                  variant: YgAvatarVariant.company,
                 ),
-              ],
+              ].withHorizontalSpacing(10),
             ),
           ),
           const YgSection(
             title: 'Avatar with badge',
             subtitle: 'The badge is not supported by the company avatar variant, only by the default one.',
-            child: YgAvatar(
-              name: 'User',
-              badge: YgIcon(
-                YgIcons.access,
+            child: YgBadge.icon(
+              icon: YgIcon(YgIcons.access),
+              child: Padding(
+                padding: EdgeInsets.all(5.0),
+                child: YgAvatar(
+                  initials: 'U',
+                ),
               ),
             ),
           ),
-          const YgSection(
+          YgSection(
             title: 'Sizes',
             child: Row(
               mainAxisAlignment: MainAxisAlignment.center,
               children: <Widget>[
                 Column(
                   children: <Widget>[
-                    YgAvatar(
-                      name: 'User',
+                    const YgAvatar(
+                      initials: 'U',
                       size: YgAvatarSize.large,
                     ),
-                    YgAvatar(
-                      name: 'User',
+                    const YgAvatar(
+                      initials: 'U',
                       size: YgAvatarSize.medium,
                     ),
-                    YgAvatar(
-                      name: 'User',
+                    const YgAvatar(
+                      initials: 'U',
                       size: YgAvatarSize.small,
                     ),
-                  ],
+                  ].withVerticalSpacing(10.0),
                 ),
                 Column(
                   children: <Widget>[
-                    YgAvatar.company(
-                      name: 'Company',
+                    const YgAvatar(
+                      initials: 'C',
+                      variant: YgAvatarVariant.company,
                       size: YgAvatarSize.large,
                     ),
-                    YgAvatar.company(
-                      name: 'Company',
+                    const YgAvatar(
+                      initials: 'C',
+                      variant: YgAvatarVariant.company,
                       size: YgAvatarSize.medium,
                     ),
-                    YgAvatar.company(
-                      name: 'Company',
+                    const YgAvatar(
+                      initials: 'C',
+                      variant: YgAvatarVariant.company,
                       size: YgAvatarSize.small,
                     ),
-                  ],
+                  ].withVerticalSpacing(10.0),
                 ),
-              ],
+              ].withHorizontalSpacing(10),
             ),
           ),
           YgSection(
@@ -91,20 +98,21 @@ class AvatarScreen extends StatelessWidget {
               mainAxisSize: MainAxisSize.min,
               children: <Widget>[
                 YgAvatar(
-                  name: 'User',
+                  initials: 'U',
                   image: Image.asset(
                     'assets/images/example_avatar.png',
                     semanticLabel: 'example_avatar',
                   ),
                 ),
-                YgAvatar.company(
-                  name: 'Company',
+                YgAvatar(
+                  initials: 'C',
+                  variant: YgAvatarVariant.company,
                   image: Image.asset(
                     'assets/images/example_company_avatar.png',
                     semanticLabel: 'example_avatar',
                   ),
                 ),
-              ],
+              ].withHorizontalSpacing(10),
             ),
           ),
           YgSection(
@@ -113,41 +121,40 @@ class AvatarScreen extends StatelessWidget {
               mainAxisSize: MainAxisSize.min,
               children: <Widget>[
                 YgAvatar(
-                  name: 'User',
+                  initials: 'U',
                   onPressed: () {},
                 ),
-                YgAvatar.company(
-                  name: 'Company',
+                YgAvatar(
+                  initials: 'C',
+                  variant: YgAvatarVariant.company,
                   onPressed: () {},
                 ),
-              ],
+              ].withHorizontalSpacing(10),
             ),
           ),
           YgSection(
-            title: 'Avatars with all options',
+            title: 'Clickable Avatar with image',
             child: Row(
               mainAxisSize: MainAxisSize.min,
               children: <Widget>[
                 YgAvatar(
-                  name: 'User',
-                  badge: const YgIcon(
-                    YgIcons.access,
-                  ),
+                  initials: 'U',
                   image: Image.asset(
                     'assets/images/example_avatar.png',
                     semanticLabel: 'example_avatar',
                   ),
                   onPressed: () {},
                 ),
-                YgAvatar.company(
-                  name: 'Company',
+                YgAvatar(
+                  initials: 'C',
+                  variant: YgAvatarVariant.company,
                   image: Image.asset(
                     'assets/images/example_company_avatar.png',
                     semanticLabel: 'example_avatar',
                   ),
                   onPressed: () {},
                 ),
-              ],
+              ].withHorizontalSpacing(10),
             ),
           ),
         ],

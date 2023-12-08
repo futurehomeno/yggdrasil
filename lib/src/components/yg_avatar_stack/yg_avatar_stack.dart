@@ -1,7 +1,6 @@
 import 'dart:math';
 
 import 'package:flutter/material.dart';
-import 'package:yggdrasil/src/components/buttons/yg_avatar_button/_yg_avatar_button.dart';
 import 'package:yggdrasil/src/theme/avatar/avatar_theme.dart';
 import 'package:yggdrasil/src/theme/avatar/extensions/avatar_stack_theme.dart';
 import 'package:yggdrasil/yggdrasil.dart';
@@ -76,10 +75,10 @@ class YgAvatarStack extends StatelessWidget with StatelessWidgetDebugMixin {
       final YgAvatarStackEntry entry = entries[i];
 
       avatars.add(
-        YgAvatarButton(
-          text: _getInitial(entry.name),
+        YgAvatar(
+          initials: _getInitial(entry.name),
           size: YgAvatarSize.small,
-          variant: YgAvatarButtonVariant.person,
+          variant: YgAvatarVariant.person,
           image: entry.image,
         ),
       );
@@ -89,10 +88,10 @@ class YgAvatarStack extends StatelessWidget with StatelessWidgetDebugMixin {
       final int additional = entries.length - (_maxAvatars - 1);
 
       avatars.add(
-        YgAvatarButton(
-          text: additional > _maxAdditional ? '9+' : additional.toString(),
+        YgAvatar(
+          initials: additional > _maxAdditional ? '9+' : additional.toString(),
           size: YgAvatarSize.small,
-          variant: YgAvatarButtonVariant.person,
+          variant: YgAvatarVariant.person,
         ),
       );
     }

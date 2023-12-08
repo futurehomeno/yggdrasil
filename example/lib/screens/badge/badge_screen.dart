@@ -35,22 +35,6 @@ class BadgeScreen extends StatelessWidget {
                   ),
                 ),
                 YgBadge(
-                  amount: 1,
-                  weight: YgBadgeWeight.strong,
-                  child: YgIconButton(
-                    onPressed: () {},
-                    child: const YgIcon(YgIcons.info),
-                  ),
-                ),
-                YgBadge(
-                  amount: 8,
-                  weight: YgBadgeWeight.strong,
-                  child: YgIconButton(
-                    onPressed: () {},
-                    child: const YgIcon(YgIcons.info),
-                  ),
-                ),
-                YgBadge(
                   amount: 9,
                   weight: YgBadgeWeight.strong,
                   child: YgIconButton(
@@ -69,6 +53,17 @@ class BadgeScreen extends StatelessWidget {
               child: YgIconButton(
                 onPressed: () {},
                 child: const YgIcon(YgIcons.info),
+              ),
+            ),
+          ),
+          const YgSection(
+            title: 'Icon badge',
+            child: YgBadge.icon(
+              icon: YgIcon(YgIcons.placeholder),
+              weight: YgBadgeWeight.strong,
+              child: YgAvatar(
+                size: YgAvatarSize.medium,
+                initials: 'W',
               ),
             ),
           ),

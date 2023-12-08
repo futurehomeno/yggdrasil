@@ -11,14 +11,14 @@ class YgAvatarButtonState extends YgButtonBaseState {
     super.hovered,
     super.pressed,
     YgAvatarSize size = YgAvatarSize.medium,
-    YgAvatarButtonVariant variant = YgAvatarButtonVariant.person,
+    YgAvatarVariant variant = YgAvatarVariant.person,
     bool image = false,
   })  : size = YgStateValue<YgAvatarSize>(size),
-        variant = YgStateValue<YgAvatarButtonVariant>(variant),
+        variant = YgStateValue<YgAvatarVariant>(variant),
         image = YgStateValue<bool>(image);
 
   final YgStateValue<YgAvatarSize> size;
-  final YgStateValue<YgAvatarButtonVariant> variant;
+  final YgStateValue<YgAvatarVariant> variant;
   final YgStateValue<bool> image;
 
   @override

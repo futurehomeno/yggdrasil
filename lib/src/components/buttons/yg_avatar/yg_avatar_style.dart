@@ -1,13 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:yggdrasil/src/components/buttons/widgets/_widgets.dart';
+import 'package:yggdrasil/src/components/buttons/yg_avatar/yg_avatar_state.dart';
 import 'package:yggdrasil/src/theme/_theme.dart';
 import 'package:yggdrasil/yggdrasil.dart';
 
-import 'enums/_enums.dart';
-import 'yg_avatar_button_state.dart';
-
-class YgAvatarButtonStyle extends YgButtonBaseStyle<YgAvatarButtonState> {
-  YgAvatarButtonStyle({
+class YgAvatarStyle extends YgButtonBaseStyle<YgAvatarButtonState> {
+  YgAvatarStyle({
     required super.state,
     required super.vsync,
   });
@@ -48,8 +46,8 @@ class YgAvatarButtonStyle extends YgButtonBaseStyle<YgAvatarButtonState> {
   @override
   OutlinedBorder resolveOutlinedBorder(BuildContext context, YgAvatarButtonState state) {
     final BorderRadius borderRadius = switch (state.variant.value) {
-      YgAvatarButtonVariant.person => theme.personAvatarTheme.borderRadius,
-      YgAvatarButtonVariant.company => theme.companyAvatarTheme.borderRadius,
+      YgAvatarVariant.person => theme.personAvatarTheme.borderRadius,
+      YgAvatarVariant.company => theme.companyAvatarTheme.borderRadius,
     };
 
     return RoundedRectangleBorder(

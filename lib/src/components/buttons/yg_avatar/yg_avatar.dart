@@ -1,30 +1,39 @@
 import 'package:flutter/material.dart';
 import 'package:yggdrasil/src/components/buttons/widgets/_widgets.dart';
-import 'package:yggdrasil/src/components/buttons/yg_avatar_button/yg_avatar_button_style.dart';
 import 'package:yggdrasil/src/utils/yg_states/interfaces/yg_vsync.dart';
 import 'package:yggdrasil/yggdrasil.dart';
 
 import 'enums/_enums.dart';
-import 'yg_avatar_button_state.dart';
+import 'yg_avatar_state.dart';
+import 'yg_avatar_style.dart';
 
-class YgAvatarButton extends YgButtonBase<YgAvatarButtonState> {
-  const YgAvatarButton({
+class YgAvatar extends YgButtonBase<YgAvatarButtonState> {
+  const YgAvatar({
     super.key,
-    required this.text,
-    required this.size,
-    required this.variant,
-    this.image,
+    required this.initials,
     super.autofocus,
     super.focusNode,
     super.onFocusChange,
     super.onHover,
     super.onLongPress,
     super.onPressed,
+    this.size = YgAvatarSize.small,
+    this.variant = YgAvatarVariant.person,
+    this.image,
   });
 
+  /// The variant of the avatar.
+  final YgAvatarVariant variant;
+
+  /// The size of the avatar.
   final YgAvatarSize size;
-  final YgAvatarButtonVariant variant;
-  final String text;
+
+  /// The initials shown in the widget.
+  ///
+  /// Should normally only show the first character of the first name.
+  final String initials;
+
+  /// The image shown in the avatar.
   final Widget? image;
 
   @override
@@ -34,7 +43,7 @@ class YgAvatarButton extends YgButtonBase<YgAvatarButtonState> {
     }
 
     return Text(
-      text,
+      initials,
     );
   }
 
@@ -55,7 +64,7 @@ class YgAvatarButton extends YgButtonBase<YgAvatarButtonState> {
 
   @override
   YgButtonBaseStyle<YgAvatarButtonState> createStyle(YgVsync vsync, YgAvatarButtonState state) {
-    return YgAvatarButtonStyle(
+    return YgAvatarStyle(
       state: state,
       vsync: vsync,
     );
