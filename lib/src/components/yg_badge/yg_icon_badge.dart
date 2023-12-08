@@ -13,26 +13,18 @@ final class YgIconBadge extends YgBadge {
   final YgIcon icon;
 
   @override
-  Widget _buildBadgeContent(BuildContext context) {
-    final YgBadgeTheme theme = context.badgeTheme;
-
-    return Padding(
-      padding: theme.iconPadding,
-      child: IconTheme(
-        data: IconTheme.of(context).copyWith(
-          size: theme.iconSize,
-          color: theme.strongIconColor,
+  Widget buildBadgeContent(BuildContext context, YgBadgeStyle style) {
+    return YgAnimatedIconTheme(
+      iconTheme: style.iconColor.map(
+        (Color color) => IconTheme.of(context).copyWith(
+          size: context.badgeTheme.iconSize,
+          color: color,
         ),
-        child: icon,
       ),
+      child: icon,
     );
   }
 
   @override
-  Widget _buildChild(BuildContext context) {
-    return Padding(
-      padding: context.badgeTheme.iconVariantChildPadding,
-      child: child,
-    );
-  }
+  YgBadgeVariant get variant => YgBadgeVariant.icon;
 }

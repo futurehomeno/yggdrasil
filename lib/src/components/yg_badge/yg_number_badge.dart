@@ -15,24 +15,23 @@ final class YgNumberBadge extends YgBadge {
   static const int _maxBadgeCount = 9;
 
   @override
-  Widget _buildBadgeContent(BuildContext context) {
+  Widget buildBadgeContent(BuildContext context, YgBadgeStyle style) {
     final YgBadgeTheme theme = context.badgeTheme;
 
-    return Padding(
-      padding: theme.textPadding,
-      child: ConstrainedBox(
-        constraints: BoxConstraints(
-          minWidth: theme.textMinWidth,
-        ),
+    return ConstrainedBox(
+      constraints: BoxConstraints(
+        minWidth: theme.textMinWidth,
+      ),
+      child: DefaultTextStyleTransition(
+        style: style.textStyle,
         child: Text(
           amount > _maxBadgeCount ? '$_maxBadgeCount+' : amount.toString(),
-          style: YgBadgeMapper.getTextStyle(
-            theme: theme,
-            weight: weight,
-          ),
           textAlign: TextAlign.center,
         ),
       ),
     );
   }
+
+  @override
+  YgBadgeVariant get variant => YgBadgeVariant.number;
 }

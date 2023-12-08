@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:yggdrasil/src/components/_components.dart';
+import 'package:yggdrasil/src/components/yg_badge/enums/yg_badge_variant.dart';
 import 'package:yggdrasil/src/components/yg_badge/yg_badge_state.dart';
 import 'package:yggdrasil/src/components/yg_badge/yg_badge_style.dart';
 import 'package:yggdrasil/src/theme/_theme.dart';
@@ -44,7 +45,7 @@ abstract base class YgBadge extends StatefulWidget with StatefulWidgetDebugMixin
 
   Widget buildBadgeContent(BuildContext context, YgBadgeStyle style);
 
-  Widget buildChild(BuildContext context, YgBadgeStyle style);
+  YgBadgeVariant get variant;
 
   @override
   State<YgBadge> createState() => _YgBadgeState();
@@ -53,6 +54,7 @@ abstract base class YgBadge extends StatefulWidget with StatefulWidgetDebugMixin
 class _YgBadgeState extends StateWithYgStyle<YgBadge, YgBadgeStyle> {
   late final YgBadgeState _state = YgBadgeState(
     weight: widget.weight,
+    variant: widget.variant,
   );
 
   @override
@@ -66,6 +68,7 @@ class _YgBadgeState extends StateWithYgStyle<YgBadge, YgBadgeStyle> {
   @override
   void didUpdateWidget(covariant YgBadge oldWidget) {
     _state.weight.value = widget.weight;
+    _state.variant.value = widget.variant;
     super.didUpdateWidget(oldWidget);
   }
 
@@ -82,21 +85,21 @@ class _YgBadgeState extends StateWithYgStyle<YgBadge, YgBadgeStyle> {
     return Stack(
       alignment: widget.alignment,
       children: <Widget>[
-        widget.buildChild(context, style),
+        YgAnimatedPadding(
+          padding: style.childPadding,
+          child: widget.child,
+        ),
         YgAnimatedContainer(
-          padding: const YgDrivenEdgeInsetsProperty.all(
-            value: EdgeInsets.symmetric(
-              horizontal: 5.0,
-              vertical: 2.0,
-            ),
-          ),
           decoration: style.badgeColor.map(
             (Color color) => BoxDecoration(
               color: color,
               borderRadius: badgeTheme.borderRadius,
             ),
           ),
-          child: widget.buildBadgeContent(context, style),
+          child: YgAnimatedPadding(
+            padding: style.contentPadding,
+            child: widget.buildBadgeContent(context, style),
+          ),
         ),
       ],
     );
