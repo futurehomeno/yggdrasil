@@ -33,4 +33,18 @@ class _$YgCardTheme {
     1.0,
     1.0,
   ];
+
+  static const List<Curve> animationCurve = <Curve>[
+    Curves.easeInOut,
+    Curves.easeInOut,
+    Curves.easeInOut,
+    Curves.easeInOut,
+  ];
+
+  static const List<Duration> animationDuration = <Duration>[
+    Duration(milliseconds: 200),
+    Duration(milliseconds: 200),
+    Duration(milliseconds: 200),
+    Duration(milliseconds: 200),
+  ];
 }

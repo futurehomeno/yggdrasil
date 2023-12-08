@@ -59,4 +59,18 @@ class _$YgBadgeTheme {
     professional_light.FhRadii.xxl,
     professional_dark.FhRadii.xxl,
   ];
+
+  static const List<Curve> animationCurve = <Curve>[
+    Curves.easeInOut,
+    Curves.easeInOut,
+    Curves.easeInOut,
+    Curves.easeInOut,
+  ];
+
+  static const List<Duration> animationDuration = <Duration>[
+    Duration(milliseconds: 200),
+    Duration(milliseconds: 200),
+    Duration(milliseconds: 200),
+    Duration(milliseconds: 200),
+  ];
 }
