@@ -1,3 +1,11 @@
+# 1.8.6 [2023-12-08T13:06:48.355983]
+
+## Changes
+
+- [fix] YgStepper now has a consistent height with and without a metric DEV-2513.
+- [fix] YgWizardHeader title no longer wraps DEV-2514.
+- [improvement] YgStepper now supports a disabled state DEV-2513.
+
 # 1.8.5 [2023-12-06T15:57:06.717309]
 
 ## Changes
