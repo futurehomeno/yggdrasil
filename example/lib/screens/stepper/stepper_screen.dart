@@ -52,6 +52,15 @@ class _StepperScreenState extends State<StepperScreen> {
               metric: 'KwH',
             ),
           ),
+          const YgSection(
+            title: 'Disabled stepper with metric',
+            child: YgStepper(
+              value: 0,
+              onChanged: null,
+              max: 10,
+              metric: 'KwH',
+            ),
+          ),
           YgSection.column(
             title: 'Stepper with custom step size',
             children: <Widget>[
@@ -71,7 +80,7 @@ class _StepperScreenState extends State<StepperScreen> {
                 max: 100,
                 stepSize: 10,
               ),
-            ].withVerticalSpacing(20),
+            ],
           ),
         ],
       ),

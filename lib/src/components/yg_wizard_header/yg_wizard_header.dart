@@ -176,6 +176,8 @@ abstract class _YgWizardHeaderState<W extends YgWizardHeader> extends State<W> w
             child: Text(
               widget.titleBuilder(_currentStep),
               style: theme.titleTextStyle,
+              maxLines: 1,
+              overflow: TextOverflow.ellipsis,
             ),
           ),
         ],
