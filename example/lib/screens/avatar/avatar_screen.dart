@@ -100,7 +100,7 @@ class AvatarScreen extends StatelessWidget {
                 YgAvatar(
                   initials: 'U',
                   image: Image.asset(
-                    'assets/images/example_avatar.png',
+                    'assets/images/example_avatar_1.png',
                     semanticLabel: 'example_avatar',
                   ),
                 ),
@@ -140,7 +140,7 @@ class AvatarScreen extends StatelessWidget {
                 YgAvatar(
                   initials: 'U',
                   image: Image.asset(
-                    'assets/images/example_avatar.png',
+                    'assets/images/example_avatar_1.png',
                     semanticLabel: 'example_avatar',
                   ),
                   onPressed: () {},

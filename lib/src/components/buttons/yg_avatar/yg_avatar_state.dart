@@ -4,8 +4,8 @@ import 'package:yggdrasil/yggdrasil.dart';
 
 import 'enums/_enums.dart';
 
-class YgAvatarButtonState extends YgButtonBaseState {
-  YgAvatarButtonState({
+class YgAvatarState extends YgButtonBaseState {
+  YgAvatarState({
     super.disabled,
     super.focused,
     super.hovered,

@@ -54,8 +54,6 @@ class YgSectionHeader extends StatelessWidget {
               children: <Widget>[
                 YgSectionTitleBar(
                   title: Builder(builder: (BuildContext context) {
-                    print('build ${DefaultTextStyle.of(context).style.color}');
-
                     return Text(
                       title,
                       style: theme.titleTextStyle.copyWith(

@@ -4,14 +4,14 @@ import 'package:yggdrasil/src/components/buttons/yg_avatar/yg_avatar_state.dart'
 import 'package:yggdrasil/src/theme/_theme.dart';
 import 'package:yggdrasil/yggdrasil.dart';
 
-class YgAvatarStyle extends YgButtonBaseStyle<YgAvatarButtonState> {
+class YgAvatarStyle extends YgButtonBaseStyle<YgAvatarState> {
   YgAvatarStyle({
     required super.state,
     required super.vsync,
   });
 
   @override
-  Color resolveColor(BuildContext context, YgAvatarButtonState state) {
+  Color resolveColor(BuildContext context, YgAvatarState state) {
     if (state.image.value) {
       return theme.imageBackgroundColor;
     }
@@ -20,12 +20,12 @@ class YgAvatarStyle extends YgButtonBaseStyle<YgAvatarButtonState> {
   }
 
   @override
-  TextStyle resolveTextStyle(BuildContext context, YgAvatarButtonState state) {
+  TextStyle resolveTextStyle(BuildContext context, YgAvatarState state) {
     return theme.initialsTextStyle;
   }
 
   @override
-  BoxConstraints resolveConstraints(BuildContext context, YgAvatarButtonState state) {
+  BoxConstraints resolveConstraints(BuildContext context, YgAvatarState state) {
     final double diameter = switch (state.size.value) {
       YgAvatarSize.small => theme.diameterSmall,
       YgAvatarSize.medium => theme.diameterMedium,
@@ -39,12 +39,12 @@ class YgAvatarStyle extends YgButtonBaseStyle<YgAvatarButtonState> {
   }
 
   @override
-  Clip resolveClip(BuildContext context, YgAvatarButtonState state) {
+  Clip resolveClip(BuildContext context, YgAvatarState state) {
     return Clip.antiAliasWithSaveLayer;
   }
 
   @override
-  OutlinedBorder resolveOutlinedBorder(BuildContext context, YgAvatarButtonState state) {
+  OutlinedBorder resolveOutlinedBorder(BuildContext context, YgAvatarState state) {
     final BorderRadius borderRadius = switch (state.variant.value) {
       YgAvatarVariant.person => theme.personAvatarTheme.borderRadius,
       YgAvatarVariant.company => theme.companyAvatarTheme.borderRadius,
@@ -57,7 +57,7 @@ class YgAvatarStyle extends YgButtonBaseStyle<YgAvatarButtonState> {
   }
 
   @override
-  Color resolveSplashColor(BuildContext context, YgAvatarButtonState state) {
+  Color resolveSplashColor(BuildContext context, YgAvatarState state) {
     if (state.image.value) {
       return Colors.black.withOpacity(0.08);
     }

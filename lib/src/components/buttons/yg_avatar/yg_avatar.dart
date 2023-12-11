@@ -6,7 +6,7 @@ import 'package:yggdrasil/yggdrasil.dart';
 import 'yg_avatar_state.dart';
 import 'yg_avatar_style.dart';
 
-class YgAvatar extends YgButtonBase<YgAvatarButtonState> with StatefulWidgetDebugMixin {
+class YgAvatar extends YgButtonBase<YgAvatarState> with StatefulWidgetDebugMixin {
   const YgAvatar({
     super.key,
     required this.initials,
@@ -52,8 +52,8 @@ class YgAvatar extends YgButtonBase<YgAvatarButtonState> with StatefulWidgetDebu
   }
 
   @override
-  YgAvatarButtonState createButtonState() {
-    return YgAvatarButtonState(
+  YgAvatarState createButtonState() {
+    return YgAvatarState(
       disabled: disabled,
       image: image != null,
       size: size,
@@ -62,7 +62,7 @@ class YgAvatar extends YgButtonBase<YgAvatarButtonState> with StatefulWidgetDebu
   }
 
   @override
-  YgButtonBaseStyle<YgAvatarButtonState> createStyle(YgVsync vsync, YgAvatarButtonState state) {
+  YgButtonBaseStyle<YgAvatarState> createStyle(YgVsync vsync, YgAvatarState state) {
     return YgAvatarStyle(
       state: state,
       vsync: vsync,
@@ -70,7 +70,7 @@ class YgAvatar extends YgButtonBase<YgAvatarButtonState> with StatefulWidgetDebu
   }
 
   @override
-  void updateState(YgAvatarButtonState state) {
+  void updateState(YgAvatarState state) {
     state.disabled.value = disabled;
     state.image.value = image != null;
     state.size.value = size;
