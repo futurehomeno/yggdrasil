@@ -58,35 +58,25 @@ class YgAvatarStack extends StatelessWidget with StatelessWidgetDebugMixin {
       return avatars;
     }
 
-    int shownAvatars = min(_maxAvatars, entries.length);
+    final int shownEntryCount = min(_maxAvatars, entries.length);
+    final List<YgAvatarStackEntry> shownEntries = entries.sublist(0, shownEntryCount);
 
-    // If there are more avatars than that can be shown the last avatar will be
-    // an indicator of how many additional avatars there should be.
-    if (shownAvatars < entries.length) {
-      shownAvatars--;
+    if (shownEntryCount < entries.length) {
+      const int lastIndex = _maxAvatars - 1;
+      final int additional = entries.length - lastIndex;
+
+      shownEntries[lastIndex] = YgAvatarStackEntry(
+        name: additional > _maxAdditional ? '9+' : additional.toString(),
+      );
     }
 
-    for (int i = 0; i < shownAvatars; i++) {
-      final YgAvatarStackEntry entry = entries[i];
-
+    for (final YgAvatarStackEntry entry in shownEntries) {
       avatars.add(
         YgAvatar(
           initials: _getInitial(entry.name),
           size: YgAvatarSize.small,
           variant: YgAvatarVariant.person,
           image: entry.image,
-        ),
-      );
-    }
-
-    if (entries.length > _maxAvatars) {
-      final int additional = entries.length - (_maxAvatars - 1);
-
-      avatars.add(
-        YgAvatar(
-          initials: additional > _maxAdditional ? '9+' : additional.toString(),
-          size: YgAvatarSize.small,
-          variant: YgAvatarVariant.person,
         ),
       );
     }
