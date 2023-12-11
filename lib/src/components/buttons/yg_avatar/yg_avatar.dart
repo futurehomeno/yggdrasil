@@ -3,11 +3,10 @@ import 'package:yggdrasil/src/components/buttons/widgets/_widgets.dart';
 import 'package:yggdrasil/src/utils/yg_states/interfaces/yg_vsync.dart';
 import 'package:yggdrasil/yggdrasil.dart';
 
-import 'enums/_enums.dart';
 import 'yg_avatar_state.dart';
 import 'yg_avatar_style.dart';
 
-class YgAvatar extends YgButtonBase<YgAvatarButtonState> {
+class YgAvatar extends YgButtonBase<YgAvatarButtonState> with StatefulWidgetDebugMixin {
   const YgAvatar({
     super.key,
     required this.initials,

@@ -13,15 +13,19 @@ class _$YgSectionHeaderTheme {
   static final List<TextStyle> titleTextStyle = <TextStyle>[
     consumer_light.FhTextStyles.sectionHeading2Medium.copyWith(
       height: 1.2,
+      color: consumer_light.FhColors.textDefault,
     ),
     consumer_dark.FhTextStyles.sectionHeading2Medium.copyWith(
       height: 1.2,
+      color: consumer_dark.FhColors.textDefault,
     ),
     professional_light.FhTextStyles.sectionHeading2Medium.copyWith(
       height: 1.2,
+      color: professional_light.FhColors.textDefault,
     ),
     professional_dark.FhTextStyles.sectionHeading2Medium.copyWith(
       height: 1.2,
+      color: professional_dark.FhColors.textDefault,
     ),
   ];
 
