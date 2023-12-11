@@ -2,7 +2,6 @@ import 'dart:math';
 
 import 'package:flutter/material.dart';
 import 'package:yggdrasil/src/theme/avatar/avatar_theme.dart';
-import 'package:yggdrasil/src/theme/avatar/extensions/avatar_stack_theme.dart';
 import 'package:yggdrasil/yggdrasil.dart';
 
 class YgAvatarStack extends StatelessWidget with StatelessWidgetDebugMixin {
@@ -18,38 +17,34 @@ class YgAvatarStack extends StatelessWidget with StatelessWidgetDebugMixin {
 
   @override
   Widget build(BuildContext context) {
+    if (entries.isEmpty) {
+      return const SizedBox();
+    }
+
     final List<Widget> avatars = _buildAvatars();
     final YgAvatarTheme theme = context.avatarTheme;
-    final YgAvatarStackTheme stackTheme = context.avatarTheme.avatarStackTheme;
 
     return LayoutBuilder(
       builder: (BuildContext context, BoxConstraints constraints) {
-        final double maxWidth = constraints.maxWidth;
-        final int avatarCount = avatars.length;
-        final double avatarWidth = theme.diameterSmall;
-        final double negativeOffset = stackTheme.negativeOffset;
-        final double preferredWidth = min(avatarWidth * avatarCount - ((avatarCount - 1) * negativeOffset), maxWidth);
-
-        final double avatarOffset = max(
-          0,
-          (preferredWidth - avatarWidth) / (avatarCount - 1),
-        );
-
-        final List<Widget> positionedAvatars = <Widget>[];
-
-        for (int i = 0; i < avatarCount; i++) {
-          final Widget avatar = avatars[i];
-
-          positionedAvatars.add(
-            Positioned(left: i * avatarOffset, child: avatar),
-          );
-        }
+        final int totalAvatars = avatars.length;
+        final double avatarDiameter = theme.diameterSmall;
+        final double overlapDistance = theme.avatarStackTheme.overlapDistance;
+        final double optimalOffset = avatarDiameter - overlapDistance;
+        final double optimalWidth = (optimalOffset * totalAvatars);
+        final double stackWidth = min(optimalWidth, constraints.maxWidth - overlapDistance);
+        final double actualOffset = max(stackWidth / totalAvatars, 0);
 
         return SizedBox(
-          width: preferredWidth,
-          height: avatarWidth,
+          width: stackWidth + overlapDistance,
+          height: avatarDiameter,
           child: Stack(
-            children: positionedAvatars,
+            children: List<Widget>.generate(
+              totalAvatars,
+              (int index) => Positioned(
+                left: index * actualOffset,
+                child: avatars[index],
+              ),
+            ),
           ),
         );
       },

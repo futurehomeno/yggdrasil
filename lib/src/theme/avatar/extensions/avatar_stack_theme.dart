@@ -9,7 +9,7 @@ part 'avatar_stack_theme.tailor.dart';
 
 @tailorComponent
 class _$YgAvatarStackTheme {
-  static const List<double> negativeOffset = <double>[
+  static const List<double> overlapDistance = <double>[
     consumer_light.FhDimensions.sm,
     consumer_dark.FhDimensions.sm,
     professional_light.FhDimensions.sm,

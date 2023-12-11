@@ -24,12 +24,12 @@ class AvatarStackScreen extends StatelessWidget {
       child: Column(
         children: <Widget>[
           ...List<Widget>.generate(
-            5,
+            6,
             (int index) => YgSection(
-              title: 'An AvatarStack with ${index + 2} entries',
+              title: 'An AvatarStack with ${index + 1} entries',
               child: Center(
                 child: YgAvatarStack(
-                  entries: _getEntries(index + 2),
+                  entries: _getEntries(index + 1),
                 ),
               ),
             ),
@@ -49,7 +49,7 @@ class AvatarStackScreen extends StatelessWidget {
 
   List<YgAvatarStackEntry> _getEntries(int count) {
     final List<YgAvatarStackEntry> entries = <YgAvatarStackEntry>[];
-    final Random random = Random(count);
+    final Random random = Random(count + 1);
     final List<String> avatars = <String>[
       'assets/images/example_avatar_0.png',
       'assets/images/example_avatar_1.png',
@@ -64,12 +64,14 @@ class AvatarStackScreen extends StatelessWidget {
         entries.add(const YgAvatarStackEntry(
           name: 'Person',
         ));
+
+        continue;
       }
 
       entries.add(YgAvatarStackEntry(
         name: 'Person',
         image: Image.asset(
-          avatars.removeAt(random.nextInt(avatars.length)),
+          avatars.removeAt(avatars.length == 1 ? 0 : random.nextInt(avatars.length)),
           semanticLabel: 'example_avatar',
         ),
       ));
