@@ -53,14 +53,10 @@ class YgSectionHeader extends StatelessWidget {
               mainAxisSize: MainAxisSize.min,
               children: <Widget>[
                 YgSectionTitleBar(
-                  title: Builder(builder: (BuildContext context) {
-                    return Text(
-                      title,
-                      style: theme.titleTextStyle.copyWith(
-                        color: DefaultTextStyle.of(context).style.color,
-                      ),
-                    );
-                  }),
+                  title: Text(
+                    title,
+                    style: theme.titleTextStyle,
+                  ),
                   tag: tag,
                   trailing: trailing,
                   minAvailableTagWidth: theme.minAvailableTagWidth,
