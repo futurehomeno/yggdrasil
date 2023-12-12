@@ -35,10 +35,10 @@ class AvatarStackScreen extends StatelessWidget {
             ),
           ),
           YgSection(
-            title: 'An AvatarStack with more than 6 entries',
+            title: 'An AvatarStack with 15 entries',
             child: Center(
               child: YgAvatarStack(
-                entries: _getEntries(10),
+                entries: _getEntries(15),
               ),
             ),
           ),
