@@ -20,7 +20,8 @@ class YgAvatarTheme extends ThemeExtension<YgAvatarTheme> {
     required this.diameterMedium,
     required this.diameterSmall,
     required this.imageBackgroundColor,
-    required this.initialsTextStyle,
+    required this.initialsLargeTextStyle,
+    required this.initialsMediumSmallTextStyle,
     required this.padding,
     required this.personAvatarTheme,
   });
@@ -35,7 +36,8 @@ class YgAvatarTheme extends ThemeExtension<YgAvatarTheme> {
   final double diameterMedium;
   final double diameterSmall;
   final Color imageBackgroundColor;
-  final TextStyle initialsTextStyle;
+  final TextStyle initialsLargeTextStyle;
+  final TextStyle initialsMediumSmallTextStyle;
   final EdgeInsets padding;
   final YgPersonAvatarTheme personAvatarTheme;
 
@@ -50,7 +52,9 @@ class YgAvatarTheme extends ThemeExtension<YgAvatarTheme> {
     diameterMedium: _$YgAvatarTheme.diameterMedium[0],
     diameterSmall: _$YgAvatarTheme.diameterSmall[0],
     imageBackgroundColor: _$YgAvatarTheme.imageBackgroundColor[0],
-    initialsTextStyle: _$YgAvatarTheme.initialsTextStyle[0],
+    initialsLargeTextStyle: _$YgAvatarTheme.initialsLargeTextStyle[0],
+    initialsMediumSmallTextStyle:
+        _$YgAvatarTheme.initialsMediumSmallTextStyle[0],
     padding: _$YgAvatarTheme.padding[0],
     personAvatarTheme: _$YgAvatarTheme.personAvatarTheme[0],
   );
@@ -66,7 +70,9 @@ class YgAvatarTheme extends ThemeExtension<YgAvatarTheme> {
     diameterMedium: _$YgAvatarTheme.diameterMedium[1],
     diameterSmall: _$YgAvatarTheme.diameterSmall[1],
     imageBackgroundColor: _$YgAvatarTheme.imageBackgroundColor[1],
-    initialsTextStyle: _$YgAvatarTheme.initialsTextStyle[1],
+    initialsLargeTextStyle: _$YgAvatarTheme.initialsLargeTextStyle[1],
+    initialsMediumSmallTextStyle:
+        _$YgAvatarTheme.initialsMediumSmallTextStyle[1],
     padding: _$YgAvatarTheme.padding[1],
     personAvatarTheme: _$YgAvatarTheme.personAvatarTheme[1],
   );
@@ -82,7 +88,9 @@ class YgAvatarTheme extends ThemeExtension<YgAvatarTheme> {
     diameterMedium: _$YgAvatarTheme.diameterMedium[2],
     diameterSmall: _$YgAvatarTheme.diameterSmall[2],
     imageBackgroundColor: _$YgAvatarTheme.imageBackgroundColor[2],
-    initialsTextStyle: _$YgAvatarTheme.initialsTextStyle[2],
+    initialsLargeTextStyle: _$YgAvatarTheme.initialsLargeTextStyle[2],
+    initialsMediumSmallTextStyle:
+        _$YgAvatarTheme.initialsMediumSmallTextStyle[2],
     padding: _$YgAvatarTheme.padding[2],
     personAvatarTheme: _$YgAvatarTheme.personAvatarTheme[2],
   );
@@ -98,7 +106,9 @@ class YgAvatarTheme extends ThemeExtension<YgAvatarTheme> {
     diameterMedium: _$YgAvatarTheme.diameterMedium[3],
     diameterSmall: _$YgAvatarTheme.diameterSmall[3],
     imageBackgroundColor: _$YgAvatarTheme.imageBackgroundColor[3],
-    initialsTextStyle: _$YgAvatarTheme.initialsTextStyle[3],
+    initialsLargeTextStyle: _$YgAvatarTheme.initialsLargeTextStyle[3],
+    initialsMediumSmallTextStyle:
+        _$YgAvatarTheme.initialsMediumSmallTextStyle[3],
     padding: _$YgAvatarTheme.padding[3],
     personAvatarTheme: _$YgAvatarTheme.personAvatarTheme[3],
   );
@@ -122,7 +132,8 @@ class YgAvatarTheme extends ThemeExtension<YgAvatarTheme> {
     double? diameterMedium,
     double? diameterSmall,
     Color? imageBackgroundColor,
-    TextStyle? initialsTextStyle,
+    TextStyle? initialsLargeTextStyle,
+    TextStyle? initialsMediumSmallTextStyle,
     EdgeInsets? padding,
     YgPersonAvatarTheme? personAvatarTheme,
   }) {
@@ -137,7 +148,10 @@ class YgAvatarTheme extends ThemeExtension<YgAvatarTheme> {
       diameterMedium: diameterMedium ?? this.diameterMedium,
       diameterSmall: diameterSmall ?? this.diameterSmall,
       imageBackgroundColor: imageBackgroundColor ?? this.imageBackgroundColor,
-      initialsTextStyle: initialsTextStyle ?? this.initialsTextStyle,
+      initialsLargeTextStyle:
+          initialsLargeTextStyle ?? this.initialsLargeTextStyle,
+      initialsMediumSmallTextStyle:
+          initialsMediumSmallTextStyle ?? this.initialsMediumSmallTextStyle,
       padding: padding ?? this.padding,
       personAvatarTheme: personAvatarTheme ?? this.personAvatarTheme,
     );
@@ -160,8 +174,10 @@ class YgAvatarTheme extends ThemeExtension<YgAvatarTheme> {
       diameterSmall: t < 0.5 ? diameterSmall : other.diameterSmall,
       imageBackgroundColor:
           Color.lerp(imageBackgroundColor, other.imageBackgroundColor, t)!,
-      initialsTextStyle:
-          TextStyle.lerp(initialsTextStyle, other.initialsTextStyle, t)!,
+      initialsLargeTextStyle: TextStyle.lerp(
+          initialsLargeTextStyle, other.initialsLargeTextStyle, t)!,
+      initialsMediumSmallTextStyle: TextStyle.lerp(
+          initialsMediumSmallTextStyle, other.initialsMediumSmallTextStyle, t)!,
       padding: t < 0.5 ? padding : other.padding,
       personAvatarTheme: personAvatarTheme.lerp(other.personAvatarTheme, t)
           as YgPersonAvatarTheme,
@@ -194,7 +210,9 @@ class YgAvatarTheme extends ThemeExtension<YgAvatarTheme> {
             const DeepCollectionEquality()
                 .equals(imageBackgroundColor, other.imageBackgroundColor) &&
             const DeepCollectionEquality()
-                .equals(initialsTextStyle, other.initialsTextStyle) &&
+                .equals(initialsLargeTextStyle, other.initialsLargeTextStyle) &&
+            const DeepCollectionEquality().equals(initialsMediumSmallTextStyle,
+                other.initialsMediumSmallTextStyle) &&
             const DeepCollectionEquality().equals(padding, other.padding) &&
             const DeepCollectionEquality()
                 .equals(personAvatarTheme, other.personAvatarTheme));
@@ -214,7 +232,8 @@ class YgAvatarTheme extends ThemeExtension<YgAvatarTheme> {
       const DeepCollectionEquality().hash(diameterMedium),
       const DeepCollectionEquality().hash(diameterSmall),
       const DeepCollectionEquality().hash(imageBackgroundColor),
-      const DeepCollectionEquality().hash(initialsTextStyle),
+      const DeepCollectionEquality().hash(initialsLargeTextStyle),
+      const DeepCollectionEquality().hash(initialsMediumSmallTextStyle),
       const DeepCollectionEquality().hash(padding),
       const DeepCollectionEquality().hash(personAvatarTheme),
     );

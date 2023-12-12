@@ -21,7 +21,13 @@ class YgAvatarStyle extends YgButtonBaseStyle<YgAvatarState> {
 
   @override
   TextStyle resolveTextStyle(BuildContext context, YgAvatarState state) {
-    return theme.initialsTextStyle;
+    switch (state.size.value) {
+      case YgAvatarSize.large:
+        return theme.initialsLargeTextStyle;
+      case YgAvatarSize.medium:
+      case YgAvatarSize.small:
+        return theme.initialsMediumSmallTextStyle;
+    }
   }
 
   @override

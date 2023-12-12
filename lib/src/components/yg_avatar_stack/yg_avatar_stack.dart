@@ -32,17 +32,26 @@ class YgAvatarStack extends StatelessWidget with StatelessWidgetDebugMixin {
 
     return LayoutBuilder(
       builder: (BuildContext context, BoxConstraints constraints) {
-        final int totalAvatars = avatars.length;
         final double avatarDiameter = theme.diameterSmall;
+        final double maxStackWidth = constraints.maxWidth;
+
+        if (avatars.length == 1) {
+          return SizedBox.square(
+            dimension: min(maxStackWidth, avatarDiameter),
+            child: avatars.first,
+          );
+        }
+
+        final int totalAvatars = avatars.length;
         final double overlapDistance = theme.avatarStackTheme.overlapDistance;
         final double optimalOffset = avatarDiameter - overlapDistance;
-        final double optimalWidth = (optimalOffset * totalAvatars);
-        final double stackWidth = min(optimalWidth, constraints.maxWidth - overlapDistance);
-        final double actualOffset = max(stackWidth / totalAvatars, 0);
+        final double optimalWidth = (optimalOffset * totalAvatars) + overlapDistance;
+        final double stackWidth = min(optimalWidth, constraints.maxWidth);
+        final double actualOffset = (stackWidth - avatarDiameter) / (totalAvatars - 1);
 
         return SizedBox(
-          width: stackWidth + overlapDistance,
-          height: avatarDiameter,
+          width: stackWidth,
+          height: min(avatarDiameter, stackWidth),
           child: Stack(
             children: List<Widget>.generate(
               totalAvatars,

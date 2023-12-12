@@ -41,17 +41,32 @@ class _$YgAvatarTheme {
     EdgeInsets.all(professional_dark.FhDimensions.xxs),
   ];
 
-  static final List<TextStyle> initialsTextStyle = <TextStyle>[
-    consumer_light.FhTextStyles.pageHeading3Medium.copyWith(
+  static final List<TextStyle> initialsMediumSmallTextStyle = <TextStyle>[
+    consumer_light.FhTextStyles.sectionHeading3Medium.copyWith(
       color: consumer_light.FhColors.textInverse,
     ),
-    consumer_dark.FhTextStyles.pageHeading3Medium.copyWith(
+    consumer_dark.FhTextStyles.sectionHeading3Medium.copyWith(
       color: consumer_dark.FhColors.textInverse,
     ),
-    professional_light.FhTextStyles.pageHeading3Medium.copyWith(
+    professional_light.FhTextStyles.sectionHeading3Medium.copyWith(
       color: professional_light.FhColors.textInverse,
     ),
-    professional_dark.FhTextStyles.pageHeading3Medium.copyWith(
+    professional_dark.FhTextStyles.sectionHeading3Medium.copyWith(
+      color: professional_dark.FhColors.textInverse,
+    ),
+  ];
+
+  static final List<TextStyle> initialsLargeTextStyle = <TextStyle>[
+    consumer_light.FhTextStyles.sectionHeading2Medium.copyWith(
+      color: consumer_light.FhColors.textInverse,
+    ),
+    consumer_dark.FhTextStyles.sectionHeading2Medium.copyWith(
+      color: consumer_dark.FhColors.textInverse,
+    ),
+    professional_light.FhTextStyles.sectionHeading2Medium.copyWith(
+      color: professional_light.FhColors.textInverse,
+    ),
+    professional_dark.FhTextStyles.sectionHeading2Medium.copyWith(
       color: professional_dark.FhColors.textInverse,
     ),
   ];

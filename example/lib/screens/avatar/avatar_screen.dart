@@ -41,11 +41,9 @@ class AvatarScreen extends StatelessWidget {
             subtitle: 'The badge is not supported by the company avatar variant, only by the default one.',
             child: YgBadge.icon(
               icon: YgIcon(YgIcons.access),
-              child: Padding(
-                padding: EdgeInsets.all(5.0),
-                child: YgAvatar(
-                  initials: 'U',
-                ),
+              child: YgAvatar(
+                initials: 'U',
+                size: YgAvatarSize.medium,
               ),
             ),
           ),
