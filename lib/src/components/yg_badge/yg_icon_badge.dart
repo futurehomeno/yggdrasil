@@ -15,12 +15,7 @@ final class YgIconBadge extends YgBadge {
   @override
   Widget buildBadgeContent(BuildContext context, YgBadgeStyle style) {
     return YgAnimatedIconTheme(
-      iconTheme: style.iconColor.map(
-        (Color color) => IconTheme.of(context).copyWith(
-          size: context.badgeTheme.iconSize,
-          color: color,
-        ),
-      ),
+      iconTheme: style.iconTheme,
       child: icon,
     );
   }

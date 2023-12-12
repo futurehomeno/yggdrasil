@@ -12,7 +12,7 @@ class YgBadgeStyle extends YgStyleWithDefaults<YgBadgeState> {
     required super.vsync,
   });
 
-  late final YgAnimatedColorProperty iconColor;
+  late final YgAnimatedIconThemeDataProperty iconTheme;
   late final YgAnimatedColorProperty badgeColor;
   late final YgAnimatedTextStyleProperty textStyle;
   late final YgAnimatedEdgeInsetsProperty contentPadding;
@@ -20,7 +20,7 @@ class YgBadgeStyle extends YgStyleWithDefaults<YgBadgeState> {
 
   @override
   void init() {
-    iconColor = animate(YgColorProperty<YgBadgeState>.resolveWith(_resolveIconColor));
+    iconTheme = animate(YgIconThemeDataProperty<YgBadgeState>.resolveWith(_resolveIconThemeData));
     badgeColor = animate(YgColorProperty<YgBadgeState>.resolveWith(_resolveBadgeColor));
     textStyle = animate(YgTextStyleProperty<YgBadgeState>.resolveWith(_resolveTextStyle));
     contentPadding = animate(YgEdgeInsetsProperty<YgBadgeState>.resolveWith(_resolveContentPadding));
@@ -45,13 +45,14 @@ class YgBadgeStyle extends YgStyleWithDefaults<YgBadgeState> {
     }
   }
 
-  Color _resolveIconColor(BuildContext context, YgBadgeState state) {
-    switch (state.weight.value) {
-      case YgBadgeWeight.weak:
-        return _theme.weakIconColor;
-      case YgBadgeWeight.strong:
-        return _theme.strongIconColor;
-    }
+  IconThemeData _resolveIconThemeData(BuildContext context, YgBadgeState state) {
+    return IconThemeData(
+      size: _theme.iconSize,
+      color: switch (state.weight.value) {
+        YgBadgeWeight.weak => _theme.weakIconColor,
+        YgBadgeWeight.strong => _theme.strongIconColor,
+      },
+    );
   }
 
   Color _resolveBadgeColor(BuildContext context, YgBadgeState state) {
