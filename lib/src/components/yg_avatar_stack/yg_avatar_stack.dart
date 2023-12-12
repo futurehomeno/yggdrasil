@@ -4,12 +4,18 @@ import 'package:flutter/material.dart';
 import 'package:yggdrasil/src/theme/avatar/avatar_theme.dart';
 import 'package:yggdrasil/yggdrasil.dart';
 
+/// The implementation of the Yggdrasil Avatar Stack.
 class YgAvatarStack extends StatelessWidget with StatelessWidgetDebugMixin {
   const YgAvatarStack({
     super.key,
     required this.entries,
   });
 
+  /// Entries shown in the avatar stack as avatars.
+  ///
+  /// When there are more entries than the [_maxAvatars], the last visible entry
+  /// will be replaced with a entry that shows the amount of hidden avatar
+  /// entries.
   final List<YgAvatarStackEntry> entries;
 
   static const int _maxAvatars = 6;
@@ -66,14 +72,14 @@ class YgAvatarStack extends StatelessWidget with StatelessWidgetDebugMixin {
       final int additional = entries.length - lastIndex;
 
       shownEntries[lastIndex] = YgAvatarStackEntry(
-        name: additional > _maxAdditional ? '9+' : additional.toString(),
+        initials: additional > _maxAdditional ? '9+' : additional.toString(),
       );
     }
 
     for (final YgAvatarStackEntry entry in shownEntries) {
       avatars.add(
         YgAvatar(
-          initials: _getInitial(entry.name),
+          initials: entry.initials,
           size: YgAvatarSize.small,
           variant: YgAvatarVariant.person,
           image: entry.image,
@@ -82,9 +88,5 @@ class YgAvatarStack extends StatelessWidget with StatelessWidgetDebugMixin {
     }
 
     return avatars;
-  }
-
-  String _getInitial(String name) {
-    return name.isEmpty ? '?' : name[0].toUpperCase();
   }
 }

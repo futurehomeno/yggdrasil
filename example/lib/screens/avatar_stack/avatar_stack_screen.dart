@@ -35,7 +35,7 @@ class AvatarStackScreen extends StatelessWidget {
             ),
           ),
           YgSection(
-            title: 'An AvatarStack more than 6 entries',
+            title: 'An AvatarStack with more than 6 entries',
             child: Center(
               child: YgAvatarStack(
                 entries: _getEntries(10),
@@ -60,16 +60,20 @@ class AvatarStackScreen extends StatelessWidget {
     ];
 
     for (int i = 0; i < count; i++) {
+      final String initials = String.fromCharCode(65 + (i % 26));
+
       if (avatars.isEmpty) {
-        entries.add(const YgAvatarStackEntry(
-          name: 'Person',
-        ));
+        entries.add(
+          YgAvatarStackEntry(
+            initials: initials,
+          ),
+        );
 
         continue;
       }
 
       entries.add(YgAvatarStackEntry(
-        name: 'Person',
+        initials: initials,
         image: Image.asset(
           avatars.removeAt(avatars.length == 1 ? 0 : random.nextInt(avatars.length)),
           semanticLabel: 'example_avatar',
