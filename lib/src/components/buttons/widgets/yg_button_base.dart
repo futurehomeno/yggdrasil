@@ -60,6 +60,7 @@ abstract class YgButtonBase<T extends YgButtonBaseState> extends StatefulWidget 
   /// Builds an optional background.
   ///
   /// Gets rendered behind the button content, but in front of the background color.
+  @protected
   Widget? buildBackground(BuildContext context) => null;
 
   /// Builds a wrapper for the button.
