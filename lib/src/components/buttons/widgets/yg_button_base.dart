@@ -3,7 +3,7 @@ import 'package:yggdrasil/src/utils/_utils.dart';
 
 import '_widgets.dart';
 
-abstract class YgButtonBase<T extends YgButtonBaseState> extends StatefulWidget {
+abstract class YgButtonBase<T extends YgButtonBaseState> extends StatefulWidget implements StatefulWidgetDebugMixin {
   const YgButtonBase({
     super.key,
     required this.onPressed,
@@ -32,6 +32,7 @@ abstract class YgButtonBase<T extends YgButtonBaseState> extends StatefulWidget 
   /// Whether the button should focus on first build.
   final bool autofocus;
 
+  @override
   YgDebugType get debugType {
     if (disabled) {
       return YgDebugType.other;
