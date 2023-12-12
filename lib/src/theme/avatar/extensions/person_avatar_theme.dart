@@ -9,39 +9,6 @@ part 'person_avatar_theme.tailor.dart';
 
 @tailorComponent
 class _$YgPersonAvatarTheme {
-  static const List<EdgeInsets> badgePadding = <EdgeInsets>[
-    EdgeInsets.all(consumer_light.FhDimensions.xxs),
-    EdgeInsets.all(consumer_dark.FhDimensions.xxs),
-    EdgeInsets.all(professional_light.FhDimensions.xxs),
-    EdgeInsets.all(professional_dark.FhDimensions.xxs),
-  ];
-
-  static const List<Color> badgeColor = <Color>[
-    consumer_light.FhColors.backgroundHighlightWeak,
-    consumer_dark.FhColors.backgroundHighlightWeak,
-    professional_light.FhColors.backgroundHighlightWeak,
-    professional_dark.FhColors.backgroundHighlightWeak,
-  ];
-
-  static const List<Border> badgeBorder = <Border>[
-    Border.fromBorderSide(BorderSide(
-      color: consumer_light.FhColors.borderDefault,
-      strokeAlign: BorderSide.strokeAlignCenter,
-    )),
-    Border.fromBorderSide(BorderSide(
-      color: consumer_dark.FhColors.borderDefault,
-      strokeAlign: BorderSide.strokeAlignCenter,
-    )),
-    Border.fromBorderSide(BorderSide(
-      color: professional_light.FhColors.borderDefault,
-      strokeAlign: BorderSide.strokeAlignCenter,
-    )),
-    Border.fromBorderSide(BorderSide(
-      color: professional_dark.FhColors.borderDefault,
-      strokeAlign: BorderSide.strokeAlignCenter,
-    )),
-  ];
-
   static const List<BorderRadius> borderRadius = <BorderRadius>[
     consumer_light.FhRadii.xxl,
     consumer_dark.FhRadii.xxl,
