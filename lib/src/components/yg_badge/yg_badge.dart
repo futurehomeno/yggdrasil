@@ -89,10 +89,8 @@ class _YgBadgeState extends StateWithYgStyle<YgBadge, YgBadgeStyle> {
         ),
         YgAnimatedContainer(
           decoration: style.badgeDecoration,
-          child: YgAnimatedPadding(
-            padding: style.contentPadding,
-            child: widget.buildBadgeContent(context, style),
-          ),
+          padding: style.contentPadding,
+          child: widget.buildBadgeContent(context, style),
         ),
       ],
     );
