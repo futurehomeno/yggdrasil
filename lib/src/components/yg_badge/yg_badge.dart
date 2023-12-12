@@ -80,8 +80,6 @@ class _YgBadgeState extends StateWithYgStyle<YgBadge, YgBadgeStyle> {
 
   @override
   Widget build(BuildContext context) {
-    final YgBadgeTheme badgeTheme = context.badgeTheme;
-
     return Stack(
       alignment: widget.alignment,
       children: <Widget>[
@@ -90,12 +88,7 @@ class _YgBadgeState extends StateWithYgStyle<YgBadge, YgBadgeStyle> {
           child: widget.child,
         ),
         YgAnimatedContainer(
-          decoration: style.badgeColor.map(
-            (Color color) => BoxDecoration(
-              color: color,
-              borderRadius: badgeTheme.borderRadius,
-            ),
-          ),
+          decoration: style.badgeDecoration,
           child: YgAnimatedPadding(
             padding: style.contentPadding,
             child: widget.buildBadgeContent(context, style),
