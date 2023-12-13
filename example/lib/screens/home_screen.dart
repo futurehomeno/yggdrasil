@@ -24,7 +24,7 @@ class HomeScreen extends StatelessWidget {
       length: 2,
       child: Consumer<YgAppState>(builder: (BuildContext context, YgAppState ygAppState, Widget? child) {
         return DemoScreen(
-          componentName: 'Yggdrasil - ${ygAppState.version}',
+          componentName: 'Yggdrasil v${ygAppState.version}',
           bottom: const YgTabBar(
             tabs: <YgTab>[
               YgTab(label: 'Components'),
