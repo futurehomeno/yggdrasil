@@ -123,12 +123,18 @@ class _YgStepperState extends StateWithYgStyle<YgStepper, YgStepperStyle> {
               children: <Widget>[
                 DefaultTextStyleTransition(
                   style: style.valueStyle,
-                  child: Text(valueString),
+                  child: Text(
+                    valueString,
+                    overflow: TextOverflow.ellipsis,
+                  ),
                 ),
                 if (metric != null)
                   DefaultTextStyleTransition(
                     style: style.metricStyle,
-                    child: Text(metric),
+                    child: Text(
+                      metric,
+                      overflow: TextOverflow.ellipsis,
+                    ),
                   ),
               ],
             ),
