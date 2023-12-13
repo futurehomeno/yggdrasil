@@ -9,7 +9,7 @@ final class YgIconBadge extends YgBadge {
     super.weight,
   }) : super._();
 
-  /// The amount of items the badge should show.
+  /// The icon shown in the badge.
   final YgIcon icon;
 
   @override

@@ -6,7 +6,10 @@ import 'package:yggdrasil/yggdrasil.dart';
 import 'yg_avatar_state.dart';
 import 'yg_avatar_style.dart';
 
-/// Implementation of the Yggdrasil Avatar.
+/// An avatar usually representing a user or a company.
+///
+/// Typically used with a user's profile image, or the user's initials.
+/// If [image] is passed, [initials] are not shown.
 class YgAvatar extends YgButtonBase<YgAvatarState> {
   const YgAvatar({
     super.key,

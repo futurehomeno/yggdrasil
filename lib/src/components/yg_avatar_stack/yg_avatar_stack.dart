@@ -4,7 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:yggdrasil/src/theme/avatar/avatar_theme.dart';
 import 'package:yggdrasil/yggdrasil.dart';
 
-/// The implementation of the Yggdrasil Avatar Stack.
+/// A horizontal stack of [YgAvatar]s overlapping one another.
 class YgAvatarStack extends StatelessWidget with StatelessWidgetDebugMixin {
   const YgAvatarStack({
     super.key,

@@ -23,11 +23,12 @@ class AvatarScreen extends StatelessWidget {
         children: <Widget>[
           YgSection(
             title: 'Default Avatars',
+            subtitle: 'Supported variants are person and company.',
             child: Row(
               mainAxisSize: MainAxisSize.min,
               children: <Widget>[
                 const YgAvatar(
-                  initials: 'U',
+                  initials: 'P',
                 ),
                 const YgAvatar(
                   initials: 'C',
@@ -38,11 +39,11 @@ class AvatarScreen extends StatelessWidget {
           ),
           const YgSection(
             title: 'Avatar with badge',
-            subtitle: 'The badge is not supported by the company avatar variant, only by the default one.',
+            subtitle: 'The badge is only supported by the person variant.',
             child: YgBadge.icon(
               icon: YgIcon(YgIcons.access),
               child: YgAvatar(
-                initials: 'U',
+                initials: 'P',
                 size: YgAvatarSize.medium,
               ),
             ),
@@ -55,15 +56,15 @@ class AvatarScreen extends StatelessWidget {
                 Column(
                   children: <Widget>[
                     const YgAvatar(
-                      initials: 'U',
+                      initials: 'P',
                       size: YgAvatarSize.large,
                     ),
                     const YgAvatar(
-                      initials: 'U',
+                      initials: 'P',
                       size: YgAvatarSize.medium,
                     ),
                     const YgAvatar(
-                      initials: 'U',
+                      initials: 'P',
                       size: YgAvatarSize.small,
                     ),
                   ].withVerticalSpacing(10.0),
@@ -96,7 +97,7 @@ class AvatarScreen extends StatelessWidget {
               mainAxisSize: MainAxisSize.min,
               children: <Widget>[
                 YgAvatar(
-                  initials: 'U',
+                  initials: 'P',
                   image: Image.asset(
                     'assets/images/example_avatar_1.png',
                     semanticLabel: 'example_avatar',
@@ -119,7 +120,7 @@ class AvatarScreen extends StatelessWidget {
               mainAxisSize: MainAxisSize.min,
               children: <Widget>[
                 YgAvatar(
-                  initials: 'U',
+                  initials: 'P',
                   onPressed: () {},
                 ),
                 YgAvatar(
@@ -136,7 +137,7 @@ class AvatarScreen extends StatelessWidget {
               mainAxisSize: MainAxisSize.min,
               children: <Widget>[
                 YgAvatar(
-                  initials: 'U',
+                  initials: 'P',
                   image: Image.asset(
                     'assets/images/example_avatar_1.png',
                     semanticLabel: 'example_avatar',
