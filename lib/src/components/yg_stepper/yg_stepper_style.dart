@@ -20,23 +20,23 @@ class YgStepperStyle extends YgStyleWithDefaults<YgStepperState> {
   }
 
   TextStyle _resolveMetricStyle(BuildContext context, YgStepperState state) {
-    if (state.disabled.value) {
-      return _theme.metricTextStyle.copyWith(
-        color: _theme.textDisabledColor,
-      );
-    }
-
-    return _theme.metricTextStyle;
+    return _theme.metricTextStyle.copyWith(
+      color: _resolveTextColor(state),
+    );
   }
 
   TextStyle _resolveValueStyle(BuildContext context, YgStepperState state) {
+    return _theme.valueTextStyle.copyWith(
+      color: _resolveTextColor(state),
+    );
+  }
+
+  Color _resolveTextColor(YgStepperState state) {
     if (state.disabled.value) {
-      return _theme.valueTextStyle.copyWith(
-        color: _theme.textDisabledColor,
-      );
+      return _theme.textDisabledColor;
     }
 
-    return _theme.valueTextStyle;
+    return _theme.textDefaultColor;
   }
 
   YgStepperTheme get _theme => context.stepperTheme;
