@@ -19,8 +19,6 @@ class TagScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return DemoScreen(
       componentName: 'Tag',
-      componentDesc: 'Tags',
-      supernovaLink: 'Link',
       child: Column(
         children: <Widget>[
           YgSection.column(
@@ -47,7 +45,7 @@ class TagScreen extends StatelessWidget {
               ),
             ].withVerticalSpacing(10.0),
           ),
-          YgSection.base(
+          YgSection(
             title: 'Sizes',
             child: Row(
               mainAxisSize: MainAxisSize.min,
@@ -66,35 +64,35 @@ class TagScreen extends StatelessWidget {
           YgSection.column(
             title: 'With icons',
             children: <Widget>[
-              YgTag.leadingIcon(
-                icon: const YgIcon(YgIcons.info),
-                child: const Text('Leading icon'),
+              const YgTag.leadingIcon(
+                icon: YgIcons.info,
+                child: Text('Leading icon'),
               ),
-              YgTag.trailingIcon(
-                icon: const YgIcon(YgIcons.info),
-                child: const Text('Trailing icon'),
+              const YgTag.trailingIcon(
+                icon: YgIcons.info,
+                child: Text('Trailing icon'),
               ),
-              YgTag.doubleIcon(
-                leadingIcon: const YgIcon(YgIcons.info),
-                trailingIcon: const YgIcon(YgIcons.info),
-                child: const Text('Double icon'),
+              const YgTag.doubleIcon(
+                leadingIcon: YgIcon(YgIcons.info),
+                trailingIcon: YgIcon(YgIcons.info),
+                child: Text('Double icon'),
               ),
             ].withVerticalSpacing(10.0),
           ),
-          YgSection.base(
+          YgSection(
             title: 'Clickable',
             child: Row(
               mainAxisSize: MainAxisSize.min,
               children: <Widget>[
                 YgTag.leadingIcon(
-                  icon: const YgIcon(YgIcons.info),
-                  onPressed: () {},
+                  icon: YgIcons.info,
                   child: const Text('Click me!'),
+                  onPressed: () {},
                 ),
-                YgTag.leadingIcon(
-                  icon: const YgIcon(YgIcons.info),
+                const YgTag.leadingIcon(
+                  icon: YgIcons.info,
                   onPressed: null,
-                  child: const Text('Disabled'),
+                  child: Text('Disabled'),
                 ),
               ].withHorizontalSpacing(10.0),
             ),
@@ -102,34 +100,34 @@ class TagScreen extends StatelessWidget {
           YgSection.column(
             title: 'Weights',
             children: <Widget>[
-              YgTag.leadingIcon(
-                icon: const YgIcon(YgIcons.info),
+              const YgTag.leadingIcon(
+                icon: YgIcons.info,
                 weight: YgTagWeight.strong,
-                child: const Text('Neutral strong'),
+                child: Text('Neutral strong'),
               ),
-              YgTag.leadingIcon(
-                icon: const YgIcon(YgIcons.info),
+              const YgTag.leadingIcon(
+                icon: YgIcons.info,
                 variant: YgTagVariant.informative,
                 weight: YgTagWeight.strong,
-                child: const Text('Informative strong'),
+                child: Text('Informative strong'),
               ),
-              YgTag.leadingIcon(
-                icon: const YgIcon(YgIcons.info),
+              const YgTag.leadingIcon(
+                icon: YgIcons.info,
                 variant: YgTagVariant.positive,
                 weight: YgTagWeight.strong,
-                child: const Text('Positive strong'),
+                child: Text('Positive strong'),
               ),
-              YgTag.leadingIcon(
-                icon: const YgIcon(YgIcons.info),
+              const YgTag.leadingIcon(
+                icon: YgIcons.info,
                 variant: YgTagVariant.warning,
                 weight: YgTagWeight.strong,
-                child: const Text('Warning strong'),
+                child: Text('Warning strong'),
               ),
-              YgTag.leadingIcon(
-                icon: const YgIcon(YgIcons.info),
+              const YgTag.leadingIcon(
+                icon: YgIcons.info,
                 variant: YgTagVariant.negative,
                 weight: YgTagWeight.strong,
-                child: const Text('Negative strong'),
+                child: Text('Negative strong'),
               ),
             ].withVerticalSpacing(10.0),
           ),

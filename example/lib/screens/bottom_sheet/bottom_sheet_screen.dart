@@ -26,11 +26,9 @@ class _BottomSheetScreenState extends State<BottomSheetScreen> with TickerProvid
   Widget build(BuildContext context) {
     return DemoScreen(
       componentName: 'BottomSheet',
-      componentDesc: 'Bottom sheets',
-      supernovaLink: 'Link',
       child: Column(
         children: <Widget>[
-          YgSection.base(
+          YgSection(
             title: 'Default bottom sheet',
             child: YgButton(
               variant: YgButtonVariant.primary,
@@ -40,7 +38,7 @@ class _BottomSheetScreenState extends State<BottomSheetScreen> with TickerProvid
               child: const Text('Show'),
             ),
           ),
-          YgSection.base(
+          YgSection(
             title: 'Scrollable bottom sheet',
             child: YgButton(
               variant: YgButtonVariant.primary,
@@ -50,7 +48,7 @@ class _BottomSheetScreenState extends State<BottomSheetScreen> with TickerProvid
               child: const Text('Show'),
             ),
           ),
-          YgSection.base(
+          YgSection(
             title: 'Bottom sheet w/o footer',
             child: YgButton(
               variant: YgButtonVariant.primary,

@@ -1,50 +1,114 @@
-import 'package:flutter/cupertino.dart';
-import 'package:yggdrasil/src/components/yg_radio/properties/_properties.dart';
-import 'package:yggdrasil/src/theme/_theme.dart';
+import 'package:flutter/material.dart';
+import 'package:yggdrasil/src/theme/radio/radio_theme.dart';
+import 'package:yggdrasil/src/utils/_utils.dart';
+import 'package:yggdrasil/yggdrasil.dart';
 
-class YgRadioStyle {
-  const YgRadioStyle({
-    required this.backgroundColor,
-    required this.handleSize,
-    required this.handleColor,
-    required this.helperHandleSize,
-    required this.mouseCursor,
+import 'yg_radio_state.dart';
+
+class YgRadioStyle extends YgStyleWithDefaults<YgRadioState> {
+  YgRadioStyle({
+    required super.state,
+    required super.vsync,
   });
 
-  factory YgRadioStyle.base(BuildContext context) {
-    return YgRadioStyle(
-      backgroundColor: YgRadioBackgroundColorProperty(
-        selected: context.radioTheme.selectedBackgroundColor,
-        selectedHovered: context.radioTheme.selectedHoveredBackgroundColor,
-        selectedDisabled: context.radioTheme.selectedDisabledBackgroundColor,
-        deselected: context.radioTheme.deselectedBackgroundColor,
-        deselectedHovered: context.radioTheme.deselectedHoveredBackgroundColor,
-        deselectedDisabled: context.radioTheme.deselectedDisabledBackgroundColor,
-      ),
-      handleSize: YgRadioHandleSizeProperty(
-        selected: context.radioTheme.selectedHandleSize,
-        deselected: context.radioTheme.deselectedHandleSize,
-        disabled: context.radioTheme.deselectedHandleSize,
-      ),
-      handleColor: YgRadioHandleColorProperty(
-        selected: context.radioTheme.selectedHandleColor,
-        deselected: context.radioTheme.deselectedHandleColor,
-        disabled: context.radioTheme.disabledHandleColor,
-      ),
-      helperHandleSize: YgRadioHelperHandleSizeProperty(
-        disabledDeselected: context.radioTheme.disabledDeselectedHelperHandleSize,
-        disabledSelected: context.radioTheme.disabledSelectedHelperHandleSize,
-      ),
-      mouseCursor: YgRadioMouseCursorProperty(
-        enabled: SystemMouseCursors.click,
-        disabled: SystemMouseCursors.basic,
-      ),
-    );
+  late final YgAnimatedColorProperty backgroundColor;
+  late final YgAnimatedColorProperty centerDotColor;
+  late final YgAnimatedDoubleProperty borderSize;
+  late final YgAnimatedColorProperty borderColor;
+  late final YgAnimatedDoubleProperty centerDotSize;
+  late final YgDrivenProperty<MouseCursor> mouseCursor;
+  late final YgDrivenDoubleProperty radioSize;
+
+  @override
+  void init() {
+    centerDotColor = animate(YgColorProperty<YgRadioState>.resolveWith(_resolveCenterDotColor));
+    backgroundColor = animate(YgColorProperty<YgRadioState>.resolveWith(_resolveBackgroundColor));
+    borderSize = animate(YgDoubleProperty<YgRadioState>.resolveWith(_resolveBorderSize));
+    borderColor = animate(YgColorProperty<YgRadioState>.resolveWith(_resolveBorderColor));
+    centerDotSize = animate(YgDoubleProperty<YgRadioState>.resolveWith(_resolveCenterDotSize));
+    mouseCursor = drive(YgProperty<YgRadioState, MouseCursor>.resolveWith(_resolveMouseCursor));
+    radioSize = drive(YgDoubleProperty<YgRadioState>.all(_resolveRadioSize));
   }
 
-  final YgRadioBackgroundColorProperty backgroundColor;
-  final YgRadioHandleSizeProperty handleSize;
-  final YgRadioHandleColorProperty handleColor;
-  final YgRadioHelperHandleSizeProperty helperHandleSize;
-  final YgRadioMouseCursorProperty mouseCursor;
+  double _resolveRadioSize(BuildContext context) {
+    return _theme.size;
+  }
+
+  Color _resolveCenterDotColor(BuildContext context, YgRadioState state) {
+    if (state.disabled.value) {
+      return _theme.centerDotDisabledColor;
+    }
+
+    return _theme.centerDotDefaultColor;
+  }
+
+  Color _resolveBackgroundColor(BuildContext context, YgRadioState state) {
+    if (state.disabled.value) {
+      return _theme.backgroundDisabledColor;
+    }
+
+    return _theme.backgroundDefaultColor;
+  }
+
+  double _resolveBorderSize(BuildContext context, YgRadioState state) {
+    if (state.disabled.value || !state.selected.value) {
+      return _theme.borderDefaultOrDisabledSize;
+    }
+
+    return _theme.borderSelectedSize;
+  }
+
+  Color _resolveBorderColor(BuildContext context, YgRadioState state) {
+    if (state.disabled.value) {
+      return _theme.borderDisabledColor;
+    }
+
+    final bool interacted = state.focused.value || state.hovered.value;
+
+    if (state.error.value) {
+      if (interacted) {
+        return _theme.borderErrorFocusHoverColor;
+      }
+
+      return _theme.borderErrorColor;
+    }
+
+    if (state.selected.value) {
+      if (interacted) {
+        return _theme.borderSelectedFocusHoverColor;
+      }
+
+      return _theme.borderSelectedColor;
+    }
+
+    if (interacted) {
+      return _theme.borderFocusHoverColor;
+    }
+
+    return _theme.borderDefaultColor;
+  }
+
+  double _resolveCenterDotSize(BuildContext context, YgRadioState state) {
+    if (state.selected.value) {
+      return _theme.centerDotSelectedSize;
+    }
+
+    return _theme.centerDotDefaultSize;
+  }
+
+  MouseCursor _resolveMouseCursor(BuildContext context, YgRadioState state) {
+    if (state.disabled.value) {
+      return SystemMouseCursors.basic;
+    }
+
+    return SystemMouseCursors.click;
+  }
+
+  @override
+  Curve get curve => _theme.animationCurve;
+
+  @override
+  Duration get duration => _theme.animationDuration;
+
+  YgRadioTheme get _theme => context.radioTheme;
 }

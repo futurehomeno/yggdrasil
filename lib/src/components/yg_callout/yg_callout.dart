@@ -1,8 +1,12 @@
 import 'package:flutter/material.dart';
+import 'package:yggdrasil/src/components/yg_callout/yg_callout_state.dart';
+import 'package:yggdrasil/src/components/yg_callout/yg_callout_style.dart';
 import 'package:yggdrasil/src/theme/_theme.dart';
+import 'package:yggdrasil/src/utils/_utils.dart';
 import 'package:yggdrasil/yggdrasil.dart';
 
-class YgCallout extends StatelessWidget with StatelessWidgetDebugMixin {
+/// The implementation of the Yggdrasil callout.
+class YgCallout extends StatefulWidget with StatefulWidgetDebugMixin {
   const YgCallout({
     super.key,
     required this.description,
@@ -12,29 +16,71 @@ class YgCallout extends StatelessWidget with StatelessWidgetDebugMixin {
     this.onClose,
   });
 
+  /// The description shown in the callout.
   final String description;
+
+  /// The variant of the callout.
+  ///
+  /// Primarily changes the color.
   final YgCalloutVariant variant;
+
+  /// The title of the callout.
   final String? title;
+
+  /// The optional text link.
+  ///
+  /// Often used to link to additional information related to the callout.
   final YgTextLink? textLink;
+
+  /// Called when the user clicks the close button.
+  ///
+  /// Close button only exists if this callback is provided.
+  /// The callout does not hide itself, it has to be removed from the widget tree 
+  /// manually when this callback is called.
   final VoidCallback? onClose;
+
+  @override
+  State<YgCallout> createState() => _YgCalloutState();
+}
+
+class _YgCalloutState extends StateWithYgStyle<YgCallout, YgCalloutStyle> {
+  late final YgCalloutState _state = YgCalloutState(
+    variant: widget.variant,
+  );
+
+  @override
+  YgCalloutStyle createStyle() {
+    return YgCalloutStyle(
+      state: _state,
+      vsync: this,
+    );
+  }
+
+  @override
+  void didUpdateWidget(covariant YgCallout oldWidget) {
+    _state.variant.value = widget.variant;
+    super.didUpdateWidget(oldWidget);
+  }
+
+  @override
+  void dispose() {
+    _state.dispose();
+    super.dispose();
+  }
 
   @override
   Widget build(BuildContext context) {
     final YgCalloutTheme theme = context.calloutTheme;
-    final YgTextLink? textLink = this.textLink;
-    final String? title = this.title;
+    final YgTextLink? textLink = widget.textLink;
+    final String? title = widget.title;
 
-    return Material(
-      color: YgCalloutMapper.getBackgroundColor(
-        theme: theme,
-        variant: variant,
-      ),
-      shape: RoundedRectangleBorder(
-        borderRadius: theme.borderRadius,
-        side: BorderSide(
-          color: YgCalloutMapper.getBorderColor(
-            theme: theme,
-            variant: variant,
+    return YgAnimatedPhysicalShape(
+      color: style.backgroundColor,
+      shape: style.borderColor.map(
+        (Color value) => RoundedRectangleBorder(
+          borderRadius: theme.borderRadius,
+          side: BorderSide(
+            color: value,
           ),
         ),
       ),
@@ -54,7 +100,7 @@ class YgCallout extends StatelessWidget with StatelessWidgetDebugMixin {
                 ],
               ),
             ),
-            if (onClose != null) _buildCloseButton(),
+            if (widget.onClose != null) _buildCloseButton(),
           ].withHorizontalSpacing(theme.closeButtonSpacing),
         ),
       ),
@@ -63,7 +109,7 @@ class YgCallout extends StatelessWidget with StatelessWidgetDebugMixin {
 
   Widget _buildCloseButton() {
     return YgIconButton(
-      onPressed: onClose,
+      onPressed: widget.onClose,
       size: YgIconButtonSize.small,
       icon: YgIcons.cross,
     );
@@ -88,7 +134,7 @@ class YgCallout extends StatelessWidget with StatelessWidgetDebugMixin {
 
   Widget _buildDescription(YgCalloutTheme theme) {
     return Text(
-      description,
+      widget.description,
       style: theme.descriptionTextStyle,
     );
   }

@@ -29,6 +29,7 @@ class _ToggleButtonScreenState extends State<ToggleButtonScreen> {
   bool iconTextValue1 = false;
   bool iconTextValue2 = false;
   bool iconTextValue3 = false;
+  bool longTextValue1 = false;
   bool enabled = true;
   bool disabled = false;
 
@@ -36,11 +37,9 @@ class _ToggleButtonScreenState extends State<ToggleButtonScreen> {
   Widget build(BuildContext context) {
     return DemoScreen(
       componentName: 'ToggleButton',
-      componentDesc: 'ToggleButtons',
-      supernovaLink: 'Link',
       child: Column(
         children: <Widget>[
-          YgSection.base(
+          YgSection(
             title: 'Icon toggle button',
             child: Row(
               mainAxisSize: MainAxisSize.min,
@@ -75,7 +74,7 @@ class _ToggleButtonScreenState extends State<ToggleButtonScreen> {
               ].withHorizontalSpacing(10.0),
             ),
           ),
-          YgSection.base(
+          YgSection(
             title: 'Text toggle button',
             child: Row(
               mainAxisSize: MainAxisSize.min,
@@ -110,12 +109,12 @@ class _ToggleButtonScreenState extends State<ToggleButtonScreen> {
               ].withHorizontalSpacing(10.0),
             ),
           ),
-          YgSection.base(
+          YgSection(
             title: 'Icon & text toggle button',
             child: Row(
               mainAxisSize: MainAxisSize.min,
               children: <Widget>[
-                YgToggleButton(
+                YgToggleButton.leadingIcon(
                   icon: YgIcons.info,
                   text: 'Toggle',
                   value: iconTextValue1,
@@ -125,7 +124,7 @@ class _ToggleButtonScreenState extends State<ToggleButtonScreen> {
                     setState(() {});
                   },
                 ),
-                YgToggleButton(
+                YgToggleButton.leadingIcon(
                   icon: YgIcons.info,
                   text: 'Toggle',
                   value: iconTextValue2,
@@ -135,7 +134,7 @@ class _ToggleButtonScreenState extends State<ToggleButtonScreen> {
                     setState(() {});
                   },
                 ),
-                YgToggleButton(
+                YgToggleButton.leadingIcon(
                   icon: YgIcons.info,
                   text: 'Toggle',
                   value: iconTextValue3,
@@ -151,14 +150,14 @@ class _ToggleButtonScreenState extends State<ToggleButtonScreen> {
           YgSection.column(
             title: 'Disabled',
             children: <Widget>[
-              YgToggleButton(
+              YgToggleButton.leadingIcon(
                 icon: YgIcons.info,
                 text: 'Disabled (selected)',
                 value: enabled,
                 size: YgToggleButtonSize.medium,
                 onChanged: null,
               ),
-              YgToggleButton(
+              YgToggleButton.leadingIcon(
                 icon: YgIcons.info,
                 text: 'Disabled (deselected)',
                 value: disabled,
@@ -166,6 +165,20 @@ class _ToggleButtonScreenState extends State<ToggleButtonScreen> {
                 onChanged: null,
               ),
             ].withVerticalSpacing(10.0),
+          ),
+          YgSection.column(
+            title: 'With very long text',
+            children: <Widget>[
+              YgToggleButton(
+                text: 'Toggle button such a long text that it wraps to the next line. Why would you even want this?',
+                value: longTextValue1,
+                size: YgToggleButtonSize.medium,
+                onChanged: (bool newValue) {
+                  longTextValue1 = newValue;
+                  setState(() {});
+                },
+              ),
+            ],
           ),
         ],
       ),

@@ -1,30 +1,33 @@
 name: yggdrasil_demo
 description: A demo app for Yggdrasil.
-publish_to: 'none'
+publish_to: "none"
 
-version: 1.6.11+16
+version: 1.8.6
 
 environment:
-  sdk: ^3.0.5
-  flutter: 3.10.5
+  sdk: ^3.2.0
+  flutter: 3.16.0
 
 dependencies:
   flutter:
     sdk: flutter
   yggdrasil:
     path: ../
-  get_it: 7.6.0
+  get_it: 7.6.4
+  # Don't update due to the flutter_bloc in other repose.
   provider: 5.0.0
-  mockito: 5.4.2
+  dotted_border: 2.1.0
+  mockito: 5.4.3
 
 dev_dependencies:
   flutter_test:
     sdk: flutter
   pubdev_registry:
     git:
-      ref: tim/validators # to-branch-script-tag
+      ref: master # to-branch-script-tag
       url: git@github.com:futurehomeno/pubdev_registry.git
-  flutter_lints: ^2.0.1
+      path: . # keep it so that the scripts work
+  flutter_lints: 3.0.1
 
 flutter:
   uses-material-design: true

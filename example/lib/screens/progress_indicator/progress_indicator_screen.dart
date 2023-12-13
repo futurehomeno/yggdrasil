@@ -19,11 +19,9 @@ class ProgressIndicatorScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return DemoScreen(
       componentName: 'ProgressIndicator',
-      componentDesc: 'ProgressIndicators',
-      supernovaLink: 'Link',
       child: Column(
         children: <Widget>[
-          const YgSection.base(
+          const YgSection(
             title: 'Linear progress indicator',
             child: YgLinearProgressIndicator(),
           ),
@@ -37,11 +35,11 @@ class ProgressIndicatorScreen extends StatelessWidget {
               const YgLinearProgressIndicator(value: 1.0),
             ].withVerticalSpacing(5.0),
           ),
-          const YgSection.base(
+          const YgSection(
             title: 'Circular progress indicator',
             child: YgCircularProgressIndicator(),
           ),
-          YgSection.base(
+          YgSection(
             title: 'w/ various values',
             subtitle: 'Spacing between progress indicators added manually.',
             child: Row(

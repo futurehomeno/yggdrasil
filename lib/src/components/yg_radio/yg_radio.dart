@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
 import 'package:yggdrasil/src/theme/_theme.dart';
 import 'package:yggdrasil/src/utils/_utils.dart';
 
+import 'yg_radio_painter.dart';
+import 'yg_radio_state.dart';
 import 'yg_radio_style.dart';
 
 /// Yggdrasil radio button.
@@ -17,6 +18,7 @@ class YgRadio<T> extends StatefulWidget with StatefulWidgetDebugMixin {
     required this.value,
     required this.groupValue,
     required this.onChanged,
+    this.hasError = false,
   });
 
   /// The value represented by this radio button.
@@ -32,7 +34,10 @@ class YgRadio<T> extends StatefulWidget with StatefulWidgetDebugMixin {
   ///
   /// The radio itself does not maintain any state. Instead, when the state of
   /// the radio changes, the widget calls the [onChanged] callback.
-  final ValueChanged<T?>? onChanged;
+  final ValueChanged<T>? onChanged;
+
+  /// When true visually shows the user there is an error.
+  final bool hasError;
 
   bool get _enabled => onChanged != null;
 
@@ -51,88 +56,60 @@ class YgRadio<T> extends StatefulWidget with StatefulWidgetDebugMixin {
   }
 }
 
-class _YgRadioState<T> extends State<YgRadio<T>> {
-  // region StatesController
-  void _handleStatesControllerChange() {
-    // Force a rebuild to resolve MaterialStateProperty properties.
-    setState(() {});
-  }
-
-  final MaterialStatesController _statesController = MaterialStatesController();
-
-  void _initStatesController() {
-    _statesController.update(MaterialState.disabled, !widget._enabled);
-    _statesController.update(MaterialState.selected, widget._selected);
-    _statesController.addListener(_handleStatesControllerChange);
-  }
-
-  @override
-  void initState() {
-    super.initState();
-    _initStatesController();
-  }
+class _YgRadioState<T> extends StateWithYgStyle<YgRadio<T>, YgRadioStyle> {
+  late final YgRadioState _state = YgRadioState(
+    disabled: !widget._enabled,
+    selected: widget._selected,
+    error: widget.hasError,
+  );
 
   @override
   void didUpdateWidget(covariant YgRadio<T> oldWidget) {
     super.didUpdateWidget(oldWidget);
 
-    if (widget._selected != oldWidget._selected) {
-      _statesController.update(MaterialState.selected, widget._selected);
-    }
-
-    if (widget._enabled != oldWidget._enabled) {
-      _statesController.update(MaterialState.disabled, !widget._enabled);
-      if (!widget._enabled) {
-        // The radio may have been disabled while a press gesture is currently underway.
-        _statesController.update(MaterialState.pressed, false);
-      }
-    }
+    _state.disabled.value = !widget._enabled;
+    _state.selected.value = widget._selected;
+    _state.error.value = widget.hasError;
   }
 
   @override
   void dispose() {
-    _statesController.removeListener(_handleStatesControllerChange);
-    _statesController.dispose();
+    _state.dispose();
     super.dispose();
   }
-  // endregion StatesController
+
+  @override
+  YgRadioStyle createStyle() {
+    return YgRadioStyle(
+      state: _state,
+      vsync: this,
+    );
+  }
+
+  @override
+  Set<Listenable> getWatchedProperties() {
+    return <Listenable>{
+      style.mouseCursor,
+    };
+  }
 
   @override
   Widget build(BuildContext context) {
-    final YgRadioTheme radioTheme = context.radioTheme;
-    final YgRadioStyle radioStyle = YgRadioStyle.base(context);
-    final Color resolvedBackgroundColor = radioStyle.backgroundColor.resolve(_statesController.value);
-    final Color resolvedHandleColor = radioStyle.handleColor.resolve(_statesController.value);
-    final double resolvedHandleSize = radioStyle.handleSize.resolve(_statesController.value);
-    final double resolvedHelperHandleSize = radioStyle.helperHandleSize.resolve(_statesController.value);
-    final MouseCursor resolvedMouseCursor = radioStyle.mouseCursor.resolve(_statesController.value);
-
-    return RepaintBoundary(
-      child: Semantics(
-        checked: widget._selected,
-        child: GestureDetector(
-          behavior: HitTestBehavior.opaque,
-          onTap: widget.onChanged == null ? null : _onTap,
-          child: FocusableActionDetector(
-            onShowHoverHighlight: _onShowHoverHighlight,
-            onShowFocusHighlight: _onShowFocusHighlight,
-            shortcuts: const <ShortcutActivator, Intent>{
-              SingleActivator(LogicalKeyboardKey.space, control: true): ActivateIntent(),
-            },
-            actions: <Type, Action<Intent>>{
-              ActivateIntent: CallbackAction<Intent>(onInvoke: (_) => _onTap()),
-            },
-            mouseCursor: resolvedMouseCursor,
-            enabled: widget._enabled,
-            child: Padding(
-              padding: EdgeInsets.all(radioTheme.padding),
-              child: _buildBackground(
-                context: context,
-                size: radioTheme.size,
-                resolvedBackgroundColor: resolvedBackgroundColor,
-                resolvedHandleSize: resolvedHandleSize,
-                resolvedHandleColor: resolvedHandleColor,
-                resolvedHelperHandleSize: resolvedHelperHandleSize,
+    return Semantics(
+      checked: widget._selected,
+      child: YgFocusableActionDetector(
+        mouseCursor: style.mouseCursor.value,
+        enabled: widget._enabled,
+        onActivate: _onTap,
+        onFocusChanged: _state.focused.update,
+        onHoverChanged: _state.hovered.update,
+        child: Padding(
+          padding: EdgeInsets.all(context.radioTheme.padding),
+          child: RepaintBoundary(
+            child: CustomPaint(
+              size: Size.square(style.radioSize.value),
+              painter: YgRadioPainter(
+                style: style,
               ),
             ),
           ),
@@ -141,83 +118,7 @@ class _YgRadioState<T> extends State<YgRadio<T>> {
     );
   }
 
-  Widget _buildBackground({
-    required BuildContext context,
-    required double? size,
-    required Color? resolvedBackgroundColor,
-    required double? resolvedHandleSize,
-    required Color? resolvedHandleColor,
-    required double? resolvedHelperHandleSize,
-  }) {
-    return AnimatedContainer(
-      duration: context.radioTheme.animationDuration,
-      width: size,
-      height: size,
-      decoration: BoxDecoration(
-        shape: BoxShape.circle,
-        color: resolvedBackgroundColor,
-      ),
-      child: Center(
-        child: _buildHandle(
-          context: context,
-          resolvedHandleSize: resolvedHandleSize,
-          resolvedHandleColor: resolvedHandleColor,
-          resolvedHelperHandleSize: resolvedHelperHandleSize,
-        ),
-      ),
-    );
-  }
-
-  Widget _buildHandle({
-    required BuildContext context,
-    required double? resolvedHandleSize,
-    required Color? resolvedHandleColor,
-    required double? resolvedHelperHandleSize,
-  }) {
-    return AnimatedContainer(
-      duration: context.radioTheme.animationDuration,
-      width: resolvedHandleSize,
-      height: resolvedHandleSize,
-      decoration: BoxDecoration(
-        shape: BoxShape.circle,
-        color: resolvedHandleColor,
-      ),
-      child: Center(
-        child: _buildHelperHandle(
-          context: context,
-          resolvedHelperHandleSize: resolvedHelperHandleSize,
-        ),
-      ),
-    );
-  }
-
-  Widget _buildHelperHandle({
-    required BuildContext context,
-    required double? resolvedHelperHandleSize,
-  }) {
-    return AnimatedContainer(
-      duration: context.radioTheme.animationDuration,
-      width: resolvedHelperHandleSize,
-      height: resolvedHelperHandleSize,
-      decoration: BoxDecoration(
-        shape: BoxShape.circle,
-        color: context.radioTheme.helperHandleColor,
-      ),
-    );
-  }
-
-  void _onShowFocusHighlight(bool value) {
-    _statesController.update(MaterialState.focused, value);
-  }
-
-  void _onShowHoverHighlight(bool value) {
-    _statesController.update(MaterialState.hovered, value);
-  }
-
   void _onTap() {
-    final ValueChanged<T?>? onChanged = widget.onChanged;
-    if (onChanged != null) {
-      onChanged(widget.value);
-    }
+    widget.onChanged?.call(widget.value);
   }
 }

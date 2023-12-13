@@ -1,3 +1,6 @@
+flutter_ver: &flutter_ver 3.16.0
+xcode_ver: &xcode_ver latest
+
 workflows:
   pr-builder:
     name: PR builder
@@ -6,8 +9,8 @@ workflows:
     environment:
       groups:
         - frontend
-      flutter: 3.10.5
-      xcode: latest
+      flutter: *flutter_ver
+      xcode: *xcode_ver
     cache:
       cache_paths:
         - ~/.pub-cache
@@ -35,10 +38,6 @@ workflows:
           cd $CM_BUILD_DIR/cli
           flutter pub get
 
-      - name: Checking formatting
-        working_directory: /Users/builder/clone/app_files
-        script: dart $CM_BUILD_DIR/cli/futurehome.dart f || exit 1
-
       - name: Analyzing
         working_directory: /Users/builder/clone/app_files
         script: flutter analyze
@@ -51,13 +50,13 @@ workflows:
     environment:
       groups:
         - frontend
-      flutter: 3.10.5
-      xcode: latest
+      flutter: *flutter_ver
+      xcode: *xcode_ver
     cache:
       cache_paths:
         - ~/.pub-cache
     scripts:
-      - name: Cloning pubdev_registry repo
+      - name: Cloning yggdrasil repo
         working_directory: /Users/builder
         script: |
           rm -rf clone/*
@@ -83,13 +82,13 @@ workflows:
     environment:
       groups:
         - frontend
-      flutter: 3.10.5
-      xcode: latest
+      flutter: *flutter_ver
+      xcode: *xcode_ver
     cache:
       cache_paths:
         - ~/.pub-cache
     scripts:
-      - name: Cloning pubdev_registry repo
+      - name: Cloning yggdrasil repo
         working_directory: /Users/builder
         script: |
           rm -rf clone/*
@@ -118,13 +117,14 @@ workflows:
     max_build_duration: 30
 
     environment:
-      node: v20.2.0
+      node: v21.1.0
       npm: 9.6.6
       groups:
         - frontend
+        - slack
       android_signing:
         - yggdrasil_keystore
-      flutter: 3.10.5
+      flutter: *flutter_ver
 
     triggering:
       events:
@@ -135,6 +135,12 @@ workflows:
       cancel_previous_builds: true
 
     scripts:
+      - name: Downloading flutter cli
+        script: |
+          git clone git@github.com:futurehomeno/flutter-cli.git $CM_BUILD_DIR/cli
+          cd $CM_BUILD_DIR/cli
+          flutter pub get
+
       - name: Install appdmg
         script: npm install -g appdmg
 
@@ -205,3 +211,67 @@ workflows:
               -H "Content-Type: $(file -b --mime-type $MACOS_ARTIFACT_PATH)" \
               --data-binary "@$MACOS_ARTIFACT_PATH" \
               "$UPLOAD_URL?name=$(basename $MACOS_ARTIFACT_PATH)"
+
+        - name: Sending message to Slack
+          script: |
+            changelog=$(dart $CM_BUILD_DIR/cli/futurehome.dart ci gc)
+            
+            curl --location $YGGDRASIL_SLACK_WEBHOOK \
+            --header 'Content-Type: application/json' \
+            --data '
+              {
+                "text": "New version of Yggdrasil! ['"$CM_TAG"']\nhttps://github.com/futurehomeno/yggdrasil/releases/tag/'"$CM_TAG"'",
+                "attachments": [
+                  {
+                    "blocks": [
+                      {
+                          "type": "divider"
+                      },
+                      {
+                        "type": "section",
+                        "text": {
+                          "type": "mrkdwn",
+                          "text": "'"$changelog"'"
+                        }
+                      },
+                      {
+                          "type": "divider"
+                      },
+                      {
+                        "type": "actions",
+                        "block_id": "actionblock",
+                        "elements": [
+                          {
+                            "type": "button",
+                            "text": {
+                              "type": "plain_text",
+                              "text": "Mac dmg :computer:"
+                            },
+                            "style": "primary",
+                            "url": "https://github.com/futurehomeno/yggdrasil/releases/download/'"$CM_TAG"'/yggdrasil.dmg"
+                          },
+                          {
+                            "type": "button",
+                            "text": {
+                              "type": "plain_text",
+                              "text": "Android apk :iphone:"
+                            },
+                            "style": "primary",
+                            "url": "https://github.com/futurehomeno/yggdrasil/releases/download/'"$CM_TAG"'/app-release.apk"
+                          },
+                          {
+                            "type": "button",
+                            "text": {
+                              "type": "plain_text",
+                              "text": "Support :technologist:"
+                            },
+                            "style": "primary",
+                            "url": "https://app.slack.com/client/T025ENQJR/D0235KBKX2B"
+                          }
+                        ]
+                      }
+                    ]
+                  }
+                ]
+              }
+            '

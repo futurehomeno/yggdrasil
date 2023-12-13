@@ -8,8 +8,8 @@ part of 'primary_button_theme.dart';
 // TailorAnnotationsGenerator
 // **************************************************************************
 
-class PrimaryButtonTheme extends ThemeExtension<PrimaryButtonTheme> {
-  const PrimaryButtonTheme({
+class YgPrimaryButtonTheme extends ThemeExtension<YgPrimaryButtonTheme> {
+  const YgPrimaryButtonTheme({
     required this.backgroundColor,
     required this.borderGradient,
     required this.disabledBorderGradient,
@@ -27,44 +27,44 @@ class PrimaryButtonTheme extends ThemeExtension<PrimaryButtonTheme> {
   final Color iconDisabledColor;
   final TextStyle textStyle;
 
-  static final PrimaryButtonTheme consumerLight = PrimaryButtonTheme(
-    backgroundColor: _$PrimaryButtonTheme.backgroundColor[0],
-    borderGradient: _$PrimaryButtonTheme.borderGradient[0],
-    disabledBorderGradient: _$PrimaryButtonTheme.disabledBorderGradient[0],
-    disabledTextStyle: _$PrimaryButtonTheme.disabledTextStyle[0],
-    iconDefaultColor: _$PrimaryButtonTheme.iconDefaultColor[0],
-    iconDisabledColor: _$PrimaryButtonTheme.iconDisabledColor[0],
-    textStyle: _$PrimaryButtonTheme.textStyle[0],
+  static final YgPrimaryButtonTheme consumerLight = YgPrimaryButtonTheme(
+    backgroundColor: _$YgPrimaryButtonTheme.backgroundColor[0],
+    borderGradient: _$YgPrimaryButtonTheme.borderGradient[0],
+    disabledBorderGradient: _$YgPrimaryButtonTheme.disabledBorderGradient[0],
+    disabledTextStyle: _$YgPrimaryButtonTheme.disabledTextStyle[0],
+    iconDefaultColor: _$YgPrimaryButtonTheme.iconDefaultColor[0],
+    iconDisabledColor: _$YgPrimaryButtonTheme.iconDisabledColor[0],
+    textStyle: _$YgPrimaryButtonTheme.textStyle[0],
   );
 
-  static final PrimaryButtonTheme consumerDark = PrimaryButtonTheme(
-    backgroundColor: _$PrimaryButtonTheme.backgroundColor[1],
-    borderGradient: _$PrimaryButtonTheme.borderGradient[1],
-    disabledBorderGradient: _$PrimaryButtonTheme.disabledBorderGradient[1],
-    disabledTextStyle: _$PrimaryButtonTheme.disabledTextStyle[1],
-    iconDefaultColor: _$PrimaryButtonTheme.iconDefaultColor[1],
-    iconDisabledColor: _$PrimaryButtonTheme.iconDisabledColor[1],
-    textStyle: _$PrimaryButtonTheme.textStyle[1],
+  static final YgPrimaryButtonTheme consumerDark = YgPrimaryButtonTheme(
+    backgroundColor: _$YgPrimaryButtonTheme.backgroundColor[1],
+    borderGradient: _$YgPrimaryButtonTheme.borderGradient[1],
+    disabledBorderGradient: _$YgPrimaryButtonTheme.disabledBorderGradient[1],
+    disabledTextStyle: _$YgPrimaryButtonTheme.disabledTextStyle[1],
+    iconDefaultColor: _$YgPrimaryButtonTheme.iconDefaultColor[1],
+    iconDisabledColor: _$YgPrimaryButtonTheme.iconDisabledColor[1],
+    textStyle: _$YgPrimaryButtonTheme.textStyle[1],
   );
 
-  static final PrimaryButtonTheme professionalLight = PrimaryButtonTheme(
-    backgroundColor: _$PrimaryButtonTheme.backgroundColor[2],
-    borderGradient: _$PrimaryButtonTheme.borderGradient[2],
-    disabledBorderGradient: _$PrimaryButtonTheme.disabledBorderGradient[2],
-    disabledTextStyle: _$PrimaryButtonTheme.disabledTextStyle[2],
-    iconDefaultColor: _$PrimaryButtonTheme.iconDefaultColor[2],
-    iconDisabledColor: _$PrimaryButtonTheme.iconDisabledColor[2],
-    textStyle: _$PrimaryButtonTheme.textStyle[2],
+  static final YgPrimaryButtonTheme professionalLight = YgPrimaryButtonTheme(
+    backgroundColor: _$YgPrimaryButtonTheme.backgroundColor[2],
+    borderGradient: _$YgPrimaryButtonTheme.borderGradient[2],
+    disabledBorderGradient: _$YgPrimaryButtonTheme.disabledBorderGradient[2],
+    disabledTextStyle: _$YgPrimaryButtonTheme.disabledTextStyle[2],
+    iconDefaultColor: _$YgPrimaryButtonTheme.iconDefaultColor[2],
+    iconDisabledColor: _$YgPrimaryButtonTheme.iconDisabledColor[2],
+    textStyle: _$YgPrimaryButtonTheme.textStyle[2],
   );
 
-  static final PrimaryButtonTheme professionalDark = PrimaryButtonTheme(
-    backgroundColor: _$PrimaryButtonTheme.backgroundColor[3],
-    borderGradient: _$PrimaryButtonTheme.borderGradient[3],
-    disabledBorderGradient: _$PrimaryButtonTheme.disabledBorderGradient[3],
-    disabledTextStyle: _$PrimaryButtonTheme.disabledTextStyle[3],
-    iconDefaultColor: _$PrimaryButtonTheme.iconDefaultColor[3],
-    iconDisabledColor: _$PrimaryButtonTheme.iconDisabledColor[3],
-    textStyle: _$PrimaryButtonTheme.textStyle[3],
+  static final YgPrimaryButtonTheme professionalDark = YgPrimaryButtonTheme(
+    backgroundColor: _$YgPrimaryButtonTheme.backgroundColor[3],
+    borderGradient: _$YgPrimaryButtonTheme.borderGradient[3],
+    disabledBorderGradient: _$YgPrimaryButtonTheme.disabledBorderGradient[3],
+    disabledTextStyle: _$YgPrimaryButtonTheme.disabledTextStyle[3],
+    iconDefaultColor: _$YgPrimaryButtonTheme.iconDefaultColor[3],
+    iconDisabledColor: _$YgPrimaryButtonTheme.iconDisabledColor[3],
+    textStyle: _$YgPrimaryButtonTheme.textStyle[3],
   );
 
   static final themes = [
@@ -75,7 +75,7 @@ class PrimaryButtonTheme extends ThemeExtension<PrimaryButtonTheme> {
   ];
 
   @override
-  PrimaryButtonTheme copyWith({
+  YgPrimaryButtonTheme copyWith({
     Color? backgroundColor,
     LinearGradient? borderGradient,
     LinearGradient? disabledBorderGradient,
@@ -84,7 +84,7 @@ class PrimaryButtonTheme extends ThemeExtension<PrimaryButtonTheme> {
     Color? iconDisabledColor,
     TextStyle? textStyle,
   }) {
-    return PrimaryButtonTheme(
+    return YgPrimaryButtonTheme(
       backgroundColor: backgroundColor ?? this.backgroundColor,
       borderGradient: borderGradient ?? this.borderGradient,
       disabledBorderGradient:
@@ -97,10 +97,10 @@ class PrimaryButtonTheme extends ThemeExtension<PrimaryButtonTheme> {
   }
 
   @override
-  PrimaryButtonTheme lerp(
-      covariant ThemeExtension<PrimaryButtonTheme>? other, double t) {
-    if (other is! PrimaryButtonTheme) return this as PrimaryButtonTheme;
-    return PrimaryButtonTheme(
+  YgPrimaryButtonTheme lerp(
+      covariant ThemeExtension<YgPrimaryButtonTheme>? other, double t) {
+    if (other is! YgPrimaryButtonTheme) return this as YgPrimaryButtonTheme;
+    return YgPrimaryButtonTheme(
       backgroundColor: Color.lerp(backgroundColor, other.backgroundColor, t)!,
       borderGradient: t < 0.5 ? borderGradient : other.borderGradient,
       disabledBorderGradient:
@@ -119,7 +119,7 @@ class PrimaryButtonTheme extends ThemeExtension<PrimaryButtonTheme> {
   bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is PrimaryButtonTheme &&
+            other is YgPrimaryButtonTheme &&
             const DeepCollectionEquality()
                 .equals(backgroundColor, other.backgroundColor) &&
             const DeepCollectionEquality()

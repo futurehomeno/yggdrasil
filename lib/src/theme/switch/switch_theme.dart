@@ -9,12 +9,7 @@ part 'switch_theme.tailor.dart';
 
 @tailorComponent
 class _$YgSwitchTheme {
-  static const List<double> height = <double>[
-    consumer_light.FhDimensions.xl,
-    consumer_dark.FhDimensions.xl,
-    professional_light.FhDimensions.xl,
-    professional_dark.FhDimensions.xl,
-  ];
+  // region Track
 
   static const List<double> width = <double>[
     consumer_light.FhDimensions.xxl,
@@ -23,11 +18,11 @@ class _$YgSwitchTheme {
     professional_dark.FhDimensions.xxl,
   ];
 
-  static const List<double> handleSize = <double>[
-    consumer_light.FhDimensions.md,
-    consumer_dark.FhDimensions.md,
-    professional_light.FhDimensions.md,
-    professional_dark.FhDimensions.md,
+  static const List<Color> trackDefaultColor = <Color>[
+    consumer_light.FhColors.backgroundDisabled,
+    consumer_dark.FhColors.backgroundDisabled,
+    professional_light.FhColors.backgroundDisabled,
+    professional_dark.FhColors.backgroundDisabled,
   ];
 
   static const List<Color> trackToggledColor = <Color>[
@@ -37,18 +32,11 @@ class _$YgSwitchTheme {
     professional_dark.FhColors.backgroundHighlightDefault,
   ];
 
-  static const List<Color> trackNotToggledColor = <Color>[
-    consumer_light.FhColors.backgroundDisabled,
-    consumer_dark.FhColors.backgroundDisabled,
-    professional_light.FhColors.backgroundDisabled,
-    professional_dark.FhColors.backgroundDisabled,
-  ];
-
-  static const List<Color> trackNullColor = <Color>[
-    consumer_light.FhColors.backgroundDisabled,
-    consumer_dark.FhColors.backgroundDisabled,
-    professional_light.FhColors.backgroundDisabled,
-    professional_dark.FhColors.backgroundDisabled,
+  static const List<Color> trackToggledFocusedHoveredColor = <Color>[
+    consumer_light.FhColors.interactiveHighlightHovered,
+    consumer_dark.FhColors.interactiveHighlightHovered,
+    professional_light.FhColors.interactiveHighlightHovered,
+    professional_dark.FhColors.interactiveHighlightHovered,
   ];
 
   static const List<Color> trackDisabledColor = <Color>[
@@ -58,47 +46,39 @@ class _$YgSwitchTheme {
     professional_dark.FhColors.backgroundDisabled,
   ];
 
-  static const List<Color> thumbToggledColor = <Color>[
+  // endregion
+
+  // region Handle
+
+  static const List<double> handleSize = <double>[
+    consumer_light.FhDimensions.md,
+    consumer_dark.FhDimensions.md,
+    professional_light.FhDimensions.md,
+    professional_dark.FhDimensions.md,
+  ];
+
+  static const List<double> handlePadding = <double>[
+    consumer_light.FhDimensions.xxs,
+    consumer_dark.FhDimensions.xxs,
+    professional_light.FhDimensions.xxs,
+    professional_dark.FhDimensions.xxs,
+  ];
+
+  static const List<Color> handleDefaultColor = <Color>[
     consumer_light.FhColors.iconInverse,
     consumer_dark.FhColors.iconInverse,
     professional_light.FhColors.iconInverse,
     professional_dark.FhColors.iconInverse,
   ];
 
-  static const List<Color> thumbNotToggledColor = <Color>[
-    consumer_light.FhColors.iconInverse,
-    consumer_dark.FhColors.iconInverse,
-    professional_light.FhColors.iconInverse,
-    professional_dark.FhColors.iconInverse,
-  ];
-
-  static const List<Color> thumbNullColor = <Color>[
-    consumer_light.FhColors.iconInverse,
-    consumer_dark.FhColors.iconInverse,
-    professional_light.FhColors.iconInverse,
-    professional_dark.FhColors.iconInverse,
-  ];
-
-  static const List<Color> thumbDisabledColor = <Color>[
+  static const List<Color> handleDisabledColor = <Color>[
     consumer_light.FhColors.iconDisabled,
     consumer_dark.FhColors.iconDisabled,
     professional_light.FhColors.iconDisabled,
     professional_dark.FhColors.iconDisabled,
   ];
 
-  static const List<BorderRadius> borderRadius = <BorderRadius>[
-    consumer_light.FhRadii.xxl,
-    consumer_dark.FhRadii.xxl,
-    professional_light.FhRadii.xxl,
-    professional_dark.FhRadii.xxl,
-  ];
-
-  static const List<EdgeInsets> trackPadding = <EdgeInsets>[
-    EdgeInsets.symmetric(horizontal: consumer_light.FhDimensions.xxs),
-    EdgeInsets.symmetric(horizontal: consumer_dark.FhDimensions.xxs),
-    EdgeInsets.symmetric(horizontal: professional_light.FhDimensions.xxs),
-    EdgeInsets.symmetric(horizontal: professional_dark.FhDimensions.xxs),
-  ];
+  // endregion
 
   // TODO(bjhandeland): Replace with theme token.
   static const List<Duration> animationDuration = <Duration>[

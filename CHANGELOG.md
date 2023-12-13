@@ -1,9 +1,112 @@
-# 1.6.11+16 [12.10.2023 09:28]
+# 1.8.6 [2023-12-08T13:06:48.355983]
 
+## Changes
 
-# 1.6.10+15 [11.10.2023 11:56]
+- [fix] YgStepper now has a consistent height with and without a metric DEV-2513.
+- [fix] YgWizardHeader title no longer wraps DEV-2514.
+- [improvement] YgStepper now supports a disabled state DEV-2513.
 
-- [fix] Added zipping mac artifacts.
+# 1.8.5 [2023-12-06T15:57:06.717309]
+
+## Changes
+
+- [fix] Checkbox now paints correctly under constraints with a width bigger than the preferred width [DEV-2484].
+- [fix] Switch now paints correctly under constraints with a width bigger than the preferred width [DEV-2485].
+
+## Dev changes
+
+- [dev-improvement] Combined toggleable widget logic in to a mixin and interface (YgToggleable) [DEV-1691].
+- [dev-improvement] Created separate constructors for tri state widgets [DEV-1966].
+- [dev-improvement] Moved checkbox to custom painter [DEV-2484].
+- [dev-improvement] Moved switch to custom painter [DEV-2485].
+- [dev-improvement] Moved toggle button to YgStates + YgToggleable [DEV-2515].
+- [dev-improvement] Updated YgSwitch to use YgStates [DEV-1660].
+
+# 1.8.2 [2023-11-29T18:03:14.119511]
+
+- [dev-change] No longer exporting internal utils.
+- [dev-change] Renamed YgSection.base has been moved to the primary constructor.
+- [feature] Added YgExpandingListTile.
+- [feature] Added YgExpandingSection.
+
+# 1.8.1 [21.11.2023 13:54]
+
+- [dev-fix] Applied changes needed due to the flutter and dependency updates.
+- [dev-improvement] Added "variables" to Codemagic config.
+- [dev-improvement] Updated flutter and dependencies.
+- [fix] Fixed buttons of any type not responding to a change in disabled state.
+
+# 1.8.0 [20.11.2023 08:37]
+
+## Breaking Changes
+
+YgButtonGroup no longer accepts mainAxisAlignment, mainAxisSize and crossAxisAlignment, and Axis is now required. This is done to support the new vertical and horizontal constructors instead. For most cases, adding `.vertical` should be enough to update as we almost exclusively have vertical button groups.
+
+## Other Changes
+
+- [dev-fix] Add key property back to list tiles.
+- [dev-improvement] Added golden tests for YgButton component [DEV-2263].
+- [dev-improvement] Added golden tests for YgButtonGroup [DEV-2284].
+- [dev-improvement] Added golden tests for YgSection component [DEV-2373].
+- [dev-improvement] Added golden tests for YgSwitch component [DEV-2264].
+- [dev-improvement] Added golden tests for YgTextLink component [DEV-2315].
+- [dev-improvement] Added golden tests for YgToggleButton component [DEV-2340].
+- [fix] Fixed an issue where YgToggleButton with long text did not render correctly.
+- [fix] Fixed an issue where YgToggleButton would take up too much space.
+- [fix] Fixed incorrect padding on list tiles without leading or trailing widgets.
+- [improvement] Added vertical and horizontal constructors for YgButtonGroup.
+- [improvement] Ensure correct spacing for horizontal buttons in YgButtonGroup.
+
+# 1.7.0 [17.11.2023 09:03]
+
+## Breaking Changes
+
+Added `colorful` suffix to some icons indicating that they have embedded colors and should not be overwritten.
+
+## Other Changes
+
+- [dev-feature] Added YgStatesController [DEV-1654].
+- [dev-feature] Added custom YgFocusableActionDetector widget [DEV-1712].
+- [dev-improvement] Added golden tests for YgBadge component [DEV-2244].
+- [dev-improvement] Added golden tests for YgBottomSheet component [DEV-2376].
+- [dev-improvement] Added golden tests for YgCard component [DEV-2246].
+- [dev-improvement] Added golden tests for YgCheckbox component [DEV-2262].
+- [dev-improvement] Added golden tests for YgCheckboxListTile component [DEV-2344].
+- [dev-improvement] Added golden tests for YgDialog component [DEV-2377].
+- [dev-improvement] Added golden tests for YgDivider component [DEV-2364].
+- [dev-improvement] Added golden tests for YgGauge component [DEV-2307].
+- [dev-improvement] Added golden tests for YgIcon component [DEV-2359].
+- [dev-improvement] Added golden tests for YgIconButton component [DEV-2360].
+- [dev-improvement] Added golden tests for YgListTile component [DEV-2249].
+- [dev-improvement] Added golden tests for YgProgressIndicators components [DEV-2313].
+- [dev-improvement] Added golden tests for YgRadio component [DEV-2345].
+- [dev-improvement] Added golden tests for YgRadioGroup component [DEV-2357].
+- [dev-improvement] Added golden tests for YgRadioItem component [DEV-2356].
+- [dev-improvement] Added golden tests for YgRadioListTile component [DEV-2345].
+- [dev-improvement] Added golden tests for YgSwitchListTile component [DEV-2346].
+- [dev-improvement] Added golden tests for YgTag component [DEV-2248].
+- [dev-improvement] Added support for sliver debugging.
+- [dev-improvement] Moved YgButton, YgTextLink, YgIconButton, YgTag, YgRadio, YgTextField and YgDropdownField to YgStates.
+- [feature] Added YgAppBar and YgSliverAppBar components [DEV-1143].
+- [feature] Added YgStepper component [DEV-2333].
+- [feature] Added YgTab and YgTabBar components [DEV-1137].
+- [feature] Added YgWizardHeader component [DEV-1144].
+- [feature] Added new icons: 14.11.23.
+- [fix] Dropdown field now shows ink ripple when activated using keyboard.
+- [fix] YgCheckbox no longer expands to take up as much space as possible.
+
+# 1.6.17+22 [25.10.2023 12:52]
+
+- [dev-fix] Fixed changelog sent to slack.
+- [feature] Added leadingWidget parameter to YgSwitchListTile.
+
+# 1.6.12+17 [12.10.2023 12:49]
+
+- [dev-fix] Added Slack notification when new version is released.
+- [fix] YgSnackBar leading icon background now correctly has a diameter of lg.
+- [fix] YgSnackBar text now correctly has a min height of lg.
+- [improvement] YgSnackBar now supports a custom scaffoldMessengerKey.
+- [improvement] YgSnackBar now supports passing a custom onPressed callback.
 
 # 1.6.8+11 [11.10.2023 09:29]
 
@@ -11,16 +114,16 @@
 
 # 1.6.5+10 [04.10.2023 13:18]
 
-- [fix] Fixed an svg parsing error for chargerQuestion and playQuestion.
+- [dev-improvement] Improved exporting of YgThemes, preventing exposure in dependent applications [DEV-1969].
+- [dev-improvement] Improved the .gitingore file to ignore all unnecessary Flutter files [DEV-1366].
+- [fix] Fixed an SVG parsing error for chargerQuestion and playQuestion.
 - [improvement] Added search to icon list screen.
-- [dev-improvement] Improved the .gitingore file to ignore all unnecessary Flutter files. DEV-1366
-- [dev-improvement] Optimised exporting of Yg themes so they don't get exposed in applications that use YggDrasil. DEV-1969
 
 # 1.6.1 [21.09.2023 16:05]
 
-[feature] Added new icons 21.09.23.
-[dev-improvement] Icon script now sorts icons.
 [dev-improvement] Icon script now adds const to YgIcons class.
+[dev-improvement] Icon script now sorts icons.
+[feature] Added new icons 21.09.23.
 
 # 1.6.0 [14.09.2023 08:35]
 
@@ -51,8 +154,8 @@
 [feature] Add YgSectionComponent.
 [feature] New icons (25/08/23).
 [fix] Close button should not be centered when callout has desc only.
-[improvement] Remove i18n and validators from YGG.
 [improvement] Multiple improvements to the demo app.
+[improvement] Remove i18n and validators from YGG.
 
 # 1.4.0 [17.08.2023 08:55]
 
@@ -87,7 +190,7 @@
 [dev-improvement] Changed SwitchListTile example with trailing widget to use IconButton.
 [fix] Changed import of Open Sans to OpenSans to that it actually imports.
 [fix] Changed size of IconButton for SnackBar to small.
-[improvement] Set seed color to override purple default of m3.
+[improvement] Set seed color to override purple default of M3.
 
 # 1.2.0 [04.08.2023 09:42]
 
@@ -96,28 +199,28 @@
 [dev-improvement] Button screen layout changed to better showcase buttons.
 [dev-improvement] Tag screen layout changed to better showcase tags.
 [dev-improvement] YgScreen renamed to DemoScreen.
-[feature] Added link factory for YgListTile.
 [feature] Added YgIconButton component.
 [feature] Added YgSwitch component.
 [feature] Added YgSwitchListTile component.
-[fix] Breaking: useSvgColor renamed to useEmbeddedColor.
+[feature] Added link factory for YgListTile.
 [fix] Breaking: YgIcon no longer allows actions. Replaced by YgIconButton.
+[fix] Breaking: useSvgColor renamed to useEmbeddedColor.
 [fix] Correct icon color now applied to text and link buttons.
 [fix] Icon color is now correctly applied to disabled buttons.
 [fix] Icon color is now correctly applied to disabled tags.
 [fix] Several improvements to how YgTag handle text, icon and background themes.
 [fix] Snackbar renamed SnackBar to match convention.
-[improvement] Added debugFillProperties to YgIcon.
 [improvement] Added Semantics to YgIcon.
+[improvement] Added debugFillProperties to YgIcon.
 [improvement] Changed from factory to named constructor for buttons and tags.
 [improvement] Snack bars can now be triggered.
 
 # 1.1.0 [25.07.2023 12:39]
 
 [dev-feature] Added new screen showcasing all current icons. 
+[feature] Added YgButtonGroup component.
 [feature] Added new set of icons 19.07.23.
 [feature] Added new set of icons 24.07.23.
-[feature] Added YgButtonGroup component.
 [feature] Relaxed requirements for Dialog building, allowing cubits to be used.
 [fix] Changed ListTile title size to sectionHeading3Medium from pageHeading3Medium.
 [fix] Dialog now supports not passing a button group.
@@ -138,8 +241,8 @@
 [feature] Added component ygSnackbar.
 [feature] Added component ygTag.
 [feature] Added component ygTextLink.
+[feature] Added first collection of new icons.
 [feature] Added sample screen for all icons.
 [feature] Added sample screen for how to generate Lists.
 [feature] Added support for consumer_light and consumer_dark themes.
 [feature] Prepared support for professional_light and professional_dark themes.
-[feature] Added first collection of new icons.

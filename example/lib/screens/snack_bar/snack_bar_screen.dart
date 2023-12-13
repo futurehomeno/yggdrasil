@@ -20,11 +20,9 @@ class SnackBarScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return DemoScreen(
       componentName: 'SnackBar',
-      componentDesc: 'Snack Bars',
-      supernovaLink: 'Link',
       child: Column(
         children: <Widget>[
-          YgSection.base(
+          YgSection(
             title: 'Highlight snack bar',
             child: YgButton(
               variant: YgButtonVariant.primary,
@@ -32,7 +30,7 @@ class SnackBarScreen extends StatelessWidget {
               child: const Text('Show'),
             ),
           ),
-          YgSection.base(
+          YgSection(
             title: 'Success snack bar',
             child: YgButton(
               variant: YgButtonVariant.primary,
@@ -40,7 +38,7 @@ class SnackBarScreen extends StatelessWidget {
               child: const Text('Show'),
             ),
           ),
-          YgSection.base(
+          YgSection(
             title: 'Critical snack bar',
             child: YgButton(
               variant: YgButtonVariant.primary,
@@ -48,7 +46,7 @@ class SnackBarScreen extends StatelessWidget {
               child: const Text('Show'),
             ),
           ),
-          YgSection.base(
+          YgSection(
             title: 'Snack bar with root scaffold messenger key',
             child: Consumer<YgAppState>(
               builder: (BuildContext context, YgAppState ygAppState, Widget? widget) {
@@ -62,7 +60,7 @@ class SnackBarScreen extends StatelessWidget {
               },
             ),
           ),
-          YgSection.base(
+          YgSection(
             title: 'Snack bar with custom close callback',
             child: YgButton(
               variant: YgButtonVariant.primary,

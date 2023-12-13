@@ -14,7 +14,7 @@ class ExampleDialogNonDismissible extends YgDialogRoute {
       header: const YgIcon(YgIcons.info),
       title: 'Non Dismissible Dialog',
       description: 'A dialog which can not be dismissed by the user without choosing a action.',
-      ygButtonGroup: YgButtonGroup(
+      ygButtonGroup: YgButtonGroup.vertical(
         children: <YgButton>[
           YgButton(
             variant: YgButtonVariant.primary,

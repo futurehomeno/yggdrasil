@@ -19,8 +19,6 @@ class IconButtonScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return DemoScreen(
       componentName: 'IconButton',
-      componentDesc: 'Icon Buttons',
-      supernovaLink: 'Link',
       child: Column(
         children: <Widget>[
           YgSection.column(
@@ -87,7 +85,7 @@ class IconButtonScreen extends StatelessWidget {
               ),
             ].withVerticalSpacing(10.0),
           ),
-          YgSection.base(
+          YgSection(
             title: 'Sizes',
             subtitle: 'Spacing between icon buttons added manually.',
             child: Row(

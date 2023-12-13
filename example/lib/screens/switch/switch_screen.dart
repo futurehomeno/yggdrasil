@@ -20,43 +20,40 @@ class SwitchScreen extends StatefulWidget {
 }
 
 class _SwitchScreenState extends State<SwitchScreen> {
-  bool? binaryValue = false;
+  bool binaryValue = false;
   bool? triStateValue = false;
-  bool? disabledFalseValue = false;
-  bool? disabledTrueValue = true;
+  bool disabledFalseValue = false;
+  bool disabledTrueValue = true;
   bool? disabledNullValue;
-  bool? listTileValue = false;
+  bool listTileValue = false;
 
   @override
   Widget build(BuildContext context) {
     return DemoScreen(
       componentName: 'Switch',
-      componentDesc: 'Switches',
-      supernovaLink: 'Link',
       child: Column(
         children: <Widget>[
-          YgSection.base(
+          YgSection(
             title: 'Binary switch',
             child: YgSwitch(
               value: binaryValue,
-              onChanged: (bool? newValue) {
+              onChanged: (bool newValue) {
                 binaryValue = newValue;
                 setState(() {});
               },
             ),
           ),
-          YgSection.base(
+          YgSection(
             title: 'Tri-state switch',
-            child: YgSwitch(
+            child: YgSwitch.triState(
               value: triStateValue,
-              triState: true,
               onChanged: (bool? newValue) {
                 triStateValue = newValue;
                 setState(() {});
               },
             ),
           ),
-          YgSection.base(
+          YgSection(
             title: 'Disabled switch',
             child: Row(
               mainAxisSize: MainAxisSize.min,
@@ -65,7 +62,7 @@ class _SwitchScreenState extends State<SwitchScreen> {
                   value: disabledFalseValue,
                   onChanged: null,
                 ),
-                YgSwitch(
+                YgSwitch.triState(
                   value: disabledNullValue,
                   onChanged: null,
                 ),
@@ -76,7 +73,7 @@ class _SwitchScreenState extends State<SwitchScreen> {
               ].withHorizontalSpacing(10.0),
             ),
           ),
-          const YgSection.base(
+          const YgSection(
             title: 'Switch in a list tile',
             child: YgCallout(
               variant: YgCalloutVariant.warning,
@@ -85,14 +82,14 @@ class _SwitchScreenState extends State<SwitchScreen> {
             ),
           ),
           YgSection.list(
-            children: <Widget>[
+            children: <YgListTile>[
               YgListTile(
                 title: 'Switch in a list tile',
                 subtitle: 'Only the Switch is tappable.',
                 trailingWidgets: <Widget>[
                   YgSwitch(
                     value: listTileValue,
-                    onChanged: (bool? newValue) {
+                    onChanged: (bool newValue) {
                       listTileValue = newValue;
                       setState(() {});
                     },

@@ -32,8 +32,6 @@ class _TextFieldScreenState extends State<TextFieldScreen> {
       onTap: () => FocusScope.of(context).unfocus(),
       child: DemoScreen(
         componentName: 'TextField',
-        componentDesc: 'Text Field',
-        supernovaLink: 'Link',
         child: Column(
           children: <Widget>[
             YgSection.column(
@@ -62,11 +60,13 @@ class _TextFieldScreenState extends State<TextFieldScreen> {
                   textCapitalization: TextCapitalization.words,
                   autocorrect: true,
                 ),
-                const YgTextField(
+                YgTextField(
                   label: 'Custom suffix',
                   keyboardType: TextInputType.text,
                   textInputAction: TextInputAction.next,
                   textCapitalization: TextCapitalization.words,
+                  suffix: const YgIcon(YgIcons.placeholder),
+                  onSuffixPressed: () {},
                   autocorrect: true,
                 ),
                 const YgTextField(
@@ -120,7 +120,7 @@ class _TextFieldScreenState extends State<TextFieldScreen> {
                 ),
               ].withVerticalSpacing(10.0),
             ),
-            YgSection.base(
+            YgSection(
               title: 'Login form example',
               subtitle: 'See example code for best-practice usage.',
               child: Form(
@@ -134,10 +134,10 @@ class _TextFieldScreenState extends State<TextFieldScreen> {
                       validators: <FormFieldValidator<String>>[
                         const RequiredValidator(
                           requiredError: 'This field is required!',
-                        ),
+                        ).call,
                         const EmailValidator(
                           invalidEmailError: 'Invalid email',
-                        ),
+                        ).call,
                       ],
                     ),
                     YgTextFormField.password(
@@ -147,10 +147,10 @@ class _TextFieldScreenState extends State<TextFieldScreen> {
                       validators: <FormFieldValidator<String>>[
                         const RequiredValidator(
                           requiredError: 'This field is required!',
-                        ),
+                        ).call,
                         PasswordValidator(
                           passwordTooShortError: 'Password is too short!',
-                        ),
+                        ).call,
                       ],
                     ),
                     YgTextFormField.password(
@@ -160,11 +160,11 @@ class _TextFieldScreenState extends State<TextFieldScreen> {
                       validators: <FormFieldValidator<String>>[
                         const RequiredValidator(
                           requiredError: 'This field is required!',
-                        ),
+                        ).call,
                         MatchValidator<String>(
                           otherFieldKey: _passwordKey,
                           error: 'Passwords do not match!',
-                        ),
+                        ).call,
                       ],
                     ),
                     YgButton(

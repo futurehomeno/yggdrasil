@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:yggdrasil/src/components/fields/enums/field_state.dart';
 import 'package:yggdrasil/src/components/fields/helpers/yg_validate_helper.dart';
 import 'package:yggdrasil/yggdrasil.dart';
 
 import '../widgets/_widgets.dart';
+import '../yg_field_state.dart';
 import 'widgets/_widgets.dart';
 
 class YgTextField extends StatefulWidget with StatefulWidgetDebugMixin {
@@ -343,12 +343,14 @@ class YgTextField extends StatefulWidget with StatefulWidgetDebugMixin {
 }
 
 class _YgTextFieldState extends State<YgTextField> {
-  /// The current states of the textfield.
-  late final FieldStates _states = <FieldState>{
-    if (widget.error != null) FieldState.error,
-    if (widget.disabled) FieldState.disabled,
-    if (_controller.text.isNotEmpty == true) FieldState.filled,
-  };
+  /// The state of the field.
+  late final YgFieldState _state = YgFieldState(
+    filled: _controller.text.isNotEmpty == true,
+    placeholder: widget.placeholder != null,
+    error: widget.error != null,
+    disabled: widget.disabled,
+    suffix: _hasSuffix,
+  );
 
   /// Whether to hide the obscured text or not.
   bool _obscureTextToggled = true;
@@ -387,25 +389,19 @@ class _YgTextFieldState extends State<YgTextField> {
       _updateFocusNode(newFocusNode);
     }
 
-    _updateFieldState(FieldState.error, widget.error != null);
-    _updateFieldState(FieldState.disabled, widget.disabled);
+    _state.placeholder.value = widget.placeholder != null;
+    _state.error.value = widget.error != null;
+    _state.disabled.value = widget.disabled;
+    _state.suffix.value = _hasSuffix;
+    _state.size.value = widget.size;
+    _state.variant.value = widget.variant;
 
     super.didUpdateWidget(oldWidget);
   }
 
-  void _updateFieldState(FieldState state, bool toggled) {
-    final bool isToggled = _states.contains(state);
-    if (isToggled != toggled) {
-      if (toggled) {
-        _states.add(state);
-      } else {
-        _states.remove(state);
-      }
-    }
-  }
-
   @override
   void dispose() {
+    _state.dispose();
     _controller.removeListener(_valueUpdated);
     if (widget.controller == null) {
       _controller.dispose();
@@ -424,10 +420,9 @@ class _YgTextFieldState extends State<YgTextField> {
         variant: widget.variant,
         size: widget.size,
         error: widget.error,
-        states: _states,
+        state: _state,
         suffix: _buildSuffix(),
-        onPressed: null,
-        content: YgFieldTextContent(
+        content: YgFieldContent(
           value: YgTextFieldValue(
             autocorrect: widget.autocorrect,
             controller: _controller,
@@ -440,14 +435,15 @@ class _YgTextFieldState extends State<YgTextField> {
             onChanged: widget.onChanged,
             onEditingComplete: _onEditingComplete,
             readOnly: widget.readOnly,
-            states: _states,
+            state: _state,
             textCapitalization: widget.textCapitalization,
             textInputAction: widget.textInputAction,
           ),
-          states: _states,
+          state: _state,
           label: widget.label,
           minLines: widget.minLines,
           placeholder: widget.placeholder,
+          floatLabelOnFocus: true,
         ),
       ),
     );
@@ -457,8 +453,8 @@ class _YgTextFieldState extends State<YgTextField> {
     }
 
     return MouseRegion(
-      onEnter: (_) => _updateHoverState(true),
-      onExit: (_) => _updateHoverState(false),
+      onEnter: (_) => _state.hovered.value = true,
+      onExit: (_) => _state.hovered.value = false,
       cursor: SystemMouseCursors.text,
       child: GestureDetector(
         onTap: _handleTap,
@@ -496,11 +492,6 @@ class _YgTextFieldState extends State<YgTextField> {
       case YgCompleteAction.none:
         return;
     }
-  }
-
-  void _updateHoverState(bool toggled) {
-    _updateFieldState(FieldState.hovered, toggled);
-    setState(() {});
   }
 
   Widget? _buildSuffix() {
@@ -552,6 +543,10 @@ class _YgTextFieldState extends State<YgTextField> {
     return YgIcons.eyeClosed;
   }
 
+  bool get _hasSuffix {
+    return widget.suffix != null || (widget.obscureText && widget.showObscureTextButton);
+  }
+
   void _updateFocusNode(FocusNode focusNode) {
     _focusNode.removeListener(_focusChanged);
     _focusNode = focusNode;
@@ -569,31 +564,13 @@ class _YgTextFieldState extends State<YgTextField> {
       );
 
   void _valueUpdated() {
-    final bool filled = _controller.text.isNotEmpty;
-
-    if (filled != _states.filled) {
-      if (filled) {
-        _states.add(FieldState.filled);
-      } else {
-        _states.remove(FieldState.filled);
-      }
-      setState(() {});
-    }
+    _state.filled.value = _controller.text.isNotEmpty;
   }
 
   void _focusChanged() {
     final bool focused = _focusNode.hasFocus;
-
+    _state.focused.value = focused;
     widget.onFocusChanged?.call(focused);
-
-    if (focused != _states.focused) {
-      if (focused) {
-        _states.add(FieldState.focused);
-      } else {
-        _states.remove(FieldState.focused);
-      }
-      setState(() {});
-    }
   }
 
   void _handleTap() {

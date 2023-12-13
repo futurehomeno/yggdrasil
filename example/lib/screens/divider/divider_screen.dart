@@ -19,23 +19,21 @@ class DividerScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return const DemoScreen(
       componentName: 'Divider',
-      componentDesc: 'Dividers',
-      supernovaLink: 'Link',
       child: Column(
         children: <Widget>[
-          YgSection.base(
+          YgSection(
             title: 'Normal Divider',
             child: YgDivider(),
           ),
-          YgSection.base(
+          YgSection(
             title: 'Divider /w start indent',
             child: YgDivider(indent: YgDividerIndent.large),
           ),
-          YgSection.base(
+          YgSection(
             title: 'Divider w/ end indent',
             child: YgDivider(endIndent: YgDividerIndent.large),
           ),
-          YgSection.base(
+          YgSection(
             title: 'Divider w/ both indent',
             child: YgDivider(
               indent: YgDividerIndent.large,

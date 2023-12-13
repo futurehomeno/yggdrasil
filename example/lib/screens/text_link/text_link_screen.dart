@@ -19,11 +19,9 @@ class TextLinkScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return DemoScreen(
       componentName: 'TextLink',
-      componentDesc: 'Text links',
-      supernovaLink: 'Link',
       child: Column(
         children: <Widget>[
-          YgSection.base(
+          YgSection(
             title: 'Sizes',
             subtitle: 'Spacing between links added manually.',
             child: Row(
@@ -44,7 +42,7 @@ class TextLinkScreen extends StatelessWidget {
               ].withHorizontalSpacing(10.0),
             ),
           ),
-          YgSection.base(
+          YgSection(
             title: 'Weights',
             subtitle: 'Spacing between links added manually.',
             child: Row(
@@ -63,14 +61,14 @@ class TextLinkScreen extends StatelessWidget {
               ].withHorizontalSpacing(10.0),
             ),
           ),
-          YgSection.base(
+          const YgSection(
             title: 'Disabled text link',
             child: YgTextLink(
               text: 'Disabled',
               onPressed: null,
             ),
           ),
-          YgSection.base(
+          YgSection(
             title: 'External text link',
             child: YgTextLink(
               onPressed: () {},

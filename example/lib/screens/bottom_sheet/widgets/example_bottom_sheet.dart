@@ -9,8 +9,8 @@ class ExampleBottomSheet extends YgBottomSheetModalRoute {
   YgBottomSheet buildBottomSheet(BuildContext context) {
     return YgBottomSheet(
       title: 'Example Bottom Sheet',
-      content: YgSection.column(
-        children: <Widget>[
+      content: YgSection.list(
+        children: <YgListTile>[
           const YgListTile(
             title: 'Example content',
             subtitle: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit.',
@@ -20,9 +20,9 @@ class ExampleBottomSheet extends YgBottomSheetModalRoute {
             subtitle: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit.',
             onTap: () {},
           ),
-        ].separatedBy(const Divider()),
+        ],
       ),
-      footerButtons: YgButtonGroup(
+      footerButtons: YgButtonGroup.vertical(
         children: <YgButton>[
           YgButton(
             variant: YgButtonVariant.primary,

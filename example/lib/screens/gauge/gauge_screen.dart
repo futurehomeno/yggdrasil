@@ -27,13 +27,11 @@ class _GaugeScreenState extends State<GaugeScreen> {
 
   @override
   Widget build(BuildContext context) {
-    return DemoScreen(
+    return const DemoScreen(
       componentName: 'Gauge',
-      componentDesc: 'Gauges',
-      supernovaLink: 'Link',
       child: Column(
         children: <Widget>[
-          const YgSection.column(
+          YgSection.column(
             title: 'Gauge',
             children: <Widget>[
               Row(
@@ -83,7 +81,7 @@ class _GaugeScreenState extends State<GaugeScreen> {
               ),
             ],
           ),
-          const YgSection.base(
+          YgSection(
             title: 'Disabled gauge',
             child: Row(
               mainAxisAlignment: MainAxisAlignment.center,
@@ -100,14 +98,14 @@ class _GaugeScreenState extends State<GaugeScreen> {
                   dimension: 100,
                   child: YgGauge(
                     value: null,
-                    icon: YgIcon(YgIcons.info),
+                    icon: YgIcons.info,
                     label: 'Disabled',
                   ),
                 ),
               ],
             ),
           ),
-          const YgSection.column(
+          YgSection.column(
             title: 'Child variations',
             children: <Widget>[
               Row(
@@ -118,7 +116,7 @@ class _GaugeScreenState extends State<GaugeScreen> {
                     child: YgGauge(
                       value: 0.5,
                       title: 'Title',
-                      icon: YgIcon(YgIcons.info),
+                      icon: YgIcons.info,
                     ),
                   ),
                   SizedBox.square(
@@ -155,7 +153,7 @@ class _GaugeScreenState extends State<GaugeScreen> {
                     dimension: 100,
                     child: YgGauge(
                       value: 0.5,
-                      icon: YgIcon(YgIcons.info),
+                      icon: YgIcons.info,
                       label: 'Label',
                     ),
                   ),
@@ -163,14 +161,14 @@ class _GaugeScreenState extends State<GaugeScreen> {
                     dimension: 100,
                     child: YgGauge(
                       value: 0.5,
-                      icon: YgIcon(YgIcons.info),
+                      icon: YgIcons.info,
                     ),
                   ),
                 ],
               ),
             ],
           ),
-          const YgSection.base(
+          YgSection(
             title: 'Responsive between ~90px and ~120px',
             child: Row(
               mainAxisAlignment: MainAxisAlignment.center,
@@ -199,7 +197,7 @@ class _GaugeScreenState extends State<GaugeScreen> {
               ],
             ),
           ),
-          const YgSection.base(
+          YgSection(
             title: 'Flexible min / max',
             child: Row(
               mainAxisAlignment: MainAxisAlignment.center,
@@ -246,11 +244,11 @@ class _GaugeScreenState extends State<GaugeScreen> {
                   value = random.nextInt(100).toDouble();
                   setState(() {});
                 },
-                child: const Text('Change value'),
+                child: Text('Change value'),
               ),
             ],
           ),
-          const YgSection.base(
+          YgSection(
             title: 'Gauge in a 100x200 container',
             child: SizedBox(
               height: 100.0,
@@ -262,7 +260,7 @@ class _GaugeScreenState extends State<GaugeScreen> {
               ),
             ),
           ),
-          const YgSection.base(
+          YgSection(
             title: 'Gauge in a 200x100 container',
             child: SizedBox(
               height: 200.0,

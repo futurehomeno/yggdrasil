@@ -9,11 +9,20 @@ part 'section_header_theme.tailor.dart';
 
 @tailorComponent
 class _$YgSectionHeaderTheme {
-  static const List<TextStyle> titleTextStyle = <TextStyle>[
-    consumer_light.FhTextStyles.sectionHeading2Medium,
-    consumer_dark.FhTextStyles.sectionHeading2Medium,
-    professional_light.FhTextStyles.sectionHeading2Medium,
-    professional_dark.FhTextStyles.sectionHeading2Medium,
+  // TODO(tim): Remove height when tokens are updated.
+  static final List<TextStyle> titleTextStyle = <TextStyle>[
+    consumer_light.FhTextStyles.sectionHeading2Medium.copyWith(
+      height: 1.2,
+    ),
+    consumer_dark.FhTextStyles.sectionHeading2Medium.copyWith(
+      height: 1.2,
+    ),
+    professional_light.FhTextStyles.sectionHeading2Medium.copyWith(
+      height: 1.2,
+    ),
+    professional_dark.FhTextStyles.sectionHeading2Medium.copyWith(
+      height: 1.2,
+    ),
   ];
 
   static final List<TextStyle> subtitleTextStyle = <TextStyle>[
@@ -50,10 +59,47 @@ class _$YgSectionHeaderTheme {
     ),
   ];
 
-  static const List<double> titleSubtitleSpacing = <double>[
-    consumer_light.FhDimensions.xxs,
-    consumer_dark.FhDimensions.xxs,
-    professional_light.FhDimensions.xxs,
-    professional_dark.FhDimensions.xxs,
+  static const List<EdgeInsets> iconPadding = <EdgeInsets>[
+    EdgeInsets.only(
+      right: consumer_light.FhDimensions.xs,
+    ),
+    EdgeInsets.only(
+      right: consumer_dark.FhDimensions.xs,
+    ),
+    EdgeInsets.only(
+      right: professional_light.FhDimensions.xs,
+    ),
+    EdgeInsets.only(
+      right: professional_dark.FhDimensions.xs,
+    ),
+  ];
+
+  static const List<EdgeInsets> subtitlePadding = <EdgeInsets>[
+    EdgeInsets.only(
+      top: consumer_light.FhDimensions.xxs,
+    ),
+    EdgeInsets.only(
+      top: consumer_dark.FhDimensions.xxs,
+    ),
+    EdgeInsets.only(
+      top: professional_light.FhDimensions.xxs,
+    ),
+    EdgeInsets.only(
+      top: professional_dark.FhDimensions.xxs,
+    ),
+  ];
+
+  static const List<double> trailingSpacing = <double>[
+    consumer_light.FhDimensions.xs,
+    consumer_dark.FhDimensions.xs,
+    professional_light.FhDimensions.xs,
+    professional_dark.FhDimensions.xs,
+  ];
+
+  static const List<double> minAvailableTagWidth = <double>[
+    80,
+    80,
+    80,
+    80,
   ];
 }

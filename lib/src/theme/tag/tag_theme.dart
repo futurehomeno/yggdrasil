@@ -12,55 +12,55 @@ part 'tag_theme.tailor.dart';
 @tailorComponent
 class _$YgTagTheme {
   @themeExtension
-  static final List<NeutralTagTheme> neutralTagTheme = NeutralTagTheme.themes;
+  static final List<YgNeutralTagTheme> neutralTagTheme = YgNeutralTagTheme.themes;
 
   @themeExtension
-  static final List<InformativeTagTheme> informativeTagTheme = InformativeTagTheme.themes;
+  static final List<YgInformativeTagTheme> informativeTagTheme = YgInformativeTagTheme.themes;
 
   @themeExtension
-  static final List<PositiveTagTheme> positiveTagTheme = PositiveTagTheme.themes;
+  static final List<YgPositiveTagTheme> positiveTagTheme = YgPositiveTagTheme.themes;
 
   @themeExtension
-  static final List<WarningTagTheme> warningTagTheme = WarningTagTheme.themes;
+  static final List<YgWarningTagTheme> warningTagTheme = YgWarningTagTheme.themes;
 
   @themeExtension
-  static final List<NegativeTagTheme> negativeTagTheme = NegativeTagTheme.themes;
+  static final List<YgNegativeTagTheme> negativeTagTheme = YgNegativeTagTheme.themes;
 
   static const List<EdgeInsets> paddingSmall = <EdgeInsets>[
     EdgeInsets.symmetric(
-      vertical: consumer_light.FhDimensions.xxs,
-      horizontal: consumer_light.FhDimensions.md,
+      vertical: 4,
+      horizontal: 6,
     ),
     EdgeInsets.symmetric(
-      vertical: consumer_dark.FhDimensions.xxs,
-      horizontal: consumer_dark.FhDimensions.md,
+      vertical: 4,
+      horizontal: 6,
     ),
     EdgeInsets.symmetric(
-      vertical: professional_light.FhDimensions.xxs,
-      horizontal: professional_light.FhDimensions.md,
+      vertical: 4,
+      horizontal: 6,
     ),
     EdgeInsets.symmetric(
-      vertical: professional_dark.FhDimensions.xxs,
-      horizontal: professional_dark.FhDimensions.md,
+      vertical: 4,
+      horizontal: 6,
     ),
   ];
 
   static const List<EdgeInsets> paddingMedium = <EdgeInsets>[
     EdgeInsets.symmetric(
-      vertical: consumer_light.FhDimensions.xs,
-      horizontal: consumer_light.FhDimensions.lg,
+      vertical: consumer_light.FhDimensions.xxs,
+      horizontal: consumer_light.FhDimensions.xs,
     ),
     EdgeInsets.symmetric(
-      vertical: consumer_dark.FhDimensions.xs,
-      horizontal: consumer_dark.FhDimensions.lg,
+      vertical: consumer_dark.FhDimensions.xxs,
+      horizontal: consumer_dark.FhDimensions.xs,
     ),
     EdgeInsets.symmetric(
-      vertical: professional_light.FhDimensions.xs,
-      horizontal: professional_light.FhDimensions.lg,
+      vertical: professional_light.FhDimensions.xxs,
+      horizontal: professional_light.FhDimensions.xs,
     ),
     EdgeInsets.symmetric(
-      vertical: professional_dark.FhDimensions.xs,
-      horizontal: professional_dark.FhDimensions.lg,
+      vertical: professional_dark.FhDimensions.xxs,
+      horizontal: professional_dark.FhDimensions.xs,
     ),
   ];
 
@@ -97,6 +97,20 @@ class _$YgTagTheme {
     consumer_dark.FhColors.iconInverse,
     professional_light.FhColors.iconInverse,
     professional_dark.FhColors.iconInverse,
+  ];
+
+  static final List<Color> splashStrongColor = <Color>[
+    consumer_light.FhColors.backgroundDefault.withOpacity(0.2),
+    consumer_dark.FhColors.backgroundDefault.withOpacity(0.2),
+    professional_light.FhColors.backgroundDefault.withOpacity(0.2),
+    professional_dark.FhColors.backgroundDefault.withOpacity(0.2),
+  ];
+
+  static final List<Color> splashWeakColor = <Color>[
+    consumer_light.FhColors.backgroundInverse.withOpacity(0.2),
+    consumer_dark.FhColors.backgroundInverse.withOpacity(0.2),
+    professional_light.FhColors.backgroundInverse.withOpacity(0.2),
+    professional_dark.FhColors.backgroundInverse.withOpacity(0.2),
   ];
 
   static const List<double> iconSize = <double>[

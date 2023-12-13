@@ -10,6 +10,8 @@ part of 'badge_theme.dart';
 
 class YgBadgeTheme extends ThemeExtension<YgBadgeTheme> {
   const YgBadgeTheme({
+    required this.animationCurve,
+    required this.animationDuration,
     required this.borderRadius,
     required this.strongColor,
     required this.strongTextStyle,
@@ -17,6 +19,8 @@ class YgBadgeTheme extends ThemeExtension<YgBadgeTheme> {
     required this.weakTextStyle,
   });
 
+  final Curve animationCurve;
+  final Duration animationDuration;
   final BorderRadius borderRadius;
   final Color strongColor;
   final TextStyle strongTextStyle;
@@ -24,6 +28,8 @@ class YgBadgeTheme extends ThemeExtension<YgBadgeTheme> {
   final TextStyle weakTextStyle;
 
   static final YgBadgeTheme consumerLight = YgBadgeTheme(
+    animationCurve: _$YgBadgeTheme.animationCurve[0],
+    animationDuration: _$YgBadgeTheme.animationDuration[0],
     borderRadius: _$YgBadgeTheme.borderRadius[0],
     strongColor: _$YgBadgeTheme.strongColor[0],
     strongTextStyle: _$YgBadgeTheme.strongTextStyle[0],
@@ -32,6 +38,8 @@ class YgBadgeTheme extends ThemeExtension<YgBadgeTheme> {
   );
 
   static final YgBadgeTheme consumerDark = YgBadgeTheme(
+    animationCurve: _$YgBadgeTheme.animationCurve[1],
+    animationDuration: _$YgBadgeTheme.animationDuration[1],
     borderRadius: _$YgBadgeTheme.borderRadius[1],
     strongColor: _$YgBadgeTheme.strongColor[1],
     strongTextStyle: _$YgBadgeTheme.strongTextStyle[1],
@@ -40,6 +48,8 @@ class YgBadgeTheme extends ThemeExtension<YgBadgeTheme> {
   );
 
   static final YgBadgeTheme professionalLight = YgBadgeTheme(
+    animationCurve: _$YgBadgeTheme.animationCurve[2],
+    animationDuration: _$YgBadgeTheme.animationDuration[2],
     borderRadius: _$YgBadgeTheme.borderRadius[2],
     strongColor: _$YgBadgeTheme.strongColor[2],
     strongTextStyle: _$YgBadgeTheme.strongTextStyle[2],
@@ -48,6 +58,8 @@ class YgBadgeTheme extends ThemeExtension<YgBadgeTheme> {
   );
 
   static final YgBadgeTheme professionalDark = YgBadgeTheme(
+    animationCurve: _$YgBadgeTheme.animationCurve[3],
+    animationDuration: _$YgBadgeTheme.animationDuration[3],
     borderRadius: _$YgBadgeTheme.borderRadius[3],
     strongColor: _$YgBadgeTheme.strongColor[3],
     strongTextStyle: _$YgBadgeTheme.strongTextStyle[3],
@@ -64,6 +76,8 @@ class YgBadgeTheme extends ThemeExtension<YgBadgeTheme> {
 
   @override
   YgBadgeTheme copyWith({
+    Curve? animationCurve,
+    Duration? animationDuration,
     BorderRadius? borderRadius,
     Color? strongColor,
     TextStyle? strongTextStyle,
@@ -71,6 +85,8 @@ class YgBadgeTheme extends ThemeExtension<YgBadgeTheme> {
     TextStyle? weakTextStyle,
   }) {
     return YgBadgeTheme(
+      animationCurve: animationCurve ?? this.animationCurve,
+      animationDuration: animationDuration ?? this.animationDuration,
       borderRadius: borderRadius ?? this.borderRadius,
       strongColor: strongColor ?? this.strongColor,
       strongTextStyle: strongTextStyle ?? this.strongTextStyle,
@@ -83,6 +99,8 @@ class YgBadgeTheme extends ThemeExtension<YgBadgeTheme> {
   YgBadgeTheme lerp(covariant ThemeExtension<YgBadgeTheme>? other, double t) {
     if (other is! YgBadgeTheme) return this as YgBadgeTheme;
     return YgBadgeTheme(
+      animationCurve: t < 0.5 ? animationCurve : other.animationCurve,
+      animationDuration: t < 0.5 ? animationDuration : other.animationDuration,
       borderRadius: t < 0.5 ? borderRadius : other.borderRadius,
       strongColor: Color.lerp(strongColor, other.strongColor, t)!,
       strongTextStyle:
@@ -98,6 +116,10 @@ class YgBadgeTheme extends ThemeExtension<YgBadgeTheme> {
         (other.runtimeType == runtimeType &&
             other is YgBadgeTheme &&
             const DeepCollectionEquality()
+                .equals(animationCurve, other.animationCurve) &&
+            const DeepCollectionEquality()
+                .equals(animationDuration, other.animationDuration) &&
+            const DeepCollectionEquality()
                 .equals(borderRadius, other.borderRadius) &&
             const DeepCollectionEquality()
                 .equals(strongColor, other.strongColor) &&
@@ -112,6 +134,8 @@ class YgBadgeTheme extends ThemeExtension<YgBadgeTheme> {
   int get hashCode {
     return Object.hash(
       runtimeType.hashCode,
+      const DeepCollectionEquality().hash(animationCurve),
+      const DeepCollectionEquality().hash(animationDuration),
       const DeepCollectionEquality().hash(borderRadius),
       const DeepCollectionEquality().hash(strongColor),
       const DeepCollectionEquality().hash(strongTextStyle),

@@ -27,12 +27,10 @@ class _IconListScreenState extends State<IconListScreen> {
     return DemoScreen(
       scrollable: false,
       componentName: 'Icon',
-      componentDesc: 'Icons',
-      supernovaLink: 'Link',
       child: CustomScrollView(
         slivers: <Widget>[
           SliverToBoxAdapter(
-            child: YgSection.base(
+            child: YgSection(
               title: 'List of all icons in YGG',
               child: YgTextField(
                 label: 'Search',

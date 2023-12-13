@@ -20,8 +20,6 @@ class IconScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return DemoScreen(
       componentName: 'Icon',
-      componentDesc: 'Icons',
-      supernovaLink: 'Link',
       child: Column(
         children: <Widget>[
           YgSection.list(
@@ -35,7 +33,7 @@ class IconScreen extends StatelessWidget {
               ),
             ],
           ),
-          const YgSection.base(
+          const YgSection(
             title: 'Sizes',
             subtitle: 'Icons come in small and large.',
             child: Row(
@@ -52,18 +50,19 @@ class IconScreen extends StatelessWidget {
               ],
             ),
           ),
-          const YgSection.base(
+          YgSection(
             title: 'Inherited color',
             subtitle: 'Color switching is handled by the parent widget.',
-            child: YgTag(
-              weight: YgTagWeight.strong,
-              child: YgIcon(
+            child: YgIconButton(
+              variant: YgIconButtonVariant.filled,
+              icon: const YgIcon(
                 YgIcons.info,
                 size: YgIconSize.large,
               ),
+              onPressed: () {},
             ),
           ),
-          YgSection.base(
+          YgSection(
             title: 'Override color',
             subtitle: 'Override the default theme color.\nWarning: color will no longer adapt to the theme.',
             child: YgTag(
@@ -74,7 +73,7 @@ class IconScreen extends StatelessWidget {
               ),
             ),
           ),
-          const YgSection.base(
+          const YgSection(
             title: 'Use embedded color',
             subtitle: 'Color embedded in the SVG is used.\nThe color will adapt to the theme.',
             child: YgTag(

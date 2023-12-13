@@ -19,8 +19,6 @@ class DeviceDetailsExample extends StatelessWidget {
   Widget build(BuildContext context) {
     return DemoScreen(
       componentName: 'DeviceDetailsExample',
-      componentDesc: 'Screen showing examples of section layouts.',
-      supernovaLink: 'Link',
       child: Column(
         children: <Widget>[
           YgSection.list(
@@ -32,7 +30,7 @@ class DeviceDetailsExample extends StatelessWidget {
               ),
             ],
           ),
-          const YgSection.base(
+          const YgSection(
             child: YgCard(
               variant: YgCardVariant.outlined,
               child: YgListTile(
@@ -44,7 +42,7 @@ class DeviceDetailsExample extends StatelessWidget {
               ),
             ),
           ),
-          YgSection.base(
+          YgSection(
             child: YgCallout(
               variant: YgCalloutVariant.warning,
               description:

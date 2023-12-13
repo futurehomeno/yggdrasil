@@ -22,6 +22,7 @@ class RadioScreen extends StatefulWidget {
 class _RadioScreenState extends State<RadioScreen> {
   int radioGroupValue = 1;
   int disabledRadioGroupValue = 1;
+  int errorRadioGroupValue = 1;
   int radioItemGroupValue = 1;
   int radioGroupGroupValue = 1;
   int listTileGroupValue = 1;
@@ -30,8 +31,6 @@ class _RadioScreenState extends State<RadioScreen> {
   Widget build(BuildContext context) {
     return DemoScreen(
       componentName: 'Radio',
-      componentDesc: 'Radios',
-      supernovaLink: 'Link',
       child: Column(
         children: <Widget>[
           YgSection.column(
@@ -40,16 +39,16 @@ class _RadioScreenState extends State<RadioScreen> {
               YgRadio<int>(
                 value: 1,
                 groupValue: radioGroupValue,
-                onChanged: (int? newValue) {
-                  radioGroupValue = newValue!;
+                onChanged: (int newValue) {
+                  radioGroupValue = newValue;
                   setState(() {});
                 },
               ),
               YgRadio<int>(
                 value: 2,
                 groupValue: radioGroupValue,
-                onChanged: (int? newValue) {
-                  radioGroupValue = newValue!;
+                onChanged: (int newValue) {
+                  radioGroupValue = newValue;
                   setState(() {});
                 },
               ),
@@ -71,6 +70,29 @@ class _RadioScreenState extends State<RadioScreen> {
             ],
           ),
           YgSection.column(
+            title: 'With an error',
+            children: <Widget>[
+              YgRadio<int>(
+                value: 1,
+                groupValue: errorRadioGroupValue,
+                hasError: true,
+                onChanged: (int newValue) {
+                  errorRadioGroupValue = newValue;
+                  setState(() {});
+                },
+              ),
+              YgRadio<int>(
+                value: 2,
+                groupValue: errorRadioGroupValue,
+                hasError: true,
+                onChanged: (int newValue) {
+                  errorRadioGroupValue = newValue;
+                  setState(() {});
+                },
+              ),
+            ],
+          ),
+          YgSection.column(
             title: 'Radio group',
             children: <Widget>[
               YgRadioGroup<int>(
@@ -80,8 +102,8 @@ class _RadioScreenState extends State<RadioScreen> {
                     title: 'Radio item 1',
                     value: 1,
                     groupValue: radioGroupGroupValue,
-                    onChanged: (int? newValue) {
-                      radioGroupGroupValue = newValue!;
+                    onChanged: (int newValue) {
+                      radioGroupGroupValue = newValue;
                       setState(() {});
                     },
                   ),
@@ -89,8 +111,8 @@ class _RadioScreenState extends State<RadioScreen> {
                     title: 'Radio item 2',
                     value: 2,
                     groupValue: radioGroupGroupValue,
-                    onChanged: (int? newValue) {
-                      radioGroupGroupValue = newValue!;
+                    onChanged: (int newValue) {
+                      radioGroupGroupValue = newValue;
                       setState(() {});
                     },
                   ),
@@ -98,7 +120,7 @@ class _RadioScreenState extends State<RadioScreen> {
               ),
             ],
           ),
-          const YgSection.base(
+          const YgSection(
             title: 'Radio in a list tile',
             child: YgCallout(
               variant: YgCalloutVariant.warning,
@@ -107,7 +129,7 @@ class _RadioScreenState extends State<RadioScreen> {
             ),
           ),
           YgSection.list(
-            children: <Widget>[
+            children: <YgListTile>[
               YgListTile(
                 title: 'Radio in a list tile',
                 subtitle: 'Only the Radio is tappable.',
@@ -115,8 +137,8 @@ class _RadioScreenState extends State<RadioScreen> {
                   YgRadio<int>(
                     value: 1,
                     groupValue: listTileGroupValue,
-                    onChanged: (int? newValue) {
-                      listTileGroupValue = newValue!;
+                    onChanged: (int newValue) {
+                      listTileGroupValue = newValue;
                       setState(() {});
                     },
                   ),
