@@ -81,7 +81,7 @@ class YgAvatarStack extends StatelessWidget with StatelessWidgetDebugMixin {
       final int additional = entries.length - lastIndex;
 
       shownEntries[lastIndex] = YgAvatarStackEntry(
-        initials: additional > _maxAdditional ? '9+' : additional.toString(),
+        initials: additional > _maxAdditional ? '9+' : '+${additional.toString()}',
       );
     }
 

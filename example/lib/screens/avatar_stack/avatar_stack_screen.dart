@@ -19,26 +19,19 @@ class AvatarStackScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final List<int> amounts = <int>[1, 2, 3, 4, 5, 6, 14, 15];
+
     return DemoScreen(
       componentName: 'AvatarStack',
       child: Column(
         children: <Widget>[
-          ...List<Widget>.generate(
-            6,
-            (int index) => YgSection(
-              title: 'An AvatarStack with ${index + 1} entries',
+          ...amounts.map(
+            (int amount) => YgSection(
+              title: 'An AvatarStack with $amount entries',
               child: Center(
                 child: YgAvatarStack(
-                  entries: _getEntries(index + 1),
+                  entries: _getEntries(amount),
                 ),
-              ),
-            ),
-          ),
-          YgSection(
-            title: 'An AvatarStack with 15 entries',
-            child: Center(
-              child: YgAvatarStack(
-                entries: _getEntries(15),
               ),
             ),
           ),
