@@ -44,12 +44,12 @@ class AvatarStackScreen extends StatelessWidget {
     final List<YgAvatarStackEntry> entries = <YgAvatarStackEntry>[];
     final Random random = Random(count + 1);
     final List<String> avatars = <String>[
-      'assets/images/example_avatar_0.png',
-      'assets/images/example_avatar_1.png',
-      'assets/images/example_avatar_2.png',
-      'assets/images/example_avatar_3.png',
-      'assets/images/example_avatar_4.png',
-      'assets/images/example_avatar_5.png',
+      'assets/images/example_avatar_0.webp',
+      'assets/images/example_avatar_1.webp',
+      'assets/images/example_avatar_2.webp',
+      'assets/images/example_avatar_3.webp',
+      'assets/images/example_avatar_4.webp',
+      'assets/images/example_avatar_5.webp',
     ];
 
     for (int i = 0; i < count; i++) {

@@ -99,7 +99,7 @@ class AvatarScreen extends StatelessWidget {
                 YgAvatar(
                   initials: 'P',
                   image: Image.asset(
-                    'assets/images/example_avatar_1.png',
+                    'assets/images/example_avatar_1.webp',
                     semanticLabel: 'example_avatar',
                   ),
                 ),
@@ -107,7 +107,7 @@ class AvatarScreen extends StatelessWidget {
                   initials: 'C',
                   variant: YgAvatarVariant.company,
                   image: Image.asset(
-                    'assets/images/example_company_avatar.png',
+                    'assets/images/example_company_avatar.webp',
                     semanticLabel: 'example_avatar',
                   ),
                 ),
@@ -139,7 +139,7 @@ class AvatarScreen extends StatelessWidget {
                 YgAvatar(
                   initials: 'P',
                   image: Image.asset(
-                    'assets/images/example_avatar_1.png',
+                    'assets/images/example_avatar_1.webp',
                     semanticLabel: 'example_avatar',
                   ),
                   onPressed: () {},
@@ -148,7 +148,7 @@ class AvatarScreen extends StatelessWidget {
                   initials: 'C',
                   variant: YgAvatarVariant.company,
                   image: Image.asset(
-                    'assets/images/example_company_avatar.png',
+                    'assets/images/example_company_avatar.webp',
                     semanticLabel: 'example_avatar',
                   ),
                   onPressed: () {},
