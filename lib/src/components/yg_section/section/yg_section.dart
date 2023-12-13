@@ -66,7 +66,7 @@ abstract class YgSection extends StatelessWidget with StatelessWidgetDebugMixin 
         YgSectionHeader(
           title: title,
           subtitle: subtitle,
-          icon: YgIcon(icon),
+          icon: icon,
           tag: tag,
           trailing: null,
         ),
@@ -91,7 +91,7 @@ abstract class YgSection extends StatelessWidget with StatelessWidgetDebugMixin 
   /// The icon leading the section.
   ///
   /// You cannot have an icon without a title.
-  final YgColorableIconData? icon;
+  final YgIconData? icon;
 
   /// Builds the child widget.
   Widget buildChild(BuildContext context);
