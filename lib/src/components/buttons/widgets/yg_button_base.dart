@@ -3,7 +3,7 @@ import 'package:yggdrasil/src/utils/_utils.dart';
 
 import '_widgets.dart';
 
-abstract class YgButtonBase<T extends YgButtonBaseState> extends StatefulWidget implements StatefulWidgetDebugMixin {
+abstract class YgButtonBase<T extends YgButtonBaseState> extends StatefulWidget with StatefulWidgetDebugMixin {
   const YgButtonBase({
     super.key,
     required this.onPressed,

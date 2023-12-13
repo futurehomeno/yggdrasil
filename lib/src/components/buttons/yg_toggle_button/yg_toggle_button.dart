@@ -15,8 +15,7 @@ part 'variants/yg_toggle_text_button.dart';
 ///
 /// Functionality-wise, this is similar to a checkbox, but the use-case is
 /// different and this widget does not have a tri-state variant.
-abstract base class YgToggleButton extends YgButtonBase<YgToggleButtonState>
-    with YgDualStateToggleableMixin, StatefulWidgetDebugMixin {
+abstract base class YgToggleButton extends YgButtonBase<YgToggleButtonState> with YgDualStateToggleableMixin {
   const factory YgToggleButton({
     Key? key,
     required bool value,

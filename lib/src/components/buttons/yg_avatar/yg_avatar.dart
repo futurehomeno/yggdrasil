@@ -7,7 +7,7 @@ import 'yg_avatar_state.dart';
 import 'yg_avatar_style.dart';
 
 /// Implementation of the Yggdrasil Avatar.
-class YgAvatar extends YgButtonBase<YgAvatarState> with StatefulWidgetDebugMixin {
+class YgAvatar extends YgButtonBase<YgAvatarState> {
   const YgAvatar({
     super.key,
     required this.initials,

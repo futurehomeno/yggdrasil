@@ -7,7 +7,7 @@ import 'yg_icon_button_state.dart';
 import 'yg_icon_button_style.dart';
 
 /// Base class for creating all YgIconButtons.
-class YgIconButton extends YgButtonBase<YgIconButtonState> with StatefulWidgetDebugMixin {
+class YgIconButton extends YgButtonBase<YgIconButtonState> {
   const YgIconButton({
     super.key,
     required this.child,
