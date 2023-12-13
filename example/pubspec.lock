@@ -683,7 +683,7 @@ packages:
     source: hosted
     version: "2.1.0"
   package_info_plus:
-    dependency: transitive
+    dependency: "direct main"
     description:
       name: package_info_plus
       sha256: "7e76fad405b3e4016cd39d08f455a4eb5199723cf594cd1b8916d47140d93017"
@@ -1255,7 +1255,7 @@ packages:
       path: ".."
       relative: true
     source: path
-    version: "1.8.1"
+    version: "1.8.6"
 sdks:
   dart: ">=3.2.0 <4.0.0"
   flutter: ">=3.16.0"

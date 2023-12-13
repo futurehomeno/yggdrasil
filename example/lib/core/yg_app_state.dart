@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:package_info_plus/package_info_plus.dart';
 import 'package:yggdrasil/yggdrasil.dart';
 
 class YgAppState extends ChangeNotifier {
@@ -8,6 +9,15 @@ class YgAppState extends ChangeNotifier {
   YgTheme get theme => _defaultTheme;
   bool _darkMode = false;
   bool _businessTheme = false;
+
+  String _version = '';
+  String get version => _version;
+
+  void init() async {
+    final PackageInfo packageInfo = await PackageInfo.fromPlatform();
+    _version = packageInfo.version;
+    notifyListeners();
+  }
 
   void toggleDarkMode() {
     _darkMode ^= true;
