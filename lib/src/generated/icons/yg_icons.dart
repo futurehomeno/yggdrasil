@@ -377,6 +377,7 @@ class YgIcons {
   static const YgColorableIconData windowOpenAlt = YgColorableIconData(name: 'windowOpenAlt', path: 'assets/icons/window_open_alt.svg');
   static const YgColorableIconData windowOpenUnlocked = YgColorableIconData(name: 'windowOpenUnlocked', path: 'assets/icons/window_open_unlocked.svg');
   static const YgColorableIconData work = YgColorableIconData(name: 'work', path: 'assets/icons/work.svg');
+  static const YgColorableIconData ygg = YgColorableIconData(name: 'ygg', path: 'assets/icons/ygg.svg');
   static const YgColorableIconData zigbee = YgColorableIconData(name: 'zigbee', path: 'assets/icons/zigbee.svg');
   static const YgColorableIconData zwave = YgColorableIconData(name: 'zwave', path: 'assets/icons/zwave.svg');
   
@@ -755,6 +756,7 @@ class YgIcons {
     windowOpenAlt,
     windowOpenUnlocked,
     work,
+    ygg,
     zigbee,
     zwave,
   ];

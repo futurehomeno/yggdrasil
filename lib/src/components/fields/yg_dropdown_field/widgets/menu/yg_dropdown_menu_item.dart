@@ -11,7 +11,7 @@ class YgDropdownMenuItem extends StatelessWidget {
   });
 
   final bool selected;
-  final Widget? icon;
+  final YgIconData? icon;
   final String title;
   final String? subtitle;
   final VoidCallback onPressed;
@@ -19,7 +19,7 @@ class YgDropdownMenuItem extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final String? subtitle = this.subtitle;
-    final Widget? icon = this.icon;
+    final YgIconData? icon = this.icon;
     final YgDropdownFieldTheme theme = context.fieldTheme.dropdownTheme;
 
     return Material(
@@ -35,7 +35,7 @@ class YgDropdownMenuItem extends StatelessWidget {
               if (icon != null)
                 Padding(
                   padding: theme.menuItemPrefixPadding,
-                  child: icon,
+                  child: YgIcon(icon),
                 ),
               Expanded(
                 child: Column(
