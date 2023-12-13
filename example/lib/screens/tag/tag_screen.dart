@@ -73,8 +73,8 @@ class TagScreen extends StatelessWidget {
                 child: Text('Trailing icon'),
               ),
               const YgTag.doubleIcon(
-                leadingIcon: YgIcon(YgIcons.info),
-                trailingIcon: YgIcon(YgIcons.info),
+                leadingIcon: YgIcons.info,
+                trailingIcon: YgIcons.info,
                 child: Text('Double icon'),
               ),
             ].withVerticalSpacing(10.0),

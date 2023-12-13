@@ -36,9 +36,7 @@ class DemoScreen extends StatelessWidget {
                 centerTitle: false,
                 leading: const YgIconButton(
                   onPressed: null,
-                  icon: YgIcon.embeddedColor(
-                    YgIcons.placeholder,
-                  ),
+                  icon: YgIcons.placeholder,
                 ),
                 actions: <YgIconButton>[
                   YgIconButton(

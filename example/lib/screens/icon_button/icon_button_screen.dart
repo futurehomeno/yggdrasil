@@ -32,7 +32,7 @@ class IconButtonScreen extends StatelessWidget {
                     onPressed: () {},
                     icon: YgIcons.info,
                   ),
-                  YgIconButton(
+                  const YgIconButton(
                     onPressed: null,
                     icon: YgIcons.info,
                   ),
@@ -46,7 +46,7 @@ class IconButtonScreen extends StatelessWidget {
                     variant: YgIconButtonVariant.filled,
                     icon: YgIcons.info,
                   ),
-                  YgIconButton(
+                  const YgIconButton(
                     onPressed: null,
                     variant: YgIconButtonVariant.filled,
                     icon: YgIcons.info,
@@ -61,7 +61,7 @@ class IconButtonScreen extends StatelessWidget {
                     variant: YgIconButtonVariant.tonal,
                     icon: YgIcons.info,
                   ),
-                  YgIconButton(
+                  const YgIconButton(
                     onPressed: null,
                     variant: YgIconButtonVariant.tonal,
                     icon: YgIcons.info,
@@ -76,7 +76,7 @@ class IconButtonScreen extends StatelessWidget {
                     variant: YgIconButtonVariant.outlined,
                     icon: YgIcons.info,
                   ),
-                  YgIconButton(
+                  const YgIconButton(
                     onPressed: null,
                     variant: YgIconButtonVariant.outlined,
                     icon: YgIcons.info,

@@ -56,8 +56,8 @@ void main() {
             name: 'With doubleIcon, warning variant',
             child: const YgTag.doubleIcon(
               variant: YgTagVariant.warning,
-              leadingIcon: YgIcon(YgIcons.info),
-              trailingIcon: YgIcon(YgIcons.info),
+              leadingIcon: YgIcons.info,
+              trailingIcon: YgIcons.info,
               child: Text(
                 YgGoldenTestValues.shortText,
               ),

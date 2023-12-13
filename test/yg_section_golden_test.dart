@@ -268,7 +268,7 @@ class SectionOptions {
   final String? title;
   final String? subtitle;
   final YgTag? tag;
-  final YgIcon? icon;
+  final YgColorableIconData? icon;
 }
 
 class ScenarioGroup {

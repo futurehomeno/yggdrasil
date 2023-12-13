@@ -5,3 +5,4 @@ export 'src/theme/helpers/theme_data_helper.dart';
 export 'src/theme/theme.dart';
 export 'src/utils/yg_debug/_yg_debug.dart';
 export 'src/utils/yg_expander/yg_expansion_controller.dart';
+export 'src/utils/yg_icon_data/_yg_icon_data.dart';

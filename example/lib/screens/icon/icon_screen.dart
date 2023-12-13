@@ -55,10 +55,7 @@ class IconScreen extends StatelessWidget {
             subtitle: 'Color switching is handled by the parent widget.',
             child: YgIconButton(
               variant: YgIconButtonVariant.filled,
-              icon: const YgIcon(
-                YgIcons.info,
-                size: YgIconSize.large,
-              ),
+              icon: YgIcons.info,
               onPressed: () {},
             ),
           ),

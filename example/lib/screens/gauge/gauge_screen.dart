@@ -27,11 +27,11 @@ class _GaugeScreenState extends State<GaugeScreen> {
 
   @override
   Widget build(BuildContext context) {
-    return const DemoScreen(
+    return DemoScreen(
       componentName: 'Gauge',
       child: Column(
         children: <Widget>[
-          YgSection.column(
+          const YgSection.column(
             title: 'Gauge',
             children: <Widget>[
               Row(
@@ -81,7 +81,7 @@ class _GaugeScreenState extends State<GaugeScreen> {
               ),
             ],
           ),
-          YgSection(
+          const YgSection(
             title: 'Disabled gauge',
             child: Row(
               mainAxisAlignment: MainAxisAlignment.center,
@@ -105,7 +105,7 @@ class _GaugeScreenState extends State<GaugeScreen> {
               ],
             ),
           ),
-          YgSection.column(
+          const YgSection.column(
             title: 'Child variations',
             children: <Widget>[
               Row(
@@ -168,7 +168,7 @@ class _GaugeScreenState extends State<GaugeScreen> {
               ),
             ],
           ),
-          YgSection(
+          const YgSection(
             title: 'Responsive between ~90px and ~120px',
             child: Row(
               mainAxisAlignment: MainAxisAlignment.center,
@@ -197,7 +197,7 @@ class _GaugeScreenState extends State<GaugeScreen> {
               ],
             ),
           ),
-          YgSection(
+          const YgSection(
             title: 'Flexible min / max',
             child: Row(
               mainAxisAlignment: MainAxisAlignment.center,
@@ -244,11 +244,11 @@ class _GaugeScreenState extends State<GaugeScreen> {
                   value = random.nextInt(100).toDouble();
                   setState(() {});
                 },
-                child: Text('Change value'),
+                child: const Text('Change value'),
               ),
             ],
           ),
-          YgSection(
+          const YgSection(
             title: 'Gauge in a 100x200 container',
             child: SizedBox(
               height: 100.0,
@@ -260,7 +260,7 @@ class _GaugeScreenState extends State<GaugeScreen> {
               ),
             ),
           ),
-          YgSection(
+          const YgSection(
             title: 'Gauge in a 200x100 container',
             child: SizedBox(
               height: 200.0,
