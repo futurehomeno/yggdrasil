@@ -13,7 +13,7 @@ class YgSegmentedButtonSegmentState extends YgButtonBaseState {
   final YgStateValue<bool> selected;
 
   @override
-  List<YgStateValue<Object>> get props => <YgStateValue<Object>>[
+  List<YgStateValue<Object?>> get props => <YgStateValue<Object?>>[
         ...super.props,
         selected,
       ];

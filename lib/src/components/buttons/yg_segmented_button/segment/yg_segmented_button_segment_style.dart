@@ -75,12 +75,6 @@ class YgSegmentedButtonSegmentStyle extends YgButtonBaseStyle<YgSegmentedButtonS
     return _theme.padding;
   }
 
-  @override
-  MouseCursor resolveCursor(BuildContext context, YgSegmentedButtonSegmentState state) {
-    // TODO(Tim): Remove this when stuff merged.
-    return SystemMouseCursors.click;
-  }
-
   YgSegmentedButtonTheme get _theme => context.segmentedButtonTheme;
 
   @override
