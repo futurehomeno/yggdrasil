@@ -1,0 +1,4 @@
+enum YgBadgeVariant {
+  icon,
+  number,
+}

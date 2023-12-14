@@ -66,7 +66,6 @@ class _YgDropdownFormFieldSingleSelect<T extends Object> extends YgDropdownFormF
   }
 
   @override
-  // ignore: avoid-stateless-widget-initialized-fields
   late final FormFieldBuilder<T?> builder = _builder;
 
   @override

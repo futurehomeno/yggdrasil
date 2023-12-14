@@ -57,6 +57,16 @@ abstract class YgButtonBase<T extends YgButtonBaseState> extends StatefulWidget 
   @protected
   Widget buildChild(BuildContext context);
 
+  /// Builds an optional background.
+  ///
+  /// Gets rendered behind the button content, but in front of the background color.
+  @protected
+  Widget? buildBackground(BuildContext context) => null;
+
+  /// Builds a wrapper for the button.
+  @protected
+  Widget buildWrapper(BuildContext context, Widget child) => child;
+
   /// Creates the style applied to this button.
   @protected
   YgButtonBaseStyle<T> createStyle(YgVsync vsync, T state);
@@ -118,55 +128,72 @@ class _YgButtonBaseState<T extends YgButtonBaseState> extends StateWithYgStyle<Y
       style.splashFactory,
       style.cursor,
       style.splashColor,
+      style.clip,
     };
   }
 
   @override
   Widget build(BuildContext context) {
-    return YgAnimatedConstrainedBox(
+    final Widget? background = widget.buildBackground(context);
+
+    Widget content = YgAnimatedConstrainedBox(
       constraints: style.constraints,
-      child: YgAnimatedPhysicalShape(
-        clipBehavior: Clip.antiAlias,
-        color: style.color,
-        elevation: style.elevation,
-        shape: style.shape,
-        child: Material(
-          type: MaterialType.transparency,
-          child: InkWell(
-            statesController: _materialController,
-            splashFactory: style.splashFactory.value,
-            onLongPress: _state.disabled.value ? null : widget.onLongPress,
-            onTap: _state.disabled.value ? null : widget.onPressed,
-            onHover: widget.onHover,
-            onFocusChange: widget.onFocusChange,
-            autofocus: widget.autofocus,
-            focusNode: widget.focusNode,
-            canRequestFocus: widget.onPressed != null,
-            mouseCursor: style.cursor.value,
-            overlayColor: MaterialStatePropertyAll<Color>(
-              style.splashColor.value,
-            ),
-            splashColor: Colors.transparent,
-            child: YgAnimatedPadding(
-              padding: style.padding,
-              child: AlignTransition(
-                widthFactor: 1,
-                heightFactor: 1,
-                alignment: style.alignment,
-                child: DefaultTextStyleTransition(
-                  maxLines: 1,
-                  overflow: TextOverflow.ellipsis,
-                  style: style.textStyle,
-                  child: YgAnimatedIconTheme(
-                    iconTheme: style.iconTheme,
-                    child: widget.buildChild(context),
-                  ),
+      child: Material(
+        type: MaterialType.transparency,
+        child: InkWell(
+          statesController: _materialController,
+          splashFactory: style.splashFactory.value,
+          onLongPress: _state.disabled.value ? null : widget.onLongPress,
+          onTap: _state.disabled.value ? null : widget.onPressed,
+          onHover: widget.onHover,
+          onFocusChange: widget.onFocusChange,
+          autofocus: widget.autofocus,
+          focusNode: widget.focusNode,
+          canRequestFocus: widget.onPressed != null,
+          mouseCursor: style.cursor.value,
+          overlayColor: MaterialStatePropertyAll<Color>(
+            style.splashColor.value,
+          ),
+          splashColor: Colors.transparent,
+          hoverColor: Colors.transparent,
+          child: YgAnimatedPadding(
+            padding: style.padding,
+            child: AlignTransition(
+              widthFactor: 1,
+              heightFactor: 1,
+              alignment: style.alignment,
+              child: DefaultTextStyleTransition(
+                maxLines: 1,
+                overflow: TextOverflow.ellipsis,
+                style: style.textStyle,
+                child: YgAnimatedIconTheme(
+                  iconTheme: style.iconTheme,
+                  child: widget.buildChild(context),
                 ),
               ),
             ),
           ),
         ),
       ),
+    );
+
+    if (background != null) {
+      content = Stack(
+        children: <Widget>[
+          Positioned.fill(
+            child: background,
+          ),
+          content,
+        ],
+      );
+    }
+
+    return YgAnimatedPhysicalShape(
+      clipBehavior: style.clip.value,
+      color: style.color,
+      elevation: style.elevation,
+      shape: style.shape,
+      child: content,
     );
   }
 }
