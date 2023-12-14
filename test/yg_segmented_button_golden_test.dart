@@ -31,9 +31,9 @@ void main() {
             child: YgSegmentedButton<int>(
               value: 2,
               segments: const <YgButtonSegment<int>>[
-                YgButtonSegment<int>(label: YgGoldenTestValues.shortText, icon: YgIcon(YgIcons.placeholder), value: 1),
-                YgButtonSegment<int>(label: YgGoldenTestValues.shortText, icon: YgIcon(YgIcons.placeholder), value: 2),
-                YgButtonSegment<int>(label: YgGoldenTestValues.shortText, icon: YgIcon(YgIcons.placeholder), value: 3),
+                YgButtonSegment<int>(label: YgGoldenTestValues.shortText, icon: YgIcons.placeholder, value: 1),
+                YgButtonSegment<int>(label: YgGoldenTestValues.shortText, icon: YgIcons.placeholder, value: 2),
+                YgButtonSegment<int>(label: YgGoldenTestValues.shortText, icon: YgIcons.placeholder, value: 3),
               ],
               onValueChanged: (_) {},
             ),
@@ -43,9 +43,9 @@ void main() {
             child: YgSegmentedButton<int>(
               value: 3,
               segments: const <YgButtonSegment<int>>[
-                YgButtonSegment<int>.iconOnly(icon: YgIcon(YgIcons.placeholder), value: 1),
-                YgButtonSegment<int>.iconOnly(icon: YgIcon(YgIcons.placeholder), value: 2),
-                YgButtonSegment<int>.iconOnly(icon: YgIcon(YgIcons.placeholder), value: 3),
+                YgButtonSegment<int>.iconOnly(icon: YgIcons.placeholder, value: 1),
+                YgButtonSegment<int>.iconOnly(icon: YgIcons.placeholder, value: 2),
+                YgButtonSegment<int>.iconOnly(icon: YgIcons.placeholder, value: 3),
               ],
               onValueChanged: (_) {},
             ),
