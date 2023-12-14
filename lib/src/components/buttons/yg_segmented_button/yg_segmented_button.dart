@@ -36,6 +36,11 @@ abstract class YgSegmentedButton<T extends Object?> extends StatelessWidget {
   Widget build(BuildContext context) {
     final YgSegmentedButtonTheme theme = context.segmentedButtonTheme;
 
+    assert(
+      segments.length >= 2 && segments.length <= 5,
+      'Can not have more than 5 or less than 2 segments.',
+    );
+
     return RepaintBoundary(
       child: Material(
         shape: RoundedRectangleBorder(
