@@ -60,7 +60,7 @@ class _SegmentedButtonScreenState extends State<SegmentedButtonScreen> {
             title: 'Disabled segmented button',
             child: YgSegmentedButton<int>(
               segments: _getSegments(count: 3, label: true),
-              value: labelsIconsValue,
+              value: 0,
               onValueChanged: null,
             ),
           ),
