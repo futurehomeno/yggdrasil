@@ -49,7 +49,10 @@ class YgSegmentedButtonSegment extends YgButtonBase<YgSegmentedButtonSegmentStat
             ),
           ),
         ),
-        if (content != null) content,
+        if (content != null)
+          Flexible(
+            child: content,
+          ),
       ],
     );
   }

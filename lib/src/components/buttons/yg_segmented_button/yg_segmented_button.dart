@@ -45,7 +45,7 @@ abstract class YgSegmentedButton<T extends Object?> extends StatelessWidget {
           mainAxisSize: MainAxisSize.min,
           children: segments
               .map(
-                (YgButtonSegment<T> segment) => Expanded(
+                (YgButtonSegment<T> segment) => Flexible(
                   child: YgSegmentedButtonSegment(
                     onPressed: () => _onSegmentPressed(segment),
                     selected: _isSegmentSelected(segment),
