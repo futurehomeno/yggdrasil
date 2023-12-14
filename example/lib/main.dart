@@ -11,7 +11,7 @@ void main() {
 
   runApp(
     ChangeNotifierProvider<YgAppState>(
-      create: (BuildContext context) => YgAppState(),
+      create: (BuildContext context) => YgAppState()..init(),
       child: const Yggdrasil(),
     ),
   );
