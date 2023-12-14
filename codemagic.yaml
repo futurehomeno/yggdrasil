@@ -141,6 +141,13 @@ workflows:
           cd $CM_BUILD_DIR/cli
           flutter pub get
 
+      - name: Downloading ratatosk
+        script: |
+          git clone git@github.com:futurehomeno/ratatosk.git $CM_BUILD_DIR/ratatosk
+          cd $CM_BUILD_DIR/ratatosk
+          flutter pub get
+          dart pub global activate --source path ./
+          
       - name: Install appdmg
         script: npm install -g appdmg
 
@@ -214,7 +221,7 @@ workflows:
 
         - name: Sending message to Slack
           script: |
-            changelog=$(dart $CM_BUILD_DIR/cli/futurehome.dart ci gc)
+            changelog=$(rat changelog -f $CM_TAG -t $CM_TAG -r)
             
             curl --location $YGGDRASIL_SLACK_WEBHOOK \
             --header 'Content-Type: application/json' \
