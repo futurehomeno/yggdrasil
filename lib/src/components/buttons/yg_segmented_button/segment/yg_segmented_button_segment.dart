@@ -35,17 +35,17 @@ class YgSegmentedButtonSegment extends YgButtonBase<YgSegmentedButtonSegmentStat
       mainAxisSize: MainAxisSize.min,
       children: <Widget>[
         AnimatedAlign(
-          duration: const Duration(milliseconds: 200),
-          curve: Curves.easeInOut,
+          duration: theme.animationDuration,
+          curve: theme.animationCurve,
           widthFactor: showLeading ? 1 : 0,
           alignment: Alignment.center,
           child: AnimatedOpacity(
-            curve: Curves.easeInOut,
-            duration: const Duration(milliseconds: 200),
+            duration: theme.animationDuration,
+            curve: theme.animationCurve,
             opacity: showLeading ? 1 : 0,
             child: Padding(
               padding: EdgeInsets.only(right: theme.childSpacing),
-              child: _buildLeading(),
+              child: _buildLeading(theme),
             ),
           ),
         ),
@@ -54,7 +54,7 @@ class YgSegmentedButtonSegment extends YgButtonBase<YgSegmentedButtonSegmentStat
     );
   }
 
-  Widget _buildLeading() {
+  Widget _buildLeading(YgSegmentedButtonTheme theme) {
     final YgIcon? icon = this.icon;
     if (icon == null || label == null) {
       return const YgIcon(YgIcons.check);
@@ -63,9 +63,9 @@ class YgSegmentedButtonSegment extends YgButtonBase<YgSegmentedButtonSegmentStat
     return AnimatedCrossFade(
       firstChild: const YgIcon(YgIcons.check),
       secondChild: icon,
-      duration: const Duration(milliseconds: 200),
-      firstCurve: Curves.easeInOut,
-      secondCurve: Curves.easeInOut,
+      duration: theme.animationDuration,
+      firstCurve: theme.animationCurve,
+      secondCurve: theme.animationCurve,
       crossFadeState: selected ? CrossFadeState.showFirst : CrossFadeState.showSecond,
     );
   }

@@ -78,8 +78,8 @@ class YgSegmentedButtonSegmentStyle extends YgButtonBaseStyle<YgSegmentedButtonS
   YgSegmentedButtonTheme get _theme => context.segmentedButtonTheme;
 
   @override
-  Curve get curve => Curves.easeInOut;
+  Curve get curve => _theme.animationCurve;
 
   @override
-  Duration get duration => const Duration(milliseconds: 200);
+  Duration get duration => _theme.animationDuration;
 }

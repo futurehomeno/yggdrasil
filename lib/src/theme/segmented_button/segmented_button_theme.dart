@@ -136,4 +136,18 @@ class _$YgSegmentedButtonTheme {
     professional_light.FhDimensions.xxs,
     professional_dark.FhDimensions.xxs,
   ];
+
+  static const List<Duration> animationDuration = <Duration>[
+    Duration(milliseconds: 200),
+    Duration(milliseconds: 200),
+    Duration(milliseconds: 200),
+    Duration(milliseconds: 200),
+  ];
+
+  static const List<Curve> animationCurve = <Curve>[
+    Cubic(0.42, 0, 0.2, 1),
+    Cubic(0.42, 0, 0.2, 1),
+    Cubic(0.42, 0, 0.2, 1),
+    Cubic(0.42, 0, 0.2, 1),
+  ];
 }

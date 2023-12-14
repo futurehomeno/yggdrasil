@@ -10,6 +10,8 @@ part of 'segmented_button_theme.dart';
 
 class YgSegmentedButtonTheme extends ThemeExtension<YgSegmentedButtonTheme> {
   const YgSegmentedButtonTheme({
+    required this.animationCurve,
+    required this.animationDuration,
     required this.backgroundDefaultColor,
     required this.backgroundDisabledColor,
     required this.backgroundSelectedColor,
@@ -28,6 +30,8 @@ class YgSegmentedButtonTheme extends ThemeExtension<YgSegmentedButtonTheme> {
     required this.textStyle,
   });
 
+  final Curve animationCurve;
+  final Duration animationDuration;
   final Color backgroundDefaultColor;
   final Color backgroundDisabledColor;
   final Color backgroundSelectedColor;
@@ -46,6 +50,8 @@ class YgSegmentedButtonTheme extends ThemeExtension<YgSegmentedButtonTheme> {
   final TextStyle textStyle;
 
   static final YgSegmentedButtonTheme consumerLight = YgSegmentedButtonTheme(
+    animationCurve: _$YgSegmentedButtonTheme.animationCurve[0],
+    animationDuration: _$YgSegmentedButtonTheme.animationDuration[0],
     backgroundDefaultColor: _$YgSegmentedButtonTheme.backgroundDefaultColor[0],
     backgroundDisabledColor:
         _$YgSegmentedButtonTheme.backgroundDisabledColor[0],
@@ -68,6 +74,8 @@ class YgSegmentedButtonTheme extends ThemeExtension<YgSegmentedButtonTheme> {
   );
 
   static final YgSegmentedButtonTheme consumerDark = YgSegmentedButtonTheme(
+    animationCurve: _$YgSegmentedButtonTheme.animationCurve[1],
+    animationDuration: _$YgSegmentedButtonTheme.animationDuration[1],
     backgroundDefaultColor: _$YgSegmentedButtonTheme.backgroundDefaultColor[1],
     backgroundDisabledColor:
         _$YgSegmentedButtonTheme.backgroundDisabledColor[1],
@@ -91,6 +99,8 @@ class YgSegmentedButtonTheme extends ThemeExtension<YgSegmentedButtonTheme> {
 
   static final YgSegmentedButtonTheme professionalLight =
       YgSegmentedButtonTheme(
+    animationCurve: _$YgSegmentedButtonTheme.animationCurve[2],
+    animationDuration: _$YgSegmentedButtonTheme.animationDuration[2],
     backgroundDefaultColor: _$YgSegmentedButtonTheme.backgroundDefaultColor[2],
     backgroundDisabledColor:
         _$YgSegmentedButtonTheme.backgroundDisabledColor[2],
@@ -113,6 +123,8 @@ class YgSegmentedButtonTheme extends ThemeExtension<YgSegmentedButtonTheme> {
   );
 
   static final YgSegmentedButtonTheme professionalDark = YgSegmentedButtonTheme(
+    animationCurve: _$YgSegmentedButtonTheme.animationCurve[3],
+    animationDuration: _$YgSegmentedButtonTheme.animationDuration[3],
     backgroundDefaultColor: _$YgSegmentedButtonTheme.backgroundDefaultColor[3],
     backgroundDisabledColor:
         _$YgSegmentedButtonTheme.backgroundDisabledColor[3],
@@ -143,6 +155,8 @@ class YgSegmentedButtonTheme extends ThemeExtension<YgSegmentedButtonTheme> {
 
   @override
   YgSegmentedButtonTheme copyWith({
+    Curve? animationCurve,
+    Duration? animationDuration,
     Color? backgroundDefaultColor,
     Color? backgroundDisabledColor,
     Color? backgroundSelectedColor,
@@ -161,6 +175,8 @@ class YgSegmentedButtonTheme extends ThemeExtension<YgSegmentedButtonTheme> {
     TextStyle? textStyle,
   }) {
     return YgSegmentedButtonTheme(
+      animationCurve: animationCurve ?? this.animationCurve,
+      animationDuration: animationDuration ?? this.animationDuration,
       backgroundDefaultColor:
           backgroundDefaultColor ?? this.backgroundDefaultColor,
       backgroundDisabledColor:
@@ -189,6 +205,8 @@ class YgSegmentedButtonTheme extends ThemeExtension<YgSegmentedButtonTheme> {
       covariant ThemeExtension<YgSegmentedButtonTheme>? other, double t) {
     if (other is! YgSegmentedButtonTheme) return this as YgSegmentedButtonTheme;
     return YgSegmentedButtonTheme(
+      animationCurve: t < 0.5 ? animationCurve : other.animationCurve,
+      animationDuration: t < 0.5 ? animationDuration : other.animationDuration,
       backgroundDefaultColor:
           Color.lerp(backgroundDefaultColor, other.backgroundDefaultColor, t)!,
       backgroundDisabledColor: Color.lerp(
@@ -226,6 +244,10 @@ class YgSegmentedButtonTheme extends ThemeExtension<YgSegmentedButtonTheme> {
         (other.runtimeType == runtimeType &&
             other is YgSegmentedButtonTheme &&
             const DeepCollectionEquality()
+                .equals(animationCurve, other.animationCurve) &&
+            const DeepCollectionEquality()
+                .equals(animationDuration, other.animationDuration) &&
+            const DeepCollectionEquality()
                 .equals(backgroundDefaultColor, other.backgroundDefaultColor) &&
             const DeepCollectionEquality().equals(
                 backgroundDisabledColor, other.backgroundDisabledColor) &&
@@ -261,6 +283,8 @@ class YgSegmentedButtonTheme extends ThemeExtension<YgSegmentedButtonTheme> {
   int get hashCode {
     return Object.hash(
       runtimeType.hashCode,
+      const DeepCollectionEquality().hash(animationCurve),
+      const DeepCollectionEquality().hash(animationDuration),
       const DeepCollectionEquality().hash(backgroundDefaultColor),
       const DeepCollectionEquality().hash(backgroundDisabledColor),
       const DeepCollectionEquality().hash(backgroundSelectedColor),
