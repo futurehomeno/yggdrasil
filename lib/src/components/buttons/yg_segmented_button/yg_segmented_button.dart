@@ -16,7 +16,7 @@ abstract class YgSegmentedButton<T extends Object?> extends StatelessWidget {
     required T value,
   }) = _YgSegmentedButtonSingleSelect<T>;
 
-  /// Allows for multiple values to be selected at once.
+  /// A segmented button that allows for multiple values to be selected at once.
   const factory YgSegmentedButton.multiSelect({
     Key? key,
     required ValueChanged<Set<T>>? onValueChanged,
