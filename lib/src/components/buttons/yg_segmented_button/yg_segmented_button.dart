@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:yggdrasil/src/theme/segmented_button/segmented_button_theme.dart';
 import 'package:yggdrasil/yggdrasil.dart';
 
-import 'segment/yg_segmented_button_segment.dart';
+import 'segment/_segment.dart';
 
 part 'yg_segmented_button_multi_select.dart';
 part 'yg_segmented_button_single_select.dart';
