@@ -33,28 +33,30 @@ abstract class YgSegmentedButton<T extends Object?> extends StatelessWidget {
   Widget build(BuildContext context) {
     final YgSegmentedButtonTheme theme = context.segmentedButtonTheme;
 
-    return Material(
-      shape: RoundedRectangleBorder(
-        side: theme.borderSide,
-        borderRadius: theme.borderRadius,
-      ),
-      color: theme.borderSide.color,
-      clipBehavior: Clip.antiAlias,
-      child: Row(
-        mainAxisSize: MainAxisSize.min,
-        children: segments
-            .map(
-              (YgButtonSegment<T> segment) => Expanded(
-                child: YgSegmentedButtonSegment(
-                  onPressed: () => _onSegmentPressed(segment),
-                  selected: _isSegmentSelected(segment),
-                  label: segment.label,
-                  icon: segment.icon,
+    return RepaintBoundary(
+      child: Material(
+        shape: RoundedRectangleBorder(
+          side: theme.borderSide,
+          borderRadius: theme.borderRadius,
+        ),
+        color: theme.borderSide.color,
+        clipBehavior: Clip.antiAlias,
+        child: Row(
+          mainAxisSize: MainAxisSize.min,
+          children: segments
+              .map(
+                (YgButtonSegment<T> segment) => Expanded(
+                  child: YgSegmentedButtonSegment(
+                    onPressed: () => _onSegmentPressed(segment),
+                    selected: _isSegmentSelected(segment),
+                    label: segment.label,
+                    icon: segment.icon,
+                  ),
                 ),
-              ),
-            )
-            .toList()
-            .withHorizontalSpacing(theme.borderSide.width),
+              )
+              .toList()
+              .withHorizontalSpacing(theme.borderSide.width),
+        ),
       ),
     );
   }
