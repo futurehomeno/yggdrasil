@@ -31,13 +31,6 @@ workflows:
           rm -rf clone/*
           mv app_files clone
 
-      - name: Downloading flutter cli
-        script: |
-          pwd
-          git clone git@github.com:futurehomeno/flutter-cli.git $CM_BUILD_DIR/cli
-          cd $CM_BUILD_DIR/cli
-          flutter pub get
-
       - name: Analyzing
         working_directory: /Users/builder/clone/app_files
         script: flutter analyze
@@ -147,7 +140,7 @@ workflows:
           cd $CM_BUILD_DIR/ratatosk
           flutter pub get
           dart pub global activate --source path ./
-          
+
       - name: Install appdmg
         script: npm install -g appdmg
 
