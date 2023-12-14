@@ -1,3 +1,16 @@
+# 1.8.7 [2023-12-14T15:55:24.139875]
+
+## Changes
+
+- [feature] Implemented the YgAvatar and YgAvatarStack widgets DEV-1121.
+- [fix] Fixed section titles not having the correct color after changing themes under certain circumstances.
+
+## Dev changes
+
+- [dev-improvement] Migrated YgBadge to YgStates DEV-2559.
+- [dev-improvement] Migrated YgCallout to YgStates DEV-2558.
+- [dev-improvement] Migrated YgCard to YgStates DEV-2557.
+
 # 1.8.6 [2023-12-08T13:06:48.355983]
 
 ## Changes
