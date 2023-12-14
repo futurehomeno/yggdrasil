@@ -1,34 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:theme_tailor_annotation/theme_tailor_annotation.dart';
-import 'package:yggdrasil/src/theme/wizard_header/_wizard_header.dart';
 
-import 'app_bar/_app_bar.dart';
-import 'badge/_badge.dart';
-import 'bottom_sheet/_bottom_sheet.dart';
-import 'button/_button.dart';
-import 'button_group/_button_group.dart';
-import 'callout/_callout.dart';
-import 'card/_card.dart';
-import 'checkbox/_checkbox.dart';
-import 'defaults/_defaults.dart';
-import 'dialog/_dialog.dart';
-import 'divider/_divider.dart';
-import 'fields/_fields.dart';
-import 'gauge/_gauge.dart';
-import 'icon/_icon.dart';
-import 'icon_button/_icon_button.dart';
-import 'internal/_internal.dart';
-import 'list_tile/_list_tile.dart';
-import 'progress_indicator/_progress_indicator.dart';
-import 'radio/_radio.dart';
-import 'section/_section.dart';
-import 'snack_bar/_snack_bar.dart';
-import 'stepper/_stepper.dart';
-import 'switch/_switch.dart';
-import 'tabs/_tabs.dart';
-import 'tag/_tag.dart';
-import 'text_link/_text_link.dart';
-import 'toggle_button/_toggle_button.dart';
+import '_theme.dart';
 import 'tokens/_tokens.dart';
 
 part 'theme.tailor.dart';
@@ -53,6 +26,9 @@ class _$YgTheme {
 
   @themeExtension
   static final List<YgAppBarTheme> appBarTheme = YgAppBarTheme.themes;
+
+  @themeExtension
+  static final List<YgAvatarTheme> avatarTheme = YgAvatarTheme.themes;
 
   @themeExtension
   static final List<YgBadgeTheme> badgeTheme = YgBadgeTheme.themes;

@@ -2,7 +2,6 @@ import 'dart:ui';
 
 import 'package:flutter/material.dart';
 import 'package:yggdrasil/src/theme/_theme.dart';
-import 'package:yggdrasil/src/theme/icon_button/_icon_button.dart';
 import 'package:yggdrasil/src/utils/_utils.dart';
 
 /// YGG version of [FlexibleSpaceBar].

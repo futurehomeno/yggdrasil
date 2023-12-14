@@ -19,7 +19,7 @@ class YgButtonBaseState extends YgState {
 
   @override
   @mustCallSuper
-  List<YgStateValue<Object>> get props => <YgStateValue<Object>>[
+  List<YgStateValue<Object?>> get props => <YgStateValue<Object?>>[
         focused,
         hovered,
         disabled,

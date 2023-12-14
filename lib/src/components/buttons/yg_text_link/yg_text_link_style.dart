@@ -83,15 +83,6 @@ class YgTextLinkStyle extends YgButtonBaseStyle<YgTextLinkState> {
   YgTextLinkTheme get _theme => context.textLinkTheme;
 
   @override
-  MouseCursor resolveCursor(BuildContext context, YgTextLinkState state) {
-    if (state.disabled.value) {
-      return SystemMouseCursors.basic;
-    }
-
-    return SystemMouseCursors.click;
-  }
-
-  @override
   EdgeInsets resolvePadding(BuildContext context, YgTextLinkState state) {
     return context.textLinkTheme.padding;
   }

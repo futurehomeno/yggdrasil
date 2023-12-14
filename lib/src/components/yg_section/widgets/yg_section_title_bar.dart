@@ -68,7 +68,9 @@ class YgSectionTitleBar extends MultiChildRenderObjectWidget {
 class YgSectionTitleBarParentData extends ContainerBoxParentData<RenderBox> {}
 
 class YgSectionTitleBarRenderer extends RenderBox
-    with ContainerRenderObjectMixin<RenderBox, YgSectionTitleBarParentData> {
+    with
+        ContainerRenderObjectMixin<RenderBox, YgSectionTitleBarParentData>,
+        RenderBoxContainerDefaultsMixin<RenderBox, YgSectionTitleBarParentData> {
   YgSectionTitleBarRenderer({
     required bool tag,
     required bool trailing,
@@ -121,7 +123,9 @@ class YgSectionTitleBarRenderer extends RenderBox
 
   @override
   void setupParentData(covariant RenderObject child) {
-    child.parentData = YgSectionTitleBarParentData();
+    if (child.parentData is! YgSectionTitleBarParentData) {
+      child.parentData = YgSectionTitleBarParentData();
+    }
   }
 
   @override
@@ -157,7 +161,7 @@ class YgSectionTitleBarRenderer extends RenderBox
       availableWidth -= totalWidth;
 
       // Save the offset of the trailing widget.
-      trailing.offset = Offset(
+      trailing.data.offset = Offset(
         constraints.maxWidth - totalWidth,
         0,
       );
@@ -223,7 +227,7 @@ class YgSectionTitleBarRenderer extends RenderBox
       height = max(height, tag.size.height);
 
       // Save the offset of the tag.
-      tag.offset = Offset(
+      tag.data.offset = Offset(
         offset - tag.size.width,
         0,
       );
@@ -238,45 +242,21 @@ class YgSectionTitleBarRenderer extends RenderBox
 
   @override
   void paint(PaintingContext context, Offset offset) {
-    // Loop through every child and paint it using the saved offset.
-    RenderBox? child = firstChild;
-    while (child != null) {
-      child.paint(context, offset + child.offset);
-      child = childAfter(child);
-    }
+    defaultPaint(context, offset);
   }
 
   @override
   bool hitTestChildren(BoxHitTestResult result, {required Offset position}) {
-    // Loop through every child until a hit has been detected using the saved
-    // offset.
-    RenderBox? child = firstChild;
-    while (child != null) {
-      if (child.hitTest(result, position: position - child.offset)) {
-        return true;
-      }
-      child = childAfter(child);
-    }
-
-    return false;
+    return defaultHitTestChildren(result, position: position);
   }
 
   @override
-  void applyPaintTransform(covariant RenderObject child, Matrix4 transform) {
-    // Translate the transform using the saved offset.
-    transform.translate(
-      child.offset.dx,
-      child.offset.dy,
-    );
+  double? computeDistanceToActualBaseline(TextBaseline baseline) {
+    return defaultComputeDistanceToFirstActualBaseline(baseline);
   }
 }
 
 /// Private extension to make interacting with parentData easier.
 extension on RenderObject {
-  Offset get offset => data.offset;
-  set offset(Offset newOffset) {
-    data.offset = newOffset;
-  }
-
   YgSectionTitleBarParentData get data => (parentData as YgSectionTitleBarParentData);
 }

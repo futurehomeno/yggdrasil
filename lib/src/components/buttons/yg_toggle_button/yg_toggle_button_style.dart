@@ -96,15 +96,6 @@ class YgToggleButtonStyle extends YgButtonBaseStyle<YgToggleButtonState> {
   }
 
   @override
-  MouseCursor resolveCursor(BuildContext context, YgToggleButtonState state) {
-    if (state.disabled.value) {
-      return SystemMouseCursors.basic;
-    }
-
-    return SystemMouseCursors.click;
-  }
-
-  @override
   OutlinedBorder resolveOutlinedBorder(BuildContext context, YgToggleButtonState state) {
     final BorderSide borderSide = BorderSide(
       color: _resolveBorderColor(state),

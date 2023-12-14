@@ -28,6 +28,13 @@ class _$YgStepperTheme {
     professional_dark.FhTextStyles.sectionHeading3Regular,
   ];
 
+  static const List<Color> textDefaultColor = <Color>[
+    consumer_light.FhColors.textDefault,
+    consumer_dark.FhColors.textDefault,
+    professional_light.FhColors.textDefault,
+    professional_dark.FhColors.textDefault,
+  ];
+
   static const List<Color> textDisabledColor = <Color>[
     consumer_light.FhColors.textDisabled,
     consumer_dark.FhColors.textDisabled,
