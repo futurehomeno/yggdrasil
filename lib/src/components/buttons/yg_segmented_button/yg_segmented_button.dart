@@ -7,6 +7,7 @@ import 'segment/yg_segmented_button_segment.dart';
 part 'yg_segmented_button_multi_select.dart';
 part 'yg_segmented_button_single_select.dart';
 
+/// A button which is made up out of multiple [YgButtonSegment]s.
 abstract class YgSegmentedButton<T extends Object?> extends StatelessWidget {
   const factory YgSegmentedButton({
     Key? key,
@@ -15,6 +16,7 @@ abstract class YgSegmentedButton<T extends Object?> extends StatelessWidget {
     required T value,
   }) = _YgSegmentedButtonSingleSelect<T>;
 
+  /// Allows for multiple values to be selected at once.
   const factory YgSegmentedButton.multiSelect({
     Key? key,
     required ValueChanged<Set<T>> onValueChanged,
@@ -27,6 +29,7 @@ abstract class YgSegmentedButton<T extends Object?> extends StatelessWidget {
     required this.segments,
   });
 
+  /// The segments of this segmented button.
   final List<YgButtonSegment<T>> segments;
 
   @override

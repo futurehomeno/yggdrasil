@@ -8,7 +8,10 @@ class _YgSegmentedButtonMultiSelect<T extends Object?> extends YgSegmentedButton
     required this.onValueChanged,
   }) : super._();
 
+  /// The current set of values selected in this segmented button.
   final Set<T> value;
+
+  /// Called when the user changes his selection of segments.
   final ValueChanged<Set<T>> onValueChanged;
 
   @override

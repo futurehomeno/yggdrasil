@@ -8,7 +8,10 @@ class _YgSegmentedButtonSingleSelect<T extends Object?> extends YgSegmentedButto
     required this.onValueChanged,
   }) : super._();
 
+  /// The current value of this segmented button.
   final T value;
+
+  /// Called when the user selected a different segment.
   final ValueChanged<T> onValueChanged;
 
   @override
