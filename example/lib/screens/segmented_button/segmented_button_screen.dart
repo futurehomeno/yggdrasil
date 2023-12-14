@@ -57,6 +57,14 @@ class _SegmentedButtonScreenState extends State<SegmentedButtonScreen> {
             ),
           ),
           YgSection(
+            title: 'Disabled segmented button',
+            child: YgSegmentedButton<int>(
+              segments: _getSegments(count: 3, label: true),
+              value: labelsIconsValue,
+              onValueChanged: null,
+            ),
+          ),
+          YgSection(
             title: 'Multi select segmented button',
             child: YgSegmentedButton<int>.multiSelect(
               segments: _getSegments(count: 3, label: true),

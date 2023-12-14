@@ -11,7 +11,7 @@ part 'yg_segmented_button_single_select.dart';
 abstract class YgSegmentedButton<T extends Object?> extends StatelessWidget {
   const factory YgSegmentedButton({
     Key? key,
-    required ValueChanged<T> onValueChanged,
+    required ValueChanged<T>? onValueChanged,
     required List<YgButtonSegment<T>> segments,
     required T value,
   }) = _YgSegmentedButtonSingleSelect<T>;
@@ -19,7 +19,7 @@ abstract class YgSegmentedButton<T extends Object?> extends StatelessWidget {
   /// Allows for multiple values to be selected at once.
   const factory YgSegmentedButton.multiSelect({
     Key? key,
-    required ValueChanged<Set<T>> onValueChanged,
+    required ValueChanged<Set<T>>? onValueChanged,
     required List<YgButtonSegment<T>> segments,
     required Set<T> value,
   }) = _YgSegmentedButtonMultiSelect<T>;
@@ -55,7 +55,7 @@ abstract class YgSegmentedButton<T extends Object?> extends StatelessWidget {
               .map(
                 (YgButtonSegment<T> segment) => Flexible(
                   child: YgSegmentedButtonSegment(
-                    onPressed: () => _onSegmentPressed(segment),
+                    onPressed: _disabled ? null : () => _onSegmentPressed(segment),
                     selected: _isSegmentSelected(segment),
                     label: segment.label,
                     icon: segment.icon,
@@ -72,4 +72,6 @@ abstract class YgSegmentedButton<T extends Object?> extends StatelessWidget {
   bool _isSegmentSelected(YgButtonSegment<T> segment);
 
   void _onSegmentPressed(YgButtonSegment<T> segment);
+
+  bool get _disabled;
 }

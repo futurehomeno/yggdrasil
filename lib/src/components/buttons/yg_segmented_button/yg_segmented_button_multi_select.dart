@@ -12,7 +12,7 @@ class _YgSegmentedButtonMultiSelect<T extends Object?> extends YgSegmentedButton
   final Set<T> value;
 
   /// Called when the user changes his selection of segments.
-  final ValueChanged<Set<T>> onValueChanged;
+  final ValueChanged<Set<T>>? onValueChanged;
 
   @override
   bool _isSegmentSelected(YgButtonSegment<T> segment) {
@@ -21,6 +21,12 @@ class _YgSegmentedButtonMultiSelect<T extends Object?> extends YgSegmentedButton
 
   @override
   void _onSegmentPressed(YgButtonSegment<T> segment) {
+    final ValueChanged<Set<T>>? onValueChanged = this.onValueChanged;
+
+    if (onValueChanged == null) {
+      return;
+    }
+
     final Set<T> newSet = Set<T>.of(value);
 
     if (!newSet.add(segment.value)) {
@@ -29,4 +35,7 @@ class _YgSegmentedButtonMultiSelect<T extends Object?> extends YgSegmentedButton
 
     onValueChanged(newSet);
   }
+
+  @override
+  bool get _disabled => onValueChanged == null;
 }

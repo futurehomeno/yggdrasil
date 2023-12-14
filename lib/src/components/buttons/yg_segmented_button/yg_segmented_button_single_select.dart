@@ -12,7 +12,7 @@ class _YgSegmentedButtonSingleSelect<T extends Object?> extends YgSegmentedButto
   final T value;
 
   /// Called when the user selected a different segment.
-  final ValueChanged<T> onValueChanged;
+  final ValueChanged<T>? onValueChanged;
 
   @override
   bool _isSegmentSelected(YgButtonSegment<T> segment) {
@@ -21,6 +21,9 @@ class _YgSegmentedButtonSingleSelect<T extends Object?> extends YgSegmentedButto
 
   @override
   void _onSegmentPressed(YgButtonSegment<T> segment) {
-    onValueChanged(segment.value);
+    onValueChanged?.call(segment.value);
   }
+
+  @override
+  bool get _disabled => onValueChanged == null;
 }
