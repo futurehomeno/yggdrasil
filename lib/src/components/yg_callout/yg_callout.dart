@@ -111,7 +111,7 @@ class _YgCalloutState extends StateWithYgStyle<YgCallout, YgCalloutStyle> {
     return YgIconButton(
       onPressed: widget.onClose,
       size: YgIconButtonSize.small,
-      child: const YgIcon(YgIcons.cross),
+      icon: YgIcons.cross,
     );
   }
 

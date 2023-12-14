@@ -15,7 +15,7 @@ class _YgButtonWithTrailingIcon extends YgButton {
     super.autofocus,
   });
 
-  final YgIcon icon;
+  final YgColorableIconData icon;
 
   @override
   Widget buildChild(BuildContext context) {
@@ -23,7 +23,7 @@ class _YgButtonWithTrailingIcon extends YgButton {
       mainAxisSize: MainAxisSize.min,
       children: <Widget>[
         Flexible(child: child),
-        icon,
+        YgIcon(icon),
       ].withHorizontalSpacing(context.buttonTheme.iconSpacing),
     );
   }

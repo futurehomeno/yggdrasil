@@ -69,7 +69,7 @@ class SwitchListTileScreenState extends State<SwitchListTileScreen> {
                 subtitle: 'Mostly used to add a YgIconButton.',
                 trailingWidget: YgIconButton(
                   onPressed: () {},
-                  child: const YgIcon(YgIcons.info),
+                  icon: YgIcons.info,
                 ),
                 value: switchListTileTrailingWidgetValue,
                 onChanged: (bool newValue) {

@@ -18,7 +18,7 @@ class YgTab extends StatelessWidget with StatelessWidgetDebugMixin implements Pr
   final String? label;
 
   /// Icon to show inside the tab.
-  final String? icon;
+  final YgColorableIconData? icon;
 
   /// The size of the tab.
   @override

@@ -36,7 +36,7 @@ void main() {
             name: 'With leadingIcon, neutral variant',
             child: const YgTag.leadingIcon(
               variant: YgTagVariant.neutral,
-              icon: YgIcon(YgIcons.info),
+              icon: YgIcons.info,
               child: Text(
                 YgGoldenTestValues.shortText,
               ),
@@ -46,7 +46,7 @@ void main() {
             name: 'With trailingIcon, positive variant',
             child: const YgTag.trailingIcon(
               variant: YgTagVariant.positive,
-              icon: YgIcon(YgIcons.info),
+              icon: YgIcons.info,
               child: Text(
                 YgGoldenTestValues.shortText,
               ),
@@ -56,8 +56,8 @@ void main() {
             name: 'With doubleIcon, warning variant',
             child: const YgTag.doubleIcon(
               variant: YgTagVariant.warning,
-              leadingIcon: YgIcon(YgIcons.info),
-              trailingIcon: YgIcon(YgIcons.info),
+              leadingIcon: YgIcons.info,
+              trailingIcon: YgIcons.info,
               child: Text(
                 YgGoldenTestValues.shortText,
               ),

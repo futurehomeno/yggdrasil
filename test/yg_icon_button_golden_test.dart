@@ -19,7 +19,7 @@ void main() {
             child: YgIconButton(
               onPressed: () {},
               variant: YgIconButtonVariant.standard,
-              child: const YgIcon(YgIcons.info),
+              icon: YgIcons.info,
             ),
           ),
           GoldenTestScenario(
@@ -27,7 +27,7 @@ void main() {
             child: YgIconButton(
               onPressed: () {},
               variant: YgIconButtonVariant.filled,
-              child: const YgIcon(YgIcons.info),
+              icon: YgIcons.info,
             ),
           ),
           GoldenTestScenario(
@@ -35,7 +35,7 @@ void main() {
             child: YgIconButton(
               onPressed: () {},
               variant: YgIconButtonVariant.outlined,
-              child: const YgIcon(YgIcons.info),
+              icon: YgIcons.info,
             ),
           ),
           GoldenTestScenario(
@@ -43,7 +43,7 @@ void main() {
             child: YgIconButton(
               onPressed: () {},
               variant: YgIconButtonVariant.tonal,
-              child: const YgIcon(YgIcons.info),
+              icon: YgIcons.info,
             ),
           ),
           GoldenTestScenario(
@@ -51,7 +51,7 @@ void main() {
             child: YgIconButton(
               onPressed: () {},
               size: YgIconButtonSize.small,
-              child: const YgIcon(YgIcons.info),
+              icon: YgIcons.info,
             ),
           ),
         ],

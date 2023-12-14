@@ -27,13 +27,13 @@ class YgSectionHeader extends StatelessWidget {
   final Widget? tag;
 
   /// The icon in front of the title and subtitle.
-  final YgIcon? icon;
+  final YgIconData? icon;
 
   @override
   Widget build(BuildContext context) {
     final YgSectionHeaderTheme theme = context.sectionTheme.sectionHeader;
     final String? subtitle = this.subtitle;
-    final YgIcon? icon = this.icon;
+    final YgIconData? icon = this.icon;
     final Widget? tag = this.tag;
     final Widget? trailing = this.trailing;
 
@@ -45,7 +45,7 @@ class YgSectionHeader extends StatelessWidget {
           if (icon != null)
             Padding(
               padding: theme.iconPadding,
-              child: icon,
+              child: YgIcon(icon),
             ),
           Expanded(
             child: Column(

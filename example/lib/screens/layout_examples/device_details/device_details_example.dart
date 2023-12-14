@@ -25,7 +25,7 @@ class DeviceDetailsExample extends StatelessWidget {
             children: <YgListTile>[
               YgListTile.link(
                 link: 'Customize',
-                iconPath: YgIcons.edit,
+                icon: YgIcons.edit,
                 onTap: () {},
               ),
             ],
@@ -37,10 +37,7 @@ class DeviceDetailsExample extends StatelessWidget {
                 title: 'ELVA charge controls!',
                 subtitle: 'Some cool controls inside this card.',
                 leadingWidgets: <Widget>[
-                  YgIcon(
-                    YgIcons.deviceEvChargerColorful,
-                    useEmbeddedColor: true,
-                  ),
+                  YgIcon.embeddedColor(YgIcons.deviceEvChargerColorful),
                 ],
               ),
             ),
@@ -97,12 +94,12 @@ class DeviceDetailsExample extends StatelessWidget {
             children: <YgListTile>[
               YgListTile.link(
                 link: 'System data',
-                iconPath: YgIcons.support,
+                icon: YgIcons.support,
                 onTap: () {},
               ),
               YgListTile.link(
                 link: 'Settings',
-                iconPath: YgIcons.support,
+                icon: YgIcons.support,
                 onTap: () {},
               ),
             ],

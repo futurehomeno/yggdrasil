@@ -65,7 +65,7 @@ class _TextFieldScreenState extends State<TextFieldScreen> {
                   keyboardType: TextInputType.text,
                   textInputAction: TextInputAction.next,
                   textCapitalization: TextCapitalization.words,
-                  suffix: const YgIcon(YgIcons.placeholder),
+                  suffix: YgIcons.placeholder,
                   onSuffixPressed: () {},
                   autocorrect: true,
                 ),

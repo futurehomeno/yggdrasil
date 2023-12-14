@@ -30,11 +30,11 @@ class IconButtonScreen extends StatelessWidget {
                 children: <Widget>[
                   YgIconButton(
                     onPressed: () {},
-                    child: const YgIcon(YgIcons.info),
+                    icon: YgIcons.info,
                   ),
                   const YgIconButton(
                     onPressed: null,
-                    child: YgIcon(YgIcons.info),
+                    icon: YgIcons.info,
                   ),
                 ].withHorizontalSpacing(10.0),
               ),
@@ -44,12 +44,12 @@ class IconButtonScreen extends StatelessWidget {
                   YgIconButton(
                     onPressed: () {},
                     variant: YgIconButtonVariant.filled,
-                    child: const YgIcon(YgIcons.info),
+                    icon: YgIcons.info,
                   ),
                   const YgIconButton(
                     onPressed: null,
                     variant: YgIconButtonVariant.filled,
-                    child: YgIcon(YgIcons.info),
+                    icon: YgIcons.info,
                   ),
                 ].withHorizontalSpacing(10.0),
               ),
@@ -59,12 +59,12 @@ class IconButtonScreen extends StatelessWidget {
                   YgIconButton(
                     onPressed: () {},
                     variant: YgIconButtonVariant.tonal,
-                    child: const YgIcon(YgIcons.info),
+                    icon: YgIcons.info,
                   ),
                   const YgIconButton(
                     onPressed: null,
                     variant: YgIconButtonVariant.tonal,
-                    child: YgIcon(YgIcons.info),
+                    icon: YgIcons.info,
                   ),
                 ].withHorizontalSpacing(10.0),
               ),
@@ -74,12 +74,12 @@ class IconButtonScreen extends StatelessWidget {
                   YgIconButton(
                     onPressed: () {},
                     variant: YgIconButtonVariant.outlined,
-                    child: const YgIcon(YgIcons.info),
+                    icon: YgIcons.info,
                   ),
                   const YgIconButton(
                     onPressed: null,
                     variant: YgIconButtonVariant.outlined,
-                    child: YgIcon(YgIcons.info),
+                    icon: YgIcons.info,
                   ),
                 ].withHorizontalSpacing(10.0),
               ),
@@ -95,12 +95,12 @@ class IconButtonScreen extends StatelessWidget {
                   onPressed: () {},
                   variant: YgIconButtonVariant.filled,
                   size: YgIconButtonSize.small,
-                  child: const YgIcon(YgIcons.info),
+                  icon: YgIcons.info,
                 ),
                 YgIconButton(
                   onPressed: () {},
                   variant: YgIconButtonVariant.filled,
-                  child: const YgIcon(YgIcons.info),
+                  icon: YgIcons.info,
                 ),
               ].withHorizontalSpacing(10.0),
             ),

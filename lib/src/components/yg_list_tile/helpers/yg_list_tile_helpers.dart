@@ -17,7 +17,7 @@ class YgListTileHelpers {
     return YgIconButton(
       onPressed: onInfoTap,
       size: YgIconButtonSize.small,
-      child: const YgIcon(YgIcons.info),
+      icon: YgIcons.info,
     );
   }
 

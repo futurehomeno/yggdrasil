@@ -60,7 +60,7 @@ class RadioListTileScreenState extends State<RadioListTileScreen> {
                 subtitle: 'Mostly used to add a YgIconButton.',
                 leadingWidget: YgIconButton(
                   onPressed: () {},
-                  child: const YgIcon(YgIcons.info),
+                  icon: YgIcons.info,
                 ),
                 value: 3,
                 groupValue: radioGroupValue,

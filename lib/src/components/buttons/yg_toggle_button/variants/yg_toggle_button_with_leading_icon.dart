@@ -16,7 +16,7 @@ final class _YgToggleButtonWithLeadingIcon extends YgToggleButton {
   }) : super._();
 
   /// The icon shown before (leading) the [text].
-  final String icon;
+  final YgColorableIconData icon;
 
   /// The text shown in the button, after (trailing) the [icon].
   final String text;

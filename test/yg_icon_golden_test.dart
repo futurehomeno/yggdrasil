@@ -21,9 +21,8 @@ void main() {
           ),
           GoldenTestScenario(
             name: 'With info icon and useEmbeddedColor',
-            child: const YgIcon(
+            child: const YgIcon.embeddedColor(
               YgIcons.info,
-              useEmbeddedColor: true,
             ),
           ),
           GoldenTestScenario(

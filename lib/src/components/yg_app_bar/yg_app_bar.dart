@@ -242,7 +242,7 @@ class _YgAppBarState extends State<YgAppBar> {
       if (parentRoute?.canPop == true || parentRoute?.impliesAppBarDismissal == true) {
         leading = YgIconButton(
           onPressed: () => Navigator.maybePop(context),
-          child: const YgIcon(YgIcons.caretLeft),
+          icon: YgIcons.caretLeft,
         );
       }
     }

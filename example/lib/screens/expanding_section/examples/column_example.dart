@@ -37,13 +37,13 @@ class ColumnExample extends StatelessWidget {
         ),
         YgExpandingSection.column(
           title: 'With title and icon',
-          icon: YgIcon(YgIcons.placeholder),
+          icon: YgIcons.placeholder,
           children: children,
         ),
         YgExpandingSection.column(
           title: 'With title, icon, tag and long subtitle',
           subtitle: 'Cupidatat ea voluptate exercitation irure ea occaecat pariatur elit minim non incididunt in.',
-          icon: YgIcon(YgIcons.placeholder),
+          icon: YgIcons.placeholder,
           tag: YgTag(
             variant: YgTagVariant.informative,
             size: YgTagSize.small,

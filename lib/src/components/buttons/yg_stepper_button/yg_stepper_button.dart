@@ -9,7 +9,7 @@ import 'yg_stepper_button_style.dart';
 class YgStepperButton extends YgButtonBase<YgButtonBaseState> {
   const YgStepperButton({
     super.key,
-    required this.child,
+    required this.icon,
     required super.onPressed,
     super.onLongPress,
     super.onHover,
@@ -19,7 +19,7 @@ class YgStepperButton extends YgButtonBase<YgButtonBaseState> {
   });
 
   /// Widget under this widget in the widget tree.
-  final YgIcon child;
+  final YgColorableIconData icon;
 
   @override
   YgButtonBaseState createButtonState() {
@@ -43,6 +43,6 @@ class YgStepperButton extends YgButtonBase<YgButtonBaseState> {
 
   @override
   Widget buildChild(BuildContext context) {
-    return child;
+    return YgIcon(icon);
   }
 }
