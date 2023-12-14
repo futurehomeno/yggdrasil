@@ -93,16 +93,18 @@ class _SegmentedButtonScreenState extends State<SegmentedButtonScreen> {
     bool label = false,
     int count = 2,
   }) {
+    final List<YgColorableIconData> colorableIcons = YgIcons.allIcons.whereType<YgColorableIconData>().toList();
+
     return List<YgButtonSegment<int>>.generate(
       count,
       (int index) => switch (label) {
         true => YgButtonSegment<int>(
-            icon: icon ? YgIcon(YgIcons.allIcons.values.toList()[index]) : null,
+            icon: icon ? colorableIcons[index] : null,
             label: 'Item ${index + 1}',
             value: index,
           ),
         false => YgButtonSegment<int>.iconOnly(
-            icon: YgIcon(YgIcons.allIcons.values.toList()[index]),
+            icon: colorableIcons[index],
             value: index,
           ),
       },

@@ -10,7 +10,7 @@ class YgButtonSegment<T extends Object?> {
 
   /// A segment with only an icon, so without a label.
   const YgButtonSegment.iconOnly({
-    required YgIcon this.icon,
+    required YgColorableIconData this.icon,
     required this.value,
   }) : label = null;
 
@@ -25,5 +25,5 @@ class YgButtonSegment<T extends Object?> {
   /// When using the [YgButtonSegment.iconOnly] constructor the icon will be
   /// shown at all times, when using the normal constructor the icon will only
   /// be shown when then segment is not selected.
-  final YgIcon? icon;
+  final YgColorableIconData? icon;
 }

@@ -29,7 +29,7 @@ class YgSegmentedButtonSegment extends YgButtonBase<YgSegmentedButtonSegmentStat
   final String? label;
 
   /// The icon shown in this segment.
-  final YgIcon? icon;
+  final YgColorableIconData? icon;
 
   @override
   Widget buildChild(BuildContext context) {
@@ -64,14 +64,14 @@ class YgSegmentedButtonSegment extends YgButtonBase<YgSegmentedButtonSegmentStat
   }
 
   Widget _buildLeading(YgSegmentedButtonTheme theme) {
-    final YgIcon? icon = this.icon;
+    final YgColorableIconData? icon = this.icon;
     if (icon == null || label == null) {
       return const YgIcon(YgIcons.check);
     }
 
     return AnimatedCrossFade(
       firstChild: const YgIcon(YgIcons.check),
-      secondChild: icon,
+      secondChild: YgIcon(icon),
       duration: theme.animationDuration,
       firstCurve: theme.animationCurve,
       secondCurve: theme.animationCurve,
@@ -82,7 +82,11 @@ class YgSegmentedButtonSegment extends YgButtonBase<YgSegmentedButtonSegmentStat
   Widget? _buildContent() {
     final String? label = this.label;
     if (label == null) {
-      return icon;
+      if (icon == null) {
+        return null;
+      }
+
+      return YgIcon(icon);
     }
 
     return Text(label);
