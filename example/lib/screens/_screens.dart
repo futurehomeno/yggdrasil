@@ -26,6 +26,7 @@ export 'progress_indicator/_progress_indicator.dart';
 export 'radio/_radio.dart';
 export 'radio_list_tile/_radio_list_tile.dart';
 export 'section/_section.dart';
+export 'segmented_button/_segmented_button.dart';
 export 'snack_bar/_snack_bar.dart';
 export 'stepper/_stepper.dart';
 export 'switch/_switch.dart';
