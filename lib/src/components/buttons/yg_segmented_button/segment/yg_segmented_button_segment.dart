@@ -7,6 +7,7 @@ import 'package:yggdrasil/src/theme/segmented_button/segmented_button_theme.dart
 import 'package:yggdrasil/src/utils/yg_states/interfaces/yg_vsync.dart';
 import 'package:yggdrasil/yggdrasil.dart';
 
+/// A button segment, used internally for the [YgSegmentedButton].
 class YgSegmentedButtonSegment extends YgButtonBase<YgSegmentedButtonSegmentState> {
   const YgSegmentedButtonSegment({
     super.key,
@@ -21,8 +22,13 @@ class YgSegmentedButtonSegment extends YgButtonBase<YgSegmentedButtonSegmentStat
     this.icon,
   });
 
+  /// Whether this segment is selected.
   final bool selected;
+
+  /// The label shown in this segment.
   final String? label;
+
+  /// The icon shown in this segment.
   final YgIcon? icon;
 
   @override

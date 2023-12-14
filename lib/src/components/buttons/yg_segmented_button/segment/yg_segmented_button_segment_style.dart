@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:yggdrasil/src/components/buttons/widgets/_widgets.dart';
-import 'package:yggdrasil/src/components/buttons/yg_segmented_button/segment/yg_segmented_button_segment_state.dart';
 import 'package:yggdrasil/src/theme/_theme.dart';
+
+import 'yg_segmented_button_segment_state.dart';
 
 class YgSegmentedButtonSegmentStyle extends YgButtonBaseStyle<YgSegmentedButtonSegmentState> {
   YgSegmentedButtonSegmentStyle({
