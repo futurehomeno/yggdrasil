@@ -35,24 +35,8 @@ class BadgeScreen extends StatelessWidget {
                   ),
                 ),
                 YgBadge(
-                  amount: 1,
-                  weight: YgBadgeWeight.strong,
-                  child: YgIconButton(
-                    onPressed: () {},
-                    icon: YgIcons.info,
-                  ),
-                ),
-                YgBadge(
-                  amount: 8,
-                  weight: YgBadgeWeight.strong,
-                  child: YgIconButton(
-                    onPressed: () {},
-                    icon: YgIcons.info,
-                  ),
-                ),
-                YgBadge(
                   amount: 9,
-                  weight: YgBadgeWeight.strong,
+                  weight: YgBadgeWeight.weak,
                   child: YgIconButton(
                     onPressed: () {},
                     icon: YgIcons.info,
@@ -63,13 +47,50 @@ class BadgeScreen extends StatelessWidget {
           ),
           YgSection(
             title: 'Badge with more than 9',
-            child: YgBadge(
-              amount: 10,
-              weight: YgBadgeWeight.weak,
-              child: YgIconButton(
-                onPressed: () {},
-                icon: YgIcons.info,
-              ),
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: <Widget>[
+                YgBadge(
+                  amount: 10,
+                  weight: YgBadgeWeight.strong,
+                  child: YgIconButton(
+                    onPressed: () {},
+                    icon: YgIcons.info,
+                  ),
+                ),
+                YgBadge(
+                  amount: 10,
+                  weight: YgBadgeWeight.weak,
+                  child: YgIconButton(
+                    onPressed: () {},
+                    icon: YgIcons.info,
+                  ),
+                ),
+              ],
+            ),
+          ),
+          const YgSection(
+            title: 'Icon badge',
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: <Widget>[
+                YgBadge.icon(
+                  icon: YgIcons.placeholder,
+                  weight: YgBadgeWeight.strong,
+                  child: YgAvatar(
+                    size: YgAvatarSize.medium,
+                    initials: 'W',
+                  ),
+                ),
+                YgBadge.icon(
+                  icon: YgIcons.placeholder,
+                  weight: YgBadgeWeight.weak,
+                  child: YgAvatar(
+                    size: YgAvatarSize.medium,
+                    initials: 'W',
+                  ),
+                ),
+              ],
             ),
           ),
           const YgSection(

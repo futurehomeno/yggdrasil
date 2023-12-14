@@ -21,7 +21,7 @@ class YgToggleButtonState extends YgButtonBaseState {
   final YgStateValue<bool> toggled;
 
   @override
-  List<YgStateValue<Object>> get props => <YgStateValue<Object>>[
+  List<YgStateValue<Object?>> get props => <YgStateValue<Object?>>[
         ...super.props,
         variant,
         size,

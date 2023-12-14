@@ -15,6 +15,7 @@ class YgStepperTheme extends ThemeExtension<YgStepperTheme> {
     required this.buttonTheme,
     required this.height,
     required this.metricTextStyle,
+    required this.textDefaultColor,
     required this.textDisabledColor,
     required this.valueTextStyle,
   });
@@ -24,6 +25,7 @@ class YgStepperTheme extends ThemeExtension<YgStepperTheme> {
   final YgStepperButtonTheme buttonTheme;
   final double height;
   final TextStyle metricTextStyle;
+  final Color textDefaultColor;
   final Color textDisabledColor;
   final TextStyle valueTextStyle;
 
@@ -33,6 +35,7 @@ class YgStepperTheme extends ThemeExtension<YgStepperTheme> {
     buttonTheme: _$YgStepperTheme.buttonTheme[0],
     height: _$YgStepperTheme.height[0],
     metricTextStyle: _$YgStepperTheme.metricTextStyle[0],
+    textDefaultColor: _$YgStepperTheme.textDefaultColor[0],
     textDisabledColor: _$YgStepperTheme.textDisabledColor[0],
     valueTextStyle: _$YgStepperTheme.valueTextStyle[0],
   );
@@ -43,6 +46,7 @@ class YgStepperTheme extends ThemeExtension<YgStepperTheme> {
     buttonTheme: _$YgStepperTheme.buttonTheme[1],
     height: _$YgStepperTheme.height[1],
     metricTextStyle: _$YgStepperTheme.metricTextStyle[1],
+    textDefaultColor: _$YgStepperTheme.textDefaultColor[1],
     textDisabledColor: _$YgStepperTheme.textDisabledColor[1],
     valueTextStyle: _$YgStepperTheme.valueTextStyle[1],
   );
@@ -53,6 +57,7 @@ class YgStepperTheme extends ThemeExtension<YgStepperTheme> {
     buttonTheme: _$YgStepperTheme.buttonTheme[2],
     height: _$YgStepperTheme.height[2],
     metricTextStyle: _$YgStepperTheme.metricTextStyle[2],
+    textDefaultColor: _$YgStepperTheme.textDefaultColor[2],
     textDisabledColor: _$YgStepperTheme.textDisabledColor[2],
     valueTextStyle: _$YgStepperTheme.valueTextStyle[2],
   );
@@ -63,6 +68,7 @@ class YgStepperTheme extends ThemeExtension<YgStepperTheme> {
     buttonTheme: _$YgStepperTheme.buttonTheme[3],
     height: _$YgStepperTheme.height[3],
     metricTextStyle: _$YgStepperTheme.metricTextStyle[3],
+    textDefaultColor: _$YgStepperTheme.textDefaultColor[3],
     textDisabledColor: _$YgStepperTheme.textDisabledColor[3],
     valueTextStyle: _$YgStepperTheme.valueTextStyle[3],
   );
@@ -81,6 +87,7 @@ class YgStepperTheme extends ThemeExtension<YgStepperTheme> {
     YgStepperButtonTheme? buttonTheme,
     double? height,
     TextStyle? metricTextStyle,
+    Color? textDefaultColor,
     Color? textDisabledColor,
     TextStyle? valueTextStyle,
   }) {
@@ -90,6 +97,7 @@ class YgStepperTheme extends ThemeExtension<YgStepperTheme> {
       buttonTheme: buttonTheme ?? this.buttonTheme,
       height: height ?? this.height,
       metricTextStyle: metricTextStyle ?? this.metricTextStyle,
+      textDefaultColor: textDefaultColor ?? this.textDefaultColor,
       textDisabledColor: textDisabledColor ?? this.textDisabledColor,
       valueTextStyle: valueTextStyle ?? this.valueTextStyle,
     );
@@ -107,6 +115,8 @@ class YgStepperTheme extends ThemeExtension<YgStepperTheme> {
       height: t < 0.5 ? height : other.height,
       metricTextStyle:
           TextStyle.lerp(metricTextStyle, other.metricTextStyle, t)!,
+      textDefaultColor:
+          Color.lerp(textDefaultColor, other.textDefaultColor, t)!,
       textDisabledColor:
           Color.lerp(textDisabledColor, other.textDisabledColor, t)!,
       valueTextStyle: TextStyle.lerp(valueTextStyle, other.valueTextStyle, t)!,
@@ -128,6 +138,8 @@ class YgStepperTheme extends ThemeExtension<YgStepperTheme> {
             const DeepCollectionEquality()
                 .equals(metricTextStyle, other.metricTextStyle) &&
             const DeepCollectionEquality()
+                .equals(textDefaultColor, other.textDefaultColor) &&
+            const DeepCollectionEquality()
                 .equals(textDisabledColor, other.textDisabledColor) &&
             const DeepCollectionEquality()
                 .equals(valueTextStyle, other.valueTextStyle));
@@ -142,6 +154,7 @@ class YgStepperTheme extends ThemeExtension<YgStepperTheme> {
       const DeepCollectionEquality().hash(buttonTheme),
       const DeepCollectionEquality().hash(height),
       const DeepCollectionEquality().hash(metricTextStyle),
+      const DeepCollectionEquality().hash(textDefaultColor),
       const DeepCollectionEquality().hash(textDisabledColor),
       const DeepCollectionEquality().hash(valueTextStyle),
     );
