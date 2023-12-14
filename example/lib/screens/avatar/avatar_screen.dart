@@ -41,7 +41,7 @@ class AvatarScreen extends StatelessWidget {
             title: 'Avatar with badge',
             subtitle: 'The badge is only supported by the person variant.',
             child: YgBadge.icon(
-              icon: YgIcon(YgIcons.access),
+              icon: YgIcons.access,
               child: YgAvatar(
                 initials: 'P',
                 size: YgAvatarSize.medium,

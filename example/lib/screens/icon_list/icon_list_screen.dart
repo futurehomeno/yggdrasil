@@ -20,7 +20,7 @@ class IconListScreen extends StatefulWidget {
 }
 
 class _IconListScreenState extends State<IconListScreen> {
-  List<MapEntry<String, String>> allIcons = YgIcons.allIcons.entries.toList();
+  List<YgIconData> allIcons = YgIcons.allIcons;
 
   @override
   Widget build(BuildContext context) {
@@ -39,8 +39,8 @@ class _IconListScreenState extends State<IconListScreen> {
                 autocorrect: false,
                 textCapitalization: TextCapitalization.none,
                 onChanged: (String value) {
-                  allIcons = YgIcons.allIcons.entries.where((MapEntry<String, String> icon) {
-                    return icon.key.contains(value) || icon.value.contains(value);
+                  allIcons = YgIcons.allIcons.where((YgIconData iconData) {
+                    return iconData.path.contains(value) || iconData.name.contains(value);
                   }).toList();
 
                   setState(() {});
@@ -50,14 +50,15 @@ class _IconListScreenState extends State<IconListScreen> {
           ),
           SliverList.builder(
             itemBuilder: (BuildContext context, int index) {
-              final String iconName = allIcons[index].key;
-              final String iconPath = allIcons[index].value;
+              final YgIconData iconData = allIcons[index];
+              final String iconName = iconData.name;
+              final String iconPath = iconData.path;
 
               return YgListTile(
                 title: iconName,
                 subtitle: iconPath,
                 leadingWidgets: <YgIcon>[
-                  YgIcon(iconPath, useEmbeddedColor: true),
+                  YgIcon.embeddedColor(iconData),
                 ],
               );
             },

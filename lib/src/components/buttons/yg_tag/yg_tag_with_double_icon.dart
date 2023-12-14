@@ -18,19 +18,19 @@ class _YgTagWithDoubleIcon extends YgTag {
   });
 
   /// The icon leading the text of the tag.
-  final YgIcon leadingIcon;
+  final YgColorableIconData leadingIcon;
 
   /// The icon trailing the text of the tag.
-  final YgIcon trailingIcon;
+  final YgColorableIconData trailingIcon;
 
   @override
   Widget buildChild(BuildContext context) {
     return Row(
       mainAxisSize: MainAxisSize.min,
       children: <Widget>[
-        leadingIcon,
+        YgIcon(leadingIcon),
         Flexible(child: child),
-        trailingIcon,
+        YgIcon(trailingIcon),
       ].withHorizontalSpacing(context.tagTheme.iconSpacing),
     );
   }

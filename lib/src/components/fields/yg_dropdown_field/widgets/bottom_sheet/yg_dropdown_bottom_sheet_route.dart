@@ -46,12 +46,18 @@ class YgDropdownBottomSheetRoute<T extends Object> extends YgBottomSheetModalRou
     final YgDynamicDropdownController<T> controller = dropdownController;
 
     for (final YgDropdownEntry<T> entry in entries) {
+      YgIcon? icon;
+
+      if (entry.icon != null) {
+        icon = YgIcon(entry.icon);
+      }
+
       if (controller is YgSingleSelectDropdownController<T>) {
         widgets.add(
           YgRadioListTile<T>(
             title: entry.title,
             subtitle: entry.subtitle,
-            leadingWidget: entry.icon,
+            leadingWidget: icon,
             groupValue: controller.value,
             value: entry.value,
             onChanged: (_) => dropdownController.onValueTapped(entry.value),
@@ -62,7 +68,7 @@ class YgDropdownBottomSheetRoute<T extends Object> extends YgBottomSheetModalRou
           YgCheckboxListTile(
             title: entry.title,
             subtitle: entry.subtitle,
-            leadingWidget: entry.icon,
+            leadingWidget: icon,
             onChanged: (_) => dropdownController.onValueTapped(entry.value),
             value: controller.isValueSelected(entry.value),
           ),

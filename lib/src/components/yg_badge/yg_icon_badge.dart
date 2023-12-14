@@ -10,13 +10,13 @@ final class YgIconBadge extends YgBadge {
   }) : super._();
 
   /// The icon shown in the badge.
-  final YgIcon icon;
+  final YgColorableIconData icon;
 
   @override
   Widget buildBadgeContent(BuildContext context, YgBadgeStyle style) {
     return YgAnimatedIconTheme(
       iconTheme: style.iconTheme,
-      child: icon,
+      child: YgIcon(icon),
     );
   }
 

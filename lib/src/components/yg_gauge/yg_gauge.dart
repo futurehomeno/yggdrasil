@@ -75,7 +75,7 @@ class YgGauge extends StatefulWidget with StatefulWidgetDebugMixin {
   ///
   /// If title and icon are passed, the icon will be shown below the title.
   /// If label and icon are passed, the icon will be shown above the label.
-  final YgIcon? icon;
+  final YgColorableIconData? icon;
 
   @override
   State<YgGauge> createState() => _YgGaugeState();
@@ -233,7 +233,7 @@ class _YgGaugeState extends State<YgGauge> with TickerProviderStateMixin {
       data: IconThemeData(
         color: _disabled ? context.tokens.colors.iconDisabled : context.tokens.colors.iconDefault,
       ),
-      child: widget.icon!,
+      child: YgIcon(widget.icon!),
     );
   }
 

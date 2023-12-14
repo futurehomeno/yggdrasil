@@ -22,7 +22,7 @@ abstract base class YgBadge extends StatefulWidget with StatefulWidgetDebugMixin
   const factory YgBadge.icon({
     Key? key,
     required Widget child,
-    required YgIcon icon,
+    required YgColorableIconData icon,
     YgBadgeWeight weight,
     Alignment alignment,
   }) = YgIconBadge;

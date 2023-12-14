@@ -17,7 +17,7 @@ class _YgTagWithTrailingIcon extends YgTag {
   });
 
   /// The icon trailing the text of the tag.
-  final YgIcon icon;
+  final YgColorableIconData icon;
 
   @override
   Widget buildChild(BuildContext context) {
@@ -25,7 +25,7 @@ class _YgTagWithTrailingIcon extends YgTag {
       mainAxisSize: MainAxisSize.min,
       children: <Widget>[
         Flexible(child: child),
-        icon,
+        YgIcon(icon),
       ].withHorizontalSpacing(context.tagTheme.iconSpacing),
     );
   }

@@ -31,7 +31,7 @@ class BadgeScreen extends StatelessWidget {
                   weight: YgBadgeWeight.strong,
                   child: YgIconButton(
                     onPressed: () {},
-                    child: const YgIcon(YgIcons.info),
+                    icon: YgIcons.info,
                   ),
                 ),
                 YgBadge(
@@ -39,7 +39,7 @@ class BadgeScreen extends StatelessWidget {
                   weight: YgBadgeWeight.weak,
                   child: YgIconButton(
                     onPressed: () {},
-                    child: const YgIcon(YgIcons.info),
+                    icon: YgIcons.info,
                   ),
                 ),
               ],
@@ -55,7 +55,7 @@ class BadgeScreen extends StatelessWidget {
                   weight: YgBadgeWeight.strong,
                   child: YgIconButton(
                     onPressed: () {},
-                    child: const YgIcon(YgIcons.info),
+                    icon: YgIcons.info,
                   ),
                 ),
                 YgBadge(
@@ -63,7 +63,7 @@ class BadgeScreen extends StatelessWidget {
                   weight: YgBadgeWeight.weak,
                   child: YgIconButton(
                     onPressed: () {},
-                    child: const YgIcon(YgIcons.info),
+                    icon: YgIcons.info,
                   ),
                 ),
               ],
@@ -75,7 +75,7 @@ class BadgeScreen extends StatelessWidget {
               mainAxisAlignment: MainAxisAlignment.center,
               children: <Widget>[
                 YgBadge.icon(
-                  icon: YgIcon(YgIcons.placeholder),
+                  icon: YgIcons.placeholder,
                   weight: YgBadgeWeight.strong,
                   child: YgAvatar(
                     size: YgAvatarSize.medium,
@@ -83,7 +83,7 @@ class BadgeScreen extends StatelessWidget {
                   ),
                 ),
                 YgBadge.icon(
-                  icon: YgIcon(YgIcons.placeholder),
+                  icon: YgIcons.placeholder,
                   weight: YgBadgeWeight.weak,
                   child: YgAvatar(
                     size: YgAvatarSize.medium,

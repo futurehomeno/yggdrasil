@@ -39,13 +39,13 @@ class ListExample extends StatelessWidget {
         ),
         YgSection.list(
           title: 'With title and icon',
-          icon: const YgIcon(YgIcons.placeholder),
+          icon: YgIcons.placeholder,
           children: children,
         ),
         YgSection.list(
           title: 'With title, icon, tag and long subtitle',
           subtitle: 'Cupidatat ea voluptate exercitation irure ea occaecat pariatur elit minim non incididunt in.',
-          icon: const YgIcon(YgIcons.placeholder),
+          icon: YgIcons.placeholder,
           tag: const YgTag(
             variant: YgTagVariant.informative,
             size: YgTagSize.small,

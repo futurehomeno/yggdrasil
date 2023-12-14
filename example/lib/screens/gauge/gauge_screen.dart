@@ -98,7 +98,7 @@ class _GaugeScreenState extends State<GaugeScreen> {
                   dimension: 100,
                   child: YgGauge(
                     value: null,
-                    icon: YgIcon(YgIcons.info),
+                    icon: YgIcons.info,
                     label: 'Disabled',
                   ),
                 ),
@@ -116,7 +116,7 @@ class _GaugeScreenState extends State<GaugeScreen> {
                     child: YgGauge(
                       value: 0.5,
                       title: 'Title',
-                      icon: YgIcon(YgIcons.info),
+                      icon: YgIcons.info,
                     ),
                   ),
                   SizedBox.square(
@@ -153,7 +153,7 @@ class _GaugeScreenState extends State<GaugeScreen> {
                     dimension: 100,
                     child: YgGauge(
                       value: 0.5,
-                      icon: YgIcon(YgIcons.info),
+                      icon: YgIcons.info,
                       label: 'Label',
                     ),
                   ),
@@ -161,7 +161,7 @@ class _GaugeScreenState extends State<GaugeScreen> {
                     dimension: 100,
                     child: YgGauge(
                       value: 0.5,
-                      icon: YgIcon(YgIcons.info),
+                      icon: YgIcons.info,
                     ),
                   ),
                 ],

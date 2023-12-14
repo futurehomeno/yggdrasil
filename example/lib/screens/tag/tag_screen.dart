@@ -65,16 +65,16 @@ class TagScreen extends StatelessWidget {
             title: 'With icons',
             children: <Widget>[
               const YgTag.leadingIcon(
-                icon: YgIcon(YgIcons.info),
+                icon: YgIcons.info,
                 child: Text('Leading icon'),
               ),
               const YgTag.trailingIcon(
-                icon: YgIcon(YgIcons.info),
+                icon: YgIcons.info,
                 child: Text('Trailing icon'),
               ),
               const YgTag.doubleIcon(
-                leadingIcon: YgIcon(YgIcons.info),
-                trailingIcon: YgIcon(YgIcons.info),
+                leadingIcon: YgIcons.info,
+                trailingIcon: YgIcons.info,
                 child: Text('Double icon'),
               ),
             ].withVerticalSpacing(10.0),
@@ -85,12 +85,12 @@ class TagScreen extends StatelessWidget {
               mainAxisSize: MainAxisSize.min,
               children: <Widget>[
                 YgTag.leadingIcon(
-                  icon: const YgIcon(YgIcons.info),
+                  icon: YgIcons.info,
                   child: const Text('Click me!'),
                   onPressed: () {},
                 ),
                 const YgTag.leadingIcon(
-                  icon: YgIcon(YgIcons.info),
+                  icon: YgIcons.info,
                   onPressed: null,
                   child: Text('Disabled'),
                 ),
@@ -101,30 +101,30 @@ class TagScreen extends StatelessWidget {
             title: 'Weights',
             children: <Widget>[
               const YgTag.leadingIcon(
-                icon: YgIcon(YgIcons.info),
+                icon: YgIcons.info,
                 weight: YgTagWeight.strong,
                 child: Text('Neutral strong'),
               ),
               const YgTag.leadingIcon(
-                icon: YgIcon(YgIcons.info),
+                icon: YgIcons.info,
                 variant: YgTagVariant.informative,
                 weight: YgTagWeight.strong,
                 child: Text('Informative strong'),
               ),
               const YgTag.leadingIcon(
-                icon: YgIcon(YgIcons.info),
+                icon: YgIcons.info,
                 variant: YgTagVariant.positive,
                 weight: YgTagWeight.strong,
                 child: Text('Positive strong'),
               ),
               const YgTag.leadingIcon(
-                icon: YgIcon(YgIcons.info),
+                icon: YgIcons.info,
                 variant: YgTagVariant.warning,
                 weight: YgTagWeight.strong,
                 child: Text('Warning strong'),
               ),
               const YgTag.leadingIcon(
-                icon: YgIcon(YgIcons.info),
+                icon: YgIcons.info,
                 variant: YgTagVariant.negative,
                 weight: YgTagWeight.strong,
                 child: Text('Negative strong'),

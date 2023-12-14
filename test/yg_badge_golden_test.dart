@@ -1,6 +1,5 @@
 import 'package:alchemist/alchemist.dart';
 import 'package:flutter/material.dart';
-
 import 'package:flutter_test/flutter_test.dart';
 import 'package:yggdrasil/yggdrasil.dart';
 
@@ -20,7 +19,7 @@ void main() {
             child: YgBadge(
               amount: 4,
               child: YgIconButton(
-                child: const YgIcon(YgIcons.info),
+                icon: YgIcons.info,
                 onPressed: () {},
               ),
             ),
@@ -30,7 +29,7 @@ void main() {
             child: YgBadge(
               amount: 44,
               child: YgIconButton(
-                child: const YgIcon(YgIcons.info),
+                icon: YgIcons.info,
                 onPressed: () {},
               ),
             ),
@@ -41,7 +40,7 @@ void main() {
               amount: 44,
               weight: YgBadgeWeight.strong,
               child: YgIconButton(
-                child: const YgIcon(YgIcons.info),
+                icon: YgIcons.info,
                 onPressed: () {},
               ),
             ),
@@ -52,7 +51,7 @@ void main() {
               amount: 44,
               alignment: Alignment.topLeft,
               child: YgIconButton(
-                child: const YgIcon(YgIcons.info),
+                icon: YgIcons.info,
                 onPressed: () {},
               ),
             ),

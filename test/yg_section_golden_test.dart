@@ -244,14 +244,14 @@ class SectionOptions {
         SectionOptions(
           name: 'with $prefix title and icon',
           title: string,
-          icon: const YgIcon(YgIcons.placeholder),
+          icon: YgIcons.placeholder,
         ),
         SectionOptions(
           name: 'with $prefix title, $prefix subtitle, $prefix tag and icon',
           title: string,
           tag: YgTag(child: Text(string)),
           subtitle: string,
-          icon: const YgIcon(YgIcons.placeholder),
+          icon: YgIcons.placeholder,
         ),
       ];
 
@@ -268,7 +268,7 @@ class SectionOptions {
   final String? title;
   final String? subtitle;
   final YgTag? tag;
-  final YgIcon? icon;
+  final YgColorableIconData? icon;
 }
 
 class ScenarioGroup {

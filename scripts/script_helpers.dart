@@ -15,4 +15,12 @@ class ScriptHelpers {
       return '${entry.value[0].toUpperCase()}${entry.value.substring(1)}';
     }).join();
   }
+
+  static String toTitleCase(String text) {
+    final String normalizedText = text.replaceAll('-', '_');
+
+    return normalizedText.split('_').asMap().entries.map((MapEntry<int, String> entry) {
+      return '${entry.value[0].toUpperCase()}${entry.value.substring(1)}';
+    }).join();
+  }
 }

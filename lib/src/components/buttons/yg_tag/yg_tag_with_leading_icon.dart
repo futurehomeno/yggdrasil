@@ -17,14 +17,14 @@ class _YgTagWithLeadingIcon extends YgTag {
   });
 
   /// The icon leading the text of the tag.
-  final YgIcon icon;
+  final YgColorableIconData icon;
 
   @override
   Widget buildChild(BuildContext context) {
     return Row(
       mainAxisSize: MainAxisSize.min,
       children: <Widget>[
-        icon,
+        YgIcon(icon),
         Flexible(child: child),
       ].withHorizontalSpacing(context.tagTheme.iconSpacing),
     );

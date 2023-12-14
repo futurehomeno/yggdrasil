@@ -37,5 +37,5 @@ class YgDropdownEntry<T extends Object> {
   /// NOT in the field it self, therefore they should NOT be used as the main
   /// identifier of the entry as the user will not be able to identify the
   /// selected value from looking at the field itself.
-  final YgIcon? icon;
+  final YgIconData? icon;
 }

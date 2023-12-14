@@ -10,7 +10,7 @@ import 'yg_icon_button_style.dart';
 class YgIconButton extends YgButtonBase<YgIconButtonState> {
   const YgIconButton({
     super.key,
-    required this.child,
+    required this.icon,
     required super.onPressed,
     super.onLongPress,
     super.onHover,
@@ -23,7 +23,7 @@ class YgIconButton extends YgButtonBase<YgIconButtonState> {
 
   final YgIconButtonVariant variant;
   final YgIconButtonSize size;
-  final YgIcon child;
+  final YgColorableIconData icon;
 
   @override
   YgIconButtonState createButtonState() {
@@ -51,6 +51,6 @@ class YgIconButton extends YgButtonBase<YgIconButtonState> {
 
   @override
   Widget buildChild(BuildContext context) {
-    return child;
+    return YgIcon(icon);
   }
 }
