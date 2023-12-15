@@ -4,7 +4,7 @@ part of '../../yg_list_tile.dart';
 abstract base class YgSwitchListTile extends YgListTile implements YgToggleable {
   const factory YgSwitchListTile({
     Key? key,
-    required bool value,
+    required bool? value,
     required String title,
     required ValueChanged<bool>? onChanged,
     Widget? leadingWidget,
@@ -33,7 +33,12 @@ abstract base class YgSwitchListTile extends YgListTile implements YgToggleable 
     super.subtitleIcon,
     this.leadingWidget,
     this.trailingWidget,
+    this.value,
   }) : super._();
+
+  /// See [YgSwitch] documentation.
+  @override
+  final bool? value;
 
   /// Optional widget to display before the title.
   final Widget? leadingWidget;

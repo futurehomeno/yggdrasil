@@ -4,13 +4,9 @@ final class YgCheckboxItemTriState extends YgCheckboxItem with YgTriStateTogglea
   const YgCheckboxItemTriState({
     super.key,
     required super.title,
-    required this.value,
+    required super.value,
     required this.onChanged,
   }) : super._();
-
-  /// See [YgCheckbox] documentation.
-  @override
-  final bool? value;
 
   /// See [YgCheckbox] documentation.
   @override
