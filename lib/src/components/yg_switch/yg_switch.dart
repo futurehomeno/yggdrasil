@@ -15,7 +15,7 @@ abstract base class YgSwitch extends StatefulWidget with StatefulWidgetDebugMixi
   const factory YgSwitch({
     Key? key,
     required ValueChanged<bool>? onChanged,
-    required bool value,
+    required bool? value,
   }) = YgSwitchDualState;
 
   /// Supports a nullable value, i.e. "indeterminate".
@@ -27,7 +27,12 @@ abstract base class YgSwitch extends StatefulWidget with StatefulWidgetDebugMixi
 
   const YgSwitch._({
     super.key,
+    this.value,
   });
+
+  /// The current value of the switch.
+  @override
+  final bool? value;
 
   @override
   State<YgSwitch> createState() => _YgSwitchState();

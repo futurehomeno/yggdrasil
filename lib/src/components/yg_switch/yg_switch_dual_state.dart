@@ -3,13 +3,9 @@ part of 'yg_switch.dart';
 final class YgSwitchDualState extends YgSwitch with YgDualStateToggleableMixin {
   const YgSwitchDualState({
     super.key,
-    required this.value,
+    required super.value,
     required this.onChanged,
   }) : super._();
-
-  /// The current value of the switch.
-  @override
-  final bool value;
 
   /// Callback to trigger when the value of the switch changes.
   ///

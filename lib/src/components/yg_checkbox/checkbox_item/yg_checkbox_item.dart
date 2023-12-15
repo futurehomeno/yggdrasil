@@ -13,7 +13,7 @@ abstract base class YgCheckboxItem extends StatelessWidget with StatelessWidgetD
     Key? key,
     required ValueChanged<bool>? onChanged,
     required String title,
-    required bool value,
+    required bool? value,
   }) = YgCheckboxItemDualState;
 
   /// Supports a nullable value "indeterminate".
@@ -27,7 +27,12 @@ abstract base class YgCheckboxItem extends StatelessWidget with StatelessWidgetD
   const YgCheckboxItem._({
     super.key,
     required this.title,
+    required this.value,
   });
+
+  /// See [YgCheckbox] documentation.
+  @override
+  final bool? value;
 
   /// Title to show to the right of the checkbox.
   final String title;
