@@ -1,7 +1,7 @@
 part of 'yg_dropdown_menu_route.dart';
 
-class _YgDropdownMenu<T extends Object> extends StatelessWidget with StatelessWidgetDebugMixin {
-  const _YgDropdownMenu({
+class YgDropdownMenu<T extends Object> extends StatelessWidget with StatelessWidgetDebugMixin {
+  const YgDropdownMenu({
     super.key,
     required this.entries,
     required this.controller,

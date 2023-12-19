@@ -5,6 +5,8 @@ import 'package:yggdrasil_demo/screens/_screens.dart';
 import 'package:yggdrasil_demo/screens/layout_examples/_examples.dart';
 import 'package:yggdrasil_demo/widgets/_widgets.dart';
 
+import 'test/test_screen.dart';
+
 class HomeScreen extends StatelessWidget {
   const HomeScreen({super.key});
 
@@ -208,6 +210,11 @@ class HomeScreen extends StatelessWidget {
                   YgListTile(
                     title: 'WizardHeader',
                     onTap: () => sl<YgRouter>().push(WizardHeaderScreen.route()),
+                    trailingWidgets: const <YgIcon>[YgIcon(YgIcons.caretRight)],
+                  ),
+                  YgListTile(
+                    title: 'Test',
+                    onTap: () => sl<YgRouter>().push(TestScreen.route()),
                     trailingWidgets: const <YgIcon>[YgIcon(YgIcons.caretRight)],
                   ),
                 ],

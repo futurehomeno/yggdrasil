@@ -7,8 +7,8 @@ import 'package:yggdrasil/src/utils/_utils.dart';
 import 'package:yggdrasil/yggdrasil.dart';
 
 part 'yg_dropdown_menu.dart';
+part 'yg_dropdown_menu_follower.dart';
 part 'yg_dropdown_menu_item.dart';
-part 'yg_dropdown_menu_positioner.dart';
 
 /// A route for the dropdown menu.
 ///
@@ -63,7 +63,7 @@ class YgDropdownMenuRoute<T extends Object> extends PopupRoute<Widget> {
   Widget buildPage(BuildContext context, Animation<double> animation, Animation<double> secondaryAnimation) {
     final YgDropdownFieldTheme theme = context.fieldTheme.dropdownTheme;
 
-    return _YgDropdownMenuPositioner(
+    return YgDropdownMenuFollower(
       rect: rect,
       animation: animation.drive(CurveTween(curve: theme.menuAnimationCurve)),
       padding: theme.menuToFieldPadding,
@@ -72,7 +72,7 @@ class YgDropdownMenuRoute<T extends Object> extends PopupRoute<Widget> {
       // repaint don't ask me how or why.
       child: RepaintBoundary(
         child: RepaintBoundary(
-          child: _YgDropdownMenu<T>(
+          child: YgDropdownMenu<T>(
             entries: entries,
             controller: dropdownController,
           ),

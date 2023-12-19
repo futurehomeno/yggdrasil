@@ -1,8 +1,9 @@
 part of 'yg_dropdown_menu_route.dart';
 
 // TODO(DEV-1917): Make it so this gets updated if the followed widget changes.
-class _YgDropdownMenuPositioner extends SingleChildRenderObjectWidget {
-  const _YgDropdownMenuPositioner({
+class YgDropdownMenuFollower extends SingleChildRenderObjectWidget {
+  const YgDropdownMenuFollower({
+    super.key,
     required super.child,
     required this.rect,
     required this.animation,
@@ -15,7 +16,7 @@ class _YgDropdownMenuPositioner extends SingleChildRenderObjectWidget {
 
   @override
   RenderObject createRenderObject(BuildContext context) {
-    return _YgDropdownMenuPositionerRenderObject(
+    return YgDropdownMenuFollowerRenderObject(
       rect: rect,
       animation: animation,
       screenPadding: MediaQuery.paddingOf(context),
@@ -26,7 +27,7 @@ class _YgDropdownMenuPositioner extends SingleChildRenderObjectWidget {
   @override
   void updateRenderObject(
     BuildContext context,
-    covariant _YgDropdownMenuPositionerRenderObject renderObject,
+    covariant YgDropdownMenuFollowerRenderObject renderObject,
   ) {
     renderObject.rect = rect;
     renderObject.animation = animation;
@@ -35,8 +36,8 @@ class _YgDropdownMenuPositioner extends SingleChildRenderObjectWidget {
   }
 }
 
-class _YgDropdownMenuPositionerRenderObject extends RenderBox with RenderObjectWithChildMixin<RenderBox> {
-  _YgDropdownMenuPositionerRenderObject({
+class YgDropdownMenuFollowerRenderObject extends RenderBox with RenderObjectWithChildMixin<RenderBox> {
+  YgDropdownMenuFollowerRenderObject({
     required Rect rect,
     required Animation<double> animation,
     required EdgeInsets screenPadding,
