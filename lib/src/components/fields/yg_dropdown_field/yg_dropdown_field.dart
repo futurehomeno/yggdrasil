@@ -2,8 +2,8 @@ import 'dart:io';
 import 'dart:math';
 
 import 'package:flutter/material.dart';
-import 'package:yggdrasil/src/components/yg_overlay/_yg_overlay.dart';
 import 'package:yggdrasil/src/theme/_theme.dart';
+import 'package:yggdrasil/src/utils/yg_overlay/_yg_overlay.dart';
 import 'package:yggdrasil/yggdrasil.dart';
 
 import '../helpers/_helpers.dart';
@@ -356,15 +356,6 @@ abstract class YgDropdownFieldWidgetState<T extends Object, W extends YgDropdown
 
     final double spaceToScreenBottom = constraints.maxHeight - parentRect.bottom - screenPadding.bottom - (padding * 2);
 
-    print('childSize $childSize');
-
-    print('_positionOverlay ${Offset(
-      parentRect.left,
-      childSize.height > spaceToScreenBottom
-          ? parentRect.top - childSize.height - padding
-          : parentRect.bottom + padding,
-    )}');
-
     return Offset(
       parentRect.left,
       childSize.height > spaceToScreenBottom
@@ -450,15 +441,12 @@ abstract class YgDropdownFieldWidgetState<T extends Object, W extends YgDropdown
   void close() {
     if (_portalController.isShowing) {
       _portalController.hide();
-
-      return;
+    } else {
+      Navigator.popUntil(
+        context,
+        (Route<Object?> route) => route is! YgDropdownBottomSheetRoute,
+      );
     }
-
-    Navigator.popUntil(
-      context,
-      // ignore: avoid-dynamic
-      (Route<dynamic> route) => route is! YgDropdownMenuRoute && route is! YgDropdownBottomSheetRoute,
-    );
     _onClosed();
   }
 

@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
-import 'package:yggdrasil/src/components/yg_overlay/yg_overlay_link.dart';
+import 'package:yggdrasil/src/utils/yg_overlay/yg_overlay_link.dart';
 
 import '_yg_overlay.dart';
-import 'yg_overlay_target.dart';
 
+/// Allows you to implement an overlay child which follows a target widget.
 class YgOverlayFollower extends SingleChildRenderObjectWidget {
   const YgOverlayFollower({
     super.key,
@@ -14,8 +14,13 @@ class YgOverlayFollower extends SingleChildRenderObjectWidget {
     required super.child,
   });
 
+  /// Calculates the [BoxConstraints] of the child widget.
   final OverlayConstrainer? constrainOverlay;
+
+  /// Calculates the [Offset] of the child widget.
   final OverlayPositioner? positionOverlay;
+
+  /// Links this widget to a [YgOverlayTarget].
   final YgOverlayLink overlayLink;
 
   @override
@@ -24,6 +29,7 @@ class YgOverlayFollower extends SingleChildRenderObjectWidget {
       positionOverlay: positionOverlay,
       constrainOverlay: constrainOverlay,
       overlayLink: overlayLink,
+      overlay: Overlay.of(context),
     );
   }
 
@@ -35,17 +41,22 @@ class YgOverlayFollower extends SingleChildRenderObjectWidget {
     renderObject.positionOverlay = positionOverlay;
     renderObject.overlayLink = overlayLink;
     renderObject.constrainOverlay = constrainOverlay;
+    renderObject.overlay = Overlay.of(context);
   }
 }
 
+// TODO(DEV-2713): Probably should move some logic here to a mixin and check if
+// there are other render objects that could use it.
 class YgOverlayFollowerRenderer extends RenderProxyBox {
   YgOverlayFollowerRenderer({
     required OverlayPositioner? positionOverlay,
     required YgOverlayLink overlayLink,
     required OverlayConstrainer? constrainOverlay,
+    required OverlayState overlay,
   })  : _positionOverlay = positionOverlay,
         _overlayLink = overlayLink,
-        _constrainOverlay = constrainOverlay;
+        _constrainOverlay = constrainOverlay,
+        _overlay = overlay;
 
   OverlayPositioner? _positionOverlay;
   OverlayPositioner? get positionOverlay => _positionOverlay;
@@ -62,6 +73,15 @@ class YgOverlayFollowerRenderer extends RenderProxyBox {
     if (_constrainOverlay != newValue) {
       _constrainOverlay = newValue;
       markNeedsLayout();
+    }
+  }
+
+  OverlayState _overlay;
+  OverlayState get overlay => _overlay;
+  set overlay(OverlayState newOverlay) {
+    if (_overlay != newOverlay) {
+      markNeedsLayout();
+      _overlay = newOverlay;
     }
   }
 
@@ -83,7 +103,7 @@ class YgOverlayFollowerRenderer extends RenderProxyBox {
       return;
     }
 
-    final Rect rect = _getRect();
+    final Rect rect = _overlayLink.getTargetRect(_overlay);
 
     child.layout(_constrainOverlay?.call(rect, constraints) ?? constraints, parentUsesSize: true);
     child.data.offset = _positionOverlay?.call(rect, constraints, child.size) ?? Offset.zero;
@@ -94,15 +114,6 @@ class YgOverlayFollowerRenderer extends RenderProxyBox {
     if (child.parentData is! BoxParentData) {
       child.parentData = BoxParentData();
     }
-  }
-
-  Rect _getRect() {
-    final YgOverlayTargetRenderer? target = _overlayLink.target;
-    if (target == null) {
-      return Rect.zero;
-    }
-
-    return target.rect;
   }
 
   @override

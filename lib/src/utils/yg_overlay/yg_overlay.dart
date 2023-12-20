@@ -1,11 +1,12 @@
 import 'package:flutter/material.dart';
-import 'package:yggdrasil/src/components/yg_overlay/yg_overlay_follower.dart';
-import 'package:yggdrasil/src/components/yg_overlay/yg_overlay_link.dart';
-import 'package:yggdrasil/src/components/yg_overlay/yg_overlay_target.dart';
+import 'package:yggdrasil/src/utils/yg_overlay/yg_overlay_follower.dart';
+import 'package:yggdrasil/src/utils/yg_overlay/yg_overlay_link.dart';
+import 'package:yggdrasil/src/utils/yg_overlay/yg_overlay_target.dart';
 
 typedef OverlayConstrainer = BoxConstraints Function(Rect parent, BoxConstraints constraints);
 typedef OverlayPositioner = Offset Function(Rect parent, BoxConstraints constraints, Size childSize);
 
+/// Allows you to attach an overlay to the child widget.
 class YgOverlay extends StatefulWidget {
   const YgOverlay({
     super.key,
@@ -17,11 +18,22 @@ class YgOverlay extends StatefulWidget {
     this.onTapOutsideOverlay,
   });
 
+  /// Calculates the [BoxConstraints] of the child widget.
   final OverlayConstrainer? constrainOverlay;
+
+  /// Calculates the [Offset] of the child widget.
   final OverlayPositioner? positionOverlay;
+
+  /// Controls whether the overlay child is rendered or not.
   final OverlayPortalController controller;
+
+  /// Builds the overlay child.
   final WidgetBuilder overlayChildBuilder;
+
+  /// The child widget to which the overlay child will be attached.
   final Widget child;
+
+  /// Called when the user taps outside of the overlay child.
   final VoidCallback? onTapOutsideOverlay;
 
   @override
@@ -32,15 +44,7 @@ class _YgOverlayState extends State<YgOverlay> {
   final YgOverlayLink _overlayLink = YgOverlayLink();
 
   @override
-  void dispose() {
-    _overlayLink.dispose();
-    super.dispose();
-  }
-
-  @override
   Widget build(BuildContext context) {
-    final OverlayState overlay = Overlay.of(context);
-
     return OverlayPortal(
       controller: widget.controller,
       overlayChildBuilder: (BuildContext context) {
@@ -66,7 +70,6 @@ class _YgOverlayState extends State<YgOverlay> {
         );
       },
       child: YgOverlayTarget(
-        overlay: overlay,
         overlayLink: _overlayLink,
         child: widget.child,
       ),

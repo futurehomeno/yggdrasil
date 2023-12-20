@@ -7,29 +7,24 @@ class YgOverlayTarget extends SingleChildRenderObjectWidget {
   const YgOverlayTarget({
     super.key,
     required super.child,
-    required this.overlay,
     required this.overlayLink,
   });
 
-  final OverlayState overlay;
+  /// Used to link this widget to a [YgOverlayFollower].
   final YgOverlayLink overlayLink;
 
   @override
   RenderObject createRenderObject(BuildContext context) {
-    final YgOverlayTargetRenderer renderObject = YgOverlayTargetRenderer(
-      overlay: overlay,
+    return YgOverlayTargetRenderer(
+      overlay: Overlay.of(context),
       overlayLink: overlayLink,
     );
-    overlayLink.target = renderObject;
-
-    return renderObject;
   }
 
   @override
   void updateRenderObject(BuildContext context, covariant YgOverlayTargetRenderer renderObject) {
-    overlayLink.target = renderObject;
     renderObject.overlayLink = overlayLink;
-    renderObject.overlay = overlay;
+    renderObject.overlay = Overlay.of(context);
   }
 }
 
@@ -38,7 +33,9 @@ class YgOverlayTargetRenderer extends RenderProxyBox {
     required OverlayState overlay,
     required YgOverlayLink overlayLink,
   })  : _overlay = overlay,
-        _overlayLink = overlayLink;
+        _overlayLink = overlayLink {
+    _overlayLink.target = this;
+  }
 
   OverlayState _overlay;
   OverlayState get overlay => _overlay;
@@ -59,38 +56,8 @@ class YgOverlayTargetRenderer extends RenderProxyBox {
   }
 
   @override
-  void markNeedsLayout() {
-    _overlayLink.needsLayout();
-    super.markNeedsLayout();
-  }
-
-  Size _size = Size.zero;
-
-  Rect? _rect;
-  Rect get rect {
-    Rect? rect = _rect;
-
-    if (rect != null) {
-      return rect;
-    }
-
-    final RenderObject? overlayRenderObject = overlay.context.findRenderObject();
-
-    rect = localToGlobal(
-          Offset.zero,
-          ancestor: overlayRenderObject,
-        ) &
-        _size;
-
-    _rect = rect;
-
-    return rect;
-  }
-
-  @override
   void performLayout() {
     super.performLayout();
-    _rect = null;
-    _size = size;
+    _overlayLink.targetSize = size;
   }
 }
