@@ -1,3 +1,10 @@
+# 1.9.1 [2023-12-21T20:55:43.304623]
+
+## Dev changes
+
+- [dev-feature] Added new icons: enocean.svg
+- [dev-fix] Fixed color issue value on "yggColor" class after rebuild the icons DEV-2697.
+
 # 1.9.0 [2023-12-18T11:10:47.225897]
 
 ## Changes
