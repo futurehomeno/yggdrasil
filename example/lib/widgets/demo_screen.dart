@@ -37,7 +37,7 @@ class DemoScreen extends StatelessWidget {
                 leading: const Padding(
                   padding: EdgeInsets.all(12.5),
                   child: YgIcon.embeddedColor(
-                    YgIcons.ygg,
+                    YgIcons.yggColorful,
                   ),
                 ),
                 actions: <YgIconButton>[

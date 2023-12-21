@@ -137,6 +137,7 @@ class YgIcons {
   static const YgColorableIconData energyMeter = YgColorableIconData(name: 'energyMeter', path: 'assets/icons/energy_meter.svg');
   static const YgColorableIconData energySolar = YgColorableIconData(name: 'energySolar', path: 'assets/icons/energy_solar.svg');
   static const YgColorableIconData energyWind = YgColorableIconData(name: 'energyWind', path: 'assets/icons/energy_wind.svg');
+  static const YgColorableIconData enocean = YgColorableIconData(name: 'enocean', path: 'assets/icons/enocean.svg');
   static const YgColorableIconData error = YgColorableIconData(name: 'error', path: 'assets/icons/error.svg');
   static const YgColorableIconData export = YgColorableIconData(name: 'export', path: 'assets/icons/export.svg');
   static const YgColorableIconData eyeClosed = YgColorableIconData(name: 'eyeClosed', path: 'assets/icons/eye_closed.svg');
@@ -146,6 +147,7 @@ class YgIcons {
   static const YgColorableIconData fan = YgColorableIconData(name: 'fan', path: 'assets/icons/fan.svg');
   static const YgColorableIconData fanAlt = YgColorableIconData(name: 'fanAlt', path: 'assets/icons/fan_alt.svg');
   static const YgColorableIconData fanSmall = YgColorableIconData(name: 'fanSmall', path: 'assets/icons/fan_small.svg');
+  static const YgColorableIconData fatAlertEmark = YgColorableIconData(name: 'fatAlertEmark', path: 'assets/icons/fat_alert_emark.svg');
   static const YgColorableIconData feather = YgColorableIconData(name: 'feather', path: 'assets/icons/feather.svg');
   static const YgColorableIconData filter = YgColorableIconData(name: 'filter', path: 'assets/icons/filter.svg');
   static const YgColorableIconData fireOff = YgColorableIconData(name: 'fireOff', path: 'assets/icons/fire_off.svg');
@@ -303,9 +305,16 @@ class YgIcons {
   static const YgColorableIconData smokeDisabled = YgColorableIconData(name: 'smokeDisabled', path: 'assets/icons/smoke_disabled.svg');
   static const YgColorableIconData smokeGasTest = YgColorableIconData(name: 'smokeGasTest', path: 'assets/icons/smoke_gas_test.svg');
   static const YgColorableIconData smokeHealth = YgColorableIconData(name: 'smokeHealth', path: 'assets/icons/smoke_health.svg');
+  static const YgColorableIconData smokeNotOk = YgColorableIconData(name: 'smokeNotOk', path: 'assets/icons/smoke_not_ok.svg');
+  static const YgIconData smokeNotOkColorful = YgIconData(name: 'smokeNotOkColorful', path: 'assets/icons/smoke_not_ok_colorful.svg');
+  static const YgColorableIconData smokeOff = YgColorableIconData(name: 'smokeOff', path: 'assets/icons/smoke_off.svg');
+  static const YgIconData smokeOffColorful = YgIconData(name: 'smokeOffColorful', path: 'assets/icons/smoke_off_colorful.svg');
+  static const YgColorableIconData smokeOk = YgColorableIconData(name: 'smokeOk', path: 'assets/icons/smoke_ok.svg');
+  static const YgIconData smokeOkColorful = YgIconData(name: 'smokeOkColorful', path: 'assets/icons/smoke_ok_colorful.svg');
   static const YgColorableIconData smokeOn = YgColorableIconData(name: 'smokeOn', path: 'assets/icons/smoke_on.svg');
   static const YgColorableIconData smokeSensitive = YgColorableIconData(name: 'smokeSensitive', path: 'assets/icons/smoke_sensitive.svg');
   static const YgColorableIconData smokeTest = YgColorableIconData(name: 'smokeTest', path: 'assets/icons/smoke_test.svg');
+  static const YgColorableIconData snake = YgColorableIconData(name: 'snake', path: 'assets/icons/snake.svg');
   static const YgColorableIconData snowflake = YgColorableIconData(name: 'snowflake', path: 'assets/icons/snowflake.svg');
   static const YgColorableIconData solar = YgColorableIconData(name: 'solar', path: 'assets/icons/solar.svg');
   static const YgColorableIconData speed = YgColorableIconData(name: 'speed', path: 'assets/icons/speed.svg');
@@ -322,10 +331,30 @@ class YgIcons {
   static const YgColorableIconData supportBubble = YgColorableIconData(name: 'supportBubble', path: 'assets/icons/support_bubble.svg');
   static const YgColorableIconData switchButton = YgColorableIconData(name: 'switchButton', path: 'assets/icons/switch_button.svg');
   static const YgColorableIconData tamperBad = YgColorableIconData(name: 'tamperBad', path: 'assets/icons/tamper_bad.svg');
+  static const YgColorableIconData tamperNotOk = YgColorableIconData(name: 'tamperNotOk', path: 'assets/icons/tamper_not_ok.svg');
+  static const YgIconData tamperNotOkColorful = YgIconData(name: 'tamperNotOkColorful', path: 'assets/icons/tamper_not_ok_colorful.svg');
+  static const YgColorableIconData tamperNotSafe = YgColorableIconData(name: 'tamperNotSafe', path: 'assets/icons/tamper_not_safe.svg');
+  static const YgIconData tamperNotSafeColorful = YgIconData(name: 'tamperNotSafeColorful', path: 'assets/icons/tamper_not_safe_colorful.svg');
+  static const YgColorableIconData tamperOk = YgColorableIconData(name: 'tamperOk', path: 'assets/icons/tamper_ok.svg');
+  static const YgIconData tamperOkColorful = YgIconData(name: 'tamperOkColorful', path: 'assets/icons/tamper_ok_colorful.svg');
+  static const YgColorableIconData tamperSafe = YgColorableIconData(name: 'tamperSafe', path: 'assets/icons/tamper_safe.svg');
+  static const YgIconData tamperSafeColorful = YgIconData(name: 'tamperSafeColorful', path: 'assets/icons/tamper_safe_colorful.svg');
+  static const YgColorableIconData temperatureCritical = YgColorableIconData(name: 'temperatureCritical', path: 'assets/icons/temperature_critical.svg');
+  static const YgIconData temperatureCriticalColorful = YgIconData(name: 'temperatureCriticalColorful', path: 'assets/icons/temperature_critical_colorful.svg');
   static const YgColorableIconData temperatureHigh = YgColorableIconData(name: 'temperatureHigh', path: 'assets/icons/temperature_high.svg');
+  static const YgColorableIconData temperatureHighCritical = YgColorableIconData(name: 'temperatureHighCritical', path: 'assets/icons/temperature_high_critical.svg');
+  static const YgIconData temperatureHighCriticalColorful = YgIconData(name: 'temperatureHighCriticalColorful', path: 'assets/icons/temperature_high_critical_colorful.svg');
   static const YgColorableIconData temperatureLow = YgColorableIconData(name: 'temperatureLow', path: 'assets/icons/temperature_low.svg');
+  static const YgColorableIconData temperatureLowCritical = YgColorableIconData(name: 'temperatureLowCritical', path: 'assets/icons/temperature_low_critical.svg');
+  static const YgIconData temperatureLowCriticalColorful = YgIconData(name: 'temperatureLowCriticalColorful', path: 'assets/icons/temperature_low_critical_colorful.svg');
+  static const YgColorableIconData temperatureOk = YgColorableIconData(name: 'temperatureOk', path: 'assets/icons/temperature_ok.svg');
+  static const YgIconData temperatureOkColorful = YgIconData(name: 'temperatureOkColorful', path: 'assets/icons/temperature_ok_colorful.svg');
   static const YgColorableIconData temporaryPin = YgColorableIconData(name: 'temporaryPin', path: 'assets/icons/temporary_pin.svg');
   static const YgColorableIconData threshold = YgColorableIconData(name: 'threshold', path: 'assets/icons/threshold.svg');
+  static const YgColorableIconData thresholdNew = YgColorableIconData(name: 'thresholdNew', path: 'assets/icons/threshold_new.svg');
+  static const YgIconData thresholdNewColorful = YgIconData(name: 'thresholdNewColorful', path: 'assets/icons/threshold_new_colorful.svg');
+  static const YgColorableIconData thresholdWarning = YgColorableIconData(name: 'thresholdWarning', path: 'assets/icons/threshold_warning.svg');
+  static const YgIconData thresholdWarningColorful = YgIconData(name: 'thresholdWarningColorful', path: 'assets/icons/threshold_warning_colorful.svg');
   static const YgColorableIconData tide = YgColorableIconData(name: 'tide', path: 'assets/icons/tide.svg');
   static const YgColorableIconData timeline = YgColorableIconData(name: 'timeline', path: 'assets/icons/timeline.svg');
   static const YgColorableIconData toilet = YgColorableIconData(name: 'toilet', path: 'assets/icons/toilet.svg');
@@ -377,7 +406,7 @@ class YgIcons {
   static const YgColorableIconData windowOpenAlt = YgColorableIconData(name: 'windowOpenAlt', path: 'assets/icons/window_open_alt.svg');
   static const YgColorableIconData windowOpenUnlocked = YgColorableIconData(name: 'windowOpenUnlocked', path: 'assets/icons/window_open_unlocked.svg');
   static const YgColorableIconData work = YgColorableIconData(name: 'work', path: 'assets/icons/work.svg');
-  static const YgColorableIconData ygg = YgColorableIconData(name: 'ygg', path: 'assets/icons/ygg.svg');
+  static const YgIconData yggColorful = YgIconData(name: 'yggColorful', path: 'assets/icons/ygg_colorful.svg');
   static const YgColorableIconData zigbee = YgColorableIconData(name: 'zigbee', path: 'assets/icons/zigbee.svg');
   static const YgColorableIconData zwave = YgColorableIconData(name: 'zwave', path: 'assets/icons/zwave.svg');
   
@@ -516,6 +545,7 @@ class YgIcons {
     energyMeter,
     energySolar,
     energyWind,
+    enocean,
     error,
     export,
     eyeClosed,
@@ -525,6 +555,7 @@ class YgIcons {
     fan,
     fanAlt,
     fanSmall,
+    fatAlertEmark,
     feather,
     filter,
     fireOff,
@@ -682,9 +713,16 @@ class YgIcons {
     smokeDisabled,
     smokeGasTest,
     smokeHealth,
+    smokeNotOk,
+    smokeNotOkColorful,
+    smokeOff,
+    smokeOffColorful,
+    smokeOk,
+    smokeOkColorful,
     smokeOn,
     smokeSensitive,
     smokeTest,
+    snake,
     snowflake,
     solar,
     speed,
@@ -701,10 +739,30 @@ class YgIcons {
     supportBubble,
     switchButton,
     tamperBad,
+    tamperNotOk,
+    tamperNotOkColorful,
+    tamperNotSafe,
+    tamperNotSafeColorful,
+    tamperOk,
+    tamperOkColorful,
+    tamperSafe,
+    tamperSafeColorful,
+    temperatureCritical,
+    temperatureCriticalColorful,
     temperatureHigh,
+    temperatureHighCritical,
+    temperatureHighCriticalColorful,
     temperatureLow,
+    temperatureLowCritical,
+    temperatureLowCriticalColorful,
+    temperatureOk,
+    temperatureOkColorful,
     temporaryPin,
     threshold,
+    thresholdNew,
+    thresholdNewColorful,
+    thresholdWarning,
+    thresholdWarningColorful,
     tide,
     timeline,
     toilet,
@@ -756,7 +814,7 @@ class YgIcons {
     windowOpenAlt,
     windowOpenUnlocked,
     work,
-    ygg,
+    yggColorful,
     zigbee,
     zwave,
   ];
