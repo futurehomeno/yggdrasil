@@ -8,8 +8,8 @@ typedef OverlayConstrainer = BoxConstraints Function(Rect parent, BoxConstraints
 typedef OverlayPositioner = Offset Function(Rect parent, BoxConstraints constraints, Size childSize);
 
 /// Allows you to attach an overlay to the child widget.
-class YgOverlay extends StatefulWidget {
-  const YgOverlay({
+class YgOverlayPortal extends StatefulWidget {
+  const YgOverlayPortal({
     super.key,
     required this.overlayChildBuilder,
     required this.child,
@@ -38,10 +38,10 @@ class YgOverlay extends StatefulWidget {
   final VoidCallback? onTapOutsideOverlay;
 
   @override
-  State<YgOverlay> createState() => _YgOverlayState();
+  State<YgOverlayPortal> createState() => _YgOverlayState();
 }
 
-class _YgOverlayState extends State<YgOverlay> {
+class _YgOverlayState extends State<YgOverlayPortal> {
   final YgOverlayLink _overlayLink = YgOverlayLink();
 
   @override
