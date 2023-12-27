@@ -2,24 +2,26 @@ import 'package:flutter/material.dart';
 import 'package:yggdrasil/src/theme/_theme.dart';
 import 'package:yggdrasil/src/utils/_utils.dart';
 
-abstract class YgButtonBaseStyle<T extends YgState> extends YgStyleWithDefaults<T> {
+import '_widgets.dart';
+
+abstract class YgButtonBaseStyle<T extends YgButtonBaseState> extends YgStyleWithDefaults<T> {
   YgButtonBaseStyle({
     required super.state,
     required super.vsync,
   });
 
-  late YgAnimatedNullableBorderSideProperty borderSide;
-  late YgAnimatedNullableShapeBorderProperty shape;
-  late YgAnimatedBoxConstraintsProperty constraints;
-  late YgAnimatedColorProperty color;
-  late YgAnimatedIconThemeDataProperty iconTheme;
-  late YgAnimatedTextStyleProperty textStyle;
-  late YgAnimatedEdgeInsetsProperty padding;
-  late YgAnimatedAlignmentProperty alignment;
-  late YgAnimatedDoubleProperty elevation;
-  late YgDrivenProperty<MouseCursor?> cursor;
-  late YgDrivenColorProperty splashColor;
-  late YgDrivenProperty<InteractiveInkFeatureFactory> splashFactory;
+  late final YgAnimatedNullableShapeBorderProperty shape;
+  late final YgAnimatedBoxConstraintsProperty constraints;
+  late final YgAnimatedColorProperty color;
+  late final YgAnimatedIconThemeDataProperty iconTheme;
+  late final YgAnimatedTextStyleProperty textStyle;
+  late final YgAnimatedEdgeInsetsProperty padding;
+  late final YgAnimatedAlignmentProperty alignment;
+  late final YgAnimatedDoubleProperty elevation;
+  late final YgDrivenProperty<MouseCursor?> cursor;
+  late final YgDrivenColorProperty splashColor;
+  late final YgDrivenProperty<InteractiveInkFeatureFactory> splashFactory;
+  late final YgDrivenProperty<Clip> clip;
 
   @override
   void init() {
@@ -29,12 +31,12 @@ abstract class YgButtonBaseStyle<T extends YgState> extends YgStyleWithDefaults<
     textStyle = animate(YgTextStyleProperty<T>.resolveWith(resolveTextStyle));
     padding = animate(YgEdgeInsetsProperty<T>.resolveWith(resolvePadding));
     alignment = animate(YgAlignmentProperty<T>.resolveWith(resolveAlignment));
-    borderSide = animate(YgNullableBorderSideProperty<T>.resolveWith(resolveBorderSide));
     elevation = animate(YgDoubleProperty<T>.resolveWith(resolveElevation));
     shape = animate(YgProperty<T, OutlinedBorder?>.resolveWith(resolveOutlinedBorder));
     cursor = drive(YgProperty<T, MouseCursor?>.resolveWith(resolveCursor));
     splashColor = drive(YgColorProperty<T>.resolveWith(resolveSplashColor));
     splashFactory = drive(YgProperty<T, InteractiveInkFeatureFactory>.resolveWith(resolveSplashFactory));
+    clip = drive(YgProperty<T, Clip>.resolveWith(resolveClip));
   }
 
   Color resolveColor(BuildContext context, T state);
@@ -55,14 +57,16 @@ abstract class YgButtonBaseStyle<T extends YgState> extends YgStyleWithDefaults<
     return const EdgeInsets.all(0);
   }
 
-  MouseCursor resolveCursor(BuildContext context, T state);
+  MouseCursor resolveCursor(BuildContext context, T state) {
+    if (state.disabled.value) {
+      return SystemMouseCursors.basic;
+    }
+
+    return SystemMouseCursors.click;
+  }
 
   Alignment resolveAlignment(BuildContext context, T state) {
     return Alignment.center;
-  }
-
-  BorderSide? resolveBorderSide(BuildContext context, T state) {
-    return null;
   }
 
   double resolveElevation(BuildContext context, T state) {
@@ -96,5 +100,9 @@ abstract class YgButtonBaseStyle<T extends YgState> extends YgStyleWithDefaults<
     }
 
     return Colors.white.withOpacity(0.08);
+  }
+
+  Clip resolveClip(BuildContext context, T state) {
+    return Clip.antiAlias;
   }
 }

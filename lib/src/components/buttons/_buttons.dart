@@ -1,3 +1,4 @@
+export 'yg_avatar/_yg_avatar.dart';
 export 'yg_button/_yg_button.dart';
 export 'yg_icon_button/_yg_icon_button.dart';
 export 'yg_tag/_yg_tag.dart';

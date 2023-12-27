@@ -4,7 +4,7 @@ final class _YgSwitchListTileTriState extends YgSwitchListTile with YgTriStateTo
   const _YgSwitchListTileTriState({
     super.key,
     required super.title,
-    required this.value,
+    required super.value,
     required this.onChanged,
     super.leadingWidget,
     super.subtitle,
@@ -13,10 +13,6 @@ final class _YgSwitchListTileTriState extends YgSwitchListTile with YgTriStateTo
   }) : super._(
           disabled: onChanged == null,
         );
-
-  /// See [YgSwitch] documentation.
-  @override
-  final bool? value;
 
   /// See [YgSwitch] documentation.
   @override

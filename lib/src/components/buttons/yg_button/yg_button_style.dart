@@ -58,15 +58,6 @@ class YgButtonStyle extends YgButtonBaseStyle<YgButtonState> {
   }
 
   @override
-  MouseCursor resolveCursor(BuildContext context, YgButtonState state) {
-    if (state.disabled.value) {
-      return SystemMouseCursors.basic;
-    }
-
-    return SystemMouseCursors.click;
-  }
-
-  @override
   OutlinedBorder resolveOutlinedBorder(BuildContext context, YgButtonState state) {
     final ButtonVariantTheme variantTheme = getVariantTheme(state);
 

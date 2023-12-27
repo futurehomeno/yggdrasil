@@ -34,26 +34,25 @@ class DemoScreen extends StatelessWidget {
               YgAppBar(
                 title: componentName ?? '',
                 centerTitle: false,
-                leading: const YgIconButton(
-                  onPressed: null,
-                  child: YgIcon(
-                    YgIcons.ygg,
-                    useEmbeddedColor: true,
+                leading: const Padding(
+                  padding: EdgeInsets.all(12.5),
+                  child: YgIcon.embeddedColor(
+                    YgIcons.yggColorful,
                   ),
                 ),
                 actions: <YgIconButton>[
                   YgIconButton(
                     onPressed: () => YgDebug.toggleDebugging(context),
                     onLongPress: () => Navigator.of(context).push(DebugBottomSheet()),
-                    child: const YgIcon(YgIcons.eyeOpen),
+                    icon: YgIcons.eyeOpen,
                   ),
                   YgIconButton(
                     onPressed: ygAppState.toggleProfessionalTheme,
-                    child: const YgIcon(YgIcons.power),
+                    icon: YgIcons.power,
                   ),
                   YgIconButton(
                     onPressed: ygAppState.toggleDarkMode,
-                    child: const YgIcon(YgIcons.refresh),
+                    icon: YgIcons.refresh,
                   ),
                 ],
                 bottom: bottom,

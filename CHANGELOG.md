@@ -1,3 +1,36 @@
+# 1.9.1 [2023-12-21T20:55:43.304623]
+
+## Dev changes
+
+- [dev-feature] Added new icons: enocean.svg
+- [dev-fix] Fixed color issue value on "yggColor" class after rebuild the icons DEV-2697.
+
+# 1.9.0 [2023-12-18T11:10:47.225897]
+
+## Changes
+
+- [feature] New icons 06.10.23.
+- [feature] Support dynamic colors for icons.
+- [improvement] The example app shows the current version in the app bar now.
+
+## Dev changes
+
+- [dev-fix] Added support for null values in dual state widgets.
+- [dev-improvement] Updated slack notification format.
+
+# 1.8.7 [2023-12-14T15:55:24.139875]
+
+## Changes
+
+- [feature] Implemented the YgAvatar and YgAvatarStack widgets DEV-1121.
+- [fix] Fixed section titles not having the correct color after changing themes under certain circumstances.
+
+## Dev changes
+
+- [dev-improvement] Migrated YgBadge to YgStates DEV-2559.
+- [dev-improvement] Migrated YgCallout to YgStates DEV-2558.
+- [dev-improvement] Migrated YgCard to YgStates DEV-2557.
+
 # 1.8.6 [2023-12-08T13:06:48.355983]
 
 ## Changes

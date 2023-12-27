@@ -29,13 +29,13 @@ class RegularExample extends StatelessWidget {
         ),
         YgExpandingSection(
           title: 'With title and icon',
-          icon: YgIcon(YgIcons.placeholder),
+          icon: YgIcons.placeholder,
           child: DemoPlaceholder(),
         ),
         YgExpandingSection(
           title: 'With title, icon, tag and long subtitle',
           subtitle: 'Cupidatat ea voluptate exercitation irure ea occaecat pariatur elit minim non incididunt in.',
-          icon: YgIcon(YgIcons.placeholder),
+          icon: YgIcons.placeholder,
           tag: YgTag(
             variant: YgTagVariant.informative,
             size: YgTagSize.small,

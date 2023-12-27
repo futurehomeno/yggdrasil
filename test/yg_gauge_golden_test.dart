@@ -1,6 +1,5 @@
 import 'package:alchemist/alchemist.dart';
 import 'package:flutter/material.dart';
-
 import 'package:flutter_test/flutter_test.dart';
 import 'package:yggdrasil/yggdrasil.dart';
 
@@ -81,7 +80,7 @@ void main() {
               dimension: 100,
               child: YgGauge(
                 value: 0.25,
-                icon: YgIcon(YgIcons.info),
+                icon: YgIcons.info,
               ),
             ),
           ),
@@ -91,7 +90,7 @@ void main() {
               dimension: 100,
               child: YgGauge(
                 value: 0.5,
-                icon: YgIcon(YgIcons.info),
+                icon: YgIcons.info,
                 label: YgGoldenTestValues.shortText,
               ),
             ),
@@ -136,7 +135,7 @@ void main() {
               dimension: 100,
               child: YgGauge(
                 value: 0.66,
-                icon: YgIcon(YgIcons.info),
+                icon: YgIcons.info,
                 title: 'title',
               ),
             ),

@@ -4,7 +4,7 @@ final class _YgSwitchListTileDualState extends YgSwitchListTile with YgDualState
   const _YgSwitchListTileDualState({
     super.key,
     required super.title,
-    required this.value,
+    required super.value,
     required this.onChanged,
     super.leadingWidget,
     super.subtitle,
@@ -13,10 +13,6 @@ final class _YgSwitchListTileDualState extends YgSwitchListTile with YgDualState
   }) : super._(
           disabled: onChanged == null,
         );
-
-  /// See [YgSwitch] documentation.
-  @override
-  final bool value;
 
   /// See [YgSwitch] documentation.
   @override

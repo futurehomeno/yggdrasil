@@ -11,6 +11,7 @@ part of 'theme.dart';
 class YgTheme extends ThemeExtension<YgTheme> {
   const YgTheme({
     required this.appBarTheme,
+    required this.avatarTheme,
     required this.badgeTheme,
     required this.bottomSheetTheme,
     required this.buttonGroupTheme,
@@ -42,6 +43,7 @@ class YgTheme extends ThemeExtension<YgTheme> {
   });
 
   final YgAppBarTheme appBarTheme;
+  final YgAvatarTheme avatarTheme;
   final YgBadgeTheme badgeTheme;
   final YgBottomSheetTheme bottomSheetTheme;
   final YgButtonGroupTheme buttonGroupTheme;
@@ -73,6 +75,7 @@ class YgTheme extends ThemeExtension<YgTheme> {
 
   static final YgTheme consumerLight = YgTheme(
     appBarTheme: _$YgTheme.appBarTheme[0],
+    avatarTheme: _$YgTheme.avatarTheme[0],
     badgeTheme: _$YgTheme.badgeTheme[0],
     bottomSheetTheme: _$YgTheme.bottomSheetTheme[0],
     buttonGroupTheme: _$YgTheme.buttonGroupTheme[0],
@@ -105,6 +108,7 @@ class YgTheme extends ThemeExtension<YgTheme> {
 
   static final YgTheme consumerDark = YgTheme(
     appBarTheme: _$YgTheme.appBarTheme[1],
+    avatarTheme: _$YgTheme.avatarTheme[1],
     badgeTheme: _$YgTheme.badgeTheme[1],
     bottomSheetTheme: _$YgTheme.bottomSheetTheme[1],
     buttonGroupTheme: _$YgTheme.buttonGroupTheme[1],
@@ -137,6 +141,7 @@ class YgTheme extends ThemeExtension<YgTheme> {
 
   static final YgTheme professionalLight = YgTheme(
     appBarTheme: _$YgTheme.appBarTheme[2],
+    avatarTheme: _$YgTheme.avatarTheme[2],
     badgeTheme: _$YgTheme.badgeTheme[2],
     bottomSheetTheme: _$YgTheme.bottomSheetTheme[2],
     buttonGroupTheme: _$YgTheme.buttonGroupTheme[2],
@@ -169,6 +174,7 @@ class YgTheme extends ThemeExtension<YgTheme> {
 
   static final YgTheme professionalDark = YgTheme(
     appBarTheme: _$YgTheme.appBarTheme[3],
+    avatarTheme: _$YgTheme.avatarTheme[3],
     badgeTheme: _$YgTheme.badgeTheme[3],
     bottomSheetTheme: _$YgTheme.bottomSheetTheme[3],
     buttonGroupTheme: _$YgTheme.buttonGroupTheme[3],
@@ -209,6 +215,7 @@ class YgTheme extends ThemeExtension<YgTheme> {
   @override
   YgTheme copyWith({
     YgAppBarTheme? appBarTheme,
+    YgAvatarTheme? avatarTheme,
     YgBadgeTheme? badgeTheme,
     YgBottomSheetTheme? bottomSheetTheme,
     YgButtonGroupTheme? buttonGroupTheme,
@@ -240,6 +247,7 @@ class YgTheme extends ThemeExtension<YgTheme> {
   }) {
     return YgTheme(
       appBarTheme: appBarTheme ?? this.appBarTheme,
+      avatarTheme: avatarTheme ?? this.avatarTheme,
       badgeTheme: badgeTheme ?? this.badgeTheme,
       bottomSheetTheme: bottomSheetTheme ?? this.bottomSheetTheme,
       buttonGroupTheme: buttonGroupTheme ?? this.buttonGroupTheme,
@@ -277,6 +285,7 @@ class YgTheme extends ThemeExtension<YgTheme> {
     if (other is! YgTheme) return this as YgTheme;
     return YgTheme(
       appBarTheme: appBarTheme.lerp(other.appBarTheme, t) as YgAppBarTheme,
+      avatarTheme: avatarTheme.lerp(other.avatarTheme, t) as YgAvatarTheme,
       badgeTheme: badgeTheme.lerp(other.badgeTheme, t) as YgBadgeTheme,
       bottomSheetTheme: bottomSheetTheme.lerp(other.bottomSheetTheme, t)
           as YgBottomSheetTheme,
@@ -326,6 +335,8 @@ class YgTheme extends ThemeExtension<YgTheme> {
             other is YgTheme &&
             const DeepCollectionEquality()
                 .equals(appBarTheme, other.appBarTheme) &&
+            const DeepCollectionEquality()
+                .equals(avatarTheme, other.avatarTheme) &&
             const DeepCollectionEquality()
                 .equals(badgeTheme, other.badgeTheme) &&
             const DeepCollectionEquality()
@@ -383,6 +394,7 @@ class YgTheme extends ThemeExtension<YgTheme> {
     return Object.hashAll([
       runtimeType.hashCode,
       const DeepCollectionEquality().hash(appBarTheme),
+      const DeepCollectionEquality().hash(avatarTheme),
       const DeepCollectionEquality().hash(badgeTheme),
       const DeepCollectionEquality().hash(bottomSheetTheme),
       const DeepCollectionEquality().hash(buttonGroupTheme),
@@ -418,6 +430,7 @@ class YgTheme extends ThemeExtension<YgTheme> {
 extension YgThemeBuildContextProps on BuildContext {
   YgTheme get ygTheme => Theme.of(this).extension<YgTheme>()!;
   YgAppBarTheme get appBarTheme => ygTheme.appBarTheme;
+  YgAvatarTheme get avatarTheme => ygTheme.avatarTheme;
   YgBadgeTheme get badgeTheme => ygTheme.badgeTheme;
   YgBottomSheetTheme get bottomSheetTheme => ygTheme.bottomSheetTheme;
   YgButtonGroupTheme get buttonGroupTheme => ygTheme.buttonGroupTheme;

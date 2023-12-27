@@ -4,7 +4,7 @@ import 'yg_toggleable.dart';
 
 mixin YgDualStateToggleableMixin on Widget implements YgToggleable {
   @override
-  bool get value;
+  bool? get value;
 
   ValueChanged<bool>? get onChanged;
 
@@ -24,6 +24,6 @@ mixin YgDualStateToggleableMixin on Widget implements YgToggleable {
   }
 
   void _toggle() {
-    onChanged?.call(!value);
+    onChanged?.call(value != true);
   }
 }

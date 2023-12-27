@@ -115,9 +115,7 @@ class _YgStepperState extends StateWithYgStyle<YgStepper, YgStepperStyle> {
         children: <Widget>[
           YgStepperButton(
             onPressed: canDecrease ? _handleDecrease : null,
-            child: const YgIcon(
-              YgIcons.minus,
-            ),
+            icon: YgIcons.minus,
           ),
           Expanded(
             child: Column(
@@ -125,21 +123,25 @@ class _YgStepperState extends StateWithYgStyle<YgStepper, YgStepperStyle> {
               children: <Widget>[
                 DefaultTextStyleTransition(
                   style: style.valueStyle,
-                  child: Text(valueString),
+                  child: Text(
+                    valueString,
+                    overflow: TextOverflow.ellipsis,
+                  ),
                 ),
                 if (metric != null)
                   DefaultTextStyleTransition(
                     style: style.metricStyle,
-                    child: Text(metric),
+                    child: Text(
+                      metric,
+                      overflow: TextOverflow.ellipsis,
+                    ),
                   ),
               ],
             ),
           ),
           YgStepperButton(
             onPressed: canIncrease ? _handleIncrease : null,
-            child: const YgIcon(
-              YgIcons.plus,
-            ),
+            icon: YgIcons.plus,
           ),
         ],
       ),

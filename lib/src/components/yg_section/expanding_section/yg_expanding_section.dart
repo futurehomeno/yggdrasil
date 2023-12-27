@@ -18,7 +18,7 @@ abstract class YgExpandingSection extends StatelessWidget {
     Key? key,
     String? subtitle,
     YgTag? tag,
-    YgIcon? icon,
+    YgColorableIconData? icon,
     ValueChanged<bool>? onExpandedChanged,
   }) = _YgExpandingSectionRegular;
 
@@ -31,7 +31,7 @@ abstract class YgExpandingSection extends StatelessWidget {
     Key? key,
     String? subtitle,
     YgTag? tag,
-    YgIcon? icon,
+    YgColorableIconData? icon,
     ValueChanged<bool>? onExpandedChanged,
   }) = _YgExpandingSectionColumn;
 
@@ -48,7 +48,7 @@ abstract class YgExpandingSection extends StatelessWidget {
     Key? key,
     String? subtitle,
     YgTag? tag,
-    YgIcon? icon,
+    YgColorableIconData? icon,
     ValueChanged<bool>? onExpandedChanged,
   }) = _YgExpandingSectionList;
 
@@ -79,7 +79,7 @@ abstract class YgExpandingSection extends StatelessWidget {
   /// The icon leading the section.
   ///
   /// You cannot have an icon without a title.
-  final YgIcon? icon;
+  final YgColorableIconData? icon;
 
   /// See [YgExpander.controller].
   final YgExpansionController? controller;

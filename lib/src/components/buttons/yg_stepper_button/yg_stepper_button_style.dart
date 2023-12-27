@@ -21,15 +21,6 @@ class YgStepperButtonStyle extends YgButtonBaseStyle<YgButtonBaseState> {
   }
 
   @override
-  MouseCursor resolveCursor(BuildContext context, YgButtonBaseState state) {
-    if (state.disabled.value) {
-      return SystemMouseCursors.basic;
-    }
-
-    return SystemMouseCursors.click;
-  }
-
-  @override
   BoxConstraints resolveConstraints(BuildContext context, YgButtonBaseState state) {
     final double iconSize = _theme.iconSize;
     final Offset iconSizeOffset = Offset(iconSize, iconSize);

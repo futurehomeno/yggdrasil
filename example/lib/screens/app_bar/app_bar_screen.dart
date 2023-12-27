@@ -119,7 +119,7 @@ class _AppBarScreenState extends State<AppBarScreen> {
   Widget? getLeading() {
     if (_customLeading) {
       return YgIconButton(
-        child: const YgIcon(YgIcons.info),
+        icon: YgIcons.info,
         onPressed: () {},
       );
     }
@@ -172,7 +172,7 @@ class _AppBarScreenState extends State<AppBarScreen> {
   List<YgIconButton> get _singleAction {
     return <YgIconButton>[
       YgIconButton(
-        child: const YgIcon(YgIcons.info),
+        icon: YgIcons.info,
         onPressed: () {},
       ),
     ];
@@ -183,15 +183,15 @@ class _AppBarScreenState extends State<AppBarScreen> {
       YgIconButton(
         onPressed: () => YgDebug.toggleDebugging(context),
         onLongPress: () => Navigator.of(context).push(DebugBottomSheet()),
-        child: const YgIcon(YgIcons.eyeOpen),
+        icon: YgIcons.eyeOpen,
       ),
       YgIconButton(
         onPressed: ygAppState.toggleProfessionalTheme,
-        child: const YgIcon(YgIcons.power),
+        icon: YgIcons.power,
       ),
       YgIconButton(
         onPressed: ygAppState.toggleDarkMode,
-        child: const YgIcon(YgIcons.refresh),
+        icon: YgIcons.refresh,
       ),
     ];
   }

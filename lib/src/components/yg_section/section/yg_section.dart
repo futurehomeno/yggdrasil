@@ -14,7 +14,7 @@ abstract class YgSection extends StatelessWidget with StatelessWidgetDebugMixin 
     String? subtitle,
     YgTag? tag,
     String? title,
-    YgIcon? icon,
+    YgColorableIconData? icon,
   }) = _YgSectionRegular;
 
   /// A section with a column of children.
@@ -23,7 +23,7 @@ abstract class YgSection extends StatelessWidget with StatelessWidgetDebugMixin 
     String? subtitle,
     YgTag? tag,
     String? title,
-    YgIcon? icon,
+    YgColorableIconData? icon,
   }) = _YgSectionColumn;
 
   /// A section with a list of [YgListTile] widgets.
@@ -36,7 +36,7 @@ abstract class YgSection extends StatelessWidget with StatelessWidgetDebugMixin 
     String? subtitle,
     YgTag? tag,
     String? title,
-    YgIcon? icon,
+    YgColorableIconData? icon,
   }) = _YgSectionList;
 
   const YgSection._({
@@ -91,7 +91,7 @@ abstract class YgSection extends StatelessWidget with StatelessWidgetDebugMixin 
   /// The icon leading the section.
   ///
   /// You cannot have an icon without a title.
-  final YgIcon? icon;
+  final YgIconData? icon;
 
   /// Builds the child widget.
   Widget buildChild(BuildContext context);

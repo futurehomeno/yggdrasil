@@ -15,7 +15,7 @@ final class _YgToggleIconButton extends YgToggleButton {
   }) : super._();
 
   /// The icon shown in the button.
-  final String icon;
+  final YgColorableIconData icon;
 
   @override
   Widget buildChild(BuildContext context) {

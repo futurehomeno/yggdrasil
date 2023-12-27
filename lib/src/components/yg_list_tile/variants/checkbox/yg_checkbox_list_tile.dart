@@ -3,7 +3,7 @@ part of '../../yg_list_tile.dart';
 /// Binary (or optionally tri-state) checkbox.
 abstract base class YgCheckboxListTile extends YgListTile implements YgToggleable {
   const factory YgCheckboxListTile({
-    required bool value,
+    required bool? value,
     required String title,
     required ValueChanged<bool>? onChanged,
     Key? key,
@@ -30,7 +30,12 @@ abstract base class YgCheckboxListTile extends YgListTile implements YgToggleabl
     super.subtitle,
     super.subtitleIcon,
     this.leadingWidget,
+    this.value,
   }) : super._();
+
+  /// See [YgCheckbox] documentation.
+  @override
+  final bool? value;
 
   /// Optional leading widget.
   ///
