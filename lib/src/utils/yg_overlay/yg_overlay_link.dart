@@ -5,13 +5,24 @@ class YgOverlayLink {
   /// The target [RenderBox].
   RenderBox? target;
 
-  /// The [Size] of the target.
-  ///
-  /// Not accessible during the build step.
-  Size? targetSize;
+  Rect? _rect;
+  Size? _targetSize;
+
+  /// Should be called whenever the target gets layed out with the new size of
+  /// the target.
+  void onTargetLayout(Size? newValue) {
+    _targetSize = newValue;
+    _rect = null;
+  }
 
   /// Gets the rect of the target relative to the given overlay.
   Rect getTargetRect(OverlayState overlay) {
+    Rect? rect = _rect;
+
+    if (rect != null) {
+      return rect;
+    }
+
     final RenderBox? target = this.target;
 
     if (target == null) {
@@ -23,6 +34,9 @@ class YgOverlayLink {
       ancestor: overlay.context.findRenderObject(),
     );
 
-    return offset & (targetSize ?? Size.zero);
+    rect = offset & (_targetSize ?? Size.zero);
+    _rect = rect;
+
+    return rect;
   }
 }

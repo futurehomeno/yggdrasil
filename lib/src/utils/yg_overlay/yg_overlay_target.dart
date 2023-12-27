@@ -58,6 +58,6 @@ class YgOverlayTargetRenderer extends RenderProxyBox {
   @override
   void performLayout() {
     super.performLayout();
-    _overlayLink.targetSize = size;
+    _overlayLink.onTargetLayout(size);
   }
 }

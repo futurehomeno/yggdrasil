@@ -1,9 +1,8 @@
 import 'dart:io';
-import 'dart:math';
 
 import 'package:flutter/material.dart';
+import 'package:yggdrasil/src/components/fields/yg_dropdown_field/widgets/menu/yg_dropdown_menu.dart';
 import 'package:yggdrasil/src/theme/_theme.dart';
-import 'package:yggdrasil/src/utils/yg_overlay/_yg_overlay.dart';
 import 'package:yggdrasil/yggdrasil.dart';
 
 import '../helpers/_helpers.dart';
@@ -206,20 +205,17 @@ abstract class YgDropdownField<T extends Object> extends StatefulWidget with Sta
   }
 }
 
-abstract class YgDropdownFieldWidgetState<T extends Object, W extends YgDropdownField<T>> extends State<W>
-    with TickerProviderStateMixin {
+abstract class YgDropdownFieldWidgetState<T extends Object, W extends YgDropdownField<T>> extends State<W> {
   /// The current controller of the dropdown, either user specified or a default one.
   late YgDynamicDropdownController<T> _controller = widget.controller ?? createController();
-
-  late final OverlayPortalController _portalController = OverlayPortalController();
-
-  late final AnimationController _animationController = AnimationController(vsync: this);
 
   /// The current [FocusNode] of the dropdown, either user specified of a default one.
   late FocusNode _focusNode = widget.focusNode ?? FocusNode();
 
   /// Whether the widget is visually focused (either focused of opened).
   late bool _visuallyFocused;
+
+  bool _menuOpened = false;
 
   late final YgDropdownFieldState _state = YgDropdownFieldState(
     placeholder: widget.placeholder != null,
@@ -277,7 +273,6 @@ abstract class YgDropdownFieldWidgetState<T extends Object, W extends YgDropdown
     _state.dispose();
     _controller.removeListener(_controllerListener);
     _controller._detach();
-    _animationController.dispose();
     if (widget.controller == null) {
       _controller.dispose();
     }
@@ -292,91 +287,60 @@ abstract class YgDropdownFieldWidgetState<T extends Object, W extends YgDropdown
   Widget build(BuildContext context) {
     final YgFieldTheme theme = context.fieldTheme;
 
-    return YgOverlay(
-      controller: _portalController,
-      constrainOverlay: _constrainOverlay,
-      positionOverlay: _positionOverlay,
-      onTapOutsideOverlay: _controller.close,
-      overlayChildBuilder: (BuildContext context) {
-        return YgDropdownMenu<T>(
-          entries: widget.entries,
-          controller: _controller,
+    return YgDropdownMenu<T>(
+      controller: _controller,
+      entries: widget.entries,
+      opened: _menuOpened,
+      animationCurve: theme.animationCurve,
+      animationDuration: theme.animationDuration,
+      padding: theme.dropdownTheme.menuToFieldPadding,
+      child: _buildContent(theme),
+    );
+  }
+
+  YgFieldDecoration _buildContent(YgFieldTheme theme) {
+    return YgFieldDecoration(
+      variant: widget.variant,
+      size: widget.size,
+      error: widget.error,
+      state: _state,
+      builder: (BuildContext context, Widget child) {
+        if (widget.disabled) {
+          return child;
+        }
+
+        return InkWell(
+          onFocusChange: _state.focused.update,
+          onHover: _state.hovered.update,
+          onTap: _controller.open,
+          focusNode: _focusNode,
+          focusColor: Colors.transparent,
+          child: child,
         );
       },
-      child: YgFieldDecoration(
-        variant: widget.variant,
-        size: widget.size,
-        error: widget.error,
-        state: _state,
-        builder: (BuildContext context, Widget child) {
-          if (widget.disabled) {
-            return child;
-          }
-
-          return InkWell(
-            onFocusChange: _state.focused.update,
-            onHover: _state.hovered.update,
-            onTap: _controller.open,
-            focusNode: _focusNode,
-            focusColor: Colors.transparent,
-            child: child,
-          );
-        },
-        suffix: AnimatedRotation(
-          duration: theme.animationDuration,
-          curve: theme.animationCurve,
-          turns: _state.opened.value ? 0.5 : 0,
-          child: YgIconButton(
-            onPressed: widget.disabled ? null : _controller.open,
-            size: YgIconButtonSize.small,
-            child: const YgIcon(
-              YgIcons.caretDown,
-            ),
+      suffix: AnimatedRotation(
+        duration: theme.animationDuration,
+        curve: theme.animationCurve,
+        turns: _state.opened.value ? 0.5 : 0,
+        child: YgIconButton(
+          onPressed: widget.disabled ? null : _controller.open,
+          size: YgIconButtonSize.small,
+          child: const YgIcon(
+            YgIcons.caretDown,
           ),
-        ),
-        content: YgFieldContent(
-          value: ListenableBuilder(
-            listenable: _controller,
-            builder: _buildText,
-          ),
-          state: _state,
-          label: widget.label,
-          minLines: widget.minLines,
-          placeholder: widget.placeholder,
-          floatLabelOnFocus: false,
         ),
       ),
-    );
-  }
-
-  Offset _positionOverlay(Rect parentRect, BoxConstraints constraints, Size childSize) {
-    final YgDropdownFieldTheme theme = context.fieldTheme.dropdownTheme;
-    final EdgeInsets screenPadding = MediaQuery.paddingOf(context);
-    final double padding = theme.menuToFieldPadding;
-
-    final double spaceToScreenBottom = constraints.maxHeight - parentRect.bottom - screenPadding.bottom - (padding * 2);
-
-    return Offset(
-      parentRect.left,
-      childSize.height > spaceToScreenBottom
-          ? parentRect.top - childSize.height - padding
-          : parentRect.bottom + padding,
-    );
-  }
-
-  BoxConstraints _constrainOverlay(Rect parentRect, BoxConstraints constraints) {
-    final YgDropdownFieldTheme theme = context.fieldTheme.dropdownTheme;
-    final EdgeInsets screenPadding = MediaQuery.paddingOf(context);
-    final double padding = theme.menuToFieldPadding;
-
-    final double spaceToScreenBottom = constraints.maxHeight - parentRect.bottom - screenPadding.bottom - (padding * 2);
-    final double spaceToScreenTop = parentRect.top - screenPadding.top - (padding * 2);
-    final double maxHeight = max(spaceToScreenTop, spaceToScreenBottom);
-
-    return BoxConstraints(
-      maxHeight: maxHeight,
-      maxWidth: parentRect.width,
-      minWidth: parentRect.width,
+      content: YgFieldContent(
+        value: ListenableBuilder(
+          listenable: _controller,
+          builder: _buildText,
+        ),
+        state: _state,
+        label: widget.label,
+        minLines: widget.minLines,
+        placeholder: widget.placeholder,
+        floatLabelOnFocus: false,
+      ),
     );
   }
 
@@ -407,8 +371,9 @@ abstract class YgDropdownFieldWidgetState<T extends Object, W extends YgDropdown
   YgDynamicDropdownController<T> createController();
 
   void openMenu() {
-    _portalController.show();
+    _menuOpened = true;
     _state.opened.value = true;
+    setState(() {});
   }
 
   void openBottomSheet() {
@@ -439,8 +404,9 @@ abstract class YgDropdownFieldWidgetState<T extends Object, W extends YgDropdown
   }
 
   void close() {
-    if (_portalController.isShowing) {
-      _portalController.hide();
+    if (_menuOpened) {
+      _menuOpened = false;
+      setState(() {});
     } else {
       Navigator.popUntil(
         context,

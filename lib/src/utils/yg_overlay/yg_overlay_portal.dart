@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:yggdrasil/src/utils/yg_overlay/yg_overlay_follower.dart';
 import 'package:yggdrasil/src/utils/yg_overlay/yg_overlay_link.dart';
 import 'package:yggdrasil/src/utils/yg_overlay/yg_overlay_target.dart';
+
+import 'yg_overlay_portal_follower.dart';
 
 typedef OverlayConstrainer = BoxConstraints Function(Rect parent, BoxConstraints constraints);
 typedef OverlayPositioner = Offset Function(Rect parent, BoxConstraints constraints, Size childSize);
@@ -57,7 +58,7 @@ class _YgOverlayState extends State<YgOverlay> {
               ),
             ),
             Positioned.fill(
-              child: YgOverlayFollower(
+              child: YgOverlayPortalFollower(
                 positionOverlay: widget.positionOverlay,
                 constrainOverlay: widget.constrainOverlay,
                 overlayLink: _overlayLink,
