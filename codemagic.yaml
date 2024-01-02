@@ -81,6 +81,14 @@ workflows:
       cache_paths:
         - ~/.pub-cache
     scripts:
+      - name: Downloading ratatosk
+        script: |
+          git clone git@github.com:futurehomeno/ratatosk.git $CM_BUILD_DIR/ratatosk
+          cd $CM_BUILD_DIR/ratatosk
+          git checkout crytek/cm
+          flutter pub get
+          dart pub global activate --source path ./
+
       - name: Cloning yggdrasil repo
         working_directory: /Users/builder
         script: |
@@ -101,7 +109,7 @@ workflows:
 
       - name: Creating version for package
         working_directory: /Users/builder/clone/app_files
-        script: dart $CM_BUILD_DIR/cli/futurehome.dart ci cav $VERSION -uc -nsci || exit 1
+        script: rat release -v $VERSION -y || exit 1
 
 
   release:
