@@ -82,6 +82,9 @@ class _$YgTheme {
   static final List<YgSectionTheme> sectionTheme = YgSectionTheme.themes;
 
   @themeExtension
+  static final List<YgSegmentedButtonTheme> segmentedButtonTheme = YgSegmentedButtonTheme.themes;
+
+  @themeExtension
   static final List<YgSnackBarTheme> snackBarTheme = YgSnackBarTheme.themes;
 
   @themeExtension
