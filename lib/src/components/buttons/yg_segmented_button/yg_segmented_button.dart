@@ -44,11 +44,14 @@ abstract class YgSegmentedButton<T extends Object?> extends StatelessWidget {
     return RepaintBoundary(
       child: Material(
         shape: RoundedRectangleBorder(
-          side: theme.borderSide,
+          side: theme.borderSide.copyWith(
+            width: theme.borderSide.width * 2,
+            strokeAlign: BorderSide.strokeAlignCenter,
+          ),
           borderRadius: theme.borderRadius,
         ),
         color: theme.borderSide.color,
-        clipBehavior: Clip.antiAlias,
+        clipBehavior: Clip.antiAliasWithSaveLayer,
         child: Row(
           mainAxisSize: MainAxisSize.min,
           children: segments
