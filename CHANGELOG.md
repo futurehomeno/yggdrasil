@@ -1,3 +1,9 @@
+# 1.9.2 [2024-01-03T08:44:10.603112]
+
+### Dev changes
+
+- [dev-improvement] Added ratatosk to create version.
+
 # 1.9.1 [2023-12-21T20:55:43.304623]
 
 ## Dev changes
