@@ -6,6 +6,8 @@ import 'core/_core.dart';
 import 'yggdrasil.dart';
 
 void main() {
+  WidgetsFlutterBinding.ensureInitialized();
+
   // Set up the locator service before initializing the app.
   sl.registerSingleton(const YgRouter());
 

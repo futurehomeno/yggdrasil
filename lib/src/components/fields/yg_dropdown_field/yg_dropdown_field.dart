@@ -1,6 +1,7 @@
 import 'dart:io';
 
 import 'package:flutter/material.dart';
+import 'package:yggdrasil/src/components/fields/yg_dropdown_field/widgets/menu/yg_dropdown_menu.dart';
 import 'package:yggdrasil/src/theme/_theme.dart';
 import 'package:yggdrasil/yggdrasil.dart';
 
@@ -214,6 +215,8 @@ abstract class YgDropdownFieldWidgetState<T extends Object, W extends YgDropdown
   /// Whether the widget is visually focused (either focused of opened).
   late bool _visuallyFocused;
 
+  bool _menuOpened = false;
+
   late final YgDropdownFieldState _state = YgDropdownFieldState(
     placeholder: widget.placeholder != null,
     error: widget.error != null,
@@ -232,14 +235,6 @@ abstract class YgDropdownFieldWidgetState<T extends Object, W extends YgDropdown
     _controller._attach(this);
     _state.addListener(_handleStateChanged);
     _visuallyFocused = _state.showFocusHighlight;
-  }
-
-  void _handleStateChanged() {
-    final bool newVisuallyFocused = _state.showFocusHighlight;
-    if (_visuallyFocused != newVisuallyFocused) {
-      _visuallyFocused = newVisuallyFocused;
-      widget.onFocusChanged?.call(newVisuallyFocused);
-    }
   }
 
   @override
@@ -292,6 +287,18 @@ abstract class YgDropdownFieldWidgetState<T extends Object, W extends YgDropdown
   Widget build(BuildContext context) {
     final YgFieldTheme theme = context.fieldTheme;
 
+    return YgDropdownMenu<T>(
+      controller: _controller,
+      entries: widget.entries,
+      opened: _menuOpened,
+      animationCurve: theme.animationCurve,
+      animationDuration: theme.animationDuration,
+      padding: theme.dropdownTheme.menuToFieldPadding,
+      child: _buildContent(theme),
+    );
+  }
+
+  YgFieldDecoration _buildContent(YgFieldTheme theme) {
     return YgFieldDecoration(
       variant: widget.variant,
       size: widget.size,
@@ -362,22 +369,9 @@ abstract class YgDropdownFieldWidgetState<T extends Object, W extends YgDropdown
   YgDynamicDropdownController<T> createController();
 
   void openMenu() {
-    final RenderBox itemBox = context.findRenderObject()! as RenderBox;
-    final Rect itemRect = itemBox.localToGlobal(
-          Offset.zero,
-          ancestor: Navigator.of(context).context.findRenderObject(),
-        ) &
-        itemBox.size;
-
-    Navigator.of(context).push(
-      YgDropdownMenuRoute<T>(
-        entries: widget.entries,
-        dropdownController: _controller,
-        rect: itemRect,
-        onClose: _onClosed,
-      ),
-    );
+    _menuOpened = true;
     _state.opened.value = true;
+    setState(() {});
   }
 
   void openBottomSheet() {
@@ -408,11 +402,15 @@ abstract class YgDropdownFieldWidgetState<T extends Object, W extends YgDropdown
   }
 
   void close() {
-    Navigator.popUntil(
-      context,
-      // ignore: avoid-dynamic
-      (Route<dynamic> route) => route is! YgDropdownMenuRoute && route is! YgDropdownBottomSheetRoute,
-    );
+    if (_menuOpened) {
+      _menuOpened = false;
+      setState(() {});
+    } else {
+      Navigator.popUntil(
+        context,
+        (Route<Object?> route) => route is! YgDropdownBottomSheetRoute,
+      );
+    }
     _onClosed();
   }
 
@@ -463,5 +461,13 @@ abstract class YgDropdownFieldWidgetState<T extends Object, W extends YgDropdown
 
   void _controllerListener() {
     _state.filled.value = _controller.filled;
+  }
+
+  void _handleStateChanged() {
+    final bool newVisuallyFocused = _state.showFocusHighlight;
+    if (_visuallyFocused != newVisuallyFocused) {
+      _visuallyFocused = newVisuallyFocused;
+      widget.onFocusChanged?.call(newVisuallyFocused);
+    }
   }
 }

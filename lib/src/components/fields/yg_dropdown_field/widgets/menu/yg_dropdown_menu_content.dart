@@ -1,0 +1,65 @@
+import 'package:flutter/material.dart';
+import 'package:yggdrasil/src/theme/_theme.dart';
+import 'package:yggdrasil/src/utils/_utils.dart';
+import 'package:yggdrasil/yggdrasil.dart';
+
+import 'yg_dropdown_menu_item.dart';
+
+class YgDropdownMenuContent<T extends Object> extends StatelessWidget with StatelessWidgetDebugMixin {
+  const YgDropdownMenuContent({
+    super.key,
+    required this.entries,
+    required this.controller,
+  });
+
+  final YgDynamicDropdownController<T> controller;
+  final List<YgDropdownEntry<T>> entries;
+
+  @override
+  Widget build(BuildContext context) {
+    final YgDropdownFieldTheme theme = context.fieldTheme.dropdownTheme;
+
+    return Material(
+      elevation: theme.menuElevation,
+      color: theme.menuItemBackground,
+      borderRadius: theme.menuRadius,
+      clipBehavior: Clip.antiAlias,
+      child: YgScrollShadow.builder(
+        builder: (BuildContext context, ScrollController scrollController) {
+          return SingleChildScrollView(
+            controller: scrollController,
+            child: Padding(
+              padding: theme.menuPadding,
+              child: ListenableBuilder(
+                listenable: controller,
+                builder: (BuildContext context, Widget? child) {
+                  return Column(
+                    children: _buildEntries(),
+                  );
+                },
+              ),
+            ),
+          );
+        },
+      ),
+    );
+  }
+
+  List<Widget> _buildEntries() {
+    final List<Widget> widgets = <Widget>[];
+
+    for (final YgDropdownEntry<T> entry in entries) {
+      widgets.add(
+        YgDropdownMenuItem(
+          icon: entry.icon,
+          selected: controller.isValueSelected(entry.value),
+          subtitle: entry.subtitle,
+          title: entry.title,
+          onPressed: () => controller.onValueTapped(entry.value),
+        ),
+      );
+    }
+
+    return widgets;
+  }
+}

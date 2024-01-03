@@ -4,6 +4,7 @@ export 'yg_expander/_yg_expander.dart';
 export 'yg_focusable_action_detector.dart';
 export 'yg_icon_data/_yg_icon_data.dart';
 export 'yg_no_focus.dart';
+export 'yg_render_proxy_box_with_offset_child.dart';
 export 'yg_rounded_rectangle_gradient_border.dart';
 export 'yg_scroll_shadow/yg_scroll_shadow.dart';
 export 'yg_states/_yg_states.dart';

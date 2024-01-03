@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:package_info_plus/package_info_plus.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 import 'package:yggdrasil/yggdrasil.dart';
 
 class YgAppState extends ChangeNotifier {
@@ -9,24 +10,33 @@ class YgAppState extends ChangeNotifier {
   YgTheme get theme => _defaultTheme;
   bool _darkMode = false;
   bool _businessTheme = false;
-
   String _version = '';
   String get version => _version;
 
   void init() async {
+    final SharedPreferences storage = await SharedPreferences.getInstance();
+    _darkMode = storage.getBool(StorageKeys.darkMode) ?? _darkMode;
+    _businessTheme = storage.getBool(StorageKeys.businessTheme) ?? _businessTheme;
+
     final PackageInfo packageInfo = await PackageInfo.fromPlatform();
     _version = packageInfo.version;
     notifyListeners();
   }
 
-  void toggleDarkMode() {
+  void toggleDarkMode() async {
     _darkMode ^= true;
     _updateTheme();
+
+    final SharedPreferences storage = await SharedPreferences.getInstance();
+    await storage.setBool(StorageKeys.darkMode, _darkMode);
   }
 
-  void toggleProfessionalTheme() {
+  void toggleProfessionalTheme() async {
     _businessTheme ^= true;
     _updateTheme();
+
+    final SharedPreferences storage = await SharedPreferences.getInstance();
+    await storage.setBool(StorageKeys.businessTheme, _businessTheme);
   }
 
   void _updateTheme() {
@@ -52,4 +62,11 @@ class YgAppState extends ChangeNotifier {
   ThemeData get currentThemeData {
     return YgThemeDataHelper.getThemeData(_currentTheme);
   }
+}
+
+class StorageKeys {
+  const StorageKeys._();
+
+  static const String darkMode = 'dark_mode';
+  static const String businessTheme = 'business_theme';
 }
