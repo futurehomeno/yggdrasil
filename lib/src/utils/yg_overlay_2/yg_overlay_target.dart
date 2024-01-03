@@ -40,11 +40,13 @@ class YgOverlayTargetRenderer extends RenderProxyBox {
       markNeedsLayout();
       _overlayLink = newOverlayLink;
     }
+    // CompositedTransformFollower
+    RepaintBoundary
   }
 
   @override
   void performLayout() {
     super.performLayout();
-    _overlayLink.onTargetLayout(size);
+    _overlayLink.targetSize = size;
   }
 }
