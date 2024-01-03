@@ -21,6 +21,7 @@ class CheckboxScreen extends StatefulWidget {
 
 class _CheckboxScreenState extends State<CheckboxScreen> {
   bool binaryValue = false;
+  bool? binaryNoInitialValue;
   bool? triStateValue = false;
   bool errorValue = false;
 
@@ -43,6 +44,16 @@ class _CheckboxScreenState extends State<CheckboxScreen> {
               value: binaryValue,
               onChanged: (bool newValue) {
                 binaryValue = newValue;
+                setState(() {});
+              },
+            ),
+          ),
+          YgSection(
+            title: 'Binary checkbox without initial value',
+            child: YgCheckbox(
+              value: binaryNoInitialValue,
+              onChanged: (bool newValue) {
+                binaryNoInitialValue = newValue;
                 setState(() {});
               },
             ),

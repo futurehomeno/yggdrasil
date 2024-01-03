@@ -21,6 +21,7 @@ class SwitchScreen extends StatefulWidget {
 
 class _SwitchScreenState extends State<SwitchScreen> {
   bool binaryValue = false;
+  bool? binaryNoInitialValue;
   bool? triStateValue = false;
   bool disabledFalseValue = false;
   bool disabledTrueValue = true;
@@ -39,6 +40,16 @@ class _SwitchScreenState extends State<SwitchScreen> {
               value: binaryValue,
               onChanged: (bool newValue) {
                 binaryValue = newValue;
+                setState(() {});
+              },
+            ),
+          ),
+          YgSection(
+            title: 'Binary switch without initial value',
+            child: YgSwitch(
+              value: binaryNoInitialValue,
+              onChanged: (bool newValue) {
+                binaryNoInitialValue = newValue;
                 setState(() {});
               },
             ),

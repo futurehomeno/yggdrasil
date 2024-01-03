@@ -4,7 +4,7 @@ final class _YgCheckboxListTileTriState extends YgCheckboxListTile with YgTriSta
   const _YgCheckboxListTileTriState({
     super.key,
     required super.title,
-    required this.value,
+    required super.value,
     required this.onChanged,
     super.leadingWidget,
     super.subtitle,
@@ -12,10 +12,6 @@ final class _YgCheckboxListTileTriState extends YgCheckboxListTile with YgTriSta
   }) : super._(
           disabled: onChanged == null,
         );
-
-  /// See [YgCheckbox] documentation.
-  @override
-  final bool? value;
 
   /// See [YgCheckbox] documentation.
   @override

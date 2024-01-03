@@ -4,13 +4,9 @@ final class YgCheckboxItemDualState extends YgCheckboxItem with YgDualStateToggl
   const YgCheckboxItemDualState({
     super.key,
     required super.title,
-    required this.value,
+    required super.value,
     required this.onChanged,
   }) : super._();
-
-  /// See [YgCheckbox] documentation.
-  @override
-  final bool value;
 
   /// See [YgCheckbox] documentation.
   @override

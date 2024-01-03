@@ -15,7 +15,7 @@ abstract class YgCheckbox extends StatefulWidget with StatefulWidgetDebugMixin i
     bool hasError,
     Key? key,
     required ValueChanged<bool>? onChanged,
-    required bool value,
+    required bool? value,
   }) = YgCheckboxDualState;
 
   /// Supports a nullable value, i.e. "indeterminate".
@@ -29,7 +29,12 @@ abstract class YgCheckbox extends StatefulWidget with StatefulWidgetDebugMixin i
   const YgCheckbox._({
     super.key,
     this.hasError = false,
+    this.value,
   });
+
+  /// The current value of the checkbox.
+  @override
+  final bool? value;
 
   /// Whether the checkbox is in an error state.
   final bool hasError;
