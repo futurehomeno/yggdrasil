@@ -1,3 +1,13 @@
+# 1.9.3 [2024-01-03T11:34:52.360839]
+
+### Changes
+
+- [feature] Added YgSegmentedButton DEV-1120.
+
+### Dev changes
+
+- [dev-improvement] Added ratatosk to create suggested version.
+
 # 1.9.2 [2024-01-03T08:44:10.603112]
 
 ### Dev changes
