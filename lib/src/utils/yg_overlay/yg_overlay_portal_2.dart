@@ -1,3 +1,5 @@
+// ignore_for_file: prefer-widget-private-members
+
 import 'package:flutter/material.dart';
 import 'package:yggdrasil/src/utils/yg_overlay/yg_overlay.dart';
 
@@ -7,6 +9,7 @@ class YgOverlayPortal2 extends StatefulWidget {
   const YgOverlayPortal2({
     super.key,
     required this.controller,
+    required this.overlayBuilder,
   });
 
   final YgOverlayPortalController controller;
@@ -19,11 +22,21 @@ class YgOverlayPortal2 extends StatefulWidget {
 class YgOverlayPortal2State extends State<YgOverlayPortal2> {
   @override
   void initState() {
-    // TODO: implement initState
     super.initState();
+    if (widget.controller.shown) {
+      show();
+    }
   }
 
-  hide() {}
+  void hide() {
+    final YgOverlayState? state = context.findAncestorStateOfType<YgOverlayState>();
+
+    if (state == null) {
+      return;
+    }
+
+    state.removeEntry(widget.overlayBuilder(context));
+  }
 
   void show() {
     final YgOverlayState? state = context.findAncestorStateOfType<YgOverlayState>();

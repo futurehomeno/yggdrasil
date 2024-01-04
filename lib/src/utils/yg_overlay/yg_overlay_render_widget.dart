@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
+import 'package:yggdrasil/src/utils/yg_overlay/_yg_overlay.dart';
 
 class YgOverlayRenderWidget extends MultiChildRenderObjectWidget {
   const YgOverlayRenderWidget({
@@ -14,7 +15,7 @@ class YgOverlayRenderWidget extends MultiChildRenderObjectWidget {
 }
 
 class YgOverlayParentData extends ContainerBoxParentData<RenderBox> {
-  RenderBox? target;
+  YgOverlayLink? link;
   Rect? targetRect;
 }
 
@@ -41,10 +42,10 @@ class YgOverlayRenderer extends RenderBox
 
     for (RenderBox? child = childAfter(firstChild); child != null; child = childAfter(child)) {
       final YgOverlayParentData? parentData = child.parentData as YgOverlayParentData?;
-      final RenderBox? target = parentData?.target;
+      final RenderBox? target = parentData?.link?.target;
 
       if (parentData != null && target != null) {
-        parentData.targetRect = target.localToGlobal(Offset.zero) & target.size;
+        parentData.targetRect = target.localToGlobal(Offset.zero, ancestor: this) & target.size;
       }
 
       child.layout(constraints);

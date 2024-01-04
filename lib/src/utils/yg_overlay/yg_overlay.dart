@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 
-import 'yg_overlay_portal_follower.dart';
 import 'yg_overlay_render_widget.dart';
 
 class YgOverlay extends StatefulWidget {
@@ -16,7 +15,7 @@ class YgOverlay extends StatefulWidget {
 }
 
 class YgOverlayState extends State<YgOverlay> {
-  final Set<YgOverlayPortalFollower> _entries = <YgOverlayPortalFollower>{};
+  final Set<Widget> _entries = <Widget>{};
 
   @override
   Widget build(BuildContext context) {
@@ -29,14 +28,14 @@ class YgOverlayState extends State<YgOverlay> {
   }
 
   // ignore: prefer-widget-private-members
-  void addEntry(YgOverlayPortalFollower entry) {
+  void addEntry(Widget entry) {
     if (_entries.add(entry)) {
       setState(() {});
     }
   }
 
   // ignore: prefer-widget-private-members
-  void removeEntry(YgOverlayPortalFollower entry) {
+  void removeEntry(Widget entry) {
     if (_entries.remove(entry)) {
       setState(() {});
     }
