@@ -1,3 +1,7 @@
+# 1.9.4 [2024-01-05T11:33:39.199545]
+
+- [chore] Release without changes.
+
 # 1.9.3 [2024-01-03T11:45:32.151799]
 
 - [chore] Release without changes.
