@@ -22,6 +22,7 @@ export 'icon_button/_icon_button.dart';
 export 'icon_list/_icon_list.dart';
 export 'list/_list.dart';
 export 'list_tile/_list_tile.dart';
+export 'mobile_scanner/_mobile_scanner.dart';
 export 'progress_indicator/_progress_indicator.dart';
 export 'radio/_radio.dart';
 export 'radio_list_tile/_radio_list_tile.dart';

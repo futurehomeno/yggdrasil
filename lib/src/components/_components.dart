@@ -13,6 +13,7 @@ export 'yg_divider/_yg_divider.dart';
 export 'yg_gauge/_yg_gauge.dart';
 export 'yg_icon/_yg_icon.dart';
 export 'yg_list_tile/_yg_list_tile.dart';
+export 'yg_mobile_scanner/_yg_mobile_scanner.dart';
 export 'yg_progress_indicator/_yg_progress_indicator.dart';
 export 'yg_radio/_yg_radio.dart';
 export 'yg_section/_yg_section.dart';
