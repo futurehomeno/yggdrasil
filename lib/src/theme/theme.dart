@@ -34,15 +34,13 @@ class _$YgTheme {
   static final List<YgBadgeTheme> badgeTheme = YgBadgeTheme.themes;
 
   @themeExtension
-  static final List<YgBottomSheetTheme> bottomSheetTheme =
-      YgBottomSheetTheme.themes;
+  static final List<YgBottomSheetTheme> bottomSheetTheme = YgBottomSheetTheme.themes;
 
   @themeExtension
   static final List<YgButtonTheme> buttonTheme = YgButtonTheme.themes;
 
   @themeExtension
-  static final List<YgButtonGroupTheme> buttonGroupTheme =
-      YgButtonGroupTheme.themes;
+  static final List<YgButtonGroupTheme> buttonGroupTheme = YgButtonGroupTheme.themes;
 
   @themeExtension
   static final List<YgCalloutTheme> calloutTheme = YgCalloutTheme.themes;
@@ -69,19 +67,16 @@ class _$YgTheme {
   static final List<YgIconTheme> iconTheme = YgIconTheme.themes;
 
   @themeExtension
-  static final List<YgIconButtonTheme> iconButtonTheme =
-      YgIconButtonTheme.themes;
+  static final List<YgIconButtonTheme> iconButtonTheme = YgIconButtonTheme.themes;
 
   @themeExtension
   static final List<YgListTileTheme> listTileTheme = YgListTileTheme.themes;
 
   @themeExtension
-  static final List<YgMobileScannerTheme> mobileScannerTheme =
-      YgMobileScannerTheme.themes;
+  static final List<YgMobileScannerContainerTheme> mobileScannerContainerTheme = YgMobileScannerContainerTheme.themes;
 
   @themeExtension
-  static final List<YgProgressIndicatorTheme> progressIndicatorTheme =
-      YgProgressIndicatorTheme.themes;
+  static final List<YgProgressIndicatorTheme> progressIndicatorTheme = YgProgressIndicatorTheme.themes;
 
   @themeExtension
   static final List<YgRadioTheme> radioTheme = YgRadioTheme.themes;
@@ -90,8 +85,7 @@ class _$YgTheme {
   static final List<YgSectionTheme> sectionTheme = YgSectionTheme.themes;
 
   @themeExtension
-  static final List<YgSegmentedButtonTheme> segmentedButtonTheme =
-      YgSegmentedButtonTheme.themes;
+  static final List<YgSegmentedButtonTheme> segmentedButtonTheme = YgSegmentedButtonTheme.themes;
 
   @themeExtension
   static final List<YgSnackBarTheme> snackBarTheme = YgSnackBarTheme.themes;
@@ -112,12 +106,10 @@ class _$YgTheme {
   static final List<YgTextLinkTheme> textLinkTheme = YgTextLinkTheme.themes;
 
   @themeExtension
-  static final List<YgToggleButtonTheme> toggleButtonTheme =
-      YgToggleButtonTheme.themes;
+  static final List<YgToggleButtonTheme> toggleButtonTheme = YgToggleButtonTheme.themes;
 
   @themeExtension
-  static final List<YgWizardHeaderTheme> wizardHeaderTheme =
-      YgWizardHeaderTheme.themes;
+  static final List<YgWizardHeaderTheme> wizardHeaderTheme = YgWizardHeaderTheme.themes;
 
   // endregion
 }

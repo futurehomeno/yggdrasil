@@ -18,7 +18,7 @@ export 'icon/_icon.dart';
 export 'icon_button/_icon_button.dart';
 export 'internal/_internal.dart';
 export 'list_tile/_list_tile.dart';
-export 'mobile_scanner/_mobile_scanner.dart';
+export 'mobile_scanner_container/_mobile_scanner_container.dart';
 export 'progress_indicator/_progress_indicator.dart';
 export 'radio/_radio.dart';
 export 'section/_section.dart';

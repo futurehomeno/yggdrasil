@@ -9,11 +9,11 @@ part 'mobile_scanner_container_theme.tailor.dart';
 
 @tailorComponent
 class _$YgMobileScannerContainerTheme {
-  static const List<Size> size = <Size>[
-    Size(220.0, 220.0),
-    Size(220.0, 220.0),
-    Size(220.0, 220.0),
-    Size(220.0, 220.0),
+  static const List<double> width = <double>[
+    220.0,
+    220.0,
+    220.0,
+    220.0,
   ];
 
   static const List<BorderRadius> borderRadius = <BorderRadius>[

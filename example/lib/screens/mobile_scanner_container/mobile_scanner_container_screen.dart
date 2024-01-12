@@ -25,7 +25,7 @@ class MobileScannerContainerScreen extends StatelessWidget {
             title: 'Mobile scanner container',
             subtitle: 'Using placeholder as child to show the size of the mobile scanner.',
             child: YgMobileScannerContainer(
-              child: Placeholder(),
+              child: DemoPlaceholder(),
             ),
           ),
         ],

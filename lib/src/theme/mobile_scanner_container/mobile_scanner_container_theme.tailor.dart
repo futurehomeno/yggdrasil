@@ -12,34 +12,34 @@ class YgMobileScannerContainerTheme
     extends ThemeExtension<YgMobileScannerContainerTheme> {
   const YgMobileScannerContainerTheme({
     required this.borderRadius,
-    required this.size,
+    required this.width,
   });
 
   final BorderRadius borderRadius;
-  final Size size;
+  final double width;
 
   static final YgMobileScannerContainerTheme consumerLight =
       YgMobileScannerContainerTheme(
     borderRadius: _$YgMobileScannerContainerTheme.borderRadius[0],
-    size: _$YgMobileScannerContainerTheme.size[0],
+    width: _$YgMobileScannerContainerTheme.width[0],
   );
 
   static final YgMobileScannerContainerTheme consumerDark =
       YgMobileScannerContainerTheme(
     borderRadius: _$YgMobileScannerContainerTheme.borderRadius[1],
-    size: _$YgMobileScannerContainerTheme.size[1],
+    width: _$YgMobileScannerContainerTheme.width[1],
   );
 
   static final YgMobileScannerContainerTheme professionalLight =
       YgMobileScannerContainerTheme(
     borderRadius: _$YgMobileScannerContainerTheme.borderRadius[2],
-    size: _$YgMobileScannerContainerTheme.size[2],
+    width: _$YgMobileScannerContainerTheme.width[2],
   );
 
   static final YgMobileScannerContainerTheme professionalDark =
       YgMobileScannerContainerTheme(
     borderRadius: _$YgMobileScannerContainerTheme.borderRadius[3],
-    size: _$YgMobileScannerContainerTheme.size[3],
+    width: _$YgMobileScannerContainerTheme.width[3],
   );
 
   static final themes = [
@@ -52,11 +52,11 @@ class YgMobileScannerContainerTheme
   @override
   YgMobileScannerContainerTheme copyWith({
     BorderRadius? borderRadius,
-    Size? size,
+    double? width,
   }) {
     return YgMobileScannerContainerTheme(
       borderRadius: borderRadius ?? this.borderRadius,
-      size: size ?? this.size,
+      width: width ?? this.width,
     );
   }
 
@@ -68,7 +68,7 @@ class YgMobileScannerContainerTheme
       return this as YgMobileScannerContainerTheme;
     return YgMobileScannerContainerTheme(
       borderRadius: t < 0.5 ? borderRadius : other.borderRadius,
-      size: t < 0.5 ? size : other.size,
+      width: t < 0.5 ? width : other.width,
     );
   }
 
@@ -79,7 +79,7 @@ class YgMobileScannerContainerTheme
             other is YgMobileScannerContainerTheme &&
             const DeepCollectionEquality()
                 .equals(borderRadius, other.borderRadius) &&
-            const DeepCollectionEquality().equals(size, other.size));
+            const DeepCollectionEquality().equals(width, other.width));
   }
 
   @override
@@ -87,7 +87,7 @@ class YgMobileScannerContainerTheme
     return Object.hash(
       runtimeType.hashCode,
       const DeepCollectionEquality().hash(borderRadius),
-      const DeepCollectionEquality().hash(size),
+      const DeepCollectionEquality().hash(width),
     );
   }
 }

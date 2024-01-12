@@ -16,15 +16,18 @@ class YgMobileScannerContainer extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final YgMobileScannerTheme mobileScannerTheme = context.mobileScannerTheme;
+    final YgMobileScannerContainerTheme mobileScannerContainerTheme = context.mobileScannerContainerTheme;
 
     return Container(
-      height: mobileScannerTheme.size.height,
-      width: mobileScannerTheme.size.width,
+      width: mobileScannerContainerTheme.width,
+      clipBehavior: Clip.antiAlias,
       decoration: BoxDecoration(
-        borderRadius: mobileScannerTheme.borderRadius,
+        borderRadius: mobileScannerContainerTheme.borderRadius,
       ),
-      child: child,
+      child: AspectRatio(
+        aspectRatio: 1.0,
+        child: child,
+      ),
     );
   }
 }
