@@ -2,8 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:yggdrasil/src/theme/_theme.dart';
 
 /// Style-only wrapper for mobile scanner widget.
-class YgMobileScanner extends StatelessWidget {
-  const YgMobileScanner({
+class YgMobileScannerContainer extends StatelessWidget {
+  const YgMobileScannerContainer({
     required this.child,
     super.key,
   });

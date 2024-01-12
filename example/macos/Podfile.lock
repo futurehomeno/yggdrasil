@@ -69,7 +69,7 @@ EXTERNAL SOURCES:
 SPEC CHECKSUMS:
   connectivity_plus: 18d3c32514c886e046de60e9c13895109866c747
   device_info_plus: 5401765fde0b8d062a2f8eb65510fb17e77cf07f
-  flutter_blue_plus: 7d126bc9cbc40a5b69b8961aca4bfb68fa0d22cc
+  flutter_blue_plus: e2868679021f19d12a8c0c58a33f1df66ec7fa6a
   flutter_secure_storage_macos: d56e2d218c1130b262bef8b4a7d64f88d7f9c9ea
   FlutterMacOS: 8f6f14fa908a6fb3fba0cd85dbd81ec4b251fb24
   geolocator_apple: 72a78ae3f3e4ec0db62117bd93e34523f5011d58
@@ -82,4 +82,4 @@ SPEC CHECKSUMS:
 
 PODFILE CHECKSUM: 2f6d3cbb087db019d823f42cc3db63c334d8fdb3
 
-COCOAPODS: 1.14.2
+COCOAPODS: 1.14.3
