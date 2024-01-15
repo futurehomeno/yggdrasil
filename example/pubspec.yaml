@@ -23,11 +23,6 @@ dependencies:
 dev_dependencies:
   flutter_test:
     sdk: flutter
-  pubdev_registry:
-    git:
-      ref: master # to-branch-script-tag
-      url: git@github.com:futurehomeno/pubdev_registry.git
-      path: . # keep it so that the scripts work
   flutter_lints: 3.0.1
 
 flutter:
