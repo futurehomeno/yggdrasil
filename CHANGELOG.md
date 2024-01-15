@@ -1,3 +1,18 @@
+# 1.9.6 [2024-01-15T13:43:23.629235]
+
+## Changes
+
+- [feature] Added YgMobileScannerContainer component.
+- [feature] New icons 15.01.23.
+- [improvement] aux1 renamed to steam.
+- [improvement] office1 renamed to desk.
+- [improvement] relax1 renamed to heart.
+
+## Dev changes
+
+- [dev-improvement] Added demo validators to avoid conflict with smarthome-app implementation.
+- [dev-improvement] Removed pubdev dependency from example app.
+
 # 1.9.4 [2024-01-05T11:33:39.199545]
 
 - [chore] Release without changes.
