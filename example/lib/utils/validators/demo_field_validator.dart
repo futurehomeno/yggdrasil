@@ -9,9 +9,6 @@ typedef DemoTextValidator = DemoFieldValidator<String?>;
 typedef DemoNumberValidator = DemoFieldValidator<num?>;
 
 /// A validator class that is used in UI places requiring to have a displayable text.
-///
-///! --- IMPORTANT ---
-/// Used by Yggdrasil.
 abstract class DemoFieldValidator<T extends Object?> extends DemoValidator<T, String> {
   const DemoFieldValidator();
 
