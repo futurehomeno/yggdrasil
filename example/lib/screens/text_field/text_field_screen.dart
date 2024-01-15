@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:pubdev_registry/fh_utils/fh_utils.dart';
 import 'package:yggdrasil/yggdrasil.dart';
 import 'package:yggdrasil_demo/core/yg_route_builder.dart';
+import 'package:yggdrasil_demo/utils/_utils.dart';
 import 'package:yggdrasil_demo/widgets/_widgets.dart';
 
 class TextFieldScreen extends StatefulWidget {
@@ -132,10 +132,10 @@ class _TextFieldScreenState extends State<TextFieldScreen> {
                       label: 'Email',
                       textInputAction: TextInputAction.next,
                       validators: <FormFieldValidator<String>>[
-                        const RequiredValidator(
+                        const DemoRequiredValidator(
                           requiredError: 'This field is required!',
                         ).call,
-                        const EmailValidator(
+                        const DemoEmailValidator(
                           invalidEmailError: 'Invalid email',
                         ).call,
                       ],
@@ -145,10 +145,10 @@ class _TextFieldScreenState extends State<TextFieldScreen> {
                       label: 'Password',
                       textInputAction: TextInputAction.done,
                       validators: <FormFieldValidator<String>>[
-                        const RequiredValidator(
+                        const DemoRequiredValidator(
                           requiredError: 'This field is required!',
                         ).call,
-                        PasswordValidator(
+                        DemoPasswordValidator(
                           passwordTooShortError: 'Password is too short!',
                         ).call,
                       ],
@@ -158,10 +158,10 @@ class _TextFieldScreenState extends State<TextFieldScreen> {
                       label: 'Confirm password',
                       textInputAction: TextInputAction.done,
                       validators: <FormFieldValidator<String>>[
-                        const RequiredValidator(
+                        const DemoRequiredValidator(
                           requiredError: 'This field is required!',
                         ).call,
-                        MatchValidator<String>(
+                        DemoMatchValidator<String>(
                           otherFieldKey: _passwordKey,
                           error: 'Passwords do not match!',
                         ).call,
