@@ -1,4 +1,4 @@
-enum TokenType {
+enum TokenValueType {
   color,
   dimension,
   fontFamily,

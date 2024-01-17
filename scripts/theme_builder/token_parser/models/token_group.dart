@@ -1,4 +1,4 @@
-part of 'token_object.dart';
+import '_models.dart';
 
 final class TokenGroup extends TokenObject {
   const TokenGroup({
