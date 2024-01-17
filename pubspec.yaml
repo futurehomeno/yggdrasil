@@ -25,6 +25,8 @@ dev_dependencies:
   alchemist: 0.7.0
   # Run `flutter pub run build_runner build --delete-conflicting-outputs` in order to generate stuff.
   build_runner: 2.4.6
+  code_builder: 4.10.0
+  build: 2.4.1
   flutter_test:
     sdk: flutter
   theme_tailor:
