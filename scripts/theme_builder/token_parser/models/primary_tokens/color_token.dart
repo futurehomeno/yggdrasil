@@ -1,7 +1,7 @@
 import 'dart:ui';
 
 import '../../_token_parser.dart';
-import '../type_value_or_reference.dart';
+import '../values/type_value_or_reference.dart';
 
 final class TokenColor extends TokenValue {
   const TokenColor({

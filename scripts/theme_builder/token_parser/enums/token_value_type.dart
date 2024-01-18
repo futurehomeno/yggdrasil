@@ -11,4 +11,5 @@ enum TokenValueType {
   border,
   gradient,
   typography,
+  referenceOnly,
 }
