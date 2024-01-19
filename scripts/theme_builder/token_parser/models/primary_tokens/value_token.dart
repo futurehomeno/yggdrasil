@@ -1,16 +1,25 @@
 import '../../_token_parser.dart';
+import '../token.dart';
+import '../values/type_value_or_reference.dart';
 
-abstract base class TokenValue extends TokenObject {
-  const TokenValue({
-    required this.description,
+final class ValueToken<T> extends Token<T> {
+  const ValueToken({
+    required super.description,
+    required this.value,
   });
 
-  final String? description;
+  final TypeValueOrReference<T> value;
 
-  TokenValueType get type;
+  @override
+  TokenValueType get type => value.type;
+
+  @override
+  T resolve() {
+    return value.resolve();
+  }
 
   @override
   bool isStructurallyIdentical(TokenObject other) {
-    return other is TokenValue;
+    return other is ValueToken;
   }
 }

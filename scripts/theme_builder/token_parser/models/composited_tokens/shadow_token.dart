@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import '../primary_types/_values.dart';
+import '../primary_tokens/_values.dart';
 
 final class TokenShadow extends TokenValue {
   const TokenShadow({

@@ -1,45 +1,89 @@
+// ignore_for_file: avoid-dynamic
+
 import 'dart:ui';
 
 import '../../_token_parser.dart';
+import '../values/color_type/color_type_value_or_reference.dart';
 import '../values/type_value_or_reference.dart';
 
-final class TokenColor extends TokenValue {
-  const TokenColor({
+final class ColorToken extends ValueToken<Color> {
+  const ColorToken({
     super.description,
-    required this.color,
+    required this.value,
   });
 
-  factory TokenColor.fromJson(Map<String, dynamic> json) {
-    final String? type = json.safeString(r'$type');
+  factory ColorToken.fromJson(Map<String, dynamic> json) {
+    final dynamic value = json[r'$value'];
 
-    if (type != typeString) {
-      throw TokenParseError(
-        type: typeString,
-        error: 'TokenColor tried to parse non $typeString type json object',
-        path: <String>[r'$type'],
+    if (value is! String) {
+      throw TokenParseTypeError(
+        type: ColorTypeValueOrReference.$type,
+        expectedType: String,
+        foundType: value.runtimeType,
+        path: <String>[r'$value'],
       );
     }
 
-    final Color? color = json.safeColor(r'$value');
-
-    if (color == null) {
-      throw TokenParseError(
-        type: typeString,
-        error: r'Invalid color format or missing $value',
-        path: <String>[r'$value.color'],
+    try {
+      return ColorToken(
+        value: ColorTypeValueOrReference.parse(value),
+        description: json.safeString(r'$description'),
       );
+    } catch(err) {
+      if(err is TokenParseError) {
+        throw err.copyWithPath('pathAddition')
+      }
     }
-
-    return TokenColor(
-      description: json.safeString(r'$description'),
-      color: color,
-    );
   }
-
-  final TypeValueOrReference<Color> color;
 
   static const String typeString = 'color';
 
   @override
-  final TokenValueType type = TokenValueType.color;
+  TokenValueType get type => ColorTypeValueOrReference.$type;
+
+  @override
+  final ColorTypeValueOrReference value;
+}
+
+abstract class ValueTokenFactory<T> {
+  const ValueTokenFactory();
+
+  ValueToken<T> parse(Map<String, dynamic> json) {
+    final dynamic value = json[r'$value'];
+
+    if(value is! Object) {
+      throw TokenParseError(
+        type: type,
+        error: r'$value is missing',
+        path: <String>[r'$value'],
+      );
+    }
+
+    try {
+      parseValue(value);
+    } catch(err) {
+      if(err is TokenParseError) {
+        err.addToPath(r'$value');
+      } 
+    }
+  }
+
+  TypeValueOrReference<T> parseValue(Object value);
+
+   TokenValueType get type;
+}
+
+class ColorTokenFactory extends ValueTokenFactory<Color> {
+  const ColorTokenFactory();
+  
+  @override
+  TypeValueOrReference<Color> parseValue(Object value) {
+    // TODO: implement parseValue
+    throw UnimplementedError();
+  }
+  
+  @override
+  TokenValueType get type => ColorTypeValueOrReference.$type;
+
+
 }

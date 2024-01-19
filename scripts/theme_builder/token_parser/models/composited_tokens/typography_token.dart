@@ -1,6 +1,6 @@
 import 'dart:ui';
 
-import '../primary_types/_values.dart';
+import '../primary_tokens/_values.dart';
 
 final class TokenTypography extends TokenValue {
   const TokenTypography({

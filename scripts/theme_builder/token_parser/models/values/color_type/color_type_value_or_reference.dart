@@ -22,7 +22,7 @@ abstract class ColorTypeValueOrReference extends TypeValueOrReference<Color> {
 
     if (data is! String) {
       throw TokenParseTypeError(
-        type: _type,
+        type: $type,
         expectedType: String,
         foundType: data.runtimeType,
         path: <String>[r'$type'],
@@ -36,7 +36,7 @@ abstract class ColorTypeValueOrReference extends TypeValueOrReference<Color> {
 
       if (colorHex == null) {
         throw TokenParseFormatError(
-          type: _type,
+          type: $type,
           data: data,
         );
       }
@@ -45,7 +45,7 @@ abstract class ColorTypeValueOrReference extends TypeValueOrReference<Color> {
 
       if (color == null) {
         throw TokenParseFormatError(
-          type: _type,
+          type: $type,
           data: data,
         );
       }
@@ -55,7 +55,7 @@ abstract class ColorTypeValueOrReference extends TypeValueOrReference<Color> {
 
         if (transparency == null) {
           throw TokenParseFormatError(
-            type: _type,
+            type: $type,
             data: data,
           );
         }
@@ -71,13 +71,19 @@ abstract class ColorTypeValueOrReference extends TypeValueOrReference<Color> {
     }
 
     throw TokenParseFormatError(
-      type: _type,
+      type: $type,
       data: data,
     );
   }
 
-  static const TokenValueType _type = TokenValueType.color;
+  static const TokenValueType $type = TokenValueType.color;
 
   @override
-  TokenValueType get type => _type;
+  TokenValueType get type => $type;
+}
+
+abstract class TypeValueOrReferenceFactory<T> {
+  const TypeValueOrReferenceFactory();
+
+  TypeValueOrReference<T> parse(Object value);
 }
