@@ -12,7 +12,7 @@ dependencies:
   flutter:
     sdk: flutter
   yggdrasil:
-    path: ../
+    path: ../yggdrasil
   get_it: 7.6.4
   # Don't update due to the flutter_bloc in other repose.
   provider: 5.0.0

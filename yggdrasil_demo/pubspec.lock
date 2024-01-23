@@ -1252,7 +1252,7 @@ packages:
   yggdrasil:
     dependency: "direct main"
     description:
-      path: ".."
+      path: "../yggdrasil"
       relative: true
     source: path
     version: "1.9.1"
