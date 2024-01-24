@@ -1,3 +1,6 @@
+# 1.9.7 [2024-01-24T15:58:47.234136]
+[improvement] Added loading state to mobile scanner DEV-2939.
+
 # 1.9.6 [2024-01-15T13:43:23.629235]
 
 ## Changes
