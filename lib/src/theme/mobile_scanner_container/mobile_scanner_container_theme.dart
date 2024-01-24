@@ -22,4 +22,11 @@ class _$YgMobileScannerContainerTheme {
     professional_light.FhRadii.sm,
     professional_dark.FhRadii.sm,
   ];
+
+  static const List<Color> backgroundColor = <Color>[
+    consumer_light.FhColors.backgroundDisabled,
+    consumer_dark.FhColors.backgroundDisabled,
+    professional_light.FhColors.backgroundDisabled,
+    professional_dark.FhColors.backgroundDisabled,
+  ];
 }

@@ -24,10 +24,12 @@ class YgLinearProgressIndicator extends StatelessWidget with StatelessWidgetDebu
       borderRadius: linearProgressIndicatorTheme.borderRadius,
       child: SizedBox(
         height: linearProgressIndicatorTheme.height,
-        child: LinearProgressIndicator(
-          value: value,
-          color: linearProgressIndicatorTheme.color,
-          backgroundColor: linearProgressIndicatorTheme.backgroundColor,
+        child: RepaintBoundary(
+          child: LinearProgressIndicator(
+            value: value,
+            color: linearProgressIndicatorTheme.color,
+            backgroundColor: linearProgressIndicatorTheme.backgroundColor,
+          ),
         ),
       ),
     );
