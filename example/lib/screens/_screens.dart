@@ -30,6 +30,7 @@ export 'section/_section.dart';
 export 'segmented_button/_segmented_button.dart';
 export 'snack_bar/_snack_bar.dart';
 export 'stepper/_stepper.dart';
+export 'sticky_footer/_sticky_footer.dart';
 export 'switch/_switch.dart';
 export 'switch_list_tile/_switch_list_tile.dart';
 export 'tabs/_tabs.dart';
