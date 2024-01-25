@@ -1,4 +1,4 @@
-name: yggdrasil_token_parser
+name: yggdrasil_utils
 description: A starting point for Dart libraries or applications.
 version: 1.0.0
 # repository: https://github.com/my_org/my_repo
@@ -8,8 +8,7 @@ environment:
 
 # Add regular dependencies here.
 dependencies:
-  yggdrasil_utils:
-    path: ../yggdrasil_utils
+  # path: ^1.8.0
 
 dev_dependencies:
   lints: ^2.1.0

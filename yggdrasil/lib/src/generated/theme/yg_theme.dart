@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:yggdrasil/src/generated/theme/button/yg_button_theme.dart';
-import 'package:yggdrasil/src/generated/theme/extensions/_extensions.dart';
+import 'package:yggdrasil_utils/yggdrasil_utils.dart';
 
 class YgTheme extends ThemeExtension<YgTheme> {
   const YgTheme({

@@ -1,9 +1,6 @@
-export 'unresolved_composite_token.dart';
-export 'unresolved_reference.dart';
-export 'unresolved_token.dart';
+export 'tokens/_tokens.dart';
+export 'unresolved_result.dart';
 export 'unresolved_token_data.dart';
 export 'unresolved_token_group.dart';
 export 'unresolved_token_object.dart';
-export 'unresolved_value.dart';
-export 'unresolved_value_or_reference.dart';
-export 'unresolved_value_token.dart';
+export 'value_or_reference/_value_or_reference.dart';

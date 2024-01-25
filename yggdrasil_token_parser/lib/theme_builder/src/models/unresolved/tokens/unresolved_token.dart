@@ -1,6 +1,5 @@
 import 'package:yggdrasil_token_parser/theme_builder/src/enums/_enums.dart';
-
-import '_unresolved.dart';
+import 'package:yggdrasil_token_parser/theme_builder/src/models/_models.dart';
 
 abstract class UnresolvedToken extends UnresolvedTokenObject {
   const UnresolvedToken({
@@ -9,5 +8,5 @@ abstract class UnresolvedToken extends UnresolvedTokenObject {
   });
 
   final String? description;
-  final TokenValueType type;
+  final TokenValueType? type;
 }

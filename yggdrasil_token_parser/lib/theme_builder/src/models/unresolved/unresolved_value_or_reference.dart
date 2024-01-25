@@ -1,3 +1,0 @@
-class UnresolvedValueOrReference {
-  const UnresolvedValueOrReference();
-}
