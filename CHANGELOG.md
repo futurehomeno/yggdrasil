@@ -1,3 +1,9 @@
+# 1.9.8 [2024-01-25T11:55:32.018620]
+
+### Dev changes
+
+- [dev-fix] Added changes to readme.
+
 # 1.9.7 [2024-01-24T15:58:47.234136]
 [improvement] Added loading state to mobile scanner DEV-2939.
 
