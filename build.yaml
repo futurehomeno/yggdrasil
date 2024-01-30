@@ -11,3 +11,5 @@ targets:
             - consumerDark
             - professionalLight
             - professionalDark
+        generate_for:
+          - lib/src/theme/**
