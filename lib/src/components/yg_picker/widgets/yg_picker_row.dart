@@ -3,6 +3,11 @@ import 'dart:math';
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 
+/// Renders a list of widgets in a row.
+///
+/// This row keeps in mind the desired size of every widget and tries to equally
+/// divide the available space between all [children] without giving a widget
+/// more than its max intrinsic width and without leaving gaps between widgets.
 class YgPickerRow extends MultiChildRenderObjectWidget {
   const YgPickerRow({
     super.key,

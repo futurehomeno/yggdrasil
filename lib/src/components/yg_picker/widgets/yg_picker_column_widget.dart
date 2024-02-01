@@ -5,6 +5,7 @@ import 'package:yggdrasil/yggdrasil.dart';
 
 import '_widgets.dart';
 
+/// A single column of the [YgPicker] widget.
 class YgPickerColumnWidget<T> extends StatefulWidget {
   const YgPickerColumnWidget({
     super.key,

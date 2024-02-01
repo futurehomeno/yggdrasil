@@ -5,6 +5,7 @@ import 'package:flutter/rendering.dart';
 import 'package:yggdrasil/src/theme/_theme.dart';
 import 'package:yggdrasil/yggdrasil.dart';
 
+/// The renderer of a single [YgPicker] widget.
 class YgPickerColumnRendererWidget<T> extends LeafRenderObjectWidget {
   const YgPickerColumnRendererWidget({
     super.key,

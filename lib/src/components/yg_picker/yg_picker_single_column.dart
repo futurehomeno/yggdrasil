@@ -9,8 +9,13 @@ class _YgPickerSingleColumn<T> extends YgPicker {
     this.initialValue,
   }) : super._();
 
+  /// The initial value selected in the column.
   final T? initialValue;
+
+  /// Called when the value changes.
   final ValueChanged<T> onChange;
+
+  /// All the entries shown in the column.
   final List<YgPickerEntry<T>> entries;
 
   @override

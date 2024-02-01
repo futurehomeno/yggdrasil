@@ -9,6 +9,7 @@ import 'widgets/_widgets.dart';
 part 'yg_picker_multi_column.dart';
 part 'yg_picker_single_column.dart';
 
+/// Yggdrasil Picker implementation.
 abstract class YgPicker extends StatelessWidget {
   const factory YgPicker({
     required List<YgPickerColumn<Object?>> columns,
@@ -36,7 +37,10 @@ abstract class YgPicker extends StatelessWidget {
         metric: metric,
       );
 
+  /// List of columns to be shown in the picker.
   List<YgPickerColumn<Object?>> get columns;
+
+  /// The metric rendered behind the last column.
   final String? metric;
 
   @override
