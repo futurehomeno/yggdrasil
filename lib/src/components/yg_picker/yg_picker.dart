@@ -6,20 +6,44 @@ import 'package:yggdrasil/yggdrasil.dart';
 
 import 'widgets/_widgets.dart';
 
-class YgPicker extends StatelessWidget {
-  const YgPicker({
+part 'yg_picker_multi_column.dart';
+part 'yg_picker_single_column.dart';
+
+abstract class YgPicker extends StatelessWidget {
+  const factory YgPicker({
+    required List<YgPickerColumn<Object?>> columns,
+    Key? key,
+    String? metric,
+  }) = YgPickerMultiColumn;
+
+  const YgPicker._({
     super.key,
-    required this.columns,
     this.metric,
   });
 
-  final List<YgPickerColumn<Object?>> columns;
+  static YgPicker single<T>({
+    Key? key,
+    required void Function(T) onChange,
+    required List<YgPickerEntry<T>> entries,
+    T? initialValue,
+    String? metric,
+  }) =>
+      _YgPickerSingleColumn<T>(
+        entries: entries,
+        onChange: onChange,
+        initialValue: initialValue,
+        key: key,
+        metric: metric,
+      );
+
+  List<YgPickerColumn<Object?>> get columns;
   final String? metric;
 
   @override
   Widget build(BuildContext context) {
     final YgPickerTheme theme = context.ygTheme.pickerTheme;
     final double rowHeight = theme.textDefaultStyle.computedHeight + theme.textPadding.vertical;
+    final String? metric = this.metric;
 
     int minRows = 0;
     for (final YgPickerColumn<Object?>(:List<YgPickerEntry<Object?>> entries) in columns) {
@@ -45,23 +69,19 @@ class YgPicker extends StatelessWidget {
             ),
           ),
           Positioned.fill(
-            child: Padding(
-              padding: EdgeInsets.symmetric(horizontal: theme.columnSpacing),
-              child: YgPickerRow(
-                children: <Widget>[
-                  for (final YgPickerColumn<Object?> column in columns)
-                    YgPickerColumnWidget<Object?>(
-                      rowHeight: rowHeight,
-                      column: column,
-                    ),
+            child: YgPickerRow(
+              children: <Widget>[
+                for (final YgPickerColumn<Object?> column in columns)
+                  YgPickerColumnWidget<Object?>(
+                    rowHeight: rowHeight,
+                    column: column,
+                  ),
+                if (metric != null)
                   Text(
-                    'A',
+                    metric,
                     style: theme.textSelectedStyle,
                   ),
-                ].withHorizontalSpacing(
-                  theme.columnSpacing,
-                ),
-              ),
+              ],
             ),
           ),
         ],

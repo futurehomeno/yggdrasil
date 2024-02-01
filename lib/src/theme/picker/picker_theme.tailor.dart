@@ -11,7 +11,7 @@ part of 'picker_theme.dart';
 class YgPickerTheme extends ThemeExtension<YgPickerTheme> {
   const YgPickerTheme({
     required this.backgroundColor,
-    required this.columnSpacing,
+    required this.columnPadding,
     required this.indicatorBorderRadius,
     required this.indicatorColor,
     required this.indicatorVerticalPadding,
@@ -22,7 +22,7 @@ class YgPickerTheme extends ThemeExtension<YgPickerTheme> {
   });
 
   final Color backgroundColor;
-  final double columnSpacing;
+  final EdgeInsets columnPadding;
   final BorderRadius indicatorBorderRadius;
   final Color indicatorColor;
   final double indicatorVerticalPadding;
@@ -33,7 +33,7 @@ class YgPickerTheme extends ThemeExtension<YgPickerTheme> {
 
   static final YgPickerTheme consumerLight = YgPickerTheme(
     backgroundColor: _$YgPickerTheme.backgroundColor[0],
-    columnSpacing: _$YgPickerTheme.columnSpacing[0],
+    columnPadding: _$YgPickerTheme.columnPadding[0],
     indicatorBorderRadius: _$YgPickerTheme.indicatorBorderRadius[0],
     indicatorColor: _$YgPickerTheme.indicatorColor[0],
     indicatorVerticalPadding: _$YgPickerTheme.indicatorVerticalPadding[0],
@@ -45,7 +45,7 @@ class YgPickerTheme extends ThemeExtension<YgPickerTheme> {
 
   static final YgPickerTheme consumerDark = YgPickerTheme(
     backgroundColor: _$YgPickerTheme.backgroundColor[1],
-    columnSpacing: _$YgPickerTheme.columnSpacing[1],
+    columnPadding: _$YgPickerTheme.columnPadding[1],
     indicatorBorderRadius: _$YgPickerTheme.indicatorBorderRadius[1],
     indicatorColor: _$YgPickerTheme.indicatorColor[1],
     indicatorVerticalPadding: _$YgPickerTheme.indicatorVerticalPadding[1],
@@ -57,7 +57,7 @@ class YgPickerTheme extends ThemeExtension<YgPickerTheme> {
 
   static final YgPickerTheme professionalLight = YgPickerTheme(
     backgroundColor: _$YgPickerTheme.backgroundColor[2],
-    columnSpacing: _$YgPickerTheme.columnSpacing[2],
+    columnPadding: _$YgPickerTheme.columnPadding[2],
     indicatorBorderRadius: _$YgPickerTheme.indicatorBorderRadius[2],
     indicatorColor: _$YgPickerTheme.indicatorColor[2],
     indicatorVerticalPadding: _$YgPickerTheme.indicatorVerticalPadding[2],
@@ -69,7 +69,7 @@ class YgPickerTheme extends ThemeExtension<YgPickerTheme> {
 
   static final YgPickerTheme professionalDark = YgPickerTheme(
     backgroundColor: _$YgPickerTheme.backgroundColor[3],
-    columnSpacing: _$YgPickerTheme.columnSpacing[3],
+    columnPadding: _$YgPickerTheme.columnPadding[3],
     indicatorBorderRadius: _$YgPickerTheme.indicatorBorderRadius[3],
     indicatorColor: _$YgPickerTheme.indicatorColor[3],
     indicatorVerticalPadding: _$YgPickerTheme.indicatorVerticalPadding[3],
@@ -89,7 +89,7 @@ class YgPickerTheme extends ThemeExtension<YgPickerTheme> {
   @override
   YgPickerTheme copyWith({
     Color? backgroundColor,
-    double? columnSpacing,
+    EdgeInsets? columnPadding,
     BorderRadius? indicatorBorderRadius,
     Color? indicatorColor,
     double? indicatorVerticalPadding,
@@ -100,7 +100,7 @@ class YgPickerTheme extends ThemeExtension<YgPickerTheme> {
   }) {
     return YgPickerTheme(
       backgroundColor: backgroundColor ?? this.backgroundColor,
-      columnSpacing: columnSpacing ?? this.columnSpacing,
+      columnPadding: columnPadding ?? this.columnPadding,
       indicatorBorderRadius:
           indicatorBorderRadius ?? this.indicatorBorderRadius,
       indicatorColor: indicatorColor ?? this.indicatorColor,
@@ -118,7 +118,7 @@ class YgPickerTheme extends ThemeExtension<YgPickerTheme> {
     if (other is! YgPickerTheme) return this as YgPickerTheme;
     return YgPickerTheme(
       backgroundColor: Color.lerp(backgroundColor, other.backgroundColor, t)!,
-      columnSpacing: t < 0.5 ? columnSpacing : other.columnSpacing,
+      columnPadding: t < 0.5 ? columnPadding : other.columnPadding,
       indicatorBorderRadius:
           t < 0.5 ? indicatorBorderRadius : other.indicatorBorderRadius,
       indicatorColor: Color.lerp(indicatorColor, other.indicatorColor, t)!,
@@ -142,7 +142,7 @@ class YgPickerTheme extends ThemeExtension<YgPickerTheme> {
             const DeepCollectionEquality()
                 .equals(backgroundColor, other.backgroundColor) &&
             const DeepCollectionEquality()
-                .equals(columnSpacing, other.columnSpacing) &&
+                .equals(columnPadding, other.columnPadding) &&
             const DeepCollectionEquality()
                 .equals(indicatorBorderRadius, other.indicatorBorderRadius) &&
             const DeepCollectionEquality()
@@ -164,7 +164,7 @@ class YgPickerTheme extends ThemeExtension<YgPickerTheme> {
     return Object.hash(
       runtimeType.hashCode,
       const DeepCollectionEquality().hash(backgroundColor),
-      const DeepCollectionEquality().hash(columnSpacing),
+      const DeepCollectionEquality().hash(columnPadding),
       const DeepCollectionEquality().hash(indicatorBorderRadius),
       const DeepCollectionEquality().hash(indicatorColor),
       const DeepCollectionEquality().hash(indicatorVerticalPadding),

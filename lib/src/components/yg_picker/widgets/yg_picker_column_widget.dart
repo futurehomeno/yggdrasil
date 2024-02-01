@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
+import 'package:yggdrasil/src/theme/picker/picker_theme.dart';
 import 'package:yggdrasil/yggdrasil.dart';
 
 import '_widgets.dart';
@@ -52,19 +53,30 @@ class _YgPickerColumnWidgetState<T> extends State<YgPickerColumnWidget<T>> {
 
   @override
   Widget build(BuildContext context) {
-    return YgFixedExtentScrollable(
-      controller: _controller,
-      physics: const YgFixedExtentScrollPhysics(),
-      itemExtent: widget.rowHeight,
-      scrollBehavior: ScrollConfiguration.of(context).copyWith(scrollbars: false),
-      viewportBuilder: (BuildContext context, ViewportOffset offset) {
-        return ClipRRect(
-          child: YgPickerColumnRendererWidget<T>(
-            column: widget.column,
-            offset: offset,
-          ),
-        );
-      },
+    final YgPickerTheme theme = context.ygTheme.pickerTheme;
+
+    return RepaintBoundary(
+      child: YgFixedExtentScrollable(
+        controller: _controller,
+        physics: const YgFixedExtentScrollPhysics(),
+        itemExtent: widget.rowHeight,
+        scrollBehavior: ScrollConfiguration.of(context).copyWith(scrollbars: false),
+        viewportBuilder: (BuildContext context, ViewportOffset offset) {
+          return ClipRRect(
+            child: Padding(
+              padding: theme.columnPadding,
+              child: YgPickerColumnRendererWidget<T>(
+                column: widget.column,
+                offset: offset,
+                rowHeight: widget.rowHeight,
+                minWidth: theme.minimumColumnWidth,
+                textDefaultStyle: theme.textDefaultStyle,
+                textSelectedStyle: theme.textSelectedStyle,
+              ),
+            ),
+          );
+        },
+      ),
     );
   }
 }

@@ -10,48 +10,39 @@ class YgPickerColumnRendererWidget<T> extends LeafRenderObjectWidget {
     super.key,
     required this.offset,
     required this.column,
+    required this.rowHeight,
+    required this.minWidth,
+    required this.textDefaultStyle,
+    required this.textSelectedStyle,
   });
 
   final YgPickerColumn<T> column;
   final ViewportOffset offset;
+  final double rowHeight;
+  final double minWidth;
+  final TextStyle textDefaultStyle;
+  final TextStyle textSelectedStyle;
 
   @override
   RenderObject createRenderObject(BuildContext context) {
-    final YgPickerTheme(
-      :TextStyle textDefaultStyle,
-      :TextStyle textSelectedStyle,
-      :EdgeInsets textPadding,
-      :double minimumColumnWidth,
-    ) = context.ygTheme.pickerTheme;
-
-    final double rowHeight = textDefaultStyle.computedHeight + textPadding.vertical;
-
     return PickerValueRenderer<T>(
       offset: offset,
       entries: column.entries,
       textDefaultStyle: textDefaultStyle,
       textSelectedStyle: textSelectedStyle,
       rowHeight: rowHeight,
-      minWidth: minimumColumnWidth,
+      minWidth: minWidth,
     );
   }
 
   @override
   void updateRenderObject(BuildContext context, covariant PickerValueRenderer<T> renderObject) {
-    final YgPickerTheme(
-      :TextStyle textDefaultStyle,
-      :TextStyle textSelectedStyle,
-      :EdgeInsets textPadding,
-      :double minimumColumnWidth,
-    ) = context.ygTheme.pickerTheme;
-    final double rowHeight = textDefaultStyle.computedHeight + textPadding.vertical;
-
     renderObject.offset = offset;
     renderObject.entries = column.entries;
     renderObject.textDefaultStyle = textDefaultStyle;
     renderObject.textSelectedStyle = textSelectedStyle;
     renderObject.rowHeight = rowHeight;
-    renderObject.minWidth = minimumColumnWidth;
+    renderObject.minWidth = minWidth;
   }
 }
 

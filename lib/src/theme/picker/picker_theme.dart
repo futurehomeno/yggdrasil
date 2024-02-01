@@ -75,11 +75,11 @@ class _$YgPickerTheme {
     ),
   ];
 
-  static const List<double> columnSpacing = <double>[
-    consumer_light.FhDimensions.xs,
-    consumer_dark.FhDimensions.xs,
-    professional_light.FhDimensions.xs,
-    professional_dark.FhDimensions.xs,
+  static const List<EdgeInsets> columnPadding = <EdgeInsets>[
+    EdgeInsets.symmetric(horizontal: consumer_light.FhDimensions.xxs),
+    EdgeInsets.symmetric(horizontal: consumer_dark.FhDimensions.xxs),
+    EdgeInsets.symmetric(horizontal: professional_light.FhDimensions.xxs),
+    EdgeInsets.symmetric(horizontal: professional_dark.FhDimensions.xxs),
   ];
 
   static const List<double> indicatorVerticalPadding = <double>[
