@@ -14,6 +14,7 @@ export 'yg_gauge/_yg_gauge.dart';
 export 'yg_icon/_yg_icon.dart';
 export 'yg_list_tile/_yg_list_tile.dart';
 export 'yg_mobile_scanner_container/_yg_mobile_scanner_container.dart';
+export 'yg_picker/_yg_picker.dart';
 export 'yg_progress_indicator/_yg_progress_indicator.dart';
 export 'yg_radio/_yg_radio.dart';
 export 'yg_section/_yg_section.dart';
