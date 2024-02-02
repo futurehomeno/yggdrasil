@@ -1,5 +1,5 @@
 /// An entry of a [YgPicker] column.
-class YgPickerEntry<T extends Object?> {
+class YgPickerEntry<T extends Object> {
   const YgPickerEntry({
     required this.title,
     required this.value,

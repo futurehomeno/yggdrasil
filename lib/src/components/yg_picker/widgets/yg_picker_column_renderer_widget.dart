@@ -6,7 +6,7 @@ import 'package:yggdrasil/src/theme/_theme.dart';
 import 'package:yggdrasil/yggdrasil.dart';
 
 /// The renderer of a single [YgPicker] widget.
-class YgPickerColumnRendererWidget<T> extends LeafRenderObjectWidget {
+class YgPickerColumnRendererWidget<T extends Object> extends LeafRenderObjectWidget {
   const YgPickerColumnRendererWidget({
     super.key,
     required this.offset,
@@ -15,10 +15,12 @@ class YgPickerColumnRendererWidget<T> extends LeafRenderObjectWidget {
     required this.minWidth,
     required this.textDefaultStyle,
     required this.textSelectedStyle,
+    required this.looping,
   });
 
   final YgPickerColumn<T> column;
   final ViewportOffset offset;
+  final bool looping;
   final double rowHeight;
   final double minWidth;
   final TextStyle textDefaultStyle;
@@ -33,6 +35,7 @@ class YgPickerColumnRendererWidget<T> extends LeafRenderObjectWidget {
       textSelectedStyle: textSelectedStyle,
       rowHeight: rowHeight,
       minWidth: minWidth,
+      looping: looping,
     );
   }
 
@@ -44,23 +47,33 @@ class YgPickerColumnRendererWidget<T> extends LeafRenderObjectWidget {
     renderObject.textSelectedStyle = textSelectedStyle;
     renderObject.rowHeight = rowHeight;
     renderObject.minWidth = minWidth;
+    renderObject.looping = looping;
   }
 }
 
-class PickerValueRenderer<T> extends RenderBox {
+class PickerValueRenderer<T extends Object> extends RenderBox {
   PickerValueRenderer({
     required ViewportOffset offset,
     required List<YgPickerEntry<T>> entries,
+    required bool looping,
     required double rowHeight,
     required double minWidth,
     required TextStyle textDefaultStyle,
     required TextStyle textSelectedStyle,
   })  : _offset = offset,
         _entries = entries,
+        _looping = looping,
         _rowHeight = rowHeight,
         _minWidth = minWidth,
         _textDefaultStyle = textDefaultStyle,
         _textSelectedStyle = textSelectedStyle;
+
+  final TextPainter _textPainter = TextPainter(
+    textAlign: TextAlign.center,
+    textDirection: TextDirection.ltr,
+  );
+
+  // region Values
 
   List<YgPickerEntry<T>> _entries;
   List<YgPickerEntry<T>> get entries => _entries;
@@ -118,6 +131,18 @@ class PickerValueRenderer<T> extends RenderBox {
     }
   }
 
+  bool _looping;
+  bool get looping => _looping;
+  set looping(bool newValue) {
+    if (newValue != _looping) {
+      _looping = newValue;
+      _updateScrollDimensions();
+      markNeedsPaint();
+    }
+  }
+
+  // endregion
+
   @override
   void attach(PipelineOwner owner) {
     _offset.addListener(markNeedsPaint);
@@ -130,36 +155,57 @@ class PickerValueRenderer<T> extends RenderBox {
     super.detach();
   }
 
-  final TextPainter _textPainter = TextPainter(
-    textAlign: TextAlign.center,
-    textDirection: TextDirection.ltr,
-  );
-
   @override
   void performLayout() {
     size = Size(
       computeMaxIntrinsicWidth(double.infinity),
       computeMaxIntrinsicHeight(double.infinity),
     );
+    _updateScrollDimensions();
+  }
+
+  void _updateScrollDimensions() {
     _offset.applyViewportDimension(size.height);
-    _offset.applyContentDimensions(
-      0,
-      (_entries.length - 1) * _rowHeight,
-    );
+    if (_looping) {
+      _offset.applyContentDimensions(
+        double.negativeInfinity,
+        double.infinity,
+      );
+    } else {
+      _offset.applyContentDimensions(
+        0,
+        (_entries.length - 1) * _rowHeight,
+      );
+    }
   }
 
   @override
   void paint(PaintingContext context, Offset offset) {
     final double pixels = _offset.pixels;
     final double selectedRow = pixels / _rowHeight;
-    final int minRow = max(0, selectedRow - 2).floor();
-    final int maxRow = min(_entries.length, selectedRow + 3).ceil();
     final double yOffset = (_entries.length > 3 ? 2 : 1) * rowHeight;
 
+    int minRow = (selectedRow - 2).floor();
+    int maxRow = (selectedRow + 3).ceil();
+    if (!_looping) {
+      if (minRow < 0) {
+        minRow = 0;
+      }
+      if (maxRow > _entries.length) {
+        maxRow = _entries.length;
+      }
+    }
+
     for (int i = minRow; i < maxRow; i++) {
+      int row = i % _entries.length;
+      if (row < 0) {
+        row += _entries.length;
+      }
+
       final double selectedAmount = max(0, 1 - (i - selectedRow).abs());
       final TextStyle style = _textDefaultStyle.lerp(_textSelectedStyle, selectedAmount);
-      final YgPickerEntry<T> entry = _entries[i];
+      final YgPickerEntry<T> entry = _entries[row];
+
       final TextSpan span = TextSpan(
         text: entry.title,
         style: style,
@@ -170,15 +216,14 @@ class PickerValueRenderer<T> extends RenderBox {
         maxWidth: size.width,
       );
 
-      final double baseOffset = offset.dy + yOffset;
       final double rowOffset = i * rowHeight;
-      final double paddingOffset = (_rowHeight - _textPainter.height) / 2;
+      final double centeringOffset = (_rowHeight - _textPainter.height) / 2;
 
       _textPainter.paint(
         context.canvas,
         Offset(
           offset.dx,
-          baseOffset + rowOffset + paddingOffset - pixels,
+          offset.dy + yOffset + rowOffset + centeringOffset - pixels,
         ),
       );
     }
@@ -205,12 +250,12 @@ class PickerValueRenderer<T> extends RenderBox {
   }
 
   @override
-  double computeMinIntrinsicWidth(double height) => computeMaxIntrinsicWidth(height);
-
-  @override
   double computeMaxIntrinsicHeight(double width) {
     return rowHeight * (_entries.length > 3 ? 5 : 3);
   }
+
+  @override
+  double computeMinIntrinsicWidth(double height) => computeMaxIntrinsicWidth(height);
 
   @override
   double computeMinIntrinsicHeight(double width) => getMaxIntrinsicHeight(width);

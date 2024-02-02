@@ -6,39 +6,44 @@ import 'package:yggdrasil/yggdrasil.dart';
 
 import 'widgets/_widgets.dart';
 
-part 'yg_picker_multi_column.dart';
-part 'yg_picker_single_column.dart';
+part 'models/yg_picker_column.dart';
 
 /// Yggdrasil Picker implementation.
-abstract class YgPicker extends StatelessWidget {
-  const factory YgPicker({
-    required List<YgPickerColumn<Object?>> columns,
-    Key? key,
-    String? metric,
-  }) = YgPickerMultiColumn;
-
-  const YgPicker._({
+class YgPicker extends StatelessWidget {
+  const YgPicker({
     super.key,
+    required this.columns,
     this.metric,
   });
 
-  static YgPicker single<T>({
+  // ignore: prefer-widget-private-members
+  static YgPicker single<T extends Object>({
     Key? key,
-    required void Function(T) onChange,
     required List<YgPickerEntry<T>> entries,
-    T? initialValue,
     String? metric,
+    T? initialValue,
+    ValueChanged<T>? onChange,
+    ValueChanged<T>? onEditingComplete,
+    ValueChanged<int>? onRollover,
+    bool looping = false,
   }) =>
-      _YgPickerSingleColumn<T>(
-        entries: entries,
-        onChange: onChange,
-        initialValue: initialValue,
+      YgPicker(
         key: key,
         metric: metric,
+        columns: <YgPickerColumn<Object>>[
+          YgPickerColumn<T>(
+            initialValue: initialValue,
+            onChange: onChange,
+            onEditingComplete: onEditingComplete,
+            onRollover: onRollover,
+            entries: entries,
+            looping: looping,
+          ),
+        ],
       );
 
   /// List of columns to be shown in the picker.
-  List<YgPickerColumn<Object?>> get columns;
+  final List<YgPickerColumn<Object>> columns;
 
   /// The metric rendered behind the last column.
   final String? metric;
@@ -46,18 +51,22 @@ abstract class YgPicker extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final YgPickerTheme theme = context.ygTheme.pickerTheme;
-    final double rowHeight = theme.textDefaultStyle.computedHeight + theme.textPadding.vertical;
+    final double textHeight = theme.textDefaultStyle.computedHeight;
+    final double rowHeight = textHeight + theme.textPadding.vertical;
 
     int minRows = 0;
-    for (final YgPickerColumn<Object?>(:List<YgPickerEntry<Object?>> entries) in columns) {
+    for (final YgPickerColumn<Object>(:List<YgPickerEntry<Object>> entries) in columns) {
       if (entries.length > minRows) {
         minRows = entries.length;
       }
     }
 
+    final double totalHeight = rowHeight * (minRows > 3 ? 5 : 3);
+    final double indicatorHeight = (theme.indicatorVerticalPadding * 2) + theme.textSelectedStyle.computedHeight;
+
     return Container(
       color: theme.backgroundColor,
-      height: rowHeight * (minRows > 3 ? 5 : 3),
+      height: totalHeight,
       child: Stack(
         children: <Widget>[
           Positioned.fill(
@@ -67,13 +76,37 @@ abstract class YgPicker extends StatelessWidget {
                   color: theme.indicatorColor,
                   borderRadius: theme.indicatorBorderRadius,
                 ),
-                height: (theme.indicatorVerticalPadding * 2) + theme.textSelectedStyle.computedHeight,
+                height: indicatorHeight,
               ),
             ),
           ),
           Positioned.fill(
             child: YgPickerRow(
               children: _buildColumns(rowHeight),
+            ),
+          ),
+          Positioned.fill(
+            child: IgnorePointer(
+              child: DecoratedBox(
+                decoration: BoxDecoration(
+                  gradient: LinearGradient(
+                    colors: <Color>[
+                      theme.backgroundColor,
+                      theme.backgroundColor.withOpacity(0),
+                      theme.backgroundColor.withOpacity(0),
+                      theme.backgroundColor,
+                    ],
+                    begin: Alignment.topCenter,
+                    end: Alignment.bottomCenter,
+                    stops: <double>[
+                      0,
+                      theme.textPadding.top / totalHeight,
+                      (totalHeight - theme.textPadding.bottom) / totalHeight,
+                      1,
+                    ],
+                  ),
+                ),
+              ),
             ),
           ),
         ],
@@ -88,7 +121,7 @@ abstract class YgPicker extends StatelessWidget {
     for (int i = 0; i < columns.length; i++) {
       final bool isFirst = i == 0;
       final bool isLast = columns.length - 1 == i;
-      final YgPickerColumn<Object?> column = columns[i];
+      final YgPickerColumn<Object> column = columns[i];
 
       final MainAxisAlignment alignment = switch ((isFirst, isLast)) {
         (true, false) => MainAxisAlignment.end,
@@ -96,9 +129,8 @@ abstract class YgPicker extends StatelessWidget {
         _ => MainAxisAlignment.center,
       };
 
-      widgets.add(YgPickerColumnWidget<Object?>(
+      widgets.add(column._createWidget(
         rowHeight: rowHeight,
-        column: column,
         alignment: alignment,
         metric: isLast ? metric : null,
       ));

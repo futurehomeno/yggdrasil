@@ -40,6 +40,13 @@ class PickerScreen extends StatelessWidget {
               metric: 'A',
             ),
           ),
+          YgSection(
+            title: 'Single column picker with less than 4 items',
+            child: YgPicker.single<int>(
+              entries: createEntries(3),
+              onChange: (int value) {},
+            ),
+          ),
         ],
       ),
     );
@@ -64,9 +71,9 @@ class PickerScreen extends StatelessWidget {
     final DateTime date = DateTime.now();
 
     return YgPicker(
-      columns: <YgPickerColumn<Object?>>[
+      columns: <YgPickerColumn<Object>>[
         YgPickerColumn<String>(
-          onChange: (Object? value) {},
+          onChange: (String value) {},
           entries: months
               .map(
                 (String month) => YgPickerEntry<String>(
@@ -76,14 +83,15 @@ class PickerScreen extends StatelessWidget {
               )
               .toList(),
           initialValue: months[date.month - 1],
+          looping: true,
         ),
         YgPickerColumn<int>(
-          onChange: (Object? value) {},
+          onChange: (int value) {},
           entries: createEntries(31),
           initialValue: date.day - 1,
         ),
         YgPickerColumn<int>(
-          onChange: (Object? value) {},
+          onChange: (int value) {},
           entries: createEntries(100, 2000),
           initialValue: date.year - 2000,
         ),
