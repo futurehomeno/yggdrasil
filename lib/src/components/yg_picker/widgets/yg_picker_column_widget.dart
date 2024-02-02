@@ -11,10 +11,14 @@ class YgPickerColumnWidget<T> extends StatefulWidget {
     super.key,
     required this.rowHeight,
     required this.column,
+    required this.alignment,
+    this.metric,
   });
 
   final double rowHeight;
   final YgPickerColumn<T> column;
+  final MainAxisAlignment alignment;
+  final String? metric;
 
   @override
   State<YgPickerColumnWidget<T>> createState() => _YgPickerColumnWidgetState<T>();
@@ -55,6 +59,7 @@ class _YgPickerColumnWidgetState<T> extends State<YgPickerColumnWidget<T>> {
   @override
   Widget build(BuildContext context) {
     final YgPickerTheme theme = context.ygTheme.pickerTheme;
+    final String? metric = widget.metric;
 
     return RepaintBoundary(
       child: YgFixedExtentScrollable(
@@ -66,13 +71,24 @@ class _YgPickerColumnWidgetState<T> extends State<YgPickerColumnWidget<T>> {
           return ClipRRect(
             child: Padding(
               padding: theme.columnPadding,
-              child: YgPickerColumnRendererWidget<T>(
-                column: widget.column,
-                offset: offset,
-                rowHeight: widget.rowHeight,
-                minWidth: theme.minimumColumnWidth,
-                textDefaultStyle: theme.textDefaultStyle,
-                textSelectedStyle: theme.textSelectedStyle,
+              child: Row(
+                mainAxisSize: MainAxisSize.min,
+                mainAxisAlignment: widget.alignment,
+                children: <Widget>[
+                  YgPickerColumnRendererWidget<T>(
+                    column: widget.column,
+                    offset: offset,
+                    rowHeight: widget.rowHeight,
+                    minWidth: theme.minimumColumnWidth,
+                    textDefaultStyle: theme.textDefaultStyle,
+                    textSelectedStyle: theme.textSelectedStyle,
+                  ),
+                  if (metric != null)
+                    Text(
+                      metric,
+                      style: theme.textSelectedStyle,
+                    ),
+                ],
               ),
             ),
           );

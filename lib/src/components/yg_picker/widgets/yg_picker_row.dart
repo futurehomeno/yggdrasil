@@ -47,25 +47,39 @@ class YgRowRenderer extends RenderBox
       return a.$2.compareTo(b.$2);
     });
 
-    double remainingWidth = constraints.maxWidth;
+    final Map<RenderBox, double> computedWidthMap = <RenderBox, double>{};
+
+    double remainingMaxWidth = constraints.maxWidth;
+    double totalChildWidth = 0;
     for (int i = 0; i < sizeObjectList.length; i++) {
       final (
         RenderBox child,
         double width,
       ) = sizeObjectList[i];
 
-      final double currentAvailableWidth = remainingWidth / (sizeObjectList.length - i);
+      final double currentAvailableWidth = remainingMaxWidth / (sizeObjectList.length - i);
+      computedWidthMap[child] = min(currentAvailableWidth, width);
+      remainingMaxWidth -= width;
+      totalChildWidth += width;
+    }
 
+    final double remainingMinWidth = constraints.minWidth - totalChildWidth;
+    if (remainingMinWidth > 0) {
+      final double firstWidth = computedWidthMap[children.first] ?? 0;
+      computedWidthMap[children.first] = firstWidth + (remainingMinWidth / 2);
+      final double lastWidth = computedWidthMap[children.last] ?? 0;
+      computedWidthMap[children.last] = lastWidth + (remainingMinWidth / 2);
+    }
+
+    for (final MapEntry<RenderBox, double>(key: RenderBox child, value: double width) in computedWidthMap.entries) {
       child.layout(
         constraints.copyWith(
-          maxWidth: min(currentAvailableWidth, width),
-          minWidth: 0,
           minHeight: 0,
+          maxWidth: width,
+          minWidth: width,
         ),
         parentUsesSize: true,
       );
-
-      remainingWidth -= child.size.width;
     }
 
     double width = 0;

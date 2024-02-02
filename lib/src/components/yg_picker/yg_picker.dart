@@ -47,7 +47,6 @@ abstract class YgPicker extends StatelessWidget {
   Widget build(BuildContext context) {
     final YgPickerTheme theme = context.ygTheme.pickerTheme;
     final double rowHeight = theme.textDefaultStyle.computedHeight + theme.textPadding.vertical;
-    final String? metric = this.metric;
 
     int minRows = 0;
     for (final YgPickerColumn<Object?>(:List<YgPickerEntry<Object?>> entries) in columns) {
@@ -74,22 +73,37 @@ abstract class YgPicker extends StatelessWidget {
           ),
           Positioned.fill(
             child: YgPickerRow(
-              children: <Widget>[
-                for (final YgPickerColumn<Object?> column in columns)
-                  YgPickerColumnWidget<Object?>(
-                    rowHeight: rowHeight,
-                    column: column,
-                  ),
-                if (metric != null)
-                  Text(
-                    metric,
-                    style: theme.textSelectedStyle,
-                  ),
-              ],
+              children: _buildColumns(rowHeight),
             ),
           ),
         ],
       ),
     );
+  }
+
+  List<Widget> _buildColumns(double rowHeight) {
+    final List<Widget> widgets = <Widget>[];
+    final String? metric = this.metric;
+
+    for (int i = 0; i < columns.length; i++) {
+      final bool isFirst = i == 0;
+      final bool isLast = columns.length - 1 == i;
+      final YgPickerColumn<Object?> column = columns[i];
+
+      final MainAxisAlignment alignment = switch ((isFirst, isLast)) {
+        (true, false) => MainAxisAlignment.end,
+        (false, true) => MainAxisAlignment.start,
+        _ => MainAxisAlignment.center,
+      };
+
+      widgets.add(YgPickerColumnWidget<Object?>(
+        rowHeight: rowHeight,
+        column: column,
+        alignment: alignment,
+        metric: isLast ? metric : null,
+      ));
+    }
+
+    return widgets;
   }
 }
