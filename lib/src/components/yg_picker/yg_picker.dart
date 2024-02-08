@@ -5,15 +5,18 @@ import 'package:yggdrasil/src/theme/_theme.dart';
 import 'package:yggdrasil/yggdrasil.dart';
 
 import 'widgets/_widgets.dart';
+import 'yg_picker_controller.dart';
 
 part 'models/yg_picker_column.dart';
 
 /// Yggdrasil Picker implementation.
-class YgPicker extends StatelessWidget {
+abstract class YgPicker<V extends Record, P extends YgPicker<V, P>> extends StatefulWidget {
   const YgPicker({
     super.key,
-    required this.columns,
     this.metric,
+    this.controller,
+    this.onChange,
+    this.onEditingComplete,
   });
 
   // ignore: prefer-widget-private-members
@@ -27,26 +30,34 @@ class YgPicker extends StatelessWidget {
     ValueChanged<int>? onRollover,
     bool looping = false,
   }) =>
-      YgPicker(
+      YgPickerSingle<T>(
         key: key,
         metric: metric,
-        columns: <YgPickerColumn<Object>>[
-          YgPickerColumn<T>(
-            initialValue: initialValue,
-            onChange: onChange,
-            onEditingComplete: onEditingComplete,
-            onRollover: onRollover,
-            entries: entries,
-            looping: looping,
-          ),
-        ],
+        initialValue: initialValue,
+        onChange: onChange,
+        onEditingComplete: onEditingComplete,
+        onRollover: onRollover,
+        entries: entries,
+        looping: looping,
       );
-
-  /// List of columns to be shown in the picker.
-  final List<YgPickerColumn<Object>> columns;
 
   /// The metric rendered behind the last column.
   final String? metric;
+
+  final YgPickerController<V, P>? controller;
+
+  final ValueChanged<V>? onChange;
+
+  final ValueChanged<V>? onEditingComplete;
+
+  @override
+  State<YgPicker> createState() => _YgPickerState();
+}
+
+class _YgPickerState extends State<YgPicker> {
+  late final YgPickerController _currentController = widget.controller ?? _createController();
+
+  void _createController() {}
 
   @override
   Widget build(BuildContext context) {
@@ -114,9 +125,11 @@ class YgPicker extends StatelessWidget {
     );
   }
 
+  Widget _buildColumn<T extends Object>(YgPickerColumn<T> column) {}
+
   List<Widget> _buildColumns(double rowHeight) {
     final List<Widget> widgets = <Widget>[];
-    final String? metric = this.metric;
+    final String? metric = widget.metric;
 
     for (int i = 0; i < columns.length; i++) {
       final bool isFirst = i == 0;
@@ -138,4 +151,100 @@ class YgPicker extends StatelessWidget {
 
     return widgets;
   }
+}
+
+class YgPickerSingle<T extends Object> extends YgPicker implements YgPickerColumn<T> {
+  const YgPickerSingle({
+    super.key,
+    required this.initialValue,
+    required this.onChange,
+    required this.onEditingComplete,
+    required this.onRollover,
+    required this.entries,
+    required this.looping,
+    super.metric,
+  });
+
+  /// The initial value selected in the column.
+  @override
+  final T? initialValue;
+
+  /// Called when the value changes.
+  @override
+  final ValueChanged<T>? onChange;
+
+  /// Called once the user has completed editing this column.
+  ///
+  /// In practice this means when the user has stopped scrolling and the scroll
+  /// animation has ended. After this event has been fired it's guaranteed the
+  /// value will not change again, unless the user starts a new scroll.
+  @override
+  final ValueChanged<T>? onEditingComplete;
+
+  /// Called with the int 1 when the value loops around from the last to first
+  /// value, and called with -1 when the value loops around from the first to
+  /// last value.
+  @override
+  final ValueChanged<int>? onRollover;
+
+  /// All the entries shown in the column.
+  @override
+  final List<YgPickerEntry<T>> entries;
+
+  /// Whether the values loop around.
+  @override
+  final bool looping;
+
+  @override
+  YgPickerColumnWidget<T> _createWidget({
+    required double rowHeight,
+    required MainAxisAlignment alignment,
+    required String? metric,
+  }) {
+    return YgPickerColumnWidget<T>(
+      rowHeight: rowHeight,
+      column: this,
+      alignment: alignment,
+      metric: metric,
+      looping: looping,
+    );
+  }
+}
+
+class YgPickerDual<T1 extends Object, T2 extends Object> extends YgPicker {
+  const YgPickerDual({
+    super.key,
+    this.onChange,
+    this.onEditingComplete,
+    required this.column1,
+    required this.column2,
+  });
+
+  @override
+  final ValueChanged<({T1 value1, T2 value2})>? onChange;
+  @override
+  final ValueChanged<({T1 value1, T2 value2})>? onEditingComplete;
+
+  final YgPickerColumn<T1> column1;
+  final YgPickerColumn<T2> column2;
+}
+
+class YgPickerTriple<T1 extends Object, T2 extends Object, T3 extends Object> extends YgPicker {
+  const YgPickerTriple({
+    super.key,
+    this.onChange,
+    this.onEditingComplete,
+    required this.column1,
+    required this.column2,
+    required this.column3,
+  });
+
+  @override
+  final ValueChanged<({T1 value1, T2 value2, T3 value3})>? onChange;
+  @override
+  final ValueChanged<({T1 value1, T2 value2, T3 value3})>? onEditingComplete;
+
+  final YgPickerColumn<T1> column1;
+  final YgPickerColumn<T2> column2;
+  final YgPickerColumn<T3> column3;
 }

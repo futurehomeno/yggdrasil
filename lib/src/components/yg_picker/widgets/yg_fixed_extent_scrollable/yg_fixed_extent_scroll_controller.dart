@@ -22,20 +22,14 @@ class YgFixedExtentScrollController extends ScrollController {
   /// [initialItem] defaults to zero.
   YgFixedExtentScrollController({
     this.initialItem = 0,
-    this.onAttach,
-    this.onDetach,
+    super.onAttach,
+    super.onDetach,
   });
 
   /// The page to show when first creating the scroll view.
   ///
   /// Defaults to zero.
   final int initialItem;
-
-  @override
-  final ValueChanged<ScrollPosition>? onAttach;
-
-  @override
-  final ValueChanged<ScrollPosition>? onDetach;
 
   /// The currently selected item index that's closest to the center of the viewport.
   ///
