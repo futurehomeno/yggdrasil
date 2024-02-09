@@ -97,16 +97,16 @@ class _$YgPickerTheme {
   ];
 
   static const List<Duration> animationDuration = <Duration>[
-    Duration(milliseconds: 200),
-    Duration(milliseconds: 200),
-    Duration(milliseconds: 200),
-    Duration(milliseconds: 200),
+    Duration(milliseconds: 500),
+    Duration(milliseconds: 500),
+    Duration(milliseconds: 500),
+    Duration(milliseconds: 500),
   ];
 
   static const List<Curve> animationCurve = <Curve>[
-    Curves.easeInOut,
-    Curves.easeInOut,
-    Curves.easeInOut,
-    Curves.easeInOut,
+    Cubic(0.42, 0, 0.58, 1),
+    Cubic(0.42, 0, 0.58, 1),
+    Cubic(0.42, 0, 0.58, 1),
+    Cubic(0.42, 0, 0.58, 1),
   ];
 }

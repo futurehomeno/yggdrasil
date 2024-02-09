@@ -181,16 +181,18 @@ class YgPickerColumnController<T extends Object> extends ChangeNotifier {
       return;
     }
 
+    // Calculate the rollover counts for the old and new selected items. This
+    // has to happen before the _index is reassigned.
+    final int entryCount = column.widget.entries.length;
+    final int oldRolloverCount = (_index / entryCount).floor();
+    final int newRolloverCount = (scrollController.selectedItem / entryCount).floor();
+
     // Update the index and value, and notify listeners.
     _index = scrollController.selectedItem;
     _value = column.widget.entries[_normalizeIndex(_index)].value;
     notifyListeners();
 
-    // Calculate the rollover counts for the old and new selected items, if the
-    // rollover count has changed, call the onRollover callback.
-    final int entryCount = column.widget.entries.length;
-    final int oldRolloverCount = (_index / entryCount).floor();
-    final int newRolloverCount = (scrollController.selectedItem / entryCount).floor();
+    // If the rollover count has changed, call the onRollover callback.
     if (oldRolloverCount != newRolloverCount) {
       column.widget.onRollover?.call(newRolloverCount - oldRolloverCount);
     }
