@@ -7,15 +7,6 @@ import '_yg_fixed_extent_scrollable.dart';
 /// Similar to a standard [ScrollController] but with the added convenience
 /// mechanisms to read and go to item indices rather than a raw pixel scroll
 /// offset.
-///
-/// See also:
-///
-///  * [YgListWheelScrollView], a scrollable view widget with fixed size items
-///    that this widget controls.
-///  * [YgFixedExtentMetrics], the `metrics` property exposed by
-///    [ScrollNotification] from [YgListWheelScrollView] which can be used
-///    to listen to the current item index on a push basis rather than polling
-///    the [YgFixedExtentScrollController].
 class YgFixedExtentScrollController extends ScrollController {
   /// Creates a scroll controller for scrollables whose items have the same size.
   ///

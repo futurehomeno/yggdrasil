@@ -1,5 +1,7 @@
 // ignore_for_file: prefer-single-widget-per-file
 
+import 'dart:math';
+
 import 'package:flutter/material.dart';
 import 'package:yggdrasil/src/theme/_theme.dart';
 import 'package:yggdrasil/yggdrasil.dart';
@@ -30,10 +32,7 @@ class YgPicker extends StatelessWidget {
 
     int minRows = 0;
     for (final YgPickerColumn<Object> column in columns) {
-      final int entryCount = column.entries.length;
-      if (entryCount > minRows) {
-        minRows = entryCount;
-      }
+      minRows = max(minRows, column.entries.length);
     }
 
     final double totalHeight = rowHeight * (minRows > 3 ? 5 : 3);
@@ -117,29 +116,5 @@ class YgPicker extends StatelessWidget {
     }
 
     return widgets;
-  }
-}
-
-class YgPickerColumnInheritedData extends InheritedWidget {
-  const YgPickerColumnInheritedData({
-    super.key,
-    required super.child,
-    required this.rowHeight,
-    required this.alignment,
-    required this.metric,
-  });
-
-  final double rowHeight;
-  final MainAxisAlignment alignment;
-  final String? metric;
-
-  @override
-  bool updateShouldNotify(covariant YgPickerColumnInheritedData oldWidget) {
-    return rowHeight != oldWidget.rowHeight || alignment != oldWidget.alignment || metric != oldWidget.metric;
-  }
-
-  // ignore: prefer-widget-private-members
-  static YgPickerColumnInheritedData of(BuildContext context) {
-    return context.dependOnInheritedWidgetOfExactType<YgPickerColumnInheritedData>()!;
   }
 }

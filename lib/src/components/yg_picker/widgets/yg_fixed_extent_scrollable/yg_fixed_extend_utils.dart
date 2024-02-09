@@ -1,5 +1,6 @@
 import 'dart:math' as math;
 
+/// Utilities for the [YgFixedExtendScrollable] and related classes.
 class YgFixedExtendUtils {
   const YgFixedExtendUtils._();
 

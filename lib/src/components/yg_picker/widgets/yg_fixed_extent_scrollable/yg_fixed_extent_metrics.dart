@@ -1,14 +1,7 @@
 import 'package:flutter/material.dart';
 
-/// Metrics for a [ScrollPosition] to a scroll view with fixed item sizes.
-///
-/// The metrics are available on [ScrollNotification]s generated from a scroll
-/// views such as [YgListWheelScrollView]s with a [YgFixedExtentScrollController]
-/// and exposes the current [itemIndex] and the scroll view's extents.
-///
-/// `FixedExtent` refers to the fact that the scrollable items have the same
-/// size. This is distinct from `Fixed` in the parent class name's
-/// [FixedScrollMetrics] which refers to its immutability.
+/// Metrics for a [YgFixedExtentScrollPosition] to a scroll view with fixed item
+/// sizes.
 class YgFixedExtentMetrics extends FixedScrollMetrics {
   /// Creates an immutable snapshot of values associated with a
   /// [YgListWheelScrollView].

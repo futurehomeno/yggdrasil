@@ -1,8 +1,9 @@
 import 'package:flutter/cupertino.dart';
 import 'package:yggdrasil/yggdrasil.dart';
 
-import '../picker_screen.dart';
+import '../picker_example_helpers.dart';
 
+/// An example of a date picker implemented using the [YgPicker].
 class DatePickerExample extends StatefulWidget {
   const DatePickerExample({super.key});
 
@@ -72,7 +73,7 @@ class _DatePickerExampleState extends State<DatePickerExample> {
         ),
         YgPickerColumn<int>(
           onChange: (int value) {},
-          entries: PickerScreen.createEntries(31),
+          entries: PickerExampleHelpers.createEntries(31),
           initialValue: date.day - 1,
           controller: _dayController,
           looping: true,
@@ -86,7 +87,7 @@ class _DatePickerExampleState extends State<DatePickerExample> {
         ),
         YgPickerColumn<int>(
           onChange: (int value) {},
-          entries: PickerScreen.createEntries(100, 2000),
+          entries: PickerExampleHelpers.createEntries(100, 2000),
           initialValue: date.year - 2000,
           controller: _yearController,
         ),

@@ -4,6 +4,7 @@ import 'package:yggdrasil_demo/core/_core.dart';
 import 'package:yggdrasil_demo/widgets/_widgets.dart';
 
 import 'examples/_examples.dart';
+import 'picker_example_helpers.dart';
 
 class PickerScreen extends StatelessWidget {
   const PickerScreen({super.key});
@@ -28,7 +29,7 @@ class PickerScreen extends StatelessWidget {
             child: YgPicker(
               columns: <YgPickerColumn<Object>>[
                 YgPickerColumn<int>(
-                  entries: createEntries(20),
+                  entries: PickerExampleHelpers.createEntries(20),
                   onChange: (int value) {},
                 ),
               ],
@@ -39,18 +40,19 @@ class PickerScreen extends StatelessWidget {
             child: YgPicker(
               columns: <YgPickerColumn<Object>>[
                 YgPickerColumn<int>(
-                  entries: createEntries(20),
+                  entries: PickerExampleHelpers.createEntries(20),
                   onChange: (int value) {},
                 ),
                 YgPickerColumn<int>(
-                  entries: createEntries(20),
+                  entries: PickerExampleHelpers.createEntries(20),
                   onChange: (int value) {},
                 ),
               ],
             ),
           ),
           const YgSection(
-            title: 'Triple column picker',
+            title: 'Triple column date picker',
+            subtitle: 'Uses controllers to modify the value and listens for rollover events.',
             child: DatePickerExample(),
           ),
           YgSection(
@@ -58,7 +60,7 @@ class PickerScreen extends StatelessWidget {
             child: YgPicker(
               columns: <YgPickerColumn<Object>>[
                 YgPickerColumn<int>(
-                  entries: createEntries(32),
+                  entries: PickerExampleHelpers.createEntries(32),
                   onChange: (int value) {},
                 ),
               ],
@@ -70,7 +72,7 @@ class PickerScreen extends StatelessWidget {
             child: YgPicker(
               columns: <YgPickerColumn<Object>>[
                 YgPickerColumn<int>(
-                  entries: createEntries(3),
+                  entries: PickerExampleHelpers.createEntries(3),
                   onChange: (int value) {},
                 ),
               ],
@@ -79,18 +81,5 @@ class PickerScreen extends StatelessWidget {
         ],
       ),
     );
-  }
-
-  static List<YgPickerEntry<int>> createEntries(int amount, [int offset = 1]) {
-    final List<YgPickerEntry<int>> entries = <YgPickerEntry<int>>[];
-
-    for (int i = 0; i < amount; i++) {
-      entries.add(YgPickerEntry<int>(
-        title: (i + offset).toString(),
-        value: i,
-      ));
-    }
-
-    return entries;
   }
 }

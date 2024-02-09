@@ -34,35 +34,40 @@ class YgRowRenderer extends RenderBox
   @override
   void performLayout() {
     final List<RenderBox> children = getChildrenAsList();
-    final List<(RenderBox, double)> sizeObjectList = <(RenderBox, double)>[];
+    final List<_ChildWidthPair> sizeObjectList = <_ChildWidthPair>[];
 
+    // Populate the sizeObjectList with SizeObjects
     for (final RenderBox child in children) {
-      sizeObjectList.add((
-        child,
-        child.getMaxIntrinsicWidth(double.infinity),
+      sizeObjectList.add(_ChildWidthPair(
+        child: child,
+        width: child.getMaxIntrinsicWidth(double.infinity),
       ));
     }
 
-    sizeObjectList.sort(((RenderBox, double) a, (RenderBox, double) b) {
-      return a.$2.compareTo(b.$2);
+    // Sort the sizeObjectList based on width. This is necessary because we want
+    // to allocate the available width to the children starting from the
+    // smallest one. This ensures that smaller children are not starved of space
+    // by larger ones.
+    sizeObjectList.sort((_ChildWidthPair a, _ChildWidthPair b) {
+      return a.width.compareTo(b.width);
     });
 
     final Map<RenderBox, double> computedWidthMap = <RenderBox, double>{};
-
     double remainingMaxWidth = constraints.maxWidth;
     double totalChildWidth = 0;
+
+    // Calculate the width for each child and store it in computedWidthMap.
     for (int i = 0; i < sizeObjectList.length; i++) {
-      final (
-        RenderBox child,
-        double width,
-      ) = sizeObjectList[i];
+      final _ChildWidthPair sizeObject = sizeObjectList[i];
 
       final double currentAvailableWidth = remainingMaxWidth / (sizeObjectList.length - i);
-      computedWidthMap[child] = min(currentAvailableWidth, width);
-      remainingMaxWidth -= width;
-      totalChildWidth += width;
+      computedWidthMap[sizeObject.child] = min(currentAvailableWidth, sizeObject.width);
+      remainingMaxWidth -= sizeObject.width;
+      totalChildWidth += sizeObject.width;
     }
 
+    // If there is remaining minWidth, distribute it equally between the first
+    // and last child.
     final double remainingMinWidth = constraints.minWidth - totalChildWidth;
     if (remainingMinWidth > 0) {
       final double firstWidth = computedWidthMap[children.first] ?? 0;
@@ -71,12 +76,13 @@ class YgRowRenderer extends RenderBox
       computedWidthMap[children.last] = lastWidth + (remainingMinWidth / 2);
     }
 
-    for (final MapEntry<RenderBox, double>(key: RenderBox child, value: double width) in computedWidthMap.entries) {
-      child.layout(
+    // Layout each child with the computed width.
+    for (final MapEntry<RenderBox, double> entry in computedWidthMap.entries) {
+      entry.key.layout(
         constraints.copyWith(
           minHeight: 0,
-          maxWidth: width,
-          minWidth: width,
+          maxWidth: entry.value,
+          minWidth: entry.value,
         ),
         parentUsesSize: true,
       );
@@ -84,6 +90,8 @@ class YgRowRenderer extends RenderBox
 
     double width = 0;
     double height = 0;
+
+    // Calculate the total width and maximum height of this widget.
     for (final RenderBox child in children) {
       width += child.size.width;
       if (child.size.height > height) {
@@ -91,6 +99,7 @@ class YgRowRenderer extends RenderBox
       }
     }
 
+    // Calculate and set the offset of each child.
     double xOffset = (max(width, constraints.minWidth) - width) / 2;
     for (final RenderBox child in children) {
       final YgRowRendererParentData data = (child.parentData as YgRowRendererParentData);
@@ -139,4 +148,14 @@ class YgRowRenderer extends RenderBox
       offset,
     );
   }
+}
+
+class _ChildWidthPair {
+  const _ChildWidthPair({
+    required this.child,
+    required this.width,
+  });
+
+  final RenderBox child;
+  final double width;
 }

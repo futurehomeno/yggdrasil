@@ -1,9 +1,6 @@
-import 'dart:async';
+part of 'yg_picker_column.dart';
 
-import 'package:flutter/material.dart';
-import 'package:yggdrasil/src/components/yg_picker/widgets/_widgets.dart';
-import 'package:yggdrasil/yggdrasil.dart';
-
+/// Controls the value of a [YgPickerColumn].
 class YgPickerColumnController<T extends Object> extends ChangeNotifier {
   YgPickerColumnController({
     T? initialValue,
@@ -14,69 +11,94 @@ class YgPickerColumnController<T extends Object> extends ChangeNotifier {
     );
   }
 
+  /// The scroll controller used by the column.
+  ///
+  /// Prefer using the methods on this controller instead, but in case of
+  /// needing finer control, you can use this controller.
   late final YgFixedExtentScrollController scrollController;
-  YgPickerColumnState<T>? _column;
+
+  _YgPickerColumnState<T>? _column;
   T? _value;
   int _index = 0;
 
+  /// Moves the [YgPicker] to the next value.
   T next() {
-    final YgPickerColumnState<T>? column = _column;
+    final _YgPickerColumnState<T>? column = _column;
     if (column == null) {
       throw Exception('Can not go to next value before controller is attached to Picker.');
     }
-
     final YgPickerColumn<T> widget = column.widget;
+
     final int nextIndex = _index + 1;
+
+    // If the widget is looping, animate to the next index and return the value
+    // at the normalized index.
     if (widget.looping) {
       _animateTo(nextIndex);
 
       return widget.entries[_normalizeIndex(nextIndex)].value;
     }
 
+    // If the next index is within bounds, animate to it and return the value at
+    // that index.
     if (nextIndex < widget.entries.length - 1) {
       _animateTo(nextIndex);
 
       return widget.entries[nextIndex].value;
     }
 
+    // If the next index is out of bounds and the widget is not looping, return
+    // the current value and do not animate.
     return value;
   }
 
+  /// Moves the [YgPicker] to the previous value.
   T previous() {
-    final YgPickerColumnState<T>? column = _column;
+    final _YgPickerColumnState<T>? column = _column;
     if (column == null) {
       throw Exception('Can not go to previous value before controller is attached to Picker.');
     }
-
     final YgPickerColumn<T> widget = column.widget;
+
     final int previousIndex = _index - 1;
+
+    // If the widget is looping, animate to the previous index and return the
+    // value at the normalized previous index
     if (widget.looping) {
       _animateTo(previousIndex);
 
       return widget.entries[_normalizeIndex(previousIndex)].value;
     }
 
+    // If the previous index is within bounds, animate to it and return the
+    // value at that index.
     if (previousIndex > 0) {
       _animateTo(previousIndex);
 
       return widget.entries[previousIndex].value;
     }
 
+    // If the previous index is out of bounds and the widget is not looping,
+    // return the current value and do not animate.
     return value;
   }
 
+  /// The current value of the [YgPicker].
+  ///
+  /// When set animates to the new value, this means [value] will only reflect
+  /// the change as soon as the animation is done.
   T get value {
-    final YgPickerColumnState<T>? column = _column;
-    if (column == null) {
+    final T? value = _value;
+    if (value == null) {
       throw Exception('Can not access value before controller is attached to Picker.');
     }
 
-    return column.widget.entries[_normalizeIndex(_index)].value;
+    return value;
   }
 
   set value(T newValue) {
     final int index = _getValueIndex(newValue);
-    final YgPickerColumnState<T>? column = _column;
+    final _YgPickerColumnState<T>? column = _column;
     if (index == -1 || column == null) {
       return;
     }
@@ -86,6 +108,9 @@ class YgPickerColumnController<T extends Object> extends ChangeNotifier {
       _animateTo(index);
     }
 
+    // Calculate the difference between the target index and the normalized
+    // current index, and determine the halfway point of the entries list for
+    // animation direction.
     final int normalizedIndex = _normalizeIndex(_index);
     final int difference = index - normalizedIndex;
     final int entryCount = widget.entries.length;
@@ -104,7 +129,7 @@ class YgPickerColumnController<T extends Object> extends ChangeNotifier {
     }
   }
 
-  void attach(YgPickerColumnState<T> column) {
+  void _attach(_YgPickerColumnState<T> column) {
     _column = column;
 
     final T? value = this._value;
@@ -112,6 +137,8 @@ class YgPickerColumnController<T extends Object> extends ChangeNotifier {
       return;
     }
 
+    /// If the current value can not be found in the column, select the first
+    /// value instead.
     _index = _getValueIndex(value);
     if (_index == -1) {
       _index = 0;
@@ -121,13 +148,14 @@ class YgPickerColumnController<T extends Object> extends ChangeNotifier {
     notifyListeners();
   }
 
-  void detach() {
+  void _detach() {
+    _index = _normalizeIndex(_index);
     _column = null;
   }
 
   @override
   void dispose() {
-    detach();
+    _detach();
     scrollController.dispose();
     super.dispose();
   }
@@ -147,19 +175,22 @@ class YgPickerColumnController<T extends Object> extends ChangeNotifier {
   }
 
   void _handleScrollUpdate() {
-    final YgPickerColumnState<T>? column = _column;
+    final _YgPickerColumnState<T>? column = _column;
+
     if (scrollController.selectedItem == _index || column == null) {
       return;
     }
 
-    final int entryCount = column.widget.entries.length;
-    final int oldRolloverCount = (_index / entryCount).floor();
-    final int newRolloverCount = (scrollController.selectedItem / entryCount).floor();
-
+    // Update the index and value, and notify listeners.
     _index = scrollController.selectedItem;
     _value = column.widget.entries[_normalizeIndex(_index)].value;
     notifyListeners();
 
+    // Calculate the rollover counts for the old and new selected items, if the
+    // rollover count has changed, call the onRollover callback.
+    final int entryCount = column.widget.entries.length;
+    final int oldRolloverCount = (_index / entryCount).floor();
+    final int newRolloverCount = (scrollController.selectedItem / entryCount).floor();
     if (oldRolloverCount != newRolloverCount) {
       column.widget.onRollover?.call(newRolloverCount - oldRolloverCount);
     }
@@ -168,14 +199,14 @@ class YgPickerColumnController<T extends Object> extends ChangeNotifier {
   }
 
   void _handleEditingChanged() {
-    final YgPickerColumnState<T>? column = _column;
+    final _YgPickerColumnState<T>? column = _column;
     if (!isEditing.value && column != null) {
       column.widget.onEditingComplete?.call(value);
     }
   }
 
   int _normalizeIndex(int index) {
-    final YgPickerColumnState<T>? column = _column;
+    final _YgPickerColumnState<T>? column = _column;
 
     if (column == null) {
       throw Exception('Can not get normalized index when controller is not attached to a picker.');
@@ -183,6 +214,9 @@ class YgPickerColumnController<T extends Object> extends ChangeNotifier {
 
     final YgPickerColumn<T> widget = column.widget;
     final int entryCount = widget.entries.length;
+
+    // If the widget is looping, normalize the index by looping around to the
+    // beginning.
     if (widget.looping) {
       int normalized = index % entryCount;
       if (normalized < 0) {
@@ -192,10 +226,11 @@ class YgPickerColumnController<T extends Object> extends ChangeNotifier {
       return normalized;
     }
 
+    // If the widget is not looping, clamp the index to the bounds of the
+    // entries list.
     if (index > entryCount - 1) {
       return entryCount - 1;
     }
-
     if (index < 0) {
       return 0;
     }
@@ -204,7 +239,7 @@ class YgPickerColumnController<T extends Object> extends ChangeNotifier {
   }
 
   int _getValueIndex(T item) {
-    final YgPickerColumnState<T>? column = _column;
+    final _YgPickerColumnState<T>? column = _column;
     if (column == null) {
       throw Exception('Can not get value index before controller is attached to Picker.');
     }
@@ -223,10 +258,12 @@ class YgPickerColumnController<T extends Object> extends ChangeNotifier {
     );
   }
 
+  /// A [ValueNotifier] which value indicates whether the value is being edited.
   ValueNotifier<bool> get isEditing => scrollController.position.isScrollingNotifier;
 
+  /// Whether this column loops back around.
   bool get looping {
-    final YgPickerColumnState<T>? column = _column;
+    final _YgPickerColumnState<T>? column = _column;
 
     if (column == null) {
       throw Exception('Can not access looping before controller is attached to picker.');

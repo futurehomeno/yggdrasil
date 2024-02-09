@@ -1,9 +1,13 @@
+import 'dart:async';
+
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 import 'package:yggdrasil/src/theme/picker/picker_theme.dart';
 import 'package:yggdrasil/yggdrasil.dart';
 
-import '_widgets.dart';
+import 'widgets/_widgets.dart';
+
+part 'yg_picker_column_controller.dart';
 
 /// A single column of the [YgPicker] widget.
 class YgPickerColumn<T extends Object> extends StatefulWidget {
@@ -31,6 +35,10 @@ class YgPickerColumn<T extends Object> extends StatefulWidget {
   /// value will not change again, unless the user starts a new scroll.
   final ValueChanged<T>? onEditingComplete;
 
+  /// Called when the value rolls over.
+  ///
+  /// Only get called when [looping] is set to true.
+  ///
   /// Called with the int 1 when the value loops around from the last to first
   /// value, and called with -1 when the value loops around from the first to
   /// last value.
@@ -46,16 +54,16 @@ class YgPickerColumn<T extends Object> extends StatefulWidget {
   final YgPickerColumnController<T>? controller;
 
   @override
-  State<YgPickerColumn<T>> createState() => YgPickerColumnState<T>();
+  State<YgPickerColumn<T>> createState() => _YgPickerColumnState<T>();
 }
 
-class YgPickerColumnState<T extends Object> extends State<YgPickerColumn<T>> {
+class _YgPickerColumnState<T extends Object> extends State<YgPickerColumn<T>> {
   late YgPickerColumnController<T> _controller = widget.controller ?? _createController();
 
   @override
   void initState() {
     super.initState();
-    _controller.attach(this);
+    _controller._attach(this);
   }
 
   @override
@@ -80,14 +88,14 @@ class YgPickerColumnState<T extends Object> extends State<YgPickerColumn<T>> {
   }
 
   void _updateController(YgPickerColumnController<T> controller) {
-    _controller.detach();
+    _controller._detach();
     _controller = controller;
-    _controller.attach(this);
+    _controller._attach(this);
   }
 
   @override
   void dispose() {
-    _controller.detach();
+    _controller._detach();
     if (widget.controller != _controller) {
       _controller.dispose();
     }
