@@ -10,7 +10,7 @@ class YgPickerColumnRendererWidget<T extends Object> extends LeafRenderObjectWid
   const YgPickerColumnRendererWidget({
     super.key,
     required this.offset,
-    required this.column,
+    required this.entries,
     required this.rowHeight,
     required this.minWidth,
     required this.textDefaultStyle,
@@ -18,7 +18,7 @@ class YgPickerColumnRendererWidget<T extends Object> extends LeafRenderObjectWid
     required this.looping,
   });
 
-  final YgPickerColumn<T> column;
+  final List<YgPickerEntry<T>> entries;
   final ViewportOffset offset;
   final bool looping;
   final double rowHeight;
@@ -30,7 +30,7 @@ class YgPickerColumnRendererWidget<T extends Object> extends LeafRenderObjectWid
   RenderObject createRenderObject(BuildContext context) {
     return PickerValueRenderer<T>(
       offset: offset,
-      entries: column.entries,
+      entries: entries,
       textDefaultStyle: textDefaultStyle,
       textSelectedStyle: textSelectedStyle,
       rowHeight: rowHeight,
@@ -42,7 +42,7 @@ class YgPickerColumnRendererWidget<T extends Object> extends LeafRenderObjectWid
   @override
   void updateRenderObject(BuildContext context, covariant PickerValueRenderer<T> renderObject) {
     renderObject.offset = offset;
-    renderObject.entries = column.entries;
+    renderObject.entries = entries;
     renderObject.textDefaultStyle = textDefaultStyle;
     renderObject.textSelectedStyle = textSelectedStyle;
     renderObject.rowHeight = rowHeight;

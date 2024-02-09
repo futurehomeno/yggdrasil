@@ -1,7 +1,7 @@
 import 'demo_field_validator.dart';
 
 /// Validates the value is not null.
-class DemoNullValidator extends DemoFieldValidator<dynamic> {
+class DemoNullValidator extends DemoFieldValidator<Object?> {
   const DemoNullValidator({
     required this.nullError,
   });
@@ -10,7 +10,7 @@ class DemoNullValidator extends DemoFieldValidator<dynamic> {
   final String nullError;
 
   @override
-  String? validate(dynamic value) {
+  String? validate(Object? value) {
     if (value == null) {
       return nullError;
     }

@@ -82,11 +82,11 @@ class _$YgPickerTheme {
     EdgeInsets.symmetric(horizontal: professional_dark.FhDimensions.xxs),
   ];
 
-  static const List<double> indicatorVerticalPadding = <double>[
-    consumer_light.FhDimensions.xs,
-    consumer_dark.FhDimensions.xs,
-    professional_light.FhDimensions.xs,
-    professional_dark.FhDimensions.xs,
+  static const List<EdgeInsets> indicatorPadding = <EdgeInsets>[
+    EdgeInsets.symmetric(vertical: consumer_light.FhDimensions.xs),
+    EdgeInsets.symmetric(vertical: consumer_dark.FhDimensions.xs),
+    EdgeInsets.symmetric(vertical: professional_light.FhDimensions.xs),
+    EdgeInsets.symmetric(vertical: professional_dark.FhDimensions.xs),
   ];
 
   static const List<double> minimumColumnWidth = <double>[

@@ -29,7 +29,7 @@ class YgFixedExtentScrollController extends ScrollController {
   /// The page to show when first creating the scroll view.
   ///
   /// Defaults to zero.
-  final int initialItem;
+  int initialItem;
 
   /// The currently selected item index that's closest to the center of the viewport.
   ///

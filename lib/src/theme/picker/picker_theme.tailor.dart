@@ -14,7 +14,7 @@ class YgPickerTheme extends ThemeExtension<YgPickerTheme> {
     required this.columnPadding,
     required this.indicatorBorderRadius,
     required this.indicatorColor,
-    required this.indicatorVerticalPadding,
+    required this.indicatorPadding,
     required this.minimumColumnWidth,
     required this.textDefaultStyle,
     required this.textPadding,
@@ -25,7 +25,7 @@ class YgPickerTheme extends ThemeExtension<YgPickerTheme> {
   final EdgeInsets columnPadding;
   final BorderRadius indicatorBorderRadius;
   final Color indicatorColor;
-  final double indicatorVerticalPadding;
+  final EdgeInsets indicatorPadding;
   final double minimumColumnWidth;
   final TextStyle textDefaultStyle;
   final EdgeInsets textPadding;
@@ -36,7 +36,7 @@ class YgPickerTheme extends ThemeExtension<YgPickerTheme> {
     columnPadding: _$YgPickerTheme.columnPadding[0],
     indicatorBorderRadius: _$YgPickerTheme.indicatorBorderRadius[0],
     indicatorColor: _$YgPickerTheme.indicatorColor[0],
-    indicatorVerticalPadding: _$YgPickerTheme.indicatorVerticalPadding[0],
+    indicatorPadding: _$YgPickerTheme.indicatorPadding[0],
     minimumColumnWidth: _$YgPickerTheme.minimumColumnWidth[0],
     textDefaultStyle: _$YgPickerTheme.textDefaultStyle[0],
     textPadding: _$YgPickerTheme.textPadding[0],
@@ -48,7 +48,7 @@ class YgPickerTheme extends ThemeExtension<YgPickerTheme> {
     columnPadding: _$YgPickerTheme.columnPadding[1],
     indicatorBorderRadius: _$YgPickerTheme.indicatorBorderRadius[1],
     indicatorColor: _$YgPickerTheme.indicatorColor[1],
-    indicatorVerticalPadding: _$YgPickerTheme.indicatorVerticalPadding[1],
+    indicatorPadding: _$YgPickerTheme.indicatorPadding[1],
     minimumColumnWidth: _$YgPickerTheme.minimumColumnWidth[1],
     textDefaultStyle: _$YgPickerTheme.textDefaultStyle[1],
     textPadding: _$YgPickerTheme.textPadding[1],
@@ -60,7 +60,7 @@ class YgPickerTheme extends ThemeExtension<YgPickerTheme> {
     columnPadding: _$YgPickerTheme.columnPadding[2],
     indicatorBorderRadius: _$YgPickerTheme.indicatorBorderRadius[2],
     indicatorColor: _$YgPickerTheme.indicatorColor[2],
-    indicatorVerticalPadding: _$YgPickerTheme.indicatorVerticalPadding[2],
+    indicatorPadding: _$YgPickerTheme.indicatorPadding[2],
     minimumColumnWidth: _$YgPickerTheme.minimumColumnWidth[2],
     textDefaultStyle: _$YgPickerTheme.textDefaultStyle[2],
     textPadding: _$YgPickerTheme.textPadding[2],
@@ -72,7 +72,7 @@ class YgPickerTheme extends ThemeExtension<YgPickerTheme> {
     columnPadding: _$YgPickerTheme.columnPadding[3],
     indicatorBorderRadius: _$YgPickerTheme.indicatorBorderRadius[3],
     indicatorColor: _$YgPickerTheme.indicatorColor[3],
-    indicatorVerticalPadding: _$YgPickerTheme.indicatorVerticalPadding[3],
+    indicatorPadding: _$YgPickerTheme.indicatorPadding[3],
     minimumColumnWidth: _$YgPickerTheme.minimumColumnWidth[3],
     textDefaultStyle: _$YgPickerTheme.textDefaultStyle[3],
     textPadding: _$YgPickerTheme.textPadding[3],
@@ -92,7 +92,7 @@ class YgPickerTheme extends ThemeExtension<YgPickerTheme> {
     EdgeInsets? columnPadding,
     BorderRadius? indicatorBorderRadius,
     Color? indicatorColor,
-    double? indicatorVerticalPadding,
+    EdgeInsets? indicatorPadding,
     double? minimumColumnWidth,
     TextStyle? textDefaultStyle,
     EdgeInsets? textPadding,
@@ -104,8 +104,7 @@ class YgPickerTheme extends ThemeExtension<YgPickerTheme> {
       indicatorBorderRadius:
           indicatorBorderRadius ?? this.indicatorBorderRadius,
       indicatorColor: indicatorColor ?? this.indicatorColor,
-      indicatorVerticalPadding:
-          indicatorVerticalPadding ?? this.indicatorVerticalPadding,
+      indicatorPadding: indicatorPadding ?? this.indicatorPadding,
       minimumColumnWidth: minimumColumnWidth ?? this.minimumColumnWidth,
       textDefaultStyle: textDefaultStyle ?? this.textDefaultStyle,
       textPadding: textPadding ?? this.textPadding,
@@ -122,8 +121,7 @@ class YgPickerTheme extends ThemeExtension<YgPickerTheme> {
       indicatorBorderRadius:
           t < 0.5 ? indicatorBorderRadius : other.indicatorBorderRadius,
       indicatorColor: Color.lerp(indicatorColor, other.indicatorColor, t)!,
-      indicatorVerticalPadding:
-          t < 0.5 ? indicatorVerticalPadding : other.indicatorVerticalPadding,
+      indicatorPadding: t < 0.5 ? indicatorPadding : other.indicatorPadding,
       minimumColumnWidth:
           t < 0.5 ? minimumColumnWidth : other.minimumColumnWidth,
       textDefaultStyle:
@@ -147,8 +145,8 @@ class YgPickerTheme extends ThemeExtension<YgPickerTheme> {
                 .equals(indicatorBorderRadius, other.indicatorBorderRadius) &&
             const DeepCollectionEquality()
                 .equals(indicatorColor, other.indicatorColor) &&
-            const DeepCollectionEquality().equals(
-                indicatorVerticalPadding, other.indicatorVerticalPadding) &&
+            const DeepCollectionEquality()
+                .equals(indicatorPadding, other.indicatorPadding) &&
             const DeepCollectionEquality()
                 .equals(minimumColumnWidth, other.minimumColumnWidth) &&
             const DeepCollectionEquality()
@@ -167,7 +165,7 @@ class YgPickerTheme extends ThemeExtension<YgPickerTheme> {
       const DeepCollectionEquality().hash(columnPadding),
       const DeepCollectionEquality().hash(indicatorBorderRadius),
       const DeepCollectionEquality().hash(indicatorColor),
-      const DeepCollectionEquality().hash(indicatorVerticalPadding),
+      const DeepCollectionEquality().hash(indicatorPadding),
       const DeepCollectionEquality().hash(minimumColumnWidth),
       const DeepCollectionEquality().hash(textDefaultStyle),
       const DeepCollectionEquality().hash(textPadding),

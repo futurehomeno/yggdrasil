@@ -3,6 +3,8 @@ import 'package:yggdrasil/yggdrasil.dart';
 import 'package:yggdrasil_demo/core/_core.dart';
 import 'package:yggdrasil_demo/widgets/_widgets.dart';
 
+import 'examples/_examples.dart';
+
 class PickerScreen extends StatelessWidget {
   const PickerScreen({super.key});
 
@@ -23,28 +25,55 @@ class PickerScreen extends StatelessWidget {
         children: <Widget>[
           YgSection(
             title: 'Single column picker',
-            child: YgPicker.single<int>(
-              entries: createEntries(20),
-              onChange: (int value) {},
+            child: YgPicker(
+              columns: <YgPickerColumn<Object>>[
+                YgPickerColumn<int>(
+                  entries: createEntries(20),
+                  onChange: (int value) {},
+                ),
+              ],
             ),
           ),
           YgSection(
-            title: 'Multi column picker',
-            child: _buildDatePicker(),
+            title: 'Dual column picker',
+            child: YgPicker(
+              columns: <YgPickerColumn<Object>>[
+                YgPickerColumn<int>(
+                  entries: createEntries(20),
+                  onChange: (int value) {},
+                ),
+                YgPickerColumn<int>(
+                  entries: createEntries(20),
+                  onChange: (int value) {},
+                ),
+              ],
+            ),
+          ),
+          const YgSection(
+            title: 'Triple column picker',
+            child: DatePickerExample(),
           ),
           YgSection(
             title: 'Picker with a metric',
-            child: YgPicker.single<int>(
-              entries: createEntries(32),
-              onChange: (int value) {},
+            child: YgPicker(
+              columns: <YgPickerColumn<Object>>[
+                YgPickerColumn<int>(
+                  entries: createEntries(32),
+                  onChange: (int value) {},
+                ),
+              ],
               metric: 'A',
             ),
           ),
           YgSection(
             title: 'Single column picker with less than 4 items',
-            child: YgPicker.single<int>(
-              entries: createEntries(3),
-              onChange: (int value) {},
+            child: YgPicker(
+              columns: <YgPickerColumn<Object>>[
+                YgPickerColumn<int>(
+                  entries: createEntries(3),
+                  onChange: (int value) {},
+                ),
+              ],
             ),
           ),
         ],
@@ -52,54 +81,7 @@ class PickerScreen extends StatelessWidget {
     );
   }
 
-  Widget _buildDatePicker() {
-    const List<String> months = <String>[
-      'January',
-      'February',
-      'March',
-      'April',
-      'May',
-      'June',
-      'July',
-      'August',
-      'September',
-      'October',
-      'November',
-      'December',
-    ];
-
-    final DateTime date = DateTime.now();
-
-    return YgPicker(
-      columns: <YgPickerColumn<Object>>[
-        YgPickerColumn<String>(
-          onChange: (String value) {},
-          entries: months
-              .map(
-                (String month) => YgPickerEntry<String>(
-                  title: month,
-                  value: month,
-                ),
-              )
-              .toList(),
-          initialValue: months[date.month - 1],
-          looping: true,
-        ),
-        YgPickerColumn<int>(
-          onChange: (int value) {},
-          entries: createEntries(31),
-          initialValue: date.day - 1,
-        ),
-        YgPickerColumn<int>(
-          onChange: (int value) {},
-          entries: createEntries(100, 2000),
-          initialValue: date.year - 2000,
-        ),
-      ],
-    );
-  }
-
-  List<YgPickerEntry<int>> createEntries(int amount, [int offset = 1]) {
+  static List<YgPickerEntry<int>> createEntries(int amount, [int offset = 1]) {
     final List<YgPickerEntry<int>> entries = <YgPickerEntry<int>>[];
 
     for (int i = 0; i < amount; i++) {
