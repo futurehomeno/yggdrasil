@@ -250,11 +250,12 @@ class YgPickerColumnController<T extends Object> extends ChangeNotifier {
   }
 
   void _animateTo(int index) {
-    // TODO(Tim): This gotta be selected from the theme somehow.
+    final YgPickerTheme theme = _column!.context.pickerTheme;
+
     scrollController.animateToItem(
       index,
-      duration: const Duration(milliseconds: 200),
-      curve: Curves.easeInOut,
+      duration: theme.animationDuration,
+      curve: theme.animationCurve,
     );
   }
 

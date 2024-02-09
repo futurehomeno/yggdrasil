@@ -95,4 +95,18 @@ class _$YgPickerTheme {
     professional_light.FhDimensions.xl,
     professional_dark.FhDimensions.xl,
   ];
+
+  static const List<Duration> animationDuration = <Duration>[
+    Duration(milliseconds: 200),
+    Duration(milliseconds: 200),
+    Duration(milliseconds: 200),
+    Duration(milliseconds: 200),
+  ];
+
+  static const List<Curve> animationCurve = <Curve>[
+    Curves.easeInOut,
+    Curves.easeInOut,
+    Curves.easeInOut,
+    Curves.easeInOut,
+  ];
 }

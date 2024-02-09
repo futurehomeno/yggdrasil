@@ -10,6 +10,8 @@ part of 'picker_theme.dart';
 
 class YgPickerTheme extends ThemeExtension<YgPickerTheme> {
   const YgPickerTheme({
+    required this.animationCurve,
+    required this.animationDuration,
     required this.backgroundColor,
     required this.columnPadding,
     required this.indicatorBorderRadius,
@@ -21,6 +23,8 @@ class YgPickerTheme extends ThemeExtension<YgPickerTheme> {
     required this.textSelectedStyle,
   });
 
+  final Curve animationCurve;
+  final Duration animationDuration;
   final Color backgroundColor;
   final EdgeInsets columnPadding;
   final BorderRadius indicatorBorderRadius;
@@ -32,6 +36,8 @@ class YgPickerTheme extends ThemeExtension<YgPickerTheme> {
   final TextStyle textSelectedStyle;
 
   static final YgPickerTheme consumerLight = YgPickerTheme(
+    animationCurve: _$YgPickerTheme.animationCurve[0],
+    animationDuration: _$YgPickerTheme.animationDuration[0],
     backgroundColor: _$YgPickerTheme.backgroundColor[0],
     columnPadding: _$YgPickerTheme.columnPadding[0],
     indicatorBorderRadius: _$YgPickerTheme.indicatorBorderRadius[0],
@@ -44,6 +50,8 @@ class YgPickerTheme extends ThemeExtension<YgPickerTheme> {
   );
 
   static final YgPickerTheme consumerDark = YgPickerTheme(
+    animationCurve: _$YgPickerTheme.animationCurve[1],
+    animationDuration: _$YgPickerTheme.animationDuration[1],
     backgroundColor: _$YgPickerTheme.backgroundColor[1],
     columnPadding: _$YgPickerTheme.columnPadding[1],
     indicatorBorderRadius: _$YgPickerTheme.indicatorBorderRadius[1],
@@ -56,6 +64,8 @@ class YgPickerTheme extends ThemeExtension<YgPickerTheme> {
   );
 
   static final YgPickerTheme professionalLight = YgPickerTheme(
+    animationCurve: _$YgPickerTheme.animationCurve[2],
+    animationDuration: _$YgPickerTheme.animationDuration[2],
     backgroundColor: _$YgPickerTheme.backgroundColor[2],
     columnPadding: _$YgPickerTheme.columnPadding[2],
     indicatorBorderRadius: _$YgPickerTheme.indicatorBorderRadius[2],
@@ -68,6 +78,8 @@ class YgPickerTheme extends ThemeExtension<YgPickerTheme> {
   );
 
   static final YgPickerTheme professionalDark = YgPickerTheme(
+    animationCurve: _$YgPickerTheme.animationCurve[3],
+    animationDuration: _$YgPickerTheme.animationDuration[3],
     backgroundColor: _$YgPickerTheme.backgroundColor[3],
     columnPadding: _$YgPickerTheme.columnPadding[3],
     indicatorBorderRadius: _$YgPickerTheme.indicatorBorderRadius[3],
@@ -88,6 +100,8 @@ class YgPickerTheme extends ThemeExtension<YgPickerTheme> {
 
   @override
   YgPickerTheme copyWith({
+    Curve? animationCurve,
+    Duration? animationDuration,
     Color? backgroundColor,
     EdgeInsets? columnPadding,
     BorderRadius? indicatorBorderRadius,
@@ -99,6 +113,8 @@ class YgPickerTheme extends ThemeExtension<YgPickerTheme> {
     TextStyle? textSelectedStyle,
   }) {
     return YgPickerTheme(
+      animationCurve: animationCurve ?? this.animationCurve,
+      animationDuration: animationDuration ?? this.animationDuration,
       backgroundColor: backgroundColor ?? this.backgroundColor,
       columnPadding: columnPadding ?? this.columnPadding,
       indicatorBorderRadius:
@@ -116,6 +132,8 @@ class YgPickerTheme extends ThemeExtension<YgPickerTheme> {
   YgPickerTheme lerp(covariant ThemeExtension<YgPickerTheme>? other, double t) {
     if (other is! YgPickerTheme) return this as YgPickerTheme;
     return YgPickerTheme(
+      animationCurve: t < 0.5 ? animationCurve : other.animationCurve,
+      animationDuration: t < 0.5 ? animationDuration : other.animationDuration,
       backgroundColor: Color.lerp(backgroundColor, other.backgroundColor, t)!,
       columnPadding: t < 0.5 ? columnPadding : other.columnPadding,
       indicatorBorderRadius:
@@ -137,6 +155,10 @@ class YgPickerTheme extends ThemeExtension<YgPickerTheme> {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is YgPickerTheme &&
+            const DeepCollectionEquality()
+                .equals(animationCurve, other.animationCurve) &&
+            const DeepCollectionEquality()
+                .equals(animationDuration, other.animationDuration) &&
             const DeepCollectionEquality()
                 .equals(backgroundColor, other.backgroundColor) &&
             const DeepCollectionEquality()
@@ -161,6 +183,8 @@ class YgPickerTheme extends ThemeExtension<YgPickerTheme> {
   int get hashCode {
     return Object.hash(
       runtimeType.hashCode,
+      const DeepCollectionEquality().hash(animationCurve),
+      const DeepCollectionEquality().hash(animationDuration),
       const DeepCollectionEquality().hash(backgroundColor),
       const DeepCollectionEquality().hash(columnPadding),
       const DeepCollectionEquality().hash(indicatorBorderRadius),

@@ -5,7 +5,7 @@ import 'package:flutter/rendering.dart';
 import 'package:yggdrasil/src/theme/_theme.dart';
 import 'package:yggdrasil/yggdrasil.dart';
 
-/// The renderer of a single [YgPicker] widget.
+/// Renders and animates the values within a [YgPickerColumn].
 class YgPickerColumnRendererWidget<T extends Object> extends LeafRenderObjectWidget {
   const YgPickerColumnRendererWidget({
     super.key,
@@ -187,17 +187,19 @@ class PickerValueRenderer<T extends Object> extends RenderBox {
     final double selectedRow = pixels / _rowHeight;
     final double yOffset = (_entries.length > 3 ? 2 : 1) * rowHeight;
 
-    // Calculate the range of rows to render
+    // Calculate the range of which rows to render.
     int minRow = (selectedRow - 2).floor();
     int maxRow = (selectedRow + 3).ceil();
+
+    // Adjust the range to stay within the entries list if the column doesn't
+    // loop.
     if (!_looping) {
-      // Adjust the range to stay within the entries list
       minRow = max(minRow, 0);
       maxRow = min(maxRow, _entries.length);
     }
 
     for (int i = minRow; i < maxRow; i++) {
-      // Normalize row index for looping
+      // Normalize row index for looping.
       int row = i % _entries.length;
       if (row < 0) {
         row += _entries.length;
@@ -209,15 +211,21 @@ class PickerValueRenderer<T extends Object> extends RenderBox {
       final TextStyle style = _textDefaultStyle.lerp(_textSelectedStyle, selectedAmount);
       final YgPickerEntry<T> entry = _entries[row];
 
-      // Prepare the text painter
-      _textPainter.text = TextSpan(text: entry.title, style: style);
-      _textPainter.layout(minWidth: size.width, maxWidth: size.width);
+      // Prepare the text painter.
+      _textPainter.text = TextSpan(
+        text: entry.title,
+        style: style,
+      );
+      _textPainter.layout(
+        minWidth: size.width,
+        maxWidth: size.width,
+      );
 
-      // Calculate the offset for the row
+      // Calculate the offset for the row.
       final double rowOffset = i * rowHeight;
       final double centeringOffset = (_rowHeight - _textPainter.height) / 2;
 
-      // Paint the text onto the canvas at the calculated offset
+      // Paint the text onto the canvas at the calculated offset.
       _textPainter.paint(
         context.canvas,
         Offset(
@@ -230,7 +238,7 @@ class PickerValueRenderer<T extends Object> extends RenderBox {
 
   @override
   double computeMaxIntrinsicWidth(double height) {
-    /// Get the biggest width of all entries both selected and not selected.
+    /// Get the biggest width of all entries both when selected and not selected.
     double width = _minWidth;
     for (final YgPickerEntry<T> entry in _entries) {
       _textPainter.text = TextSpan(text: entry.title, style: _textDefaultStyle);
