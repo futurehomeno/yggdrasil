@@ -20,6 +20,8 @@ class YgPickerColumnController<T extends Object> extends ChangeNotifier {
   _YgPickerColumnState<T>? _column;
   T? _value;
   int _index = 0;
+  int _targetIndex = 0;
+  bool _isAnimating = false;
 
   /// Moves the [YgPicker] to the next value.
   T next() {
@@ -29,26 +31,13 @@ class YgPickerColumnController<T extends Object> extends ChangeNotifier {
     }
     final YgPickerColumn<T> widget = column.widget;
 
-    final int nextIndex = _index + 1;
-
-    // If the widget is looping, animate to the next index and return the value
-    // at the normalized index.
-    if (widget.looping) {
-      _animateTo(nextIndex);
-
+    final int nextIndex = _clampIndex((_isAnimating ? _targetIndex : _index) + 1);
+    if (_targetIndex == nextIndex) {
       return widget.entries[_normalizeIndex(nextIndex)].value;
     }
 
-    // If the next index is within bounds, animate to it and return the value at
-    // that index.
-    if (nextIndex < widget.entries.length - 1) {
-      _animateTo(nextIndex);
+    _animateTo(nextIndex);
 
-      return widget.entries[nextIndex].value;
-    }
-
-    // If the next index is out of bounds and the widget is not looping, return
-    // the current value and do not animate.
     return value;
   }
 
@@ -58,28 +47,15 @@ class YgPickerColumnController<T extends Object> extends ChangeNotifier {
     if (column == null) {
       throw Exception('Can not go to previous value before controller is attached to Picker.');
     }
+
     final YgPickerColumn<T> widget = column.widget;
-
-    final int previousIndex = _index - 1;
-
-    // If the widget is looping, animate to the previous index and return the
-    // value at the normalized previous index
-    if (widget.looping) {
-      _animateTo(previousIndex);
-
+    final int previousIndex = _clampIndex((_isAnimating ? _targetIndex : _index) - 1);
+    if (_targetIndex == previousIndex) {
       return widget.entries[_normalizeIndex(previousIndex)].value;
     }
 
-    // If the previous index is within bounds, animate to it and return the
-    // value at that index.
-    if (previousIndex > 0) {
-      _animateTo(previousIndex);
+    _animateTo(previousIndex);
 
-      return widget.entries[previousIndex].value;
-    }
-
-    // If the previous index is out of bounds and the widget is not looping,
-    // return the current value and do not animate.
     return value;
   }
 
@@ -240,6 +216,21 @@ class YgPickerColumnController<T extends Object> extends ChangeNotifier {
     return index;
   }
 
+  int _clampIndex(int index) {
+    final _YgPickerColumnState<T>? column = _column;
+    if (column == null) {
+      throw Exception('Can not clamp index before controller is attached to Picker.');
+    }
+
+    final YgPickerColumn<T> widget = column.widget;
+
+    if (widget.looping) {
+      return index;
+    }
+
+    return index.clamp(0, widget.entries.length - 1);
+  }
+
   int _getValueIndex(T item) {
     final _YgPickerColumnState<T>? column = _column;
     if (column == null) {
@@ -251,14 +242,17 @@ class YgPickerColumnController<T extends Object> extends ChangeNotifier {
     );
   }
 
-  void _animateTo(int index) {
+  void _animateTo(int index) async {
     final YgPickerTheme theme = _column!.context.pickerTheme;
 
-    scrollController.animateToItem(
+    _targetIndex = index;
+    _isAnimating = true;
+    await scrollController.animateToItem(
       index,
       duration: theme.animationDuration,
       curve: theme.animationCurve,
     );
+    _isAnimating = false;
   }
 
   /// A [ValueNotifier] which value indicates whether the value is being edited.
