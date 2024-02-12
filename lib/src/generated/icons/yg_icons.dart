@@ -80,6 +80,8 @@ class YgIcons {
   static const YgColorableIconData carretFatUp = YgColorableIconData(name: 'carretFatUp', path: 'assets/icons/carret_fat_up.svg');
   static const YgColorableIconData cart = YgColorableIconData(name: 'cart', path: 'assets/icons/cart.svg');
   static const YgColorableIconData charger = YgColorableIconData(name: 'charger', path: 'assets/icons/charger.svg');
+  static const YgColorableIconData chargerAlt = YgColorableIconData(name: 'chargerAlt', path: 'assets/icons/charger_alt.svg');
+  static const YgColorableIconData chargerAltDisabled = YgColorableIconData(name: 'chargerAltDisabled', path: 'assets/icons/charger_alt_disabled.svg');
   static const YgColorableIconData chargerDisabled = YgColorableIconData(name: 'chargerDisabled', path: 'assets/icons/charger_disabled.svg');
   static const YgColorableIconData chargerQuestion = YgColorableIconData(name: 'chargerQuestion', path: 'assets/icons/charger_question.svg');
   static const YgColorableIconData check = YgColorableIconData(name: 'check', path: 'assets/icons/check.svg');
@@ -201,6 +203,7 @@ class YgIcons {
   static const YgColorableIconData energySolar = YgColorableIconData(name: 'energySolar', path: 'assets/icons/energy_solar.svg');
   static const YgColorableIconData energyWind = YgColorableIconData(name: 'energyWind', path: 'assets/icons/energy_wind.svg');
   static const YgColorableIconData enocean = YgColorableIconData(name: 'enocean', path: 'assets/icons/enocean.svg');
+  static const YgIconData enoceanColorful = YgIconData(name: 'enoceanColorful', path: 'assets/icons/enocean_colorful.svg');
   static const YgColorableIconData error = YgColorableIconData(name: 'error', path: 'assets/icons/error.svg');
   static const YgColorableIconData export = YgColorableIconData(name: 'export', path: 'assets/icons/export.svg');
   static const YgColorableIconData eyeClosed = YgColorableIconData(name: 'eyeClosed', path: 'assets/icons/eye_closed.svg');
@@ -224,6 +227,7 @@ class YgIcons {
   static const YgColorableIconData force = YgColorableIconData(name: 'force', path: 'assets/icons/force.svg');
   static const YgColorableIconData furnace = YgColorableIconData(name: 'furnace', path: 'assets/icons/furnace.svg');
   static const YgColorableIconData futurehome = YgColorableIconData(name: 'futurehome', path: 'assets/icons/futurehome.svg');
+  static const YgIconData futurehomeColorful = YgIconData(name: 'futurehomeColorful', path: 'assets/icons/futurehome_colorful.svg');
   static const YgColorableIconData garage = YgColorableIconData(name: 'garage', path: 'assets/icons/garage.svg');
   static const YgColorableIconData garageClosed = YgColorableIconData(name: 'garageClosed', path: 'assets/icons/garage_closed.svg');
   static const YgColorableIconData garageOpen = YgColorableIconData(name: 'garageOpen', path: 'assets/icons/garage_open.svg');
@@ -514,7 +518,9 @@ class YgIcons {
   static const YgColorableIconData ygg = YgColorableIconData(name: 'ygg', path: 'assets/icons/ygg.svg');
   static const YgIconData yggColorful = YgIconData(name: 'yggColorful', path: 'assets/icons/ygg_colorful.svg');
   static const YgColorableIconData zigbee = YgColorableIconData(name: 'zigbee', path: 'assets/icons/zigbee.svg');
+  static const YgIconData zigbeeColorful = YgIconData(name: 'zigbeeColorful', path: 'assets/icons/zigbee_colorful.svg');
   static const YgColorableIconData zwave = YgColorableIconData(name: 'zwave', path: 'assets/icons/zwave.svg');
+  static const YgIconData zwaveColorful = YgIconData(name: 'zwaveColorful', path: 'assets/icons/zwave_colorful.svg');
   
   static const List<YgIconData> allIcons = <YgIconData>[
     access,
@@ -594,6 +600,8 @@ class YgIcons {
     carretFatUp,
     cart,
     charger,
+    chargerAlt,
+    chargerAltDisabled,
     chargerDisabled,
     chargerQuestion,
     check,
@@ -715,6 +723,7 @@ class YgIcons {
     energySolar,
     energyWind,
     enocean,
+    enoceanColorful,
     error,
     export,
     eyeClosed,
@@ -738,6 +747,7 @@ class YgIcons {
     force,
     furnace,
     futurehome,
+    futurehomeColorful,
     garage,
     garageClosed,
     garageOpen,
@@ -1028,7 +1038,9 @@ class YgIcons {
     ygg,
     yggColorful,
     zigbee,
+    zigbeeColorful,
     zwave,
+    zwaveColorful,
   ];
 }
   
