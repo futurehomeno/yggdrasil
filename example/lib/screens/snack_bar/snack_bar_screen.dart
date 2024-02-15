@@ -71,6 +71,14 @@ class SnackBarScreen extends StatelessWidget {
             ),
           ),
           YgSection(
+            title: 'Snack bar with a long text',
+            child: YgButton(
+              variant: YgButtonVariant.primary,
+              onPressed: () => _showLongTextSnackBar(context),
+              child: const Text('Show'),
+            ),
+          ),
+          YgSection(
             title: 'Snackbar on top of dialog',
             child: YgButton(
               variant: YgButtonVariant.primary,
@@ -79,6 +87,14 @@ class SnackBarScreen extends StatelessWidget {
             ),
           ),
         ],
+      ),
+    );
+  }
+
+  void _showLongTextSnackBar(BuildContext context) {
+    YgSnackBarManager.of(context).showSnackBar(
+      const YgSnackBar(
+        message: 'I am a snack bar with quite some text in it, probably a couple lines worth of text',
       ),
     );
   }

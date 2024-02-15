@@ -63,50 +63,51 @@ class _YgSnackBarState extends StateWithYgStyle<YgSnackBar, YgSnackBarStyle> {
         mainAxisSize: MainAxisSize.min,
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: <Widget>[
-          Row(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            mainAxisSize: MainAxisSize.min,
-            children: <Widget>[
-              SizedBox(
-                height: snackBarTheme.iconContainerSize,
-                width: snackBarTheme.iconContainerSize,
-                child: YgAnimatedDecoratedBox(
-                  decoration: style.iconBackgroundColor.map(
-                    (Color backgroundColor) => BoxDecoration(
-                      shape: BoxShape.circle,
-                      color: backgroundColor,
+          Flexible(
+            child: Row(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              mainAxisSize: MainAxisSize.min,
+              children: <Widget>[
+                SizedBox(
+                  height: snackBarTheme.iconContainerSize,
+                  width: snackBarTheme.iconContainerSize,
+                  child: YgAnimatedDecoratedBox(
+                    decoration: style.iconBackgroundColor.map(
+                      (Color backgroundColor) => BoxDecoration(
+                        shape: BoxShape.circle,
+                        color: backgroundColor,
+                      ),
+                    ),
+                    child: Center(
+                      child: YgAnimatedBuilder(
+                        properties: <Listenable>{
+                          style.icon,
+                          style.iconColor,
+                        },
+                        builder: (BuildContext context, _) {
+                          return YgIcon(
+                            style.icon.value,
+                            size: YgIconSize.small,
+                            color: style.iconColor.value,
+                          );
+                        },
+                      ),
                     ),
                   ),
-                  child: Center(
-                    child: YgAnimatedBuilder(
-                      properties: <Listenable>{
-                        style.icon,
-                        style.iconColor,
-                      },
-                      builder: (BuildContext context, _) {
-                        return YgIcon(
-                          style.icon.value,
-                          size: YgIconSize.small,
-                          color: style.iconColor.value,
-                        );
-                      },
+                ),
+                Flexible(
+                  child: ConstrainedBox(
+                    constraints: BoxConstraints(
+                      minHeight: snackBarTheme.minTextHeight,
+                    ),
+                    child: Text(
+                      widget.message,
+                      style: snackBarTheme.messageTextStyle,
                     ),
                   ),
                 ),
-              ),
-              ConstrainedBox(
-                constraints: BoxConstraints(
-                  minHeight: snackBarTheme.minTextHeight,
-                ),
-                child: Align(
-                  alignment: Alignment.centerLeft,
-                  child: Text(
-                    widget.message,
-                    style: snackBarTheme.messageTextStyle,
-                  ),
-                ),
-              ),
-            ].withHorizontalSpacing(snackBarTheme.messageSpacing),
+              ].withHorizontalSpacing(snackBarTheme.messageSpacing),
+            ),
           ),
           YgIconButton(
             size: YgIconButtonSize.small,
