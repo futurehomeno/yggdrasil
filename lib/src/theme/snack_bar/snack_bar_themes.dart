@@ -91,4 +91,32 @@ class _$YgSnackBarTheme {
     professional_light.FhDimensions.lg,
     professional_dark.FhDimensions.lg,
   ];
+
+  static const List<Duration> animationDuration = <Duration>[
+    Duration(milliseconds: 200),
+    Duration(milliseconds: 200),
+    Duration(milliseconds: 200),
+    Duration(milliseconds: 200),
+  ];
+
+  static const List<Duration> shownDuration = <Duration>[
+    Duration(seconds: 5),
+    Duration(seconds: 5),
+    Duration(seconds: 5),
+    Duration(seconds: 5),
+  ];
+
+  static const List<Curve> animationCurve = <Curve>[
+    Curves.easeInOut,
+    Curves.easeInOut,
+    Curves.easeInOut,
+    Curves.easeInOut,
+  ];
+
+  static const List<BoxConstraints> constraints = <BoxConstraints>[
+    BoxConstraints(maxWidth: 480, minWidth: 260),
+    BoxConstraints(maxWidth: 480, minWidth: 260),
+    BoxConstraints(maxWidth: 480, minWidth: 260),
+    BoxConstraints(maxWidth: 480, minWidth: 260),
+  ];
 }

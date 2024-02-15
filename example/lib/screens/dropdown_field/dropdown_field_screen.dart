@@ -239,9 +239,8 @@ class _DropdownFieldScreenState extends State<DropdownFieldScreen> {
     final String singleSelect = _singleSelectKey.value ?? '';
     final String multiSelect = _multiSelectKey.value?.join(', ') ?? '';
 
-    ScaffoldMessenger.of(context).showSnackBar(
+    YgSnackBarManager.of(context).showSnackBar(
       YgSnackBar(
-        context: context,
         message: 'Submitted form with $singleSelect and $multiSelect.',
       ),
     );

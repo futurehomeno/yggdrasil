@@ -1,107 +1,128 @@
 import 'package:flutter/material.dart';
+import 'package:yggdrasil/src/components/yg_snack_bar/yg_snackbar_close_notification.dart';
 import 'package:yggdrasil/src/theme/_theme.dart';
+import 'package:yggdrasil/src/utils/_utils.dart';
 import 'package:yggdrasil/yggdrasil.dart';
 
-import 'mappers/_mappers.dart';
+import 'yg_snack_bar_state.dart';
+import 'yg_snack_bar_style.dart';
 
-/// A custom widget for styled SnackBar.
-class YgSnackBar extends SnackBar with StatefulWidgetDebugMixin {
-  YgSnackBar({
+class YgSnackBar extends StatefulWidget {
+  const YgSnackBar({
     super.key,
-    required BuildContext context,
-    required String message,
-    YgSnackBarVariant variant = YgSnackBarVariant.highlight,
-    VoidCallback? onPressed,
-    GlobalKey<ScaffoldMessengerState>? scaffoldMessengerKey,
-  })  : assert(scaffoldMessengerKey == null || onPressed == null, 'Cannot use both onPressed and scaffoldMessengerKey'),
-        super(
-          content: _buildSnackBarContent(
-            context: context,
-            message: message,
-            variant: variant,
-            onPressed: onPressed,
-            scaffoldMessengerKey: scaffoldMessengerKey,
-          ),
-          backgroundColor: context.snackBarTheme.backgroundColor,
-          behavior: SnackBarBehavior.floating,
-          margin: context.snackBarTheme.margin,
-          padding: context.snackBarTheme.padding,
-          shape: RoundedRectangleBorder(
-            borderRadius: context.snackBarTheme.borderRadius,
-          ),
-        );
+    required this.message,
+    this.variant = YgSnackBarVariant.highlight,
+    this.onClosePressed,
+  });
 
-  static Widget _buildSnackBarContent({
-    required BuildContext context,
-    required String message,
-    required YgSnackBarVariant variant,
-    required VoidCallback? onPressed,
-    required GlobalKey<ScaffoldMessengerState>? scaffoldMessengerKey,
-  }) {
+  final String message;
+  final YgSnackBarVariant variant;
+  final VoidCallback? onClosePressed;
+
+  @override
+  State<YgSnackBar> createState() => _YgSnackBarState();
+}
+
+class _YgSnackBarState extends StateWithYgStyle<YgSnackBar, YgSnackBarStyle> {
+  late final YgSnackBarState _state = YgSnackBarState(
+    variant: widget.variant,
+  );
+
+  @override
+  void didUpdateWidget(covariant YgSnackBar oldWidget) {
+    _state.variant.value = widget.variant;
+    super.didUpdateWidget(oldWidget);
+  }
+
+  @override
+  YgSnackBarStyle createStyle() {
+    return YgSnackBarStyle(
+      state: _state,
+      vsync: this,
+    );
+  }
+
+  @override
+  void dispose() {
+    _state.dispose();
+    super.dispose();
+  }
+
+  @override
+  Widget build(BuildContext context) {
     final YgSnackBarTheme snackBarTheme = context.snackBarTheme;
 
-    return Row(
-      crossAxisAlignment: CrossAxisAlignment.start,
-      children: <Widget>[
-        _buildDecorationIcon(snackBarTheme, variant),
-        Expanded(
-          child: ConstrainedBox(
-            constraints: BoxConstraints(
-              minHeight: snackBarTheme.minTextHeight,
-            ),
-            child: Align(
-              alignment: Alignment.centerLeft,
-              child: Text(
-                message,
-                style: snackBarTheme.messageTextStyle,
+    return Container(
+      constraints: snackBarTheme.constraints,
+      padding: snackBarTheme.padding,
+      decoration: BoxDecoration(
+        color: snackBarTheme.backgroundColor,
+        borderRadius: snackBarTheme.borderRadius,
+      ),
+      child: Row(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        mainAxisSize: MainAxisSize.min,
+        children: <Widget>[
+          SizedBox(
+            height: snackBarTheme.iconContainerSize,
+            width: snackBarTheme.iconContainerSize,
+            child: YgAnimatedDecoratedBox(
+              decoration: style.iconBackgroundColor.map(
+                (Color backgroundColor) => BoxDecoration(
+                  shape: BoxShape.circle,
+                  color: backgroundColor,
+                ),
+              ),
+              child: Center(
+                child: YgAnimatedBuilder(
+                  properties: <Listenable>{
+                    style.icon,
+                    style.iconColor,
+                  },
+                  builder: (BuildContext context, _) {
+                    return YgIcon(
+                      style.icon.value,
+                      size: YgIconSize.small,
+                      color: style.iconColor.value,
+                    );
+                  },
+                ),
               ),
             ),
           ),
-        ),
-        YgIconButton(
-          size: YgIconButtonSize.small,
-          onPressed: () => _onPressed(
-            context: context,
-            onPressed: onPressed,
-            scaffoldMessengerKey: scaffoldMessengerKey,
+          Expanded(
+            child: ConstrainedBox(
+              constraints: BoxConstraints(
+                minHeight: snackBarTheme.minTextHeight,
+              ),
+              child: Align(
+                alignment: Alignment.centerLeft,
+                child: Text(
+                  widget.message,
+                  style: snackBarTheme.messageTextStyle,
+                ),
+              ),
+            ),
           ),
-          icon: YgIcons.cross,
-        ),
-      ].withHorizontalSpacing(snackBarTheme.messageSpacing),
-    );
-  }
-
-  static Widget _buildDecorationIcon(YgSnackBarTheme snackBarTheme, YgSnackBarVariant variant) {
-    return Container(
-      height: snackBarTheme.iconContainerSize,
-      width: snackBarTheme.iconContainerSize,
-      decoration: BoxDecoration(
-        shape: BoxShape.circle,
-        color: YgSnackBarMapper.getContainerIconColor(
-          theme: snackBarTheme,
-          snackBarVariant: variant,
-        ),
-      ),
-      child: Center(
-        child: YgSnackBarMapper.getIcon(
-          theme: snackBarTheme,
-          snackBarVariant: variant,
-        ),
+          YgIconButton(
+            size: YgIconButtonSize.small,
+            variant: YgIconButtonVariant.filled,
+            onPressed: () => _onPressed(
+              context: context,
+              onPressed: widget.onClosePressed,
+            ),
+            icon: YgIcons.cross,
+          ),
+        ].withHorizontalSpacing(snackBarTheme.messageSpacing),
       ),
     );
   }
 
-  static void _onPressed({
+  void _onPressed({
     required BuildContext context,
     VoidCallback? onPressed,
-    GlobalKey<ScaffoldMessengerState>? scaffoldMessengerKey,
   }) {
-    if (onPressed != null) {
-      onPressed();
-    } else if (scaffoldMessengerKey != null) {
-      scaffoldMessengerKey.currentState!.hideCurrentSnackBar();
-    } else {
-      ScaffoldMessenger.of(context).hideCurrentSnackBar();
-    }
+    const YgSnackBarCloseNotification().dispatch(context);
+    widget.onClosePressed?.call();
   }
 }

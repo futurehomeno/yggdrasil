@@ -3,7 +3,7 @@ import 'package:package_info_plus/package_info_plus.dart';
 import 'package:yggdrasil/yggdrasil.dart';
 
 class YgAppState extends ChangeNotifier {
-  final GlobalKey<ScaffoldMessengerState> rootScaffoldMessengerKey = GlobalKey<ScaffoldMessengerState>();
+  final GlobalKey<YgSnackBarManagerState> rootSnackBarManagerKey = GlobalKey<YgSnackBarManagerState>();
   final YgTheme _defaultTheme = YgTheme.consumerLight;
   YgTheme _currentTheme = YgTheme.consumerLight;
   YgTheme get theme => _defaultTheme;
