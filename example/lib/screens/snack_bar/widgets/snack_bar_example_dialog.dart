@@ -16,7 +16,7 @@ class SnackBarExampleDialog extends YgDialogRoute {
         return YgDialog(
           header: const YgIcon(YgIcons.info),
           title: 'Example dialog',
-          description: 'The description should provide the necessary information needed to make an informed decision.',
+          description: 'This dialog can open a snackbar which will be shown over top of the dialog it self.',
           ygButtonGroup: YgButtonGroup.vertical(
             children: <YgButton>[
               YgButton(
@@ -42,7 +42,7 @@ class SnackBarExampleDialog extends YgDialogRoute {
   void _showNewSnackBar(BuildContext context) {
     YgSnackBarManager.of(context).showSnackBar(
       const YgSnackBar(
-        message: 'SnackBar on top of a dialog',
+        message: 'SnackBar over top of a dialog',
       ),
     );
   }
