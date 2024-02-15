@@ -25,8 +25,8 @@ class YgSnackBarManager extends StatefulWidget {
 }
 
 class YgSnackBarManagerState extends State<YgSnackBarManager> with TickerProviderStateMixin {
-  final List<SnackBarCompleterCombo> _snackBars = <SnackBarCompleterCombo>[];
-  final List<SnackBarCompleterCombo> _renderedSnackBars = <SnackBarCompleterCombo>[];
+  final List<_SnackBarData> _snackBarQueue = <_SnackBarData>[];
+  final List<_SnackBarData> _renderedSnackBars = <_SnackBarData>[];
   Timer? _timer;
 
   @override
@@ -42,27 +42,28 @@ class YgSnackBarManagerState extends State<YgSnackBarManager> with TickerProvide
       child: Stack(
         children: <Widget>[
           widget.child,
-          for (final SnackBarCompleterCombo snackBar in _renderedSnackBars)
+          for (final _SnackBarData snackBarData in _renderedSnackBars)
             Positioned(
+              key: snackBarData.key,
               bottom: 0,
               right: 0,
               left: 0,
               child: RepaintBoundary(
                 child: AnimatedBuilder(
-                  animation: snackBar.animationController,
+                  animation: snackBarData.animationController,
                   builder: (BuildContext context, Widget? child) {
                     return Align(
                       alignment: Alignment.topRight,
-                      heightFactor: snackBar.animationController.value,
-                      child: SafeArea(
-                        child: Padding(
-                          padding: _theme.margin,
-                          child: child!,
-                        ),
-                      ),
+                      heightFactor: snackBarData.animationController.value,
+                      child: child,
                     );
                   },
-                  child: snackBar.snackBar,
+                  child: SafeArea(
+                    child: Padding(
+                      padding: _theme.margin,
+                      child: snackBarData.snackBar,
+                    ),
+                  ),
                 ),
               ),
             ),
@@ -80,10 +81,11 @@ class YgSnackBarManagerState extends State<YgSnackBarManager> with TickerProvide
   Future<void> showSnackBar(YgSnackBar snackBar) {
     final Completer<void> completer = Completer<void>();
 
-    _snackBars.add(SnackBarCompleterCombo(
+    _snackBarQueue.add(_SnackBarData(
       snackBar: snackBar,
       completer: completer,
       animationController: AnimationController(vsync: this),
+      key: UniqueKey(),
     ));
 
     if (_timer == null) {
@@ -97,11 +99,11 @@ class YgSnackBarManagerState extends State<YgSnackBarManager> with TickerProvide
     _timer?.cancel();
     _timer = null;
 
-    if (_snackBars.isEmpty) {
+    if (_snackBarQueue.isEmpty) {
       return;
     }
 
-    final SnackBarCompleterCombo snackBar = _snackBars.removeAt(0);
+    final _SnackBarData snackBar = _snackBarQueue.removeAt(0);
 
     // Start animating the snack bar off screen.
     snackBar.animationController
@@ -113,6 +115,7 @@ class YgSnackBarManagerState extends State<YgSnackBarManager> with TickerProvide
         .then(
       (_) {
         _renderedSnackBars.remove(snackBar);
+        snackBar.animationController.dispose();
         setState(() {});
       },
     );
@@ -123,11 +126,11 @@ class YgSnackBarManagerState extends State<YgSnackBarManager> with TickerProvide
   }
 
   void _showNextSnackBar() {
-    if (_snackBars.isEmpty) {
+    if (_snackBarQueue.isEmpty) {
       return;
     }
 
-    final SnackBarCompleterCombo snackBar = _snackBars.first;
+    final _SnackBarData snackBar = _snackBarQueue.first;
     _renderedSnackBars.add(snackBar);
 
     snackBar.animationController.animateTo(
@@ -147,14 +150,16 @@ class YgSnackBarManagerState extends State<YgSnackBarManager> with TickerProvide
   YgSnackBarTheme get _theme => context.snackBarTheme;
 }
 
-class SnackBarCompleterCombo {
-  const SnackBarCompleterCombo({
+class _SnackBarData {
+  const _SnackBarData({
     required this.snackBar,
     required this.completer,
     required this.animationController,
+    required this.key,
   });
 
   final YgSnackBar snackBar;
   final Completer<void> completer;
   final AnimationController animationController;
+  final Key key;
 }

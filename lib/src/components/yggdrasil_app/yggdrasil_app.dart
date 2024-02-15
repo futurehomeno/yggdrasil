@@ -6,6 +6,8 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:yggdrasil/yggdrasil.dart';
 
+// TODO(DEV-3148): Probably need to update all theme properties when updating
+// the theme generation.
 /// An application that uses Yggdrasil Design.
 class YggdrasilApp extends StatefulWidget {
   const YggdrasilApp({
@@ -223,6 +225,7 @@ class _YggdrasilAppState extends State<YggdrasilApp> {
     );
   }
 
+  // TODO(DEV-3148): Rewrite this when the new theme generation is done.
   ThemeData _themeBuilder(BuildContext context) {
     ThemeData? theme;
     // Resolve which theme to use based on brightness and high contrast.
@@ -249,6 +252,9 @@ class _YggdrasilAppState extends State<YggdrasilApp> {
     final Color effectiveSelectionColor =
         theme.textSelectionTheme.selectionColor ?? theme.colorScheme.primary.withOpacity(0.40);
     final Color effectiveCursorColor = theme.textSelectionTheme.cursorColor ?? theme.colorScheme.primary;
+
+    // TODO(Tim): This in the future should be updated to something else, not
+    // sure what yet.
     final Color materialColor = widget.color ?? widget.theme?.primaryColor ?? Colors.blue;
 
     return ScrollConfiguration(

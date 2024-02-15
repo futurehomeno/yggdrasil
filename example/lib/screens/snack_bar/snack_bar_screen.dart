@@ -49,7 +49,7 @@ class SnackBarScreen extends StatelessWidget {
             ),
           ),
           YgSection(
-            title: 'Snack bar with root scaffold messenger key',
+            title: 'Snack bar with root snack bar manager key',
             child: Consumer<YgAppState>(
               builder: (BuildContext context, YgAppState ygAppState, Widget? widget) {
                 final GlobalKey<YgSnackBarManagerState> snackBarManagerKey = ygAppState.rootSnackBarManagerKey;

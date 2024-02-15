@@ -114,7 +114,6 @@ class _YgSnackBarState extends StateWithYgStyle<YgSnackBar, YgSnackBarStyle> {
             variant: YgIconButtonVariant.filled,
             onPressed: () => _onPressed(
               context: context,
-              onPressed: widget.onClosePressed,
             ),
             icon: YgIcons.cross,
           ),
@@ -125,7 +124,6 @@ class _YgSnackBarState extends StateWithYgStyle<YgSnackBar, YgSnackBarStyle> {
 
   void _onPressed({
     required BuildContext context,
-    VoidCallback? onPressed,
   }) {
     const YgSnackBarCloseNotification().dispatch(context);
     widget.onClosePressed?.call();
