@@ -17,7 +17,7 @@ void main() {
           GoldenTestScenario(
             name: 'With header, title and description',
             child: const YgDialog(
-              header: YgIcon(YgIcons.info),
+              icon: YgIcon(YgIcons.info),
               title: YgGoldenTestValues.shortText,
               description: YgGoldenTestValues.mediumText,
             ),
@@ -25,15 +25,39 @@ void main() {
           GoldenTestScenario(
             name: 'With header, long title and long description',
             child: const YgDialog(
-              header: YgIcon(YgIcons.info),
+              icon: YgIcon(YgIcons.info),
               title: YgGoldenTestValues.longText,
               description: YgGoldenTestValues.longText,
             ),
           ),
           GoldenTestScenario(
+            name: 'Error variant',
+            child: const YgDialog.error(
+              title: YgGoldenTestValues.shortText,
+            ),
+          ),
+          GoldenTestScenario(
+            name: 'Info variant',
+            child: const YgDialog.info(
+              title: YgGoldenTestValues.shortText,
+            ),
+          ),
+          GoldenTestScenario(
+            name: 'Loading variant',
+            child: const YgDialog.loading(
+              title: YgGoldenTestValues.shortText,
+            ),
+          ),
+          GoldenTestScenario(
+            name: 'Success variant',
+            child: const YgDialog.success(
+              title: YgGoldenTestValues.shortText,
+            ),
+          ),
+          GoldenTestScenario(
             name: 'With header, title, description and button group',
             child: YgDialog(
-              header: const YgIcon(YgIcons.info),
+              icon: const YgIcon(YgIcons.info),
               title: YgGoldenTestValues.shortText,
               description: YgGoldenTestValues.mediumText,
               ygButtonGroup: YgButtonGroup.vertical(
