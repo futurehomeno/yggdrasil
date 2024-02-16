@@ -52,6 +52,31 @@ class _DialogScreenState extends State<DialogScreen> with TickerProviderStateMix
               child: const Text('Show'),
             ),
           ),
+          YgSection.column(
+            title: 'Variants',
+            children: <Widget>[
+              YgButton(
+                variant: YgButtonVariant.primary,
+                onPressed: () => Navigator.of(context).push(ErrorDialog()),
+                child: const Text('Show error dialog'),
+              ),
+              YgButton(
+                variant: YgButtonVariant.primary,
+                onPressed: () => Navigator.of(context).push(InfoDialog()),
+                child: const Text('Show info dialog'),
+              ),
+              YgButton(
+                variant: YgButtonVariant.primary,
+                onPressed: () => Navigator.of(context).push(SuccessDialog()),
+                child: const Text('Show success dialog'),
+              ),
+              YgButton(
+                variant: YgButtonVariant.primary,
+                onPressed: () => Navigator.of(context).push(LoadingDialog()),
+                child: const Text('Show loading dialog'),
+              ),
+            ].withVerticalSpacing(10),
+          ),
         ],
       ),
     );

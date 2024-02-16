@@ -23,6 +23,20 @@ class _$YgDialogTheme {
     professional_dark.FhColors.backgroundWeak,
   ];
 
+  static const List<Color> iconErrorColor = <Color>[
+    consumer_light.FhColors.iconCritical,
+    consumer_dark.FhColors.iconCritical,
+    professional_light.FhColors.iconCritical,
+    professional_dark.FhColors.iconCritical,
+  ];
+
+  static const List<Color> progressIndicatorColor = <Color>[
+    consumer_light.FhColors.interactiveHighlightDefault,
+    consumer_dark.FhColors.interactiveHighlightDefault,
+    professional_light.FhColors.interactiveHighlightDefault,
+    professional_dark.FhColors.interactiveHighlightDefault,
+  ];
+
   static const List<EdgeInsets> outerPadding = <EdgeInsets>[
     EdgeInsets.all(consumer_light.FhDimensions.md),
     EdgeInsets.all(consumer_dark.FhDimensions.md),
@@ -35,6 +49,13 @@ class _$YgDialogTheme {
     EdgeInsets.all(consumer_dark.FhDimensions.xs),
     EdgeInsets.all(professional_light.FhDimensions.xs),
     EdgeInsets.all(professional_dark.FhDimensions.xs),
+  ];
+
+  static const List<EdgeInsets> progressIndicatorPadding = <EdgeInsets>[
+    EdgeInsets.all(4.0),
+    EdgeInsets.all(4.0),
+    EdgeInsets.all(4.0),
+    EdgeInsets.all(4.0),
   ];
 
   static const List<double> titleDescriptionSpacing = <double>[

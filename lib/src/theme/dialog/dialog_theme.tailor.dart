@@ -14,6 +14,7 @@ class YgDialogTheme extends ThemeExtension<YgDialogTheme> {
     required this.buttonSpacing,
     required this.descriptionTextStyle,
     required this.iconContainerColor,
+    required this.iconErrorColor,
     required this.iconPadding,
     required this.maxWidth,
     required this.minWidth,
@@ -22,6 +23,8 @@ class YgDialogTheme extends ThemeExtension<YgDialogTheme> {
     required this.outerBorderRadius,
     required this.outerPadding,
     required this.paddingToScreenEdge,
+    required this.progressIndicatorColor,
+    required this.progressIndicatorPadding,
     required this.scrimColor,
     required this.titleDescriptionSpacing,
     required this.titleTextStyle,
@@ -31,6 +34,7 @@ class YgDialogTheme extends ThemeExtension<YgDialogTheme> {
   final double buttonSpacing;
   final TextStyle descriptionTextStyle;
   final Color iconContainerColor;
+  final Color iconErrorColor;
   final EdgeInsets iconPadding;
   final double maxWidth;
   final double minWidth;
@@ -39,6 +43,8 @@ class YgDialogTheme extends ThemeExtension<YgDialogTheme> {
   final BorderRadius outerBorderRadius;
   final EdgeInsets outerPadding;
   final double paddingToScreenEdge;
+  final Color progressIndicatorColor;
+  final EdgeInsets progressIndicatorPadding;
   final Color scrimColor;
   final double titleDescriptionSpacing;
   final TextStyle titleTextStyle;
@@ -48,6 +54,7 @@ class YgDialogTheme extends ThemeExtension<YgDialogTheme> {
     buttonSpacing: _$YgDialogTheme.buttonSpacing[0],
     descriptionTextStyle: _$YgDialogTheme.descriptionTextStyle[0],
     iconContainerColor: _$YgDialogTheme.iconContainerColor[0],
+    iconErrorColor: _$YgDialogTheme.iconErrorColor[0],
     iconPadding: _$YgDialogTheme.iconPadding[0],
     maxWidth: _$YgDialogTheme.maxWidth[0],
     minWidth: _$YgDialogTheme.minWidth[0],
@@ -56,6 +63,8 @@ class YgDialogTheme extends ThemeExtension<YgDialogTheme> {
     outerBorderRadius: _$YgDialogTheme.outerBorderRadius[0],
     outerPadding: _$YgDialogTheme.outerPadding[0],
     paddingToScreenEdge: _$YgDialogTheme.paddingToScreenEdge[0],
+    progressIndicatorColor: _$YgDialogTheme.progressIndicatorColor[0],
+    progressIndicatorPadding: _$YgDialogTheme.progressIndicatorPadding[0],
     scrimColor: _$YgDialogTheme.scrimColor[0],
     titleDescriptionSpacing: _$YgDialogTheme.titleDescriptionSpacing[0],
     titleTextStyle: _$YgDialogTheme.titleTextStyle[0],
@@ -66,6 +75,7 @@ class YgDialogTheme extends ThemeExtension<YgDialogTheme> {
     buttonSpacing: _$YgDialogTheme.buttonSpacing[1],
     descriptionTextStyle: _$YgDialogTheme.descriptionTextStyle[1],
     iconContainerColor: _$YgDialogTheme.iconContainerColor[1],
+    iconErrorColor: _$YgDialogTheme.iconErrorColor[1],
     iconPadding: _$YgDialogTheme.iconPadding[1],
     maxWidth: _$YgDialogTheme.maxWidth[1],
     minWidth: _$YgDialogTheme.minWidth[1],
@@ -74,6 +84,8 @@ class YgDialogTheme extends ThemeExtension<YgDialogTheme> {
     outerBorderRadius: _$YgDialogTheme.outerBorderRadius[1],
     outerPadding: _$YgDialogTheme.outerPadding[1],
     paddingToScreenEdge: _$YgDialogTheme.paddingToScreenEdge[1],
+    progressIndicatorColor: _$YgDialogTheme.progressIndicatorColor[1],
+    progressIndicatorPadding: _$YgDialogTheme.progressIndicatorPadding[1],
     scrimColor: _$YgDialogTheme.scrimColor[1],
     titleDescriptionSpacing: _$YgDialogTheme.titleDescriptionSpacing[1],
     titleTextStyle: _$YgDialogTheme.titleTextStyle[1],
@@ -84,6 +96,7 @@ class YgDialogTheme extends ThemeExtension<YgDialogTheme> {
     buttonSpacing: _$YgDialogTheme.buttonSpacing[2],
     descriptionTextStyle: _$YgDialogTheme.descriptionTextStyle[2],
     iconContainerColor: _$YgDialogTheme.iconContainerColor[2],
+    iconErrorColor: _$YgDialogTheme.iconErrorColor[2],
     iconPadding: _$YgDialogTheme.iconPadding[2],
     maxWidth: _$YgDialogTheme.maxWidth[2],
     minWidth: _$YgDialogTheme.minWidth[2],
@@ -92,6 +105,8 @@ class YgDialogTheme extends ThemeExtension<YgDialogTheme> {
     outerBorderRadius: _$YgDialogTheme.outerBorderRadius[2],
     outerPadding: _$YgDialogTheme.outerPadding[2],
     paddingToScreenEdge: _$YgDialogTheme.paddingToScreenEdge[2],
+    progressIndicatorColor: _$YgDialogTheme.progressIndicatorColor[2],
+    progressIndicatorPadding: _$YgDialogTheme.progressIndicatorPadding[2],
     scrimColor: _$YgDialogTheme.scrimColor[2],
     titleDescriptionSpacing: _$YgDialogTheme.titleDescriptionSpacing[2],
     titleTextStyle: _$YgDialogTheme.titleTextStyle[2],
@@ -102,6 +117,7 @@ class YgDialogTheme extends ThemeExtension<YgDialogTheme> {
     buttonSpacing: _$YgDialogTheme.buttonSpacing[3],
     descriptionTextStyle: _$YgDialogTheme.descriptionTextStyle[3],
     iconContainerColor: _$YgDialogTheme.iconContainerColor[3],
+    iconErrorColor: _$YgDialogTheme.iconErrorColor[3],
     iconPadding: _$YgDialogTheme.iconPadding[3],
     maxWidth: _$YgDialogTheme.maxWidth[3],
     minWidth: _$YgDialogTheme.minWidth[3],
@@ -110,6 +126,8 @@ class YgDialogTheme extends ThemeExtension<YgDialogTheme> {
     outerBorderRadius: _$YgDialogTheme.outerBorderRadius[3],
     outerPadding: _$YgDialogTheme.outerPadding[3],
     paddingToScreenEdge: _$YgDialogTheme.paddingToScreenEdge[3],
+    progressIndicatorColor: _$YgDialogTheme.progressIndicatorColor[3],
+    progressIndicatorPadding: _$YgDialogTheme.progressIndicatorPadding[3],
     scrimColor: _$YgDialogTheme.scrimColor[3],
     titleDescriptionSpacing: _$YgDialogTheme.titleDescriptionSpacing[3],
     titleTextStyle: _$YgDialogTheme.titleTextStyle[3],
@@ -128,6 +146,7 @@ class YgDialogTheme extends ThemeExtension<YgDialogTheme> {
     double? buttonSpacing,
     TextStyle? descriptionTextStyle,
     Color? iconContainerColor,
+    Color? iconErrorColor,
     EdgeInsets? iconPadding,
     double? maxWidth,
     double? minWidth,
@@ -136,6 +155,8 @@ class YgDialogTheme extends ThemeExtension<YgDialogTheme> {
     BorderRadius? outerBorderRadius,
     EdgeInsets? outerPadding,
     double? paddingToScreenEdge,
+    Color? progressIndicatorColor,
+    EdgeInsets? progressIndicatorPadding,
     Color? scrimColor,
     double? titleDescriptionSpacing,
     TextStyle? titleTextStyle,
@@ -145,6 +166,7 @@ class YgDialogTheme extends ThemeExtension<YgDialogTheme> {
       buttonSpacing: buttonSpacing ?? this.buttonSpacing,
       descriptionTextStyle: descriptionTextStyle ?? this.descriptionTextStyle,
       iconContainerColor: iconContainerColor ?? this.iconContainerColor,
+      iconErrorColor: iconErrorColor ?? this.iconErrorColor,
       iconPadding: iconPadding ?? this.iconPadding,
       maxWidth: maxWidth ?? this.maxWidth,
       minWidth: minWidth ?? this.minWidth,
@@ -155,6 +177,10 @@ class YgDialogTheme extends ThemeExtension<YgDialogTheme> {
       outerBorderRadius: outerBorderRadius ?? this.outerBorderRadius,
       outerPadding: outerPadding ?? this.outerPadding,
       paddingToScreenEdge: paddingToScreenEdge ?? this.paddingToScreenEdge,
+      progressIndicatorColor:
+          progressIndicatorColor ?? this.progressIndicatorColor,
+      progressIndicatorPadding:
+          progressIndicatorPadding ?? this.progressIndicatorPadding,
       scrimColor: scrimColor ?? this.scrimColor,
       titleDescriptionSpacing:
           titleDescriptionSpacing ?? this.titleDescriptionSpacing,
@@ -172,6 +198,7 @@ class YgDialogTheme extends ThemeExtension<YgDialogTheme> {
           TextStyle.lerp(descriptionTextStyle, other.descriptionTextStyle, t)!,
       iconContainerColor:
           Color.lerp(iconContainerColor, other.iconContainerColor, t)!,
+      iconErrorColor: Color.lerp(iconErrorColor, other.iconErrorColor, t)!,
       iconPadding: t < 0.5 ? iconPadding : other.iconPadding,
       maxWidth: t < 0.5 ? maxWidth : other.maxWidth,
       minWidth: t < 0.5 ? minWidth : other.minWidth,
@@ -183,6 +210,10 @@ class YgDialogTheme extends ThemeExtension<YgDialogTheme> {
       outerPadding: t < 0.5 ? outerPadding : other.outerPadding,
       paddingToScreenEdge:
           t < 0.5 ? paddingToScreenEdge : other.paddingToScreenEdge,
+      progressIndicatorColor:
+          Color.lerp(progressIndicatorColor, other.progressIndicatorColor, t)!,
+      progressIndicatorPadding:
+          t < 0.5 ? progressIndicatorPadding : other.progressIndicatorPadding,
       scrimColor: Color.lerp(scrimColor, other.scrimColor, t)!,
       titleDescriptionSpacing:
           t < 0.5 ? titleDescriptionSpacing : other.titleDescriptionSpacing,
@@ -204,6 +235,8 @@ class YgDialogTheme extends ThemeExtension<YgDialogTheme> {
             const DeepCollectionEquality()
                 .equals(iconContainerColor, other.iconContainerColor) &&
             const DeepCollectionEquality()
+                .equals(iconErrorColor, other.iconErrorColor) &&
+            const DeepCollectionEquality()
                 .equals(iconPadding, other.iconPadding) &&
             const DeepCollectionEquality().equals(maxWidth, other.maxWidth) &&
             const DeepCollectionEquality().equals(minWidth, other.minWidth) &&
@@ -217,6 +250,10 @@ class YgDialogTheme extends ThemeExtension<YgDialogTheme> {
                 .equals(outerPadding, other.outerPadding) &&
             const DeepCollectionEquality()
                 .equals(paddingToScreenEdge, other.paddingToScreenEdge) &&
+            const DeepCollectionEquality()
+                .equals(progressIndicatorColor, other.progressIndicatorColor) &&
+            const DeepCollectionEquality().equals(
+                progressIndicatorPadding, other.progressIndicatorPadding) &&
             const DeepCollectionEquality()
                 .equals(scrimColor, other.scrimColor) &&
             const DeepCollectionEquality().equals(
@@ -233,6 +270,7 @@ class YgDialogTheme extends ThemeExtension<YgDialogTheme> {
       const DeepCollectionEquality().hash(buttonSpacing),
       const DeepCollectionEquality().hash(descriptionTextStyle),
       const DeepCollectionEquality().hash(iconContainerColor),
+      const DeepCollectionEquality().hash(iconErrorColor),
       const DeepCollectionEquality().hash(iconPadding),
       const DeepCollectionEquality().hash(maxWidth),
       const DeepCollectionEquality().hash(minWidth),
@@ -241,6 +279,8 @@ class YgDialogTheme extends ThemeExtension<YgDialogTheme> {
       const DeepCollectionEquality().hash(outerBorderRadius),
       const DeepCollectionEquality().hash(outerPadding),
       const DeepCollectionEquality().hash(paddingToScreenEdge),
+      const DeepCollectionEquality().hash(progressIndicatorColor),
+      const DeepCollectionEquality().hash(progressIndicatorPadding),
       const DeepCollectionEquality().hash(scrimColor),
       const DeepCollectionEquality().hash(titleDescriptionSpacing),
       const DeepCollectionEquality().hash(titleTextStyle),

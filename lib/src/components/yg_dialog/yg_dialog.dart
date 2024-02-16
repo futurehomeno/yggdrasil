@@ -2,27 +2,61 @@ import 'package:flutter/material.dart';
 import 'package:yggdrasil/src/theme/_theme.dart';
 import 'package:yggdrasil/yggdrasil.dart';
 
-// TODO(bjhandeland): Icon can sometimes be a loading indicator.
-// TODO(bjhandeland): Factories for variants, e.g. success, warning, etc.
-class YgDialog extends StatelessWidget with StatelessWidgetDebugMixin {
-  const YgDialog({
+part 'variants/yg_dialog_base.dart';
+part 'variants/yg_dialog_error.dart';
+part 'variants/yg_dialog_info.dart';
+part 'variants/yg_dialog_loading.dart';
+part 'variants/yg_dialog_success.dart';
+
+abstract class YgDialog extends StatelessWidget with StatelessWidgetDebugMixin {
+  const factory YgDialog({
+    String? description,
+    required YgIcon icon,
+    Key? key,
+    required String title,
+    YgButtonGroup? ygButtonGroup,
+  }) = YgDialogBase;
+
+  const factory YgDialog.info({
+    String? description,
+    Key? key,
+    required String title,
+    YgButtonGroup? ygButtonGroup,
+  }) = YgDialogInfo;
+
+  const factory YgDialog.error({
+    String? description,
+    Key? key,
+    required String title,
+    YgButtonGroup? ygButtonGroup,
+  }) = YgDialogError;
+
+  const factory YgDialog.success({
+    String? description,
+    Key? key,
+    required String title,
+    YgButtonGroup? ygButtonGroup,
+  }) = YgDialogSuccess;
+
+  const factory YgDialog.loading({
+    String? description,
+    Key? key,
+    required String title,
+    YgButtonGroup? ygButtonGroup,
+  }) = YgDialogLoading;
+
+  const YgDialog._({
     super.key,
-    required this.header,
     required this.title,
     required this.description,
     this.ygButtonGroup,
   });
 
-  /// Content that is displayed above the title, typically an icon.
-  ///
-  /// The content is wrapped in a circular container with a background color.
-  final Widget header;
-
   /// Title of the dialog.
   final String title;
 
   /// Description of the dialog.
-  final String description;
+  final String? description;
 
   /// Optional buttons that are displayed at the bottom of the dialog.
   ///
@@ -54,16 +88,17 @@ class YgDialog extends StatelessWidget with StatelessWidgetDebugMixin {
 
   Widget _buildHeader(YgDialogTheme dialogTheme) {
     return Container(
-      padding: dialogTheme.iconPadding,
       decoration: BoxDecoration(
         color: dialogTheme.iconContainerColor,
         shape: BoxShape.circle,
       ),
-      child: header,
+      child: _buildHeaderContent(dialogTheme),
     );
   }
 
   Widget _buildTextSection(YgDialogTheme dialogTheme) {
+    final String? description = this.description;
+
     return Column(
       children: <Widget>[
         Text(
@@ -71,12 +106,15 @@ class YgDialog extends StatelessWidget with StatelessWidgetDebugMixin {
           textAlign: TextAlign.center,
           style: dialogTheme.titleTextStyle,
         ),
-        Text(
-          description,
-          textAlign: TextAlign.center,
-          style: dialogTheme.descriptionTextStyle,
-        ),
+        if (description != null)
+          Text(
+            description,
+            textAlign: TextAlign.center,
+            style: dialogTheme.descriptionTextStyle,
+          ),
       ].withVerticalSpacing(dialogTheme.titleDescriptionSpacing),
     );
   }
+
+  Widget _buildHeaderContent(YgDialogTheme dialogTheme);
 }
