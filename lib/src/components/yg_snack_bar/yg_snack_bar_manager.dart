@@ -14,6 +14,10 @@ class YgSnackBarManager extends StatefulWidget {
     required this.child,
   });
 
+  /// The widget below this widget in the widget tree.
+  ///
+  /// Every widget bellow this widget in the widget tree will be able use this
+  /// widget to show snack bars.
   final Widget child;
 
   @override
