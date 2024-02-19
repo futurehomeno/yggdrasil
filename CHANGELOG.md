@@ -1,3 +1,9 @@
+# 1.10.1 [2024-02-19T17:50:25.292789]
+
+### Changes
+
+- [fix] Fixed YgPickerColumnController throwing when calling dispose more than once.
+
 # 1.10.0 [2024-02-19T15:57:05.409057]
 
 ## Dev changes
