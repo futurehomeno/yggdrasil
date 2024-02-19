@@ -5,18 +5,13 @@ class YgPickerColumnController<T extends Object> extends ChangeNotifier {
   YgPickerColumnController({
     T? initialValue,
   }) : _value = initialValue {
-    scrollController = YgFixedExtentScrollController(
+    _scrollController = YgFixedExtentScrollController(
       onAttach: _controllerAttached,
       onDetach: _controllerDetached,
     );
   }
 
-  /// The scroll controller used by the column.
-  ///
-  /// Prefer using the methods on this controller instead, but in case of
-  /// needing finer control, you can use this controller.
-  late final YgFixedExtentScrollController scrollController;
-
+  late final YgFixedExtentScrollController _scrollController;
   _YgPickerColumnState<T>? _column;
   T? _value;
   int _index = 0;
@@ -132,7 +127,7 @@ class YgPickerColumnController<T extends Object> extends ChangeNotifier {
   @override
   void dispose() {
     _detach();
-    scrollController.dispose();
+    _scrollController.dispose();
     super.dispose();
   }
 
@@ -153,7 +148,7 @@ class YgPickerColumnController<T extends Object> extends ChangeNotifier {
   void _handleScrollUpdate() {
     final _YgPickerColumnState<T>? column = _column;
 
-    if (scrollController.selectedItem == _index || column == null) {
+    if (_scrollController.selectedItem == _index || column == null) {
       return;
     }
 
@@ -161,10 +156,10 @@ class YgPickerColumnController<T extends Object> extends ChangeNotifier {
     // has to happen before the _index is reassigned.
     final int entryCount = column.widget.entries.length;
     final int oldRolloverCount = (_index / entryCount).floor();
-    final int newRolloverCount = (scrollController.selectedItem / entryCount).floor();
+    final int newRolloverCount = (_scrollController.selectedItem / entryCount).floor();
 
     // Update the index and value, and notify listeners.
-    _index = scrollController.selectedItem;
+    _index = _scrollController.selectedItem;
     _value = column.widget.entries[_normalizeIndex(_index)].value;
     notifyListeners();
 
@@ -247,7 +242,7 @@ class YgPickerColumnController<T extends Object> extends ChangeNotifier {
 
     _targetIndex = index;
     _isAnimating = true;
-    await scrollController.animateToItem(
+    await _scrollController.animateToItem(
       index,
       duration: theme.animationDuration,
       curve: theme.animationCurve,
@@ -256,7 +251,7 @@ class YgPickerColumnController<T extends Object> extends ChangeNotifier {
   }
 
   /// A [ValueNotifier] which value indicates whether the value is being edited.
-  ValueNotifier<bool> get isEditing => scrollController.position.isScrollingNotifier;
+  ValueNotifier<bool> get isEditing => _scrollController.position.isScrollingNotifier;
 
   /// Whether this column loops back around.
   bool get looping {

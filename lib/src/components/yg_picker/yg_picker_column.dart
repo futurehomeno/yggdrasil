@@ -109,7 +109,7 @@ class _YgPickerColumnState<T extends Object> extends State<YgPickerColumn<T>> {
     final String? metric = columnData.metric;
 
     return YgFixedExtentScrollable(
-      controller: _controller.scrollController,
+      controller: _controller._scrollController,
       physics: const YgFixedExtentScrollPhysics(),
       itemExtent: columnData.rowHeight,
       scrollBehavior: ScrollConfiguration.of(context).copyWith(scrollbars: false),
