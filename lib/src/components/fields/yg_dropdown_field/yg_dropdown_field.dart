@@ -14,6 +14,8 @@ import 'yg_dropdown_field_state.dart';
 part 'multi_select/yg_dropdown_field_multi_select.dart';
 part 'multi_select/yg_dropdown_form_field_multi_select.dart';
 part 'multi_select/yg_multi_select_dropdown_controller.dart';
+part 'picker/yg_dropdown_field_picker.dart';
+part 'picker/yg_dropdown_form_field_picker.dart';
 part 'single_select/yg_dropdown_field_single_select.dart';
 part 'single_select/yg_dropdown_form_field_single_select.dart';
 part 'single_select/yg_single_select_dropdown_controller.dart';
@@ -72,6 +74,32 @@ abstract class YgDropdownField<T extends Object> extends StatefulWidget with Sta
     YgCompleteAction completeAction,
     VoidCallback? onEditingComplete,
   }) = _YgDropdownFieldMultiSelect<T>;
+
+  /// Factory constructor for a [YgDropdownField] which uses a picker on mobile.
+  ///
+  /// See [YgDropdownField] for the documentation of every argument.
+  const factory YgDropdownField.picker({
+    bool allowDeselect,
+    YgCompleteAction completeAction,
+    YgSingleSelectDropdownController<T>? controller,
+    bool disabled,
+    YgDropdownAction dropdownAction,
+    required List<YgDropdownEntry<T>> entries,
+    String? error,
+    FocusNode? focusNode,
+    T? initialValue,
+    Key? key,
+    required String label,
+    int? maxLines,
+    int? minLines,
+    ValueChanged<T?>? onChange,
+    VoidCallback? onEditingComplete,
+    ValueChanged<bool>? onFocusChanged,
+    VoidCallback? onPressed,
+    String? placeholder,
+    YgFieldSize size,
+    YgFieldVariant variant,
+  }) = _YgDropdownFieldPicker<T>;
 
   const YgDropdownField._({
     super.key,

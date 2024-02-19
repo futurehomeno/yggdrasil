@@ -1,0 +1,44 @@
+part of '../yg_dropdown_field.dart';
+
+class _YgDropdownFieldPicker<T extends Object> extends YgDropdownField<T> {
+  const _YgDropdownFieldPicker({
+    super.key,
+    required super.entries,
+    required super.label,
+    super.variant = YgFieldVariant.standard,
+    super.size = YgFieldSize.large,
+    super.completeAction = YgCompleteAction.unfocus,
+    super.focusNode,
+    super.error,
+    super.minLines,
+    super.placeholder,
+    super.maxLines = 1,
+    super.disabled = false,
+    super.allowDeselect = false,
+    super.dropdownAction = YgDropdownAction.auto,
+    super.onFocusChanged,
+    super.onPressed,
+    super.onEditingComplete,
+    YgSingleSelectDropdownController<T>? super.controller,
+    this.initialValue,
+    this.onChange,
+  }) : super._();
+
+  /// The initial value of the [YgDropdownField].
+  final T? initialValue;
+
+  /// Called with the new value when the value has changed.
+  final ValueChanged<T?>? onChange;
+
+  @override
+  _YgDropdownFieldPickerState<T> createState() => _YgDropdownFieldPickerState<T>();
+}
+
+class _YgDropdownFieldPickerState<T extends Object> extends YgDropdownFieldWidgetState<T, _YgDropdownFieldPicker<T>> {
+  @override
+  YgDynamicDropdownController<T> createController() {
+    return YgSingleSelectDropdownController<T>(
+      initialValue: widget.initialValue,
+    );
+  }
+}
