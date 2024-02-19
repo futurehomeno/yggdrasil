@@ -10,10 +10,8 @@ class ExampleBottomSheetWithFooter extends YgBottomSheetModalRoute {
   YgBottomSheet buildBottomSheet(BuildContext context) {
     return YgBottomSheet(
       title: 'Example Bottom Sheet',
-      content: const YgSection(
-        child: DemoPlaceholder(
-          height: 200,
-        ),
+      content: const DemoPlaceholder(
+        height: 200,
       ),
       footerButtons: YgButtonGroup.vertical(
         children: <YgButton>[

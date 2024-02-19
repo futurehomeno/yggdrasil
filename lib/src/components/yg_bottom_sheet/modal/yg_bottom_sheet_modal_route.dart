@@ -3,6 +3,8 @@ import 'package:yggdrasil/src/theme/_theme.dart';
 import 'package:yggdrasil/src/utils/_utils.dart';
 import 'package:yggdrasil/yggdrasil.dart';
 
+import '../yg_bottom_sheet_close_pressed_notification.dart';
+
 part 'yg_bottom_sheet_modal.dart';
 
 /// A route which should be extended to create a [YgBottomSheet] modal route.
