@@ -11,12 +11,26 @@ class YgMultiSelectDropdownController<T extends Object>
 
   @override
   String buildTitle(List<YgDropdownEntry<T>> entries) {
+    final _YgDropdownFieldMultiSelectState<T>? fieldState = _fieldState;
+    if (fieldState == null) {
+      throw Exception(
+        'YgMultiSelectDropdownController.buildTitle was called while the controller was not attached to a multi select dropdown!',
+      );
+    }
+
+    final String? metric = fieldState.widget.metric;
     final List<String> titles = <String>[];
 
     for (final YgDropdownEntry<T> entry in entries) {
-      if (value.contains(entry.value)) {
-        titles.add(entry.title);
+      if (!value.contains(entry.value)) {
+        continue;
       }
+
+      if (metric != null) {
+        titles.add('${entry.title} $metric');
+      }
+
+      titles.add(entry.title);
     }
 
     return titles.join(', ');

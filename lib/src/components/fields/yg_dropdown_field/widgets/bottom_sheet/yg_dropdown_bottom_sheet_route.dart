@@ -15,12 +15,12 @@ class YgDropdownBottomSheetRoute<T extends Object> extends YgBottomSheetModalRou
   final VoidCallback onClose;
 
   @override
-  Future<RoutePopDisposition> willPop() {
-    onClose();
+  void onPopInvoked(bool didPop) {
+    if (!didPop) {
+      return;
+    }
 
-    // TODO(DEV-2458): Find alternative way to intercept willPop.
-    // ignore: deprecated_member_use
-    return super.willPop();
+    onClose();
   }
 
   @override

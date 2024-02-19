@@ -19,6 +19,7 @@ class _YgDropdownFieldSingleSelect<T extends Object> extends YgDropdownField<T> 
     super.onFocusChanged,
     super.onPressed,
     super.onEditingComplete,
+    super.metric,
     YgSingleSelectDropdownController<T>? super.controller,
     this.initialValue,
     this.onChange,

@@ -9,14 +9,29 @@ class YgSingleSelectDropdownController<T extends Object>
 
   @override
   String buildTitle(List<YgDropdownEntry<T>> entries) {
+    final _YgDropdownFieldSingleSelectState<T>? fieldState = _fieldState;
+    if (fieldState == null) {
+      throw Exception(
+        'YgSingleSelectDropdownController.buildTitle was called while the controller was not attached to a single select dropdown!',
+      );
+    }
+
     if (value == null) {
       return '';
     }
 
+    final String? metric = fieldState.widget.metric;
+
     for (final YgDropdownEntry<T> entry in entries) {
-      if (entry.value == value) {
-        return entry.title;
+      if (entry.value != value) {
+        continue;
       }
+
+      if (metric != null) {
+        return '${entry.title} $metric';
+      }
+
+      return entry.title;
     }
 
     return '';

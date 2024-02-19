@@ -14,14 +14,13 @@ import 'yg_dropdown_field_state.dart';
 part 'multi_select/yg_dropdown_field_multi_select.dart';
 part 'multi_select/yg_dropdown_form_field_multi_select.dart';
 part 'multi_select/yg_multi_select_dropdown_controller.dart';
-part 'picker/yg_dropdown_field_picker.dart';
-part 'picker/yg_dropdown_form_field_picker.dart';
 part 'single_select/yg_dropdown_field_single_select.dart';
 part 'single_select/yg_dropdown_form_field_single_select.dart';
 part 'single_select/yg_single_select_dropdown_controller.dart';
 part 'yg_dropdown_controller.dart';
 part 'yg_dropdown_form_field.dart';
 
+/// Implementation of the Yggdrasil dropdown.
 abstract class YgDropdownField<T extends Object> extends StatefulWidget with StatefulWidgetDebugMixin {
   /// Factory constructor for a [YgDropdownField] with a single value.
   ///
@@ -33,6 +32,7 @@ abstract class YgDropdownField<T extends Object> extends StatefulWidget with Sta
     YgDropdownAction dropdownAction,
     required List<YgDropdownEntry<T>> entries,
     String? error,
+    String? metric,
     FocusNode? focusNode,
     T? initialValue,
     Key? key,
@@ -59,6 +59,7 @@ abstract class YgDropdownField<T extends Object> extends StatefulWidget with Sta
     YgDropdownAction dropdownAction,
     required List<YgDropdownEntry<T>> entries,
     String? error,
+    String? metric,
     FocusNode? focusNode,
     Set<T>? initialValue,
     Key? key,
@@ -74,32 +75,6 @@ abstract class YgDropdownField<T extends Object> extends StatefulWidget with Sta
     YgCompleteAction completeAction,
     VoidCallback? onEditingComplete,
   }) = _YgDropdownFieldMultiSelect<T>;
-
-  /// Factory constructor for a [YgDropdownField] which uses a picker on mobile.
-  ///
-  /// See [YgDropdownField] for the documentation of every argument.
-  const factory YgDropdownField.picker({
-    bool allowDeselect,
-    YgCompleteAction completeAction,
-    YgSingleSelectDropdownController<T>? controller,
-    bool disabled,
-    YgDropdownAction dropdownAction,
-    required List<YgDropdownEntry<T>> entries,
-    String? error,
-    FocusNode? focusNode,
-    T? initialValue,
-    Key? key,
-    required String label,
-    int? maxLines,
-    int? minLines,
-    ValueChanged<T?>? onChange,
-    VoidCallback? onEditingComplete,
-    ValueChanged<bool>? onFocusChanged,
-    VoidCallback? onPressed,
-    String? placeholder,
-    YgFieldSize size,
-    YgFieldVariant variant,
-  }) = _YgDropdownFieldPicker<T>;
 
   const YgDropdownField._({
     super.key,
@@ -120,6 +95,7 @@ abstract class YgDropdownField<T extends Object> extends StatefulWidget with Sta
     this.onPressed,
     this.controller,
     this.onEditingComplete,
+    this.metric,
   });
 
   /// The variant of the field.
@@ -146,6 +122,9 @@ abstract class YgDropdownField<T extends Object> extends StatefulWidget with Sta
 
   /// The label shown on top of the dropdown field.
   final String label;
+
+  /// The metric shown behind the label and entry titles.
+  final String? metric;
 
   /// The placeholder shown in the dropdown field.
   ///
@@ -420,16 +399,40 @@ abstract class YgDropdownFieldWidgetState<T extends Object, W extends YgDropdown
     _state.opened.value = true;
   }
 
+  void openPickerBottomSheet() {
+    final YgDynamicDropdownController<T> controller = _controller;
+
+    if (controller is! YgSingleSelectDropdownController<T>) {
+      _performPlatformAction(picker: false);
+
+      return;
+    }
+
+    Navigator.of(context).push(
+      YgDropdownPickerBottomSheetRoute<T>(
+        entries: widget.entries,
+        label: widget.label,
+        dropdownController: controller,
+        onClose: _onClosed,
+      ),
+    );
+    _state.opened.value = true;
+  }
+
   void open() {
     _focusNode.requestFocus();
 
     switch (widget.dropdownAction) {
       case YgDropdownAction.bottomSheet:
         return openBottomSheet();
+      case YgDropdownAction.picker:
+        return openPickerBottomSheet();
       case YgDropdownAction.menu:
         return openMenu();
       case YgDropdownAction.auto:
-        return _performPlatformAction();
+        return _performPlatformAction(picker: false);
+      case YgDropdownAction.autoPicker:
+        return _performPlatformAction(picker: true);
       case YgDropdownAction.none:
         return;
     }
@@ -439,7 +442,10 @@ abstract class YgDropdownFieldWidgetState<T extends Object, W extends YgDropdown
     Navigator.popUntil(
       context,
       // ignore: avoid-dynamic
-      (Route<dynamic> route) => route is! YgDropdownMenuRoute && route is! YgDropdownBottomSheetRoute,
+      (Route<dynamic> route) =>
+          route is! YgDropdownMenuRoute &&
+          route is! YgDropdownBottomSheetRoute &&
+          route is! YgDropdownPickerBottomSheetRoute,
     );
     _onClosed();
   }
@@ -473,11 +479,15 @@ abstract class YgDropdownFieldWidgetState<T extends Object, W extends YgDropdown
     }
   }
 
-  void _performPlatformAction() {
-    if (Platform.isAndroid || Platform.isIOS) {
-      openBottomSheet();
-    } else {
+  void _performPlatformAction({
+    required bool picker,
+  }) {
+    if (!(Platform.isAndroid || Platform.isIOS)) {
       openMenu();
+    } else if (picker) {
+      openPickerBottomSheet();
+    } else {
+      openBottomSheet();
     }
   }
 

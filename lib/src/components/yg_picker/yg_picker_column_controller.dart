@@ -126,7 +126,7 @@ class YgPickerColumnController<T extends Object> extends ChangeNotifier {
 
   @override
   void dispose() {
-    _detach();
+    _column = null;
     _scrollController.dispose();
     super.dispose();
   }

@@ -19,10 +19,19 @@ class _YgDropdownFieldMultiSelect<T extends Object> extends YgDropdownField<T> {
     super.onFocusChanged,
     super.onPressed,
     super.onEditingComplete,
+    super.metric,
     YgMultiSelectDropdownController<T>? super.controller,
     this.initialValue,
     this.onChange,
-  }) : super._();
+  })  : assert(
+          dropdownAction != YgDropdownAction.picker,
+          "Can not use 'YgDropdownAction.picker' in YgDropdownField.multiSelect",
+        ),
+        assert(
+          dropdownAction != YgDropdownAction.autoPicker,
+          "Can not use 'YgDropdownAction.pickerAuto' in YgDropdownField.multiSelect",
+        ),
+        super._();
 
   /// The initial value of the [YgDropdownField].
   final Set<T>? initialValue;

@@ -8,6 +8,21 @@ enum YgDropdownAction {
   /// Show a bottom sheet when the dropdown is pressed.
   bottomSheet,
 
+  /// Show a picker bottom sheet when the dropdown is pressed.
+  ///
+  /// !-- WARNING --
+  /// This only works for single select dropdowns, using this option in a multi
+  /// select will throw in dev mode and be treated as auto in release mode.
+  picker,
+
+  /// Show either a menu or picker bottom sheet depending on the current
+  /// platform.
+  ///
+  /// !-- WARNING --
+  /// This only works for single select dropdowns, using this option in a multi
+  /// select will throw in dev mode and be treated as auto in release mode.
+  autoPicker,
+
   /// Show either a menu or dropdown depending on the current platform.
   auto,
 
