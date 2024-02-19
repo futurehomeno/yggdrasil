@@ -9,7 +9,7 @@ class YgDialog extends StatelessWidget with StatelessWidgetDebugMixin {
     super.key,
     required this.header,
     required this.title,
-    required this.description,
+    this.description,
     this.ygButtonGroup,
   });
 
@@ -22,7 +22,7 @@ class YgDialog extends StatelessWidget with StatelessWidgetDebugMixin {
   final String title;
 
   /// Description of the dialog.
-  final String description;
+  final String? description;
 
   /// Optional buttons that are displayed at the bottom of the dialog.
   ///
@@ -64,6 +64,8 @@ class YgDialog extends StatelessWidget with StatelessWidgetDebugMixin {
   }
 
   Widget _buildTextSection(YgDialogTheme dialogTheme) {
+    final String? description = this.description;
+
     return Column(
       children: <Widget>[
         Text(
@@ -71,11 +73,12 @@ class YgDialog extends StatelessWidget with StatelessWidgetDebugMixin {
           textAlign: TextAlign.center,
           style: dialogTheme.titleTextStyle,
         ),
-        Text(
-          description,
-          textAlign: TextAlign.center,
-          style: dialogTheme.descriptionTextStyle,
-        ),
+        if (description != null)
+          Text(
+            description,
+            textAlign: TextAlign.center,
+            style: dialogTheme.descriptionTextStyle,
+          ),
       ].withVerticalSpacing(dialogTheme.titleDescriptionSpacing),
     );
   }
