@@ -9,7 +9,7 @@ class YgDialog extends StatelessWidget with StatelessWidgetDebugMixin {
     super.key,
     required this.header,
     required this.title,
-    required this.description,
+    this.description,
     this.ygButtonGroup,
   });
 
