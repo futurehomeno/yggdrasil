@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:yggdrasil/yggdrasil.dart';
+import 'package:yggdrasil_demo/widgets/_widgets.dart';
 
 class ExampleBottomSheet extends YgBottomSheetModalRoute {
   @override
@@ -7,29 +8,10 @@ class ExampleBottomSheet extends YgBottomSheetModalRoute {
 
   @override
   YgBottomSheet buildBottomSheet(BuildContext context) {
-    return YgBottomSheet(
+    return const YgBottomSheet(
       title: 'Example Bottom Sheet',
-      content: YgSection.list(
-        children: <YgListTile>[
-          const YgListTile(
-            title: 'Example content',
-            subtitle: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit.',
-          ),
-          YgListTile(
-            title: 'Clickable example content',
-            subtitle: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit.',
-            onTap: () {},
-          ),
-        ],
-      ),
-      footerButtons: YgButtonGroup.vertical(
-        children: <YgButton>[
-          YgButton(
-            variant: YgButtonVariant.primary,
-            onPressed: () {},
-            child: const Text('Button'),
-          ),
-        ],
+      content: DemoPlaceholder(
+        height: 200,
       ),
     );
   }
