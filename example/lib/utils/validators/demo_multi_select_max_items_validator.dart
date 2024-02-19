@@ -1,7 +1,7 @@
 import 'demo_field_validator.dart';
 
 /// Validates a certain amount of items are selected.
-class DemoMultiSelectMaxItemsValidator extends DemoFieldValidator<Set<dynamic>?> {
+class DemoMultiSelectMaxItemsValidator extends DemoFieldValidator<Set<Object?>?> {
   const DemoMultiSelectMaxItemsValidator({
     required this.tooManyItemsError,
     required this.maxItems,
@@ -21,7 +21,7 @@ class DemoMultiSelectMaxItemsValidator extends DemoFieldValidator<Set<dynamic>?>
   final int maxItems;
 
   @override
-  String? validate(Set<dynamic>? value) {
+  String? validate(Set<Object?>? value) {
     if (value == null) {
       return null;
     }
