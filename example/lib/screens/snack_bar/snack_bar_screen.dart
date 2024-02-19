@@ -4,6 +4,8 @@ import 'package:yggdrasil/yggdrasil.dart';
 import 'package:yggdrasil_demo/core/_core.dart';
 import 'package:yggdrasil_demo/widgets/_widgets.dart';
 
+import 'widgets/_widgets.dart';
+
 class SnackBarScreen extends StatelessWidget {
   const SnackBarScreen({super.key});
 
@@ -47,14 +49,14 @@ class SnackBarScreen extends StatelessWidget {
             ),
           ),
           YgSection(
-            title: 'Snack bar with root scaffold messenger key',
+            title: 'Snack bar with root snack bar manager key',
             child: Consumer<YgAppState>(
               builder: (BuildContext context, YgAppState ygAppState, Widget? widget) {
-                final GlobalKey<ScaffoldMessengerState> scaffoldMessengerKey = ygAppState.rootScaffoldMessengerKey;
+                final GlobalKey<YgSnackBarManagerState> snackBarManagerKey = ygAppState.rootSnackBarManagerKey;
 
                 return YgButton(
                   variant: YgButtonVariant.primary,
-                  onPressed: () => _showCustomKeySnackBar(context, scaffoldMessengerKey),
+                  onPressed: () => _showCustomKeySnackBar(snackBarManagerKey),
                   child: const Text('Show'),
                 );
               },
@@ -68,24 +70,46 @@ class SnackBarScreen extends StatelessWidget {
               child: const Text('Show'),
             ),
           ),
+          YgSection(
+            title: 'Snack bar with a long text',
+            child: YgButton(
+              variant: YgButtonVariant.primary,
+              onPressed: () => _showLongTextSnackBar(context),
+              child: const Text('Show'),
+            ),
+          ),
+          YgSection(
+            title: 'Snackbar on top of dialog',
+            child: YgButton(
+              variant: YgButtonVariant.primary,
+              onPressed: () => Navigator.of(context).push(SnackBarExampleDialog()),
+              child: const Text('Show'),
+            ),
+          ),
         ],
       ),
     );
   }
 
+  void _showLongTextSnackBar(BuildContext context) {
+    YgSnackBarManager.of(context).showSnackBar(
+      const YgSnackBar(
+        message: 'I am a snack bar with quite some text in it, probably a couple lines worth of text',
+      ),
+    );
+  }
+
   void _showHighlightSnackBar(BuildContext context) {
-    ScaffoldMessenger.of(context).showSnackBar(
-      YgSnackBar(
-        context: context,
+    YgSnackBarManager.of(context).showSnackBar(
+      const YgSnackBar(
         message: 'I\'m a highlight snack bar',
       ),
     );
   }
 
   void _showSuccessSnackBar(BuildContext context) {
-    ScaffoldMessenger.of(context).showSnackBar(
-      YgSnackBar(
-        context: context,
+    YgSnackBarManager.of(context).showSnackBar(
+      const YgSnackBar(
         message: 'I\'m a success snack bar',
         variant: YgSnackBarVariant.success,
       ),
@@ -93,9 +117,8 @@ class SnackBarScreen extends StatelessWidget {
   }
 
   void _showCriticalSnackBar(BuildContext context) {
-    ScaffoldMessenger.of(context).showSnackBar(
-      YgSnackBar(
-        context: context,
+    YgSnackBarManager.of(context).showSnackBar(
+      const YgSnackBar(
         message: 'I\'m a critical snack bar',
         variant: YgSnackBarVariant.critical,
       ),
@@ -103,27 +126,22 @@ class SnackBarScreen extends StatelessWidget {
   }
 
   void _showCustomKeySnackBar(
-    BuildContext context,
-    GlobalKey<ScaffoldMessengerState> scaffoldMessengerKey,
+    GlobalKey<YgSnackBarManagerState> scaffoldMessengerKey,
   ) {
     scaffoldMessengerKey.currentState!.showSnackBar(
-      YgSnackBar(
-        context: context,
+      const YgSnackBar(
         message: 'I am using the global scaffold messenger key',
         variant: YgSnackBarVariant.highlight,
-        scaffoldMessengerKey: scaffoldMessengerKey,
       ),
     );
   }
 
   void _showCustomCallbackSnackBar(BuildContext context) {
-    ScaffoldMessenger.of(context).showSnackBar(
+    YgSnackBarManager.of(context).showSnackBar(
       YgSnackBar(
-        context: context,
         message: 'Closing me will trigger a critical snack bar',
         variant: YgSnackBarVariant.highlight,
-        onPressed: () {
-          ScaffoldMessenger.of(context).hideCurrentSnackBar();
+        onClosePressed: () {
           _showCriticalSnackBar(context);
         },
       ),

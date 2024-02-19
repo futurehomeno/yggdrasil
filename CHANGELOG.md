@@ -1,3 +1,9 @@
+# 1.9.8 [2024-02-12T09:40:57.219727]
+
+## Changes
+
+- [improvement] Added icons: chargerAlt, chargerAltDisabled, enoceanColorful, futurehomeColorful, zigbeeColorful, zwaveColorful
+
 # 1.9.7 [2024-01-24T15:58:47.234136]
 [improvement] Added loading state to mobile scanner DEV-2939.
 
