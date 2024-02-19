@@ -1,3 +1,14 @@
+# 1.10.0 [2024-02-19T15:57:05.409057]
+
+## Dev changes
+
+- [feature] Added YggdrasilApp widget to replace MaterialApp widget DEV-3217.
+- [feature] Added YgSnackBarManager DEV-3133.
+- [feature] Added YgPicker.
+- [improvement] Moved YgSnackBar to YgStates DEV-3133.
+- [improvement] Dialogs can now be created without a description.
+- [dev-improvement] Optimized build_runner.
+
 # 1.9.8 [2024-02-12T09:40:57.219727]
 
 ## Changes
