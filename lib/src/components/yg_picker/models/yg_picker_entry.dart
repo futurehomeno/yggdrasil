@@ -8,6 +8,6 @@ class YgPickerEntry<T extends Object> {
   /// The value passed to the [YgPickerColumn.onChange] method.
   final T value;
 
-  /// The title rendered on screen.
+  /// Title representing the value.
   final String title;
 }
