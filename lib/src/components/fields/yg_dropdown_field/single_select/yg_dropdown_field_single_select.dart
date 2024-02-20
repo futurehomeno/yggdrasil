@@ -38,7 +38,7 @@ class _YgDropdownFieldSingleSelect<T extends Object> extends YgDropdownField<T> 
 class _YgDropdownFieldSingleSelectState<T extends Object>
     extends YgDropdownFieldWidgetState<T, _YgDropdownFieldSingleSelect<T>> {
   @override
-  YgDynamicDropdownController<T> createController() {
+  YgAnyDropdownController<T> createController() {
     return YgSingleSelectDropdownController<T>(
       initialValue: widget.initialValue,
     );

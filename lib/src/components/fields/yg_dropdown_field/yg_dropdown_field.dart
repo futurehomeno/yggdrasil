@@ -1,5 +1,6 @@
 import 'dart:io';
 
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:yggdrasil/src/theme/_theme.dart';
 import 'package:yggdrasil/yggdrasil.dart';
@@ -189,7 +190,7 @@ abstract class YgDropdownField<T extends Object> extends StatefulWidget with Sta
   /// Controls the value of the dropdown and can open or close the dropdown.
   ///
   /// When defined will overwrite the [initialValue].
-  final YgDynamicDropdownController<T>? controller;
+  final YgAnyDropdownController<T>? controller;
 
   /// The action to perform when the user completes editing the field.
   ///
@@ -213,7 +214,7 @@ abstract class YgDropdownField<T extends Object> extends StatefulWidget with Sta
 
 abstract class YgDropdownFieldWidgetState<T extends Object, W extends YgDropdownField<T>> extends State<W> {
   /// The current controller of the dropdown, either user specified or a default one.
-  late YgDynamicDropdownController<T> _controller = widget.controller ?? createController();
+  late YgAnyDropdownController<T> _controller = widget.controller ?? createController();
 
   /// The current [FocusNode] of the dropdown, either user specified of a default one.
   late FocusNode _focusNode = widget.focusNode ?? FocusNode();
@@ -251,7 +252,7 @@ abstract class YgDropdownFieldWidgetState<T extends Object, W extends YgDropdown
 
   @override
   void didUpdateWidget(covariant W oldWidget) {
-    final YgDynamicDropdownController<T>? newController = widget.controller;
+    final YgAnyDropdownController<T>? newController = widget.controller;
     final FocusNode? newFocusNode = widget.focusNode;
 
     if (newFocusNode == null) {
@@ -281,6 +282,7 @@ abstract class YgDropdownFieldWidgetState<T extends Object, W extends YgDropdown
 
   @override
   void dispose() {
+    close();
     _state.removeListener(_handleStateChanged);
     _state.dispose();
     _controller.removeListener(_controllerListener);
@@ -366,7 +368,7 @@ abstract class YgDropdownFieldWidgetState<T extends Object, W extends YgDropdown
   }
 
   /// Creates a default controller to be used if there is no user specified one.
-  YgDynamicDropdownController<T> createController();
+  YgAnyDropdownController<T> createController();
 
   void openMenu() {
     final RenderBox itemBox = context.findRenderObject()! as RenderBox;
@@ -382,6 +384,7 @@ abstract class YgDropdownFieldWidgetState<T extends Object, W extends YgDropdown
         dropdownController: _controller,
         rect: itemRect,
         onClose: _onClosed,
+        metric: widget.metric,
       ),
     );
     _state.opened.value = true;
@@ -390,6 +393,7 @@ abstract class YgDropdownFieldWidgetState<T extends Object, W extends YgDropdown
   void openBottomSheet() {
     Navigator.of(context).push(
       YgDropdownBottomSheetRoute<T>(
+        metric: widget.metric,
         entries: widget.entries,
         label: widget.label,
         dropdownController: _controller,
@@ -400,7 +404,7 @@ abstract class YgDropdownFieldWidgetState<T extends Object, W extends YgDropdown
   }
 
   void openPickerBottomSheet() {
-    final YgDynamicDropdownController<T> controller = _controller;
+    final YgAnyDropdownController<T> controller = _controller;
 
     if (controller is! YgSingleSelectDropdownController<T>) {
       _performPlatformAction(picker: false);
@@ -411,6 +415,7 @@ abstract class YgDropdownFieldWidgetState<T extends Object, W extends YgDropdown
     Navigator.of(context).push(
       YgDropdownPickerBottomSheetRoute<T>(
         entries: widget.entries,
+        metric: widget.metric,
         label: widget.label,
         dropdownController: controller,
         onClose: _onClosed,
@@ -455,7 +460,9 @@ abstract class YgDropdownFieldWidgetState<T extends Object, W extends YgDropdown
   }
 
   void _onClosed() {
-    _state.opened.value = false;
+    if (!_state.opened.update(false)) {
+      return;
+    }
 
     final VoidCallback? onEditingComplete = widget.onEditingComplete;
 
@@ -491,7 +498,7 @@ abstract class YgDropdownFieldWidgetState<T extends Object, W extends YgDropdown
     }
   }
 
-  void _updateController(YgDynamicDropdownController<T> controller) {
+  void _updateController(YgAnyDropdownController<T> controller) {
     _controller.removeListener(_controllerListener);
     _controller._detach();
     _controller = controller;

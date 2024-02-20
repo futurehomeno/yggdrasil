@@ -5,7 +5,46 @@ class YgSingleSelectDropdownController<T extends Object>
     extends YgDropdownController<T, T?, _YgDropdownFieldSingleSelectState<T>> {
   YgSingleSelectDropdownController({
     super.initialValue,
-  });
+  }) : pendingValue = ValueNotifier<T?>(
+          initialValue,
+        );
+
+  @override
+  final ValueNotifier<T?> pendingValue;
+
+  @override
+  T? get value => _value;
+
+  @override
+  set value(T? newValue) {
+    if (_value == newValue) {
+      return;
+    }
+
+    _value = newValue;
+    notifyListeners();
+
+    if (!isOpen) {
+      pendingValue.value = value;
+    }
+  }
+
+  @override
+  void submitChanges({bool close = true}) {
+    _value = pendingValue.value;
+    notifyListeners();
+    if (close) {
+      this.close();
+    }
+  }
+
+  @override
+  void discardChanges({bool close = true}) {
+    pendingValue.value = _value;
+    if (close) {
+      this.close();
+    }
+  }
 
   @override
   String buildTitle(List<YgDropdownEntry<T>> entries) {
@@ -38,7 +77,7 @@ class YgSingleSelectDropdownController<T extends Object>
   }
 
   @override
-  void onValueTapped(T value) {
+  void onValueTapped(T value, {bool autoSubmit = false}) {
     final _YgDropdownFieldSingleSelectState<T>? fieldState = _fieldState;
     assert(
       fieldState != null,
@@ -50,22 +89,25 @@ class YgSingleSelectDropdownController<T extends Object>
 
     final _YgDropdownFieldSingleSelect<T> widget = fieldState.widget;
 
-    if (this.value == value) {
+    if (pendingValue.value == value) {
       if (!widget.allowDeselect) {
         return;
       }
-      this.value = null;
+      pendingValue.value = null;
     } else {
-      this.value = value;
+      pendingValue.value = value;
     }
 
-    widget.onChange?.call(value);
-    close();
+    if (autoSubmit) {
+      submitChanges(
+        close: true,
+      );
+    }
   }
 
   @override
   bool get filled => value != null;
 
   @override
-  bool isValueSelected(T value) => value == this.value;
+  bool isValuePendingSelected(T value) => value == pendingValue.value;
 }

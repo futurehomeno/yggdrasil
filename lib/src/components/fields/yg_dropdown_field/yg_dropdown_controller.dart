@@ -1,11 +1,8 @@
-// ignore_for_file: avoid-dynamic
-
 part of 'yg_dropdown_field.dart';
 
-/// We sometimes need to be able to accept a dropdown controller without knowing
-/// the value type
-typedef YgDynamicDropdownController<T extends Object>
-    = YgDropdownController<T, dynamic, YgDropdownFieldWidgetState<T, YgDropdownField<T>>>;
+/// Any dropdown controller.
+typedef YgAnyDropdownController<T extends Object>
+    = YgDropdownController<T, Object?, YgDropdownFieldWidgetState<T, YgDropdownField<T>>>;
 
 /// The base class controller for a [YgDropdownField].
 ///
@@ -14,23 +11,59 @@ typedef YgDynamicDropdownController<T extends Object>
 ///
 ///  - [YgSingleSelectDropdownController].
 ///  - [YgMultiSelectDropdownController].
-abstract class YgDropdownController<T extends Object, V, S extends YgDropdownFieldWidgetState<T, YgDropdownField<T>>>
-    extends ValueNotifier<V> {
+sealed class YgDropdownController<T extends Object, V, S extends YgDropdownFieldWidgetState<T, YgDropdownField<T>>>
+    extends ChangeNotifier {
   YgDropdownController({
     required V initialValue,
-  }) : super(initialValue);
+  }) : _value = initialValue;
+
+  V _value;
+
+  /// The currently selected value.
+  V get value;
+  set value(V newValue);
+
+  /// The currently pending value.
+  ///
+  /// !--- WARNING ---
+  /// Used internally in the [YgDropdownField] and should generally not be used
+  /// by a user of the [YgDropdownField].
+  ValueNotifier<V> get pendingValue;
 
   /// Builds a title using the passed entries and the current [value].
   ///
+  /// !--- WARNING ---
   /// Used internally in the [YgDropdownField] and should generally not be used
   /// by a user of the [YgDropdownField].
   String buildTitle(List<YgDropdownEntry<T>> entries);
 
   /// Handles a tap on a entry.
-  void onValueTapped(T value);
+  ///
+  /// !--- WARNING ---
+  /// Used internally in the [YgDropdownField] and should generally not be used
+  /// by a user of the [YgDropdownField].
+  void onValueTapped(T value, {bool autoSubmit = false});
 
   /// Returns true when a value is currently selected.
-  bool isValueSelected(T value);
+  ///
+  /// !--- WARNING ---
+  /// Used internally in the [YgDropdownField] and should generally not be used
+  /// by a user of the [YgDropdownField].
+  bool isValuePendingSelected(T value);
+
+  /// Submits pending changes and closes the dropdown.
+  ///
+  /// !--- WARNING ---
+  /// Used internally in the [YgDropdownField] and should generally not be used
+  /// by a user of the [YgDropdownField].
+  void submitChanges({bool close = true});
+
+  /// Discards pending changes and closes the dropdown.
+  ///
+  /// !--- WARNING ---
+  /// Used internally in the [YgDropdownField] and should generally not be used
+  /// by a user of the [YgDropdownField].
+  void discardChanges({bool close = true});
 
   /// Whether the controller contains a value.
   bool get filled;
@@ -76,7 +109,6 @@ abstract class YgDropdownController<T extends Object, V, S extends YgDropdownFie
     field.openMenu();
   }
 
-  // ignore: unused-code
   /// Opens the bottom sheet specifically.
   ///
   /// Should be called only when the bottom sheet specifically should be opened.
@@ -95,7 +127,6 @@ abstract class YgDropdownController<T extends Object, V, S extends YgDropdownFie
     field.openBottomSheet();
   }
 
-  // ignore: unused-code
   /// Opens the dropdown.
   ///
   /// Shows either a menu or bottom sheet, depending on the platform the user is
@@ -127,14 +158,9 @@ abstract class YgDropdownController<T extends Object, V, S extends YgDropdownFie
     field.close();
   }
 
-  // ignore: unused-code
   /// Whether the dropdown in open or closed.
   bool get isOpen {
     final S? field = _fieldState;
-    assert(
-      field != null,
-      'YgDropdownController.isOpen was accessed while the controller was not attached to a dropdown!',
-    );
     if (field == null) {
       return false;
     }

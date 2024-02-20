@@ -3,12 +3,14 @@ part of 'yg_dropdown_menu_route.dart';
 class _YgDropdownMenu<T extends Object> extends StatelessWidget with StatelessWidgetDebugMixin {
   const _YgDropdownMenu({
     super.key,
+    required this.metric,
     required this.entries,
     required this.controller,
   });
 
-  final YgDynamicDropdownController<T> controller;
+  final YgAnyDropdownController<T> controller;
   final List<YgDropdownEntry<T>> entries;
+  final String? metric;
 
   @override
   Widget build(BuildContext context) {
@@ -47,10 +49,13 @@ class _YgDropdownMenu<T extends Object> extends StatelessWidget with StatelessWi
       widgets.add(
         YgDropdownMenuItem(
           icon: entry.icon,
-          selected: controller.isValueSelected(entry.value),
+          selected: controller.isValuePendingSelected(entry.value),
           subtitle: entry.subtitle,
-          title: entry.title,
-          onPressed: () => controller.onValueTapped(entry.value),
+          title: entry.titleWithMetric(metric),
+          onPressed: () => controller.onValueTapped(
+            entry.value,
+            autoSubmit: true,
+          ),
         ),
       );
     }
