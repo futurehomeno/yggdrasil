@@ -122,10 +122,6 @@ workflows:
     triggering:
       events:
         - tag
-      branch_patterns:
-        - pattern: 'main'
-          include: true
-          source: true
       cancel_previous_builds: true
 
     scripts:
