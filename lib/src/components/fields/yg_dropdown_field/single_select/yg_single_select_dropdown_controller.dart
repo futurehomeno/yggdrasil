@@ -27,12 +27,13 @@ class YgSingleSelectDropdownController<T extends Object>
     if (!isOpen) {
       pendingValue.value = value;
     }
+
+    _fieldState?.widget.onChange?.call(_value);
   }
 
   @override
   void submitChanges({bool close = true}) {
-    _value = pendingValue.value;
-    notifyListeners();
+    value = pendingValue.value;
     if (close) {
       this.close();
     }

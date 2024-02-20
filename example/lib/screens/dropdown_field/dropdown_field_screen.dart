@@ -47,6 +47,7 @@ class _DropdownFieldScreenState extends State<DropdownFieldScreen> {
                   label: 'Default dropdown',
                   entries: _generateEntries(4),
                   completeAction: YgCompleteAction.focusNext,
+                  onChange: print,
                 ),
                 YgDropdownField<String>(
                   label: 'Label',

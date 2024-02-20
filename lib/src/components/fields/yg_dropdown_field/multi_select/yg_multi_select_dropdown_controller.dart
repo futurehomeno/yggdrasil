@@ -32,16 +32,14 @@ class YgMultiSelectDropdownController<T extends Object>
 
     _value = Set<T>.of(newValue);
     notifyListeners();
-
-    if (!isOpen) {
-      pendingValue.value = Set<T>.of(newValue);
-    }
+    _maybeUpdatePending();
+    _onChange();
   }
 
   @override
   void submitChanges({bool close = true}) {
-    _value = Set<T>.of(pendingValue.value);
-    notifyListeners();
+    value = pendingValue.value;
+
     if (close) {
       this.close();
     }
@@ -117,10 +115,12 @@ class YgMultiSelectDropdownController<T extends Object>
 
   /// Adds a value to the currently selected values.
   bool add(T newValue) {
-    final bool added = value.add(newValue);
+    final bool added = _value.add(newValue);
 
     if (added) {
       notifyListeners();
+      _maybeUpdatePending();
+      _onChange();
     }
 
     return added;
@@ -128,18 +128,33 @@ class YgMultiSelectDropdownController<T extends Object>
 
   /// Removes a value from the currently selected values.
   bool remove(T newValue) {
-    final bool removed = value.remove(newValue);
+    final bool removed = _value.remove(newValue);
 
     if (removed) {
       notifyListeners();
+      _maybeUpdatePending();
+      _onChange();
     }
 
     return removed;
   }
 
   void clear() {
-    value.clear();
+    _value.clear();
     notifyListeners();
+    _maybeUpdatePending();
+  }
+
+  void _maybeUpdatePending() {
+    if (isOpen) {
+      return;
+    }
+
+    pendingValue.value = Set<T>.of(_value);
+  }
+
+  void _onChange() {
+    _fieldState?.widget.onChange?.call(Set<T>.of(_value));
   }
 
   @override
