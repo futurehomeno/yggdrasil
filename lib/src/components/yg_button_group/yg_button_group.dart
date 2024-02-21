@@ -9,17 +9,17 @@ abstract class YgButtonGroup extends StatelessWidget with StatelessWidgetDebugMi
     Key? key,
     required Axis axis,
     required List<YgButton> children,
-  }) = YgButtonGroupBase;
+  }) = _YgButtonGroupBase;
 
   const factory YgButtonGroup.vertical({
     Key? key,
     required List<YgButton> children,
-  }) = YgButtonGroupBase.vertical;
+  }) = _YgButtonGroupBase.vertical;
 
   const factory YgButtonGroup.horizontal({
     Key? key,
     required List<YgButton> children,
-  }) = YgButtonGroupBase.horizontal;
+  }) = _YgButtonGroupBase.horizontal;
 
   const factory YgButtonGroup.verticalActionOrCancel({
     Key? key,
@@ -27,7 +27,7 @@ abstract class YgButtonGroup extends StatelessWidget with StatelessWidgetDebugMi
     required String cancelText,
     required void Function() onActionPressed,
     required void Function() onCancelPressed,
-  }) = YgButtonGroupActionOrCancel.vertical;
+  }) = _YgButtonGroupActionOrCancel.vertical;
 
   const factory YgButtonGroup.horizontalActionOrCancel({
     Key? key,
@@ -35,7 +35,7 @@ abstract class YgButtonGroup extends StatelessWidget with StatelessWidgetDebugMi
     required String cancelText,
     required void Function() onActionPressed,
     required void Function() onCancelPressed,
-  }) = YgButtonGroupActionOrCancel.horizontal;
+  }) = _YgButtonGroupActionOrCancel.horizontal;
 
   const YgButtonGroup._({
     super.key,

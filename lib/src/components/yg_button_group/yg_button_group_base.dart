@@ -1,20 +1,20 @@
 part of 'yg_button_group.dart';
 
-class YgButtonGroupBase extends YgButtonGroup {
-  const YgButtonGroupBase({
+class _YgButtonGroupBase extends YgButtonGroup {
+  const _YgButtonGroupBase({
     super.key,
     required this.children,
     required super.axis,
   }) : super._();
 
-  const YgButtonGroupBase.vertical({
+  const _YgButtonGroupBase.vertical({
     super.key,
     required this.children,
   }) : super._(
           axis: Axis.vertical,
         );
 
-  const YgButtonGroupBase.horizontal({
+  const _YgButtonGroupBase.horizontal({
     super.key,
     required this.children,
   }) : super._(axis: Axis.horizontal);

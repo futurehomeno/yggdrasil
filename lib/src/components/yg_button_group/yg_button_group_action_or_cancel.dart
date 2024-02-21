@@ -1,7 +1,7 @@
 part of 'yg_button_group.dart';
 
-class YgButtonGroupActionOrCancel extends YgButtonGroup {
-  const YgButtonGroupActionOrCancel.vertical({
+class _YgButtonGroupActionOrCancel extends YgButtonGroup {
+  const _YgButtonGroupActionOrCancel.vertical({
     super.key,
     required this.actionText,
     required this.cancelText,
@@ -11,7 +11,7 @@ class YgButtonGroupActionOrCancel extends YgButtonGroup {
           axis: Axis.vertical,
         );
 
-  const YgButtonGroupActionOrCancel.horizontal({
+  const _YgButtonGroupActionOrCancel.horizontal({
     super.key,
     required this.actionText,
     required this.cancelText,
