@@ -78,9 +78,7 @@ class YgDropdownBottomSheetRoute<T extends Object> extends YgBottomSheetModalRou
             subtitle: entry.subtitle,
             leadingWidget: icon,
             onChanged: (_) => dropdownController.onValueTapped(entry.value),
-            value: controller.isValuePendingSelected(
-              entry.value,
-            ),
+            value: controller.isValuePendingSelected(entry.value),
           ),
         );
       }

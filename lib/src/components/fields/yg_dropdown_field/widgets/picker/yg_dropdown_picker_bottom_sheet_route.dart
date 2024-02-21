@@ -33,21 +33,24 @@ class YgDropdownPickerBottomSheetRoute<T extends Object> extends YgBottomSheetMo
   Widget buildBottomSheet(BuildContext context) {
     return YgBottomSheet(
       title: label,
-      content: YgPicker(
-        columns: <YgPickerColumn<Object>>[
-          YgPickerColumn<T>(
-            onChange: dropdownController.onValueTapped,
-            entries: entries
-                .map(
-                  (YgDropdownEntry<T> entry) => YgPickerEntry<T>(
-                    title: entry.title,
-                    value: entry.value,
-                  ),
-                )
-                .toList(),
-          ),
-        ],
-        metric: metric,
+      content: YgSection(
+        child: YgPicker(
+          columns: <YgPickerColumn<Object>>[
+            YgPickerColumn<T>(
+              onChange: dropdownController.onValueTapped,
+              initialValue: dropdownController.pendingValue.value,
+              entries: entries
+                  .map(
+                    (YgDropdownEntry<T> entry) => YgPickerEntry<T>(
+                      title: entry.title,
+                      value: entry.value,
+                    ),
+                  )
+                  .toList(),
+            ),
+          ],
+          metric: metric,
+        ),
       ),
       footerButtons: YgButtonGroup.vertical(
         children: <YgButton>[

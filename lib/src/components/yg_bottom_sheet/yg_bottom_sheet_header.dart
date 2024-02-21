@@ -42,7 +42,7 @@ class YgBottomSheetHeader extends StatelessWidget {
                   context,
                 ),
               ),
-            ],
+            ].withHorizontalSpacing(bottomSheetTheme.titleCloseButtonSpacing),
           ),
         ].withVerticalSpacing(bottomSheetTheme.handleTitleSpacing),
       ),

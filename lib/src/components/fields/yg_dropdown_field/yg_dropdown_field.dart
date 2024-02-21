@@ -282,7 +282,7 @@ abstract class YgDropdownFieldWidgetState<T extends Object, W extends YgDropdown
 
   @override
   void dispose() {
-    close();
+    _closeModals();
     _state.removeListener(_handleStateChanged);
     _state.dispose();
     _controller.removeListener(_controllerListener);
@@ -444,6 +444,11 @@ abstract class YgDropdownFieldWidgetState<T extends Object, W extends YgDropdown
   }
 
   void close() {
+    _closeModals();
+    _onClosed();
+  }
+
+  void _closeModals() {
     Navigator.popUntil(
       context,
       // ignore: avoid-dynamic
@@ -452,7 +457,6 @@ abstract class YgDropdownFieldWidgetState<T extends Object, W extends YgDropdown
           route is! YgDropdownBottomSheetRoute &&
           route is! YgDropdownPickerBottomSheetRoute,
     );
-    _onClosed();
   }
 
   bool get isOpen {

@@ -28,6 +28,11 @@ sealed class YgDropdownController<T extends Object, V, S extends YgDropdownField
   /// !--- WARNING ---
   /// Used internally in the [YgDropdownField] and should generally not be used
   /// by a user of the [YgDropdownField].
+  ///
+  /// This value is the value shown on screen when the user has opens the
+  /// dropdown, this is not the current value of the dropdown and this value may
+  /// be discarded by the user by triggering [discardChanges]. This may for
+  /// example happen when the dropdown bottom sheet is closed without saving.
   ValueNotifier<V> get pendingValue;
 
   /// Builds a title using the passed entries and the current [value].
@@ -42,6 +47,15 @@ sealed class YgDropdownController<T extends Object, V, S extends YgDropdownField
   /// !--- WARNING ---
   /// Used internally in the [YgDropdownField] and should generally not be used
   /// by a user of the [YgDropdownField].
+  ///
+  /// This will update the pending value according to the configuration of the
+  /// dropdown.
+  ///
+  /// When [submit] is set to true the value will directly be submitted after
+  /// the pendingValue has been updated.
+  ///
+  /// When both [submit] and [close] are set to true the dropdown will be closed
+  /// after the value has been submitted.
   void onValueTapped(T value, {bool submit = false, bool close = false});
 
   /// Returns true when a value is currently selected.
@@ -49,20 +63,26 @@ sealed class YgDropdownController<T extends Object, V, S extends YgDropdownField
   /// !--- WARNING ---
   /// Used internally in the [YgDropdownField] and should generally not be used
   /// by a user of the [YgDropdownField].
+  ///
+  /// Whether the value is selected as the [pendingValue].
   bool isValuePendingSelected(T value);
 
-  /// Submits pending changes and closes the dropdown.
+  /// Submits pending changes.
   ///
   /// !--- WARNING ---
   /// Used internally in the [YgDropdownField] and should generally not be used
   /// by a user of the [YgDropdownField].
+  ///
+  /// Closes the dropdown if [close] is set to true.
   void submitChanges({bool close = false});
 
-  /// Discards pending changes and closes the dropdown.
+  /// Discards pending changes.
   ///
   /// !--- WARNING ---
   /// Used internally in the [YgDropdownField] and should generally not be used
   /// by a user of the [YgDropdownField].
+  ///
+  /// Closes the dropdown if [close] is set to true.
   void discardChanges({bool close = false});
 
   /// Whether the controller contains a value.

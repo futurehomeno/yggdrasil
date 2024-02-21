@@ -23,6 +23,7 @@ class YgBottomSheetTheme extends ThemeExtension<YgBottomSheetTheme> {
     required this.movementAnimationCurve,
     required this.movementAnimationDuration,
     required this.scrimColor,
+    required this.titleCloseButtonSpacing,
     required this.titleStyle,
     required this.verticalOuterPadding,
   });
@@ -40,6 +41,7 @@ class YgBottomSheetTheme extends ThemeExtension<YgBottomSheetTheme> {
   final Curve movementAnimationCurve;
   final Duration movementAnimationDuration;
   final Color scrimColor;
+  final double titleCloseButtonSpacing;
   final TextStyle titleStyle;
   final EdgeInsets verticalOuterPadding;
 
@@ -58,6 +60,7 @@ class YgBottomSheetTheme extends ThemeExtension<YgBottomSheetTheme> {
     movementAnimationDuration:
         _$YgBottomSheetTheme.movementAnimationDuration[0],
     scrimColor: _$YgBottomSheetTheme.scrimColor[0],
+    titleCloseButtonSpacing: _$YgBottomSheetTheme.titleCloseButtonSpacing[0],
     titleStyle: _$YgBottomSheetTheme.titleStyle[0],
     verticalOuterPadding: _$YgBottomSheetTheme.verticalOuterPadding[0],
   );
@@ -77,6 +80,7 @@ class YgBottomSheetTheme extends ThemeExtension<YgBottomSheetTheme> {
     movementAnimationDuration:
         _$YgBottomSheetTheme.movementAnimationDuration[1],
     scrimColor: _$YgBottomSheetTheme.scrimColor[1],
+    titleCloseButtonSpacing: _$YgBottomSheetTheme.titleCloseButtonSpacing[1],
     titleStyle: _$YgBottomSheetTheme.titleStyle[1],
     verticalOuterPadding: _$YgBottomSheetTheme.verticalOuterPadding[1],
   );
@@ -96,6 +100,7 @@ class YgBottomSheetTheme extends ThemeExtension<YgBottomSheetTheme> {
     movementAnimationDuration:
         _$YgBottomSheetTheme.movementAnimationDuration[2],
     scrimColor: _$YgBottomSheetTheme.scrimColor[2],
+    titleCloseButtonSpacing: _$YgBottomSheetTheme.titleCloseButtonSpacing[2],
     titleStyle: _$YgBottomSheetTheme.titleStyle[2],
     verticalOuterPadding: _$YgBottomSheetTheme.verticalOuterPadding[2],
   );
@@ -115,6 +120,7 @@ class YgBottomSheetTheme extends ThemeExtension<YgBottomSheetTheme> {
     movementAnimationDuration:
         _$YgBottomSheetTheme.movementAnimationDuration[3],
     scrimColor: _$YgBottomSheetTheme.scrimColor[3],
+    titleCloseButtonSpacing: _$YgBottomSheetTheme.titleCloseButtonSpacing[3],
     titleStyle: _$YgBottomSheetTheme.titleStyle[3],
     verticalOuterPadding: _$YgBottomSheetTheme.verticalOuterPadding[3],
   );
@@ -141,6 +147,7 @@ class YgBottomSheetTheme extends ThemeExtension<YgBottomSheetTheme> {
     Curve? movementAnimationCurve,
     Duration? movementAnimationDuration,
     Color? scrimColor,
+    double? titleCloseButtonSpacing,
     TextStyle? titleStyle,
     EdgeInsets? verticalOuterPadding,
   }) {
@@ -161,6 +168,8 @@ class YgBottomSheetTheme extends ThemeExtension<YgBottomSheetTheme> {
       movementAnimationDuration:
           movementAnimationDuration ?? this.movementAnimationDuration,
       scrimColor: scrimColor ?? this.scrimColor,
+      titleCloseButtonSpacing:
+          titleCloseButtonSpacing ?? this.titleCloseButtonSpacing,
       titleStyle: titleStyle ?? this.titleStyle,
       verticalOuterPadding: verticalOuterPadding ?? this.verticalOuterPadding,
     );
@@ -188,6 +197,8 @@ class YgBottomSheetTheme extends ThemeExtension<YgBottomSheetTheme> {
       movementAnimationDuration:
           t < 0.5 ? movementAnimationDuration : other.movementAnimationDuration,
       scrimColor: Color.lerp(scrimColor, other.scrimColor, t)!,
+      titleCloseButtonSpacing:
+          t < 0.5 ? titleCloseButtonSpacing : other.titleCloseButtonSpacing,
       titleStyle: TextStyle.lerp(titleStyle, other.titleStyle, t)!,
       verticalOuterPadding:
           t < 0.5 ? verticalOuterPadding : other.verticalOuterPadding,
@@ -225,6 +236,8 @@ class YgBottomSheetTheme extends ThemeExtension<YgBottomSheetTheme> {
                 movementAnimationDuration, other.movementAnimationDuration) &&
             const DeepCollectionEquality()
                 .equals(scrimColor, other.scrimColor) &&
+            const DeepCollectionEquality().equals(
+                titleCloseButtonSpacing, other.titleCloseButtonSpacing) &&
             const DeepCollectionEquality()
                 .equals(titleStyle, other.titleStyle) &&
             const DeepCollectionEquality()
@@ -248,6 +261,7 @@ class YgBottomSheetTheme extends ThemeExtension<YgBottomSheetTheme> {
       const DeepCollectionEquality().hash(movementAnimationCurve),
       const DeepCollectionEquality().hash(movementAnimationDuration),
       const DeepCollectionEquality().hash(scrimColor),
+      const DeepCollectionEquality().hash(titleCloseButtonSpacing),
       const DeepCollectionEquality().hash(titleStyle),
       const DeepCollectionEquality().hash(verticalOuterPadding),
     );
