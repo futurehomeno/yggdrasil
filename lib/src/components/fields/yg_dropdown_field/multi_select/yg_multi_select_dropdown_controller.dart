@@ -37,7 +37,7 @@ class YgMultiSelectDropdownController<T extends Object>
   }
 
   @override
-  void submitChanges({bool close = true}) {
+  void submitChanges({bool close = false}) {
     value = pendingValue.value;
 
     if (close) {
@@ -46,7 +46,7 @@ class YgMultiSelectDropdownController<T extends Object>
   }
 
   @override
-  void discardChanges({bool close = true}) {
+  void discardChanges({bool close = false}) {
     pendingValue.value = Set<T>.of(_value);
     if (close) {
       this.close();
@@ -81,7 +81,7 @@ class YgMultiSelectDropdownController<T extends Object>
   }
 
   @override
-  void onValueTapped(T value, {bool autoSubmit = false}) {
+  void onValueTapped(T value, {bool submit = false, bool close = false}) {
     final _YgDropdownFieldMultiSelectState<T>? fieldState = _fieldState;
 
     assert(
@@ -106,10 +106,8 @@ class YgMultiSelectDropdownController<T extends Object>
 
     pendingValue.notifyListeners();
 
-    if (autoSubmit) {
-      submitChanges(
-        close: true,
-      );
+    if (submit) {
+      submitChanges(close: close);
     }
   }
 

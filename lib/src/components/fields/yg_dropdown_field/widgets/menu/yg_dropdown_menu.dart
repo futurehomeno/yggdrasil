@@ -28,7 +28,7 @@ class _YgDropdownMenu<T extends Object> extends StatelessWidget with StatelessWi
             child: Padding(
               padding: theme.menuPadding,
               child: ListenableBuilder(
-                listenable: controller,
+                listenable: controller.pendingValue,
                 builder: (BuildContext context, Widget? child) {
                   return Column(
                     children: _buildEntries(),
@@ -54,7 +54,8 @@ class _YgDropdownMenu<T extends Object> extends StatelessWidget with StatelessWi
           title: entry.titleWithMetric(metric),
           onPressed: () => controller.onValueTapped(
             entry.value,
-            autoSubmit: true,
+            submit: true,
+            close: controller is YgSingleSelectDropdownController<T>,
           ),
         ),
       );

@@ -42,7 +42,7 @@ sealed class YgDropdownController<T extends Object, V, S extends YgDropdownField
   /// !--- WARNING ---
   /// Used internally in the [YgDropdownField] and should generally not be used
   /// by a user of the [YgDropdownField].
-  void onValueTapped(T value, {bool autoSubmit = false});
+  void onValueTapped(T value, {bool submit = false, bool close = false});
 
   /// Returns true when a value is currently selected.
   ///
@@ -56,14 +56,14 @@ sealed class YgDropdownController<T extends Object, V, S extends YgDropdownField
   /// !--- WARNING ---
   /// Used internally in the [YgDropdownField] and should generally not be used
   /// by a user of the [YgDropdownField].
-  void submitChanges({bool close = true});
+  void submitChanges({bool close = false});
 
   /// Discards pending changes and closes the dropdown.
   ///
   /// !--- WARNING ---
   /// Used internally in the [YgDropdownField] and should generally not be used
   /// by a user of the [YgDropdownField].
-  void discardChanges({bool close = true});
+  void discardChanges({bool close = false});
 
   /// Whether the controller contains a value.
   bool get filled;

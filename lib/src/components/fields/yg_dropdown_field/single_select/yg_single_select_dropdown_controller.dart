@@ -32,7 +32,7 @@ class YgSingleSelectDropdownController<T extends Object>
   }
 
   @override
-  void submitChanges({bool close = true}) {
+  void submitChanges({bool close = false}) {
     value = pendingValue.value;
     if (close) {
       this.close();
@@ -40,7 +40,7 @@ class YgSingleSelectDropdownController<T extends Object>
   }
 
   @override
-  void discardChanges({bool close = true}) {
+  void discardChanges({bool close = false}) {
     pendingValue.value = _value;
     if (close) {
       this.close();
@@ -78,7 +78,7 @@ class YgSingleSelectDropdownController<T extends Object>
   }
 
   @override
-  void onValueTapped(T value, {bool autoSubmit = false}) {
+  void onValueTapped(T value, {bool submit = false, bool close = false}) {
     final _YgDropdownFieldSingleSelectState<T>? fieldState = _fieldState;
     assert(
       fieldState != null,
@@ -99,10 +99,8 @@ class YgSingleSelectDropdownController<T extends Object>
       pendingValue.value = value;
     }
 
-    if (autoSubmit) {
-      submitChanges(
-        close: true,
-      );
+    if (submit) {
+      submitChanges(close: close);
     }
   }
 

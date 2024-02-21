@@ -23,7 +23,7 @@ class YgDropdownPickerBottomSheetRoute<T extends Object> extends YgBottomSheetMo
     }
 
     onClose();
-    dropdownController.discardChanges(close: false);
+    dropdownController.discardChanges();
   }
 
   @override
@@ -52,7 +52,7 @@ class YgDropdownPickerBottomSheetRoute<T extends Object> extends YgBottomSheetMo
       footerButtons: YgButtonGroup.vertical(
         children: <YgButton>[
           YgButton(
-            onPressed: dropdownController.submitChanges,
+            onPressed: () => dropdownController.submitChanges(close: true),
             child: const Text('Done'),
           ),
         ],

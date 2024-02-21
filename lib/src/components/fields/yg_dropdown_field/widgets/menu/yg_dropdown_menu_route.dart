@@ -59,7 +59,7 @@ class YgDropdownMenuRoute<T extends Object> extends PopupRoute<Widget> {
     }
 
     onClose();
-    dropdownController.discardChanges(close: false);
+    dropdownController.discardChanges();
   }
 
   @override

@@ -23,7 +23,7 @@ class YgDropdownBottomSheetRoute<T extends Object> extends YgBottomSheetModalRou
     }
 
     onClose();
-    dropdownController.discardChanges(close: false);
+    dropdownController.discardChanges();
   }
 
   @override
@@ -66,7 +66,8 @@ class YgDropdownBottomSheetRoute<T extends Object> extends YgBottomSheetModalRou
             value: entry.value,
             onChanged: (_) => dropdownController.onValueTapped(
               entry.value,
-              autoSubmit: true,
+              submit: true,
+              close: true,
             ),
           ),
         );
@@ -98,7 +99,7 @@ class YgDropdownBottomSheetRoute<T extends Object> extends YgBottomSheetModalRou
     return YgButtonGroup.vertical(
       children: <YgButton>[
         YgButton(
-          onPressed: controller.submitChanges,
+          onPressed: () => controller.submitChanges(close: true),
           child: const Text('Done'),
         ),
       ],
