@@ -1,4 +1,4 @@
-// ignore_for_file: avoid-dynamic, prefer-match-file-name
+// ignore_for_file: avoid-dynamic, prefer-match-file-name, prefer-static-class
 
 import 'dart:convert';
 import 'dart:io';
@@ -148,7 +148,6 @@ void main() {
   ''');
 }
 
-// ignore: prefer-static-class
 Map<String, dynamic> _getARBTranslationObject({
   required String l10nKey,
   required String translation,
