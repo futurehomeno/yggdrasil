@@ -7,10 +7,10 @@ class InfoDialog extends YgDialogRoute {
 
   @override
   YgDialog buildDialog(BuildContext context) {
-    return YgDialog.info(
+    return YgDialog.highlight(
       title: 'Info dialog',
       description: 'The info variant of a dialog.',
-      ygButtonGroup: YgButtonGroup.vertical(
+      buttons: YgButtonGroup.vertical(
         children: <YgButton>[
           YgButton(
             variant: YgButtonVariant.primary,

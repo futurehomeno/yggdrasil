@@ -32,13 +32,13 @@ void main() {
           ),
           GoldenTestScenario(
             name: 'Error variant',
-            child: const YgDialog.error(
+            child: const YgDialog.critical(
               title: YgGoldenTestValues.shortText,
             ),
           ),
           GoldenTestScenario(
             name: 'Info variant',
-            child: const YgDialog.info(
+            child: const YgDialog.highlight(
               title: YgGoldenTestValues.shortText,
             ),
           ),
@@ -60,7 +60,7 @@ void main() {
               icon: const YgIcon(YgIcons.info),
               title: YgGoldenTestValues.shortText,
               description: YgGoldenTestValues.mediumText,
-              ygButtonGroup: YgButtonGroup.vertical(
+              buttons: YgButtonGroup.vertical(
                 children: <YgButton>[
                   YgButton(
                     onPressed: () {},

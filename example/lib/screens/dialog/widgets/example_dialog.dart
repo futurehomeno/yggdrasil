@@ -7,11 +7,10 @@ class ExampleDialog extends YgDialogRoute {
 
   @override
   YgDialog buildDialog(BuildContext context) {
-    return YgDialog(
-      icon: const YgIcon(YgIcons.info),
+    return YgDialog.highlight(
       title: 'Example dialog',
       description: 'The description should provide the necessary information needed to make an informed decision.',
-      ygButtonGroup: YgButtonGroup.vertical(
+      buttons: YgButtonGroup.vertical(
         children: <YgButton>[
           YgButton(
             variant: YgButtonVariant.primary,

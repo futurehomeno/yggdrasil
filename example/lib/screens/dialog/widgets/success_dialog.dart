@@ -10,7 +10,7 @@ class SuccessDialog extends YgDialogRoute {
     return YgDialog.success(
       title: 'Success dialog',
       description: 'The success variant of a dialog.',
-      ygButtonGroup: YgButtonGroup.vertical(
+      buttons: YgButtonGroup.vertical(
         children: <YgButton>[
           YgButton(
             variant: YgButtonVariant.primary,

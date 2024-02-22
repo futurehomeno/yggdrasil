@@ -25,25 +25,18 @@ class _DialogContentState extends State<DialogContent> {
 
   @override
   Widget build(BuildContext context) {
-    return AnimatedSwitcher(
-      duration: const Duration(milliseconds: 200),
-      switchInCurve: Curves.easeOut,
-      switchOutCurve: Curves.easeOut,
-      child: switch (_state) {
-        0 => _buildInitialDialog(),
-        1 => _buildLoadingDialog(),
-        _ => _buildCompletedDialog(),
-      },
-    );
+    return switch (_state) {
+      0 => _buildInitialDialog(),
+      1 => _buildLoadingDialog(),
+      _ => _buildCompletedDialog(),
+    };
   }
 
   YgDialog _buildInitialDialog() {
     return YgDialog(
-      key: const ValueKey<String>('confirm'),
-      header: const YgIcon(YgIcons.info),
       title: 'Save changes',
       description: 'Do you want to save your changes?',
-      ygButtonGroup: YgButtonGroup.verticalActionOrCancel(
+      buttons: YgButtonGroup.verticalActionOrCancel(
         actionText: 'Save',
         cancelText: 'Cancel',
         onActionPressed: _showLoading,
@@ -53,23 +46,16 @@ class _DialogContentState extends State<DialogContent> {
   }
 
   Widget _buildLoadingDialog() {
-    return const FractionallySizedBox(
-      widthFactor: 1,
-      child: YgDialog(
-        key: ValueKey<String>('Loading'),
-        header: CircularProgressIndicator(),
-        title: 'Loading...',
-      ),
+    return const YgDialog.loading(
+      title: 'Loading...',
     );
   }
 
   YgDialog _buildCompletedDialog() {
-    return YgDialog(
-      key: const ValueKey<String>('Completed'),
-      header: const YgIcon(YgIcons.check),
+    return YgDialog.success(
       title: 'Saving completed',
       description: 'Your changes have been saved.',
-      ygButtonGroup: YgButtonGroup.vertical(
+      buttons: YgButtonGroup.vertical(
         children: <YgButton>[
           YgButton(
             variant: YgButtonVariant.primary,

@@ -5,10 +5,27 @@ import 'package:yggdrasil/src/tokens/consumer_light/_consumer_light.dart' as con
 import 'package:yggdrasil/src/tokens/professional_dark/_professional_dark.dart' as professional_dark;
 import 'package:yggdrasil/src/tokens/professional_light/_professional_light.dart' as professional_light;
 
+import 'extensions/_extensions.dart';
+
 part 'dialog_theme.tailor.dart';
 
 @tailorComponent
 class _$YgDialogTheme {
+  @themeExtension
+  static final List<LoadingDialogTheme> loadingDialogTheme = LoadingDialogTheme.themes;
+
+  @themeExtension
+  static final List<ConfirmDialogTheme> confirmDialogTheme = ConfirmDialogTheme.themes;
+
+  @themeExtension
+  static final List<CriticalDialogTheme> criticalDialogTheme = CriticalDialogTheme.themes;
+
+  @themeExtension
+  static final List<HighlightDialogTheme> highlightDialogTheme = HighlightDialogTheme.themes;
+
+  @themeExtension
+  static final List<SuccessDialogTheme> successDialogTheme = SuccessDialogTheme.themes;
+
   static const List<Color> backgroundColor = <Color>[
     consumer_light.FhColors.backgroundDefault,
     consumer_dark.FhColors.backgroundDefault,
@@ -16,46 +33,11 @@ class _$YgDialogTheme {
     professional_dark.FhColors.backgroundDefault,
   ];
 
-  static const List<Color> iconContainerColor = <Color>[
-    consumer_light.FhColors.backgroundWeak,
-    consumer_dark.FhColors.backgroundWeak,
-    professional_light.FhColors.backgroundWeak,
-    professional_dark.FhColors.backgroundWeak,
-  ];
-
-  static const List<Color> iconErrorColor = <Color>[
-    consumer_light.FhColors.iconCritical,
-    consumer_dark.FhColors.iconCritical,
-    professional_light.FhColors.iconCritical,
-    professional_dark.FhColors.iconCritical,
-  ];
-
-  static const List<Color> progressIndicatorColor = <Color>[
-    consumer_light.FhColors.interactiveHighlightDefault,
-    consumer_dark.FhColors.interactiveHighlightDefault,
-    professional_light.FhColors.interactiveHighlightDefault,
-    professional_dark.FhColors.interactiveHighlightDefault,
-  ];
-
   static const List<EdgeInsets> outerPadding = <EdgeInsets>[
     EdgeInsets.all(consumer_light.FhDimensions.md),
     EdgeInsets.all(consumer_dark.FhDimensions.md),
     EdgeInsets.all(professional_light.FhDimensions.md),
     EdgeInsets.all(professional_dark.FhDimensions.md),
-  ];
-
-  static const List<EdgeInsets> iconPadding = <EdgeInsets>[
-    EdgeInsets.all(consumer_light.FhDimensions.xs),
-    EdgeInsets.all(consumer_dark.FhDimensions.xs),
-    EdgeInsets.all(professional_light.FhDimensions.xs),
-    EdgeInsets.all(professional_dark.FhDimensions.xs),
-  ];
-
-  static const List<EdgeInsets> progressIndicatorPadding = <EdgeInsets>[
-    EdgeInsets.all(4.0),
-    EdgeInsets.all(4.0),
-    EdgeInsets.all(4.0),
-    EdgeInsets.all(4.0),
   ];
 
   static const List<double> titleDescriptionSpacing = <double>[

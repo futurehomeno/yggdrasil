@@ -12,10 +12,11 @@ class YgDialogTheme extends ThemeExtension<YgDialogTheme> {
   const YgDialogTheme({
     required this.backgroundColor,
     required this.buttonSpacing,
+    required this.confirmDialogTheme,
+    required this.criticalDialogTheme,
     required this.descriptionTextStyle,
-    required this.iconContainerColor,
-    required this.iconErrorColor,
-    required this.iconPadding,
+    required this.highlightDialogTheme,
+    required this.loadingDialogTheme,
     required this.maxWidth,
     required this.minWidth,
     required this.movementAnimationCurve,
@@ -23,19 +24,19 @@ class YgDialogTheme extends ThemeExtension<YgDialogTheme> {
     required this.outerBorderRadius,
     required this.outerPadding,
     required this.paddingToScreenEdge,
-    required this.progressIndicatorColor,
-    required this.progressIndicatorPadding,
     required this.scrimColor,
+    required this.successDialogTheme,
     required this.titleDescriptionSpacing,
     required this.titleTextStyle,
   });
 
   final Color backgroundColor;
   final double buttonSpacing;
+  final ConfirmDialogTheme confirmDialogTheme;
+  final CriticalDialogTheme criticalDialogTheme;
   final TextStyle descriptionTextStyle;
-  final Color iconContainerColor;
-  final Color iconErrorColor;
-  final EdgeInsets iconPadding;
+  final HighlightDialogTheme highlightDialogTheme;
+  final LoadingDialogTheme loadingDialogTheme;
   final double maxWidth;
   final double minWidth;
   final Curve movementAnimationCurve;
@@ -43,19 +44,19 @@ class YgDialogTheme extends ThemeExtension<YgDialogTheme> {
   final BorderRadius outerBorderRadius;
   final EdgeInsets outerPadding;
   final double paddingToScreenEdge;
-  final Color progressIndicatorColor;
-  final EdgeInsets progressIndicatorPadding;
   final Color scrimColor;
+  final SuccessDialogTheme successDialogTheme;
   final double titleDescriptionSpacing;
   final TextStyle titleTextStyle;
 
   static final YgDialogTheme consumerLight = YgDialogTheme(
     backgroundColor: _$YgDialogTheme.backgroundColor[0],
     buttonSpacing: _$YgDialogTheme.buttonSpacing[0],
+    confirmDialogTheme: _$YgDialogTheme.confirmDialogTheme[0],
+    criticalDialogTheme: _$YgDialogTheme.criticalDialogTheme[0],
     descriptionTextStyle: _$YgDialogTheme.descriptionTextStyle[0],
-    iconContainerColor: _$YgDialogTheme.iconContainerColor[0],
-    iconErrorColor: _$YgDialogTheme.iconErrorColor[0],
-    iconPadding: _$YgDialogTheme.iconPadding[0],
+    highlightDialogTheme: _$YgDialogTheme.highlightDialogTheme[0],
+    loadingDialogTheme: _$YgDialogTheme.loadingDialogTheme[0],
     maxWidth: _$YgDialogTheme.maxWidth[0],
     minWidth: _$YgDialogTheme.minWidth[0],
     movementAnimationCurve: _$YgDialogTheme.movementAnimationCurve[0],
@@ -63,9 +64,8 @@ class YgDialogTheme extends ThemeExtension<YgDialogTheme> {
     outerBorderRadius: _$YgDialogTheme.outerBorderRadius[0],
     outerPadding: _$YgDialogTheme.outerPadding[0],
     paddingToScreenEdge: _$YgDialogTheme.paddingToScreenEdge[0],
-    progressIndicatorColor: _$YgDialogTheme.progressIndicatorColor[0],
-    progressIndicatorPadding: _$YgDialogTheme.progressIndicatorPadding[0],
     scrimColor: _$YgDialogTheme.scrimColor[0],
+    successDialogTheme: _$YgDialogTheme.successDialogTheme[0],
     titleDescriptionSpacing: _$YgDialogTheme.titleDescriptionSpacing[0],
     titleTextStyle: _$YgDialogTheme.titleTextStyle[0],
   );
@@ -73,10 +73,11 @@ class YgDialogTheme extends ThemeExtension<YgDialogTheme> {
   static final YgDialogTheme consumerDark = YgDialogTheme(
     backgroundColor: _$YgDialogTheme.backgroundColor[1],
     buttonSpacing: _$YgDialogTheme.buttonSpacing[1],
+    confirmDialogTheme: _$YgDialogTheme.confirmDialogTheme[1],
+    criticalDialogTheme: _$YgDialogTheme.criticalDialogTheme[1],
     descriptionTextStyle: _$YgDialogTheme.descriptionTextStyle[1],
-    iconContainerColor: _$YgDialogTheme.iconContainerColor[1],
-    iconErrorColor: _$YgDialogTheme.iconErrorColor[1],
-    iconPadding: _$YgDialogTheme.iconPadding[1],
+    highlightDialogTheme: _$YgDialogTheme.highlightDialogTheme[1],
+    loadingDialogTheme: _$YgDialogTheme.loadingDialogTheme[1],
     maxWidth: _$YgDialogTheme.maxWidth[1],
     minWidth: _$YgDialogTheme.minWidth[1],
     movementAnimationCurve: _$YgDialogTheme.movementAnimationCurve[1],
@@ -84,9 +85,8 @@ class YgDialogTheme extends ThemeExtension<YgDialogTheme> {
     outerBorderRadius: _$YgDialogTheme.outerBorderRadius[1],
     outerPadding: _$YgDialogTheme.outerPadding[1],
     paddingToScreenEdge: _$YgDialogTheme.paddingToScreenEdge[1],
-    progressIndicatorColor: _$YgDialogTheme.progressIndicatorColor[1],
-    progressIndicatorPadding: _$YgDialogTheme.progressIndicatorPadding[1],
     scrimColor: _$YgDialogTheme.scrimColor[1],
+    successDialogTheme: _$YgDialogTheme.successDialogTheme[1],
     titleDescriptionSpacing: _$YgDialogTheme.titleDescriptionSpacing[1],
     titleTextStyle: _$YgDialogTheme.titleTextStyle[1],
   );
@@ -94,10 +94,11 @@ class YgDialogTheme extends ThemeExtension<YgDialogTheme> {
   static final YgDialogTheme professionalLight = YgDialogTheme(
     backgroundColor: _$YgDialogTheme.backgroundColor[2],
     buttonSpacing: _$YgDialogTheme.buttonSpacing[2],
+    confirmDialogTheme: _$YgDialogTheme.confirmDialogTheme[2],
+    criticalDialogTheme: _$YgDialogTheme.criticalDialogTheme[2],
     descriptionTextStyle: _$YgDialogTheme.descriptionTextStyle[2],
-    iconContainerColor: _$YgDialogTheme.iconContainerColor[2],
-    iconErrorColor: _$YgDialogTheme.iconErrorColor[2],
-    iconPadding: _$YgDialogTheme.iconPadding[2],
+    highlightDialogTheme: _$YgDialogTheme.highlightDialogTheme[2],
+    loadingDialogTheme: _$YgDialogTheme.loadingDialogTheme[2],
     maxWidth: _$YgDialogTheme.maxWidth[2],
     minWidth: _$YgDialogTheme.minWidth[2],
     movementAnimationCurve: _$YgDialogTheme.movementAnimationCurve[2],
@@ -105,9 +106,8 @@ class YgDialogTheme extends ThemeExtension<YgDialogTheme> {
     outerBorderRadius: _$YgDialogTheme.outerBorderRadius[2],
     outerPadding: _$YgDialogTheme.outerPadding[2],
     paddingToScreenEdge: _$YgDialogTheme.paddingToScreenEdge[2],
-    progressIndicatorColor: _$YgDialogTheme.progressIndicatorColor[2],
-    progressIndicatorPadding: _$YgDialogTheme.progressIndicatorPadding[2],
     scrimColor: _$YgDialogTheme.scrimColor[2],
+    successDialogTheme: _$YgDialogTheme.successDialogTheme[2],
     titleDescriptionSpacing: _$YgDialogTheme.titleDescriptionSpacing[2],
     titleTextStyle: _$YgDialogTheme.titleTextStyle[2],
   );
@@ -115,10 +115,11 @@ class YgDialogTheme extends ThemeExtension<YgDialogTheme> {
   static final YgDialogTheme professionalDark = YgDialogTheme(
     backgroundColor: _$YgDialogTheme.backgroundColor[3],
     buttonSpacing: _$YgDialogTheme.buttonSpacing[3],
+    confirmDialogTheme: _$YgDialogTheme.confirmDialogTheme[3],
+    criticalDialogTheme: _$YgDialogTheme.criticalDialogTheme[3],
     descriptionTextStyle: _$YgDialogTheme.descriptionTextStyle[3],
-    iconContainerColor: _$YgDialogTheme.iconContainerColor[3],
-    iconErrorColor: _$YgDialogTheme.iconErrorColor[3],
-    iconPadding: _$YgDialogTheme.iconPadding[3],
+    highlightDialogTheme: _$YgDialogTheme.highlightDialogTheme[3],
+    loadingDialogTheme: _$YgDialogTheme.loadingDialogTheme[3],
     maxWidth: _$YgDialogTheme.maxWidth[3],
     minWidth: _$YgDialogTheme.minWidth[3],
     movementAnimationCurve: _$YgDialogTheme.movementAnimationCurve[3],
@@ -126,9 +127,8 @@ class YgDialogTheme extends ThemeExtension<YgDialogTheme> {
     outerBorderRadius: _$YgDialogTheme.outerBorderRadius[3],
     outerPadding: _$YgDialogTheme.outerPadding[3],
     paddingToScreenEdge: _$YgDialogTheme.paddingToScreenEdge[3],
-    progressIndicatorColor: _$YgDialogTheme.progressIndicatorColor[3],
-    progressIndicatorPadding: _$YgDialogTheme.progressIndicatorPadding[3],
     scrimColor: _$YgDialogTheme.scrimColor[3],
+    successDialogTheme: _$YgDialogTheme.successDialogTheme[3],
     titleDescriptionSpacing: _$YgDialogTheme.titleDescriptionSpacing[3],
     titleTextStyle: _$YgDialogTheme.titleTextStyle[3],
   );
@@ -144,10 +144,11 @@ class YgDialogTheme extends ThemeExtension<YgDialogTheme> {
   YgDialogTheme copyWith({
     Color? backgroundColor,
     double? buttonSpacing,
+    ConfirmDialogTheme? confirmDialogTheme,
+    CriticalDialogTheme? criticalDialogTheme,
     TextStyle? descriptionTextStyle,
-    Color? iconContainerColor,
-    Color? iconErrorColor,
-    EdgeInsets? iconPadding,
+    HighlightDialogTheme? highlightDialogTheme,
+    LoadingDialogTheme? loadingDialogTheme,
     double? maxWidth,
     double? minWidth,
     Curve? movementAnimationCurve,
@@ -155,19 +156,19 @@ class YgDialogTheme extends ThemeExtension<YgDialogTheme> {
     BorderRadius? outerBorderRadius,
     EdgeInsets? outerPadding,
     double? paddingToScreenEdge,
-    Color? progressIndicatorColor,
-    EdgeInsets? progressIndicatorPadding,
     Color? scrimColor,
+    SuccessDialogTheme? successDialogTheme,
     double? titleDescriptionSpacing,
     TextStyle? titleTextStyle,
   }) {
     return YgDialogTheme(
       backgroundColor: backgroundColor ?? this.backgroundColor,
       buttonSpacing: buttonSpacing ?? this.buttonSpacing,
+      confirmDialogTheme: confirmDialogTheme ?? this.confirmDialogTheme,
+      criticalDialogTheme: criticalDialogTheme ?? this.criticalDialogTheme,
       descriptionTextStyle: descriptionTextStyle ?? this.descriptionTextStyle,
-      iconContainerColor: iconContainerColor ?? this.iconContainerColor,
-      iconErrorColor: iconErrorColor ?? this.iconErrorColor,
-      iconPadding: iconPadding ?? this.iconPadding,
+      highlightDialogTheme: highlightDialogTheme ?? this.highlightDialogTheme,
+      loadingDialogTheme: loadingDialogTheme ?? this.loadingDialogTheme,
       maxWidth: maxWidth ?? this.maxWidth,
       minWidth: minWidth ?? this.minWidth,
       movementAnimationCurve:
@@ -177,11 +178,8 @@ class YgDialogTheme extends ThemeExtension<YgDialogTheme> {
       outerBorderRadius: outerBorderRadius ?? this.outerBorderRadius,
       outerPadding: outerPadding ?? this.outerPadding,
       paddingToScreenEdge: paddingToScreenEdge ?? this.paddingToScreenEdge,
-      progressIndicatorColor:
-          progressIndicatorColor ?? this.progressIndicatorColor,
-      progressIndicatorPadding:
-          progressIndicatorPadding ?? this.progressIndicatorPadding,
       scrimColor: scrimColor ?? this.scrimColor,
+      successDialogTheme: successDialogTheme ?? this.successDialogTheme,
       titleDescriptionSpacing:
           titleDescriptionSpacing ?? this.titleDescriptionSpacing,
       titleTextStyle: titleTextStyle ?? this.titleTextStyle,
@@ -194,12 +192,16 @@ class YgDialogTheme extends ThemeExtension<YgDialogTheme> {
     return YgDialogTheme(
       backgroundColor: Color.lerp(backgroundColor, other.backgroundColor, t)!,
       buttonSpacing: t < 0.5 ? buttonSpacing : other.buttonSpacing,
+      confirmDialogTheme: confirmDialogTheme.lerp(other.confirmDialogTheme, t)
+          as ConfirmDialogTheme,
+      criticalDialogTheme: criticalDialogTheme.lerp(
+          other.criticalDialogTheme, t) as CriticalDialogTheme,
       descriptionTextStyle:
           TextStyle.lerp(descriptionTextStyle, other.descriptionTextStyle, t)!,
-      iconContainerColor:
-          Color.lerp(iconContainerColor, other.iconContainerColor, t)!,
-      iconErrorColor: Color.lerp(iconErrorColor, other.iconErrorColor, t)!,
-      iconPadding: t < 0.5 ? iconPadding : other.iconPadding,
+      highlightDialogTheme: highlightDialogTheme.lerp(
+          other.highlightDialogTheme, t) as HighlightDialogTheme,
+      loadingDialogTheme: loadingDialogTheme.lerp(other.loadingDialogTheme, t)
+          as LoadingDialogTheme,
       maxWidth: t < 0.5 ? maxWidth : other.maxWidth,
       minWidth: t < 0.5 ? minWidth : other.minWidth,
       movementAnimationCurve:
@@ -210,11 +212,9 @@ class YgDialogTheme extends ThemeExtension<YgDialogTheme> {
       outerPadding: t < 0.5 ? outerPadding : other.outerPadding,
       paddingToScreenEdge:
           t < 0.5 ? paddingToScreenEdge : other.paddingToScreenEdge,
-      progressIndicatorColor:
-          Color.lerp(progressIndicatorColor, other.progressIndicatorColor, t)!,
-      progressIndicatorPadding:
-          t < 0.5 ? progressIndicatorPadding : other.progressIndicatorPadding,
       scrimColor: Color.lerp(scrimColor, other.scrimColor, t)!,
+      successDialogTheme: successDialogTheme.lerp(other.successDialogTheme, t)
+          as SuccessDialogTheme,
       titleDescriptionSpacing:
           t < 0.5 ? titleDescriptionSpacing : other.titleDescriptionSpacing,
       titleTextStyle: TextStyle.lerp(titleTextStyle, other.titleTextStyle, t)!,
@@ -231,13 +231,15 @@ class YgDialogTheme extends ThemeExtension<YgDialogTheme> {
             const DeepCollectionEquality()
                 .equals(buttonSpacing, other.buttonSpacing) &&
             const DeepCollectionEquality()
+                .equals(confirmDialogTheme, other.confirmDialogTheme) &&
+            const DeepCollectionEquality()
+                .equals(criticalDialogTheme, other.criticalDialogTheme) &&
+            const DeepCollectionEquality()
                 .equals(descriptionTextStyle, other.descriptionTextStyle) &&
             const DeepCollectionEquality()
-                .equals(iconContainerColor, other.iconContainerColor) &&
+                .equals(highlightDialogTheme, other.highlightDialogTheme) &&
             const DeepCollectionEquality()
-                .equals(iconErrorColor, other.iconErrorColor) &&
-            const DeepCollectionEquality()
-                .equals(iconPadding, other.iconPadding) &&
+                .equals(loadingDialogTheme, other.loadingDialogTheme) &&
             const DeepCollectionEquality().equals(maxWidth, other.maxWidth) &&
             const DeepCollectionEquality().equals(minWidth, other.minWidth) &&
             const DeepCollectionEquality()
@@ -251,11 +253,9 @@ class YgDialogTheme extends ThemeExtension<YgDialogTheme> {
             const DeepCollectionEquality()
                 .equals(paddingToScreenEdge, other.paddingToScreenEdge) &&
             const DeepCollectionEquality()
-                .equals(progressIndicatorColor, other.progressIndicatorColor) &&
-            const DeepCollectionEquality().equals(
-                progressIndicatorPadding, other.progressIndicatorPadding) &&
-            const DeepCollectionEquality()
                 .equals(scrimColor, other.scrimColor) &&
+            const DeepCollectionEquality()
+                .equals(successDialogTheme, other.successDialogTheme) &&
             const DeepCollectionEquality().equals(
                 titleDescriptionSpacing, other.titleDescriptionSpacing) &&
             const DeepCollectionEquality()
@@ -268,10 +268,11 @@ class YgDialogTheme extends ThemeExtension<YgDialogTheme> {
       runtimeType.hashCode,
       const DeepCollectionEquality().hash(backgroundColor),
       const DeepCollectionEquality().hash(buttonSpacing),
+      const DeepCollectionEquality().hash(confirmDialogTheme),
+      const DeepCollectionEquality().hash(criticalDialogTheme),
       const DeepCollectionEquality().hash(descriptionTextStyle),
-      const DeepCollectionEquality().hash(iconContainerColor),
-      const DeepCollectionEquality().hash(iconErrorColor),
-      const DeepCollectionEquality().hash(iconPadding),
+      const DeepCollectionEquality().hash(highlightDialogTheme),
+      const DeepCollectionEquality().hash(loadingDialogTheme),
       const DeepCollectionEquality().hash(maxWidth),
       const DeepCollectionEquality().hash(minWidth),
       const DeepCollectionEquality().hash(movementAnimationCurve),
@@ -279,9 +280,8 @@ class YgDialogTheme extends ThemeExtension<YgDialogTheme> {
       const DeepCollectionEquality().hash(outerBorderRadius),
       const DeepCollectionEquality().hash(outerPadding),
       const DeepCollectionEquality().hash(paddingToScreenEdge),
-      const DeepCollectionEquality().hash(progressIndicatorColor),
-      const DeepCollectionEquality().hash(progressIndicatorPadding),
       const DeepCollectionEquality().hash(scrimColor),
+      const DeepCollectionEquality().hash(successDialogTheme),
       const DeepCollectionEquality().hash(titleDescriptionSpacing),
       const DeepCollectionEquality().hash(titleTextStyle),
     );

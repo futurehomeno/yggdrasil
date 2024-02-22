@@ -1,56 +1,50 @@
 import 'package:flutter/material.dart';
+import 'package:yggdrasil/src/components/yg_dialog/enums/yg_dialog_variant.dart';
+import 'package:yggdrasil/src/components/yg_dialog/yg_dialog_style.dart';
 import 'package:yggdrasil/src/theme/_theme.dart';
+import 'package:yggdrasil/src/utils/_utils.dart';
 import 'package:yggdrasil/yggdrasil.dart';
 
-part 'variants/yg_dialog_base.dart';
-part 'variants/yg_dialog_error.dart';
-part 'variants/yg_dialog_info.dart';
-part 'variants/yg_dialog_loading.dart';
-part 'variants/yg_dialog_success.dart';
-
-abstract class YgDialog extends StatelessWidget with StatelessWidgetDebugMixin {
-  const factory YgDialog({
-    String? description,
-    required YgIcon icon,
-    Key? key,
-    required String title,
-    YgButtonGroup? ygButtonGroup,
-  }) = YgDialogBase;
-
-  const factory YgDialog.info({
-    String? description,
-    Key? key,
-    required String title,
-    YgButtonGroup? ygButtonGroup,
-  }) = YgDialogInfo;
-
-  const factory YgDialog.error({
-    String? description,
-    Key? key,
-    required String title,
-    YgButtonGroup? ygButtonGroup,
-  }) = YgDialogError;
-
-  const factory YgDialog.success({
-    String? description,
-    Key? key,
-    required String title,
-    YgButtonGroup? ygButtonGroup,
-  }) = YgDialogSuccess;
-
-  const factory YgDialog.loading({
-    String? description,
-    Key? key,
-    required String title,
-    YgButtonGroup? ygButtonGroup,
-  }) = YgDialogLoading;
-
-  const YgDialog._({
+class YgDialog extends StatefulWidget with StatefulWidgetDebugMixin {
+  const YgDialog({
     super.key,
     required this.title,
     this.description,
-    this.ygButtonGroup,
-  });
+    this.buttons,
+    YgColorableIconData this.icon = YgIcons.supportBubble,
+  }) : variant = YgDialogVariant.confirm;
+
+  const YgDialog.success({
+    super.key,
+    required this.title,
+    this.description,
+    this.buttons,
+  })  : variant = YgDialogVariant.success,
+        icon = YgIcons.check;
+
+  const YgDialog.critical({
+    super.key,
+    required this.title,
+    this.description,
+    this.buttons,
+  })  : variant = YgDialogVariant.critical,
+        icon = YgIcons.failed;
+
+  const YgDialog.highlight({
+    super.key,
+    required this.title,
+    this.description,
+    this.buttons,
+  })  : variant = YgDialogVariant.highlight,
+        icon = YgIcons.info;
+
+  const YgDialog.loading({
+    super.key,
+    required this.title,
+    this.description,
+  })  : variant = YgDialogVariant.loading,
+        icon = null,
+        buttons = null;
 
   /// Title of the dialog.
   final String title;
@@ -62,23 +56,53 @@ abstract class YgDialog extends StatelessWidget with StatelessWidgetDebugMixin {
   ///
   /// For non-dismissible dialogs, with the exception of loading dialogs,
   /// the buttons are required and must allow the user to close the dialog.
-  final YgButtonGroup? ygButtonGroup;
+  final YgButtonGroup? buttons;
+
+  final YgColorableIconData? icon;
+
+  final YgDialogVariant variant;
+
+  @override
+  State<YgDialog> createState() => _YgDialogState();
+}
+
+class _YgDialogState extends StateWithYgStyle<YgDialog, YgDialogStyle> {
+  late final YgVariantState<YgDialogVariant> _state = YgDialogState(variant: widget.variant);
+
+  @override
+  YgDialogStyle createStyle() {
+    return YgDialogStyle(
+      state: _state,
+      vsync: this,
+    );
+  }
+
+  @override
+  void dispose() {
+    _state.dispose();
+    super.dispose();
+  }
+
+  @override
+  void didUpdateWidget(covariant YgDialog oldWidget) {
+    _state.variant.value = widget.variant;
+    super.didUpdateWidget(oldWidget);
+  }
 
   @override
   Widget build(BuildContext context) {
-    final YgDialogTheme dialogTheme = context.dialogTheme;
-    final YgButtonGroup? ygButtonGroup = this.ygButtonGroup;
+    final YgButtonGroup? ygButtonGroup = widget.buttons;
 
     return Material(
-      borderRadius: dialogTheme.outerBorderRadius,
-      color: dialogTheme.backgroundColor,
+      borderRadius: _theme.outerBorderRadius,
+      color: _theme.backgroundColor,
       child: Padding(
-        padding: dialogTheme.outerPadding,
+        padding: _theme.outerPadding,
         child: Column(
           mainAxisSize: MainAxisSize.min,
           children: <Widget>[
-            _buildHeader(dialogTheme),
-            _buildTextSection(dialogTheme),
+            _buildHeader(),
+            _buildTextSection(),
             if (ygButtonGroup != null) ygButtonGroup,
           ].withVerticalSpacing(30.0),
         ),
@@ -86,35 +110,62 @@ abstract class YgDialog extends StatelessWidget with StatelessWidgetDebugMixin {
     );
   }
 
-  Widget _buildHeader(YgDialogTheme dialogTheme) {
-    return Container(
-      decoration: BoxDecoration(
-        color: dialogTheme.iconContainerColor,
-        shape: BoxShape.circle,
+  Widget _buildHeader() {
+    return YgAnimatedContainer(
+      decoration: style.iconBackground.map(
+        (Color color) => BoxDecoration(
+          color: color,
+          shape: BoxShape.circle,
+        ),
       ),
-      child: _buildHeaderContent(dialogTheme),
+      padding: style.iconPadding,
+      child: YgAnimatedIconTheme(
+        iconTheme: style.iconColor.map(
+          (Color color) => IconThemeData(color: color),
+        ),
+        child: AnimatedSwitcher(
+          duration: _theme.movementAnimationDuration,
+          switchInCurve: _theme.movementAnimationCurve,
+          switchOutCurve: _theme.movementAnimationCurve,
+          child: _buildHeaderContent(),
+        ),
+      ),
     );
   }
 
-  Widget _buildTextSection(YgDialogTheme dialogTheme) {
-    final String? description = this.description;
+  Widget _buildTextSection() {
+    final String? description = widget.description;
 
     return Column(
       children: <Widget>[
         Text(
-          title,
+          widget.title,
           textAlign: TextAlign.center,
-          style: dialogTheme.titleTextStyle,
+          style: _theme.titleTextStyle,
         ),
         if (description != null)
           Text(
             description,
             textAlign: TextAlign.center,
-            style: dialogTheme.descriptionTextStyle,
+            style: _theme.descriptionTextStyle,
           ),
-      ].withVerticalSpacing(dialogTheme.titleDescriptionSpacing),
+      ].withVerticalSpacing(_theme.titleDescriptionSpacing),
     );
   }
 
-  Widget _buildHeaderContent(YgDialogTheme dialogTheme);
+  Widget _buildHeaderContent() {
+    final YgColorableIconData? icon = widget.icon;
+    if (icon == null) {
+      return CircularProgressIndicator(
+        strokeWidth: 4,
+        color: _theme.loadingDialogTheme.iconColor,
+      );
+    }
+
+    return YgIcon(
+      widget.icon,
+    );
+  }
+
+  YgDialogTheme get _theme => context.dialogTheme;
 }

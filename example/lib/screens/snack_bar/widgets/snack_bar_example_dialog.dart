@@ -13,11 +13,10 @@ class SnackBarExampleDialog extends YgDialogRoute {
   Widget buildDialog(BuildContext context) {
     return Consumer<YgAppState>(
       builder: (BuildContext context, YgAppState ygAppState, Widget? widget) {
-        return YgDialog(
-          header: const YgIcon(YgIcons.info),
+        return YgDialog.highlight(
           title: 'Example dialog',
           description: 'This dialog can open a snackbar which will be shown over top of the dialog it self.',
-          ygButtonGroup: YgButtonGroup.vertical(
+          buttons: YgButtonGroup.vertical(
             children: <YgButton>[
               YgButton(
                 variant: YgButtonVariant.primary,

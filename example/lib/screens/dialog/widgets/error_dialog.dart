@@ -7,10 +7,10 @@ class ErrorDialog extends YgDialogRoute {
 
   @override
   YgDialog buildDialog(BuildContext context) {
-    return YgDialog.error(
+    return YgDialog.critical(
       title: 'Error dialog',
       description: 'The error variant of a dialog.',
-      ygButtonGroup: YgButtonGroup.vertical(
+      buttons: YgButtonGroup.vertical(
         children: <YgButton>[
           YgButton(
             variant: YgButtonVariant.primary,

@@ -7,18 +7,9 @@ class LoadingDialog extends YgDialogRoute {
 
   @override
   YgDialog buildDialog(BuildContext context) {
-    return YgDialog.loading(
+    return const YgDialog.loading(
       title: 'Loading dialog',
       description: 'The loading variant of a dialog.',
-      ygButtonGroup: YgButtonGroup.vertical(
-        children: <YgButton>[
-          YgButton(
-            variant: YgButtonVariant.primary,
-            onPressed: () => Navigator.of(context).pop(),
-            child: const Text('Ok'),
-          ),
-        ],
-      ),
     );
   }
 }

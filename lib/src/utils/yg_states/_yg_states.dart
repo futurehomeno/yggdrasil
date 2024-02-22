@@ -9,3 +9,4 @@ export 'tweens/_tweens.dart';
 export 'widgets/_widgets.dart';
 export 'yg_state.dart';
 export 'yg_state_value.dart';
+export 'yg_variant_state.dart';
