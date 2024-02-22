@@ -57,7 +57,7 @@ class DefaultYggdrasilLocalizations {
       'Step $step of $steps',
       name: 'wizardHeaderNOfN',
       desc:
-          'The text that shows the current step out of the total steps. For example, \'1 of 3\'.',
+          'The text that shows the current step out of the total steps. For example, \'Step 1 of 3\'.',
       args: [step, steps],
     );
   }
