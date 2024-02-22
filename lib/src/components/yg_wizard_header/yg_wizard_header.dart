@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:yggdrasil/src/generated/_generated.dart';
 import 'package:yggdrasil/src/theme/_theme.dart';
 
 import 'widgets/_widgets.dart';
@@ -25,7 +26,6 @@ abstract class YgWizardHeader extends StatefulWidget {
   ///
   /// Animates the [currentStep] value. Changing the amount of steps is not animated.
   const factory YgWizardHeader({
-    required CounterBuilderCallback counterBuilder,
     required int currentStep,
     required int steps,
     required TitleBuilderCallback titleBuilder,
@@ -35,7 +35,6 @@ abstract class YgWizardHeader extends StatefulWidget {
   ///
   /// Animates the current step together with the tabs.
   const factory YgWizardHeader.fromTabController({
-    required CounterBuilderCallback counterBuilder,
     required TitleBuilderCallback titleBuilder,
     TabController controller,
   }) = _YgWizardHeaderFromTabController;
@@ -45,7 +44,6 @@ abstract class YgWizardHeader extends StatefulWidget {
   /// Animates the current step together with the pages.
   const factory YgWizardHeader.fromPageController({
     required PageController controller,
-    required CounterBuilderCallback counterBuilder,
     required int steps,
     required TitleBuilderCallback titleBuilder,
   }) = _YgWizardHeaderFromPageController;
@@ -55,25 +53,16 @@ abstract class YgWizardHeader extends StatefulWidget {
   /// Animates the current step together with the tabs.
   const factory YgWizardHeader.fromAnimation({
     required Animation<double> animation,
-    required CounterBuilderCallback counterBuilder,
     required int steps,
     required TitleBuilderCallback titleBuilder,
   }) = _YgWizardHeaderFromAnimation;
 
   const YgWizardHeader._({
-    required this.counterBuilder,
     required this.titleBuilder,
   });
 
   /// The title of the Wizard header.
   final TitleBuilderCallback titleBuilder;
-
-  /// Builds the current counter.
-  ///
-  /// Gets passed the current step and the total amount of steps. [currentStep]
-  /// is the internal step value + 1 to represent the value that should actually
-  /// be displayed.
-  final CounterBuilderCallback counterBuilder;
 }
 
 abstract class _YgWizardHeaderState<W extends YgWizardHeader> extends State<W> with TickerProviderStateMixin {
@@ -163,7 +152,7 @@ abstract class _YgWizardHeaderState<W extends YgWizardHeader> extends State<W> w
                   ),
                 ),
               Text(
-                widget.counterBuilder(
+                DefaultYggdrasilLocalizations.current.wizardHeaderNOfN(
                   _currentStep + 1,
                   _currentSteps,
                 ),

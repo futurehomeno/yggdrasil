@@ -98,7 +98,7 @@ class YgDropdownBottomSheetRoute<T extends Object> extends YgBottomSheetModalRou
       children: <YgButton>[
         YgButton(
           onPressed: () => controller.submitChanges(close: true),
-          child: const Text('Done'),
+          child: Text(DefaultYggdrasilLocalizations.current.dropdownDone),
         ),
       ],
     );

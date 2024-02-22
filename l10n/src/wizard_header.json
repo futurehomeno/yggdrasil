@@ -1,0 +1,14 @@
+{
+  "prefix": "wizardHeader",
+  "context": "The Yggdrasil wizard header component.",
+  "translations": {
+    "nOfN": {
+      "description": "The text that shows the current step out of the total steps. For example, '1 of 3'.",
+      "en": "Step {step} of {steps}",
+      "da": "Trin {step} af {steps}",
+      "fi": "Vaihe {step} / {steps}",
+      "nb": "Steg {step} av {steps}",
+      "sv": "Steg {step} av {steps}"
+    }
+  }
+}

@@ -1,0 +1,14 @@
+{
+  "prefix": "dropdown",
+  "context": "The Yggdrasil dropdown component.",
+  "translations": {
+    "done": {
+      "description": "The text to display on the button when the user has finished making a selection.",
+      "en": "Done",
+      "da": "Færdig",
+      "fi": "Valmis",
+      "nb": "Ferdig",
+      "sv": "Klar"
+    }
+  }
+}

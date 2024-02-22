@@ -26,7 +26,6 @@ class _WizardHeaderExampleState extends State<WizardHeaderExample> {
       children: <Widget>[
         YgWizardHeader(
           titleBuilder: (_) => widget.title,
-          counterBuilder: (int p0, int p1) => 'Step $p0 of $p1',
           currentStep: _step,
           steps: widget.steps,
         ),

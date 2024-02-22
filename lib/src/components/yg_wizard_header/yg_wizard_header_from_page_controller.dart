@@ -2,7 +2,6 @@ part of 'yg_wizard_header.dart';
 
 class _YgWizardHeaderFromPageController extends YgWizardHeader {
   const _YgWizardHeaderFromPageController({
-    required super.counterBuilder,
     required super.titleBuilder,
     required this.controller,
     required this.steps,
