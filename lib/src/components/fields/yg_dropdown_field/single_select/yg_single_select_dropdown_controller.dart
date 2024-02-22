@@ -104,6 +104,25 @@ class YgSingleSelectDropdownController<T extends Object>
     }
   }
 
+  /// Opens the picker specifically.
+  ///
+  /// Should be called only when the picker specifically should be opened. For
+  /// most cases you want to use the [open] method instead to show either a
+  /// menu, picker or bottom sheet, depending on the platform the user is on and
+  /// the configuration of the widget.
+  void openPicker() {
+    final _YgDropdownFieldSingleSelectState<T>? field = _fieldState;
+    assert(
+      field != null,
+      'YgDropdownController.openMenu was called while the controller was not attached to a dropdown!',
+    );
+    if (field == null) {
+      return;
+    }
+
+    field.openPickerBottomSheet();
+  }
+
   @override
   bool get filled => value != null;
 
