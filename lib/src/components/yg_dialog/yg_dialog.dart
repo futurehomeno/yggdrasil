@@ -48,7 +48,7 @@ abstract class YgDialog extends StatelessWidget with StatelessWidgetDebugMixin {
   const YgDialog._({
     super.key,
     required this.title,
-    required this.description,
+    this.description,
     this.ygButtonGroup,
   });
 

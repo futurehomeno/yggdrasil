@@ -1,7 +1,7 @@
 import 'demo_field_validator.dart';
 
 /// Validates at least one value is selected.
-class DemoMultiSelectRequiredValidator extends DemoFieldValidator<Set<dynamic>?> {
+class DemoMultiSelectRequiredValidator extends DemoFieldValidator<Set<Object?>?> {
   const DemoMultiSelectRequiredValidator({
     required this.requiredError,
   });
@@ -10,7 +10,7 @@ class DemoMultiSelectRequiredValidator extends DemoFieldValidator<Set<dynamic>?>
   final String requiredError;
 
   @override
-  String? validate(Set<dynamic>? value) {
+  String? validate(Set<Object?>? value) {
     if (value == null || value.isEmpty) {
       return requiredError;
     }

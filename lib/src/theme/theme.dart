@@ -76,6 +76,9 @@ class _$YgTheme {
   static final List<YgMobileScannerContainerTheme> mobileScannerContainerTheme = YgMobileScannerContainerTheme.themes;
 
   @themeExtension
+  static final List<YgPickerTheme> pickerTheme = YgPickerTheme.themes;
+
+  @themeExtension
   static final List<YgProgressIndicatorTheme> progressIndicatorTheme = YgProgressIndicatorTheme.themes;
 
   @themeExtension
