@@ -4,8 +4,9 @@ analyzer:
     strict-raw-types: true
 
   exclude:
-    - 'lib/src/tokens/**/*.dart'
-    - 'lib/**/*.tailor.dart'
+    - "lib/src/tokens/**/*.dart"
+    - "lib/**/*.tailor.dart"
+    - "lib/src/generated/**"
 
   errors:
     # Treat missing required parameters as a warning (not a hint).
@@ -50,8 +51,9 @@ dart_code_metrics:
     number-of-used-widgets: 20
     widgets-nesting-level: 10
   metrics-exclude:
-    - 'lib/src/theme/*'
-    - 'lib/src/theme/**/*'
+    - "lib/src/theme/*"
+    - "lib/src/theme/**/*"
+    - "lib/src/generated/**"
 
   rules:
     # Show potential errors
@@ -87,7 +89,6 @@ dart_code_metrics:
     - avoid-state-constructors
     - avoid-throw-in-catch-block
     - avoid-throw-objects-without-tostring
-    - avoid-unassigned-late-fields-keyword
     - avoid-uncaught-future-errors
     - avoid-unnecessary-conditionals
     - avoid-unnecessary-negations
@@ -117,8 +118,8 @@ dart_code_metrics:
     - prefer-iterable-of
     - prefer-match-file-name:
         exclude:
-          - 'lib/src/theme/*'
-          - 'lib/src/theme/**/*'
+          - "lib/src/theme/*"
+          - "lib/src/theme/**/*"
     - prefer-parentheses-with-if-null
     - prefer-public-exception-classes
     - prefer-return-await
@@ -167,14 +168,14 @@ dart_code_metrics:
     - prefer-define-hero-tag
     - prefer-extracting-callbacks:
         exclude:
-          - 'example/lib/screens/*'
-          - 'example/lib/screens/**/*'
+          - "example/lib/screens/*"
+          - "example/lib/screens/**/*"
     - prefer-text-rich
     - prefer-using-list-view
     - prefer-widget-private-members:
         exclude:
-          - 'example/lib/screens/*'
-          - 'example/lib/screens/**/*'
+          - "example/lib/screens/*"
+          - "example/lib/screens/**/*"
 
     # Not part of the default ruleset
     - avoid-global-state

@@ -52,13 +52,22 @@ class _YgBottomSheetModalState extends State<_YgBottomSheetModal> {
                   handleScrollSwipeEnd: _handleScrollStop,
                   handleScrollSwipeUpdate: _handleScrollSwipeUpdate,
                 ),
-                child: widget.bottomSheet,
+                child: NotificationListener<YgBottomSheetClosePressedNotification>(
+                  onNotification: _onCloseMessage,
+                  child: widget.bottomSheet,
+                ),
               ),
             ),
           ),
         ),
       ),
     );
+  }
+
+  bool _onCloseMessage(YgBottomSheetClosePressedNotification _) {
+    _animateToClosed();
+
+    return true;
   }
 
   void _resizeCallback(Size size) {

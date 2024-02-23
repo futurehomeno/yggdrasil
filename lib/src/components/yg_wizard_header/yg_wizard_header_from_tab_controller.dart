@@ -2,7 +2,6 @@ part of 'yg_wizard_header.dart';
 
 class _YgWizardHeaderFromTabController extends YgWizardHeader {
   const _YgWizardHeaderFromTabController({
-    required super.counterBuilder,
     required super.titleBuilder,
     this.controller,
   }) : super._();

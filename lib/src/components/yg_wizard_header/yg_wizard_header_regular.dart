@@ -2,7 +2,6 @@ part of 'yg_wizard_header.dart';
 
 class _YgWizardHeaderRegular extends YgWizardHeader {
   const _YgWizardHeaderRegular({
-    required super.counterBuilder,
     required super.titleBuilder,
     required this.currentStep,
     required this.steps,

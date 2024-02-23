@@ -1,5 +1,6 @@
 import 'dart:io';
 
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:yggdrasil/src/theme/_theme.dart';
 import 'package:yggdrasil/yggdrasil.dart';
@@ -20,6 +21,7 @@ part 'single_select/yg_single_select_dropdown_controller.dart';
 part 'yg_dropdown_controller.dart';
 part 'yg_dropdown_form_field.dart';
 
+/// Implementation of the Yggdrasil dropdown.
 abstract class YgDropdownField<T extends Object> extends StatefulWidget with StatefulWidgetDebugMixin {
   /// Factory constructor for a [YgDropdownField] with a single value.
   ///
@@ -31,6 +33,7 @@ abstract class YgDropdownField<T extends Object> extends StatefulWidget with Sta
     YgDropdownAction dropdownAction,
     required List<YgDropdownEntry<T>> entries,
     String? error,
+    String? metric,
     FocusNode? focusNode,
     T? initialValue,
     Key? key,
@@ -57,6 +60,7 @@ abstract class YgDropdownField<T extends Object> extends StatefulWidget with Sta
     YgDropdownAction dropdownAction,
     required List<YgDropdownEntry<T>> entries,
     String? error,
+    String? metric,
     FocusNode? focusNode,
     Set<T>? initialValue,
     Key? key,
@@ -92,6 +96,7 @@ abstract class YgDropdownField<T extends Object> extends StatefulWidget with Sta
     this.onPressed,
     this.controller,
     this.onEditingComplete,
+    this.metric,
   });
 
   /// The variant of the field.
@@ -118,6 +123,9 @@ abstract class YgDropdownField<T extends Object> extends StatefulWidget with Sta
 
   /// The label shown on top of the dropdown field.
   final String label;
+
+  /// The metric shown behind the label and entry titles.
+  final String? metric;
 
   /// The placeholder shown in the dropdown field.
   ///
@@ -182,7 +190,7 @@ abstract class YgDropdownField<T extends Object> extends StatefulWidget with Sta
   /// Controls the value of the dropdown and can open or close the dropdown.
   ///
   /// When defined will overwrite the [initialValue].
-  final YgDynamicDropdownController<T>? controller;
+  final YgAnyDropdownController<T>? controller;
 
   /// The action to perform when the user completes editing the field.
   ///
@@ -206,7 +214,7 @@ abstract class YgDropdownField<T extends Object> extends StatefulWidget with Sta
 
 abstract class YgDropdownFieldWidgetState<T extends Object, W extends YgDropdownField<T>> extends State<W> {
   /// The current controller of the dropdown, either user specified or a default one.
-  late YgDynamicDropdownController<T> _controller = widget.controller ?? createController();
+  late YgAnyDropdownController<T> _controller = widget.controller ?? createController();
 
   /// The current [FocusNode] of the dropdown, either user specified of a default one.
   late FocusNode _focusNode = widget.focusNode ?? FocusNode();
@@ -244,7 +252,7 @@ abstract class YgDropdownFieldWidgetState<T extends Object, W extends YgDropdown
 
   @override
   void didUpdateWidget(covariant W oldWidget) {
-    final YgDynamicDropdownController<T>? newController = widget.controller;
+    final YgAnyDropdownController<T>? newController = widget.controller;
     final FocusNode? newFocusNode = widget.focusNode;
 
     if (newFocusNode == null) {
@@ -274,6 +282,7 @@ abstract class YgDropdownFieldWidgetState<T extends Object, W extends YgDropdown
 
   @override
   void dispose() {
+    _closeModals();
     _state.removeListener(_handleStateChanged);
     _state.dispose();
     _controller.removeListener(_controllerListener);
@@ -359,7 +368,7 @@ abstract class YgDropdownFieldWidgetState<T extends Object, W extends YgDropdown
   }
 
   /// Creates a default controller to be used if there is no user specified one.
-  YgDynamicDropdownController<T> createController();
+  YgAnyDropdownController<T> createController();
 
   void openMenu() {
     final RenderBox itemBox = context.findRenderObject()! as RenderBox;
@@ -375,6 +384,7 @@ abstract class YgDropdownFieldWidgetState<T extends Object, W extends YgDropdown
         dropdownController: _controller,
         rect: itemRect,
         onClose: _onClosed,
+        metric: widget.metric,
       ),
     );
     _state.opened.value = true;
@@ -383,9 +393,31 @@ abstract class YgDropdownFieldWidgetState<T extends Object, W extends YgDropdown
   void openBottomSheet() {
     Navigator.of(context).push(
       YgDropdownBottomSheetRoute<T>(
+        metric: widget.metric,
         entries: widget.entries,
         label: widget.label,
         dropdownController: _controller,
+        onClose: _onClosed,
+      ),
+    );
+    _state.opened.value = true;
+  }
+
+  void openPickerBottomSheet() {
+    final YgAnyDropdownController<T> controller = _controller;
+
+    if (controller is! YgSingleSelectDropdownController<T>) {
+      _performPlatformAction(picker: false);
+
+      return;
+    }
+
+    Navigator.of(context).push(
+      YgDropdownPickerBottomSheetRoute<T>(
+        entries: widget.entries,
+        metric: widget.metric,
+        label: widget.label,
+        dropdownController: controller,
         onClose: _onClosed,
       ),
     );
@@ -398,22 +430,33 @@ abstract class YgDropdownFieldWidgetState<T extends Object, W extends YgDropdown
     switch (widget.dropdownAction) {
       case YgDropdownAction.bottomSheet:
         return openBottomSheet();
+      case YgDropdownAction.picker:
+        return openPickerBottomSheet();
       case YgDropdownAction.menu:
         return openMenu();
       case YgDropdownAction.auto:
-        return _performPlatformAction();
+        return _performPlatformAction(picker: false);
+      case YgDropdownAction.autoPicker:
+        return _performPlatformAction(picker: true);
       case YgDropdownAction.none:
         return;
     }
   }
 
   void close() {
+    _closeModals();
+    _onClosed();
+  }
+
+  void _closeModals() {
     Navigator.popUntil(
       context,
       // ignore: avoid-dynamic
-      (Route<dynamic> route) => route is! YgDropdownMenuRoute && route is! YgDropdownBottomSheetRoute,
+      (Route<dynamic> route) =>
+          route is! YgDropdownMenuRoute &&
+          route is! YgDropdownBottomSheetRoute &&
+          route is! YgDropdownPickerBottomSheetRoute,
     );
-    _onClosed();
   }
 
   bool get isOpen {
@@ -421,7 +464,9 @@ abstract class YgDropdownFieldWidgetState<T extends Object, W extends YgDropdown
   }
 
   void _onClosed() {
-    _state.opened.value = false;
+    if (!_state.opened.update(false)) {
+      return;
+    }
 
     final VoidCallback? onEditingComplete = widget.onEditingComplete;
 
@@ -445,15 +490,19 @@ abstract class YgDropdownFieldWidgetState<T extends Object, W extends YgDropdown
     }
   }
 
-  void _performPlatformAction() {
-    if (Platform.isAndroid || Platform.isIOS) {
-      openBottomSheet();
-    } else {
+  void _performPlatformAction({
+    required bool picker,
+  }) {
+    if (!(Platform.isAndroid || Platform.isIOS)) {
       openMenu();
+    } else if (picker) {
+      openPickerBottomSheet();
+    } else {
+      openBottomSheet();
     }
   }
 
-  void _updateController(YgDynamicDropdownController<T> controller) {
+  void _updateController(YgAnyDropdownController<T> controller) {
     _controller.removeListener(_controllerListener);
     _controller._detach();
     _controller = controller;

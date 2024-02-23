@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:yggdrasil/yggdrasil.dart';
+import 'package:yggdrasil_demo/widgets/_widgets.dart';
 
 class ExampleScrollableBottomSheet extends YgBottomSheetModalRoute {
   @override
@@ -9,26 +10,13 @@ class ExampleScrollableBottomSheet extends YgBottomSheetModalRoute {
   YgBottomSheet buildBottomSheet(BuildContext context) {
     return YgBottomSheet(
       title: 'Scrollable Bottom Sheet',
-      content: YgSection.list(
-        children: List<YgListTile>.generate(
-          25,
-          (int index) => YgListTile(
-            title: 'List item ${index + 1}',
-            onTap: () {},
-          ),
-        ),
-      ),
+      content: const DemoPlaceholder(height: 1500),
       footerButtons: YgButtonGroup.vertical(
         children: <YgButton>[
           YgButton(
             variant: YgButtonVariant.primary,
             onPressed: () {},
-            child: const Text('Primary button'),
-          ),
-          YgButton(
-            variant: YgButtonVariant.secondary,
-            onPressed: () {},
-            child: const Text('Secondary button'),
+            child: const Text('Button'),
           ),
         ],
       ),

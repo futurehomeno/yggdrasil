@@ -86,6 +86,14 @@ class _$YgBottomSheetTheme {
     professional_dark.FhDimensions.xs,
   ];
 
+  // Spacing between the title and the handle
+  static const List<double> titleCloseButtonSpacing = <double>[
+    consumer_light.FhDimensions.xs,
+    consumer_dark.FhDimensions.xs,
+    professional_light.FhDimensions.xs,
+    professional_dark.FhDimensions.xs,
+  ];
+
   // Spacing between the content.
   static const List<double> contentSpacing = <double>[
     consumer_light.FhDimensions.md,

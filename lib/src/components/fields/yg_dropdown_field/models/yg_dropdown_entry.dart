@@ -38,4 +38,13 @@ class YgDropdownEntry<T extends Object> {
   /// identifier of the entry as the user will not be able to identify the
   /// selected value from looking at the field itself.
   final YgIconData? icon;
+
+  /// Get the [title] with a potential [metric] added to it.
+  String titleWithMetric(String? metric) {
+    if (metric == null) {
+      return title;
+    }
+
+    return '$title $metric';
+  }
 }

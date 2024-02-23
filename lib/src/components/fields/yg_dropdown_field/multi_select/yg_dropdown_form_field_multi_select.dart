@@ -20,6 +20,7 @@ class _YgDropdownFormFieldMultiSelect<T extends Object> extends YgDropdownFormFi
     super.onFocusChanged,
     super.onPressed,
     super.onEditingComplete,
+    super.metric,
     this.initialValue,
     this.controller,
     List<FormFieldValidator<Set<T>>>? validators,
@@ -61,6 +62,7 @@ class _YgDropdownFormFieldMultiSelect<T extends Object> extends YgDropdownFormFi
         onFocusChanged: helper.onFocusChanged,
         onEditingComplete: helper.onEditingComplete,
         onPressed: onPressed,
+        metric: metric,
       ),
     );
   }

@@ -20,6 +20,7 @@ class _YgDropdownFormFieldSingleSelect<T extends Object> extends YgDropdownFormF
     super.onFocusChanged,
     super.onPressed,
     super.onEditingComplete,
+    super.metric,
     this.initialValue,
     this.controller,
     List<FormFieldValidator<T>>? validators,
@@ -61,6 +62,7 @@ class _YgDropdownFormFieldSingleSelect<T extends Object> extends YgDropdownFormF
         onFocusChanged: helper.onFocusChanged,
         onEditingComplete: helper.onEditingComplete,
         onPressed: onPressed,
+        metric: metric,
       ),
     );
   }

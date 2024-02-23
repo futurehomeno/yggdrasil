@@ -215,6 +215,7 @@ class _YggdrasilAppState extends State<YggdrasilApp> {
       if (widget.localizationsDelegates != null) ...widget.localizationsDelegates!,
       DefaultMaterialLocalizations.delegate,
       DefaultCupertinoLocalizations.delegate,
+      DefaultYggdrasilLocalizations.delegate,
     ];
   }
 

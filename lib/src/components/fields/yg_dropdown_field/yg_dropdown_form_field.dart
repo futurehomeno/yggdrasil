@@ -11,6 +11,7 @@ abstract class YgDropdownFormField<T extends Object> extends StatefulWidget {
     String? error,
     T? initialValue,
     String? placeholder,
+    String? metric,
     FocusNode? focusNode,
     List<FormFieldValidator<T?>>? validators,
     YgSingleSelectDropdownController<T>? controller,
@@ -34,6 +35,7 @@ abstract class YgDropdownFormField<T extends Object> extends StatefulWidget {
     int? maxLines,
     int? minLines,
     String? placeholder,
+    String? metric,
     FocusNode? focusNode,
     Set<T>? initialValue,
     List<FormFieldValidator<Set<T>>>? validators,
@@ -69,43 +71,47 @@ abstract class YgDropdownFormField<T extends Object> extends StatefulWidget {
     required this.onPressed,
     required this.placeholder,
     required this.onEditingComplete,
+    required this.metric,
   })  : enabled = !disabled,
         restorationId = null;
+
+  /// See [YgDropdownField.metric].
+  final String? metric;
 
   /// See [YgDropdownField.entries].
   final List<YgDropdownEntry<T>> entries;
 
-  /// See [YgDropdownField.entries].
+  /// See [YgDropdownField.label].
   final String label;
 
-  /// See [YgDropdownField.entries].
+  /// See [YgDropdownField.variant].
   final YgFieldVariant variant;
 
-  /// See [YgDropdownField.entries].
+  /// See [YgDropdownField.size].
   final YgFieldSize size;
 
-  /// See [YgDropdownField.entries].
+  /// See [YgDropdownField.focusNode].
   final FocusNode? focusNode;
 
-  /// See [YgDropdownField.entries].
+  /// See [YgDropdownField.error].
   final String? error;
 
-  /// See [YgDropdownField.entries].
+  /// See [YgDropdownField.minLines].
   final int? minLines;
 
-  /// See [YgDropdownField.entries].
+  /// See [YgDropdownField.placeholder].
   final String? placeholder;
 
-  /// See [YgDropdownField.entries].
+  /// See [YgDropdownField.maxLines].
   final int? maxLines;
 
-  /// See [YgDropdownField.entries].
+  /// See [YgDropdownField.disabled].
   final bool disabled;
 
-  /// See [YgDropdownField.entries].
+  /// See [YgDropdownField.allowDeselect].
   final bool allowDeselect;
 
-  /// See [YgDropdownField.entries].
+  /// See [YgDropdownField.dropdownAction].
   final YgDropdownAction dropdownAction;
 
   /// See [YgDropdownField.onFocusChanged].
@@ -129,10 +135,8 @@ abstract class YgDropdownFormField<T extends Object> extends StatefulWidget {
 
   // region FormFieldOverrides
 
-  // ignore: unused-code
   final bool enabled;
 
-  // ignore: unused-code
   final String? restorationId;
 
   // endregion

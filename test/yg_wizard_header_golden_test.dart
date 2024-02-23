@@ -7,8 +7,6 @@ import 'extensions/_extensions.dart';
 import 'utils/_utils.dart';
 
 void main() {
-  String counterBuilder(int currentStep, int steps) => '$currentStep of $steps';
-
   group(
     'YgSwitchListTileGoldenTest',
     () {
@@ -21,7 +19,6 @@ void main() {
               GoldenTestScenario(
                 name: 'With short title, step $currentStep of $steps',
                 child: YgWizardHeader(
-                  counterBuilder: counterBuilder,
                   currentStep: currentStep,
                   steps: steps,
                   titleBuilder: (_) => YgGoldenTestValues.shortText,
@@ -30,7 +27,6 @@ void main() {
               GoldenTestScenario(
                 name: 'With long title, step $currentStep of $steps',
                 child: YgWizardHeader(
-                  counterBuilder: counterBuilder,
                   currentStep: currentStep,
                   steps: steps,
                   titleBuilder: (_) => YgGoldenTestValues.longText,

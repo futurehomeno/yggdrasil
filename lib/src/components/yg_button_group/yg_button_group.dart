@@ -1,74 +1,63 @@
 import 'package:flutter/material.dart';
 import 'package:yggdrasil/yggdrasil.dart';
 
-class YgButtonGroup extends StatelessWidget with StatelessWidgetDebugMixin {
-  const YgButtonGroup({
+part 'yg_button_group_action_or_cancel.dart';
+part 'yg_button_group_base.dart';
+
+/// Implementation of yggdrasil button group.
+///
+/// Provides some common patterns for buttons.
+abstract class YgButtonGroup extends StatelessWidget with StatelessWidgetDebugMixin {
+  const factory YgButtonGroup({
+    Key? key,
+    required Axis axis,
+    required List<YgButton> children,
+  }) = _YgButtonGroupBase;
+
+  /// A vertical button group.
+  const factory YgButtonGroup.vertical({
+    Key? key,
+    required List<YgButton> children,
+  }) = _YgButtonGroupBase.vertical;
+
+  /// A horizontal button group.
+  const factory YgButtonGroup.horizontal({
+    Key? key,
+    required List<YgButton> children,
+  }) = _YgButtonGroupBase.horizontal;
+
+  /// A button group with 2 buttons stacked on top of each other.
+  ///
+  /// The buttons will be show in the following order:
+  ///  * Action (Primary variant)
+  ///  * Cancel (Link variant)
+  const factory YgButtonGroup.verticalActionOrCancel({
+    Key? key,
+    required String actionText,
+    required String cancelText,
+    required void Function() onActionPressed,
+    required void Function() onCancelPressed,
+  }) = _YgButtonGroupActionOrCancel.vertical;
+
+  /// A button group with 2 buttons stacked next to each other.
+  ///
+  /// The buttons will be show in the following order:
+  ///  * Action (Primary variant)
+  ///  * Cancel (Link variant)
+  const factory YgButtonGroup.horizontalActionOrCancel({
+    Key? key,
+    required String actionText,
+    required String cancelText,
+    required void Function() onActionPressed,
+    required void Function() onCancelPressed,
+  }) = _YgButtonGroupActionOrCancel.horizontal;
+
+  const YgButtonGroup._({
     super.key,
-    required this.children,
     required this.axis,
   });
 
-  factory YgButtonGroup.vertical({
-    required List<YgButton> children,
-  }) {
-    return YgButtonGroup(
-      axis: Axis.vertical,
-      children: children,
-    );
-  }
-
-  factory YgButtonGroup.verticalActionOrCancel({
-    required String actionText,
-    required String cancelText,
-    required VoidCallback onActionPressed,
-    required VoidCallback onCancelPressed,
-  }) {
-    return YgButtonGroup.vertical(
-      children: <YgButton>[
-        YgButton(
-          onPressed: onActionPressed,
-          child: Text(actionText),
-        ),
-        YgButton(
-          variant: YgButtonVariant.link,
-          onPressed: onCancelPressed,
-          child: Text(cancelText),
-        ),
-      ],
-    );
-  }
-
-  factory YgButtonGroup.horizontal({
-    required List<YgButton> children,
-  }) {
-    return YgButtonGroup(
-      axis: Axis.horizontal,
-      children: children,
-    );
-  }
-
-  factory YgButtonGroup.horizontalActionOrCancel({
-    required String actionText,
-    required String cancelText,
-    required VoidCallback onActionPressed,
-    required VoidCallback onCancelPressed,
-  }) {
-    return YgButtonGroup.horizontal(
-      children: <YgButton>[
-        YgButton(
-          onPressed: onActionPressed,
-          child: Text(actionText),
-        ),
-        YgButton(
-          variant: YgButtonVariant.link,
-          onPressed: onCancelPressed,
-          child: Text(cancelText),
-        ),
-      ],
-    );
-  }
-
-  final List<YgButton> children;
+  List<YgButton> get children;
   final Axis axis;
 
   @override

@@ -72,6 +72,12 @@ class _DropdownFieldScreenState extends State<DropdownFieldScreen> {
                   completeAction: YgCompleteAction.focusNext,
                 ),
                 YgDropdownField<String>(
+                  label: 'Picker',
+                  dropdownAction: YgDropdownAction.picker,
+                  entries: _generateEntries(10),
+                  completeAction: YgCompleteAction.focusNext,
+                ),
+                YgDropdownField<String>(
                   label: 'Button only',
                   dropdownAction: YgDropdownAction.none,
                   entries: _generateEntries(4),
@@ -87,6 +93,13 @@ class _DropdownFieldScreenState extends State<DropdownFieldScreen> {
                   label: 'Scrollable menu',
                   dropdownAction: YgDropdownAction.menu,
                   entries: _generateEntries(20),
+                  completeAction: YgCompleteAction.focusNext,
+                ),
+                YgDropdownField<String>(
+                  label: 'With metric',
+                  dropdownAction: YgDropdownAction.autoPicker,
+                  metric: 'A',
+                  entries: _generateEntries(10),
                   completeAction: YgCompleteAction.focusNext,
                 ),
                 YgDropdownField<String>(

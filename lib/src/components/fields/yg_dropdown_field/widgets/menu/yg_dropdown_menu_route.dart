@@ -19,12 +19,14 @@ class YgDropdownMenuRoute<T extends Object> extends PopupRoute<Widget> {
     required this.dropdownController,
     required this.onClose,
     required this.rect,
+    required this.metric,
   });
 
-  final YgDynamicDropdownController<T> dropdownController;
+  final YgAnyDropdownController<T> dropdownController;
   final List<YgDropdownEntry<T>> entries;
   final VoidCallback onClose;
   final Rect rect;
+  final String? metric;
 
   BuildContext get context => navigator!.context;
 
@@ -51,12 +53,13 @@ class YgDropdownMenuRoute<T extends Object> extends PopupRoute<Widget> {
   String get barrierLabel => 'Dropdown Menu';
 
   @override
-  Future<RoutePopDisposition> willPop() {
-    onClose();
+  void onPopInvoked(bool didPop) {
+    if (!didPop) {
+      return;
+    }
 
-    // TODO(DEV-2458): Find alternative way to intercept willPop.
-    // ignore: deprecated_member_use
-    return super.willPop();
+    onClose();
+    dropdownController.discardChanges();
   }
 
   @override
@@ -73,6 +76,7 @@ class YgDropdownMenuRoute<T extends Object> extends PopupRoute<Widget> {
       child: RepaintBoundary(
         child: RepaintBoundary(
           child: _YgDropdownMenu<T>(
+            metric: metric,
             entries: entries,
             controller: dropdownController,
           ),

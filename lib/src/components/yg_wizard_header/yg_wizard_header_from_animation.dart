@@ -2,7 +2,6 @@ part of 'yg_wizard_header.dart';
 
 class _YgWizardHeaderFromAnimation extends YgWizardHeader {
   const _YgWizardHeaderFromAnimation({
-    required super.counterBuilder,
     required super.titleBuilder,
     required this.animation,
     required this.steps,

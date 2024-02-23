@@ -12,6 +12,7 @@ dependencies:
   flutter:
     sdk: flutter
   flutter_lints: 3.0.1
+  intl: 0.18.1
   theme_tailor_annotation:
     git:
       ref: main
@@ -25,6 +26,8 @@ dev_dependencies:
   alchemist: 0.7.0
   # Run `flutter pub run build_runner build --delete-conflicting-outputs` in order to generate stuff.
   build_runner: 2.4.6
+  recase: 4.1.0
+  intl_utils: 2.8.7
   flutter_test:
     sdk: flutter
   theme_tailor:
@@ -32,6 +35,14 @@ dev_dependencies:
       ref: main
       url: git@github.com:futurehomeno/theme_tailor.git
       path: packages/theme_tailor
+
+flutter_intl:
+  enabled: true
+  class_name: DefaultYggdrasilLocalizations
+  main_locale: en
+  arb_dir: l10n/generated
+  output_dir: lib/src/generated
+  use_deferred_loading: false
 
 flutter:
   uses-material-design: true

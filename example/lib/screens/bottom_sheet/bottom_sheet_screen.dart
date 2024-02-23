@@ -49,11 +49,11 @@ class _BottomSheetScreenState extends State<BottomSheetScreen> with TickerProvid
             ),
           ),
           YgSection(
-            title: 'Bottom sheet w/o footer',
+            title: 'Bottom sheet with footer',
             child: YgButton(
               variant: YgButtonVariant.primary,
               onPressed: () {
-                Navigator.of(context).push(ExampleBottomSheetWithoutFooter());
+                Navigator.of(context).push(ExampleBottomSheetWithFooter());
               },
               child: const Text('Show'),
             ),
