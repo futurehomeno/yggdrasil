@@ -29,7 +29,7 @@ sealed class YgDropdownController<T extends Object, V, S extends YgDropdownField
   /// Used internally in the [YgDropdownField] and should generally not be used
   /// by a user of the [YgDropdownField].
   ///
-  /// This value is the value shown on screen when the user has opens the
+  /// This value is the value shown on screen when the user has opened the
   /// dropdown, this is not the current value of the dropdown and this value may
   /// be discarded by the user by triggering [discardChanges]. This may for
   /// example happen when the dropdown bottom sheet is closed without saving.
