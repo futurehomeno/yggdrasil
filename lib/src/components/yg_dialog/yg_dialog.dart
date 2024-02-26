@@ -123,12 +123,7 @@ class _YgDialogState extends StateWithYgStyle<YgDialog, YgDialogStyle> {
         iconTheme: style.iconColor.map(
           (Color color) => IconThemeData(color: color),
         ),
-        child: AnimatedSwitcher(
-          duration: _theme.movementAnimationDuration,
-          switchInCurve: _theme.movementAnimationCurve,
-          switchOutCurve: _theme.movementAnimationCurve,
-          child: _buildHeaderContent(),
-        ),
+        child: _buildHeaderContent(),
       ),
     );
   }

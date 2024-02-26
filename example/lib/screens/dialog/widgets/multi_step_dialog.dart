@@ -6,6 +6,13 @@ class MultiStepDialog extends YgDialogRoute {
   String get name => 'ExampleDialogNoButtons';
 
   @override
+  void onPopInvoked(bool didPop) {
+    if (didPop) {
+      print('popped');
+    }
+  }
+
+  @override
   Widget buildDialog(BuildContext context) {
     return const DialogContent();
   }
@@ -25,15 +32,18 @@ class _DialogContentState extends State<DialogContent> {
 
   @override
   Widget build(BuildContext context) {
-    return switch (_state) {
-      0 => _buildInitialDialog(),
-      1 => _buildLoadingDialog(),
-      _ => _buildCompletedDialog(),
-    };
+    return YgDialogSwitcher(
+      child: switch (_state) {
+        0 => _buildInitialDialog(),
+        1 => _buildLoadingDialog(),
+        _ => _buildCompletedDialog(),
+      },
+    );
   }
 
   YgDialog _buildInitialDialog() {
     return YgDialog(
+      key: const ValueKey<String>('confirm'),
       title: 'Save changes',
       description: 'Do you want to save your changes?',
       buttons: YgButtonGroup.verticalActionOrCancel(
@@ -46,13 +56,18 @@ class _DialogContentState extends State<DialogContent> {
   }
 
   Widget _buildLoadingDialog() {
-    return const YgDialog.loading(
-      title: 'Loading...',
+    return const FractionallySizedBox(
+      key: ValueKey<String>('loading'),
+      widthFactor: 1,
+      child: YgDialog.loading(
+        title: 'Loading...',
+      ),
     );
   }
 
   YgDialog _buildCompletedDialog() {
     return YgDialog.success(
+      key: const ValueKey<String>('success'),
       title: 'Saving completed',
       description: 'Your changes have been saved.',
       buttons: YgButtonGroup.vertical(
@@ -71,7 +86,7 @@ class _DialogContentState extends State<DialogContent> {
     _state++;
     setState(() {});
 
-    await Future<void>.delayed(const Duration(seconds: 2));
+    await Future<void>.delayed(const Duration(milliseconds: 1500));
 
     if (mounted) {
       _state++;
