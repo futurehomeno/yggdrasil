@@ -75,19 +75,21 @@ class _YgDialogSwitcherState extends State<YgDialogSwitcher> with TickerProvider
   Widget build(BuildContext context) {
     final YgDialogTheme theme = context.dialogTheme;
 
-    return ClipRRect(
-      borderRadius: theme.outerBorderRadius,
-      child: YgSizeTransition(
-        animation: _sizeTransitionController,
-        children: _renderedEntries
-            .map(
-              (_YgSwitcherEntry entry) => FadeTransition(
-                opacity: entry.controller,
-                key: entry.key,
-                child: entry.child,
-              ),
-            )
-            .toList(),
+    return RepaintBoundary(
+      child: ClipRRect(
+        borderRadius: theme.outerBorderRadius,
+        child: YgSizeTransition(
+          animation: _sizeTransitionController,
+          children: _renderedEntries
+              .map(
+                (_YgSwitcherEntry entry) => FadeTransition(
+                  opacity: entry.controller,
+                  key: entry.key,
+                  child: entry.child,
+                ),
+              )
+              .toList(),
+        ),
       ),
     );
   }
