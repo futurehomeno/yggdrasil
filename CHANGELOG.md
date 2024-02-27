@@ -1,3 +1,22 @@
+# 1.10.2 [2024-02-27T13:18:55.169520]
+
+## Breaking changes
+
+- [breaking] YgDropdownController.onValueTapped can no longer be depended on to intercept changing the bottomsheet value, use YgDropdownController.submitChanges instead.
+
+## Changes
+
+- [feature] Added YgDropdownAction.picker and YgDropdownAction.autoPicker to allow showing a picker in the dropdown DEV-3205.
+- [fix] Fixed error text in fields overflowing.
+- [improvement] Added close button to the bottom sheet to be in line with new design DEV-2975.
+- [improvement] Updated design of the dropdown to be in line with new design DEV-3205.
+
+## Dev changes
+
+- [dev-fix] Fixed inspect button not having access to the theme and throwing an error when trying to inspect widgets.
+- [dev-improvement] Added translations for widgets with build in texts.
+- [dev-improvement] Replaced deprecated willPop with onPopInvoked DEV-2458.
+
 # 1.10.1 [2024-02-19T17:50:25.292789]
 
 ## Changes
