@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:yggdrasil/src/components/yg_dialog/enums/yg_dialog_variant.dart';
 import 'package:yggdrasil/src/components/yg_dialog/yg_dialog_style.dart';
 import 'package:yggdrasil/src/theme/_theme.dart';
+import 'package:yggdrasil/src/theme/dialog/extensions/loading_dialog_theme.dart';
 import 'package:yggdrasil/src/utils/_utils.dart';
 import 'package:yggdrasil/yggdrasil.dart';
 
@@ -92,25 +93,26 @@ class _YgDialogState extends StateWithYgStyle<YgDialog, YgDialogStyle> {
   @override
   Widget build(BuildContext context) {
     final YgButtonGroup? ygButtonGroup = widget.buttons;
+    final YgDialogTheme theme = context.dialogTheme;
 
     return Material(
-      borderRadius: _theme.outerBorderRadius,
-      color: _theme.backgroundColor,
+      borderRadius: theme.outerBorderRadius,
+      color: theme.backgroundColor,
       child: Padding(
-        padding: _theme.outerPadding,
+        padding: theme.contentPadding,
         child: Column(
           mainAxisSize: MainAxisSize.min,
           children: <Widget>[
-            _buildHeader(),
-            _buildTextSection(),
+            _buildHeader(theme),
+            _buildTextSection(theme),
             if (ygButtonGroup != null) ygButtonGroup,
-          ].withVerticalSpacing(30.0),
+          ].withVerticalSpacing(theme.contentSpacing),
         ),
       ),
     );
   }
 
-  Widget _buildHeader() {
+  Widget _buildHeader(YgDialogTheme theme) {
     return YgAnimatedContainer(
       decoration: style.iconBackground.map(
         (Color color) => BoxDecoration(
@@ -123,42 +125,43 @@ class _YgDialogState extends StateWithYgStyle<YgDialog, YgDialogStyle> {
         iconTheme: style.iconColor.map(
           (Color color) => IconThemeData(color: color),
         ),
-        child: _buildHeaderContent(),
+        child: _buildHeaderContent(theme),
       ),
     );
   }
 
-  Widget _buildTextSection() {
+  Widget _buildTextSection(YgDialogTheme theme) {
     final String? description = widget.description;
 
     return Column(
+      mainAxisSize: MainAxisSize.min,
       children: <Widget>[
         Text(
           widget.title,
           textAlign: TextAlign.center,
-          style: _theme.titleTextStyle,
+          style: theme.titleTextStyle,
         ),
         if (description != null)
           Text(
             description,
             textAlign: TextAlign.center,
-            style: _theme.descriptionTextStyle,
+            style: theme.descriptionTextStyle,
           ),
-      ].withVerticalSpacing(_theme.titleDescriptionSpacing),
+      ].withVerticalSpacing(theme.titleDescriptionSpacing),
     );
   }
 
-  Widget _buildHeaderContent() {
+  Widget _buildHeaderContent(YgDialogTheme theme) {
+    final LoadingDialogTheme loadingTheme = theme.loadingDialogTheme;
     final YgIcon? icon = widget.icon;
+
     if (icon == null) {
       return CircularProgressIndicator(
-        strokeWidth: 4,
-        color: _theme.loadingDialogTheme.iconColor,
+        strokeWidth: loadingTheme.circularProgressIndicatorWidth,
+        color: loadingTheme.iconColor,
       );
     }
 
     return icon;
   }
-
-  YgDialogTheme get _theme => context.dialogTheme;
 }

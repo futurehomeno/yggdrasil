@@ -23,6 +23,13 @@ class _$LoadingDialogTheme {
     professional_dark.FhColors.interactiveHighlightDefault,
   ];
 
+  static const List<double> circularProgressIndicatorWidth = <double>[
+    4,
+    4,
+    4,
+    4,
+  ];
+
   static const List<EdgeInsets> iconPadding = <EdgeInsets>[
     EdgeInsets.all(11),
     EdgeInsets.all(11),

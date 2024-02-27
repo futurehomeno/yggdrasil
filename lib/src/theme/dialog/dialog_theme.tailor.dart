@@ -11,8 +11,9 @@ part of 'dialog_theme.dart';
 class YgDialogTheme extends ThemeExtension<YgDialogTheme> {
   const YgDialogTheme({
     required this.backgroundColor,
-    required this.buttonSpacing,
     required this.confirmDialogTheme,
+    required this.contentPadding,
+    required this.contentSpacing,
     required this.criticalDialogTheme,
     required this.descriptionTextStyle,
     required this.highlightDialogTheme,
@@ -23,7 +24,6 @@ class YgDialogTheme extends ThemeExtension<YgDialogTheme> {
     required this.movementAnimationDuration,
     required this.outerBorderRadius,
     required this.outerPadding,
-    required this.paddingToScreenEdge,
     required this.scrimColor,
     required this.successDialogTheme,
     required this.titleDescriptionSpacing,
@@ -31,8 +31,9 @@ class YgDialogTheme extends ThemeExtension<YgDialogTheme> {
   });
 
   final Color backgroundColor;
-  final double buttonSpacing;
   final ConfirmDialogTheme confirmDialogTheme;
+  final EdgeInsets contentPadding;
+  final double contentSpacing;
   final CriticalDialogTheme criticalDialogTheme;
   final TextStyle descriptionTextStyle;
   final HighlightDialogTheme highlightDialogTheme;
@@ -42,8 +43,7 @@ class YgDialogTheme extends ThemeExtension<YgDialogTheme> {
   final Curve movementAnimationCurve;
   final Duration movementAnimationDuration;
   final BorderRadius outerBorderRadius;
-  final EdgeInsets outerPadding;
-  final double paddingToScreenEdge;
+  final double outerPadding;
   final Color scrimColor;
   final SuccessDialogTheme successDialogTheme;
   final double titleDescriptionSpacing;
@@ -51,8 +51,9 @@ class YgDialogTheme extends ThemeExtension<YgDialogTheme> {
 
   static final YgDialogTheme consumerLight = YgDialogTheme(
     backgroundColor: _$YgDialogTheme.backgroundColor[0],
-    buttonSpacing: _$YgDialogTheme.buttonSpacing[0],
     confirmDialogTheme: _$YgDialogTheme.confirmDialogTheme[0],
+    contentPadding: _$YgDialogTheme.contentPadding[0],
+    contentSpacing: _$YgDialogTheme.contentSpacing[0],
     criticalDialogTheme: _$YgDialogTheme.criticalDialogTheme[0],
     descriptionTextStyle: _$YgDialogTheme.descriptionTextStyle[0],
     highlightDialogTheme: _$YgDialogTheme.highlightDialogTheme[0],
@@ -63,7 +64,6 @@ class YgDialogTheme extends ThemeExtension<YgDialogTheme> {
     movementAnimationDuration: _$YgDialogTheme.movementAnimationDuration[0],
     outerBorderRadius: _$YgDialogTheme.outerBorderRadius[0],
     outerPadding: _$YgDialogTheme.outerPadding[0],
-    paddingToScreenEdge: _$YgDialogTheme.paddingToScreenEdge[0],
     scrimColor: _$YgDialogTheme.scrimColor[0],
     successDialogTheme: _$YgDialogTheme.successDialogTheme[0],
     titleDescriptionSpacing: _$YgDialogTheme.titleDescriptionSpacing[0],
@@ -72,8 +72,9 @@ class YgDialogTheme extends ThemeExtension<YgDialogTheme> {
 
   static final YgDialogTheme consumerDark = YgDialogTheme(
     backgroundColor: _$YgDialogTheme.backgroundColor[1],
-    buttonSpacing: _$YgDialogTheme.buttonSpacing[1],
     confirmDialogTheme: _$YgDialogTheme.confirmDialogTheme[1],
+    contentPadding: _$YgDialogTheme.contentPadding[1],
+    contentSpacing: _$YgDialogTheme.contentSpacing[1],
     criticalDialogTheme: _$YgDialogTheme.criticalDialogTheme[1],
     descriptionTextStyle: _$YgDialogTheme.descriptionTextStyle[1],
     highlightDialogTheme: _$YgDialogTheme.highlightDialogTheme[1],
@@ -84,7 +85,6 @@ class YgDialogTheme extends ThemeExtension<YgDialogTheme> {
     movementAnimationDuration: _$YgDialogTheme.movementAnimationDuration[1],
     outerBorderRadius: _$YgDialogTheme.outerBorderRadius[1],
     outerPadding: _$YgDialogTheme.outerPadding[1],
-    paddingToScreenEdge: _$YgDialogTheme.paddingToScreenEdge[1],
     scrimColor: _$YgDialogTheme.scrimColor[1],
     successDialogTheme: _$YgDialogTheme.successDialogTheme[1],
     titleDescriptionSpacing: _$YgDialogTheme.titleDescriptionSpacing[1],
@@ -93,8 +93,9 @@ class YgDialogTheme extends ThemeExtension<YgDialogTheme> {
 
   static final YgDialogTheme professionalLight = YgDialogTheme(
     backgroundColor: _$YgDialogTheme.backgroundColor[2],
-    buttonSpacing: _$YgDialogTheme.buttonSpacing[2],
     confirmDialogTheme: _$YgDialogTheme.confirmDialogTheme[2],
+    contentPadding: _$YgDialogTheme.contentPadding[2],
+    contentSpacing: _$YgDialogTheme.contentSpacing[2],
     criticalDialogTheme: _$YgDialogTheme.criticalDialogTheme[2],
     descriptionTextStyle: _$YgDialogTheme.descriptionTextStyle[2],
     highlightDialogTheme: _$YgDialogTheme.highlightDialogTheme[2],
@@ -105,7 +106,6 @@ class YgDialogTheme extends ThemeExtension<YgDialogTheme> {
     movementAnimationDuration: _$YgDialogTheme.movementAnimationDuration[2],
     outerBorderRadius: _$YgDialogTheme.outerBorderRadius[2],
     outerPadding: _$YgDialogTheme.outerPadding[2],
-    paddingToScreenEdge: _$YgDialogTheme.paddingToScreenEdge[2],
     scrimColor: _$YgDialogTheme.scrimColor[2],
     successDialogTheme: _$YgDialogTheme.successDialogTheme[2],
     titleDescriptionSpacing: _$YgDialogTheme.titleDescriptionSpacing[2],
@@ -114,8 +114,9 @@ class YgDialogTheme extends ThemeExtension<YgDialogTheme> {
 
   static final YgDialogTheme professionalDark = YgDialogTheme(
     backgroundColor: _$YgDialogTheme.backgroundColor[3],
-    buttonSpacing: _$YgDialogTheme.buttonSpacing[3],
     confirmDialogTheme: _$YgDialogTheme.confirmDialogTheme[3],
+    contentPadding: _$YgDialogTheme.contentPadding[3],
+    contentSpacing: _$YgDialogTheme.contentSpacing[3],
     criticalDialogTheme: _$YgDialogTheme.criticalDialogTheme[3],
     descriptionTextStyle: _$YgDialogTheme.descriptionTextStyle[3],
     highlightDialogTheme: _$YgDialogTheme.highlightDialogTheme[3],
@@ -126,7 +127,6 @@ class YgDialogTheme extends ThemeExtension<YgDialogTheme> {
     movementAnimationDuration: _$YgDialogTheme.movementAnimationDuration[3],
     outerBorderRadius: _$YgDialogTheme.outerBorderRadius[3],
     outerPadding: _$YgDialogTheme.outerPadding[3],
-    paddingToScreenEdge: _$YgDialogTheme.paddingToScreenEdge[3],
     scrimColor: _$YgDialogTheme.scrimColor[3],
     successDialogTheme: _$YgDialogTheme.successDialogTheme[3],
     titleDescriptionSpacing: _$YgDialogTheme.titleDescriptionSpacing[3],
@@ -143,8 +143,9 @@ class YgDialogTheme extends ThemeExtension<YgDialogTheme> {
   @override
   YgDialogTheme copyWith({
     Color? backgroundColor,
-    double? buttonSpacing,
     ConfirmDialogTheme? confirmDialogTheme,
+    EdgeInsets? contentPadding,
+    double? contentSpacing,
     CriticalDialogTheme? criticalDialogTheme,
     TextStyle? descriptionTextStyle,
     HighlightDialogTheme? highlightDialogTheme,
@@ -154,8 +155,7 @@ class YgDialogTheme extends ThemeExtension<YgDialogTheme> {
     Curve? movementAnimationCurve,
     Duration? movementAnimationDuration,
     BorderRadius? outerBorderRadius,
-    EdgeInsets? outerPadding,
-    double? paddingToScreenEdge,
+    double? outerPadding,
     Color? scrimColor,
     SuccessDialogTheme? successDialogTheme,
     double? titleDescriptionSpacing,
@@ -163,8 +163,9 @@ class YgDialogTheme extends ThemeExtension<YgDialogTheme> {
   }) {
     return YgDialogTheme(
       backgroundColor: backgroundColor ?? this.backgroundColor,
-      buttonSpacing: buttonSpacing ?? this.buttonSpacing,
       confirmDialogTheme: confirmDialogTheme ?? this.confirmDialogTheme,
+      contentPadding: contentPadding ?? this.contentPadding,
+      contentSpacing: contentSpacing ?? this.contentSpacing,
       criticalDialogTheme: criticalDialogTheme ?? this.criticalDialogTheme,
       descriptionTextStyle: descriptionTextStyle ?? this.descriptionTextStyle,
       highlightDialogTheme: highlightDialogTheme ?? this.highlightDialogTheme,
@@ -177,7 +178,6 @@ class YgDialogTheme extends ThemeExtension<YgDialogTheme> {
           movementAnimationDuration ?? this.movementAnimationDuration,
       outerBorderRadius: outerBorderRadius ?? this.outerBorderRadius,
       outerPadding: outerPadding ?? this.outerPadding,
-      paddingToScreenEdge: paddingToScreenEdge ?? this.paddingToScreenEdge,
       scrimColor: scrimColor ?? this.scrimColor,
       successDialogTheme: successDialogTheme ?? this.successDialogTheme,
       titleDescriptionSpacing:
@@ -191,9 +191,10 @@ class YgDialogTheme extends ThemeExtension<YgDialogTheme> {
     if (other is! YgDialogTheme) return this as YgDialogTheme;
     return YgDialogTheme(
       backgroundColor: Color.lerp(backgroundColor, other.backgroundColor, t)!,
-      buttonSpacing: t < 0.5 ? buttonSpacing : other.buttonSpacing,
       confirmDialogTheme: confirmDialogTheme.lerp(other.confirmDialogTheme, t)
           as ConfirmDialogTheme,
+      contentPadding: t < 0.5 ? contentPadding : other.contentPadding,
+      contentSpacing: t < 0.5 ? contentSpacing : other.contentSpacing,
       criticalDialogTheme: criticalDialogTheme.lerp(
           other.criticalDialogTheme, t) as CriticalDialogTheme,
       descriptionTextStyle:
@@ -210,8 +211,6 @@ class YgDialogTheme extends ThemeExtension<YgDialogTheme> {
           t < 0.5 ? movementAnimationDuration : other.movementAnimationDuration,
       outerBorderRadius: t < 0.5 ? outerBorderRadius : other.outerBorderRadius,
       outerPadding: t < 0.5 ? outerPadding : other.outerPadding,
-      paddingToScreenEdge:
-          t < 0.5 ? paddingToScreenEdge : other.paddingToScreenEdge,
       scrimColor: Color.lerp(scrimColor, other.scrimColor, t)!,
       successDialogTheme: successDialogTheme.lerp(other.successDialogTheme, t)
           as SuccessDialogTheme,
@@ -229,9 +228,11 @@ class YgDialogTheme extends ThemeExtension<YgDialogTheme> {
             const DeepCollectionEquality()
                 .equals(backgroundColor, other.backgroundColor) &&
             const DeepCollectionEquality()
-                .equals(buttonSpacing, other.buttonSpacing) &&
-            const DeepCollectionEquality()
                 .equals(confirmDialogTheme, other.confirmDialogTheme) &&
+            const DeepCollectionEquality()
+                .equals(contentPadding, other.contentPadding) &&
+            const DeepCollectionEquality()
+                .equals(contentSpacing, other.contentSpacing) &&
             const DeepCollectionEquality()
                 .equals(criticalDialogTheme, other.criticalDialogTheme) &&
             const DeepCollectionEquality()
@@ -251,8 +252,6 @@ class YgDialogTheme extends ThemeExtension<YgDialogTheme> {
             const DeepCollectionEquality()
                 .equals(outerPadding, other.outerPadding) &&
             const DeepCollectionEquality()
-                .equals(paddingToScreenEdge, other.paddingToScreenEdge) &&
-            const DeepCollectionEquality()
                 .equals(scrimColor, other.scrimColor) &&
             const DeepCollectionEquality()
                 .equals(successDialogTheme, other.successDialogTheme) &&
@@ -267,8 +266,9 @@ class YgDialogTheme extends ThemeExtension<YgDialogTheme> {
     return Object.hash(
       runtimeType.hashCode,
       const DeepCollectionEquality().hash(backgroundColor),
-      const DeepCollectionEquality().hash(buttonSpacing),
       const DeepCollectionEquality().hash(confirmDialogTheme),
+      const DeepCollectionEquality().hash(contentPadding),
+      const DeepCollectionEquality().hash(contentSpacing),
       const DeepCollectionEquality().hash(criticalDialogTheme),
       const DeepCollectionEquality().hash(descriptionTextStyle),
       const DeepCollectionEquality().hash(highlightDialogTheme),
@@ -279,7 +279,6 @@ class YgDialogTheme extends ThemeExtension<YgDialogTheme> {
       const DeepCollectionEquality().hash(movementAnimationDuration),
       const DeepCollectionEquality().hash(outerBorderRadius),
       const DeepCollectionEquality().hash(outerPadding),
-      const DeepCollectionEquality().hash(paddingToScreenEdge),
       const DeepCollectionEquality().hash(scrimColor),
       const DeepCollectionEquality().hash(successDialogTheme),
       const DeepCollectionEquality().hash(titleDescriptionSpacing),

@@ -49,12 +49,9 @@ class _DialogContentState extends State<DialogContent> {
   }
 
   Widget _buildLoadingDialog() {
-    return const FractionallySizedBox(
+    return const YgDialog.loading(
       key: ValueKey<String>('loading'),
-      widthFactor: 1,
-      child: YgDialog.loading(
-        title: 'Loading...',
-      ),
+      title: 'Loading...',
     );
   }
 
