@@ -9,6 +9,11 @@ class YgDialogSwitcher extends StatefulWidget {
     required this.child,
   });
 
+  /// The widget rendered under this widget in the widget tree.
+  ///
+  /// When this widget is replaced with a different widget, for example when
+  /// supplying a dialog with a different key, the old widget will be faded out
+  /// and the size of the widget will be animate to the size of the new dialog.
   final Widget child;
 
   @override
