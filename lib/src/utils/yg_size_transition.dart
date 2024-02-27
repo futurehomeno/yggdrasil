@@ -21,7 +21,7 @@ class YgSizeTransition extends MultiChildRenderObjectWidget {
   @override
   RenderObject createRenderObject(BuildContext context) {
     return YgSizeTransitionRenderer(
-      controller: animation,
+      animation: animation,
     );
   }
 
@@ -38,23 +38,33 @@ class YgSizeTransitionRenderer extends RenderBox
         ContainerRenderObjectMixin<RenderBox, YgSizeTransitionRendererParentData>,
         RenderBoxContainerDefaultsMixin<RenderBox, YgSizeTransitionRendererParentData> {
   YgSizeTransitionRenderer({
-    required Animation<double> controller,
-  }) : _controller = controller {
-    controller.addListener(markNeedsLayout);
-  }
+    required Animation<double> animation,
+  }) : _animation = animation;
 
   @override
   void setupParentData(covariant RenderObject child) {
     child.parentData = YgSizeTransitionRendererParentData();
   }
 
-  Animation<double> _controller;
-  Animation<double> get controller => _controller;
-  set controller(Animation<double> newController) {
-    if (_controller != newController) {
-      _controller.removeListener(markNeedsLayout);
-      _controller = newController;
-      _controller.addListener(markNeedsLayout);
+  @override
+  void attach(PipelineOwner owner) {
+    super.attach(owner);
+    _animation.addListener(markNeedsLayout);
+  }
+
+  @override
+  void detach() {
+    _animation.removeListener(markNeedsLayout);
+    super.detach();
+  }
+
+  Animation<double> _animation;
+  Animation<double> get controller => _animation;
+  set controller(Animation<double> newAnimation) {
+    if (_animation != newAnimation) {
+      _animation.removeListener(markNeedsLayout);
+      _animation = newAnimation;
+      _animation.addListener(markNeedsLayout);
     }
   }
 
@@ -81,7 +91,7 @@ class YgSizeTransitionRenderer extends RenderBox
       size = Size.lerp(
         previous,
         targetSize,
-        _controller.value,
+        _animation.value,
       )!;
     } else {
       size = targetSize;
