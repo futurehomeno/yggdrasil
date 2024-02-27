@@ -5,10 +5,36 @@ import 'package:yggdrasil/src/tokens/consumer_light/_consumer_light.dart' as con
 import 'package:yggdrasil/src/tokens/professional_dark/_professional_dark.dart' as professional_dark;
 import 'package:yggdrasil/src/tokens/professional_light/_professional_light.dart' as professional_light;
 
+import 'extensions/_extensions.dart';
+
 part 'dialog_theme.tailor.dart';
 
 @tailorComponent
 class _$YgDialogTheme {
+  @themeExtension
+  static final List<LoadingDialogTheme> loadingDialogTheme = LoadingDialogTheme.themes;
+
+  @themeExtension
+  static final List<ConfirmDialogTheme> confirmDialogTheme = ConfirmDialogTheme.themes;
+
+  @themeExtension
+  static final List<CriticalDialogTheme> criticalDialogTheme = CriticalDialogTheme.themes;
+
+  @themeExtension
+  static final List<HighlightDialogTheme> highlightDialogTheme = HighlightDialogTheme.themes;
+
+  @themeExtension
+  static final List<SuccessDialogTheme> successDialogTheme = SuccessDialogTheme.themes;
+
+  // region Container
+
+  static const List<double> outerPadding = <double>[
+    consumer_light.FhDimensions.xl,
+    consumer_dark.FhDimensions.xl,
+    professional_light.FhDimensions.xl,
+    professional_dark.FhDimensions.xl,
+  ];
+
   static const List<Color> backgroundColor = <Color>[
     consumer_light.FhColors.backgroundDefault,
     consumer_dark.FhColors.backgroundDefault,
@@ -16,26 +42,44 @@ class _$YgDialogTheme {
     professional_dark.FhColors.backgroundDefault,
   ];
 
-  static const List<Color> iconContainerColor = <Color>[
-    consumer_light.FhColors.backgroundWeak,
-    consumer_dark.FhColors.backgroundWeak,
-    professional_light.FhColors.backgroundWeak,
-    professional_dark.FhColors.backgroundWeak,
-  ];
-
-  static const List<EdgeInsets> outerPadding = <EdgeInsets>[
+  static const List<EdgeInsets> contentPadding = <EdgeInsets>[
     EdgeInsets.all(consumer_light.FhDimensions.md),
     EdgeInsets.all(consumer_dark.FhDimensions.md),
     EdgeInsets.all(professional_light.FhDimensions.md),
     EdgeInsets.all(professional_dark.FhDimensions.md),
   ];
 
-  static const List<EdgeInsets> iconPadding = <EdgeInsets>[
-    EdgeInsets.all(consumer_light.FhDimensions.xs),
-    EdgeInsets.all(consumer_dark.FhDimensions.xs),
-    EdgeInsets.all(professional_light.FhDimensions.xs),
-    EdgeInsets.all(professional_dark.FhDimensions.xs),
+  static const List<double> contentSpacing = <double>[
+    consumer_light.FhDimensions.xl,
+    consumer_dark.FhDimensions.xl,
+    professional_light.FhDimensions.xl,
+    professional_dark.FhDimensions.xl,
   ];
+
+  static const List<BorderRadius> outerBorderRadius = <BorderRadius>[
+    consumer_light.FhRadii.xl,
+    consumer_dark.FhRadii.xl,
+    professional_light.FhRadii.xl,
+    professional_dark.FhRadii.xl,
+  ];
+
+  static const List<double> minWidth = <double>[
+    260,
+    260,
+    260,
+    260,
+  ];
+
+  static const List<double> maxWidth = <double>[
+    480,
+    480,
+    480,
+    480,
+  ];
+
+  // endregion
+
+  // region Text section
 
   static const List<double> titleDescriptionSpacing = <double>[
     consumer_light.FhDimensions.sm,
@@ -58,46 +102,13 @@ class _$YgDialogTheme {
     professional_dark.FhTextStyles.paragraph3Regular,
   ];
 
-  static const List<BorderRadius> outerBorderRadius = <BorderRadius>[
-    consumer_light.FhRadii.xl,
-    consumer_dark.FhRadii.xl,
-    professional_light.FhRadii.xl,
-    professional_dark.FhRadii.xl,
-  ];
-
-  static const List<double> buttonSpacing = <double>[
-    consumer_light.FhDimensions.xs,
-    consumer_dark.FhDimensions.xs,
-    professional_light.FhDimensions.xs,
-    professional_dark.FhDimensions.xs,
-  ];
+  // endregion
 
   static const List<Color> scrimColor = <Color>[
     consumer_light.FhColors.backgroundOverlay,
     consumer_dark.FhColors.backgroundOverlay,
     professional_light.FhColors.backgroundOverlay,
     professional_dark.FhColors.backgroundOverlay,
-  ];
-
-  static const List<double> paddingToScreenEdge = <double>[
-    consumer_light.FhDimensions.xl,
-    consumer_dark.FhDimensions.xl,
-    professional_light.FhDimensions.xl,
-    professional_dark.FhDimensions.xl,
-  ];
-
-  static const List<double> minWidth = <double>[
-    260,
-    260,
-    260,
-    260,
-  ];
-
-  static const List<double> maxWidth = <double>[
-    480,
-    480,
-    480,
-    480,
   ];
 
   static const List<Duration> movementAnimationDuration = <Duration>[

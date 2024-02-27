@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:yggdrasil/yggdrasil.dart';
 import 'package:yggdrasil_demo/core/_core.dart';
+import 'package:yggdrasil_demo/screens/dialog/widgets/multi_step_dialog.dart';
 import 'package:yggdrasil_demo/widgets/_widgets.dart';
 
 import 'widgets/_widgets.dart';
@@ -51,6 +52,39 @@ class _DialogScreenState extends State<DialogScreen> with TickerProviderStateMix
               onPressed: () => Navigator.of(context).push(ExampleDialogNoButtons()),
               child: const Text('Show'),
             ),
+          ),
+          YgSection(
+            title: 'Multi step dialog',
+            child: YgButton(
+              variant: YgButtonVariant.primary,
+              onPressed: () => Navigator.of(context).push(MultiStepDialog()),
+              child: const Text('Show'),
+            ),
+          ),
+          YgSection.column(
+            title: 'Variants',
+            children: <Widget>[
+              YgButton(
+                variant: YgButtonVariant.primary,
+                onPressed: () => Navigator.of(context).push(ErrorDialog()),
+                child: const Text('Show error dialog'),
+              ),
+              YgButton(
+                variant: YgButtonVariant.primary,
+                onPressed: () => Navigator.of(context).push(InfoDialog()),
+                child: const Text('Show info dialog'),
+              ),
+              YgButton(
+                variant: YgButtonVariant.primary,
+                onPressed: () => Navigator.of(context).push(SuccessDialog()),
+                child: const Text('Show success dialog'),
+              ),
+              YgButton(
+                variant: YgButtonVariant.primary,
+                onPressed: () => Navigator.of(context).push(LoadingDialog()),
+                child: const Text('Show loading dialog'),
+              ),
+            ].withVerticalSpacing(10),
           ),
         ],
       ),

@@ -7,8 +7,7 @@ class ExampleDialogNoButtons extends YgDialogRoute {
 
   @override
   YgDialog buildDialog(BuildContext context) {
-    return const YgDialog(
-      header: YgIcon(YgIcons.info),
+    return const YgDialog.highlight(
       title: 'Example dialog',
       description: 'The description should provide the necessary information needed to make an informed decision.',
     );

@@ -4,7 +4,7 @@ import 'package:yggdrasil/src/theme/snack_bar/extensions/_extensions.dart';
 import 'package:yggdrasil/src/utils/_utils.dart';
 import 'package:yggdrasil/yggdrasil.dart';
 
-import 'yg_snack_bar_state.dart';
+typedef YgSnackBarState = YgVariantState<YgSnackBarVariant>;
 
 class YgSnackBarStyle extends YgStyleWithDefaults<YgSnackBarState> {
   YgSnackBarStyle({

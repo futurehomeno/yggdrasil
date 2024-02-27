@@ -62,7 +62,7 @@ abstract class YgDialogRoute extends PopupRoute<YgDialog> {
         // gets discarded when it's more than the total with of the screen.
         final double minWidth = min(dialogTheme.minWidth, constraints.maxWidth);
         final double maxWidth = min(dialogTheme.maxWidth, constraints.maxWidth);
-        final double widthWithPadding = maxWidth - (dialogTheme.paddingToScreenEdge * 2);
+        final double widthWithPadding = maxWidth - (dialogTheme.outerPadding * 2);
         final double width = max(minWidth, widthWithPadding);
 
         return FadeTransition(

@@ -1,22 +1,51 @@
 import 'package:flutter/material.dart';
+import 'package:yggdrasil/src/components/yg_dialog/enums/yg_dialog_variant.dart';
+import 'package:yggdrasil/src/components/yg_dialog/yg_dialog_style.dart';
 import 'package:yggdrasil/src/theme/_theme.dart';
+import 'package:yggdrasil/src/theme/dialog/extensions/loading_dialog_theme.dart';
+import 'package:yggdrasil/src/utils/_utils.dart';
 import 'package:yggdrasil/yggdrasil.dart';
 
-// TODO(bjhandeland): Icon can sometimes be a loading indicator.
-// TODO(bjhandeland): Factories for variants, e.g. success, warning, etc.
-class YgDialog extends StatelessWidget with StatelessWidgetDebugMixin {
+class YgDialog extends StatefulWidget with StatefulWidgetDebugMixin {
   const YgDialog({
     super.key,
-    required this.header,
     required this.title,
     this.description,
-    this.ygButtonGroup,
-  });
+    this.buttons,
+    YgIcon this.icon = const YgIcon(YgIcons.supportBubble),
+  }) : variant = YgDialogVariant.confirm;
 
-  /// Content that is displayed above the title, typically an icon.
-  ///
-  /// The content is wrapped in a circular container with a background color.
-  final Widget header;
+  const YgDialog.success({
+    super.key,
+    required this.title,
+    this.description,
+    this.buttons,
+  })  : variant = YgDialogVariant.success,
+        icon = const YgIcon(YgIcons.check);
+
+  const YgDialog.critical({
+    super.key,
+    required this.title,
+    this.description,
+    this.buttons,
+  })  : variant = YgDialogVariant.critical,
+        icon = const YgIcon(YgIcons.failed);
+
+  const YgDialog.highlight({
+    super.key,
+    required this.title,
+    this.description,
+    this.buttons,
+  })  : variant = YgDialogVariant.highlight,
+        icon = const YgIcon(YgIcons.info);
+
+  const YgDialog.loading({
+    super.key,
+    required this.title,
+    this.description,
+  })  : variant = YgDialogVariant.loading,
+        icon = null,
+        buttons = null;
 
   /// Title of the dialog.
   final String title;
@@ -28,58 +57,111 @@ class YgDialog extends StatelessWidget with StatelessWidgetDebugMixin {
   ///
   /// For non-dismissible dialogs, with the exception of loading dialogs,
   /// the buttons are required and must allow the user to close the dialog.
-  final YgButtonGroup? ygButtonGroup;
+  final YgButtonGroup? buttons;
+
+  final YgIcon? icon;
+
+  final YgDialogVariant variant;
+
+  @override
+  State<YgDialog> createState() => _YgDialogState();
+}
+
+class _YgDialogState extends StateWithYgStyle<YgDialog, YgDialogStyle> {
+  late final YgVariantState<YgDialogVariant> _state = YgDialogState(variant: widget.variant);
+
+  @override
+  YgDialogStyle createStyle() {
+    return YgDialogStyle(
+      state: _state,
+      vsync: this,
+    );
+  }
+
+  @override
+  void dispose() {
+    _state.dispose();
+    super.dispose();
+  }
+
+  @override
+  void didUpdateWidget(covariant YgDialog oldWidget) {
+    _state.variant.value = widget.variant;
+    super.didUpdateWidget(oldWidget);
+  }
 
   @override
   Widget build(BuildContext context) {
-    final YgDialogTheme dialogTheme = context.dialogTheme;
-    final YgButtonGroup? ygButtonGroup = this.ygButtonGroup;
+    final YgButtonGroup? ygButtonGroup = widget.buttons;
+    final YgDialogTheme theme = context.dialogTheme;
 
     return Material(
-      borderRadius: dialogTheme.outerBorderRadius,
-      color: dialogTheme.backgroundColor,
+      borderRadius: theme.outerBorderRadius,
+      color: theme.backgroundColor,
       child: Padding(
-        padding: dialogTheme.outerPadding,
+        padding: theme.contentPadding,
         child: Column(
           mainAxisSize: MainAxisSize.min,
           children: <Widget>[
-            _buildHeader(dialogTheme),
-            _buildTextSection(dialogTheme),
+            _buildHeader(theme),
+            _buildTextSection(theme),
             if (ygButtonGroup != null) ygButtonGroup,
-          ].withVerticalSpacing(30.0),
+          ].withVerticalSpacing(theme.contentSpacing),
         ),
       ),
     );
   }
 
-  Widget _buildHeader(YgDialogTheme dialogTheme) {
-    return Container(
-      padding: dialogTheme.iconPadding,
-      decoration: BoxDecoration(
-        color: dialogTheme.iconContainerColor,
-        shape: BoxShape.circle,
+  Widget _buildHeader(YgDialogTheme theme) {
+    return YgAnimatedContainer(
+      decoration: style.iconBackground.map(
+        (Color color) => BoxDecoration(
+          color: color,
+          shape: BoxShape.circle,
+        ),
       ),
-      child: header,
+      padding: style.iconPadding,
+      child: YgAnimatedIconTheme(
+        iconTheme: style.iconColor.map(
+          (Color color) => IconThemeData(color: color),
+        ),
+        child: _buildHeaderContent(theme),
+      ),
     );
   }
 
-  Widget _buildTextSection(YgDialogTheme dialogTheme) {
-    final String? description = this.description;
+  Widget _buildTextSection(YgDialogTheme theme) {
+    final String? description = widget.description;
 
     return Column(
+      mainAxisSize: MainAxisSize.min,
       children: <Widget>[
         Text(
-          title,
+          widget.title,
           textAlign: TextAlign.center,
-          style: dialogTheme.titleTextStyle,
+          style: theme.titleTextStyle,
         ),
         if (description != null)
           Text(
             description,
             textAlign: TextAlign.center,
-            style: dialogTheme.descriptionTextStyle,
+            style: theme.descriptionTextStyle,
           ),
-      ].withVerticalSpacing(dialogTheme.titleDescriptionSpacing),
+      ].withVerticalSpacing(theme.titleDescriptionSpacing),
     );
+  }
+
+  Widget _buildHeaderContent(YgDialogTheme theme) {
+    final LoadingDialogTheme loadingTheme = theme.loadingDialogTheme;
+    final YgIcon? icon = widget.icon;
+
+    if (icon == null) {
+      return CircularProgressIndicator(
+        strokeWidth: loadingTheme.circularProgressIndicatorWidth,
+        color: loadingTheme.iconColor,
+      );
+    }
+
+    return icon;
   }
 }
