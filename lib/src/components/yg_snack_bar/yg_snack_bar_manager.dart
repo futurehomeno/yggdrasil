@@ -87,21 +87,21 @@ class YgSnackBarManagerState extends State<YgSnackBarManager> with TickerProvide
   YgSnackBarFuture showSnackBar(YgSnackBar snackBar) {
     final Completer<void> completer = Completer<void>();
 
-    final _SnackBarEntry entry = _SnackBarEntry(
+    final _SnackBarEntry snackBarEntry = _SnackBarEntry(
       snackBar: snackBar,
       completer: completer,
       animationController: AnimationController(vsync: this),
       key: UniqueKey(),
     );
 
-    _snackBarQueue.add(entry);
+    _snackBarQueue.add(snackBarEntry);
 
     if (_timer == null) {
       _showNextSnackBar();
     }
 
     return YgSnackBarFuture._(
-      hideCallback: () => _hideSpecificSnackBar(entry),
+      hideCallback: () => _hideSpecificSnackBar(snackBarEntry),
       parent: completer.future,
     );
   }
@@ -117,9 +117,9 @@ class YgSnackBarManagerState extends State<YgSnackBarManager> with TickerProvide
       return hideCurrentSnackBar();
     }
 
-    final _SnackBarEntry snackBar = _snackBarQueue.removeAt(index);
-    snackBar.animationController.dispose();
-    snackBar.completer.complete();
+    final _SnackBarEntry snackBarEntry = _snackBarQueue.removeAt(index);
+    snackBarEntry.animationController.dispose();
+    snackBarEntry.completer.complete();
   }
 
   void hideCurrentSnackBar() {
@@ -130,10 +130,10 @@ class YgSnackBarManagerState extends State<YgSnackBarManager> with TickerProvide
       return;
     }
 
-    final _SnackBarEntry snackBar = _snackBarQueue.removeAt(0);
+    final _SnackBarEntry snackBarEntry = _snackBarQueue.removeAt(0);
 
     // Start animating the snack bar off screen.
-    snackBar.animationController
+    snackBarEntry.animationController
         .animateTo(
       0,
       curve: _theme.animationCurve,
@@ -141,13 +141,13 @@ class YgSnackBarManagerState extends State<YgSnackBarManager> with TickerProvide
     )
         .then(
       (_) {
-        _renderedSnackBars.remove(snackBar);
-        snackBar.animationController.dispose();
+        _renderedSnackBars.remove(snackBarEntry);
+        snackBarEntry.animationController.dispose();
         setState(() {});
       },
     );
 
-    snackBar.completer.complete();
+    snackBarEntry.completer.complete();
 
     _showNextSnackBar();
   }
@@ -157,10 +157,10 @@ class YgSnackBarManagerState extends State<YgSnackBarManager> with TickerProvide
       return;
     }
 
-    final _SnackBarEntry snackBar = _snackBarQueue.first;
-    _renderedSnackBars.add(snackBar);
+    final _SnackBarEntry snackBarEntry = _snackBarQueue.first;
+    _renderedSnackBars.add(snackBarEntry);
 
-    snackBar.animationController.animateTo(
+    snackBarEntry.animationController.animateTo(
       1,
       duration: _theme.animationDuration,
       curve: _theme.animationCurve,
