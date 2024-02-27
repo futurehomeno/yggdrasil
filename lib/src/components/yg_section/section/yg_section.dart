@@ -63,7 +63,7 @@ abstract class YgSection extends StatelessWidget with StatelessWidgetDebugMixin 
     return Column(
       mainAxisSize: MainAxisSize.min,
       children: <Widget>[
-        YgSectionHeader(
+        YgSectionHeaderInternal(
           title: title,
           subtitle: subtitle,
           icon: icon,

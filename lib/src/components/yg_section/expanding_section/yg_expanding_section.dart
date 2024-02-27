@@ -103,7 +103,7 @@ abstract class YgExpandingSection extends StatelessWidget {
           type: MaterialType.transparency,
           child: InkWell(
             onTap: controller.toggle,
-            child: YgSectionHeader(
+            child: YgSectionHeaderInternal(
               title: title,
               subtitle: subtitle,
               icon: icon,
