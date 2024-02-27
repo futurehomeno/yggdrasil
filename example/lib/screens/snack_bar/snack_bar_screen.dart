@@ -91,12 +91,16 @@ class SnackBarScreen extends StatelessWidget {
     );
   }
 
-  void _showLongTextSnackBar(BuildContext context) {
-    YgSnackBarManager.of(context).showSnackBar(
+  void _showLongTextSnackBar(BuildContext context) async {
+    final YgSnackBarFuture snackbarFuture = YgSnackBarManager.of(context).showSnackBar(
       const YgSnackBar(
         message: 'I am a snack bar with quite some text in it, probably a couple lines worth of text',
       ),
     );
+
+    await Future<void>.delayed(const Duration(seconds: 1));
+
+    snackbarFuture.hide();
   }
 
   void _showHighlightSnackBar(BuildContext context) {
