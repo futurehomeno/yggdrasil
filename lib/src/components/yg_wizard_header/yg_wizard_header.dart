@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:yggdrasil/src/generated/_generated.dart';
 import 'package:yggdrasil/src/theme/_theme.dart';
+import 'package:yggdrasil/src/utils/yg_debug/stateful_widget_debug_mixin.dart';
 
 import 'widgets/_widgets.dart';
 
@@ -21,7 +22,7 @@ typedef TitleBuilderCallback = String Function(int currentStep);
 /// tab controller will use the animations provided by the controller.
 ///
 /// Hides the progress bar when there are more than 5 steps.
-abstract class YgWizardHeader extends StatefulWidget {
+abstract class YgWizardHeader extends StatefulWidget with StatefulWidgetDebugMixin {
   /// Self animated YgWizardHeader.
   ///
   /// Animates the [currentStep] value. Changing the amount of steps is not animated.

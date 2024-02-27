@@ -6,7 +6,7 @@ import 'package:yggdrasil/yggdrasil.dart';
 
 import 'yg_snack_bar_style.dart';
 
-class YgSnackBar extends StatefulWidget {
+class YgSnackBar extends StatefulWidget with StatefulWidgetDebugMixin {
   const YgSnackBar({
     super.key,
     required this.message,

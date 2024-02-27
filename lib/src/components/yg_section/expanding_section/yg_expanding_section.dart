@@ -8,7 +8,7 @@ part 'yg_expanding_section_column.dart';
 part 'yg_expanding_section_list.dart';
 part 'yg_expanding_section_regular.dart';
 
-abstract class YgExpandingSection extends StatelessWidget {
+abstract class YgExpandingSection extends StatelessWidget with StatelessWidgetDebugMixin {
   /// A section that can be expanded with a single child.
   const factory YgExpandingSection({
     required Widget child,
@@ -137,4 +137,7 @@ abstract class YgExpandingSection extends StatelessWidget {
 
   /// Builds the child widget.
   Widget buildChild(BuildContext context);
+
+  @override
+  YgDebugType get debugType => YgDebugType.layout;
 }

@@ -9,7 +9,7 @@ import 'package:yggdrasil/yggdrasil.dart';
 import 'widgets/_widgets.dart';
 
 /// Yggdrasil Picker implementation.
-class YgPicker extends StatelessWidget {
+class YgPicker extends StatelessWidget with StatelessWidgetDebugMixin {
   const YgPicker({
     super.key,
     required this.columns,
@@ -117,4 +117,7 @@ class YgPicker extends StatelessWidget {
 
     return widgets;
   }
+
+  @override
+  YgDebugType get debugType => YgDebugType.intractable;
 }
