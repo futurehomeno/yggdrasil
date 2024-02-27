@@ -155,9 +155,11 @@ class YgFieldDecoration extends StatelessWidget {
               ),
             ),
           ),
-          Text(
-            error,
-            style: theme.errorTextStyle,
+          Expanded(
+            child: Text(
+              error,
+              style: theme.errorTextStyle,
+            ),
           ),
         ],
       ),
