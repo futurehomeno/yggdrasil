@@ -22,8 +22,8 @@ class _YgDialogSwitcherState extends State<YgDialogSwitcher> with TickerProvider
 
   @override
   void initState() {
-    _addCurrentEntry();
     super.initState();
+    _addCurrentEntry();
   }
 
   @override
@@ -31,6 +31,7 @@ class _YgDialogSwitcherState extends State<YgDialogSwitcher> with TickerProvider
     for (final _YgSwitcherEntry entry in _renderedEntries) {
       entry.controller.dispose();
     }
+    _sizeTransitionController.dispose();
     super.dispose();
   }
 
@@ -47,7 +48,7 @@ class _YgDialogSwitcherState extends State<YgDialogSwitcher> with TickerProvider
           .animateTo(
         0,
         curve: const Cubic(0.42, 0, 0.2, 1),
-        duration: const Duration(milliseconds: 200),
+        duration: const Duration(milliseconds: 300),
       )
           .then(
         (_) {
@@ -64,7 +65,7 @@ class _YgDialogSwitcherState extends State<YgDialogSwitcher> with TickerProvider
       _sizeTransitionController.animateTo(
         1,
         curve: const Cubic(0.42, 0, 0.2, 1),
-        duration: const Duration(milliseconds: 200),
+        duration: const Duration(milliseconds: 300),
       );
     }
 

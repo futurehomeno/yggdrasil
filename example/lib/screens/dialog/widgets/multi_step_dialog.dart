@@ -6,13 +6,6 @@ class MultiStepDialog extends YgDialogRoute {
   String get name => 'ExampleDialogNoButtons';
 
   @override
-  void onPopInvoked(bool didPop) {
-    if (didPop) {
-      print('popped');
-    }
-  }
-
-  @override
   Widget buildDialog(BuildContext context) {
     return const DialogContent();
   }

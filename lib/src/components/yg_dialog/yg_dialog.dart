@@ -11,7 +11,7 @@ class YgDialog extends StatefulWidget with StatefulWidgetDebugMixin {
     required this.title,
     this.description,
     this.buttons,
-    YgColorableIconData this.icon = YgIcons.supportBubble,
+    YgIcon this.icon = const YgIcon(YgIcons.supportBubble),
   }) : variant = YgDialogVariant.confirm;
 
   const YgDialog.success({
@@ -20,7 +20,7 @@ class YgDialog extends StatefulWidget with StatefulWidgetDebugMixin {
     this.description,
     this.buttons,
   })  : variant = YgDialogVariant.success,
-        icon = YgIcons.check;
+        icon = const YgIcon(YgIcons.check);
 
   const YgDialog.critical({
     super.key,
@@ -28,7 +28,7 @@ class YgDialog extends StatefulWidget with StatefulWidgetDebugMixin {
     this.description,
     this.buttons,
   })  : variant = YgDialogVariant.critical,
-        icon = YgIcons.failed;
+        icon = const YgIcon(YgIcons.failed);
 
   const YgDialog.highlight({
     super.key,
@@ -36,7 +36,7 @@ class YgDialog extends StatefulWidget with StatefulWidgetDebugMixin {
     this.description,
     this.buttons,
   })  : variant = YgDialogVariant.highlight,
-        icon = YgIcons.info;
+        icon = const YgIcon(YgIcons.info);
 
   const YgDialog.loading({
     super.key,
@@ -58,7 +58,7 @@ class YgDialog extends StatefulWidget with StatefulWidgetDebugMixin {
   /// the buttons are required and must allow the user to close the dialog.
   final YgButtonGroup? buttons;
 
-  final YgColorableIconData? icon;
+  final YgIcon? icon;
 
   final YgDialogVariant variant;
 
@@ -149,7 +149,7 @@ class _YgDialogState extends StateWithYgStyle<YgDialog, YgDialogStyle> {
   }
 
   Widget _buildHeaderContent() {
-    final YgColorableIconData? icon = widget.icon;
+    final YgIcon? icon = widget.icon;
     if (icon == null) {
       return CircularProgressIndicator(
         strokeWidth: 4,
@@ -157,9 +157,7 @@ class _YgDialogState extends StateWithYgStyle<YgDialog, YgDialogStyle> {
       );
     }
 
-    return YgIcon(
-      widget.icon,
-    );
+    return icon;
   }
 
   YgDialogTheme get _theme => context.dialogTheme;

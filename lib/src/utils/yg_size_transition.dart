@@ -70,6 +70,7 @@ class YgSizeTransitionRenderer extends RenderBox
     final RenderBox? lastChild = this.lastChild;
     if (lastChild == null) {
       size = constraints.smallest;
+
       return;
     }
 
@@ -88,19 +89,15 @@ class YgSizeTransitionRenderer extends RenderBox
 
     for (RenderBox? child = firstChild; child != null; child = childAfter(child)) {
       final YgSizeTransitionRendererParentData parentData = (child.parentData as YgSizeTransitionRendererParentData);
-      final Size childSize = child.size;
-      parentData.offset = (size - childSize as Offset) / 2;
+      parentData.offset = (size - child.size as Offset) / 2;
     }
   }
 
   @override
   void paint(PaintingContext context, Offset offset) {
-    RenderBox? child = lastChild;
-    while (child != null) {
-      final YgSizeTransitionRendererParentData childParentData =
-          (child.parentData as YgSizeTransitionRendererParentData);
-      context.paintChild(child, childParentData.offset + offset);
-      child = childParentData.previousSibling;
+    for (RenderBox? child = lastChild; child != null; child = childBefore(child)) {
+      final YgSizeTransitionRendererParentData parentData = (child.parentData as YgSizeTransitionRendererParentData);
+      context.paintChild(child, parentData.offset + offset);
     }
   }
 
