@@ -8,7 +8,7 @@ part 'yg_segmented_button_multi_select.dart';
 part 'yg_segmented_button_single_select.dart';
 
 /// A button which is made up out of multiple [YgButtonSegment]s.
-abstract class YgSegmentedButton<T extends Object?> extends StatelessWidget {
+abstract class YgSegmentedButton<T extends Object?> extends StatelessWidget with StatelessWidgetDebugMixin {
   const factory YgSegmentedButton({
     Key? key,
     required ValueChanged<T>? onValueChanged,
@@ -77,4 +77,7 @@ abstract class YgSegmentedButton<T extends Object?> extends StatelessWidget {
   void _onSegmentPressed(YgButtonSegment<T> segment);
 
   bool get _disabled;
+
+  @override
+  YgDebugType get debugType => YgDebugType.intractable;
 }

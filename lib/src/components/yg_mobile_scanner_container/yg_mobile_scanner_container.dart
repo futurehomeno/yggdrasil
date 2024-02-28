@@ -3,7 +3,7 @@ import 'package:yggdrasil/src/theme/_theme.dart';
 import 'package:yggdrasil/yggdrasil.dart';
 
 /// Style-only wrapper for mobile scanner widget.
-class YgMobileScannerContainer extends StatelessWidget {
+class YgMobileScannerContainer extends StatelessWidget with StatelessWidgetDebugMixin {
   const YgMobileScannerContainer({
     required this.child,
     required this.loading,
@@ -51,4 +51,7 @@ class YgMobileScannerContainer extends StatelessWidget {
       ),
     );
   }
+
+  @override
+  YgDebugType get debugType => YgDebugType.layout;
 }
