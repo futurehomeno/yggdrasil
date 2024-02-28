@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:yggdrasil/src/components/yg_snack_bar/yg_snackbar_close_notification.dart';
 import 'package:yggdrasil/src/theme/_theme.dart';
 import 'package:yggdrasil/src/utils/_utils.dart';
 import 'package:yggdrasil/yggdrasil.dart';
 
+import 'yg_snack_bar_close_notification.dart';
 import 'yg_snack_bar_style.dart';
 
 class YgSnackBar extends StatefulWidget {

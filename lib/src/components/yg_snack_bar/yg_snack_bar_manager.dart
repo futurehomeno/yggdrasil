@@ -6,7 +6,9 @@ import 'package:flutter/material.dart';
 import 'package:yggdrasil/src/theme/_theme.dart';
 
 import 'yg_snack_bar.dart';
-import 'yg_snackbar_close_notification.dart';
+import 'yg_snack_bar_close_notification.dart';
+
+part 'yg_snack_bar_future.dart';
 
 class YgSnackBarManager extends StatefulWidget {
   const YgSnackBarManager({
@@ -29,8 +31,8 @@ class YgSnackBarManager extends StatefulWidget {
 }
 
 class YgSnackBarManagerState extends State<YgSnackBarManager> with TickerProviderStateMixin {
-  final List<_SnackBarData> _snackBarQueue = <_SnackBarData>[];
-  final List<_SnackBarData> _renderedSnackBars = <_SnackBarData>[];
+  final List<_SnackBarEntry> _snackBarQueue = <_SnackBarEntry>[];
+  final List<_SnackBarEntry> _renderedSnackBars = <_SnackBarEntry>[];
   Timer? _timer;
 
   @override
@@ -46,7 +48,7 @@ class YgSnackBarManagerState extends State<YgSnackBarManager> with TickerProvide
       child: Stack(
         children: <Widget>[
           widget.child,
-          for (final _SnackBarData snackBarData in _renderedSnackBars)
+          for (final _SnackBarEntry snackBarData in _renderedSnackBars)
             Positioned(
               key: snackBarData.key,
               bottom: 0,
@@ -82,21 +84,42 @@ class YgSnackBarManagerState extends State<YgSnackBarManager> with TickerProvide
     return true;
   }
 
-  Future<void> showSnackBar(YgSnackBar snackBar) {
+  YgSnackBarFuture showSnackBar(YgSnackBar snackBar) {
     final Completer<void> completer = Completer<void>();
 
-    _snackBarQueue.add(_SnackBarData(
+    final _SnackBarEntry snackBarEntry = _SnackBarEntry(
       snackBar: snackBar,
       completer: completer,
       animationController: AnimationController(vsync: this),
       key: UniqueKey(),
-    ));
+    );
+
+    _snackBarQueue.add(snackBarEntry);
 
     if (_timer == null) {
       _showNextSnackBar();
     }
 
-    return completer.future;
+    return YgSnackBarFuture._(
+      hideCallback: () => _hideSpecificSnackBar(snackBarEntry),
+      parent: completer.future,
+    );
+  }
+
+  void _hideSpecificSnackBar(_SnackBarEntry entry) {
+    final int index = _snackBarQueue.indexOf(entry);
+
+    if (index == -1) {
+      return;
+    }
+
+    if (index == 0) {
+      return hideCurrentSnackBar();
+    }
+
+    final _SnackBarEntry snackBarEntry = _snackBarQueue.removeAt(index);
+    snackBarEntry.animationController.dispose();
+    snackBarEntry.completer.complete();
   }
 
   void hideCurrentSnackBar() {
@@ -107,10 +130,10 @@ class YgSnackBarManagerState extends State<YgSnackBarManager> with TickerProvide
       return;
     }
 
-    final _SnackBarData snackBar = _snackBarQueue.removeAt(0);
+    final _SnackBarEntry snackBarEntry = _snackBarQueue.removeAt(0);
 
     // Start animating the snack bar off screen.
-    snackBar.animationController
+    snackBarEntry.animationController
         .animateTo(
       0,
       curve: _theme.animationCurve,
@@ -118,13 +141,13 @@ class YgSnackBarManagerState extends State<YgSnackBarManager> with TickerProvide
     )
         .then(
       (_) {
-        _renderedSnackBars.remove(snackBar);
-        snackBar.animationController.dispose();
+        _renderedSnackBars.remove(snackBarEntry);
+        snackBarEntry.animationController.dispose();
         setState(() {});
       },
     );
 
-    snackBar.completer.complete();
+    snackBarEntry.completer.complete();
 
     _showNextSnackBar();
   }
@@ -134,10 +157,10 @@ class YgSnackBarManagerState extends State<YgSnackBarManager> with TickerProvide
       return;
     }
 
-    final _SnackBarData snackBar = _snackBarQueue.first;
-    _renderedSnackBars.add(snackBar);
+    final _SnackBarEntry snackBarEntry = _snackBarQueue.first;
+    _renderedSnackBars.add(snackBarEntry);
 
-    snackBar.animationController.animateTo(
+    snackBarEntry.animationController.animateTo(
       1,
       duration: _theme.animationDuration,
       curve: _theme.animationCurve,
@@ -154,8 +177,8 @@ class YgSnackBarManagerState extends State<YgSnackBarManager> with TickerProvide
   YgSnackBarTheme get _theme => context.snackBarTheme;
 }
 
-class _SnackBarData {
-  const _SnackBarData({
+class _SnackBarEntry {
+  const _SnackBarEntry({
     required this.snackBar,
     required this.completer,
     required this.animationController,
