@@ -11,7 +11,7 @@ part 'yg_bottom_sheet_modal.dart';
 ///
 /// Wraps the result from [buildBottomSheet] in a [YgBottomSheetModal] which
 /// provides animations for opening ans closing the [YgBottomSheet] and a scrim.
-abstract class YgBottomSheetModalRoute extends PopupRoute<_YgBottomSheetModal> {
+abstract class YgBottomSheetModalRoute extends PopupRoute<Widget> {
   late AnimationController _controller;
 
   YgBottomSheetTheme get _bottomSheetTheme => context.bottomSheetTheme;

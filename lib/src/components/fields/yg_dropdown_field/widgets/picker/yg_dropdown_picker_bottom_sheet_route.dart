@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:yggdrasil/src/components/fields/yg_dropdown_field/yg_drop_down_child_route_mixin.dart';
 import 'package:yggdrasil/yggdrasil.dart';
 
-class YgDropdownPickerBottomSheetRoute<T extends Object> extends YgBottomSheetModalRoute {
+class YgDropdownPickerBottomSheetRoute<T extends Object> extends YgBottomSheetModalRoute
+    with YgDropDownChildRouteMixin<T> {
   YgDropdownPickerBottomSheetRoute({
     required this.entries,
     required this.label,
@@ -10,39 +12,13 @@ class YgDropdownPickerBottomSheetRoute<T extends Object> extends YgBottomSheetMo
     required this.dropdownController,
   });
 
-  final String label;
-  final String? metric;
-  final List<YgDropdownEntry<T>> entries;
+  @override
   final YgSingleSelectDropdownController<T> dropdownController;
+  final List<YgDropdownEntry<T>> entries;
+  @override
   final VoidCallback onClose;
-
-  @override
-  void onPopInvoked(bool didPop) {
-    if (!didPop || !dropdownController.attached) {
-      return;
-    }
-
-    onClose();
-    dropdownController.discardChanges();
-  }
-
-  @override
-  void install() {
-    dropdownController.addListener(_handleDropdownControllerChange);
-    super.install();
-  }
-
-  @override
-  void dispose() {
-    dropdownController.removeListener(_handleDropdownControllerChange);
-    super.dispose();
-  }
-
-  void _handleDropdownControllerChange() {
-    if (!dropdownController.attached) {
-      navigator?.removeRoute(this);
-    }
-  }
+  final String? metric;
+  final String label;
 
   @override
   String get name => 'YgDropdownPickerBottomSheetRoute($label)';

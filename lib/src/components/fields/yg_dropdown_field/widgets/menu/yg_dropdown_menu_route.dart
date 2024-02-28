@@ -2,6 +2,7 @@ import 'dart:math';
 
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
+import 'package:yggdrasil/src/components/fields/yg_dropdown_field/yg_drop_down_child_route_mixin.dart';
 import 'package:yggdrasil/src/theme/_theme.dart';
 import 'package:yggdrasil/src/utils/_utils.dart';
 import 'package:yggdrasil/yggdrasil.dart';
@@ -13,7 +14,7 @@ part 'yg_dropdown_menu_positioner.dart';
 /// A route for the dropdown menu.
 ///
 /// Should currently not be used outside of the dropdown.
-class YgDropdownMenuRoute<T extends Object> extends PopupRoute<Widget> {
+class YgDropdownMenuRoute<T extends Object> extends PopupRoute<Widget> with YgDropDownChildRouteMixin<T> {
   YgDropdownMenuRoute({
     required this.entries,
     required this.dropdownController,
@@ -22,11 +23,13 @@ class YgDropdownMenuRoute<T extends Object> extends PopupRoute<Widget> {
     required this.metric,
   });
 
+  @override
   final YgAnyDropdownController<T> dropdownController;
   final List<YgDropdownEntry<T>> entries;
+  @override
   final VoidCallback onClose;
-  final Rect rect;
   final String? metric;
+  final Rect rect;
 
   BuildContext get context => navigator!.context;
 
@@ -51,34 +54,6 @@ class YgDropdownMenuRoute<T extends Object> extends PopupRoute<Widget> {
 
   @override
   String get barrierLabel => 'Dropdown Menu';
-
-  @override
-  void onPopInvoked(bool didPop) {
-    if (!didPop || !dropdownController.attached) {
-      return;
-    }
-
-    onClose();
-    dropdownController.discardChanges();
-  }
-
-  @override
-  void install() {
-    dropdownController.addListener(_handleDropdownControllerChange);
-    super.install();
-  }
-
-  @override
-  void dispose() {
-    dropdownController.removeListener(_handleDropdownControllerChange);
-    super.dispose();
-  }
-
-  void _handleDropdownControllerChange() {
-    if (!dropdownController.attached) {
-      navigator?.removeRoute(this);
-    }
-  }
 
   @override
   Widget buildPage(BuildContext context, Animation<double> animation, Animation<double> secondaryAnimation) {
