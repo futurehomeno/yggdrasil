@@ -104,11 +104,13 @@ sealed class YgDropdownController<T extends Object, V, S extends YgDropdownField
       return;
     }
     _fieldState = fieldState;
+    notifyListeners();
   }
 
   /// Method to detach a controller from its current [YgDropdownField].
   void _detach() {
     _fieldState = null;
+    notifyListeners();
   }
 
   /// Opens the menu specifically.
@@ -160,7 +162,6 @@ sealed class YgDropdownController<T extends Object, V, S extends YgDropdownField
     if (field == null) {
       return;
     }
-
     field.open();
   }
 
@@ -186,5 +187,9 @@ sealed class YgDropdownController<T extends Object, V, S extends YgDropdownField
     }
 
     return field.isOpen;
+  }
+
+  bool get attached {
+    return _fieldState != null;
   }
 }

@@ -289,7 +289,6 @@ abstract class YgDropdownFieldWidgetState<T extends Object, W extends YgDropdown
     if (widget.controller == null) {
       _controller.dispose();
     }
-
     if (widget.focusNode == null) {
       _focusNode.dispose();
     }
@@ -425,6 +424,7 @@ abstract class YgDropdownFieldWidgetState<T extends Object, W extends YgDropdown
 
   void open() {
     _focusNode.requestFocus();
+    widget.onPressed?.call();
 
     switch (widget.dropdownAction) {
       case YgDropdownAction.bottomSheet:

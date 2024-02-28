@@ -54,12 +54,30 @@ class YgDropdownMenuRoute<T extends Object> extends PopupRoute<Widget> {
 
   @override
   void onPopInvoked(bool didPop) {
-    if (!didPop) {
+    if (!didPop || !dropdownController.attached) {
       return;
     }
 
     onClose();
     dropdownController.discardChanges();
+  }
+
+  @override
+  void install() {
+    dropdownController.addListener(_handleDropdownControllerChange);
+    super.install();
+  }
+
+  @override
+  void dispose() {
+    dropdownController.removeListener(_handleDropdownControllerChange);
+    super.dispose();
+  }
+
+  void _handleDropdownControllerChange() {
+    if (!dropdownController.attached) {
+      navigator?.removeRoute(this);
+    }
   }
 
   @override
