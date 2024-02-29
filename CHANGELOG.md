@@ -1,3 +1,13 @@
+# 1.10.3 [2024-02-29T09:44:51.609335]
+
+## Changes
+
+- [fix] Fixed issue not allowing dropdown routes to be removed from navigator when disposing dropdown.
+- [fix] Removed error thrown when disposing dropdown fields.
+- [feature] Added YgSnackBarFuture with hide method to hide a specific snack bar DEV-3231.
+- [improvement] Exposed YgSectionHeader to allow showing only a section header without a child widget DEV-3232.
+- [fix] Added missing support for debug visual to multiple widgets.
+
 # 1.10.2 [2024-02-27T13:18:55.169520]
 
 ## Breaking changes
