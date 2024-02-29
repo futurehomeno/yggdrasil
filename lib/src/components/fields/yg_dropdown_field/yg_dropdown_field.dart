@@ -282,7 +282,6 @@ abstract class YgDropdownFieldWidgetState<T extends Object, W extends YgDropdown
 
   @override
   void dispose() {
-    _closeModals();
     _state.removeListener(_handleStateChanged);
     _state.dispose();
     _controller.removeListener(_controllerListener);
@@ -290,7 +289,6 @@ abstract class YgDropdownFieldWidgetState<T extends Object, W extends YgDropdown
     if (widget.controller == null) {
       _controller.dispose();
     }
-
     if (widget.focusNode == null) {
       _focusNode.dispose();
     }
@@ -426,6 +424,7 @@ abstract class YgDropdownFieldWidgetState<T extends Object, W extends YgDropdown
 
   void open() {
     _focusNode.requestFocus();
+    widget.onPressed?.call();
 
     switch (widget.dropdownAction) {
       case YgDropdownAction.bottomSheet:
@@ -444,11 +443,6 @@ abstract class YgDropdownFieldWidgetState<T extends Object, W extends YgDropdown
   }
 
   void close() {
-    _closeModals();
-    _onClosed();
-  }
-
-  void _closeModals() {
     Navigator.popUntil(
       context,
       // ignore: avoid-dynamic
@@ -457,6 +451,8 @@ abstract class YgDropdownFieldWidgetState<T extends Object, W extends YgDropdown
           route is! YgDropdownBottomSheetRoute &&
           route is! YgDropdownPickerBottomSheetRoute,
     );
+
+    _onClosed();
   }
 
   bool get isOpen {
