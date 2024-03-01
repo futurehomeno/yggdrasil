@@ -12,22 +12,13 @@ class YgBadgeStyle extends YgStyleWithDefaults<YgBadgeState> {
     required super.vsync,
   });
 
-  late final YgAnimatedIconThemeDataProperty iconTheme;
-  late final YgAnimatedDecorationProperty badgeDecoration;
-  late final YgAnimatedTextStyleProperty textStyle;
-  late final YgAnimatedEdgeInsetsProperty contentPadding;
-  late final YgAnimatedEdgeInsetsProperty childPadding;
+  late final YgAnimatedProperty<IconThemeData> iconTheme = animate(_resolveIconThemeData);
+  late final YgAnimatedProperty<BoxDecoration> badgeDecoration = animate(_resolveBadgeDecoration);
+  late final YgAnimatedProperty<TextStyle> textStyle = animate(_resolveTextStyle);
+  late final YgAnimatedProperty<EdgeInsets> contentPadding = animate(_resolveContentPadding);
+  late final YgAnimatedProperty<EdgeInsets> childPadding = animate(_resolveChildPadding);
 
-  @override
-  void init() {
-    iconTheme = animate(YgIconThemeDataProperty<YgBadgeState>.resolveWith(_resolveIconThemeData));
-    badgeDecoration = animate(YgDecorationProperty<YgBadgeState>.resolveWith(_resolveBadgeDecoration));
-    textStyle = animate(YgTextStyleProperty<YgBadgeState>.resolveWith(_resolveTextStyle));
-    contentPadding = animate(YgEdgeInsetsProperty<YgBadgeState>.resolveWith(_resolveContentPadding));
-    childPadding = animate(YgEdgeInsetsProperty<YgBadgeState>.resolveWith(_resolveChildPadding));
-  }
-
-  EdgeInsets _resolveChildPadding(BuildContext context, YgBadgeState state) {
+  EdgeInsets _resolveChildPadding() {
     switch (state.variant.value) {
       case YgBadgeVariant.icon:
         return _theme.iconVariantChildPadding;
@@ -36,7 +27,7 @@ class YgBadgeStyle extends YgStyleWithDefaults<YgBadgeState> {
     }
   }
 
-  EdgeInsets _resolveContentPadding(BuildContext context, YgBadgeState state) {
+  EdgeInsets _resolveContentPadding() {
     switch (state.variant.value) {
       case YgBadgeVariant.icon:
         return _theme.iconPadding;
@@ -45,7 +36,7 @@ class YgBadgeStyle extends YgStyleWithDefaults<YgBadgeState> {
     }
   }
 
-  IconThemeData _resolveIconThemeData(BuildContext context, YgBadgeState state) {
+  IconThemeData _resolveIconThemeData() {
     return IconThemeData(
       size: _theme.iconSize,
       color: switch (state.weight.value) {
@@ -55,7 +46,7 @@ class YgBadgeStyle extends YgStyleWithDefaults<YgBadgeState> {
     );
   }
 
-  BoxDecoration _resolveBadgeDecoration(BuildContext context, YgBadgeState state) {
+  BoxDecoration _resolveBadgeDecoration() {
     return BoxDecoration(
       borderRadius: _theme.borderRadius,
       color: switch (state.weight.value) {
@@ -65,7 +56,7 @@ class YgBadgeStyle extends YgStyleWithDefaults<YgBadgeState> {
     );
   }
 
-  TextStyle _resolveTextStyle(BuildContext context, YgBadgeState state) {
+  TextStyle _resolveTextStyle() {
     switch (state.weight.value) {
       case YgBadgeWeight.weak:
         return _theme.weakTextStyle;

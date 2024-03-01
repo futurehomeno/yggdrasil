@@ -16,12 +16,12 @@ class YgStepperButtonStyle extends YgButtonBaseStyle<YgButtonBaseState> {
   Duration get duration => const Duration(milliseconds: 200);
 
   @override
-  Color resolveColor(BuildContext context, YgButtonBaseState state) {
+  Color resolveColor() {
     return Colors.transparent;
   }
 
   @override
-  BoxConstraints resolveConstraints(BuildContext context, YgButtonBaseState state) {
+  BoxConstraints resolveConstraints() {
     final double iconSize = _theme.iconSize;
     final Offset iconSizeOffset = Offset(iconSize, iconSize);
     final Size paddingSize = _theme.padding.collapsedSize;
@@ -32,12 +32,12 @@ class YgStepperButtonStyle extends YgButtonBaseStyle<YgButtonBaseState> {
   }
 
   @override
-  double resolveIconSize(BuildContext context, YgButtonBaseState state) {
+  double resolveIconSize() {
     return _theme.iconSize;
   }
 
   @override
-  Color resolveIconColor(BuildContext context, YgButtonBaseState state) {
+  Color resolveIconColor() {
     if (state.disabled.value) {
       return _theme.disabledIconColor;
     }
@@ -46,12 +46,12 @@ class YgStepperButtonStyle extends YgButtonBaseStyle<YgButtonBaseState> {
   }
 
   @override
-  Color resolveSplashColor(BuildContext context, YgButtonBaseState state) {
+  Color resolveSplashColor() {
     return _theme.splashColor;
   }
 
   @override
-  OutlinedBorder resolveOutlinedBorder(BuildContext context, YgButtonBaseState state) {
+  OutlinedBorder resolveOutlinedBorder() {
     if (state.disabled.value) {
       return YgRoundedRectangleGradientBorder(
         gradient: _theme.disabledBorderGradient,

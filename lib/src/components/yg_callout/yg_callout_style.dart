@@ -11,16 +11,10 @@ class YgCalloutStyle extends YgStyleWithDefaults<YgCalloutState> {
     required super.vsync,
   });
 
-  late final YgAnimatedColorProperty backgroundColor;
-  late final YgAnimatedColorProperty borderColor;
+  late final YgAnimatedProperty<Color> backgroundColor = animate(_resolveBackgroundColor);
+  late final YgAnimatedProperty<Color> borderColor = animate(_resolveBorderColor);
 
-  @override
-  void init() {
-    backgroundColor = animate(YgColorProperty<YgCalloutState>.resolveWith(_resolveBackgroundColor));
-    borderColor = animate(YgColorProperty<YgCalloutState>.resolveWith(_resolveBorderColor));
-  }
-
-  Color _resolveBackgroundColor(BuildContext context, YgCalloutState state) {
+  Color _resolveBackgroundColor() {
     switch (state.variant.value) {
       case YgCalloutVariant.highlight:
         return _theme.highlightCalloutTheme.backgroundColor;
@@ -33,7 +27,7 @@ class YgCalloutStyle extends YgStyleWithDefaults<YgCalloutState> {
     }
   }
 
-  Color _resolveBorderColor(BuildContext context, YgCalloutState state) {
+  Color _resolveBorderColor() {
     switch (state.variant.value) {
       case YgCalloutVariant.highlight:
         return _theme.highlightCalloutTheme.borderColor;

@@ -4,7 +4,7 @@ part of 'yg_style_base.dart';
 ///
 /// Primarily used to clean up the use of [YgProperty]. Using [YgStyle.animate]
 /// or [YgStyle.drive] instead of [YgProperty.animate] or [YgProperty.drive] has
-/// the advantage that the style will provide the [_state] and [_vsync]. The
+/// the advantage that the style will provide the [state] and [_vsync]. The
 /// style also disposes of the properties for you when the style is disposed.
 ///
 /// The duration and curve still need to be provided when using [animate] or
@@ -23,7 +23,7 @@ abstract class YgStyle<T extends YgState> extends YgStyleBase<T> {
     required Curve curve,
   }) {
     final YgDisposableAnimatedProperty<V> listenable = property.animate(
-      state: _state,
+      state: state,
       vsync: _vsync,
       curve: curve,
       duration: duration,
@@ -38,7 +38,7 @@ abstract class YgStyle<T extends YgState> extends YgStyleBase<T> {
   /// Drive a property.
   YgDrivenProperty<V> drive<V>(YgProperty<T, V> property) {
     final YgDisposableDrivenProperty<V> listenable = property.drive(
-      state: _state,
+      state: state,
       vsync: _vsync,
     );
 

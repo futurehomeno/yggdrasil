@@ -9,42 +9,28 @@ class YgCheckboxStyle extends YgStyleWithDefaults<YgCheckboxState> {
     required super.vsync,
   });
 
-  late final YgAnimatedDoubleProperty checkToMinusFraction;
-  late final YgAnimatedColorProperty iconColor;
-  late final YgAnimatedDoubleProperty iconScale;
-  late final YgAnimatedColorProperty borderColor;
-  late final YgAnimatedDoubleProperty borderToCenterFraction;
-  late final YgAnimatedColorProperty backgroundColor;
-  late final YgDrivenDoubleProperty borderWidth;
-  late final YgDrivenBorderRadiusProperty borderRadius;
-  late final YgDrivenDoubleProperty size;
-  late final YgDrivenProperty<MouseCursor> mouseCursor;
-
-  @override
-  void init() {
-    borderColor = animate(YgColorProperty<YgCheckboxState>.resolveWith(_resolveBorderColor));
-    backgroundColor = animate(YgColorProperty<YgCheckboxState>.resolveWith(_resolveBackgroundColor));
-    iconColor = animate(YgColorProperty<YgCheckboxState>.resolveWith(_resolveIconColor));
-    iconScale = animate(YgDoubleProperty<YgCheckboxState>.resolveWith(_resolveIconScale));
-    borderToCenterFraction = animate(YgDoubleProperty<YgCheckboxState>.resolveWith(_resolveBorderToCenterFraction));
-    checkToMinusFraction = animate(YgDoubleProperty<YgCheckboxState>.resolveWith(_resolveCheckToMinusFraction));
-    size = drive(YgDoubleProperty<YgCheckboxState>.all(_resolveSize));
-    borderWidth = drive(YgDoubleProperty<YgCheckboxState>.all(_resolveBorderWidth));
-    borderRadius = drive(YgBorderRadiusProperty<YgCheckboxState>.all(_resolveBorderRadius));
-    mouseCursor = drive(YgProperty<YgCheckboxState, MouseCursor>.resolveWith(_resolveMouseCursor));
-  }
+  late final YgAnimatedProperty<Color> borderColor = animate(_resolveBorderColor);
+  late final YgAnimatedProperty<Color> backgroundColor = animate(_resolveBackgroundColor);
+  late final YgAnimatedProperty<Color> iconColor = animate(_resolveIconColor);
+  late final YgAnimatedProperty<double> iconScale = animate(_resolveIconScale);
+  late final YgAnimatedProperty<double> borderToCenterFraction = animate(_resolveBorderToCenterFraction);
+  late final YgAnimatedProperty<double> checkToMinusFraction = animate(_resolveCheckToMinusFraction);
+  late final YgDrivenProperty<MouseCursor> mouseCursor = drive(_resolveMouseCursor);
+  late final YgDrivenProperty<double> size = all(_resolveSize);
+  late final YgDrivenProperty<double> borderWidth = all(_resolveBorderWidth);
+  late final YgDrivenProperty<BorderRadius> borderRadius = all(_resolveBorderRadius);
 
   // region Border
 
-  BorderRadius _resolveBorderRadius(BuildContext context) {
+  BorderRadius _resolveBorderRadius() {
     return _theme.borderRadius;
   }
 
-  double _resolveBorderWidth(BuildContext context) {
+  double _resolveBorderWidth() {
     return _theme.borderWidth;
   }
 
-  Color _resolveBorderColor(BuildContext context, YgCheckboxState state) {
+  Color _resolveBorderColor() {
     if (state.disabled.value) {
       return _theme.disabledBorderColor;
     }
@@ -74,7 +60,7 @@ class YgCheckboxStyle extends YgStyleWithDefaults<YgCheckboxState> {
     return _theme.defaultBorderColor;
   }
 
-  double _resolveBorderToCenterFraction(BuildContext context, YgCheckboxState state) {
+  double _resolveBorderToCenterFraction() {
     if (state.disabled.value || (state.checked.value == false)) {
       return 0;
     }
@@ -86,7 +72,7 @@ class YgCheckboxStyle extends YgStyleWithDefaults<YgCheckboxState> {
 
   // region Icon
 
-  double _resolveIconScale(BuildContext context, YgCheckboxState state) {
+  double _resolveIconScale() {
     if (state.checked.value == false) {
       return 0;
     }
@@ -94,7 +80,7 @@ class YgCheckboxStyle extends YgStyleWithDefaults<YgCheckboxState> {
     return 1;
   }
 
-  Color _resolveIconColor(BuildContext context, YgCheckboxState state) {
+  Color _resolveIconColor() {
     if (state.disabled.value) {
       return _theme.disabledIconColor;
     }
@@ -102,7 +88,7 @@ class YgCheckboxStyle extends YgStyleWithDefaults<YgCheckboxState> {
     return _theme.defaultIconColor;
   }
 
-  double _resolveCheckToMinusFraction(BuildContext context, YgCheckboxState state) {
+  double _resolveCheckToMinusFraction() {
     if (state.checked.value != null) {
       return 1;
     }
@@ -112,7 +98,7 @@ class YgCheckboxStyle extends YgStyleWithDefaults<YgCheckboxState> {
 
   // endregion
 
-  MouseCursor _resolveMouseCursor(BuildContext context, YgCheckboxState state) {
+  MouseCursor _resolveMouseCursor() {
     if (state.disabled.value) {
       return SystemMouseCursors.basic;
     }
@@ -120,7 +106,7 @@ class YgCheckboxStyle extends YgStyleWithDefaults<YgCheckboxState> {
     return SystemMouseCursors.click;
   }
 
-  Color _resolveBackgroundColor(BuildContext context, YgCheckboxState state) {
+  Color _resolveBackgroundColor() {
     if (state.disabled.value) {
       return _theme.disabledBackgroundColor;
     }
@@ -128,7 +114,7 @@ class YgCheckboxStyle extends YgStyleWithDefaults<YgCheckboxState> {
     return _theme.defaultBackgroundColor;
   }
 
-  double _resolveSize(BuildContext context) {
+  double _resolveSize() {
     return _theme.size;
   }
 

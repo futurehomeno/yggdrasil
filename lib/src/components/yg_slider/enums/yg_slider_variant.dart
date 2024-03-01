@@ -1,0 +1,4 @@
+enum YgSliderVariant {
+  temperature,
+  shades,
+}

@@ -13,20 +13,12 @@ class YgFieldContentStyle extends YgStyleWithDefaults<YgFieldState> {
 
   final bool floatLabelOnFocus;
 
-  late final YgAnimatedTextStyleProperty valueTextStyle;
-  late final YgAnimatedTextStyleProperty placeholderTextStyle;
-  late final YgAnimatedTextStyleProperty labelTextStyle;
-  late final YgAnimatedOffsetProperty labelOffset;
+  late final YgAnimatedProperty<TextStyle> valueTextStyle = animate(_resolveValueTextStyle);
+  late final YgAnimatedProperty<TextStyle> placeholderTextStyle = animate(_resolvePlaceholderTextStyle);
+  late final YgAnimatedProperty<TextStyle> labelTextStyle = animate(_resolveLabelTextStyle);
+  late final YgAnimatedProperty<Offset> labelOffset = animate(_resolveLabelOffset);
 
-  @override
-  void init() {
-    valueTextStyle = animate(YgTextStyleProperty<YgFieldState>.resolveWith(_resolveValueTextStyle));
-    placeholderTextStyle = animate(YgTextStyleProperty<YgFieldState>.resolveWith(_resolvePlaceholderTextStyle));
-    labelTextStyle = animate(YgTextStyleProperty<YgFieldState>.resolveWith(_resolveLabelTextStyle));
-    labelOffset = animate(YgOffsetProperty<YgFieldState>.resolveWith(_resolveLabelOffset));
-  }
-
-  TextStyle _resolveValueTextStyle(BuildContext context, YgFieldState state) {
+  TextStyle _resolveValueTextStyle() {
     final TextStyle baseStyle = _theme.valueTextStyle;
 
     if (state.disabled.value) {
@@ -40,7 +32,7 @@ class YgFieldContentStyle extends YgStyleWithDefaults<YgFieldState> {
     );
   }
 
-  TextStyle _resolvePlaceholderTextStyle(BuildContext context, YgFieldState state) {
+  TextStyle _resolvePlaceholderTextStyle() {
     if (state.disabled.value) {
       return _theme.placeholderTextStyle.copyWith(
         color: _theme.placeholderDisabledColor,
@@ -52,7 +44,7 @@ class YgFieldContentStyle extends YgStyleWithDefaults<YgFieldState> {
     );
   }
 
-  TextStyle _resolveLabelTextStyle(BuildContext context, YgFieldState state) {
+  TextStyle _resolveLabelTextStyle() {
     final TextStyle baseStyle = _getFloatLabel(state) ? _theme.labelFocusFilledTextStyle : _theme.labelDefaultTextStyle;
 
     if (state.disabled.value) {
@@ -72,7 +64,7 @@ class YgFieldContentStyle extends YgStyleWithDefaults<YgFieldState> {
     );
   }
 
-  Offset _resolveLabelOffset(BuildContext context, YgFieldState state) {
+  Offset _resolveLabelOffset() {
     if (_getFloatLabel(state)) {
       return Offset.zero;
     }

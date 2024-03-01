@@ -14,7 +14,7 @@ class YgToggleButtonStyle extends YgButtonBaseStyle<YgToggleButtonState> {
   });
 
   @override
-  Color resolveColor(BuildContext context, YgToggleButtonState state) {
+  Color resolveColor() {
     if (state.disabled.value) {
       if (state.toggled.value) {
         return _theme.backgroundToggledDisabledColor;
@@ -35,7 +35,7 @@ class YgToggleButtonStyle extends YgButtonBaseStyle<YgToggleButtonState> {
   }
 
   @override
-  double resolveIconSize(BuildContext context, YgToggleButtonState state) {
+  double resolveIconSize() {
     if (state.variant.value == YgToggleButtonVariant.iconOnly && state.size.value == YgToggleButtonSize.large) {
       return _theme.iconLargeIconOnlySize;
     }
@@ -44,21 +44,19 @@ class YgToggleButtonStyle extends YgButtonBaseStyle<YgToggleButtonState> {
   }
 
   @override
-  EdgeInsets resolvePadding(BuildContext context, YgToggleButtonState state) {
-    final YgToggleButtonVariantTheme theme = _getVariantTheme(state);
-
+  EdgeInsets resolvePadding() {
     switch (state.size.value) {
       case YgToggleButtonSize.small:
-        return theme.paddingSmall;
+        return _variantTheme.paddingSmall;
       case YgToggleButtonSize.medium:
-        return theme.paddingMedium;
+        return _variantTheme.paddingMedium;
       case YgToggleButtonSize.large:
-        return theme.paddingLarge;
+        return _variantTheme.paddingLarge;
     }
   }
 
   @override
-  Color resolveIconColor(BuildContext context, YgToggleButtonState state) {
+  Color resolveIconColor() {
     if (state.disabled.value) {
       return _theme.iconDisabledColor;
     }
@@ -71,7 +69,7 @@ class YgToggleButtonStyle extends YgButtonBaseStyle<YgToggleButtonState> {
   }
 
   @override
-  TextStyle resolveTextStyle(BuildContext context, YgToggleButtonState state) {
+  TextStyle resolveTextStyle() {
     final TextStyle baseStyle = switch (state.size.value) {
       YgToggleButtonSize.small => _theme.textStyleSmall,
       YgToggleButtonSize.medium => _theme.textStyleMedium,
@@ -96,7 +94,7 @@ class YgToggleButtonStyle extends YgButtonBaseStyle<YgToggleButtonState> {
   }
 
   @override
-  OutlinedBorder resolveOutlinedBorder(BuildContext context, YgToggleButtonState state) {
+  OutlinedBorder resolveOutlinedBorder() {
     final BorderSide borderSide = BorderSide(
       color: _resolveBorderColor(state),
       width: 1,
@@ -134,7 +132,7 @@ class YgToggleButtonStyle extends YgButtonBaseStyle<YgToggleButtonState> {
     return _theme.borderDefaultColor;
   }
 
-  YgToggleButtonVariantTheme _getVariantTheme(YgToggleButtonState state) {
+  YgToggleButtonVariantTheme get _variantTheme {
     switch (state.variant.value) {
       case YgToggleButtonVariant.iconOnly:
         return YgToggleButtonVariantTheme.icon(_theme.toggleIconButtonTheme);

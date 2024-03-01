@@ -10,18 +10,11 @@ class YgCardStyle extends YgStyleWithDefaults<YgCardState> {
     required super.vsync,
   });
 
-  late final YgAnimatedColorProperty backgroundColor;
-  late final YgAnimatedShapeBorderProperty shape;
-  late final YgAnimatedDoubleProperty elevation;
+  late final YgAnimatedProperty<Color> backgroundColor = animate(_resolveBackgroundColor);
+  late final YgAnimatedProperty<ShapeBorder> shape = animate(_resolveShape);
+  late final YgAnimatedProperty<double> elevation = animate(_resolveElevation);
 
-  @override
-  void init() {
-    backgroundColor = animate(YgColorProperty<YgCardState>.resolveWith(_resolveBackgroundColor));
-    shape = animate(YgShapeBorderProperty<YgCardState>.resolveWith(_resolveShape));
-    elevation = animate(YgDoubleProperty<YgCardState>.resolveWith(_resolveElevation));
-  }
-
-  Color _resolveBackgroundColor(BuildContext context, YgCardState state) {
+  Color _resolveBackgroundColor() {
     switch (state.variant.value) {
       case YgCardVariant.elevated:
         return _theme.elevatedCardTheme.backgroundColor;
@@ -32,7 +25,7 @@ class YgCardStyle extends YgStyleWithDefaults<YgCardState> {
     }
   }
 
-  ShapeBorder _resolveShape(BuildContext context, YgCardState state) {
+  ShapeBorder _resolveShape() {
     switch (state.variant.value) {
       case YgCardVariant.elevated:
       case YgCardVariant.filled:
@@ -47,7 +40,7 @@ class YgCardStyle extends YgStyleWithDefaults<YgCardState> {
     }
   }
 
-  double _resolveElevation(BuildContext context, YgCardState state) {
+  double _resolveElevation() {
     switch (state.variant.value) {
       case YgCardVariant.elevated:
         return _theme.elevation;

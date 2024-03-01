@@ -4,7 +4,7 @@ part of 'yg_style_base.dart';
 ///
 /// Primarily used to clean up the use of [YgProperty]. Using [YgStyle.animate]
 /// or [YgStyle.drive] instead of [YgProperty.animate] or [YgProperty.drive] has
-/// the advantage that the style will provide the [_state], [_vsync],
+/// the advantage that the style will provide the [state], [_vsync],
 /// [duration] and [curve]. The style also disposes of the properties for you when
 /// the style is disposed.
 abstract class YgStyleWithDefaults<T extends YgState> extends YgStyleBase<T> {
@@ -19,12 +19,16 @@ abstract class YgStyleWithDefaults<T extends YgState> extends YgStyleBase<T> {
   /// this style have a different duration and curve, look in to using [YgStyle]
   /// instead.
   YgAnimatedProperty<V> animate<V>(
-    YgProperty<T, V> property, {
+    V Function() resolver, {
     Duration? duration,
     Curve? curve,
   }) {
+    final YgProperty<T, V> property = YgProperty<T, V>.resolveWith(
+      (_, __) => resolver(),
+    );
+
     final YgDisposableAnimatedProperty<V> listenable = property.animate(
-      state: _state,
+      state: state,
       vsync: _vsync,
       curve: curve ?? this.curve,
       duration: duration ?? this.duration,
@@ -37,9 +41,30 @@ abstract class YgStyleWithDefaults<T extends YgState> extends YgStyleBase<T> {
   }
 
   /// Drive a property.
-  YgDrivenProperty<V> drive<V>(YgProperty<T, V> property) {
+  YgDrivenProperty<V> drive<V>(V Function() resolver) {
+    final YgProperty<T, V> property = YgProperty<T, V>.resolveWith(
+      (_, __) => resolver(),
+    );
+
     final YgDisposableDrivenProperty<V> listenable = property.drive(
-      state: _state,
+      state: state,
+      vsync: _vsync,
+    );
+
+    _properties.add(listenable);
+    listenable.addListener(_scheduleUpdate);
+
+    return listenable;
+  }
+
+  /// Drive a property with a non state based value.
+  YgDrivenProperty<V> all<V>(V Function() resolver) {
+    final YgProperty<T, V> property = YgProperty<T, V>.all(
+      (_) => resolver(),
+    );
+
+    final YgDisposableDrivenProperty<V> listenable = property.drive(
+      state: state,
       vsync: _vsync,
     );
 

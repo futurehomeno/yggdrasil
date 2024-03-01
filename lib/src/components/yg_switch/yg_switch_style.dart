@@ -11,26 +11,15 @@ class YgSwitchStyle extends YgStyleWithDefaults<YgSwitchState> {
     required super.vsync,
   });
 
-  late final YgAnimatedColorProperty trackColor;
-  late final YgAnimatedColorProperty handleColor;
-  late final YgAnimatedDoubleProperty handlePositionFraction;
-  late final YgDrivenDoubleProperty handleDiameter;
-  late final YgDrivenDoubleProperty handlePadding;
-  late final YgDrivenDoubleProperty width;
-  late final YgDrivenProperty<MouseCursor> mouseCursor;
+  late final YgAnimatedProperty<double> handlePositionFraction = animate(_resolveHandlePositionFraction);
+  late final YgAnimatedProperty<Color> trackColor = animate(_resolveTrackColor);
+  late final YgAnimatedProperty<Color> handleColor = animate(_resolveHandleColor);
+  late final YgDrivenProperty<MouseCursor> mouseCursor = drive(_resolveMouseCursor);
+  late final YgDrivenProperty<double> handlePadding = all(_resolveHandlePadding);
+  late final YgDrivenProperty<double> handleDiameter = all(_resolveHandleDiameter);
+  late final YgDrivenProperty<double> width = all(_resolveWidth);
 
-  @override
-  void init() {
-    handlePositionFraction = animate(YgDoubleProperty<YgSwitchState>.resolveWith(_resolveHandlePositionFraction));
-    trackColor = animate(YgColorProperty<YgSwitchState>.resolveWith(_resolveTrackColor));
-    handleColor = animate(YgColorProperty<YgSwitchState>.resolveWith(_resolveHandleColor));
-    handlePadding = drive(YgDoubleProperty<YgSwitchState>.all(_resolveHandlePadding));
-    handleDiameter = drive(YgDoubleProperty<YgSwitchState>.all(_resolveHandleDiameter));
-    width = drive(YgDoubleProperty<YgSwitchState>.all(_resolveWidth));
-    mouseCursor = drive(YgProperty<YgSwitchState, MouseCursor>.resolveWith(_resolveMouseCursor));
-  }
-
-  MouseCursor _resolveMouseCursor(BuildContext context, YgSwitchState state) {
+  MouseCursor _resolveMouseCursor() {
     if (state.disabled.value) {
       return SystemMouseCursors.basic;
     }
@@ -38,19 +27,19 @@ class YgSwitchStyle extends YgStyleWithDefaults<YgSwitchState> {
     return SystemMouseCursors.click;
   }
 
-  double _resolveHandlePadding(BuildContext context) {
+  double _resolveHandlePadding() {
     return _theme.handlePadding;
   }
 
-  double _resolveHandleDiameter(BuildContext context) {
+  double _resolveHandleDiameter() {
     return _theme.handleSize;
   }
 
-  double _resolveWidth(BuildContext context) {
+  double _resolveWidth() {
     return _theme.width;
   }
 
-  double _resolveHandlePositionFraction(BuildContext context, YgSwitchState state) {
+  double _resolveHandlePositionFraction() {
     if (state.toggled.value == true) {
       return 1;
     }
@@ -62,7 +51,7 @@ class YgSwitchStyle extends YgStyleWithDefaults<YgSwitchState> {
     return 0.5;
   }
 
-  Color _resolveTrackColor(BuildContext context, YgSwitchState state) {
+  Color _resolveTrackColor() {
     if (state.disabled.value) {
       return _theme.trackDisabledColor;
     }
@@ -78,7 +67,7 @@ class YgSwitchStyle extends YgStyleWithDefaults<YgSwitchState> {
     return _theme.trackDefaultColor;
   }
 
-  Color _resolveHandleColor(BuildContext context, YgSwitchState state) {
+  Color _resolveHandleColor() {
     if (state.disabled.value) {
       return _theme.handleDisabledColor;
     }

@@ -30,6 +30,7 @@ export 'radio_list_tile/_radio_list_tile.dart';
 export 'section/_section.dart';
 export 'section_header/_section_header.dart';
 export 'segmented_button/_segmented_button.dart';
+export 'slider/_slider.dart';
 export 'snack_bar/_snack_bar.dart';
 export 'stepper/_stepper.dart';
 export 'switch/_switch.dart';

@@ -13,19 +13,17 @@ class YgButtonStyle extends YgButtonBaseStyle<YgButtonState> {
   });
 
   @override
-  Color resolveColor(BuildContext context, YgButtonState state) {
-    final ButtonVariantTheme variantTheme = getVariantTheme(state);
-
+  Color resolveColor() {
     return variantTheme.backgroundColor;
   }
 
   @override
-  double resolveIconSize(BuildContext context, YgButtonState state) {
+  double resolveIconSize() {
     return _theme.iconSize;
   }
 
   @override
-  EdgeInsets resolvePadding(BuildContext context, YgButtonState state) {
+  EdgeInsets resolvePadding() {
     switch (state.size.value) {
       case YgButtonSize.small:
         return _theme.paddingSmall;
@@ -37,9 +35,7 @@ class YgButtonStyle extends YgButtonBaseStyle<YgButtonState> {
   }
 
   @override
-  Color resolveIconColor(BuildContext context, YgButtonState state) {
-    final ButtonVariantTheme variantTheme = getVariantTheme(state);
-
+  Color resolveIconColor() {
     if (state.disabled.value) {
       return variantTheme.iconDisabledColor;
     }
@@ -48,8 +44,7 @@ class YgButtonStyle extends YgButtonBaseStyle<YgButtonState> {
   }
 
   @override
-  TextStyle resolveTextStyle(BuildContext context, YgButtonState state) {
-    final ButtonVariantTheme variantTheme = getVariantTheme(state);
+  TextStyle resolveTextStyle() {
     if (state.disabled.value) {
       return variantTheme.disabledTextStyle;
     }
@@ -58,9 +53,7 @@ class YgButtonStyle extends YgButtonBaseStyle<YgButtonState> {
   }
 
   @override
-  OutlinedBorder resolveOutlinedBorder(BuildContext context, YgButtonState state) {
-    final ButtonVariantTheme variantTheme = getVariantTheme(state);
-
+  OutlinedBorder resolveOutlinedBorder() {
     if (state.disabled.value) {
       return YgRoundedRectangleGradientBorder(
         gradient: variantTheme.disabledBorderGradient,
@@ -76,7 +69,7 @@ class YgButtonStyle extends YgButtonBaseStyle<YgButtonState> {
     );
   }
 
-  ButtonVariantTheme getVariantTheme(YgButtonState state) {
+  ButtonVariantTheme get variantTheme {
     switch (state.variant.value) {
       case YgButtonVariant.primary:
         return ButtonVariantTheme.primary(_theme.primaryButtonTheme);

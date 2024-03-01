@@ -13,19 +13,19 @@ part 'yg_style_with_defaults.dart';
 /// Can not be used directly, use [YgStyle] or [YgStyleWithDefaults] instead.
 abstract class YgStyleBase<T extends YgState> extends ChangeNotifier {
   YgStyleBase({
-    required T state,
+    required this.state,
     required YgVsync vsync,
-  })  : _vsync = vsync,
-        _state = state {
+  }) : _vsync = vsync {
     init();
   }
 
-  final T _state;
+  @protected
+  final T state;
   final YgVsync _vsync;
   final List<YgDisposableDrivenProperty<dynamic>> _properties = <YgDisposableDrivenProperty<dynamic>>[];
   bool _scheduledUpdate = false;
 
-  void init();
+  void init() {}
 
   @override
   void dispose() {
