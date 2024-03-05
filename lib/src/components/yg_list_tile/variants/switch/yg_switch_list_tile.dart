@@ -34,19 +34,7 @@ abstract base class YgSwitchListTile extends YgListTile implements YgToggleable 
     this.leadingWidget,
     this.trailingWidget,
     this.value,
-  })  : assert(
-          title != null || leadingWidget != null,
-          'Can not have neither a title or leading widget.',
-        ),
-        assert(
-          subtitleIcon == null || subtitle != null,
-          'Can not add a subtitleIcon without a subtitle.',
-        ),
-        assert(
-          title != null || subtitle == null,
-          'Can not have a subtitle without a title.',
-        ),
-        super._();
+  }) : super._();
 
   /// See [YgSwitch] documentation.
   @override

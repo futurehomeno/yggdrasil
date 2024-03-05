@@ -40,6 +40,11 @@ class YgListTileBody extends StatelessWidget {
     required Widget child,
     required Widget? leading,
   }) {
+    assert(
+      title != null || leading != null,
+      'Can not have neither a title or leading widget.',
+    );
+
     final ({
       Widget? leading,
       Widget? trailing,

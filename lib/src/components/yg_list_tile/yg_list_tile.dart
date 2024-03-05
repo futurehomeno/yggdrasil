@@ -42,14 +42,7 @@ abstract base class YgListTile extends StatelessWidget with StatelessWidgetDebug
     required this.subtitle,
     required this.subtitleIcon,
     required this.disabled,
-  })  : assert(
-          subtitleIcon == null || subtitle != null,
-          'Can not add a subtitleIcon without a subtitle.',
-        ),
-        assert(
-          title != null || subtitle == null,
-          'Can not have a subtitle without a title.',
-        );
+  });
 
   /// Convenience for generating links from YgListTiles.
   factory YgListTile.link({
