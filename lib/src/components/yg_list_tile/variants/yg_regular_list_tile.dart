@@ -10,7 +10,7 @@ part of '../yg_list_tile.dart';
 final class _YgRegularListTile extends YgListTile {
   const _YgRegularListTile({
     super.key,
-    required super.title,
+    super.title,
     super.subtitle,
     super.subtitleIcon,
     this.leadingWidgets,
@@ -18,7 +18,23 @@ final class _YgRegularListTile extends YgListTile {
     this.supportingWidgets,
     this.onTap,
     this.onInfoTap,
-  }) : super._(
+  })  : assert(
+          title != null || leadingWidgets != null,
+          'Can not have neither a title or leading widget.',
+        ),
+        assert(
+          subtitleIcon == null || subtitle != null,
+          'Can not add a subtitleIcon without a subtitle.',
+        ),
+        assert(
+          title != null || onInfoTap == null,
+          'Can not have a infoButton without a title.',
+        ),
+        assert(
+          title != null || subtitle == null,
+          'Can not have a subtitle without a title.',
+        ),
+        super._(
           disabled: onTap == null,
         );
 
@@ -44,6 +60,11 @@ final class _YgRegularListTile extends YgListTile {
   @override
   Widget build(BuildContext context) {
     final YgListTileTheme theme = context.listTileTheme;
+
+    assert(
+      title != null || leadingWidgets?.isNotEmpty == true,
+      'Can not have neither a title or leading widget.',
+    );
 
     return YgListTileBody(
       title: title,

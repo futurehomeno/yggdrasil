@@ -5,8 +5,8 @@ abstract base class YgSwitchListTile extends YgListTile implements YgToggleable 
   const factory YgSwitchListTile({
     Key? key,
     required bool? value,
-    required String title,
     required ValueChanged<bool>? onChanged,
+    String? title,
     Widget? leadingWidget,
     String? subtitle,
     Widget? subtitleIcon,
@@ -17,8 +17,8 @@ abstract base class YgSwitchListTile extends YgListTile implements YgToggleable 
   const factory YgSwitchListTile.triState({
     Key? key,
     required bool? value,
-    required String title,
     required ValueChanged<bool?>? onChanged,
+    String? title,
     Widget? leadingWidget,
     String? subtitle,
     Widget? subtitleIcon,
@@ -27,14 +27,26 @@ abstract base class YgSwitchListTile extends YgListTile implements YgToggleable 
 
   const YgSwitchListTile._({
     super.key,
-    required super.title,
     required super.disabled,
+    super.title,
     super.subtitle,
     super.subtitleIcon,
     this.leadingWidget,
     this.trailingWidget,
     this.value,
-  }) : super._();
+  })  : assert(
+          title != null || leadingWidget != null,
+          'Can not have neither a title or leading widget.',
+        ),
+        assert(
+          subtitleIcon == null || subtitle != null,
+          'Can not add a subtitleIcon without a subtitle.',
+        ),
+        assert(
+          title != null || subtitle == null,
+          'Can not have a subtitle without a title.',
+        ),
+        super._();
 
   /// See [YgSwitch] documentation.
   @override

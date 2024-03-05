@@ -4,8 +4,8 @@ part of '../../yg_list_tile.dart';
 abstract base class YgCheckboxListTile extends YgListTile implements YgToggleable {
   const factory YgCheckboxListTile({
     required bool? value,
-    required String title,
     required ValueChanged<bool>? onChanged,
+    String? title,
     Key? key,
     Widget? leadingWidget,
     String? subtitle,
@@ -15,8 +15,8 @@ abstract base class YgCheckboxListTile extends YgListTile implements YgToggleabl
   /// Supports a nullable value, i.e. "indeterminate".
   const factory YgCheckboxListTile.triState({
     required bool? value,
-    required String title,
     required ValueChanged<bool?>? onChanged,
+    String? title,
     Key? key,
     Widget? leadingWidget,
     String? subtitle,
@@ -25,13 +25,25 @@ abstract base class YgCheckboxListTile extends YgListTile implements YgToggleabl
 
   const YgCheckboxListTile._({
     super.key,
-    required super.title,
     required super.disabled,
+    super.title,
     super.subtitle,
     super.subtitleIcon,
     this.leadingWidget,
     this.value,
-  }) : super._();
+  })  : assert(
+          title != null || leadingWidget != null,
+          'Can not have neither a title or leading widget.',
+        ),
+        assert(
+          subtitleIcon == null || subtitle != null,
+          'Can not add a subtitleIcon without a subtitle.',
+        ),
+        assert(
+          title != null || subtitle == null,
+          'Can not have a subtitle without a title.',
+        ),
+        super._();
 
   /// See [YgCheckbox] documentation.
   @override

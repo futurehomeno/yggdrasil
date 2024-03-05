@@ -56,6 +56,17 @@ class RadioListTileScreenState extends State<RadioListTileScreen> {
                 onChanged: null,
               ),
               YgRadioListTile<int>(
+                leadingWidget: const YgTag(
+                  child: Text('Leading widget only'),
+                ),
+                value: 4,
+                groupValue: radioGroupValue,
+                onChanged: (int? newValue) {
+                  radioGroupValue = newValue!;
+                  setState(() {});
+                },
+              ),
+              YgRadioListTile<int>(
                 title: 'With trailingWidget',
                 subtitle: 'Mostly used to add a YgIconButton.',
                 leadingWidget: YgIconButton(

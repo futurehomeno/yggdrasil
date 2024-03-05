@@ -47,6 +47,15 @@ class ExpandingListTileScreen extends StatelessWidget {
             child: child,
           ),
           const YgExpandingListTile(
+            leadingWidgets: <Widget>[
+              YgIcon(YgIcons.info, size: YgIconSize.large),
+              YgTag(
+                child: Text('Leading widgets only'),
+              ),
+            ],
+            child: child,
+          ),
+          const YgExpandingListTile(
             title: 'Title',
             subtitle: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit.',
             leadingWidgets: <Widget>[

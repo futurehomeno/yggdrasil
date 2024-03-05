@@ -11,8 +11,8 @@ part of '../yg_list_tile.dart';
 final class YgExpandingListTile extends YgListTile {
   const YgExpandingListTile({
     super.key,
-    required super.title,
     required this.child,
+    super.title,
     super.subtitle,
     super.subtitleIcon,
     this.leadingWidgets,
@@ -21,7 +21,23 @@ final class YgExpandingListTile extends YgListTile {
     this.controller,
     this.onExpandedChanged,
     this.initiallyExpanded = false,
-  }) : super._(
+  })  : assert(
+          title != null || leadingWidgets != null,
+          'Can not have neither a title or leading widget.',
+        ),
+        assert(
+          subtitleIcon == null || subtitle != null,
+          'Can not add a subtitleIcon without a subtitle.',
+        ),
+        assert(
+          title != null || subtitle == null,
+          'Can not have a subtitle without a title.',
+        ),
+        assert(
+          title != null || onInfoTap == null,
+          'Can not have a infoButton without a title.',
+        ),
+        super._(
           disabled: false,
         );
 
@@ -53,6 +69,11 @@ final class YgExpandingListTile extends YgListTile {
   @override
   Widget build(BuildContext context) {
     final YgListTileTheme theme = context.listTileTheme;
+
+    assert(
+      title != null || leadingWidgets?.isNotEmpty == true,
+      'Can not have neither a title or leading widget.',
+    );
 
     return YgExpander(
       duration: theme.animationDuration,
