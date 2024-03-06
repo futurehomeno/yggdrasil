@@ -51,31 +51,27 @@ abstract base class YgBadge extends StatefulWidget with StatefulWidgetDebugMixin
   State<YgBadge> createState() => _YgBadgeState();
 }
 
-class _YgBadgeState extends StateWithYgStyle<YgBadge, YgBadgeStyle> {
-  late final YgBadgeState _state = YgBadgeState(
-    weight: widget.weight,
-    variant: widget.variant,
-  );
-
+class _YgBadgeState extends StateWithYgStateAndStyle<YgBadge, YgBadgeState, YgBadgeStyle> {
   @override
   YgBadgeStyle createStyle() {
     return YgBadgeStyle(
-      state: _state,
+      state: state,
       vsync: this,
     );
   }
 
   @override
-  void didUpdateWidget(covariant YgBadge oldWidget) {
-    _state.weight.value = widget.weight;
-    _state.variant.value = widget.variant;
-    super.didUpdateWidget(oldWidget);
+  YgBadgeState createState() {
+    return YgBadgeState(
+      weight: widget.weight,
+      variant: widget.variant,
+    );
   }
 
   @override
-  void dispose() {
-    _state.dispose();
-    super.dispose();
+  void updateState() {
+    state.weight.value = widget.weight;
+    state.variant.value = widget.variant;
   }
 
   @override

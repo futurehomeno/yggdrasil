@@ -33,5 +33,6 @@ mixin YgStateAndStyleBuilderMixin<Widget extends StatefulWidget, State extends Y
   /// Creates a state on init.
   State createState();
 
+  /// Updates the state with the properties on [widget].
   void updateState();
 }

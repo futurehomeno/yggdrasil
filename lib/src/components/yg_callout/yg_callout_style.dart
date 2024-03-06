@@ -1,9 +1,10 @@
 import 'package:flutter/material.dart';
-import 'package:yggdrasil/src/components/yg_callout/yg_callout_state.dart';
 import 'package:yggdrasil/src/theme/_theme.dart';
 import 'package:yggdrasil/src/utils/_utils.dart';
 
 import '_yg_callout.dart';
+
+typedef YgCalloutState = YgVariantState<YgCalloutVariant>;
 
 class YgCalloutStyle extends YgStyle<YgCalloutState> {
   YgCalloutStyle({

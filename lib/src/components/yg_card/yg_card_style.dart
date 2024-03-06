@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:yggdrasil/src/components/yg_card/yg_card_state.dart';
 import 'package:yggdrasil/src/theme/_theme.dart';
 import 'package:yggdrasil/src/utils/_utils.dart';
 import 'package:yggdrasil/yggdrasil.dart';
+
+typedef YgCardState = YgVariantState<YgCardVariant>;
 
 class YgCardStyle extends YgStyle<YgCardState> {
   YgCardStyle({

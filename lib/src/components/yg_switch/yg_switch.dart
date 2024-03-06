@@ -47,16 +47,25 @@ abstract base class YgSwitch extends StatefulWidget with StatefulWidgetDebugMixi
   }
 }
 
-class _YgSwitchState extends StateWithYgStyle<YgSwitch, YgSwitchStyle> {
-  late final YgSwitchState _state = YgSwitchState(
-    disabled: widget.disabled,
-    toggled: widget.value,
-  );
+class _YgSwitchState extends StateWithYgStateAndStyle<YgSwitch, YgSwitchState, YgSwitchStyle> {
+  @override
+  YgSwitchState createState() {
+    return YgSwitchState(
+      disabled: widget.disabled,
+      toggled: widget.value,
+    );
+  }
+
+  @override
+  void updateState() {
+    state.disabled.value = widget.disabled;
+    state.toggled.value = widget.value;
+  }
 
   @override
   YgSwitchStyle createStyle() {
     return YgSwitchStyle(
-      state: _state,
+      state: state,
       vsync: this,
     );
   }
@@ -69,32 +78,19 @@ class _YgSwitchState extends StateWithYgStyle<YgSwitch, YgSwitchStyle> {
   }
 
   @override
-  void dispose() {
-    _state.dispose();
-    super.dispose();
-  }
-
-  @override
-  void didUpdateWidget(covariant YgSwitch oldWidget) {
-    _state.disabled.value = widget.disabled;
-    _state.toggled.value = widget.value;
-    super.didUpdateWidget(oldWidget);
-  }
-
-  @override
   Widget build(BuildContext context) {
     final YgSwitchTheme theme = context.switchTheme;
     final double computedHeight = theme.handleSize + (theme.handlePadding * 2);
 
     return YgFocusableActionDetector(
       onActivate: widget.toggle,
-      enabled: !_state.disabled.value,
-      onHoverChanged: _state.hovered.update,
-      onFocusChanged: _state.focused.update,
+      enabled: !state.disabled.value,
+      onHoverChanged: state.hovered.update,
+      onFocusChanged: state.focused.update,
       mouseCursor: style.mouseCursor.value,
       child: Semantics(
-        toggled: _state.toggled.value,
-        enabled: _state.disabled.value,
+        toggled: state.toggled.value,
+        enabled: state.disabled.value,
         child: SizedBox(
           width: style.width.value,
           height: computedHeight,
