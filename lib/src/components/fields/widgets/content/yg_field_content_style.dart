@@ -4,7 +4,7 @@ import 'package:yggdrasil/src/utils/_utils.dart';
 
 import '../../yg_field_state.dart';
 
-class YgFieldContentStyle extends YgStyleWithDefaults<YgFieldState> {
+class YgFieldContentStyle extends YgStyle<YgFieldState> {
   YgFieldContentStyle({
     required super.state,
     required super.vsync,

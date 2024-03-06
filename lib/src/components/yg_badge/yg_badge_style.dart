@@ -6,7 +6,7 @@ import 'package:yggdrasil/src/utils/_utils.dart';
 import '_yg_badge.dart';
 import 'enums/yg_badge_variant.dart';
 
-class YgBadgeStyle extends YgStyleWithDefaults<YgBadgeState> {
+class YgBadgeStyle extends YgStyle<YgBadgeState> {
   YgBadgeStyle({
     required super.state,
     required super.vsync,

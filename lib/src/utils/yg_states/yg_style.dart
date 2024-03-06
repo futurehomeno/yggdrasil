@@ -1,4 +1,7 @@
-part of 'yg_style_base.dart';
+import 'dart:async';
+
+import 'package:flutter/widgets.dart';
+import 'package:yggdrasil/src/utils/_utils.dart';
 
 /// Simplifies animating or driving properties.
 ///
@@ -7,11 +10,45 @@ part of 'yg_style_base.dart';
 /// the advantage that the style will provide the [state], [_vsync],
 /// [duration] and [curve]. The style also disposes of the properties for you when
 /// the style is disposed.
-abstract class YgStyleWithDefaults<T extends YgState> extends YgStyleBase<T> {
-  YgStyleWithDefaults({
-    required super.state,
-    required super.vsync,
-  });
+abstract class YgStyle<T extends YgState> extends ChangeNotifier {
+  YgStyle({
+    required this.state,
+    required YgVsync vsync,
+  }) : _vsync = vsync;
+
+  @protected
+  final T state;
+  final YgVsync _vsync;
+  final List<YgDisposableDrivenProperty<Object?>> _properties = <YgDisposableDrivenProperty<Object?>>[];
+  bool _scheduledUpdate = false;
+
+  @override
+  void dispose() {
+    for (final YgDisposableDrivenProperty<Object?> property in _properties) {
+      property.removeListener(_scheduleUpdate);
+      property.dispose();
+    }
+    super.dispose();
+  }
+
+  /// Debounce the updates.
+  void _scheduleUpdate() {
+    if (_scheduledUpdate) {
+      return;
+    }
+
+    _scheduledUpdate = true;
+
+    scheduleMicrotask(() {
+      _scheduledUpdate = false;
+
+      if (hasListeners) {
+        notifyListeners();
+      }
+    });
+  }
+
+  BuildContext get context => _vsync.context;
 
   /// Animate a property.
   ///

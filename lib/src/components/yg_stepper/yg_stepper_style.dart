@@ -4,7 +4,7 @@ import 'package:yggdrasil/src/theme/stepper/stepper_theme.dart';
 import 'package:yggdrasil/src/theme/theme.dart';
 import 'package:yggdrasil/src/utils/_utils.dart';
 
-class YgStepperStyle extends YgStyleWithDefaults<YgStepperState> {
+class YgStepperStyle extends YgStyle<YgStepperState> {
   YgStepperStyle({
     required super.state,
     required super.vsync,

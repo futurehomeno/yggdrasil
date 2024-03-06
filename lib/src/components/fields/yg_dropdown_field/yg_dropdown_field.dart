@@ -1,8 +1,10 @@
+import 'dart:async';
 import 'dart:io';
 
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:yggdrasil/src/theme/_theme.dart';
+import 'package:yggdrasil/src/utils/_utils.dart';
 import 'package:yggdrasil/yggdrasil.dart';
 
 import '../helpers/_helpers.dart';
@@ -212,20 +214,31 @@ abstract class YgDropdownField<T extends Object> extends StatefulWidget with Sta
   }
 }
 
-abstract class YgDropdownFieldWidgetState<T extends Object, W extends YgDropdownField<T>> extends State<W> {
-  /// The current controller of the dropdown, either user specified or a default one.
-  late YgAnyDropdownController<T> _controller = widget.controller ?? createController();
+typedef _YgDropdownControllerManager<T extends Object>
+    = YgControllerManager<YgDropdownController<T, Object?, YgDropdownFieldWidgetState<T, YgDropdownField<T>>>>;
 
-  /// The current [FocusNode] of the dropdown, either user specified of a default one.
-  late FocusNode _focusNode = widget.focusNode ?? FocusNode();
+abstract class YgDropdownFieldWidgetState<T extends Object, W extends YgDropdownField<T>> extends State<W>
+    with YgControllerManagerMixin {
+  /// Manages the controller of this widget.
+  late final _YgDropdownControllerManager<T> _controllerManager = manageController(
+    createController: createController,
+    getUserController: () => widget.controller,
+    listener: _controllerListener,
+  );
+
+  /// Manages the [FocusNode] of this widget.
+  late final YgControllerManager<FocusNode> _focusNodeManager = manageController(
+    createController: () => FocusNode(),
+    getUserController: () => widget.focusNode,
+  );
 
   /// Whether the widget is visually focused (either focused of opened).
   late bool _visuallyFocused;
 
   late final YgDropdownFieldState _state = YgDropdownFieldState(
+    filled: _controllerManager.value.filled,
     placeholder: widget.placeholder != null,
     error: widget.error != null,
-    filled: _controller.filled,
     disabled: widget.disabled,
     size: widget.size,
     variant: widget.variant,
@@ -236,8 +249,6 @@ abstract class YgDropdownFieldWidgetState<T extends Object, W extends YgDropdown
   void initState() {
     super.initState();
 
-    _controller.addListener(_controllerListener);
-    _controller._attach(this);
     _state.addListener(_handleStateChanged);
     _visuallyFocused = _state.showFocusHighlight;
   }
@@ -252,31 +263,11 @@ abstract class YgDropdownFieldWidgetState<T extends Object, W extends YgDropdown
 
   @override
   void didUpdateWidget(covariant W oldWidget) {
-    final YgAnyDropdownController<T>? newController = widget.controller;
-    final FocusNode? newFocusNode = widget.focusNode;
-
-    if (newFocusNode == null) {
-      if (oldWidget.focusNode != null) {
-        _focusNode = FocusNode();
-      }
-    } else if (newFocusNode != _focusNode) {
-      _focusNode = newFocusNode;
-    }
-
-    if (newController == null) {
-      if (oldWidget.controller != null) {
-        _updateController(createController());
-      }
-    } else if (newController != _controller) {
-      _updateController(newController);
-    }
-
     _state.placeholder.value = widget.placeholder != null;
     _state.error.value = widget.error != null;
     _state.disabled.value = widget.disabled;
     _state.size.value = widget.size;
     _state.variant.value = widget.variant;
-
     super.didUpdateWidget(oldWidget);
   }
 
@@ -284,20 +275,13 @@ abstract class YgDropdownFieldWidgetState<T extends Object, W extends YgDropdown
   void dispose() {
     _state.removeListener(_handleStateChanged);
     _state.dispose();
-    _controller.removeListener(_controllerListener);
-    _controller._detach();
-    if (widget.controller == null) {
-      _controller.dispose();
-    }
-    if (widget.focusNode == null) {
-      _focusNode.dispose();
-    }
     super.dispose();
   }
 
   @override
   Widget build(BuildContext context) {
     final YgFieldTheme theme = context.fieldTheme;
+    final YgAnyDropdownController<T> controller = _controllerManager.value;
 
     return YgFieldDecoration(
       variant: widget.variant,
@@ -312,8 +296,8 @@ abstract class YgDropdownFieldWidgetState<T extends Object, W extends YgDropdown
         return InkWell(
           onFocusChange: _state.focused.update,
           onHover: _state.hovered.update,
-          onTap: _controller.open,
-          focusNode: _focusNode,
+          onTap: _controllerManager.value.open,
+          focusNode: _focusNodeManager.value,
           focusColor: Colors.transparent,
           child: child,
         );
@@ -323,14 +307,14 @@ abstract class YgDropdownFieldWidgetState<T extends Object, W extends YgDropdown
         curve: theme.animationCurve,
         turns: _state.opened.value ? 0.5 : 0,
         child: YgIconButton(
-          onPressed: widget.disabled ? null : _controller.open,
+          onPressed: widget.disabled ? null : controller.open,
           size: YgIconButtonSize.small,
           icon: YgIcons.caretDown,
         ),
       ),
       content: YgFieldContent(
         value: ListenableBuilder(
-          listenable: _controller,
+          listenable: controller,
           builder: _buildText,
         ),
         state: _state,
@@ -346,7 +330,7 @@ abstract class YgDropdownFieldWidgetState<T extends Object, W extends YgDropdown
     final int? minLines = widget.minLines;
 
     final Text text = Text(
-      _controller.buildTitle(widget.entries),
+      _controllerManager.value.buildTitle(widget.entries),
       maxLines: widget.maxLines,
       overflow: widget.maxLines != 1 ? null : TextOverflow.ellipsis,
     );
@@ -379,7 +363,7 @@ abstract class YgDropdownFieldWidgetState<T extends Object, W extends YgDropdown
     Navigator.of(context).push(
       YgDropdownMenuRoute<T>(
         entries: widget.entries,
-        dropdownController: _controller,
+        dropdownController: _controllerManager.value,
         rect: itemRect,
         onClose: _onClosed,
         metric: widget.metric,
@@ -394,7 +378,7 @@ abstract class YgDropdownFieldWidgetState<T extends Object, W extends YgDropdown
         metric: widget.metric,
         entries: widget.entries,
         label: widget.label,
-        dropdownController: _controller,
+        dropdownController: _controllerManager.value,
         onClose: _onClosed,
       ),
     );
@@ -402,7 +386,7 @@ abstract class YgDropdownFieldWidgetState<T extends Object, W extends YgDropdown
   }
 
   void openPickerBottomSheet() {
-    final YgAnyDropdownController<T> controller = _controller;
+    final YgAnyDropdownController<T> controller = _controllerManager.value;
 
     if (controller is! YgSingleSelectDropdownController<T>) {
       _performPlatformAction(picker: false);
@@ -423,7 +407,7 @@ abstract class YgDropdownFieldWidgetState<T extends Object, W extends YgDropdown
   }
 
   void open() {
-    _focusNode.requestFocus();
+    _focusNodeManager.value.requestFocus();
     widget.onPressed?.call();
 
     switch (widget.dropdownAction) {
@@ -472,15 +456,16 @@ abstract class YgDropdownFieldWidgetState<T extends Object, W extends YgDropdown
       return;
     }
 
+    final FocusNode focusNode = _focusNodeManager.value;
     switch (widget.completeAction) {
       case YgCompleteAction.focusNext:
-        _focusNode.nextFocus();
+        focusNode.nextFocus();
         break;
       case YgCompleteAction.focusPrevious:
-        _focusNode.previousFocus();
+        focusNode.previousFocus();
         break;
       case YgCompleteAction.unfocus:
-        _focusNode.unfocus();
+        focusNode.unfocus();
         break;
       case YgCompleteAction.none:
     }
@@ -498,15 +483,7 @@ abstract class YgDropdownFieldWidgetState<T extends Object, W extends YgDropdown
     }
   }
 
-  void _updateController(YgAnyDropdownController<T> controller) {
-    _controller.removeListener(_controllerListener);
-    _controller._detach();
-    _controller = controller;
-    _controller.addListener(_controllerListener);
-    _controller._attach(this);
-  }
-
   void _controllerListener() {
-    _state.filled.value = _controller.filled;
+    _state.filled.value = _controllerManager.value.filled;
   }
 }

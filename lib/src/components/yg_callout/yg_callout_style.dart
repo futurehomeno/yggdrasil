@@ -5,7 +5,7 @@ import 'package:yggdrasil/src/utils/_utils.dart';
 
 import '_yg_callout.dart';
 
-class YgCalloutStyle extends YgStyleWithDefaults<YgCalloutState> {
+class YgCalloutStyle extends YgStyle<YgCalloutState> {
   YgCalloutStyle({
     required super.state,
     required super.vsync,

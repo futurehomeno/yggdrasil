@@ -5,7 +5,7 @@ import 'package:yggdrasil/src/utils/_utils.dart';
 
 import 'yg_switch_state.dart';
 
-class YgSwitchStyle extends YgStyleWithDefaults<YgSwitchState> {
+class YgSwitchStyle extends YgStyle<YgSwitchState> {
   YgSwitchStyle({
     required super.state,
     required super.vsync,

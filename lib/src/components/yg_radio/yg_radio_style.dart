@@ -5,7 +5,7 @@ import 'package:yggdrasil/yggdrasil.dart';
 
 import 'yg_radio_state.dart';
 
-class YgRadioStyle extends YgStyleWithDefaults<YgRadioState> {
+class YgRadioStyle extends YgStyle<YgRadioState> {
   YgRadioStyle({
     required super.state,
     required super.vsync,

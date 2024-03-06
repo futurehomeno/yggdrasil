@@ -5,7 +5,7 @@ import 'package:yggdrasil/src/components/yg_slider/yg_slider_state.dart';
 import 'package:yggdrasil/src/theme/_theme.dart';
 import 'package:yggdrasil/src/utils/_utils.dart';
 
-class YgSliderStyle extends YgStyleWithDefaults<YgSliderState> {
+class YgSliderStyle extends YgStyle<YgSliderState> {
   YgSliderStyle({
     required super.state,
     required super.vsync,
@@ -14,9 +14,10 @@ class YgSliderStyle extends YgStyleWithDefaults<YgSliderState> {
   late final YgAnimatedProperty<Color> handleColor = animate(_resolveHandleColor);
   late final YgAnimatedProperty<Color> trackColor = animate(_resolveTrackColor);
   late final YgAnimatedProperty<Color> differenceIndicatorColor = animate(_resolveDifferenceIndicatorColor);
-  late final YgDrivenProperty<EdgeInsets> handlePadding = drive(() => _theme.handlePadding);
-  late final YgDrivenProperty<BorderRadius> trackInnerRadius = drive(() => _theme.trackInnerRadius);
-  late final YgDrivenProperty<BorderRadius> trackOuterRadius = drive(() => _theme.trackOuterRadius);
+  late final YgDrivenProperty<EdgeInsets> handlePadding = all(() => _theme.handlePadding);
+  late final YgDrivenProperty<BorderRadius> trackInnerRadius = all(() => _theme.trackInnerRadius);
+  late final YgDrivenProperty<BorderRadius> trackOuterRadius = all(() => _theme.trackOuterRadius);
+  late final YgDrivenProperty<double> trackHeight = all(() => _theme.trackHeight);
 
   Color _resolveHandleColor() {
     if (state.disabled.value) {

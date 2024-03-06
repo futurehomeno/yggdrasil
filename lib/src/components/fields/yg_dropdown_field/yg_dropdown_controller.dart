@@ -12,7 +12,7 @@ typedef YgAnyDropdownController<T extends Object>
 ///  - [YgSingleSelectDropdownController].
 ///  - [YgMultiSelectDropdownController].
 sealed class YgDropdownController<T extends Object, V, S extends YgDropdownFieldWidgetState<T, YgDropdownField<T>>>
-    extends ChangeNotifier {
+    extends ChangeNotifier implements YgAttachable<S>, YgDisposable {
   YgDropdownController({
     required V initialValue,
   }) : _value = initialValue;
@@ -95,7 +95,8 @@ sealed class YgDropdownController<T extends Object, V, S extends YgDropdownField
   /// !--- Warning ---
   /// Should not be called when the controller is already attached to a
   /// [YgDropdownField].
-  void _attach(S fieldState) {
+  @override
+  void attach(S fieldState) {
     assert(
       _fieldState == null || _fieldState == fieldState,
       'Can not attach controller to multiple dropdowns.',
@@ -104,11 +105,14 @@ sealed class YgDropdownController<T extends Object, V, S extends YgDropdownField
       return;
     }
     _fieldState = fieldState;
-    notifyListeners();
+    scheduleMicrotask(() {
+      notifyListeners();
+    });
   }
 
   /// Method to detach a controller from its current [YgDropdownField].
-  void _detach() {
+  @override
+  void detach() {
     _fieldState = null;
     notifyListeners();
   }

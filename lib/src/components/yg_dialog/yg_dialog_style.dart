@@ -7,7 +7,7 @@ import 'enums/yg_dialog_variant.dart';
 
 typedef YgDialogState = YgVariantState<YgDialogVariant>;
 
-class YgDialogStyle extends YgStyleWithDefaults<YgDialogState> {
+class YgDialogStyle extends YgStyle<YgDialogState> {
   YgDialogStyle({
     required super.state,
     required super.vsync,

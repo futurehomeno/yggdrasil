@@ -1,8 +1,7 @@
 // ignore_for_file: prefer-widget-private-members
 
 import 'package:flutter/material.dart';
-
-import 'yg_expansion_controller.dart';
+import 'package:yggdrasil/src/utils/_utils.dart';
 
 /// Internal widget used for creating expanding widgets.
 class YgExpander extends StatefulWidget {
@@ -61,41 +60,21 @@ class YgExpander extends StatefulWidget {
   State<YgExpander> createState() => YgExpanderState();
 }
 
-class YgExpanderState extends State<YgExpander> {
-  late YgExpansionController _controller = widget.controller ?? _createController();
-  YgExpansionController get controller => _controller;
+class YgExpanderState extends State<YgExpander> with YgControllerManagerMixin {
+  late final YgControllerManager<YgExpansionController> _controllerManager = manageController(
+    createController: () => YgExpansionController(initiallyExpanded: widget.initiallyExpanded),
+    getUserController: () => widget.controller,
+    listener: _rebuild,
+  );
+
+  YgExpansionController get controller => _controllerManager.value;
 
   late bool _currentlyExpanded;
 
   @override
   void initState() {
     super.initState();
-    _controller.addListener(_rebuild);
-    _currentlyExpanded = _controller.expanded;
-  }
-
-  @override
-  void didUpdateWidget(covariant YgExpander oldWidget) {
-    final YgExpansionController? newController = widget.controller;
-
-    if (newController == null) {
-      if (oldWidget.controller != null) {
-        _updateController(_createController());
-      }
-    } else if (newController != _controller) {
-      _updateController(newController);
-    }
-    super.didUpdateWidget(oldWidget);
-  }
-
-  @override
-  void dispose() {
-    _controller.removeListener(_rebuild);
-    if (widget.controller == null) {
-      _controller.dispose();
-    }
-
-    super.dispose();
+    _currentlyExpanded = controller.expanded;
   }
 
   @override
@@ -104,7 +83,7 @@ class YgExpanderState extends State<YgExpander> {
       mainAxisSize: MainAxisSize.min,
       direction: widget.axis,
       children: <Widget>[
-        widget.headerBuilder(context, _controller),
+        widget.headerBuilder(context, controller),
         ClipRect(
           child: AnimatedAlign(
             alignment: widget.alignment,
@@ -120,22 +99,15 @@ class YgExpanderState extends State<YgExpander> {
   }
 
   double _getFactorForAxis(Axis axis) {
-    if (widget.axis != axis || _controller.expanded) {
+    if (widget.axis != axis || controller.expanded) {
       return 1.0;
     }
 
     return 0.0;
   }
 
-  void _updateController(YgExpansionController controller) {
-    _controller.removeListener(_rebuild);
-    _controller = controller;
-    _controller.addListener(_rebuild);
-    _checkExpandedChange();
-  }
-
   void _checkExpandedChange() {
-    final bool newExpanded = _controller.expanded;
+    final bool newExpanded = controller.expanded;
     if (_currentlyExpanded != newExpanded) {
       _currentlyExpanded = newExpanded;
       widget.onExpandedChanged?.call(newExpanded);
@@ -145,11 +117,5 @@ class YgExpanderState extends State<YgExpander> {
   void _rebuild() {
     _checkExpandedChange();
     setState(() {});
-  }
-
-  YgExpansionController _createController() {
-    return YgExpansionController(
-      initiallyExpanded: widget.initiallyExpanded,
-    );
   }
 }

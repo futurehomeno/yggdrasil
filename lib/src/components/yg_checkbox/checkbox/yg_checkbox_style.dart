@@ -3,7 +3,7 @@ import 'package:yggdrasil/src/components/yg_checkbox/checkbox/yg_checkbox_state.
 import 'package:yggdrasil/src/theme/_theme.dart';
 import 'package:yggdrasil/src/utils/_utils.dart';
 
-class YgCheckboxStyle extends YgStyleWithDefaults<YgCheckboxState> {
+class YgCheckboxStyle extends YgStyle<YgCheckboxState> {
   YgCheckboxStyle({
     required super.state,
     required super.vsync,

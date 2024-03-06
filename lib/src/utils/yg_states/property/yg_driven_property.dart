@@ -52,7 +52,6 @@ class _YgDrivenProperty<T extends YgState, V> extends ChangeNotifier implements 
     if (_usesStates) {
       _state.removeListener(_handleChange);
     }
-    _state.removeListener(_handleChange);
     _vsync.removeDependenciesChangedListener(_handleChange);
     super.dispose();
   }

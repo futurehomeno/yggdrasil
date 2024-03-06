@@ -2,8 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:yggdrasil/src/utils/_utils.dart';
 
 /// Mixin to simplify working with [YgStyle].
-mixin YgStateAndStyleBuilderMixin<Widget extends StatefulWidget, State extends YgState,
-    Style extends YgStyleBase<State>> on YgStyleBuilderMixin<Widget, Style> {
+mixin YgStateAndStyleBuilderMixin<Widget extends StatefulWidget, State extends YgState, Style extends YgStyle<State>>
+    on YgStyleBuilderMixin<Widget, Style> {
   State? _state;
 
   State get state {

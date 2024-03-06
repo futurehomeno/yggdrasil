@@ -6,7 +6,7 @@ import 'package:yggdrasil/yggdrasil.dart';
 
 typedef YgSnackBarState = YgVariantState<YgSnackBarVariant>;
 
-class YgSnackBarStyle extends YgStyleWithDefaults<YgSnackBarState> {
+class YgSnackBarStyle extends YgStyle<YgSnackBarState> {
   YgSnackBarStyle({
     required super.state,
     required super.vsync,

@@ -5,7 +5,7 @@ import 'package:yggdrasil/yggdrasil.dart';
 
 import '../../yg_field_state.dart';
 
-class YgFieldDecorationStyle extends YgStyleWithDefaults<YgFieldState> {
+class YgFieldDecorationStyle extends YgStyle<YgFieldState> {
   YgFieldDecorationStyle({
     required super.state,
     required super.vsync,

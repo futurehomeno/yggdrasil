@@ -4,7 +4,7 @@ import 'package:yggdrasil/src/utils/_utils.dart';
 
 import '_widgets.dart';
 
-abstract class YgButtonBaseStyle<T extends YgButtonBaseState> extends YgStyleWithDefaults<T> {
+abstract class YgButtonBaseStyle<T extends YgButtonBaseState> extends YgStyle<T> {
   YgButtonBaseStyle({
     required super.state,
     required super.vsync,
