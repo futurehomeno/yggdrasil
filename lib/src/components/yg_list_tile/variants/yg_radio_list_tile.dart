@@ -4,14 +4,26 @@ part of '../yg_list_tile.dart';
 final class YgRadioListTile<T> extends YgListTile {
   const YgRadioListTile({
     super.key,
-    required super.title,
     required this.value,
     required this.groupValue,
     required this.onChanged,
+    super.title,
     super.subtitle,
     super.subtitleIcon,
     this.leadingWidget,
-  }) : super._(
+  })  : assert(
+          title != null || leadingWidget != null,
+          'Can not have neither a title or leading widget.',
+        ),
+        assert(
+          subtitleIcon == null || subtitle != null,
+          'Can not add a subtitleIcon without a subtitle.',
+        ),
+        assert(
+          title != null || subtitle == null,
+          'Can not have a subtitle without a title.',
+        ),
+        super._(
           disabled: onChanged == null,
         );
 

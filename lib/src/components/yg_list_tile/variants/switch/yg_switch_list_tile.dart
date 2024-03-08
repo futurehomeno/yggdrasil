@@ -5,8 +5,8 @@ abstract base class YgSwitchListTile extends YgListTile implements YgToggleable 
   const factory YgSwitchListTile({
     Key? key,
     required bool? value,
-    required String title,
     required ValueChanged<bool>? onChanged,
+    String? title,
     Widget? leadingWidget,
     String? subtitle,
     Widget? subtitleIcon,
@@ -17,8 +17,8 @@ abstract base class YgSwitchListTile extends YgListTile implements YgToggleable 
   const factory YgSwitchListTile.triState({
     Key? key,
     required bool? value,
-    required String title,
     required ValueChanged<bool?>? onChanged,
+    String? title,
     Widget? leadingWidget,
     String? subtitle,
     Widget? subtitleIcon,
@@ -27,8 +27,8 @@ abstract base class YgSwitchListTile extends YgListTile implements YgToggleable 
 
   const YgSwitchListTile._({
     super.key,
-    required super.title,
     required super.disabled,
+    super.title,
     super.subtitle,
     super.subtitleIcon,
     this.leadingWidget,
