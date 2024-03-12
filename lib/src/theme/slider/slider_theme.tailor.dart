@@ -53,8 +53,8 @@ class YgSliderTheme extends ThemeExtension<YgSliderTheme> {
   final Color trackBackgroundColor;
   final Color trackDisabledColor;
   final double trackHeight;
-  final BorderRadius trackInnerRadius;
-  final BorderRadius trackOuterRadius;
+  final Radius trackInnerRadius;
+  final Radius trackOuterRadius;
   final double valueIndicatorBottomOffset;
   final Color valueIndicatorDefaultColor;
   final EdgeInsets valueIndicatorPadding;
@@ -199,8 +199,8 @@ class YgSliderTheme extends ThemeExtension<YgSliderTheme> {
     Color? trackBackgroundColor,
     Color? trackDisabledColor,
     double? trackHeight,
-    BorderRadius? trackInnerRadius,
-    BorderRadius? trackOuterRadius,
+    Radius? trackInnerRadius,
+    Radius? trackOuterRadius,
     double? valueIndicatorBottomOffset,
     Color? valueIndicatorDefaultColor,
     EdgeInsets? valueIndicatorPadding,

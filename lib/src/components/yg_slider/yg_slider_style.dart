@@ -12,19 +12,22 @@ class YgSliderStyle extends YgStyle<YgSliderState> {
   });
 
   late final YgAnimatedProperty<Color> handleColor = animate(_resolveHandleColor);
-  late final YgAnimatedProperty<Color> trackColor = animate(_resolveTrackColor);
-  late final YgAnimatedProperty<Color> differenceIndicatorColor = animate(_resolveDifferenceIndicatorColor);
+  late final YgAnimatedProperty<Color> trackLeftColor = animate(_resolveTrackColor);
+  late final YgDrivenProperty<Color> trackRightColor = all(() => _theme.trackBackgroundColor);
   late final YgDrivenProperty<EdgeInsets> handlePadding = all(() => _theme.handlePadding);
-  late final YgDrivenProperty<BorderRadius> trackInnerRadius = all(() => _theme.trackInnerRadius);
-  late final YgDrivenProperty<BorderRadius> trackOuterRadius = all(() => _theme.trackOuterRadius);
+  late final YgDrivenProperty<Radius> trackInnerRadius = all(() => _theme.trackInnerRadius);
+  late final YgDrivenProperty<Radius> trackOuterRadius = all(() => _theme.trackOuterRadius);
   late final YgDrivenProperty<double> trackHeight = all(() => _theme.trackHeight);
+  late final YgDrivenProperty<double> differenceIndicatorHeight = all(() => _theme.differenceIndicatorHeight);
+  late final YgDrivenProperty<Radius> differenceIndicatorRadius = all(() => _theme.differenceIndicatorRadius);
+  late final YgAnimatedProperty<Color> differenceIndicatorColor = animate(_resolveDifferenceIndicatorColor);
 
   Color _resolveHandleColor() {
     if (state.disabled.value) {
       return _theme.handleDisabledColor;
     }
 
-    if (state.pressed.value) {
+    if (state.editing.value) {
       return _theme.handlePressedColor;
     }
 

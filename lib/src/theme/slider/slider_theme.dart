@@ -33,18 +33,18 @@ class _$YgSliderTheme {
     professional_dark.FhColors.backgroundDisabled,
   ];
 
-  static const List<BorderRadius> trackInnerRadius = <BorderRadius>[
-    consumer_light.FhRadii.xxs,
-    consumer_dark.FhRadii.xxs,
-    professional_light.FhRadii.xxs,
-    professional_dark.FhRadii.xxs,
+  static const List<Radius> trackInnerRadius = <Radius>[
+    Radius.circular(consumer_light.FhDimensions.xxs),
+    Radius.circular(consumer_dark.FhDimensions.xxs),
+    Radius.circular(professional_light.FhDimensions.xxs),
+    Radius.circular(professional_dark.FhDimensions.xxs),
   ];
 
-  static const List<BorderRadius> trackOuterRadius = <BorderRadius>[
-    consumer_light.FhRadii.sm,
-    consumer_dark.FhRadii.sm,
-    professional_light.FhRadii.sm,
-    professional_dark.FhRadii.sm,
+  static const List<Radius> trackOuterRadius = <Radius>[
+    Radius.circular(consumer_light.FhDimensions.sm),
+    Radius.circular(consumer_dark.FhDimensions.sm),
+    Radius.circular(professional_light.FhDimensions.sm),
+    Radius.circular(professional_dark.FhDimensions.sm),
   ];
 
   static const List<double> trackHeight = <double>[

@@ -5,30 +5,34 @@ import 'yg_slider.dart';
 
 class YgSliderController extends ChangeNotifier implements YgDisposable, YgAttachable<YgSliderWidgetState> {
   YgSliderController({
-    double initialValue = 0,
-  }) : _value = initialValue;
+    double? initialValue,
+  }) : _value = initialValue ?? 0;
 
-  AnimationController? valueController;
-  AnimationController? differenceController;
+  AnimationController? setValueController;
+  AnimationController? currentValueController;
   YgSliderWidgetState? state;
 
-  final double _value;
+  double _value;
   double get value => _value;
-  set value(double newValue) {}
+  set value(double newValue) {
+    setValueController?.animateTo(newValue);
+    _value = newValue;
+    notifyListeners();
+  }
 
   @override
   void attach(YgSliderWidgetState state) {
-    valueController = AnimationController(vsync: state);
-    differenceController = AnimationController(vsync: state);
+    setValueController = AnimationController(vsync: state);
+    currentValueController = AnimationController(vsync: state);
     this.state = state;
   }
 
   @override
   void detach() {
-    valueController?.dispose();
-    valueController = null;
-    differenceController?.dispose();
-    differenceController = null;
+    setValueController?.dispose();
+    setValueController = null;
+    currentValueController?.dispose();
+    currentValueController = null;
     state = null;
   }
 }

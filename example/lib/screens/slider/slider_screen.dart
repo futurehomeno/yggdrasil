@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:yggdrasil/yggdrasil.dart';
 import 'package:yggdrasil_demo/core/_core.dart';
 import 'package:yggdrasil_demo/widgets/_widgets.dart';
 
@@ -23,6 +24,11 @@ class SliderScreen extends StatelessWidget {
           Slider(
             value: 0.5,
             onChanged: (_) {},
+          ),
+          const YgSlider(
+            value: 0.5,
+            currentValue: 1,
+            variant: YgSliderVariant.temperature,
           ),
         ],
       ),
