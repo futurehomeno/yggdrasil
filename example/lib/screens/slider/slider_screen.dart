@@ -25,10 +25,13 @@ class SliderScreen extends StatelessWidget {
             value: 0.5,
             onChanged: (_) {},
           ),
-          const YgSlider(
-            value: 0.5,
-            currentValue: 1,
-            variant: YgSliderVariant.temperature,
+          const YgSection(
+            title: 'Default slider',
+            child: YgSlider(
+              value: 0.5,
+              currentValue: 0.5,
+              variant: YgSliderVariant.temperature,
+            ),
           ),
         ],
       ),

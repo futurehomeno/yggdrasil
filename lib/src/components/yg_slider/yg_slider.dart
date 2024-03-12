@@ -186,10 +186,13 @@ class YgSliderWidgetState extends StateWithYgStateAndStyle<YgSlider, YgSliderSta
       value: _valueController,
       onChange: _handleChange,
       editingChanged: _handleEditingChanged,
+      state: state,
     );
   }
 
   void _handleChange(double newValue) {
+    newValue = newValue.clamp(widget.min, widget.max);
+
     // Update difference indicator value.
     if (widget.currentValue == null &&
         widget.differenceIndicator &&

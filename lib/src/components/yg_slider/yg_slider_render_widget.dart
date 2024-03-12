@@ -1,8 +1,10 @@
 import 'dart:math';
 
+import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 
+import 'yg_slider_state.dart';
 import 'yg_slider_style.dart';
 
 class YgSliderRenderWidget extends LeafRenderObjectWidget {
@@ -13,6 +15,7 @@ class YgSliderRenderWidget extends LeafRenderObjectWidget {
     required this.currentValue,
     required this.onChange,
     required this.editingChanged,
+    required this.state,
   });
 
   final YgSliderStyle style;
@@ -20,6 +23,7 @@ class YgSliderRenderWidget extends LeafRenderObjectWidget {
   final Animation<double> currentValue;
   final ValueChanged<double> onChange;
   final ValueChanged<bool> editingChanged;
+  final YgSliderState state;
 
   @override
   RenderObject createRenderObject(BuildContext context) {
@@ -29,6 +33,8 @@ class YgSliderRenderWidget extends LeafRenderObjectWidget {
       onChange: onChange,
       style: style,
       value: value,
+      state: state,
+      gestureSettings: MediaQuery.gestureSettingsOf(context),
     );
   }
 
@@ -39,6 +45,8 @@ class YgSliderRenderWidget extends LeafRenderObjectWidget {
     renderObject.onChange = onChange;
     renderObject.style = style;
     renderObject.value = value;
+    renderObject.state = state;
+    renderObject.gestureSettings = MediaQuery.gestureSettingsOf(context);
   }
 }
 
@@ -47,16 +55,26 @@ class YgSliderRenderer extends RenderBox {
     required YgSliderStyle style,
     required Animation<double> value,
     required Animation<double> difference,
+    required DeviceGestureSettings gestureSettings,
     required this.onChange,
     required this.editingChanged,
+    required this.state,
   })  : _style = style,
         _value = value,
-        _difference = difference;
+        _difference = difference {
+    _drag = HorizontalDragGestureRecognizer()
+      ..onStart = _handleDragStart
+      ..onUpdate = _handleDragUpdate
+      ..onEnd = _handleDragEnd
+      ..onCancel = _handleDragEnd
+      ..gestureSettings = gestureSettings;
+  }
 
   // region Values
 
   ValueChanged<double> onChange;
   ValueChanged<bool> editingChanged;
+  YgSliderState state;
 
   YgSliderStyle _style;
   YgSliderStyle get style => _style;
@@ -96,6 +114,14 @@ class YgSliderRenderer extends RenderBox {
     }
   }
 
+  DeviceGestureSettings? get gestureSettings => _drag.gestureSettings;
+
+  // This rule makes no sense here.
+  // ignore: check-for-equals-in-render-object-setters
+  set gestureSettings(DeviceGestureSettings? gestureSettings) {
+    _drag.gestureSettings = gestureSettings;
+  }
+
   @override
   void attach(PipelineOwner owner) {
     _value.addListener(markNeedsPaint);
@@ -125,6 +151,8 @@ class YgSliderRenderer extends RenderBox {
       ),
     );
   }
+
+  // region Painting
 
   @override
   void paint(PaintingContext context, Offset offset) {
@@ -255,4 +283,32 @@ class YgSliderRenderer extends RenderBox {
         bottomRight: right,
         topRight: right,
       );
+
+  // endregion
+
+  late final HorizontalDragGestureRecognizer _drag;
+
+  void _handleDragStart(DragStartDetails details) {
+    print('ba');
+    editingChanged(true);
+  }
+
+  void _handleDragUpdate(DragUpdateDetails details) {
+    onChange((details.delta.dx / size.width) + _value.value);
+  }
+
+  void _handleDragEnd([DragEndDetails? details]) {
+    editingChanged(false);
+  }
+
+  @override
+  void handleEvent(PointerEvent event, covariant BoxHitTestEntry entry) {
+    if (event is PointerDownEvent && !state.disabled.value) {
+      _drag.addPointer(event);
+    }
+    super.handleEvent(event, entry);
+  }
+
+  @override
+  bool hitTestSelf(Offset position) => true;
 }
