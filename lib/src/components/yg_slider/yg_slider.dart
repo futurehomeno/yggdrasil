@@ -1,7 +1,6 @@
 import 'dart:async';
 
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
 import 'package:yggdrasil/src/components/buttons/yg_stepper_button/_yg_stepper_button.dart';
 import 'package:yggdrasil/src/components/yg_slider/yg_slider_state.dart';
 import 'package:yggdrasil/src/components/yg_slider/yg_slider_style.dart';
@@ -9,6 +8,7 @@ import 'package:yggdrasil/src/theme/slider/slider_theme.dart';
 import 'package:yggdrasil/src/utils/_utils.dart';
 import 'package:yggdrasil/yggdrasil.dart';
 
+import 'shortcuts/_shortcuts.dart';
 import 'yg_slider_render_widget.dart';
 import 'yg_slider_value_indicator_render_widget.dart';
 
@@ -202,20 +202,6 @@ class YgSliderWidgetState extends StateWithYgStateAndStyle<YgSlider, YgSliderSta
     super.dispose();
   }
 
-  // Keyboard mapping for a focused slider when using directional navigation.
-  // The vertical inputs are not handled to allow navigating out of the slider.
-  static const Map<ShortcutActivator, Intent> _directionalNavShortcutMap = <ShortcutActivator, Intent>{
-    SingleActivator(LogicalKeyboardKey.arrowLeft): _YgSliderAdjustmentDecreaseIntent(),
-    SingleActivator(LogicalKeyboardKey.arrowRight): _YgSliderAdjustmentIncreaseIntent(),
-  };
-
-  // Keyboard mapping for a focused slider.
-  static const Map<ShortcutActivator, Intent> _traditionalNavShortcutMap = <ShortcutActivator, Intent>{
-    SingleActivator(LogicalKeyboardKey.arrowUp): _YgSliderAdjustmentIncreaseIntent(),
-    SingleActivator(LogicalKeyboardKey.arrowDown): _YgSliderAdjustmentDecreaseIntent(),
-    ..._directionalNavShortcutMap,
-  };
-
   @override
   Widget build(BuildContext context) {
     final YgSliderTheme theme = context.sliderTheme;
@@ -224,12 +210,11 @@ class YgSliderWidgetState extends StateWithYgStateAndStyle<YgSlider, YgSliderSta
       key: _contentKey,
       onShowHoverHighlight: state.hovered.update,
       onShowFocusHighlight: state.focused.update,
-      shortcuts: switch (MediaQuery.navigationModeOf(context)) {
-        NavigationMode.directional => _directionalNavShortcutMap,
-        NavigationMode.traditional => _traditionalNavShortcutMap,
-      },
+      shortcuts: YgSliderShortcuts.getNavShortcutMapForNavigationMode(
+        MediaQuery.navigationModeOf(context),
+      ),
       actions: <Type, Action<Intent>>{
-        _YgSliderAdjustmentIntent: CallbackAction<_YgSliderAdjustmentIntent>(
+        YgSliderAdjustmentIntent: CallbackAction<YgSliderAdjustmentIntent>(
           onInvoke: _handleAction,
         ),
       },
@@ -256,13 +241,13 @@ class YgSliderWidgetState extends StateWithYgStateAndStyle<YgSlider, YgSliderSta
           YgStepperButton(
             icon: YgIcons.minus,
             size: YgStepperButtonSize.medium,
-            onPressed: () => _handleChange(_targetValue - _effectiveStepSize),
+            onPressed: () => _stepValue(_targetValue - _effectiveStepSize),
           ),
           Expanded(child: content),
           YgStepperButton(
             icon: YgIcons.plus,
             size: YgStepperButtonSize.medium,
-            onPressed: () => _handleChange(_targetValue + _effectiveStepSize),
+            onPressed: () => _stepValue(_targetValue + _effectiveStepSize),
           ),
         ].withHorizontalSpacing(theme.stepperButtonsGap),
       );
@@ -283,13 +268,27 @@ class YgSliderWidgetState extends StateWithYgStateAndStyle<YgSlider, YgSliderSta
 
   double get _effectiveStepSize => widget.stepSize ?? ((widget.max - widget.min) / 20);
 
-  void _handleAction(_YgSliderAdjustmentIntent intent) {
+  void _handleAction(YgSliderAdjustmentIntent intent) {
     switch (intent) {
-      case _YgSliderAdjustmentIncreaseIntent():
-        _handleChange(_targetValue + _effectiveStepSize);
-      case _YgSliderAdjustmentDecreaseIntent():
-        _handleChange(_targetValue - _effectiveStepSize);
+      case YgSliderAdjustmentIncreaseIntent():
+        _stepValue(_targetValue + _effectiveStepSize);
+      case YgSliderAdjustmentDecreaseIntent():
+        _stepValue(_targetValue - _effectiveStepSize);
     }
+  }
+
+  void _stepValue(double step) {
+    if (!state.editing.value) {
+      state.recentlyEdited.value = true;
+      _recentEditTimer = Timer(
+        const Duration(seconds: 2),
+        _handleRecentEditTimeout,
+      );
+    }
+
+    _handleChange(
+      step,
+    );
   }
 
   void _handleChange(double newValue, {bool animated = false}) {
@@ -327,8 +326,6 @@ class YgSliderWidgetState extends StateWithYgStateAndStyle<YgSlider, YgSliderSta
 
     state.editing.value = editing;
     if (editing) {
-      state.recentlyEdited.value = true;
-
       _recentEditTimer?.cancel();
       _updateIncreasingState();
 
@@ -339,6 +336,7 @@ class YgSliderWidgetState extends StateWithYgStateAndStyle<YgSlider, YgSliderSta
         _currentValueController.value = _valueController.value;
       }
     } else {
+      state.recentlyEdited.value = true;
       widget.onEditingComplete?.call(_targetValue);
       _recentEditTimer = Timer(
         const Duration(seconds: 2),
@@ -351,16 +349,4 @@ class YgSliderWidgetState extends StateWithYgStateAndStyle<YgSlider, YgSliderSta
     state.recentlyEdited.value = false;
     _recentEditTimer = null;
   }
-}
-
-class _YgSliderAdjustmentIntent extends Intent {
-  const _YgSliderAdjustmentIntent();
-}
-
-class _YgSliderAdjustmentIncreaseIntent extends _YgSliderAdjustmentIntent {
-  const _YgSliderAdjustmentIncreaseIntent();
-}
-
-class _YgSliderAdjustmentDecreaseIntent extends _YgSliderAdjustmentIntent {
-  const _YgSliderAdjustmentDecreaseIntent();
 }

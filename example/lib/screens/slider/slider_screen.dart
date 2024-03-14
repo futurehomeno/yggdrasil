@@ -135,6 +135,14 @@ class _SliderScreenState extends State<SliderScreen> {
               ),
             ].withVerticalSpacing(20.0),
           ),
+          const YgSection(
+            title: 'Disabled',
+            child: YgSlider(
+              value: 0.5,
+              currentValue: 0.25,
+              disabled: true,
+            ),
+          ),
         ],
       ),
     );

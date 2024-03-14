@@ -91,12 +91,12 @@ class YgSliderStyle extends YgStyle<YgSliderState> {
     return _variantTheme.trackDecreasingColor;
   }
 
-  bool get _showDifferenceIndicator =>
-      (state.differenceIndicatorEnabled.value && state.recentlyEdited.value) ||
-      state.staticDifferenceIndicatorIndicator.value;
+  bool get _isOrWasEditing => state.recentlyEdited.value || state.editing.value;
 
-  bool get _showValueIndicator =>
-      !state.disabled.value && state.valueIndicatorEnabled.value && state.recentlyEdited.value;
+  bool get _showDifferenceIndicator =>
+      (state.differenceIndicatorEnabled.value && _isOrWasEditing) || state.staticDifferenceIndicatorIndicator.value;
+
+  bool get _showValueIndicator => !state.disabled.value && state.valueIndicatorEnabled.value && _isOrWasEditing;
 
   _YgSliderVariantTheme get _variantTheme => switch (state.variant.value) {
         YgSliderVariant.shades => _YgSliderVariantTheme.shades(_theme.shadesSliderTheme),
