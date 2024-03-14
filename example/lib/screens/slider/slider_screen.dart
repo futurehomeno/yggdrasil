@@ -3,7 +3,7 @@ import 'package:yggdrasil/yggdrasil.dart';
 import 'package:yggdrasil_demo/core/_core.dart';
 import 'package:yggdrasil_demo/widgets/_widgets.dart';
 
-class SliderScreen extends StatelessWidget {
+class SliderScreen extends StatefulWidget {
   const SliderScreen({super.key});
 
   static const String routeName = 'SliderScreen';
@@ -16,68 +16,124 @@ class SliderScreen extends StatelessWidget {
   }
 
   @override
+  State<SliderScreen> createState() => _SliderScreenState();
+}
+
+class _SliderScreenState extends State<SliderScreen> {
+  double _defaultValue = 0.5;
+  double _differenceIndicatorValue = 0.5;
+  double _staticDifferenceIndicatorValue = 0.5;
+  double _valueIndicatorValue = 0.5;
+  double _stepperValue = 0.5;
+  double _temperatureValue1 = 0.5;
+  double _temperatureValue2 = 0.5;
+  double _shadesValue1 = 0.5;
+  double _shadesValue2 = 0.5;
+
+  @override
   Widget build(BuildContext context) {
     return DemoScreen(
       componentName: 'Slider',
       child: Column(
         children: <Widget>[
-          Slider(
-            value: 0.25,
-            onChanged: (_) {},
-          ),
-          const YgSection(
-            title: 'Temperature slider',
+          YgSection(
+            title: 'Default slider',
             child: YgSlider(
-              value: 0.25,
-              variant: YgSliderVariant.temperature,
-              valueIndicator: true,
+              value: _defaultValue,
+              onEditingComplete: (double newValue) => setState(
+                () => _defaultValue = newValue,
+              ),
             ),
           ),
-          const YgSection(
-            title: 'Temperature slider with difference indicator',
+          YgSection(
+            title: 'With value indicator',
             child: YgSlider(
-              value: 0.25,
-              variant: YgSliderVariant.temperature,
+              value: _valueIndicatorValue,
+              valueIndicator: true,
+              onEditingComplete: (double newValue) => setState(
+                () => _valueIndicatorValue = newValue,
+              ),
+            ),
+          ),
+          YgSection(
+            title: 'With difference indicator',
+            child: YgSlider(
+              value: _differenceIndicatorValue,
               differenceIndicator: true,
-              valueIndicator: true,
+              onEditingComplete: (double newValue) => setState(
+                () => _differenceIndicatorValue = newValue,
+              ),
             ),
           ),
-          const YgSection(
-            title: 'Temperature slider with difference value',
+          YgSection(
+            title: 'With static difference indicator',
             child: YgSlider(
-              value: 0.25,
-              currentValue: 0.5,
-              variant: YgSliderVariant.temperature,
+              value: _staticDifferenceIndicatorValue,
+              currentValue: 0.25,
               differenceIndicator: true,
-              valueIndicator: true,
+              onEditingComplete: (double newValue) => setState(
+                () => _staticDifferenceIndicatorValue = newValue,
+              ),
             ),
           ),
-          const YgSection(
-            title: 'Shades slider',
+          YgSection(
+            title: 'With stepper buttons',
             child: YgSlider(
-              value: 0.25,
-              variant: YgSliderVariant.shades,
-              valueIndicator: true,
-            ),
-          ),
-          const YgSection(
-            title: 'Shades slider with difference indicator',
-            child: YgSlider(
-              value: 0.25,
-              variant: YgSliderVariant.shades,
+              value: _stepperValue,
+              currentValue: 0.25,
               differenceIndicator: true,
-              valueIndicator: true,
+              stepper: true,
+              stepSize: 0.1,
+              onEditingComplete: (double newValue) => setState(
+                () => _stepperValue = newValue,
+              ),
             ),
           ),
-          const YgSection(
-            title: 'Shades slider with difference value',
-            child: YgSlider(
-              value: 0.25,
-              currentValue: 0.5,
-              variant: YgSliderVariant.shades,
-              differenceIndicator: true,
-              valueIndicator: true,
-            ),
+          YgSection.column(
+            title: 'Temperature variant',
+            children: <Widget>[
+              YgSlider(
+                value: _temperatureValue1,
+                variant: YgSliderVariant.temperature,
+                valueIndicator: true,
+                currentValue: 0.25,
+                onEditingComplete: (double newValue) => setState(
+                  () => _temperatureValue1 = newValue,
+                ),
+              ),
+              YgSlider(
+                value: _temperatureValue2,
+                variant: YgSliderVariant.temperature,
+                valueIndicator: true,
+                currentValue: 0.75,
+                onEditingComplete: (double newValue) => setState(
+                  () => _temperatureValue2 = newValue,
+                ),
+              ),
+            ].withVerticalSpacing(20.0),
+          ),
+          YgSection.column(
+            title: 'Shades variant',
+            children: <Widget>[
+              YgSlider(
+                value: _shadesValue1,
+                variant: YgSliderVariant.shades,
+                valueIndicator: true,
+                currentValue: 0.25,
+                onEditingComplete: (double newValue) => setState(
+                  () => _shadesValue1 = newValue,
+                ),
+              ),
+              YgSlider(
+                value: _shadesValue2,
+                variant: YgSliderVariant.shades,
+                valueIndicator: true,
+                currentValue: 0.75,
+                onEditingComplete: (double newValue) => setState(
+                  () => _shadesValue2 = newValue,
+                ),
+              ),
+            ].withVerticalSpacing(20.0),
           ),
         ],
       ),

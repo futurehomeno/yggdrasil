@@ -5,15 +5,10 @@ import 'package:yggdrasil/src/tokens/consumer_light/_consumer_light.dart' as con
 import 'package:yggdrasil/src/tokens/professional_dark/_professional_dark.dart' as professional_dark;
 import 'package:yggdrasil/src/tokens/professional_light/_professional_light.dart' as professional_light;
 
-import 'extensions/_extensions.dart';
-
 part 'stepper_theme.tailor.dart';
 
 @tailorComponent
 class _$YgStepperTheme {
-  @themeExtension
-  static final List<YgStepperButtonTheme> buttonTheme = YgStepperButtonTheme.themes;
-
   static const List<TextStyle> valueTextStyle = <TextStyle>[
     consumer_light.FhTextStyles.pageHeading3Medium,
     consumer_dark.FhTextStyles.pageHeading3Medium,

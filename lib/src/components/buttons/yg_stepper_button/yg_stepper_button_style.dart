@@ -1,9 +1,12 @@
 import 'package:flutter/material.dart' hide TextButtonTheme;
 import 'package:yggdrasil/src/components/buttons/widgets/_widgets.dart';
+import 'package:yggdrasil/src/components/buttons/yg_stepper_button/enums/_enums.dart';
 import 'package:yggdrasil/src/theme/_theme.dart';
 import 'package:yggdrasil/src/utils/_utils.dart';
 
-class YgStepperButtonStyle extends YgButtonBaseStyle<YgButtonBaseState> {
+import 'yg_stepper_button_state.dart';
+
+class YgStepperButtonStyle extends YgButtonBaseStyle<YgStepperButtonState> {
   YgStepperButtonStyle({
     required super.state,
     required super.vsync,
@@ -22,12 +25,17 @@ class YgStepperButtonStyle extends YgButtonBaseStyle<YgButtonBaseState> {
 
   @override
   BoxConstraints resolveConstraints() {
-    final double iconSize = _theme.iconSize;
-    final Offset iconSizeOffset = Offset(iconSize, iconSize);
-    final Size paddingSize = _theme.padding.collapsedSize;
+    final EdgeInsets padding = switch (state.size.value) {
+      YgStepperButtonSize.large => _theme.paddingLarge,
+      YgStepperButtonSize.medium => _theme.paddingMedium,
+    };
 
     return BoxConstraints.tight(
-      paddingSize + iconSizeOffset,
+      padding.inflateSize(
+        Size.square(
+          _theme.iconSize,
+        ),
+      ),
     );
   }
 
@@ -67,5 +75,5 @@ class YgStepperButtonStyle extends YgButtonBaseStyle<YgButtonBaseState> {
     );
   }
 
-  YgStepperButtonTheme get _theme => context.stepperTheme.buttonTheme;
+  YgStepperButtonTheme get _theme => context.stepperButtonTheme;
 }

@@ -51,6 +51,9 @@ class YgSliderValueIndicatorRenderer extends RenderBox {
           textDirection: textDirection,
         );
 
+  // region Values
+
+  final TextPainter _textPainter;
   TextDirection get textDirection => _textPainter.textDirection!;
   set textDirection(TextDirection newValue) {
     if (_textPainter.textDirection != newValue) {
@@ -99,8 +102,6 @@ class YgSliderValueIndicatorRenderer extends RenderBox {
     }
   }
 
-  final TextPainter _textPainter;
-
   @override
   void attach(PipelineOwner owner) {
     _value.addListener(markNeedsLayout);
@@ -116,6 +117,8 @@ class YgSliderValueIndicatorRenderer extends RenderBox {
     _style.trackHeight.removeListener(markNeedsLayout);
     super.detach();
   }
+
+  // endregion
 
   @override
   void performLayout() {
@@ -172,9 +175,9 @@ class YgSliderValueIndicatorRenderer extends RenderBox {
       minWidth: 0,
     );
 
-    final Size leaderSize = _layerLink.leaderSize ?? Size.zero;
-    final double handleRadius = leaderSize.height / 2;
-    final double handleTrackLength = leaderSize.width - leaderSize.height;
+    final Size sliderSize = _layerLink.leaderSize ?? Size.zero;
+    final double handleRadius = sliderSize.height / 2;
+    final double handleTrackLength = sliderSize.width - sliderSize.height;
     final Size indicatorSize = padding.inflateSize(_textPainter.size);
 
     final Rect rect = Offset.zero & padding.inflateSize(_textPainter.size);
@@ -193,8 +196,6 @@ class YgSliderValueIndicatorRenderer extends RenderBox {
       );
 
     canvas.transform(matrix.storage);
-    // canvas.translate(offset.dx, offset.dy);
-
     canvas.drawRRect(rrect, paint);
     _textPainter.paint(canvas, padding.topLeft);
   }

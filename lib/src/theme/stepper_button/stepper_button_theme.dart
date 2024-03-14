@@ -64,7 +64,14 @@ class _$YgStepperButtonTheme {
     professional_dark.FhColors.backgroundDisabled.withOpacity(0.25),
   ];
 
-  static final List<EdgeInsets> padding = <EdgeInsets>[
+  static final List<EdgeInsets> paddingMedium = <EdgeInsets>[
+    const EdgeInsets.all(consumer_light.FhDimensions.sm),
+    const EdgeInsets.all(consumer_dark.FhDimensions.sm),
+    const EdgeInsets.all(professional_light.FhDimensions.sm),
+    const EdgeInsets.all(professional_dark.FhDimensions.sm),
+  ];
+
+  static final List<EdgeInsets> paddingLarge = <EdgeInsets>[
     const EdgeInsets.all(consumer_light.FhDimensions.md),
     const EdgeInsets.all(consumer_dark.FhDimensions.md),
     const EdgeInsets.all(professional_light.FhDimensions.md),

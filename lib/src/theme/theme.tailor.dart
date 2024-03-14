@@ -36,6 +36,7 @@ class YgTheme extends ThemeExtension<YgTheme> {
     required this.segmentedButtonTheme,
     required this.sliderTheme,
     required this.snackBarTheme,
+    required this.stepperButtonTheme,
     required this.stepperTheme,
     required this.switchTheme,
     required this.tabsTheme,
@@ -72,6 +73,7 @@ class YgTheme extends ThemeExtension<YgTheme> {
   final YgSegmentedButtonTheme segmentedButtonTheme;
   final YgSliderTheme sliderTheme;
   final YgSnackBarTheme snackBarTheme;
+  final YgStepperButtonTheme stepperButtonTheme;
   final YgStepperTheme stepperTheme;
   final YgSwitchTheme switchTheme;
   final YgTabsTheme tabsTheme;
@@ -108,6 +110,7 @@ class YgTheme extends ThemeExtension<YgTheme> {
     segmentedButtonTheme: _$YgTheme.segmentedButtonTheme[0],
     sliderTheme: _$YgTheme.sliderTheme[0],
     snackBarTheme: _$YgTheme.snackBarTheme[0],
+    stepperButtonTheme: _$YgTheme.stepperButtonTheme[0],
     stepperTheme: _$YgTheme.stepperTheme[0],
     switchTheme: _$YgTheme.switchTheme[0],
     tabsTheme: _$YgTheme.tabsTheme[0],
@@ -145,6 +148,7 @@ class YgTheme extends ThemeExtension<YgTheme> {
     segmentedButtonTheme: _$YgTheme.segmentedButtonTheme[1],
     sliderTheme: _$YgTheme.sliderTheme[1],
     snackBarTheme: _$YgTheme.snackBarTheme[1],
+    stepperButtonTheme: _$YgTheme.stepperButtonTheme[1],
     stepperTheme: _$YgTheme.stepperTheme[1],
     switchTheme: _$YgTheme.switchTheme[1],
     tabsTheme: _$YgTheme.tabsTheme[1],
@@ -182,6 +186,7 @@ class YgTheme extends ThemeExtension<YgTheme> {
     segmentedButtonTheme: _$YgTheme.segmentedButtonTheme[2],
     sliderTheme: _$YgTheme.sliderTheme[2],
     snackBarTheme: _$YgTheme.snackBarTheme[2],
+    stepperButtonTheme: _$YgTheme.stepperButtonTheme[2],
     stepperTheme: _$YgTheme.stepperTheme[2],
     switchTheme: _$YgTheme.switchTheme[2],
     tabsTheme: _$YgTheme.tabsTheme[2],
@@ -219,6 +224,7 @@ class YgTheme extends ThemeExtension<YgTheme> {
     segmentedButtonTheme: _$YgTheme.segmentedButtonTheme[3],
     sliderTheme: _$YgTheme.sliderTheme[3],
     snackBarTheme: _$YgTheme.snackBarTheme[3],
+    stepperButtonTheme: _$YgTheme.stepperButtonTheme[3],
     stepperTheme: _$YgTheme.stepperTheme[3],
     switchTheme: _$YgTheme.switchTheme[3],
     tabsTheme: _$YgTheme.tabsTheme[3],
@@ -264,6 +270,7 @@ class YgTheme extends ThemeExtension<YgTheme> {
     YgSegmentedButtonTheme? segmentedButtonTheme,
     YgSliderTheme? sliderTheme,
     YgSnackBarTheme? snackBarTheme,
+    YgStepperButtonTheme? stepperButtonTheme,
     YgStepperTheme? stepperTheme,
     YgSwitchTheme? switchTheme,
     YgTabsTheme? tabsTheme,
@@ -302,6 +309,7 @@ class YgTheme extends ThemeExtension<YgTheme> {
       segmentedButtonTheme: segmentedButtonTheme ?? this.segmentedButtonTheme,
       sliderTheme: sliderTheme ?? this.sliderTheme,
       snackBarTheme: snackBarTheme ?? this.snackBarTheme,
+      stepperButtonTheme: stepperButtonTheme ?? this.stepperButtonTheme,
       stepperTheme: stepperTheme ?? this.stepperTheme,
       switchTheme: switchTheme ?? this.switchTheme,
       tabsTheme: tabsTheme ?? this.tabsTheme,
@@ -354,6 +362,8 @@ class YgTheme extends ThemeExtension<YgTheme> {
       sliderTheme: sliderTheme.lerp(other.sliderTheme, t) as YgSliderTheme,
       snackBarTheme:
           snackBarTheme.lerp(other.snackBarTheme, t) as YgSnackBarTheme,
+      stepperButtonTheme: stepperButtonTheme.lerp(other.stepperButtonTheme, t)
+          as YgStepperButtonTheme,
       stepperTheme: stepperTheme.lerp(other.stepperTheme, t) as YgStepperTheme,
       switchTheme: switchTheme.lerp(other.switchTheme, t) as YgSwitchTheme,
       tabsTheme: tabsTheme.lerp(other.tabsTheme, t) as YgTabsTheme,
@@ -423,6 +433,8 @@ class YgTheme extends ThemeExtension<YgTheme> {
             const DeepCollectionEquality()
                 .equals(snackBarTheme, other.snackBarTheme) &&
             const DeepCollectionEquality()
+                .equals(stepperButtonTheme, other.stepperButtonTheme) &&
+            const DeepCollectionEquality()
                 .equals(stepperTheme, other.stepperTheme) &&
             const DeepCollectionEquality()
                 .equals(switchTheme, other.switchTheme) &&
@@ -467,6 +479,7 @@ class YgTheme extends ThemeExtension<YgTheme> {
       const DeepCollectionEquality().hash(segmentedButtonTheme),
       const DeepCollectionEquality().hash(sliderTheme),
       const DeepCollectionEquality().hash(snackBarTheme),
+      const DeepCollectionEquality().hash(stepperButtonTheme),
       const DeepCollectionEquality().hash(stepperTheme),
       const DeepCollectionEquality().hash(switchTheme),
       const DeepCollectionEquality().hash(tabsTheme),
@@ -510,6 +523,7 @@ extension YgThemeBuildContextProps on BuildContext {
       ygTheme.segmentedButtonTheme;
   YgSliderTheme get sliderTheme => ygTheme.sliderTheme;
   YgSnackBarTheme get snackBarTheme => ygTheme.snackBarTheme;
+  YgStepperButtonTheme get stepperButtonTheme => ygTheme.stepperButtonTheme;
   YgStepperTheme get stepperTheme => ygTheme.stepperTheme;
   YgSwitchTheme get switchTheme => ygTheme.switchTheme;
   YgTabsTheme get tabsTheme => ygTheme.tabsTheme;

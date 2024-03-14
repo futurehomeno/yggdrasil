@@ -2,10 +2,12 @@ import 'dart:async';
 
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:yggdrasil/src/components/yg_slider/_yg_slider.dart';
+import 'package:yggdrasil/src/components/buttons/yg_stepper_button/_yg_stepper_button.dart';
 import 'package:yggdrasil/src/components/yg_slider/yg_slider_state.dart';
 import 'package:yggdrasil/src/components/yg_slider/yg_slider_style.dart';
+import 'package:yggdrasil/src/theme/slider/slider_theme.dart';
 import 'package:yggdrasil/src/utils/_utils.dart';
+import 'package:yggdrasil/yggdrasil.dart';
 
 import 'yg_slider_render_widget.dart';
 import 'yg_slider_value_indicator_render_widget.dart';
@@ -14,7 +16,6 @@ import 'yg_slider_value_indicator_render_widget.dart';
 class YgSlider extends StatefulWidget {
   const YgSlider({
     super.key,
-    required this.variant,
     required this.value,
     this.min = 0,
     this.max = 1,
@@ -28,6 +29,7 @@ class YgSlider extends StatefulWidget {
     this.disabled = false,
     this.valueIndicator = false,
     this.differenceIndicator = false,
+    this.variant = YgSliderVariant.temperature,
   });
 
   /// The value of the slider.
@@ -79,10 +81,15 @@ class YgSlider extends StatefulWidget {
   /// Called when the user finishes modifying the value.
   final ValueChanged<double>? onEditingComplete;
 
+  /// Controls the focus of the widget.
   final FocusNode? focusNode;
 
+  /// Whether the slider should focus on first build.
   final bool autofocus;
 
+  /// Whether the slider field is disabled.
+  ///
+  /// Applies styling for the disabled slider field. Also disables all interaction.
   final bool disabled;
 
   @override
@@ -110,6 +117,7 @@ class YgSliderWidgetState extends StateWithYgStateAndStyle<YgSlider, YgSliderSta
   );
 
   final OverlayPortalController _portalController = OverlayPortalController()..show();
+  final UniqueKey _contentKey = UniqueKey();
 
   Timer? _recentEditTimer;
   late double _targetValue = widget.value;
@@ -210,7 +218,10 @@ class YgSliderWidgetState extends StateWithYgStateAndStyle<YgSlider, YgSliderSta
 
   @override
   Widget build(BuildContext context) {
-    return FocusableActionDetector(
+    final YgSliderTheme theme = context.sliderTheme;
+
+    Widget content = FocusableActionDetector(
+      key: _contentKey,
       onShowHoverHighlight: state.hovered.update,
       onShowFocusHighlight: state.focused.update,
       shortcuts: switch (MediaQuery.navigationModeOf(context)) {
@@ -226,38 +237,58 @@ class YgSliderWidgetState extends StateWithYgStateAndStyle<YgSlider, YgSliderSta
       focusNode: _focusNodeManager.value,
       autofocus: widget.autofocus,
       enabled: !widget.disabled,
-      child: OverlayPortal(
-        controller: _portalController,
-        overlayChildBuilder: (BuildContext context) {
-          return YgSliderValueIndicatorRenderWidget(
-            style: style,
-            layerLink: _layerLink,
-            value: _valueController,
-          );
-        },
-        child: RepaintBoundary(
-          child: YgSliderRenderWidget(
-            style: style,
-            currentValue: _currentValueController,
-            value: _valueController,
-            onChange: _handleChange,
-            editingChanged: _handleEditingChanged,
-            state: state,
-            layerLink: _layerLink,
-          ),
+      child: RepaintBoundary(
+        child: YgSliderRenderWidget(
+          style: style,
+          currentValue: _currentValueController,
+          value: _valueController,
+          onChange: _handleChange,
+          editingChanged: _handleEditingChanged,
+          state: state,
+          layerLink: _layerLink,
         ),
       ),
     );
+
+    if (widget.stepper) {
+      content = Row(
+        children: <Widget>[
+          YgStepperButton(
+            icon: YgIcons.minus,
+            size: YgStepperButtonSize.medium,
+            onPressed: () => _handleChange(_targetValue - _effectiveStepSize),
+          ),
+          Expanded(child: content),
+          YgStepperButton(
+            icon: YgIcons.plus,
+            size: YgStepperButtonSize.medium,
+            onPressed: () => _handleChange(_targetValue + _effectiveStepSize),
+          ),
+        ].withHorizontalSpacing(theme.stepperButtonsGap),
+      );
+    }
+
+    return OverlayPortal(
+      controller: _portalController,
+      overlayChildBuilder: (BuildContext context) {
+        return YgSliderValueIndicatorRenderWidget(
+          style: style,
+          layerLink: _layerLink,
+          value: _valueController,
+        );
+      },
+      child: content,
+    );
   }
 
-  void _handleAction(_YgSliderAdjustmentIntent intent) {
-    final double step = widget.stepSize ?? ((widget.max - widget.min) / 20);
+  double get _effectiveStepSize => widget.stepSize ?? ((widget.max - widget.min) / 20);
 
+  void _handleAction(_YgSliderAdjustmentIntent intent) {
     switch (intent) {
       case _YgSliderAdjustmentIncreaseIntent():
-        _handleChange(_targetValue + step);
+        _handleChange(_targetValue + _effectiveStepSize);
       case _YgSliderAdjustmentDecreaseIntent():
-        _handleChange(_targetValue - step);
+        _handleChange(_targetValue - _effectiveStepSize);
     }
   }
 

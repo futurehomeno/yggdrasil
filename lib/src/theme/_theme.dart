@@ -27,6 +27,7 @@ export 'segmented_button/_segmented_button.dart';
 export 'slider/_slider.dart';
 export 'snack_bar/_snack_bar.dart';
 export 'stepper/_stepper.dart';
+export 'stepper_button/_stepper_button.dart';
 export 'switch/_switch.dart';
 export 'tabs/_tabs.dart';
 export 'tag/_tag.dart';

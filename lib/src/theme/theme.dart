@@ -100,6 +100,9 @@ class _$YgTheme {
   static final List<YgStepperTheme> stepperTheme = YgStepperTheme.themes;
 
   @themeExtension
+  static final List<YgStepperButtonTheme> stepperButtonTheme = YgStepperButtonTheme.themes;
+
+  @themeExtension
   static final List<YgSwitchTheme> switchTheme = YgSwitchTheme.themes;
 
   @themeExtension

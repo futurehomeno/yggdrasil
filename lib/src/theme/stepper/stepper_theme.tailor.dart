@@ -12,7 +12,6 @@ class YgStepperTheme extends ThemeExtension<YgStepperTheme> {
   const YgStepperTheme({
     required this.animationCurve,
     required this.animationDuration,
-    required this.buttonTheme,
     required this.height,
     required this.metricTextStyle,
     required this.textDefaultColor,
@@ -22,7 +21,6 @@ class YgStepperTheme extends ThemeExtension<YgStepperTheme> {
 
   final Curve animationCurve;
   final Duration animationDuration;
-  final YgStepperButtonTheme buttonTheme;
   final double height;
   final TextStyle metricTextStyle;
   final Color textDefaultColor;
@@ -32,7 +30,6 @@ class YgStepperTheme extends ThemeExtension<YgStepperTheme> {
   static final YgStepperTheme consumerLight = YgStepperTheme(
     animationCurve: _$YgStepperTheme.animationCurve[0],
     animationDuration: _$YgStepperTheme.animationDuration[0],
-    buttonTheme: _$YgStepperTheme.buttonTheme[0],
     height: _$YgStepperTheme.height[0],
     metricTextStyle: _$YgStepperTheme.metricTextStyle[0],
     textDefaultColor: _$YgStepperTheme.textDefaultColor[0],
@@ -43,7 +40,6 @@ class YgStepperTheme extends ThemeExtension<YgStepperTheme> {
   static final YgStepperTheme consumerDark = YgStepperTheme(
     animationCurve: _$YgStepperTheme.animationCurve[1],
     animationDuration: _$YgStepperTheme.animationDuration[1],
-    buttonTheme: _$YgStepperTheme.buttonTheme[1],
     height: _$YgStepperTheme.height[1],
     metricTextStyle: _$YgStepperTheme.metricTextStyle[1],
     textDefaultColor: _$YgStepperTheme.textDefaultColor[1],
@@ -54,7 +50,6 @@ class YgStepperTheme extends ThemeExtension<YgStepperTheme> {
   static final YgStepperTheme professionalLight = YgStepperTheme(
     animationCurve: _$YgStepperTheme.animationCurve[2],
     animationDuration: _$YgStepperTheme.animationDuration[2],
-    buttonTheme: _$YgStepperTheme.buttonTheme[2],
     height: _$YgStepperTheme.height[2],
     metricTextStyle: _$YgStepperTheme.metricTextStyle[2],
     textDefaultColor: _$YgStepperTheme.textDefaultColor[2],
@@ -65,7 +60,6 @@ class YgStepperTheme extends ThemeExtension<YgStepperTheme> {
   static final YgStepperTheme professionalDark = YgStepperTheme(
     animationCurve: _$YgStepperTheme.animationCurve[3],
     animationDuration: _$YgStepperTheme.animationDuration[3],
-    buttonTheme: _$YgStepperTheme.buttonTheme[3],
     height: _$YgStepperTheme.height[3],
     metricTextStyle: _$YgStepperTheme.metricTextStyle[3],
     textDefaultColor: _$YgStepperTheme.textDefaultColor[3],
@@ -84,7 +78,6 @@ class YgStepperTheme extends ThemeExtension<YgStepperTheme> {
   YgStepperTheme copyWith({
     Curve? animationCurve,
     Duration? animationDuration,
-    YgStepperButtonTheme? buttonTheme,
     double? height,
     TextStyle? metricTextStyle,
     Color? textDefaultColor,
@@ -94,7 +87,6 @@ class YgStepperTheme extends ThemeExtension<YgStepperTheme> {
     return YgStepperTheme(
       animationCurve: animationCurve ?? this.animationCurve,
       animationDuration: animationDuration ?? this.animationDuration,
-      buttonTheme: buttonTheme ?? this.buttonTheme,
       height: height ?? this.height,
       metricTextStyle: metricTextStyle ?? this.metricTextStyle,
       textDefaultColor: textDefaultColor ?? this.textDefaultColor,
@@ -110,8 +102,6 @@ class YgStepperTheme extends ThemeExtension<YgStepperTheme> {
     return YgStepperTheme(
       animationCurve: t < 0.5 ? animationCurve : other.animationCurve,
       animationDuration: t < 0.5 ? animationDuration : other.animationDuration,
-      buttonTheme:
-          buttonTheme.lerp(other.buttonTheme, t) as YgStepperButtonTheme,
       height: t < 0.5 ? height : other.height,
       metricTextStyle:
           TextStyle.lerp(metricTextStyle, other.metricTextStyle, t)!,
@@ -132,8 +122,6 @@ class YgStepperTheme extends ThemeExtension<YgStepperTheme> {
                 .equals(animationCurve, other.animationCurve) &&
             const DeepCollectionEquality()
                 .equals(animationDuration, other.animationDuration) &&
-            const DeepCollectionEquality()
-                .equals(buttonTheme, other.buttonTheme) &&
             const DeepCollectionEquality().equals(height, other.height) &&
             const DeepCollectionEquality()
                 .equals(metricTextStyle, other.metricTextStyle) &&
@@ -151,7 +139,6 @@ class YgStepperTheme extends ThemeExtension<YgStepperTheme> {
       runtimeType.hashCode,
       const DeepCollectionEquality().hash(animationCurve),
       const DeepCollectionEquality().hash(animationDuration),
-      const DeepCollectionEquality().hash(buttonTheme),
       const DeepCollectionEquality().hash(height),
       const DeepCollectionEquality().hash(metricTextStyle),
       const DeepCollectionEquality().hash(textDefaultColor),
