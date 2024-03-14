@@ -16,6 +16,7 @@ class YgSliderRenderWidget extends LeafRenderObjectWidget {
     required this.onChange,
     required this.editingChanged,
     required this.state,
+    required this.layerLink,
   });
 
   final YgSliderStyle style;
@@ -24,6 +25,7 @@ class YgSliderRenderWidget extends LeafRenderObjectWidget {
   final ValueChanged<double> onChange;
   final ValueChanged<bool> editingChanged;
   final YgSliderState state;
+  final LayerLink layerLink;
 
   @override
   RenderObject createRenderObject(BuildContext context) {
@@ -34,6 +36,7 @@ class YgSliderRenderWidget extends LeafRenderObjectWidget {
       style: style,
       value: value,
       state: state,
+      layerLink: layerLink,
       gestureSettings: MediaQuery.gestureSettingsOf(context),
     );
   }
@@ -46,6 +49,7 @@ class YgSliderRenderWidget extends LeafRenderObjectWidget {
     renderObject.style = style;
     renderObject.value = value;
     renderObject.state = state;
+    renderObject.layerLink = layerLink;
     renderObject.gestureSettings = MediaQuery.gestureSettingsOf(context);
   }
 }
@@ -56,12 +60,14 @@ class YgSliderRenderer extends RenderBox {
     required Animation<double> value,
     required Animation<double> difference,
     required DeviceGestureSettings gestureSettings,
+    required LayerLink layerLink,
     required this.onChange,
     required this.editingChanged,
     required this.state,
   })  : _style = style,
         _value = value,
-        _difference = difference {
+        _difference = difference,
+        _layerLink = layerLink {
     _drag = HorizontalDragGestureRecognizer()
       ..onStart = _handleDragStart
       ..onUpdate = _handleDragUpdate
@@ -75,6 +81,15 @@ class YgSliderRenderer extends RenderBox {
   ValueChanged<double> onChange;
   ValueChanged<bool> editingChanged;
   YgSliderState state;
+
+  LayerLink _layerLink;
+  LayerLink get layerLink => _layerLink;
+  set layerLink(LayerLink newValue) {
+    if (_layerLink != newValue) {
+      _layerLink = newValue;
+      markNeedsPaint();
+    }
+  }
 
   YgSliderStyle _style;
   YgSliderStyle get style => _style;
@@ -150,12 +165,33 @@ class YgSliderRenderer extends RenderBox {
         _style.trackHeight.value,
       ),
     );
+    _layerLink.leaderSize = size;
   }
 
   // region Painting
 
   @override
   void paint(PaintingContext context, Offset offset) {
+    if (layer == null) {
+      layer = LeaderLayer(
+        link: _layerLink,
+        offset: offset,
+      );
+    } else {
+      final LeaderLayer leaderLayer = layer! as LeaderLayer;
+      leaderLayer
+        ..link = _layerLink
+        ..offset = offset;
+    }
+
+    context.pushLayer(
+      layer!,
+      _paintSlider,
+      Offset.zero,
+    );
+  }
+
+  void _paintSlider(PaintingContext context, Offset offset) {
     final Canvas canvas = context.canvas;
 
     final EdgeInsets handlePadding = style.handlePadding.value;
@@ -289,7 +325,6 @@ class YgSliderRenderer extends RenderBox {
   late final HorizontalDragGestureRecognizer _drag;
 
   void _handleDragStart(DragStartDetails details) {
-    print('ba');
     editingChanged(true);
   }
 

@@ -22,15 +22,61 @@ class SliderScreen extends StatelessWidget {
       child: Column(
         children: <Widget>[
           Slider(
-            value: 0.5,
+            value: 0.25,
             onChanged: (_) {},
           ),
           const YgSection(
-            title: 'Default slider',
+            title: 'Temperature slider',
             child: YgSlider(
-              value: 0.5,
+              value: 0.25,
+              variant: YgSliderVariant.temperature,
+              valueIndicator: true,
+            ),
+          ),
+          const YgSection(
+            title: 'Temperature slider with difference indicator',
+            child: YgSlider(
+              value: 0.25,
+              variant: YgSliderVariant.temperature,
+              differenceIndicator: true,
+              valueIndicator: true,
+            ),
+          ),
+          const YgSection(
+            title: 'Temperature slider with difference value',
+            child: YgSlider(
+              value: 0.25,
               currentValue: 0.5,
               variant: YgSliderVariant.temperature,
+              differenceIndicator: true,
+              valueIndicator: true,
+            ),
+          ),
+          const YgSection(
+            title: 'Shades slider',
+            child: YgSlider(
+              value: 0.25,
+              variant: YgSliderVariant.shades,
+              valueIndicator: true,
+            ),
+          ),
+          const YgSection(
+            title: 'Shades slider with difference indicator',
+            child: YgSlider(
+              value: 0.25,
+              variant: YgSliderVariant.shades,
+              differenceIndicator: true,
+              valueIndicator: true,
+            ),
+          ),
+          const YgSection(
+            title: 'Shades slider with difference value',
+            child: YgSlider(
+              value: 0.25,
+              currentValue: 0.5,
+              variant: YgSliderVariant.shades,
+              differenceIndicator: true,
+              valueIndicator: true,
             ),
           ),
         ],

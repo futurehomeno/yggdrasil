@@ -1,13 +1,14 @@
 import 'dart:async';
 
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:yggdrasil/src/components/yg_slider/_yg_slider.dart';
 import 'package:yggdrasil/src/components/yg_slider/yg_slider_state.dart';
 import 'package:yggdrasil/src/components/yg_slider/yg_slider_style.dart';
 import 'package:yggdrasil/src/utils/_utils.dart';
 
-import 'enums/yg_slider_difference.dart';
 import 'yg_slider_render_widget.dart';
+import 'yg_slider_value_indicator_render_widget.dart';
 
 /// Implementation of the Yggdrasil slider.
 class YgSlider extends StatefulWidget {
@@ -20,8 +21,11 @@ class YgSlider extends StatefulWidget {
     this.stepSize,
     this.onChange,
     this.onEditingComplete,
-    this.stepper = false,
     this.currentValue,
+    this.focusNode,
+    this.stepper = false,
+    this.autofocus = false,
+    this.disabled = false,
     this.valueIndicator = false,
     this.differenceIndicator = false,
   });
@@ -75,12 +79,23 @@ class YgSlider extends StatefulWidget {
   /// Called when the user finishes modifying the value.
   final ValueChanged<double>? onEditingComplete;
 
+  final FocusNode? focusNode;
+
+  final bool autofocus;
+
+  final bool disabled;
+
   @override
   State<YgSlider> createState() => YgSliderWidgetState();
 }
 
 class YgSliderWidgetState extends StateWithYgStateAndStyle<YgSlider, YgSliderState, YgSliderStyle>
     with YgControllerManagerMixin {
+  late final YgControllerManager<FocusNode> _focusNodeManager = manageController(
+    createController: () => FocusNode(),
+    getUserController: () => widget.focusNode,
+  );
+
   late final AnimationController _valueController = AnimationController.unbounded(
     vsync: this,
     value: _targetValue,
@@ -94,14 +109,21 @@ class YgSliderWidgetState extends StateWithYgStateAndStyle<YgSlider, YgSliderSta
     ),
   );
 
-  Timer? _indicatorHideTimer;
+  final OverlayPortalController _portalController = OverlayPortalController()..show();
+
+  Timer? _recentEditTimer;
   late double _targetValue = widget.value;
+  final LayerLink _layerLink = LayerLink();
 
   @override
   YgSliderState createState() {
     return YgSliderState(
       variant: widget.variant,
-      difference: _getDifference(),
+      increasing: _increasing,
+      staticDifferenceIndicatorIndicator: widget.currentValue != null,
+      disabled: widget.disabled,
+      differenceIndicatorEnabled: widget.differenceIndicator,
+      valueIndicatorEnabled: widget.valueIndicator,
     );
   }
 
@@ -116,26 +138,25 @@ class YgSliderWidgetState extends StateWithYgStateAndStyle<YgSlider, YgSliderSta
   @override
   void updateState() {
     state.variant.value = widget.variant;
+    state.increasing.value = _increasing;
+    state.staticDifferenceIndicatorIndicator.value = widget.currentValue != null;
+    state.disabled.value = widget.disabled;
+    state.differenceIndicatorEnabled.value = widget.differenceIndicator;
+    state.valueIndicatorEnabled.value = widget.valueIndicator;
   }
 
   @override
   void initState() {
     super.initState();
-    _currentValueController.addListener(_updateDifferenceState);
-    _valueController.addListener(_updateDifferenceState);
+    _currentValueController.addListener(_updateIncreasingState);
+    _valueController.addListener(_updateIncreasingState);
   }
 
-  void _updateDifferenceState() {
-    state.difference.value = _getDifference();
+  void _updateIncreasingState() {
+    state.increasing.value = _increasing;
   }
 
-  YgSliderDifference _getDifference() {
-    if (_currentValueController.value < _valueController.value) {
-      return YgSliderDifference.increasing;
-    }
-
-    return YgSliderDifference.decreasing;
-  }
+  bool get _increasing => widget.currentValue != null && _currentValueController.value < _valueController.value;
 
   @override
   void didUpdateWidget(covariant YgSlider oldWidget) {
@@ -156,12 +177,7 @@ class YgSliderWidgetState extends StateWithYgStateAndStyle<YgSlider, YgSliderSta
 
     // Don't allow the value to be changed if the user is editing it.
     if (widget.value != _targetValue && !state.editing.value) {
-      _targetValue = widget.value;
-      _valueController.animateTo(
-        _targetValue,
-        curve: Curves.easeInOut,
-        duration: const Duration(seconds: 1),
-      );
+      _handleChange(widget.value, animated: true);
     }
 
     super.didUpdateWidget(oldWidget);
@@ -169,53 +185,108 @@ class YgSliderWidgetState extends StateWithYgStateAndStyle<YgSlider, YgSliderSta
 
   @override
   void dispose() {
-    _valueController.removeListener(_updateDifferenceState);
-    _currentValueController.removeListener(_updateDifferenceState);
+    _valueController.removeListener(_updateIncreasingState);
+    _currentValueController.removeListener(_updateIncreasingState);
     _valueController.dispose();
     _currentValueController.dispose();
-    _indicatorHideTimer?.cancel();
+    _recentEditTimer?.cancel();
 
     super.dispose();
   }
 
+  // Keyboard mapping for a focused slider when using directional navigation.
+  // The vertical inputs are not handled to allow navigating out of the slider.
+  static const Map<ShortcutActivator, Intent> _directionalNavShortcutMap = <ShortcutActivator, Intent>{
+    SingleActivator(LogicalKeyboardKey.arrowLeft): _YgSliderAdjustmentDecreaseIntent(),
+    SingleActivator(LogicalKeyboardKey.arrowRight): _YgSliderAdjustmentIncreaseIntent(),
+  };
+
+  // Keyboard mapping for a focused slider.
+  static const Map<ShortcutActivator, Intent> _traditionalNavShortcutMap = <ShortcutActivator, Intent>{
+    SingleActivator(LogicalKeyboardKey.arrowUp): _YgSliderAdjustmentIncreaseIntent(),
+    SingleActivator(LogicalKeyboardKey.arrowDown): _YgSliderAdjustmentDecreaseIntent(),
+    ..._directionalNavShortcutMap,
+  };
+
   @override
   Widget build(BuildContext context) {
-    return YgSliderRenderWidget(
-      style: style,
-      currentValue: _currentValueController,
-      value: _valueController,
-      onChange: _handleChange,
-      editingChanged: _handleEditingChanged,
-      state: state,
+    return FocusableActionDetector(
+      onShowHoverHighlight: state.hovered.update,
+      onShowFocusHighlight: state.focused.update,
+      shortcuts: switch (MediaQuery.navigationModeOf(context)) {
+        NavigationMode.directional => _directionalNavShortcutMap,
+        NavigationMode.traditional => _traditionalNavShortcutMap,
+      },
+      actions: <Type, Action<Intent>>{
+        _YgSliderAdjustmentIntent: CallbackAction<_YgSliderAdjustmentIntent>(
+          onInvoke: _handleAction,
+        ),
+      },
+      mouseCursor: SystemMouseCursors.click,
+      focusNode: _focusNodeManager.value,
+      autofocus: widget.autofocus,
+      enabled: !widget.disabled,
+      child: OverlayPortal(
+        controller: _portalController,
+        overlayChildBuilder: (BuildContext context) {
+          return YgSliderValueIndicatorRenderWidget(
+            style: style,
+            layerLink: _layerLink,
+            value: _valueController,
+          );
+        },
+        child: RepaintBoundary(
+          child: YgSliderRenderWidget(
+            style: style,
+            currentValue: _currentValueController,
+            value: _valueController,
+            onChange: _handleChange,
+            editingChanged: _handleEditingChanged,
+            state: state,
+            layerLink: _layerLink,
+          ),
+        ),
+      ),
     );
   }
 
-  void _handleChange(double newValue) {
+  void _handleAction(_YgSliderAdjustmentIntent intent) {
+    final double step = widget.stepSize ?? ((widget.max - widget.min) / 20);
+
+    switch (intent) {
+      case _YgSliderAdjustmentIncreaseIntent():
+        _handleChange(_targetValue + step);
+      case _YgSliderAdjustmentDecreaseIntent():
+        _handleChange(_targetValue - step);
+    }
+  }
+
+  void _handleChange(double newValue, {bool animated = false}) {
     newValue = newValue.clamp(widget.min, widget.max);
 
-    // Update difference indicator value.
-    if (widget.currentValue == null &&
-        widget.differenceIndicator &&
-        style.differenceIndicatorColor.value == Colors.transparent) {
-      _currentValueController.value = _valueController.value;
+    // Value hasn't changed.
+    if (newValue == _targetValue) {
+      return;
+    }
+
+    // Update the value controller.
+    if (animated) {
+      _valueController.animateTo(
+        newValue,
+        curve: Curves.easeInOut,
+        duration: const Duration(seconds: 1),
+      );
+    } else {
+      _valueController.value = newValue;
     }
 
     // Update the value.
     _targetValue = newValue;
-    _valueController.value = newValue;
 
-    /// Update the indicator timer.
-    state.showIndicators.value = true;
-    _indicatorHideTimer?.cancel();
-    _indicatorHideTimer = Timer(
-      const Duration(seconds: 2),
-      _hideIndicator,
-    );
-  }
-
-  void _hideIndicator() {
-    state.showIndicators.value = false;
-    _indicatorHideTimer = null;
+    // We have to check this in case the change was triggered from the widget update.
+    if (widget.value != newValue) {
+      widget.onChange?.call(newValue);
+    }
   }
 
   void _handleEditingChanged(bool editing) {
@@ -224,8 +295,41 @@ class YgSliderWidgetState extends StateWithYgStateAndStyle<YgSlider, YgSliderSta
     }
 
     state.editing.value = editing;
-    if (!editing) {
+    if (editing) {
+      state.recentlyEdited.value = true;
+
+      _recentEditTimer?.cancel();
+      _updateIncreasingState();
+
+      // Update difference indicator value.
+      if (widget.currentValue == null &&
+          widget.differenceIndicator &&
+          style.differenceIndicatorColor.value == Colors.transparent) {
+        _currentValueController.value = _valueController.value;
+      }
+    } else {
       widget.onEditingComplete?.call(_targetValue);
+      _recentEditTimer = Timer(
+        const Duration(seconds: 2),
+        _handleRecentEditTimeout,
+      );
     }
   }
+
+  void _handleRecentEditTimeout() {
+    state.recentlyEdited.value = false;
+    _recentEditTimer = null;
+  }
+}
+
+class _YgSliderAdjustmentIntent extends Intent {
+  const _YgSliderAdjustmentIntent();
+}
+
+class _YgSliderAdjustmentIncreaseIntent extends _YgSliderAdjustmentIntent {
+  const _YgSliderAdjustmentIncreaseIntent();
+}
+
+class _YgSliderAdjustmentDecreaseIntent extends _YgSliderAdjustmentIntent {
+  const _YgSliderAdjustmentDecreaseIntent();
 }
