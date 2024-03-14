@@ -304,7 +304,7 @@ class YgSliderWidgetState extends StateWithYgStateAndStyle<YgSlider, YgSliderSta
       // Update difference indicator value.
       if (widget.currentValue == null &&
           widget.differenceIndicator &&
-          style.differenceIndicatorColor.value == Colors.transparent) {
+          style.differenceIndicatorColor.value.opacity == 0.0) {
         _currentValueController.value = _valueController.value;
       }
     } else {

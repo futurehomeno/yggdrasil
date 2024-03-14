@@ -56,6 +56,7 @@ class YgSliderStyle extends YgStyle<YgSliderState> {
     }
 
     if (state.focused.value) {
+      // return _theme.handleFocusColor;
       return Colors.red;
     }
 
@@ -64,7 +65,7 @@ class YgSliderStyle extends YgStyle<YgSliderState> {
 
   Color _resolveDifferenceIndicatorColor() {
     if (!_showDifferenceIndicator) {
-      return Colors.transparent;
+      return _variantTheme.differenceIndicatorDecreasingColor.withOpacity(0);
     }
 
     if (state.disabled.value) {
