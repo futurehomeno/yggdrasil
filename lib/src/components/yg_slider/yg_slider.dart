@@ -2,6 +2,7 @@ import 'dart:async';
 
 import 'package:flutter/material.dart';
 import 'package:yggdrasil/src/components/buttons/yg_stepper_button/_yg_stepper_button.dart';
+import 'package:yggdrasil/src/components/yg_slider/value_indicator/yg_slider_value_indicator.dart';
 import 'package:yggdrasil/src/components/yg_slider/yg_slider_state.dart';
 import 'package:yggdrasil/src/components/yg_slider/yg_slider_style.dart';
 import 'package:yggdrasil/src/theme/slider/slider_theme.dart';
@@ -10,7 +11,6 @@ import 'package:yggdrasil/yggdrasil.dart';
 
 import 'shortcuts/_shortcuts.dart';
 import 'yg_slider_render_widget.dart';
-import 'yg_slider_value_indicator_render_widget.dart';
 
 /// Implementation of the Yggdrasil slider.
 class YgSlider extends StatefulWidget {
@@ -116,8 +116,7 @@ class YgSliderWidgetState extends StateWithYgStateAndStyle<YgSlider, YgSliderSta
     ),
   );
 
-  final OverlayPortalController _portalController = OverlayPortalController()..show();
-  final UniqueKey _contentKey = UniqueKey();
+  final Key _contentKey = GlobalKey();
 
   Timer? _recentEditTimer;
   late double _targetValue = widget.value;
@@ -253,15 +252,10 @@ class YgSliderWidgetState extends StateWithYgStateAndStyle<YgSlider, YgSliderSta
       );
     }
 
-    return OverlayPortal(
-      controller: _portalController,
-      overlayChildBuilder: (BuildContext context) {
-        return YgSliderValueIndicatorRenderWidget(
-          style: style,
-          layerLink: _layerLink,
-          value: _valueController,
-        );
-      },
+    return YgSliderValueIndicator(
+      state: state,
+      layerLink: _layerLink,
+      value: _valueController,
       child: content,
     );
   }
@@ -280,14 +274,17 @@ class YgSliderWidgetState extends StateWithYgStateAndStyle<YgSlider, YgSliderSta
   void _stepValue(double step) {
     if (!state.editing.value) {
       state.recentlyEdited.value = true;
+      _recentEditTimer?.cancel();
       _recentEditTimer = Timer(
         const Duration(seconds: 2),
         _handleRecentEditTimeout,
       );
     }
 
+    _maybeUpdateCurrentValue();
     _handleChange(
       step,
+      animated: true,
     );
   }
 
@@ -303,8 +300,8 @@ class YgSliderWidgetState extends StateWithYgStateAndStyle<YgSlider, YgSliderSta
     if (animated) {
       _valueController.animateTo(
         newValue,
-        curve: Curves.easeInOut,
-        duration: const Duration(seconds: 1),
+        curve: Curves.easeOut,
+        duration: const Duration(milliseconds: 200),
       );
     } else {
       _valueController.value = newValue;
@@ -317,6 +314,18 @@ class YgSliderWidgetState extends StateWithYgStateAndStyle<YgSlider, YgSliderSta
     if (widget.value != newValue) {
       widget.onChange?.call(newValue);
     }
+
+    if (!state.editing.value) {
+      widget.onEditingComplete?.call(newValue);
+    }
+  }
+
+  void _maybeUpdateCurrentValue() {
+    if (widget.currentValue == null &&
+        widget.differenceIndicator &&
+        style.differenceIndicatorColor.value.opacity == 0.0) {
+      _currentValueController.value = _valueController.value;
+    }
   }
 
   void _handleEditingChanged(bool editing) {
@@ -328,13 +337,7 @@ class YgSliderWidgetState extends StateWithYgStateAndStyle<YgSlider, YgSliderSta
     if (editing) {
       _recentEditTimer?.cancel();
       _updateIncreasingState();
-
-      // Update difference indicator value.
-      if (widget.currentValue == null &&
-          widget.differenceIndicator &&
-          style.differenceIndicatorColor.value.opacity == 0.0) {
-        _currentValueController.value = _valueController.value;
-      }
+      _maybeUpdateCurrentValue();
     } else {
       state.recentlyEdited.value = true;
       widget.onEditingComplete?.call(_targetValue);
@@ -348,5 +351,14 @@ class YgSliderWidgetState extends StateWithYgStateAndStyle<YgSlider, YgSliderSta
   void _handleRecentEditTimeout() {
     state.recentlyEdited.value = false;
     _recentEditTimer = null;
+
+    // Move the difference indicator to the current value.
+    if (widget.currentValue == null && widget.differenceIndicator) {
+      _currentValueController.animateTo(
+        _valueController.value,
+        curve: Curves.easeInOut,
+        duration: const Duration(milliseconds: 200),
+      );
+    }
   }
 }

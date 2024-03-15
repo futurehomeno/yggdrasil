@@ -26,22 +26,6 @@ class YgSliderStyle extends YgStyle<YgSliderState> {
   late final YgDrivenProperty<Radius> differenceIndicatorRadius = all(() => _theme.differenceIndicatorRadius);
   late final YgAnimatedProperty<Color> differenceIndicatorColor = animate(_resolveDifferenceIndicatorColor);
 
-  // Value indicator
-  late final YgDrivenProperty<TextStyle> valueIndicatorTextStyle = all(() => _theme.valueIndicatorTextStyle);
-  late final YgDrivenProperty<EdgeInsets> valueIndicatorPadding = all(() => _theme.valueIndicatorPadding);
-  late final YgDrivenProperty<BorderRadius> valueIndicatorRadius = all(() => _theme.valueIndicatorRadius);
-  late final YgDrivenProperty<Color> valueIndicatorColor = all(() => _theme.valueIndicatorDefaultColor);
-  late final YgDrivenProperty<double> valueIndicatorBottomOffset = all(() => _theme.valueIndicatorBottomOffset);
-  late final YgAnimatedProperty<double> valueIndicatorVisibility = animate(_resolveValueIndicatorVisibility);
-
-  double _resolveValueIndicatorVisibility() {
-    if (_showValueIndicator) {
-      return 1;
-    }
-
-    return 0;
-  }
-
   Color _resolveHandleColor() {
     if (state.disabled.value) {
       return _theme.handleDisabledColor;
@@ -95,8 +79,6 @@ class YgSliderStyle extends YgStyle<YgSliderState> {
 
   bool get _showDifferenceIndicator =>
       (state.differenceIndicatorEnabled.value && _isOrWasEditing) || state.staticDifferenceIndicatorIndicator.value;
-
-  bool get _showValueIndicator => !state.disabled.value && state.valueIndicatorEnabled.value && _isOrWasEditing;
 
   _YgSliderVariantTheme get _variantTheme => switch (state.variant.value) {
         YgSliderVariant.shades => _YgSliderVariantTheme.shades(_theme.shadesSliderTheme),

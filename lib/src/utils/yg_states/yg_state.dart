@@ -1,3 +1,5 @@
+import 'dart:async';
+
 import 'package:flutter/material.dart';
 
 import 'yg_state_value.dart';
@@ -11,8 +13,27 @@ import 'yg_state_value.dart';
 abstract class YgState extends ChangeNotifier {
   YgState() {
     for (final YgStateValue<Object?> prop in props) {
-      prop.addListener(notifyListeners);
+      prop.addListener(_scheduleUpdate);
     }
+  }
+
+  bool _scheduledUpdate = false;
+
+  /// Debounce the updates.
+  void _scheduleUpdate() {
+    if (_scheduledUpdate) {
+      return;
+    }
+
+    _scheduledUpdate = true;
+
+    scheduleMicrotask(() {
+      _scheduledUpdate = false;
+
+      if (hasListeners) {
+        notifyListeners();
+      }
+    });
   }
 
   @override

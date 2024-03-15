@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 
-import 'yg_slider_style.dart';
+import 'yg_slider_value_indicator_style.dart';
 
 class YgSliderValueIndicatorRenderWidget extends LeafRenderObjectWidget {
   const YgSliderValueIndicatorRenderWidget({
@@ -11,7 +11,7 @@ class YgSliderValueIndicatorRenderWidget extends LeafRenderObjectWidget {
     required this.value,
   });
 
-  final YgSliderStyle style;
+  final YgSliderValueIndicatorStyle style;
   final Animation<double> value;
   final LayerLink layerLink;
 
@@ -38,7 +38,7 @@ class YgSliderValueIndicatorRenderWidget extends LeafRenderObjectWidget {
 
 class YgSliderValueIndicatorRenderer extends RenderBox {
   YgSliderValueIndicatorRenderer({
-    required YgSliderStyle style,
+    required YgSliderValueIndicatorStyle style,
     required Animation<double> value,
     required LayerLink layerLink,
     required TextStyle defaultStyle,
@@ -80,9 +80,9 @@ class YgSliderValueIndicatorRenderer extends RenderBox {
     }
   }
 
-  YgSliderStyle _style;
-  YgSliderStyle get style => _style;
-  set style(YgSliderStyle newValue) {
+  YgSliderValueIndicatorStyle _style;
+  YgSliderValueIndicatorStyle get style => _style;
+  set style(YgSliderValueIndicatorStyle newValue) {
     if (_style != newValue) {
       markNeedsPaint();
       _style.removeListener(markNeedsPaint);
@@ -106,7 +106,6 @@ class YgSliderValueIndicatorRenderer extends RenderBox {
   void attach(PipelineOwner owner) {
     _value.addListener(markNeedsLayout);
     _style.addListener(markNeedsPaint);
-    _style.trackHeight.addListener(markNeedsLayout);
     super.attach(owner);
   }
 
@@ -114,7 +113,6 @@ class YgSliderValueIndicatorRenderer extends RenderBox {
   void detach() {
     _value.removeListener(markNeedsLayout);
     _style.removeListener(markNeedsPaint);
-    _style.trackHeight.removeListener(markNeedsLayout);
     super.detach();
   }
 

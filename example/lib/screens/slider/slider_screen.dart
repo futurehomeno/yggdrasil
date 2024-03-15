@@ -78,10 +78,11 @@ class _SliderScreenState extends State<SliderScreen> {
           ),
           YgSection(
             title: 'With stepper buttons',
+            subtitle: 'Also with difference and value indicator',
             child: YgSlider(
               value: _stepperValue,
-              currentValue: 0.25,
               differenceIndicator: true,
+              valueIndicator: true,
               stepper: true,
               stepSize: 0.1,
               onEditingComplete: (double newValue) => setState(
@@ -91,6 +92,7 @@ class _SliderScreenState extends State<SliderScreen> {
           ),
           YgSection.column(
             title: 'Temperature variant',
+            subtitle: 'Both with a increasing and decreasing value',
             children: <Widget>[
               YgSlider(
                 value: _temperatureValue1,
@@ -114,6 +116,7 @@ class _SliderScreenState extends State<SliderScreen> {
           ),
           YgSection.column(
             title: 'Shades variant',
+            subtitle: 'Both with a increasing and decreasing value',
             children: <Widget>[
               YgSlider(
                 value: _shadesValue1,
