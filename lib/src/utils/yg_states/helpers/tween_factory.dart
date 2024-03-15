@@ -393,6 +393,7 @@ class TweenFactory {
 /// We can not do `T is AnotherType` because `T is Type` is always true, so we
 /// need to do `_T<T>() is _T<AnotherType>()` instead to check type inheritance
 /// for type arguments, until dart comes up with a better idea.
+// ignore: avoid-unused-generics
 class _T<T> {
   const _T();
 }

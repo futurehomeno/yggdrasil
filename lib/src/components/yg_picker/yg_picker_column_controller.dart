@@ -102,6 +102,7 @@ class YgPickerColumnController<T extends Object> extends ChangeNotifier
   }
 
   @override
+  // ignore: library_private_types_in_public_api
   void attach(_YgPickerColumnState<T> column) {
     _column = column;
 
