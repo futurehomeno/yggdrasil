@@ -348,12 +348,23 @@ class YgTextField extends StatefulWidget with StatefulWidgetDebugMixin {
 }
 
 class _YgTextFieldState extends State<YgTextField> implements TextSelectionGestureDetectorBuilderDelegate {
+  /// The key of the editable text, used to manage the selection toolbar.
   @override
   final GlobalKey<EditableTextState> editableTextKey = GlobalKey();
 
+  /// Handles the selection gestures and triggers [_handleTap].
   late _TextFieldSelectionGestureDetectorBuilder _selectionGestureDetectorBuilder;
 
+  /// Whether the selection handles should be show.
   bool _showSelectionHandles = false;
+
+  /// Disabled force press as we don't need it.
+  @override
+  final bool forcePressEnabled = false;
+
+  /// Always allow selection.
+  @override
+  final bool selectionEnabled = true;
 
   /// The state of the field.
   late final YgFieldState _state = YgFieldState(
@@ -659,10 +670,4 @@ class _YgTextFieldState extends State<YgTextField> implements TextSelectionGestu
       _editableText?.hideToolbar();
     }
   }
-
-  @override
-  final bool forcePressEnabled = false;
-
-  @override
-  final bool selectionEnabled = true;
 }
