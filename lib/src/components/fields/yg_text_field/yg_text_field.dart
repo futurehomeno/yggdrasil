@@ -431,42 +431,39 @@ class _YgTextFieldState extends State<YgTextField> implements TextSelectionGestu
   @override
   Widget build(BuildContext context) {
     final Widget layout = RepaintBoundary(
-      child: _selectionGestureDetectorBuilder.buildGestureDetector(
-        behavior: HitTestBehavior.translucent,
-        child: YgFieldDecoration(
-          variant: widget.variant,
-          size: widget.size,
-          error: widget.error,
-          state: _state,
-          suffix: _buildSuffix(),
-          content: YgFieldContent(
-            value: YgTextFieldValue(
-              autocorrect: widget.autocorrect,
-              controller: _controller,
-              focusNode: _focusNode,
-              inputFormatters: widget.inputFormatters,
-              keyboardType: widget.keyboardType,
-              maxLines: widget.maxLines,
-              minLines: widget.minLines,
-              obscureText: _obscureText,
-              onChanged: widget.onChanged,
-              onEditingComplete: _onEditingComplete,
-              readOnly: widget.readOnly,
-              state: _state,
-              textCapitalization: widget.textCapitalization,
-              textInputAction: widget.textInputAction,
-              editableTextKey: editableTextKey,
-              contextMenuBuilder: _buildContextMenu,
-              onSelectionChanged: _handleSelectionChanged,
-              onSelectionHandleTapped: _handleSelectionHandleTapped,
-              showSelectionHandles: _showSelectionHandles,
-            ),
-            state: _state,
-            label: widget.label,
+      child: YgFieldDecoration(
+        variant: widget.variant,
+        size: widget.size,
+        error: widget.error,
+        state: _state,
+        suffix: _buildSuffix(),
+        content: YgFieldContent(
+          value: YgTextFieldValue(
+            autocorrect: widget.autocorrect,
+            controller: _controller,
+            focusNode: _focusNode,
+            inputFormatters: widget.inputFormatters,
+            keyboardType: widget.keyboardType,
+            maxLines: widget.maxLines,
             minLines: widget.minLines,
-            placeholder: widget.placeholder,
-            floatLabelOnFocus: true,
+            obscureText: _obscureText,
+            onChanged: widget.onChanged,
+            onEditingComplete: _onEditingComplete,
+            readOnly: widget.readOnly,
+            state: _state,
+            textCapitalization: widget.textCapitalization,
+            textInputAction: widget.textInputAction,
+            editableTextKey: editableTextKey,
+            contextMenuBuilder: _buildContextMenu,
+            onSelectionChanged: _handleSelectionChanged,
+            onSelectionHandleTapped: _handleSelectionHandleTapped,
+            showSelectionHandles: _showSelectionHandles,
           ),
+          state: _state,
+          label: widget.label,
+          minLines: widget.minLines,
+          placeholder: widget.placeholder,
+          floatLabelOnFocus: true,
         ),
       ),
     );
@@ -479,7 +476,10 @@ class _YgTextFieldState extends State<YgTextField> implements TextSelectionGestu
       onEnter: (_) => _state.hovered.value = true,
       onExit: (_) => _state.hovered.value = false,
       cursor: SystemMouseCursors.text,
-      child: layout,
+      child: _selectionGestureDetectorBuilder.buildGestureDetector(
+        behavior: HitTestBehavior.translucent,
+        child: layout,
+      ),
     );
   }
 
