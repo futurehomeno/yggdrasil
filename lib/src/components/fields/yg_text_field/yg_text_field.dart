@@ -439,6 +439,7 @@ class _YgTextFieldState extends State<YgTextField> implements TextSelectionGestu
         suffix: _buildSuffix(),
         content: YgFieldContent(
           value: YgTextFieldValue(
+            editableTextKey: editableTextKey,
             autocorrect: widget.autocorrect,
             controller: _controller,
             focusNode: _focusNode,
@@ -453,7 +454,6 @@ class _YgTextFieldState extends State<YgTextField> implements TextSelectionGestu
             state: _state,
             textCapitalization: widget.textCapitalization,
             textInputAction: widget.textInputAction,
-            editableTextKey: editableTextKey,
             contextMenuBuilder: _buildContextMenu,
             onSelectionChanged: _handleSelectionChanged,
             onSelectionHandleTapped: _handleSelectionHandleTapped,
@@ -647,19 +647,16 @@ class _YgTextFieldState extends State<YgTextField> implements TextSelectionGestu
   void _handleSelectionChanged(TextSelection selection, SelectionChangedCause? cause) {
     final bool willShowSelectionHandles = _shouldShowSelectionHandles(cause);
     if (willShowSelectionHandles != _showSelectionHandles) {
-      setState(() {
-        _showSelectionHandles = willShowSelectionHandles;
-      });
+      _showSelectionHandles = willShowSelectionHandles;
+      setState(() {});
     }
 
     if (cause == SelectionChangedCause.longPress) {
       _editableText?.bringIntoView(selection.extent);
     }
 
-    if (Platform.isMacOS || Platform.isLinux || Platform.isWindows) {
-      if (cause == SelectionChangedCause.drag) {
-        _editableText?.hideToolbar();
-      }
+    if ((Platform.isMacOS || Platform.isLinux || Platform.isWindows) && cause == SelectionChangedCause.drag) {
+      _editableText?.hideToolbar();
     }
   }
 
