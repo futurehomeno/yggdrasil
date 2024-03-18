@@ -479,10 +479,7 @@ class _YgTextFieldState extends State<YgTextField> implements TextSelectionGestu
       onEnter: (_) => _state.hovered.value = true,
       onExit: (_) => _state.hovered.value = false,
       cursor: SystemMouseCursors.text,
-      child: GestureDetector(
-        onTap: _handleTap,
-        child: layout,
-      ),
+      child: layout,
     );
   }
 
