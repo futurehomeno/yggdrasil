@@ -1,12 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:yggdrasil/src/theme/_theme.dart';
+import 'package:yggdrasil/src/utils/_utils.dart';
 
 import '../../yg_field_state.dart';
 
 class YgTextFieldValue extends StatelessWidget {
   const YgTextFieldValue({
     super.key,
+    required this.editableTextKey,
     required this.state,
     required this.obscureText,
     required this.maxLines,
@@ -21,8 +23,13 @@ class YgTextFieldValue extends StatelessWidget {
     required this.textInputAction,
     required this.focusNode,
     required this.controller,
+    required this.onSelectionChanged,
+    required this.onSelectionHandleTapped,
+    required this.contextMenuBuilder,
+    required this.showSelectionHandles,
   });
 
+  final GlobalKey<EditableTextState> editableTextKey;
   final FocusNode focusNode;
   final TextEditingController controller;
   final YgFieldState state;
@@ -37,14 +44,22 @@ class YgTextFieldValue extends StatelessWidget {
   final ValueChanged<String>? onChanged;
   final VoidCallback onEditingComplete;
   final TextInputAction textInputAction;
+  final SelectionChangedCallback onSelectionChanged;
+  final VoidCallback onSelectionHandleTapped;
+  final EditableTextContextMenuBuilder contextMenuBuilder;
+  final bool showSelectionHandles;
 
   @override
   Widget build(BuildContext context) {
-    return AnimatedBuilder(
-      animation: state.disabled,
+    return YgAnimatedBuilder(
+      properties: <Listenable?>{
+        state.disabled,
+        state.focused,
+      },
       builder: (BuildContext context, Widget? child) {
         final YgFieldContentTheme theme = context.fieldTheme.contentTheme;
 
+        // We inherit the TextStyle from YgFieldDecoration.
         final TextStyle baseStyle = DefaultTextStyle.of(context).style;
 
         if (state.disabled.value) {
@@ -70,8 +85,15 @@ class YgTextFieldValue extends StatelessWidget {
           );
         }
 
+        final Offset cursorOffset = Offset(
+          0.0,
+          (baseStyle.computedHeight - baseStyle.fontSize!) / 2,
+        );
+
         return EditableText(
+          key: editableTextKey,
           focusNode: focusNode,
+          enableInteractiveSelection: true,
           backgroundCursorColor: theme.cursorColor,
           controller: controller,
           cursorColor: theme.cursorColor,
@@ -80,30 +102,30 @@ class YgTextFieldValue extends StatelessWidget {
           ),
           obscureText: obscureText,
           cursorHeight: baseStyle.fontSize,
-          cursorOffset: _getCursorOffset(theme),
-          selectionColor: theme.cursorColor,
+          cursorOffset: cursorOffset,
+          selectionColor: state.focused.value ? theme.cursorColor.withOpacity(0.4) : null,
           cursorWidth: 1.0,
           keyboardType: keyboardType,
           autocorrect: autocorrect,
           textCapitalization: textCapitalization,
-          readOnly: readOnly,
+          readOnly: readOnly || state.disabled.value,
           maxLines: maxLines,
           minLines: minLines,
           inputFormatters: inputFormatters,
           onChanged: onChanged,
           onEditingComplete: onEditingComplete,
           textInputAction: textInputAction,
+          showCursor: true,
+          mouseCursor: MouseCursor.defer, // TextField will handle the cursor
+          selectionControls: materialTextSelectionHandleControls,
+          restorationId: 'editable',
+          rendererIgnoresPointer: true,
+          onSelectionChanged: onSelectionChanged,
+          onSelectionHandleTapped: onSelectionHandleTapped,
+          contextMenuBuilder: contextMenuBuilder,
+          showSelectionHandles: showSelectionHandles,
         );
       },
-    );
-  }
-
-  Offset _getCursorOffset(YgFieldContentTheme theme) {
-    final TextStyle style = theme.valueTextStyle;
-
-    return Offset(
-      0.0,
-      (style.computedHeight - style.fontSize!) / 2,
     );
   }
 }

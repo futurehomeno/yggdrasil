@@ -120,6 +120,30 @@ class _TextFieldScreenState extends State<TextFieldScreen> {
                 ),
               ].withVerticalSpacing(10.0),
             ),
+            YgSection.column(
+              title: 'Sizes',
+              subtitle: 'Using the outlined variant to better show the difference.',
+              children: <Widget>[
+                const YgTextField(
+                  label: 'Large',
+                  keyboardType: TextInputType.text,
+                  textInputAction: TextInputAction.next,
+                  textCapitalization: TextCapitalization.words,
+                  variant: YgFieldVariant.outlined,
+                  size: YgFieldSize.large,
+                  autocorrect: true,
+                ),
+                const YgTextField(
+                  label: 'Medium',
+                  keyboardType: TextInputType.text,
+                  textInputAction: TextInputAction.next,
+                  textCapitalization: TextCapitalization.words,
+                  variant: YgFieldVariant.outlined,
+                  size: YgFieldSize.medium,
+                  autocorrect: true,
+                ),
+              ].withVerticalSpacing(10.0),
+            ),
             YgSection(
               title: 'Login form example',
               subtitle: 'See example code for best-practice usage.',

@@ -1,3 +1,6 @@
+import 'dart:io';
+
+import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:yggdrasil/src/components/fields/helpers/yg_validate_helper.dart';
@@ -6,6 +9,8 @@ import 'package:yggdrasil/yggdrasil.dart';
 import '../widgets/_widgets.dart';
 import '../yg_field_state.dart';
 import 'widgets/_widgets.dart';
+
+part 'text_field_selection_gesture_detector_builder.dart';
 
 class YgTextField extends StatefulWidget with StatefulWidgetDebugMixin {
   const YgTextField({
@@ -342,7 +347,14 @@ class YgTextField extends StatefulWidget with StatefulWidgetDebugMixin {
   }
 }
 
-class _YgTextFieldState extends State<YgTextField> {
+class _YgTextFieldState extends State<YgTextField> implements TextSelectionGestureDetectorBuilderDelegate {
+  @override
+  final GlobalKey<EditableTextState> editableTextKey = GlobalKey();
+
+  late _TextFieldSelectionGestureDetectorBuilder _selectionGestureDetectorBuilder;
+
+  bool _showSelectionHandles = false;
+
   /// The state of the field.
   late final YgFieldState _state = YgFieldState(
     filled: _controller.text.isNotEmpty == true,
@@ -350,6 +362,8 @@ class _YgTextFieldState extends State<YgTextField> {
     error: widget.error != null,
     disabled: widget.disabled,
     suffix: _hasSuffix,
+    variant: widget.variant,
+    size: widget.size,
   );
 
   /// Whether to hide the obscured text or not.
@@ -366,6 +380,7 @@ class _YgTextFieldState extends State<YgTextField> {
     super.initState();
     _focusNode.addListener(_focusChanged);
     _controller.addListener(_valueUpdated);
+    _selectionGestureDetectorBuilder = _TextFieldSelectionGestureDetectorBuilder(state: this);
   }
 
   @override
@@ -416,34 +431,42 @@ class _YgTextFieldState extends State<YgTextField> {
   @override
   Widget build(BuildContext context) {
     final Widget layout = RepaintBoundary(
-      child: YgFieldDecoration(
-        variant: widget.variant,
-        size: widget.size,
-        error: widget.error,
-        state: _state,
-        suffix: _buildSuffix(),
-        content: YgFieldContent(
-          value: YgTextFieldValue(
-            autocorrect: widget.autocorrect,
-            controller: _controller,
-            focusNode: _focusNode,
-            inputFormatters: widget.inputFormatters,
-            keyboardType: widget.keyboardType,
-            maxLines: widget.maxLines,
-            minLines: widget.minLines,
-            obscureText: _obscureText,
-            onChanged: widget.onChanged,
-            onEditingComplete: _onEditingComplete,
-            readOnly: widget.readOnly,
-            state: _state,
-            textCapitalization: widget.textCapitalization,
-            textInputAction: widget.textInputAction,
-          ),
+      child: _selectionGestureDetectorBuilder.buildGestureDetector(
+        behavior: HitTestBehavior.translucent,
+        child: YgFieldDecoration(
+          variant: widget.variant,
+          size: widget.size,
+          error: widget.error,
           state: _state,
-          label: widget.label,
-          minLines: widget.minLines,
-          placeholder: widget.placeholder,
-          floatLabelOnFocus: true,
+          suffix: _buildSuffix(),
+          content: YgFieldContent(
+            value: YgTextFieldValue(
+              autocorrect: widget.autocorrect,
+              controller: _controller,
+              focusNode: _focusNode,
+              inputFormatters: widget.inputFormatters,
+              keyboardType: widget.keyboardType,
+              maxLines: widget.maxLines,
+              minLines: widget.minLines,
+              obscureText: _obscureText,
+              onChanged: widget.onChanged,
+              onEditingComplete: _onEditingComplete,
+              readOnly: widget.readOnly,
+              state: _state,
+              textCapitalization: widget.textCapitalization,
+              textInputAction: widget.textInputAction,
+              editableTextKey: editableTextKey,
+              contextMenuBuilder: _buildContextMenu,
+              onSelectionChanged: _handleSelectionChanged,
+              onSelectionHandleTapped: _handleSelectionHandleTapped,
+              showSelectionHandles: _showSelectionHandles,
+            ),
+            state: _state,
+            label: widget.label,
+            minLines: widget.minLines,
+            placeholder: widget.placeholder,
+            floatLabelOnFocus: true,
+          ),
         ),
       ),
     );
@@ -578,4 +601,74 @@ class _YgTextFieldState extends State<YgTextField> {
       _focusNode.requestFocus();
     }
   }
+
+  Widget _buildContextMenu(BuildContext context, EditableTextState editableTextState) {
+    return AdaptiveTextSelectionToolbar.editableText(
+      editableTextState: editableTextState,
+    );
+  }
+
+  EditableTextState? get _editableText => editableTextKey.currentState;
+
+  void _requestKeyboard() {
+    _editableText?.requestKeyboard();
+  }
+
+  /// Toggle the toolbar when a selection handle is tapped.
+  void _handleSelectionHandleTapped() {
+    if (_controller.selection.isCollapsed) {
+      _editableText!.toggleToolbar();
+    }
+  }
+
+  bool _shouldShowSelectionHandles(SelectionChangedCause? cause) {
+    // When the text field is activated by something that doesn't trigger the
+    // selection overlay, we shouldn't show the handles either.
+    if (!_selectionGestureDetectorBuilder.shouldShowSelectionToolbar) {
+      return false;
+    }
+
+    if (cause == SelectionChangedCause.keyboard) {
+      return false;
+    }
+
+    if (widget.readOnly && _controller.selection.isCollapsed) {
+      return false;
+    }
+
+    if (cause == SelectionChangedCause.longPress || cause == SelectionChangedCause.scribble) {
+      return true;
+    }
+
+    if (_controller.text.isNotEmpty) {
+      return true;
+    }
+
+    return false;
+  }
+
+  void _handleSelectionChanged(TextSelection selection, SelectionChangedCause? cause) {
+    final bool willShowSelectionHandles = _shouldShowSelectionHandles(cause);
+    if (willShowSelectionHandles != _showSelectionHandles) {
+      setState(() {
+        _showSelectionHandles = willShowSelectionHandles;
+      });
+    }
+
+    if (cause == SelectionChangedCause.longPress) {
+      _editableText?.bringIntoView(selection.extent);
+    }
+
+    if (Platform.isMacOS || Platform.isLinux || Platform.isWindows) {
+      if (cause == SelectionChangedCause.drag) {
+        _editableText?.hideToolbar();
+      }
+    }
+  }
+
+  @override
+  final bool forcePressEnabled = false;
+
+  @override
+  final bool selectionEnabled = true;
 }
