@@ -2,6 +2,7 @@ import 'dart:async';
 
 import 'package:flutter/material.dart';
 import 'package:yggdrasil/src/components/buttons/yg_stepper_button/_yg_stepper_button.dart';
+import 'package:yggdrasil/src/components/yg_slider/enums/yg_slider_adjustment_type.dart';
 import 'package:yggdrasil/src/components/yg_slider/value_indicator/yg_slider_value_indicator.dart';
 import 'package:yggdrasil/src/components/yg_slider/yg_slider_state.dart';
 import 'package:yggdrasil/src/components/yg_slider/yg_slider_style.dart';
@@ -12,8 +13,10 @@ import 'package:yggdrasil/yggdrasil.dart';
 import 'shortcuts/_shortcuts.dart';
 import 'yg_slider_render_widget.dart';
 
+typedef YgSliderValueBuilder = String Function(double value)?;
+
 /// Implementation of the Yggdrasil slider.
-class YgSlider extends StatefulWidget {
+class YgSlider extends StatefulWidget with StatefulWidgetDebugMixin {
   const YgSlider({
     super.key,
     required this.value,
@@ -24,6 +27,7 @@ class YgSlider extends StatefulWidget {
     this.onEditingComplete,
     this.currentValue,
     this.focusNode,
+    this.valueBuilder,
     this.stepper = false,
     this.autofocus = false,
     this.disabled = false,
@@ -50,6 +54,9 @@ class YgSlider extends StatefulWidget {
 
   /// Whether to show a value indicator when changing the value.
   final bool valueIndicator;
+
+  /// Builds a value string from the current value for the value indicator.
+  final YgSliderValueBuilder valueBuilder;
 
   /// Whether to show a difference indicator when changing the value.
   ///
@@ -230,6 +237,9 @@ class YgSliderWidgetState extends StateWithYgStateAndStyle<YgSlider, YgSliderSta
           editingChanged: _handleEditingChanged,
           state: state,
           layerLink: _layerLink,
+          max: widget.max,
+          min: widget.min,
+          stepSize: widget.stepSize,
         ),
       ),
     );
@@ -256,6 +266,10 @@ class YgSliderWidgetState extends StateWithYgStateAndStyle<YgSlider, YgSliderSta
       state: state,
       layerLink: _layerLink,
       value: _valueController,
+      min: widget.min,
+      max: widget.max,
+      stepSize: widget.stepSize,
+      valueBuilder: widget.valueBuilder,
       child: content,
     );
   }
@@ -263,10 +277,10 @@ class YgSliderWidgetState extends StateWithYgStateAndStyle<YgSlider, YgSliderSta
   double get _effectiveStepSize => widget.stepSize ?? ((widget.max - widget.min) / 20);
 
   void _handleAction(YgSliderAdjustmentIntent intent) {
-    switch (intent) {
-      case YgSliderAdjustmentIncreaseIntent():
+    switch (intent.type) {
+      case YgSliderAdjustmentType.increase:
         _stepValue(_targetValue + _effectiveStepSize);
-      case YgSliderAdjustmentDecreaseIntent():
+      case YgSliderAdjustmentType.decrease:
         _stepValue(_targetValue - _effectiveStepSize);
     }
   }
@@ -313,10 +327,10 @@ class YgSliderWidgetState extends StateWithYgStateAndStyle<YgSlider, YgSliderSta
     // We have to check this in case the change was triggered from the widget update.
     if (widget.value != newValue) {
       widget.onChange?.call(newValue);
-    }
 
-    if (!state.editing.value) {
-      widget.onEditingComplete?.call(newValue);
+      if (!state.editing.value) {
+        widget.onEditingComplete?.call(newValue);
+      }
     }
   }
 

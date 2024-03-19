@@ -1,4 +1,4 @@
-import 'dart:math';
+import 'dart:math' as math;
 
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
@@ -17,6 +17,9 @@ class YgSliderRenderWidget extends LeafRenderObjectWidget {
     required this.editingChanged,
     required this.state,
     required this.layerLink,
+    required this.max,
+    required this.min,
+    required this.stepSize,
   });
 
   final YgSliderStyle style;
@@ -26,6 +29,9 @@ class YgSliderRenderWidget extends LeafRenderObjectWidget {
   final ValueChanged<bool> editingChanged;
   final YgSliderState state;
   final LayerLink layerLink;
+  final double min;
+  final double max;
+  final double? stepSize;
 
   @override
   RenderObject createRenderObject(BuildContext context) {
@@ -38,6 +44,9 @@ class YgSliderRenderWidget extends LeafRenderObjectWidget {
       state: state,
       layerLink: layerLink,
       gestureSettings: MediaQuery.gestureSettingsOf(context),
+      min: min,
+      max: max,
+      stepSize: stepSize,
     );
   }
 
@@ -51,6 +60,9 @@ class YgSliderRenderWidget extends LeafRenderObjectWidget {
     renderObject.state = state;
     renderObject.layerLink = layerLink;
     renderObject.gestureSettings = MediaQuery.gestureSettingsOf(context);
+    renderObject.min = min;
+    renderObject.max = max;
+    renderObject.stepSize = stepSize;
   }
 }
 
@@ -61,12 +73,17 @@ class YgSliderRenderer extends RenderBox {
     required Animation<double> difference,
     required DeviceGestureSettings gestureSettings,
     required LayerLink layerLink,
+    required double min,
+    required double max,
+    required this.stepSize,
     required this.onChange,
     required this.editingChanged,
     required this.state,
   })  : _style = style,
         _value = value,
         _difference = difference,
+        _min = min,
+        _max = max,
         _layerLink = layerLink {
     _drag = HorizontalDragGestureRecognizer()
       ..onStart = _handleDragStart
@@ -76,11 +93,34 @@ class YgSliderRenderer extends RenderBox {
       ..gestureSettings = gestureSettings;
   }
 
+  double? _initialValueOffset;
+
   // region Values
 
   ValueChanged<double> onChange;
   ValueChanged<bool> editingChanged;
   YgSliderState state;
+  double? stepSize;
+
+  double _min;
+  double get min => _min;
+  set min(double newValue) {
+    if (_min != newValue) {
+      _min = newValue;
+      markNeedsPaint();
+    }
+  }
+
+  double _max;
+  double get max => _max;
+  set max(double newValue) {
+    if (_max != newValue) {
+      _max = newValue;
+      markNeedsPaint();
+    }
+  }
+
+  double get _range => _max - _min;
 
   LayerLink _layerLink;
   LayerLink get layerLink => _layerLink;
@@ -194,11 +234,12 @@ class YgSliderRenderer extends RenderBox {
   void _paintSlider(PaintingContext context, Offset offset) {
     final Canvas canvas = context.canvas;
 
+    // Extract values.
     final EdgeInsets handlePadding = style.handlePadding.value;
+    final double value = _scaleDownValue(this.value.value);
+    final double currentValue = _scaleDownValue(this.currentValue.value);
 
-    final double value = this.value.value;
-    final double currentValue = this.currentValue.value;
-
+    // Calculate handle dimensions.
     final double handleRadius = size.height / 2;
     final double handleTrackLength = size.width - size.height;
     final Offset handleOffset = Offset(
@@ -283,7 +324,7 @@ class YgSliderRenderer extends RenderBox {
         offset;
 
     final Paint diffPaint = Paint()
-      ..strokeWidth = min(size.height, style.differenceIndicatorHeight.value)
+      ..strokeWidth = math.min(size.height, style.differenceIndicatorHeight.value)
       ..color = style.differenceIndicatorColor.value
       ..style = PaintingStyle.stroke
       ..strokeCap = StrokeCap.round;
@@ -324,16 +365,29 @@ class YgSliderRenderer extends RenderBox {
 
   late final HorizontalDragGestureRecognizer _drag;
 
+  double _scaleDownValue(double value) => (value.clamp(_min, _max) - _min) / _range;
+  double _scaleUpValue(double value) => value * _range + _min;
+  double _getScaledDownValueFromOffset(Offset offset) => (offset.dx - (size.height / 2)) / (size.width - size.height);
+
   void _handleDragStart(DragStartDetails details) {
     editingChanged(true);
+    final double scaledOffsetValue = _getScaledDownValueFromOffset(details.localPosition);
+    final double scaledValue = _scaleDownValue(_value.value);
+    _initialValueOffset ??= scaledValue - scaledOffsetValue;
   }
 
   void _handleDragUpdate(DragUpdateDetails details) {
-    onChange((details.delta.dx / size.width) + _value.value);
+    final double scaledDownValue = _getScaledDownValueFromOffset(details.localPosition);
+    final double actualScaledDownValue = scaledDownValue + (_initialValueOffset ?? 0);
+    final double newValue = _scaleUpValue(actualScaledDownValue);
+    final double? stepSize = this.stepSize;
+
+    onChange((stepSize == null ? newValue : (newValue / stepSize).round() * stepSize).clamp(_min, _max));
   }
 
   void _handleDragEnd([DragEndDetails? details]) {
     editingChanged(false);
+    _initialValueOffset = null;
   }
 
   @override

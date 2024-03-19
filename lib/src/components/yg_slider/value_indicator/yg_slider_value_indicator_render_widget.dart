@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
+import 'package:yggdrasil/yggdrasil.dart';
 
 import 'yg_slider_value_indicator_style.dart';
 
@@ -9,17 +10,29 @@ class YgSliderValueIndicatorRenderWidget extends LeafRenderObjectWidget {
     required this.layerLink,
     required this.style,
     required this.value,
+    required this.max,
+    required this.min,
+    required this.stepSize,
+    required this.valueBuilder,
   });
 
   final YgSliderValueIndicatorStyle style;
   final Animation<double> value;
   final LayerLink layerLink;
+  final double min;
+  final double max;
+  final double? stepSize;
+  final YgSliderValueBuilder? valueBuilder;
 
   @override
   RenderObject createRenderObject(BuildContext context) {
     return YgSliderValueIndicatorRenderer(
+      max: max,
+      min: min,
+      stepSize: stepSize,
       style: style,
       value: value,
+      valueBuilder: valueBuilder,
       layerLink: layerLink,
       defaultStyle: DefaultTextStyle.of(context).style,
       textDirection: Directionality.of(context),
@@ -30,7 +43,11 @@ class YgSliderValueIndicatorRenderWidget extends LeafRenderObjectWidget {
   void updateRenderObject(BuildContext context, covariant YgSliderValueIndicatorRenderer renderObject) {
     renderObject.style = style;
     renderObject.value = value;
+    renderObject.valueBuilder = valueBuilder;
     renderObject.layerLink = layerLink;
+    renderObject.min = min;
+    renderObject.max = max;
+    renderObject.stepSize = stepSize;
     renderObject.defaultStyle = DefaultTextStyle.of(context).style;
     renderObject.textDirection = Directionality.of(context);
   }
@@ -43,15 +60,44 @@ class YgSliderValueIndicatorRenderer extends RenderBox {
     required LayerLink layerLink,
     required TextStyle defaultStyle,
     required TextDirection textDirection,
+    required double min,
+    required double max,
+    required YgSliderValueBuilder valueBuilder,
+    required this.stepSize,
   })  : _style = style,
         _value = value,
         _defaultStyle = defaultStyle,
         _layerLink = layerLink,
+        _min = min,
+        _max = max,
+        _valueBuilder = valueBuilder,
         _textPainter = TextPainter(
           textDirection: textDirection,
         );
 
   // region Values
+
+  double? stepSize;
+
+  double _min;
+  double get min => _min;
+  set min(double newValue) {
+    if (_min != newValue) {
+      _min = newValue;
+      markNeedsPaint();
+    }
+  }
+
+  double _max;
+  double get max => _max;
+  set max(double newValue) {
+    if (_max != newValue) {
+      _max = newValue;
+      markNeedsPaint();
+    }
+  }
+
+  double get _range => _max - _min;
 
   final TextPainter _textPainter;
   TextDirection get textDirection => _textPainter.textDirection!;
@@ -68,6 +114,15 @@ class YgSliderValueIndicatorRenderer extends RenderBox {
     if (_defaultStyle != newValue) {
       _defaultStyle = newValue;
       markNeedsLayout();
+    }
+  }
+
+  YgSliderValueBuilder _valueBuilder;
+  YgSliderValueBuilder get valueBuilder => _valueBuilder;
+  set valueBuilder(YgSliderValueBuilder newValue) {
+    if (_valueBuilder != newValue) {
+      _valueBuilder = newValue;
+      markNeedsPaint();
     }
   }
 
@@ -150,6 +205,8 @@ class YgSliderValueIndicatorRenderer extends RenderBox {
     );
   }
 
+  double _scaleDownValue(double value) => (value.clamp(_min, _max) - _min) / _range;
+
   void _paintValueIndicator(PaintingContext context, Offset _) {
     final Canvas canvas = context.canvas;
 
@@ -161,11 +218,16 @@ class YgSliderValueIndicatorRenderer extends RenderBox {
     final TextStyle effectiveTextStyle = defaultStyle.merge(_style.valueIndicatorTextStyle.value);
     final Color textColor = effectiveTextStyle.color ?? Colors.black;
 
+    final double value = this.value.value;
+    final double scaledValue = _scaleDownValue(value);
+    final String textValue =
+        _valueBuilder?.call(value) ?? value.toStringAsFixed((stepSize ?? (_range / 100)).precision);
+
     _textPainter.text = TextSpan(
       style: effectiveTextStyle.copyWith(
         color: textColor.withOpacity(visibility),
       ),
-      text: _value.value.toStringAsFixed(2),
+      text: textValue,
     );
 
     _textPainter.layout(
@@ -184,7 +246,7 @@ class YgSliderValueIndicatorRenderer extends RenderBox {
 
     final Matrix4 matrix = Matrix4.identity()
       ..translate(
-        handleRadius + (handleTrackLength * value.value),
+        handleRadius + (handleTrackLength * scaledValue),
         handleRadius,
       )
       ..scale(visibility)

@@ -23,7 +23,8 @@ class _SliderScreenState extends State<SliderScreen> {
   double _defaultValue = 0.5;
   double _differenceIndicatorValue = 0.5;
   double _staticDifferenceIndicatorValue = 0.5;
-  double _valueIndicatorValue = 0.5;
+  double _valueIndicatorValue = 50;
+  double _customValueIndicator = 50;
   double _stepperValue = 0.5;
   double _temperatureValue1 = 0.5;
   double _temperatureValue2 = 0.5;
@@ -48,10 +49,23 @@ class _SliderScreenState extends State<SliderScreen> {
           YgSection(
             title: 'With value indicator',
             child: YgSlider(
+              max: 100,
               value: _valueIndicatorValue,
               valueIndicator: true,
               onEditingComplete: (double newValue) => setState(
                 () => _valueIndicatorValue = newValue,
+              ),
+            ),
+          ),
+          YgSection(
+            title: 'With custom value indicator',
+            child: YgSlider(
+              max: 100,
+              valueBuilder: _formatValueAsTime,
+              value: _customValueIndicator,
+              valueIndicator: true,
+              onEditingComplete: (double newValue) => setState(
+                () => _customValueIndicator = newValue,
               ),
             ),
           ),
@@ -84,7 +98,6 @@ class _SliderScreenState extends State<SliderScreen> {
               differenceIndicator: true,
               valueIndicator: true,
               stepper: true,
-              stepSize: 0.1,
               onEditingComplete: (double newValue) => setState(
                 () => _stepperValue = newValue,
               ),
@@ -149,5 +162,13 @@ class _SliderScreenState extends State<SliderScreen> {
         ],
       ),
     );
+  }
+
+  String _formatValueAsTime(double value) {
+    final int totalSeconds = value.toInt();
+    final int minutes = totalSeconds ~/ 60;
+    final int seconds = totalSeconds % 60;
+
+    return '${minutes.toString().padLeft(2, '0')}:${seconds.toString().padLeft(2, '0')}';
   }
 }

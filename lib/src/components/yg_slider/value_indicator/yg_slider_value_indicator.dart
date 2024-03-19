@@ -3,6 +3,7 @@ import 'package:yggdrasil/src/components/yg_slider/value_indicator/yg_slider_val
 import 'package:yggdrasil/src/components/yg_slider/value_indicator/yg_slider_value_indicator_style.dart';
 import 'package:yggdrasil/src/components/yg_slider/yg_slider_state.dart';
 import 'package:yggdrasil/src/utils/_utils.dart';
+import 'package:yggdrasil/yggdrasil.dart';
 
 class YgSliderValueIndicator extends StatefulWidget {
   const YgSliderValueIndicator({
@@ -11,12 +12,20 @@ class YgSliderValueIndicator extends StatefulWidget {
     required this.layerLink,
     required this.value,
     required this.child,
+    required this.min,
+    required this.max,
+    required this.stepSize,
+    required this.valueBuilder,
   });
 
   final YgSliderState state;
   final LayerLink layerLink;
   final Animation<double> value;
   final Widget child;
+  final double min;
+  final double max;
+  final double? stepSize;
+  final YgSliderValueBuilder? valueBuilder;
 
   @override
   State<YgSliderValueIndicator> createState() => _YgSliderValueIndicatorState();
@@ -66,6 +75,10 @@ class _YgSliderValueIndicatorState extends StateWithYgStyle<YgSliderValueIndicat
             layerLink: widget.layerLink,
             style: style,
             value: widget.value,
+            min: widget.min,
+            max: widget.max,
+            stepSize: widget.stepSize,
+            valueBuilder: widget.valueBuilder,
           ),
         );
       },

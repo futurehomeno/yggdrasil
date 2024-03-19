@@ -1,0 +1,4 @@
+enum YgSliderAdjustmentType {
+  increase,
+  decrease,
+}
