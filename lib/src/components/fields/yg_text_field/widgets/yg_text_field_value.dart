@@ -85,6 +85,8 @@ class YgTextFieldValue extends StatelessWidget {
           );
         }
 
+        // Calculate the offset of the cursor so it is centered on the height of
+        // the text.
         final Offset cursorOffset = Offset(
           0.0,
           (baseStyle.computedHeight - baseStyle.fontSize!) / 2,
