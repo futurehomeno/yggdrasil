@@ -1,3 +1,6 @@
+import 'dart:io';
+
+import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:yggdrasil/src/components/fields/helpers/yg_validate_helper.dart';
@@ -6,6 +9,8 @@ import 'package:yggdrasil/yggdrasil.dart';
 import '../widgets/_widgets.dart';
 import '../yg_field_state.dart';
 import 'widgets/_widgets.dart';
+
+part 'text_field_selection_gesture_detector_builder.dart';
 
 class YgTextField extends StatefulWidget with StatefulWidgetDebugMixin {
   const YgTextField({
@@ -342,7 +347,25 @@ class YgTextField extends StatefulWidget with StatefulWidgetDebugMixin {
   }
 }
 
-class _YgTextFieldState extends State<YgTextField> {
+class _YgTextFieldState extends State<YgTextField> implements TextSelectionGestureDetectorBuilderDelegate {
+  /// The key of the editable text, used to manage the selection toolbar.
+  @override
+  final GlobalKey<EditableTextState> editableTextKey = GlobalKey();
+
+  /// Handles the selection gestures and triggers [_handleTap].
+  late _TextFieldSelectionGestureDetectorBuilder _selectionGestureDetectorBuilder;
+
+  /// Whether the selection handles should be show.
+  bool _showSelectionHandles = false;
+
+  /// Disabled force press as we don't need it.
+  @override
+  final bool forcePressEnabled = false;
+
+  /// Always allow selection.
+  @override
+  final bool selectionEnabled = true;
+
   /// The state of the field.
   late final YgFieldState _state = YgFieldState(
     filled: _controller.text.isNotEmpty == true,
@@ -350,6 +373,8 @@ class _YgTextFieldState extends State<YgTextField> {
     error: widget.error != null,
     disabled: widget.disabled,
     suffix: _hasSuffix,
+    variant: widget.variant,
+    size: widget.size,
   );
 
   /// Whether to hide the obscured text or not.
@@ -366,6 +391,7 @@ class _YgTextFieldState extends State<YgTextField> {
     super.initState();
     _focusNode.addListener(_focusChanged);
     _controller.addListener(_valueUpdated);
+    _selectionGestureDetectorBuilder = _TextFieldSelectionGestureDetectorBuilder(state: this);
   }
 
   @override
@@ -424,6 +450,7 @@ class _YgTextFieldState extends State<YgTextField> {
         suffix: _buildSuffix(),
         content: YgFieldContent(
           value: YgTextFieldValue(
+            editableTextKey: editableTextKey,
             autocorrect: widget.autocorrect,
             controller: _controller,
             focusNode: _focusNode,
@@ -438,6 +465,10 @@ class _YgTextFieldState extends State<YgTextField> {
             state: _state,
             textCapitalization: widget.textCapitalization,
             textInputAction: widget.textInputAction,
+            contextMenuBuilder: _buildContextMenu,
+            onSelectionChanged: _handleSelectionChanged,
+            onSelectionHandleTapped: _handleSelectionHandleTapped,
+            showSelectionHandles: _showSelectionHandles,
           ),
           state: _state,
           label: widget.label,
@@ -456,8 +487,8 @@ class _YgTextFieldState extends State<YgTextField> {
       onEnter: (_) => _state.hovered.value = true,
       onExit: (_) => _state.hovered.value = false,
       cursor: SystemMouseCursors.text,
-      child: GestureDetector(
-        onTap: _handleTap,
+      child: _selectionGestureDetectorBuilder.buildGestureDetector(
+        behavior: HitTestBehavior.translucent,
         child: layout,
       ),
     );
@@ -576,6 +607,67 @@ class _YgTextFieldState extends State<YgTextField> {
   void _handleTap() {
     if (!_focusNode.hasFocus) {
       _focusNode.requestFocus();
+    }
+  }
+
+  Widget _buildContextMenu(BuildContext context, EditableTextState editableTextState) {
+    return AdaptiveTextSelectionToolbar.editableText(
+      editableTextState: editableTextState,
+    );
+  }
+
+  EditableTextState? get _editableText => editableTextKey.currentState;
+
+  void _requestKeyboard() {
+    _editableText?.requestKeyboard();
+  }
+
+  /// Toggle the toolbar when a selection handle is tapped.
+  void _handleSelectionHandleTapped() {
+    if (_controller.selection.isCollapsed) {
+      _editableText!.toggleToolbar();
+    }
+  }
+
+  bool _shouldShowSelectionHandles(SelectionChangedCause? cause) {
+    // When the text field is activated by something that doesn't trigger the
+    // selection overlay, we shouldn't show the handles either.
+    if (!_selectionGestureDetectorBuilder.shouldShowSelectionToolbar) {
+      return false;
+    }
+
+    if (cause == SelectionChangedCause.keyboard) {
+      return false;
+    }
+
+    if (widget.readOnly && _controller.selection.isCollapsed) {
+      return false;
+    }
+
+    if (cause == SelectionChangedCause.longPress || cause == SelectionChangedCause.scribble) {
+      return true;
+    }
+
+    if (_controller.text.isNotEmpty) {
+      return true;
+    }
+
+    return false;
+  }
+
+  void _handleSelectionChanged(TextSelection selection, SelectionChangedCause? cause) {
+    final bool willShowSelectionHandles = _shouldShowSelectionHandles(cause);
+    if (willShowSelectionHandles != _showSelectionHandles) {
+      _showSelectionHandles = willShowSelectionHandles;
+      setState(() {});
+    }
+
+    if (cause == SelectionChangedCause.longPress) {
+      _editableText?.bringIntoView(selection.extent);
+    }
+
+    if ((Platform.isMacOS || Platform.isLinux || Platform.isWindows) && cause == SelectionChangedCause.drag) {
+      _editableText?.hideToolbar();
     }
   }
 }
