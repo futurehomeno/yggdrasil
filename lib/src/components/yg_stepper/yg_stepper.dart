@@ -110,7 +110,8 @@ class _YgStepperState extends StateWithYgStateAndStyle<YgStepper, YgStepperState
         crossAxisAlignment: CrossAxisAlignment.center,
         children: <Widget>[
           YgStepperButton(
-            onPressed: canDecrease ? _handleDecrease : null,
+            onPressed: _handleDecrease,
+            disabled: !canDecrease,
             icon: YgIcons.minus,
           ),
           Expanded(
@@ -136,7 +137,8 @@ class _YgStepperState extends StateWithYgStateAndStyle<YgStepper, YgStepperState
             ),
           ),
           YgStepperButton(
-            onPressed: canIncrease ? _handleIncrease : null,
+            onPressed: _handleIncrease,
+            disabled: !canIncrease,
             icon: YgIcons.plus,
           ),
         ],

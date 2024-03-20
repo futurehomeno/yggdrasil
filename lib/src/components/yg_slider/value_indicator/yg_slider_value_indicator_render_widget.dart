@@ -73,6 +73,7 @@ class YgSliderValueIndicatorRenderer extends RenderBox {
         _valueBuilder = valueBuilder,
         _textPainter = TextPainter(
           textDirection: textDirection,
+          textAlign: TextAlign.center,
         );
 
   // region Values
@@ -96,8 +97,6 @@ class YgSliderValueIndicatorRenderer extends RenderBox {
       markNeedsPaint();
     }
   }
-
-  double get _range => _max - _min;
 
   final TextPainter _textPainter;
   TextDirection get textDirection => _textPainter.textDirection!;
@@ -205,11 +204,9 @@ class YgSliderValueIndicatorRenderer extends RenderBox {
     );
   }
 
-  double _scaleDownValue(double value) => (value.clamp(_min, _max) - _min) / _range;
-
-  void _paintValueIndicator(PaintingContext context, Offset _) {
+  void _paintValueIndicator(PaintingContext context, Offset offset) {
+    // Extract variables used in this method.
     final Canvas canvas = context.canvas;
-
     final EdgeInsets padding = _style.valueIndicatorPadding.value;
     final BorderRadius radius = _style.valueIndicatorRadius.value;
     final Color color = _style.valueIndicatorColor.value;
@@ -217,32 +214,28 @@ class YgSliderValueIndicatorRenderer extends RenderBox {
     final double visibility = _style.valueIndicatorVisibility.value;
     final TextStyle effectiveTextStyle = defaultStyle.merge(_style.valueIndicatorTextStyle.value);
     final Color textColor = effectiveTextStyle.color ?? Colors.black;
-
     final double value = this.value.value;
-    final double scaledValue = _scaleDownValue(value);
-    final String textValue =
-        _valueBuilder?.call(value) ?? value.toStringAsFixed((stepSize ?? (_range / 100)).precision);
+    final double range = _max - _min;
 
+    // Setup the text painter.
     _textPainter.text = TextSpan(
       style: effectiveTextStyle.copyWith(
         color: textColor.withOpacity(visibility),
       ),
-      text: textValue,
+      text: _valueBuilder?.call(value) ?? value.toStringAsFixed((stepSize ?? (range / 100)).precision),
     );
 
     _textPainter.layout(
-      maxWidth: constraints.maxWidth,
+      maxWidth: constraints.maxWidth - padding.horizontal,
       minWidth: 0,
     );
 
+    // Calculate the transform matrix applied to the value indicator.
     final Size sliderSize = _layerLink.leaderSize ?? Size.zero;
     final double handleRadius = sliderSize.height / 2;
     final double handleTrackLength = sliderSize.width - sliderSize.height;
     final Size indicatorSize = padding.inflateSize(_textPainter.size);
-
-    final Rect rect = Offset.zero & padding.inflateSize(_textPainter.size);
-    final RRect rrect = radius.toRRect(rect);
-    final Paint paint = Paint()..color = color.withOpacity(visibility);
+    final double scaledValue = (value.clamp(_min, _max) - _min) / range;
 
     final Matrix4 matrix = Matrix4.identity()
       ..translate(
@@ -255,6 +248,21 @@ class YgSliderValueIndicatorRenderer extends RenderBox {
         -indicatorSize.height - bottomOffset - handleRadius,
       );
 
+    // Calculate the rect of the indicator.
+    final Rect rect = offset & padding.inflateSize(_textPainter.size);
+    final RRect rrect = radius.toRRect(rect);
+    final Paint paint = Paint()..color = color.withOpacity(visibility);
+
+    // Modify the matrix to keep the value indicator within outerRect.
+    final Rect outerRect = offset & size;
+    final Rect transformedRect = MatrixUtils.transformRect(matrix, rect);
+    if (transformedRect.left < outerRect.left) {
+      matrix.translate(outerRect.left - transformedRect.left);
+    } else if (transformedRect.right > outerRect.right) {
+      matrix.translate(outerRect.right - transformedRect.right);
+    }
+
+    // Apply the matrix and paint the value indicator.
     canvas.transform(matrix.storage);
     canvas.drawRRect(rrect, paint);
     _textPainter.paint(canvas, padding.topLeft);

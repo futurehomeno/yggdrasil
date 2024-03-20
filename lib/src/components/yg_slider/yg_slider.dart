@@ -1,7 +1,6 @@
 import 'dart:async';
 
 import 'package:flutter/material.dart';
-import 'package:yggdrasil/src/components/buttons/yg_stepper_button/_yg_stepper_button.dart';
 import 'package:yggdrasil/src/components/yg_slider/enums/yg_slider_adjustment_type.dart';
 import 'package:yggdrasil/src/components/yg_slider/value_indicator/yg_slider_value_indicator.dart';
 import 'package:yggdrasil/src/components/yg_slider/yg_slider_state.dart';
@@ -12,6 +11,7 @@ import 'package:yggdrasil/yggdrasil.dart';
 
 import 'shortcuts/_shortcuts.dart';
 import 'yg_slider_render_widget.dart';
+import 'yg_slider_repeating_stepper_button.dart';
 
 typedef YgSliderValueBuilder = String Function(double value)?;
 
@@ -126,7 +126,9 @@ class YgSliderWidgetState extends StateWithYgStateAndStyle<YgSlider, YgSliderSta
   final Key _contentKey = GlobalKey();
 
   Timer? _recentEditTimer;
-  late double _targetValue = widget.value;
+  late double _targetValue;
+  late bool _canIncrease;
+  late bool _canDecrease;
   final LayerLink _layerLink = LayerLink();
 
   @override
@@ -162,6 +164,9 @@ class YgSliderWidgetState extends StateWithYgStateAndStyle<YgSlider, YgSliderSta
   @override
   void initState() {
     super.initState();
+    _targetValue = widget.value;
+    _canIncrease = _targetValue < widget.max;
+    _canDecrease = _targetValue > widget.min;
     _currentValueController.addListener(_updateIncreasingState);
     _valueController.addListener(_updateIncreasingState);
   }
@@ -191,7 +196,13 @@ class YgSliderWidgetState extends StateWithYgStateAndStyle<YgSlider, YgSliderSta
 
     // Don't allow the value to be changed if the user is editing it.
     if (widget.value != _targetValue && !state.editing.value) {
-      _handleChange(widget.value, animated: true);
+      // Can ignore this because isRebuilding is used to check if the setState is needed.
+      // ignore: avoid-unnecessary-setstate
+      _handleChange(
+        widget.value,
+        animated: true,
+        isRebuilding: true,
+      );
     }
 
     super.didUpdateWidget(oldWidget);
@@ -245,18 +256,26 @@ class YgSliderWidgetState extends StateWithYgStateAndStyle<YgSlider, YgSliderSta
     );
 
     if (widget.stepper) {
+      final double steps = (widget.max - widget.min) / _effectiveStepSize;
+      final double intervalMs = 3000 / steps;
+      final Duration interval = Duration(milliseconds: intervalMs.clamp(50, 300).round());
+
       content = Row(
         children: <Widget>[
-          YgStepperButton(
+          YgSliderRepeatingStepperButton(
             icon: YgIcons.minus,
-            size: YgStepperButtonSize.medium,
-            onPressed: () => _stepValue(_targetValue - _effectiveStepSize),
+            onTrigger: () => _stepValue(_targetValue - _effectiveStepSize),
+            editingChanged: _handleEditingChanged,
+            disabled: !_canDecrease,
+            interval: interval,
           ),
           Expanded(child: content),
-          YgStepperButton(
+          YgSliderRepeatingStepperButton(
             icon: YgIcons.plus,
-            size: YgStepperButtonSize.medium,
-            onPressed: () => _stepValue(_targetValue + _effectiveStepSize),
+            disabled: !_canIncrease,
+            onTrigger: () => _stepValue(_targetValue + _effectiveStepSize),
+            editingChanged: _handleEditingChanged,
+            interval: interval,
           ),
         ].withHorizontalSpacing(theme.stepperButtonsGap),
       );
@@ -302,7 +321,7 @@ class YgSliderWidgetState extends StateWithYgStateAndStyle<YgSlider, YgSliderSta
     );
   }
 
-  void _handleChange(double newValue, {bool animated = false}) {
+  void _handleChange(double newValue, {bool animated = false, bool isRebuilding = false}) {
     newValue = newValue.clamp(widget.min, widget.max);
 
     // Value hasn't changed.
@@ -324,8 +343,19 @@ class YgSliderWidgetState extends StateWithYgStateAndStyle<YgSlider, YgSliderSta
     // Update the value.
     _targetValue = newValue;
 
+    // Update the stepper button values.
+    final bool newCanIncrease = _targetValue < widget.max;
+    final bool newCanDecrease = _targetValue > widget.min;
+    if (newCanIncrease != _canIncrease || newCanDecrease != _canDecrease) {
+      _canIncrease = newCanIncrease;
+      _canDecrease = newCanDecrease;
+      if (widget.stepper && !isRebuilding) {
+        setState(() {});
+      }
+    }
+
     // We have to check this in case the change was triggered from the widget update.
-    if (widget.value != newValue) {
+    if (widget.value != newValue && !isRebuilding) {
       widget.onChange?.call(newValue);
 
       if (!state.editing.value) {

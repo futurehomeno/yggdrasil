@@ -24,8 +24,9 @@ class _SliderScreenState extends State<SliderScreen> {
   double _differenceIndicatorValue = 0.5;
   double _staticDifferenceIndicatorValue = 0.5;
   double _valueIndicatorValue = 50;
-  double _customValueIndicator = 50;
+  double _customValueIndicator = 300;
   double _stepperValue = 0.5;
+  double _customStepSizeValue = 22.5;
   double _temperatureValue1 = 0.5;
   double _temperatureValue2 = 0.5;
   double _shadesValue1 = 0.5;
@@ -60,7 +61,7 @@ class _SliderScreenState extends State<SliderScreen> {
           YgSection(
             title: 'With custom value indicator',
             child: YgSlider(
-              max: 100,
+              max: 600,
               valueBuilder: _formatValueAsTime,
               value: _customValueIndicator,
               valueIndicator: true,
@@ -87,6 +88,24 @@ class _SliderScreenState extends State<SliderScreen> {
               differenceIndicator: true,
               onEditingComplete: (double newValue) => setState(
                 () => _staticDifferenceIndicatorValue = newValue,
+              ),
+            ),
+          ),
+          YgSection(
+            title: 'With custom step size',
+            subtitle: 'Also with stepper buttons, difference and value indicator',
+            child: YgSlider(
+              value: _customStepSizeValue,
+              differenceIndicator: true,
+              valueIndicator: true,
+              stepper: true,
+              stepSize: 0.5,
+              min: 10,
+              max: 35,
+              currentValue: 22.5,
+              valueBuilder: (double value) => '${value.toStringAsFixed(1)}°',
+              onEditingComplete: (double newValue) => setState(
+                () => _customStepSizeValue = newValue,
               ),
             ),
           ),

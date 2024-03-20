@@ -10,6 +10,8 @@ abstract class YgButtonBase<T extends YgButtonBaseState> extends StatefulWidget 
     this.onLongPress,
     this.onHover,
     this.onFocusChange,
+    this.onTapEnd,
+    this.onTapStart,
     this.focusNode,
     this.autofocus = false,
   });
@@ -25,6 +27,12 @@ abstract class YgButtonBase<T extends YgButtonBaseState> extends StatefulWidget 
 
   /// Called when the user focuses the button.
   final ValueChanged<bool>? onFocusChange;
+
+  /// Called when the user tap is stopped.
+  final VoidCallback? onTapEnd;
+
+  /// Called when the user tap is stopped.
+  final VoidCallback? onTapStart;
 
   /// The [FocusNode] in charge of managing focus for this button.
   final FocusNode? focusNode;
@@ -138,6 +146,8 @@ class _YgButtonBaseState<T extends YgButtonBaseState>
   @override
   Widget build(BuildContext context) {
     final Widget? background = widget.buildBackground(context);
+    final VoidCallback? onTapEnd = widget.onTapEnd;
+    final VoidCallback? onTapStart = widget.onTapStart;
 
     Widget content = YgAnimatedConstrainedBox(
       constraints: style.constraints,
@@ -150,6 +160,9 @@ class _YgButtonBaseState<T extends YgButtonBaseState>
           onTap: state.disabled.value ? null : widget.onPressed,
           onHover: widget.onHover,
           onFocusChange: widget.onFocusChange,
+          onTapUp: onTapEnd == null ? null : (_) => onTapEnd(),
+          onTapDown: onTapStart == null ? null : (_) => onTapStart(),
+          onTapCancel: onTapEnd,
           autofocus: widget.autofocus,
           focusNode: widget.focusNode,
           canRequestFocus: widget.onPressed != null,

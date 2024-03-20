@@ -12,13 +12,16 @@ class YgStepperButton extends YgButtonBase<YgStepperButtonState> {
   const YgStepperButton({
     super.key,
     required this.icon,
-    required super.onPressed,
+    super.onPressed,
     super.onLongPress,
     super.onHover,
     super.onFocusChange,
     super.focusNode,
     super.autofocus = false,
+    super.onTapEnd,
+    super.onTapStart,
     this.size = YgStepperButtonSize.large,
+    this.disabled = false,
   });
 
   /// Widget under this widget in the widget tree.
@@ -40,6 +43,9 @@ class YgStepperButton extends YgButtonBase<YgStepperButtonState> {
     state.disabled.value = disabled;
     state.size.value = size;
   }
+
+  @override
+  final bool disabled;
 
   @override
   YgButtonBaseStyle<YgStepperButtonState> createStyle(YgVsync vsync, YgStepperButtonState state) {
