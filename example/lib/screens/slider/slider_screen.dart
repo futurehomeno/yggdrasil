@@ -117,6 +117,8 @@ class _SliderScreenState extends State<SliderScreen> {
               differenceIndicator: true,
               valueIndicator: true,
               stepper: true,
+              max: 10,
+              stepSize: 1,
               onEditingComplete: (double newValue) => setState(
                 () => _stepperValue = newValue,
               ),

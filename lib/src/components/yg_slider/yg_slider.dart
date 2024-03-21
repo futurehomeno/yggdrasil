@@ -1,6 +1,8 @@
 import 'dart:async';
+import 'dart:math';
 
 import 'package:flutter/material.dart';
+import 'package:flutter/scheduler.dart';
 import 'package:yggdrasil/src/components/yg_slider/enums/yg_slider_adjustment_type.dart';
 import 'package:yggdrasil/src/components/yg_slider/value_indicator/yg_slider_value_indicator.dart';
 import 'package:yggdrasil/src/components/yg_slider/yg_slider_state.dart';
@@ -130,6 +132,12 @@ class YgSliderWidgetState extends StateWithYgStateAndStyle<YgSlider, YgSliderSta
   late bool _canIncrease;
   late bool _canDecrease;
   final LayerLink _layerLink = LayerLink();
+  late final SliderSnappingPhysics _physics = SliderSnappingPhysics(
+    initialValue: _targetValue,
+    // maximumTransitionDuration: const Duration(milliseconds: 200),
+    stepSize: widget.stepSize ?? 0,
+    vsync: this,
+  );
 
   @override
   YgSliderState createState() {
@@ -169,6 +177,9 @@ class YgSliderWidgetState extends StateWithYgStateAndStyle<YgSlider, YgSliderSta
     _canDecrease = _targetValue > widget.min;
     _currentValueController.addListener(_updateIncreasingState);
     _valueController.addListener(_updateIncreasingState);
+    _physics.addListener(() {
+      _valueController.value = _physics.value;
+    });
   }
 
   void _updateIncreasingState() {
@@ -215,6 +226,7 @@ class YgSliderWidgetState extends StateWithYgStateAndStyle<YgSlider, YgSliderSta
     _valueController.dispose();
     _currentValueController.dispose();
     _recentEditTimer?.cancel();
+    _physics.dispose();
 
     super.dispose();
   }
@@ -244,13 +256,12 @@ class YgSliderWidgetState extends StateWithYgStateAndStyle<YgSlider, YgSliderSta
           style: style,
           currentValue: _currentValueController,
           value: _valueController,
-          onChange: _handleChange,
+          onChange: _handleDrag,
           editingChanged: _handleEditingChanged,
           state: state,
           layerLink: _layerLink,
           max: widget.max,
           min: widget.min,
-          stepSize: widget.stepSize,
         ),
       ),
     );
@@ -294,6 +305,27 @@ class YgSliderWidgetState extends StateWithYgStateAndStyle<YgSlider, YgSliderSta
   }
 
   double get _effectiveStepSize => widget.stepSize ?? ((widget.max - widget.min) / 20);
+
+  void _handleDrag(double newValue) {
+    final double? stepSize = widget.stepSize;
+
+    if (stepSize == null) {
+      _valueController.value = newValue;
+      return;
+    }
+    _physics.update(newValue);
+
+    // final double halfStep = stepSize / 2;
+
+    // if (_valueController.value < newValue - halfStep) {
+    //   _valueController.value = newValue - halfStep;
+    // } else if (_valueController.value > newValue + halfStep) {
+    //   _valueController.value = newValue + halfStep;
+    // }
+    // final double target = ((newValue / stepSize).round() * stepSize).clamp(widget.min, widget.max);
+
+    // _valueController.animateWith(FrictionSimulation.through(_valueController.value, target, ))
+  }
 
   void _handleAction(YgSliderAdjustmentIntent intent) {
     switch (intent.type) {
@@ -405,4 +437,117 @@ class YgSliderWidgetState extends StateWithYgStateAndStyle<YgSlider, YgSliderSta
       );
     }
   }
+}
+
+/// Animates [value] from the current user value over to the nearest multiple of [stepSize].
+///
+/// Uses physics to smoothly update the slider without creating a stuttering
+/// motion. Also prevents the slider from lagging behind the user input too much
+/// and creating a sluggish response.
+class SliderSnappingPhysics extends ChangeNotifier {
+  SliderSnappingPhysics({
+    required this.stepSize,
+    required this.vsync,
+    required double initialValue,
+  })  : _value = initialValue,
+        _targetValue = initialValue,
+        _userValue = initialValue {
+    _ticker = vsync.createTicker(_onTick);
+  }
+
+  /// The maximum duration of animating between 2 values of 1 [stepSize] difference.
+  final Duration maximumTransitionDuration = const Duration(milliseconds: 200);
+
+  /// The size of the steps the [value] can increase with.
+  final double stepSize;
+
+  /// Provides the ticker for the physics calculations.
+  final TickerProvider vsync;
+
+  /// The ticker which triggers the [_onTick] method every frame the [value] is not equal to [_targetValue].
+  late final Ticker _ticker;
+
+  /// The timestamp of the last tick.
+  Duration _lastFrame = Duration.zero;
+
+  /// The current value.
+  double _value;
+
+  /// The target value.
+  double _targetValue;
+
+  /// The value the user is currently at.
+  double _userValue;
+
+  /// The current velocity of [value].
+  double _velocity = 0;
+
+  @override
+  void dispose() {
+    _ticker.dispose();
+    super.dispose();
+  }
+
+  void _onTick(Duration elapsed) {
+    // Prevent lag spikes from creating weird physics.
+    final int frameTimeMs = min((elapsed - _lastFrame).inMilliseconds, 33);
+    _lastFrame = elapsed;
+
+    // Calculate the difference between the target value and the current value
+    final double diff = _targetValue - _value;
+
+    // Calculate the desired velocity to reach the target value within maximumTransitionDuration
+    final double desiredVelocity = diff / (maximumTransitionDuration.inMilliseconds / 1000.0);
+
+    // Calculate the velocity change needed to reach the desired velocity
+    final double velocityChange = desiredVelocity - _velocity;
+
+    // Apply a friction factor to the velocity change
+    const double frictionFactor = 0.1;
+    final double frictionVelocityChange = velocityChange * frictionFactor;
+
+    // Update the velocity
+    _velocity += frictionVelocityChange;
+
+    // Update the value
+    _value += _velocity * frameTimeMs / 1000.0;
+
+    // Ensure the _value is not more than 0.5 * stepSize in front of behind of _userValue
+    if ((_userValue - _value).abs() > 0.5 * stepSize) {
+      final double oldValue = _value;
+      _value = _userValue - 0.5 * stepSize * diff.sign;
+      // Adjust the velocity to reflect the faster movement of the value
+      final double minVelocity = (_value - oldValue) / (frameTimeMs / 1000.0);
+
+      if (minVelocity > _velocity) {
+        _velocity = minVelocity;
+      }
+    }
+
+    // If the value is close enough to the target value, stop the ticker
+    if ((_targetValue - _value).abs() < 0.01) {
+      _value = _targetValue;
+      _ticker.stop();
+    }
+
+    notifyListeners();
+  }
+
+  void update(double userValue) {
+    _userValue = userValue;
+    _targetValue = ((userValue / stepSize).round() * stepSize);
+
+    // Calculate the maximum velocity based on the maximum transition duration
+    final double maxVelocity = stepSize / (maximumTransitionDuration.inMilliseconds / 1000.0);
+
+    // Limit the velocity to the maximum velocity
+    _velocity = min(_velocity.abs(), maxVelocity) * _velocity.sign;
+
+    if (_value != _targetValue && !_ticker.isActive) {
+      _lastFrame = Duration.zero;
+      _ticker.start();
+    }
+  }
+
+  double get value => _value;
 }
