@@ -1,4 +1,5 @@
 import 'dart:async';
+import 'dart:math';
 
 import 'package:flutter/material.dart';
 import 'package:yggdrasil/src/components/yg_slider/enums/yg_slider_adjustment_type.dart';
@@ -34,7 +35,14 @@ class YgSlider extends StatefulWidget with StatefulWidgetDebugMixin {
     this.valueIndicator = false,
     this.differenceIndicator = false,
     this.variant = YgSliderVariant.temperature,
-  });
+  })  : assert(
+          min < max,
+          'min can not be more than max',
+        ),
+        assert(
+          value <= max && value >= min,
+          'value has to be between or equal to min and max',
+        );
 
   /// The value of the slider.
   final double value;
@@ -130,6 +138,7 @@ class YgSliderWidgetState extends StateWithYgStateAndStyle<YgSlider, YgSliderSta
   late bool _canIncrease;
   late bool _canDecrease;
   final LayerLink _layerLink = LayerLink();
+  double _velocity = 0;
 
   @override
   YgSliderState createState() {
@@ -169,6 +178,8 @@ class YgSliderWidgetState extends StateWithYgStateAndStyle<YgSlider, YgSliderSta
     _canDecrease = _targetValue > widget.min;
     _currentValueController.addListener(_updateIncreasingState);
     _valueController.addListener(_updateIncreasingState);
+
+    createTicker(_updateValue).start();
   }
 
   void _updateIncreasingState() {
@@ -244,13 +255,12 @@ class YgSliderWidgetState extends StateWithYgStateAndStyle<YgSlider, YgSliderSta
           style: style,
           currentValue: _currentValueController,
           value: _valueController,
-          onChange: _handleChange,
+          onChange: _handleDragChange,
           editingChanged: _handleEditingChanged,
           state: state,
           layerLink: _layerLink,
           max: widget.max,
           min: widget.min,
-          stepSize: widget.stepSize,
         ),
       ),
     );
@@ -303,6 +313,43 @@ class YgSliderWidgetState extends StateWithYgStateAndStyle<YgSlider, YgSliderSta
         _stepValue(_targetValue - _effectiveStepSize);
     }
   }
+
+  void _updateValue(Duration timeStamp) {
+    final double? stepSize = widget.stepSize;
+
+    if (stepSize == null) {
+      return;
+    }
+
+    final double difference = _targetValue - _valueController.value;
+    final double velocityDifference = difference - _velocity;
+    _velocity =
+        min(min((difference.abs() * 0.1) + 0.02, (_velocity + (velocityDifference * 0.2)).abs()), difference.abs()) *
+            difference.sign;
+
+    _valueController.value += _velocity;
+  }
+
+  void _handleDragChange(double newValue) {
+    final double? stepSize = widget.stepSize;
+
+    if (stepSize == null) {
+      return _handleChange(newValue, animated: false);
+    }
+
+    final double nearestValue = (newValue / stepSize).round() * stepSize;
+    _targetValue = nearestValue;
+
+    final double halfStep = (stepSize / 2);
+
+    if (_valueController.value < newValue - halfStep) {
+      _valueController.value = newValue - halfStep;
+    } else if (_valueController.value > newValue + halfStep) {
+      _valueController.value = newValue + halfStep;
+    }
+  }
+
+  void _handleStepperButton(double step) {}
 
   void _stepValue(double step) {
     if (!state.editing.value) {
@@ -404,5 +451,33 @@ class YgSliderWidgetState extends StateWithYgStateAndStyle<YgSlider, YgSliderSta
         duration: const Duration(milliseconds: 200),
       );
     }
+  }
+}
+
+class ValueTransformer {
+  ValueTransformer();
+  final StreamController<double> _outputController = StreamController();
+  double _currentValue = 0.0;
+  final double _maxLag = 0.5;
+  final Duration _animationDuration = const Duration(milliseconds: 200);
+
+  Stream<double> get outputStream => _outputController.stream;
+
+  void transformValue(double newValue) {
+    final double difference = (newValue - _currentValue).abs();
+
+    if (difference >= 0.5) {
+      _currentValue = newValue.roundToDouble();
+      _outputController.add(_currentValue);
+    } else if (difference >= _maxLag) {
+      _currentValue += difference.sign * _maxLag;
+      _outputController.add(_currentValue);
+    }
+
+    Future.delayed(_animationDuration, () {
+      if ((newValue - _currentValue).abs() >= 0.5) {
+        transformValue(newValue);
+      }
+    });
   }
 }

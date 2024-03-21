@@ -19,7 +19,6 @@ class YgSliderRenderWidget extends LeafRenderObjectWidget {
     required this.layerLink,
     required this.max,
     required this.min,
-    required this.stepSize,
   });
 
   final YgSliderStyle style;
@@ -31,7 +30,6 @@ class YgSliderRenderWidget extends LeafRenderObjectWidget {
   final LayerLink layerLink;
   final double min;
   final double max;
-  final double? stepSize;
 
   @override
   RenderObject createRenderObject(BuildContext context) {
@@ -46,7 +44,6 @@ class YgSliderRenderWidget extends LeafRenderObjectWidget {
       gestureSettings: MediaQuery.gestureSettingsOf(context),
       min: min,
       max: max,
-      stepSize: stepSize,
     );
   }
 
@@ -62,7 +59,6 @@ class YgSliderRenderWidget extends LeafRenderObjectWidget {
     renderObject.gestureSettings = MediaQuery.gestureSettingsOf(context);
     renderObject.min = min;
     renderObject.max = max;
-    renderObject.stepSize = stepSize;
   }
 }
 
@@ -75,7 +71,6 @@ class YgSliderRenderer extends RenderBox {
     required LayerLink layerLink,
     required double min,
     required double max,
-    required this.stepSize,
     required this.onChange,
     required this.editingChanged,
     required this.state,
@@ -100,7 +95,6 @@ class YgSliderRenderer extends RenderBox {
   ValueChanged<double> onChange;
   ValueChanged<bool> editingChanged;
   YgSliderState state;
-  double? stepSize;
 
   double _min;
   double get min => _min;
@@ -380,9 +374,8 @@ class YgSliderRenderer extends RenderBox {
     final double scaledDownValue = _getScaledDownValueFromOffset(details.localPosition);
     final double actualScaledDownValue = scaledDownValue + (_initialValueOffset ?? 0);
     final double newValue = _scaleUpValue(actualScaledDownValue);
-    final double? stepSize = this.stepSize;
 
-    onChange((stepSize == null ? newValue : (newValue / stepSize).round() * stepSize).clamp(_min, _max));
+    onChange(newValue.clamp(_min, _max));
   }
 
   void _handleDragEnd([DragEndDetails? details]) {
