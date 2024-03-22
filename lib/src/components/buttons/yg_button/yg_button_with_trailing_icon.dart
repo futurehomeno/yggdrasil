@@ -19,12 +19,19 @@ class _YgButtonWithTrailingIcon extends YgButton {
 
   @override
   Widget buildChild(BuildContext context) {
+    final YgButtonTheme theme = context.buttonTheme;
+
     return Row(
       mainAxisSize: MainAxisSize.min,
       children: <Widget>[
-        Flexible(child: child),
+        Flexible(
+          child: Padding(
+            padding: theme.contentPadding,
+            child: child,
+          ),
+        ),
         YgIcon(icon),
-      ].withHorizontalSpacing(context.buttonTheme.iconSpacing),
+      ],
     );
   }
 }

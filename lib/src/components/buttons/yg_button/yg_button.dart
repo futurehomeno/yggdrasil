@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:yggdrasil/src/components/buttons/widgets/_widgets.dart';
+import 'package:yggdrasil/src/theme/button/button_theme.dart';
 import 'package:yggdrasil/src/utils/_utils.dart';
 import 'package:yggdrasil/yggdrasil.dart';
 
@@ -92,6 +93,11 @@ class YgButton extends YgButtonBase<YgButtonState> {
 
   @override
   Widget buildChild(BuildContext context) {
-    return child;
+    final YgButtonTheme theme = context.buttonTheme;
+
+    return Padding(
+      padding: theme.contentPadding,
+      child: child,
+    );
   }
 }

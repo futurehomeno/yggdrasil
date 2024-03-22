@@ -19,12 +19,19 @@ class _YgButtonWithLeadingIcon extends YgButton {
 
   @override
   Widget buildChild(BuildContext context) {
+    final YgButtonTheme theme = context.buttonTheme;
+
     return Row(
       mainAxisSize: MainAxisSize.min,
       children: <Widget>[
         YgIcon(icon),
-        Flexible(child: child),
-      ].withHorizontalSpacing(context.buttonTheme.iconSpacing),
+        Flexible(
+          child: Padding(
+            padding: theme.contentPadding,
+            child: child,
+          ),
+        ),
+      ],
     );
   }
 }
