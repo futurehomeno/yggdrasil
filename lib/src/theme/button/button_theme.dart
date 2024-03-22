@@ -29,65 +29,65 @@ class _$YgButtonTheme {
   static const List<EdgeInsets> paddingSmall = <EdgeInsets>[
     EdgeInsets.symmetric(
       vertical: consumer_light.FhDimensions.xxs,
-      horizontal: consumer_light.FhDimensions.md,
+      horizontal: consumer_light.FhDimensions.xs,
     ),
     EdgeInsets.symmetric(
       vertical: consumer_dark.FhDimensions.xxs,
-      horizontal: consumer_dark.FhDimensions.md,
+      horizontal: consumer_dark.FhDimensions.xs,
     ),
     EdgeInsets.symmetric(
       vertical: professional_light.FhDimensions.xxs,
-      horizontal: professional_light.FhDimensions.md,
+      horizontal: professional_light.FhDimensions.xs,
     ),
     EdgeInsets.symmetric(
       vertical: professional_dark.FhDimensions.xxs,
-      horizontal: professional_dark.FhDimensions.md,
+      horizontal: professional_dark.FhDimensions.xs,
     ),
   ];
 
   static const List<EdgeInsets> paddingMedium = <EdgeInsets>[
     EdgeInsets.symmetric(
       vertical: consumer_light.FhDimensions.xs,
-      horizontal: consumer_light.FhDimensions.lg,
+      horizontal: consumer_light.FhDimensions.sm,
     ),
     EdgeInsets.symmetric(
       vertical: consumer_dark.FhDimensions.xs,
-      horizontal: consumer_dark.FhDimensions.lg,
+      horizontal: consumer_dark.FhDimensions.sm,
     ),
     EdgeInsets.symmetric(
       vertical: professional_light.FhDimensions.xs,
-      horizontal: professional_light.FhDimensions.lg,
+      horizontal: professional_light.FhDimensions.sm,
     ),
     EdgeInsets.symmetric(
       vertical: professional_dark.FhDimensions.xs,
-      horizontal: professional_dark.FhDimensions.lg,
+      horizontal: professional_dark.FhDimensions.sm,
     ),
   ];
 
   static const List<EdgeInsets> paddingLarge = <EdgeInsets>[
     EdgeInsets.symmetric(
       vertical: consumer_light.FhDimensions.sm,
-      horizontal: consumer_light.FhDimensions.xl,
+      horizontal: consumer_light.FhDimensions.md,
     ),
     EdgeInsets.symmetric(
       vertical: consumer_dark.FhDimensions.sm,
-      horizontal: consumer_dark.FhDimensions.xl,
+      horizontal: consumer_dark.FhDimensions.md,
     ),
     EdgeInsets.symmetric(
       vertical: professional_light.FhDimensions.sm,
-      horizontal: professional_light.FhDimensions.xl,
+      horizontal: professional_light.FhDimensions.md,
     ),
     EdgeInsets.symmetric(
       vertical: professional_dark.FhDimensions.sm,
-      horizontal: professional_dark.FhDimensions.xl,
+      horizontal: professional_dark.FhDimensions.md,
     ),
   ];
 
-  static const List<double> iconSpacing = <double>[
-    consumer_light.FhDimensions.xxs,
-    consumer_dark.FhDimensions.xxs,
-    professional_light.FhDimensions.xxs,
-    professional_dark.FhDimensions.xxs,
+  static const List<EdgeInsets> contentPadding = <EdgeInsets>[
+    EdgeInsets.symmetric(horizontal: consumer_light.FhDimensions.xxs),
+    EdgeInsets.symmetric(horizontal: consumer_dark.FhDimensions.xxs),
+    EdgeInsets.symmetric(horizontal: professional_light.FhDimensions.xxs),
+    EdgeInsets.symmetric(horizontal: professional_dark.FhDimensions.xxs),
   ];
 
   static const List<double> iconSize = <double>[
