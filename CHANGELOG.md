@@ -1,3 +1,9 @@
+# 1.10.5 [2024-03-22T11:59:17.325153]
+
+### Changes
+
+- [fix] Fixed padding on buttons with icon not matching design.
+
 # 1.10.4 [2024-03-19T16:33:57.778294]
 
 ## Changes
