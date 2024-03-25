@@ -1,7 +1,7 @@
 import 'dart:async';
 
 import 'package:flutter/material.dart';
-import 'package:yggdrasil/src/components/yg_slider/enums/yg_slider_adjustment_type.dart';
+import 'package:flutter/services.dart';
 import 'package:yggdrasil/src/components/yg_slider/value_indicator/yg_slider_value_indicator.dart';
 import 'package:yggdrasil/src/components/yg_slider/yg_slider_state.dart';
 import 'package:yggdrasil/src/components/yg_slider/yg_slider_style.dart';
@@ -9,7 +9,9 @@ import 'package:yggdrasil/src/theme/slider/slider_theme.dart';
 import 'package:yggdrasil/src/utils/_utils.dart';
 import 'package:yggdrasil/yggdrasil.dart';
 
-import 'shortcuts/_shortcuts.dart';
+import 'yg_conditional_do_nothing_action.dart';
+import 'yg_continuous_animation_controller.dart';
+import 'yg_slider_custom_key_repeat_listener.dart';
 import 'yg_slider_render_widget.dart';
 import 'yg_slider_repeating_stepper_button.dart';
 
@@ -108,11 +110,14 @@ class YgSliderWidgetState extends StateWithYgStateAndStyle<YgSlider, YgSliderSta
   late final YgControllerManager<FocusNode> _focusNodeManager = manageController(
     createController: () => FocusNode(),
     getUserController: () => widget.focusNode,
+    listener: _focusChanged,
   );
 
-  late final AnimationController _valueController = AnimationController.unbounded(
+  late final YgContinuousAnimationController _valueController = YgContinuousAnimationController(
     vsync: this,
     value: _targetValue,
+    curve: Curves.easeOut,
+    duration: const Duration(milliseconds: 80),
   );
 
   late final AnimationController _currentValueController = AnimationController.unbounded(
@@ -124,6 +129,7 @@ class YgSliderWidgetState extends StateWithYgStateAndStyle<YgSlider, YgSliderSta
   );
 
   final Key _contentKey = GlobalKey();
+  final Key _focusKey = GlobalKey();
 
   Timer? _recentEditTimer;
   late double _targetValue;
@@ -171,6 +177,10 @@ class YgSliderWidgetState extends StateWithYgStateAndStyle<YgSlider, YgSliderSta
     _valueController.addListener(_updateIncreasingState);
   }
 
+  void _focusChanged() {
+    state.focused.value = _focusNodeManager.value.hasFocus;
+  }
+
   void _updateIncreasingState() {
     state.increasing.value = _increasing;
   }
@@ -189,7 +199,7 @@ class YgSliderWidgetState extends StateWithYgStateAndStyle<YgSlider, YgSliderSta
         _currentValueController.animateTo(
           newCurrentValue,
           curve: Curves.easeInOut,
-          duration: const Duration(seconds: 1),
+          duration: const Duration(milliseconds: 200),
         );
       }
     }
@@ -198,11 +208,7 @@ class YgSliderWidgetState extends StateWithYgStateAndStyle<YgSlider, YgSliderSta
     if (widget.value != _targetValue && !state.editing.value) {
       // Can ignore this because isRebuilding is used to check if the setState is needed.
       // ignore: avoid-unnecessary-setstate
-      _handleChange(
-        widget.value,
-        animated: true,
-        isRebuilding: true,
-      );
+      _handleWidgetUpdate(widget.value);
     }
 
     super.didUpdateWidget(oldWidget);
@@ -223,48 +229,61 @@ class YgSliderWidgetState extends StateWithYgStateAndStyle<YgSlider, YgSliderSta
   Widget build(BuildContext context) {
     final YgSliderTheme theme = context.sliderTheme;
 
-    Widget content = FocusableActionDetector(
+    final double effectiveStepSize = _effectiveStepSize;
+    final double steps = (widget.max - widget.min) / effectiveStepSize;
+    final double intervalMs = 3000 / steps;
+    final Duration interval = Duration(milliseconds: intervalMs.clamp(75, 300).round());
+
+    Widget content = RepaintBoundary(
       key: _contentKey,
-      onShowHoverHighlight: state.hovered.update,
-      onShowFocusHighlight: state.focused.update,
-      shortcuts: YgSliderShortcuts.getNavShortcutMapForNavigationMode(
-        MediaQuery.navigationModeOf(context),
-      ),
-      actions: <Type, Action<Intent>>{
-        YgSliderAdjustmentIntent: CallbackAction<YgSliderAdjustmentIntent>(
-          onInvoke: _handleAction,
-        ),
-      },
-      mouseCursor: SystemMouseCursors.click,
-      focusNode: _focusNodeManager.value,
-      autofocus: widget.autofocus,
-      enabled: !widget.disabled,
-      child: RepaintBoundary(
-        child: YgSliderRenderWidget(
-          style: style,
-          currentValue: _currentValueController,
-          value: _valueController,
-          onChange: _handleChange,
-          editingChanged: _handleEditingChanged,
-          state: state,
-          layerLink: _layerLink,
-          max: widget.max,
-          min: widget.min,
-          stepSize: widget.stepSize,
-        ),
+      child: YgSliderRenderWidget(
+        style: style,
+        currentValue: _currentValueController,
+        value: _valueController,
+        onChange: _handleDragUpdate,
+        editingChanged: _handleEditingChanged,
+        state: state,
+        layerLink: _layerLink,
+        max: widget.max,
+        min: widget.min,
+        stepSize: widget.stepSize,
       ),
     );
 
-    if (widget.stepper) {
-      final double steps = (widget.max - widget.min) / _effectiveStepSize;
-      final double intervalMs = 3000 / steps;
-      final Duration interval = Duration(milliseconds: intervalMs.clamp(50, 300).round());
+    if (!widget.disabled) {
+      content = MouseRegion(
+        cursor: SystemMouseCursors.click,
+        onEnter: (_) => state.hovered.value = true,
+        onExit: (_) => state.hovered.value = false,
+        child: Actions(
+          actions: <Type, Action<Intent>>{
+            DirectionalFocusIntent: YgConditionalDoNothingAction<DirectionalFocusIntent>(
+              condition: (DirectionalFocusIntent intent) =>
+                  intent.direction == TraversalDirection.left || intent.direction == TraversalDirection.right,
+            ),
+          },
+          child: YgSliderCustomKeyRepeatListener(
+            key: _focusKey,
+            onEditingChanged: _handleEditingChanged,
+            focusNode: _focusNodeManager.value,
+            listeners: <LogicalKeyboardKey, VoidCallback>{
+              LogicalKeyboardKey.arrowLeft: () => _handleStepUpdate(_targetValue - effectiveStepSize),
+              LogicalKeyboardKey.arrowRight: () => _handleStepUpdate(_targetValue + effectiveStepSize),
+            },
+            autoFocus: widget.autofocus,
+            interval: interval,
+            child: content,
+          ),
+        ),
+      );
+    }
 
+    if (widget.stepper) {
       content = Row(
         children: <Widget>[
           YgSliderRepeatingStepperButton(
             icon: YgIcons.minus,
-            onTrigger: () => _stepValue(_targetValue - _effectiveStepSize),
+            onTrigger: () => _handleStepUpdate(_targetValue - effectiveStepSize),
             editingChanged: _handleEditingChanged,
             disabled: !_canDecrease,
             interval: interval,
@@ -273,7 +292,7 @@ class YgSliderWidgetState extends StateWithYgStateAndStyle<YgSlider, YgSliderSta
           YgSliderRepeatingStepperButton(
             icon: YgIcons.plus,
             disabled: !_canIncrease,
-            onTrigger: () => _stepValue(_targetValue + _effectiveStepSize),
+            onTrigger: () => _handleStepUpdate(_targetValue + effectiveStepSize),
             editingChanged: _handleEditingChanged,
             interval: interval,
           ),
@@ -295,16 +314,12 @@ class YgSliderWidgetState extends StateWithYgStateAndStyle<YgSlider, YgSliderSta
 
   double get _effectiveStepSize => widget.stepSize ?? ((widget.max - widget.min) / 20);
 
-  void _handleAction(YgSliderAdjustmentIntent intent) {
-    switch (intent.type) {
-      case YgSliderAdjustmentType.increase:
-        _stepValue(_targetValue + _effectiveStepSize);
-      case YgSliderAdjustmentType.decrease:
-        _stepValue(_targetValue - _effectiveStepSize);
-    }
-  }
+  void _handleStepUpdate(double newValue) {
+    final double clampedValue = newValue.clamp(
+      widget.min,
+      widget.max,
+    );
 
-  void _stepValue(double step) {
     if (!state.editing.value) {
       state.recentlyEdited.value = true;
       _recentEditTimer?.cancel();
@@ -314,32 +329,50 @@ class YgSliderWidgetState extends StateWithYgStateAndStyle<YgSlider, YgSliderSta
       );
     }
 
-    _maybeUpdateCurrentValue();
-    _handleChange(
-      step,
-      animated: true,
+    _valueController.update(
+      currentValue: clampedValue,
+      targetValue: clampedValue,
+      maxDifference: _effectiveStepSize / 2,
     );
+
+    _updateTargetValue(clampedValue);
   }
 
-  void _handleChange(double newValue, {bool animated = false, bool isRebuilding = false}) {
-    newValue = newValue.clamp(widget.min, widget.max);
+  void _handleDragUpdate(double newValue) {
+    final double clampedValue = newValue.clamp(
+      widget.min,
+      widget.max,
+    );
 
-    // Value hasn't changed.
-    if (newValue == _targetValue) {
-      return;
-    }
+    final double? stepSize = widget.stepSize;
 
-    // Update the value controller.
-    if (animated) {
-      _valueController.animateTo(
-        newValue,
-        curve: Curves.easeOut,
-        duration: const Duration(milliseconds: 200),
-      );
+    if (stepSize == null) {
+      _valueController.value = clampedValue;
+      _updateTargetValue(clampedValue);
     } else {
-      _valueController.value = newValue;
-    }
+      final double targetValue = ((clampedValue / stepSize).round() * stepSize);
 
+      _valueController.update(
+        currentValue: clampedValue,
+        targetValue: targetValue,
+        maxDifference: stepSize / 2,
+      );
+
+      _updateTargetValue(targetValue);
+    }
+  }
+
+  void _handleWidgetUpdate(double newValue) {
+    _valueController.update(
+      currentValue: newValue,
+      targetValue: newValue,
+      maxDifference: double.infinity,
+    );
+
+    _updateTargetValue(newValue, isRebuilding: true);
+  }
+
+  void _updateTargetValue(double newValue, {bool isRebuilding = false}) {
     // Update the value.
     _targetValue = newValue;
 

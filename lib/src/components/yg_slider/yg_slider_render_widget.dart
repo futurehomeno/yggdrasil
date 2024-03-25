@@ -382,7 +382,7 @@ class YgSliderRenderer extends RenderBox {
     final double newValue = _scaleUpValue(actualScaledDownValue);
     final double? stepSize = this.stepSize;
 
-    onChange((stepSize == null ? newValue : (newValue / stepSize).round() * stepSize).clamp(_min, _max));
+    onChange(newValue.clamp(_min, _max));
   }
 
   void _handleDragEnd([DragEndDetails? details]) {
