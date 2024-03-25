@@ -1,3 +1,9 @@
+# 1.10.6 [2024-03-25T11:57:30.410478]
+
+### Changes
+
+- [fix] Changed section alignment to match design.
+
 # 1.10.5 [2024-03-22T11:59:17.325153]
 
 ### Changes
