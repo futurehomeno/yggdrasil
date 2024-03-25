@@ -24,7 +24,6 @@ class BadgeScreen extends StatelessWidget {
           YgSection(
             title: 'Badges with count 0 - 9',
             child: Row(
-              mainAxisAlignment: MainAxisAlignment.center,
               children: <Widget>[
                 YgBadge(
                   amount: 0,
@@ -48,7 +47,6 @@ class BadgeScreen extends StatelessWidget {
           YgSection(
             title: 'Badge with more than 9',
             child: Row(
-              mainAxisAlignment: MainAxisAlignment.center,
               children: <Widget>[
                 YgBadge(
                   amount: 10,
@@ -72,7 +70,6 @@ class BadgeScreen extends StatelessWidget {
           const YgSection(
             title: 'Icon badge',
             child: Row(
-              mainAxisAlignment: MainAxisAlignment.center,
               children: <Widget>[
                 YgBadge.icon(
                   icon: YgIcons.placeholder,
