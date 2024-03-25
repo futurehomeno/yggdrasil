@@ -48,48 +48,49 @@ class AvatarScreen extends StatelessWidget {
               ),
             ),
           ),
-          YgSection(
+          YgSection.column(
             title: 'Sizes',
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: <Widget>[
-                Column(
-                  children: <Widget>[
-                    const YgAvatar(
-                      initials: 'P',
-                      size: YgAvatarSize.large,
-                    ),
-                    const YgAvatar(
-                      initials: 'P',
-                      size: YgAvatarSize.medium,
-                    ),
-                    const YgAvatar(
-                      initials: 'P',
-                      size: YgAvatarSize.small,
-                    ),
-                  ].withVerticalSpacing(10.0),
-                ),
-                Column(
-                  children: <Widget>[
-                    const YgAvatar(
-                      initials: 'C',
-                      variant: YgAvatarVariant.company,
-                      size: YgAvatarSize.large,
-                    ),
-                    const YgAvatar(
-                      initials: 'C',
-                      variant: YgAvatarVariant.company,
-                      size: YgAvatarSize.medium,
-                    ),
-                    const YgAvatar(
-                      initials: 'C',
-                      variant: YgAvatarVariant.company,
-                      size: YgAvatarSize.small,
-                    ),
-                  ].withVerticalSpacing(10.0),
-                ),
-              ].withHorizontalSpacing(10),
-            ),
+            children: <Row>[
+              Row(
+                children: <Widget>[
+                  const YgAvatar(
+                    initials: 'P',
+                    size: YgAvatarSize.large,
+                  ),
+                  const YgAvatar(
+                    initials: 'C',
+                    variant: YgAvatarVariant.company,
+                    size: YgAvatarSize.large,
+                  ),
+                ].withHorizontalSpacing(10),
+              ),
+              Row(
+                children: <Widget>[
+                  const YgAvatar(
+                    initials: 'P',
+                    size: YgAvatarSize.medium,
+                  ),
+                  const YgAvatar(
+                    initials: 'C',
+                    variant: YgAvatarVariant.company,
+                    size: YgAvatarSize.medium,
+                  ),
+                ].withHorizontalSpacing(10),
+              ),
+              Row(
+                children: <Widget>[
+                  const YgAvatar(
+                    initials: 'P',
+                    size: YgAvatarSize.small,
+                  ),
+                  const YgAvatar(
+                    initials: 'C',
+                    variant: YgAvatarVariant.company,
+                    size: YgAvatarSize.small,
+                  ),
+                ].withHorizontalSpacing(10),
+              ),
+            ].withVerticalSpacing(10),
           ),
           YgSection(
             title: 'Avatar with image',

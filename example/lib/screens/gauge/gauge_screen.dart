@@ -35,7 +35,6 @@ class _GaugeScreenState extends State<GaugeScreen> {
             title: 'Gauge',
             children: <Widget>[
               Row(
-                mainAxisAlignment: MainAxisAlignment.center,
                 children: <Widget>[
                   SizedBox.square(
                     dimension: 100,
@@ -54,7 +53,6 @@ class _GaugeScreenState extends State<GaugeScreen> {
                 ],
               ),
               Row(
-                mainAxisAlignment: MainAxisAlignment.center,
                 children: <Widget>[
                   SizedBox.square(
                     dimension: 100,
@@ -84,7 +82,6 @@ class _GaugeScreenState extends State<GaugeScreen> {
           const YgSection(
             title: 'Disabled gauge',
             child: Row(
-              mainAxisAlignment: MainAxisAlignment.center,
               children: <Widget>[
                 SizedBox.square(
                   dimension: 100,
@@ -109,7 +106,6 @@ class _GaugeScreenState extends State<GaugeScreen> {
             title: 'Child variations',
             children: <Widget>[
               Row(
-                mainAxisAlignment: MainAxisAlignment.center,
                 children: <Widget>[
                   SizedBox.square(
                     dimension: 100,
@@ -138,7 +134,6 @@ class _GaugeScreenState extends State<GaugeScreen> {
                 ],
               ),
               Row(
-                mainAxisAlignment: MainAxisAlignment.center,
                 children: <Widget>[
                   SizedBox.square(
                     dimension: 100,
@@ -171,7 +166,6 @@ class _GaugeScreenState extends State<GaugeScreen> {
           const YgSection(
             title: 'Responsive between ~90px and ~120px',
             child: Row(
-              mainAxisAlignment: MainAxisAlignment.center,
               children: <Widget>[
                 SizedBox.square(
                   dimension: 90,
@@ -200,7 +194,6 @@ class _GaugeScreenState extends State<GaugeScreen> {
           const YgSection(
             title: 'Flexible min / max',
             child: Row(
-              mainAxisAlignment: MainAxisAlignment.center,
               children: <Widget>[
                 SizedBox.square(
                   dimension: 100,
