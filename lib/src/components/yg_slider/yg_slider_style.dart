@@ -40,9 +40,7 @@ class YgSliderStyle extends YgStyle<YgSliderState> {
     }
 
     if (state.focused.value) {
-      // TODO(Tim): Remove this before merging.
-      // return _theme.handleFocusColor;
-      return Colors.red;
+      return _theme.handleFocusColor;
     }
 
     return _theme.handleDefaultColor;

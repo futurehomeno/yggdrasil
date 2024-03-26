@@ -4,6 +4,10 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:yggdrasil/src/components/yg_slider/yg_slider_repeating_stepper_button.dart';
 
+/// Detects a held key and creates a custom interval key repeat loop.
+///
+/// Does not work on the android emulator because of this issue:
+/// https://github.com/flutter/flutter/issues/72816
 class YgSliderCustomKeyRepeatListener extends StatefulWidget {
   const YgSliderCustomKeyRepeatListener({
     super.key,
@@ -124,8 +128,6 @@ class _YgSliderCustomKeyRepeatListenerState extends State<YgSliderCustomKeyRepea
       );
     }
     if (event is RawKeyUpEvent) {
-      print('upppppppp');
-      print(event);
       _keyTimerMap.remove(key)?.cancel();
     }
     _updateEditing();

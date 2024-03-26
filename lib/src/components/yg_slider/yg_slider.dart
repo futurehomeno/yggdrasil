@@ -106,6 +106,36 @@ class YgSlider extends StatefulWidget with StatefulWidgetDebugMixin {
 
 class YgSliderWidgetState extends StateWithYgStateAndStyle<YgSlider, YgSliderState, YgSliderStyle>
     with YgControllerManagerMixin {
+  // region Consts
+
+  /// Maximum amount of steps that can be triggered in a second by a repeated stepper.
+  static const int _maxStepsASecond = 60;
+
+  /// Default amount of steps used by the stepper buttons and keyboard when there is no [stepSize].
+  static const int _defaultStepCount = 20;
+
+  /// Time it takes using a repeated step event to move from the min to max value.
+  static const Duration _totalValueRangeDuration = Duration(milliseconds: 2500);
+
+  /// Timing after which the slider is not considered recently edited anymore.
+  static const Duration _recentlyEditedTimeout = Duration(seconds: 2);
+
+  /// The default speed of animations.
+  static const Duration _defaultAnimationSpeed = Duration(milliseconds: 200);
+
+  /// The speed of the value animation.
+  static const Duration _valueAnimationSpeed = Duration(milliseconds: 80);
+
+  /// The delay before a stepper starts repeatedly triggering.
+  static const Duration _stepRepeatDelay = Duration(milliseconds: 600);
+
+  // endregion
+
+  // region Values
+
+  /// The effective [stepSize] used by the stepper buttons and keyboard.
+  double get _effectiveStepSize => widget.stepSize ?? ((widget.max - widget.min) / _defaultStepCount);
+
   /// Manages the [FocusNode] of the slider.
   late final YgControllerManager<FocusNode> _focusNodeManager = manageController(
     createController: () => FocusNode(),
@@ -118,14 +148,14 @@ class YgSliderWidgetState extends StateWithYgStateAndStyle<YgSlider, YgSliderSta
     vsync: this,
     value: _targetValue,
     curve: Curves.easeOut,
-    duration: const Duration(milliseconds: 80),
+    duration: _valueAnimationSpeed,
   );
 
   /// Animates the current value of the slider, displayed in the difference indicator.
   late final AnimationController _currentValueController = AnimationController.unbounded(
     vsync: this,
     value: widget.currentValue ?? 0,
-    duration: const Duration(milliseconds: 200),
+    duration: _defaultAnimationSpeed,
   );
 
   /// Timer which resets the recentlyEdited state to false when expired.
@@ -154,6 +184,7 @@ class YgSliderWidgetState extends StateWithYgStateAndStyle<YgSlider, YgSliderSta
   /// Used to prevent a rebuild causing a loss of focus.
   final Key _focusKey = GlobalKey();
 
+  // endregion
   @override
   YgSliderState createState() {
     return YgSliderState(
@@ -216,7 +247,7 @@ class YgSliderWidgetState extends StateWithYgStateAndStyle<YgSlider, YgSliderSta
         _currentValueController.animateTo(
           newCurrentValue,
           curve: Curves.easeInOut,
-          duration: const Duration(milliseconds: 200),
+          duration: _defaultAnimationSpeed,
         );
       }
     }
@@ -249,17 +280,15 @@ class YgSliderWidgetState extends StateWithYgStateAndStyle<YgSlider, YgSliderSta
     final double effectiveStepSize = _effectiveStepSize;
     final double steps = (widget.max - widget.min) / effectiveStepSize;
 
-    const Duration repeatDelay = Duration(milliseconds: 600);
-
-    const double minIntervalMs = 1000 / 30; // Assume 60 fps.
-    const int totalValueStepTransitionDuration = 3000;
-    final double baseStepIntervalMs = totalValueStepTransitionDuration / steps;
-    const double maxSteps = totalValueStepTransitionDuration / minIntervalMs;
+    final int totalValueRangeDurationMs = _totalValueRangeDuration.inMilliseconds;
+    const double minIntervalMs = 1000 / _maxStepsASecond;
+    final double baseStepIntervalMs = totalValueRangeDurationMs / steps;
+    final double maxSteps = totalValueRangeDurationMs / minIntervalMs;
 
     final int repeatedStepSizeMultiplier = (steps / maxSteps).ceil();
 
     final double repeatedStepSize = effectiveStepSize * repeatedStepSizeMultiplier;
-    final Duration interval = Duration(milliseconds: (baseStepIntervalMs / repeatedStepSizeMultiplier).round());
+    final Duration interval = Duration(milliseconds: (baseStepIntervalMs * repeatedStepSizeMultiplier).round());
 
     Widget content = RepaintBoundary(
       key: _contentKey,
@@ -300,7 +329,7 @@ class YgSliderWidgetState extends StateWithYgStateAndStyle<YgSlider, YgSliderSta
             },
             autoFocus: widget.autofocus,
             interval: interval,
-            repeatDelay: repeatDelay,
+            repeatDelay: _stepRepeatDelay,
             child: content,
           ),
         ),
@@ -318,7 +347,7 @@ class YgSliderWidgetState extends StateWithYgStateAndStyle<YgSlider, YgSliderSta
             editingChanged: _handleEditingChanged,
             disabled: !_canDecrease,
             interval: interval,
-            repeatDelay: repeatDelay,
+            repeatDelay: _stepRepeatDelay,
           ),
           Expanded(child: content),
           YgSliderRepeatingStepperButton(
@@ -329,7 +358,7 @@ class YgSliderWidgetState extends StateWithYgStateAndStyle<YgSlider, YgSliderSta
             ),
             editingChanged: _handleEditingChanged,
             interval: interval,
-            repeatDelay: repeatDelay,
+            repeatDelay: _stepRepeatDelay,
           ),
         ].withHorizontalSpacing(theme.stepperButtonsGap),
       );
@@ -347,8 +376,6 @@ class YgSliderWidgetState extends StateWithYgStateAndStyle<YgSlider, YgSliderSta
     );
   }
 
-  double get _effectiveStepSize => widget.stepSize ?? ((widget.max - widget.min) / 20);
-
   /// Update the slider based on a step event.
   void _handleStepUpdate(double newValue) {
     final double clampedValue = newValue.clamp(
@@ -360,7 +387,7 @@ class YgSliderWidgetState extends StateWithYgStateAndStyle<YgSlider, YgSliderSta
       state.recentlyEdited.value = true;
       _recentEditTimer?.cancel();
       _recentEditTimer = Timer(
-        const Duration(seconds: 2),
+        _recentlyEditedTimeout,
         _handleRecentEditTimeout,
       );
     }
@@ -425,15 +452,12 @@ class YgSliderWidgetState extends StateWithYgStateAndStyle<YgSlider, YgSliderSta
       widget.onChange?.call(newValue);
 
       if (!state.editing.value) {
-        print('change while not editing');
         widget.onEditingComplete?.call(newValue);
       }
     }
   }
 
   void _handleEditingChanged(bool editing) {
-    print('editing: $editing');
-
     if (editing == state.editing.value) {
       return;
     }
@@ -441,6 +465,7 @@ class YgSliderWidgetState extends StateWithYgStateAndStyle<YgSlider, YgSliderSta
     state.editing.value = editing;
     if (editing) {
       _recentEditTimer?.cancel();
+      _focusNodeManager.value.requestFocus();
 
       /// Ensure the difference indicator is not visible before changing its value.
       if (widget.currentValue == null &&
@@ -452,7 +477,7 @@ class YgSliderWidgetState extends StateWithYgStateAndStyle<YgSlider, YgSliderSta
       state.recentlyEdited.value = true;
       widget.onEditingComplete?.call(_targetValue);
       _recentEditTimer = Timer(
-        const Duration(seconds: 2),
+        _recentlyEditedTimeout,
         _handleRecentEditTimeout,
       );
     }
@@ -467,7 +492,7 @@ class YgSliderWidgetState extends StateWithYgStateAndStyle<YgSlider, YgSliderSta
       _currentValueController.animateTo(
         _valueController.value,
         curve: Curves.easeInOut,
-        duration: const Duration(milliseconds: 200),
+        duration: _defaultAnimationSpeed,
       );
     }
   }
