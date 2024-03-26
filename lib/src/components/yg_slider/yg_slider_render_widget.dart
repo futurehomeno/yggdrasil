@@ -1,3 +1,4 @@
+import 'dart:io';
 import 'dart:math' as math;
 
 import 'package:flutter/gestures.dart';
@@ -19,7 +20,6 @@ class YgSliderRenderWidget extends LeafRenderObjectWidget {
     required this.layerLink,
     required this.max,
     required this.min,
-    required this.stepSize,
   });
 
   final YgSliderStyle style;
@@ -31,11 +31,10 @@ class YgSliderRenderWidget extends LeafRenderObjectWidget {
   final LayerLink layerLink;
   final double min;
   final double max;
-  final double? stepSize;
 
   @override
   RenderObject createRenderObject(BuildContext context) {
-    return YgSliderRenderer(
+    return Dependencies(
       editingChanged: editingChanged,
       difference: currentValue,
       onChange: onChange,
@@ -46,12 +45,11 @@ class YgSliderRenderWidget extends LeafRenderObjectWidget {
       gestureSettings: MediaQuery.gestureSettingsOf(context),
       min: min,
       max: max,
-      stepSize: stepSize,
     );
   }
 
   @override
-  void updateRenderObject(BuildContext context, covariant YgSliderRenderer renderObject) {
+  void updateRenderObject(BuildContext context, covariant Dependencies renderObject) {
     renderObject.editingChanged = editingChanged;
     renderObject.currentValue = currentValue;
     renderObject.onChange = onChange;
@@ -62,12 +60,11 @@ class YgSliderRenderWidget extends LeafRenderObjectWidget {
     renderObject.gestureSettings = MediaQuery.gestureSettingsOf(context);
     renderObject.min = min;
     renderObject.max = max;
-    renderObject.stepSize = stepSize;
   }
 }
 
-class YgSliderRenderer extends RenderBox {
-  YgSliderRenderer({
+class Dependencies extends RenderBox {
+  Dependencies({
     required YgSliderStyle style,
     required Animation<double> value,
     required Animation<double> difference,
@@ -75,7 +72,6 @@ class YgSliderRenderer extends RenderBox {
     required LayerLink layerLink,
     required double min,
     required double max,
-    required this.stepSize,
     required this.onChange,
     required this.editingChanged,
     required this.state,
@@ -93,14 +89,17 @@ class YgSliderRenderer extends RenderBox {
       ..gestureSettings = gestureSettings;
   }
 
+  /// Whether the current platform is a mobile platform.
+  final bool _isMobile = Platform.isAndroid || Platform.isIOS;
+
+  /// The offset percentage used to calculate the new slider value.
   double? _initialValueOffset;
 
-  // region Values
+  // region Dependencies
 
   ValueChanged<double> onChange;
   ValueChanged<bool> editingChanged;
   YgSliderState state;
-  double? stepSize;
 
   double _min;
   double get min => _min;
@@ -212,6 +211,7 @@ class YgSliderRenderer extends RenderBox {
 
   @override
   void paint(PaintingContext context, Offset offset) {
+    /// Either create or update the [LeaderLayer] used to position the value indicator.
     if (layer == null) {
       layer = LeaderLayer(
         link: _layerLink,
@@ -224,6 +224,7 @@ class YgSliderRenderer extends RenderBox {
         ..offset = offset;
     }
 
+    /// Add the [LeaderLayer] to the current painting context.
     context.pushLayer(
       layer!,
       _paintSlider,
@@ -231,13 +232,14 @@ class YgSliderRenderer extends RenderBox {
     );
   }
 
+  /// Paints the slider on the [LeaderLayer].
   void _paintSlider(PaintingContext context, Offset offset) {
     final Canvas canvas = context.canvas;
 
     // Extract values.
     final EdgeInsets handlePadding = style.handlePadding.value;
-    final double value = _scaleDownValue(this.value.value);
-    final double currentValue = _scaleDownValue(this.currentValue.value);
+    final double value = _getPercentageFromValue(this.value.value);
+    final double currentValue = _getPercentageFromValue(this.currentValue.value);
 
     // Calculate handle dimensions.
     final double handleRadius = size.height / 2;
@@ -251,8 +253,8 @@ class YgSliderRenderer extends RenderBox {
     final Rect handleRect = Rect.fromCircle(center: handleOffset, radius: handleRadius);
     final Rect handleOuterRect = handlePadding.inflateRect(handleRect);
 
-    /// Needs to be done in this order because [_drawTracks] adds a clip to the
-    /// canvas.
+    /// [_drawTracks] needs to be painted last since it adds clipping to the
+    /// current painting context.
 
     _paintHandle(
       canvas: canvas,
@@ -363,24 +365,45 @@ class YgSliderRenderer extends RenderBox {
 
   // endregion
 
+  // region Gestures
+
   late final HorizontalDragGestureRecognizer _drag;
 
-  double _scaleDownValue(double value) => (value.clamp(_min, _max) - _min) / _range;
-  double _scaleUpValue(double value) => value * _range + _min;
-  double _getScaledDownValueFromOffset(Offset offset) => (offset.dx - (size.height / 2)) / (size.width - size.height);
+  /// Gets the slider percentage from a value.
+  double _getPercentageFromValue(double value) => (value.clamp(_min, _max) - _min) / _range;
+
+  /// Gets a value from a slider percentage.
+  double _getValueFromPercentage(double value) => value * _range + _min;
+
+  /// Gets a value from a drag offset.
+  double _getPercentageFromDragOffset(Offset offset) => (offset.dx - (size.height / 2)) / (size.width - size.height);
 
   void _handleDragStart(DragStartDetails details) {
     editingChanged(true);
-    final double scaledOffsetValue = _getScaledDownValueFromOffset(details.localPosition);
-    final double scaledValue = _scaleDownValue(_value.value);
-    _initialValueOffset ??= scaledValue - scaledOffsetValue;
+
+    final double scaledOffsetValue = _getPercentageFromDragOffset(details.localPosition);
+    if (_isMobile) {
+      // On mobile the value changes based on the drag delta, so we need an
+      // initial position to calculate the delta later.
+      final double scaledValue = _getPercentageFromValue(_value.value);
+      _initialValueOffset ??= scaledValue - scaledOffsetValue;
+    } else {
+      // For desktop / web we need an absolute position to calculate the value
+      // which we at this point already have, so we update the onChange callback.
+      final double scaledUpValue = _getValueFromPercentage(scaledOffsetValue);
+      onChange(scaledUpValue.clamp(_min, _max));
+    }
   }
 
   void _handleDragUpdate(DragUpdateDetails details) {
-    final double scaledDownValue = _getScaledDownValueFromOffset(details.localPosition);
+    // Because the current value can be locked to a specific step size, we can
+    // not use it together with delta to calculate a new value, because small
+    // delta changes could be entirely ignored if they are less than half of the
+    // step size. Instead we get value in percent and the current absolute position
+    // in percent and use these together to calculate the new actual value.
+    final double scaledDownValue = _getPercentageFromDragOffset(details.localPosition);
     final double actualScaledDownValue = scaledDownValue + (_initialValueOffset ?? 0);
-    final double newValue = _scaleUpValue(actualScaledDownValue);
-    final double? stepSize = this.stepSize;
+    final double newValue = _getValueFromPercentage(actualScaledDownValue);
 
     onChange(newValue.clamp(_min, _max));
   }
@@ -393,6 +416,7 @@ class YgSliderRenderer extends RenderBox {
   @override
   void handleEvent(PointerEvent event, covariant BoxHitTestEntry entry) {
     if (event is PointerDownEvent && !state.disabled.value) {
+      // We need to add the drag first so that it has priority.
       _drag.addPointer(event);
     }
     super.handleEvent(event, entry);
@@ -400,4 +424,6 @@ class YgSliderRenderer extends RenderBox {
 
   @override
   bool hitTestSelf(Offset position) => true;
+
+  // endregion
 }

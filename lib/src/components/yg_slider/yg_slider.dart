@@ -9,7 +9,6 @@ import 'package:yggdrasil/src/theme/slider/slider_theme.dart';
 import 'package:yggdrasil/src/utils/_utils.dart';
 import 'package:yggdrasil/yggdrasil.dart';
 
-import 'yg_conditional_do_nothing_action.dart';
 import 'yg_continuous_animation_controller.dart';
 import 'yg_slider_custom_key_repeat_listener.dart';
 import 'yg_slider_render_widget.dart';
@@ -107,12 +106,14 @@ class YgSlider extends StatefulWidget with StatefulWidgetDebugMixin {
 
 class YgSliderWidgetState extends StateWithYgStateAndStyle<YgSlider, YgSliderState, YgSliderStyle>
     with YgControllerManagerMixin {
+  /// Manages the [FocusNode] of the slider.
   late final YgControllerManager<FocusNode> _focusNodeManager = manageController(
     createController: () => FocusNode(),
     getUserController: () => widget.focusNode,
     listener: _focusChanged,
   );
 
+  /// Animates the value of the slider.
   late final YgContinuousAnimationController _valueController = YgContinuousAnimationController(
     vsync: this,
     value: _targetValue,
@@ -120,22 +121,38 @@ class YgSliderWidgetState extends StateWithYgStateAndStyle<YgSlider, YgSliderSta
     duration: const Duration(milliseconds: 80),
   );
 
+  /// Animates the current value of the slider, displayed in the difference indicator.
   late final AnimationController _currentValueController = AnimationController.unbounded(
     vsync: this,
     value: widget.currentValue ?? 0,
-    duration: const Duration(
-      milliseconds: 200,
-    ),
+    duration: const Duration(milliseconds: 200),
   );
 
-  final Key _contentKey = GlobalKey();
-  final Key _focusKey = GlobalKey();
-
+  /// Timer which resets the recentlyEdited state to false when expired.
   Timer? _recentEditTimer;
+
+  /// The actual value of the slider rather than the displayed value.
   late double _targetValue;
+
+  /// Whether the [_targetValue] can increase.
   late bool _canIncrease;
+
+  /// Whether the [_targetValue] can decrease.
   late bool _canDecrease;
+
+  /// [LayerLink] used to link the value indicator and the slider renderer together.
   final LayerLink _layerLink = LayerLink();
+
+  /// The key of the slider renderer repaint boundary.
+  ///
+  /// Prevents the slider renderer and repaint boundary from being recreated on
+  /// a rebuild which shifts the layout of the slider.
+  final Key _contentKey = GlobalKey();
+
+  /// The key of the focusable widget.
+  ///
+  /// Used to prevent a rebuild causing a loss of focus.
+  final Key _focusKey = GlobalKey();
 
   @override
   YgSliderState createState() {
@@ -231,8 +248,18 @@ class YgSliderWidgetState extends StateWithYgStateAndStyle<YgSlider, YgSliderSta
 
     final double effectiveStepSize = _effectiveStepSize;
     final double steps = (widget.max - widget.min) / effectiveStepSize;
-    final double intervalMs = 3000 / steps;
-    final Duration interval = Duration(milliseconds: intervalMs.clamp(75, 300).round());
+
+    const Duration repeatDelay = Duration(milliseconds: 600);
+
+    const double minIntervalMs = 1000 / 30; // Assume 60 fps.
+    const int totalValueStepTransitionDuration = 3000;
+    final double baseStepIntervalMs = totalValueStepTransitionDuration / steps;
+    const double maxSteps = totalValueStepTransitionDuration / minIntervalMs;
+
+    final int repeatedStepSizeMultiplier = (steps / maxSteps).ceil();
+
+    final double repeatedStepSize = effectiveStepSize * repeatedStepSizeMultiplier;
+    final Duration interval = Duration(milliseconds: (baseStepIntervalMs / repeatedStepSizeMultiplier).round());
 
     Widget content = RepaintBoundary(
       key: _contentKey,
@@ -246,7 +273,6 @@ class YgSliderWidgetState extends StateWithYgStateAndStyle<YgSlider, YgSliderSta
         layerLink: _layerLink,
         max: widget.max,
         min: widget.min,
-        stepSize: widget.stepSize,
       ),
     );
 
@@ -257,21 +283,24 @@ class YgSliderWidgetState extends StateWithYgStateAndStyle<YgSlider, YgSliderSta
         onExit: (_) => state.hovered.value = false,
         child: Actions(
           actions: <Type, Action<Intent>>{
-            DirectionalFocusIntent: YgConditionalDoNothingAction<DirectionalFocusIntent>(
-              condition: (DirectionalFocusIntent intent) =>
-                  intent.direction == TraversalDirection.left || intent.direction == TraversalDirection.right,
-            ),
+            // Prevent the arrow keys from triggering navigation actions.
+            DirectionalFocusIntent: DoNothingAction(),
           },
           child: YgSliderCustomKeyRepeatListener(
             key: _focusKey,
             onEditingChanged: _handleEditingChanged,
             focusNode: _focusNodeManager.value,
-            listeners: <LogicalKeyboardKey, VoidCallback>{
-              LogicalKeyboardKey.arrowLeft: () => _handleStepUpdate(_targetValue - effectiveStepSize),
-              LogicalKeyboardKey.arrowRight: () => _handleStepUpdate(_targetValue + effectiveStepSize),
+            listeners: <LogicalKeyboardKey, RepeatableCallback>{
+              LogicalKeyboardKey.arrowLeft: ({required bool repeat}) => _handleStepUpdate(
+                    _targetValue - (repeat ? repeatedStepSize : effectiveStepSize),
+                  ),
+              LogicalKeyboardKey.arrowRight: ({required bool repeat}) => _handleStepUpdate(
+                    _targetValue + (repeat ? repeatedStepSize : effectiveStepSize),
+                  ),
             },
             autoFocus: widget.autofocus,
             interval: interval,
+            repeatDelay: repeatDelay,
             child: content,
           ),
         ),
@@ -283,18 +312,24 @@ class YgSliderWidgetState extends StateWithYgStateAndStyle<YgSlider, YgSliderSta
         children: <Widget>[
           YgSliderRepeatingStepperButton(
             icon: YgIcons.minus,
-            onTrigger: () => _handleStepUpdate(_targetValue - effectiveStepSize),
+            onTrigger: ({required bool repeat}) => _handleStepUpdate(
+              _targetValue - (repeat ? repeatedStepSize : effectiveStepSize),
+            ),
             editingChanged: _handleEditingChanged,
             disabled: !_canDecrease,
             interval: interval,
+            repeatDelay: repeatDelay,
           ),
           Expanded(child: content),
           YgSliderRepeatingStepperButton(
             icon: YgIcons.plus,
             disabled: !_canIncrease,
-            onTrigger: () => _handleStepUpdate(_targetValue + effectiveStepSize),
+            onTrigger: ({required bool repeat}) => _handleStepUpdate(
+              _targetValue + (repeat ? repeatedStepSize : effectiveStepSize),
+            ),
             editingChanged: _handleEditingChanged,
             interval: interval,
+            repeatDelay: repeatDelay,
           ),
         ].withHorizontalSpacing(theme.stepperButtonsGap),
       );
@@ -314,6 +349,7 @@ class YgSliderWidgetState extends StateWithYgStateAndStyle<YgSlider, YgSliderSta
 
   double get _effectiveStepSize => widget.stepSize ?? ((widget.max - widget.min) / 20);
 
+  /// Update the slider based on a step event.
   void _handleStepUpdate(double newValue) {
     final double clampedValue = newValue.clamp(
       widget.min,
@@ -338,6 +374,7 @@ class YgSliderWidgetState extends StateWithYgStateAndStyle<YgSlider, YgSliderSta
     _updateTargetValue(clampedValue);
   }
 
+  /// Update the slider based on a drag event.
   void _handleDragUpdate(double newValue) {
     final double clampedValue = newValue.clamp(
       widget.min,
@@ -347,7 +384,7 @@ class YgSliderWidgetState extends StateWithYgStateAndStyle<YgSlider, YgSliderSta
     final double? stepSize = widget.stepSize;
 
     if (stepSize == null) {
-      _valueController.value = clampedValue;
+      _valueController.jumpTo(clampedValue);
       _updateTargetValue(clampedValue);
     } else {
       final double targetValue = ((clampedValue / stepSize).round() * stepSize);
@@ -362,13 +399,9 @@ class YgSliderWidgetState extends StateWithYgStateAndStyle<YgSlider, YgSliderSta
     }
   }
 
+  /// Update the slider based on the widget value being updated.
   void _handleWidgetUpdate(double newValue) {
-    _valueController.update(
-      currentValue: newValue,
-      targetValue: newValue,
-      maxDifference: double.infinity,
-    );
-
+    _valueController.animateTo(newValue);
     _updateTargetValue(newValue, isRebuilding: true);
   }
 
@@ -392,20 +425,15 @@ class YgSliderWidgetState extends StateWithYgStateAndStyle<YgSlider, YgSliderSta
       widget.onChange?.call(newValue);
 
       if (!state.editing.value) {
+        print('change while not editing');
         widget.onEditingComplete?.call(newValue);
       }
     }
   }
 
-  void _maybeUpdateCurrentValue() {
-    if (widget.currentValue == null &&
-        widget.differenceIndicator &&
-        style.differenceIndicatorColor.value.opacity == 0.0) {
-      _currentValueController.value = _valueController.value;
-    }
-  }
-
   void _handleEditingChanged(bool editing) {
+    print('editing: $editing');
+
     if (editing == state.editing.value) {
       return;
     }
@@ -413,8 +441,13 @@ class YgSliderWidgetState extends StateWithYgStateAndStyle<YgSlider, YgSliderSta
     state.editing.value = editing;
     if (editing) {
       _recentEditTimer?.cancel();
-      _updateIncreasingState();
-      _maybeUpdateCurrentValue();
+
+      /// Ensure the difference indicator is not visible before changing its value.
+      if (widget.currentValue == null &&
+          widget.differenceIndicator &&
+          style.differenceIndicatorColor.value.opacity == 0.0) {
+        _currentValueController.value = _valueController.value;
+      }
     } else {
       state.recentlyEdited.value = true;
       widget.onEditingComplete?.call(_targetValue);

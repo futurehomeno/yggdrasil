@@ -40,6 +40,7 @@ class YgSliderStyle extends YgStyle<YgSliderState> {
     }
 
     if (state.focused.value) {
+      // TODO(Tim): Remove this before merging.
       // return _theme.handleFocusColor;
       return Colors.red;
     }
@@ -94,6 +95,7 @@ class YgSliderStyle extends YgStyle<YgSliderState> {
   YgSliderTheme get _theme => context.sliderTheme;
 }
 
+// TODO(DEV-1915): Remove this when theme extensions can extend interfaces
 class _YgSliderVariantTheme {
   const _YgSliderVariantTheme({
     required this.trackIncreasingColor,

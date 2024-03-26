@@ -50,8 +50,8 @@ class _SliderScreenState extends State<SliderScreen> {
           YgSection(
             title: 'With value indicator',
             child: YgSlider(
-              max: 100,
-              value: _valueIndicatorValue,
+              // max: 100,
+              value: _defaultValue,
               valueIndicator: true,
               onEditingComplete: (double newValue) => setState(
                 () => _valueIndicatorValue = newValue,
@@ -117,7 +117,7 @@ class _SliderScreenState extends State<SliderScreen> {
               differenceIndicator: true,
               valueIndicator: true,
               stepper: true,
-              stepSize: 0.25,
+              stepSize: 0.01,
               onEditingComplete: (double newValue) => setState(
                 () => _stepperValue = newValue,
               ),

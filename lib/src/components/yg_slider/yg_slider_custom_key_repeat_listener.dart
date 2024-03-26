@@ -2,6 +2,7 @@ import 'dart:async';
 
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:yggdrasil/src/components/yg_slider/yg_slider_repeating_stepper_button.dart';
 
 class YgSliderCustomKeyRepeatListener extends StatefulWidget {
   const YgSliderCustomKeyRepeatListener({
@@ -12,14 +13,16 @@ class YgSliderCustomKeyRepeatListener extends StatefulWidget {
     required this.autoFocus,
     required this.interval,
     required this.onEditingChanged,
+    required this.repeatDelay,
   });
 
-  final Map<LogicalKeyboardKey, VoidCallback> listeners;
+  final Map<LogicalKeyboardKey, RepeatableCallback> listeners;
   final FocusNode focusNode;
   final Widget child;
   final bool autoFocus;
   final Duration interval;
   final ValueChanged<bool> onEditingChanged;
+  final Duration repeatDelay;
 
   @override
   State<YgSliderCustomKeyRepeatListener> createState() => _YgSliderCustomKeyRepeatListenerState();
@@ -87,36 +90,42 @@ class _YgSliderCustomKeyRepeatListenerState extends State<YgSliderCustomKeyRepea
   }
 
   void _handleKey(RawKeyEvent event) {
+    if (event.repeat) {
+      return;
+    }
+
     final LogicalKeyboardKey key = event.logicalKey;
-    final VoidCallback? listener = widget.listeners[key];
+    final RepeatableCallback? listener = widget.listeners[key];
 
     if (listener == null) {
       return;
     }
 
     if (event is RawKeyDownEvent) {
-      listener();
+      listener(repeat: false);
 
-      if (_keyTimerMap.containsKey(key) || event.repeat) {
+      if (_keyTimerMap.containsKey(key)) {
         return;
       }
 
       _keyTimerMap[key] = Timer(
-        const Duration(seconds: 1),
+        widget.repeatDelay,
         // ignore: prefer-extracting-callbacks
         () {
-          listener();
+          listener(repeat: true);
           _keyTimerMap[key] = Timer.periodic(
             widget.interval,
             // ignore: prefer-extracting-callbacks
             (Timer timer) {
-              listener();
+              listener(repeat: true);
             },
           );
         },
       );
     }
     if (event is RawKeyUpEvent) {
+      print('upppppppp');
+      print(event);
       _keyTimerMap.remove(key)?.cancel();
     }
     _updateEditing();

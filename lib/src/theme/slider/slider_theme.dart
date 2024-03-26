@@ -206,4 +206,18 @@ class _$YgSliderTheme {
     Curves.easeInOut,
     Curves.easeInOut,
   ];
+
+  static const List<Duration> sliderChangeTotalDurationTarget = <Duration>[
+    Duration(seconds: 3),
+    Duration(seconds: 3),
+    Duration(seconds: 3),
+    Duration(seconds: 3),
+  ];
+
+  static const List<Duration> recentlyEditedDuration = <Duration>[
+    Duration(seconds: 2),
+    Duration(seconds: 2),
+    Duration(seconds: 2),
+    Duration(seconds: 2),
+  ];
 }
