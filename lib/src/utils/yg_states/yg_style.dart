@@ -5,11 +5,15 @@ import 'package:yggdrasil/src/utils/_utils.dart';
 
 /// Simplifies animating or driving properties.
 ///
-/// Primarily used to clean up the use of [YgProperty]. Using [YgStyle.animate]
-/// or [YgStyle.drive] instead of [YgProperty.animate] or [YgProperty.drive] has
-/// the advantage that the style will provide the [state], [_vsync],
-/// [duration] and [curve]. The style also disposes of the properties for you when
-/// the style is disposed.
+/// Should be extended to create custom style classes for a widget.
+///
+/// Allows you to animate or drive resolver methods directly instead of having
+/// to manually create and keep track of [YgProperty] classes.
+///
+/// Provides [state] and [context] on the class it self rather than passing it
+/// to the resolvers.
+///
+/// Notifies its listeners if any of the properties update.
 abstract class YgStyle<T extends YgState> extends ChangeNotifier {
   YgStyle({
     required this.state,

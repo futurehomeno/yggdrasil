@@ -1,5 +1,9 @@
 part of '_yg_controller_manager.dart';
 
+/// Implementation of [YgControllerManager].
+///
+/// Split in to a separate file to not expose the dispose method which is
+/// handled internally by [YgControllerManagerMixin].
 class _YgControllerManagerInternal<S, T extends Listenable> extends YgControllerManager<T> {
   _YgControllerManagerInternal({
     required S state,
@@ -9,9 +13,15 @@ class _YgControllerManagerInternal<S, T extends Listenable> extends YgController
   })  : _state = state,
         _listener = listener,
         _getUserController = getUserController,
-        _createController = createController,
-        _controller = getUserController() ?? createController(),
-        _wasNull = getUserController() == null {
+        _createController = createController {
+    final T? userController = getUserController();
+    if (userController == null) {
+      _wasNull = true;
+      _controller = createController();
+    } else {
+      _controller = userController;
+    }
+
     final T controller = _controller;
     final VoidCallback? listener = this._listener;
     if (listener != null) {
@@ -27,8 +37,8 @@ class _YgControllerManagerInternal<S, T extends Listenable> extends YgController
   final T? Function() _getUserController;
   final VoidCallback? _listener;
 
-  T _controller;
-  bool _wasNull;
+  late T _controller;
+  late bool _wasNull;
 
   @override
   T get value => _controller;
@@ -54,7 +64,7 @@ class _YgControllerManagerInternal<S, T extends Listenable> extends YgController
       controller.attach(_state);
     }
     if (listener != null) {
-      _controller.removeListener(listener);
+      controller.removeListener(listener);
       newController.addListener(listener);
     }
     _controller = newController;
