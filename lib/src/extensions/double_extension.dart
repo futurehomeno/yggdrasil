@@ -3,7 +3,7 @@ extension DoubleExtension on double {
   int get precision {
     final String string = (this % 1).toString();
 
-    if (string.length == 3 && string[2] == '0') {
+    if ((string.length == 3 && string[2] == '0') || string.length == 1) {
       return 0;
     }
 

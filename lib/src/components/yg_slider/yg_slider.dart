@@ -112,7 +112,7 @@ class YgSliderWidgetState extends StateWithYgStateAndStyle<YgSlider, YgSliderSta
   static const int _maxStepsASecond = 60;
 
   /// Default amount of steps used by the stepper buttons and keyboard when there is no [stepSize].
-  static const int _defaultStepCount = 20;
+  static const int _defaultStepCount = 100;
 
   /// Time it takes using a repeated step event to move from the min to max value.
   static const Duration _totalValueRangeDuration = Duration(milliseconds: 2500);
@@ -395,7 +395,7 @@ class YgSliderWidgetState extends StateWithYgStateAndStyle<YgSlider, YgSliderSta
     _valueController.update(
       currentValue: clampedValue,
       targetValue: clampedValue,
-      maxDifference: _effectiveStepSize / 2,
+      maxDifference: _effectiveStepSize,
     );
 
     _updateTargetValue(clampedValue);

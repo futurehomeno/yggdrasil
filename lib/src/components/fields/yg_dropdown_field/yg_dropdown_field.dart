@@ -1,5 +1,4 @@
 import 'dart:async';
-import 'dart:io';
 
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
@@ -474,7 +473,7 @@ abstract class YgDropdownFieldWidgetState<T extends Object, W extends YgDropdown
   void _performPlatformAction({
     required bool picker,
   }) {
-    if (!(Platform.isAndroid || Platform.isIOS)) {
+    if (!YgConsts.isMobile) {
       openMenu();
     } else if (picker) {
       openPickerBottomSheet();

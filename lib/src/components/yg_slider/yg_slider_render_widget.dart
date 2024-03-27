@@ -1,9 +1,9 @@
-import 'dart:io';
 import 'dart:math' as math;
 
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
+import 'package:yggdrasil/src/utils/_utils.dart';
 
 import 'yg_slider_state.dart';
 import 'yg_slider_style.dart';
@@ -88,9 +88,6 @@ class Dependencies extends RenderBox {
       ..onCancel = _handleDragEnd
       ..gestureSettings = gestureSettings;
   }
-
-  /// Whether the current platform is a mobile platform.
-  final bool _isMobile = Platform.isAndroid || Platform.isIOS;
 
   /// The offset percentage used to calculate the new slider value.
   double? _initialValueOffset;
@@ -382,7 +379,7 @@ class Dependencies extends RenderBox {
     editingChanged(true);
 
     final double scaledOffsetValue = _getPercentageFromDragOffset(details.localPosition);
-    if (_isMobile) {
+    if (YgConsts.isMobile) {
       // On mobile the value changes based on the drag delta, so we need an
       // initial position to calculate the delta later.
       final double scaledValue = _getPercentageFromValue(_value.value);

@@ -117,6 +117,7 @@ class YgContinuousAnimationController extends Animation<double> with ChangeNotif
       _to = targetValue;
       _lastUpdate = _lastTick;
       _updateStatus(AnimationStatus.forward);
+      _from = _value;
     }
 
     _from = _from.clamp(
