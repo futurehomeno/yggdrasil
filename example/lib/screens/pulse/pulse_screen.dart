@@ -28,10 +28,15 @@ class _PulseScreenState extends State<PulseScreen> {
       componentName: 'Pulse',
       child: Column(
         children: <Widget>[
-          YgPulse(enabled: enabled),
-          YgButton(
-            child: const Text('Toggle'),
-            onPressed: () => setState(() => enabled ^= true),
+          YgSection.column(
+            title: 'Default pulse widget',
+            children: <Widget>[
+              YgPulse(enabled: enabled),
+              YgButton(
+                child: const Text('Toggle'),
+                onPressed: () => setState(() => enabled ^= true),
+              ),
+            ].withVerticalSpacing(20),
           ),
         ],
       ),

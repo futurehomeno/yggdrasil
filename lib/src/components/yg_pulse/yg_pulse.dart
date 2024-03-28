@@ -3,46 +3,56 @@ import 'package:flutter/scheduler.dart';
 import 'package:yggdrasil/src/theme/_theme.dart';
 import 'package:yggdrasil/src/utils/_utils.dart';
 
+/// Yggdrasil Pulse implementation.
 class YgPulse extends LeafRenderObjectWidget {
   const YgPulse({
     super.key,
     required this.enabled,
   });
 
+  /// Whether new pulses should be added.
   final bool enabled;
 
   @override
   RenderObject createRenderObject(BuildContext context) {
-    return YgPulseRenderer(
+    return _YgPulseRenderer(
       theme: context.pulseTheme,
       enabled: enabled,
     );
   }
 
   @override
-  void updateRenderObject(BuildContext context, covariant YgPulseRenderer renderObject) {
+  // ignore: library_private_types_in_public_api
+  void updateRenderObject(BuildContext context, covariant _YgPulseRenderer renderObject) {
     renderObject.theme = context.pulseTheme;
     renderObject.enabled = enabled;
   }
 }
 
-class YgPulseRenderer extends RenderBox with YgRenderObjectDebugPainterMixin {
-  YgPulseRenderer({
+class _YgPulseRenderer extends RenderBox with YgRenderObjectDebugPainterMixin {
+  _YgPulseRenderer({
     required this.theme,
     required bool enabled,
   }) : _enabled = enabled {
     if (enabled) {
-      _addPulse(SchedulerBinding.instance.currentFrameTimeStamp);
+      _pulses.add(SchedulerBinding.instance.currentFrameTimeStamp);
       _scheduleFrame();
     }
   }
 
+  YgPulseTheme theme;
+
+  // Prevent the repaint from bubbling up the widget tree.
   @override
   final bool isRepaintBoundary = true;
-  YgPulseTheme theme;
+
+  /// Timestamps of when all the currently rendered pulses where added.
   final List<Duration> _pulses = <Duration>[];
-  Duration? _lastPulse;
-  bool _frameScheduled = false;
+
+  /// The id of the currently scheduled frame callback.
+  int? _frameCallbackId;
+
+  /// Whether the pulse was enabled in the last frame.
   bool _enabledInLastFrame = false;
 
   bool _enabled;
@@ -50,38 +60,46 @@ class YgPulseRenderer extends RenderBox with YgRenderObjectDebugPainterMixin {
   set enabled(bool newEnabled) {
     if (_enabled != newEnabled) {
       _enabled = newEnabled;
-      if (newEnabled && !_frameScheduled) {
+      if (newEnabled && _frameCallbackId == null) {
         _scheduleFrame();
       }
     }
   }
 
+  @override
+  void detach() {
+    final int? frameCallbackId = _frameCallbackId;
+    if (frameCallbackId != null) {
+      SchedulerBinding.instance.cancelFrameCallbackWithId(frameCallbackId);
+    }
+
+    super.detach();
+  }
+
   void _onFrame(Duration timestamp) {
+    _frameCallbackId = null;
+
     // Remove all pulses that have completed.
     _pulses.removeWhere((Duration pulse) {
-      final Duration timeSincePulseAdded = timestamp - pulse;
-      final double progress = timeSincePulseAdded.inMilliseconds / theme.pulseDuration.inMilliseconds;
-
-      return progress > 1;
+      return (timestamp - pulse).inMilliseconds / theme.pulseDuration.inMilliseconds > 1;
     });
 
     if (_enabled) {
-      final Duration? lastPulse = _lastPulse;
+      final Duration? lastPulse = _pulses.lastOrNull;
       // If the last pulse was longer ago than the pulse interval add new pulse.
       if (lastPulse == null || lastPulse <= timestamp - theme.pulseInterval) {
         // If the pulse was enabled in the last frame we can assume the last
         // pulse expired in between the current and last frame.
         if (_enabledInLastFrame && lastPulse != null) {
           /// Ensure the new pulse is shown exactly 1 second later.
-          _addPulse(lastPulse + theme.pulseInterval);
+          _pulses.add(lastPulse + theme.pulseInterval);
         } else {
-          _addPulse(timestamp);
+          _pulses.add(timestamp);
         }
       }
     }
 
-    _frameScheduled = _pulses.isNotEmpty;
-    if (_frameScheduled) {
+    if (_pulses.isNotEmpty) {
       _scheduleFrame();
     }
 
@@ -90,12 +108,7 @@ class YgPulseRenderer extends RenderBox with YgRenderObjectDebugPainterMixin {
   }
 
   void _scheduleFrame() {
-    SchedulerBinding.instance.scheduleFrameCallback(_onFrame);
-  }
-
-  void _addPulse(Duration timestamp) {
-    _lastPulse = timestamp;
-    _pulses.add(timestamp);
+    _frameCallbackId = SchedulerBinding.instance.scheduleFrameCallback(_onFrame);
   }
 
   @override
@@ -111,10 +124,7 @@ class YgPulseRenderer extends RenderBox with YgRenderObjectDebugPainterMixin {
       final Duration timestamp = SchedulerBinding.instance.currentFrameTimeStamp;
       final int pulseDurationMs = theme.pulseDuration.inMilliseconds;
       for (final Duration pulse in _pulses) {
-        final int timeSincePulseAddedMs = (timestamp - pulse).inMilliseconds;
-        final double linearProgress = timeSincePulseAddedMs / pulseDurationMs;
-
-        // Should not happen, but just in case skin rendering if progress is to high.
+        final double linearProgress = (timestamp - pulse).inMilliseconds / pulseDurationMs;
         if (linearProgress > 1) {
           continue;
         }
