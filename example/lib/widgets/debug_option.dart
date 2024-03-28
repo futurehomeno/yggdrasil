@@ -22,7 +22,7 @@ class DebugOption extends StatelessWidget {
     return YgCheckboxListTile(
       title: title,
       subtitle: subtitle,
-      value: YgDebug.isEnabled(type: type),
+      value: YgDebug.isEnabled(type),
       onChanged: (_) => _toggleDebug(context),
       leadingWidget: Container(
         decoration: BoxDecoration(

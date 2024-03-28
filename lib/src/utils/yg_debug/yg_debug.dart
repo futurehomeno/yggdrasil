@@ -36,7 +36,7 @@ abstract class YgDebug extends SingleChildRenderObjectWidget {
   // ignore: prefer_final_fields
   static Set<YgDebugType> _enabledDebugTypes = <YgDebugType>{};
 
-  static bool isEnabled({YgDebugType? type}) {
+  static bool isEnabled([YgDebugType? type]) {
     if (type != null) {
       return _enabledDebugTypes.contains(type);
     }

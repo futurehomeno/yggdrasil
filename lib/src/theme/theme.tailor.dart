@@ -31,6 +31,7 @@ class YgTheme extends ThemeExtension<YgTheme> {
     required this.mobileScannerContainerTheme,
     required this.pickerTheme,
     required this.progressIndicatorTheme,
+    required this.pulseTheme,
     required this.radioTheme,
     required this.sectionTheme,
     required this.segmentedButtonTheme,
@@ -66,6 +67,7 @@ class YgTheme extends ThemeExtension<YgTheme> {
   final YgMobileScannerContainerTheme mobileScannerContainerTheme;
   final YgPickerTheme pickerTheme;
   final YgProgressIndicatorTheme progressIndicatorTheme;
+  final YgPulseTheme pulseTheme;
   final YgRadioTheme radioTheme;
   final YgSectionTheme sectionTheme;
   final YgSegmentedButtonTheme segmentedButtonTheme;
@@ -101,6 +103,7 @@ class YgTheme extends ThemeExtension<YgTheme> {
     mobileScannerContainerTheme: _$YgTheme.mobileScannerContainerTheme[0],
     pickerTheme: _$YgTheme.pickerTheme[0],
     progressIndicatorTheme: _$YgTheme.progressIndicatorTheme[0],
+    pulseTheme: _$YgTheme.pulseTheme[0],
     radioTheme: _$YgTheme.radioTheme[0],
     sectionTheme: _$YgTheme.sectionTheme[0],
     segmentedButtonTheme: _$YgTheme.segmentedButtonTheme[0],
@@ -137,6 +140,7 @@ class YgTheme extends ThemeExtension<YgTheme> {
     mobileScannerContainerTheme: _$YgTheme.mobileScannerContainerTheme[1],
     pickerTheme: _$YgTheme.pickerTheme[1],
     progressIndicatorTheme: _$YgTheme.progressIndicatorTheme[1],
+    pulseTheme: _$YgTheme.pulseTheme[1],
     radioTheme: _$YgTheme.radioTheme[1],
     sectionTheme: _$YgTheme.sectionTheme[1],
     segmentedButtonTheme: _$YgTheme.segmentedButtonTheme[1],
@@ -173,6 +177,7 @@ class YgTheme extends ThemeExtension<YgTheme> {
     mobileScannerContainerTheme: _$YgTheme.mobileScannerContainerTheme[2],
     pickerTheme: _$YgTheme.pickerTheme[2],
     progressIndicatorTheme: _$YgTheme.progressIndicatorTheme[2],
+    pulseTheme: _$YgTheme.pulseTheme[2],
     radioTheme: _$YgTheme.radioTheme[2],
     sectionTheme: _$YgTheme.sectionTheme[2],
     segmentedButtonTheme: _$YgTheme.segmentedButtonTheme[2],
@@ -209,6 +214,7 @@ class YgTheme extends ThemeExtension<YgTheme> {
     mobileScannerContainerTheme: _$YgTheme.mobileScannerContainerTheme[3],
     pickerTheme: _$YgTheme.pickerTheme[3],
     progressIndicatorTheme: _$YgTheme.progressIndicatorTheme[3],
+    pulseTheme: _$YgTheme.pulseTheme[3],
     radioTheme: _$YgTheme.radioTheme[3],
     sectionTheme: _$YgTheme.sectionTheme[3],
     segmentedButtonTheme: _$YgTheme.segmentedButtonTheme[3],
@@ -253,6 +259,7 @@ class YgTheme extends ThemeExtension<YgTheme> {
     YgMobileScannerContainerTheme? mobileScannerContainerTheme,
     YgPickerTheme? pickerTheme,
     YgProgressIndicatorTheme? progressIndicatorTheme,
+    YgPulseTheme? pulseTheme,
     YgRadioTheme? radioTheme,
     YgSectionTheme? sectionTheme,
     YgSegmentedButtonTheme? segmentedButtonTheme,
@@ -290,6 +297,7 @@ class YgTheme extends ThemeExtension<YgTheme> {
       pickerTheme: pickerTheme ?? this.pickerTheme,
       progressIndicatorTheme:
           progressIndicatorTheme ?? this.progressIndicatorTheme,
+      pulseTheme: pulseTheme ?? this.pulseTheme,
       radioTheme: radioTheme ?? this.radioTheme,
       sectionTheme: sectionTheme ?? this.sectionTheme,
       segmentedButtonTheme: segmentedButtonTheme ?? this.segmentedButtonTheme,
@@ -339,6 +347,7 @@ class YgTheme extends ThemeExtension<YgTheme> {
       pickerTheme: pickerTheme.lerp(other.pickerTheme, t) as YgPickerTheme,
       progressIndicatorTheme: progressIndicatorTheme.lerp(
           other.progressIndicatorTheme, t) as YgProgressIndicatorTheme,
+      pulseTheme: pulseTheme.lerp(other.pulseTheme, t) as YgPulseTheme,
       radioTheme: radioTheme.lerp(other.radioTheme, t) as YgRadioTheme,
       sectionTheme: sectionTheme.lerp(other.sectionTheme, t) as YgSectionTheme,
       segmentedButtonTheme: segmentedButtonTheme.lerp(
@@ -404,6 +413,8 @@ class YgTheme extends ThemeExtension<YgTheme> {
             const DeepCollectionEquality()
                 .equals(progressIndicatorTheme, other.progressIndicatorTheme) &&
             const DeepCollectionEquality()
+                .equals(pulseTheme, other.pulseTheme) &&
+            const DeepCollectionEquality()
                 .equals(radioTheme, other.radioTheme) &&
             const DeepCollectionEquality()
                 .equals(sectionTheme, other.sectionTheme) &&
@@ -451,6 +462,7 @@ class YgTheme extends ThemeExtension<YgTheme> {
       const DeepCollectionEquality().hash(mobileScannerContainerTheme),
       const DeepCollectionEquality().hash(pickerTheme),
       const DeepCollectionEquality().hash(progressIndicatorTheme),
+      const DeepCollectionEquality().hash(pulseTheme),
       const DeepCollectionEquality().hash(radioTheme),
       const DeepCollectionEquality().hash(sectionTheme),
       const DeepCollectionEquality().hash(segmentedButtonTheme),
@@ -492,6 +504,7 @@ extension YgThemeBuildContextProps on BuildContext {
   YgPickerTheme get pickerTheme => ygTheme.pickerTheme;
   YgProgressIndicatorTheme get progressIndicatorTheme =>
       ygTheme.progressIndicatorTheme;
+  YgPulseTheme get pulseTheme => ygTheme.pulseTheme;
   YgRadioTheme get radioTheme => ygTheme.radioTheme;
   YgSectionTheme get sectionTheme => ygTheme.sectionTheme;
   YgSegmentedButtonTheme get segmentedButtonTheme =>

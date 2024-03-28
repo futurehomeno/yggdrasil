@@ -1,3 +1,5 @@
+// ignore_for_file: avoid-unrelated-type-assertions, invalid_use_of_protected_member
+
 import 'package:flutter/rendering.dart';
 
 import '_yg_debug.dart';
@@ -12,14 +14,12 @@ mixin YgRenderObjectDebugPainterMixin on RenderObject {
       return;
     }
 
-    if (isDebuggingToggled() != isDebuggingToggled(newType) && attached) {
+    if (YgDebug.isEnabled(type) != YgDebug.isEnabled(newType) && attached) {
       markNeedsPaint();
     }
 
     _type = newType;
   }
-
-  bool isDebuggingToggled([YgDebugType? type]) => YgDebug.isEnabled(type: type ?? _type);
 
   static final Paint _layoutPaint = Paint()
     ..color = const Color(0x800080ff)
@@ -39,7 +39,7 @@ mixin YgRenderObjectDebugPainterMixin on RenderObject {
     ..strokeWidth = 2
     ..strokeCap = StrokeCap.square;
 
-  void paintYgDebug({
+  void _paintYgDebug({
     required PaintingContext context,
     required Offset offset,
     required Size size,
@@ -59,5 +59,21 @@ mixin YgRenderObjectDebugPainterMixin on RenderObject {
     };
 
     context.canvas.drawPath(path, paint);
+  }
+
+  @override
+  void paint(PaintingContext context, Offset offset) {
+    if (YgDebug.isEnabled(type)) {
+      _paintYgDebug(
+        context: context,
+        offset: offset,
+        size: switch (this) {
+          RenderBox(:final Size size) => size,
+          RenderSliver(:final Size Function() getAbsoluteSize) => getAbsoluteSize(),
+          _ => Size.zero,
+        },
+      );
+    }
+    super.paint(context, offset);
   }
 }

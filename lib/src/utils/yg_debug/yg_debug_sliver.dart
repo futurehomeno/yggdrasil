@@ -19,7 +19,6 @@ class _YgDebugSliver extends YgDebug {
   }
 
   @override
-  // ignore: library_private_types_in_public_api
   void updateRenderObject(BuildContext context, covariant _YgDebugSliverChild renderObject) {
     renderObject.type = type;
     super.updateRenderObject(context, renderObject);
@@ -31,30 +30,5 @@ class _YgDebugSliverChild extends RenderProxySliver with YgRenderObjectDebugPain
     required YgDebugType type,
   }) {
     this.type = type;
-  }
-
-  @override
-  void paint(
-    PaintingContext context,
-    Offset offset,
-  ) {
-    final RenderSliver? child = this.child;
-
-    if (child == null) {
-      return;
-    }
-
-    // We always first draw the child.
-    context.paintChild(child, offset);
-
-    if (isDebuggingToggled()) {
-      final Size size = getAbsoluteSize();
-
-      paintYgDebug(
-        context: context,
-        offset: offset,
-        size: size,
-      );
-    }
   }
 }
