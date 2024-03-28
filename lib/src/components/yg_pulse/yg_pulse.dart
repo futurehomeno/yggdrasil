@@ -42,7 +42,7 @@ class _YgPulseRenderer extends RenderBox with YgRenderObjectDebugPainterMixin {
 
   YgPulseTheme theme;
 
-  // Prevent the repaint from bubbling up the widget tree.
+  // Prevent the repaint from moving up the widget tree.
   @override
   final bool isRepaintBoundary = true;
 
