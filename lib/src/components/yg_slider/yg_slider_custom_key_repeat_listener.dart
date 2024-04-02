@@ -51,7 +51,7 @@ class _YgSliderCustomKeyRepeatListenerState extends State<YgSliderCustomKeyRepea
 
   @override
   Widget build(BuildContext context) {
-    return RawKeyboardListener(
+    return Focus(
       focusNode: widget.focusNode,
       onKey: _handleKey,
       autofocus: widget.autoFocus,
@@ -93,23 +93,23 @@ class _YgSliderCustomKeyRepeatListenerState extends State<YgSliderCustomKeyRepea
     }
   }
 
-  void _handleKey(RawKeyEvent event) {
-    if (event.repeat) {
-      return;
-    }
-
+  KeyEventResult _handleKey(FocusNode focusNode, RawKeyEvent event) {
     final LogicalKeyboardKey key = event.logicalKey;
     final RepeatableCallback? listener = widget.listeners[key];
 
     if (listener == null) {
-      return;
+      return KeyEventResult.ignored;
+    }
+
+    if (event.repeat) {
+      return KeyEventResult.skipRemainingHandlers;
     }
 
     if (event is RawKeyDownEvent) {
       listener(repeat: false);
 
       if (_keyTimerMap.containsKey(key)) {
-        return;
+        return KeyEventResult.handled;
       }
 
       _keyTimerMap[key] = Timer(
@@ -131,6 +131,8 @@ class _YgSliderCustomKeyRepeatListenerState extends State<YgSliderCustomKeyRepea
       _keyTimerMap.remove(key)?.cancel();
     }
     _updateEditing();
+
+    return KeyEventResult.handled;
   }
 
   void _updateEditing() {

@@ -177,7 +177,7 @@ class YgSliderWidgetState extends StateWithYgStateAndStyle<YgSlider, YgSliderSta
   ///
   /// Prevents the slider renderer and repaint boundary from being recreated on
   /// a rebuild which shifts the layout of the slider.
-  final Key _rendererKey = GlobalKey();
+  final Key _contentKey = GlobalKey();
 
   /// The key of the focusable widget.
   ///
@@ -290,17 +290,19 @@ class YgSliderWidgetState extends StateWithYgStateAndStyle<YgSlider, YgSliderSta
     final double repeatedStepSize = effectiveStepSize * repeatedStepSizeMultiplier;
     final Duration interval = Duration(milliseconds: (baseStepIntervalMs * repeatedStepSizeMultiplier).round());
 
-    Widget content = YgSliderRenderWidget(
-      key: _rendererKey,
-      style: style,
-      currentValue: _currentValueController,
-      value: _valueController,
-      onChange: _handleDragUpdate,
-      editingChanged: _handleEditingChanged,
-      state: state,
-      layerLink: _layerLink,
-      max: widget.max,
-      min: widget.min,
+    Widget content = RepaintBoundary(
+      key: _contentKey,
+      child: YgSliderRenderWidget(
+        style: style,
+        currentValue: _currentValueController,
+        value: _valueController,
+        onChange: _handleDragUpdate,
+        editingChanged: _handleEditingChanged,
+        state: state,
+        layerLink: _layerLink,
+        max: widget.max,
+        min: widget.min,
+      ),
     );
 
     if (!widget.disabled) {
@@ -308,28 +310,22 @@ class YgSliderWidgetState extends StateWithYgStateAndStyle<YgSlider, YgSliderSta
         cursor: SystemMouseCursors.click,
         onEnter: (_) => state.hovered.value = true,
         onExit: (_) => state.hovered.value = false,
-        child: Actions(
-          actions: <Type, Action<Intent>>{
-            // Prevent the arrow keys from triggering navigation actions.
-            DirectionalFocusIntent: DoNothingAction(),
+        child: YgSliderCustomKeyRepeatListener(
+          key: _focusKey,
+          onEditingChanged: _handleEditingChanged,
+          focusNode: _focusNodeManager.value,
+          listeners: <LogicalKeyboardKey, RepeatableCallback>{
+            LogicalKeyboardKey.arrowLeft: ({required bool repeat}) => _handleStepUpdate(
+                  _targetValue - (repeat ? repeatedStepSize : effectiveStepSize),
+                ),
+            LogicalKeyboardKey.arrowRight: ({required bool repeat}) => _handleStepUpdate(
+                  _targetValue + (repeat ? repeatedStepSize : effectiveStepSize),
+                ),
           },
-          child: YgSliderCustomKeyRepeatListener(
-            key: _focusKey,
-            onEditingChanged: _handleEditingChanged,
-            focusNode: _focusNodeManager.value,
-            listeners: <LogicalKeyboardKey, RepeatableCallback>{
-              LogicalKeyboardKey.arrowLeft: ({required bool repeat}) => _handleStepUpdate(
-                    _targetValue - (repeat ? repeatedStepSize : effectiveStepSize),
-                  ),
-              LogicalKeyboardKey.arrowRight: ({required bool repeat}) => _handleStepUpdate(
-                    _targetValue + (repeat ? repeatedStepSize : effectiveStepSize),
-                  ),
-            },
-            autoFocus: widget.autofocus,
-            interval: interval,
-            repeatDelay: _stepRepeatDelay,
-            child: content,
-          ),
+          autoFocus: widget.autofocus,
+          interval: interval,
+          repeatDelay: _stepRepeatDelay,
+          child: content,
         ),
       );
     }

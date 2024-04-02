@@ -89,9 +89,6 @@ class Dependencies extends RenderBox {
       ..gestureSettings = gestureSettings;
   }
 
-  @override
-  final bool isRepaintBoundary = true;
-
   /// The offset percentage used to calculate the new slider value.
   double? _initialValueOffset;
 
