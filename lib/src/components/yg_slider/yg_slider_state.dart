@@ -21,7 +21,7 @@ class YgSliderState extends YgState {
         focused = YgStateValue<bool>(focused),
         valueIndicatorEnabled = YgStateValue<bool>(valueIndicatorEnabled),
         differenceIndicatorEnabled = YgStateValue<bool>(differenceIndicatorEnabled),
-        staticDifferenceIndicatorIndicator = YgStateValue<bool>(staticDifferenceIndicatorIndicator),
+        staticDifferenceIndicatorEnabled = YgStateValue<bool>(staticDifferenceIndicatorIndicator),
         increasing = YgStateValue<bool>(increasing),
         variant = YgStateValue<YgSliderVariant>(variant);
 
@@ -38,7 +38,7 @@ class YgSliderState extends YgState {
   // Indicators
   final YgStateValue<bool> valueIndicatorEnabled;
   final YgStateValue<bool> differenceIndicatorEnabled;
-  final YgStateValue<bool> staticDifferenceIndicatorIndicator;
+  final YgStateValue<bool> staticDifferenceIndicatorEnabled;
 
   @override
   List<YgStateValue<Object?>> get props => <YgStateValue<Object?>>[
@@ -48,9 +48,9 @@ class YgSliderState extends YgState {
         recentlyEdited,
         hovered,
         focused,
+        increasing,
         valueIndicatorEnabled,
         differenceIndicatorEnabled,
-        staticDifferenceIndicatorIndicator,
-        increasing,
+        staticDifferenceIndicatorEnabled,
       ];
 }

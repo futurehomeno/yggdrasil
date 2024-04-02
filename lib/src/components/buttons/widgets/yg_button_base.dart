@@ -28,10 +28,10 @@ abstract class YgButtonBase<T extends YgButtonBaseState> extends StatefulWidget 
   /// Called when the user focuses the button.
   final ValueChanged<bool>? onFocusChange;
 
-  /// Called when the user tap is stopped.
+  /// Called when the user ends a tap.
   final VoidCallback? onTapEnd;
 
-  /// Called when the user tap is stopped.
+  /// Called when the user starts a tap.
   final VoidCallback? onTapStart;
 
   /// The [FocusNode] in charge of managing focus for this button.

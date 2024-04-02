@@ -47,7 +47,11 @@ class YgSliderStyle extends YgStyle<YgSliderState> {
   }
 
   Color _resolveDifferenceIndicatorColor() {
-    if (!_showDifferenceIndicator) {
+    final bool enabled = state.differenceIndicatorEnabled.value;
+    final bool staticallyEnabled = state.staticDifferenceIndicatorEnabled.value;
+    final bool wasOrIsEditing = state.recentlyEdited.value || state.editing.value;
+
+    if (!(enabled && wasOrIsEditing) && !staticallyEnabled) {
       return _variantTheme.differenceIndicatorDecreasingColor.withOpacity(0);
     }
 
@@ -74,15 +78,12 @@ class YgSliderStyle extends YgStyle<YgSliderState> {
     return _variantTheme.trackDecreasingColor;
   }
 
-  bool get _isOrWasEditing => state.recentlyEdited.value || state.editing.value;
-
-  bool get _showDifferenceIndicator =>
-      (state.differenceIndicatorEnabled.value && _isOrWasEditing) || state.staticDifferenceIndicatorIndicator.value;
-
-  _YgSliderVariantTheme get _variantTheme => switch (state.variant.value) {
-        YgSliderVariant.shades => _YgSliderVariantTheme.shades(_theme.shadesSliderTheme),
-        YgSliderVariant.temperature => _YgSliderVariantTheme.temperature(_theme.temperatureSliderTheme),
-      };
+  _YgSliderVariantTheme get _variantTheme {
+    return switch (state.variant.value) {
+      YgSliderVariant.shades => _YgSliderVariantTheme.shades(_theme.shadesSliderTheme),
+      YgSliderVariant.temperature => _YgSliderVariantTheme.temperature(_theme.temperatureSliderTheme),
+    };
+  }
 
   @override
   Curve get curve => _theme.animationCurve;

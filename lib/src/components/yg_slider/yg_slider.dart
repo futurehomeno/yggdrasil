@@ -177,7 +177,7 @@ class YgSliderWidgetState extends StateWithYgStateAndStyle<YgSlider, YgSliderSta
   ///
   /// Prevents the slider renderer and repaint boundary from being recreated on
   /// a rebuild which shifts the layout of the slider.
-  final Key _contentKey = GlobalKey();
+  final Key _rendererKey = GlobalKey();
 
   /// The key of the focusable widget.
   ///
@@ -209,7 +209,7 @@ class YgSliderWidgetState extends StateWithYgStateAndStyle<YgSlider, YgSliderSta
   void updateState() {
     state.variant.value = widget.variant;
     state.increasing.value = _increasing;
-    state.staticDifferenceIndicatorIndicator.value = widget.currentValue != null;
+    state.staticDifferenceIndicatorEnabled.value = widget.currentValue != null;
     state.disabled.value = widget.disabled;
     state.differenceIndicatorEnabled.value = widget.differenceIndicator;
     state.valueIndicatorEnabled.value = widget.valueIndicator;
@@ -290,19 +290,17 @@ class YgSliderWidgetState extends StateWithYgStateAndStyle<YgSlider, YgSliderSta
     final double repeatedStepSize = effectiveStepSize * repeatedStepSizeMultiplier;
     final Duration interval = Duration(milliseconds: (baseStepIntervalMs * repeatedStepSizeMultiplier).round());
 
-    Widget content = RepaintBoundary(
-      key: _contentKey,
-      child: YgSliderRenderWidget(
-        style: style,
-        currentValue: _currentValueController,
-        value: _valueController,
-        onChange: _handleDragUpdate,
-        editingChanged: _handleEditingChanged,
-        state: state,
-        layerLink: _layerLink,
-        max: widget.max,
-        min: widget.min,
-      ),
+    Widget content = YgSliderRenderWidget(
+      key: _rendererKey,
+      style: style,
+      currentValue: _currentValueController,
+      value: _valueController,
+      onChange: _handleDragUpdate,
+      editingChanged: _handleEditingChanged,
+      state: state,
+      layerLink: _layerLink,
+      max: widget.max,
+      min: widget.min,
     );
 
     if (!widget.disabled) {

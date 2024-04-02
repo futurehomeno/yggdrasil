@@ -295,7 +295,7 @@ abstract class YgDropdownFieldWidgetState<T extends Object, W extends YgDropdown
         return InkWell(
           onFocusChange: _state.focused.update,
           onHover: _state.hovered.update,
-          onTap: _controllerManager.value.open,
+          onTap: controller.open,
           focusNode: _focusNodeManager.value,
           focusColor: Colors.transparent,
           child: child,
