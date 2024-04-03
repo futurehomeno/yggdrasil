@@ -3,7 +3,7 @@ import 'package:flutter/scheduler.dart';
 import 'package:yggdrasil/src/theme/_theme.dart';
 import 'package:yggdrasil/src/utils/_utils.dart';
 
-/// Yggdrasil Pulse implementation.
+/// Widget that animates three circles in a pulsating pattern.
 class YgPulse extends LeafRenderObjectWidget {
   const YgPulse({
     super.key,
