@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:yggdrasil/src/theme/_theme.dart';
+import 'package:yggdrasil/src/utils/yg_controller_manager/_yg_controller_manager.dart';
 
 part 'yg_scroll_shadow_builder.dart';
 part 'yg_scroll_shadow_child.dart';
@@ -44,21 +45,24 @@ abstract class YgScrollShadow extends StatefulWidget {
   State<YgScrollShadow> createState() => _YgScrollShadowState();
 }
 
-class _YgScrollShadowState extends State<YgScrollShadow> {
+class _YgScrollShadowState extends State<YgScrollShadow> with YgControllerManagerMixin {
+  late final YgControllerManager<ScrollController> _controllerManager = manageController(
+    createController: () => ScrollController(),
+    getUserController: () => widget.controller,
+    listener: _updateShadows,
+  );
+
   bool _showBottomShadow = false;
   bool _showTopShadow = false;
-  late ScrollController _controller = widget.controller ?? ScrollController();
 
   @override
   void initState() {
     super.initState();
-    _controller.addListener(_updateShadows);
-
     WidgetsBinding.instance.addPostFrameCallback((_) => _updateShadows());
   }
 
   void _updateShadows() {
-    final ScrollPosition position = _controller.position;
+    final ScrollPosition position = _controllerManager.value.position;
 
     final bool newShowBottomShadow = position.extentAfter != 0;
     final bool newShowTopShadow = position.extentBefore != 0;
@@ -71,36 +75,6 @@ class _YgScrollShadowState extends State<YgScrollShadow> {
   }
 
   @override
-  void dispose() {
-    _controller.removeListener(_updateShadows);
-    if (widget.controller == null) {
-      _controller.dispose();
-    }
-    super.dispose();
-  }
-
-  @override
-  void didUpdateWidget(covariant YgScrollShadow oldWidget) {
-    final ScrollController? newController = widget.controller;
-
-    if (newController == null) {
-      if (oldWidget.controller != null) {
-        _updateController(ScrollController());
-      }
-    } else if (newController != _controller) {
-      _updateController(newController);
-    }
-
-    super.didUpdateWidget(oldWidget);
-  }
-
-  void _updateController(ScrollController controller) {
-    _controller.removeListener(_updateShadows);
-    _controller = controller;
-    _controller.addListener(_updateShadows);
-  }
-
-  @override
   Widget build(BuildContext context) {
     return NotificationListener<ScrollMetricsNotification>(
       onNotification: _handleScrollMetricsChange,
@@ -108,7 +82,7 @@ class _YgScrollShadowState extends State<YgScrollShadow> {
         children: <Widget>[
           widget.builder(
             context,
-            _controller,
+            _controllerManager.value,
           ),
           _buildShadow(
             alignment: Alignment.bottomCenter,
