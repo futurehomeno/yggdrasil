@@ -24,6 +24,7 @@ class CheckboxListTileScreenState extends State<CheckboxListTileScreen> {
   bool? checkboxListTileTriStateValue = false;
   bool checkboxListTileDisabledValue = false;
   bool checkboxListTileTrailingWidgetValue = false;
+  bool checkboxListTileLeadingOnlyValue = false;
 
   @override
   Widget build(BuildContext context) {
@@ -63,6 +64,16 @@ class CheckboxListTileScreenState extends State<CheckboxListTileScreen> {
                 subtitle: 'Tapping anywhere does nothing.',
                 value: checkboxListTileDisabledValue,
                 onChanged: null,
+              ),
+              YgCheckboxListTile(
+                leadingWidget: const YgTag(
+                  child: Text('Leading widget only'),
+                ),
+                value: checkboxListTileLeadingOnlyValue,
+                onChanged: (bool newValue) {
+                  checkboxListTileLeadingOnlyValue = newValue;
+                  setState(() {});
+                },
               ),
               YgCheckboxListTile(
                 title: 'With trailingWidget',

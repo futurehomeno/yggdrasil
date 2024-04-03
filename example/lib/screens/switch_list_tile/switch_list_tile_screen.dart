@@ -24,6 +24,7 @@ class SwitchListTileScreenState extends State<SwitchListTileScreen> {
   bool? switchListTileTriStateValue = false;
   bool switchListTileDisabledValue = false;
   bool switchListTileTrailingWidgetValue = false;
+  bool switchListTileLeadingOnlyValue = false;
 
   @override
   Widget build(BuildContext context) {
@@ -63,6 +64,16 @@ class SwitchListTileScreenState extends State<SwitchListTileScreen> {
                 subtitle: 'Tapping anywhere does nothing.',
                 value: switchListTileDisabledValue,
                 onChanged: null,
+              ),
+              YgSwitchListTile(
+                leadingWidget: const YgTag(
+                  child: Text('Leading widget only'),
+                ),
+                value: switchListTileLeadingOnlyValue,
+                onChanged: (bool newValue) {
+                  switchListTileLeadingOnlyValue = newValue;
+                  setState(() {});
+                },
               ),
               YgSwitchListTile(
                 title: 'With trailingWidget',

@@ -3,13 +3,25 @@ part of '../../yg_list_tile.dart';
 final class _YgCheckboxListTileDualState extends YgCheckboxListTile with YgDualStateToggleableMixin {
   const _YgCheckboxListTileDualState({
     super.key,
-    required super.title,
     required super.value,
     required this.onChanged,
+    super.title,
     super.leadingWidget,
     super.subtitle,
     super.subtitleIcon,
-  }) : super._(
+  })  : assert(
+          title != null || leadingWidget != null,
+          'Can not have neither a title or leading widget.',
+        ),
+        assert(
+          subtitleIcon == null || subtitle != null,
+          'Can not add a subtitleIcon without a subtitle.',
+        ),
+        assert(
+          title != null || subtitle == null,
+          'Can not have a subtitle without a title.',
+        ),
+        super._(
           disabled: onChanged == null,
         );
 

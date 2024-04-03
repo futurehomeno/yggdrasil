@@ -41,6 +41,14 @@ class ListTileScreen extends StatelessWidget {
             ],
           ),
           const YgListTile(
+            leadingWidgets: <Widget>[
+              YgIcon(YgIcons.info, size: YgIconSize.large),
+              YgTag(
+                child: Text('Leading widgets only'),
+              ),
+            ],
+          ),
+          const YgListTile(
             title: 'Title',
             subtitle: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit.',
             leadingWidgets: <Widget>[

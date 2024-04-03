@@ -28,10 +28,8 @@ class AvatarStackScreen extends StatelessWidget {
           ...amounts.map(
             (int amount) => YgSection(
               title: 'An AvatarStack with $amount entries',
-              child: Center(
-                child: YgAvatarStack(
-                  entries: _getEntries(amount),
-                ),
+              child: YgAvatarStack(
+                entries: _getEntries(amount),
               ),
             ),
           ),

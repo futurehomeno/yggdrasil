@@ -18,7 +18,7 @@ class _YgSectionColumn extends YgSection {
       padding: context.sectionTheme.padding,
       child: Column(
         mainAxisAlignment: MainAxisAlignment.start,
-        crossAxisAlignment: CrossAxisAlignment.center,
+        crossAxisAlignment: CrossAxisAlignment.start,
         mainAxisSize: MainAxisSize.min,
         children: children,
       ),

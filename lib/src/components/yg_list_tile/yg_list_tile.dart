@@ -25,7 +25,7 @@ part 'variants/yg_regular_list_tile.dart';
 /// we do not encourage designers to use more than 2 widgets.
 abstract base class YgListTile extends StatelessWidget with StatelessWidgetDebugMixin {
   const factory YgListTile({
-    required String title,
+    String? title,
     Key? key,
     String? subtitle,
     Widget? subtitleIcon,
@@ -42,10 +42,7 @@ abstract base class YgListTile extends StatelessWidget with StatelessWidgetDebug
     required this.subtitle,
     required this.subtitleIcon,
     required this.disabled,
-  }) : assert(
-          subtitleIcon == null || subtitle != null,
-          'Can not add a subtitleIcon without a subtitle',
-        );
+  });
 
   /// Convenience for generating links from YgListTiles.
   factory YgListTile.link({
@@ -65,7 +62,7 @@ abstract base class YgListTile extends StatelessWidget with StatelessWidgetDebug
   ///
   /// Shown in the middle of the list tile when there is no [subtitle], will be
   /// pushed to the top of the list tile if there is a [subtitle].
-  final String title;
+  final String? title;
 
   /// The subtitle.
   ///

@@ -1,3 +1,25 @@
+# 1.10.6 [2024-03-25T11:57:30.410478]
+
+### Changes
+
+- [fix] Changed section alignment to match design.
+
+# 1.10.5 [2024-03-22T11:59:17.325153]
+
+### Changes
+
+- [fix] Fixed padding on buttons with icon not matching design.
+
+# 1.10.4 [2024-03-19T16:33:57.778294]
+
+## Changes
+
+- [improvement] Made YgListTitle title optional DEV-3343.
+- [fix] Text field variants now apply on initial build.
+- [fix] Text field sizes now apply on initial build.
+- [fix] Text field selection controls are now shown correctly DEV-2580.
+- [fix] Text field selection no longer shows when text field is not focused.
+
 # 1.10.3 [2024-02-29T09:44:51.609335]
 
 ## Changes
