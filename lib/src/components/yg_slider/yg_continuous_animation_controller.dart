@@ -53,6 +53,7 @@ class YgContinuousAnimationController extends Animation<double> with ChangeNotif
   @override
   void dispose() {
     _statusListeners.clear();
+    _ticker.dispose();
     super.dispose();
   }
 

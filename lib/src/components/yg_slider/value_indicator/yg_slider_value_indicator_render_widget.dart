@@ -62,14 +62,15 @@ class YgSliderValueIndicatorRenderer extends RenderBox {
     required TextDirection textDirection,
     required double min,
     required double max,
+    required double? stepSize,
     required YgSliderValueBuilder valueBuilder,
-    required this.stepSize,
   })  : _style = style,
         _value = value,
         _defaultStyle = defaultStyle,
         _layerLink = layerLink,
         _min = min,
         _max = max,
+        _stepSize = stepSize,
         _valueBuilder = valueBuilder,
         _textPainter = TextPainter(
           textDirection: textDirection,
@@ -78,7 +79,14 @@ class YgSliderValueIndicatorRenderer extends RenderBox {
 
   // region Values
 
-  double? stepSize;
+  double? _stepSize;
+  double? get stepSize => _stepSize;
+  set stepSize(double? newValue) {
+    if (_stepSize != newValue) {
+      _stepSize = newValue;
+      markNeedsPaint();
+    }
+  }
 
   double _min;
   double get min => _min;
@@ -235,11 +243,11 @@ class YgSliderValueIndicatorRenderer extends RenderBox {
     final double handleRadius = sliderSize.height / 2;
     final double handleTrackLength = sliderSize.width - sliderSize.height;
     final Size indicatorSize = padding.inflateSize(_textPainter.size);
-    final double scaledValue = (value.clamp(_min, _max) - _min) / range;
+    final double percentage = (value.clamp(_min, _max) - _min) / range;
 
     final Matrix4 matrix = Matrix4.identity()
       ..translate(
-        handleRadius + (handleTrackLength * scaledValue),
+        handleRadius + (handleTrackLength * percentage),
         handleRadius,
       )
       ..scale(visibility)
@@ -249,7 +257,7 @@ class YgSliderValueIndicatorRenderer extends RenderBox {
       );
 
     // Calculate the rect of the indicator.
-    final Rect rect = offset & padding.inflateSize(_textPainter.size);
+    final Rect rect = offset & indicatorSize;
     final RRect rrect = radius.toRRect(rect);
     final Paint paint = Paint()..color = color.withOpacity(visibility);
 

@@ -70,13 +70,18 @@ class YgSlider extends StatefulWidget with StatefulWidgetDebugMixin {
   ///
   /// Used by both the slider it self, determining the granularity of the value,
   /// and the optional stepper buttons.
+  ///
+  /// When not supplied there will be a step size inferred for the stepper
+  /// buttons and keyboard input by taking 1/100th of the difference between min
+  /// and max.
   final double? stepSize;
 
   /// The current value of the slider.
   ///
   /// This is used to show a difference indicator in the slider which shows the
   /// difference between where the value is currently at and what the target
-  /// value is. Eg. the current value is 18deg and the thermostat is set to 22.
+  /// value is. Eg. the current temperature is 18deg and the thermostat is set
+  /// to 22deg which will show a difference of 4deg.
   final double? currentValue;
 
   /// Called when the value is changed.
@@ -101,11 +106,12 @@ class YgSlider extends StatefulWidget with StatefulWidgetDebugMixin {
   final bool disabled;
 
   @override
-  State<YgSlider> createState() => YgSliderWidgetState();
+  State<YgSlider> createState() => _YgSliderWidgetState();
 }
 
-class YgSliderWidgetState extends StateWithYgStateAndStyle<YgSlider, YgSliderState, YgSliderStyle>
+class _YgSliderWidgetState extends StateWithYgStateAndStyle<YgSlider, YgSliderState, YgSliderStyle>
     with YgControllerManagerMixin {
+  // TODO(DEV-1915): Remove this when theme can be accessed outside of the build method.
   // region Consts
 
   /// Maximum amount of steps that can be triggered in a second by a repeated stepper.
@@ -254,7 +260,7 @@ class YgSliderWidgetState extends StateWithYgStateAndStyle<YgSlider, YgSliderSta
 
     // Don't allow the value to be changed if the user is editing it.
     if (widget.value != _targetValue && !state.editing.value) {
-      // Can ignore this because isRebuilding is used to check if the setState is needed.
+      // Doesn't actually trigger through this method.
       // ignore: avoid-unnecessary-setstate
       _handleWidgetUpdate(widget.value);
     }
@@ -431,13 +437,15 @@ class YgSliderWidgetState extends StateWithYgStateAndStyle<YgSlider, YgSliderSta
     _targetValue = newValue;
 
     // Update the stepper button values.
-    final bool newCanIncrease = _targetValue < widget.max;
-    final bool newCanDecrease = _targetValue > widget.min;
-    if (newCanIncrease != _canIncrease || newCanDecrease != _canDecrease) {
-      _canIncrease = newCanIncrease;
-      _canDecrease = newCanDecrease;
-      if (widget.stepper && !isRebuilding) {
-        setState(() {});
+    if (widget.stepper) {
+      final bool newCanIncrease = _targetValue < widget.max;
+      final bool newCanDecrease = _targetValue > widget.min;
+      if (newCanIncrease != _canIncrease || newCanDecrease != _canDecrease) {
+        _canIncrease = newCanIncrease;
+        _canDecrease = newCanDecrease;
+        if (!isRebuilding) {
+          setState(() {});
+        }
       }
     }
 

@@ -90,7 +90,7 @@ class Dependencies extends RenderBox {
   }
 
   /// The offset percentage used to calculate the new slider value.
-  double? _initialValueOffset;
+  double? _dragPercentageOffset;
 
   // region Dependencies
 
@@ -235,14 +235,14 @@ class Dependencies extends RenderBox {
 
     // Extract values.
     final EdgeInsets handlePadding = style.handlePadding.value;
-    final double value = _getPercentageFromValue(this.value.value);
-    final double currentValue = _getPercentageFromValue(this.currentValue.value);
+    final double valuePercentage = _getPercentageFromValue(value.value);
+    final double currentValuePercentage = _getPercentageFromValue(currentValue.value);
 
     // Calculate handle dimensions.
     final double handleRadius = size.height / 2;
     final double handleTrackLength = size.width - size.height;
     final Offset handleOffset = Offset(
-          handleRadius + (handleTrackLength * value),
+          handleRadius + (handleTrackLength * valuePercentage),
           size.height / 2,
         ) +
         offset;
@@ -263,7 +263,7 @@ class Dependencies extends RenderBox {
       handleOuterRect: handleOuterRect,
       canvas: canvas,
       handleRadius: handleRadius,
-      currentValue: currentValue,
+      currentValue: currentValuePercentage,
       handleOffset: handleOffset,
     );
   }
@@ -287,15 +287,15 @@ class Dependencies extends RenderBox {
 
     /// Create the [RRect]'s for the tracks.
     final RRect leftRRect = _getRRect(
-      outerRect.topLeft,
-      handleOuterRect.bottomLeft,
+      p1: outerRect.topLeft,
+      p2: handleOuterRect.bottomLeft,
       left: outerRadius,
       right: innerRadius,
     );
 
     final RRect rightRRect = _getRRect(
-      handleOuterRect.topRight,
-      outerRect.bottomRight,
+      p1: handleOuterRect.topRight,
+      p2: outerRect.bottomRight,
       left: innerRadius,
       right: outerRadius,
     );
@@ -315,20 +315,20 @@ class Dependencies extends RenderBox {
     canvas.clipPath(clipPath);
 
     /// Draw the difference as a line.
-    final double diffScale = size.width - size.height;
+    final double differenceScale = size.width - size.height;
     final Offset p1 = Offset(
-          handleRadius + (currentValue * diffScale),
+          handleRadius + (currentValue * differenceScale),
           size.height / 2,
         ) +
         offset;
 
-    final Paint diffPaint = Paint()
+    final Paint differencePaint = Paint()
       ..strokeWidth = math.min(size.height, style.differenceIndicatorHeight.value)
       ..color = style.differenceIndicatorColor.value
       ..style = PaintingStyle.stroke
       ..strokeCap = StrokeCap.round;
 
-    canvas.drawLine(p1, handleOffset, diffPaint);
+    canvas.drawLine(p1, handleOffset, differencePaint);
   }
 
   void _paintHandle({
@@ -343,11 +343,11 @@ class Dependencies extends RenderBox {
     );
   }
 
-  RRect _getRRect(
-    Offset p1,
-    Offset p2, {
-    Radius left = Radius.zero,
-    Radius right = Radius.zero,
+  RRect _getRRect({
+    required Offset p1,
+    required Offset p2,
+    required Radius left,
+    required Radius right,
   }) =>
       RRect.fromLTRBAndCorners(
         p1.dx,
@@ -378,17 +378,17 @@ class Dependencies extends RenderBox {
   void _handleDragStart(DragStartDetails details) {
     editingChanged(true);
 
-    final double scaledOffsetValue = _getPercentageFromDragOffset(details.localPosition);
+    final double inputPercentage = _getPercentageFromDragOffset(details.localPosition);
     if (YgConsts.isMobile) {
       // On mobile the value changes based on the drag delta, so we need an
       // initial position to calculate the delta later.
-      final double scaledValue = _getPercentageFromValue(_value.value);
-      _initialValueOffset ??= scaledValue - scaledOffsetValue;
+      final double initialPercentage = _getPercentageFromValue(_value.value);
+      _dragPercentageOffset ??= initialPercentage - inputPercentage;
     } else {
       // For desktop / web we need an absolute position to calculate the value
       // which we at this point already have, so we update the onChange callback.
-      final double scaledUpValue = _getValueFromPercentage(scaledOffsetValue);
-      onChange(scaledUpValue.clamp(_min, _max));
+      final double newValue = _getValueFromPercentage(inputPercentage);
+      onChange(newValue.clamp(_min, _max));
     }
   }
 
@@ -398,16 +398,16 @@ class Dependencies extends RenderBox {
     // delta changes could be entirely ignored if they are less than half of the
     // step size. Instead we get value in percent and the current absolute position
     // in percent and use these together to calculate the new actual value.
-    final double scaledDownValue = _getPercentageFromDragOffset(details.localPosition);
-    final double actualScaledDownValue = scaledDownValue + (_initialValueOffset ?? 0);
-    final double newValue = _getValueFromPercentage(actualScaledDownValue);
+    final double percentage = _getPercentageFromDragOffset(details.localPosition);
+    final double offsetPercentage = percentage + (_dragPercentageOffset ?? 0);
+    final double newValue = _getValueFromPercentage(offsetPercentage);
 
     onChange(newValue.clamp(_min, _max));
   }
 
   void _handleDragEnd([DragEndDetails? details]) {
     editingChanged(false);
-    _initialValueOffset = null;
+    _dragPercentageOffset = null;
   }
 
   @override

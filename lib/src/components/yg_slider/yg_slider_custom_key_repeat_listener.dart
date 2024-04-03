@@ -20,12 +20,25 @@ class YgSliderCustomKeyRepeatListener extends StatefulWidget {
     required this.repeatDelay,
   });
 
+  /// A map of Keys and their respective callbacks.
   final Map<LogicalKeyboardKey, RepeatableCallback> listeners;
+
+  /// The focusNode managing the focus of this widget.
   final FocusNode focusNode;
+
+  /// The widget bellow this widget in the widget tree.
   final Widget child;
+
+  /// Whether the widget should auto focus on initial build.
   final bool autoFocus;
+
+  /// The interval of the key repeat.
   final Duration interval;
+
+  /// Called when the status of whether a users is currently pressing a key changes.
   final ValueChanged<bool> onEditingChanged;
+
+  /// The delay before a key starts to repeat.
   final Duration repeatDelay;
 
   @override
