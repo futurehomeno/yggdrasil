@@ -82,6 +82,9 @@ class _$YgTheme {
   static final List<YgProgressIndicatorTheme> progressIndicatorTheme = YgProgressIndicatorTheme.themes;
 
   @themeExtension
+  static final List<YgPulseTheme> pulseTheme = YgPulseTheme.themes;
+
+  @themeExtension
   static final List<YgRadioTheme> radioTheme = YgRadioTheme.themes;
 
   @themeExtension

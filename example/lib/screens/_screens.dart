@@ -25,6 +25,7 @@ export 'list_tile/_list_tile.dart';
 export 'mobile_scanner_container/_mobile_scanner_container.dart';
 export 'picker/picker_screen.dart';
 export 'progress_indicator/_progress_indicator.dart';
+export 'pulse/_pulse.dart';
 export 'radio/_radio.dart';
 export 'radio_list_tile/_radio_list_tile.dart';
 export 'section/_section.dart';

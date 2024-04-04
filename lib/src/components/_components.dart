@@ -16,6 +16,7 @@ export 'yg_list_tile/_yg_list_tile.dart';
 export 'yg_mobile_scanner_container/_yg_mobile_scanner_container.dart';
 export 'yg_picker/_yg_picker.dart';
 export 'yg_progress_indicator/_yg_progress_indicator.dart';
+export 'yg_pulse/_yg_pulse.dart';
 export 'yg_radio/_yg_radio.dart';
 export 'yg_section/_yg_section.dart';
 export 'yg_snack_bar/_yg_snack_bar.dart';
