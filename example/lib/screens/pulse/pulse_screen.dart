@@ -20,7 +20,7 @@ class PulseScreen extends StatefulWidget {
 }
 
 class _PulseScreenState extends State<PulseScreen> {
-  bool enabled = true;
+  bool disabled = false;
 
   @override
   Widget build(BuildContext context) {
@@ -31,10 +31,10 @@ class _PulseScreenState extends State<PulseScreen> {
           YgSection.column(
             title: 'Default pulse widget',
             children: <Widget>[
-              YgPulse(enabled: enabled),
+              YgPulse(disabled: disabled),
               YgButton(
                 child: const Text('Toggle'),
-                onPressed: () => setState(() => enabled ^= true),
+                onPressed: () => setState(() => disabled ^= true),
               ),
             ].withVerticalSpacing(20),
           ),

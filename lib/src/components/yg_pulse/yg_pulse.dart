@@ -7,17 +7,17 @@ import 'package:yggdrasil/src/utils/_utils.dart';
 class YgPulse extends LeafRenderObjectWidget {
   const YgPulse({
     super.key,
-    required this.enabled,
+    required this.disabled,
   });
 
   /// Whether new pulses should be added.
-  final bool enabled;
+  final bool disabled;
 
   @override
   RenderObject createRenderObject(BuildContext context) {
     return _YgPulseRenderer(
       theme: context.pulseTheme,
-      enabled: enabled,
+      disabled: disabled,
     );
   }
 
@@ -25,16 +25,16 @@ class YgPulse extends LeafRenderObjectWidget {
   // ignore: library_private_types_in_public_api
   void updateRenderObject(BuildContext context, covariant _YgPulseRenderer renderObject) {
     renderObject.theme = context.pulseTheme;
-    renderObject.enabled = enabled;
+    renderObject.disabled = disabled;
   }
 }
 
 class _YgPulseRenderer extends RenderBox with YgRenderObjectDebugPainterMixin {
   _YgPulseRenderer({
     required this.theme,
-    required bool enabled,
-  }) : _enabled = enabled {
-    if (enabled) {
+    bool disabled = false,
+  }) : _disabled = disabled {
+    if (!disabled) {
       _pulses.add(SchedulerBinding.instance.currentFrameTimeStamp);
       _scheduleFrame();
     }
@@ -52,15 +52,15 @@ class _YgPulseRenderer extends RenderBox with YgRenderObjectDebugPainterMixin {
   /// The id of the currently scheduled frame callback.
   int? _frameCallbackId;
 
-  /// Whether the pulse was enabled in the last frame.
-  bool _enabledInLastFrame = false;
+  /// Whether the pulse was disabled in the last frame.
+  bool _disabledInLastFrame = true;
 
-  bool _enabled;
-  bool get enabled => _enabled;
-  set enabled(bool newEnabled) {
-    if (_enabled != newEnabled) {
-      _enabled = newEnabled;
-      if (newEnabled && _frameCallbackId == null) {
+  bool _disabled;
+  bool get disabled => _disabled;
+  set disabled(bool newDisabled) {
+    if (_disabled != newDisabled) {
+      _disabled = newDisabled;
+      if (!newDisabled && _frameCallbackId == null) {
         _scheduleFrame();
       }
     }
@@ -84,13 +84,13 @@ class _YgPulseRenderer extends RenderBox with YgRenderObjectDebugPainterMixin {
       return (timestamp - pulse).inMilliseconds / theme.pulseDuration.inMilliseconds > 1;
     });
 
-    if (_enabled) {
+    if (!_disabled) {
       final Duration? lastPulse = _pulses.lastOrNull;
       // If the last pulse was longer ago than the pulse interval add new pulse.
       if (lastPulse == null || lastPulse <= timestamp - theme.pulseInterval) {
-        // If the pulse was enabled in the last frame we can assume the last
+        // If the pulse wasn't disabled in the last frame we can assume the last
         // pulse expired in between the current and last frame.
-        if (_enabledInLastFrame && lastPulse != null) {
+        if (!_disabledInLastFrame && lastPulse != null) {
           /// Ensure the new pulse is shown exactly 1 second later.
           _pulses.add(lastPulse + theme.pulseInterval);
         } else {
@@ -103,7 +103,7 @@ class _YgPulseRenderer extends RenderBox with YgRenderObjectDebugPainterMixin {
       _scheduleFrame();
     }
 
-    _enabledInLastFrame = _enabled;
+    _disabledInLastFrame = _disabled;
     markNeedsPaint();
   }
 
