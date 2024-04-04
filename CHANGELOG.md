@@ -1,3 +1,11 @@
+# 1.10.7 [2024-04-04T14:19:20.255365]
+
+### Changes
+
+- [improvement] Made YgSection.column crossAxisAlignment configurable.
+- [feature] Implemented Puse widget DEV-3101.
+- [dev-improvement] Simplified usage of YgRenderObjectDebugPainterMixin.
+
 # 1.10.6 [2024-03-25T11:57:30.410478]
 
 ### Changes
