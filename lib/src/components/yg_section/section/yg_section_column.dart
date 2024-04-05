@@ -7,10 +7,14 @@ class _YgSectionColumn extends YgSection {
     super.subtitle,
     super.tag,
     super.icon,
+    this.crossAxisAlignment = CrossAxisAlignment.start,
   }) : super._();
 
   /// The widgets below this widget in the tree.
   final List<Widget> children;
+
+  /// The horizontal alignment of the children.
+  final CrossAxisAlignment crossAxisAlignment;
 
   @override
   Widget buildChild(BuildContext context) {
@@ -18,7 +22,7 @@ class _YgSectionColumn extends YgSection {
       padding: context.sectionTheme.padding,
       child: Column(
         mainAxisAlignment: MainAxisAlignment.start,
-        crossAxisAlignment: CrossAxisAlignment.start,
+        crossAxisAlignment: crossAxisAlignment,
         mainAxisSize: MainAxisSize.min,
         children: children,
       ),

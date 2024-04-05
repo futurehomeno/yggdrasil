@@ -24,6 +24,7 @@ abstract class YgSection extends StatelessWidget with StatelessWidgetDebugMixin 
     YgTag? tag,
     String? title,
     YgColorableIconData? icon,
+    CrossAxisAlignment crossAxisAlignment,
   }) = _YgSectionColumn;
 
   /// A section with a list of [YgListTile] widgets.

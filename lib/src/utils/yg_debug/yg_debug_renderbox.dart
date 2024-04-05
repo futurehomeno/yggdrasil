@@ -15,7 +15,6 @@ class _YgDebugRenderBox extends YgDebug {
   }
 
   @override
-  // ignore: library_private_types_in_public_api
   void updateRenderObject(BuildContext context, covariant _YgDebugRenderBoxChild renderObject) {
     renderObject.type = type;
     super.updateRenderObject(context, renderObject);
@@ -27,28 +26,5 @@ class _YgDebugRenderBoxChild extends RenderProxyBox with YgRenderObjectDebugPain
     required YgDebugType type,
   }) {
     this.type = type;
-  }
-
-  @override
-  void paint(
-    PaintingContext context,
-    Offset offset,
-  ) {
-    final RenderBox? child = this.child;
-
-    if (child == null) {
-      return;
-    }
-
-    // We always first draw the child.
-    context.paintChild(child, offset);
-
-    if (isDebuggingToggled()) {
-      paintYgDebug(
-        context: context,
-        offset: offset,
-        size: size,
-      );
-    }
   }
 }
