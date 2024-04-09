@@ -56,32 +56,27 @@ class YgRadio<T> extends StatefulWidget with StatefulWidgetDebugMixin {
   }
 }
 
-class _YgRadioState<T> extends StateWithYgStyle<YgRadio<T>, YgRadioStyle> {
-  late final YgRadioState _state = YgRadioState(
-    disabled: !widget._enabled,
-    selected: widget._selected,
-    error: widget.hasError,
-  );
-
+class _YgRadioState<T> extends StateWithYgStateAndStyle<YgRadio<T>, YgRadioState, YgRadioStyle> {
   @override
-  void didUpdateWidget(covariant YgRadio<T> oldWidget) {
-    super.didUpdateWidget(oldWidget);
-
-    _state.disabled.value = !widget._enabled;
-    _state.selected.value = widget._selected;
-    _state.error.value = widget.hasError;
+  YgRadioState createState() {
+    return YgRadioState(
+      disabled: !widget._enabled,
+      selected: widget._selected,
+      error: widget.hasError,
+    );
   }
 
   @override
-  void dispose() {
-    _state.dispose();
-    super.dispose();
+  void updateState() {
+    state.disabled.value = !widget._enabled;
+    state.selected.value = widget._selected;
+    state.error.value = widget.hasError;
   }
 
   @override
   YgRadioStyle createStyle() {
     return YgRadioStyle(
-      state: _state,
+      state: state,
       vsync: this,
     );
   }
@@ -101,8 +96,8 @@ class _YgRadioState<T> extends StateWithYgStyle<YgRadio<T>, YgRadioStyle> {
         mouseCursor: style.mouseCursor.value,
         enabled: widget._enabled,
         onActivate: _onTap,
-        onFocusChanged: _state.focused.update,
-        onHoverChanged: _state.hovered.update,
+        onFocusChanged: state.focused.update,
+        onHoverChanged: state.hovered.update,
         child: Padding(
           padding: EdgeInsets.all(context.radioTheme.padding),
           child: RepaintBoundary(

@@ -19,7 +19,7 @@ class YgTagStyle extends YgButtonBaseStyle<YgTagState> {
   Duration get duration => const Duration(milliseconds: 200);
 
   @override
-  Color resolveColor(BuildContext context, YgTagState state) {
+  Color resolveColor() {
     final YgTagVariantStyle variantTheme = _getVariantTheme(state.variant.value);
 
     switch (state.weight.value) {
@@ -31,7 +31,7 @@ class YgTagStyle extends YgButtonBaseStyle<YgTagState> {
   }
 
   @override
-  TextStyle resolveTextStyle(BuildContext context, YgTagState state) {
+  TextStyle resolveTextStyle() {
     switch (state.weight.value) {
       case YgTagWeight.strong:
         return _theme.strongTextStyle;
@@ -41,12 +41,12 @@ class YgTagStyle extends YgButtonBaseStyle<YgTagState> {
   }
 
   @override
-  double resolveIconSize(BuildContext context, YgTagState state) {
+  double resolveIconSize() {
     return _theme.iconSize;
   }
 
   @override
-  Color resolveIconColor(BuildContext context, YgTagState state) {
+  Color resolveIconColor() {
     switch (state.weight.value) {
       case YgTagWeight.strong:
         return _theme.iconStrongColor;
@@ -56,7 +56,7 @@ class YgTagStyle extends YgButtonBaseStyle<YgTagState> {
   }
 
   @override
-  OutlinedBorder resolveOutlinedBorder(BuildContext context, YgTagState state) {
+  OutlinedBorder resolveOutlinedBorder() {
     return RoundedRectangleBorder(
       side: BorderSide.none,
       borderRadius: _theme.borderRadius,
@@ -64,7 +64,7 @@ class YgTagStyle extends YgButtonBaseStyle<YgTagState> {
   }
 
   @override
-  EdgeInsets resolvePadding(BuildContext context, YgTagState state) {
+  EdgeInsets resolvePadding() {
     switch (state.size.value) {
       case YgTagSize.small:
         return _theme.paddingSmall;
@@ -74,7 +74,7 @@ class YgTagStyle extends YgButtonBaseStyle<YgTagState> {
   }
 
   @override
-  Color resolveSplashColor(BuildContext context, YgTagState state) {
+  Color resolveSplashColor() {
     switch (state.weight.value) {
       case YgTagWeight.strong:
         return _theme.splashStrongColor;

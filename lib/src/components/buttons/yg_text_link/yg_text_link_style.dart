@@ -18,19 +18,19 @@ class YgTextLinkStyle extends YgButtonBaseStyle<YgTextLinkState> {
   Duration get duration => const Duration(milliseconds: 200);
 
   @override
-  Color resolveColor(BuildContext context, YgTextLinkState state) {
+  Color resolveColor() {
     return Colors.transparent;
   }
 
   @override
-  TextStyle resolveTextStyle(BuildContext context, YgTextLinkState state) {
+  TextStyle resolveTextStyle() {
     return _getBaseTextStyle(state).copyWith(
       color: _resolveColor(state),
     );
   }
 
   @override
-  OutlinedBorder resolveOutlinedBorder(BuildContext context, YgTextLinkState state) {
+  OutlinedBorder resolveOutlinedBorder() {
     if (state.focused.value) {
       return RoundedRectangleBorder(
         side: BorderSide(
@@ -83,7 +83,7 @@ class YgTextLinkStyle extends YgButtonBaseStyle<YgTextLinkState> {
   YgTextLinkTheme get _theme => context.textLinkTheme;
 
   @override
-  EdgeInsets resolvePadding(BuildContext context, YgTextLinkState state) {
+  EdgeInsets resolvePadding() {
     return context.textLinkTheme.padding;
   }
 }

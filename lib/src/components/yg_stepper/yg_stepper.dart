@@ -73,36 +73,32 @@ class YgStepper extends StatefulWidget with StatefulWidgetDebugMixin {
   State<YgStepper> createState() => _YgStepperState();
 }
 
-class _YgStepperState extends StateWithYgStyle<YgStepper, YgStepperStyle> {
-  late final YgStepperState _state = YgStepperState(
-    disabled: widget.onChanged == null,
-  );
+class _YgStepperState extends StateWithYgStateAndStyle<YgStepper, YgStepperState, YgStepperStyle> {
+  @override
+  YgStepperState createState() {
+    return YgStepperState(
+      disabled: widget.onChanged == null,
+    );
+  }
+
+  @override
+  void updateState() {
+    state.disabled.value = widget.onChanged == null;
+  }
 
   @override
   YgStepperStyle createStyle() {
     return YgStepperStyle(
-      state: _state,
+      state: state,
       vsync: this,
     );
   }
 
   @override
-  void dispose() {
-    _state.dispose();
-    super.dispose();
-  }
-
-  @override
-  void didUpdateWidget(covariant YgStepper oldWidget) {
-    _state.disabled.value = widget.onChanged == null;
-    super.didUpdateWidget(oldWidget);
-  }
-
-  @override
   Widget build(BuildContext context) {
     final YgStepperTheme theme = context.stepperTheme;
-    final bool canDecrease = widget.value > widget.min && !_state.disabled.value;
-    final bool canIncrease = widget.value < widget.max && !_state.disabled.value;
+    final bool canDecrease = widget.value > widget.min && !state.disabled.value;
+    final bool canIncrease = widget.value < widget.max && !state.disabled.value;
     final String? metric = widget.metric;
     final String valueString = widget.value.toStringAsFixed(
       widget.precision ?? widget.stepSize.precision,
@@ -114,7 +110,8 @@ class _YgStepperState extends StateWithYgStyle<YgStepper, YgStepperStyle> {
         crossAxisAlignment: CrossAxisAlignment.center,
         children: <Widget>[
           YgStepperButton(
-            onPressed: canDecrease ? _handleDecrease : null,
+            onPressed: _handleDecrease,
+            disabled: !canDecrease,
             icon: YgIcons.minus,
           ),
           Expanded(
@@ -140,7 +137,8 @@ class _YgStepperState extends StateWithYgStyle<YgStepper, YgStepperStyle> {
             ),
           ),
           YgStepperButton(
-            onPressed: canIncrease ? _handleIncrease : null,
+            onPressed: _handleIncrease,
+            disabled: !canIncrease,
             icon: YgIcons.plus,
           ),
         ],

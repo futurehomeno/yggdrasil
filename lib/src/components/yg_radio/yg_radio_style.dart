@@ -5,36 +5,25 @@ import 'package:yggdrasil/yggdrasil.dart';
 
 import 'yg_radio_state.dart';
 
-class YgRadioStyle extends YgStyleWithDefaults<YgRadioState> {
+class YgRadioStyle extends YgStyle<YgRadioState> {
   YgRadioStyle({
     required super.state,
     required super.vsync,
   });
 
-  late final YgAnimatedColorProperty backgroundColor;
-  late final YgAnimatedColorProperty centerDotColor;
-  late final YgAnimatedDoubleProperty borderSize;
-  late final YgAnimatedColorProperty borderColor;
-  late final YgAnimatedDoubleProperty centerDotSize;
-  late final YgDrivenProperty<MouseCursor> mouseCursor;
-  late final YgDrivenDoubleProperty radioSize;
+  late final YgAnimatedProperty<Color> centerDotColor = animate(_resolveCenterDotColor);
+  late final YgAnimatedProperty<Color> backgroundColor = animate(_resolveBackgroundColor);
+  late final YgAnimatedProperty<double> borderSize = animate(_resolveBorderSize);
+  late final YgAnimatedProperty<Color> borderColor = animate(_resolveBorderColor);
+  late final YgAnimatedProperty<double> centerDotSize = animate(_resolveCenterDotSize);
+  late final YgDrivenProperty<MouseCursor> mouseCursor = drive(_resolveMouseCursor);
+  late final YgDrivenProperty<double> radioSize = all(_resolveRadioSize);
 
-  @override
-  void init() {
-    centerDotColor = animate(YgColorProperty<YgRadioState>.resolveWith(_resolveCenterDotColor));
-    backgroundColor = animate(YgColorProperty<YgRadioState>.resolveWith(_resolveBackgroundColor));
-    borderSize = animate(YgDoubleProperty<YgRadioState>.resolveWith(_resolveBorderSize));
-    borderColor = animate(YgColorProperty<YgRadioState>.resolveWith(_resolveBorderColor));
-    centerDotSize = animate(YgDoubleProperty<YgRadioState>.resolveWith(_resolveCenterDotSize));
-    mouseCursor = drive(YgProperty<YgRadioState, MouseCursor>.resolveWith(_resolveMouseCursor));
-    radioSize = drive(YgDoubleProperty<YgRadioState>.all(_resolveRadioSize));
-  }
-
-  double _resolveRadioSize(BuildContext context) {
+  double _resolveRadioSize() {
     return _theme.size;
   }
 
-  Color _resolveCenterDotColor(BuildContext context, YgRadioState state) {
+  Color _resolveCenterDotColor() {
     if (state.disabled.value) {
       return _theme.centerDotDisabledColor;
     }
@@ -42,7 +31,7 @@ class YgRadioStyle extends YgStyleWithDefaults<YgRadioState> {
     return _theme.centerDotDefaultColor;
   }
 
-  Color _resolveBackgroundColor(BuildContext context, YgRadioState state) {
+  Color _resolveBackgroundColor() {
     if (state.disabled.value) {
       return _theme.backgroundDisabledColor;
     }
@@ -50,7 +39,7 @@ class YgRadioStyle extends YgStyleWithDefaults<YgRadioState> {
     return _theme.backgroundDefaultColor;
   }
 
-  double _resolveBorderSize(BuildContext context, YgRadioState state) {
+  double _resolveBorderSize() {
     if (state.disabled.value || !state.selected.value) {
       return _theme.borderDefaultOrDisabledSize;
     }
@@ -58,7 +47,7 @@ class YgRadioStyle extends YgStyleWithDefaults<YgRadioState> {
     return _theme.borderSelectedSize;
   }
 
-  Color _resolveBorderColor(BuildContext context, YgRadioState state) {
+  Color _resolveBorderColor() {
     if (state.disabled.value) {
       return _theme.borderDisabledColor;
     }
@@ -88,7 +77,7 @@ class YgRadioStyle extends YgStyleWithDefaults<YgRadioState> {
     return _theme.borderDefaultColor;
   }
 
-  double _resolveCenterDotSize(BuildContext context, YgRadioState state) {
+  double _resolveCenterDotSize() {
     if (state.selected.value) {
       return _theme.centerDotSelectedSize;
     }
@@ -96,7 +85,7 @@ class YgRadioStyle extends YgStyleWithDefaults<YgRadioState> {
     return _theme.centerDotDefaultSize;
   }
 
-  MouseCursor _resolveMouseCursor(BuildContext context, YgRadioState state) {
+  MouseCursor _resolveMouseCursor() {
     if (state.disabled.value) {
       return SystemMouseCursors.basic;
     }

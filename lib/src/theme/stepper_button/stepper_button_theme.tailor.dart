@@ -17,7 +17,8 @@ class YgStepperButtonTheme extends ThemeExtension<YgStepperButtonTheme> {
     required this.disabledIconColor,
     required this.iconColor,
     required this.iconSize,
-    required this.padding,
+    required this.paddingLarge,
+    required this.paddingMedium,
     required this.splashColor,
   });
 
@@ -28,7 +29,8 @@ class YgStepperButtonTheme extends ThemeExtension<YgStepperButtonTheme> {
   final Color disabledIconColor;
   final Color iconColor;
   final double iconSize;
-  final EdgeInsets padding;
+  final EdgeInsets paddingLarge;
+  final EdgeInsets paddingMedium;
   final Color splashColor;
 
   static final YgStepperButtonTheme consumerLight = YgStepperButtonTheme(
@@ -39,7 +41,8 @@ class YgStepperButtonTheme extends ThemeExtension<YgStepperButtonTheme> {
     disabledIconColor: _$YgStepperButtonTheme.disabledIconColor[0],
     iconColor: _$YgStepperButtonTheme.iconColor[0],
     iconSize: _$YgStepperButtonTheme.iconSize[0],
-    padding: _$YgStepperButtonTheme.padding[0],
+    paddingLarge: _$YgStepperButtonTheme.paddingLarge[0],
+    paddingMedium: _$YgStepperButtonTheme.paddingMedium[0],
     splashColor: _$YgStepperButtonTheme.splashColor[0],
   );
 
@@ -51,7 +54,8 @@ class YgStepperButtonTheme extends ThemeExtension<YgStepperButtonTheme> {
     disabledIconColor: _$YgStepperButtonTheme.disabledIconColor[1],
     iconColor: _$YgStepperButtonTheme.iconColor[1],
     iconSize: _$YgStepperButtonTheme.iconSize[1],
-    padding: _$YgStepperButtonTheme.padding[1],
+    paddingLarge: _$YgStepperButtonTheme.paddingLarge[1],
+    paddingMedium: _$YgStepperButtonTheme.paddingMedium[1],
     splashColor: _$YgStepperButtonTheme.splashColor[1],
   );
 
@@ -63,7 +67,8 @@ class YgStepperButtonTheme extends ThemeExtension<YgStepperButtonTheme> {
     disabledIconColor: _$YgStepperButtonTheme.disabledIconColor[2],
     iconColor: _$YgStepperButtonTheme.iconColor[2],
     iconSize: _$YgStepperButtonTheme.iconSize[2],
-    padding: _$YgStepperButtonTheme.padding[2],
+    paddingLarge: _$YgStepperButtonTheme.paddingLarge[2],
+    paddingMedium: _$YgStepperButtonTheme.paddingMedium[2],
     splashColor: _$YgStepperButtonTheme.splashColor[2],
   );
 
@@ -75,7 +80,8 @@ class YgStepperButtonTheme extends ThemeExtension<YgStepperButtonTheme> {
     disabledIconColor: _$YgStepperButtonTheme.disabledIconColor[3],
     iconColor: _$YgStepperButtonTheme.iconColor[3],
     iconSize: _$YgStepperButtonTheme.iconSize[3],
-    padding: _$YgStepperButtonTheme.padding[3],
+    paddingLarge: _$YgStepperButtonTheme.paddingLarge[3],
+    paddingMedium: _$YgStepperButtonTheme.paddingMedium[3],
     splashColor: _$YgStepperButtonTheme.splashColor[3],
   );
 
@@ -95,7 +101,8 @@ class YgStepperButtonTheme extends ThemeExtension<YgStepperButtonTheme> {
     Color? disabledIconColor,
     Color? iconColor,
     double? iconSize,
-    EdgeInsets? padding,
+    EdgeInsets? paddingLarge,
+    EdgeInsets? paddingMedium,
     Color? splashColor,
   }) {
     return YgStepperButtonTheme(
@@ -107,7 +114,8 @@ class YgStepperButtonTheme extends ThemeExtension<YgStepperButtonTheme> {
       disabledIconColor: disabledIconColor ?? this.disabledIconColor,
       iconColor: iconColor ?? this.iconColor,
       iconSize: iconSize ?? this.iconSize,
-      padding: padding ?? this.padding,
+      paddingLarge: paddingLarge ?? this.paddingLarge,
+      paddingMedium: paddingMedium ?? this.paddingMedium,
       splashColor: splashColor ?? this.splashColor,
     );
   }
@@ -126,7 +134,8 @@ class YgStepperButtonTheme extends ThemeExtension<YgStepperButtonTheme> {
           Color.lerp(disabledIconColor, other.disabledIconColor, t)!,
       iconColor: Color.lerp(iconColor, other.iconColor, t)!,
       iconSize: t < 0.5 ? iconSize : other.iconSize,
-      padding: t < 0.5 ? padding : other.padding,
+      paddingLarge: t < 0.5 ? paddingLarge : other.paddingLarge,
+      paddingMedium: t < 0.5 ? paddingMedium : other.paddingMedium,
       splashColor: Color.lerp(splashColor, other.splashColor, t)!,
     );
   }
@@ -148,7 +157,10 @@ class YgStepperButtonTheme extends ThemeExtension<YgStepperButtonTheme> {
                 .equals(disabledIconColor, other.disabledIconColor) &&
             const DeepCollectionEquality().equals(iconColor, other.iconColor) &&
             const DeepCollectionEquality().equals(iconSize, other.iconSize) &&
-            const DeepCollectionEquality().equals(padding, other.padding) &&
+            const DeepCollectionEquality()
+                .equals(paddingLarge, other.paddingLarge) &&
+            const DeepCollectionEquality()
+                .equals(paddingMedium, other.paddingMedium) &&
             const DeepCollectionEquality()
                 .equals(splashColor, other.splashColor));
   }
@@ -164,7 +176,8 @@ class YgStepperButtonTheme extends ThemeExtension<YgStepperButtonTheme> {
       const DeepCollectionEquality().hash(disabledIconColor),
       const DeepCollectionEquality().hash(iconColor),
       const DeepCollectionEquality().hash(iconSize),
-      const DeepCollectionEquality().hash(padding),
+      const DeepCollectionEquality().hash(paddingLarge),
+      const DeepCollectionEquality().hash(paddingMedium),
       const DeepCollectionEquality().hash(splashColor),
     );
   }

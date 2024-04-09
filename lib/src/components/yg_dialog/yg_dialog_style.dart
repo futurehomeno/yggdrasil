@@ -7,33 +7,26 @@ import 'enums/yg_dialog_variant.dart';
 
 typedef YgDialogState = YgVariantState<YgDialogVariant>;
 
-class YgDialogStyle extends YgStyleWithDefaults<YgDialogState> {
+class YgDialogStyle extends YgStyle<YgDialogState> {
   YgDialogStyle({
     required super.state,
     required super.vsync,
   });
 
-  late final YgAnimatedColorProperty iconBackground;
-  late final YgAnimatedColorProperty iconColor;
-  late final YgAnimatedEdgeInsetsProperty iconPadding;
+  late final YgAnimatedProperty<Color> iconBackground = animate(_resolveIconBackground);
+  late final YgAnimatedProperty<Color> iconColor = animate(_resolveIconColor);
+  late final YgAnimatedProperty<EdgeInsets> iconPadding = animate(_resolveIconPadding);
 
-  @override
-  void init() {
-    iconBackground = animate(YgColorProperty<YgDialogState>.resolveWith(_resolveIconBackground));
-    iconColor = animate(YgColorProperty<YgDialogState>.resolveWith(_resolveIconColor));
-    iconPadding = animate(YgEdgeInsetsProperty<YgDialogState>.resolveWith(_resolveIconPadding));
+  Color _resolveIconBackground() {
+    return _variantTheme.iconBackground;
   }
 
-  Color _resolveIconBackground(BuildContext context, YgDialogState state) {
-    return _getVariantTheme(state).iconBackground;
+  Color _resolveIconColor() {
+    return _variantTheme.iconColor;
   }
 
-  Color _resolveIconColor(BuildContext context, YgDialogState state) {
-    return _getVariantTheme(state).iconColor;
-  }
-
-  EdgeInsets _resolveIconPadding(BuildContext context, YgDialogState state) {
-    return _getVariantTheme(state).iconPadding;
+  EdgeInsets _resolveIconPadding() {
+    return _variantTheme.iconPadding;
   }
 
   @override
@@ -44,7 +37,7 @@ class YgDialogStyle extends YgStyleWithDefaults<YgDialogState> {
 
   YgDialogTheme get _theme => context.dialogTheme;
 
-  YgDialogVariantTheme _getVariantTheme(YgDialogState state) {
+  YgDialogVariantTheme get _variantTheme {
     return switch (state.variant.value) {
       YgDialogVariant.highlight => YgDialogVariantTheme.highlight(_theme.highlightDialogTheme),
       YgDialogVariant.success => YgDialogVariantTheme.success(_theme.successDialogTheme),

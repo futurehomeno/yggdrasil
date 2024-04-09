@@ -4,6 +4,7 @@ import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:yggdrasil/src/components/fields/helpers/yg_validate_helper.dart';
+import 'package:yggdrasil/src/utils/_utils.dart';
 import 'package:yggdrasil/yggdrasil.dart';
 
 import '../widgets/_widgets.dart';
@@ -347,7 +348,23 @@ class YgTextField extends StatefulWidget with StatefulWidgetDebugMixin {
   }
 }
 
-class _YgTextFieldState extends State<YgTextField> implements TextSelectionGestureDetectorBuilderDelegate {
+class _YgTextFieldState extends State<YgTextField>
+    with YgControllerManagerMixin
+    implements TextSelectionGestureDetectorBuilderDelegate {
+  /// Manages the [TextEditingController] for this widget.
+  late final YgControllerManager<TextEditingController> _controllerManager = manageController(
+    createController: () => TextEditingController(text: widget.initialValue),
+    getUserController: () => widget.controller,
+    listener: _valueUpdated,
+  );
+
+  /// Manages the [FocusNode] for this widget.
+  late final YgControllerManager<FocusNode> _focusNodeManager = manageController(
+    createController: () => FocusNode(),
+    getUserController: () => widget.focusNode,
+    listener: _focusChanged,
+  );
+
   /// The key of the editable text, used to manage the selection toolbar.
   @override
   final GlobalKey<EditableTextState> editableTextKey = GlobalKey();
@@ -368,7 +385,7 @@ class _YgTextFieldState extends State<YgTextField> implements TextSelectionGestu
 
   /// The state of the field.
   late final YgFieldState _state = YgFieldState(
-    filled: _controller.text.isNotEmpty == true,
+    filled: _controllerManager.value.text.isNotEmpty == true,
     placeholder: widget.placeholder != null,
     error: widget.error != null,
     disabled: widget.disabled,
@@ -380,41 +397,14 @@ class _YgTextFieldState extends State<YgTextField> implements TextSelectionGestu
   /// Whether to hide the obscured text or not.
   bool _obscureTextToggled = true;
 
-  /// The current [FocusNode].
-  late FocusNode _focusNode = widget.focusNode ?? FocusNode();
-
-  /// The current [TextEditingController].
-  late TextEditingController _controller = widget.controller ?? _createController();
-
   @override
   void initState() {
     super.initState();
-    _focusNode.addListener(_focusChanged);
-    _controller.addListener(_valueUpdated);
     _selectionGestureDetectorBuilder = _TextFieldSelectionGestureDetectorBuilder(state: this);
   }
 
   @override
   void didUpdateWidget(covariant YgTextField oldWidget) {
-    final TextEditingController? newController = widget.controller;
-    final FocusNode? newFocusNode = widget.focusNode;
-
-    if (newController == null) {
-      if (oldWidget.controller != null) {
-        _updateController(_createController());
-      }
-    } else if (newController != _controller) {
-      _updateController(newController);
-    }
-
-    if (newFocusNode == null) {
-      if (oldWidget.focusNode != null) {
-        _updateFocusNode(FocusNode());
-      }
-    } else if (newFocusNode != _focusNode) {
-      _updateFocusNode(newFocusNode);
-    }
-
     _state.placeholder.value = widget.placeholder != null;
     _state.error.value = widget.error != null;
     _state.disabled.value = widget.disabled;
@@ -428,14 +418,6 @@ class _YgTextFieldState extends State<YgTextField> implements TextSelectionGestu
   @override
   void dispose() {
     _state.dispose();
-    _controller.removeListener(_valueUpdated);
-    if (widget.controller == null) {
-      _controller.dispose();
-    }
-    _focusNode.removeListener(_focusChanged);
-    if (widget.focusNode == null) {
-      _focusNode.dispose();
-    }
     super.dispose();
   }
 
@@ -452,8 +434,8 @@ class _YgTextFieldState extends State<YgTextField> implements TextSelectionGestu
           value: YgTextFieldValue(
             editableTextKey: editableTextKey,
             autocorrect: widget.autocorrect,
-            controller: _controller,
-            focusNode: _focusNode,
+            controller: _controllerManager.value,
+            focusNode: _focusNodeManager.value,
             inputFormatters: widget.inputFormatters,
             keyboardType: widget.keyboardType,
             maxLines: widget.maxLines,
@@ -507,17 +489,19 @@ class _YgTextFieldState extends State<YgTextField> implements TextSelectionGestu
     final YgCompleteAction completeAction =
         widget.completeAction ?? YgValidateHelper.mapTextInputAction(widget.textInputAction);
 
+    final FocusNode focusNode = _focusNodeManager.value;
+
     switch (completeAction) {
       case YgCompleteAction.focusNext:
-        _focusNode.nextFocus();
+        focusNode.nextFocus();
 
         return;
       case YgCompleteAction.focusPrevious:
-        _focusNode.previousFocus();
+        focusNode.previousFocus();
 
         return;
       case YgCompleteAction.unfocus:
-        _focusNode.unfocus();
+        focusNode.unfocus();
 
         return;
       case YgCompleteAction.none:
@@ -578,35 +562,20 @@ class _YgTextFieldState extends State<YgTextField> implements TextSelectionGestu
     return widget.suffix != null || (widget.obscureText && widget.showObscureTextButton);
   }
 
-  void _updateFocusNode(FocusNode focusNode) {
-    _focusNode.removeListener(_focusChanged);
-    _focusNode = focusNode;
-    _focusNode.addListener(_focusChanged);
-  }
-
-  void _updateController(TextEditingController controller) {
-    _controller.removeListener(_valueUpdated);
-    _controller = controller;
-    _controller.addListener(_valueUpdated);
-  }
-
-  TextEditingController _createController() => TextEditingController(
-        text: widget.initialValue,
-      );
-
   void _valueUpdated() {
-    _state.filled.value = _controller.text.isNotEmpty;
+    _state.filled.value = _controllerManager.value.text.isNotEmpty;
   }
 
   void _focusChanged() {
-    final bool focused = _focusNode.hasFocus;
+    final bool focused = _focusNodeManager.value.hasFocus;
     _state.focused.value = focused;
     widget.onFocusChanged?.call(focused);
   }
 
   void _handleTap() {
-    if (!_focusNode.hasFocus) {
-      _focusNode.requestFocus();
+    final FocusNode focusNode = _focusNodeManager.value;
+    if (!focusNode.hasFocus) {
+      focusNode.requestFocus();
     }
   }
 
@@ -624,12 +593,13 @@ class _YgTextFieldState extends State<YgTextField> implements TextSelectionGestu
 
   /// Toggle the toolbar when a selection handle is tapped.
   void _handleSelectionHandleTapped() {
-    if (_controller.selection.isCollapsed) {
+    if (_controllerManager.value.selection.isCollapsed) {
       _editableText!.toggleToolbar();
     }
   }
 
   bool _shouldShowSelectionHandles(SelectionChangedCause? cause) {
+    final TextEditingController controller = _controllerManager.value;
     // When the text field is activated by something that doesn't trigger the
     // selection overlay, we shouldn't show the handles either.
     if (!_selectionGestureDetectorBuilder.shouldShowSelectionToolbar) {
@@ -640,7 +610,7 @@ class _YgTextFieldState extends State<YgTextField> implements TextSelectionGestu
       return false;
     }
 
-    if (widget.readOnly && _controller.selection.isCollapsed) {
+    if (widget.readOnly && controller.selection.isCollapsed) {
       return false;
     }
 
@@ -648,7 +618,7 @@ class _YgTextFieldState extends State<YgTextField> implements TextSelectionGestu
       return true;
     }
 
-    if (_controller.text.isNotEmpty) {
+    if (controller.text.isNotEmpty) {
       return true;
     }
 

@@ -22,29 +22,25 @@ class YgSnackBar extends StatefulWidget with StatefulWidgetDebugMixin {
   State<YgSnackBar> createState() => _YgSnackBarState();
 }
 
-class _YgSnackBarState extends StateWithYgStyle<YgSnackBar, YgSnackBarStyle> {
-  late final YgSnackBarState _state = YgSnackBarState(
-    variant: widget.variant,
-  );
+class _YgSnackBarState extends StateWithYgStateAndStyle<YgSnackBar, YgSnackBarState, YgSnackBarStyle> {
+  @override
+  YgVariantState<YgSnackBarVariant> createState() {
+    return YgSnackBarState(
+      variant: widget.variant,
+    );
+  }
 
   @override
-  void didUpdateWidget(covariant YgSnackBar oldWidget) {
-    _state.variant.value = widget.variant;
-    super.didUpdateWidget(oldWidget);
+  void updateState() {
+    state.variant.value = widget.variant;
   }
 
   @override
   YgSnackBarStyle createStyle() {
     return YgSnackBarStyle(
-      state: _state,
+      state: state,
       vsync: this,
     );
-  }
-
-  @override
-  void dispose() {
-    _state.dispose();
-    super.dispose();
   }
 
   @override

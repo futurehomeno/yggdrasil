@@ -11,7 +11,7 @@ class YgAvatarStyle extends YgButtonBaseStyle<YgAvatarState> {
   });
 
   @override
-  Color resolveColor(BuildContext context, YgAvatarState state) {
+  Color resolveColor() {
     if (state.image.value) {
       return theme.imageBackgroundColor;
     }
@@ -20,7 +20,7 @@ class YgAvatarStyle extends YgButtonBaseStyle<YgAvatarState> {
   }
 
   @override
-  TextStyle resolveTextStyle(BuildContext context, YgAvatarState state) {
+  TextStyle resolveTextStyle() {
     switch (state.size.value) {
       case YgAvatarSize.large:
         return theme.initialsLargeTextStyle;
@@ -31,7 +31,7 @@ class YgAvatarStyle extends YgButtonBaseStyle<YgAvatarState> {
   }
 
   @override
-  BoxConstraints resolveConstraints(BuildContext context, YgAvatarState state) {
+  BoxConstraints resolveConstraints() {
     final double diameter = switch (state.size.value) {
       YgAvatarSize.small => theme.diameterSmall,
       YgAvatarSize.medium => theme.diameterMedium,
@@ -45,12 +45,12 @@ class YgAvatarStyle extends YgButtonBaseStyle<YgAvatarState> {
   }
 
   @override
-  Clip resolveClip(BuildContext context, YgAvatarState state) {
+  Clip resolveClip() {
     return Clip.antiAliasWithSaveLayer;
   }
 
   @override
-  OutlinedBorder resolveOutlinedBorder(BuildContext context, YgAvatarState state) {
+  OutlinedBorder resolveOutlinedBorder() {
     final BorderRadius borderRadius = switch (state.variant.value) {
       YgAvatarVariant.person => theme.personAvatarTheme.borderRadius,
       YgAvatarVariant.company => theme.companyAvatarTheme.borderRadius,
@@ -63,12 +63,12 @@ class YgAvatarStyle extends YgButtonBaseStyle<YgAvatarState> {
   }
 
   @override
-  Color resolveSplashColor(BuildContext context, YgAvatarState state) {
+  Color resolveSplashColor() {
     if (state.image.value) {
       return Colors.black.withOpacity(0.08);
     }
 
-    return super.resolveSplashColor(context, state);
+    return super.resolveSplashColor();
   }
 
   YgAvatarTheme get theme => context.avatarTheme;

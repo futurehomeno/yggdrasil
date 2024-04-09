@@ -52,17 +52,27 @@ abstract class YgCheckbox extends StatefulWidget with StatefulWidgetDebugMixin i
   }
 }
 
-class _YgCheckboxState extends StateWithYgStyle<YgCheckbox, YgCheckboxStyle> {
-  late final YgCheckboxState _state = YgCheckboxState(
-    checked: widget.value,
-    disabled: widget.disabled,
-    error: widget.hasError,
-  );
+class _YgCheckboxState extends StateWithYgStateAndStyle<YgCheckbox, YgCheckboxState, YgCheckboxStyle> {
+  @override
+  YgCheckboxState createState() {
+    return YgCheckboxState(
+      checked: widget.value,
+      disabled: widget.disabled,
+      error: widget.hasError,
+    );
+  }
+
+  @override
+  void updateState() {
+    state.checked.value = widget.value;
+    state.disabled.value = widget.disabled;
+    state.error.value = widget.hasError;
+  }
 
   @override
   YgCheckboxStyle createStyle() {
     return YgCheckboxStyle(
-      state: _state,
+      state: state,
       vsync: this,
     );
   }
@@ -75,28 +85,14 @@ class _YgCheckboxState extends StateWithYgStyle<YgCheckbox, YgCheckboxStyle> {
   }
 
   @override
-  void didUpdateWidget(covariant YgCheckbox oldWidget) {
-    _state.checked.value = widget.value;
-    _state.disabled.value = widget.disabled;
-    _state.error.value = widget.hasError;
-    super.didUpdateWidget(oldWidget);
-  }
-
-  @override
-  void dispose() {
-    _state.dispose();
-    super.dispose();
-  }
-
-  @override
   Widget build(BuildContext context) {
     final YgCheckboxTheme theme = context.checkboxTheme;
 
     return YgFocusableActionDetector(
       onActivate: widget.toggle,
-      onFocusChanged: _state.focused.update,
-      onHoverChanged: _state.hovered.update,
-      enabled: !_state.disabled.value,
+      onFocusChanged: state.focused.update,
+      onHoverChanged: state.hovered.update,
+      enabled: !state.disabled.value,
       mouseCursor: style.mouseCursor.value,
       child: Padding(
         padding: theme.padding,

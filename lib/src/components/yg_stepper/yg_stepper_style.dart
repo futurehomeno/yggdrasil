@@ -4,28 +4,22 @@ import 'package:yggdrasil/src/theme/stepper/stepper_theme.dart';
 import 'package:yggdrasil/src/theme/theme.dart';
 import 'package:yggdrasil/src/utils/_utils.dart';
 
-class YgStepperStyle extends YgStyleWithDefaults<YgStepperState> {
+class YgStepperStyle extends YgStyle<YgStepperState> {
   YgStepperStyle({
     required super.state,
     required super.vsync,
   });
 
-  late final YgAnimatedTextStyleProperty metricStyle;
-  late final YgAnimatedTextStyleProperty valueStyle;
+  late final YgAnimatedProperty<TextStyle> metricStyle = animate(_resolveMetricStyle);
+  late final YgAnimatedProperty<TextStyle> valueStyle = animate(_resolveValueStyle);
 
-  @override
-  void init() {
-    metricStyle = animate(YgTextStyleProperty<YgStepperState>.resolveWith(_resolveMetricStyle));
-    valueStyle = animate(YgTextStyleProperty<YgStepperState>.resolveWith(_resolveValueStyle));
-  }
-
-  TextStyle _resolveMetricStyle(BuildContext context, YgStepperState state) {
+  TextStyle _resolveMetricStyle() {
     return _theme.metricTextStyle.copyWith(
       color: _resolveTextColor(state),
     );
   }
 
-  TextStyle _resolveValueStyle(BuildContext context, YgStepperState state) {
+  TextStyle _resolveValueStyle() {
     return _theme.valueTextStyle.copyWith(
       color: _resolveTextColor(state),
     );

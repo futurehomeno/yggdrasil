@@ -19,6 +19,7 @@ export 'yg_progress_indicator/_yg_progress_indicator.dart';
 export 'yg_pulse/_yg_pulse.dart';
 export 'yg_radio/_yg_radio.dart';
 export 'yg_section/_yg_section.dart';
+export 'yg_slider/_yg_slider.dart';
 export 'yg_snack_bar/_yg_snack_bar.dart';
 export 'yg_stepper/_yg_stepper.dart';
 export 'yg_switch/_yg_switch.dart';

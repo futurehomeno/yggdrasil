@@ -1,9 +1,12 @@
 import 'package:flutter/material.dart' hide TextButtonTheme;
 import 'package:yggdrasil/src/components/buttons/widgets/_widgets.dart';
+import 'package:yggdrasil/src/components/buttons/yg_stepper_button/enums/_enums.dart';
 import 'package:yggdrasil/src/theme/_theme.dart';
 import 'package:yggdrasil/src/utils/_utils.dart';
 
-class YgStepperButtonStyle extends YgButtonBaseStyle<YgButtonBaseState> {
+import 'yg_stepper_button_state.dart';
+
+class YgStepperButtonStyle extends YgButtonBaseStyle<YgStepperButtonState> {
   YgStepperButtonStyle({
     required super.state,
     required super.vsync,
@@ -16,28 +19,33 @@ class YgStepperButtonStyle extends YgButtonBaseStyle<YgButtonBaseState> {
   Duration get duration => const Duration(milliseconds: 200);
 
   @override
-  Color resolveColor(BuildContext context, YgButtonBaseState state) {
+  Color resolveColor() {
     return Colors.transparent;
   }
 
   @override
-  BoxConstraints resolveConstraints(BuildContext context, YgButtonBaseState state) {
-    final double iconSize = _theme.iconSize;
-    final Offset iconSizeOffset = Offset(iconSize, iconSize);
-    final Size paddingSize = _theme.padding.collapsedSize;
+  BoxConstraints resolveConstraints() {
+    final EdgeInsets padding = switch (state.size.value) {
+      YgStepperButtonSize.large => _theme.paddingLarge,
+      YgStepperButtonSize.medium => _theme.paddingMedium,
+    };
 
     return BoxConstraints.tight(
-      paddingSize + iconSizeOffset,
+      padding.inflateSize(
+        Size.square(
+          _theme.iconSize,
+        ),
+      ),
     );
   }
 
   @override
-  double resolveIconSize(BuildContext context, YgButtonBaseState state) {
+  double resolveIconSize() {
     return _theme.iconSize;
   }
 
   @override
-  Color resolveIconColor(BuildContext context, YgButtonBaseState state) {
+  Color resolveIconColor() {
     if (state.disabled.value) {
       return _theme.disabledIconColor;
     }
@@ -46,12 +54,12 @@ class YgStepperButtonStyle extends YgButtonBaseStyle<YgButtonBaseState> {
   }
 
   @override
-  Color resolveSplashColor(BuildContext context, YgButtonBaseState state) {
+  Color resolveSplashColor() {
     return _theme.splashColor;
   }
 
   @override
-  OutlinedBorder resolveOutlinedBorder(BuildContext context, YgButtonBaseState state) {
+  OutlinedBorder resolveOutlinedBorder() {
     if (state.disabled.value) {
       return YgRoundedRectangleGradientBorder(
         gradient: _theme.disabledBorderGradient,
@@ -67,5 +75,5 @@ class YgStepperButtonStyle extends YgButtonBaseStyle<YgButtonBaseState> {
     );
   }
 
-  YgStepperButtonTheme get _theme => context.stepperTheme.buttonTheme;
+  YgStepperButtonTheme get _theme => context.stepperButtonTheme;
 }

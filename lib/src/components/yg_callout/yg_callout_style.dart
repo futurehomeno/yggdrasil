@@ -1,26 +1,21 @@
 import 'package:flutter/material.dart';
-import 'package:yggdrasil/src/components/yg_callout/yg_callout_state.dart';
 import 'package:yggdrasil/src/theme/_theme.dart';
 import 'package:yggdrasil/src/utils/_utils.dart';
 
 import '_yg_callout.dart';
 
-class YgCalloutStyle extends YgStyleWithDefaults<YgCalloutState> {
+typedef YgCalloutState = YgVariantState<YgCalloutVariant>;
+
+class YgCalloutStyle extends YgStyle<YgCalloutState> {
   YgCalloutStyle({
     required super.state,
     required super.vsync,
   });
 
-  late final YgAnimatedColorProperty backgroundColor;
-  late final YgAnimatedColorProperty borderColor;
+  late final YgAnimatedProperty<Color> backgroundColor = animate(_resolveBackgroundColor);
+  late final YgAnimatedProperty<Color> borderColor = animate(_resolveBorderColor);
 
-  @override
-  void init() {
-    backgroundColor = animate(YgColorProperty<YgCalloutState>.resolveWith(_resolveBackgroundColor));
-    borderColor = animate(YgColorProperty<YgCalloutState>.resolveWith(_resolveBorderColor));
-  }
-
-  Color _resolveBackgroundColor(BuildContext context, YgCalloutState state) {
+  Color _resolveBackgroundColor() {
     switch (state.variant.value) {
       case YgCalloutVariant.highlight:
         return _theme.highlightCalloutTheme.backgroundColor;
@@ -33,7 +28,7 @@ class YgCalloutStyle extends YgStyleWithDefaults<YgCalloutState> {
     }
   }
 
-  Color _resolveBorderColor(BuildContext context, YgCalloutState state) {
+  Color _resolveBorderColor() {
     switch (state.variant.value) {
       case YgCalloutVariant.highlight:
         return _theme.highlightCalloutTheme.borderColor;

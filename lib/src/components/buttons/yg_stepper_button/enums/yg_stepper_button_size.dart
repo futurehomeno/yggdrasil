@@ -1,0 +1,4 @@
+enum YgStepperButtonSize {
+  medium,
+  large,
+}

@@ -1,7 +1,8 @@
 part of 'yg_picker_column.dart';
 
 /// Controls the value of a [YgPickerColumn].
-class YgPickerColumnController<T extends Object> extends ChangeNotifier {
+class YgPickerColumnController<T extends Object> extends ChangeNotifier
+    implements YgAttachable<_YgPickerColumnState<T>>, YgDisposable {
   YgPickerColumnController({
     T? initialValue,
   }) : _value = initialValue {
@@ -100,7 +101,9 @@ class YgPickerColumnController<T extends Object> extends ChangeNotifier {
     }
   }
 
-  void _attach(_YgPickerColumnState<T> column) {
+  @override
+  // ignore: library_private_types_in_public_api
+  void attach(_YgPickerColumnState<T> column) {
     _column = column;
 
     final T? value = this._value;
@@ -119,7 +122,8 @@ class YgPickerColumnController<T extends Object> extends ChangeNotifier {
     notifyListeners();
   }
 
-  void _detach() {
+  @override
+  void detach() {
     _index = _normalizeIndex(_index);
     _column = null;
   }

@@ -10,6 +10,8 @@ abstract class YgButtonBase<T extends YgButtonBaseState> extends StatefulWidget 
     this.onLongPress,
     this.onHover,
     this.onFocusChange,
+    this.onTapEnd,
+    this.onTapStart,
     this.focusNode,
     this.autofocus = false,
   });
@@ -25,6 +27,12 @@ abstract class YgButtonBase<T extends YgButtonBaseState> extends StatefulWidget 
 
   /// Called when the user focuses the button.
   final ValueChanged<bool>? onFocusChange;
+
+  /// Called when the user ends a tap.
+  final VoidCallback? onTapEnd;
+
+  /// Called when the user starts a tap.
+  final VoidCallback? onTapStart;
 
   /// The [FocusNode] in charge of managing focus for this button.
   final FocusNode? focusNode;
@@ -78,24 +86,42 @@ abstract class YgButtonBase<T extends YgButtonBaseState> extends StatefulWidget 
   T createButtonState();
 }
 
-class _YgButtonBaseState<T extends YgButtonBaseState> extends StateWithYgStyle<YgButtonBase<T>, YgButtonBaseStyle<T>> {
+class _YgButtonBaseState<T extends YgButtonBaseState>
+    extends StateWithYgStateAndStyle<YgButtonBase<T>, T, YgButtonBaseStyle<T>> {
   late final YgMaterialStatesControllerWithChangeCallback _materialController =
       YgMaterialStatesControllerWithChangeCallback(
     onStateChange: _handleMaterialStateChange,
   );
 
-  late final T _state = widget.createButtonState();
+  @override
+  T createState() {
+    return widget.createButtonState();
+  }
 
-  void _handleMaterialStateChange(MaterialState state, bool toggled) {
-    switch (state) {
+  @override
+  YgButtonBaseStyle<T> createStyle() {
+    return widget.createStyle(
+      this,
+      state,
+    );
+  }
+
+  @override
+  void updateState() {
+    state.disabled.value = widget.disabled;
+    widget.updateState(state);
+  }
+
+  void _handleMaterialStateChange(MaterialState materialState, bool toggled) {
+    switch (materialState) {
       case MaterialState.focused:
-        _state.focused.value = toggled;
+        state.focused.value = toggled;
         break;
       case MaterialState.hovered:
-        _state.hovered.value = toggled;
+        state.hovered.value = toggled;
         break;
       case MaterialState.pressed:
-        _state.pressed.value = toggled;
+        state.pressed.value = toggled;
         break;
       default:
     }
@@ -105,21 +131,6 @@ class _YgButtonBaseState<T extends YgButtonBaseState> extends StateWithYgStyle<Y
   void dispose() {
     _materialController.dispose();
     super.dispose();
-  }
-
-  @override
-  void didUpdateWidget(covariant YgButtonBase<T> oldWidget) {
-    widget.updateState(_state);
-    _state.disabled.value = widget.disabled;
-    super.didUpdateWidget(oldWidget);
-  }
-
-  @override
-  YgButtonBaseStyle<T> createStyle() {
-    return widget.createStyle(
-      this,
-      _state,
-    );
   }
 
   @override
@@ -135,6 +146,8 @@ class _YgButtonBaseState<T extends YgButtonBaseState> extends StateWithYgStyle<Y
   @override
   Widget build(BuildContext context) {
     final Widget? background = widget.buildBackground(context);
+    final VoidCallback? onTapEnd = widget.onTapEnd;
+    final VoidCallback? onTapStart = widget.onTapStart;
 
     Widget content = YgAnimatedConstrainedBox(
       constraints: style.constraints,
@@ -143,10 +156,13 @@ class _YgButtonBaseState<T extends YgButtonBaseState> extends StateWithYgStyle<Y
         child: InkWell(
           statesController: _materialController,
           splashFactory: style.splashFactory.value,
-          onLongPress: _state.disabled.value ? null : widget.onLongPress,
-          onTap: _state.disabled.value ? null : widget.onPressed,
+          onLongPress: state.disabled.value ? null : widget.onLongPress,
+          onTap: state.disabled.value ? null : widget.onPressed,
           onHover: widget.onHover,
           onFocusChange: widget.onFocusChange,
+          onTapUp: onTapEnd == null ? null : (_) => onTapEnd(),
+          onTapDown: onTapStart == null ? null : (_) => onTapStart(),
+          onTapCancel: onTapEnd,
           autofocus: widget.autofocus,
           focusNode: widget.focusNode,
           canRequestFocus: widget.onPressed != null,

@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:yggdrasil/src/components/yg_callout/yg_callout_state.dart';
 import 'package:yggdrasil/src/components/yg_callout/yg_callout_style.dart';
 import 'package:yggdrasil/src/theme/_theme.dart';
 import 'package:yggdrasil/src/utils/_utils.dart';
@@ -35,7 +34,7 @@ class YgCallout extends StatefulWidget with StatefulWidgetDebugMixin {
   /// Called when the user clicks the close button.
   ///
   /// Close button only exists if this callback is provided.
-  /// The callout does not hide itself, it has to be removed from the widget tree 
+  /// The callout does not hide itself, it has to be removed from the widget tree
   /// manually when this callback is called.
   final VoidCallback? onClose;
 
@@ -43,29 +42,25 @@ class YgCallout extends StatefulWidget with StatefulWidgetDebugMixin {
   State<YgCallout> createState() => _YgCalloutState();
 }
 
-class _YgCalloutState extends StateWithYgStyle<YgCallout, YgCalloutStyle> {
-  late final YgCalloutState _state = YgCalloutState(
-    variant: widget.variant,
-  );
+class _YgCalloutState extends StateWithYgStateAndStyle<YgCallout, YgCalloutState, YgCalloutStyle> {
+  @override
+  YgCalloutState createState() {
+    return YgCalloutState(
+      variant: widget.variant,
+    );
+  }
 
   @override
   YgCalloutStyle createStyle() {
     return YgCalloutStyle(
-      state: _state,
+      state: state,
       vsync: this,
     );
   }
 
   @override
-  void didUpdateWidget(covariant YgCallout oldWidget) {
-    _state.variant.value = widget.variant;
-    super.didUpdateWidget(oldWidget);
-  }
-
-  @override
-  void dispose() {
-    _state.dispose();
-    super.dispose();
+  void updateState() {
+    state.variant.value = widget.variant;
   }
 
   @override

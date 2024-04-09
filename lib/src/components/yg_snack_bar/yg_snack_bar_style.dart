@@ -6,32 +6,25 @@ import 'package:yggdrasil/yggdrasil.dart';
 
 typedef YgSnackBarState = YgVariantState<YgSnackBarVariant>;
 
-class YgSnackBarStyle extends YgStyleWithDefaults<YgSnackBarState> {
+class YgSnackBarStyle extends YgStyle<YgSnackBarState> {
   YgSnackBarStyle({
     required super.state,
     required super.vsync,
   });
 
-  late final YgAnimatedColorProperty iconBackgroundColor;
-  late final YgAnimatedColorProperty iconColor;
-  late final YgDrivenProperty<YgIconData> icon;
+  late final YgAnimatedProperty<Color> iconColor = animate(_resolveIconColor);
+  late final YgAnimatedProperty<Color> iconBackgroundColor = animate(_resolveIconBackgroundColor);
+  late final YgDrivenProperty<YgIconData> icon = drive(_resolveIcon);
 
-  @override
-  void init() {
-    iconColor = animate(YgColorProperty<YgSnackBarState>.resolveWith(_resolveIconColor));
-    iconBackgroundColor = animate(YgColorProperty<YgSnackBarState>.resolveWith(_resolveIconBackgroundColor));
-    icon = drive(YgProperty<YgSnackBarState, YgIconData>.resolveWith(_resolveIcon));
+  Color _resolveIconColor() {
+    return _variantTheme.iconColor;
   }
 
-  Color _resolveIconColor(BuildContext context, YgSnackBarState state) {
-    return _getVariantTheme(state).iconColor;
+  Color _resolveIconBackgroundColor() {
+    return _variantTheme.iconContainerColor;
   }
 
-  Color _resolveIconBackgroundColor(BuildContext context, YgSnackBarState state) {
-    return _getVariantTheme(state).iconContainerColor;
-  }
-
-  YgIconData _resolveIcon(BuildContext context, YgSnackBarState state) {
+  YgIconData _resolveIcon() {
     return switch (state.variant.value) {
       YgSnackBarVariant.highlight => YgIcons.info,
       YgSnackBarVariant.success => YgIcons.check,
@@ -39,7 +32,7 @@ class YgSnackBarStyle extends YgStyleWithDefaults<YgSnackBarState> {
     };
   }
 
-  YgSnackBarVariantTheme _getVariantTheme(YgSnackBarState state) {
+  YgSnackBarVariantTheme get _variantTheme {
     return switch (state.variant.value) {
       YgSnackBarVariant.highlight => YgSnackBarVariantTheme.highlight(_theme.highlightSnackBarTheme),
       YgSnackBarVariant.success => YgSnackBarVariantTheme.success(_theme.successSnackBarTheme),

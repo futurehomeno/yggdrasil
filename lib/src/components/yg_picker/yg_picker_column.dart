@@ -3,6 +3,7 @@ import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 import 'package:yggdrasil/src/theme/picker/picker_theme.dart';
+import 'package:yggdrasil/src/utils/_utils.dart';
 import 'package:yggdrasil/yggdrasil.dart';
 
 import 'widgets/_widgets.dart';
@@ -57,50 +58,13 @@ class YgPickerColumn<T extends Object> extends StatefulWidget {
   State<YgPickerColumn<T>> createState() => _YgPickerColumnState<T>();
 }
 
-class _YgPickerColumnState<T extends Object> extends State<YgPickerColumn<T>> {
-  late YgPickerColumnController<T> _controller = widget.controller ?? _createController();
-
-  @override
-  void initState() {
-    super.initState();
-    _controller._attach(this);
-  }
-
-  @override
-  void didUpdateWidget(covariant YgPickerColumn<T> oldWidget) {
-    final YgPickerColumnController<T>? newController = widget.controller;
-
-    if (newController == null) {
-      if (oldWidget.controller != null) {
-        _updateController(_createController());
-      }
-    } else if (newController != _controller) {
-      _updateController(newController);
-    }
-
-    super.didUpdateWidget(oldWidget);
-  }
-
-  YgPickerColumnController<T> _createController() {
-    return YgPickerColumnController<T>(
+class _YgPickerColumnState<T extends Object> extends State<YgPickerColumn<T>> with YgControllerManagerMixin {
+  late final YgControllerManager<YgPickerColumnController<T>> _controllerManager = manageController(
+    createController: () => YgPickerColumnController<T>(
       initialValue: widget.initialValue,
-    );
-  }
-
-  void _updateController(YgPickerColumnController<T> controller) {
-    _controller._detach();
-    _controller = controller;
-    _controller._attach(this);
-  }
-
-  @override
-  void dispose() {
-    _controller._detach();
-    if (widget.controller != _controller) {
-      _controller.dispose();
-    }
-    super.dispose();
-  }
+    ),
+    getUserController: () => widget.controller,
+  );
 
   @override
   Widget build(BuildContext context) {
@@ -109,7 +73,7 @@ class _YgPickerColumnState<T extends Object> extends State<YgPickerColumn<T>> {
     final String? metric = columnData.metric;
 
     return YgFixedExtentScrollable(
-      controller: _controller._scrollController,
+      controller: _controllerManager.value._scrollController,
       physics: const YgFixedExtentScrollPhysics(),
       itemExtent: columnData.rowHeight,
       scrollBehavior: ScrollConfiguration.of(context).copyWith(scrollbars: false),

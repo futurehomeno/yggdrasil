@@ -2,8 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:yggdrasil/src/utils/_utils.dart';
 
 /// Mixin to simplify working with [YgStyle].
-mixin YgStyleBuilderMixin<W extends StatefulWidget, S extends YgStyleBase<YgState>> on YgVsyncMixin<W>
-    implements YgVsync {
+mixin YgStyleBuilderMixin<W extends StatefulWidget, S extends YgStyle<YgState>> on YgVsyncMixin<W> implements YgVsync {
   late final Set<Listenable> _watchedProperties = <Listenable>{};
   S? _style;
 
@@ -23,6 +22,7 @@ mixin YgStyleBuilderMixin<W extends StatefulWidget, S extends YgStyleBase<YgStat
   void initState() {
     super.initState();
     WidgetsBinding.instance.addPostFrameCallback((_) {
+      _style ??= createStyle();
       _watchedProperties.addAll(getWatchedProperties());
 
       for (final Listenable property in _watchedProperties) {

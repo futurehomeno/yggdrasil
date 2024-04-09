@@ -67,27 +67,25 @@ class YgDialog extends StatefulWidget with StatefulWidgetDebugMixin {
   State<YgDialog> createState() => _YgDialogState();
 }
 
-class _YgDialogState extends StateWithYgStyle<YgDialog, YgDialogStyle> {
-  late final YgVariantState<YgDialogVariant> _state = YgDialogState(variant: widget.variant);
+class _YgDialogState extends StateWithYgStateAndStyle<YgDialog, YgDialogState, YgDialogStyle> {
+  @override
+  YgDialogState createState() {
+    return YgDialogState(
+      variant: widget.variant,
+    );
+  }
 
   @override
   YgDialogStyle createStyle() {
     return YgDialogStyle(
-      state: _state,
+      state: state,
       vsync: this,
     );
   }
 
   @override
-  void dispose() {
-    _state.dispose();
-    super.dispose();
-  }
-
-  @override
-  void didUpdateWidget(covariant YgDialog oldWidget) {
-    _state.variant.value = widget.variant;
-    super.didUpdateWidget(oldWidget);
+  void updateState() {
+    state.variant.value = widget.variant;
   }
 
   @override
