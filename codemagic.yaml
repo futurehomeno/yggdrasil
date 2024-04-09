@@ -18,12 +18,11 @@ workflows:
       events:
         - pull_request
       branch_patterns:
-        - pattern: '*'
+        - pattern: "*"
           include: true
           source: true
       cancel_previous_builds: true
     scripts:
-
       - name: Moving cloned repo
         working_directory: /Users/builder
         script: |
@@ -31,10 +30,13 @@ workflows:
           rm -rf clone/*
           mv app_files clone
 
-      - name: Analyzing
-        working_directory: /Users/builder/clone/app_files
+      - name: Analyzing demo app
+        working_directory: /Users/builder/clone/app_files/demo_app/
         script: flutter analyze
 
+      - name: Analyzing yggdrasil
+        working_directory: /Users/builder/clone/app_files/yggdrasil/
+        script: flutter analyze
 
   create-version:
     name: Create version
@@ -69,7 +71,6 @@ workflows:
         working_directory: /Users/builder/clone/app_files
         script: rat release -y || exit 1
 
-
   create-custom-version:
     name: Create custom version (Only VM usage)
     instance_type: mac_mini_m1
@@ -102,7 +103,6 @@ workflows:
       - name: Creating version for package
         working_directory: /Users/builder/clone/app_files
         script: rat release -v $VERSION -y || exit 1
-
 
   release:
     name: Android & macOS release
@@ -142,36 +142,36 @@ workflows:
         script: npm install -g appdmg
 
       - name: Set up local.properties
-        script: echo "flutter.sdk=$HOME/programs/flutter" > "$CM_BUILD_DIR/example/android/local.properties"
+        script: echo "flutter.sdk=$HOME/programs/flutter" > "$CM_BUILD_DIR/demo_app/android/local.properties"
 
       - name: Get Flutter packages
-        working_directory: $CM_BUILD_DIR/example
+        working_directory: $CM_BUILD_DIR/demo_app
         script: flutter packages pub get
 
       - name: Build Android apk with Flutter
-        working_directory: $CM_BUILD_DIR/example
+        working_directory: $CM_BUILD_DIR/demo_app
         script: flutter build apk --release
 
       - name: Build macOS with Flutter
-        working_directory: $CM_BUILD_DIR/example
+        working_directory: $CM_BUILD_DIR/demo_app
         script: flutter build macos --release
 
       - name: Create dmg for macos build
-        working_directory: $CM_BUILD_DIR/example/installers/dmg_creator
+        working_directory: $CM_BUILD_DIR/demo_app/installers/dmg_creator
         script: appdmg ./config.json ./yggdrasil.dmg
 
     publishing:
       scripts:
         - name: Send artifacts to github
-          working_directory: $CM_BUILD_DIR/example
+          working_directory: $CM_BUILD_DIR/demo_app
           script: |
             #!/bin/sh
-  
+
             # Change these variables accordingly
             REPO="futurehomeno/yggdrasil"
-            ANDROID_ARTIFACT_PATH="build/app/outputs/flutter-apk/app-release.apk"
-            MACOS_ARTIFACT_PATH="installers/dmg_creator/yggdrasil.dmg"
-            
+            ANDROID_ARTIFACT_PATH="demo_app/build/app/outputs/flutter-apk/app-release.apk"
+            MACOS_ARTIFACT_PATH="demo_app/installers/dmg_creator/yggdrasil.dmg"
+
             # Create a new release
             RELEASE_RESPONSE=$(
               curl --data "{
@@ -184,12 +184,12 @@ workflows:
               -H "Content-Type: application/json" \
               -X POST "https://api.github.com/repos/$REPO/releases"
             )
-  
+
             echo $RELEASE_RESPONSE
 
             # Extract the upload URL from the release response
             UPLOAD_URL=$(echo $RELEASE_RESPONSE | jq -r .upload_url | sed -e "s/{?name,label}//")
-  
+
             if [ -z "$UPLOAD_URL" ]; then
               echo "Failed to get upload URL"
               exit 1
@@ -201,7 +201,7 @@ workflows:
               -H "Content-Type: $(file -b --mime-type $ANDROID_ARTIFACT_PATH)" \
               --data-binary "@$ANDROID_ARTIFACT_PATH" \
               "$UPLOAD_URL?name=$(basename $ANDROID_ARTIFACT_PATH)"
-            
+
             # Upload the macos artifact
             curl -X POST \
               -H "Authorization: token $GITHUB_TOKEN" \
@@ -212,7 +212,7 @@ workflows:
         - name: Sending message to Slack
           script: |
             changelog=$(rat changelog -f $CM_TAG -t $CM_TAG -r)
-            
+
             curl --location $YGGDRASIL_SLACK_WEBHOOK \
             --header 'Content-Type: application/json' \
             --data '
