@@ -16,7 +16,7 @@ import 'yg_slider_repeating_stepper_button.dart';
 
 typedef YgSliderValueBuilder = String Function(double value)?;
 
-/// Implementation of the Yggdrasil slider.
+/// Widget where you can slide a handle on a track to select a value.
 class YgSlider extends StatefulWidget with StatefulWidgetDebugMixin {
   const YgSlider({
     super.key,
@@ -35,7 +35,14 @@ class YgSlider extends StatefulWidget with StatefulWidgetDebugMixin {
     this.valueIndicator = false,
     this.differenceIndicator = false,
     this.variant = YgSliderVariant.temperature,
-  });
+  })  : assert(
+          min <= max,
+          'min can not be larger max value.',
+        ),
+        assert(
+          !valueIndicator || valueBuilder == null,
+          'Can not have valueBuilder without valueIndicator.',
+        );
 
   /// The value of the slider.
   final double value;

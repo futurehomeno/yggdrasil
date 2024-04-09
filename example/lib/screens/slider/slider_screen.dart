@@ -124,7 +124,7 @@ class _SliderScreenState extends State<SliderScreen> {
           ),
           YgSection.column(
             title: 'Temperature variant',
-            subtitle: 'Both with a increasing and decreasing value',
+            subtitle: 'Both with an increasing and decreasing value',
             children: <Widget>[
               YgSlider(
                 value: _temperatureValue1,
@@ -148,7 +148,7 @@ class _SliderScreenState extends State<SliderScreen> {
           ),
           YgSection.column(
             title: 'Shades variant',
-            subtitle: 'Both with a increasing and decreasing value',
+            subtitle: 'Both with an increasing and decreasing value',
             children: <Widget>[
               YgSlider(
                 value: _shadesValue1,

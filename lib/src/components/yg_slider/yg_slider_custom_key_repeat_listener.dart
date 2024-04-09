@@ -6,6 +6,9 @@ import 'package:yggdrasil/src/components/yg_slider/yg_slider_repeating_stepper_b
 
 /// Detects a held key and creates a custom interval key repeat loop.
 ///
+/// Needed to allow us to increase the slider value at a consistent percentage
+/// when holding a key.
+///
 /// Does not work on the android emulator because of this issue:
 /// https://github.com/flutter/flutter/issues/72816
 class YgSliderCustomKeyRepeatListener extends StatefulWidget {
@@ -20,13 +23,13 @@ class YgSliderCustomKeyRepeatListener extends StatefulWidget {
     required this.repeatDelay,
   });
 
-  /// A map of Keys and their respective callbacks.
+  /// A map of keys and their respective callbacks.
   final Map<LogicalKeyboardKey, RepeatableCallback> listeners;
 
   /// The focusNode managing the focus of this widget.
   final FocusNode focusNode;
 
-  /// The widget bellow this widget in the widget tree.
+  /// The widget below this widget in the widget tree.
   final Widget child;
 
   /// Whether the widget should auto focus on initial build.

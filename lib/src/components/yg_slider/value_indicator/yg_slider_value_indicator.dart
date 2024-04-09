@@ -5,6 +5,7 @@ import 'package:yggdrasil/src/components/yg_slider/yg_slider_state.dart';
 import 'package:yggdrasil/src/utils/_utils.dart';
 import 'package:yggdrasil/yggdrasil.dart';
 
+/// Indicator showing current value above the slider.
 class YgSliderValueIndicator extends StatefulWidget {
   const YgSliderValueIndicator({
     super.key,
