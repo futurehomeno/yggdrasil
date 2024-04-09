@@ -1,3 +1,14 @@
+# 1.10.8 [2024-04-09T10:52:19.193958]
+
+### Changes
+
+- [feature] Implemented Yggdrasil slider widget DEV-1134.
+
+### Dev changes
+
+- [dev-feature] Added YgControllerManagerMixin to simplify working with user supplied controllers DEV-3330.
+- [dev-improvement] Reduced boilerplate code in YgStyles by allowing directly animating resolve methods DEV-3329.
+
 # 1.10.7 [2024-04-04T14:19:20.255365]
 
 ### Changes
