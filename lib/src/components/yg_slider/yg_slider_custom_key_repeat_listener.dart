@@ -115,7 +115,7 @@ class _YgSliderCustomKeyRepeatListenerState extends State<YgSliderCustomKeyRepea
     }
 
     if (event.repeat) {
-      return KeyEventResult.skipRemainingHandlers;
+      return KeyEventResult.handled;
     }
 
     if (event is RawKeyDownEvent) {

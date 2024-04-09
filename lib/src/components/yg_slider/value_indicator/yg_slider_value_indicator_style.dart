@@ -9,7 +9,6 @@ class YgSliderValueIndicatorStyle extends YgStyle<YgSliderState> {
     required super.vsync,
   });
 
-  // Value indicator
   late final YgDrivenProperty<TextStyle> valueIndicatorTextStyle = all(() => _theme.valueIndicatorTextStyle);
   late final YgDrivenProperty<EdgeInsets> valueIndicatorPadding = all(() => _theme.valueIndicatorPadding);
   late final YgDrivenProperty<BorderRadius> valueIndicatorRadius = all(() => _theme.valueIndicatorRadius);
