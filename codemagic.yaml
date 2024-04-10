@@ -63,7 +63,7 @@ workflows:
         script: |
           git clone git@github.com:futurehomeno/ratatosk.git $CM_BUILD_DIR/ratatosk
           cd $CM_BUILD_DIR/ratatosk
-          git checkout crytek/cm
+          git checkout crytek/yggdrasil-monorepo
           flutter pub get
           dart pub global activate --source path ./
 
