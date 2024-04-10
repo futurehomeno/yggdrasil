@@ -68,7 +68,7 @@ workflows:
           dart pub global activate --source path ./
 
       - name: Creating version
-        working_directory: /Users/builder/clone/app_files
+        working_directory: /Users/builder/clone/app_files/yggdrasil
         script: rat release -y || exit 1
 
   create-custom-version:
@@ -101,7 +101,7 @@ workflows:
           dart pub global activate --source path ./
 
       - name: Creating version for package
-        working_directory: /Users/builder/clone/app_files
+        working_directory: /Users/builder/clone/app_files/yggdrasil
         script: rat release -v $VERSION -y || exit 1
 
   release:
@@ -213,7 +213,7 @@ workflows:
           script: |
             changelog=$(rat changelog -f $CM_TAG -t $CM_TAG -r)
 
-            curl --location $YGGDRASIL_SLACK_WEBHOOK \
+            curl --location https://hooks.slack.com/services/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 \
             --header 'Content-Type: application/json' \
             --data '
               {
