@@ -4,7 +4,6 @@ import '../_resolved.dart';
 
 abstract class StrokeStyleToken extends Token {
   const StrokeStyleToken({
-    required super.unresolved,
     required super.description,
   });
 }

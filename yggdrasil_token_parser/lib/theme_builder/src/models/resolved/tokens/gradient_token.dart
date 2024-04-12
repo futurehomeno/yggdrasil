@@ -2,7 +2,6 @@ import '../_resolved.dart';
 
 class GradientToken extends Token {
   const GradientToken({
-    required super.unresolved,
     required this.stops,
     required super.description,
   });

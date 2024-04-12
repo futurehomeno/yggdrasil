@@ -4,7 +4,6 @@ import '../_resolved.dart';
 
 class FontWeightToken extends Token {
   const FontWeightToken({
-    required super.unresolved,
     required this.fontWeight,
     required super.description,
   });

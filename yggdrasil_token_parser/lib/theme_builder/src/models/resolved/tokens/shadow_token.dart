@@ -4,7 +4,6 @@ import '../_resolved.dart';
 
 class ShadowToken extends Token {
   const ShadowToken({
-    required super.unresolved,
     required this.color,
     required this.blur,
     required this.offsetX,

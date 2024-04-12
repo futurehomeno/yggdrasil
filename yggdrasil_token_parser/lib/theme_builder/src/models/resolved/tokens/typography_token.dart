@@ -4,7 +4,6 @@ import '../_resolved.dart';
 
 class TypographyToken extends Token {
   const TypographyToken({
-    required super.unresolved,
     required this.families,
     required this.fontSize,
     required this.fontWeight,

@@ -4,7 +4,6 @@ import '../_resolved.dart';
 
 class TransitionToken extends Token {
   const TransitionToken({
-    required super.unresolved,
     required this.duration,
     required this.curve,
     required this.delay,
