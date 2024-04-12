@@ -1,4 +1,4 @@
-import 'token_value.dart';
+import '../token_value.dart';
 
 class TokenFontFamilyValue extends TokenValue {
   const TokenFontFamilyValue({

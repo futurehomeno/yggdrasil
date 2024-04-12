@@ -1,4 +1,4 @@
-import 'package:yggdrasil_token_parser/theme_builder/src/models/values/_values.dart';
+import 'package:yggdrasil_token_parser/theme_builder/src/models/_models.dart';
 
 class TokenCubicBezierValue extends TokenValue {
   const TokenCubicBezierValue({

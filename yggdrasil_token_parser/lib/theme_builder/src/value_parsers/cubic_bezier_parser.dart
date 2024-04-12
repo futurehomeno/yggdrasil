@@ -1,10 +1,9 @@
 import 'package:yggdrasil_token_parser/theme_builder/src/models/_models.dart';
-import 'package:yggdrasil_token_parser/theme_builder/src/models/values/_value.dart';
 
 abstract final class CubicBezierParser {
   const CubicBezierParser._();
 
-  static Result<TokenCubicBezierValue> resolve(UnresolvedValue unresolvedValue) {
+  static Result<TokenCubicBezierValue> parse(UnresolvedValue unresolvedValue) {
     final Object value = unresolvedValue.value;
 
     if (value is! List) {

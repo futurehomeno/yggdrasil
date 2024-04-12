@@ -5,4 +5,3 @@ export 'token_duration_value.dart';
 export 'token_font_family_value.dart';
 export 'token_font_weight_value.dart';
 export 'token_number_value.dart';
-export 'token_value.dart';

@@ -1,13 +1,12 @@
 import 'package:yggdrasil_token_parser/theme_builder/src/models/_models.dart';
-import 'package:yggdrasil_token_parser/theme_builder/src/models/values/_value.dart';
 
 abstract final class DimensionParser {
   const DimensionParser._();
 
   static final RegExp _regex = RegExp(r'^(\d+(\.\d+)?|\.\d+)(px|rem)$');
 
-  static Result<TokenDimensionValue> parse(UnresolvedValueToken token) {
-    final Object value = token.value.value;
+  static Result<TokenDimensionValue> parse(UnresolvedValue unresolvedValue) {
+    final Object value = unresolvedValue.value;
 
     if (value is! String) {
       throw TokenParseTypeError(

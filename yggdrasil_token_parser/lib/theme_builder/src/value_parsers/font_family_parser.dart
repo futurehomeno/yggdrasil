@@ -1,11 +1,10 @@
 import 'package:yggdrasil_token_parser/theme_builder/src/models/_models.dart';
-import 'package:yggdrasil_token_parser/theme_builder/src/models/values/_value.dart';
 
 abstract final class FontFamilyParser {
   const FontFamilyParser._();
 
-  Result<TokenFontFamilyValue> parse(UnresolvedValueToken token) {
-    final Object value = token.value.value;
+  static Result<TokenFontFamilyValue> parse(UnresolvedValue unresolvedValue) {
+    final Object value = unresolvedValue.value;
 
     final List<String> families = <String>[];
 
