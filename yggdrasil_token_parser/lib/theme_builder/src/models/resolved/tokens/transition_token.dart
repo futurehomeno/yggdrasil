@@ -8,7 +8,7 @@ class TransitionToken extends Token {
     required this.duration,
     required this.curve,
     required this.delay,
-    super.description,
+    required super.description,
   });
 
   final int duration;

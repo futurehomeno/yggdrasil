@@ -4,7 +4,7 @@ class GradientToken extends Token {
   const GradientToken({
     required super.unresolved,
     required this.stops,
-    super.description,
+    required super.description,
   });
 
   final List<GradientTokenStop> stops;

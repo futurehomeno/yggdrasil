@@ -7,7 +7,22 @@ import 'models/_models.dart';
 class Parser {
   const Parser._();
 
-  static UnresolvedResult parse(JsonObject json) {
+  static UnresolvedTokenParseResult parse(JsonObject json) {
+    final String? extending = json
+        .safeValue<JsonObject>(TokenKeys.extensions)
+        ?.safeValue<JsonObject>(TokenKeys.extensionDomain)
+        ?.safeValue(TokenKeys.baseTheme);
+
+    final UnresolvedResult result = _parseData(json);
+
+    return UnresolvedTokenParseResult(
+      data: result.data,
+      errors: result.errors,
+      extending: extending,
+    );
+  }
+
+  static UnresolvedResult _parseData(JsonObject json, [UnresolvedTokenGroup? parent]) {
     final List<TokenParseError> errors = <TokenParseError>[];
 
     final String? type = json.safeValue(TokenKeys.type);
@@ -32,6 +47,13 @@ class Parser {
     if (value is! Object) {
       final Map<String, UnresolvedTokenObject> children = <String, UnresolvedTokenObject>{};
 
+      final UnresolvedTokenGroup tokenGroup = UnresolvedTokenGroup(
+        children: children,
+        description: description,
+        type: parsedType,
+        parent: parent,
+      );
+
       for (final MapEntry<String, dynamic>(:String key, :dynamic value) in json.entries) {
         if (key.startsWith(r'$')) {
           continue;
@@ -51,8 +73,8 @@ class Parser {
 
         final UnresolvedResult(
           errors: List<TokenParseError> childErrors,
-          :UnresolvedTokenObject? result,
-        ) = parse(value);
+          data: UnresolvedTokenObject? result,
+        ) = _parseData(value, tokenGroup);
 
         if (result != null) {
           children[key] = result;
@@ -72,9 +94,7 @@ class Parser {
 
       return UnresolvedResult(
         errors: errors,
-        result: UnresolvedTokenGroup(
-          children: children,
-        ),
+        data: tokenGroup,
       );
     }
 
@@ -83,7 +103,7 @@ class Parser {
 
       for (final MapEntry<String, dynamic>(:String key, :dynamic value) in value.entries) {
         if (value is Object) {
-          properties[key] = UnresolvedValueOrReference.prase(value);
+          properties[key] = UnresolvedValueOrReference.parse(value);
         } else {
           errors.add(
             TokenParseTypeError(
@@ -96,31 +116,38 @@ class Parser {
       }
 
       return UnresolvedResult(
-        result: UnresolvedCompositeToken(
+        data: UnresolvedCompositeToken(
           description: description,
           type: parsedType,
           properties: properties,
+          parent: parent,
         ),
         errors: errors,
       );
     }
 
     if (value is String) {
-      final UnresolvedValueOrReference valueOrReference = UnresolvedValueOrReference.prase(value);
+      final UnresolvedValueOrReference valueOrReference = UnresolvedValueOrReference.parse(value);
 
       switch (valueOrReference) {
         case UnresolvedReference():
           return UnresolvedResult(
             errors: errors,
-            result: UnresolvedReferenceToken(
+            data: UnresolvedReferenceToken(
               reference: valueOrReference,
+              description: description,
+              type: parsedType,
+              parent: parent,
             ),
           );
         case UnresolvedValue():
           return UnresolvedResult(
             errors: errors,
-            result: UnresolvedValueToken(
+            data: UnresolvedValueToken(
               value: valueOrReference,
+              description: description,
+              type: parsedType,
+              parent: parent,
             ),
           );
       }
@@ -128,8 +155,11 @@ class Parser {
 
     return UnresolvedResult(
       errors: errors,
-      result: UnresolvedValueToken(
+      data: UnresolvedValueToken(
         value: UnresolvedValue(value: value),
+        description: description,
+        type: parsedType,
+        parent: parent,
       ),
     );
   }

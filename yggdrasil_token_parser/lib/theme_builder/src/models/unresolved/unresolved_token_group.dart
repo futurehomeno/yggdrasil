@@ -1,12 +1,11 @@
-import 'package:yggdrasil_token_parser/theme_builder/src/enums/_enums.dart';
+part of 'unresolved_token_object.dart';
 
-import '_unresolved.dart';
-
-class UnresolvedTokenGroup extends UnresolvedTokenObject {
+final class UnresolvedTokenGroup extends UnresolvedTokenObject {
   const UnresolvedTokenGroup({
+    required super.parent,
     required this.children,
-    this.type,
-    this.description,
+    required this.type,
+    required this.description,
   });
 
   final Map<String, UnresolvedTokenObject> children;

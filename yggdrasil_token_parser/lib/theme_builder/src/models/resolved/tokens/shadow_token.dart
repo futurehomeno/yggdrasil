@@ -10,7 +10,7 @@ class ShadowToken extends Token {
     required this.offsetX,
     required this.offsetY,
     required this.spread,
-    super.description,
+    required super.description,
   });
 
   final int color;

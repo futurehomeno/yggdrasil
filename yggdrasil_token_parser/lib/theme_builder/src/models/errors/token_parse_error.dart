@@ -1,7 +1,7 @@
 class TokenParseError extends Error {
   TokenParseError({
     required this.error,
-    required this.path,
+    this.path = const <String>[],
   });
 
   final String error;

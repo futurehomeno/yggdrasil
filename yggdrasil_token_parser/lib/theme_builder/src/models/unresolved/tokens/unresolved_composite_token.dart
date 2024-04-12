@@ -1,9 +1,10 @@
-import '../_unresolved.dart';
+part of '../unresolved_token_object.dart';
 
-class UnresolvedCompositeToken extends UnresolvedToken {
+final class UnresolvedCompositeToken extends UnresolvedToken {
   const UnresolvedCompositeToken({
-    super.description,
-    super.type,
+    required super.parent,
+    required super.description,
+    required super.type,
     required this.properties,
   });
 

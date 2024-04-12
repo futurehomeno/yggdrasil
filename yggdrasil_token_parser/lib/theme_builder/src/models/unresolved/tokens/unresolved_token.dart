@@ -1,8 +1,8 @@
-import 'package:yggdrasil_token_parser/theme_builder/src/enums/_enums.dart';
-import 'package:yggdrasil_token_parser/theme_builder/src/models/_models.dart';
+part of '../unresolved_token_object.dart';
 
-abstract class UnresolvedToken extends UnresolvedTokenObject {
+sealed class UnresolvedToken extends UnresolvedTokenObject {
   const UnresolvedToken({
+    required super.parent,
     required this.description,
     required this.type,
   });

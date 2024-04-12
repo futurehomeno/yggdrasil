@@ -6,7 +6,7 @@ class FontWeightToken extends Token {
   const FontWeightToken({
     required super.unresolved,
     required this.fontWeight,
-    super.description,
+    required super.description,
   });
 
   final TokenFontWeight fontWeight;

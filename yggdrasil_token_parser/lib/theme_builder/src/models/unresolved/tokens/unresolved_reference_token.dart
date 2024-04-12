@@ -1,9 +1,10 @@
-import '../_unresolved.dart';
+part of '../unresolved_token_object.dart';
 
-class UnresolvedReferenceToken extends UnresolvedToken {
+final class UnresolvedReferenceToken extends UnresolvedToken {
   const UnresolvedReferenceToken({
-    super.description,
-    super.type,
+    required super.parent,
+    required super.description,
+    required super.type,
     required this.reference,
   });
 

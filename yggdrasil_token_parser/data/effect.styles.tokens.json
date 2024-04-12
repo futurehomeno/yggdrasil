@@ -1,0 +1,172 @@
+{
+  "elevation": {
+    "none": {
+      "$type": "shadow",
+      "$value": [
+        {
+          "offsetX": "{offset.0}",
+          "offsetY": "{offset.0}",
+          "blur": "{blur.0}",
+          "spread": "{spread.0}",
+          "color": "#081e2c00"
+        }
+      ]
+    },
+    "01": {
+      "$type": "shadow",
+      "$value": [
+        {
+          "offsetX": "{offset.0}",
+          "offsetY": "{offset.25}",
+          "blur": "{blur.100}",
+          "spread": "{spread.0}",
+          "color": "#081e2c0f"
+        },
+        {
+          "offsetX": "{offset.0}",
+          "offsetY": "{offset.50}",
+          "blur": "{blur.25}",
+          "spread": "{spread.negative50}",
+          "color": "#081e2c12"
+        },
+        {
+          "offsetX": "{offset.0}",
+          "offsetY": "{offset.50}",
+          "blur": "{blur.50}",
+          "spread": "{spread.0}",
+          "color": "#081e2c08"
+        }
+      ]
+    },
+    "02": {
+      "$type": "shadow",
+      "$value": [
+        {
+          "offsetX": "{offset.0}",
+          "offsetY": "{offset.50}",
+          "blur": "{blur.150}",
+          "spread": "{spread.0}",
+          "color": "#081e2c0f"
+        },
+        {
+          "offsetX": "{offset.0}",
+          "offsetY": "{offset.50}",
+          "blur": "{blur.300}",
+          "spread": "{spread.negative50}",
+          "color": "#081e2c12"
+        },
+        {
+          "offsetX": "{offset.0}",
+          "offsetY": "{offset.100}",
+          "blur": "{blur.150}",
+          "spread": "{spread.0}",
+          "color": "#081e2c05"
+        }
+      ]
+    },
+    "03": {
+      "$type": "shadow",
+      "$value": [
+        {
+          "offsetX": "{offset.0}",
+          "offsetY": "{offset.100}",
+          "blur": "{blur.150}",
+          "spread": "{spread.0}",
+          "color": "#081e2c0a"
+        },
+        {
+          "offsetX": "{offset.0}",
+          "offsetY": "{offset.200}",
+          "blur": "{blur.300}",
+          "spread": "{spread.negative50}",
+          "color": "#081e2c0f"
+        },
+        {
+          "offsetX": "{offset.0}",
+          "offsetY": "{offset.50}",
+          "blur": "{blur.150}",
+          "spread": "{spread.0}",
+          "color": "#081e2c0a"
+        }
+      ]
+    },
+    "04": {
+      "$type": "shadow",
+      "$value": [
+        {
+          "offsetX": "{offset.0}",
+          "offsetY": "{offset.100}",
+          "blur": "{blur.200}",
+          "spread": "{spread.negative50}",
+          "color": "#081e2c0f"
+        },
+        {
+          "offsetX": "{offset.0}",
+          "offsetY": "{offset.200}",
+          "blur": "{blur.500}",
+          "spread": "{spread.negative50}",
+          "color": "#081e2c1a"
+        },
+        {
+          "offsetX": "{offset.0}",
+          "offsetY": "{offset.200}",
+          "blur": "{blur.200}",
+          "spread": "{spread.0}",
+          "color": "#081e2c0a"
+        }
+      ]
+    },
+    "05": {
+      "$type": "shadow",
+      "$value": [
+        {
+          "offsetX": "{offset.0}",
+          "offsetY": "{offset.negative50}",
+          "blur": "{blur.150}",
+          "spread": "{spread.0}",
+          "color": "#081e2c0f"
+        },
+        {
+          "offsetX": "{offset.0}",
+          "offsetY": "{offset.negative50}",
+          "blur": "{blur.300}",
+          "spread": "{spread.negative50}",
+          "color": "#081e2c14"
+        },
+        {
+          "offsetX": "{offset.0}",
+          "offsetY": "{offset.negative100}",
+          "blur": "{blur.150}",
+          "spread": "{spread.negative25}",
+          "color": "#081e2c05"
+        }
+      ]
+    },
+    "card": {
+      "$type": "shadow",
+      "$value": [
+        {
+          "offsetX": "{offset.0}",
+          "offsetY": "{offset.0}",
+          "blur": "{blur.100}",
+          "spread": "{spread.0}",
+          "color": "#081e2c1a"
+        },
+        {
+          "offsetX": "{offset.0}",
+          "offsetY": "{offset.25}",
+          "blur": "{blur.100}",
+          "spread": "{spread.0}",
+          "color": "#081e2c0a"
+        },
+        {
+          "offsetX": "{offset.0}",
+          "offsetY": "{offset.0}",
+          "blur": "{blur.25}",
+          "spread": "{spread.0}",
+          "color": "#081e2c1f"
+        }
+      ]
+    }
+  }
+}

@@ -4,7 +4,7 @@ class NumberToken extends Token {
   const NumberToken({
     required super.unresolved,
     required this.number,
-    super.description,
+    required super.description,
   });
 
   final double number;

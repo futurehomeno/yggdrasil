@@ -10,7 +10,7 @@ class TypographyToken extends Token {
     required this.fontWeight,
     required this.letterSpacing,
     required this.lineHeight,
-    super.description,
+    required super.description,
   });
 
   final List<String> families;

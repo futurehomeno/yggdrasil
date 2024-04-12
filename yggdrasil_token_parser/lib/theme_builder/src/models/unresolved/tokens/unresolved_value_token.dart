@@ -1,9 +1,10 @@
-import '../_unresolved.dart';
+part of '../unresolved_token_object.dart';
 
-class UnresolvedValueToken extends UnresolvedToken {
+final class UnresolvedValueToken extends UnresolvedToken {
   const UnresolvedValueToken({
-    super.description,
-    super.type,
+    required super.parent,
+    required super.description,
+    required super.type,
     required this.value,
   });
 

@@ -4,7 +4,7 @@ part 'unresolved_value.dart';
 sealed class UnresolvedValueOrReference {
   const UnresolvedValueOrReference();
 
-  factory UnresolvedValueOrReference.prase(Object value) {
+  factory UnresolvedValueOrReference.parse(Object value) {
     if (value is! String) {
       return UnresolvedValue(
         value: value,

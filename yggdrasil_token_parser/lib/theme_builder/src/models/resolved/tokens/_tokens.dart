@@ -9,4 +9,5 @@ export 'gradient_token.dart';
 export 'number_token.dart';
 export 'shadow_token.dart';
 export 'stroke_style_token.dart';
+export 'transition_token.dart';
 export 'typography_token.dart';

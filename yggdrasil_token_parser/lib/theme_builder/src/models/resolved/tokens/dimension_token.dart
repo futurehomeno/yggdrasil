@@ -1,12 +1,10 @@
-import 'package:yggdrasil_token_parser/theme_builder/src/models/primary_tokens/_values.dart';
-
-import '../_resolved.dart';
+import 'package:yggdrasil_token_parser/theme_builder/src/models/_models.dart';
 
 class DimensionToken extends Token {
   const DimensionToken({
     required super.unresolved,
     required this.dimension,
-    super.description,
+    required super.description,
   });
 
   final TokenDimension dimension;
