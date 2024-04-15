@@ -98,69 +98,67 @@ class Parser {
       );
     }
 
-    if (value is JsonObject) {
-      final Map<String, UnresolvedValueOrReference> properties = <String, UnresolvedValueOrReference>{};
-
-      for (final MapEntry<String, dynamic>(:String key, :dynamic value) in value.entries) {
-        if (value is Object) {
-          properties[key] = UnresolvedValueOrReference.parse(value);
-        } else {
-          errors.add(
-            TokenParseTypeError(
-              path: <String>[TokenKeys.value, key],
-              expectedType: Object,
-              foundType: value.runtimeType,
-            ),
-          );
-        }
-      }
-
-      return UnresolvedResult(
-        data: UnresolvedCompositeToken(
-          description: description,
-          type: parsedType,
-          properties: properties,
-          parent: parent,
-        ),
-        errors: errors,
-      );
-    }
-
-    if (value is String) {
-      final UnresolvedValueOrReference valueOrReference = UnresolvedValueOrReference.parse(value);
-
-      switch (valueOrReference) {
-        case UnresolvedReference():
-          return UnresolvedResult(
-            errors: errors,
-            data: UnresolvedReferenceToken(
-              reference: valueOrReference,
-              description: description,
-              type: parsedType,
-              parent: parent,
-            ),
-          );
-        case UnresolvedValue():
-          return UnresolvedResult(
-            errors: errors,
-            data: UnresolvedValueToken(
-              value: valueOrReference,
-              description: description,
-              type: parsedType,
-              parent: parent,
-            ),
-          );
-      }
-    }
+    final UnresolvedValueOrReference valueOrReference = _parseValue(value);
 
     return UnresolvedResult(
       errors: errors,
-      data: UnresolvedValueToken(
-        value: UnresolvedValue(value: value),
+      data: UnresolvedToken(
         description: description,
         type: parsedType,
         parent: parent,
+        value: valueOrReference,
       ),
     );
   }
+
+  static UnresolvedValueOrReference _parseValue(Object value) {
+    // TODO(Tim): Look in to error handling regarding null values.
+    if (value is JsonObject) {
+      final Map<String, UnresolvedValueOrReference> values = <String, UnresolvedValueOrReference>{};
+
+      for (final MapEntry<String, dynamic> entry in value.entries) {
+        final dynamic value = entry.value;
+
+        if (value is Object) {
+          values[entry.key] = _parseValue(value);
+        }
+      }
+
+      return UnresolvedCompositeValue(
+        value: values,
+      );
+    }
+
+    // TODO(Tim): Look in to error handling regarding empty lists and null values.
+    if (value is List) {
+      final List<UnresolvedValueOrReference> values = <UnresolvedValueOrReference>[];
+
+      for (final dynamic object in value) {
+        if (object is Object) {
+          values.add(_parseValue(object));
+        }
+      }
+
+      return UnresolvedValueList(
+        values: values,
+      );
+    }
+
+    if (value is! String) {
+      return UnresolvedValue(
+        value: value,
+      );
+    }
+
+    final RegExpMatch? match = _regex.firstMatch(value);
+    if (match == null) {
+      return UnresolvedValue(
+        value: value,
+      );
+    }
+
+    return UnresolvedReference(path: match.group(1)?.split('.') ?? <String>[]);
+  }
+
+  static final RegExp _regex = RegExp(r'^{([^}]+)}$');
 }

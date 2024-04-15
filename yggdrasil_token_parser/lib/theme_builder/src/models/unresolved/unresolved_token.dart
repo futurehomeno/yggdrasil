@@ -1,12 +1,14 @@
-part of '../unresolved_token_object.dart';
+part of 'unresolved_token_object.dart';
 
-sealed class UnresolvedToken extends UnresolvedTokenObject {
+final class UnresolvedToken extends UnresolvedTokenObject {
   const UnresolvedToken({
     required super.parent,
     required this.description,
     required this.type,
+    required this.value,
   });
 
   final String? description;
   final TokenValueType? type;
+  final UnresolvedValueOrReference value;
 }

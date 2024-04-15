@@ -5,3 +5,4 @@ export 'duration_parser.dart';
 export 'font_family_parser.dart';
 export 'font_weight_parser.dart';
 export 'number_parser.dart';
+export '../token_value_parsers.dart';
