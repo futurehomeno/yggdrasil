@@ -75,7 +75,8 @@ class Resolver {
 
     final UnresolvedValueOrReference unresolvedValue = token.value;
 
-    final Result<TokenValue> result = switch (type) {
+    final Result<TokenValue> result = switch(unresolvedValue) {
+      UnresolvedValue() => switch(type) {
       TokenValueType.color => ColorParser.parse(unresolvedValue),
       TokenValueType.cubicBezier => CubicBezierParser.parse(unresolvedValue),
       TokenValueType.dimension => DimensionParser.parse(unresolvedValue),
@@ -83,6 +84,12 @@ class Resolver {
       TokenValueType.fontFamily => FontFamilyParser.parse(unresolvedValue),
       TokenValueType.fontWeight => FontWeightParser.parse(unresolvedValue),
       TokenValueType.number => NumberParser.parse(unresolvedValue),
+      },
+      UnresolvedReference() => _resolveReferenceValue(unresolvedValue, stack,),
+      UnresolvedValueList()
+    }
+    
+    switch (type) {
       TokenValueType.shadow => ShadowParser.parse(unresolvedValue),
       TokenValueType.strokeStyle => StrokeStyleParser.parse(unresolvedValue),
       TokenValueType.border => BorderParser.parse(unresolvedValue),
@@ -119,6 +126,50 @@ class Resolver {
 
   Result<TokenGroup> resolveTokenGroup(UnresolvedTokenGroup object, List<UnresolvedToken> stack) {
     return null;
+  }
+
+  Result<T> _resolveReferenceValue<T extends TokenValue>(UnresolvedReference reference, List<UnresolvedToken> stack) {
+    final Token? token = resolveReference(reference.path, stack);
+
+    if (token == null) {
+      return Result<T>.error(
+        TokenParseError(
+          error: 'Failed to resolve token reference ${reference.path.join('.')}',
+        ),
+      );
+    }
+
+    final TokenValue value = token.value;
+
+    // DCM is dumb and thinks T always equals TokenValue which is false.
+    // ignore: avoid-unnecessary-type-assertions
+    if (value is! T) {
+      final String expectedType = _getTypeName(T);
+      final String actualType = _getTypeName(value.runtimeType);
+
+      return Result<T>.error(
+        TokenParseError(
+          error: 'Incompatible token type found! Expected $expectedType but got $actualType instead',
+        ),
+      );
+    }
+
+    return Result<T>.data(
+      value,
+    );
+  }
+
+  String _getTypeName(Type type) {
+    return switch (type) {
+      TokenColorValue => 'color',
+      TokenCubicBezierValue => 'cubicBezier',
+      TokenDimensionValue => 'dimension',
+      TokenDurationValue => 'duration',
+      TokenFontFamilyValue => 'fontFamily',
+      TokenFontWeightValue => 'fontWeight',
+      TokenNumberValue => 'number',
+      _ => 'unknown type',
+    };
   }
 
   Token? resolveReference(List<String> path, List<UnresolvedToken> stack) {
