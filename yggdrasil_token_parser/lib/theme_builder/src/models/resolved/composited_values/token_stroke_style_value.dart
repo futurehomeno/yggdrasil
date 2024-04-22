@@ -5,6 +5,8 @@ class TokenStrokeStyleValue extends TokenValue {
   const TokenStrokeStyleValue({
     super.reference,
   });
+
+  final TokenValueType type = TokenValueType.strokeStyle;
 }
 
 class TokenSimpleStrokeStyleValue extends TokenStrokeStyleValue {

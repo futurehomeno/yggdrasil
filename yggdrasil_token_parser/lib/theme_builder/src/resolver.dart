@@ -10,13 +10,13 @@ class Resolver {
     required this.tokens,
   });
 
-  final List<TokenParseError> errors = <TokenParseError>[];
+  final List<ParsingError> errors = <ParsingError>[];
   final Map<UnresolvedToken, Token?> cache = <UnresolvedToken, Token?>{};
   final Map<String, UnresolvedTokenObject> tokens;
 
   ResolvedResult resolve() {
     final Map<String, TokenObject> results = <String, TokenObject>{};
-    final List<TokenParseError> errors = <TokenParseError>[];
+    final List<ParsingError> errors = <ParsingError>[];
 
     for (final MapEntry<String, UnresolvedTokenObject> entry in tokens.entries) {
       final Result<TokenObject> result = resolveUnresolvedTokenObject(entry.value);
@@ -52,7 +52,7 @@ class Resolver {
     if (stack.contains(token)) {
       // Circular reference detected.
       return Result<Token>.error(
-        TokenParseError(
+        ParsingError(
           error: 'Token references it self or has a circular reference',
         ),
       );
@@ -67,7 +67,7 @@ class Resolver {
 
     if (type == null) {
       return Result<Token>.error(
-        TokenParseError(
+        ParsingError(
           error: 'Token does not have a type',
         ),
       );
@@ -103,7 +103,7 @@ class Resolver {
     if (value == null) {
       if (result.errors.isEmpty) {
         return Result<Token>.error(
-          TokenParseError(
+          ParsingError(
             error: 'Failed to solve token value for unknown reason',
           ),
         );
@@ -133,7 +133,7 @@ class Resolver {
 
     if (token == null) {
       return Result<T>.error(
-        TokenParseError(
+        ParsingError(
           error: 'Failed to resolve token reference ${reference.path.join('.')}',
         ),
       );
@@ -148,7 +148,7 @@ class Resolver {
       final String actualType = _getTypeName(value.runtimeType);
 
       return Result<T>.error(
-        TokenParseError(
+        ParsingError(
           error: 'Incompatible token type found! Expected $expectedType but got $actualType instead',
         ),
       );
@@ -192,7 +192,7 @@ class Resolver {
     }
 
     if (object is! UnresolvedToken) {
-      errors.add(TokenParseError(error: 'Unable to resolve reference'))
+      errors.add(ParsingError(error: 'Unable to resolve reference'))
       return null;
     }
 
@@ -244,7 +244,7 @@ class ResolvingContext {
 
     if (token == null) {
       return Result<T>.error(
-        TokenParseError(
+        ParsingError(
           error: 'Failed to resolve token reference ${reference.path.join('.')}',
         ),
       );
@@ -259,7 +259,7 @@ class ResolvingContext {
       final String actualType = _getTypeName(value.runtimeType);
 
       return Result<T>.error(
-        TokenParseError(
+        ParsingError(
           error: 'Incompatible token type found! Expected $expectedType but got $actualType instead',
         ),
       );

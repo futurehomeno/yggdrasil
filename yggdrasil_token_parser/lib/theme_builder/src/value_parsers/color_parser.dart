@@ -1,18 +1,18 @@
 import 'package:yggdrasil_token_parser/theme_builder/src/models/_models.dart';
+import 'package:yggdrasil_token_parser/theme_builder/src/parser/errors/parsing_error.dart';
+import 'package:yggdrasil_token_parser/theme_builder/src/parser/parsing_context.dart';
 
 abstract final class ColorParser {
   const ColorParser._();
 
   static final RegExp _colorRegex = RegExp(r'^#([0-9a-f]{2})?([0-9a-f]{6})$');
 
-  static Result<TokenColorValue> parse(UnresolvedValue unresolvedValue) {
-    final Object value = unresolvedValue.value;
-
+  static Result<TokenColorValue> parse(ParsingContext context, Object value) {
     if (value is! String) {
       return Result<TokenColorValue>.error(
-        TokenParseTypeError(
-          expectedType: String,
-          foundType: value.runtimeType,
+        ParsingError.dataType(
+          expected: String,
+          actual: value.runtimeType,
         ),
       );
     }
@@ -24,7 +24,7 @@ abstract final class ColorParser {
 
       if (colorHex == null) {
         return Result<TokenColorValue>.error(
-          TokenParseFormatError(data: value),
+          ParsingError.format(data: value),
         );
       }
 
@@ -32,8 +32,8 @@ abstract final class ColorParser {
 
       if (color == null) {
         return Result<TokenColorValue>(
-          errors: <TokenParseError>[
-            TokenParseFormatError(data: value),
+          errors: <ParsingError>[
+            ParsingError.format(data: value),
           ],
         );
       }
@@ -43,7 +43,7 @@ abstract final class ColorParser {
 
         if (transparency == null) {
           return Result<TokenColorValue>.error(
-            TokenParseFormatError(data: value),
+            ParsingError.format(data: value),
           );
         }
 
@@ -58,7 +58,7 @@ abstract final class ColorParser {
     }
 
     return Result<TokenColorValue>.error(
-      TokenParseFormatError(data: value),
+      ParsingError.format(data: value),
     );
   }
 }

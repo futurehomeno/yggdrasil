@@ -1,3 +1,5 @@
+import 'package:yggdrasil_token_parser/theme_builder/src/enums/token_value_type.dart';
+
 import '../token_value.dart';
 
 class TokenColorValue extends TokenValue {
@@ -7,4 +9,5 @@ class TokenColorValue extends TokenValue {
   });
 
   final int color;
+  final TokenValueType type = TokenValueType.color;
 }

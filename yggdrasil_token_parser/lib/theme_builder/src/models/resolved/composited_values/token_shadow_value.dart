@@ -1,3 +1,4 @@
+import 'package:yggdrasil_token_parser/theme_builder/src/enums/_enums.dart';
 import 'package:yggdrasil_token_parser/theme_builder/src/models/_models.dart';
 
 class TokenShadowValue extends TokenValue {
@@ -15,4 +16,5 @@ class TokenShadowValue extends TokenValue {
   final TokenDimensionValue offsetY;
   final TokenDimensionValue blur;
   final TokenDimensionValue spread;
+  final TokenValueType type = TokenValueType.shadow;
 }

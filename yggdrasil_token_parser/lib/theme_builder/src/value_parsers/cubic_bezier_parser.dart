@@ -1,23 +1,23 @@
 import 'package:yggdrasil_token_parser/theme_builder/src/models/_models.dart';
+import 'package:yggdrasil_token_parser/theme_builder/src/parser/errors/parsing_error.dart';
+import 'package:yggdrasil_token_parser/theme_builder/src/parser/parsing_context.dart';
 
 abstract final class CubicBezierParser {
   const CubicBezierParser._();
 
-  static Result<TokenCubicBezierValue> parse(UnresolvedValue unresolvedValue) {
-    final Object value = unresolvedValue.value;
-
+  static Result<TokenCubicBezierValue> parse(ParsingContext context, Object value) {
     if (value is! List) {
       return Result<TokenCubicBezierValue>.error(
-        TokenParseTypeError(
-          expectedType: List,
-          foundType: value.runtimeType,
+        ParsingError.dataType(
+          expected: List,
+          actual: value.runtimeType,
         ),
       );
     }
 
     if (value.length != 4) {
       return Result<TokenCubicBezierValue>.error(
-        TokenParseFormatError(
+        ParsingError.format(
           data: value,
         ),
       );
@@ -29,9 +29,9 @@ abstract final class CubicBezierParser {
 
       if (entry is! double) {
         return Result<TokenCubicBezierValue>.error(
-          TokenParseTypeError(
-            expectedType: double,
-            foundType: entry.runtimeType,
+          ParsingError.dataType(
+            expected: double,
+            actual: entry.runtimeType,
             path: <String>[i.toString()],
           ),
         );

@@ -1,18 +1,18 @@
 import 'package:yggdrasil_token_parser/theme_builder/src/models/_models.dart';
+import 'package:yggdrasil_token_parser/theme_builder/src/parser/errors/parsing_error.dart';
+import 'package:yggdrasil_token_parser/theme_builder/src/parser/parsing_context.dart';
 
 abstract final class DurationParser {
   const DurationParser._();
 
   static final RegExp _durationRegex = RegExp(r'^(\d+)ms$');
 
-  static Result<TokenDurationValue> parse(UnresolvedValue unresolvedValue) {
-    final Object value = unresolvedValue.value;
-
+  static Result<TokenDurationValue> parse(ParsingContext context, Object value) {
     if (value is! String) {
       return Result<TokenDurationValue>.error(
-        TokenParseTypeError(
-          expectedType: String,
-          foundType: value.runtimeType,
+        ParsingError.dataType(
+          expected: String,
+          actual: value.runtimeType,
         ),
       );
     }
@@ -21,7 +21,7 @@ abstract final class DurationParser {
 
     if (match == null) {
       return Result<TokenDurationValue>.error(
-        TokenParseFormatError(
+        ParsingError.format(
           data: value,
         ),
       );
@@ -31,7 +31,7 @@ abstract final class DurationParser {
 
     if (number == null) {
       return Result<TokenDurationValue>.error(
-        TokenParseFormatError(
+        ParsingError.format(
           data: value,
         ),
       );

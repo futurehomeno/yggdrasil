@@ -1,3 +1,4 @@
+import 'package:yggdrasil_token_parser/theme_builder/src/enums/token_value_type.dart';
 import 'package:yggdrasil_token_parser/theme_builder/src/models/_models.dart';
 
 class TokenGradientValue extends TokenValue {
@@ -7,6 +8,7 @@ class TokenGradientValue extends TokenValue {
   });
 
   final List<TokenGradientStop> stops;
+  final TokenValueType type = TokenValueType.gradient;
 }
 
 class TokenGradientStop {

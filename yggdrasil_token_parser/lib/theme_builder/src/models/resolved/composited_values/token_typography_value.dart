@@ -1,3 +1,4 @@
+import 'package:yggdrasil_token_parser/theme_builder/src/enums/token_value_type.dart';
 import 'package:yggdrasil_token_parser/theme_builder/src/models/_models.dart';
 
 class TokenTypographyValue extends TokenValue {
@@ -15,4 +16,5 @@ class TokenTypographyValue extends TokenValue {
   final TokenFontWeightValue fontWeight;
   final TokenDimensionValue letterSpacing;
   final TokenNumberValue lineHeight;
+  final TokenValueType type = TokenValueType.typography;
 }

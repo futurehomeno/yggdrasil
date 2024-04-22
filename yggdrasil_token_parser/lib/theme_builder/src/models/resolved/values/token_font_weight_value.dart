@@ -9,4 +9,5 @@ class TokenFontWeightValue extends TokenValue {
   });
 
   final TokenFontWeight weight;
+  final TokenValueType type = TokenValueType.fontWeight;
 }

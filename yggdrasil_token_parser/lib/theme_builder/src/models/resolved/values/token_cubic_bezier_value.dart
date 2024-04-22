@@ -1,3 +1,4 @@
+import 'package:yggdrasil_token_parser/theme_builder/src/enums/token_value_type.dart';
 import 'package:yggdrasil_token_parser/theme_builder/src/models/_models.dart';
 
 class TokenCubicBezierValue extends TokenValue {
@@ -13,4 +14,5 @@ class TokenCubicBezierValue extends TokenValue {
   final double b;
   final double c;
   final double d;
+  final TokenValueType type = TokenValueType.cubicBezier;
 }

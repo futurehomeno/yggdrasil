@@ -23,7 +23,7 @@ class Parser {
   }
 
   static UnresolvedResult _parseData(JsonObject json, [UnresolvedTokenGroup? parent]) {
-    final List<TokenParseError> errors = <TokenParseError>[];
+    final List<ParsingError> errors = <ParsingError>[];
 
     final String? type = json.safeValue(TokenKeys.type);
     final TokenValueType? parsedType;
@@ -33,7 +33,7 @@ class Parser {
       parsedType = TokenValueType.values.safeByName(type);
       if (parsedType == null) {
         errors.add(
-          TokenParseFormatError(
+          ParsingError.format(
             path: <String>[TokenKeys.type],
             data: type,
           ),
@@ -61,10 +61,10 @@ class Parser {
 
         if (value is! JsonObject) {
           errors.add(
-            TokenParseTypeError(
+            ParsingError.dataType(
               path: <String>[key],
-              expectedType: JsonObject,
-              foundType: value.runtimeType,
+              expected: JsonObject,
+              actual: value.runtimeType,
             ),
           );
 
@@ -72,7 +72,7 @@ class Parser {
         }
 
         final UnresolvedResult(
-          errors: List<TokenParseError> childErrors,
+          errors: List<ParsingError> childErrors,
           data: UnresolvedTokenObject? result,
         ) = _parseData(value, tokenGroup);
 

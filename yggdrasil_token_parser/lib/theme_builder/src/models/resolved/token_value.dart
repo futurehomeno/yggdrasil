@@ -1,7 +1,11 @@
-class TokenValue {
+import 'package:yggdrasil_token_parser/theme_builder/src/enums/_enums.dart';
+
+abstract class TokenValue {
   const TokenValue({
     required this.reference,
   });
 
   final List<String>? reference;
+
+  TokenValueType get type;
 }

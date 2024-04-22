@@ -1,5 +1,7 @@
 import 'package:yggdrasil_token_parser/theme_builder/src/enums/_enums.dart';
 import 'package:yggdrasil_token_parser/theme_builder/src/models/_models.dart';
+import 'package:yggdrasil_token_parser/theme_builder/src/parser/errors/parsing_error.dart';
+import 'package:yggdrasil_token_parser/theme_builder/src/parser/parsing_context.dart';
 
 abstract final class FontWeightParser {
   const FontWeightParser._();
@@ -38,17 +40,17 @@ abstract final class FontWeightParser {
     'ultra-black': TokenFontWeight.w900,
   };
 
-  static Result<TokenFontWeightValue> parse(dynamic data) {
-    final TokenFontWeight? fontWeight = switch (data) {
-      String() => _nameMap[data],
-      num() => _numberMap[data.toInt()],
+  static Result<TokenFontWeightValue> parse(ParsingContext context, Object value) {
+    final TokenFontWeight? fontWeight = switch (value) {
+      String() => _nameMap[value],
+      num() => _numberMap[value.toInt()],
       _ => null,
     };
 
     if (fontWeight == null) {
       return Result<TokenFontWeightValue>.error(
-        TokenParseFormatError(
-          data: data,
+        ParsingError.format(
+          data: value,
         ),
       );
     }

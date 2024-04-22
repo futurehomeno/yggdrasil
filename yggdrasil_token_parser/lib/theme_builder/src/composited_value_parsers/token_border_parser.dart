@@ -16,7 +16,7 @@ abstract final class BorderParser {
     final UnresolvedValueOrReference? unresolvedColor = token.properties[_colorKey];
     final UnresolvedValueOrReference? unresolvedWidth = token.properties[_widthKey];
     final UnresolvedValueOrReference? unresolvedStyle = token.properties[_styleKey];
-    final List<TokenParseError> errors = <TokenParseError>[];
+    final List<ParsingError> errors = <ParsingError>[];
 
     TokenColorValue? color = null;
     TokenDimensionValue? width = null;
