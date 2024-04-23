@@ -15,4 +15,15 @@ class TokenCubicBezierValue extends TokenValue {
   final double c;
   final double d;
   final TokenValueType type = TokenValueType.cubicBezier;
+
+  @override
+  TokenCubicBezierValue getReference(List<String> reference) {
+    return TokenCubicBezierValue(
+      a: a,
+      b: b,
+      c: c,
+      d: d,
+      reference: reference,
+    );
+  }
 }

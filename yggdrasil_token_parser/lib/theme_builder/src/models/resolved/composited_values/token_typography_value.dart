@@ -17,4 +17,16 @@ class TokenTypographyValue extends TokenValue {
   final TokenDimensionValue letterSpacing;
   final TokenNumberValue lineHeight;
   final TokenValueType type = TokenValueType.typography;
+
+  @override
+  TokenTypographyValue getReference(List<String> reference) {
+    return TokenTypographyValue(
+      fontFamily: fontFamily,
+      fontSize: fontSize,
+      fontWeight: fontWeight,
+      letterSpacing: letterSpacing,
+      lineHeight: lineHeight,
+      reference: reference,
+    );
+  }
 }

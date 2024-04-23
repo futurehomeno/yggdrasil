@@ -9,10 +9,13 @@ abstract final class DimensionParser {
 
   static Result<TokenDimensionValue> parse(ParsingContext context, Object value) {
     if (value is! String) {
-      return Result<TokenDimensionValue>.error(ParsingError.dataType(
-        expected: String,
-        actual: value.runtimeType,
-      ));
+      return Result<TokenDimensionValue>.error(
+        ParsingError.dataType(
+          expected: String,
+          actual: value.runtimeType,
+          path: <String>[],
+        ),
+      );
     }
 
     final RegExpMatch? match = _regex.firstMatch(value);
@@ -21,6 +24,7 @@ abstract final class DimensionParser {
       return Result<TokenDimensionValue>.error(
         ParsingError.format(
           data: value,
+          path: <String>[],
         ),
       );
     }
@@ -32,6 +36,7 @@ abstract final class DimensionParser {
       return Result<TokenDimensionValue>.error(
         ParsingError.format(
           data: value,
+          path: <String>[],
         ),
       );
     }

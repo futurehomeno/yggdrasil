@@ -51,6 +51,7 @@ abstract final class FontWeightParser {
       return Result<TokenFontWeightValue>.error(
         ParsingError.format(
           data: value,
+          path: <String>[],
         ),
       );
     }

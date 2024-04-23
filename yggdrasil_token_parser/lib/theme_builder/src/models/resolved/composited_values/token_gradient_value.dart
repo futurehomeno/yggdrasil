@@ -9,6 +9,14 @@ class TokenGradientValue extends TokenValue {
 
   final List<TokenGradientStop> stops;
   final TokenValueType type = TokenValueType.gradient;
+
+  @override
+  TokenGradientValue getReference(List<String> reference) {
+    return TokenGradientValue(
+      stops: stops,
+      reference: reference,
+    );
+  }
 }
 
 class TokenGradientStop {

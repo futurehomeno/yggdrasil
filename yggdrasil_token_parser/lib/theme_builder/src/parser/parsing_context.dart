@@ -9,6 +9,8 @@ import 'mixins/json_parse_mixin.dart';
 
 part 'root_context.dart';
 
+typedef ValueParser<T extends TokenValue> = Result<T> Function(ParsingContext context, Object value);
+
 /// A node in the token tree.
 ///
 /// Provides interfaces to parse, validate and resolve design tokens.
@@ -103,11 +105,13 @@ class ParsingContext {
     } else {
       type = TokenValueType.values.safeByName(rawType);
       if (type == null) {
-        errors.add(ParsingError(
-          message: 'Unrecognized type',
-          details: '$rawType is not a valid type name',
-          path: <String>[TokenKeys.type],
-        ));
+        errors.add(
+          ParsingError(
+            message: 'Unrecognized type',
+            details: '$rawType is not a valid type name',
+            path: <String>[TokenKeys.type],
+          ),
+        );
       }
     }
 
@@ -132,10 +136,13 @@ class ParsingContext {
         final ParsingContext childContext = _getOrCreateChildContext(name);
 
         if (value is! JsonObject) {
-          childContext.errors.add(ParsingError(
-            message: 'Invalid token data format',
-            details: 'Expected an json object but found an ${value.runtimeType} instead',
-          ));
+          childContext.errors.add(
+            ParsingError(
+              message: 'Invalid token data format',
+              details: 'Expected an json object but found an ${value.runtimeType} instead',
+              path: <String>[],
+            ),
+          );
 
           continue;
         }
@@ -156,9 +163,12 @@ class ParsingContext {
 
     if (isToken && isGroup) {
       _objectType = TokenObjectType.invalid;
-      errors.add(ParsingError.conflict(
-        details: 'Object is defined as both a token group and as a token in 2 or more files',
-      ));
+      errors.add(
+        ParsingError.conflict(
+          details: 'Object is defined as both a token group and as a token in 2 or more files',
+          path: <String>[],
+        ),
+      );
 
       return _valid = false;
     }
@@ -166,20 +176,25 @@ class ParsingContext {
     if (isToken) {
       _objectType = TokenObjectType.token;
       if (rawValues.length > 1) {
-        errors.add(ParsingError.conflict(
-          details: 'Token is defined in 2 or more files',
-        ));
+        errors.add(
+          ParsingError.conflict(
+            details: 'Token is defined in 2 or more files',
+            path: <String>[],
+          ),
+        );
 
         return _valid = false;
       }
 
       final Object? value = rawValues.first;
       if (value == null) {
-        errors.add(ParsingError(
-          message: 'Invalid token value',
-          details: 'Token value was defined but has a null value',
-          path: <String>[TokenKeys.value],
-        ));
+        errors.add(
+          ParsingError(
+            message: 'Invalid token value',
+            details: 'Token value was defined but has a null value',
+            path: <String>[TokenKeys.value],
+          ),
+        );
 
         return _valid = false;
       }
@@ -190,17 +205,23 @@ class ParsingContext {
     if (isGroup) {
       _objectType = TokenObjectType.group;
       if (types.length > 1) {
-        errors.add(ParsingError.conflict(
-          details: 'Multiple types defined for group with the same path: ${types.join(', ')}',
-        ));
+        errors.add(
+          ParsingError.conflict(
+            details: 'Multiple types defined for group with the same path: ${types.join(', ')}',
+            path: <String>[],
+          ),
+        );
 
         return _valid = false;
       }
 
       if (descriptions.length > 1) {
-        errors.add(ParsingError.conflict(
-          details: 'Multiple descriptions defined for group with the same path:\n${types.join(',\n')}',
-        ));
+        errors.add(
+          ParsingError.conflict(
+            details: 'Multiple descriptions defined for group with the same path:\n${types.join(',\n')}',
+            path: <String>[],
+          ),
+        );
 
         return _valid = false;
       }
@@ -208,9 +229,12 @@ class ParsingContext {
 
     if (!isGroup && !isToken) {
       _objectType = TokenObjectType.invalid;
-      errors.add(ParsingError(
-        message: 'Token group is empty',
-      ));
+      errors.add(
+        ParsingError(
+          message: 'Token group is empty',
+          path: <String>[],
+        ),
+      );
 
       return _valid = false;
     }
@@ -274,13 +298,16 @@ class ParsingContext {
 
       if (match != null) {
         final List<String> reference = match.group(1)?.split('') ?? <String>[];
-        final TokenValue? value = resolveReferencedValue(
-          reference,
-          path: <String>[TokenKeys.value],
+        final Result<TokenValue> result = resolveReferencedValue(reference);
+        final TokenValue? value = result.data;
+
+        // Add all errors in case there are any.
+        errors.addAll(
+          result.errorsWithKey(
+            TokenKeys.value,
+          ),
         );
 
-        // Don't need to add errors here as this is handled by the
-        // resolveReferencedValue method.
         if (value == null) {
           return null;
         }
@@ -289,15 +316,19 @@ class ParsingContext {
         if (valueType == null) {
           _valueType = value.type;
         } else if (valueType != value.type) {
-          errors.add(ParsingError(
-            message: 'Token type does not match type of referenced token',
-            details:
-                'The type of this token is ${valueType} while the type of the referenced token ${reference.join('.')} is ${value.type}',
-            path: <String>[TokenKeys.type],
-          ));
+          errors.add(
+            ParsingError(
+              message: 'Token type does not match type of referenced token',
+              details:
+                  'The type of this token is ${valueType} while the type of the referenced token ${reference.join('.')} is ${value.type}',
+              path: <String>[TokenKeys.type],
+            ),
+          );
 
           return null;
         }
+
+        _value = value;
 
         return value;
       }
@@ -308,10 +339,13 @@ class ParsingContext {
     // We were not able to resolve the type so we can't resolve the value.
     if (valueType == null) {
       _valid = false;
-      errors.add(ParsingError(
-        message: 'Unable to resolve token type',
-        details: 'Token has no type, does not reference a (valid) token and does not inherit any type',
-      ));
+      errors.add(
+        ParsingError(
+          message: 'Unable to resolve token type',
+          details: 'Token has no type, does not reference a (valid) token and does not inherit any type',
+          path: <String>[],
+        ),
+      );
 
       return null;
     }
@@ -324,9 +358,9 @@ class ParsingContext {
       TokenValueType.fontFamily => FontFamilyParser.parse(this, rawValue),
       TokenValueType.fontWeight => FontWeightParser.parse(this, rawValue),
       TokenValueType.number => NumberParser.parse(this, rawValue),
-      TokenValueType.shadow => ShadowParser.parse(this, rawValue),
-      TokenValueType.strokeStyle => StrokeStyleParser.parse(this, rawValue),
-      TokenValueType.border => BorderParser.parse(this, rawValue),
+      TokenValueType.shadow => TokenShadowParser.parse(this, rawValue),
+      TokenValueType.strokeStyle => TokenStrokeStyleParser.parse(this, rawValue),
+      TokenValueType.border => TokenBorderParser.parse(this, rawValue),
       TokenValueType.gradient => GradientParser.parse(this, rawValue),
       TokenValueType.typography => TypographyParser.parse(this, rawValue),
       TokenValueType.transition => TransitionParser.parse(this, rawValue),
@@ -346,47 +380,46 @@ class ParsingContext {
     return data;
   }
 
-  TokenValue? resolveReferencedValue(List<String> reference, {List<String>? path}) {
+  Result<TokenValue> resolveReferencedValue(List<String> reference) {
     final ParsingContext? referencedContext = resolveReference(reference);
     _reference = reference;
 
     if (referencedContext == null) {
-      _valid = false;
-      errors.add(ParsingError(
-        message: 'Value references non existing token',
-        details: '${reference.join('.')} does not exist',
-        path: path,
-      ));
-
-      return null;
+      return Result<TokenValue>.error(
+        ParsingError(
+          message: 'Value references non existing token',
+          details: '${reference.join('.')} does not exist',
+          path: <String>[],
+        ),
+      );
     }
 
     if (!referencedContext.isToken) {
-      _valid = false;
-      errors.add(ParsingError(
-        message: 'Value references a non token object',
-        details: '${reference.join('.')} is not a token',
-        path: path,
-      ));
-
-      return null;
+      return Result<TokenValue>.error(
+        ParsingError(
+          message: 'Value references a non token object',
+          details: '${reference.join('.')} is not a token',
+          path: <String>[],
+        ),
+      );
     }
 
     // We need to call this before checking if the token is valid, as calling
     // this method might change this.
     final TokenValue? value = referencedContext.getOrResolveValue();
     if (value == null) {
-      _valid = false;
-      errors.add(ParsingError(
-        message: 'Value references invalid token',
-        details: '${reference.join('.')} is an invalid token',
-        path: path,
-      ));
-
-      return null;
+      return Result<TokenValue>.error(
+        ParsingError(
+          message: 'Value references invalid token',
+          details: '${reference.join('.')} is an invalid token',
+          path: <String>[],
+        ),
+      );
     }
 
-    return value;
+    return Result<TokenValue>.data(
+      value.getReference(reference),
+    );
   }
 
   ParsingContext? resolveReference(List<String> reference) {
@@ -404,5 +437,86 @@ class ParsingContext {
     }
 
     return currentContext;
+  }
+
+  Result<T> parseOrResolveProperty<T extends TokenValue>({
+    required ValueParser<T> parser,
+    required JsonObject object,
+    required String key,
+  }) {
+    final Object? value = object[key];
+
+    if (value == null) {
+      return Result<T>.error(
+        ParsingError.missingProperty(
+          path: <String>[key],
+        ),
+      );
+    }
+
+    final TokenValueType? expectedType = _getValueType<T>();
+
+    if (expectedType == null) {
+      throw Exception('Called parseOrResolveValue with unknown type argument: $T');
+    }
+
+    if (value is String) {
+      final RegExpMatch? match = _referenceRegex.firstMatch(value);
+
+      if (match != null) {
+        final List<String> reference = match.group(1)?.split('') ?? <String>[];
+
+        final Result<TokenValue> result = resolveReferencedValue(
+          reference,
+        );
+
+        final TokenValue? value = result.data;
+        if (value == null) {
+          return Result<T>(
+            errors: result.errorsWithKey(key),
+          );
+        }
+
+        // Ignore this, DCM doesn't understand T can extend TokenValue which
+        // could cause a mismatch.
+        // ignore: avoid-unnecessary-type-assertions
+        if (value is! T) {
+          return Result<T>.error(
+            ParsingError(
+              message: 'Resolved token does not match expected type',
+              details:
+                  'The expected token type is $expectedType while the type of the resolved token at ${reference.join('.')} is ${value.type}',
+              path: <String>[key],
+            ),
+          );
+        }
+
+        return Result<T>.data(value);
+      }
+    }
+
+    return parser(
+      this,
+      value,
+    )..errorsWithKey(key);
+  }
+
+  TokenValueType? _getValueType<T>() {
+    return switch (T) {
+      TokenBorderValue => TokenValueType.border,
+      TokenGradientValue => TokenValueType.gradient,
+      TokenShadowValue => TokenValueType.shadow,
+      TokenStrokeStyleValue => TokenValueType.strokeStyle,
+      TokenTransitionValue => TokenValueType.transition,
+      TokenTypographyValue => TokenValueType.typography,
+      TokenColorValue => TokenValueType.color,
+      TokenCubicBezierValue => TokenValueType.cubicBezier,
+      TokenDimensionValue => TokenValueType.dimension,
+      TokenDurationValue => TokenValueType.duration,
+      TokenFontFamilyValue => TokenValueType.fontFamily,
+      TokenFontWeightValue => TokenValueType.fontWeight,
+      TokenNumberValue => TokenValueType.number,
+      _ => null,
+    };
   }
 }

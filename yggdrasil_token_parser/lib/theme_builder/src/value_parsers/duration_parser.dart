@@ -13,6 +13,7 @@ abstract final class DurationParser {
         ParsingError.dataType(
           expected: String,
           actual: value.runtimeType,
+          path: <String>[],
         ),
       );
     }
@@ -23,6 +24,7 @@ abstract final class DurationParser {
       return Result<TokenDurationValue>.error(
         ParsingError.format(
           data: value,
+          path: <String>[],
         ),
       );
     }
@@ -33,6 +35,7 @@ abstract final class DurationParser {
       return Result<TokenDurationValue>.error(
         ParsingError.format(
           data: value,
+          path: <String>[],
         ),
       );
     }

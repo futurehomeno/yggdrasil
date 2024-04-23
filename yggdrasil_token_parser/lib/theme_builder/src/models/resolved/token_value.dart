@@ -8,4 +8,6 @@ abstract class TokenValue {
   final List<String>? reference;
 
   TokenValueType get type;
+
+  TokenValue getReference(List<String> reference);
 }

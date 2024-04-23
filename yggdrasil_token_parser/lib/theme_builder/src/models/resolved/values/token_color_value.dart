@@ -10,4 +10,12 @@ class TokenColorValue extends TokenValue {
 
   final int color;
   final TokenValueType type = TokenValueType.color;
+
+  @override
+  TokenColorValue getReference(List<String> reference) {
+    return TokenColorValue(
+      color: color,
+      reference: reference,
+    );
+  }
 }

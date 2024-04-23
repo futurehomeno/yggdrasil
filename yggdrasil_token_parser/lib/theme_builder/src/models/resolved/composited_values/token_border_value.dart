@@ -13,4 +13,14 @@ class TokenBorderValue extends TokenValue {
   final TokenDimensionValue width;
   final TokenStrokeStyleValue style;
   final TokenValueType type = TokenValueType.border;
+
+  @override
+  TokenBorderValue getReference(List<String> reference) {
+    return TokenBorderValue(
+      color: color,
+      width: width,
+      style: style,
+      reference: reference,
+    );
+  }
 }

@@ -10,4 +10,12 @@ class TokenFontWeightValue extends TokenValue {
 
   final TokenFontWeight weight;
   final TokenValueType type = TokenValueType.fontWeight;
+
+  @override
+  TokenFontWeightValue getReference(List<String> reference) {
+    return TokenFontWeightValue(
+      weight: weight,
+      reference: reference,
+    );
+  }
 }

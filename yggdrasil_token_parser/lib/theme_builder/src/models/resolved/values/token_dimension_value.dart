@@ -13,4 +13,13 @@ class TokenDimensionValue extends TokenValue {
   final double value;
   final bool rem;
   final TokenValueType type = TokenValueType.dimension;
+
+  @override
+  TokenDimensionValue getReference(List<String> reference) {
+    return TokenDimensionValue(
+      rem: rem,
+      value: value,
+      reference: reference,
+    );
+  }
 }

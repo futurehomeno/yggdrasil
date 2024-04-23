@@ -13,6 +13,7 @@ abstract final class ColorParser {
         ParsingError.dataType(
           expected: String,
           actual: value.runtimeType,
+          path: <String>[],
         ),
       );
     }
@@ -24,7 +25,10 @@ abstract final class ColorParser {
 
       if (colorHex == null) {
         return Result<TokenColorValue>.error(
-          ParsingError.format(data: value),
+          ParsingError.format(
+            data: value,
+            path: <String>[],
+          ),
         );
       }
 
@@ -33,7 +37,10 @@ abstract final class ColorParser {
       if (color == null) {
         return Result<TokenColorValue>(
           errors: <ParsingError>[
-            ParsingError.format(data: value),
+            ParsingError.format(
+              data: value,
+              path: <String>[],
+            ),
           ],
         );
       }
@@ -43,7 +50,10 @@ abstract final class ColorParser {
 
         if (transparency == null) {
           return Result<TokenColorValue>.error(
-            ParsingError.format(data: value),
+            ParsingError.format(
+              data: value,
+              path: <String>[],
+            ),
           );
         }
 
@@ -58,7 +68,10 @@ abstract final class ColorParser {
     }
 
     return Result<TokenColorValue>.error(
-      ParsingError.format(data: value),
+      ParsingError.format(
+        data: value,
+        path: <String>[],
+      ),
     );
   }
 }

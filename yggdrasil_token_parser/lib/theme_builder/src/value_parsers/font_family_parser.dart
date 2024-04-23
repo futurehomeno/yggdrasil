@@ -39,6 +39,7 @@ abstract final class FontFamilyParser {
         ParsingError.dataTypes(
           expected: <Type>[String, List],
           actual: value.runtimeType,
+          path: <String>[],
         ),
       );
     }

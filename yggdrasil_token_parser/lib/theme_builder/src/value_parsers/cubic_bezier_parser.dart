@@ -11,6 +11,7 @@ abstract final class CubicBezierParser {
         ParsingError.dataType(
           expected: List,
           actual: value.runtimeType,
+          path: <String>[],
         ),
       );
     }
@@ -19,6 +20,7 @@ abstract final class CubicBezierParser {
       return Result<TokenCubicBezierValue>.error(
         ParsingError.format(
           data: value,
+          path: <String>[],
         ),
       );
     }

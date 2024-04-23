@@ -10,4 +10,12 @@ class TokenNumberValue extends TokenValue {
 
   final double number;
   final TokenValueType type = TokenValueType.number;
+
+  @override
+  TokenNumberValue getReference(List<String> reference) {
+    return TokenNumberValue(
+      number: number,
+      reference: reference,
+    );
+  }
 }

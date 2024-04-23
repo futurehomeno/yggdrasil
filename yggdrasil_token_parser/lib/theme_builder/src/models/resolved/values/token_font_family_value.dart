@@ -10,4 +10,12 @@ class TokenFontFamilyValue extends TokenValue {
 
   final List<String> families;
   final TokenValueType type = TokenValueType.fontFamily;
+
+  @override
+  TokenFontFamilyValue getReference(List<String> reference) {
+    return TokenFontFamilyValue(
+      families: families,
+      reference: reference,
+    );
+  }
 }

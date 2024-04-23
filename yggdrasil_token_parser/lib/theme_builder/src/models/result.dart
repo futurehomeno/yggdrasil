@@ -18,4 +18,24 @@ class Result<T> {
 
   final T? data;
   final List<ParsingError> errors;
+
+  List<ParsingError> errorsWithPath(List<String> path) {
+    final List<ParsingError> newErrors = <ParsingError>[];
+
+    for (final ParsingError error in errors) {
+      newErrors.add(error.copyWithPath(path));
+    }
+
+    return newErrors;
+  }
+
+  List<ParsingError> errorsWithKey(String key) {
+    final List<ParsingError> newErrors = <ParsingError>[];
+
+    for (final ParsingError error in errors) {
+      newErrors.add(error.copyWithKey(key));
+    }
+
+    return newErrors;
+  }
 }

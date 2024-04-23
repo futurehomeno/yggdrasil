@@ -13,4 +13,14 @@ class TokenTransitionValue extends TokenValue {
   final TokenDimensionValue delay;
   final TokenCubicBezierValue timingFunction;
   final TokenValueType type = TokenValueType.transition;
+
+  @override
+  TokenTransitionValue getReference(List<String> reference) {
+    return TokenTransitionValue(
+      duration: duration,
+      delay: delay,
+      timingFunction: timingFunction,
+      reference: reference,
+    );
+  }
 }

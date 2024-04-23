@@ -10,4 +10,12 @@ class TokenDurationValue extends TokenValue {
 
   final int milliseconds;
   final TokenValueType type = TokenValueType.duration;
+
+  @override
+  TokenDurationValue getReference(List<String> reference) {
+    return TokenDurationValue(
+      milliseconds: milliseconds,
+      reference: reference,
+    );
+  }
 }

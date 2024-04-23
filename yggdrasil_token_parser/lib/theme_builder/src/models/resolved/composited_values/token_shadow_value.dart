@@ -17,4 +17,16 @@ class TokenShadowValue extends TokenValue {
   final TokenDimensionValue blur;
   final TokenDimensionValue spread;
   final TokenValueType type = TokenValueType.shadow;
+
+  @override
+  TokenShadowValue getReference(List<String> reference) {
+    return TokenShadowValue(
+      color: color,
+      offsetX: offsetX,
+      offsetY: offsetY,
+      blur: blur,
+      spread: spread,
+      reference: reference,
+    );
+  }
 }

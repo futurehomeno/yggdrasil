@@ -7,10 +7,13 @@ abstract final class NumberParser {
 
   static Result<TokenNumberValue> parse(ParsingContext context, Object value) {
     if (value is! num) {
-      return Result<TokenNumberValue>.error(ParsingError.dataType(
-        expected: num,
-        actual: value.runtimeType,
-      ));
+      return Result<TokenNumberValue>.error(
+        ParsingError.dataType(
+          expected: num,
+          actual: value.runtimeType,
+          path: <String>[],
+        ),
+      );
     }
 
     return Result<TokenNumberValue>.data(
