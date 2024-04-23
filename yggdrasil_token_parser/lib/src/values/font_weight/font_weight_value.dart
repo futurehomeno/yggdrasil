@@ -1,6 +1,4 @@
-import 'package:yggdrasil_token_parser/src/enums/_enums.dart';
-
-import '../../models/token_value.dart';
+import 'package:yggdrasil_token_parser/yggdrasil_token_parser.dart';
 
 class FontWeightValue extends TokenValue {
   const FontWeightValue({

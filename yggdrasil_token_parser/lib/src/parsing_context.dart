@@ -19,6 +19,8 @@ class ParsingContext {
       : name = null,
         parent = null;
 
+  static final RegExp _referenceRegex = RegExp(r'^{([^}]+)}$');
+
   /// A list of child contexts.
   ///
   /// Should not be manually manipulated. Use _getOrCreateChildContext to get or
@@ -62,7 +64,6 @@ class ParsingContext {
   // Resolved
   Object? _rawValue;
   TokenValue? _value;
-  TokenValueType? _valueType;
   TokenObjectType? _objectType;
 
   /// Whether this object is a valid object.
@@ -233,29 +234,88 @@ class ParsingContext {
     return true;
   }
 
-  void resolveTypeAndReference() {
+  Result<T> parseOrResolveProperty<T extends TokenValue>({
+    required ValueParser<T> parser,
+    required JsonObject object,
+    required String key,
+  }) {
+    final Object? value = object[key];
+
+    if (value == null) {
+      return Result<T>.error(
+        ParsingError.missingProperty(
+          path: <String>[key],
+        ),
+      );
+    }
+
+    final TokenValueType? expectedType = _getValueType<T>();
+
+    if (expectedType == null) {
+      throw Exception('Called parseOrResolveValue with unknown type argument: $T');
+    }
+
+    if (value is String) {
+      final RegExpMatch? match = _referenceRegex.firstMatch(value);
+
+      if (match != null) {
+        final List<String> reference = match.group(1)?.split('') ?? <String>[];
+
+        final Result<TokenValue> result = _resolveReferencedValue(
+          reference,
+        );
+
+        final TokenValue? value = result.data;
+        if (value == null) {
+          return Result<T>(
+            errors: result.errorsWithKey(key),
+          );
+        }
+
+        // Ignore this, DCM doesn't understand T can extend TokenValue which
+        // could cause a mismatch.
+        // ignore: avoid-unnecessary-type-assertions
+        if (value is! T) {
+          return Result<T>.error(
+            ParsingError(
+              message: 'Resolved token does not match expected type',
+              details:
+                  'The expected token type is $expectedType while the type of the resolved token at ${reference.join('.')} is ${value.type}',
+              path: <String>[key],
+            ),
+          );
+        }
+
+        return Result<T>.data(value);
+      }
+    }
+
+    return parser(
+      this,
+      value,
+    )..errorsWithKey(key);
+  }
+
+  TokenValue? _getOrResolveValue([Set<ParsingContext> resolvingStack = const <ParsingContext>{}]) {
+    // Can only resolve valid tokens.
     if (!isValid) {
-      return;
+      return null;
     }
 
     // Resolve the object type.
     ParsingContext? currentContext = this;
+    TokenValueType? valueType = null;
     while (currentContext != null) {
       if (types.isNotEmpty) {
         // Pick the first type as the object is valid and this should be safe.
-        _valueType = types.first;
+        valueType = types.first;
         break;
       }
 
       currentContext = currentContext.parent;
     }
-  }
 
-  static final RegExp _referenceRegex = RegExp(r'^{([^}]+)}$');
-
-  TokenValue? getOrResolveValue([Set<ParsingContext> resolvingStack = const <ParsingContext>{}]) {
-    // Can only resolve valid tokens.
-    if (!isValid || !isToken) {
+    if (!isToken) {
       return null;
     }
 
@@ -289,7 +349,7 @@ class ParsingContext {
 
       if (match != null) {
         final List<String> reference = match.group(1)?.split('') ?? <String>[];
-        final Result<TokenValue> result = resolveReferencedValue(reference);
+        final Result<TokenValue> result = _resolveReferencedValue(reference);
         final TokenValue? value = result.data;
 
         // Add all errors in case there are any.
@@ -303,9 +363,8 @@ class ParsingContext {
           return null;
         }
 
-        final TokenValueType? valueType = _valueType;
         if (valueType == null) {
-          _valueType = value.type;
+          valueType = value.type;
         } else if (valueType != value.type) {
           errors.add(
             ParsingError(
@@ -324,8 +383,6 @@ class ParsingContext {
         return value;
       }
     }
-
-    final TokenValueType? valueType = _valueType;
 
     // We were not able to resolve the type so we can't resolve the value.
     if (valueType == null) {
@@ -371,8 +428,19 @@ class ParsingContext {
     return data;
   }
 
-  Result<TokenValue> resolveReferencedValue(List<String> reference) {
-    final ParsingContext? referencedContext = resolveReference(reference);
+  Result<TokenValue> _resolveReferencedValue(List<String> reference) {
+    final Iterator<String> iterator = reference.iterator;
+    ParsingContext? referencedContext = this;
+
+    // Ensure we are at the root context.
+    while (referencedContext?.parent != null) {
+      referencedContext = referencedContext?.parent;
+    }
+
+    // Travel down the path from the root context.
+    while (referencedContext != null && iterator.moveNext()) {
+      referencedContext = referencedContext.children[iterator.current];
+    }
 
     if (referencedContext == null) {
       return Result<TokenValue>.error(
@@ -396,7 +464,7 @@ class ParsingContext {
 
     // We need to call this before checking if the token is valid, as calling
     // this method might change this.
-    final TokenValue? value = referencedContext.getOrResolveValue();
+    final TokenValue? value = referencedContext._getOrResolveValue();
     if (value == null) {
       return Result<TokenValue>.error(
         ParsingError(
@@ -410,85 +478,6 @@ class ParsingContext {
     return Result<TokenValue>.data(
       value.getReference(reference),
     );
-  }
-
-  ParsingContext? resolveReference(List<String> reference) {
-    final Iterator<String> iterator = reference.iterator;
-    ParsingContext? currentContext = this;
-
-    // Ensure we are at the root context.
-    while (currentContext?.parent != null) {
-      currentContext = currentContext?.parent;
-    }
-
-    // Travel down the path from the root context.
-    while (currentContext != null && iterator.moveNext()) {
-      currentContext = currentContext.children[iterator.current];
-    }
-
-    return currentContext;
-  }
-
-  Result<T> parseOrResolveProperty<T extends TokenValue>({
-    required ValueParser<T> parser,
-    required JsonObject object,
-    required String key,
-  }) {
-    final Object? value = object[key];
-
-    if (value == null) {
-      return Result<T>.error(
-        ParsingError.missingProperty(
-          path: <String>[key],
-        ),
-      );
-    }
-
-    final TokenValueType? expectedType = _getValueType<T>();
-
-    if (expectedType == null) {
-      throw Exception('Called parseOrResolveValue with unknown type argument: $T');
-    }
-
-    if (value is String) {
-      final RegExpMatch? match = _referenceRegex.firstMatch(value);
-
-      if (match != null) {
-        final List<String> reference = match.group(1)?.split('') ?? <String>[];
-
-        final Result<TokenValue> result = resolveReferencedValue(
-          reference,
-        );
-
-        final TokenValue? value = result.data;
-        if (value == null) {
-          return Result<T>(
-            errors: result.errorsWithKey(key),
-          );
-        }
-
-        // Ignore this, DCM doesn't understand T can extend TokenValue which
-        // could cause a mismatch.
-        // ignore: avoid-unnecessary-type-assertions
-        if (value is! T) {
-          return Result<T>.error(
-            ParsingError(
-              message: 'Resolved token does not match expected type',
-              details:
-                  'The expected token type is $expectedType while the type of the resolved token at ${reference.join('.')} is ${value.type}',
-              path: <String>[key],
-            ),
-          );
-        }
-
-        return Result<T>.data(value);
-      }
-    }
-
-    return parser(
-      this,
-      value,
-    )..errorsWithKey(key);
   }
 
   TokenValueType? _getValueType<T>() {
