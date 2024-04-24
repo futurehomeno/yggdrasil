@@ -1,6 +1,4 @@
-import 'package:yggdrasil_token_parser/src/enums/token_value_type.dart';
-
-import '../../models/token_value.dart';
+import 'package:yggdrasil_token_parser/yggdrasil_token_parser.dart';
 
 class NumberValue extends TokenValue {
   const NumberValue({

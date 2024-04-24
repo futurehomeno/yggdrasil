@@ -47,8 +47,8 @@ abstract final class GradientParser {
       final NumberValue? position = positionResult.data;
 
       errors.addAll(<ParsingError>[
-        ...colorResult.errorsWithPath(<String>[i.toString()]),
-        ...positionResult.errorsWithPath(<String>[i.toString()]),
+        ...colorResult.errorsWithKey(i.toString()),
+        ...positionResult.errorsWithKey(i.toString()),
       ]);
 
       if (color == null || position == null) {

@@ -99,7 +99,7 @@ abstract final class StrokeStyleParser {
         }
       }
 
-      if (errors.isNotEmpty || lineCap == null) {
+      if (errors.isNotEmpty || lineCap == null || dashArray.isEmpty) {
         return Result<StrokeStyleValue>(
           errors: errors,
         );

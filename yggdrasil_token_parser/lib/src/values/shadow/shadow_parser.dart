@@ -20,25 +20,21 @@ abstract final class ShadowParser {
       object: value,
       key: ShadowKeys.color,
     );
-
     final Result<DimensionValue> offsetXResult = context.parseOrResolveProperty(
       parser: DimensionParser.parse,
       object: value,
       key: ShadowKeys.offsetX,
     );
-
     final Result<DimensionValue> offsetYResult = context.parseOrResolveProperty(
       parser: DimensionParser.parse,
       object: value,
       key: ShadowKeys.offsetY,
     );
-
     final Result<DimensionValue> blurResult = context.parseOrResolveProperty(
       parser: DimensionParser.parse,
       object: value,
       key: ShadowKeys.blur,
     );
-
     final Result<DimensionValue> spreadResult = context.parseOrResolveProperty(
       parser: DimensionParser.parse,
       object: value,

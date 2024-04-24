@@ -1,4 +1,4 @@
-import 'package:yggdrasil_token_parser/src/enums/_enums.dart';
+import 'package:yggdrasil_token_parser/src/models/enums/_enums.dart';
 
 abstract class TokenValue {
   const TokenValue({
