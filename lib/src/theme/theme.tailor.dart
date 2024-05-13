@@ -30,6 +30,7 @@ class YgTheme extends ThemeExtension<YgTheme> {
     required this.listTileTheme,
     required this.mobileScannerContainerTheme,
     required this.pickerTheme,
+    required this.powerManagerAnimatedIconTheme,
     required this.progressIndicatorTheme,
     required this.pulseTheme,
     required this.radioTheme,
@@ -68,6 +69,7 @@ class YgTheme extends ThemeExtension<YgTheme> {
   final YgListTileTheme listTileTheme;
   final YgMobileScannerContainerTheme mobileScannerContainerTheme;
   final YgPickerTheme pickerTheme;
+  final PowerManagerAnimatedIconTheme powerManagerAnimatedIconTheme;
   final YgProgressIndicatorTheme progressIndicatorTheme;
   final YgPulseTheme pulseTheme;
   final YgRadioTheme radioTheme;
@@ -106,6 +108,7 @@ class YgTheme extends ThemeExtension<YgTheme> {
     listTileTheme: _$YgTheme.listTileTheme[0],
     mobileScannerContainerTheme: _$YgTheme.mobileScannerContainerTheme[0],
     pickerTheme: _$YgTheme.pickerTheme[0],
+    powerManagerAnimatedIconTheme: _$YgTheme.powerManagerAnimatedIconTheme[0],
     progressIndicatorTheme: _$YgTheme.progressIndicatorTheme[0],
     pulseTheme: _$YgTheme.pulseTheme[0],
     radioTheme: _$YgTheme.radioTheme[0],
@@ -145,6 +148,7 @@ class YgTheme extends ThemeExtension<YgTheme> {
     listTileTheme: _$YgTheme.listTileTheme[1],
     mobileScannerContainerTheme: _$YgTheme.mobileScannerContainerTheme[1],
     pickerTheme: _$YgTheme.pickerTheme[1],
+    powerManagerAnimatedIconTheme: _$YgTheme.powerManagerAnimatedIconTheme[1],
     progressIndicatorTheme: _$YgTheme.progressIndicatorTheme[1],
     pulseTheme: _$YgTheme.pulseTheme[1],
     radioTheme: _$YgTheme.radioTheme[1],
@@ -184,6 +188,7 @@ class YgTheme extends ThemeExtension<YgTheme> {
     listTileTheme: _$YgTheme.listTileTheme[2],
     mobileScannerContainerTheme: _$YgTheme.mobileScannerContainerTheme[2],
     pickerTheme: _$YgTheme.pickerTheme[2],
+    powerManagerAnimatedIconTheme: _$YgTheme.powerManagerAnimatedIconTheme[2],
     progressIndicatorTheme: _$YgTheme.progressIndicatorTheme[2],
     pulseTheme: _$YgTheme.pulseTheme[2],
     radioTheme: _$YgTheme.radioTheme[2],
@@ -223,6 +228,7 @@ class YgTheme extends ThemeExtension<YgTheme> {
     listTileTheme: _$YgTheme.listTileTheme[3],
     mobileScannerContainerTheme: _$YgTheme.mobileScannerContainerTheme[3],
     pickerTheme: _$YgTheme.pickerTheme[3],
+    powerManagerAnimatedIconTheme: _$YgTheme.powerManagerAnimatedIconTheme[3],
     progressIndicatorTheme: _$YgTheme.progressIndicatorTheme[3],
     pulseTheme: _$YgTheme.pulseTheme[3],
     radioTheme: _$YgTheme.radioTheme[3],
@@ -270,6 +276,7 @@ class YgTheme extends ThemeExtension<YgTheme> {
     YgListTileTheme? listTileTheme,
     YgMobileScannerContainerTheme? mobileScannerContainerTheme,
     YgPickerTheme? pickerTheme,
+    PowerManagerAnimatedIconTheme? powerManagerAnimatedIconTheme,
     YgProgressIndicatorTheme? progressIndicatorTheme,
     YgPulseTheme? pulseTheme,
     YgRadioTheme? radioTheme,
@@ -309,6 +316,8 @@ class YgTheme extends ThemeExtension<YgTheme> {
       mobileScannerContainerTheme:
           mobileScannerContainerTheme ?? this.mobileScannerContainerTheme,
       pickerTheme: pickerTheme ?? this.pickerTheme,
+      powerManagerAnimatedIconTheme:
+          powerManagerAnimatedIconTheme ?? this.powerManagerAnimatedIconTheme,
       progressIndicatorTheme:
           progressIndicatorTheme ?? this.progressIndicatorTheme,
       pulseTheme: pulseTheme ?? this.pulseTheme,
@@ -361,6 +370,9 @@ class YgTheme extends ThemeExtension<YgTheme> {
           mobileScannerContainerTheme.lerp(other.mobileScannerContainerTheme, t)
               as YgMobileScannerContainerTheme,
       pickerTheme: pickerTheme.lerp(other.pickerTheme, t) as YgPickerTheme,
+      powerManagerAnimatedIconTheme: powerManagerAnimatedIconTheme.lerp(
+              other.powerManagerAnimatedIconTheme, t)
+          as PowerManagerAnimatedIconTheme,
       progressIndicatorTheme: progressIndicatorTheme.lerp(
           other.progressIndicatorTheme, t) as YgProgressIndicatorTheme,
       pulseTheme: pulseTheme.lerp(other.pulseTheme, t) as YgPulseTheme,
@@ -429,6 +441,8 @@ class YgTheme extends ThemeExtension<YgTheme> {
                 other.mobileScannerContainerTheme) &&
             const DeepCollectionEquality()
                 .equals(pickerTheme, other.pickerTheme) &&
+            const DeepCollectionEquality().equals(powerManagerAnimatedIconTheme,
+                other.powerManagerAnimatedIconTheme) &&
             const DeepCollectionEquality()
                 .equals(progressIndicatorTheme, other.progressIndicatorTheme) &&
             const DeepCollectionEquality()
@@ -484,6 +498,7 @@ class YgTheme extends ThemeExtension<YgTheme> {
       const DeepCollectionEquality().hash(listTileTheme),
       const DeepCollectionEquality().hash(mobileScannerContainerTheme),
       const DeepCollectionEquality().hash(pickerTheme),
+      const DeepCollectionEquality().hash(powerManagerAnimatedIconTheme),
       const DeepCollectionEquality().hash(progressIndicatorTheme),
       const DeepCollectionEquality().hash(pulseTheme),
       const DeepCollectionEquality().hash(radioTheme),
@@ -527,6 +542,8 @@ extension YgThemeBuildContextProps on BuildContext {
   YgMobileScannerContainerTheme get mobileScannerContainerTheme =>
       ygTheme.mobileScannerContainerTheme;
   YgPickerTheme get pickerTheme => ygTheme.pickerTheme;
+  PowerManagerAnimatedIconTheme get powerManagerAnimatedIconTheme =>
+      ygTheme.powerManagerAnimatedIconTheme;
   YgProgressIndicatorTheme get progressIndicatorTheme =>
       ygTheme.progressIndicatorTheme;
   YgPulseTheme get pulseTheme => ygTheme.pulseTheme;

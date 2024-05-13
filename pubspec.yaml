@@ -26,6 +26,7 @@ dev_dependencies:
   alchemist: 0.7.0
   # Run `flutter pub run build_runner build --delete-conflicting-outputs` in order to generate stuff.
   build_runner: 2.4.6
+  lottie: 3.1.0
   recase: 4.1.0
   intl_utils: 2.8.7
   flutter_test:

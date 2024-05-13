@@ -1,0 +1,4 @@
+enum YgPowerMangerAnimatedIconVariant {
+  increase,
+  decrease,
+}

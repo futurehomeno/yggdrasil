@@ -163,6 +163,11 @@ class HomeScreen extends StatelessWidget {
                       trailingWidgets: const <YgIcon>[YgIcon(YgIcons.caretRight)],
                     ),
                     YgListTile(
+                      title: 'PowerManagerAnimatedIcon',
+                      onTap: () => sl<YgRouter>().push(PowerManagerAnimatedIconScreen.route()),
+                      trailingWidgets: const <YgIcon>[YgIcon(YgIcons.caretRight)],
+                    ),
+                    YgListTile(
                       title: 'ProgressIndicator',
                       onTap: () => sl<YgRouter>().push(ProgressIndicatorScreen.route()),
                       trailingWidgets: const <YgIcon>[YgIcon(YgIcons.caretRight)],

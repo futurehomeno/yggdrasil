@@ -79,6 +79,9 @@ class _$YgTheme {
   static final List<YgPickerTheme> pickerTheme = YgPickerTheme.themes;
 
   @themeExtension
+  static final List<PowerManagerAnimatedIconTheme> powerManagerAnimatedIconTheme = PowerManagerAnimatedIconTheme.themes;
+
+  @themeExtension
   static final List<YgProgressIndicatorTheme> progressIndicatorTheme = YgProgressIndicatorTheme.themes;
 
   @themeExtension

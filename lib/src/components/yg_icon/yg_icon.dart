@@ -120,6 +120,7 @@ class YgIcon extends StatelessWidget with StatelessWidgetDebugMixin {
             height: iconSize,
             width: iconSize,
             excludeFromSemantics: true,
+            theme: ,
           );
         }
 
