@@ -1,7 +1,7 @@
 part of 'yg_icon.dart';
 
-class YgIconAnimated extends YgIcon {
-  const YgIconAnimated(
+class _YgIconAnimated extends YgIcon {
+  const _YgIconAnimated(
     YgAnimatedIconData super.iconData, {
     super.key,
     super.semanticLabel,
@@ -18,7 +18,7 @@ class YgIconAnimated extends YgIcon {
       color: null,
       size: size,
       iconBuilder: (BuildContext context, Color color) {
-        return _buildAnimatedIcon(
+        return AnimatedIcon(
           iconData: iconData as YgAnimatedIconData,
           animated: animated,
         );

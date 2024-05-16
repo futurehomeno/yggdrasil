@@ -1,7 +1,7 @@
 part of 'yg_icon.dart';
 
-class YgIconColorable extends YgIcon {
-  const YgIconColorable(
+class _YgIconColorable extends YgIcon {
+  const _YgIconColorable(
     YgColorableIconData super.iconData, {
     super.key,
     super.semanticLabel,
@@ -9,14 +9,11 @@ class YgIconColorable extends YgIcon {
     required this.color,
   }) : super._();
 
-  /// The color to use when drawing the icon.
+  /// The color used when drawing the icon.
   ///
-  /// If no size is specified, the nearest IconTheme of the current
-  /// context will be used. This is useful when a parent widget wants to
+  /// If no color is specified, the nearest IconTheme of the current context
+  /// will be used. This is useful when a parent widget wants to
   /// specify a color for the icon.
-  ///
-  /// Note that [YgIconData]s will never be colored regardless of
-  /// the parent widget specifying an [IconTheme].
   final Color color;
 
   @override
@@ -25,7 +22,7 @@ class YgIconColorable extends YgIcon {
       color: color,
       size: size,
       iconBuilder: (BuildContext context, Color color) {
-        return _buildColorableIcon(
+        return ColorableIcon(
           iconData: iconData as YgColorableIconData,
           color: color,
         );

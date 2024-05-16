@@ -1,11 +1,9 @@
-import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
-import 'package:flutter_svg/flutter_svg.dart';
-import 'package:lottie/lottie.dart';
+import 'package:flutter/widgets.dart';
 import 'package:yggdrasil/yggdrasil.dart';
 
 import 'icon_frame/_yg_icon_frame.dart';
-import 'mappers/_mappers.dart';
+import 'viewers/_viewers.dart';
 
 part 'yg_icon_animated.dart';
 part 'yg_icon_any.dart';
@@ -23,7 +21,7 @@ abstract class YgIcon extends StatelessWidget with StatelessWidgetDebugMixin {
     Key? key,
     String? semanticLabel,
     YgIconSize? size,
-  }) = YgIconAny;
+  }) = _YgIconAny;
 
   /// Create an colorable icon.
   ///
@@ -34,7 +32,7 @@ abstract class YgIcon extends StatelessWidget with StatelessWidgetDebugMixin {
     Key? key,
     String? semanticLabel,
     YgIconSize? size,
-  }) = YgIconColorable;
+  }) = _YgIconColorable;
 
   /// Creates an animated icon.
   ///
@@ -46,7 +44,7 @@ abstract class YgIcon extends StatelessWidget with StatelessWidgetDebugMixin {
     Key? key,
     String? semanticLabel,
     YgIconSize? size,
-  }) = YgIconAnimated;
+  }) = _YgIconAnimated;
 
   const YgIcon._(
     this.iconData, {
@@ -74,48 +72,6 @@ abstract class YgIcon extends StatelessWidget with StatelessWidgetDebugMixin {
   ///
   /// This label does not show in the UI.
   final String? semanticLabel;
-
-  Widget _buildColorfulIcon({
-    required BuildContext context,
-    required YgIconData iconData,
-    required Color color,
-  }) {
-    return SvgPicture(
-      SvgAssetLoader(
-        iconData.path,
-        packageName: 'yggdrasil',
-        colorMapper: TokenColorMapper(
-          colors: context.ygTheme.tokens.colors,
-          fallbackColor: color,
-        ),
-      ),
-    );
-  }
-
-  Widget _buildColorableIcon({
-    required YgColorableIconData iconData,
-    required Color color,
-  }) {
-    return SvgPicture.asset(
-      iconData.path,
-      package: 'yggdrasil',
-      colorFilter: ColorFilter.mode(
-        color,
-        BlendMode.srcIn,
-      ),
-    );
-  }
-
-  Widget _buildAnimatedIcon({
-    required YgAnimatedIconData iconData,
-    required bool animated,
-  }) {
-    return LottieBuilder.asset(
-      iconData.path,
-      package: 'yggdrasil',
-      animate: true,
-    );
-  }
 
   @override
   void debugFillProperties(DiagnosticPropertiesBuilder properties) {

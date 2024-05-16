@@ -6,6 +6,7 @@ import 'package:yggdrasil/src/utils/_utils.dart';
 
 typedef YgIconBuilder = Widget Function(BuildContext context, Color iconColor);
 
+/// Widget which takes care of the color and size resolving, animating and semantics.
 class YgIconFrame extends StatefulWidget {
   const YgIconFrame({
     super.key,

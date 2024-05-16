@@ -1,7 +1,7 @@
 part of 'yg_icon.dart';
 
-class YgIconAny extends YgIcon {
-  const YgIconAny(
+class _YgIconAny extends YgIcon {
+  const _YgIconAny(
     super.iconData, {
     super.key,
     super.size,
@@ -18,17 +18,16 @@ class YgIconAny extends YgIcon {
       size: size,
       iconBuilder: (BuildContext context, Color color) {
         return switch (iconData) {
-          YgAnimatedIconData() => _buildAnimatedIcon(
+          YgAnimatedIconData() => AnimatedIcon(
               iconData: iconData,
               animated: true,
             ),
-          YgColorableIconData() => _buildColorableIcon(
+          YgColorableIconData() => ColorableIcon(
               iconData: iconData,
               color: color,
             ),
-          _ => _buildColorfulIcon(
+          _ => ThemedIcon(
               color: color,
-              context: context,
               iconData: iconData,
             ),
         };
