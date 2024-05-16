@@ -43,10 +43,11 @@ class YgDropdownBottomSheetRoute<T extends Object> extends YgBottomSheetModalRou
     final YgAnyDropdownController<T> controller = dropdownController;
 
     for (final YgDropdownEntry<T> entry in entries) {
+      final YgIconData? iconData = entry.icon;
       YgIcon? icon;
 
-      if (entry.icon != null) {
-        icon = YgIcon(entry.icon);
+      if (iconData != null) {
+        icon = YgIcon(iconData);
       }
 
       if (controller is YgSingleSelectDropdownController<T>) {

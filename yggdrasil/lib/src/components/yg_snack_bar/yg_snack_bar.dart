@@ -75,7 +75,7 @@ class _YgSnackBarState extends StateWithYgStateAndStyle<YgSnackBar, YgSnackBarSt
                     style.iconColor,
                   },
                   builder: (BuildContext context, _) {
-                    return YgIcon(
+                    return YgIcon.colorable(
                       style.icon.value,
                       size: YgIconSize.small,
                       color: style.iconColor.value,

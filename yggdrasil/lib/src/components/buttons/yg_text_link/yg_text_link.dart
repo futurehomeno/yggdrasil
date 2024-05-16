@@ -53,7 +53,7 @@ class YgTextLink extends YgButtonBase<YgTextLinkState> {
         ),
         Padding(
           padding: theme.iconPadding,
-          child: YgIcon(
+          child: YgIcon.colorable(
             YgIcons.link,
             color: theme.iconColor,
             size: YgIconSize.small,

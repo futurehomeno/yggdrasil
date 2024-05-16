@@ -19,6 +19,7 @@ dependencies:
       url: git@github.com:futurehomeno/theme_tailor.git
       path: packages/theme_tailor_annotation
   flutter_svg: 2.0.9
+  lottie: 3.1.1
 
 dev_dependencies:
   # Run `flutter test --tags golden` to run all golden tests.
@@ -94,3 +95,4 @@ flutter:
         - asset: assets/fonts/work_sans/WorkSans-ThinItalic.ttf
   assets:
     - assets/icons/
+    - assets/lottie/

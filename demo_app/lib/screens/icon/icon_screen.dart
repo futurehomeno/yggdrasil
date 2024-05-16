@@ -51,6 +51,13 @@ class IconScreen extends StatelessWidget {
             ),
           ),
           YgSection(
+            title: 'Animated',
+            subtitle: 'An animated icon.',
+            child: YgIcon(
+              YgAnimatedIcons.arrowDecrease,
+            ),
+          ),
+          YgSection(
             title: 'Inherited color',
             subtitle: 'Color switching is handled by the parent widget.',
             child: YgIconButton(
@@ -63,7 +70,7 @@ class IconScreen extends StatelessWidget {
             title: 'Override color',
             subtitle: 'Override the default theme color.\nWarning: color will no longer adapt to the theme.',
             child: YgTag(
-              child: YgIcon(
+              child: YgIcon.colorable(
                 YgIcons.deviceHubChange,
                 color: context.tokens.colors.iconCritical,
                 size: YgIconSize.large,
@@ -74,7 +81,7 @@ class IconScreen extends StatelessWidget {
             title: 'Use embedded color',
             subtitle: 'Color embedded in the SVG is used.\nThe color will adapt to the theme.',
             child: YgTag(
-              child: YgIcon.embeddedColor(
+              child: YgIcon(
                 YgIcons.deviceHubColorful,
                 size: YgIconSize.large,
               ),

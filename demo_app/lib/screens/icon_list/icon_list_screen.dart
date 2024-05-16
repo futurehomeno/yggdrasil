@@ -58,7 +58,7 @@ class _IconListScreenState extends State<IconListScreen> {
                 title: iconName,
                 subtitle: iconPath,
                 leadingWidgets: <YgIcon>[
-                  YgIcon.embeddedColor(iconData),
+                  YgIcon(iconData),
                 ],
               );
             },

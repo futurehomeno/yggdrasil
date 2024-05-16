@@ -10,31 +10,49 @@ part of 'icon_theme.dart';
 
 class YgIconTheme extends ThemeExtension<YgIconTheme> {
   const YgIconTheme({
-    required this.size,
-    required this.tapSize,
+    required this.animationCurve,
+    required this.animationDuration,
+    required this.defaultColor,
+    required this.sizeLarge,
+    required this.sizeSmall,
   });
 
-  final YgIconSizeTheme size;
-  final YgIconTapSizeTheme tapSize;
+  final Curve animationCurve;
+  final Duration animationDuration;
+  final Color defaultColor;
+  final double sizeLarge;
+  final double sizeSmall;
 
   static final YgIconTheme consumerLight = YgIconTheme(
-    size: _$YgIconTheme.size[0],
-    tapSize: _$YgIconTheme.tapSize[0],
+    animationCurve: _$YgIconTheme.animationCurve[0],
+    animationDuration: _$YgIconTheme.animationDuration[0],
+    defaultColor: _$YgIconTheme.defaultColor[0],
+    sizeLarge: _$YgIconTheme.sizeLarge[0],
+    sizeSmall: _$YgIconTheme.sizeSmall[0],
   );
 
   static final YgIconTheme consumerDark = YgIconTheme(
-    size: _$YgIconTheme.size[1],
-    tapSize: _$YgIconTheme.tapSize[1],
+    animationCurve: _$YgIconTheme.animationCurve[1],
+    animationDuration: _$YgIconTheme.animationDuration[1],
+    defaultColor: _$YgIconTheme.defaultColor[1],
+    sizeLarge: _$YgIconTheme.sizeLarge[1],
+    sizeSmall: _$YgIconTheme.sizeSmall[1],
   );
 
   static final YgIconTheme professionalLight = YgIconTheme(
-    size: _$YgIconTheme.size[2],
-    tapSize: _$YgIconTheme.tapSize[2],
+    animationCurve: _$YgIconTheme.animationCurve[2],
+    animationDuration: _$YgIconTheme.animationDuration[2],
+    defaultColor: _$YgIconTheme.defaultColor[2],
+    sizeLarge: _$YgIconTheme.sizeLarge[2],
+    sizeSmall: _$YgIconTheme.sizeSmall[2],
   );
 
   static final YgIconTheme professionalDark = YgIconTheme(
-    size: _$YgIconTheme.size[3],
-    tapSize: _$YgIconTheme.tapSize[3],
+    animationCurve: _$YgIconTheme.animationCurve[3],
+    animationDuration: _$YgIconTheme.animationDuration[3],
+    defaultColor: _$YgIconTheme.defaultColor[3],
+    sizeLarge: _$YgIconTheme.sizeLarge[3],
+    sizeSmall: _$YgIconTheme.sizeSmall[3],
   );
 
   static final themes = [
@@ -46,12 +64,18 @@ class YgIconTheme extends ThemeExtension<YgIconTheme> {
 
   @override
   YgIconTheme copyWith({
-    YgIconSizeTheme? size,
-    YgIconTapSizeTheme? tapSize,
+    Curve? animationCurve,
+    Duration? animationDuration,
+    Color? defaultColor,
+    double? sizeLarge,
+    double? sizeSmall,
   }) {
     return YgIconTheme(
-      size: size ?? this.size,
-      tapSize: tapSize ?? this.tapSize,
+      animationCurve: animationCurve ?? this.animationCurve,
+      animationDuration: animationDuration ?? this.animationDuration,
+      defaultColor: defaultColor ?? this.defaultColor,
+      sizeLarge: sizeLarge ?? this.sizeLarge,
+      sizeSmall: sizeSmall ?? this.sizeSmall,
     );
   }
 
@@ -59,8 +83,11 @@ class YgIconTheme extends ThemeExtension<YgIconTheme> {
   YgIconTheme lerp(covariant ThemeExtension<YgIconTheme>? other, double t) {
     if (other is! YgIconTheme) return this as YgIconTheme;
     return YgIconTheme(
-      size: size.lerp(other.size, t) as YgIconSizeTheme,
-      tapSize: tapSize.lerp(other.tapSize, t) as YgIconTapSizeTheme,
+      animationCurve: t < 0.5 ? animationCurve : other.animationCurve,
+      animationDuration: t < 0.5 ? animationDuration : other.animationDuration,
+      defaultColor: Color.lerp(defaultColor, other.defaultColor, t)!,
+      sizeLarge: t < 0.5 ? sizeLarge : other.sizeLarge,
+      sizeSmall: t < 0.5 ? sizeSmall : other.sizeSmall,
     );
   }
 
@@ -69,16 +96,25 @@ class YgIconTheme extends ThemeExtension<YgIconTheme> {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is YgIconTheme &&
-            const DeepCollectionEquality().equals(size, other.size) &&
-            const DeepCollectionEquality().equals(tapSize, other.tapSize));
+            const DeepCollectionEquality()
+                .equals(animationCurve, other.animationCurve) &&
+            const DeepCollectionEquality()
+                .equals(animationDuration, other.animationDuration) &&
+            const DeepCollectionEquality()
+                .equals(defaultColor, other.defaultColor) &&
+            const DeepCollectionEquality().equals(sizeLarge, other.sizeLarge) &&
+            const DeepCollectionEquality().equals(sizeSmall, other.sizeSmall));
   }
 
   @override
   int get hashCode {
     return Object.hash(
       runtimeType.hashCode,
-      const DeepCollectionEquality().hash(size),
-      const DeepCollectionEquality().hash(tapSize),
+      const DeepCollectionEquality().hash(animationCurve),
+      const DeepCollectionEquality().hash(animationDuration),
+      const DeepCollectionEquality().hash(defaultColor),
+      const DeepCollectionEquality().hash(sizeLarge),
+      const DeepCollectionEquality().hash(sizeSmall),
     );
   }
 }

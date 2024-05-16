@@ -7,3 +7,4 @@ export 'yg_animated_physical_model.dart';
 export 'yg_animated_physical_shape.dart';
 export 'yg_animated_shape_border_clipper.dart';
 export 'yg_animated_shape_border_painter.dart';
+export 'yg_animated_sized_box.dart';

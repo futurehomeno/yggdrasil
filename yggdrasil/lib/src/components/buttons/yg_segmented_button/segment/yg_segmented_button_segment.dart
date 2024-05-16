@@ -81,6 +81,7 @@ class YgSegmentedButtonSegment extends YgButtonBase<YgSegmentedButtonSegmentStat
 
   Widget? _buildContent() {
     final String? label = this.label;
+    final YgColorableIconData? icon = this.icon;
     if (label == null) {
       if (icon == null) {
         return null;

@@ -52,7 +52,7 @@ abstract base class YgListTile extends StatelessWidget with StatelessWidgetDebug
   }) {
     return YgListTile(
       title: link,
-      leadingWidgets: <Widget>[YgIcon.embeddedColor(icon)],
+      leadingWidgets: <Widget>[YgIcon(icon)],
       trailingWidgets: const <Widget>[YgIcon(YgIcons.caretRight)],
       onTap: onTap,
     );

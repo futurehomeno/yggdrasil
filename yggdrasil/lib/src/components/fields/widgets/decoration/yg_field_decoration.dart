@@ -147,7 +147,7 @@ class YgFieldDecoration extends StatelessWidget {
             child: SizedBox(
               height: theme.errorTextStyle.computedHeight,
               child: Center(
-                child: YgIcon(
+                child: YgIcon.colorable(
                   YgIcons.error,
                   size: YgIconSize.small,
                   color: theme.errorIconColor,

@@ -14,7 +14,7 @@ class YgSnackBarStyle extends YgStyle<YgSnackBarState> {
 
   late final YgAnimatedProperty<Color> iconColor = animate(_resolveIconColor);
   late final YgAnimatedProperty<Color> iconBackgroundColor = animate(_resolveIconBackgroundColor);
-  late final YgDrivenProperty<YgIconData> icon = drive(_resolveIcon);
+  late final YgDrivenProperty<YgColorableIconData> icon = drive(_resolveIcon);
 
   Color _resolveIconColor() {
     return _variantTheme.iconColor;
@@ -24,7 +24,7 @@ class YgSnackBarStyle extends YgStyle<YgSnackBarState> {
     return _variantTheme.iconContainerColor;
   }
 
-  YgIconData _resolveIcon() {
+  YgColorableIconData _resolveIcon() {
     return switch (state.variant.value) {
       YgSnackBarVariant.highlight => YgIcons.info,
       YgSnackBarVariant.success => YgIcons.check,
