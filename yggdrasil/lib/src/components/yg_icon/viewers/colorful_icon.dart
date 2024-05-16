@@ -4,8 +4,8 @@ import 'package:yggdrasil/yggdrasil.dart';
 
 import '../mappers/_mappers.dart';
 
-class ThemedIcon extends StatelessWidget {
-  const ThemedIcon({
+class ColorfulIcon extends StatelessWidget {
+  const ColorfulIcon({
     super.key,
     required this.iconData,
     required this.color,

@@ -26,7 +26,7 @@ class _YgIconAny extends YgIcon {
               iconData: iconData,
               color: color,
             ),
-          _ => ThemedIcon(
+          _ => ColorfulIcon(
               color: color,
               iconData: iconData,
             ),
