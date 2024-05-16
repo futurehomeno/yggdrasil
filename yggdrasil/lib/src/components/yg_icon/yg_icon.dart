@@ -55,10 +55,7 @@ abstract class YgIcon extends StatelessWidget with StatelessWidgetDebugMixin {
 
   /// The icon to show represented as [YgIconData].
   ///
-  /// Available can be gotten from [YgIcons].
-  ///
-  /// The icon can be null, in which case the widget will render as an empty
-  /// space of the specified [size].
+  /// Available can be gotten from [YgIcons] and [YgAnimatedIcons].
   final YgIconData iconData;
 
   /// The size of the icon.
