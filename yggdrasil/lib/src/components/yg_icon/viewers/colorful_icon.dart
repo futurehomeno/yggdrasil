@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:yggdrasil/src/components/yg_icon/mappers/_mappers.dart';
+import 'package:yggdrasil/src/utils/yg_consts.dart';
 import 'package:yggdrasil/yggdrasil.dart';
-
-import '../mappers/_mappers.dart';
 
 class ColorfulIcon extends StatelessWidget {
   const ColorfulIcon({
@@ -19,7 +19,7 @@ class ColorfulIcon extends StatelessWidget {
     return SvgPicture(
       SvgAssetLoader(
         iconData.path,
-        packageName: 'yggdrasil',
+        packageName: YgConsts.package,
         colorMapper: TokenColorMapper(
           colors: context.ygTheme.tokens.colors,
           fallbackColor: color,

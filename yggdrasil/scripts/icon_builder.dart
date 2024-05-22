@@ -109,14 +109,21 @@ class YgIcons {
     ..writeAsStringSync(iconsListContent);
 }
 
+// Matches any yggColor attribute as long as it has a value.
+final RegExp _yggColorRegex = RegExp(r'yggColor="([^"]+)"');
+
 void _updateSvgFileColors({
   required List<FileAndName> svgFilesAndNames,
 }) {
   for (final FileAndName fileAndName in svgFilesAndNames) {
     final String data = fileAndName.file.readAsStringSync();
 
-    final String updatedData =
-        data.replaceAllMapped(RegExp(r'yggColor="([^"]+)"'), (Match match) => 'id="${match.group(1)!}"');
+    // Replace the yggColor attribute with id, temporary solution until icon
+    // exporting has been updated.
+    final String updatedData = data.replaceAllMapped(
+      _yggColorRegex,
+      (Match match) => 'id="${match.group(1)!}"',
+    );
 
     fileAndName.file.writeAsStringSync(updatedData);
   }

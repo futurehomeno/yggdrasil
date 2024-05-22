@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:lottie/lottie.dart';
-import 'package:yggdrasil/yggdrasil.dart';
+import 'package:yggdrasil/src/utils/_utils.dart';
 
 class AnimatedIcon extends StatelessWidget {
   const AnimatedIcon({
@@ -16,7 +16,7 @@ class AnimatedIcon extends StatelessWidget {
   Widget build(BuildContext context) {
     return LottieBuilder.asset(
       iconData.path,
-      package: 'yggdrasil',
+      package: YgConsts.package,
       animate: true,
     );
   }

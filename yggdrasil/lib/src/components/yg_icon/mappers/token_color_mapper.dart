@@ -14,7 +14,12 @@ class TokenColorMapper extends ColorMapper {
   final Color fallbackColor;
 
   @override
-  Color substitute(String? id, String elementName, String attributeName, Color color) {
+  Color substitute(
+    String? id,
+    String elementName,
+    String attributeName,
+    Color color,
+  ) {
     if (id == null) {
       return fallbackColor;
     }

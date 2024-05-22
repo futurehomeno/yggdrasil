@@ -78,8 +78,8 @@ class IconScreen extends StatelessWidget {
             ),
           ),
           const YgSection(
-            title: 'Use embedded color',
-            subtitle: 'Color embedded in the SVG is used.\nThe color will adapt to the theme.',
+            title: 'Colorful icon',
+            subtitle: 'Colorful icons always show their own colors and can not have their color overwritten.',
             child: YgTag(
               child: YgIcon(
                 YgIcons.deviceHubColorful,
