@@ -1,4 +1,26 @@
-# 1.11.0 [2024-04-10T15:51:36.455349]
+# 1.11.1 [2024-05-22T12:57:41.254476]
+
+## Breaking changes
+
+- [breaking] YgIcon no longer accepts color, use YgIcon.colorable instead.
+- [breaking] YgIcon.embeddedColor no longer exists, use YgIcon instead.
+
+### Changes
+
+- [feature] Added YgAnimatedIcons.arrowDecrease and YgAnimatedIcons.arrowIncrease DEV-3646.
+- [feature] Added YgIcon.animated.
+
+# 1.11.1 [2024-05-22T12:55:56.385366]
+
+## Breaking changes
+
+- [breaking] YgIcon no longer accepts color, use YgIcon.colorable instead.
+- [breaking] YgIcon.embeddedColor no longer exists, use YgIcon instead.
+
+### Changes
+
+- [feature] Added YgAnimatedIcons.arrowDecrease and YgAnimatedIcons.arrowIncrease DEV-3646.
+- [feature] Added YgIcon.animated.
 
 # 1.10.8 [2024-04-09T10:52:19.193958]
 
