@@ -20,14 +20,8 @@ void main() {
             child: const YgIcon(YgIcons.info),
           ),
           GoldenTestScenario(
-            name: 'With info icon and useEmbeddedColor',
-            child: const YgIcon.embeddedColor(
-              YgIcons.info,
-            ),
-          ),
-          GoldenTestScenario(
             name: 'With info icon and custom color',
-            child: const YgIcon(
+            child: const YgIcon.colorable(
               YgIcons.info,
               color: FhColors.actionCriticalDefault,
             ),

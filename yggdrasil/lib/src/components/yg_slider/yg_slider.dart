@@ -14,7 +14,7 @@ import 'yg_slider_custom_key_repeat_listener.dart';
 import 'yg_slider_render_widget.dart';
 import 'yg_slider_repeating_stepper_button.dart';
 
-typedef YgSliderValueBuilder = String Function(double value)?;
+typedef YgSliderValueBuilder = String Function(double value);
 
 /// Widget where you can slide a handle on a track to select a value.
 class YgSlider extends StatefulWidget with StatefulWidgetDebugMixin {
@@ -40,7 +40,7 @@ class YgSlider extends StatefulWidget with StatefulWidgetDebugMixin {
           'min can not be larger max value.',
         ),
         assert(
-          !valueIndicator || valueBuilder == null,
+          valueIndicator || valueBuilder == null,
           'Can not have valueBuilder without valueIndicator.',
         );
 
@@ -64,7 +64,7 @@ class YgSlider extends StatefulWidget with StatefulWidgetDebugMixin {
   final bool valueIndicator;
 
   /// Builds a value string from the current value for the value indicator.
-  final YgSliderValueBuilder valueBuilder;
+  final YgSliderValueBuilder? valueBuilder;
 
   /// Whether to show a difference indicator when changing the value.
   ///
@@ -250,6 +250,8 @@ class _YgSliderWidgetState extends StateWithYgStateAndStyle<YgSlider, YgSliderSt
 
   @override
   void didUpdateWidget(covariant YgSlider oldWidget) {
+    super.didUpdateWidget(oldWidget);
+
     final double? newCurrentValue = widget.currentValue;
     final double? oldCurrentValue = oldWidget.currentValue;
 
@@ -271,8 +273,6 @@ class _YgSliderWidgetState extends StateWithYgStateAndStyle<YgSlider, YgSliderSt
       // ignore: avoid-unnecessary-setstate
       _handleWidgetUpdate(widget.value);
     }
-
-    super.didUpdateWidget(oldWidget);
   }
 
   @override

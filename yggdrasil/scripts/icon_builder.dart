@@ -8,46 +8,57 @@ void main() {
   const String inputPath = 'assets/icons';
   const String outputPath = 'lib/src/generated/icons';
 
-  final List<String> svgFileNames = _getSvgFileNamesFromDirectory(inputPath);
+  final List<FileAndName> svgFilesAndNames = _getSvgFilesAndNamesFromDirectory(inputPath);
   _generateIconFiles(
-    svgFileNames: svgFileNames,
+    svgFilesAndNames: svgFilesAndNames,
     inputPath: inputPath,
     outputPath: outputPath,
   );
+
+  _updateSvgFileColors(
+    svgFilesAndNames: svgFilesAndNames,
+  );
 }
 
-List<String> _getSvgFileNamesFromDirectory(String directoryPath) {
+List<FileAndName> _getSvgFilesAndNamesFromDirectory(String directoryPath) {
   final Directory directory = Directory(directoryPath);
-  final List<String> svgFileNames = <String>[];
+  final List<FileAndName> svgFilesAndNames = <FileAndName>[];
 
   for (final FileSystemEntity entity in directory.listSync(recursive: false, followLinks: false)) {
     if (entity is File && entity.path.endsWith('.svg')) {
       final String? fileName = entity.path.split(Platform.pathSeparator).lastOrNull;
-      if (fileName != null) svgFileNames.add(fileName);
+      if (fileName != null) {
+        svgFilesAndNames.add(
+          FileAndName(
+            name: fileName,
+            file: entity,
+          ),
+        );
+      }
     }
   }
 
-  svgFileNames.sort((String a, String b) => a.compareTo(b));
+  svgFilesAndNames.sort((FileAndName a, FileAndName b) => a.name.compareTo(b.name));
 
-  return svgFileNames;
+  return svgFilesAndNames;
 }
 
 void _generateIconFiles({
-  required List<String> svgFileNames,
+  required List<FileAndName> svgFilesAndNames,
   required String inputPath,
   required String outputPath,
 }) {
   final List<String> iconClassMembers = <String>[];
   final List<String> iconNamesList = <String>[];
 
-  for (final String fileName in svgFileNames) {
-    final String iconName = fileName.split('.').firstOrNull ?? '';
+  for (final FileAndName fileAndName in svgFilesAndNames) {
+    final String iconName = fileAndName.name.split('.').firstOrNull ?? '';
     final String camelCaseIconName = ScriptHelpers.toCamelCase(iconName);
-    final bool colored = fileName.contains('_colorful');
+    final bool colored = fileAndName.name.contains('_colorful');
     final String classType = colored ? 'YgIconData' : 'YgColorableIconData';
 
     iconClassMembers.add(
-      'static const $classType $camelCaseIconName = $classType(name: \'$camelCaseIconName\', path: \'$inputPath/$fileName\');',
+      'static const $classType $camelCaseIconName = $classType(name: \'$camelCaseIconName\', path: \'$inputPath/${fileAndName.name}\');',
     );
     iconNamesList.add(camelCaseIconName);
   }
@@ -96,4 +107,35 @@ class YgIcons {
   iconsListFile
     ..createSync(recursive: true)
     ..writeAsStringSync(iconsListContent);
+}
+
+// Matches any yggColor attribute as long as it has a value.
+final RegExp _yggColorRegex = RegExp(r'yggColor="([^"]+)"');
+
+void _updateSvgFileColors({
+  required List<FileAndName> svgFilesAndNames,
+}) {
+  for (final FileAndName fileAndName in svgFilesAndNames) {
+    final String data = fileAndName.file.readAsStringSync();
+
+    // Replace the yggColor attribute with id, temporary solution until icon
+    // exporting has been updated.
+    final String updatedData = data.replaceAllMapped(
+      _yggColorRegex,
+      (Match match) => 'id="${match.group(1)!}"',
+    );
+
+    fileAndName.file.writeAsStringSync(updatedData);
+  }
+}
+
+// ignore: prefer-match-file-name
+class FileAndName {
+  const FileAndName({
+    required this.file,
+    required this.name,
+  });
+
+  final File file;
+  final String name;
 }

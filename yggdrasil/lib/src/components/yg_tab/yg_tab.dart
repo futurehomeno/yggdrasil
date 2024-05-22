@@ -28,18 +28,25 @@ class YgTab extends StatelessWidget with StatelessWidgetDebugMixin implements Pr
   Widget build(BuildContext context) {
     final YgTabsTheme tabsTheme = context.ygTheme.tabsTheme;
 
+    final YgIcon? icon = _buildIcon();
+
     return Padding(
       padding: tabsTheme.tabPadding,
       child: Column(
         children: <Widget>[
-          if (icon != null) _buildIcon(),
+          if (icon != null) icon,
           if (label != null) _buildLabel(),
         ].withVerticalSpacing(tabsTheme.iconLabelSpacing),
       ),
     );
   }
 
-  YgIcon _buildIcon() {
+  YgIcon? _buildIcon() {
+    final YgColorableIconData? icon = this.icon;
+    if (icon == null) {
+      return null;
+    }
+
     return YgIcon(
       icon,
       size: YgIconSize.small,

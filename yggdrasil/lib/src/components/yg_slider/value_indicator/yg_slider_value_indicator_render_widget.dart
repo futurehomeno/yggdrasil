@@ -63,7 +63,7 @@ class YgSliderValueIndicatorRenderer extends RenderBox {
     required double min,
     required double max,
     required double? stepSize,
-    required YgSliderValueBuilder valueBuilder,
+    required YgSliderValueBuilder? valueBuilder,
   })  : _style = style,
         _value = value,
         _defaultStyle = defaultStyle,
@@ -124,9 +124,9 @@ class YgSliderValueIndicatorRenderer extends RenderBox {
     }
   }
 
-  YgSliderValueBuilder _valueBuilder;
-  YgSliderValueBuilder get valueBuilder => _valueBuilder;
-  set valueBuilder(YgSliderValueBuilder newValue) {
+  YgSliderValueBuilder? _valueBuilder;
+  YgSliderValueBuilder? get valueBuilder => _valueBuilder;
+  set valueBuilder(YgSliderValueBuilder? newValue) {
     if (_valueBuilder != newValue) {
       _valueBuilder = newValue;
       markNeedsPaint();

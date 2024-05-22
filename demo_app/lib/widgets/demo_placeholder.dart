@@ -50,7 +50,7 @@ class DemoPlaceholder extends StatelessWidget {
             dashPattern: const <double>[3, 5],
             radius: const Radius.circular(10),
             child: const Center(
-              child: YgIcon(
+              child: YgIcon.colorable(
                 YgIcons.refreshAlt,
                 color: Color(0xffA341FF),
               ),

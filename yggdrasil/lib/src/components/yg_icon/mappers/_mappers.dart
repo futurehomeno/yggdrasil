@@ -1,1 +1,1 @@
-export 'yg_icon_mapper.dart';
+export 'token_color_mapper.dart';

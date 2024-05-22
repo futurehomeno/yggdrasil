@@ -1,4 +1,0 @@
-enum YgIconTapSize {
-  larger,
-  largest;
-}
