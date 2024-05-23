@@ -349,6 +349,7 @@ class YgIcons {
   static const YgColorableIconData plus = YgColorableIconData(name: 'plus', path: 'assets/icons/plus.svg');
   static const YgColorableIconData power = YgColorableIconData(name: 'power', path: 'assets/icons/power.svg');
   static const YgColorableIconData powerDisabled = YgColorableIconData(name: 'powerDisabled', path: 'assets/icons/power_disabled.svg');
+  static const YgColorableIconData powerFilled = YgColorableIconData(name: 'powerFilled', path: 'assets/icons/power_filled.svg');
   static const YgColorableIconData powerOff = YgColorableIconData(name: 'powerOff', path: 'assets/icons/power_off.svg');
   static const YgColorableIconData pressure = YgColorableIconData(name: 'pressure', path: 'assets/icons/pressure.svg');
   static const YgColorableIconData pressureAlt = YgColorableIconData(name: 'pressureAlt', path: 'assets/icons/pressure_alt.svg');
@@ -869,6 +870,7 @@ class YgIcons {
     plus,
     power,
     powerDisabled,
+    powerFilled,
     powerOff,
     pressure,
     pressureAlt,
