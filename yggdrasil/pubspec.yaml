@@ -15,7 +15,7 @@ dependencies:
   intl: 0.18.1
   theme_tailor_annotation:
     git:
-      ref: tim/flutter_3.19.6 #main
+      ref: main
       url: git@github.com:futurehomeno/theme_tailor.git
       path: packages/theme_tailor_annotation
   flutter_svg: 2.0.9
@@ -33,7 +33,7 @@ dev_dependencies:
     sdk: flutter
   theme_tailor:
     git:
-      ref: tim/flutter_3.19.6 #main
+      ref: main
       url: git@github.com:futurehomeno/theme_tailor.git
       path: packages/theme_tailor
 
