@@ -457,8 +457,8 @@ packages:
     dependency: transitive
     description:
       path: "packages/theme_tailor_annotation"
-      ref: main
-      resolved-ref: e458e5bf767f8201bc9116ce1dd155e3d8c6fa1f
+      ref: "tim/3.16.0"
+      resolved-ref: d3ec9916bbf567ed864ae731445e799372a9a3a6
       url: "git@github.com:futurehomeno/theme_tailor.git"
     source: git
     version: "2.0.0"
@@ -548,7 +548,7 @@ packages:
       path: "../yggdrasil"
       relative: true
     source: path
-    version: "1.11.0"
+    version: "1.11.1"
 sdks:
   dart: ">=3.2.0 <4.0.0"
   flutter: ">=3.16.0"

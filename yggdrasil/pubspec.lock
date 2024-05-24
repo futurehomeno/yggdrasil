@@ -652,8 +652,8 @@ packages:
     dependency: "direct dev"
     description:
       path: "packages/theme_tailor"
-      ref: main
-      resolved-ref: e458e5bf767f8201bc9116ce1dd155e3d8c6fa1f
+      ref: "tim/3.16.0"
+      resolved-ref: d3ec9916bbf567ed864ae731445e799372a9a3a6
       url: "git@github.com:futurehomeno/theme_tailor.git"
     source: git
     version: "2.0.0"
@@ -661,8 +661,8 @@ packages:
     dependency: "direct main"
     description:
       path: "packages/theme_tailor_annotation"
-      ref: main
-      resolved-ref: e458e5bf767f8201bc9116ce1dd155e3d8c6fa1f
+      ref: "tim/3.16.0"
+      resolved-ref: d3ec9916bbf567ed864ae731445e799372a9a3a6
       url: "git@github.com:futurehomeno/theme_tailor.git"
     source: git
     version: "2.0.0"

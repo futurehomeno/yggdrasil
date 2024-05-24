@@ -19,7 +19,7 @@ class YgSliderValueIndicatorStyle extends YgStyle<YgSliderState> {
   double _resolveValueIndicatorVisibility() {
     if (!state.disabled.value &&
         state.valueIndicatorEnabled.value &&
-        (state.recentlyEdited.value || state.editing.value)) {
+        (state.recentlyEdited.value || state.editing.value || state.hovered.value)) {
       return 1;
     }
 
