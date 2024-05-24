@@ -110,7 +110,7 @@ class YgContinuousAnimationController extends Animation<double> with ChangeNotif
   /// Will keep the [_from] value within [maxDifference] of [currentValue] to
   /// prevent the [_value] from lagging behind the [currentValue] too much.
   ///
-  /// Returns true if the value triggers an update.
+  /// Returns true if the target value was updated.
   bool update({
     required double currentValue,
     required double targetValue,
