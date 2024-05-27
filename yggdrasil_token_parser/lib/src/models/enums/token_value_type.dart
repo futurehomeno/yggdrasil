@@ -12,4 +12,7 @@ enum TokenValueType {
   gradient,
   typography,
   transition,
+  borderRadius,
+  composition,
+  opacity,
 }

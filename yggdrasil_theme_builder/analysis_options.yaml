@@ -68,8 +68,7 @@ dart_code_metrics:
     - avoid-double-slash-imports
     - avoid-duplicate-exports
     - avoid-duplicate-mixins
-    # disabled because of the amount of dynamic values we have to deal with in json data.
-    # - avoid-dynamic
+    - avoid-dynamic
     - avoid-equal-expressions
     - avoid-future-tostring
     - avoid-generics-shadowing

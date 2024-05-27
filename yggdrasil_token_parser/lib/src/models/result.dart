@@ -15,6 +15,8 @@ class Result<T> {
   final T? data;
   final List<ParsingError> errors;
 
+  bool get hasErrors => errors.isNotEmpty;
+
   List<ParsingError> errorsWithPath(List<String> path) {
     final List<ParsingError> newErrors = <ParsingError>[];
 
@@ -33,5 +35,12 @@ class Result<T> {
     }
 
     return newErrors;
+  }
+
+  Result<T> copyWithKey(String key) {
+    return Result<T>(
+      data: data,
+      errors: errorsWithKey(key),
+    );
   }
 }

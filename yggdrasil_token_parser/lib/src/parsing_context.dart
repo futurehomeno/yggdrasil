@@ -234,21 +234,10 @@ class ParsingContext {
     return true;
   }
 
-  Result<T> parseOrResolveProperty<T extends TokenValue>({
+  Result<T> parseOrResolveValue<T extends TokenValue>({
     required ValueParser<T> parser,
-    required JsonObject object,
-    required String key,
+    required Object value,
   }) {
-    final Object? value = object[key];
-
-    if (value == null) {
-      return Result<T>.error(
-        ParsingError.missingProperty(
-          path: <String>[key],
-        ),
-      );
-    }
-
     final TokenValueType? expectedType = _getValueType<T>();
 
     if (expectedType == null) {
@@ -268,7 +257,7 @@ class ParsingContext {
         final TokenValue? value = result.data;
         if (value == null) {
           return Result<T>(
-            errors: result.errorsWithKey(key),
+            errors: result.errors,
           );
         }
 
@@ -281,7 +270,7 @@ class ParsingContext {
               message: 'Resolved token does not match expected type',
               details:
                   'The expected token type is $expectedType while the type of the resolved token at ${reference.join('.')} is ${value.type}',
-              path: <String>[key],
+              path: <String>[],
             ),
           );
         }
@@ -293,7 +282,33 @@ class ParsingContext {
     return parser(
       this,
       value,
-    )..errorsWithKey(key);
+    );
+  }
+
+  Result<T> parseOrResolveProperty<T extends TokenValue>({
+    required ValueParser<T> parser,
+    required JsonObject object,
+    required String key,
+    bool optional = false,
+  }) {
+    final Object? value = object[key];
+
+    if (value == null) {
+      if (optional) {
+        return Result<T>();
+      }
+
+      return Result<T>.error(
+        ParsingError.missingProperty(
+          path: <String>[key],
+        ),
+      );
+    }
+
+    return parseOrResolveValue(
+      parser: parser,
+      value: value,
+    ).copyWithKey(key);
   }
 
   TokenValue? _getOrResolveValue([Set<ParsingContext> resolvingStack = const <ParsingContext>{}]) {
@@ -412,10 +427,15 @@ class ParsingContext {
       TokenValueType.gradient => GradientParser.parse(this, rawValue),
       TokenValueType.typography => TypographyParser.parse(this, rawValue),
       TokenValueType.transition => TransitionParser.parse(this, rawValue),
+      TokenValueType.borderRadius => BorderRadiusParser.parse(this, rawValue),
+      TokenValueType.composition => CompositionParser.parse(this, rawValue),
+      TokenValueType.opacity => OpacityParser.parse(this, rawValue),
     };
 
     if (value.errors.isNotEmpty) {
-      errors.addAll(value.errors);
+      errors.addAll(
+        value.errorsWithKey(TokenKeys.value),
+      );
     }
 
     final TokenValue? data = value.data;
@@ -480,7 +500,7 @@ class ParsingContext {
     );
   }
 
-  TokenValueType? _getValueType<T>() {
+  TokenValueType? _getValueType<T extends TokenValue>() {
     return switch (T) {
       BorderValue => TokenValueType.border,
       GradientValue => TokenValueType.gradient,
@@ -495,6 +515,9 @@ class ParsingContext {
       FontFamilyValue => TokenValueType.fontFamily,
       FontWeightValue => TokenValueType.fontWeight,
       NumberValue => TokenValueType.number,
+      CompositionValue => TokenValueType.composition,
+      BorderRadiusValue => TokenValueType.borderRadius,
+      OpacityValue => TokenValueType.opacity,
       _ => null,
     };
   }

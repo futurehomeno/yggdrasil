@@ -1,5 +1,7 @@
 export 'border/_border.dart';
+export 'border_radius/_border_radius.dart';
 export 'color/_color.dart';
+export 'composition/_composition.dart';
 export 'cubic_bezier/_cubic_bezier.dart';
 export 'dimension/_dimension.dart';
 export 'duration/_duration.dart';
@@ -7,6 +9,7 @@ export 'font_family/_font_family.dart';
 export 'font_weight/_font_weight.dart';
 export 'gradient/_gradient.dart';
 export 'number/_number.dart';
+export 'opacity/_opacity.dart';
 export 'shadow/_shadow.dart';
 export 'stroke_style/_stroke_style.dart';
 export 'transition/_transition.dart';
