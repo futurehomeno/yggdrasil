@@ -6,5 +6,5 @@ class CompositionKeys {
   static const String fill = 'fill';
   static const String shadow = 'shadow';
   static const String gradient = 'gradient';
-  static const String opacityValue = 'opacityValue';
+  static const String opacity = 'opacity';
 }

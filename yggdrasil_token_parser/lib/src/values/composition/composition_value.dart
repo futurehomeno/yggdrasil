@@ -8,7 +8,7 @@ class CompositionValue extends TokenValue {
     required this.fill,
     required this.shadow,
     required this.gradient,
-    required this.opacityValue,
+    required this.opacity,
   });
 
   // Decoration
@@ -17,7 +17,7 @@ class CompositionValue extends TokenValue {
   final ColorValue? fill;
   final ShadowValue? shadow;
   final GradientValue? gradient;
-  final OpacityValue? opacityValue;
+  final OpacityValue? opacity;
   final TokenValueType type = TokenValueType.composition;
 
   @override
@@ -29,7 +29,7 @@ class CompositionValue extends TokenValue {
       fill: fill,
       shadow: shadow,
       gradient: gradient,
-      opacityValue: opacityValue,
+      opacity: opacity,
     );
   }
 }

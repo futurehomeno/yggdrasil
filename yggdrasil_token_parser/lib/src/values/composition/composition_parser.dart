@@ -45,7 +45,7 @@ abstract final class CompositionParser {
     final Result<OpacityValue> opacityValueResult = context.parseOrResolveProperty(
       parser: OpacityParser.parse,
       object: value,
-      key: CompositionKeys.opacityValue,
+      key: CompositionKeys.opacity,
     );
 
     final List<ParsingError> errors = <ParsingError>[
@@ -64,7 +64,7 @@ abstract final class CompositionParser {
         fill: fillResult.data,
         shadow: shadowResult.data,
         gradient: gradientResult.data,
-        opacityValue: opacityValueResult.data,
+        opacity: opacityValueResult.data,
       ),
       errors: errors,
     );
