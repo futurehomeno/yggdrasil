@@ -405,6 +405,7 @@ class _YgSliderWidgetState extends StateWithYgStateAndStyle<YgSlider, YgSliderSt
       maxDifference: _effectiveStepSize,
     );
 
+    HapticFeedback.selectionClick();
     _updateTargetValue(clampedValue);
   }
 
@@ -423,13 +424,16 @@ class _YgSliderWidgetState extends StateWithYgStateAndStyle<YgSlider, YgSliderSt
     } else {
       final double targetValue = ((clampedValue / stepSize).round() * stepSize);
 
-      _valueController.update(
+      final bool didUpdate = _valueController.update(
         currentValue: clampedValue,
         targetValue: targetValue,
         maxDifference: stepSize / 2,
       );
 
-      _updateTargetValue(targetValue);
+      if (didUpdate) {
+        _updateTargetValue(targetValue);
+        HapticFeedback.selectionClick();
+      }
     }
   }
 
