@@ -1,3 +1,13 @@
+# 1.12.0 [2024-05-28T12:11:10.550164]
+
+### Changes
+
+- Tim / Slider fixes (#166)
+- [change] Added haptic feedback to slider DEV-3711.
+- [change] Slider value indicator now shows on hover DEV-3536.
+- [change] Updated to 3.19.6.
+- [dev-fix] onChange no longer gets called when the slider value hasn't actually updated to an accepted value.
+
 # 1.11.2 [2024-05-23T16:57:46.085536]
 
 ### Changes
