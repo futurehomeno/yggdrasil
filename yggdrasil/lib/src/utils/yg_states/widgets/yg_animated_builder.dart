@@ -31,6 +31,7 @@ class _YgAnimatedBuilderState extends State<YgAnimatedBuilder> {
 
   @override
   void didUpdateWidget(covariant YgAnimatedBuilder oldWidget) {
+    super.didUpdateWidget(oldWidget);
     final Set<Listenable?> added = widget.properties.difference(oldWidget.properties);
     final Set<Listenable?> removed = oldWidget.properties.difference(widget.properties);
 
@@ -40,8 +41,6 @@ class _YgAnimatedBuilderState extends State<YgAnimatedBuilder> {
     for (final Listenable? property in added) {
       property?.addListener(_rebuild);
     }
-
-    super.didUpdateWidget(oldWidget);
   }
 
   @override

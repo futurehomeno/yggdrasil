@@ -405,14 +405,13 @@ class _YgTextFieldState extends State<YgTextField>
 
   @override
   void didUpdateWidget(covariant YgTextField oldWidget) {
+    super.didUpdateWidget(oldWidget);
     _state.placeholder.value = widget.placeholder != null;
     _state.error.value = widget.error != null;
     _state.disabled.value = widget.disabled;
     _state.suffix.value = _hasSuffix;
     _state.size.value = widget.size;
     _state.variant.value = widget.variant;
-
-    super.didUpdateWidget(oldWidget);
   }
 
   @override

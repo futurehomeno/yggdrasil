@@ -69,7 +69,7 @@ class _YgSliderCustomKeyRepeatListenerState extends State<YgSliderCustomKeyRepea
   Widget build(BuildContext context) {
     return Focus(
       focusNode: widget.focusNode,
-      onKey: _handleKey,
+      onKeyEvent: _handleKey,
       autofocus: widget.autoFocus,
       child: widget.child,
     );
@@ -77,6 +77,7 @@ class _YgSliderCustomKeyRepeatListenerState extends State<YgSliderCustomKeyRepea
 
   @override
   void didUpdateWidget(covariant YgSliderCustomKeyRepeatListener oldWidget) {
+    super.didUpdateWidget(oldWidget);
     // Remove the timer for every key that is no longer in the listener map.
     final Set<LogicalKeyboardKey> oldKeys = Set<LogicalKeyboardKey>.of(oldWidget.listeners.keys);
     final Set<LogicalKeyboardKey> newKeys = Set<LogicalKeyboardKey>.of(widget.listeners.keys);
@@ -92,8 +93,6 @@ class _YgSliderCustomKeyRepeatListenerState extends State<YgSliderCustomKeyRepea
     }
 
     scheduleMicrotask(_updateEditing);
-
-    super.didUpdateWidget(oldWidget);
   }
 
   @override
@@ -109,7 +108,7 @@ class _YgSliderCustomKeyRepeatListenerState extends State<YgSliderCustomKeyRepea
     }
   }
 
-  KeyEventResult _handleKey(FocusNode focusNode, RawKeyEvent event) {
+  KeyEventResult _handleKey(FocusNode focusNode, KeyEvent event) {
     final LogicalKeyboardKey key = event.logicalKey;
     final RepeatableCallback? listener = widget.listeners[key];
 
@@ -117,11 +116,7 @@ class _YgSliderCustomKeyRepeatListenerState extends State<YgSliderCustomKeyRepea
       return KeyEventResult.ignored;
     }
 
-    if (event.repeat) {
-      return KeyEventResult.handled;
-    }
-
-    if (event is RawKeyDownEvent) {
+    if (event is KeyDownEvent) {
       listener(repeat: false);
 
       if (_keyTimerMap.containsKey(key)) {
@@ -143,7 +138,7 @@ class _YgSliderCustomKeyRepeatListenerState extends State<YgSliderCustomKeyRepea
         },
       );
     }
-    if (event is RawKeyUpEvent) {
+    if (event is KeyUpEvent) {
       _keyTimerMap.remove(key)?.cancel();
     }
     _updateEditing();

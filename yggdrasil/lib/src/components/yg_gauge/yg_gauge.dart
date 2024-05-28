@@ -94,6 +94,7 @@ class _YgGaugeState extends State<YgGauge> with TickerProviderStateMixin {
 
   @override
   void didUpdateWidget(covariant YgGauge oldWidget) {
+    super.didUpdateWidget(oldWidget);
     if (widget.value != oldWidget.value) {
       _tween.begin = _animation.value;
       _tween.end = widget.value ?? 0.0;
@@ -107,7 +108,6 @@ class _YgGaugeState extends State<YgGauge> with TickerProviderStateMixin {
         duration: theme.tweenDuration,
       );
     }
-    super.didUpdateWidget(oldWidget);
   }
 
   @override

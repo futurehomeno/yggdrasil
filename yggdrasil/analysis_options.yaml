@@ -192,7 +192,3 @@ dart_code_metrics:
     # - no-magic-number
     # - prefer-const-border-radius
     # - prefer-moving-to-variable
-
-  anti-patterns:
-    - long-method
-    - long-parameter-list

@@ -52,12 +52,12 @@ class _YgSliderRepeatingStepperButtonState extends State<YgSliderRepeatingSteppe
 
   @override
   void didUpdateWidget(covariant YgSliderRepeatingStepperButton oldWidget) {
+    super.didUpdateWidget(oldWidget);
     if (widget.disabled != oldWidget.disabled && widget.disabled && _repeatTimer != null) {
       scheduleMicrotask(() {
         _cancelRepeat();
       });
     }
-    super.didUpdateWidget(oldWidget);
   }
 
   @override

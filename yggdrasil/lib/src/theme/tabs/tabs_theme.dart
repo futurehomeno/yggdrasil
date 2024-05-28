@@ -13,22 +13,10 @@ class _$YgTabsTheme {
 
   /// Padding around the whole tab.
   static const List<EdgeInsets> tabPadding = <EdgeInsets>[
-    EdgeInsets.symmetric(
-      horizontal: consumer_light.FhDimensions.xs,
-      vertical: consumer_light.FhDimensions.xs,
-    ),
-    EdgeInsets.symmetric(
-      horizontal: consumer_dark.FhDimensions.xs,
-      vertical: consumer_dark.FhDimensions.xs,
-    ),
-    EdgeInsets.symmetric(
-      horizontal: professional_light.FhDimensions.xs,
-      vertical: professional_light.FhDimensions.xs,
-    ),
-    EdgeInsets.symmetric(
-      horizontal: professional_dark.FhDimensions.xs,
-      vertical: professional_dark.FhDimensions.xs,
-    ),
+    EdgeInsets.all(consumer_light.FhDimensions.xs),
+    EdgeInsets.all(consumer_dark.FhDimensions.xs),
+    EdgeInsets.all(professional_light.FhDimensions.xs),
+    EdgeInsets.all(professional_dark.FhDimensions.xs),
   ];
 
   /// Spacing between the icon and the label in a column.

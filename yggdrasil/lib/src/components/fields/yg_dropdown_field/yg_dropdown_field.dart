@@ -262,12 +262,12 @@ abstract class YgDropdownFieldWidgetState<T extends Object, W extends YgDropdown
 
   @override
   void didUpdateWidget(covariant W oldWidget) {
+    super.didUpdateWidget(oldWidget);
     _state.placeholder.value = widget.placeholder != null;
     _state.error.value = widget.error != null;
     _state.disabled.value = widget.disabled;
     _state.size.value = widget.size;
     _state.variant.value = widget.variant;
-    super.didUpdateWidget(oldWidget);
   }
 
   @override

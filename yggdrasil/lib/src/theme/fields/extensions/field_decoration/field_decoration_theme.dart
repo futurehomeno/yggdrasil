@@ -12,62 +12,70 @@ class _$YgFieldDecorationTheme {
   // region Border
 
   static final List<Border> borderDefault = <Border>[
-    Border.all(color: consumer_light.FhColors.borderDefault),
-    Border.all(color: consumer_dark.FhColors.borderDefault),
-    Border.all(color: professional_light.FhColors.borderDefault),
-    Border.all(color: professional_dark.FhColors.borderDefault),
+    const Border.fromBorderSide(
+      BorderSide(color: consumer_light.FhColors.borderDefault),
+    ),
+    const Border.fromBorderSide(
+      BorderSide(color: consumer_dark.FhColors.borderDefault),
+    ),
+    const Border.fromBorderSide(
+      BorderSide(color: professional_light.FhColors.borderDefault),
+    ),
+    const Border.fromBorderSide(
+      BorderSide(color: professional_dark.FhColors.borderDefault),
+    ),
   ];
 
   static final List<Border> borderHover = <Border>[
-    Border.all(color: consumer_light.FhColors.borderWeak),
-    Border.all(color: consumer_dark.FhColors.borderWeak),
-    Border.all(color: professional_light.FhColors.borderWeak),
-    Border.all(color: professional_dark.FhColors.borderWeak),
+    const Border.fromBorderSide(BorderSide(color: consumer_light.FhColors.borderWeak)),
+    const Border.fromBorderSide(BorderSide(color: consumer_dark.FhColors.borderWeak)),
+    const Border.fromBorderSide(BorderSide(color: professional_light.FhColors.borderWeak)),
+    const Border.fromBorderSide(BorderSide(color: professional_dark.FhColors.borderWeak)),
   ];
 
   static final List<Border> borderFocus = <Border>[
-    Border.all(
+    const Border.fromBorderSide(BorderSide(
       color: consumer_light.FhColors.interactiveHighlightDefault,
       width: 2.0,
-    ),
-    Border.all(
+    )),
+    const Border.fromBorderSide(BorderSide(
       color: consumer_dark.FhColors.interactiveHighlightDefault,
       width: 2.0,
-    ),
-    Border.all(
+    )),
+    const Border.fromBorderSide(BorderSide(
       color: professional_light.FhColors.interactiveHighlightDefault,
       width: 2.0,
-    ),
-    Border.all(
+    )),
+    const Border.fromBorderSide(BorderSide(
       color: professional_dark.FhColors.interactiveHighlightDefault,
       width: 2.0,
-    ),
+    )),
   ];
 
   static final List<Border> borderError = <Border>[
-    Border.all(
+    const Border.fromBorderSide(BorderSide(
       color: consumer_light.FhColors.interactiveCriticalDefault,
       width: 2.0,
-    ),
-    Border.all(
+    )),
+    const Border.fromBorderSide(BorderSide(
       color: consumer_dark.FhColors.interactiveCriticalDefault,
       width: 2.0,
-    ),
-    Border.all(
+    )),
+    const Border.fromBorderSide(BorderSide(
       color: professional_light.FhColors.interactiveCriticalDefault,
       width: 2.0,
-    ),
-    Border.all(
+    )),
+    const Border.fromBorderSide(BorderSide(
       color: professional_dark.FhColors.interactiveCriticalDefault,
       width: 2.0,
-    ),
+    )),
   ];
 
   static final List<Border> borderDisabled = <Border>[
-    Border.all(color: consumer_light.FhColors.borderDisabled),
-    Border.all(color: consumer_dark.FhColors.borderDisabled),
-    Border.all(color: professional_light.FhColors.borderDisabled),
-    Border.all(color: professional_dark.FhColors.borderDisabled),
+    const Border.fromBorderSide(BorderSide(color: consumer_light.FhColors.borderDisabled)),
+    const Border.fromBorderSide(BorderSide(color: consumer_dark.FhColors.borderDisabled)),
+    const Border.fromBorderSide(BorderSide(color: professional_light.FhColors.borderDisabled)),
+    const Border.fromBorderSide(BorderSide(color: professional_dark.FhColors.borderDisabled)),
   ];
 
   static final List<BorderRadius> borderRadiusDefault = <BorderRadius>[
