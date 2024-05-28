@@ -43,6 +43,7 @@ class _YgWizardHeaderStateRegular extends _YgWizardHeaderState<_YgWizardHeaderRe
 
   @override
   void didUpdateWidget(covariant _YgWizardHeaderRegular oldWidget) {
+    super.didUpdateWidget(oldWidget);
     if (widget.steps != oldWidget.steps) {
       _valueAnimation.value = widget.currentStep.toDouble();
     } else if (widget.currentStep != oldWidget.currentStep) {
@@ -54,7 +55,6 @@ class _YgWizardHeaderStateRegular extends _YgWizardHeaderState<_YgWizardHeaderRe
         duration: theme.animationDuration,
       );
     }
-    super.didUpdateWidget(oldWidget);
   }
 
   @override

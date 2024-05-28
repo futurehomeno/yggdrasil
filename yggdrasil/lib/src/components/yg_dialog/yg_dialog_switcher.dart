@@ -42,6 +42,7 @@ class _YgDialogSwitcherState extends State<YgDialogSwitcher> with TickerProvider
 
   @override
   void didUpdateWidget(covariant YgDialogSwitcher oldWidget) {
+    super.didUpdateWidget(oldWidget);
     // We can not use the theme outside of the build method, but we need the
     // animation here, this is dumb, but for now that means we need to hardcode
     // the animation values, until we have a replacement for tailor which does
@@ -73,8 +74,6 @@ class _YgDialogSwitcherState extends State<YgDialogSwitcher> with TickerProvider
         duration: const Duration(milliseconds: 300),
       );
     }
-
-    super.didUpdateWidget(oldWidget);
   }
 
   @override

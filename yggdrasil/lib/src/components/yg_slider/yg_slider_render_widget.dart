@@ -34,7 +34,7 @@ class YgSliderRenderWidget extends LeafRenderObjectWidget {
 
   @override
   RenderObject createRenderObject(BuildContext context) {
-    return Dependencies(
+    return YgSliderRenderer(
       editingChanged: editingChanged,
       difference: currentValue,
       onChange: onChange,
@@ -49,7 +49,7 @@ class YgSliderRenderWidget extends LeafRenderObjectWidget {
   }
 
   @override
-  void updateRenderObject(BuildContext context, covariant Dependencies renderObject) {
+  void updateRenderObject(BuildContext context, covariant YgSliderRenderer renderObject) {
     renderObject.editingChanged = editingChanged;
     renderObject.currentValue = currentValue;
     renderObject.onChange = onChange;
@@ -63,8 +63,8 @@ class YgSliderRenderWidget extends LeafRenderObjectWidget {
   }
 }
 
-class Dependencies extends RenderBox {
-  Dependencies({
+class YgSliderRenderer extends RenderBox {
+  YgSliderRenderer({
     required YgSliderStyle style,
     required Animation<double> value,
     required Animation<double> difference,
