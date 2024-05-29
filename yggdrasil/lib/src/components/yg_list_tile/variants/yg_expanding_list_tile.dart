@@ -21,6 +21,7 @@ final class YgExpandingListTile extends YgListTile {
     this.controller,
     this.onExpandedChanged,
     this.initiallyExpanded = false,
+    super.density = YgListTileDensity.standard,
   })  : assert(
           title != null || leadingWidgets != null,
           'Can not have neither a title or leading widget.',
@@ -75,43 +76,54 @@ final class YgExpandingListTile extends YgListTile {
       'Can not have neither a title or leading widget.',
     );
 
-    return YgExpander(
-      duration: theme.animationDuration,
-      curve: theme.animationCurve,
-      headerBuilder: (BuildContext context, YgExpansionController controller) {
-        return YgListTileBody(
-          title: title,
-          subtitle: subtitle,
-          subtitleIcon: subtitleIcon,
-          disabled: false,
-          onTap: controller.toggle,
-          infoButton: YgListTileHelpers.buildInfoButton(onInfoTap),
-          leading: YgListTileHelpers.buildLeading(theme, leadingWidgets),
-          supporting: YgListTileHelpers.buildSupporting(theme, supportingWidgets),
-          trailing: ListenableBuilder(
-            listenable: controller,
-            builder: (BuildContext context, Widget? child) {
-              return AnimatedRotation(
+    // This is slightly convoluted, the reason for this is that the expander has
+    // to be inside the list tile because the list tile manages the outer padding
+    // animation, while the list tile
+    return YgExpanderDefaultController(
+      controller: controller,
+      initiallyExpanded: initiallyExpanded,
+      onExpandedChanged: onExpandedChanged,
+      child: Builder(
+        builder: (BuildContext context) {
+          final YgExpansionController controller = YgExpansionController.of(context);
+
+          return YgListTileBody(
+            density: density,
+            title: title,
+            subtitle: subtitle,
+            subtitleIcon: subtitleIcon,
+            disabled: false,
+            onTap: controller.toggle,
+            infoButton: YgListTileHelpers.buildInfoButton(onInfoTap),
+            leading: YgListTileHelpers.buildLeading(theme, leadingWidgets),
+            supporting: YgListTileHelpers.buildSupporting(theme, supportingWidgets),
+            trailing: ListenableBuilder(
+              listenable: controller,
+              builder: (BuildContext context, Widget? child) => AnimatedRotation(
                 turns: controller.expanded ? 0.5 : 0,
                 duration: theme.animationDuration,
                 curve: theme.animationCurve,
                 child: child,
+              ),
+              child: const YgIcon(
+                YgIcons.caretDown,
+              ),
+            ),
+            builder: (BuildContext context, Widget body) {
+              return YgExpander(
+                headerBuilder: (__, _) => body,
+                duration: theme.animationDuration,
+                curve: theme.animationCurve,
+                child: Padding(
+                  padding: EdgeInsets.only(
+                    top: theme.contentSpacing,
+                  ),
+                  child: child,
+                ),
               );
             },
-            child: const YgIcon(
-              YgIcons.caretDown,
-            ),
-          ),
-        );
-      },
-      controller: controller,
-      initiallyExpanded: initiallyExpanded,
-      onExpandedChanged: onExpandedChanged,
-      child: Padding(
-        padding: theme.outerPadding.copyWith(
-          top: 0,
-        ),
-        child: child,
+          );
+        },
       ),
     );
   }

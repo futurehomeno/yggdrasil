@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:yggdrasil/src/components/yg_section/widgets/_widgets.dart';
 import 'package:yggdrasil/src/theme/_theme.dart';
 import 'package:yggdrasil/src/utils/_utils.dart';
+import 'package:yggdrasil/src/utils/yg_expander/yg_expander_default_controller.dart';
 import 'package:yggdrasil/yggdrasil.dart';
 
 part 'yg_expanding_section_column.dart';
@@ -95,28 +96,30 @@ abstract class YgExpandingSection extends StatelessWidget with StatelessWidgetDe
     final YgSectionTheme theme = context.sectionTheme;
     final YgTag? tag = this.tag;
 
-    return YgExpander(
-      duration: theme.animationDuration,
-      curve: theme.animationCurve,
-      headerBuilder: (BuildContext context, YgExpansionController controller) {
-        return Material(
-          type: MaterialType.transparency,
-          child: InkWell(
-            onTap: controller.toggle,
-            child: YgSectionHeaderInternal(
-              title: title,
-              subtitle: subtitle,
-              icon: icon,
-              tag: tag,
-              trailing: _buildExpandButton(theme, controller),
-            ),
-          ),
-        );
-      },
+    return YgExpanderDefaultController(
       controller: controller,
       initiallyExpanded: initiallyExpanded,
       onExpandedChanged: onExpandedChanged,
-      child: buildChild(context),
+      child: YgExpander(
+        duration: theme.animationDuration,
+        curve: theme.animationCurve,
+        headerBuilder: (BuildContext context, YgExpansionController controller) {
+          return Material(
+            type: MaterialType.transparency,
+            child: InkWell(
+              onTap: controller.toggle,
+              child: YgSectionHeaderInternal(
+                title: title,
+                subtitle: subtitle,
+                icon: icon,
+                tag: tag,
+                trailing: _buildExpandButton(theme, controller),
+              ),
+            ),
+          );
+        },
+        child: buildChild(context),
+      ),
     );
   }
 

@@ -11,6 +11,7 @@ final class YgRadioListTile<T> extends YgListTile {
     super.subtitle,
     super.subtitleIcon,
     this.leadingWidget,
+    super.density = YgListTileDensity.standard,
   })  : assert(
           title != null || leadingWidget != null,
           'Can not have neither a title or leading widget.',
@@ -44,6 +45,7 @@ final class YgRadioListTile<T> extends YgListTile {
   @override
   Widget build(BuildContext context) {
     return YgListTileBody.withChildAndOptionalLeading(
+      density: density,
       title: title,
       subtitle: subtitle,
       subtitleIcon: subtitleIcon,
@@ -52,6 +54,7 @@ final class YgRadioListTile<T> extends YgListTile {
       leading: leadingWidget,
       supporting: null,
       infoButton: null,
+      builder: null,
       child: AbsorbPointer(
         child: YgNoFocus(
           child: YgRadio<T>(

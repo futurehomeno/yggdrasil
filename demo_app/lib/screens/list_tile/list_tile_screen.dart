@@ -22,11 +22,19 @@ class ListTileScreen extends StatelessWidget {
       child: YgSection.list(
         children: <YgListTile>[
           const YgListTile(
-            title: 'Title',
+            title: 'Title only',
+          ),
+          const YgListTile(
+            subtitle: 'Subtitle only',
           ),
           const YgListTile(
             title: 'Title',
             subtitle: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit.',
+          ),
+          const YgListTile(
+            title: 'Title',
+            subtitle: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit.',
+            density: YgListTileDensity.dense,
           ),
           const YgListTile(
             title: 'YgListTile with a really long title. Like, really long. Super long if you will.',

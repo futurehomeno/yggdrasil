@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:yggdrasil/src/theme/_theme.dart';
 import 'package:yggdrasil/src/utils/_utils.dart';
+import 'package:yggdrasil/src/utils/yg_expander/yg_expander_default_controller.dart';
 import 'package:yggdrasil/yggdrasil.dart';
 
 import 'helpers/_helpers.dart';
@@ -34,6 +35,7 @@ abstract base class YgListTile extends StatelessWidget with StatelessWidgetDebug
     List<Widget>? leadingWidgets,
     List<Widget>? supportingWidgets,
     List<Widget>? trailingWidgets,
+    YgListTileDensity density,
   }) = _YgRegularListTile;
 
   const YgListTile._({
@@ -42,6 +44,7 @@ abstract base class YgListTile extends StatelessWidget with StatelessWidgetDebug
     required this.subtitle,
     required this.subtitleIcon,
     required this.disabled,
+    this.density = YgListTileDensity.standard,
   });
 
   /// Convenience for generating links from YgListTiles.
@@ -49,12 +52,14 @@ abstract base class YgListTile extends StatelessWidget with StatelessWidgetDebug
     required String link,
     required YgIconData icon,
     required VoidCallback onTap,
+    YgListTileDensity density = YgListTileDensity.standard,
   }) {
     return YgListTile(
       title: link,
       leadingWidgets: <Widget>[YgIcon(icon)],
       trailingWidgets: const <Widget>[YgIcon(YgIcons.caretRight)],
       onTap: onTap,
+      density: density,
     );
   }
 
@@ -78,6 +83,11 @@ abstract base class YgListTile extends StatelessWidget with StatelessWidgetDebug
   ///
   /// Does not create any visual changes.
   final bool disabled;
+
+  /// The density of the list tile.
+  ///
+  /// Defaults to [YgListTileDensity.standard].
+  final YgListTileDensity density;
 
   @override
   YgDebugType get debugType {

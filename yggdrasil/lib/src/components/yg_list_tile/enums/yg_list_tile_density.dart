@@ -1,0 +1,4 @@
+enum YgListTileDensity {
+  dense,
+  standard,
+}

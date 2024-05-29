@@ -1,9 +1,13 @@
 import 'package:flutter/material.dart';
+import 'package:yggdrasil/src/components/yg_list_tile/widgets/yg_list_tile_body_style.dart';
 import 'package:yggdrasil/src/theme/_theme.dart';
+import 'package:yggdrasil/src/utils/_utils.dart';
 import 'package:yggdrasil/yggdrasil.dart';
 
+typedef WrapperBuilder = Widget Function(BuildContext context, Widget child);
+
 /// Internal widget used in [YgListTile] variants.
-class YgListTileBody extends StatelessWidget {
+class YgListTileBody extends StatefulWidget {
   const YgListTileBody({
     super.key,
     required this.title,
@@ -15,30 +19,30 @@ class YgListTileBody extends StatelessWidget {
     required this.infoButton,
     required this.disabled,
     required this.onTap,
+    required this.density,
+    required this.builder,
   })  : assert(
-          title != null || subtitle == null,
-          'Can not have a subtitle without a title.',
-        ),
-        assert(
-          title != null || subtitle == null,
+          title != null || infoButton == null,
           'Can not have a infoButton without a title.',
         ),
         assert(
-          title != null || leading != null,
-          'Can not have neither a title or leading widget.',
+          title != null || leading != null || subtitle != null,
+          'Can not have neither a title, subtitle or leading widget.',
         );
 
   factory YgListTileBody.withChildAndOptionalLeading({
     Key? key,
+    required YgListTileDensity density,
+    required bool disabled,
+    required Widget child,
     required String? title,
     required String? subtitle,
     required Widget? subtitleIcon,
     required Widget? supporting,
     required Widget? infoButton,
-    required bool disabled,
-    required VoidCallback? onTap,
-    required Widget child,
     required Widget? leading,
+    required WrapperBuilder? builder,
+    required VoidCallback? onTap,
   }) {
     assert(
       title != null || leading != null,
@@ -64,6 +68,8 @@ class YgListTileBody extends StatelessWidget {
       onTap: onTap,
       leading: result.leading,
       trailing: result.trailing,
+      density: density,
+      builder: builder,
     );
   }
 
@@ -129,20 +135,51 @@ class YgListTileBody extends StatelessWidget {
   /// Called when the widget was tapped.
   final VoidCallback? onTap;
 
+  /// The density of the list tile.
+  final YgListTileDensity density;
+
+  /// Builder which can wrap the content of the list tile in another widget.
+  final WrapperBuilder? builder;
+
+  @override
+  State<YgListTileBody> createState() => _YgListTileBodyState();
+}
+
+class _YgListTileBodyState extends StateWithYgStateAndStyle<YgListTileBody, YgListTileBodyState, YgListTileBodyStyle> {
+  @override
+  YgListTileBodyState createState() {
+    return YgListTileBodyState(
+      variant: widget.density,
+    );
+  }
+
+  @override
+  YgListTileBodyStyle createStyle() {
+    return YgListTileBodyStyle(
+      state: state,
+      vsync: this,
+    );
+  }
+
+  @override
+  void updateState() {
+    state.variant.value = widget.density;
+  }
+
   @override
   Widget build(BuildContext context) {
     final YgListTileTheme theme = context.listTileTheme;
-    final Widget? trailing = this.trailing;
-    final Widget? supporting = this.supporting;
-    final Widget? leading = this.leading;
+    final Widget? trailing = widget.trailing;
+    final Widget? supporting = widget.supporting;
+    final Widget? leading = widget.leading;
     final Widget? title = _buildTitleSubtitle(theme);
 
     return Material(
       type: MaterialType.transparency,
       child: InkWell(
-        onTap: disabled ? null : onTap,
-        child: Padding(
-          padding: theme.outerPadding,
+        onTap: widget.disabled ? null : widget.onTap,
+        child: YgAnimatedPadding(
+          padding: style.outerPadding,
           child: Row(
             children: <Widget>[
               Expanded(
@@ -170,21 +207,25 @@ class YgListTileBody extends StatelessWidget {
     final Widget? subtitle = _buildSubtitle(theme);
 
     if (title == null) {
-      return null;
+      return subtitle;
+    }
+
+    if (subtitle == null) {
+      return title;
     }
 
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: <Widget>[
         title,
-        if (subtitle != null) subtitle,
+        subtitle,
       ].withVerticalSpacing(theme.titleSubtitleSpacing),
     );
   }
 
   Widget? _buildTitle(YgListTileTheme theme) {
-    final Widget? infoButton = this.infoButton;
-    final String? title = this.title;
+    final Widget? infoButton = widget.infoButton;
+    final String? title = widget.title;
 
     if (title == null) {
       return null;
@@ -205,8 +246,8 @@ class YgListTileBody extends StatelessWidget {
   }
 
   Widget? _buildSubtitle(YgListTileTheme theme) {
-    final String? subtitle = this.subtitle;
-    final Widget? subtitleIcon = this.subtitleIcon;
+    final String? subtitle = widget.subtitle;
+    final Widget? subtitleIcon = widget.subtitleIcon;
 
     if (subtitle == null) {
       return null;

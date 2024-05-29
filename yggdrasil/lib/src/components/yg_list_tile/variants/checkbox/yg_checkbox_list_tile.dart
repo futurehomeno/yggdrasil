@@ -10,6 +10,7 @@ abstract base class YgCheckboxListTile extends YgListTile implements YgToggleabl
     Widget? leadingWidget,
     String? subtitle,
     Widget? subtitleIcon,
+    YgListTileDensity density,
   }) = _YgCheckboxListTileDualState;
 
   /// Supports a nullable value, i.e. "indeterminate".
@@ -21,16 +22,18 @@ abstract base class YgCheckboxListTile extends YgListTile implements YgToggleabl
     Widget? leadingWidget,
     String? subtitle,
     Widget? subtitleIcon,
+    YgListTileDensity density,
   }) = _YgCheckboxListTileTriState;
 
   const YgCheckboxListTile._({
     super.key,
     required super.disabled,
-    super.title,
-    super.subtitle,
-    super.subtitleIcon,
-    this.leadingWidget,
-    this.value,
+    required super.title,
+    required super.subtitle,
+    required super.subtitleIcon,
+    required super.density,
+    required this.leadingWidget,
+    required this.value,
   }) : super._();
 
   /// See [YgCheckbox] documentation.
@@ -45,6 +48,8 @@ abstract base class YgCheckboxListTile extends YgListTile implements YgToggleabl
   @override
   Widget build(BuildContext context) {
     return YgListTileBody.withChildAndOptionalLeading(
+      builder: null,
+      density: density,
       title: title,
       subtitle: subtitle,
       subtitleIcon: subtitleIcon,
