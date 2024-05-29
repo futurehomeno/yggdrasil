@@ -49,21 +49,26 @@ class YgExpander extends StatelessWidget {
       children: <Widget>[
         headerBuilder(context, controller),
         ClipRect(
-          child: AnimatedAlign(
-            alignment: alignment,
-            duration: duration,
-            curve: curve,
-            heightFactor: _getFactorForAxis(controller, Axis.vertical),
-            widthFactor: _getFactorForAxis(controller, Axis.horizontal),
-            child: child,
+          child: ListenableBuilder(
+            listenable: controller,
+            builder: (BuildContext context, Widget? child) {
+              return AnimatedAlign(
+                alignment: alignment,
+                duration: duration,
+                curve: curve,
+                heightFactor: _getFactorForAxis(controller.expanded, Axis.vertical),
+                widthFactor: _getFactorForAxis(controller.expanded, Axis.horizontal),
+                child: this.child,
+              );
+            },
           ),
         ),
       ],
     );
   }
 
-  double _getFactorForAxis(YgExpansionController controller, Axis axis) {
-    if (axis != this.axis || controller.expanded) {
+  double _getFactorForAxis(bool expanded, Axis axis) {
+    if (axis != this.axis || expanded) {
       return 1.0;
     }
 

@@ -38,7 +38,7 @@ class YgExpanderDefaultController extends StatefulWidget {
 class _YgExpanderDefaultControllerState extends State<YgExpanderDefaultController> with YgControllerManagerMixin {
   late final YgControllerManager<YgExpansionController> _controllerManager = manageController(
     createController: () => YgExpansionController(initiallyExpanded: widget.initiallyExpanded),
-    getUserController: () => widget.controller ?? context.getInheritedWidgetOfExactType(),
+    getUserController: () => widget.controller,
     listener: _checkExpandedChange,
   );
 

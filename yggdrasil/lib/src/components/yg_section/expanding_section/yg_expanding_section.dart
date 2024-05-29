@@ -103,6 +103,7 @@ abstract class YgExpandingSection extends StatelessWidget with StatelessWidgetDe
       child: YgExpander(
         duration: theme.animationDuration,
         curve: theme.animationCurve,
+        alignment: Alignment.bottomCenter,
         headerBuilder: (BuildContext context, YgExpansionController controller) {
           return Material(
             type: MaterialType.transparency,

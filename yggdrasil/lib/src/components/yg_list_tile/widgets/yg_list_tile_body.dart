@@ -168,43 +168,56 @@ class _YgListTileBodyState extends StateWithYgStateAndStyle<YgListTileBody, YgLi
 
   @override
   Widget build(BuildContext context) {
-    final YgListTileTheme theme = context.listTileTheme;
-    final Widget? trailing = widget.trailing;
-    final Widget? supporting = widget.supporting;
-    final Widget? leading = widget.leading;
-    final Widget? title = _buildTitleSubtitle(theme);
-
     return Material(
       type: MaterialType.transparency,
       child: InkWell(
         onTap: widget.disabled ? null : widget.onTap,
         child: YgAnimatedPadding(
           padding: style.outerPadding,
-          child: Row(
-            children: <Widget>[
-              Expanded(
-                child: Row(
-                  children: <Widget>[
-                    if (leading != null) leading,
-                    if (title != null)
-                      Expanded(
-                        child: title,
-                      ),
-                  ].withHorizontalSpacing(theme.contentSpacing),
-                ),
-              ),
-              if (supporting != null) supporting,
-              if (trailing != null) trailing,
-            ].withHorizontalSpacing(theme.contentSpacing),
-          ),
+          child: _buildContent(),
         ),
       ),
     );
   }
 
+  Widget _buildContent() {
+    final YgListTileTheme theme = context.listTileTheme;
+    final Widget? trailing = widget.trailing;
+    final Widget? supporting = widget.supporting;
+    final Widget? leading = widget.leading;
+    final Widget? title = _buildTitleSubtitle(theme);
+    final WrapperBuilder? builder = widget.builder;
+
+    final Row content = Row(
+      children: <Widget>[
+        Expanded(
+          child: Row(
+            children: <Widget>[
+              if (leading != null) leading,
+              if (title != null)
+                Expanded(
+                  child: title,
+                ),
+            ].withHorizontalSpacing(theme.contentSpacing),
+          ),
+        ),
+        if (supporting != null) supporting,
+        if (trailing != null) trailing,
+      ].withHorizontalSpacing(theme.contentSpacing),
+    );
+
+    if (builder != null) {
+      return builder(context, content);
+    }
+
+    return content;
+  }
+
   Widget? _buildTitleSubtitle(YgListTileTheme theme) {
     final Widget? title = _buildTitle(theme);
     final Widget? subtitle = _buildSubtitle(theme);
+
+    // return the subtitle, title, both in a column or null.
 
     if (title == null) {
       return subtitle;

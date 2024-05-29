@@ -114,6 +114,7 @@ final class YgExpandingListTile extends YgListTile {
                 headerBuilder: (__, _) => body,
                 duration: theme.animationDuration,
                 curve: theme.animationCurve,
+                alignment: Alignment.bottomCenter,
                 child: Padding(
                   padding: EdgeInsets.only(
                     top: theme.contentSpacing,
