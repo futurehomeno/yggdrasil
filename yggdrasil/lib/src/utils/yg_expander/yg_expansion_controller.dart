@@ -1,6 +1,5 @@
 import 'package:flutter/widgets.dart';
 
-import 'yg_expander.dart';
 import 'yg_expander_default_controller_inherited_widget.dart';
 
 /// Controls a [YgExpander].
