@@ -23,16 +23,12 @@ final class YgExpandingListTile extends YgListTile {
     this.initiallyExpanded = false,
     super.density = YgListTileDensity.standard,
   })  : assert(
-          title != null || leadingWidgets != null,
-          'Can not have neither a title or leading widget.',
+          title != null || leadingWidgets != null || subtitle != null,
+          'Can not have neither a title, subtitle, or leading widget.',
         ),
         assert(
           subtitleIcon == null || subtitle != null,
           'Can not add a subtitleIcon without a subtitle.',
-        ),
-        assert(
-          title != null || subtitle == null,
-          'Can not have a subtitle without a title.',
         ),
         assert(
           title != null || onInfoTap == null,
@@ -70,11 +66,6 @@ final class YgExpandingListTile extends YgListTile {
   @override
   Widget build(BuildContext context) {
     final YgListTileTheme theme = context.listTileTheme;
-
-    assert(
-      title != null || leadingWidgets?.isNotEmpty == true,
-      'Can not have neither a title or leading widget.',
-    );
 
     // This is slightly convoluted, the reason for this is that the expander has
     // to be inside the list tile because the list tile manages the outer padding

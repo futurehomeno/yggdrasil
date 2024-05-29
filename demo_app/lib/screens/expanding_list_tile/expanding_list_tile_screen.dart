@@ -24,22 +24,32 @@ class ExpandingListTileScreen extends StatelessWidget {
       child: YgSection.list(
         children: <YgExpandingListTile>[
           const YgExpandingListTile(
-            title: 'Title',
+            title: 'Title only',
             child: child,
           ),
           const YgExpandingListTile(
-            title: 'Title',
+            subtitle: 'Subtitle only',
+            child: child,
+          ),
+          const YgExpandingListTile(
+            title: 'Title and subtitle',
             subtitle: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit.',
             child: child,
           ),
           const YgExpandingListTile(
-            title: 'YgExpandingListTile with a really long title. Like, really long. Super long if you will.',
+            title: 'Dense list tile',
+            subtitle: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit.',
+            density: YgListTileDensity.dense,
+            child: child,
+          ),
+          const YgExpandingListTile(
+            title: 'YgListTile with a really long title. Like, really long. Super long if you will.',
             subtitle:
                 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus vestibulum fringilla ultrices. Pellentesque vitae sapien sed augue elementum sagittis vel sed dui.',
             child: child,
           ),
           const YgExpandingListTile(
-            title: 'Title',
+            title: 'List tile with leading widget',
             subtitle: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit.',
             leadingWidgets: <Widget>[
               YgIcon(YgIcons.info, size: YgIconSize.large),
@@ -56,15 +66,7 @@ class ExpandingListTileScreen extends StatelessWidget {
             child: child,
           ),
           const YgExpandingListTile(
-            title: 'Title',
-            subtitle: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit.',
-            leadingWidgets: <Widget>[
-              YgIcon(YgIcons.info, size: YgIconSize.large),
-            ],
-            child: child,
-          ),
-          const YgExpandingListTile(
-            title: 'Title',
+            title: 'Leading and supporting widgets',
             subtitle: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit.',
             leadingWidgets: <Widget>[
               YgIcon(YgIcons.info, size: YgIconSize.large),
@@ -75,7 +77,7 @@ class ExpandingListTileScreen extends StatelessWidget {
             child: child,
           ),
           const YgExpandingListTile(
-            title: 'Title',
+            title: 'Multiple supporting widgets',
             subtitle: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit.',
             leadingWidgets: <Widget>[
               YgIcon(YgIcons.info, size: YgIconSize.large),
@@ -87,19 +89,28 @@ class ExpandingListTileScreen extends StatelessWidget {
             child: child,
           ),
           YgExpandingListTile(
-            title: 'Title',
+            title: 'With info button',
             subtitle: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit.',
             onInfoTap: () {},
             leadingWidgets: const <Widget>[
               YgIcon(YgIcons.info, size: YgIconSize.large),
             ],
+            supportingWidgets: const <Widget>[
+              YgIcon(YgIcons.info, size: YgIconSize.large),
+              YgIcon(YgIcons.info, size: YgIconSize.large),
+            ],
             child: child,
           ),
-          const YgExpandingListTile(
-            title: 'Title',
+          YgExpandingListTile(
+            title: 'With subtitle icon',
             subtitle: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit.',
-            subtitleIcon: YgIcon(YgIcons.info, size: YgIconSize.small),
-            leadingWidgets: <Widget>[
+            subtitleIcon: const YgIcon(YgIcons.info, size: YgIconSize.small),
+            onInfoTap: () {},
+            leadingWidgets: const <Widget>[
+              YgIcon(YgIcons.info, size: YgIconSize.large),
+            ],
+            supportingWidgets: const <Widget>[
+              YgIcon(YgIcons.info, size: YgIconSize.large),
               YgIcon(YgIcons.info, size: YgIconSize.large),
             ],
             child: child,

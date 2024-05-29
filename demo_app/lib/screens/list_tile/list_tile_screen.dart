@@ -112,7 +112,6 @@ class ListTileScreen extends StatelessWidget {
             title: 'With subtitle icon',
             subtitle: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit.',
             subtitleIcon: const YgIcon(YgIcons.info, size: YgIconSize.small),
-            onTap: () {},
             onInfoTap: () {},
             leadingWidgets: const <Widget>[
               YgIcon(YgIcons.info, size: YgIconSize.large),
