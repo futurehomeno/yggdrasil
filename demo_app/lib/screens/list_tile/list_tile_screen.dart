@@ -28,11 +28,11 @@ class ListTileScreen extends StatelessWidget {
             subtitle: 'Subtitle only',
           ),
           const YgListTile(
-            title: 'Title',
+            title: 'Title and subtitle',
             subtitle: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit.',
           ),
           const YgListTile(
-            title: 'Title',
+            title: 'Dense list tile',
             subtitle: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit.',
             density: YgListTileDensity.dense,
           ),
@@ -42,7 +42,7 @@ class ListTileScreen extends StatelessWidget {
                 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus vestibulum fringilla ultrices. Pellentesque vitae sapien sed augue elementum sagittis vel sed dui.',
           ),
           const YgListTile(
-            title: 'Title',
+            title: 'List tile with leading widget',
             subtitle: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit.',
             leadingWidgets: <Widget>[
               YgIcon(YgIcons.info, size: YgIconSize.large),
@@ -57,7 +57,7 @@ class ListTileScreen extends StatelessWidget {
             ],
           ),
           const YgListTile(
-            title: 'Title',
+            title: 'Leading and trailing widgets',
             subtitle: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit.',
             leadingWidgets: <Widget>[
               YgIcon(YgIcons.info, size: YgIconSize.large),
@@ -67,7 +67,7 @@ class ListTileScreen extends StatelessWidget {
             ],
           ),
           const YgListTile(
-            title: 'Title',
+            title: 'Leading, trailing and supporting widgets',
             subtitle: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit.',
             leadingWidgets: <Widget>[
               YgIcon(YgIcons.info, size: YgIconSize.large),
@@ -80,7 +80,7 @@ class ListTileScreen extends StatelessWidget {
             ],
           ),
           const YgListTile(
-            title: 'Title',
+            title: 'Multiple supporting widgets',
             subtitle: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit.',
             leadingWidgets: <Widget>[
               YgIcon(YgIcons.info, size: YgIconSize.large),
@@ -94,7 +94,7 @@ class ListTileScreen extends StatelessWidget {
             ],
           ),
           YgListTile(
-            title: 'Title',
+            title: 'With info button',
             subtitle: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit.',
             onInfoTap: () {},
             leadingWidgets: const <Widget>[
@@ -109,8 +109,9 @@ class ListTileScreen extends StatelessWidget {
             ],
           ),
           YgListTile(
-            title: 'Tappable!',
+            title: 'With subtitle icon',
             subtitle: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit.',
+            subtitleIcon: const YgIcon(YgIcons.info, size: YgIconSize.small),
             onTap: () {},
             onInfoTap: () {},
             leadingWidgets: const <Widget>[
@@ -127,7 +128,6 @@ class ListTileScreen extends StatelessWidget {
           YgListTile(
             title: 'Tappable!',
             subtitle: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit.',
-            subtitleIcon: const YgIcon(YgIcons.info, size: YgIconSize.small),
             onTap: () {},
             onInfoTap: () {},
             leadingWidgets: const <Widget>[
