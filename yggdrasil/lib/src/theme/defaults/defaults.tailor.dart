@@ -10,6 +10,8 @@ part of 'defaults.dart';
 
 class YgDefaults extends ThemeExtension<YgDefaults> {
   const YgDefaults({
+    required this.animationCurve,
+    required this.animationDuration,
     required this.appBarColor,
     required this.brightness,
     required this.colorSchemeSeed,
@@ -21,6 +23,8 @@ class YgDefaults extends ThemeExtension<YgDefaults> {
     required this.splashColor,
   });
 
+  final Curve animationCurve;
+  final Duration animationDuration;
   final Color appBarColor;
   final Brightness brightness;
   final Color colorSchemeSeed;
@@ -32,6 +36,8 @@ class YgDefaults extends ThemeExtension<YgDefaults> {
   final Color splashColor;
 
   static final YgDefaults consumerLight = YgDefaults(
+    animationCurve: _$YgDefaults.animationCurve[0],
+    animationDuration: _$YgDefaults.animationDuration[0],
     appBarColor: _$YgDefaults.appBarColor[0],
     brightness: _$YgDefaults.brightness[0],
     colorSchemeSeed: _$YgDefaults.colorSchemeSeed[0],
@@ -44,6 +50,8 @@ class YgDefaults extends ThemeExtension<YgDefaults> {
   );
 
   static final YgDefaults consumerDark = YgDefaults(
+    animationCurve: _$YgDefaults.animationCurve[1],
+    animationDuration: _$YgDefaults.animationDuration[1],
     appBarColor: _$YgDefaults.appBarColor[1],
     brightness: _$YgDefaults.brightness[1],
     colorSchemeSeed: _$YgDefaults.colorSchemeSeed[1],
@@ -56,6 +64,8 @@ class YgDefaults extends ThemeExtension<YgDefaults> {
   );
 
   static final YgDefaults professionalLight = YgDefaults(
+    animationCurve: _$YgDefaults.animationCurve[2],
+    animationDuration: _$YgDefaults.animationDuration[2],
     appBarColor: _$YgDefaults.appBarColor[2],
     brightness: _$YgDefaults.brightness[2],
     colorSchemeSeed: _$YgDefaults.colorSchemeSeed[2],
@@ -68,6 +78,8 @@ class YgDefaults extends ThemeExtension<YgDefaults> {
   );
 
   static final YgDefaults professionalDark = YgDefaults(
+    animationCurve: _$YgDefaults.animationCurve[3],
+    animationDuration: _$YgDefaults.animationDuration[3],
     appBarColor: _$YgDefaults.appBarColor[3],
     brightness: _$YgDefaults.brightness[3],
     colorSchemeSeed: _$YgDefaults.colorSchemeSeed[3],
@@ -88,6 +100,8 @@ class YgDefaults extends ThemeExtension<YgDefaults> {
 
   @override
   YgDefaults copyWith({
+    Curve? animationCurve,
+    Duration? animationDuration,
     Color? appBarColor,
     Brightness? brightness,
     Color? colorSchemeSeed,
@@ -99,6 +113,8 @@ class YgDefaults extends ThemeExtension<YgDefaults> {
     Color? splashColor,
   }) {
     return YgDefaults(
+      animationCurve: animationCurve ?? this.animationCurve,
+      animationDuration: animationDuration ?? this.animationDuration,
       appBarColor: appBarColor ?? this.appBarColor,
       brightness: brightness ?? this.brightness,
       colorSchemeSeed: colorSchemeSeed ?? this.colorSchemeSeed,
@@ -115,6 +131,8 @@ class YgDefaults extends ThemeExtension<YgDefaults> {
   YgDefaults lerp(covariant ThemeExtension<YgDefaults>? other, double t) {
     if (other is! YgDefaults) return this as YgDefaults;
     return YgDefaults(
+      animationCurve: t < 0.5 ? animationCurve : other.animationCurve,
+      animationDuration: t < 0.5 ? animationDuration : other.animationDuration,
       appBarColor: Color.lerp(appBarColor, other.appBarColor, t)!,
       brightness: t < 0.5 ? brightness : other.brightness,
       colorSchemeSeed: Color.lerp(colorSchemeSeed, other.colorSchemeSeed, t)!,
@@ -133,6 +151,10 @@ class YgDefaults extends ThemeExtension<YgDefaults> {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is YgDefaults &&
+            const DeepCollectionEquality()
+                .equals(animationCurve, other.animationCurve) &&
+            const DeepCollectionEquality()
+                .equals(animationDuration, other.animationDuration) &&
             const DeepCollectionEquality()
                 .equals(appBarColor, other.appBarColor) &&
             const DeepCollectionEquality()
@@ -156,6 +178,8 @@ class YgDefaults extends ThemeExtension<YgDefaults> {
   int get hashCode {
     return Object.hash(
       runtimeType.hashCode,
+      const DeepCollectionEquality().hash(animationCurve),
+      const DeepCollectionEquality().hash(animationDuration),
       const DeepCollectionEquality().hash(appBarColor),
       const DeepCollectionEquality().hash(brightness),
       const DeepCollectionEquality().hash(colorSchemeSeed),

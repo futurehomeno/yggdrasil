@@ -21,17 +21,14 @@ final class YgExpandingListTile extends YgListTile {
     this.controller,
     this.onExpandedChanged,
     this.initiallyExpanded = false,
+    super.density = YgListTileDensity.standard,
   })  : assert(
-          title != null || leadingWidgets != null,
-          'Can not have neither a title or leading widget.',
+          title != null || leadingWidgets != null || subtitle != null,
+          'Can not have neither a title, subtitle, or leading widget.',
         ),
         assert(
           subtitleIcon == null || subtitle != null,
           'Can not add a subtitleIcon without a subtitle.',
-        ),
-        assert(
-          title != null || subtitle == null,
-          'Can not have a subtitle without a title.',
         ),
         assert(
           title != null || onInfoTap == null,
@@ -70,48 +67,52 @@ final class YgExpandingListTile extends YgListTile {
   Widget build(BuildContext context) {
     final YgListTileTheme theme = context.listTileTheme;
 
-    assert(
-      title != null || leadingWidgets?.isNotEmpty == true,
-      'Can not have neither a title or leading widget.',
-    );
+    return YgExpanderDefaultController(
+      controller: controller,
+      initiallyExpanded: initiallyExpanded,
+      onExpandedChanged: onExpandedChanged,
+      child: Builder(
+        builder: (BuildContext context) {
+          final YgExpansionController controller = YgExpansionController.of(context);
 
-    return YgExpander(
-      duration: theme.animationDuration,
-      curve: theme.animationCurve,
-      headerBuilder: (BuildContext context, YgExpansionController controller) {
-        return YgListTileBody(
-          title: title,
-          subtitle: subtitle,
-          subtitleIcon: subtitleIcon,
-          disabled: false,
-          onTap: controller.toggle,
-          infoButton: YgListTileHelpers.buildInfoButton(onInfoTap),
-          leading: YgListTileHelpers.buildLeading(theme, leadingWidgets),
-          supporting: YgListTileHelpers.buildSupporting(theme, supportingWidgets),
-          trailing: ListenableBuilder(
-            listenable: controller,
-            builder: (BuildContext context, Widget? child) {
-              return AnimatedRotation(
+          return YgListTileBody(
+            density: density,
+            title: title,
+            subtitle: subtitle,
+            subtitleIcon: subtitleIcon,
+            disabled: false,
+            onTap: controller.toggle,
+            infoButton: YgListTileHelpers.buildInfoButton(onInfoTap),
+            leading: YgListTileHelpers.buildLeading(theme, leadingWidgets),
+            supporting: YgListTileHelpers.buildSupporting(theme, supportingWidgets),
+            trailing: ListenableBuilder(
+              listenable: controller,
+              builder: (BuildContext _, Widget? child) => AnimatedRotation(
                 turns: controller.expanded ? 0.5 : 0,
                 duration: theme.animationDuration,
                 curve: theme.animationCurve,
                 child: child,
+              ),
+              child: const YgIcon(
+                YgIcons.caretDown,
+              ),
+            ),
+            builder: (BuildContext context, Widget body) {
+              return YgExpander(
+                headerBuilder: (BuildContext _, YgExpansionController __) => body,
+                duration: theme.animationDuration,
+                curve: theme.animationCurve,
+                alignment: Alignment.bottomCenter,
+                child: Padding(
+                  padding: EdgeInsets.only(
+                    top: theme.contentSpacing,
+                  ),
+                  child: child,
+                ),
               );
             },
-            child: const YgIcon(
-              YgIcons.caretDown,
-            ),
-          ),
-        );
-      },
-      controller: controller,
-      initiallyExpanded: initiallyExpanded,
-      onExpandedChanged: onExpandedChanged,
-      child: Padding(
-        padding: theme.outerPadding.copyWith(
-          top: 0,
-        ),
-        child: child,
+          );
+        },
       ),
     );
   }

@@ -18,9 +18,10 @@ final class _YgRegularListTile extends YgListTile {
     this.supportingWidgets,
     this.onTap,
     this.onInfoTap,
+    super.density = YgListTileDensity.standard,
   })  : assert(
-          title != null || leadingWidgets != null,
-          'Can not have neither a title or leading widget.',
+          title != null || leadingWidgets != null || subtitle != null,
+          'Can not have neither a title, subtitle or leading widget.',
         ),
         assert(
           subtitleIcon == null || subtitle != null,
@@ -29,10 +30,6 @@ final class _YgRegularListTile extends YgListTile {
         assert(
           title != null || onInfoTap == null,
           'Can not have a infoButton without a title.',
-        ),
-        assert(
-          title != null || subtitle == null,
-          'Can not have a subtitle without a title.',
         ),
         super._(
           disabled: onTap == null,
@@ -61,21 +58,18 @@ final class _YgRegularListTile extends YgListTile {
   Widget build(BuildContext context) {
     final YgListTileTheme theme = context.listTileTheme;
 
-    assert(
-      title != null || leadingWidgets?.isNotEmpty == true,
-      'Can not have neither a title or leading widget.',
-    );
-
     return YgListTileBody(
       title: title,
       subtitle: subtitle,
       subtitleIcon: subtitleIcon,
       disabled: disabled,
       onTap: onTap,
+      density: density,
       infoButton: YgListTileHelpers.buildInfoButton(onInfoTap),
       leading: YgListTileHelpers.buildLeading(theme, leadingWidgets),
       trailing: YgListTileHelpers.buildTrailing(theme, trailingWidgets),
       supporting: YgListTileHelpers.buildSupporting(theme, supportingWidgets),
+      builder: null,
     );
   }
 }

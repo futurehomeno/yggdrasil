@@ -39,7 +39,7 @@ class _$YgListTileTheme {
     ),
   ];
 
-  static const List<EdgeInsets> outerPadding = <EdgeInsets>[
+  static const List<EdgeInsets> outerPaddingStandard = <EdgeInsets>[
     EdgeInsets.symmetric(
       horizontal: consumer_light.FhDimensions.md,
       vertical: consumer_light.FhDimensions.sm,
@@ -55,6 +55,25 @@ class _$YgListTileTheme {
     EdgeInsets.symmetric(
       horizontal: professional_dark.FhDimensions.md,
       vertical: professional_dark.FhDimensions.sm,
+    ),
+  ];
+
+  static const List<EdgeInsets> outerPaddingDense = <EdgeInsets>[
+    EdgeInsets.symmetric(
+      horizontal: consumer_light.FhDimensions.md,
+      vertical: consumer_light.FhDimensions.xxs,
+    ),
+    EdgeInsets.symmetric(
+      horizontal: consumer_dark.FhDimensions.md,
+      vertical: consumer_dark.FhDimensions.xxs,
+    ),
+    EdgeInsets.symmetric(
+      horizontal: professional_light.FhDimensions.md,
+      vertical: professional_light.FhDimensions.xxs,
+    ),
+    EdgeInsets.symmetric(
+      horizontal: professional_dark.FhDimensions.md,
+      vertical: professional_dark.FhDimensions.xxs,
     ),
   ];
 

@@ -1,7 +1,8 @@
 import 'package:flutter/widgets.dart';
 
-import 'yg_expander.dart';
+import 'yg_expander_default_controller_inherited_widget.dart';
 
+/// Controls a [YgExpander].
 class YgExpansionController extends ChangeNotifier {
   YgExpansionController({
     bool initiallyExpanded = false,
@@ -33,7 +34,9 @@ class YgExpansionController extends ChangeNotifier {
   ///
   /// Use this only within a child of [YgExpander].
   static YgExpansionController of(BuildContext context) {
-    final YgExpanderState? result = context.findAncestorStateOfType<YgExpanderState>();
+    final YgExpanderDefaultControllerInheritedWidget? result =
+        context.dependOnInheritedWidgetOfExactType<YgExpanderDefaultControllerInheritedWidget>();
+
     if (result != null) {
       return result.controller;
     }
@@ -41,6 +44,10 @@ class YgExpansionController extends ChangeNotifier {
     throw Exception(
       'YgExpansionController.of() called with a context that does not contain a YgExpander or widget which uses it.',
     );
+  }
+
+  static YgExpansionController? maybeOf(BuildContext context) {
+    return context.dependOnInheritedWidgetOfExactType<YgExpanderDefaultControllerInheritedWidget>()?.controller;
   }
 
   bool _update(bool newValue) {

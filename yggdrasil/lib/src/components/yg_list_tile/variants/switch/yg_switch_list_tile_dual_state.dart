@@ -10,6 +10,7 @@ final class _YgSwitchListTileDualState extends YgSwitchListTile with YgDualState
     super.subtitle,
     super.subtitleIcon,
     super.trailingWidget,
+    super.density = YgListTileDensity.standard,
   })  : assert(
           title != null || leadingWidget != null,
           'Can not have neither a title or leading widget.',

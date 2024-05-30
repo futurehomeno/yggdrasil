@@ -14,7 +14,8 @@ class YgListTileTheme extends ThemeExtension<YgListTileTheme> {
     required this.animationDuration,
     required this.contentSpacing,
     required this.iconSize,
-    required this.outerPadding,
+    required this.outerPaddingDense,
+    required this.outerPaddingStandard,
     required this.subtitleSubtitleIconSpacing,
     required this.subtitleTextStyle,
     required this.titleInfoSpacing,
@@ -26,7 +27,8 @@ class YgListTileTheme extends ThemeExtension<YgListTileTheme> {
   final Duration animationDuration;
   final double contentSpacing;
   final double iconSize;
-  final EdgeInsets outerPadding;
+  final EdgeInsets outerPaddingDense;
+  final EdgeInsets outerPaddingStandard;
   final double subtitleSubtitleIconSpacing;
   final TextStyle subtitleTextStyle;
   final double titleInfoSpacing;
@@ -38,7 +40,8 @@ class YgListTileTheme extends ThemeExtension<YgListTileTheme> {
     animationDuration: _$YgListTileTheme.animationDuration[0],
     contentSpacing: _$YgListTileTheme.contentSpacing[0],
     iconSize: _$YgListTileTheme.iconSize[0],
-    outerPadding: _$YgListTileTheme.outerPadding[0],
+    outerPaddingDense: _$YgListTileTheme.outerPaddingDense[0],
+    outerPaddingStandard: _$YgListTileTheme.outerPaddingStandard[0],
     subtitleSubtitleIconSpacing:
         _$YgListTileTheme.subtitleSubtitleIconSpacing[0],
     subtitleTextStyle: _$YgListTileTheme.subtitleTextStyle[0],
@@ -52,7 +55,8 @@ class YgListTileTheme extends ThemeExtension<YgListTileTheme> {
     animationDuration: _$YgListTileTheme.animationDuration[1],
     contentSpacing: _$YgListTileTheme.contentSpacing[1],
     iconSize: _$YgListTileTheme.iconSize[1],
-    outerPadding: _$YgListTileTheme.outerPadding[1],
+    outerPaddingDense: _$YgListTileTheme.outerPaddingDense[1],
+    outerPaddingStandard: _$YgListTileTheme.outerPaddingStandard[1],
     subtitleSubtitleIconSpacing:
         _$YgListTileTheme.subtitleSubtitleIconSpacing[1],
     subtitleTextStyle: _$YgListTileTheme.subtitleTextStyle[1],
@@ -66,7 +70,8 @@ class YgListTileTheme extends ThemeExtension<YgListTileTheme> {
     animationDuration: _$YgListTileTheme.animationDuration[2],
     contentSpacing: _$YgListTileTheme.contentSpacing[2],
     iconSize: _$YgListTileTheme.iconSize[2],
-    outerPadding: _$YgListTileTheme.outerPadding[2],
+    outerPaddingDense: _$YgListTileTheme.outerPaddingDense[2],
+    outerPaddingStandard: _$YgListTileTheme.outerPaddingStandard[2],
     subtitleSubtitleIconSpacing:
         _$YgListTileTheme.subtitleSubtitleIconSpacing[2],
     subtitleTextStyle: _$YgListTileTheme.subtitleTextStyle[2],
@@ -80,7 +85,8 @@ class YgListTileTheme extends ThemeExtension<YgListTileTheme> {
     animationDuration: _$YgListTileTheme.animationDuration[3],
     contentSpacing: _$YgListTileTheme.contentSpacing[3],
     iconSize: _$YgListTileTheme.iconSize[3],
-    outerPadding: _$YgListTileTheme.outerPadding[3],
+    outerPaddingDense: _$YgListTileTheme.outerPaddingDense[3],
+    outerPaddingStandard: _$YgListTileTheme.outerPaddingStandard[3],
     subtitleSubtitleIconSpacing:
         _$YgListTileTheme.subtitleSubtitleIconSpacing[3],
     subtitleTextStyle: _$YgListTileTheme.subtitleTextStyle[3],
@@ -102,7 +108,8 @@ class YgListTileTheme extends ThemeExtension<YgListTileTheme> {
     Duration? animationDuration,
     double? contentSpacing,
     double? iconSize,
-    EdgeInsets? outerPadding,
+    EdgeInsets? outerPaddingDense,
+    EdgeInsets? outerPaddingStandard,
     double? subtitleSubtitleIconSpacing,
     TextStyle? subtitleTextStyle,
     double? titleInfoSpacing,
@@ -114,7 +121,8 @@ class YgListTileTheme extends ThemeExtension<YgListTileTheme> {
       animationDuration: animationDuration ?? this.animationDuration,
       contentSpacing: contentSpacing ?? this.contentSpacing,
       iconSize: iconSize ?? this.iconSize,
-      outerPadding: outerPadding ?? this.outerPadding,
+      outerPaddingDense: outerPaddingDense ?? this.outerPaddingDense,
+      outerPaddingStandard: outerPaddingStandard ?? this.outerPaddingStandard,
       subtitleSubtitleIconSpacing:
           subtitleSubtitleIconSpacing ?? this.subtitleSubtitleIconSpacing,
       subtitleTextStyle: subtitleTextStyle ?? this.subtitleTextStyle,
@@ -133,7 +141,9 @@ class YgListTileTheme extends ThemeExtension<YgListTileTheme> {
       animationDuration: t < 0.5 ? animationDuration : other.animationDuration,
       contentSpacing: t < 0.5 ? contentSpacing : other.contentSpacing,
       iconSize: t < 0.5 ? iconSize : other.iconSize,
-      outerPadding: t < 0.5 ? outerPadding : other.outerPadding,
+      outerPaddingDense: t < 0.5 ? outerPaddingDense : other.outerPaddingDense,
+      outerPaddingStandard:
+          t < 0.5 ? outerPaddingStandard : other.outerPaddingStandard,
       subtitleSubtitleIconSpacing: t < 0.5
           ? subtitleSubtitleIconSpacing
           : other.subtitleSubtitleIconSpacing,
@@ -159,7 +169,9 @@ class YgListTileTheme extends ThemeExtension<YgListTileTheme> {
                 .equals(contentSpacing, other.contentSpacing) &&
             const DeepCollectionEquality().equals(iconSize, other.iconSize) &&
             const DeepCollectionEquality()
-                .equals(outerPadding, other.outerPadding) &&
+                .equals(outerPaddingDense, other.outerPaddingDense) &&
+            const DeepCollectionEquality()
+                .equals(outerPaddingStandard, other.outerPaddingStandard) &&
             const DeepCollectionEquality().equals(subtitleSubtitleIconSpacing,
                 other.subtitleSubtitleIconSpacing) &&
             const DeepCollectionEquality()
@@ -180,7 +192,8 @@ class YgListTileTheme extends ThemeExtension<YgListTileTheme> {
       const DeepCollectionEquality().hash(animationDuration),
       const DeepCollectionEquality().hash(contentSpacing),
       const DeepCollectionEquality().hash(iconSize),
-      const DeepCollectionEquality().hash(outerPadding),
+      const DeepCollectionEquality().hash(outerPaddingDense),
+      const DeepCollectionEquality().hash(outerPaddingStandard),
       const DeepCollectionEquality().hash(subtitleSubtitleIconSpacing),
       const DeepCollectionEquality().hash(subtitleTextStyle),
       const DeepCollectionEquality().hash(titleInfoSpacing),

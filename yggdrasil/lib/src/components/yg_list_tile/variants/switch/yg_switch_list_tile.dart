@@ -11,6 +11,7 @@ abstract base class YgSwitchListTile extends YgListTile implements YgToggleable 
     String? subtitle,
     Widget? subtitleIcon,
     Widget? trailingWidget,
+    YgListTileDensity density,
   }) = _YgSwitchListTileDualState;
 
   /// Supports a nullable value, i.e. "indeterminate".
@@ -23,17 +24,19 @@ abstract base class YgSwitchListTile extends YgListTile implements YgToggleable 
     String? subtitle,
     Widget? subtitleIcon,
     Widget? trailingWidget,
+    YgListTileDensity density,
   }) = _YgSwitchListTileTriState;
 
   const YgSwitchListTile._({
     super.key,
     required super.disabled,
-    super.title,
-    super.subtitle,
-    super.subtitleIcon,
-    this.leadingWidget,
-    this.trailingWidget,
-    this.value,
+    required super.title,
+    required super.subtitle,
+    required super.subtitleIcon,
+    required super.density,
+    required this.leadingWidget,
+    required this.trailingWidget,
+    required this.value,
   }) : super._();
 
   /// See [YgSwitch] documentation.
@@ -49,6 +52,8 @@ abstract base class YgSwitchListTile extends YgListTile implements YgToggleable 
   @override
   Widget build(BuildContext context) {
     return YgListTileBody(
+      builder: null,
+      density: density,
       title: title,
       subtitle: subtitle,
       subtitleIcon: subtitleIcon,

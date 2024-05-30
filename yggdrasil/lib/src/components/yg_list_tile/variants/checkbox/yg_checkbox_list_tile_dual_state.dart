@@ -9,6 +9,7 @@ final class _YgCheckboxListTileDualState extends YgCheckboxListTile with YgDualS
     super.leadingWidget,
     super.subtitle,
     super.subtitleIcon,
+    super.density = YgListTileDensity.standard,
   })  : assert(
           title != null || leadingWidget != null,
           'Can not have neither a title or leading widget.',
