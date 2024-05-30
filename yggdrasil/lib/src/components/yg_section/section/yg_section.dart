@@ -33,7 +33,7 @@ abstract class YgSection extends StatelessWidget with StatelessWidgetDebugMixin 
   /// list tiles are responsible for providing their own padding and should
   /// extend to the edges of the screen.
   const factory YgSection.list({
-    required List<YgListTile> children,
+    required List<Widget> children,
     String? subtitle,
     YgTag? tag,
     String? title,
