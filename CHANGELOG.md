@@ -1,3 +1,11 @@
+# 1.12.1 [2024-05-30T21:07:11.939613]
+
+### Changes
+
+- [change] Removed the requirement for a title when adding a subtitle DEV-3787.
+- [change] You can now use any widget in a YgSection.list DEV-3751.
+- [feature] Added condensed variant of YgListTile DEV-3786.
+
 # 1.12.0 [2024-05-28T12:11:10.550164]
 
 ### Changes
