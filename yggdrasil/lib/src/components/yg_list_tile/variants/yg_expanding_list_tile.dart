@@ -67,9 +67,6 @@ final class YgExpandingListTile extends YgListTile {
   Widget build(BuildContext context) {
     final YgListTileTheme theme = context.listTileTheme;
 
-    // This is slightly convoluted, the reason for this is that the expander has
-    // to be inside the list tile because the list tile manages the outer padding
-    // animation, while the list tile
     return YgExpanderDefaultController(
       controller: controller,
       initiallyExpanded: initiallyExpanded,

@@ -23,8 +23,8 @@ class YgListTileBodyStyle extends YgStyle<YgListTileBodyState> {
   YgListTileTheme get _theme => context.listTileTheme;
 
   @override
-  Curve get curve => Curves.easeInOut;
+  Curve get curve => context.defaults.animationCurve;
 
   @override
-  Duration get duration => const Duration(milliseconds: 200);
+  Duration get duration => context.defaults.animationDuration;
 }
