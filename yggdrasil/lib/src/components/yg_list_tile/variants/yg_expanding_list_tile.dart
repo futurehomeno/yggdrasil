@@ -87,7 +87,7 @@ final class YgExpandingListTile extends YgListTile {
             supporting: YgListTileHelpers.buildSupporting(theme, supportingWidgets),
             trailing: ListenableBuilder(
               listenable: controller,
-              builder: (BuildContext context, Widget? child) => AnimatedRotation(
+              builder: (BuildContext _, Widget? child) => AnimatedRotation(
                 turns: controller.expanded ? 0.5 : 0,
                 duration: theme.animationDuration,
                 curve: theme.animationCurve,
@@ -99,7 +99,7 @@ final class YgExpandingListTile extends YgListTile {
             ),
             builder: (BuildContext context, Widget body) {
               return YgExpander(
-                headerBuilder: (__, _) => body,
+                headerBuilder: (BuildContext _, YgExpansionController __) => body,
                 duration: theme.animationDuration,
                 curve: theme.animationCurve,
                 alignment: Alignment.bottomCenter,
