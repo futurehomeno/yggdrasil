@@ -12,7 +12,7 @@ abstract class YgSection extends StatelessWidget with StatelessWidgetDebugMixin 
   const factory YgSection({
     required Widget child,
     String? subtitle,
-    YgTag? tag,
+    Widget? trailing,
     String? title,
     YgColorableIconData? icon,
   }) = _YgSectionRegular;
@@ -21,7 +21,7 @@ abstract class YgSection extends StatelessWidget with StatelessWidgetDebugMixin 
   const factory YgSection.column({
     required List<Widget> children,
     String? subtitle,
-    YgTag? tag,
+    Widget? trailing,
     String? title,
     YgColorableIconData? icon,
     CrossAxisAlignment crossAxisAlignment,
@@ -35,7 +35,7 @@ abstract class YgSection extends StatelessWidget with StatelessWidgetDebugMixin 
   const factory YgSection.list({
     required List<Widget> children,
     String? subtitle,
-    YgTag? tag,
+    Widget? trailing,
     String? title,
     YgColorableIconData? icon,
   }) = _YgSectionList;
@@ -44,10 +44,10 @@ abstract class YgSection extends StatelessWidget with StatelessWidgetDebugMixin 
     super.key,
     this.title,
     this.subtitle,
-    this.tag,
+    this.trailing,
     this.icon,
   }) : assert(
-          title != null || (subtitle == null && tag == null && icon == null),
+          title != null || (subtitle == null && trailing == null && icon == null),
           'subtitle, tag or icon cannot be set without a title.',
         );
 
@@ -69,7 +69,7 @@ abstract class YgSection extends StatelessWidget with StatelessWidgetDebugMixin 
           title: title,
           subtitle: subtitle,
           icon: icon,
-          tag: tag,
+          tag: trailing,
           trailing: null,
         ),
         child,
@@ -85,10 +85,10 @@ abstract class YgSection extends StatelessWidget with StatelessWidgetDebugMixin 
   /// You cannot have a subtitle without a title.
   final String? subtitle;
 
-  /// The tag trailing the section.
+  /// The widget trailing the section.
   ///
-  /// You cannot have a tag without a title.
-  final YgTag? tag;
+  /// You cannot have a trailing widget without a title.
+  final Widget? trailing;
 
   /// The icon leading the section.
   ///

@@ -37,7 +37,7 @@ class ListExample extends StatelessWidget {
         ),
         YgExpandingSection.list(
           title: 'With title and tag',
-          tag: const YgTag(
+          trailing: const YgTag(
             variant: YgTagVariant.informative,
             size: YgTagSize.small,
             child: Text('Tag Basic'),
@@ -53,7 +53,7 @@ class ListExample extends StatelessWidget {
           title: 'With title, icon, tag and long subtitle',
           subtitle: 'Cupidatat ea voluptate exercitation irure ea occaecat pariatur elit minim non incididunt in.',
           icon: YgIcons.placeholder,
-          tag: const YgTag(
+          trailing: const YgTag(
             variant: YgTagVariant.informative,
             size: YgTagSize.small,
             child: Text('Tag Basic'),

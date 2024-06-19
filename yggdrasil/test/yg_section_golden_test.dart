@@ -43,7 +43,7 @@ void main() {
             child: YgSection(
               icon: options.icon,
               subtitle: options.subtitle,
-              tag: options.tag,
+              trailing: options.trailing,
               title: options.title,
               child: const Row(
                 children: childrenToTest,
@@ -57,7 +57,7 @@ void main() {
             child: YgSection.list(
               icon: options.icon,
               subtitle: options.subtitle,
-              tag: options.tag,
+              trailing: options.trailing,
               title: options.title,
               children: const <YgListTile>[YgListTile(title: 'YgListTile')],
             ),
@@ -69,7 +69,7 @@ void main() {
             child: YgSection.column(
               icon: options.icon,
               subtitle: options.subtitle,
-              tag: options.tag,
+              trailing: options.trailing,
               title: options.title,
               children: childrenToTest,
             ),
@@ -89,7 +89,7 @@ void main() {
                 initiallyExpanded: false,
                 icon: options.icon,
                 subtitle: options.subtitle,
-                tag: options.tag,
+                trailing: options.trailing,
                 title: title,
                 child: const Row(
                   children: childrenToTest,
@@ -104,7 +104,7 @@ void main() {
                 initiallyExpanded: false,
                 icon: options.icon,
                 subtitle: options.subtitle,
-                tag: options.tag,
+                trailing: options.trailing,
                 title: title,
                 children: const <YgListTile>[YgListTile(title: 'YgListTile')],
               ),
@@ -117,7 +117,7 @@ void main() {
                 initiallyExpanded: false,
                 icon: options.icon,
                 subtitle: options.subtitle,
-                tag: options.tag,
+                trailing: options.trailing,
                 title: title,
                 children: childrenToTest,
               ),
@@ -135,7 +135,7 @@ void main() {
                 initiallyExpanded: true,
                 icon: options.icon,
                 subtitle: options.subtitle,
-                tag: options.tag,
+                trailing: options.trailing,
                 title: title,
                 child: const Row(
                   children: childrenToTest,
@@ -150,7 +150,7 @@ void main() {
                 initiallyExpanded: true,
                 icon: options.icon,
                 subtitle: options.subtitle,
-                tag: options.tag,
+                trailing: options.trailing,
                 title: title,
                 children: const <YgListTile>[YgListTile(title: 'YgListTile')],
               ),
@@ -163,7 +163,7 @@ void main() {
                 initiallyExpanded: true,
                 icon: options.icon,
                 subtitle: options.subtitle,
-                tag: options.tag,
+                trailing: options.trailing,
                 title: title,
                 children: childrenToTest,
               ),
@@ -222,7 +222,7 @@ class SectionOptions {
     required this.name,
     this.title,
     this.subtitle,
-    this.tag,
+    this.trailing,
     this.icon,
   });
 
@@ -239,7 +239,7 @@ class SectionOptions {
         SectionOptions(
           name: 'with $prefix title and $prefix tag',
           title: string,
-          tag: YgTag(child: Text(string)),
+          trailing: YgTag(child: Text(string)),
         ),
         SectionOptions(
           name: 'with $prefix title and icon',
@@ -249,7 +249,7 @@ class SectionOptions {
         SectionOptions(
           name: 'with $prefix title, $prefix subtitle, $prefix tag and icon',
           title: string,
-          tag: YgTag(child: Text(string)),
+          trailing: YgTag(child: Text(string)),
           subtitle: string,
           icon: YgIcons.placeholder,
         ),
@@ -267,7 +267,7 @@ class SectionOptions {
   final String name;
   final String? title;
   final String? subtitle;
-  final YgTag? tag;
+  final YgTag? trailing;
   final YgColorableIconData? icon;
 }
 
