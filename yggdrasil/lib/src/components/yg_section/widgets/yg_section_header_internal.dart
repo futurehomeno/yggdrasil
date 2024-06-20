@@ -22,6 +22,8 @@ class YgSectionHeaderInternal extends StatelessWidget {
   /// The widget trailing the title and tag.
   final Widget? trailing;
 
+  // TODO(DEV-3018): Rework interface so this is no longer called tag. Probably
+  // should accept a list of widgets for trailing.
   /// The tag.
   final Widget? tag;
 
