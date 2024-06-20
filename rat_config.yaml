@@ -1,0 +1,7 @@
+default: yggdrasil
+changelog: CHANGELOG.md
+apps:
+  yggdrasil:
+    pubspec:
+      - yggdrasil/pubspec.yaml
+      - demo_app/pubspec.yaml
