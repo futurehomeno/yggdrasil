@@ -30,7 +30,7 @@ class SectionHeaderScreen extends StatelessWidget {
           ),
           YgSectionHeader(
             title: 'With title and tag',
-            tag: YgTag(
+            trailing: YgTag(
               variant: YgTagVariant.informative,
               size: YgTagSize.small,
               child: Text('Tag Basic'),
@@ -44,7 +44,7 @@ class SectionHeaderScreen extends StatelessWidget {
             title: 'With title, icon, tag and long subtitle',
             subtitle: 'Cupidatat ea voluptate exercitation irure ea occaecat pariatur elit minim non incididunt in.',
             icon: YgIcons.placeholder,
-            tag: YgTag(
+            trailing: YgTag(
               variant: YgTagVariant.informative,
               size: YgTagSize.small,
               child: Text('Tag Basic'),
