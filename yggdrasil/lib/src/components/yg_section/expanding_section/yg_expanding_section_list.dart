@@ -8,7 +8,7 @@ class _YgExpandingSectionList extends YgExpandingSection {
     super.initiallyExpanded,
     super.onExpandedChanged,
     super.subtitle,
-    super.tag,
+    super.trailing,
     super.key,
     super.icon,
   }) : super._();
