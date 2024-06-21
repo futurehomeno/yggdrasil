@@ -1,3 +1,9 @@
+# 1.12.3 [2024-06-21T11:18:51.266582]
+
+### Changes
+
+- [fix] YgSectionHeader.tag was not renamed to YgSectionHeader.interal DEV-3850.
+
 # 1.12.2 [2024-06-20T12:05:07.267316]
 
 ## Breaking changes
