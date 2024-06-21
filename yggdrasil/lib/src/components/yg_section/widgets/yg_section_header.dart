@@ -7,7 +7,7 @@ class YgSectionHeader extends YgSectionHeaderInternal with StatelessWidgetDebugM
     super.key,
     required super.title,
     super.subtitle,
-    super.tag,
+    super.trailing,
     super.icon,
   });
 }

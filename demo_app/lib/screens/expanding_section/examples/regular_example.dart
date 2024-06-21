@@ -19,12 +19,8 @@ class RegularExample extends StatelessWidget {
           child: DemoPlaceholder(),
         ),
         YgExpandingSection(
-          title: 'With title and tag',
-          trailing: YgTag(
-            variant: YgTagVariant.informative,
-            size: YgTagSize.small,
-            child: Text('Tag Basic'),
-          ),
+          title: 'With title and trailing widget',
+          trailing: DemoPlaceholder(height: 25),
           child: DemoPlaceholder(),
         ),
         YgExpandingSection(
@@ -33,14 +29,10 @@ class RegularExample extends StatelessWidget {
           child: DemoPlaceholder(),
         ),
         YgExpandingSection(
-          title: 'With title, icon, tag and long subtitle',
+          title: 'With title, icon, trailing widget and long subtitle',
           subtitle: 'Cupidatat ea voluptate exercitation irure ea occaecat pariatur elit minim non incididunt in.',
           icon: YgIcons.placeholder,
-          trailing: YgTag(
-            variant: YgTagVariant.informative,
-            size: YgTagSize.small,
-            child: Text('Tag Basic but with some more stuff in it'),
-          ),
+          trailing: DemoPlaceholder(height: 25),
           child: DemoPlaceholder(),
         ),
       ],

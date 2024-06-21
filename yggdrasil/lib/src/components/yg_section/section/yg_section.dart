@@ -48,7 +48,7 @@ abstract class YgSection extends StatelessWidget with StatelessWidgetDebugMixin 
     this.icon,
   }) : assert(
           title != null || (subtitle == null && trailing == null && icon == null),
-          'subtitle, tag or icon cannot be set without a title.',
+          'subtitle, trailing or icon cannot be set without a title.',
         );
 
   @override
@@ -69,8 +69,8 @@ abstract class YgSection extends StatelessWidget with StatelessWidgetDebugMixin 
           title: title,
           subtitle: subtitle,
           icon: icon,
-          tag: trailing,
-          trailing: null,
+          trailing: trailing,
+          trailingInternal: null,
         ),
         child,
       ],

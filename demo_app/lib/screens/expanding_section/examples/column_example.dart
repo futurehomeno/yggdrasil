@@ -27,12 +27,8 @@ class ColumnExample extends StatelessWidget {
           children: children,
         ),
         YgExpandingSection.column(
-          title: 'With title and tag',
-          trailing: YgTag(
-            variant: YgTagVariant.informative,
-            size: YgTagSize.small,
-            child: Text('Tag Basic'),
-          ),
+          title: 'With title and trailing widget',
+          trailing: DemoPlaceholder(height: 25),
           children: children,
         ),
         YgExpandingSection.column(
@@ -41,14 +37,10 @@ class ColumnExample extends StatelessWidget {
           children: children,
         ),
         YgExpandingSection.column(
-          title: 'With title, icon, tag and long subtitle',
+          title: 'With title, icon, trailing widget and long subtitle',
           subtitle: 'Cupidatat ea voluptate exercitation irure ea occaecat pariatur elit minim non incididunt in.',
           icon: YgIcons.placeholder,
-          trailing: YgTag(
-            variant: YgTagVariant.informative,
-            size: YgTagSize.small,
-            child: Text('Tag Basic'),
-          ),
+          trailing: DemoPlaceholder(height: 25),
           children: children,
         ),
       ],

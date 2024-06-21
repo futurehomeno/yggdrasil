@@ -11,7 +11,7 @@ part of 'section_header_theme.dart';
 class YgSectionHeaderTheme extends ThemeExtension<YgSectionHeaderTheme> {
   const YgSectionHeaderTheme({
     required this.iconPadding,
-    required this.minAvailableTagWidth,
+    required this.minAvailableTrailingWidth,
     required this.padding,
     required this.subtitlePadding,
     required this.subtitleTextStyle,
@@ -20,7 +20,7 @@ class YgSectionHeaderTheme extends ThemeExtension<YgSectionHeaderTheme> {
   });
 
   final EdgeInsets iconPadding;
-  final double minAvailableTagWidth;
+  final double minAvailableTrailingWidth;
   final EdgeInsets padding;
   final EdgeInsets subtitlePadding;
   final TextStyle subtitleTextStyle;
@@ -29,7 +29,7 @@ class YgSectionHeaderTheme extends ThemeExtension<YgSectionHeaderTheme> {
 
   static final YgSectionHeaderTheme consumerLight = YgSectionHeaderTheme(
     iconPadding: _$YgSectionHeaderTheme.iconPadding[0],
-    minAvailableTagWidth: _$YgSectionHeaderTheme.minAvailableTagWidth[0],
+    minAvailableTrailingWidth: _$YgSectionHeaderTheme.minAvailableTrailingWidth[0],
     padding: _$YgSectionHeaderTheme.padding[0],
     subtitlePadding: _$YgSectionHeaderTheme.subtitlePadding[0],
     subtitleTextStyle: _$YgSectionHeaderTheme.subtitleTextStyle[0],
@@ -39,7 +39,7 @@ class YgSectionHeaderTheme extends ThemeExtension<YgSectionHeaderTheme> {
 
   static final YgSectionHeaderTheme consumerDark = YgSectionHeaderTheme(
     iconPadding: _$YgSectionHeaderTheme.iconPadding[1],
-    minAvailableTagWidth: _$YgSectionHeaderTheme.minAvailableTagWidth[1],
+    minAvailableTrailingWidth: _$YgSectionHeaderTheme.minAvailableTrailingWidth[1],
     padding: _$YgSectionHeaderTheme.padding[1],
     subtitlePadding: _$YgSectionHeaderTheme.subtitlePadding[1],
     subtitleTextStyle: _$YgSectionHeaderTheme.subtitleTextStyle[1],
@@ -49,7 +49,7 @@ class YgSectionHeaderTheme extends ThemeExtension<YgSectionHeaderTheme> {
 
   static final YgSectionHeaderTheme professionalLight = YgSectionHeaderTheme(
     iconPadding: _$YgSectionHeaderTheme.iconPadding[2],
-    minAvailableTagWidth: _$YgSectionHeaderTheme.minAvailableTagWidth[2],
+    minAvailableTrailingWidth: _$YgSectionHeaderTheme.minAvailableTrailingWidth[2],
     padding: _$YgSectionHeaderTheme.padding[2],
     subtitlePadding: _$YgSectionHeaderTheme.subtitlePadding[2],
     subtitleTextStyle: _$YgSectionHeaderTheme.subtitleTextStyle[2],
@@ -59,7 +59,7 @@ class YgSectionHeaderTheme extends ThemeExtension<YgSectionHeaderTheme> {
 
   static final YgSectionHeaderTheme professionalDark = YgSectionHeaderTheme(
     iconPadding: _$YgSectionHeaderTheme.iconPadding[3],
-    minAvailableTagWidth: _$YgSectionHeaderTheme.minAvailableTagWidth[3],
+    minAvailableTrailingWidth: _$YgSectionHeaderTheme.minAvailableTrailingWidth[3],
     padding: _$YgSectionHeaderTheme.padding[3],
     subtitlePadding: _$YgSectionHeaderTheme.subtitlePadding[3],
     subtitleTextStyle: _$YgSectionHeaderTheme.subtitleTextStyle[3],
@@ -77,7 +77,7 @@ class YgSectionHeaderTheme extends ThemeExtension<YgSectionHeaderTheme> {
   @override
   YgSectionHeaderTheme copyWith({
     EdgeInsets? iconPadding,
-    double? minAvailableTagWidth,
+    double? minAvailableTrailingWidth,
     EdgeInsets? padding,
     EdgeInsets? subtitlePadding,
     TextStyle? subtitleTextStyle,
@@ -86,7 +86,7 @@ class YgSectionHeaderTheme extends ThemeExtension<YgSectionHeaderTheme> {
   }) {
     return YgSectionHeaderTheme(
       iconPadding: iconPadding ?? this.iconPadding,
-      minAvailableTagWidth: minAvailableTagWidth ?? this.minAvailableTagWidth,
+      minAvailableTrailingWidth: minAvailableTrailingWidth ?? this.minAvailableTrailingWidth,
       padding: padding ?? this.padding,
       subtitlePadding: subtitlePadding ?? this.subtitlePadding,
       subtitleTextStyle: subtitleTextStyle ?? this.subtitleTextStyle,
@@ -96,17 +96,14 @@ class YgSectionHeaderTheme extends ThemeExtension<YgSectionHeaderTheme> {
   }
 
   @override
-  YgSectionHeaderTheme lerp(
-      covariant ThemeExtension<YgSectionHeaderTheme>? other, double t) {
+  YgSectionHeaderTheme lerp(covariant ThemeExtension<YgSectionHeaderTheme>? other, double t) {
     if (other is! YgSectionHeaderTheme) return this as YgSectionHeaderTheme;
     return YgSectionHeaderTheme(
       iconPadding: t < 0.5 ? iconPadding : other.iconPadding,
-      minAvailableTagWidth:
-          t < 0.5 ? minAvailableTagWidth : other.minAvailableTagWidth,
+      minAvailableTrailingWidth: t < 0.5 ? minAvailableTrailingWidth : other.minAvailableTrailingWidth,
       padding: t < 0.5 ? padding : other.padding,
       subtitlePadding: t < 0.5 ? subtitlePadding : other.subtitlePadding,
-      subtitleTextStyle:
-          TextStyle.lerp(subtitleTextStyle, other.subtitleTextStyle, t)!,
+      subtitleTextStyle: TextStyle.lerp(subtitleTextStyle, other.subtitleTextStyle, t)!,
       titleTextStyle: TextStyle.lerp(titleTextStyle, other.titleTextStyle, t)!,
       trailingSpacing: t < 0.5 ? trailingSpacing : other.trailingSpacing,
     );
@@ -117,19 +114,13 @@ class YgSectionHeaderTheme extends ThemeExtension<YgSectionHeaderTheme> {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is YgSectionHeaderTheme &&
-            const DeepCollectionEquality()
-                .equals(iconPadding, other.iconPadding) &&
-            const DeepCollectionEquality()
-                .equals(minAvailableTagWidth, other.minAvailableTagWidth) &&
+            const DeepCollectionEquality().equals(iconPadding, other.iconPadding) &&
+            const DeepCollectionEquality().equals(minAvailableTrailingWidth, other.minAvailableTrailingWidth) &&
             const DeepCollectionEquality().equals(padding, other.padding) &&
-            const DeepCollectionEquality()
-                .equals(subtitlePadding, other.subtitlePadding) &&
-            const DeepCollectionEquality()
-                .equals(subtitleTextStyle, other.subtitleTextStyle) &&
-            const DeepCollectionEquality()
-                .equals(titleTextStyle, other.titleTextStyle) &&
-            const DeepCollectionEquality()
-                .equals(trailingSpacing, other.trailingSpacing));
+            const DeepCollectionEquality().equals(subtitlePadding, other.subtitlePadding) &&
+            const DeepCollectionEquality().equals(subtitleTextStyle, other.subtitleTextStyle) &&
+            const DeepCollectionEquality().equals(titleTextStyle, other.titleTextStyle) &&
+            const DeepCollectionEquality().equals(trailingSpacing, other.trailingSpacing));
   }
 
   @override
@@ -137,7 +128,7 @@ class YgSectionHeaderTheme extends ThemeExtension<YgSectionHeaderTheme> {
     return Object.hash(
       runtimeType.hashCode,
       const DeepCollectionEquality().hash(iconPadding),
-      const DeepCollectionEquality().hash(minAvailableTagWidth),
+      const DeepCollectionEquality().hash(minAvailableTrailingWidth),
       const DeepCollectionEquality().hash(padding),
       const DeepCollectionEquality().hash(subtitlePadding),
       const DeepCollectionEquality().hash(subtitleTextStyle),
