@@ -28,6 +28,7 @@ class YgTheme extends ThemeExtension<YgTheme> {
     required this.iconTheme,
     required this.internalTheme,
     required this.listTileTheme,
+    required this.miniBarGraphTheme,
     required this.mobileScannerContainerTheme,
     required this.pickerTheme,
     required this.progressIndicatorTheme,
@@ -66,6 +67,7 @@ class YgTheme extends ThemeExtension<YgTheme> {
   final YgIconTheme iconTheme;
   final YgInternalTheme internalTheme;
   final YgListTileTheme listTileTheme;
+  final YgMiniBarGraphTheme miniBarGraphTheme;
   final YgMobileScannerContainerTheme mobileScannerContainerTheme;
   final YgPickerTheme pickerTheme;
   final YgProgressIndicatorTheme progressIndicatorTheme;
@@ -104,6 +106,7 @@ class YgTheme extends ThemeExtension<YgTheme> {
     iconTheme: _$YgTheme.iconTheme[0],
     internalTheme: _$YgTheme.internalTheme[0],
     listTileTheme: _$YgTheme.listTileTheme[0],
+    miniBarGraphTheme: _$YgTheme.miniBarGraphTheme[0],
     mobileScannerContainerTheme: _$YgTheme.mobileScannerContainerTheme[0],
     pickerTheme: _$YgTheme.pickerTheme[0],
     progressIndicatorTheme: _$YgTheme.progressIndicatorTheme[0],
@@ -143,6 +146,7 @@ class YgTheme extends ThemeExtension<YgTheme> {
     iconTheme: _$YgTheme.iconTheme[1],
     internalTheme: _$YgTheme.internalTheme[1],
     listTileTheme: _$YgTheme.listTileTheme[1],
+    miniBarGraphTheme: _$YgTheme.miniBarGraphTheme[1],
     mobileScannerContainerTheme: _$YgTheme.mobileScannerContainerTheme[1],
     pickerTheme: _$YgTheme.pickerTheme[1],
     progressIndicatorTheme: _$YgTheme.progressIndicatorTheme[1],
@@ -182,6 +186,7 @@ class YgTheme extends ThemeExtension<YgTheme> {
     iconTheme: _$YgTheme.iconTheme[2],
     internalTheme: _$YgTheme.internalTheme[2],
     listTileTheme: _$YgTheme.listTileTheme[2],
+    miniBarGraphTheme: _$YgTheme.miniBarGraphTheme[2],
     mobileScannerContainerTheme: _$YgTheme.mobileScannerContainerTheme[2],
     pickerTheme: _$YgTheme.pickerTheme[2],
     progressIndicatorTheme: _$YgTheme.progressIndicatorTheme[2],
@@ -221,6 +226,7 @@ class YgTheme extends ThemeExtension<YgTheme> {
     iconTheme: _$YgTheme.iconTheme[3],
     internalTheme: _$YgTheme.internalTheme[3],
     listTileTheme: _$YgTheme.listTileTheme[3],
+    miniBarGraphTheme: _$YgTheme.miniBarGraphTheme[3],
     mobileScannerContainerTheme: _$YgTheme.mobileScannerContainerTheme[3],
     pickerTheme: _$YgTheme.pickerTheme[3],
     progressIndicatorTheme: _$YgTheme.progressIndicatorTheme[3],
@@ -268,6 +274,7 @@ class YgTheme extends ThemeExtension<YgTheme> {
     YgIconTheme? iconTheme,
     YgInternalTheme? internalTheme,
     YgListTileTheme? listTileTheme,
+    YgMiniBarGraphTheme? miniBarGraphTheme,
     YgMobileScannerContainerTheme? mobileScannerContainerTheme,
     YgPickerTheme? pickerTheme,
     YgProgressIndicatorTheme? progressIndicatorTheme,
@@ -306,6 +313,7 @@ class YgTheme extends ThemeExtension<YgTheme> {
       iconTheme: iconTheme ?? this.iconTheme,
       internalTheme: internalTheme ?? this.internalTheme,
       listTileTheme: listTileTheme ?? this.listTileTheme,
+      miniBarGraphTheme: miniBarGraphTheme ?? this.miniBarGraphTheme,
       mobileScannerContainerTheme:
           mobileScannerContainerTheme ?? this.mobileScannerContainerTheme,
       pickerTheme: pickerTheme ?? this.pickerTheme,
@@ -357,6 +365,8 @@ class YgTheme extends ThemeExtension<YgTheme> {
           internalTheme.lerp(other.internalTheme, t) as YgInternalTheme,
       listTileTheme:
           listTileTheme.lerp(other.listTileTheme, t) as YgListTileTheme,
+      miniBarGraphTheme: miniBarGraphTheme.lerp(other.miniBarGraphTheme, t)
+          as YgMiniBarGraphTheme,
       mobileScannerContainerTheme:
           mobileScannerContainerTheme.lerp(other.mobileScannerContainerTheme, t)
               as YgMobileScannerContainerTheme,
@@ -425,6 +435,8 @@ class YgTheme extends ThemeExtension<YgTheme> {
                 .equals(internalTheme, other.internalTheme) &&
             const DeepCollectionEquality()
                 .equals(listTileTheme, other.listTileTheme) &&
+            const DeepCollectionEquality()
+                .equals(miniBarGraphTheme, other.miniBarGraphTheme) &&
             const DeepCollectionEquality().equals(mobileScannerContainerTheme,
                 other.mobileScannerContainerTheme) &&
             const DeepCollectionEquality()
@@ -482,6 +494,7 @@ class YgTheme extends ThemeExtension<YgTheme> {
       const DeepCollectionEquality().hash(iconTheme),
       const DeepCollectionEquality().hash(internalTheme),
       const DeepCollectionEquality().hash(listTileTheme),
+      const DeepCollectionEquality().hash(miniBarGraphTheme),
       const DeepCollectionEquality().hash(mobileScannerContainerTheme),
       const DeepCollectionEquality().hash(pickerTheme),
       const DeepCollectionEquality().hash(progressIndicatorTheme),
@@ -524,6 +537,7 @@ extension YgThemeBuildContextProps on BuildContext {
   YgIconTheme get iconTheme => ygTheme.iconTheme;
   YgInternalTheme get internalTheme => ygTheme.internalTheme;
   YgListTileTheme get listTileTheme => ygTheme.listTileTheme;
+  YgMiniBarGraphTheme get miniBarGraphTheme => ygTheme.miniBarGraphTheme;
   YgMobileScannerContainerTheme get mobileScannerContainerTheme =>
       ygTheme.mobileScannerContainerTheme;
   YgPickerTheme get pickerTheme => ygTheme.pickerTheme;
