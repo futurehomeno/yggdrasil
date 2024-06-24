@@ -10,7 +10,7 @@ import 'package:yggdrasil/yggdrasil.dart';
 import 'yg_mini_bar_graph_render_widget.dart';
 
 /// The implementation of the spot price bar graph.
-class YgMiniBarGraph extends StatelessWidget {
+class YgMiniBarGraph extends StatelessWidget with StatelessWidgetDebugMixin {
   const YgMiniBarGraph({
     super.key,
     required this.bars,

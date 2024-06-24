@@ -38,23 +38,23 @@ class MiniBarGraphScreen extends StatelessWidget {
         mainAxisSize: MainAxisSize.min,
         children: <Widget>[
           YgSection(
-            title: 'Without YgCard',
+            title: 'Default YgMiniBarGraph',
             child: _buildDefaultBarGraph(bars: _generateGraphData(48, 87692)),
           ),
           YgSection(
-            title: 'Without Data',
+            title: 'YgMiniBarGraph without Data',
             child: _buildDefaultBarGraph(
               bars: null,
             ),
           ),
           YgSection(
-            title: 'Without Variants',
+            title: 'YgMiniBarGraph without Variants',
             child: _buildDefaultBarGraph(
               bars: _generateGraphData(48, 87692, false),
             ),
           ),
           YgSection(
-            title: 'Default bar graph',
+            title: 'YgMiniBarGraph in a large card',
             child: Row(
               children: [
                 GraphCard(
@@ -67,7 +67,7 @@ class MiniBarGraphScreen extends StatelessWidget {
             ),
           ),
           YgSection(
-            title: 'Default bar graph',
+            title: 'YgMiniBarGraph in a medium card',
             child: Row(
               children: [
                 GraphCard(
@@ -83,7 +83,7 @@ class MiniBarGraphScreen extends StatelessWidget {
             ),
           ),
           YgSection(
-            title: 'Default bar graph',
+            title: 'YgMiniBarGraph in a small card',
             child: Row(
               children: [
                 GraphCard(
