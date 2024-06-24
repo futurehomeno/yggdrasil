@@ -82,16 +82,9 @@ class YgMiniBarGraph extends StatelessWidget with StatelessWidgetDebugMixin {
           Flexible(
             child: LayoutBuilder(
               builder: (BuildContext context, BoxConstraints constraints) {
-                final double height;
-                if (constraints.hasBoundedHeight) {
-                  height = constraints.maxHeight;
-                } else {
-                  height = constraints.constrainHeight(theme.minGraphHeight);
-                }
-
                 return SizedBox(
                   width: constraints.maxWidth,
-                  height: height,
+                  height: constraints.hasBoundedHeight ? constraints.maxHeight : theme.minGraphHeight,
                   child: CustomPaint(
                     painter: YgMiniBarGraphPainter(
                       bars: bars,
