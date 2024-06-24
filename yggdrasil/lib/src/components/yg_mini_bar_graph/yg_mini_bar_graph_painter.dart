@@ -2,102 +2,23 @@ import 'dart:math';
 
 import 'package:flutter/material.dart';
 import 'package:path_drawing/path_drawing.dart';
-import 'package:yggdrasil/src/components/yg_mini_bar_graph/enums/_enums.dart';
-import 'package:yggdrasil/src/components/yg_mini_bar_graph/models/_models.dart';
-import 'package:yggdrasil/src/theme/_theme.dart';
+import 'package:yggdrasil/src/theme/mini_bar_graph/mini_bar_graph_theme.dart';
+import 'package:yggdrasil/yggdrasil.dart';
 
-class YgMiniBarGraphRenderWidget extends LeafRenderObjectWidget {
-  const YgMiniBarGraphRenderWidget({
-    super.key,
-    required this.values,
+class YgMiniBarGraphPainter extends CustomPainter {
+  const YgMiniBarGraphPainter({
+    required this.bars,
     required this.minBarCount,
     required this.currentBarIndex,
     required this.leadingBars,
+    required this.theme,
   });
 
-  final List<YgBarGraphBar>? values;
+  final List<YgBarGraphBar>? bars;
   final int minBarCount;
   final int currentBarIndex;
   final int leadingBars;
-
-  @override
-  RenderObject createRenderObject(BuildContext context) {
-    return YgMiniBarGraphRenderer(
-      values: values,
-      minBarCount: minBarCount,
-      currentBarIndex: currentBarIndex,
-      leadingBars: leadingBars,
-      theme: context.miniBarGraphTheme,
-    );
-  }
-
-  @override
-  void updateRenderObject(BuildContext context, covariant YgMiniBarGraphRenderer renderObject) {
-    renderObject.bars = values;
-    renderObject.minBarCount = minBarCount;
-    renderObject.currentBarIndex = currentBarIndex;
-    renderObject.leadingBars = leadingBars;
-    renderObject.theme = context.miniBarGraphTheme;
-  }
-}
-
-class YgMiniBarGraphRenderer extends RenderBox {
-  YgMiniBarGraphRenderer({
-    required List<YgBarGraphBar>? values,
-    required int minBarCount,
-    required int currentBarIndex,
-    required int leadingBars,
-    required YgMiniBarGraphTheme theme,
-  })  : _bars = values,
-        _minBarCount = minBarCount,
-        _theme = theme,
-        _currentBarIndex = currentBarIndex,
-        _leadingBars = leadingBars;
-
-  List<YgBarGraphBar>? _bars;
-  List<YgBarGraphBar>? get bars => _bars;
-  set bars(List<YgBarGraphBar>? newValue) {
-    if (newValue != _bars) {
-      _bars = newValue;
-      markNeedsPaint();
-    }
-  }
-
-  int _minBarCount;
-  int get minBarCount => _minBarCount;
-  set minBarCount(int newValue) {
-    if (newValue != _minBarCount) {
-      _minBarCount = newValue;
-      markNeedsPaint();
-    }
-  }
-
-  int _currentBarIndex;
-  int get currentBarIndex => _currentBarIndex;
-  set currentBarIndex(int newValue) {
-    if (newValue != _currentBarIndex) {
-      _currentBarIndex = newValue;
-      markNeedsPaint();
-    }
-  }
-
-  int _leadingBars;
-  int get leadingBars => _leadingBars;
-  set leadingBars(int newValue) {
-    if (newValue != _leadingBars) {
-      _leadingBars = newValue;
-      markNeedsPaint();
-    }
-  }
-
-  YgMiniBarGraphTheme _theme;
-  YgMiniBarGraphTheme get theme => _theme;
-  set theme(YgMiniBarGraphTheme newValue) {
-    if (newValue != _theme) {
-      _theme = newValue;
-      markNeedsPaint();
-    }
-  }
+  final YgMiniBarGraphTheme theme;
 
   static final Paint _borderPaint = Paint()
     ..style = PaintingStyle.stroke
@@ -107,23 +28,10 @@ class YgMiniBarGraphRenderer extends RenderBox {
   static final Paint _barPaint = Paint();
 
   @override
-  void performLayout() {
-    if (constraints.hasBoundedHeight) {
-      size = constraints.biggest;
-    } else {
-      size = Size(
-        constraints.maxWidth,
-        constraints.constrainHeight(40),
-      );
-    }
-  }
-
-  @override
-  void paint(PaintingContext context, Offset offset) {
-    final Canvas canvas = context.canvas;
+  void paint(Canvas canvas, Size size) {
     final double targetBarWidth = theme.barWidth;
     final double maxBarSpacing = theme.maxBarSpacing;
-    final List<YgBarGraphBar>? bars = _bars;
+    final List<YgBarGraphBar>? bars = this.bars;
 
     final int targetBarCount = ((size.width - targetBarWidth) / (targetBarWidth + maxBarSpacing)).ceil() + 1;
     final int actualBarCount = max(minBarCount, targetBarCount);
@@ -132,7 +40,7 @@ class YgMiniBarGraphRenderer extends RenderBox {
     final double actualBarSpacing = (size.width - totalBarWidth) / (actualBarCount - 1);
     final double barOffsetInterval = actualBarWidth + actualBarSpacing;
     final double maxBarHeight = size.height - 7;
-    final int barIndexOffset = _currentBarIndex - leadingBars;
+    final int barIndexOffset = currentBarIndex - leadingBars;
 
     double maxValue = 0.0;
     if (bars != null) {
@@ -185,12 +93,12 @@ class YgMiniBarGraphRenderer extends RenderBox {
       final double barXOffset = barOffsetInterval * i;
 
       final Rect rect = Rect.fromLTWH(
-        barXOffset + offset.dx,
-        (maxBarHeight - barHeight) + offset.dy,
+        barXOffset,
+        (maxBarHeight - barHeight),
         actualBarWidth,
         barHeight,
       );
-      final RRect rrect = _theme.barBorderRadius.toRRect(rect);
+      final RRect rrect = theme.barBorderRadius.toRRect(rect);
 
       _barPaint.color = color;
       canvas.drawRRect(rrect, _barPaint);
@@ -207,7 +115,7 @@ class YgMiniBarGraphRenderer extends RenderBox {
       }
 
       if (bars != null && leadingBars == i) {
-        final Offset arrowOffset = Offset(barXOffset, size.height - 4) + offset;
+        final Offset arrowOffset = Offset(barXOffset, size.height - 4);
         final Path arrowPath = _getArrowPath(actualBarWidth, 4, 1).shift(arrowOffset);
 
         canvas.drawPath(arrowPath, _barPaint);
@@ -263,5 +171,14 @@ class YgMiniBarGraphRenderer extends RenderBox {
     );
 
     return path;
+  }
+
+  @override
+  bool shouldRepaint(covariant YgMiniBarGraphPainter oldDelegate) {
+    return oldDelegate.bars != bars ||
+        oldDelegate.minBarCount != minBarCount ||
+        oldDelegate.currentBarIndex != currentBarIndex ||
+        oldDelegate.leadingBars != leadingBars ||
+        oldDelegate.theme != theme;
   }
 }

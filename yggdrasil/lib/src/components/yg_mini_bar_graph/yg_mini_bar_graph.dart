@@ -3,11 +3,9 @@
 import 'dart:math';
 
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
+import 'package:yggdrasil/src/components/yg_mini_bar_graph/yg_mini_bar_graph_painter.dart';
 import 'package:yggdrasil/src/theme/_theme.dart';
 import 'package:yggdrasil/yggdrasil.dart';
-
-import 'yg_mini_bar_graph_render_widget.dart';
 
 /// The implementation of the spot price bar graph.
 class YgMiniBarGraph extends StatelessWidget with StatelessWidgetDebugMixin {
@@ -82,11 +80,29 @@ class YgMiniBarGraph extends StatelessWidget with StatelessWidgetDebugMixin {
             height: theme.valueTextBarGraphSpacing,
           ),
           Flexible(
-            child: YgMiniBarGraphRenderWidget(
-              values: bars,
-              minBarCount: 9,
-              currentBarIndex: 3,
-              leadingBars: 2,
+            child: LayoutBuilder(
+              builder: (BuildContext context, BoxConstraints constraints) {
+                final double height;
+                if (constraints.hasBoundedHeight) {
+                  height = constraints.maxHeight;
+                } else {
+                  height = constraints.constrainHeight(theme.minGraphHeight);
+                }
+
+                return SizedBox(
+                  width: constraints.maxWidth,
+                  height: height,
+                  child: CustomPaint(
+                    painter: YgMiniBarGraphPainter(
+                      bars: bars,
+                      minBarCount: minBarCount,
+                      currentBarIndex: currentBarIndex,
+                      leadingBars: leadingBars,
+                      theme: theme,
+                    ),
+                  ),
+                );
+              },
             ),
           ),
         ],
