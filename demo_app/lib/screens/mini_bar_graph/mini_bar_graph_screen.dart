@@ -109,7 +109,7 @@ class MiniBarGraphScreen extends StatelessWidget {
   _buildDefaultBarGraph({
     List<YgBarGraphBar>? bars = _defaultBars,
     int minBarCount = 9,
-    int currentBarIndex = 3,
+    int currentBarIndex = 2,
     int leadingBars = 2,
   }) {
     return YgMiniBarGraph(
@@ -159,13 +159,7 @@ class GraphCard extends StatelessWidget {
           aspectRatio: 1,
           child: Padding(
             padding: EdgeInsets.all(10.0),
-            child: Column(
-              children: [
-                Expanded(
-                  child: child,
-                ),
-              ],
-            ),
+            child: child,
           ),
         ),
       ),

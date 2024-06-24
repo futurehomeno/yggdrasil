@@ -31,6 +31,7 @@ class YgMiniBarGraphPainter extends CustomPainter {
   void paint(Canvas canvas, Size size) {
     final double targetBarWidth = theme.barWidth;
     final double maxBarSpacing = theme.maxBarSpacing;
+    final double indicatorHeight = theme.indicatorSize;
     final List<YgBarGraphBar>? bars = this.bars;
 
     final int targetBarCount = ((size.width - targetBarWidth) / (targetBarWidth + maxBarSpacing)).ceil() + 1;
@@ -38,14 +39,14 @@ class YgMiniBarGraphPainter extends CustomPainter {
     final double totalBarWidth = min(size.width, actualBarCount * targetBarWidth);
     final double actualBarWidth = totalBarWidth / actualBarCount;
     final double actualBarSpacing = (size.width - totalBarWidth) / (actualBarCount - 1);
-    final double barOffsetInterval = actualBarWidth + actualBarSpacing;
-    final double maxBarHeight = size.height - 7;
+    final double barIntervalOffset = actualBarWidth + actualBarSpacing;
+    final double maxBarHeight = size.height - theme.barIndicatorSpacing - indicatorHeight;
     final int barIndexOffset = currentBarIndex - leadingBars;
 
     double maxValue = 0.0;
     if (bars != null) {
       final int start = max(barIndexOffset, 0);
-      final num end = start + min(start + actualBarCount, bars.length - start);
+      final num end = start + min(barIndexOffset + actualBarCount, bars.length - 1);
       for (int i = start; i < end; i++) {
         final YgBarGraphBar value = bars[i];
 
@@ -90,7 +91,7 @@ class YgMiniBarGraphPainter extends CustomPainter {
       }
 
       final double barHeight = max(1, maxBarHeight * percentage);
-      final double barXOffset = barOffsetInterval * i;
+      final double barXOffset = barIntervalOffset * i;
 
       final Rect rect = Rect.fromLTWH(
         barXOffset,
@@ -115,15 +116,15 @@ class YgMiniBarGraphPainter extends CustomPainter {
       }
 
       if (bars != null && leadingBars == i) {
-        final Offset arrowOffset = Offset(barXOffset, size.height - 4);
-        final Path arrowPath = _getArrowPath(actualBarWidth, 4, 1).shift(arrowOffset);
+        final Offset arrowOffset = Offset(barXOffset, size.height - indicatorHeight);
+        final Path arrowPath = _getArrowPath(actualBarWidth, indicatorHeight, 1).shift(arrowOffset);
 
         canvas.drawPath(arrowPath, _barPaint);
       }
     }
   }
 
-  /// Draws the indicator arrow.
+  /// Draws the indicator arrow to a path and returns it.
   Path _getArrowPath(double width, double height, double cornerRadius) {
     final Path path = Path();
     final double actualRadius = min(width, min(height, cornerRadius));
