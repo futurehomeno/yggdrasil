@@ -3,13 +3,15 @@ import 'package:yggdrasil/src/components/yg_section/widgets/_widgets.dart';
 import 'package:yggdrasil/src/theme/section/extensions/section_header_theme.dart';
 import 'package:yggdrasil/yggdrasil.dart';
 
+// TODO(DEV-3018): Rework interface so there are no longer 2 trailing widget,
+// but an array instead.
 class YgSectionHeaderInternal extends StatelessWidget {
   const YgSectionHeaderInternal({
     super.key,
     required this.title,
     this.subtitle,
+    this.trailingInternal,
     this.trailing,
-    this.tag,
     this.icon,
   });
 
@@ -19,11 +21,11 @@ class YgSectionHeaderInternal extends StatelessWidget {
   /// The subtitle of the section.
   final String? subtitle;
 
-  /// The widget trailing the title and tag.
-  final Widget? trailing;
+  /// The internal widget trailing the title and trailing widget.
+  final Widget? trailingInternal;
 
-  /// The tag.
-  final Widget? tag;
+  /// The trailing widget.
+  final Widget? trailing;
 
   /// The icon in front of the title and subtitle.
   final YgIconData? icon;
@@ -33,8 +35,8 @@ class YgSectionHeaderInternal extends StatelessWidget {
     final YgSectionHeaderTheme theme = context.sectionTheme.sectionHeader;
     final String? subtitle = this.subtitle;
     final YgIconData? icon = this.icon;
-    final Widget? tag = this.tag;
     final Widget? trailing = this.trailing;
+    final Widget? trailingInternal = this.trailingInternal;
 
     return Padding(
       padding: theme.padding,
@@ -56,9 +58,9 @@ class YgSectionHeaderInternal extends StatelessWidget {
                     title,
                     style: theme.titleTextStyle,
                   ),
-                  tag: tag,
                   trailing: trailing,
-                  minAvailableTagWidth: theme.minAvailableTagWidth,
+                  trailingInternal: trailingInternal,
+                  minAvailableTrailingWidth: theme.minAvailableTrailingWidth,
                   gap: theme.trailingSpacing,
                 ),
                 if (subtitle != null)

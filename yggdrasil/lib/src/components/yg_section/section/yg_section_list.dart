@@ -5,7 +5,7 @@ class _YgSectionList extends YgSection {
     required this.children,
     super.title,
     super.subtitle,
-    super.tag,
+    super.trailing,
     super.icon,
   }) : super._();
 

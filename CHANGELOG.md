@@ -1,3 +1,19 @@
+# 1.12.3 [2024-06-21T11:18:51.266582]
+
+### Changes
+
+- [fix] YgSectionHeader.tag was not renamed to YgSectionHeader.interal DEV-3850.
+
+# 1.12.2 [2024-06-20T12:05:07.267316]
+
+## Breaking changes
+
+- [breaking] Changed YgSection tag to traling which accepts any widget type DEV-3850.
+
+### Changes
+
+- [dev-feature] Added rat config.
+
 # 1.12.1 [2024-05-30T21:07:11.939613]
 
 ### Changes

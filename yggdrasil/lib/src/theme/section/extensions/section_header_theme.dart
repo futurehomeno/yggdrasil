@@ -96,7 +96,7 @@ class _$YgSectionHeaderTheme {
     professional_dark.FhDimensions.xs,
   ];
 
-  static const List<double> minAvailableTagWidth = <double>[
+  static const List<double> minAvailableTrailingWidth = <double>[
     80,
     80,
     80,

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:yggdrasil/yggdrasil.dart';
+import 'package:yggdrasil_demo/widgets/_widgets.dart';
 
 class ListExample extends StatelessWidget {
   const ListExample({super.key});
@@ -29,12 +30,8 @@ class ListExample extends StatelessWidget {
           children: children,
         ),
         YgSection.list(
-          title: 'With title and tag',
-          tag: const YgTag(
-            variant: YgTagVariant.informative,
-            size: YgTagSize.small,
-            child: Text('Tag Basic'),
-          ),
+          title: 'With title and trailing widget',
+          trailing: DemoPlaceholder(height: 25),
           children: children,
         ),
         YgSection.list(
@@ -43,14 +40,10 @@ class ListExample extends StatelessWidget {
           children: children,
         ),
         YgSection.list(
-          title: 'With title, icon, tag and long subtitle',
+          title: 'With title, icon, trailing widget and long subtitle',
           subtitle: 'Cupidatat ea voluptate exercitation irure ea occaecat pariatur elit minim non incididunt in.',
           icon: YgIcons.placeholder,
-          tag: const YgTag(
-            variant: YgTagVariant.informative,
-            size: YgTagSize.small,
-            child: Text('Tag Basic'),
-          ),
+          trailing: DemoPlaceholder(height: 25),
           children: children,
         ),
       ],

@@ -5,7 +5,7 @@ class _YgSectionColumn extends YgSection {
     required this.children,
     super.title,
     super.subtitle,
-    super.tag,
+    super.trailing,
     super.icon,
     this.crossAxisAlignment = CrossAxisAlignment.start,
   }) : super._();
