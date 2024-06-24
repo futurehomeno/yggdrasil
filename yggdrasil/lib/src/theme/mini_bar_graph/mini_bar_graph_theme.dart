@@ -99,6 +99,20 @@ class _$YgMiniBarGraphTheme {
     professional_dark.FhColors.textSuccess,
   ];
 
+  static const List<Color> valueTextColorNeutral = <Color>[
+    consumer_light.FhColors.textHighlight,
+    consumer_dark.FhColors.textHighlight,
+    professional_light.FhColors.textHighlight,
+    professional_dark.FhColors.textHighlight,
+  ];
+
+  static const List<Color> valueTextColorDisabled = <Color>[
+    consumer_light.FhColors.textDisabled,
+    consumer_dark.FhColors.textDisabled,
+    professional_light.FhColors.textDisabled,
+    professional_dark.FhColors.textDisabled,
+  ];
+
   // endregion
 
   // region Indicator
@@ -118,6 +132,13 @@ class _$YgMiniBarGraphTheme {
   ];
 
   // endregion
+
+  static final List<double> minGraphHeight = <double>[
+    40.0,
+    40.0,
+    40.0,
+    40.0,
+  ];
 
   static final List<TextStyle> metricTextStyle = <TextStyle>[
     consumer_light.FhTextStyles.caption1Regular,

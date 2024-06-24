@@ -23,7 +23,10 @@ class YgMiniBarGraphTheme extends ThemeExtension<YgMiniBarGraphTheme> {
     required this.indicatorSize,
     required this.maxBarSpacing,
     required this.metricTextStyle,
+    required this.minGraphHeight,
     required this.valueTextBarGraphSpacing,
+    required this.valueTextColorDisabled,
+    required this.valueTextColorNeutral,
     required this.valueTextColorPositive,
     required this.valueTextColorWarning,
     required this.valueTextMetricSpacing,
@@ -43,7 +46,10 @@ class YgMiniBarGraphTheme extends ThemeExtension<YgMiniBarGraphTheme> {
   final double indicatorSize;
   final double maxBarSpacing;
   final TextStyle metricTextStyle;
+  final double minGraphHeight;
   final double valueTextBarGraphSpacing;
+  final Color valueTextColorDisabled;
+  final Color valueTextColorNeutral;
   final Color valueTextColorPositive;
   final Color valueTextColorWarning;
   final double valueTextMetricSpacing;
@@ -63,7 +69,10 @@ class YgMiniBarGraphTheme extends ThemeExtension<YgMiniBarGraphTheme> {
     indicatorSize: _$YgMiniBarGraphTheme.indicatorSize[0],
     maxBarSpacing: _$YgMiniBarGraphTheme.maxBarSpacing[0],
     metricTextStyle: _$YgMiniBarGraphTheme.metricTextStyle[0],
+    minGraphHeight: _$YgMiniBarGraphTheme.minGraphHeight[0],
     valueTextBarGraphSpacing: _$YgMiniBarGraphTheme.valueTextBarGraphSpacing[0],
+    valueTextColorDisabled: _$YgMiniBarGraphTheme.valueTextColorDisabled[0],
+    valueTextColorNeutral: _$YgMiniBarGraphTheme.valueTextColorNeutral[0],
     valueTextColorPositive: _$YgMiniBarGraphTheme.valueTextColorPositive[0],
     valueTextColorWarning: _$YgMiniBarGraphTheme.valueTextColorWarning[0],
     valueTextMetricSpacing: _$YgMiniBarGraphTheme.valueTextMetricSpacing[0],
@@ -84,7 +93,10 @@ class YgMiniBarGraphTheme extends ThemeExtension<YgMiniBarGraphTheme> {
     indicatorSize: _$YgMiniBarGraphTheme.indicatorSize[1],
     maxBarSpacing: _$YgMiniBarGraphTheme.maxBarSpacing[1],
     metricTextStyle: _$YgMiniBarGraphTheme.metricTextStyle[1],
+    minGraphHeight: _$YgMiniBarGraphTheme.minGraphHeight[1],
     valueTextBarGraphSpacing: _$YgMiniBarGraphTheme.valueTextBarGraphSpacing[1],
+    valueTextColorDisabled: _$YgMiniBarGraphTheme.valueTextColorDisabled[1],
+    valueTextColorNeutral: _$YgMiniBarGraphTheme.valueTextColorNeutral[1],
     valueTextColorPositive: _$YgMiniBarGraphTheme.valueTextColorPositive[1],
     valueTextColorWarning: _$YgMiniBarGraphTheme.valueTextColorWarning[1],
     valueTextMetricSpacing: _$YgMiniBarGraphTheme.valueTextMetricSpacing[1],
@@ -105,7 +117,10 @@ class YgMiniBarGraphTheme extends ThemeExtension<YgMiniBarGraphTheme> {
     indicatorSize: _$YgMiniBarGraphTheme.indicatorSize[2],
     maxBarSpacing: _$YgMiniBarGraphTheme.maxBarSpacing[2],
     metricTextStyle: _$YgMiniBarGraphTheme.metricTextStyle[2],
+    minGraphHeight: _$YgMiniBarGraphTheme.minGraphHeight[2],
     valueTextBarGraphSpacing: _$YgMiniBarGraphTheme.valueTextBarGraphSpacing[2],
+    valueTextColorDisabled: _$YgMiniBarGraphTheme.valueTextColorDisabled[2],
+    valueTextColorNeutral: _$YgMiniBarGraphTheme.valueTextColorNeutral[2],
     valueTextColorPositive: _$YgMiniBarGraphTheme.valueTextColorPositive[2],
     valueTextColorWarning: _$YgMiniBarGraphTheme.valueTextColorWarning[2],
     valueTextMetricSpacing: _$YgMiniBarGraphTheme.valueTextMetricSpacing[2],
@@ -126,7 +141,10 @@ class YgMiniBarGraphTheme extends ThemeExtension<YgMiniBarGraphTheme> {
     indicatorSize: _$YgMiniBarGraphTheme.indicatorSize[3],
     maxBarSpacing: _$YgMiniBarGraphTheme.maxBarSpacing[3],
     metricTextStyle: _$YgMiniBarGraphTheme.metricTextStyle[3],
+    minGraphHeight: _$YgMiniBarGraphTheme.minGraphHeight[3],
     valueTextBarGraphSpacing: _$YgMiniBarGraphTheme.valueTextBarGraphSpacing[3],
+    valueTextColorDisabled: _$YgMiniBarGraphTheme.valueTextColorDisabled[3],
+    valueTextColorNeutral: _$YgMiniBarGraphTheme.valueTextColorNeutral[3],
     valueTextColorPositive: _$YgMiniBarGraphTheme.valueTextColorPositive[3],
     valueTextColorWarning: _$YgMiniBarGraphTheme.valueTextColorWarning[3],
     valueTextMetricSpacing: _$YgMiniBarGraphTheme.valueTextMetricSpacing[3],
@@ -155,7 +173,10 @@ class YgMiniBarGraphTheme extends ThemeExtension<YgMiniBarGraphTheme> {
     double? indicatorSize,
     double? maxBarSpacing,
     TextStyle? metricTextStyle,
+    double? minGraphHeight,
     double? valueTextBarGraphSpacing,
+    Color? valueTextColorDisabled,
+    Color? valueTextColorNeutral,
     Color? valueTextColorPositive,
     Color? valueTextColorWarning,
     double? valueTextMetricSpacing,
@@ -175,8 +196,13 @@ class YgMiniBarGraphTheme extends ThemeExtension<YgMiniBarGraphTheme> {
       indicatorSize: indicatorSize ?? this.indicatorSize,
       maxBarSpacing: maxBarSpacing ?? this.maxBarSpacing,
       metricTextStyle: metricTextStyle ?? this.metricTextStyle,
+      minGraphHeight: minGraphHeight ?? this.minGraphHeight,
       valueTextBarGraphSpacing:
           valueTextBarGraphSpacing ?? this.valueTextBarGraphSpacing,
+      valueTextColorDisabled:
+          valueTextColorDisabled ?? this.valueTextColorDisabled,
+      valueTextColorNeutral:
+          valueTextColorNeutral ?? this.valueTextColorNeutral,
       valueTextColorPositive:
           valueTextColorPositive ?? this.valueTextColorPositive,
       valueTextColorWarning:
@@ -208,8 +234,13 @@ class YgMiniBarGraphTheme extends ThemeExtension<YgMiniBarGraphTheme> {
       maxBarSpacing: t < 0.5 ? maxBarSpacing : other.maxBarSpacing,
       metricTextStyle:
           TextStyle.lerp(metricTextStyle, other.metricTextStyle, t)!,
+      minGraphHeight: t < 0.5 ? minGraphHeight : other.minGraphHeight,
       valueTextBarGraphSpacing:
           t < 0.5 ? valueTextBarGraphSpacing : other.valueTextBarGraphSpacing,
+      valueTextColorDisabled:
+          Color.lerp(valueTextColorDisabled, other.valueTextColorDisabled, t)!,
+      valueTextColorNeutral:
+          Color.lerp(valueTextColorNeutral, other.valueTextColorNeutral, t)!,
       valueTextColorPositive:
           Color.lerp(valueTextColorPositive, other.valueTextColorPositive, t)!,
       valueTextColorWarning:
@@ -250,8 +281,14 @@ class YgMiniBarGraphTheme extends ThemeExtension<YgMiniBarGraphTheme> {
                 .equals(maxBarSpacing, other.maxBarSpacing) &&
             const DeepCollectionEquality()
                 .equals(metricTextStyle, other.metricTextStyle) &&
+            const DeepCollectionEquality()
+                .equals(minGraphHeight, other.minGraphHeight) &&
             const DeepCollectionEquality().equals(
                 valueTextBarGraphSpacing, other.valueTextBarGraphSpacing) &&
+            const DeepCollectionEquality()
+                .equals(valueTextColorDisabled, other.valueTextColorDisabled) &&
+            const DeepCollectionEquality()
+                .equals(valueTextColorNeutral, other.valueTextColorNeutral) &&
             const DeepCollectionEquality()
                 .equals(valueTextColorPositive, other.valueTextColorPositive) &&
             const DeepCollectionEquality()
@@ -264,7 +301,7 @@ class YgMiniBarGraphTheme extends ThemeExtension<YgMiniBarGraphTheme> {
 
   @override
   int get hashCode {
-    return Object.hash(
+    return Object.hashAll([
       runtimeType.hashCode,
       const DeepCollectionEquality().hash(barBorderColorNull),
       const DeepCollectionEquality().hash(barBorderRadius),
@@ -279,11 +316,14 @@ class YgMiniBarGraphTheme extends ThemeExtension<YgMiniBarGraphTheme> {
       const DeepCollectionEquality().hash(indicatorSize),
       const DeepCollectionEquality().hash(maxBarSpacing),
       const DeepCollectionEquality().hash(metricTextStyle),
+      const DeepCollectionEquality().hash(minGraphHeight),
       const DeepCollectionEquality().hash(valueTextBarGraphSpacing),
+      const DeepCollectionEquality().hash(valueTextColorDisabled),
+      const DeepCollectionEquality().hash(valueTextColorNeutral),
       const DeepCollectionEquality().hash(valueTextColorPositive),
       const DeepCollectionEquality().hash(valueTextColorWarning),
       const DeepCollectionEquality().hash(valueTextMetricSpacing),
       const DeepCollectionEquality().hash(valueTextStyle),
-    );
+    ]);
   }
 }

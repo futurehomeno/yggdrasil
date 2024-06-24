@@ -1,41 +1,79 @@
 // ignore_for_file: prefer-single-widget-per-file
 
+import 'dart:math';
+
 import 'package:flutter/material.dart';
-import 'package:yggdrasil/src/components/yg_mini_bar_graph/enums/bar_variant.dart';
-import 'package:yggdrasil/src/components/yg_mini_bar_graph/models/yg_bar_graph_bar.dart';
+import 'package:flutter/widgets.dart';
 import 'package:yggdrasil/src/theme/_theme.dart';
+import 'package:yggdrasil/yggdrasil.dart';
 
 import 'yg_mini_bar_graph_render_widget.dart';
 
-class YgMiniBarGraph extends StatefulWidget {
-  const YgMiniBarGraph({super.key});
+/// The implementation of the spot price bar graph.
+class YgMiniBarGraph extends StatelessWidget {
+  const YgMiniBarGraph({
+    super.key,
+    required this.bars,
+    required this.minBarCount,
+    required this.currentBarIndex,
+    required this.leadingBars,
+    required this.metric,
+  });
 
-  @override
-  State<YgMiniBarGraph> createState() => YgMiniBarGraphState();
-}
+  /// The bars which will be rendered in the graph.
+  final List<YgBarGraphBar>? bars;
 
-class YgMiniBarGraphState extends State<YgMiniBarGraph> {
+  /// The minimum amount of bars that should be rendered at all times.
+  final int minBarCount;
+
+  /// The index on current bar in the list of [bars].
+  final int currentBarIndex;
+
+  /// The amount of bars that should be shown in front of the current bar.
+  final int leadingBars;
+
+  /// The metric shown next to the value.
+  final String metric;
+
   @override
   Widget build(BuildContext context) {
     final YgMiniBarGraphTheme theme = context.miniBarGraphTheme;
 
+    final YgBarGraphBar? currentBar = bars?.elementAtOrNull(currentBarIndex);
+    final double currentValue = currentBar?.value ?? 0;
+    final String currentValueString = currentValue.toStringAsFixed(min(2, currentValue.precision));
+
+    final Color valueColor;
+    if (currentBar == null) {
+      valueColor = theme.valueTextColorDisabled;
+    } else {
+      valueColor = switch (currentBar.variant) {
+        BarVariant.high => theme.valueTextColorWarning,
+        BarVariant.low => theme.valueTextColorPositive,
+        null => theme.valueTextColorNeutral,
+      };
+    }
+
     return Padding(
       padding: theme.graphPadding,
       child: Column(
+        mainAxisSize: MainAxisSize.min,
         children: <Widget>[
           Row(
             mainAxisAlignment: MainAxisAlignment.center,
             crossAxisAlignment: CrossAxisAlignment.center,
             children: <Widget>[
               Text(
-                '-43',
-                style: theme.valueTextStyle,
+                currentValueString,
+                style: theme.valueTextStyle.copyWith(
+                  color: valueColor,
+                ),
               ),
               SizedBox(
                 width: theme.valueTextMetricSpacing,
               ),
               Text(
-                'ore',
+                metric,
                 style: theme.metricTextStyle,
               ),
             ],
@@ -43,19 +81,9 @@ class YgMiniBarGraphState extends State<YgMiniBarGraph> {
           SizedBox(
             height: theme.valueTextBarGraphSpacing,
           ),
-          Expanded(
+          Flexible(
             child: YgMiniBarGraphRenderWidget(
-              values: List<YgBarGraphBar>.generate(
-                9,
-                (int index) => YgBarGraphBar(
-                  value: index.toDouble(),
-                  variant: switch ((index / 2).floor() % 3) {
-                    1 => BarVariant.high,
-                    2 => BarVariant.low,
-                    _ => BarVariant.unknown,
-                  },
-                ),
-              ),
+              values: bars,
               minBarCount: 9,
               currentBarIndex: 3,
               leadingBars: 2,

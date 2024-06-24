@@ -15,7 +15,7 @@ class YgMiniBarGraphRenderWidget extends LeafRenderObjectWidget {
     required this.leadingBars,
   });
 
-  final List<YgBarGraphBar> values;
+  final List<YgBarGraphBar>? values;
   final int minBarCount;
   final int currentBarIndex;
   final int leadingBars;
@@ -33,7 +33,7 @@ class YgMiniBarGraphRenderWidget extends LeafRenderObjectWidget {
 
   @override
   void updateRenderObject(BuildContext context, covariant YgMiniBarGraphRenderer renderObject) {
-    renderObject.values = values;
+    renderObject.bars = values;
     renderObject.minBarCount = minBarCount;
     renderObject.currentBarIndex = currentBarIndex;
     renderObject.leadingBars = leadingBars;
@@ -43,22 +43,22 @@ class YgMiniBarGraphRenderWidget extends LeafRenderObjectWidget {
 
 class YgMiniBarGraphRenderer extends RenderBox {
   YgMiniBarGraphRenderer({
-    required List<YgBarGraphBar> values,
+    required List<YgBarGraphBar>? values,
     required int minBarCount,
     required int currentBarIndex,
     required int leadingBars,
     required YgMiniBarGraphTheme theme,
-  })  : _values = values,
+  })  : _bars = values,
         _minBarCount = minBarCount,
         _theme = theme,
         _currentBarIndex = currentBarIndex,
         _leadingBars = leadingBars;
 
-  List<YgBarGraphBar> _values;
-  List<YgBarGraphBar> get values => _values;
-  set values(List<YgBarGraphBar> newValue) {
-    if (newValue != _values) {
-      _values = newValue;
+  List<YgBarGraphBar>? _bars;
+  List<YgBarGraphBar>? get bars => _bars;
+  set bars(List<YgBarGraphBar>? newValue) {
+    if (newValue != _bars) {
+      _bars = newValue;
       markNeedsPaint();
     }
   }
@@ -99,9 +99,23 @@ class YgMiniBarGraphRenderer extends RenderBox {
     }
   }
 
+  static final Paint _borderPaint = Paint()
+    ..style = PaintingStyle.stroke
+    ..strokeCap = StrokeCap.round
+    ..strokeWidth = 1;
+
+  static final Paint _barPaint = Paint();
+
   @override
   void performLayout() {
-    size = constraints.biggest;
+    if (constraints.hasBoundedHeight) {
+      size = constraints.biggest;
+    } else {
+      size = Size(
+        constraints.maxWidth,
+        constraints.constrainHeight(40),
+      );
+    }
   }
 
   @override
@@ -109,6 +123,8 @@ class YgMiniBarGraphRenderer extends RenderBox {
     final Canvas canvas = context.canvas;
     final double targetBarWidth = theme.barWidth;
     final double maxBarSpacing = theme.maxBarSpacing;
+    final List<YgBarGraphBar>? bars = _bars;
+    print(bars);
 
     final int targetBarCount = ((size.width - targetBarWidth) / (targetBarWidth + maxBarSpacing)).ceil() + 1;
     final int actualBarCount = max(minBarCount, targetBarCount);
@@ -116,69 +132,91 @@ class YgMiniBarGraphRenderer extends RenderBox {
     final double actualBarWidth = totalBarWidth / actualBarCount;
     final double actualBarSpacing = (size.width - totalBarWidth) / (actualBarCount - 1);
     final double barOffsetInterval = actualBarWidth + actualBarSpacing;
+    final double maxBarHeight = size.height - 7;
+    final int barIndexOffset = _currentBarIndex - leadingBars;
 
-    final int indexOffset = _currentBarIndex - leadingBars;
+    double maxValue = 0.0;
+    if (bars != null) {
+      final int start = max(barIndexOffset, 0);
+      final num end = start + min(start + actualBarCount, bars.length - start);
+      for (int i = start; i < end; i++) {
+        final YgBarGraphBar value = bars[i];
+
+        if (value.value > maxValue) {
+          maxValue = value.value;
+        }
+      }
+    }
 
     for (int i = 0; i < actualBarCount; i++) {
-      final int index = i + indexOffset;
+      final int index = i + barIndexOffset;
 
-      final YgBarGraphBar? value;
-      if (index >= 0 && index < _values.length) {
-        value = _values[index];
+      final YgBarGraphBar? bar;
+      if (bars != null && index >= 0 && index < bars.length) {
+        bar = bars[index];
       } else {
-        value = null;
+        bar = null;
       }
 
       final Color color;
-      if (value == null) {
+      if (bars == null) {
+        color = theme.barColorDefault;
+      } else if (bar == null) {
         color = theme.barColorNull;
       } else if (i < leadingBars) {
         color = theme.barColorDefault;
       } else {
-        color = switch (value.variant) {
+        color = switch (bar.variant) {
           BarVariant.high => theme.barColorWarning,
           BarVariant.low => theme.barColorSuccess,
-          BarVariant.unknown => theme.barColorNeutral,
+          null => theme.barColorNeutral,
         };
       }
 
-      final Offset barOffset = offset +
-          Offset(
-            barOffsetInterval * i,
-            0,
-          );
+      final double percentage;
+      if (bars == null) {
+        percentage = 0;
+      } else if (bar == null) {
+        percentage = 0.5;
+      } else {
+        percentage = bar.value / maxValue;
+      }
 
-      final Size barSize = Size(actualBarWidth, size.height - 7);
-      final Rect rect = barOffset & barSize;
-      final Paint paint = Paint()..color = color;
+      final double barHeight = max(1, maxBarHeight * percentage);
+      final double barXOffset = barOffsetInterval * i;
+
+      final Rect rect = Rect.fromLTWH(
+        barXOffset + offset.dx,
+        (maxBarHeight - barHeight) + offset.dy,
+        actualBarWidth,
+        barHeight,
+      );
       final RRect rrect = _theme.barBorderRadius.toRRect(rect);
 
-      canvas.drawRRect(rrect, paint);
-      if (value == null) {
+      _barPaint.color = color;
+      canvas.drawRRect(rrect, _barPaint);
+      if (bars != null && bar == null) {
         final CircularIntervalList<double> dashArray = CircularIntervalList<double>(<double>[5, 2.5]);
-
-        final Paint borderPaint = Paint()
-          ..color = theme.barBorderColorNull
-          ..style = PaintingStyle.stroke
-          ..strokeCap = StrokeCap.round
-          ..strokeWidth = 1;
+        _borderPaint.color = theme.barBorderColorNull;
 
         final Path dashBorder = dashPath(
           Path()..addRRect(rrect),
           dashArray: dashArray,
         );
 
-        canvas.drawPath(dashBorder, borderPaint);
+        canvas.drawPath(dashBorder, _borderPaint);
       }
 
-      if (leadingBars == i) {
-        final Path arrowPath = _getArrowPath(actualBarWidth, 4, 1).shift(barOffset + Offset(0, size.height - 4));
+      if (bars != null && leadingBars == i) {
+        final Offset arrowOffset = Offset(barXOffset, size.height - 4) + offset;
+        final Path arrowPath = _getArrowPath(actualBarWidth, 4, 1).shift(arrowOffset);
 
-        canvas.drawPath(arrowPath, paint);
+        canvas.drawPath(arrowPath, _barPaint);
       }
     }
   }
 
+  /// Draws the indicator arrow.
   Path _getArrowPath(double width, double height, double cornerRadius) {
     final Path path = Path();
     final double actualRadius = min(width, min(height, cornerRadius));
