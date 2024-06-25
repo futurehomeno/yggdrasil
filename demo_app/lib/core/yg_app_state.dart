@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:package_info_plus/package_info_plus.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 import 'package:yggdrasil/yggdrasil.dart';
 
 class YgAppState extends ChangeNotifier {
@@ -9,6 +10,7 @@ class YgAppState extends ChangeNotifier {
   YgTheme get theme => _defaultTheme;
   bool _darkMode = false;
   bool _businessTheme = false;
+  late SharedPreferences _sharedPreferences;
 
   String _version = '';
   String get version => _version;
@@ -16,16 +18,24 @@ class YgAppState extends ChangeNotifier {
   void init() async {
     final PackageInfo packageInfo = await PackageInfo.fromPlatform();
     _version = packageInfo.version;
+    _sharedPreferences = await SharedPreferences.getInstance();
+
+    _darkMode = _sharedPreferences.getBool('dark_mode') ?? _darkMode;
+    _businessTheme = _sharedPreferences.getBool('business_theme') ?? _businessTheme;
+    _updateTheme();
+
     notifyListeners();
   }
 
   void toggleDarkMode() {
     _darkMode ^= true;
+    _sharedPreferences.setBool('dark_mode', _darkMode);
     _updateTheme();
   }
 
   void toggleProfessionalTheme() {
     _businessTheme ^= true;
+    _sharedPreferences.setBool('business_theme', _businessTheme);
     _updateTheme();
   }
 

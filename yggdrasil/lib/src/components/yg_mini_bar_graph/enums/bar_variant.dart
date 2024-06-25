@@ -1,0 +1,4 @@
+enum BarVariant {
+  high,
+  low,
+}

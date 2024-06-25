@@ -20,6 +20,7 @@ dependencies:
       path: packages/theme_tailor_annotation
   flutter_svg: 2.0.9
   lottie: 3.1.1
+  path_drawing: 1.0.1
 
 dev_dependencies:
   # Run `flutter test --tags golden` to run all golden tests.
