@@ -1,3 +1,9 @@
+# 1.12.4 [2024-06-25T11:23:52.810692]
+
+### Changes
+
+- [feature] Added mini bar graph widget DEV-3800.
+
 # 1.12.3 [2024-06-21T11:18:51.266582]
 
 ### Changes
