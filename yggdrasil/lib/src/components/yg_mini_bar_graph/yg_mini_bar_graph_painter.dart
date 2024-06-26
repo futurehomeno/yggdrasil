@@ -46,7 +46,7 @@ class YgMiniBarGraphPainter extends CustomPainter {
     double maxValue = 0.0;
     if (bars != null) {
       final int start = max(barIndexOffset, 0);
-      final num end = start + min(barIndexOffset + actualBarCount, bars.length - 1);
+      final num end = min(barIndexOffset + actualBarCount, bars.length);
       for (int i = start; i < end; i++) {
         final YgBarGraphBar value = bars[i];
 
