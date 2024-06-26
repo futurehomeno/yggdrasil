@@ -1,3 +1,10 @@
+# 1.12.5 [2024-06-26T12:49:04.437193]
+
+### Changes
+
+- [fix] Fixed issue causing out of range error on graph data when currentBarIndex > leadingBars.
+- fixed incorrect end value for maxValue calculation (#172)
+
 # 1.12.4 [2024-06-25T11:23:52.810692]
 
 ### Changes
