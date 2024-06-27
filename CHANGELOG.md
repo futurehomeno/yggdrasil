@@ -1,3 +1,9 @@
+# 1.12.6 [2024-06-27T15:58:34.369820]
+
+### Changes
+
+- [improvement] Bar graph values now support a value text and metric for each value.
+
 # 1.12.5 [2024-06-26T12:49:04.437193]
 
 ### Changes
