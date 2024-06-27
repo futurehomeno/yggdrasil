@@ -4,8 +4,12 @@ class YgBarGraphBar {
   const YgBarGraphBar({
     this.variant,
     required this.value,
+    required this.valueText,
+    required this.metric,
   });
 
   final BarVariant? variant;
   final double value;
+  final String valueText;
+  final String metric;
 }

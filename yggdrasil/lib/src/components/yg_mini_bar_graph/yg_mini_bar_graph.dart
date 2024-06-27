@@ -1,7 +1,5 @@
 // ignore_for_file: prefer-single-widget-per-file
 
-import 'dart:math';
-
 import 'package:flutter/material.dart';
 import 'package:yggdrasil/src/components/yg_mini_bar_graph/yg_mini_bar_graph_painter.dart';
 import 'package:yggdrasil/src/theme/_theme.dart';
@@ -15,7 +13,6 @@ class YgMiniBarGraph extends StatelessWidget with StatelessWidgetDebugMixin {
     required this.minBarCount,
     required this.currentBarIndex,
     required this.leadingBars,
-    required this.metric,
   });
 
   /// The bars which will be rendered in the graph.
@@ -30,16 +27,13 @@ class YgMiniBarGraph extends StatelessWidget with StatelessWidgetDebugMixin {
   /// The amount of bars that should be shown in front of the current bar.
   final int leadingBars;
 
-  /// The metric shown next to the value.
-  final String metric;
-
   @override
   Widget build(BuildContext context) {
     final YgMiniBarGraphTheme theme = context.miniBarGraphTheme;
 
     final YgBarGraphBar? currentBar = bars?.elementAtOrNull(currentBarIndex);
-    final double currentValue = currentBar?.value ?? 0;
-    final String currentValueString = currentValue.toStringAsFixed(min(2, currentValue.precision));
+    final String currentValueString = currentBar?.valueText ?? '0';
+    final String currentMetric = currentBar?.metric ?? '';
 
     final Color valueColor;
     if (currentBar == null) {
@@ -71,7 +65,7 @@ class YgMiniBarGraph extends StatelessWidget with StatelessWidgetDebugMixin {
                 width: theme.valueTextMetricSpacing,
               ),
               Text(
-                metric,
+                currentMetric,
                 style: theme.metricTextStyle,
               ),
             ],

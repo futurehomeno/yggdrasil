@@ -19,15 +19,15 @@ class MiniBarGraphScreen extends StatelessWidget {
   }
 
   static const _defaultBars = [
-    YgBarGraphBar(value: -88, variant: BarVariant.low),
-    YgBarGraphBar(value: 50, variant: BarVariant.low),
-    YgBarGraphBar(value: 180, variant: BarVariant.high),
-    YgBarGraphBar(value: 150, variant: BarVariant.high),
-    YgBarGraphBar(value: 250, variant: BarVariant.high),
-    YgBarGraphBar(value: 80, variant: BarVariant.low),
-    YgBarGraphBar(value: 100, variant: BarVariant.low),
-    YgBarGraphBar(value: -20, variant: BarVariant.low),
-    YgBarGraphBar(value: 160, variant: BarVariant.high),
+    YgBarGraphBar(value: -88, variant: BarVariant.low, metric: 'øre', valueText: '-88'),
+    YgBarGraphBar(value: 50, variant: BarVariant.low, metric: 'øre', valueText: '50'),
+    YgBarGraphBar(value: 180, variant: BarVariant.high, metric: 'øre', valueText: '180'),
+    YgBarGraphBar(value: 150, variant: BarVariant.high, metric: 'øre', valueText: '150'),
+    YgBarGraphBar(value: 250, variant: BarVariant.high, metric: 'øre', valueText: '250'),
+    YgBarGraphBar(value: 80, variant: BarVariant.low, metric: 'øre', valueText: '80'),
+    YgBarGraphBar(value: 100, variant: BarVariant.low, metric: 'øre', valueText: '100'),
+    YgBarGraphBar(value: -20, variant: BarVariant.low, metric: 'øre', valueText: '-20'),
+    YgBarGraphBar(value: 160, variant: BarVariant.high, metric: 'øre', valueText: '160'),
   ];
 
   @override
@@ -117,7 +117,6 @@ class MiniBarGraphScreen extends StatelessWidget {
       currentBarIndex: currentBarIndex,
       leadingBars: leadingBars,
       minBarCount: minBarCount,
-      metric: 'øre',
     );
   }
 
@@ -127,15 +126,17 @@ class MiniBarGraphScreen extends StatelessWidget {
     return List<YgBarGraphBar>.generate(
       count,
       (int index) {
-        final value = (random.nextDouble() * 200).floorToDouble();
+        final value = (random.nextDouble() * 200).floor();
 
         return YgBarGraphBar(
-          value: value,
+          value: value.toDouble(),
           variant: !withVariants
               ? null
               : value > 100
                   ? BarVariant.high
                   : BarVariant.low,
+          metric: 'øre',
+          valueText: value.toString(),
         );
       },
     );
