@@ -11,8 +11,8 @@ class YgBarGraphBar {
 
   /// The variant of the bar.
   ///
-  /// Primarily determines the color of the bar. Using a null variant uses a
-  /// fallback color instead of a color from the 2 variants.
+  /// Primarily determines the color of the bar. If null, a fallback color is
+  /// used instead of a color from the available [BarVariant]s.
   final BarVariant? variant;
 
   /// The value used for rendering the bar.

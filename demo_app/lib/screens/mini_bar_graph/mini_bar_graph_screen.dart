@@ -128,13 +128,18 @@ class MiniBarGraphScreen extends StatelessWidget {
       (int index) {
         final value = (random.nextDouble() * 200).floor();
 
+        BarVariant? variant = null;
+        if (withVariants) {
+          if (value > 100) {
+            variant = BarVariant.high;
+          } else {
+            variant = BarVariant.low;
+          }
+        }
+
         return YgBarGraphBar(
           value: value.toDouble(),
-          variant: !withVariants
-              ? null
-              : value > 100
-                  ? BarVariant.high
-                  : BarVariant.low,
+          variant: variant,
           metric: 'øre',
           valueText: value.toString(),
         );
