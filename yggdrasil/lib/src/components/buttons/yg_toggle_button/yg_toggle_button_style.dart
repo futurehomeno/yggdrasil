@@ -3,7 +3,6 @@ import 'package:yggdrasil/src/components/buttons/widgets/_widgets.dart';
 import 'package:yggdrasil/src/components/buttons/yg_toggle_button/_yg_toggle_button.dart';
 import 'package:yggdrasil/src/theme/_theme.dart';
 import 'package:yggdrasil/src/theme/toggle_button/extensions/_extensions.dart';
-import 'package:yggdrasil/yggdrasil.dart';
 
 import 'yg_toggle_button_state.dart';
 

@@ -6,6 +6,7 @@ import 'package:yggdrasil/src/components/yg_slider/value_indicator/yg_slider_val
 import 'package:yggdrasil/src/components/yg_slider/yg_slider_state.dart';
 import 'package:yggdrasil/src/components/yg_slider/yg_slider_style.dart';
 import 'package:yggdrasil/src/theme/slider/slider_theme.dart';
+import 'package:yggdrasil/src/theme/theme.dart';
 import 'package:yggdrasil/src/utils/_utils.dart';
 import 'package:yggdrasil/yggdrasil.dart';
 

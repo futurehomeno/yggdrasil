@@ -3,8 +3,10 @@ import 'dart:math';
 import 'dart:ui';
 
 import 'package:flutter/material.dart';
+import 'package:yggdrasil/src/components/_components.dart';
+import 'package:yggdrasil/src/extensions/_extensions.dart';
 import 'package:yggdrasil/src/theme/_theme.dart';
-import 'package:yggdrasil/yggdrasil.dart';
+import 'package:yggdrasil/src/utils/_utils.dart';
 
 /// Arc-style gauge.
 ///
