@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:yggdrasil/src/theme/tabs/_tabs.dart';
+import 'package:yggdrasil/src/theme/theme.dart';
 import 'package:yggdrasil/yggdrasil.dart';
 
 /// Used as base widget for `YgTabBar`.

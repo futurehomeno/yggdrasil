@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:yggdrasil/src/components/yg_section/widgets/_widgets.dart';
 import 'package:yggdrasil/src/theme/section/extensions/section_header_theme.dart';
+import 'package:yggdrasil/src/theme/theme.dart';
 import 'package:yggdrasil/yggdrasil.dart';
 
 // TODO(DEV-3018): Rework interface so there are no longer 2 trailing widget,
