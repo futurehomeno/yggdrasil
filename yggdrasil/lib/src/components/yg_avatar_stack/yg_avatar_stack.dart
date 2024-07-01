@@ -2,6 +2,7 @@ import 'dart:math';
 
 import 'package:flutter/material.dart';
 import 'package:yggdrasil/src/theme/avatar/avatar_theme.dart';
+import 'package:yggdrasil/src/theme/theme.dart';
 import 'package:yggdrasil/yggdrasil.dart';
 
 /// A horizontal stack of [YgAvatar]s overlapping one another.

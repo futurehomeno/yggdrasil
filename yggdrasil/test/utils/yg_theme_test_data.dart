@@ -1,4 +1,4 @@
-import 'package:yggdrasil/yggdrasil.dart';
+import 'package:yggdrasil/src/theme/theme.dart';
 
 /// Data required to test a `YgTheme`.
 class YgThemeTestData {

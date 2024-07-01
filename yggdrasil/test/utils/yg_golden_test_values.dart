@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:yggdrasil/yggdrasil.dart';
+import 'package:yggdrasil/src/theme/theme.dart';
 
 import 'yg_theme_test_data.dart';
 

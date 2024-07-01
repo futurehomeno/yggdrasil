@@ -4,6 +4,7 @@ import 'package:yggdrasil/src/components/buttons/widgets/yg_button_base_style.da
 import 'package:yggdrasil/src/components/buttons/yg_segmented_button/segment/yg_segmented_button_segment_state.dart';
 import 'package:yggdrasil/src/components/buttons/yg_segmented_button/segment/yg_segmented_button_segment_style.dart';
 import 'package:yggdrasil/src/theme/segmented_button/segmented_button_theme.dart';
+import 'package:yggdrasil/src/theme/theme.dart';
 import 'package:yggdrasil/src/utils/yg_states/interfaces/yg_vsync.dart';
 import 'package:yggdrasil/yggdrasil.dart';
 
