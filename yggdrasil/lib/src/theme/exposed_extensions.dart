@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:yggdrasil/src/theme/theme.dart';
 import 'package:yggdrasil/yggdrasil.dart';
 
 extension YgThemeBuildContextProps on BuildContext {

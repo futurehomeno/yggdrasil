@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
-import 'package:yggdrasil/src/theme/theme.dart';
 import 'package:yggdrasil/yggdrasil.dart';
 
 extension WidgetTesterExtension on WidgetTester {
