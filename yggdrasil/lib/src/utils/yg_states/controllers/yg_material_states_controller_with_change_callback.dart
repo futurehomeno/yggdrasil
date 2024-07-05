@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
 /// A material states controller which notifies you about state changes.
-class YgMaterialStatesControllerWithChangeCallback extends MaterialStatesController {
+class YgMaterialStatesControllerWithChangeCallback extends WidgetStatesController {
   YgMaterialStatesControllerWithChangeCallback({
     required this.onStateChange,
   });
@@ -9,10 +9,10 @@ class YgMaterialStatesControllerWithChangeCallback extends MaterialStatesControl
   /// Callback gets called when any state changes.
   ///
   /// Gets called with the state and the new value of the state.
-  final void Function(MaterialState state, bool add) onStateChange;
+  final void Function(WidgetState state, bool add) onStateChange;
 
   @override
-  void update(MaterialState state, bool add) {
+  void update(WidgetState state, bool add) {
     super.update(state, add);
     onStateChange(state, add);
   }

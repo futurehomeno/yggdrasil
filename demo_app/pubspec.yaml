@@ -6,7 +6,7 @@ version: 1.12.6
 
 environment:
   sdk: ^3.2.0
-  flutter: 3.19.6
+  flutter: 3.22.1
 
 dependencies:
   flutter:
@@ -17,7 +17,7 @@ dependencies:
   # Don't update due to the flutter_bloc in other repose.
   provider: 5.0.0
   dotted_border: 2.1.0
-  mockito: 5.4.3
+  mockito: 5.4.4
   package_info_plus: 4.2.0
   shared_preferences: 2.2.3
 

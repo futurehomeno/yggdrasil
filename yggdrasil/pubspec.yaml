@@ -6,20 +6,16 @@ version: 1.12.6
 
 environment:
   sdk: ^3.2.0
-  flutter: 3.19.6
+  flutter: 3.22.1
 
 dependencies:
   flutter:
     sdk: flutter
   flutter_lints: 4.0.0
-  intl: 0.18.1
-  theme_tailor_annotation:
-    git:
-      ref: main
-      url: git@github.com:futurehomeno/theme_tailor.git
-      path: packages/theme_tailor_annotation
+  intl: 0.19.0
+  theme_tailor_annotation: 2.0.1
   flutter_svg: 2.0.9
-  lottie: 3.1.1
+  lottie: 3.1.2
   path_drawing: 1.0.1
 
 dev_dependencies:
@@ -32,11 +28,7 @@ dev_dependencies:
   intl_utils: 2.8.7
   flutter_test:
     sdk: flutter
-  theme_tailor:
-    git:
-      ref: main
-      url: git@github.com:futurehomeno/theme_tailor.git
-      path: packages/theme_tailor
+  theme_tailor: 2.0.1
 
 flutter_intl:
   enabled: true
