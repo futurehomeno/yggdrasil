@@ -2,7 +2,7 @@ import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 
 @immutable
-class YgTabBarOverlayColorProperty extends MaterialStateProperty<Color> with Diagnosticable {
+class YgTabBarOverlayColorProperty extends WidgetStateProperty<Color> with Diagnosticable {
   YgTabBarOverlayColorProperty({
     required this.defaultColor,
     required this.focusedColor,
@@ -16,12 +16,12 @@ class YgTabBarOverlayColorProperty extends MaterialStateProperty<Color> with Dia
   final Color hoveredColor;
 
   @override
-  Color resolve(Set<MaterialState> states) {
-    if (states.contains(MaterialState.focused)) {
+  Color resolve(Set<WidgetState> states) {
+    if (states.contains(WidgetState.focused)) {
       return focusedColor;
-    } else if (states.contains(MaterialState.pressed)) {
+    } else if (states.contains(WidgetState.pressed)) {
       return pressedColor;
-    } else if (states.contains(MaterialState.hovered)) {
+    } else if (states.contains(WidgetState.hovered)) {
       return hoveredColor;
     }
 

@@ -112,15 +112,15 @@ class _YgButtonBaseState<T extends YgButtonBaseState>
     widget.updateState(state);
   }
 
-  void _handleMaterialStateChange(MaterialState materialState, bool toggled) {
-    switch (materialState) {
-      case MaterialState.focused:
+  void _handleMaterialStateChange(WidgetState widgetState, bool toggled) {
+    switch (widgetState) {
+      case WidgetState.focused:
         state.focused.value = toggled;
         break;
-      case MaterialState.hovered:
+      case WidgetState.hovered:
         state.hovered.value = toggled;
         break;
-      case MaterialState.pressed:
+      case WidgetState.pressed:
         state.pressed.value = toggled;
         break;
       default:
@@ -167,7 +167,7 @@ class _YgButtonBaseState<T extends YgButtonBaseState>
           focusNode: widget.focusNode,
           canRequestFocus: widget.onPressed != null,
           mouseCursor: style.cursor.value,
-          overlayColor: MaterialStatePropertyAll<Color>(
+          overlayColor: WidgetStatePropertyAll<Color>(
             style.splashColor.value,
           ),
           splashColor: Colors.transparent,
