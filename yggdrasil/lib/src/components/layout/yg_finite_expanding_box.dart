@@ -12,8 +12,9 @@ import 'package:flutter/widgets.dart';
 /// in a [Column] it would mean the widget expands horizontally and in a box with
 /// finite constraints for both the width and height, this widget will expand to
 /// fill the box.
-class FiniteExpandingWidget extends SingleChildRenderObjectWidget {
-  FiniteExpandingWidget({
+class YgFiniteExpandingBox extends SingleChildRenderObjectWidget {
+  const YgFiniteExpandingBox({
+    super.key,
     required this.height,
     required this.width,
     required Widget super.child,

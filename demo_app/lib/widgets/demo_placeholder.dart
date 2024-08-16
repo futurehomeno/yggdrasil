@@ -1,7 +1,6 @@
 import 'package:dotted_border/dotted_border.dart';
 import 'package:flutter/material.dart';
 import 'package:yggdrasil/yggdrasil.dart';
-import 'package:yggdrasil_demo/widgets/finite_expanding_widget.dart';
 
 /// Placeholder widget.
 ///
@@ -30,7 +29,7 @@ class DemoPlaceholder extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return FiniteExpandingWidget(
+    return YgFiniteExpandingBox(
       width: width,
       height: height,
       child: DecoratedBox(
