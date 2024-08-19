@@ -1,3 +1,10 @@
+# 1.12.7 [2024-07-09T14:25:14.051425]
+
+### Changes
+
+- [dev-change] Upgrade flutter to 3.22.2 DEV-2942
+- [fix] Fixed not exporting tokens and exporting the wrong context extensions.
+
 # 1.12.6 [2024-06-27T15:58:34.369820]
 
 ### Changes

@@ -16,7 +16,7 @@ typedef YgStatesAllResolver<V> = V Function(BuildContext);
 /// Can be animated using [animate] or using [YgStyle.animate].
 /// Can be driven using [drive] or using [YgStyle.drive].
 ///
-/// Is not compatible with [MaterialStateProperty] since this property will
+/// Is not compatible with [WidgetStateProperty] since this property will
 /// provide the resolve function with a [BuildContext].
 abstract class YgProperty<T extends YgState, V> {
   const YgProperty();

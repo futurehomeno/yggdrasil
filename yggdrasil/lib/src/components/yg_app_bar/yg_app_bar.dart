@@ -136,11 +136,11 @@ class _YgAppBarState extends State<YgAppBar> {
   Widget build(BuildContext context) {
     final YgAppBarTheme theme = context.appBarTheme;
     final FlexibleSpaceBarSettings? settings = context.dependOnInheritedWidgetOfExactType<FlexibleSpaceBarSettings>();
-    final Set<MaterialState> states = <MaterialState>{
-      if (settings?.isScrolledUnder ?? _scrolledUnder) MaterialState.scrolledUnder,
+    final Set<WidgetState> states = <WidgetState>{
+      if (settings?.isScrolledUnder ?? _scrolledUnder) WidgetState.scrolledUnder,
     };
     final double effectiveElevation =
-        states.contains(MaterialState.scrolledUnder) ? theme.scrolledUnderElevation : theme.elevation;
+        states.contains(WidgetState.scrolledUnder) ? theme.scrolledUnderElevation : theme.elevation;
 
     final Widget? leading = _getLeading();
     final Widget? title = _getTitle();

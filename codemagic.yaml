@@ -1,4 +1,4 @@
-flutter_ver: &flutter_ver 3.19.6
+flutter_ver: &flutter_ver 3.22.2
 xcode_ver: &xcode_ver latest
 
 workflows:
@@ -213,7 +213,7 @@ workflows:
           script: |
             changelog=$(rat changelog -f $CM_TAG -t $CM_TAG -r)
 
-            curl --location https://hooks.slack.com/services/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 \
+            curl --location $ANNOUNCE_CHANGELOG_WEBHOOK \
             --header 'Content-Type: application/json' \
             --data '
               {
