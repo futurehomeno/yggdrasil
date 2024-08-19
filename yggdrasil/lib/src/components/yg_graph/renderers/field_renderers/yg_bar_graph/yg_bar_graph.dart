@@ -32,7 +32,7 @@ class YgBarGraph<T extends YgGraphPoint> extends LeafRenderObjectWidget {
   }
 }
 
-class YgBarGraphRenderer<T extends YgGraphPoint> extends RenderBox with YgGraphFieldMixin {
+class YgBarGraphRenderer<T extends YgGraphPoint> extends YgGraphFieldRenderBox {
   YgBarGraphRenderer({
     required YgConstantIntervalGraphDataProvider<T> dataProvider,
     required YgBarStyleProvider<T> styleProvider,

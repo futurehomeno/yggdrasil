@@ -1,23 +1,8 @@
 import 'package:flutter/rendering.dart';
 import 'package:yggdrasil/src/components/yg_graph/models/_models.dart';
 
-class GraphFieldData {
-  const GraphFieldData({
-    required this.valueRange,
-    required this.indexRange,
-  });
-
-  static const GraphFieldData zero = GraphFieldData(
-    indexRange: Range.zero,
-    valueRange: Range.zero,
-  );
-
-  final Range valueRange;
-  final Range indexRange;
-}
-
-mixin YgGraphFieldMixin on RenderBox {
-  Transform? _cachedTransform;
+abstract class YgGraphFieldRenderBox extends RenderBox {
+  Transform2D? _cachedTransform;
 
   @override
   void markNeedsLayout() {
@@ -26,15 +11,15 @@ mixin YgGraphFieldMixin on RenderBox {
   }
 
   /// Returns a field offset from
-  Offset getCoordinatesFromValue(double point, double value) {
+  Offset getValueOffset(double point, double value) {
     final ParentData? parentData = this.parentData;
-    if (parentData is! YgGraphFieldParentDataMixin) {
+    if (parentData is! YgGraphFieldParentData) {
       throw Exception(
         'Invalid parent data! Make sure you are not using a YgGraph2D component outside of a YgGraph2D',
       );
     }
 
-    Transform? transform = _cachedTransform;
+    Transform2D? transform = _cachedTransform;
     if (transform == null) {
       final EdgeInsets padding = parentData.coordinatePadding;
       final Range indexRange = parentData.graphFieldData.indexRange;
@@ -42,7 +27,7 @@ mixin YgGraphFieldMixin on RenderBox {
 
       final Size fieldSize = padding.deflateSize(size);
 
-      transform = Transform(
+      transform = Transform2D(
         xScale: indexRange.length / fieldSize.width,
         yScale: valueRange.length / fieldSize.height,
         xOffset: padding.left - (indexRange.start * indexRange.length / fieldSize.width),
@@ -57,7 +42,7 @@ mixin YgGraphFieldMixin on RenderBox {
   /// The padding applied to the coordinates used by all graph components.
   EdgeInsets get fieldPadding {
     final ParentData? parentData = this.parentData;
-    if (parentData is! YgGraphFieldParentDataMixin) {
+    if (parentData is! YgGraphFieldParentData) {
       throw Exception(
         'Invalid parent data! Make sure you are not using a YgGraph2D component outside of a YgGraph2D',
       );
@@ -69,7 +54,9 @@ mixin YgGraphFieldMixin on RenderBox {
   EdgeInsets getMinimumCoordinatePadding();
 }
 
-mixin YgGraphFieldParentDataMixin on ContainerBoxParentData<YgGraphFieldMixin> {
+class YgGraphFieldParentData extends ContainerBoxParentData<YgGraphFieldRenderBox> {
+  Transform2D valueTransform = Transform2D.zero;
   EdgeInsets coordinatePadding = EdgeInsets.zero;
-  GraphFieldData graphFieldData = GraphFieldData.zero;
+  Range valueRange = Range.zero;
+  Range indexRange = Range.zero;
 }

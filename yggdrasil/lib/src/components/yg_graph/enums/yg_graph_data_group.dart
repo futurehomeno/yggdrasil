@@ -1,0 +1,4 @@
+enum YgGraphDataGroup {
+  primary,
+  secondary,
+}

@@ -1,0 +1,4 @@
+enum YgHorizontalAxisAlignment {
+  left,
+  right,
+}
