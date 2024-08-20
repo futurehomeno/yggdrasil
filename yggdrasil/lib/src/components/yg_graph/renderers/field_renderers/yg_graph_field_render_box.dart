@@ -21,9 +21,9 @@ abstract class YgGraphFieldRenderBox extends RenderBox {
 
     Transform2D? transform = _cachedTransform;
     if (transform == null) {
-      final EdgeInsets padding = parentData.coordinatePadding;
-      final Range indexRange = parentData.graphFieldData.indexRange;
-      final Range valueRange = parentData.graphFieldData.valueRange;
+      final EdgeInsets padding = parentData.contentPadding;
+      final Range indexRange = parentData.indexRange;
+      final Range valueRange = parentData.valueRange;
 
       final Size fieldSize = padding.deflateSize(size);
 
@@ -48,15 +48,19 @@ abstract class YgGraphFieldRenderBox extends RenderBox {
       );
     }
 
-    return parentData.coordinatePadding;
+    return parentData.contentPadding;
   }
 
-  EdgeInsets getMinimumCoordinatePadding();
+  EdgeInsets getMinContentPadding();
+
+  Range getIndexRange();
+
+  Range getValueRange();
 }
 
 class YgGraphFieldParentData extends ContainerBoxParentData<YgGraphFieldRenderBox> {
   Transform2D valueTransform = Transform2D.zero;
-  EdgeInsets coordinatePadding = EdgeInsets.zero;
+  EdgeInsets contentPadding = EdgeInsets.zero;
   Range valueRange = Range.zero;
   Range indexRange = Range.zero;
 }

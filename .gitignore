@@ -1,7 +1,6 @@
 ### ------------------------- Flutter.gitignore ------------------------ ###
 
 # Flutter version manager
-.fvm
 
 # Golden test failures
 **/failures/*.png
@@ -130,7 +129,6 @@ app.*.symbols
 !/packages/flutter_tools/test/data/dart_dependencies_test/**/.packages
 !/dev/ci/**/Gemfile.lock
 
-
 ## Related .gitignores ##
 
 # Firebase configuration files / Google Services (e.g. APIs or Firebase)
@@ -145,7 +143,6 @@ lib/generated_plugin_registrant.dart
 
 # Obfuscation related
 app.*.map.json
-
 
 ### --------------------------- Dart.gitignore ------------------------- ###
 
@@ -176,7 +173,6 @@ doc/api/
 
 #.flutter-plugins
 #.flutter-plugins-dependencies
-
 
 ### -------------------------- Swift.gitignore  ------------------------ ###
 
@@ -271,7 +267,6 @@ fastlane/test_output
 
 iOSInjectionProject/
 
-
 ### -------------------------- Java.gitignore -------------------------- ###
 
 # Compiled class file
@@ -298,7 +293,6 @@ iOSInjectionProject/
 # virtual machine crash logs, see http://www.java.com/en/download/help/error_hotspot.xml
 hs_err_pid*
 replay_pid*
-
 
 ### -------------------------- Kotlin.gitignore ------------------------ ###
 
@@ -377,7 +371,6 @@ outTmp/
 /kotlin-native/dist
 kotlin-ide/
 
-
 ### ------------------------- Android.gitignore ------------------------ ###
 
 # Built application files
@@ -432,7 +425,6 @@ fastlane/readme.md
 *.jks
 *.keystore
 
-
 ### ------------------------- Gradle.gitignore ------------------------- ###
 
 .gradle
@@ -454,7 +446,6 @@ gradle-app.setting
 # JDT-specific (Eclipse Java Development Tools)
 #.classpath
 
-
 ### ------------------------- Maven.gitignore -------------------------- ###
 
 target/
@@ -474,7 +465,6 @@ buildNumber.properties
 #.project
 # JDT-specific (Eclipse Java Development Tools)
 #.classpath
-
 
 ### ------------------------ JetBrains.gitignore ----------------------- ###
 
@@ -556,7 +546,6 @@ fabric.properties
 # Android studio 3.1+ serialized cache file
 .idea/caches/build_file_checksums.ser
 
-
 ### ------------------------- Xcode.gitignore -------------------------- ###
 
 # Xcode
@@ -586,7 +575,6 @@ DerivedData/
 ## Gcc Patch
 /*.gcno
 
-
 ### -------------------- VisualStudioCode.gitignore  ------------------- ###
 
 .vscode/*
@@ -601,7 +589,6 @@ DerivedData/
 
 # Built Visual Studio Code Extensions
 *.vsix
-
 
 ### ----------------------- SublimeText.gitignore ---------------------- ###
 
@@ -636,7 +623,6 @@ bh_unicode_properties.cache
 # Sublime-github package stores a github token in this file
 # https://packagecontrol.io/packages/sublime-github
 GitHub.sublime-settings
-
 
 ### -------------------------- Emacs.gitignore ------------------------- ###
 
@@ -689,7 +675,6 @@ flycheck_*.el
 # network security
 /network-security.data
 
-
 ### -------------------------- Vim.gitignore  -------------------------- ###
 
 # Swap
@@ -711,7 +696,6 @@ Sessionx.vim
 tags
 # Persistent undo
 [._]*.un~
-
 
 ### ------------------------ Windows.gitignore  ------------------------ ###
 
@@ -739,7 +723,6 @@ $RECYCLE.BIN/
 
 # Windows shortcuts
 *.lnk
-
 
 ### ------------------------- macOS.gitignore -------------------------- ###
 
@@ -770,7 +753,6 @@ Network Trash Folder
 Temporary Items
 .apdisk
 
-
 ### -------------------------- Linux.gitignore ------------------------- ###
 
 *~
@@ -786,7 +768,6 @@ Temporary Items
 
 # .nfs files are created when an open file is removed but is still being accessed
 .nfs*
-
 
 ### ------------------------ Archives.gitignore ------------------------ ###
 
@@ -823,7 +804,6 @@ Temporary Items
 #*.msp
 *.txz
 
-
 ### ------------------------- Backup.gitignore ------------------------- ###
 
 *.bak
@@ -831,7 +811,6 @@ Temporary Items
 *.ori
 *.orig
 *.tmp
-
 
 ### -------------------------- JEnv.gitignore -------------------------- ###
 
@@ -841,11 +820,9 @@ Temporary Items
 # Used by previous versions of JEnv
 .jenv-version
 
-
 ### ------------------------- Project Specific ------------------------- ###
 
 # Include any specific files here.
-
 
 ### ---------------------------- References ---------------------------- ###
 
@@ -874,3 +851,6 @@ Temporary Items
 # JEnv             - https://github.com/github/gitignore/blob/main/Global/JEnv.gitignore
 yggdrasil/macos/Flutter/ephemeral/flutter_export_environment.sh
 yggdrasil/macos/Flutter/ephemeral/Flutter-Generated.xcconfig
+
+# FVM Version Cache
+.fvm/

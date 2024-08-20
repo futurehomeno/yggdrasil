@@ -58,7 +58,7 @@ class YgBarGraphRenderer<T extends YgGraphPoint> extends YgGraphFieldRenderBox {
   }
 
   @override
-  EdgeInsets getMinimumCoordinatePadding() {
+  EdgeInsets getMinimumcontentPadding() {
     // 2.5 for the bar with it self
     // 0.5 from the bar border.
     return const EdgeInsets.all(3);
@@ -99,7 +99,7 @@ class YgBarGraphRenderer<T extends YgGraphPoint> extends YgGraphFieldRenderBox {
 
     for (int i = range.start.ceil(); i < range.end; i++) {
       final T value = dataProvider.getDataAtDataPoint(i);
-      final Offset topCenter = getCoordinatesFromValue(i.toDouble(), value.value);
+      final Offset topCenter = getValueOffset(i.toDouble(), value.value);
       final YgBarStyle style = styleProvider.getBarStyleForData(value);
 
       final Rect rect = Rect.fromLTRB(
