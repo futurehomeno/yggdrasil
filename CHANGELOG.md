@@ -1,3 +1,10 @@
+# 1.12.8 [2024-08-26T16:16:00.021390]
+
+### Changes
+
+- Tim/devide_by_zero_fix [DEV-4134] (#177)
+- [fix] Fix devide by zero error when the highest value in a mini bar graph was zero DEV-4134.
+
 # 1.12.7 [2024-07-09T14:25:14.051425]
 
 ### Changes
