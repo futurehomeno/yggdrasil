@@ -93,10 +93,10 @@ class _$YgMiniBarGraphTheme {
   ];
 
   static const List<Color> valueTextColorWarning = <Color>[
-    consumer_light.FhColors.textSuccess,
-    consumer_dark.FhColors.textSuccess,
-    professional_light.FhColors.textSuccess,
-    professional_dark.FhColors.textSuccess,
+    consumer_light.FhColors.textWarning,
+    consumer_dark.FhColors.textWarning,
+    professional_light.FhColors.textWarning,
+    professional_dark.FhColors.textWarning,
   ];
 
   static const List<Color> valueTextColorNeutral = <Color>[
