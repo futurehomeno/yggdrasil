@@ -39,7 +39,7 @@ class MiniBarGraphScreen extends StatelessWidget {
         children: <Widget>[
           YgSection(
             title: 'Default YgMiniBarGraph',
-            child: _buildDefaultBarGraph(bars: _generateGraphData(48, 87692)),
+            child: _buildDefaultBarGraph(bars: _generateGraphData(48, 37245)),
           ),
           YgSection(
             title: 'YgMiniBarGraph without Data',
