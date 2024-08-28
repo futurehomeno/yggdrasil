@@ -1,3 +1,10 @@
+# 1.12.9 [2024-08-28T12:35:04.668892]
+
+### Changes
+
+- [fix] Fixed bar graph using the same color for the value high and low variant values.
+- fixed incorrect token (#178)
+
 # 1.12.8 [2024-08-26T16:16:00.021390]
 
 ### Changes
