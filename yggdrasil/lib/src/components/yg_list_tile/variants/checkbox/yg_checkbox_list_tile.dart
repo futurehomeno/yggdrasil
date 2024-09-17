@@ -50,8 +50,8 @@ abstract base class YgCheckboxListTile extends YgListTile implements YgToggleabl
     return YgListTileBody.withChildAndOptionalLeading(
       builder: null,
       density: density,
-      title: title,
-      subtitle: subtitle,
+      title: title.asText(),
+      subtitle: subtitle.asText(),
       subtitleIcon: subtitleIcon,
       disabled: disabled,
       onTap: toggle,

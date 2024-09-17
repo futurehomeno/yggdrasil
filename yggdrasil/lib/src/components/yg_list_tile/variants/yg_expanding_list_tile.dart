@@ -77,8 +77,8 @@ final class YgExpandingListTile extends YgListTile {
 
           return YgListTileBody(
             density: density,
-            title: title,
-            subtitle: subtitle,
+            title: title.asText(),
+            subtitle: subtitle.asText(),
             subtitleIcon: subtitleIcon,
             disabled: false,
             onTap: controller.toggle,

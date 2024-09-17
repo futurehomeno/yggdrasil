@@ -59,8 +59,8 @@ final class _YgRegularListTile extends YgListTile {
     final YgListTileTheme theme = context.listTileTheme;
 
     return YgListTileBody(
-      title: title,
-      subtitle: subtitle,
+      title: title.asText(),
+      subtitle: subtitle.asText(),
       subtitleIcon: subtitleIcon,
       disabled: disabled,
       onTap: onTap,

@@ -54,8 +54,8 @@ abstract base class YgSwitchListTile extends YgListTile implements YgToggleable 
     return YgListTileBody(
       builder: null,
       density: density,
-      title: title,
-      subtitle: subtitle,
+      title: title.asText(),
+      subtitle: subtitle.asText(),
       subtitleIcon: subtitleIcon,
       disabled: disabled,
       onTap: toggle,

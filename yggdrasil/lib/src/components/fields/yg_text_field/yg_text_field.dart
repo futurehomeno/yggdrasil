@@ -348,7 +348,7 @@ class YgTextField extends StatefulWidget with StatefulWidgetDebugMixin {
   }
 }
 
-class _YgTextFieldState extends State<YgTextField>
+class _YgTextFieldState extends StateWithYgState<YgTextField, YgFieldState>
     with YgControllerManagerMixin
     implements TextSelectionGestureDetectorBuilderDelegate {
   /// Manages the [TextEditingController] for this widget.
@@ -383,41 +383,36 @@ class _YgTextFieldState extends State<YgTextField>
   @override
   final bool selectionEnabled = true;
 
-  /// The state of the field.
-  late final YgFieldState _state = YgFieldState(
-    filled: _controllerManager.value.text.isNotEmpty == true,
-    placeholder: widget.placeholder != null,
-    error: widget.error != null,
-    disabled: widget.disabled,
-    suffix: _hasSuffix,
-    variant: widget.variant,
-    size: widget.size,
-  );
-
   /// Whether to hide the obscured text or not.
   bool _obscureTextToggled = true;
+
+  @override
+  YgFieldState createState() {
+    return YgFieldState(
+      filled: _controllerManager.value.text.isNotEmpty == true,
+      placeholder: widget.placeholder != null,
+      error: widget.error != null,
+      disabled: widget.disabled,
+      suffix: _hasSuffix,
+      variant: widget.variant,
+      size: widget.size,
+    );
+  }
+
+  @override
+  void updateState() {
+    state.placeholder.value = widget.placeholder != null;
+    state.error.value = widget.error != null;
+    state.disabled.value = widget.disabled;
+    state.suffix.value = _hasSuffix;
+    state.size.value = widget.size;
+    state.variant.value = widget.variant;
+  }
 
   @override
   void initState() {
     super.initState();
     _selectionGestureDetectorBuilder = _TextFieldSelectionGestureDetectorBuilder(state: this);
-  }
-
-  @override
-  void didUpdateWidget(covariant YgTextField oldWidget) {
-    super.didUpdateWidget(oldWidget);
-    _state.placeholder.value = widget.placeholder != null;
-    _state.error.value = widget.error != null;
-    _state.disabled.value = widget.disabled;
-    _state.suffix.value = _hasSuffix;
-    _state.size.value = widget.size;
-    _state.variant.value = widget.variant;
-  }
-
-  @override
-  void dispose() {
-    _state.dispose();
-    super.dispose();
   }
 
   @override
@@ -427,7 +422,7 @@ class _YgTextFieldState extends State<YgTextField>
         variant: widget.variant,
         size: widget.size,
         error: widget.error,
-        state: _state,
+        state: state,
         suffix: _buildSuffix(),
         content: YgFieldContent(
           value: YgTextFieldValue(
@@ -443,7 +438,7 @@ class _YgTextFieldState extends State<YgTextField>
             onChanged: widget.onChanged,
             onEditingComplete: _onEditingComplete,
             readOnly: widget.readOnly,
-            state: _state,
+            state: state,
             textCapitalization: widget.textCapitalization,
             textInputAction: widget.textInputAction,
             contextMenuBuilder: _buildContextMenu,
@@ -451,7 +446,7 @@ class _YgTextFieldState extends State<YgTextField>
             onSelectionHandleTapped: _handleSelectionHandleTapped,
             showSelectionHandles: _showSelectionHandles,
           ),
-          state: _state,
+          state: state,
           label: widget.label,
           minLines: widget.minLines,
           placeholder: widget.placeholder,
@@ -465,8 +460,8 @@ class _YgTextFieldState extends State<YgTextField>
     }
 
     return MouseRegion(
-      onEnter: (_) => _state.hovered.value = true,
-      onExit: (_) => _state.hovered.value = false,
+      onEnter: (_) => state.hovered.value = true,
+      onExit: (_) => state.hovered.value = false,
       cursor: SystemMouseCursors.text,
       child: _selectionGestureDetectorBuilder.buildGestureDetector(
         behavior: HitTestBehavior.translucent,
@@ -562,12 +557,12 @@ class _YgTextFieldState extends State<YgTextField>
   }
 
   void _valueUpdated() {
-    _state.filled.value = _controllerManager.value.text.isNotEmpty;
+    state.filled.value = _controllerManager.value.text.isNotEmpty;
   }
 
   void _focusChanged() {
     final bool focused = _focusNodeManager.value.hasFocus;
-    _state.focused.value = focused;
+    state.focused.value = focused;
     widget.onFocusChanged?.call(focused);
   }
 

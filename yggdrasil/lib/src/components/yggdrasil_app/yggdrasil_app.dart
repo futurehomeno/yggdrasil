@@ -4,6 +4,7 @@ import 'dart:ui' as ui;
 
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:yggdrasil/src/utils/yg_painting_portal/painting_portal_target.dart';
 import 'package:yggdrasil/yggdrasil.dart';
 
 // TODO(DEV-3148): Probably need to update all theme properties when updating
@@ -303,17 +304,19 @@ class _YggdrasilAppState extends State<YggdrasilApp> {
             actions: widget.actions,
             restorationScopeId: widget.restorationScopeId,
             builder: (BuildContext context, Widget? child) {
-              return Focus(
-                canRequestFocus: false,
-                child: ScaffoldMessenger(
-                  key: widget.scaffoldMessengerKey,
-                  child: DefaultSelectionStyle(
-                    selectionColor: effectiveSelectionColor,
-                    cursorColor: effectiveCursorColor,
-                    child: YgSnackBarManager(
-                      key: widget.snackBarManagerKey,
-                      child: _maybeWrapWithBuilder(
-                        child!,
+              return PaintingPortalTarget(
+                child: Focus(
+                  canRequestFocus: false,
+                  child: ScaffoldMessenger(
+                    key: widget.scaffoldMessengerKey,
+                    child: DefaultSelectionStyle(
+                      selectionColor: effectiveSelectionColor,
+                      cursorColor: effectiveCursorColor,
+                      child: YgSnackBarManager(
+                        key: widget.snackBarManagerKey,
+                        child: _maybeWrapWithBuilder(
+                          child!,
+                        ),
                       ),
                     ),
                   ),

@@ -46,8 +46,8 @@ final class YgRadioListTile<T> extends YgListTile {
   Widget build(BuildContext context) {
     return YgListTileBody.withChildAndOptionalLeading(
       density: density,
-      title: title,
-      subtitle: subtitle,
+      title: title.asText(),
+      subtitle: subtitle.asText(),
       subtitleIcon: subtitleIcon,
       disabled: onChanged == null,
       onTap: _onTap,
