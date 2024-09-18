@@ -1,3 +1,9 @@
+# 1.12.10 [2024-09-18T12:34:47.982809]
+
+### Changes
+
+- [fix] Fixed issue where widgets with build in style listeners would try to listen to a disposed style.
+
 # 1.12.9 [2024-08-28T12:35:04.668892]
 
 ### Changes
