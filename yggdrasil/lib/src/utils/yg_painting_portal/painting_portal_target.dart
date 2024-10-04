@@ -3,6 +3,8 @@ import 'dart:math';
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 
+import 'scrollable_dropdown.dart';
+
 class PaintingPortalTarget extends SingleChildRenderObjectWidget {
   const PaintingPortalTarget({
     super.key,
@@ -16,7 +18,7 @@ class PaintingPortalTarget extends SingleChildRenderObjectWidget {
 }
 
 class PaintingPortalTargetRenderer extends RenderProxyBox {
-  final Map<RenderObject, PaintingPortalEntry> _entries = <RenderObject, PaintingPortalEntry>{};
+  final List<ScrollableDropdownRenderer> renderers = <ScrollableDropdownRenderer>[];
   Size _cachedSize = Size.zero;
   final Random _random = Random();
 
@@ -27,34 +29,33 @@ class PaintingPortalTargetRenderer extends RenderProxyBox {
     child?.layout(BoxConstraints.tight(_cachedSize));
   }
 
-  void updateEntry(RenderObject parent, PaintingPortalEntry entry) {
-    _entries[parent] = entry;
+  void addEntry(ScrollableDropdownRenderer parent) {
+    renderers.add(parent);
+    markNeedsPaint();
   }
 
   void removeEntry(RenderObject parent) {
-    _entries.remove(parent);
+    renderers.remove(parent);
   }
 
   @override
   void paint(PaintingContext context, Offset offset) {
     super.paint(context, offset);
+    print('paint');
 
-    for (final PaintingPortalEntry entry in _entries.values) {
-      final FollowerLayer layer = FollowerLayer(
-        link: entry.link,
-        showWhenUnlinked: false,
-        unlinkedOffset: offset,
-        linkedOffset: Offset.zero,
-      );
-
-      context.addLayer(layer);
-
+    for (final ScrollableDropdownRenderer renderer in renderers) {
+      final FollowerLayer layer = renderer.createLayer();
       context.pushLayer(
         layer,
         _paint,
         Offset.zero,
         childPaintBounds: Rect.largest,
       );
+      // // ignore: invalid_use_of_protected_member
+      // final PaintingContext childContext = context.createChildContext(layer, );
+      // _paint(childContext, Offset.zero);
+
+      // renderer.followerPaintingContext = childContext;
     }
   }
 
@@ -63,7 +64,7 @@ class PaintingPortalTargetRenderer extends RenderProxyBox {
       (_random.nextDouble() * 255).floor(),
       (_random.nextDouble() * 255).floor(),
       (_random.nextDouble() * 255).floor(),
-      _random.nextDouble(),
+      1.0,
     );
 
     final Paint paint = Paint()..color = color;

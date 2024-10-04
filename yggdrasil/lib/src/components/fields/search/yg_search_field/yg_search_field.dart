@@ -1,40 +1,45 @@
+import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:flutter/widgets.dart';
-import 'package:yggdrasil/src/components/fields/enums/_enums.dart';
-import 'package:yggdrasil/src/components/fields/search/yg_search_controller.dart';
-import 'package:yggdrasil/src/components/fields/yg_field_state.dart';
+import 'package:yggdrasil/src/components/fields/search/enums/yg_search_action.dart';
+import 'package:yggdrasil/src/components/fields/search/widgets/mobile_search_screen.dart';
+import 'package:yggdrasil/src/components/fields/widgets/_widgets.dart';
+import 'package:yggdrasil/src/theme/_theme.dart';
 import 'package:yggdrasil/src/utils/_utils.dart';
+import 'package:yggdrasil/yggdrasil.dart';
 
 import '../models/yg_search_result.dart';
+import 'yg_search_field_state.dart';
 
 class YgSearchField<T> extends StatefulWidget {
   const YgSearchField({
     super.key,
-    required this.disabled,
     required this.results,
-    required this.controller,
-    required this.initialValue,
-    required this.focusNode,
-    required this.autocorrect,
-    required this.completeAction,
-    required this.error,
-    required this.inputFormatters,
-    required this.keyboardType,
     required this.label,
-    required this.onEditingComplete,
-    required this.onFocusChanged,
-    required this.onSearchChanged,
-    required this.placeholder,
+    this.variant = YgFieldVariant.standard,
+    this.size = YgFieldSize.large,
+    this.completeAction = YgCompleteAction.unfocus,
+    this.searchAction = YgSearchAction.auto,
+    this.focusNode,
+    this.error,
+    this.disabled = false,
+    this.placeholder,
+    this.onFocusChanged,
+    this.controller,
+    this.onEditingComplete,
+    this.onSearchChanged,
+    this.valueChanged,
+    required this.keyboardType,
+    required this.autocorrect,
     required this.readOnly,
-    required this.size,
     required this.textCapitalization,
-    required this.textInputAction,
-    required this.valueChanged,
-    required this.variant,
+    this.inputFormatters,
+    this.initialValue,
   });
 
   final List<YgSearchResult<T>>? results;
-  final YgSearchController controller;
+  final YgSearchController? controller;
+
+  final YgSearchAction searchAction;
 
   /// Triggers whenever there's a change to the text field value.
   final ValueChanged<String>? onSearchChanged;
@@ -67,9 +72,6 @@ class YgSearchField<T> extends StatefulWidget {
 
   /// Called when the widget gains or loses focus.
   final ValueChanged<bool>? onFocusChanged;
-
-  /// The type of action button to use for the keyboard.
-  final TextInputAction textInputAction;
 
   /// The placeholder shown in the text field.
   ///
@@ -140,7 +142,8 @@ class YgSearchField<T> extends StatefulWidget {
   State<YgSearchField<T>> createState() => _YgSearchFieldState<T>();
 }
 
-class _YgSearchFieldState<T> extends StateWithYgState<YgSearchField<T>, YgFieldState> with YgControllerManagerMixin {
+class _YgSearchFieldState<T> extends StateWithYgState<YgSearchField<T>, YgSearchFieldState>
+    with YgControllerManagerMixin {
   /// Manages the controller of this widget.
   late final YgControllerManager<YgSearchController> _controllerManager = manageController(
     createController: () => YgSearchController(text: widget.initialValue),
@@ -154,8 +157,8 @@ class _YgSearchFieldState<T> extends StateWithYgState<YgSearchField<T>, YgFieldS
   );
 
   @override
-  YgFieldState createState() {
-    return YgFieldState(
+  YgSearchFieldState createState() {
+    return YgSearchFieldState(
       filled: _controllerManager.value.text.isNotEmpty,
       placeholder: widget.placeholder != null,
       error: widget.error != null,
@@ -169,10 +172,78 @@ class _YgSearchFieldState<T> extends StateWithYgState<YgSearchField<T>, YgFieldS
   @override
   void updateState() {
     state.disabled.value = widget.disabled;
+    state.filled.value = _controllerManager.value.text.isNotEmpty;
+    state.placeholder.value = widget.placeholder != null;
+    state.error.value = widget.error != null;
+    state.disabled.value = widget.disabled;
+    state.variant.value = widget.variant;
+    state.size.value = widget.size;
+  }
+
+  void _pushSearchRoute() {
+    final RenderBox itemBox = context.findRenderObject()! as RenderBox;
+    final Rect itemRect = itemBox.localToGlobal(
+          Offset.zero,
+          ancestor: Navigator.of(context).context.findRenderObject(),
+        ) &
+        itemBox.size;
+
+    final BorderRadius radius = context.fieldTheme.decorationTheme.borderRadiusOutlined;
+
+    Navigator.of(context).push(
+      MobileSearchRoute(
+        transitionFromRRect: radius.toRRect(itemRect),
+        autocorrect: widget.autocorrect,
+        keyboardType: widget.keyboardType,
+        textCapitalization: widget.textCapitalization,
+      ),
+    );
   }
 
   @override
   Widget build(BuildContext context) {
-    return Container();
+    final YgFieldTheme theme = context.fieldTheme;
+
+    final bool isTextField = (widget.searchAction == YgSearchAction.menu) ||
+        (widget.searchAction == YgSearchAction.auto && !YgConsts.isMobile);
+
+    return YgFieldDecoration(
+      content: YgFieldContent(
+        floatLabelOnFocus: isTextField,
+        label: widget.label,
+        placeholder: widget.placeholder,
+        state: state,
+        value: AnimatedBuilder(
+          animation: _controllerManager.value,
+          builder: (BuildContext context, Widget? child) {
+            return Text(_controllerManager.value.text);
+          },
+        ),
+        minLines: null,
+      ),
+      builder: (BuildContext context, Widget child) {
+        if (widget.disabled) {
+          return child;
+        }
+
+        return InkWell(
+          focusNode: _focusNodeManager.value,
+          onTap: _pushSearchRoute,
+          child: child,
+        );
+      },
+      error: widget.error,
+      state: state,
+      suffix: AnimatedRotation(
+        duration: theme.animationDuration,
+        curve: theme.animationCurve,
+        turns: state.opened.value ? 0.5 : 0,
+        child: YgIconButton(
+          onPressed: widget.disabled ? null : () {},
+          size: YgIconButtonSize.small,
+          icon: YgIcons.caretDown,
+        ),
+      ),
+    );
   }
 }

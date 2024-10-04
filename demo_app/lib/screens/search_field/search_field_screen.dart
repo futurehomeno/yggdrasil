@@ -19,40 +19,16 @@ class SearchFieldScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return DemoScreen(
       componentName: 'SearchField',
-      child: Column(
+      child: YgSection.column(
         children: <Widget>[
-          Padding(
-            padding: const EdgeInsets.symmetric(vertical: 500),
-            child: YgSection(
-              child: ScrollableDropdownRenderer(
-                gap: 5,
-                alignment: DropDownAlignment.auto,
-                follower: Column(
-                  mainAxisSize: MainAxisSize.min,
-                  children: [
-                    YgListTile(
-                      title: 'Result 1',
-                    ),
-                    YgListTile(
-                      title: 'Result 2',
-                    ),
-                    YgListTile(
-                      title: 'Result 3',
-                    ),
-                    YgListTile(
-                      title: 'Result 4',
-                    ),
-                  ],
-                ),
-                target: YgTextField(
-                  label: 'Search',
-                  keyboardType: TextInputType.text,
-                  textInputAction: TextInputAction.done,
-                  autocorrect: false,
-                  textCapitalization: TextCapitalization.none,
-                ),
-              ),
-            ),
+          YgSearchField(
+            results: [],
+            label: 'Search',
+            keyboardType: TextInputType.streetAddress,
+            autocorrect: false,
+            readOnly: false,
+            textCapitalization: TextCapitalization.sentences,
+            variant: YgFieldVariant.outlined,
           )
         ],
       ),

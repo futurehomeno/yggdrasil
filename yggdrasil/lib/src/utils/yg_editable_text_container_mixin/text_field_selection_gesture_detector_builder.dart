@@ -1,12 +1,12 @@
-part of 'yg_text_field.dart';
+part of '_yg_editable_text_container_mixin.dart';
 
 class _TextFieldSelectionGestureDetectorBuilder extends TextSelectionGestureDetectorBuilder {
   _TextFieldSelectionGestureDetectorBuilder({
-    required _YgTextFieldState state,
+    required EditableTextContainerStateMixin<EditableTextContainerWidgetMixin> state,
   })  : _state = state,
         super(delegate: state);
 
-  final _YgTextFieldState _state;
+  final EditableTextContainerStateMixin<EditableTextContainerWidgetMixin> _state;
 
   @override
   void onForcePressStart(ForcePressDetails details) {

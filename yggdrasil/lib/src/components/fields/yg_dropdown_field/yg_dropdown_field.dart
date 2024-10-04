@@ -284,8 +284,6 @@ abstract class YgDropdownFieldWidgetState<T extends Object, W extends YgDropdown
     final YgAnyDropdownController<T> controller = _controllerManager.value;
 
     return YgFieldDecoration(
-      variant: widget.variant,
-      size: widget.size,
       error: widget.error,
       state: state,
       builder: (BuildContext context, Widget child) {

@@ -3,8 +3,8 @@ import 'package:flutter/rendering.dart';
 
 import 'painting_portal_target.dart';
 
-class ScrollableDropdownRenderer extends MultiChildRenderObjectWidget {
-  ScrollableDropdownRenderer({
+class ScrollableDropdown extends MultiChildRenderObjectWidget {
+  ScrollableDropdown({
     super.key,
     required Widget target,
     required Widget follower,
@@ -22,26 +22,33 @@ class ScrollableDropdownRenderer extends MultiChildRenderObjectWidget {
 
   @override
   RenderObject createRenderObject(BuildContext context) {
-    return PaintingPortalSourceRenderer(
+    return ScrollableDropdownRenderer(
       alignment: alignment,
       gap: gap,
     );
   }
+
+  @override
+  void updateRenderObject(BuildContext context, covariant ScrollableDropdownRenderer renderObject) {
+    renderObject.alignment = alignment;
+    renderObject.gap = gap;
+  }
 }
 
-class PaintingPortalSourceParentData extends ContainerBoxParentData<RenderBox> {}
+class ScrollableDropdownData extends ContainerBoxParentData<RenderBox> {}
 
-class PaintingPortalSourceRenderer extends RenderBox
+class ScrollableDropdownRenderer extends RenderBox
     with
-        ContainerRenderObjectMixin<RenderBox, PaintingPortalSourceParentData>,
-        RenderBoxContainerDefaultsMixin<RenderBox, PaintingPortalSourceParentData> {
-  PaintingPortalSourceRenderer({
+        ContainerRenderObjectMixin<RenderBox, ScrollableDropdownData>,
+        RenderBoxContainerDefaultsMixin<RenderBox, ScrollableDropdownData> {
+  ScrollableDropdownRenderer({
     required DropDownAlignment alignment,
     required double gap,
   })  : _alignment = alignment,
         _gap = gap;
 
   final LayerLink _link = LayerLink();
+  PaintingContext? followerPaintingContext;
 
   DropDownAlignment _alignment;
   DropDownAlignment get alignment => _alignment;
@@ -63,7 +70,7 @@ class PaintingPortalSourceRenderer extends RenderBox
 
   @override
   void setupParentData(covariant RenderObject child) {
-    child.parentData = PaintingPortalSourceParentData();
+    child.parentData = ScrollableDropdownData();
   }
 
   @override
@@ -90,6 +97,7 @@ class PaintingPortalSourceRenderer extends RenderBox
   void paint(PaintingContext context, Offset offset) {
     final RenderBox? target = firstChild;
     final RenderBox? follower = lastChild;
+    final PaintingContext? followerPaintingContext = this.followerPaintingContext;
 
     if (target == null || follower == null) {
       return;
@@ -115,13 +123,12 @@ class PaintingPortalSourceRenderer extends RenderBox
       Offset.zero,
     );
 
-    _target?.updateEntry(
-      this,
-      PaintingPortalEntry(
-        link: _link,
-        follower: follower,
-      ),
-    );
+    if (followerPaintingContext != null) {
+      followerPaintingContext.paintChild(
+        follower,
+        Offset.zero,
+      );
+    }
   }
 
   PaintingPortalTargetRenderer? get _target {
@@ -138,9 +145,19 @@ class PaintingPortalSourceRenderer extends RenderBox
   bool get needsCompositing => true;
 
   @override
+  void attach(PipelineOwner owner) {
+    _target?.addEntry(this);
+    super.attach(owner);
+  }
+
+  @override
   void detach() {
     _target?.removeEntry(this);
     super.detach();
+  }
+
+  FollowerLayer createLayer() {
+    return FollowerLayer(link: _link);
   }
 }
 

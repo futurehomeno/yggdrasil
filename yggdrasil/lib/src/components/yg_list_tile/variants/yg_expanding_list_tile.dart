@@ -1,4 +1,13 @@
-part of '../yg_list_tile.dart';
+import 'package:flutter/material.dart';
+import 'package:yggdrasil/src/components/yg_icon/yg_icon.dart';
+import 'package:yggdrasil/src/components/yg_list_tile/enums/yg_list_tile_density.dart';
+import 'package:yggdrasil/src/components/yg_list_tile/helpers/yg_list_tile_helpers.dart';
+import 'package:yggdrasil/src/components/yg_list_tile/widgets/yg_list_tile_body.dart';
+import 'package:yggdrasil/src/extensions/string_extension.dart';
+import 'package:yggdrasil/src/generated/icons/_icons.dart';
+import 'package:yggdrasil/src/theme/_theme.dart';
+import 'package:yggdrasil/src/utils/_utils.dart';
+import 'package:yggdrasil/src/utils/yg_expander/yg_expander_default_controller.dart';
 
 /// Expanding list tile component.
 ///
@@ -8,20 +17,20 @@ part of '../yg_list_tile.dart';
 /// Supports 2 leading and 2 supporting widgets, however, this differs from
 /// design in Figma. This is so we do not encourage designers to use more than
 /// 2 widgets.
-final class YgExpandingListTile extends YgListTile {
+final class YgExpandingListTile extends StatelessWidget with StatelessWidgetDebugMixin {
   const YgExpandingListTile({
     super.key,
     required this.child,
-    super.title,
-    super.subtitle,
-    super.subtitleIcon,
+    this.title,
+    this.subtitle,
+    this.subtitleIcon,
     this.leadingWidgets,
     this.supportingWidgets,
     this.onInfoTap,
     this.controller,
     this.onExpandedChanged,
     this.initiallyExpanded = false,
-    super.density = YgListTileDensity.standard,
+    this.density = YgListTileDensity.standard,
   })  : assert(
           title != null || leadingWidgets != null || subtitle != null,
           'Can not have neither a title, subtitle, or leading widget.',
@@ -33,9 +42,6 @@ final class YgExpandingListTile extends YgListTile {
         assert(
           title != null || onInfoTap == null,
           'Can not have a infoButton without a title.',
-        ),
-        super._(
-          disabled: false,
         );
 
   /// The widget rendered below the list tile when it is expanded..
@@ -62,6 +68,27 @@ final class YgExpandingListTile extends YgListTile {
 
   /// See [YgExpander.onExpandedChanged].
   final ValueChanged<bool>? onExpandedChanged;
+
+  /// The title.
+  ///
+  /// Shown in the middle of the list tile when there is no [subtitle], will be
+  /// pushed to the top of the list tile if there is a [subtitle].
+  final String? title;
+
+  /// The subtitle.
+  ///
+  /// Shown below the [title].
+  final String? subtitle;
+
+  /// Small icon shown in front of [subtitle].
+  ///
+  /// Can not be provided when there is no subtitle.
+  final Widget? subtitleIcon;
+
+  /// The density of the list tile.
+  ///
+  /// Defaults to [YgListTileDensity.standard].
+  final YgListTileDensity density;
 
   @override
   Widget build(BuildContext context) {
@@ -116,4 +143,7 @@ final class YgExpandingListTile extends YgListTile {
       ),
     );
   }
+
+  @override
+  YgDebugType get debugType => YgDebugType.intractable;
 }

@@ -1,4 +1,4 @@
-import 'yg_search_match.dart';
+import 'package:yggdrasil/src/utils/yg_match_text.dart';
 
 class YgSearchResultText {
   const YgSearchResultText({
@@ -7,5 +7,5 @@ class YgSearchResultText {
   });
 
   final String text;
-  final List<YgSearchMatch>? matches;
+  final List<YgTextMatch>? matches;
 }

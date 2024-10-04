@@ -88,6 +88,9 @@ class _$YgTheme {
   static final List<YgPulseTheme> pulseTheme = YgPulseTheme.themes;
 
   @themeExtension
+  static final List<YgSearchModalTheme> searchModalTheme = YgSearchModalTheme.themes;
+
+  @themeExtension
   static final List<YgRadioTheme> radioTheme = YgRadioTheme.themes;
 
   @themeExtension

@@ -1,19 +1,14 @@
-import 'dart:io';
-
-import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:yggdrasil/src/components/fields/helpers/yg_validate_helper.dart';
+import 'package:yggdrasil/src/theme/_theme.dart';
 import 'package:yggdrasil/src/utils/_utils.dart';
 import 'package:yggdrasil/yggdrasil.dart';
 
 import '../widgets/_widgets.dart';
 import '../yg_field_state.dart';
-import 'widgets/_widgets.dart';
 
-part 'text_field_selection_gesture_detector_builder.dart';
-
-class YgTextField extends StatefulWidget with StatefulWidgetDebugMixin {
+class YgTextField extends StatefulWidget with StatefulWidgetDebugMixin, EditableTextContainerWidgetMixin {
   const YgTextField({
     super.key,
     required this.label,
@@ -254,6 +249,7 @@ class YgTextField extends StatefulWidget with StatefulWidgetDebugMixin {
   /// by any shortcut or keyboard operation. The text is still selectable.
   ///
   /// Defaults to false. Must not be null.
+  @override
   final bool readOnly;
 
   /// Configures how the platform keyboard will select an uppercase or
@@ -320,14 +316,17 @@ class YgTextField extends StatefulWidget with StatefulWidgetDebugMixin {
   final List<TextInputFormatter>? inputFormatters;
 
   /// Controls the focus of the widget.
+  @override
   final FocusNode? focusNode;
 
   /// Controls the text being edited.
   ///
   /// When defined will overwrite the [initialValue].
+  @override
   final TextEditingController? controller;
 
   /// The initial value of the text field.
+  @override
   final String? initialValue;
 
   /// The action to perform when the user completes editing the field.
@@ -349,47 +348,14 @@ class YgTextField extends StatefulWidget with StatefulWidgetDebugMixin {
 }
 
 class _YgTextFieldState extends StateWithYgState<YgTextField, YgFieldState>
-    with YgControllerManagerMixin
-    implements TextSelectionGestureDetectorBuilderDelegate {
-  /// Manages the [TextEditingController] for this widget.
-  late final YgControllerManager<TextEditingController> _controllerManager = manageController(
-    createController: () => TextEditingController(text: widget.initialValue),
-    getUserController: () => widget.controller,
-    listener: _valueUpdated,
-  );
-
-  /// Manages the [FocusNode] for this widget.
-  late final YgControllerManager<FocusNode> _focusNodeManager = manageController(
-    createController: () => FocusNode(),
-    getUserController: () => widget.focusNode,
-    listener: _focusChanged,
-  );
-
-  /// The key of the editable text, used to manage the selection toolbar.
-  @override
-  final GlobalKey<EditableTextState> editableTextKey = GlobalKey();
-
-  /// Handles the selection gestures and triggers [_handleTap].
-  late _TextFieldSelectionGestureDetectorBuilder _selectionGestureDetectorBuilder;
-
-  /// Whether the selection handles should be show.
-  bool _showSelectionHandles = false;
-
-  /// Disabled force press as we don't need it.
-  @override
-  final bool forcePressEnabled = false;
-
-  /// Always allow selection.
-  @override
-  final bool selectionEnabled = true;
-
+    with EditableTextContainerStateMixin<YgTextField> {
   /// Whether to hide the obscured text or not.
   bool _obscureTextToggled = true;
 
   @override
   YgFieldState createState() {
     return YgFieldState(
-      filled: _controllerManager.value.text.isNotEmpty == true,
+      filled: controller.text.isNotEmpty == true,
       placeholder: widget.placeholder != null,
       error: widget.error != null,
       disabled: widget.disabled,
@@ -410,26 +376,17 @@ class _YgTextFieldState extends StateWithYgState<YgTextField, YgFieldState>
   }
 
   @override
-  void initState() {
-    super.initState();
-    _selectionGestureDetectorBuilder = _TextFieldSelectionGestureDetectorBuilder(state: this);
-  }
-
-  @override
   Widget build(BuildContext context) {
+    final YgFieldContentTheme theme = context.fieldTheme.contentTheme;
+
     final Widget layout = RepaintBoundary(
       child: YgFieldDecoration(
-        variant: widget.variant,
-        size: widget.size,
         error: widget.error,
         state: state,
         suffix: _buildSuffix(),
         content: YgFieldContent(
-          value: YgTextFieldValue(
-            editableTextKey: editableTextKey,
+          value: buildEditableText(
             autocorrect: widget.autocorrect,
-            controller: _controllerManager.value,
-            focusNode: _focusNodeManager.value,
             inputFormatters: widget.inputFormatters,
             keyboardType: widget.keyboardType,
             maxLines: widget.maxLines,
@@ -438,13 +395,10 @@ class _YgTextFieldState extends StateWithYgState<YgTextField, YgFieldState>
             onChanged: widget.onChanged,
             onEditingComplete: _onEditingComplete,
             readOnly: widget.readOnly,
-            state: state,
             textCapitalization: widget.textCapitalization,
             textInputAction: widget.textInputAction,
-            contextMenuBuilder: _buildContextMenu,
-            onSelectionChanged: _handleSelectionChanged,
-            onSelectionHandleTapped: _handleSelectionHandleTapped,
-            showSelectionHandles: _showSelectionHandles,
+            cursorColor: theme.cursorColor,
+            disabled: widget.disabled,
           ),
           state: state,
           label: widget.label,
@@ -463,8 +417,7 @@ class _YgTextFieldState extends StateWithYgState<YgTextField, YgFieldState>
       onEnter: (_) => state.hovered.value = true,
       onExit: (_) => state.hovered.value = false,
       cursor: SystemMouseCursors.text,
-      child: _selectionGestureDetectorBuilder.buildGestureDetector(
-        behavior: HitTestBehavior.translucent,
+      child: buildGestureDetector(
         child: layout,
       ),
     );
@@ -482,8 +435,6 @@ class _YgTextFieldState extends StateWithYgState<YgTextField, YgFieldState>
 
     final YgCompleteAction completeAction =
         widget.completeAction ?? YgValidateHelper.mapTextInputAction(widget.textInputAction);
-
-    final FocusNode focusNode = _focusNodeManager.value;
 
     switch (completeAction) {
       case YgCompleteAction.focusNext:
@@ -556,82 +507,15 @@ class _YgTextFieldState extends StateWithYgState<YgTextField, YgFieldState>
     return widget.suffix != null || (widget.obscureText && widget.showObscureTextButton);
   }
 
-  void _valueUpdated() {
-    state.filled.value = _controllerManager.value.text.isNotEmpty;
+  @override
+  void valueUpdated() {
+    state.filled.value = controller.text.isNotEmpty;
   }
 
-  void _focusChanged() {
-    final bool focused = _focusNodeManager.value.hasFocus;
+  @override
+  void focusChanged() {
+    final bool focused = focusNode.hasFocus;
     state.focused.value = focused;
     widget.onFocusChanged?.call(focused);
-  }
-
-  void _handleTap() {
-    final FocusNode focusNode = _focusNodeManager.value;
-    if (!focusNode.hasFocus) {
-      focusNode.requestFocus();
-    }
-  }
-
-  Widget _buildContextMenu(BuildContext context, EditableTextState editableTextState) {
-    return AdaptiveTextSelectionToolbar.editableText(
-      editableTextState: editableTextState,
-    );
-  }
-
-  EditableTextState? get _editableText => editableTextKey.currentState;
-
-  void _requestKeyboard() {
-    _editableText?.requestKeyboard();
-  }
-
-  /// Toggle the toolbar when a selection handle is tapped.
-  void _handleSelectionHandleTapped() {
-    if (_controllerManager.value.selection.isCollapsed) {
-      _editableText!.toggleToolbar();
-    }
-  }
-
-  bool _shouldShowSelectionHandles(SelectionChangedCause? cause) {
-    final TextEditingController controller = _controllerManager.value;
-    // When the text field is activated by something that doesn't trigger the
-    // selection overlay, we shouldn't show the handles either.
-    if (!_selectionGestureDetectorBuilder.shouldShowSelectionToolbar) {
-      return false;
-    }
-
-    if (cause == SelectionChangedCause.keyboard) {
-      return false;
-    }
-
-    if (widget.readOnly && controller.selection.isCollapsed) {
-      return false;
-    }
-
-    if (cause == SelectionChangedCause.longPress || cause == SelectionChangedCause.scribble) {
-      return true;
-    }
-
-    if (controller.text.isNotEmpty) {
-      return true;
-    }
-
-    return false;
-  }
-
-  void _handleSelectionChanged(TextSelection selection, SelectionChangedCause? cause) {
-    final bool willShowSelectionHandles = _shouldShowSelectionHandles(cause);
-    if (willShowSelectionHandles != _showSelectionHandles) {
-      _showSelectionHandles = willShowSelectionHandles;
-      setState(() {});
-    }
-
-    if (cause == SelectionChangedCause.longPress) {
-      _editableText?.bringIntoView(selection.extent);
-    }
-
-    if ((Platform.isMacOS || Platform.isLinux || Platform.isWindows) && cause == SelectionChangedCause.drag) {
-      _editableText?.hideToolbar();
-    }
   }
 }

@@ -1,4 +1,4 @@
-part of '../../yg_list_tile.dart';
+part of 'yg_checkbox_list_tile.dart';
 
 final class _YgCheckboxListTileDualState extends YgCheckboxListTile with YgDualStateToggleableMixin {
   const _YgCheckboxListTileDualState({
@@ -22,9 +22,7 @@ final class _YgCheckboxListTileDualState extends YgCheckboxListTile with YgDualS
           title != null || subtitle == null,
           'Can not have a subtitle without a title.',
         ),
-        super._(
-          disabled: onChanged == null,
-        );
+        super._();
 
   /// See [YgCheckbox] documentation.
   @override
@@ -36,5 +34,14 @@ final class _YgCheckboxListTileDualState extends YgCheckboxListTile with YgDualS
       value: value,
       onChanged: onChanged,
     );
+  }
+
+  @override
+  YgDebugType get debugType {
+    if (onChanged == null) {
+      return YgDebugType.other;
+    }
+
+    return YgDebugType.intractable;
   }
 }

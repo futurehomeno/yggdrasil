@@ -11,7 +11,7 @@ extension YgControllerManagerMixinExtension<W extends StatefulWidget, S extends 
     required T? Function() getUserController,
     void Function()? listener,
   }) {
-    final _YgControllerManagerInternal<S, T> manager = _YgControllerManagerInternal<S, T>(
+    final YgControllerManagerImplementation<S, T> manager = YgControllerManagerImplementation<S, T>(
       createController: createController,
       getUserController: getUserController,
       state: this,
