@@ -50,7 +50,7 @@ class _YgDropdownFormFieldMultiSelect<T extends Object> extends YgDropdownFormFi
         size: size,
         focusNode: focusNode,
         initialValue: initialValue,
-        error: error ?? field.errorText,
+        error: field.errorText,
         minLines: minLines,
         placeholder: placeholder,
         maxLines: maxLines,
