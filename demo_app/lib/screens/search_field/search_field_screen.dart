@@ -22,13 +22,61 @@ class SearchFieldScreen extends StatelessWidget {
       child: YgSection.column(
         children: <Widget>[
           YgSearchField(
-            results: [],
             label: 'Search',
             keyboardType: TextInputType.streetAddress,
             autocorrect: false,
             readOnly: false,
             textCapitalization: TextCapitalization.sentences,
             variant: YgFieldVariant.outlined,
+            resultsBuilder: (searchQuery) async {
+              return [
+                YgSearchResult(
+                  title: YgFormattedText(
+                    text: 'Holtegrenda, 8000, Ski',
+                    matches: [
+                      YgTextMatch(start: 1, end: 8),
+                    ],
+                  ),
+                  value: 1,
+                ),
+                YgSearchResult(
+                  title: YgFormattedText(
+                    text: 'Holtegrenda, 8000, Ski',
+                    matches: [
+                      YgTextMatch(start: 3, end: 8),
+                    ],
+                  ),
+                  value: 1,
+                ),
+                YgSearchResult(
+                  title: YgFormattedText(
+                    text: 'Holtegrenda, 8000, Ski',
+                    matches: [
+                      YgTextMatch(start: 3, end: 8),
+                    ],
+                  ),
+                  value: 1,
+                ),
+                YgSearchResult(
+                  title: YgFormattedText(
+                    text: 'Holtegrenda, 8000, Ski',
+                    matches: [
+                      YgTextMatch(start: 3, end: 8),
+                    ],
+                  ),
+                  value: 1,
+                ),
+                YgSearchResult(
+                  title: YgFormattedText(
+                    text: 'Holtegrenda, 8000, Ski',
+                    matches: [
+                      YgTextMatch(start: 3, end: 8),
+                    ],
+                  ),
+                  value: 1,
+                ),
+              ];
+            },
           )
         ],
       ),

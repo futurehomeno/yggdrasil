@@ -2,18 +2,17 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:yggdrasil/src/components/fields/search/enums/yg_search_action.dart';
 import 'package:yggdrasil/src/components/fields/search/widgets/mobile_search_screen.dart';
+import 'package:yggdrasil/src/components/fields/search/widgets/search_app_bar.dart';
 import 'package:yggdrasil/src/components/fields/widgets/_widgets.dart';
 import 'package:yggdrasil/src/theme/_theme.dart';
 import 'package:yggdrasil/src/utils/_utils.dart';
 import 'package:yggdrasil/yggdrasil.dart';
 
-import '../models/yg_search_result.dart';
 import 'yg_search_field_state.dart';
 
-class YgSearchField<T> extends StatefulWidget {
+class YgSearchField<T> extends StatefulWidget implements YgSearchWidget<T> {
   const YgSearchField({
     super.key,
-    required this.results,
     required this.label,
     this.variant = YgFieldVariant.standard,
     this.size = YgFieldSize.large,
@@ -27,7 +26,8 @@ class YgSearchField<T> extends StatefulWidget {
     this.controller,
     this.onEditingComplete,
     this.onSearchChanged,
-    this.valueChanged,
+    this.resultSelected,
+    required this.resultsBuilder,
     required this.keyboardType,
     required this.autocorrect,
     required this.readOnly,
@@ -36,15 +36,18 @@ class YgSearchField<T> extends StatefulWidget {
     this.initialValue,
   });
 
-  final List<YgSearchResult<T>>? results;
-  final YgSearchController? controller;
+  @override
+  final YgSearchResultsBuilder<T> resultsBuilder;
+
+  @override
+  final Future<String> Function(T value)? resultSelected;
+
+  final YgSearchController<T>? controller;
 
   final YgSearchAction searchAction;
 
   /// Triggers whenever there's a change to the text field value.
   final ValueChanged<String>? onSearchChanged;
-
-  final ValueChanged<T>? valueChanged;
 
   /// The variant of the text field.
   final YgFieldVariant variant;
@@ -139,14 +142,15 @@ class YgSearchField<T> extends StatefulWidget {
   final YgCompleteAction? completeAction;
 
   @override
-  State<YgSearchField<T>> createState() => _YgSearchFieldState<T>();
+  State<YgSearchField<T>> createState() => YgSearchFieldState2<T>();
 }
 
-class _YgSearchFieldState<T> extends StateWithYgState<YgSearchField<T>, YgSearchFieldState>
-    with YgControllerManagerMixin {
+class YgSearchFieldState2<T> extends StateWithYgState<YgSearchField<T>, YgSearchFieldState>
+    with YgControllerManagerMixin
+    implements YgSearchState<YgSearchField<T>> {
   /// Manages the controller of this widget.
-  late final YgControllerManager<YgSearchController> _controllerManager = manageController(
-    createController: () => YgSearchController(text: widget.initialValue),
+  late final YgControllerManager<YgSearchController<T>> _controllerManager = manageController(
+    createController: () => YgSearchController<T>(text: widget.initialValue),
     getUserController: () => widget.controller,
   );
 
@@ -155,6 +159,8 @@ class _YgSearchFieldState<T> extends StateWithYgState<YgSearchField<T>, YgSearch
     createController: () => FocusNode(),
     getUserController: () => widget.focusNode,
   );
+
+  final GlobalKey _fieldKey = GlobalKey();
 
   @override
   YgSearchFieldState createState() {
@@ -180,26 +186,6 @@ class _YgSearchFieldState<T> extends StateWithYgState<YgSearchField<T>, YgSearch
     state.size.value = widget.size;
   }
 
-  void _pushSearchRoute() {
-    final RenderBox itemBox = context.findRenderObject()! as RenderBox;
-    final Rect itemRect = itemBox.localToGlobal(
-          Offset.zero,
-          ancestor: Navigator.of(context).context.findRenderObject(),
-        ) &
-        itemBox.size;
-
-    final BorderRadius radius = context.fieldTheme.decorationTheme.borderRadiusOutlined;
-
-    Navigator.of(context).push(
-      MobileSearchRoute(
-        transitionFromRRect: radius.toRRect(itemRect),
-        autocorrect: widget.autocorrect,
-        keyboardType: widget.keyboardType,
-        textCapitalization: widget.textCapitalization,
-      ),
-    );
-  }
-
   @override
   Widget build(BuildContext context) {
     final YgFieldTheme theme = context.fieldTheme;
@@ -208,6 +194,7 @@ class _YgSearchFieldState<T> extends StateWithYgState<YgSearchField<T>, YgSearch
         (widget.searchAction == YgSearchAction.auto && !YgConsts.isMobile);
 
     return YgFieldDecoration(
+      key: _fieldKey,
       content: YgFieldContent(
         floatLabelOnFocus: isTextField,
         label: widget.label,
@@ -228,7 +215,7 @@ class _YgSearchFieldState<T> extends StateWithYgState<YgSearchField<T>, YgSearch
 
         return InkWell(
           focusNode: _focusNodeManager.value,
-          onTap: _pushSearchRoute,
+          onTap: _controllerManager.value.open,
           child: child,
         );
       },
@@ -245,5 +232,45 @@ class _YgSearchFieldState<T> extends StateWithYgState<YgSearchField<T>, YgSearch
         ),
       ),
     );
+  }
+
+  @override
+  void open() {}
+
+  @override
+  void openMenu() {}
+
+  @override
+  void openScreen() {
+    final BorderRadius radius = context.fieldTheme.decorationTheme.borderRadiusOutlined;
+
+    Navigator.of(context).push(
+      MobileSearchRoute<T>(
+        borderRadius: radius,
+        fieldKey: _fieldKey,
+        searchController: _controllerManager.value,
+        searchBarBuilder: (BuildContext context) {
+          return SearchAppBar(
+            controller: _controllerManager.value,
+            placeholder: widget.placeholder,
+            keyboardType: widget.keyboardType,
+            autocorrect: widget.autocorrect,
+            readOnly: widget.readOnly,
+            textCapitalization: widget.textCapitalization,
+            inputFormatters: widget.inputFormatters,
+            initialValue: widget.initialValue,
+            textInputAction: TextInputAction.none,
+          );
+        },
+      ),
+    );
+  }
+
+  @override
+  void close() {}
+
+  @override
+  bool get isOpen {
+    return true;
   }
 }

@@ -17,6 +17,10 @@ class YgSearchModalTheme extends ThemeExtension<YgSearchModalTheme> {
     required this.headerPadding,
     required this.headerSpacing,
     required this.placeholderStyle,
+    required this.resultSubtitleHighlightedStyle,
+    required this.resultSubtitleStyle,
+    required this.resultTitleHighlightedStyle,
+    required this.resultTitleStyle,
     required this.valueStyle,
   });
 
@@ -27,6 +31,10 @@ class YgSearchModalTheme extends ThemeExtension<YgSearchModalTheme> {
   final EdgeInsets headerPadding;
   final double headerSpacing;
   final TextStyle placeholderStyle;
+  final TextStyle resultSubtitleHighlightedStyle;
+  final TextStyle resultSubtitleStyle;
+  final TextStyle resultTitleHighlightedStyle;
+  final TextStyle resultTitleStyle;
   final TextStyle valueStyle;
 
   static final YgSearchModalTheme consumerLight = YgSearchModalTheme(
@@ -37,6 +45,12 @@ class YgSearchModalTheme extends ThemeExtension<YgSearchModalTheme> {
     headerPadding: _$YgSearchModalTheme.headerPadding[0],
     headerSpacing: _$YgSearchModalTheme.headerSpacing[0],
     placeholderStyle: _$YgSearchModalTheme.placeholderStyle[0],
+    resultSubtitleHighlightedStyle:
+        _$YgSearchModalTheme.resultSubtitleHighlightedStyle[0],
+    resultSubtitleStyle: _$YgSearchModalTheme.resultSubtitleStyle[0],
+    resultTitleHighlightedStyle:
+        _$YgSearchModalTheme.resultTitleHighlightedStyle[0],
+    resultTitleStyle: _$YgSearchModalTheme.resultTitleStyle[0],
     valueStyle: _$YgSearchModalTheme.valueStyle[0],
   );
 
@@ -48,6 +62,12 @@ class YgSearchModalTheme extends ThemeExtension<YgSearchModalTheme> {
     headerPadding: _$YgSearchModalTheme.headerPadding[1],
     headerSpacing: _$YgSearchModalTheme.headerSpacing[1],
     placeholderStyle: _$YgSearchModalTheme.placeholderStyle[1],
+    resultSubtitleHighlightedStyle:
+        _$YgSearchModalTheme.resultSubtitleHighlightedStyle[1],
+    resultSubtitleStyle: _$YgSearchModalTheme.resultSubtitleStyle[1],
+    resultTitleHighlightedStyle:
+        _$YgSearchModalTheme.resultTitleHighlightedStyle[1],
+    resultTitleStyle: _$YgSearchModalTheme.resultTitleStyle[1],
     valueStyle: _$YgSearchModalTheme.valueStyle[1],
   );
 
@@ -59,6 +79,12 @@ class YgSearchModalTheme extends ThemeExtension<YgSearchModalTheme> {
     headerPadding: _$YgSearchModalTheme.headerPadding[2],
     headerSpacing: _$YgSearchModalTheme.headerSpacing[2],
     placeholderStyle: _$YgSearchModalTheme.placeholderStyle[2],
+    resultSubtitleHighlightedStyle:
+        _$YgSearchModalTheme.resultSubtitleHighlightedStyle[2],
+    resultSubtitleStyle: _$YgSearchModalTheme.resultSubtitleStyle[2],
+    resultTitleHighlightedStyle:
+        _$YgSearchModalTheme.resultTitleHighlightedStyle[2],
+    resultTitleStyle: _$YgSearchModalTheme.resultTitleStyle[2],
     valueStyle: _$YgSearchModalTheme.valueStyle[2],
   );
 
@@ -70,6 +96,12 @@ class YgSearchModalTheme extends ThemeExtension<YgSearchModalTheme> {
     headerPadding: _$YgSearchModalTheme.headerPadding[3],
     headerSpacing: _$YgSearchModalTheme.headerSpacing[3],
     placeholderStyle: _$YgSearchModalTheme.placeholderStyle[3],
+    resultSubtitleHighlightedStyle:
+        _$YgSearchModalTheme.resultSubtitleHighlightedStyle[3],
+    resultSubtitleStyle: _$YgSearchModalTheme.resultSubtitleStyle[3],
+    resultTitleHighlightedStyle:
+        _$YgSearchModalTheme.resultTitleHighlightedStyle[3],
+    resultTitleStyle: _$YgSearchModalTheme.resultTitleStyle[3],
     valueStyle: _$YgSearchModalTheme.valueStyle[3],
   );
 
@@ -89,6 +121,10 @@ class YgSearchModalTheme extends ThemeExtension<YgSearchModalTheme> {
     EdgeInsets? headerPadding,
     double? headerSpacing,
     TextStyle? placeholderStyle,
+    TextStyle? resultSubtitleHighlightedStyle,
+    TextStyle? resultSubtitleStyle,
+    TextStyle? resultTitleHighlightedStyle,
+    TextStyle? resultTitleStyle,
     TextStyle? valueStyle,
   }) {
     return YgSearchModalTheme(
@@ -99,6 +135,12 @@ class YgSearchModalTheme extends ThemeExtension<YgSearchModalTheme> {
       headerPadding: headerPadding ?? this.headerPadding,
       headerSpacing: headerSpacing ?? this.headerSpacing,
       placeholderStyle: placeholderStyle ?? this.placeholderStyle,
+      resultSubtitleHighlightedStyle:
+          resultSubtitleHighlightedStyle ?? this.resultSubtitleHighlightedStyle,
+      resultSubtitleStyle: resultSubtitleStyle ?? this.resultSubtitleStyle,
+      resultTitleHighlightedStyle:
+          resultTitleHighlightedStyle ?? this.resultTitleHighlightedStyle,
+      resultTitleStyle: resultTitleStyle ?? this.resultTitleStyle,
       valueStyle: valueStyle ?? this.valueStyle,
     );
   }
@@ -116,6 +158,16 @@ class YgSearchModalTheme extends ThemeExtension<YgSearchModalTheme> {
       headerSpacing: t < 0.5 ? headerSpacing : other.headerSpacing,
       placeholderStyle:
           TextStyle.lerp(placeholderStyle, other.placeholderStyle, t)!,
+      resultSubtitleHighlightedStyle: TextStyle.lerp(
+          resultSubtitleHighlightedStyle,
+          other.resultSubtitleHighlightedStyle,
+          t)!,
+      resultSubtitleStyle:
+          TextStyle.lerp(resultSubtitleStyle, other.resultSubtitleStyle, t)!,
+      resultTitleHighlightedStyle: TextStyle.lerp(
+          resultTitleHighlightedStyle, other.resultTitleHighlightedStyle, t)!,
+      resultTitleStyle:
+          TextStyle.lerp(resultTitleStyle, other.resultTitleStyle, t)!,
       valueStyle: TextStyle.lerp(valueStyle, other.valueStyle, t)!,
     );
   }
@@ -139,6 +191,15 @@ class YgSearchModalTheme extends ThemeExtension<YgSearchModalTheme> {
                 .equals(headerSpacing, other.headerSpacing) &&
             const DeepCollectionEquality()
                 .equals(placeholderStyle, other.placeholderStyle) &&
+            const DeepCollectionEquality().equals(
+                resultSubtitleHighlightedStyle,
+                other.resultSubtitleHighlightedStyle) &&
+            const DeepCollectionEquality()
+                .equals(resultSubtitleStyle, other.resultSubtitleStyle) &&
+            const DeepCollectionEquality().equals(resultTitleHighlightedStyle,
+                other.resultTitleHighlightedStyle) &&
+            const DeepCollectionEquality()
+                .equals(resultTitleStyle, other.resultTitleStyle) &&
             const DeepCollectionEquality()
                 .equals(valueStyle, other.valueStyle));
   }
@@ -154,6 +215,10 @@ class YgSearchModalTheme extends ThemeExtension<YgSearchModalTheme> {
       const DeepCollectionEquality().hash(headerPadding),
       const DeepCollectionEquality().hash(headerSpacing),
       const DeepCollectionEquality().hash(placeholderStyle),
+      const DeepCollectionEquality().hash(resultSubtitleHighlightedStyle),
+      const DeepCollectionEquality().hash(resultSubtitleStyle),
+      const DeepCollectionEquality().hash(resultTitleHighlightedStyle),
+      const DeepCollectionEquality().hash(resultTitleStyle),
       const DeepCollectionEquality().hash(valueStyle),
     );
   }

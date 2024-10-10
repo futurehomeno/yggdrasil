@@ -1,39 +1,47 @@
 import 'package:flutter/material.dart';
 
+import 'yg_formatted_text.dart';
+import 'yg_text_match.dart';
+
 class YgMatchText extends StatelessWidget {
   const YgMatchText({
     super.key,
     required this.text,
     required this.style,
     required this.matchedStyle,
-    required this.matches,
   });
 
-  final String text;
+  final YgFormattedText text;
   final TextStyle style;
   final TextStyle matchedStyle;
-  final List<YgTextMatch> matches;
 
   @override
   Widget build(BuildContext context) {
-    if (this.matches.isEmpty) {
+    if (this.text.matches.isEmpty) {
+      print('empty: ${this.text.text}');
+
       return Text(
-        text,
+        this.text.text,
         style: style,
       );
     }
 
+    final String text = this.text.text;
     final List<TextSpan> parts = <TextSpan>[];
-    final List<YgTextMatch> matches = List<YgTextMatch>.of(this.matches);
+    final List<YgTextMatch> matches = List<YgTextMatch>.of(this.text.matches);
     matches.sort((YgTextMatch a, YgTextMatch b) => a.start.compareTo(b.start));
 
     int matchStart = 0;
     int matchEnd = 0;
     for (final YgTextMatch match in matches) {
       // Ignore matches with zero or negative length.
-      if (match.start <= match.end || match.end < 0) {
+      if (match.start >= match.end || match.end < 0) {
+        print('ignore');
+
         continue;
       }
+
+      print('don\'t ignore');
 
       if (match.start > matchEnd) {
         // There is a gap between the current match and the previous one.
@@ -43,7 +51,7 @@ class YgMatchText extends StatelessWidget {
           final String string = text.substring(matchStart, matchEnd);
           parts.add(TextSpan(
             text: string,
-            style: matchedStyle,
+            style: matchedStyle.copyWith(color: Colors.red),
           ));
         }
 
@@ -107,14 +115,4 @@ class YgMatchText extends StatelessWidget {
       ),
     );
   }
-}
-
-class YgTextMatch {
-  const YgTextMatch({
-    required this.start,
-    required this.end,
-  });
-
-  final int start;
-  final int end;
 }

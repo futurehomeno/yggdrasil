@@ -22,7 +22,7 @@ class DeviceDetailsExample extends StatelessWidget {
       child: Column(
         children: <Widget>[
           YgSection.list(
-            children: <YgListTile>[
+            children: <Widget>[
               YgListTile.link(
                 link: 'Customize',
                 icon: YgIcons.edit,
@@ -55,7 +55,7 @@ class DeviceDetailsExample extends StatelessWidget {
           ),
           const YgSection.list(
             title: 'Detailed data',
-            children: <YgListTile>[
+            children: <Widget>[
               YgListTile(
                 title: 'Power',
                 leadingWidgets: <Widget>[YgIcon(YgIcons.power)],
@@ -91,7 +91,7 @@ class DeviceDetailsExample extends StatelessWidget {
           ),
           YgSection.list(
             title: 'General settings',
-            children: <YgListTile>[
+            children: <Widget>[
               YgListTile.link(
                 link: 'System data',
                 icon: YgIcons.support,

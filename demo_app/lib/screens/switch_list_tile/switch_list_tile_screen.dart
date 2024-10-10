@@ -40,7 +40,7 @@ class SwitchListTileScreenState extends State<SwitchListTileScreen> {
             ),
           ),
           YgSection.list(
-            children: <YgListTile>[
+            children: <Widget>[
               YgSwitchListTile(
                 title: 'SwitchListTile',
                 subtitle: 'The whole ListTile and Switch is tappable.',

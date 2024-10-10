@@ -36,7 +36,7 @@ class HomeScreen extends StatelessWidget {
             children: <Widget>[
               SingleChildScrollView(
                 child: YgSection.list(
-                  children: <YgListTile>[
+                  children: <Widget>[
                     YgListTile(
                       title: 'AppBar',
                       onTap: () => sl<YgRouter>().push(AppBarScreen.route()),
@@ -272,7 +272,7 @@ class HomeScreen extends StatelessWidget {
               ),
               SingleChildScrollView(
                 child: YgSection.list(
-                  children: <YgListTile>[
+                  children: <Widget>[
                     YgListTile(
                       title: 'Device details',
                       onTap: () => sl<YgRouter>().push(DeviceDetailsExample.route()),

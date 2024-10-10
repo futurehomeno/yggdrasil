@@ -1,26 +1,44 @@
 import 'package:flutter/material.dart';
-import 'package:yggdrasil/src/components/fields/search/widgets/rect_transition.dart';
+import 'package:yggdrasil/src/components/fields/search/widgets/rrect_transition.dart';
+import 'package:yggdrasil/src/components/fields/search/widgets/search_result_list_tile.dart';
 import 'package:yggdrasil/yggdrasil.dart';
 
-import 'search_app_bar.dart';
+typedef YgSearchResultsBuilder<T> = Future<List<YgSearchResult<T>>?> Function(String searchQuery);
 
-class MobileSearchRoute extends ModalRoute<Widget> {
+class MobileSearchRoute<T> extends ModalRoute<Widget> {
   MobileSearchRoute({
-    required this.transitionFromRRect,
-    required this.keyboardType,
-    required this.autocorrect,
-    required this.textCapitalization,
+    required this.searchController,
+    required this.searchBarBuilder,
+    required this.fieldKey,
+    required this.borderRadius,
   });
 
-  final RRect transitionFromRRect;
+  final YgSearchController<T> searchController;
 
-  final TextInputType keyboardType;
+  final PreferredSizeWidget Function(BuildContext context) searchBarBuilder;
 
-  final bool autocorrect;
+  final BorderRadius borderRadius;
 
-  final TextCapitalization textCapitalization;
+  final GlobalKey fieldKey;
 
   final CurveTween tween = CurveTween(curve: Curves.easeInOut);
+
+  Rect? getRect() {
+    final BuildContext? context = fieldKey.currentContext;
+    if (context != null) {
+      final RenderBox searchBarBox = context.findRenderObject()! as RenderBox;
+      final Size boxSize = searchBarBox.size;
+      final NavigatorState navigator = Navigator.of(context);
+      final Offset boxLocation = searchBarBox.localToGlobal(
+        Offset.zero,
+        ancestor: navigator.context.findRenderObject(),
+      );
+
+      return boxLocation & boxSize;
+    }
+
+    return null;
+  }
 
   @override
   Color? get barrierColor => null;
@@ -44,57 +62,53 @@ class MobileSearchRoute extends ModalRoute<Widget> {
   Widget buildPage(BuildContext context, Animation<double> animation, Animation<double> secondaryAnimation) {
     return RRectTransition(
       animation: tween.animate(animation),
-      rrect: transitionFromRRect,
-      child: MobileSearchScreen(
-        keyboardType: keyboardType,
-        autocorrect: autocorrect,
-        textCapitalization: textCapitalization,
+      rrect: borderRadius.toRRect(getRect() ?? Rect.zero),
+      child: MobileSearchScreen<T>(
+        controller: searchController,
+        searchBarBuilder: searchBarBuilder,
       ),
     );
   }
 }
 
-class MobileSearchScreen extends StatelessWidget {
+class MobileSearchScreen<T> extends StatelessWidget {
   const MobileSearchScreen({
     super.key,
-    required this.keyboardType,
-    required this.autocorrect,
-    required this.textCapitalization,
+    required this.controller,
+    required this.searchBarBuilder,
   });
 
-  final TextInputType keyboardType;
-  final bool autocorrect;
-  final TextCapitalization textCapitalization;
+  final YgSearchController<T> controller;
+  final PreferredSizeWidget Function(BuildContext context) searchBarBuilder;
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      // TODO(Tim): Update this.
       backgroundColor: context.tokens.colors.backgroundWeak,
-      appBar: SearchAppBar(
-        textInputAction: TextInputAction.done,
-        keyboardType: keyboardType,
-        autocorrect: autocorrect,
-        textCapitalization: textCapitalization,
+      appBar: searchBarBuilder(context),
+      body: ListenableBuilder(
+        builder: _buildContent,
+        listenable: controller.results,
       ),
-      body: const Column(
-        children: <Widget>[
-          YgListTile(
-            title: 'Holtegrenda, 8000, Ski',
-          ),
-          YgListTile(
-            title: 'Holten, 8100, Misaer',
-          ),
-          YgListTile(
-            title: 'Holtegata, 8011, Oslo',
-          ),
-          YgListTile(
-            title: 'Holterveien, 8009, Bodø',
-          ),
-          YgListTile(
-            title: 'Holtegard, 8012, Gol',
-          ),
-        ],
-      ),
+    );
+  }
+
+  Widget _buildContent(BuildContext context, Widget? _) {
+    final List<YgSearchResult<T>>? results = controller.results.value;
+
+    return ListView.builder(
+      itemBuilder: (BuildContext context, int index) {
+        final YgSearchResult<T> result = results![index];
+
+        return SearchResultListTile(
+          title: result.title,
+          subtitle: result.subtitle,
+          icon: result.icon,
+          onTap: () => controller.valueSelected(result.value),
+        );
+      },
+      itemCount: results?.length ?? 0,
     );
   }
 }

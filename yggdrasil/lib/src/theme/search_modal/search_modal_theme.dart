@@ -9,6 +9,8 @@ part 'search_modal_theme.tailor.dart';
 
 @tailorComponent
 class _$YgSearchModalTheme {
+  // region Header
+
   static const List<EdgeInsets> headerPadding = <EdgeInsets>[
     EdgeInsets.all(consumer_light.FhDimensions.xxs),
     EdgeInsets.all(consumer_dark.FhDimensions.xxs),
@@ -58,6 +60,56 @@ class _$YgSearchModalTheme {
     professional_light.FhColors.textHighlight,
     professional_dark.FhColors.textHighlight,
   ];
+
+  // endregion
+
+  // region Results
+
+  static final List<TextStyle> resultTitleStyle = <TextStyle>[
+    consumer_light.FhTextStyles.sectionHeading3Regular,
+    consumer_dark.FhTextStyles.sectionHeading3Regular,
+    professional_light.FhTextStyles.sectionHeading3Regular,
+    professional_dark.FhTextStyles.sectionHeading3Regular,
+  ];
+
+  static final List<TextStyle> resultTitleHighlightedStyle = <TextStyle>[
+    consumer_light.FhTextStyles.sectionHeading3Medium,
+    consumer_dark.FhTextStyles.sectionHeading3Medium,
+    professional_light.FhTextStyles.sectionHeading3Medium,
+    professional_dark.FhTextStyles.sectionHeading3Medium,
+  ];
+
+  static final List<TextStyle> resultSubtitleStyle = <TextStyle>[
+    consumer_light.FhTextStyles.caption1Regular.copyWith(
+      color: consumer_light.FhColors.textWeak,
+    ),
+    consumer_dark.FhTextStyles.caption1Regular.copyWith(
+      color: consumer_dark.FhColors.textWeak,
+    ),
+    professional_light.FhTextStyles.caption1Regular.copyWith(
+      color: professional_light.FhColors.textWeak,
+    ),
+    professional_dark.FhTextStyles.caption1Regular.copyWith(
+      color: professional_dark.FhColors.textWeak,
+    ),
+  ];
+
+  static final List<TextStyle> resultSubtitleHighlightedStyle = <TextStyle>[
+    consumer_light.FhTextStyles.caption1Medium.copyWith(
+      color: consumer_light.FhColors.textWeak,
+    ),
+    consumer_dark.FhTextStyles.caption1Medium.copyWith(
+      color: consumer_dark.FhColors.textWeak,
+    ),
+    professional_light.FhTextStyles.caption1Medium.copyWith(
+      color: professional_light.FhColors.textWeak,
+    ),
+    professional_dark.FhTextStyles.caption1Medium.copyWith(
+      color: professional_dark.FhColors.textWeak,
+    ),
+  ];
+
+  // endregion
 
   static const List<Duration> animationDuration = <Duration>[
     Duration(milliseconds: 200),

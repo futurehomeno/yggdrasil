@@ -1,7 +1,5 @@
 import 'package:yggdrasil/src/utils/_utils.dart';
 
-import 'yg_search_result_text.dart';
-
 class YgSearchResult<T> {
   const YgSearchResult({
     required this.title,
@@ -10,8 +8,8 @@ class YgSearchResult<T> {
     this.icon,
   });
 
-  final YgSearchResultText title;
-  final YgSearchResultText? subtitle;
+  final YgFormattedText title;
+  final YgFormattedText? subtitle;
   final YgIconData? icon;
   final T value;
 }

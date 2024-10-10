@@ -42,7 +42,7 @@ abstract class YgExpandingSection extends StatelessWidget with StatelessWidgetDe
   /// list tiles are responsible for providing their own padding and should
   /// reach to the edges of the screen.
   const factory YgExpandingSection.list({
-    required List<YgListTile> children,
+    required List<Widget> children,
     required String title,
     YgExpansionController? controller,
     bool initiallyExpanded,

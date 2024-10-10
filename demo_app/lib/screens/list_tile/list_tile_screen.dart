@@ -20,7 +20,7 @@ class ListTileScreen extends StatelessWidget {
     return DemoScreen(
       componentName: 'ListTile',
       child: YgSection.list(
-        children: <YgListTile>[
+        children: <Widget>[
           const YgListTile(
             title: 'Title only',
           ),

@@ -8,4 +8,6 @@ export 'src/theme/tokens/_tokens.dart';
 export 'src/utils/yg_debug/_yg_debug.dart';
 export 'src/utils/yg_expander/yg_expansion_controller.dart';
 export 'src/utils/yg_icon_data/_yg_icon_data.dart';
+export 'src/utils/yg_match_text/yg_formatted_text.dart';
+export 'src/utils/yg_match_text/yg_text_match.dart';
 export 'src/utils/yg_painting_portal/scrollable_dropdown.dart';

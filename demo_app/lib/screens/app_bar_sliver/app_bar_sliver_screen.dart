@@ -46,7 +46,7 @@ class _AppBarSliverScreenState extends State<AppBarSliverScreen> {
                 YgSection.list(
                   title: 'Variant',
                   subtitle: 'The variant (size) of the sliver app bar.',
-                  children: <YgListTile>[
+                  children: <Widget>[
                     YgRadioListTile<int>(
                       title: 'Small',
                       value: 1,
@@ -80,7 +80,7 @@ class _AppBarSliverScreenState extends State<AppBarSliverScreen> {
                   title: 'Automatically imply leading',
                   subtitle:
                       'If true and leading is null, automatically try to deduce what the leading widget should be.',
-                  children: <YgListTile>[
+                  children: <Widget>[
                     YgCheckboxListTile(
                       title: 'Automatically imply leading',
                       value: _automaticallyImplyLeading,
@@ -91,7 +91,7 @@ class _AppBarSliverScreenState extends State<AppBarSliverScreen> {
                 YgSection.list(
                   title: 'Leading',
                   subtitle: 'Widget to show before the title.',
-                  children: <YgListTile>[
+                  children: <Widget>[
                     YgCheckboxListTile(
                       title: 'Custom leading',
                       value: _customLeading,
@@ -104,7 +104,7 @@ class _AppBarSliverScreenState extends State<AppBarSliverScreen> {
                     return YgSection.list(
                       title: 'Actions',
                       subtitle: 'Widgets to show after the title.',
-                      children: <YgListTile>[
+                      children: <Widget>[
                         YgRadioListTile<int>(
                           title: 'No actions',
                           value: 1,
