@@ -3,7 +3,7 @@ enum YgSearchAction {
   menu,
 
   /// Show a full screen search page when the dropdown is pressed.
-  fullScreen,
+  screen,
 
   /// Show either a menu or dropdown depending on the current platform.
   auto,

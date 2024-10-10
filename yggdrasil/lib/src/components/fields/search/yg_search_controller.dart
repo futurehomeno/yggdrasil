@@ -3,7 +3,10 @@ import 'package:yggdrasil/src/components/fields/search/models/yg_search_result.d
 import 'package:yggdrasil/src/components/fields/search/widgets/mobile_search_screen.dart';
 import 'package:yggdrasil/src/utils/_utils.dart';
 
-class YgSearchController<T> extends TextEditingController implements YgAttachable<YgSearchState<YgSearchWidget<T>>> {
+typedef YgSearchControllerAny<T> = YgSearchController<T, YgSearchState<YgSearchWidget<T>>>;
+
+class YgSearchController<T, S extends YgSearchState<YgSearchWidget<T>>> extends TextEditingController
+    implements YgAttachable<S> {
   YgSearchController({
     super.text,
   });
@@ -44,6 +47,10 @@ class YgSearchController<T> extends TextEditingController implements YgAttachabl
 
   void valueSelected(T value) async {
     final YgSearchState<YgSearchWidget<T>>? state = _state;
+    assert(
+      state != null,
+      'YgSearchController.valueSelected was called while the controller was not attached to a search widget!',
+    );
     if (state == null || _loadingNotifier.isLoadingSelectedResult) {
       return;
     }
@@ -59,6 +66,7 @@ class YgSearchController<T> extends TextEditingController implements YgAttachabl
     }
 
     text = newText;
+    close();
   }
 
   @override
@@ -80,7 +88,7 @@ class YgSearchController<T> extends TextEditingController implements YgAttachabl
     final YgSearchState<YgSearchWidget<T>>? field = _state;
     assert(
       field != null,
-      'YgDropdownController.openMenu was called while the controller was not attached to a dropdown!',
+      'YgSearchController.openMenu was called while the controller was not attached to a search widget!',
     );
     if (field == null) {
       return;
@@ -98,7 +106,7 @@ class YgSearchController<T> extends TextEditingController implements YgAttachabl
     final YgSearchState<YgSearchWidget<T>>? field = _state;
     assert(
       field != null,
-      'YgDropdownController.openScreen was called while the controller was not attached to a dropdown!',
+      'YgSearchController.openScreen was called while the controller was not attached to a search widget!',
     );
     if (field == null) {
       return;
@@ -107,7 +115,7 @@ class YgSearchController<T> extends TextEditingController implements YgAttachabl
     field.openScreen();
   }
 
-  /// Opens the dropdown.
+  /// Opens the search widget.
   ///
   /// Shows either a menu or search screen, depending on the platform the user is
   /// on.
@@ -115,7 +123,7 @@ class YgSearchController<T> extends TextEditingController implements YgAttachabl
     final YgSearchState<YgSearchWidget<T>>? field = _state;
     assert(
       field != null,
-      'YgDropdownController.open was called while the controller was not attached to a dropdown!',
+      'YgSearchController.open was called while the controller was not attached to a search widget!',
     );
     if (field == null) {
       return;
@@ -123,12 +131,12 @@ class YgSearchController<T> extends TextEditingController implements YgAttachabl
     field.open();
   }
 
-  /// Closes the dropdown.
+  /// Closes the search widget.
   void close() {
     final YgSearchState<YgSearchWidget<T>>? field = _state;
     assert(
       field != null,
-      'YgDropdownController.close was called while the controller was not attached to a dropdown!',
+      'YgSearchController.close was called while the controller was not attached to a search widget!',
     );
     if (field == null) {
       return;
@@ -137,7 +145,7 @@ class YgSearchController<T> extends TextEditingController implements YgAttachabl
     field.close();
   }
 
-  /// Whether the dropdown in open or closed.
+  /// Whether the search widget in open or closed.
   bool get isOpen {
     final YgSearchState<YgSearchWidget<T>>? field = _state;
     if (field == null) {

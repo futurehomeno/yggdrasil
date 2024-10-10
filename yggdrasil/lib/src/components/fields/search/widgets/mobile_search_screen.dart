@@ -13,7 +13,7 @@ class MobileSearchRoute<T> extends ModalRoute<Widget> {
     required this.borderRadius,
   });
 
-  final YgSearchController<T> searchController;
+  final YgSearchControllerAny<T> searchController;
 
   final PreferredSizeWidget Function(BuildContext context) searchBarBuilder;
 
@@ -78,7 +78,7 @@ class MobileSearchScreen<T> extends StatelessWidget {
     required this.searchBarBuilder,
   });
 
-  final YgSearchController<T> controller;
+  final YgSearchControllerAny<T> controller;
   final PreferredSizeWidget Function(BuildContext context) searchBarBuilder;
 
   @override

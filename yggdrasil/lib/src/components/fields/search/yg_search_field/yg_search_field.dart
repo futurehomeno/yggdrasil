@@ -10,6 +10,12 @@ import 'package:yggdrasil/yggdrasil.dart';
 
 import 'yg_search_field_state.dart';
 
+class YgSearchFieldController<T> extends YgSearchController<T, YgSearchFieldState2<T>> {
+  YgSearchFieldController({
+    super.text,
+  });
+}
+
 class YgSearchField<T> extends StatefulWidget implements YgSearchWidget<T> {
   const YgSearchField({
     super.key,
@@ -23,6 +29,7 @@ class YgSearchField<T> extends StatefulWidget implements YgSearchWidget<T> {
     this.disabled = false,
     this.placeholder,
     this.onFocusChanged,
+    this.onPressed,
     this.controller,
     this.onEditingComplete,
     this.onSearchChanged,
@@ -42,9 +49,12 @@ class YgSearchField<T> extends StatefulWidget implements YgSearchWidget<T> {
   @override
   final Future<String> Function(T value)? resultSelected;
 
-  final YgSearchController<T>? controller;
+  final YgSearchFieldController<T>? controller;
 
   final YgSearchAction searchAction;
+
+  /// Called when the user presses the dropdown.
+  final VoidCallback? onPressed;
 
   /// Triggers whenever there's a change to the text field value.
   final ValueChanged<String>? onSearchChanged;
@@ -139,7 +149,7 @@ class YgSearchField<T> extends StatefulWidget implements YgSearchWidget<T> {
   /// The action to perform when the user completes editing the field.
   ///
   /// By default based on the [textInputAction].
-  final YgCompleteAction? completeAction;
+  final YgCompleteAction completeAction;
 
   @override
   State<YgSearchField<T>> createState() => YgSearchFieldState2<T>();
@@ -149,8 +159,8 @@ class YgSearchFieldState2<T> extends StateWithYgState<YgSearchField<T>, YgSearch
     with YgControllerManagerMixin
     implements YgSearchState<YgSearchField<T>> {
   /// Manages the controller of this widget.
-  late final YgControllerManager<YgSearchController<T>> _controllerManager = manageController(
-    createController: () => YgSearchController<T>(text: widget.initialValue),
+  late final YgControllerManager<YgSearchFieldController<T>> _controllerManager = manageController(
+    createController: () => YgSearchFieldController<T>(text: widget.initialValue),
     getUserController: () => widget.controller,
   );
 
@@ -235,7 +245,29 @@ class YgSearchFieldState2<T> extends StateWithYgState<YgSearchField<T>, YgSearch
   }
 
   @override
-  void open() {}
+  void open() {
+    _focusNodeManager.value.requestFocus();
+    widget.onPressed?.call();
+
+    switch (widget.searchAction) {
+      case YgSearchAction.screen:
+        return openScreen();
+      case YgSearchAction.menu:
+        return openMenu();
+      case YgSearchAction.auto:
+        return _performPlatformAction();
+      case YgSearchAction.none:
+        return;
+    }
+  }
+
+  void _performPlatformAction() {
+    if (YgConsts.isMobile) {
+      openScreen();
+    } else {
+      openMenu();
+    }
+  }
 
   @override
   void openMenu() {}
@@ -267,10 +299,46 @@ class YgSearchFieldState2<T> extends StateWithYgState<YgSearchField<T>, YgSearch
   }
 
   @override
-  void close() {}
+  void close() {
+    Navigator.popUntil(
+      context,
+      // ignore: avoid-dynamic
+      (Route<dynamic> route) => route is! MobileSearchRoute,
+    );
+
+    _onClosed();
+  }
 
   @override
   bool get isOpen {
-    return true;
+    return state.opened.value;
+  }
+
+  void _onClosed() {
+    if (!state.opened.update(false)) {
+      return;
+    }
+
+    final VoidCallback? onEditingComplete = widget.onEditingComplete;
+
+    if (onEditingComplete != null) {
+      onEditingComplete();
+
+      return;
+    }
+
+    final FocusNode focusNode = _focusNodeManager.value;
+    switch (widget.completeAction) {
+      case YgCompleteAction.focusNext:
+        focusNode.nextFocus();
+        break;
+      case YgCompleteAction.focusPrevious:
+        focusNode.previousFocus();
+        break;
+      case YgCompleteAction.unfocus:
+        focusNode.unfocus();
+        break;
+      case YgCompleteAction.none:
+    }
   }
 }

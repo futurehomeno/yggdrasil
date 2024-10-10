@@ -77,6 +77,7 @@ class SearchFieldScreen extends StatelessWidget {
                 ),
               ];
             },
+            resultSelected: (value) async => 'This is going to be the result now',
           )
         ],
       ),
