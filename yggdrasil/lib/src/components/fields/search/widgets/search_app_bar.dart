@@ -5,30 +5,31 @@ import 'package:yggdrasil/src/theme/theme.dart';
 import 'package:yggdrasil/src/utils/_utils.dart';
 import 'package:yggdrasil/yggdrasil.dart';
 
-class SearchAppBar extends StatefulWidget with EditableTextContainerWidgetMixin implements PreferredSizeWidget {
+import 'widget_or_loading.dart';
+
+class SearchAppBar<T> extends StatefulWidget with EditableTextContainerWidgetMixin implements PreferredSizeWidget {
   const SearchAppBar({
     super.key,
-    this.readOnly = false,
-    this.controller,
-    this.focusNode,
-    this.initialValue,
-    this.onChanged,
-    this.onEditingComplete,
-    this.onFocusChanged,
-    this.placeholder,
+    required this.controller,
+    required this.focusNode,
+    required this.initialValue,
+    required this.onChanged,
+    required this.onEditingComplete,
+    required this.onFocusChanged,
+    required this.placeholder,
     required this.textInputAction,
     required this.keyboardType,
     required this.autocorrect,
     required this.textCapitalization,
-    this.error,
-    this.inputFormatters,
+    required this.error,
+    required this.inputFormatters,
   });
 
   @override
-  State<SearchAppBar> createState() => _SearchAppBarState();
+  State<SearchAppBar<T>> createState() => _SearchAppBarState<T>();
 
   @override
-  final bool readOnly;
+  final bool readOnly = false;
 
   @override
   final FocusNode? focusNode;
@@ -37,7 +38,7 @@ class SearchAppBar extends StatefulWidget with EditableTextContainerWidgetMixin 
   final String? initialValue;
 
   @override
-  final TextEditingController? controller;
+  final YgSearchControllerAny<T> controller;
 
   final ValueChanged<String>? onChanged;
   final VoidCallback? onEditingComplete;
@@ -54,7 +55,7 @@ class SearchAppBar extends StatefulWidget with EditableTextContainerWidgetMixin 
   Size get preferredSize => const Size.fromHeight(65);
 }
 
-class _SearchAppBarState extends State<SearchAppBar> with EditableTextContainerStateMixin<SearchAppBar> {
+class _SearchAppBarState<T> extends State<SearchAppBar<T>> with EditableTextContainerStateMixin<SearchAppBar<T>> {
   @override
   Widget build(BuildContext context) {
     final YgSearchModalTheme theme = context.searchModalTheme;
@@ -109,9 +110,12 @@ class _SearchAppBarState extends State<SearchAppBar> with EditableTextContainerS
                           ),
                         ),
                         SizedBox(width: theme.headerSpacing),
-                        YgIconButton(
-                          icon: YgIcons.cross,
-                          onPressed: () => controller.text = '',
+                        WidgetOrLoading(
+                          loading: widget.controller.loading,
+                          child: YgIconButton(
+                            icon: YgIcons.cross,
+                            onPressed: () => widget.controller.text = '',
+                          ),
                         ),
                       ],
                     ),

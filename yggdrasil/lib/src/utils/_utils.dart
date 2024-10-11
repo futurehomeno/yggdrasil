@@ -1,4 +1,5 @@
 export 'yg_child_size_observer.dart';
+export 'yg_constant_size_animated_cross_fade/yg_constant_size_animated_cross_fade.dart';
 export 'yg_consts.dart';
 export 'yg_controller_manager/_yg_controller_manager.dart';
 export 'yg_debug/_yg_debug.dart';

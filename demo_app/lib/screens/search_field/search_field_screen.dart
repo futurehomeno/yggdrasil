@@ -29,6 +29,7 @@ class SearchFieldScreen extends StatelessWidget {
             textCapitalization: TextCapitalization.sentences,
             variant: YgFieldVariant.outlined,
             resultsBuilder: (searchQuery) async {
+              await Future.delayed(Duration(seconds: 1));
               return [
                 YgSearchResult(
                   title: YgFormattedText(

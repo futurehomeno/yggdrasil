@@ -3,6 +3,7 @@ import 'package:flutter/services.dart';
 import 'package:yggdrasil/src/components/fields/search/enums/yg_search_action.dart';
 import 'package:yggdrasil/src/components/fields/search/widgets/mobile_search_screen.dart';
 import 'package:yggdrasil/src/components/fields/search/widgets/search_app_bar.dart';
+import 'package:yggdrasil/src/components/fields/search/widgets/widget_or_loading.dart';
 import 'package:yggdrasil/src/components/fields/widgets/_widgets.dart';
 import 'package:yggdrasil/src/theme/_theme.dart';
 import 'package:yggdrasil/src/utils/_utils.dart';
@@ -203,6 +204,8 @@ class YgSearchFieldState2<T> extends StateWithYgState<YgSearchField<T>, YgSearch
     final bool isTextField = (widget.searchAction == YgSearchAction.menu) ||
         (widget.searchAction == YgSearchAction.auto && !YgConsts.isMobile);
 
+    final YgSearchFieldController<T> controller = _controllerManager.value;
+
     return YgFieldDecoration(
       key: _fieldKey,
       content: YgFieldContent(
@@ -211,9 +214,9 @@ class YgSearchFieldState2<T> extends StateWithYgState<YgSearchField<T>, YgSearch
         placeholder: widget.placeholder,
         state: state,
         value: AnimatedBuilder(
-          animation: _controllerManager.value,
+          animation: controller,
           builder: (BuildContext context, Widget? child) {
-            return Text(_controllerManager.value.text);
+            return Text(controller.text);
           },
         ),
         minLines: null,
@@ -225,20 +228,18 @@ class YgSearchFieldState2<T> extends StateWithYgState<YgSearchField<T>, YgSearch
 
         return InkWell(
           focusNode: _focusNodeManager.value,
-          onTap: _controllerManager.value.open,
+          onTap: controller.open,
           child: child,
         );
       },
       error: widget.error,
       state: state,
-      suffix: AnimatedRotation(
-        duration: theme.animationDuration,
-        curve: theme.animationCurve,
-        turns: state.opened.value ? 0.5 : 0,
+      suffix: WidgetOrLoading(
+        loading: controller.loading,
         child: YgIconButton(
-          onPressed: widget.disabled ? null : () {},
+          onPressed: widget.disabled ? null : controller.open,
           size: YgIconButtonSize.small,
-          icon: YgIcons.caretDown,
+          icon: YgIcons.searchAlt,
         ),
       ),
     );
@@ -282,16 +283,20 @@ class YgSearchFieldState2<T> extends StateWithYgState<YgSearchField<T>, YgSearch
         fieldKey: _fieldKey,
         searchController: _controllerManager.value,
         searchBarBuilder: (BuildContext context) {
-          return SearchAppBar(
+          return SearchAppBar<T>(
             controller: _controllerManager.value,
             placeholder: widget.placeholder,
             keyboardType: widget.keyboardType,
             autocorrect: widget.autocorrect,
-            readOnly: widget.readOnly,
             textCapitalization: widget.textCapitalization,
             inputFormatters: widget.inputFormatters,
             initialValue: widget.initialValue,
             textInputAction: TextInputAction.none,
+            focusNode: _focusNodeManager.value,
+            error: widget.error,
+            onChanged: widget.onSearchChanged,
+            onEditingComplete: widget.onEditingComplete,
+            onFocusChanged: widget.onFocusChanged,
           );
         },
       ),
