@@ -13,6 +13,9 @@ class MobileSearchRoute<T> extends ModalRoute<Widget> {
     required this.borderRadius,
   });
 
+  @override
+  RouteSettings get settings => const RouteSettings(name: 'MobileSearchRoute');
+
   final YgSearchControllerAny<T> searchController;
 
   final PreferredSizeWidget Function(BuildContext context) searchBarBuilder;
