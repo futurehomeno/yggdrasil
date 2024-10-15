@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:yggdrasil/src/theme/_theme.dart';
 import 'package:yggdrasil/src/utils/_utils.dart';
 
 class WidgetOrLoading extends StatelessWidget {
@@ -13,21 +14,28 @@ class WidgetOrLoading extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return ListenableBuilder(
-      listenable: loading,
-      builder: (BuildContext context, Widget? spinner) {
-        return YgConstantSizeAnimatedCrossFade(
-          firstChild: child,
-          secondChild: spinner!,
-          crossFadeState: loading.value ? CrossFadeState.showSecond : CrossFadeState.showFirst,
-          duration: const Duration(milliseconds: 200),
-        );
-      },
-      child: const SizedBox(
-        height: 22.5,
-        width: 22.5,
-        child: CircularProgressIndicator(
-          strokeWidth: 2.5,
+    final YgSearchFieldTheme theme = context.searchFieldTheme;
+
+    return RepaintBoundary(
+      child: ListenableBuilder(
+        listenable: loading,
+        builder: (BuildContext context, Widget? spinner) {
+          print('IN WIDGET: ${loading.value}');
+
+          return YgConstantSizeAnimatedCrossFade(
+            firstChild: child,
+            secondChild: spinner!,
+            crossFadeState: loading.value ? CrossFadeState.showSecond : CrossFadeState.showFirst,
+            duration: theme.animationDuration,
+            curve: theme.animationCurve,
+          );
+        },
+        child: SizedBox.fromSize(
+          size: theme.progressIndicatorSize,
+          child: CircularProgressIndicator(
+            strokeWidth: 2.5,
+            color: theme.progressIndicatorColor,
+          ),
         ),
       ),
     );

@@ -111,13 +111,11 @@ class YgSizeTransitionRenderer extends RenderBox
     }
   }
 
-  @override
-  double defaultComputeDistanceToFirstActualBaseline(TextBaseline baseline) {
+  double? computeDistanceToFirstActualBaseline(TextBaseline baseline) {
     return defaultComputeDistanceToFirstActualBaseline(baseline);
   }
 
-  @override
-  double defaultComputeDistanceToHighestActualBaseline(TextBaseline baseline) {
+  double? computeDistanceToHighestActualBaseline(TextBaseline baseline) {
     return defaultComputeDistanceToHighestActualBaseline(baseline);
   }
 

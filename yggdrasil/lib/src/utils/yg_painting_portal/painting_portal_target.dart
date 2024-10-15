@@ -41,8 +41,6 @@ class PaintingPortalTargetRenderer extends RenderProxyBox {
   @override
   void paint(PaintingContext context, Offset offset) {
     super.paint(context, offset);
-    print('paint');
-
     for (final ScrollableDropdownRenderer renderer in renderers) {
       final FollowerLayer layer = renderer.createLayer();
       context.pushLayer(

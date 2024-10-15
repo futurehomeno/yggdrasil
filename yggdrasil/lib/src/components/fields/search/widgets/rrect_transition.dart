@@ -75,7 +75,11 @@ class RRectTransitionRenderer extends RenderProxyBox {
       return;
     }
 
-    final RRect outerRRect = RRect.fromRectXY(offset & size, 0, 0);
+    final RRect outerRRect = RRect.fromRectXY(
+      offset & size,
+      0,
+      0,
+    );
     final RRect lerpResult = RRect.lerp(
       _rrect,
       outerRRect,
@@ -93,26 +97,41 @@ class RRectTransitionRenderer extends RenderProxyBox {
       this.layer = layer;
     }
 
-    void paint2(PaintingContext context, Offset offset) {
+    void paintTransformedChild(PaintingContext context, Offset offset) {
       final int alpha = min(255, (animation.value * 255 * 3).toInt());
 
       if (alpha > 254) {
-        context.paintChild(child, offset);
+        context.paintChild(
+          child,
+          offset,
+        );
       } else {
-        context.pushOpacity(offset, alpha, child.paint);
+        context.pushOpacity(
+          offset,
+          alpha,
+          child.paint,
+        );
       }
     }
 
-    void paint(PaintingContext context, Offset offset) {
+    void paintClippedChild(PaintingContext context, Offset offset) {
       final Matrix4 transform = Matrix4.identity()..scale(lerpResult.width / outerRRect.width);
 
-      context.pushTransform(true, offset, transform, paint2);
+      context.pushTransform(
+        true,
+        offset,
+        transform,
+        paintTransformedChild,
+      );
     }
 
     context.pushLayer(
       layer,
-      paint,
-      Offset(lerpResult.left, lerpResult.top),
+      paintClippedChild,
+      Offset(
+        lerpResult.left,
+        lerpResult.top,
+      ),
     );
   }
 }

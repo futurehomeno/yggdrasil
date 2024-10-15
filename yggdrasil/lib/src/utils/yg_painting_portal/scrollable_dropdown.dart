@@ -159,6 +159,19 @@ class ScrollableDropdownRenderer extends RenderBox
   FollowerLayer createLayer() {
     return FollowerLayer(link: _link);
   }
+
+  double? computeDistanceToFirstActualBaseline(TextBaseline baseline) {
+    return defaultComputeDistanceToFirstActualBaseline(baseline);
+  }
+
+  double? computeDistanceToHighestActualBaseline(TextBaseline baseline) {
+    return defaultComputeDistanceToHighestActualBaseline(baseline);
+  }
+
+  @override
+  bool hitTestChildren(BoxHitTestResult result, {required Offset position}) {
+    return defaultHitTestChildren(result, position: position);
+  }
 }
 
 enum DropDownAlignment {

@@ -97,18 +97,20 @@ class MobileSearchScreen<T> extends StatelessWidget {
   Widget _buildContent(BuildContext context, Widget? _) {
     final List<YgSearchResult<T>>? results = controller.results.value;
 
-    return ListView.builder(
-      itemBuilder: (BuildContext context, int index) {
-        final YgSearchResult<T> result = results![index];
+    return RepaintBoundary(
+      child: ListView.builder(
+        itemBuilder: (BuildContext context, int index) {
+          final YgSearchResult<T> result = results![index];
 
-        return SearchResultListTile(
-          title: result.title,
-          subtitle: result.subtitle,
-          icon: result.icon,
-          onTap: () => controller.valueSelected(result.value),
-        );
-      },
-      itemCount: results?.length ?? 0,
+          return SearchResultListTile(
+            title: result.title,
+            subtitle: result.subtitle,
+            icon: result.icon,
+            onTap: () => controller.valueSelected(result.value),
+          );
+        },
+        itemCount: results?.length ?? 0,
+      ),
     );
   }
 }

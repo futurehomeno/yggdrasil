@@ -130,6 +130,22 @@ class _YgConstantSizeCrossFadeRenderer extends RenderBox
       max(firstChild.size.width, secondChild.size.width),
       max(firstChild.size.height, secondChild.size.height),
     );
+
+    _setChildOffsets();
+  }
+
+  void _setChildOffsets() {
+    _setChildOffset(firstChild!, firstChildAlignment);
+    _setChildOffset(lastChild!, secondChildAlignment);
+  }
+
+  void _setChildOffset(RenderBox renderBox, Alignment alignment) {
+    final double halfWidthDelta = (size.width - renderBox.size.width) / 2.0;
+    final double halfHeightDelta = (size.height - renderBox.size.height) / 2.0;
+    renderBox.data.offset = Offset(
+      halfWidthDelta + alignment.x * halfWidthDelta,
+      halfHeightDelta + alignment.y * halfHeightDelta,
+    );
   }
 
   @override
@@ -141,17 +157,15 @@ class _YgConstantSizeCrossFadeRenderer extends RenderBox
       return;
     }
 
-    final Rect outerRect = offset & size;
-
+    _setChildOffsets();
     // should paint 1st child
     if (_animation.value < 1) {
-      final Offset offset = firstChildAlignment.inscribe(firstChild.size, outerRect).topLeft;
-
+      final Offset childOffset = firstChild.data.offset + offset;
       if (_animation.value == 0) {
-        context.paintChild(firstChild, offset);
+        context.paintChild(firstChild, childOffset);
       } else {
         context.pushOpacity(
-          offset,
+          childOffset,
           ((1 - _animation.value) * 255).toInt(),
           firstChild.paint,
         );
@@ -160,17 +174,59 @@ class _YgConstantSizeCrossFadeRenderer extends RenderBox
 
     // should paint 2nd child
     if (_animation.value > 0) {
-      final Offset offset = secondChildAlignment.inscribe(secondChild.size, outerRect).topLeft;
-
+      final Offset childOffset = secondChild.data.offset + offset;
       if (_animation.value == 1) {
-        context.paintChild(secondChild, offset);
+        context.paintChild(secondChild, childOffset);
       } else {
         context.pushOpacity(
-          offset,
+          childOffset,
           (_animation.value * 255).toInt(),
           secondChild.paint,
         );
       }
     }
+  }
+
+  double? computeDistanceToFirstActualBaseline(TextBaseline baseline) {
+    return defaultComputeDistanceToFirstActualBaseline(baseline);
+  }
+
+  double? computeDistanceToHighestActualBaseline(TextBaseline baseline) {
+    return defaultComputeDistanceToHighestActualBaseline(baseline);
+  }
+
+  @override
+  bool hitTestChildren(BoxHitTestResult result, {required Offset position}) {
+    final RenderBox? firstChild = this.firstChild;
+    final RenderBox? secondChild = lastChild;
+
+    if (firstChild == null || secondChild == null) {
+      return false;
+    }
+
+    // should test 1st child
+    if (_animation.value < 1) {
+      firstChild.hitTestDefault(result, position: position);
+    }
+
+    // should test 2nd child
+    if (_animation.value > 0) {
+      secondChild.hitTestDefault(result, position: position);
+    }
+
+    return defaultHitTestChildren(result, position: position);
+  }
+}
+
+extension on RenderBox {
+  _YgConstantSizeCrossFadeRendererParentData get data => parentData as _YgConstantSizeCrossFadeRendererParentData;
+
+  bool hitTestDefault(BoxHitTestResult result, {required Offset position}) {
+    final Offset offset = data.offset;
+
+    return hitTest(
+      result,
+      position: position - offset,
+    );
   }
 }

@@ -11,11 +11,7 @@ import 'package:yggdrasil/yggdrasil.dart';
 
 import 'yg_search_field_state.dart';
 
-class YgSearchFieldController<T> extends YgSearchController<T, YgSearchFieldState2<T>> {
-  YgSearchFieldController({
-    super.text,
-  });
-}
+part 'yg_search_field_controller.dart';
 
 class YgSearchField<T> extends StatefulWidget implements YgSearchWidget<T> {
   const YgSearchField({
@@ -48,7 +44,7 @@ class YgSearchField<T> extends StatefulWidget implements YgSearchWidget<T> {
   final YgSearchResultsBuilder<T> resultsBuilder;
 
   @override
-  final Future<String> Function(T value)? resultSelected;
+  final Future<String?> Function(T value)? resultSelected;
 
   final YgSearchFieldController<T>? controller;
 
@@ -153,25 +149,37 @@ class YgSearchField<T> extends StatefulWidget implements YgSearchWidget<T> {
   final YgCompleteAction completeAction;
 
   @override
-  State<YgSearchField<T>> createState() => YgSearchFieldState2<T>();
+  State<YgSearchField<T>> createState() => _YgSearchFieldState<T>();
 }
 
-class YgSearchFieldState2<T> extends StateWithYgState<YgSearchField<T>, YgSearchFieldState>
+class _YgSearchFieldState<T> extends StateWithYgState<YgSearchField<T>, YgSearchFieldState>
     with YgControllerManagerMixin
     implements YgSearchState<YgSearchField<T>> {
   /// Manages the controller of this widget.
   late final YgControllerManager<YgSearchFieldController<T>> _controllerManager = manageController(
     createController: () => YgSearchFieldController<T>(text: widget.initialValue),
     getUserController: () => widget.controller,
+    listener: _valueUpdated,
   );
 
   /// Manages the [FocusNode] of this widget.
   late final YgControllerManager<FocusNode> _focusNodeManager = manageController(
     createController: () => FocusNode(),
     getUserController: () => widget.focusNode,
+    listener: _focusChanged,
   );
 
   final GlobalKey _fieldKey = GlobalKey();
+
+  void _valueUpdated() {
+    state.filled.value = _controllerManager.value.text.isNotEmpty;
+  }
+
+  void _focusChanged() {
+    final bool focused = _focusNodeManager.value.hasFocus;
+    state.focused.value = focused;
+    widget.onFocusChanged?.call(focused);
+  }
 
   @override
   YgSearchFieldState createState() {
@@ -199,8 +207,6 @@ class YgSearchFieldState2<T> extends StateWithYgState<YgSearchField<T>, YgSearch
 
   @override
   Widget build(BuildContext context) {
-    final YgFieldTheme theme = context.fieldTheme;
-
     final bool isTextField = (widget.searchAction == YgSearchAction.menu) ||
         (widget.searchAction == YgSearchAction.auto && !YgConsts.isMobile);
 

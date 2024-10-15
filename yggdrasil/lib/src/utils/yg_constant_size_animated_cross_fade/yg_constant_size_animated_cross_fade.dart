@@ -31,7 +31,8 @@ class YgConstantSizeAnimatedCrossFade extends StatefulWidget {
 
 class _YgConstantSizeAnimatedCrossFadeState extends State<YgConstantSizeAnimatedCrossFade>
     with TickerProviderStateMixin {
-  late CrossFadeState _lastState = widget.crossFadeState;
+  late bool _showFirstChild = widget.crossFadeState == CrossFadeState.showFirst;
+  late bool _showSecondChild = widget.crossFadeState == CrossFadeState.showSecond;
   late final AnimationController _controller = AnimationController(
     vsync: this,
     value: _animationTarget,
@@ -43,10 +44,25 @@ class _YgConstantSizeAnimatedCrossFadeState extends State<YgConstantSizeAnimated
       };
 
   @override
+  void initState() {
+    super.initState();
+    _controller.addListener(_valueChanged);
+  }
+
+  void _valueChanged() {
+    final bool showFirstChild = _controller.value < 1;
+    final bool showSecondChild = _controller.value > 0;
+    if (showFirstChild != _showFirstChild || showSecondChild != _showSecondChild) {
+      _showFirstChild = showFirstChild;
+      _showSecondChild = showSecondChild;
+      setState(() {});
+    }
+  }
+
+  @override
   void didUpdateWidget(covariant YgConstantSizeAnimatedCrossFade oldWidget) {
     super.didUpdateWidget(oldWidget);
-    if (_lastState != widget.crossFadeState) {
-      _lastState = widget.crossFadeState;
+    if (oldWidget.crossFadeState != widget.crossFadeState) {
       _controller.animateTo(
         _animationTarget,
         curve: widget.curve,
@@ -65,8 +81,14 @@ class _YgConstantSizeAnimatedCrossFadeState extends State<YgConstantSizeAnimated
   Widget build(BuildContext context) {
     return _YgConstantSizeCrossFadeRenderWidget(
       animation: _controller,
-      firstChild: widget.firstChild,
-      secondChild: widget.secondChild,
+      firstChild: TickerMode(
+        enabled: _showFirstChild,
+        child: widget.firstChild,
+      ),
+      secondChild: TickerMode(
+        enabled: _showSecondChild,
+        child: widget.secondChild,
+      ),
       firstChildAlignment: widget.firstChildAlignment,
       secondChildAlignment: widget.secondChildAlignment,
     );

@@ -30,8 +30,9 @@ class SearchFieldScreen extends StatelessWidget {
             variant: YgFieldVariant.outlined,
             resultsBuilder: (searchQuery) async {
               await Future.delayed(Duration(seconds: 1));
-              return [
-                YgSearchResult(
+              return List.generate(
+                15,
+                (i) => YgSearchResult(
                   title: YgFormattedText(
                     text: 'Holtegrenda, 8000, Ski',
                     matches: [
@@ -40,43 +41,7 @@ class SearchFieldScreen extends StatelessWidget {
                   ),
                   value: 1,
                 ),
-                YgSearchResult(
-                  title: YgFormattedText(
-                    text: 'Holtegrenda, 8000, Ski',
-                    matches: [
-                      YgTextMatch(start: 3, end: 8),
-                    ],
-                  ),
-                  value: 1,
-                ),
-                YgSearchResult(
-                  title: YgFormattedText(
-                    text: 'Holtegrenda, 8000, Ski',
-                    matches: [
-                      YgTextMatch(start: 3, end: 8),
-                    ],
-                  ),
-                  value: 1,
-                ),
-                YgSearchResult(
-                  title: YgFormattedText(
-                    text: 'Holtegrenda, 8000, Ski',
-                    matches: [
-                      YgTextMatch(start: 3, end: 8),
-                    ],
-                  ),
-                  value: 1,
-                ),
-                YgSearchResult(
-                  title: YgFormattedText(
-                    text: 'Holtegrenda, 8000, Ski',
-                    matches: [
-                      YgTextMatch(start: 3, end: 8),
-                    ],
-                  ),
-                  value: 1,
-                ),
-              ];
+              );
             },
             resultSelected: (value) async => 'This is going to be the result now',
           )

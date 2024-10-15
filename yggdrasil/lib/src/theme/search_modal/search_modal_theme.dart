@@ -32,11 +32,19 @@ class _$YgSearchModalTheme {
     64,
   ];
 
-  static const List<TextStyle> valueStyle = <TextStyle>[
-    consumer_light.FhTextStyles.paragraph2Regular,
-    consumer_dark.FhTextStyles.paragraph2Regular,
-    professional_light.FhTextStyles.paragraph2Regular,
-    professional_dark.FhTextStyles.paragraph2Regular,
+  static final List<TextStyle> valueStyle = <TextStyle>[
+    consumer_light.FhTextStyles.paragraph2Regular.copyWith(
+      color: consumer_light.FhColors.textDefault,
+    ),
+    consumer_dark.FhTextStyles.paragraph2Regular.copyWith(
+      color: consumer_dark.FhColors.textDefault,
+    ),
+    professional_light.FhTextStyles.paragraph2Regular.copyWith(
+      color: professional_light.FhColors.textDefault,
+    ),
+    professional_dark.FhTextStyles.paragraph2Regular.copyWith(
+      color: professional_dark.FhColors.textDefault,
+    ),
   ];
 
   static final List<TextStyle> placeholderStyle = <TextStyle>[

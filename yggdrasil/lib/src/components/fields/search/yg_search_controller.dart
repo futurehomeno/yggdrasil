@@ -9,7 +9,7 @@ class YgSearchController<T, S extends YgSearchState<YgSearchWidget<T>>> extends 
     implements YgAttachable<S> {
   YgSearchController({
     super.text,
-  });
+  }) : _lastHandledValue = text ?? '';
 
   final ValueNotifier<List<YgSearchResult<T>>?> results = ValueNotifier<List<YgSearchResult<T>>?>(null);
 
@@ -18,7 +18,7 @@ class YgSearchController<T, S extends YgSearchState<YgSearchWidget<T>>> extends 
 
   YgSearchState<YgSearchWidget<T>>? _state;
 
-  String? _lastHandledValue;
+  String _lastHandledValue;
 
   @override
   void notifyListeners() {
@@ -26,19 +26,19 @@ class YgSearchController<T, S extends YgSearchState<YgSearchWidget<T>>> extends 
     super.notifyListeners();
   }
 
-  void _updateResults() async {
+  void _updateResults([bool force = false]) async {
     final YgSearchState<YgSearchWidget<T>>? state = _state;
-    if (state == null || _loadingNotifier.isLoadingResults || _lastHandledValue == text) {
+    if (state == null || _loadingNotifier.isLoadingResults) {
+      return;
+    }
+
+    if (!force && _lastHandledValue == text) {
       return;
     }
 
     _loadingNotifier.isLoadingResults = true;
     _lastHandledValue = text;
-
-    final YgSearchWidget<T> widget = state.widget;
-    final List<YgSearchResult<T>>? results = await widget.resultsBuilder(text);
-    this.results.value = results;
-
+    results.value = await state.widget.resultsBuilder(text);
     _loadingNotifier.isLoadingResults = false;
 
     // Call this again in case value has changed in the meantime.
@@ -72,6 +72,10 @@ class YgSearchController<T, S extends YgSearchState<YgSearchWidget<T>>> extends 
   @override
   void attach(YgSearchState<YgSearchWidget<T>> state) {
     _state = state;
+
+    if (_lastHandledValue.isNotEmpty == true) {
+      _updateResults(true);
+    }
   }
 
   @override
@@ -181,7 +185,7 @@ class LoadingValue extends ValueNotifier<bool> {
 abstract interface class YgSearchWidget<T> implements StatefulWidget {
   YgSearchResultsBuilder<T> get resultsBuilder;
 
-  Future<String> Function(T value)? get resultSelected;
+  Future<String?> Function(T value)? get resultSelected;
 }
 
 abstract interface class YgSearchState<T extends YgSearchWidget<Object?>> implements State<T> {

@@ -18,8 +18,6 @@ class YgMatchText extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     if (this.text.matches.isEmpty) {
-      print('empty: ${this.text.text}');
-
       return Text(
         this.text.text,
         style: style,
@@ -36,12 +34,8 @@ class YgMatchText extends StatelessWidget {
     for (final YgTextMatch match in matches) {
       // Ignore matches with zero or negative length.
       if (match.start >= match.end || match.end < 0) {
-        print('ignore');
-
         continue;
       }
-
-      print('don\'t ignore');
 
       if (match.start > matchEnd) {
         // There is a gap between the current match and the previous one.

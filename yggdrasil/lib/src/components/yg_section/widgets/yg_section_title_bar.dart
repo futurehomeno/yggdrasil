@@ -247,14 +247,17 @@ class YgSectionTitleBarRenderer extends RenderBox
     defaultPaint(context, offset);
   }
 
-  @override
-  bool hitTestChildren(BoxHitTestResult result, {required Offset position}) {
-    return defaultHitTestChildren(result, position: position);
+  double? computeDistanceToFirstActualBaseline(TextBaseline baseline) {
+    return defaultComputeDistanceToFirstActualBaseline(baseline);
+  }
+
+  double? computeDistanceToHighestActualBaseline(TextBaseline baseline) {
+    return defaultComputeDistanceToHighestActualBaseline(baseline);
   }
 
   @override
-  double? computeDistanceToActualBaseline(TextBaseline baseline) {
-    return defaultComputeDistanceToFirstActualBaseline(baseline);
+  bool hitTestChildren(BoxHitTestResult result, {required Offset position}) {
+    return defaultHitTestChildren(result, position: position);
   }
 }
 
