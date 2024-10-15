@@ -16,6 +16,24 @@ class MobileSearchRoute<T> extends ModalRoute<Widget> {
   @override
   RouteSettings get settings => const RouteSettings(name: 'MobileSearchRoute');
 
+  @override
+  Color? get barrierColor => null;
+
+  @override
+  bool get barrierDismissible => false;
+
+  @override
+  String get barrierLabel => 'Search modal';
+
+  @override
+  Duration get transitionDuration => const Duration(milliseconds: 200);
+
+  @override
+  bool get maintainState => true;
+
+  @override
+  bool get opaque => true;
+
   final YgSearchControllerAny<T> searchController;
 
   final PreferredSizeWidget Function(BuildContext context) searchBarBuilder;
@@ -42,24 +60,6 @@ class MobileSearchRoute<T> extends ModalRoute<Widget> {
 
     return null;
   }
-
-  @override
-  Color? get barrierColor => null;
-
-  @override
-  bool get barrierDismissible => false;
-
-  @override
-  String get barrierLabel => 'Search modal';
-
-  @override
-  Duration get transitionDuration => const Duration(milliseconds: 200);
-
-  @override
-  bool get maintainState => true;
-
-  @override
-  bool get opaque => true;
 
   @override
   Widget buildPage(BuildContext context, Animation<double> animation, Animation<double> secondaryAnimation) {
