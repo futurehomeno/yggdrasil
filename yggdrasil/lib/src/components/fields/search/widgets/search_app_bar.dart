@@ -7,6 +7,7 @@ import 'package:yggdrasil/yggdrasil.dart';
 
 import 'widget_or_loading.dart';
 
+/// Internal search bar.
 class SearchAppBar<T> extends StatefulWidget with EditableTextContainerWidgetMixin implements PreferredSizeWidget {
   const SearchAppBar({
     super.key,
@@ -21,7 +22,6 @@ class SearchAppBar<T> extends StatefulWidget with EditableTextContainerWidgetMix
     required this.keyboardType,
     required this.autocorrect,
     required this.textCapitalization,
-    required this.error,
     required this.inputFormatters,
   });
 
@@ -48,14 +48,22 @@ class SearchAppBar<T> extends StatefulWidget with EditableTextContainerWidgetMix
   final TextInputType keyboardType;
   final bool autocorrect;
   final TextCapitalization textCapitalization;
-  final String? error;
   final List<TextInputFormatter>? inputFormatters;
 
+  // We can't make this dynamic because we don't have the context.
   @override
   Size get preferredSize => const Size.fromHeight(65);
 }
 
 class _SearchAppBarState<T> extends State<SearchAppBar<T>> with EditableTextContainerStateMixin<SearchAppBar<T>> {
+  late bool _isEmpty;
+
+  @override
+  void initState() {
+    super.initState();
+    _isEmpty = controller.text.isEmpty;
+  }
+
   @override
   Widget build(BuildContext context) {
     final YgSearchModalTheme theme = context.searchModalTheme;
@@ -83,7 +91,7 @@ class _SearchAppBarState<T> extends State<SearchAppBar<T>> with EditableTextCont
                         Expanded(
                           child: Stack(
                             children: <Widget>[
-                              if (placeholder != null)
+                              if (placeholder != null && _isEmpty)
                                 Text(
                                   placeholder,
                                   style: theme.placeholderStyle,
@@ -128,5 +136,14 @@ class _SearchAppBarState<T> extends State<SearchAppBar<T>> with EditableTextCont
         ),
       ),
     );
+  }
+
+  @override
+  void valueUpdated() {
+    final bool isEmpty = controller.text.isEmpty;
+    if (_isEmpty != isEmpty) {
+      _isEmpty = controller.text.isEmpty;
+      setState(() {});
+    }
   }
 }

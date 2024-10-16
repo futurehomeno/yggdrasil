@@ -45,7 +45,7 @@ class YgMatchText extends StatelessWidget {
           final String string = text.substring(matchStart, matchEnd);
           parts.add(TextSpan(
             text: string,
-            style: matchedStyle.copyWith(color: Colors.red),
+            style: matchedStyle,
           ));
         }
 

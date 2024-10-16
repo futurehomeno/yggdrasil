@@ -4,12 +4,12 @@ class YgSearchResult<T> {
   const YgSearchResult({
     required this.title,
     required this.value,
-    this.subtitle,
     this.icon,
+    this.subtitle,
   });
 
+  final T value;
   final YgFormattedText title;
   final YgFormattedText? subtitle;
   final YgIconData? icon;
-  final T value;
 }

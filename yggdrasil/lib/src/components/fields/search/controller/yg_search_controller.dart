@@ -1,9 +1,16 @@
+import 'dart:async';
+
 import 'package:flutter/widgets.dart';
 import 'package:yggdrasil/src/components/fields/search/models/yg_search_result.dart';
-import 'package:yggdrasil/src/components/fields/search/widgets/mobile_search_screen.dart';
+import 'package:yggdrasil/src/components/fields/search/models/yg_search_state.dart';
+import 'package:yggdrasil/src/components/fields/search/models/yg_search_widget.dart';
 import 'package:yggdrasil/src/utils/_utils.dart';
 
+import 'loading_value.dart';
+
 typedef YgSearchControllerAny<T> = YgSearchController<T, YgSearchState<YgSearchWidget<T>>>;
+typedef YgSearchResultsBuilder<T> = FutureOr<List<YgSearchResult<T>>?> Function(String searchQuery);
+typedef YgSearchResultTextBuilder<T> = FutureOr<String?> Function(T value)?;
 
 class YgSearchController<T, S extends YgSearchState<YgSearchWidget<T>>> extends TextEditingController
     implements YgAttachable<S> {
@@ -58,7 +65,7 @@ class YgSearchController<T, S extends YgSearchState<YgSearchWidget<T>>> extends 
     _loadingNotifier.isLoadingSelectedResult = true;
 
     final YgSearchWidget<T> widget = state.widget;
-    final String? newText = await widget.resultSelected?.call(value);
+    final String? newText = await widget.resultTextBuilder?.call(value);
 
     _loadingNotifier.isLoadingSelectedResult = false;
     if (newText == null) {
@@ -158,44 +165,4 @@ class YgSearchController<T, S extends YgSearchState<YgSearchWidget<T>>> extends 
 
     return field.isOpen;
   }
-}
-
-class LoadingValue extends ValueNotifier<bool> {
-  LoadingValue() : super(false);
-
-  bool _isLoadingResults = false;
-  bool get isLoadingResults => _isLoadingResults;
-  set isLoadingResults(bool isLoading) {
-    _isLoadingResults = isLoading;
-    _update();
-  }
-
-  bool _isLoadingSelectedResult = false;
-  bool get isLoadingSelectedResult => _isLoadingSelectedResult;
-  set isLoadingSelectedResult(bool isLoading) {
-    _isLoadingSelectedResult = isLoading;
-    _update();
-  }
-
-  void _update() {
-    value = _isLoadingResults || _isLoadingSelectedResult;
-  }
-}
-
-abstract interface class YgSearchWidget<T> implements StatefulWidget {
-  YgSearchResultsBuilder<T> get resultsBuilder;
-
-  Future<String?> Function(T value)? get resultSelected;
-}
-
-abstract interface class YgSearchState<T extends YgSearchWidget<Object?>> implements State<T> {
-  void open();
-
-  void openMenu();
-
-  void openScreen();
-
-  void close();
-
-  bool get isOpen;
 }

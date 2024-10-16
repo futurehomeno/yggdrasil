@@ -1,9 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:yggdrasil/src/components/fields/search/widgets/rrect_transition.dart';
 import 'package:yggdrasil/src/components/fields/search/widgets/search_result_list_tile.dart';
+import 'package:yggdrasil/src/utils/_utils.dart';
 import 'package:yggdrasil/yggdrasil.dart';
-
-typedef YgSearchResultsBuilder<T> = Future<List<YgSearchResult<T>>?> Function(String searchQuery);
 
 class MobileSearchRoute<T> extends ModalRoute<Widget> {
   MobileSearchRoute({
@@ -11,6 +10,7 @@ class MobileSearchRoute<T> extends ModalRoute<Widget> {
     required this.searchBarBuilder,
     required this.fieldKey,
     required this.borderRadius,
+    required this.hint,
   });
 
   @override
@@ -33,6 +33,8 @@ class MobileSearchRoute<T> extends ModalRoute<Widget> {
 
   @override
   bool get opaque => true;
+
+  final ValueNotifier<Widget?> hint;
 
   final YgSearchControllerAny<T> searchController;
 
@@ -67,6 +69,7 @@ class MobileSearchRoute<T> extends ModalRoute<Widget> {
       animation: tween.animate(animation),
       rrect: borderRadius.toRRect(getRect() ?? Rect.zero),
       child: MobileSearchScreen<T>(
+        hint: hint,
         controller: searchController,
         searchBarBuilder: searchBarBuilder,
       ),
@@ -77,10 +80,12 @@ class MobileSearchRoute<T> extends ModalRoute<Widget> {
 class MobileSearchScreen<T> extends StatelessWidget {
   const MobileSearchScreen({
     super.key,
+    required this.hint,
     required this.controller,
     required this.searchBarBuilder,
   });
 
+  final ValueNotifier<Widget?> hint;
   final YgSearchControllerAny<T> controller;
   final PreferredSizeWidget Function(BuildContext context) searchBarBuilder;
 
@@ -90,9 +95,12 @@ class MobileSearchScreen<T> extends StatelessWidget {
       // TODO(Tim): Update this.
       backgroundColor: context.tokens.colors.backgroundWeak,
       appBar: searchBarBuilder(context),
-      body: ListenableBuilder(
+      body: YgAnimatedBuilder(
         builder: _buildContent,
-        listenable: controller.results,
+        properties: <Listenable?>{
+          hint,
+          controller.results,
+        },
       ),
     );
   }
@@ -100,9 +108,27 @@ class MobileSearchScreen<T> extends StatelessWidget {
   Widget _buildContent(BuildContext context, Widget? _) {
     final List<YgSearchResult<T>>? results = controller.results.value;
 
+    int childCount = results?.length ?? 0;
+    int offset;
+    if (hint.value != null) {
+      childCount += 1;
+      offset = -1;
+    } else {
+      offset = 0;
+    }
+
     return RepaintBoundary(
       child: ListView.builder(
         itemBuilder: (BuildContext context, int index) {
+          index += offset;
+
+          if (index == -1) {
+            return Padding(
+              padding: const EdgeInsets.only(top: 15, bottom: 20, left: 20, right: 20),
+              child: hint.value,
+            );
+          }
+
           final YgSearchResult<T> result = results![index];
 
           return SearchResultListTile(
@@ -112,7 +138,7 @@ class MobileSearchScreen<T> extends StatelessWidget {
             onTap: () => controller.valueSelected(result.value),
           );
         },
-        itemCount: results?.length ?? 0,
+        itemCount: childCount,
       ),
     );
   }

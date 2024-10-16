@@ -1,3 +1,5 @@
+import 'dart:async';
+
 import 'package:flutter/material.dart';
 import 'package:yggdrasil/yggdrasil.dart';
 import 'package:yggdrasil_demo/core/_core.dart';
@@ -15,38 +17,113 @@ class SearchFieldScreen extends StatelessWidget {
     );
   }
 
+  static const List<String> searchResults = [
+    'Holtegrenda, 8000, Ski',
+    'Holten, 8100, Misaer',
+    'Holtegata, 8011, Oslo',
+    'Holterveien, 8009, Bodø',
+    'Holtegard, 8012, Gol',
+  ];
+
   @override
   Widget build(BuildContext context) {
     return DemoScreen(
       componentName: 'SearchField',
-      child: YgSection.column(
-        children: <Widget>[
-          YgSearchField(
-            label: 'Search',
-            keyboardType: TextInputType.streetAddress,
-            autocorrect: false,
-            readOnly: false,
-            textCapitalization: TextCapitalization.sentences,
-            variant: YgFieldVariant.outlined,
-            resultsBuilder: (searchQuery) async {
-              await Future.delayed(Duration(seconds: 1));
-              return List.generate(
-                15,
-                (i) => YgSearchResult(
-                  title: YgFormattedText(
-                    text: 'Holtegrenda, 8000, Ski',
-                    matches: [
-                      YgTextMatch(start: 1, end: 8),
-                    ],
-                  ),
-                  value: 1,
-                ),
-              );
-            },
-            resultSelected: (value) async => 'This is going to be the result now',
-          )
+      child: Column(
+        children: [
+          YgSection.column(
+            title: 'Variants',
+            children: [
+              YgSearchField<int>(
+                label: 'Standard',
+                keyboardType: TextInputType.streetAddress,
+                autocorrect: false,
+                readOnly: false,
+                textCapitalization: TextCapitalization.sentences,
+                resultsBuilder: _getResultsBuilder(),
+                resultTextBuilder: (value) => searchResults[value],
+                variant: YgFieldVariant.standard,
+              ),
+              YgSearchField<int>(
+                label: 'Outlined',
+                keyboardType: TextInputType.streetAddress,
+                autocorrect: false,
+                readOnly: false,
+                textCapitalization: TextCapitalization.sentences,
+                resultsBuilder: _getResultsBuilder(),
+                resultTextBuilder: (value) => searchResults[value],
+                variant: YgFieldVariant.outlined,
+              ),
+            ].withVerticalSpacing(10.0),
+          ),
+          YgSection.column(
+            title: 'Sizes',
+            children: [
+              YgSearchField<int>(
+                label: 'Medium',
+                keyboardType: TextInputType.streetAddress,
+                autocorrect: false,
+                readOnly: false,
+                textCapitalization: TextCapitalization.sentences,
+                resultsBuilder: _getResultsBuilder(),
+                resultTextBuilder: (value) => searchResults[value],
+                size: YgFieldSize.medium,
+              ),
+              YgSearchField<int>(
+                label: 'Large',
+                keyboardType: TextInputType.streetAddress,
+                autocorrect: false,
+                readOnly: false,
+                textCapitalization: TextCapitalization.sentences,
+                resultsBuilder: _getResultsBuilder(),
+                resultTextBuilder: (value) => searchResults[value],
+                size: YgFieldSize.large,
+              ),
+            ].withVerticalSpacing(10.0),
+          ),
         ],
       ),
     );
+  }
+
+  _getResultsBuilder({
+    bool loading = false,
+  }) {
+    final List<YgSearchResult<int>> Function(String) builder = (String query) {
+      final List<YgSearchResult<int>> results = [];
+
+      for (int i = 0; i < searchResults.length; i++) {
+        final result = searchResults[i];
+        final match = result.toLowerCase().indexOf(query.toLowerCase());
+        results.add(
+          YgSearchResult<int>(
+            title: YgFormattedText(
+              text: result,
+              matches: [
+                if (match != -1) YgTextMatch(start: match, end: query.length),
+              ],
+            ),
+            icon: YgIcons.map,
+            value: i,
+          ),
+        );
+      }
+
+      return results;
+    };
+
+    if (loading) {
+      return (String query) => Future.delayed(
+            Duration(
+              milliseconds: 500,
+            ),
+          ).then(
+            (_) => builder(
+              query,
+            ),
+          );
+    }
+
+    return builder;
   }
 }
