@@ -12,6 +12,7 @@ class YgSearchModalTheme extends ThemeExtension<YgSearchModalTheme> {
   const YgSearchModalTheme({
     required this.animationCurve,
     required this.animationDuration,
+    required this.backgroundColor,
     required this.cursorColor,
     required this.headerHeight,
     required this.headerPadding,
@@ -26,6 +27,7 @@ class YgSearchModalTheme extends ThemeExtension<YgSearchModalTheme> {
 
   final Curve animationCurve;
   final Duration animationDuration;
+  final Color backgroundColor;
   final Color cursorColor;
   final double headerHeight;
   final EdgeInsets headerPadding;
@@ -40,6 +42,7 @@ class YgSearchModalTheme extends ThemeExtension<YgSearchModalTheme> {
   static final YgSearchModalTheme consumerLight = YgSearchModalTheme(
     animationCurve: _$YgSearchModalTheme.animationCurve[0],
     animationDuration: _$YgSearchModalTheme.animationDuration[0],
+    backgroundColor: _$YgSearchModalTheme.backgroundColor[0],
     cursorColor: _$YgSearchModalTheme.cursorColor[0],
     headerHeight: _$YgSearchModalTheme.headerHeight[0],
     headerPadding: _$YgSearchModalTheme.headerPadding[0],
@@ -57,6 +60,7 @@ class YgSearchModalTheme extends ThemeExtension<YgSearchModalTheme> {
   static final YgSearchModalTheme consumerDark = YgSearchModalTheme(
     animationCurve: _$YgSearchModalTheme.animationCurve[1],
     animationDuration: _$YgSearchModalTheme.animationDuration[1],
+    backgroundColor: _$YgSearchModalTheme.backgroundColor[1],
     cursorColor: _$YgSearchModalTheme.cursorColor[1],
     headerHeight: _$YgSearchModalTheme.headerHeight[1],
     headerPadding: _$YgSearchModalTheme.headerPadding[1],
@@ -74,6 +78,7 @@ class YgSearchModalTheme extends ThemeExtension<YgSearchModalTheme> {
   static final YgSearchModalTheme professionalLight = YgSearchModalTheme(
     animationCurve: _$YgSearchModalTheme.animationCurve[2],
     animationDuration: _$YgSearchModalTheme.animationDuration[2],
+    backgroundColor: _$YgSearchModalTheme.backgroundColor[2],
     cursorColor: _$YgSearchModalTheme.cursorColor[2],
     headerHeight: _$YgSearchModalTheme.headerHeight[2],
     headerPadding: _$YgSearchModalTheme.headerPadding[2],
@@ -91,6 +96,7 @@ class YgSearchModalTheme extends ThemeExtension<YgSearchModalTheme> {
   static final YgSearchModalTheme professionalDark = YgSearchModalTheme(
     animationCurve: _$YgSearchModalTheme.animationCurve[3],
     animationDuration: _$YgSearchModalTheme.animationDuration[3],
+    backgroundColor: _$YgSearchModalTheme.backgroundColor[3],
     cursorColor: _$YgSearchModalTheme.cursorColor[3],
     headerHeight: _$YgSearchModalTheme.headerHeight[3],
     headerPadding: _$YgSearchModalTheme.headerPadding[3],
@@ -116,6 +122,7 @@ class YgSearchModalTheme extends ThemeExtension<YgSearchModalTheme> {
   YgSearchModalTheme copyWith({
     Curve? animationCurve,
     Duration? animationDuration,
+    Color? backgroundColor,
     Color? cursorColor,
     double? headerHeight,
     EdgeInsets? headerPadding,
@@ -130,6 +137,7 @@ class YgSearchModalTheme extends ThemeExtension<YgSearchModalTheme> {
     return YgSearchModalTheme(
       animationCurve: animationCurve ?? this.animationCurve,
       animationDuration: animationDuration ?? this.animationDuration,
+      backgroundColor: backgroundColor ?? this.backgroundColor,
       cursorColor: cursorColor ?? this.cursorColor,
       headerHeight: headerHeight ?? this.headerHeight,
       headerPadding: headerPadding ?? this.headerPadding,
@@ -152,6 +160,7 @@ class YgSearchModalTheme extends ThemeExtension<YgSearchModalTheme> {
     return YgSearchModalTheme(
       animationCurve: t < 0.5 ? animationCurve : other.animationCurve,
       animationDuration: t < 0.5 ? animationDuration : other.animationDuration,
+      backgroundColor: Color.lerp(backgroundColor, other.backgroundColor, t)!,
       cursorColor: Color.lerp(cursorColor, other.cursorColor, t)!,
       headerHeight: t < 0.5 ? headerHeight : other.headerHeight,
       headerPadding: t < 0.5 ? headerPadding : other.headerPadding,
@@ -182,6 +191,8 @@ class YgSearchModalTheme extends ThemeExtension<YgSearchModalTheme> {
             const DeepCollectionEquality()
                 .equals(animationDuration, other.animationDuration) &&
             const DeepCollectionEquality()
+                .equals(backgroundColor, other.backgroundColor) &&
+            const DeepCollectionEquality()
                 .equals(cursorColor, other.cursorColor) &&
             const DeepCollectionEquality()
                 .equals(headerHeight, other.headerHeight) &&
@@ -210,6 +221,7 @@ class YgSearchModalTheme extends ThemeExtension<YgSearchModalTheme> {
       runtimeType.hashCode,
       const DeepCollectionEquality().hash(animationCurve),
       const DeepCollectionEquality().hash(animationDuration),
+      const DeepCollectionEquality().hash(backgroundColor),
       const DeepCollectionEquality().hash(cursorColor),
       const DeepCollectionEquality().hash(headerHeight),
       const DeepCollectionEquality().hash(headerPadding),

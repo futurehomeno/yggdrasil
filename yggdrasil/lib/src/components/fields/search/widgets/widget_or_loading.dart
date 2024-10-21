@@ -20,8 +20,6 @@ class WidgetOrLoading extends StatelessWidget {
       child: ListenableBuilder(
         listenable: loading,
         builder: (BuildContext context, Widget? spinner) {
-          print('IN WIDGET: ${loading.value}');
-
           return YgConstantSizeAnimatedCrossFade(
             firstChild: child,
             secondChild: spinner!,

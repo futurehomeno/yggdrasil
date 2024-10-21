@@ -1,17 +1,22 @@
 import 'package:flutter/material.dart';
 import 'package:yggdrasil/src/components/fields/search/widgets/rrect_transition.dart';
 import 'package:yggdrasil/src/components/fields/search/widgets/search_result_list_tile.dart';
-import 'package:yggdrasil/src/utils/_utils.dart';
+import 'package:yggdrasil/src/theme/search_modal/search_modal_theme.dart';
+import 'package:yggdrasil/src/theme/theme.dart';
 import 'package:yggdrasil/yggdrasil.dart';
 
-class MobileSearchRoute<T> extends ModalRoute<Widget> {
+class MobileSearchRoute<T> extends PopupRoute<Widget> {
   MobileSearchRoute({
     required this.searchController,
     required this.searchBarBuilder,
     required this.fieldKey,
+    required this.hintKey,
     required this.borderRadius,
-    required this.hint,
   });
+
+  BuildContext get context => navigator!.context;
+
+  YgSearchModalTheme get theme => context.searchModalTheme;
 
   @override
   RouteSettings get settings => const RouteSettings(name: 'MobileSearchRoute');
@@ -26,15 +31,13 @@ class MobileSearchRoute<T> extends ModalRoute<Widget> {
   String get barrierLabel => 'Search modal';
 
   @override
-  Duration get transitionDuration => const Duration(milliseconds: 200);
+  bool get opaque => false;
 
   @override
-  bool get maintainState => true;
+  Duration get transitionDuration => theme.animationDuration;
 
   @override
-  bool get opaque => true;
-
-  final ValueNotifier<Widget?> hint;
+  Curve get barrierCurve => theme.animationCurve;
 
   final YgSearchControllerAny<T> searchController;
 
@@ -43,6 +46,8 @@ class MobileSearchRoute<T> extends ModalRoute<Widget> {
   final BorderRadius borderRadius;
 
   final GlobalKey fieldKey;
+
+  final LinkedKey<HintProvider> hintKey;
 
   final CurveTween tween = CurveTween(curve: Curves.easeInOut);
 
@@ -69,9 +74,9 @@ class MobileSearchRoute<T> extends ModalRoute<Widget> {
       animation: tween.animate(animation),
       rrect: borderRadius.toRRect(getRect() ?? Rect.zero),
       child: MobileSearchScreen<T>(
-        hint: hint,
         controller: searchController,
         searchBarBuilder: searchBarBuilder,
+        hintKey: hintKey,
       ),
     );
   }
@@ -80,65 +85,68 @@ class MobileSearchRoute<T> extends ModalRoute<Widget> {
 class MobileSearchScreen<T> extends StatelessWidget {
   const MobileSearchScreen({
     super.key,
-    required this.hint,
     required this.controller,
     required this.searchBarBuilder,
+    required this.hintKey,
   });
 
-  final ValueNotifier<Widget?> hint;
   final YgSearchControllerAny<T> controller;
   final PreferredSizeWidget Function(BuildContext context) searchBarBuilder;
+  final LinkedKey<HintProvider> hintKey;
 
   @override
   Widget build(BuildContext context) {
+    final YgSearchModalTheme theme = context.searchModalTheme;
+
     return Scaffold(
-      // TODO(Tim): Update this.
-      backgroundColor: context.tokens.colors.backgroundWeak,
+      backgroundColor: theme.backgroundColor,
       appBar: searchBarBuilder(context),
-      body: YgAnimatedBuilder(
-        builder: _buildContent,
-        properties: <Listenable?>{
-          hint,
-          controller.results,
-        },
-      ),
-    );
-  }
+      body: RemotelyLinkedBuilder<HintProvider>(
+        linkedKey: hintKey,
+        builder: (HintProvider? hintProvider) {
+          final Widget? hint = hintProvider?.hint;
 
-  Widget _buildContent(BuildContext context, Widget? _) {
-    final List<YgSearchResult<T>>? results = controller.results.value;
+          return AnimatedBuilder(
+            builder: (BuildContext context, Widget? _) {
+              final List<YgSearchResult<T>>? results = controller.results.value;
 
-    int childCount = results?.length ?? 0;
-    int offset;
-    if (hint.value != null) {
-      childCount += 1;
-      offset = -1;
-    } else {
-      offset = 0;
-    }
+              int childCount = results?.length ?? 0;
+              int offset;
+              if (hint != null) {
+                childCount += 1;
+                offset = -1;
+              } else {
+                offset = 0;
+              }
 
-    return RepaintBoundary(
-      child: ListView.builder(
-        itemBuilder: (BuildContext context, int index) {
-          index += offset;
+              return RepaintBoundary(
+                child: ListView.builder(
+                  itemBuilder: (BuildContext context, int index) {
+                    index += offset;
 
-          if (index == -1) {
-            return Padding(
-              padding: const EdgeInsets.only(top: 15, bottom: 20, left: 20, right: 20),
-              child: hint.value,
-            );
-          }
+                    if (index == -1) {
+                      return Padding(
+                        padding: const EdgeInsets.only(top: 15, bottom: 20, left: 20, right: 20),
+                        child: hint,
+                      );
+                    }
 
-          final YgSearchResult<T> result = results![index];
+                    final YgSearchResult<T> result = results![index];
 
-          return SearchResultListTile(
-            title: result.title,
-            subtitle: result.subtitle,
-            icon: result.icon,
-            onTap: () => controller.valueSelected(result.value),
+                    return SearchResultListTile(
+                      title: result.title,
+                      subtitle: result.subtitle,
+                      icon: result.icon,
+                      onTap: () => controller.valueSelected(result.value),
+                    );
+                  },
+                  itemCount: childCount,
+                ),
+              );
+            },
+            animation: controller.results,
           );
         },
-        itemCount: childCount,
       ),
     );
   }

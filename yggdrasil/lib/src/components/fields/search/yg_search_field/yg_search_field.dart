@@ -210,6 +210,7 @@ class _YgSearchFieldState<T> extends StateWithYgState<YgSearchField<T>, YgSearch
   );
 
   final GlobalKey _fieldKey = GlobalKey();
+  final LinkedKey<HintProvider> _hintKey = LinkedKey<HintProvider>();
 
   void _valueUpdated() {
     state.filled.value = _controllerManager.value.text.isNotEmpty;
@@ -258,40 +259,44 @@ class _YgSearchFieldState<T> extends StateWithYgState<YgSearchField<T>, YgSearch
 
     final YgSearchFieldController<T> controller = _controllerManager.value;
 
-    return YgFieldDecoration(
-      key: _fieldKey,
-      content: YgFieldContent(
-        floatLabelOnFocus: isTextField,
-        label: widget.label,
-        placeholder: widget.placeholder,
-        state: state,
-        value: AnimatedBuilder(
-          animation: controller,
-          builder: (BuildContext context, Widget? child) {
-            return Text(controller.text);
-          },
+    return HintProvider(
+      hint: widget.hint,
+      key: _hintKey,
+      child: YgFieldDecoration(
+        key: _fieldKey,
+        content: YgFieldContent(
+          floatLabelOnFocus: isTextField,
+          label: widget.label,
+          placeholder: widget.placeholder,
+          state: state,
+          value: AnimatedBuilder(
+            animation: controller,
+            builder: (BuildContext context, Widget? child) {
+              return Text(controller.text);
+            },
+          ),
+          minLines: null,
         ),
-        minLines: null,
-      ),
-      builder: (BuildContext context, Widget child) {
-        if (widget.disabled) {
-          return child;
-        }
+        builder: (BuildContext context, Widget child) {
+          if (widget.disabled) {
+            return child;
+          }
 
-        return InkWell(
-          focusNode: _focusNodeManager.value,
-          onTap: controller.open,
-          child: child,
-        );
-      },
-      error: widget.error,
-      state: state,
-      suffix: WidgetOrLoading(
-        loading: controller.loading,
-        child: YgIconButton(
-          onPressed: widget.disabled ? null : controller.open,
-          size: YgIconButtonSize.small,
-          icon: YgIcons.searchAlt,
+          return InkWell(
+            focusNode: _focusNodeManager.value,
+            onTap: controller.open,
+            child: child,
+          );
+        },
+        error: widget.error,
+        state: state,
+        suffix: WidgetOrLoading(
+          loading: controller.loading,
+          child: YgIconButton(
+            onPressed: widget.disabled ? null : controller.open,
+            size: YgIconButtonSize.small,
+            icon: YgIcons.searchAlt,
+          ),
         ),
       ),
     );
@@ -334,7 +339,7 @@ class _YgSearchFieldState<T> extends StateWithYgState<YgSearchField<T>, YgSearch
         searchController: _controllerManager.value,
         borderRadius: radius,
         fieldKey: _fieldKey,
-        hint: _hint,
+        hintKey: _hintKey,
         searchBarBuilder: (BuildContext context) {
           return SearchAppBar<T>(
             controller: _controllerManager.value,
@@ -399,5 +404,137 @@ class _YgSearchFieldState<T> extends StateWithYgState<YgSearchField<T>, YgSearch
         break;
       case YgCompleteAction.none:
     }
+  }
+}
+
+// ignore: prefer-single-widget-per-file
+class HintProvider extends LinkedUpdateProvider<HintProvider> {
+  const HintProvider({
+    required super.key,
+    required super.child,
+    required this.hint,
+  });
+
+  final Widget? hint;
+
+  @override
+  bool updateShouldNotify(HintProvider oldWidget) {
+    return oldWidget.hint != hint;
+  }
+}
+
+abstract class LinkedUpdateProvider<T extends LinkedUpdateProvider<T>> extends ProxyWidget {
+  const LinkedUpdateProvider({
+    required LinkedKey<T> super.key,
+    required super.child,
+  });
+
+  @override
+  Element createElement() {
+    return LinkedUpdateProviderElement<T>(this);
+  }
+
+  bool updateShouldNotify(covariant LinkedUpdateProvider oldWidget);
+}
+
+class LinkedUpdateProviderElement<T extends LinkedUpdateProvider<T>> extends ProxyElement {
+  LinkedUpdateProviderElement(super.widget);
+
+  final Set<Element> _dependents = <Element>{};
+
+  void addDependent(Element dependent) {
+    _dependents.add(dependent);
+  }
+
+  void removeDependent(Element dependent) {
+    _dependents.remove(dependent);
+  }
+
+  @override
+  void updated(LinkedUpdateProvider<T> oldWidget) {
+    if ((widget as LinkedUpdateProvider<T>).updateShouldNotify(oldWidget)) {
+      super.updated(oldWidget);
+    }
+  }
+
+  @override
+  void notifyClients(LinkedUpdateProvider<T> oldWidget) {
+    for (final Element dependent in _dependents) {
+      dependent.rebuild(force: true);
+    }
+  }
+}
+
+abstract interface class LinkedKey<T extends LinkedUpdateProvider<T>> implements Key {
+  factory LinkedKey() = _LinkedKey<T>;
+
+  BuildContext? get currentContext;
+  Widget? get currentWidget;
+}
+
+class _LinkedKey<T extends LinkedUpdateProvider<T>> extends GlobalKey<State<StatefulWidget>> implements LinkedKey<T> {
+  const _LinkedKey() : super.constructor();
+}
+
+class RemotelyLinkedBuilder<T extends LinkedUpdateProvider<T>> extends Widget {
+  const RemotelyLinkedBuilder({
+    super.key,
+    required this.builder,
+    required this.linkedKey,
+  });
+
+  final Widget Function(T? linkedWidget) builder;
+  final LinkedKey linkedKey;
+
+  @override
+  RemotelyLinkedBuilderElement createElement() {
+    return RemotelyLinkedBuilderElement<T>(this);
+  }
+}
+
+class RemotelyLinkedBuilderElement<T extends LinkedUpdateProvider<T>> extends ComponentElement {
+  RemotelyLinkedBuilderElement(super.widget);
+
+  bool _hadUnsatisfiedDependency = false;
+
+  @override
+  RemotelyLinkedBuilder<T> get widget => super.widget as RemotelyLinkedBuilder<T>;
+
+  LinkedUpdateProviderElement<T>? get _linkedElement =>
+      widget.linkedKey.currentContext as LinkedUpdateProviderElement<T>?;
+
+  @override
+  Widget build() {
+    final LinkedUpdateProviderElement<T>? linkedElement = _linkedElement;
+
+    final T? remoteWidget;
+    if (linkedElement != null) {
+      remoteWidget = _linkedElement?.widget as T?;
+      _linkedElement?.addDependent(this);
+      _hadUnsatisfiedDependency = true;
+    } else {
+      remoteWidget = null;
+    }
+
+    return widget.builder(remoteWidget);
+  }
+
+  @override
+  void activate() {
+    super.activate();
+    final bool hadDependencies = _linkedElement != null || _hadUnsatisfiedDependency;
+    _hadUnsatisfiedDependency = false;
+    if (hadDependencies) {
+      didChangeDependencies();
+    }
+  }
+
+  @override
+  void deactivate() {
+    final LinkedUpdateProviderElement<T>? linkedElement = _linkedElement;
+    if (linkedElement != null) {
+      linkedElement.removeDependent(this);
+    }
+    super.deactivate();
   }
 }

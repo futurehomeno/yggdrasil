@@ -119,6 +119,13 @@ class _$YgSearchModalTheme {
 
   // endregion
 
+  static const List<Color> backgroundColor = <Color>[
+    consumer_light.FhColors.backgroundWeak,
+    consumer_dark.FhColors.backgroundWeak,
+    professional_light.FhColors.backgroundWeak,
+    professional_dark.FhColors.backgroundWeak,
+  ];
+
   static const List<Duration> animationDuration = <Duration>[
     Duration(milliseconds: 200),
     Duration(milliseconds: 200),

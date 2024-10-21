@@ -5,7 +5,7 @@ import 'package:yggdrasil/yggdrasil.dart';
 import 'package:yggdrasil_demo/core/_core.dart';
 import 'package:yggdrasil_demo/widgets/_widgets.dart';
 
-class SearchFieldScreen extends StatelessWidget {
+class SearchFieldScreen extends StatefulWidget {
   const SearchFieldScreen({super.key});
 
   static const String routeName = 'SearchFieldScreen';
@@ -26,7 +26,15 @@ class SearchFieldScreen extends StatelessWidget {
   ];
 
   @override
+  State<SearchFieldScreen> createState() => _SearchFieldScreenState();
+}
+
+class _SearchFieldScreenState extends State<SearchFieldScreen> {
+  bool _showHint = true;
+
+  @override
   Widget build(BuildContext context) {
+    print('build');
     return DemoScreen(
       componentName: 'SearchField',
       child: Column(
@@ -41,8 +49,18 @@ class SearchFieldScreen extends StatelessWidget {
                 readOnly: false,
                 textCapitalization: TextCapitalization.sentences,
                 resultsBuilder: _getResultsBuilder(),
-                resultTextBuilder: (value) => searchResults[value],
+                resultTextBuilder: (value) => SearchFieldScreen.searchResults[value],
                 variant: YgFieldVariant.standard,
+                hint: YgCallout(
+                  title: 'Unable to find address?',
+                  description: 'Make sure you spelled your address correctly, if you can'
+                      ' still not find your address, you can enter your address manually',
+                  textLink: YgTextLink(
+                    text: 'Enter address manually',
+                    onPressed: () {},
+                  ),
+                  onClose: () => setState(() => _showHint = false),
+                ),
               ),
               YgSearchField<int>(
                 label: 'Outlined',
@@ -51,7 +69,7 @@ class SearchFieldScreen extends StatelessWidget {
                 readOnly: false,
                 textCapitalization: TextCapitalization.sentences,
                 resultsBuilder: _getResultsBuilder(),
-                resultTextBuilder: (value) => searchResults[value],
+                resultTextBuilder: (value) => SearchFieldScreen.searchResults[value],
                 variant: YgFieldVariant.outlined,
               ),
             ].withVerticalSpacing(10.0),
@@ -66,7 +84,7 @@ class SearchFieldScreen extends StatelessWidget {
                 readOnly: false,
                 textCapitalization: TextCapitalization.sentences,
                 resultsBuilder: _getResultsBuilder(),
-                resultTextBuilder: (value) => searchResults[value],
+                resultTextBuilder: (value) => SearchFieldScreen.searchResults[value],
                 size: YgFieldSize.medium,
               ),
               YgSearchField<int>(
@@ -76,7 +94,7 @@ class SearchFieldScreen extends StatelessWidget {
                 readOnly: false,
                 textCapitalization: TextCapitalization.sentences,
                 resultsBuilder: _getResultsBuilder(),
-                resultTextBuilder: (value) => searchResults[value],
+                resultTextBuilder: (value) => SearchFieldScreen.searchResults[value],
                 size: YgFieldSize.large,
               ),
             ].withVerticalSpacing(10.0),
@@ -92,8 +110,8 @@ class SearchFieldScreen extends StatelessWidget {
     final List<YgSearchResult<int>> Function(String) builder = (String query) {
       final List<YgSearchResult<int>> results = [];
 
-      for (int i = 0; i < searchResults.length; i++) {
-        final result = searchResults[i];
+      for (int i = 0; i < SearchFieldScreen.searchResults.length; i++) {
+        final result = SearchFieldScreen.searchResults[i];
         final match = result.toLowerCase().indexOf(query.toLowerCase());
         results.add(
           YgSearchResult<int>(
