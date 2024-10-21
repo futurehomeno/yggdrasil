@@ -51,20 +51,20 @@ workflows:
       cache_paths:
         - ~/.pub-cache
     scripts:
-      - name: Cloning yggdrasil repo
-        working_directory: /Users/builder
-        script: |
-          rm -rf clone/*
-          git clone git@github.com:futurehomeno/yggdrasil.git $CM_BUILD_DIR/app_files
-          cd $CM_BUILD_DIR/app_files
-          git checkout $CM_BRANCH
-
       - name: Cloning repo with ssh
         working_directory: /Users/builder
         script: |
           rm -rf clone/*
           git clone git@github.com:futurehomeno/mono-mobile.git $CM_BUILD_DIR/mono-mobile
           cd $CM_BUILD_DIR/mono-mobile
+          git checkout $CM_BRANCH
+
+      - name: Cloning yggdrasil repo
+        working_directory: /Users/builder
+        script: |
+          rm -rf clone/*
+          git clone git@github.com:futurehomeno/yggdrasil.git $CM_BUILD_DIR/app_files
+          cd $CM_BUILD_DIR/app_files
           git checkout $CM_BRANCH
 
       - name: Activating ratatosk
