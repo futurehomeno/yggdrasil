@@ -51,16 +51,18 @@ class _SearchFieldScreenState extends State<SearchFieldScreen> {
                 resultsBuilder: _getResultsBuilder(),
                 resultTextBuilder: (value) => SearchFieldScreen.searchResults[value],
                 variant: YgFieldVariant.standard,
-                hint: YgCallout(
-                  title: 'Unable to find address?',
-                  description: 'Make sure you spelled your address correctly, if you can'
-                      ' still not find your address, you can enter your address manually',
-                  textLink: YgTextLink(
-                    text: 'Enter address manually',
-                    onPressed: () {},
-                  ),
-                  onClose: () => setState(() => _showHint = false),
-                ),
+                hint: _showHint
+                    ? YgCallout(
+                        title: 'Unable to find address?',
+                        description: 'Make sure you spelled your address correctly, if you can'
+                            ' still not find your address, you can enter your address manually',
+                        textLink: YgTextLink(
+                          text: 'Enter address manually',
+                          onPressed: () {},
+                        ),
+                        onClose: () => setState(() => _showHint = false),
+                      )
+                    : null,
               ),
               YgSearchField<int>(
                 label: 'Outlined',

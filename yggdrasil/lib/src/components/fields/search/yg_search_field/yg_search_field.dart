@@ -3,16 +3,18 @@ import 'package:flutter/services.dart';
 import 'package:yggdrasil/src/components/fields/search/enums/yg_search_action.dart';
 import 'package:yggdrasil/src/components/fields/search/models/yg_search_state.dart';
 import 'package:yggdrasil/src/components/fields/search/models/yg_search_widget.dart';
-import 'package:yggdrasil/src/components/fields/search/widgets/mobile_search_screen.dart';
+import 'package:yggdrasil/src/components/fields/search/widgets/mobile_search_screen/mobile_search_route.dart';
 import 'package:yggdrasil/src/components/fields/search/widgets/search_app_bar.dart';
 import 'package:yggdrasil/src/components/fields/search/widgets/widget_or_loading.dart';
 import 'package:yggdrasil/src/components/fields/widgets/_widgets.dart';
 import 'package:yggdrasil/src/theme/_theme.dart';
 import 'package:yggdrasil/src/utils/_utils.dart';
+import 'package:yggdrasil/src/utils/yg_linked/_yg_linked.dart';
 import 'package:yggdrasil/yggdrasil.dart';
 
 import 'yg_search_field_state.dart';
 
+part 'hint_provider.dart';
 part 'yg_search_field_controller.dart';
 
 /// A field which when opened allows the user to search for a value.
@@ -210,7 +212,7 @@ class _YgSearchFieldState<T> extends StateWithYgState<YgSearchField<T>, YgSearch
   );
 
   final GlobalKey _fieldKey = GlobalKey();
-  final LinkedKey<HintProvider> _hintKey = LinkedKey<HintProvider>();
+  final YgLinkedKey<HintProvider> _hintKey = YgLinkedKey<HintProvider>();
 
   void _valueUpdated() {
     state.filled.value = _controllerManager.value.text.isNotEmpty;
@@ -404,137 +406,5 @@ class _YgSearchFieldState<T> extends StateWithYgState<YgSearchField<T>, YgSearch
         break;
       case YgCompleteAction.none:
     }
-  }
-}
-
-// ignore: prefer-single-widget-per-file
-class HintProvider extends LinkedUpdateProvider<HintProvider> {
-  const HintProvider({
-    required super.key,
-    required super.child,
-    required this.hint,
-  });
-
-  final Widget? hint;
-
-  @override
-  bool updateShouldNotify(HintProvider oldWidget) {
-    return oldWidget.hint != hint;
-  }
-}
-
-abstract class LinkedUpdateProvider<T extends LinkedUpdateProvider<T>> extends ProxyWidget {
-  const LinkedUpdateProvider({
-    required LinkedKey<T> super.key,
-    required super.child,
-  });
-
-  @override
-  Element createElement() {
-    return LinkedUpdateProviderElement<T>(this);
-  }
-
-  bool updateShouldNotify(covariant LinkedUpdateProvider oldWidget);
-}
-
-class LinkedUpdateProviderElement<T extends LinkedUpdateProvider<T>> extends ProxyElement {
-  LinkedUpdateProviderElement(super.widget);
-
-  final Set<Element> _dependents = <Element>{};
-
-  void addDependent(Element dependent) {
-    _dependents.add(dependent);
-  }
-
-  void removeDependent(Element dependent) {
-    _dependents.remove(dependent);
-  }
-
-  @override
-  void updated(LinkedUpdateProvider<T> oldWidget) {
-    if ((widget as LinkedUpdateProvider<T>).updateShouldNotify(oldWidget)) {
-      super.updated(oldWidget);
-    }
-  }
-
-  @override
-  void notifyClients(LinkedUpdateProvider<T> oldWidget) {
-    for (final Element dependent in _dependents) {
-      dependent.rebuild(force: true);
-    }
-  }
-}
-
-abstract interface class LinkedKey<T extends LinkedUpdateProvider<T>> implements Key {
-  factory LinkedKey() = _LinkedKey<T>;
-
-  BuildContext? get currentContext;
-  Widget? get currentWidget;
-}
-
-class _LinkedKey<T extends LinkedUpdateProvider<T>> extends GlobalKey<State<StatefulWidget>> implements LinkedKey<T> {
-  const _LinkedKey() : super.constructor();
-}
-
-class RemotelyLinkedBuilder<T extends LinkedUpdateProvider<T>> extends Widget {
-  const RemotelyLinkedBuilder({
-    super.key,
-    required this.builder,
-    required this.linkedKey,
-  });
-
-  final Widget Function(T? linkedWidget) builder;
-  final LinkedKey linkedKey;
-
-  @override
-  RemotelyLinkedBuilderElement createElement() {
-    return RemotelyLinkedBuilderElement<T>(this);
-  }
-}
-
-class RemotelyLinkedBuilderElement<T extends LinkedUpdateProvider<T>> extends ComponentElement {
-  RemotelyLinkedBuilderElement(super.widget);
-
-  bool _hadUnsatisfiedDependency = false;
-
-  @override
-  RemotelyLinkedBuilder<T> get widget => super.widget as RemotelyLinkedBuilder<T>;
-
-  LinkedUpdateProviderElement<T>? get _linkedElement =>
-      widget.linkedKey.currentContext as LinkedUpdateProviderElement<T>?;
-
-  @override
-  Widget build() {
-    final LinkedUpdateProviderElement<T>? linkedElement = _linkedElement;
-
-    final T? remoteWidget;
-    if (linkedElement != null) {
-      remoteWidget = _linkedElement?.widget as T?;
-      _linkedElement?.addDependent(this);
-      _hadUnsatisfiedDependency = true;
-    } else {
-      remoteWidget = null;
-    }
-
-    return widget.builder(remoteWidget);
-  }
-
-  @override
-  void activate() {
-    super.activate();
-    final bool hadDependencies = _linkedElement != null || _hadUnsatisfiedDependency;
-    _hadUnsatisfiedDependency = false;
-    if (hadDependencies) {
-      didChangeDependencies();
-    }
-  }
-
-  @override
-  void deactivate() {
-    final LinkedUpdateProviderElement<T>? linkedElement = _linkedElement;
-    if (linkedElement != null) {
-      linkedElement.removeDependent(this);
-    }
-    super.deactivate();
   }
 }
