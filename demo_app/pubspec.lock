@@ -569,8 +569,8 @@ packages:
     dependency: transitive
     description:
       path: "packages/theme_tailor_annotation"
-      ref: "3.24.3"
-      resolved-ref: "518bf082508cf4490c45976a3888415f56757cdd"
+      ref: "flutter-update/3.24.3"
+      resolved-ref: e2c7dc632b69cafd875e39a75279c63745383da3
       url: "git@github.com:futurehomeno/theme_tailor.git"
     source: git
     version: "2.0.0"
@@ -676,7 +676,7 @@ packages:
       path: "../yggdrasil"
       relative: true
     source: path
-    version: "1.12.10"
+    version: "1.12.11"
 sdks:
   dart: ">=3.5.3 <4.0.0"
   flutter: ">=3.24.3"
