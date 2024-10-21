@@ -72,7 +72,7 @@ workflows:
           dart pub global activate --source path .
 
       - name: Creating version
-        working_directory: /Users/builder/clone/app_files/yggdrasil
+        working_directory: /Users/builder/clone/app_files
         script: rat release -y || exit 1
 
   create-custom-version:
