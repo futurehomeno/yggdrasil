@@ -132,7 +132,7 @@ workflows:
       - name: Cloning ratatosk repo with ssh
         script: |
           git clone git@github.com:futurehomeno/mono-mobile.git $CM_BUILD_DIR/mono-mobile
-          cd $CM_BUILD_DIR/mono-mobile
+          cd $CM_BUILD_DIR/mono-mobile/packages/ratatosk
           flutter pub get
           dart pub global activate --source path ./
 
