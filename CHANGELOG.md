@@ -1,3 +1,9 @@
+# 1.12.13 [2024-10-21T13:11:49.491020]
+
+### Changes
+
+- [dev-fix] Fixed path for artifacts.
+
 # 1.12.12 [2024-10-21T12:06:57.618491]
 
 ### Changes

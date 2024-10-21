@@ -2,7 +2,7 @@ name: yggdrasil_demo
 description: A demo app for Yggdrasil.
 publish_to: "none"
 
-version: 1.12.12
+version: 1.12.13
 
 environment:
   sdk: ^3.2.0
