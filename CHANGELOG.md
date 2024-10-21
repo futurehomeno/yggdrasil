@@ -1,3 +1,10 @@
+# 1.12.12 [2024-10-21T12:06:57.618491]
+
+### Changes
+
+- [dev-fix] Fixed creating new yggdrasil version.
+- [fix] Updated Flutter version for CI/CD.
+
 # 1.12.11 [2024-10-10T13:04:04.619351]
 
 ### Changes
