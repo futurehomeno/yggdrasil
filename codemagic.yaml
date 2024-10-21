@@ -129,16 +129,10 @@ workflows:
       cancel_previous_builds: true
 
     scripts:
-      - name: Downloading flutter cli
+      - name: Cloning ratatosk repo with ssh
         script: |
-          git clone git@github.com:futurehomeno/flutter-cli.git $CM_BUILD_DIR/cli
-          cd $CM_BUILD_DIR/cli
-          flutter pub get
-
-      - name: Downloading ratatosk
-        script: |
-          git clone git@github.com:futurehomeno/ratatosk.git $CM_BUILD_DIR/ratatosk
-          cd $CM_BUILD_DIR/ratatosk
+          git clone git@github.com:futurehomeno/mono-mobile.git $CM_BUILD_DIR/mono-mobile
+          cd $CM_BUILD_DIR/mono-mobile
           flutter pub get
           dart pub global activate --source path ./
 
@@ -167,7 +161,6 @@ workflows:
     publishing:
       scripts:
         - name: Send artifacts to github
-          working_directory: $CM_BUILD_DIR/demo_app
           script: |
             #!/bin/sh
 
