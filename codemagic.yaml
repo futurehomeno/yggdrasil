@@ -1,5 +1,5 @@
 flutter_ver: &flutter_ver 3.24.3
-xcode_ver: &xcode_ver latest
+xcode_ver: &xcode_ver 16.0
 
 workflows:
   pr-builder:
@@ -59,13 +59,19 @@ workflows:
           cd $CM_BUILD_DIR/app_files
           git checkout $CM_BRANCH
 
-      - name: Downloading ratatosk
+      - name: Cloning repo with ssh
+        working_directory: /Users/builder
         script: |
-          git clone git@github.com:futurehomeno/ratatosk.git $CM_BUILD_DIR/ratatosk
-          cd $CM_BUILD_DIR/ratatosk
-          git checkout crytek/yggdrasil-monorepo
+          rm -rf clone/*
+          git clone git@github.com:futurehomeno/mono-mobile.git $CM_BUILD_DIR/mono-mobile
+          cd $CM_BUILD_DIR/mono-mobile
+          git checkout $CM_BRANCH
+
+      - name: Activating ratatosk
+        working_directory: ./mono-mobile/packages/ratatosk
+        script: |
           flutter pub get
-          dart pub global activate --source path ./
+          dart pub global activate --source path .
 
       - name: Creating version
         working_directory: /Users/builder/clone/app_files/yggdrasil
