@@ -14,7 +14,7 @@ import 'package:yggdrasil/yggdrasil.dart';
 
 import 'yg_search_field_state.dart';
 
-part 'hint_provider.dart';
+part '../widgets/hint_provider.dart';
 
 /// A field which when opened allows the user to search for a value.
 class YgSearchField<T> extends StatefulWidget {
