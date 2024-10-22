@@ -3,6 +3,7 @@ import 'dart:math';
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 
+/// Allows you to transition a page in from an RRect.
 class RRectTransition extends SingleChildRenderObjectWidget {
   const RRectTransition({
     super.key,
@@ -16,21 +17,22 @@ class RRectTransition extends SingleChildRenderObjectWidget {
 
   @override
   RenderObject createRenderObject(BuildContext context) {
-    return RRectTransitionRenderer(
+    return _RRectTransitionRenderer(
       animation: animation,
       rrect: rrect,
     );
   }
 
   @override
-  void updateRenderObject(BuildContext context, covariant RRectTransitionRenderer renderObject) {
+  // ignore: library_private_types_in_public_api
+  void updateRenderObject(BuildContext context, covariant _RRectTransitionRenderer renderObject) {
     renderObject.animation = animation;
     renderObject.rrect = rrect;
   }
 }
 
-class RRectTransitionRenderer extends RenderProxyBox {
-  RRectTransitionRenderer({
+class _RRectTransitionRenderer extends RenderProxyBox {
+  _RRectTransitionRenderer({
     required Animation<double> animation,
     required RRect rrect,
   })  : _rrect = rrect,
@@ -68,6 +70,7 @@ class RRectTransitionRenderer extends RenderProxyBox {
     super.detach();
   }
 
+  // TODO(Tim): This might be possible to optimize a bit, but needs further research.
   @override
   void paint(PaintingContext context, Offset offset) {
     final RenderBox? child = this.child;
@@ -86,52 +89,49 @@ class RRectTransitionRenderer extends RenderProxyBox {
       _animation.value,
     )!;
 
-    ContainerLayer? layer = this.layer;
-    if (layer is ClipRRectLayer) {
-      layer.clipRRect = lerpResult;
-    } else {
-      layer = ClipRRectLayer(
-        clipRRect: lerpResult,
-      );
-
-      this.layer = layer;
-    }
-
-    void paintTransformedChild(PaintingContext context, Offset offset) {
-      final int alpha = min(255, (animation.value * 255 * 3).toInt());
-
-      if (alpha > 254) {
-        context.paintChild(
-          child,
-          offset,
-        );
+    if (animation.value == 1) {
+      context.paintChild(child, offset);
+    } else if (animation.value > 0) {
+      ContainerLayer? layer = this.layer;
+      if (layer is ClipRRectLayer) {
+        layer.clipRRect = lerpResult;
       } else {
+        layer = ClipRRectLayer(
+          clipRRect: lerpResult,
+        );
+
+        this.layer = layer;
+      }
+
+      void paintTransformedChild(PaintingContext context, Offset offset) {
+        final int alpha = min(255, (animation.value * 255 * 3).toInt());
+
         context.pushOpacity(
           offset,
           alpha,
           child.paint,
         );
       }
-    }
 
-    void paintClippedChild(PaintingContext context, Offset offset) {
-      final Matrix4 transform = Matrix4.identity()..scale(lerpResult.width / outerRRect.width);
+      void paintClippedChild(PaintingContext context, Offset offset) {
+        final Matrix4 transform = Matrix4.identity()..scale(lerpResult.width / outerRRect.width);
 
-      context.pushTransform(
-        true,
-        offset,
-        transform,
-        paintTransformedChild,
+        context.pushTransform(
+          true,
+          offset,
+          transform,
+          paintTransformedChild,
+        );
+      }
+
+      context.pushLayer(
+        layer,
+        paintClippedChild,
+        Offset(
+          lerpResult.left,
+          lerpResult.top,
+        ),
       );
     }
-
-    context.pushLayer(
-      layer,
-      paintClippedChild,
-      Offset(
-        lerpResult.left,
-        lerpResult.top,
-      ),
-    );
   }
 }

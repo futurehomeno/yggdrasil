@@ -23,6 +23,27 @@ class SearchFieldScreen extends StatefulWidget {
     'Holtegata, 8011, Oslo',
     'Holterveien, 8009, Bodø',
     'Holtegard, 8012, Gol',
+    'Holtebakken, 8008, Tromsø',
+    'Holteveien, 8007, Stavanger',
+    'Holtegrenda, 8006, Kristiansand',
+    'Holtegata, 8005, Bergen',
+    'Holterveien, 8004, Trondheim',
+    'Holtegard, 8003, Hamar',
+    'Holtebakken, 8002, Ålesund',
+    'Holteveien, 8001, Drammen',
+    'Holtegrenda, 8000, Ski',
+    'Holten, 8100, Misaer',
+    'Holtegata, 8011, Oslo',
+    'Holterveien, 8009, Bodø',
+    'Holtegard, 8012, Gol',
+    'Holtebakken, 8008, Tromsø',
+    'Holteveien, 8007, Stavanger',
+    'Holtegrenda, 8006, Kristiansand',
+    'Holtegata, 8005, Bergen',
+    'Holterveien, 8004, Trondheim',
+    'Holtegard, 8003, Hamar',
+    'Holtebakken, 8002, Ålesund',
+    'Holteveien, 8001, Drammen',
   ];
 
   @override
@@ -40,38 +61,136 @@ class _SearchFieldScreenState extends State<SearchFieldScreen> {
       child: Column(
         children: [
           YgSection.column(
+            title: 'Variations',
+            children: <Widget>[
+              YgSearchField<int>(
+                keyboardType: TextInputType.streetAddress,
+                autocorrect: false,
+                textCapitalization: TextCapitalization.sentences,
+                label: 'Default dropdown',
+                resultsBuilder: _getResultsBuilder(),
+                completeAction: YgCompleteAction.focusNext,
+                resultTextBuilder: _resultTextBuilder,
+              ),
+              YgSearchField<int>(
+                keyboardType: TextInputType.streetAddress,
+                autocorrect: false,
+                textCapitalization: TextCapitalization.sentences,
+                label: 'Label',
+                placeholder: 'Fixed placeholder',
+                resultsBuilder: _getResultsBuilder(),
+                completeAction: YgCompleteAction.focusNext,
+                resultTextBuilder: _resultTextBuilder,
+              ),
+              YgSearchField<int>(
+                keyboardType: TextInputType.streetAddress,
+                autocorrect: false,
+                textCapitalization: TextCapitalization.sentences,
+                label: 'Screen',
+                searchAction: YgSearchAction.screen,
+                resultsBuilder: _getResultsBuilder(),
+                completeAction: YgCompleteAction.focusNext,
+                resultTextBuilder: _resultTextBuilder,
+              ),
+              YgSearchField<int>(
+                keyboardType: TextInputType.streetAddress,
+                autocorrect: false,
+                textCapitalization: TextCapitalization.sentences,
+                label: 'Menu',
+                searchAction: YgSearchAction.menu,
+                resultsBuilder: _getResultsBuilder(),
+                completeAction: YgCompleteAction.focusNext,
+                resultTextBuilder: _resultTextBuilder,
+              ),
+              YgSearchField<int>(
+                keyboardType: TextInputType.streetAddress,
+                autocorrect: false,
+                textCapitalization: TextCapitalization.sentences,
+                label: 'Button only',
+                searchAction: YgSearchAction.none,
+                resultsBuilder: _getResultsBuilder(),
+                completeAction: YgCompleteAction.focusNext,
+                resultTextBuilder: _resultTextBuilder,
+              ),
+              YgSearchField<int>(
+                keyboardType: TextInputType.streetAddress,
+                autocorrect: false,
+                textCapitalization: TextCapitalization.sentences,
+                label: 'Scrollable bottom sheet',
+                searchAction: YgSearchAction.screen,
+                resultsBuilder: _getResultsBuilder(maxResults: 50),
+                completeAction: YgCompleteAction.focusNext,
+                resultTextBuilder: _resultTextBuilder,
+              ),
+              YgSearchField<int>(
+                keyboardType: TextInputType.streetAddress,
+                autocorrect: false,
+                textCapitalization: TextCapitalization.sentences,
+                label: 'Scrollable menu',
+                searchAction: YgSearchAction.menu,
+                resultsBuilder: _getResultsBuilder(maxResults: 50),
+                completeAction: YgCompleteAction.focusNext,
+                resultTextBuilder: _resultTextBuilder,
+              ),
+              YgSearchField<int>(
+                keyboardType: TextInputType.streetAddress,
+                autocorrect: false,
+                textCapitalization: TextCapitalization.sentences,
+                label: 'With loading',
+                resultsBuilder: _getResultsBuilder(loading: true),
+                completeAction: YgCompleteAction.focusNext,
+                resultTextBuilder: _resultTextBuilder,
+              ),
+              YgSearchField<int>(
+                keyboardType: TextInputType.streetAddress,
+                autocorrect: false,
+                textCapitalization: TextCapitalization.sentences,
+                label: 'With hint',
+                resultsBuilder: _getResultsBuilder(),
+                hint: YgCard(
+                  variant: YgCardVariant.outlined,
+                  child: YgListTile(
+                    title: 'Unable to find your address?',
+                    subtitle: "Make sure your address is spelled correctly or"
+                        " enter the address manually.",
+                    leadingWidgets: [YgIcon(YgIcons.plus)],
+                    onTap: () {},
+                  ),
+                ),
+                completeAction: YgCompleteAction.focusNext,
+                resultTextBuilder: _resultTextBuilder,
+              ),
+              YgSearchField<int>(
+                keyboardType: TextInputType.streetAddress,
+                autocorrect: false,
+                textCapitalization: TextCapitalization.sentences,
+                label: 'Disabled',
+                disabled: true,
+                resultsBuilder: _getResultsBuilder(),
+                completeAction: YgCompleteAction.focusNext,
+                resultTextBuilder: _resultTextBuilder,
+              ),
+            ].withVerticalSpacing(15),
+          ),
+          YgSection.column(
             title: 'Variants',
             children: [
               YgSearchField<int>(
                 label: 'Standard',
                 keyboardType: TextInputType.streetAddress,
                 autocorrect: false,
-                readOnly: false,
                 textCapitalization: TextCapitalization.sentences,
                 resultsBuilder: _getResultsBuilder(),
-                resultTextBuilder: (value) => SearchFieldScreen.searchResults[value],
+                resultTextBuilder: _resultTextBuilder,
                 variant: YgFieldVariant.standard,
-                hint: _showHint
-                    ? YgCallout(
-                        title: 'Unable to find address?',
-                        description: 'Make sure you spelled your address correctly, if you can'
-                            ' still not find your address, you can enter your address manually',
-                        textLink: YgTextLink(
-                          text: 'Enter address manually',
-                          onPressed: () {},
-                        ),
-                        onClose: () => setState(() => _showHint = false),
-                      )
-                    : null,
               ),
               YgSearchField<int>(
                 label: 'Outlined',
                 keyboardType: TextInputType.streetAddress,
                 autocorrect: false,
-                readOnly: false,
                 textCapitalization: TextCapitalization.sentences,
                 resultsBuilder: _getResultsBuilder(),
-                resultTextBuilder: (value) => SearchFieldScreen.searchResults[value],
+                resultTextBuilder: _resultTextBuilder,
                 variant: YgFieldVariant.outlined,
               ),
             ].withVerticalSpacing(10.0),
@@ -83,20 +202,18 @@ class _SearchFieldScreenState extends State<SearchFieldScreen> {
                 label: 'Medium',
                 keyboardType: TextInputType.streetAddress,
                 autocorrect: false,
-                readOnly: false,
                 textCapitalization: TextCapitalization.sentences,
                 resultsBuilder: _getResultsBuilder(),
-                resultTextBuilder: (value) => SearchFieldScreen.searchResults[value],
+                resultTextBuilder: _resultTextBuilder,
                 size: YgFieldSize.medium,
               ),
               YgSearchField<int>(
                 label: 'Large',
                 keyboardType: TextInputType.streetAddress,
                 autocorrect: false,
-                readOnly: false,
                 textCapitalization: TextCapitalization.sentences,
                 resultsBuilder: _getResultsBuilder(),
-                resultTextBuilder: (value) => SearchFieldScreen.searchResults[value],
+                resultTextBuilder: _resultTextBuilder,
                 size: YgFieldSize.large,
               ),
             ].withVerticalSpacing(10.0),
@@ -106,15 +223,28 @@ class _SearchFieldScreenState extends State<SearchFieldScreen> {
     );
   }
 
+  String _resultTextBuilder(int value) => SearchFieldScreen.searchResults[value];
+
+  /// Creates an example results builder with configurable semi realistic behavior.
   _getResultsBuilder({
     bool loading = false,
+    int maxResults = 5,
   }) {
     final List<YgSearchResult<int>> Function(String) builder = (String query) {
       final List<YgSearchResult<int>> results = [];
 
-      for (int i = 0; i < SearchFieldScreen.searchResults.length; i++) {
+      for (int i = 0, shown = 0; shown < maxResults && i < SearchFieldScreen.searchResults.length; i++) {
         final result = SearchFieldScreen.searchResults[i];
         final match = result.toLowerCase().indexOf(query.toLowerCase());
+
+        if (query.toLowerCase().startsWith('holte')) {
+          if (match == -1) {
+            continue;
+          }
+        }
+
+        shown++;
+
         results.add(
           YgSearchResult<int>(
             title: YgFormattedText(

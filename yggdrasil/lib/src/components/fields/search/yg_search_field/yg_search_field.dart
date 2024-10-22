@@ -2,7 +2,6 @@ import 'dart:async';
 
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:yggdrasil/src/components/fields/search/enums/yg_search_action.dart';
 import 'package:yggdrasil/src/components/fields/search/models/yg_search_mixin.dart';
 import 'package:yggdrasil/src/components/fields/search/widgets/mobile_search_screen/mobile_search_route.dart';
 import 'package:yggdrasil/src/components/fields/search/widgets/search_app_bar.dart';
@@ -22,13 +21,13 @@ class YgSearchField<T> extends StatefulWidget {
   const YgSearchField({
     super.key,
     required this.label,
-    this.variant = YgFieldVariant.standard,
-    this.size = YgFieldSize.large,
-    this.completeAction = YgCompleteAction.unfocus,
-    this.searchAction = YgSearchAction.auto,
+    required this.resultTextBuilder,
+    required this.resultsBuilder,
+    required this.keyboardType,
+    required this.autocorrect,
+    required this.textCapitalization,
     this.focusNode,
     this.error,
-    this.disabled = false,
     this.placeholder,
     this.onFocusChanged,
     this.onPressed,
@@ -36,14 +35,14 @@ class YgSearchField<T> extends StatefulWidget {
     this.onEditingComplete,
     this.onChanged,
     this.hint,
-    required this.resultTextBuilder,
-    required this.resultsBuilder,
-    required this.keyboardType,
-    required this.autocorrect,
-    required this.readOnly,
-    required this.textCapitalization,
     this.inputFormatters,
     this.initialValue,
+    this.disabled = false,
+    this.readOnly = false,
+    this.variant = YgFieldVariant.standard,
+    this.size = YgFieldSize.large,
+    this.completeAction = YgCompleteAction.unfocus,
+    this.searchAction = YgSearchAction.auto,
   });
 
   /// Called to get the results list for the search screen / menu.
@@ -329,6 +328,7 @@ class _YgSearchFieldState<T> extends StateWithYgState<YgSearchField<T>, YgSearch
         borderRadius: radius,
         fieldKey: _fieldKey,
         hintKey: _hintKey,
+        onClose: _onClosed,
         searchBarBuilder: (BuildContext context) {
           return SearchAppBar<T>(
             controller: _controllerManager.value,

@@ -13,7 +13,10 @@ class MobileSearchRoute<T> extends PopupRoute<Widget> {
     required this.fieldKey,
     required this.hintKey,
     required this.borderRadius,
+    required this.onClose,
   });
+
+  // region Route
 
   BuildContext get context => navigator!.context;
 
@@ -40,6 +43,10 @@ class MobileSearchRoute<T> extends PopupRoute<Widget> {
   @override
   Curve get barrierCurve => theme.animationCurve;
 
+  // endregion
+
+  // region Arguments
+
   final YgSearchController<T> searchController;
 
   final PreferredSizeWidget Function(BuildContext context) searchBarBuilder;
@@ -51,6 +58,19 @@ class MobileSearchRoute<T> extends PopupRoute<Widget> {
   final YgLinkedKey<HintProvider> hintKey;
 
   final CurveTween tween = CurveTween(curve: Curves.easeInOut);
+
+  final VoidCallback onClose;
+
+  // endregion
+
+  @override
+  void onPopInvoked(bool didPop) {
+    if (!didPop || !searchController.attached) {
+      return;
+    }
+
+    onClose();
+  }
 
   Rect? getRect() {
     final BuildContext? context = fieldKey.currentContext;

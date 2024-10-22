@@ -182,6 +182,8 @@ class YgSearchController<T> extends TextEditingController implements YgAttachabl
     return state.isOpen;
   }
 
+  bool get attached => _state != null;
+
   void _updateResults({bool force = false}) async {
     final YgSearchMixin<T, StatefulWidget>? state = _state;
     if (state == null || _loadingNotifier.isLoadingResults) {
