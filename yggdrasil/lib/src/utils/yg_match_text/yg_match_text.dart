@@ -3,6 +3,10 @@ import 'package:flutter/material.dart';
 import 'yg_formatted_text.dart';
 import 'yg_text_match.dart';
 
+/// Renders a YgFormatted text.
+///
+/// Accepts a [style] which is applied to all text which does is not in range of
+/// a match. Any text inside a match gets styled using [matchedStyle].
 class YgMatchText extends StatelessWidget {
   const YgMatchText({
     super.key,
