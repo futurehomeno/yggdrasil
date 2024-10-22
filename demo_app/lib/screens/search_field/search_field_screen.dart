@@ -55,7 +55,6 @@ class _SearchFieldScreenState extends State<SearchFieldScreen> {
 
   @override
   Widget build(BuildContext context) {
-    print('build');
     return DemoScreen(
       componentName: 'SearchField',
       child: Column(
@@ -182,6 +181,7 @@ class _SearchFieldScreenState extends State<SearchFieldScreen> {
                 textCapitalization: TextCapitalization.sentences,
                 resultsBuilder: _getResultsBuilder(),
                 resultTextBuilder: _resultTextBuilder,
+                completeAction: YgCompleteAction.focusNext,
                 variant: YgFieldVariant.standard,
               ),
               YgSearchField<int>(
@@ -191,7 +191,33 @@ class _SearchFieldScreenState extends State<SearchFieldScreen> {
                 textCapitalization: TextCapitalization.sentences,
                 resultsBuilder: _getResultsBuilder(),
                 resultTextBuilder: _resultTextBuilder,
+                completeAction: YgCompleteAction.focusNext,
                 variant: YgFieldVariant.outlined,
+              ),
+            ].withVerticalSpacing(10.0),
+          ),
+          YgSection.column(
+            title: 'Sizes',
+            children: [
+              YgSearchField<int>(
+                label: 'Medium',
+                keyboardType: TextInputType.streetAddress,
+                autocorrect: false,
+                textCapitalization: TextCapitalization.sentences,
+                resultsBuilder: _getResultsBuilder(),
+                resultTextBuilder: _resultTextBuilder,
+                completeAction: YgCompleteAction.focusNext,
+                size: YgFieldSize.medium,
+              ),
+              YgSearchField<int>(
+                label: 'Large',
+                keyboardType: TextInputType.streetAddress,
+                autocorrect: false,
+                textCapitalization: TextCapitalization.sentences,
+                resultsBuilder: _getResultsBuilder(),
+                resultTextBuilder: _resultTextBuilder,
+                completeAction: YgCompleteAction.focusNext,
+                size: YgFieldSize.large,
               ),
             ].withVerticalSpacing(10.0),
           ),
@@ -210,6 +236,14 @@ class _SearchFieldScreenState extends State<SearchFieldScreen> {
               YgButton(
                 child: Text('Set value'),
                 onPressed: () => _controller.text = 'Custom value',
+              ),
+              YgButton(
+                child: Text('Clear value'),
+                onPressed: () => _controller.text = '',
+              ),
+              YgButton(
+                child: Text('Open search field'),
+                onPressed: () => _controller.open(),
               )
             ].withVerticalSpacing(10.0),
           ),

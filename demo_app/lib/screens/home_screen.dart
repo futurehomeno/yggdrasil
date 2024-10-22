@@ -182,11 +182,11 @@ class HomeScreen extends StatelessWidget {
                       onTap: () => sl<YgRouter>().push(SearchFieldScreen.route()),
                       trailingWidgets: const <YgIcon>[YgIcon(YgIcons.caretRight)],
                     ),
-                    YgListTile(
-                      title: 'ScrollableDropdownTest',
-                      onTap: () => sl<YgRouter>().push(ScrollableDropdownTestScreen.route()),
-                      trailingWidgets: const <YgIcon>[YgIcon(YgIcons.caretRight)],
-                    ),
+                    // YgListTile(
+                    //   title: 'ScrollableDropdownTest',
+                    //   onTap: () => sl<YgRouter>().push(ScrollableDropdownTestScreen.route()),
+                    //   trailingWidgets: const <YgIcon>[YgIcon(YgIcons.caretRight)],
+                    // ),
                     YgListTile(
                       title: 'Section',
                       onTap: () => sl<YgRouter>().push(SectionScreen.route()),

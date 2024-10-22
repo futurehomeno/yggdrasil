@@ -118,12 +118,9 @@ class YgRowRenderer extends RenderBox
     );
   }
 
-  double? computeDistanceToFirstActualBaseline(TextBaseline baseline) {
+  @override
+  double? computeDistanceToActualBaseline(TextBaseline baseline) {
     return defaultComputeDistanceToFirstActualBaseline(baseline);
-  }
-
-  double? computeDistanceToHighestActualBaseline(TextBaseline baseline) {
-    return defaultComputeDistanceToHighestActualBaseline(baseline);
   }
 
   @override

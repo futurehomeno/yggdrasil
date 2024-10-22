@@ -20,6 +20,7 @@ class YgControllerManagerImplementation<S, T extends Listenable> extends YgContr
       _controller = createController();
     } else {
       _controller = userController;
+      _wasNull = false;
     }
 
     final T controller = _controller;

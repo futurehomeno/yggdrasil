@@ -140,6 +140,10 @@ class _SearchAppBarState<T> extends State<SearchAppBar<T>> with EditableTextCont
 
   @override
   void valueUpdated() {
+    if (!mounted) {
+      return;
+    }
+
     final bool isEmpty = controller.text.isEmpty;
     if (_isEmpty != isEmpty) {
       _isEmpty = controller.text.isEmpty;
