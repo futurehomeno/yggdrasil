@@ -1,59 +1,64 @@
 import 'dart:async';
 
 import 'package:flutter/widgets.dart';
+import 'package:yggdrasil/src/components/fields/search/models/yg_search_mixin.dart';
 import 'package:yggdrasil/src/components/fields/search/models/yg_search_result.dart';
-import 'package:yggdrasil/src/components/fields/search/models/yg_search_state.dart';
-import 'package:yggdrasil/src/components/fields/search/models/yg_search_widget.dart';
 import 'package:yggdrasil/src/utils/_utils.dart';
 
 import 'loading_value.dart';
 
-typedef YgSearchControllerAny<T> = YgSearchController<T, YgSearchState<YgSearchWidget<T>>>;
+/// Builds results for a [YgSearchWidget].
 typedef YgSearchResultsBuilder<T> = FutureOr<List<YgSearchResult<T>>?> Function(String searchQuery);
+
+/// Builds a result text for a [YgSearchWidget] based on a selected [value].
 typedef YgSearchResultTextBuilder<T> = FutureOr<String?> Function(T value)?;
 
-class YgSearchController<T, S extends YgSearchState<YgSearchWidget<T>>> extends TextEditingController
-    implements YgAttachable<S> {
+/// The base class controller for a search widget.
+///
+/// Should not be used directly, instead look at using one of the following specific
+/// implementations.
+///
+///  - [YgSearchController].
+class YgSearchController<T> extends TextEditingController implements YgAttachable<YgSearchMixin<T, StatefulWidget>> {
   YgSearchController({
     super.text,
   }) : _lastHandledValue = text ?? '';
 
+  /// The results for the current search query.
+  ///
+  /// Might not be entirely up to date as the results are loaded async. The
+  /// results are provided by [YgSearchWidget.resultsBuilder].
   final ValueNotifier<List<YgSearchResult<T>>?> results = ValueNotifier<List<YgSearchResult<T>>?>(null);
 
-  final LoadingValue _loadingNotifier = LoadingValue();
+  /// Whether the search widget is loading.
+  ///
+  /// When either [YgSearchWidget.resultsBuilder] or [YgSearchWidget.resultTextBuilder]
+  /// are called and returned a future, this will be set to true, until all
+  /// futures are resolved.
   ValueNotifier<bool> get loading => _loadingNotifier;
+  final LoadingValue _loadingNotifier = LoadingValue();
 
-  YgSearchState<YgSearchWidget<T>>? _state;
-
+  YgSearchMixin<T, StatefulWidget>? _state;
   String _lastHandledValue;
 
   @override
   void notifyListeners() {
+    // This gets called when the text value changes.
     _updateResults();
     super.notifyListeners();
   }
 
-  void _updateResults([bool force = false]) async {
-    final YgSearchState<YgSearchWidget<T>>? state = _state;
-    if (state == null || _loadingNotifier.isLoadingResults) {
-      return;
-    }
-
-    if (!force && _lastHandledValue == text) {
-      return;
-    }
-
-    _loadingNotifier.isLoadingResults = true;
-    _lastHandledValue = text;
-    results.value = await state.widget.resultsBuilder(text);
-    _loadingNotifier.isLoadingResults = false;
-
-    // Call this again in case value has changed in the meantime.
-    _updateResults();
-  }
-
-  void valueSelected(T value) async {
-    final YgSearchState<YgSearchWidget<T>>? state = _state;
+  /// Handles a tap on a entry.
+  ///
+  /// !--- WARNING ---
+  /// Used internally in the [YgSearchWidget] and should generally not be used
+  /// by a user of the [YgSearchWidget] or its derivatives.
+  ///
+  /// This will call [YgSearchWidget.resultTextBuilder] and depending on its
+  /// result, either set the current [text] to the result, or keep the current
+  /// search string.
+  void onValueTapped(T value) async {
+    final YgSearchMixin<T, StatefulWidget>? state = _state;
     assert(
       state != null,
       'YgSearchController.valueSelected was called while the controller was not attached to a search widget!',
@@ -64,8 +69,7 @@ class YgSearchController<T, S extends YgSearchState<YgSearchWidget<T>>> extends 
 
     _loadingNotifier.isLoadingSelectedResult = true;
 
-    final YgSearchWidget<T> widget = state.widget;
-    final String? newText = await widget.resultTextBuilder?.call(value);
+    final String? newText = await state.resultTextBuilder?.call(value);
 
     _loadingNotifier.isLoadingSelectedResult = false;
     if (newText == null) {
@@ -76,15 +80,27 @@ class YgSearchController<T, S extends YgSearchState<YgSearchWidget<T>>> extends 
     close();
   }
 
+  /// Method to attach a controller to a [YgSearchWidget].
+  ///
+  /// !--- Warning ---
+  /// Should not be called when the controller is already attached to a
+  /// [YgSearchWidget].
   @override
-  void attach(YgSearchState<YgSearchWidget<T>> state) {
+  void attach(YgSearchMixin<T, StatefulWidget> state) {
+    assert(
+      _state == null || _state == state,
+      'Can not attach controller to multiple dropdowns.',
+    );
+    if (_state != null && _state != state) {
+      return;
+    }
     _state = state;
-
     if (_lastHandledValue.isNotEmpty == true) {
-      _updateResults(true);
+      _updateResults(force: true);
     }
   }
 
+  /// Method to detach a controller from its current [YgSearchWidget].
   @override
   void detach() {
     _state = null;
@@ -96,16 +112,16 @@ class YgSearchController<T, S extends YgSearchState<YgSearchWidget<T>>> extends 
   /// cases you want to use the [open] method instead to show either a menu or
   /// search screen, depending on the platform the user is on.
   void openMenu() {
-    final YgSearchState<YgSearchWidget<T>>? field = _state;
+    final YgSearchMixin<T, StatefulWidget>? state = _state;
     assert(
-      field != null,
+      state != null,
       'YgSearchController.openMenu was called while the controller was not attached to a search widget!',
     );
-    if (field == null) {
+    if (state == null) {
       return;
     }
 
-    field.openMenu();
+    state.openMenu();
   }
 
   /// Opens the search screen specifically.
@@ -114,55 +130,74 @@ class YgSearchController<T, S extends YgSearchState<YgSearchWidget<T>>> extends 
   /// For most cases you want to use the [open] method instead to show either a
   /// menu or search screen, depending on the platform the user is on.
   void openScreen() {
-    final YgSearchState<YgSearchWidget<T>>? field = _state;
+    final YgSearchMixin<T, StatefulWidget>? state = _state;
     assert(
-      field != null,
+      state != null,
       'YgSearchController.openScreen was called while the controller was not attached to a search widget!',
     );
-    if (field == null) {
+    if (state == null) {
       return;
     }
 
-    field.openScreen();
+    state.openScreen();
   }
 
   /// Opens the search widget.
   ///
-  /// Shows either a menu or search screen, depending on the platform the user is
-  /// on.
+  /// Shows either a menu or search screen, depending on the platform the user
+  /// is on.
   void open() {
-    final YgSearchState<YgSearchWidget<T>>? field = _state;
+    final YgSearchMixin<T, StatefulWidget>? state = _state;
     assert(
-      field != null,
+      state != null,
       'YgSearchController.open was called while the controller was not attached to a search widget!',
     );
-    if (field == null) {
+    if (state == null) {
       return;
     }
-    field.open();
+    state.open();
   }
 
   /// Closes the search widget.
   void close() {
-    final YgSearchState<YgSearchWidget<T>>? field = _state;
+    final YgSearchMixin<T, StatefulWidget>? state = _state;
     assert(
-      field != null,
+      state != null,
       'YgSearchController.close was called while the controller was not attached to a search widget!',
     );
-    if (field == null) {
+    if (state == null) {
       return;
     }
 
-    field.close();
+    state.close();
   }
 
   /// Whether the search widget in open or closed.
   bool get isOpen {
-    final YgSearchState<YgSearchWidget<T>>? field = _state;
-    if (field == null) {
+    final YgSearchMixin<T, StatefulWidget>? state = _state;
+    if (state == null) {
       return false;
     }
 
-    return field.isOpen;
+    return state.isOpen;
+  }
+
+  void _updateResults({bool force = false}) async {
+    final YgSearchMixin<T, StatefulWidget>? state = _state;
+    if (state == null || _loadingNotifier.isLoadingResults) {
+      return;
+    }
+
+    if (!force && _lastHandledValue == text) {
+      return;
+    }
+
+    _loadingNotifier.isLoadingResults = true;
+    _lastHandledValue = text;
+    results.value = await state.resultsBuilder(text);
+    _loadingNotifier.isLoadingResults = false;
+
+    // Call this again in case value has changed in the meantime.
+    _updateResults();
   }
 }

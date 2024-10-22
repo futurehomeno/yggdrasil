@@ -27,8 +27,21 @@ class YgControllerManagerImplementation<S, T extends Listenable> extends YgContr
     if (listener != null) {
       controller.addListener(listener);
     }
-    if (controller is YgAttachable<S>) {
-      controller.attach(_state);
+
+    if (controller is YgAttachable) {
+      // We have to try catch because we can't check whether the state is the
+      // expected value for YgAttachable. This is because YgAttachable might
+      // expect an interface which state implements, but because we can not
+      // access the type argument of the YgAttachable instance, we can not check
+      // whether state implements it. If there is some sort of way to access the
+      // type argument of the YgAttachable we should do the type check instead,
+      // and can remove this try catch.
+      try {
+        controller.attach(_state);
+        _attached = true;
+      } catch (e) {
+        _attached = false;
+      }
     }
   }
 
@@ -39,6 +52,7 @@ class YgControllerManagerImplementation<S, T extends Listenable> extends YgContr
 
   late T _controller;
   late bool _wasNull;
+  bool _attached = false;
 
   @override
   T get value => _controller;
@@ -59,9 +73,16 @@ class YgControllerManagerImplementation<S, T extends Listenable> extends YgContr
   void _updateController(T newController) {
     final VoidCallback? listener = this._listener;
     final T controller = _controller;
-    if (controller is YgAttachable) {
+    if (controller is YgAttachable && _attached) {
       controller.detach();
-      controller.attach(_state);
+    }
+    if (newController is YgAttachable) {
+      try {
+        newController.attach(_state);
+        _attached = true;
+      } catch (e) {
+        _attached = false;
+      }
     }
     if (listener != null) {
       controller.removeListener(listener);
@@ -77,7 +98,7 @@ class YgControllerManagerImplementation<S, T extends Listenable> extends YgContr
       controller.removeListener(listener);
     }
 
-    if (controller is YgAttachable) {
+    if (controller is YgAttachable && _attached) {
       controller.detach();
     }
 
@@ -98,4 +119,8 @@ class YgControllerManagerImplementation<S, T extends Listenable> extends YgContr
         break;
     }
   }
+}
+
+class _T<T> {
+  const _T();
 }

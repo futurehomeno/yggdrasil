@@ -1,3 +1,4 @@
+/// The action that should be performed when a [YgSearchWidget] is pressed.
 enum YgSearchAction {
   /// Show a menu when the dropdown is pressed.
   menu,

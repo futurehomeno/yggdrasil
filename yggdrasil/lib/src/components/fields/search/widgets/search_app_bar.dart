@@ -38,7 +38,7 @@ class SearchAppBar<T> extends StatefulWidget with EditableTextContainerWidgetMix
   final String? initialValue;
 
   @override
-  final YgSearchControllerAny<T> controller;
+  final YgSearchController<T> controller;
 
   final ValueChanged<String>? onChanged;
   final VoidCallback? onEditingComplete;

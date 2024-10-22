@@ -40,7 +40,7 @@ class MobileSearchRoute<T> extends PopupRoute<Widget> {
   @override
   Curve get barrierCurve => theme.animationCurve;
 
-  final YgSearchControllerAny<T> searchController;
+  final YgSearchController<T> searchController;
 
   final PreferredSizeWidget Function(BuildContext context) searchBarBuilder;
 

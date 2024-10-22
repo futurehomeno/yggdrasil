@@ -1,7 +1,6 @@
-import 'package:flutter/widgets.dart';
+part of 'yg_linked_builder.dart';
 
-import 'yg_linked_provider.dart';
-
+/// A key which links a [YgLinkedBuilder] and [YgLinkedProvider] together.
 abstract interface class YgLinkedKey<T extends YgLinkedProvider<T>> implements Key {
   factory YgLinkedKey() = _LinkedKey<T>;
 

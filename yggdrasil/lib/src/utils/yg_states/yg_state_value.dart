@@ -6,6 +6,9 @@ import 'package:flutter/material.dart';
 class YgStateValue<T> extends ValueNotifier<T> {
   YgStateValue(super._value);
 
+  /// Updates the value.
+  ///
+  /// Returns true if the value was not identical to the previous value.
   bool update(T value) {
     final bool shouldUpdate = this.value != value;
     if (shouldUpdate) {

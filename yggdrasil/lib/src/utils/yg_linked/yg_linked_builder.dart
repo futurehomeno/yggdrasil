@@ -1,8 +1,15 @@
 import 'package:flutter/widgets.dart';
 
-import 'yg_linked_key.dart';
-import 'yg_linked_provider.dart';
+part 'yg_linked_key.dart';
+part 'yg_linked_provider.dart';
 
+/// A builder which rebuilds when the linked [YgLinkedProvider] rebuilds.
+///
+/// !--- WARNING ---
+/// This widget is somewhat experimental and its behavior is not 100% known.
+/// This widget should probably only be used if the widgets linked together are
+/// not direct ancestors. More experiments should be done before broadly applying
+/// this widget.
 class YgLinkedBuilder<T extends YgLinkedProvider<T>> extends Widget {
   const YgLinkedBuilder({
     super.key,
@@ -10,29 +17,32 @@ class YgLinkedBuilder<T extends YgLinkedProvider<T>> extends Widget {
     required this.linkedKey,
   });
 
+  /// Builds a child widget using the linked widget.
   final Widget Function(T? linkedWidget) builder;
+
+  /// The key linking the provider and builder together.
   final YgLinkedKey<T> linkedKey;
 
   @override
-  YgLinkedBuilderElement<T> createElement() {
-    return YgLinkedBuilderElement<T>(this);
+  Element createElement() {
+    return _YgLinkedBuilderElement<T>(this);
   }
 }
 
-class YgLinkedBuilderElement<T extends YgLinkedProvider<T>> extends ComponentElement {
-  YgLinkedBuilderElement(super.widget);
+class _YgLinkedBuilderElement<T extends YgLinkedProvider<T>> extends ComponentElement {
+  _YgLinkedBuilderElement(super.widget);
 
   bool _hadUnsatisfiedDependency = false;
 
   @override
   YgLinkedBuilder<T> get widget => super.widget as YgLinkedBuilder<T>;
 
-  YgLinkedUpdateProviderElement<T>? get _linkedElement =>
-      widget.linkedKey.currentContext as YgLinkedUpdateProviderElement<T>?;
+  _YgLinkedUpdateProviderElement<T>? get _linkedElement =>
+      widget.linkedKey.currentContext as _YgLinkedUpdateProviderElement<T>?;
 
   @override
   Widget build() {
-    final YgLinkedUpdateProviderElement<T>? linkedElement = _linkedElement;
+    final _YgLinkedUpdateProviderElement<T>? linkedElement = _linkedElement;
 
     final T? remoteWidget;
     if (linkedElement != null) {
@@ -58,7 +68,7 @@ class YgLinkedBuilderElement<T extends YgLinkedProvider<T>> extends ComponentEle
 
   @override
   void deactivate() {
-    final YgLinkedUpdateProviderElement<T>? linkedElement = _linkedElement;
+    final _YgLinkedUpdateProviderElement<T>? linkedElement = _linkedElement;
     if (linkedElement != null) {
       linkedElement.removeDependent(this);
     }

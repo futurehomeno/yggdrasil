@@ -1,7 +1,15 @@
-import 'package:flutter/widgets.dart';
+part of 'yg_linked_builder.dart';
 
-import 'yg_linked_key.dart';
-
+/// A provider which provides it self to a linked [YgLinkedBuilder].
+///
+/// Forces the [YgLinkedBuilder] to build when this provider gets build and
+/// [updateShouldNotify] returns true.
+///
+/// !--- WARNING ---
+/// This widget is somewhat experimental and its behavior is not 100% known.
+/// This widget should probably only be used if the widgets linked together are
+/// not direct ancestors. More experiments should be done before broadly applying
+/// this widget.
 abstract class YgLinkedProvider<T extends YgLinkedProvider<T>> extends ProxyWidget {
   const YgLinkedProvider({
     required YgLinkedKey<T> super.key,
@@ -10,14 +18,14 @@ abstract class YgLinkedProvider<T extends YgLinkedProvider<T>> extends ProxyWidg
 
   @override
   Element createElement() {
-    return YgLinkedUpdateProviderElement<T>(this);
+    return _YgLinkedUpdateProviderElement<T>(this);
   }
 
   bool updateShouldNotify(covariant YgLinkedProvider<T> oldWidget);
 }
 
-class YgLinkedUpdateProviderElement<T extends YgLinkedProvider<T>> extends ProxyElement {
-  YgLinkedUpdateProviderElement(super.widget);
+class _YgLinkedUpdateProviderElement<T extends YgLinkedProvider<T>> extends ProxyElement {
+  _YgLinkedUpdateProviderElement(super.widget);
 
   final Set<Element> _dependents = <Element>{};
 

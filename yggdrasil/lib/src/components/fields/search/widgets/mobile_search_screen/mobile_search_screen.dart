@@ -13,7 +13,7 @@ class MobileSearchScreen<T> extends StatelessWidget {
     required this.hintKey,
   });
 
-  final YgSearchControllerAny<T> controller;
+  final YgSearchController<T> controller;
   final PreferredSizeWidget Function(BuildContext context) searchBarBuilder;
   final YgLinkedKey<HintProvider> hintKey;
 
@@ -60,7 +60,7 @@ class MobileSearchScreen<T> extends StatelessWidget {
                       title: result.title,
                       subtitle: result.subtitle,
                       icon: result.icon,
-                      onTap: () => controller.valueSelected(result.value),
+                      onTap: () => controller.onValueTapped(result.value),
                     );
                   },
                   itemCount: childCount,

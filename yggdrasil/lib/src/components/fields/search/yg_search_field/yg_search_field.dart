@@ -1,8 +1,9 @@
+import 'dart:async';
+
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:yggdrasil/src/components/fields/search/enums/yg_search_action.dart';
-import 'package:yggdrasil/src/components/fields/search/models/yg_search_state.dart';
-import 'package:yggdrasil/src/components/fields/search/models/yg_search_widget.dart';
+import 'package:yggdrasil/src/components/fields/search/models/yg_search_mixin.dart';
 import 'package:yggdrasil/src/components/fields/search/widgets/mobile_search_screen/mobile_search_route.dart';
 import 'package:yggdrasil/src/components/fields/search/widgets/search_app_bar.dart';
 import 'package:yggdrasil/src/components/fields/search/widgets/widget_or_loading.dart';
@@ -15,10 +16,9 @@ import 'package:yggdrasil/yggdrasil.dart';
 import 'yg_search_field_state.dart';
 
 part 'hint_provider.dart';
-part 'yg_search_field_controller.dart';
 
 /// A field which when opened allows the user to search for a value.
-class YgSearchField<T> extends StatefulWidget implements YgSearchWidget<T> {
+class YgSearchField<T> extends StatefulWidget {
   const YgSearchField({
     super.key,
     required this.label,
@@ -58,7 +58,6 @@ class YgSearchField<T> extends StatefulWidget implements YgSearchWidget<T> {
   ///
   /// Results are bound to the [controller], so in case a different controller
   /// gets assigned, the results will also change.
-  @override
   final YgSearchResultsBuilder<T> resultsBuilder;
 
   /// Called to get the result text once a result has been selected.
@@ -69,7 +68,6 @@ class YgSearchField<T> extends StatefulWidget implements YgSearchWidget<T> {
   ///
   /// If this builder returns a future, a loading indicator will be shown to the
   /// user until this future resolves.
-  @override
   final YgSearchResultTextBuilder<T> resultTextBuilder;
 
   /// Hint widget shown in the top of the search results.
@@ -78,7 +76,7 @@ class YgSearchField<T> extends StatefulWidget implements YgSearchWidget<T> {
   /// Controls the value of the search field and can open or close the search field.
   ///
   /// When defined will overwrite the [initialValue].
-  final YgSearchFieldController<T>? controller;
+  final YgSearchController<T>? controller;
 
   /// The action that should be performed when the user presses the search field.
   ///
@@ -189,11 +187,11 @@ class YgSearchField<T> extends StatefulWidget implements YgSearchWidget<T> {
 }
 
 class _YgSearchFieldState<T> extends StateWithYgState<YgSearchField<T>, YgSearchFieldState>
-    with YgControllerManagerMixin
-    implements YgSearchState<YgSearchField<T>> {
+    with YgControllerManagerMixin, YgSearchMixin<T, YgSearchField<T>> {
   /// Manages the controller of this widget.
-  late final YgControllerManager<YgSearchFieldController<T>> _controllerManager = manageController(
-    createController: () => YgSearchFieldController<T>(text: widget.initialValue),
+  late final YgControllerManager<YgSearchController<T>> _controllerManager =
+      manageControllerWithType<YgSearchController<T>, YgSearchMixin<T, YgSearchField<T>>>(
+    createController: () => YgSearchController<T>(text: widget.initialValue),
     getUserController: () => widget.controller,
     listener: _valueUpdated,
   );
@@ -203,12 +201,6 @@ class _YgSearchFieldState<T> extends StateWithYgState<YgSearchField<T>, YgSearch
     createController: () => FocusNode(),
     getUserController: () => widget.focusNode,
     listener: _focusChanged,
-  );
-
-  // This is a little weird, but it works, and is probably the best available
-  // option.
-  late final ValueNotifier<Widget?> _hint = ValueNotifier<Widget?>(
-    widget.hint,
   );
 
   final GlobalKey _fieldKey = GlobalKey();
@@ -245,13 +237,6 @@ class _YgSearchFieldState<T> extends StateWithYgState<YgSearchField<T>, YgSearch
     state.disabled.value = widget.disabled;
     state.variant.value = widget.variant;
     state.size.value = widget.size;
-    _hint.value = widget.hint;
-  }
-
-  @override
-  void dispose() {
-    _hint.dispose();
-    super.dispose();
   }
 
   @override
@@ -259,7 +244,7 @@ class _YgSearchFieldState<T> extends StateWithYgState<YgSearchField<T>, YgSearch
     final bool isTextField = (widget.searchAction == YgSearchAction.menu) ||
         (widget.searchAction == YgSearchAction.auto && !YgConsts.isMobile);
 
-    final YgSearchFieldController<T> controller = _controllerManager.value;
+    final YgSearchController<T> controller = _controllerManager.value;
 
     return HintProvider(
       hint: widget.hint,
@@ -330,7 +315,9 @@ class _YgSearchFieldState<T> extends StateWithYgState<YgSearchField<T>, YgSearch
   }
 
   @override
-  void openMenu() {}
+  void openMenu() {
+    // TODO(Tim): Implement this.
+  }
 
   @override
   void openScreen() {
@@ -407,4 +394,10 @@ class _YgSearchFieldState<T> extends StateWithYgState<YgSearchField<T>, YgSearch
       case YgCompleteAction.none:
     }
   }
+
+  @override
+  FutureOr<String?> Function(T value)? get resultTextBuilder => widget.resultTextBuilder;
+
+  @override
+  YgSearchResultsBuilder<T> get resultsBuilder => widget.resultsBuilder;
 }
