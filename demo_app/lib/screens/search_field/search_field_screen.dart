@@ -17,7 +17,14 @@ class SearchFieldScreen extends StatefulWidget {
     );
   }
 
-  static const List<String> searchResults = [
+  @override
+  State<SearchFieldScreen> createState() => _SearchFieldScreenState();
+}
+
+class _SearchFieldScreenState extends State<SearchFieldScreen> {
+  final _controller = YgSearchController<int>();
+
+  static const List<String> _searchResults = [
     'Holtegrenda, 8000, Ski',
     'Holten, 8100, Misaer',
     'Holtegata, 8011, Oslo',
@@ -47,13 +54,6 @@ class SearchFieldScreen extends StatefulWidget {
   ];
 
   @override
-  State<SearchFieldScreen> createState() => _SearchFieldScreenState();
-}
-
-class _SearchFieldScreenState extends State<SearchFieldScreen> {
-  bool _showHint = true;
-
-  @override
   Widget build(BuildContext context) {
     print('build');
     return DemoScreen(
@@ -67,7 +67,7 @@ class _SearchFieldScreenState extends State<SearchFieldScreen> {
                 keyboardType: TextInputType.streetAddress,
                 autocorrect: false,
                 textCapitalization: TextCapitalization.sentences,
-                label: 'Default dropdown',
+                label: 'Default search field',
                 resultsBuilder: _getResultsBuilder(),
                 completeAction: YgCompleteAction.focusNext,
                 resultTextBuilder: _resultTextBuilder,
@@ -116,7 +116,7 @@ class _SearchFieldScreenState extends State<SearchFieldScreen> {
                 keyboardType: TextInputType.streetAddress,
                 autocorrect: false,
                 textCapitalization: TextCapitalization.sentences,
-                label: 'Scrollable bottom sheet',
+                label: 'Scrollable search screen',
                 searchAction: YgSearchAction.screen,
                 resultsBuilder: _getResultsBuilder(maxResults: 50),
                 completeAction: YgCompleteAction.focusNext,
@@ -196,26 +196,21 @@ class _SearchFieldScreenState extends State<SearchFieldScreen> {
             ].withVerticalSpacing(10.0),
           ),
           YgSection.column(
-            title: 'Sizes',
+            title: 'Custom controller',
             children: [
               YgSearchField<int>(
-                label: 'Medium',
+                label: 'Custom controller',
                 keyboardType: TextInputType.streetAddress,
                 autocorrect: false,
                 textCapitalization: TextCapitalization.sentences,
                 resultsBuilder: _getResultsBuilder(),
                 resultTextBuilder: _resultTextBuilder,
-                size: YgFieldSize.medium,
+                controller: _controller,
               ),
-              YgSearchField<int>(
-                label: 'Large',
-                keyboardType: TextInputType.streetAddress,
-                autocorrect: false,
-                textCapitalization: TextCapitalization.sentences,
-                resultsBuilder: _getResultsBuilder(),
-                resultTextBuilder: _resultTextBuilder,
-                size: YgFieldSize.large,
-              ),
+              YgButton(
+                child: Text('Set value'),
+                onPressed: () => _controller.text = 'Custom value',
+              )
             ].withVerticalSpacing(10.0),
           ),
         ],
@@ -223,7 +218,7 @@ class _SearchFieldScreenState extends State<SearchFieldScreen> {
     );
   }
 
-  String _resultTextBuilder(int value) => SearchFieldScreen.searchResults[value];
+  String _resultTextBuilder(int value) => _searchResults[value];
 
   /// Creates an example results builder with configurable semi realistic behavior.
   _getResultsBuilder({
@@ -233,8 +228,8 @@ class _SearchFieldScreenState extends State<SearchFieldScreen> {
     final List<YgSearchResult<int>> Function(String) builder = (String query) {
       final List<YgSearchResult<int>> results = [];
 
-      for (int i = 0, shown = 0; shown < maxResults && i < SearchFieldScreen.searchResults.length; i++) {
-        final result = SearchFieldScreen.searchResults[i];
+      for (int i = 0, shown = 0; shown < maxResults && i < _searchResults.length; i++) {
+        final result = _searchResults[i];
         final match = result.toLowerCase().indexOf(query.toLowerCase());
 
         if (query.toLowerCase().startsWith('holte')) {

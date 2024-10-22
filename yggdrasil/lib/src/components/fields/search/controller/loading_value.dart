@@ -1,5 +1,6 @@
 import 'package:flutter/widgets.dart';
 
+/// Manages the loading value of a YgSearchController.
 class LoadingValue extends ValueNotifier<bool> {
   LoadingValue() : super(false);
 

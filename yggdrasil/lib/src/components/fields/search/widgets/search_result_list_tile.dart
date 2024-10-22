@@ -6,7 +6,10 @@ import 'package:yggdrasil/src/extensions/safe_build_extension.dart';
 import 'package:yggdrasil/src/theme/_theme.dart';
 import 'package:yggdrasil/src/utils/_utils.dart';
 
-final class SearchResultListTile extends StatelessWidget with StatelessWidgetDebugMixin {
+/// Internal search result list tile.
+///
+/// This is different from a normal list tile by supporting formatted text.
+class SearchResultListTile extends StatelessWidget with StatelessWidgetDebugMixin {
   const SearchResultListTile({
     super.key,
     required this.title,

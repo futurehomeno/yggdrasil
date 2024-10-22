@@ -37,7 +37,6 @@ class YgSearchController<T> extends TextEditingController implements YgAttachabl
   /// futures are resolved.
   ValueNotifier<bool> get loading => _loadingNotifier;
   final LoadingValue _loadingNotifier = LoadingValue();
-
   YgSearchMixin<T, StatefulWidget>? _state;
   String _lastHandledValue;
 
@@ -76,6 +75,10 @@ class YgSearchController<T> extends TextEditingController implements YgAttachabl
       return;
     }
 
+    // We also set the last handled value to prevent this value from triggering
+    // a new search result query, which might break things which expect the
+    // search to have already ended.
+    _lastHandledValue = newText;
     text = newText;
     close();
   }
@@ -156,6 +159,10 @@ class YgSearchController<T> extends TextEditingController implements YgAttachabl
       return;
     }
     state.open();
+
+    // We ignore updates to the value if the search field is closed, so we need
+    // to check if anything made changes to the value while the field was closed.
+    _updateResults();
   }
 
   /// Closes the search widget.
@@ -186,7 +193,7 @@ class YgSearchController<T> extends TextEditingController implements YgAttachabl
 
   void _updateResults({bool force = false}) async {
     final YgSearchMixin<T, StatefulWidget>? state = _state;
-    if (state == null || _loadingNotifier.isLoadingResults) {
+    if (state == null || _loadingNotifier.isLoadingResults || !state.isOpen) {
       return;
     }
 

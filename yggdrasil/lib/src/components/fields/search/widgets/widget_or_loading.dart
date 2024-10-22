@@ -2,6 +2,10 @@ import 'package:flutter/material.dart';
 import 'package:yggdrasil/src/theme/_theme.dart';
 import 'package:yggdrasil/src/utils/_utils.dart';
 
+/// Internal animated loading switcher.
+///
+/// Switches between a [child] and a loading indicator while maintaining the
+/// size of the [child] or loading indicator, based on which is largest.
 class WidgetOrLoading extends StatelessWidget {
   const WidgetOrLoading({
     required this.child,
