@@ -7,18 +7,13 @@ import 'package:yggdrasil/src/utils/_utils.dart';
 
 import 'loading_value.dart';
 
-/// Builds results for a [YgSearchWidget].
+/// Builds results for a search widget.
 typedef YgSearchResultsBuilder<T> = FutureOr<List<YgSearchResult<T>>?> Function(String searchQuery);
 
-/// Builds a result text for a [YgSearchWidget] based on a selected [value].
+/// Builds a result text for a search widget based on a selected [value].
 typedef YgSearchResultTextBuilder<T> = FutureOr<String?> Function(T value)?;
 
-/// The base class controller for a search widget.
-///
-/// Should not be used directly, instead look at using one of the following specific
-/// implementations.
-///
-///  - [YgSearchController].
+/// Controller for any search widget.
 class YgSearchController<T> extends TextEditingController implements YgAttachable<YgSearchMixin<T, StatefulWidget>> {
   YgSearchController({
     super.text,
@@ -27,12 +22,12 @@ class YgSearchController<T> extends TextEditingController implements YgAttachabl
   /// The results for the current search query.
   ///
   /// Might not be entirely up to date as the results are loaded async. The
-  /// results are provided by [YgSearchWidget.resultsBuilder].
+  /// results are provided by the search widget's results builder.
   final ValueNotifier<List<YgSearchResult<T>>?> results = ValueNotifier<List<YgSearchResult<T>>?>(null);
 
   /// Whether the search widget is loading.
   ///
-  /// When either [YgSearchWidget.resultsBuilder] or [YgSearchWidget.resultTextBuilder]
+  /// When either the search widget's results builder or result text builder
   /// are called and returned a future, this will be set to true, until all
   /// futures are resolved.
   ValueNotifier<bool> get loading => _loadingNotifier;
@@ -47,13 +42,13 @@ class YgSearchController<T> extends TextEditingController implements YgAttachabl
     super.notifyListeners();
   }
 
-  /// Handles a tap on a entry.
+  /// Handles a tap on an entry.
   ///
   /// !--- WARNING ---
-  /// Used internally in the [YgSearchWidget] and should generally not be used
-  /// by a user of the [YgSearchWidget] or its derivatives.
+  /// Used internally in the search widget and should generally not be used
+  /// by a user of the search widget or its derivatives.
   ///
-  /// This will call [YgSearchWidget.resultTextBuilder] and depending on its
+  /// This will call the search widget's result text builder and depending on its
   /// result, either set the current [text] to the result, or keep the current
   /// search string.
   void onValueTapped(T value) async {
@@ -83,11 +78,11 @@ class YgSearchController<T> extends TextEditingController implements YgAttachabl
     close();
   }
 
-  /// Method to attach a controller to a [YgSearchWidget].
+  /// Method to attach a controller to a search widget.
   ///
   /// !--- Warning ---
   /// Should not be called when the controller is already attached to a
-  /// [YgSearchWidget].
+  /// search widget.
   @override
   void attach(YgSearchMixin<T, StatefulWidget> state) {
     assert(
@@ -103,7 +98,7 @@ class YgSearchController<T> extends TextEditingController implements YgAttachabl
     }
   }
 
-  /// Method to detach a controller from its current [YgSearchWidget].
+  /// Method to detach a controller from its current search widget.
   @override
   void detach() {
     _state = null;
@@ -179,7 +174,7 @@ class YgSearchController<T> extends TextEditingController implements YgAttachabl
     state.close();
   }
 
-  /// Whether the search widget in open or closed.
+  /// Whether the search widget is open or closed.
   bool get isOpen {
     final YgSearchMixin<T, StatefulWidget>? state = _state;
     if (state == null) {

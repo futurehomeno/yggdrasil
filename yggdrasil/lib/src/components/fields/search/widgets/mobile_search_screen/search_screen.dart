@@ -5,8 +5,8 @@ import 'package:yggdrasil/src/theme/theme.dart';
 import 'package:yggdrasil/src/utils/yg_linked/_yg_linked.dart';
 import 'package:yggdrasil/yggdrasil.dart';
 
-class MobileSearchScreen<T> extends StatelessWidget {
-  const MobileSearchScreen({
+class SearchScreen<T> extends StatelessWidget {
+  const SearchScreen({
     super.key,
     required this.controller,
     required this.searchBarBuilder,

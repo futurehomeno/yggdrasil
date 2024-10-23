@@ -249,7 +249,6 @@ class YgTextField extends StatefulWidget with StatefulWidgetDebugMixin {
   /// by any shortcut or keyboard operation. The text is still selectable.
   ///
   /// Defaults to false. Must not be null.
-  @override
   final bool readOnly;
 
   /// Configures how the platform keyboard will select an uppercase or
@@ -316,17 +315,14 @@ class YgTextField extends StatefulWidget with StatefulWidgetDebugMixin {
   final List<TextInputFormatter>? inputFormatters;
 
   /// Controls the focus of the widget.
-  @override
   final FocusNode? focusNode;
 
   /// Controls the text being edited.
   ///
   /// When defined will overwrite the [initialValue].
-  @override
   final TextEditingController? controller;
 
   /// The initial value of the text field.
-  @override
   final String? initialValue;
 
   /// The action to perform when the user completes editing the field.

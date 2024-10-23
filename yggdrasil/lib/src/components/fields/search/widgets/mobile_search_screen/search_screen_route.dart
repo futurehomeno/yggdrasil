@@ -1,13 +1,15 @@
 import 'package:flutter/material.dart';
-import 'package:yggdrasil/src/components/fields/search/widgets/mobile_search_screen/mobile_search_screen.dart';
 import 'package:yggdrasil/src/components/fields/search/widgets/rrect_transition.dart';
 import 'package:yggdrasil/src/theme/search_modal/search_modal_theme.dart';
 import 'package:yggdrasil/src/theme/theme.dart';
 import 'package:yggdrasil/src/utils/yg_linked/_yg_linked.dart';
 import 'package:yggdrasil/yggdrasil.dart';
 
-class MobileSearchRoute<T> extends PopupRoute<Widget> {
-  MobileSearchRoute({
+import '_mobile_search_screen.dart';
+
+/// Internal route used for the search widget.
+class SearchScreenRoute<T> extends PopupRoute<Widget> {
+  SearchScreenRoute({
     required this.searchController,
     required this.searchBarBuilder,
     required this.fieldKey,
@@ -17,6 +19,8 @@ class MobileSearchRoute<T> extends PopupRoute<Widget> {
   });
 
   // region Route
+
+  CurveTween get tween => CurveTween(curve: barrierCurve);
 
   BuildContext get context => navigator!.context;
 
@@ -57,8 +61,6 @@ class MobileSearchRoute<T> extends PopupRoute<Widget> {
 
   final YgLinkedKey<HintProvider> hintKey;
 
-  final CurveTween tween = CurveTween(curve: Curves.easeInOut);
-
   final VoidCallback onClose;
 
   // endregion
@@ -94,7 +96,7 @@ class MobileSearchRoute<T> extends PopupRoute<Widget> {
     return RRectTransition(
       animation: tween.animate(animation),
       rrect: borderRadius.toRRect(getRect() ?? Rect.zero),
-      child: MobileSearchScreen<T>(
+      child: SearchScreen<T>(
         controller: searchController,
         searchBarBuilder: searchBarBuilder,
         hintKey: hintKey,

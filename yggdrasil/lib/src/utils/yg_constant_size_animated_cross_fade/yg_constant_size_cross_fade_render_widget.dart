@@ -2,7 +2,6 @@ part of 'yg_constant_size_animated_cross_fade.dart';
 
 class _YgConstantSizeCrossFadeRenderWidget extends MultiChildRenderObjectWidget {
   _YgConstantSizeCrossFadeRenderWidget({
-    super.key,
     required Widget firstChild,
     required this.firstChildAlignment,
     required Widget secondChild,

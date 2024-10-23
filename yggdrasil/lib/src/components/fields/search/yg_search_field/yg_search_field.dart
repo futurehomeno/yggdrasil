@@ -3,7 +3,7 @@ import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:yggdrasil/src/components/fields/search/models/yg_search_mixin.dart';
-import 'package:yggdrasil/src/components/fields/search/widgets/mobile_search_screen/mobile_search_route.dart';
+import 'package:yggdrasil/src/components/fields/search/widgets/mobile_search_screen/_mobile_search_screen.dart';
 import 'package:yggdrasil/src/components/fields/search/widgets/search_app_bar.dart';
 import 'package:yggdrasil/src/components/fields/search/widgets/widget_or_loading.dart';
 import 'package:yggdrasil/src/components/fields/widgets/_widgets.dart';
@@ -17,7 +17,7 @@ import 'yg_search_field_state.dart';
 part '../widgets/hint_provider.dart';
 
 /// A field which when opened allows the user to search for a value.
-class YgSearchField<T> extends StatefulWidget {
+class YgSearchField<T> extends StatefulWidget with StatefulWidgetDebugMixin {
   const YgSearchField({
     super.key,
     required this.label,
@@ -183,6 +183,15 @@ class YgSearchField<T> extends StatefulWidget {
 
   @override
   State<YgSearchField<T>> createState() => _YgSearchFieldState<T>();
+
+  @override
+  YgDebugType get debugType {
+    if (disabled) {
+      return YgDebugType.other;
+    }
+
+    return YgDebugType.intractable;
+  }
 }
 
 class _YgSearchFieldState<T> extends StateWithYgState<YgSearchField<T>, YgSearchFieldState>
@@ -322,7 +331,7 @@ class _YgSearchFieldState<T> extends StateWithYgState<YgSearchField<T>, YgSearch
     final BorderRadius radius = context.fieldTheme.decorationTheme.borderRadiusOutlined;
 
     Navigator.of(context).push(
-      MobileSearchRoute<T>(
+      SearchScreenRoute<T>(
         searchController: _controllerManager.value,
         borderRadius: radius,
         fieldKey: _fieldKey,
@@ -355,7 +364,7 @@ class _YgSearchFieldState<T> extends StateWithYgState<YgSearchField<T>, YgSearch
     Navigator.popUntil(
       context,
       // ignore: avoid-dynamic
-      (Route<dynamic> route) => route is! MobileSearchRoute,
+      (Route<dynamic> route) => route is! SearchScreenRoute,
     );
 
     _onClosed();
