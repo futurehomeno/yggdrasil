@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:yggdrasil/src/components/yg_list_tile/enums/yg_list_tile_density.dart';
 import 'package:yggdrasil/src/components/yg_list_tile/widgets/yg_list_tile_body.dart';
 import 'package:yggdrasil/src/components/yg_radio/yg_radio.dart';
-import 'package:yggdrasil/src/extensions/string_extension.dart';
+import 'package:yggdrasil/src/extensions/_extensions.dart';
 import 'package:yggdrasil/src/utils/_utils.dart';
 
 /// Radio button inside a list tile.
@@ -69,8 +69,12 @@ final class YgRadioListTile<T> extends StatelessWidget with StatelessWidgetDebug
   Widget build(BuildContext context) {
     return YgListTileBody.withChildAndOptionalLeading(
       density: density,
-      title: title.asText(),
-      subtitle: subtitle.asText(),
+      title: title.safeBuild(
+        (String text) => Text(text),
+      ),
+      subtitle: subtitle.safeBuild(
+        (String text) => Text(text),
+      ),
       subtitleIcon: subtitleIcon,
       disabled: onChanged == null,
       onTap: _onTap,

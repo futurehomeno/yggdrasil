@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:yggdrasil/src/components/yg_checkbox/checkbox/yg_checkbox.dart';
-import 'package:yggdrasil/src/components/yg_list_tile/enums/yg_list_tile_density.dart';
+import 'package:yggdrasil/src/components/yg_checkbox/_yg_checkbox.dart';
+import 'package:yggdrasil/src/components/yg_list_tile/enums/_enums.dart';
 import 'package:yggdrasil/src/components/yg_list_tile/widgets/yg_list_tile_body.dart';
-import 'package:yggdrasil/src/extensions/string_extension.dart';
+import 'package:yggdrasil/src/extensions/_extensions.dart';
 import 'package:yggdrasil/src/utils/_utils.dart';
 
 part 'yg_checkbox_list_tile_dual_state.dart';
@@ -78,8 +78,12 @@ abstract base class YgCheckboxListTile extends StatelessWidget with StatelessWid
     return YgListTileBody.withChildAndOptionalLeading(
       builder: null,
       density: density,
-      title: title.asText(),
-      subtitle: subtitle.asText(),
+      title: title.safeBuild(
+        (String text) => Text(text),
+      ),
+      subtitle: subtitle.safeBuild(
+        (String text) => Text(text),
+      ),
       subtitleIcon: subtitleIcon,
       disabled: disabled,
       onTap: toggle,

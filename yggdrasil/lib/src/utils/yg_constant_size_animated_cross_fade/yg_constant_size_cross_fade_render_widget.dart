@@ -1,8 +1,5 @@
 part of 'yg_constant_size_animated_cross_fade.dart';
 
-/// Animates between 2 widgets while maintaining the size of the largest widget.
-///
-/// Allows you to individually align both child widgets.
 class _YgConstantSizeCrossFadeRenderWidget extends MultiChildRenderObjectWidget {
   _YgConstantSizeCrossFadeRenderWidget({
     super.key,

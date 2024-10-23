@@ -5,6 +5,9 @@ import 'package:flutter/rendering.dart';
 
 part 'yg_constant_size_cross_fade_render_widget.dart';
 
+/// Animates between 2 widgets while maintaining the size of the largest widget.
+///
+/// Allows you to individually align both child widgets.
 class YgConstantSizeAnimatedCrossFade extends StatefulWidget {
   const YgConstantSizeAnimatedCrossFade({
     super.key,

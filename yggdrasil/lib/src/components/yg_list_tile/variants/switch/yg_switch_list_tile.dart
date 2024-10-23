@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:yggdrasil/src/components/yg_list_tile/enums/yg_list_tile_density.dart';
 import 'package:yggdrasil/src/components/yg_list_tile/widgets/yg_list_tile_body.dart';
 import 'package:yggdrasil/src/components/yg_switch/yg_switch.dart';
-import 'package:yggdrasil/src/extensions/string_extension.dart';
+import 'package:yggdrasil/src/extensions/_extensions.dart';
 import 'package:yggdrasil/src/utils/_utils.dart';
 
 part 'yg_switch_list_tile_dual_state.dart';
@@ -82,8 +82,12 @@ abstract base class YgSwitchListTile extends StatelessWidget with StatelessWidge
     return YgListTileBody(
       builder: null,
       density: density,
-      title: title.asText(),
-      subtitle: subtitle.asText(),
+      title: title.safeBuild(
+        (String text) => Text(text),
+      ),
+      subtitle: subtitle.safeBuild(
+        (String text) => Text(text),
+      ),
       subtitleIcon: subtitleIcon,
       disabled: disabled,
       onTap: toggle,

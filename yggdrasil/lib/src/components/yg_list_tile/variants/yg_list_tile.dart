@@ -3,7 +3,7 @@ import 'package:yggdrasil/src/components/yg_icon/yg_icon.dart';
 import 'package:yggdrasil/src/components/yg_list_tile/enums/yg_list_tile_density.dart';
 import 'package:yggdrasil/src/components/yg_list_tile/helpers/_helpers.dart';
 import 'package:yggdrasil/src/components/yg_list_tile/widgets/yg_list_tile_body.dart';
-import 'package:yggdrasil/src/extensions/string_extension.dart';
+import 'package:yggdrasil/src/extensions/_extensions.dart';
 import 'package:yggdrasil/src/generated/icons/_icons.dart';
 import 'package:yggdrasil/src/theme/_theme.dart';
 import 'package:yggdrasil/src/utils/_utils.dart';
@@ -101,8 +101,12 @@ final class YgListTile extends StatelessWidget with StatelessWidgetDebugMixin {
     final YgListTileTheme theme = context.listTileTheme;
 
     return YgListTileBody(
-      title: title.asText(),
-      subtitle: subtitle.asText(),
+      title: title.safeBuild(
+        (String text) => Text(text),
+      ),
+      subtitle: subtitle.safeBuild(
+        (String text) => Text(text),
+      ),
       subtitleIcon: subtitleIcon,
       disabled: onTap == null,
       onTap: onTap,
