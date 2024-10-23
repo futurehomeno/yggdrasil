@@ -4,7 +4,6 @@ import 'dart:ui' as ui;
 
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:yggdrasil/src/utils/yg_painting_portal/painting_portal_target.dart';
 import 'package:yggdrasil/yggdrasil.dart';
 
 // TODO(DEV-3148): Probably need to update all theme properties when updating
@@ -262,67 +261,65 @@ class _YggdrasilAppState extends State<YggdrasilApp> {
     // sure what yet.
     final Color materialColor = widget.color ?? widget.theme?.primaryColor ?? Colors.blue;
 
-    return PaintingPortalTarget(
-      child: ScrollConfiguration(
-        behavior: widget.scrollBehavior ?? const MaterialScrollBehavior(),
-        child: HeroControllerScope(
-          controller: _heroController,
-          child: AnimatedTheme(
-            data: theme,
-            duration: widget.themeAnimationDuration,
-            curve: widget.themeAnimationCurve,
-            child: WidgetsApp(
-              key: GlobalObjectKey(this),
-              navigatorKey: widget.navigatorKey,
-              navigatorObservers: widget.navigatorObservers!,
-              pageRouteBuilder: <T>(RouteSettings settings, WidgetBuilder builder) => MaterialPageRoute<T>(
-                settings: settings,
-                builder: builder,
-              ),
-              home: widget.home,
-              routes: widget.routes!,
-              initialRoute: widget.initialRoute,
-              onGenerateRoute: widget.onGenerateRoute,
-              onGenerateInitialRoutes: widget.onGenerateInitialRoutes,
-              onUnknownRoute: widget.onUnknownRoute,
-              onNavigationNotification: widget.onNavigationNotification,
-              title: widget.title,
-              onGenerateTitle: widget.onGenerateTitle,
-              textStyle: _errorTextStyle,
-              color: materialColor,
-              locale: widget.locale,
-              localizationsDelegates: _localizationsDelegates,
-              localeResolutionCallback: widget.localeResolutionCallback,
-              localeListResolutionCallback: widget.localeListResolutionCallback,
-              supportedLocales: widget.supportedLocales,
-              showPerformanceOverlay: widget.showPerformanceOverlay,
-              checkerboardRasterCacheImages: widget.checkerboardRasterCacheImages,
-              checkerboardOffscreenLayers: widget.checkerboardOffscreenLayers,
-              showSemanticsDebugger: widget.showSemanticsDebugger,
-              debugShowCheckedModeBanner: widget.debugShowCheckedModeBanner,
-              inspectorSelectButtonBuilder: _inspectorSelectButtonBuilder,
-              shortcuts: widget.shortcuts,
-              actions: widget.actions,
-              restorationScopeId: widget.restorationScopeId,
-              builder: (BuildContext context, Widget? child) {
-                return Focus(
-                  canRequestFocus: false,
-                  child: ScaffoldMessenger(
-                    key: widget.scaffoldMessengerKey,
-                    child: DefaultSelectionStyle(
-                      selectionColor: effectiveSelectionColor,
-                      cursorColor: effectiveCursorColor,
-                      child: YgSnackBarManager(
-                        key: widget.snackBarManagerKey,
-                        child: _maybeWrapWithBuilder(
-                          child!,
-                        ),
+    return ScrollConfiguration(
+      behavior: widget.scrollBehavior ?? const MaterialScrollBehavior(),
+      child: HeroControllerScope(
+        controller: _heroController,
+        child: AnimatedTheme(
+          data: theme,
+          duration: widget.themeAnimationDuration,
+          curve: widget.themeAnimationCurve,
+          child: WidgetsApp(
+            key: GlobalObjectKey(this),
+            navigatorKey: widget.navigatorKey,
+            navigatorObservers: widget.navigatorObservers!,
+            pageRouteBuilder: <T>(RouteSettings settings, WidgetBuilder builder) => MaterialPageRoute<T>(
+              settings: settings,
+              builder: builder,
+            ),
+            home: widget.home,
+            routes: widget.routes!,
+            initialRoute: widget.initialRoute,
+            onGenerateRoute: widget.onGenerateRoute,
+            onGenerateInitialRoutes: widget.onGenerateInitialRoutes,
+            onUnknownRoute: widget.onUnknownRoute,
+            onNavigationNotification: widget.onNavigationNotification,
+            title: widget.title,
+            onGenerateTitle: widget.onGenerateTitle,
+            textStyle: _errorTextStyle,
+            color: materialColor,
+            locale: widget.locale,
+            localizationsDelegates: _localizationsDelegates,
+            localeResolutionCallback: widget.localeResolutionCallback,
+            localeListResolutionCallback: widget.localeListResolutionCallback,
+            supportedLocales: widget.supportedLocales,
+            showPerformanceOverlay: widget.showPerformanceOverlay,
+            checkerboardRasterCacheImages: widget.checkerboardRasterCacheImages,
+            checkerboardOffscreenLayers: widget.checkerboardOffscreenLayers,
+            showSemanticsDebugger: widget.showSemanticsDebugger,
+            debugShowCheckedModeBanner: widget.debugShowCheckedModeBanner,
+            inspectorSelectButtonBuilder: _inspectorSelectButtonBuilder,
+            shortcuts: widget.shortcuts,
+            actions: widget.actions,
+            restorationScopeId: widget.restorationScopeId,
+            builder: (BuildContext context, Widget? child) {
+              return Focus(
+                canRequestFocus: false,
+                child: ScaffoldMessenger(
+                  key: widget.scaffoldMessengerKey,
+                  child: DefaultSelectionStyle(
+                    selectionColor: effectiveSelectionColor,
+                    cursorColor: effectiveCursorColor,
+                    child: YgSnackBarManager(
+                      key: widget.snackBarManagerKey,
+                      child: _maybeWrapWithBuilder(
+                        child!,
                       ),
                     ),
                   ),
-                );
-              },
-            ),
+                ),
+              );
+            },
           ),
         ),
       ),
