@@ -10,6 +10,9 @@ class YgFormattedText {
     required this.matches,
   });
 
+  /// The text.
   final String text;
+
+  /// The matches inside the [text].
   final List<YgTextMatch> matches;
 }

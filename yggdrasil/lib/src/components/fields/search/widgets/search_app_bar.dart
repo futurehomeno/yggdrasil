@@ -8,7 +8,7 @@ import 'package:yggdrasil/yggdrasil.dart';
 import 'widget_or_loading.dart';
 
 /// Internal search bar.
-class SearchAppBar<T> extends StatefulWidget with EditableTextContainerWidgetMixin implements PreferredSizeWidget {
+class SearchAppBar<T> extends StatefulWidget implements PreferredSizeWidget {
   const SearchAppBar({
     super.key,
     required this.controller,
@@ -25,21 +25,9 @@ class SearchAppBar<T> extends StatefulWidget with EditableTextContainerWidgetMix
     required this.inputFormatters,
   });
 
-  @override
-  State<SearchAppBar<T>> createState() => _SearchAppBarState<T>();
-
-  @override
-  final bool readOnly = false;
-
-  @override
   final FocusNode? focusNode;
-
-  @override
   final String? initialValue;
-
-  @override
   final YgSearchController<T> controller;
-
   final ValueChanged<String>? onChanged;
   final VoidCallback? onEditingComplete;
   final ValueChanged<bool>? onFocusChanged;
@@ -53,10 +41,25 @@ class SearchAppBar<T> extends StatefulWidget with EditableTextContainerWidgetMix
   // We can't make this dynamic because we don't have the context.
   @override
   Size get preferredSize => const Size.fromHeight(65);
+
+  @override
+  State<SearchAppBar<T>> createState() => _SearchAppBarState<T>();
 }
 
 class _SearchAppBarState<T> extends State<SearchAppBar<T>> with EditableTextContainerStateMixin<SearchAppBar<T>> {
   late bool _isEmpty;
+
+  @override
+  String? get initialValue => widget.initialValue;
+
+  @override
+  bool get readOnly => false;
+
+  @override
+  YgSearchController<T> get userController => widget.controller;
+
+  @override
+  FocusNode? get userFocusNode => widget.focusNode;
 
   @override
   void initState() {

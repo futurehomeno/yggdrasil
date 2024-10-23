@@ -4,9 +4,9 @@ part of '_yg_controller_manager.dart';
 ///
 /// Split in to a separate file to not expose the dispose method which is
 /// handled internally by [YgControllerManagerMixin].
-class YgControllerManagerImplementation<S, T extends Listenable> extends YgControllerManager<T> {
+class YgControllerManagerImplementation<T extends Listenable> implements YgControllerManager<T> {
   YgControllerManagerImplementation({
-    required S state,
+    required Object state,
     required T Function() createController,
     required T? Function() getUserController,
     void Function()? listener,
@@ -46,7 +46,7 @@ class YgControllerManagerImplementation<S, T extends Listenable> extends YgContr
     }
   }
 
-  final S _state;
+  final Object _state;
   final T Function() _createController;
   final T? Function() _getUserController;
   final VoidCallback? _listener;
@@ -120,8 +120,4 @@ class YgControllerManagerImplementation<S, T extends Listenable> extends YgContr
         break;
     }
   }
-}
-
-class _T<T> {
-  const _T();
 }

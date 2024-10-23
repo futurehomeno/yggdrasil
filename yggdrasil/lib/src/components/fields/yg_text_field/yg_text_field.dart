@@ -8,7 +8,7 @@ import 'package:yggdrasil/yggdrasil.dart';
 import '../widgets/_widgets.dart';
 import '../yg_field_state.dart';
 
-class YgTextField extends StatefulWidget with StatefulWidgetDebugMixin, EditableTextContainerWidgetMixin {
+class YgTextField extends StatefulWidget with StatefulWidgetDebugMixin {
   const YgTextField({
     super.key,
     required this.label,
@@ -351,6 +351,18 @@ class _YgTextFieldState extends StateWithYgState<YgTextField, YgFieldState>
     with EditableTextContainerStateMixin<YgTextField> {
   /// Whether to hide the obscured text or not.
   bool _obscureTextToggled = true;
+
+  @override
+  String? get initialValue => widget.initialValue;
+
+  @override
+  bool get readOnly => widget.readOnly;
+
+  @override
+  TextEditingController? get userController => widget.controller;
+
+  @override
+  FocusNode? get userFocusNode => widget.focusNode;
 
   @override
   YgFieldState createState() {

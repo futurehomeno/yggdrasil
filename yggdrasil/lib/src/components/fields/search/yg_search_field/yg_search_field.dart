@@ -188,8 +188,7 @@ class YgSearchField<T> extends StatefulWidget {
 class _YgSearchFieldState<T> extends StateWithYgState<YgSearchField<T>, YgSearchFieldState>
     with YgControllerManagerMixin, YgSearchMixin<T, YgSearchField<T>> {
   /// Manages the controller of this widget.
-  late final YgControllerManager<YgSearchController<T>> _controllerManager =
-      manageControllerWithType<YgSearchController<T>, YgSearchMixin<T, YgSearchField<T>>>(
+  late final YgControllerManager<YgSearchController<T>> _controllerManager = manageController<YgSearchController<T>>(
     createController: () => YgSearchController<T>(text: widget.initialValue),
     getUserController: () => widget.controller,
     listener: _valueUpdated,

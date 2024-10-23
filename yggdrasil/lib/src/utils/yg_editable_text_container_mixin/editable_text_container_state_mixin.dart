@@ -1,6 +1,6 @@
 part of '_yg_editable_text_container_mixin.dart';
 
-mixin EditableTextContainerStateMixin<W extends EditableTextContainerWidgetMixin> on State<W>
+mixin EditableTextContainerStateMixin<W extends StatefulWidget> on State<W>
     implements TextSelectionGestureDetectorBuilderDelegate {
   /// The key of the editable text, used to manage the selection toolbar.
   @override
@@ -14,6 +14,24 @@ mixin EditableTextContainerStateMixin<W extends EditableTextContainerWidgetMixin
   @override
   final bool selectionEnabled = true;
 
+  /// Whether this editable text is read only.
+  bool get readOnly;
+
+  /// The controller supplied by the user.
+  ///
+  /// Usually [widget.controller].
+  TextEditingController? get userController;
+
+  /// The [FocusNode] supplied by the user.
+  ///
+  /// Usually [widget.focusNode].
+  FocusNode? get userFocusNode;
+
+  /// The initial value of the editable text.
+  ///
+  /// Get ignored if userController is not null.
+  String? get initialValue;
+
   /// Handles the selection gestures and triggers [_handleTap].
   late _TextFieldSelectionGestureDetectorBuilder _selectionGestureDetectorBuilder;
 
@@ -21,22 +39,20 @@ mixin EditableTextContainerStateMixin<W extends EditableTextContainerWidgetMixin
   bool _showSelectionHandles = false;
   bool get showSelectionHandles => _showSelectionHandles;
 
-  late final YgControllerManager<FocusNode> _focusNodeManager =
-      YgControllerManagerImplementation<EditableTextContainerStateMixin<EditableTextContainerWidgetMixin>, FocusNode>(
+  late final YgControllerManager<FocusNode> _focusNodeManager = YgControllerManager<FocusNode>(
     createController: () => FocusNode(),
-    getUserController: () => widget.focusNode,
+    getUserController: () => userFocusNode,
     state: this,
     listener: focusChanged,
   );
 
   FocusNode get focusNode => _focusNodeManager.value;
 
-  late final YgControllerManager<TextEditingController> _controllerManager = YgControllerManagerImplementation<
-      EditableTextContainerStateMixin<EditableTextContainerWidgetMixin>, TextEditingController>(
+  late final YgControllerManager<TextEditingController> _controllerManager = YgControllerManager<TextEditingController>(
     createController: () => TextEditingController(
-      text: widget.initialValue,
+      text: initialValue,
     ),
-    getUserController: () => widget.controller,
+    getUserController: () => userController,
     state: this,
     listener: valueUpdated,
   );
@@ -132,7 +148,7 @@ mixin EditableTextContainerStateMixin<W extends EditableTextContainerWidgetMixin
       return false;
     }
 
-    if (widget.readOnly && controller.selection.isCollapsed) {
+    if (readOnly && controller.selection.isCollapsed) {
       return false;
     }
 
