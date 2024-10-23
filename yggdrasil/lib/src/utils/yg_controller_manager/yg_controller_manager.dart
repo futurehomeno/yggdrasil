@@ -11,7 +11,7 @@ abstract class YgControllerManager<T extends Listenable> {
     required T Function() createController,
     required T? Function() getUserController,
     void Function()? listener,
-  }) = YgControllerManagerImplementation<T>;
+  }) = _YgControllerManagerInternal<T>;
 
   T get value;
 }
