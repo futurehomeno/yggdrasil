@@ -7,7 +7,7 @@ import 'package:yggdrasil/yggdrasil.dart';
 
 import '_mobile_search_screen.dart';
 
-/// Internal route used for the search widget.
+/// Internal route used for the search widgets.
 class SearchScreenRoute<T> extends PopupRoute<Widget> {
   SearchScreenRoute({
     required this.searchController,

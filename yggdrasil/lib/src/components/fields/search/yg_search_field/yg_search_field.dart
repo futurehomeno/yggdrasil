@@ -328,7 +328,13 @@ class _YgSearchFieldState<T> extends StateWithYgState<YgSearchField<T>, YgSearch
 
   @override
   void openScreen() {
-    final BorderRadius radius = context.fieldTheme.decorationTheme.borderRadiusOutlined;
+    final YgFieldDecorationTheme decorationTheme = context.fieldTheme.decorationTheme;
+
+    // Get the radius based on the variant. Used to animate in the screen.
+    final BorderRadius radius = switch (state.variant.value) {
+      YgFieldVariant.outlined => decorationTheme.borderRadiusOutlined,
+      YgFieldVariant.standard => decorationTheme.borderRadiusDefault,
+    };
 
     Navigator.of(context).push(
       SearchScreenRoute<T>(
