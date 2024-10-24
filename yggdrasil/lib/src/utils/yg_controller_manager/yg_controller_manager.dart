@@ -6,12 +6,5 @@ part of '_yg_controller_manager.dart';
 /// controller and creates and manages its own controller if the user has not
 /// supplied any controller.
 abstract class YgControllerManager<T extends Listenable> {
-  factory YgControllerManager({
-    required Object state,
-    required T Function() createController,
-    required T? Function() getUserController,
-    void Function()? listener,
-  }) = YgControllerManagerImplementation<T>;
-
   T get value;
 }
