@@ -6,7 +6,7 @@ mixin YgDropDownChildRouteMixin<T extends Object> on PopupRoute<Widget> {
   VoidCallback get onClose;
 
   @override
-  void onPopInvoked(bool didPop) {
+  void onPopInvokedWithResult(bool didPop, Widget? result) {
     if (!didPop || !dropdownController.attached) {
       return;
     }

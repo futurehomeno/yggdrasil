@@ -66,7 +66,7 @@ class SearchScreenRoute<T> extends PopupRoute<Widget> {
   // endregion
 
   @override
-  void onPopInvoked(bool didPop) {
+  void onPopInvokedWithResult(bool didPop, Widget? result) {
     if (!didPop || !searchController.attached) {
       return;
     }

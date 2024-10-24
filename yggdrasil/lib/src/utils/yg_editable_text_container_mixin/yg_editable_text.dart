@@ -81,10 +81,6 @@ class YgEditableText extends StatelessWidget {
 
         // Calculate the offset of the cursor so it is centered on the height of
         // the text.
-        final Offset cursorOffset = Offset(
-          0.0,
-          (baseStyle.computedHeight - baseStyle.fontSize!) / 2,
-        );
 
         return EditableText(
           key: editableTextKey,
@@ -96,7 +92,7 @@ class YgEditableText extends StatelessWidget {
           style: baseStyle,
           obscureText: obscureText,
           cursorHeight: baseStyle.fontSize,
-          cursorOffset: cursorOffset,
+          cursorOffset: Offset.zero,
           selectionColor: focusNode.hasFocus ? cursorColor.withOpacity(0.4) : null,
           cursorWidth: 1.0,
           keyboardType: keyboardType,
