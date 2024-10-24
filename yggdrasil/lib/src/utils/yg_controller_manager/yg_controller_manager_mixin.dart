@@ -3,11 +3,12 @@ part of '_yg_controller_manager.dart';
 /// Mixing for managing controllers in [StatefulWidget]s.
 @optionalTypeArgs
 mixin YgControllerManagerMixin<W extends StatefulWidget> on State<W> {
-  final List<_YgControllerManagerInternal<Listenable>> _managers = <_YgControllerManagerInternal<Listenable>>[];
+  final List<YgControllerManagerImplementation<Listenable>> _managers =
+      <YgControllerManagerImplementation<Listenable>>[];
 
   @override
   void didUpdateWidget(covariant W oldWidget) {
-    for (final _YgControllerManagerInternal<Listenable> manager in _managers) {
+    for (final YgControllerManagerImplementation<Listenable> manager in _managers) {
       manager.update();
     }
     super.didUpdateWidget(oldWidget);
@@ -15,7 +16,7 @@ mixin YgControllerManagerMixin<W extends StatefulWidget> on State<W> {
 
   @override
   void dispose() {
-    for (final _YgControllerManagerInternal<Listenable> manager in _managers) {
+    for (final YgControllerManagerImplementation<Listenable> manager in _managers) {
       manager.dispose();
     }
     super.dispose();
@@ -27,7 +28,7 @@ mixin YgControllerManagerMixin<W extends StatefulWidget> on State<W> {
     required T? Function() getUserController,
     void Function()? listener,
   }) {
-    final _YgControllerManagerInternal<T> manager = _YgControllerManagerInternal<T>(
+    final YgControllerManagerImplementation<T> manager = YgControllerManagerImplementation<T>(
       createController: createController,
       getUserController: getUserController,
       state: this,

@@ -29,13 +29,13 @@ class SearchResultListTile extends StatelessWidget with StatelessWidgetDebugMixi
 
     return YgListTileBody(
       title: YgMatchText(
-        text: title,
+        formattedText: title,
         style: theme.resultTitleStyle,
         matchedStyle: theme.resultTitleHighlightedStyle,
       ),
       subtitle: subtitle.safeBuild(
         (YgFormattedText subtitle) => YgMatchText(
-          text: subtitle,
+          formattedText: subtitle,
           style: theme.resultSubtitleStyle,
           matchedStyle: theme.resultSubtitleHighlightedStyle,
         ),

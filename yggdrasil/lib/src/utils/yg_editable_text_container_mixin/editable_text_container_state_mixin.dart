@@ -39,7 +39,8 @@ mixin EditableTextContainerStateMixin<W extends StatefulWidget> on State<W>
   bool _showSelectionHandles = false;
   bool get showSelectionHandles => _showSelectionHandles;
 
-  late final YgControllerManager<FocusNode> _focusNodeManager = YgControllerManager<FocusNode>(
+  late final YgControllerManagerImplementation<FocusNode> _focusNodeManager =
+      YgControllerManagerImplementation<FocusNode>(
     createController: () => FocusNode(),
     getUserController: () => userFocusNode,
     state: this,
@@ -48,7 +49,8 @@ mixin EditableTextContainerStateMixin<W extends StatefulWidget> on State<W>
 
   FocusNode get focusNode => _focusNodeManager.value;
 
-  late final YgControllerManager<TextEditingController> _controllerManager = YgControllerManager<TextEditingController>(
+  late final YgControllerManagerImplementation<TextEditingController> _controllerManager =
+      YgControllerManagerImplementation<TextEditingController>(
     createController: () => TextEditingController(
       text: initialValue,
     ),
@@ -68,6 +70,21 @@ mixin EditableTextContainerStateMixin<W extends StatefulWidget> on State<W>
     _selectionGestureDetectorBuilder = _TextFieldSelectionGestureDetectorBuilder(state: this);
 
     super.initState();
+  }
+
+  @override
+  void didUpdateWidget(W oldWidget) {
+    _focusNodeManager.update();
+    _controllerManager.update();
+
+    super.didUpdateWidget(oldWidget);
+  }
+
+  @override
+  void dispose() {
+    _focusNodeManager.dispose();
+    _controllerManager.dispose();
+    super.dispose();
   }
 
   Widget buildGestureDetector({

@@ -10,27 +10,27 @@ import 'yg_text_match.dart';
 class YgMatchText extends StatelessWidget {
   const YgMatchText({
     super.key,
-    required this.text,
+    required this.formattedText,
     required this.style,
     required this.matchedStyle,
   });
 
-  final YgFormattedText text;
+  final YgFormattedText formattedText;
   final TextStyle style;
   final TextStyle matchedStyle;
 
   @override
   Widget build(BuildContext context) {
-    if (this.text.matches.isEmpty) {
+    if (formattedText.matches.isEmpty) {
       return Text(
-        this.text.text,
+        formattedText.text,
         style: style,
       );
     }
 
-    final String text = this.text.text;
+    final String text = formattedText.text;
     final List<TextSpan> parts = <TextSpan>[];
-    final List<YgTextMatch> matches = List<YgTextMatch>.of(this.text.matches);
+    final List<YgTextMatch> matches = List<YgTextMatch>.of(formattedText.matches);
     matches.sort((YgTextMatch a, YgTextMatch b) => a.start.compareTo(b.start));
 
     int matchStart = 0;
