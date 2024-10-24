@@ -87,3 +87,7 @@ class PaintingPortalEntry {
 
   Offset offset = Offset.zero;
 }
+
+class EntryRenderBox extends RenderBox {
+  
+}

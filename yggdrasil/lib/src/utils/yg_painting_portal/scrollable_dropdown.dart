@@ -3,7 +3,6 @@ import 'package:flutter/rendering.dart';
 
 import 'painting_portal_target.dart';
 
-@Deprecated('Unfinished, do not use')
 class ScrollableDropdown extends MultiChildRenderObjectWidget {
   ScrollableDropdown({
     super.key,
@@ -36,10 +35,8 @@ class ScrollableDropdown extends MultiChildRenderObjectWidget {
   }
 }
 
-@Deprecated('Unfinished, do not use')
 class ScrollableDropdownData extends ContainerBoxParentData<RenderBox> {}
 
-@Deprecated('Unfinished, do not use')
 class ScrollableDropdownRenderer extends RenderBox
     with
         ContainerRenderObjectMixin<RenderBox, ScrollableDropdownData>,
@@ -145,6 +142,10 @@ class ScrollableDropdownRenderer extends RenderBox
   }
 
   @override
+  // TODO: implement alwaysNeedsCompositing
+  bool get alwaysNeedsCompositing => super.alwaysNeedsCompositing;
+
+  @override
   bool get needsCompositing => true;
 
   @override
@@ -159,9 +160,6 @@ class ScrollableDropdownRenderer extends RenderBox
     super.detach();
   }
 
-  FollowerLayer createLayer() {
-    return FollowerLayer(link: _link);
-  }
 
   @override
   double? computeDistanceToActualBaseline(TextBaseline baseline) {
@@ -174,7 +172,6 @@ class ScrollableDropdownRenderer extends RenderBox
   }
 }
 
-@Deprecated('Unfinished, do not use')
 enum DropDownAlignment {
   top,
   bottom,
