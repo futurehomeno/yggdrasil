@@ -50,7 +50,7 @@ class _YgDropdownFormFieldSingleSelect<T extends Object> extends YgDropdownFormF
         size: size,
         focusNode: focusNode,
         initialValue: initialValue,
-        error: error ?? field.errorText,
+        error: field.errorText,
         minLines: minLines,
         placeholder: placeholder,
         maxLines: maxLines,

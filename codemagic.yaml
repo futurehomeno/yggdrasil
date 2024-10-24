@@ -1,5 +1,5 @@
-flutter_ver: &flutter_ver 3.22.2
-xcode_ver: &xcode_ver latest
+flutter_ver: &flutter_ver 3.24.3
+xcode_ver: &xcode_ver 16.0
 
 workflows:
   pr-builder:
@@ -51,24 +51,28 @@ workflows:
       cache_paths:
         - ~/.pub-cache
     scripts:
-      - name: Cloning yggdrasil repo
+      - name: Cloning ratatosk repo with ssh
         working_directory: /Users/builder
         script: |
           rm -rf clone/*
+          git clone git@github.com:futurehomeno/mono-mobile.git $CM_BUILD_DIR/mono-mobile
+          cd $CM_BUILD_DIR/mono-mobile
+
+      - name: Cloning yggdrasil repo
+        working_directory: /Users/builder
+        script: |
           git clone git@github.com:futurehomeno/yggdrasil.git $CM_BUILD_DIR/app_files
           cd $CM_BUILD_DIR/app_files
           git checkout $CM_BRANCH
 
-      - name: Downloading ratatosk
+      - name: Activating ratatosk
+        working_directory: ./mono-mobile/packages/ratatosk
         script: |
-          git clone git@github.com:futurehomeno/ratatosk.git $CM_BUILD_DIR/ratatosk
-          cd $CM_BUILD_DIR/ratatosk
-          git checkout crytek/yggdrasil-monorepo
           flutter pub get
-          dart pub global activate --source path ./
+          dart pub global activate --source path .
 
       - name: Creating version
-        working_directory: /Users/builder/clone/app_files/yggdrasil
+        working_directory: /Users/builder/clone/app_files
         script: rat release -y || exit 1
 
   create-custom-version:
@@ -125,16 +129,10 @@ workflows:
       cancel_previous_builds: true
 
     scripts:
-      - name: Downloading flutter cli
+      - name: Cloning ratatosk repo with ssh
         script: |
-          git clone git@github.com:futurehomeno/flutter-cli.git $CM_BUILD_DIR/cli
-          cd $CM_BUILD_DIR/cli
-          flutter pub get
-
-      - name: Downloading ratatosk
-        script: |
-          git clone git@github.com:futurehomeno/ratatosk.git $CM_BUILD_DIR/ratatosk
-          cd $CM_BUILD_DIR/ratatosk
+          git clone git@github.com:futurehomeno/mono-mobile.git $CM_BUILD_DIR/mono-mobile
+          cd $CM_BUILD_DIR/mono-mobile/packages/ratatosk
           flutter pub get
           dart pub global activate --source path ./
 
@@ -163,7 +161,6 @@ workflows:
     publishing:
       scripts:
         - name: Send artifacts to github
-          working_directory: $CM_BUILD_DIR/demo_app
           script: |
             #!/bin/sh
 

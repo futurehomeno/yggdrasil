@@ -2,11 +2,11 @@ name: yggdrasil
 description: Design system for Futurehome.
 publish_to: none
 
-version: 1.12.9
+version: 1.12.14
 
 environment:
-  sdk: ^3.2.0
-  flutter: 3.22.2
+  sdk: ^3.5.3
+  flutter: 3.24.3
 
 dependencies:
   flutter:
@@ -15,7 +15,7 @@ dependencies:
   intl: 0.19.0
   theme_tailor_annotation:
     git:
-      ref: main
+      ref: flutter-update/3.24.3
       url: git@github.com:futurehomeno/theme_tailor.git
       path: packages/theme_tailor_annotation
   flutter_svg: 2.0.9
@@ -34,7 +34,7 @@ dev_dependencies:
     sdk: flutter
   theme_tailor:
     git:
-      ref: main
+      ref: flutter-update/3.24.3
       url: git@github.com:futurehomeno/theme_tailor.git
       path: packages/theme_tailor
 

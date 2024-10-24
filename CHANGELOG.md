@@ -1,3 +1,30 @@
+# 1.12.14 [2024-10-21T20:12:45.453819]
+
+# 1.12.13 [2024-10-21T13:11:49.491020]
+
+### Changes
+
+- [dev-fix] Fixed path for artifacts.
+
+# 1.12.12 [2024-10-21T12:06:57.618491]
+
+### Changes
+
+- [dev-fix] Fixed creating new yggdrasil version.
+- [fix] Updated Flutter version for CI/CD.
+
+# 1.12.11 [2024-10-10T13:04:04.619351]
+
+### Changes
+
+- [change] Updated to flutter 3.24.3
+
+# 1.12.10 [2024-09-18T12:34:47.982809]
+
+### Changes
+
+- [fix] Fixed issue where widgets with build in style listeners would try to listen to a disposed style.
+
 # 1.12.9 [2024-08-28T12:35:04.668892]
 
 ### Changes
