@@ -149,42 +149,44 @@ class _YgButtonBaseState<T extends YgButtonBaseState>
     final VoidCallback? onTapEnd = widget.onTapEnd;
     final VoidCallback? onTapStart = widget.onTapStart;
 
-    Widget content = YgAnimatedConstrainedBox(
-      constraints: style.constraints,
-      child: Material(
-        type: MaterialType.transparency,
-        child: InkWell(
-          statesController: _materialController,
-          splashFactory: style.splashFactory.value,
-          onLongPress: state.disabled.value ? null : widget.onLongPress,
-          onTap: state.disabled.value ? null : widget.onPressed,
-          onHover: widget.onHover,
-          onFocusChange: widget.onFocusChange,
-          onTapUp: onTapEnd == null ? null : (_) => onTapEnd(),
-          onTapDown: onTapStart == null ? null : (_) => onTapStart(),
-          onTapCancel: onTapEnd,
-          autofocus: widget.autofocus,
-          focusNode: widget.focusNode,
-          canRequestFocus: widget.onPressed != null,
-          mouseCursor: style.cursor.value,
-          overlayColor: WidgetStatePropertyAll<Color>(
-            style.splashColor.value,
-          ),
-          splashColor: Colors.transparent,
-          hoverColor: Colors.transparent,
-          child: YgAnimatedPadding(
-            padding: style.padding,
-            child: AlignTransition(
-              widthFactor: 1,
-              heightFactor: 1,
-              alignment: style.alignment,
-              child: DefaultTextStyleTransition(
-                maxLines: 1,
-                overflow: TextOverflow.ellipsis,
-                style: style.textStyle,
-                child: YgAnimatedIconTheme(
-                  iconTheme: style.iconTheme,
-                  child: widget.buildChild(context),
+    Widget content = RepaintBoundary(
+      child: YgAnimatedConstrainedBox(
+        constraints: style.constraints,
+        child: Material(
+          type: MaterialType.transparency,
+          child: InkWell(
+            statesController: _materialController,
+            splashFactory: style.splashFactory.value,
+            onLongPress: state.disabled.value ? null : widget.onLongPress,
+            onTap: state.disabled.value ? null : widget.onPressed,
+            onHover: widget.onHover,
+            onFocusChange: widget.onFocusChange,
+            onTapUp: onTapEnd == null ? null : (_) => onTapEnd(),
+            onTapDown: onTapStart == null ? null : (_) => onTapStart(),
+            onTapCancel: onTapEnd,
+            autofocus: widget.autofocus,
+            focusNode: widget.focusNode,
+            canRequestFocus: widget.onPressed != null,
+            mouseCursor: style.cursor.value,
+            overlayColor: WidgetStatePropertyAll<Color>(
+              style.splashColor.value,
+            ),
+            splashColor: Colors.transparent,
+            hoverColor: Colors.transparent,
+            child: YgAnimatedPadding(
+              padding: style.padding,
+              child: AlignTransition(
+                widthFactor: 1,
+                heightFactor: 1,
+                alignment: style.alignment,
+                child: DefaultTextStyleTransition(
+                  maxLines: 1,
+                  overflow: TextOverflow.ellipsis,
+                  style: style.textStyle,
+                  child: YgAnimatedIconTheme(
+                    iconTheme: style.iconTheme,
+                    child: widget.buildChild(context),
+                  ),
                 ),
               ),
             ),

@@ -146,6 +146,8 @@ class YgListTileBody extends StatefulWidget {
 }
 
 class _YgListTileBodyState extends StateWithYgStateAndStyle<YgListTileBody, YgListTileBodyState, YgListTileBodyStyle> {
+  final GlobalKey<State<StatefulWidget>> _contentKey = GlobalKey();
+
   @override
   YgListTileBodyState createState() {
     return YgListTileBodyState(
@@ -168,16 +170,27 @@ class _YgListTileBodyState extends StateWithYgStateAndStyle<YgListTileBody, YgLi
 
   @override
   Widget build(BuildContext context) {
-    return Material(
+    final VoidCallback? onTap = widget.disabled ? null : widget.onTap;
+
+    final Material content = Material(
+      key: _contentKey,
       type: MaterialType.transparency,
       child: InkWell(
-        onTap: widget.disabled ? null : widget.onTap,
+        onTap: onTap,
         child: YgAnimatedPadding(
           padding: style.outerPadding,
           child: _buildContent(),
         ),
       ),
     );
+
+    if (onTap != null) {
+      return RepaintBoundary(
+        child: content,
+      );
+    }
+
+    return content;
   }
 
   Widget _buildContent() {

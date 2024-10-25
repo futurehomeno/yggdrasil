@@ -24,28 +24,26 @@ class YgBottomSheet extends StatelessWidget with StatelessWidgetDebugMixin {
     final YgBottomSheetScrollPhysicsProvider? scrollPhysicsProvider =
         context.dependOnInheritedWidgetOfExactType<YgBottomSheetScrollPhysicsProvider>();
 
-    return RepaintBoundary(
-      child: Material(
-        borderRadius: bottomSheetTheme.borderRadius,
-        color: bottomSheetTheme.backgroundColor,
-        clipBehavior: Clip.antiAlias,
-        child: SafeArea(
-          top: false,
-          child: Padding(
-            padding: bottomSheetTheme.verticalOuterPadding,
-            child: Column(
-              mainAxisSize: MainAxisSize.min,
-              crossAxisAlignment: CrossAxisAlignment.stretch,
-              children: <Widget>[
-                YgBottomSheetHeader(title: title),
-                _buildContent(scrollPhysicsProvider),
-                if (footerButtons != null)
-                  Padding(
-                    padding: bottomSheetTheme.footerPadding,
-                    child: footerButtons!,
-                  ),
-              ].withVerticalSpacing(bottomSheetTheme.contentSpacing),
-            ),
+    return Material(
+      borderRadius: bottomSheetTheme.borderRadius,
+      color: bottomSheetTheme.backgroundColor,
+      clipBehavior: Clip.antiAlias,
+      child: SafeArea(
+        top: false,
+        child: Padding(
+          padding: bottomSheetTheme.verticalOuterPadding,
+          child: Column(
+            mainAxisSize: MainAxisSize.min,
+            crossAxisAlignment: CrossAxisAlignment.stretch,
+            children: <Widget>[
+              YgBottomSheetHeader(title: title),
+              _buildContent(scrollPhysicsProvider),
+              if (footerButtons != null)
+                Padding(
+                  padding: bottomSheetTheme.footerPadding,
+                  child: footerButtons!,
+                ),
+            ].withVerticalSpacing(bottomSheetTheme.contentSpacing),
           ),
         ),
       ),
@@ -61,7 +59,9 @@ class YgBottomSheet extends StatelessWidget with StatelessWidgetDebugMixin {
           return SingleChildScrollView(
             controller: controller,
             physics: scrollPhysicsProvider?.scrollPhysics,
-            child: content,
+            child: RepaintBoundary(
+              child: content,
+            ),
           );
         },
       ),

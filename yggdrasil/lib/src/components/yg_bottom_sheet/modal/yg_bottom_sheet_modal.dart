@@ -33,6 +33,8 @@ class _YgBottomSheetModalState extends State<_YgBottomSheetModal> {
         child: AnimatedBuilder(
           animation: widget.modalController,
           builder: (BuildContext context, Widget? child) {
+            // TODO(Tim): This is a bit slow, probably should replace this with
+            // a render offset layer based approach to prevent repainting
             return FractionalTranslation(
               translation: Offset(
                 0,

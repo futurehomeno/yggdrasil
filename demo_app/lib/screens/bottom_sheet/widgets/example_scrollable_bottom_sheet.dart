@@ -7,7 +7,7 @@ class ExampleScrollableBottomSheet extends YgBottomSheetModalRoute {
   String get name => 'ExampleScrollableBottomSheet';
 
   @override
-  YgBottomSheet buildBottomSheet(BuildContext context) {
+  Widget buildBottomSheet(BuildContext context) {
     return YgBottomSheet(
       title: 'Scrollable Bottom Sheet',
       content: const DemoPlaceholder(height: 1500),

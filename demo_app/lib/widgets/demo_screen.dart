@@ -57,7 +57,13 @@ class DemoScreen extends StatelessWidget {
                 ],
                 bottom: bottom,
               ),
-          body: scrollable ? SingleChildScrollView(child: child) : child,
+          body: scrollable
+              ? SingleChildScrollView(
+                  child: RepaintBoundary(
+                    child: child,
+                  ),
+                )
+              : child,
         );
       },
     );

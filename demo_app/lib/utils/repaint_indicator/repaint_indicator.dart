@@ -16,6 +16,8 @@ class RepaintIndicator extends SingleChildRenderObjectWidget {
 }
 
 class RepaintIndicatorRenderer extends RenderProxyBox {
+  RepaintIndicatorRenderer();
+
   final _random = Random();
   @override
   void paint(PaintingContext context, Offset offset) {
