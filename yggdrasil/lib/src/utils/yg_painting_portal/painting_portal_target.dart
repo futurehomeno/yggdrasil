@@ -38,25 +38,6 @@ class PaintingPortalTargetRenderer extends RenderProxyBox {
     renderers.remove(parent);
   }
 
-  @override
-  void paint(PaintingContext context, Offset offset) {
-    super.paint(context, offset);
-    for (final ScrollableDropdownRenderer renderer in renderers) {
-      final FollowerLayer layer = renderer.createLayer();
-      context.pushLayer(
-        layer,
-        _paint,
-        Offset.zero,
-        childPaintBounds: Rect.largest,
-      );
-      // // ignore: invalid_use_of_protected_member
-      // final PaintingContext childContext = context.createChildContext(layer, );
-      // _paint(childContext, Offset.zero);
-
-      // renderer.followerPaintingContext = childContext;
-    }
-  }
-
   void _paint(PaintingContext context, Offset offset) {
     final Color color = Color.fromRGBO(
       (_random.nextDouble() * 255).floor(),
@@ -88,6 +69,4 @@ class PaintingPortalEntry {
   Offset offset = Offset.zero;
 }
 
-class EntryRenderBox extends RenderBox {
-  
-}
+class EntryRenderBox extends RenderBox {}

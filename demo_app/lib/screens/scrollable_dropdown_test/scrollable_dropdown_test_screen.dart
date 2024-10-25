@@ -1,5 +1,8 @@
+import 'dart:math';
+
+import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
-import 'package:yggdrasil/yggdrasil.dart';
+import 'package:flutter/src/rendering/box.dart';
 import 'package:yggdrasil_demo/core/_core.dart';
 import 'package:yggdrasil_demo/widgets/_widgets.dart';
 
@@ -19,15 +22,12 @@ class ScrollableDropdownTestScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return DemoScreen(
       componentName: 'ScrollableDropdownTest',
-      child: Column(
-        children: <Widget>[
-          Padding(
-            padding: const EdgeInsets.symmetric(vertical: 500),
-            child: YgSection(
-              child: Test(),
-            ),
-          )
-        ],
+      scrollable: false,
+      child: SingleChildScrollView(
+        child: Padding(
+          padding: EdgeInsets.symmetric(vertical: 1000),
+          child: Center(child: RepaintSelf()),
+        ),
       ),
     );
   }
@@ -45,42 +45,84 @@ class _TestState extends State<Test> {
 
   @override
   Widget build(BuildContext context) {
-    if (_shown) {
-      return ScrollableDropdown(
-        gap: 5,
-        alignment: DropDownAlignment.auto,
-        follower: Column(
-          mainAxisSize: MainAxisSize.min,
-          children: [
-            YgListTile(
-              title: 'Result 1',
-            ),
-            YgListTile(
-              title: 'Result 2',
-            ),
-            YgListTile(
-              title: 'Result 3',
-            ),
-            YgListTile(
-              title: 'Result 4',
-            ),
-          ],
-        ),
-        target: YgTextField(
-          label: 'Search',
-          keyboardType: TextInputType.text,
-          textInputAction: TextInputAction.done,
-          autocorrect: false,
-          textCapitalization: TextCapitalization.none,
-        ),
-      );
-    }
+    return RepaintSelf();
+  }
+}
 
-    return YgButton(
-      child: Text('Show'),
-      onPressed: () => setState(() {
-        _shown = true;
-      }),
+class RepaintSelf extends LeafRenderObjectWidget {
+  @override
+  RenderObject createRenderObject(BuildContext context) {
+    return RepaintSelfRenderer(
+      gestureSettings: MediaQuery.gestureSettingsOf(context),
     );
   }
+
+  @override
+  void updateRenderObject(BuildContext context, covariant RepaintSelfRenderer renderObject) {
+    renderObject.gestureSettings = MediaQuery.gestureSettingsOf(context);
+  }
+}
+
+class RepaintSelfRenderer extends RenderBox {
+  RepaintSelfRenderer({
+    DeviceGestureSettings? gestureSettings,
+  }) {
+    _tap = TapGestureRecognizer()
+      ..onTap = _onTap
+      ..gestureSettings = gestureSettings;
+  }
+
+  final _random = Random();
+  late final TapGestureRecognizer _tap;
+
+  DeviceGestureSettings? get gestureSettings => _tap.gestureSettings;
+  set gestureSettings(DeviceGestureSettings? gestureSettings) {
+    _tap.gestureSettings = gestureSettings;
+  }
+
+  void _onTap() {
+    markNeedsPaint();
+  }
+
+  @override
+  void performLayout() {
+    size = constraints.constrain(
+      Size(
+        100,
+        100,
+      ),
+    );
+  }
+
+  @override
+  void paint(PaintingContext context, Offset offset) {
+    final Paint paint = Paint()
+      ..color = Color.fromARGB(
+        255,
+        (_random.nextDouble() * 255).toInt(),
+        (_random.nextDouble() * 255).toInt(),
+        (_random.nextDouble() * 255).toInt(),
+      );
+
+    context.canvas.drawRect(offset & size, paint);
+  }
+
+  @override
+  bool get isRepaintBoundary => true;
+
+  @override
+  void handleEvent(PointerEvent event, covariant BoxHitTestEntry entry) {
+    if (event is PointerDownEvent) {
+      _tap.addPointer(event);
+    }
+  }
+
+  @override
+  void dispose() {
+    _tap.dispose();
+    super.dispose();
+  }
+
+  @override
+  bool hitTestSelf(Offset position) => true;
 }
