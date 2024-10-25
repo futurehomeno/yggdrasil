@@ -72,6 +72,7 @@ class SearchScreenRoute<T> extends PopupRoute<Widget> {
     }
 
     onClose();
+    super.onPopInvokedWithResult(didPop, result);
   }
 
   Rect? getRect() {
