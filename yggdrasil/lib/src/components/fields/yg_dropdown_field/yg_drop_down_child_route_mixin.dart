@@ -13,6 +13,7 @@ mixin YgDropDownChildRouteMixin<T extends Object> on PopupRoute<Widget> {
 
     onClose();
     dropdownController.discardChanges();
+    super.onPopInvokedWithResult(didPop, result);
   }
 
   @override
