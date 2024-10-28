@@ -2,7 +2,7 @@ import 'dart:math';
 
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/src/rendering/box.dart';
+import 'package:flutter/rendering.dart';
 import 'package:yggdrasil_demo/core/_core.dart';
 import 'package:yggdrasil_demo/widgets/_widgets.dart';
 
@@ -108,7 +108,7 @@ class RepaintSelfRenderer extends RenderBox {
   }
 
   @override
-  bool get isRepaintBoundary => true;
+  bool get isRepaintBoundary => false;
 
   @override
   void handleEvent(PointerEvent event, covariant BoxHitTestEntry entry) {
