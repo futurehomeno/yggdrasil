@@ -115,6 +115,8 @@ class _SearchAppBarState<T> extends State<SearchAppBar<T>> with EditableTextCont
                                   minLines: 1,
                                   obscureText: false,
                                   readOnly: false,
+                                  onTapOutside: (_) {},
+                                  autofocus: true,
                                 ),
                               ),
                             ],

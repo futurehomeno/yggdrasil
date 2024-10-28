@@ -110,6 +110,8 @@ mixin EditableTextContainerStateMixin<W extends StatefulWidget> on State<W>
     required TextInputAction textInputAction,
     required bool disabled,
     required Color cursorColor,
+    required bool autofocus,
+    required TapRegionCallback? onTapOutside,
   }) {
     return YgEditableText(
       editableTextKey: editableTextKey,
@@ -132,6 +134,8 @@ mixin EditableTextContainerStateMixin<W extends StatefulWidget> on State<W>
       showSelectionHandles: showSelectionHandles,
       disabled: disabled,
       cursorColor: cursorColor,
+      autofocus: autofocus,
+      onTapOutside: onTapOutside,
     );
   }
 

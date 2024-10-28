@@ -26,16 +26,18 @@ class YgTextField extends StatefulWidget with StatefulWidgetDebugMixin {
     this.onSuffixPressed,
     this.onEditingComplete,
     this.onFocusChanged,
-    this.maxLines = 1,
+    this.initialValue,
+    this.completeAction,
+    this.onTapOutside,
     this.minLines,
+    this.maxLines = 1,
     this.disabled = false,
     this.readOnly = false,
     this.obscureText = false,
     this.showObscureTextButton = true,
     this.size = YgFieldSize.large,
     this.variant = YgFieldVariant.standard,
-    this.initialValue,
-    this.completeAction,
+    this.autofocus = false,
   })  : assert(
           maxLines == null || minLines == null || maxLines >= minLines,
           'When both minLines and maxLines are set, maxLines should be equal or higher than minLines',
@@ -63,12 +65,14 @@ class YgTextField extends StatefulWidget with StatefulWidgetDebugMixin {
     this.onSuffixPressed,
     this.onEditingComplete,
     this.onFocusChanged,
+    this.initialValue,
+    this.completeAction,
+    this.onTapOutside,
     this.disabled = false,
     this.readOnly = false,
     this.size = YgFieldSize.large,
     this.variant = YgFieldVariant.standard,
-    this.initialValue,
-    this.completeAction,
+    this.autofocus = false,
   })  : maxLines = 1,
         minLines = null,
         obscureText = false,
@@ -95,13 +99,15 @@ class YgTextField extends StatefulWidget with StatefulWidgetDebugMixin {
     this.onSuffixPressed,
     this.onEditingComplete,
     this.onFocusChanged,
+    this.initialValue,
+    this.completeAction,
+    this.onTapOutside,
     this.disabled = false,
     this.readOnly = false,
     this.showObscureTextButton = true,
     this.size = YgFieldSize.large,
     this.variant = YgFieldVariant.standard,
-    this.initialValue,
-    this.completeAction,
+    this.autofocus = false,
   })  : maxLines = 1,
         minLines = null,
         obscureText = true,
@@ -132,12 +138,14 @@ class YgTextField extends StatefulWidget with StatefulWidgetDebugMixin {
     this.onFocusChanged,
     this.minLines,
     this.maxLines,
+    this.initialValue,
+    this.completeAction,
+    this.onTapOutside,
     this.disabled = false,
     this.readOnly = false,
     this.size = YgFieldSize.large,
     this.variant = YgFieldVariant.standard,
-    this.initialValue,
-    this.completeAction,
+    this.autofocus = false,
   })  : obscureText = false,
         autocorrect = true,
         textCapitalization = TextCapitalization.sentences,
@@ -330,6 +338,14 @@ class YgTextField extends StatefulWidget with StatefulWidgetDebugMixin {
   /// By default based on the [textInputAction].
   final YgCompleteAction? completeAction;
 
+  /// Whether the text field should focus on first build.
+  final bool autofocus;
+
+  /// Called for each tap that occurs outside of the [YgTextField].
+  ///
+  /// If this is null, the text field will call unfocus on its [FocusNode].
+  final TapRegionCallback? onTapOutside;
+
   @override
   State<YgTextField> createState() => _YgTextFieldState();
 
@@ -407,6 +423,8 @@ class _YgTextFieldState extends StateWithYgState<YgTextField, YgFieldState>
             textInputAction: widget.textInputAction,
             cursorColor: theme.cursorColor,
             disabled: widget.disabled,
+            autofocus: widget.autofocus,
+            onTapOutside: widget.onTapOutside,
           ),
           state: state,
           label: widget.label,

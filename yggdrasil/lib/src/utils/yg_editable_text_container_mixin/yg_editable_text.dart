@@ -25,6 +25,8 @@ class YgEditableText extends StatelessWidget {
     required this.contextMenuBuilder,
     required this.showSelectionHandles,
     required this.cursorColor,
+    required this.autofocus,
+    required this.onTapOutside,
   });
 
   final GlobalKey<EditableTextState> editableTextKey;
@@ -47,6 +49,8 @@ class YgEditableText extends StatelessWidget {
   final bool showSelectionHandles;
   final bool disabled;
   final Color cursorColor;
+  final bool autofocus;
+  final TapRegionCallback? onTapOutside;
 
   @override
   Widget build(BuildContext context) {
@@ -114,6 +118,8 @@ class YgEditableText extends StatelessWidget {
           onSelectionHandleTapped: onSelectionHandleTapped,
           contextMenuBuilder: contextMenuBuilder,
           showSelectionHandles: showSelectionHandles,
+          autofocus: autofocus,
+          onTapOutside: onTapOutside,
         );
       },
     );
