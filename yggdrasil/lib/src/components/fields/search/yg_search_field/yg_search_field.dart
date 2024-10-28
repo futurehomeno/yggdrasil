@@ -85,7 +85,7 @@ abstract class YgSearchField<T> extends StatefulWidget with StatefulWidgetDebugM
   /// mobile devices and a search menu for other devices.
   final YgSearchAction searchAction;
 
-  /// Called when the user presses the dropdown.
+  /// Called when the user presses the search field.
   final VoidCallback? onPressed;
 
   /// The variant of the text field.
