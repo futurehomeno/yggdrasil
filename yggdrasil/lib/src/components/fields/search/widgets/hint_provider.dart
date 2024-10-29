@@ -1,4 +1,5 @@
-part of '../yg_search_field/yg_search_field.dart';
+import 'package:flutter/widgets.dart';
+import 'package:yggdrasil/src/utils/yg_linked/_yg_linked.dart';
 
 /// Internal widget which provides the hint widget to any other route using it.
 class HintProvider extends YgLinkedProvider<HintProvider> {

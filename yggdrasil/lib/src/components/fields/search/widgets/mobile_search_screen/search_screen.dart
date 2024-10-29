@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:yggdrasil/src/components/fields/search/widgets/hint_provider.dart';
 import 'package:yggdrasil/src/components/fields/search/widgets/search_result_list_tile.dart';
 import 'package:yggdrasil/src/theme/search_modal/search_modal_theme.dart';
 import 'package:yggdrasil/src/theme/theme.dart';
@@ -50,6 +51,7 @@ class SearchScreen<T> extends StatelessWidget {
 
                     if (index == -1) {
                       return Padding(
+                        // TODO(Tim): Update this once design has been finalized.
                         padding: const EdgeInsets.only(top: 15, bottom: 20, left: 20, right: 20),
                         child: hint,
                       );

@@ -3,6 +3,7 @@ import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:yggdrasil/src/components/fields/search/models/yg_search_mixin.dart';
+import 'package:yggdrasil/src/components/fields/search/widgets/hint_provider.dart';
 import 'package:yggdrasil/src/components/fields/search/widgets/mobile_search_screen/_mobile_search_screen.dart';
 import 'package:yggdrasil/src/components/fields/search/widgets/search_app_bar.dart';
 import 'package:yggdrasil/src/components/fields/search/widgets/widget_or_loading.dart';
@@ -13,8 +14,6 @@ import 'package:yggdrasil/src/utils/yg_linked/_yg_linked.dart';
 import 'package:yggdrasil/yggdrasil.dart';
 
 import 'yg_search_field_state.dart';
-
-part '../widgets/hint_provider.dart';
 
 /// A field which when opened allows the user to search for a value.
 class YgSearchField<T> extends StatefulWidget with StatefulWidgetDebugMixin {

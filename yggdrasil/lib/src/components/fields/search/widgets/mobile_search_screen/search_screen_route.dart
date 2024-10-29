@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:yggdrasil/src/components/fields/search/widgets/hint_provider.dart';
 import 'package:yggdrasil/src/components/fields/search/widgets/rrect_transition.dart';
 import 'package:yggdrasil/src/theme/search_modal/search_modal_theme.dart';
 import 'package:yggdrasil/src/theme/theme.dart';
