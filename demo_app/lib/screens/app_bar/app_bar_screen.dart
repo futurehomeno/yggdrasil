@@ -43,7 +43,7 @@ class _AppBarScreenState extends State<AppBarScreen> {
           YgSection.list(
             title: 'Center title',
             subtitle: 'Whether the title should be centered.',
-            children: <YgListTile>[
+            children: <Widget>[
               YgCheckboxListTile(
                 title: 'Center title',
                 value: _centerTitle,
@@ -54,7 +54,7 @@ class _AppBarScreenState extends State<AppBarScreen> {
           YgSection.list(
             title: 'Automatically imply leading',
             subtitle: 'If true and leading is null, automatically try to deduce what the leading widget should be.',
-            children: <YgListTile>[
+            children: <Widget>[
               YgCheckboxListTile(
                 title: 'Automatically imply leading',
                 value: _automaticallyImplyLeading,
@@ -65,7 +65,7 @@ class _AppBarScreenState extends State<AppBarScreen> {
           YgSection.list(
             title: 'Leading',
             subtitle: 'Widget to show before the title.',
-            children: <YgListTile>[
+            children: <Widget>[
               YgCheckboxListTile(
                 title: 'Custom leading',
                 value: _customLeading,
@@ -78,7 +78,7 @@ class _AppBarScreenState extends State<AppBarScreen> {
               return YgSection.list(
                 title: 'Actions',
                 subtitle: 'Widgets to show after the title.',
-                children: <YgListTile>[
+                children: <Widget>[
                   YgRadioListTile<int>(
                     title: 'No actions',
                     value: 1,

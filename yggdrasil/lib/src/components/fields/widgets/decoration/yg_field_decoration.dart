@@ -18,11 +18,9 @@ class YgFieldDecoration extends StatelessWidget {
   const YgFieldDecoration({
     super.key,
     required this.content,
-    required this.variant,
     required this.error,
     required this.state,
     required this.suffix,
-    required this.size,
     this.builder,
   });
 
@@ -39,12 +37,6 @@ class YgFieldDecoration extends StatelessWidget {
   /// Will be displayed below the field and when shown or hidden, will
   /// animate the height of the field.
   final String? error;
-
-  /// The size of the field.
-  final YgFieldSize size;
-
-  /// The variant of the field.
-  final YgFieldVariant variant;
 
   /// The current state of the field.
   final YgFieldState state;

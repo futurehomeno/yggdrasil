@@ -36,7 +36,7 @@ class HomeScreen extends StatelessWidget {
             children: <Widget>[
               SingleChildScrollView(
                 child: YgSection.list(
-                  children: <YgListTile>[
+                  children: <Widget>[
                     YgListTile(
                       title: 'AppBar',
                       onTap: () => sl<YgRouter>().push(AppBarScreen.route()),
@@ -178,6 +178,16 @@ class HomeScreen extends StatelessWidget {
                       trailingWidgets: const <YgIcon>[YgIcon(YgIcons.caretRight)],
                     ),
                     YgListTile(
+                      title: 'SearchField',
+                      onTap: () => sl<YgRouter>().push(SearchFieldScreen.route()),
+                      trailingWidgets: const <YgIcon>[YgIcon(YgIcons.caretRight)],
+                    ),
+                    // YgListTile(
+                    //   title: 'ScrollableDropdownTest',
+                    //   onTap: () => sl<YgRouter>().push(ScrollableDropdownTestScreen.route()),
+                    //   trailingWidgets: const <YgIcon>[YgIcon(YgIcons.caretRight)],
+                    // ),
+                    YgListTile(
                       title: 'Section',
                       onTap: () => sl<YgRouter>().push(SectionScreen.route()),
                       trailingWidgets: const <YgIcon>[YgIcon(YgIcons.caretRight)],
@@ -262,7 +272,7 @@ class HomeScreen extends StatelessWidget {
               ),
               SingleChildScrollView(
                 child: YgSection.list(
-                  children: <YgListTile>[
+                  children: <Widget>[
                     YgListTile(
                       title: 'Device details',
                       onTap: () => sl<YgRouter>().push(DeviceDetailsExample.route()),

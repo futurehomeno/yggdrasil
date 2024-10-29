@@ -216,8 +216,8 @@ abstract class YgDropdownField<T extends Object> extends StatefulWidget with Sta
 typedef _YgDropdownControllerManager<T extends Object>
     = YgControllerManager<YgDropdownController<T, Object?, YgDropdownFieldWidgetState<T, YgDropdownField<T>>>>;
 
-abstract class YgDropdownFieldWidgetState<T extends Object, W extends YgDropdownField<T>> extends State<W>
-    with YgControllerManagerMixin {
+abstract class YgDropdownFieldWidgetState<T extends Object, W extends YgDropdownField<T>>
+    extends StateWithYgState<W, YgDropdownFieldState> with YgControllerManagerMixin {
   /// Manages the controller of this widget.
   late final _YgDropdownControllerManager<T> _controllerManager = manageController(
     createController: createController,
@@ -234,47 +234,48 @@ abstract class YgDropdownFieldWidgetState<T extends Object, W extends YgDropdown
   /// Whether the widget is visually focused (either focused of opened).
   late bool _visuallyFocused;
 
-  late final YgDropdownFieldState _state = YgDropdownFieldState(
-    filled: _controllerManager.value.filled,
-    placeholder: widget.placeholder != null,
-    error: widget.error != null,
-    disabled: widget.disabled,
-    size: widget.size,
-    variant: widget.variant,
-    suffix: true,
-  );
+  @override
+  YgDropdownFieldState createState() {
+    return YgDropdownFieldState(
+      filled: _controllerManager.value.filled,
+      placeholder: widget.placeholder != null,
+      error: widget.error != null,
+      disabled: widget.disabled,
+      size: widget.size,
+      variant: widget.variant,
+      suffix: true,
+    );
+  }
+
+  @override
+  void updateState() {
+    state.placeholder.value = widget.placeholder != null;
+    state.error.value = widget.error != null;
+    state.disabled.value = widget.disabled;
+    state.size.value = widget.size;
+    state.variant.value = widget.variant;
+  }
 
   @override
   void initState() {
     super.initState();
 
-    _state.addListener(_handleStateChanged);
-    _visuallyFocused = _state.showFocusHighlight;
-  }
-
-  void _handleStateChanged() {
-    final bool newVisuallyFocused = _state.showFocusHighlight;
-    if (_visuallyFocused != newVisuallyFocused) {
-      _visuallyFocused = newVisuallyFocused;
-      widget.onFocusChanged?.call(newVisuallyFocused);
-    }
-  }
-
-  @override
-  void didUpdateWidget(covariant W oldWidget) {
-    super.didUpdateWidget(oldWidget);
-    _state.placeholder.value = widget.placeholder != null;
-    _state.error.value = widget.error != null;
-    _state.disabled.value = widget.disabled;
-    _state.size.value = widget.size;
-    _state.variant.value = widget.variant;
+    state.addListener(_handleStateChanged);
+    _visuallyFocused = state.showFocusHighlight;
   }
 
   @override
   void dispose() {
-    _state.removeListener(_handleStateChanged);
-    _state.dispose();
+    state.removeListener(_handleStateChanged);
     super.dispose();
+  }
+
+  void _handleStateChanged() {
+    final bool newVisuallyFocused = state.showFocusHighlight;
+    if (_visuallyFocused != newVisuallyFocused) {
+      _visuallyFocused = newVisuallyFocused;
+      widget.onFocusChanged?.call(newVisuallyFocused);
+    }
   }
 
   @override
@@ -283,18 +284,16 @@ abstract class YgDropdownFieldWidgetState<T extends Object, W extends YgDropdown
     final YgAnyDropdownController<T> controller = _controllerManager.value;
 
     return YgFieldDecoration(
-      variant: widget.variant,
-      size: widget.size,
       error: widget.error,
-      state: _state,
+      state: state,
       builder: (BuildContext context, Widget child) {
         if (widget.disabled) {
           return child;
         }
 
         return InkWell(
-          onFocusChange: _state.focused.update,
-          onHover: _state.hovered.update,
+          onFocusChange: state.focused.update,
+          onHover: state.hovered.update,
           onTap: controller.open,
           focusNode: _focusNodeManager.value,
           focusColor: Colors.transparent,
@@ -304,7 +303,7 @@ abstract class YgDropdownFieldWidgetState<T extends Object, W extends YgDropdown
       suffix: AnimatedRotation(
         duration: theme.animationDuration,
         curve: theme.animationCurve,
-        turns: _state.opened.value ? 0.5 : 0,
+        turns: state.opened.value ? 0.5 : 0,
         child: YgIconButton(
           onPressed: widget.disabled ? null : controller.open,
           size: YgIconButtonSize.small,
@@ -316,7 +315,7 @@ abstract class YgDropdownFieldWidgetState<T extends Object, W extends YgDropdown
           listenable: controller,
           builder: _buildText,
         ),
-        state: _state,
+        state: state,
         label: widget.label,
         minLines: widget.minLines,
         placeholder: widget.placeholder,
@@ -368,7 +367,7 @@ abstract class YgDropdownFieldWidgetState<T extends Object, W extends YgDropdown
         metric: widget.metric,
       ),
     );
-    _state.opened.value = true;
+    state.opened.value = true;
   }
 
   void openBottomSheet() {
@@ -381,7 +380,7 @@ abstract class YgDropdownFieldWidgetState<T extends Object, W extends YgDropdown
         onClose: _onClosed,
       ),
     );
-    _state.opened.value = true;
+    state.opened.value = true;
   }
 
   void openPickerBottomSheet() {
@@ -402,7 +401,7 @@ abstract class YgDropdownFieldWidgetState<T extends Object, W extends YgDropdown
         onClose: _onClosed,
       ),
     );
-    _state.opened.value = true;
+    state.opened.value = true;
   }
 
   void open() {
@@ -439,11 +438,11 @@ abstract class YgDropdownFieldWidgetState<T extends Object, W extends YgDropdown
   }
 
   bool get isOpen {
-    return _state.opened.value;
+    return state.opened.value;
   }
 
   void _onClosed() {
-    if (!_state.opened.update(false)) {
+    if (!state.opened.update(false)) {
       return;
     }
 
@@ -483,6 +482,6 @@ abstract class YgDropdownFieldWidgetState<T extends Object, W extends YgDropdown
   }
 
   void _controllerListener() {
-    _state.filled.value = _controllerManager.value.filled;
+    state.filled.value = _controllerManager.value.filled;
   }
 }

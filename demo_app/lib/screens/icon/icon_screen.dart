@@ -25,7 +25,7 @@ class IconScreen extends StatelessWidget {
           YgSection.list(
             title: 'Available icons',
             subtitle: 'List of all available icons can be found on the IconListScreen.',
-            children: <YgListTile>[
+            children: <Widget>[
               YgListTile(
                 title: 'Icon list (all icons)',
                 onTap: () => sl<YgRouter>().push(IconListScreen.route()),

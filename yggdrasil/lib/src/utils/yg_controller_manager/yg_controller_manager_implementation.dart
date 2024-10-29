@@ -4,9 +4,9 @@ part of '_yg_controller_manager.dart';
 ///
 /// Split in to a separate file to not expose the dispose method which is
 /// handled internally by [YgControllerManagerMixin].
-class _YgControllerManagerInternal<S, T extends Listenable> extends YgControllerManager<T> {
-  _YgControllerManagerInternal({
-    required S state,
+class YgControllerManagerImplementation<T extends Listenable> implements YgControllerManager<T> {
+  YgControllerManagerImplementation({
+    required Object state,
     required T Function() createController,
     required T? Function() getUserController,
     void Function()? listener,
@@ -20,6 +20,7 @@ class _YgControllerManagerInternal<S, T extends Listenable> extends YgController
       _controller = createController();
     } else {
       _controller = userController;
+      _wasNull = false;
     }
 
     final T controller = _controller;
@@ -27,18 +28,32 @@ class _YgControllerManagerInternal<S, T extends Listenable> extends YgController
     if (listener != null) {
       controller.addListener(listener);
     }
-    if (controller is YgAttachable<S>) {
-      controller.attach(_state);
+
+    if (controller is YgAttachable) {
+      // We have to try catch because we can't check whether the state is the
+      // expected value for YgAttachable. This is because YgAttachable might
+      // expect an interface which state implements, but because we can not
+      // access the type argument of the YgAttachable instance, we can not check
+      // whether state implements it. If there is some sort of way to access the
+      // type argument of the YgAttachable we should do the type check instead,
+      // and can remove this try catch.
+      try {
+        controller.attach(_state);
+        _attached = true;
+      } catch (e) {
+        _attached = false;
+      }
     }
   }
 
-  final S _state;
+  final Object _state;
   final T Function() _createController;
   final T? Function() _getUserController;
   final VoidCallback? _listener;
 
   late T _controller;
   late bool _wasNull;
+  bool _attached = false;
 
   @override
   T get value => _controller;
@@ -59,9 +74,16 @@ class _YgControllerManagerInternal<S, T extends Listenable> extends YgController
   void _updateController(T newController) {
     final VoidCallback? listener = this._listener;
     final T controller = _controller;
-    if (controller is YgAttachable) {
+    if (controller is YgAttachable && _attached) {
       controller.detach();
-      controller.attach(_state);
+    }
+    if (newController is YgAttachable) {
+      try {
+        newController.attach(_state);
+        _attached = true;
+      } catch (e) {
+        _attached = false;
+      }
     }
     if (listener != null) {
       controller.removeListener(listener);
@@ -77,7 +99,7 @@ class _YgControllerManagerInternal<S, T extends Listenable> extends YgController
       controller.removeListener(listener);
     }
 
-    if (controller is YgAttachable) {
+    if (controller is YgAttachable && _attached) {
       controller.detach();
     }
 

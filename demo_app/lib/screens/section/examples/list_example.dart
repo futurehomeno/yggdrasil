@@ -7,7 +7,7 @@ class ListExample extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final List<YgListTile> children = <YgListTile>[
+    final List<Widget> children = <Widget>[
       YgListTile(
         title: 'List item',
         subtitle: 'Subtitle',

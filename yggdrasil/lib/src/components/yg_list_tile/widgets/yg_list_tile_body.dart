@@ -35,8 +35,8 @@ class YgListTileBody extends StatefulWidget {
     required YgListTileDensity density,
     required bool disabled,
     required Widget child,
-    required String? title,
-    required String? subtitle,
+    required Widget? title,
+    required Widget? subtitle,
     required Widget? subtitleIcon,
     required Widget? supporting,
     required Widget? infoButton,
@@ -109,10 +109,10 @@ class YgListTileBody extends StatefulWidget {
   }
 
   /// The title of the list tile.
-  final String? title;
+  final Widget? title;
 
   /// The subtitle of the list tile.
-  final String? subtitle;
+  final Widget? subtitle;
 
   /// The icon shown in from of the subtitle.
   final Widget? subtitleIcon;
@@ -238,7 +238,7 @@ class _YgListTileBodyState extends StateWithYgStateAndStyle<YgListTileBody, YgLi
 
   Widget? _buildTitle(YgListTileTheme theme) {
     final Widget? infoButton = widget.infoButton;
-    final String? title = widget.title;
+    final Widget? title = widget.title;
 
     if (title == null) {
       return null;
@@ -247,10 +247,10 @@ class _YgListTileBodyState extends StateWithYgStateAndStyle<YgListTileBody, YgLi
     return Row(
       children: <Widget>[
         Flexible(
-          child: Text(
-            title,
+          child: DefaultTextStyle(
             style: theme.titleTextStyle,
             overflow: TextOverflow.ellipsis,
+            child: title,
           ),
         ),
         if (infoButton != null) infoButton,
@@ -259,7 +259,7 @@ class _YgListTileBodyState extends StateWithYgStateAndStyle<YgListTileBody, YgLi
   }
 
   Widget? _buildSubtitle(YgListTileTheme theme) {
-    final String? subtitle = widget.subtitle;
+    final Widget? subtitle = widget.subtitle;
     final Widget? subtitleIcon = widget.subtitleIcon;
 
     if (subtitle == null) {
@@ -270,9 +270,9 @@ class _YgListTileBodyState extends StateWithYgStateAndStyle<YgListTileBody, YgLi
       children: <Widget>[
         if (subtitleIcon != null) subtitleIcon,
         Flexible(
-          child: Text(
-            subtitle,
+          child: DefaultTextStyle(
             style: theme.subtitleTextStyle,
+            child: subtitle,
           ),
         ),
       ].withHorizontalSpacing(theme.subtitleSubtitleIconSpacing),
