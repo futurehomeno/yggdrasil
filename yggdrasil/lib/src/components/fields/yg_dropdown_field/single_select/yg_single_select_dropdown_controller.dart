@@ -28,7 +28,7 @@ class YgSingleSelectDropdownController<T extends Object>
       pendingValue.value = value;
     }
 
-    _fieldState?.widget.onChange?.call(_value);
+    _fieldState?.widget.onChanged?.call(_value);
   }
 
   @override

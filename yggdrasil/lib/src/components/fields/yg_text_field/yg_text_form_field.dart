@@ -24,6 +24,8 @@ class YgTextFormField extends FormField<String> {
     VoidCallback? onEditingComplete,
     ValueChanged<bool>? onFocusChanged,
     List<TextInputFormatter>? inputFormatters,
+    YgCompleteAction? completeAction,
+    ValueChanged<String>? onChanged,
     int? minLines,
     int? maxLines = 1,
     bool disabled = false,
@@ -33,7 +35,6 @@ class YgTextFormField extends FormField<String> {
     YgFieldSize size = YgFieldSize.large,
     YgAutoValidate autoValidate = YgAutoValidate.disabled,
     YgFieldVariant variant = YgFieldVariant.standard,
-    YgCompleteAction? completeAction,
   }) : super(
           initialValue: controller != null ? controller.text : (initialValue ?? ''),
           enabled: !disabled,
@@ -48,6 +49,11 @@ class YgTextFormField extends FormField<String> {
               completeAction: completeAction ?? YgValidateHelper.mapTextInputAction(textInputAction),
               onEditingComplete: onEditingComplete,
             );
+
+            void onChangedHandler(String value) {
+              field.didChange(value);
+              onChanged?.call(value);
+            }
 
             return UnmanagedRestorationScope(
               bucket: field.bucket,
@@ -69,7 +75,7 @@ class YgTextFormField extends FormField<String> {
                 readOnly: readOnly,
                 maxLines: maxLines,
                 inputFormatters: inputFormatters,
-                onChanged: field.didChange,
+                onChanged: onChangedHandler,
                 error: error ?? field.errorText,
                 focusNode: focusNode,
                 minLines: minLines,
