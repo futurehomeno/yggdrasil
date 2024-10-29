@@ -225,7 +225,7 @@ class _YgSearchFieldState<T> extends StateWithYgState<YgSearchField<T>, YgSearch
   @override
   YgSearchFieldState createState() {
     return YgSearchFieldState(
-      filled: _controllerManager.value.text.isNotEmpty,
+      filled: (widget.controller?.text ?? widget.initialValue)?.isNotEmpty == true,
       placeholder: widget.placeholder != null,
       error: widget.error != null,
       disabled: widget.disabled,
