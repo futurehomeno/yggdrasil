@@ -351,7 +351,7 @@ class _YgSearchFieldState<T> extends StateWithYgState<YgSearchField<T>, YgSearch
             textCapitalization: widget.textCapitalization,
             inputFormatters: widget.inputFormatters,
             initialValue: widget.initialValue,
-            textInputAction: TextInputAction.none,
+            textInputAction: YgConsts.isIos ? TextInputAction.search : TextInputAction.none,
             onChanged: widget.onChanged,
             onEditingComplete: widget.onEditingComplete,
             onFocusChanged: null,
