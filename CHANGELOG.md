@@ -1,3 +1,9 @@
+# 1.12.17 [2024-11-05T16:36:38.383604]
+
+### Changes
+
+- [fix] Fixed error on ios complaining about the TextInputAction none not being supported.
+
 # 1.12.16 [2024-11-05T16:09:57.049261]
 
 ### Changes
