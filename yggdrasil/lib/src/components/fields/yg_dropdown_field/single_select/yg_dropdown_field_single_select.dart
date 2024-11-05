@@ -22,14 +22,14 @@ class _YgDropdownFieldSingleSelect<T extends Object> extends YgDropdownField<T> 
     super.metric,
     YgSingleSelectDropdownController<T>? super.controller,
     this.initialValue,
-    this.onChange,
+    this.onChanged,
   }) : super._();
 
   /// The initial value of the [YgDropdownField].
   final T? initialValue;
 
   /// Called with the new value when the value has changed.
-  final ValueChanged<T?>? onChange;
+  final ValueChanged<T?>? onChanged;
 
   @override
   _YgDropdownFieldSingleSelectState<T> createState() => _YgDropdownFieldSingleSelectState<T>();
