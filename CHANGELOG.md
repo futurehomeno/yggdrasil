@@ -1,3 +1,10 @@
+# 1.12.16 [2024-11-05T16:09:57.049261]
+
+### Changes
+
+- [fix] Added missing onChanged method to all form fields
+- reverted change for 3.24.3 (#182)
+
 # 1.12.15 [2024-10-29T16:27:19.351472]
 - [feature] Added YgSearchField DEV-4158.
 
