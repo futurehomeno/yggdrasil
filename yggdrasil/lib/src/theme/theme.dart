@@ -91,6 +91,9 @@ class _$YgTheme {
   static final List<YgRadioTheme> radioTheme = YgRadioTheme.themes;
 
   @themeExtension
+  static final List<YgSearchBarTheme> searchBarTheme = YgSearchBarTheme.themes;
+
+  @themeExtension
   static final List<YgSearchFieldTheme> searchFieldTheme = YgSearchFieldTheme.themes;
 
   @themeExtension

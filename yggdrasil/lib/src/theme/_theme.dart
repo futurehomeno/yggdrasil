@@ -24,6 +24,7 @@ export 'picker/_picker.dart';
 export 'progress_indicator/_progress_indicator.dart';
 export 'pulse/_pulse.dart';
 export 'radio/_radio.dart';
+export 'search_bar/search_bar_theme.dart';
 export 'search_field/_search_field.dart';
 export 'search_modal/_search_modal.dart';
 export 'section/_section.dart';
