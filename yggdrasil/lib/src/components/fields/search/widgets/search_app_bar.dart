@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:yggdrasil/src/components/fields/search/models/yg_search_mixin.dart';
 import 'package:yggdrasil/src/theme/search_modal/search_modal_theme.dart';
 import 'package:yggdrasil/src/theme/theme.dart';
 import 'package:yggdrasil/src/utils/_utils.dart';
@@ -27,7 +28,7 @@ class SearchAppBar<T> extends StatefulWidget implements PreferredSizeWidget {
 
   final FocusNode? focusNode;
   final String? initialValue;
-  final YgSearchController<T> controller;
+  final YgSearchControllerAny controller;
   final ValueChanged<String>? onChanged;
   final VoidCallback? onEditingComplete;
   final ValueChanged<bool>? onFocusChanged;
@@ -56,7 +57,7 @@ class _SearchAppBarState<T> extends State<SearchAppBar<T>> with EditableTextCont
   bool get readOnly => false;
 
   @override
-  YgSearchController<T> get userController => widget.controller;
+  TextEditingController get userController => widget.controller.textEditingController;
 
   @override
   FocusNode? get userFocusNode => widget.focusNode;
@@ -124,7 +125,7 @@ class _SearchAppBarState<T> extends State<SearchAppBar<T>> with EditableTextCont
                         ),
                         SizedBox(width: theme.headerSpacing),
                         WidgetOrLoading(
-                          loading: widget.controller.loading,
+                          controller: widget.controller,
                           child: YgIconButton(
                             icon: YgIcons.cross,
                             onPressed: () => widget.controller.text = '',

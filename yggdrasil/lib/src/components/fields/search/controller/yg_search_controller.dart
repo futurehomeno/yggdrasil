@@ -14,8 +14,8 @@ typedef YgSearchResultsBuilder<T> = FutureOr<List<YgSearchResult<T>>?> Function(
 typedef YgSearchResultTextBuilder<T> = FutureOr<String?> Function(T value)?;
 
 /// Controller for any search widget.
-class YgSearchController<T> extends TextEditingController implements YgAttachable<YgSearchMixin<T, StatefulWidget>> {
-  YgSearchController({
+class YgSearchControllerOld<T> extends TextEditingController implements YgAttachable<YgSearchMixin<T, StatefulWidget>> {
+  YgSearchControllerOld({
     super.text,
   }) : _lastHandledValue = text ?? '';
 
