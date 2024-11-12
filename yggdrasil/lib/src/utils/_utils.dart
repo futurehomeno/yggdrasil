@@ -1,10 +1,10 @@
 export 'yg_child_size_observer.dart';
-export 'yg_complete_action_state_mixin.dart';
 export 'yg_constant_size_animated_cross_fade/yg_constant_size_animated_cross_fade.dart';
 export 'yg_consts.dart';
 export 'yg_controller_manager/_yg_controller_manager.dart';
 export 'yg_debug/_yg_debug.dart';
 export 'yg_editable_text_container_mixin/_yg_editable_text_container_mixin.dart';
+export 'yg_editing_complete_helper.dart';
 export 'yg_expander/_yg_expander.dart';
 export 'yg_focusable_action_detector.dart';
 export 'yg_icon_data/_yg_icon_data.dart';

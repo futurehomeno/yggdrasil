@@ -163,7 +163,7 @@ abstract class YgSearchBar<T> extends StatefulWidget {
 
 abstract class YgSearchBarWidgetState<T, W extends YgSearchBar<T>>
     extends StateWithYgStateAndStyle<W, YgSearchBarState, YgSearchBarStyle>
-    with YgControllerManagerMixin, YgCompleteActionStateMixin
+    with YgControllerManagerMixin
     implements YgSearchMixinInterface {
   /// Manages the controller of this widget.
   late final YgControllerManager<YgSearchControllerAny<T>> _controllerManager = manageController(
@@ -370,15 +370,10 @@ abstract class YgSearchBarWidgetState<T, W extends YgSearchBar<T>>
       return;
     }
 
-    doCompleteAction();
+    YgEditingCompleteHelper.onComplete(
+      onEditingComplete: widget.onEditingComplete,
+      focusNode: _focusNodeManager.value,
+      completeAction: widget.completeAction,
+    );
   }
-
-  @override
-  YgCompleteAction get completeAction => widget.completeAction;
-
-  @override
-  FocusNode get focusNode => _focusNodeManager.value;
-
-  @override
-  VoidCallback? get onEditingComplete => widget.onEditingComplete;
 }

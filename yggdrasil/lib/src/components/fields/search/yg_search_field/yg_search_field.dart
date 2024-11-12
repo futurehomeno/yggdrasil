@@ -398,26 +398,10 @@ abstract class YgSearchFieldWidgetState<T, W extends YgSearchField<T>> extends S
       return;
     }
 
-    final VoidCallback? onEditingComplete = widget.onEditingComplete;
-
-    if (onEditingComplete != null) {
-      onEditingComplete();
-
-      return;
-    }
-
-    final FocusNode focusNode = _focusNodeManager.value;
-    switch (widget.completeAction) {
-      case YgCompleteAction.focusNext:
-        focusNode.nextFocus();
-        break;
-      case YgCompleteAction.focusPrevious:
-        focusNode.previousFocus();
-        break;
-      case YgCompleteAction.unfocus:
-        focusNode.unfocus();
-        break;
-      case YgCompleteAction.none:
-    }
+    YgEditingCompleteHelper.onComplete(
+      onEditingComplete: widget.onEditingComplete,
+      focusNode: _focusNodeManager.value,
+      completeAction: widget.completeAction,
+    );
   }
 }

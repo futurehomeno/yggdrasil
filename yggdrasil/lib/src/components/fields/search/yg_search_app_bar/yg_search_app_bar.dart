@@ -7,7 +7,7 @@ import 'package:yggdrasil/src/components/fields/search/enums/yg_search_action.da
 import 'package:yggdrasil/src/generated/icons/_icons.dart';
 import 'package:yggdrasil/src/theme/_theme.dart';
 
-import 'yg_search_bar.dart';
+import '../yg_search_bar/yg_search_bar.dart';
 
 part 'yg_string_search_app_bar.dart';
 part 'yg_value_search_app_bar.dart';

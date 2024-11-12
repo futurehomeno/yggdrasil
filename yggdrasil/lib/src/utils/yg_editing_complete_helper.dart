@@ -1,15 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:yggdrasil/yggdrasil.dart';
 
-@optionalTypeArgs
-mixin YgCompleteActionStateMixin<T extends StatefulWidget> on State<T> {
-  VoidCallback? get onEditingComplete;
-  FocusNode get focusNode;
-  YgCompleteAction get completeAction;
+abstract class YgEditingCompleteHelper {
+  YgEditingCompleteHelper._();
 
-  void doCompleteAction() {
-    final VoidCallback? onEditingComplete = this.onEditingComplete;
-
+  static void onComplete({
+    required VoidCallback? onEditingComplete,
+    required FocusNode focusNode,
+    required YgCompleteAction completeAction,
+  }) {
     if (onEditingComplete != null) {
       onEditingComplete();
 
