@@ -1,0 +1,197 @@
+analyzer:
+  language:
+    strict-casts: true
+    strict-raw-types: true
+
+  exclude:
+    - "lib/src/tokens/**/*.dart"
+    - "lib/**/*.tailor.dart"
+
+  errors:
+    # Treat missing required parameters as a warning (not a hint).
+    missing_required_param: warning
+    # Treat missing returns as a warning (not a hint).
+    missing_return: warning
+    # Allow having TODOs in the code.
+    todo: ignore
+
+include: package:flutter_lints/flutter.yaml
+
+linter:
+  rules:
+    # =========================
+    # Rules that we DON'T WANT.
+    # =========================
+    # Does not work when tests and mocks are placed in the /lib folder.
+    depend_on_referenced_packages: false
+
+    # ==============================
+    # Additional rules that we WANT.
+    # ==============================
+    always_declare_return_types: true
+    always_specify_types: true
+    flutter_style_todos: true
+    prefer_final_fields: true
+    prefer_final_locals: true
+    prefer_single_quotes: true
+    sort_constructors_first: true
+    sort_unnamed_constructors_first: true
+    unawaited_futures: true
+    avoid_dynamic_calls: true
+    directives_ordering: true
+
+dart_code_metrics:
+  metrics:
+    cyclomatic-complexity: 20
+    maximum-nesting-level: 4
+    number-of-parameters: 4
+
+    # Flutter specific
+    number-of-used-widgets: 20
+    widgets-nesting-level: 10
+  metrics-exclude:
+    - "lib/src/theme/*"
+    - "lib/src/theme/**/*"
+
+  rules:
+    # Show potential errors
+    # Removed as it causes an issue with `setState(() {})`.
+    # - no-empty-block
+    # While this is nice, it forces renaming of variables to things
+    # that are not always clear.
+    # - avoid-shadowing
+    # This rule is just bad.
+    # - avoid-empty-setstate
+    - always-remove-listener
+    - avoid-cascade-after-if-null
+    - avoid-collection-methods-with-unrelated-types
+    - avoid-double-slash-imports
+    - avoid-duplicate-exports
+    - avoid-duplicate-mixins
+    - avoid-dynamic
+    - avoid-equal-expressions
+    - avoid-future-tostring
+    - avoid-generics-shadowing
+    - avoid-incomplete-copy-with
+    - avoid-map-keys-contains
+    - avoid-missed-calls
+    - avoid-missing-enum-constant-in-map
+    - avoid-missing-image-alt
+    - avoid-nested-futures
+    - avoid-nullable-interpolation
+    - avoid-passing-async-when-sync-expected
+    - avoid-recursive-widget-calls
+    - avoid-self-assignment
+    - avoid-self-compare
+    - avoid-shadowed-extension-methods
+    - avoid-state-constructors
+    - avoid-throw-in-catch-block
+    - avoid-throw-objects-without-tostring
+    - avoid-unassigned-late-fields-keyword
+    - avoid-uncaught-future-errors
+    - avoid-unnecessary-conditionals
+    - avoid-unnecessary-negations
+    - avoid-unnecessary-setstate
+    - avoid-unnecessary-type-assertions
+    - avoid-unnecessary-type-casts
+    - avoid-unrelated-type-assertions
+    - avoid-unrelated-type-casts
+    # Not used as the linter for it does not work very well.
+    # It will mark things as wrong even though there's a check before.
+    # - avoid-unsafe-collection-methods
+    - avoid-unused-generics
+    - avoid-unused-instances
+    - avoid-unused-parameters
+    - check-for-equals-in-render-object-setters
+    - consistent-update-render-object
+    - dispose-fields
+    - function-always-returns-null
+    - no-equal-conditions
+    - no-equal-nested-conditions
+    - no-equal-switch-case
+    - no-equal-switch-expression-cases
+    - no-equal-then-else
+    - prefer-correct-for-loop-increment
+    - prefer-correct-json-casts
+    - prefer-correct-test-file-name
+    - prefer-iterable-of
+    - prefer-match-file-name:
+        exclude:
+          - "lib/src/theme/*"
+          - "lib/src/theme/**/*"
+    - prefer-parentheses-with-if-null
+    - prefer-public-exception-classes
+    - prefer-return-await
+    - prefer-wildcard-pattern
+    - proper-super-calls
+    - use-setstate-synchronously
+
+    # Code simplification
+    - avoid-duplicate-patterns
+    - avoid-explicit-pattern-field-name
+    - avoid-keywords-in-wildcard-pattern
+    - avoid-nested-records
+    - avoid-redundant-async
+    - avoid-redundant-else
+    - avoid-redundant-positional-field-name
+    - avoid-redundant-pragma-inline
+    - avoid-unnecessary-call
+    - avoid-unnecessary-futures
+    - avoid-unnecessary-nullable-return-type
+    - avoid-unnecessary-overrides-in-state
+    - avoid-unnecessary-reassignment
+    - avoid-unnecessary-return
+    - avoid-unnecessary-stateful-widgets
+    - prefer-dedicated-media-query-methods
+    - prefer-simpler-patterns-null-check
+
+    # Style
+    # - unnecessary-trailing-comma
+    - prefer-declaring-const-constructor
+    - prefer-single-widget-per-file
+    - prefer-trailing-comma
+
+    # Flutter specific
+    - avoid-border-all
+    - avoid-expanded-as-spacer
+    - avoid-inherited-widget-in-initstate
+    # Very hard to do when theming is used.
+    # - avoid-late-context
+    # While a good idea, reduces readability a lot.
+    # - avoid-returning-widgets
+    - avoid-shrink-wrap-in-lists
+    - avoid-stateless-widget-initialized-fields
+    - avoid-wrapping-in-padding
+    - prefer-action-button-tooltip
+    - prefer-const-border-radius
+    - prefer-define-hero-tag
+    - prefer-extracting-callbacks:
+        exclude:
+          - "example/lib/screens/*"
+          - "example/lib/screens/**/*"
+    - prefer-text-rich
+    - prefer-using-list-view
+    - prefer-widget-private-members:
+        exclude:
+          - "example/lib/screens/*"
+          - "example/lib/screens/**/*"
+
+    # Not part of the default ruleset
+    - avoid-global-state
+    - avoid-nested-conditional-expressions
+    - list-all-equatable-fields
+    - newline-before-return
+    - prefer-async-await
+    - prefer-correct-edge-insets-constructor
+    - prefer-static-class
+
+    # TODO(dev): Add these when we have time.
+    # - arguments-ordering
+    # - avoid-non-null-assertion
+    # - no-magic-number
+    # - prefer-const-border-radius
+    # - prefer-moving-to-variable
+
+  anti-patterns:
+    - long-method
+    - long-parameter-list
