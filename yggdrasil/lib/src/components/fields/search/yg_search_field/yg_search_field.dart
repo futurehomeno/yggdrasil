@@ -1,10 +1,13 @@
-import 'dart:async';
+// ignore_for_file: prefer-single-widget-per-file
 
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:yggdrasil/src/components/fields/search/models/yg_search_mixin.dart';
+import 'package:yggdrasil/src/components/fields/search/controller/yg_search_mixin_interface.dart';
+import 'package:yggdrasil/src/components/fields/search/controller/yg_string_search_mixin.dart';
+import 'package:yggdrasil/src/components/fields/search/controller/yg_value_search_mixin.dart';
 import 'package:yggdrasil/src/components/fields/search/widgets/hint_provider.dart';
 import 'package:yggdrasil/src/components/fields/search/widgets/mobile_search_screen/_mobile_search_screen.dart';
+import 'package:yggdrasil/src/components/fields/search/widgets/optimized_listenable_builder.dart';
 import 'package:yggdrasil/src/components/fields/search/widgets/search_app_bar.dart';
 import 'package:yggdrasil/src/components/fields/search/widgets/widget_or_loading.dart';
 import 'package:yggdrasil/src/components/fields/widgets/_widgets.dart';
@@ -15,27 +18,59 @@ import 'package:yggdrasil/yggdrasil.dart';
 
 import 'yg_search_field_state.dart';
 
+part 'yg_string_search_field.dart';
+part 'yg_value_search_field.dart';
+
 /// A field which when opened allows the user to search for a value.
-class YgSearchField<T> extends StatefulWidget with StatefulWidgetDebugMixin {
-  const YgSearchField({
+///
+/// If you want to search for a string without a specific value attached to it,
+/// use [YgStringSearchField] instead.
+abstract class YgSearchField<T> extends StatefulWidget with StatefulWidgetDebugMixin {
+  const factory YgSearchField({
+    required bool autocorrect,
+    YgCompleteAction completeAction,
+    YgValueSearchController<T>? controller,
+    bool disabled,
+    String? error,
+    FocusNode? focusNode,
+    Widget? hint,
+    String? initialQuery,
+    T? initialValue,
+    List<TextInputFormatter>? inputFormatters,
+    Key? key,
+    required TextInputType keyboardType,
+    required String label,
+    ValueChanged<T>? onChanged,
+    VoidCallback? onEditingComplete,
+    ValueChanged<bool>? onFocusChanged,
+    VoidCallback? onPressed,
+    String? placeholder,
+    bool readOnly,
+    required YgValueSearchResultTextBuilder<T> resultTextBuilder,
+    required YgValueSearchResultsBuilder<T> resultsBuilder,
+    YgSearchAction searchAction,
+    YgFieldSize size,
+    required TextCapitalization textCapitalization,
+    YgFieldVariant variant,
+  }) = _YgValueSearchField<T>;
+
+  const YgSearchField._({
     super.key,
     required this.label,
-    required this.resultTextBuilder,
-    required this.resultsBuilder,
     required this.keyboardType,
     required this.autocorrect,
     required this.textCapitalization,
+    this.controller,
+    this.onChanged,
     this.focusNode,
     this.error,
     this.placeholder,
     this.onFocusChanged,
     this.onPressed,
-    this.controller,
     this.onEditingComplete,
-    this.onChanged,
     this.hint,
     this.inputFormatters,
-    this.initialValue,
+    this.initialQuery,
     this.disabled = false,
     this.readOnly = false,
     this.variant = YgFieldVariant.standard,
@@ -44,37 +79,8 @@ class YgSearchField<T> extends StatefulWidget with StatefulWidgetDebugMixin {
     this.searchAction = YgSearchAction.auto,
   });
 
-  /// Called to get the results list for the search screen / menu.
-  ///
-  /// Gets called every time the search text changes, if the previous call
-  /// returned a future, this builder will not be called again until that future
-  /// has resolved. If the value has changed since the last time this builder was
-  /// called, this builder will be called again, only with the most recent value.
-  ///
-  /// If this builder returns a future, for the duration of the future, a loading
-  /// indicator will be shown to the user.
-  ///
-  /// Results are bound to the [controller], so in case a different controller
-  /// gets assigned, the results will also change.
-  final YgSearchResultsBuilder<T> resultsBuilder;
-
-  /// Called to get the result text once a result has been selected.
-  ///
-  /// In the case this widget returns a string, the search text will be updated
-  /// to this string, in case this builder returns null, the most recent value
-  /// entered by the user will be shown in the search field.
-  ///
-  /// If this builder returns a future, a loading indicator will be shown to the
-  /// user until this future resolves.
-  final YgSearchResultTextBuilder<T> resultTextBuilder;
-
   /// Hint widget shown in the top of the search results.
   final Widget? hint;
-
-  /// Controls the value of the search field and can open or close the search field.
-  ///
-  /// When defined will overwrite the [initialValue].
-  final YgSearchController<T>? controller;
 
   /// The action that should be performed when the user presses the search field.
   ///
@@ -84,9 +90,6 @@ class YgSearchField<T> extends StatefulWidget with StatefulWidgetDebugMixin {
 
   /// Called when the user presses the dropdown.
   final VoidCallback? onPressed;
-
-  /// Triggers whenever there's a change to the text field value.
-  final ValueChanged<String>? onChanged;
 
   /// The variant of the text field.
   final YgFieldVariant variant;
@@ -173,15 +176,16 @@ class YgSearchField<T> extends StatefulWidget with StatefulWidgetDebugMixin {
   final FocusNode? focusNode;
 
   /// The initial value of the text field.
-  final String? initialValue;
+  final String? initialQuery;
 
   /// The action to perform when the user completes editing the field.
   ///
   /// By default based on the [textInputAction].
   final YgCompleteAction completeAction;
 
-  @override
-  State<YgSearchField<T>> createState() => _YgSearchFieldState<T>();
+  final YgSearchControllerSimple<T>? controller;
+
+  final ValueChanged<T>? onChanged;
 
   @override
   YgDebugType get debugType {
@@ -193,11 +197,14 @@ class YgSearchField<T> extends StatefulWidget with StatefulWidgetDebugMixin {
   }
 }
 
-class _YgSearchFieldState<T> extends StateWithYgState<YgSearchField<T>, YgSearchFieldState>
-    with YgControllerManagerMixin, YgSearchMixin<T, YgSearchField<T>> {
+typedef _YgSearchControllerManager<T> = YgControllerManager<YgSearchControllerSimple<T>>;
+
+abstract class YgSearchFieldWidgetState<T, W extends YgSearchField<T>> extends StateWithYgState<W, YgSearchFieldState>
+    with YgControllerManagerMixin
+    implements YgSearchMixinInterface {
   /// Manages the controller of this widget.
-  late final YgControllerManager<YgSearchController<T>> _controllerManager = manageController<YgSearchController<T>>(
-    createController: () => YgSearchController<T>(text: widget.initialValue),
+  late final _YgSearchControllerManager<T> _controllerManager = manageController(
+    createController: createController,
     getUserController: () => widget.controller,
     listener: _valueUpdated,
   );
@@ -209,11 +216,13 @@ class _YgSearchFieldState<T> extends StateWithYgState<YgSearchField<T>, YgSearch
     listener: _focusChanged,
   );
 
+  YgSearchControllerSimple<T> createController();
+
   final GlobalKey _fieldKey = GlobalKey();
   final YgLinkedKey<HintProvider> _hintKey = YgLinkedKey<HintProvider>();
 
   void _valueUpdated() {
-    state.filled.value = _controllerManager.value.text.isNotEmpty;
+    state.filled.value = _controllerManager.value.hasValue;
   }
 
   void _focusChanged() {
@@ -225,7 +234,7 @@ class _YgSearchFieldState<T> extends StateWithYgState<YgSearchField<T>, YgSearch
   @override
   YgSearchFieldState createState() {
     return YgSearchFieldState(
-      filled: (widget.controller?.text ?? widget.initialValue)?.isNotEmpty == true,
+      filled: _controllerManager.value.hasValue,
       placeholder: widget.placeholder != null,
       error: widget.error != null,
       disabled: widget.disabled,
@@ -250,7 +259,8 @@ class _YgSearchFieldState<T> extends StateWithYgState<YgSearchField<T>, YgSearch
     final bool isTextField = (widget.searchAction == YgSearchAction.menu) ||
         (widget.searchAction == YgSearchAction.auto && !YgConsts.isMobile);
 
-    final YgSearchController<T> controller = _controllerManager.value;
+    final YgSearchControllerSimple<T> controller = _controllerManager.value;
+    final TextEditingController textController = controller.textEditingController;
 
     return HintProvider(
       hint: widget.hint,
@@ -263,10 +273,11 @@ class _YgSearchFieldState<T> extends StateWithYgState<YgSearchField<T>, YgSearch
           placeholder: widget.placeholder,
           state: state,
           value: RepaintBoundary(
-            child: AnimatedBuilder(
-              animation: controller,
+            child: OptimizedListenableBuilder(
+              listenable: textController,
+              getValue: () => textController.text,
               builder: (BuildContext context, Widget? child) {
-                return Text(controller.text);
+                return Text(textController.text);
               },
             ),
           ),
@@ -286,7 +297,7 @@ class _YgSearchFieldState<T> extends StateWithYgState<YgSearchField<T>, YgSearch
         error: widget.error,
         state: state,
         suffix: WidgetOrLoading(
-          loading: controller.loading,
+          controller: controller,
           child: YgIconButton(
             onPressed: widget.disabled ? null : controller.open,
             size: YgIconButtonSize.small,
@@ -352,12 +363,12 @@ class _YgSearchFieldState<T> extends StateWithYgState<YgSearchField<T>, YgSearch
             autocorrect: widget.autocorrect,
             textCapitalization: widget.textCapitalization,
             inputFormatters: widget.inputFormatters,
-            initialValue: widget.initialValue,
+            initialValue: widget.initialQuery,
             textInputAction: YgConsts.isIos ? TextInputAction.search : TextInputAction.none,
-            onChanged: widget.onChanged,
             onEditingComplete: widget.onEditingComplete,
             onFocusChanged: null,
             focusNode: null,
+            onChanged: null,
           );
         },
       ),
@@ -409,10 +420,4 @@ class _YgSearchFieldState<T> extends StateWithYgState<YgSearchField<T>, YgSearch
       case YgCompleteAction.none:
     }
   }
-
-  @override
-  FutureOr<String?> Function(T value)? get resultTextBuilder => widget.resultTextBuilder;
-
-  @override
-  YgSearchResultsBuilder<T> get resultsBuilder => widget.resultsBuilder;
 }

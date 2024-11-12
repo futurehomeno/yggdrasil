@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:yggdrasil/src/components/fields/search/widgets/hint_provider.dart';
+import 'package:yggdrasil/src/components/fields/search/widgets/optimized_listenable_builder.dart';
 import 'package:yggdrasil/src/components/fields/search/widgets/search_result_list_tile.dart';
 import 'package:yggdrasil/src/theme/search_modal/search_modal_theme.dart';
 import 'package:yggdrasil/src/theme/theme.dart';
@@ -15,7 +16,7 @@ class SearchScreen<T> extends StatelessWidget {
     required this.hintKey,
   });
 
-  final YgSearchController<T> controller;
+  final YgSearchControllerSimple<T> controller;
   final PreferredSizeWidget Function(BuildContext context) searchBarBuilder;
   final YgLinkedKey<HintProvider> hintKey;
 
@@ -31,11 +32,13 @@ class SearchScreen<T> extends StatelessWidget {
         builder: (HintProvider? hintProvider) {
           final Widget? hint = hintProvider?.hint;
 
-          return AnimatedBuilder(
+          return OptimizedListenableBuilder(
+            listenable: controller,
+            getValue: () => controller.results,
             builder: (BuildContext context, Widget? _) {
-              final List<YgSearchResult<T>>? results = controller.results.value;
+              final List<YgSearchResult<T>> results = controller.results;
 
-              int childCount = results?.length ?? 0;
+              int childCount = results.length;
               int offset;
               if (hint != null) {
                 childCount += 1;
@@ -57,20 +60,19 @@ class SearchScreen<T> extends StatelessWidget {
                       );
                     }
 
-                    final YgSearchResult<T> result = results![index];
+                    final YgSearchResult<T> result = results[index];
 
                     return SearchResultListTile(
                       title: result.title,
                       subtitle: result.subtitle,
                       icon: result.icon,
-                      onTap: () => controller.onValueTapped(result.value),
+                      onTap: () => controller.onResultTapped(result.value),
                     );
                   },
                   itemCount: childCount,
                 ),
               );
             },
-            animation: controller.results,
           );
         },
       ),

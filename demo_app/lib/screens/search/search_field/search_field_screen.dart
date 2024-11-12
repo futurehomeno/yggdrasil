@@ -46,7 +46,7 @@ class _SearchFieldScreenState extends State<SearchFieldScreen> with SearchExampl
                 autocorrect: false,
                 textCapitalization: TextCapitalization.sentences,
                 label: 'With initial value',
-                initialValue: 'Initial value',
+                initialQuery: 'Initial value',
                 resultsBuilder: getResultsBuilder(),
                 completeAction: YgCompleteAction.focusNext,
                 resultTextBuilder: resultTextBuilder,

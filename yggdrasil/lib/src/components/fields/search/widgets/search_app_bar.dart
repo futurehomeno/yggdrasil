@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:yggdrasil/src/components/fields/search/models/yg_search_mixin.dart';
 import 'package:yggdrasil/src/theme/search_modal/search_modal_theme.dart';
 import 'package:yggdrasil/src/theme/theme.dart';
 import 'package:yggdrasil/src/utils/_utils.dart';
@@ -128,7 +127,7 @@ class _SearchAppBarState<T> extends State<SearchAppBar<T>> with EditableTextCont
                           controller: widget.controller,
                           child: YgIconButton(
                             icon: YgIcons.cross,
-                            onPressed: () => widget.controller.text = '',
+                            onPressed: () => widget.controller.clear(),
                           ),
                         ),
                       ],

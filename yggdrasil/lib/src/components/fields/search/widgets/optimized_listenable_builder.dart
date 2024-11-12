@@ -6,7 +6,7 @@ class OptimizedListenableBuilder extends StatefulWidget {
     required this.getValue,
     required this.builder,
     required this.listenable,
-    required this.child,
+    this.child,
   });
 
   final Object? Function() getValue;

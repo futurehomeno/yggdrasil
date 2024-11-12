@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:yggdrasil/src/components/fields/search/controller/yg_search_controller.dart';
 import 'package:yggdrasil/src/components/fields/search/widgets/hint_provider.dart';
 import 'package:yggdrasil/src/components/fields/search/widgets/rrect_transition.dart';
 import 'package:yggdrasil/src/theme/search_modal/search_modal_theme.dart';
 import 'package:yggdrasil/src/theme/theme.dart';
 import 'package:yggdrasil/src/utils/yg_linked/_yg_linked.dart';
-import 'package:yggdrasil/yggdrasil.dart';
 
 import '_mobile_search_screen.dart';
 
@@ -52,7 +52,7 @@ class SearchScreenRoute<T> extends PopupRoute<Widget> {
 
   // region Arguments
 
-  final YgSearchController<T> searchController;
+  final YgSearchControllerSimple<T> searchController;
 
   final PreferredSizeWidget Function(BuildContext context) searchBarBuilder;
 
