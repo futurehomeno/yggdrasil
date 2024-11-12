@@ -32,12 +32,10 @@ class SearchScreen<T> extends StatelessWidget {
         builder: (HintProvider? hintProvider) {
           final Widget? hint = hintProvider?.hint;
 
-          return OptimizedListenableBuilder(
+          return OptimizedListenableBuilder<List<YgSearchResult<T>>>(
             listenable: controller,
             getValue: () => controller.results,
-            builder: (BuildContext context, Widget? _) {
-              final List<YgSearchResult<T>> results = controller.results;
-
+            builder: (BuildContext context, List<YgSearchResult<T>> results, Widget? _) {
               int childCount = results.length;
               int offset;
               if (hint != null) {

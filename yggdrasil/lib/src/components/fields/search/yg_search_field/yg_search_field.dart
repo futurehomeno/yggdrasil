@@ -273,11 +273,11 @@ abstract class YgSearchFieldWidgetState<T, W extends YgSearchField<T>> extends S
           placeholder: widget.placeholder,
           state: state,
           value: RepaintBoundary(
-            child: OptimizedListenableBuilder(
+            child: OptimizedListenableBuilder<String>(
               listenable: textController,
               getValue: () => textController.text,
-              builder: (BuildContext context, Widget? child) {
-                return Text(textController.text);
+              builder: (BuildContext context, String text, Widget? child) {
+                return Text(text);
               },
             ),
           ),

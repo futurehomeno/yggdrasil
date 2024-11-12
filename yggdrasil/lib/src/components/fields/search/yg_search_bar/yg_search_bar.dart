@@ -1,9 +1,11 @@
-import 'dart:async';
-
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:yggdrasil/src/components/fields/search/controller/yg_search_mixin_interface.dart';
+import 'package:yggdrasil/src/components/fields/search/controller/yg_string_search_mixin.dart';
+import 'package:yggdrasil/src/components/fields/search/controller/yg_value_search_mixin.dart';
 import 'package:yggdrasil/src/components/fields/search/widgets/hint_provider.dart';
 import 'package:yggdrasil/src/components/fields/search/widgets/mobile_search_screen/_mobile_search_screen.dart';
+import 'package:yggdrasil/src/components/fields/search/widgets/optimized_listenable_builder.dart';
 import 'package:yggdrasil/src/components/fields/search/widgets/search_app_bar.dart';
 import 'package:yggdrasil/src/components/fields/search/yg_search_bar/yg_search_bar_style.dart';
 import 'package:yggdrasil/src/theme/search_bar/search_bar_theme.dart';
@@ -14,11 +16,41 @@ import 'package:yggdrasil/yggdrasil.dart';
 
 import 'yg_search_bar_state.dart';
 
-class YgSearchBar<T> extends StatefulWidget implements PreferredSizeWidget {
-  const YgSearchBar({
+part 'yg_string_search_bar.dart';
+part 'yg_value_search_bar.dart';
+
+abstract class YgSearchBar<T> extends StatefulWidget implements PreferredSizeWidget {
+  const factory YgSearchBar({
+    required bool autocorrect,
+    bool automaticallyImplyLeading,
+    YgCompleteAction completeAction,
+    YgValueSearchController<T>? controller,
+    String? error,
+    FocusNode? focusNode,
+    Widget? hint,
+    String? initialQuery,
+    T? initialValue,
+    List<TextInputFormatter>? inputFormatters,
+    Key? key,
+    required TextInputType keyboardType,
+    Widget? leading,
+    ValueChanged<T>? onChanged,
+    VoidCallback? onEditingComplete,
+    ValueChanged<bool>? onFocusChanged,
+    VoidCallback? onPressed,
+    String? placeholder,
+    required YgValueSearchResultTextBuilder<T> resultTextBuilder,
+    required YgValueSearchResultsBuilder<T> resultsBuilder,
+    YgSearchAction searchAction,
+    bool showSearchIcon,
+    YgFieldSize size,
+    required TextCapitalization textCapitalization,
+    Widget? trailing,
+    YgFieldVariant variant,
+  }) = _YgValueSearchBar<T>;
+
+  const YgSearchBar._({
     super.key,
-    required this.resultTextBuilder,
-    required this.resultsBuilder,
     required this.keyboardType,
     required this.autocorrect,
     required this.textCapitalization,
@@ -32,11 +64,10 @@ class YgSearchBar<T> extends StatefulWidget implements PreferredSizeWidget {
     this.onChanged,
     this.hint,
     this.inputFormatters,
-    this.initialValue,
+    this.initialQuery,
     this.leading,
     this.trailing,
     this.showSearchIcon = true,
-    this.readOnly = false,
     this.automaticallyImplyLeading = true,
     this.variant = YgFieldVariant.standard,
     this.size = YgFieldSize.large,
@@ -64,37 +95,8 @@ class YgSearchBar<T> extends StatefulWidget implements PreferredSizeWidget {
   final Widget? trailing;
   final bool showSearchIcon;
 
-  /// Called to get the results list for the search screen / menu.
-  ///
-  /// Gets called every time the search text changes, if the previous call
-  /// returned a future, this builder will not be called again until that future
-  /// has resolved. If the value has changed since the last time this builder was
-  /// called, this builder will be called again, only with the most recent value.
-  ///
-  /// If this builder returns a future, for the duration of the future, a loading
-  /// indicator will be shown to the user.
-  ///
-  /// Results are bound to the [controller], so in case a different controller
-  /// gets assigned, the results will also change.
-  final YgSearchResultsBuilder<T> resultsBuilder;
-
-  /// Called to get the result text once a result has been selected.
-  ///
-  /// In the case this widget returns a string, the search text will be updated
-  /// to this string, in case this builder returns null, the most recent value
-  /// entered by the user will be shown in the search field.
-  ///
-  /// If this builder returns a future, a loading indicator will be shown to the
-  /// user until this future resolves.
-  final YgSearchResultTextBuilder<T> resultTextBuilder;
-
   /// Hint widget shown in the top of the search results.
   final Widget? hint;
-
-  /// Controls the value of the search field and can open or close the search field.
-  ///
-  /// When defined will overwrite the [initialValue].
-  final YgSearchController<T>? controller;
 
   /// The action that should be performed when the user presses the search field.
   ///
@@ -104,9 +106,6 @@ class YgSearchBar<T> extends StatefulWidget implements PreferredSizeWidget {
 
   /// Called when the user presses the dropdown.
   final VoidCallback? onPressed;
-
-  /// Triggers whenever there's a change to the text field value.
-  final ValueChanged<String>? onChanged;
 
   /// The variant of the text field.
   final YgFieldVariant variant;
@@ -148,14 +147,6 @@ class YgSearchBar<T> extends StatefulWidget implements PreferredSizeWidget {
   /// When true enables autocorrect.
   final bool autocorrect;
 
-  /// Whether the text can be changed.
-  ///
-  /// When this is set to true, the text cannot be modified
-  /// by any shortcut or keyboard operation. The text is still selectable.
-  ///
-  /// Defaults to false. Must not be null.
-  final bool readOnly;
-
   /// Configures how the platform keyboard will select an uppercase or
   /// lowercase keyboard.
   ///
@@ -184,26 +175,28 @@ class YgSearchBar<T> extends StatefulWidget implements PreferredSizeWidget {
   /// Controls the focus of the widget.
   final FocusNode? focusNode;
 
-  /// The initial value of the text field.
-  final String? initialValue;
-
   /// The action to perform when the user completes editing the field.
   ///
   /// By default based on the [textInputAction].
   final YgCompleteAction completeAction;
 
-  @override
-  State<YgSearchBar<T>> createState() => _YgSearchBarState<T>();
+  final YgSearchControllerSimple<T>? controller;
+
+  final ValueChanged<T>? onChanged;
+
+  final String? initialQuery;
 
   @override
   Size get preferredSize => const Size.fromHeight(64);
 }
 
-class _YgSearchBarState<T> extends StateWithYgStateAndStyle<YgSearchBar<T>, YgSearchBarState, YgSearchBarStyle>
-    with YgControllerManagerMixin, YgSearchMixin<T, YgSearchBar<T>> {
+abstract class YgSearchBarWidgetState<T, W extends YgSearchBar<T>>
+    extends StateWithYgStateAndStyle<W, YgSearchBarState, YgSearchBarStyle>
+    with YgControllerManagerMixin, YgCompleteActionStateMixin
+    implements YgSearchMixinInterface {
   /// Manages the controller of this widget.
-  late final YgControllerManager<YgSearchController<T>> _controllerManager = manageController<YgSearchController<T>>(
-    createController: () => YgSearchController<T>(text: widget.initialValue),
+  late final YgControllerManager<YgSearchControllerSimple<T>> _controllerManager = manageController(
+    createController: createController,
     getUserController: () => widget.controller,
   );
 
@@ -212,6 +205,8 @@ class _YgSearchBarState<T> extends StateWithYgStateAndStyle<YgSearchBar<T>, YgSe
     createController: () => FocusNode(),
     getUserController: () => widget.focusNode,
   );
+
+  YgSearchControllerSimple<T> createController();
 
   final GlobalKey _fieldKey = GlobalKey();
   final YgLinkedKey<HintProvider> _hintKey = YgLinkedKey<HintProvider>();
@@ -281,6 +276,9 @@ class _YgSearchBarState<T> extends StateWithYgStateAndStyle<YgSearchBar<T>, YgSe
   Widget build(BuildContext context) {
     final YgSearchBarTheme theme = context.searchBarTheme;
     final Widget? trailing = widget.trailing;
+
+    final YgSearchControllerSimple<T> controller = _controllerManager.value;
+    final TextEditingController textController = controller.textEditingController;
 
     final FlexibleSpaceBarSettings? settings = context.dependOnInheritedWidgetOfExactType<FlexibleSpaceBarSettings>();
     final double effectiveElevation;
@@ -354,10 +352,10 @@ class _YgSearchBarState<T> extends StateWithYgStateAndStyle<YgSearchBar<T>, YgSe
                           if (leading != null) leading,
                           Expanded(
                             child: RepaintBoundary(
-                              child: AnimatedBuilder(
-                                animation: _controllerManager.value,
-                                builder: (BuildContext context, Widget? child) {
-                                  final String value = _controllerManager.value.text;
+                              child: OptimizedListenableBuilder<String>(
+                                listenable: textController,
+                                getValue: () => textController.text,
+                                builder: (BuildContext context, String value, Widget? child) {
                                   final String? placeholder = widget.placeholder;
 
                                   if (value.isNotEmpty) {
@@ -450,12 +448,12 @@ class _YgSearchBarState<T> extends StateWithYgStateAndStyle<YgSearchBar<T>, YgSe
             autocorrect: widget.autocorrect,
             textCapitalization: widget.textCapitalization,
             inputFormatters: widget.inputFormatters,
-            initialValue: widget.initialValue,
+            initialValue: widget.initialQuery,
             textInputAction: YgConsts.isIos ? TextInputAction.search : TextInputAction.none,
-            onChanged: widget.onChanged,
             onEditingComplete: widget.onEditingComplete,
             onFocusChanged: null,
             focusNode: null,
+            onChanged: null,
           );
         },
       ),
@@ -485,32 +483,15 @@ class _YgSearchBarState<T> extends StateWithYgStateAndStyle<YgSearchBar<T>, YgSe
       return;
     }
 
-    final VoidCallback? onEditingComplete = widget.onEditingComplete;
-
-    if (onEditingComplete != null) {
-      onEditingComplete();
-
-      return;
-    }
-
-    final FocusNode focusNode = _focusNodeManager.value;
-    switch (widget.completeAction) {
-      case YgCompleteAction.focusNext:
-        focusNode.nextFocus();
-        break;
-      case YgCompleteAction.focusPrevious:
-        focusNode.previousFocus();
-        break;
-      case YgCompleteAction.unfocus:
-        focusNode.unfocus();
-        break;
-      case YgCompleteAction.none:
-    }
+    doCompleteAction();
   }
 
   @override
-  FutureOr<String?> Function(T value)? get resultTextBuilder => widget.resultTextBuilder;
+  YgCompleteAction get completeAction => widget.completeAction;
 
   @override
-  YgSearchResultsBuilder<T> get resultsBuilder => widget.resultsBuilder;
+  FocusNode get focusNode => _focusNodeManager.value;
+
+  @override
+  VoidCallback? get onEditingComplete => widget.onEditingComplete;
 }

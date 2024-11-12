@@ -24,14 +24,14 @@ class WidgetOrLoading extends StatelessWidget {
     final YgSearchFieldTheme theme = context.searchFieldTheme;
 
     return RepaintBoundary(
-      child: OptimizedListenableBuilder(
+      child: OptimizedListenableBuilder<bool>(
         listenable: controller,
         getValue: () => controller.loading,
-        builder: (BuildContext context, Widget? spinner) {
+        builder: (BuildContext context, bool loading, Widget? spinner) {
           return YgConstantSizeAnimatedCrossFade(
             firstChild: child,
             secondChild: spinner!,
-            crossFadeState: controller.loading ? CrossFadeState.showSecond : CrossFadeState.showFirst,
+            crossFadeState: loading ? CrossFadeState.showSecond : CrossFadeState.showFirst,
             duration: theme.animationDuration,
             curve: theme.animationCurve,
           );
