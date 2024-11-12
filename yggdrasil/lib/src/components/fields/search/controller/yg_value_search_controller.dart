@@ -1,10 +1,10 @@
-part of 'yg_search_controller.dart';
+part of 'yg_search_controller_mixin.dart';
 
-class YgValueSearchController<Value>
-    with ChangeNotifier, YgSearchController<Value, Value?, YgValueSearchMixin<Value, StatefulWidget>> {
+class YgValueSearchController<T>
+    with ChangeNotifier, YgSearchControllerMixin<T, T?, YgValueSearchMixin<T, StatefulWidget>> {
   YgValueSearchController({
     String? initialQuery,
-    Value? initialValue,
+    T? initialValue,
   })  : _textEditingController = TextEditingController(text: initialQuery),
         _value = initialValue,
         _lastHandledSearch = initialQuery ?? '' {
@@ -16,12 +16,12 @@ class YgValueSearchController<Value>
   String _lastHandledSearch;
 
   @override
-  Value? get value => _value;
-  Value? _value;
+  T? get value => _value;
+  T? _value;
 
   @override
-  List<YgSearchResult<Value>> get results => _results ?? const <YgSearchResult<Value>>[];
-  List<YgSearchResult<Value>>? _results;
+  List<YgSearchResult<T>> get results => _results ?? <YgSearchResult<T>>[];
+  List<YgSearchResult<T>>? _results;
 
   @override
   bool get loading => _loadingResultText || _loadingResults;
@@ -29,7 +29,7 @@ class YgValueSearchController<Value>
   final bool _loadingResultText = false;
 
   void _updateResults({bool force = false}) async {
-    final YgValueSearchMixin<Value, StatefulWidget>? state = _state;
+    final YgValueSearchMixin<T, StatefulWidget>? state = _state;
     if (state == null || _loadingResults || !state.isOpen) {
       return;
     }
@@ -51,7 +51,7 @@ class YgValueSearchController<Value>
   }
 
   @override
-  void onResultTapped(Value? result) {
+  void onResultTapped(T? result) {
     if (_value != result) {
       _value = result;
       notifyListeners();

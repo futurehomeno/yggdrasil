@@ -183,7 +183,7 @@ abstract class YgSearchField<T> extends StatefulWidget with StatefulWidgetDebugM
   /// By default based on the [textInputAction].
   final YgCompleteAction completeAction;
 
-  final YgSearchControllerSimple<T>? controller;
+  final YgSearchControllerAny<T>? controller;
 
   final ValueChanged<T>? onChanged;
 
@@ -197,7 +197,7 @@ abstract class YgSearchField<T> extends StatefulWidget with StatefulWidgetDebugM
   }
 }
 
-typedef _YgSearchControllerManager<T> = YgControllerManager<YgSearchControllerSimple<T>>;
+typedef _YgSearchControllerManager<T> = YgControllerManager<YgSearchControllerAny<T>>;
 
 abstract class YgSearchFieldWidgetState<T, W extends YgSearchField<T>> extends StateWithYgState<W, YgSearchFieldState>
     with YgControllerManagerMixin
@@ -216,7 +216,7 @@ abstract class YgSearchFieldWidgetState<T, W extends YgSearchField<T>> extends S
     listener: _focusChanged,
   );
 
-  YgSearchControllerSimple<T> createController();
+  YgSearchControllerAny<T> createController();
 
   final GlobalKey _fieldKey = GlobalKey();
   final YgLinkedKey<HintProvider> _hintKey = YgLinkedKey<HintProvider>();
@@ -259,7 +259,7 @@ abstract class YgSearchFieldWidgetState<T, W extends YgSearchField<T>> extends S
     final bool isTextField = (widget.searchAction == YgSearchAction.menu) ||
         (widget.searchAction == YgSearchAction.auto && !YgConsts.isMobile);
 
-    final YgSearchControllerSimple<T> controller = _controllerManager.value;
+    final YgSearchControllerAny<T> controller = _controllerManager.value;
     final TextEditingController textController = controller.textEditingController;
 
     return HintProvider(

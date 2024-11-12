@@ -21,7 +21,7 @@ class SearchFieldScreen extends StatefulWidget {
 }
 
 class _SearchFieldScreenState extends State<SearchFieldScreen> with SearchExampleScreenMixin {
-  final _controller = YgSearchController<int>();
+  final _controller = YgValueSearchController<int>();
 
   @override
   Widget build(BuildContext context) {
@@ -215,11 +215,11 @@ class _SearchFieldScreenState extends State<SearchFieldScreen> with SearchExampl
               ),
               YgButton(
                 child: Text('Set value'),
-                onPressed: () => _controller.text = 'Custom value',
+                onPressed: () => _controller.searchQuery = 'Custom value',
               ),
               YgButton(
                 child: Text('Clear value'),
-                onPressed: () => _controller.text = '',
+                onPressed: () => _controller.clear,
               ),
               YgButton(
                 child: Text('Open search field'),

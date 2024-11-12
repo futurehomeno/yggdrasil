@@ -27,7 +27,7 @@ class SearchAppBar<T> extends StatefulWidget implements PreferredSizeWidget {
 
   final FocusNode? focusNode;
   final String? initialValue;
-  final YgSearchControllerAny controller;
+  final YgSearchControllerAny<T> controller;
   final ValueChanged<String>? onChanged;
   final VoidCallback? onEditingComplete;
   final ValueChanged<bool>? onFocusChanged;

@@ -9,24 +9,28 @@ import 'yg_value_search_mixin.dart';
 part 'yg_string_search_controller.dart';
 part 'yg_value_search_controller.dart';
 
-typedef YgSearchControllerAny = YgSearchController<Object?, Object?, YgSearchMixinInterface>;
-typedef YgSearchControllerSimple<T> = YgSearchController<T, Object?, YgSearchMixinInterface>;
+typedef YgSearchControllerAny<T> = YgSearchControllerMixin<T, Object?, YgSearchMixinInterface>;
 
-mixin YgSearchController<UserValue, ControllerValue, SearchMixin extends YgSearchMixinInterface>
+mixin YgSearchControllerMixin<T, CT, SearchMixin extends YgSearchMixinInterface>
     implements Listenable, YgAttachable<SearchMixin>, YgDisposable {
-  ControllerValue get value;
+  CT get value;
 
   TextEditingController get textEditingController;
 
-  List<YgSearchResult<UserValue>> get results;
+  List<YgSearchResult<T>> get results;
 
   bool get loading;
 
-  void onResultTapped(UserValue result);
+  void onResultTapped(T result);
 
   void clear();
 
   SearchMixin? _state;
+
+  String get searchQuery => textEditingController.text;
+  set searchQuery(String newSearchQuery) {
+    textEditingController.text = newSearchQuery;
+  }
 
   @override
   void attach(SearchMixin state) {

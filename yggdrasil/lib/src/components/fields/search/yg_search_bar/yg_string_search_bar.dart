@@ -45,7 +45,7 @@ class YgStringSearchBar extends YgSearchBar<String> {
 class _YgStringSearchBarState extends YgSearchBarWidgetState<String, YgStringSearchBar>
     with YgStringSearchMixin<YgStringSearchBar> {
   @override
-  YgSearchControllerSimple<String> createController() {
+  YgSearchControllerAny<String> createController() {
     return YgStringSearchController(
       initialQuery: widget.initialQuery,
     );

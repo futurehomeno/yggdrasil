@@ -1,7 +1,7 @@
-part of 'yg_search_controller.dart';
+part of 'yg_search_controller_mixin.dart';
 
 class YgStringSearchController extends TextEditingController
-    with YgSearchController<String, TextEditingValue, YgStringSearchMixin<StatefulWidget>> {
+    with YgSearchControllerMixin<String, TextEditingValue, YgStringSearchMixin<StatefulWidget>> {
   YgStringSearchController({
     String? initialQuery,
   })  : _lastHandledSearch = initialQuery ?? '',

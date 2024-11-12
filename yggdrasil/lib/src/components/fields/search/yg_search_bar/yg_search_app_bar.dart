@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:yggdrasil/src/components/buttons/yg_icon_button/yg_icon_button.dart';
 import 'package:yggdrasil/src/components/fields/enums/yg_complete_action.dart';
-import 'package:yggdrasil/src/components/fields/enums/yg_field_variant.dart';
 import 'package:yggdrasil/src/components/fields/search/controller/_controller.dart';
 import 'package:yggdrasil/src/components/fields/search/enums/yg_search_action.dart';
 import 'package:yggdrasil/src/generated/icons/_icons.dart';
@@ -14,7 +13,33 @@ part 'yg_string_search_app_bar.dart';
 part 'yg_value_search_app_bar.dart';
 
 abstract class YgSearchAppBar<T> extends StatefulWidget implements PreferredSizeWidget {
-  const YgSearchAppBar({
+  const factory YgSearchAppBar({
+    required bool autocorrect,
+    bool automaticallyImplyLeading,
+    YgCompleteAction completeAction,
+    YgValueSearchController<T>? controller,
+    String? error,
+    FocusNode? focusNode,
+    Widget? hint,
+    String? initialQuery,
+    List<TextInputFormatter>? inputFormatters,
+    Key? key,
+    required TextInputType keyboardType,
+    Widget? leading,
+    ValueChanged<T>? onChanged,
+    VoidCallback? onEditingComplete,
+    ValueChanged<bool>? onFocusChanged,
+    VoidCallback? onPressed,
+    String? placeholder,
+    required YgValueSearchResultTextBuilder<T> resultTextBuilder,
+    required YgValueSearchResultsBuilder<T> resultsBuilder,
+    YgSearchAction searchAction,
+    bool showSearchIcon,
+    required TextCapitalization textCapitalization,
+    Widget? trailing,
+  }) = YgValueSearchAppBar<T>;
+
+  const YgSearchAppBar._({
     super.key,
     required this.keyboardType,
     required this.autocorrect,
@@ -33,7 +58,6 @@ abstract class YgSearchAppBar<T> extends StatefulWidget implements PreferredSize
     this.leading,
     this.trailing,
     this.showSearchIcon = true,
-    this.variant = YgFieldVariant.standard,
     this.completeAction = YgCompleteAction.unfocus,
     this.searchAction = YgSearchAction.auto,
     this.automaticallyImplyLeading = true,
@@ -70,9 +94,6 @@ abstract class YgSearchAppBar<T> extends StatefulWidget implements PreferredSize
 
   /// Called when the user presses the dropdown.
   final VoidCallback? onPressed;
-
-  /// The variant of the text field.
-  final YgFieldVariant variant;
 
   /// Called when the user submits editable content (e.g., user presses the "done"
   /// button on the keyboard).
@@ -139,7 +160,7 @@ abstract class YgSearchAppBar<T> extends StatefulWidget implements PreferredSize
   /// By default based on the [textInputAction].
   final YgCompleteAction completeAction;
 
-  final YgSearchControllerSimple<T>? controller;
+  final YgSearchControllerAny<T>? controller;
 
   final ValueChanged<T>? onChanged;
 
@@ -241,11 +262,11 @@ abstract class YgSearchAppBarState<T, W extends YgSearchAppBar<T>> extends State
           height: theme.barHeight,
           padding: theme.barPadding,
           alignment: Alignment.center,
-          child: buildSearchBar(leading),
+          child: _buildSearchBar(leading),
         ),
       ),
     );
   }
 
-  Widget buildSearchBar(Widget? leading);
+  Widget _buildSearchBar(Widget? leading);
 }

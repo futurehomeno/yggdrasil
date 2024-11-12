@@ -30,6 +30,7 @@ export 'pulse/_pulse.dart';
 export 'radio/_radio.dart';
 export 'radio_list_tile/_radio_list_tile.dart';
 export 'scrollable_dropdown_test/_scrollable_dropdown_test.dart';
+export 'search/search_app_bar/_search_app_bar.dart';
 export 'search/search_bar/_search_bar.dart';
 export 'search/search_field/_search_field.dart';
 export 'section/_section.dart';

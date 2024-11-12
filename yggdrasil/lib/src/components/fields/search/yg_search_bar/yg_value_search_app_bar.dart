@@ -22,11 +22,10 @@ class YgValueSearchAppBar<T> extends YgSearchAppBar<T> {
     super.leading,
     super.trailing,
     super.showSearchIcon,
-    super.variant,
     super.completeAction,
     super.searchAction,
     super.automaticallyImplyLeading,
-  });
+  }) : super._();
 
   /// Called to get the results list for the search screen / menu.
   ///
@@ -58,7 +57,7 @@ class YgValueSearchAppBar<T> extends YgSearchAppBar<T> {
 
 class YgValueSearchAppBarState<T> extends YgSearchAppBarState<T, YgValueSearchAppBar<T>> {
   @override
-  Widget buildSearchBar(Widget? leading) {
+  Widget _buildSearchBar(Widget? leading) {
     return YgSearchBar<T>(
       keyboardType: widget.keyboardType,
       autocorrect: widget.autocorrect,

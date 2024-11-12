@@ -154,7 +154,7 @@ abstract class YgSearchBar<T> extends StatefulWidget {
   /// By default based on the [textInputAction].
   final YgCompleteAction completeAction;
 
-  final YgSearchControllerSimple<T>? controller;
+  final YgSearchControllerAny<T>? controller;
 
   final ValueChanged<T>? onChanged;
 
@@ -166,7 +166,7 @@ abstract class YgSearchBarWidgetState<T, W extends YgSearchBar<T>>
     with YgControllerManagerMixin, YgCompleteActionStateMixin
     implements YgSearchMixinInterface {
   /// Manages the controller of this widget.
-  late final YgControllerManager<YgSearchControllerSimple<T>> _controllerManager = manageController(
+  late final YgControllerManager<YgSearchControllerAny<T>> _controllerManager = manageController(
     createController: createController,
     getUserController: () => widget.controller,
   );
@@ -177,7 +177,7 @@ abstract class YgSearchBarWidgetState<T, W extends YgSearchBar<T>>
     getUserController: () => widget.focusNode,
   );
 
-  YgSearchControllerSimple<T> createController();
+  YgSearchControllerAny<T> createController();
 
   final GlobalKey _fieldKey = GlobalKey();
   final YgLinkedKey<HintProvider> _hintKey = YgLinkedKey<HintProvider>();
@@ -201,7 +201,7 @@ abstract class YgSearchBarWidgetState<T, W extends YgSearchBar<T>>
 
   @override
   Widget build(BuildContext context) {
-    final YgSearchControllerSimple<T> controller = _controllerManager.value;
+    final YgSearchControllerAny<T> controller = _controllerManager.value;
     final TextEditingController textController = controller.textEditingController;
     final YgSearchBarTheme theme = context.searchBarTheme;
     final Widget? trailing = widget.trailing;

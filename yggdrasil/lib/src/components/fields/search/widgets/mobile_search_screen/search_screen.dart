@@ -16,7 +16,7 @@ class SearchScreen<T> extends StatelessWidget {
     required this.hintKey,
   });
 
-  final YgSearchControllerSimple<T> controller;
+  final YgSearchControllerAny<T> controller;
   final PreferredSizeWidget Function(BuildContext context) searchBarBuilder;
   final YgLinkedKey<HintProvider> hintKey;
 

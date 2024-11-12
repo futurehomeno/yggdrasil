@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:yggdrasil/src/components/fields/search/controller/yg_search_controller.dart';
+import 'package:yggdrasil/src/components/fields/search/controller/yg_search_controller_mixin.dart';
 import 'package:yggdrasil/src/theme/_theme.dart';
 import 'package:yggdrasil/src/utils/_utils.dart';
 
@@ -17,7 +17,7 @@ class WidgetOrLoading extends StatelessWidget {
   });
 
   final Widget child;
-  final YgSearchControllerAny controller;
+  final YgSearchControllerAny<Object?> controller;
 
   @override
   Widget build(BuildContext context) {

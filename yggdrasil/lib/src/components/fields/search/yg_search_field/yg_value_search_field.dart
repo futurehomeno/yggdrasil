@@ -62,7 +62,7 @@ class _YgValueSearchField<T> extends YgSearchField<T> {
 class _YgValueSearchFieldState<T> extends YgSearchFieldWidgetState<T, _YgValueSearchField<T>>
     with YgValueSearchMixin<T, _YgValueSearchField<T>> {
   @override
-  YgSearchControllerSimple<T> createController() {
+  YgSearchControllerAny<T> createController() {
     return YgValueSearchController<T>(
       initialQuery: widget.initialQuery,
       initialValue: widget.initialValue,

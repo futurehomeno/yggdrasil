@@ -50,7 +50,7 @@ class YgStringSearchField extends YgSearchField<String> {
 class _YgStringSearchFieldState extends YgSearchFieldWidgetState<String, YgStringSearchField>
     with YgStringSearchMixin<YgStringSearchField> {
   @override
-  YgSearchControllerSimple<String> createController() {
+  YgSearchControllerAny<String> createController() {
     return YgStringSearchController(
       initialQuery: widget.initialQuery,
     );
