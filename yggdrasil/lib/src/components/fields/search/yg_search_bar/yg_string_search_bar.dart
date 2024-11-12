@@ -8,7 +8,6 @@ class YgStringSearchBar extends YgSearchBar<String> {
     required super.textCapitalization,
     required this.resultsBuilder,
     YgStringSearchController? super.controller,
-    super.automaticallyImplyLeading,
     super.completeAction,
     super.error,
     super.focusNode,
@@ -22,10 +21,7 @@ class YgStringSearchBar extends YgSearchBar<String> {
     super.onPressed,
     super.placeholder,
     super.searchAction,
-    super.showSearchIcon,
-    super.size,
     super.trailing,
-    super.variant,
   }) : super._();
 
   /// Called to get the results list for the search screen / menu.

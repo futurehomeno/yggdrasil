@@ -1,7 +1,7 @@
-part of 'yg_search_bar.dart';
+part of 'yg_search_app_bar.dart';
 
-class _YgValueSearchBar<T> extends YgSearchBar<T> {
-  const _YgValueSearchBar({
+class YgValueSearchAppBar<T> extends YgSearchAppBar<T> {
+  const YgValueSearchAppBar({
     super.key,
     required super.keyboardType,
     required super.autocorrect,
@@ -9,22 +9,24 @@ class _YgValueSearchBar<T> extends YgSearchBar<T> {
     required this.resultTextBuilder,
     required this.resultsBuilder,
     YgValueSearchController<T>? super.controller,
-    super.completeAction,
-    super.error,
     super.focusNode,
-    super.hint,
-    super.initialQuery,
-    super.inputFormatters,
-    super.leading,
-    super.onChanged,
-    super.onEditingComplete,
+    super.error,
+    super.placeholder,
     super.onFocusChanged,
     super.onPressed,
-    super.placeholder,
-    super.searchAction,
+    super.onEditingComplete,
+    super.onChanged,
+    super.hint,
+    super.inputFormatters,
+    super.initialQuery,
+    super.leading,
     super.trailing,
-    this.initialValue,
-  }) : super._();
+    super.showSearchIcon,
+    super.variant,
+    super.completeAction,
+    super.searchAction,
+    super.automaticallyImplyLeading,
+  });
 
   /// Called to get the results list for the search screen / menu.
   ///
@@ -50,33 +52,34 @@ class _YgValueSearchBar<T> extends YgSearchBar<T> {
   /// user until this future resolves.
   final YgValueSearchResultTextBuilder<T> resultTextBuilder;
 
-  final T? initialValue;
-
   @override
-  State<_YgValueSearchBar<T>> createState() => _YgValueSearchBarWidgetState<T>();
+  State<YgValueSearchAppBar<T>> createState() => YgValueSearchAppBarState<T>();
 }
 
-class _YgValueSearchBarWidgetState<T> extends YgSearchBarWidgetState<T, _YgValueSearchBar<T>> {
+class YgValueSearchAppBarState<T> extends YgSearchAppBarState<T, YgValueSearchAppBar<T>> {
   @override
-  YgSearchControllerSimple<T> createController() {
-    return YgValueSearchController<T>(
+  Widget buildSearchBar(Widget? leading) {
+    return YgSearchBar<T>(
+      keyboardType: widget.keyboardType,
+      autocorrect: widget.autocorrect,
+      textCapitalization: widget.textCapitalization,
+      focusNode: widget.focusNode,
+      error: widget.error,
+      placeholder: widget.placeholder,
+      onFocusChanged: widget.onFocusChanged,
+      onPressed: widget.onPressed,
+      controller: widget.controller as YgValueSearchController<T>?,
+      onEditingComplete: widget.onEditingComplete,
+      onChanged: widget.onChanged,
+      hint: widget.hint,
+      inputFormatters: widget.inputFormatters,
       initialQuery: widget.initialQuery,
-      initialValue: widget.initialValue,
-    );
-  }
-
-  @override
-  void onChanged() {
-    final Object? value = _controllerManager.value.value;
-
-    // This should never happen.
-    assert(value is T);
-    if (value is! T) {
-      return;
-    }
-
-    widget.onChanged?.call(
-      _controllerManager.value.value as T,
+      leading: leading,
+      trailing: widget.trailing,
+      completeAction: widget.completeAction,
+      searchAction: widget.searchAction,
+      resultTextBuilder: widget.resultTextBuilder,
+      resultsBuilder: widget.resultsBuilder,
     );
   }
 }

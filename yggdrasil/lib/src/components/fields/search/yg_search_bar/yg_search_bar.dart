@@ -19,10 +19,9 @@ import 'yg_search_bar_state.dart';
 part 'yg_string_search_bar.dart';
 part 'yg_value_search_bar.dart';
 
-abstract class YgSearchBar<T> extends StatefulWidget implements PreferredSizeWidget {
+abstract class YgSearchBar<T> extends StatefulWidget {
   const factory YgSearchBar({
     required bool autocorrect,
-    bool automaticallyImplyLeading,
     YgCompleteAction completeAction,
     YgValueSearchController<T>? controller,
     String? error,
@@ -42,11 +41,8 @@ abstract class YgSearchBar<T> extends StatefulWidget implements PreferredSizeWid
     required YgValueSearchResultTextBuilder<T> resultTextBuilder,
     required YgValueSearchResultsBuilder<T> resultsBuilder,
     YgSearchAction searchAction,
-    bool showSearchIcon,
-    YgFieldSize size,
     required TextCapitalization textCapitalization,
     Widget? trailing,
-    YgFieldVariant variant,
   }) = _YgValueSearchBar<T>;
 
   const YgSearchBar._({
@@ -67,10 +63,6 @@ abstract class YgSearchBar<T> extends StatefulWidget implements PreferredSizeWid
     this.initialQuery,
     this.leading,
     this.trailing,
-    this.showSearchIcon = true,
-    this.automaticallyImplyLeading = true,
-    this.variant = YgFieldVariant.standard,
-    this.size = YgFieldSize.large,
     this.completeAction = YgCompleteAction.unfocus,
     this.searchAction = YgSearchAction.auto,
   });
@@ -83,17 +75,7 @@ abstract class YgSearchBar<T> extends StatefulWidget implements PreferredSizeWid
   /// be shown instead of the [leading] widget when possible.
   final Widget? leading;
 
-  /// Controls whether we should try to imply the leading widget if null.
-  ///
-  /// If true and even if [leading] is set, automatically try to deduce what the leading
-  /// widget should be. If no leading widget can be automatically deduced, the
-  /// [leading] will be shown.
-  ///
-  /// If false and [leading] is null, title will be centered.
-  final bool automaticallyImplyLeading;
-
   final Widget? trailing;
-  final bool showSearchIcon;
 
   /// Hint widget shown in the top of the search results.
   final Widget? hint;
@@ -106,9 +88,6 @@ abstract class YgSearchBar<T> extends StatefulWidget implements PreferredSizeWid
 
   /// Called when the user presses the dropdown.
   final VoidCallback? onPressed;
-
-  /// The variant of the text field.
-  final YgFieldVariant variant;
 
   /// Called when the user submits editable content (e.g., user presses the "done"
   /// button on the keyboard).
@@ -135,11 +114,6 @@ abstract class YgSearchBar<T> extends StatefulWidget implements PreferredSizeWid
   ///
   /// Gets replaced with the value entered by the user if the value is not empty.
   final String? placeholder;
-
-  /// The size of the text field.
-  ///
-  /// Primarily affects the height of the text field.
-  final YgFieldSize size;
 
   /// The type of keyboard to use for editing the text.
   final TextInputType keyboardType;
@@ -185,9 +159,6 @@ abstract class YgSearchBar<T> extends StatefulWidget implements PreferredSizeWid
   final ValueChanged<T>? onChanged;
 
   final String? initialQuery;
-
-  @override
-  Size get preferredSize => const Size.fromHeight(64);
 }
 
 abstract class YgSearchBarWidgetState<T, W extends YgSearchBar<T>>
@@ -210,8 +181,6 @@ abstract class YgSearchBarWidgetState<T, W extends YgSearchBar<T>>
 
   final GlobalKey _fieldKey = GlobalKey();
   final YgLinkedKey<HintProvider> _hintKey = YgLinkedKey<HintProvider>();
-  ScrollNotificationObserverState? _scrollNotificationObserver;
-  bool _scrolledUnder = false;
   bool _opened = false;
 
   @override
@@ -231,165 +200,83 @@ abstract class YgSearchBarWidgetState<T, W extends YgSearchBar<T>>
   void updateState() {}
 
   @override
-  void didChangeDependencies() {
-    super.didChangeDependencies();
-    _scrollNotificationObserver?.removeListener(_handleScrollNotification);
-    _scrollNotificationObserver = ScrollNotificationObserver.maybeOf(context);
-    _scrollNotificationObserver?.addListener(_handleScrollNotification);
-  }
-
-  @override
-  void dispose() {
-    if (_scrollNotificationObserver != null) {
-      _scrollNotificationObserver!.removeListener(_handleScrollNotification);
-      _scrollNotificationObserver = null;
-    }
-    super.dispose();
-  }
-
-  void _handleScrollNotification(ScrollNotification notification) {
-    if (notification is ScrollUpdateNotification && defaultScrollNotificationPredicate(notification)) {
-      final bool oldScrolledUnder = _scrolledUnder;
-      final ScrollMetrics metrics = notification.metrics;
-      switch (metrics.axisDirection) {
-        case AxisDirection.up:
-          // Scroll view is reversed
-          _scrolledUnder = metrics.extentAfter > 0;
-        case AxisDirection.down:
-          _scrolledUnder = metrics.extentBefore > 0;
-        case AxisDirection.right:
-        case AxisDirection.left:
-          // Scrolled under is only supported in the vertical axis, and should
-          // not be altered based on horizontal notifications of the same
-          // predicate since it could be a 2D scroller.
-          break;
-      }
-
-      if (_scrolledUnder != oldScrolledUnder) {
-        // React to a change in MaterialState.scrolledUnder
-        setState(() {});
-      }
-    }
-  }
-
-  @override
   Widget build(BuildContext context) {
+    final YgSearchControllerSimple<T> controller = _controllerManager.value;
+    final TextEditingController textController = controller.textEditingController;
     final YgSearchBarTheme theme = context.searchBarTheme;
     final Widget? trailing = widget.trailing;
 
-    final YgSearchControllerSimple<T> controller = _controllerManager.value;
-    final TextEditingController textController = controller.textEditingController;
+    final YgIconButton searchButton = YgIconButton(
+      icon: YgIcons.searchAlt,
+      onPressed: () {},
+    );
 
-    final FlexibleSpaceBarSettings? settings = context.dependOnInheritedWidgetOfExactType<FlexibleSpaceBarSettings>();
-    final double effectiveElevation;
-    if (settings?.isScrolledUnder ?? _scrolledUnder) {
-      effectiveElevation = theme.scrolledUnderElevation;
-    } else {
-      effectiveElevation = theme.elevation;
-    }
-
-    Widget? leading;
-
-    if (widget.automaticallyImplyLeading) {
-      // ignore: avoid-dynamic
-      final ModalRoute<dynamic>? parentRoute = ModalRoute.of(context);
-      if (parentRoute?.canPop == true || parentRoute?.impliesAppBarDismissal == true) {
-        leading = YgIconButton(
-          onPressed: () => Navigator.maybePop(context),
-          icon: YgIcons.caretLeft,
-        );
-      }
-    }
-
-    // If no leading can be determine from automaticallyImplyLeading,
-    // use the provided leading.
+    Widget? leading = widget.leading;
+    Widget? trailingSearch;
     if (leading == null) {
-      if (widget.leading == null) {
-        leading = const SizedBox(
-          width: 20,
-        );
-      } else {
-        leading = widget.leading;
-      }
+      leading = searchButton;
+    } else {
+      trailingSearch = searchButton;
     }
 
     return HintProvider(
       key: _hintKey,
       hint: widget.hint,
-      child: Material(
-        elevation: effectiveElevation,
-        color: theme.barColor,
-        child: SafeArea(
-          bottom: false,
-          child: Container(
-            height: theme.barHeight,
-            padding: theme.barPadding,
-            alignment: Alignment.center,
-            child: YgAnimatedDecoratedBox(
-              decoration: style.backgroundColor.map(
-                (Color color) => BoxDecoration(
-                  color: color,
-                  borderRadius: theme.containerBorderRadius,
-                ),
-              ),
-              child: Material(
-                key: _fieldKey,
-                borderRadius: theme.containerBorderRadius,
-                type: MaterialType.transparency,
-                clipBehavior: Clip.antiAlias,
-                child: InkWell(
-                  focusNode: _focusNodeManager.value,
-                  onHover: state.hovered.update,
-                  splashFactory: InkRipple.splashFactory,
-                  overlayColor: WidgetStatePropertyAll<Color>(Colors.white.withOpacity(0.05)),
-                  onTap: _controllerManager.value.open,
-                  child: Padding(
-                    padding: theme.contentPadding,
-                    child: SizedBox(
-                      height: theme.contentHeight,
-                      child: Row(
-                        children: <Widget>[
-                          if (leading != null) leading,
-                          Expanded(
-                            child: RepaintBoundary(
-                              child: OptimizedListenableBuilder<String>(
-                                listenable: textController,
-                                getValue: () => textController.text,
-                                builder: (BuildContext context, String value, Widget? child) {
-                                  final String? placeholder = widget.placeholder;
+      child: YgAnimatedDecoratedBox(
+        decoration: style.backgroundColor.map(
+          (Color color) => BoxDecoration(
+            color: color,
+            borderRadius: theme.containerBorderRadius,
+          ),
+        ),
+        child: Material(
+          key: _fieldKey,
+          borderRadius: theme.containerBorderRadius,
+          type: MaterialType.transparency,
+          clipBehavior: Clip.antiAlias,
+          child: InkWell(
+            focusNode: _focusNodeManager.value,
+            onHover: state.hovered.update,
+            splashFactory: InkRipple.splashFactory,
+            overlayColor: WidgetStatePropertyAll<Color>(Colors.white.withOpacity(0.05)),
+            onTap: _controllerManager.value.open,
+            child: Padding(
+              padding: theme.contentPadding,
+              child: SizedBox(
+                height: theme.contentHeight,
+                child: Row(
+                  children: <Widget>[
+                    leading,
+                    Expanded(
+                      child: RepaintBoundary(
+                        child: OptimizedListenableBuilder<String>(
+                          listenable: textController,
+                          getValue: () => textController.text,
+                          builder: (BuildContext context, String value, Widget? child) {
+                            final String? placeholder = widget.placeholder;
 
-                                  if (value.isNotEmpty) {
-                                    return Text(
-                                      value,
-                                      style: theme.valueTextStyle,
-                                    );
-                                  }
+                            if (value.isNotEmpty) {
+                              return Text(
+                                value,
+                                style: theme.valueTextStyle,
+                              );
+                            }
 
-                                  if (placeholder != null && placeholder.isNotEmpty == true) {
-                                    return Text(
-                                      placeholder,
-                                      style: theme.placeholderTextStyle,
-                                    );
-                                  }
+                            if (placeholder != null && placeholder.isNotEmpty == true) {
+                              return Text(
+                                placeholder,
+                                style: theme.placeholderTextStyle,
+                              );
+                            }
 
-                                  return const SizedBox();
-                                },
-                              ),
-                            ),
-                          ),
-                          if (widget.showSearchIcon)
-                            const SizedBox(
-                              height: 50,
-                              width: 50,
-                              child: YgIcon(
-                                YgIcons.search,
-                              ),
-                            ),
-                          if (trailing != null) trailing,
-                        ].withHorizontalSpacing(theme.contentSpacing),
+                            return const SizedBox();
+                          },
+                        ),
                       ),
                     ),
-                  ),
+                    if (trailingSearch != null) trailingSearch,
+                    if (trailing != null) trailing,
+                  ].withHorizontalSpacing(theme.contentSpacing),
                 ),
               ),
             ),
