@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:provider/provider.dart';
 import 'package:yggdrasil/yggdrasil.dart';
 import 'package:yggdrasil_demo/core/_core.dart';
 import 'package:yggdrasil_demo/screens/search/search_example_screen_mixin.dart';
@@ -24,9 +23,7 @@ class SearchAppBarScreen extends StatefulWidget {
 class _SearchAppBarScreenState extends State<SearchAppBarScreen> with SearchExampleScreenMixin {
   bool _trailingAvatar = false;
   bool _customLeading = false;
-  bool _showSearchIcon = true;
   bool _automaticallyImplyLeading = true;
-  int _actionsRadioGroupValue = 1;
 
   @override
   Widget build(BuildContext context) {
@@ -39,93 +36,36 @@ class _SearchAppBarScreenState extends State<SearchAppBarScreen> with SearchExam
         resultsBuilder: getResultsBuilder(),
         completeAction: YgCompleteAction.focusNext,
         resultTextBuilder: resultTextBuilder,
-        showSearchIcon: _showSearchIcon,
-        leading: _customLeading
-            ? YgIconButton(
-                icon: YgIcons.placeholder,
-                onPressed: () {},
-              )
-            : null,
         automaticallyImplyLeading: _automaticallyImplyLeading,
-        trailing: _trailingAvatar
-            ? YgAvatar(
-                initials: 'TR',
-                size: YgAvatarSize.medium,
-              )
-            : null,
+        leading: getLeading(),
+        trailing: getAvatar(),
       ),
       child: Column(
         children: <Widget>[
           YgSection.list(
-            title: 'Show search icon',
-            subtitle: 'Whether there should be a search icon in the search bar.',
+            title: 'Options',
+            subtitle: 'Options available for the SearchAppBar.',
             children: <Widget>[
-              YgCheckboxListTile(
-                title: 'Show search icon',
-                value: _showSearchIcon,
-                onChanged: _toggleCenterTitle,
-              ),
-            ],
-          ),
-          YgSection.list(
-            title: 'Automatically imply leading',
-            subtitle: 'If true and leading is null, automatically try to deduce what the leading widget should be.',
-            children: <Widget>[
-              YgCheckboxListTile(
+              YgSwitchListTile(
                 title: 'Automatically imply leading',
+                subtitle:
+                    'When true (default) will automatically show the correct leading icon button based on the current route.',
                 value: _automaticallyImplyLeading,
-                onChanged: _toggleAutomaticallyImplyLeading,
+                onChanged: (_) => setState(() => _automaticallyImplyLeading ^= true),
               ),
-            ],
-          ),
-          YgSection.list(
-            title: 'Trailing avatar',
-            subtitle: 'Optional trailing avatar widget.',
-            children: <Widget>[
-              YgCheckboxListTile(
+              YgSwitchListTile(
                 title: 'Trailing avatar',
+                subtitle: 'Will show a trailing avatar widget in the right side of the SearchAppBar',
                 value: _trailingAvatar,
-                onChanged: _toggleCustomLeading,
+                onChanged: (_) => setState(() => _trailingAvatar ^= true),
+              ),
+              YgSwitchListTile(
+                title: 'Custom leading',
+                subtitle: 'Will show a custom leading widget instead of the default search or implied button.',
+                value: _customLeading,
+                onChanged: (_) => setState(() => _customLeading ^= true),
               ),
             ],
-          ),
-          Consumer<YgAppState>(
-            builder: (BuildContext context, YgAppState ygAppState, Widget? widget) {
-              return YgSection.list(
-                title: 'Actions',
-                subtitle: 'Widgets to show after the title.',
-                children: <Widget>[
-                  YgRadioListTile<int>(
-                    title: 'No actions',
-                    value: 1,
-                    groupValue: _actionsRadioGroupValue,
-                    onChanged: _setNoActions,
-                  ),
-                  YgRadioListTile<int>(
-                    title: 'Single action',
-                    value: 2,
-                    groupValue: _actionsRadioGroupValue,
-                    onChanged: _setSingleAction,
-                  ),
-                  YgRadioListTile<int>(
-                    title: 'Multiple actions (default for demo app)',
-                    value: 3,
-                    groupValue: _actionsRadioGroupValue,
-                    onChanged: (int? newValue) {
-                      _setMultipleActions(
-                        newValue: newValue,
-                        context: context,
-                        ygAppState: ygAppState,
-                      );
-                    },
-                  ),
-                ],
-              );
-            },
-          ),
-          const YgSection(
-            title: 'Padding to allow the screen to scroll',
-            child: SizedBox(height: 666.0),
           ),
         ],
       ),
@@ -133,9 +73,9 @@ class _SearchAppBarScreenState extends State<SearchAppBarScreen> with SearchExam
   }
 
   Widget? getLeading() {
-    if (_trailingAvatar) {
+    if (_customLeading) {
       return YgIconButton(
-        icon: YgIcons.info,
+        icon: YgIcons.placeholder,
         onPressed: () {},
       );
     }
@@ -143,41 +83,14 @@ class _SearchAppBarScreenState extends State<SearchAppBarScreen> with SearchExam
     return null;
   }
 
-  void _setMultipleActions({
-    required int? newValue,
-    required BuildContext context,
-    required YgAppState ygAppState,
-  }) {
-    _actionsRadioGroupValue = newValue!;
-    _showSearchIcon = false;
-    setState(() {});
-  }
-
-  void _setSingleAction(int? newValue) {
-    _actionsRadioGroupValue = newValue!;
-    setState(() {});
-  }
-
-  void _setNoActions(int? newValue) {
-    _actionsRadioGroupValue = newValue!;
-    setState(() {});
-  }
-
-  void _toggleCustomLeading(bool? newValue) {
-    _trailingAvatar = newValue!;
-    setState(() {});
-  }
-
-  void _toggleAutomaticallyImplyLeading(bool? newValue) {
-    _automaticallyImplyLeading = newValue!;
-    setState(() {});
-  }
-
-  void _toggleCenterTitle(bool? newValue) {
-    _showSearchIcon = newValue!;
-    if (_showSearchIcon) {
-      _actionsRadioGroupValue = 2;
+  Widget? getAvatar() {
+    if (_trailingAvatar) {
+      return YgAvatar(
+        initials: 'TR',
+        size: YgAvatarSize.medium,
+      );
     }
-    setState(() {});
+
+    return null;
   }
 }

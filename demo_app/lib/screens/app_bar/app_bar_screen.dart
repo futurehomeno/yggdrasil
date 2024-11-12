@@ -107,9 +107,11 @@ class _AppBarScreenState extends State<AppBarScreen> {
               );
             },
           ),
-          const YgSection(
+          YgSection(
             title: 'Padding to allow the screen to scroll',
-            child: SizedBox(height: 666.0),
+            child: DemoPlaceholder(
+              height: MediaQuery.of(context).size.height,
+            ),
           ),
         ],
       ),

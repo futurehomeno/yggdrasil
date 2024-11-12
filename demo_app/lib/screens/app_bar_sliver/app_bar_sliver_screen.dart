@@ -3,6 +3,7 @@ import 'package:provider/provider.dart';
 import 'package:yggdrasil/yggdrasil.dart';
 import 'package:yggdrasil_demo/core/_core.dart';
 import 'package:yggdrasil_demo/widgets/debug_bottom_sheet.dart';
+import 'package:yggdrasil_demo/widgets/demo_placeholder.dart';
 
 class AppBarSliverScreen extends StatefulWidget {
   const AppBarSliverScreen({super.key});
@@ -136,10 +137,12 @@ class _AppBarSliverScreenState extends State<AppBarSliverScreen> {
               ],
             ),
           ),
-          const SliverToBoxAdapter(
+          SliverToBoxAdapter(
             child: YgSection(
               title: 'Padding to allow the screen to scroll',
-              child: SizedBox(height: 666.0),
+              child: DemoPlaceholder(
+                height: MediaQuery.of(context).size.height,
+              ),
             ),
           ),
         ],

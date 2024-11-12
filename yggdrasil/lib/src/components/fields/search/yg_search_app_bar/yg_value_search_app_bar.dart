@@ -21,7 +21,6 @@ class YgValueSearchAppBar<T> extends YgSearchAppBar<T> {
     super.initialQuery,
     super.leading,
     super.trailing,
-    super.showSearchIcon,
     super.completeAction,
     super.searchAction,
     super.automaticallyImplyLeading,

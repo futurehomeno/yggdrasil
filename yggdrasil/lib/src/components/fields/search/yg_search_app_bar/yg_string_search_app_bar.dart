@@ -20,7 +20,6 @@ class YgStringSearchAppBar extends YgSearchAppBar<String> {
     super.initialQuery,
     super.leading,
     super.trailing,
-    super.showSearchIcon,
     super.completeAction,
     super.searchAction,
     super.automaticallyImplyLeading,

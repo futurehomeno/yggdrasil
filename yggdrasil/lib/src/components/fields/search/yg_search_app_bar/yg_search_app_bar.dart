@@ -34,7 +34,6 @@ abstract class YgSearchAppBar<T> extends StatefulWidget implements PreferredSize
     required YgValueSearchResultTextBuilder<T> resultTextBuilder,
     required YgValueSearchResultsBuilder<T> resultsBuilder,
     YgSearchAction searchAction,
-    bool showSearchIcon,
     required TextCapitalization textCapitalization,
     Widget? trailing,
   }) = YgValueSearchAppBar<T>;
@@ -57,7 +56,6 @@ abstract class YgSearchAppBar<T> extends StatefulWidget implements PreferredSize
     this.initialQuery,
     this.leading,
     this.trailing,
-    this.showSearchIcon = true,
     this.completeAction = YgCompleteAction.unfocus,
     this.searchAction = YgSearchAction.auto,
     this.automaticallyImplyLeading = true,
@@ -81,7 +79,6 @@ abstract class YgSearchAppBar<T> extends StatefulWidget implements PreferredSize
   final Widget? leading;
 
   final Widget? trailing;
-  final bool showSearchIcon;
 
   /// Hint widget shown in the top of the search results.
   final Widget? hint;
@@ -228,9 +225,9 @@ abstract class YgSearchAppBarState<T, W extends YgSearchAppBar<T>> extends State
       effectiveElevation = theme.elevation;
     }
 
-    Widget? leading;
+    Widget? leading = widget.leading;
 
-    if (widget.automaticallyImplyLeading) {
+    if (leading == null && widget.automaticallyImplyLeading) {
       // ignore: avoid-dynamic
       final ModalRoute<dynamic>? parentRoute = ModalRoute.of(context);
       if (parentRoute?.canPop == true || parentRoute?.impliesAppBarDismissal == true) {
@@ -238,18 +235,6 @@ abstract class YgSearchAppBarState<T, W extends YgSearchAppBar<T>> extends State
           onPressed: () => Navigator.maybePop(context),
           icon: YgIcons.caretLeft,
         );
-      }
-    }
-
-    // If no leading can be determine from automaticallyImplyLeading,
-    // use the provided leading.
-    if (leading == null) {
-      if (widget.leading == null) {
-        leading = const SizedBox(
-          width: 20,
-        );
-      } else {
-        leading = widget.leading;
       }
     }
 
