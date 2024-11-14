@@ -15,7 +15,6 @@ class _YgValueSearchField<T> extends YgSearchField<T> {
     super.error,
     super.focusNode,
     super.hint,
-    super.initialQuery,
     super.inputFormatters,
     super.onEditingComplete,
     super.onFocusChanged,
@@ -41,7 +40,6 @@ class _YgValueSearchFieldState<T> extends YgSearchFieldWidgetState<T, _YgValueSe
   @override
   YgSearchControllerAny<T> createController() {
     return YgValueSearchController<T>(
-      initialQuery: widget.initialQuery,
       initialValue: widget.initialValue,
     );
   }

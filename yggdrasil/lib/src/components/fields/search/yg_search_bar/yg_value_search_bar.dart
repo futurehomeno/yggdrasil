@@ -38,7 +38,6 @@ class _YgValueSearchBarWidgetState<T> extends YgSearchBarWidgetState<T, _YgValue
   @override
   YgSearchControllerAny<T> createController() {
     return YgValueSearchController<T>(
-      initialQuery: widget.initialQuery,
       initialValue: widget.initialValue,
     );
   }

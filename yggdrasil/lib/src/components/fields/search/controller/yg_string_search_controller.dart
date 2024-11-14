@@ -3,9 +3,9 @@ part of 'yg_search_controller_mixin.dart';
 class YgStringSearchController extends TextEditingController
     with YgSearchControllerMixin<String, TextEditingValue, YgStringSearchMixin<StatefulWidget>> {
   YgStringSearchController({
-    String? initialQuery,
-  })  : _lastHandledSearch = initialQuery ?? '',
-        super(text: initialQuery);
+    String? initialValue,
+  })  : _lastHandledSearch = initialValue ?? '',
+        super(text: initialValue);
 
   @override
   TextEditingController get textEditingController => this;
@@ -55,4 +55,7 @@ class YgStringSearchController extends TextEditingController
     // Call this again in case value has changed in the meantime.
     _updateResults();
   }
+
+  @override
+  String get valueText => text;
 }

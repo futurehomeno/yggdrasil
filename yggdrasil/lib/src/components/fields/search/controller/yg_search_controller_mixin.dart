@@ -14,9 +14,11 @@ part 'yg_value_search_controller.dart';
 
 typedef YgSearchControllerAny<T> = YgSearchControllerMixin<T, Object?, YgSearchMixinInterface>;
 
-mixin YgSearchControllerMixin<T, CT, SearchMixin extends YgSearchMixinInterface>
-    implements Listenable, YgAttachable<SearchMixin>, YgDisposable {
+mixin YgSearchControllerMixin<T, CT, SearchMixin extends YgSearchMixinInterface> on ChangeNotifier
+    implements YgAttachable<SearchMixin>, YgDisposable {
   CT get value;
+
+  String get valueText;
 
   TextEditingController get textEditingController;
 
@@ -29,6 +31,16 @@ mixin YgSearchControllerMixin<T, CT, SearchMixin extends YgSearchMixinInterface>
   void clear();
 
   SearchMixin? _state;
+
+  bool _initializing = true;
+
+  @override
+  void notifyListeners() {
+    // Don't try and update while we are initializing.
+    if (!_initializing) {
+      super.notifyListeners();
+    }
+  }
 
   String get searchQuery => textEditingController.text;
   set searchQuery(String newSearchQuery) {
@@ -48,11 +60,13 @@ mixin YgSearchControllerMixin<T, CT, SearchMixin extends YgSearchMixinInterface>
     }
 
     _state = state;
+    scheduleMicrotask(() => _initializing = false);
   }
 
   @override
   void detach() {
     _state = null;
+    _initializing = true;
   }
 
   /// Opens the menu specifically.

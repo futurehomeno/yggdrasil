@@ -3,21 +3,20 @@ part of 'yg_search_controller_mixin.dart';
 class YgValueSearchController<T>
     with ChangeNotifier, YgSearchControllerMixin<T, T?, YgValueSearchMixin<T, StatefulWidget>> {
   YgValueSearchController({
-    String? initialQuery,
     T? initialValue,
-  })  : _textEditingController = TextEditingController(text: initialQuery),
-        _value = initialValue,
-        _lastHandledSearch = initialQuery ?? '' {
+  })  : _textEditingController = TextEditingController(),
+        _value = initialValue {
     _textEditingController.addListener(_updateResults);
   }
 
   final TextEditingController _textEditingController;
 
-  String _lastHandledSearch;
+  String _lastHandledSearch = '';
 
   @override
   T? get value => _value;
   T? _value;
+  String _valueText = '';
 
   @override
   List<YgSearchResult<T>> get results => _results ?? <YgSearchResult<T>>[];
@@ -30,12 +29,8 @@ class YgValueSearchController<T>
 
   void _updateResults({bool force = false}) async {
     final YgValueSearchMixin<T, StatefulWidget>? state = _state;
-    if (state == null || _loadingResults || !state.isOpen) {
-      return;
-    }
-
     final String text = textEditingController.text;
-    if (!force && _lastHandledSearch == text) {
+    if ((!force && _lastHandledSearch == text) || state == null || _loadingResults || !state.isOpen) {
       return;
     }
 
@@ -66,7 +61,7 @@ class YgValueSearchController<T>
     }
   }
 
-  void _updateResultText(T value) async {
+  void _updateResultText(T value, {bool init = false}) async {
     final FutureOr<String?>? result = _state?.searchProvider.buildResultText(value);
     final String? text;
     if (result is Future<String?>) {
@@ -77,13 +72,19 @@ class YgValueSearchController<T>
       text = result;
     }
 
-    close();
-
-    if (text == null) {
-      return;
+    if (!init) {
+      close();
     }
 
-    textEditingController.text = text;
+    if (text == null) {
+      _valueText = _textEditingController.text;
+    } else {
+      _lastHandledSearch = text;
+      textEditingController.text = text;
+      _valueText = text;
+    }
+
+    notifyListeners();
   }
 
   @override
@@ -111,8 +112,20 @@ class YgValueSearchController<T>
   }
 
   @override
+  void attach(YgValueSearchMixin<T, StatefulWidget> state) {
+    super.attach(state);
+    final T? value = _value;
+    if (value != null) {
+      _updateResultText(value, init: true);
+    }
+  }
+
+  @override
   TextEditingController get textEditingController => _textEditingController;
 
   @override
   bool get hasValue => _value != null;
+
+  @override
+  String get valueText => _valueText;
 }

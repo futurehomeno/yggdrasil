@@ -35,7 +35,7 @@ class _YgStringSearchBarState extends YgSearchBarWidgetState<String, YgStringSea
   @override
   YgSearchControllerAny<String> createController() {
     return YgStringSearchController(
-      initialQuery: widget.initialQuery,
+      initialValue: widget.initialQuery,
     );
   }
 

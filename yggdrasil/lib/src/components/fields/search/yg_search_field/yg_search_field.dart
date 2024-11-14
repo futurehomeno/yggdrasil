@@ -34,7 +34,6 @@ abstract class YgSearchField<T> extends StatefulWidget with StatefulWidgetDebugM
     String? error,
     FocusNode? focusNode,
     Widget? hint,
-    String? initialQuery,
     T? initialValue,
     List<TextInputFormatter>? inputFormatters,
     Key? key,
@@ -69,7 +68,6 @@ abstract class YgSearchField<T> extends StatefulWidget with StatefulWidgetDebugM
     this.onEditingComplete,
     this.hint,
     this.inputFormatters,
-    this.initialQuery,
     this.disabled = false,
     this.readOnly = false,
     this.variant = YgFieldVariant.standard,
@@ -174,9 +172,6 @@ abstract class YgSearchField<T> extends StatefulWidget with StatefulWidgetDebugM
   /// Controls the focus of the widget.
   final FocusNode? focusNode;
 
-  /// The initial value of the text field.
-  final String? initialQuery;
-
   /// The action to perform when the user completes editing the field.
   ///
   /// By default based on the [textInputAction].
@@ -221,7 +216,7 @@ abstract class YgSearchFieldWidgetState<T, W extends YgSearchField<T>> extends S
   final YgLinkedKey<HintProvider> _hintKey = YgLinkedKey<HintProvider>();
 
   void _valueUpdated() {
-    state.filled.value = _controllerManager.value.hasValue;
+    state.filled.value = _controllerManager.value.valueText.isNotEmpty;
   }
 
   void _focusChanged() {
@@ -233,7 +228,7 @@ abstract class YgSearchFieldWidgetState<T, W extends YgSearchField<T>> extends S
   @override
   YgSearchFieldState createState() {
     return YgSearchFieldState(
-      filled: _controllerManager.value.hasValue,
+      filled: _controllerManager.value.valueText.isNotEmpty,
       placeholder: widget.placeholder != null,
       error: widget.error != null,
       disabled: widget.disabled,
@@ -259,7 +254,6 @@ abstract class YgSearchFieldWidgetState<T, W extends YgSearchField<T>> extends S
         (widget.searchAction == YgSearchAction.auto && !YgConsts.isMobile);
 
     final YgSearchControllerAny<T> controller = _controllerManager.value;
-    final TextEditingController textController = controller.textEditingController;
 
     return HintProvider(
       hint: widget.hint,
@@ -273,8 +267,8 @@ abstract class YgSearchFieldWidgetState<T, W extends YgSearchField<T>> extends S
           state: state,
           value: RepaintBoundary(
             child: OptimizedListenableBuilder<String>(
-              listenable: textController,
-              getValue: () => textController.text,
+              listenable: controller,
+              getValue: () => controller.valueText,
               builder: (BuildContext context, String text, Widget? child) {
                 return Text(text);
               },
@@ -362,9 +356,9 @@ abstract class YgSearchFieldWidgetState<T, W extends YgSearchField<T>> extends S
             autocorrect: widget.autocorrect,
             textCapitalization: widget.textCapitalization,
             inputFormatters: widget.inputFormatters,
-            initialValue: widget.initialQuery,
             textInputAction: YgConsts.isIos ? TextInputAction.search : TextInputAction.none,
             onEditingComplete: widget.onEditingComplete,
+            initialValue: null,
             onFocusChanged: null,
             focusNode: null,
             onChanged: null,

@@ -11,13 +11,13 @@ class YgStringSearchField extends YgSearchField<String> {
     required super.textCapitalization,
     required this.searchProvider,
     YgStringSearchController? super.controller,
+    this.initialValue,
     super.onChanged,
     super.completeAction,
     super.disabled,
     super.error,
     super.focusNode,
     super.hint,
-    super.initialQuery,
     super.inputFormatters,
     super.onEditingComplete,
     super.onFocusChanged,
@@ -31,6 +31,9 @@ class YgStringSearchField extends YgSearchField<String> {
 
   final YgStringSearchProvider searchProvider;
 
+  /// The initial value of the text field.
+  final String? initialValue;
+
   @override
   State<YgStringSearchField> createState() => _YgStringSearchFieldState();
 }
@@ -40,7 +43,7 @@ class _YgStringSearchFieldState extends YgSearchFieldWidgetState<String, YgStrin
   @override
   YgSearchControllerAny<String> createController() {
     return YgStringSearchController(
-      initialQuery: widget.initialQuery,
+      initialValue: widget.initialValue,
     );
   }
 
