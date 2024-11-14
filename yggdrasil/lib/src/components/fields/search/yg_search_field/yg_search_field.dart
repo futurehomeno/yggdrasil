@@ -47,7 +47,7 @@ abstract class YgSearchField<T> extends StatefulWidget with StatefulWidgetDebugM
     String? placeholder,
     bool readOnly,
     YgSearchAction searchAction,
-    required YgValueSearchProvider<T> searchProvider,
+    required YgSearchProvider<T> searchProvider,
     YgFieldSize size,
     required TextCapitalization textCapitalization,
     YgFieldVariant variant,

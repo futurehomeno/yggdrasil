@@ -39,7 +39,7 @@ abstract class YgSearchBar<T> extends StatefulWidget {
     VoidCallback? onPressed,
     String? placeholder,
     YgSearchAction searchAction,
-    required YgValueSearchProvider<T> searchProvider,
+    required YgSearchProvider<T> searchProvider,
     required TextCapitalization textCapitalization,
     Widget? trailing,
   }) = _YgValueSearchBar<T>;

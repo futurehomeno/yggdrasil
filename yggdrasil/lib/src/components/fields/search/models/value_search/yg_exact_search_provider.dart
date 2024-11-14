@@ -1,14 +1,14 @@
 import 'dart:async';
 
-import 'package:yggdrasil/src/components/fields/search/models/yg_fuzzy_search_provider_mixin.dart';
+import 'package:yggdrasil/src/components/fields/search/models/value_search/yg_search_provider.dart';
+import 'package:yggdrasil/src/components/fields/search/models/yg_exact_search_provider_mixin.dart';
 import 'package:yggdrasil/yggdrasil.dart';
 
-class YgFuzzyValueSearchProvider<T> extends YgValueSearchProvider<T>
-    with YgFuzzySearchProviderMixin<YgValueSearchItem<T>, YgSearchResult<T>> {
-  YgFuzzyValueSearchProvider({
+class YgExactSearchProvider<T> extends YgSearchProvider<T>
+    with YgExactSearchProviderMixin<YgSearchItem<T>, YgSearchResult<T>> {
+  YgExactSearchProvider({
     required this.items,
     this.searchSubtitle = false,
-    this.threshold = 0.4,
   });
 
   // @override
@@ -17,14 +17,11 @@ class YgFuzzyValueSearchProvider<T> extends YgValueSearchProvider<T>
 
   // @override
   @override
-  final List<YgValueSearchItem<T>> items;
-
-  @override
-  final double threshold;
+  final List<YgSearchItem<T>> items;
 
   @override
   FutureOr<String?> buildResultText(T value) {
-    for (final YgValueSearchItem<T> result in items) {
+    for (final YgSearchItem<T> result in items) {
       if (result.value == value) {
         return result.title;
       }
@@ -35,7 +32,7 @@ class YgFuzzyValueSearchProvider<T> extends YgValueSearchProvider<T>
 
   @override
   YgSearchResult<T> createResultFromMatches({
-    required YgValueSearchItem<T> item,
+    required YgSearchItem<T> item,
     required List<YgTextMatch> titleMatches,
     required List<YgTextMatch>? subtitleMatches,
   }) {

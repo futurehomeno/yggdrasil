@@ -27,10 +27,10 @@ class _SearchAppBarScreenState extends State<SearchAppBarScreen> with SearchExam
 
   @override
   Widget build(BuildContext context) {
-    final searchProvider = YgFuzzyValueSearchProvider<int>(
+    final searchProvider = YgFuzzySearchProvider<int>(
       items: [
         for (int i = 0; i < _searchResults.length; i++)
-          YgValueSearchItem<int>(
+          YgSearchItem<int>(
             title: _searchResults[i],
             value: i,
             icon: YgIcons.map,

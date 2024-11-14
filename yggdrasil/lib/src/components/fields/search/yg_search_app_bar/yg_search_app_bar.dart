@@ -5,7 +5,7 @@ import 'package:yggdrasil/src/components/fields/enums/yg_complete_action.dart';
 import 'package:yggdrasil/src/components/fields/search/controller/_controller.dart';
 import 'package:yggdrasil/src/components/fields/search/enums/yg_search_action.dart';
 import 'package:yggdrasil/src/components/fields/search/models/string_search/yg_string_search_provider.dart';
-import 'package:yggdrasil/src/components/fields/search/models/value_search/yg_value_search_provider.dart';
+import 'package:yggdrasil/src/components/fields/search/models/value_search/yg_search_provider.dart';
 import 'package:yggdrasil/src/generated/icons/_icons.dart';
 import 'package:yggdrasil/src/theme/_theme.dart';
 
@@ -35,7 +35,7 @@ abstract class YgSearchAppBar<T> extends StatefulWidget implements PreferredSize
     VoidCallback? onPressed,
     String? placeholder,
     YgSearchAction searchAction,
-    required YgValueSearchProvider<T> searchProvider,
+    required YgSearchProvider<T> searchProvider,
     required TextCapitalization textCapitalization,
     Widget? trailing,
   }) = _YgValueSearchAppBar<T>;
@@ -169,7 +169,7 @@ abstract class YgSearchAppBar<T> extends StatefulWidget implements PreferredSize
   Size get preferredSize => const Size.fromHeight(65);
 }
 
-abstract class YgSearchAppBarState<T, W extends YgSearchAppBar<T>> extends State<W> {
+abstract class _YgSearchAppBarState<T, W extends YgSearchAppBar<T>> extends State<W> {
   ScrollNotificationObserverState? _scrollNotificationObserver;
   bool _scrolledUnder = false;
 

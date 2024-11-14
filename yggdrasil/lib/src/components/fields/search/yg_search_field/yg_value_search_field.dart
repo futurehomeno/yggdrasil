@@ -28,7 +28,7 @@ class _YgValueSearchField<T> extends YgSearchField<T> {
     this.initialValue,
   }) : super._();
 
-  final YgValueSearchProvider<T> searchProvider;
+  final YgSearchProvider<T> searchProvider;
 
   final T? initialValue;
 
@@ -62,5 +62,5 @@ class _YgValueSearchFieldState<T> extends YgSearchFieldWidgetState<T, _YgValueSe
   }
 
   @override
-  YgValueSearchProvider<T> get searchProvider => widget.searchProvider;
+  YgSearchProvider<T> get searchProvider => widget.searchProvider;
 }

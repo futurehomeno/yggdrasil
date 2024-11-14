@@ -5,9 +5,9 @@ import 'package:yggdrasil/src/utils/yg_match_text/yg_text_match.dart';
 import 'yg_string_search_item.dart';
 import 'yg_string_search_provider.dart';
 
-class YgExactMatchStringSearchProvider extends YgStringSearchProvider
+class YgExactStringSearchProvider extends YgStringSearchProvider
     with YgExactSearchProviderMixin<YgStringSearchItem, YgStringSearchResult> {
-  YgExactMatchStringSearchProvider({
+  YgExactStringSearchProvider({
     required this.items,
     this.searchSubtitle = false,
   });

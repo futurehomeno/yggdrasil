@@ -1,4 +1,4 @@
-import 'yg_string_search_result.dart';
+import '../yg_string_search_result.dart';
 
 /// A result for a [YgSearchWidget].
 class YgSearchResult<T> extends YgStringSearchResult {

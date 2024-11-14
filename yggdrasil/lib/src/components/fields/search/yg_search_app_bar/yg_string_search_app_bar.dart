@@ -28,10 +28,10 @@ class YgStringSearchAppBar extends YgSearchAppBar<String> {
   final YgStringSearchProvider searchProvider;
 
   @override
-  State<YgStringSearchAppBar> createState() => YgStringSearchAppBarState();
+  State<YgStringSearchAppBar> createState() => _YgStringSearchAppBarState();
 }
 
-class YgStringSearchAppBarState extends YgSearchAppBarState<String, YgStringSearchAppBar> {
+class _YgStringSearchAppBarState extends _YgSearchAppBarState<String, YgStringSearchAppBar> {
   @override
   Widget _buildSearchBar(Widget? leading) {
     return YgStringSearchBar(

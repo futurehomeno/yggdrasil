@@ -26,15 +26,15 @@ class _YgValueSearchAppBar<T> extends YgSearchAppBar<T> {
     super.automaticallyImplyLeading,
   }) : super._();
 
-  final YgValueSearchProvider<T> searchProvider;
+  final YgSearchProvider<T> searchProvider;
 
   final T? initialValue;
 
   @override
-  State<_YgValueSearchAppBar<T>> createState() => YgValueSearchAppBarState<T>();
+  State<_YgValueSearchAppBar<T>> createState() => _YgValueSearchAppBarState<T>();
 }
 
-class YgValueSearchAppBarState<T> extends YgSearchAppBarState<T, _YgValueSearchAppBar<T>> {
+class _YgValueSearchAppBarState<T> extends _YgSearchAppBarState<T, _YgValueSearchAppBar<T>> {
   @override
   Widget _buildSearchBar(Widget? leading) {
     return YgSearchBar<T>(

@@ -25,7 +25,7 @@ class _YgValueSearchBar<T> extends YgSearchBar<T> {
     this.initialValue,
   }) : super._();
 
-  final YgValueSearchProvider<T> searchProvider;
+  final YgSearchProvider<T> searchProvider;
 
   final T? initialValue;
 
@@ -59,5 +59,5 @@ class _YgValueSearchBarWidgetState<T> extends YgSearchBarWidgetState<T, _YgValue
   }
 
   @override
-  YgValueSearchProvider<T> get searchProvider => widget.searchProvider;
+  YgSearchProvider<T> get searchProvider => widget.searchProvider;
 }
