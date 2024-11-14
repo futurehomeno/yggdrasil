@@ -17,6 +17,7 @@ class YgSearchBarTheme extends ThemeExtension<YgSearchBarTheme> {
     required this.barPadding,
     required this.containerBorderRadius,
     required this.containerDefaultColor,
+    required this.containerFocusedColor,
     required this.containerHoveredColor,
     required this.contentHeight,
     required this.contentPadding,
@@ -34,6 +35,7 @@ class YgSearchBarTheme extends ThemeExtension<YgSearchBarTheme> {
   final EdgeInsets barPadding;
   final BorderRadius containerBorderRadius;
   final Color containerDefaultColor;
+  final Color containerFocusedColor;
   final Color containerHoveredColor;
   final double contentHeight;
   final EdgeInsets contentPadding;
@@ -51,6 +53,7 @@ class YgSearchBarTheme extends ThemeExtension<YgSearchBarTheme> {
     barPadding: _$YgSearchBarTheme.barPadding[0],
     containerBorderRadius: _$YgSearchBarTheme.containerBorderRadius[0],
     containerDefaultColor: _$YgSearchBarTheme.containerDefaultColor[0],
+    containerFocusedColor: _$YgSearchBarTheme.containerFocusedColor[0],
     containerHoveredColor: _$YgSearchBarTheme.containerHoveredColor[0],
     contentHeight: _$YgSearchBarTheme.contentHeight[0],
     contentPadding: _$YgSearchBarTheme.contentPadding[0],
@@ -69,6 +72,7 @@ class YgSearchBarTheme extends ThemeExtension<YgSearchBarTheme> {
     barPadding: _$YgSearchBarTheme.barPadding[1],
     containerBorderRadius: _$YgSearchBarTheme.containerBorderRadius[1],
     containerDefaultColor: _$YgSearchBarTheme.containerDefaultColor[1],
+    containerFocusedColor: _$YgSearchBarTheme.containerFocusedColor[1],
     containerHoveredColor: _$YgSearchBarTheme.containerHoveredColor[1],
     contentHeight: _$YgSearchBarTheme.contentHeight[1],
     contentPadding: _$YgSearchBarTheme.contentPadding[1],
@@ -87,6 +91,7 @@ class YgSearchBarTheme extends ThemeExtension<YgSearchBarTheme> {
     barPadding: _$YgSearchBarTheme.barPadding[2],
     containerBorderRadius: _$YgSearchBarTheme.containerBorderRadius[2],
     containerDefaultColor: _$YgSearchBarTheme.containerDefaultColor[2],
+    containerFocusedColor: _$YgSearchBarTheme.containerFocusedColor[2],
     containerHoveredColor: _$YgSearchBarTheme.containerHoveredColor[2],
     contentHeight: _$YgSearchBarTheme.contentHeight[2],
     contentPadding: _$YgSearchBarTheme.contentPadding[2],
@@ -105,6 +110,7 @@ class YgSearchBarTheme extends ThemeExtension<YgSearchBarTheme> {
     barPadding: _$YgSearchBarTheme.barPadding[3],
     containerBorderRadius: _$YgSearchBarTheme.containerBorderRadius[3],
     containerDefaultColor: _$YgSearchBarTheme.containerDefaultColor[3],
+    containerFocusedColor: _$YgSearchBarTheme.containerFocusedColor[3],
     containerHoveredColor: _$YgSearchBarTheme.containerHoveredColor[3],
     contentHeight: _$YgSearchBarTheme.contentHeight[3],
     contentPadding: _$YgSearchBarTheme.contentPadding[3],
@@ -131,6 +137,7 @@ class YgSearchBarTheme extends ThemeExtension<YgSearchBarTheme> {
     EdgeInsets? barPadding,
     BorderRadius? containerBorderRadius,
     Color? containerDefaultColor,
+    Color? containerFocusedColor,
     Color? containerHoveredColor,
     double? contentHeight,
     EdgeInsets? contentPadding,
@@ -150,6 +157,8 @@ class YgSearchBarTheme extends ThemeExtension<YgSearchBarTheme> {
           containerBorderRadius ?? this.containerBorderRadius,
       containerDefaultColor:
           containerDefaultColor ?? this.containerDefaultColor,
+      containerFocusedColor:
+          containerFocusedColor ?? this.containerFocusedColor,
       containerHoveredColor:
           containerHoveredColor ?? this.containerHoveredColor,
       contentHeight: contentHeight ?? this.contentHeight,
@@ -177,6 +186,8 @@ class YgSearchBarTheme extends ThemeExtension<YgSearchBarTheme> {
           t < 0.5 ? containerBorderRadius : other.containerBorderRadius,
       containerDefaultColor:
           Color.lerp(containerDefaultColor, other.containerDefaultColor, t)!,
+      containerFocusedColor:
+          Color.lerp(containerFocusedColor, other.containerFocusedColor, t)!,
       containerHoveredColor:
           Color.lerp(containerHoveredColor, other.containerHoveredColor, t)!,
       contentHeight: t < 0.5 ? contentHeight : other.contentHeight,
@@ -209,6 +220,8 @@ class YgSearchBarTheme extends ThemeExtension<YgSearchBarTheme> {
             const DeepCollectionEquality()
                 .equals(containerDefaultColor, other.containerDefaultColor) &&
             const DeepCollectionEquality()
+                .equals(containerFocusedColor, other.containerFocusedColor) &&
+            const DeepCollectionEquality()
                 .equals(containerHoveredColor, other.containerHoveredColor) &&
             const DeepCollectionEquality()
                 .equals(contentHeight, other.contentHeight) &&
@@ -236,6 +249,7 @@ class YgSearchBarTheme extends ThemeExtension<YgSearchBarTheme> {
       const DeepCollectionEquality().hash(barPadding),
       const DeepCollectionEquality().hash(containerBorderRadius),
       const DeepCollectionEquality().hash(containerDefaultColor),
+      const DeepCollectionEquality().hash(containerFocusedColor),
       const DeepCollectionEquality().hash(containerHoveredColor),
       const DeepCollectionEquality().hash(contentHeight),
       const DeepCollectionEquality().hash(contentPadding),

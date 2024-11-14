@@ -5,8 +5,6 @@ import 'package:fuzzy/data/result.dart';
 import 'package:fuzzy/fuzzy.dart';
 import 'package:yggdrasil/yggdrasil.dart';
 
-import 'yg_string_search_result.dart';
-
 mixin YgFuzzySearchProviderMixin<T extends YgStringSearchItem, R extends YgStringSearchResult>
     on YgStringSearchProvider {
   bool get searchSubtitle;

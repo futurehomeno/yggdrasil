@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:yggdrasil/yggdrasil.dart';
 import 'package:yggdrasil_demo/core/_core.dart';
-import 'package:yggdrasil_demo/screens/search/search_example_screen_mixin.dart';
+import 'package:yggdrasil_demo/screens/search/demo_search_provider.dart';
 import 'package:yggdrasil_demo/widgets/_widgets.dart';
 
 class SearchFieldScreen extends StatefulWidget {
@@ -20,21 +20,12 @@ class SearchFieldScreen extends StatefulWidget {
   State<SearchFieldScreen> createState() => _SearchFieldScreenState();
 }
 
-class _SearchFieldScreenState extends State<SearchFieldScreen> with SearchExampleScreenMixin {
+class _SearchFieldScreenState extends State<SearchFieldScreen> {
   final _controller = YgValueSearchController<int>();
 
   @override
   Widget build(BuildContext context) {
-    final searchProvider = YgFuzzySearchProvider<int>(
-      items: [
-        for (int i = 0; i < _searchResults.length; i++)
-          YgSearchItem<int>(
-            title: _searchResults[i],
-            value: i,
-            icon: YgIcons.map,
-          ),
-      ],
-    );
+    final searchProvider = DemoSearchProvider();
 
     return DemoScreen(
       componentName: 'SearchField',
@@ -226,33 +217,4 @@ class _SearchFieldScreenState extends State<SearchFieldScreen> with SearchExampl
       ),
     );
   }
-
-  static const List<String> _searchResults = [
-    'Holtegrenda, 8000, Ski',
-    'Holten, 8100, Misaer',
-    'Holtegata, 8011, Oslo',
-    'Holterveien, 8009, Bodø',
-    'Holtegard, 8012, Gol',
-    'Holtebakken, 8008, Tromsø',
-    'Holteveien, 8007, Stavanger',
-    'Holtegrenda, 8006, Kristiansand',
-    'Holtegata, 8005, Bergen',
-    'Holterveien, 8004, Trondheim',
-    'Holtegard, 8003, Hamar',
-    'Holtebakken, 8002, Ålesund',
-    'Holteveien, 8001, Drammen',
-    'Holtegrenda, 8000, Ski',
-    'Holten, 8100, Misaer',
-    'Holtegata, 8011, Oslo',
-    'Holterveien, 8009, Bodø',
-    'Holtegard, 8012, Gol',
-    'Holtebakken, 8008, Tromsø',
-    'Holteveien, 8007, Stavanger',
-    'Holtegrenda, 8006, Kristiansand',
-    'Holtegata, 8005, Bergen',
-    'Holterveien, 8004, Trondheim',
-    'Holtegard, 8003, Hamar',
-    'Holtebakken, 8002, Ålesund',
-    'Holteveien, 8001, Drammen',
-  ];
 }

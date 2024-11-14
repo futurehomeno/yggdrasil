@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:yggdrasil/yggdrasil.dart';
 import 'package:yggdrasil_demo/core/_core.dart';
-import 'package:yggdrasil_demo/screens/search/search_example_screen_mixin.dart';
+import 'package:yggdrasil_demo/screens/search/demo_search_provider.dart';
 import 'package:yggdrasil_demo/widgets/_widgets.dart';
 
 class SearchAppBarScreen extends StatefulWidget {
@@ -20,24 +20,14 @@ class SearchAppBarScreen extends StatefulWidget {
   State<SearchAppBarScreen> createState() => _SearchAppBarScreenState();
 }
 
-class _SearchAppBarScreenState extends State<SearchAppBarScreen> with SearchExampleScreenMixin {
+class _SearchAppBarScreenState extends State<SearchAppBarScreen> {
   bool _trailingAvatar = false;
   bool _customLeading = false;
   bool _automaticallyImplyLeading = true;
 
   @override
   Widget build(BuildContext context) {
-    final searchProvider = YgFuzzySearchProvider<int>(
-      items: [
-        for (int i = 0; i < _searchResults.length; i++)
-          YgSearchItem<int>(
-            title: _searchResults[i],
-            value: i,
-            icon: YgIcons.map,
-          ),
-      ],
-    );
-
+    final searchProvider = DemoSearchProvider();
     return DemoScreen(
       appBar: YgSearchAppBar(
         keyboardType: TextInputType.streetAddress,

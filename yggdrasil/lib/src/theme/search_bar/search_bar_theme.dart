@@ -50,6 +50,13 @@ class _$YgSearchBarTheme {
     professional_dark.FhColors.backgroundDisabled,
   ];
 
+  static const List<Color> containerFocusedColor = <Color>[
+    consumer_light.FhColors.backgroundDisabled,
+    consumer_dark.FhColors.backgroundDisabled,
+    professional_light.FhColors.backgroundDisabled,
+    professional_dark.FhColors.backgroundDisabled,
+  ];
+
   static const List<BorderRadius> containerBorderRadius = <BorderRadius>[
     consumer_light.FhRadii.xl,
     consumer_dark.FhRadii.xl,

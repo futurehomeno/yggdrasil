@@ -164,6 +164,11 @@ abstract class YgSearchBarWidgetState<T, W extends YgSearchBar<T>>
     extends StateWithYgStateAndStyle<W, YgSearchBarState, YgSearchBarStyle>
     with YgControllerManagerMixin
     implements YgSearchMixinInterface {
+  late final YgMaterialStatesControllerWithChangeCallback _materialController =
+      YgMaterialStatesControllerWithChangeCallback(
+    onStateChange: _handleMaterialStateChange,
+  );
+
   /// Manages the controller of this widget.
   late final YgControllerManager<YgSearchControllerAny<T>> _controllerManager = manageController(
     createController: createController,
@@ -198,10 +203,30 @@ abstract class YgSearchBarWidgetState<T, W extends YgSearchBar<T>>
   @override
   void updateState() {}
 
+  void _handleMaterialStateChange(WidgetState widgetState, bool toggled) {
+    switch (widgetState) {
+      case WidgetState.focused:
+        state.focused.value = toggled;
+        break;
+      case WidgetState.hovered:
+        state.hovered.value = toggled;
+        break;
+      case WidgetState.pressed:
+        state.pressed.value = toggled;
+        break;
+      default:
+    }
+  }
+
+  @override
+  void dispose() {
+    _materialController.dispose();
+    super.dispose();
+  }
+
   @override
   Widget build(BuildContext context) {
     final YgSearchControllerAny<T> controller = _controllerManager.value;
-    final TextEditingController textController = controller.textEditingController;
     final YgSearchBarTheme theme = context.searchBarTheme;
     final Widget? trailing = widget.trailing;
 
@@ -234,8 +259,8 @@ abstract class YgSearchBarWidgetState<T, W extends YgSearchBar<T>>
           type: MaterialType.transparency,
           clipBehavior: Clip.antiAlias,
           child: InkWell(
+            statesController: _materialController,
             focusNode: _focusNodeManager.value,
-            onHover: state.hovered.update,
             splashFactory: InkRipple.splashFactory,
             overlayColor: WidgetStatePropertyAll<Color>(Colors.white.withOpacity(0.05)),
             onTap: _controllerManager.value.open,
@@ -249,8 +274,8 @@ abstract class YgSearchBarWidgetState<T, W extends YgSearchBar<T>>
                     Expanded(
                       child: RepaintBoundary(
                         child: OptimizedListenableBuilder<String>(
-                          listenable: textController,
-                          getValue: () => textController.text,
+                          listenable: controller,
+                          getValue: () => controller.valueText,
                           builder: (BuildContext context, String value, Widget? child) {
                             final String? placeholder = widget.placeholder;
 

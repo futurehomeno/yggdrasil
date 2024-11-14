@@ -2,8 +2,6 @@ import 'dart:async';
 
 import 'package:yggdrasil/yggdrasil.dart';
 
-import 'yg_string_search_result.dart';
-
 mixin YgExactSearchProviderMixin<T extends YgStringSearchItem, R extends YgStringSearchResult>
     on YgStringSearchProvider {
   bool get searchSubtitle;

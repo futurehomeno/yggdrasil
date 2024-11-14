@@ -1,6 +1,4 @@
-import 'dart:ui';
-
-import 'package:flutter/src/animation/curves.dart';
+import 'package:flutter/animation.dart';
 import 'package:yggdrasil/src/theme/search_bar/search_bar_theme.dart';
 import 'package:yggdrasil/src/theme/theme.dart';
 import 'package:yggdrasil/src/utils/yg_states/_yg_states.dart';
@@ -16,6 +14,10 @@ class YgSearchBarStyle extends YgStyle<YgSearchBarState> {
   late final YgAnimatedProperty<Color> backgroundColor = animate(_resolveBackgroundColor);
 
   Color _resolveBackgroundColor() {
+    if (state.focused.value) {
+      return _theme.containerFocusedColor;
+    }
+
     if (state.hovered.value) {
       return _theme.containerHoveredColor;
     }
