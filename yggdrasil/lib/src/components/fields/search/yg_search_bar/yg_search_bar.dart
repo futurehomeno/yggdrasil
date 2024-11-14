@@ -38,9 +38,8 @@ abstract class YgSearchBar<T> extends StatefulWidget {
     ValueChanged<bool>? onFocusChanged,
     VoidCallback? onPressed,
     String? placeholder,
-    required YgValueSearchResultTextBuilder<T> resultTextBuilder,
-    required YgValueSearchResultsBuilder<T> resultsBuilder,
     YgSearchAction searchAction,
+    required YgValueSearchProvider<T> searchProvider,
     required TextCapitalization textCapitalization,
     Widget? trailing,
   }) = _YgValueSearchBar<T>;

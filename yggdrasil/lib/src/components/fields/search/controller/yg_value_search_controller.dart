@@ -26,7 +26,7 @@ class YgValueSearchController<T>
   @override
   bool get loading => _loadingResultText || _loadingResults;
   bool _loadingResults = false;
-  final bool _loadingResultText = false;
+  bool _loadingResultText = false;
 
   void _updateResults({bool force = false}) async {
     final YgValueSearchMixin<T, StatefulWidget>? state = _state;
@@ -39,21 +39,58 @@ class YgValueSearchController<T>
       return;
     }
 
-    _loadingResults = true;
     _lastHandledSearch = text;
-    notifyListeners();
-    _results = await state.resultsBuilder(text);
-    _loadingResults = false;
-    notifyListeners();
+    _updateLoadingResults(true);
+    _results = await state.searchProvider.buildResults(text);
+    _updateLoadingResults(false);
 
     // Call this again in case value has changed in the meantime.
     _updateResults();
   }
 
+  void _updateLoadingResultText(bool value) {
+    final bool wasLoading = _loadingResults || _loadingResultText;
+    final bool newLoading = _loadingResults || value;
+    _loadingResultText = value;
+    if (newLoading != wasLoading) {
+      notifyListeners();
+    }
+  }
+
+  void _updateLoadingResults(bool value) {
+    final bool wasLoading = _loadingResults || _loadingResultText;
+    final bool newLoading = value || _loadingResultText;
+    _loadingResults = value;
+    if (newLoading != wasLoading) {
+      notifyListeners();
+    }
+  }
+
+  void _updateResultText(T value) async {
+    final FutureOr<String?>? result = _state?.searchProvider.buildResultText(value);
+    final String? text;
+    if (result is Future<String?>) {
+      _updateLoadingResultText(true);
+      text = await result;
+      _updateLoadingResultText(false);
+    } else {
+      text = result;
+    }
+
+    close();
+
+    if (text == null) {
+      return;
+    }
+
+    textEditingController.text = text;
+  }
+
   @override
-  void onResultTapped(T? result) {
+  void onResultTapped(T result) {
     if (_value != result) {
       _value = result;
+      _updateResultText(result);
       notifyListeners();
     }
   }

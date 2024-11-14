@@ -13,8 +13,8 @@ class YgStringSearchController extends TextEditingController
   bool _loadingResults = false;
 
   @override
-  List<YgSearchResult<String>> get results => _results ?? const <YgSearchResult<String>>[];
-  List<YgSearchResult<String>>? _results;
+  List<YgStringSearchResult> get results => _results ?? const <YgStringSearchResult>[];
+  List<YgStringSearchResult>? _results;
 
   @override
   void notifyListeners() {
@@ -48,7 +48,7 @@ class YgStringSearchController extends TextEditingController
     _loadingResults = true;
     _lastHandledSearch = text;
     notifyListeners();
-    _results = await state.resultsBuilder(text);
+    _results = await state.searchProvider.buildResults(text);
     _loadingResults = false;
     notifyListeners();
 

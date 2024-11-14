@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:yggdrasil/src/components/fields/search/models/yg_string_search_result.dart';
 import 'package:yggdrasil/src/components/fields/search/widgets/hint_provider.dart';
 import 'package:yggdrasil/src/components/fields/search/widgets/optimized_listenable_builder.dart';
 import 'package:yggdrasil/src/components/fields/search/widgets/search_result_list_tile.dart';
@@ -32,10 +33,10 @@ class SearchScreen<T> extends StatelessWidget {
         builder: (HintProvider? hintProvider) {
           final Widget? hint = hintProvider?.hint;
 
-          return OptimizedListenableBuilder<List<YgSearchResult<T>>>(
+          return OptimizedListenableBuilder<List<YgStringSearchResult>>(
             listenable: controller,
             getValue: () => controller.results,
-            builder: (BuildContext context, List<YgSearchResult<T>> results, Widget? _) {
+            builder: (BuildContext context, List<YgStringSearchResult> results, Widget? _) {
               int childCount = results.length;
               int offset;
               if (hint != null) {
@@ -58,13 +59,28 @@ class SearchScreen<T> extends StatelessWidget {
                       );
                     }
 
-                    final YgSearchResult<T> result = results[index];
+                    final YgStringSearchResult result = results[index];
+
+                    void onTap() {
+                      if (controller is YgStringSearchController) {
+                        (controller as YgStringSearchController).onResultTapped('result');
+                      } else if (result is YgSearchResult<T>) {
+                        controller.onResultTapped(result.value);
+                      } else {
+                        // This should never happen, but just in case it does we
+                        // should be notified during development.
+                        assert(
+                          false,
+                          'Incorrect controller or result in SearchScreen',
+                        );
+                      }
+                    }
 
                     return SearchResultListTile(
                       title: result.title,
                       subtitle: result.subtitle,
                       icon: result.icon,
-                      onTap: () => controller.onResultTapped(result.value),
+                      onTap: onTap,
                     );
                   },
                   itemCount: childCount,

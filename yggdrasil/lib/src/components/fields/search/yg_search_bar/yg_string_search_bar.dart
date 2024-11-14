@@ -6,7 +6,7 @@ class YgStringSearchBar extends YgSearchBar<String> {
     required super.keyboardType,
     required super.autocorrect,
     required super.textCapitalization,
-    required this.resultsBuilder,
+    required this.searchProvider,
     YgStringSearchController? super.controller,
     super.completeAction,
     super.error,
@@ -24,19 +24,7 @@ class YgStringSearchBar extends YgSearchBar<String> {
     super.trailing,
   }) : super._();
 
-  /// Called to get the results list for the search screen / menu.
-  ///
-  /// Gets called every time the search text changes, if the previous call
-  /// returned a future, this builder will not be called again until that future
-  /// has resolved. If the value has changed since the last time this builder was
-  /// called, this builder will be called again, only with the most recent value.
-  ///
-  /// If this builder returns a future, for the duration of the future, a loading
-  /// indicator will be shown to the user.
-  ///
-  /// Results are bound to the [controller], so in case a different controller
-  /// gets assigned, the results will also change.
-  final YgStringSearchResultsBuilder resultsBuilder;
+  final YgStringSearchProvider searchProvider;
 
   @override
   State<YgStringSearchBar> createState() => _YgStringSearchBarState();
@@ -59,5 +47,5 @@ class _YgStringSearchBarState extends YgSearchBarWidgetState<String, YgStringSea
   }
 
   @override
-  YgStringSearchResultsBuilder get resultsBuilder => widget.resultsBuilder;
+  YgStringSearchProvider get searchProvider => widget.searchProvider;
 }

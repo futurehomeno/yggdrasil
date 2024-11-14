@@ -27,15 +27,25 @@ class _SearchAppBarScreenState extends State<SearchAppBarScreen> with SearchExam
 
   @override
   Widget build(BuildContext context) {
+    final searchProvider = YgFuzzyValueSearchProvider<int>(
+      items: [
+        for (int i = 0; i < _searchResults.length; i++)
+          YgValueSearchItem<int>(
+            title: _searchResults[i],
+            value: i,
+            icon: YgIcons.map,
+          ),
+      ],
+    );
+
     return DemoScreen(
       appBar: YgSearchAppBar(
         keyboardType: TextInputType.streetAddress,
         autocorrect: false,
         textCapitalization: TextCapitalization.sentences,
         placeholder: 'Default search field',
-        resultsBuilder: getResultsBuilder(),
         completeAction: YgCompleteAction.focusNext,
-        resultTextBuilder: resultTextBuilder,
+        searchProvider: searchProvider,
         automaticallyImplyLeading: _automaticallyImplyLeading,
         leading: getLeading(),
         trailing: getAvatar(),
@@ -93,4 +103,33 @@ class _SearchAppBarScreenState extends State<SearchAppBarScreen> with SearchExam
 
     return null;
   }
+
+  static const List<String> _searchResults = [
+    'Holtegrenda, 8000, Ski',
+    'Holten, 8100, Misaer',
+    'Holtegata, 8011, Oslo',
+    'Holterveien, 8009, Bodø',
+    'Holtegard, 8012, Gol',
+    'Holtebakken, 8008, Tromsø',
+    'Holteveien, 8007, Stavanger',
+    'Holtegrenda, 8006, Kristiansand',
+    'Holtegata, 8005, Bergen',
+    'Holterveien, 8004, Trondheim',
+    'Holtegard, 8003, Hamar',
+    'Holtebakken, 8002, Ålesund',
+    'Holteveien, 8001, Drammen',
+    'Holtegrenda, 8000, Ski',
+    'Holten, 8100, Misaer',
+    'Holtegata, 8011, Oslo',
+    'Holterveien, 8009, Bodø',
+    'Holtegard, 8012, Gol',
+    'Holtebakken, 8008, Tromsø',
+    'Holteveien, 8007, Stavanger',
+    'Holtegrenda, 8006, Kristiansand',
+    'Holtegata, 8005, Bergen',
+    'Holterveien, 8004, Trondheim',
+    'Holtegard, 8003, Hamar',
+    'Holtebakken, 8002, Ålesund',
+    'Holteveien, 8001, Drammen',
+  ];
 }

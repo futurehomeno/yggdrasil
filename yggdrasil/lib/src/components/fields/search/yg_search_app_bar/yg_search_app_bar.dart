@@ -4,6 +4,8 @@ import 'package:yggdrasil/src/components/buttons/yg_icon_button/yg_icon_button.d
 import 'package:yggdrasil/src/components/fields/enums/yg_complete_action.dart';
 import 'package:yggdrasil/src/components/fields/search/controller/_controller.dart';
 import 'package:yggdrasil/src/components/fields/search/enums/yg_search_action.dart';
+import 'package:yggdrasil/src/components/fields/search/models/string_search/yg_string_search_provider.dart';
+import 'package:yggdrasil/src/components/fields/search/models/value_search/yg_value_search_provider.dart';
 import 'package:yggdrasil/src/generated/icons/_icons.dart';
 import 'package:yggdrasil/src/theme/_theme.dart';
 
@@ -22,6 +24,7 @@ abstract class YgSearchAppBar<T> extends StatefulWidget implements PreferredSize
     FocusNode? focusNode,
     Widget? hint,
     String? initialQuery,
+    T? initialValue,
     List<TextInputFormatter>? inputFormatters,
     Key? key,
     required TextInputType keyboardType,
@@ -31,12 +34,11 @@ abstract class YgSearchAppBar<T> extends StatefulWidget implements PreferredSize
     ValueChanged<bool>? onFocusChanged,
     VoidCallback? onPressed,
     String? placeholder,
-    required YgValueSearchResultTextBuilder<T> resultTextBuilder,
-    required YgValueSearchResultsBuilder<T> resultsBuilder,
     YgSearchAction searchAction,
+    required YgValueSearchProvider<T> searchProvider,
     required TextCapitalization textCapitalization,
     Widget? trailing,
-  }) = YgValueSearchAppBar<T>;
+  }) = _YgValueSearchAppBar<T>;
 
   const YgSearchAppBar._({
     super.key,

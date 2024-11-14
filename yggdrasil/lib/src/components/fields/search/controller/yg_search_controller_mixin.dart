@@ -1,6 +1,9 @@
+import 'dart:async';
+
 import 'package:flutter/widgets.dart';
 import 'package:yggdrasil/src/components/fields/search/controller/yg_search_mixin_interface.dart';
 import 'package:yggdrasil/src/components/fields/search/models/yg_search_result.dart';
+import 'package:yggdrasil/src/components/fields/search/models/yg_string_search_result.dart';
 import 'package:yggdrasil/src/utils/_utils.dart';
 
 import 'yg_string_search_mixin.dart';
@@ -17,7 +20,7 @@ mixin YgSearchControllerMixin<T, CT, SearchMixin extends YgSearchMixinInterface>
 
   TextEditingController get textEditingController;
 
-  List<YgSearchResult<T>> get results;
+  List<YgStringSearchResult> get results;
 
   bool get loading;
 
