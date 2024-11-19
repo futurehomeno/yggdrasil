@@ -1,12 +1,12 @@
 import 'package:yggdrasil/src/components/fields/search/models/string_search/yg_string_search_item.dart';
 import 'package:yggdrasil/src/components/fields/search/models/string_search/yg_string_search_result.dart';
-import 'package:yggdrasil/src/components/fields/search/models/yg_fuzzy_search_provider_mixin.dart';
+import 'package:yggdrasil/src/components/fields/search/models/yg_fuzzy_search_session_mixin.dart';
 import 'package:yggdrasil/src/utils/yg_match_text/yg_text_match.dart';
 
 import 'yg_string_search_provider.dart';
 
 class YgFuzzyStringSearchProvider extends YgStringSearchProvider
-    with YgFuzzySearchProviderMixin<YgStringSearchItem, YgStringSearchResult> {
+    implements YgFuzzySearchProviderInterface<String, YgStringSearchItem, YgStringSearchResult> {
   YgFuzzyStringSearchProvider({
     required this.items,
     this.searchSubtitle = false,
@@ -24,6 +24,14 @@ class YgFuzzyStringSearchProvider extends YgStringSearchProvider
   @override
   final double threshold;
 
+  @override
+  YgStringSearchSession<YgStringSearchProvider> createSession() {
+    return YgFuzzyStringSearchSession();
+  }
+}
+
+class YgFuzzyStringSearchSession extends YgStringSearchSession<YgFuzzyStringSearchProvider>
+    with YgFuzzySearchSessionMixin<String, YgStringSearchItem, YgStringSearchResult, YgFuzzyStringSearchProvider> {
   @override
   YgStringSearchResult createResultFromMatches({
     required YgStringSearchItem item,

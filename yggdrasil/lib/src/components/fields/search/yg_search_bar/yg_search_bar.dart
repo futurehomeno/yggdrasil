@@ -160,10 +160,10 @@ abstract class YgSearchBar<T> extends StatefulWidget {
   final String? initialQuery;
 }
 
-abstract class YgSearchBarWidgetState<T, W extends YgSearchBar<T>>
+abstract class YgSearchBarWidgetState<T, W extends YgSearchBar<T>, R extends YgStringSearchResult>
     extends StateWithYgStateAndStyle<W, YgSearchBarState, YgSearchBarStyle>
     with YgControllerManagerMixin
-    implements YgSearchMixinInterface {
+    implements YgSearchMixinInterface<T, R> {
   late final YgMaterialStatesControllerWithChangeCallback _materialController =
       YgMaterialStatesControllerWithChangeCallback(
     onStateChange: _handleMaterialStateChange,
@@ -343,6 +343,7 @@ abstract class YgSearchBarWidgetState<T, W extends YgSearchBar<T>>
   @override
   void openScreen() {
     final YgSearchBarTheme theme = context.searchBarTheme;
+    _controllerManager.value.startSession();
 
     Navigator.of(context).push(
       SearchScreenRoute<T>(
@@ -394,6 +395,7 @@ abstract class YgSearchBarWidgetState<T, W extends YgSearchBar<T>>
       return;
     }
 
+    _controllerManager.value.endSession();
     YgEditingCompleteHelper.onComplete(
       onEditingComplete: widget.onEditingComplete,
       focusNode: _focusNodeManager.value,

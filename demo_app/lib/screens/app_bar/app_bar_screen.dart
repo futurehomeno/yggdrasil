@@ -110,7 +110,7 @@ class _AppBarScreenState extends State<AppBarScreen> {
           YgSection(
             title: 'Padding to allow the screen to scroll',
             child: DemoPlaceholder(
-              height: MediaQuery.of(context).size.height,
+              height: MediaQuery.sizeOf(context).height,
             ),
           ),
         ],

@@ -193,9 +193,10 @@ abstract class YgSearchField<T> extends StatefulWidget with StatefulWidgetDebugM
 
 typedef _YgSearchControllerManager<T> = YgControllerManager<YgSearchControllerAny<T>>;
 
-abstract class YgSearchFieldWidgetState<T, W extends YgSearchField<T>> extends StateWithYgState<W, YgSearchFieldState>
+abstract class YgSearchFieldWidgetState<T, W extends YgSearchField<T>, R extends YgStringSearchResult>
+    extends StateWithYgState<W, YgSearchFieldState>
     with YgControllerManagerMixin
-    implements YgSearchMixinInterface {
+    implements YgSearchMixinInterface<T, R> {
   /// Manages the controller of this widget.
   late final _YgSearchControllerManager<T> _controllerManager = manageController(
     createController: createController,
@@ -334,6 +335,7 @@ abstract class YgSearchFieldWidgetState<T, W extends YgSearchField<T>> extends S
   @override
   void openScreen() {
     final YgFieldDecorationTheme decorationTheme = context.fieldTheme.decorationTheme;
+    _controllerManager.value.startSession();
 
     // Get the radius based on the variant. Used to animate in the screen.
     final BorderRadius radius = switch (state.variant.value) {
@@ -391,6 +393,7 @@ abstract class YgSearchFieldWidgetState<T, W extends YgSearchField<T>> extends S
       return;
     }
 
+    _controllerManager.value.endSession();
     YgEditingCompleteHelper.onComplete(
       onEditingComplete: widget.onEditingComplete,
       focusNode: _focusNodeManager.value,

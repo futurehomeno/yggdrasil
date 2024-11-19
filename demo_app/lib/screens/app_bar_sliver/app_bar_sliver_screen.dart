@@ -36,7 +36,7 @@ class _AppBarSliverScreenState extends State<AppBarSliverScreen> {
         slivers: <Widget>[
           YgSliverAppBar(
             title: 'App bar',
-            leading: getLeading(),
+            leading: _getLeading(),
             automaticallyImplyLeading: _automaticallyImplyLeading,
             actions: _actions,
             variant: _variant,
@@ -141,7 +141,7 @@ class _AppBarSliverScreenState extends State<AppBarSliverScreen> {
             child: YgSection(
               title: 'Padding to allow the screen to scroll',
               child: DemoPlaceholder(
-                height: MediaQuery.of(context).size.height,
+                height: MediaQuery.sizeOf(context).height,
               ),
             ),
           ),
@@ -150,7 +150,7 @@ class _AppBarSliverScreenState extends State<AppBarSliverScreen> {
     );
   }
 
-  Widget? getLeading() {
+  Widget? _getLeading() {
     if (_customLeading) {
       return YgIconButton(
         icon: YgIcons.info,

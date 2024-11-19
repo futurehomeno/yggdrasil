@@ -21,16 +21,22 @@ class SearchFieldScreen extends StatefulWidget {
 }
 
 class _SearchFieldScreenState extends State<SearchFieldScreen> {
-  final _controller = YgValueSearchController<int>();
+  final YgValueSearchController<int> _controller = YgValueSearchController<int>();
+
+  @override
+  void dispose() {
+    _controller.dispose();
+    super.dispose();
+  }
 
   @override
   Widget build(BuildContext context) {
-    final searchProvider = DemoSearchProvider();
+    final DemoSearchProvider searchProvider = DemoSearchProvider();
 
     return DemoScreen(
       componentName: 'SearchField',
       child: Column(
-        children: [
+        children: <Widget>[
           YgSection.column(
             title: 'Variations',
             children: <Widget>[
@@ -111,7 +117,7 @@ class _SearchFieldScreenState extends State<SearchFieldScreen> {
                 textCapitalization: TextCapitalization.sentences,
                 label: 'With loading',
                 completeAction: YgCompleteAction.focusNext,
-                searchProvider: searchProvider,
+                searchProvider: DemoSearchProvider(loading: true),
               ),
               YgSearchField<int>(
                 keyboardType: TextInputType.streetAddress,
@@ -122,9 +128,9 @@ class _SearchFieldScreenState extends State<SearchFieldScreen> {
                   variant: YgCardVariant.outlined,
                   child: YgListTile(
                     title: 'Unable to find your address?',
-                    subtitle: "Make sure your address is spelled correctly or"
-                        " enter the address manually.",
-                    leadingWidgets: [YgIcon(YgIcons.plus)],
+                    subtitle: 'Make sure your address is spelled correctly or'
+                        ' enter the address manually.',
+                    leadingWidgets: const <YgIcon>[YgIcon(YgIcons.plus)],
                     onTap: () {},
                   ),
                 ),
@@ -144,7 +150,7 @@ class _SearchFieldScreenState extends State<SearchFieldScreen> {
           ),
           YgSection.column(
             title: 'Variants',
-            children: [
+            children: <YgSearchField<int>>[
               YgSearchField<int>(
                 label: 'Standard',
                 keyboardType: TextInputType.streetAddress,
@@ -167,7 +173,7 @@ class _SearchFieldScreenState extends State<SearchFieldScreen> {
           ),
           YgSection.column(
             title: 'Sizes',
-            children: [
+            children: <YgSearchField<int>>[
               YgSearchField<int>(
                 label: 'Medium',
                 keyboardType: TextInputType.streetAddress,
@@ -190,7 +196,7 @@ class _SearchFieldScreenState extends State<SearchFieldScreen> {
           ),
           YgSection.column(
             title: 'Custom controller',
-            children: [
+            children: <StatefulWidgetDebugMixin>[
               YgSearchField<int>(
                 label: 'Custom controller',
                 keyboardType: TextInputType.streetAddress,
@@ -200,17 +206,17 @@ class _SearchFieldScreenState extends State<SearchFieldScreen> {
                 controller: _controller,
               ),
               YgButton(
-                child: Text('Set value'),
-                onPressed: () => _controller.searchQuery = 'Custom value',
+                child: const Text('Set value'),
+                onPressed: () => _controller.value = 3,
               ),
               YgButton(
-                child: Text('Clear value'),
-                onPressed: () => _controller.clear,
+                child: const Text('Clear value'),
+                onPressed: () => _controller.clear(),
               ),
               YgButton(
-                child: Text('Open search field'),
+                child: const Text('Open search field'),
                 onPressed: () => _controller.open(),
-              )
+              ),
             ].withVerticalSpacing(10.0),
           ),
         ],

@@ -30,7 +30,7 @@ class YgStringSearchBar extends YgSearchBar<String> {
   State<YgStringSearchBar> createState() => _YgStringSearchBarState();
 }
 
-class _YgStringSearchBarState extends YgSearchBarWidgetState<String, YgStringSearchBar>
+class _YgStringSearchBarState extends YgSearchBarWidgetState<String, YgStringSearchBar, YgStringSearchResult>
     with YgStringSearchMixin<YgStringSearchBar> {
   @override
   YgSearchControllerAny<String> createController() {

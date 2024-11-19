@@ -1,10 +1,16 @@
+import 'dart:async';
+
 import 'package:yggdrasil/yggdrasil.dart';
 
 class DemoSearchProvider extends YgFuzzySearchProvider<int> {
-  DemoSearchProvider() : super(items: _searchResults);
+  DemoSearchProvider({
+    this.loading = false,
+  }) : super(items: _searchResults);
+
+  final bool loading;
 
   // Random non existing addresses
-  static const List<YgSearchItem<int>> _searchResults = [
+  static const List<YgSearchItem<int>> _searchResults = <YgSearchItem<int>>[
     YgSearchItem<int>(title: 'Aarhusvej, 1000, Berlin', value: 0, icon: YgIcons.map),
     YgSearchItem<int>(title: 'Akersgata, 1026, Munich', value: 26, icon: YgIcons.map),
     YgSearchItem<int>(title: 'Bakken, 1001, Stockholm', value: 1, icon: YgIcons.map),
@@ -60,4 +66,39 @@ class DemoSearchProvider extends YgFuzzySearchProvider<int> {
     YgSearchItem<int>(title: 'Zahlgata, 1051, Amsterdam', value: 51, icon: YgIcons.map),
     YgSearchItem<int>(title: 'Zinkgata, 1025, Lisbon', value: 25, icon: YgIcons.map),
   ];
+
+  @override
+  YgFuzzySearchSession<int> createSession() {
+    return DemoSearchSession();
+  }
+}
+
+class DemoSearchSession extends YgFuzzySearchSession<int> {
+  @override
+  void initSession() {
+    print('created search session --------------------------------------------');
+  }
+
+  @override
+  void dispose() {
+    print('disposed session --------------------------------------------------');
+  }
+
+  @override
+  FutureOr<String?> buildResultText(int value) async {
+    if ((provider as DemoSearchProvider).loading) {
+      await Future<void>.delayed(const Duration(milliseconds: 500));
+    }
+
+    return super.buildResultText(value);
+  }
+
+  @override
+  FutureOr<List<YgSearchResult<int>>?> buildResults(String query) async {
+    if ((provider as DemoSearchProvider).loading) {
+      await Future<void>.delayed(const Duration(milliseconds: 500));
+    }
+
+    return super.buildResults(query);
+  }
 }

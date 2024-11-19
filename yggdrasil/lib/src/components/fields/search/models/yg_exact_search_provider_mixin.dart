@@ -1,24 +1,31 @@
 import 'dart:async';
 
-import 'package:yggdrasil/yggdrasil.dart';
+import 'package:yggdrasil/src/components/fields/search/models/string_search/yg_string_search_item.dart';
+import 'package:yggdrasil/src/components/fields/search/models/string_search/yg_string_search_result.dart';
+import 'package:yggdrasil/src/components/fields/search/models/yg_base_search_provider.dart';
+import 'package:yggdrasil/src/utils/yg_match_text/yg_text_match.dart';
 
-mixin YgExactSearchProviderMixin<T extends YgStringSearchItem, R extends YgStringSearchResult>
-    on YgStringSearchProvider {
+abstract class YgExactSearchProviderInterface<Value, Item extends YgStringSearchItem,
+    Result extends YgStringSearchResult> implements YgBaseSearchProvider<Value, Result> {
   bool get searchSubtitle;
-  List<T> get items;
+  List<Item> get items;
+}
 
+mixin YgExactSearchSessionMixin<Value, Item extends YgStringSearchItem, Result extends YgStringSearchResult,
+        Provider extends YgExactSearchProviderInterface<Value, Item, Result>>
+    on YgBaseSearchSession<Value, Result, Provider> {
   @override
-  FutureOr<List<R>?> buildResults(String query) {
-    final List<_ResultWithScore<R>> results = <_ResultWithScore<R>>[];
+  FutureOr<List<Result>?> buildResults(String query) {
+    final List<_ResultWithScore<Result>> results = <_ResultWithScore<Result>>[];
 
-    for (final T item in items) {
+    for (final Item item in provider.items) {
       // Get title index
       final int titleIndex = item.title.indexOf(query);
 
       // Get subtitle index
       final String? subtitle = item.subtitle;
       final int subtitleIndex;
-      if (searchSubtitle && subtitle != null) {
+      if (provider.searchSubtitle && subtitle != null) {
         subtitleIndex = subtitle.indexOf(query);
       } else {
         subtitleIndex = -1;
@@ -62,17 +69,17 @@ mixin YgExactSearchProviderMixin<T extends YgStringSearchItem, R extends YgStrin
 
     results.sort(
       (
-        _ResultWithScore<R> a,
-        _ResultWithScore<R> b,
+        _ResultWithScore<Result> a,
+        _ResultWithScore<Result> b,
       ) =>
           a.score.compareTo(b.score),
     );
 
-    return results.map((_ResultWithScore<R> entry) => entry.result).toList();
+    return results.map((_ResultWithScore<Result> entry) => entry.result).toList();
   }
 
-  R createResultFromMatches({
-    required T item,
+  Result createResultFromMatches({
+    required Item item,
     required List<YgTextMatch> titleMatches,
     required List<YgTextMatch>? subtitleMatches,
   });

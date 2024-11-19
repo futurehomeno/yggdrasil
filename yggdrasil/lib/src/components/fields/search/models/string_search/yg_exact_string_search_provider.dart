@@ -6,7 +6,7 @@ import 'yg_string_search_item.dart';
 import 'yg_string_search_provider.dart';
 
 class YgExactStringSearchProvider extends YgStringSearchProvider
-    with YgExactSearchProviderMixin<YgStringSearchItem, YgStringSearchResult> {
+    implements YgExactSearchProviderInterface<String, YgStringSearchItem, YgStringSearchResult> {
   YgExactStringSearchProvider({
     required this.items,
     this.searchSubtitle = false,
@@ -19,14 +19,22 @@ class YgExactStringSearchProvider extends YgStringSearchProvider
   final List<YgStringSearchItem> items;
 
   @override
+  YgExactStringSearchSession createSession() {
+    return YgExactStringSearchSession();
+  }
+}
+
+class YgExactStringSearchSession extends YgStringSearchSession<YgExactStringSearchProvider>
+    with YgExactSearchSessionMixin<String, YgStringSearchItem, YgStringSearchResult, YgExactStringSearchProvider> {
+  @override
   YgStringSearchResult createResultFromMatches({
     required YgStringSearchItem item,
     required List<YgTextMatch> titleMatches,
     required List<YgTextMatch>? subtitleMatches,
   }) {
     return item.createResult(
-      subtitleMatches: subtitleMatches,
       titleMatches: titleMatches,
+      subtitleMatches: subtitleMatches,
     );
   }
 }

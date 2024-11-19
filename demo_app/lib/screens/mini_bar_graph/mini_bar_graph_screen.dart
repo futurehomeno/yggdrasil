@@ -18,7 +18,7 @@ class MiniBarGraphScreen extends StatelessWidget {
     );
   }
 
-  static const _defaultBars = [
+  static const List<YgBarGraphBar> _defaultBars = <YgBarGraphBar>[
     YgBarGraphBar(value: -88, variant: BarVariant.low, metric: 'øre', valueText: '-88'),
     YgBarGraphBar(value: 50, variant: BarVariant.low, metric: 'øre', valueText: '50'),
     YgBarGraphBar(value: 180, variant: BarVariant.high, metric: 'øre', valueText: '180'),
@@ -56,7 +56,7 @@ class MiniBarGraphScreen extends StatelessWidget {
           YgSection(
             title: 'YgMiniBarGraph in a large card',
             child: Row(
-              children: [
+              children: <GraphCard>[
                 GraphCard(
                   child: _buildDefaultBarGraph(),
                 ),
@@ -69,7 +69,7 @@ class MiniBarGraphScreen extends StatelessWidget {
           YgSection(
             title: 'YgMiniBarGraph in a medium card',
             child: Row(
-              children: [
+              children: <GraphCard>[
                 GraphCard(
                   child: _buildDefaultBarGraph(),
                 ),
@@ -85,7 +85,7 @@ class MiniBarGraphScreen extends StatelessWidget {
           YgSection(
             title: 'YgMiniBarGraph in a small card',
             child: Row(
-              children: [
+              children: <GraphCard>[
                 GraphCard(
                   child: _buildDefaultBarGraph(),
                 ),
@@ -106,7 +106,7 @@ class MiniBarGraphScreen extends StatelessWidget {
     );
   }
 
-  _buildDefaultBarGraph({
+  YgMiniBarGraph _buildDefaultBarGraph({
     List<YgBarGraphBar>? bars = _defaultBars,
     int minBarCount = 9,
     int currentBarIndex = 2,
@@ -121,14 +121,14 @@ class MiniBarGraphScreen extends StatelessWidget {
   }
 
   List<YgBarGraphBar> _generateGraphData(int count, int seed, [bool withVariants = true]) {
-    final random = Random(seed);
+    final Random random = Random(seed);
 
     return List<YgBarGraphBar>.generate(
       count,
       (int index) {
-        final value = (random.nextDouble() * 200).floor();
+        final int value = (random.nextDouble() * 200).floor();
 
-        BarVariant? variant = null;
+        BarVariant? variant;
         if (withVariants) {
           if (value > 100) {
             variant = BarVariant.high;
@@ -164,7 +164,7 @@ class GraphCard extends StatelessWidget {
         child: AspectRatio(
           aspectRatio: 1,
           child: Padding(
-            padding: EdgeInsets.all(10.0),
+            padding: const EdgeInsets.all(10.0),
             child: child,
           ),
         ),

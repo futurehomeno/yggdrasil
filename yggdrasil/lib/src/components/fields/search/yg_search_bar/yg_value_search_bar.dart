@@ -33,7 +33,7 @@ class _YgValueSearchBar<T> extends YgSearchBar<T> {
   State<_YgValueSearchBar<T>> createState() => _YgValueSearchBarWidgetState<T>();
 }
 
-class _YgValueSearchBarWidgetState<T> extends YgSearchBarWidgetState<T, _YgValueSearchBar<T>>
+class _YgValueSearchBarWidgetState<T> extends YgSearchBarWidgetState<T, _YgValueSearchBar<T>, YgSearchResult<T>>
     with YgValueSearchMixin<T, _YgValueSearchBar<T>> {
   @override
   YgSearchControllerAny<T> createController() {

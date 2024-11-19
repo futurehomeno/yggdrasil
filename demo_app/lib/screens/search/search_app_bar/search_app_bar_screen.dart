@@ -27,15 +27,14 @@ class _SearchAppBarScreenState extends State<SearchAppBarScreen> {
 
   @override
   Widget build(BuildContext context) {
-    final searchProvider = DemoSearchProvider();
     return DemoScreen(
-      appBar: YgSearchAppBar(
+      appBar: YgSearchAppBar<int>(
         keyboardType: TextInputType.streetAddress,
         autocorrect: false,
         textCapitalization: TextCapitalization.sentences,
         placeholder: 'Default search field',
         completeAction: YgCompleteAction.focusNext,
-        searchProvider: searchProvider,
+        searchProvider: DemoSearchProvider(),
         automaticallyImplyLeading: _automaticallyImplyLeading,
         leading: getLeading(),
         trailing: getAvatar(),
@@ -85,7 +84,7 @@ class _SearchAppBarScreenState extends State<SearchAppBarScreen> {
 
   Widget? getAvatar() {
     if (_trailingAvatar) {
-      return YgAvatar(
+      return const YgAvatar(
         initials: 'TR',
         size: YgAvatarSize.medium,
       );
@@ -93,33 +92,4 @@ class _SearchAppBarScreenState extends State<SearchAppBarScreen> {
 
     return null;
   }
-
-  static const List<String> _searchResults = [
-    'Holtegrenda, 8000, Ski',
-    'Holten, 8100, Misaer',
-    'Holtegata, 8011, Oslo',
-    'Holterveien, 8009, Bodø',
-    'Holtegard, 8012, Gol',
-    'Holtebakken, 8008, Tromsø',
-    'Holteveien, 8007, Stavanger',
-    'Holtegrenda, 8006, Kristiansand',
-    'Holtegata, 8005, Bergen',
-    'Holterveien, 8004, Trondheim',
-    'Holtegard, 8003, Hamar',
-    'Holtebakken, 8002, Ålesund',
-    'Holteveien, 8001, Drammen',
-    'Holtegrenda, 8000, Ski',
-    'Holten, 8100, Misaer',
-    'Holtegata, 8011, Oslo',
-    'Holterveien, 8009, Bodø',
-    'Holtegard, 8012, Gol',
-    'Holtebakken, 8008, Tromsø',
-    'Holteveien, 8007, Stavanger',
-    'Holtegrenda, 8006, Kristiansand',
-    'Holtegata, 8005, Bergen',
-    'Holterveien, 8004, Trondheim',
-    'Holtegard, 8003, Hamar',
-    'Holtebakken, 8002, Ålesund',
-    'Holteveien, 8001, Drammen',
-  ];
 }

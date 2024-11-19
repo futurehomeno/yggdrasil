@@ -2,9 +2,8 @@ import 'dart:async';
 
 import 'package:flutter/widgets.dart';
 import 'package:yggdrasil/src/components/fields/search/controller/yg_search_mixin_interface.dart';
-import 'package:yggdrasil/src/components/fields/search/models/string_search/yg_string_search_result.dart';
-import 'package:yggdrasil/src/components/fields/search/models/value_search/yg_search_result.dart';
 import 'package:yggdrasil/src/utils/_utils.dart';
+import 'package:yggdrasil/yggdrasil.dart';
 
 import 'yg_string_search_mixin.dart';
 import 'yg_value_search_mixin.dart';
@@ -12,11 +11,13 @@ import 'yg_value_search_mixin.dart';
 part 'yg_string_search_controller.dart';
 part 'yg_value_search_controller.dart';
 
-typedef YgSearchControllerAny<T> = YgSearchControllerMixin<T, Object?, YgSearchMixinInterface>;
+typedef YgSearchControllerAny<Value> = YgSearchControllerMixin<Value, Object?, YgStringSearchResult,
+    YgSearchMixinInterface<Value, YgStringSearchResult>>;
 
-mixin YgSearchControllerMixin<T, CT, SearchMixin extends YgSearchMixinInterface> on ChangeNotifier
+mixin YgSearchControllerMixin<Value, ControllerValue, Result extends YgStringSearchResult,
+        SearchMixin extends YgSearchMixinInterface<Value, Result>> on ChangeNotifier
     implements YgAttachable<SearchMixin>, YgDisposable {
-  CT get value;
+  ControllerValue get value;
 
   String get valueText;
 
@@ -26,13 +27,16 @@ mixin YgSearchControllerMixin<T, CT, SearchMixin extends YgSearchMixinInterface>
 
   bool get loading;
 
-  void onResultTapped(T result);
+  void onResultTapped(Value result);
 
   void clear();
 
   SearchMixin? _state;
 
   bool _initializing = true;
+
+  void endSession({bool force = false});
+  void startSession();
 
   @override
   void notifyListeners() {
@@ -65,6 +69,7 @@ mixin YgSearchControllerMixin<T, CT, SearchMixin extends YgSearchMixinInterface>
 
   @override
   void detach() {
+    endSession(force: true);
     _state = null;
     _initializing = true;
   }

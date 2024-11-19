@@ -35,7 +35,7 @@ class _YgValueSearchField<T> extends YgSearchField<T> {
   State<YgSearchField<T>> createState() => _YgValueSearchFieldState<T>();
 }
 
-class _YgValueSearchFieldState<T> extends YgSearchFieldWidgetState<T, _YgValueSearchField<T>>
+class _YgValueSearchFieldState<T> extends YgSearchFieldWidgetState<T, _YgValueSearchField<T>, YgSearchResult<T>>
     with YgValueSearchMixin<T, _YgValueSearchField<T>> {
   @override
   YgSearchControllerAny<T> createController() {

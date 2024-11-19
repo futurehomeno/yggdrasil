@@ -38,7 +38,7 @@ class YgStringSearchField extends YgSearchField<String> {
   State<YgStringSearchField> createState() => _YgStringSearchFieldState();
 }
 
-class _YgStringSearchFieldState extends YgSearchFieldWidgetState<String, YgStringSearchField>
+class _YgStringSearchFieldState extends YgSearchFieldWidgetState<String, YgStringSearchField, YgStringSearchResult>
     with YgStringSearchMixin<YgStringSearchField> {
   @override
   YgSearchControllerAny<String> createController() {
