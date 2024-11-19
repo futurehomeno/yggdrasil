@@ -5,11 +5,11 @@ import 'package:yggdrasil/src/components/fields/search/controller/yg_search_mixi
 import 'package:yggdrasil/src/utils/_utils.dart';
 import 'package:yggdrasil/yggdrasil.dart';
 
-import 'yg_string_search_mixin.dart';
-import 'yg_value_search_mixin.dart';
+import 'string_search/yg_string_search_mixin.dart';
+import 'value_search/yg_value_search_mixin.dart';
 
-part 'yg_string_search_controller.dart';
-part 'yg_value_search_controller.dart';
+part 'string_search/yg_string_search_controller.dart';
+part 'value_search/yg_value_search_controller.dart';
 
 typedef YgSearchControllerAny<Value> = YgSearchControllerMixin<Value, Object?, YgStringSearchResult,
     YgSearchMixinInterface<Value, YgStringSearchResult>>;

@@ -2,9 +2,9 @@
 
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:yggdrasil/src/components/fields/search/controller/string_search/yg_string_search_mixin.dart';
+import 'package:yggdrasil/src/components/fields/search/controller/value_search/yg_value_search_mixin.dart';
 import 'package:yggdrasil/src/components/fields/search/controller/yg_search_mixin_interface.dart';
-import 'package:yggdrasil/src/components/fields/search/controller/yg_string_search_mixin.dart';
-import 'package:yggdrasil/src/components/fields/search/controller/yg_value_search_mixin.dart';
 import 'package:yggdrasil/src/components/fields/search/widgets/hint_provider.dart';
 import 'package:yggdrasil/src/components/fields/search/widgets/mobile_search_screen/_mobile_search_screen.dart';
 import 'package:yggdrasil/src/components/fields/search/widgets/optimized_listenable_builder.dart';
@@ -18,8 +18,8 @@ import 'package:yggdrasil/yggdrasil.dart';
 
 import 'yg_search_field_state.dart';
 
-part 'yg_string_search_field.dart';
-part 'yg_value_search_field.dart';
+part 'string_search/yg_string_search_field.dart';
+part 'value_search/yg_value_search_field.dart';
 
 /// A field which when opened allows the user to search for a value.
 ///
