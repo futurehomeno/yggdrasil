@@ -1,4 +1,4 @@
-part of 'yg_search_controller_mixin.dart';
+part of '../yg_search_controller_mixin.dart';
 
 class YgValueSearchController<Value>
     with
@@ -10,6 +10,15 @@ class YgValueSearchController<Value>
         _value = initialValue {
     _textEditingController.addListener(_updateResults);
   }
+
+  YgValueSearchController.fromValue({
+    TextEditingValue? textValue,
+    Value? value,
+    List<YgSearchResult<Value>>? results,
+  })  : _textEditingController = TextEditingController.fromValue(textValue),
+        _value = value,
+        _results = results,
+        _valueText = textValue?.text ?? '';
 
   final TextEditingController _textEditingController;
 

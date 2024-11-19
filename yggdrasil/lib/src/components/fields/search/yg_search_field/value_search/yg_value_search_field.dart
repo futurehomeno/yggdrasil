@@ -1,4 +1,4 @@
-part of 'yg_search_field.dart';
+part of '../yg_search_field.dart';
 
 class _YgValueSearchField<T> extends YgSearchField<T> {
   const _YgValueSearchField({

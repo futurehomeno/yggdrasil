@@ -1,4 +1,4 @@
-part of 'yg_search_controller_mixin.dart';
+part of '../yg_search_controller_mixin.dart';
 
 class YgStringSearchController extends TextEditingController
     with YgSearchControllerMixin<String, TextEditingValue, YgStringSearchResult, YgStringSearchMixin<StatefulWidget>> {

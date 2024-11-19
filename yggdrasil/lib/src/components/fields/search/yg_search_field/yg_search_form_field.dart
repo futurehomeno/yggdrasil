@@ -3,7 +3,7 @@ import 'package:flutter/services.dart';
 import 'package:yggdrasil/src/components/fields/helpers/yg_validate_helper.dart';
 import 'package:yggdrasil/yggdrasil.dart';
 
-import 'yg_restorable_search_controller.dart';
+import '../controller/yg_restorable_value_search_controller.dart';
 
 /// The [FormField] variant of the [YgSearchField].
 class YgSearchFormField<T> extends FormField<T> {
@@ -11,8 +11,6 @@ class YgSearchFormField<T> extends FormField<T> {
     this.controller,
     required SearchFieldKey<T> super.key,
     required String label,
-    required YgSearchResultTextBuilder<T> resultTextBuilder,
-    required YgSearchResultsBuilder<T> resultsBuilder,
     required TextInputType keyboardType,
     required bool autocorrect,
     required TextCapitalization textCapitalization,
@@ -90,7 +88,7 @@ class YgSearchFormField<T> extends FormField<T> {
 }
 
 class YgSearchFormFieldState<T> extends FormFieldState<T> {
-  YgRestorableSearchController<T>? _controller;
+  YgRestorableValueSearchController<T>? _controller;
 
   YgSearchController<T> get _effectiveController => _formField.controller ?? _controller!.value;
 
@@ -117,8 +115,9 @@ class YgSearchFormFieldState<T> extends FormFieldState<T> {
 
   void _createLocalController([TextEditingValue? value]) {
     assert(_controller == null);
-    _controller =
-        value == null ? YgRestorableSearchController<T>() : YgRestorableSearchController<T>.fromValue(value: value);
+    _controller = value == null
+        ? YgRestorableValueSearchController<T>()
+        : YgRestorableValueSearchController<T>.fromValue(textValue: value);
     if (!restorePending) {
       _registerController();
     }

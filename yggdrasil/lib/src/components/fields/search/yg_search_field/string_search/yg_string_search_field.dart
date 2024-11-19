@@ -1,4 +1,4 @@
-part of 'yg_search_field.dart';
+part of '../yg_search_field.dart';
 
 // TODO(Tim): Move this to generic factory constructors once this has been
 // implemented https://github.com/dart-lang/sdk/issues/30041
