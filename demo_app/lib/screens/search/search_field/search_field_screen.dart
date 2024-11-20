@@ -22,6 +22,9 @@ class SearchFieldScreen extends StatefulWidget {
 
 class _SearchFieldScreenState extends State<SearchFieldScreen> {
   final YgValueSearchController<int> _controller = YgValueSearchController<int>();
+  final FormFieldKey<int> _valueSearchKey = FormFieldKey<int>();
+  final TextFieldKey _stringSearchKey = TextFieldKey();
+  final FormKey _formKey = FormKey();
 
   @override
   void dispose() {
@@ -32,6 +35,7 @@ class _SearchFieldScreenState extends State<SearchFieldScreen> {
   @override
   Widget build(BuildContext context) {
     final DemoSearchProvider searchProvider = DemoSearchProvider();
+    final DemoStringSearchProvider stringSearchProvider = DemoStringSearchProvider();
 
     return DemoScreen(
       componentName: 'SearchField',
@@ -47,6 +51,7 @@ class _SearchFieldScreenState extends State<SearchFieldScreen> {
                 label: 'Default search field',
                 completeAction: YgCompleteAction.focusNext,
                 searchProvider: searchProvider,
+                onChanged: (int value) => print('aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa\n$value'),
               ),
               YgSearchField<int>(
                 keyboardType: TextInputType.streetAddress,
@@ -194,6 +199,38 @@ class _SearchFieldScreenState extends State<SearchFieldScreen> {
               ),
             ].withVerticalSpacing(10.0),
           ),
+          Form(
+            key: _formKey,
+            child: YgSection.column(
+              title: 'Form example',
+              children: <Widget>[
+                YgSearchFormField<int>(
+                  key: _valueSearchKey,
+                  label: 'Value search',
+                  keyboardType: TextInputType.streetAddress,
+                  autocorrect: false,
+                  textCapitalization: TextCapitalization.sentences,
+                  searchProvider: searchProvider,
+                  completeAction: YgCompleteAction.focusNext,
+                  size: YgFieldSize.large,
+                ),
+                YgStringSearchFormField(
+                  key: _stringSearchKey,
+                  label: 'String search',
+                  keyboardType: TextInputType.streetAddress,
+                  autocorrect: false,
+                  textCapitalization: TextCapitalization.sentences,
+                  searchProvider: stringSearchProvider,
+                  completeAction: YgCompleteAction.focusNext,
+                  size: YgFieldSize.large,
+                ),
+                YgButton(
+                  onPressed: _onSubmit,
+                  child: const Text('Submit'),
+                ),
+              ].withVerticalSpacing(15),
+            ),
+          ),
           YgSection.column(
             title: 'Custom controller',
             children: <StatefulWidgetDebugMixin>[
@@ -220,6 +257,23 @@ class _SearchFieldScreenState extends State<SearchFieldScreen> {
             ].withVerticalSpacing(10.0),
           ),
         ],
+      ),
+    );
+  }
+
+  void _onSubmit() {
+    FocusScope.of(context).unfocus();
+
+    if (!_formKey.validate()) {
+      return;
+    }
+
+    final String valueSearch = _valueSearchKey.value?.toString() ?? '';
+    final String stringSearch = _stringSearchKey.value ?? '';
+
+    YgSnackBarManager.of(context).showSnackBar(
+      YgSnackBar(
+        message: 'Submitted form with $valueSearch and $stringSearch.',
       ),
     );
   }

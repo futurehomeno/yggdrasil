@@ -5,8 +5,8 @@ import 'package:flutter/material.dart';
 /// More efficient than a normal [ListenableBuilder] in cases where a listenable
 /// has multiple values which change a lot independent of each other, and you
 /// only need one value.
-class OptimizedListenableBuilder<T> extends StatefulWidget {
-  const OptimizedListenableBuilder({
+class YgOptimizedListenableBuilder<T> extends StatefulWidget {
+  const YgOptimizedListenableBuilder({
     super.key,
     required this.getValue,
     required this.builder,
@@ -20,10 +20,10 @@ class OptimizedListenableBuilder<T> extends StatefulWidget {
   final Widget? child;
 
   @override
-  State<OptimizedListenableBuilder<T>> createState() => _OptimizedListenableBuilderState<T>();
+  State<YgOptimizedListenableBuilder<T>> createState() => _YgOptimizedListenableBuilderState<T>();
 }
 
-class _OptimizedListenableBuilderState<T> extends State<OptimizedListenableBuilder<T>> {
+class _YgOptimizedListenableBuilderState<T> extends State<YgOptimizedListenableBuilder<T>> {
   T? _value;
 
   @override
@@ -34,7 +34,7 @@ class _OptimizedListenableBuilderState<T> extends State<OptimizedListenableBuild
   }
 
   @override
-  void didUpdateWidget(covariant OptimizedListenableBuilder<T> oldWidget) {
+  void didUpdateWidget(covariant YgOptimizedListenableBuilder<T> oldWidget) {
     super.didUpdateWidget(oldWidget);
     if (oldWidget.listenable != widget.listenable) {
       oldWidget.listenable.removeListener(_onControllerUpdated);

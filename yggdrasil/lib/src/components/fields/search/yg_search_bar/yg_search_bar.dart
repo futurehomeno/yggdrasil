@@ -5,7 +5,6 @@ import 'package:yggdrasil/src/components/fields/search/controller/value_search/y
 import 'package:yggdrasil/src/components/fields/search/controller/yg_search_mixin_interface.dart';
 import 'package:yggdrasil/src/components/fields/search/widgets/hint_provider.dart';
 import 'package:yggdrasil/src/components/fields/search/widgets/mobile_search_screen/_mobile_search_screen.dart';
-import 'package:yggdrasil/src/components/fields/search/widgets/optimized_listenable_builder.dart';
 import 'package:yggdrasil/src/components/fields/search/widgets/search_app_bar.dart';
 import 'package:yggdrasil/src/components/fields/search/yg_search_bar/yg_search_bar_style.dart';
 import 'package:yggdrasil/src/theme/search_bar/search_bar_theme.dart';
@@ -273,7 +272,7 @@ abstract class YgSearchBarWidgetState<T, W extends YgSearchBar<T>, R extends YgS
                     leading,
                     Expanded(
                       child: RepaintBoundary(
-                        child: OptimizedListenableBuilder<String>(
+                        child: YgOptimizedListenableBuilder<String>(
                           listenable: controller,
                           getValue: () => controller.valueText,
                           builder: (BuildContext context, String value, Widget? child) {

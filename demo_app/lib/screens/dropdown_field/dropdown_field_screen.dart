@@ -164,65 +164,65 @@ class _DropdownFieldScreenState extends State<DropdownFieldScreen> {
                 ),
               ].withVerticalSpacing(15),
             ),
-            YgSection.column(
-              title: 'Form example',
-              children: <Widget>[
-                YgDropdownFormField<String>(
-                  key: _singleSelectKey,
-                  label: 'Single select',
-                  entries: _generateEntries(4),
-                  completeAction: YgCompleteAction.focusNext,
-                  autoValidate: YgAutoValidate.onComplete,
-                  validators: <FormFieldValidator<String>>[
-                    const DemoNullValidator(nullError: 'This field is required!').call,
-                  ],
-                ),
-                YgDropdownFormField<String>.multiSelect(
-                  key: _multiSelectKey,
-                  label: 'Multi select',
-                  entries: _generateEntries(6),
-                  completeAction: YgCompleteAction.focusNext,
-                  autoValidate: YgAutoValidate.onComplete,
-                  validators: <FormFieldValidator<Set<String>>>[
-                    const DemoMultiSelectRequiredValidator(
-                      requiredError: 'This field is required!',
-                    ).call,
-                    const DemoMultiSelectMaxItemsValidator(
-                      tooManyItemsError: 'Can not select more than 3 items!',
-                      maxItems: 3,
-                    ).call,
-                  ],
-                ),
-                YgButton(
-                  onPressed: _onSubmit,
-                  child: const Text('Submit'),
-                ),
-              ].withVerticalSpacing(15),
-            ),
             Form(
               key: _formKey,
               child: YgSection.column(
-                title: 'Custom controller',
+                title: 'Form example',
                 children: <Widget>[
-                  YgDropdownField<String>.multiSelect(
+                  YgDropdownFormField<String>(
+                    key: _singleSelectKey,
+                    label: 'Single select',
                     entries: _generateEntries(4),
-                    label: 'Custom controller',
-                    controller: _controller,
+                    completeAction: YgCompleteAction.focusNext,
+                    autoValidate: YgAutoValidate.onComplete,
+                    validators: <FormFieldValidator<String>>[
+                      const DemoNullValidator(nullError: 'This field is required!').call,
+                    ],
+                  ),
+                  YgDropdownFormField<String>.multiSelect(
+                    key: _multiSelectKey,
+                    label: 'Multi select',
+                    entries: _generateEntries(6),
+                    completeAction: YgCompleteAction.focusNext,
+                    autoValidate: YgAutoValidate.onComplete,
+                    validators: <FormFieldValidator<Set<String>>>[
+                      const DemoMultiSelectRequiredValidator(
+                        requiredError: 'This field is required!',
+                      ).call,
+                      const DemoMultiSelectMaxItemsValidator(
+                        tooManyItemsError: 'Can not select more than 3 items!',
+                        maxItems: 3,
+                      ).call,
+                    ],
                   ),
                   YgButton(
-                    onPressed: () => _controller.add('value1'),
-                    child: const Text('Add Value 1'),
-                  ),
-                  YgButton(
-                    onPressed: () => _controller.clear(),
-                    child: const Text('Clear selected values'),
-                  ),
-                  YgButton(
-                    onPressed: () => _controller.openMenu(),
-                    child: const Text('Open dropdown menu'),
+                    onPressed: _onSubmit,
+                    child: const Text('Submit'),
                   ),
                 ].withVerticalSpacing(15),
               ),
+            ),
+            YgSection.column(
+              title: 'Custom controller',
+              children: <Widget>[
+                YgDropdownField<String>.multiSelect(
+                  entries: _generateEntries(4),
+                  label: 'Custom controller',
+                  controller: _controller,
+                ),
+                YgButton(
+                  onPressed: () => _controller.add('value1'),
+                  child: const Text('Add Value 1'),
+                ),
+                YgButton(
+                  onPressed: () => _controller.clear(),
+                  child: const Text('Clear selected values'),
+                ),
+                YgButton(
+                  onPressed: () => _controller.openMenu(),
+                  child: const Text('Open dropdown menu'),
+                ),
+              ].withVerticalSpacing(15),
             ),
           ],
         ),

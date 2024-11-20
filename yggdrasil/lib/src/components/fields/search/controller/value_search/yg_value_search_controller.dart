@@ -39,6 +39,7 @@ class YgValueSearchController<Value>
       _value = null;
       _valueText = '';
       notifyListeners();
+      _state?.onChanged();
 
       return;
     }
@@ -47,6 +48,7 @@ class YgValueSearchController<Value>
       startSession();
     }
     _updateResultText(newValue);
+    _state?.onChanged();
     if (_state?.isOpen != true) {
       endSession();
     }
@@ -143,6 +145,7 @@ class YgValueSearchController<Value>
     if (_value != result) {
       _value = result;
       _updateResultText(result);
+      _state?.onChanged();
       close();
       notifyListeners();
     }
@@ -154,6 +157,7 @@ class YgValueSearchController<Value>
       _value = null;
       _valueText = '';
       _textEditingController.clear();
+      _state?.onChanged();
       notifyListeners();
     }
   }

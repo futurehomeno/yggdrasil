@@ -10,6 +10,7 @@ export 'yg_focusable_action_detector.dart';
 export 'yg_icon_data/_yg_icon_data.dart';
 export 'yg_match_text/_yg_match_text.dart';
 export 'yg_no_focus.dart';
+export 'yg_optimized_listenable_builder.dart';
 export 'yg_rounded_rectangle_gradient_border.dart';
 export 'yg_scroll_shadow/yg_scroll_shadow.dart';
 export 'yg_size_transition.dart';

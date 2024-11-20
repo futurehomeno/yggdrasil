@@ -3,192 +3,195 @@ import 'package:flutter/services.dart';
 import 'package:yggdrasil/src/components/fields/helpers/yg_validate_helper.dart';
 import 'package:yggdrasil/yggdrasil.dart';
 
-import '../controller/yg_restorable_value_search_controller.dart';
+part 'string_search/yg_string_search_form_field.dart';
+part 'value_search/yg_value_search_form_field.dart';
 
-/// The [FormField] variant of the [YgSearchField].
-class YgSearchFormField<T> extends FormField<T> {
-  YgSearchFormField({
-    this.controller,
-    required SearchFieldKey<T> super.key,
-    required String label,
-    required TextInputType keyboardType,
+abstract class YgSearchFormField<T> extends StatefulWidget implements FormField<T> {
+  factory YgSearchFormField({
+    YgAutoValidate autoValidate,
     required bool autocorrect,
-    required TextCapitalization textCapitalization,
-    FocusNode? focusNode,
+    YgCompleteAction completeAction,
+    YgValueSearchController<T>? controller,
+    bool disabled,
     String? error,
-    String? placeholder,
+    FocusNode? focusNode,
+    Widget? hint,
+    T? initialValue,
+    List<TextInputFormatter>? inputFormatters,
+    required FormFieldKey<T> key,
+    required TextInputType keyboardType,
+    required String label,
+    ValueChanged<T>? onChanged,
+    VoidCallback? onEditingComplete,
     ValueChanged<bool>? onFocusChanged,
     VoidCallback? onPressed,
-    VoidCallback? onEditingComplete,
-    ValueChanged<String>? onChanged,
-    Widget? hint,
-    List<FormFieldValidator<TabBar>>? validators,
-    List<TextInputFormatter>? inputFormatters,
-    String? initialValue,
-    bool disabled = false,
-    bool readOnly = false,
-    YgFieldVariant variant = YgFieldVariant.standard,
-    YgFieldSize size = YgFieldSize.large,
-    YgCompleteAction completeAction = YgCompleteAction.unfocus,
-    YgSearchAction searchAction = YgSearchAction.auto,
-    YgAutoValidate autoValidate = YgAutoValidate.disabled,
-  }) : super(
-          initialValue: controller != null ? controller.text : (initialValue ?? ''),
-          enabled: !disabled,
-          autovalidateMode: YgValidateHelper.mapAutoValidate(autoValidate),
-          validator: YgValidateHelper.combineValidators(validators),
-          builder: (FormFieldState<T> field) {
-            final YgSearchFormFieldState<T> state = field as YgSearchFormFieldState<T>;
-            final YgValidateHelper<T> helper = YgValidateHelper<T>(
-              key: key,
-              autoValidate: autoValidate,
-              onFocusChanged: onFocusChanged,
-              completeAction: completeAction,
-              onEditingComplete: onEditingComplete,
-            );
+    String? placeholder,
+    bool readOnly,
+    YgSearchAction searchAction,
+    required YgSearchProvider<T> searchProvider,
+    YgFieldSize size,
+    required TextCapitalization textCapitalization,
+    List<FormFieldValidator<T>>? validators,
+    YgFieldVariant variant,
+  }) = YgValueSearchFormField<T>;
 
-            return UnmanagedRestorationScope(
-              bucket: field.bucket,
-              child: YgSearchField<T>(
-                label: label,
-                onEditingComplete: helper.onEditingComplete,
-                onFocusChanged: helper.onFocusChanged,
-                variant: variant,
-                placeholder: placeholder,
-                controller: state._effectiveController,
-                disabled: disabled,
-                size: size,
-                autocorrect: autocorrect,
-                textCapitalization: textCapitalization,
-                readOnly: readOnly,
-                inputFormatters: inputFormatters,
-                onChanged: field.didChange,
-                error: error ?? field.errorText,
-                focusNode: focusNode,
-                keyboardType: keyboardType,
-                resultTextBuilder: resultTextBuilder,
-                resultsBuilder: resultsBuilder,
-                completeAction: completeAction,
-                hint: hint,
-                onPressed: onPressed,
-                searchAction: searchAction,
-              ),
-            );
-          },
-        );
+  YgSearchFormField._({
+    super.key,
+    required this.autocorrect,
+    required this.keyboardType,
+    required this.label,
+    required this.textCapitalization,
+    this.focusNode,
+    this.hint,
+    this.inputFormatters,
+    this.onChanged,
+    this.onEditingComplete,
+    this.onFocusChanged,
+    this.onPressed,
+    this.placeholder,
+    this.initialValue,
+    this.disabled = false,
+    this.readOnly = false,
+    this.variant = YgFieldVariant.standard,
+    this.size = YgFieldSize.large,
+    this.completeAction = YgCompleteAction.unfocus,
+    this.searchAction = YgSearchAction.auto,
+    this.autoValidate = YgAutoValidate.disabled,
+    List<FormFieldValidator<T>>? validators,
+    String? error,
+  })  : restorationId = null,
+        onSaved = null,
+        forceErrorText = error,
+        validator = YgValidateHelper.combineValidators<T>(validators),
+        autovalidateMode = YgValidateHelper.mapAutoValidate(autoValidate);
 
-  /// Controls the text being edited.
+  /// Hint widget shown in the top of the search results.
+  final Widget? hint;
+
+  /// The action that should be performed when the user presses the search field.
   ///
-  /// If null, this widget will create its own [TextEditingController] and
-  /// initialize its [TextEditingController.text] with [initialValue].
-  final YgSearchController<T>? controller;
+  /// By default checks the platform and will show a full screen search for
+  /// mobile devices and a search menu for other devices.
+  final YgSearchAction searchAction;
+
+  /// Called when the user presses the search field.
+  final VoidCallback? onPressed;
+
+  /// The variant of the text field.
+  final YgFieldVariant variant;
+
+  /// The label shown on top of the text field.
+  final String label;
+
+  /// Called when the user submits editable content (e.g., user presses the "done"
+  /// button on the keyboard).
+  ///
+  /// The default implementation of [onEditingComplete] executes 2 different
+  /// behaviors based on the situation:
+  ///
+  ///  - When a completion action is pressed, such as "done", "go", "send", or
+  ///    "search", the user's content is submitted to the [controller] and then
+  ///    focus is given up.
+  ///
+  ///  - When a non-completion action is pressed, such as "next" or "previous",
+  ///    the user's content is submitted to the [controller], but focus is not
+  ///    given up because developers may want to immediately move focus to
+  ///    another text field widget within [onSubmitted].
+  ///
+  /// Providing [onEditingComplete] prevents the aforementioned default behavior.
+  final VoidCallback? onEditingComplete;
+
+  /// Called when the widget gains or loses focus.
+  final ValueChanged<bool>? onFocusChanged;
+
+  /// The placeholder shown in the text field.
+  ///
+  /// Gets replaced with the value entered by the user if the value is not empty.
+  final String? placeholder;
+
+  /// Whether the text field is disabled.
+  ///
+  /// Applies styling for the disabled text text field. Also disables all interaction.
+  final bool disabled;
+
+  /// The size of the text field.
+  ///
+  /// Primarily affects the height of the text field.
+  final YgFieldSize size;
+
+  /// The type of keyboard to use for editing the text.
+  final TextInputType keyboardType;
+
+  /// When true enables autocorrect.
+  final bool autocorrect;
+
+  /// Whether the text can be changed.
+  ///
+  /// When this is set to true, the text cannot be modified
+  /// by any shortcut or keyboard operation. The text is still selectable.
+  ///
+  /// Defaults to false. Must not be null.
+  final bool readOnly;
+
+  /// Configures how the platform keyboard will select an uppercase or
+  /// lowercase keyboard.
+  ///
+  /// Only supports text keyboards, other keyboard types will ignore this
+  /// configuration. Capitalization is locale-aware.
+  ///
+  /// Defaults to [TextCapitalization.none]. Must not be null.
+  ///
+  /// See also:
+  ///
+  ///  * [TextCapitalization], for a description of each capitalization behavior.
+  final TextCapitalization textCapitalization;
+
+  /// Determines what's allowed to enter into the field.
+  ///
+  /// See [FhInputFormatters].
+  final List<TextInputFormatter>? inputFormatters;
+
+  /// Controls the focus of the widget.
+  final FocusNode? focusNode;
+
+  /// The action to perform when the user completes editing the field.
+  ///
+  /// By default based on the [textInputAction].
+  final YgCompleteAction completeAction;
+
+  final ValueChanged<T>? onChanged;
 
   @override
-  FormFieldState<T> createState() => YgSearchFormFieldState<T>();
-}
+  bool get enabled => !disabled;
 
-class YgSearchFormFieldState<T> extends FormFieldState<T> {
-  YgRestorableValueSearchController<T>? _controller;
-
-  YgSearchController<T> get _effectiveController => _formField.controller ?? _controller!.value;
-
-  YgSearchFormField<T> get _formField => super.widget as YgSearchFormField<T>;
-
-  // ignore: prefer-widget-private-members
-  String get text => _effectiveController.text;
+  /// The error to display under the text field.
+  ///
+  /// Will change the styling of the widget to reflect the presence of the error.
+  /// Must be null when there is no error, an empty string is still seen as an
+  /// valid error.
+  @override
+  final String? forceErrorText;
 
   @override
-  void restoreState(RestorationBucket? oldBucket, bool initialRestore) {
-    super.restoreState(oldBucket, initialRestore);
-    if (_controller != null) {
-      _registerController();
-    }
-    // Make sure to update the internal [FormFieldState] value to sync up with
-    // text editing controller value.
-    setValue(_effectiveController.text);
-  }
-
-  void _registerController() {
-    assert(_controller != null);
-    registerForRestoration(_controller!, 'controller');
-  }
-
-  void _createLocalController([TextEditingValue? value]) {
-    assert(_controller == null);
-    _controller = value == null
-        ? YgRestorableValueSearchController<T>()
-        : YgRestorableValueSearchController<T>.fromValue(textValue: value);
-    if (!restorePending) {
-      _registerController();
-    }
-  }
+  final String? restorationId;
 
   @override
-  void initState() {
-    super.initState();
-    if (_formField.controller == null) {
-      _createLocalController(widget.initialValue != null ? TextEditingValue(text: widget.initialValue!) : null);
-    } else {
-      _formField.controller!.addListener(_handleControllerChanged);
-    }
-  }
+  final AutovalidateMode autovalidateMode;
 
   @override
-  void didUpdateWidget(YgSearchFormField<T> oldWidget) {
-    super.didUpdateWidget(oldWidget);
-    if (_formField.controller != oldWidget.controller) {
-      oldWidget.controller?.removeListener(_handleControllerChanged);
-      _formField.controller?.addListener(_handleControllerChanged);
+  final FormFieldValidator<T>? validator;
 
-      if (oldWidget.controller != null && _formField.controller == null) {
-        _createLocalController(oldWidget.controller!.value);
-      }
-
-      if (_formField.controller != null) {
-        setValue(_formField.controller!.text);
-        if (oldWidget.controller == null) {
-          unregisterFromRestoration(_controller!);
-          _controller!.dispose();
-          _controller = null;
-        }
-      }
-    }
-  }
+  /// The auto validation mode used.
+  ///
+  /// For more info see [YgAutoValidate].
+  final YgAutoValidate autoValidate;
 
   @override
-  void dispose() {
-    _formField.controller?.removeListener(_handleControllerChanged);
-    _controller?.dispose();
-    super.dispose();
-  }
+  final FormFieldSetter<T>? onSaved;
 
   @override
-  void didChange(String? value) {
-    super.didChange(value);
-
-    if (_effectiveController.text != value) {
-      _effectiveController.text = value ?? '';
-    }
-  }
+  final T? initialValue;
 
   @override
-  void reset() {
-    // setState will be called in the superclass, so even though state is being
-    // manipulated, no setState call is needed here.
-    _effectiveController.text = widget.initialValue ?? '';
-    super.reset();
-  }
-
-  void _handleControllerChanged() {
-    // Suppress changes that originated from within this class.
-    //
-    // In the case where a controller has been passed in to this widget, we
-    // register this change listener. In these cases, we'll also receive change
-    // notifications for changes originating from within this class -- for
-    // example, the reset() method. In such cases, the FormField value will
-    // already have been set.
-    if (_effectiveController.text != value) {
-      didChange(_effectiveController.text);
-    }
-  }
+  FormFieldState<T> createState() => FormFieldState<T>();
 }

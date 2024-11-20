@@ -2,12 +2,8 @@ import 'dart:async';
 
 import 'package:yggdrasil/yggdrasil.dart';
 
-class DemoSearchProvider extends YgFuzzySearchProvider<int> {
-  DemoSearchProvider({
-    this.loading = false,
-  }) : super(items: _searchResults);
-
-  final bool loading;
+abstract class _DemoSearchResults {
+  const _DemoSearchResults();
 
   // Random non existing addresses
   static const List<YgSearchItem<int>> _searchResults = <YgSearchItem<int>>[
@@ -66,6 +62,14 @@ class DemoSearchProvider extends YgFuzzySearchProvider<int> {
     YgSearchItem<int>(title: 'Zahlgata, 1051, Amsterdam', value: 51, icon: YgIcons.map),
     YgSearchItem<int>(title: 'Zinkgata, 1025, Lisbon', value: 25, icon: YgIcons.map),
   ];
+}
+
+class DemoSearchProvider extends YgFuzzySearchProvider<int> {
+  DemoSearchProvider({
+    this.loading = false,
+  }) : super(items: _DemoSearchResults._searchResults);
+
+  final bool loading;
 
   @override
   YgFuzzySearchSession<int> createSession() {
@@ -74,16 +78,6 @@ class DemoSearchProvider extends YgFuzzySearchProvider<int> {
 }
 
 class DemoSearchSession extends YgFuzzySearchSession<int> {
-  @override
-  void initSession() {
-    print('created search session --------------------------------------------');
-  }
-
-  @override
-  void dispose() {
-    print('disposed session --------------------------------------------------');
-  }
-
   @override
   FutureOr<String?> buildResultText(int value) async {
     if ((provider as DemoSearchProvider).loading) {
@@ -96,6 +90,30 @@ class DemoSearchSession extends YgFuzzySearchSession<int> {
   @override
   FutureOr<List<YgSearchResult<int>>?> buildResults(String query) async {
     if ((provider as DemoSearchProvider).loading) {
+      await Future<void>.delayed(const Duration(milliseconds: 500));
+    }
+
+    return super.buildResults(query);
+  }
+}
+
+class DemoStringSearchProvider extends YgFuzzyStringSearchProvider {
+  DemoStringSearchProvider({
+    this.loading = false,
+  }) : super(items: _DemoSearchResults._searchResults);
+
+  final bool loading;
+
+  @override
+  YgFuzzyStringSearchSession createSession() {
+    return DemoStringSearchSession();
+  }
+}
+
+class DemoStringSearchSession extends YgFuzzyStringSearchSession {
+  @override
+  FutureOr<List<YgStringSearchResult>?> buildResults(String query) async {
+    if ((provider as DemoStringSearchProvider).loading) {
       await Future<void>.delayed(const Duration(milliseconds: 500));
     }
 

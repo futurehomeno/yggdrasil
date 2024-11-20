@@ -3,8 +3,6 @@ import 'package:yggdrasil/src/components/fields/search/controller/yg_search_cont
 import 'package:yggdrasil/src/theme/_theme.dart';
 import 'package:yggdrasil/src/utils/_utils.dart';
 
-import 'optimized_listenable_builder.dart';
-
 /// Internal animated loading switcher.
 ///
 /// Switches between a [child] and a loading indicator while maintaining the
@@ -24,7 +22,7 @@ class WidgetOrLoading extends StatelessWidget {
     final YgSearchFieldTheme theme = context.searchFieldTheme;
 
     return RepaintBoundary(
-      child: OptimizedListenableBuilder<bool>(
+      child: YgOptimizedListenableBuilder<bool>(
         listenable: controller,
         getValue: () => controller.loading,
         builder: (BuildContext context, bool loading, Widget? spinner) {

@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:yggdrasil/src/components/fields/search/widgets/hint_provider.dart';
-import 'package:yggdrasil/src/components/fields/search/widgets/optimized_listenable_builder.dart';
 import 'package:yggdrasil/src/components/fields/search/widgets/search_result_list_tile.dart';
 import 'package:yggdrasil/src/theme/search_modal/search_modal_theme.dart';
 import 'package:yggdrasil/src/theme/theme.dart';
+import 'package:yggdrasil/src/utils/_utils.dart';
 import 'package:yggdrasil/src/utils/yg_linked/_yg_linked.dart';
 import 'package:yggdrasil/yggdrasil.dart';
 
@@ -32,7 +32,7 @@ class SearchScreen<T> extends StatelessWidget {
         builder: (HintProvider? hintProvider) {
           final Widget? hint = hintProvider?.hint;
 
-          return OptimizedListenableBuilder<List<YgStringSearchResult>>(
+          return YgOptimizedListenableBuilder<List<YgStringSearchResult>>(
             listenable: controller,
             getValue: () => controller.results,
             builder: (BuildContext context, List<YgStringSearchResult> results, Widget? _) {
