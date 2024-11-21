@@ -1,3 +1,9 @@
+# 1.12.18 [2024-11-21T13:33:11.955780]
+
+### Changes
+
+- [dev-improvement] Updated svg dependency.
+
 # 1.12.17 [2024-11-05T16:36:38.383604]
 
 ### Changes
