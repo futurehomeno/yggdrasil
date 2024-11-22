@@ -58,6 +58,16 @@ class _BottomSheetScreenState extends State<BottomSheetScreen> with TickerProvid
               child: const Text('Show'),
             ),
           ),
+          YgSection(
+            title: 'Bottom sheet with text input',
+            child: YgButton(
+              variant: YgButtonVariant.primary,
+              onPressed: () {
+                Navigator.of(context).push(ExampleBottomSheetWithTextInput());
+              },
+              child: const Text('Show'),
+            ),
+          ),
         ],
       ),
     );
