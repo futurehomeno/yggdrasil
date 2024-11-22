@@ -1,3 +1,9 @@
+# 1.12.19 [2024-11-22T15:17:35.906508]
+
+### Changes
+
+- [fix] Fixed issue where incorrect view padding gets applied to the bottomsheet
+
 # 1.12.18 [2024-11-21T13:33:11.955780]
 
 ### Changes
