@@ -26,8 +26,16 @@ class _YgBottomSheetModalState extends State<_YgBottomSheetModal> {
 
   @override
   Widget build(BuildContext context) {
-    return SafeArea(
-      bottom: false,
+    final EdgeInsets viewInsets = MediaQuery.viewInsetsOf(context);
+    final EdgeInsets viewPadding = MediaQuery.viewPaddingOf(context);
+
+    return Padding(
+      padding: EdgeInsets.only(
+        bottom: viewInsets.bottom,
+        left: viewPadding.left,
+        right: viewPadding.right,
+        top: viewPadding.top,
+      ),
       child: Align(
         alignment: Alignment.bottomCenter,
         child: AnimatedBuilder(
