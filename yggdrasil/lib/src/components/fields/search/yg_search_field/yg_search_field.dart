@@ -24,32 +24,32 @@ part 'value_search/yg_value_search_field.dart';
 ///
 /// If you want to search for a string without a specific value attached to it,
 /// use [YgStringSearchField] instead.
-abstract class YgSearchField<T> extends StatefulWidget with StatefulWidgetDebugMixin {
+abstract class YgSearchField<Value, Result> extends StatefulWidget with StatefulWidgetDebugMixin {
   const factory YgSearchField({
     required bool autocorrect,
     YgCompleteAction completeAction,
-    YgValueSearchController<T>? controller,
+    YgValueSearchController<Value, Result>? controller,
     bool disabled,
     String? error,
     FocusNode? focusNode,
     Widget? hint,
-    T? initialValue,
+    Value? initialValue,
     List<TextInputFormatter>? inputFormatters,
     Key? key,
     required TextInputType keyboardType,
     required String label,
-    ValueChanged<T>? onChanged,
+    ValueChanged<Value>? onChanged,
     VoidCallback? onEditingComplete,
     ValueChanged<bool>? onFocusChanged,
     VoidCallback? onPressed,
     String? placeholder,
     bool readOnly,
     YgSearchAction searchAction,
-    required YgSearchProvider<T> searchProvider,
+    required YgSearchProvider<Value, Result> searchProvider,
     YgFieldSize size,
     required TextCapitalization textCapitalization,
     YgFieldVariant variant,
-  }) = _YgValueSearchField<T>;
+  }) = _YgValueSearchField<Value, Result>;
 
   const YgSearchField._({
     super.key,
@@ -57,7 +57,6 @@ abstract class YgSearchField<T> extends StatefulWidget with StatefulWidgetDebugM
     required this.keyboardType,
     required this.autocorrect,
     required this.textCapitalization,
-    this.controller,
     this.onChanged,
     this.focusNode,
     this.error,
@@ -176,9 +175,7 @@ abstract class YgSearchField<T> extends StatefulWidget with StatefulWidgetDebugM
   /// By default based on the [textInputAction].
   final YgCompleteAction completeAction;
 
-  final YgSearchControllerAny<T>? controller;
-
-  final ValueChanged<T>? onChanged;
+  final ValueChanged<Value>? onChanged;
 
   @override
   YgDebugType get debugType {
@@ -190,16 +187,15 @@ abstract class YgSearchField<T> extends StatefulWidget with StatefulWidgetDebugM
   }
 }
 
-typedef _YgSearchControllerManager<T> = YgControllerManager<YgSearchControllerAny<T>>;
-
-abstract class YgSearchFieldWidgetState<T, W extends YgSearchField<T>, R extends YgStringSearchResult>
-    extends StateWithYgState<W, YgSearchFieldState>
+abstract class YgSearchFieldWidgetState<Value, ResultValue, W extends YgSearchField<Value, ResultValue>,
+        Result extends YgStringSearchResult> extends StateWithYgState<W, YgSearchFieldState>
     with YgControllerManagerMixin
-    implements YgSearchMixinInterface<T, R> {
+    implements YgSearchMixinInterface<Value, Result> {
   /// Manages the controller of this widget.
-  late final _YgSearchControllerManager<T> _controllerManager = manageController(
+  late final YgControllerManager<YgSearchControllerAnyWithResult<Value, ResultValue>> _controllerManager =
+      manageController(
     createController: createController,
-    getUserController: () => widget.controller,
+    getUserController: getUserController,
     listener: _valueUpdated,
   );
 
@@ -210,7 +206,9 @@ abstract class YgSearchFieldWidgetState<T, W extends YgSearchField<T>, R extends
     listener: _focusChanged,
   );
 
-  YgSearchControllerAny<T> createController();
+  YgSearchControllerAnyWithResult<Value, ResultValue> createController();
+
+  YgSearchControllerAnyWithResult<Value, ResultValue>? getUserController();
 
   final GlobalKey _fieldKey = GlobalKey();
   final YgLinkedKey<HintProvider> _hintKey = YgLinkedKey<HintProvider>();
@@ -253,7 +251,7 @@ abstract class YgSearchFieldWidgetState<T, W extends YgSearchField<T>, R extends
     final bool isTextField = (widget.searchAction == YgSearchAction.menu) ||
         (widget.searchAction == YgSearchAction.auto && !YgConsts.isMobile);
 
-    final YgSearchControllerAny<T> controller = _controllerManager.value;
+    final YgSearchControllerAny<Value> controller = _controllerManager.value;
 
     return HintProvider(
       hint: widget.hint,
@@ -343,14 +341,14 @@ abstract class YgSearchFieldWidgetState<T, W extends YgSearchField<T>, R extends
     };
 
     Navigator.of(context).push(
-      SearchScreenRoute<T>(
+      SearchScreenRoute<Value>(
         searchController: _controllerManager.value,
         borderRadius: radius,
         fieldKey: _fieldKey,
         hintKey: _hintKey,
         onClose: _onClosed,
         searchBarBuilder: (BuildContext context) {
-          return SearchAppBar<T>(
+          return SearchAppBar<Value>(
             controller: _controllerManager.value,
             placeholder: widget.placeholder ?? widget.label,
             keyboardType: widget.keyboardType,

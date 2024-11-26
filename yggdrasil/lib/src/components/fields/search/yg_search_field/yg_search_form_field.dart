@@ -33,7 +33,7 @@ abstract class YgSearchFormField<T> extends StatefulWidget implements FormField<
     required TextCapitalization textCapitalization,
     List<FormFieldValidator<T>>? validators,
     YgFieldVariant variant,
-  }) = YgValueSearchFormField<T>;
+  }) = _YgValueSearchFormField<T>;
 
   YgSearchFormField._({
     super.key,

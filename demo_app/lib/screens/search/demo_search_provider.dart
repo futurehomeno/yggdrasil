@@ -79,12 +79,12 @@ class DemoSearchProvider extends YgFuzzySearchProvider<int> {
 
 class DemoSearchSession extends YgFuzzySearchSession<int> {
   @override
-  FutureOr<String?> buildResultText(int value) async {
+  FutureOr<String?> buildSelectedResult(int value) async {
     if ((provider as DemoSearchProvider).loading) {
       await Future<void>.delayed(const Duration(milliseconds: 500));
     }
 
-    return super.buildResultText(value);
+    return super.buildSelectedResult(value);
   }
 
   @override

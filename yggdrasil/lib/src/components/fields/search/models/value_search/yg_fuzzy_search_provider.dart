@@ -6,7 +6,7 @@ import 'package:yggdrasil/src/components/fields/search/models/value_search/yg_se
 import 'package:yggdrasil/src/components/fields/search/models/yg_fuzzy_search_session_mixin.dart';
 import 'package:yggdrasil/src/utils/yg_match_text/yg_text_match.dart';
 
-class YgFuzzySearchProvider<Value> extends YgSearchProvider<Value>
+class YgFuzzySearchProvider<Value> extends YgSearchProvider<Value, Value>
     implements YgFuzzySearchProviderInterface<Value, YgSearchItem<Value>, YgSearchResult<Value>> {
   YgFuzzySearchProvider({
     required this.items,
@@ -31,17 +31,20 @@ class YgFuzzySearchProvider<Value> extends YgSearchProvider<Value>
   }
 }
 
-class YgFuzzySearchSession<Value> extends YgSearchSession<Value, YgFuzzySearchProvider<Value>>
+class YgFuzzySearchSession<Value> extends YgSearchSession<Value, Value, YgFuzzySearchProvider<Value>>
     with YgFuzzySearchSessionMixin<Value, YgSearchItem<Value>, YgSearchResult<Value>, YgFuzzySearchProvider<Value>> {
   @override
-  FutureOr<String?> buildResultText(Value value) {
+  FutureOr<YgSearchResultValue<Value>?> buildSelectedResult(Value value) {
     for (final YgSearchItem<Value> result in provider.items) {
       if (result.value == value) {
-        return result.title;
+        return YgSearchResultValue<Value>(
+          value: result.value,
+          resultText: result.title,
+        );
       }
     }
 
-    return '';
+    return null;
   }
 
   @override

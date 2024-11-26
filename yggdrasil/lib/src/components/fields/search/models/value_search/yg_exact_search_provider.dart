@@ -3,7 +3,7 @@ import 'dart:async';
 import 'package:yggdrasil/src/components/fields/search/models/yg_exact_search_provider_mixin.dart';
 import 'package:yggdrasil/yggdrasil.dart';
 
-class YgExactSearchProvider<Value> extends YgSearchProvider<Value>
+class YgExactSearchProvider<Value> extends YgSearchProvider<Value, Value>
     implements YgExactSearchProviderInterface<Value, YgSearchItem<Value>, YgSearchResult<Value>> {
   YgExactSearchProvider({
     required this.items,
@@ -22,17 +22,20 @@ class YgExactSearchProvider<Value> extends YgSearchProvider<Value>
   }
 }
 
-class YgExactSearchSession<Value> extends YgSearchSession<Value, YgExactSearchProvider<Value>>
+class YgExactSearchSession<Value> extends YgSearchSession<Value, Value, YgExactSearchProvider<Value>>
     with YgExactSearchSessionMixin<Value, YgSearchItem<Value>, YgSearchResult<Value>, YgExactSearchProvider<Value>> {
   @override
-  FutureOr<String?> buildResultText(Value value) {
+  FutureOr<YgSearchResultValue<Value>?> buildSelectedResult(Value value) {
     for (final YgSearchItem<Value> result in provider.items) {
       if (result.value == value) {
-        return result.title;
+        return YgSearchResultValue<Value>(
+          value: result.value,
+          resultText: result.title,
+        );
       }
     }
 
-    return '';
+    return null;
   }
 
   @override

@@ -11,6 +11,9 @@ import 'value_search/yg_value_search_mixin.dart';
 part 'string_search/yg_string_search_controller.dart';
 part 'value_search/yg_value_search_controller.dart';
 
+typedef YgSearchControllerAnyWithResult<Value, Result>
+    = YgSearchControllerMixin<Value, Result, YgStringSearchResult, YgSearchMixinInterface<Value, YgStringSearchResult>>;
+
 typedef YgSearchControllerAny<Value> = YgSearchControllerMixin<Value, Object?, YgStringSearchResult,
     YgSearchMixinInterface<Value, YgStringSearchResult>>;
 
@@ -23,7 +26,7 @@ mixin YgSearchControllerMixin<Value, ControllerValue, Result extends YgStringSea
 
   TextEditingController get textEditingController;
 
-  List<YgStringSearchResult> get results;
+  List<Result> get results;
 
   bool get loading;
 
@@ -36,6 +39,7 @@ mixin YgSearchControllerMixin<Value, ControllerValue, Result extends YgStringSea
   bool _initializing = true;
 
   void endSession({bool force = false});
+
   void startSession();
 
   @override

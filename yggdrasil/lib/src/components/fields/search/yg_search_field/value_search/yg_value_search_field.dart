@@ -1,6 +1,6 @@
 part of '../yg_search_field.dart';
 
-class _YgValueSearchField<T> extends YgSearchField<T> {
+class _YgValueSearchField<Value, Result> extends YgSearchField<Value, Result> {
   const _YgValueSearchField({
     super.key,
     required super.label,
@@ -8,7 +8,7 @@ class _YgValueSearchField<T> extends YgSearchField<T> {
     required super.autocorrect,
     required super.textCapitalization,
     required this.searchProvider,
-    YgValueSearchController<T>? super.controller,
+    this.controller,
     super.onChanged,
     super.completeAction,
     super.disabled,
@@ -27,19 +27,22 @@ class _YgValueSearchField<T> extends YgSearchField<T> {
     this.initialValue,
   }) : super._();
 
-  final YgSearchProvider<T> searchProvider;
+  final YgValueSearchController<Value, Result>? controller;
 
-  final T? initialValue;
+  final YgSearchProvider<Value, Result> searchProvider;
+
+  final Value? initialValue;
 
   @override
-  State<YgSearchField<T>> createState() => _YgValueSearchFieldState<T>();
+  State<YgSearchField<Value>> createState() => _YgValueSearchFieldState<Value>();
 }
 
-class _YgValueSearchFieldState<T> extends YgSearchFieldWidgetState<T, _YgValueSearchField<T>, YgSearchResult<T>>
-    with YgValueSearchMixin<T, _YgValueSearchField<T>> {
+class _YgValueSearchFieldState<Value, Result>
+    extends YgSearchFieldWidgetState<Value, Result, _YgValueSearchField<Value, Result>, YgSearchResult<Value>>
+    with YgValueSearchMixin<Value, Result, _YgValueSearchField<Value, Result>> {
   @override
-  YgSearchControllerAny<T> createController() {
-    return YgValueSearchController<T>(
+  YgValueSearchController<Value, Result> createController() {
+    return YgValueSearchController<Value, Result>(
       initialValue: widget.initialValue,
     );
   }
@@ -49,16 +52,19 @@ class _YgValueSearchFieldState<T> extends YgSearchFieldWidgetState<T, _YgValueSe
     final Object? value = _controllerManager.value.value;
 
     // This should never happen.
-    assert(value is T);
-    if (value is! T) {
+    assert(value is Value);
+    if (value is! Value) {
       return;
     }
 
     widget.onChanged?.call(
-      _controllerManager.value.value as T,
+      _controllerManager.value.value as Value,
     );
   }
 
   @override
-  YgSearchProvider<T> get searchProvider => widget.searchProvider;
+  YgSearchProvider<Value, Result> get searchProvider => widget.searchProvider;
+
+  @override
+  YgSearchControllerAny<Value>? get userController => widget.controller;
 }

@@ -3,12 +3,22 @@ import 'dart:async';
 import 'package:yggdrasil/src/components/fields/search/models/value_search/yg_search_result.dart';
 import 'package:yggdrasil/src/components/fields/search/models/yg_base_search_provider.dart';
 
-abstract class YgSearchProvider<Value> extends YgBaseSearchProvider<Value, YgSearchResult<Value>> {
+abstract class YgSearchProvider<Value, ResultValue> extends YgBaseSearchProvider<Value, YgSearchResult<Value>> {
   @override
-  YgSearchSession<Value, YgSearchProvider<Value>> createSession();
+  YgSearchSession<Value, ResultValue, YgSearchProvider<Value, ResultValue>> createSession();
 }
 
-abstract class YgSearchSession<Value, Provider extends YgSearchProvider<Value>>
+abstract class YgSearchSession<Value, ResultValue, Provider extends YgSearchProvider<Value, ResultValue>>
     extends YgBaseSearchSession<Value, YgSearchResult<Value>, Provider> {
-  FutureOr<String?> buildResultText(Value value);
+  FutureOr<YgSearchResultValue<ResultValue>?> buildSelectedResult(Value value);
+}
+
+class YgSearchResultValue<T> {
+  const YgSearchResultValue({
+    required this.value,
+    this.resultText,
+  });
+
+  final String? resultText;
+  final T value;
 }

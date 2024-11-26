@@ -1,9 +1,9 @@
 part of '../yg_search_controller_mixin.dart';
 
-class YgValueSearchController<Value>
+class YgValueSearchController<Value, Result>
     with
         ChangeNotifier,
-        YgSearchControllerMixin<Value, Value?, YgSearchResult<Value>, YgValueSearchMixin<Value, StatefulWidget>> {
+        YgSearchControllerMixin<Value, Result?, YgSearchResult<Value>, YgValueSearchMixin<Value, StatefulWidget>> {
   YgValueSearchController({
     Value? initialValue,
   })  : _textEditingController = TextEditingController(),
@@ -24,12 +24,12 @@ class YgValueSearchController<Value>
 
   String _lastHandledSearch = '';
 
-  Value? _value;
+  Result? _value;
 
   @override
-  Value? get value => _value;
+  Result? get value => _value;
 
-  set value(Value? newValue) {
+  set value(Result? newValue) {
     if (_value == newValue) {
       return;
     }
@@ -119,7 +119,7 @@ class YgValueSearchController<Value>
       return;
     }
 
-    final FutureOr<String?>? result = session.buildResultText(value);
+    final FutureOr<String?>? result = session.buildSelectedResult(value);
     final String? text;
     if (result is Future<String?>) {
       _updateResultTextFuture(result);

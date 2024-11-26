@@ -1,7 +1,7 @@
 part of '../yg_search_form_field.dart';
 
-class YgValueSearchFormField<T> extends YgSearchFormField<T> {
-  YgValueSearchFormField({
+class _YgValueSearchFormField<T> extends YgSearchFormField<T> {
+  _YgValueSearchFormField({
     required FormFieldKey<T> super.key,
     required super.autocorrect,
     required super.keyboardType,

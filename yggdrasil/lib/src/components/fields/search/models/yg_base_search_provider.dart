@@ -1,5 +1,6 @@
 import 'dart:async';
 
+import 'package:flutter/widgets.dart';
 import 'package:yggdrasil/src/components/fields/search/controller/yg_search_controller_mixin.dart';
 import 'package:yggdrasil/src/components/fields/search/models/string_search/yg_string_search_result.dart';
 
@@ -13,6 +14,12 @@ abstract class YgBaseSearchSession<Value, Result extends YgStringSearchResult,
   Provider? _provider;
 
   FutureOr<List<Result>?> buildResults(String query);
+
+  Widget? buildHint(BuildContext context);
+
+  Widget? buildNoResults(BuildContext context);
+
+  Widget? buildError(BuildContext context);
 
   void initSession() {}
 
@@ -45,4 +52,20 @@ abstract class YgBaseSearchSession<Value, Result extends YgStringSearchResult,
     _controller = null;
     _provider = null;
   }
+}
+
+class YgSearchResultsOrError {
+  const YgSearchResultsOrError();
+}
+
+class YgSearchResults<T> extends YgSearchResultsOrError {
+  const YgSearchResults({
+    required this.results,
+  });
+
+  final T results;
+}
+
+class YgSearchError {
+  final Widget? widget;
 }
