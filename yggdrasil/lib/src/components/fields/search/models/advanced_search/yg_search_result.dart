@@ -1,7 +1,7 @@
 import '../string_search/yg_string_search_result.dart';
 
 /// A result for a [YgSearchWidget].
-class YgSearchResult<T> extends YgStringSearchResult {
+class YgSearchResult<Value> extends YgStringSearchResult {
   const YgSearchResult({
     required super.title,
     required this.value,
@@ -13,5 +13,5 @@ class YgSearchResult<T> extends YgStringSearchResult {
   ///
   /// This value is what you will get back from the [YgSearchWidget.onChange]
   /// when this entry is selected.
-  final T value;
+  final Value value;
 }

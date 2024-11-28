@@ -21,7 +21,7 @@ class SearchFieldScreen extends StatefulWidget {
 }
 
 class _SearchFieldScreenState extends State<SearchFieldScreen> {
-  final YgValueSearchController<int> _controller = YgValueSearchController<int>();
+  final YgAdvancedSearchController<int> _controller = YgAdvancedSearchController<int>();
   final FormFieldKey<int> _valueSearchKey = FormFieldKey<int>();
   final TextFieldKey _stringSearchKey = TextFieldKey();
   final FormKey _formKey = FormKey();

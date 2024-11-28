@@ -1,7 +1,9 @@
 part of '../yg_search_controller_mixin.dart';
 
 class YgStringSearchController extends TextEditingController
-    with YgSearchControllerMixin<String, TextEditingValue, YgStringSearchResult, YgStringSearchMixin<StatefulWidget>> {
+    with
+        YgSearchControllerMixin<TextEditingValue, String, YgStringSearchResult, YgStringSearchResultsLayout,
+            YgStringSearchMixin<StatefulWidget>> {
   YgStringSearchController({
     String? initialValue,
   })  : _lastHandledSearch = initialValue ?? '',
@@ -12,9 +14,9 @@ class YgStringSearchController extends TextEditingController
   String _lastHandledSearch;
 
   @override
-  List<YgStringSearchResult> get results => _results ?? const <YgStringSearchResult>[];
-  List<YgStringSearchResult>? _results;
-  Future<List<YgStringSearchResult>?>? _resultsFuture;
+  YgStringSearchResultsLayout get results => _results ?? const YgStringSearchResultsLayout();
+  YgStringSearchResultsLayout? _results;
+  Future<YgStringSearchResultsLayout?>? _resultsFuture;
 
   YgStringSearchSession<YgStringSearchProvider>? _session;
   bool _endingSession = false;
@@ -50,9 +52,9 @@ class YgStringSearchController extends TextEditingController
     }
 
     _lastHandledSearch = text;
-    final FutureOr<List<YgStringSearchResult>?> results = session.buildResults(text);
+    final FutureOr<YgStringSearchResultsLayout?> results = session.buildResults(text);
 
-    if (results is List<YgStringSearchResult>?) {
+    if (results is YgStringSearchResultsLayout?) {
       _results = results;
       notifyListeners();
     } else {

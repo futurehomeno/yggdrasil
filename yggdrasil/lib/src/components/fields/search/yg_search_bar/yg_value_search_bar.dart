@@ -7,7 +7,7 @@ class _YgValueSearchBar<T> extends YgSearchBar<T> {
     required super.autocorrect,
     required super.textCapitalization,
     required this.searchProvider,
-    YgValueSearchController<T>? super.controller,
+    YgAdvancedSearchController<T>? super.controller,
     super.completeAction,
     super.error,
     super.focusNode,
@@ -34,10 +34,10 @@ class _YgValueSearchBar<T> extends YgSearchBar<T> {
 }
 
 class _YgValueSearchBarWidgetState<T> extends YgSearchBarWidgetState<T, _YgValueSearchBar<T>, YgSearchResult<T>>
-    with YgValueSearchMixin<T, _YgValueSearchBar<T>> {
+    with YgAdvancedValueSearchMixin<T, _YgValueSearchBar<T>> {
   @override
   YgSearchControllerAny<T> createController() {
-    return YgValueSearchController<T>(
+    return YgAdvancedSearchController<T>(
       initialValue: widget.initialValue,
     );
   }

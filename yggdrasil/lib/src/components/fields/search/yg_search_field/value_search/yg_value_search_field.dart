@@ -27,7 +27,7 @@ class _YgValueSearchField<Value, Result> extends YgSearchField<Value, Result> {
     this.initialValue,
   }) : super._();
 
-  final YgValueSearchController<Value, Result>? controller;
+  final YgAdvancedSearchController<Value, Result>? controller;
 
   final YgSearchProvider<Value, Result> searchProvider;
 
@@ -39,10 +39,10 @@ class _YgValueSearchField<Value, Result> extends YgSearchField<Value, Result> {
 
 class _YgValueSearchFieldState<Value, Result>
     extends YgSearchFieldWidgetState<Value, Result, _YgValueSearchField<Value, Result>, YgSearchResult<Value>>
-    with YgValueSearchMixin<Value, Result, _YgValueSearchField<Value, Result>> {
+    with YgAdvancedValueSearchMixin<Value, Result, _YgValueSearchField<Value, Result>> {
   @override
-  YgValueSearchController<Value, Result> createController() {
-    return YgValueSearchController<Value, Result>(
+  YgAdvancedSearchController<Value, Result> createController() {
+    return YgAdvancedSearchController<Value, Result>(
       initialValue: widget.initialValue,
     );
   }

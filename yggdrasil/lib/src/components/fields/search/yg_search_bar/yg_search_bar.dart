@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:yggdrasil/src/components/fields/search/controller/advanced_search/yg_advanced_value_search_mixin.dart';
 import 'package:yggdrasil/src/components/fields/search/controller/string_search/yg_string_search_mixin.dart';
-import 'package:yggdrasil/src/components/fields/search/controller/value_search/yg_value_search_mixin.dart';
 import 'package:yggdrasil/src/components/fields/search/controller/yg_search_mixin_interface.dart';
 import 'package:yggdrasil/src/components/fields/search/widgets/hint_provider.dart';
 import 'package:yggdrasil/src/components/fields/search/widgets/mobile_search_screen/_mobile_search_screen.dart';
@@ -22,7 +22,7 @@ abstract class YgSearchBar<T> extends StatefulWidget {
   const factory YgSearchBar({
     required bool autocorrect,
     YgCompleteAction completeAction,
-    YgValueSearchController<T>? controller,
+    YgAdvancedSearchController<T>? controller,
     String? error,
     FocusNode? focusNode,
     Widget? hint,

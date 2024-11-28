@@ -1,22 +1,46 @@
 import 'dart:async';
 
-import 'package:yggdrasil/src/components/fields/search/models/string_search/yg_string_search_item.dart';
-import 'package:yggdrasil/src/components/fields/search/models/string_search/yg_string_search_result.dart';
-import 'package:yggdrasil/src/components/fields/search/models/yg_base_search_provider.dart';
+import 'package:flutter/material.dart';
+import 'package:yggdrasil/src/components/fields/search/models/base/yg_base_search_provider.dart';
+import 'package:yggdrasil/src/components/fields/search/models/base/yg_base_search_result.dart';
+import 'package:yggdrasil/src/components/fields/search/models/base/yg_base_search_results_layout.dart';
 import 'package:yggdrasil/src/utils/yg_match_text/yg_text_match.dart';
 
-abstract class YgExactSearchProviderInterface<Value, Item extends YgStringSearchItem,
-    Result extends YgStringSearchResult> implements YgBaseSearchProvider<Value, Result> {
+import 'base/yg_base_search_item.dart';
+
+abstract class YgExactSearchProviderInterface<
+    Value,
+    ResultValue,
+    Result extends YgBaseSearchResult,
+    ResultsLayout extends YgBaseSearchResultsLayout<Result>,
+    Item extends YgBaseSearchItem<Result>> implements YgBaseSearchProvider<Value, ResultValue, Result, ResultsLayout> {
   bool get searchSubtitle;
   List<Item> get items;
+  WidgetBuilder? get hintBuilder;
+  WidgetBuilder get noResultsBuilder;
 }
 
-mixin YgExactSearchSessionMixin<Value, Item extends YgStringSearchItem, Result extends YgStringSearchResult,
-        Provider extends YgExactSearchProviderInterface<Value, Item, Result>>
-    on YgBaseSearchSession<Value, Result, Provider> {
+mixin YgExactSearchSessionMixin<
+        Value,
+        ResultValue,
+        Result extends YgBaseSearchResult,
+        ResultsLayout extends YgBaseSearchResultsLayout<Result>,
+        Item extends YgBaseSearchItem<Result>,
+        Provider extends YgExactSearchProviderInterface<Value, ResultValue, Result, ResultsLayout, Item>>
+    on YgBaseSearchSession<Value, ResultValue, Result, ResultsLayout, Provider> {
   @override
-  FutureOr<List<Result>?> buildResults(String query) {
-    final List<_ResultWithScore<Result>> results = <_ResultWithScore<Result>>[];
+  FutureOr<ResultsLayout> buildResults(String query) {
+    if (provider.items.isEmpty) {
+      return createLayoutFromResultsAndLeading(
+        leading: Builder(
+          builder: provider.noResultsBuilder,
+        ),
+        results: null,
+      );
+    }
+
+    final List<_ResultWithScore<Result>> resultsWithScore = <_ResultWithScore<Result>>[];
+    final List<Result> results = <Result>[];
 
     for (final Item item in provider.items) {
       // Get title index
@@ -45,10 +69,9 @@ mixin YgExactSearchSessionMixin<Value, Item extends YgStringSearchItem, Result e
         score = subtitleIndex * titleIndex * 0.5;
       }
 
-      results.add((
+      resultsWithScore.add((
         score: score,
-        result: createResultFromMatches(
-          item: item,
+        result: item.createResult(
           titleMatches: <YgTextMatch>[
             if (titleIndex != -1)
               YgTextMatch(
@@ -67,7 +90,16 @@ mixin YgExactSearchSessionMixin<Value, Item extends YgStringSearchItem, Result e
       ));
     }
 
-    results.sort(
+    if (resultsWithScore.isEmpty) {
+      return createLayoutFromResultsAndLeading(
+        leading: Builder(
+          builder: provider.noResultsBuilder,
+        ),
+        results: null,
+      );
+    }
+
+    resultsWithScore.sort(
       (
         _ResultWithScore<Result> a,
         _ResultWithScore<Result> b,
@@ -75,13 +107,29 @@ mixin YgExactSearchSessionMixin<Value, Item extends YgStringSearchItem, Result e
           a.score.compareTo(b.score),
     );
 
-    return results.map((_ResultWithScore<Result> entry) => entry.result).toList();
+    for (final _ResultWithScore<Result> resultWithScore in resultsWithScore) {
+      results.add(resultWithScore.result);
+    }
+
+    final Widget? leading;
+    final WidgetBuilder? hintBuilder = provider.hintBuilder;
+    if (hintBuilder != null) {
+      leading = Builder(
+        builder: hintBuilder,
+      );
+    } else {
+      leading = null;
+    }
+
+    return createLayoutFromResultsAndLeading(
+      results: results,
+      leading: leading,
+    );
   }
 
-  Result createResultFromMatches({
-    required Item item,
-    required List<YgTextMatch> titleMatches,
-    required List<YgTextMatch>? subtitleMatches,
+  ResultsLayout createLayoutFromResultsAndLeading({
+    required List<Result>? results,
+    required Widget? leading,
   });
 }
 

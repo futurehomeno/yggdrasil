@@ -1,7 +1,9 @@
-import 'package:yggdrasil/src/components/fields/search/models/string_search/yg_string_search_result.dart';
-import 'package:yggdrasil/src/components/fields/search/models/yg_base_search_provider.dart';
+import 'package:yggdrasil/src/components/fields/search/models/base/yg_base_search_provider.dart';
+import 'package:yggdrasil/src/components/fields/search/models/base/yg_base_search_result.dart';
+import 'package:yggdrasil/src/components/fields/search/models/base/yg_base_search_results_layout.dart';
 
-abstract interface class YgSearchMixinInterface<Value, Result extends YgStringSearchResult> {
+abstract interface class YgSearchMixinInterface<Value, ResultValue, Result extends YgBaseSearchResult,
+    ResultsLayout extends YgBaseSearchResultsLayout<Result>> {
   void onChanged();
 
   void open();
@@ -14,5 +16,5 @@ abstract interface class YgSearchMixinInterface<Value, Result extends YgStringSe
 
   bool get isOpen;
 
-  YgBaseSearchProvider<Value, Result> get searchProvider;
+  YgBaseSearchProvider<Value, ResultValue, Result, ResultsLayout> get searchProvider;
 }

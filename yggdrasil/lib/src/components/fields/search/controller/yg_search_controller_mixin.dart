@@ -2,35 +2,45 @@ import 'dart:async';
 
 import 'package:flutter/widgets.dart';
 import 'package:yggdrasil/src/components/fields/search/controller/yg_search_mixin_interface.dart';
+import 'package:yggdrasil/src/components/fields/search/models/advanced_search/yg_search_results_layout.dart';
+import 'package:yggdrasil/src/components/fields/search/models/advanced_search/yg_search_value_and_text.dart';
+import 'package:yggdrasil/src/components/fields/search/models/base/yg_base_search_result.dart';
+import 'package:yggdrasil/src/components/fields/search/models/base/yg_base_search_results_layout.dart';
+import 'package:yggdrasil/src/components/fields/search/models/string_search/yg_string_search_results_layout.dart';
 import 'package:yggdrasil/src/utils/_utils.dart';
 import 'package:yggdrasil/yggdrasil.dart';
 
+import 'advanced_search/yg_advanced_value_search_mixin.dart';
 import 'string_search/yg_string_search_mixin.dart';
-import 'value_search/yg_value_search_mixin.dart';
 
+part 'advanced_search/yg_advanced_search_controller.dart';
 part 'string_search/yg_string_search_controller.dart';
-part 'value_search/yg_value_search_controller.dart';
 
-typedef YgSearchControllerAnyWithResult<Value, Result>
-    = YgSearchControllerMixin<Value, Result, YgStringSearchResult, YgSearchMixinInterface<Value, YgStringSearchResult>>;
+typedef YgSearchControllerAny<Value, ResultValue> = YgSearchControllerMixin<
+    Value,
+    ResultValue,
+    YgBaseSearchResult,
+    YgBaseSearchResultsLayout<YgBaseSearchResult>,
+    YgSearchMixinInterface<Value, ResultValue, YgBaseSearchResult, YgBaseSearchResultsLayout<YgBaseSearchResult>>>;
 
-typedef YgSearchControllerAny<Value> = YgSearchControllerMixin<Value, Object?, YgStringSearchResult,
-    YgSearchMixinInterface<Value, YgStringSearchResult>>;
-
-mixin YgSearchControllerMixin<Value, ControllerValue, Result extends YgStringSearchResult,
-        SearchMixin extends YgSearchMixinInterface<Value, Result>> on ChangeNotifier
+mixin YgSearchControllerMixin<
+        Value,
+        ResultValue,
+        Result extends YgBaseSearchResult,
+        ResultsLayout extends YgBaseSearchResultsLayout<Result>,
+        SearchMixin extends YgSearchMixinInterface<Value, ResultValue, Result, ResultsLayout>> on ChangeNotifier
     implements YgAttachable<SearchMixin>, YgDisposable {
-  ControllerValue get value;
+  Value get value;
 
   String get valueText;
 
   TextEditingController get textEditingController;
 
-  List<Result> get results;
+  ResultsLayout get results;
 
   bool get loading;
 
-  void onResultTapped(Value result);
+  void onResultTapped(ResultValue result);
 
   void clear();
 

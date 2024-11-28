@@ -31,7 +31,7 @@ class _YgValueSearchFormField<T> extends YgSearchFormField<T> {
 
   final YgSearchProvider<T> searchProvider;
 
-  final YgValueSearchController<T>? controller;
+  final YgAdvancedSearchController<T>? controller;
 
   @override
   FormFieldBuilder<T> get builder => _builder;

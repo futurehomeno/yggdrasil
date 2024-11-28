@@ -11,7 +11,7 @@ abstract class YgSearchFormField<T> extends StatefulWidget implements FormField<
     YgAutoValidate autoValidate,
     required bool autocorrect,
     YgCompleteAction completeAction,
-    YgValueSearchController<T>? controller,
+    YgAdvancedSearchController<T>? controller,
     bool disabled,
     String? error,
     FocusNode? focusNode,

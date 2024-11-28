@@ -1,23 +1,36 @@
 import 'dart:async';
 
+import 'package:flutter/widgets.dart';
 import 'package:fuzzy/bitap/data/match_index.dart' as fuzzy;
 import 'package:fuzzy/data/result.dart' as fuzzy;
 import 'package:fuzzy/fuzzy.dart' as fuzzy;
-import 'package:yggdrasil/src/components/fields/search/models/string_search/yg_string_search_item.dart';
-import 'package:yggdrasil/src/components/fields/search/models/string_search/yg_string_search_result.dart';
-import 'package:yggdrasil/src/components/fields/search/models/yg_base_search_provider.dart';
+import 'package:yggdrasil/src/components/fields/search/models/base/yg_base_search_item.dart';
+import 'package:yggdrasil/src/components/fields/search/models/base/yg_base_search_provider.dart';
+import 'package:yggdrasil/src/components/fields/search/models/base/yg_base_search_result.dart';
+import 'package:yggdrasil/src/components/fields/search/models/base/yg_base_search_results_layout.dart';
 import 'package:yggdrasil/src/utils/yg_match_text/yg_text_match.dart';
 
-abstract class YgFuzzySearchProviderInterface<Value, Item extends YgStringSearchItem,
-    Result extends YgStringSearchResult> implements YgBaseSearchProvider<Value, Result> {
+abstract class YgFuzzySearchProviderInterface<
+    Value,
+    ResultValue,
+    Result extends YgBaseSearchResult,
+    ResultsLayout extends YgBaseSearchResultsLayout<Result>,
+    Item extends YgBaseSearchItem<Result>> implements YgBaseSearchProvider<Value, ResultValue, Result, ResultsLayout> {
   bool get searchSubtitle;
   List<Item> get items;
   double get threshold;
+  WidgetBuilder? get hintBuilder;
+  WidgetBuilder get noResultsBuilder;
 }
 
-mixin YgFuzzySearchSessionMixin<Value, Item extends YgStringSearchItem, Result extends YgStringSearchResult,
-        Provider extends YgFuzzySearchProviderInterface<Value, Item, Result>>
-    on YgBaseSearchSession<Value, Result, Provider> {
+mixin YgFuzzySearchSessionMixin<
+        Value,
+        ResultValue,
+        Result extends YgBaseSearchResult,
+        ResultsLayout extends YgBaseSearchResultsLayout<Result>,
+        Item extends YgBaseSearchItem<Result>,
+        Provider extends YgFuzzySearchProviderInterface<Value, ResultValue, Result, ResultsLayout, Item>>
+    on YgBaseSearchSession<Value, ResultValue, Result, ResultsLayout, Provider> {
   static const String _titleKey = 'title';
   static const String _subtitleKey = 'subtitle';
 
@@ -42,7 +55,16 @@ mixin YgFuzzySearchSessionMixin<Value, Item extends YgStringSearchItem, Result e
   );
 
   @override
-  FutureOr<List<Result>?> buildResults(String query) {
+  FutureOr<ResultsLayout> buildResults(String query) {
+    if (provider.items.isEmpty) {
+      return createLayoutFromResultsAndLeading(
+        leading: Builder(
+          builder: provider.noResultsBuilder,
+        ),
+        results: null,
+      );
+    }
+
     final List<fuzzy.Result<Item>> results = _fuzzy.search(query);
     final List<Result> mappedResults = <Result>[];
 
@@ -66,20 +88,35 @@ mixin YgFuzzySearchSessionMixin<Value, Item extends YgStringSearchItem, Result e
       }
 
       mappedResults.add(
-        createResultFromMatches(
-          item: result.item,
+        result.item.createResult(
           titleMatches: titleMatches,
           subtitleMatches: subtitleMatches,
         ),
       );
     }
 
-    return mappedResults;
+    final Widget? leading;
+    final WidgetBuilder? hintBuilder = provider.hintBuilder;
+    if (mappedResults.isEmpty) {
+      leading = Builder(
+        builder: provider.noResultsBuilder,
+      );
+    } else if (hintBuilder != null) {
+      leading = Builder(
+        builder: hintBuilder,
+      );
+    } else {
+      leading = null;
+    }
+
+    return createLayoutFromResultsAndLeading(
+      results: mappedResults,
+      leading: leading,
+    );
   }
 
-  Result createResultFromMatches({
-    required Item item,
-    required List<YgTextMatch> titleMatches,
-    required List<YgTextMatch>? subtitleMatches,
+  ResultsLayout createLayoutFromResultsAndLeading({
+    required List<Result>? results,
+    required Widget? leading,
   });
 }

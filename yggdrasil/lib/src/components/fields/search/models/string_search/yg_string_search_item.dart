@@ -1,18 +1,15 @@
+import 'package:yggdrasil/src/components/fields/search/models/base/yg_base_search_item.dart';
 import 'package:yggdrasil/src/components/fields/search/models/string_search/yg_string_search_result.dart';
-import 'package:yggdrasil/src/utils/yg_icon_data/yg_icon_data.dart';
 import 'package:yggdrasil/src/utils/yg_match_text/_yg_match_text.dart';
 
-class YgStringSearchItem {
+class YgStringSearchItem extends YgBaseSearchItem<YgStringSearchResult> {
   const YgStringSearchItem({
-    required this.icon,
-    required this.subtitle,
-    required this.title,
+    required super.icon,
+    required super.subtitle,
+    required super.title,
   });
 
-  final String title;
-  final String? subtitle;
-  final YgIconData? icon;
-
+  @override
   YgStringSearchResult createResult({
     List<YgTextMatch>? titleMatches,
     List<YgTextMatch>? subtitleMatches,
