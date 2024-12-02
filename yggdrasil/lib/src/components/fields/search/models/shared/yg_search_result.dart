@@ -1,7 +1,7 @@
-import '../string_search/yg_string_search_result.dart';
+import 'package:yggdrasil/src/components/fields/search/interfaces/yg_base_search_result.dart';
 
 /// A result for a [YgSearchWidget].
-class YgSearchResult<Value> extends YgStringSearchResult {
+class YgSearchResult<ResultValue> extends YgBaseSearchResult {
   const YgSearchResult({
     required super.title,
     required this.value,
@@ -13,5 +13,5 @@ class YgSearchResult<Value> extends YgStringSearchResult {
   ///
   /// This value is what you will get back from the [YgSearchWidget.onChange]
   /// when this entry is selected.
-  final Value value;
+  final ResultValue value;
 }

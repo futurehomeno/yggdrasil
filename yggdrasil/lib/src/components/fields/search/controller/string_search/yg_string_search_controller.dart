@@ -2,24 +2,33 @@ part of '../yg_search_controller_mixin.dart';
 
 class YgStringSearchController extends TextEditingController
     with
-        YgSearchControllerMixin<TextEditingValue, String, YgStringSearchResult, YgStringSearchResultsLayout,
+        _YgSearchControllerMixin<String, TextEditingValue, String, YgStringSearchResult, YgStringSearchResultsLayout,
             YgStringSearchMixin<StatefulWidget>> {
   YgStringSearchController({
     String? initialValue,
   })  : _lastHandledSearch = initialValue ?? '',
         super(text: initialValue);
 
+  YgStringSearchSession<YgStringSearchProvider>? _session;
+  String _lastHandledSearch;
+  bool _endingSession = false;
+
+  @override
+  String get valueText => text;
+
+  @override
+  bool get hasValue => text.isNotEmpty;
+
   @override
   TextEditingController get textEditingController => this;
-  String _lastHandledSearch;
 
   @override
   YgStringSearchResultsLayout get results => _results ?? const YgStringSearchResultsLayout();
   YgStringSearchResultsLayout? _results;
-  Future<YgStringSearchResultsLayout?>? _resultsFuture;
 
-  YgStringSearchSession<YgStringSearchProvider>? _session;
-  bool _endingSession = false;
+  @override
+  bool get loading => _resultsFuture != null;
+  Future<YgStringSearchResultsLayout?>? _resultsFuture;
 
   @override
   void notifyListeners() {
@@ -33,12 +42,6 @@ class YgStringSearchController extends TextEditingController
     _lastHandledSearch = result;
     text = result;
   }
-
-  @override
-  bool get loading => _resultsFuture != null;
-
-  @override
-  bool get hasValue => text.isNotEmpty;
 
   void _updateResults({bool force = false}) async {
     final YgStringSearchMixin<StatefulWidget>? state = _state;
@@ -70,7 +73,19 @@ class YgStringSearchController extends TextEditingController
   }
 
   @override
-  String get valueText => text;
+  void startSession() {
+    _endingSession = false;
+    final YgStringSearchMixin<StatefulWidget>? state = _state;
+    if (state == null || _session != null) {
+      return;
+    }
+
+    final YgStringSearchProvider provider = state.searchProvider;
+    final YgStringSearchSession<YgStringSearchProvider> session = provider.createSession();
+    session.attach(this, provider);
+    session.initSession();
+    _session = session;
+  }
 
   @override
   void endSession({bool force = false}) async {
@@ -89,20 +104,5 @@ class YgStringSearchController extends TextEditingController
     session.dispose();
     session.detach();
     _session = null;
-  }
-
-  @override
-  void startSession() {
-    _endingSession = false;
-    final YgStringSearchMixin<StatefulWidget>? state = _state;
-    if (state == null || _session != null) {
-      return;
-    }
-
-    final YgStringSearchProvider provider = state.searchProvider;
-    final YgStringSearchSession<YgStringSearchProvider> session = provider.createSession();
-    session.attach(this, provider);
-    session.initSession();
-    _session = session;
   }
 }

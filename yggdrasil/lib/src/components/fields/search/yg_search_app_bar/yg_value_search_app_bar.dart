@@ -26,7 +26,7 @@ class _YgValueSearchAppBar<T> extends YgSearchAppBar<T> {
     super.automaticallyImplyLeading,
   }) : super._();
 
-  final YgSearchProvider<T> searchProvider;
+  final YgAdvancedSearchProvider<T> searchProvider;
 
   final T? initialValue;
 

@@ -28,7 +28,7 @@ abstract class YgSearchFormField<T> extends StatefulWidget implements FormField<
     String? placeholder,
     bool readOnly,
     YgSearchAction searchAction,
-    required YgSearchProvider<T> searchProvider,
+    required YgAdvancedSearchProvider<T> searchProvider,
     YgFieldSize size,
     required TextCapitalization textCapitalization,
     List<FormFieldValidator<T>>? validators,

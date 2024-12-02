@@ -4,10 +4,10 @@ import 'package:flutter/widgets.dart';
 import 'package:fuzzy/bitap/data/match_index.dart' as fuzzy;
 import 'package:fuzzy/data/result.dart' as fuzzy;
 import 'package:fuzzy/fuzzy.dart' as fuzzy;
-import 'package:yggdrasil/src/components/fields/search/models/base/yg_base_search_item.dart';
-import 'package:yggdrasil/src/components/fields/search/models/base/yg_base_search_provider.dart';
-import 'package:yggdrasil/src/components/fields/search/models/base/yg_base_search_result.dart';
-import 'package:yggdrasil/src/components/fields/search/models/base/yg_base_search_results_layout.dart';
+import 'package:yggdrasil/src/components/fields/search/interfaces/yg_base_search_item.dart';
+import 'package:yggdrasil/src/components/fields/search/interfaces/yg_base_search_provider.dart';
+import 'package:yggdrasil/src/components/fields/search/interfaces/yg_base_search_result.dart';
+import 'package:yggdrasil/src/components/fields/search/interfaces/yg_base_search_results_layout.dart';
 import 'package:yggdrasil/src/utils/yg_match_text/yg_text_match.dart';
 
 abstract class YgFuzzySearchProviderInterface<
@@ -16,11 +16,19 @@ abstract class YgFuzzySearchProviderInterface<
     Result extends YgBaseSearchResult,
     ResultsLayout extends YgBaseSearchResultsLayout<Result>,
     Item extends YgBaseSearchItem<Result>> implements YgBaseSearchProvider<Value, ResultValue, Result, ResultsLayout> {
-  bool get searchSubtitle;
-  List<Item> get items;
-  double get threshold;
-  WidgetBuilder? get hintBuilder;
-  WidgetBuilder get noResultsBuilder;
+  const YgFuzzySearchProviderInterface({
+    required this.hintBuilder,
+    required this.items,
+    required this.noResultsBuilder,
+    required this.searchSubtitle,
+    required this.threshold,
+  });
+
+  final bool searchSubtitle;
+  final List<Item> items;
+  final double threshold;
+  final WidgetBuilder? hintBuilder;
+  final WidgetBuilder noResultsBuilder;
 }
 
 mixin YgFuzzySearchSessionMixin<

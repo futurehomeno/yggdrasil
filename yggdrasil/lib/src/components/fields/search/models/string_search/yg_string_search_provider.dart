@@ -1,4 +1,4 @@
-import 'package:yggdrasil/src/components/fields/search/models/base/yg_base_search_provider.dart';
+import 'package:yggdrasil/src/components/fields/search/interfaces/yg_base_search_provider.dart';
 import 'package:yggdrasil/src/components/fields/search/models/string_search/yg_string_search_result.dart';
 import 'package:yggdrasil/src/components/fields/search/models/string_search/yg_string_search_results_layout.dart';
 

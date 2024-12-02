@@ -1,13 +1,14 @@
 part of '../yg_search_controller_mixin.dart';
 
-typedef _Session<ResultValue, Value> = YgSearchSession<ResultValue, Value, YgSearchProvider<ResultValue, Value>>;
-typedef _SearchMixin<ResultValue, Value> = YgAdvancedValueSearchMixin<ResultValue, Value, StatefulWidget>;
+typedef _Session<ResultValue, Value>
+    = YgAdvancedSearchSession<ResultValue, Value, YgAdvancedSearchProvider<ResultValue, Value>>;
+typedef _SearchMixin<ResultValue, Value> = YgAdvancedSearchMixin<ResultValue, Value, StatefulWidget>;
 
 class YgAdvancedSearchController<ResultValue, Value>
     with
         ChangeNotifier,
-        YgSearchControllerMixin<ResultValue, YgSearchValueAndText<Value>?, YgSearchResult<ResultValue>,
-            YgSearchResultsLayout<ResultValue>, _SearchMixin<ResultValue, Value>> {
+        _YgSearchControllerMixin<ResultValue, YgSearchValueAndText<Value>?, Value, YgSearchResult<ResultValue>,
+            YgSearchResultsLayout<ResultValue>, YgAdvancedSearchMixin<ResultValue, Value, StatefulWidget>> {
   YgAdvancedSearchController({
     YgSearchValueAndText<Value>? initialValue,
   })  : _textEditingController = TextEditingController(),
@@ -27,8 +28,8 @@ class YgAdvancedSearchController<ResultValue, Value>
   String _valueText = '';
 
   @override
-  List<YgSearchResult<ResultValue>> get results => _results ?? <YgSearchResult<ResultValue>>[];
-  List<YgSearchResult<ResultValue>>? _results;
+  YgSearchResultsLayout<ResultValue> get results => _results ?? YgSearchResultsLayout<ResultValue>();
+  YgSearchResultsLayout<ResultValue>? _results;
   Future<void>? _resultsFuture;
   Future<void>? _resultTextFuture;
 
@@ -39,7 +40,7 @@ class YgAdvancedSearchController<ResultValue, Value>
   bool get loading => _resultsFuture != null || _resultTextFuture != null;
 
   void _updateResults({bool force = false}) async {
-    final YgAdvancedValueSearchMixin<ResultValue, Value, StatefulWidget>? state = _state;
+    final _SearchMixin<ResultValue, Value>? state = _state;
     final String text = textEditingController.text;
     final _Session<ResultValue, Value>? session = _session;
     if ((!force && _lastHandledSearch == text) ||
@@ -116,9 +117,10 @@ class YgAdvancedSearchController<ResultValue, Value>
       _value = result;
       _updateResultText(result);
       _state?.onChanged();
-      close();
       notifyListeners();
     }
+
+    close();
   }
 
   @override
@@ -186,7 +188,7 @@ class YgAdvancedSearchController<ResultValue, Value>
       return;
     }
 
-    final YgSearchProvider<ResultValue, Value> provider = state.searchProvider;
+    final YgAdvancedSearchProvider<ResultValue, Value> provider = state.searchProvider;
     final _SearchMixin<ResultValue, Value> session = provider.createSession();
     session.attach(this, provider);
     session.initSession();

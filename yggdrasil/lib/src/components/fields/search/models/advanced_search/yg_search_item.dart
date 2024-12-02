@@ -1,5 +1,5 @@
-import 'package:yggdrasil/src/components/fields/search/models/advanced_search/yg_search_result.dart';
-import 'package:yggdrasil/src/components/fields/search/models/base/yg_base_search_item.dart';
+import 'package:yggdrasil/src/components/fields/search/interfaces/yg_base_search_item.dart';
+import 'package:yggdrasil/src/components/fields/search/models/shared/yg_search_result.dart';
 import 'package:yggdrasil/src/utils/yg_match_text/yg_formatted_text.dart';
 import 'package:yggdrasil/src/utils/yg_match_text/yg_text_match.dart';
 

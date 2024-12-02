@@ -29,7 +29,7 @@ class _YgValueSearchFormField<T> extends YgSearchFormField<T> {
     List<FormFieldValidator<T>>? validators,
   }) : super._();
 
-  final YgSearchProvider<T> searchProvider;
+  final YgAdvancedSearchProvider<T> searchProvider;
 
   final YgAdvancedSearchController<T>? controller;
 

@@ -2,55 +2,35 @@ import 'dart:async';
 
 import 'package:flutter/widgets.dart';
 import 'package:yggdrasil/src/components/fields/search/controller/yg_search_mixin_interface.dart';
+import 'package:yggdrasil/src/components/fields/search/interfaces/yg_base_search_result.dart';
+import 'package:yggdrasil/src/components/fields/search/interfaces/yg_base_search_results_layout.dart';
 import 'package:yggdrasil/src/components/fields/search/models/advanced_search/yg_search_results_layout.dart';
 import 'package:yggdrasil/src/components/fields/search/models/advanced_search/yg_search_value_and_text.dart';
-import 'package:yggdrasil/src/components/fields/search/models/base/yg_base_search_result.dart';
-import 'package:yggdrasil/src/components/fields/search/models/base/yg_base_search_results_layout.dart';
+import 'package:yggdrasil/src/components/fields/search/models/shared/yg_search_result.dart';
+import 'package:yggdrasil/src/components/fields/search/models/simple_search/_simple_search.dart';
 import 'package:yggdrasil/src/components/fields/search/models/string_search/yg_string_search_results_layout.dart';
-import 'package:yggdrasil/src/utils/_utils.dart';
 import 'package:yggdrasil/yggdrasil.dart';
 
-import 'advanced_search/yg_advanced_value_search_mixin.dart';
+import 'advanced_search/yg_advanced_search_mixin.dart';
+import 'simple_search/yg_simple_search_mixin.dart';
 import 'string_search/yg_string_search_mixin.dart';
+import 'yg_search_controller.dart';
 
 part 'advanced_search/yg_advanced_search_controller.dart';
+part 'simple_search/yg_simple_search_controller.dart';
 part 'string_search/yg_string_search_controller.dart';
 
-typedef YgSearchControllerAny<Value, ResultValue> = YgSearchControllerMixin<
-    Value,
-    ResultValue,
-    YgBaseSearchResult,
-    YgBaseSearchResultsLayout<YgBaseSearchResult>,
-    YgSearchMixinInterface<Value, ResultValue, YgBaseSearchResult, YgBaseSearchResultsLayout<YgBaseSearchResult>>>;
-
-mixin YgSearchControllerMixin<
+mixin _YgSearchControllerMixin<
         Value,
+        ControllerValue,
         ResultValue,
         Result extends YgBaseSearchResult,
         ResultsLayout extends YgBaseSearchResultsLayout<Result>,
         SearchMixin extends YgSearchMixinInterface<Value, ResultValue, Result, ResultsLayout>> on ChangeNotifier
-    implements YgAttachable<SearchMixin>, YgDisposable {
-  Value get value;
-
-  String get valueText;
-
-  TextEditingController get textEditingController;
-
-  ResultsLayout get results;
-
-  bool get loading;
-
-  void onResultTapped(ResultValue result);
-
-  void clear();
-
+    implements YgSearchController<Value, ControllerValue, ResultValue, Result, ResultsLayout, SearchMixin> {
   SearchMixin? _state;
 
   bool _initializing = true;
-
-  void endSession({bool force = false});
-
-  void startSession();
 
   @override
   void notifyListeners() {
@@ -60,7 +40,23 @@ mixin YgSearchControllerMixin<
     }
   }
 
+  /// Internal method called by the search widget when the widget is closed.
+  ///
+  /// !-- WARNING --
+  /// This should not be called manually, if you want to cancel a search use the
+  /// [close] method instead.
+  void endSession({bool force = false});
+
+  /// Internal method called by the search widget when the widget is opened.
+  ///
+  /// !-- WARNING --
+  /// This should not be called manually, if you want to start a search use the
+  /// [open] method instead
+  void startSession();
+
+  @override
   String get searchQuery => textEditingController.text;
+  @override
   set searchQuery(String newSearchQuery) {
     textEditingController.text = newSearchQuery;
   }
@@ -88,11 +84,7 @@ mixin YgSearchControllerMixin<
     _initializing = true;
   }
 
-  /// Opens the menu specifically.
-  ///
-  /// Should be called only when the menu specifically should be opened. For most
-  /// cases you want to use the [open] method instead to show either a menu or
-  /// search screen, depending on the platform the user is on.
+  @override
   void openMenu() {
     final SearchMixin? state = _state;
     assert(
@@ -106,11 +98,7 @@ mixin YgSearchControllerMixin<
     state.openMenu();
   }
 
-  /// Opens the search screen specifically.
-  ///
-  /// Should be called only when the search screen specifically should be opened.
-  /// For most cases you want to use the [open] method instead to show either a
-  /// menu or search screen, depending on the platform the user is on.
+  @override
   void openScreen() {
     final SearchMixin? state = _state;
     assert(
@@ -124,10 +112,7 @@ mixin YgSearchControllerMixin<
     state.openScreen();
   }
 
-  /// Opens the search widget.
-  ///
-  /// Shows either a menu or search screen, depending on the platform the user
-  /// is on.
+  @override
   void open() {
     final SearchMixin? state = _state;
     assert(
@@ -140,7 +125,7 @@ mixin YgSearchControllerMixin<
     state.open();
   }
 
-  /// Closes the search widget.
+  @override
   void close() {
     final SearchMixin? state = _state;
     assert(
@@ -154,7 +139,7 @@ mixin YgSearchControllerMixin<
     state.close();
   }
 
-  /// Whether the search widget is open or closed.
+  @override
   bool get isOpen {
     final SearchMixin? state = _state;
     if (state == null) {
@@ -164,7 +149,6 @@ mixin YgSearchControllerMixin<
     return state.isOpen;
   }
 
-  bool get hasValue;
-
+  @override
   bool get attached => _state != null;
 }

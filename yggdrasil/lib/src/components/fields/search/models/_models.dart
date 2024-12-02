@@ -1,2 +1,2 @@
 export 'string_search/_string_search.dart';
-export 'value_search/_value_search.dart';
+export 'advanced_search/_advanced_search.dart';

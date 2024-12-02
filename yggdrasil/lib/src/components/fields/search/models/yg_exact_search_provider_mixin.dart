@@ -1,12 +1,12 @@
 import 'dart:async';
 
 import 'package:flutter/material.dart';
-import 'package:yggdrasil/src/components/fields/search/models/base/yg_base_search_provider.dart';
-import 'package:yggdrasil/src/components/fields/search/models/base/yg_base_search_result.dart';
-import 'package:yggdrasil/src/components/fields/search/models/base/yg_base_search_results_layout.dart';
+import 'package:yggdrasil/src/components/fields/search/interfaces/yg_base_search_provider.dart';
+import 'package:yggdrasil/src/components/fields/search/interfaces/yg_base_search_result.dart';
+import 'package:yggdrasil/src/components/fields/search/interfaces/yg_base_search_results_layout.dart';
 import 'package:yggdrasil/src/utils/yg_match_text/yg_text_match.dart';
 
-import 'base/yg_base_search_item.dart';
+import '../interfaces/yg_base_search_item.dart';
 
 abstract class YgExactSearchProviderInterface<
     Value,
@@ -14,10 +14,17 @@ abstract class YgExactSearchProviderInterface<
     Result extends YgBaseSearchResult,
     ResultsLayout extends YgBaseSearchResultsLayout<Result>,
     Item extends YgBaseSearchItem<Result>> implements YgBaseSearchProvider<Value, ResultValue, Result, ResultsLayout> {
-  bool get searchSubtitle;
-  List<Item> get items;
-  WidgetBuilder? get hintBuilder;
-  WidgetBuilder get noResultsBuilder;
+  const YgExactSearchProviderInterface({
+    required this.hintBuilder,
+    required this.items,
+    required this.noResultsBuilder,
+    required this.searchSubtitle,
+  });
+
+  final bool searchSubtitle;
+  final List<Item> items;
+  final WidgetBuilder? hintBuilder;
+  final WidgetBuilder noResultsBuilder;
 }
 
 mixin YgExactSearchSessionMixin<

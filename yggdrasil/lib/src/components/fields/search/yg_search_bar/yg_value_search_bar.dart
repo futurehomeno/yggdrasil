@@ -25,7 +25,7 @@ class _YgValueSearchBar<T> extends YgSearchBar<T> {
     this.initialValue,
   }) : super._();
 
-  final YgSearchProvider<T> searchProvider;
+  final YgAdvancedSearchProvider<T> searchProvider;
 
   final T? initialValue;
 
@@ -34,7 +34,7 @@ class _YgValueSearchBar<T> extends YgSearchBar<T> {
 }
 
 class _YgValueSearchBarWidgetState<T> extends YgSearchBarWidgetState<T, _YgValueSearchBar<T>, YgSearchResult<T>>
-    with YgAdvancedValueSearchMixin<T, _YgValueSearchBar<T>> {
+    with YgAdvancedSearchMixin<T, _YgValueSearchBar<T>> {
   @override
   YgSearchControllerAny<T> createController() {
     return YgAdvancedSearchController<T>(
@@ -58,5 +58,5 @@ class _YgValueSearchBarWidgetState<T> extends YgSearchBarWidgetState<T, _YgValue
   }
 
   @override
-  YgSearchProvider<T> get searchProvider => widget.searchProvider;
+  YgAdvancedSearchProvider<T> get searchProvider => widget.searchProvider;
 }

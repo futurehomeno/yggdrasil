@@ -2,7 +2,7 @@
 
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:yggdrasil/src/components/fields/search/controller/advanced_search/yg_advanced_value_search_mixin.dart';
+import 'package:yggdrasil/src/components/fields/search/controller/advanced_search/yg_advanced_search_mixin.dart';
 import 'package:yggdrasil/src/components/fields/search/controller/string_search/yg_string_search_mixin.dart';
 import 'package:yggdrasil/src/components/fields/search/controller/yg_search_mixin_interface.dart';
 import 'package:yggdrasil/src/components/fields/search/widgets/hint_provider.dart';
@@ -45,7 +45,7 @@ abstract class YgSearchField<Value, Result> extends StatefulWidget with Stateful
     String? placeholder,
     bool readOnly,
     YgSearchAction searchAction,
-    required YgSearchProvider<Value, Result> searchProvider,
+    required YgAdvancedSearchProvider<Value, Result> searchProvider,
     YgFieldSize size,
     required TextCapitalization textCapitalization,
     YgFieldVariant variant,
