@@ -17,31 +17,51 @@ class YgSimpleSearchController<Value>
   _SimpleSession<Value>? _session;
   bool _endingSession = false;
   String _lastHandledSearch = '';
+  Future<void>? _resultsFuture;
+  Future<void>? _valueTextFuture;
+
+  @override
+  bool get loading => _loading;
+  bool _loading = false;
 
   @override
   TextEditingController get textEditingController => _textEditingController;
   final TextEditingController _textEditingController;
 
   @override
-  Value? get value => _value;
-  Value? _value;
+  YgSearchResultsLayout<Value> get results => _results ?? YgSearchResultsLayout<Value>();
+  YgSearchResultsLayout<Value>? _results;
 
   @override
   bool get hasValue => _value != null;
 
   @override
-  String get valueText => _valueText;
-  String _valueText = '';
+  String get valueText => _valueText ?? '';
+  String? _valueText;
 
   @override
-  YgSearchResultsLayout<Value> get results => _results ?? YgSearchResultsLayout<Value>();
-  YgSearchResultsLayout<Value>? _results;
+  Value? get value => _value;
+  Value? _value;
+  set value(Value? value) {
+    if (value == _value) {
+      return;
+    }
+    _value = value;
 
-  @override
-  bool get loading => _resultsFuture != null;
-  bool _loading = false;
-  Future<void>? _resultsFuture;
-  Future<void>? _valueTextFuture;
+    if (!attached || value == null) {
+      _valueText = null;
+
+      return;
+    }
+
+    if (_session == null) {
+      startSession();
+    }
+    _updateValueText();
+    if (!isOpen) {
+      endSession();
+    }
+  }
 
   @override
   void clear() {
@@ -100,8 +120,8 @@ class YgSimpleSearchController<Value>
 
     final Value? value = _value;
     if (value == null) {
-      if (_valueText.isNotEmpty) {
-        _valueText = '';
+      if (_valueText != null) {
+        _valueText = null;
         notifyListeners();
       }
 
@@ -109,7 +129,7 @@ class YgSimpleSearchController<Value>
     }
 
     final FutureOr<String?>? valueText = session.getValueText(value);
-    final String oldText = _valueText;
+    final String? oldText = _valueText;
     if (valueText is String) {
       if (valueText != oldText) {
         _valueText = valueText;
@@ -121,8 +141,8 @@ class YgSimpleSearchController<Value>
       _valueText = await valueText;
       _valueTextFuture = null;
       _updateLoading(forceNotify: oldText != _valueText);
-    } else if (oldText.isNotEmpty) {
-      _valueText = '';
+    } else if (oldText != null) {
+      _valueText = null;
       notifyListeners();
     }
   }
@@ -178,5 +198,33 @@ class YgSimpleSearchController<Value>
     session.detach();
     session.dispose();
     _session = null;
+  }
+
+  @override
+  void attach(YgSimpleSearchMixin<StatefulWidget, Value> state) {
+    super.attach(state);
+    if (_session == null) {
+      startSession();
+    }
+    _updateValueText();
+    if (!isOpen) {
+      endSession();
+    }
+  }
+
+  @override
+  void detach() {
+    endSession(force: true);
+    super.detach();
+  }
+
+  @override
+  void dispose() {
+    _textEditingController.dispose();
+    _resultsFuture = null;
+    _valueTextFuture = null;
+    _loading = false;
+    detach();
+    super.dispose();
   }
 }
