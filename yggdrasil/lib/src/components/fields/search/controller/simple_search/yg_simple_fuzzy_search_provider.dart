@@ -1,10 +1,8 @@
 import 'dart:async';
 
 import 'package:flutter/widgets.dart';
-import 'package:yggdrasil/src/components/fields/search/models/advanced_search/yg_search_results_layout.dart';
-import 'package:yggdrasil/src/components/fields/search/models/shared/yg_search_result.dart';
-import 'package:yggdrasil/src/components/fields/search/models/simple_search/yg_simple_search_provider.dart';
-import 'package:yggdrasil/src/components/fields/search/models/yg_fuzzy_search_session_mixin.dart';
+import 'package:yggdrasil/src/components/fields/search/controller/simple_search/yg_simple_search_provider.dart';
+import 'package:yggdrasil/src/components/fields/search/interfaces/_interfaces.dart';
 import 'package:yggdrasil/yggdrasil.dart';
 
 class YgSimpleFuzzySearchProvider<Value> extends YgFuzzySearchProviderInterface<Value, Value, YgSearchResult<Value>,

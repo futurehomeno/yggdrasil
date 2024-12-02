@@ -1,16 +1,12 @@
 import 'dart:async';
 
 import 'package:flutter/widgets.dart';
+import 'package:yggdrasil/src/components/fields/search/controller/string_search/yg_string_search_provider.dart';
 import 'package:yggdrasil/src/components/fields/search/controller/yg_search_mixin_interface.dart';
-import 'package:yggdrasil/src/components/fields/search/interfaces/yg_base_search_result.dart';
-import 'package:yggdrasil/src/components/fields/search/interfaces/yg_base_search_results_layout.dart';
-import 'package:yggdrasil/src/components/fields/search/models/advanced_search/yg_search_results_layout.dart';
-import 'package:yggdrasil/src/components/fields/search/models/advanced_search/yg_search_value_and_text.dart';
-import 'package:yggdrasil/src/components/fields/search/models/shared/yg_search_result.dart';
-import 'package:yggdrasil/src/components/fields/search/models/simple_search/_simple_search.dart';
-import 'package:yggdrasil/src/components/fields/search/models/string_search/yg_string_search_results_layout.dart';
-import 'package:yggdrasil/yggdrasil.dart';
+import 'package:yggdrasil/src/components/fields/search/interfaces/_interfaces.dart';
+import 'package:yggdrasil/src/components/fields/search/models/_models.dart';
 
+import '_controller.dart';
 import 'advanced_search/yg_advanced_search_mixin.dart';
 import 'simple_search/yg_simple_search_mixin.dart';
 import 'string_search/yg_string_search_mixin.dart';

@@ -1,9 +1,7 @@
 import 'package:flutter/widgets.dart';
-import 'package:yggdrasil/src/components/fields/search/models/string_search/yg_string_search_result.dart';
-import 'package:yggdrasil/src/components/fields/search/models/string_search/yg_string_search_results_layout.dart';
-import 'package:yggdrasil/src/components/fields/search/models/yg_exact_search_provider_mixin.dart';
+import 'package:yggdrasil/src/components/fields/search/interfaces/_interfaces.dart';
+import 'package:yggdrasil/src/components/fields/search/models/string_search/_string_search.dart';
 
-import 'yg_string_search_item.dart';
 import 'yg_string_search_provider.dart';
 
 class YgExactStringSearchProvider extends YgStringSearchProvider
