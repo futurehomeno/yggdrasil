@@ -36,20 +36,6 @@ mixin _YgSearchControllerMixin<
     }
   }
 
-  /// Internal method called by the search widget when the widget is closed.
-  ///
-  /// !-- WARNING --
-  /// This should not be called manually, if you want to cancel a search use the
-  /// [close] method instead.
-  void endSession({bool force = false});
-
-  /// Internal method called by the search widget when the widget is opened.
-  ///
-  /// !-- WARNING --
-  /// This should not be called manually, if you want to start a search use the
-  /// [open] method instead
-  void startSession();
-
   @override
   String get searchQuery => textEditingController.text;
   @override

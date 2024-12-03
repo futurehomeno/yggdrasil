@@ -1,3 +1,5 @@
+// ignore_for_file: avoid-generics-shadowing
+
 import 'dart:async';
 
 import 'package:flutter/widgets.dart';

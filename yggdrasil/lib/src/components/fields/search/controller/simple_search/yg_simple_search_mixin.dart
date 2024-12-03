@@ -5,7 +5,7 @@ import 'package:yggdrasil/src/components/fields/search/models/shared/yg_search_r
 
 import 'yg_simple_search_provider.dart';
 
-mixin YgSimpleSearchMixin<Widget extends StatefulWidget, Value> on State<Widget>
+mixin YgSimpleSearchMixin<Value, Widget extends StatefulWidget> on State<Widget>
     implements YgSearchMixinInterface<Value, Value, YgSearchResult<Value>, YgSearchResultsLayout<Value>> {
   @override
   YgSimpleSearchProvider<Value> get searchProvider;

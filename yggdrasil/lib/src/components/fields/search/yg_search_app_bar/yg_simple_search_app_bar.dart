@@ -1,13 +1,12 @@
 part of 'yg_search_app_bar.dart';
 
-class _YgValueSearchAppBar<T> extends YgSearchAppBar<T> {
-  const _YgValueSearchAppBar({
+class _YgSimpleSearchAppBar<Value> extends YgSearchAppBar<Value> {
+  const _YgSimpleSearchAppBar({
     super.key,
     required super.keyboardType,
     required super.autocorrect,
     required super.textCapitalization,
     required this.searchProvider,
-    YgAdvancedSearchController<T>? super.controller,
     this.initialValue,
     super.focusNode,
     super.error,
@@ -15,7 +14,6 @@ class _YgValueSearchAppBar<T> extends YgSearchAppBar<T> {
     super.onFocusChanged,
     super.onPressed,
     super.onEditingComplete,
-    super.onChanged,
     super.hint,
     super.inputFormatters,
     super.initialQuery,
@@ -24,20 +22,26 @@ class _YgValueSearchAppBar<T> extends YgSearchAppBar<T> {
     super.completeAction,
     super.searchAction,
     super.automaticallyImplyLeading,
+    this.controller,
+    this.onChanged,
   }) : super._();
 
-  final YgAdvancedSearchProvider<T> searchProvider;
+  final YgSimpleSearchProvider<Value> searchProvider;
 
-  final T? initialValue;
+  final Value? initialValue;
+
+  final ValueChanged<Value?>? onChanged;
+
+  final YgSimpleSearchController<Value>? controller;
 
   @override
-  State<_YgValueSearchAppBar<T>> createState() => _YgValueSearchAppBarState<T>();
+  State<_YgSimpleSearchAppBar<Value>> createState() => _YgSimpleSearchAppBarState<Value>();
 }
 
-class _YgValueSearchAppBarState<T> extends _YgSearchAppBarState<T, _YgValueSearchAppBar<T>> {
+class _YgSimpleSearchAppBarState<Value> extends _YgSearchAppBarState<Value, Value, _YgSimpleSearchAppBar<Value>> {
   @override
   Widget _buildSearchBar(Widget? leading) {
-    return YgSearchBar<T>(
+    return YgSearchBar<Value>(
       keyboardType: widget.keyboardType,
       autocorrect: widget.autocorrect,
       textCapitalization: widget.textCapitalization,
@@ -46,7 +50,7 @@ class _YgValueSearchAppBarState<T> extends _YgSearchAppBarState<T, _YgValueSearc
       placeholder: widget.placeholder,
       onFocusChanged: widget.onFocusChanged,
       onPressed: widget.onPressed,
-      controller: widget.controller as YgAdvancedSearchController<T>?,
+      controller: widget.controller,
       onEditingComplete: widget.onEditingComplete,
       onChanged: widget.onChanged,
       hint: widget.hint,

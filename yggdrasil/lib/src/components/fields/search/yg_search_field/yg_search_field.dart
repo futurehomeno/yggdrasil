@@ -17,8 +17,8 @@ import 'package:yggdrasil/yggdrasil.dart';
 
 import 'yg_search_field_state.dart';
 
+part 'simple_search/yg_value_search_field.dart';
 part 'string_search/yg_string_search_field.dart';
-part 'value_search/yg_value_search_field.dart';
 
 /// A field which when opened allows the user to search for a value.
 ///

@@ -1,8 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:yggdrasil/src/components/fields/search/controller/_controller.dart';
 import 'package:yggdrasil/src/components/fields/search/controller/advanced_search/yg_advanced_search_mixin.dart';
+import 'package:yggdrasil/src/components/fields/search/controller/simple_search/yg_simple_search_mixin.dart';
 import 'package:yggdrasil/src/components/fields/search/controller/string_search/yg_string_search_mixin.dart';
+import 'package:yggdrasil/src/components/fields/search/controller/string_search/yg_string_search_provider.dart';
+import 'package:yggdrasil/src/components/fields/search/controller/yg_search_controller.dart';
 import 'package:yggdrasil/src/components/fields/search/controller/yg_search_mixin_interface.dart';
+import 'package:yggdrasil/src/components/fields/search/interfaces/yg_base_search_result.dart';
+import 'package:yggdrasil/src/components/fields/search/interfaces/yg_base_search_results_layout.dart';
 import 'package:yggdrasil/src/components/fields/search/widgets/hint_provider.dart';
 import 'package:yggdrasil/src/components/fields/search/widgets/mobile_search_screen/_mobile_search_screen.dart';
 import 'package:yggdrasil/src/components/fields/search/widgets/search_app_bar.dart';
@@ -15,33 +21,34 @@ import 'package:yggdrasil/yggdrasil.dart';
 
 import 'yg_search_bar_state.dart';
 
+part 'yg_advanced_search_bar.dart';
+part 'yg_simple_search_bar.dart';
 part 'yg_string_search_bar.dart';
-part 'yg_value_search_bar.dart';
 
-abstract class YgSearchBar<T> extends StatefulWidget {
+abstract class YgSearchBar<Value> extends StatefulWidget {
   const factory YgSearchBar({
     required bool autocorrect,
     YgCompleteAction completeAction,
-    YgAdvancedSearchController<T>? controller,
+    YgSimpleSearchController<Value>? controller,
     String? error,
     FocusNode? focusNode,
     Widget? hint,
     String? initialQuery,
-    T? initialValue,
+    Value? initialValue,
     List<TextInputFormatter>? inputFormatters,
     Key? key,
     required TextInputType keyboardType,
     Widget? leading,
-    ValueChanged<T>? onChanged,
+    ValueChanged<Value?>? onChanged,
     VoidCallback? onEditingComplete,
     ValueChanged<bool>? onFocusChanged,
     VoidCallback? onPressed,
     String? placeholder,
     YgSearchAction searchAction,
-    required YgAdvancedSearchProvider<T> searchProvider,
+    required YgSimpleSearchProvider<Value> searchProvider,
     required TextCapitalization textCapitalization,
     Widget? trailing,
-  }) = _YgValueSearchBar<T>;
+  }) = _YgSimpleSearchBar<Value>;
 
   const YgSearchBar._({
     super.key,
@@ -53,9 +60,7 @@ abstract class YgSearchBar<T> extends StatefulWidget {
     this.placeholder,
     this.onFocusChanged,
     this.onPressed,
-    this.controller,
     this.onEditingComplete,
-    this.onChanged,
     this.hint,
     this.inputFormatters,
     this.initialQuery,
@@ -152,26 +157,29 @@ abstract class YgSearchBar<T> extends StatefulWidget {
   /// By default based on the [textInputAction].
   final YgCompleteAction completeAction;
 
-  final YgSearchControllerAny<T>? controller;
-
-  final ValueChanged<T>? onChanged;
-
   final String? initialQuery;
 }
 
-abstract class YgSearchBarWidgetState<T, W extends YgSearchBar<T>, R extends YgStringSearchResult>
-    extends StateWithYgStateAndStyle<W, YgSearchBarState, YgSearchBarStyle>
+abstract class YgSearchBarWidgetState<Value, ResultValue, Result extends YgBaseSearchResult,
+        ResultsLayout extends YgBaseSearchResultsLayout<Result>, StatefulWidget extends YgSearchBar<Value>>
+    extends StateWithYgStateAndStyle<StatefulWidget, YgSearchBarState, YgSearchBarStyle>
     with YgControllerManagerMixin
-    implements YgSearchMixinInterface<T, R> {
+    implements YgSearchMixinInterface<Value, ResultValue, Result, ResultsLayout> {
+  final GlobalKey _fieldKey = GlobalKey();
+  final YgLinkedKey<HintProvider> _hintKey = YgLinkedKey<HintProvider>();
+  bool _opened = false;
+
   late final YgMaterialStatesControllerWithChangeCallback _materialController =
       YgMaterialStatesControllerWithChangeCallback(
     onStateChange: _handleMaterialStateChange,
   );
 
   /// Manages the controller of this widget.
-  late final YgControllerManager<YgSearchControllerAny<T>> _controllerManager = manageController(
+  YgSearchControllerAny<Value, ResultValue> createController();
+  YgSearchControllerAny<Value, ResultValue>? getUserController();
+  late final YgControllerManager<YgSearchControllerAny<Value, ResultValue>> _controllerManager = manageController(
     createController: createController,
-    getUserController: () => widget.controller,
+    getUserController: getUserController,
   );
 
   /// Manages the [FocusNode] of this widget.
@@ -179,12 +187,6 @@ abstract class YgSearchBarWidgetState<T, W extends YgSearchBar<T>, R extends YgS
     createController: () => FocusNode(),
     getUserController: () => widget.focusNode,
   );
-
-  YgSearchControllerAny<T> createController();
-
-  final GlobalKey _fieldKey = GlobalKey();
-  final YgLinkedKey<HintProvider> _hintKey = YgLinkedKey<HintProvider>();
-  bool _opened = false;
 
   @override
   YgSearchBarState createState() {
@@ -225,7 +227,7 @@ abstract class YgSearchBarWidgetState<T, W extends YgSearchBar<T>, R extends YgS
 
   @override
   Widget build(BuildContext context) {
-    final YgSearchControllerAny<T> controller = _controllerManager.value;
+    final YgSearchControllerAny<Value, ResultValue> controller = _controllerManager.value;
     final YgSearchBarTheme theme = context.searchBarTheme;
     final Widget? trailing = widget.trailing;
 
@@ -345,14 +347,14 @@ abstract class YgSearchBarWidgetState<T, W extends YgSearchBar<T>, R extends YgS
     _controllerManager.value.startSession();
 
     Navigator.of(context).push(
-      SearchScreenRoute<T>(
+      SearchScreenRoute<Value>(
         searchController: _controllerManager.value,
         borderRadius: theme.containerBorderRadius,
         fieldKey: _fieldKey,
         hintKey: _hintKey,
         onClose: _onClosed,
         searchBarBuilder: (BuildContext context) {
-          return SearchAppBar<T>(
+          return SearchAppBar<Value>(
             controller: _controllerManager.value,
             placeholder: widget.placeholder,
             keyboardType: widget.keyboardType,

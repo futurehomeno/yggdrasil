@@ -3,42 +3,43 @@ import 'package:flutter/services.dart';
 import 'package:yggdrasil/src/components/buttons/yg_icon_button/yg_icon_button.dart';
 import 'package:yggdrasil/src/components/fields/enums/yg_complete_action.dart';
 import 'package:yggdrasil/src/components/fields/search/controller/_controller.dart';
-import 'package:yggdrasil/src/components/fields/search/controller/advanced_search/yg_advanced_search_provider.dart';
 import 'package:yggdrasil/src/components/fields/search/controller/string_search/yg_string_search_provider.dart';
 import 'package:yggdrasil/src/components/fields/search/enums/yg_search_action.dart';
+import 'package:yggdrasil/src/components/fields/search/models/advanced_search/_advanced_search.dart';
 import 'package:yggdrasil/src/generated/icons/_icons.dart';
 import 'package:yggdrasil/src/theme/_theme.dart';
 
 import '../yg_search_bar/yg_search_bar.dart';
 
+part 'yg_advanced_search_app_bar.dart';
+part 'yg_simple_search_app_bar.dart';
 part 'yg_string_search_app_bar.dart';
-part 'yg_value_search_app_bar.dart';
 
-abstract class YgSearchAppBar<T> extends StatefulWidget implements PreferredSizeWidget {
+abstract class YgSearchAppBar<Value> extends StatefulWidget implements PreferredSizeWidget {
   const factory YgSearchAppBar({
     required bool autocorrect,
     bool automaticallyImplyLeading,
     YgCompleteAction completeAction,
-    YgAdvancedSearchController<T>? controller,
+    YgSimpleSearchController<Value>? controller,
     String? error,
     FocusNode? focusNode,
     Widget? hint,
     String? initialQuery,
-    T? initialValue,
+    Value? initialValue,
     List<TextInputFormatter>? inputFormatters,
     Key? key,
     required TextInputType keyboardType,
     Widget? leading,
-    ValueChanged<T>? onChanged,
+    ValueChanged<Value?>? onChanged,
     VoidCallback? onEditingComplete,
     ValueChanged<bool>? onFocusChanged,
     VoidCallback? onPressed,
     String? placeholder,
     YgSearchAction searchAction,
-    required YgAdvancedSearchProvider<T> searchProvider,
+    required YgSimpleSearchProvider<Value> searchProvider,
     required TextCapitalization textCapitalization,
     Widget? trailing,
-  }) = _YgValueSearchAppBar<T>;
+  }) = _YgSimpleSearchAppBar<Value>;
 
   const YgSearchAppBar._({
     super.key,
@@ -50,9 +51,7 @@ abstract class YgSearchAppBar<T> extends StatefulWidget implements PreferredSize
     this.placeholder,
     this.onFocusChanged,
     this.onPressed,
-    this.controller,
     this.onEditingComplete,
-    this.onChanged,
     this.hint,
     this.inputFormatters,
     this.initialQuery,
@@ -159,17 +158,13 @@ abstract class YgSearchAppBar<T> extends StatefulWidget implements PreferredSize
   /// By default based on the [textInputAction].
   final YgCompleteAction completeAction;
 
-  final YgSearchControllerAny<T>? controller;
-
-  final ValueChanged<T>? onChanged;
-
   final String? initialQuery;
 
   @override
   Size get preferredSize => const Size.fromHeight(65);
 }
 
-abstract class _YgSearchAppBarState<T, W extends YgSearchAppBar<T>> extends State<W> {
+abstract class _YgSearchAppBarState<Value, ResultValue, W extends YgSearchAppBar<Value>> extends State<W> {
   ScrollNotificationObserverState? _scrollNotificationObserver;
   bool _scrolledUnder = false;
 

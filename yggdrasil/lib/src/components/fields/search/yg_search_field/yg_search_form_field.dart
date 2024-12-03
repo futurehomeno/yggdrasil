@@ -3,8 +3,8 @@ import 'package:flutter/services.dart';
 import 'package:yggdrasil/src/components/fields/helpers/yg_validate_helper.dart';
 import 'package:yggdrasil/yggdrasil.dart';
 
+part 'simple_search/yg_value_search_form_field.dart';
 part 'string_search/yg_string_search_form_field.dart';
-part 'value_search/yg_value_search_form_field.dart';
 
 abstract class YgSearchFormField<T> extends StatefulWidget implements FormField<T> {
   factory YgSearchFormField({

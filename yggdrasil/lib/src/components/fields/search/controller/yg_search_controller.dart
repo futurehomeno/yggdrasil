@@ -47,6 +47,20 @@ abstract interface class YgSearchController<
   /// Closes the search widget.
   void close();
 
+  /// Internal method called by the search widget when the widget is closed.
+  ///
+  /// !-- WARNING --
+  /// This should not be called manually, if you want to cancel a search use the
+  /// [close] method instead.
+  void endSession({bool force = false});
+
+  /// Internal method called by the search widget when the widget is opened.
+  ///
+  /// !-- WARNING --
+  /// This should not be called manually, if you want to start a search use the
+  /// [open] method instead
+  void startSession();
+
   /// The value of the controller.
   ///
   /// This value may not be identical to the value which is passed to the

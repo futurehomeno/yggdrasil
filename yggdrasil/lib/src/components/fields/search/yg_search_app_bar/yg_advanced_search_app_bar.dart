@@ -1,12 +1,13 @@
 part of 'yg_search_app_bar.dart';
 
-class YgStringSearchAppBar extends YgSearchAppBar<String> {
-  const YgStringSearchAppBar({
+class YgAdvancedSearchAppBar<Value, ResultValue> extends YgSearchAppBar<Value> {
+  const YgAdvancedSearchAppBar({
     super.key,
     required super.keyboardType,
     required super.autocorrect,
     required super.textCapitalization,
     required this.searchProvider,
+    this.initialValue,
     super.focusNode,
     super.error,
     super.placeholder,
@@ -25,20 +26,23 @@ class YgStringSearchAppBar extends YgSearchAppBar<String> {
     this.onChanged,
   }) : super._();
 
-  final YgStringSearchProvider searchProvider;
+  final YgAdvancedSearchProvider<Value, ResultValue> searchProvider;
 
-  final YgStringSearchController? controller;
+  final YgSearchValueAndText<Value>? initialValue;
 
-  final ValueChanged<String>? onChanged;
+  final ValueChanged<Value?>? onChanged;
+
+  final YgAdvancedSearchController<Value, ResultValue>? controller;
 
   @override
-  State<YgStringSearchAppBar> createState() => _YgStringSearchAppBarState();
+  State<YgAdvancedSearchAppBar<Value, ResultValue>> createState() => _YgAdvancedSearchAppBarState<Value, ResultValue>();
 }
 
-class _YgStringSearchAppBarState extends _YgSearchAppBarState<String, String, YgStringSearchAppBar> {
+class _YgAdvancedSearchAppBarState<Value, ResultValue>
+    extends _YgSearchAppBarState<Value, ResultValue, YgAdvancedSearchAppBar<Value, ResultValue>> {
   @override
   Widget _buildSearchBar(Widget? leading) {
-    return YgStringSearchBar(
+    return YgAdvancedSearchBar<Value, ResultValue>(
       keyboardType: widget.keyboardType,
       autocorrect: widget.autocorrect,
       textCapitalization: widget.textCapitalization,
@@ -58,6 +62,7 @@ class _YgStringSearchAppBarState extends _YgSearchAppBarState<String, String, Yg
       completeAction: widget.completeAction,
       searchAction: widget.searchAction,
       searchProvider: widget.searchProvider,
+      initialValue: widget.initialValue,
     );
   }
 }

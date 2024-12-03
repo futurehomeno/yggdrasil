@@ -1,13 +1,13 @@
 part of '../yg_search_controller_mixin.dart';
 
 typedef _SimpleSession<Value> = YgSimpleSearchSession<Value, YgSimpleSearchProvider<Value>>;
-typedef _SimpleState<Value> = YgSimpleSearchMixin<StatefulWidget, Value>;
+typedef _SimpleState<Value> = YgSimpleSearchMixin<Value, StatefulWidget>;
 
 class YgSimpleSearchController<Value>
     with
         ChangeNotifier,
         _YgSearchControllerMixin<Value, Value?, Value, YgSearchResult<Value>, YgSearchResultsLayout<Value>,
-            YgSimpleSearchMixin<StatefulWidget, Value>> {
+            YgSimpleSearchMixin<Value, StatefulWidget>> {
   YgSimpleSearchController({Value? initialValue})
       : _textEditingController = TextEditingController(),
         _value = initialValue {
@@ -202,7 +202,7 @@ class YgSimpleSearchController<Value>
   }
 
   @override
-  void attach(YgSimpleSearchMixin<StatefulWidget, Value> state) {
+  void attach(_SimpleState<Value> state) {
     super.attach(state);
     if (_value != null && _valueText == null) {
       if (_session == null) {
