@@ -11,11 +11,11 @@ abstract class YgFuzzySearchProviderInterface<
     ResultsLayout extends YgBaseSearchResultsLayout<Result>,
     Item extends YgBaseSearchItem<Result>> implements YgBaseSearchProvider<Value, ResultValue, Result, ResultsLayout> {
   const YgFuzzySearchProviderInterface({
-    required this.hintBuilder,
     required this.items,
     required this.noResultsBuilder,
-    required this.searchSubtitle,
-    required this.threshold,
+    required this.hintBuilder,
+    this.searchSubtitle = false,
+    this.threshold = 0.4,
   });
 
   final bool searchSubtitle;

@@ -4,40 +4,30 @@ import 'package:yggdrasil/src/components/fields/search/models/string_search/_str
 
 import 'yg_string_search_provider.dart';
 
-class YgFuzzyStringSearchProvider extends YgStringSearchProvider
-    implements
-        YgFuzzySearchProviderInterface<String, String, YgStringSearchResult, YgStringSearchResultsLayout,
-            YgStringSearchItem> {
-  YgFuzzyStringSearchProvider({
-    required this.items,
-    required this.noResultsBuilder,
-    this.hintBuilder,
-    this.searchSubtitle = false,
-    this.threshold = 0.4,
+/// Provides fuzzy search capabilities for a string search widget.
+///
+/// This class allows you to perform fuzzy searches on a list of string items.
+/// You can provide a list of items to search through, and it will return
+/// results that closely match the search query. It also supports a builder
+/// for displaying a message when there are no results, and an optional hint
+/// builder for displaying search hints.
+class YgFuzzyStringSearchProvider extends YgFuzzySearchProviderInterface<String, String, YgStringSearchResult,
+    YgStringSearchResultsLayout, YgStringSearchItem> implements YgStringSearchProvider {
+  const YgFuzzyStringSearchProvider({
+    required super.items,
+    required super.noResultsBuilder,
+    super.hintBuilder,
+    super.searchSubtitle,
+    super.threshold,
   });
 
   @override
-  final bool searchSubtitle;
-
-  @override
-  final List<YgStringSearchItem> items;
-
-  @override
-  final double threshold;
-
-  @override
-  final WidgetBuilder? hintBuilder;
-
-  @override
-  final WidgetBuilder noResultsBuilder;
-
-  @override
-  YgFuzzyStringSearchSession createSession() {
-    return YgFuzzyStringSearchSession();
+  YgStringSearchSession<YgFuzzyStringSearchProvider> createSession() {
+    return _YgFuzzyStringSearchSession();
   }
 }
 
-class YgFuzzyStringSearchSession extends YgStringSearchSession<YgFuzzyStringSearchProvider>
+class _YgFuzzyStringSearchSession extends YgStringSearchSession<YgFuzzyStringSearchProvider>
     with
         YgFuzzySearchSessionMixin<String, String, YgStringSearchResult, YgStringSearchResultsLayout, YgStringSearchItem,
             YgFuzzyStringSearchProvider> {

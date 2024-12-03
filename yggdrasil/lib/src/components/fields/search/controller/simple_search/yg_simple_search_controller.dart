@@ -109,12 +109,13 @@ class YgSimpleSearchController<Value>
     }
 
     _lastHandledSearch = query;
+    _updateResults();
   }
 
   void _updateValueText() async {
     final _SimpleState<Value>? state = _state;
     final _SimpleSession<Value>? session = _session;
-    if (session == null || state == null || !state.isOpen) {
+    if (session == null || state == null) {
       return;
     }
 
@@ -203,12 +204,14 @@ class YgSimpleSearchController<Value>
   @override
   void attach(YgSimpleSearchMixin<StatefulWidget, Value> state) {
     super.attach(state);
-    if (_session == null) {
-      startSession();
-    }
-    _updateValueText();
-    if (!isOpen) {
-      endSession();
+    if (_value != null && _valueText == null) {
+      if (_session == null) {
+        startSession();
+      }
+      _updateValueText();
+      if (!isOpen) {
+        endSession();
+      }
     }
   }
 

@@ -1,5 +1,14 @@
 part of '../yg_search_controller_mixin.dart';
 
+/// Search controller for string search widgets.
+///
+/// Is different from simple and advanced search controllers in that it treats
+/// the [searchQuery] as the value of the search widget. It also functions as a
+/// [TextEditingController] directly.
+///
+/// The user does not need to select an result for this controller to have a
+/// result, however selecting a result will set both the value and the
+/// [searchQuery] to the title of that result.
 class YgStringSearchController extends TextEditingController
     with
         _YgSearchControllerMixin<String, TextEditingValue, String, YgStringSearchResult, YgStringSearchResultsLayout,

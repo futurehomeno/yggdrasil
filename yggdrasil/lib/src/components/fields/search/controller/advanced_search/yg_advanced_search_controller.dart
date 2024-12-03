@@ -1,197 +1,216 @@
 part of '../yg_search_controller_mixin.dart';
 
-typedef _Session<ResultValue, Value>
-    = YgAdvancedSearchSession<ResultValue, Value, YgAdvancedSearchProvider<ResultValue, Value>>;
-typedef _SearchMixin<ResultValue, Value> = YgAdvancedSearchMixin<ResultValue, Value, StatefulWidget>;
+typedef _AdvancedSession<Value, ResultValue>
+    = YgAdvancedSearchSession<Value, ResultValue, YgAdvancedSearchProvider<Value, ResultValue>>;
+typedef _AdvancedState<Value, ResultValue> = YgAdvancedSearchMixin<Value, ResultValue, StatefulWidget>;
 
-class YgAdvancedSearchController<ResultValue, Value>
+class YgAdvancedSearchController<Value, ResultValue>
     with
         ChangeNotifier,
-        _YgSearchControllerMixin<ResultValue, YgSearchValueAndText<Value>?, Value, YgSearchResult<ResultValue>,
-            YgSearchResultsLayout<ResultValue>, YgAdvancedSearchMixin<ResultValue, Value, StatefulWidget>> {
+        _YgSearchControllerMixin<Value, Value?, ResultValue, YgSearchResult<ResultValue>,
+            YgSearchResultsLayout<ResultValue>, YgAdvancedSearchMixin<Value, ResultValue, StatefulWidget>> {
   YgAdvancedSearchController({
     YgSearchValueAndText<Value>? initialValue,
   })  : _textEditingController = TextEditingController(),
-        _value = initialValue {
+        _value = initialValue?.value,
+        _valueText = initialValue?.text {
     _textEditingController.addListener(_updateResults);
   }
 
-  final TextEditingController _textEditingController;
-
+  _AdvancedSession<Value, ResultValue>? _session;
+  bool _endingSession = false;
   String _lastHandledSearch = '';
-
-  YgSearchValueAndText<Value>? _value;
+  Future<void>? _resultsFuture;
+  Future<void>? _valueAndTextFuture;
 
   @override
-  YgSearchValueAndText<Value>? get value => _value;
+  bool get loading => _loading;
+  bool _loading = false;
 
-  String _valueText = '';
+  @override
+  TextEditingController get textEditingController => _textEditingController;
+  final TextEditingController _textEditingController;
 
   @override
   YgSearchResultsLayout<ResultValue> get results => _results ?? YgSearchResultsLayout<ResultValue>();
   YgSearchResultsLayout<ResultValue>? _results;
-  Future<void>? _resultsFuture;
-  Future<void>? _resultTextFuture;
-
-  _Session<ResultValue, Value>? _session;
-  bool _endingSession = false;
 
   @override
-  bool get loading => _resultsFuture != null || _resultTextFuture != null;
+  bool get hasValue => _value != null;
 
-  void _updateResults({bool force = false}) async {
-    final _SearchMixin<ResultValue, Value>? state = _state;
-    final String text = textEditingController.text;
-    final _Session<ResultValue, Value>? session = _session;
-    if ((!force && _lastHandledSearch == text) ||
-        session == null ||
-        state == null ||
-        _resultsFuture != null ||
-        !state.isOpen) {
+  @override
+  String get valueText => _valueText ?? '';
+  String? _valueText;
+
+  @override
+  Value? get value => _value;
+  Value? _value;
+
+  void updateValue({
+    required Value value,
+    required String text,
+  }) {
+    if (text != _valueText || value != _value) {
+      _value = value;
+      _valueText = text;
+      _lastHandledSearch = text;
+      _textEditingController.text = text;
+      notifyListeners();
+    }
+  }
+
+  @override
+  void clear() {
+    _textEditingController.clear();
+    if (_value != null) {
+      _value = null;
+      notifyListeners();
+    }
+  }
+
+  void _updateLoading({bool forceNotify = false}) {
+    final bool wasLoading = _loading;
+    final bool isLoading = _resultsFuture != null || _valueAndTextFuture != null;
+    _loading = isLoading;
+
+    if (forceNotify || wasLoading != isLoading) {
+      notifyListeners();
+    }
+  }
+
+  void _updateResults() async {
+    final _AdvancedState<Value, ResultValue>? state = _state;
+    final String query = textEditingController.text;
+    final _AdvancedSession<Value, ResultValue>? session = _session;
+    if (_lastHandledSearch == query || session == null || state == null || _resultsFuture != null || !state.isOpen) {
       return;
     }
 
-    _lastHandledSearch = text;
-    final FutureOr<List<YgSearchResult<ResultValue>>?> results = session.buildResults(text);
-    if (results is List<YgSearchResult<ResultValue>>?) {
-      _results = results;
+    final FutureOr<YgSearchResultsLayout<ResultValue>?> result = session.buildResults(query);
+    final YgSearchResultsLayout<ResultValue>? oldResult = _results;
+    if (result is YgSearchResultsLayout<ResultValue>) {
+      if (result != oldResult) {
+        _results = result;
+        notifyListeners();
+      }
+    } else if (result is Future<YgSearchResultsLayout<ResultValue>>) {
+      _resultsFuture = result;
+      _updateLoading();
+      _results = await result;
+      _resultsFuture = null;
+      _updateLoading(forceNotify: oldResult != _results);
+    } else if (oldResult != null) {
+      _results = null;
       notifyListeners();
-    } else {
-      _updateResultsFuture(results);
-      _results = await results;
-      _updateResultsFuture(null);
     }
 
-    // Call this again in case value has changed in the meantime.
+    _lastHandledSearch = query;
     _updateResults();
   }
 
-  void _updateResultTextFuture(Future<void>? value) {
-    final bool wasLoading = _resultsFuture != null || _resultTextFuture != null;
-    final bool newLoading = _resultsFuture != null || value != null;
-    _resultsFuture = value;
-    if (newLoading != wasLoading) {
-      notifyListeners();
-    }
-  }
-
-  void _updateResultsFuture(Future<void>? value) {
-    final bool wasLoading = _resultsFuture != null || _resultTextFuture != null;
-    final bool newLoading = value != null || _resultTextFuture != null;
-    _resultsFuture = value;
-    if (newLoading != wasLoading) {
-      notifyListeners();
-    }
-  }
-
-  void _updateResultText(ResultValue value) async {
-    final _Session<ResultValue, Value>? session = _session;
-    if (session == null) {
+  @override
+  void onResultTapped(ResultValue result) async {
+    final _AdvancedState<Value, ResultValue>? state = _state;
+    final _AdvancedSession<Value, ResultValue>? session = _session;
+    if (session == null || state == null) {
       return;
     }
 
-    final FutureOr<String?>? result = session.getValueFromResultValue(value);
-    final String? text;
-    if (result is Future<String?>) {
-      _updateResultTextFuture(result);
-      text = await result;
-      _updateResultTextFuture(null);
+    final FutureOr<YgSearchValueAndText<Value>?> valueAndText = session.getFinalValueAndText(result);
+    final Value? oldValue = _value;
+    final String? oldText = _valueText;
+    if (valueAndText is YgSearchValueAndText<Value>) {
+      final bool valueChanged = oldValue != valueAndText.value;
+      if (oldText != valueAndText.text || valueChanged) {
+        _valueText = valueAndText.text;
+        _value = valueAndText.value;
+      }
+      if (valueChanged) {
+        _state?.onChanged();
+      }
+    } else if (valueAndText is Future<YgSearchValueAndText<Value>>) {
+      _valueAndTextFuture = valueAndText;
+      _updateLoading();
+
+      final YgSearchValueAndText<Value> result = await valueAndText;
+      _value = result.value;
+      _valueText = result.text;
+      _valueAndTextFuture = null;
+
+      final bool valueChanged = oldValue != _value;
+      _updateLoading(forceNotify: oldText != _valueText || valueChanged);
+      if (valueChanged) {
+        _state?.onChanged();
+      }
     } else {
-      text = result;
-    }
-
-    if (text == null) {
-      _valueText = _textEditingController.text;
-    } else {
-      _lastHandledSearch = text;
-      textEditingController.text = text;
-      _valueText = text;
-    }
-
-    notifyListeners();
-  }
-
-  @override
-  void onResultTapped(ResultValue result) {
-    if (_value != result) {
-      _value = result;
-      _updateResultText(result);
-      _state?.onChanged();
-      notifyListeners();
+      final bool valueChanged = oldValue != null;
+      if (oldText != null || valueChanged) {
+        _valueText = null;
+        _value = null;
+      }
+      if (valueChanged) {
+        _state?.onChanged();
+      }
     }
 
     close();
   }
 
   @override
-  void clear() {
-    if (value != null) {
-      _value = null;
-      _valueText = '';
-      _textEditingController.clear();
-      _state?.onChanged();
-      notifyListeners();
-    }
-  }
-
-  @override
-  void dispose() {
-    _textEditingController.dispose();
-    super.dispose();
-  }
-
-  @override
-  void attach(_SearchMixin<ResultValue, Value> state) {
-    super.attach(state);
-    final ResultValue? value = _value;
-    if (value != null) {
-      _updateResultText(value);
-    }
-  }
-
-  @override
-  TextEditingController get textEditingController => _textEditingController;
-
-  @override
-  bool get hasValue => _value != null;
-
-  @override
-  String get valueText => _valueText;
-
-  @override
   void endSession({bool force = false}) async {
     _endingSession = true;
     final Future<void>? resultsFuture = _resultsFuture;
-    final Future<void>? resultTextFuture = _resultTextFuture;
-    if (!force && (resultsFuture != null || resultTextFuture != null)) {
-      await resultsFuture;
-      await resultTextFuture;
+    final Future<void>? valueAndTextFuture = _valueAndTextFuture;
+    if (!force) {
+      if (resultsFuture != null) {
+        await resultsFuture;
+      }
+      if (valueAndTextFuture != null) {
+        await valueAndTextFuture;
+      }
     }
 
-    final _SearchMixin<ResultValue, Value>? session = _session;
+    final _AdvancedSession<Value, ResultValue>? session = _session;
     if ((!force && !_endingSession) || session == null) {
       // This could happen is startSession was called while we were waiting for
       // results.
       return;
     }
 
-    session.dispose();
     session.detach();
+    session.dispose();
     _session = null;
   }
 
   @override
   void startSession() {
-    _endingSession = false;
-    final _SearchMixin<ResultValue, Value>? state = _state;
+    final _AdvancedState<Value, ResultValue>? state = _state;
     if (state == null || _session != null) {
       return;
     }
 
-    final YgAdvancedSearchProvider<ResultValue, Value> provider = state.searchProvider;
-    final _SearchMixin<ResultValue, Value> session = provider.createSession();
+    final YgAdvancedSearchProvider<Value, ResultValue> provider = state.searchProvider;
+    final YgAdvancedSearchSession<Value, ResultValue, YgAdvancedSearchProvider<Value, ResultValue>> session =
+        provider.createSession();
     session.attach(this, provider);
     session.initSession();
+    _endingSession = false;
     _session = session;
+  }
+
+  @override
+  void detach() {
+    endSession(force: true);
+    super.detach();
+  }
+
+  @override
+  void dispose() {
+    _textEditingController.dispose();
+    _resultsFuture = null;
+    _valueAndTextFuture = null;
+    _loading = false;
+    detach();
+    super.dispose();
   }
 }

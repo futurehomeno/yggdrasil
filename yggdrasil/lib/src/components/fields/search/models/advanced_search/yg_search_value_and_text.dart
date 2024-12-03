@@ -1,9 +1,9 @@
 class YgSearchValueAndText<Value> {
   const YgSearchValueAndText({
     required this.value,
-    this.resultText,
+    required this.text,
   });
 
-  final String? resultText;
+  final String text;
   final Value value;
 }
