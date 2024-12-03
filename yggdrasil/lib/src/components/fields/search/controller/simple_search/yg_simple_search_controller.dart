@@ -1,13 +1,13 @@
 part of '../yg_search_controller_mixin.dart';
 
 typedef _SimpleSession<Value> = YgSimpleSearchSession<Value, YgSimpleSearchProvider<Value>>;
-typedef _SimpleState<Value> = YgSimpleSearchMixin<Value, StatefulWidget>;
+typedef _SimpleState<Value> = YgSimpleSearchStateMixin<Value, StatefulWidget>;
 
 class YgSimpleSearchController<Value>
     with
         ChangeNotifier,
         _YgSearchControllerMixin<Value, Value?, Value, YgSearchResult<Value>, YgSearchResultsLayout<Value>,
-            YgSimpleSearchMixin<Value, StatefulWidget>> {
+            YgSimpleSearchStateMixin<Value, StatefulWidget>> {
   YgSimpleSearchController({Value? initialValue})
       : _textEditingController = TextEditingController(),
         _value = initialValue {
@@ -65,10 +65,16 @@ class YgSimpleSearchController<Value>
 
   @override
   void clear() {
+    print('clear');
     _textEditingController.clear();
-    if (_value != null) {
+    if (_value != null || _valueText != null) {
       _value = null;
+      _valueText = null;
+      _lastHandledSearch = '';
       notifyListeners();
+      if (isOpen) {
+        _updateResults(force: true);
+      }
     }
   }
 
@@ -82,22 +88,28 @@ class YgSimpleSearchController<Value>
     }
   }
 
-  void _updateResults() async {
+  void _updateResults({bool force = false}) async {
+    print('_updateResults');
     final _SimpleState<Value>? state = _state;
     final String query = textEditingController.text;
     final _SimpleSession<Value>? session = _session;
-    if (_lastHandledSearch == query || session == null || state == null || _resultsFuture != null || !state.isOpen) {
+    if ((!force && _lastHandledSearch == query) ||
+        session == null ||
+        state == null ||
+        _resultsFuture != null ||
+        !state.isOpen) {
       return;
     }
 
-    final FutureOr<YgSearchResultsLayout<Value>?> result = session.buildResults(query);
+    final FutureOr<YgSearchResultsLayout<Value>?> result = session.buildResultsLayout(query);
     final YgSearchResultsLayout<Value>? oldResult = _results;
+
     if (result is YgSearchResultsLayout<Value>) {
       if (result != oldResult) {
         _results = result;
         notifyListeners();
       }
-    } else if (result is Future<YgSearchResultsLayout<Value>>) {
+    } else if (result is Future<YgSearchResultsLayout<Value>?>) {
       _resultsFuture = result;
       _updateLoading();
       _results = await result;
@@ -113,6 +125,7 @@ class YgSimpleSearchController<Value>
   }
 
   void _updateValueText() async {
+    print('_updateValueText');
     final _SimpleState<Value>? state = _state;
     final _SimpleSession<Value>? session = _session;
     if (session == null || state == null) {
@@ -136,7 +149,7 @@ class YgSimpleSearchController<Value>
         _valueText = valueText;
         notifyListeners();
       }
-    } else if (valueText is Future<String>) {
+    } else if (valueText is Future<String?>) {
       _valueTextFuture = valueText;
       _updateLoading();
       _valueText = await valueText;
@@ -150,8 +163,9 @@ class YgSimpleSearchController<Value>
 
   @override
   void onResultTapped(Value result) {
+    print('onResultTapped');
     if (result != _value) {
-      _value = value;
+      _value = result;
       notifyListeners();
       _updateValueText();
       _state?.onChanged();
@@ -162,6 +176,7 @@ class YgSimpleSearchController<Value>
 
   @override
   void startSession() {
+    print('startSession');
     final _SimpleState<Value>? state = _state;
     if (state == null || _session != null) {
       return;
@@ -173,10 +188,12 @@ class YgSimpleSearchController<Value>
     session.initSession();
     _endingSession = false;
     _session = session;
+    _updateResults(force: true);
   }
 
   @override
   void endSession({bool force = false}) async {
+    print('endSession');
     _endingSession = true;
     final Future<void>? resultsFuture = _resultsFuture;
     final Future<void>? valueTextFuture = _valueTextFuture;
@@ -203,6 +220,7 @@ class YgSimpleSearchController<Value>
 
   @override
   void attach(_SimpleState<Value> state) {
+    print('attach');
     super.attach(state);
     if (_value != null && _valueText == null) {
       if (_session == null) {
@@ -217,12 +235,14 @@ class YgSimpleSearchController<Value>
 
   @override
   void detach() {
+    print('detach');
     endSession(force: true);
     super.detach();
   }
 
   @override
   void dispose() {
+    print('dispose');
     _textEditingController.dispose();
     _resultsFuture = null;
     _valueTextFuture = null;

@@ -2,7 +2,7 @@ import 'package:yggdrasil/src/components/fields/search/interfaces/yg_base_search
 import 'package:yggdrasil/src/components/fields/search/interfaces/yg_base_search_result.dart';
 import 'package:yggdrasil/src/components/fields/search/interfaces/yg_base_search_results_layout.dart';
 
-abstract interface class YgSearchMixinInterface<Value, ResultValue, Result extends YgBaseSearchResult,
+abstract interface class YgSearchStateMixinInterface<Value, ResultValue, Result extends YgBaseSearchResult,
     ResultsLayout extends YgBaseSearchResultsLayout<Result>> {
   void onChanged();
 

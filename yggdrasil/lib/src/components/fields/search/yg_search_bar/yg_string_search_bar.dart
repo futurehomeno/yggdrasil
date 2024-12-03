@@ -38,7 +38,7 @@ class YgStringSearchBar extends YgSearchBar<String> {
 
 class _YgStringSearchBarState
     extends YgSearchBarWidgetState<String, String, YgStringSearchResult, YgStringSearchResultsLayout, YgStringSearchBar>
-    with YgStringSearchMixin<YgStringSearchBar> {
+    with YgStringSearchStateMixin<YgStringSearchBar> {
   @override
   void onChanged() {
     widget.onChanged?.call(

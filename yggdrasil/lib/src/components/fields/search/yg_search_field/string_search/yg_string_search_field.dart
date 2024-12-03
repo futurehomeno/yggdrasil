@@ -42,7 +42,7 @@ class YgStringSearchField extends YgSearchField<String> {
 }
 
 class _YgStringSearchFieldState extends YgSearchFieldWidgetState<String, String, YgStringSearchResult,
-    YgStringSearchResultsLayout, YgStringSearchField> with YgStringSearchMixin<YgStringSearchField> {
+    YgStringSearchResultsLayout, YgStringSearchField> with YgStringSearchStateMixin<YgStringSearchField> {
   @override
   void onChanged() {
     widget.onChanged?.call(

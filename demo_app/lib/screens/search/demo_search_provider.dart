@@ -1,6 +1,7 @@
 import 'dart:async';
 
 import 'package:flutter/src/widgets/framework.dart';
+import 'package:yggdrasil/src/components/fields/search/controller/yg_search_controller.dart';
 import 'package:yggdrasil/yggdrasil.dart';
 
 abstract class _DemoSearchResults {
@@ -81,19 +82,16 @@ class DemoSearchProvider extends YgSimpleSearchProvider<int> {
   );
 
   Widget _buildNoResults(BuildContext context) {
-    return const YgSection(
+    return const YgSectionHeader(
       title: 'No Results Found',
       subtitle: 'Try adjusting your search to find what you are looking for.',
-      child: YgIcon(YgIcons.alert),
     );
   }
 
   Widget _buildHint(BuildContext context) {
-    return const YgCard(
-      child: YgListTile(
-        title: 'Hint widget',
-        subtitle: 'This widget can be used to help the user find what they need.',
-      ),
+    return const YgSectionHeader(
+      title: 'Hint widget',
+      subtitle: 'This widget can be used to help the user find what they need.',
     );
   }
 
@@ -111,20 +109,35 @@ class DemoSearchSession extends YgSimpleSearchSession<int, DemoSearchProvider> {
   final YgSimpleSearchSession<int, YgSimpleSearchProvider<int>> parent;
 
   @override
-  Future<YgSearchResultsLayout<int>?> buildResults(String query) async {
+  Future<YgSearchResultsLayout<int>?> buildResultsLayout(String query) async {
+    print('buildResults -----------------------------');
+
     if (provider.loading) {
       await Future<void>.delayed(const Duration(milliseconds: 500));
     }
 
-    return parent.buildResults(query);
+    return parent.buildResultsLayout(query);
   }
 
   @override
   Future<String?>? getValueText(int value) async {
+    print('getValueText -----------------------------');
     if (provider.loading) {
       await Future<void>.delayed(const Duration(milliseconds: 500));
     }
 
     return parent.getValueText(value);
+  }
+
+  @override
+  void attach(YgSearchControllerAny<int, int> controller, DemoSearchProvider provider) {
+    super.attach(controller, provider);
+    parent.attach(controller, provider._parent);
+  }
+
+  @override
+  void detach() {
+    super.detach();
+    parent.detach();
   }
 }

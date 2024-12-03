@@ -41,7 +41,7 @@ class YgAdvancedSearchField<Value, ResultValue> extends YgSearchField<Value> {
 
 class _YgAdvancedSearchFieldState<Value, ResultValue> extends YgSearchFieldWidgetState<Value, ResultValue,
         YgSearchResult<ResultValue>, YgSearchResultsLayout<ResultValue>, YgAdvancedSearchField<Value, ResultValue>>
-    with YgAdvancedSearchMixin<Value, ResultValue, YgAdvancedSearchField<Value, ResultValue>> {
+    with YgAdvancedSearchStateMixin<Value, ResultValue, YgAdvancedSearchField<Value, ResultValue>> {
   @override
   void onChanged() {
     widget.onChanged?.call(

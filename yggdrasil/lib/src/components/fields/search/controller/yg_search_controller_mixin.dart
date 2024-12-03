@@ -2,14 +2,14 @@ import 'dart:async';
 
 import 'package:flutter/widgets.dart';
 import 'package:yggdrasil/src/components/fields/search/controller/string_search/yg_string_search_provider.dart';
-import 'package:yggdrasil/src/components/fields/search/controller/yg_search_mixin_interface.dart';
+import 'package:yggdrasil/src/components/fields/search/controller/yg_search_state_mixin_interface.dart';
 import 'package:yggdrasil/src/components/fields/search/interfaces/_interfaces.dart';
 import 'package:yggdrasil/src/components/fields/search/models/_models.dart';
 
 import '_controller.dart';
-import 'advanced_search/yg_advanced_search_mixin.dart';
-import 'simple_search/yg_simple_search_mixin.dart';
-import 'string_search/yg_string_search_mixin.dart';
+import 'advanced_search/yg_advanced_search_state_mixin.dart';
+import 'simple_search/yg_simple_search_state_mixin.dart';
+import 'string_search/yg_string_search_state_mixin.dart';
 import 'yg_search_controller.dart';
 
 part 'advanced_search/yg_advanced_search_controller.dart';
@@ -22,7 +22,7 @@ mixin _YgSearchControllerMixin<
         ResultValue,
         Result extends YgBaseSearchResult,
         ResultsLayout extends YgBaseSearchResultsLayout<Result>,
-        SearchMixin extends YgSearchMixinInterface<Value, ResultValue, Result, ResultsLayout>> on ChangeNotifier
+        SearchMixin extends YgSearchStateMixinInterface<Value, ResultValue, Result, ResultsLayout>> on ChangeNotifier
     implements YgSearchController<Value, ControllerValue, ResultValue, Result, ResultsLayout, SearchMixin> {
   SearchMixin? _state;
 

@@ -1,12 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:yggdrasil/src/components/fields/search/controller/_controller.dart';
-import 'package:yggdrasil/src/components/fields/search/controller/advanced_search/yg_advanced_search_mixin.dart';
-import 'package:yggdrasil/src/components/fields/search/controller/simple_search/yg_simple_search_mixin.dart';
-import 'package:yggdrasil/src/components/fields/search/controller/string_search/yg_string_search_mixin.dart';
+import 'package:yggdrasil/src/components/fields/search/controller/advanced_search/yg_advanced_search_state_mixin.dart';
+import 'package:yggdrasil/src/components/fields/search/controller/simple_search/yg_simple_search_state_mixin.dart';
 import 'package:yggdrasil/src/components/fields/search/controller/string_search/yg_string_search_provider.dart';
+import 'package:yggdrasil/src/components/fields/search/controller/string_search/yg_string_search_state_mixin.dart';
 import 'package:yggdrasil/src/components/fields/search/controller/yg_search_controller.dart';
-import 'package:yggdrasil/src/components/fields/search/controller/yg_search_mixin_interface.dart';
+import 'package:yggdrasil/src/components/fields/search/controller/yg_search_state_mixin_interface.dart';
 import 'package:yggdrasil/src/components/fields/search/interfaces/yg_base_search_result.dart';
 import 'package:yggdrasil/src/components/fields/search/interfaces/yg_base_search_results_layout.dart';
 import 'package:yggdrasil/src/components/fields/search/widgets/hint_provider.dart';
@@ -160,7 +159,7 @@ abstract class YgSearchBarWidgetState<Value, ResultValue, Result extends YgBaseS
         ResultsLayout extends YgBaseSearchResultsLayout<Result>, StatefulWidget extends YgSearchBar<Value>>
     extends StateWithYgStateAndStyle<StatefulWidget, YgSearchBarState, YgSearchBarStyle>
     with YgControllerManagerMixin
-    implements YgSearchMixinInterface<Value, ResultValue, Result, ResultsLayout> {
+    implements YgSearchStateMixinInterface<Value, ResultValue, Result, ResultsLayout> {
   final GlobalKey _fieldKey = GlobalKey();
   final YgLinkedKey<HintProvider> _hintKey = YgLinkedKey<HintProvider>();
   bool _opened = false;
@@ -280,6 +279,8 @@ abstract class YgSearchBarWidgetState<Value, ResultValue, Result extends YgBaseS
                               return Text(
                                 value,
                                 style: theme.valueTextStyle,
+                                maxLines: 1,
+                                overflow: TextOverflow.ellipsis,
                               );
                             }
 
@@ -340,7 +341,6 @@ abstract class YgSearchBarWidgetState<Value, ResultValue, Result extends YgBaseS
   @override
   void openScreen() {
     final YgSearchBarTheme theme = context.searchBarTheme;
-    _controllerManager.value.startSession();
 
     Navigator.of(context).push(
       SearchScreenRoute<ResultValue>(
@@ -369,6 +369,7 @@ abstract class YgSearchBarWidgetState<Value, ResultValue, Result extends YgBaseS
     );
 
     _opened = true;
+    _controllerManager.value.startSession();
   }
 
   @override

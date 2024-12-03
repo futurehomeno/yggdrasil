@@ -21,7 +21,7 @@ abstract class YgBaseSearchSession<
   YgSearchControllerAny<Value, ResultValue>? _controller;
   Provider? _provider;
 
-  FutureOr<ResultsLayout?> buildResults(String query);
+  FutureOr<ResultsLayout?> buildResultsLayout(String query);
 
   void initSession() {}
 

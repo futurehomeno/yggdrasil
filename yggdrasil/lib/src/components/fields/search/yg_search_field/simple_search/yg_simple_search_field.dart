@@ -44,7 +44,7 @@ class _YgSimpleSearchFieldState<Value> extends YgSearchFieldWidgetState<
     Value,
     YgSearchResult<Value>,
     YgSearchResultsLayout<Value>,
-    _YgSimpleSearchField<Value>> with YgSimpleSearchMixin<Value, _YgSimpleSearchField<Value>> {
+    _YgSimpleSearchField<Value>> with YgSimpleSearchStateMixin<Value, _YgSimpleSearchField<Value>> {
   @override
   void onChanged() {
     widget.onChanged?.call(

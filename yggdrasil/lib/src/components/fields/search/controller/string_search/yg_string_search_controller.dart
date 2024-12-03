@@ -12,7 +12,7 @@ part of '../yg_search_controller_mixin.dart';
 class YgStringSearchController extends TextEditingController
     with
         _YgSearchControllerMixin<String, TextEditingValue, String, YgStringSearchResult, YgStringSearchResultsLayout,
-            YgStringSearchMixin<StatefulWidget>> {
+            YgStringSearchStateMixin<StatefulWidget>> {
   YgStringSearchController({
     String? initialValue,
   })  : _lastHandledSearch = initialValue ?? '',
@@ -53,7 +53,7 @@ class YgStringSearchController extends TextEditingController
   }
 
   void _updateResults({bool force = false}) async {
-    final YgStringSearchMixin<StatefulWidget>? state = _state;
+    final YgStringSearchStateMixin<StatefulWidget>? state = _state;
     final YgStringSearchSession<YgStringSearchProvider>? session = _session;
     if ((!force && _lastHandledSearch == text) ||
         session == null ||
@@ -64,7 +64,7 @@ class YgStringSearchController extends TextEditingController
     }
 
     _lastHandledSearch = text;
-    final FutureOr<YgStringSearchResultsLayout?> results = session.buildResults(text);
+    final FutureOr<YgStringSearchResultsLayout?> results = session.buildResultsLayout(text);
 
     if (results is YgStringSearchResultsLayout?) {
       _results = results;
@@ -84,7 +84,7 @@ class YgStringSearchController extends TextEditingController
   @override
   void startSession() {
     _endingSession = false;
-    final YgStringSearchMixin<StatefulWidget>? state = _state;
+    final YgStringSearchStateMixin<StatefulWidget>? state = _state;
     if (state == null || _session != null) {
       return;
     }

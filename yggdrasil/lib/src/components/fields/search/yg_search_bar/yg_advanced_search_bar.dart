@@ -38,7 +38,7 @@ class YgAdvancedSearchBar<Value, ResultValue> extends YgSearchBar<Value> {
 
 class _YgAdvancedSearchBarWidgetState<Value, ResultValue> extends YgSearchBarWidgetState<Value, ResultValue,
         YgSearchResult<ResultValue>, YgSearchResultsLayout<ResultValue>, YgAdvancedSearchBar<Value, ResultValue>>
-    with YgAdvancedSearchMixin<Value, ResultValue, YgAdvancedSearchBar<Value, ResultValue>> {
+    with YgAdvancedSearchStateMixin<Value, ResultValue, YgAdvancedSearchBar<Value, ResultValue>> {
   @override
   void onChanged() {
     widget.onChanged?.call(

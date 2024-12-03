@@ -3,11 +3,12 @@ import 'package:yggdrasil/src/components/fields/search/controller/advanced_searc
 import 'package:yggdrasil/src/components/fields/search/models/shared/yg_search_result.dart';
 import 'package:yggdrasil/src/components/fields/search/models/shared/yg_search_results_layout.dart';
 
-import '../yg_search_mixin_interface.dart';
+import '../yg_search_state_mixin_interface.dart';
 
-mixin YgAdvancedSearchMixin<Value, ResultValue, Widget extends StatefulWidget> on State<Widget>
+mixin YgAdvancedSearchStateMixin<Value, ResultValue, Widget extends StatefulWidget> on State<Widget>
     implements
-        YgSearchMixinInterface<Value, ResultValue, YgSearchResult<ResultValue>, YgSearchResultsLayout<ResultValue>> {
+        YgSearchStateMixinInterface<Value, ResultValue, YgSearchResult<ResultValue>,
+            YgSearchResultsLayout<ResultValue>> {
   @override
   YgAdvancedSearchProvider<Value, ResultValue> get searchProvider;
 }

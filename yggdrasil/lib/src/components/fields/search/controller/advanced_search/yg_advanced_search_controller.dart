@@ -2,13 +2,13 @@ part of '../yg_search_controller_mixin.dart';
 
 typedef _AdvancedSession<Value, ResultValue>
     = YgAdvancedSearchSession<Value, ResultValue, YgAdvancedSearchProvider<Value, ResultValue>>;
-typedef _AdvancedState<Value, ResultValue> = YgAdvancedSearchMixin<Value, ResultValue, StatefulWidget>;
+typedef _AdvancedState<Value, ResultValue> = YgAdvancedSearchStateMixin<Value, ResultValue, StatefulWidget>;
 
 class YgAdvancedSearchController<Value, ResultValue>
     with
         ChangeNotifier,
         _YgSearchControllerMixin<Value, Value?, ResultValue, YgSearchResult<ResultValue>,
-            YgSearchResultsLayout<ResultValue>, YgAdvancedSearchMixin<Value, ResultValue, StatefulWidget>> {
+            YgSearchResultsLayout<ResultValue>, YgAdvancedSearchStateMixin<Value, ResultValue, StatefulWidget>> {
   YgAdvancedSearchController({
     YgSearchValueAndText<Value>? initialValue,
   })  : _textEditingController = TextEditingController(),
@@ -86,7 +86,7 @@ class YgAdvancedSearchController<Value, ResultValue>
       return;
     }
 
-    final FutureOr<YgSearchResultsLayout<ResultValue>?> result = session.buildResults(query);
+    final FutureOr<YgSearchResultsLayout<ResultValue>?> result = session.buildResultsLayout(query);
     final YgSearchResultsLayout<ResultValue>? oldResult = _results;
     if (result is YgSearchResultsLayout<ResultValue>) {
       if (result != oldResult) {

@@ -1,5 +1,5 @@
 import 'package:flutter/widgets.dart';
-import 'package:yggdrasil/src/components/fields/search/controller/yg_search_mixin_interface.dart';
+import 'package:yggdrasil/src/components/fields/search/controller/yg_search_state_mixin_interface.dart';
 import 'package:yggdrasil/src/components/fields/search/interfaces/yg_base_search_result.dart';
 import 'package:yggdrasil/src/components/fields/search/interfaces/yg_base_search_results_layout.dart';
 import 'package:yggdrasil/src/utils/_utils.dart';
@@ -10,7 +10,7 @@ typedef YgSearchControllerAny<Value, ResultValue> = YgSearchController<
     ResultValue,
     YgBaseSearchResult,
     YgBaseSearchResultsLayout<YgBaseSearchResult>,
-    YgSearchMixinInterface<Value, ResultValue, YgBaseSearchResult, YgBaseSearchResultsLayout<YgBaseSearchResult>>>;
+    YgSearchStateMixinInterface<Value, ResultValue, YgBaseSearchResult, YgBaseSearchResultsLayout<YgBaseSearchResult>>>;
 
 abstract interface class YgSearchController<
         Value,
@@ -18,7 +18,7 @@ abstract interface class YgSearchController<
         ResultValue,
         Result extends YgBaseSearchResult,
         ResultsLayout extends YgBaseSearchResultsLayout<Result>,
-        SearchMixin extends YgSearchMixinInterface<Value, ResultValue, Result, ResultsLayout>>
+        SearchMixin extends YgSearchStateMixinInterface<Value, ResultValue, Result, ResultsLayout>>
     implements YgAttachable<SearchMixin>, YgDisposable {
   /// Internal method called when the user taps on a result.
   ///

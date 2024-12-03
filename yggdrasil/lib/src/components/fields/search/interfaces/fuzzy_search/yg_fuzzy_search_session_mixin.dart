@@ -10,6 +10,7 @@ import 'package:yggdrasil/src/components/fields/search/interfaces/yg_base_search
 import 'package:yggdrasil/src/components/fields/search/interfaces/yg_base_search_provider.dart';
 import 'package:yggdrasil/src/components/fields/search/interfaces/yg_base_search_result.dart';
 import 'package:yggdrasil/src/components/fields/search/interfaces/yg_base_search_results_layout.dart';
+import 'package:yggdrasil/src/extensions/safe_build_extension.dart';
 import 'package:yggdrasil/src/utils/yg_match_text/yg_text_match.dart';
 
 import 'yg_fuzzy_search_provider_interface.dart';
@@ -46,7 +47,22 @@ mixin YgFuzzySearchSessionMixin<
   );
 
   @override
-  FutureOr<ResultsLayout> buildResults(String query) {
+  FutureOr<ResultsLayout> buildResultsLayout(String query) {
+    if (query.isEmpty) {
+      final WidgetBuilder? builder = provider.hintBuilder;
+
+      return createLayoutFromResultsAndLeading(
+        leading: builder.safeBuild(
+          (WidgetBuilder builder) {
+            return Builder(
+              builder: builder,
+            );
+          },
+        ),
+        results: null,
+      );
+    }
+
     if (provider.items.isEmpty) {
       return createLayoutFromResultsAndLeading(
         leading: Builder(

@@ -41,7 +41,7 @@ class _YgSimpleSearchBarWidgetState<Value> extends YgSearchBarWidgetState<
     Value,
     YgSearchResult<Value>,
     YgSearchResultsLayout<Value>,
-    _YgSimpleSearchBar<Value>> with YgSimpleSearchMixin<Value, _YgSimpleSearchBar<Value>> {
+    _YgSimpleSearchBar<Value>> with YgSimpleSearchStateMixin<Value, _YgSimpleSearchBar<Value>> {
   @override
   void onChanged() {
     widget.onChanged?.call(

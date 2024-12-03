@@ -101,7 +101,9 @@ class _SearchBarScreenState extends State<SearchBarScreen> {
                 autocorrect: false,
                 textCapitalization: TextCapitalization.sentences,
                 completeAction: YgCompleteAction.focusNext,
-                searchProvider: DemoSearchProvider(),
+                searchProvider: DemoSearchProvider(
+                  hint: true,
+                ),
                 placeholder: 'With hint',
                 hint: const DemoPlaceholder(
                   height: 60,
