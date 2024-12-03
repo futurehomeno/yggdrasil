@@ -10,9 +10,6 @@ class YgStringSearchField extends YgSearchField<String> {
     required super.autocorrect,
     required super.textCapitalization,
     required this.searchProvider,
-    YgStringSearchController? super.controller,
-    this.initialValue,
-    super.onChanged,
     super.completeAction,
     super.disabled,
     super.error,
@@ -27,26 +24,25 @@ class YgStringSearchField extends YgSearchField<String> {
     super.searchAction,
     super.size,
     super.variant,
+    this.initialValue,
+    this.controller,
+    this.onChanged,
   }) : super._();
 
   final YgStringSearchProvider searchProvider;
 
-  /// The initial value of the text field.
+  final YgStringSearchController? controller;
+
+  final ValueChanged<String>? onChanged;
+
   final String? initialValue;
 
   @override
   State<YgStringSearchField> createState() => _YgStringSearchFieldState();
 }
 
-class _YgStringSearchFieldState extends YgSearchFieldWidgetState<String, YgStringSearchField, YgStringSearchResult>
-    with YgStringSearchMixin<YgStringSearchField> {
-  @override
-  YgSearchControllerAny<String> createController() {
-    return YgStringSearchController(
-      initialValue: widget.initialValue,
-    );
-  }
-
+class _YgStringSearchFieldState extends YgSearchFieldWidgetState<String, String, YgStringSearchResult,
+    YgStringSearchResultsLayout, YgStringSearchField> with YgStringSearchMixin<YgStringSearchField> {
   @override
   void onChanged() {
     widget.onChanged?.call(
@@ -56,4 +52,12 @@ class _YgStringSearchFieldState extends YgSearchFieldWidgetState<String, YgStrin
 
   @override
   YgStringSearchProvider get searchProvider => widget.searchProvider;
+
+  @override
+  YgStringSearchController? getUserController() => widget.controller;
+
+  @override
+  YgStringSearchController createController() => YgStringSearchController(
+        initialValue: widget.initialValue,
+      );
 }

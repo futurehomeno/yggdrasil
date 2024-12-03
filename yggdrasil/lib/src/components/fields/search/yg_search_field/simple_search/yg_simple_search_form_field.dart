@@ -1,20 +1,18 @@
 part of '../yg_search_form_field.dart';
 
-class _YgValueSearchFormField<T> extends YgSearchFormField<T> {
-  _YgValueSearchFormField({
-    required FormFieldKey<T> super.key,
+class _YgSimpleSearchFormField<Value> extends YgSearchFormField<Value> {
+  _YgSimpleSearchFormField({
+    required FormFieldKey<Value> super.key,
     required super.autocorrect,
     required super.keyboardType,
     required super.label,
     required super.textCapitalization,
     required this.searchProvider,
     this.controller,
-    super.initialValue,
     super.error,
     super.focusNode,
     super.hint,
     super.inputFormatters,
-    super.onChanged,
     super.onEditingComplete,
     super.onFocusChanged,
     super.onPressed,
@@ -26,32 +24,39 @@ class _YgValueSearchFormField<T> extends YgSearchFormField<T> {
     super.completeAction,
     super.searchAction,
     super.autoValidate,
-    List<FormFieldValidator<T>>? validators,
+    this.initialValue,
+    this.onChanged,
+    List<FormFieldValidator<Value>>? validators,
   }) : super._();
 
-  final YgAdvancedSearchProvider<T> searchProvider;
+  final YgSimpleSearchController<Value>? controller;
 
-  final YgAdvancedSearchController<T>? controller;
+  final YgSimpleSearchProvider<Value> searchProvider;
 
   @override
-  FormFieldBuilder<T> get builder => _builder;
-  Widget _builder(FormFieldState<T> field) {
-    final YgValidateHelper<T> helper = YgValidateHelper<T>(
-      key: key as FormFieldKey<T>,
+  final Value? initialValue;
+
+  final ValueChanged<Value?>? onChanged;
+
+  @override
+  FormFieldBuilder<Value> get builder => _builder;
+  Widget _builder(FormFieldState<Value> field) {
+    final YgValidateHelper<Value> helper = YgValidateHelper<Value>(
+      key: key as FormFieldKey<Value>,
       autoValidate: autoValidate,
       onFocusChanged: onFocusChanged,
       completeAction: completeAction,
       onEditingComplete: onEditingComplete,
     );
 
-    void onChangedHandler(T value) {
+    void onChangedHandler(Value? value) {
       field.didChange(value);
       onChanged?.call(value);
     }
 
     return UnmanagedRestorationScope(
       bucket: field.bucket,
-      child: YgSearchField<T>(
+      child: YgSearchField<Value>(
         autocorrect: autocorrect,
         keyboardType: keyboardType,
         label: label,

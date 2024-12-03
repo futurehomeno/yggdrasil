@@ -1,28 +1,33 @@
-part of 'yg_search_bar.dart';
+part of '../yg_search_field.dart';
 
-class YgAdvancedSearchBar<Value, ResultValue> extends YgSearchBar<Value> {
-  const YgAdvancedSearchBar({
+class YgAdvancedSearchField<Value, ResultValue> extends YgSearchField<Value> {
+  const YgAdvancedSearchField({
     super.key,
+    required super.label,
     required super.keyboardType,
     required super.autocorrect,
     required super.textCapitalization,
     required this.searchProvider,
+    this.controller,
     super.completeAction,
+    super.disabled,
     super.error,
     super.focusNode,
     super.hint,
     super.inputFormatters,
-    super.leading,
     super.onEditingComplete,
     super.onFocusChanged,
     super.onPressed,
     super.placeholder,
+    super.readOnly,
     super.searchAction,
-    super.trailing,
+    super.size,
+    super.variant,
     this.initialValue,
     this.onChanged,
-    this.controller,
   }) : super._();
+
+  final YgAdvancedSearchController<Value, ResultValue>? controller;
 
   final YgAdvancedSearchProvider<Value, ResultValue> searchProvider;
 
@@ -30,15 +35,13 @@ class YgAdvancedSearchBar<Value, ResultValue> extends YgSearchBar<Value> {
 
   final ValueChanged<Value?>? onChanged;
 
-  final YgAdvancedSearchController<Value, ResultValue>? controller;
-
   @override
-  State<YgAdvancedSearchBar<Value, ResultValue>> createState() => _YgAdvancedSearchBarWidgetState<Value, ResultValue>();
+  State<YgSearchField<Value>> createState() => _YgAdvancedSearchFieldState<Value, ResultValue>();
 }
 
-class _YgAdvancedSearchBarWidgetState<Value, ResultValue> extends YgSearchBarWidgetState<Value, ResultValue,
-        YgSearchResult<ResultValue>, YgSearchResultsLayout<ResultValue>, YgAdvancedSearchBar<Value, ResultValue>>
-    with YgAdvancedSearchMixin<Value, ResultValue, YgAdvancedSearchBar<Value, ResultValue>> {
+class _YgAdvancedSearchFieldState<Value, ResultValue> extends YgSearchFieldWidgetState<Value, ResultValue,
+        YgSearchResult<ResultValue>, YgSearchResultsLayout<ResultValue>, YgAdvancedSearchField<Value, ResultValue>>
+    with YgAdvancedSearchMixin<Value, ResultValue, YgAdvancedSearchField<Value, ResultValue>> {
   @override
   void onChanged() {
     widget.onChanged?.call(

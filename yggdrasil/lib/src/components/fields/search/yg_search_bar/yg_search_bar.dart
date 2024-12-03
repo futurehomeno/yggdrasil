@@ -33,7 +33,6 @@ abstract class YgSearchBar<Value> extends StatefulWidget {
     String? error,
     FocusNode? focusNode,
     Widget? hint,
-    String? initialQuery,
     Value? initialValue,
     List<TextInputFormatter>? inputFormatters,
     Key? key,
@@ -63,7 +62,6 @@ abstract class YgSearchBar<Value> extends StatefulWidget {
     this.onEditingComplete,
     this.hint,
     this.inputFormatters,
-    this.initialQuery,
     this.leading,
     this.trailing,
     this.completeAction = YgCompleteAction.unfocus,
@@ -156,8 +154,6 @@ abstract class YgSearchBar<Value> extends StatefulWidget {
   ///
   /// By default based on the [textInputAction].
   final YgCompleteAction completeAction;
-
-  final String? initialQuery;
 }
 
 abstract class YgSearchBarWidgetState<Value, ResultValue, Result extends YgBaseSearchResult,
@@ -361,10 +357,10 @@ abstract class YgSearchBarWidgetState<Value, ResultValue, Result extends YgBaseS
             autocorrect: widget.autocorrect,
             textCapitalization: widget.textCapitalization,
             inputFormatters: widget.inputFormatters,
-            initialValue: widget.initialQuery,
             textInputAction: YgConsts.isIos ? TextInputAction.search : TextInputAction.none,
             onEditingComplete: widget.onEditingComplete,
             onFocusChanged: null,
+            initialValue: null,
             focusNode: null,
             onChanged: null,
           );

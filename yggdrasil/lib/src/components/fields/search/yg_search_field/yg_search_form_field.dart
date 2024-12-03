@@ -1,39 +1,42 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:yggdrasil/src/components/fields/helpers/yg_validate_helper.dart';
+import 'package:yggdrasil/src/components/fields/search/controller/_controller.dart';
+import 'package:yggdrasil/src/components/fields/search/controller/string_search/yg_string_search_provider.dart';
 import 'package:yggdrasil/yggdrasil.dart';
 
-part 'simple_search/yg_value_search_form_field.dart';
+part 'advanced_search/yg_advanced_search_form_field.dart';
+part 'simple_search/yg_simple_search_form_field.dart';
 part 'string_search/yg_string_search_form_field.dart';
 
-abstract class YgSearchFormField<T> extends StatefulWidget implements FormField<T> {
+abstract class YgSearchFormField<Value> extends StatefulWidget implements FormField<Value> {
   factory YgSearchFormField({
     YgAutoValidate autoValidate,
     required bool autocorrect,
     YgCompleteAction completeAction,
-    YgAdvancedSearchController<T>? controller,
+    YgSimpleSearchController<Value>? controller,
     bool disabled,
     String? error,
     FocusNode? focusNode,
     Widget? hint,
-    T? initialValue,
+    Value? initialValue,
     List<TextInputFormatter>? inputFormatters,
-    required FormFieldKey<T> key,
+    required FormFieldKey<Value> key,
     required TextInputType keyboardType,
     required String label,
-    ValueChanged<T>? onChanged,
+    ValueChanged<Value?>? onChanged,
     VoidCallback? onEditingComplete,
     ValueChanged<bool>? onFocusChanged,
     VoidCallback? onPressed,
     String? placeholder,
     bool readOnly,
     YgSearchAction searchAction,
-    required YgAdvancedSearchProvider<T> searchProvider,
+    required YgSimpleSearchProvider<Value> searchProvider,
     YgFieldSize size,
     required TextCapitalization textCapitalization,
-    List<FormFieldValidator<T>>? validators,
+    List<FormFieldValidator<Value>>? validators,
     YgFieldVariant variant,
-  }) = _YgValueSearchFormField<T>;
+  }) = _YgSimpleSearchFormField<Value>;
 
   YgSearchFormField._({
     super.key,
@@ -44,12 +47,10 @@ abstract class YgSearchFormField<T> extends StatefulWidget implements FormField<
     this.focusNode,
     this.hint,
     this.inputFormatters,
-    this.onChanged,
     this.onEditingComplete,
     this.onFocusChanged,
     this.onPressed,
     this.placeholder,
-    this.initialValue,
     this.disabled = false,
     this.readOnly = false,
     this.variant = YgFieldVariant.standard,
@@ -57,12 +58,12 @@ abstract class YgSearchFormField<T> extends StatefulWidget implements FormField<
     this.completeAction = YgCompleteAction.unfocus,
     this.searchAction = YgSearchAction.auto,
     this.autoValidate = YgAutoValidate.disabled,
-    List<FormFieldValidator<T>>? validators,
+    List<FormFieldValidator<Value>>? validators,
     String? error,
   })  : restorationId = null,
         onSaved = null,
         forceErrorText = error,
-        validator = YgValidateHelper.combineValidators<T>(validators),
+        validator = YgValidateHelper.combineValidators<Value>(validators),
         autovalidateMode = YgValidateHelper.mapAutoValidate(autoValidate);
 
   /// Hint widget shown in the top of the search results.
@@ -159,8 +160,6 @@ abstract class YgSearchFormField<T> extends StatefulWidget implements FormField<
   /// By default based on the [textInputAction].
   final YgCompleteAction completeAction;
 
-  final ValueChanged<T>? onChanged;
-
   @override
   bool get enabled => !disabled;
 
@@ -179,7 +178,7 @@ abstract class YgSearchFormField<T> extends StatefulWidget implements FormField<
   final AutovalidateMode autovalidateMode;
 
   @override
-  final FormFieldValidator<T>? validator;
+  final FormFieldValidator<Value>? validator;
 
   /// The auto validation mode used.
   ///
@@ -187,11 +186,8 @@ abstract class YgSearchFormField<T> extends StatefulWidget implements FormField<
   final YgAutoValidate autoValidate;
 
   @override
-  final FormFieldSetter<T>? onSaved;
+  final FormFieldSetter<Value>? onSaved;
 
   @override
-  final T? initialValue;
-
-  @override
-  FormFieldState<T> createState() => FormFieldState<T>();
+  FormFieldState<Value> createState() => FormFieldState<Value>();
 }

@@ -24,7 +24,6 @@ abstract class YgSearchAppBar<Value> extends StatefulWidget implements Preferred
     String? error,
     FocusNode? focusNode,
     Widget? hint,
-    String? initialQuery,
     Value? initialValue,
     List<TextInputFormatter>? inputFormatters,
     Key? key,
@@ -54,7 +53,6 @@ abstract class YgSearchAppBar<Value> extends StatefulWidget implements Preferred
     this.onEditingComplete,
     this.hint,
     this.inputFormatters,
-    this.initialQuery,
     this.leading,
     this.trailing,
     this.completeAction = YgCompleteAction.unfocus,
@@ -157,8 +155,6 @@ abstract class YgSearchAppBar<Value> extends StatefulWidget implements Preferred
   ///
   /// By default based on the [textInputAction].
   final YgCompleteAction completeAction;
-
-  final String? initialQuery;
 
   @override
   Size get preferredSize => const Size.fromHeight(65);

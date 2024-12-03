@@ -11,7 +11,6 @@ class YgStringSearchBar extends YgSearchBar<String> {
     super.error,
     super.focusNode,
     super.hint,
-    super.initialQuery,
     super.inputFormatters,
     super.leading,
     super.onEditingComplete,
@@ -22,6 +21,7 @@ class YgStringSearchBar extends YgSearchBar<String> {
     super.trailing,
     this.controller,
     this.onChanged,
+    this.initialValue,
   }) : super._();
 
   final YgStringSearchProvider searchProvider;
@@ -29,6 +29,8 @@ class YgStringSearchBar extends YgSearchBar<String> {
   final YgStringSearchController? controller;
 
   final ValueChanged<String>? onChanged;
+
+  final String? initialValue;
 
   @override
   State<YgStringSearchBar> createState() => _YgStringSearchBarState();
@@ -52,6 +54,6 @@ class _YgStringSearchBarState
 
   @override
   YgStringSearchController createController() => YgStringSearchController(
-        initialValue: widget.initialQuery,
+        initialValue: widget.initialValue,
       );
 }

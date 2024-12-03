@@ -2,9 +2,14 @@
 
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:yggdrasil/src/components/fields/search/controller/_controller.dart';
 import 'package:yggdrasil/src/components/fields/search/controller/advanced_search/yg_advanced_search_mixin.dart';
+import 'package:yggdrasil/src/components/fields/search/controller/simple_search/yg_simple_search_mixin.dart';
 import 'package:yggdrasil/src/components/fields/search/controller/string_search/yg_string_search_mixin.dart';
+import 'package:yggdrasil/src/components/fields/search/controller/string_search/yg_string_search_provider.dart';
+import 'package:yggdrasil/src/components/fields/search/controller/yg_search_controller.dart';
 import 'package:yggdrasil/src/components/fields/search/controller/yg_search_mixin_interface.dart';
+import 'package:yggdrasil/src/components/fields/search/interfaces/_interfaces.dart';
 import 'package:yggdrasil/src/components/fields/search/widgets/hint_provider.dart';
 import 'package:yggdrasil/src/components/fields/search/widgets/mobile_search_screen/_mobile_search_screen.dart';
 import 'package:yggdrasil/src/components/fields/search/widgets/search_app_bar.dart';
@@ -17,18 +22,19 @@ import 'package:yggdrasil/yggdrasil.dart';
 
 import 'yg_search_field_state.dart';
 
-part 'simple_search/yg_value_search_field.dart';
+part 'advanced_search/yg_advanced_search_field.dart';
+part 'simple_search/yg_simple_search_field.dart';
 part 'string_search/yg_string_search_field.dart';
 
 /// A field which when opened allows the user to search for a value.
 ///
 /// If you want to search for a string without a specific value attached to it,
 /// use [YgStringSearchField] instead.
-abstract class YgSearchField<Value, Result> extends StatefulWidget with StatefulWidgetDebugMixin {
+abstract class YgSearchField<Value> extends StatefulWidget with StatefulWidgetDebugMixin {
   const factory YgSearchField({
     required bool autocorrect,
     YgCompleteAction completeAction,
-    YgAdvancedSearchController<Value, Result>? controller,
+    YgSimpleSearchController<Value>? controller,
     bool disabled,
     String? error,
     FocusNode? focusNode,
@@ -38,18 +44,18 @@ abstract class YgSearchField<Value, Result> extends StatefulWidget with Stateful
     Key? key,
     required TextInputType keyboardType,
     required String label,
-    ValueChanged<Value>? onChanged,
+    ValueChanged<Value?>? onChanged,
     VoidCallback? onEditingComplete,
     ValueChanged<bool>? onFocusChanged,
     VoidCallback? onPressed,
     String? placeholder,
     bool readOnly,
     YgSearchAction searchAction,
-    required YgAdvancedSearchProvider<Value, Result> searchProvider,
+    required YgSimpleSearchProvider<Value> searchProvider,
     YgFieldSize size,
     required TextCapitalization textCapitalization,
     YgFieldVariant variant,
-  }) = _YgValueSearchField<Value, Result>;
+  }) = _YgSimpleSearchField<Value>;
 
   const YgSearchField._({
     super.key,
@@ -57,7 +63,6 @@ abstract class YgSearchField<Value, Result> extends StatefulWidget with Stateful
     required this.keyboardType,
     required this.autocorrect,
     required this.textCapitalization,
-    this.onChanged,
     this.focusNode,
     this.error,
     this.placeholder,
@@ -175,8 +180,6 @@ abstract class YgSearchField<Value, Result> extends StatefulWidget with Stateful
   /// By default based on the [textInputAction].
   final YgCompleteAction completeAction;
 
-  final ValueChanged<Value>? onChanged;
-
   @override
   YgDebugType get debugType {
     if (disabled) {
@@ -187,13 +190,16 @@ abstract class YgSearchField<Value, Result> extends StatefulWidget with Stateful
   }
 }
 
-abstract class YgSearchFieldWidgetState<Value, ResultValue, W extends YgSearchField<Value, ResultValue>,
-        Result extends YgStringSearchResult> extends StateWithYgState<W, YgSearchFieldState>
+abstract class YgSearchFieldWidgetState<
+        Value,
+        ResultValue,
+        Result extends YgBaseSearchResult,
+        ResultsLayout extends YgBaseSearchResultsLayout<Result>,
+        StatefulWidget extends YgSearchField<Value>> extends StateWithYgState<StatefulWidget, YgSearchFieldState>
     with YgControllerManagerMixin
-    implements YgSearchMixinInterface<Value, Result> {
+    implements YgSearchMixinInterface<Value, ResultValue, Result, ResultsLayout> {
   /// Manages the controller of this widget.
-  late final YgControllerManager<YgSearchControllerAnyWithResult<Value, ResultValue>> _controllerManager =
-      manageController(
+  late final YgControllerManager<YgSearchControllerAny<Value, ResultValue>> _controllerManager = manageController(
     createController: createController,
     getUserController: getUserController,
     listener: _valueUpdated,
@@ -206,9 +212,9 @@ abstract class YgSearchFieldWidgetState<Value, ResultValue, W extends YgSearchFi
     listener: _focusChanged,
   );
 
-  YgSearchControllerAnyWithResult<Value, ResultValue> createController();
+  YgSearchControllerAny<Value, ResultValue> createController();
 
-  YgSearchControllerAnyWithResult<Value, ResultValue>? getUserController();
+  YgSearchControllerAny<Value, ResultValue>? getUserController();
 
   final GlobalKey _fieldKey = GlobalKey();
   final YgLinkedKey<HintProvider> _hintKey = YgLinkedKey<HintProvider>();
@@ -251,49 +257,45 @@ abstract class YgSearchFieldWidgetState<Value, ResultValue, W extends YgSearchFi
     final bool isTextField = (widget.searchAction == YgSearchAction.menu) ||
         (widget.searchAction == YgSearchAction.auto && !YgConsts.isMobile);
 
-    final YgSearchControllerAny<Value> controller = _controllerManager.value;
+    final YgSearchControllerAny<Value, ResultValue> controller = _controllerManager.value;
 
-    return HintProvider(
-      hint: widget.hint,
-      key: _hintKey,
-      child: YgFieldDecoration(
-        key: _fieldKey,
-        content: YgFieldContent(
-          floatLabelOnFocus: isTextField,
-          label: widget.label,
-          placeholder: widget.placeholder,
-          state: state,
-          value: RepaintBoundary(
-            child: YgOptimizedListenableBuilder<String>(
-              listenable: controller,
-              getValue: () => controller.valueText,
-              builder: (BuildContext context, String text, Widget? child) {
-                return Text(text);
-              },
-            ),
-          ),
-          minLines: null,
-        ),
-        builder: (BuildContext context, Widget child) {
-          if (widget.disabled) {
-            return child;
-          }
-
-          return InkWell(
-            focusNode: _focusNodeManager.value,
-            onTap: controller.open,
-            child: child,
-          );
-        },
-        error: widget.error,
+    return YgFieldDecoration(
+      key: _fieldKey,
+      content: YgFieldContent(
+        floatLabelOnFocus: isTextField,
+        label: widget.label,
+        placeholder: widget.placeholder,
         state: state,
-        suffix: WidgetOrLoading(
-          controller: controller,
-          child: YgIconButton(
-            onPressed: widget.disabled ? null : controller.open,
-            size: YgIconButtonSize.small,
-            icon: YgIcons.searchAlt,
+        value: RepaintBoundary(
+          child: YgOptimizedListenableBuilder<String>(
+            listenable: controller,
+            getValue: () => controller.valueText,
+            builder: (BuildContext context, String text, Widget? child) {
+              return Text(text);
+            },
           ),
+        ),
+        minLines: null,
+      ),
+      builder: (BuildContext context, Widget child) {
+        if (widget.disabled) {
+          return child;
+        }
+
+        return InkWell(
+          focusNode: _focusNodeManager.value,
+          onTap: controller.open,
+          child: child,
+        );
+      },
+      error: widget.error,
+      state: state,
+      suffix: WidgetOrLoading(
+        controller: controller,
+        child: YgIconButton(
+          onPressed: widget.disabled ? null : controller.open,
+          size: YgIconButtonSize.small,
+          icon: YgIcons.searchAlt,
         ),
       ),
     );
