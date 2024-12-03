@@ -1,7 +1,6 @@
 import 'dart:async';
 
 import 'package:flutter/widgets.dart';
-import 'package:yggdrasil/src/components/fields/search/controller/simple_search/yg_simple_search_provider.dart';
 import 'package:yggdrasil/src/components/fields/search/interfaces/_interfaces.dart';
 import 'package:yggdrasil/yggdrasil.dart';
 
@@ -10,8 +9,8 @@ class YgSimpleFuzzySearchProvider<Value> extends YgFuzzySearchProviderInterface<
   const YgSimpleFuzzySearchProvider({
     required super.items,
     required super.noResultsBuilder,
-    required super.searchSubtitle,
-    required super.threshold,
+    super.threshold,
+    super.searchSubtitle,
     super.hintBuilder,
   });
 

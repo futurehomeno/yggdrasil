@@ -1,5 +1,6 @@
 import 'dart:async';
 
+import 'package:flutter/src/widgets/framework.dart';
 import 'package:yggdrasil/yggdrasil.dart';
 
 abstract class _DemoSearchResults {
@@ -64,59 +65,66 @@ abstract class _DemoSearchResults {
   ];
 }
 
-class DemoSearchProvider extends YgFuzzySearchProvider<int> {
+class DemoSearchProvider extends YgSimpleSearchProvider<int> {
   DemoSearchProvider({
+    this.hint = false,
     this.loading = false,
-  }) : super(items: _DemoSearchResults._searchResults);
+  });
 
+  final bool hint;
   final bool loading;
 
+  late final YgSimpleFuzzySearchProvider<int> _parent = YgSimpleFuzzySearchProvider<int>(
+    items: _DemoSearchResults._searchResults,
+    noResultsBuilder: _buildNoResults,
+    hintBuilder: hint ? _buildHint : null,
+  );
+
+  Widget _buildNoResults(BuildContext context) {
+    return const YgSection(
+      title: 'No Results Found',
+      subtitle: 'Try adjusting your search to find what you are looking for.',
+      child: YgIcon(YgIcons.alert),
+    );
+  }
+
+  Widget _buildHint(BuildContext context) {
+    return const YgCard(
+      child: YgListTile(
+        title: 'Hint widget',
+        subtitle: 'This widget can be used to help the user find what they need.',
+      ),
+    );
+  }
+
   @override
-  YgFuzzySearchSession<int> createSession() {
-    return DemoSearchSession();
+  YgSimpleSearchSession<int, YgSimpleSearchProvider<int>> createSession() {
+    return DemoSearchSession(parent: _parent.createSession());
   }
 }
 
-class DemoSearchSession extends YgFuzzySearchSession<int> {
+class DemoSearchSession extends YgSimpleSearchSession<int, DemoSearchProvider> {
+  DemoSearchSession({
+    required this.parent,
+  });
+
+  final YgSimpleSearchSession<int, YgSimpleSearchProvider<int>> parent;
+
   @override
-  FutureOr<String?> getValueFromResultValue(int value) async {
-    if ((provider as DemoSearchProvider).loading) {
+  Future<YgSearchResultsLayout<int>?> buildResults(String query) async {
+    if (provider.loading) {
       await Future<void>.delayed(const Duration(milliseconds: 500));
     }
 
-    return super.getValueFromResultValue(value);
+    return parent.buildResults(query);
   }
 
   @override
-  FutureOr<List<YgSearchResult<int>>?> buildResults(String query) async {
-    if ((provider as DemoSearchProvider).loading) {
+  Future<String?>? getValueText(int value) async {
+    if (provider.loading) {
       await Future<void>.delayed(const Duration(milliseconds: 500));
     }
 
-    return super.buildResults(query);
-  }
-}
-
-class DemoStringSearchProvider extends YgFuzzyStringSearchProvider {
-  DemoStringSearchProvider({
-    this.loading = false,
-  }) : super(items: _DemoSearchResults._searchResults);
-
-  final bool loading;
-
-  @override
-  YgFuzzyStringSearchSession createSession() {
-    return DemoStringSearchSession();
-  }
-}
-
-class DemoStringSearchSession extends YgFuzzyStringSearchSession {
-  @override
-  FutureOr<List<YgStringSearchResult>?> buildResults(String query) async {
-    if ((provider as DemoStringSearchProvider).loading) {
-      await Future<void>.delayed(const Duration(milliseconds: 500));
-    }
-
-    return super.buildResults(query);
+    return parent.getValueText(value);
   }
 }

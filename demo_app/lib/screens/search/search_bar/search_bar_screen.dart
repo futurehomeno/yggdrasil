@@ -21,7 +21,7 @@ class SearchBarScreen extends StatefulWidget {
 }
 
 class _SearchBarScreenState extends State<SearchBarScreen> {
-  final YgAdvancedSearchController<int> _controller = YgAdvancedSearchController<int>();
+  final YgSimpleSearchController<int> _controller = YgSimpleSearchController<int>();
 
   @override
   void dispose() {

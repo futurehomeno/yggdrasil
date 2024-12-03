@@ -21,7 +21,7 @@ class SearchFieldScreen extends StatefulWidget {
 }
 
 class _SearchFieldScreenState extends State<SearchFieldScreen> {
-  final YgAdvancedSearchController<int> _controller = YgAdvancedSearchController<int>();
+  final YgSimpleSearchController<int> _controller = YgSimpleSearchController<int>();
   final FormFieldKey<int> _valueSearchKey = FormFieldKey<int>();
   final TextFieldKey _stringSearchKey = TextFieldKey();
   final FormKey _formKey = FormKey();
@@ -35,7 +35,7 @@ class _SearchFieldScreenState extends State<SearchFieldScreen> {
   @override
   Widget build(BuildContext context) {
     final DemoSearchProvider searchProvider = DemoSearchProvider();
-    final DemoStringSearchProvider stringSearchProvider = DemoStringSearchProvider();
+    // final DemoStringSearchProvider stringSearchProvider = DemoStringSearchProvider();
 
     return DemoScreen(
       componentName: 'SearchField',
@@ -51,7 +51,6 @@ class _SearchFieldScreenState extends State<SearchFieldScreen> {
                 label: 'Default search field',
                 completeAction: YgCompleteAction.focusNext,
                 searchProvider: searchProvider,
-                onChanged: (int value) => print('aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa\n$value'),
               ),
               YgSearchField<int>(
                 keyboardType: TextInputType.streetAddress,
@@ -214,16 +213,16 @@ class _SearchFieldScreenState extends State<SearchFieldScreen> {
                   completeAction: YgCompleteAction.focusNext,
                   size: YgFieldSize.large,
                 ),
-                YgStringSearchFormField(
-                  key: _stringSearchKey,
-                  label: 'String search',
-                  keyboardType: TextInputType.streetAddress,
-                  autocorrect: false,
-                  textCapitalization: TextCapitalization.sentences,
-                  searchProvider: stringSearchProvider,
-                  completeAction: YgCompleteAction.focusNext,
-                  size: YgFieldSize.large,
-                ),
+                // YgStringSearchFormField(
+                //   key: _stringSearchKey,
+                //   label: 'String search',
+                //   keyboardType: TextInputType.streetAddress,
+                //   autocorrect: false,
+                //   textCapitalization: TextCapitalization.sentences,
+                //   searchProvider: stringSearchProvider,
+                //   completeAction: YgCompleteAction.focusNext,
+                //   size: YgFieldSize.large,
+                // ),
                 YgButton(
                   onPressed: _onSubmit,
                   child: const Text('Submit'),

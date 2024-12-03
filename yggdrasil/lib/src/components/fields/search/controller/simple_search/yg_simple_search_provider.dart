@@ -6,6 +6,8 @@ import 'package:yggdrasil/src/components/fields/search/models/shared/yg_search_r
 
 abstract class YgSimpleSearchProvider<Value>
     extends YgBaseSearchProvider<Value, Value, YgSearchResult<Value>, YgSearchResultsLayout<Value>> {
+  const YgSimpleSearchProvider();
+
   @override
   YgSimpleSearchSession<Value, YgSimpleSearchProvider<Value>> createSession();
 }

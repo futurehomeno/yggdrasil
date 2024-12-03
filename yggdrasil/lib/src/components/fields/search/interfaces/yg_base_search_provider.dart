@@ -6,6 +6,8 @@ import 'package:yggdrasil/src/components/fields/search/interfaces/yg_base_search
 
 abstract class YgBaseSearchProvider<Value, ResultValue, Result extends YgBaseSearchResult,
     ResultsLayout extends YgBaseSearchResultsLayout<Result>> {
+  const YgBaseSearchProvider();
+
   YgBaseSearchSession<Value, ResultValue, Result, ResultsLayout,
       YgBaseSearchProvider<Value, ResultValue, Result, ResultsLayout>> createSession();
 }
