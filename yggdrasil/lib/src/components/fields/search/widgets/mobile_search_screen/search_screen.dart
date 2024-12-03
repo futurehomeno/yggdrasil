@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:yggdrasil/src/components/fields/search/controller/yg_search_controller.dart';
+import 'package:yggdrasil/src/components/fields/search/interfaces/_interfaces.dart';
 import 'package:yggdrasil/src/components/fields/search/widgets/hint_provider.dart';
 import 'package:yggdrasil/src/components/fields/search/widgets/search_result_list_tile.dart';
 import 'package:yggdrasil/src/theme/search_modal/search_modal_theme.dart';
@@ -8,7 +10,7 @@ import 'package:yggdrasil/src/utils/yg_linked/_yg_linked.dart';
 import 'package:yggdrasil/yggdrasil.dart';
 
 /// Internal screen used by the search widgets.
-class SearchScreen<T> extends StatelessWidget {
+class SearchScreen<ResultValue> extends StatelessWidget {
   const SearchScreen({
     super.key,
     required this.controller,
@@ -16,7 +18,7 @@ class SearchScreen<T> extends StatelessWidget {
     required this.hintKey,
   });
 
-  final YgSearchControllerAny<T> controller;
+  final YgSearchControllerAny<Object?, ResultValue> controller;
   final PreferredSizeWidget Function(BuildContext context) searchBarBuilder;
   final YgLinkedKey<HintProvider> hintKey;
 
@@ -27,65 +29,61 @@ class SearchScreen<T> extends StatelessWidget {
     return Scaffold(
       backgroundColor: theme.backgroundColor,
       appBar: searchBarBuilder(context),
-      body: YgLinkedBuilder<HintProvider>(
-        linkedKey: hintKey,
-        builder: (HintProvider? hintProvider) {
-          final Widget? hint = hintProvider?.hint;
+      body: YgOptimizedListenableBuilder<YgSearchResultsLayoutAny>(
+        listenable: controller,
+        getValue: () => controller.results,
+        builder: (BuildContext context, YgSearchResultsLayoutAny resultsLayout, Widget? _) {
+          final List<YgBaseSearchResult>? results = resultsLayout.results;
+          final Widget? leading = resultsLayout.leading;
 
-          return YgOptimizedListenableBuilder<List<YgStringSearchResult>>(
-            listenable: controller,
-            getValue: () => controller.results,
-            builder: (BuildContext context, List<YgStringSearchResult> results, Widget? _) {
-              int childCount = results.length;
-              int offset;
-              if (hint != null) {
-                childCount += 1;
-                offset = -1;
-              } else {
-                offset = 0;
-              }
+          int childCount = results?.length ?? 0;
+          int offset;
+          if (leading != null) {
+            childCount += 1;
+            offset = -1;
+          } else {
+            offset = 0;
+          }
 
-              return RepaintBoundary(
-                child: ListView.builder(
-                  itemBuilder: (BuildContext context, int index) {
-                    index += offset;
+          return RepaintBoundary(
+            child: ListView.builder(
+              itemBuilder: (BuildContext context, int index) {
+                index += offset;
 
-                    if (index == -1) {
-                      return Padding(
-                        // TODO(Tim): Update this once design has been finalized.
-                        padding: const EdgeInsets.only(top: 15, bottom: 20, left: 20, right: 20),
-                        child: hint,
-                      );
-                    }
+                if (index == -1) {
+                  return leading;
+                }
 
-                    final YgStringSearchResult result = results[index];
+                if (results == null) {
+                  return null;
+                }
 
-                    void onTap() {
-                      if (controller is YgStringSearchController) {
-                        (controller as YgStringSearchController).onResultTapped('result');
-                      } else if (result is YgSearchResult<T>) {
-                        controller.onResultTapped(result.value);
-                      } else {
-                        // This should never happen, but just in case it does we
-                        // should be notified during development.
-                        assert(
-                          false,
-                          'Incorrect controller or result in SearchScreen',
-                        );
-                      }
-                    }
+                final YgBaseSearchResult result = results[index];
 
-                    return SearchResultListTile(
-                      title: result.title,
-                      subtitle: result.subtitle,
-                      icon: result.icon,
-                      onTap: onTap,
+                void onTap() {
+                  if (controller is YgAdvancedSearchController && result is YgSearchResult<ResultValue>) {
+                    controller.onResultTapped(result.value);
+                  } else if (controller is YgSimpleSearchController && result is YgSearchResult<ResultValue>) {
+                    controller.onResultTapped(result.value);
+                  } else if (controller is YgStringSearchController && result is YgStringSearchResult) {
+                    (controller as YgStringSearchController).onResultTapped(result.title.text);
+                  } else {
+                    assert(
+                      false,
+                      'Internal incorrect result and controller combination',
                     );
-                  },
-                  itemCount: childCount,
-                ),
-              );
-            },
+                  }
+                }
+
+                return SearchResultListTile(
+                  title: result.title,
+                  subtitle: result.subtitle,
+                  icon: result.icon,
+                  onTap: onTap,
+                );
+              },
+              itemCount: childCount,
+            ),
           );
         },
       ),

@@ -343,14 +343,14 @@ abstract class YgSearchBarWidgetState<Value, ResultValue, Result extends YgBaseS
     _controllerManager.value.startSession();
 
     Navigator.of(context).push(
-      SearchScreenRoute<Value>(
+      SearchScreenRoute<ResultValue>(
         searchController: _controllerManager.value,
         borderRadius: theme.containerBorderRadius,
         fieldKey: _fieldKey,
         hintKey: _hintKey,
         onClose: _onClosed,
         searchBarBuilder: (BuildContext context) {
-          return SearchAppBar<Value>(
+          return SearchAppBar(
             controller: _controllerManager.value,
             placeholder: widget.placeholder,
             keyboardType: widget.keyboardType,

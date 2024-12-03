@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:yggdrasil/src/components/fields/search/controller/yg_search_controller.dart';
 import 'package:yggdrasil/src/theme/search_modal/search_modal_theme.dart';
 import 'package:yggdrasil/src/theme/theme.dart';
 import 'package:yggdrasil/src/utils/_utils.dart';
@@ -8,7 +9,7 @@ import 'package:yggdrasil/yggdrasil.dart';
 import 'widget_or_loading.dart';
 
 /// Internal search bar.
-class SearchAppBar<T> extends StatefulWidget implements PreferredSizeWidget {
+class SearchAppBar extends StatefulWidget implements PreferredSizeWidget {
   const SearchAppBar({
     super.key,
     required this.controller,
@@ -27,7 +28,7 @@ class SearchAppBar<T> extends StatefulWidget implements PreferredSizeWidget {
 
   final FocusNode? focusNode;
   final String? initialValue;
-  final YgSearchControllerAny<T> controller;
+  final YgSearchControllerAny<Object?, Object?> controller;
   final ValueChanged<String>? onChanged;
   final VoidCallback? onEditingComplete;
   final ValueChanged<bool>? onFocusChanged;
@@ -43,10 +44,10 @@ class SearchAppBar<T> extends StatefulWidget implements PreferredSizeWidget {
   Size get preferredSize => const Size.fromHeight(65);
 
   @override
-  State<SearchAppBar<T>> createState() => _SearchAppBarState<T>();
+  State<SearchAppBar> createState() => _SearchAppBarState();
 }
 
-class _SearchAppBarState<T> extends State<SearchAppBar<T>> with EditableTextContainerStateMixin<SearchAppBar<T>> {
+class _SearchAppBarState extends State<SearchAppBar> with EditableTextContainerStateMixin<SearchAppBar> {
   late bool _isEmpty;
 
   @override
