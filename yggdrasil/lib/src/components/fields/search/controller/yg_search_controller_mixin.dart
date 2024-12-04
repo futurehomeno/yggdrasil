@@ -1,7 +1,6 @@
 import 'dart:async';
 
 import 'package:flutter/widgets.dart';
-import 'package:yggdrasil/src/components/fields/search/controller/string_search/yg_string_search_provider.dart';
 import 'package:yggdrasil/src/components/fields/search/controller/yg_search_state_mixin_interface.dart';
 import 'package:yggdrasil/src/components/fields/search/interfaces/_interfaces.dart';
 import 'package:yggdrasil/src/components/fields/search/models/_models.dart';
@@ -16,6 +15,10 @@ part 'advanced_search/yg_advanced_search_controller.dart';
 part 'simple_search/yg_simple_search_controller.dart';
 part 'string_search/yg_string_search_controller.dart';
 
+/// Internal mixin used by all search controllers.
+///
+/// Does not implement any search logic, instead focuses on linking the search
+/// controller to a search widget.
 mixin _YgSearchControllerMixin<
         Value,
         ControllerValue,

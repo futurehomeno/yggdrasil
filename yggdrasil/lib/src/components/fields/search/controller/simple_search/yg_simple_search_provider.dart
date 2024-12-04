@@ -4,6 +4,9 @@ import 'package:yggdrasil/src/components/fields/search/interfaces/yg_base_search
 import 'package:yggdrasil/src/components/fields/search/models/shared/yg_search_result.dart';
 import 'package:yggdrasil/src/components/fields/search/models/shared/yg_search_results_layout.dart';
 
+/// Base class for implementing a simple search provider.
+///
+/// Can not be used direct and should be extended instead.
 abstract class YgSimpleSearchProvider<Value>
     extends YgBaseSearchProvider<Value, Value, YgSearchResult<Value>, YgSearchResultsLayout<Value>> {
   const YgSimpleSearchProvider();
@@ -12,6 +15,9 @@ abstract class YgSimpleSearchProvider<Value>
   YgSimpleSearchSession<Value, YgSimpleSearchProvider<Value>> createSession();
 }
 
+/// Base class for implementing a simple search session.
+///
+/// Can not be used direct and should be extended instead.
 abstract class YgSimpleSearchSession<Value, Provider extends YgSimpleSearchProvider<Value>>
     extends YgBaseSearchSession<Value, Value, YgSearchResult<Value>, YgSearchResultsLayout<Value>, Provider> {
   FutureOr<String?>? getValueText(Value value);

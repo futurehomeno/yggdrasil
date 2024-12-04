@@ -3,6 +3,8 @@ import 'package:yggdrasil/src/components/fields/search/models/string_search/yg_s
 import 'package:yggdrasil/src/components/fields/search/models/string_search/yg_string_search_results_layout.dart';
 
 /// Base class for implementing a string search provider.
+///
+/// Can not be used direct and should be extended instead.
 abstract class YgStringSearchProvider
     extends YgBaseSearchProvider<String, String, YgStringSearchResult, YgStringSearchResultsLayout> {
   @override
@@ -10,5 +12,7 @@ abstract class YgStringSearchProvider
 }
 
 /// Base class for implementing a string search session.
+///
+/// Can not be used direct and should be extended instead.
 abstract class YgStringSearchSession<Provider extends YgStringSearchProvider>
     extends YgBaseSearchSession<String, String, YgStringSearchResult, YgStringSearchResultsLayout, Provider> {}

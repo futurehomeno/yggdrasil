@@ -3,13 +3,20 @@ part of '../yg_search_controller_mixin.dart';
 typedef _SimpleSession<Value> = YgSimpleSearchSession<Value, YgSimpleSearchProvider<Value>>;
 typedef _SimpleState<Value> = YgSimpleSearchStateMixin<Value, StatefulWidget>;
 
+/// Controller for simple (usually default) search widgets.
+///
+/// The value in this search controller is identical to the value on any search
+/// result.
+///
+/// This controller does not change its value until the user selects a result.
 class YgSimpleSearchController<Value>
     with
         ChangeNotifier,
         _YgSearchControllerMixin<Value, Value?, Value, YgSearchResult<Value>, YgSearchResultsLayout<Value>,
             YgSimpleSearchStateMixin<Value, StatefulWidget>> {
-  YgSimpleSearchController({Value? initialValue})
-      : _textEditingController = TextEditingController(),
+  YgSimpleSearchController({
+    Value? initialValue,
+  })  : _textEditingController = TextEditingController(),
         _value = initialValue {
     _textEditingController.addListener(_updateResults);
   }

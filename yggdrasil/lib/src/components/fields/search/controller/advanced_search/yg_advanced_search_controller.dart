@@ -4,6 +4,18 @@ typedef _AdvancedSession<Value, ResultValue>
     = YgAdvancedSearchSession<Value, ResultValue, YgAdvancedSearchProvider<Value, ResultValue>>;
 typedef _AdvancedState<Value, ResultValue> = YgAdvancedSearchStateMixin<Value, ResultValue, StatefulWidget>;
 
+/// Controller for advanced search widgets.
+///
+/// This controller is different from the simple search controller in that the
+/// [value] is not equal to the value on a search result, instead after selecting
+/// a result, this controller will fetch a final value and text based on the
+/// selected result.
+///
+/// This can be useful if the results are only a preview of the final result,
+/// and lack critical information needed for the final value which needs to be
+/// fetched from the server separately from the results.
+///
+/// This controller does not change its value until the user selects a result.
 class YgAdvancedSearchController<Value, ResultValue>
     with
         ChangeNotifier,

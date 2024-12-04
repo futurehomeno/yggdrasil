@@ -5,6 +5,7 @@ import 'package:yggdrasil/src/components/fields/search/models/shared/yg_search_r
 
 import '../yg_search_state_mixin_interface.dart';
 
+/// Internal mixin class used for advances search variants of widgets.
 mixin YgAdvancedSearchStateMixin<Value, ResultValue, Widget extends StatefulWidget> on State<Widget>
     implements
         YgSearchStateMixinInterface<Value, ResultValue, YgSearchResult<ResultValue>,
