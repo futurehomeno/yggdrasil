@@ -1,10 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:yggdrasil/src/components/fields/search/controller/yg_search_controller.dart';
-import 'package:yggdrasil/src/components/fields/search/widgets/hint_provider.dart';
 import 'package:yggdrasil/src/components/fields/search/widgets/rrect_transition.dart';
 import 'package:yggdrasil/src/theme/search_modal/search_modal_theme.dart';
 import 'package:yggdrasil/src/theme/theme.dart';
-import 'package:yggdrasil/src/utils/yg_linked/_yg_linked.dart';
 
 import '_mobile_search_screen.dart';
 
@@ -14,7 +12,6 @@ class SearchScreenRoute<ResultValue> extends PopupRoute<Widget> {
     required this.searchController,
     required this.searchBarBuilder,
     required this.fieldKey,
-    required this.hintKey,
     required this.borderRadius,
     required this.onClose,
   });
@@ -60,8 +57,6 @@ class SearchScreenRoute<ResultValue> extends PopupRoute<Widget> {
 
   final GlobalKey fieldKey;
 
-  final YgLinkedKey<HintProvider> hintKey;
-
   final VoidCallback onClose;
 
   // endregion
@@ -101,7 +96,6 @@ class SearchScreenRoute<ResultValue> extends PopupRoute<Widget> {
       child: SearchScreen<ResultValue>(
         controller: searchController,
         searchBarBuilder: searchBarBuilder,
-        hintKey: hintKey,
       ),
     );
   }

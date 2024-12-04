@@ -15,6 +15,7 @@ import 'package:yggdrasil/src/utils/yg_match_text/yg_text_match.dart';
 
 import 'yg_fuzzy_search_provider_interface.dart';
 
+/// Internal mixin used by search providers providing fuzzy search capabilities.
 mixin YgFuzzySearchSessionMixin<
         Value,
         ResultValue,

@@ -3,6 +3,7 @@ import 'package:yggdrasil/src/components/fields/search/models/shared/yg_search_r
 import 'package:yggdrasil/src/utils/yg_match_text/yg_formatted_text.dart';
 import 'package:yggdrasil/src/utils/yg_match_text/yg_text_match.dart';
 
+/// Search item used for both simple and advanced search providers.
 class YgSearchItem<Value> extends YgBaseSearchItem<YgSearchResult<Value>> {
   const YgSearchItem({
     required this.value,
@@ -11,6 +12,11 @@ class YgSearchItem<Value> extends YgBaseSearchItem<YgSearchResult<Value>> {
     super.icon,
   });
 
+  /// The value of the search item.
+  ///
+  /// In the case of a simple search provider this value represents the final
+  /// value of the search widget, in the case of an advanced search widget this
+  /// value only represents the result value.
   final Value value;
 
   @override

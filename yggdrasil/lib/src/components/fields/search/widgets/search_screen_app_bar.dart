@@ -9,8 +9,8 @@ import 'package:yggdrasil/yggdrasil.dart';
 import 'widget_or_loading.dart';
 
 /// Internal search bar.
-class SearchAppBar extends StatefulWidget implements PreferredSizeWidget {
-  const SearchAppBar({
+class SearchScreenAppBar extends StatefulWidget implements PreferredSizeWidget {
+  const SearchScreenAppBar({
     super.key,
     required this.controller,
     required this.focusNode,
@@ -44,10 +44,11 @@ class SearchAppBar extends StatefulWidget implements PreferredSizeWidget {
   Size get preferredSize => const Size.fromHeight(65);
 
   @override
-  State<SearchAppBar> createState() => _SearchAppBarState();
+  State<SearchScreenAppBar> createState() => _SearchScreenAppBarState();
 }
 
-class _SearchAppBarState extends State<SearchAppBar> with EditableTextContainerStateMixin<SearchAppBar> {
+class _SearchScreenAppBarState extends State<SearchScreenAppBar>
+    with EditableTextContainerStateMixin<SearchScreenAppBar> {
   late bool _isEmpty;
 
   @override

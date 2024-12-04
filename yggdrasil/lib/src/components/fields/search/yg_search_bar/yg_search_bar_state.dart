@@ -1,6 +1,7 @@
 import 'package:yggdrasil/src/utils/yg_states/yg_state.dart';
 import 'package:yggdrasil/src/utils/yg_states/yg_state_value.dart';
 
+/// Internal visual state of the search bar.
 class YgSearchBarState extends YgState {
   YgSearchBarState({
     bool pressed = false,

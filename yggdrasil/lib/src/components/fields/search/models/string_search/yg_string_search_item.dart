@@ -2,6 +2,7 @@ import 'package:yggdrasil/src/components/fields/search/interfaces/yg_base_search
 import 'package:yggdrasil/src/components/fields/search/models/string_search/yg_string_search_result.dart';
 import 'package:yggdrasil/src/utils/yg_match_text/_yg_match_text.dart';
 
+/// Search item used in string search providers.
 class YgStringSearchItem extends YgBaseSearchItem<YgStringSearchResult> {
   const YgStringSearchItem({
     required super.icon,

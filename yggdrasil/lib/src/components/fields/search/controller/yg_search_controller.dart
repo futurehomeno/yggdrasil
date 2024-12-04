@@ -4,6 +4,7 @@ import 'package:yggdrasil/src/components/fields/search/interfaces/yg_base_search
 import 'package:yggdrasil/src/components/fields/search/interfaces/yg_base_search_results_layout.dart';
 import 'package:yggdrasil/src/utils/_utils.dart';
 
+/// Generic type to refer to any type of search controller.
 typedef YgSearchControllerAny<Value, ResultValue> = YgSearchController<
     Value,
     Object?,
@@ -12,6 +13,7 @@ typedef YgSearchControllerAny<Value, ResultValue> = YgSearchController<
     YgBaseSearchResultsLayout<YgBaseSearchResult>,
     YgSearchStateMixinInterface<Value, ResultValue, YgBaseSearchResult, YgBaseSearchResultsLayout<YgBaseSearchResult>>>;
 
+/// Internal interface shared between all search controllers.
 abstract interface class YgSearchController<
         Value,
         ControllerValue,

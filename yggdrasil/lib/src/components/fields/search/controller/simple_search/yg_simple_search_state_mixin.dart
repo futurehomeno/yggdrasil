@@ -5,6 +5,7 @@ import 'package:yggdrasil/src/components/fields/search/models/shared/yg_search_r
 
 import 'yg_simple_search_provider.dart';
 
+/// Internal mixin class used for simple search variants of widgets.
 mixin YgSimpleSearchStateMixin<Value, Widget extends StatefulWidget> on State<Widget>
     implements YgSearchStateMixinInterface<Value, Value, YgSearchResult<Value>, YgSearchResultsLayout<Value>> {
   @override

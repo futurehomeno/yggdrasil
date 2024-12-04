@@ -4,19 +4,16 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:yggdrasil/src/components/fields/search/controller/advanced_search/yg_advanced_search_state_mixin.dart';
 import 'package:yggdrasil/src/components/fields/search/controller/simple_search/yg_simple_search_state_mixin.dart';
-import 'package:yggdrasil/src/components/fields/search/controller/string_search/yg_string_search_provider.dart';
 import 'package:yggdrasil/src/components/fields/search/controller/string_search/yg_string_search_state_mixin.dart';
 import 'package:yggdrasil/src/components/fields/search/controller/yg_search_controller.dart';
 import 'package:yggdrasil/src/components/fields/search/controller/yg_search_state_mixin_interface.dart';
 import 'package:yggdrasil/src/components/fields/search/interfaces/_interfaces.dart';
-import 'package:yggdrasil/src/components/fields/search/widgets/hint_provider.dart';
 import 'package:yggdrasil/src/components/fields/search/widgets/mobile_search_screen/_mobile_search_screen.dart';
-import 'package:yggdrasil/src/components/fields/search/widgets/search_app_bar.dart';
+import 'package:yggdrasil/src/components/fields/search/widgets/search_screen_app_bar.dart';
 import 'package:yggdrasil/src/components/fields/search/widgets/widget_or_loading.dart';
 import 'package:yggdrasil/src/components/fields/widgets/_widgets.dart';
 import 'package:yggdrasil/src/theme/_theme.dart';
 import 'package:yggdrasil/src/utils/_utils.dart';
-import 'package:yggdrasil/src/utils/yg_linked/_yg_linked.dart';
 import 'package:yggdrasil/yggdrasil.dart';
 
 import 'yg_search_field_state.dart';
@@ -216,7 +213,6 @@ abstract class YgSearchFieldWidgetState<
   YgSearchControllerAny<Value, ResultValue>? getUserController();
 
   final GlobalKey _fieldKey = GlobalKey();
-  final YgLinkedKey<HintProvider> _hintKey = YgLinkedKey<HintProvider>();
 
   void _valueUpdated() {
     state.filled.value = _controllerManager.value.valueText.isNotEmpty;
@@ -346,10 +342,9 @@ abstract class YgSearchFieldWidgetState<
         searchController: _controllerManager.value,
         borderRadius: radius,
         fieldKey: _fieldKey,
-        hintKey: _hintKey,
         onClose: _onClosed,
         searchBarBuilder: (BuildContext context) {
-          return SearchAppBar(
+          return SearchScreenAppBar(
             controller: _controllerManager.value,
             placeholder: widget.placeholder ?? widget.label,
             keyboardType: widget.keyboardType,

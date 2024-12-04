@@ -1,5 +1,6 @@
 part of 'yg_search_app_bar.dart';
 
+/// The advanced
 class YgAdvancedSearchAppBar<Value, ResultValue> extends YgSearchAppBar<Value> {
   const YgAdvancedSearchAppBar({
     super.key,

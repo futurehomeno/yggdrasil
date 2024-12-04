@@ -5,6 +5,7 @@ import 'package:yggdrasil/src/utils/yg_states/_yg_states.dart';
 
 import 'yg_search_bar_state.dart';
 
+/// Internal style of the search bar.
 class YgSearchBarStyle extends YgStyle<YgSearchBarState> {
   YgSearchBarStyle({
     required super.state,

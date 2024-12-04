@@ -2,20 +2,17 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:yggdrasil/src/components/fields/search/controller/advanced_search/yg_advanced_search_state_mixin.dart';
 import 'package:yggdrasil/src/components/fields/search/controller/simple_search/yg_simple_search_state_mixin.dart';
-import 'package:yggdrasil/src/components/fields/search/controller/string_search/yg_string_search_provider.dart';
 import 'package:yggdrasil/src/components/fields/search/controller/string_search/yg_string_search_state_mixin.dart';
 import 'package:yggdrasil/src/components/fields/search/controller/yg_search_controller.dart';
 import 'package:yggdrasil/src/components/fields/search/controller/yg_search_state_mixin_interface.dart';
 import 'package:yggdrasil/src/components/fields/search/interfaces/yg_base_search_result.dart';
 import 'package:yggdrasil/src/components/fields/search/interfaces/yg_base_search_results_layout.dart';
-import 'package:yggdrasil/src/components/fields/search/widgets/hint_provider.dart';
 import 'package:yggdrasil/src/components/fields/search/widgets/mobile_search_screen/_mobile_search_screen.dart';
-import 'package:yggdrasil/src/components/fields/search/widgets/search_app_bar.dart';
+import 'package:yggdrasil/src/components/fields/search/widgets/search_screen_app_bar.dart';
 import 'package:yggdrasil/src/components/fields/search/yg_search_bar/yg_search_bar_style.dart';
 import 'package:yggdrasil/src/theme/search_bar/search_bar_theme.dart';
 import 'package:yggdrasil/src/theme/theme.dart';
 import 'package:yggdrasil/src/utils/_utils.dart';
-import 'package:yggdrasil/src/utils/yg_linked/_yg_linked.dart';
 import 'package:yggdrasil/yggdrasil.dart';
 
 import 'yg_search_bar_state.dart';
@@ -24,6 +21,13 @@ part 'yg_advanced_search_bar.dart';
 part 'yg_simple_search_bar.dart';
 part 'yg_string_search_bar.dart';
 
+/// The simplest variation of the yggdrasil search bar.
+///
+/// This version of the search bar guarantees the value of the selected search
+/// result is the same as the final value of the widget.
+///
+/// For more advanced search implementation, use [YgAdvancedSearchBar] instead.
+/// When searching for any string, use [YgStringSearchBar] instead.
 abstract class YgSearchBar<Value> extends StatefulWidget {
   const factory YgSearchBar({
     required bool autocorrect,
@@ -155,13 +159,12 @@ abstract class YgSearchBar<Value> extends StatefulWidget {
   final YgCompleteAction completeAction;
 }
 
-abstract class YgSearchBarWidgetState<Value, ResultValue, Result extends YgBaseSearchResult,
+abstract class _YgSearchBarWidgetState<Value, ResultValue, Result extends YgBaseSearchResult,
         ResultsLayout extends YgBaseSearchResultsLayout<Result>, StatefulWidget extends YgSearchBar<Value>>
     extends StateWithYgStateAndStyle<StatefulWidget, YgSearchBarState, YgSearchBarStyle>
     with YgControllerManagerMixin
     implements YgSearchStateMixinInterface<Value, ResultValue, Result, ResultsLayout> {
   final GlobalKey _fieldKey = GlobalKey();
-  final YgLinkedKey<HintProvider> _hintKey = YgLinkedKey<HintProvider>();
   bool _opened = false;
 
   late final YgMaterialStatesControllerWithChangeCallback _materialController =
@@ -239,67 +242,63 @@ abstract class YgSearchBarWidgetState<Value, ResultValue, Result extends YgBaseS
       trailingSearch = searchButton;
     }
 
-    return HintProvider(
-      key: _hintKey,
-      hint: widget.hint,
-      child: YgAnimatedDecoratedBox(
-        decoration: style.backgroundColor.map(
-          (Color color) => BoxDecoration(
-            color: color,
-            borderRadius: theme.containerBorderRadius,
-          ),
-        ),
-        child: Material(
-          key: _fieldKey,
+    return YgAnimatedDecoratedBox(
+      decoration: style.backgroundColor.map(
+        (Color color) => BoxDecoration(
+          color: color,
           borderRadius: theme.containerBorderRadius,
-          type: MaterialType.transparency,
-          clipBehavior: Clip.antiAlias,
-          child: InkWell(
-            statesController: _materialController,
-            focusNode: _focusNodeManager.value,
-            splashFactory: InkRipple.splashFactory,
-            overlayColor: WidgetStatePropertyAll<Color>(Colors.white.withOpacity(0.05)),
-            onTap: _controllerManager.value.open,
-            child: Padding(
-              padding: theme.contentPadding,
-              child: SizedBox(
-                height: theme.contentHeight,
-                child: Row(
-                  children: <Widget>[
-                    leading,
-                    Expanded(
-                      child: RepaintBoundary(
-                        child: YgOptimizedListenableBuilder<String>(
-                          listenable: controller,
-                          getValue: () => controller.valueText,
-                          builder: (BuildContext context, String value, Widget? child) {
-                            final String? placeholder = widget.placeholder;
+        ),
+      ),
+      child: Material(
+        key: _fieldKey,
+        borderRadius: theme.containerBorderRadius,
+        type: MaterialType.transparency,
+        clipBehavior: Clip.antiAlias,
+        child: InkWell(
+          statesController: _materialController,
+          focusNode: _focusNodeManager.value,
+          splashFactory: InkRipple.splashFactory,
+          overlayColor: WidgetStatePropertyAll<Color>(Colors.white.withOpacity(0.05)),
+          onTap: _controllerManager.value.open,
+          child: Padding(
+            padding: theme.contentPadding,
+            child: SizedBox(
+              height: theme.contentHeight,
+              child: Row(
+                children: <Widget>[
+                  leading,
+                  Expanded(
+                    child: RepaintBoundary(
+                      child: YgOptimizedListenableBuilder<String>(
+                        listenable: controller,
+                        getValue: () => controller.valueText,
+                        builder: (BuildContext context, String value, Widget? child) {
+                          final String? placeholder = widget.placeholder;
 
-                            if (value.isNotEmpty) {
-                              return Text(
-                                value,
-                                style: theme.valueTextStyle,
-                                maxLines: 1,
-                                overflow: TextOverflow.ellipsis,
-                              );
-                            }
+                          if (value.isNotEmpty) {
+                            return Text(
+                              value,
+                              style: theme.valueTextStyle,
+                              maxLines: 1,
+                              overflow: TextOverflow.ellipsis,
+                            );
+                          }
 
-                            if (placeholder != null && placeholder.isNotEmpty == true) {
-                              return Text(
-                                placeholder,
-                                style: theme.placeholderTextStyle,
-                              );
-                            }
+                          if (placeholder != null && placeholder.isNotEmpty == true) {
+                            return Text(
+                              placeholder,
+                              style: theme.placeholderTextStyle,
+                            );
+                          }
 
-                            return const SizedBox();
-                          },
-                        ),
+                          return const SizedBox();
+                        },
                       ),
                     ),
-                    if (trailingSearch != null) trailingSearch,
-                    if (trailing != null) trailing,
-                  ].withHorizontalSpacing(theme.contentSpacing),
-                ),
+                  ),
+                  if (trailingSearch != null) trailingSearch,
+                  if (trailing != null) trailing,
+                ].withHorizontalSpacing(theme.contentSpacing),
               ),
             ),
           ),
@@ -347,10 +346,9 @@ abstract class YgSearchBarWidgetState<Value, ResultValue, Result extends YgBaseS
         searchController: _controllerManager.value,
         borderRadius: theme.containerBorderRadius,
         fieldKey: _fieldKey,
-        hintKey: _hintKey,
         onClose: _onClosed,
         searchBarBuilder: (BuildContext context) {
-          return SearchAppBar(
+          return SearchScreenAppBar(
             controller: _controllerManager.value,
             placeholder: widget.placeholder,
             keyboardType: widget.keyboardType,

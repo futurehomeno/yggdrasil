@@ -1,6 +1,6 @@
 part of '../yg_search_controller_mixin.dart';
 
-/// Search controller for string search widgets.
+/// Controller for string search widgets.
 ///
 /// Is different from simple and advanced search controllers in that it treats
 /// the [searchQuery] as the value of the search widget. It also functions as a

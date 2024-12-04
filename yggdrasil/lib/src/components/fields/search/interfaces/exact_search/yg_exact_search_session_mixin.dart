@@ -10,6 +10,7 @@ import 'package:yggdrasil/src/utils/yg_match_text/yg_text_match.dart';
 import '../yg_base_search_item.dart';
 import 'yg_exact_search_provider_interface.dart';
 
+/// Internal mixin used by search providers providing exact search capabilities.
 mixin YgExactSearchSessionMixin<
         Value,
         ResultValue,

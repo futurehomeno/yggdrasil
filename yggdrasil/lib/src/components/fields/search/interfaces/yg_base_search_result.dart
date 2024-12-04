@@ -1,6 +1,7 @@
 import 'package:yggdrasil/src/utils/_utils.dart';
 
-class YgBaseSearchResult {
+/// Internal base class for search results.
+abstract class YgBaseSearchResult {
   const YgBaseSearchResult({
     required this.title,
     this.icon,

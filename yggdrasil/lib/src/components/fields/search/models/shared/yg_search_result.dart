@@ -1,6 +1,6 @@
 import 'package:yggdrasil/src/components/fields/search/interfaces/yg_base_search_result.dart';
 
-/// A result for a [YgSearchWidget].
+/// Search result used for both simple and advanced search providers.
 class YgSearchResult<ResultValue> extends YgBaseSearchResult {
   const YgSearchResult({
     required super.title,
@@ -9,9 +9,10 @@ class YgSearchResult<ResultValue> extends YgBaseSearchResult {
     super.subtitle,
   });
 
-  /// The value which is passed to [YgSearchWidget.].
+  /// The value of the search result.
   ///
-  /// This value is what you will get back from the [YgSearchWidget.onChange]
-  /// when this entry is selected.
+  /// In the case of a simple search provider this value represents the final
+  /// value of the search widget, in the case of an advanced search provider
+  /// this value is used to fetch the final value.
   final ResultValue value;
 }
