@@ -1,5 +1,6 @@
 part of '../yg_search_field.dart';
 
+/// Internal implementation of the [YgSearchField].
 class _YgSimpleSearchField<Value> extends YgSearchField<Value> {
   const _YgSimpleSearchField({
     super.key,
@@ -27,12 +28,21 @@ class _YgSimpleSearchField<Value> extends YgSearchField<Value> {
     this.onChanged,
   }) : super._();
 
+  /// Optional controller to control this widget.
+  ///
+  /// When provided, overwrites the [initialValue] with the initial value passed
+  /// to the controller.
   final YgSimpleSearchController<Value>? controller;
 
+  /// The search provider for this widget.
   final YgSimpleSearchProvider<Value> searchProvider;
 
+  /// The initial value of the widget.
+  ///
+  /// This value is ignored if [controller] is provided.
   final Value? initialValue;
 
+  /// Optional callback called whenever the value changes.
   final ValueChanged<Value?>? onChanged;
 
   @override

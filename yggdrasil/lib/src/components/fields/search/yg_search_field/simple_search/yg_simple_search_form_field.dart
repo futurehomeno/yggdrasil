@@ -1,5 +1,6 @@
 part of '../yg_search_form_field.dart';
 
+/// Internal implementation of the [YgSearchFormField].
 class _YgSimpleSearchFormField<Value> extends YgSearchFormField<Value> {
   _YgSimpleSearchFormField({
     required FormFieldKey<Value> super.key,
@@ -29,17 +30,24 @@ class _YgSimpleSearchFormField<Value> extends YgSearchFormField<Value> {
     List<FormFieldValidator<Value>>? validators,
   }) : super._();
 
+  /// Optional controller to control this widget.
+  ///
+  /// When provided, overwrites the [initialValue] with the initial value passed
+  /// to the controller.
   final YgSimpleSearchController<Value>? controller;
 
+  /// The search provider for this widget.
   final YgSimpleSearchProvider<Value> searchProvider;
+
+  /// Optional callback called whenever the value changes.
+  final ValueChanged<Value?>? onChanged;
 
   @override
   final Value? initialValue;
 
-  final ValueChanged<Value?>? onChanged;
-
   @override
   FormFieldBuilder<Value> get builder => _builder;
+
   Widget _builder(FormFieldState<Value> field) {
     final YgValidateHelper<Value> helper = YgValidateHelper<Value>(
       key: key as FormFieldKey<Value>,

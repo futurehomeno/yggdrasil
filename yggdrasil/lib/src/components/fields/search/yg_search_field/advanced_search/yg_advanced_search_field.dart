@@ -1,5 +1,16 @@
 part of '../yg_search_field.dart';
 
+/// The advanced search variation of the yggdrasil search field.
+///
+/// This version of the search field allows for the value of the search field to be
+/// different from the value of the search results. This is useful in case the
+/// search results lack important data needed for the final value of the widget,
+/// which will be fetched separately.
+///
+/// If you want the value of the search field to be identical to the value of the
+/// selected result, use the [YgSearchField] instead.
+///
+/// If you want to search for any string, use [YgStringSearchField] instead.
 class YgAdvancedSearchField<Value, ResultValue> extends YgSearchField<Value> {
   const YgAdvancedSearchField({
     super.key,
@@ -27,12 +38,21 @@ class YgAdvancedSearchField<Value, ResultValue> extends YgSearchField<Value> {
     this.onChanged,
   }) : super._();
 
+  /// Optional controller to control this widget.
+  ///
+  /// When provided, overwrites the [initialValue] with the initial value passed
+  /// to the controller.
   final YgAdvancedSearchController<Value, ResultValue>? controller;
 
+  /// The search provider for this widget.
   final YgAdvancedSearchProvider<Value, ResultValue> searchProvider;
 
+  /// The initial value of the widget.
+  ///
+  /// This value is ignored if [controller] is provided.
   final YgSearchValueAndText<Value>? initialValue;
 
+  /// Optional callback called whenever the value changes.
   final ValueChanged<Value?>? onChanged;
 
   @override

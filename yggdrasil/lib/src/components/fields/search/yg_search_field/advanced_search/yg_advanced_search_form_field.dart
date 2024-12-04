@@ -1,7 +1,18 @@
 part of '../yg_search_form_field.dart';
 
-class _YgAdvancedSearchFormField<Value, ResultValue> extends YgSearchFormField<Value> {
-  _YgAdvancedSearchFormField({
+/// The advanced search variation of the yggdrasil search form field.
+///
+/// This version of the search form field allows for the value of the search field to be
+/// different from the value of the search results. This is useful in case the
+/// search results lack important data needed for the final value of the widget,
+/// which will be fetched separately.
+///
+/// If you want the value of the search form field to be identical to the value of the
+/// selected result, use the [YgSearchFormField] instead.
+///
+/// If you want to search for any string, use [YgStringSearchFormField] instead.
+class YgAdvancedSearchFormField<Value, ResultValue> extends YgSearchFormField<Value> {
+  YgAdvancedSearchFormField({
     required FormFieldKey<Value> super.key,
     required super.autocorrect,
     required super.keyboardType,
@@ -31,19 +42,29 @@ class _YgAdvancedSearchFormField<Value, ResultValue> extends YgSearchFormField<V
         initialValue = initialValue?.value,
         super._();
 
+  /// Optional controller to control this widget.
+  ///
+  /// When provided, overwrites the [initialValue] with the initial value passed
+  /// to the controller.
   final YgAdvancedSearchController<Value, ResultValue>? controller;
 
+  /// The search provider for this widget.
   final YgAdvancedSearchProvider<Value, ResultValue> searchProvider;
 
+  /// The initial value of the widget.
+  ///
+  /// This value is ignored if [controller] is provided.
   final YgSearchValueAndText<Value>? _initialValueInternal;
+
+  /// Optional callback called whenever the value changes.
+  final ValueChanged<Value?>? onChanged;
 
   @override
   final Value? initialValue;
 
-  final ValueChanged<Value?>? onChanged;
-
   @override
   FormFieldBuilder<Value> get builder => _builder;
+
   Widget _builder(FormFieldState<Value> field) {
     final YgValidateHelper<Value> helper = YgValidateHelper<Value>(
       key: key as FormFieldKey<Value>,

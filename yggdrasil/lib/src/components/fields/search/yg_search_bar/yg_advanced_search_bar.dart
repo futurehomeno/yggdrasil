@@ -12,9 +12,6 @@ part of 'yg_search_bar.dart';
 ///
 /// If you want to search for any string, use [YgStringSearchBar] instead.
 class YgAdvancedSearchBar<Value, ResultValue> extends YgSearchBar<Value> {
-  /// Creates an advanced search bar with the given parameters.
-  ///
-  /// The [searchProvider] parameter is required and must not be null.
   const YgAdvancedSearchBar({
     super.key,
     required super.keyboardType,

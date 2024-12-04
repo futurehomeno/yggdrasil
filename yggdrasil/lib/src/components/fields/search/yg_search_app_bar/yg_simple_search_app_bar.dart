@@ -1,5 +1,6 @@
 part of 'yg_search_app_bar.dart';
 
+/// Internal implementation of the [YgSearchAppBar].
 class _YgSimpleSearchAppBar<Value> extends YgSearchAppBar<Value> {
   const _YgSimpleSearchAppBar({
     super.key,
@@ -25,12 +26,21 @@ class _YgSimpleSearchAppBar<Value> extends YgSearchAppBar<Value> {
     this.onChanged,
   }) : super._();
 
+  /// The search provider for this widget.
   final YgSimpleSearchProvider<Value> searchProvider;
 
+  /// The initial value of the widget.
+  ///
+  /// This value is ignored if [controller] is provided.
   final Value? initialValue;
 
+  /// Optional callback called whenever the value changes.
   final ValueChanged<Value?>? onChanged;
 
+  /// Optional controller to control this widget.
+  ///
+  /// When provided, overwrites the [initialValue] with the initial value passed
+  /// to the controller.
   final YgSimpleSearchController<Value>? controller;
 
   @override
