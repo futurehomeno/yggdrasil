@@ -4,6 +4,7 @@ import 'package:yggdrasil/src/components/fields/search/interfaces/yg_base_search
 import 'package:yggdrasil/src/components/fields/search/interfaces/yg_base_search_result.dart';
 import 'package:yggdrasil/src/components/fields/search/interfaces/yg_base_search_results_layout.dart';
 
+/// Internal mixin providing fuzzy search.
 abstract class YgFuzzySearchProviderInterface<
     Value,
     ResultValue,
@@ -13,14 +14,40 @@ abstract class YgFuzzySearchProviderInterface<
   const YgFuzzySearchProviderInterface({
     required this.items,
     required this.noResultsBuilder,
-    required this.hintBuilder,
     this.searchSubtitle = false,
     this.threshold = 0.4,
+    this.requireQuery = true,
+    this.hintBuilder,
   });
 
+  /// Whether to search for a match in the subtitle.
   final bool searchSubtitle;
+
+  /// Whether there should be a query in order for there to be results.
+  ///
+  /// If this is false this will return all items if there is no query. By
+  /// default this will not return any results if there is no query.
+  final bool requireQuery;
+
+  /// The items which the user can search through.
+  ///
+  /// By default the user can only search for the title of the item, if
+  /// [searchSubtitle] is true the user can also search through the subtitle of
+  /// an item.
   final List<Item> items;
+
+  /// The minimum accuracy of the results.
+  ///
+  /// A threshold of '0.0' requires a perfect match (of both letters and
+  /// location), a threshold of '1.0' would match anything.
   final double threshold;
+
+  /// Builds an optional hint widget.
+  ///
+  /// Will only be called if there are results, if there are non,
+  /// [noResultsBuilder] will be called instead.
   final WidgetBuilder? hintBuilder;
+
+  /// Builds the no results view.
   final WidgetBuilder noResultsBuilder;
 }

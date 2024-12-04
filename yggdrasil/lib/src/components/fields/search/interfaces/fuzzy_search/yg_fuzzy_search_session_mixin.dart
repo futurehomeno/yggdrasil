@@ -48,7 +48,7 @@ mixin YgFuzzySearchSessionMixin<
 
   @override
   FutureOr<ResultsLayout> buildResultsLayout(String query) {
-    if (query.isEmpty) {
+    if (query.isEmpty && provider.requireQuery) {
       final WidgetBuilder? builder = provider.hintBuilder;
 
       return createLayoutFromResultsAndLeading(

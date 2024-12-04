@@ -147,16 +147,20 @@ class YgSimpleSearchController<Value>
     if (valueText is String) {
       if (valueText != oldText) {
         _valueText = valueText;
+        _textEditingController.text = valueText;
         notifyListeners();
       }
     } else if (valueText is Future<String?>) {
       _valueTextFuture = valueText;
       _updateLoading();
-      _valueText = await valueText;
+      final String? result = await valueText;
+      _valueText = result;
+      _textEditingController.text = result ?? '';
       _valueTextFuture = null;
       _updateLoading(forceNotify: oldText != _valueText);
     } else if (oldText != null) {
       _valueText = null;
+      _textEditingController.text = '';
       notifyListeners();
     }
   }
