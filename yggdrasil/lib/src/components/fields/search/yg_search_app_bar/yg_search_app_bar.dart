@@ -14,6 +14,13 @@ part 'yg_advanced_search_app_bar.dart';
 part 'yg_simple_search_app_bar.dart';
 part 'yg_string_search_app_bar.dart';
 
+/// The simplest variation of the yggdrasil search app bar.
+///
+/// This version of the search app bar guarantees the value of the selected
+/// search result is the same as the final value of the widget.
+///
+/// For more advanced search implementation, use [YgAdvancedSearchAddBar] instead.
+/// When searching for any string, use [YgStringSearchAppBar] instead.
 abstract class YgSearchAppBar<Value> extends StatefulWidget implements PreferredSizeWidget {
   const factory YgSearchAppBar({
     required bool autocorrect,

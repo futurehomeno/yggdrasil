@@ -22,10 +22,13 @@ part 'advanced_search/yg_advanced_search_field.dart';
 part 'simple_search/yg_simple_search_field.dart';
 part 'string_search/yg_string_search_field.dart';
 
-/// A field which when opened allows the user to search for a value.
+/// The simplest variation of the yggdrasil search field.
 ///
-/// If you want to search for a string without a specific value attached to it,
-/// use [YgStringSearchField] instead.
+/// This version of the search field guarantees the value of the selected
+/// search result is the same as the final value of the widget.
+///
+/// For more advanced search implementation, use [YgAdvancedSearchField] instead.
+/// When searching for any string, use [YgStringSearchField] instead.
 abstract class YgSearchField<Value> extends StatefulWidget with StatefulWidgetDebugMixin {
   const factory YgSearchField({
     required bool autocorrect,

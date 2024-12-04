@@ -1,14 +1,19 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:yggdrasil/src/components/fields/helpers/yg_validate_helper.dart';
-import 'package:yggdrasil/src/components/fields/search/controller/_controller.dart';
-import 'package:yggdrasil/src/components/fields/search/controller/string_search/yg_string_search_provider.dart';
 import 'package:yggdrasil/yggdrasil.dart';
 
 part 'advanced_search/yg_advanced_search_form_field.dart';
 part 'simple_search/yg_simple_search_form_field.dart';
 part 'string_search/yg_string_search_form_field.dart';
 
+/// The simplest variation of the yggdrasil search form field.
+///
+/// This version of the search form field guarantees the value of the selected
+/// search result is the same as the final value of the widget.
+///
+/// For more advanced search implementation, use [YgAdvancedSearchFormField] instead.
+/// When searching for any string, use [YgStringSearchFormField] instead.
 abstract class YgSearchFormField<Value> extends StatefulWidget implements FormField<Value> {
   factory YgSearchFormField({
     YgAutoValidate autoValidate,
