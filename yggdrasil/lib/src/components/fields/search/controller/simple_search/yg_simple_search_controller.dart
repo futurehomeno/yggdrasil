@@ -199,7 +199,9 @@ class YgSimpleSearchController<Value>
     session.initSession();
     _endingSession = false;
     _session = session;
-    _updateResults(force: true);
+    if (!_initializing) {
+      _updateResults(force: true);
+    }
   }
 
   @override
@@ -238,7 +240,7 @@ class YgSimpleSearchController<Value>
         startSession();
       }
       _updateValueText();
-      if (!isOpen) {
+      if (_initializing || !isOpen) {
         endSession();
       }
     }

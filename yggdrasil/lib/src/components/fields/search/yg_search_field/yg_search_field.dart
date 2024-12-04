@@ -37,7 +37,6 @@ abstract class YgSearchField<Value> extends StatefulWidget with StatefulWidgetDe
     bool disabled,
     String? error,
     FocusNode? focusNode,
-    Widget? hint,
     Value? initialValue,
     List<TextInputFormatter>? inputFormatters,
     Key? key,
@@ -68,7 +67,6 @@ abstract class YgSearchField<Value> extends StatefulWidget with StatefulWidgetDe
     this.onFocusChanged,
     this.onPressed,
     this.onEditingComplete,
-    this.hint,
     this.inputFormatters,
     this.disabled = false,
     this.readOnly = false,
@@ -77,9 +75,6 @@ abstract class YgSearchField<Value> extends StatefulWidget with StatefulWidgetDe
     this.completeAction = YgCompleteAction.unfocus,
     this.searchAction = YgSearchAction.auto,
   });
-
-  /// Hint widget shown in the top of the search results.
-  final Widget? hint;
 
   /// The action that should be performed when the user presses the search field.
   ///
@@ -332,7 +327,7 @@ abstract class YgSearchFieldWidgetState<
   @override
   void openScreen() {
     final YgFieldDecorationTheme decorationTheme = context.fieldTheme.decorationTheme;
-    _controllerManager.value.startSession();
+    state.opened.value = true;
 
     // Get the radius based on the variant. Used to animate in the screen.
     final BorderRadius radius = switch (state.variant.value) {
@@ -365,7 +360,7 @@ abstract class YgSearchFieldWidgetState<
       ),
     );
 
-    state.opened.value = true;
+    _controllerManager.value.startSession();
   }
 
   @override

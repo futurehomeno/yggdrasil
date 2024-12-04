@@ -90,7 +90,6 @@ class YgAdvancedSearchFormField<Value, ResultValue> extends YgSearchFormField<Va
         controller: controller,
         error: field.errorText,
         focusNode: focusNode,
-        hint: hint,
         inputFormatters: inputFormatters,
         onChanged: onChangedHandler,
         onPressed: onPressed,

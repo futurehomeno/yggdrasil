@@ -26,7 +26,6 @@ class YgStringSearchField extends YgSearchField<String> {
     super.disabled,
     super.error,
     super.focusNode,
-    super.hint,
     super.inputFormatters,
     super.onEditingComplete,
     super.onFocusChanged,

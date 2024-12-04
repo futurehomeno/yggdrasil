@@ -73,7 +73,6 @@ class _YgSimpleSearchFormField<Value> extends YgSearchFormField<Value> {
         controller: controller,
         error: field.errorText,
         focusNode: focusNode,
-        hint: hint,
         inputFormatters: inputFormatters,
         onChanged: onChangedHandler,
         onPressed: onPressed,

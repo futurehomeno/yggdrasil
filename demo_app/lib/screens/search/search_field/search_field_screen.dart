@@ -128,18 +128,10 @@ class _SearchFieldScreenState extends State<SearchFieldScreen> {
                 autocorrect: false,
                 textCapitalization: TextCapitalization.sentences,
                 label: 'With hint',
-                hint: YgCard(
-                  variant: YgCardVariant.outlined,
-                  child: YgListTile(
-                    title: 'Unable to find your address?',
-                    subtitle: 'Make sure your address is spelled correctly or'
-                        ' enter the address manually.',
-                    leadingWidgets: const <YgIcon>[YgIcon(YgIcons.plus)],
-                    onTap: () {},
-                  ),
-                ),
                 completeAction: YgCompleteAction.focusNext,
-                searchProvider: searchProvider,
+                searchProvider: DemoSearchProvider(
+                  hint: true,
+                ),
               ),
               YgSearchField<int>(
                 keyboardType: TextInputType.streetAddress,
