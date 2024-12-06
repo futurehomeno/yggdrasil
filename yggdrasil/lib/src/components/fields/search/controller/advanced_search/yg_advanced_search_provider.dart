@@ -1,9 +1,7 @@
 import 'dart:async';
 
 import 'package:yggdrasil/src/components/fields/search/interfaces/yg_base_search_provider.dart';
-import 'package:yggdrasil/src/components/fields/search/models/advanced_search/_advanced_search.dart';
-import 'package:yggdrasil/src/components/fields/search/models/shared/yg_search_result.dart';
-import 'package:yggdrasil/src/components/fields/search/models/shared/yg_search_results_layout.dart';
+import 'package:yggdrasil/yggdrasil.dart';
 
 /// Base class for implementing a advanced search provider.
 ///
@@ -24,4 +22,8 @@ abstract class YgAdvancedSearchSession<Value, ResultValue,
   /// Should create the final value and text representation stored in the search
   /// widget.
   FutureOr<YgSearchValueAndText<Value>?> getFinalValueAndText(ResultValue value);
+
+  @override
+  YgAdvancedSearchController<Value, ResultValue> get controller =>
+      super.controller as YgAdvancedSearchController<Value, ResultValue>;
 }

@@ -64,7 +64,7 @@ class _YgAdvancedSearchFieldState<Value, ResultValue> extends YgSearchFieldWidge
   @override
   void onChanged() {
     widget.onChanged?.call(
-      _controllerManager.value.value as Value,
+      _controllerManager.value.value as Value?,
     );
   }
 

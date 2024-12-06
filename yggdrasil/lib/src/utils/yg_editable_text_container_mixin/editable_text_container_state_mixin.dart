@@ -91,7 +91,7 @@ mixin EditableTextContainerStateMixin<W extends StatefulWidget> on State<W>
     required Widget child,
   }) {
     return _selectionGestureDetectorBuilder.buildGestureDetector(
-      behavior: HitTestBehavior.translucent,
+      behavior: HitTestBehavior.opaque,
       child: child,
     );
   }

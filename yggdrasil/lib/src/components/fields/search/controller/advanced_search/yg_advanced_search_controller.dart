@@ -73,10 +73,21 @@ class YgAdvancedSearchController<Value, ResultValue>
 
   @override
   void clear() {
+    final _AdvancedState<Value, ResultValue>? state = _state;
     _textEditingController.clear();
-    if (_value != null) {
+    if (_value != null || _valueText != null) {
       _value = null;
+      _valueText = null;
+      _lastHandledSearch = '';
       notifyListeners();
+
+      if (state != null) {
+        state.onChanged();
+      }
+
+      if (isOpen) {
+        _updateResults();
+      }
     }
   }
 
@@ -98,6 +109,8 @@ class YgAdvancedSearchController<Value, ResultValue>
       return;
     }
 
+    print('ResultValue type = $ResultValue');
+
     final FutureOr<YgSearchResultsLayout<ResultValue>?> result = session.buildResultsLayout(query);
     final YgSearchResultsLayout<ResultValue>? oldResult = _results;
     if (result is YgSearchResultsLayout<ResultValue>) {
@@ -105,7 +118,7 @@ class YgAdvancedSearchController<Value, ResultValue>
         _results = result;
         notifyListeners();
       }
-    } else if (result is Future<YgSearchResultsLayout<ResultValue>>) {
+    } else if (result is Future<YgSearchResultsLayout<ResultValue>?>) {
       _resultsFuture = result;
       _updateLoading();
       _results = await result;
@@ -140,13 +153,13 @@ class YgAdvancedSearchController<Value, ResultValue>
       if (valueChanged) {
         _state?.onChanged();
       }
-    } else if (valueAndText is Future<YgSearchValueAndText<Value>>) {
+    } else if (valueAndText is Future<YgSearchValueAndText<Value>?>) {
       _valueAndTextFuture = valueAndText;
       _updateLoading();
 
-      final YgSearchValueAndText<Value> result = await valueAndText;
-      _value = result.value;
-      _valueText = result.text;
+      final YgSearchValueAndText<Value>? result = await valueAndText;
+      _value = result?.value;
+      _valueText = result?.text;
       _valueAndTextFuture = null;
 
       final bool valueChanged = oldValue != _value;

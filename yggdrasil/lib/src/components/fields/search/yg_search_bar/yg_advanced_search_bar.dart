@@ -62,7 +62,7 @@ class _YgAdvancedSearchBarWidgetState<Value, ResultValue> extends _YgSearchBarWi
   @override
   void onChanged() {
     widget.onChanged?.call(
-      _controllerManager.value.value as Value,
+      _controllerManager.value.value as Value?,
     );
   }
 

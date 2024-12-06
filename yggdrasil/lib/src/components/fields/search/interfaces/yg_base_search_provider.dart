@@ -70,6 +70,8 @@ abstract class YgBaseSearchSession<
     return _provider!;
   }
 
+  bool get attached => _controller != null && _provider != null;
+
   /// Internal method called to attach this session to a controller and provider.
   @mustCallSuper
   void attach(YgSearchControllerAny<Value, ResultValue> controller, Provider provider) {
