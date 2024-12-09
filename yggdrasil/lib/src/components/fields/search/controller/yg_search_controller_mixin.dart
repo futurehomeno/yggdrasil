@@ -9,7 +9,6 @@ import '_controller.dart';
 import 'advanced_search/yg_advanced_search_state_mixin.dart';
 import 'simple_search/yg_simple_search_state_mixin.dart';
 import 'string_search/yg_string_search_state_mixin.dart';
-import 'yg_search_controller.dart';
 
 part 'advanced_search/yg_advanced_search_controller.dart';
 part 'simple_search/yg_simple_search_controller.dart';

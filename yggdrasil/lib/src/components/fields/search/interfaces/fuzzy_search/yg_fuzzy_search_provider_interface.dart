@@ -4,7 +4,7 @@ import 'package:yggdrasil/src/components/fields/search/interfaces/yg_base_search
 import 'package:yggdrasil/src/components/fields/search/interfaces/yg_base_search_result.dart';
 import 'package:yggdrasil/src/components/fields/search/interfaces/yg_base_search_results_layout.dart';
 
-/// Internal mixin providing fuzzy search.
+/// Internal interface for providing fuzzy search.
 abstract class YgFuzzySearchProviderInterface<
     Value,
     ResultValue,
