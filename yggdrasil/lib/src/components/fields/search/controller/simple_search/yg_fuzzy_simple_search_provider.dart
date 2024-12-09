@@ -35,9 +35,9 @@ import 'package:yggdrasil/yggdrasil.dart';
 ///   ),
 /// );
 /// ```
-class YgSimpleFuzzySearchProvider<Value> extends YgFuzzySearchProviderInterface<Value, Value, YgSearchResult<Value>,
+class YgFuzzySimpleSearchProvider<Value> extends YgFuzzySearchProviderInterface<Value, Value, YgSearchResult<Value>,
     YgSearchResultsLayout<Value>, YgSearchItem<Value>> implements YgSimpleSearchProvider<Value> {
-  const YgSimpleFuzzySearchProvider({
+  const YgFuzzySimpleSearchProvider({
     required super.items,
     required super.noResultsBuilder,
     super.threshold,
@@ -47,14 +47,14 @@ class YgSimpleFuzzySearchProvider<Value> extends YgFuzzySearchProviderInterface<
   });
 
   @override
-  YgSimpleSearchSession<Value, YgSimpleFuzzySearchProvider<Value>> createSession() =>
-      _YgFuzzyStringSearchSession<Value>();
+  YgSimpleSearchSession<Value, YgFuzzySimpleSearchProvider<Value>> createSession() =>
+      _YgFuzzySimpleSearchSession<Value>();
 }
 
-class _YgFuzzyStringSearchSession<Value> extends YgSimpleSearchSession<Value, YgSimpleFuzzySearchProvider<Value>>
+class _YgFuzzySimpleSearchSession<Value> extends YgSimpleSearchSession<Value, YgFuzzySimpleSearchProvider<Value>>
     with
         YgFuzzySearchSessionMixin<Value, Value, YgSearchResult<Value>, YgSearchResultsLayout<Value>,
-            YgSearchItem<Value>, YgSimpleFuzzySearchProvider<Value>> {
+            YgSearchItem<Value>, YgFuzzySimpleSearchProvider<Value>> {
   @override
   YgSearchResultsLayout<Value> createLayoutFromResultsAndLeading({
     required List<YgSearchResult<Value>>? results,

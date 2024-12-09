@@ -72,7 +72,6 @@ class YgSimpleSearchController<Value>
 
   @override
   void clear() {
-    print('clear');
     _textEditingController.clear();
     if (_value != null || _valueText != null) {
       _value = null;
@@ -96,7 +95,6 @@ class YgSimpleSearchController<Value>
   }
 
   void _updateResults({bool force = false}) async {
-    print('_updateResults');
     final _SimpleState<Value>? state = _state;
     final String query = textEditingController.text;
     final _SimpleSession<Value>? session = _session;
@@ -132,7 +130,6 @@ class YgSimpleSearchController<Value>
   }
 
   void _updateValueText() async {
-    print('_updateValueText');
     final _SimpleState<Value>? state = _state;
     final _SimpleSession<Value>? session = _session;
     if (session == null || state == null) {
@@ -174,7 +171,6 @@ class YgSimpleSearchController<Value>
 
   @override
   void onResultTapped(Value result) {
-    print('onResultTapped');
     if (result != _value) {
       _value = result;
       notifyListeners();
@@ -187,7 +183,6 @@ class YgSimpleSearchController<Value>
 
   @override
   void startSession() {
-    print('startSession');
     final _SimpleState<Value>? state = _state;
     if (state == null || _session != null) {
       return;
@@ -206,7 +201,6 @@ class YgSimpleSearchController<Value>
 
   @override
   void endSession({bool force = false}) async {
-    print('endSession');
     _endingSession = true;
     final Future<void>? resultsFuture = _resultsFuture;
     final Future<void>? valueTextFuture = _valueTextFuture;
@@ -233,7 +227,6 @@ class YgSimpleSearchController<Value>
 
   @override
   void attach(_SimpleState<Value> state) {
-    print('attach');
     super.attach(state);
     if (_value != null && _valueText == null) {
       if (_session == null) {
@@ -248,14 +241,12 @@ class YgSimpleSearchController<Value>
 
   @override
   void detach() {
-    print('detach');
     endSession(force: true);
     super.detach();
   }
 
   @override
   void dispose() {
-    print('dispose');
     _textEditingController.dispose();
     _resultsFuture = null;
     _valueTextFuture = null;

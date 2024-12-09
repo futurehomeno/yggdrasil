@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:yggdrasil/yggdrasil.dart';
 import 'package:yggdrasil_demo/core/_core.dart';
 import 'package:yggdrasil_demo/screens/search/demo_search_provider.dart';
+import 'package:yggdrasil_demo/screens/search/demo_string_search_provider.dart';
 import 'package:yggdrasil_demo/widgets/_widgets.dart';
 
 class SearchFieldScreen extends StatefulWidget {
@@ -35,7 +36,7 @@ class _SearchFieldScreenState extends State<SearchFieldScreen> {
   @override
   Widget build(BuildContext context) {
     final DemoSearchProvider searchProvider = DemoSearchProvider();
-    // final DemoStringSearchProvider stringSearchProvider = DemoStringSearchProvider();
+    final DemoStringSearchProvider stringSearchProvider = DemoStringSearchProvider();
 
     return DemoScreen(
       componentName: 'SearchField',
@@ -205,16 +206,16 @@ class _SearchFieldScreenState extends State<SearchFieldScreen> {
                   completeAction: YgCompleteAction.focusNext,
                   size: YgFieldSize.large,
                 ),
-                // YgStringSearchFormField(
-                //   key: _stringSearchKey,
-                //   label: 'String search',
-                //   keyboardType: TextInputType.streetAddress,
-                //   autocorrect: false,
-                //   textCapitalization: TextCapitalization.sentences,
-                //   searchProvider: stringSearchProvider,
-                //   completeAction: YgCompleteAction.focusNext,
-                //   size: YgFieldSize.large,
-                // ),
+                YgStringSearchFormField(
+                  key: _stringSearchKey,
+                  label: 'String search',
+                  keyboardType: TextInputType.streetAddress,
+                  autocorrect: false,
+                  textCapitalization: TextCapitalization.sentences,
+                  searchProvider: stringSearchProvider,
+                  completeAction: YgCompleteAction.focusNext,
+                  size: YgFieldSize.large,
+                ),
                 YgButton(
                   onPressed: _onSubmit,
                   child: const Text('Submit'),

@@ -50,6 +50,7 @@ class YgStringSearchController extends TextEditingController
   void onResultTapped(String result) {
     _lastHandledSearch = result;
     text = result;
+    close();
   }
 
   void _updateResults({bool force = false}) async {
@@ -94,6 +95,7 @@ class YgStringSearchController extends TextEditingController
     session.attach(this, provider);
     session.initSession();
     _session = session;
+    _updateResults(force: true);
   }
 
   @override

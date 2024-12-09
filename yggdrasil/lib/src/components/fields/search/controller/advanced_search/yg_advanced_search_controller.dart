@@ -4,6 +4,9 @@ typedef _AdvancedSession<Value, ResultValue>
     = YgAdvancedSearchSession<Value, ResultValue, YgAdvancedSearchProvider<Value, ResultValue>>;
 typedef _AdvancedState<Value, ResultValue> = YgAdvancedSearchStateMixin<Value, ResultValue, StatefulWidget>;
 
+// TODO(Tim): Look in to maybe extending the lifespan of a session to simplify
+// caching between closing and opening the search widgets.
+
 /// Controller for advanced search widgets.
 ///
 /// This controller is different from the simple search controller in that the
@@ -110,15 +113,19 @@ class YgAdvancedSearchController<Value, ResultValue>
     }
   }
 
-  void _updateResults() async {
+  void _updateResults({
+    bool force = false,
+  }) async {
     final _AdvancedState<Value, ResultValue>? state = _state;
     final String query = textEditingController.text;
     final _AdvancedSession<Value, ResultValue>? session = _session;
-    if (_lastHandledSearch == query || session == null || state == null || _resultsFuture != null || !state.isOpen) {
+    if ((!force && _lastHandledSearch == query) ||
+        session == null ||
+        state == null ||
+        _resultsFuture != null ||
+        !state.isOpen) {
       return;
     }
-
-    print('ResultValue type = $ResultValue');
 
     final FutureOr<YgSearchResultsLayout<ResultValue>?> result = session.buildResultsLayout(query);
     final YgSearchResultsLayout<ResultValue>? oldResult = _results;
@@ -215,8 +222,6 @@ class YgAdvancedSearchController<Value, ResultValue>
     session.detach();
     session.dispose();
     _session = null;
-    _lastHandledSearch = '';
-    _results = null;
   }
 
   @override
@@ -233,6 +238,7 @@ class YgAdvancedSearchController<Value, ResultValue>
     session.initSession();
     _endingSession = false;
     _session = session;
+    _updateResults();
   }
 
   @override

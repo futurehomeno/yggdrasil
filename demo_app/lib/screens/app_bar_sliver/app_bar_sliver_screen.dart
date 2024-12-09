@@ -122,13 +122,11 @@ class _AppBarSliverScreenState extends State<AppBarSliverScreen> {
                           title: 'Multiple actions (default for demo app)',
                           value: 3,
                           groupValue: _actionsRadioGroupValue,
-                          onChanged: (int? newValue) {
-                            _setMultipleActions(
-                              newValue: newValue,
-                              context: context,
-                              ygAppState: ygAppState,
-                            );
-                          },
+                          onChanged: (int? newValue) => _setMultipleActions(
+                            newValue: newValue,
+                            context: context,
+                            ygAppState: ygAppState,
+                          ),
                         ),
                       ],
                     );

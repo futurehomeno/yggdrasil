@@ -33,7 +33,7 @@ class _AppBarScreenState extends State<AppBarScreen> {
     return DemoScreen(
       appBar: YgAppBar(
         title: 'App bar',
-        leading: getLeading(),
+        leading: _getLeading(),
         automaticallyImplyLeading: _automaticallyImplyLeading,
         actions: _actions,
         centerTitle: _centerTitle,
@@ -95,13 +95,11 @@ class _AppBarScreenState extends State<AppBarScreen> {
                     title: 'Multiple actions (default for demo app)',
                     value: 3,
                     groupValue: _actionsRadioGroupValue,
-                    onChanged: (int? newValue) {
-                      _setMultipleActions(
-                        newValue: newValue,
-                        context: context,
-                        ygAppState: ygAppState,
-                      );
-                    },
+                    onChanged: (int? newValue) => _setMultipleActions(
+                      newValue: newValue,
+                      context: context,
+                      ygAppState: ygAppState,
+                    ),
                   ),
                 ],
               );
@@ -118,7 +116,7 @@ class _AppBarScreenState extends State<AppBarScreen> {
     );
   }
 
-  Widget? getLeading() {
+  Widget? _getLeading() {
     if (_customLeading) {
       return YgIconButton(
         icon: YgIcons.info,

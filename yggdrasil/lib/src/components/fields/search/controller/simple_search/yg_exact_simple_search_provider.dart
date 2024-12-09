@@ -34,9 +34,9 @@ import 'package:yggdrasil/yggdrasil.dart';
 ///   ),
 /// );
 /// ```
-class YgSimpleExactSearchProvider<Value> extends YgExactSearchProviderInterface<Value, Value, YgSearchResult<Value>,
+class YgExactSimpleSearchProvider<Value> extends YgExactSearchProviderInterface<Value, Value, YgSearchResult<Value>,
     YgSearchResultsLayout<Value>, YgSearchItem<Value>> implements YgSimpleSearchProvider<Value> {
-  const YgSimpleExactSearchProvider({
+  const YgExactSimpleSearchProvider({
     required super.items,
     required super.noResultsBuilder,
     super.searchSubtitle,
@@ -45,14 +45,14 @@ class YgSimpleExactSearchProvider<Value> extends YgExactSearchProviderInterface<
   });
 
   @override
-  YgSimpleSearchSession<Value, YgSimpleExactSearchProvider<Value>> createSession() =>
-      _YgSimpleExactSearchSession<Value>();
+  YgSimpleSearchSession<Value, YgExactSimpleSearchProvider<Value>> createSession() =>
+      _YgExactSimpleSearchSession<Value>();
 }
 
-class _YgSimpleExactSearchSession<Value> extends YgSimpleSearchSession<Value, YgSimpleExactSearchProvider<Value>>
+class _YgExactSimpleSearchSession<Value> extends YgSimpleSearchSession<Value, YgExactSimpleSearchProvider<Value>>
     with
         YgExactSearchSessionMixin<Value, Value, YgSearchResult<Value>, YgSearchResultsLayout<Value>,
-            YgSearchItem<Value>, YgSimpleExactSearchProvider<Value>> {
+            YgSearchItem<Value>, YgExactSimpleSearchProvider<Value>> {
   @override
   YgSearchResultsLayout<Value> createLayoutFromResultsAndLeading({
     required List<YgSearchResult<Value>>? results,

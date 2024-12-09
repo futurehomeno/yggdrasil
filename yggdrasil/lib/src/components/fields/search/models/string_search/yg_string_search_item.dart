@@ -5,9 +5,9 @@ import 'package:yggdrasil/src/utils/yg_match_text/_yg_match_text.dart';
 /// Search item used in string search providers.
 class YgStringSearchItem extends YgBaseSearchItem<YgStringSearchResult> {
   const YgStringSearchItem({
-    required super.icon,
-    required super.subtitle,
     required super.title,
+    super.subtitle,
+    super.icon,
   });
 
   @override
