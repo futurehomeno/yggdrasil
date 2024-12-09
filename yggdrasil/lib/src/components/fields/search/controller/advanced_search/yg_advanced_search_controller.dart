@@ -61,26 +61,35 @@ class YgAdvancedSearchController<Value, ResultValue>
   void updateValue({
     required Value value,
     required String text,
+  }) =>
+      _updateValueInternal(
+        text: text,
+        value: value,
+      );
+
+  @override
+  void clear() => _updateValueInternal(
+        text: null,
+        value: null,
+      );
+
+  void _updateValueInternal({
+    required Value? value,
+    required String? text,
   }) {
     if (text != _valueText || value != _value) {
       _value = value;
       _valueText = text;
-      _lastHandledSearch = text;
-      _textEditingController.text = text;
-      notifyListeners();
-    }
-  }
-
-  @override
-  void clear() {
-    final _AdvancedState<Value, ResultValue>? state = _state;
-    _textEditingController.clear();
-    if (_value != null || _valueText != null) {
-      _value = null;
-      _valueText = null;
-      _lastHandledSearch = '';
+      _lastHandledSearch = text ?? '';
+      if (text == null) {
+        // This also resets things related to selection, not just the text.
+        _textEditingController.clear();
+      } else {
+        _textEditingController.text = text;
+      }
       notifyListeners();
 
+      final _AdvancedState<Value, ResultValue>? state = _state;
       if (state != null) {
         state.onChanged();
       }
@@ -161,6 +170,7 @@ class YgAdvancedSearchController<Value, ResultValue>
       _value = result?.value;
       _valueText = result?.text;
       _valueAndTextFuture = null;
+      _textEditingController.text = result?.text ?? '';
 
       final bool valueChanged = oldValue != _value;
       _updateLoading(forceNotify: oldText != _valueText || valueChanged);
@@ -205,6 +215,8 @@ class YgAdvancedSearchController<Value, ResultValue>
     session.detach();
     session.dispose();
     _session = null;
+    _lastHandledSearch = '';
+    _results = null;
   }
 
   @override
