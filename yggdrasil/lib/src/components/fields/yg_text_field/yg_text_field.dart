@@ -454,7 +454,7 @@ class _YgTextFieldState extends StateWithYgState<YgTextField, YgFieldState>
     YgEditingCompleteHelper.onComplete(
       onEditingComplete: widget.onEditingComplete,
       focusNode: focusNode,
-      completeAction: YgValidateHelper.mapTextInputAction(widget.textInputAction),
+      completeAction: widget.completeAction ?? YgValidateHelper.mapTextInputAction(widget.textInputAction),
     );
   }
 

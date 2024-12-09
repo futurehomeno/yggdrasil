@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:yggdrasil/src/components/fields/search/controller/yg_search_controller.dart';
 import 'package:yggdrasil/src/theme/search_modal/search_modal_theme.dart';
 import 'package:yggdrasil/src/theme/theme.dart';
 import 'package:yggdrasil/src/utils/_utils.dart';

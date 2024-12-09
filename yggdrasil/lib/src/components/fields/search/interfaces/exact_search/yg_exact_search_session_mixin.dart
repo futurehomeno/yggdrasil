@@ -1,4 +1,5 @@
 import 'dart:async';
+import 'dart:ui';
 
 import 'package:flutter/material.dart';
 import 'package:yggdrasil/src/components/fields/search/interfaces/yg_base_search_provider.dart';
@@ -72,7 +73,7 @@ mixin YgExactSearchSessionMixin<
       } else if (subtitleIndex == -1 || subtitleIndex > titleIndex) {
         score = titleIndex.toDouble();
       } else {
-        score = subtitleIndex * titleIndex * 0.5;
+        score = lerpDouble(subtitleIndex, titleIndex, 0.5)!;
       }
 
       resultsWithScore.add((

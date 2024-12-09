@@ -5,7 +5,7 @@ import 'package:yggdrasil/src/components/fields/search/interfaces/yg_base_search
 
 import '../yg_base_search_item.dart';
 
-/// Internal mixin providing exact search.
+/// Internal interface for providing exact search.
 abstract class YgExactSearchProviderInterface<
     Value,
     ResultValue,

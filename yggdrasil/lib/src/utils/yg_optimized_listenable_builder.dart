@@ -45,7 +45,6 @@ class _YgOptimizedListenableBuilderState<T> extends State<YgOptimizedListenableB
   @override
   void dispose() {
     widget.listenable.removeListener(_onControllerUpdated);
-
     super.dispose();
   }
 

@@ -145,7 +145,7 @@ class _SearchBarScreenState extends State<SearchBarScreen> {
                 keyboardType: TextInputType.streetAddress,
                 autocorrect: false,
                 textCapitalization: TextCapitalization.sentences,
-                completeAction: YgCompleteAction.focusNext,
+                completeAction: YgCompleteAction.unfocus,
                 searchProvider: DemoSearchProvider(),
                 placeholder: 'With hint',
                 hint: const DemoPlaceholder(
