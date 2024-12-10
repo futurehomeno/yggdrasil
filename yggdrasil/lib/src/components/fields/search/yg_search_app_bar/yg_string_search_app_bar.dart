@@ -37,6 +37,7 @@ class YgStringSearchAppBar extends YgSearchAppBar<String> {
     super.automaticallyImplyLeading,
     this.controller,
     this.onChanged,
+    this.initialValue,
   }) : super._();
 
   /// The search provider for this widget.
@@ -50,6 +51,11 @@ class YgStringSearchAppBar extends YgSearchAppBar<String> {
 
   /// Optional callback called whenever the value changes.
   final ValueChanged<String>? onChanged;
+
+  /// The initial value of the widget.
+  ///
+  /// This value is ignored if [controller] is provided.
+  final String? initialValue;
 
   @override
   State<YgStringSearchAppBar> createState() => _YgStringSearchAppBarState();
@@ -77,6 +83,7 @@ class _YgStringSearchAppBarState extends _YgSearchAppBarState<String, String, Yg
       completeAction: widget.completeAction,
       searchAction: widget.searchAction,
       searchProvider: widget.searchProvider,
+      initialValue: widget.initialValue,
     );
   }
 }

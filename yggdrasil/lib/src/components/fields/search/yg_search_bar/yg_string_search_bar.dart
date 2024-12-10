@@ -1,5 +1,7 @@
 part of 'yg_search_bar.dart';
 
+// TODO(Tim): Move this to generic factory constructors once this has been
+// implemented https://github.com/dart-lang/language/issues/647
 /// The string search variation of the yggdrasil search bar.
 ///
 /// This version of the search bar guarantees the value of the search bar is
@@ -10,7 +12,7 @@ part of 'yg_search_bar.dart';
 ///
 /// If you want to search for strings, but want to limit the accepted values to
 /// only the result values, use [YgSearchBar] with a type of string instead.
-
+///
 /// For advanced search implementation, use [YgAdvancedSearchBar] instead.
 class YgStringSearchBar extends YgSearchBar<String> {
   const YgStringSearchBar({

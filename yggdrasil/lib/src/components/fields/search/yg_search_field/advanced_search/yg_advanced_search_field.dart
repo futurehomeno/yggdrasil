@@ -1,7 +1,7 @@
 part of '../yg_search_field.dart';
 
 // TODO(Tim): Move this to generic factory constructors once this has been
-// implemented https://github.com/dart-lang/sdk/issues/30041
+// implemented https://github.com/dart-lang/language/issues/647
 /// The advanced search variation of the yggdrasil search field.
 ///
 /// This version of the search field allows for the value of the search field to be

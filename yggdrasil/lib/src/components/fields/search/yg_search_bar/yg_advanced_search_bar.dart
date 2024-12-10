@@ -1,5 +1,7 @@
 part of 'yg_search_bar.dart';
 
+// TODO(Tim): Move this to generic factory constructors once this has been
+// implemented https://github.com/dart-lang/language/issues/647
 /// The advanced search variation of the yggdrasil search bar.
 ///
 /// This version of the search bar allows for the value of the search bar to be

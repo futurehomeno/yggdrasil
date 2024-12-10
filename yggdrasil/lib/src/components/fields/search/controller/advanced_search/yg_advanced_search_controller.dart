@@ -214,7 +214,7 @@ class YgAdvancedSearchController<Value, ResultValue>
 
     final _AdvancedSession<Value, ResultValue>? session = _session;
     if ((!force && !_endingSession) || session == null) {
-      // This could happen is startSession was called while we were waiting for
+      // This could happen if startSession was called while we were waiting for
       // results.
       return;
     }

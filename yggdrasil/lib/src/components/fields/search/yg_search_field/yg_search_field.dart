@@ -5,7 +5,6 @@ import 'package:flutter/services.dart';
 import 'package:yggdrasil/src/components/fields/search/controller/advanced_search/yg_advanced_search_state_mixin.dart';
 import 'package:yggdrasil/src/components/fields/search/controller/simple_search/yg_simple_search_state_mixin.dart';
 import 'package:yggdrasil/src/components/fields/search/controller/string_search/yg_string_search_state_mixin.dart';
-import 'package:yggdrasil/src/components/fields/search/controller/yg_search_controller.dart';
 import 'package:yggdrasil/src/components/fields/search/controller/yg_search_state_mixin_interface.dart';
 import 'package:yggdrasil/src/components/fields/search/interfaces/_interfaces.dart';
 import 'package:yggdrasil/src/components/fields/search/widgets/mobile_search_screen/_mobile_search_screen.dart';

@@ -5,7 +5,7 @@ import 'dart:io';
 import 'package:flutter/foundation.dart';
 
 /// Constants used in Yggdrasil
-final class YgConsts {
+abstract final class YgConsts {
   const YgConsts._();
 
   /// Whether the current platform is a mobile platform.

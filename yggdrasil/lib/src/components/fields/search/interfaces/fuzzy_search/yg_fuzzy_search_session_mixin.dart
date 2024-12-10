@@ -1,7 +1,5 @@
 // ignore_for_file: avoid-generics-shadowing
 
-import 'dart:async';
-
 import 'package:flutter/widgets.dart';
 import 'package:fuzzy/bitap/data/match_index.dart' as fuzzy;
 import 'package:fuzzy/data/result.dart' as fuzzy;
@@ -48,7 +46,7 @@ mixin YgFuzzySearchSessionMixin<
   );
 
   @override
-  FutureOr<ResultsLayout> buildResultsLayout(String query) {
+  ResultsLayout buildResultsLayout(String query) {
     if (query.isEmpty && provider.requireQuery) {
       final WidgetBuilder? builder = provider.hintBuilder;
 

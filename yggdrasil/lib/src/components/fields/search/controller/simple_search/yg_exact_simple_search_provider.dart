@@ -1,5 +1,3 @@
-import 'dart:async';
-
 import 'package:flutter/widgets.dart';
 import 'package:yggdrasil/src/components/fields/search/interfaces/_interfaces.dart';
 import 'package:yggdrasil/yggdrasil.dart';
@@ -65,7 +63,7 @@ class _YgExactSimpleSearchSession<Value> extends YgSimpleSearchSession<Value, Yg
   }
 
   @override
-  FutureOr<String?>? getValueText(Value value) {
+  String? getValueText(Value value) {
     for (final YgSearchItem<Value> item in provider.items) {
       if (item.value == value) {
         return item.title;

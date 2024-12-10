@@ -1,4 +1,3 @@
-import 'dart:async';
 import 'dart:ui';
 
 import 'package:flutter/material.dart';
@@ -21,7 +20,7 @@ mixin YgExactSearchSessionMixin<
         Provider extends YgExactSearchProviderInterface<Value, ResultValue, Result, ResultsLayout, Item>>
     on YgBaseSearchSession<Value, ResultValue, Result, ResultsLayout, Provider> {
   @override
-  FutureOr<ResultsLayout> buildResultsLayout(String query) {
+  ResultsLayout buildResultsLayout(String query) {
     if (query.isEmpty && provider.requireQuery) {
       final WidgetBuilder? builder = provider.hintBuilder;
 

@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:yggdrasil/yggdrasil.dart';
 import 'package:yggdrasil_demo/core/_core.dart';
-import 'package:yggdrasil_demo/screens/search/demo_search_provider.dart';
+import 'package:yggdrasil_demo/screens/search/demo_string_search_provider.dart';
 import 'package:yggdrasil_demo/widgets/_widgets.dart';
 
 class SearchAppBarScreen extends StatefulWidget {
@@ -28,16 +28,16 @@ class _SearchAppBarScreenState extends State<SearchAppBarScreen> {
   @override
   Widget build(BuildContext context) {
     return DemoScreen(
-      appBar: YgSearchAppBar<int>(
+      appBar: YgStringSearchAppBar(
         keyboardType: TextInputType.streetAddress,
         autocorrect: false,
         textCapitalization: TextCapitalization.sentences,
         placeholder: 'Default search field',
         completeAction: YgCompleteAction.focusNext,
-        searchProvider: DemoSearchProvider(),
+        searchProvider: DemoStringSearchProvider(),
         automaticallyImplyLeading: _automaticallyImplyLeading,
-        leading: getLeading(),
-        trailing: getAvatar(),
+        leading: _getLeading(),
+        trailing: _getAvatar(),
       ),
       child: Column(
         children: <Widget>[
@@ -66,12 +66,18 @@ class _SearchAppBarScreenState extends State<SearchAppBarScreen> {
               ),
             ],
           ),
+          YgSection(
+            title: 'Padding to allow the screen to scroll',
+            child: DemoPlaceholder(
+              height: MediaQuery.sizeOf(context).height,
+            ),
+          ),
         ],
       ),
     );
   }
 
-  Widget? getLeading() {
+  Widget? _getLeading() {
     if (_customLeading) {
       return YgIconButton(
         icon: YgIcons.placeholder,
@@ -82,7 +88,7 @@ class _SearchAppBarScreenState extends State<SearchAppBarScreen> {
     return null;
   }
 
-  Widget? getAvatar() {
+  Widget? _getAvatar() {
     if (_trailingAvatar) {
       return const YgAvatar(
         initials: 'TR',

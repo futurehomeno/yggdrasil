@@ -3,7 +3,6 @@ import 'package:flutter/services.dart';
 import 'package:yggdrasil/src/components/fields/search/controller/advanced_search/yg_advanced_search_state_mixin.dart';
 import 'package:yggdrasil/src/components/fields/search/controller/simple_search/yg_simple_search_state_mixin.dart';
 import 'package:yggdrasil/src/components/fields/search/controller/string_search/yg_string_search_state_mixin.dart';
-import 'package:yggdrasil/src/components/fields/search/controller/yg_search_controller.dart';
 import 'package:yggdrasil/src/components/fields/search/controller/yg_search_state_mixin_interface.dart';
 import 'package:yggdrasil/src/components/fields/search/interfaces/yg_base_search_result.dart';
 import 'package:yggdrasil/src/components/fields/search/interfaces/yg_base_search_results_layout.dart';
@@ -229,9 +228,14 @@ abstract class _YgSearchBarWidgetState<Value, ResultValue, Result extends YgBase
     final YgSearchBarTheme theme = context.searchBarTheme;
     final Widget? trailing = widget.trailing;
 
-    final YgIconButton searchButton = YgIconButton(
-      icon: YgIcons.searchAlt,
-      onPressed: () {},
+    final Widget searchButton = Focus(
+      descendantsAreTraversable: false,
+      skipTraversal: true,
+      canRequestFocus: false,
+      child: YgIconButton(
+        icon: YgIcons.searchAlt,
+        onPressed: _controllerManager.value.open,
+      ),
     );
 
     Widget? leading = widget.leading;
@@ -340,6 +344,7 @@ abstract class _YgSearchBarWidgetState<Value, ResultValue, Result extends YgBase
   @override
   void openScreen() {
     final YgSearchBarTheme theme = context.searchBarTheme;
+    _opened = true;
 
     Navigator.of(context).push(
       SearchScreenRoute<ResultValue>(
@@ -366,7 +371,6 @@ abstract class _YgSearchBarWidgetState<Value, ResultValue, Result extends YgBase
       ),
     );
 
-    _opened = true;
     _controllerManager.value.startSession();
   }
 
