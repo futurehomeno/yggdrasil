@@ -1,3 +1,11 @@
+# 1.12.20 [2024-12-11T17:02:37.091628]
+
+### Changes
+
+- [dev-improvement] Improved search interface.
+- [feature] Added YgAppSearchBar.
+- [feature] Added YgSearchBar.
+
 # 1.12.19 [2024-11-22T15:17:35.906508]
 
 ### Changes
