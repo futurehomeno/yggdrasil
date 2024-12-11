@@ -17,7 +17,7 @@ class DemoScreen extends StatelessWidget {
 
   final Widget child;
   final String? componentName;
-  final YgAppBar? appBar;
+  final PreferredSizeWidget? appBar;
   final bool scrollable;
   final PreferredSizeWidget? bottom;
 
@@ -57,7 +57,13 @@ class DemoScreen extends StatelessWidget {
                 ],
                 bottom: bottom,
               ),
-          body: scrollable ? SingleChildScrollView(child: child) : child,
+          body: scrollable
+              ? SingleChildScrollView(
+                  child: RepaintBoundary(
+                    child: child,
+                  ),
+                )
+              : child,
         );
       },
     );

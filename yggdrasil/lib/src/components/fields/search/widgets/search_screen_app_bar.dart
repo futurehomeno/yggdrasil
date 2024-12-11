@@ -8,8 +8,8 @@ import 'package:yggdrasil/yggdrasil.dart';
 import 'widget_or_loading.dart';
 
 /// Internal search bar.
-class SearchAppBar<T> extends StatefulWidget implements PreferredSizeWidget {
-  const SearchAppBar({
+class SearchScreenAppBar extends StatefulWidget implements PreferredSizeWidget {
+  const SearchScreenAppBar({
     super.key,
     required this.controller,
     required this.focusNode,
@@ -27,7 +27,7 @@ class SearchAppBar<T> extends StatefulWidget implements PreferredSizeWidget {
 
   final FocusNode? focusNode;
   final String? initialValue;
-  final YgSearchController<T> controller;
+  final YgSearchControllerAny<Object?, Object?> controller;
   final ValueChanged<String>? onChanged;
   final VoidCallback? onEditingComplete;
   final ValueChanged<bool>? onFocusChanged;
@@ -43,10 +43,11 @@ class SearchAppBar<T> extends StatefulWidget implements PreferredSizeWidget {
   Size get preferredSize => const Size.fromHeight(65);
 
   @override
-  State<SearchAppBar<T>> createState() => _SearchAppBarState<T>();
+  State<SearchScreenAppBar> createState() => _SearchScreenAppBarState();
 }
 
-class _SearchAppBarState<T> extends State<SearchAppBar<T>> with EditableTextContainerStateMixin<SearchAppBar<T>> {
+class _SearchScreenAppBarState extends State<SearchScreenAppBar>
+    with EditableTextContainerStateMixin<SearchScreenAppBar> {
   late bool _isEmpty;
 
   @override
@@ -56,7 +57,7 @@ class _SearchAppBarState<T> extends State<SearchAppBar<T>> with EditableTextCont
   bool get readOnly => false;
 
   @override
-  YgSearchController<T> get userController => widget.controller;
+  TextEditingController get userController => widget.controller.textEditingController;
 
   @override
   FocusNode? get userFocusNode => widget.focusNode;
@@ -98,6 +99,8 @@ class _SearchAppBarState<T> extends State<SearchAppBar<T>> with EditableTextCont
                                 Text(
                                   placeholder,
                                   style: theme.placeholderStyle,
+                                  maxLines: 1,
+                                  overflow: TextOverflow.ellipsis,
                                 ),
                               DefaultTextStyle(
                                 style: theme.valueStyle,
@@ -124,10 +127,10 @@ class _SearchAppBarState<T> extends State<SearchAppBar<T>> with EditableTextCont
                         ),
                         SizedBox(width: theme.headerSpacing),
                         WidgetOrLoading(
-                          loading: widget.controller.loading,
+                          controller: widget.controller,
                           child: YgIconButton(
                             icon: YgIcons.cross,
-                            onPressed: () => widget.controller.text = '',
+                            onPressed: () => widget.controller.clear(),
                           ),
                         ),
                       ],

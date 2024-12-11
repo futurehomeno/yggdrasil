@@ -1,20 +1,17 @@
 import 'package:flutter/material.dart';
-import 'package:yggdrasil/src/components/fields/search/widgets/hint_provider.dart';
+import 'package:yggdrasil/src/components/fields/search/controller/yg_search_controller.dart';
 import 'package:yggdrasil/src/components/fields/search/widgets/rrect_transition.dart';
 import 'package:yggdrasil/src/theme/search_modal/search_modal_theme.dart';
 import 'package:yggdrasil/src/theme/theme.dart';
-import 'package:yggdrasil/src/utils/yg_linked/_yg_linked.dart';
-import 'package:yggdrasil/yggdrasil.dart';
 
 import '_mobile_search_screen.dart';
 
 /// Internal route used for the search widgets.
-class SearchScreenRoute<T> extends PopupRoute<Widget> {
+class SearchScreenRoute<ResultValue> extends PopupRoute<Widget> {
   SearchScreenRoute({
     required this.searchController,
     required this.searchBarBuilder,
     required this.fieldKey,
-    required this.hintKey,
     required this.borderRadius,
     required this.onClose,
   });
@@ -52,15 +49,13 @@ class SearchScreenRoute<T> extends PopupRoute<Widget> {
 
   // region Arguments
 
-  final YgSearchController<T> searchController;
+  final YgSearchControllerAny<Object?, ResultValue> searchController;
 
   final PreferredSizeWidget Function(BuildContext context) searchBarBuilder;
 
   final BorderRadius borderRadius;
 
   final GlobalKey fieldKey;
-
-  final YgLinkedKey<HintProvider> hintKey;
 
   final VoidCallback onClose;
 
@@ -98,10 +93,9 @@ class SearchScreenRoute<T> extends PopupRoute<Widget> {
     return RRectTransition(
       animation: tween.animate(animation),
       rrect: borderRadius.toRRect(getRect() ?? Rect.zero),
-      child: SearchScreen<T>(
+      child: SearchScreen<ResultValue>(
         controller: searchController,
         searchBarBuilder: searchBarBuilder,
-        hintKey: hintKey,
       ),
     );
   }

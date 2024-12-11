@@ -451,33 +451,11 @@ class _YgTextFieldState extends StateWithYgState<YgTextField, YgFieldState>
 
   // TODO(DEV-1916): This should be moved somewhere else to make it reusable.
   void _onEditingComplete() {
-    final VoidCallback? onEditingComplete = widget.onEditingComplete;
-
-    if (onEditingComplete != null) {
-      onEditingComplete();
-
-      return;
-    }
-
-    final YgCompleteAction completeAction =
-        widget.completeAction ?? YgValidateHelper.mapTextInputAction(widget.textInputAction);
-
-    switch (completeAction) {
-      case YgCompleteAction.focusNext:
-        focusNode.nextFocus();
-
-        return;
-      case YgCompleteAction.focusPrevious:
-        focusNode.previousFocus();
-
-        return;
-      case YgCompleteAction.unfocus:
-        focusNode.unfocus();
-
-        return;
-      case YgCompleteAction.none:
-        return;
-    }
+    YgEditingCompleteHelper.onComplete(
+      onEditingComplete: widget.onEditingComplete,
+      focusNode: focusNode,
+      completeAction: widget.completeAction ?? YgValidateHelper.mapTextInputAction(widget.textInputAction),
+    );
   }
 
   Widget? _buildSuffix() {

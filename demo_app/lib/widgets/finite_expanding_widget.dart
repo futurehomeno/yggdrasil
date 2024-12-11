@@ -13,7 +13,8 @@ import 'package:flutter/widgets.dart';
 /// finite constraints for both the width and height, this widget will expand to
 /// fill the box.
 class FiniteExpandingWidget extends SingleChildRenderObjectWidget {
-  FiniteExpandingWidget({
+  const FiniteExpandingWidget({
+    super.key,
     required this.height,
     required this.width,
     required Widget super.child,
@@ -34,6 +35,7 @@ class FiniteExpandingWidget extends SingleChildRenderObjectWidget {
   }
 
   @override
+  // ignore: library_private_types_in_public_api
   void updateRenderObject(BuildContext context, covariant _FiniteExpandingWidgetRenderer renderObject) {
     renderObject.width = width;
     renderObject.height = height;

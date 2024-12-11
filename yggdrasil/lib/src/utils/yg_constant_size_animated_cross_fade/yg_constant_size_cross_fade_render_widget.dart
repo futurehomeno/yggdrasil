@@ -199,15 +199,19 @@ class _YgConstantSizeCrossFadeRenderer extends RenderBox
 
     // should test 1st child
     if (_animation.value < 1) {
-      firstChild.hitTestDefault(result, position: position);
+      if (firstChild.hitTestDefault(result, position: position)) {
+        return true;
+      }
     }
 
     // should test 2nd child
     if (_animation.value > 0) {
-      secondChild.hitTestDefault(result, position: position);
+      if (secondChild.hitTestDefault(result, position: position)) {
+        return true;
+      }
     }
 
-    return defaultHitTestChildren(result, position: position);
+    return false;
   }
 }
 

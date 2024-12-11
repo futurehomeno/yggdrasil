@@ -1,207 +1,108 @@
-import 'dart:async';
-
 import 'package:flutter/widgets.dart';
-import 'package:yggdrasil/src/components/fields/search/models/yg_search_mixin.dart';
-import 'package:yggdrasil/src/components/fields/search/models/yg_search_result.dart';
+import 'package:yggdrasil/src/components/fields/search/controller/yg_search_state_mixin_interface.dart';
+import 'package:yggdrasil/src/components/fields/search/interfaces/yg_base_search_result.dart';
+import 'package:yggdrasil/src/components/fields/search/interfaces/yg_base_search_results_layout.dart';
 import 'package:yggdrasil/src/utils/_utils.dart';
 
-import 'loading_value.dart';
+/// Generic type to refer to any type of search controller.
+typedef YgSearchControllerAny<Value, ResultValue> = YgSearchController<
+    Value,
+    Object?,
+    ResultValue,
+    YgBaseSearchResult,
+    YgBaseSearchResultsLayout<YgBaseSearchResult>,
+    YgSearchStateMixinInterface<Value, ResultValue, YgBaseSearchResult, YgBaseSearchResultsLayout<YgBaseSearchResult>>>;
 
-/// Builds results for a search widget.
-typedef YgSearchResultsBuilder<T> = FutureOr<List<YgSearchResult<T>>?> Function(String searchQuery);
-
-/// Builds a result text for a search widget based on a selected [value].
-typedef YgSearchResultTextBuilder<T> = FutureOr<String?> Function(T value)?;
-
-/// Controller for any search widget.
-class YgSearchController<T> extends TextEditingController implements YgAttachable<YgSearchMixin<T, StatefulWidget>> {
-  YgSearchController({
-    super.text,
-  }) : _lastHandledValue = text ?? '';
-
-  /// The results for the current search query.
+/// Internal interface shared between all search controllers.
+abstract interface class YgSearchController<
+        Value,
+        ControllerValue,
+        ResultValue,
+        Result extends YgBaseSearchResult,
+        ResultsLayout extends YgBaseSearchResultsLayout<Result>,
+        SearchMixin extends YgSearchStateMixinInterface<Value, ResultValue, Result, ResultsLayout>>
+    implements YgAttachable<SearchMixin>, YgDisposable {
+  /// Internal method called when the user taps on a result.
   ///
-  /// Might not be entirely up to date as the results are loaded async. The
-  /// results are provided by the search widget's results builder.
-  final ValueNotifier<List<YgSearchResult<T>>?> results = ValueNotifier<List<YgSearchResult<T>>?>(null);
+  /// This should generally not be used manually, instead use the [value] setter
+  /// if supported.
+  void onResultTapped(ResultValue result);
 
-  /// Whether the search widget is loading.
+  /// Clears the current value, results and search query.
+  void clear();
+
+  /// Opens the search menu specifically.
   ///
-  /// When either the search widget's results builder or result text builder
-  /// are called and returned a future, this will be set to true, until all
-  /// futures are resolved.
-  ValueNotifier<bool> get loading => _loadingNotifier;
-  final LoadingValue _loadingNotifier = LoadingValue();
-  YgSearchMixin<T, StatefulWidget>? _state;
-  String _lastHandledValue;
-
-  @override
-  void notifyListeners() {
-    // This gets called when the text value changes.
-    _updateResults();
-    super.notifyListeners();
-  }
-
-  /// Handles a tap on an entry.
-  ///
-  /// !--- WARNING ---
-  /// Used internally in the search widget and should generally not be used
-  /// by a user of the search widget or its derivatives.
-  ///
-  /// This will call the search widget's result text builder and depending on its
-  /// result, either set the current [text] to the result, or keep the current
-  /// search string.
-  void onValueTapped(T value) async {
-    final YgSearchMixin<T, StatefulWidget>? state = _state;
-    assert(
-      state != null,
-      'YgSearchController.valueSelected was called while the controller was not attached to a search widget!',
-    );
-    if (state == null || _loadingNotifier.isLoadingSelectedResult) {
-      return;
-    }
-
-    _loadingNotifier.isLoadingSelectedResult = true;
-
-    final String? newText = await state.resultTextBuilder?.call(value);
-
-    _loadingNotifier.isLoadingSelectedResult = false;
-    if (newText == null) {
-      return;
-    }
-
-    // We also set the last handled value to prevent this value from triggering
-    // a new search result query, which might break things which expect the
-    // search to have already ended.
-    _lastHandledValue = newText;
-    text = newText;
-    close();
-  }
-
-  /// Method to attach a controller to a search widget.
-  ///
-  /// !--- Warning ---
-  /// Should not be called when the controller is already attached to a
-  /// search widget.
-  @override
-  void attach(YgSearchMixin<T, StatefulWidget> state) {
-    assert(
-      _state == null || _state == state,
-      'Can not attach controller to multiple dropdowns.',
-    );
-    if (_state != null && _state != state) {
-      return;
-    }
-    _state = state;
-    if (_lastHandledValue.isNotEmpty == true) {
-      _updateResults(force: true);
-    }
-  }
-
-  /// Method to detach a controller from its current search widget.
-  @override
-  void detach() {
-    _state = null;
-  }
-
-  /// Opens the menu specifically.
-  ///
-  /// Should be called only when the menu specifically should be opened. For most
-  /// cases you want to use the [open] method instead to show either a menu or
-  /// search screen, depending on the platform the user is on.
-  void openMenu() {
-    final YgSearchMixin<T, StatefulWidget>? state = _state;
-    assert(
-      state != null,
-      'YgSearchController.openMenu was called while the controller was not attached to a search widget!',
-    );
-    if (state == null) {
-      return;
-    }
-
-    state.openMenu();
-  }
+  /// For most cases you will want to use the [open] method instead as this
+  /// method choses the appropriate option based on the widget configuration.
+  void openMenu();
 
   /// Opens the search screen specifically.
   ///
-  /// Should be called only when the search screen specifically should be opened.
-  /// For most cases you want to use the [open] method instead to show either a
-  /// menu or search screen, depending on the platform the user is on.
-  void openScreen() {
-    final YgSearchMixin<T, StatefulWidget>? state = _state;
-    assert(
-      state != null,
-      'YgSearchController.openScreen was called while the controller was not attached to a search widget!',
-    );
-    if (state == null) {
-      return;
-    }
-
-    state.openScreen();
-  }
+  /// For most cases you will want to use the [open] method instead as this
+  /// method choses the appropriate option based on the widget configuration.
+  void openScreen();
 
   /// Opens the search widget.
-  ///
-  /// Shows either a menu or search screen, depending on the platform the user
-  /// is on.
-  void open() {
-    final YgSearchMixin<T, StatefulWidget>? state = _state;
-    assert(
-      state != null,
-      'YgSearchController.open was called while the controller was not attached to a search widget!',
-    );
-    if (state == null) {
-      return;
-    }
-    state.open();
-
-    // We ignore updates to the value if the search field is closed, so we need
-    // to check if anything made changes to the value while the field was closed.
-    _updateResults();
-  }
+  void open();
 
   /// Closes the search widget.
-  void close() {
-    final YgSearchMixin<T, StatefulWidget>? state = _state;
-    assert(
-      state != null,
-      'YgSearchController.close was called while the controller was not attached to a search widget!',
-    );
-    if (state == null) {
-      return;
-    }
+  void close();
 
-    state.close();
-  }
+  /// Internal method called by the search widget when the widget is closed.
+  ///
+  /// !-- WARNING --
+  /// This should not be called manually, if you want to cancel a search use the
+  /// [close] method instead.
+  void endSession({bool force = false});
 
-  /// Whether the search widget is open or closed.
-  bool get isOpen {
-    final YgSearchMixin<T, StatefulWidget>? state = _state;
-    if (state == null) {
-      return false;
-    }
+  /// Internal method called by the search widget when the widget is opened.
+  ///
+  /// !-- WARNING --
+  /// This should not be called manually, if you want to start a search use the
+  /// [open] method instead
+  void startSession();
 
-    return state.isOpen;
-  }
+  /// The value of the controller.
+  ///
+  /// This value may not be identical to the value which is passed to the
+  /// onChange callback on the widget.
+  ControllerValue get value;
 
-  bool get attached => _state != null;
+  /// The text representing the value.
+  ///
+  /// In some cases this might be identical to the value, in other cases this
+  /// might be identical to the title of a search result / item.
+  String get valueText;
 
-  void _updateResults({bool force = false}) async {
-    final YgSearchMixin<T, StatefulWidget>? state = _state;
-    if (state == null || _loadingNotifier.isLoadingResults || !state.isOpen) {
-      return;
-    }
+  /// The current search query.
+  ///
+  /// This represents the value which the text value the user has entered in the
+  /// search widget. It can be, but is not always identical to the [valueText].
+  String get searchQuery;
+  set searchQuery(String newSearchQuery);
 
-    if (!force && _lastHandledValue == text) {
-      return;
-    }
+  /// The text editing controller which controls the search query.
+  TextEditingController get textEditingController;
 
-    _loadingNotifier.isLoadingResults = true;
-    _lastHandledValue = text;
-    results.value = await state.resultsBuilder(text);
-    _loadingNotifier.isLoadingResults = false;
+  /// The latest results for the search query.
+  ///
+  /// This might not always be up to date as retrieving search results has the
+  /// potential to be async.
+  ResultsLayout get results;
 
-    // Call this again in case value has changed in the meantime.
-    _updateResults();
-  }
+  /// Whether any aspect of the search widget is loading.
+  ///
+  /// This can be true when the results are build async, or if supported, the
+  /// final selected value is fetched async.
+  bool get loading;
+
+  /// Whether the controller has any value.
+  bool get hasValue;
+
+  /// Whether the search widget is open.
+  bool get isOpen;
+
+  /// Whether the controller is attached to a search widget.
+  bool get attached;
 }

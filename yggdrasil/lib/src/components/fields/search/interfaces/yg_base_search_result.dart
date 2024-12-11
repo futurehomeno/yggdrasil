@@ -1,19 +1,12 @@
 import 'package:yggdrasil/src/utils/_utils.dart';
 
-/// A result for a [YgSearchWidget].
-class YgSearchResult<T> {
-  const YgSearchResult({
+/// Internal base class for search results.
+abstract class YgBaseSearchResult {
+  const YgBaseSearchResult({
     required this.title,
-    required this.value,
     this.icon,
     this.subtitle,
   });
-
-  /// The value which is passed to [YgSearchWidget.].
-  ///
-  /// This value is what you will get back from the [YgSearchWidget.onChange]
-  /// when this entry is selected.
-  final T value;
 
   /// The title of the entry.
   ///
