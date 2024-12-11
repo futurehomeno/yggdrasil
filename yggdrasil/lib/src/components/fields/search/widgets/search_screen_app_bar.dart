@@ -99,6 +99,8 @@ class _SearchScreenAppBarState extends State<SearchScreenAppBar>
                                 Text(
                                   placeholder,
                                   style: theme.placeholderStyle,
+                                  maxLines: 1,
+                                  overflow: TextOverflow.ellipsis,
                                 ),
                               DefaultTextStyle(
                                 style: theme.valueStyle,
