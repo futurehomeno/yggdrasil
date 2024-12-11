@@ -211,7 +211,7 @@ class _YgConstantSizeCrossFadeRenderer extends RenderBox
       }
     }
 
-    return true;
+    return false;
   }
 }
 
