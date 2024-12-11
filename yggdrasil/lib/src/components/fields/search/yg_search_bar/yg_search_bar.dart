@@ -292,6 +292,8 @@ abstract class _YgSearchBarWidgetState<Value, ResultValue, Result extends YgBase
                             return Text(
                               placeholder,
                               style: theme.placeholderTextStyle,
+                              maxLines: 1,
+                              overflow: TextOverflow.ellipsis,
                             );
                           }
 
