@@ -15,6 +15,10 @@ abstract class YgStringSearchProvider
 /// Base class for implementing a string search session.
 ///
 /// Can not be used direct and should be extended instead.
+///
+/// !-- IMPORTANT --
+/// Error handling should be handled by the user of this interface, the
+/// controller will not handle any errors by it self.
 abstract class YgStringSearchSession<Provider extends YgStringSearchProvider>
     extends YgBaseSearchSession<String, String, YgStringSearchResult, YgStringSearchResultsLayout, Provider> {
   @override

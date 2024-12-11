@@ -19,8 +19,17 @@ abstract class YgSimpleSearchProvider<Value>
 /// Base class for implementing a simple search session.
 ///
 /// Can not be used direct and should be extended instead.
+///
+/// !-- IMPORTANT --
+/// Error handling should be handled by the user of this interface, the
+/// controller will not handle any errors by it self.
 abstract class YgSimpleSearchSession<Value, Provider extends YgSimpleSearchProvider<Value>>
     extends YgBaseSearchSession<Value, Value, YgSearchResult<Value>, YgSearchResultsLayout<Value>, Provider> {
+  /// Should return a string representing [value].
+  ///
+  /// !-- IMPORTANT --
+  /// Error handling should be handled by the user of this interface, the
+  /// controller will not handle any errors by it self.
   FutureOr<String?>? getValueText(Value value);
 
   @override

@@ -33,6 +33,10 @@ abstract class YgBaseSearchSession<
   /// future has completed, this means in some cases this method might not get
   /// called for all search queries, however, if the search query has changed
   /// after this method has been called, it will always be called again.
+  ///
+  /// !-- IMPORTANT --
+  /// Error handling should be handled by the user of this interface, the
+  /// controller will not handle any errors by it self.
   FutureOr<ResultsLayout?> buildResultsLayout(String query);
 
   /// Called after this session has been created and attached to a provider.
