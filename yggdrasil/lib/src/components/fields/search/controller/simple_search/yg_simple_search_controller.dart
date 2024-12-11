@@ -215,7 +215,7 @@ class YgSimpleSearchController<Value>
 
     final _SimpleSession<Value>? session = _session;
     if ((!force && !_endingSession) || session == null) {
-      // This could happen is startSession was called while we were waiting for
+      // This could happen if startSession was called while we were waiting for
       // results.
       return;
     }
