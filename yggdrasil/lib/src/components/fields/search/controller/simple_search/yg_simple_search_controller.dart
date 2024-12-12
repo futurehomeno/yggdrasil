@@ -54,6 +54,8 @@ class YgSimpleSearchController<Value>
       return;
     }
     _value = value;
+    notifyListeners();
+    _state?.onChanged();
 
     if (!attached || value == null) {
       _valueText = null;
@@ -152,6 +154,7 @@ class YgSimpleSearchController<Value>
     if (valueText is String) {
       if (valueText != oldText) {
         _valueText = valueText;
+        _lastHandledSearch = valueText;
         _textEditingController.text = valueText;
         notifyListeners();
       }
@@ -160,11 +163,13 @@ class YgSimpleSearchController<Value>
       _updateLoading();
       final String? result = await valueText;
       _valueText = result;
+      _lastHandledSearch = result ?? '';
       _textEditingController.text = result ?? '';
       _valueTextFuture = null;
       _updateLoading(forceNotify: oldText != _valueText);
     } else if (oldText != null) {
       _valueText = null;
+      _lastHandledSearch = '';
       _textEditingController.text = '';
       notifyListeners();
     }
@@ -175,8 +180,8 @@ class YgSimpleSearchController<Value>
     if (result != _value) {
       _value = result;
       notifyListeners();
-      _updateValueText();
       _state?.onChanged();
+      _updateValueText();
     }
 
     close();

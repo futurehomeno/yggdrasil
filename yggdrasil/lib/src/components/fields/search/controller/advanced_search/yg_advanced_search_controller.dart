@@ -163,8 +163,11 @@ class YgAdvancedSearchController<Value, ResultValue>
     if (valueAndText is YgSearchValueAndText<Value>) {
       final bool valueChanged = oldValue != valueAndText.value;
       if (oldText != valueAndText.text || valueChanged) {
+        _lastHandledSearch = valueAndText.text;
         _valueText = valueAndText.text;
         _value = valueAndText.value;
+        _textEditingController.text = valueAndText.text;
+        notifyListeners();
       }
       if (valueChanged) {
         _state?.onChanged();
@@ -174,21 +177,29 @@ class YgAdvancedSearchController<Value, ResultValue>
       _updateLoading();
 
       final YgSearchValueAndText<Value>? result = await valueAndText;
-      _value = result?.value;
-      _valueText = result?.text;
       _valueAndTextFuture = null;
-      _textEditingController.text = result?.text ?? '';
-
-      final bool valueChanged = oldValue != _value;
-      _updateLoading(forceNotify: oldText != _valueText || valueChanged);
+      final bool valueChanged = result?.value != oldValue;
+      final bool shouldUpdate = valueChanged || result?.text != oldText;
+      if (shouldUpdate) {
+        _lastHandledSearch = result?.text ?? '';
+        _value = result?.value;
+        _valueText = result?.text;
+        _textEditingController.text = result?.text ?? '';
+      }
+      _updateLoading(
+        forceNotify: shouldUpdate,
+      );
       if (valueChanged) {
         _state?.onChanged();
       }
     } else {
       final bool valueChanged = oldValue != null;
       if (oldText != null || valueChanged) {
+        _lastHandledSearch = '';
         _valueText = null;
         _value = null;
+        _textEditingController.text = '';
+        notifyListeners();
       }
       if (valueChanged) {
         _state?.onChanged();
