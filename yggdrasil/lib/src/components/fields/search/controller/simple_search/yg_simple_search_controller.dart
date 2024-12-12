@@ -102,6 +102,7 @@ class YgSimpleSearchController<Value>
         session == null ||
         state == null ||
         _resultsFuture != null ||
+        _initializing ||
         !state.isOpen) {
       return;
     }
