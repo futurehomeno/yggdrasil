@@ -126,7 +126,7 @@ mixin _YgSearchControllerMixin<
   @override
   bool get isOpen {
     final SearchMixin? state = _state;
-    if (state == null) {
+    if (_initializing || state == null) {
       return false;
     }
 
