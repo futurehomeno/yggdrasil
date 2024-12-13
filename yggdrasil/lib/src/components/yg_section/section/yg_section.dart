@@ -11,6 +11,7 @@ part 'yg_section_regular.dart';
 abstract class YgSection extends StatelessWidget with StatelessWidgetDebugMixin {
   /// A section with a single child.
   const factory YgSection({
+    Key key,
     required Widget child,
     String? subtitle,
     Widget? trailing,
@@ -20,6 +21,7 @@ abstract class YgSection extends StatelessWidget with StatelessWidgetDebugMixin 
 
   /// A section with a column of children.
   const factory YgSection.column({
+    Key key,
     required List<Widget> children,
     String? subtitle,
     Widget? trailing,
@@ -34,6 +36,7 @@ abstract class YgSection extends StatelessWidget with StatelessWidgetDebugMixin 
   /// list tiles are responsible for providing their own padding and should
   /// extend to the edges of the screen.
   const factory YgSection.list({
+    Key key,
     required List<Widget> children,
     String? subtitle,
     Widget? trailing,
