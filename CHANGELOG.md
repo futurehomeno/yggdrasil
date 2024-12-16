@@ -1,3 +1,11 @@
+# 1.12.21 [2024-12-16T16:23:11.711185]
+
+### Changes
+
+- Tim/fixes (#188)
+- [dev-fix] Added missing keys to list tiles.
+- [fix] Fixed issues with search controllers.
+
 # 1.12.20 [2024-12-11T17:02:37.091628]
 
 ### Changes
