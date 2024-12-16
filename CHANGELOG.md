@@ -1,8 +1,13 @@
+# 1.12.22 [2024-12-16T16:50:08.116295]
+
+### Changes
+
+- [fix] Fix advanced search controller not rebuilding results after initializing a new session.
+
 # 1.12.21 [2024-12-16T16:23:11.711185]
 
 ### Changes
 
-- Tim/fixes (#188)
 - [dev-fix] Added missing keys to list tiles.
 - [fix] Fixed issues with search controllers.
 
