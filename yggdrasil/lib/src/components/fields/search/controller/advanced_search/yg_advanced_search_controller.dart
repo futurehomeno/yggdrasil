@@ -249,7 +249,7 @@ class YgAdvancedSearchController<Value, ResultValue>
     session.initSession();
     _endingSession = false;
     _session = session;
-    _updateResults();
+    _updateResults(force: true);
   }
 
   @override

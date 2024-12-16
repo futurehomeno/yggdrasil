@@ -105,7 +105,20 @@ class DemoSearchSession extends YgSimpleSearchSession<int, DemoSearchProvider> {
   final YgSimpleSearchSession<int, YgSimpleSearchProvider<int>> parent;
 
   @override
+  void initSession() {
+    print('initSession');
+    super.initSession();
+  }
+
+  @override
+  void dispose() {
+    print('dispose');
+    super.dispose();
+  }
+
+  @override
   Future<YgSearchResultsLayout<int>?> buildResultsLayout(String query) async {
+    print('build layout');
     if (provider.loading) {
       await Future<void>.delayed(const Duration(milliseconds: 500));
     }
