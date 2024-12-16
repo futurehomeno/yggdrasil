@@ -2,6 +2,7 @@ part of 'yg_section.dart';
 
 class _YgSectionColumn extends YgSection {
   const _YgSectionColumn({
+    super.key,
     required this.children,
     super.title,
     super.subtitle,
