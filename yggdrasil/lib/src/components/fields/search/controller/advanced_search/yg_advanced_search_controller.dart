@@ -26,7 +26,7 @@ class YgAdvancedSearchController<Value, ResultValue>
             YgSearchResultsLayout<ResultValue>, YgAdvancedSearchStateMixin<Value, ResultValue, StatefulWidget>> {
   YgAdvancedSearchController({
     YgSearchValueAndText<Value>? initialValue,
-  })  : _textEditingController = TextEditingController(),
+  })  : _textEditingController = TextEditingController(text: initialValue?.text),
         _value = initialValue?.value,
         _valueText = initialValue?.text {
     _textEditingController.addListener(_updateResults);
@@ -84,12 +84,6 @@ class YgAdvancedSearchController<Value, ResultValue>
       _value = value;
       _valueText = text;
       _lastHandledSearch = text ?? '';
-      if (text == null) {
-        // This also resets things related to selection, not just the text.
-        _textEditingController.clear();
-      } else {
-        _textEditingController.text = text;
-      }
       notifyListeners();
 
       final _AdvancedState<Value, ResultValue>? state = _state;
@@ -100,6 +94,12 @@ class YgAdvancedSearchController<Value, ResultValue>
       if (isOpen) {
         _updateResults();
       }
+    }
+    if (text == null) {
+      // This also resets things related to selection, not just the text.
+      _textEditingController.clear();
+    } else {
+      _textEditingController.text = text;
     }
   }
 
