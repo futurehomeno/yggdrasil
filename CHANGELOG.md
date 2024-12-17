@@ -1,3 +1,10 @@
+# 1.12.23 [2024-12-17T12:23:37.240138]
+
+### Changes
+
+- [fix] Fixed initial value not applying to search query of advanced text field.
+- [fix] Fixed issue not allowing advanced search fields to clear their search query without selecting a value first.
+
 # 1.12.22 [2024-12-16T16:50:08.116295]
 
 ### Changes
