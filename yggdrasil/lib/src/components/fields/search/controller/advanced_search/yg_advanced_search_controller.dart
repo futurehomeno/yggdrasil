@@ -26,7 +26,7 @@ class YgAdvancedSearchController<Value, ResultValue>
             YgSearchResultsLayout<ResultValue>, YgAdvancedSearchStateMixin<Value, ResultValue, StatefulWidget>> {
   YgAdvancedSearchController({
     YgSearchValueAndText<Value>? initialValue,
-  })  : _textEditingController = TextEditingController(),
+  })  : _textEditingController = TextEditingController(text: initialValue?.text),
         _value = initialValue?.value,
         _valueText = initialValue?.text {
     _textEditingController.addListener(_updateResults);
