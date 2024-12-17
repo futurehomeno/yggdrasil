@@ -84,12 +84,6 @@ class YgAdvancedSearchController<Value, ResultValue>
       _value = value;
       _valueText = text;
       _lastHandledSearch = text ?? '';
-      if (text == null) {
-        // This also resets things related to selection, not just the text.
-        _textEditingController.clear();
-      } else {
-        _textEditingController.text = text;
-      }
       notifyListeners();
 
       final _AdvancedState<Value, ResultValue>? state = _state;
@@ -100,6 +94,12 @@ class YgAdvancedSearchController<Value, ResultValue>
       if (isOpen) {
         _updateResults();
       }
+    }
+    if (text == null) {
+      // This also resets things related to selection, not just the text.
+      _textEditingController.clear();
+    } else {
+      _textEditingController.text = text;
     }
   }
 
