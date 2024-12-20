@@ -36,6 +36,12 @@ abstract class YgBottomSheetModalRoute extends PopupRoute<Widget> {
   bool get barrierDismissible => true;
 
   @override
+  RoutePopDisposition get popDisposition => switch (barrierDismissible) {
+        false => RoutePopDisposition.doNotPop,
+        true => RoutePopDisposition.pop,
+      };
+
+  @override
   String get barrierLabel => 'Dismissible Dialog';
 
   /// The name of the dialog.
