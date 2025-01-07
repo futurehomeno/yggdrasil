@@ -27,6 +27,14 @@ class _SearchFieldScreenState extends State<SearchFieldScreen> {
   final TextFieldKey _stringSearchKey = TextFieldKey();
   final FormKey _formKey = FormKey();
 
+  double _subtitleWeight = 0;
+  double _threshold = 0.4;
+  bool _requireQuery = true;
+
+  double _exactSubtitleWeight = 0;
+  bool _exactCaseSensitive = false;
+  bool _exactRequireQuery = true;
+
   @override
   void dispose() {
     _controller.dispose();
@@ -248,35 +256,141 @@ class _SearchFieldScreenState extends State<SearchFieldScreen> {
               ),
             ].withVerticalSpacing(10.0),
           ),
-          YgSection.column(
-            title: 'Search providers',
-            children: <StatefulWidgetDebugMixin>[
-              YgSearchField<int>(
-                label: 'Exact search provider',
-                keyboardType: TextInputType.streetAddress,
-                autocorrect: false,
-                textCapitalization: TextCapitalization.sentences,
-                searchProvider: YgExactSimpleSearchProvider<int>(
-                  items: DemoSearchProvider.searchResults,
-                  noResultsBuilder: (_) => const Text('No Results'),
-                  caseSensitive: true,
+          YgSection.list(
+            title: 'Exact search provider',
+            children: <Widget>[
+              Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 20),
+                child: YgSearchField<int>(
+                  label: 'Address',
+                  keyboardType: TextInputType.streetAddress,
+                  autocorrect: false,
+                  textCapitalization: TextCapitalization.sentences,
+                  searchProvider: YgExactSimpleSearchProvider<int>(
+                    items: DemoSearchProvider.searchResults,
+                    noResultsBuilder: (_) => const Text('No Results'),
+                    caseSensitive: true,
+                    requireQuery: _exactRequireQuery,
+                    subtitleWeight: _exactSubtitleWeight,
+                  ),
                 ),
               ),
-              YgSearchField<int>(
-                label: 'Fuzzy search provider',
-                keyboardType: TextInputType.streetAddress,
-                autocorrect: false,
-                textCapitalization: TextCapitalization.sentences,
-                searchProvider: YgFuzzySimpleSearchProvider<int>(
-                  items: DemoSearchProvider.searchResults,
-                  noResultsBuilder: (_) => const Text('No Results'),
+              YgSwitchListTile(
+                title: 'Require query',
+                value: _exactRequireQuery,
+                onChanged: _updateExactRequiredQuery,
+              ),
+              YgSwitchListTile(
+                title: 'Case sensitive',
+                value: _exactCaseSensitive,
+                onChanged: _updateExactCaseSensitive,
+              ),
+              YgListTile(
+                title: 'Subtitle weight',
+                subtitle: _exactSubtitleWeight.toStringAsFixed(2),
+                trailingWidgets: <Widget>[
+                  SizedBox(
+                    width: 200,
+                    child: YgSlider(
+                      value: _exactSubtitleWeight,
+                      onEditingComplete: _updateExactSubtitleWeight,
+                      valueIndicator: true,
+                      stepSize: 0.01,
+                    ),
+                  ),
+                ],
+              ),
+            ],
+          ),
+          YgSection.list(
+            title: 'Fuzzy search provider',
+            children: <Widget>[
+              Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 20),
+                child: YgSearchField<int>(
+                  label: 'Address',
+                  keyboardType: TextInputType.streetAddress,
+                  autocorrect: false,
+                  textCapitalization: TextCapitalization.sentences,
+                  searchProvider: YgFuzzySimpleSearchProvider<int>(
+                    items: DemoSearchProvider.searchResults,
+                    noResultsBuilder: (_) => const Text('No Results'),
+                    threshold: _threshold,
+                    requireQuery: _requireQuery,
+                    subtitleWeight: _subtitleWeight,
+                  ),
                 ),
+              ),
+              YgSwitchListTile(
+                title: 'Require query',
+                value: _requireQuery,
+                onChanged: _updateRequiredQuery,
+              ),
+              YgListTile(
+                title: 'Result threshold',
+                subtitle: _threshold.toStringAsFixed(2),
+                trailingWidgets: <Widget>[
+                  SizedBox(
+                    width: 200,
+                    child: YgSlider(
+                      value: _threshold,
+                      onEditingComplete: _updateThreshold,
+                      valueIndicator: true,
+                      stepSize: 0.01,
+                    ),
+                  ),
+                ],
+              ),
+              YgListTile(
+                title: 'Subtitle weight',
+                subtitle: _subtitleWeight.toStringAsFixed(2),
+                trailingWidgets: <Widget>[
+                  SizedBox(
+                    width: 200,
+                    child: YgSlider(
+                      value: _subtitleWeight,
+                      onEditingComplete: _updateSubtitleWeight,
+                      valueIndicator: true,
+                      stepSize: 0.01,
+                    ),
+                  ),
+                ],
               ),
             ].withVerticalSpacing(10.0),
           ),
         ],
       ),
     );
+  }
+
+  void _updateRequiredQuery(bool value) {
+    _requireQuery = value;
+    setState(() {});
+  }
+
+  void _updateThreshold(double value) {
+    _threshold = value;
+    setState(() {});
+  }
+
+  void _updateSubtitleWeight(double value) {
+    _subtitleWeight = value;
+    setState(() {});
+  }
+
+  void _updateExactRequiredQuery(bool value) {
+    _exactRequireQuery = value;
+    setState(() {});
+  }
+
+  void _updateExactCaseSensitive(bool value) {
+    _exactCaseSensitive = value;
+    setState(() {});
+  }
+
+  void _updateExactSubtitleWeight(double value) {
+    _exactSubtitleWeight = value;
+    setState(() {});
   }
 
   void _onSubmit() {

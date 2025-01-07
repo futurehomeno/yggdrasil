@@ -60,7 +60,7 @@ mixin YgExactSearchSessionMixin<
       // Get subtitle index
       final String? subtitle = item.subtitle;
       final int subtitleIndex;
-      if (!provider.searchSubtitle || subtitle == null) {
+      if (provider.subtitleWeight <= 0 || subtitle == null) {
         subtitleIndex = -1;
       } else if (provider.caseSensitive) {
         subtitleIndex = subtitle.indexOf(query);
@@ -79,7 +79,7 @@ mixin YgExactSearchSessionMixin<
       } else if (subtitleIndex == -1 || subtitleIndex > titleIndex) {
         score = titleIndex.toDouble();
       } else {
-        score = lerpDouble(subtitleIndex, titleIndex, 0.5)!;
+        score = lerpDouble(titleIndex, subtitleIndex, provider.subtitleWeight)!;
       }
 
       resultsWithScore.add((

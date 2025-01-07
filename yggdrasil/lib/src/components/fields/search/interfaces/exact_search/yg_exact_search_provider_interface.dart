@@ -15,19 +15,22 @@ abstract class YgExactSearchProviderInterface<
   const YgExactSearchProviderInterface({
     required this.items,
     required this.noResultsBuilder,
-    this.searchSubtitle = false,
+    this.subtitleWeight = 0,
     this.caseSensitive = false,
     this.requireQuery = true,
     this.hintBuilder,
   });
 
-  /// Whether to search for a match in the subtitle.
-  final bool searchSubtitle;
+  /// The weight of the subtitle in the search results.
+  ///
+  /// When the weight is 0 or less the subtitle is completely ignored. If there
+  /// is no subtitle, this does nothing.
+  final double subtitleWeight;
 
   /// The items which the user can search through.
   ///
   /// By default, the user can only search for the title of the item. If
-  /// [searchSubtitle] is true, the user can also search through the subtitle of
+  /// [subtitleWeight] is true, the user can also search through the subtitle of
   /// an item.
   final List<Item> items;
 

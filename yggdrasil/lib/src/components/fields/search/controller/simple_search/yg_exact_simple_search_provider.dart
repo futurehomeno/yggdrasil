@@ -27,7 +27,7 @@ import 'package:yggdrasil/yggdrasil.dart';
 ///     ],
 ///     noResultsBuilder: (context) => Text('No results found'),
 ///     hintBuilder: (context) => Text('Type to search'),
-///     searchSubtitle: true,
+///     subtitleWeight: 0.5,
 ///     requireQuery: true,
 ///   ),
 /// );
@@ -37,7 +37,7 @@ class YgExactSimpleSearchProvider<Value> extends YgExactSearchProviderInterface<
   const YgExactSimpleSearchProvider({
     required super.items,
     required super.noResultsBuilder,
-    super.searchSubtitle,
+    super.subtitleWeight,
     super.hintBuilder,
     super.requireQuery,
     super.caseSensitive,
