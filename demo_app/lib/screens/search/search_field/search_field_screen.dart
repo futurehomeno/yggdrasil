@@ -248,6 +248,32 @@ class _SearchFieldScreenState extends State<SearchFieldScreen> {
               ),
             ].withVerticalSpacing(10.0),
           ),
+          YgSection.column(
+            title: 'Search providers',
+            children: <StatefulWidgetDebugMixin>[
+              YgSearchField<int>(
+                label: 'Exact search provider',
+                keyboardType: TextInputType.streetAddress,
+                autocorrect: false,
+                textCapitalization: TextCapitalization.sentences,
+                searchProvider: YgExactSimpleSearchProvider<int>(
+                  items: DemoSearchProvider.searchResults,
+                  noResultsBuilder: (_) => const Text('No Results'),
+                  caseSensitive: true,
+                ),
+              ),
+              YgSearchField<int>(
+                label: 'Fuzzy search provider',
+                keyboardType: TextInputType.streetAddress,
+                autocorrect: false,
+                textCapitalization: TextCapitalization.sentences,
+                searchProvider: YgFuzzySimpleSearchProvider<int>(
+                  items: DemoSearchProvider.searchResults,
+                  noResultsBuilder: (_) => const Text('No Results'),
+                ),
+              ),
+            ].withVerticalSpacing(10.0),
+          ),
         ],
       ),
     );

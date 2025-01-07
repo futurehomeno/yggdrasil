@@ -89,14 +89,14 @@ mixin YgExactSearchSessionMixin<
             if (titleIndex != -1)
               YgTextMatch(
                 start: titleIndex,
-                end: query.length,
+                end: titleIndex + query.length,
               ),
           ],
           subtitleMatches: <YgTextMatch>[
             if (subtitleIndex != -1)
               YgTextMatch(
                 start: subtitleIndex,
-                end: query.length,
+                end: titleIndex + query.length,
               ),
           ],
         ),
