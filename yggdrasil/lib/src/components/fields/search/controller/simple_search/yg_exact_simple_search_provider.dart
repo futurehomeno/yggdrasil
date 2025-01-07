@@ -40,6 +40,7 @@ class YgExactSimpleSearchProvider<Value> extends YgExactSearchProviderInterface<
     super.searchSubtitle,
     super.hintBuilder,
     super.requireQuery,
+    super.caseSensitive,
   });
 
   @override
