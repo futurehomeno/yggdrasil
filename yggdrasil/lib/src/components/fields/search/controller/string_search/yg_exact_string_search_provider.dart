@@ -42,6 +42,7 @@ class YgExactStringSearchProvider extends YgExactSearchProviderInterface<String,
     super.hintBuilder,
     super.searchSubtitle,
     super.requireQuery,
+    super.caseSensitive,
   });
 
   @override
