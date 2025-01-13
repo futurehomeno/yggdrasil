@@ -113,17 +113,19 @@ mixin EditableTextContainerStateMixin<W extends StatefulWidget> on State<W>
     required bool autofocus,
     required TapRegionCallback? onTapOutside,
     required int? maxLength,
-    required MaxLengthEnforcement? maxLengthEnforcement,
+    required YgMaxLengthEnforcement maxLengthEnforcement,
   }) {
     final List<TextInputFormatter> formatters = <TextInputFormatter>[
       ...?inputFormatters,
       if (maxLength != null)
         LengthLimitingTextInputFormatter(
           maxLength,
-          maxLengthEnforcement: maxLengthEnforcement ??
-              LengthLimitingTextInputFormatter.getDefaultMaxLengthEnforcement(
+          maxLengthEnforcement: switch (maxLengthEnforcement) {
+            YgMaxLengthEnforcement.auto => LengthLimitingTextInputFormatter.getDefaultMaxLengthEnforcement(
                 Theme.of(context).platform,
               ),
+            _ => maxLengthEnforcement.native,
+          },
         ),
     ];
 

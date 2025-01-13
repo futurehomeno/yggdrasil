@@ -38,7 +38,7 @@ class YgTextField extends StatefulWidget with StatefulWidgetDebugMixin {
     this.showObscureTextButton = true,
     this.size = YgFieldSize.large,
     this.variant = YgFieldVariant.standard,
-    this.maxLengthEnforcement = MaxLengthEnforcement.none,
+    this.maxLengthEnforcement = YgMaxLengthEnforcement.none,
     this.autofocus = false,
   })  : assert(
           maxLines == null || minLines == null || maxLines >= minLines,
@@ -71,7 +71,7 @@ class YgTextField extends StatefulWidget with StatefulWidgetDebugMixin {
     this.completeAction,
     this.onTapOutside,
     this.maxLength,
-    this.maxLengthEnforcement,
+    this.maxLengthEnforcement = YgMaxLengthEnforcement.none,
     this.disabled = false,
     this.readOnly = false,
     this.size = YgFieldSize.large,
@@ -107,12 +107,12 @@ class YgTextField extends StatefulWidget with StatefulWidgetDebugMixin {
     this.completeAction,
     this.onTapOutside,
     this.maxLength,
-    this.maxLengthEnforcement,
     this.disabled = false,
     this.readOnly = false,
     this.showObscureTextButton = true,
     this.size = YgFieldSize.large,
     this.variant = YgFieldVariant.standard,
+    this.maxLengthEnforcement = YgMaxLengthEnforcement.none,
     this.autofocus = false,
   })  : maxLines = 1,
         minLines = null,
@@ -148,11 +148,11 @@ class YgTextField extends StatefulWidget with StatefulWidgetDebugMixin {
     this.completeAction,
     this.onTapOutside,
     this.maxLength,
-    this.maxLengthEnforcement,
     this.disabled = false,
     this.readOnly = false,
     this.size = YgFieldSize.large,
     this.variant = YgFieldVariant.standard,
+    this.maxLengthEnforcement = YgMaxLengthEnforcement.none,
     this.autofocus = false,
   })  : obscureText = false,
         autocorrect = true,
@@ -318,43 +318,15 @@ class YgTextField extends StatefulWidget with StatefulWidgetDebugMixin {
   /// starting from [minLines].
   final int? minLines;
 
-  /// The maximum number of characters (Unicode grapheme clusters) to allow in
-  /// the text field.
+  /// The maximum number of characters to allow in the text field.
   ///
-  /// If set, a character counter will be displayed below the
-  /// field showing how many characters have been entered. If set to a number
-  /// greater than 0, it will also display the maximum number allowed. If set
-  /// to [TextField.noMaxLength] then only the current character count is displayed.
-  ///
-  /// After [maxLength] characters have been input, additional input
-  /// is ignored, unless [maxLengthEnforcement] is set to
-  /// [MaxLengthEnforcement.none].
-  ///
-  /// The text field enforces the length with a [LengthLimitingTextInputFormatter],
-  /// which is evaluated after the supplied [inputFormatters], if any.
-  ///
-  /// This value must be either null, [TextField.noMaxLength], or greater than 0.
-  /// If null (the default) then there is no limit to the number of characters
-  /// that can be entered. If set to [TextField.noMaxLength], then no limit will
-  /// be enforced, but the number of characters entered will still be displayed.
-  ///
-  /// Whitespace characters (e.g. newline, space, tab) are included in the
-  /// character count.
-  ///
-  /// If [maxLengthEnforcement] is [MaxLengthEnforcement.none], then more than
-  /// [maxLength] characters may be entered, but the error counter and divider
-  /// will switch to the [decoration]'s [InputDecoration.errorStyle] when the
-  /// limit is exceeded.
-  ///
-  /// {@macro flutter.services.lengthLimitingTextInputFormatter.maxLength}
+  /// If set a counter is displayed below the text field indicating the current
+  /// amount of characters entered and the maximum amount of characters allowed
+  /// in the field.
   final int? maxLength;
 
   /// Determines how the [maxLength] limit should be enforced.
-  ///
-  /// {@macro flutter.services.textFormatter.effectiveMaxLengthEnforcement}
-  ///
-  /// {@macro flutter.services.textFormatter.maxLengthEnforcement}
-  final MaxLengthEnforcement? maxLengthEnforcement;
+  final YgMaxLengthEnforcement maxLengthEnforcement;
 
   /// The error to display under the text field.
   ///
