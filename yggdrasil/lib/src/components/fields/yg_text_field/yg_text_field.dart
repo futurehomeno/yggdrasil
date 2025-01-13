@@ -51,6 +51,10 @@ class YgTextField extends StatefulWidget with StatefulWidgetDebugMixin {
         assert(
           (suffix == null) == (onSuffixPressed == null),
           'Suffix and onSuffixPressed should either be both null or both defined',
+        ),
+        assert(
+          maxLength == null || maxLength > 0,
+          'Max length has to be either null or at least 1',
         );
 
   const YgTextField.email({
@@ -87,6 +91,10 @@ class YgTextField extends StatefulWidget with StatefulWidgetDebugMixin {
         assert(
           (suffix == null) == (onSuffixPressed == null),
           'Suffix and onSuffixPressed should either be both null or both defined',
+        ),
+        assert(
+          maxLength == null || maxLength > 0,
+          'Max length has to be either null or at least 1',
         );
 
   const YgTextField.password({
@@ -127,6 +135,10 @@ class YgTextField extends StatefulWidget with StatefulWidgetDebugMixin {
         assert(
           (suffix == null) == (onSuffixPressed == null),
           'Suffix and onSuffixPressed should either be both null or both defined',
+        ),
+        assert(
+          maxLength == null || maxLength > 0,
+          'Max length has to be either null or at least 1',
         );
 
   const YgTextField.multiline({
@@ -171,6 +183,10 @@ class YgTextField extends StatefulWidget with StatefulWidgetDebugMixin {
         assert(
           (suffix == null) == (onSuffixPressed == null),
           'Suffix and onSuffixPressed should either be both null or both defined',
+        ),
+        assert(
+          maxLength == null || maxLength > 0,
+          'Max length has to be either null or at least 1',
         );
 
   /// Obscures the text in the text field.
