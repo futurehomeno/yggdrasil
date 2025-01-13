@@ -321,6 +321,7 @@ abstract class YgDropdownFieldWidgetState<T extends Object, W extends YgDropdown
         placeholder: widget.placeholder,
         floatLabelOnFocus: false,
       ),
+      counter: null,
     );
   }
 

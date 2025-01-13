@@ -120,6 +120,8 @@ class _SearchScreenAppBarState extends State<SearchScreenAppBar>
                                   readOnly: false,
                                   onTapOutside: (_) {},
                                   autofocus: true,
+                                  maxLength: null,
+                                  maxLengthEnforcement: null,
                                 ),
                               ),
                             ],

@@ -30,6 +30,7 @@ class YgTextField extends StatefulWidget with StatefulWidgetDebugMixin {
     this.completeAction,
     this.onTapOutside,
     this.minLines,
+    this.maxLength,
     this.maxLines = 1,
     this.disabled = false,
     this.readOnly = false,
@@ -37,6 +38,7 @@ class YgTextField extends StatefulWidget with StatefulWidgetDebugMixin {
     this.showObscureTextButton = true,
     this.size = YgFieldSize.large,
     this.variant = YgFieldVariant.standard,
+    this.maxLengthEnforcement = MaxLengthEnforcement.none,
     this.autofocus = false,
   })  : assert(
           maxLines == null || minLines == null || maxLines >= minLines,
@@ -68,6 +70,8 @@ class YgTextField extends StatefulWidget with StatefulWidgetDebugMixin {
     this.initialValue,
     this.completeAction,
     this.onTapOutside,
+    this.maxLength,
+    this.maxLengthEnforcement,
     this.disabled = false,
     this.readOnly = false,
     this.size = YgFieldSize.large,
@@ -102,6 +106,8 @@ class YgTextField extends StatefulWidget with StatefulWidgetDebugMixin {
     this.initialValue,
     this.completeAction,
     this.onTapOutside,
+    this.maxLength,
+    this.maxLengthEnforcement,
     this.disabled = false,
     this.readOnly = false,
     this.showObscureTextButton = true,
@@ -141,6 +147,8 @@ class YgTextField extends StatefulWidget with StatefulWidgetDebugMixin {
     this.initialValue,
     this.completeAction,
     this.onTapOutside,
+    this.maxLength,
+    this.maxLengthEnforcement,
     this.disabled = false,
     this.readOnly = false,
     this.size = YgFieldSize.large,
@@ -310,6 +318,44 @@ class YgTextField extends StatefulWidget with StatefulWidgetDebugMixin {
   /// starting from [minLines].
   final int? minLines;
 
+  /// The maximum number of characters (Unicode grapheme clusters) to allow in
+  /// the text field.
+  ///
+  /// If set, a character counter will be displayed below the
+  /// field showing how many characters have been entered. If set to a number
+  /// greater than 0, it will also display the maximum number allowed. If set
+  /// to [TextField.noMaxLength] then only the current character count is displayed.
+  ///
+  /// After [maxLength] characters have been input, additional input
+  /// is ignored, unless [maxLengthEnforcement] is set to
+  /// [MaxLengthEnforcement.none].
+  ///
+  /// The text field enforces the length with a [LengthLimitingTextInputFormatter],
+  /// which is evaluated after the supplied [inputFormatters], if any.
+  ///
+  /// This value must be either null, [TextField.noMaxLength], or greater than 0.
+  /// If null (the default) then there is no limit to the number of characters
+  /// that can be entered. If set to [TextField.noMaxLength], then no limit will
+  /// be enforced, but the number of characters entered will still be displayed.
+  ///
+  /// Whitespace characters (e.g. newline, space, tab) are included in the
+  /// character count.
+  ///
+  /// If [maxLengthEnforcement] is [MaxLengthEnforcement.none], then more than
+  /// [maxLength] characters may be entered, but the error counter and divider
+  /// will switch to the [decoration]'s [InputDecoration.errorStyle] when the
+  /// limit is exceeded.
+  ///
+  /// {@macro flutter.services.lengthLimitingTextInputFormatter.maxLength}
+  final int? maxLength;
+
+  /// Determines how the [maxLength] limit should be enforced.
+  ///
+  /// {@macro flutter.services.textFormatter.effectiveMaxLengthEnforcement}
+  ///
+  /// {@macro flutter.services.textFormatter.maxLengthEnforcement}
+  final MaxLengthEnforcement? maxLengthEnforcement;
+
   /// The error to display under the text field.
   ///
   /// Will change the styling of the widget to reflect the presence of the error.
@@ -381,7 +427,7 @@ class _YgTextFieldState extends StateWithYgState<YgTextField, YgFieldState>
     return YgFieldState(
       filled: controller.text.isNotEmpty == true,
       placeholder: widget.placeholder != null,
-      error: widget.error != null,
+      error: _hasError,
       disabled: widget.disabled,
       suffix: _hasSuffix,
       variant: widget.variant,
@@ -392,7 +438,7 @@ class _YgTextFieldState extends StateWithYgState<YgTextField, YgFieldState>
   @override
   void updateState() {
     state.placeholder.value = widget.placeholder != null;
-    state.error.value = widget.error != null;
+    state.error.value = _hasError;
     state.disabled.value = widget.disabled;
     state.suffix.value = _hasSuffix;
     state.size.value = widget.size;
@@ -406,12 +452,20 @@ class _YgTextFieldState extends StateWithYgState<YgTextField, YgFieldState>
     final Widget layout = RepaintBoundary(
       child: YgFieldDecoration(
         error: widget.error,
+        counter: widget.maxLength.safeBuild(
+          (int maxLength) => YgFieldCounter(
+            controller: controller,
+            maxLength: maxLength,
+          ),
+        ),
         state: state,
         suffix: _buildSuffix(),
         content: YgFieldContent(
           value: buildEditableText(
             autocorrect: widget.autocorrect,
             inputFormatters: widget.inputFormatters,
+            maxLength: widget.maxLength,
+            maxLengthEnforcement: widget.maxLengthEnforcement,
             keyboardType: widget.keyboardType,
             maxLines: widget.maxLines,
             minLines: widget.minLines,
@@ -511,9 +565,23 @@ class _YgTextFieldState extends StateWithYgState<YgTextField, YgFieldState>
     return widget.suffix != null || (widget.obscureText && widget.showObscureTextButton);
   }
 
+  bool get _hasError {
+    if (widget.error != null) {
+      return true;
+    }
+
+    final int? maxLength = widget.maxLength;
+    if (maxLength == null) {
+      return false;
+    }
+
+    return controller.text.length > maxLength;
+  }
+
   @override
   void valueUpdated() {
     state.filled.value = controller.text.isNotEmpty;
+    state.error.value = _hasError;
   }
 
   @override
