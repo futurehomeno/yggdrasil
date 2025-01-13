@@ -1,3 +1,4 @@
+import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
 /// Mechanisms for enforcing maximum length limits.
@@ -19,33 +20,32 @@ enum YgMaxLengthEnforcement {
   ///  * Web, macOS, linux, fuchsia:
   ///    [MaxLengthEnforcement.truncateAfterCompositionEnds]. These platforms
   ///    allow the composition to exceed by default.
-  auto(
-    native: null,
-  ),
+  auto,
 
   /// No enforcement applied to the editing value.
   ///
   /// It's possible to exceed the max length (Default behavior for text fields).
-  none(
-    native: MaxLengthEnforcement.none,
-  ),
+  none,
 
   /// Keep the length of the text input from exceeding the max length even when
   /// the text has an unfinished composing region.
-  enforced(
-    native: MaxLengthEnforcement.enforced,
-  ),
+  enforced,
 
   /// Users can still input text if the current value is composing even after
   /// reaching the max length limit. After composing ends, the value will be
   /// truncated.
-  truncateAfterCompositionEnds(
-    native: MaxLengthEnforcement.truncateAfterCompositionEnds,
-  );
+  truncateAfterCompositionEnds;
 
-  const YgMaxLengthEnforcement({
-    required this.native,
-  });
-
-  final MaxLengthEnforcement? native;
+  /// Resolve the correct [MaxLengthEnforcement] based on the platform and
+  /// this value.
+  MaxLengthEnforcement resolve(BuildContext context) {
+    return switch (this) {
+      YgMaxLengthEnforcement.auto => LengthLimitingTextInputFormatter.getDefaultMaxLengthEnforcement(
+          Theme.of(context).platform,
+        ),
+      YgMaxLengthEnforcement.none => MaxLengthEnforcement.none,
+      YgMaxLengthEnforcement.enforced => MaxLengthEnforcement.enforced,
+      YgMaxLengthEnforcement.truncateAfterCompositionEnds => MaxLengthEnforcement.truncateAfterCompositionEnds,
+    };
+  }
 }

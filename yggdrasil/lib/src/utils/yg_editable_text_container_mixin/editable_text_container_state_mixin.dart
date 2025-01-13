@@ -120,12 +120,7 @@ mixin EditableTextContainerStateMixin<W extends StatefulWidget> on State<W>
       if (maxLength != null)
         LengthLimitingTextInputFormatter(
           maxLength,
-          maxLengthEnforcement: switch (maxLengthEnforcement) {
-            YgMaxLengthEnforcement.auto => LengthLimitingTextInputFormatter.getDefaultMaxLengthEnforcement(
-                Theme.of(context).platform,
-              ),
-            _ => maxLengthEnforcement.native,
-          },
+          maxLengthEnforcement: maxLengthEnforcement.resolve(context),
         ),
     ];
 
