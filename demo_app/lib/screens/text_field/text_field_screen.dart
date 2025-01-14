@@ -89,6 +89,22 @@ class _TextFieldScreenState extends State<TextFieldScreen> {
                   readOnly: true,
                 ),
                 const YgTextField(
+                  label: 'With counter',
+                  keyboardType: TextInputType.text,
+                  textInputAction: TextInputAction.next,
+                  textCapitalization: TextCapitalization.words,
+                  maxLength: 100,
+                  autocorrect: true,
+                ),
+                const YgTextField(
+                  label: 'With error',
+                  keyboardType: TextInputType.text,
+                  textInputAction: TextInputAction.next,
+                  textCapitalization: TextCapitalization.words,
+                  autocorrect: true,
+                  error: 'Error message',
+                ),
+                const YgTextField(
                   label: 'Disabled',
                   initialValue: 'Disabled',
                   keyboardType: TextInputType.text,
