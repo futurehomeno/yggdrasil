@@ -25,25 +25,41 @@ mixin YgFuzzySearchSessionMixin<
   static const String _titleKey = 'title';
   static const String _subtitleKey = 'subtitle';
 
-  late final fuzzy.Fuzzy<Item> _fuzzy = fuzzy.Fuzzy<Item>(
-    provider.items,
-    options: fuzzy.FuzzyOptions<Item>(
-      keys: <fuzzy.WeightedKey<Item>>[
-        fuzzy.WeightedKey<Item>(
-          name: _titleKey,
-          getter: (Item item) => item.title,
-          weight: 1,
-        ),
-        if (provider.searchSubtitle)
+  late fuzzy.Fuzzy<Item> _fuzzy;
+
+  @override
+  void initSession() {
+    _updateFuzzy();
+  }
+
+  @override
+  void didUpdateProvider(Provider oldProvider) {
+    if (oldProvider.subtitleWeight != provider.subtitleWeight) {
+      _updateFuzzy();
+    }
+  }
+
+  void _updateFuzzy() {
+    _fuzzy = fuzzy.Fuzzy<Item>(
+      provider.items,
+      options: fuzzy.FuzzyOptions<Item>(
+        keys: <fuzzy.WeightedKey<Item>>[
           fuzzy.WeightedKey<Item>(
-            name: _subtitleKey,
-            getter: (Item item) => item.subtitle ?? '',
-            weight: 0.5,
+            name: _titleKey,
+            getter: (Item item) => item.title,
+            weight: 1,
           ),
-      ],
-      threshold: provider.threshold,
-    ),
-  );
+          if (provider.subtitleWeight > 0)
+            fuzzy.WeightedKey<Item>(
+              name: _subtitleKey,
+              getter: (Item item) => item.subtitle ?? '',
+              weight: provider.subtitleWeight,
+            ),
+        ],
+        threshold: provider.threshold,
+      ),
+    );
+  }
 
   @override
   ResultsLayout buildResultsLayout(String query) {

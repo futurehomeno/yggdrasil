@@ -29,7 +29,7 @@ import 'yg_string_search_provider.dart';
 ///     ],
 ///     noResultsBuilder: (context) => Text('No results found'),
 ///     hintBuilder: (context) => Text('Type to search'),
-///     searchSubtitle: true,
+///     subtitleWeight: 0.5,
 ///     requireQuery: true,
 ///   ),
 /// );
@@ -40,7 +40,7 @@ class YgExactStringSearchProvider extends YgExactSearchProviderInterface<String,
     required super.items,
     required super.noResultsBuilder,
     super.hintBuilder,
-    super.searchSubtitle,
+    super.subtitleWeight,
     super.requireQuery,
     super.caseSensitive,
   });

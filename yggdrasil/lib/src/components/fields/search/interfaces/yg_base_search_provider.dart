@@ -50,6 +50,9 @@ abstract class YgBaseSearchSession<
   /// callback.
   void dispose() {}
 
+  /// Called after the provider has been updated.
+  void didUpdateProvider(Provider oldProvider) {}
+
   /// The search controller managing this search session.
   @mustCallSuper
   YgSearchControllerAny<Value, ResultValue> get controller {
@@ -75,6 +78,18 @@ abstract class YgBaseSearchSession<
   }
 
   bool get attached => _controller != null && _provider != null;
+
+  /// Internal method called when the provider changes on the search widget.
+  void update(Provider provider) {
+    final Provider? oldProvider = _provider;
+    _provider = provider;
+
+    if (oldProvider == null) {
+      return;
+    }
+
+    didUpdateProvider(oldProvider);
+  }
 
   /// Internal method called to attach this session to a controller and provider.
   @mustCallSuper

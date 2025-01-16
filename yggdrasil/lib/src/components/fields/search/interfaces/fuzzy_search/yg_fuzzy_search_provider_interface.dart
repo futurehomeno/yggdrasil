@@ -14,14 +14,17 @@ abstract class YgFuzzySearchProviderInterface<
   const YgFuzzySearchProviderInterface({
     required this.items,
     required this.noResultsBuilder,
-    this.searchSubtitle = false,
+    this.subtitleWeight = 0,
     this.threshold = 0.4,
     this.requireQuery = true,
     this.hintBuilder,
   });
 
-  /// Whether to search for a match in the subtitle.
-  final bool searchSubtitle;
+  /// The weight of the subtitle in the search results.
+  ///
+  /// When the weight is 0 or less the subtitle is completely ignored. If there
+  /// is no subtitle, this does nothing.
+  final double subtitleWeight;
 
   /// Whether there should be a query in order for there to be results.
   ///
@@ -32,7 +35,7 @@ abstract class YgFuzzySearchProviderInterface<
   /// The items which the user can search through.
   ///
   /// By default the user can only search for the title of the item, if
-  /// [searchSubtitle] is true the user can also search through the subtitle of
+  /// [subtitleWeight] is true the user can also search through the subtitle of
   /// an item.
   final List<Item> items;
 
