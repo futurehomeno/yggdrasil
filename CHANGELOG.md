@@ -1,3 +1,9 @@
+# 1.12.25 [2025-01-16T17:32:48.509483]
+
+### Changes
+
+- [fix] Added missing arguments to text form field constructors.
+
 # 1.12.24 [2025-01-14T14:28:00.527966]
 
 ### Changes
