@@ -4,6 +4,7 @@ import 'package:yggdrasil/yggdrasil.dart';
 import 'package:yggdrasil_demo/core/_core.dart';
 import 'package:yggdrasil_demo/screens/_screens.dart';
 import 'package:yggdrasil_demo/screens/layout_examples/_examples.dart';
+import 'package:yggdrasil_demo/screens/test/test_screen.dart';
 import 'package:yggdrasil_demo/widgets/_widgets.dart';
 
 class HomeScreen extends StatelessWidget {
@@ -37,6 +38,11 @@ class HomeScreen extends StatelessWidget {
               SingleChildScrollView(
                 child: YgSection.list(
                   children: <Widget>[
+                    YgListTile(
+                      title: 'Test',
+                      onTap: () => sl<YgRouter>().push(TestScreen.route()),
+                      trailingWidgets: const <YgIcon>[YgIcon(YgIcons.caretRight)],
+                    ),
                     YgListTile(
                       title: 'AppBar',
                       onTap: () => sl<YgRouter>().push(AppBarScreen.route()),

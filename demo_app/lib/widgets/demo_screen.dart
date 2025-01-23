@@ -2,7 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:yggdrasil/yggdrasil.dart';
 import 'package:yggdrasil_demo/core/_core.dart';
-import 'package:yggdrasil_demo/widgets/debug_bottom_sheet.dart';
+
+import 'debug_bottom_sheet.dart';
 
 /// Demo screen to use as a base for components screens.
 class DemoScreen extends StatelessWidget {
