@@ -48,7 +48,6 @@ class YgContentPositionerRenderer extends YgRenderShiftedBox with YgInheritedRen
   double getLayoutHeight() {
     for (RenderObject? parent = this.parent; parent != null; parent = parent.parent) {
       if (parent is RenderAbstractViewport) {
-        print(<Object>[parent, parent.constraints]);
         return (parent.constraints as BoxConstraints).maxHeight;
       }
     }
