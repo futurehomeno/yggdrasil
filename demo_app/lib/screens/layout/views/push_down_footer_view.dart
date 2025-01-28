@@ -29,7 +29,7 @@ class PushDownFooterView extends StatelessWidget {
             ' main content height exceeds the remaining screen space, in which case'
             ' the footer will be pushed down off the screen.',
         child: DemoPlaceholder(
-          height: 2000,
+          height: 200,
         ),
       ),
     );

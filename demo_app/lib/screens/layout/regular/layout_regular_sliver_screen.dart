@@ -17,20 +17,9 @@ class LayoutRegularSliverScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return YgLayoutRegular(
-      appBar: SafeArea(
-        bottom: false,
-        child: Container(
-          color: Colors.green,
-          height: 64,
-          alignment: Alignment.center,
-          child: const Text(
-            'AppBar',
-            style: TextStyle(fontSize: 24),
-          ),
-        ),
-      ),
-      child: const SliverView(),
+    return const YgLayoutRegular(
+      appBar: YgAppBar2(),
+      child: SliverView(),
     );
   }
 }

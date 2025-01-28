@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:yggdrasil/src/components/yg_layout/controller/yg_layout_body_controller_provider.dart';
 import 'package:yggdrasil/src/theme/_theme.dart';
 
+import 'controller/yg_layout_controller.dart';
+import 'enums/yg_header_behavior.dart';
 import 'widgets/yg_layout_render_widget.dart';
 
 class YgLayoutRegular extends StatefulWidget {
@@ -8,17 +11,19 @@ class YgLayoutRegular extends StatefulWidget {
     super.key,
     required this.child,
     required this.appBar,
+    required this.headerBehavior,
   });
 
   final Widget child;
   final Widget appBar;
+  final YgHeaderBehavior headerBehavior;
 
   @override
   State<YgLayoutRegular> createState() => _YgLayoutRegularState();
 }
 
 class _YgLayoutRegularState extends State<YgLayoutRegular> with TickerProviderStateMixin {
-  late final AnimationController _controller = AnimationController(vsync: this);
+  late final YgLayoutController _controller = YgLayoutController(vsync: this);
 
   @override
   void dispose() {
@@ -33,15 +38,18 @@ class _YgLayoutRegularState extends State<YgLayoutRegular> with TickerProviderSt
     return Material(
       color: theme.backgroundColor,
       child: YgLayoutRenderWidget(
-        headerTranslation: _controller,
-        onAppBarSize: _handleSizeChange,
+        behavior: widget.headerBehavior,
+        controller: _controller,
+        headerColor: theme.backgroundColor,
         children: <Widget>[
-          widget.child,
+          YgLayoutBodyControllerProvider(
+            controller: _controller,
+            index: 0,
+            child: widget.child,
+          ),
           widget.appBar,
         ],
       ),
     );
   }
-
-  void _handleSizeChange(Size size) {}
 }

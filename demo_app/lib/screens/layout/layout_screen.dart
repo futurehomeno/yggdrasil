@@ -1,14 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:yggdrasil/yggdrasil.dart';
 import 'package:yggdrasil_demo/core/_core.dart';
-import 'package:yggdrasil_demo/screens/layout/multi_view/layout_tabbed/layout_tabbed_screen.dart';
-import 'package:yggdrasil_demo/screens/layout/regular/layout_regular/_layout_regular.dart';
-import 'package:yggdrasil_demo/screens/layout/regular/layout_regular_centered/layout_regular_centered_screen.dart';
-import 'package:yggdrasil_demo/screens/layout/regular/layout_regular_push_down_footer/_layout_regular_push_down_footer.dart';
-import 'package:yggdrasil_demo/screens/layout/regular/layout_regular_scrollable/_layout_regular_scrollable.dart';
-import 'package:yggdrasil_demo/screens/layout/regular/layout_regular_sliver/layout_regular_sliver_screen.dart';
-import 'package:yggdrasil_demo/screens/layout/regular/layout_regular_sticky_footer/layout_regular_sticky_footer_screen.dart';
+import 'package:yggdrasil_demo/screens/layout/multi_view/layout_tabbed_screen.dart';
 import 'package:yggdrasil_demo/widgets/_widgets.dart';
+
+import 'regular/_regular.dart';
 
 class LayoutScreen extends StatelessWidget {
   const LayoutScreen({super.key});
