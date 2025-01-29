@@ -101,6 +101,9 @@ class YgLayoutRenderer extends RenderBox
   // endregion
 
   @override
+  final bool isRepaintBoundary = true;
+
+  @override
   void setupParentData(covariant RenderObject child) {
     child.parentData = YgLayoutRendererParentData();
   }
@@ -211,6 +214,8 @@ class YgLayoutRenderer extends RenderBox
 
   @override
   void paint(PaintingContext context, Offset offset) {
+    // TODO: Refactor using layers to improve performance.
+
     final _Children(
       :RenderBox? content,
       :RenderBox? appBar,

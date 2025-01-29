@@ -25,11 +25,12 @@ class YgLayoutController extends ChangeNotifier {
 
   int _activeView;
   double _collapsibleHeight = 0;
+  bool _resettable = false;
 
   void handleScrollNotification(int index, ScrollNotification notification) {
     switch (notification) {
       case ScrollEndNotification():
-        _handleScrollEnd(index, notification);
+        _handleScrollEnd(index);
       case ScrollUpdateNotification():
         _handleScrollUpdate(index, notification);
     }
@@ -48,11 +49,15 @@ class YgLayoutController extends ChangeNotifier {
 
     final double delta = notification.scrollDelta ?? 0;
     final double fractionalDelta = delta / _collapsibleHeight;
+    final double newValue = (_headerOffsetController.value + fractionalDelta).clamp(0, 1);
 
-    _headerOffsetController.value += fractionalDelta;
+    if (newValue != _headerOffsetController.value) {
+      _resettable = newValue != 0;
+      _headerOffsetController.value = newValue;
+    }
   }
 
-  void _handleScrollEnd(int index, ScrollEndNotification notification) {
+  void _handleScrollEnd(int index) {
     if (index != _activeView) {
       return;
     }
@@ -67,6 +72,7 @@ class YgLayoutController extends ChangeNotifier {
 
     if (currentHeaderPosition < 0.5) {
       target = 0;
+      _resettable = false;
     } else {
       target = 1;
     }
@@ -111,6 +117,11 @@ class YgLayoutController extends ChangeNotifier {
   }
 
   void resetHeader() {
+    if (!_resettable) {
+      return;
+    }
+
+    _resettable = false;
     _headerOffsetController.animateTo(
       0,
       duration: const Duration(milliseconds: 200),
