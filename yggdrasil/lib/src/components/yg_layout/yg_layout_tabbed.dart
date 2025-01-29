@@ -4,7 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:yggdrasil/src/components/yg_layout/controller/yg_layout_body_controller_provider.dart';
 import 'package:yggdrasil/src/components/yg_layout/enums/yg_header_behavior.dart';
 import 'package:yggdrasil/src/components/yg_layout/models/yg_layout_tab.dart';
-import 'package:yggdrasil/src/components/yg_layout/widgets/yg_layout_render_widget.dart';
+import 'package:yggdrasil/src/components/yg_layout/widgets/layout_renderer/_layout_renderer.dart';
 import 'package:yggdrasil/src/components/yg_tab/yg_tab.dart';
 import 'package:yggdrasil/src/components/yg_tab/yg_tab_bar.dart';
 import 'package:yggdrasil/src/theme/_theme.dart';
@@ -49,40 +49,51 @@ class _YgLayoutTabbedState extends State<YgLayoutTabbed> with TickerProviderStat
         child: DefaultTabController(
           length: widget.tabs.length,
           initialIndex: widget.initialTab,
-          child: YgLayoutRenderWidget(
-            controller: _controller,
-            behavior: widget.headerBehavior,
-            headerColor: theme.backgroundColor,
-            children: <Widget>[
-              TabBarView(
-                children: <Widget>[
-                  for (int i = 0; i < widget.tabs.length; i++)
-                    YgLayoutBodyControllerProvider(
-                      controller: _controller,
-                      index: i,
-                      child: widget.tabs[i].content,
-                    ),
-                ],
-              ),
-              Material(
-                color: theme.backgroundColor,
-                child: Column(
-                  mainAxisSize: MainAxisSize.min,
-                  crossAxisAlignment: CrossAxisAlignment.stretch,
-                  children: <Widget>[
-                    widget.appBar,
-                    YgTabBar(
-                      tabs: <YgTab>[
-                        for (final YgLayoutTab tab in widget.tabs)
-                          YgTab(
-                            label: tab.title,
-                          ),
-                      ],
-                    ),
-                  ],
+          child: MediaQuery.removePadding(
+            context: context,
+            removeTop: true,
+            child: YgLayoutRenderWidget(
+              controller: _controller,
+              behavior: widget.headerBehavior,
+              headerColor: theme.backgroundColor,
+              padding: MediaQuery.paddingOf(context),
+              children: <Widget>[
+                YgLayoutChildWidget(
+                  slot: YgLayoutSlot.appBar,
+                  child: widget.appBar,
                 ),
-              ),
-            ],
+                YgLayoutChildWidget(
+                  slot: YgLayoutSlot.trailing,
+                  child: Material(
+                    type: MaterialType.transparency,
+                    color: theme.backgroundColor,
+                    child: IntrinsicHeight(
+                      child: YgTabBar(
+                        tabs: <YgTab>[
+                          for (final YgLayoutTab tab in widget.tabs)
+                            YgTab(
+                              label: tab.title,
+                            ),
+                        ],
+                      ),
+                    ),
+                  ),
+                ),
+                YgLayoutChildWidget(
+                  slot: YgLayoutSlot.content,
+                  child: TabBarView(
+                    children: <Widget>[
+                      for (int i = 0; i < widget.tabs.length; i++)
+                        YgLayoutBodyControllerProvider(
+                          controller: _controller,
+                          index: i,
+                          child: widget.tabs[i].content,
+                        ),
+                    ],
+                  ),
+                ),
+              ],
+            ),
           ),
         ),
       ),
@@ -92,6 +103,7 @@ class _YgLayoutTabbedState extends State<YgLayoutTabbed> with TickerProviderStat
   bool _handleScrollNotification(ScrollUpdateNotification notification) {
     if (notification.depth == 0) {
       _controller.resetHeader();
+      print(notification.metrics);
     }
 
     return false;

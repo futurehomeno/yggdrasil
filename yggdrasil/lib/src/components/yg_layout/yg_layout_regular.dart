@@ -4,14 +4,14 @@ import 'package:yggdrasil/src/theme/_theme.dart';
 
 import 'controller/yg_layout_controller.dart';
 import 'enums/yg_header_behavior.dart';
-import 'widgets/yg_layout_render_widget.dart';
+import 'widgets/layout_renderer/yg_layout_render_widget.dart';
 
 class YgLayoutRegular extends StatefulWidget {
   const YgLayoutRegular({
     super.key,
     required this.child,
     required this.appBar,
-    required this.headerBehavior,
+    this.headerBehavior = YgHeaderBehavior.static,
   });
 
   final Widget child;
@@ -41,6 +41,7 @@ class _YgLayoutRegularState extends State<YgLayoutRegular> with TickerProviderSt
         behavior: widget.headerBehavior,
         controller: _controller,
         headerColor: theme.backgroundColor,
+        padding: MediaQuery.paddingOf(context),
         children: <Widget>[
           YgLayoutBodyControllerProvider(
             controller: _controller,

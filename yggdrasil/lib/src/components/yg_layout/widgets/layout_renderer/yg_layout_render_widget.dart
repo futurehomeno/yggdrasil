@@ -1,12 +1,11 @@
-// ignore_for_file: prefer-single-widget-per-file
-
 import 'dart:math';
 import 'dart:ui';
 
-import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
+import 'package:flutter/widgets.dart';
 import 'package:yggdrasil/src/components/yg_layout/controller/yg_layout_controller.dart';
 import 'package:yggdrasil/src/components/yg_layout/enums/yg_header_behavior.dart';
+import 'package:yggdrasil/src/components/yg_layout/widgets/layout_renderer/yg_layout_slot.dart';
 import 'package:yggdrasil/src/utils/yg_inherited_padding/yg_inherited_render_padding_provider_mixin.dart';
 
 class YgLayoutRenderWidget extends MultiChildRenderObjectWidget {
@@ -16,18 +15,20 @@ class YgLayoutRenderWidget extends MultiChildRenderObjectWidget {
     required this.controller,
     required this.headerColor,
     required this.behavior,
+    required this.padding,
   });
 
   final YgLayoutController controller;
   final Color headerColor;
   final YgHeaderBehavior behavior;
+  final EdgeInsets padding;
 
   @override
   RenderObject createRenderObject(BuildContext context) {
     return YgLayoutRenderer(
       controller: controller,
       headerColor: headerColor,
-      viewPadding: MediaQuery.paddingOf(context),
+      viewPadding: padding,
       headerBehavior: behavior,
     );
   }
@@ -37,7 +38,7 @@ class YgLayoutRenderWidget extends MultiChildRenderObjectWidget {
     renderObject.controller = controller;
     renderObject.headerColor = headerColor;
     renderObject.headerBehavior = behavior;
-    renderObject.viewPadding = MediaQuery.paddingOf(context);
+    renderObject.viewPadding = padding;
   }
 }
 
@@ -46,10 +47,7 @@ class YgLayoutRendererParentData extends ContainerBoxParentData<RenderBox> {
 }
 
 class YgLayoutRenderer extends RenderBox
-    with
-        ContainerRenderObjectMixin<RenderBox, YgLayoutRendererParentData>,
-        RenderBoxContainerDefaultsMixin<RenderBox, YgLayoutRendererParentData>,
-        YgInheritedRenderPaddingProviderMixin {
+    with ContainerRenderObjectMixin<RenderBox, YgLayoutRendererParentData>, YgInheritedRenderPaddingProviderMixin {
   YgLayoutRenderer({
     required YgLayoutController controller,
     required EdgeInsets viewPadding,
@@ -187,6 +185,14 @@ class YgLayoutRenderer extends RenderBox
       ),
     );
 
+    controller.setCollapsibleHeight(
+      switch (headerBehavior) {
+        YgHeaderBehavior.static => 0,
+        YgHeaderBehavior.hideAppBar when trailing != null => appBarHeight,
+        _ => headerExpandedHeight,
+      },
+    );
+
     // Content should always exist.
     assert(
       content != null,
@@ -219,6 +225,10 @@ class YgLayoutRenderer extends RenderBox
     final double t = controller.headerOffset.value;
     final double topPadding = viewPadding.top;
 
+    // We set the offset of every child on the parent data rather than just
+    // adding it to the paint offset when painting because we need the offsets
+    // for the hit tests.
+
     if (appBar != null) {
       appBar.offset = Offset(
         0,
@@ -249,7 +259,14 @@ class YgLayoutRenderer extends RenderBox
       }
     }
 
-    final double headerHeight = trailing?.offset.dy ?? appBar?.offset.dy ?? 0;
+    final double headerHeight;
+    if (trailing != null) {
+      headerHeight = trailing.offset.dy + trailing.size.height;
+    } else if (appBar != null) {
+      headerHeight = appBar.offset.dy + appBar.size.height;
+    } else {
+      headerHeight = 0;
+    }
     if (headerHeight > 0) {
       context.canvas.drawRect(
         offset & Size(size.width, headerHeight),
@@ -257,8 +274,8 @@ class YgLayoutRenderer extends RenderBox
       );
     }
 
-    context.defaultPaint(appBar, offset);
-    context.defaultPaint(trailing, offset);
+    appBar?.paintWithParentOffset(context, offset);
+    trailing?.paintWithParentOffset(context, offset);
 
     if (shadow != null) {
       shadow.offset = Offset(
@@ -266,7 +283,7 @@ class YgLayoutRenderer extends RenderBox
         headerHeight,
       );
 
-      context.defaultPaint(shadow, offset);
+      shadow.paintWithParentOffset(context, offset);
     }
 
     if (loading != null) {
@@ -275,13 +292,31 @@ class YgLayoutRenderer extends RenderBox
         headerHeight - 1,
       );
 
-      context.defaultPaint(loading, offset);
+      loading.paintWithParentOffset(context, offset);
     }
   }
 
   @override
   bool hitTestChildren(BoxHitTestResult result, {required Offset position}) {
-    return defaultHitTestChildren(result, position: position);
+    final _Children(
+      :RenderBox? content,
+      :RenderBox? appBar,
+      :RenderBox? trailing,
+    ) = _getChildren();
+
+    if (trailing?.hitTestWithParentOffset(result, position: position) == true) {
+      return true;
+    }
+
+    if (appBar?.hitTestWithParentOffset(result, position: position) == true) {
+      return true;
+    }
+
+    if (content?.hitTestWithParentOffset(result, position: position) == true) {
+      return true;
+    }
+
+    return false;
   }
 
   _Children _getChildren() {
@@ -331,6 +366,10 @@ class YgLayoutRenderer extends RenderBox
           content = child;
           break;
         default:
+          assert(
+            false,
+            'Any direct child of YgLayoutRenderWidget has to be a YgLayoutChildWidget',
+          );
           // Ignore widgets without slot.
           break;
       }
@@ -344,42 +383,6 @@ class YgLayoutRenderer extends RenderBox
       content: content,
     );
   }
-}
-
-class LayoutChildWidget extends ParentDataWidget<YgLayoutRendererParentData> {
-  const LayoutChildWidget({
-    super.key,
-    required super.child,
-    required this.slot,
-  });
-
-  final YgLayoutSlot slot;
-
-  @override
-  void applyParentData(RenderObject renderObject) {
-    final ParentData? parentData = renderObject.parentData;
-    assert(
-      parentData is YgLayoutRendererParentData,
-      'LayoutChildWidget has to be a direct child of YgLayoutRenderWidget',
-    );
-
-    if (parentData is! YgLayoutRendererParentData) {
-      return;
-    }
-
-    parentData.slot = slot;
-  }
-
-  @override
-  Type get debugTypicalAncestorWidgetClass => YgLayoutRenderWidget;
-}
-
-enum YgLayoutSlot {
-  appBar,
-  trailing,
-  loading,
-  shadow,
-  content,
 }
 
 class _Children {
@@ -398,16 +401,7 @@ class _Children {
   final RenderBox? content;
 }
 
-extension on PaintingContext {
-  void defaultPaint(RenderBox? child, Offset offset) {
-    if (child == null) {
-      return;
-    }
-
-    paintChild(child, child.offset + offset);
-  }
-}
-
+// Internal extensions to make working with the child renderers easier.
 extension on RenderBox {
   YgLayoutSlot? get slot {
     return (parentData as YgLayoutRendererParentData).slot;
@@ -419,5 +413,25 @@ extension on RenderBox {
 
   set offset(Offset offset) {
     (parentData as YgLayoutRendererParentData).offset = offset;
+  }
+
+  void paintWithParentOffset(PaintingContext context, Offset offset) {
+    context.paintChild(
+      this,
+      offset + this.offset,
+    );
+  }
+
+  bool hitTestWithParentOffset(
+    BoxHitTestResult result, {
+    required Offset position,
+  }) {
+    return result.addWithPaintOffset(
+      offset: offset,
+      position: position,
+      hitTest: (BoxHitTestResult result, Offset transformed) {
+        return hitTest(result, position: transformed);
+      },
+    );
   }
 }

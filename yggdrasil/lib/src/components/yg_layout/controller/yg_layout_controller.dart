@@ -7,7 +7,9 @@ class YgLayoutController extends ChangeNotifier {
   })  : _headerOffsetController = AnimationController(
           vsync: vsync,
         ),
-        _activeView = initialView;
+        _activeView = initialView {
+    _headerOffsetController.addListener(notifyListeners);
+  }
 
   final AnimationController _headerOffsetController;
   final List<YgLayoutScrollEventListener> _listeners = <YgLayoutScrollEventListener>[];
@@ -98,12 +100,13 @@ class YgLayoutController extends ChangeNotifier {
     );
   }
 
-  void updateMoveableHeaderHeight(double newHeight) {
+  void setCollapsibleHeight(double newHeight) {
     _movableHeaderHeight = newHeight;
   }
 
   @override
   void dispose() {
+    _headerOffsetController.removeListener(notifyListeners);
     _headerOffsetController.dispose();
     _listeners.clear();
     super.dispose();
