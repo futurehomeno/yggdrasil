@@ -64,7 +64,9 @@ class YgLayoutRenderer extends RenderBox
   YgLayoutController get controller => _controller;
   set controller(YgLayoutController controller) {
     if (_controller != controller) {
+      _controller.removeListener(markNeedsPaint);
       _controller = controller;
+      _controller.addListener(markNeedsPaint);
       markNeedsLayout();
     }
   }
@@ -236,7 +238,7 @@ class YgLayoutRenderer extends RenderBox
           YgHeaderBehavior.static => topPadding,
           YgHeaderBehavior.hideAppBar || YgHeaderBehavior.hideEverything => lerpDouble(
               topPadding,
-              -appBar.size.height,
+              -(appBar.size.height + (trailing?.size.height ?? 0)),
               t,
             )!,
         },
@@ -245,6 +247,7 @@ class YgLayoutRenderer extends RenderBox
 
     if (trailing != null) {
       if (appBar == null) {
+        // TODO: this is wrong
         trailing.offset = Offset(0, topPadding);
       } else {
         final double offset = appBar.size.height + appBar.offset.dy;
@@ -253,7 +256,7 @@ class YgLayoutRenderer extends RenderBox
           0,
           switch (headerBehavior) {
             YgHeaderBehavior.static || YgHeaderBehavior.hideEverything => offset,
-            YgHeaderBehavior.hideAppBar => lerpDouble(offset, topPadding, t)!,
+            YgHeaderBehavior.hideAppBar => topPadding + lerpDouble(appBar.size.height, 0, t)!,
           },
         );
       }
@@ -317,6 +320,18 @@ class YgLayoutRenderer extends RenderBox
     }
 
     return false;
+  }
+
+  @override
+  void attach(PipelineOwner owner) {
+    super.attach(owner);
+    _controller.addListener(markNeedsLayout);
+  }
+
+  @override
+  void detach() {
+    _controller.removeListener(markNeedsLayout);
+    super.detach();
   }
 
   _Children _getChildren() {

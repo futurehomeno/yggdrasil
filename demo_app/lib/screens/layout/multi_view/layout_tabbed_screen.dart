@@ -22,6 +22,7 @@ class LayoutTabbedScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return const YgLayoutTabbed(
+      headerBehavior: YgHeaderBehavior.hideEverything,
       tabs: <YgLayoutTab>[
         YgLayoutTab(
           title: 'Scrollable',

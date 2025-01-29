@@ -1,4 +1,7 @@
+import 'dart:async';
+
 import 'package:flutter/widgets.dart';
+import 'package:yggdrasil/src/components/yg_layout/controller/yg_layout_body_controller_provider.dart';
 
 class YgLayoutController extends ChangeNotifier {
   YgLayoutController({
@@ -11,18 +14,22 @@ class YgLayoutController extends ChangeNotifier {
     _headerOffsetController.addListener(notifyListeners);
   }
 
+  static YgLayoutController? maybeOf(BuildContext context) {
+    return context.dependOnInheritedWidgetOfExactType<YgLayoutBodyControllerProvider>()?.controller;
+  }
+
   final AnimationController _headerOffsetController;
   final List<YgLayoutScrollEventListener> _listeners = <YgLayoutScrollEventListener>[];
 
   Animation<double> get headerOffset => _headerOffsetController;
 
   int _activeView;
-  double _movableHeaderHeight = 0;
+  double _collapsibleHeight = 0;
 
   void handleScrollNotification(int index, ScrollNotification notification) {
     switch (notification) {
       case ScrollEndNotification():
-        _handleScrollEnd(index);
+        _handleScrollEnd(index, notification);
       case ScrollUpdateNotification():
         _handleScrollUpdate(index, notification);
     }
@@ -33,13 +40,19 @@ class YgLayoutController extends ChangeNotifier {
       return;
     }
 
+    if (_collapsibleHeight <= 0) {
+      _headerOffsetController.value = 0;
+
+      return;
+    }
+
     final double delta = notification.scrollDelta ?? 0;
-    final double fractionalDelta = delta / _movableHeaderHeight;
+    final double fractionalDelta = delta / _collapsibleHeight;
 
     _headerOffsetController.value += fractionalDelta;
   }
 
-  void _handleScrollEnd(int index) {
+  void _handleScrollEnd(int index, ScrollEndNotification notification) {
     if (index != _activeView) {
       return;
     }
@@ -51,27 +64,32 @@ class YgLayoutController extends ChangeNotifier {
     }
 
     final double target;
-    if (currentHeaderPosition > 0.5) {
-      target = 1;
-    } else {
+
+    if (currentHeaderPosition < 0.5) {
       target = 0;
+    } else {
+      target = 1;
     }
 
     final double difference = target - currentHeaderPosition;
-    final double offset = difference * _movableHeaderHeight;
-
-    _emitEvent(YgLayoutScrollEvent(
-      curve: Curves.easeInOut,
-      duration: const Duration(milliseconds: 200),
-      offset: offset,
-      target: _activeView,
-    ));
+    final double offset = difference * _collapsibleHeight;
 
     _headerOffsetController.animateTo(
       target,
       curve: Curves.easeInOut,
       duration: const Duration(milliseconds: 200),
     );
+
+    // Do this in a micro task because scroll needs to finish before we can move
+    // the scroll controller to a different position.
+    scheduleMicrotask(() {
+      _emitEvent(YgLayoutScrollEvent(
+        curve: Curves.easeInOut,
+        duration: const Duration(milliseconds: 200),
+        offset: offset,
+        target: _activeView,
+      ));
+    });
   }
 
   void _emitEvent(YgLayoutScrollEvent event) {
@@ -101,7 +119,8 @@ class YgLayoutController extends ChangeNotifier {
   }
 
   void setCollapsibleHeight(double newHeight) {
-    _movableHeaderHeight = newHeight;
+    print('setCollapsibleHeight: $newHeight');
+    _collapsibleHeight = newHeight;
   }
 
   @override
