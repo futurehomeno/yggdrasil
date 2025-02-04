@@ -1,10 +1,10 @@
 import 'dart:async';
 
 import 'package:flutter/widgets.dart';
-import 'package:yggdrasil/src/components/yg_layout/controller/yg_layout_body_controller_provider.dart';
+import 'package:yggdrasil/src/components/yg_layout/controller/yg_layout_header_controller_provider.dart';
 
-class YgLayoutController extends ChangeNotifier {
-  YgLayoutController({
+class YgLayoutHeaderController extends ChangeNotifier {
+  YgLayoutHeaderController({
     required TickerProvider vsync,
     int initialView = 0,
   })  : _headerOffsetController = AnimationController(
@@ -14,14 +14,16 @@ class YgLayoutController extends ChangeNotifier {
     _headerOffsetController.addListener(notifyListeners);
   }
 
-  static YgLayoutController? maybeOf(BuildContext context) {
-    return context.dependOnInheritedWidgetOfExactType<YgLayoutBodyControllerProvider>()?.controller;
+  static YgLayoutHeaderController? maybeOf(BuildContext context) {
+    return context.dependOnInheritedWidgetOfExactType<YgLayoutHeaderControllerProvider>()?.controller;
   }
 
   final AnimationController _headerOffsetController;
   final List<YgLayoutScrollEventListener> _listeners = <YgLayoutScrollEventListener>[];
 
   Animation<double> get headerOffset => _headerOffsetController;
+
+  int get activeView => _activeView;
 
   int _activeView;
   double _collapsibleHeight = 0;
@@ -113,7 +115,10 @@ class YgLayoutController extends ChangeNotifier {
   }
 
   void setActiveView(int index) {
-    _activeView = index;
+    if (_activeView != index) {
+      _activeView = index;
+      notifyListeners();
+    }
   }
 
   void resetHeader() {
@@ -130,7 +135,6 @@ class YgLayoutController extends ChangeNotifier {
   }
 
   void setCollapsibleHeight(double newHeight) {
-    print('setCollapsibleHeight: $newHeight');
     _collapsibleHeight = newHeight;
   }
 

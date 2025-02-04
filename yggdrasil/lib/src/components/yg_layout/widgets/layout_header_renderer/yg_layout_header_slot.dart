@@ -1,7 +1,6 @@
-enum YgLayoutSlot {
+enum YgLayoutHeaderSlot {
   appBar,
   trailing,
   loading,
   shadow,
-  content,
 }

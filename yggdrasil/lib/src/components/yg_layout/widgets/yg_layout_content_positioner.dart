@@ -1,3 +1,5 @@
+import 'dart:math';
+
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 import 'package:yggdrasil/src/utils/yg_inherited_padding/yg_inherited_render_padding_mixin.dart';
@@ -11,11 +13,34 @@ class YgLayoutContentPositioner extends SingleChildRenderObjectWidget {
 
   @override
   RenderObject createRenderObject(BuildContext context) {
-    return YgContentPositionerRenderer();
+    return YgContentPositionerRenderer(
+      padding: MediaQuery.paddingOf(context),
+    );
+  }
+
+  @override
+  void updateRenderObject(BuildContext context, covariant YgContentPositionerRenderer renderObject) {
+    renderObject.padding = MediaQuery.paddingOf(context);
   }
 }
 
 class YgContentPositionerRenderer extends YgRenderShiftedBox with YgInheritedRenderPaddingMixin {
+  YgContentPositionerRenderer({
+    required EdgeInsets padding,
+  }) : _padding = padding;
+
+  EdgeInsets _padding;
+  EdgeInsets get padding => _padding;
+
+  set padding(EdgeInsets value) {
+    if (_padding == value) {
+      return;
+    }
+
+    _padding = value;
+    markNeedsLayout();
+  }
+
   @override
   void performLayout() {
     final RenderBox? child = this.child;
@@ -26,14 +51,24 @@ class YgContentPositionerRenderer extends YgRenderShiftedBox with YgInheritedRen
     }
 
     final double layoutHeight = getLayoutHeight();
-    final EdgeInsets padding = getPadding();
+    final EdgeInsets inheritedPadding = getPadding();
 
-    final BoxConstraints childConstraints = BoxConstraints(
-      minHeight: constraints.constrainHeight(layoutHeight) - padding.vertical,
-      maxHeight: constraints.maxHeight - padding.vertical,
-      maxWidth: constraints.maxWidth,
-      minWidth: constraints.maxWidth,
+    // Apply either inherited padding or safe area padding, depending on which
+    // is bigger.
+    final EdgeInsets padding = EdgeInsets.only(
+      top: max(inheritedPadding.top, _padding.top),
+      bottom: max(inheritedPadding.bottom, _padding.bottom),
+      left: max(inheritedPadding.left, _padding.left),
+      right: max(inheritedPadding.right, _padding.right),
     );
+
+    final double minHeight = constraints.constrainHeight(layoutHeight) - padding.vertical;
+    final BoxConstraints childConstraints = BoxConstraints(
+      minHeight: minHeight,
+      maxHeight: max(minHeight, constraints.maxHeight - padding.vertical),
+      maxWidth: constraints.maxWidth - padding.horizontal,
+      minWidth: constraints.maxWidth - padding.horizontal,
+    ).enforce(constraints);
 
     child.layout(
       childConstraints,

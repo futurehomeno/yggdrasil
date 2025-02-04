@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:yggdrasil/src/components/yg_layout/controller/yg_layout_body_controller_provider.dart';
-import 'package:yggdrasil/src/components/yg_layout/controller/yg_layout_controller.dart';
+import 'package:yggdrasil/src/components/yg_layout/controller/yg_layout_header_controller.dart';
+import 'package:yggdrasil/src/components/yg_layout/controller/yg_layout_header_controller_provider.dart';
 import 'package:yggdrasil/src/components/yg_layout/enums/yg_footer_behavior.dart';
 import 'package:yggdrasil/src/components/yg_layout/widgets/yg_layout_content_positioner.dart';
 import 'package:yggdrasil/src/components/yg_layout/widgets/yg_push_down_footer_render_widget.dart';
@@ -24,12 +24,12 @@ class YgLayoutBody extends StatefulWidget {
 
 class _YgLayoutBodyState extends State<YgLayoutBody> {
   final ScrollController _scrollController = ScrollController();
-  YgLayoutBodyControllerProvider? _layoutControllerProvider;
+  YgLayoutHeaderControllerProvider? _layoutControllerProvider;
 
   @override
   void didChangeDependencies() {
     _layoutControllerProvider?.controller.removeScrollEventListener(_handleScrollEvent);
-    _layoutControllerProvider = YgLayoutBodyControllerProvider.maybeOf(context);
+    _layoutControllerProvider = YgLayoutHeaderControllerProvider.maybeOf(context);
     _layoutControllerProvider?.controller.addScrollEventListener(_handleScrollEvent);
     super.didChangeDependencies();
   }
@@ -97,8 +97,12 @@ class _YgLayoutBodyState extends State<YgLayoutBody> {
           controller: _scrollController,
           child: RepaintBoundary(
             child: YgLayoutContentPositioner(
-              child: SafeArea(
-                top: false,
+              child: MediaQuery.removePadding(
+                context: context,
+                removeTop: true,
+                removeBottom: true,
+                removeLeft: true,
+                removeRight: true,
                 child: child,
               ),
             ),
@@ -109,7 +113,7 @@ class _YgLayoutBodyState extends State<YgLayoutBody> {
   }
 
   bool _handleScrollNotification(ScrollNotification notification) {
-    final YgLayoutBodyControllerProvider? provider = _layoutControllerProvider;
+    final YgLayoutHeaderControllerProvider? provider = _layoutControllerProvider;
     if (provider != null) {
       provider.controller.handleScrollNotification(
         provider.index,

@@ -1,7 +1,8 @@
 import 'package:flutter/rendering.dart';
 import 'package:flutter/widgets.dart';
-import 'package:yggdrasil/src/components/yg_layout/widgets/layout_renderer/yg_layout_render_widget.dart';
-import 'package:yggdrasil/src/components/yg_layout/widgets/layout_renderer/yg_layout_slot.dart';
+
+import 'yg_layout_header_render_widget.dart';
+import 'yg_layout_header_slot.dart';
 
 class YgLayoutChildWidget extends ParentDataWidget<YgLayoutRendererParentData> {
   const YgLayoutChildWidget({
@@ -10,7 +11,7 @@ class YgLayoutChildWidget extends ParentDataWidget<YgLayoutRendererParentData> {
     required this.slot,
   });
 
-  final YgLayoutSlot slot;
+  final YgLayoutHeaderSlot slot;
 
   @override
   void applyParentData(RenderObject renderObject) {
@@ -28,5 +29,5 @@ class YgLayoutChildWidget extends ParentDataWidget<YgLayoutRendererParentData> {
   }
 
   @override
-  Type get debugTypicalAncestorWidgetClass => YgLayoutRenderWidget;
+  Type get debugTypicalAncestorWidgetClass => YgLayoutHeaderRenderWidget;
 }

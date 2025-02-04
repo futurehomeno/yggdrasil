@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:yggdrasil/src/components/yg_layout/controller/yg_layout_body_controller_provider.dart';
-import 'package:yggdrasil/src/components/yg_layout/controller/yg_layout_controller.dart';
+import 'package:yggdrasil/src/components/yg_layout/controller/yg_layout_header_controller.dart';
+import 'package:yggdrasil/src/components/yg_layout/controller/yg_layout_header_controller_provider.dart';
 
 import '../widgets/yg_sliver_content_positioner.dart';
 
@@ -17,13 +17,13 @@ class YgSliverLayoutBody extends StatefulWidget {
 }
 
 class _YgSliverLayoutBodyState extends State<YgSliverLayoutBody> {
-  YgLayoutBodyControllerProvider? _layoutControllerProvider;
+  YgLayoutHeaderControllerProvider? _layoutControllerProvider;
   final ScrollController _scrollController = ScrollController();
 
   @override
   void didChangeDependencies() {
     _layoutControllerProvider?.controller.removeScrollEventListener(_handleScrollEvent);
-    _layoutControllerProvider = YgLayoutBodyControllerProvider.maybeOf(context);
+    _layoutControllerProvider = YgLayoutHeaderControllerProvider.maybeOf(context);
     _layoutControllerProvider?.controller.addScrollEventListener(_handleScrollEvent);
     super.didChangeDependencies();
   }
@@ -54,7 +54,7 @@ class _YgSliverLayoutBodyState extends State<YgSliverLayoutBody> {
   }
 
   bool _handleScrollNotification(ScrollNotification notification) {
-    final YgLayoutBodyControllerProvider? provider = _layoutControllerProvider;
+    final YgLayoutHeaderControllerProvider? provider = _layoutControllerProvider;
     if (provider != null) {
       provider.controller.handleScrollNotification(
         provider.index,

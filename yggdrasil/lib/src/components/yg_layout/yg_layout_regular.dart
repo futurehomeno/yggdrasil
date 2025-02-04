@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
-import 'package:yggdrasil/src/components/yg_layout/controller/yg_layout_body_controller_provider.dart';
+import 'package:yggdrasil/src/components/yg_layout/controller/yg_layout_header_controller_provider.dart';
 import 'package:yggdrasil/src/theme/_theme.dart';
 
-import 'controller/yg_layout_controller.dart';
+import 'controller/yg_layout_header_controller.dart';
 import 'enums/yg_header_behavior.dart';
-import 'widgets/layout_renderer/yg_layout_render_widget.dart';
+import 'widgets/layout_header_renderer/_layout_renderer.dart';
 
 class YgLayoutRegular extends StatefulWidget {
   const YgLayoutRegular({
@@ -23,7 +23,7 @@ class YgLayoutRegular extends StatefulWidget {
 }
 
 class _YgLayoutRegularState extends State<YgLayoutRegular> with TickerProviderStateMixin {
-  late final YgLayoutController _controller = YgLayoutController(vsync: this);
+  late final YgLayoutHeaderController _controller = YgLayoutHeaderController(vsync: this);
 
   @override
   void dispose() {
@@ -37,13 +37,12 @@ class _YgLayoutRegularState extends State<YgLayoutRegular> with TickerProviderSt
 
     return Material(
       color: theme.backgroundColor,
-      child: YgLayoutRenderWidget(
+      child: YgLayoutHeaderRenderWidget(
         behavior: widget.headerBehavior,
         controller: _controller,
         headerColor: theme.backgroundColor,
-        padding: MediaQuery.paddingOf(context),
         children: <Widget>[
-          YgLayoutBodyControllerProvider(
+          YgLayoutHeaderControllerProvider(
             controller: _controller,
             index: 0,
             child: widget.child,
