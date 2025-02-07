@@ -4,6 +4,7 @@ import 'package:yggdrasil_demo/core/_core.dart';
 import 'package:yggdrasil_demo/screens/layout/multi_view/layout_tabbed_screen.dart';
 import 'package:yggdrasil_demo/widgets/_widgets.dart';
 
+import 'configurable_layout/configurable_layout_screen.dart';
 import 'regular/_regular.dart';
 
 class LayoutScreen extends StatelessWidget {
@@ -25,7 +26,17 @@ class LayoutScreen extends StatelessWidget {
       child: Column(
         children: <Widget>[
           YgSection.list(
-            title: 'Regular layouts',
+            title: 'Advanced layouts',
+            children: <Widget>[
+              YgListTile(
+                title: 'Configurable layout',
+                onTap: () => sl<YgRouter>().push(ConfigurableLayoutScreen.route()),
+                trailingWidgets: const <YgIcon>[YgIcon(YgIcons.caretRight)],
+              ),
+            ],
+          ),
+          YgSection.list(
+            title: 'Simple layouts',
             children: <Widget>[
               YgListTile(
                 title: 'Default layout',

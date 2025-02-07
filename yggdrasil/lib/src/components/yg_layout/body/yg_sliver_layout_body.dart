@@ -2,8 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:yggdrasil/src/components/yg_layout/body/yg_layout_body_internal.dart';
 import 'package:yggdrasil/src/components/yg_layout/controller/header_aware_scroll_physics.dart';
 import 'package:yggdrasil/src/components/yg_layout/controller/yg_layout_header_controller.dart';
-
-import '../widgets/yg_sliver_content_positioner.dart';
+import 'package:yggdrasil/src/components/yg_layout/widgets/yg_sliver_content_positioner.dart';
 
 class YgSliverLayoutBody extends StatelessWidget {
   const YgSliverLayoutBody({

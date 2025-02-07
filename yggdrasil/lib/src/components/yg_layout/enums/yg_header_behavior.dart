@@ -1,5 +1,5 @@
 enum YgHeaderBehavior {
-  static,
+  fixed,
   hideAppBar,
   hideEverything,
 }

@@ -191,7 +191,7 @@ class YgLayoutHeaderRenderer extends RenderBox with ContainerRenderObjectMixin<R
 
     controller.setCollapsibleHeight(
       switch (headerBehavior) {
-        YgHeaderBehavior.static => 0,
+        YgHeaderBehavior.fixed => 0,
         YgHeaderBehavior.hideAppBar when trailing != null => appBarHeight,
         _ => headerExpandedHeight,
       },
@@ -229,7 +229,7 @@ class YgLayoutHeaderRenderer extends RenderBox with ContainerRenderObjectMixin<R
       appBar.offset = Offset(
         0,
         switch (headerBehavior) {
-          YgHeaderBehavior.static => topPadding,
+          YgHeaderBehavior.fixed => topPadding,
           YgHeaderBehavior.hideAppBar || YgHeaderBehavior.hideEverything => lerpDouble(
               topPadding,
               -(appBar.size.height + (trailing?.size.height ?? 0)),
@@ -249,7 +249,7 @@ class YgLayoutHeaderRenderer extends RenderBox with ContainerRenderObjectMixin<R
         trailing.offset = Offset(
           0,
           switch (headerBehavior) {
-            YgHeaderBehavior.static || YgHeaderBehavior.hideEverything => offset,
+            YgHeaderBehavior.fixed || YgHeaderBehavior.hideEverything => offset,
             YgHeaderBehavior.hideAppBar => topPadding + lerpDouble(appBar.size.height, 0, t)!,
           },
         );
@@ -284,9 +284,9 @@ class YgLayoutHeaderRenderer extends RenderBox with ContainerRenderObjectMixin<R
     }
 
     if (loading != null) {
-      loading.offset = const Offset(
+      loading.offset = Offset(
         0,
-        0, //max(headerHeight - 1, 0),
+        max(headerHeight - (loading.size.height / 2), 0),
       );
 
       loading.paintWithParentOffset(context, offset);

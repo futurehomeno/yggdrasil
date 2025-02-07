@@ -29,6 +29,12 @@ class _YgLayoutBodyInternalState extends State<YgLayoutBodyInternal> {
   }
 
   @override
+  void didUpdateWidget(covariant YgLayoutBodyInternal oldWidget) {
+    super.didUpdateWidget(oldWidget);
+    _controller.loading = widget.loading;
+  }
+
+  @override
   void didChangeDependencies() {
     _updateProvider(YgLayoutHeaderControllerProvider.maybeOf(context));
     super.didChangeDependencies();
@@ -77,15 +83,11 @@ class _YgLayoutBodyInternalState extends State<YgLayoutBodyInternal> {
   bool _handleScrollUpdateNotification(ScrollUpdateNotification notification) {
     _controller.handleScrollUpdateNotification(notification);
 
-    print('update');
-
     return false;
   }
 
   bool _handleScrollMetricsNotification(ScrollMetricsNotification notification) {
     _controller.handleScrollMetricsNotification(notification);
-
-    print('metrics');
 
     return false;
   }
