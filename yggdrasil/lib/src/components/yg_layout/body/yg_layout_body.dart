@@ -1,50 +1,42 @@
 import 'package:flutter/material.dart';
+import 'package:yggdrasil/src/components/yg_layout/body/yg_layout_body_internal.dart';
+import 'package:yggdrasil/src/components/yg_layout/controller/header_aware_scroll_physics.dart';
 import 'package:yggdrasil/src/components/yg_layout/controller/yg_layout_header_controller.dart';
-import 'package:yggdrasil/src/components/yg_layout/controller/yg_layout_header_controller_provider.dart';
 import 'package:yggdrasil/src/components/yg_layout/enums/yg_footer_behavior.dart';
 import 'package:yggdrasil/src/components/yg_layout/widgets/yg_layout_content_positioner.dart';
 import 'package:yggdrasil/src/components/yg_layout/widgets/yg_push_down_footer_render_widget.dart';
 import 'package:yggdrasil/src/theme/_theme.dart';
 
-class YgLayoutBody extends StatefulWidget {
+class YgLayoutBody extends StatelessWidget {
   const YgLayoutBody({
     super.key,
     required this.child,
     this.footer,
+    this.loading = false,
     this.footerBehavior = YgFooterBehavior.sticky,
   });
 
   final Widget child;
   final Widget? footer;
   final YgFooterBehavior footerBehavior;
-
-  @override
-  State<YgLayoutBody> createState() => _YgLayoutBodyState();
-}
-
-class _YgLayoutBodyState extends State<YgLayoutBody> {
-  final ScrollController _scrollController = ScrollController();
-  YgLayoutHeaderControllerProvider? _layoutControllerProvider;
-
-  @override
-  void didChangeDependencies() {
-    _layoutControllerProvider?.controller.removeScrollEventListener(_handleScrollEvent);
-    _layoutControllerProvider = YgLayoutHeaderControllerProvider.maybeOf(context);
-    _layoutControllerProvider?.controller.addScrollEventListener(_handleScrollEvent);
-    super.didChangeDependencies();
-  }
-
-  @override
-  void dispose() {
-    _scrollController.dispose();
-    super.dispose();
-  }
+  final bool loading;
 
   @override
   Widget build(BuildContext context) {
-    Widget? footer = widget.footer;
+    return YgLayoutBodyInternal(
+      builder: _buildContent,
+      loading: loading,
+    );
+  }
+
+  Widget _buildContent(BuildContext context, YgLayoutBodyController controller) {
+    Widget? footer = this.footer;
     if (footer == null) {
-      return _buildLayout(widget.child);
+      return _buildLayout(
+        child: child,
+        controller: controller,
+        context: context,
+      );
     }
 
     final YgLayoutTheme theme = context.layoutTheme;
@@ -60,7 +52,7 @@ class _YgLayoutBodyState extends State<YgLayoutBody> {
       ),
     );
 
-    switch (widget.footerBehavior) {
+    switch (footerBehavior) {
       case YgFooterBehavior.sticky:
         return Column(
           mainAxisSize: MainAxisSize.min,
@@ -70,7 +62,9 @@ class _YgLayoutBodyState extends State<YgLayoutBody> {
               removeBottom: true,
               child: Expanded(
                 child: _buildLayout(
-                  widget.child,
+                  child: child,
+                  controller: controller,
+                  context: context,
                 ),
               ),
             ),
@@ -79,62 +73,39 @@ class _YgLayoutBodyState extends State<YgLayoutBody> {
         );
       case YgFooterBehavior.pushDown:
         return _buildLayout(
-          YgPushDownFooterRenderWidget(
+          child: YgPushDownFooterRenderWidget(
             children: <Widget>[
-              widget.child,
+              child,
               footer,
             ],
           ),
+          controller: controller,
+          context: context,
         );
     }
   }
 
-  Widget _buildLayout(Widget child) {
-    return NotificationListener<ScrollNotification>(
-      onNotification: _handleScrollNotification,
-      child: RepaintBoundary(
-        child: SingleChildScrollView(
-          controller: _scrollController,
-          child: RepaintBoundary(
-            child: YgLayoutContentPositioner(
-              child: MediaQuery.removePadding(
-                context: context,
-                removeTop: true,
-                removeBottom: true,
-                removeLeft: true,
-                removeRight: true,
-                child: child,
-              ),
+  Widget _buildLayout({
+    required BuildContext context,
+    required Widget child,
+    required YgLayoutBodyController controller,
+  }) {
+    return RepaintBoundary(
+      child: SingleChildScrollView(
+        physics: HeaderAwareScrollPhysics(controller: controller),
+        child: RepaintBoundary(
+          child: YgLayoutContentPositioner(
+            child: MediaQuery.removePadding(
+              context: context,
+              removeTop: true,
+              removeBottom: true,
+              removeLeft: true,
+              removeRight: true,
+              child: child,
             ),
           ),
         ),
       ),
-    );
-  }
-
-  bool _handleScrollNotification(ScrollNotification notification) {
-    final YgLayoutHeaderControllerProvider? provider = _layoutControllerProvider;
-    if (provider != null) {
-      provider.controller.handleScrollNotification(
-        provider.index,
-        notification,
-      );
-    }
-
-    return false;
-  }
-
-  void _handleScrollEvent(YgLayoutScrollEvent event) {
-    if (event.target != _layoutControllerProvider?.index) {
-      return;
-    }
-
-    final double newOffset = _scrollController.position.extentBefore + event.offset;
-
-    _scrollController.animateTo(
-      newOffset,
-      duration: event.duration,
-      curve: event.curve,
     );
   }
 }

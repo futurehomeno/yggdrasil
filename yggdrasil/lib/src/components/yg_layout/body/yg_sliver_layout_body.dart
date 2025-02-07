@@ -1,81 +1,37 @@
 import 'package:flutter/material.dart';
+import 'package:yggdrasil/src/components/yg_layout/body/yg_layout_body_internal.dart';
+import 'package:yggdrasil/src/components/yg_layout/controller/header_aware_scroll_physics.dart';
 import 'package:yggdrasil/src/components/yg_layout/controller/yg_layout_header_controller.dart';
-import 'package:yggdrasil/src/components/yg_layout/controller/yg_layout_header_controller_provider.dart';
 
 import '../widgets/yg_sliver_content_positioner.dart';
 
-class YgSliverLayoutBody extends StatefulWidget {
+class YgSliverLayoutBody extends StatelessWidget {
   const YgSliverLayoutBody({
     super.key,
     required this.sliver,
+    this.loading = false,
   });
 
   final Widget sliver;
-
-  @override
-  State<YgSliverLayoutBody> createState() => _YgSliverLayoutBodyState();
-}
-
-class _YgSliverLayoutBodyState extends State<YgSliverLayoutBody> {
-  YgLayoutHeaderControllerProvider? _layoutControllerProvider;
-  final ScrollController _scrollController = ScrollController();
-
-  @override
-  void didChangeDependencies() {
-    _layoutControllerProvider?.controller.removeScrollEventListener(_handleScrollEvent);
-    _layoutControllerProvider = YgLayoutHeaderControllerProvider.maybeOf(context);
-    _layoutControllerProvider?.controller.addScrollEventListener(_handleScrollEvent);
-    super.didChangeDependencies();
-  }
-
-  @override
-  void dispose() {
-    _layoutControllerProvider?.controller.removeScrollEventListener(_handleScrollEvent);
-    _scrollController.dispose();
-    super.dispose();
-  }
+  final bool loading;
 
   @override
   Widget build(BuildContext context) {
-    return NotificationListener<ScrollNotification>(
-      onNotification: _handleScrollNotification,
-      child: CustomScrollView(
-        controller: _scrollController,
-        slivers: <Widget>[
-          YgSliverContentPositioner(
-            child: SliverSafeArea(
-              top: false,
-              sliver: widget.sliver,
+    return YgLayoutBodyInternal(
+      loading: loading,
+      builder: (BuildContext context, YgLayoutBodyController controller) {
+        return CustomScrollView(
+          physics: HeaderAwareScrollPhysics(controller: controller),
+          slivers: <Widget>[
+            YgSliverContentPositioner(
+              child: SliverSafeArea(
+                top: false,
+                sliver: sliver,
+              ),
             ),
-          ),
-        ],
-      ),
-    );
-  }
-
-  bool _handleScrollNotification(ScrollNotification notification) {
-    final YgLayoutHeaderControllerProvider? provider = _layoutControllerProvider;
-    if (provider != null) {
-      provider.controller.handleScrollNotification(
-        provider.index,
-        notification,
-      );
-    }
-
-    return false;
-  }
-
-  void _handleScrollEvent(YgLayoutScrollEvent event) {
-    if (event.target != _layoutControllerProvider?.index) {
-      return;
-    }
-
-    final double newOffset = _scrollController.position.extentBefore + event.offset;
-
-    _scrollController.animateTo(
-      newOffset,
-      duration: event.duration,
-      curve: event.curve,
+          ],
+        );
+      },
     );
   }
 }

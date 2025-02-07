@@ -16,18 +16,20 @@ class YgLayoutHeaderRenderWidget extends MultiChildRenderObjectWidget {
     required this.controller,
     required this.headerColor,
     required this.behavior,
+    required this.padding,
   });
 
   final YgLayoutHeaderController controller;
   final Color headerColor;
   final YgHeaderBehavior behavior;
+  final EdgeInsets padding;
 
   @override
   RenderObject createRenderObject(BuildContext context) {
     return YgLayoutHeaderRenderer(
       controller: controller,
       headerColor: headerColor,
-      viewPadding: MediaQuery.paddingOf(context),
+      viewPadding: padding,
       headerBehavior: behavior,
     );
   }
@@ -37,7 +39,7 @@ class YgLayoutHeaderRenderWidget extends MultiChildRenderObjectWidget {
     renderObject.controller = controller;
     renderObject.headerColor = headerColor;
     renderObject.headerBehavior = behavior;
-    renderObject.viewPadding = MediaQuery.paddingOf(context);
+    renderObject.viewPadding = padding;
   }
 }
 
@@ -99,7 +101,6 @@ class YgLayoutHeaderRenderer extends RenderBox with ContainerRenderObjectMixin<R
   // endregion
 
   @override
-  // TODO: implement isRepaintBoundary
   bool get isRepaintBoundary => true;
 
   @override
@@ -109,7 +110,6 @@ class YgLayoutHeaderRenderer extends RenderBox with ContainerRenderObjectMixin<R
 
   @override
   void performLayout() {
-    print('YgLayoutHeaderRenderer.performLayout');
     // Size is always the same.
     size = constraints.biggest;
 
@@ -211,8 +211,6 @@ class YgLayoutHeaderRenderer extends RenderBox with ContainerRenderObjectMixin<R
 
   @override
   void paint(PaintingContext context, Offset offset) {
-    print('YgLayoutHeaderRenderer.paint');
-
     final _Children(
       :RenderBox? appBar,
       :RenderBox? loading,
@@ -220,7 +218,7 @@ class YgLayoutHeaderRenderer extends RenderBox with ContainerRenderObjectMixin<R
       :RenderBox? trailing,
     ) = _getChildren();
 
-    final double t = controller.headerOffset.value;
+    final double t = controller.headerOffsetFraction.value;
     final double topPadding = viewPadding.top;
 
     // We set the offset of every child on the parent data rather than just

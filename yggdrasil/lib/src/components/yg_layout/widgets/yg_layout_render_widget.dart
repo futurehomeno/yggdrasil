@@ -28,7 +28,6 @@ class YgLayoutRenderer extends RenderBox
 
   @override
   void performLayout() {
-    print('YgLayoutRenderer.performLayout');
     size = constraints.biggest;
     final BoxConstraints childConstraints = BoxConstraints.tight(size);
 
@@ -40,7 +39,6 @@ class YgLayoutRenderer extends RenderBox
 
   @override
   void paint(PaintingContext context, Offset offset) {
-    print('YgLayoutRenderer.paint');
     defaultPaint(context, offset);
   }
 

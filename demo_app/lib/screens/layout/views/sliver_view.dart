@@ -11,6 +11,9 @@ class SliverView extends StatelessWidget {
         itemBuilder: (BuildContext context, int index) {
           return YgListTile(
             title: 'List Tile #${index + 1}',
+            onTap: () {
+              print('List Tile #${index + 1}');
+            },
           );
         },
       ),
