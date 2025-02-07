@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:yggdrasil/src/components/yg_layout/body/yg_layout_body_internal.dart';
-import 'package:yggdrasil/src/components/yg_layout/controller/header_aware_scroll_physics.dart';
+import 'package:yggdrasil/src/components/yg_layout/controller/yg_layout_header_aware_scroll_physics.dart';
 import 'package:yggdrasil/src/components/yg_layout/controller/yg_layout_header_controller.dart';
 import 'package:yggdrasil/src/components/yg_layout/widgets/yg_sliver_content_positioner.dart';
 
@@ -20,7 +20,9 @@ class YgSliverLayoutBody extends StatelessWidget {
       loading: loading,
       builder: (BuildContext context, YgLayoutBodyController controller) {
         return CustomScrollView(
-          physics: HeaderAwareScrollPhysics(controller: controller),
+          physics: YgLayoutHeaderAwareScrollPhysics(
+            controller: controller,
+          ),
           slivers: <Widget>[
             YgSliverContentPositioner(
               child: SliverSafeArea(

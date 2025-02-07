@@ -3,8 +3,8 @@ import 'package:flutter/widgets.dart';
 
 import 'yg_layout_header_controller.dart';
 
-class HeaderAwareScrollPhysics extends ScrollPhysics {
-  const HeaderAwareScrollPhysics({
+class YgLayoutHeaderAwareScrollPhysics extends ScrollPhysics {
+  const YgLayoutHeaderAwareScrollPhysics({
     required this.controller,
     super.parent,
   });
@@ -12,8 +12,8 @@ class HeaderAwareScrollPhysics extends ScrollPhysics {
   final YgLayoutBodyController controller;
 
   @override
-  HeaderAwareScrollPhysics applyTo(ScrollPhysics? ancestor) {
-    return HeaderAwareScrollPhysics(
+  YgLayoutHeaderAwareScrollPhysics applyTo(ScrollPhysics? ancestor) {
+    return YgLayoutHeaderAwareScrollPhysics(
       parent: buildParent(ancestor),
       controller: controller,
     );
@@ -57,14 +57,16 @@ class HeaderAwareScrollPhysics extends ScrollPhysics {
     final double desiredEndPosition = naturalEndPosition + desiredOffsetFromNaturalEndPosition;
     final double desiredDelta = desiredEndPosition - position.pixels;
 
+    // Scenario 4:
     // There is no desired offset from the default simulation, so we can just
     // use the default simulation.
     if (desiredOffsetFromNaturalEndPosition.abs() < tolerance.distance) {
       return defaultSimulation;
     }
 
+    // Scenario 5:
     // The velocity is going in to the opposite direction from the desired delta,
-    // so we create a spring to go back to the desired position
+    // so we create a spring to go back to the desired position.
     if (velocity.sign != desiredDelta.sign) {
       return SpringSimulation(
         spring,
@@ -75,6 +77,9 @@ class HeaderAwareScrollPhysics extends ScrollPhysics {
       );
     }
 
+    // Scenario 6:
+    // The velocity is going in the same direction as the desired delta,
+    // so we create a friction simulation to go to the desired position.
     return FrictionSimulation.through(
       position.pixels,
       desiredEndPosition,

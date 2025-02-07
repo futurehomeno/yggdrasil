@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:yggdrasil/src/components/yg_layout/body/yg_layout_body_internal.dart';
-import 'package:yggdrasil/src/components/yg_layout/controller/header_aware_scroll_physics.dart';
+import 'package:yggdrasil/src/components/yg_layout/controller/yg_layout_header_aware_scroll_physics.dart';
 import 'package:yggdrasil/src/components/yg_layout/controller/yg_layout_header_controller.dart';
 import 'package:yggdrasil/src/components/yg_layout/enums/yg_footer_behavior.dart';
 import 'package:yggdrasil/src/components/yg_layout/widgets/yg_layout_content_positioner.dart';
@@ -8,7 +8,7 @@ import 'package:yggdrasil/src/components/yg_layout/widgets/yg_push_down_footer_r
 import 'package:yggdrasil/src/theme/_theme.dart';
 import 'package:yggdrasil/src/utils/yg_animated_opacity.dart';
 
-class YgLayoutBody extends StatelessWidget {
+class YgLayoutBody extends StatefulWidget {
   const YgLayoutBody({
     super.key,
     required this.child,
@@ -23,18 +23,29 @@ class YgLayoutBody extends StatelessWidget {
   final bool loading;
 
   @override
+  State<YgLayoutBody> createState() => _YgLayoutBodyState();
+}
+
+class _YgLayoutBodyState extends State<YgLayoutBody> {
+  final GlobalKey<State<StatefulWidget>> _contentKey = GlobalKey();
+  final GlobalKey<State<StatefulWidget>> _footerKey = GlobalKey();
+
+  @override
   Widget build(BuildContext context) {
     return YgLayoutBodyInternal(
       builder: _buildContent,
-      loading: loading,
+      loading: widget.loading,
     );
   }
 
   Widget _buildContent(BuildContext context, YgLayoutBodyController controller) {
-    Widget? footer = this.footer;
+    Widget? footer = widget.footer;
     if (footer == null) {
       return _buildLayout(
-        child: child,
+        child: SizedBox(
+          key: _contentKey,
+          child: widget.child,
+        ),
         controller: controller,
         context: context,
       );
@@ -43,6 +54,7 @@ class YgLayoutBody extends StatelessWidget {
     final YgLayoutTheme theme = context.layoutTheme;
 
     footer = Material(
+      key: _footerKey,
       color: theme.backgroundColor,
       child: SafeArea(
         top: false,
@@ -53,7 +65,7 @@ class YgLayoutBody extends StatelessWidget {
       ),
     );
 
-    switch (footerBehavior) {
+    switch (widget.footerBehavior) {
       case YgFooterBehavior.sticky:
         return _buildStickyLayout(
           context,
@@ -77,7 +89,10 @@ class YgLayoutBody extends StatelessWidget {
     return _buildLayout(
       child: YgPushDownFooterRenderWidget(
         children: <Widget>[
-          child,
+          SizedBox(
+            key: _contentKey,
+            child: widget.child,
+          ),
           footer,
         ],
       ),
@@ -102,7 +117,10 @@ class YgLayoutBody extends StatelessWidget {
                   context: context,
                   removeBottom: true,
                   child: _buildLayout(
-                    child: child,
+                    child: SizedBox(
+                      key: _contentKey,
+                      child: widget.child,
+                    ),
                     controller: controller,
                     context: context,
                   ),
@@ -155,7 +173,9 @@ class YgLayoutBody extends StatelessWidget {
   }) {
     return RepaintBoundary(
       child: SingleChildScrollView(
-        physics: HeaderAwareScrollPhysics(controller: controller),
+        physics: YgLayoutHeaderAwareScrollPhysics(
+          controller: controller,
+        ),
         child: RepaintBoundary(
           child: YgLayoutContentPositioner(
             child: MediaQuery.removePadding(

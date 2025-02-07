@@ -33,7 +33,9 @@ class _ConfigurableLayoutScreenState extends State<ConfigurableLayoutScreen> {
     return YgLayoutRegular(
       appBar: _appBar ? const YgAppBar2() : null,
       trailing: _trailing ? _buildTrailing() : null,
+      headerBehavior: _headerBehavior,
       child: YgLayoutBody(
+        footerBehavior: _footerBehavior,
         loading: _loading,
         footer: _footer ? _buildFooter() : null,
         child: _buildContent(),
