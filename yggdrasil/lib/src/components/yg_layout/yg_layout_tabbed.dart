@@ -55,17 +55,16 @@ class _YgLayoutTabbedState extends State<YgLayoutTabbed> with TickerProviderStat
           trailing: Material(
             type: MaterialType.transparency,
             child: Column(
+              mainAxisSize: MainAxisSize.min,
               children: <Widget>[
                 if (trailing != null) trailing,
-                IntrinsicHeight(
-                  child: YgTabBar(
-                    tabs: <YgTab>[
-                      for (final YgLayoutTab tab in widget.tabs)
-                        YgTab(
-                          label: tab.title,
-                        ),
-                    ],
-                  ),
+                YgTabBar(
+                  tabs: <YgTab>[
+                    for (final YgLayoutTab tab in widget.tabs)
+                      YgTab(
+                        label: tab.title,
+                      ),
+                  ],
                 ),
               ],
             ),
