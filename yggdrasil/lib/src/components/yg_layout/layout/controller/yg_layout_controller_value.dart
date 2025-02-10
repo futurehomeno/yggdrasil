@@ -1,0 +1,29 @@
+class YgLayoutControllerValue {
+  const YgLayoutControllerValue({
+    required this.headerShadow,
+    required this.loading,
+  });
+
+  final bool headerShadow;
+  final bool loading;
+
+  YgLayoutControllerValue copyWith({
+    bool? headerShadow,
+    bool? loading,
+  }) {
+    return YgLayoutControllerValue(
+      headerShadow: headerShadow ?? this.headerShadow,
+      loading: loading ?? this.loading,
+    );
+  }
+
+  @override
+  int get hashCode => Object.hash(
+        headerShadow,
+        loading,
+      );
+
+  @override
+  bool operator ==(Object other) =>
+      other is YgLayoutControllerValue && other.headerShadow == headerShadow && other.loading == loading;
+}

@@ -67,14 +67,21 @@ class _DelayedValueListenableBuilderState<T> extends State<DelayedValueListenabl
 
   void _valueChanged() {
     WidgetsBinding.instance.addPostFrameCallback((_) {
-      setState(() {
-        _value = widget.valueListenable.value;
-      });
+      if (!mounted) {
+        return;
+      }
+
+      _value = widget.valueListenable.value;
+      setState(() {});
     });
   }
 
   @override
   Widget build(BuildContext context) {
-    return widget.builder(context, _value, widget.child);
+    return widget.builder(
+      context,
+      _value,
+      widget.child,
+    );
   }
 }

@@ -6,7 +6,8 @@ class SliverView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return YgSliverLayoutBody(
+    return YgLayoutBody.sliver(
+      loading: true,
       sliver: SliverList.builder(
         itemBuilder: (BuildContext context, int index) {
           return YgListTile(

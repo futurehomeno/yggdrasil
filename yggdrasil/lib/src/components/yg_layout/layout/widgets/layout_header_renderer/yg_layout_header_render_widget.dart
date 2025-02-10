@@ -3,8 +3,8 @@ import 'dart:ui';
 
 import 'package:flutter/rendering.dart';
 import 'package:flutter/widgets.dart';
-import 'package:yggdrasil/src/components/yg_layout/controller/yg_layout_header_controller.dart';
 import 'package:yggdrasil/src/components/yg_layout/enums/yg_header_behavior.dart';
+import 'package:yggdrasil/src/components/yg_layout/layout/controller/yg_layout_header_controller.dart';
 import 'package:yggdrasil/src/utils/yg_inherited_padding/yg_inherited_render_padding_provider_mixin.dart';
 
 import 'yg_layout_header_slot.dart';

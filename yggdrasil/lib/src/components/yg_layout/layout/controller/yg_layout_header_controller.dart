@@ -1,9 +1,11 @@
+import 'package:flutter/foundation.dart';
 import 'package:flutter/widgets.dart';
-import 'package:yggdrasil/src/components/yg_layout/controller/yg_layout_header_controller_provider.dart';
+import 'package:yggdrasil/src/components/yg_layout/body/controller/_controller.dart';
+import 'package:yggdrasil/src/components/yg_layout/layout/widgets/yg_layout_header_controller_provider.dart';
 
-part 'yg_layout_body_controller.dart';
+import 'yg_layout_controller_value.dart';
 
-class YgLayoutHeaderController extends ValueNotifier<YgLayoutState> {
+class YgLayoutHeaderController extends ValueNotifier<YgLayoutControllerValue> {
   YgLayoutHeaderController({
     required TickerProvider vsync,
     int initialView = 0,
@@ -12,7 +14,7 @@ class YgLayoutHeaderController extends ValueNotifier<YgLayoutState> {
         ),
         _activeView = initialView,
         super(
-          const YgLayoutState(
+          const YgLayoutControllerValue(
             headerShadow: false,
             loading: false,
           ),
@@ -28,6 +30,14 @@ class YgLayoutHeaderController extends ValueNotifier<YgLayoutState> {
   final AnimationController _headerOffsetController;
 
   Animation<double> get headerOffsetFraction => _headerOffsetController;
+
+  final ValueNotifier<YgLayoutHeaderValue> _headerValue = ValueNotifier<YgLayoutHeaderValue>(
+    const YgLayoutHeaderValue(
+      collapsibleHeight: 0,
+      offset: 0,
+    ),
+  );
+  ValueListenable<YgLayoutHeaderValue> get headerValue => _headerValue;
 
   int _activeView;
   int get activeView => _activeView;
@@ -131,9 +141,9 @@ class YgLayoutHeaderController extends ValueNotifier<YgLayoutState> {
   }
 
   void _updateValue() {
-    final YgLayoutBodyState? activeState = _viewControllers[_activeView]?.value;
+    final YgLayoutBodyControllerValue? activeState = _viewControllers[_activeView]?.value;
     if (activeState == null) {
-      value = const YgLayoutState(
+      value = const YgLayoutControllerValue(
         headerShadow: false,
         loading: false,
       );
@@ -144,7 +154,7 @@ class YgLayoutHeaderController extends ValueNotifier<YgLayoutState> {
     final double offset = _headerOffsetController.value * _collapsibleHeight;
     final bool showShadow = (offset + 0.01) < activeState.extendBefore;
 
-    value = YgLayoutState(
+    value = YgLayoutControllerValue(
       headerShadow: showShadow,
       loading: activeState.loading,
     );
@@ -158,32 +168,12 @@ class YgLayoutHeaderController extends ValueNotifier<YgLayoutState> {
   }
 }
 
-class YgLayoutState {
-  const YgLayoutState({
-    required this.headerShadow,
-    required this.loading,
+class YgLayoutHeaderValue {
+  const YgLayoutHeaderValue({
+    required this.collapsibleHeight,
+    required this.offset,
   });
 
-  final bool headerShadow;
-  final bool loading;
-
-  YgLayoutState copyWith({
-    bool? headerShadow,
-    bool? loading,
-  }) {
-    return YgLayoutState(
-      headerShadow: headerShadow ?? this.headerShadow,
-      loading: loading ?? this.loading,
-    );
-  }
-
-  @override
-  int get hashCode => Object.hash(
-        headerShadow,
-        loading,
-      );
-
-  @override
-  bool operator ==(Object other) =>
-      other is YgLayoutState && other.headerShadow == headerShadow && other.loading == loading;
+  final double collapsibleHeight;
+  final double offset;
 }

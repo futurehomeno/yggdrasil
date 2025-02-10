@@ -1,17 +1,14 @@
-import 'package:flutter/material.dart';
-import 'package:yggdrasil/src/components/yg_layout/body/yg_layout_body_internal.dart';
-import 'package:yggdrasil/src/components/yg_layout/controller/yg_layout_header_aware_scroll_physics.dart';
-import 'package:yggdrasil/src/components/yg_layout/controller/yg_layout_header_controller.dart';
-import 'package:yggdrasil/src/components/yg_layout/widgets/yg_sliver_content_positioner.dart';
+part of 'yg_layout_body.dart';
 
-class YgSliverLayoutBody extends StatelessWidget {
-  const YgSliverLayoutBody({
+class _YgLayoutBodySliver extends StatelessWidget implements YgLayoutBody {
+  const _YgLayoutBodySliver({
     super.key,
     required this.sliver,
     this.loading = false,
   });
 
   final Widget sliver;
+  @override
   final bool loading;
 
   @override

@@ -1,6 +1,6 @@
-import 'package:flutter/material.dart';
-import 'package:yggdrasil/src/components/yg_layout/controller/yg_layout_header_controller.dart';
-import 'package:yggdrasil/src/components/yg_layout/controller/yg_layout_header_controller_provider.dart';
+import 'package:flutter/widgets.dart';
+import 'package:yggdrasil/src/components/yg_layout/body/controller/_controller.dart';
+import 'package:yggdrasil/src/components/yg_layout/layout/widgets/yg_layout_header_controller_provider.dart';
 
 class YgLayoutBodyInternal extends StatefulWidget {
   const YgLayoutBodyInternal({

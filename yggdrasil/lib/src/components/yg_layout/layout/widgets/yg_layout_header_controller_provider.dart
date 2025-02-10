@@ -1,6 +1,6 @@
 import 'package:flutter/widgets.dart';
 
-import 'yg_layout_header_controller.dart';
+import '../controller/yg_layout_header_controller.dart';
 
 class YgLayoutHeaderControllerProvider extends InheritedWidget {
   const YgLayoutHeaderControllerProvider({

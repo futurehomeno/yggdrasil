@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:yggdrasil/src/components/yg_layout/controller/yg_layout_header_controller.dart';
 import 'package:yggdrasil/src/components/yg_layout/enums/yg_header_behavior.dart';
-import 'package:yggdrasil/src/components/yg_layout/widgets/layout_header_renderer/_layout_renderer.dart';
-import 'package:yggdrasil/src/components/yg_layout/widgets/yg_layout_internal/yg_layout_header_loading_bar.dart';
-import 'package:yggdrasil/src/components/yg_layout/widgets/yg_layout_internal/yg_layout_header_shadow.dart';
-import 'package:yggdrasil/src/components/yg_layout/widgets/yg_layout_render_widget.dart';
+import 'package:yggdrasil/src/components/yg_layout/layout/controller/yg_layout_header_controller.dart';
+import 'package:yggdrasil/src/components/yg_layout/layout/widgets/layout_header_renderer/_layout_renderer.dart';
+import 'package:yggdrasil/src/components/yg_layout/layout/widgets/yg_layout_internal/yg_layout_header_loading_bar.dart';
+import 'package:yggdrasil/src/components/yg_layout/layout/widgets/yg_layout_internal/yg_layout_header_shadow.dart';
+import 'package:yggdrasil/src/components/yg_layout/layout/widgets/yg_layout_render_widget.dart';
 import 'package:yggdrasil/src/theme/_theme.dart';
 
 class YgLayoutInternal extends StatelessWidget {

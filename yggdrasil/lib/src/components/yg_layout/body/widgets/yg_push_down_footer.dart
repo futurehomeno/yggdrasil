@@ -2,8 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 import 'package:yggdrasil/src/utils/yg_inherited_padding/yg_inherited_render_padding_provider_mixin.dart';
 
-class YgPushDownFooterRenderWidget extends MultiChildRenderObjectWidget {
-  const YgPushDownFooterRenderWidget({
+class YgPushDownFooter extends MultiChildRenderObjectWidget {
+  const YgPushDownFooter({
     super.key,
     super.children,
   });

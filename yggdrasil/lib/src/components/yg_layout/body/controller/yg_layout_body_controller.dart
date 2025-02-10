@@ -1,10 +1,12 @@
-part of 'yg_layout_header_controller.dart';
+import 'package:flutter/widgets.dart';
+import 'package:yggdrasil/src/components/yg_layout/body/controller/_controller.dart';
+import 'package:yggdrasil/src/components/yg_layout/layout/controller/yg_layout_header_controller.dart';
 
-class YgLayoutBodyController extends ValueNotifier<YgLayoutBodyState> {
+class YgLayoutBodyController extends ValueNotifier<YgLayoutBodyControllerValue> {
   YgLayoutBodyController({
     bool loading = false,
   }) : super(
-          YgLayoutBodyState(
+          YgLayoutBodyControllerValue(
             loading: loading,
             extendAfter: 0,
             extendBefore: 0,
@@ -55,11 +57,13 @@ class YgLayoutBodyController extends ValueNotifier<YgLayoutBodyState> {
       return 0;
     }
 
-    final double headerOffset = parent._headerOffsetController.value;
-    final double collapsibleHeight = parent._collapsibleHeight;
+    final YgLayoutHeaderValue(
+      :double collapsibleHeight,
+      :double offset,
+    ) = parent.headerValue.value;
 
     final double fractionalDelta = delta / collapsibleHeight;
-    final double newValue = (headerOffset + fractionalDelta).clamp(0, 1);
+    final double newValue = (offset + fractionalDelta).clamp(0, 1);
     final double target = newValue < 0.5 ? 0 : 1;
     final double difference = target - newValue;
 
@@ -90,42 +94,4 @@ class YgLayoutBodyController extends ValueNotifier<YgLayoutBodyState> {
   void removeScrollListener(ValueChanged<double> listener) {
     _scrollListeners.remove(listener);
   }
-}
-
-class YgLayoutBodyState {
-  const YgLayoutBodyState({
-    required this.loading,
-    required this.extendAfter,
-    required this.extendBefore,
-  });
-
-  final bool loading;
-  final double extendBefore;
-  final double extendAfter;
-
-  YgLayoutBodyState copyWith({
-    bool? loading,
-    double? extendBefore,
-    double? extendAfter,
-  }) {
-    return YgLayoutBodyState(
-      loading: loading ?? this.loading,
-      extendBefore: extendBefore ?? this.extendBefore,
-      extendAfter: extendAfter ?? this.extendAfter,
-    );
-  }
-
-  @override
-  int get hashCode => Object.hash(
-        loading,
-        extendBefore,
-        extendAfter,
-      );
-
-  @override
-  bool operator ==(Object other) =>
-      other is YgLayoutBodyState &&
-      other.loading == loading &&
-      other.extendBefore == extendBefore &&
-      other.extendAfter == extendAfter;
 }

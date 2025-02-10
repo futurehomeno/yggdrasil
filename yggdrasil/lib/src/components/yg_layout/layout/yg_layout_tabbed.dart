@@ -1,44 +1,25 @@
-import 'package:flutter/material.dart';
-import 'package:yggdrasil/src/components/yg_layout/controller/yg_layout_header_controller_provider.dart';
-import 'package:yggdrasil/src/components/yg_layout/enums/yg_header_behavior.dart';
-import 'package:yggdrasil/src/components/yg_layout/models/yg_layout_tab.dart';
-import 'package:yggdrasil/src/components/yg_tab/yg_tab.dart';
-import 'package:yggdrasil/src/components/yg_tab/yg_tab_bar.dart';
+part of 'yg_layout.dart';
 
-import 'controller/yg_layout_header_controller.dart';
-import 'widgets/yg_layout_internal/yg_layout_internal.dart';
-
-class YgLayoutTabbed extends StatefulWidget {
+class YgLayoutTabbed extends YgLayout {
   const YgLayoutTabbed({
     super.key,
+    super.appBar,
+    super.trailing,
     required this.tabs,
-    this.appBar,
-    this.trailing,
     this.initialTab = 0,
-    this.headerBehavior = YgHeaderBehavior.fixed,
     this.loading = false,
-  });
+    super.headerBehavior = YgHeaderBehavior.fixed,
+  }) : super._();
 
-  final Widget? appBar;
-  final Widget? trailing;
   final int initialTab;
   final List<YgLayoutTab> tabs;
-  final YgHeaderBehavior headerBehavior;
   final bool loading;
 
   @override
-  State<YgLayoutTabbed> createState() => _YgLayoutTabbedState();
+  State<YgLayout> createState() => YgLayoutTabbedState();
 }
 
-class _YgLayoutTabbedState extends State<YgLayoutTabbed> with TickerProviderStateMixin {
-  late final YgLayoutHeaderController _controller = YgLayoutHeaderController(vsync: this);
-
-  @override
-  void dispose() {
-    _controller.dispose();
-    super.dispose();
-  }
-
+class YgLayoutTabbedState extends _YgLayoutState<YgLayoutTabbed> {
   @override
   Widget build(BuildContext context) {
     final Widget? trailing = widget.trailing;

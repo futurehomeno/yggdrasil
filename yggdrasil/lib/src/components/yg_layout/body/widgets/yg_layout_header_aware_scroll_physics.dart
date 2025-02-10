@@ -1,7 +1,6 @@
 import 'package:flutter/physics.dart';
 import 'package:flutter/widgets.dart';
-
-import 'yg_layout_header_controller.dart';
+import 'package:yggdrasil/src/components/yg_layout/body/controller/_controller.dart';
 
 class YgLayoutHeaderAwareScrollPhysics extends ScrollPhysics {
   const YgLayoutHeaderAwareScrollPhysics({
