@@ -13,8 +13,8 @@ import 'package:yggdrasil/yggdrasil.dart';
 /// !-- IMPORTANT --!
 /// There's no good way to make preferredSize use context to determine
 /// the size from the theme.
-class YgAppBar extends StatefulWidget with StatefulWidgetDebugMixin implements PreferredSizeWidget {
-  YgAppBar({
+class YgAppBarInternalLegacy extends StatefulWidget with StatefulWidgetDebugMixin implements PreferredSizeWidget {
+  YgAppBarInternalLegacy({
     super.key,
     this.title,
     this.centerTitle = false,
@@ -80,13 +80,13 @@ class YgAppBar extends StatefulWidget with StatefulWidgetDebugMixin implements P
   // endregion
 
   @override
-  State<YgAppBar> createState() => _YgAppBarState();
+  State<YgAppBarInternalLegacy> createState() => _YgAppBarInternalLegacyState();
 
   @override
   YgDebugType get debugType => YgDebugType.layout;
 }
 
-class _YgAppBarState extends State<YgAppBar> {
+class _YgAppBarInternalLegacyState extends State<YgAppBarInternalLegacy> {
   ScrollNotificationObserverState? _scrollNotificationObserver;
   bool _scrolledUnder = false;
 

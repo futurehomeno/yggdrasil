@@ -18,7 +18,7 @@ class LayoutRegularStickyFooterScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return const YgLayoutRegular(
-      appBar: YgAppBar2(),
+      appBar: YgAppBar(),
       child: StickyFooterView(),
     );
   }

@@ -31,7 +31,7 @@ class _ConfigurableLayoutScreenState extends State<ConfigurableLayoutScreen> {
   @override
   Widget build(BuildContext context) {
     return YgLayoutRegular(
-      appBar: _appBar ? const YgAppBar2() : null,
+      appBar: _appBar ? const YgAppBar() : null,
       trailing: _trailing ? _buildTrailing() : null,
       headerBehavior: _headerBehavior,
       child: YgLayoutBody(

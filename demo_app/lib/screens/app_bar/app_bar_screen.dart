@@ -31,7 +31,7 @@ class _AppBarScreenState extends State<AppBarScreen> {
   @override
   Widget build(BuildContext context) {
     return DemoScreen(
-      appBar: YgAppBar2(
+      appBar: YgAppBar(
         title: 'App bar',
         leading: _getLeading(),
         automaticallyImplyLeading: _automaticallyImplyLeading,

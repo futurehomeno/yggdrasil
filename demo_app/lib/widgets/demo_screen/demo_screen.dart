@@ -55,7 +55,7 @@ abstract class DemoScreen extends StatelessWidget {
 
     return Consumer<YgAppState>(
       builder: (BuildContext context, YgAppState ygAppState, Widget? widget) {
-        return YgAppBar2(
+        return YgAppBar(
           title: componentName ?? '',
           centerTitle: false,
           leading: const Padding(
