@@ -37,6 +37,8 @@ class _YgScrollShadowState extends State<YgScrollShadow> {
       child: NotificationListener<ScrollUpdateNotification>(
         onNotification: _handleScrollUpdateNotification,
         child: YgScrollShadowOverlay(
+          bottom: _showBottomShadow,
+          top: _showTopShadow,
           child: widget.child,
         ),
       ),
