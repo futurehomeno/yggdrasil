@@ -1,9 +1,9 @@
 import 'package:flutter/widgets.dart';
 import 'package:yggdrasil/src/components/yg_layout/body/controller/_controller.dart';
-import 'package:yggdrasil/src/components/yg_layout/layout/widgets/yg_layout_header_controller_provider.dart';
 
 import 'yg_layout_controller_value.dart';
 
+/// Controller which manages the current state of the YgLayout header.
 class YgLayoutHeaderController extends ValueNotifier<YgLayoutControllerValue> {
   YgLayoutHeaderController({
     required TickerProvider vsync,
@@ -19,10 +19,6 @@ class YgLayoutHeaderController extends ValueNotifier<YgLayoutControllerValue> {
           ),
         ) {
     _headerOffsetController.addListener(notifyListeners);
-  }
-
-  static YgLayoutHeaderController? maybeOf(BuildContext context) {
-    return context.dependOnInheritedWidgetOfExactType<YgLayoutHeaderControllerProvider>()?.controller;
   }
 
   final Map<int, YgLayoutBodyController> _viewControllers = <int, YgLayoutBodyController>{};

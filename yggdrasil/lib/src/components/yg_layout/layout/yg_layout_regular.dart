@@ -1,14 +1,16 @@
 part of 'yg_layout.dart';
 
+/// A layout with a single child.
 class YgLayoutRegular extends YgLayout {
   const YgLayoutRegular({
     super.key,
     required this.child,
     super.appBar,
-    super.trailing,
+    super.bottom,
     super.headerBehavior,
   }) : super._();
 
+  /// The child shown in the current layout.
   final Widget child;
 
   @override
@@ -22,7 +24,7 @@ class YgLayoutRegularState extends _YgLayoutState<YgLayoutRegular> {
       controller: _controller,
       headerBehavior: widget.headerBehavior,
       appBar: widget.appBar,
-      trailing: widget.trailing,
+      bottom: widget.bottom,
       content: YgLayoutHeaderControllerProvider(
         controller: _controller,
         index: 0,

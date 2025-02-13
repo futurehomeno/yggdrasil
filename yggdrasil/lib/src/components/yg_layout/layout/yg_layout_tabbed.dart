@@ -1,19 +1,33 @@
 part of 'yg_layout.dart';
 
+/// A layout with tabs.
+///
+/// Internally manages the tab controller and tab bar view. Automatically
+/// selects the current tab as the scroll shadow and header animation provider.
+///
+/// Automatically resets the header location if the selected tab changes.
 class YgLayoutTabbed extends YgLayout {
   const YgLayoutTabbed({
     super.key,
     super.appBar,
-    super.trailing,
+    super.bottom,
     required this.tabs,
     this.initialTab = 0,
-    this.loading = false,
+    this.swiping = true,
     super.headerBehavior = YgHeaderBehavior.fixed,
   }) : super._();
 
+  /// The tab shown when the widget first loads.
   final int initialTab;
+
+  /// A list of tabs that are displayed in the layout.
   final List<YgLayoutTab> tabs;
-  final bool loading;
+
+  /// Whether the tabs can be swiped by the user.
+  ///
+  /// When set to false, the current tab can only be changed through clicking on
+  /// another tab in the tab bar.
+  final bool swiping;
 
   @override
   State<YgLayout> createState() => YgLayoutTabbedState();
@@ -22,7 +36,14 @@ class YgLayoutTabbed extends YgLayout {
 class YgLayoutTabbedState extends _YgLayoutState<YgLayoutTabbed> {
   @override
   Widget build(BuildContext context) {
-    final Widget? trailing = widget.trailing;
+    final Widget? trailing = widget.bottom;
+
+    final ScrollPhysics? physics;
+    if (widget.swiping) {
+      physics = null;
+    } else {
+      physics = const NeverScrollableScrollPhysics();
+    }
 
     return NotificationListener<ScrollUpdateNotification>(
       onNotification: _handleScrollNotification,
@@ -33,7 +54,7 @@ class YgLayoutTabbedState extends _YgLayoutState<YgLayoutTabbed> {
           controller: _controller,
           headerBehavior: widget.headerBehavior,
           appBar: widget.appBar,
-          trailing: Material(
+          bottom: Material(
             type: MaterialType.transparency,
             child: Column(
               mainAxisSize: MainAxisSize.min,
@@ -51,6 +72,7 @@ class YgLayoutTabbedState extends _YgLayoutState<YgLayoutTabbed> {
             ),
           ),
           content: TabBarView(
+            physics: physics,
             children: <Widget>[
               for (int i = 0; i < widget.tabs.length; i++)
                 YgLayoutHeaderControllerProvider(

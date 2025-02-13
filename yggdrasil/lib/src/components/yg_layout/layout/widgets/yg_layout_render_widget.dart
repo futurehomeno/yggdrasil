@@ -2,6 +2,8 @@ import 'package:flutter/rendering.dart';
 import 'package:flutter/widgets.dart';
 import 'package:yggdrasil/src/utils/yg_inherited_padding/yg_inherited_render_padding_provider_mixin.dart';
 
+/// Internal widget responsible for positioning the content and header of the
+/// layout.
 class YgLayoutRenderWidget extends MultiChildRenderObjectWidget {
   const YgLayoutRenderWidget({
     super.key,

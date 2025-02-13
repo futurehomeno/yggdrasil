@@ -8,6 +8,7 @@ import 'package:yggdrasil/src/components/yg_layout/layout/widgets/yg_layout_inte
 import 'package:yggdrasil/src/components/yg_layout/layout/widgets/yg_layout_render_widget.dart';
 import 'package:yggdrasil/src/theme/_theme.dart';
 
+/// Internal widget which provides the internal layout for the [YgLayout].
 class YgLayoutInternal extends StatelessWidget {
   const YgLayoutInternal({
     super.key,
@@ -15,13 +16,22 @@ class YgLayoutInternal extends StatelessWidget {
     required this.controller,
     required this.headerBehavior,
     this.appBar,
-    this.trailing,
+    this.bottom,
   });
 
+  /// The content shown in the layout.
   final Widget content;
+
+  /// The appBar shown in the layout.
   final Widget? appBar;
-  final Widget? trailing;
+
+  /// The widget shown bellow the [appBar].
+  final Widget? bottom;
+
+  /// The controller responsible for animating the header.
   final YgLayoutHeaderController controller;
+
+  /// The header behavior.
   final YgHeaderBehavior headerBehavior;
 
   @override
@@ -29,7 +39,7 @@ class YgLayoutInternal extends StatelessWidget {
     final YgLayoutTheme theme = context.layoutTheme;
 
     final Widget? appBar = this.appBar;
-    final Widget? trailing = this.trailing;
+    final Widget? bottom = this.bottom;
 
     return AnnotatedRegion<SystemUiOverlayStyle>(
       value: SystemUiOverlayStyle(
@@ -55,10 +65,10 @@ class YgLayoutInternal extends StatelessWidget {
                       slot: YgLayoutHeaderSlot.appBar,
                       child: appBar,
                     ),
-                  if (trailing != null)
+                  if (bottom != null)
                     YgLayoutChildWidget(
                       slot: YgLayoutHeaderSlot.trailing,
-                      child: trailing,
+                      child: bottom,
                     ),
                   YgLayoutHeaderLoadingBar(
                     controller: controller,

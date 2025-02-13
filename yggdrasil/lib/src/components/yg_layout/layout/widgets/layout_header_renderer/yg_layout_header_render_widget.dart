@@ -9,6 +9,8 @@ import 'package:yggdrasil/src/utils/yg_inherited_padding/yg_inherited_render_pad
 
 import 'yg_layout_header_slot.dart';
 
+/// Internal widget responsible for positioning all widgets in the header of the
+/// [YgLayout] and adding a background.
 class YgLayoutHeaderRenderWidget extends MultiChildRenderObjectWidget {
   const YgLayoutHeaderRenderWidget({
     super.key,

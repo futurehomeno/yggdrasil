@@ -6,12 +6,14 @@ import 'package:yggdrasil/src/theme/_theme.dart';
 import 'package:yggdrasil/src/utils/delayed_value_listenable_builder.dart';
 import 'package:yggdrasil/src/utils/yg_animated_opacity.dart';
 
+/// Internal widget which builds the loading bar shown in the [YgLayoutHeader].
 class YgLayoutHeaderLoadingBar extends StatelessWidget {
   const YgLayoutHeaderLoadingBar({
     super.key,
     required this.controller,
   });
 
+  /// The controller of the loading bar.
   final YgLayoutHeaderController controller;
 
   @override

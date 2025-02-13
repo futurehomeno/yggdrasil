@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:yggdrasil/src/theme/_theme.dart';
+import 'package:yggdrasil/src/utils/yg_scroll_shadow/yg_scroll_shadow_gradient.dart';
 
+/// Internal widget which applies scroll shadow to a child widget.
 class YgScrollShadowOverlay extends StatelessWidget {
   const YgScrollShadowOverlay({
     super.key,
@@ -9,8 +10,13 @@ class YgScrollShadowOverlay extends StatelessWidget {
     this.top,
   });
 
+  /// The child widget which gets scroll shadow applied to it.
   final Widget child;
+
+  /// Whether to show the bottom scroll shadow.
   final bool? bottom;
+
+  /// Whether to show the top scroll shadow.
   final bool? top;
 
   @override
@@ -23,13 +29,11 @@ class YgScrollShadowOverlay extends StatelessWidget {
         child,
         if (bottom != null)
           _buildShadow(
-            context,
             alignment: Alignment.bottomCenter,
             shown: bottom,
           ),
         if (top != null)
           _buildShadow(
-            context,
             alignment: Alignment.topCenter,
             shown: top,
           ),
@@ -37,38 +41,19 @@ class YgScrollShadowOverlay extends StatelessWidget {
     );
   }
 
-  Widget _buildShadow(
-    BuildContext context, {
+  Widget _buildShadow({
     required bool shown,
     required Alignment alignment,
   }) {
-    final YgScrollShadowThemes scrollShadowThemes = context.internalTheme.scrollShadow;
-
     return Positioned(
       bottom: alignment.y > 0 ? 0 : null,
       top: alignment.y < 0 ? 0 : null,
       left: 0,
       right: 0,
       child: IgnorePointer(
-        child: RepaintBoundary(
-          child: AnimatedOpacity(
-            duration: scrollShadowThemes.fadeDuration,
-            curve: scrollShadowThemes.fadeCurve,
-            opacity: shown ? 1 : 0,
-            child: Container(
-              height: scrollShadowThemes.shadowSize,
-              decoration: BoxDecoration(
-                gradient: LinearGradient(
-                  colors: <Color>[
-                    scrollShadowThemes.shadowColor,
-                    scrollShadowThemes.shadowColor.withOpacity(0),
-                  ],
-                  end: -alignment,
-                  begin: alignment,
-                ),
-              ),
-            ),
-          ),
+        child: YgScrollShadowGradient(
+          alignment: alignment,
+          shown: shown,
         ),
       ),
     );

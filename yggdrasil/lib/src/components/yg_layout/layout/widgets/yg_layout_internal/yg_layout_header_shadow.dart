@@ -3,46 +3,30 @@ import 'package:yggdrasil/src/components/yg_layout/layout/controller/yg_layout_c
 import 'package:yggdrasil/src/components/yg_layout/layout/controller/yg_layout_header_controller.dart';
 import 'package:yggdrasil/src/components/yg_layout/layout/widgets/layout_header_renderer/_layout_renderer.dart';
 import 'package:yggdrasil/src/utils/delayed_value_listenable_builder.dart';
-import 'package:yggdrasil/src/utils/yg_animated_opacity.dart';
+import 'package:yggdrasil/src/utils/yg_scroll_shadow/yg_scroll_shadow_gradient.dart';
 
+/// Internal widget which builds the shadow shown under the [YgLayout] header.
 class YgLayoutHeaderShadow extends StatelessWidget {
   const YgLayoutHeaderShadow({
     super.key,
     required this.controller,
   });
 
+  /// The controller of the shadow.
   final YgLayoutHeaderController controller;
 
   @override
   Widget build(BuildContext context) {
     return YgLayoutChildWidget(
       slot: YgLayoutHeaderSlot.shadow,
-      child: RepaintBoundary(
-        child: DelayedValueListenableBuilder<YgLayoutControllerValue>(
-          valueListenable: controller,
-          builder: (BuildContext context, YgLayoutControllerValue value, Widget? child) {
-            return YgAnimatedOpacity(
-              opacity: value.headerShadow ? 1 : 0,
-              duration: const Duration(milliseconds: 200),
-              curve: Curves.easeInOut,
-              child: Container(
-                decoration: BoxDecoration(
-                  gradient: LinearGradient(
-                    colors: <Color>[
-                      // Color.fromRGBO(36, 45, 65, 0.19),
-                      // Color.fromRGBO(36, 45, 65, 0),
-                      Colors.black.withOpacity(0.19),
-                      Colors.black.withOpacity(0),
-                    ],
-                    begin: Alignment.topCenter,
-                    end: Alignment.bottomCenter,
-                  ),
-                ),
-                height: 24,
-              ),
-            );
-          },
-        ),
+      child: DelayedValueListenableBuilder<YgLayoutControllerValue>(
+        valueListenable: controller,
+        builder: (BuildContext context, YgLayoutControllerValue value, Widget? child) {
+          return YgScrollShadowGradient(
+            alignment: Alignment.topCenter,
+            shown: value.headerShadow,
+          );
+        },
       ),
     );
   }

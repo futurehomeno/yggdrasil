@@ -25,14 +25,14 @@ class _ConfigurableLayoutScreenState extends State<ConfigurableLayoutScreen> {
   bool _loading = false;
   bool _appBar = true;
   bool _footer = false;
-  bool _trailing = false;
+  bool _bottom = false;
   int _segmentedButtonValue = 0;
 
   @override
   Widget build(BuildContext context) {
     return YgLayoutRegular(
       appBar: _appBar ? const YgAppBar() : null,
-      trailing: _trailing ? _buildTrailing() : null,
+      bottom: _bottom ? _buildBottom() : null,
       headerBehavior: _headerBehavior,
       child: YgLayoutBody(
         footerBehavior: _footerBehavior,
@@ -43,7 +43,7 @@ class _ConfigurableLayoutScreenState extends State<ConfigurableLayoutScreen> {
     );
   }
 
-  Widget _buildTrailing() {
+  Widget _buildBottom() {
     return Padding(
       padding: const EdgeInsets.all(20.0),
       child: YgSegmentedButton<int>(
@@ -153,9 +153,9 @@ class _ConfigurableLayoutScreenState extends State<ConfigurableLayoutScreen> {
           title: 'Trailing',
           child: YgSwitch(
             onChanged: (_) => setState(
-              () => _trailing ^= true,
+              () => _bottom ^= true,
             ),
-            value: _trailing,
+            value: _bottom,
           ),
         ),
         const YgSection(

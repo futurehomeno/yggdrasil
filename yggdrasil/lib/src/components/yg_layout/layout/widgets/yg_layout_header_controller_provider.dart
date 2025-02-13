@@ -2,6 +2,8 @@ import 'package:flutter/widgets.dart';
 
 import '../controller/yg_layout_header_controller.dart';
 
+/// Provides the current [YgLayoutHeaderController] and index of the view to the
+/// [YgLayoutBody].
 class YgLayoutHeaderControllerProvider extends InheritedWidget {
   const YgLayoutHeaderControllerProvider({
     super.key,
@@ -10,7 +12,10 @@ class YgLayoutHeaderControllerProvider extends InheritedWidget {
     required this.index,
   });
 
+  /// The current controller.
   final YgLayoutHeaderController controller;
+
+  /// The index of the child view.
   final int index;
 
   // ignore: prefer-widget-private-members

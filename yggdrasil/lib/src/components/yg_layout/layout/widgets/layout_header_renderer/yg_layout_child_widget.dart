@@ -4,6 +4,7 @@ import 'package:flutter/widgets.dart';
 import 'yg_layout_header_render_widget.dart';
 import 'yg_layout_header_slot.dart';
 
+/// Internal widget which add a slot to its child.
 class YgLayoutChildWidget extends ParentDataWidget<YgLayoutRendererParentData> {
   const YgLayoutChildWidget({
     super.key,

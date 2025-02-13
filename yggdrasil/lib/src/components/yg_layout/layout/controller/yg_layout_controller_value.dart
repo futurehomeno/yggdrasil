@@ -1,10 +1,14 @@
+/// The value of a [YgLayoutHeaderController].
 class YgLayoutControllerValue {
   const YgLayoutControllerValue({
     required this.headerShadow,
     required this.loading,
   });
 
+  /// Whether the header shadow is currently visible.
   final bool headerShadow;
+
+  /// Whether the loading bar is currently visible.
   final bool loading;
 
   YgLayoutControllerValue copyWith({
