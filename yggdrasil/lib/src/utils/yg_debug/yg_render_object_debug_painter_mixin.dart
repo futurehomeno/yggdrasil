@@ -69,6 +69,7 @@ mixin YgRenderObjectDebugPainterMixin on RenderObject {
         offset: offset,
         size: switch (this) {
           RenderBox(:final Size size) => size,
+          // ignore: invalid_use_of_protected_member
           RenderSliver(:final Size Function() getAbsoluteSize) => getAbsoluteSize(),
           _ => Size.zero,
         },

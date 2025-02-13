@@ -18,8 +18,10 @@ class [FTName | pascalcase]Screen extends StatelessWidget {
   Widget build(BuildContext context) {
     return const DemoScreen(
       componentName: '[FTName | pascalcase]',
-      child: Column(
-        children: <Widget>[],
+      child: YgLayoutBody(
+        child: Column(
+          children: <Widget>[],
+        )
       ),
     );
   }

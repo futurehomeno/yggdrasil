@@ -18,7 +18,9 @@ class LayoutRegularCenteredScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return const YgLayoutRegular(
-      appBar: YgAppBar(),
+      appBar: YgAppBar(
+        title: 'Centered content',
+      ),
       child: CenteredView(),
     );
   }

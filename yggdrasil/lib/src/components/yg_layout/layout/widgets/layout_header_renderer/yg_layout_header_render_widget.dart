@@ -241,8 +241,10 @@ class YgLayoutHeaderRenderer extends RenderBox with ContainerRenderObjectMixin<R
 
     if (trailing != null) {
       if (appBar == null) {
-        // TODO: this is wrong
-        trailing.offset = Offset(0, topPadding);
+        trailing.offset = Offset(
+          0,
+          lerpDouble(topPadding, -trailing.size.height, t)!,
+        );
       } else {
         final double offset = appBar.size.height + appBar.offset.dy;
 

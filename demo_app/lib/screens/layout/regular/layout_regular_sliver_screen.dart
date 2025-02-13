@@ -18,7 +18,10 @@ class LayoutRegularSliverScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return const YgLayoutRegular(
-      appBar: YgAppBar(),
+      headerBehavior: YgHeaderBehavior.hideAppBar,
+      appBar: YgAppBar(
+        title: 'Sliver layout',
+      ),
       child: SliverView(),
     );
   }

@@ -103,55 +103,26 @@ class _YgLayoutBodyRegularState extends State<_YgLayoutBodyRegular> {
       mainAxisSize: MainAxisSize.min,
       children: <Widget>[
         Expanded(
-          child: Stack(
-            children: <Widget>[
-              Positioned.fill(
-                child: MediaQuery.removePadding(
-                  context: context,
-                  removeBottom: true,
-                  child: _buildLayout(
-                    child: SizedBox(
-                      key: _contentKey,
-                      child: widget.child,
-                    ),
-                    controller: controller,
-                    context: context,
-                  ),
+          child: ValueListenableBuilder<YgLayoutBodyControllerValue>(
+            valueListenable: controller,
+            builder: (BuildContext context, YgLayoutBodyControllerValue value, Widget? child) {
+              return YgScrollShadowOverlay(
+                bottom: value.extendAfter > 0,
+                child: child!,
+              );
+            },
+            child: MediaQuery.removePadding(
+              context: context,
+              removeBottom: true,
+              child: _buildLayout(
+                child: SizedBox(
+                  key: _contentKey,
+                  child: widget.child,
                 ),
+                controller: controller,
+                context: context,
               ),
-              Positioned(
-                bottom: 0,
-                left: 0,
-                right: 0,
-                child: RepaintBoundary(
-                  child: ValueListenableBuilder<YgLayoutBodyControllerValue>(
-                    valueListenable: controller,
-                    builder: (BuildContext context, YgLayoutBodyControllerValue value, Widget? child) {
-                      return YgAnimatedOpacity(
-                        opacity: value.extendAfter > 0.01 ? 1 : 0,
-                        duration: const Duration(milliseconds: 200),
-                        curve: Curves.easeInOut,
-                        child: Container(
-                          decoration: BoxDecoration(
-                            gradient: LinearGradient(
-                              colors: <Color>[
-                                // Color.fromRGBO(36, 45, 65, 0.19),
-                                // Color.fromRGBO(36, 45, 65, 0),
-                                Colors.black.withOpacity(0.19),
-                                Colors.black.withOpacity(0),
-                              ],
-                              begin: Alignment.bottomCenter,
-                              end: Alignment.topCenter,
-                            ),
-                          ),
-                          height: 24,
-                        ),
-                      );
-                    },
-                  ),
-                ),
-              ),
-            ],
+            ),
           ),
         ),
         footer,

@@ -23,64 +23,66 @@ class LayoutScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return DemoScreen(
       componentName: 'Layout',
-      child: Column(
-        children: <Widget>[
-          YgSection.list(
-            title: 'Advanced layouts',
-            children: <Widget>[
-              YgListTile(
-                title: 'Configurable layout',
-                onTap: () => sl<YgRouter>().push(ConfigurableLayoutScreen.route()),
-                trailingWidgets: const <YgIcon>[YgIcon(YgIcons.caretRight)],
-              ),
-            ],
-          ),
-          YgSection.list(
-            title: 'Simple layouts',
-            children: <Widget>[
-              YgListTile(
-                title: 'Default layout',
-                onTap: () => sl<YgRouter>().push(LayoutRegularScreen.route()),
-                trailingWidgets: const <YgIcon>[YgIcon(YgIcons.caretRight)],
-              ),
-              YgListTile(
-                title: 'Centered content',
-                onTap: () => sl<YgRouter>().push(LayoutRegularCenteredScreen.route()),
-                trailingWidgets: const <YgIcon>[YgIcon(YgIcons.caretRight)],
-              ),
-              YgListTile(
-                title: 'Scrollable content',
-                onTap: () => sl<YgRouter>().push(LayoutRegularScrollableScreen.route()),
-                trailingWidgets: const <YgIcon>[YgIcon(YgIcons.caretRight)],
-              ),
-              YgListTile(
-                title: 'Infinite scroll content',
-                onTap: () => sl<YgRouter>().push(LayoutRegularSliverScreen.route()),
-                trailingWidgets: const <YgIcon>[YgIcon(YgIcons.caretRight)],
-              ),
-              YgListTile(
-                title: 'Sticky footer',
-                onTap: () => sl<YgRouter>().push(LayoutRegularStickyFooterScreen.route()),
-                trailingWidgets: const <YgIcon>[YgIcon(YgIcons.caretRight)],
-              ),
-              YgListTile(
-                title: 'Push down footer',
-                onTap: () => sl<YgRouter>().push(LayoutRegularPushDownFooterScreen.route()),
-                trailingWidgets: const <YgIcon>[YgIcon(YgIcons.caretRight)],
-              ),
-            ],
-          ),
-          YgSection.list(
-            title: 'Multi view layouts',
-            children: <Widget>[
-              YgListTile(
-                title: 'Tabbed layout',
-                onTap: () => sl<YgRouter>().push(LayoutTabbedScreen.route()),
-                trailingWidgets: const <YgIcon>[YgIcon(YgIcons.caretRight)],
-              ),
-            ],
-          ),
-        ],
+      child: YgLayoutBody(
+        child: Column(
+          children: <Widget>[
+            YgSection.list(
+              title: 'Advanced layouts',
+              children: <Widget>[
+                YgListTile(
+                  title: 'Configurable layout',
+                  onTap: () => sl<YgRouter>().push(ConfigurableLayoutScreen.route()),
+                  trailingWidgets: const <YgIcon>[YgIcon(YgIcons.caretRight)],
+                ),
+              ],
+            ),
+            YgSection.list(
+              title: 'Simple layouts',
+              children: <Widget>[
+                YgListTile(
+                  title: 'Default layout',
+                  onTap: () => sl<YgRouter>().push(LayoutRegularScreen.route()),
+                  trailingWidgets: const <YgIcon>[YgIcon(YgIcons.caretRight)],
+                ),
+                YgListTile(
+                  title: 'Centered content',
+                  onTap: () => sl<YgRouter>().push(LayoutRegularCenteredScreen.route()),
+                  trailingWidgets: const <YgIcon>[YgIcon(YgIcons.caretRight)],
+                ),
+                YgListTile(
+                  title: 'Scrollable content',
+                  onTap: () => sl<YgRouter>().push(LayoutRegularScrollableScreen.route()),
+                  trailingWidgets: const <YgIcon>[YgIcon(YgIcons.caretRight)],
+                ),
+                YgListTile(
+                  title: 'Infinite scroll content',
+                  onTap: () => sl<YgRouter>().push(LayoutRegularSliverScreen.route()),
+                  trailingWidgets: const <YgIcon>[YgIcon(YgIcons.caretRight)],
+                ),
+                YgListTile(
+                  title: 'Sticky footer',
+                  onTap: () => sl<YgRouter>().push(LayoutRegularStickyFooterScreen.route()),
+                  trailingWidgets: const <YgIcon>[YgIcon(YgIcons.caretRight)],
+                ),
+                YgListTile(
+                  title: 'Push down footer',
+                  onTap: () => sl<YgRouter>().push(LayoutRegularPushDownFooterScreen.route()),
+                  trailingWidgets: const <YgIcon>[YgIcon(YgIcons.caretRight)],
+                ),
+              ],
+            ),
+            YgSection.list(
+              title: 'Multi view layouts',
+              children: <Widget>[
+                YgListTile(
+                  title: 'Tabbed layout',
+                  onTap: () => sl<YgRouter>().push(LayoutTabbedScreen.route()),
+                  trailingWidgets: const <YgIcon>[YgIcon(YgIcons.caretRight)],
+                ),
+              ],
+            ),
+          ],
+        ),
       ),
     );
   }

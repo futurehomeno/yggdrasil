@@ -24,6 +24,7 @@ class HomeScreen extends StatelessWidget {
     return Consumer<YgAppState>(builder: (BuildContext context, YgAppState ygAppState, Widget? child) {
       return DemoScreen.tabbed(
         componentName: 'Yggdrasil v${ygAppState.version}',
+        headerBehavior: YgHeaderBehavior.hideAppBar,
         tabs: <YgLayoutTab>[
           YgLayoutTab(
             title: 'Components',

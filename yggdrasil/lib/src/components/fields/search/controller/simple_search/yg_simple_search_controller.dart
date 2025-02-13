@@ -232,6 +232,7 @@ class YgSimpleSearchController<Value>
   }
 
   @override
+  // ignore: library_private_types_in_public_api
   void attach(_SimpleState<Value> state) {
     super.attach(state);
     if (_value != null && _valueText == null) {

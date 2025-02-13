@@ -168,14 +168,14 @@ dart_code_metrics:
     - prefer-define-hero-tag
     - prefer-extracting-callbacks:
         exclude:
-          - "example/lib/screens/*"
-          - "example/lib/screens/**/*"
+          - "lib/screens/*"
+          - "lib/screens/**/*"
     - prefer-text-rich
     - prefer-using-list-view
     - prefer-widget-private-members:
         exclude:
-          - "example/lib/screens/*"
-          - "example/lib/screens/**/*"
+          - "lib/screens/*"
+          - "lib/screens/**/*"
 
     # Not part of the default ruleset
     - avoid-global-state

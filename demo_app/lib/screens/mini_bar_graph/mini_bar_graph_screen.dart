@@ -6,6 +6,8 @@ import 'package:yggdrasil/yggdrasil.dart';
 import 'package:yggdrasil_demo/core/_core.dart';
 import 'package:yggdrasil_demo/widgets/_widgets.dart';
 
+import 'widgets/graph_card.dart';
+
 class MiniBarGraphScreen extends StatelessWidget {
   const MiniBarGraphScreen({super.key});
 
@@ -146,31 +148,6 @@ class MiniBarGraphScreen extends StatelessWidget {
           valueText: value.toString(),
         );
       },
-    );
-  }
-}
-
-class GraphCard extends StatelessWidget {
-  const GraphCard({
-    super.key,
-    required this.child,
-  });
-
-  final Widget child;
-
-  @override
-  Widget build(BuildContext context) {
-    return Expanded(
-      child: YgCard(
-        variant: YgCardVariant.outlined,
-        child: AspectRatio(
-          aspectRatio: 1,
-          child: Padding(
-            padding: const EdgeInsets.all(10.0),
-            child: child,
-          ),
-        ),
-      ),
     );
   }
 }

@@ -5,13 +5,13 @@ import 'package:yggdrasil/src/components/yg_app_bar/app_bar/yg_app_bar_slot.dart
 import 'package:yggdrasil/src/theme/_theme.dart';
 import 'package:yggdrasil/yggdrasil.dart';
 
+/// An AppBar with a title, leading widget and actions
 class YgAppBar extends StatelessWidget implements PreferredSizeWidget {
   const YgAppBar({
     super.key,
     this.title,
     this.leading,
     this.actions,
-    this.bottom,
     this.centerTitle = false,
     this.automaticallyImplyLeading = true,
   });
@@ -43,12 +43,6 @@ class YgAppBar extends StatelessWidget implements PreferredSizeWidget {
   /// These widgets are [YgIconButton]s representing common operations.
   final List<YgIconButton>? actions;
 
-  /// This widget appears across the bottom of the app bar.
-  ///
-  /// Typically a [TabBar]. Only widgets that implement [PreferredSizeWidget] can
-  /// be used at the bottom of an app bar.
-  final PreferredSizeWidget? bottom;
-
   /// Whether the title should be centered.
   final bool centerTitle;
 
@@ -67,9 +61,11 @@ class YgAppBar extends StatelessWidget implements PreferredSizeWidget {
         right: false,
         child: YgAppBarRenderWidget(
           centerTitle: centerTitle || leading == null,
-          gap: 5,
-          height: 64,
-          padding: const EdgeInsets.symmetric(horizontal: 5),
+          gap: theme.appBarHorizontalPadding,
+          height: theme.toolbarHeight,
+          padding: EdgeInsets.symmetric(
+            horizontal: theme.appBarHorizontalPadding,
+          ),
           children: <Widget>[
             if (leading != null)
               YgAppBarChildWidget(

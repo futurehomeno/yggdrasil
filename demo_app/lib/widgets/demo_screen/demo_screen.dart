@@ -14,28 +14,28 @@ abstract class DemoScreen extends StatelessWidget {
     Key? key,
     required Widget child,
     Widget? appBar,
-    Widget? bottom,
     String? componentName,
+    YgHeaderBehavior headerBehavior,
   }) = _DemoScreenRegular;
 
   const factory DemoScreen.tabbed({
     Key? key,
     required List<YgLayoutTab> tabs,
     Widget? appBar,
-    Widget? bottom,
     String? componentName,
+    YgHeaderBehavior headerBehavior,
   }) = _DemoScreenTabbed;
 
   const DemoScreen._({
     super.key,
     this.componentName,
     this.appBar,
-    this.bottom,
+    this.headerBehavior = YgHeaderBehavior.fixed,
   }) : assert(componentName != null || appBar != null, 'Either componentName or appBar must be provided.');
 
+  final YgHeaderBehavior headerBehavior;
   final String? componentName;
   final Widget? appBar;
-  final Widget? bottom;
 
   @override
   Widget build(BuildContext context) {

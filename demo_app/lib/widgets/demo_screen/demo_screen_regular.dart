@@ -5,8 +5,8 @@ class _DemoScreenRegular extends DemoScreen {
     super.key,
     required this.child,
     super.appBar,
-    super.bottom,
     super.componentName,
+    super.headerBehavior,
   }) : super._();
 
   final Widget child;
@@ -14,6 +14,7 @@ class _DemoScreenRegular extends DemoScreen {
   @override
   Widget _buildLayout(BuildContext context, Widget appBar) {
     return YgLayout(
+      headerBehavior: headerBehavior,
       appBar: appBar,
       child: child,
     );
