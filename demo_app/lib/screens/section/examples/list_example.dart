@@ -7,46 +7,47 @@ class ListExample extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final List<Widget> children = <Widget>[
+    const List<Widget> children = <Widget>[
       YgListTile(
         title: 'List item',
         subtitle: 'Subtitle',
-        onTap: () {},
       ),
     ];
 
-    return Column(
-      children: <Widget>[
-        YgSection.list(
-          children: children,
-        ),
-        YgSection.list(
-          title: 'With title',
-          children: children,
-        ),
-        YgSection.list(
-          title: 'With title and subtitle',
-          subtitle: 'The subtitle',
-          children: children,
-        ),
-        YgSection.list(
-          title: 'With title and trailing widget',
-          trailing: DemoPlaceholder(height: 25),
-          children: children,
-        ),
-        YgSection.list(
-          title: 'With title and icon',
-          icon: YgIcons.placeholder,
-          children: children,
-        ),
-        YgSection.list(
-          title: 'With title, icon, trailing widget and long subtitle',
-          subtitle: 'Cupidatat ea voluptate exercitation irure ea occaecat pariatur elit minim non incididunt in.',
-          icon: YgIcons.placeholder,
-          trailing: DemoPlaceholder(height: 25),
-          children: children,
-        ),
-      ],
+    return const YgLayoutBody(
+      child: Column(
+        children: <Widget>[
+          YgSection.list(
+            children: children,
+          ),
+          YgSection.list(
+            title: 'With title',
+            children: children,
+          ),
+          YgSection.list(
+            title: 'With title and subtitle',
+            subtitle: 'The subtitle',
+            children: children,
+          ),
+          YgSection.list(
+            title: 'With title and trailing widget',
+            trailing: DemoPlaceholder(height: 25),
+            children: children,
+          ),
+          YgSection.list(
+            title: 'With title and icon',
+            icon: YgIcons.placeholder,
+            children: children,
+          ),
+          YgSection.list(
+            title: 'With title, icon, trailing widget and long subtitle',
+            subtitle: 'Cupidatat ea voluptate exercitation irure ea occaecat pariatur elit minim non incididunt in.',
+            icon: YgIcons.placeholder,
+            trailing: DemoPlaceholder(height: 25),
+            children: children,
+          ),
+        ],
+      ),
     );
   }
 }

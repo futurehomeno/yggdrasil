@@ -29,243 +29,245 @@ class _GaugeScreenState extends State<GaugeScreen> {
   Widget build(BuildContext context) {
     return DemoScreen(
       componentName: 'Gauge',
-      child: Column(
-        children: <Widget>[
-          const YgSection.column(
-            title: 'Gauge',
-            children: <Widget>[
-              Row(
-                children: <Widget>[
-                  SizedBox.square(
-                    dimension: 100,
-                    child: YgGauge(
-                      value: 0.0,
-                      title: '0.0',
-                    ),
-                  ),
-                  SizedBox.square(
-                    dimension: 100,
-                    child: YgGauge(
-                      value: 1.0,
-                      title: '1.0',
-                    ),
-                  ),
-                ],
-              ),
-              Row(
-                children: <Widget>[
-                  SizedBox.square(
-                    dimension: 100,
-                    child: YgGauge(
-                      value: 0.1,
-                      title: '0.1',
-                    ),
-                  ),
-                  SizedBox.square(
-                    dimension: 100,
-                    child: YgGauge(
-                      value: 0.5,
-                      title: '0.5',
-                    ),
-                  ),
-                  SizedBox.square(
-                    dimension: 100,
-                    child: YgGauge(
-                      value: 0.9,
-                      title: '0.9',
-                    ),
-                  ),
-                ],
-              ),
-            ],
-          ),
-          const YgSection(
-            title: 'Disabled gauge',
-            child: Row(
+      child: YgLayoutBody(
+        child: Column(
+          children: <Widget>[
+            const YgSection.column(
+              title: 'Gauge',
               children: <Widget>[
-                SizedBox.square(
-                  dimension: 100,
-                  child: YgGauge(
-                    value: null,
-                    title: 'Disabled',
-                    label: 'Disabled',
-                  ),
+                Row(
+                  children: <Widget>[
+                    SizedBox.square(
+                      dimension: 100,
+                      child: YgGauge(
+                        value: 0.0,
+                        title: '0.0',
+                      ),
+                    ),
+                    SizedBox.square(
+                      dimension: 100,
+                      child: YgGauge(
+                        value: 1.0,
+                        title: '1.0',
+                      ),
+                    ),
+                  ],
                 ),
-                SizedBox.square(
-                  dimension: 100,
-                  child: YgGauge(
-                    value: null,
-                    icon: YgIcons.info,
-                    label: 'Disabled',
-                  ),
+                Row(
+                  children: <Widget>[
+                    SizedBox.square(
+                      dimension: 100,
+                      child: YgGauge(
+                        value: 0.1,
+                        title: '0.1',
+                      ),
+                    ),
+                    SizedBox.square(
+                      dimension: 100,
+                      child: YgGauge(
+                        value: 0.5,
+                        title: '0.5',
+                      ),
+                    ),
+                    SizedBox.square(
+                      dimension: 100,
+                      child: YgGauge(
+                        value: 0.9,
+                        title: '0.9',
+                      ),
+                    ),
+                  ],
                 ),
               ],
             ),
-          ),
-          const YgSection.column(
-            title: 'Child variations',
-            children: <Widget>[
-              Row(
+            const YgSection(
+              title: 'Disabled gauge',
+              child: Row(
                 children: <Widget>[
                   SizedBox.square(
                     dimension: 100,
                     child: YgGauge(
-                      value: 0.5,
-                      title: 'Title',
+                      value: null,
+                      title: 'Disabled',
+                      label: 'Disabled',
+                    ),
+                  ),
+                  SizedBox.square(
+                    dimension: 100,
+                    child: YgGauge(
+                      value: null,
                       icon: YgIcons.info,
-                    ),
-                  ),
-                  SizedBox.square(
-                    dimension: 100,
-                    child: YgGauge(
-                      value: 0.5,
-                      title: 'Title',
-                      label: 'Label',
-                    ),
-                  ),
-                  SizedBox.square(
-                    dimension: 100,
-                    child: YgGauge(
-                      value: 0.5,
-                      title: 'Title',
-                      notation: 'Notation',
+                      label: 'Disabled',
                     ),
                   ),
                 ],
               ),
-              Row(
-                children: <Widget>[
-                  SizedBox.square(
-                    dimension: 100,
-                    child: YgGauge(
-                      value: 0.5,
-                      title: 'Title',
-                      notation: 'Notation',
-                      label: 'Label',
-                    ),
-                  ),
-                  SizedBox.square(
-                    dimension: 100,
-                    child: YgGauge(
-                      value: 0.5,
-                      icon: YgIcons.info,
-                      label: 'Label',
-                    ),
-                  ),
-                  SizedBox.square(
-                    dimension: 100,
-                    child: YgGauge(
-                      value: 0.5,
-                      icon: YgIcons.info,
-                    ),
-                  ),
-                ],
-              ),
-            ],
-          ),
-          const YgSection(
-            title: 'Responsive between ~90px and ~120px',
-            child: Row(
+            ),
+            const YgSection.column(
+              title: 'Child variations',
               children: <Widget>[
-                SizedBox.square(
-                  dimension: 90,
-                  child: YgGauge(
-                    value: 0.5,
-                    title: '90px',
-                  ),
+                Row(
+                  children: <Widget>[
+                    SizedBox.square(
+                      dimension: 100,
+                      child: YgGauge(
+                        value: 0.5,
+                        title: 'Title',
+                        icon: YgIcons.info,
+                      ),
+                    ),
+                    SizedBox.square(
+                      dimension: 100,
+                      child: YgGauge(
+                        value: 0.5,
+                        title: 'Title',
+                        label: 'Label',
+                      ),
+                    ),
+                    SizedBox.square(
+                      dimension: 100,
+                      child: YgGauge(
+                        value: 0.5,
+                        title: 'Title',
+                        notation: 'Notation',
+                      ),
+                    ),
+                  ],
                 ),
-                SizedBox.square(
-                  dimension: 100,
-                  child: YgGauge(
-                    value: 0.5,
-                    title: '100px',
-                  ),
+                Row(
+                  children: <Widget>[
+                    SizedBox.square(
+                      dimension: 100,
+                      child: YgGauge(
+                        value: 0.5,
+                        title: 'Title',
+                        notation: 'Notation',
+                        label: 'Label',
+                      ),
+                    ),
+                    SizedBox.square(
+                      dimension: 100,
+                      child: YgGauge(
+                        value: 0.5,
+                        icon: YgIcons.info,
+                        label: 'Label',
+                      ),
+                    ),
+                    SizedBox.square(
+                      dimension: 100,
+                      child: YgGauge(
+                        value: 0.5,
+                        icon: YgIcons.info,
+                      ),
+                    ),
+                  ],
                 ),
+              ],
+            ),
+            const YgSection(
+              title: 'Responsive between ~90px and ~120px',
+              child: Row(
+                children: <Widget>[
+                  SizedBox.square(
+                    dimension: 90,
+                    child: YgGauge(
+                      value: 0.5,
+                      title: '90px',
+                    ),
+                  ),
+                  SizedBox.square(
+                    dimension: 100,
+                    child: YgGauge(
+                      value: 0.5,
+                      title: '100px',
+                    ),
+                  ),
+                  SizedBox.square(
+                    dimension: 120,
+                    child: YgGauge(
+                      value: 0.5,
+                      title: '120px',
+                    ),
+                  ),
+                ],
+              ),
+            ),
+            const YgSection(
+              title: 'Flexible min / max',
+              child: Row(
+                children: <Widget>[
+                  SizedBox.square(
+                    dimension: 100,
+                    child: YgGauge(
+                      value: 42.0,
+                      title: '42.0',
+                      notation: 'from',
+                      label: '30 to 50',
+                      minValue: 30.0,
+                      maxValue: 50.0,
+                    ),
+                  ),
+                  SizedBox.square(
+                    dimension: 100,
+                    child: YgGauge(
+                      value: -3.0,
+                      title: '-3.0',
+                      notation: 'from',
+                      label: '-10 to 10',
+                      minValue: -10.0,
+                      maxValue: 10.0,
+                    ),
+                  ),
+                ],
+              ),
+            ),
+            YgSection.column(
+              title: 'Animated',
+              children: <Widget>[
                 SizedBox.square(
                   dimension: 120,
                   child: YgGauge(
-                    value: 0.5,
-                    title: '120px',
+                    value: value,
+                    buildTitle: (double value) => value.toStringAsFixed(0),
+                    label: 'Animated',
+                    maxValue: 100.0,
                   ),
+                ),
+                YgButton(
+                  onPressed: () {
+                    value = random.nextInt(100).toDouble();
+                    setState(() {});
+                  },
+                  child: const Text('Change value'),
                 ),
               ],
             ),
-          ),
-          const YgSection(
-            title: 'Flexible min / max',
-            child: Row(
-              children: <Widget>[
-                SizedBox.square(
-                  dimension: 100,
-                  child: YgGauge(
-                    value: 42.0,
-                    title: '42.0',
-                    notation: 'from',
-                    label: '30 to 50',
-                    minValue: 30.0,
-                    maxValue: 50.0,
-                  ),
-                ),
-                SizedBox.square(
-                  dimension: 100,
-                  child: YgGauge(
-                    value: -3.0,
-                    title: '-3.0',
-                    notation: 'from',
-                    label: '-10 to 10',
-                    minValue: -10.0,
-                    maxValue: 10.0,
-                  ),
-                ),
-              ],
-            ),
-          ),
-          YgSection.column(
-            title: 'Animated',
-            children: <Widget>[
-              SizedBox.square(
-                dimension: 120,
+            const YgSection(
+              title: 'Gauge in a 100x200 container',
+              child: SizedBox(
+                height: 100.0,
+                width: 200.0,
                 child: YgGauge(
-                  value: value,
-                  buildTitle: (double value) => value.toStringAsFixed(0),
-                  label: 'Animated',
-                  maxValue: 100.0,
+                  value: 0.5,
+                  title: '100x200',
+                  label: '100x200',
                 ),
               ),
-              YgButton(
-                onPressed: () {
-                  value = random.nextInt(100).toDouble();
-                  setState(() {});
-                },
-                child: const Text('Change value'),
-              ),
-            ],
-          ),
-          const YgSection(
-            title: 'Gauge in a 100x200 container',
-            child: SizedBox(
-              height: 100.0,
-              width: 200.0,
-              child: YgGauge(
-                value: 0.5,
-                title: '100x200',
-                label: '100x200',
+            ),
+            const YgSection(
+              title: 'Gauge in a 200x100 container',
+              child: SizedBox(
+                height: 200.0,
+                width: 100.0,
+                child: YgGauge(
+                  value: 0.5,
+                  title: '200x100',
+                  label: '200x100',
+                ),
               ),
             ),
-          ),
-          const YgSection(
-            title: 'Gauge in a 200x100 container',
-            child: SizedBox(
-              height: 200.0,
-              width: 100.0,
-              child: YgGauge(
-                value: 0.5,
-                title: '200x100',
-                label: '200x100',
-              ),
-            ),
-          ),
-        ],
+          ],
+        ),
       ),
     );
   }

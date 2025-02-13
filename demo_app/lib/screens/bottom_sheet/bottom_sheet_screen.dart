@@ -26,49 +26,51 @@ class _BottomSheetScreenState extends State<BottomSheetScreen> with TickerProvid
   Widget build(BuildContext context) {
     return DemoScreen(
       componentName: 'BottomSheet',
-      child: Column(
-        children: <Widget>[
-          YgSection(
-            title: 'Default bottom sheet',
-            child: YgButton(
-              variant: YgButtonVariant.primary,
-              onPressed: () {
-                Navigator.of(context).push(ExampleBottomSheet());
-              },
-              child: const Text('Show'),
+      child: YgLayoutBody(
+        child: Column(
+          children: <Widget>[
+            YgSection(
+              title: 'Default bottom sheet',
+              child: YgButton(
+                variant: YgButtonVariant.primary,
+                onPressed: () {
+                  Navigator.of(context).push(ExampleBottomSheet());
+                },
+                child: const Text('Show'),
+              ),
             ),
-          ),
-          YgSection(
-            title: 'Scrollable bottom sheet',
-            child: YgButton(
-              variant: YgButtonVariant.primary,
-              onPressed: () {
-                Navigator.of(context).push(ExampleScrollableBottomSheet());
-              },
-              child: const Text('Show'),
+            YgSection(
+              title: 'Scrollable bottom sheet',
+              child: YgButton(
+                variant: YgButtonVariant.primary,
+                onPressed: () {
+                  Navigator.of(context).push(ExampleScrollableBottomSheet());
+                },
+                child: const Text('Show'),
+              ),
             ),
-          ),
-          YgSection(
-            title: 'Bottom sheet with footer',
-            child: YgButton(
-              variant: YgButtonVariant.primary,
-              onPressed: () {
-                Navigator.of(context).push(ExampleBottomSheetWithFooter());
-              },
-              child: const Text('Show'),
+            YgSection(
+              title: 'Bottom sheet with footer',
+              child: YgButton(
+                variant: YgButtonVariant.primary,
+                onPressed: () {
+                  Navigator.of(context).push(ExampleBottomSheetWithFooter());
+                },
+                child: const Text('Show'),
+              ),
             ),
-          ),
-          YgSection(
-            title: 'Bottom sheet with text input',
-            child: YgButton(
-              variant: YgButtonVariant.primary,
-              onPressed: () {
-                Navigator.of(context).push(ExampleBottomSheetWithTextInput());
-              },
-              child: const Text('Show'),
+            YgSection(
+              title: 'Bottom sheet with text input',
+              child: YgButton(
+                variant: YgButtonVariant.primary,
+                onPressed: () {
+                  Navigator.of(context).push(ExampleBottomSheetWithTextInput());
+                },
+                child: const Text('Show'),
+              ),
             ),
-          ),
-        ],
+          ],
+        ),
       ),
     );
   }

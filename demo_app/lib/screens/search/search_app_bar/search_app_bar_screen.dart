@@ -39,40 +39,42 @@ class _SearchAppBarScreenState extends State<SearchAppBarScreen> {
         leading: _getLeading(),
         trailing: _getAvatar(),
       ),
-      child: Column(
-        children: <Widget>[
-          YgSection.list(
-            title: 'Options',
-            subtitle: 'Options available for the SearchAppBar.',
-            children: <Widget>[
-              YgSwitchListTile(
-                title: 'Automatically imply leading',
-                subtitle:
-                    'When true (default) will automatically show the correct leading icon button based on the current route.',
-                value: _automaticallyImplyLeading,
-                onChanged: (_) => setState(() => _automaticallyImplyLeading ^= true),
-              ),
-              YgSwitchListTile(
-                title: 'Trailing avatar',
-                subtitle: 'Will show a trailing avatar widget in the right side of the SearchAppBar',
-                value: _trailingAvatar,
-                onChanged: (_) => setState(() => _trailingAvatar ^= true),
-              ),
-              YgSwitchListTile(
-                title: 'Custom leading',
-                subtitle: 'Will show a custom leading widget instead of the default search or implied button.',
-                value: _customLeading,
-                onChanged: (_) => setState(() => _customLeading ^= true),
-              ),
-            ],
-          ),
-          YgSection(
-            title: 'Padding to allow the screen to scroll',
-            child: DemoPlaceholder(
-              height: MediaQuery.sizeOf(context).height,
+      child: YgLayoutBody(
+        child: Column(
+          children: <Widget>[
+            YgSection.list(
+              title: 'Options',
+              subtitle: 'Options available for the SearchAppBar.',
+              children: <Widget>[
+                YgSwitchListTile(
+                  title: 'Automatically imply leading',
+                  subtitle:
+                      'When true (default) will automatically show the correct leading icon button based on the current route.',
+                  value: _automaticallyImplyLeading,
+                  onChanged: (_) => setState(() => _automaticallyImplyLeading ^= true),
+                ),
+                YgSwitchListTile(
+                  title: 'Trailing avatar',
+                  subtitle: 'Will show a trailing avatar widget in the right side of the SearchAppBar',
+                  value: _trailingAvatar,
+                  onChanged: (_) => setState(() => _trailingAvatar ^= true),
+                ),
+                YgSwitchListTile(
+                  title: 'Custom leading',
+                  subtitle: 'Will show a custom leading widget instead of the default search or implied button.',
+                  value: _customLeading,
+                  onChanged: (_) => setState(() => _customLeading ^= true),
+                ),
+              ],
             ),
-          ),
-        ],
+            YgSection(
+              title: 'Padding to allow the screen to scroll',
+              child: DemoPlaceholder(
+                height: MediaQuery.sizeOf(context).height,
+              ),
+            ),
+          ],
+        ),
       ),
     );
   }

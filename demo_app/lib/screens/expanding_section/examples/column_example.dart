@@ -15,35 +15,37 @@ class ColumnExample extends StatelessWidget {
       DemoPlaceholder(),
     ];
 
-    return const Column(
-      children: <Widget>[
-        YgExpandingSection.column(
-          title: 'With title',
-          children: children,
-        ),
-        YgExpandingSection.column(
-          title: 'With title and subtitle',
-          subtitle: 'The subtitle',
-          children: children,
-        ),
-        YgExpandingSection.column(
-          title: 'With title and trailing widget',
-          trailing: DemoPlaceholder(height: 25),
-          children: children,
-        ),
-        YgExpandingSection.column(
-          title: 'With title and icon',
-          icon: YgIcons.placeholder,
-          children: children,
-        ),
-        YgExpandingSection.column(
-          title: 'With title, icon, trailing widget and long subtitle',
-          subtitle: 'Cupidatat ea voluptate exercitation irure ea occaecat pariatur elit minim non incididunt in.',
-          icon: YgIcons.placeholder,
-          trailing: DemoPlaceholder(height: 25),
-          children: children,
-        ),
-      ],
+    return const YgLayoutBody(
+      child: Column(
+        children: <Widget>[
+          YgExpandingSection.column(
+            title: 'With title',
+            children: children,
+          ),
+          YgExpandingSection.column(
+            title: 'With title and subtitle',
+            subtitle: 'The subtitle',
+            children: children,
+          ),
+          YgExpandingSection.column(
+            title: 'With title and trailing widget',
+            trailing: DemoPlaceholder(height: 25),
+            children: children,
+          ),
+          YgExpandingSection.column(
+            title: 'With title and icon',
+            icon: YgIcons.placeholder,
+            children: children,
+          ),
+          YgExpandingSection.column(
+            title: 'With title, icon, trailing widget and long subtitle',
+            subtitle: 'Cupidatat ea voluptate exercitation irure ea occaecat pariatur elit minim non incididunt in.',
+            icon: YgIcons.placeholder,
+            trailing: DemoPlaceholder(height: 25),
+            children: children,
+          ),
+        ],
+      ),
     );
   }
 }

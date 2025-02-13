@@ -81,12 +81,20 @@ class _YgLayoutBodyInternalState extends State<YgLayoutBodyInternal> {
   }
 
   bool _handleScrollUpdateNotification(ScrollUpdateNotification notification) {
+    if (notification.depth != 0) {
+      return false;
+    }
+
     _controller.handleScrollUpdateNotification(notification);
 
     return false;
   }
 
   bool _handleScrollMetricsNotification(ScrollMetricsNotification notification) {
+    if (notification.depth != 0) {
+      return false;
+    }
+
     _controller.handleScrollMetricsNotification(notification);
 
     return false;

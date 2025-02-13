@@ -1,4 +1,3 @@
-import 'package:flutter/foundation.dart';
 import 'package:flutter/widgets.dart';
 import 'package:yggdrasil/src/components/yg_layout/body/controller/_controller.dart';
 import 'package:yggdrasil/src/components/yg_layout/layout/widgets/yg_layout_header_controller_provider.dart';
@@ -31,18 +30,12 @@ class YgLayoutHeaderController extends ValueNotifier<YgLayoutControllerValue> {
 
   Animation<double> get headerOffsetFraction => _headerOffsetController;
 
-  final ValueNotifier<YgLayoutHeaderValue> _headerValue = ValueNotifier<YgLayoutHeaderValue>(
-    const YgLayoutHeaderValue(
-      collapsibleHeight: 0,
-      offset: 0,
-    ),
-  );
-  ValueListenable<YgLayoutHeaderValue> get headerValue => _headerValue;
-
   int _activeView;
   int get activeView => _activeView;
 
   double _collapsibleHeight = 0;
+  double get collapsibleHeight => _collapsibleHeight;
+
   bool _resettable = false;
 
   /// Desired offset from the current scroll position.
@@ -166,14 +159,4 @@ class YgLayoutHeaderController extends ValueNotifier<YgLayoutControllerValue> {
     _headerOffsetController.dispose();
     super.dispose();
   }
-}
-
-class YgLayoutHeaderValue {
-  const YgLayoutHeaderValue({
-    required this.collapsibleHeight,
-    required this.offset,
-  });
-
-  final double collapsibleHeight;
-  final double offset;
 }

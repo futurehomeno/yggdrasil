@@ -20,11 +20,15 @@ class ListScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return const DemoScreen(
       componentName: 'List',
-      scrollable: false,
-      child: YgSection(
-        child: YgCallout(
-          title: 'Nothing here yet.',
-          description: 'Best practices for how to make lists with slivers are a work in progress.',
+      child: YgLayoutBody(
+        child: Align(
+          alignment: Alignment.topCenter,
+          child: YgSection(
+            child: YgCallout(
+              title: 'Nothing here yet.',
+              description: 'Best practices for how to make lists with slivers are a work in progress.',
+            ),
+          ),
         ),
       ),
     );

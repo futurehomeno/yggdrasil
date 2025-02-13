@@ -25,47 +25,48 @@ class _IconListScreenState extends State<IconListScreen> {
   @override
   Widget build(BuildContext context) {
     return DemoScreen(
-      scrollable: false,
       componentName: 'Icon',
-      child: CustomScrollView(
-        slivers: <Widget>[
-          SliverToBoxAdapter(
-            child: YgSection(
-              title: 'List of all icons in YGG',
-              child: YgTextField(
-                label: 'Search',
-                keyboardType: TextInputType.text,
-                textInputAction: TextInputAction.search,
-                autocorrect: false,
-                textCapitalization: TextCapitalization.none,
-                onChanged: (String value) {
-                  allIcons = YgIcons.allIcons.where((YgIconData iconData) {
-                    return iconData.path.contains(value) || iconData.name.contains(value);
-                  }).toList();
-
-                  setState(() {});
-                },
-              ),
-            ),
-          ),
-          SliverList.builder(
-            itemBuilder: (BuildContext context, int index) {
-              final YgIconData iconData = allIcons[index];
-              final String iconName = iconData.name;
-              final String iconPath = iconData.path;
-
-              return YgListTile(
-                title: iconName,
-                subtitle: iconPath,
-                leadingWidgets: <YgIcon>[
-                  YgIcon(iconData),
-                ],
+      child: YgLayoutBody.sliver(
+        sliver: SliverList.builder(
+          itemBuilder: (BuildContext context, int index) {
+            if (index == 0) {
+              return YgSection(
+                title: 'List of all icons in YGG',
+                child: YgTextField(
+                  label: 'Search',
+                  keyboardType: TextInputType.text,
+                  textInputAction: TextInputAction.search,
+                  autocorrect: false,
+                  textCapitalization: TextCapitalization.none,
+                  onChanged: _searchChanged,
+                ),
               );
-            },
-            itemCount: allIcons.length,
-          ),
-        ],
+            }
+
+            index--;
+            final YgIconData iconData = allIcons[index];
+            final String iconName = iconData.name;
+            final String iconPath = iconData.path;
+
+            return YgListTile(
+              title: iconName,
+              subtitle: iconPath,
+              leadingWidgets: <YgIcon>[
+                YgIcon(iconData),
+              ],
+            );
+          },
+          itemCount: allIcons.length + 1,
+        ),
       ),
     );
+  }
+
+  void _searchChanged(String value) {
+    allIcons = YgIcons.allIcons.where((YgIconData iconData) {
+      return iconData.path.contains(value) || iconData.name.contains(value);
+    }).toList();
+
+    setState(() {});
   }
 }

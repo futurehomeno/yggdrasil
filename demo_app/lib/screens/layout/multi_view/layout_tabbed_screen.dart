@@ -45,7 +45,9 @@ class LayoutTabbedScreen extends StatelessWidget {
           content: PushDownFooterView(),
         ),
       ],
-      appBar: YgAppBar2(),
+      appBar: YgAppBar2(
+        title: 'Layout tabbed',
+      ),
     );
   }
 }

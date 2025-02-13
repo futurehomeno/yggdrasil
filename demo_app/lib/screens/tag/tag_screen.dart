@@ -19,119 +19,121 @@ class TagScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return DemoScreen(
       componentName: 'Tag',
-      child: Column(
-        children: <Widget>[
-          YgSection.column(
-            title: 'Variants',
-            children: <Widget>[
-              const YgTag(
-                child: Text('Neutral'),
-              ),
-              const YgTag(
-                variant: YgTagVariant.informative,
-                child: Text('Informative'),
-              ),
-              const YgTag(
-                variant: YgTagVariant.positive,
-                child: Text('Positive'),
-              ),
-              const YgTag(
-                variant: YgTagVariant.warning,
-                child: Text('Warning'),
-              ),
-              const YgTag(
-                variant: YgTagVariant.negative,
-                child: Text('Negative'),
-              ),
-            ].withVerticalSpacing(10.0),
-          ),
-          YgSection(
-            title: 'Sizes',
-            child: Row(
-              mainAxisSize: MainAxisSize.min,
+      child: YgLayoutBody(
+        child: Column(
+          children: <Widget>[
+            YgSection.column(
+              title: 'Variants',
               children: <Widget>[
                 const YgTag(
-                  size: YgTagSize.small,
-                  child: Text('Small'),
+                  child: Text('Neutral'),
                 ),
                 const YgTag(
-                  size: YgTagSize.medium,
-                  child: Text('Medium'),
+                  variant: YgTagVariant.informative,
+                  child: Text('Informative'),
                 ),
-              ].withHorizontalSpacing(10.0),
+                const YgTag(
+                  variant: YgTagVariant.positive,
+                  child: Text('Positive'),
+                ),
+                const YgTag(
+                  variant: YgTagVariant.warning,
+                  child: Text('Warning'),
+                ),
+                const YgTag(
+                  variant: YgTagVariant.negative,
+                  child: Text('Negative'),
+                ),
+              ].withVerticalSpacing(10.0),
             ),
-          ),
-          YgSection.column(
-            title: 'With icons',
-            children: <Widget>[
-              const YgTag.leadingIcon(
-                icon: YgIcons.info,
-                child: Text('Leading icon'),
+            YgSection(
+              title: 'Sizes',
+              child: Row(
+                mainAxisSize: MainAxisSize.min,
+                children: <Widget>[
+                  const YgTag(
+                    size: YgTagSize.small,
+                    child: Text('Small'),
+                  ),
+                  const YgTag(
+                    size: YgTagSize.medium,
+                    child: Text('Medium'),
+                  ),
+                ].withHorizontalSpacing(10.0),
               ),
-              const YgTag.trailingIcon(
-                icon: YgIcons.info,
-                child: Text('Trailing icon'),
-              ),
-              const YgTag.doubleIcon(
-                leadingIcon: YgIcons.info,
-                trailingIcon: YgIcons.info,
-                child: Text('Double icon'),
-              ),
-            ].withVerticalSpacing(10.0),
-          ),
-          YgSection(
-            title: 'Clickable',
-            child: Row(
-              mainAxisSize: MainAxisSize.min,
+            ),
+            YgSection.column(
+              title: 'With icons',
               children: <Widget>[
-                YgTag.leadingIcon(
+                const YgTag.leadingIcon(
                   icon: YgIcons.info,
-                  child: const Text('Click me!'),
-                  onPressed: () {},
+                  child: Text('Leading icon'),
+                ),
+                const YgTag.trailingIcon(
+                  icon: YgIcons.info,
+                  child: Text('Trailing icon'),
+                ),
+                const YgTag.doubleIcon(
+                  leadingIcon: YgIcons.info,
+                  trailingIcon: YgIcons.info,
+                  child: Text('Double icon'),
+                ),
+              ].withVerticalSpacing(10.0),
+            ),
+            YgSection(
+              title: 'Clickable',
+              child: Row(
+                mainAxisSize: MainAxisSize.min,
+                children: <Widget>[
+                  YgTag.leadingIcon(
+                    icon: YgIcons.info,
+                    child: const Text('Click me!'),
+                    onPressed: () {},
+                  ),
+                  const YgTag.leadingIcon(
+                    icon: YgIcons.info,
+                    onPressed: null,
+                    child: Text('Disabled'),
+                  ),
+                ].withHorizontalSpacing(10.0),
+              ),
+            ),
+            YgSection.column(
+              title: 'Weights',
+              children: <Widget>[
+                const YgTag.leadingIcon(
+                  icon: YgIcons.info,
+                  weight: YgTagWeight.strong,
+                  child: Text('Neutral strong'),
                 ),
                 const YgTag.leadingIcon(
                   icon: YgIcons.info,
-                  onPressed: null,
-                  child: Text('Disabled'),
+                  variant: YgTagVariant.informative,
+                  weight: YgTagWeight.strong,
+                  child: Text('Informative strong'),
                 ),
-              ].withHorizontalSpacing(10.0),
+                const YgTag.leadingIcon(
+                  icon: YgIcons.info,
+                  variant: YgTagVariant.positive,
+                  weight: YgTagWeight.strong,
+                  child: Text('Positive strong'),
+                ),
+                const YgTag.leadingIcon(
+                  icon: YgIcons.info,
+                  variant: YgTagVariant.warning,
+                  weight: YgTagWeight.strong,
+                  child: Text('Warning strong'),
+                ),
+                const YgTag.leadingIcon(
+                  icon: YgIcons.info,
+                  variant: YgTagVariant.negative,
+                  weight: YgTagWeight.strong,
+                  child: Text('Negative strong'),
+                ),
+              ].withVerticalSpacing(10.0),
             ),
-          ),
-          YgSection.column(
-            title: 'Weights',
-            children: <Widget>[
-              const YgTag.leadingIcon(
-                icon: YgIcons.info,
-                weight: YgTagWeight.strong,
-                child: Text('Neutral strong'),
-              ),
-              const YgTag.leadingIcon(
-                icon: YgIcons.info,
-                variant: YgTagVariant.informative,
-                weight: YgTagWeight.strong,
-                child: Text('Informative strong'),
-              ),
-              const YgTag.leadingIcon(
-                icon: YgIcons.info,
-                variant: YgTagVariant.positive,
-                weight: YgTagWeight.strong,
-                child: Text('Positive strong'),
-              ),
-              const YgTag.leadingIcon(
-                icon: YgIcons.info,
-                variant: YgTagVariant.warning,
-                weight: YgTagWeight.strong,
-                child: Text('Warning strong'),
-              ),
-              const YgTag.leadingIcon(
-                icon: YgIcons.info,
-                variant: YgTagVariant.negative,
-                weight: YgTagWeight.strong,
-                child: Text('Negative strong'),
-              ),
-            ].withVerticalSpacing(10.0),
-          ),
-        ],
+          ],
+        ),
       ),
     );
   }

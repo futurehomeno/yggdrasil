@@ -19,64 +19,66 @@ class TextLinkScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return DemoScreen(
       componentName: 'TextLink',
-      child: Column(
-        children: <Widget>[
-          YgSection(
-            title: 'Sizes',
-            subtitle: 'Spacing between links added manually.',
-            child: Row(
-              mainAxisSize: MainAxisSize.min,
-              children: <Widget>[
-                YgTextLink(
-                  onPressed: () {},
-                  text: 'Small',
-                  size: YgTextLinkSize.small,
-                  weight: YgTextLinkWeight.weak,
-                ),
-                YgTextLink(
-                  onPressed: () {},
-                  text: 'Medium',
-                  size: YgTextLinkSize.medium,
-                  weight: YgTextLinkWeight.weak,
-                ),
-              ].withHorizontalSpacing(10.0),
+      child: YgLayoutBody(
+        child: Column(
+          children: <Widget>[
+            YgSection(
+              title: 'Sizes',
+              subtitle: 'Spacing between links added manually.',
+              child: Row(
+                mainAxisSize: MainAxisSize.min,
+                children: <Widget>[
+                  YgTextLink(
+                    onPressed: () {},
+                    text: 'Small',
+                    size: YgTextLinkSize.small,
+                    weight: YgTextLinkWeight.weak,
+                  ),
+                  YgTextLink(
+                    onPressed: () {},
+                    text: 'Medium',
+                    size: YgTextLinkSize.medium,
+                    weight: YgTextLinkWeight.weak,
+                  ),
+                ].withHorizontalSpacing(10.0),
+              ),
             ),
-          ),
-          YgSection(
-            title: 'Weights',
-            subtitle: 'Spacing between links added manually.',
-            child: Row(
-              mainAxisSize: MainAxisSize.min,
-              children: <Widget>[
-                YgTextLink(
-                  onPressed: () {},
-                  text: 'Weak',
-                  weight: YgTextLinkWeight.weak,
-                ),
-                YgTextLink(
-                  onPressed: () {},
-                  text: 'Strong',
-                  weight: YgTextLinkWeight.strong,
-                ),
-              ].withHorizontalSpacing(10.0),
+            YgSection(
+              title: 'Weights',
+              subtitle: 'Spacing between links added manually.',
+              child: Row(
+                mainAxisSize: MainAxisSize.min,
+                children: <Widget>[
+                  YgTextLink(
+                    onPressed: () {},
+                    text: 'Weak',
+                    weight: YgTextLinkWeight.weak,
+                  ),
+                  YgTextLink(
+                    onPressed: () {},
+                    text: 'Strong',
+                    weight: YgTextLinkWeight.strong,
+                  ),
+                ].withHorizontalSpacing(10.0),
+              ),
             ),
-          ),
-          const YgSection(
-            title: 'Disabled text link',
-            child: YgTextLink(
-              text: 'Disabled',
-              onPressed: null,
+            const YgSection(
+              title: 'Disabled text link',
+              child: YgTextLink(
+                text: 'Disabled',
+                onPressed: null,
+              ),
             ),
-          ),
-          YgSection(
-            title: 'External text link',
-            child: YgTextLink(
-              onPressed: () {},
-              text: 'Link',
-              external: true,
+            YgSection(
+              title: 'External text link',
+              child: YgTextLink(
+                onPressed: () {},
+                text: 'Link',
+                external: true,
+              ),
             ),
-          ),
-        ],
+          ],
+        ),
       ),
     );
   }

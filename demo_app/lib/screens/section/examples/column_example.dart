@@ -13,38 +13,40 @@ class ColumnExample extends StatelessWidget {
       DemoPlaceholder(),
     ];
 
-    return const Column(
-      children: <Widget>[
-        YgSection.column(
-          children: children,
-        ),
-        YgSection.column(
-          title: 'With title',
-          children: children,
-        ),
-        YgSection.column(
-          title: 'With title and subtitle',
-          subtitle: 'The subtitle',
-          children: children,
-        ),
-        YgSection.column(
-          title: 'With title and trailing widget',
-          trailing: DemoPlaceholder(height: 25),
-          children: children,
-        ),
-        YgSection.column(
-          title: 'With title and icon',
-          icon: YgIcons.placeholder,
-          children: children,
-        ),
-        YgSection.column(
-          title: 'With title, icon, trailing widget and long subtitle',
-          subtitle: 'Cupidatat ea voluptate exercitation irure ea occaecat pariatur elit minim non incididunt in.',
-          icon: YgIcons.placeholder,
-          trailing: DemoPlaceholder(height: 25),
-          children: children,
-        ),
-      ],
+    return const YgLayoutBody(
+      child: Column(
+        children: <Widget>[
+          YgSection.column(
+            children: children,
+          ),
+          YgSection.column(
+            title: 'With title',
+            children: children,
+          ),
+          YgSection.column(
+            title: 'With title and subtitle',
+            subtitle: 'The subtitle',
+            children: children,
+          ),
+          YgSection.column(
+            title: 'With title and trailing widget',
+            trailing: DemoPlaceholder(height: 25),
+            children: children,
+          ),
+          YgSection.column(
+            title: 'With title and icon',
+            icon: YgIcons.placeholder,
+            children: children,
+          ),
+          YgSection.column(
+            title: 'With title, icon, trailing widget and long subtitle',
+            subtitle: 'Cupidatat ea voluptate exercitation irure ea occaecat pariatur elit minim non incididunt in.',
+            icon: YgIcons.placeholder,
+            trailing: DemoPlaceholder(height: 25),
+            children: children,
+          ),
+        ],
+      ),
     );
   }
 }

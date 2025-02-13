@@ -57,11 +57,8 @@ class YgLayoutBodyController extends ValueNotifier<YgLayoutBodyControllerValue> 
       return 0;
     }
 
-    final YgLayoutHeaderValue(
-      :double collapsibleHeight,
-      :double offset,
-    ) = parent.headerValue.value;
-
+    final double collapsibleHeight = parent.collapsibleHeight;
+    final double offset = parent.headerOffsetFraction.value;
     final double fractionalDelta = delta / collapsibleHeight;
     final double newValue = (offset + fractionalDelta).clamp(0, 1);
     final double target = newValue < 0.5 ? 0 : 1;

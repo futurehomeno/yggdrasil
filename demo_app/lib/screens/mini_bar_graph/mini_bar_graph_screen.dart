@@ -34,74 +34,76 @@ class MiniBarGraphScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return DemoScreen(
       componentName: 'MiniBarGraph',
-      child: Column(
-        mainAxisSize: MainAxisSize.min,
-        children: <Widget>[
-          YgSection(
-            title: 'Default YgMiniBarGraph',
-            child: _buildDefaultBarGraph(bars: _generateGraphData(48, 37245)),
-          ),
-          YgSection(
-            title: 'YgMiniBarGraph without Data',
-            child: _buildDefaultBarGraph(
-              bars: null,
+      child: YgLayoutBody(
+        child: Column(
+          mainAxisSize: MainAxisSize.min,
+          children: <Widget>[
+            YgSection(
+              title: 'Default YgMiniBarGraph',
+              child: _buildDefaultBarGraph(bars: _generateGraphData(48, 37245)),
             ),
-          ),
-          YgSection(
-            title: 'YgMiniBarGraph without Variants',
-            child: _buildDefaultBarGraph(
-              bars: _generateGraphData(48, 87692, false),
+            YgSection(
+              title: 'YgMiniBarGraph without Data',
+              child: _buildDefaultBarGraph(
+                bars: null,
+              ),
             ),
-          ),
-          YgSection(
-            title: 'YgMiniBarGraph in a large card',
-            child: Row(
-              children: <GraphCard>[
-                GraphCard(
-                  child: _buildDefaultBarGraph(),
-                ),
-                GraphCard(
-                  child: _buildDefaultBarGraph(),
-                ),
-              ].withHorizontalSpacing(10),
+            YgSection(
+              title: 'YgMiniBarGraph without Variants',
+              child: _buildDefaultBarGraph(
+                bars: _generateGraphData(48, 87692, false),
+              ),
             ),
-          ),
-          YgSection(
-            title: 'YgMiniBarGraph in a medium card',
-            child: Row(
-              children: <GraphCard>[
-                GraphCard(
-                  child: _buildDefaultBarGraph(),
-                ),
-                GraphCard(
-                  child: _buildDefaultBarGraph(),
-                ),
-                GraphCard(
-                  child: _buildDefaultBarGraph(),
-                ),
-              ].withHorizontalSpacing(10),
+            YgSection(
+              title: 'YgMiniBarGraph in a large card',
+              child: Row(
+                children: <GraphCard>[
+                  GraphCard(
+                    child: _buildDefaultBarGraph(),
+                  ),
+                  GraphCard(
+                    child: _buildDefaultBarGraph(),
+                  ),
+                ].withHorizontalSpacing(10),
+              ),
             ),
-          ),
-          YgSection(
-            title: 'YgMiniBarGraph in a small card',
-            child: Row(
-              children: <GraphCard>[
-                GraphCard(
-                  child: _buildDefaultBarGraph(),
-                ),
-                GraphCard(
-                  child: _buildDefaultBarGraph(),
-                ),
-                GraphCard(
-                  child: _buildDefaultBarGraph(),
-                ),
-                GraphCard(
-                  child: _buildDefaultBarGraph(),
-                ),
-              ].withHorizontalSpacing(10),
+            YgSection(
+              title: 'YgMiniBarGraph in a medium card',
+              child: Row(
+                children: <GraphCard>[
+                  GraphCard(
+                    child: _buildDefaultBarGraph(),
+                  ),
+                  GraphCard(
+                    child: _buildDefaultBarGraph(),
+                  ),
+                  GraphCard(
+                    child: _buildDefaultBarGraph(),
+                  ),
+                ].withHorizontalSpacing(10),
+              ),
             ),
-          ),
-        ],
+            YgSection(
+              title: 'YgMiniBarGraph in a small card',
+              child: Row(
+                children: <GraphCard>[
+                  GraphCard(
+                    child: _buildDefaultBarGraph(),
+                  ),
+                  GraphCard(
+                    child: _buildDefaultBarGraph(),
+                  ),
+                  GraphCard(
+                    child: _buildDefaultBarGraph(),
+                  ),
+                  GraphCard(
+                    child: _buildDefaultBarGraph(),
+                  ),
+                ].withHorizontalSpacing(10),
+              ),
+            ),
+          ],
+        ),
       ),
     );
   }
