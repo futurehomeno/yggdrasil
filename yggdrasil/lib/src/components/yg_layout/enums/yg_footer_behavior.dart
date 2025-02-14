@@ -1,3 +1,4 @@
+/// The behavior of the [YgLayoutBody] footer.
 enum YgFooterBehavior {
   /// Footer sticks to the bottom of the screen.
   ///

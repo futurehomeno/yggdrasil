@@ -2,6 +2,12 @@ import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 import 'package:yggdrasil/src/utils/yg_inherited_padding/yg_inherited_render_padding_provider_mixin.dart';
 
+/// Internal widget used for [YgLayoutBody] with [YgFooterBehavior.pushDown].
+///
+/// Positions its children so that the footer is pushed to either the bottom of
+/// the screen or the bottom of the content, depending on the height of the
+/// content. Preserves the minimum height of the child minus the height of the
+/// footer.
 class YgPushDownFooter extends MultiChildRenderObjectWidget {
   const YgPushDownFooter({
     super.key,

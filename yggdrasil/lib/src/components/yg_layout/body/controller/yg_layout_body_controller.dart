@@ -2,6 +2,7 @@ import 'package:flutter/widgets.dart';
 import 'package:yggdrasil/src/components/yg_layout/body/controller/_controller.dart';
 import 'package:yggdrasil/src/components/yg_layout/layout/controller/yg_layout_header_controller.dart';
 
+/// Controller which manages the current state of the [YgLayoutBody].
 class YgLayoutBodyController extends ValueNotifier<YgLayoutBodyControllerValue> {
   YgLayoutBodyController({
     bool loading = false,

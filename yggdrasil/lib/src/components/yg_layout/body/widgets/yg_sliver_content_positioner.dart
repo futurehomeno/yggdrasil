@@ -2,6 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 import 'package:yggdrasil/src/utils/yg_inherited_padding/yg_inherited_render_padding_mixin.dart';
 
+/// Internal layout widget used by [YgLayoutBody.sliver].
+///
+/// Adds inherited padding to the child of this sliver.
 class YgSliverContentPositioner extends SingleChildRenderObjectWidget {
   const YgSliverContentPositioner({
     super.key,

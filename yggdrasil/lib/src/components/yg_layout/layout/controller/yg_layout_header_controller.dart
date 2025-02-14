@@ -3,7 +3,7 @@ import 'package:yggdrasil/src/components/yg_layout/body/controller/_controller.d
 
 import 'yg_layout_controller_value.dart';
 
-/// Controller which manages the current state of the YgLayout header.
+/// Controller which manages the current state of the [YgLayout] header.
 class YgLayoutHeaderController extends ValueNotifier<YgLayoutControllerValue> {
   YgLayoutHeaderController({
     required TickerProvider vsync,

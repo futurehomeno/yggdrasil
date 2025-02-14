@@ -1,5 +1,8 @@
 part of 'yg_layout_body.dart';
 
+/// A scrollable sliver layout.
+///
+/// Enforces a minimum height on its child to allow centering of the content.
 class _YgLayoutBodySliver extends StatelessWidget implements YgLayoutBody {
   const _YgLayoutBodySliver({
     super.key,
@@ -7,7 +10,10 @@ class _YgLayoutBodySliver extends StatelessWidget implements YgLayoutBody {
     this.loading = false,
   });
 
+  /// The child sliver.
   final Widget sliver;
+
+  /// Whether the parent [YgLayout] should show a loading indicator.
   @override
   final bool loading;
 

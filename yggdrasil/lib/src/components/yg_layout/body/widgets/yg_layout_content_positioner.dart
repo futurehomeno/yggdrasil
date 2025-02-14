@@ -5,6 +5,11 @@ import 'package:flutter/rendering.dart';
 import 'package:yggdrasil/src/utils/yg_inherited_padding/yg_inherited_render_padding_mixin.dart';
 import 'package:yggdrasil/src/utils/yg_render_shifted_box.dart';
 
+/// Internal layout widget used by [YgLayoutBody].
+///
+/// Adds inherited padding and safe area padding to the [child], and gives it a
+/// minimum height equal to the height of the parent [YgLayout] minus the
+/// padding and safe area padding.
 class YgLayoutContentPositioner extends SingleChildRenderObjectWidget {
   const YgLayoutContentPositioner({
     super.key,

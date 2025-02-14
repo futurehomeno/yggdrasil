@@ -1,5 +1,6 @@
 part of 'yg_layout_body.dart';
 
+/// A scrollable layout with a optional footer.
 class _YgLayoutBodyRegular extends StatefulWidget implements YgLayoutBody {
   const _YgLayoutBodyRegular({
     super.key,
@@ -9,9 +10,19 @@ class _YgLayoutBodyRegular extends StatefulWidget implements YgLayoutBody {
     this.footerBehavior = YgFooterBehavior.sticky,
   });
 
+  /// The child widget shown inside the scrollable view.
   final Widget child;
+
+  /// The footer shown below the [child].
+  ///
+  /// Shown either at the bottom of the screen or the bottom of the content,
+  /// depending on the [footerBehavior].
   final Widget? footer;
+
+  /// The behavior of the footer.
   final YgFooterBehavior footerBehavior;
+
+  /// Whether the parent [YgLayout] should show a loading indicator.
   @override
   final bool loading;
 

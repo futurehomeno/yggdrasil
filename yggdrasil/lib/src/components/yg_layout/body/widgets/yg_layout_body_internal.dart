@@ -2,6 +2,15 @@ import 'package:flutter/widgets.dart';
 import 'package:yggdrasil/src/components/yg_layout/body/controller/_controller.dart';
 import 'package:yggdrasil/src/components/yg_layout/layout/widgets/yg_layout_header_controller_provider.dart';
 
+typedef YgLayoutBodyContentBuilder = Widget Function(
+  BuildContext context,
+  YgLayoutBodyController controller,
+);
+
+/// Internal widget used by the [YgLayoutBody].
+///
+/// Handles the lifecycle of the [YgLayoutBodyController] and registers it to
+/// the [YgLayoutHeaderController].
 class YgLayoutBodyInternal extends StatefulWidget {
   const YgLayoutBodyInternal({
     super.key,
@@ -9,7 +18,7 @@ class YgLayoutBodyInternal extends StatefulWidget {
     this.loading = false,
   });
 
-  final Widget Function(BuildContext context, YgLayoutBodyController controller) builder;
+  final YgLayoutBodyContentBuilder builder;
   final bool loading;
 
   @override

@@ -2,6 +2,11 @@ import 'package:flutter/physics.dart';
 import 'package:flutter/widgets.dart';
 import 'package:yggdrasil/src/components/yg_layout/body/controller/_controller.dart';
 
+/// Internal scroll physics used by [YgLayoutBody].
+///
+/// Ensures the [YgLayout] header will not be left partially on / off screen at
+/// the end of a scroll. Instead will snap to the header either being fully on
+/// or off screen, depending on which is closer.
 class YgLayoutHeaderAwareScrollPhysics extends ScrollPhysics {
   const YgLayoutHeaderAwareScrollPhysics({
     required this.controller,

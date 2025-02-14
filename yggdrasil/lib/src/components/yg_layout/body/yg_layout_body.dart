@@ -9,7 +9,15 @@ import 'widgets/_widgets.dart';
 part 'yg_layout_body_regular.dart';
 part 'yg_layout_body_sliver.dart';
 
+/// A layout component responsible for adding scroll and a footer.
+///
+/// Should always be used as a child of [YgLayout], notifies the parent
+/// [YgLayout] about the scroll position, and whether the view connected to this
+/// [YgLayoutBody] is loading.
 abstract class YgLayoutBody extends Widget {
+  /// Creates a scrollable layout with a optional footer.
+  ///
+  /// Enforces a minimum height on its child to allow centering of the content.
   const factory YgLayoutBody({
     required Widget child,
     Widget? footer,
@@ -18,6 +26,9 @@ abstract class YgLayoutBody extends Widget {
     bool loading,
   }) = _YgLayoutBodyRegular;
 
+  /// Creates a scrollable sliver layout.
+  ///
+  /// Does not have a footer as a sliver list does not have a known end.
   const factory YgLayoutBody.sliver({
     Key? key,
     bool loading,

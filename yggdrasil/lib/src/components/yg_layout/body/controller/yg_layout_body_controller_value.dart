@@ -1,3 +1,4 @@
+/// Value of a [YgLayoutBodyController].
 class YgLayoutBodyControllerValue {
   const YgLayoutBodyControllerValue({
     required this.loading,
@@ -5,8 +6,13 @@ class YgLayoutBodyControllerValue {
     required this.extendBefore,
   });
 
+  /// Whether the view is loading.
   final bool loading;
+
+  /// The scroll extend before the view content.
   final double extendBefore;
+
+  /// The scroll extend after the view content
   final double extendAfter;
 
   YgLayoutBodyControllerValue copyWith({
