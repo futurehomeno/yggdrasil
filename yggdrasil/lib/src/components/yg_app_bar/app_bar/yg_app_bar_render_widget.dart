@@ -162,7 +162,7 @@ class YgAppBarRenderer extends RenderBox
 
       rightTitlePadding += usedSpace;
       availableConstraints = availableConstraints.copyWith(
-        maxWidth: availableConstraints.maxWidth - usedSpace,
+        maxWidth: max(0, availableConstraints.maxWidth - usedSpace),
       );
 
       trailing.offset = Offset(

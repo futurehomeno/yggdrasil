@@ -14,18 +14,21 @@ class YgLayoutContentPositioner extends SingleChildRenderObjectWidget {
   const YgLayoutContentPositioner({
     super.key,
     super.child,
+    required this.contentPadding,
   });
+
+  final EdgeInsets contentPadding;
 
   @override
   RenderObject createRenderObject(BuildContext context) {
     return YgContentPositionerRenderer(
-      padding: MediaQuery.paddingOf(context),
+      padding: contentPadding,
     );
   }
 
   @override
   void updateRenderObject(BuildContext context, covariant YgContentPositionerRenderer renderObject) {
-    renderObject.padding = MediaQuery.paddingOf(context);
+    renderObject.padding = contentPadding;
   }
 }
 

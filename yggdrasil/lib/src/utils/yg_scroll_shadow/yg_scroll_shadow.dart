@@ -6,7 +6,15 @@ class YgScrollShadow extends StatefulWidget {
   const YgScrollShadow({
     super.key,
     required this.child,
+    this.top = true,
+    this.bottom = true,
   });
+
+  /// Whether the top shadow should be shown in the case of under scroll.
+  final bool top;
+
+  /// Whether the bottom shadow should be shown in the case of under scroll.
+  final bool bottom;
 
   /// The child widget to which the scroll shadow gets applied.
   final Widget child;
@@ -19,9 +27,17 @@ class _YgScrollShadowState extends State<YgScrollShadow> {
   bool _showBottomShadow = false;
   bool _showTopShadow = false;
 
+  @override
+  void didUpdateWidget(covariant YgScrollShadow oldWidget) {
+    super.didUpdateWidget(oldWidget);
+
+    _showBottomShadow &= widget.bottom;
+    _showTopShadow &= widget.top;
+  }
+
   void _updateShadows(ScrollMetrics metrics) {
-    final bool newShowBottomShadow = metrics.extentAfter != 0;
-    final bool newShowTopShadow = metrics.extentBefore != 0;
+    final bool newShowTopShadow = metrics.extentBefore != 0 && widget.top;
+    final bool newShowBottomShadow = metrics.extentAfter != 0 && widget.bottom;
 
     if ((_showBottomShadow != newShowBottomShadow) || (_showTopShadow != newShowTopShadow)) {
       _showBottomShadow = newShowBottomShadow;

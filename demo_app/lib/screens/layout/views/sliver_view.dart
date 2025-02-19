@@ -9,15 +9,6 @@ class SliverView extends StatelessWidget {
     return YgLayoutBody.sliver(
       sliver: SliverList.builder(
         itemBuilder: (BuildContext context, int index) {
-          if (index == 25) {
-            return const YgSection(
-              child: YgTextField.email(
-                label: 'email',
-                textInputAction: TextInputAction.done,
-              ),
-            );
-          }
-
           return YgListTile(
             title: 'List Tile #${index + 1}',
           );

@@ -46,152 +46,111 @@ class _YgLayoutBodyRegularState extends State<_YgLayoutBodyRegular> {
   }
 
   Widget _buildContent(BuildContext context, YgLayoutBodyController controller) {
-    final EdgeInsets viewInsets = MediaQuery.viewInsetsOf(context);
-
-    Widget? footer = widget.footer;
-    if (footer == null) {
-      return Padding(
-        padding: EdgeInsets.only(
-          bottom: viewInsets.bottom,
-        ),
-        child: _buildLayout(
-          child: SizedBox(
-            key: _contentKey,
-            child: widget.child,
-          ),
-          controller: controller,
-          context: context,
-        ),
-      );
-    }
-
     final YgLayoutTheme theme = context.layoutTheme;
-    final EdgeInsets viewPadding = MediaQuery.viewPaddingOf(context);
     final EdgeInsets themePadding = theme.footerPadding;
 
-    final EdgeInsets footerPadding = EdgeInsets.only(
-      bottom: viewPadding.bottom + themePadding.bottom,
-      left: viewPadding.left + themePadding.left,
-      right: viewPadding.right + themePadding.right,
-      top: themePadding.top,
+    final EdgeInsets viewInsets = MediaQuery.viewInsetsOf(context);
+    final EdgeInsets padding = MediaQuery.viewPaddingOf(context);
+
+    Widget content = SizedBox(
+      key: _contentKey,
+      child: widget.child,
     );
 
-    footer = Material(
-      key: _footerKey,
-      color: theme.backgroundColor,
-      child: MediaQuery.removePadding(
+    Widget? footer = widget.footer;
+    EdgeInsets contentPadding = padding;
+    Widget? bottom;
+
+    if (footer != null) {
+      footer = MediaQuery.removePadding(
         context: context,
-        removeTop: true,
         removeBottom: true,
         removeLeft: true,
         removeRight: true,
-        child: ConstrainedBox(
-          constraints: BoxConstraints(
-            minHeight: viewInsets.bottom,
-          ),
-          child: Padding(
-            padding: footerPadding,
-            child: footer,
-          ),
+        removeTop: true,
+        child: Padding(
+          key: _footerKey,
+          padding: themePadding,
+          child: footer,
         ),
-      ),
-    );
+      );
 
-    switch (widget.footerBehavior) {
-      case YgFooterBehavior.sticky:
-        return _buildStickyLayout(
-          context,
-          controller,
-          footer,
-        );
-      case YgFooterBehavior.pushDown:
-        return _buildPushDownLayout(
-          context,
-          controller,
-          footer,
-        );
+      switch (widget.footerBehavior) {
+        case YgFooterBehavior.pushDown:
+          // The footer actually gets rendered in the content view.
+          content = YgPushDownFooter(
+            children: <Widget>[
+              content,
+              footer,
+            ],
+          );
+
+          // Push up the content in the view when the on screen keyboard opens.
+          bottom = SizedBox(
+            height: viewInsets.bottom,
+          );
+
+          break;
+        case YgFooterBehavior.sticky:
+          // Since the footer is shown below the content, the footer has safe
+          // area padding, and the content no longer needs it.
+          contentPadding = contentPadding.copyWith(
+            bottom: 0,
+          );
+
+          // Make the footer at least the height of the view insets to push the
+          // bottom of the content on screen when the keyboard opens.
+          bottom = ConstrainedBox(
+            constraints: BoxConstraints(
+              minHeight: viewInsets.bottom,
+            ),
+            child: Padding(
+              padding: EdgeInsets.only(
+                bottom: padding.bottom,
+                left: padding.left,
+                right: padding.right,
+              ),
+              child: footer,
+            ),
+          );
+
+          break;
+      }
     }
-  }
 
-  Widget _buildPushDownLayout(
-    BuildContext context,
-    YgLayoutBodyController controller,
-    Widget footer,
-  ) {
-    return _buildLayout(
-      child: YgPushDownFooter(
-        children: <Widget>[
-          SizedBox(
-            key: _contentKey,
-            child: widget.child,
-          ),
-          footer,
-        ],
-      ),
-      controller: controller,
-      context: context,
-    );
-  }
-
-  Column _buildStickyLayout(
-    BuildContext context,
-    YgLayoutBodyController controller,
-    Widget footer,
-  ) {
     return Column(
-      mainAxisSize: MainAxisSize.min,
       children: <Widget>[
-        Expanded(
-          child: ValueListenableBuilder<YgLayoutBodyControllerValue>(
-            valueListenable: controller,
-            builder: (BuildContext context, YgLayoutBodyControllerValue value, Widget? child) {
-              return YgScrollShadowOverlay(
-                bottom: value.extendAfter > 0,
-                child: child!,
-              );
-            },
-            child: MediaQuery.removePadding(
-              context: context,
-              removeBottom: true,
-              child: _buildLayout(
-                child: SizedBox(
-                  key: _contentKey,
-                  child: widget.child,
+        Flexible(
+          child: YgScrollShadow(
+            top: false,
+            child: RepaintBoundary(
+              child: SingleChildScrollView(
+                physics: YgLayoutHeaderAwareScrollPhysics(
+                  controller: controller,
                 ),
-                controller: controller,
-                context: context,
+                child: RepaintBoundary(
+                  child: YgLayoutContentPositioner(
+                    contentPadding: contentPadding,
+                    child: MediaQuery.removeViewInsets(
+                      context: context,
+                      removeBottom: true,
+                      child: MediaQuery.removePadding(
+                        context: context,
+                        removeTop: true,
+                        removeBottom: true,
+                        removeLeft: true,
+                        removeRight: true,
+                        child: content,
+                      ),
+                    ),
+                  ),
+                ),
               ),
             ),
           ),
         ),
-        footer,
+        if (bottom != null) bottom,
       ],
-    );
-  }
-
-  Widget _buildLayout({
-    required BuildContext context,
-    required Widget child,
-    required YgLayoutBodyController controller,
-  }) {
-    return RepaintBoundary(
-      child: SingleChildScrollView(
-        physics: YgLayoutHeaderAwareScrollPhysics(
-          controller: controller,
-        ),
-        child: RepaintBoundary(
-          child: YgLayoutContentPositioner(
-            child: MediaQuery.removePadding(
-              context: context,
-              removeTop: true,
-              removeBottom: true,
-              removeLeft: true,
-              removeRight: true,
-              child: child,
-            ),
-          ),
-        ),
-      ),
     );
   }
 }
