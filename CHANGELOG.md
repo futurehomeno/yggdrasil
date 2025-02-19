@@ -1,3 +1,16 @@
+# 1.12.25 [2025-01-16T17:32:48.509483]
+
+### Changes
+
+- [fix] Added missing arguments to text form field constructors.
+
+# 1.12.24 [2025-01-14T14:28:00.527966]
+
+### Changes
+
+- [fix] Fixed exact search provider incorrectly highlighting the search matches.
+- [improvement] Added option for case sensitivity on exact search provider.
+
 # 1.12.23 [2024-12-17T12:23:37.240138]
 
 ### Changes

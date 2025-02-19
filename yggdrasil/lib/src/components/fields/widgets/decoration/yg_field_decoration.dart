@@ -19,6 +19,7 @@ class YgFieldDecoration extends StatelessWidget {
     super.key,
     required this.content,
     required this.error,
+    required this.counter,
     required this.state,
     required this.suffix,
     this.builder,
@@ -34,9 +35,15 @@ class YgFieldDecoration extends StatelessWidget {
 
   /// The error of the field.
   ///
-  /// Will be displayed below the field and when shown or hidden, will
-  /// animate the height of the field.
+  /// Will be displayed below the field and when shown or hidden, will animate
+  /// the height of the field.
   final String? error;
+
+  /// The counter of the field.
+  ///
+  /// Will be displayed below the field, on the right of the error and when
+  /// shown or hidden, will animate the height of the field.
+  final Widget? counter;
 
   /// The current state of the field.
   final YgFieldState state;
@@ -99,7 +106,7 @@ class YgFieldDecoration extends StatelessWidget {
             AnimatedSize(
               duration: fieldTheme.animationDuration,
               curve: fieldTheme.animationCurve,
-              child: _buildErrorMessage(theme),
+              child: _buildBottomText(theme),
             ),
           ],
         );
@@ -120,40 +127,70 @@ class YgFieldDecoration extends StatelessWidget {
     return builder(context, child);
   }
 
-  Widget _buildErrorMessage(YgFieldDecorationTheme theme) {
+  Widget _buildBottomText(YgFieldDecorationTheme theme) {
     final String? error = this.error;
+    final Widget? counter = this.counter;
 
-    if (state.disabled.value || error == null) {
+    if (state.disabled.value || (error == null && counter == null)) {
       return const FractionallySizedBox(
         widthFactor: 1,
+      );
+    }
+
+    final List<Widget> children = <Widget>[];
+    if (error != null) {
+      children.add(
+        Expanded(
+          child: Row(
+            mainAxisSize: MainAxisSize.min,
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: <Widget>[
+              SizedBox(
+                height: theme.errorTextStyle.computedHeight,
+                child: Center(
+                  child: YgIcon.colorable(
+                    YgIcons.error,
+                    size: YgIconSize.small,
+                    color: theme.errorIconColor,
+                  ),
+                ),
+              ),
+              SizedBox(width: theme.bottomSpacing),
+              Expanded(
+                child: Text(
+                  error,
+                  style: theme.errorTextStyle,
+                ),
+              ),
+            ],
+          ),
+        ),
+      );
+    } else {
+      children.add(const SizedBox());
+    }
+
+    if (error != null && counter != null) {
+      children.add(
+        SizedBox(width: theme.bottomSpacing),
+      );
+    }
+
+    if (counter != null) {
+      children.add(
+        DefaultTextStyle(
+          style: theme.counterTextStyle,
+          child: counter,
+        ),
       );
     }
 
     return Padding(
       padding: theme.errorPadding,
       child: Row(
+        mainAxisAlignment: MainAxisAlignment.spaceBetween,
         crossAxisAlignment: CrossAxisAlignment.start,
-        children: <Widget>[
-          Padding(
-            padding: theme.errorIconPadding,
-            child: SizedBox(
-              height: theme.errorTextStyle.computedHeight,
-              child: Center(
-                child: YgIcon.colorable(
-                  YgIcons.error,
-                  size: YgIconSize.small,
-                  color: theme.errorIconColor,
-                ),
-              ),
-            ),
-          ),
-          Expanded(
-            child: Text(
-              error,
-              style: theme.errorTextStyle,
-            ),
-          ),
-        ],
+        children: children,
       ),
     );
   }

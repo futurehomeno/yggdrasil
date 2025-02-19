@@ -26,6 +26,7 @@ class YgTextFormField extends FormField<String> {
     List<TextInputFormatter>? inputFormatters,
     YgCompleteAction? completeAction,
     ValueChanged<String>? onChanged,
+    int? maxLength,
     int? minLines,
     int? maxLines = 1,
     bool disabled = false,
@@ -35,6 +36,7 @@ class YgTextFormField extends FormField<String> {
     YgFieldSize size = YgFieldSize.large,
     YgAutoValidate autoValidate = YgAutoValidate.disabled,
     YgFieldVariant variant = YgFieldVariant.standard,
+    YgMaxLengthEnforcement maxLengthEnforcement = YgMaxLengthEnforcement.none,
   }) : super(
           initialValue: controller != null ? controller.text : (initialValue ?? ''),
           enabled: !disabled,
@@ -80,6 +82,8 @@ class YgTextFormField extends FormField<String> {
                 focusNode: focusNode,
                 minLines: minLines,
                 keyboardType: keyboardType,
+                maxLength: maxLength,
+                maxLengthEnforcement: maxLengthEnforcement,
               ),
             );
           },
@@ -101,7 +105,9 @@ class YgTextFormField extends FormField<String> {
     List<FormFieldValidator<String>>? validators,
     VoidCallback? onEditingComplete,
     ValueChanged<bool>? onFocusChanged,
+    ValueChanged<String>? onChanged,
     List<TextInputFormatter>? inputFormatters,
+    int? maxLength,
     bool required = false,
     bool disabled = false,
     bool readOnly = false,
@@ -109,6 +115,7 @@ class YgTextFormField extends FormField<String> {
     YgAutoValidate autoValidate = YgAutoValidate.disabled,
     YgFieldVariant variant = YgFieldVariant.standard,
     YgCompleteAction? completeAction,
+    YgMaxLengthEnforcement maxLengthEnforcement = YgMaxLengthEnforcement.none,
   }) : this(
           key: key,
           label: label,
@@ -130,6 +137,9 @@ class YgTextFormField extends FormField<String> {
           size: size,
           variant: variant,
           textCapitalization: TextCapitalization.none,
+          maxLength: maxLength,
+          maxLengthEnforcement: maxLengthEnforcement,
+          onChanged: onChanged,
         );
 
   /// Convenience method for creating a password fields.
@@ -149,7 +159,9 @@ class YgTextFormField extends FormField<String> {
     List<FormFieldValidator<String>>? validators,
     VoidCallback? onEditingComplete,
     ValueChanged<bool>? onFocusChanged,
+    ValueChanged<String>? onChanged,
     List<TextInputFormatter>? inputFormatters,
+    int? maxLength,
     bool required = false,
     bool disabled = false,
     bool readOnly = false,
@@ -158,6 +170,7 @@ class YgTextFormField extends FormField<String> {
     YgAutoValidate autoValidate = YgAutoValidate.disabled,
     YgFieldVariant variant = YgFieldVariant.standard,
     YgCompleteAction? completeAction,
+    YgMaxLengthEnforcement maxLengthEnforcement = YgMaxLengthEnforcement.none,
   }) : this(
           key: key,
           label: label,
@@ -182,6 +195,9 @@ class YgTextFormField extends FormField<String> {
           size: size,
           variant: variant,
           textCapitalization: TextCapitalization.none,
+          maxLength: maxLength,
+          maxLengthEnforcement: maxLengthEnforcement,
+          onChanged: onChanged,
         );
 
   /// Convenience method for creating a multiline text fields.
@@ -200,17 +216,20 @@ class YgTextFormField extends FormField<String> {
     List<FormFieldValidator<String>>? validators,
     VoidCallback? onEditingComplete,
     ValueChanged<bool>? onFocusChanged,
+    ValueChanged<String>? onChanged,
     List<TextInputFormatter>? inputFormatters,
+    int? maxLines,
+    int? minLines,
+    int? maxLength,
     bool required = false,
     bool disabled = false,
     bool readOnly = false,
-    int? maxLines,
-    int? minLines,
     YgFieldSize size = YgFieldSize.large,
     YgAutoValidate autoValidate = YgAutoValidate.disabled,
     YgFieldVariant variant = YgFieldVariant.standard,
     TextCapitalization textCapitalization = TextCapitalization.sentences,
     YgCompleteAction? completeAction,
+    YgMaxLengthEnforcement maxLengthEnforcement = YgMaxLengthEnforcement.none,
   }) : this(
           key: key,
           label: label,
@@ -236,6 +255,9 @@ class YgTextFormField extends FormField<String> {
           textCapitalization: textCapitalization,
           maxLines: maxLines,
           minLines: minLines,
+          maxLength: maxLength,
+          maxLengthEnforcement: maxLengthEnforcement,
+          onChanged: onChanged,
         );
 
   /// Controls the text being edited.

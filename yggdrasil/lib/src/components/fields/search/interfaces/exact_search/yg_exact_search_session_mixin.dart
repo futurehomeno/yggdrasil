@@ -50,15 +50,22 @@ mixin YgExactSearchSessionMixin<
 
     for (final Item item in provider.items) {
       // Get title index
-      final int titleIndex = item.title.indexOf(query);
+      final int titleIndex;
+      if (provider.caseSensitive) {
+        titleIndex = item.title.indexOf(query);
+      } else {
+        titleIndex = item.title.toLowerCase().indexOf(query.toLowerCase());
+      }
 
       // Get subtitle index
       final String? subtitle = item.subtitle;
       final int subtitleIndex;
-      if (provider.searchSubtitle && subtitle != null) {
+      if (!provider.searchSubtitle || subtitle == null) {
+        subtitleIndex = -1;
+      } else if (provider.caseSensitive) {
         subtitleIndex = subtitle.indexOf(query);
       } else {
-        subtitleIndex = -1;
+        subtitleIndex = subtitle.toLowerCase().indexOf(query.toLowerCase());
       }
 
       // If both have no match, skip item.
@@ -82,14 +89,14 @@ mixin YgExactSearchSessionMixin<
             if (titleIndex != -1)
               YgTextMatch(
                 start: titleIndex,
-                end: query.length,
+                end: titleIndex + query.length,
               ),
           ],
           subtitleMatches: <YgTextMatch>[
             if (subtitleIndex != -1)
               YgTextMatch(
                 start: subtitleIndex,
-                end: query.length,
+                end: titleIndex + query.length,
               ),
           ],
         ),

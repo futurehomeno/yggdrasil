@@ -16,6 +16,7 @@ abstract class YgExactSearchProviderInterface<
     required this.items,
     required this.noResultsBuilder,
     this.searchSubtitle = false,
+    this.caseSensitive = false,
     this.requireQuery = true,
     this.hintBuilder,
   });
@@ -44,4 +45,7 @@ abstract class YgExactSearchProviderInterface<
   /// If this is false, this will return all items if there is no query. By
   /// default, this will not return any results if there is no query.
   final bool requireQuery;
+
+  /// Whether the search is case sensitive.
+  final bool caseSensitive;
 }
