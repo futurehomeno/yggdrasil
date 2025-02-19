@@ -1,10 +1,10 @@
 import 'package:flutter/widgets.dart';
 import 'package:yggdrasil/src/components/yg_layout/body/controller/_controller.dart';
 
-import 'yg_layout_controller_value.dart';
+import 'yg_layout_header_controller_value.dart';
 
 /// Controller which manages the current state of the [YgLayout] header.
-class YgLayoutHeaderController extends ValueNotifier<YgLayoutControllerValue> {
+class YgLayoutHeaderController extends ValueNotifier<YgLayoutHeaderControllerValue> {
   YgLayoutHeaderController({
     required TickerProvider vsync,
     int initialView = 0,
@@ -13,8 +13,8 @@ class YgLayoutHeaderController extends ValueNotifier<YgLayoutControllerValue> {
         ),
         _activeView = initialView,
         super(
-          const YgLayoutControllerValue(
-            headerShadow: false,
+          const YgLayoutHeaderControllerValue(
+            shadow: false,
             loading: false,
           ),
         ) {
@@ -132,8 +132,8 @@ class YgLayoutHeaderController extends ValueNotifier<YgLayoutControllerValue> {
   void _updateValue() {
     final YgLayoutBodyControllerValue? activeState = _viewControllers[_activeView]?.value;
     if (activeState == null) {
-      value = const YgLayoutControllerValue(
-        headerShadow: false,
+      value = const YgLayoutHeaderControllerValue(
+        shadow: false,
         loading: false,
       );
 
@@ -143,8 +143,8 @@ class YgLayoutHeaderController extends ValueNotifier<YgLayoutControllerValue> {
     final double offset = _headerOffsetController.value * _collapsibleHeight;
     final bool showShadow = (offset + 0.01) < activeState.extendBefore;
 
-    value = YgLayoutControllerValue(
-      headerShadow: showShadow,
+    value = YgLayoutHeaderControllerValue(
+      shadow: showShadow,
       loading: activeState.loading,
     );
   }

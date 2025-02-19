@@ -15,4 +15,11 @@ class _$YgLayoutTheme {
     professional_light.FhColors.backgroundDefault,
     professional_dark.FhColors.backgroundDefault,
   ];
+
+  static const List<EdgeInsets> footerPadding = <EdgeInsets>[
+    EdgeInsets.all(consumer_light.FhDimensions.md),
+    EdgeInsets.all(consumer_dark.FhDimensions.md),
+    EdgeInsets.all(professional_light.FhDimensions.md),
+    EdgeInsets.all(professional_dark.FhDimensions.md),
+  ];
 }

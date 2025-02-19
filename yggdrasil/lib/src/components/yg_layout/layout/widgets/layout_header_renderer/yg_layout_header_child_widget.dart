@@ -5,8 +5,8 @@ import 'yg_layout_header_render_widget.dart';
 import 'yg_layout_header_slot.dart';
 
 /// Internal widget which add a slot to its child.
-class YgLayoutChildWidget extends ParentDataWidget<YgLayoutRendererParentData> {
-  const YgLayoutChildWidget({
+class YgLayoutHeaderChildWidget extends ParentDataWidget<YgLayoutHeaderRendererParentData> {
+  const YgLayoutHeaderChildWidget({
     super.key,
     required super.child,
     required this.slot,
@@ -18,11 +18,11 @@ class YgLayoutChildWidget extends ParentDataWidget<YgLayoutRendererParentData> {
   void applyParentData(RenderObject renderObject) {
     final ParentData? parentData = renderObject.parentData;
     assert(
-      parentData is YgLayoutRendererParentData,
+      parentData is YgLayoutHeaderRendererParentData,
       'LayoutChildWidget has to be a direct child of YgLayoutRenderWidget',
     );
 
-    if (parentData is! YgLayoutRendererParentData) {
+    if (parentData is! YgLayoutHeaderRendererParentData) {
       return;
     }
 

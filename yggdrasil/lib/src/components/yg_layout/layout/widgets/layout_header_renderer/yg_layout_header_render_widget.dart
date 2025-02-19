@@ -45,11 +45,12 @@ class YgLayoutHeaderRenderWidget extends MultiChildRenderObjectWidget {
   }
 }
 
-class YgLayoutRendererParentData extends ContainerBoxParentData<RenderBox> {
+class YgLayoutHeaderRendererParentData extends ContainerBoxParentData<RenderBox> {
   YgLayoutHeaderSlot? slot;
 }
 
-class YgLayoutHeaderRenderer extends RenderBox with ContainerRenderObjectMixin<RenderBox, YgLayoutRendererParentData> {
+class YgLayoutHeaderRenderer extends RenderBox
+    with ContainerRenderObjectMixin<RenderBox, YgLayoutHeaderRendererParentData> {
   YgLayoutHeaderRenderer({
     required YgLayoutHeaderController controller,
     required EdgeInsets viewPadding,
@@ -107,7 +108,7 @@ class YgLayoutHeaderRenderer extends RenderBox with ContainerRenderObjectMixin<R
 
   @override
   void setupParentData(covariant RenderObject child) {
-    child.parentData = YgLayoutRendererParentData();
+    child.parentData = YgLayoutHeaderRendererParentData();
   }
 
   @override
@@ -232,9 +233,14 @@ class YgLayoutHeaderRenderer extends RenderBox with ContainerRenderObjectMixin<R
         0,
         switch (headerBehavior) {
           YgHeaderBehavior.fixed => topPadding,
-          YgHeaderBehavior.hideAppBar || YgHeaderBehavior.hideEverything => lerpDouble(
+          YgHeaderBehavior.hideAppBar => lerpDouble(
               topPadding,
-              -(appBar.size.height + (trailing?.size.height ?? 0)),
+              -appBar.size.height,
+              t,
+            )!,
+          YgHeaderBehavior.hideEverything => lerpDouble(
+              topPadding,
+              -appBar.size.height - (trailing?.size.height ?? 0),
               t,
             )!,
         },
@@ -290,7 +296,7 @@ class YgLayoutHeaderRenderer extends RenderBox with ContainerRenderObjectMixin<R
     if (loading != null) {
       loading.offset = Offset(
         0,
-        max(headerHeight - (loading.size.height / 2), 0),
+        max(headerHeight - (loading.size.height / 2), viewPadding.top),
       );
 
       loading.paintWithParentOffset(context, offset);
@@ -401,15 +407,15 @@ class _Children {
 // Internal extensions to make working with the child renderers easier.
 extension on RenderBox {
   YgLayoutHeaderSlot? get slot {
-    return (parentData as YgLayoutRendererParentData).slot;
+    return (parentData as YgLayoutHeaderRendererParentData).slot;
   }
 
   Offset get offset {
-    return (parentData as YgLayoutRendererParentData).offset;
+    return (parentData as YgLayoutHeaderRendererParentData).offset;
   }
 
   set offset(Offset offset) {
-    (parentData as YgLayoutRendererParentData).offset = offset;
+    (parentData as YgLayoutHeaderRendererParentData).offset = offset;
   }
 
   void paintWithParentOffset(PaintingContext context, Offset offset) {

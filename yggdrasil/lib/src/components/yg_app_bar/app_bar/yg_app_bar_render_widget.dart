@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 import 'package:yggdrasil/src/components/yg_app_bar/app_bar/yg_app_bar_slot.dart';
 
+/// Internal widget used to position the widgets in the app bar.
 class YgAppBarRenderWidget extends MultiChildRenderObjectWidget {
   const YgAppBarRenderWidget({
     super.key,

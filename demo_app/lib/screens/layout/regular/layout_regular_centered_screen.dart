@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:yggdrasil/yggdrasil.dart';
 import 'package:yggdrasil_demo/core/_core.dart';
 import 'package:yggdrasil_demo/screens/layout/views/centered_view.dart';
+import 'package:yggdrasil_demo/widgets/demo_screen/demo_app_bar.dart';
 
 class LayoutRegularCenteredScreen extends StatelessWidget {
   const LayoutRegularCenteredScreen({super.key});
@@ -17,8 +18,8 @@ class LayoutRegularCenteredScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const YgLayoutRegular(
-      appBar: YgAppBar(
+    return const YgLayout(
+      appBar: DemoAppBar(
         title: 'Centered content',
       ),
       child: CenteredView(),

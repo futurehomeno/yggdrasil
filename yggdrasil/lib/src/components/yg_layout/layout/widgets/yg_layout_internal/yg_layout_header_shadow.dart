@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:yggdrasil/src/components/yg_layout/layout/controller/yg_layout_controller_value.dart';
 import 'package:yggdrasil/src/components/yg_layout/layout/controller/yg_layout_header_controller.dart';
+import 'package:yggdrasil/src/components/yg_layout/layout/controller/yg_layout_header_controller_value.dart';
 import 'package:yggdrasil/src/components/yg_layout/layout/widgets/layout_header_renderer/_layout_renderer.dart';
 import 'package:yggdrasil/src/utils/delayed_value_listenable_builder.dart';
 import 'package:yggdrasil/src/utils/yg_scroll_shadow/yg_scroll_shadow_gradient.dart';
@@ -17,14 +17,14 @@ class YgLayoutHeaderShadow extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return YgLayoutChildWidget(
+    return YgLayoutHeaderChildWidget(
       slot: YgLayoutHeaderSlot.shadow,
-      child: DelayedValueListenableBuilder<YgLayoutControllerValue>(
+      child: DelayedValueListenableBuilder<YgLayoutHeaderControllerValue>(
         valueListenable: controller,
-        builder: (BuildContext context, YgLayoutControllerValue value, Widget? child) {
+        builder: (BuildContext context, YgLayoutHeaderControllerValue value, Widget? child) {
           return YgScrollShadowGradient(
             alignment: Alignment.topCenter,
-            shown: value.headerShadow,
+            shown: value.shadow,
           );
         },
       ),

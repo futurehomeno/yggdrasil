@@ -6,8 +6,8 @@ part of 'yg_layout.dart';
 /// selects the current tab as the scroll shadow and header animation provider.
 ///
 /// Automatically resets the header location if the selected tab changes.
-class YgLayoutTabbed extends YgLayout {
-  const YgLayoutTabbed({
+class _YgLayoutTabbed extends YgLayout {
+  const _YgLayoutTabbed({
     super.key,
     super.appBar,
     super.bottom,
@@ -30,10 +30,10 @@ class YgLayoutTabbed extends YgLayout {
   final bool swiping;
 
   @override
-  State<YgLayout> createState() => YgLayoutTabbedState();
+  State<YgLayout> createState() => _YgLayoutTabbedState();
 }
 
-class YgLayoutTabbedState extends _YgLayoutState<YgLayoutTabbed> {
+class _YgLayoutTabbedState extends _YgLayoutState<_YgLayoutTabbed> {
   @override
   Widget build(BuildContext context) {
     final Widget? trailing = widget.bottom;

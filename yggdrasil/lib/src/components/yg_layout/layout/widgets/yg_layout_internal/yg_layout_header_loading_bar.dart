@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:yggdrasil/src/components/yg_layout/layout/controller/yg_layout_controller_value.dart';
 import 'package:yggdrasil/src/components/yg_layout/layout/controller/yg_layout_header_controller.dart';
+import 'package:yggdrasil/src/components/yg_layout/layout/controller/yg_layout_header_controller_value.dart';
 import 'package:yggdrasil/src/components/yg_layout/layout/widgets/layout_header_renderer/_layout_renderer.dart';
 import 'package:yggdrasil/src/theme/_theme.dart';
 import 'package:yggdrasil/src/utils/delayed_value_listenable_builder.dart';
@@ -20,12 +20,12 @@ class YgLayoutHeaderLoadingBar extends StatelessWidget {
   Widget build(BuildContext context) {
     final LinearProgressIndicatorTheme theme = context.progressIndicatorTheme.linearProgressIndicatorTheme;
 
-    return YgLayoutChildWidget(
+    return YgLayoutHeaderChildWidget(
       slot: YgLayoutHeaderSlot.loading,
       child: RepaintBoundary(
-        child: DelayedValueListenableBuilder<YgLayoutControllerValue>(
+        child: DelayedValueListenableBuilder<YgLayoutHeaderControllerValue>(
           valueListenable: controller,
-          builder: (BuildContext context, YgLayoutControllerValue value, Widget? child) {
+          builder: (BuildContext context, YgLayoutHeaderControllerValue value, Widget? child) {
             return YgAnimatedOpacity(
               duration: const Duration(milliseconds: 200),
               opacity: value.loading ? 1 : 0,

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 
+/// Widget useful for debugging repaints in specific areas.
 class RepaintRainbow extends StatelessWidget {
   const RepaintRainbow({
     super.key,

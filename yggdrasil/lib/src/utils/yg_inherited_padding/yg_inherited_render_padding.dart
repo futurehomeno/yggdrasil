@@ -5,6 +5,7 @@ import 'package:yggdrasil/src/utils/yg_render_shifted_box.dart';
 
 import 'yg_inherited_render_padding_mixin.dart';
 
+/// Adds inherited padding to a child widget.
 class YgInheritedRenderPadding extends SingleChildRenderObjectWidget {
   const YgInheritedRenderPadding({super.key});
 

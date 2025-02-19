@@ -22,14 +22,20 @@ class StickyFooterView extends StatelessWidget {
           ),
         ],
       ),
-      child: const YgSection(
+      child: const YgSection.column(
         title: 'YgFooterBehavior.sticky',
         subtitle: 'Footer sticks to the bottom of the screen.\n\n'
             'The footer will always be positioned at the bottom of the screen,'
             ' regardless of the content height.',
-        child: DemoPlaceholder(
-          height: 2000,
-        ),
+        children: <Widget>[
+          DemoPlaceholder(
+            height: 2000,
+          ),
+          YgTextField.email(
+            label: 'email',
+            textInputAction: TextInputAction.done,
+          ),
+        ],
       ),
     );
   }

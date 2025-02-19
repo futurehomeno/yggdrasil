@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
 import 'package:yggdrasil/src/components/yg_layout/enums/yg_header_behavior.dart';
 import 'package:yggdrasil/src/components/yg_layout/layout/controller/yg_layout_header_controller.dart';
 import 'package:yggdrasil/src/components/yg_layout/layout/widgets/layout_header_renderer/_layout_renderer.dart';
@@ -41,46 +40,40 @@ class YgLayoutInternal extends StatelessWidget {
     final Widget? appBar = this.appBar;
     final Widget? bottom = this.bottom;
 
-    return AnnotatedRegion<SystemUiOverlayStyle>(
-      value: SystemUiOverlayStyle(
-        statusBarColor: Colors.transparent,
-        statusBarBrightness: Theme.of(context).brightness,
-      ),
-      child: Material(
-        color: theme.backgroundColor,
-        child: YgLayoutRenderWidget(
-          children: <Widget>[
-            content,
-            MediaQuery.removePadding(
-              removeTop: true,
-              context: context,
-              child: YgLayoutHeaderRenderWidget(
-                padding: MediaQuery.paddingOf(context),
-                controller: controller,
-                behavior: headerBehavior,
-                headerColor: theme.backgroundColor,
-                children: <Widget>[
-                  if (appBar != null)
-                    YgLayoutChildWidget(
-                      slot: YgLayoutHeaderSlot.appBar,
-                      child: appBar,
-                    ),
-                  if (bottom != null)
-                    YgLayoutChildWidget(
-                      slot: YgLayoutHeaderSlot.trailing,
-                      child: bottom,
-                    ),
-                  YgLayoutHeaderLoadingBar(
-                    controller: controller,
+    return Material(
+      color: theme.backgroundColor,
+      child: YgLayoutRenderWidget(
+        children: <Widget>[
+          content,
+          MediaQuery.removePadding(
+            removeTop: true,
+            context: context,
+            child: YgLayoutHeaderRenderWidget(
+              padding: MediaQuery.paddingOf(context),
+              controller: controller,
+              behavior: headerBehavior,
+              headerColor: theme.backgroundColor,
+              children: <Widget>[
+                if (appBar != null)
+                  YgLayoutHeaderChildWidget(
+                    slot: YgLayoutHeaderSlot.appBar,
+                    child: appBar,
                   ),
-                  YgLayoutHeaderShadow(
-                    controller: controller,
+                if (bottom != null)
+                  YgLayoutHeaderChildWidget(
+                    slot: YgLayoutHeaderSlot.trailing,
+                    child: bottom,
                   ),
-                ],
-              ),
+                YgLayoutHeaderLoadingBar(
+                  controller: controller,
+                ),
+                YgLayoutHeaderShadow(
+                  controller: controller,
+                ),
+              ],
             ),
-          ],
-        ),
+          ),
+        ],
       ),
     );
   }

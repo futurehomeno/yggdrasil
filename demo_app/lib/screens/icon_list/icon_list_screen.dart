@@ -43,8 +43,7 @@ class _IconListScreenState extends State<IconListScreen> {
               );
             }
 
-            index--;
-            final YgIconData iconData = allIcons[index];
+            final YgIconData iconData = allIcons[index - 1];
             final String iconName = iconData.name;
             final String iconPath = iconData.path;
 

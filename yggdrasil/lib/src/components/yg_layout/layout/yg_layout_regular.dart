@@ -1,8 +1,8 @@
 part of 'yg_layout.dart';
 
 /// A layout with a single child.
-class YgLayoutRegular extends YgLayout {
-  const YgLayoutRegular({
+class _YgLayoutRegular extends YgLayout {
+  const _YgLayoutRegular({
     super.key,
     required this.child,
     super.appBar,
@@ -14,10 +14,10 @@ class YgLayoutRegular extends YgLayout {
   final Widget child;
 
   @override
-  State<YgLayout> createState() => YgLayoutRegularState();
+  State<YgLayout> createState() => _YgLayoutRegularState();
 }
 
-class YgLayoutRegularState extends _YgLayoutState<YgLayoutRegular> {
+class _YgLayoutRegularState extends _YgLayoutState<_YgLayoutRegular> {
   @override
   Widget build(BuildContext context) {
     return YgLayoutInternal(

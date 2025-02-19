@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:yggdrasil/yggdrasil.dart';
 import 'package:yggdrasil_demo/core/_core.dart';
 import 'package:yggdrasil_demo/screens/layout/views/push_down_footer_view.dart';
+import 'package:yggdrasil_demo/widgets/demo_screen/demo_app_bar.dart';
 
 class LayoutRegularPushDownFooterScreen extends StatelessWidget {
   const LayoutRegularPushDownFooterScreen({super.key});
@@ -17,8 +18,8 @@ class LayoutRegularPushDownFooterScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const YgLayoutRegular(
-      appBar: YgAppBar(
+    return const YgLayout(
+      appBar: DemoAppBar(
         title: 'YgFooterBehavior.pushDown',
       ),
       child: PushDownFooterView(),

@@ -6,7 +6,7 @@ import 'package:yggdrasil/src/theme/_theme.dart';
 import 'package:yggdrasil/yggdrasil.dart';
 
 /// An AppBar with a title, leading widget and actions
-class YgAppBar extends StatelessWidget implements PreferredSizeWidget {
+class YgAppBar extends StatelessWidget with StatelessWidgetDebugMixin implements PreferredSizeWidget {
   const YgAppBar({
     super.key,
     this.title,
@@ -142,4 +142,7 @@ class YgAppBar extends StatelessWidget implements PreferredSizeWidget {
   // Only here for legacy usecases, is not actually used in layout.
   @override
   Size get preferredSize => const Size.fromHeight(64);
+
+  @override
+  YgDebugType get debugType => YgDebugType.other;
 }

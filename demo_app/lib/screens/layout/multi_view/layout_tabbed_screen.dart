@@ -6,6 +6,7 @@ import 'package:yggdrasil_demo/screens/layout/views/push_down_footer_view.dart';
 import 'package:yggdrasil_demo/screens/layout/views/scrollable_view.dart';
 import 'package:yggdrasil_demo/screens/layout/views/sliver_view.dart';
 import 'package:yggdrasil_demo/screens/layout/views/sticky_footer_view.dart';
+import 'package:yggdrasil_demo/widgets/demo_screen/demo_app_bar.dart';
 
 class LayoutTabbedScreen extends StatelessWidget {
   const LayoutTabbedScreen({super.key});
@@ -21,7 +22,7 @@ class LayoutTabbedScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const YgLayoutTabbed(
+    return const YgLayout.tabbed(
       headerBehavior: YgHeaderBehavior.hideEverything,
       tabs: <YgLayoutTab>[
         YgLayoutTab(
@@ -45,7 +46,7 @@ class LayoutTabbedScreen extends StatelessWidget {
           content: PushDownFooterView(),
         ),
       ],
-      appBar: YgAppBar(
+      appBar: DemoAppBar(
         title: 'Layout tabbed',
       ),
     );

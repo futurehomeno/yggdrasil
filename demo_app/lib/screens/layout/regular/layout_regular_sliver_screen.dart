@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:yggdrasil/yggdrasil.dart';
 import 'package:yggdrasil_demo/core/_core.dart';
 import 'package:yggdrasil_demo/screens/layout/views/sliver_view.dart';
+import 'package:yggdrasil_demo/widgets/demo_screen/demo_app_bar.dart';
 
 class LayoutRegularSliverScreen extends StatelessWidget {
   const LayoutRegularSliverScreen({super.key});
@@ -17,9 +18,9 @@ class LayoutRegularSliverScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const YgLayoutRegular(
+    return const YgLayout(
       headerBehavior: YgHeaderBehavior.hideAppBar,
-      appBar: YgAppBar(
+      appBar: DemoAppBar(
         title: 'Sliver layout',
       ),
       child: SliverView(),

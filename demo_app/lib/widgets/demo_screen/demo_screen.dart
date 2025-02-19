@@ -1,9 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:provider/provider.dart';
 import 'package:yggdrasil/yggdrasil.dart';
-import 'package:yggdrasil_demo/core/_core.dart';
 
-import '../debug_bottom_sheet.dart';
+import 'demo_app_bar.dart';
 
 part 'demo_screen_regular.dart';
 part 'demo_screen_tabbed.dart';
@@ -53,34 +51,8 @@ abstract class DemoScreen extends StatelessWidget {
       return appBar;
     }
 
-    return Consumer<YgAppState>(
-      builder: (BuildContext context, YgAppState ygAppState, Widget? widget) {
-        return YgAppBar(
-          title: componentName ?? '',
-          centerTitle: false,
-          leading: const Padding(
-            padding: EdgeInsets.all(12.5),
-            child: YgIcon(
-              YgIcons.yggColorful,
-            ),
-          ),
-          actions: <YgIconButton>[
-            YgIconButton(
-              onPressed: () => YgDebug.toggleDebugging(context),
-              onLongPress: () => Navigator.of(context).push(DebugBottomSheet()),
-              icon: YgIcons.eyeOpen,
-            ),
-            YgIconButton(
-              onPressed: ygAppState.toggleProfessionalTheme,
-              icon: YgIcons.power,
-            ),
-            YgIconButton(
-              onPressed: ygAppState.toggleDarkMode,
-              icon: YgIcons.refresh,
-            ),
-          ],
-        );
-      },
+    return DemoAppBar(
+      title: componentName ?? '',
     );
   }
 }

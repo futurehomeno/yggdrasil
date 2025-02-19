@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:yggdrasil/yggdrasil.dart';
 import 'package:yggdrasil_demo/core/_core.dart';
 import 'package:yggdrasil_demo/widgets/_widgets.dart';
+import 'package:yggdrasil_demo/widgets/demo_screen/demo_app_bar.dart';
 
 class ConfigurableLayoutScreen extends StatefulWidget {
   const ConfigurableLayoutScreen({super.key});
@@ -30,20 +31,34 @@ class _ConfigurableLayoutScreenState extends State<ConfigurableLayoutScreen> {
 
   @override
   Widget build(BuildContext context) {
-    return YgLayoutRegular(
-      appBar: _appBar ? const YgAppBar() : null,
-      bottom: _bottom ? _buildBottom() : null,
+    return YgLayout(
+      appBar: _buildAppBar(),
+      bottom: _buildBottom(),
       headerBehavior: _headerBehavior,
       child: YgLayoutBody(
         footerBehavior: _footerBehavior,
         loading: _loading,
-        footer: _footer ? _buildFooter() : null,
+        footer: _buildFooter(),
         child: _buildContent(),
       ),
     );
   }
 
-  Widget _buildBottom() {
+  Widget? _buildAppBar() {
+    if (!_appBar) {
+      return null;
+    }
+
+    return const DemoAppBar(
+      title: 'Configurable layout',
+    );
+  }
+
+  Widget? _buildBottom() {
+    if (!_bottom) {
+      return null;
+    }
+
     return Padding(
       padding: const EdgeInsets.all(20.0),
       child: YgSegmentedButton<int>(
@@ -168,7 +183,11 @@ class _ConfigurableLayoutScreenState extends State<ConfigurableLayoutScreen> {
     );
   }
 
-  YgButtonGroup _buildFooter() {
+  Widget? _buildFooter() {
+    if (!_footer) {
+      return null;
+    }
+
     return YgButtonGroup.vertical(
       children: <YgButton>[
         YgButton(

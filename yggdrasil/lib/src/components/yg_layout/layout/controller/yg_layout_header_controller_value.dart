@@ -1,33 +1,33 @@
 /// The value of a [YgLayoutHeaderController].
-class YgLayoutControllerValue {
-  const YgLayoutControllerValue({
-    required this.headerShadow,
+class YgLayoutHeaderControllerValue {
+  const YgLayoutHeaderControllerValue({
+    required this.shadow,
     required this.loading,
   });
 
   /// Whether the header shadow is currently visible.
-  final bool headerShadow;
+  final bool shadow;
 
   /// Whether the loading bar is currently visible.
   final bool loading;
 
-  YgLayoutControllerValue copyWith({
-    bool? headerShadow,
+  YgLayoutHeaderControllerValue copyWith({
+    bool? shadow,
     bool? loading,
   }) {
-    return YgLayoutControllerValue(
-      headerShadow: headerShadow ?? this.headerShadow,
+    return YgLayoutHeaderControllerValue(
+      shadow: shadow ?? this.shadow,
       loading: loading ?? this.loading,
     );
   }
 
   @override
   int get hashCode => Object.hash(
-        headerShadow,
+        shadow,
         loading,
       );
 
   @override
   bool operator ==(Object other) =>
-      other is YgLayoutControllerValue && other.headerShadow == headerShadow && other.loading == loading;
+      other is YgLayoutHeaderControllerValue && other.shadow == shadow && other.loading == loading;
 }

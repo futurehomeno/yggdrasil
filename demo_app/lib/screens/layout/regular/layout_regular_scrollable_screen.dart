@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:yggdrasil/yggdrasil.dart';
 import 'package:yggdrasil_demo/core/_core.dart';
 import 'package:yggdrasil_demo/screens/layout/views/scrollable_view.dart';
+import 'package:yggdrasil_demo/widgets/demo_screen/demo_app_bar.dart';
 
 class LayoutRegularScrollableScreen extends StatelessWidget {
   const LayoutRegularScrollableScreen({super.key});
@@ -17,8 +18,8 @@ class LayoutRegularScrollableScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const YgLayoutRegular(
-      appBar: YgAppBar(
+    return const YgLayout(
+      appBar: DemoAppBar(
         title: 'Scrollable layout',
       ),
       child: ScrollableView(),

@@ -12,13 +12,13 @@ class YgLayoutRenderWidget extends MultiChildRenderObjectWidget {
 
   @override
   RenderObject createRenderObject(BuildContext context) {
-    return YgLayoutRenderer();
+    return _YgLayoutRenderer();
   }
 }
 
 class YgLayoutRendererParentData extends ContainerBoxParentData<RenderBox> {}
 
-class YgLayoutRenderer extends RenderBox
+class _YgLayoutRenderer extends RenderBox
     with
         ContainerRenderObjectMixin<RenderBox, YgLayoutRendererParentData>,
         RenderBoxContainerDefaultsMixin<RenderBox, YgLayoutRendererParentData>,

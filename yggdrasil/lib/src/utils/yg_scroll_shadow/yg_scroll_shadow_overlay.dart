@@ -2,6 +2,10 @@ import 'package:flutter/material.dart';
 import 'package:yggdrasil/src/utils/yg_scroll_shadow/yg_scroll_shadow_gradient.dart';
 
 /// Internal widget which applies scroll shadow to a child widget.
+///
+/// Requires you to specify whether there should be a scroll shadow on the top
+/// or bottom, if you instead want this to be done automatically, use
+/// [YgScrollShadow] instead.
 class YgScrollShadowOverlay extends StatelessWidget {
   const YgScrollShadowOverlay({
     super.key,

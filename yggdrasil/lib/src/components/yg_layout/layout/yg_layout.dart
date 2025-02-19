@@ -25,7 +25,7 @@ abstract class YgLayout extends StatefulWidget with StatefulWidgetDebugMixin {
     YgHeaderBehavior headerBehavior,
     Key? key,
     Widget? bottom,
-  }) = YgLayoutRegular;
+  }) = _YgLayoutRegular;
 
   /// Creates a layout with tabs.
   ///
@@ -40,7 +40,7 @@ abstract class YgLayout extends StatefulWidget with StatefulWidgetDebugMixin {
     Key? key,
     required List<YgLayoutTab> tabs,
     Widget? bottom,
-  }) = YgLayoutTabbed;
+  }) = _YgLayoutTabbed;
 
   const YgLayout._({
     super.key,

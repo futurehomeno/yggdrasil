@@ -1,5 +1,10 @@
 import 'package:flutter/material.dart';
 
+/// Animated the opacity of [child].
+///
+/// Is different from a normal [AnimatedOpacity] in that it prevents the child
+/// widget from ticking, taking focus or reacting to touch when the opacity is
+/// set to 0.
 class YgAnimatedOpacity extends StatefulWidget {
   const YgAnimatedOpacity({
     super.key,

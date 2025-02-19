@@ -1,7 +1,7 @@
 part of 'yg_layout_body.dart';
 
 /// A scrollable layout with a optional footer.
-class _YgLayoutBodyRegular extends StatefulWidget implements YgLayoutBody {
+class _YgLayoutBodyRegular extends StatefulWidget with StatefulWidgetDebugMixin implements YgLayoutBody {
   const _YgLayoutBodyRegular({
     super.key,
     required this.child,
@@ -28,6 +28,9 @@ class _YgLayoutBodyRegular extends StatefulWidget implements YgLayoutBody {
 
   @override
   State<_YgLayoutBodyRegular> createState() => _YgLayoutBodyRegularState();
+
+  @override
+  YgDebugType get debugType => YgDebugType.layout;
 }
 
 class _YgLayoutBodyRegularState extends State<_YgLayoutBodyRegular> {
@@ -43,28 +46,53 @@ class _YgLayoutBodyRegularState extends State<_YgLayoutBodyRegular> {
   }
 
   Widget _buildContent(BuildContext context, YgLayoutBodyController controller) {
+    final EdgeInsets viewInsets = MediaQuery.viewInsetsOf(context);
+
     Widget? footer = widget.footer;
     if (footer == null) {
-      return _buildLayout(
-        child: SizedBox(
-          key: _contentKey,
-          child: widget.child,
+      return Padding(
+        padding: EdgeInsets.only(
+          bottom: viewInsets.bottom,
         ),
-        controller: controller,
-        context: context,
+        child: _buildLayout(
+          child: SizedBox(
+            key: _contentKey,
+            child: widget.child,
+          ),
+          controller: controller,
+          context: context,
+        ),
       );
     }
 
     final YgLayoutTheme theme = context.layoutTheme;
+    final EdgeInsets viewPadding = MediaQuery.viewPaddingOf(context);
+    final EdgeInsets themePadding = theme.footerPadding;
+
+    final EdgeInsets footerPadding = EdgeInsets.only(
+      bottom: viewPadding.bottom + themePadding.bottom,
+      left: viewPadding.left + themePadding.left,
+      right: viewPadding.right + themePadding.right,
+      top: themePadding.top,
+    );
 
     footer = Material(
       key: _footerKey,
       color: theme.backgroundColor,
-      child: SafeArea(
-        top: false,
-        child: Padding(
-          padding: const EdgeInsets.all(20.0),
-          child: footer,
+      child: MediaQuery.removePadding(
+        context: context,
+        removeTop: true,
+        removeBottom: true,
+        removeLeft: true,
+        removeRight: true,
+        child: ConstrainedBox(
+          constraints: BoxConstraints(
+            minHeight: viewInsets.bottom,
+          ),
+          child: Padding(
+            padding: footerPadding,
+            child: footer,
+          ),
         ),
       ),
     );

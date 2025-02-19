@@ -1,6 +1,10 @@
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 
+/// A value builder for values that get altered during build time.
+///
+/// Useful to prevent a setState from being called during build. Not an ideal
+/// solution, but sometimes the only solution.
 class DelayedValueListenableBuilder<T> extends StatefulWidget {
   /// Creates a [DelayedValueListenableBuilder].
   ///

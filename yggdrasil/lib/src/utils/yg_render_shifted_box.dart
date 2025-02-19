@@ -1,7 +1,6 @@
-// ignore_for_file: prefer-single-widget-per-file
-
 import 'package:flutter/rendering.dart';
 
+/// A simple box for rendering a child box with a offset.
 abstract class YgRenderShiftedBox extends RenderBox with RenderObjectWithChildMixin<RenderBox> {
   @override
   void setupParentData(covariant RenderObject child) {
