@@ -20,10 +20,10 @@ part 'yg_layout_tabbed.dart';
 abstract class YgLayout extends StatefulWidget with StatefulWidgetDebugMixin {
   /// Creates a layout with a single child.
   const factory YgLayout({
-    Widget? appBar,
+    Key? key,
     required Widget child,
     YgHeaderBehavior headerBehavior,
-    Key? key,
+    Widget? appBar,
     Widget? bottom,
   }) = _YgLayoutRegular;
 
@@ -34,12 +34,13 @@ abstract class YgLayout extends StatefulWidget with StatefulWidgetDebugMixin {
   ///
   /// Automatically resets the header location if the selected tab changes.
   const factory YgLayout.tabbed({
-    Widget? appBar,
-    YgHeaderBehavior headerBehavior,
-    int initialTab,
     Key? key,
     required List<YgLayoutTab> tabs,
+    YgHeaderBehavior headerBehavior,
+    int initialTab,
+    bool swiping,
     Widget? bottom,
+    Widget? appBar,
   }) = _YgLayoutTabbed;
 
   const YgLayout._({
