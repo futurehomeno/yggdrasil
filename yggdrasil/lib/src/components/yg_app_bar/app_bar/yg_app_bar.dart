@@ -100,11 +100,7 @@ class YgAppBar extends StatelessWidget with StatelessWidgetDebugMixin implements
       }
     }
 
-    if (leading != null) {
-      return leading;
-    }
-
-    return null;
+    return leading;
   }
 
   Widget? _getTitle(BuildContext context) {
