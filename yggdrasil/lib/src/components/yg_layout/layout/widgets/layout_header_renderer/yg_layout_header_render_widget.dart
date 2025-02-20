@@ -350,6 +350,7 @@ class YgLayoutHeaderRenderer extends RenderBox
           );
           appBar = child;
           break;
+
         case YgLayoutHeaderSlot.trailing:
           assert(
             trailing == null,
@@ -357,6 +358,7 @@ class YgLayoutHeaderRenderer extends RenderBox
           );
           trailing = child;
           break;
+
         case YgLayoutHeaderSlot.loading:
           assert(
             loading == null,
@@ -364,6 +366,7 @@ class YgLayoutHeaderRenderer extends RenderBox
           );
           loading = child;
           break;
+
         case YgLayoutHeaderSlot.shadow:
           assert(
             shadow == null,

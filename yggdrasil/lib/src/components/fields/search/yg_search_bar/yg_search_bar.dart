@@ -206,9 +206,11 @@ abstract class _YgSearchBarWidgetState<Value, ResultValue, Result extends YgBase
       case WidgetState.focused:
         state.focused.value = toggled;
         break;
+
       case WidgetState.hovered:
         state.hovered.value = toggled;
         break;
+
       case WidgetState.pressed:
         state.pressed.value = toggled;
         break;

@@ -19,12 +19,15 @@ abstract class YgEditingCompleteHelper {
       case YgCompleteAction.focusNext:
         focusNode.nextFocus();
         break;
+
       case YgCompleteAction.focusPrevious:
         focusNode.previousFocus();
         break;
+
       case YgCompleteAction.unfocus:
         focusNode.unfocus();
         break;
+
       case YgCompleteAction.none:
     }
   }

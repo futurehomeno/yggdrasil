@@ -91,6 +91,7 @@ class _YgLayoutBodyRegularState extends State<_YgLayoutBodyRegular> {
           );
 
           break;
+
         case YgFooterBehavior.sticky:
           // Since the footer is shown below the content, the footer has safe
           // area padding, and the content no longer needs it.

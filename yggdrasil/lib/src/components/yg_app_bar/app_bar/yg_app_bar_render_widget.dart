@@ -233,6 +233,7 @@ class YgAppBarRenderer extends RenderBox
           );
           leading = child;
           break;
+
         case YgAppBarSlot.trailing:
           assert(
             trailing == null,
@@ -240,6 +241,7 @@ class YgAppBarRenderer extends RenderBox
           );
           trailing = child;
           break;
+
         case YgAppBarSlot.title:
           assert(
             title == null,
