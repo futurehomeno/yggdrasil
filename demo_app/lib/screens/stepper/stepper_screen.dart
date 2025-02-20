@@ -71,7 +71,7 @@ class _StepperScreenState extends State<StepperScreen> {
                     () => value3 = value,
                   ),
                   max: 1,
-                  stepSize: .1,
+                  stepSize: 0.1,
                 ),
                 YgStepper(
                   value: value4,
