@@ -141,7 +141,7 @@ class _ConfigurableLayoutScreenState extends State<ConfigurableLayoutScreen> {
           title: 'Loading',
           child: YgSwitch(
             onChanged: (_) => setState(
-              () => _loading ^= true,
+              () => _loading = !_loading,
             ),
             value: _loading,
           ),
@@ -150,7 +150,7 @@ class _ConfigurableLayoutScreenState extends State<ConfigurableLayoutScreen> {
           title: 'AppBar',
           child: YgSwitch(
             onChanged: (_) => setState(
-              () => _appBar ^= true,
+              () => _appBar = !_appBar,
             ),
             value: _appBar,
           ),
@@ -159,7 +159,7 @@ class _ConfigurableLayoutScreenState extends State<ConfigurableLayoutScreen> {
           title: 'Footer',
           child: YgSwitch(
             onChanged: (_) => setState(
-              () => _footer ^= true,
+              () => _footer = !_footer,
             ),
             value: _footer,
           ),
@@ -168,7 +168,7 @@ class _ConfigurableLayoutScreenState extends State<ConfigurableLayoutScreen> {
           title: 'Trailing',
           child: YgSwitch(
             onChanged: (_) => setState(
-              () => _bottom ^= true,
+              () => _bottom = !_bottom,
             ),
             value: _bottom,
           ),

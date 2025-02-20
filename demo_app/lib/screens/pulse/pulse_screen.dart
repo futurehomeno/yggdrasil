@@ -35,7 +35,7 @@ class _PulseScreenState extends State<PulseScreen> {
                 YgPulse(disabled: disabled),
                 YgButton(
                   child: const Text('Toggle'),
-                  onPressed: () => setState(() => disabled ^= true),
+                  onPressed: () => setState(() => disabled = !disabled),
                 ),
               ].withVerticalSpacing(20),
             ),

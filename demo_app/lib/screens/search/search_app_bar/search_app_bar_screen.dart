@@ -51,19 +51,19 @@ class _SearchAppBarScreenState extends State<SearchAppBarScreen> {
                   subtitle:
                       'When true (default) will automatically show the correct leading icon button based on the current route.',
                   value: _automaticallyImplyLeading,
-                  onChanged: (_) => setState(() => _automaticallyImplyLeading ^= true),
+                  onChanged: (_) => setState(() => _automaticallyImplyLeading = !_automaticallyImplyLeading),
                 ),
                 YgSwitchListTile(
                   title: 'Trailing avatar',
                   subtitle: 'Will show a trailing avatar widget in the right side of the SearchAppBar',
                   value: _trailingAvatar,
-                  onChanged: (_) => setState(() => _trailingAvatar ^= true),
+                  onChanged: (_) => setState(() => _trailingAvatar = !_trailingAvatar),
                 ),
                 YgSwitchListTile(
                   title: 'Custom leading',
                   subtitle: 'Will show a custom leading widget instead of the default search or implied button.',
                   value: _customLeading,
-                  onChanged: (_) => setState(() => _customLeading ^= true),
+                  onChanged: (_) => setState(() => _customLeading = !_customLeading),
                 ),
               ],
             ),
