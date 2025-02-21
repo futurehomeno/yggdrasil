@@ -29,60 +29,62 @@ class _StepperScreenState extends State<StepperScreen> {
   Widget build(BuildContext context) {
     return DemoScreen(
       componentName: 'Stepper',
-      child: Column(
-        children: <Widget>[
-          YgSection(
-            title: 'Default stepper',
-            child: YgStepper(
-              value: value,
-              onChanged: (double value) => setState(
-                () => this.value = value,
-              ),
-              max: 10,
-            ),
-          ),
-          YgSection(
-            title: 'Stepper with metric',
-            child: YgStepper(
-              value: value2,
-              onChanged: (double value) => setState(
-                () => value2 = value,
-              ),
-              max: 10,
-              metric: 'KwH',
-            ),
-          ),
-          const YgSection(
-            title: 'Disabled stepper with metric',
-            child: YgStepper(
-              value: 0,
-              onChanged: null,
-              max: 10,
-              metric: 'KwH',
-            ),
-          ),
-          YgSection.column(
-            title: 'Stepper with custom step size',
-            children: <Widget>[
-              YgStepper(
-                value: value3,
+      child: YgLayoutBody(
+        child: Column(
+          children: <Widget>[
+            YgSection(
+              title: 'Default stepper',
+              child: YgStepper(
+                value: value,
                 onChanged: (double value) => setState(
-                  () => value3 = value,
+                  () => this.value = value,
                 ),
-                max: 1,
-                stepSize: .1,
+                max: 10,
               ),
-              YgStepper(
-                value: value4,
+            ),
+            YgSection(
+              title: 'Stepper with metric',
+              child: YgStepper(
+                value: value2,
                 onChanged: (double value) => setState(
-                  () => value4 = value,
+                  () => value2 = value,
                 ),
-                max: 100,
-                stepSize: 10,
+                max: 10,
+                metric: 'KwH',
               ),
-            ],
-          ),
-        ],
+            ),
+            const YgSection(
+              title: 'Disabled stepper with metric',
+              child: YgStepper(
+                value: 0,
+                onChanged: null,
+                max: 10,
+                metric: 'KwH',
+              ),
+            ),
+            YgSection.column(
+              title: 'Stepper with custom step size',
+              children: <Widget>[
+                YgStepper(
+                  value: value3,
+                  onChanged: (double value) => setState(
+                    () => value3 = value,
+                  ),
+                  max: 1,
+                  stepSize: 0.1,
+                ),
+                YgStepper(
+                  value: value4,
+                  onChanged: (double value) => setState(
+                    () => value4 = value,
+                  ),
+                  max: 100,
+                  stepSize: 10,
+                ),
+              ],
+            ),
+          ],
+        ),
       ),
     );
   }

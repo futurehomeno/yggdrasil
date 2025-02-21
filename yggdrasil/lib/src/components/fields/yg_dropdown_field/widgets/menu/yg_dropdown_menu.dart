@@ -21,23 +21,20 @@ class _YgDropdownMenu<T extends Object> extends StatelessWidget with StatelessWi
       color: theme.menuItemBackground,
       borderRadius: theme.menuRadius,
       clipBehavior: Clip.antiAlias,
-      child: YgScrollShadow.builder(
-        builder: (BuildContext context, ScrollController scrollController) {
-          return SingleChildScrollView(
-            controller: scrollController,
-            child: Padding(
-              padding: theme.menuPadding,
-              child: ListenableBuilder(
-                listenable: controller.pendingValue,
-                builder: (BuildContext context, Widget? child) {
-                  return Column(
-                    children: _buildEntries(),
-                  );
-                },
-              ),
+      child: YgScrollShadow(
+        child: SingleChildScrollView(
+          child: Padding(
+            padding: theme.menuPadding,
+            child: ListenableBuilder(
+              listenable: controller.pendingValue,
+              builder: (BuildContext context, Widget? child) {
+                return Column(
+                  children: _buildEntries(),
+                );
+              },
             ),
-          );
-        },
+          ),
+        ),
       ),
     );
   }

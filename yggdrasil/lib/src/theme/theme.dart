@@ -70,6 +70,9 @@ class _$YgTheme {
   static final List<YgIconButtonTheme> iconButtonTheme = YgIconButtonTheme.themes;
 
   @themeExtension
+  static final List<YgLayoutTheme> layoutTheme = YgLayoutTheme.themes;
+
+  @themeExtension
   static final List<YgListTileTheme> listTileTheme = YgListTileTheme.themes;
 
   @themeExtension

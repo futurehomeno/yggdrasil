@@ -19,24 +19,26 @@ class MobileScannerContainerScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return const DemoScreen(
       componentName: 'MobileScannerContainer',
-      child: Column(
-        children: <Widget>[
-          YgSection(
-            title: 'Loading state',
-            child: YgMobileScannerContainer(
-              loading: true,
-              child: DemoPlaceholder(),
+      child: YgLayoutBody(
+        child: Column(
+          children: <Widget>[
+            YgSection(
+              title: 'Loading state',
+              child: YgMobileScannerContainer(
+                loading: true,
+                child: DemoPlaceholder(),
+              ),
             ),
-          ),
-          YgSection(
-            title: 'Loaded state',
-            subtitle: 'Using placeholder as child to show the size of the mobile scanner.',
-            child: YgMobileScannerContainer(
-              loading: false,
-              child: DemoPlaceholder(),
+            YgSection(
+              title: 'Loaded state',
+              subtitle: 'Using placeholder as child to show the size of the mobile scanner.',
+              child: YgMobileScannerContainer(
+                loading: false,
+                child: DemoPlaceholder(),
+              ),
             ),
-          ),
-        ],
+          ],
+        ),
       ),
     );
   }

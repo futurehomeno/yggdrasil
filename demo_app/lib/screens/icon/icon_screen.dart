@@ -20,74 +20,76 @@ class IconScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return DemoScreen(
       componentName: 'Icon',
-      child: Column(
-        children: <Widget>[
-          YgSection.list(
-            title: 'Available icons',
-            subtitle: 'List of all available icons can be found on the IconListScreen.',
-            children: <Widget>[
-              YgListTile(
-                title: 'Icon list (all icons)',
-                onTap: () => sl<YgRouter>().push(IconListScreen.route()),
-                trailingWidgets: const <YgIcon>[YgIcon(YgIcons.caretRight)],
-              ),
-            ],
-          ),
-          const YgSection(
-            title: 'Sizes',
-            subtitle: 'Icons come in small and large.',
-            child: Row(
-              mainAxisSize: MainAxisSize.min,
+      child: YgLayoutBody(
+        child: Column(
+          children: <Widget>[
+            YgSection.list(
+              title: 'Available icons',
+              subtitle: 'List of all available icons can be found on the IconListScreen.',
               children: <Widget>[
-                YgIcon(
-                  YgIcons.info,
-                  size: YgIconSize.small,
-                ),
-                YgIcon(
-                  YgIcons.info,
-                  size: YgIconSize.large,
+                YgListTile(
+                  title: 'Icon list (all icons)',
+                  onTap: () => sl<YgRouter>().push(IconListScreen.route()),
+                  trailingWidgets: const <YgIcon>[YgIcon(YgIcons.caretRight)],
                 ),
               ],
             ),
-          ),
-          YgSection(
-            title: 'Animated',
-            subtitle: 'An animated icon.',
-            child: YgIcon(
-              YgAnimatedIcons.arrowDecrease,
-            ),
-          ),
-          YgSection(
-            title: 'Inherited color',
-            subtitle: 'Color switching is handled by the parent widget.',
-            child: YgIconButton(
-              variant: YgIconButtonVariant.filled,
-              icon: YgIcons.info,
-              onPressed: () {},
-            ),
-          ),
-          YgSection(
-            title: 'Override color',
-            subtitle: 'Override the default theme color.\nWarning: color will no longer adapt to the theme.',
-            child: YgTag(
-              child: YgIcon.colorable(
-                YgIcons.deviceHubChange,
-                color: context.tokens.colors.iconCritical,
-                size: YgIconSize.large,
+            const YgSection(
+              title: 'Sizes',
+              subtitle: 'Icons come in small and large.',
+              child: Row(
+                mainAxisSize: MainAxisSize.min,
+                children: <Widget>[
+                  YgIcon(
+                    YgIcons.info,
+                    size: YgIconSize.small,
+                  ),
+                  YgIcon(
+                    YgIcons.info,
+                    size: YgIconSize.large,
+                  ),
+                ],
               ),
             ),
-          ),
-          const YgSection(
-            title: 'Colorful icon',
-            subtitle: 'Colorful icons always show their own colors and can not have their color overwritten.',
-            child: YgTag(
+            const YgSection(
+              title: 'Animated',
+              subtitle: 'An animated icon.',
               child: YgIcon(
-                YgIcons.deviceHubColorful,
-                size: YgIconSize.large,
+                YgAnimatedIcons.arrowDecrease,
               ),
             ),
-          ),
-        ],
+            YgSection(
+              title: 'Inherited color',
+              subtitle: 'Color switching is handled by the parent widget.',
+              child: YgIconButton(
+                variant: YgIconButtonVariant.filled,
+                icon: YgIcons.info,
+                onPressed: () {},
+              ),
+            ),
+            YgSection(
+              title: 'Override color',
+              subtitle: 'Override the default theme color.\nWarning: color will no longer adapt to the theme.',
+              child: YgTag(
+                child: YgIcon.colorable(
+                  YgIcons.deviceHubChange,
+                  color: context.tokens.colors.iconCritical,
+                  size: YgIconSize.large,
+                ),
+              ),
+            ),
+            const YgSection(
+              title: 'Colorful icon',
+              subtitle: 'Colorful icons always show their own colors and can not have their color overwritten.',
+              child: YgTag(
+                child: YgIcon(
+                  YgIcons.deviceHubColorful,
+                  size: YgIconSize.large,
+                ),
+              ),
+            ),
+          ],
+        ),
       ),
     );
   }

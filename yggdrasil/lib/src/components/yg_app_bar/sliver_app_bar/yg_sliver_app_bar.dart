@@ -1,9 +1,11 @@
 import 'dart:math' as math;
 
 import 'package:flutter/material.dart';
-import 'package:yggdrasil/src/components/yg_app_bar/widgets/_widgets.dart';
+import 'package:yggdrasil/src/components/yg_app_bar/sliver_app_bar/widgets/_widgets.dart';
 import 'package:yggdrasil/src/theme/_theme.dart';
 import 'package:yggdrasil/yggdrasil.dart';
+
+import 'yg_app_bar_internal_legacy.dart';
 
 /// App bar that can be placed in a [CustomScrollView].
 class YgSliverAppBar extends StatelessWidget {
@@ -21,16 +23,16 @@ class YgSliverAppBar extends StatelessWidget {
   /// The variant of the sliver app bar.
   final YgSliverAppBarVariant variant;
 
-  /// See [YgAppBar.title].
+  /// See [YgAppBarInternalLegacy.title].
   final String title;
 
-  /// See [YgAppBar.leading].
+  /// See [YgAppBarInternalLegacy.leading].
   final Widget? leading;
 
-  /// See [YgAppBar.automaticallyImplyLeading].
+  /// See [YgAppBarInternalLegacy.automaticallyImplyLeading].
   final bool automaticallyImplyLeading;
 
-  /// See [YgAppBar.actions].
+  /// See [YgAppBarInternalLegacy.actions].
   final List<YgIconButton> actions;
 
   // endregion
@@ -146,7 +148,7 @@ class _SliverAppBarDelegate extends SliverPersistentHeaderDelegate {
       currentExtent: math.max(minExtent, maxExtent - shrinkOffset),
       toolbarOpacity: 1.0,
       isScrolledUnder: isScrolledUnder,
-      child: YgAppBar(
+      child: YgAppBarInternalLegacy(
         leading: leading,
         automaticallyImplyLeading: automaticallyImplyLeading,
         title: title,

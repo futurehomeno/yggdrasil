@@ -23,17 +23,19 @@ class AvatarStackScreen extends StatelessWidget {
 
     return DemoScreen(
       componentName: 'AvatarStack',
-      child: Column(
-        children: <Widget>[
-          ...amounts.map(
-            (int amount) => YgSection(
-              title: 'An AvatarStack with $amount entries',
-              child: YgAvatarStack(
-                entries: _getEntries(amount),
+      child: YgLayoutBody(
+        child: Column(
+          children: <Widget>[
+            ...amounts.map(
+              (int amount) => YgSection(
+                title: 'An AvatarStack with $amount entries',
+                child: YgAvatarStack(
+                  entries: _getEntries(amount),
+                ),
               ),
             ),
-          ),
-        ],
+          ],
+        ),
       ),
     );
   }

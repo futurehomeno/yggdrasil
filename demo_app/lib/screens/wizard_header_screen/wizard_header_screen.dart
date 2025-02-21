@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:yggdrasil/yggdrasil.dart';
 import 'package:yggdrasil_demo/core/_core.dart';
 import 'package:yggdrasil_demo/widgets/_widgets.dart';
 
@@ -20,16 +21,16 @@ class WizardHeaderScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return DemoScreen(
       componentName: 'WizardHeader',
-      child: Column(
-        children: <Widget>[
-          ...List<Widget>.generate(
+      child: YgLayoutBody(
+        child: Column(
+          children: List<Widget>.generate(
             5,
             (int index) => WizardHeaderExample(
               steps: index + 2,
               title: 'WizardHeader with ${index + 2} steps',
             ),
           ),
-        ],
+        ),
       ),
     );
   }

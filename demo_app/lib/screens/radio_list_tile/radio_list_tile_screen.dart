@@ -27,62 +27,64 @@ class RadioListTileScreenState extends State<RadioListTileScreen> {
   Widget build(BuildContext context) {
     return DemoScreen(
       componentName: 'ListTile - Radio',
-      child: Column(
-        children: <Widget>[
-          const YgSection(
-            child: YgCallout(
-              title: 'Note',
-              description:
-                  'You can also place a Radio inside a ListTile manually if you intend for only the Radio to be tappable. See the RadioScreen for an example.',
+      child: YgLayoutBody(
+        child: Column(
+          children: <Widget>[
+            const YgSection(
+              child: YgCallout(
+                title: 'Note',
+                description:
+                    'You can also place a Radio inside a ListTile manually if you intend for only the Radio to be tappable. See the RadioScreen for an example.',
+              ),
             ),
-          ),
-          YgSection.list(
-            children: <Widget>[
-              YgRadioListTile<int>(
-                title: 'RadioListTile',
-                subtitle: 'The whole ListTile and Radio is tappable.',
-                value: 1,
-                groupValue: radioGroupValue,
-                onChanged: (int? newValue) {
-                  radioGroupValue = newValue!;
-                  setState(() {});
-                },
-              ),
-              YgRadioListTile<int>(
-                title: 'Disabled RadioListTile',
-                subtitle: 'Tapping anywhere does nothing.',
-                value: 2,
-                groupValue: disabledRadioGroupValue,
-                onChanged: null,
-              ),
-              YgRadioListTile<int>(
-                leadingWidget: const YgTag(
-                  child: Text('Leading widget only'),
+            YgSection.list(
+              children: <Widget>[
+                YgRadioListTile<int>(
+                  title: 'RadioListTile',
+                  subtitle: 'The whole ListTile and Radio is tappable.',
+                  value: 1,
+                  groupValue: radioGroupValue,
+                  onChanged: (int? newValue) {
+                    radioGroupValue = newValue!;
+                    setState(() {});
+                  },
                 ),
-                value: 4,
-                groupValue: radioGroupValue,
-                onChanged: (int? newValue) {
-                  radioGroupValue = newValue!;
-                  setState(() {});
-                },
-              ),
-              YgRadioListTile<int>(
-                title: 'With trailingWidget',
-                subtitle: 'Mostly used to add a YgIconButton.',
-                leadingWidget: YgIconButton(
-                  onPressed: () {},
-                  icon: YgIcons.info,
+                YgRadioListTile<int>(
+                  title: 'Disabled RadioListTile',
+                  subtitle: 'Tapping anywhere does nothing.',
+                  value: 2,
+                  groupValue: disabledRadioGroupValue,
+                  onChanged: null,
                 ),
-                value: 3,
-                groupValue: radioGroupValue,
-                onChanged: (int? newValue) {
-                  radioGroupValue = newValue!;
-                  setState(() {});
-                },
-              ),
-            ],
-          ),
-        ],
+                YgRadioListTile<int>(
+                  leadingWidget: const YgTag(
+                    child: Text('Leading widget only'),
+                  ),
+                  value: 4,
+                  groupValue: radioGroupValue,
+                  onChanged: (int? newValue) {
+                    radioGroupValue = newValue!;
+                    setState(() {});
+                  },
+                ),
+                YgRadioListTile<int>(
+                  title: 'With trailingWidget',
+                  subtitle: 'Mostly used to add a YgIconButton.',
+                  leadingWidget: YgIconButton(
+                    onPressed: () {},
+                    icon: YgIcons.info,
+                  ),
+                  value: 3,
+                  groupValue: radioGroupValue,
+                  onChanged: (int? newValue) {
+                    radioGroupValue = newValue!;
+                    setState(() {});
+                  },
+                ),
+              ],
+            ),
+          ],
+        ),
       ),
     );
   }

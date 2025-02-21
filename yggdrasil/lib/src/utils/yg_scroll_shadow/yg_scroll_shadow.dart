@@ -1,71 +1,43 @@
 import 'package:flutter/material.dart';
-import 'package:yggdrasil/src/theme/_theme.dart';
-import 'package:yggdrasil/src/utils/yg_controller_manager/_yg_controller_manager.dart';
-
-part 'yg_scroll_shadow_builder.dart';
-part 'yg_scroll_shadow_child.dart';
-
-typedef WidgetWithScrollBuilder = Widget Function(BuildContext context, ScrollController controller);
+import 'package:yggdrasil/src/utils/yg_scroll_shadow/yg_scroll_shadow_overlay.dart';
 
 /// Applies a shadow at the top or bottom of a scroll view.
-abstract class YgScrollShadow extends StatefulWidget {
-  /// Builds the widget using provided [ScrollController].
-  const factory YgScrollShadow({
-    required Widget child,
-    required ScrollController controller,
-  }) = _YgScrollShadowChild;
-
-  /// Builds the child with a provided [ScrollController].
-  ///
-  /// Can be preferable to use when you don't have a scroll controller to
-  /// provide or when the scroll controller might be null, in which cases the
-  /// builder function will be provided with a internally created scroll
-  /// controller to pass to the scroll widget instead.
-  const factory YgScrollShadow.builder({
-    required WidgetWithScrollBuilder builder,
-    ScrollController? controller,
-  }) = _YgScrollShadowBuilder;
-
-  const YgScrollShadow._({
+class YgScrollShadow extends StatefulWidget {
+  const YgScrollShadow({
     super.key,
-    this.controller,
+    required this.child,
+    this.top = true,
+    this.bottom = true,
   });
 
-  /// Builds the child widget.
-  ///
-  /// Provides a [ScrollController] to the builder, this can either be the
-  /// controller supplied by the user or an internally created one.
-  Widget builder(BuildContext context, ScrollController controller);
+  /// Whether the top shadow should be shown in the case of under scroll.
+  final bool top;
 
-  /// The [ScrollController] of the scrollable surface which the shadows should
-  /// be added to.
-  final ScrollController? controller;
+  /// Whether the bottom shadow should be shown in the case of under scroll.
+  final bool bottom;
+
+  /// The child widget to which the scroll shadow gets applied.
+  final Widget child;
 
   @override
   State<YgScrollShadow> createState() => _YgScrollShadowState();
 }
 
-class _YgScrollShadowState extends State<YgScrollShadow> with YgControllerManagerMixin {
-  late final YgControllerManager<ScrollController> _controllerManager = manageController(
-    createController: () => ScrollController(),
-    getUserController: () => widget.controller,
-    listener: _updateShadows,
-  );
-
+class _YgScrollShadowState extends State<YgScrollShadow> {
   bool _showBottomShadow = false;
   bool _showTopShadow = false;
 
   @override
-  void initState() {
-    super.initState();
-    WidgetsBinding.instance.addPostFrameCallback((_) => _updateShadows());
+  void didUpdateWidget(covariant YgScrollShadow oldWidget) {
+    super.didUpdateWidget(oldWidget);
+
+    _showBottomShadow &= widget.bottom;
+    _showTopShadow &= widget.top;
   }
 
-  void _updateShadows() {
-    final ScrollPosition position = _controllerManager.value.position;
-
-    final bool newShowBottomShadow = position.extentAfter != 0;
-    final bool newShowTopShadow = position.extentBefore != 0;
+  void _updateShadows(ScrollMetrics metrics) {
+    final bool newShowTopShadow = metrics.extentBefore != 0 && widget.top;
+    final bool newShowBottomShadow = metrics.extentAfter != 0 && widget.bottom;
 
     if ((_showBottomShadow != newShowBottomShadow) || (_showTopShadow != newShowTopShadow)) {
       _showBottomShadow = newShowBottomShadow;
@@ -77,63 +49,35 @@ class _YgScrollShadowState extends State<YgScrollShadow> with YgControllerManage
   @override
   Widget build(BuildContext context) {
     return NotificationListener<ScrollMetricsNotification>(
-      onNotification: _handleScrollMetricsChange,
-      child: Stack(
-        children: <Widget>[
-          widget.builder(
-            context,
-            _controllerManager.value,
-          ),
-          _buildShadow(
-            alignment: Alignment.bottomCenter,
-            shown: _showBottomShadow,
-          ),
-          _buildShadow(
-            alignment: Alignment.topCenter,
-            shown: _showTopShadow,
-          ),
-        ],
+      onNotification: _handleScrollMetricsNotification,
+      child: NotificationListener<ScrollUpdateNotification>(
+        onNotification: _handleScrollUpdateNotification,
+        child: YgScrollShadowOverlay(
+          bottom: _showBottomShadow,
+          top: _showTopShadow,
+          child: widget.child,
+        ),
       ),
     );
   }
 
-  bool _handleScrollMetricsChange(ScrollMetricsNotification notification) {
-    _updateShadows();
+  bool _handleScrollUpdateNotification(ScrollUpdateNotification notification) {
+    if (notification.depth != 0) {
+      return false;
+    }
+
+    _updateShadows(notification.metrics);
 
     return false;
   }
 
-  Widget _buildShadow({
-    required Alignment alignment,
-    required bool shown,
-  }) {
-    final YgScrollShadowThemes scrollShadowThemes = context.internalTheme.scrollShadow;
+  bool _handleScrollMetricsNotification(ScrollMetricsNotification notification) {
+    if (notification.depth != 0) {
+      return false;
+    }
 
-    return Positioned(
-      bottom: alignment.y > 0 ? 0 : null,
-      top: alignment.y < 0 ? 0 : null,
-      left: 0,
-      right: 0,
-      child: IgnorePointer(
-        child: AnimatedOpacity(
-          duration: scrollShadowThemes.fadeDuration,
-          curve: scrollShadowThemes.fadeCurve,
-          opacity: shown ? 1 : 0,
-          child: Container(
-            height: scrollShadowThemes.shadowSize,
-            decoration: BoxDecoration(
-              gradient: LinearGradient(
-                colors: <Color>[
-                  scrollShadowThemes.shadowColor,
-                  Colors.transparent,
-                ],
-                end: -alignment,
-                begin: alignment,
-              ),
-            ),
-          ),
-        ),
-      ),
-    );
+    _updateShadows(notification.metrics);
+
+    return false;
   }
 }

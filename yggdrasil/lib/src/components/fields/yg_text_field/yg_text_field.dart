@@ -516,7 +516,7 @@ class _YgTextFieldState extends StateWithYgState<YgTextField, YgFieldState>
             ? null
             : () {
                 if (renderShowObscureTextIcon) {
-                  _obscureTextToggled ^= true;
+                  _obscureTextToggled = !_obscureTextToggled;
                   setState(() {});
                 } else {
                   widget.onSuffixPressed?.call();
