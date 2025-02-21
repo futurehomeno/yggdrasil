@@ -1,3 +1,14 @@
+# 1.13.0 [2025-02-21T16:01:03.209322]
+
+## Breaking changes
+
+- [breaking] Removed bottom option from YgAppBar.
+
+### Changes
+
+- [feature] Implemented YgLayout and YgLayoutBody DEV-2388.
+- [improvement] Updated all scroll shadows to correct theme colors and sizes.
+
 # 1.12.25 [2025-01-16T17:32:48.509483]
 
 ### Changes
