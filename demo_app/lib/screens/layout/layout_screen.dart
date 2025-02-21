@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:yggdrasil/yggdrasil.dart';
 import 'package:yggdrasil_demo/core/_core.dart';
 import 'package:yggdrasil_demo/screens/layout/multi_view/layout_tabbed_screen.dart';
+import 'package:yggdrasil_demo/screens/layout/views/_views.dart';
 import 'package:yggdrasil_demo/widgets/_widgets.dart';
 
 import 'configurable_layout/configurable_layout_screen.dart';
@@ -77,6 +78,26 @@ class LayoutScreen extends StatelessWidget {
                 YgListTile(
                   title: 'Tabbed layout',
                   onTap: () => sl<YgRouter>().push(LayoutTabbedScreen.route()),
+                  trailingWidgets: const <YgIcon>[YgIcon(YgIcons.caretRight)],
+                ),
+              ],
+            ),
+            YgSection.list(
+              title: 'Build in views',
+              children: <Widget>[
+                YgListTile(
+                  title: 'Loading view',
+                  onTap: () => sl<YgRouter>().push(LoadingViewScreen.route()),
+                  trailingWidgets: const <YgIcon>[YgIcon(YgIcons.caretRight)],
+                ),
+                YgListTile(
+                  title: 'Error view',
+                  onTap: () => sl<YgRouter>().push(ErrorViewScreen.route()),
+                  trailingWidgets: const <YgIcon>[YgIcon(YgIcons.caretRight)],
+                ),
+                YgListTile(
+                  title: 'Error retry view',
+                  onTap: () => sl<YgRouter>().push(ErrorRetryViewScreen.route()),
                   trailingWidgets: const <YgIcon>[YgIcon(YgIcons.caretRight)],
                 ),
               ],

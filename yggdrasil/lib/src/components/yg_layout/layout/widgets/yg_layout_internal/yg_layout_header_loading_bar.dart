@@ -18,7 +18,9 @@ class YgLayoutHeaderLoadingBar extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final LinearProgressIndicatorTheme theme = context.progressIndicatorTheme.linearProgressIndicatorTheme;
+    final LinearProgressIndicatorTheme progressIndicatorTheme =
+        context.progressIndicatorTheme.linearProgressIndicatorTheme;
+    final YgLayoutTheme theme = context.layoutTheme;
 
     return YgLayoutHeaderChildWidget(
       slot: YgLayoutHeaderSlot.loading,
@@ -27,12 +29,12 @@ class YgLayoutHeaderLoadingBar extends StatelessWidget {
           valueListenable: controller,
           builder: (BuildContext context, YgLayoutHeaderControllerValue value, Widget? child) {
             return YgAnimatedOpacity(
-              duration: const Duration(milliseconds: 200),
+              duration: theme.animationDuration,
+              curve: theme.animationCurve,
               opacity: value.loading ? 1 : 0,
-              curve: Curves.easeInOut,
               child: LinearProgressIndicator(
-                backgroundColor: theme.backgroundColor,
-                color: theme.color,
+                backgroundColor: progressIndicatorTheme.backgroundColor,
+                color: progressIndicatorTheme.color,
                 minHeight: 3,
               ),
             );

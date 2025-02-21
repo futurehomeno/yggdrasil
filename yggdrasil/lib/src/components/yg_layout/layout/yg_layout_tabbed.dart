@@ -36,6 +36,11 @@ class _YgLayoutTabbed extends YgLayout {
 class _YgLayoutTabbedState extends _YgLayoutState<_YgLayoutTabbed> {
   @override
   Widget build(BuildContext context) {
+    assert(
+      widget.tabs.isNotEmpty,
+      'tabs has contain at least one or more tabs.',
+    );
+
     final Widget? trailing = widget.bottom;
 
     final ScrollPhysics? physics;

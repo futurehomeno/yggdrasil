@@ -22,4 +22,18 @@ class _$YgLayoutTheme {
     EdgeInsets.all(professional_light.FhDimensions.md),
     EdgeInsets.all(professional_dark.FhDimensions.md),
   ];
+
+  static const List<Duration> animationDuration = <Duration>[
+    Duration(milliseconds: 200),
+    Duration(milliseconds: 200),
+    Duration(milliseconds: 200),
+    Duration(milliseconds: 200),
+  ];
+
+  static const List<Curve> animationCurve = <Curve>[
+    Curves.easeInOut,
+    Curves.easeInOut,
+    Curves.easeInOut,
+    Curves.easeInOut,
+  ];
 }

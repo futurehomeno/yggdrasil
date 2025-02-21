@@ -3,26 +3,25 @@ import 'package:yggdrasil/yggdrasil.dart';
 import 'package:yggdrasil_demo/core/_core.dart';
 import 'package:yggdrasil_demo/widgets/_widgets.dart';
 
-class [FTName | pascalcase]Screen extends StatelessWidget {
-  const [FTName | pascalcase]Screen({super.key});
+class ErrorRetryViewScreen extends StatelessWidget {
+  const ErrorRetryViewScreen({super.key});
 
-  static const String routeName = '[FTName | pascalcase]Screen';
+  static const String routeName = 'ErrorRetryViewScreen';
 
   static PageRouteBuilder<Widget> route() {
     return const YgRouteBuilder().fadeTransition(
       settings: const RouteSettings(name: routeName),
-      screen: const [FTName | pascalcase]Screen(),
+      screen: const ErrorRetryViewScreen(),
     );
   }
 
   @override
   Widget build(BuildContext context) {
-    return const DemoScreen(
-      componentName: '[FTName | pascalcase]',
-      child: YgLayoutBody(
-        child: Column(
-          children: <Widget>[],
-        ),
+    return DemoScreen(
+      componentName: 'ErrorRetryView',
+      child: YgErrorView(
+        error: 'Error message',
+        onRetry: () {},
       ),
     );
   }
