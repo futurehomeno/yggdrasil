@@ -705,7 +705,7 @@ packages:
       path: "../yggdrasil"
       relative: true
     source: path
-    version: "1.12.25"
+    version: "1.13.0"
 sdks:
   dart: ">=3.5.3 <4.0.0"
   flutter: ">=3.24.3"

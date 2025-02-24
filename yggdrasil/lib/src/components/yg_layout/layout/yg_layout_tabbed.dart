@@ -11,6 +11,8 @@ class _YgLayoutTabbed extends YgLayout {
     super.key,
     super.appBar,
     super.bottom,
+    this.onTabChanged,
+    this.onTabVisible,
     required this.tabs,
     this.initialTab = 0,
     this.swiping = true,
@@ -29,11 +31,33 @@ class _YgLayoutTabbed extends YgLayout {
   /// another tab in the tab bar.
   final bool swiping;
 
+  /// Called when a tab becomes visible in any way.
+  ///
+  /// Not to be confused with [onTabChanged] which gets called when the active
+  /// tab changes. This callback instead gets called when a tab becomes in any
+  /// way visible, which means this tab covers more than 0% of the screen.
+  final ValueChanged<int>? onTabVisible;
+
+  /// Called when the active tab changes.
+  ///
+  /// Not to be confused with [onTabVisible] which gets called when a tab becomes
+  /// visible in any way. This callback instead gets called when the active tab
+  /// changes, which means this tab covers more than 50% of the screen.
+  final ValueChanged<int>? onTabChanged;
+
   @override
   State<YgLayout> createState() => _YgLayoutTabbedState();
 }
 
 class _YgLayoutTabbedState extends _YgLayoutState<_YgLayoutTabbed> {
+  double _page = -1;
+
+  @override
+  void initState() {
+    super.initState();
+    widget.onTabVisible?.call(widget.initialTab);
+  }
+
   @override
   Widget build(BuildContext context) {
     assert(
@@ -95,9 +119,32 @@ class _YgLayoutTabbedState extends _YgLayoutState<_YgLayoutTabbed> {
   bool _handleScrollNotification(ScrollUpdateNotification notification) {
     if (notification.depth == 0) {
       _controller.resetHeader();
-      _controller.setActiveView((notification.metrics as PageMetrics).page?.round() ?? 0);
+      _handlePageChanged((notification.metrics as PageMetrics).page ?? 0);
     }
 
     return false;
+  }
+
+  void _handlePageChanged(double page) {
+    final int activePage = page.round();
+    final ValueChanged<int>? onTabVisible = widget.onTabVisible;
+    final ValueChanged<int>? onTabChanged = widget.onTabChanged;
+
+    if (_page.round() != activePage) {
+      _controller.setActiveView(activePage);
+      onTabChanged?.call(activePage);
+    }
+
+    if (_page != page && onTabVisible != null) {
+      if (page > activePage && _page <= activePage) {
+        // The next page just became visible.
+        onTabVisible(page.ceil());
+      } else if (page < activePage && _page >= activePage) {
+        // The previous page just became visible.
+        onTabVisible(page.floor());
+      }
+    }
+
+    _page = page;
   }
 }
