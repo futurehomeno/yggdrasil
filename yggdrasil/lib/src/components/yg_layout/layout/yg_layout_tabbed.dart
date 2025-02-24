@@ -136,13 +136,16 @@ class _YgLayoutTabbedState extends _YgLayoutState<_YgLayoutTabbed> {
       onTabChanged?.call(activePage);
     }
 
-    if (_page != page && onTabVisible != null) {
-      if (page > activePage && _page <= activePage) {
-        // The next page just became visible.
-        onTabVisible(page.ceil());
-      } else if (page < activePage && _page >= activePage) {
-        // The previous page just became visible.
-        onTabVisible(page.floor());
+    if (onTabVisible != null) {
+      final int next = page.ceil();
+      final int previous = page.floor();
+
+      if (next != previous) {
+        if (_page.ceil() != next) {
+          onTabVisible(next);
+        } else if (_page.floor() != previous) {
+          onTabVisible(previous);
+        }
       }
     }
 

@@ -22,9 +22,12 @@ class LayoutTabbedScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const YgLayout.tabbed(
+    return YgLayout.tabbed(
+      initialTab: 4,
+      onTabChanged: (int value) => print('onTabChanged: $value'),
+      onTabVisible: (int value) => print('onTabVisible: $value'),
       headerBehavior: YgHeaderBehavior.hideAppBar,
-      tabs: <YgLayoutTab>[
+      tabs: const <YgLayoutTab>[
         YgLayoutTab(
           title: 'Scrollable',
           content: ScrollableView(),
@@ -46,7 +49,7 @@ class LayoutTabbedScreen extends StatelessWidget {
           content: PushDownFooterView(),
         ),
       ],
-      appBar: DemoAppBar(
+      appBar: const DemoAppBar(
         title: 'Layout tabbed',
       ),
     );
