@@ -50,12 +50,13 @@ class _YgLayoutTabbed extends YgLayout {
 }
 
 class _YgLayoutTabbedState extends _YgLayoutState<_YgLayoutTabbed> {
-  double _page = -1;
+  late double _page;
 
   @override
   void initState() {
     super.initState();
     widget.onTabVisible?.call(widget.initialTab);
+    _page = widget.initialTab.toDouble();
   }
 
   @override
