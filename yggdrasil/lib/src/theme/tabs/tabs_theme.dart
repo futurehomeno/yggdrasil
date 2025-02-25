@@ -12,11 +12,18 @@ class _$YgTabsTheme {
   // region Spacing and Padding
 
   /// Padding around the whole tab.
-  static const List<EdgeInsets> tabPadding = <EdgeInsets>[
+  static const List<EdgeInsets> tabInnerPadding = <EdgeInsets>[
     EdgeInsets.all(consumer_light.FhDimensions.xs),
     EdgeInsets.all(consumer_dark.FhDimensions.xs),
     EdgeInsets.all(professional_light.FhDimensions.xs),
     EdgeInsets.all(professional_dark.FhDimensions.xs),
+  ];
+
+  static const List<EdgeInsets> tabOuterPadding = <EdgeInsets>[
+    EdgeInsets.symmetric(horizontal: consumer_light.FhDimensions.md),
+    EdgeInsets.symmetric(horizontal: consumer_dark.FhDimensions.md),
+    EdgeInsets.symmetric(horizontal: professional_light.FhDimensions.md),
+    EdgeInsets.symmetric(horizontal: professional_dark.FhDimensions.md),
   ];
 
   /// Spacing between the icon and the label in a column.
@@ -128,4 +135,18 @@ class _$YgTabsTheme {
   ];
 
   // endregion
+
+  static const List<Duration> animationDuration = <Duration>[
+    Duration(milliseconds: 200),
+    Duration(milliseconds: 200),
+    Duration(milliseconds: 200),
+    Duration(milliseconds: 200),
+  ];
+
+  static const List<Curve> animationCurve = <Curve>[
+    Curves.easeOut,
+    Curves.easeOut,
+    Curves.easeOut,
+    Curves.easeOut,
+  ];
 }

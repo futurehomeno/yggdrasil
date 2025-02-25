@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:yggdrasil/src/components/yg_layout/enums/_enums.dart';
 import 'package:yggdrasil/src/components/yg_layout/models/yg_layout_tab.dart';
-import 'package:yggdrasil/src/components/yg_tab/yg_tab.dart';
-import 'package:yggdrasil/src/components/yg_tab/yg_tab_bar.dart';
+import 'package:yggdrasil/src/components/yg_tab_bar/tab/yg_tab.dart';
+import 'package:yggdrasil/src/components/yg_tab_bar/yg_tab_bar.dart';
 import 'package:yggdrasil/src/utils/yg_debug/_yg_debug.dart';
 
 import 'controller/yg_layout_header_controller.dart';

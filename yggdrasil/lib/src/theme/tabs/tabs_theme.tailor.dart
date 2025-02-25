@@ -10,6 +10,8 @@ part of 'tabs_theme.dart';
 
 class YgTabsTheme extends ThemeExtension<YgTabsTheme> {
   const YgTabsTheme({
+    required this.animationCurve,
+    required this.animationDuration,
     required this.dividerColor,
     required this.dividerHeight,
     required this.focusBackgroundColor,
@@ -21,11 +23,14 @@ class YgTabsTheme extends ThemeExtension<YgTabsTheme> {
     required this.selectedLabelColor,
     required this.selectedLabelTextStyle,
     required this.tabBarBackgroundColor,
-    required this.tabPadding,
+    required this.tabInnerPadding,
+    required this.tabOuterPadding,
     required this.unselectedLabelColor,
     required this.unselectedLabelTextStyle,
   });
 
+  final Curve animationCurve;
+  final Duration animationDuration;
   final Color dividerColor;
   final double dividerHeight;
   final Color focusBackgroundColor;
@@ -41,11 +46,14 @@ class YgTabsTheme extends ThemeExtension<YgTabsTheme> {
   final Color tabBarBackgroundColor;
 
   /// Padding around the whole tab.
-  final EdgeInsets tabPadding;
+  final EdgeInsets tabInnerPadding;
+  final EdgeInsets tabOuterPadding;
   final Color unselectedLabelColor;
   final TextStyle unselectedLabelTextStyle;
 
   static final YgTabsTheme consumerLight = YgTabsTheme(
+    animationCurve: _$YgTabsTheme.animationCurve[0],
+    animationDuration: _$YgTabsTheme.animationDuration[0],
     dividerColor: _$YgTabsTheme.dividerColor[0],
     dividerHeight: _$YgTabsTheme.dividerHeight[0],
     focusBackgroundColor: _$YgTabsTheme.focusBackgroundColor[0],
@@ -57,12 +65,15 @@ class YgTabsTheme extends ThemeExtension<YgTabsTheme> {
     selectedLabelColor: _$YgTabsTheme.selectedLabelColor[0],
     selectedLabelTextStyle: _$YgTabsTheme.selectedLabelTextStyle[0],
     tabBarBackgroundColor: _$YgTabsTheme.tabBarBackgroundColor[0],
-    tabPadding: _$YgTabsTheme.tabPadding[0],
+    tabInnerPadding: _$YgTabsTheme.tabInnerPadding[0],
+    tabOuterPadding: _$YgTabsTheme.tabOuterPadding[0],
     unselectedLabelColor: _$YgTabsTheme.unselectedLabelColor[0],
     unselectedLabelTextStyle: _$YgTabsTheme.unselectedLabelTextStyle[0],
   );
 
   static final YgTabsTheme consumerDark = YgTabsTheme(
+    animationCurve: _$YgTabsTheme.animationCurve[1],
+    animationDuration: _$YgTabsTheme.animationDuration[1],
     dividerColor: _$YgTabsTheme.dividerColor[1],
     dividerHeight: _$YgTabsTheme.dividerHeight[1],
     focusBackgroundColor: _$YgTabsTheme.focusBackgroundColor[1],
@@ -74,12 +85,15 @@ class YgTabsTheme extends ThemeExtension<YgTabsTheme> {
     selectedLabelColor: _$YgTabsTheme.selectedLabelColor[1],
     selectedLabelTextStyle: _$YgTabsTheme.selectedLabelTextStyle[1],
     tabBarBackgroundColor: _$YgTabsTheme.tabBarBackgroundColor[1],
-    tabPadding: _$YgTabsTheme.tabPadding[1],
+    tabInnerPadding: _$YgTabsTheme.tabInnerPadding[1],
+    tabOuterPadding: _$YgTabsTheme.tabOuterPadding[1],
     unselectedLabelColor: _$YgTabsTheme.unselectedLabelColor[1],
     unselectedLabelTextStyle: _$YgTabsTheme.unselectedLabelTextStyle[1],
   );
 
   static final YgTabsTheme professionalLight = YgTabsTheme(
+    animationCurve: _$YgTabsTheme.animationCurve[2],
+    animationDuration: _$YgTabsTheme.animationDuration[2],
     dividerColor: _$YgTabsTheme.dividerColor[2],
     dividerHeight: _$YgTabsTheme.dividerHeight[2],
     focusBackgroundColor: _$YgTabsTheme.focusBackgroundColor[2],
@@ -91,12 +105,15 @@ class YgTabsTheme extends ThemeExtension<YgTabsTheme> {
     selectedLabelColor: _$YgTabsTheme.selectedLabelColor[2],
     selectedLabelTextStyle: _$YgTabsTheme.selectedLabelTextStyle[2],
     tabBarBackgroundColor: _$YgTabsTheme.tabBarBackgroundColor[2],
-    tabPadding: _$YgTabsTheme.tabPadding[2],
+    tabInnerPadding: _$YgTabsTheme.tabInnerPadding[2],
+    tabOuterPadding: _$YgTabsTheme.tabOuterPadding[2],
     unselectedLabelColor: _$YgTabsTheme.unselectedLabelColor[2],
     unselectedLabelTextStyle: _$YgTabsTheme.unselectedLabelTextStyle[2],
   );
 
   static final YgTabsTheme professionalDark = YgTabsTheme(
+    animationCurve: _$YgTabsTheme.animationCurve[3],
+    animationDuration: _$YgTabsTheme.animationDuration[3],
     dividerColor: _$YgTabsTheme.dividerColor[3],
     dividerHeight: _$YgTabsTheme.dividerHeight[3],
     focusBackgroundColor: _$YgTabsTheme.focusBackgroundColor[3],
@@ -108,7 +125,8 @@ class YgTabsTheme extends ThemeExtension<YgTabsTheme> {
     selectedLabelColor: _$YgTabsTheme.selectedLabelColor[3],
     selectedLabelTextStyle: _$YgTabsTheme.selectedLabelTextStyle[3],
     tabBarBackgroundColor: _$YgTabsTheme.tabBarBackgroundColor[3],
-    tabPadding: _$YgTabsTheme.tabPadding[3],
+    tabInnerPadding: _$YgTabsTheme.tabInnerPadding[3],
+    tabOuterPadding: _$YgTabsTheme.tabOuterPadding[3],
     unselectedLabelColor: _$YgTabsTheme.unselectedLabelColor[3],
     unselectedLabelTextStyle: _$YgTabsTheme.unselectedLabelTextStyle[3],
   );
@@ -122,6 +140,8 @@ class YgTabsTheme extends ThemeExtension<YgTabsTheme> {
 
   @override
   YgTabsTheme copyWith({
+    Curve? animationCurve,
+    Duration? animationDuration,
     Color? dividerColor,
     double? dividerHeight,
     Color? focusBackgroundColor,
@@ -133,11 +153,14 @@ class YgTabsTheme extends ThemeExtension<YgTabsTheme> {
     Color? selectedLabelColor,
     TextStyle? selectedLabelTextStyle,
     Color? tabBarBackgroundColor,
-    EdgeInsets? tabPadding,
+    EdgeInsets? tabInnerPadding,
+    EdgeInsets? tabOuterPadding,
     Color? unselectedLabelColor,
     TextStyle? unselectedLabelTextStyle,
   }) {
     return YgTabsTheme(
+      animationCurve: animationCurve ?? this.animationCurve,
+      animationDuration: animationDuration ?? this.animationDuration,
       dividerColor: dividerColor ?? this.dividerColor,
       dividerHeight: dividerHeight ?? this.dividerHeight,
       focusBackgroundColor: focusBackgroundColor ?? this.focusBackgroundColor,
@@ -152,7 +175,8 @@ class YgTabsTheme extends ThemeExtension<YgTabsTheme> {
           selectedLabelTextStyle ?? this.selectedLabelTextStyle,
       tabBarBackgroundColor:
           tabBarBackgroundColor ?? this.tabBarBackgroundColor,
-      tabPadding: tabPadding ?? this.tabPadding,
+      tabInnerPadding: tabInnerPadding ?? this.tabInnerPadding,
+      tabOuterPadding: tabOuterPadding ?? this.tabOuterPadding,
       unselectedLabelColor: unselectedLabelColor ?? this.unselectedLabelColor,
       unselectedLabelTextStyle:
           unselectedLabelTextStyle ?? this.unselectedLabelTextStyle,
@@ -163,6 +187,8 @@ class YgTabsTheme extends ThemeExtension<YgTabsTheme> {
   YgTabsTheme lerp(covariant ThemeExtension<YgTabsTheme>? other, double t) {
     if (other is! YgTabsTheme) return this as YgTabsTheme;
     return YgTabsTheme(
+      animationCurve: t < 0.5 ? animationCurve : other.animationCurve,
+      animationDuration: t < 0.5 ? animationDuration : other.animationDuration,
       dividerColor: Color.lerp(dividerColor, other.dividerColor, t)!,
       dividerHeight: t < 0.5 ? dividerHeight : other.dividerHeight,
       focusBackgroundColor:
@@ -180,7 +206,8 @@ class YgTabsTheme extends ThemeExtension<YgTabsTheme> {
           selectedLabelTextStyle, other.selectedLabelTextStyle, t)!,
       tabBarBackgroundColor:
           Color.lerp(tabBarBackgroundColor, other.tabBarBackgroundColor, t)!,
-      tabPadding: t < 0.5 ? tabPadding : other.tabPadding,
+      tabInnerPadding: t < 0.5 ? tabInnerPadding : other.tabInnerPadding,
+      tabOuterPadding: t < 0.5 ? tabOuterPadding : other.tabOuterPadding,
       unselectedLabelColor:
           Color.lerp(unselectedLabelColor, other.unselectedLabelColor, t)!,
       unselectedLabelTextStyle: TextStyle.lerp(
@@ -193,6 +220,10 @@ class YgTabsTheme extends ThemeExtension<YgTabsTheme> {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is YgTabsTheme &&
+            const DeepCollectionEquality()
+                .equals(animationCurve, other.animationCurve) &&
+            const DeepCollectionEquality()
+                .equals(animationDuration, other.animationDuration) &&
             const DeepCollectionEquality()
                 .equals(dividerColor, other.dividerColor) &&
             const DeepCollectionEquality()
@@ -216,7 +247,9 @@ class YgTabsTheme extends ThemeExtension<YgTabsTheme> {
             const DeepCollectionEquality()
                 .equals(tabBarBackgroundColor, other.tabBarBackgroundColor) &&
             const DeepCollectionEquality()
-                .equals(tabPadding, other.tabPadding) &&
+                .equals(tabInnerPadding, other.tabInnerPadding) &&
+            const DeepCollectionEquality()
+                .equals(tabOuterPadding, other.tabOuterPadding) &&
             const DeepCollectionEquality()
                 .equals(unselectedLabelColor, other.unselectedLabelColor) &&
             const DeepCollectionEquality().equals(
@@ -227,6 +260,8 @@ class YgTabsTheme extends ThemeExtension<YgTabsTheme> {
   int get hashCode {
     return Object.hash(
       runtimeType.hashCode,
+      const DeepCollectionEquality().hash(animationCurve),
+      const DeepCollectionEquality().hash(animationDuration),
       const DeepCollectionEquality().hash(dividerColor),
       const DeepCollectionEquality().hash(dividerHeight),
       const DeepCollectionEquality().hash(focusBackgroundColor),
@@ -238,7 +273,8 @@ class YgTabsTheme extends ThemeExtension<YgTabsTheme> {
       const DeepCollectionEquality().hash(selectedLabelColor),
       const DeepCollectionEquality().hash(selectedLabelTextStyle),
       const DeepCollectionEquality().hash(tabBarBackgroundColor),
-      const DeepCollectionEquality().hash(tabPadding),
+      const DeepCollectionEquality().hash(tabInnerPadding),
+      const DeepCollectionEquality().hash(tabOuterPadding),
       const DeepCollectionEquality().hash(unselectedLabelColor),
       const DeepCollectionEquality().hash(unselectedLabelTextStyle),
     );
