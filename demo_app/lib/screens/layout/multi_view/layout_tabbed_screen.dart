@@ -34,7 +34,7 @@ class LayoutTabbedScreen extends StatelessWidget {
           content: SliverView(),
         ),
         YgLayoutTab(
-          title: 'Centered but with a long name',
+          title: 'Centered',
           content: CenteredView(),
         ),
         YgLayoutTab(

@@ -19,6 +19,7 @@ class YgTabsTheme extends ThemeExtension<YgTabsTheme> {
     required this.iconLabelSpacing,
     required this.indicatorGradient,
     required this.indicatorHeight,
+    required this.indicatorRadius,
     required this.pressedBackgroundColor,
     required this.selectedLabelColor,
     required this.selectedLabelTextStyle,
@@ -40,6 +41,7 @@ class YgTabsTheme extends ThemeExtension<YgTabsTheme> {
   final double iconLabelSpacing;
   final Gradient indicatorGradient;
   final double indicatorHeight;
+  final BorderRadius indicatorRadius;
   final Color pressedBackgroundColor;
   final Color selectedLabelColor;
   final TextStyle selectedLabelTextStyle;
@@ -61,6 +63,7 @@ class YgTabsTheme extends ThemeExtension<YgTabsTheme> {
     iconLabelSpacing: _$YgTabsTheme.iconLabelSpacing[0],
     indicatorGradient: _$YgTabsTheme.indicatorGradient[0],
     indicatorHeight: _$YgTabsTheme.indicatorHeight[0],
+    indicatorRadius: _$YgTabsTheme.indicatorRadius[0],
     pressedBackgroundColor: _$YgTabsTheme.pressedBackgroundColor[0],
     selectedLabelColor: _$YgTabsTheme.selectedLabelColor[0],
     selectedLabelTextStyle: _$YgTabsTheme.selectedLabelTextStyle[0],
@@ -81,6 +84,7 @@ class YgTabsTheme extends ThemeExtension<YgTabsTheme> {
     iconLabelSpacing: _$YgTabsTheme.iconLabelSpacing[1],
     indicatorGradient: _$YgTabsTheme.indicatorGradient[1],
     indicatorHeight: _$YgTabsTheme.indicatorHeight[1],
+    indicatorRadius: _$YgTabsTheme.indicatorRadius[1],
     pressedBackgroundColor: _$YgTabsTheme.pressedBackgroundColor[1],
     selectedLabelColor: _$YgTabsTheme.selectedLabelColor[1],
     selectedLabelTextStyle: _$YgTabsTheme.selectedLabelTextStyle[1],
@@ -101,6 +105,7 @@ class YgTabsTheme extends ThemeExtension<YgTabsTheme> {
     iconLabelSpacing: _$YgTabsTheme.iconLabelSpacing[2],
     indicatorGradient: _$YgTabsTheme.indicatorGradient[2],
     indicatorHeight: _$YgTabsTheme.indicatorHeight[2],
+    indicatorRadius: _$YgTabsTheme.indicatorRadius[2],
     pressedBackgroundColor: _$YgTabsTheme.pressedBackgroundColor[2],
     selectedLabelColor: _$YgTabsTheme.selectedLabelColor[2],
     selectedLabelTextStyle: _$YgTabsTheme.selectedLabelTextStyle[2],
@@ -121,6 +126,7 @@ class YgTabsTheme extends ThemeExtension<YgTabsTheme> {
     iconLabelSpacing: _$YgTabsTheme.iconLabelSpacing[3],
     indicatorGradient: _$YgTabsTheme.indicatorGradient[3],
     indicatorHeight: _$YgTabsTheme.indicatorHeight[3],
+    indicatorRadius: _$YgTabsTheme.indicatorRadius[3],
     pressedBackgroundColor: _$YgTabsTheme.pressedBackgroundColor[3],
     selectedLabelColor: _$YgTabsTheme.selectedLabelColor[3],
     selectedLabelTextStyle: _$YgTabsTheme.selectedLabelTextStyle[3],
@@ -149,6 +155,7 @@ class YgTabsTheme extends ThemeExtension<YgTabsTheme> {
     double? iconLabelSpacing,
     Gradient? indicatorGradient,
     double? indicatorHeight,
+    BorderRadius? indicatorRadius,
     Color? pressedBackgroundColor,
     Color? selectedLabelColor,
     TextStyle? selectedLabelTextStyle,
@@ -168,6 +175,7 @@ class YgTabsTheme extends ThemeExtension<YgTabsTheme> {
       iconLabelSpacing: iconLabelSpacing ?? this.iconLabelSpacing,
       indicatorGradient: indicatorGradient ?? this.indicatorGradient,
       indicatorHeight: indicatorHeight ?? this.indicatorHeight,
+      indicatorRadius: indicatorRadius ?? this.indicatorRadius,
       pressedBackgroundColor:
           pressedBackgroundColor ?? this.pressedBackgroundColor,
       selectedLabelColor: selectedLabelColor ?? this.selectedLabelColor,
@@ -198,6 +206,7 @@ class YgTabsTheme extends ThemeExtension<YgTabsTheme> {
       iconLabelSpacing: t < 0.5 ? iconLabelSpacing : other.iconLabelSpacing,
       indicatorGradient: t < 0.5 ? indicatorGradient : other.indicatorGradient,
       indicatorHeight: t < 0.5 ? indicatorHeight : other.indicatorHeight,
+      indicatorRadius: t < 0.5 ? indicatorRadius : other.indicatorRadius,
       pressedBackgroundColor:
           Color.lerp(pressedBackgroundColor, other.pressedBackgroundColor, t)!,
       selectedLabelColor:
@@ -239,6 +248,8 @@ class YgTabsTheme extends ThemeExtension<YgTabsTheme> {
             const DeepCollectionEquality()
                 .equals(indicatorHeight, other.indicatorHeight) &&
             const DeepCollectionEquality()
+                .equals(indicatorRadius, other.indicatorRadius) &&
+            const DeepCollectionEquality()
                 .equals(pressedBackgroundColor, other.pressedBackgroundColor) &&
             const DeepCollectionEquality()
                 .equals(selectedLabelColor, other.selectedLabelColor) &&
@@ -269,6 +280,7 @@ class YgTabsTheme extends ThemeExtension<YgTabsTheme> {
       const DeepCollectionEquality().hash(iconLabelSpacing),
       const DeepCollectionEquality().hash(indicatorGradient),
       const DeepCollectionEquality().hash(indicatorHeight),
+      const DeepCollectionEquality().hash(indicatorRadius),
       const DeepCollectionEquality().hash(pressedBackgroundColor),
       const DeepCollectionEquality().hash(selectedLabelColor),
       const DeepCollectionEquality().hash(selectedLabelTextStyle),

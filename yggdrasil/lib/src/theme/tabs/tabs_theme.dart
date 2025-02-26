@@ -84,6 +84,25 @@ class _$YgTabsTheme {
     professional_dark.FhDimensions.xxs,
   ];
 
+  static const List<BorderRadius> indicatorRadius = <BorderRadius>[
+    BorderRadius.only(
+      topLeft: Radius.circular(consumer_light.FhDimensions.xxl),
+      topRight: Radius.circular(consumer_light.FhDimensions.xxl),
+    ),
+    BorderRadius.only(
+      topLeft: Radius.circular(consumer_dark.FhDimensions.xxl),
+      topRight: Radius.circular(consumer_dark.FhDimensions.xxl),
+    ),
+    BorderRadius.only(
+      topLeft: Radius.circular(professional_light.FhDimensions.xxl),
+      topRight: Radius.circular(professional_light.FhDimensions.xxl),
+    ),
+    BorderRadius.only(
+      topLeft: Radius.circular(professional_dark.FhDimensions.xxl),
+      topRight: Radius.circular(professional_dark.FhDimensions.xxl),
+    ),
+  ];
+
   // endregion
 
   // region Divider

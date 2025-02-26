@@ -1,7 +1,7 @@
 import 'package:yggdrasil/src/utils/_utils.dart';
 
-class YgTabState extends YgState {
-  YgTabState({
+class YgTabInternalState extends YgState {
+  YgTabInternalState({
     bool hovered = false,
     bool focused = false,
     bool pressed = false,

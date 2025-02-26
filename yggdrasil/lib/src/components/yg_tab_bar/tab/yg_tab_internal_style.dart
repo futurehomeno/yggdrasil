@@ -3,10 +3,10 @@ import 'package:yggdrasil/src/theme/tabs/_tabs.dart';
 import 'package:yggdrasil/src/theme/theme.dart';
 import 'package:yggdrasil/src/utils/yg_states/_yg_states.dart';
 
-import 'yg_tab_state.dart';
+import 'yg_tab_internal_state.dart';
 
-class YgTabStyle extends YgStyle<YgTabState> {
-  YgTabStyle({
+class YgTabInternalStyle extends YgStyle<YgTabInternalState> {
+  YgTabInternalStyle({
     required super.state,
     required super.vsync,
   });
