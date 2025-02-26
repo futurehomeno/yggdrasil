@@ -25,6 +25,7 @@ class YgTabBar extends StatefulWidget implements PreferredSizeWidget {
 class _YgTabBarState extends State<YgTabBar> {
   final List<GlobalKey> _keys = <GlobalKey<State<StatefulWidget>>>[];
   TabController? _controller;
+  int _targetIndex = -1;
 
   @override
   void initState() {
@@ -41,25 +42,63 @@ class _YgTabBarState extends State<YgTabBar> {
   @override
   void didChangeDependencies() {
     _controller?.removeListener(_onChange);
+    _controller?.animation?.removeListener(_onTick);
     _controller = widget.controller ?? DefaultTabController.of(context);
+    _controller?.animation?.addListener(_onTick);
     _controller?.addListener(_onChange);
+
+    if (_targetIndex == -1) {
+      _targetIndex = _controller!.index;
+    }
+
     super.didChangeDependencies();
   }
 
   void _onChange() {
-    final BuildContext? context = _keys.elementAtOrNull(_controller!.index)?.currentContext;
+    final TabController? controller = _controller;
+    if (controller == null || !controller.indexIsChanging) {
+      return;
+    }
+
+    if (_targetIndex != controller.index) {
+      _targetIndex = controller.index;
+      _scrollToTarget();
+    }
+  }
+
+  void _onTick() {
+    final TabController? controller = _controller;
+    if (controller == null || controller.indexIsChanging) {
+      return;
+    }
+
+    final double offset = controller.offset;
+    final int index = controller.index;
+
+    final int newTargetIndex;
+    if (offset.abs() < 0.1) {
+      newTargetIndex = index;
+    } else {
+      newTargetIndex = index + offset.sign.toInt();
+    }
+
+    if (newTargetIndex != _targetIndex) {
+      _targetIndex = newTargetIndex;
+      _scrollToTarget();
+    }
+  }
+
+  void _scrollToTarget() {
+    final BuildContext? context = _keys.elementAtOrNull(_targetIndex)?.currentContext;
     if (context == null) {
       return;
     }
 
-    print('Scrollable.ensureVisible: ${_controller!.index}');
-
     Scrollable.ensureVisible(
       context,
       curve: Curves.easeInOut,
-      duration: const Duration(
-        milliseconds: 200,
-      ),
+      duration: _controller!.animationDuration,
+      alignment: 0.5,
     );
   }
 
@@ -108,7 +147,9 @@ class _YgTabBarState extends State<YgTabBar> {
         ),
         SizedBox(
           height: theme.dividerHeight,
-          child: ColoredBox(color: theme.dividerColor),
+          child: ColoredBox(
+            color: theme.dividerColor,
+          ),
         ),
       ],
     );
