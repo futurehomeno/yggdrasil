@@ -3,6 +3,7 @@ import 'dart:math';
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 
+/// Internal widget responsible for positioning and sizing Tabs. Also paints indicator.
 class YgTabBarRenderWidget extends MultiChildRenderObjectWidget {
   const YgTabBarRenderWidget({
     super.key,
@@ -226,15 +227,15 @@ class YgTabBarRenderer extends RenderBox
 
     final double position = controller.animation?.value ?? 0;
     for (RenderBox? child = firstChild; child != null; child = childAfter(child), i++) {
-      final double desiredWith = child.desiredSize!.width;
+      final double desiredWidth = child.desiredSize!.width;
       final double childWidth = child.givenSize!.width;
       final double offset = (position - i);
 
       if (offset > -1 && offset < 1) {
         final double multiplier = (1 - offset.abs());
 
-        width += desiredWith * multiplier;
-        start += (childWidth - desiredWith) / 2 * multiplier;
+        width += desiredWidth * multiplier;
+        start += (childWidth - desiredWidth) / 2 * multiplier;
       }
 
       if (offset > 1) {
@@ -242,7 +243,7 @@ class YgTabBarRenderer extends RenderBox
       } else if (offset > 0) {
         start += childWidth * offset;
       } else {
-        // Nothing will happen after this.
+        // No further children will be processed after this point.
         break;
       }
     }
@@ -304,6 +305,7 @@ extension on RenderBox {
   }
 }
 
+/// Internal style for the tab indicator.
 class YgTabIndicatorStyle {
   const YgTabIndicatorStyle({
     required this.padding,

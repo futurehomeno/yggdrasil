@@ -1,5 +1,6 @@
 import 'package:yggdrasil/src/utils/yg_icon_data/yg_colorable_icon_data.dart';
 
+/// A Tab which can be displayed inside of a [YgTabBar].
 class YgTab {
   const YgTab({
     this.label,

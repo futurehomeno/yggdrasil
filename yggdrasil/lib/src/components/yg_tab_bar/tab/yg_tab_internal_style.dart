@@ -5,6 +5,7 @@ import 'package:yggdrasil/src/utils/yg_states/_yg_states.dart';
 
 import 'yg_tab_internal_state.dart';
 
+/// Internal style of [YgTabInternal].
 class YgTabInternalStyle extends YgStyle<YgTabInternalState> {
   YgTabInternalStyle({
     required super.state,

@@ -1,5 +1,6 @@
 import 'package:yggdrasil/src/utils/_utils.dart';
 
+/// Internal visual state of [YgTabInternal].
 class YgTabInternalState extends YgState {
   YgTabInternalState({
     bool hovered = false,
