@@ -41,6 +41,8 @@ abstract class YgLayout extends StatefulWidget with StatefulWidgetDebugMixin {
     bool swiping,
     Widget? bottom,
     Widget? appBar,
+    ValueChanged<int>? onTabChanged,
+    ValueChanged<int>? onTabVisible,
   }) = _YgLayoutTabbed;
 
   const YgLayout._({
