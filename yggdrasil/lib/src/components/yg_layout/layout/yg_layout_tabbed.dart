@@ -78,33 +78,33 @@ class _YgLayoutTabbedState extends _YgLayoutState<_YgLayoutTabbed> {
       physics = const NeverScrollableScrollPhysics();
     }
 
-    return NotificationListener<ScrollUpdateNotification>(
-      onNotification: _handleScrollNotification,
-      child: DefaultTabController(
-        length: widget.tabs.length,
-        initialIndex: widget.initialTab,
-        child: YgLayoutInternal(
-          controller: _controller,
-          headerBehavior: widget.headerBehavior,
-          appBar: widget.appBar,
-          bottom: Material(
-            type: MaterialType.transparency,
-            child: Column(
-              mainAxisSize: MainAxisSize.min,
-              children: <Widget>[
-                if (trailing != null) trailing,
-                YgTabBar(
-                  tabs: <YgTab>[
-                    for (final YgLayoutTab tab in widget.tabs)
-                      YgTab(
-                        label: tab.title,
-                      ),
-                  ],
-                ),
-              ],
-            ),
+    return DefaultTabController(
+      length: widget.tabs.length,
+      initialIndex: widget.initialTab,
+      child: YgLayoutInternal(
+        controller: _controller,
+        headerBehavior: widget.headerBehavior,
+        appBar: widget.appBar,
+        bottom: Material(
+          type: MaterialType.transparency,
+          child: Column(
+            mainAxisSize: MainAxisSize.min,
+            children: <Widget>[
+              if (trailing != null) trailing,
+              YgTabBar(
+                tabs: <YgTab>[
+                  for (final YgLayoutTab tab in widget.tabs)
+                    YgTab(
+                      label: tab.title,
+                    ),
+                ],
+              ),
+            ],
           ),
-          content: TabBarView(
+        ),
+        content: NotificationListener<ScrollUpdateNotification>(
+          onNotification: _handleScrollNotification,
+          child: TabBarView(
             physics: physics,
             children: <Widget>[
               for (int i = 0; i < widget.tabs.length; i++)

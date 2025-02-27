@@ -47,30 +47,21 @@ class _TabsScreenState extends State<TabsScreen> with SingleTickerProviderStateM
       child: YgLayoutBody(
         child: Column(
           children: <Widget>[
-            const YgSection.column(
+            YgSection.column(
               title: 'YgTabBar with label only',
               children: <Widget>[
                 DefaultTabController(
-                  length: 4,
+                  length: 12,
+                  initialIndex: 11,
                   child: Column(
                     children: <Widget>[
                       YgTabBar(
-                        tabs: <YgTab>[
-                          YgTab(label: 'Tab 1'),
-                          YgTab(label: 'Tab 2'),
-                          YgTab(label: 'Tab 3'),
-                          YgTab(label: 'Tab 4'),
-                        ],
+                        tabs: List.generate(12, (int i) => YgTab(label: 'Tab $i')),
                       ),
                       SizedBox(
                         height: 100.0,
                         child: TabBarView(
-                          children: <Widget>[
-                            Center(child: Text('Tab 1')),
-                            Center(child: Text('Tab 2')),
-                            Center(child: Text('Tab 3')),
-                            Center(child: Text('Tab 4')),
-                          ],
+                          children: List.generate(12, (int i) => Center(child: Text('Tab $i'))),
                         ),
                       ),
                     ],
