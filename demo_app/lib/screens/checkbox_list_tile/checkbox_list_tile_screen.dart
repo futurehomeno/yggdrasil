@@ -30,67 +30,69 @@ class CheckboxListTileScreenState extends State<CheckboxListTileScreen> {
   Widget build(BuildContext context) {
     return DemoScreen(
       componentName: 'CheckboxListTile',
-      child: Column(
-        children: <Widget>[
-          const YgSection(
-            child: YgCallout(
-              title: 'Note',
-              description:
-                  'You can also place a Checkbox inside a ListTile manually if you intend for only the Checkbox to be tappable. See the CheckboxScreen for an example.',
+      child: YgLayoutBody(
+        child: Column(
+          children: <Widget>[
+            const YgSection(
+              child: YgCallout(
+                title: 'Note',
+                description:
+                    'You can also place a Checkbox inside a ListTile manually if you intend for only the Checkbox to be tappable. See the CheckboxScreen for an example.',
+              ),
             ),
-          ),
-          YgSection.list(
-            children: <Widget>[
-              YgCheckboxListTile(
-                title: 'CheckboxListTile',
-                subtitle: 'The whole ListTile and Checkbox is tappable.',
-                value: checkboxListTileValue,
-                onChanged: (bool newValue) {
-                  checkboxListTileValue = newValue;
-                  setState(() {});
-                },
-              ),
-              YgCheckboxListTile.triState(
-                title: 'Tri-state CheckboxListTile',
-                subtitle: 'The whole ListTile and Checkbox is tappable.',
-                value: checkboxListTileTriStateValue,
-                onChanged: (bool? newValue) {
-                  checkboxListTileTriStateValue = newValue;
-                  setState(() {});
-                },
-              ),
-              YgCheckboxListTile(
-                title: 'Disabled CheckboxListTile',
-                subtitle: 'Tapping anywhere does nothing.',
-                value: checkboxListTileDisabledValue,
-                onChanged: null,
-              ),
-              YgCheckboxListTile(
-                leadingWidget: const YgTag(
-                  child: Text('Leading widget only'),
+            YgSection.list(
+              children: <Widget>[
+                YgCheckboxListTile(
+                  title: 'CheckboxListTile',
+                  subtitle: 'The whole ListTile and Checkbox is tappable.',
+                  value: checkboxListTileValue,
+                  onChanged: (bool newValue) {
+                    checkboxListTileValue = newValue;
+                    setState(() {});
+                  },
                 ),
-                value: checkboxListTileLeadingOnlyValue,
-                onChanged: (bool newValue) {
-                  checkboxListTileLeadingOnlyValue = newValue;
-                  setState(() {});
-                },
-              ),
-              YgCheckboxListTile(
-                title: 'With trailingWidget',
-                subtitle: 'Mostly used to add a YgIconButton.',
-                leadingWidget: YgIconButton(
-                  onPressed: () {},
-                  icon: YgIcons.info,
+                YgCheckboxListTile.triState(
+                  title: 'Tri-state CheckboxListTile',
+                  subtitle: 'The whole ListTile and Checkbox is tappable.',
+                  value: checkboxListTileTriStateValue,
+                  onChanged: (bool? newValue) {
+                    checkboxListTileTriStateValue = newValue;
+                    setState(() {});
+                  },
                 ),
-                value: checkboxListTileTrailingWidgetValue,
-                onChanged: (bool newValue) {
-                  checkboxListTileTrailingWidgetValue = newValue;
-                  setState(() {});
-                },
-              ),
-            ],
-          ),
-        ],
+                YgCheckboxListTile(
+                  title: 'Disabled CheckboxListTile',
+                  subtitle: 'Tapping anywhere does nothing.',
+                  value: checkboxListTileDisabledValue,
+                  onChanged: null,
+                ),
+                YgCheckboxListTile(
+                  leadingWidget: const YgTag(
+                    child: Text('Leading widget only'),
+                  ),
+                  value: checkboxListTileLeadingOnlyValue,
+                  onChanged: (bool newValue) {
+                    checkboxListTileLeadingOnlyValue = newValue;
+                    setState(() {});
+                  },
+                ),
+                YgCheckboxListTile(
+                  title: 'With trailingWidget',
+                  subtitle: 'Mostly used to add a YgIconButton.',
+                  leadingWidget: YgIconButton(
+                    onPressed: () {},
+                    icon: YgIcons.info,
+                  ),
+                  value: checkboxListTileTrailingWidgetValue,
+                  onChanged: (bool newValue) {
+                    checkboxListTileTrailingWidgetValue = newValue;
+                    setState(() {});
+                  },
+                ),
+              ],
+            ),
+          ],
+        ),
       ),
     );
   }

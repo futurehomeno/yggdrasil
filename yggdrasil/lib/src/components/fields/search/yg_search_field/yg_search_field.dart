@@ -290,6 +290,7 @@ abstract class YgSearchFieldWidgetState<
           icon: YgIcons.searchAlt,
         ),
       ),
+      counter: null,
     );
   }
 

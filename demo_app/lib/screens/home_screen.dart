@@ -3,7 +3,8 @@ import 'package:provider/provider.dart';
 import 'package:yggdrasil/yggdrasil.dart';
 import 'package:yggdrasil_demo/core/_core.dart';
 import 'package:yggdrasil_demo/screens/_screens.dart';
-import 'package:yggdrasil_demo/screens/layout_examples/_examples.dart';
+import 'package:yggdrasil_demo/screens/layout/layout_screen.dart';
+import 'package:yggdrasil_demo/screens/layout_examples/device_details/device_details_example.dart';
 import 'package:yggdrasil_demo/widgets/_widgets.dart';
 
 class HomeScreen extends StatelessWidget {
@@ -20,22 +21,20 @@ class HomeScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return DefaultTabController(
-      length: 2,
-      child: Consumer<YgAppState>(builder: (BuildContext context, YgAppState ygAppState, Widget? child) {
-        return DemoScreen(
+    return Consumer<YgAppState>(
+      builder: (
+        BuildContext context,
+        YgAppState ygAppState,
+        Widget? child,
+      ) {
+        return DemoScreen.tabbed(
           componentName: 'Yggdrasil v${ygAppState.version}',
-          bottom: const YgTabBar(
-            tabs: <YgTab>[
-              YgTab(label: 'Components'),
-              YgTab(label: 'Layouts'),
-            ],
-          ),
-          scrollable: false,
-          child: TabBarView(
-            children: <Widget>[
-              SingleChildScrollView(
-                child: YgSection.list(
+          headerBehavior: YgHeaderBehavior.hideAppBar,
+          tabs: <YgLayoutTab>[
+            YgLayoutTab(
+              title: 'Components',
+              content: YgLayoutBody.sliver(
+                sliver: SliverList.list(
                   children: <Widget>[
                     YgListTile(
                       title: 'AppBar',
@@ -120,6 +119,11 @@ class HomeScreen extends StatelessWidget {
                     YgListTile(
                       title: 'Icon list (all icons)',
                       onTap: () => sl<YgRouter>().push(IconListScreen.route()),
+                      trailingWidgets: const <YgIcon>[YgIcon(YgIcons.caretRight)],
+                    ),
+                    YgListTile(
+                      title: 'Layout',
+                      onTap: () => sl<YgRouter>().push(LayoutScreen.route()),
                       trailingWidgets: const <YgIcon>[YgIcon(YgIcons.caretRight)],
                     ),
                     YgListTile(
@@ -280,8 +284,11 @@ class HomeScreen extends StatelessWidget {
                   ],
                 ),
               ),
-              SingleChildScrollView(
-                child: YgSection.list(
+            ),
+            YgLayoutTab(
+              title: 'Layouts',
+              content: YgLayoutBody(
+                child: Column(
                   children: <Widget>[
                     YgListTile(
                       title: 'Device details',
@@ -291,10 +298,10 @@ class HomeScreen extends StatelessWidget {
                   ],
                 ),
               ),
-            ],
-          ),
+            ),
+          ],
         );
-      }),
+      },
     );
   }
 }

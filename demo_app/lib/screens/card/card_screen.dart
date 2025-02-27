@@ -19,48 +19,50 @@ class CardScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return DemoScreen(
       componentName: 'Card',
-      child: Column(
-        children: <Widget>[
-          YgSection.column(
-            title: 'Variants',
-            subtitle: 'Spacing between cards added manually.',
-            children: <Widget>[
-              const YgCard(
-                child: YgListTile(
-                  title: 'Elevated card',
-                  subtitle: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit.',
+      child: YgLayoutBody(
+        child: Column(
+          children: <Widget>[
+            YgSection.column(
+              title: 'Variants',
+              subtitle: 'Spacing between cards added manually.',
+              children: <Widget>[
+                const YgCard(
+                  child: YgListTile(
+                    title: 'Elevated card',
+                    subtitle: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit.',
+                  ),
                 ),
-              ),
-              const YgCard(
+                const YgCard(
+                  variant: YgCardVariant.filled,
+                  child: YgListTile(
+                    title: 'Filled card',
+                    subtitle: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit.',
+                  ),
+                ),
+                const YgCard(
+                  variant: YgCardVariant.outlined,
+                  child: YgListTile(
+                    title: 'Outlined card',
+                    subtitle: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit.',
+                  ),
+                ),
+              ].withVerticalSpacing(10.0),
+            ),
+            YgSection(
+              title: 'Content',
+              subtitle:
+                  'Cards are only containers for other widgets and thus do not have any styling of their own. Most commonly you\'ll be adding a ListTile inside of them, as seen in the examples here.',
+              child: YgCard(
                 variant: YgCardVariant.filled,
                 child: YgListTile(
-                  title: 'Filled card',
+                  title: 'This is a clickable list tile',
                   subtitle: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit.',
+                  onTap: () {},
                 ),
-              ),
-              const YgCard(
-                variant: YgCardVariant.outlined,
-                child: YgListTile(
-                  title: 'Outlined card',
-                  subtitle: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit.',
-                ),
-              ),
-            ].withVerticalSpacing(10.0),
-          ),
-          YgSection(
-            title: 'Content',
-            subtitle:
-                'Cards are only containers for other widgets and thus do not have any styling of their own. Most commonly you\'ll be adding a ListTile inside of them, as seen in the examples here.',
-            child: YgCard(
-              variant: YgCardVariant.filled,
-              child: YgListTile(
-                title: 'This is a clickable list tile',
-                subtitle: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit.',
-                onTap: () {},
               ),
             ),
-          ),
-        ],
+          ],
+        ),
       ),
     );
   }

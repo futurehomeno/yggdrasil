@@ -37,150 +37,152 @@ class _ToggleButtonScreenState extends State<ToggleButtonScreen> {
   Widget build(BuildContext context) {
     return DemoScreen(
       componentName: 'ToggleButton',
-      child: Column(
-        children: <Widget>[
-          YgSection(
-            title: 'Icon toggle button',
-            child: Row(
-              mainAxisSize: MainAxisSize.min,
-              children: <Widget>[
-                YgToggleButton.onlyIcon(
-                  icon: YgIcons.info,
-                  value: iconValue1,
-                  size: YgToggleButtonSize.small,
-                  onChanged: (bool newValue) {
-                    iconValue1 = newValue;
-                    setState(() {});
-                  },
-                ),
-                YgToggleButton.onlyIcon(
-                  icon: YgIcons.info,
-                  value: iconValue2,
-                  size: YgToggleButtonSize.medium,
-                  onChanged: (bool newValue) {
-                    iconValue2 = newValue;
-                    setState(() {});
-                  },
-                ),
-                YgToggleButton.onlyIcon(
-                  icon: YgIcons.info,
-                  value: iconValue3,
-                  size: YgToggleButtonSize.large,
-                  onChanged: (bool newValue) {
-                    iconValue3 = newValue;
-                    setState(() {});
-                  },
-                ),
-              ].withHorizontalSpacing(10.0),
+      child: YgLayoutBody(
+        child: Column(
+          children: <Widget>[
+            YgSection(
+              title: 'Icon toggle button',
+              child: Row(
+                mainAxisSize: MainAxisSize.min,
+                children: <Widget>[
+                  YgToggleButton.onlyIcon(
+                    icon: YgIcons.info,
+                    value: iconValue1,
+                    size: YgToggleButtonSize.small,
+                    onChanged: (bool newValue) {
+                      iconValue1 = newValue;
+                      setState(() {});
+                    },
+                  ),
+                  YgToggleButton.onlyIcon(
+                    icon: YgIcons.info,
+                    value: iconValue2,
+                    size: YgToggleButtonSize.medium,
+                    onChanged: (bool newValue) {
+                      iconValue2 = newValue;
+                      setState(() {});
+                    },
+                  ),
+                  YgToggleButton.onlyIcon(
+                    icon: YgIcons.info,
+                    value: iconValue3,
+                    size: YgToggleButtonSize.large,
+                    onChanged: (bool newValue) {
+                      iconValue3 = newValue;
+                      setState(() {});
+                    },
+                  ),
+                ].withHorizontalSpacing(10.0),
+              ),
             ),
-          ),
-          YgSection(
-            title: 'Text toggle button',
-            child: Row(
-              mainAxisSize: MainAxisSize.min,
-              children: <Widget>[
-                YgToggleButton(
-                  text: 'Toggle',
-                  value: textValue1,
-                  size: YgToggleButtonSize.small,
-                  onChanged: (bool newValue) {
-                    textValue1 = newValue;
-                    setState(() {});
-                  },
-                ),
-                YgToggleButton(
-                  text: 'Toggle',
-                  value: textValue2,
-                  size: YgToggleButtonSize.medium,
-                  onChanged: (bool newValue) {
-                    textValue2 = newValue;
-                    setState(() {});
-                  },
-                ),
-                YgToggleButton(
-                  text: 'Toggle',
-                  value: textValue3,
-                  size: YgToggleButtonSize.large,
-                  onChanged: (bool newValue) {
-                    textValue3 = newValue;
-                    setState(() {});
-                  },
-                ),
-              ].withHorizontalSpacing(10.0),
+            YgSection(
+              title: 'Text toggle button',
+              child: Row(
+                mainAxisSize: MainAxisSize.min,
+                children: <Widget>[
+                  YgToggleButton(
+                    text: 'Toggle',
+                    value: textValue1,
+                    size: YgToggleButtonSize.small,
+                    onChanged: (bool newValue) {
+                      textValue1 = newValue;
+                      setState(() {});
+                    },
+                  ),
+                  YgToggleButton(
+                    text: 'Toggle',
+                    value: textValue2,
+                    size: YgToggleButtonSize.medium,
+                    onChanged: (bool newValue) {
+                      textValue2 = newValue;
+                      setState(() {});
+                    },
+                  ),
+                  YgToggleButton(
+                    text: 'Toggle',
+                    value: textValue3,
+                    size: YgToggleButtonSize.large,
+                    onChanged: (bool newValue) {
+                      textValue3 = newValue;
+                      setState(() {});
+                    },
+                  ),
+                ].withHorizontalSpacing(10.0),
+              ),
             ),
-          ),
-          YgSection(
-            title: 'Icon & text toggle button',
-            child: Row(
-              mainAxisSize: MainAxisSize.min,
+            YgSection(
+              title: 'Icon & text toggle button',
+              child: Row(
+                mainAxisSize: MainAxisSize.min,
+                children: <Widget>[
+                  YgToggleButton.leadingIcon(
+                    icon: YgIcons.info,
+                    text: 'Toggle',
+                    value: iconTextValue1,
+                    size: YgToggleButtonSize.small,
+                    onChanged: (bool newValue) {
+                      iconTextValue1 = newValue;
+                      setState(() {});
+                    },
+                  ),
+                  YgToggleButton.leadingIcon(
+                    icon: YgIcons.info,
+                    text: 'Toggle',
+                    value: iconTextValue2,
+                    size: YgToggleButtonSize.medium,
+                    onChanged: (bool newValue) {
+                      iconTextValue2 = newValue;
+                      setState(() {});
+                    },
+                  ),
+                  YgToggleButton.leadingIcon(
+                    icon: YgIcons.info,
+                    text: 'Toggle',
+                    value: iconTextValue3,
+                    size: YgToggleButtonSize.large,
+                    onChanged: (bool newValue) {
+                      iconTextValue3 = newValue;
+                      setState(() {});
+                    },
+                  ),
+                ].withHorizontalSpacing(10.0),
+              ),
+            ),
+            YgSection.column(
+              title: 'Disabled',
               children: <Widget>[
                 YgToggleButton.leadingIcon(
                   icon: YgIcons.info,
-                  text: 'Toggle',
-                  value: iconTextValue1,
-                  size: YgToggleButtonSize.small,
-                  onChanged: (bool newValue) {
-                    iconTextValue1 = newValue;
-                    setState(() {});
-                  },
+                  text: 'Disabled (selected)',
+                  value: enabled,
+                  size: YgToggleButtonSize.medium,
+                  onChanged: null,
                 ),
                 YgToggleButton.leadingIcon(
                   icon: YgIcons.info,
-                  text: 'Toggle',
-                  value: iconTextValue2,
+                  text: 'Disabled (deselected)',
+                  value: disabled,
+                  size: YgToggleButtonSize.medium,
+                  onChanged: null,
+                ),
+              ].withVerticalSpacing(10.0),
+            ),
+            YgSection.column(
+              title: 'With very long text',
+              children: <Widget>[
+                YgToggleButton(
+                  text: 'Toggle button such a long text that it wraps to the next line. Why would you even want this?',
+                  value: longTextValue1,
                   size: YgToggleButtonSize.medium,
                   onChanged: (bool newValue) {
-                    iconTextValue2 = newValue;
+                    longTextValue1 = newValue;
                     setState(() {});
                   },
                 ),
-                YgToggleButton.leadingIcon(
-                  icon: YgIcons.info,
-                  text: 'Toggle',
-                  value: iconTextValue3,
-                  size: YgToggleButtonSize.large,
-                  onChanged: (bool newValue) {
-                    iconTextValue3 = newValue;
-                    setState(() {});
-                  },
-                ),
-              ].withHorizontalSpacing(10.0),
+              ],
             ),
-          ),
-          YgSection.column(
-            title: 'Disabled',
-            children: <Widget>[
-              YgToggleButton.leadingIcon(
-                icon: YgIcons.info,
-                text: 'Disabled (selected)',
-                value: enabled,
-                size: YgToggleButtonSize.medium,
-                onChanged: null,
-              ),
-              YgToggleButton.leadingIcon(
-                icon: YgIcons.info,
-                text: 'Disabled (deselected)',
-                value: disabled,
-                size: YgToggleButtonSize.medium,
-                onChanged: null,
-              ),
-            ].withVerticalSpacing(10.0),
-          ),
-          YgSection.column(
-            title: 'With very long text',
-            children: <Widget>[
-              YgToggleButton(
-                text: 'Toggle button such a long text that it wraps to the next line. Why would you even want this?',
-                value: longTextValue1,
-                size: YgToggleButtonSize.medium,
-                onChanged: (bool newValue) {
-                  longTextValue1 = newValue;
-                  setState(() {});
-                },
-              ),
-            ],
-          ),
-        ],
+          ],
+        ),
       ),
     );
   }

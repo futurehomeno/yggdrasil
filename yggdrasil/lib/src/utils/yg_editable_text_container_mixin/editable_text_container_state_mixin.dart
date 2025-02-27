@@ -112,7 +112,18 @@ mixin EditableTextContainerStateMixin<W extends StatefulWidget> on State<W>
     required Color cursorColor,
     required bool autofocus,
     required TapRegionCallback? onTapOutside,
+    required int? maxLength,
+    required YgMaxLengthEnforcement maxLengthEnforcement,
   }) {
+    final List<TextInputFormatter> formatters = <TextInputFormatter>[
+      ...?inputFormatters,
+      if (maxLength != null)
+        LengthLimitingTextInputFormatter(
+          maxLength,
+          maxLengthEnforcement: maxLengthEnforcement.resolve(context),
+        ),
+    ];
+
     return YgEditableText(
       editableTextKey: editableTextKey,
       focusNode: focusNode,
@@ -124,7 +135,7 @@ mixin EditableTextContainerStateMixin<W extends StatefulWidget> on State<W>
       autocorrect: autocorrect,
       textCapitalization: textCapitalization,
       readOnly: readOnly,
-      inputFormatters: inputFormatters,
+      inputFormatters: formatters,
       onChanged: onChanged,
       onEditingComplete: onEditingComplete,
       textInputAction: textInputAction,

@@ -32,84 +32,86 @@ class _SwitchScreenState extends State<SwitchScreen> {
   Widget build(BuildContext context) {
     return DemoScreen(
       componentName: 'Switch',
-      child: Column(
-        children: <Widget>[
-          YgSection(
-            title: 'Binary switch',
-            child: YgSwitch(
-              value: binaryValue,
-              onChanged: (bool newValue) {
-                binaryValue = newValue;
-                setState(() {});
-              },
-            ),
-          ),
-          YgSection(
-            title: 'Binary switch without initial value',
-            child: YgSwitch(
-              value: binaryNoInitialValue,
-              onChanged: (bool newValue) {
-                binaryNoInitialValue = newValue;
-                setState(() {});
-              },
-            ),
-          ),
-          YgSection(
-            title: 'Tri-state switch',
-            child: YgSwitch.triState(
-              value: triStateValue,
-              onChanged: (bool? newValue) {
-                triStateValue = newValue;
-                setState(() {});
-              },
-            ),
-          ),
-          YgSection(
-            title: 'Disabled switch',
-            child: Row(
-              mainAxisSize: MainAxisSize.min,
-              children: <Widget>[
-                YgSwitch(
-                  value: disabledFalseValue,
-                  onChanged: null,
-                ),
-                YgSwitch.triState(
-                  value: disabledNullValue,
-                  onChanged: null,
-                ),
-                YgSwitch(
-                  value: disabledTrueValue,
-                  onChanged: null,
-                ),
-              ].withHorizontalSpacing(10.0),
-            ),
-          ),
-          const YgSection(
-            title: 'Switch in a list tile',
-            child: YgCallout(
-              variant: YgCalloutVariant.warning,
-              description:
-                  'You can place a Switch in a list tile as shown below, but consider using SwitchListTile instead if you intend for the whole list tile to be tappable.',
-            ),
-          ),
-          YgSection.list(
-            children: <Widget>[
-              YgListTile(
-                title: 'Switch in a list tile',
-                subtitle: 'Only the Switch is tappable.',
-                trailingWidgets: <Widget>[
-                  YgSwitch(
-                    value: listTileValue,
-                    onChanged: (bool newValue) {
-                      listTileValue = newValue;
-                      setState(() {});
-                    },
-                  ),
-                ],
+      child: YgLayoutBody(
+        child: Column(
+          children: <Widget>[
+            YgSection(
+              title: 'Binary switch',
+              child: YgSwitch(
+                value: binaryValue,
+                onChanged: (bool newValue) {
+                  binaryValue = newValue;
+                  setState(() {});
+                },
               ),
-            ],
-          ),
-        ],
+            ),
+            YgSection(
+              title: 'Binary switch without initial value',
+              child: YgSwitch(
+                value: binaryNoInitialValue,
+                onChanged: (bool newValue) {
+                  binaryNoInitialValue = newValue;
+                  setState(() {});
+                },
+              ),
+            ),
+            YgSection(
+              title: 'Tri-state switch',
+              child: YgSwitch.triState(
+                value: triStateValue,
+                onChanged: (bool? newValue) {
+                  triStateValue = newValue;
+                  setState(() {});
+                },
+              ),
+            ),
+            YgSection(
+              title: 'Disabled switch',
+              child: Row(
+                mainAxisSize: MainAxisSize.min,
+                children: <Widget>[
+                  YgSwitch(
+                    value: disabledFalseValue,
+                    onChanged: null,
+                  ),
+                  YgSwitch.triState(
+                    value: disabledNullValue,
+                    onChanged: null,
+                  ),
+                  YgSwitch(
+                    value: disabledTrueValue,
+                    onChanged: null,
+                  ),
+                ].withHorizontalSpacing(10.0),
+              ),
+            ),
+            const YgSection(
+              title: 'Switch in a list tile',
+              child: YgCallout(
+                variant: YgCalloutVariant.warning,
+                description:
+                    'You can place a Switch in a list tile as shown below, but consider using SwitchListTile instead if you intend for the whole list tile to be tappable.',
+              ),
+            ),
+            YgSection.list(
+              children: <Widget>[
+                YgListTile(
+                  title: 'Switch in a list tile',
+                  subtitle: 'Only the Switch is tappable.',
+                  trailingWidgets: <Widget>[
+                    YgSwitch(
+                      value: listTileValue,
+                      onChanged: (bool newValue) {
+                        listTileValue = newValue;
+                        setState(() {});
+                      },
+                    ),
+                  ],
+                ),
+              ],
+            ),
+          ],
+        ),
       ),
     );
   }

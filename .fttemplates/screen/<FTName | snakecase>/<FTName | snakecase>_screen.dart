@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:yggdrasil/yggdrasil.dart';
 import 'package:yggdrasil_demo/core/_core.dart';
 import 'package:yggdrasil_demo/widgets/_widgets.dart';
 
@@ -18,8 +19,10 @@ class [FTName | pascalcase]Screen extends StatelessWidget {
   Widget build(BuildContext context) {
     return const DemoScreen(
       componentName: '[FTName | pascalcase]',
-      child: Column(
-        children: <Widget>[],
+      child: YgLayoutBody(
+        child: Column(
+          children: <Widget>[],
+        ),
       ),
     );
   }

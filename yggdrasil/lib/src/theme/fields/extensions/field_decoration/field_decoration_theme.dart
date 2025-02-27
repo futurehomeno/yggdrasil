@@ -130,7 +130,22 @@ class _$YgFieldDecorationTheme {
 
   // endregion
 
-  // region Error Footer
+  // region Footer
+
+  static final List<TextStyle> counterTextStyle = <TextStyle>[
+    consumer_light.FhTextStyles.caption1Regular.copyWith(
+      color: consumer_light.FhColors.textWeak,
+    ),
+    consumer_dark.FhTextStyles.caption1Regular.copyWith(
+      color: consumer_dark.FhColors.textWeak,
+    ),
+    professional_light.FhTextStyles.caption1Regular.copyWith(
+      color: professional_light.FhColors.textWeak,
+    ),
+    professional_dark.FhTextStyles.caption1Regular.copyWith(
+      color: professional_dark.FhColors.textWeak,
+    ),
+  ];
 
   static final List<TextStyle> errorTextStyle = <TextStyle>[
     consumer_light.FhTextStyles.caption1Regular.copyWith(
@@ -161,11 +176,11 @@ class _$YgFieldDecorationTheme {
     EdgeInsets.only(top: professional_dark.FhDimensions.xxs),
   ];
 
-  static const List<EdgeInsets> errorIconPadding = <EdgeInsets>[
-    EdgeInsets.only(right: consumer_light.FhDimensions.xxs),
-    EdgeInsets.only(right: consumer_dark.FhDimensions.xxs),
-    EdgeInsets.only(right: professional_light.FhDimensions.xxs),
-    EdgeInsets.only(right: professional_dark.FhDimensions.xxs),
+  static const List<double> bottomSpacing = <double>[
+    consumer_light.FhDimensions.xxs,
+    consumer_dark.FhDimensions.xxs,
+    professional_light.FhDimensions.xxs,
+    professional_dark.FhDimensions.xxs,
   ];
 
   // endregion

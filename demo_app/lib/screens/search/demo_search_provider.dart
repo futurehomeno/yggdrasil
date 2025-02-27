@@ -8,12 +8,12 @@ class DemoSearchProvider extends YgFuzzySimpleSearchProvider<int> {
     this.hint = false,
     this.loading = false,
   }) : super(
-          items: _searchResults,
+          items: searchResults,
           noResultsBuilder: (_) => const SizedBox(),
         );
 
   // Random non existing addresses
-  static const List<YgSearchItem<int>> _searchResults = <YgSearchItem<int>>[
+  static const List<YgSearchItem<int>> searchResults = <YgSearchItem<int>>[
     YgSearchItem<int>(title: 'Aarhusvej, 1000, Berlin', value: 0, icon: YgIcons.map),
     YgSearchItem<int>(title: 'Akersgata, 1026, Munich', value: 1, icon: YgIcons.map),
     YgSearchItem<int>(title: 'Bakken, 1001, Stockholm', value: 2, icon: YgIcons.map),

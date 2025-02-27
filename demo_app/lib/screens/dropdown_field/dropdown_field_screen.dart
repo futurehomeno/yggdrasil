@@ -38,193 +38,196 @@ class _DropdownFieldScreenState extends State<DropdownFieldScreen> {
       onTap: () => FocusScope.of(context).unfocus(),
       child: DemoScreen(
         componentName: 'DropdownField',
-        child: Column(
-          children: <Widget>[
-            YgSection.column(
-              title: 'Variations',
-              children: <Widget>[
-                YgDropdownField<String>(
-                  label: 'Default dropdown',
-                  entries: _generateEntries(4),
-                  completeAction: YgCompleteAction.focusNext,
-                ),
-                YgDropdownField<String>(
-                  label: 'Label',
-                  placeholder: 'Fixed placeholder',
-                  entries: _generateEntries(4),
-                  completeAction: YgCompleteAction.focusNext,
-                ),
-                YgDropdownField<String>.multiSelect(
-                  label: 'Multi select',
-                  entries: _generateEntries(4),
-                  completeAction: YgCompleteAction.focusNext,
-                ),
-                YgDropdownField<String>(
-                  label: 'Bottom sheet',
-                  dropdownAction: YgDropdownAction.bottomSheet,
-                  entries: _generateEntries(4),
-                  completeAction: YgCompleteAction.focusNext,
-                ),
-                YgDropdownField<String>(
-                  label: 'Menu',
-                  dropdownAction: YgDropdownAction.menu,
-                  entries: _generateEntries(4),
-                  completeAction: YgCompleteAction.focusNext,
-                ),
-                YgDropdownField<String>(
-                  label: 'Picker',
-                  dropdownAction: YgDropdownAction.picker,
-                  entries: _generateEntries(10),
-                  completeAction: YgCompleteAction.focusNext,
-                ),
-                YgDropdownField<String>(
-                  label: 'Button only',
-                  dropdownAction: YgDropdownAction.none,
-                  entries: _generateEntries(4),
-                  completeAction: YgCompleteAction.focusNext,
-                ),
-                YgDropdownField<String>(
-                  label: 'Scrollable bottom sheet',
-                  dropdownAction: YgDropdownAction.bottomSheet,
-                  entries: _generateEntries(20),
-                  completeAction: YgCompleteAction.focusNext,
-                ),
-                YgDropdownField<String>(
-                  label: 'Scrollable menu',
-                  dropdownAction: YgDropdownAction.menu,
-                  entries: _generateEntries(20),
-                  completeAction: YgCompleteAction.focusNext,
-                ),
-                YgDropdownField<String>(
-                  label: 'With metric',
-                  dropdownAction: YgDropdownAction.autoPicker,
-                  metric: 'A',
-                  entries: _generateEntries(10),
-                  completeAction: YgCompleteAction.focusNext,
-                ),
-                YgDropdownField<String>(
-                  label: 'Disabled',
-                  disabled: true,
-                  entries: _generateEntries(4),
-                  completeAction: YgCompleteAction.focusNext,
-                ),
-              ].withVerticalSpacing(15),
-            ),
-            YgSection.column(
-              title: 'Maximum lines',
-              subtitle: 'The single select will truncate the selected value, the multi line will wrap',
-              children: <Widget>[
-                const YgDropdownField<String>(
-                  label: 'Standard',
-                  variant: YgFieldVariant.standard,
-                  entries: <YgDropdownEntry<String>>[
-                    YgDropdownEntry<String>(
-                      title: 'A title that is longer than the width of the screen which should be truncated',
-                      value: 'value1',
-                    ),
-                    YgDropdownEntry<String>(
-                      title: 'Some value that is not the same as the previous value but also has a way too long title',
-                      value: 'value2',
-                    ),
-                  ],
-                  completeAction: YgCompleteAction.focusNext,
-                  initialValue: 'value2',
-                ),
-                YgDropdownField<String>.multiSelect(
-                  label: 'Outlined',
-                  entries: _generateEntries(20),
-                  completeAction: YgCompleteAction.focusNext,
-                  initialValue: const <String>{
-                    'value1',
-                    'value2',
-                    'value3',
-                    'value4',
-                    'value5',
-                    'value6',
-                    'value7',
-                    'value8',
-                  },
-                ),
-              ].withVerticalSpacing(15),
-            ),
-            YgSection.column(
-              title: 'Variants',
-              children: <Widget>[
-                YgDropdownField<String>(
-                  label: 'Standard',
-                  variant: YgFieldVariant.standard,
-                  entries: _generateEntries(4),
-                  completeAction: YgCompleteAction.focusNext,
-                ),
-                YgDropdownField<String>(
-                  label: 'Outlined',
-                  variant: YgFieldVariant.outlined,
-                  entries: _generateEntries(4),
-                  completeAction: YgCompleteAction.focusNext,
-                ),
-              ].withVerticalSpacing(15),
-            ),
-            Form(
-              key: _formKey,
-              child: YgSection.column(
-                title: 'Form example',
+        child: YgLayoutBody(
+          child: Column(
+            children: <Widget>[
+              YgSection.column(
+                title: 'Variations',
                 children: <Widget>[
-                  YgDropdownFormField<String>(
-                    key: _singleSelectKey,
-                    label: 'Single select',
+                  YgDropdownField<String>(
+                    label: 'Default dropdown',
                     entries: _generateEntries(4),
                     completeAction: YgCompleteAction.focusNext,
-                    autoValidate: YgAutoValidate.onComplete,
-                    validators: <FormFieldValidator<String>>[
-                      const DemoNullValidator(nullError: 'This field is required!').call,
-                    ],
                   ),
-                  YgDropdownFormField<String>.multiSelect(
-                    key: _multiSelectKey,
-                    label: 'Multi select',
-                    entries: _generateEntries(6),
+                  YgDropdownField<String>(
+                    label: 'Label',
+                    placeholder: 'Fixed placeholder',
+                    entries: _generateEntries(4),
                     completeAction: YgCompleteAction.focusNext,
-                    autoValidate: YgAutoValidate.onComplete,
-                    validators: <FormFieldValidator<Set<String>>>[
-                      const DemoMultiSelectRequiredValidator(
-                        requiredError: 'This field is required!',
-                      ).call,
-                      const DemoMultiSelectMaxItemsValidator(
-                        tooManyItemsError: 'Can not select more than 3 items!',
-                        maxItems: 3,
-                      ).call,
-                    ],
                   ),
-                  YgButton(
-                    onPressed: _onSubmit,
-                    child: const Text('Submit'),
+                  YgDropdownField<String>.multiSelect(
+                    label: 'Multi select',
+                    entries: _generateEntries(4),
+                    completeAction: YgCompleteAction.focusNext,
+                  ),
+                  YgDropdownField<String>(
+                    label: 'Bottom sheet',
+                    dropdownAction: YgDropdownAction.bottomSheet,
+                    entries: _generateEntries(4),
+                    completeAction: YgCompleteAction.focusNext,
+                  ),
+                  YgDropdownField<String>(
+                    label: 'Menu',
+                    dropdownAction: YgDropdownAction.menu,
+                    entries: _generateEntries(4),
+                    completeAction: YgCompleteAction.focusNext,
+                  ),
+                  YgDropdownField<String>(
+                    label: 'Picker',
+                    dropdownAction: YgDropdownAction.picker,
+                    entries: _generateEntries(10),
+                    completeAction: YgCompleteAction.focusNext,
+                  ),
+                  YgDropdownField<String>(
+                    label: 'Button only',
+                    dropdownAction: YgDropdownAction.none,
+                    entries: _generateEntries(4),
+                    completeAction: YgCompleteAction.focusNext,
+                  ),
+                  YgDropdownField<String>(
+                    label: 'Scrollable bottom sheet',
+                    dropdownAction: YgDropdownAction.bottomSheet,
+                    entries: _generateEntries(20),
+                    completeAction: YgCompleteAction.focusNext,
+                  ),
+                  YgDropdownField<String>(
+                    label: 'Scrollable menu',
+                    dropdownAction: YgDropdownAction.menu,
+                    entries: _generateEntries(20),
+                    completeAction: YgCompleteAction.focusNext,
+                  ),
+                  YgDropdownField<String>(
+                    label: 'With metric',
+                    dropdownAction: YgDropdownAction.autoPicker,
+                    metric: 'A',
+                    entries: _generateEntries(10),
+                    completeAction: YgCompleteAction.focusNext,
+                  ),
+                  YgDropdownField<String>(
+                    label: 'Disabled',
+                    disabled: true,
+                    entries: _generateEntries(4),
+                    completeAction: YgCompleteAction.focusNext,
                   ),
                 ].withVerticalSpacing(15),
               ),
-            ),
-            YgSection.column(
-              title: 'Custom controller',
-              children: <Widget>[
-                YgDropdownField<String>.multiSelect(
-                  entries: _generateEntries(4),
-                  label: 'Custom controller',
-                  controller: _controller,
+              YgSection.column(
+                title: 'Maximum lines',
+                subtitle: 'The single select will truncate the selected value, the multi line will wrap',
+                children: <Widget>[
+                  const YgDropdownField<String>(
+                    label: 'Standard',
+                    variant: YgFieldVariant.standard,
+                    entries: <YgDropdownEntry<String>>[
+                      YgDropdownEntry<String>(
+                        title: 'A title that is longer than the width of the screen which should be truncated',
+                        value: 'value1',
+                      ),
+                      YgDropdownEntry<String>(
+                        title:
+                            'Some value that is not the same as the previous value but also has a way too long title',
+                        value: 'value2',
+                      ),
+                    ],
+                    completeAction: YgCompleteAction.focusNext,
+                    initialValue: 'value2',
+                  ),
+                  YgDropdownField<String>.multiSelect(
+                    label: 'Outlined',
+                    entries: _generateEntries(20),
+                    completeAction: YgCompleteAction.focusNext,
+                    initialValue: const <String>{
+                      'value1',
+                      'value2',
+                      'value3',
+                      'value4',
+                      'value5',
+                      'value6',
+                      'value7',
+                      'value8',
+                    },
+                  ),
+                ].withVerticalSpacing(15),
+              ),
+              YgSection.column(
+                title: 'Variants',
+                children: <Widget>[
+                  YgDropdownField<String>(
+                    label: 'Standard',
+                    variant: YgFieldVariant.standard,
+                    entries: _generateEntries(4),
+                    completeAction: YgCompleteAction.focusNext,
+                  ),
+                  YgDropdownField<String>(
+                    label: 'Outlined',
+                    variant: YgFieldVariant.outlined,
+                    entries: _generateEntries(4),
+                    completeAction: YgCompleteAction.focusNext,
+                  ),
+                ].withVerticalSpacing(15),
+              ),
+              Form(
+                key: _formKey,
+                child: YgSection.column(
+                  title: 'Form example',
+                  children: <Widget>[
+                    YgDropdownFormField<String>(
+                      key: _singleSelectKey,
+                      label: 'Single select',
+                      entries: _generateEntries(4),
+                      completeAction: YgCompleteAction.focusNext,
+                      autoValidate: YgAutoValidate.onComplete,
+                      validators: <FormFieldValidator<String>>[
+                        const DemoNullValidator(nullError: 'This field is required!').call,
+                      ],
+                    ),
+                    YgDropdownFormField<String>.multiSelect(
+                      key: _multiSelectKey,
+                      label: 'Multi select',
+                      entries: _generateEntries(6),
+                      completeAction: YgCompleteAction.focusNext,
+                      autoValidate: YgAutoValidate.onComplete,
+                      validators: <FormFieldValidator<Set<String>>>[
+                        const DemoMultiSelectRequiredValidator(
+                          requiredError: 'This field is required!',
+                        ).call,
+                        const DemoMultiSelectMaxItemsValidator(
+                          tooManyItemsError: 'Can not select more than 3 items!',
+                          maxItems: 3,
+                        ).call,
+                      ],
+                    ),
+                    YgButton(
+                      onPressed: _onSubmit,
+                      child: const Text('Submit'),
+                    ),
+                  ].withVerticalSpacing(15),
                 ),
-                YgButton(
-                  onPressed: () => _controller.add('value1'),
-                  child: const Text('Add Value 1'),
-                ),
-                YgButton(
-                  onPressed: () => _controller.clear(),
-                  child: const Text('Clear selected values'),
-                ),
-                YgButton(
-                  onPressed: () => _controller.openMenu(),
-                  child: const Text('Open dropdown menu'),
-                ),
-              ].withVerticalSpacing(15),
-            ),
-          ],
+              ),
+              YgSection.column(
+                title: 'Custom controller',
+                children: <Widget>[
+                  YgDropdownField<String>.multiSelect(
+                    entries: _generateEntries(4),
+                    label: 'Custom controller',
+                    controller: _controller,
+                  ),
+                  YgButton(
+                    onPressed: () => _controller.add('value1'),
+                    child: const Text('Add Value 1'),
+                  ),
+                  YgButton(
+                    onPressed: () => _controller.clear(),
+                    child: const Text('Clear selected values'),
+                  ),
+                  YgButton(
+                    onPressed: () => _controller.openMenu(),
+                    child: const Text('Open dropdown menu'),
+                  ),
+                ].withVerticalSpacing(15),
+              ),
+            ],
+          ),
         ),
       ),
     );

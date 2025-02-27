@@ -1,9 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:theme_tailor_annotation/theme_tailor_annotation.dart';
-import 'package:yggdrasil/src/tokens/consumer_dark/_consumer_dark.dart' as consumer_dark;
-import 'package:yggdrasil/src/tokens/consumer_light/_consumer_light.dart' as consumer_light;
-import 'package:yggdrasil/src/tokens/professional_dark/_professional_dark.dart' as professional_dark;
-import 'package:yggdrasil/src/tokens/professional_light/_professional_light.dart' as professional_light;
 
 part 'scroll_shadow.tailor.dart';
 
@@ -23,17 +19,17 @@ class _$YgScrollShadowThemes {
     Curves.easeOut,
   ];
 
-  static final List<Color> shadowColor = <Color>[
-    Colors.black.withOpacity(0.15),
-    Colors.black.withOpacity(0.15),
-    Colors.black.withOpacity(0.15),
-    Colors.black.withOpacity(0.15),
+  static const List<Color> shadowColor = <Color>[
+    Color.fromRGBO(36, 45, 65, 0.19),
+    Color.fromRGBO(0, 0, 0, 0.19),
+    Color.fromRGBO(36, 45, 65, 0.19),
+    Color.fromRGBO(0, 0, 0, 0.19),
   ];
 
   static const List<double> shadowSize = <double>[
-    consumer_light.FhDimensions.xs,
-    consumer_dark.FhDimensions.xs,
-    professional_light.FhDimensions.xs,
-    professional_dark.FhDimensions.xs,
+    24,
+    24,
+    24,
+    24,
   ];
 }

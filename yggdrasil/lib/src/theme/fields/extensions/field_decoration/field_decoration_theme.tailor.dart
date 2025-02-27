@@ -20,8 +20,9 @@ class YgFieldDecorationTheme extends ThemeExtension<YgFieldDecorationTheme> {
     required this.borderHover,
     required this.borderRadiusDefault,
     required this.borderRadiusOutlined,
+    required this.bottomSpacing,
+    required this.counterTextStyle,
     required this.errorIconColor,
-    required this.errorIconPadding,
     required this.errorPadding,
     required this.errorTextStyle,
     required this.largeOutlinedContentPadding,
@@ -42,8 +43,9 @@ class YgFieldDecorationTheme extends ThemeExtension<YgFieldDecorationTheme> {
   final Border borderHover;
   final BorderRadius borderRadiusDefault;
   final BorderRadius borderRadiusOutlined;
+  final double bottomSpacing;
+  final TextStyle counterTextStyle;
   final Color errorIconColor;
-  final EdgeInsets errorIconPadding;
   final EdgeInsets errorPadding;
   final TextStyle errorTextStyle;
   final EdgeInsets largeOutlinedContentPadding;
@@ -65,8 +67,9 @@ class YgFieldDecorationTheme extends ThemeExtension<YgFieldDecorationTheme> {
     borderHover: _$YgFieldDecorationTheme.borderHover[0],
     borderRadiusDefault: _$YgFieldDecorationTheme.borderRadiusDefault[0],
     borderRadiusOutlined: _$YgFieldDecorationTheme.borderRadiusOutlined[0],
+    bottomSpacing: _$YgFieldDecorationTheme.bottomSpacing[0],
+    counterTextStyle: _$YgFieldDecorationTheme.counterTextStyle[0],
     errorIconColor: _$YgFieldDecorationTheme.errorIconColor[0],
-    errorIconPadding: _$YgFieldDecorationTheme.errorIconPadding[0],
     errorPadding: _$YgFieldDecorationTheme.errorPadding[0],
     errorTextStyle: _$YgFieldDecorationTheme.errorTextStyle[0],
     largeOutlinedContentPadding:
@@ -93,8 +96,9 @@ class YgFieldDecorationTheme extends ThemeExtension<YgFieldDecorationTheme> {
     borderHover: _$YgFieldDecorationTheme.borderHover[1],
     borderRadiusDefault: _$YgFieldDecorationTheme.borderRadiusDefault[1],
     borderRadiusOutlined: _$YgFieldDecorationTheme.borderRadiusOutlined[1],
+    bottomSpacing: _$YgFieldDecorationTheme.bottomSpacing[1],
+    counterTextStyle: _$YgFieldDecorationTheme.counterTextStyle[1],
     errorIconColor: _$YgFieldDecorationTheme.errorIconColor[1],
-    errorIconPadding: _$YgFieldDecorationTheme.errorIconPadding[1],
     errorPadding: _$YgFieldDecorationTheme.errorPadding[1],
     errorTextStyle: _$YgFieldDecorationTheme.errorTextStyle[1],
     largeOutlinedContentPadding:
@@ -122,8 +126,9 @@ class YgFieldDecorationTheme extends ThemeExtension<YgFieldDecorationTheme> {
     borderHover: _$YgFieldDecorationTheme.borderHover[2],
     borderRadiusDefault: _$YgFieldDecorationTheme.borderRadiusDefault[2],
     borderRadiusOutlined: _$YgFieldDecorationTheme.borderRadiusOutlined[2],
+    bottomSpacing: _$YgFieldDecorationTheme.bottomSpacing[2],
+    counterTextStyle: _$YgFieldDecorationTheme.counterTextStyle[2],
     errorIconColor: _$YgFieldDecorationTheme.errorIconColor[2],
-    errorIconPadding: _$YgFieldDecorationTheme.errorIconPadding[2],
     errorPadding: _$YgFieldDecorationTheme.errorPadding[2],
     errorTextStyle: _$YgFieldDecorationTheme.errorTextStyle[2],
     largeOutlinedContentPadding:
@@ -150,8 +155,9 @@ class YgFieldDecorationTheme extends ThemeExtension<YgFieldDecorationTheme> {
     borderHover: _$YgFieldDecorationTheme.borderHover[3],
     borderRadiusDefault: _$YgFieldDecorationTheme.borderRadiusDefault[3],
     borderRadiusOutlined: _$YgFieldDecorationTheme.borderRadiusOutlined[3],
+    bottomSpacing: _$YgFieldDecorationTheme.bottomSpacing[3],
+    counterTextStyle: _$YgFieldDecorationTheme.counterTextStyle[3],
     errorIconColor: _$YgFieldDecorationTheme.errorIconColor[3],
-    errorIconPadding: _$YgFieldDecorationTheme.errorIconPadding[3],
     errorPadding: _$YgFieldDecorationTheme.errorPadding[3],
     errorTextStyle: _$YgFieldDecorationTheme.errorTextStyle[3],
     largeOutlinedContentPadding:
@@ -185,8 +191,9 @@ class YgFieldDecorationTheme extends ThemeExtension<YgFieldDecorationTheme> {
     Border? borderHover,
     BorderRadius? borderRadiusDefault,
     BorderRadius? borderRadiusOutlined,
+    double? bottomSpacing,
+    TextStyle? counterTextStyle,
     Color? errorIconColor,
-    EdgeInsets? errorIconPadding,
     EdgeInsets? errorPadding,
     TextStyle? errorTextStyle,
     EdgeInsets? largeOutlinedContentPadding,
@@ -209,8 +216,9 @@ class YgFieldDecorationTheme extends ThemeExtension<YgFieldDecorationTheme> {
       borderHover: borderHover ?? this.borderHover,
       borderRadiusDefault: borderRadiusDefault ?? this.borderRadiusDefault,
       borderRadiusOutlined: borderRadiusOutlined ?? this.borderRadiusOutlined,
+      bottomSpacing: bottomSpacing ?? this.bottomSpacing,
+      counterTextStyle: counterTextStyle ?? this.counterTextStyle,
       errorIconColor: errorIconColor ?? this.errorIconColor,
-      errorIconPadding: errorIconPadding ?? this.errorIconPadding,
       errorPadding: errorPadding ?? this.errorPadding,
       errorTextStyle: errorTextStyle ?? this.errorTextStyle,
       largeOutlinedContentPadding:
@@ -248,8 +256,10 @@ class YgFieldDecorationTheme extends ThemeExtension<YgFieldDecorationTheme> {
           t < 0.5 ? borderRadiusDefault : other.borderRadiusDefault,
       borderRadiusOutlined:
           t < 0.5 ? borderRadiusOutlined : other.borderRadiusOutlined,
+      bottomSpacing: t < 0.5 ? bottomSpacing : other.bottomSpacing,
+      counterTextStyle:
+          TextStyle.lerp(counterTextStyle, other.counterTextStyle, t)!,
       errorIconColor: Color.lerp(errorIconColor, other.errorIconColor, t)!,
-      errorIconPadding: t < 0.5 ? errorIconPadding : other.errorIconPadding,
       errorPadding: t < 0.5 ? errorPadding : other.errorPadding,
       errorTextStyle: TextStyle.lerp(errorTextStyle, other.errorTextStyle, t)!,
       largeOutlinedContentPadding: t < 0.5
@@ -297,9 +307,11 @@ class YgFieldDecorationTheme extends ThemeExtension<YgFieldDecorationTheme> {
             const DeepCollectionEquality()
                 .equals(borderRadiusOutlined, other.borderRadiusOutlined) &&
             const DeepCollectionEquality()
-                .equals(errorIconColor, other.errorIconColor) &&
+                .equals(bottomSpacing, other.bottomSpacing) &&
             const DeepCollectionEquality()
-                .equals(errorIconPadding, other.errorIconPadding) &&
+                .equals(counterTextStyle, other.counterTextStyle) &&
+            const DeepCollectionEquality()
+                .equals(errorIconColor, other.errorIconColor) &&
             const DeepCollectionEquality()
                 .equals(errorPadding, other.errorPadding) &&
             const DeepCollectionEquality()
@@ -332,8 +344,9 @@ class YgFieldDecorationTheme extends ThemeExtension<YgFieldDecorationTheme> {
       const DeepCollectionEquality().hash(borderHover),
       const DeepCollectionEquality().hash(borderRadiusDefault),
       const DeepCollectionEquality().hash(borderRadiusOutlined),
+      const DeepCollectionEquality().hash(bottomSpacing),
+      const DeepCollectionEquality().hash(counterTextStyle),
       const DeepCollectionEquality().hash(errorIconColor),
-      const DeepCollectionEquality().hash(errorIconPadding),
       const DeepCollectionEquality().hash(errorPadding),
       const DeepCollectionEquality().hash(errorTextStyle),
       const DeepCollectionEquality().hash(largeOutlinedContentPadding),

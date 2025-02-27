@@ -105,18 +105,13 @@ abstract class YgExpandingSection extends StatelessWidget with StatelessWidgetDe
         curve: theme.animationCurve,
         alignment: Alignment.bottomCenter,
         headerBuilder: (BuildContext context, YgExpansionController controller) {
-          return Material(
-            type: MaterialType.transparency,
-            child: InkWell(
-              onTap: controller.toggle,
-              child: YgSectionHeaderInternal(
-                title: title,
-                subtitle: subtitle,
-                icon: icon,
-                trailing: trailing,
-                trailingInternal: _buildExpandButton(theme, controller),
-              ),
-            ),
+          return YgSectionHeaderInternal(
+            onPressed: controller.toggle,
+            title: title,
+            subtitle: subtitle,
+            icon: icon,
+            trailing: trailing,
+            trailingInternal: _buildExpandButton(theme, controller),
           );
         },
         child: buildChild(context),

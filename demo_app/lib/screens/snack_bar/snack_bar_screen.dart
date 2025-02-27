@@ -22,71 +22,73 @@ class SnackBarScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return DemoScreen(
       componentName: 'SnackBar',
-      child: Column(
-        children: <Widget>[
-          YgSection(
-            title: 'Highlight snack bar',
-            child: YgButton(
-              variant: YgButtonVariant.primary,
-              onPressed: () => _showHighlightSnackBar(context),
-              child: const Text('Show'),
+      child: YgLayoutBody(
+        child: Column(
+          children: <Widget>[
+            YgSection(
+              title: 'Highlight snack bar',
+              child: YgButton(
+                variant: YgButtonVariant.primary,
+                onPressed: () => _showHighlightSnackBar(context),
+                child: const Text('Show'),
+              ),
             ),
-          ),
-          YgSection(
-            title: 'Success snack bar',
-            child: YgButton(
-              variant: YgButtonVariant.primary,
-              onPressed: () => _showSuccessSnackBar(context),
-              child: const Text('Show'),
+            YgSection(
+              title: 'Success snack bar',
+              child: YgButton(
+                variant: YgButtonVariant.primary,
+                onPressed: () => _showSuccessSnackBar(context),
+                child: const Text('Show'),
+              ),
             ),
-          ),
-          YgSection(
-            title: 'Critical snack bar',
-            child: YgButton(
-              variant: YgButtonVariant.primary,
-              onPressed: () => _showCriticalSnackBar(context),
-              child: const Text('Show'),
+            YgSection(
+              title: 'Critical snack bar',
+              child: YgButton(
+                variant: YgButtonVariant.primary,
+                onPressed: () => _showCriticalSnackBar(context),
+                child: const Text('Show'),
+              ),
             ),
-          ),
-          YgSection(
-            title: 'Snack bar with root snack bar manager key',
-            child: Consumer<YgAppState>(
-              builder: (BuildContext context, YgAppState ygAppState, Widget? widget) {
-                final GlobalKey<YgSnackBarManagerState> snackBarManagerKey = ygAppState.rootSnackBarManagerKey;
+            YgSection(
+              title: 'Snack bar with root snack bar manager key',
+              child: Consumer<YgAppState>(
+                builder: (BuildContext context, YgAppState ygAppState, Widget? widget) {
+                  final GlobalKey<YgSnackBarManagerState> snackBarManagerKey = ygAppState.rootSnackBarManagerKey;
 
-                return YgButton(
-                  variant: YgButtonVariant.primary,
-                  onPressed: () => _showCustomKeySnackBar(snackBarManagerKey),
-                  child: const Text('Show'),
-                );
-              },
+                  return YgButton(
+                    variant: YgButtonVariant.primary,
+                    onPressed: () => _showCustomKeySnackBar(snackBarManagerKey),
+                    child: const Text('Show'),
+                  );
+                },
+              ),
             ),
-          ),
-          YgSection(
-            title: 'Snack bar with custom close callback',
-            child: YgButton(
-              variant: YgButtonVariant.primary,
-              onPressed: () => _showCustomCallbackSnackBar(context),
-              child: const Text('Show'),
+            YgSection(
+              title: 'Snack bar with custom close callback',
+              child: YgButton(
+                variant: YgButtonVariant.primary,
+                onPressed: () => _showCustomCallbackSnackBar(context),
+                child: const Text('Show'),
+              ),
             ),
-          ),
-          YgSection(
-            title: 'Snack bar with a long text',
-            child: YgButton(
-              variant: YgButtonVariant.primary,
-              onPressed: () => _showLongTextSnackBar(context),
-              child: const Text('Show'),
+            YgSection(
+              title: 'Snack bar with a long text',
+              child: YgButton(
+                variant: YgButtonVariant.primary,
+                onPressed: () => _showLongTextSnackBar(context),
+                child: const Text('Show'),
+              ),
             ),
-          ),
-          YgSection(
-            title: 'Snackbar on top of dialog',
-            child: YgButton(
-              variant: YgButtonVariant.primary,
-              onPressed: () => Navigator.of(context).push(SnackBarExampleDialog()),
-              child: const Text('Show'),
+            YgSection(
+              title: 'Snackbar on top of dialog',
+              child: YgButton(
+                variant: YgButtonVariant.primary,
+                onPressed: () => Navigator.of(context).push(SnackBarExampleDialog()),
+                child: const Text('Show'),
+              ),
             ),
-          ),
-        ],
+          ],
+        ),
       ),
     );
   }

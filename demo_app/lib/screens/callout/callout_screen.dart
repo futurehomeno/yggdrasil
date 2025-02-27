@@ -19,65 +19,67 @@ class CalloutScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return DemoScreen(
       componentName: 'Callout',
-      child: Column(
-        children: <Widget>[
-          YgSection.column(
-            title: 'Variants',
-            subtitle: 'Spacing between callouts added manually.',
-            children: <Widget>[
-              const YgCallout(
+      child: YgLayoutBody(
+        child: Column(
+          children: <Widget>[
+            YgSection.column(
+              title: 'Variants',
+              subtitle: 'Spacing between callouts added manually.',
+              children: <Widget>[
+                const YgCallout(
+                  variant: YgCalloutVariant.highlight,
+                  title: 'Title',
+                  description: 'Callout with a title and description.',
+                ),
+                const YgCallout(
+                  variant: YgCalloutVariant.success,
+                  title: 'Title',
+                  description: 'Callout with a title and description.',
+                ),
+                const YgCallout(
+                  variant: YgCalloutVariant.warning,
+                  title: 'Title',
+                  description: 'Callout with a title and description.',
+                ),
+                const YgCallout(
+                  variant: YgCalloutVariant.critical,
+                  title: 'Title',
+                  description: 'Callout with a title and description.',
+                ),
+              ].withVerticalSpacing(10.0),
+            ),
+            YgSection(
+              title: 'With close button',
+              subtitle:
+                  'When used with a close button, the information about closing the button needs to be saved somewhere.',
+              child: YgCallout(
                 variant: YgCalloutVariant.highlight,
                 title: 'Title',
                 description: 'Callout with a title and description.',
-              ),
-              const YgCallout(
-                variant: YgCalloutVariant.success,
-                title: 'Title',
-                description: 'Callout with a title and description.',
-              ),
-              const YgCallout(
-                variant: YgCalloutVariant.warning,
-                title: 'Title',
-                description: 'Callout with a title and description.',
-              ),
-              const YgCallout(
-                variant: YgCalloutVariant.critical,
-                title: 'Title',
-                description: 'Callout with a title and description.',
-              ),
-            ].withVerticalSpacing(10.0),
-          ),
-          YgSection(
-            title: 'With close button',
-            subtitle:
-                'When used with a close button, the information about closing the button needs to be saved somewhere.',
-            child: YgCallout(
-              variant: YgCalloutVariant.highlight,
-              title: 'Title',
-              description: 'Callout with a title and description.',
-              onClose: () {},
-            ),
-          ),
-          const YgSection(
-            title: 'Only description',
-            child: YgCallout(
-              variant: YgCalloutVariant.highlight,
-              description: 'Callout with description only',
-            ),
-          ),
-          YgSection(
-            title: 'With text link button',
-            child: YgCallout(
-              variant: YgCalloutVariant.highlight,
-              title: 'Title',
-              description: 'Callout with text link',
-              textLink: YgTextLink(
-                text: 'Text link',
-                onPressed: () {},
+                onClose: () {},
               ),
             ),
-          ),
-        ],
+            const YgSection(
+              title: 'Only description',
+              child: YgCallout(
+                variant: YgCalloutVariant.highlight,
+                description: 'Callout with description only',
+              ),
+            ),
+            YgSection(
+              title: 'With text link button',
+              child: YgCallout(
+                variant: YgCalloutVariant.highlight,
+                title: 'Title',
+                description: 'Callout with text link',
+                textLink: YgTextLink(
+                  text: 'Text link',
+                  onPressed: () {},
+                ),
+              ),
+            ),
+          ],
+        ),
       ),
     );
   }

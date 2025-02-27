@@ -30,6 +30,7 @@ class YgTextField extends StatefulWidget with StatefulWidgetDebugMixin {
     this.completeAction,
     this.onTapOutside,
     this.minLines,
+    this.maxLength,
     this.maxLines = 1,
     this.disabled = false,
     this.readOnly = false,
@@ -37,6 +38,7 @@ class YgTextField extends StatefulWidget with StatefulWidgetDebugMixin {
     this.showObscureTextButton = true,
     this.size = YgFieldSize.large,
     this.variant = YgFieldVariant.standard,
+    this.maxLengthEnforcement = YgMaxLengthEnforcement.none,
     this.autofocus = false,
   })  : assert(
           maxLines == null || minLines == null || maxLines >= minLines,
@@ -49,6 +51,10 @@ class YgTextField extends StatefulWidget with StatefulWidgetDebugMixin {
         assert(
           (suffix == null) == (onSuffixPressed == null),
           'Suffix and onSuffixPressed should either be both null or both defined',
+        ),
+        assert(
+          maxLength == null || maxLength > 0,
+          'Max length has to be either null or at least 1',
         );
 
   const YgTextField.email({
@@ -68,6 +74,8 @@ class YgTextField extends StatefulWidget with StatefulWidgetDebugMixin {
     this.initialValue,
     this.completeAction,
     this.onTapOutside,
+    this.maxLength,
+    this.maxLengthEnforcement = YgMaxLengthEnforcement.none,
     this.disabled = false,
     this.readOnly = false,
     this.size = YgFieldSize.large,
@@ -83,6 +91,10 @@ class YgTextField extends StatefulWidget with StatefulWidgetDebugMixin {
         assert(
           (suffix == null) == (onSuffixPressed == null),
           'Suffix and onSuffixPressed should either be both null or both defined',
+        ),
+        assert(
+          maxLength == null || maxLength > 0,
+          'Max length has to be either null or at least 1',
         );
 
   const YgTextField.password({
@@ -102,11 +114,13 @@ class YgTextField extends StatefulWidget with StatefulWidgetDebugMixin {
     this.initialValue,
     this.completeAction,
     this.onTapOutside,
+    this.maxLength,
     this.disabled = false,
     this.readOnly = false,
     this.showObscureTextButton = true,
     this.size = YgFieldSize.large,
     this.variant = YgFieldVariant.standard,
+    this.maxLengthEnforcement = YgMaxLengthEnforcement.none,
     this.autofocus = false,
   })  : maxLines = 1,
         minLines = null,
@@ -121,6 +135,10 @@ class YgTextField extends StatefulWidget with StatefulWidgetDebugMixin {
         assert(
           (suffix == null) == (onSuffixPressed == null),
           'Suffix and onSuffixPressed should either be both null or both defined',
+        ),
+        assert(
+          maxLength == null || maxLength > 0,
+          'Max length has to be either null or at least 1',
         );
 
   const YgTextField.multiline({
@@ -141,10 +159,12 @@ class YgTextField extends StatefulWidget with StatefulWidgetDebugMixin {
     this.initialValue,
     this.completeAction,
     this.onTapOutside,
+    this.maxLength,
     this.disabled = false,
     this.readOnly = false,
     this.size = YgFieldSize.large,
     this.variant = YgFieldVariant.standard,
+    this.maxLengthEnforcement = YgMaxLengthEnforcement.none,
     this.autofocus = false,
   })  : obscureText = false,
         autocorrect = true,
@@ -163,6 +183,10 @@ class YgTextField extends StatefulWidget with StatefulWidgetDebugMixin {
         assert(
           (suffix == null) == (onSuffixPressed == null),
           'Suffix and onSuffixPressed should either be both null or both defined',
+        ),
+        assert(
+          maxLength == null || maxLength > 0,
+          'Max length has to be either null or at least 1',
         );
 
   /// Obscures the text in the text field.
@@ -310,6 +334,16 @@ class YgTextField extends StatefulWidget with StatefulWidgetDebugMixin {
   /// starting from [minLines].
   final int? minLines;
 
+  /// The maximum number of characters to allow in the text field.
+  ///
+  /// If set a counter is displayed below the text field indicating the current
+  /// amount of characters entered and the maximum amount of characters allowed
+  /// in the field.
+  final int? maxLength;
+
+  /// Determines how the [maxLength] limit should be enforced.
+  final YgMaxLengthEnforcement maxLengthEnforcement;
+
   /// The error to display under the text field.
   ///
   /// Will change the styling of the widget to reflect the presence of the error.
@@ -381,7 +415,7 @@ class _YgTextFieldState extends StateWithYgState<YgTextField, YgFieldState>
     return YgFieldState(
       filled: controller.text.isNotEmpty == true,
       placeholder: widget.placeholder != null,
-      error: widget.error != null,
+      error: _hasError,
       disabled: widget.disabled,
       suffix: _hasSuffix,
       variant: widget.variant,
@@ -392,7 +426,7 @@ class _YgTextFieldState extends StateWithYgState<YgTextField, YgFieldState>
   @override
   void updateState() {
     state.placeholder.value = widget.placeholder != null;
-    state.error.value = widget.error != null;
+    state.error.value = _hasError;
     state.disabled.value = widget.disabled;
     state.suffix.value = _hasSuffix;
     state.size.value = widget.size;
@@ -406,12 +440,20 @@ class _YgTextFieldState extends StateWithYgState<YgTextField, YgFieldState>
     final Widget layout = RepaintBoundary(
       child: YgFieldDecoration(
         error: widget.error,
+        counter: widget.maxLength.safeBuild(
+          (int maxLength) => YgFieldCounter(
+            controller: controller,
+            maxLength: maxLength,
+          ),
+        ),
         state: state,
         suffix: _buildSuffix(),
         content: YgFieldContent(
           value: buildEditableText(
             autocorrect: widget.autocorrect,
             inputFormatters: widget.inputFormatters,
+            maxLength: widget.maxLength,
+            maxLengthEnforcement: widget.maxLengthEnforcement,
             keyboardType: widget.keyboardType,
             maxLines: widget.maxLines,
             minLines: widget.minLines,
@@ -474,7 +516,7 @@ class _YgTextFieldState extends StateWithYgState<YgTextField, YgFieldState>
             ? null
             : () {
                 if (renderShowObscureTextIcon) {
-                  _obscureTextToggled ^= true;
+                  _obscureTextToggled = !_obscureTextToggled;
                   setState(() {});
                 } else {
                   widget.onSuffixPressed?.call();
@@ -511,9 +553,23 @@ class _YgTextFieldState extends StateWithYgState<YgTextField, YgFieldState>
     return widget.suffix != null || (widget.obscureText && widget.showObscureTextButton);
   }
 
+  bool get _hasError {
+    if (widget.error != null) {
+      return true;
+    }
+
+    final int? maxLength = widget.maxLength;
+    if (maxLength == null) {
+      return false;
+    }
+
+    return controller.text.length > maxLength;
+  }
+
   @override
   void valueUpdated() {
     state.filled.value = controller.text.isNotEmpty;
+    state.error.value = _hasError;
   }
 
   @override

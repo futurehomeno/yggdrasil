@@ -117,9 +117,11 @@ class _YgButtonBaseState<T extends YgButtonBaseState>
       case WidgetState.focused:
         state.focused.value = toggled;
         break;
+
       case WidgetState.hovered:
         state.hovered.value = toggled;
         break;
+
       case WidgetState.pressed:
         state.pressed.value = toggled;
         break;

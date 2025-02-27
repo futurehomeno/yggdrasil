@@ -1,3 +1,5 @@
+// ignore_for_file: prefer-single-widget-per-file
+
 import 'package:flutter/material.dart';
 import 'package:yggdrasil/yggdrasil.dart';
 import 'package:yggdrasil_demo/core/_core.dart';
@@ -17,16 +19,16 @@ class ScrollableDropdownTestScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return DemoScreen(
+    return const DemoScreen(
       componentName: 'ScrollableDropdownTest',
       child: Column(
         children: <Widget>[
           Padding(
-            padding: const EdgeInsets.symmetric(vertical: 500),
+            padding: EdgeInsets.symmetric(vertical: 500),
             child: YgSection(
               child: Test(),
             ),
-          )
+          ),
         ],
       ),
     );
@@ -49,9 +51,9 @@ class _TestState extends State<Test> {
       return ScrollableDropdown(
         gap: 5,
         alignment: DropDownAlignment.auto,
-        follower: Column(
+        follower: const Column(
           mainAxisSize: MainAxisSize.min,
-          children: [
+          children: <Widget>[
             YgListTile(
               title: 'Result 1',
             ),
@@ -66,7 +68,7 @@ class _TestState extends State<Test> {
             ),
           ],
         ),
-        target: YgTextField(
+        target: const YgTextField(
           label: 'Search',
           keyboardType: TextInputType.text,
           textInputAction: TextInputAction.done,
@@ -77,7 +79,7 @@ class _TestState extends State<Test> {
     }
 
     return YgButton(
-      child: Text('Show'),
+      child: const Text('Show'),
       onPressed: () => setState(() {
         _shown = true;
       }),

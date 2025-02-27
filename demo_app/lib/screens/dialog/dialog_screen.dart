@@ -27,66 +27,68 @@ class _DialogScreenState extends State<DialogScreen> with TickerProviderStateMix
   Widget build(BuildContext context) {
     return DemoScreen(
       componentName: 'Dialog',
-      child: Column(
-        children: <Widget>[
-          YgSection(
-            title: 'Normal dialog',
-            child: YgButton(
-              variant: YgButtonVariant.primary,
-              onPressed: () => Navigator.of(context).push(ExampleDialog()),
-              child: const Text('Show'),
-            ),
-          ),
-          YgSection(
-            title: 'Non-dismissible dialog',
-            child: YgButton(
-              variant: YgButtonVariant.primary,
-              onPressed: () => Navigator.of(context).push(ExampleDialogNonDismissible()),
-              child: const Text('Show'),
-            ),
-          ),
-          YgSection(
-            title: 'No-buttons dialog',
-            child: YgButton(
-              variant: YgButtonVariant.primary,
-              onPressed: () => Navigator.of(context).push(ExampleDialogNoButtons()),
-              child: const Text('Show'),
-            ),
-          ),
-          YgSection(
-            title: 'Multi step dialog',
-            child: YgButton(
-              variant: YgButtonVariant.primary,
-              onPressed: () => Navigator.of(context).push(MultiStepDialog()),
-              child: const Text('Show'),
-            ),
-          ),
-          YgSection.column(
-            title: 'Variants',
-            children: <Widget>[
-              YgButton(
+      child: YgLayoutBody(
+        child: Column(
+          children: <Widget>[
+            YgSection(
+              title: 'Normal dialog',
+              child: YgButton(
                 variant: YgButtonVariant.primary,
-                onPressed: () => Navigator.of(context).push(ErrorDialog()),
-                child: const Text('Show error dialog'),
+                onPressed: () => Navigator.of(context).push(ExampleDialog()),
+                child: const Text('Show'),
               ),
-              YgButton(
+            ),
+            YgSection(
+              title: 'Non-dismissible dialog',
+              child: YgButton(
                 variant: YgButtonVariant.primary,
-                onPressed: () => Navigator.of(context).push(InfoDialog()),
-                child: const Text('Show info dialog'),
+                onPressed: () => Navigator.of(context).push(ExampleDialogNonDismissible()),
+                child: const Text('Show'),
               ),
-              YgButton(
+            ),
+            YgSection(
+              title: 'No-buttons dialog',
+              child: YgButton(
                 variant: YgButtonVariant.primary,
-                onPressed: () => Navigator.of(context).push(SuccessDialog()),
-                child: const Text('Show success dialog'),
+                onPressed: () => Navigator.of(context).push(ExampleDialogNoButtons()),
+                child: const Text('Show'),
               ),
-              YgButton(
+            ),
+            YgSection(
+              title: 'Multi step dialog',
+              child: YgButton(
                 variant: YgButtonVariant.primary,
-                onPressed: () => Navigator.of(context).push(LoadingDialog()),
-                child: const Text('Show loading dialog'),
+                onPressed: () => Navigator.of(context).push(MultiStepDialog()),
+                child: const Text('Show'),
               ),
-            ].withVerticalSpacing(10),
-          ),
-        ],
+            ),
+            YgSection.column(
+              title: 'Variants',
+              children: <Widget>[
+                YgButton(
+                  variant: YgButtonVariant.primary,
+                  onPressed: () => Navigator.of(context).push(ErrorDialog()),
+                  child: const Text('Show error dialog'),
+                ),
+                YgButton(
+                  variant: YgButtonVariant.primary,
+                  onPressed: () => Navigator.of(context).push(InfoDialog()),
+                  child: const Text('Show info dialog'),
+                ),
+                YgButton(
+                  variant: YgButtonVariant.primary,
+                  onPressed: () => Navigator.of(context).push(SuccessDialog()),
+                  child: const Text('Show success dialog'),
+                ),
+                YgButton(
+                  variant: YgButtonVariant.primary,
+                  onPressed: () => Navigator.of(context).push(LoadingDialog()),
+                  child: const Text('Show loading dialog'),
+                ),
+              ].withVerticalSpacing(10),
+            ),
+          ],
+        ),
       ),
     );
   }

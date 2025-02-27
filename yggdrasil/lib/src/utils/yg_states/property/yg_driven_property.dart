@@ -8,7 +8,7 @@ typedef ValueMapper<From, To> = To Function(From value);
 ///
 /// Contains the result of [YgProperty.resolve] using the given [YgState] in
 /// [value] and will notify its listeners when the resolved value changes.
-abstract class YgDrivenProperty<V> implements Listenable {
+abstract class YgDrivenProperty<V> implements ValueListenable<V> {
   const YgDrivenProperty();
 
   const factory YgDrivenProperty.all({
@@ -16,6 +16,7 @@ abstract class YgDrivenProperty<V> implements Listenable {
   }) = _YgDrivenPropertyAll<V>;
 
   /// The current value of this property.
+  @override
   V get value;
 
   /// Creates a new property with its value mapped using [mapper].

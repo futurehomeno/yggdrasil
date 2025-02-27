@@ -19,93 +19,95 @@ class IconButtonScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return DemoScreen(
       componentName: 'IconButton',
-      child: Column(
-        children: <Widget>[
-          YgSection.column(
-            title: 'Variants - Normal / Disabled',
-            subtitle: 'Spacing between icon buttons added manually.',
-            children: <Widget>[
-              Row(
-                mainAxisSize: MainAxisSize.min,
-                children: <Widget>[
-                  YgIconButton(
-                    onPressed: () {},
-                    icon: YgIcons.info,
-                  ),
-                  const YgIconButton(
-                    onPressed: null,
-                    icon: YgIcons.info,
-                  ),
-                ].withHorizontalSpacing(10.0),
-              ),
-              Row(
-                mainAxisSize: MainAxisSize.min,
-                children: <Widget>[
-                  YgIconButton(
-                    onPressed: () {},
-                    variant: YgIconButtonVariant.filled,
-                    icon: YgIcons.info,
-                  ),
-                  const YgIconButton(
-                    onPressed: null,
-                    variant: YgIconButtonVariant.filled,
-                    icon: YgIcons.info,
-                  ),
-                ].withHorizontalSpacing(10.0),
-              ),
-              Row(
-                mainAxisSize: MainAxisSize.min,
-                children: <Widget>[
-                  YgIconButton(
-                    onPressed: () {},
-                    variant: YgIconButtonVariant.tonal,
-                    icon: YgIcons.info,
-                  ),
-                  const YgIconButton(
-                    onPressed: null,
-                    variant: YgIconButtonVariant.tonal,
-                    icon: YgIcons.info,
-                  ),
-                ].withHorizontalSpacing(10.0),
-              ),
-              Row(
-                mainAxisSize: MainAxisSize.min,
-                children: <Widget>[
-                  YgIconButton(
-                    onPressed: () {},
-                    variant: YgIconButtonVariant.outlined,
-                    icon: YgIcons.info,
-                  ),
-                  const YgIconButton(
-                    onPressed: null,
-                    variant: YgIconButtonVariant.outlined,
-                    icon: YgIcons.info,
-                  ),
-                ].withHorizontalSpacing(10.0),
-              ),
-            ].withVerticalSpacing(10.0),
-          ),
-          YgSection(
-            title: 'Sizes',
-            subtitle: 'Spacing between icon buttons added manually.',
-            child: Row(
-              mainAxisSize: MainAxisSize.min,
+      child: YgLayoutBody(
+        child: Column(
+          children: <Widget>[
+            YgSection.column(
+              title: 'Variants - Normal / Disabled',
+              subtitle: 'Spacing between icon buttons added manually.',
               children: <Widget>[
-                YgIconButton(
-                  onPressed: () {},
-                  variant: YgIconButtonVariant.filled,
-                  size: YgIconButtonSize.small,
-                  icon: YgIcons.info,
+                Row(
+                  mainAxisSize: MainAxisSize.min,
+                  children: <Widget>[
+                    YgIconButton(
+                      onPressed: () {},
+                      icon: YgIcons.info,
+                    ),
+                    const YgIconButton(
+                      onPressed: null,
+                      icon: YgIcons.info,
+                    ),
+                  ].withHorizontalSpacing(10.0),
                 ),
-                YgIconButton(
-                  onPressed: () {},
-                  variant: YgIconButtonVariant.filled,
-                  icon: YgIcons.info,
+                Row(
+                  mainAxisSize: MainAxisSize.min,
+                  children: <Widget>[
+                    YgIconButton(
+                      onPressed: () {},
+                      variant: YgIconButtonVariant.filled,
+                      icon: YgIcons.info,
+                    ),
+                    const YgIconButton(
+                      onPressed: null,
+                      variant: YgIconButtonVariant.filled,
+                      icon: YgIcons.info,
+                    ),
+                  ].withHorizontalSpacing(10.0),
                 ),
-              ].withHorizontalSpacing(10.0),
+                Row(
+                  mainAxisSize: MainAxisSize.min,
+                  children: <Widget>[
+                    YgIconButton(
+                      onPressed: () {},
+                      variant: YgIconButtonVariant.tonal,
+                      icon: YgIcons.info,
+                    ),
+                    const YgIconButton(
+                      onPressed: null,
+                      variant: YgIconButtonVariant.tonal,
+                      icon: YgIcons.info,
+                    ),
+                  ].withHorizontalSpacing(10.0),
+                ),
+                Row(
+                  mainAxisSize: MainAxisSize.min,
+                  children: <Widget>[
+                    YgIconButton(
+                      onPressed: () {},
+                      variant: YgIconButtonVariant.outlined,
+                      icon: YgIcons.info,
+                    ),
+                    const YgIconButton(
+                      onPressed: null,
+                      variant: YgIconButtonVariant.outlined,
+                      icon: YgIcons.info,
+                    ),
+                  ].withHorizontalSpacing(10.0),
+                ),
+              ].withVerticalSpacing(10.0),
             ),
-          ),
-        ],
+            YgSection(
+              title: 'Sizes',
+              subtitle: 'Spacing between icon buttons added manually.',
+              child: Row(
+                mainAxisSize: MainAxisSize.min,
+                children: <Widget>[
+                  YgIconButton(
+                    onPressed: () {},
+                    variant: YgIconButtonVariant.filled,
+                    size: YgIconButtonSize.small,
+                    icon: YgIcons.info,
+                  ),
+                  YgIconButton(
+                    onPressed: () {},
+                    variant: YgIconButtonVariant.filled,
+                    icon: YgIcons.info,
+                  ),
+                ].withHorizontalSpacing(10.0),
+              ),
+            ),
+          ],
+        ),
       ),
     );
   }

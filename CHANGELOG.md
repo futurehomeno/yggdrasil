@@ -1,3 +1,39 @@
+# 1.13.1 [2025-02-27T12:01:31.632361]
+
+## Breaking changes
+
+- [breaking] Removed scrollable property from YgTabBar (this is now handled automatically).
+
+### Changes
+
+- Tim/tab bar fix (#198)
+- [fix] Fixed incorrect padding in scrollable tab bar.
+- [improvement] Added onTabVisible and onTabChanged.
+
+# 1.13.0 [2025-02-21T16:01:03.209322]
+
+## Breaking changes
+
+- [breaking] Removed bottom option from YgAppBar.
+
+### Changes
+
+- [feature] Implemented YgLayout and YgLayoutBody DEV-2388.
+- [improvement] Updated all scroll shadows to correct theme colors and sizes.
+
+# 1.12.25 [2025-01-16T17:32:48.509483]
+
+### Changes
+
+- [fix] Added missing arguments to text form field constructors.
+
+# 1.12.24 [2025-01-14T14:28:00.527966]
+
+### Changes
+
+- [fix] Fixed exact search provider incorrectly highlighting the search matches.
+- [improvement] Added option for case sensitivity on exact search provider.
+
 # 1.12.23 [2024-12-17T12:23:37.240138]
 
 ### Changes
