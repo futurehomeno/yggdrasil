@@ -223,13 +223,13 @@ class YgTabBarRenderer extends RenderBox
   ) {
     double start = 0;
     double width = 0;
-    int i = 0;
+    int index = 0;
 
     final double position = controller.animation?.value ?? 0;
-    for (RenderBox? child = firstChild; child != null; child = childAfter(child), i++) {
+    for (RenderBox? child = firstChild; child != null; child = childAfter(child), index++) {
       final double desiredWidth = child.desiredSize!.width;
       final double childWidth = child.givenSize!.width;
-      final double offset = (position - i);
+      final double offset = (position - index);
 
       if (offset > -1 && offset < 1) {
         final double multiplier = (1 - offset.abs());
