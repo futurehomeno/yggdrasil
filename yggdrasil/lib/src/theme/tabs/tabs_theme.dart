@@ -126,31 +126,33 @@ class _$YgTabsTheme {
   // region Label
 
   static final List<TextStyle> selectedLabelTextStyle = <TextStyle>[
-    consumer_light.FhTextStyles.sectionHeading3Medium.copyWith(),
-    consumer_dark.FhTextStyles.sectionHeading3Medium.copyWith(),
-    professional_light.FhTextStyles.sectionHeading3Medium.copyWith(),
-    professional_dark.FhTextStyles.sectionHeading3Medium.copyWith(),
-  ];
-
-  static final List<Color> selectedLabelColor = <Color>[
-    consumer_light.FhColors.textDefault,
-    consumer_dark.FhColors.textDefault,
-    professional_light.FhColors.textDefault,
-    professional_dark.FhColors.textDefault,
+    consumer_light.FhTextStyles.sectionHeading3Medium.copyWith(
+      color: consumer_light.FhColors.textDefault,
+    ),
+    consumer_dark.FhTextStyles.sectionHeading3Medium.copyWith(
+      color: consumer_dark.FhColors.textDefault,
+    ),
+    professional_light.FhTextStyles.sectionHeading3Medium.copyWith(
+      color: professional_light.FhColors.textDefault,
+    ),
+    professional_dark.FhTextStyles.sectionHeading3Medium.copyWith(
+      color: professional_dark.FhColors.textDefault,
+    ),
   ];
 
   static final List<TextStyle> unselectedLabelTextStyle = <TextStyle>[
-    consumer_light.FhTextStyles.sectionHeading3Regular.copyWith(),
-    consumer_dark.FhTextStyles.sectionHeading3Regular.copyWith(),
-    professional_light.FhTextStyles.sectionHeading3Regular.copyWith(),
-    professional_dark.FhTextStyles.sectionHeading3Regular.copyWith(),
-  ];
-
-  static final List<Color> unselectedLabelColor = <Color>[
-    consumer_light.FhColors.textWeak,
-    consumer_dark.FhColors.textWeak,
-    professional_light.FhColors.textWeak,
-    professional_dark.FhColors.textWeak,
+    consumer_light.FhTextStyles.sectionHeading3Regular.copyWith(
+      color: consumer_light.FhColors.textWeak,
+    ),
+    consumer_dark.FhTextStyles.sectionHeading3Regular.copyWith(
+      color: consumer_dark.FhColors.textWeak,
+    ),
+    professional_light.FhTextStyles.sectionHeading3Regular.copyWith(
+      color: professional_light.FhColors.textWeak,
+    ),
+    professional_dark.FhTextStyles.sectionHeading3Regular.copyWith(
+      color: professional_dark.FhColors.textWeak,
+    ),
   ];
 
   // endregion
