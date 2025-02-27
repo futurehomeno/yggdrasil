@@ -14,32 +14,37 @@ class ListExample extends StatelessWidget {
       ),
     ];
 
-    return const YgLayoutBody(
+    return YgLayoutBody(
       child: Column(
         children: <Widget>[
-          YgSection.list(
+          const YgSection.list(
             children: children,
           ),
-          YgSection.list(
+          const YgSection.list(
             title: 'With title',
             children: children,
           ),
           YgSection.list(
+            title: 'With clickable header',
+            onHeaderPressed: () {},
+            children: children,
+          ),
+          const YgSection.list(
             title: 'With title and subtitle',
             subtitle: 'The subtitle',
             children: children,
           ),
-          YgSection.list(
+          const YgSection.list(
             title: 'With title and trailing widget',
             trailing: DemoPlaceholder(height: 25),
             children: children,
           ),
-          YgSection.list(
+          const YgSection.list(
             title: 'With title and icon',
             icon: YgIcons.placeholder,
             children: children,
           ),
-          YgSection.list(
+          const YgSection.list(
             title: 'With title, icon, trailing widget and long subtitle',
             subtitle: 'Cupidatat ea voluptate exercitation irure ea occaecat pariatur elit minim non incididunt in.',
             icon: YgIcons.placeholder,

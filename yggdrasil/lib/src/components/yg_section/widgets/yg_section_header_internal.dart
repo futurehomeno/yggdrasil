@@ -14,6 +14,7 @@ class YgSectionHeaderInternal extends StatelessWidget {
     this.trailingInternal,
     this.trailing,
     this.icon,
+    this.onPressed,
   });
 
   /// The title of the section.
@@ -31,6 +32,9 @@ class YgSectionHeaderInternal extends StatelessWidget {
   /// The icon in front of the title and subtitle.
   final YgIconData? icon;
 
+  /// A callback called when clicking on the section header.
+  final VoidCallback? onPressed;
+
   @override
   Widget build(BuildContext context) {
     final YgSectionHeaderTheme theme = context.sectionTheme.sectionHeader;
@@ -39,43 +43,49 @@ class YgSectionHeaderInternal extends StatelessWidget {
     final Widget? trailing = this.trailing;
     final Widget? trailingInternal = this.trailingInternal;
 
-    return Padding(
-      padding: theme.padding,
-      child: Row(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: <Widget>[
-          if (icon != null)
-            Padding(
-              padding: theme.iconPadding,
-              child: YgIcon(icon),
-            ),
-          Expanded(
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.stretch,
-              mainAxisSize: MainAxisSize.min,
-              children: <Widget>[
-                YgSectionTitleBar(
-                  title: Text(
-                    title,
-                    style: theme.titleTextStyle,
-                  ),
-                  trailing: trailing,
-                  trailingInternal: trailingInternal,
-                  minAvailableTrailingWidth: theme.minAvailableTrailingWidth,
-                  gap: theme.trailingSpacing,
+    return Material(
+      type: MaterialType.transparency,
+      child: InkWell(
+        onTap: onPressed,
+        child: Padding(
+          padding: theme.padding,
+          child: Row(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: <Widget>[
+              if (icon != null)
+                Padding(
+                  padding: theme.iconPadding,
+                  child: YgIcon(icon),
                 ),
-                if (subtitle != null)
-                  Padding(
-                    padding: theme.subtitlePadding,
-                    child: Text(
-                      subtitle,
-                      style: theme.subtitleTextStyle,
+              Expanded(
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.stretch,
+                  mainAxisSize: MainAxisSize.min,
+                  children: <Widget>[
+                    YgSectionTitleBar(
+                      title: Text(
+                        title,
+                        style: theme.titleTextStyle,
+                      ),
+                      trailing: trailing,
+                      trailingInternal: trailingInternal,
+                      minAvailableTrailingWidth: theme.minAvailableTrailingWidth,
+                      gap: theme.trailingSpacing,
                     ),
-                  ),
-              ],
-            ),
+                    if (subtitle != null)
+                      Padding(
+                        padding: theme.subtitlePadding,
+                        child: Text(
+                          subtitle,
+                          style: theme.subtitleTextStyle,
+                        ),
+                      ),
+                  ],
+                ),
+              ),
+            ],
           ),
-        ],
+        ),
       ),
     );
   }
