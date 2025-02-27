@@ -17,6 +17,7 @@ abstract class YgSection extends StatelessWidget with StatelessWidgetDebugMixin 
     Widget? trailing,
     String? title,
     YgColorableIconData? icon,
+    VoidCallback? onHeaderPressed,
   }) = _YgSectionRegular;
 
   /// A section with a column of children.
@@ -27,6 +28,7 @@ abstract class YgSection extends StatelessWidget with StatelessWidgetDebugMixin 
     Widget? trailing,
     String? title,
     YgColorableIconData? icon,
+    VoidCallback? onHeaderPressed,
     CrossAxisAlignment crossAxisAlignment,
   }) = _YgSectionColumn;
 
@@ -42,6 +44,7 @@ abstract class YgSection extends StatelessWidget with StatelessWidgetDebugMixin 
     Widget? trailing,
     String? title,
     YgColorableIconData? icon,
+    VoidCallback? onHeaderPressed,
   }) = _YgSectionList;
 
   const YgSection._({
@@ -50,6 +53,7 @@ abstract class YgSection extends StatelessWidget with StatelessWidgetDebugMixin 
     this.subtitle,
     this.trailing,
     this.icon,
+    this.onHeaderPressed,
   }) : assert(
           title != null || (subtitle == null && trailing == null && icon == null),
           'subtitle, trailing or icon cannot be set without a title.',
@@ -75,6 +79,7 @@ abstract class YgSection extends StatelessWidget with StatelessWidgetDebugMixin 
           icon: icon,
           trailing: trailing,
           trailingInternal: null,
+          onPressed: onHeaderPressed,
         ),
         child,
       ],
@@ -98,6 +103,9 @@ abstract class YgSection extends StatelessWidget with StatelessWidgetDebugMixin 
   ///
   /// You cannot have an icon without a title.
   final YgIconData? icon;
+
+  /// Callback which gets called when the user pressed on the section header.
+  final VoidCallback? onHeaderPressed;
 
   /// Builds the child widget.
   Widget buildChild(BuildContext context);

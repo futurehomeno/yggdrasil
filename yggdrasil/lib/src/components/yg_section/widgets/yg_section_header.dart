@@ -9,5 +9,6 @@ class YgSectionHeader extends YgSectionHeaderInternal with StatelessWidgetDebugM
     super.subtitle,
     super.trailing,
     super.icon,
+    super.onPressed,
   });
 }
