@@ -1,5 +1,8 @@
 part of 'yg_layout.dart';
 
+// TODO(Tim): Fix issue with views being cached while changing tabs, causing
+// re-renders not to be shown until page change is done.
+
 /// A layout with tabs.
 ///
 /// Internally manages the tab controller and tab bar view. Automatically
@@ -11,6 +14,8 @@ class _YgLayoutTabbed extends YgLayout {
     super.key,
     super.appBar,
     super.bottom,
+    this.onTabChanged,
+    this.onTabVisible,
     required this.tabs,
     this.initialTab = 0,
     this.swiping = true,
@@ -29,11 +34,34 @@ class _YgLayoutTabbed extends YgLayout {
   /// another tab in the tab bar.
   final bool swiping;
 
+  /// Called when a tab becomes visible in any way.
+  ///
+  /// Not to be confused with [onTabChanged] which gets called when the active
+  /// tab changes. This callback instead gets called when a tab becomes in any
+  /// way visible, which means this tab covers more than 0% of the screen.
+  final ValueChanged<int>? onTabVisible;
+
+  /// Called when the active tab changes.
+  ///
+  /// Not to be confused with [onTabVisible] which gets called when a tab becomes
+  /// visible in any way. This callback instead gets called when the active tab
+  /// changes, which means this tab covers more than 50% of the screen.
+  final ValueChanged<int>? onTabChanged;
+
   @override
   State<YgLayout> createState() => _YgLayoutTabbedState();
 }
 
 class _YgLayoutTabbedState extends _YgLayoutState<_YgLayoutTabbed> {
+  late double _page;
+
+  @override
+  void initState() {
+    super.initState();
+    widget.onTabVisible?.call(widget.initialTab);
+    _page = widget.initialTab.toDouble();
+  }
+
   @override
   Widget build(BuildContext context) {
     assert(
@@ -95,9 +123,35 @@ class _YgLayoutTabbedState extends _YgLayoutState<_YgLayoutTabbed> {
   bool _handleScrollNotification(ScrollUpdateNotification notification) {
     if (notification.depth == 0) {
       _controller.resetHeader();
-      _controller.setActiveView((notification.metrics as PageMetrics).page?.round() ?? 0);
+      _handlePageChanged((notification.metrics as PageMetrics).page ?? 0);
     }
 
     return false;
+  }
+
+  void _handlePageChanged(double page) {
+    final int activePage = page.round();
+    final ValueChanged<int>? onTabVisible = widget.onTabVisible;
+    final ValueChanged<int>? onTabChanged = widget.onTabChanged;
+
+    if (_page.round() != activePage) {
+      _controller.setActiveView(activePage);
+      onTabChanged?.call(activePage);
+    }
+
+    if (onTabVisible != null) {
+      final int next = page.ceil();
+      final int previous = page.floor();
+
+      if (next != previous) {
+        if (_page.ceil() != next) {
+          onTabVisible(next);
+        } else if (_page.floor() != previous) {
+          onTabVisible(previous);
+        }
+      }
+    }
+
+    _page = page;
   }
 }
