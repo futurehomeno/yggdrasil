@@ -1,3 +1,15 @@
+# 1.13.1 [2025-02-27T12:01:31.632361]
+
+## Breaking changes
+
+- [breaking] Removed scrollable property from YgTabBar (this is now handled automatically).
+
+### Changes
+
+- Tim/tab bar fix (#198)
+- [fix] Fixed incorrect padding in scrollable tab bar.
+- [improvement] Added onTabVisible and onTabChanged.
+
 # 1.13.0 [2025-02-21T16:01:03.209322]
 
 ## Breaking changes
