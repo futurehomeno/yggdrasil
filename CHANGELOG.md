@@ -1,3 +1,10 @@
+# 1.13.2 [2025-02-27T13:01:11.335829]
+
+### Changes
+
+- [fix] Fixed issue with theme not being applied correctly to tab labels.
+- [fix] non dismissible dialog and bottom sheet routes are no longer dismissible through system back button.
+
 # 1.13.1 [2025-02-27T12:01:31.632361]
 
 ## Breaking changes
