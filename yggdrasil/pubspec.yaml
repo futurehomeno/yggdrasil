@@ -5,8 +5,8 @@ publish_to: none
 version: 1.13.2
 
 environment:
-  sdk: ^3.5.3
-  flutter: 3.24.3
+  sdk: ^3.6.2
+  flutter: 3.27.4
 
 dependencies:
   flutter:
@@ -15,7 +15,7 @@ dependencies:
   intl: 0.19.0
   theme_tailor_annotation:
     git:
-      ref: flutter-update/3.24.3
+      ref: flutter-update/3.27.4
       url: git@github.com:futurehomeno/theme_tailor.git
       path: packages/theme_tailor_annotation
   flutter_svg: 2.0.15
@@ -35,7 +35,7 @@ dev_dependencies:
     sdk: flutter
   theme_tailor:
     git:
-      ref: flutter-update/3.24.3
+      ref: flutter-update/3.27.4
       url: git@github.com:futurehomeno/theme_tailor.git
       path: packages/theme_tailor
 
