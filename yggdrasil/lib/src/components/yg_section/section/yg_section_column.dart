@@ -8,6 +8,7 @@ class _YgSectionColumn extends YgSection {
     super.subtitle,
     super.trailing,
     super.icon,
+    super.onHeaderPressed,
     this.crossAxisAlignment = CrossAxisAlignment.start,
   }) : super._();
 

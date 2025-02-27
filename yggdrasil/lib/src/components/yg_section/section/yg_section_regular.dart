@@ -8,6 +8,7 @@ class _YgSectionRegular extends YgSection {
     super.subtitle,
     super.trailing,
     super.icon,
+    super.onHeaderPressed,
   }) : super._();
 
   /// The widget below this widget in the tree.

@@ -8,6 +8,7 @@ class _YgSectionList extends YgSection {
     super.subtitle,
     super.trailing,
     super.icon,
+    super.onHeaderPressed,
   }) : super._();
 
   /// The widgets below this widget in the tree.
