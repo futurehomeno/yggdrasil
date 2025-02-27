@@ -21,12 +21,10 @@ class YgTabsTheme extends ThemeExtension<YgTabsTheme> {
     required this.indicatorHeight,
     required this.indicatorRadius,
     required this.pressedBackgroundColor,
-    required this.selectedLabelColor,
     required this.selectedLabelTextStyle,
     required this.tabBarBackgroundColor,
     required this.tabInnerPadding,
     required this.tabOuterPadding,
-    required this.unselectedLabelColor,
     required this.unselectedLabelTextStyle,
   });
 
@@ -43,14 +41,12 @@ class YgTabsTheme extends ThemeExtension<YgTabsTheme> {
   final double indicatorHeight;
   final BorderRadius indicatorRadius;
   final Color pressedBackgroundColor;
-  final Color selectedLabelColor;
   final TextStyle selectedLabelTextStyle;
   final Color tabBarBackgroundColor;
 
   /// Padding around the whole tab.
   final EdgeInsets tabInnerPadding;
   final EdgeInsets tabOuterPadding;
-  final Color unselectedLabelColor;
   final TextStyle unselectedLabelTextStyle;
 
   static final YgTabsTheme consumerLight = YgTabsTheme(
@@ -65,12 +61,10 @@ class YgTabsTheme extends ThemeExtension<YgTabsTheme> {
     indicatorHeight: _$YgTabsTheme.indicatorHeight[0],
     indicatorRadius: _$YgTabsTheme.indicatorRadius[0],
     pressedBackgroundColor: _$YgTabsTheme.pressedBackgroundColor[0],
-    selectedLabelColor: _$YgTabsTheme.selectedLabelColor[0],
     selectedLabelTextStyle: _$YgTabsTheme.selectedLabelTextStyle[0],
     tabBarBackgroundColor: _$YgTabsTheme.tabBarBackgroundColor[0],
     tabInnerPadding: _$YgTabsTheme.tabInnerPadding[0],
     tabOuterPadding: _$YgTabsTheme.tabOuterPadding[0],
-    unselectedLabelColor: _$YgTabsTheme.unselectedLabelColor[0],
     unselectedLabelTextStyle: _$YgTabsTheme.unselectedLabelTextStyle[0],
   );
 
@@ -86,12 +80,10 @@ class YgTabsTheme extends ThemeExtension<YgTabsTheme> {
     indicatorHeight: _$YgTabsTheme.indicatorHeight[1],
     indicatorRadius: _$YgTabsTheme.indicatorRadius[1],
     pressedBackgroundColor: _$YgTabsTheme.pressedBackgroundColor[1],
-    selectedLabelColor: _$YgTabsTheme.selectedLabelColor[1],
     selectedLabelTextStyle: _$YgTabsTheme.selectedLabelTextStyle[1],
     tabBarBackgroundColor: _$YgTabsTheme.tabBarBackgroundColor[1],
     tabInnerPadding: _$YgTabsTheme.tabInnerPadding[1],
     tabOuterPadding: _$YgTabsTheme.tabOuterPadding[1],
-    unselectedLabelColor: _$YgTabsTheme.unselectedLabelColor[1],
     unselectedLabelTextStyle: _$YgTabsTheme.unselectedLabelTextStyle[1],
   );
 
@@ -107,12 +99,10 @@ class YgTabsTheme extends ThemeExtension<YgTabsTheme> {
     indicatorHeight: _$YgTabsTheme.indicatorHeight[2],
     indicatorRadius: _$YgTabsTheme.indicatorRadius[2],
     pressedBackgroundColor: _$YgTabsTheme.pressedBackgroundColor[2],
-    selectedLabelColor: _$YgTabsTheme.selectedLabelColor[2],
     selectedLabelTextStyle: _$YgTabsTheme.selectedLabelTextStyle[2],
     tabBarBackgroundColor: _$YgTabsTheme.tabBarBackgroundColor[2],
     tabInnerPadding: _$YgTabsTheme.tabInnerPadding[2],
     tabOuterPadding: _$YgTabsTheme.tabOuterPadding[2],
-    unselectedLabelColor: _$YgTabsTheme.unselectedLabelColor[2],
     unselectedLabelTextStyle: _$YgTabsTheme.unselectedLabelTextStyle[2],
   );
 
@@ -128,12 +118,10 @@ class YgTabsTheme extends ThemeExtension<YgTabsTheme> {
     indicatorHeight: _$YgTabsTheme.indicatorHeight[3],
     indicatorRadius: _$YgTabsTheme.indicatorRadius[3],
     pressedBackgroundColor: _$YgTabsTheme.pressedBackgroundColor[3],
-    selectedLabelColor: _$YgTabsTheme.selectedLabelColor[3],
     selectedLabelTextStyle: _$YgTabsTheme.selectedLabelTextStyle[3],
     tabBarBackgroundColor: _$YgTabsTheme.tabBarBackgroundColor[3],
     tabInnerPadding: _$YgTabsTheme.tabInnerPadding[3],
     tabOuterPadding: _$YgTabsTheme.tabOuterPadding[3],
-    unselectedLabelColor: _$YgTabsTheme.unselectedLabelColor[3],
     unselectedLabelTextStyle: _$YgTabsTheme.unselectedLabelTextStyle[3],
   );
 
@@ -157,12 +145,10 @@ class YgTabsTheme extends ThemeExtension<YgTabsTheme> {
     double? indicatorHeight,
     BorderRadius? indicatorRadius,
     Color? pressedBackgroundColor,
-    Color? selectedLabelColor,
     TextStyle? selectedLabelTextStyle,
     Color? tabBarBackgroundColor,
     EdgeInsets? tabInnerPadding,
     EdgeInsets? tabOuterPadding,
-    Color? unselectedLabelColor,
     TextStyle? unselectedLabelTextStyle,
   }) {
     return YgTabsTheme(
@@ -178,14 +164,12 @@ class YgTabsTheme extends ThemeExtension<YgTabsTheme> {
       indicatorRadius: indicatorRadius ?? this.indicatorRadius,
       pressedBackgroundColor:
           pressedBackgroundColor ?? this.pressedBackgroundColor,
-      selectedLabelColor: selectedLabelColor ?? this.selectedLabelColor,
       selectedLabelTextStyle:
           selectedLabelTextStyle ?? this.selectedLabelTextStyle,
       tabBarBackgroundColor:
           tabBarBackgroundColor ?? this.tabBarBackgroundColor,
       tabInnerPadding: tabInnerPadding ?? this.tabInnerPadding,
       tabOuterPadding: tabOuterPadding ?? this.tabOuterPadding,
-      unselectedLabelColor: unselectedLabelColor ?? this.unselectedLabelColor,
       unselectedLabelTextStyle:
           unselectedLabelTextStyle ?? this.unselectedLabelTextStyle,
     );
@@ -209,16 +193,12 @@ class YgTabsTheme extends ThemeExtension<YgTabsTheme> {
       indicatorRadius: t < 0.5 ? indicatorRadius : other.indicatorRadius,
       pressedBackgroundColor:
           Color.lerp(pressedBackgroundColor, other.pressedBackgroundColor, t)!,
-      selectedLabelColor:
-          Color.lerp(selectedLabelColor, other.selectedLabelColor, t)!,
       selectedLabelTextStyle: TextStyle.lerp(
           selectedLabelTextStyle, other.selectedLabelTextStyle, t)!,
       tabBarBackgroundColor:
           Color.lerp(tabBarBackgroundColor, other.tabBarBackgroundColor, t)!,
       tabInnerPadding: t < 0.5 ? tabInnerPadding : other.tabInnerPadding,
       tabOuterPadding: t < 0.5 ? tabOuterPadding : other.tabOuterPadding,
-      unselectedLabelColor:
-          Color.lerp(unselectedLabelColor, other.unselectedLabelColor, t)!,
       unselectedLabelTextStyle: TextStyle.lerp(
           unselectedLabelTextStyle, other.unselectedLabelTextStyle, t)!,
     );
@@ -252,8 +232,6 @@ class YgTabsTheme extends ThemeExtension<YgTabsTheme> {
             const DeepCollectionEquality()
                 .equals(pressedBackgroundColor, other.pressedBackgroundColor) &&
             const DeepCollectionEquality()
-                .equals(selectedLabelColor, other.selectedLabelColor) &&
-            const DeepCollectionEquality()
                 .equals(selectedLabelTextStyle, other.selectedLabelTextStyle) &&
             const DeepCollectionEquality()
                 .equals(tabBarBackgroundColor, other.tabBarBackgroundColor) &&
@@ -261,8 +239,6 @@ class YgTabsTheme extends ThemeExtension<YgTabsTheme> {
                 .equals(tabInnerPadding, other.tabInnerPadding) &&
             const DeepCollectionEquality()
                 .equals(tabOuterPadding, other.tabOuterPadding) &&
-            const DeepCollectionEquality()
-                .equals(unselectedLabelColor, other.unselectedLabelColor) &&
             const DeepCollectionEquality().equals(
                 unselectedLabelTextStyle, other.unselectedLabelTextStyle));
   }
@@ -282,12 +258,10 @@ class YgTabsTheme extends ThemeExtension<YgTabsTheme> {
       const DeepCollectionEquality().hash(indicatorHeight),
       const DeepCollectionEquality().hash(indicatorRadius),
       const DeepCollectionEquality().hash(pressedBackgroundColor),
-      const DeepCollectionEquality().hash(selectedLabelColor),
       const DeepCollectionEquality().hash(selectedLabelTextStyle),
       const DeepCollectionEquality().hash(tabBarBackgroundColor),
       const DeepCollectionEquality().hash(tabInnerPadding),
       const DeepCollectionEquality().hash(tabOuterPadding),
-      const DeepCollectionEquality().hash(unselectedLabelColor),
       const DeepCollectionEquality().hash(unselectedLabelTextStyle),
     );
   }
