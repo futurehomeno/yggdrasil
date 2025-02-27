@@ -1,5 +1,8 @@
 part of 'yg_layout.dart';
 
+// TODO(Tim): Fix issue with views being cached while changing tabs, causing
+// re-renders not to be shown until page change is done.
+
 /// A layout with tabs.
 ///
 /// Internally manages the tab controller and tab bar view. Automatically
