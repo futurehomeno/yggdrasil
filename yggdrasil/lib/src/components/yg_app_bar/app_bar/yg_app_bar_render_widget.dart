@@ -273,10 +273,6 @@ extension on RenderBox {
     return (parentData as YgAppBarRendererParentData).slot;
   }
 
-  Offset get offset {
-    return (parentData as YgAppBarRendererParentData).offset;
-  }
-
   set offset(Offset offset) {
     (parentData as YgAppBarRendererParentData).offset = offset;
   }
