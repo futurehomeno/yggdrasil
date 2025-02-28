@@ -18,6 +18,7 @@ class PaintingPortalTarget extends SingleChildRenderObjectWidget {
 }
 
 class PaintingPortalTargetRenderer extends RenderProxyBox {
+  // ignore: deprecated_member_use_from_same_package
   final List<ScrollableDropdownRenderer> renderers = <ScrollableDropdownRenderer>[];
   Size _cachedSize = Size.zero;
   final Random _random = Random();
@@ -29,6 +30,7 @@ class PaintingPortalTargetRenderer extends RenderProxyBox {
     child?.layout(BoxConstraints.tight(_cachedSize));
   }
 
+  // ignore: deprecated_member_use_from_same_package
   void addEntry(ScrollableDropdownRenderer parent) {
     renderers.add(parent);
     markNeedsPaint();
@@ -41,6 +43,7 @@ class PaintingPortalTargetRenderer extends RenderProxyBox {
   @override
   void paint(PaintingContext context, Offset offset) {
     super.paint(context, offset);
+    // ignore: deprecated_member_use_from_same_package
     for (final ScrollableDropdownRenderer renderer in renderers) {
       final FollowerLayer layer = renderer.createLayer();
       context.pushLayer(
