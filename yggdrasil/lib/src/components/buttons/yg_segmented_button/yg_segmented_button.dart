@@ -1,12 +1,4 @@
-import 'package:flutter/material.dart';
-import 'package:yggdrasil/src/theme/segmented_button/segmented_button_theme.dart';
-import 'package:yggdrasil/src/theme/theme.dart';
-import 'package:yggdrasil/yggdrasil.dart';
-
-import 'segment/_segment.dart';
-
-part 'yg_segmented_button_multi_select.dart';
-part 'yg_segmented_button_single_select.dart';
+part of buttons;
 
 /// A button which is made up out of multiple [YgButtonSegment]s.
 abstract class YgSegmentedButton<T extends Object?> extends StatelessWidget with StatelessWidgetDebugMixin {
@@ -58,7 +50,7 @@ abstract class YgSegmentedButton<T extends Object?> extends StatelessWidget with
           children: segments
               .map(
                 (YgButtonSegment<T> segment) => Flexible(
-                  child: YgSegmentedButtonSegment(
+                  child: _YgSegmentedButtonSegment(
                     onPressed: _disabled ? null : () => _onSegmentPressed(segment),
                     selected: _isSegmentSelected(segment),
                     label: segment.label,

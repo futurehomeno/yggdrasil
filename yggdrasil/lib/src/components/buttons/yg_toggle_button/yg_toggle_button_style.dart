@@ -1,13 +1,7 @@
-import 'package:flutter/material.dart';
-import 'package:yggdrasil/src/components/buttons/widgets/_widgets.dart';
-import 'package:yggdrasil/src/components/buttons/yg_toggle_button/_yg_toggle_button.dart';
-import 'package:yggdrasil/src/theme/_theme.dart';
-import 'package:yggdrasil/src/theme/toggle_button/extensions/_extensions.dart';
+part of buttons;
 
-import 'yg_toggle_button_state.dart';
-
-class YgToggleButtonStyle extends YgButtonBaseStyle<YgToggleButtonState> {
-  YgToggleButtonStyle({
+class _YgToggleButtonStyle extends _YgButtonBaseStyle<_YgToggleButtonState> {
+  _YgToggleButtonStyle({
     required super.state,
     required super.vsync,
   });
@@ -80,7 +74,7 @@ class YgToggleButtonStyle extends YgButtonBaseStyle<YgToggleButtonState> {
     );
   }
 
-  Color _resolveTextColor(YgToggleButtonState state) {
+  Color _resolveTextColor(_YgToggleButtonState state) {
     if (state.disabled.value) {
       return _theme.textDisabledColor;
     }
@@ -111,7 +105,7 @@ class YgToggleButtonStyle extends YgButtonBaseStyle<YgToggleButtonState> {
     );
   }
 
-  Color _resolveBorderColor(YgToggleButtonState state) {
+  Color _resolveBorderColor(_YgToggleButtonState state) {
     if (state.toggled.value) {
       if (state.disabled.value) {
         return _theme.borderToggledDisabledColor;
@@ -131,14 +125,14 @@ class YgToggleButtonStyle extends YgButtonBaseStyle<YgToggleButtonState> {
     return _theme.borderDefaultColor;
   }
 
-  YgToggleButtonVariantTheme get _variantTheme {
+  _YgToggleButtonVariantTheme get _variantTheme {
     switch (state.variant.value) {
       case YgToggleButtonVariant.iconOnly:
-        return YgToggleButtonVariantTheme.icon(_theme.toggleIconButtonTheme);
+        return _YgToggleButtonVariantTheme.icon(_theme.toggleIconButtonTheme);
       case YgToggleButtonVariant.leadingIcon:
-        return YgToggleButtonVariantTheme.iconText(_theme.toggleIconTextButtonTheme);
+        return _YgToggleButtonVariantTheme.iconText(_theme.toggleIconTextButtonTheme);
       case YgToggleButtonVariant.text:
-        return YgToggleButtonVariantTheme.text(_theme.toggleTextButtonTheme);
+        return _YgToggleButtonVariantTheme.text(_theme.toggleTextButtonTheme);
     }
   }
 
@@ -152,31 +146,31 @@ class YgToggleButtonStyle extends YgButtonBaseStyle<YgToggleButtonState> {
 }
 
 // TODO(DEV-1915): Remove this when theme extensions can extend interfaces
-class YgToggleButtonVariantTheme {
-  const YgToggleButtonVariantTheme({
+class _YgToggleButtonVariantTheme {
+  const _YgToggleButtonVariantTheme({
     required this.paddingLarge,
     required this.paddingMedium,
     required this.paddingSmall,
   });
 
-  factory YgToggleButtonVariantTheme.icon(ToggleIconButtonTheme theme) {
-    return YgToggleButtonVariantTheme(
+  factory _YgToggleButtonVariantTheme.icon(ToggleIconButtonTheme theme) {
+    return _YgToggleButtonVariantTheme(
       paddingLarge: theme.paddingLarge,
       paddingMedium: theme.paddingMedium,
       paddingSmall: theme.paddingSmall,
     );
   }
 
-  factory YgToggleButtonVariantTheme.text(ToggleTextButtonTheme theme) {
-    return YgToggleButtonVariantTheme(
+  factory _YgToggleButtonVariantTheme.text(ToggleTextButtonTheme theme) {
+    return _YgToggleButtonVariantTheme(
       paddingLarge: theme.paddingLarge,
       paddingMedium: theme.paddingMedium,
       paddingSmall: theme.paddingSmall,
     );
   }
 
-  factory YgToggleButtonVariantTheme.iconText(ToggleIconTextButtonTheme theme) {
-    return YgToggleButtonVariantTheme(
+  factory _YgToggleButtonVariantTheme.iconText(ToggleIconTextButtonTheme theme) {
+    return _YgToggleButtonVariantTheme(
       paddingLarge: theme.paddingLarge,
       paddingMedium: theme.paddingMedium,
       paddingSmall: theme.paddingSmall,

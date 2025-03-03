@@ -1,5 +1,5 @@
-import 'package:flutter/material.dart';
-import 'package:yggdrasil/src/utils/_utils.dart';
+part of yg_states;
+
 
 /// Mixin to simplify working with [YgStyle].
 mixin YgStyleBuilderMixin<W extends StatefulWidget, S extends YgStyle<YgState>> on YgVsyncMixin<W> implements YgVsync {

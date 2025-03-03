@@ -1,4 +1,5 @@
-part of 'yg_button.dart';
+part of buttons;
+
 
 class _YgButtonWithLeadingIcon extends YgButton {
   const _YgButtonWithLeadingIcon({

@@ -1,7 +1,4 @@
-import 'dart:async';
-
-import 'package:flutter/widgets.dart';
-import 'package:yggdrasil/src/utils/_utils.dart';
+part of yg_states;
 
 /// Simplifies animating or driving properties.
 ///

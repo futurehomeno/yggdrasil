@@ -1,11 +1,7 @@
-import 'package:flutter/material.dart';
-import 'package:yggdrasil/src/theme/_theme.dart';
-import 'package:yggdrasil/src/utils/_utils.dart';
+part of buttons;
 
-import '_widgets.dart';
-
-abstract class YgButtonBaseStyle<T extends YgButtonBaseState> extends YgStyle<T> {
-  YgButtonBaseStyle({
+abstract class _YgButtonBaseStyle<T extends _YgButtonBaseState> extends YgStyle<T> {
+  _YgButtonBaseStyle({
     required super.state,
     required super.vsync,
   });

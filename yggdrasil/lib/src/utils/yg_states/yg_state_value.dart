@@ -1,4 +1,5 @@
-import 'package:flutter/material.dart';
+part of yg_states;
+
 
 /// A value to be used in [YgState].
 ///

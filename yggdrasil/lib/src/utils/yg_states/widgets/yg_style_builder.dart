@@ -1,5 +1,5 @@
-import 'package:flutter/material.dart';
-import 'package:yggdrasil/src/utils/yg_states/_yg_states.dart';
+part of yg_states;
+
 
 typedef YgWatchedPropertiesGetter<S extends YgStyle<YgState>> = Set<Listenable> Function(S style);
 typedef YgStyleCreator<S extends YgStyle<YgState>> = S Function(YgVsync vsync);

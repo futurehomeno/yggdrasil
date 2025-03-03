@@ -1,18 +1,7 @@
-import 'package:flutter/material.dart';
-import 'package:yggdrasil/src/components/buttons/widgets/_widgets.dart';
-import 'package:yggdrasil/src/theme/theme.dart';
-import 'package:yggdrasil/src/utils/_utils.dart';
-import 'package:yggdrasil/yggdrasil.dart';
-
-import 'yg_tag_state.dart';
-import 'yg_tag_style.dart';
-
-part 'yg_tag_with_double_icon.dart';
-part 'yg_tag_with_leading_icon.dart';
-part 'yg_tag_with_trailing_icon.dart';
+part of buttons;
 
 /// The implementation of YgTag.
-class YgTag extends YgButtonBase<YgTagState> {
+class YgTag extends _YgButtonBase<_YgTagState> {
   const YgTag({
     super.key,
     required this.child,
@@ -89,8 +78,8 @@ class YgTag extends YgButtonBase<YgTagState> {
   final Widget child;
 
   @override
-  YgTagState createButtonState() {
-    return YgTagState(
+  _YgTagState createButtonState() {
+    return _YgTagState(
       size: size,
       variant: variant,
       weight: weight,
@@ -98,15 +87,15 @@ class YgTag extends YgButtonBase<YgTagState> {
   }
 
   @override
-  void updateState(YgTagState state) {
+  void updateState(_YgTagState state) {
     state.variant.value = variant;
     state.weight.value = weight;
     state.size.value = size;
   }
 
   @override
-  YgButtonBaseStyle<YgTagState> createStyle(YgVsync vsync, YgTagState state) {
-    return YgTagStyle(
+  _YgButtonBaseStyle<_YgTagState> createStyle(YgVsync vsync, _YgTagState state) {
+    return _YgTagStyle(
       state: state,
       vsync: vsync,
     );

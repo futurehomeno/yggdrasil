@@ -1,4 +1,5 @@
-part of 'yg_segmented_button.dart';
+part of buttons;
+
 
 class _YgSegmentedButtonSingleSelect<T extends Object?> extends YgSegmentedButton<T> {
   const _YgSegmentedButtonSingleSelect({

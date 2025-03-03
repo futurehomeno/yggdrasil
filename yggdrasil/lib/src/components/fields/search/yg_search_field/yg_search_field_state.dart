@@ -1,5 +1,5 @@
 import 'package:yggdrasil/src/components/fields/yg_field_state.dart';
-import 'package:yggdrasil/src/utils/yg_states/yg_state_value.dart';
+import 'package:yggdrasil/src/utils/yg_states/_yg_states.dart';
 
 class YgSearchFieldState extends YgFieldState {
   YgSearchFieldState({

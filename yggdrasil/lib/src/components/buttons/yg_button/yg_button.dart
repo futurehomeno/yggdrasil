@@ -1,18 +1,7 @@
-import 'package:flutter/material.dart';
-import 'package:yggdrasil/src/components/buttons/widgets/_widgets.dart';
-import 'package:yggdrasil/src/theme/button/button_theme.dart';
-import 'package:yggdrasil/src/theme/theme.dart';
-import 'package:yggdrasil/src/utils/_utils.dart';
-import 'package:yggdrasil/yggdrasil.dart';
-
-import 'yg_button_state.dart';
-import 'yg_button_style.dart';
-
-part 'yg_button_with_leading_icon.dart';
-part 'yg_button_with_trailing_icon.dart';
+part of buttons;
 
 /// Base class for creating all Yg buttons.
-class YgButton extends YgButtonBase<YgButtonState> {
+class YgButton extends _YgButtonBase<_YgButtonState> {
   const YgButton({
     super.key,
     required this.child,
@@ -70,8 +59,8 @@ class YgButton extends YgButtonBase<YgButtonState> {
   final Widget child;
 
   @override
-  YgButtonState createButtonState() {
-    return YgButtonState(
+  _YgButtonState createButtonState() {
+    return _YgButtonState(
       disabled: onPressed == null,
       size: size,
       variant: variant,
@@ -79,14 +68,14 @@ class YgButton extends YgButtonBase<YgButtonState> {
   }
 
   @override
-  void updateState(YgButtonState state) {
+  void updateState(_YgButtonState state) {
     state.size.value = size;
     state.variant.value = variant;
   }
 
   @override
-  YgButtonBaseStyle<YgButtonState> createStyle(YgVsync vsync, YgButtonState state) {
-    return YgButtonStyle(
+  _YgButtonBaseStyle<_YgButtonState> createStyle(YgVsync vsync, _YgButtonState state) {
+    return _YgButtonStyle(
       state: state,
       vsync: vsync,
     );

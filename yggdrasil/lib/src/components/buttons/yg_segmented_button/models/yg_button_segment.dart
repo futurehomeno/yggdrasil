@@ -1,4 +1,5 @@
-import 'package:yggdrasil/yggdrasil.dart';
+part of buttons;
+
 
 /// A segments of a [YgSegmentedButton].
 class YgButtonSegment<T extends Object?> {

@@ -1,5 +1,5 @@
-import 'package:flutter/material.dart';
-import 'package:yggdrasil/src/utils/yg_states/_yg_states.dart';
+part of yg_states;
+
 
 typedef YgSizeProperty<T extends YgState> = YgProperty<T, Size>;
 typedef YgAnimatedSizeProperty = YgAnimatedProperty<Size>;

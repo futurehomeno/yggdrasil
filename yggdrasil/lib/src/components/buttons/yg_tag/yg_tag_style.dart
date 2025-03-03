@@ -1,13 +1,8 @@
-import 'package:flutter/material.dart';
-import 'package:yggdrasil/src/components/buttons/widgets/_widgets.dart';
-import 'package:yggdrasil/src/theme/_theme.dart';
-
-import '_yg_tag.dart';
-import 'yg_tag_state.dart';
+part of buttons;
 
 /// Tag style for YgTags.
-class YgTagStyle extends YgButtonBaseStyle<YgTagState> {
-  YgTagStyle({
+class _YgTagStyle extends _YgButtonBaseStyle<_YgTagState> {
+  _YgTagStyle({
     required super.state,
     required super.vsync,
   });
@@ -20,7 +15,7 @@ class YgTagStyle extends YgButtonBaseStyle<YgTagState> {
 
   @override
   Color resolveColor() {
-    final YgTagVariantStyle variantTheme = _getVariantTheme(state.variant.value);
+    final _YgTagVariantStyle variantTheme = _getVariantTheme(state.variant.value);
 
     switch (state.weight.value) {
       case YgTagWeight.strong:
@@ -83,18 +78,18 @@ class YgTagStyle extends YgButtonBaseStyle<YgTagState> {
     }
   }
 
-  YgTagVariantStyle _getVariantTheme(YgTagVariant variant) {
+  _YgTagVariantStyle _getVariantTheme(YgTagVariant variant) {
     switch (variant) {
       case YgTagVariant.neutral:
-        return YgTagVariantStyle.neutral(_theme.neutralTagTheme);
+        return _YgTagVariantStyle.neutral(_theme.neutralTagTheme);
       case YgTagVariant.informative:
-        return YgTagVariantStyle.informative(_theme.informativeTagTheme);
+        return _YgTagVariantStyle.informative(_theme.informativeTagTheme);
       case YgTagVariant.positive:
-        return YgTagVariantStyle.positive(_theme.positiveTagTheme);
+        return _YgTagVariantStyle.positive(_theme.positiveTagTheme);
       case YgTagVariant.warning:
-        return YgTagVariantStyle.warning(_theme.warningTagTheme);
+        return _YgTagVariantStyle.warning(_theme.warningTagTheme);
       case YgTagVariant.negative:
-        return YgTagVariantStyle.negative(_theme.negativeTagTheme);
+        return _YgTagVariantStyle.negative(_theme.negativeTagTheme);
     }
   }
 
@@ -102,38 +97,38 @@ class YgTagStyle extends YgButtonBaseStyle<YgTagState> {
 }
 
 // TODO(DEV-1915): Remove this when theme extensions can extend interfaces
-class YgTagVariantStyle {
-  const YgTagVariantStyle({
+class _YgTagVariantStyle {
+  const _YgTagVariantStyle({
     required this.backgroundColor,
     required this.disabledBackgroundColor,
     required this.strongBackgroundColor,
   });
 
-  factory YgTagVariantStyle.neutral(YgNeutralTagTheme theme) => YgTagVariantStyle(
+  factory _YgTagVariantStyle.neutral(YgNeutralTagTheme theme) => _YgTagVariantStyle(
         backgroundColor: theme.backgroundColor,
         disabledBackgroundColor: theme.disabledBackgroundColor,
         strongBackgroundColor: theme.strongBackgroundColor,
       );
 
-  factory YgTagVariantStyle.informative(YgInformativeTagTheme theme) => YgTagVariantStyle(
+  factory _YgTagVariantStyle.informative(YgInformativeTagTheme theme) => _YgTagVariantStyle(
         backgroundColor: theme.backgroundColor,
         disabledBackgroundColor: theme.disabledBackgroundColor,
         strongBackgroundColor: theme.strongBackgroundColor,
       );
 
-  factory YgTagVariantStyle.positive(YgPositiveTagTheme theme) => YgTagVariantStyle(
+  factory _YgTagVariantStyle.positive(YgPositiveTagTheme theme) => _YgTagVariantStyle(
         backgroundColor: theme.backgroundColor,
         disabledBackgroundColor: theme.disabledBackgroundColor,
         strongBackgroundColor: theme.strongBackgroundColor,
       );
 
-  factory YgTagVariantStyle.warning(YgWarningTagTheme theme) => YgTagVariantStyle(
+  factory _YgTagVariantStyle.warning(YgWarningTagTheme theme) => _YgTagVariantStyle(
         backgroundColor: theme.backgroundColor,
         disabledBackgroundColor: theme.disabledBackgroundColor,
         strongBackgroundColor: theme.strongBackgroundColor,
       );
 
-  factory YgTagVariantStyle.negative(YgNegativeTagTheme theme) => YgTagVariantStyle(
+  factory _YgTagVariantStyle.negative(YgNegativeTagTheme theme) => _YgTagVariantStyle(
         backgroundColor: theme.backgroundColor,
         disabledBackgroundColor: theme.disabledBackgroundColor,
         strongBackgroundColor: theme.strongBackgroundColor,

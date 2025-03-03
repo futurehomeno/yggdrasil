@@ -1,8 +1,7 @@
-import 'package:flutter/material.dart';
-import 'package:yggdrasil/src/utils/_utils.dart';
+part of buttons;
 
-class YgButtonBaseState extends YgState {
-  YgButtonBaseState({
+class _YgButtonBaseState extends YgState {
+  _YgButtonBaseState({
     bool focused = false,
     bool hovered = false,
     bool disabled = false,

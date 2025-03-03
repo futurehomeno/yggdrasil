@@ -1,3 +1,5 @@
+part of buttons;
+
 enum YgTagVariant {
   neutral,
   informative,
