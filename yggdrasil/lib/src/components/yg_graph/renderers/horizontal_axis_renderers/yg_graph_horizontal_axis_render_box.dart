@@ -4,7 +4,7 @@ import 'package:yggdrasil/src/components/yg_graph/models/_models.dart';
 import 'package:yggdrasil/src/components/yg_graph/models/horizontal_edge_insets.dart';
 import 'package:yggdrasil/src/components/yg_graph/models/transform_1d.dart';
 
-class YgHorizontalAxisParentData extends ContainerBoxParentData<YgGraphHorizontalAxisRenderBox> {
+class YgGraphHorizontalAxisParentData extends ContainerBoxParentData<YgGraphHorizontalAxisRenderBox> {
   Transform1D valueTransform = Transform1D.zero;
   EdgeInsets contentPadding = EdgeInsets.zero;
   Range indexRange = Range.zero;

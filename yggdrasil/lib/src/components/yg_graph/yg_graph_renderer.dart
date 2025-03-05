@@ -9,8 +9,8 @@ import 'package:yggdrasil/src/components/yg_graph/models/vertical_edge_insets.da
 import 'package:yggdrasil/src/components/yg_graph/renderers/vertical_axis_renderers/yg_graph_vertical_axis_render_box.dart';
 
 import 'renderers/background_renderers/yg_graph_background_render_box.dart';
-import 'renderers/field_renderers/yg_graph_field_render_box.dart';
 import 'renderers/horizontal_axis_renderers/yg_graph_horizontal_axis_render_box.dart';
+import 'renderers/plotting_area_renderers/yg_graph_plotting_area_render_box.dart';
 
 class Yg2DGraph extends MultiChildRenderObjectWidget {
   const Yg2DGraph({
@@ -59,16 +59,20 @@ class _Yg2DGraphRenderer extends RenderBox
   void setupParentData(covariant RenderObject child) {
     switch (child) {
       case YgGraphHorizontalAxisRenderBox():
-        if (child.parentData is! YgHorizontalAxisParentData) {
-          child.parentData = YgHorizontalAxisParentData();
+        if (child.parentData is! YgGraphHorizontalAxisParentData) {
+          child.parentData = YgGraphHorizontalAxisParentData();
         }
       case YgGraphVerticalAxisRenderBox():
-        if (child.parentData is! YgVerticalAxisParentData) {
-          child.parentData = YgVerticalAxisParentData();
+        if (child.parentData is! YgGraphVerticalAxisParentData) {
+          child.parentData = YgGraphVerticalAxisParentData();
         }
-      case YgGraphFieldRenderBox():
-        if (child.parentData is! YgGraphFieldParentData) {
-          child.parentData = YgGraphFieldParentData();
+      case YgGraphPlottingAreaRenderBox():
+        if (child.parentData is! YgGraphPlottingAreaParentData) {
+          child.parentData = YgGraphPlottingAreaParentData();
+        }
+      case YgGraphBackgroundRenderBox():
+        if (child.parentData is! YgGraphBackgroundParentData) {
+          child.parentData = YgGraphBackgroundParentData();
         }
       case RenderBox():
         if (child.parentData is! BoxParentData) {
@@ -78,11 +82,13 @@ class _Yg2DGraphRenderer extends RenderBox
   }
 
   NamedRenderers get _namedRenderers {
-    final List<YgGraphFieldRenderBox> fieldRenderers = <YgGraphFieldRenderBox>[];
-    YgGraphHorizontalAxisRenderBox? topSection;
-    YgGraphHorizontalAxisRenderBox? bottomSection;
-    YgGraphVerticalAxisRenderBox? leftSection;
-    YgGraphVerticalAxisRenderBox? rightSection;
+    final List<YgGraphPlottingAreaRenderBox> plottingAreas = <YgGraphPlottingAreaRenderBox>[];
+    final List<YgGraphVerticalAxisRenderBox> verticalLabelAreas = <YgGraphVerticalAxisRenderBox>[];
+    final List<YgGraphHorizontalAxisRenderBox> horizontalLabelAreas = <YgGraphHorizontalAxisRenderBox>[];
+    YgGraphHorizontalAxisRenderBox? topLabelArea;
+    YgGraphHorizontalAxisRenderBox? bottomLabelArea;
+    YgGraphVerticalAxisRenderBox? leftLabelArea;
+    YgGraphVerticalAxisRenderBox? rightLabelArea;
     YgGraphBackgroundRenderBox? background;
 
     RenderBox? currentChild = firstChild;
@@ -91,37 +97,39 @@ class _Yg2DGraphRenderer extends RenderBox
         switch (currentChild.getAlignment()) {
           case YgHorizontalAxisAlignment.top:
             assert(
-              topSection == null,
+              topLabelArea == null,
               'Multiple instances of YgHorizontalAxisRenderBox have an alignment of YgHorizontalAxisAlignment.top',
             );
-            topSection ??= currentChild;
+            topLabelArea ??= currentChild;
             break;
           case YgHorizontalAxisAlignment.bottom:
             assert(
-              bottomSection == null,
+              bottomLabelArea == null,
               'Multiple instances of YgHorizontalAxisRenderBox have an alignment of YgHorizontalAxisAlignment.bottom',
             );
-            bottomSection ??= currentChild;
+            bottomLabelArea ??= currentChild;
             break;
         }
+        horizontalLabelAreas.add(currentChild);
       }
       if (currentChild is YgGraphVerticalAxisRenderBox) {
         switch (currentChild.getAlignment()) {
           case YgVerticalAxisAlignment.left:
             assert(
-              leftSection == null,
+              leftLabelArea == null,
               'Multiple instances of YgVerticalAxisRenderBox have an alignment of YgVerticalAxisAlignment.left',
             );
-            leftSection ??= currentChild;
+            leftLabelArea ??= currentChild;
             break;
           case YgVerticalAxisAlignment.right:
             assert(
-              rightSection == null,
+              rightLabelArea == null,
               'Multiple instances of YgVerticalAxisRenderBox have an alignment of YgVerticalAxisAlignment.right',
             );
-            rightSection ??= currentChild;
+            rightLabelArea ??= currentChild;
             break;
         }
+        verticalLabelAreas.add(currentChild);
       }
       if (currentChild is YgGraphBackgroundRenderBox) {
         assert(
@@ -130,39 +138,126 @@ class _Yg2DGraphRenderer extends RenderBox
         );
         background ??= currentChild;
       }
-      if (currentChild is YgGraphFieldRenderBox) {
-        fieldRenderers.add(currentChild);
+      if (currentChild is YgGraphPlottingAreaRenderBox) {
+        plottingAreas.add(currentChild);
       }
       currentChild = childAfter(currentChild);
     }
 
     return NamedRenderers(
-      fieldRenderers: fieldRenderers,
-      topSection: topSection,
-      bottomSection: bottomSection,
-      leftSection: leftSection,
-      rightSection: rightSection,
+      plottingAreas: plottingAreas,
+      horizontalLabelAreas: horizontalLabelAreas,
+      verticalLabelAreas: verticalLabelAreas,
+      topLabelArea: topLabelArea,
+      bottomLabelArea: bottomLabelArea,
+      leftLabelArea: leftLabelArea,
+      rightLabelArea: rightLabelArea,
       background: background,
     );
   }
 
   @override
   void performLayout() {
-    final NamedRenderers namedRenderers = _namedRenderers;
-    final Range indexRange = _getIndexRange(namedRenderers.fieldRenderers);
-    final Range valueRange = _getValueRange(namedRenderers.fieldRenderers);
+    assert(
+      constraints.hasBoundedHeight,
+      'The constraints provided to the graph renderer must have a bounded height. Unbounded height constraints are not supported.',
+    );
+    assert(
+      constraints.hasBoundedWidth,
+      'The constraints provided to the graph renderer must have a bounded width. Unbounded width constraints are not supported.',
+    );
 
-    final double leftSectionMinWidth = namedRenderers.leftSection?.getMinLabelAreaWidth() ?? 0.0;
-    final double rightSectionMinWidth = namedRenderers.rightSection?.getMinLabelAreaWidth() ?? 0.0;
-    final double topSectionMinHeight = namedRenderers.topSection?.getMinLabelAreaHeight() ?? 0.0;
-    final double bottomSectionMinHeight = namedRenderers.bottomSection?.getMinLabelAreaHeight() ?? 0.0;
+    // We can not calculate the height of the components without a bound height
+    // due to the complex layout of the graph.
+    if (constraints.hasInfiniteHeight || constraints.hasInfiniteWidth) {
+      size = constraints.smallest;
+
+      return;
+    }
+
+    size = constraints.biggest;
+
+    final NamedRenderers namedRenderers = _namedRenderers;
+    final Range indexRange = _getIndexRange(namedRenderers.plottingAreas);
+    final Range valueRange = _getValueRange(namedRenderers.plottingAreas);
+
+    final PlottingAreaDimensionRequirements plottingAreaDimensionRequirements =
+        _getPlottingAreaDimensionRequirements(namedRenderers);
+
+    for (final YgGraphPlottingAreaRenderBox fieldRenderer in namedRenderers.plottingAreas) {}
+
+    // if(namedRenderers.verticalLabelAreas.isNotEmpty) {
+    //   final double maximumVerticalSectionWidth = (constraints.maxWidth - minPlottingAreaWidth) / namedRenderers.verticalLabelAreas.length;
+    //   for(final YgGraphVerticalAxisRenderBox verticalSectionRenderer in namedRenderers.verticalLabelAreas) {
+    //     verticalSectionRenderer.
+    //   }
+
+    // }
+
+    // const double minFieldHeight = 0;
+
+    // for(final YgGraphVerticalAxisRenderBox verticalSideRenderer in namedRenderers.verticalLabelAreas) {
+    //   verticalSideRenderer.getMinHeightWithIntervals();
+    // }
+
+    // const double minFieldWidth = 0;
+    //   for (final YgGraphPlottingAreaRenderBox fieldRenderer in namedRenderers.plottingAreas) {
+    //     fieldRenderer.getMinIntrinsicWidth(height);
+    //   }
+
+    // final double width = constraints.maxWidth;
+    // double height;
+    // if (constraints.hasBoundedHeight) {
+    //   height = constraints.maxHeight;
+    // } else {
+    //   height = constraints.minHeight;
+
+    //   for (final YgGraphPlottingAreaRenderBox fieldRenderer in namedRenderers.plottingAreas) {}
+    // }
+
+    // final double leftSectionMinWidth = namedRenderers.leftLabelArea?.getMinIntrinsicWidth() ?? 0.0;
+    // final double rightSectionMinWidth = namedRenderers.rightLabelArea?.getMinIntrinsicWidth() ?? 0.0;
+    // final double topSectionMinHeight = namedRenderers.topLabelArea?.getMinIntrinsicHeight() ?? 0.0;
+    // final double bottomSectionMinHeight = namedRenderers.bottomLabelArea?.getMinIntrinsicHeight() ?? 0.0;
 
     final EdgeInsets contentPadding = _getContentPadding(namedRenderers);
 
     super.performLayout();
   }
 
-  Range _getIndexRange(List<YgGraphFieldRenderBox> fieldRenderers) {
+  PlottingAreaDimensionRequirements _getPlottingAreaDimensionRequirements(NamedRenderers namedRenderers) {
+    double minWidth = 0.0;
+    double minHeight = 0.0;
+
+    double top = 0;
+    double bottom = 0;
+    double left = 0;
+    double right = 0;
+
+    for (final YgGraphPlottingAreaRenderBox fieldRenderer in namedRenderers.plottingAreas) {
+      final Size minSize = fieldRenderer.getMinPlottingAreaSize();
+      minWidth = max(minWidth, minSize.width);
+      minHeight = max(minHeight, minSize.height);
+
+      final EdgeInsets minPadding = fieldRenderer.getMinContentPadding();
+      top = max(minPadding.top, top);
+      bottom = max(minPadding.bottom, bottom);
+      left = max(minPadding.left, left);
+      right = max(minPadding.right, right);
+    }
+
+    final EdgeInsets padding = EdgeInsets.only(
+      top: top,
+      bottom: bottom,
+      left: left,
+      right: right,
+    );
+
+    return PlottingAreaDimensionRequirements(
+        minSize: Size(minWidth, minHeight), padding: padding, minOuterSize: padding.inflateSize(size));
+  }
+
+  Range _getIndexRange(List<YgGraphPlottingAreaRenderBox> fieldRenderers) {
     final Range? indexRangeOverwrite = _indexRange;
     if (indexRangeOverwrite != null) {
       return indexRangeOverwrite;
@@ -177,7 +272,7 @@ class _Yg2DGraphRenderer extends RenderBox
     return range;
   }
 
-  Range _getValueRange(List<YgGraphFieldRenderBox> fieldRenderers) {
+  Range _getValueRange(List<YgGraphPlottingAreaRenderBox> fieldRenderers) {
     final Range? valueRangeOverwrite = _valueRange;
     if (valueRangeOverwrite != null) {
       return valueRangeOverwrite;
@@ -198,7 +293,7 @@ class _Yg2DGraphRenderer extends RenderBox
     double left = 0;
     double right = 0;
 
-    for (final YgGraphFieldRenderBox fieldRenderer in namedRenderers.fieldRenderers) {
+    for (final YgGraphPlottingAreaRenderBox fieldRenderer in namedRenderers.plottingAreas) {
       final EdgeInsets minPadding = fieldRenderer.getMinContentPadding();
 
       top = max(minPadding.top, top);
@@ -207,54 +302,76 @@ class _Yg2DGraphRenderer extends RenderBox
       right = max(minPadding.right, right);
     }
 
-    final YgGraphHorizontalAxisRenderBox? bottomSection = namedRenderers.bottomSection;
+    final YgGraphHorizontalAxisRenderBox? bottomSection = namedRenderers.bottomLabelArea;
     if (bottomSection != null) {
       final HorizontalEdgeInsets minPadding = bottomSection.getMinHorizontalPadding();
       left = max(minPadding.left, left);
       right = max(minPadding.right, right);
     }
 
-    final YgGraphHorizontalAxisRenderBox? topSection = namedRenderers.topSection;
+    final YgGraphHorizontalAxisRenderBox? topSection = namedRenderers.topLabelArea;
     if (topSection != null) {
       final HorizontalEdgeInsets minPadding = topSection.getMinHorizontalPadding();
       left = max(minPadding.left, left);
       right = max(minPadding.right, right);
     }
 
-    final YgGraphVerticalAxisRenderBox? leftSection = namedRenderers.leftSection;
+    final YgGraphVerticalAxisRenderBox? leftSection = namedRenderers.leftLabelArea;
     if (leftSection != null) {
       final VerticalEdgeInsets minPadding = leftSection.getMinVerticalPadding();
       top = max(minPadding.top, top);
       bottom = max(minPadding.bottom, bottom);
     }
 
-    final YgGraphVerticalAxisRenderBox? rightSection = namedRenderers.rightSection;
+    final YgGraphVerticalAxisRenderBox? rightSection = namedRenderers.rightLabelArea;
     if (rightSection != null) {
       final VerticalEdgeInsets minPadding = rightSection.getMinVerticalPadding();
       top = max(minPadding.top, top);
       bottom = max(minPadding.bottom, bottom);
     }
 
-    return EdgeInsets.fromLTRB(left, top, right, bottom);
+    return EdgeInsets.only(
+      left: left,
+      top: top,
+      right: right,
+      bottom: bottom,
+    );
   }
 }
 
 class NamedRenderers {
   const NamedRenderers({
-    required this.fieldRenderers,
-    required this.topSection,
-    required this.bottomSection,
-    required this.leftSection,
-    required this.rightSection,
+    required this.plottingAreas,
+    required this.horizontalLabelAreas,
+    required this.verticalLabelAreas,
+    required this.topLabelArea,
+    required this.bottomLabelArea,
+    required this.leftLabelArea,
+    required this.rightLabelArea,
     required this.background,
   });
 
-  final YgGraphHorizontalAxisRenderBox? topSection;
-  final YgGraphHorizontalAxisRenderBox? bottomSection;
+  final YgGraphHorizontalAxisRenderBox? topLabelArea;
+  final YgGraphHorizontalAxisRenderBox? bottomLabelArea;
 
-  final YgGraphVerticalAxisRenderBox? leftSection;
-  final YgGraphVerticalAxisRenderBox? rightSection;
+  final YgGraphVerticalAxisRenderBox? leftLabelArea;
+  final YgGraphVerticalAxisRenderBox? rightLabelArea;
 
   final YgGraphBackgroundRenderBox? background;
-  final List<YgGraphFieldRenderBox> fieldRenderers;
+
+  final List<YgGraphVerticalAxisRenderBox> verticalLabelAreas;
+  final List<YgGraphHorizontalAxisRenderBox> horizontalLabelAreas;
+  final List<YgGraphPlottingAreaRenderBox> plottingAreas;
+}
+
+class PlottingAreaDimensionRequirements {
+  const PlottingAreaDimensionRequirements({
+    required this.padding,
+    required this.minSize,
+    required this.minOuterSize,
+  });
+
+  final EdgeInsets padding;
+  final Size minSize;
+  final Size minOuterSize;
 }

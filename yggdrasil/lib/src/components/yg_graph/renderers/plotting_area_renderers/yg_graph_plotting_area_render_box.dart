@@ -1,7 +1,7 @@
 import 'package:flutter/rendering.dart';
 import 'package:yggdrasil/src/components/yg_graph/models/_models.dart';
 
-abstract class YgGraphFieldRenderBox extends RenderBox {
+abstract class YgGraphPlottingAreaRenderBox extends RenderBox {
   Transform2D? _cachedTransform;
 
   @override
@@ -13,7 +13,7 @@ abstract class YgGraphFieldRenderBox extends RenderBox {
   /// Returns a field offset from
   Offset getValueOffset(double point, double value) {
     final ParentData? parentData = this.parentData;
-    if (parentData is! YgGraphFieldParentData) {
+    if (parentData is! YgGraphPlottingAreaParentData) {
       throw Exception(
         'Invalid parent data! Make sure you are not using a YgGraph2D component outside of a YgGraph2D',
       );
@@ -42,7 +42,7 @@ abstract class YgGraphFieldRenderBox extends RenderBox {
   /// The padding applied to the coordinates used by all graph components.
   EdgeInsets get fieldPadding {
     final ParentData? parentData = this.parentData;
-    if (parentData is! YgGraphFieldParentData) {
+    if (parentData is! YgGraphPlottingAreaParentData) {
       throw Exception(
         'Invalid parent data! Make sure you are not using a YgGraph2D component outside of a YgGraph2D',
       );
@@ -51,6 +51,8 @@ abstract class YgGraphFieldRenderBox extends RenderBox {
     return parentData.contentPadding;
   }
 
+  Size getMinPlottingAreaSize();
+
   EdgeInsets getMinContentPadding();
 
   Range getIndexRange();
@@ -58,7 +60,7 @@ abstract class YgGraphFieldRenderBox extends RenderBox {
   Range getValueRange();
 }
 
-class YgGraphFieldParentData extends ContainerBoxParentData<YgGraphFieldRenderBox> {
+class YgGraphPlottingAreaParentData extends ContainerBoxParentData<YgGraphPlottingAreaRenderBox> {
   Transform2D valueTransform = Transform2D.zero;
   EdgeInsets contentPadding = EdgeInsets.zero;
   Range valueRange = Range.zero;

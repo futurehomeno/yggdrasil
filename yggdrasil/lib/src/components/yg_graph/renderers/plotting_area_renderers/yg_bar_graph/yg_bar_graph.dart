@@ -3,9 +3,9 @@ import 'dart:math';
 import 'package:flutter/material.dart';
 import 'package:yggdrasil/src/components/yg_graph/interfaces/_interfaces.dart';
 import 'package:yggdrasil/src/components/yg_graph/models/_models.dart';
-import 'package:yggdrasil/src/components/yg_graph/renderers/field_renderers/yg_bar_graph/interfaces/yg_bar_style_provider.dart';
-import 'package:yggdrasil/src/components/yg_graph/renderers/field_renderers/yg_bar_graph/models/yg_bar_style.dart';
-import 'package:yggdrasil/src/components/yg_graph/renderers/field_renderers/yg_graph_field_render_box.dart';
+import 'package:yggdrasil/src/components/yg_graph/renderers/plotting_area_renderers/yg_bar_graph/interfaces/yg_bar_style_provider.dart';
+import 'package:yggdrasil/src/components/yg_graph/renderers/plotting_area_renderers/yg_bar_graph/models/yg_bar_style.dart';
+import 'package:yggdrasil/src/components/yg_graph/renderers/plotting_area_renderers/yg_graph_plotting_area_render_box.dart';
 
 class YgBarGraph<T extends YgGraphPoint> extends LeafRenderObjectWidget {
   const YgBarGraph({
@@ -32,7 +32,7 @@ class YgBarGraph<T extends YgGraphPoint> extends LeafRenderObjectWidget {
   }
 }
 
-class YgBarGraphRenderer<T extends YgGraphPoint> extends YgGraphFieldRenderBox {
+class YgBarGraphRenderer<T extends YgGraphPoint> extends YgGraphPlottingAreaRenderBox {
   YgBarGraphRenderer({
     required YgConstantIntervalGraphDataProvider<T> dataProvider,
     required YgBarStyleProvider<T> styleProvider,
