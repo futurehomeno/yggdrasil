@@ -70,6 +70,9 @@ class _$YgTheme {
   static final List<YgIconButtonTheme> iconButtonTheme = YgIconButtonTheme.themes;
 
   @themeExtension
+  static final List<YgLayoutTheme> layoutTheme = YgLayoutTheme.themes;
+
+  @themeExtension
   static final List<YgListTileTheme> listTileTheme = YgListTileTheme.themes;
 
   @themeExtension
@@ -89,6 +92,15 @@ class _$YgTheme {
 
   @themeExtension
   static final List<YgRadioTheme> radioTheme = YgRadioTheme.themes;
+
+  @themeExtension
+  static final List<YgSearchBarTheme> searchBarTheme = YgSearchBarTheme.themes;
+
+  @themeExtension
+  static final List<YgSearchFieldTheme> searchFieldTheme = YgSearchFieldTheme.themes;
+
+  @themeExtension
+  static final List<YgSearchModalTheme> searchModalTheme = YgSearchModalTheme.themes;
 
   @themeExtension
   static final List<YgSectionTheme> sectionTheme = YgSectionTheme.themes;

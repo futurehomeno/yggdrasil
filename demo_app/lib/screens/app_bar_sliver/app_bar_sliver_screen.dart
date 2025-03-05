@@ -3,6 +3,7 @@ import 'package:provider/provider.dart';
 import 'package:yggdrasil/yggdrasil.dart';
 import 'package:yggdrasil_demo/core/_core.dart';
 import 'package:yggdrasil_demo/widgets/debug_bottom_sheet.dart';
+import 'package:yggdrasil_demo/widgets/demo_placeholder.dart';
 
 class AppBarSliverScreen extends StatefulWidget {
   const AppBarSliverScreen({super.key});
@@ -35,7 +36,7 @@ class _AppBarSliverScreenState extends State<AppBarSliverScreen> {
         slivers: <Widget>[
           YgSliverAppBar(
             title: 'App bar',
-            leading: getLeading(),
+            leading: _getLeading(),
             automaticallyImplyLeading: _automaticallyImplyLeading,
             actions: _actions,
             variant: _variant,
@@ -46,7 +47,7 @@ class _AppBarSliverScreenState extends State<AppBarSliverScreen> {
                 YgSection.list(
                   title: 'Variant',
                   subtitle: 'The variant (size) of the sliver app bar.',
-                  children: <YgListTile>[
+                  children: <Widget>[
                     YgRadioListTile<int>(
                       title: 'Small',
                       value: 1,
@@ -80,7 +81,7 @@ class _AppBarSliverScreenState extends State<AppBarSliverScreen> {
                   title: 'Automatically imply leading',
                   subtitle:
                       'If true and leading is null, automatically try to deduce what the leading widget should be.',
-                  children: <YgListTile>[
+                  children: <Widget>[
                     YgCheckboxListTile(
                       title: 'Automatically imply leading',
                       value: _automaticallyImplyLeading,
@@ -91,7 +92,7 @@ class _AppBarSliverScreenState extends State<AppBarSliverScreen> {
                 YgSection.list(
                   title: 'Leading',
                   subtitle: 'Widget to show before the title.',
-                  children: <YgListTile>[
+                  children: <Widget>[
                     YgCheckboxListTile(
                       title: 'Custom leading',
                       value: _customLeading,
@@ -104,7 +105,7 @@ class _AppBarSliverScreenState extends State<AppBarSliverScreen> {
                     return YgSection.list(
                       title: 'Actions',
                       subtitle: 'Widgets to show after the title.',
-                      children: <YgListTile>[
+                      children: <Widget>[
                         YgRadioListTile<int>(
                           title: 'No actions',
                           value: 1,
@@ -121,13 +122,11 @@ class _AppBarSliverScreenState extends State<AppBarSliverScreen> {
                           title: 'Multiple actions (default for demo app)',
                           value: 3,
                           groupValue: _actionsRadioGroupValue,
-                          onChanged: (int? newValue) {
-                            _setMultipleActions(
-                              newValue: newValue,
-                              context: context,
-                              ygAppState: ygAppState,
-                            );
-                          },
+                          onChanged: (int? newValue) => _setMultipleActions(
+                            newValue: newValue,
+                            context: context,
+                            ygAppState: ygAppState,
+                          ),
                         ),
                       ],
                     );
@@ -136,10 +135,12 @@ class _AppBarSliverScreenState extends State<AppBarSliverScreen> {
               ],
             ),
           ),
-          const SliverToBoxAdapter(
+          SliverToBoxAdapter(
             child: YgSection(
               title: 'Padding to allow the screen to scroll',
-              child: SizedBox(height: 666.0),
+              child: DemoPlaceholder(
+                height: MediaQuery.sizeOf(context).height,
+              ),
             ),
           ),
         ],
@@ -147,7 +148,7 @@ class _AppBarSliverScreenState extends State<AppBarSliverScreen> {
     );
   }
 
-  Widget? getLeading() {
+  Widget? _getLeading() {
     if (_customLeading) {
       return YgIconButton(
         icon: YgIcons.info,

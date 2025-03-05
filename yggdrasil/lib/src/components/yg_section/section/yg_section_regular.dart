@@ -2,11 +2,13 @@ part of 'yg_section.dart';
 
 class _YgSectionRegular extends YgSection {
   const _YgSectionRegular({
+    super.key,
     required this.child,
     super.title,
     super.subtitle,
     super.trailing,
     super.icon,
+    super.onHeaderPressed,
   }) : super._();
 
   /// The widget below this widget in the tree.

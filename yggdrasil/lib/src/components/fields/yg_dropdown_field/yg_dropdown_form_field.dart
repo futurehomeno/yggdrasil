@@ -13,6 +13,7 @@ abstract class YgDropdownFormField<T extends Object> extends StatefulWidget {
     String? placeholder,
     String? metric,
     FocusNode? focusNode,
+    ValueChanged<T?>? onChanged,
     List<FormFieldValidator<T?>>? validators,
     YgSingleSelectDropdownController<T>? controller,
     bool disabled,
@@ -38,6 +39,7 @@ abstract class YgDropdownFormField<T extends Object> extends StatefulWidget {
     String? metric,
     FocusNode? focusNode,
     Set<T>? initialValue,
+    ValueChanged<Set<T>>? onChanged,
     List<FormFieldValidator<Set<T>>>? validators,
     YgMultiSelectDropdownController<T>? controller,
     bool disabled,
@@ -64,7 +66,6 @@ abstract class YgDropdownFormField<T extends Object> extends StatefulWidget {
     required this.size,
     required this.variant,
     required this.autoValidate,
-    required this.error,
     required this.focusNode,
     required this.minLines,
     required this.onFocusChanged,
@@ -72,8 +73,10 @@ abstract class YgDropdownFormField<T extends Object> extends StatefulWidget {
     required this.placeholder,
     required this.onEditingComplete,
     required this.metric,
+    required String? error,
   })  : enabled = !disabled,
-        restorationId = null;
+        restorationId = null,
+        forceErrorText = error;
 
   /// See [YgDropdownField.metric].
   final String? metric;
@@ -94,7 +97,7 @@ abstract class YgDropdownFormField<T extends Object> extends StatefulWidget {
   final FocusNode? focusNode;
 
   /// See [YgDropdownField.error].
-  final String? error;
+  final String? forceErrorText;
 
   /// See [YgDropdownField.minLines].
   final int? minLines;

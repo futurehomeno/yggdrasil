@@ -30,67 +30,69 @@ class SwitchListTileScreenState extends State<SwitchListTileScreen> {
   Widget build(BuildContext context) {
     return DemoScreen(
       componentName: 'SwitchListTile',
-      child: Column(
-        children: <Widget>[
-          const YgSection(
-            child: YgCallout(
-              title: 'Note',
-              description:
-                  'You can also place a Switch inside a ListTile manually if you intend for only the Switch to be tappable. See the SwitchScreen for an example.',
+      child: YgLayoutBody(
+        child: Column(
+          children: <Widget>[
+            const YgSection(
+              child: YgCallout(
+                title: 'Note',
+                description:
+                    'You can also place a Switch inside a ListTile manually if you intend for only the Switch to be tappable. See the SwitchScreen for an example.',
+              ),
             ),
-          ),
-          YgSection.list(
-            children: <YgListTile>[
-              YgSwitchListTile(
-                title: 'SwitchListTile',
-                subtitle: 'The whole ListTile and Switch is tappable.',
-                value: switchListTileValue,
-                onChanged: (bool newValue) {
-                  switchListTileValue = newValue;
-                  setState(() {});
-                },
-              ),
-              YgSwitchListTile.triState(
-                title: 'Tri-state SwitchListTile',
-                subtitle: 'The whole ListTile and Switch is tappable.',
-                value: switchListTileTriStateValue,
-                onChanged: (bool? newValue) {
-                  switchListTileTriStateValue = newValue;
-                  setState(() {});
-                },
-              ),
-              YgSwitchListTile(
-                title: 'Disabled SwitchListTile',
-                subtitle: 'Tapping anywhere does nothing.',
-                value: switchListTileDisabledValue,
-                onChanged: null,
-              ),
-              YgSwitchListTile(
-                leadingWidget: const YgTag(
-                  child: Text('Leading widget only'),
+            YgSection.list(
+              children: <Widget>[
+                YgSwitchListTile(
+                  title: 'SwitchListTile',
+                  subtitle: 'The whole ListTile and Switch is tappable.',
+                  value: switchListTileValue,
+                  onChanged: (bool newValue) {
+                    switchListTileValue = newValue;
+                    setState(() {});
+                  },
                 ),
-                value: switchListTileLeadingOnlyValue,
-                onChanged: (bool newValue) {
-                  switchListTileLeadingOnlyValue = newValue;
-                  setState(() {});
-                },
-              ),
-              YgSwitchListTile(
-                title: 'With trailingWidget',
-                subtitle: 'Mostly used to add a YgIconButton.',
-                trailingWidget: YgIconButton(
-                  onPressed: () {},
-                  icon: YgIcons.info,
+                YgSwitchListTile.triState(
+                  title: 'Tri-state SwitchListTile',
+                  subtitle: 'The whole ListTile and Switch is tappable.',
+                  value: switchListTileTriStateValue,
+                  onChanged: (bool? newValue) {
+                    switchListTileTriStateValue = newValue;
+                    setState(() {});
+                  },
                 ),
-                value: switchListTileTrailingWidgetValue,
-                onChanged: (bool newValue) {
-                  switchListTileTrailingWidgetValue = newValue;
-                  setState(() {});
-                },
-              ),
-            ],
-          ),
-        ],
+                YgSwitchListTile(
+                  title: 'Disabled SwitchListTile',
+                  subtitle: 'Tapping anywhere does nothing.',
+                  value: switchListTileDisabledValue,
+                  onChanged: null,
+                ),
+                YgSwitchListTile(
+                  leadingWidget: const YgTag(
+                    child: Text('Leading widget only'),
+                  ),
+                  value: switchListTileLeadingOnlyValue,
+                  onChanged: (bool newValue) {
+                    switchListTileLeadingOnlyValue = newValue;
+                    setState(() {});
+                  },
+                ),
+                YgSwitchListTile(
+                  title: 'With trailingWidget',
+                  subtitle: 'Mostly used to add a YgIconButton.',
+                  trailingWidget: YgIconButton(
+                    onPressed: () {},
+                    icon: YgIcons.info,
+                  ),
+                  value: switchListTileTrailingWidgetValue,
+                  onChanged: (bool newValue) {
+                    switchListTileTrailingWidgetValue = newValue;
+                    setState(() {});
+                  },
+                ),
+              ],
+            ),
+          ],
+        ),
       ),
     );
   }

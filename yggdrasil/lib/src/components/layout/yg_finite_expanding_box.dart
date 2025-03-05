@@ -35,6 +35,7 @@ class YgFiniteExpandingBox extends SingleChildRenderObjectWidget {
   }
 
   @override
+  // ignore: library_private_types_in_public_api
   void updateRenderObject(BuildContext context, covariant _FiniteExpandingWidgetRenderer renderObject) {
     renderObject.width = width;
     renderObject.height = height;

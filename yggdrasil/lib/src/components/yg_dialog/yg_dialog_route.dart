@@ -32,6 +32,15 @@ abstract class YgDialogRoute extends PopupRoute<YgDialog> {
   bool get barrierDismissible => true;
 
   @override
+  RoutePopDisposition get popDisposition {
+    if (barrierDismissible) {
+      return RoutePopDisposition.pop;
+    }
+
+    return RoutePopDisposition.doNotPop;
+  }
+
+  @override
   String get barrierLabel => 'Dismissible Dialog';
 
   @override

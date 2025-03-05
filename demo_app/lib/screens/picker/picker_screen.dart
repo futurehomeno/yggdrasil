@@ -22,63 +22,65 @@ class PickerScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return DemoScreen(
       componentName: 'Picker',
-      child: Column(
-        children: <Widget>[
-          YgSection(
-            title: 'Single column picker',
-            child: YgPicker(
-              columns: <YgPickerColumn<Object>>[
-                YgPickerColumn<int>(
-                  entries: PickerExampleHelpers.createEntries(20),
-                  onChange: (int value) {},
-                ),
-              ],
+      child: YgLayoutBody(
+        child: Column(
+          children: <Widget>[
+            YgSection(
+              title: 'Single column picker',
+              child: YgPicker(
+                columns: <YgPickerColumn<Object>>[
+                  YgPickerColumn<int>(
+                    entries: PickerExampleHelpers.createEntries(20),
+                    onChange: (int value) {},
+                  ),
+                ],
+              ),
             ),
-          ),
-          YgSection(
-            title: 'Dual column picker',
-            child: YgPicker(
-              columns: <YgPickerColumn<Object>>[
-                YgPickerColumn<int>(
-                  entries: PickerExampleHelpers.createEntries(20),
-                  onChange: (int value) {},
-                ),
-                YgPickerColumn<int>(
-                  entries: PickerExampleHelpers.createEntries(20),
-                  onChange: (int value) {},
-                ),
-              ],
+            YgSection(
+              title: 'Dual column picker',
+              child: YgPicker(
+                columns: <YgPickerColumn<Object>>[
+                  YgPickerColumn<int>(
+                    entries: PickerExampleHelpers.createEntries(20),
+                    onChange: (int value) {},
+                  ),
+                  YgPickerColumn<int>(
+                    entries: PickerExampleHelpers.createEntries(20),
+                    onChange: (int value) {},
+                  ),
+                ],
+              ),
             ),
-          ),
-          const YgSection(
-            title: 'Triple column date picker',
-            subtitle: 'Uses controllers to modify the value and listens for rollover events.',
-            child: DatePickerExample(),
-          ),
-          YgSection(
-            title: 'Picker with a metric',
-            child: YgPicker(
-              columns: <YgPickerColumn<Object>>[
-                YgPickerColumn<int>(
-                  entries: PickerExampleHelpers.createEntries(32),
-                  onChange: (int value) {},
-                ),
-              ],
-              metric: 'A',
+            const YgSection(
+              title: 'Triple column date picker',
+              subtitle: 'Uses controllers to modify the value and listens for rollover events.',
+              child: DatePickerExample(),
             ),
-          ),
-          YgSection(
-            title: 'Single column picker with less than 4 items',
-            child: YgPicker(
-              columns: <YgPickerColumn<Object>>[
-                YgPickerColumn<int>(
-                  entries: PickerExampleHelpers.createEntries(3),
-                  onChange: (int value) {},
-                ),
-              ],
+            YgSection(
+              title: 'Picker with a metric',
+              child: YgPicker(
+                columns: <YgPickerColumn<Object>>[
+                  YgPickerColumn<int>(
+                    entries: PickerExampleHelpers.createEntries(32),
+                    onChange: (int value) {},
+                  ),
+                ],
+                metric: 'A',
+              ),
             ),
-          ),
-        ],
+            YgSection(
+              title: 'Single column picker with less than 4 items',
+              child: YgPicker(
+                columns: <YgPickerColumn<Object>>[
+                  YgPickerColumn<int>(
+                    entries: PickerExampleHelpers.createEntries(3),
+                    onChange: (int value) {},
+                  ),
+                ],
+              ),
+            ),
+          ],
+        ),
       ),
     );
   }

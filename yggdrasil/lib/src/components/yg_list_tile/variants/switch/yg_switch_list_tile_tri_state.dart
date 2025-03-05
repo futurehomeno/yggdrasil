@@ -1,4 +1,4 @@
-part of '../../yg_list_tile.dart';
+part of 'yg_switch_list_tile.dart';
 
 final class _YgSwitchListTileTriState extends YgSwitchListTile with YgTriStateToggleableMixin {
   const _YgSwitchListTileTriState({
@@ -23,9 +23,7 @@ final class _YgSwitchListTileTriState extends YgSwitchListTile with YgTriStateTo
           title != null || subtitle == null,
           'Can not have a subtitle without a title.',
         ),
-        super._(
-          disabled: onChanged == null,
-        );
+        super._();
 
   /// See [YgSwitch] documentation.
   @override
@@ -37,5 +35,14 @@ final class _YgSwitchListTileTriState extends YgSwitchListTile with YgTriStateTo
       onChanged: onChanged,
       value: value,
     );
+  }
+
+  @override
+  YgDebugType get debugType {
+    if (onChanged == null) {
+      return YgDebugType.other;
+    }
+
+    return YgDebugType.intractable;
   }
 }

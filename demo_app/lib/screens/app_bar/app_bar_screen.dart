@@ -33,90 +33,92 @@ class _AppBarScreenState extends State<AppBarScreen> {
     return DemoScreen(
       appBar: YgAppBar(
         title: 'App bar',
-        leading: getLeading(),
+        leading: _getLeading(),
         automaticallyImplyLeading: _automaticallyImplyLeading,
         actions: _actions,
         centerTitle: _centerTitle,
       ),
-      child: Column(
-        children: <Widget>[
-          YgSection.list(
-            title: 'Center title',
-            subtitle: 'Whether the title should be centered.',
-            children: <YgListTile>[
-              YgCheckboxListTile(
-                title: 'Center title',
-                value: _centerTitle,
-                onChanged: _toggleCenterTitle,
-              ),
-            ],
-          ),
-          YgSection.list(
-            title: 'Automatically imply leading',
-            subtitle: 'If true and leading is null, automatically try to deduce what the leading widget should be.',
-            children: <YgListTile>[
-              YgCheckboxListTile(
-                title: 'Automatically imply leading',
-                value: _automaticallyImplyLeading,
-                onChanged: _toggleAutomaticallyImplyLeading,
-              ),
-            ],
-          ),
-          YgSection.list(
-            title: 'Leading',
-            subtitle: 'Widget to show before the title.',
-            children: <YgListTile>[
-              YgCheckboxListTile(
-                title: 'Custom leading',
-                value: _customLeading,
-                onChanged: _toggleCustomLeading,
-              ),
-            ],
-          ),
-          Consumer<YgAppState>(
-            builder: (BuildContext context, YgAppState ygAppState, Widget? widget) {
-              return YgSection.list(
-                title: 'Actions',
-                subtitle: 'Widgets to show after the title.',
-                children: <YgListTile>[
-                  YgRadioListTile<int>(
-                    title: 'No actions',
-                    value: 1,
-                    groupValue: _actionsRadioGroupValue,
-                    onChanged: _setNoActions,
-                  ),
-                  YgRadioListTile<int>(
-                    title: 'Single action',
-                    value: 2,
-                    groupValue: _actionsRadioGroupValue,
-                    onChanged: _setSingleAction,
-                  ),
-                  YgRadioListTile<int>(
-                    title: 'Multiple actions (default for demo app)',
-                    value: 3,
-                    groupValue: _actionsRadioGroupValue,
-                    onChanged: (int? newValue) {
-                      _setMultipleActions(
+      child: YgLayoutBody(
+        child: Column(
+          children: <Widget>[
+            YgSection.list(
+              title: 'Center title',
+              subtitle: 'Whether the title should be centered.',
+              children: <Widget>[
+                YgCheckboxListTile(
+                  title: 'Center title',
+                  value: _centerTitle,
+                  onChanged: _toggleCenterTitle,
+                ),
+              ],
+            ),
+            YgSection.list(
+              title: 'Automatically imply leading',
+              subtitle: 'If true and leading is null, automatically try to deduce what the leading widget should be.',
+              children: <Widget>[
+                YgCheckboxListTile(
+                  title: 'Automatically imply leading',
+                  value: _automaticallyImplyLeading,
+                  onChanged: _toggleAutomaticallyImplyLeading,
+                ),
+              ],
+            ),
+            YgSection.list(
+              title: 'Leading',
+              subtitle: 'Widget to show before the title.',
+              children: <Widget>[
+                YgCheckboxListTile(
+                  title: 'Custom leading',
+                  value: _customLeading,
+                  onChanged: _toggleCustomLeading,
+                ),
+              ],
+            ),
+            Consumer<YgAppState>(
+              builder: (BuildContext context, YgAppState ygAppState, Widget? widget) {
+                return YgSection.list(
+                  title: 'Actions',
+                  subtitle: 'Widgets to show after the title.',
+                  children: <Widget>[
+                    YgRadioListTile<int>(
+                      title: 'No actions',
+                      value: 1,
+                      groupValue: _actionsRadioGroupValue,
+                      onChanged: _setNoActions,
+                    ),
+                    YgRadioListTile<int>(
+                      title: 'Single action',
+                      value: 2,
+                      groupValue: _actionsRadioGroupValue,
+                      onChanged: _setSingleAction,
+                    ),
+                    YgRadioListTile<int>(
+                      title: 'Multiple actions (default for demo app)',
+                      value: 3,
+                      groupValue: _actionsRadioGroupValue,
+                      onChanged: (int? newValue) => _setMultipleActions(
                         newValue: newValue,
                         context: context,
                         ygAppState: ygAppState,
-                      );
-                    },
-                  ),
-                ],
-              );
-            },
-          ),
-          const YgSection(
-            title: 'Padding to allow the screen to scroll',
-            child: SizedBox(height: 666.0),
-          ),
-        ],
+                      ),
+                    ),
+                  ],
+                );
+              },
+            ),
+            YgSection(
+              title: 'Padding to allow the screen to scroll',
+              child: DemoPlaceholder(
+                height: MediaQuery.sizeOf(context).height,
+              ),
+            ),
+          ],
+        ),
       ),
     );
   }
 
-  Widget? getLeading() {
+  Widget? _getLeading() {
     if (_customLeading) {
       return YgIconButton(
         icon: YgIcons.info,

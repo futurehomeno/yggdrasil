@@ -16,7 +16,7 @@ class YgExpansionController extends ChangeNotifier {
 
   /// Toggles the [expanded] state.
   void toggle() {
-    _expanded ^= true;
+    _expanded = !_expanded;
     notifyListeners();
   }
 

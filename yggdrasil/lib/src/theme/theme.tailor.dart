@@ -27,6 +27,7 @@ class YgTheme extends ThemeExtension<YgTheme> {
     required this.iconButtonTheme,
     required this.iconTheme,
     required this.internalTheme,
+    required this.layoutTheme,
     required this.listTileTheme,
     required this.miniBarGraphTheme,
     required this.mobileScannerContainerTheme,
@@ -34,6 +35,9 @@ class YgTheme extends ThemeExtension<YgTheme> {
     required this.progressIndicatorTheme,
     required this.pulseTheme,
     required this.radioTheme,
+    required this.searchBarTheme,
+    required this.searchFieldTheme,
+    required this.searchModalTheme,
     required this.sectionTheme,
     required this.segmentedButtonTheme,
     required this.sliderTheme,
@@ -66,6 +70,7 @@ class YgTheme extends ThemeExtension<YgTheme> {
   final YgIconButtonTheme iconButtonTheme;
   final YgIconTheme iconTheme;
   final YgInternalTheme internalTheme;
+  final YgLayoutTheme layoutTheme;
   final YgListTileTheme listTileTheme;
   final YgMiniBarGraphTheme miniBarGraphTheme;
   final YgMobileScannerContainerTheme mobileScannerContainerTheme;
@@ -73,6 +78,9 @@ class YgTheme extends ThemeExtension<YgTheme> {
   final YgProgressIndicatorTheme progressIndicatorTheme;
   final YgPulseTheme pulseTheme;
   final YgRadioTheme radioTheme;
+  final YgSearchBarTheme searchBarTheme;
+  final YgSearchFieldTheme searchFieldTheme;
+  final YgSearchModalTheme searchModalTheme;
   final YgSectionTheme sectionTheme;
   final YgSegmentedButtonTheme segmentedButtonTheme;
   final YgSliderTheme sliderTheme;
@@ -105,6 +113,7 @@ class YgTheme extends ThemeExtension<YgTheme> {
     iconButtonTheme: _$YgTheme.iconButtonTheme[0],
     iconTheme: _$YgTheme.iconTheme[0],
     internalTheme: _$YgTheme.internalTheme[0],
+    layoutTheme: _$YgTheme.layoutTheme[0],
     listTileTheme: _$YgTheme.listTileTheme[0],
     miniBarGraphTheme: _$YgTheme.miniBarGraphTheme[0],
     mobileScannerContainerTheme: _$YgTheme.mobileScannerContainerTheme[0],
@@ -112,6 +121,9 @@ class YgTheme extends ThemeExtension<YgTheme> {
     progressIndicatorTheme: _$YgTheme.progressIndicatorTheme[0],
     pulseTheme: _$YgTheme.pulseTheme[0],
     radioTheme: _$YgTheme.radioTheme[0],
+    searchBarTheme: _$YgTheme.searchBarTheme[0],
+    searchFieldTheme: _$YgTheme.searchFieldTheme[0],
+    searchModalTheme: _$YgTheme.searchModalTheme[0],
     sectionTheme: _$YgTheme.sectionTheme[0],
     segmentedButtonTheme: _$YgTheme.segmentedButtonTheme[0],
     sliderTheme: _$YgTheme.sliderTheme[0],
@@ -145,6 +157,7 @@ class YgTheme extends ThemeExtension<YgTheme> {
     iconButtonTheme: _$YgTheme.iconButtonTheme[1],
     iconTheme: _$YgTheme.iconTheme[1],
     internalTheme: _$YgTheme.internalTheme[1],
+    layoutTheme: _$YgTheme.layoutTheme[1],
     listTileTheme: _$YgTheme.listTileTheme[1],
     miniBarGraphTheme: _$YgTheme.miniBarGraphTheme[1],
     mobileScannerContainerTheme: _$YgTheme.mobileScannerContainerTheme[1],
@@ -152,6 +165,9 @@ class YgTheme extends ThemeExtension<YgTheme> {
     progressIndicatorTheme: _$YgTheme.progressIndicatorTheme[1],
     pulseTheme: _$YgTheme.pulseTheme[1],
     radioTheme: _$YgTheme.radioTheme[1],
+    searchBarTheme: _$YgTheme.searchBarTheme[1],
+    searchFieldTheme: _$YgTheme.searchFieldTheme[1],
+    searchModalTheme: _$YgTheme.searchModalTheme[1],
     sectionTheme: _$YgTheme.sectionTheme[1],
     segmentedButtonTheme: _$YgTheme.segmentedButtonTheme[1],
     sliderTheme: _$YgTheme.sliderTheme[1],
@@ -185,6 +201,7 @@ class YgTheme extends ThemeExtension<YgTheme> {
     iconButtonTheme: _$YgTheme.iconButtonTheme[2],
     iconTheme: _$YgTheme.iconTheme[2],
     internalTheme: _$YgTheme.internalTheme[2],
+    layoutTheme: _$YgTheme.layoutTheme[2],
     listTileTheme: _$YgTheme.listTileTheme[2],
     miniBarGraphTheme: _$YgTheme.miniBarGraphTheme[2],
     mobileScannerContainerTheme: _$YgTheme.mobileScannerContainerTheme[2],
@@ -192,6 +209,9 @@ class YgTheme extends ThemeExtension<YgTheme> {
     progressIndicatorTheme: _$YgTheme.progressIndicatorTheme[2],
     pulseTheme: _$YgTheme.pulseTheme[2],
     radioTheme: _$YgTheme.radioTheme[2],
+    searchBarTheme: _$YgTheme.searchBarTheme[2],
+    searchFieldTheme: _$YgTheme.searchFieldTheme[2],
+    searchModalTheme: _$YgTheme.searchModalTheme[2],
     sectionTheme: _$YgTheme.sectionTheme[2],
     segmentedButtonTheme: _$YgTheme.segmentedButtonTheme[2],
     sliderTheme: _$YgTheme.sliderTheme[2],
@@ -225,6 +245,7 @@ class YgTheme extends ThemeExtension<YgTheme> {
     iconButtonTheme: _$YgTheme.iconButtonTheme[3],
     iconTheme: _$YgTheme.iconTheme[3],
     internalTheme: _$YgTheme.internalTheme[3],
+    layoutTheme: _$YgTheme.layoutTheme[3],
     listTileTheme: _$YgTheme.listTileTheme[3],
     miniBarGraphTheme: _$YgTheme.miniBarGraphTheme[3],
     mobileScannerContainerTheme: _$YgTheme.mobileScannerContainerTheme[3],
@@ -232,6 +253,9 @@ class YgTheme extends ThemeExtension<YgTheme> {
     progressIndicatorTheme: _$YgTheme.progressIndicatorTheme[3],
     pulseTheme: _$YgTheme.pulseTheme[3],
     radioTheme: _$YgTheme.radioTheme[3],
+    searchBarTheme: _$YgTheme.searchBarTheme[3],
+    searchFieldTheme: _$YgTheme.searchFieldTheme[3],
+    searchModalTheme: _$YgTheme.searchModalTheme[3],
     sectionTheme: _$YgTheme.sectionTheme[3],
     segmentedButtonTheme: _$YgTheme.segmentedButtonTheme[3],
     sliderTheme: _$YgTheme.sliderTheme[3],
@@ -273,6 +297,7 @@ class YgTheme extends ThemeExtension<YgTheme> {
     YgIconButtonTheme? iconButtonTheme,
     YgIconTheme? iconTheme,
     YgInternalTheme? internalTheme,
+    YgLayoutTheme? layoutTheme,
     YgListTileTheme? listTileTheme,
     YgMiniBarGraphTheme? miniBarGraphTheme,
     YgMobileScannerContainerTheme? mobileScannerContainerTheme,
@@ -280,6 +305,9 @@ class YgTheme extends ThemeExtension<YgTheme> {
     YgProgressIndicatorTheme? progressIndicatorTheme,
     YgPulseTheme? pulseTheme,
     YgRadioTheme? radioTheme,
+    YgSearchBarTheme? searchBarTheme,
+    YgSearchFieldTheme? searchFieldTheme,
+    YgSearchModalTheme? searchModalTheme,
     YgSectionTheme? sectionTheme,
     YgSegmentedButtonTheme? segmentedButtonTheme,
     YgSliderTheme? sliderTheme,
@@ -312,6 +340,7 @@ class YgTheme extends ThemeExtension<YgTheme> {
       iconButtonTheme: iconButtonTheme ?? this.iconButtonTheme,
       iconTheme: iconTheme ?? this.iconTheme,
       internalTheme: internalTheme ?? this.internalTheme,
+      layoutTheme: layoutTheme ?? this.layoutTheme,
       listTileTheme: listTileTheme ?? this.listTileTheme,
       miniBarGraphTheme: miniBarGraphTheme ?? this.miniBarGraphTheme,
       mobileScannerContainerTheme:
@@ -321,6 +350,9 @@ class YgTheme extends ThemeExtension<YgTheme> {
           progressIndicatorTheme ?? this.progressIndicatorTheme,
       pulseTheme: pulseTheme ?? this.pulseTheme,
       radioTheme: radioTheme ?? this.radioTheme,
+      searchBarTheme: searchBarTheme ?? this.searchBarTheme,
+      searchFieldTheme: searchFieldTheme ?? this.searchFieldTheme,
+      searchModalTheme: searchModalTheme ?? this.searchModalTheme,
       sectionTheme: sectionTheme ?? this.sectionTheme,
       segmentedButtonTheme: segmentedButtonTheme ?? this.segmentedButtonTheme,
       sliderTheme: sliderTheme ?? this.sliderTheme,
@@ -363,6 +395,7 @@ class YgTheme extends ThemeExtension<YgTheme> {
       iconTheme: iconTheme.lerp(other.iconTheme, t) as YgIconTheme,
       internalTheme:
           internalTheme.lerp(other.internalTheme, t) as YgInternalTheme,
+      layoutTheme: layoutTheme.lerp(other.layoutTheme, t) as YgLayoutTheme,
       listTileTheme:
           listTileTheme.lerp(other.listTileTheme, t) as YgListTileTheme,
       miniBarGraphTheme: miniBarGraphTheme.lerp(other.miniBarGraphTheme, t)
@@ -375,6 +408,12 @@ class YgTheme extends ThemeExtension<YgTheme> {
           other.progressIndicatorTheme, t) as YgProgressIndicatorTheme,
       pulseTheme: pulseTheme.lerp(other.pulseTheme, t) as YgPulseTheme,
       radioTheme: radioTheme.lerp(other.radioTheme, t) as YgRadioTheme,
+      searchBarTheme:
+          searchBarTheme.lerp(other.searchBarTheme, t) as YgSearchBarTheme,
+      searchFieldTheme: searchFieldTheme.lerp(other.searchFieldTheme, t)
+          as YgSearchFieldTheme,
+      searchModalTheme: searchModalTheme.lerp(other.searchModalTheme, t)
+          as YgSearchModalTheme,
       sectionTheme: sectionTheme.lerp(other.sectionTheme, t) as YgSectionTheme,
       segmentedButtonTheme: segmentedButtonTheme.lerp(
           other.segmentedButtonTheme, t) as YgSegmentedButtonTheme,
@@ -434,6 +473,8 @@ class YgTheme extends ThemeExtension<YgTheme> {
             const DeepCollectionEquality()
                 .equals(internalTheme, other.internalTheme) &&
             const DeepCollectionEquality()
+                .equals(layoutTheme, other.layoutTheme) &&
+            const DeepCollectionEquality()
                 .equals(listTileTheme, other.listTileTheme) &&
             const DeepCollectionEquality()
                 .equals(miniBarGraphTheme, other.miniBarGraphTheme) &&
@@ -447,6 +488,12 @@ class YgTheme extends ThemeExtension<YgTheme> {
                 .equals(pulseTheme, other.pulseTheme) &&
             const DeepCollectionEquality()
                 .equals(radioTheme, other.radioTheme) &&
+            const DeepCollectionEquality()
+                .equals(searchBarTheme, other.searchBarTheme) &&
+            const DeepCollectionEquality()
+                .equals(searchFieldTheme, other.searchFieldTheme) &&
+            const DeepCollectionEquality()
+                .equals(searchModalTheme, other.searchModalTheme) &&
             const DeepCollectionEquality()
                 .equals(sectionTheme, other.sectionTheme) &&
             const DeepCollectionEquality()
@@ -493,6 +540,7 @@ class YgTheme extends ThemeExtension<YgTheme> {
       const DeepCollectionEquality().hash(iconButtonTheme),
       const DeepCollectionEquality().hash(iconTheme),
       const DeepCollectionEquality().hash(internalTheme),
+      const DeepCollectionEquality().hash(layoutTheme),
       const DeepCollectionEquality().hash(listTileTheme),
       const DeepCollectionEquality().hash(miniBarGraphTheme),
       const DeepCollectionEquality().hash(mobileScannerContainerTheme),
@@ -500,6 +548,9 @@ class YgTheme extends ThemeExtension<YgTheme> {
       const DeepCollectionEquality().hash(progressIndicatorTheme),
       const DeepCollectionEquality().hash(pulseTheme),
       const DeepCollectionEquality().hash(radioTheme),
+      const DeepCollectionEquality().hash(searchBarTheme),
+      const DeepCollectionEquality().hash(searchFieldTheme),
+      const DeepCollectionEquality().hash(searchModalTheme),
       const DeepCollectionEquality().hash(sectionTheme),
       const DeepCollectionEquality().hash(segmentedButtonTheme),
       const DeepCollectionEquality().hash(sliderTheme),
@@ -536,6 +587,7 @@ extension YgThemeBuildContextProps on BuildContext {
   YgIconButtonTheme get iconButtonTheme => ygTheme.iconButtonTheme;
   YgIconTheme get iconTheme => ygTheme.iconTheme;
   YgInternalTheme get internalTheme => ygTheme.internalTheme;
+  YgLayoutTheme get layoutTheme => ygTheme.layoutTheme;
   YgListTileTheme get listTileTheme => ygTheme.listTileTheme;
   YgMiniBarGraphTheme get miniBarGraphTheme => ygTheme.miniBarGraphTheme;
   YgMobileScannerContainerTheme get mobileScannerContainerTheme =>
@@ -545,6 +597,9 @@ extension YgThemeBuildContextProps on BuildContext {
       ygTheme.progressIndicatorTheme;
   YgPulseTheme get pulseTheme => ygTheme.pulseTheme;
   YgRadioTheme get radioTheme => ygTheme.radioTheme;
+  YgSearchBarTheme get searchBarTheme => ygTheme.searchBarTheme;
+  YgSearchFieldTheme get searchFieldTheme => ygTheme.searchFieldTheme;
+  YgSearchModalTheme get searchModalTheme => ygTheme.searchModalTheme;
   YgSectionTheme get sectionTheme => ygTheme.sectionTheme;
   YgSegmentedButtonTheme get segmentedButtonTheme =>
       ygTheme.segmentedButtonTheme;

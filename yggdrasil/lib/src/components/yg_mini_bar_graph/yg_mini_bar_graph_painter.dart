@@ -82,7 +82,7 @@ class YgMiniBarGraphPainter extends CustomPainter {
       }
 
       final double percentage;
-      if (bars == null) {
+      if (bars == null || maxValue == 0) {
         percentage = 0;
       } else if (bar == null) {
         percentage = 0.5;

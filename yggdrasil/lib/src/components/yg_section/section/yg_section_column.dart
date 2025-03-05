@@ -2,11 +2,13 @@ part of 'yg_section.dart';
 
 class _YgSectionColumn extends YgSection {
   const _YgSectionColumn({
+    super.key,
     required this.children,
     super.title,
     super.subtitle,
     super.trailing,
     super.icon,
+    super.onHeaderPressed,
     this.crossAxisAlignment = CrossAxisAlignment.start,
   }) : super._();
 

@@ -1,3 +1,4 @@
+export 'yg_animated_colored_box.dart';
 export 'yg_animated_constrained_box.dart';
 export 'yg_animated_container.dart';
 export 'yg_animated_decorated_box.dart';

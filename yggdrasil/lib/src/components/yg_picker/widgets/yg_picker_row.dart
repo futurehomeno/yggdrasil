@@ -118,27 +118,14 @@ class YgRowRenderer extends RenderBox
     );
   }
 
-  double? computeDistanceToFirstActualBaseline(TextBaseline baseline) {
-    return defaultComputeDistanceToFirstActualBaseline(
-      baseline,
-    );
-  }
-
-  double? computeDistanceToHighestActualBaseline(TextBaseline baseline) {
-    return defaultComputeDistanceToHighestActualBaseline(
-      baseline,
-    );
+  @override
+  double? computeDistanceToActualBaseline(TextBaseline baseline) {
+    return defaultComputeDistanceToFirstActualBaseline(baseline);
   }
 
   @override
-  bool hitTestChildren(
-    BoxHitTestResult result, {
-    required Offset position,
-  }) {
-    return defaultHitTestChildren(
-      result,
-      position: position,
-    );
+  bool hitTestChildren(BoxHitTestResult result, {required Offset position}) {
+    return defaultHitTestChildren(result, position: position);
   }
 
   @override

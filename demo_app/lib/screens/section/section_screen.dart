@@ -19,26 +19,22 @@ class SectionScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const DefaultTabController(
-      length: 3,
-      child: DemoScreen(
-        componentName: 'Section',
-        scrollable: false,
-        bottom: YgTabBar(
-          tabs: <YgTab>[
-            YgTab(label: 'Regular'),
-            YgTab(label: 'Column'),
-            YgTab(label: 'List'),
-          ],
+    return const DemoScreen.tabbed(
+      componentName: 'Section',
+      tabs: <YgLayoutTab>[
+        YgLayoutTab(
+          title: 'Regular',
+          content: RegularExample(),
         ),
-        child: TabBarView(
-          children: <Widget>[
-            SingleChildScrollView(child: RegularExample()),
-            SingleChildScrollView(child: ColumnExample()),
-            SingleChildScrollView(child: ListExample()),
-          ],
+        YgLayoutTab(
+          title: 'Column',
+          content: ColumnExample(),
         ),
-      ),
+        YgLayoutTab(
+          title: 'List',
+          content: ListExample(),
+        ),
+      ],
     );
   }
 }

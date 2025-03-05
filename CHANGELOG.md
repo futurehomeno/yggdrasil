@@ -1,3 +1,143 @@
+# 1.13.2 [2025-02-27T13:01:11.335829]
+
+### Changes
+
+- [fix] Fixed issue with theme not being applied correctly to tab labels.
+- [fix] non dismissible dialog and bottom sheet routes are no longer dismissible through system back button.
+
+# 1.13.1 [2025-02-27T12:01:31.632361]
+
+## Breaking changes
+
+- [breaking] Removed scrollable property from YgTabBar (this is now handled automatically).
+
+### Changes
+
+- Tim/tab bar fix (#198)
+- [fix] Fixed incorrect padding in scrollable tab bar.
+- [improvement] Added onTabVisible and onTabChanged.
+
+# 1.13.0 [2025-02-21T16:01:03.209322]
+
+## Breaking changes
+
+- [breaking] Removed bottom option from YgAppBar.
+
+### Changes
+
+- [feature] Implemented YgLayout and YgLayoutBody DEV-2388.
+- [improvement] Updated all scroll shadows to correct theme colors and sizes.
+
+# 1.12.25 [2025-01-16T17:32:48.509483]
+
+### Changes
+
+- [fix] Added missing arguments to text form field constructors.
+
+# 1.12.24 [2025-01-14T14:28:00.527966]
+
+### Changes
+
+- [fix] Fixed exact search provider incorrectly highlighting the search matches.
+- [improvement] Added option for case sensitivity on exact search provider.
+
+# 1.12.23 [2024-12-17T12:23:37.240138]
+
+### Changes
+
+- [fix] Fixed initial value not applying to search query of advanced text field.
+- [fix] Fixed issue not allowing advanced search fields to clear their search query without selecting a value first.
+
+# 1.12.22 [2024-12-16T16:50:08.116295]
+
+### Changes
+
+- [fix] Fix advanced search controller not rebuilding results after initializing a new session.
+
+# 1.12.21 [2024-12-16T16:23:11.711185]
+
+### Changes
+
+- [dev-fix] Added missing keys to list tiles.
+- [fix] Fixed issues with search controllers.
+
+# 1.12.20 [2024-12-11T17:02:37.091628]
+
+### Changes
+
+- [dev-improvement] Improved search interface.
+- [feature] Added YgAppSearchBar.
+- [feature] Added YgSearchBar.
+
+# 1.12.19 [2024-11-22T15:17:35.906508]
+
+### Changes
+
+- [fix] Fixed issue where incorrect view padding gets applied to the bottomsheet
+
+# 1.12.18 [2024-11-21T13:33:11.955780]
+
+### Changes
+
+- [dev-improvement] Updated svg dependency.
+
+# 1.12.17 [2024-11-05T16:36:38.383604]
+
+### Changes
+
+- [fix] Fixed error on ios complaining about the TextInputAction none not being supported.
+
+# 1.12.16 [2024-11-05T16:09:57.049261]
+
+### Changes
+
+- [fix] Added missing onChanged method to all form fields
+- reverted change for 3.24.3 (#182)
+
+# 1.12.15 [2024-10-29T16:27:19.351472]
+- [feature] Added YgSearchField DEV-4158.
+
+# 1.12.14 [2024-10-21T20:12:45.453819]
+
+# 1.12.13 [2024-10-21T13:11:49.491020]
+
+### Changes
+
+- [dev-fix] Fixed path for artifacts.
+
+# 1.12.12 [2024-10-21T12:06:57.618491]
+
+### Changes
+
+- [dev-fix] Fixed creating new yggdrasil version.
+- [fix] Updated Flutter version for CI/CD.
+
+# 1.12.11 [2024-10-10T13:04:04.619351]
+
+### Changes
+
+- [change] Updated to flutter 3.24.3
+
+# 1.12.10 [2024-09-18T12:34:47.982809]
+
+### Changes
+
+- [fix] Fixed issue where widgets with build in style listeners would try to listen to a disposed style.
+
+# 1.12.9 [2024-08-28T12:35:04.668892]
+
+### Changes
+
+- [fix] Fixed bar graph using the same color for the value high and low variant values.
+- fixed incorrect token (#178)
+
+# 1.12.8 [2024-08-26T16:16:00.021390]
+
+### Changes
+
+- Tim/devide_by_zero_fix [DEV-4134] (#177)
+- [fix] Fix devide by zero error when the highest value in a mini bar graph was zero DEV-4134.
+
 # 1.12.7 [2024-07-09T14:25:14.051425]
 
 ### Changes

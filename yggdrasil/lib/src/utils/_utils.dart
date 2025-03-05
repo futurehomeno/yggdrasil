@@ -1,11 +1,16 @@
 export 'yg_child_size_observer.dart';
+export 'yg_constant_size_animated_cross_fade/yg_constant_size_animated_cross_fade.dart';
 export 'yg_consts.dart';
 export 'yg_controller_manager/_yg_controller_manager.dart';
 export 'yg_debug/_yg_debug.dart';
+export 'yg_editable_text_container_mixin/_yg_editable_text_container_mixin.dart';
+export 'yg_editing_complete_helper.dart';
 export 'yg_expander/_yg_expander.dart';
 export 'yg_focusable_action_detector.dart';
 export 'yg_icon_data/_yg_icon_data.dart';
+export 'yg_match_text/_yg_match_text.dart';
 export 'yg_no_focus.dart';
+export 'yg_optimized_listenable_builder.dart';
 export 'yg_rounded_rectangle_gradient_border.dart';
 export 'yg_scroll_shadow/yg_scroll_shadow.dart';
 export 'yg_size_transition.dart';

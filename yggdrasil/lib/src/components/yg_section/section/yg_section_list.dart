@@ -2,11 +2,13 @@ part of 'yg_section.dart';
 
 class _YgSectionList extends YgSection {
   const _YgSectionList({
+    super.key,
     required this.children,
     super.title,
     super.subtitle,
     super.trailing,
     super.icon,
+    super.onHeaderPressed,
   }) : super._();
 
   /// The widgets below this widget in the tree.

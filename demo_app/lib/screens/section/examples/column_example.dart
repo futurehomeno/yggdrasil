@@ -13,38 +13,45 @@ class ColumnExample extends StatelessWidget {
       DemoPlaceholder(),
     ];
 
-    return const Column(
-      children: <Widget>[
-        YgSection.column(
-          children: children,
-        ),
-        YgSection.column(
-          title: 'With title',
-          children: children,
-        ),
-        YgSection.column(
-          title: 'With title and subtitle',
-          subtitle: 'The subtitle',
-          children: children,
-        ),
-        YgSection.column(
-          title: 'With title and trailing widget',
-          trailing: DemoPlaceholder(height: 25),
-          children: children,
-        ),
-        YgSection.column(
-          title: 'With title and icon',
-          icon: YgIcons.placeholder,
-          children: children,
-        ),
-        YgSection.column(
-          title: 'With title, icon, trailing widget and long subtitle',
-          subtitle: 'Cupidatat ea voluptate exercitation irure ea occaecat pariatur elit minim non incididunt in.',
-          icon: YgIcons.placeholder,
-          trailing: DemoPlaceholder(height: 25),
-          children: children,
-        ),
-      ],
+    return YgLayoutBody(
+      child: Column(
+        children: <Widget>[
+          const YgSection.column(
+            children: children,
+          ),
+          const YgSection.column(
+            title: 'With title',
+            children: children,
+          ),
+          YgSection.column(
+            title: 'With clickable header',
+            onHeaderPressed: () {},
+            children: children,
+          ),
+          const YgSection.column(
+            title: 'With title and subtitle',
+            subtitle: 'The subtitle',
+            children: children,
+          ),
+          const YgSection.column(
+            title: 'With title and trailing widget',
+            trailing: DemoPlaceholder(height: 25),
+            children: children,
+          ),
+          const YgSection.column(
+            title: 'With title and icon',
+            icon: YgIcons.placeholder,
+            children: children,
+          ),
+          const YgSection.column(
+            title: 'With title, icon, trailing widget and long subtitle',
+            subtitle: 'Cupidatat ea voluptate exercitation irure ea occaecat pariatur elit minim non incididunt in.',
+            icon: YgIcons.placeholder,
+            trailing: DemoPlaceholder(height: 25),
+            children: children,
+          ),
+        ],
+      ),
     );
   }
 }

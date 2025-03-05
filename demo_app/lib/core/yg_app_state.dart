@@ -28,13 +28,13 @@ class YgAppState extends ChangeNotifier {
   }
 
   void toggleDarkMode() {
-    _darkMode ^= true;
+    _darkMode = !_darkMode;
     _sharedPreferences.setBool('dark_mode', _darkMode);
     _updateTheme();
   }
 
   void toggleProfessionalTheme() {
-    _businessTheme ^= true;
+    _businessTheme = !_businessTheme;
     _sharedPreferences.setBool('business_theme', _businessTheme);
     _updateTheme();
   }

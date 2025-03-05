@@ -152,7 +152,7 @@ class YgMultiSelectDropdownController<T extends Object>
   }
 
   void _onChange() {
-    _fieldState?.widget.onChange?.call(Set<T>.of(_value));
+    _fieldState?.widget.onChanged?.call(Set<T>.of(_value));
   }
 
   @override

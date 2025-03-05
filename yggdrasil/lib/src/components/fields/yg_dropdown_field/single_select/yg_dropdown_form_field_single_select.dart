@@ -23,6 +23,7 @@ class _YgDropdownFormFieldSingleSelect<T extends Object> extends YgDropdownFormF
     super.metric,
     this.initialValue,
     this.controller,
+    this.onChanged,
     List<FormFieldValidator<T>>? validators,
   })  : onSaved = null,
         validator = YgValidateHelper.combineValidators(validators),
@@ -41,6 +42,11 @@ class _YgDropdownFormFieldSingleSelect<T extends Object> extends YgDropdownFormF
       onEditingComplete: onEditingComplete,
     );
 
+    void onChangedHandler(T? value) {
+      field.didChange(value);
+      onChanged?.call(value);
+    }
+
     return UnmanagedRestorationScope(
       bucket: field.bucket,
       child: YgDropdownField<T>(
@@ -50,14 +56,14 @@ class _YgDropdownFormFieldSingleSelect<T extends Object> extends YgDropdownFormF
         size: size,
         focusNode: focusNode,
         initialValue: initialValue,
-        error: error ?? field.errorText,
+        error: field.errorText,
         minLines: minLines,
         placeholder: placeholder,
         maxLines: maxLines,
         disabled: disabled,
         allowDeselect: allowDeselect,
         dropdownAction: dropdownAction,
-        onChange: field.didChange,
+        onChanged: onChangedHandler,
         controller: controller,
         onFocusChanged: helper.onFocusChanged,
         onEditingComplete: helper.onEditingComplete,
@@ -86,6 +92,9 @@ class _YgDropdownFormFieldSingleSelect<T extends Object> extends YgDropdownFormF
   ///
   /// See [YgDropdownController] for more information on how to use it.
   final YgSingleSelectDropdownController<T>? controller;
+
+  /// Called with the new value when the value has changed.
+  final ValueChanged<T?>? onChanged;
 
   final FormFieldKey<T> _key;
 

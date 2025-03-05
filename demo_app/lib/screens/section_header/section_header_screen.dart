@@ -17,36 +17,42 @@ class SectionHeaderScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const DemoScreen(
+    return DemoScreen(
       componentName: 'SectionHeader',
-      child: Column(
-        children: <Widget>[
-          YgSectionHeader(
-            title: 'With only a title',
-          ),
-          YgSectionHeader(
-            title: 'With title and subtitle',
-            subtitle: 'The subtitle',
-          ),
-          YgSectionHeader(
-            title: 'With title and trailing widget',
-            trailing: DemoPlaceholder(
-              height: 25,
+      child: YgLayoutBody(
+        child: Column(
+          children: <Widget>[
+            const YgSectionHeader(
+              title: 'With only a title',
             ),
-          ),
-          YgSectionHeader(
-            title: 'With title and icon',
-            icon: YgIcons.placeholder,
-          ),
-          YgSectionHeader(
-            title: 'With title, icon, trailing widget and long subtitle',
-            subtitle: 'Cupidatat ea voluptate exercitation irure ea occaecat pariatur elit minim non incididunt in.',
-            icon: YgIcons.placeholder,
-            trailing: DemoPlaceholder(
-              height: 25,
+            YgSectionHeader(
+              title: 'Clickable',
+              onPressed: () {},
             ),
-          ),
-        ],
+            const YgSectionHeader(
+              title: 'With title and subtitle',
+              subtitle: 'The subtitle',
+            ),
+            const YgSectionHeader(
+              title: 'With title and trailing widget',
+              trailing: DemoPlaceholder(
+                height: 25,
+              ),
+            ),
+            const YgSectionHeader(
+              title: 'With title and icon',
+              icon: YgIcons.placeholder,
+            ),
+            const YgSectionHeader(
+              title: 'With title, icon, trailing widget and long subtitle',
+              subtitle: 'Cupidatat ea voluptate exercitation irure ea occaecat pariatur elit minim non incididunt in.',
+              icon: YgIcons.placeholder,
+              trailing: DemoPlaceholder(
+                height: 25,
+              ),
+            ),
+          ],
+        ),
       ),
     );
   }

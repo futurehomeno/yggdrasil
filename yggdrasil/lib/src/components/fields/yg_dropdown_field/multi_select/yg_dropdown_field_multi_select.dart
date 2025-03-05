@@ -22,7 +22,7 @@ class _YgDropdownFieldMultiSelect<T extends Object> extends YgDropdownField<T> {
     super.metric,
     YgMultiSelectDropdownController<T>? super.controller,
     this.initialValue,
-    this.onChange,
+    this.onChanged,
   })  : assert(
           dropdownAction != YgDropdownAction.picker,
           "Can not use 'YgDropdownAction.picker' in YgDropdownField.multiSelect",
@@ -41,7 +41,7 @@ class _YgDropdownFieldMultiSelect<T extends Object> extends YgDropdownField<T> {
   /// !-- WARNING --
   /// This value can be called multiple times while the dropdown is opened and
   /// is not an alternative to the [onEditingComplete] callback.
-  final ValueChanged<Set<T>>? onChange;
+  final ValueChanged<Set<T>>? onChanged;
 
   @override
   _YgDropdownFieldMultiSelectState<T> createState() => _YgDropdownFieldMultiSelectState<T>();

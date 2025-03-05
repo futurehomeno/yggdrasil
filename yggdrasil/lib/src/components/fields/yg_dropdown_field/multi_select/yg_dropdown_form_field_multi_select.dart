@@ -23,6 +23,7 @@ class _YgDropdownFormFieldMultiSelect<T extends Object> extends YgDropdownFormFi
     super.metric,
     this.initialValue,
     this.controller,
+    this.onChanged,
     List<FormFieldValidator<Set<T>>>? validators,
   })  : validator = YgValidateHelper.combineValidators(validators),
         autovalidateMode = YgValidateHelper.mapAutoValidate(autoValidate),
@@ -41,6 +42,11 @@ class _YgDropdownFormFieldMultiSelect<T extends Object> extends YgDropdownFormFi
       onEditingComplete: onEditingComplete,
     );
 
+    void onChangedHandler(Set<T> value) {
+      field.didChange(value);
+      onChanged?.call(value);
+    }
+
     return UnmanagedRestorationScope(
       bucket: field.bucket,
       child: YgDropdownField<T>.multiSelect(
@@ -50,14 +56,14 @@ class _YgDropdownFormFieldMultiSelect<T extends Object> extends YgDropdownFormFi
         size: size,
         focusNode: focusNode,
         initialValue: initialValue,
-        error: error ?? field.errorText,
+        error: field.errorText,
         minLines: minLines,
         placeholder: placeholder,
         maxLines: maxLines,
         disabled: disabled,
         allowDeselect: allowDeselect,
         dropdownAction: dropdownAction,
-        onChange: field.didChange,
+        onChanged: onChangedHandler,
         controller: controller,
         onFocusChanged: helper.onFocusChanged,
         onEditingComplete: helper.onEditingComplete,
@@ -86,6 +92,9 @@ class _YgDropdownFormFieldMultiSelect<T extends Object> extends YgDropdownFormFi
   ///
   /// See [YgDropdownController] for more information on how to use it.
   final YgMultiSelectDropdownController<T>? controller;
+
+  /// Called with the new value when the value has changed.
+  final ValueChanged<Set<T>>? onChanged;
 
   final MultiSelectKey<T> _key;
 

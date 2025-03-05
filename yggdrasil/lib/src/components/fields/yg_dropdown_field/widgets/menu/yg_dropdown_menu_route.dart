@@ -56,6 +56,12 @@ class YgDropdownMenuRoute<T extends Object> extends PopupRoute<Widget> with YgDr
   String get barrierLabel => 'Dropdown Menu';
 
   @override
+  void onPopInvokedWithResult(bool didPop, Widget? result) {
+    onClose();
+    super.onPopInvokedWithResult(didPop, result);
+  }
+
+  @override
   Widget buildPage(BuildContext context, Animation<double> animation, Animation<double> secondaryAnimation) {
     final YgDropdownFieldTheme theme = context.fieldTheme.dropdownTheme;
 

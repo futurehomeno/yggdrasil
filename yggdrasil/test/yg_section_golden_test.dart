@@ -59,7 +59,7 @@ void main() {
               subtitle: options.subtitle,
               trailing: options.trailing,
               title: options.title,
-              children: const <YgListTile>[YgListTile(title: 'YgListTile')],
+              children: const <Widget>[YgListTile(title: 'YgListTile')],
             ),
           ),
         );
@@ -106,7 +106,7 @@ void main() {
                 subtitle: options.subtitle,
                 trailing: options.trailing,
                 title: title,
-                children: const <YgListTile>[YgListTile(title: 'YgListTile')],
+                children: const <Widget>[YgListTile(title: 'YgListTile')],
               ),
             ),
           );
@@ -152,7 +152,7 @@ void main() {
                 subtitle: options.subtitle,
                 trailing: options.trailing,
                 title: title,
-                children: const <YgListTile>[YgListTile(title: 'YgListTile')],
+                children: const <Widget>[YgListTile(title: 'YgListTile')],
               ),
             ),
           );

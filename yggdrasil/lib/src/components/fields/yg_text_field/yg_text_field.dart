@@ -1,17 +1,12 @@
-import 'dart:io';
-
-import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:yggdrasil/src/components/fields/helpers/yg_validate_helper.dart';
+import 'package:yggdrasil/src/theme/_theme.dart';
 import 'package:yggdrasil/src/utils/_utils.dart';
 import 'package:yggdrasil/yggdrasil.dart';
 
 import '../widgets/_widgets.dart';
 import '../yg_field_state.dart';
-import 'widgets/_widgets.dart';
-
-part 'text_field_selection_gesture_detector_builder.dart';
 
 class YgTextField extends StatefulWidget with StatefulWidgetDebugMixin {
   const YgTextField({
@@ -31,16 +26,20 @@ class YgTextField extends StatefulWidget with StatefulWidgetDebugMixin {
     this.onSuffixPressed,
     this.onEditingComplete,
     this.onFocusChanged,
-    this.maxLines = 1,
+    this.initialValue,
+    this.completeAction,
+    this.onTapOutside,
     this.minLines,
+    this.maxLength,
+    this.maxLines = 1,
     this.disabled = false,
     this.readOnly = false,
     this.obscureText = false,
     this.showObscureTextButton = true,
     this.size = YgFieldSize.large,
     this.variant = YgFieldVariant.standard,
-    this.initialValue,
-    this.completeAction,
+    this.maxLengthEnforcement = YgMaxLengthEnforcement.none,
+    this.autofocus = false,
   })  : assert(
           maxLines == null || minLines == null || maxLines >= minLines,
           'When both minLines and maxLines are set, maxLines should be equal or higher than minLines',
@@ -52,6 +51,10 @@ class YgTextField extends StatefulWidget with StatefulWidgetDebugMixin {
         assert(
           (suffix == null) == (onSuffixPressed == null),
           'Suffix and onSuffixPressed should either be both null or both defined',
+        ),
+        assert(
+          maxLength == null || maxLength > 0,
+          'Max length has to be either null or at least 1',
         );
 
   const YgTextField.email({
@@ -68,12 +71,16 @@ class YgTextField extends StatefulWidget with StatefulWidgetDebugMixin {
     this.onSuffixPressed,
     this.onEditingComplete,
     this.onFocusChanged,
+    this.initialValue,
+    this.completeAction,
+    this.onTapOutside,
+    this.maxLength,
+    this.maxLengthEnforcement = YgMaxLengthEnforcement.none,
     this.disabled = false,
     this.readOnly = false,
     this.size = YgFieldSize.large,
     this.variant = YgFieldVariant.standard,
-    this.initialValue,
-    this.completeAction,
+    this.autofocus = false,
   })  : maxLines = 1,
         minLines = null,
         obscureText = false,
@@ -84,6 +91,10 @@ class YgTextField extends StatefulWidget with StatefulWidgetDebugMixin {
         assert(
           (suffix == null) == (onSuffixPressed == null),
           'Suffix and onSuffixPressed should either be both null or both defined',
+        ),
+        assert(
+          maxLength == null || maxLength > 0,
+          'Max length has to be either null or at least 1',
         );
 
   const YgTextField.password({
@@ -100,13 +111,17 @@ class YgTextField extends StatefulWidget with StatefulWidgetDebugMixin {
     this.onSuffixPressed,
     this.onEditingComplete,
     this.onFocusChanged,
+    this.initialValue,
+    this.completeAction,
+    this.onTapOutside,
+    this.maxLength,
     this.disabled = false,
     this.readOnly = false,
     this.showObscureTextButton = true,
     this.size = YgFieldSize.large,
     this.variant = YgFieldVariant.standard,
-    this.initialValue,
-    this.completeAction,
+    this.maxLengthEnforcement = YgMaxLengthEnforcement.none,
+    this.autofocus = false,
   })  : maxLines = 1,
         minLines = null,
         obscureText = true,
@@ -120,6 +135,10 @@ class YgTextField extends StatefulWidget with StatefulWidgetDebugMixin {
         assert(
           (suffix == null) == (onSuffixPressed == null),
           'Suffix and onSuffixPressed should either be both null or both defined',
+        ),
+        assert(
+          maxLength == null || maxLength > 0,
+          'Max length has to be either null or at least 1',
         );
 
   const YgTextField.multiline({
@@ -137,12 +156,16 @@ class YgTextField extends StatefulWidget with StatefulWidgetDebugMixin {
     this.onFocusChanged,
     this.minLines,
     this.maxLines,
+    this.initialValue,
+    this.completeAction,
+    this.onTapOutside,
+    this.maxLength,
     this.disabled = false,
     this.readOnly = false,
     this.size = YgFieldSize.large,
     this.variant = YgFieldVariant.standard,
-    this.initialValue,
-    this.completeAction,
+    this.maxLengthEnforcement = YgMaxLengthEnforcement.none,
+    this.autofocus = false,
   })  : obscureText = false,
         autocorrect = true,
         textCapitalization = TextCapitalization.sentences,
@@ -160,6 +183,10 @@ class YgTextField extends StatefulWidget with StatefulWidgetDebugMixin {
         assert(
           (suffix == null) == (onSuffixPressed == null),
           'Suffix and onSuffixPressed should either be both null or both defined',
+        ),
+        assert(
+          maxLength == null || maxLength > 0,
+          'Max length has to be either null or at least 1',
         );
 
   /// Obscures the text in the text field.
@@ -307,6 +334,16 @@ class YgTextField extends StatefulWidget with StatefulWidgetDebugMixin {
   /// starting from [minLines].
   final int? minLines;
 
+  /// The maximum number of characters to allow in the text field.
+  ///
+  /// If set a counter is displayed below the text field indicating the current
+  /// amount of characters entered and the maximum amount of characters allowed
+  /// in the field.
+  final int? maxLength;
+
+  /// Determines how the [maxLength] limit should be enforced.
+  final YgMaxLengthEnforcement maxLengthEnforcement;
+
   /// The error to display under the text field.
   ///
   /// Will change the styling of the widget to reflect the presence of the error.
@@ -335,6 +372,14 @@ class YgTextField extends StatefulWidget with StatefulWidgetDebugMixin {
   /// By default based on the [textInputAction].
   final YgCompleteAction? completeAction;
 
+  /// Whether the text field should focus on first build.
+  final bool autofocus;
+
+  /// Called for each tap that occurs outside of the [YgTextField].
+  ///
+  /// If this is null, the text field will call unfocus on its [FocusNode].
+  final TapRegionCallback? onTapOutside;
+
   @override
   State<YgTextField> createState() => _YgTextFieldState();
 
@@ -348,94 +393,67 @@ class YgTextField extends StatefulWidget with StatefulWidgetDebugMixin {
   }
 }
 
-class _YgTextFieldState extends State<YgTextField>
-    with YgControllerManagerMixin
-    implements TextSelectionGestureDetectorBuilderDelegate {
-  /// Manages the [TextEditingController] for this widget.
-  late final YgControllerManager<TextEditingController> _controllerManager = manageController(
-    createController: () => TextEditingController(text: widget.initialValue),
-    getUserController: () => widget.controller,
-    listener: _valueUpdated,
-  );
-
-  /// Manages the [FocusNode] for this widget.
-  late final YgControllerManager<FocusNode> _focusNodeManager = manageController(
-    createController: () => FocusNode(),
-    getUserController: () => widget.focusNode,
-    listener: _focusChanged,
-  );
-
-  /// The key of the editable text, used to manage the selection toolbar.
-  @override
-  final GlobalKey<EditableTextState> editableTextKey = GlobalKey();
-
-  /// Handles the selection gestures and triggers [_handleTap].
-  late _TextFieldSelectionGestureDetectorBuilder _selectionGestureDetectorBuilder;
-
-  /// Whether the selection handles should be show.
-  bool _showSelectionHandles = false;
-
-  /// Disabled force press as we don't need it.
-  @override
-  final bool forcePressEnabled = false;
-
-  /// Always allow selection.
-  @override
-  final bool selectionEnabled = true;
-
-  /// The state of the field.
-  late final YgFieldState _state = YgFieldState(
-    filled: _controllerManager.value.text.isNotEmpty == true,
-    placeholder: widget.placeholder != null,
-    error: widget.error != null,
-    disabled: widget.disabled,
-    suffix: _hasSuffix,
-    variant: widget.variant,
-    size: widget.size,
-  );
-
+class _YgTextFieldState extends StateWithYgState<YgTextField, YgFieldState>
+    with EditableTextContainerStateMixin<YgTextField> {
   /// Whether to hide the obscured text or not.
   bool _obscureTextToggled = true;
 
   @override
-  void initState() {
-    super.initState();
-    _selectionGestureDetectorBuilder = _TextFieldSelectionGestureDetectorBuilder(state: this);
+  String? get initialValue => widget.initialValue;
+
+  @override
+  bool get readOnly => widget.readOnly;
+
+  @override
+  TextEditingController? get userController => widget.controller;
+
+  @override
+  FocusNode? get userFocusNode => widget.focusNode;
+
+  @override
+  YgFieldState createState() {
+    return YgFieldState(
+      filled: controller.text.isNotEmpty == true,
+      placeholder: widget.placeholder != null,
+      error: _hasError,
+      disabled: widget.disabled,
+      suffix: _hasSuffix,
+      variant: widget.variant,
+      size: widget.size,
+    );
   }
 
   @override
-  void didUpdateWidget(covariant YgTextField oldWidget) {
-    super.didUpdateWidget(oldWidget);
-    _state.placeholder.value = widget.placeholder != null;
-    _state.error.value = widget.error != null;
-    _state.disabled.value = widget.disabled;
-    _state.suffix.value = _hasSuffix;
-    _state.size.value = widget.size;
-    _state.variant.value = widget.variant;
-  }
-
-  @override
-  void dispose() {
-    _state.dispose();
-    super.dispose();
+  void updateState() {
+    state.placeholder.value = widget.placeholder != null;
+    state.error.value = _hasError;
+    state.disabled.value = widget.disabled;
+    state.suffix.value = _hasSuffix;
+    state.size.value = widget.size;
+    state.variant.value = widget.variant;
   }
 
   @override
   Widget build(BuildContext context) {
+    final YgFieldContentTheme theme = context.fieldTheme.contentTheme;
+
     final Widget layout = RepaintBoundary(
       child: YgFieldDecoration(
-        variant: widget.variant,
-        size: widget.size,
         error: widget.error,
-        state: _state,
+        counter: widget.maxLength.safeBuild(
+          (int maxLength) => YgFieldCounter(
+            controller: controller,
+            maxLength: maxLength,
+          ),
+        ),
+        state: state,
         suffix: _buildSuffix(),
         content: YgFieldContent(
-          value: YgTextFieldValue(
-            editableTextKey: editableTextKey,
+          value: buildEditableText(
             autocorrect: widget.autocorrect,
-            controller: _controllerManager.value,
-            focusNode: _focusNodeManager.value,
             inputFormatters: widget.inputFormatters,
+            maxLength: widget.maxLength,
+            maxLengthEnforcement: widget.maxLengthEnforcement,
             keyboardType: widget.keyboardType,
             maxLines: widget.maxLines,
             minLines: widget.minLines,
@@ -443,15 +461,14 @@ class _YgTextFieldState extends State<YgTextField>
             onChanged: widget.onChanged,
             onEditingComplete: _onEditingComplete,
             readOnly: widget.readOnly,
-            state: _state,
             textCapitalization: widget.textCapitalization,
             textInputAction: widget.textInputAction,
-            contextMenuBuilder: _buildContextMenu,
-            onSelectionChanged: _handleSelectionChanged,
-            onSelectionHandleTapped: _handleSelectionHandleTapped,
-            showSelectionHandles: _showSelectionHandles,
+            cursorColor: theme.cursorColor,
+            disabled: widget.disabled,
+            autofocus: widget.autofocus,
+            onTapOutside: widget.onTapOutside,
           ),
-          state: _state,
+          state: state,
           label: widget.label,
           minLines: widget.minLines,
           placeholder: widget.placeholder,
@@ -465,11 +482,10 @@ class _YgTextFieldState extends State<YgTextField>
     }
 
     return MouseRegion(
-      onEnter: (_) => _state.hovered.value = true,
-      onExit: (_) => _state.hovered.value = false,
+      onEnter: (_) => state.hovered.value = true,
+      onExit: (_) => state.hovered.value = false,
       cursor: SystemMouseCursors.text,
-      child: _selectionGestureDetectorBuilder.buildGestureDetector(
-        behavior: HitTestBehavior.translucent,
+      child: buildGestureDetector(
         child: layout,
       ),
     );
@@ -477,35 +493,11 @@ class _YgTextFieldState extends State<YgTextField>
 
   // TODO(DEV-1916): This should be moved somewhere else to make it reusable.
   void _onEditingComplete() {
-    final VoidCallback? onEditingComplete = widget.onEditingComplete;
-
-    if (onEditingComplete != null) {
-      onEditingComplete();
-
-      return;
-    }
-
-    final YgCompleteAction completeAction =
-        widget.completeAction ?? YgValidateHelper.mapTextInputAction(widget.textInputAction);
-
-    final FocusNode focusNode = _focusNodeManager.value;
-
-    switch (completeAction) {
-      case YgCompleteAction.focusNext:
-        focusNode.nextFocus();
-
-        return;
-      case YgCompleteAction.focusPrevious:
-        focusNode.previousFocus();
-
-        return;
-      case YgCompleteAction.unfocus:
-        focusNode.unfocus();
-
-        return;
-      case YgCompleteAction.none:
-        return;
-    }
+    YgEditingCompleteHelper.onComplete(
+      onEditingComplete: widget.onEditingComplete,
+      focusNode: focusNode,
+      completeAction: widget.completeAction ?? YgValidateHelper.mapTextInputAction(widget.textInputAction),
+    );
   }
 
   Widget? _buildSuffix() {
@@ -524,7 +516,7 @@ class _YgTextFieldState extends State<YgTextField>
             ? null
             : () {
                 if (renderShowObscureTextIcon) {
-                  _obscureTextToggled ^= true;
+                  _obscureTextToggled = !_obscureTextToggled;
                   setState(() {});
                 } else {
                   widget.onSuffixPressed?.call();
@@ -561,82 +553,29 @@ class _YgTextFieldState extends State<YgTextField>
     return widget.suffix != null || (widget.obscureText && widget.showObscureTextButton);
   }
 
-  void _valueUpdated() {
-    _state.filled.value = _controllerManager.value.text.isNotEmpty;
+  bool get _hasError {
+    if (widget.error != null) {
+      return true;
+    }
+
+    final int? maxLength = widget.maxLength;
+    if (maxLength == null) {
+      return false;
+    }
+
+    return controller.text.length > maxLength;
   }
 
-  void _focusChanged() {
-    final bool focused = _focusNodeManager.value.hasFocus;
-    _state.focused.value = focused;
+  @override
+  void valueUpdated() {
+    state.filled.value = controller.text.isNotEmpty;
+    state.error.value = _hasError;
+  }
+
+  @override
+  void focusChanged() {
+    final bool focused = focusNode.hasFocus;
+    state.focused.value = focused;
     widget.onFocusChanged?.call(focused);
-  }
-
-  void _handleTap() {
-    final FocusNode focusNode = _focusNodeManager.value;
-    if (!focusNode.hasFocus) {
-      focusNode.requestFocus();
-    }
-  }
-
-  Widget _buildContextMenu(BuildContext context, EditableTextState editableTextState) {
-    return AdaptiveTextSelectionToolbar.editableText(
-      editableTextState: editableTextState,
-    );
-  }
-
-  EditableTextState? get _editableText => editableTextKey.currentState;
-
-  void _requestKeyboard() {
-    _editableText?.requestKeyboard();
-  }
-
-  /// Toggle the toolbar when a selection handle is tapped.
-  void _handleSelectionHandleTapped() {
-    if (_controllerManager.value.selection.isCollapsed) {
-      _editableText!.toggleToolbar();
-    }
-  }
-
-  bool _shouldShowSelectionHandles(SelectionChangedCause? cause) {
-    final TextEditingController controller = _controllerManager.value;
-    // When the text field is activated by something that doesn't trigger the
-    // selection overlay, we shouldn't show the handles either.
-    if (!_selectionGestureDetectorBuilder.shouldShowSelectionToolbar) {
-      return false;
-    }
-
-    if (cause == SelectionChangedCause.keyboard) {
-      return false;
-    }
-
-    if (widget.readOnly && controller.selection.isCollapsed) {
-      return false;
-    }
-
-    if (cause == SelectionChangedCause.longPress || cause == SelectionChangedCause.scribble) {
-      return true;
-    }
-
-    if (controller.text.isNotEmpty) {
-      return true;
-    }
-
-    return false;
-  }
-
-  void _handleSelectionChanged(TextSelection selection, SelectionChangedCause? cause) {
-    final bool willShowSelectionHandles = _shouldShowSelectionHandles(cause);
-    if (willShowSelectionHandles != _showSelectionHandles) {
-      _showSelectionHandles = willShowSelectionHandles;
-      setState(() {});
-    }
-
-    if (cause == SelectionChangedCause.longPress) {
-      _editableText?.bringIntoView(selection.extent);
-    }
-
-    if ((Platform.isMacOS || Platform.isLinux || Platform.isWindows) && cause == SelectionChangedCause.drag) {
-      _editableText?.hideToolbar();
-    }
   }
 }
