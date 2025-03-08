@@ -1,16 +1,15 @@
 import 'package:flutter/widgets.dart';
-import 'package:yggdrasil/src/components/yg_chart/models/data_point.dart';
 import 'package:yggdrasil/src/components/yg_chart/models/data_set.dart';
 import 'package:yggdrasil/src/components/yg_chart/renderers/chart_child_widget.dart';
 import 'package:yggdrasil/src/components/yg_chart/renderers/plotting/plotting_painter.dart';
 
-abstract class PlottingWidget extends ChartChildWidget {
+abstract class PlottingWidget<T extends AnyDataSet> extends ChartChildWidget {
   const PlottingWidget({
     super.key,
     required this.dataSet,
   });
 
-  final DataSet<num, DataPoint<num>> dataSet;
+  final T dataSet;
 
   @override
   void applyParentData(ChartChildRenderer renderObject) {
@@ -22,7 +21,9 @@ abstract class PlottingWidget extends ChartChildWidget {
     return PlottingRenderer();
   }
 
-  PlottingPainter createPainter();
+  PlottingPainter<T> createPainter();
+
+  Tween<T> createTween(T begin, T end);
 }
 
 class PlottingRenderer extends ChartChildRenderer {

@@ -1,5 +1,6 @@
 import 'package:flutter/widgets.dart';
 import 'package:yggdrasil/src/components/yg_chart/models/data_point.dart';
+import 'package:yggdrasil/src/components/yg_chart/models/data_set.dart';
 import 'package:yggdrasil/src/components/yg_chart/models/range.dart';
 import 'package:yggdrasil/src/components/yg_chart/models/transform_2d.dart';
 
@@ -35,16 +36,14 @@ class ChartChildRenderer extends RenderBox {
   YgChartRendererParentData get parentData => super.parentData as YgChartRendererParentData;
 }
 
-abstract class ChartPainter<T extends PaintState<T>> implements Listenable {
+abstract class ChartPainter<T extends AnyDataSet> implements Listenable {
   const ChartPainter({
     Listenable? repaint,
   }) : _repaint = repaint;
 
   final Listenable? _repaint;
 
-  void paintState(ChartPaintingContext context, Canvas canvas);
-
-  void createPaintState(ChartState chartState);
+  void paint(Canvas canvas, ChartPaintingContext context, T data);
 
   @override
   void addListener(VoidCallback listener) {
@@ -102,10 +101,4 @@ class ChartState {
 
   final DoubleRange indexRange;
   final DoubleRange valueRange;
-}
-
-abstract class PaintState<T extends PaintState<T>> {
-  T lerpTo(T other, double t);
-
-  bool shouldAnimate(ChartState other);
 }

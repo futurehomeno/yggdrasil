@@ -3,6 +3,7 @@ import 'dart:math';
 typedef DoubleRange = Range<double>;
 typedef IntRange = Range<int>;
 
+// TODO: Maybe add support to methods for figuring out the best return type automatically?
 class Range<N extends num> {
   const Range({
     required this.end,
@@ -39,6 +40,37 @@ class Range<N extends num> {
   /// which falls within this range.
   Iterable<T> clampList<T>(List<T> iterable) {
     return iterable.skip(start.ceil()).take(length.floor());
+  }
+
+  DoubleRange lerp(Range<num> other, double t) {
+    return DoubleRange(
+      start: start.toDouble() + (other.start.toDouble() - start.toDouble()) * t,
+      end: end.toDouble() + (other.end.toDouble() - end.toDouble()) * t,
+    );
+  }
+
+  IntRange toIntRange() {
+    final Range<num> that = this;
+    if (that is IntRange) {
+      return that;
+    }
+
+    return IntRange(
+      start: start.round(),
+      end: end.round(),
+    );
+  }
+
+  DoubleRange toDoubleRange() {
+    final Range<num> that = this;
+    if (that is DoubleRange) {
+      return that;
+    }
+
+    return DoubleRange(
+      start: start.toDouble(),
+      end: end.toDouble(),
+    );
   }
 
   N get length => (end - start) as N;
