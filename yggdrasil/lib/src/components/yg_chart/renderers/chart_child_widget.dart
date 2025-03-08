@@ -42,8 +42,6 @@ abstract class ChartPainter<T extends PaintState<T>> implements Listenable {
 
   final Listenable? _repaint;
 
-  bool shouldRepaint(covariant ChartPainter<T> oldWidget);
-
   void paintState(ChartPaintingContext context, Canvas canvas);
 
   void createPaintState(ChartState chartState);
