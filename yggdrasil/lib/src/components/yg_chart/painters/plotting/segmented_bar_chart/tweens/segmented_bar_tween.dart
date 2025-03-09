@@ -103,7 +103,7 @@ class SegmentedBarTween extends Tween<SegmentedBar> {
   @override
   SegmentedBar lerp(double t) {
     return SegmentedBar(
-      value: lerpDouble(begin!.value, end!.value, t)!,
+      value: lerpDouble(begin!.value.end, end!.value.end, t)!,
       index: begin!.index,
       segments: <BarSegment>[
         for (final BarSegmentTween tween in segmentTweens) tween.transform(t),

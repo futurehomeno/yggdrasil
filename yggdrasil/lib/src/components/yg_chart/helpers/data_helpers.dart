@@ -4,8 +4,8 @@ import 'package:yggdrasil/src/components/yg_chart/models/range.dart';
 
 abstract final class DataHelpers {
   static DataRanges<N> getDataRanges<N extends num>(List<DataPoint<N>> points) {
-    double maxValue = points.first.value;
-    double minValue = points.first.value;
+    double maxValue = points.first.value.max;
+    double minValue = points.first.value.min;
     N maxIndex = points.first.index;
     N minIndex = points.first.index;
 
@@ -16,11 +16,11 @@ abstract final class DataHelpers {
       if (point.index < minIndex) {
         minIndex = point.index;
       }
-      if (point.value > maxValue) {
-        maxValue = point.value;
+      if (point.value.max > maxValue) {
+        maxValue = point.value.max;
       }
-      if (point.value < minValue) {
-        minValue = point.value;
+      if (point.value.min < minValue) {
+        minValue = point.value.min;
       }
     }
 

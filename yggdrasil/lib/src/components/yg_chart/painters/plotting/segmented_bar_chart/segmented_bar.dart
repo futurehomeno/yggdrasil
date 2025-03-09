@@ -1,12 +1,18 @@
 import 'package:yggdrasil/src/components/yg_chart/models/data_point.dart';
+import 'package:yggdrasil/src/components/yg_chart/models/range.dart';
 import 'package:yggdrasil/src/components/yg_chart/painters/plotting/segmented_bar_chart/bar_segment.dart';
 
 class SegmentedBar extends DataPoint<int> {
-  const SegmentedBar({
+  SegmentedBar({
     required super.index,
-    required super.value,
     required this.segments,
-  });
+    required double value,
+  }) : super.range(
+          value: DoubleRange(
+            end: value,
+            start: 0,
+          ),
+        );
 
   factory SegmentedBar.fromSegments({
     required int index,

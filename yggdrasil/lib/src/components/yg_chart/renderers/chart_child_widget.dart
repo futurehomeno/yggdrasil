@@ -1,5 +1,4 @@
 import 'package:flutter/widgets.dart';
-import 'package:yggdrasil/src/components/yg_chart/models/data_point.dart';
 import 'package:yggdrasil/src/components/yg_chart/models/data_set.dart';
 import 'package:yggdrasil/src/components/yg_chart/models/range.dart';
 import 'package:yggdrasil/src/components/yg_chart/models/transform_2d.dart';
@@ -69,7 +68,7 @@ class ChartPaintingContext {
 
   Transform2D? _cachedTransform;
 
-  Offset getPointCoordinates(DataPoint<num> point) {
+  Offset getValueCoordinates(double index, double value) {
     Transform2D? transform = _cachedTransform;
     if (transform == null) {
       final DoubleRange indexRange = state.indexRange;
@@ -87,8 +86,8 @@ class ChartPaintingContext {
     }
 
     return transform.apply(
-      point.index,
-      point.value,
+      index,
+      value,
     );
   }
 }

@@ -1,4 +1,4 @@
-import 'dart:math';
+import 'dart:math' as math;
 
 typedef DoubleRange = Range<double>;
 typedef IntRange = Range<int>;
@@ -10,21 +10,25 @@ class Range<N extends num> {
     required this.start,
   });
 
+  const Range.point(N point)
+      : start = point,
+        end = point;
+
   final N start;
   final N end;
 
   /// Returns a new range which includes both this and the [other] range.
   DoubleRange encapsulate(Range<num> other) {
     return DoubleRange(
-      start: min(start.toDouble(), other.start.toDouble()),
-      end: max(end.toDouble(), other.end.toDouble()),
+      start: math.min(start.toDouble(), other.start.toDouble()),
+      end: math.max(end.toDouble(), other.end.toDouble()),
     );
   }
 
   /// Returns a new range which falls within both this and the [other] range.
   DoubleRange? intersect(DoubleRange other) {
-    final double newStart = max(start.toDouble(), other.start.toDouble());
-    final double newEnd = min(end.toDouble(), other.end.toDouble());
+    final double newStart = math.max(start.toDouble(), other.start.toDouble());
+    final double newEnd = math.min(end.toDouble(), other.end.toDouble());
 
     if (newStart > newEnd) {
       return null;
@@ -72,6 +76,12 @@ class Range<N extends num> {
       end: end.toDouble(),
     );
   }
+
+  /// The highest value out of start and end.
+  N get max => math.max(start, end);
+
+  /// The lowest value out of start and end.
+  N get min => math.min(start, end);
 
   N get length => (end - start) as N;
 
