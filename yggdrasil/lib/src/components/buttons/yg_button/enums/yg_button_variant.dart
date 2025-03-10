@@ -1,3 +1,5 @@
+part of buttons;
+
 enum YgButtonVariant {
   primary,
   secondary,

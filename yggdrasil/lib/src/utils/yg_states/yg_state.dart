@@ -1,8 +1,7 @@
-import 'dart:async';
+part of yg_states;
 
-import 'package:flutter/material.dart';
 
-import 'yg_state_value.dart';
+
 
 /// A base class for every Yggdrasil widget which has to maintain its own state.
 ///

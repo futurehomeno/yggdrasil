@@ -1,13 +1,7 @@
-import 'package:flutter/material.dart' hide TextButtonTheme;
-import 'package:yggdrasil/src/components/buttons/widgets/_widgets.dart';
-import 'package:yggdrasil/src/components/buttons/yg_stepper_button/enums/_enums.dart';
-import 'package:yggdrasil/src/theme/_theme.dart';
-import 'package:yggdrasil/src/utils/_utils.dart';
+part of buttons;
 
-import 'yg_stepper_button_state.dart';
-
-class YgStepperButtonStyle extends YgButtonBaseStyle<YgStepperButtonState> {
-  YgStepperButtonStyle({
+class _YgStepperButtonStyle extends _YgButtonBaseStyle<_YgStepperButtonState> {
+  _YgStepperButtonStyle({
     required super.state,
     required super.vsync,
   });

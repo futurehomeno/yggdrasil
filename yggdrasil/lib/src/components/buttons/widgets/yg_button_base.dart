@@ -1,10 +1,7 @@
-import 'package:flutter/material.dart';
-import 'package:yggdrasil/src/utils/_utils.dart';
+part of buttons;
 
-import '_widgets.dart';
-
-abstract class YgButtonBase<T extends YgButtonBaseState> extends StatefulWidget with StatefulWidgetDebugMixin {
-  const YgButtonBase({
+abstract class _YgButtonBase<T extends _YgButtonBaseState> extends StatefulWidget with StatefulWidgetDebugMixin {
+  const _YgButtonBase({
     super.key,
     required this.onPressed,
     this.onLongPress,
@@ -55,7 +52,7 @@ abstract class YgButtonBase<T extends YgButtonBaseState> extends StatefulWidget 
   }
 
   @override
-  State<YgButtonBase<T>> createState() => _YgButtonBaseState<T>();
+  State<_YgButtonBase<T>> createState() => _YgButtonBaseWidgetState<T>();
 
   /// Updates the button state whenever the widget gets updated.
   @protected
@@ -77,17 +74,17 @@ abstract class YgButtonBase<T extends YgButtonBaseState> extends StatefulWidget 
 
   /// Creates the style applied to this button.
   @protected
-  YgButtonBaseStyle<T> createStyle(YgVsync vsync, T state);
+  _YgButtonBaseStyle<T> createStyle(YgVsync vsync, T state);
 
   /// Creates the button state for this widget.
   ///
-  /// Must extend [YgButtonBaseState].
+  /// Must extend [_YgButtonBaseState].
   @protected
   T createButtonState();
 }
 
-class _YgButtonBaseState<T extends YgButtonBaseState>
-    extends StateWithYgStateAndStyle<YgButtonBase<T>, T, YgButtonBaseStyle<T>> {
+class _YgButtonBaseWidgetState<T extends _YgButtonBaseState>
+    extends StateWithYgStateAndStyle<_YgButtonBase<T>, T, _YgButtonBaseStyle<T>> {
   late final YgMaterialStatesControllerWithChangeCallback _materialController =
       YgMaterialStatesControllerWithChangeCallback(
     onStateChange: _handleMaterialStateChange,
@@ -99,7 +96,7 @@ class _YgButtonBaseState<T extends YgButtonBaseState>
   }
 
   @override
-  YgButtonBaseStyle<T> createStyle() {
+  _YgButtonBaseStyle<T> createStyle() {
     return widget.createStyle(
       this,
       state,

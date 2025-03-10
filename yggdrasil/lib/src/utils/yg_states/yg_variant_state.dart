@@ -1,4 +1,5 @@
-import 'package:yggdrasil/src/utils/_utils.dart';
+part of yg_states;
+
 
 /// A convenience class for creating a YgState with only a variant.
 ///

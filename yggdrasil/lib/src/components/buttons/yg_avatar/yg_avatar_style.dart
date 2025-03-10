@@ -1,11 +1,7 @@
-import 'package:flutter/material.dart';
-import 'package:yggdrasil/src/components/buttons/widgets/_widgets.dart';
-import 'package:yggdrasil/src/components/buttons/yg_avatar/yg_avatar_state.dart';
-import 'package:yggdrasil/src/theme/_theme.dart';
-import 'package:yggdrasil/yggdrasil.dart';
+part of buttons;
 
-class YgAvatarStyle extends YgButtonBaseStyle<YgAvatarState> {
-  YgAvatarStyle({
+class _YgAvatarStyle extends _YgButtonBaseStyle<_YgAvatarState> {
+  _YgAvatarStyle({
     required super.state,
     required super.vsync,
   });

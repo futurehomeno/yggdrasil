@@ -1,9 +1,7 @@
-import 'package:yggdrasil/src/components/buttons/widgets/yg_button_base_state.dart';
-import 'package:yggdrasil/src/utils/_utils.dart';
-import 'package:yggdrasil/yggdrasil.dart';
+part of buttons;
 
-class YgTextLinkState extends YgButtonBaseState {
-  YgTextLinkState({
+class _YgTextLinkState extends _YgButtonBaseState {
+  _YgTextLinkState({
     super.disabled,
     super.focused,
     super.hovered,

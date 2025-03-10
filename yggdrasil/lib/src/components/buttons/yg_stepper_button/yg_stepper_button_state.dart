@@ -1,10 +1,7 @@
-import 'package:yggdrasil/src/components/buttons/widgets/_widgets.dart';
-import 'package:yggdrasil/src/utils/_utils.dart';
+part of buttons;
 
-import 'enums/_enums.dart';
-
-class YgStepperButtonState extends YgButtonBaseState {
-  YgStepperButtonState({
+class _YgStepperButtonState extends _YgButtonBaseState {
+  _YgStepperButtonState({
     super.disabled,
     super.focused,
     super.hovered,

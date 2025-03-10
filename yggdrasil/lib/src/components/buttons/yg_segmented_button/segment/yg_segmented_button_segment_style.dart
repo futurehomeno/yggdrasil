@@ -1,11 +1,7 @@
-import 'package:flutter/material.dart';
-import 'package:yggdrasil/src/components/buttons/widgets/_widgets.dart';
-import 'package:yggdrasil/src/theme/_theme.dart';
+part of buttons;
 
-import 'yg_segmented_button_segment_state.dart';
-
-class YgSegmentedButtonSegmentStyle extends YgButtonBaseStyle<YgSegmentedButtonSegmentState> {
-  YgSegmentedButtonSegmentStyle({
+class _YgSegmentedButtonSegmentStyle extends _YgButtonBaseStyle<_YgSegmentedButtonSegmentState> {
+  _YgSegmentedButtonSegmentStyle({
     required super.state,
     required super.vsync,
   });
@@ -41,7 +37,7 @@ class YgSegmentedButtonSegmentStyle extends YgButtonBaseStyle<YgSegmentedButtonS
     );
   }
 
-  Color _resolveTextColor(YgSegmentedButtonSegmentState state) {
+  Color _resolveTextColor(_YgSegmentedButtonSegmentState state) {
     if (state.disabled.value) {
       return _theme.textDisabledColor;
     }

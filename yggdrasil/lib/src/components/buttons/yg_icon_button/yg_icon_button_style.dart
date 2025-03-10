@@ -1,12 +1,7 @@
-import 'package:flutter/material.dart' hide TextButtonTheme;
-import 'package:yggdrasil/src/components/buttons/widgets/_widgets.dart';
-import 'package:yggdrasil/src/theme/_theme.dart';
+part of buttons;
 
-import 'enums/_enums.dart';
-import 'yg_icon_button_state.dart';
-
-class YgIconButtonStyle extends YgButtonBaseStyle<YgIconButtonState> {
-  YgIconButtonStyle({
+class _YgIconButtonStyle extends _YgButtonBaseStyle<_YgIconButtonState> {
+  _YgIconButtonStyle({
     required super.state,
     required super.vsync,
   });
@@ -81,23 +76,23 @@ class YgIconButtonStyle extends YgButtonBaseStyle<YgIconButtonState> {
 
   YgIconButtonTheme get _theme => context.iconButtonTheme;
 
-  YgIconButtonVariantTheme get _variantTheme {
+  _YgIconButtonVariantTheme get _variantTheme {
     switch (state.variant.value) {
       case YgIconButtonVariant.filled:
-        return YgIconButtonVariantTheme.filled(_theme.filledIconButtonTheme);
+        return _YgIconButtonVariantTheme.filled(_theme.filledIconButtonTheme);
       case YgIconButtonVariant.outlined:
-        return YgIconButtonVariantTheme.outlined(_theme.outlinedIconButtonTheme);
+        return _YgIconButtonVariantTheme.outlined(_theme.outlinedIconButtonTheme);
       case YgIconButtonVariant.standard:
-        return YgIconButtonVariantTheme.standard(_theme.standardIconButtonTheme);
+        return _YgIconButtonVariantTheme.standard(_theme.standardIconButtonTheme);
       case YgIconButtonVariant.tonal:
-        return YgIconButtonVariantTheme.tonal(_theme.tonalIconButtonTheme);
+        return _YgIconButtonVariantTheme.tonal(_theme.tonalIconButtonTheme);
     }
   }
 }
 
 // TODO(DEV-1915): Remove this when theme extensions can extend interfaces
-class YgIconButtonVariantTheme {
-  const YgIconButtonVariantTheme({
+class _YgIconButtonVariantTheme {
+  const _YgIconButtonVariantTheme({
     required this.backgroundColor,
     required this.disabledBackgroundColor,
     required this.disabledIconColor,
@@ -105,7 +100,7 @@ class YgIconButtonVariantTheme {
     required this.splashColor,
   });
 
-  factory YgIconButtonVariantTheme.standard(YgStandardIconButtonTheme theme) => YgIconButtonVariantTheme(
+  factory _YgIconButtonVariantTheme.standard(YgStandardIconButtonTheme theme) => _YgIconButtonVariantTheme(
         backgroundColor: theme.backgroundColor,
         disabledBackgroundColor: theme.disabledBackgroundColor,
         disabledIconColor: theme.disabledIconColor,
@@ -113,7 +108,7 @@ class YgIconButtonVariantTheme {
         splashColor: theme.splashColor,
       );
 
-  factory YgIconButtonVariantTheme.filled(YgFilledIconButtonTheme theme) => YgIconButtonVariantTheme(
+  factory _YgIconButtonVariantTheme.filled(YgFilledIconButtonTheme theme) => _YgIconButtonVariantTheme(
         backgroundColor: theme.backgroundColor,
         disabledBackgroundColor: theme.disabledBackgroundColor,
         disabledIconColor: theme.disabledIconColor,
@@ -121,7 +116,7 @@ class YgIconButtonVariantTheme {
         splashColor: theme.splashColor,
       );
 
-  factory YgIconButtonVariantTheme.tonal(YgTonalIconButtonTheme theme) => YgIconButtonVariantTheme(
+  factory _YgIconButtonVariantTheme.tonal(YgTonalIconButtonTheme theme) => _YgIconButtonVariantTheme(
         backgroundColor: theme.backgroundColor,
         disabledBackgroundColor: theme.disabledBackgroundColor,
         disabledIconColor: theme.disabledIconColor,
@@ -129,7 +124,7 @@ class YgIconButtonVariantTheme {
         splashColor: theme.splashColor,
       );
 
-  factory YgIconButtonVariantTheme.outlined(YgOutlinedIconButtonTheme theme) => YgIconButtonVariantTheme(
+  factory _YgIconButtonVariantTheme.outlined(YgOutlinedIconButtonTheme theme) => _YgIconButtonVariantTheme(
         backgroundColor: theme.backgroundColor,
         disabledBackgroundColor: theme.disabledBackgroundColor,
         disabledIconColor: theme.disabledIconColor,

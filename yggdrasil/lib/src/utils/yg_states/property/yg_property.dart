@@ -1,13 +1,6 @@
-import 'package:flutter/foundation.dart';
-import 'package:flutter/material.dart';
-import 'package:yggdrasil/src/utils/yg_states/_yg_states.dart';
-import 'package:yggdrasil/src/utils/yg_states/helpers/_helpers.dart';
+part of yg_states;
 
-part 'yg_animated_property.dart';
-part 'yg_driven_property.dart';
-part 'yg_driven_property_all.dart';
-part 'yg_property_resolve_all.dart';
-part 'yg_property_resolve_with.dart';
+
 
 typedef YgStatesResolver<T extends YgState, V> = V Function(BuildContext, T);
 typedef YgStatesAllResolver<V> = V Function(BuildContext);

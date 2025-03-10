@@ -1,13 +1,7 @@
-import 'package:flutter/material.dart';
-import 'package:yggdrasil/src/components/buttons/widgets/_widgets.dart';
-import 'package:yggdrasil/src/utils/_utils.dart';
-import 'package:yggdrasil/yggdrasil.dart';
-
-import 'yg_icon_button_state.dart';
-import 'yg_icon_button_style.dart';
+part of buttons;
 
 /// Base class for creating all YgIconButtons.
-class YgIconButton extends YgButtonBase<YgIconButtonState> {
+class YgIconButton extends _YgButtonBase<_YgIconButtonState> {
   const YgIconButton({
     super.key,
     required this.icon,
@@ -26,8 +20,8 @@ class YgIconButton extends YgButtonBase<YgIconButtonState> {
   final YgColorableIconData icon;
 
   @override
-  YgIconButtonState createButtonState() {
-    return YgIconButtonState(
+  _YgIconButtonState createButtonState() {
+    return _YgIconButtonState(
       disabled: onPressed == null,
       size: size,
       variant: variant,
@@ -35,15 +29,15 @@ class YgIconButton extends YgButtonBase<YgIconButtonState> {
   }
 
   @override
-  void updateState(YgIconButtonState state) {
+  void updateState(_YgIconButtonState state) {
     state.disabled.value = onPressed == null;
     state.variant.value = variant;
     state.size.value = size;
   }
 
   @override
-  YgButtonBaseStyle<YgIconButtonState> createStyle(YgVsync vsync, YgIconButtonState state) {
-    return YgIconButtonStyle(
+  _YgButtonBaseStyle<_YgIconButtonState> createStyle(YgVsync vsync, _YgIconButtonState state) {
+    return _YgIconButtonStyle(
       state: state,
       vsync: vsync,
     );

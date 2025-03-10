@@ -1,4 +1,5 @@
-import 'package:yggdrasil/src/utils/yg_states/_yg_states.dart';
+part of yg_states;
+
 
 extension YgNullableDrivenPropertyExtension<V> on YgDrivenProperty<V>? {
   /// Assign a default value if a property is null.

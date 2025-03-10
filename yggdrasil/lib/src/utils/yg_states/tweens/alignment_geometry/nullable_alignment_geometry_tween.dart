@@ -1,5 +1,5 @@
-import 'package:flutter/material.dart';
-import 'package:yggdrasil/src/utils/yg_states/_yg_states.dart';
+part of yg_states;
+
 
 typedef YgNullableAlignmentGeometryProperty<T extends YgState> = YgProperty<T, AlignmentGeometry?>;
 typedef YgAnimatedNullableAlignmentGeometryProperty = YgAnimatedProperty<AlignmentGeometry?>;

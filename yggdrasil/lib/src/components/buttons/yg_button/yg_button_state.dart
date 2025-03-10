@@ -1,10 +1,7 @@
-import 'package:yggdrasil/src/components/buttons/widgets/_widgets.dart';
-import 'package:yggdrasil/src/utils/_utils.dart';
+part of buttons;
 
-import '_yg_button.dart';
-
-class YgButtonState extends YgButtonBaseState {
-  YgButtonState({
+class _YgButtonState extends _YgButtonBaseState {
+  _YgButtonState({
     super.focused,
     super.disabled,
     super.hovered,

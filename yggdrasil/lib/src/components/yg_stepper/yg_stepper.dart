@@ -1,7 +1,6 @@
 import 'dart:math' as math;
 
 import 'package:flutter/material.dart';
-import 'package:yggdrasil/src/components/buttons/yg_stepper_button/_yg_stepper_button.dart';
 import 'package:yggdrasil/src/components/yg_stepper/yg_stepper_state.dart';
 import 'package:yggdrasil/src/components/yg_stepper/yg_stepper_style.dart';
 import 'package:yggdrasil/src/theme/stepper/stepper_theme.dart';

@@ -1,22 +1,10 @@
-import 'package:flutter/material.dart';
-import 'package:yggdrasil/src/components/buttons/widgets/_widgets.dart';
-import 'package:yggdrasil/src/theme/theme.dart';
-import 'package:yggdrasil/src/utils/_utils.dart';
-import 'package:yggdrasil/yggdrasil.dart';
-
-import '_yg_toggle_button.dart';
-import 'yg_toggle_button_state.dart';
-import 'yg_toggle_button_style.dart';
-
-part 'variants/yg_toggle_button_with_leading_icon.dart';
-part 'variants/yg_toggle_icon_button.dart';
-part 'variants/yg_toggle_text_button.dart';
+part of buttons;
 
 /// Button that can be toggled between enabled or disabled.
 ///
 /// Functionality-wise, this is similar to a checkbox, but the use-case is
 /// different and this widget does not have a tri-state variant.
-abstract base class YgToggleButton extends YgButtonBase<YgToggleButtonState> with YgDualStateToggleableMixin {
+abstract base class YgToggleButton extends _YgButtonBase<_YgToggleButtonState> with YgDualStateToggleableMixin {
   const factory YgToggleButton({
     Key? key,
     required bool value,
@@ -86,8 +74,8 @@ abstract base class YgToggleButton extends YgButtonBase<YgToggleButtonState> wit
   final YgToggleButtonSize size;
 
   @override
-  YgToggleButtonState createButtonState() {
-    return YgToggleButtonState(
+  _YgToggleButtonState createButtonState() {
+    return _YgToggleButtonState(
       disabled: disabled,
       size: size,
       variant: variant,
@@ -96,15 +84,15 @@ abstract base class YgToggleButton extends YgButtonBase<YgToggleButtonState> wit
   }
 
   @override
-  void updateState(YgToggleButtonState state) {
+  void updateState(_YgToggleButtonState state) {
     state.size.value = size;
     state.variant.value = variant;
     state.toggled.value = value;
   }
 
   @override
-  YgButtonBaseStyle<YgToggleButtonState> createStyle(YgVsync vsync, YgToggleButtonState state) {
-    return YgToggleButtonStyle(
+  _YgButtonBaseStyle<_YgToggleButtonState> createStyle(YgVsync vsync, _YgToggleButtonState state) {
+    return _YgToggleButtonStyle(
       state: state,
       vsync: vsync,
     );

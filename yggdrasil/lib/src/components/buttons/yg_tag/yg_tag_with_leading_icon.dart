@@ -1,4 +1,5 @@
-part of 'yg_tag.dart';
+part of buttons;
+
 
 class _YgTagWithLeadingIcon extends YgTag {
   const _YgTagWithLeadingIcon({

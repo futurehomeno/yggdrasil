@@ -1,5 +1,5 @@
-import 'package:flutter/material.dart';
-import 'package:yggdrasil/src/utils/_utils.dart';
+part of yg_states;
+
 
 /// Builds a [PhysicalShape] with animated properties.
 class YgAnimatedPhysicalShape extends StatelessWidget {

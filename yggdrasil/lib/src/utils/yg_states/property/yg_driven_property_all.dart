@@ -1,4 +1,5 @@
-part of 'yg_property.dart';
+part of yg_states;
+
 
 /// Implementation of [YgDrivenProperty] with a constant value.
 ///

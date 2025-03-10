@@ -1,12 +1,7 @@
-import 'package:flutter/material.dart';
-import 'package:yggdrasil/src/components/buttons/widgets/_widgets.dart';
-import 'package:yggdrasil/src/theme/_theme.dart';
-import 'package:yggdrasil/yggdrasil.dart';
+part of buttons;
 
-import 'yg_text_link_state.dart';
-
-class YgTextLinkStyle extends YgButtonBaseStyle<YgTextLinkState> {
-  YgTextLinkStyle({
+class _YgTextLinkStyle extends _YgButtonBaseStyle<_YgTextLinkState> {
+  _YgTextLinkStyle({
     required super.state,
     required super.vsync,
   });
@@ -47,7 +42,7 @@ class YgTextLinkStyle extends YgButtonBaseStyle<YgTextLinkState> {
     );
   }
 
-  Color _resolveColor(YgTextLinkState state) {
+  Color _resolveColor(_YgTextLinkState state) {
     if (state.disabled.value) {
       return _theme.disabledColor;
     } else if (state.pressed.value) {
@@ -61,7 +56,7 @@ class YgTextLinkStyle extends YgButtonBaseStyle<YgTextLinkState> {
     return _theme.defaultColor;
   }
 
-  TextStyle _getBaseTextStyle(YgTextLinkState state) {
+  TextStyle _getBaseTextStyle(_YgTextLinkState state) {
     switch (state.size.value) {
       case YgTextLinkSize.small:
         switch (state.weight.value) {

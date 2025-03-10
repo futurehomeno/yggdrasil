@@ -1,16 +1,10 @@
-import 'package:flutter/material.dart';
-import 'package:yggdrasil/src/components/buttons/widgets/_widgets.dart';
-import 'package:yggdrasil/src/utils/yg_states/interfaces/yg_vsync.dart';
-import 'package:yggdrasil/yggdrasil.dart';
-
-import 'yg_avatar_state.dart';
-import 'yg_avatar_style.dart';
+part of buttons;
 
 /// An avatar usually representing a user or a company.
 ///
 /// Typically used with a user's profile image, or the user's initials.
 /// If [image] is passed, [initials] are not shown.
-class YgAvatar extends YgButtonBase<YgAvatarState> {
+class YgAvatar extends _YgButtonBase<_YgAvatarState> {
   const YgAvatar({
     super.key,
     required this.initials,
@@ -56,8 +50,8 @@ class YgAvatar extends YgButtonBase<YgAvatarState> {
   }
 
   @override
-  YgAvatarState createButtonState() {
-    return YgAvatarState(
+  _YgAvatarState createButtonState() {
+    return _YgAvatarState(
       disabled: disabled,
       image: image != null,
       size: size,
@@ -66,15 +60,15 @@ class YgAvatar extends YgButtonBase<YgAvatarState> {
   }
 
   @override
-  YgButtonBaseStyle<YgAvatarState> createStyle(YgVsync vsync, YgAvatarState state) {
-    return YgAvatarStyle(
+  _YgButtonBaseStyle<_YgAvatarState> createStyle(YgVsync vsync, _YgAvatarState state) {
+    return _YgAvatarStyle(
       state: state,
       vsync: vsync,
     );
   }
 
   @override
-  void updateState(YgAvatarState state) {
+  void updateState(_YgAvatarState state) {
     state.disabled.value = disabled;
     state.image.value = image != null;
     state.size.value = size;

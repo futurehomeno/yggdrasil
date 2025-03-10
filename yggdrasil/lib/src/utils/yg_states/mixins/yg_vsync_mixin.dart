@@ -1,6 +1,5 @@
-import 'package:flutter/foundation.dart';
-import 'package:flutter/material.dart';
-import 'package:yggdrasil/src/utils/yg_states/_yg_states.dart';
+part of yg_states;
+
 
 /// Adds the YgVsync interface to a widget state.
 @optionalTypeArgs

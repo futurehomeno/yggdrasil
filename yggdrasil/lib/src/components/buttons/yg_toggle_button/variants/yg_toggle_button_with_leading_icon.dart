@@ -1,4 +1,5 @@
-part of '../yg_toggle_button.dart';
+part of buttons;
+
 
 final class _YgToggleButtonWithLeadingIcon extends YgToggleButton {
   const _YgToggleButtonWithLeadingIcon({

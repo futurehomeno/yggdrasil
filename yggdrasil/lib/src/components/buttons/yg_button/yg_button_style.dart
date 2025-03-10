@@ -1,13 +1,7 @@
-import 'package:flutter/material.dart';
-import 'package:yggdrasil/src/components/buttons/widgets/_widgets.dart';
-import 'package:yggdrasil/src/theme/_theme.dart';
-import 'package:yggdrasil/src/utils/_utils.dart';
-import 'package:yggdrasil/yggdrasil.dart';
+part of buttons;
 
-import 'yg_button_state.dart';
-
-class YgButtonStyle extends YgButtonBaseStyle<YgButtonState> {
-  YgButtonStyle({
+class _YgButtonStyle extends _YgButtonBaseStyle<_YgButtonState> {
+  _YgButtonStyle({
     required super.state,
     required super.vsync,
   });
@@ -69,18 +63,18 @@ class YgButtonStyle extends YgButtonBaseStyle<YgButtonState> {
     );
   }
 
-  ButtonVariantTheme get variantTheme {
+  _ButtonVariantTheme get variantTheme {
     switch (state.variant.value) {
       case YgButtonVariant.primary:
-        return ButtonVariantTheme.primary(_theme.primaryButtonTheme);
+        return _ButtonVariantTheme.primary(_theme.primaryButtonTheme);
       case YgButtonVariant.secondary:
-        return ButtonVariantTheme.secondary(_theme.secondaryButtonTheme);
+        return _ButtonVariantTheme.secondary(_theme.secondaryButtonTheme);
       case YgButtonVariant.text:
-        return ButtonVariantTheme.text(_theme.textButtonTheme);
+        return _ButtonVariantTheme.text(_theme.textButtonTheme);
       case YgButtonVariant.critical:
-        return ButtonVariantTheme.critical(_theme.criticalButtonTheme);
+        return _ButtonVariantTheme.critical(_theme.criticalButtonTheme);
       case YgButtonVariant.link:
-        return ButtonVariantTheme.link(_theme.linkButtonTheme);
+        return _ButtonVariantTheme.link(_theme.linkButtonTheme);
     }
   }
 
@@ -94,8 +88,8 @@ class YgButtonStyle extends YgButtonBaseStyle<YgButtonState> {
 }
 
 // TODO(DEV-1915): Remove this when theme extensions can extend interfaces
-class ButtonVariantTheme {
-  const ButtonVariantTheme({
+class _ButtonVariantTheme {
+  const _ButtonVariantTheme({
     required this.backgroundColor,
     required this.textStyle,
     required this.disabledTextStyle,
@@ -105,7 +99,7 @@ class ButtonVariantTheme {
     required this.iconDisabledColor,
   });
 
-  factory ButtonVariantTheme.primary(YgPrimaryButtonTheme theme) => ButtonVariantTheme(
+  factory _ButtonVariantTheme.primary(YgPrimaryButtonTheme theme) => _ButtonVariantTheme(
         backgroundColor: theme.backgroundColor,
         textStyle: theme.textStyle,
         disabledTextStyle: theme.disabledTextStyle,
@@ -115,7 +109,7 @@ class ButtonVariantTheme {
         iconDisabledColor: theme.iconDisabledColor,
       );
 
-  factory ButtonVariantTheme.secondary(YgSecondaryButtonTheme theme) => ButtonVariantTheme(
+  factory _ButtonVariantTheme.secondary(YgSecondaryButtonTheme theme) => _ButtonVariantTheme(
         backgroundColor: theme.backgroundColor,
         textStyle: theme.textStyle,
         disabledTextStyle: theme.disabledTextStyle,
@@ -125,7 +119,7 @@ class ButtonVariantTheme {
         iconDisabledColor: theme.iconDisabledColor,
       );
 
-  factory ButtonVariantTheme.text(YgTextButtonTheme theme) => ButtonVariantTheme(
+  factory _ButtonVariantTheme.text(YgTextButtonTheme theme) => _ButtonVariantTheme(
         backgroundColor: theme.backgroundColor,
         textStyle: theme.textStyle,
         disabledTextStyle: theme.disabledTextStyle,
@@ -135,7 +129,7 @@ class ButtonVariantTheme {
         iconDisabledColor: theme.iconDisabledColor,
       );
 
-  factory ButtonVariantTheme.critical(YgCriticalButtonTheme theme) => ButtonVariantTheme(
+  factory _ButtonVariantTheme.critical(YgCriticalButtonTheme theme) => _ButtonVariantTheme(
         backgroundColor: theme.backgroundColor,
         textStyle: theme.textStyle,
         disabledTextStyle: theme.disabledTextStyle,
@@ -145,7 +139,7 @@ class ButtonVariantTheme {
         iconDisabledColor: theme.iconDisabledColor,
       );
 
-  factory ButtonVariantTheme.link(YgLinkButtonTheme theme) => ButtonVariantTheme(
+  factory _ButtonVariantTheme.link(YgLinkButtonTheme theme) => _ButtonVariantTheme(
         backgroundColor: theme.backgroundColor,
         textStyle: theme.textStyle,
         disabledTextStyle: theme.disabledTextStyle,

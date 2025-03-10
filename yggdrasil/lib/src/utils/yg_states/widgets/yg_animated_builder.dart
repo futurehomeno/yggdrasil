@@ -1,6 +1,7 @@
+part of yg_states;
+
 // ignore_for_file: always-remove-listener
 
-import 'package:flutter/material.dart';
 
 /// Similar to [AnimatedBuilder] but accepts multiple properties instead.
 class YgAnimatedBuilder extends StatefulWidget {

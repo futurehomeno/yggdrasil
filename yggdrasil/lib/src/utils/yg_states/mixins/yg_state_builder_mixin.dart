@@ -1,12 +1,11 @@
-import 'package:flutter/material.dart' as m;
-import 'package:yggdrasil/src/utils/_utils.dart';
+part of yg_states;
 
 /// Mixin to simplify working with [YgState].
-mixin YgStateBuilderMixin<Widget extends m.StatefulWidget, State extends YgState> on m.State<Widget> {
-  State? _state;
+mixin YgStateBuilderMixin<Widget extends StatefulWidget, VisualState extends YgState> on State<Widget> {
+  VisualState? _state;
 
-  State get state {
-    State? state = _state;
+  VisualState get state {
+    VisualState? state = _state;
     if (state != null) {
       return state;
     }
@@ -30,7 +29,7 @@ mixin YgStateBuilderMixin<Widget extends m.StatefulWidget, State extends YgState
   }
 
   /// Creates a state on init.
-  State createState();
+  VisualState createState();
 
   /// Updates the state with the properties on [widget].
   void updateState();

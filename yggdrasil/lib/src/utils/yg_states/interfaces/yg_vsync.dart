@@ -1,4 +1,5 @@
-import 'package:flutter/material.dart';
+part of yg_states;
+
 
 /// Provides [TickerProvider], [BuildContext], and the option to listen for
 /// dependency changes on the [context].

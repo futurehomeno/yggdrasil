@@ -1,16 +1,8 @@
-import 'package:flutter/material.dart';
-import 'package:yggdrasil/src/components/buttons/widgets/yg_button_base.dart';
-import 'package:yggdrasil/src/components/buttons/widgets/yg_button_base_style.dart';
-import 'package:yggdrasil/src/components/buttons/yg_segmented_button/segment/yg_segmented_button_segment_state.dart';
-import 'package:yggdrasil/src/components/buttons/yg_segmented_button/segment/yg_segmented_button_segment_style.dart';
-import 'package:yggdrasil/src/theme/segmented_button/segmented_button_theme.dart';
-import 'package:yggdrasil/src/theme/theme.dart';
-import 'package:yggdrasil/src/utils/yg_states/interfaces/yg_vsync.dart';
-import 'package:yggdrasil/yggdrasil.dart';
+part of buttons;
 
 /// A button segment, used internally for the [YgSegmentedButton].
-class YgSegmentedButtonSegment extends YgButtonBase<YgSegmentedButtonSegmentState> {
-  const YgSegmentedButtonSegment({
+class _YgSegmentedButtonSegment extends _YgButtonBase<_YgSegmentedButtonSegmentState> {
+  const _YgSegmentedButtonSegment({
     super.key,
     required super.onPressed,
     required this.selected,
@@ -95,23 +87,23 @@ class YgSegmentedButtonSegment extends YgButtonBase<YgSegmentedButtonSegmentStat
   }
 
   @override
-  YgSegmentedButtonSegmentState createButtonState() {
-    return YgSegmentedButtonSegmentState(
+  _YgSegmentedButtonSegmentState createButtonState() {
+    return _YgSegmentedButtonSegmentState(
       disabled: disabled,
       selected: selected,
     );
   }
 
   @override
-  YgButtonBaseStyle<YgSegmentedButtonSegmentState> createStyle(YgVsync vsync, YgSegmentedButtonSegmentState state) {
-    return YgSegmentedButtonSegmentStyle(
+  _YgButtonBaseStyle<_YgSegmentedButtonSegmentState> createStyle(YgVsync vsync, _YgSegmentedButtonSegmentState state) {
+    return _YgSegmentedButtonSegmentStyle(
       state: state,
       vsync: vsync,
     );
   }
 
   @override
-  void updateState(YgSegmentedButtonSegmentState state) {
+  void updateState(_YgSegmentedButtonSegmentState state) {
     state.selected.value = selected;
     state.disabled.value = disabled;
   }

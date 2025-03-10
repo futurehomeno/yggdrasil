@@ -1,14 +1,7 @@
-import 'package:flutter/material.dart';
-import 'package:yggdrasil/src/components/buttons/widgets/_widgets.dart';
-import 'package:yggdrasil/src/components/buttons/yg_text_link/yg_text_link_style.dart';
-import 'package:yggdrasil/src/theme/_theme.dart';
-import 'package:yggdrasil/src/utils/_utils.dart';
-import 'package:yggdrasil/yggdrasil.dart';
-
-import 'yg_text_link_state.dart';
+part of buttons;
 
 /// Text link button implementation.
-class YgTextLink extends YgButtonBase<YgTextLinkState> {
+class YgTextLink extends _YgButtonBase<_YgTextLinkState> {
   const YgTextLink({
     super.key,
     required this.text,
@@ -64,16 +57,16 @@ class YgTextLink extends YgButtonBase<YgTextLinkState> {
   }
 
   @override
-  YgButtonBaseStyle<YgTextLinkState> createStyle(YgVsync vsync, YgTextLinkState state) {
-    return YgTextLinkStyle(
+  _YgButtonBaseStyle<_YgTextLinkState> createStyle(YgVsync vsync, _YgTextLinkState state) {
+    return _YgTextLinkStyle(
       state: state,
       vsync: vsync,
     );
   }
 
   @override
-  YgTextLinkState createButtonState() {
-    return YgTextLinkState(
+  _YgTextLinkState createButtonState() {
+    return _YgTextLinkState(
       disabled: onPressed == null,
       size: size,
       weight: weight,
@@ -81,7 +74,7 @@ class YgTextLink extends YgButtonBase<YgTextLinkState> {
   }
 
   @override
-  void updateState(YgTextLinkState state) {
+  void updateState(_YgTextLinkState state) {
     state.disabled.value = onPressed == null;
     state.size.value = size;
     state.weight.value = weight;

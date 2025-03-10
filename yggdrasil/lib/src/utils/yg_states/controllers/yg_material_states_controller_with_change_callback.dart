@@ -1,4 +1,5 @@
-import 'package:flutter/material.dart';
+part of yg_states;
+
 
 /// A material states controller which notifies you about state changes.
 class YgMaterialStatesControllerWithChangeCallback extends WidgetStatesController {
