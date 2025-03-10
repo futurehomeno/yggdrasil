@@ -1,0 +1,48 @@
+import 'package:flutter/material.dart';
+
+/// Splits nulls from a list and merge them back in to a processed list.
+///
+/// Useful when a processing class can not handle null items, but null items
+/// need to be preserved for the processed result.
+///
+/// One example where this is common is [MultiChildRenderObjectWidget]s which
+/// require their optional named child widgets to be accessed in [RenderObject]s
+/// as named child [RenderObject]s.
+class NullableItemListSplitterMerger<T> {
+  const NullableItemListSplitterMerger({
+    required this.list,
+  });
+
+  /// List with nullable items.
+  final List<T?> list;
+
+  /// List without nullable items.
+  List<T> get nonNullList {
+    final List<T> nonNullList = <T>[];
+    for (final T? item in list) {
+      if (item != null) {
+        nonNullList.add(item);
+      }
+    }
+
+    return nonNullList;
+  }
+
+  /// Merges nulls from the [list] in to [newList].
+  List<R?> getListWithNulls<R>(List<R> newList) {
+    final List<R?> listWithNull = <R?>[];
+
+    int index = 0;
+    for (final T? item in list) {
+      if (item == null) {
+        listWithNull.add(null);
+        continue;
+      }
+
+      listWithNull.add(newList[index]);
+      index++;
+    }
+
+    return listWithNull;
+  }
+}
