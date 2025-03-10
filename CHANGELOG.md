@@ -1,3 +1,10 @@
+# 1.13.3 [2025-03-10T12:47:45.806766]
+
+### Changes
+
+- [fix] Fixed issue where a style gets used after getting disposed if a widget is rendered for only 1 frame DEV-4814.
+- fixed bug (#204)
+
 # 1.13.2 [2025-02-27T13:01:11.335829]
 
 ### Changes
