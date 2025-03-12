@@ -1,5 +1,5 @@
+import '../range.dart';
 import 'data_point.dart';
-import 'range.dart';
 
 typedef AnyDataSet = DataSet<num, DataPoint<num>>;
 

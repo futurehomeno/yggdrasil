@@ -1,8 +1,8 @@
 import 'package:yggdrasil/src/components/yg_chart/enums/data_variant.dart';
 import 'package:yggdrasil/src/components/yg_chart/helpers/data_helpers.dart';
-import 'package:yggdrasil/src/components/yg_chart/models/data_point.dart';
-import 'package:yggdrasil/src/components/yg_chart/models/data_ranges.dart';
-import 'package:yggdrasil/src/components/yg_chart/models/data_set.dart';
+import 'package:yggdrasil/src/components/yg_chart/models/data/data_point.dart';
+import 'package:yggdrasil/src/components/yg_chart/models/data/data_ranges.dart';
+import 'package:yggdrasil/src/components/yg_chart/models/data/data_set.dart';
 
 class LineChartData extends DataSet<double, DataPoint<double>> {
   const LineChartData({

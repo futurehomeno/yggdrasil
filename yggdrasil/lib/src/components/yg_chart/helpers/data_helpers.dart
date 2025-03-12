@@ -1,5 +1,5 @@
-import 'package:yggdrasil/src/components/yg_chart/models/data_point.dart';
-import 'package:yggdrasil/src/components/yg_chart/models/data_ranges.dart';
+import 'package:yggdrasil/src/components/yg_chart/models/data/data_point.dart';
+import 'package:yggdrasil/src/components/yg_chart/models/data/data_ranges.dart';
 import 'package:yggdrasil/src/components/yg_chart/models/range.dart';
 
 abstract final class DataHelpers {

@@ -1,5 +1,5 @@
 import 'package:flutter/widgets.dart';
-import 'package:yggdrasil/src/components/yg_chart/models/data_set.dart';
+import 'package:yggdrasil/src/components/yg_chart/models/data/data_set.dart';
 import 'package:yggdrasil/src/components/yg_chart/renderers/chart_child_widget.dart';
 import 'package:yggdrasil/src/components/yg_chart/renderers/plotting/plotting_painter.dart';
 

@@ -1,4 +1,4 @@
-import 'range.dart';
+import '../range.dart';
 
 class DataRanges<N extends num> {
   const DataRanges({

@@ -1,6 +1,6 @@
-import 'package:yggdrasil/src/components/yg_chart/models/data_point.dart';
+import 'package:yggdrasil/src/components/yg_chart/models/data/data_point.dart';
 import 'package:yggdrasil/src/components/yg_chart/models/range.dart';
-import 'package:yggdrasil/src/components/yg_chart/painters/plotting/segmented_bar_chart/bar_segment.dart';
+import 'package:yggdrasil/src/components/yg_chart/painters/plotting/segmented_bar_chart/models/bar_segment.dart';
 
 class SegmentedBar extends DataPoint<int> {
   SegmentedBar({
