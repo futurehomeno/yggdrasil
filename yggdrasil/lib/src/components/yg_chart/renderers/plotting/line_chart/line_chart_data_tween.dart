@@ -1,5 +1,5 @@
 import 'package:flutter/src/animation/tween.dart';
-import 'package:yggdrasil/src/components/yg_chart/painters/plotting/line_chart/line_chart_data.dart';
+import 'package:yggdrasil/src/components/yg_chart/renderers/plotting/line_chart/line_chart_data.dart';
 
 class LineChartDataTween extends Tween<LineChartData> {
   LineChartDataTween({

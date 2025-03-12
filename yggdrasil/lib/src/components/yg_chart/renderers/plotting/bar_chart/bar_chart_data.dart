@@ -2,8 +2,8 @@ import 'package:yggdrasil/src/components/yg_chart/enums/data_variant.dart';
 import 'package:yggdrasil/src/components/yg_chart/helpers/data_helpers.dart';
 import 'package:yggdrasil/src/components/yg_chart/models/data/data_ranges.dart';
 import 'package:yggdrasil/src/components/yg_chart/models/data/data_set.dart';
-import 'package:yggdrasil/src/components/yg_chart/painters/plotting/bar_chart/bar.dart';
-import 'package:yggdrasil/src/components/yg_chart/painters/plotting/bar_chart/indexed_bar.dart';
+import 'package:yggdrasil/src/components/yg_chart/renderers/plotting/bar_chart/bar.dart';
+import 'package:yggdrasil/src/components/yg_chart/renderers/plotting/bar_chart/indexed_bar.dart';
 
 class BarChartData extends DataSet<int, IndexedBar> {
   const BarChartData({

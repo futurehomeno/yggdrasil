@@ -16,6 +16,7 @@ class Range<N extends num> {
 
   static const DoubleRange doubleZero = DoubleRange(start: 0, end: 0);
   static const IntRange intZero = IntRange(start: 0, end: 0);
+  static const DoubleRange infinite = DoubleRange(start: double.negativeInfinity, end: double.infinity);
 
   static Range<N>? lerp<N extends num>(Range<N>? from, Range<N>? to, double t) {
     if (from == null && to == null) {
@@ -123,6 +124,10 @@ class Range<N extends num> {
   N get min => math.min(start, end);
 
   N get length => (end - start) as N;
+
+  bool get isFinite => start.isFinite && end.isFinite;
+
+  bool get isInfinite => start.isInfinite || end.isInfinite;
 
   @override
   String toString() => 'Range($start, $end)';

@@ -1,8 +1,9 @@
 import 'dart:ui';
 
 import 'package:flutter/src/animation/tween.dart';
-import 'package:yggdrasil/src/components/yg_chart/painters/plotting/bar_chart/bar_chart_data.dart';
-import 'package:yggdrasil/src/components/yg_chart/renderers/chart_child_widget.dart';
+import 'package:yggdrasil/src/components/yg_chart/renderers/chart_child_renderer.dart';
+import 'package:yggdrasil/src/components/yg_chart/renderers/chart_painting_context.dart';
+import 'package:yggdrasil/src/components/yg_chart/renderers/plotting/bar_chart/bar_chart_data.dart';
 import 'package:yggdrasil/src/components/yg_chart/renderers/plotting/plotting_painter.dart';
 import 'package:yggdrasil/src/components/yg_chart/renderers/plotting/plotting_widget.dart';
 

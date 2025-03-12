@@ -4,4 +4,6 @@ abstract class YgValueFormatter {
   const YgValueFormatter();
 
   String format(double value, IntervalData intervalData);
+
+  String formatWithMetric(double value, String metric, IntervalData intervalData);
 }

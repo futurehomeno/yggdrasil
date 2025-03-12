@@ -4,8 +4,8 @@ import 'package:yggdrasil/src/components/yg_chart/models/formatters/yg_simple_va
 import 'package:yggdrasil/src/components/yg_chart/models/formatters/yg_value_formatter.dart';
 import 'package:yggdrasil/src/components/yg_chart/models/range.dart';
 
-abstract class YgSingleAxisConfig {
-  const YgSingleAxisConfig({
+abstract class YgAxisConfig {
+  const YgAxisConfig({
     this.metric,
     this.range,
     this.widget,

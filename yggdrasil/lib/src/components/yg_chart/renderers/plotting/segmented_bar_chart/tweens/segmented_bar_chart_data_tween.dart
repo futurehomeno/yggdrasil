@@ -2,9 +2,9 @@ import 'dart:collection';
 
 import 'package:flutter/animation.dart';
 import 'package:yggdrasil/src/components/yg_chart/models/range.dart';
-import 'package:yggdrasil/src/components/yg_chart/painters/plotting/segmented_bar_chart/models/segmented_bar.dart';
-import 'package:yggdrasil/src/components/yg_chart/painters/plotting/segmented_bar_chart/models/segmented_bar_chart_data.dart';
-import 'package:yggdrasil/src/components/yg_chart/painters/plotting/segmented_bar_chart/tweens/segmented_bar_tween.dart';
+import 'package:yggdrasil/src/components/yg_chart/renderers/plotting/segmented_bar_chart/models/segmented_bar.dart';
+import 'package:yggdrasil/src/components/yg_chart/renderers/plotting/segmented_bar_chart/models/segmented_bar_chart_data.dart';
+import 'package:yggdrasil/src/components/yg_chart/renderers/plotting/segmented_bar_chart/tweens/segmented_bar_tween.dart';
 
 class SegmentedBarChartDataTween extends Tween<SegmentedBarChartData> {
   SegmentedBarChartDataTween({

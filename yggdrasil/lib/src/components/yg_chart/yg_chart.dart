@@ -3,6 +3,8 @@ import 'package:yggdrasil/src/components/yg_chart/controller/yg_chart_controller
 import 'package:yggdrasil/src/components/yg_chart/models/config/axes/yg_axes_config.dart';
 import 'package:yggdrasil/src/components/yg_chart/models/config/yg_interaction_config.dart';
 
+import 'renderers/yg_chart_renderer.dart';
+
 class YgChart extends StatefulWidget {
   const YgChart({
     super.key,
@@ -26,6 +28,14 @@ class _YgChartState extends State<YgChart> with TickerProviderStateMixin {
 
   @override
   Widget build(BuildContext context) {
-    return Container();
+    final List<Widget>? decorators = widget.decorators;
+
+    return YgChartRenderWidget(
+      controller: _chartController,
+      children: <Widget>[
+        ...widget.plotters,
+        if (decorators != null) ...decorators,
+      ],
+    );
   }
 }

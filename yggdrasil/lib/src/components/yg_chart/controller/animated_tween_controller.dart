@@ -36,6 +36,10 @@ class AnimatedTweenController<T> extends Animation<T> with ChangeNotifier {
     required Duration duration,
     required Curve curve,
   }) {
+    if (value == tween.end) {
+      return;
+    }
+
     tween.begin = _value;
     tween.end = value;
     _parent.value = 0;
