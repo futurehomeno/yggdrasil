@@ -117,13 +117,42 @@ class Range<N extends num> {
     );
   }
 
+  Range<N> withLength(
+    N length, {
+    double alignment = 0.5,
+  }) {
+    if (length == this.length) {
+      return this;
+    }
+
+    final num difference = length - this.length;
+
+    if (N == double) {
+      final double newStart = min - difference * alignment;
+
+      return DoubleRange(
+        start: newStart,
+        end: newStart + length,
+      ) as Range<N>;
+    }
+
+    final int newStart = (min - difference * alignment).round();
+
+    return IntRange(
+      start: newStart,
+      end: newStart + length as int,
+    ) as Range<N>;
+  }
+
+  Range<N> get normalized => Range<N>(start: min, end: max);
+
   /// The highest value out of start and end.
   N get max => math.max(start, end);
 
   /// The lowest value out of start and end.
   N get min => math.min(start, end);
 
-  N get length => (end - start) as N;
+  N get length => (end - start).abs() as N;
 
   bool get isFinite => start.isFinite && end.isFinite;
 

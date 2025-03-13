@@ -30,6 +30,8 @@ abstract class YgChartPlottingRenderer<T extends AnyDataset>
     _controller.addListener(markNeedsPaint);
   }
 
+  EdgeInsets getMinPadding() => EdgeInsets.zero;
+
   @override
   void attach(PipelineOwner owner) {
     controller.addListener(markNeedsPaint);

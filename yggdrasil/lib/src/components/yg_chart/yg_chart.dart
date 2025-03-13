@@ -57,6 +57,7 @@ class _YgChartState extends State<YgChart> with TickerProviderStateMixin {
       controller: _chartController,
       child: YgChartRenderWidget(
         controller: _chartController,
+        renderData: widget.axes.renderData,
         children: <Widget>[
           ...widget.plotters,
           if (decorators != null) ...decorators,

@@ -7,6 +7,12 @@ import 'package:yggdrasil/src/components/yg_chart/models/config/yg_chart_control
 import 'package:yggdrasil/src/components/yg_chart/models/data/dataset.dart';
 import 'package:yggdrasil/src/components/yg_chart/models/range.dart';
 
+// TODO: We need more seperation, the chart renderer will tell this controller
+// what the data ranges should be, as they depend on layout. This controller
+// should only just animate whatever the chart renderer tells this controller
+// the target ranges should be. This controller should probably inform the
+// render object about new data range targets which this controller should know
+// from its child controllers.
 class YgChartController {
   YgChartController({
     required TickerProvider vsync,
