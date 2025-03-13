@@ -1,10 +1,10 @@
 import 'package:yggdrasil/src/components/yg_chart/helpers/data_helpers.dart';
 import 'package:yggdrasil/src/components/yg_chart/models/data/data_ranges.dart';
-import 'package:yggdrasil/src/components/yg_chart/models/data/data_set.dart';
+import 'package:yggdrasil/src/components/yg_chart/models/data/dataset.dart';
 import 'package:yggdrasil/src/components/yg_chart/renderers/plotting/segmented_bar_chart/models/bar_segment.dart';
 import 'package:yggdrasil/src/components/yg_chart/renderers/plotting/segmented_bar_chart/models/segmented_bar.dart';
 
-class SegmentedBarChartData extends DataSet<int, SegmentedBar> {
+class SegmentedBarChartData extends Dataset<int, SegmentedBar> {
   const SegmentedBarChartData({
     required super.indexRange,
     required super.points,

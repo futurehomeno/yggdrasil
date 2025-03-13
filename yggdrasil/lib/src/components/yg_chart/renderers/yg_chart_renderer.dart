@@ -1,9 +1,10 @@
 import 'package:flutter/rendering.dart';
 import 'package:flutter/widgets.dart';
 import 'package:yggdrasil/src/components/yg_chart/controller/yg_chart_controller.dart';
+import 'package:yggdrasil/src/components/yg_chart/enums/data_group.dart';
 import 'package:yggdrasil/src/components/yg_chart/models/data/data_point.dart';
-import 'package:yggdrasil/src/components/yg_chart/models/data/data_set.dart';
-import 'package:yggdrasil/src/components/yg_chart/renderers/background_renderer.dart';
+import 'package:yggdrasil/src/components/yg_chart/models/data/dataset.dart';
+import 'package:yggdrasil/src/components/yg_chart/renderers/decoration/yg_chart_decoration_renderer.dart';
 import 'package:yggdrasil/src/components/yg_chart/renderers/index_axis/yg_chart_index_axis_renderer.dart';
 import 'package:yggdrasil/src/components/yg_chart/renderers/value_axis/yg_chart_value_axis_renderer.dart';
 
@@ -32,7 +33,7 @@ class YgChartRenderWidget extends MultiChildRenderObjectWidget {
 }
 
 class YgChartParentData extends ContainerBoxParentData<RenderBox> {
-  DataSet<num, DataPoint<num>>? dataSet;
+  Dataset<num, DataPoint<num>>? dataSet;
 }
 
 class YgChartRenderer extends RenderBox
@@ -67,22 +68,74 @@ class YgChartRenderer extends RenderBox
   }
 
   _Children _getChildren() {
-    throw UnimplementedError();
+    final List<YgChartPlottingRenderer<AnyDataset>> plottingRenderers = <YgChartPlottingRenderer<AnyDataset>>[];
+    final List<YgChartDecorationRenderer> decorationRenderers = <YgChartDecorationRenderer>[];
+    YgChartValueAxisRenderer? primaryAxis;
+    YgChartValueAxisRenderer? secondaryAxis;
+    YgChartIndexAxisRenderer? indexAxis;
+
+    for (RenderBox? child = firstChild; child != null; child = childAfter(child)) {
+      switch (child) {
+        // ignore: always_specify_types
+        case YgChartPlottingRenderer():
+          plottingRenderers.add(child);
+          break;
+
+        case YgChartDecorationRenderer():
+          decorationRenderers.add(child);
+          break;
+
+        case YgChartValueAxisRenderer() when child.group == DataGroup.primary:
+          assert(
+            primaryAxis == null,
+            'Can not have more than one primaryAxis',
+          );
+
+          primaryAxis ??= child;
+          break;
+
+        case YgChartValueAxisRenderer() when child.group == DataGroup.secondary:
+          assert(
+            secondaryAxis == null,
+            'Can not have more than one secondaryAxis',
+          );
+
+          secondaryAxis ??= child;
+          break;
+
+        case YgChartIndexAxisRenderer():
+          assert(
+            indexAxis == null,
+            'Can not have more than one indexAxis',
+          );
+
+          indexAxis ??= child;
+          break;
+      }
+    }
+
+    return _Children(
+      decorationRenderers: decorationRenderers,
+      indexAxis: indexAxis,
+      primaryAxis: primaryAxis,
+      plottingRenderers: plottingRenderers,
+      secondaryAxis: secondaryAxis,
+    );
   }
 }
 
 class _Children {
   const _Children({
-    required this.backgroundRenderer,
+    required this.decorationRenderers,
     required this.indexAxis,
     required this.primaryAxis,
     required this.plottingRenderers,
     required this.secondaryAxis,
   });
 
-  final List<YgChartPlottingRenderer> plottingRenderers;
+  final List<YgChartPlottingRenderer<AnyDataset>> plottingRenderers;
+  final List<YgChartDecorationRenderer>? decorationRenderers;
   final YgChartValueAxisRenderer? primaryAxis;
   final YgChartValueAxisRenderer? secondaryAxis;
   final YgChartIndexAxisRenderer? indexAxis;
-  final BackgroundRenderer? backgroundRenderer;
 }

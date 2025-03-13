@@ -2,9 +2,9 @@ import 'package:yggdrasil/src/components/yg_chart/enums/data_variant.dart';
 import 'package:yggdrasil/src/components/yg_chart/helpers/data_helpers.dart';
 import 'package:yggdrasil/src/components/yg_chart/models/data/data_point.dart';
 import 'package:yggdrasil/src/components/yg_chart/models/data/data_ranges.dart';
-import 'package:yggdrasil/src/components/yg_chart/models/data/data_set.dart';
+import 'package:yggdrasil/src/components/yg_chart/models/data/dataset.dart';
 
-class LineChartData extends DataSet<double, DataPoint<double>> {
+class LineChartData extends Dataset<double, DataPoint<double>> {
   const LineChartData({
     required super.indexRange,
     required super.points,

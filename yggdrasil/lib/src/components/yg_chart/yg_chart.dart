@@ -24,18 +24,44 @@ class YgChart extends StatefulWidget {
 }
 
 class _YgChartState extends State<YgChart> with TickerProviderStateMixin {
-  late final YgChartController _chartController = YgChartController(vsync: this);
+  late final YgChartController _chartController;
+
+  @override
+  void initState() {
+    super.initState();
+    _chartController = YgChartController(
+      vsync: this,
+      config: widget.axes.controllerConfig,
+    );
+  }
+
+  @override
+  void didUpdateWidget(covariant YgChart oldWidget) {
+    super.didUpdateWidget(oldWidget);
+    _chartController.update(
+      widget.axes.controllerConfig,
+    );
+  }
+
+  @override
+  void dispose() {
+    _chartController.dispose();
+    super.dispose();
+  }
 
   @override
   Widget build(BuildContext context) {
     final List<Widget>? decorators = widget.decorators;
 
-    return YgChartRenderWidget(
+    return YgChartControllerProvider(
       controller: _chartController,
-      children: <Widget>[
-        ...widget.plotters,
-        if (decorators != null) ...decorators,
-      ],
+      child: YgChartRenderWidget(
+        controller: _chartController,
+        children: <Widget>[
+          ...widget.plotters,
+          if (decorators != null) ...decorators,
+        ],
+      ),
     );
   }
 }

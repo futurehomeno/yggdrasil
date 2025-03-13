@@ -1,10 +1,10 @@
-import 'package:flutter/animation.dart';
-import 'package:flutter/foundation.dart';
+import 'package:flutter/widgets.dart';
 import 'package:yggdrasil/src/components/yg_chart/controller/animated_tween_controller.dart';
 import 'package:yggdrasil/src/components/yg_chart/controller/range_tween.dart';
+import 'package:yggdrasil/src/components/yg_chart/controller/yg_chart_data_set_controller.dart';
 import 'package:yggdrasil/src/components/yg_chart/enums/data_group.dart';
 import 'package:yggdrasil/src/components/yg_chart/models/config/yg_chart_controller_config.dart';
-import 'package:yggdrasil/src/components/yg_chart/models/data/data_set.dart';
+import 'package:yggdrasil/src/components/yg_chart/models/data/dataset.dart';
 import 'package:yggdrasil/src/components/yg_chart/models/range.dart';
 
 class YgChartController {
@@ -31,9 +31,13 @@ class YgChartController {
         ),
         _config = config;
 
+  static YgChartController? maybeOf(BuildContext context) {
+    return context.dependOnInheritedWidgetOfExactType<YgChartControllerProvider>()?.controller;
+  }
+
   YgChartControllerConfig _config;
 
-  final Set<YgChartDataSetController<AnyDataSet>> _datasetControllers = <YgChartDataSetController<AnyDataSet>>{};
+  final Set<YgChartDatasetController<AnyDataset>> _datasetControllers = <YgChartDatasetController<AnyDataset>>{};
 
   /// The value range of the primary datasets.
   Animation<DoubleRange> get primaryValueRange => _primaryValueRangeController;
@@ -44,7 +48,7 @@ class YgChartController {
   final AnimatedTweenController<DoubleRange> _secondaryValueRangeController;
 
   /// The index range of all datasets.
-  Animation<DoubleRange> get indexRange => _primaryValueRangeController;
+  Animation<DoubleRange> get indexRange => _indexRangeController;
   final AnimatedTweenController<DoubleRange> _indexRangeController;
 
   void updatePrimaryValueRange(DoubleRange range, {bool animated = true}) {
@@ -95,8 +99,8 @@ class YgChartController {
     DoubleRange newPrimaryRange = _config.primaryRange ?? Range.infinite;
     DoubleRange newSecondaryRange = _config.secondaryRange ?? Range.infinite;
 
-    for (final YgChartDataSetController<AnyDataSet> controller in _datasetControllers) {
-      final AnyDataSet? target = controller.target;
+    for (final YgChartDatasetController<AnyDataset> controller in _datasetControllers) {
+      final AnyDataset? target = controller.target;
       if (target == null) {
         continue;
       }
@@ -140,8 +144,15 @@ class YgChartController {
     updateSecondaryValueRange(newSecondaryRange);
   }
 
-  void registerDataSetController(YgChartDataSetController<AnyDataSet> controller) {
+  void registerDatasetController(YgChartDatasetController<AnyDataset> controller) {
     _datasetControllers.add(controller);
+    controller.attach(this);
+    updateRanges();
+  }
+
+  void unregisterDatasetController(YgChartDatasetController<AnyDataset> controller) {
+    _datasetControllers.remove(controller);
+    controller.detach();
     updateRanges();
   }
 
@@ -153,87 +164,26 @@ class YgChartController {
     _config = config;
     updateRanges();
   }
+
+  void dispose() {
+    _datasetControllers.clear();
+    _indexRangeController.dispose();
+    _primaryValueRangeController.dispose();
+    _secondaryValueRangeController.dispose();
+  }
 }
 
-typedef TweenBuilder<T> = Tween<T> Function(T? start, T? end);
+class YgChartControllerProvider extends InheritedWidget {
+  const YgChartControllerProvider({
+    super.key,
+    required super.child,
+    required this.controller,
+  });
 
-class YgChartDataSetController<T extends AnyDataSet> extends ChangeNotifier implements ValueListenable<T?> {
-  YgChartDataSetController({
-    required TweenBuilder<T> tweenBuilder,
-    required TickerProvider vsync,
-    required T? initialData,
-    required DataGroup dataGroup,
-  })  : _animationController = AnimationController(vsync: vsync),
-        _value = initialData,
-        _target = initialData,
-        _tweenBuilder = tweenBuilder,
-        _group = dataGroup {
-    _animationController.addListener(_tick);
-  }
-
-  final AnimationController _animationController;
-
-  final TweenBuilder<T> _tweenBuilder;
-
-  Tween<T>? _tween;
-
-  YgChartController? _parent;
-
-  DataGroup _group;
-  DataGroup get group => _group;
+  final YgChartController controller;
 
   @override
-  T? get value => _value;
-  T? _value;
-
-  /// The target value for this controller.
-  ///
-  /// This is not always equal to the value, specifically while this controller
-  /// is animating.
-  T? get target => _target;
-  T? _target;
-
-  void _tick() {
-    final Tween<T>? tween = _tween;
-    if (tween == null) {
-      _value = _target;
-
-      return;
-    }
-
-    _value = tween.evaluate(_animationController);
-  }
-
-  void update(T data, DataGroup group) {
-    final bool shouldUpdateParent = _group != group || _target != data;
-
-    if (_group != group) {
-      _group = group;
-    }
-
-    if (_target != data) {
-      _tween = _tweenBuilder(_value, data);
-      _target = data;
-      _animationController.value = 0;
-      _animationController.animateTo(
-        1,
-        curve: Curves.easeInOut,
-        duration: const Duration(milliseconds: 200),
-      );
-
-      return;
-    }
-
-    if (shouldUpdateParent) {
-      _parent?.updateRanges();
-    }
-  }
-
-  void attach(YgChartController parent) {
-    _parent = parent;
-  }
-
-  void detach() {
-    _parent = null;
+  bool updateShouldNotify(YgChartControllerProvider oldWidget) {
+    return oldWidget.controller != controller;
   }
 }

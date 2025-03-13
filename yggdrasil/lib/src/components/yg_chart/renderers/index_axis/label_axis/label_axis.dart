@@ -1,7 +1,7 @@
 import 'dart:ui';
 
 import 'package:flutter/widgets.dart';
-import 'package:yggdrasil/src/components/yg_chart/models/data/data_set.dart';
+import 'package:yggdrasil/src/components/yg_chart/models/data/dataset.dart';
 import 'package:yggdrasil/src/components/yg_chart/renderers/chart_child_renderer.dart';
 import 'package:yggdrasil/src/components/yg_chart/renderers/chart_painting_context.dart';
 import 'package:yggdrasil/src/components/yg_chart/renderers/horizontal_axis_renderer.dart';
@@ -13,11 +13,11 @@ class LabelAxis extends HorizontalAxisWidget {
   });
 }
 
-class LabelAxisPainter extends HorizontalAxisPainter<AnyDataSet> {
+class LabelAxisPainter extends HorizontalAxisPainter<AnyDataset> {
 
 
   @override
-  void paint(Canvas canvas, ChartPaintingContext context, AnyDataSet data) {
+  void paint(Canvas canvas, ChartPaintingContext context, AnyDataset data) {
     SliverList
   }
 }

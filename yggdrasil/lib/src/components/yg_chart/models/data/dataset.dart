@@ -1,10 +1,10 @@
 import '../range.dart';
 import 'data_point.dart';
 
-typedef AnyDataSet = DataSet<num, DataPoint<num>>;
+typedef AnyDataset = Dataset<num, DataPoint<num>>;
 
-class DataSet<N extends num, P extends DataPoint<N>> {
-  const DataSet({
+class Dataset<N extends num, P extends DataPoint<N>> {
+  const Dataset({
     required this.indexRange,
     required this.points,
     required this.valueRange,

@@ -31,7 +31,7 @@ class SegmentedBarChartDataTween extends Tween<SegmentedBarChartData> {
       points: <SegmentedBar>[
         for (final SegmentedBarTween tween in segmentedBarTweens) tween.lerp(t),
       ],
-      valueRange: begin!.valueRange.lerp(end!.valueRange, t),
+      valueRange: begin!.valueRange.lerpTo(end!.valueRange, t),
     );
   }
 }

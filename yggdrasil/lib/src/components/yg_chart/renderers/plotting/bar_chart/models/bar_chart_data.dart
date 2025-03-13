@@ -1,11 +1,11 @@
 import 'package:yggdrasil/src/components/yg_chart/enums/data_variant.dart';
 import 'package:yggdrasil/src/components/yg_chart/helpers/data_helpers.dart';
 import 'package:yggdrasil/src/components/yg_chart/models/data/data_ranges.dart';
-import 'package:yggdrasil/src/components/yg_chart/models/data/data_set.dart';
-import 'package:yggdrasil/src/components/yg_chart/renderers/plotting/bar_chart/bar.dart';
-import 'package:yggdrasil/src/components/yg_chart/renderers/plotting/bar_chart/indexed_bar.dart';
+import 'package:yggdrasil/src/components/yg_chart/models/data/dataset.dart';
+import 'package:yggdrasil/src/components/yg_chart/renderers/plotting/bar_chart/models/bar.dart';
+import 'package:yggdrasil/src/components/yg_chart/renderers/plotting/bar_chart/models/indexed_bar.dart';
 
-class BarChartData extends DataSet<int, IndexedBar> {
+class BarChartData extends Dataset<int, IndexedBar> {
   const BarChartData({
     required super.indexRange,
     required super.points,
