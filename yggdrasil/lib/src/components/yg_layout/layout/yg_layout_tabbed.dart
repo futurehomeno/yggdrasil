@@ -143,10 +143,10 @@ class _YgLayoutTabbedState extends _YgLayoutState<_YgLayoutTabbed> {
       final int next = page.ceil();
       final int previous = page.floor();
 
-      if (next != previous) {
-        if (_page.ceil() != next) {
+      if (next != previous && (next != _page.ceil() || previous != _page.floor())) {
+        if (page > _page) {
           onTabVisible(next);
-        } else if (_page.floor() != previous) {
+        } else {
           onTabVisible(previous);
         }
       }
