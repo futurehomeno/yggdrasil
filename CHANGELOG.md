@@ -1,3 +1,9 @@
+# 1.13.5 [2025-03-19T14:24:40.946230]
+
+### Changes
+
+- [fix] Finally fixed rounding precision error in onTabVisible.
+
 # 1.13.4 [2025-03-18T13:58:56.911976]
 
 ### Changes
