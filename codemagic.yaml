@@ -1,4 +1,4 @@
-flutter_ver: &flutter_ver 3.24.3
+flutter_ver: &flutter_ver 3.27.4
 xcode_ver: &xcode_ver 16.0
 
 workflows:

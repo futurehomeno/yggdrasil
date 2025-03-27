@@ -48,8 +48,10 @@ class _TestState extends State<Test> {
   @override
   Widget build(BuildContext context) {
     if (_shown) {
+      // ignore: deprecated_member_use
       return ScrollableDropdown(
         gap: 5,
+        // ignore: deprecated_member_use
         alignment: DropDownAlignment.auto,
         follower: const Column(
           mainAxisSize: MainAxisSize.min,
