@@ -1,30 +1,53 @@
 import 'package:flutter/rendering.dart';
 
-/// A simple transform which applies both a scale and translate (in that order).
 class Transform2D {
-  const Transform2D({
-    required this.xScale,
-    required this.yScale,
-    required this.xOffset,
-    required this.yOffset,
-  });
+  double _xTranslation = 0.0;
+  double _xScale = 1.0;
+  double _yTranslation = 0.0;
+  double _yScale = 1.0;
 
-  static const Transform2D zero = Transform2D(
-    xScale: 1,
-    yScale: 1,
-    xOffset: 0,
-    yOffset: 0,
-  );
+  // Scale both x and y
+  void scale(double x, double y) {
+    _xTranslation *= x;
+    _yTranslation *= y;
+    _xScale *= x;
+    _yScale *= y;
+  }
 
-  final double xScale;
-  final double yScale;
-  final double xOffset;
-  final double yOffset;
+  // Translate both x and y
+  void translate(double x, double y) {
+    _xTranslation += x;
+    _yTranslation += y;
+  }
 
-  Offset apply(num x, num y) {
+  void reset() {
+    _xTranslation = 0.0;
+    _xScale = 1.0;
+    _yTranslation = 0.0;
+    _yScale = 1.0;
+  }
+
+  Offset apply(Offset value) {
     return Offset(
-      (xScale * x) + xOffset,
-      (yScale * y) + yOffset,
+      (value.dx * _xScale) + _xTranslation,
+      (value.dy * _yScale) + _yTranslation,
     );
   }
+
+  @override
+  int get hashCode => Object.hash(
+        _xTranslation,
+        _yTranslation,
+        _xScale,
+        _yScale,
+      );
+
+  @override
+  bool operator ==(Object other) =>
+      identical(this, other) ||
+      (other is Transform2D &&
+          _xTranslation == other._xTranslation &&
+          _yTranslation == other._yTranslation &&
+          _xScale == other._xScale &&
+          _yScale == other._yScale);
 }

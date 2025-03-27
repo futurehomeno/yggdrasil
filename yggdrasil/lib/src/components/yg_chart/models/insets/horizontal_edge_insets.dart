@@ -15,4 +15,6 @@ class HorizontalEdgeInsets {
 
   /// The offset from the right.
   final double right;
+
+  double get horizontal => left + right;
 }

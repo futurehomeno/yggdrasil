@@ -25,4 +25,5 @@ abstract class YgChartValueAxisRenderer extends ChartChildRenderer<YgChartValueA
 
 class YgChartValueAxisRendererParentData extends YgChartParentData {
   DoubleRange? valueRange;
+  VerticalEdgeInsets? verticalPadding;
 }
