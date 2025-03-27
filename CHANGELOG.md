@@ -1,3 +1,22 @@
+# 1.13.5 [2025-03-19T14:24:40.946230]
+
+### Changes
+
+- [fix] Finally fixed rounding precision error in onTabVisible.
+
+# 1.13.4 [2025-03-18T13:58:56.911976]
+
+### Changes
+
+- [fix] Fixed (but like actually this time) an issue where onTabVisible gets called with the wrong value if you swipe too quickly.
+
+# 1.13.3 [2025-03-10T12:47:45.806766]
+
+### Changes
+
+- [fix] Fixed issue where a style gets used after getting disposed if a widget is rendered for only 1 frame DEV-4814.
+- fixed bug (#204)
+
 # 1.13.2 [2025-02-27T13:01:11.335829]
 
 ### Changes

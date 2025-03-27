@@ -22,6 +22,10 @@ mixin YgStyleBuilderMixin<W extends StatefulWidget, S extends YgStyle<YgState>> 
   void initState() {
     super.initState();
     WidgetsBinding.instance.addPostFrameCallback((_) {
+      if (!mounted) {
+        return;
+      }
+
       _style ??= createStyle();
       _watchedProperties.addAll(getWatchedProperties());
 

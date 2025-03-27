@@ -130,6 +130,9 @@ class _YgLayoutTabbedState extends _YgLayoutState<_YgLayoutTabbed> {
   }
 
   void _handlePageChanged(double page) {
+    // Fix dumb floating point imprecision.
+    page = (page * 1000).round() / 1000;
+
     final int activePage = page.round();
     final ValueChanged<int>? onTabVisible = widget.onTabVisible;
     final ValueChanged<int>? onTabChanged = widget.onTabChanged;
@@ -143,10 +146,10 @@ class _YgLayoutTabbedState extends _YgLayoutState<_YgLayoutTabbed> {
       final int next = page.ceil();
       final int previous = page.floor();
 
-      if (next != previous) {
-        if (_page.ceil() != next) {
+      if (next != previous && (next != _page.ceil() || previous != _page.floor())) {
+        if (page > _page) {
           onTabVisible(next);
-        } else if (_page.floor() != previous) {
+        } else {
           onTabVisible(previous);
         }
       }
