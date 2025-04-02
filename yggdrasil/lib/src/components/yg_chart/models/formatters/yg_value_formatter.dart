@@ -3,7 +3,16 @@ import 'package:yggdrasil/src/components/yg_chart/interval_providers/interfaces/
 abstract class YgValueFormatter {
   const YgValueFormatter();
 
-  String format(double value, IntervalData intervalData);
+  String format({
+    required double value,
+    required int precision,
+    required IntervalData intervalData,
+  });
 
-  String formatWithMetric(double value, String metric, IntervalData intervalData);
+  String formatWithMetric({
+    required double value,
+    required int precision,
+    required String metric,
+    required IntervalData intervalData,
+  });
 }

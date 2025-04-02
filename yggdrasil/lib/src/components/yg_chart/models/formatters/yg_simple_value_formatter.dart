@@ -9,19 +9,27 @@ class YgSimpleValueFormatter extends YgValueFormatter {
   final double? precision;
 
   @override
-  String format(
-    double value,
-    IntervalData intervalData,
-  ) {
+  String format({
+    required double value,
+    required IntervalData intervalData,
+    required int precision,
+  }) {
     return value.toStringAsFixed(intervalData.precision);
   }
 
   @override
-  String formatWithMetric(
-    double value,
-    String metric,
-    IntervalData intervalData,
-  ) {
-    return '${format(value, intervalData)} $metric';
+  String formatWithMetric({
+    required double value,
+    required String metric,
+    required int precision,
+    required IntervalData intervalData,
+  }) {
+    final String formatted = format(
+      value: value,
+      intervalData: intervalData,
+      precision: precision,
+    );
+
+    return '$formatted $metric';
   }
 }

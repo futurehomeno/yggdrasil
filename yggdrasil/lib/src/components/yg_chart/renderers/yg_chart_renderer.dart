@@ -4,12 +4,12 @@ import 'package:flutter/rendering.dart';
 import 'package:flutter/widgets.dart';
 import 'package:yggdrasil/src/components/yg_chart/controller/yg_chart_controller.dart';
 import 'package:yggdrasil/src/components/yg_chart/enums/data_group.dart';
-import 'package:yggdrasil/src/components/yg_chart/models/config/axes/yg_axes_config.dart';
+import 'package:yggdrasil/src/components/yg_chart/models/config/axes/yg_axis_config.dart';
 import 'package:yggdrasil/src/components/yg_chart/models/data/data_point.dart';
 import 'package:yggdrasil/src/components/yg_chart/models/data/dataset.dart';
 import 'package:yggdrasil/src/components/yg_chart/models/insets/horizontal_edge_insets.dart';
 import 'package:yggdrasil/src/components/yg_chart/models/insets/vertical_edge_insets.dart';
-import 'package:yggdrasil/src/components/yg_chart/models/range.dart';
+import 'package:yggdrasil/src/components/yg_chart/renderers/chart_child_renderer.dart';
 import 'package:yggdrasil/src/components/yg_chart/renderers/decoration/yg_chart_decoration_renderer.dart';
 import 'package:yggdrasil/src/components/yg_chart/renderers/index_axis/yg_chart_index_axis_renderer.dart';
 import 'package:yggdrasil/src/components/yg_chart/renderers/value_axis/yg_chart_value_axis_renderer.dart';
@@ -21,32 +21,36 @@ class YgChartRenderWidget extends MultiChildRenderObjectWidget {
     super.key,
     super.children,
     required this.controller,
-    required this.axisConfig,
     required this.height,
     required this.width,
+    required this.link,
+    required this.axisConfig,
   });
 
   final YgChartController controller;
-  final YgAxesConfig axisConfig;
   final double? width;
   final double? height;
+  final LayerLink link;
+  final YgAxisConfig axisConfig;
 
   @override
   RenderObject createRenderObject(BuildContext context) {
     return YgChartRenderer(
       controller: controller,
-      axisConfig: axisConfig,
       height: height,
       width: width,
+      link: link,
+      axisConfig: axisConfig,
     );
   }
 
   @override
   void updateRenderObject(BuildContext context, YgChartRenderer renderObject) {
     renderObject.controller = controller;
-    renderObject.axisConfig = axisConfig;
     renderObject.height = height;
     renderObject.width = width;
+    renderObject.link = link;
+    renderObject.axisConfig = axisConfig;
   }
 }
 
@@ -60,15 +64,37 @@ class YgChartRenderer extends RenderBox
         RenderBoxContainerDefaultsMixin<RenderBox, YgChartParentData> {
   YgChartRenderer({
     required YgChartController controller,
-    required YgAxesConfig axisConfig,
     required double? width,
     required double? height,
+    required LayerLink link,
+    required YgAxisConfig axisConfig,
   })  : _controller = controller,
-        _axisConfig = axisConfig,
         _width = width,
-        _height = height;
+        _height = height,
+        _link = link,
+        _axisConfig = axisConfig;
+
+  LeaderLayer? _leaderLayer;
 
   // region Values
+
+  LayerLink _link;
+  LayerLink get link => _link;
+  set link(LayerLink link) {
+    if (_link != link) {
+      _link = link;
+      _leaderLayer?.link = link;
+    }
+  }
+
+  YgAxisConfig _axisConfig;
+  YgAxisConfig get axisConfig => _axisConfig;
+  set axisConfig(YgAxisConfig axisConfig) {
+    if (_axisConfig != axisConfig) {
+      _axisConfig = axisConfig;
+      markNeedsLayout();
+    }
+  }
 
   double? _width;
   double? get width => _width;
@@ -92,23 +118,9 @@ class YgChartRenderer extends RenderBox
   YgChartController get controller => _controller;
   set controller(YgChartController controller) {
     if (_controller != controller) {
-      _controller.indexRange.removeListener(_updateIndexRange);
-      _controller.primaryValueRange.removeListener(_updatePrimaryRange);
-      _controller.secondaryValueRange.removeListener(_updateSecondaryRange);
+      _controller.removeListener(markNeedsLayout);
       _controller = controller;
-      _controller.indexRange.addListener(_updateIndexRange);
-      _controller.primaryValueRange.addListener(_updatePrimaryRange);
-      _controller.secondaryValueRange.addListener(_updateSecondaryRange);
-      markNeedsLayout();
-    }
-  }
-
-  YgAxesConfig _axisConfig;
-  YgAxesConfig get axisConfig => _axisConfig;
-  set axisConfig(YgAxesConfig axisConfig) {
-    if (_axisConfig != axisConfig) {
-      _axisConfig = axisConfig;
-      // TODO: Probably not layout.
+      _controller.addListener(markNeedsLayout);
       markNeedsLayout();
     }
   }
@@ -120,24 +132,18 @@ class YgChartRenderer extends RenderBox
   @override
   void attach(PipelineOwner owner) {
     super.attach(owner);
-    _controller.indexRange.addListener(_updateIndexRange);
-    _controller.primaryValueRange.addListener(_updatePrimaryRange);
-    _controller.secondaryValueRange.addListener(_updateSecondaryRange);
+    _controller.addListener(markNeedsLayout);
   }
 
   @override
   void detach() {
-    _controller.indexRange.removeListener(_updateIndexRange);
-    _controller.primaryValueRange.removeListener(_updatePrimaryRange);
-    _controller.secondaryValueRange.removeListener(_updateSecondaryRange);
+    _controller.removeListener(markNeedsLayout);
     super.detach();
   }
 
   @override
   void dispose() {
-    _controller.indexRange.removeListener(_updateIndexRange);
-    _controller.primaryValueRange.removeListener(_updatePrimaryRange);
-    _controller.secondaryValueRange.removeListener(_updateSecondaryRange);
+    _controller.removeListener(markNeedsLayout);
     super.dispose();
   }
 
@@ -259,13 +265,6 @@ class YgChartRenderer extends RenderBox
 
   @override
   void performLayout() {
-    final _Children(
-      :List<YgChartPlottingRenderer<AnyDataset>> plotters,
-      :YgChartIndexAxisRenderer? indexAxis,
-      :YgChartValueAxisRenderer? primaryAxis,
-      :YgChartValueAxisRenderer? secondaryAxis,
-      :List<YgChartDecorationRenderer> decorators
-    ) = _getChildren();
     final Size(
       :double width,
       :double height,
@@ -275,6 +274,17 @@ class YgChartRenderer extends RenderBox
       return;
     }
 
+    final _Children(
+      :List<YgChartPlottingRenderer<AnyDataset>> plotters,
+      :YgChartIndexAxisRenderer? indexAxis,
+      :YgChartValueAxisRenderer? primaryAxis,
+      :YgChartValueAxisRenderer? secondaryAxis,
+      :List<YgChartDecorationRenderer> decorators
+    ) = _getChildren();
+
+    // region Plotting padding + index pixel scale
+
+    double minIndexPixelScale = 0;
     double plottingTopPadding = 0;
     double plottingBottomPadding = 0;
     double plottingLeftPadding = 0;
@@ -285,6 +295,7 @@ class YgChartRenderer extends RenderBox
       plottingBottomPadding = max(minPadding.bottom, plottingBottomPadding);
       plottingLeftPadding = max(minPadding.left, plottingLeftPadding);
       plottingRightPadding = max(minPadding.right, plottingRightPadding);
+      minIndexPixelScale = max(plotter.getMinIndexPixelScale(), minIndexPixelScale);
     }
 
     if (indexAxis != null) {
@@ -310,6 +321,10 @@ class YgChartRenderer extends RenderBox
     final double plottingVerticalPadding = plottingTopPadding + plottingBottomPadding;
     final double plottingHorizontalPadding = plottingLeftPadding + plottingRightPadding;
 
+    // endregion
+
+    // region Primary axis dimensions
+
     final double indexAxisHeight;
     if (indexAxis != null) {
       indexAxisHeight = min(
@@ -320,7 +335,44 @@ class YgChartRenderer extends RenderBox
       indexAxisHeight = 0;
     }
 
-    // region  Primary axis
+    // endregion
+
+    // region Vertical axes padding
+
+    final double minVerticalAxisTopPadding = plottingTopPadding;
+    final double minVerticalAxisBottomPadding = indexAxisHeight + plottingBottomPadding;
+    double verticalAxisTopPadding = minVerticalAxisTopPadding;
+    double verticalAxisBottomPadding = minVerticalAxisBottomPadding;
+    if (primaryAxis != null) {
+      final VerticalEdgeInsets padding = primaryAxis.getMinVerticalPadding();
+      verticalAxisTopPadding = max(padding.top, verticalAxisTopPadding);
+      verticalAxisBottomPadding = max(padding.bottom, verticalAxisBottomPadding);
+    }
+
+    if (secondaryAxis != null) {
+      final VerticalEdgeInsets padding = secondaryAxis.getMinVerticalPadding();
+      verticalAxisTopPadding = max(padding.top, verticalAxisTopPadding);
+      verticalAxisBottomPadding = max(padding.bottom, verticalAxisBottomPadding);
+    }
+
+    final double totalAxisVerticalPadding = verticalAxisBottomPadding + verticalAxisTopPadding;
+    if (totalAxisVerticalPadding + indexAxisHeight > height) {
+      final double availableHeight = height - indexAxisHeight - plottingVerticalPadding;
+      final double additionalTopPadding = verticalAxisTopPadding - minVerticalAxisTopPadding;
+      final double additionalBottomPadding = verticalAxisBottomPadding - minVerticalAxisBottomPadding;
+      final double totalAdditionalPadding = additionalBottomPadding + additionalTopPadding;
+      final double scale = availableHeight / totalAdditionalPadding;
+      verticalAxisTopPadding = additionalTopPadding * scale;
+      verticalAxisBottomPadding = additionalBottomPadding * scale;
+    }
+
+    // endregion
+
+    final double plottingBaseHeight = height - verticalAxisBottomPadding - verticalAxisTopPadding - indexAxisHeight;
+    controller.updatePlottingHeight(plottingBaseHeight);
+
+    // region Vertical axes dimensions
+
     final double primaryAxisWidth;
     final double secondaryAxisWidth;
     if (primaryAxis != null || secondaryAxis != null) {
@@ -355,37 +407,19 @@ class YgChartRenderer extends RenderBox
 
     final double indexAxisWidth = width - primaryAxisWidth - secondaryAxisWidth;
 
-    final double minVerticalAxisTopPadding = plottingTopPadding;
-    final double minVerticalAxisBottomPadding = indexAxisHeight + plottingBottomPadding;
-    double verticalAxisTopPadding = minVerticalAxisTopPadding;
-    double verticalAxisBottomPadding = minVerticalAxisBottomPadding;
-    if (primaryAxis != null) {
-      final VerticalEdgeInsets padding = primaryAxis.getMinVerticalPadding();
-      verticalAxisTopPadding = max(padding.top, verticalAxisTopPadding);
-      verticalAxisBottomPadding = max(padding.bottom, verticalAxisBottomPadding);
-    }
+    // endregion
 
-    if (secondaryAxis != null) {
-      final VerticalEdgeInsets padding = secondaryAxis.getMinVerticalPadding();
-      verticalAxisTopPadding = max(padding.top, verticalAxisTopPadding);
-      verticalAxisBottomPadding = max(padding.bottom, verticalAxisBottomPadding);
-    }
+    // region Plotting dimensions
 
-    final double totalAxisVerticalPadding = verticalAxisBottomPadding + verticalAxisTopPadding;
-    if (totalAxisVerticalPadding + indexAxisHeight > height) {
-      final double availableHeight = height - indexAxisHeight - plottingVerticalPadding;
-      final double additionalTopPadding = verticalAxisTopPadding - minVerticalAxisTopPadding;
-      final double additionalBottomPadding = verticalAxisBottomPadding - minVerticalAxisBottomPadding;
-      final double totalAdditionalPadding = additionalBottomPadding + additionalTopPadding;
-      final double scale = availableHeight / totalAdditionalPadding;
-      verticalAxisTopPadding = additionalTopPadding * scale;
-      verticalAxisBottomPadding = additionalBottomPadding * scale;
-    }
-
-    final double plottingBaseHeight = height - verticalAxisBottomPadding - verticalAxisTopPadding - indexAxisHeight;
     final double plottingBaseWidth = width - primaryAxisWidth - secondaryAxisWidth - plottingHorizontalPadding;
+    controller.updatePlottingWidth(plottingBaseWidth, minIndexPixelScale);
+
     final double plottingHeight = plottingBaseHeight + plottingVerticalPadding;
     final double plottingWidth = plottingBaseWidth + plottingHorizontalPadding;
+
+    // endregion
+
+    // region Layout
 
     final VerticalEdgeInsets verticalAxisPadding = VerticalEdgeInsets.only(
       top: verticalAxisTopPadding,
@@ -454,60 +488,52 @@ class YgChartRenderer extends RenderBox
       );
       decorator.layout(BoxConstraints.tight(size));
     }
+
+    // endregion
   }
 
-  void _updateIndexRange() {
-    final DoubleRange indexRange = _controller.indexRange.value;
+  @override
+  void paint(PaintingContext context, Offset offset) {
     final _Children(
       :List<YgChartPlottingRenderer<AnyDataset>> plotters,
       :YgChartIndexAxisRenderer? indexAxis,
+      :YgChartValueAxisRenderer? primaryAxis,
+      :YgChartValueAxisRenderer? secondaryAxis,
+      :List<YgChartDecorationRenderer> decorators
     ) = _getChildren();
 
+    for (final YgChartDecorationRenderer decorator in decorators) {
+      context.paintChildDefault(decorator, offset);
+    }
+
     for (final YgChartPlottingRenderer<AnyDataset> plotter in plotters) {
-      plotter.parentData.indexRange = indexRange;
-      plotter.markNeedsPaint();
+      context.paintChildDefault(plotter, offset);
     }
 
     if (indexAxis != null) {
-      indexAxis.parentData.indexRange = indexRange;
-      indexAxis.markNeedsPaint();
-    }
-  }
-
-  void _updatePrimaryRange() {
-    final DoubleRange primaryRange = _controller.primaryValueRange.value;
-    final _Children(
-      :List<YgChartPlottingRenderer<AnyDataset>> plotters,
-      :YgChartValueAxisRenderer? primaryAxis,
-    ) = _getChildren();
-
-    for (final YgChartPlottingRenderer<AnyDataset> plotter in plotters) {
-      plotter.parentData.valueRange = primaryRange;
-      plotter.markNeedsPaint();
+      context.paintChildDefault(indexAxis, offset);
     }
 
     if (primaryAxis != null) {
-      primaryAxis.parentData.valueRange = primaryRange;
-      primaryAxis.markNeedsPaint();
-    }
-  }
-
-  void _updateSecondaryRange() {
-    final DoubleRange secondaryRange = _controller.secondaryValueRange.value;
-    final _Children(
-      :List<YgChartPlottingRenderer<AnyDataset>> plotters,
-      :YgChartValueAxisRenderer? secondaryAxis,
-    ) = _getChildren();
-
-    for (final YgChartPlottingRenderer<AnyDataset> plotter in plotters) {
-      plotter.parentData.valueRange = secondaryRange;
-      plotter.markNeedsPaint();
+      context.paintChildDefault(primaryAxis, offset);
     }
 
     if (secondaryAxis != null) {
-      secondaryAxis.parentData.valueRange = secondaryRange;
-      secondaryAxis.markNeedsPaint();
+      context.paintChildDefault(secondaryAxis, offset);
     }
+
+    context.addLayer(_getLeaderLayer());
+  }
+
+  LeaderLayer _getLeaderLayer() {
+    final LeaderLayer? leaderLayer = _leaderLayer;
+    if (leaderLayer == null) {
+      return _leaderLayer = LeaderLayer(
+        link: _link,
+      );
+    }
+
+    return leaderLayer;
   }
 
   _Children _getChildren() {
@@ -591,28 +617,14 @@ class _Children {
   final YgChartIndexAxisRenderer? indexAxis;
 }
 
-// class YgAxesConfig {
-//   const YgAxesConfig({
-//     required this.indexIntervalProvider,
-//     required this.primaryIntervalProvider,
-//     required this.secondaryIntervalProvider,
-//   });
-
-//   final YgIntervalProvider primaryIntervalProvider;
-//   final YgIntervalProvider secondaryIntervalProvider;
-//   final YgIntervalProvider indexIntervalProvider;
-
-//   @override
-//   bool operator ==(Object other) =>
-//       other is YgAxesConfig &&
-//       other.indexIntervalProvider == indexIntervalProvider &&
-//       other.primaryIntervalProvider == primaryIntervalProvider &&
-//       other.secondaryIntervalProvider == secondaryIntervalProvider;
-
-//   @override
-//   int get hashCode => Object.hash(
-//         indexIntervalProvider,
-//         primaryIntervalProvider,
-//         secondaryIntervalProvider,
-//       );
-// }
+extension on PaintingContext {
+  void paintChildDefault(
+    ChartChildRenderer<YgChartParentData> child,
+    Offset offset,
+  ) {
+    paintChild(
+      child,
+      offset + child.parentData.offset,
+    );
+  }
+}

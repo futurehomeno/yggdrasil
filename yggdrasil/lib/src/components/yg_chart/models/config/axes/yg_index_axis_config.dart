@@ -18,5 +18,5 @@ class YgIndexAxisConfig extends YgAxisConfig {
   /// Might not always be fully adhered to. A plotter can attempt to restrict
   /// this range to ensure it can plot its data while adhering to the design
   /// requirements.
-  final DoubleRange? range;
+  final AnyRange? range;
 }

@@ -3,20 +3,27 @@ import 'package:flutter/foundation.dart';
 import 'package:yggdrasil/src/components/yg_chart/controller/yg_chart_controller.dart';
 import 'package:yggdrasil/src/components/yg_chart/enums/data_group.dart';
 import 'package:yggdrasil/src/components/yg_chart/models/data/dataset.dart';
+import 'package:yggdrasil/src/components/yg_chart/models/range.dart';
 
 typedef TweenBuilder<T> = Tween<T> Function(T? start, T? end);
 
-class YgChartDatasetController<T extends AnyDataset> extends ChangeNotifier implements ValueListenable<T?> {
+class YgChartDatasetController<T extends AnyDataset> extends ChangeNotifier
+    implements ValueListenable<YgChartPlotterData<T>> {
   YgChartDatasetController({
     required TweenBuilder<T> tweenBuilder,
     required TickerProvider vsync,
     required T? initialData,
     required DataGroup dataGroup,
   })  : _animationController = AnimationController(vsync: vsync),
-        _value = initialData,
+        _dataset = initialData,
         _target = initialData,
         _tweenBuilder = tweenBuilder,
-        _group = dataGroup {
+        _group = dataGroup,
+        _value = YgChartPlotterData<T>(
+          data: initialData,
+          indexRange: Range.doubleZero,
+          valueRange: Range.doubleZero,
+        ) {
     _animationController.addListener(_tick);
   }
 
@@ -32,8 +39,10 @@ class YgChartDatasetController<T extends AnyDataset> extends ChangeNotifier impl
   DataGroup get group => _group;
 
   @override
-  T? get value => _value;
-  T? _value;
+  YgChartPlotterData<T> get value => _value!;
+  YgChartPlotterData<T>? _value;
+
+  T? _dataset;
 
   /// The target value for this controller.
   ///
@@ -45,12 +54,20 @@ class YgChartDatasetController<T extends AnyDataset> extends ChangeNotifier impl
   void _tick() {
     final Tween<T>? tween = _tween;
     if (tween == null) {
-      _value = _target;
+      _dataset = _target;
 
       return;
     }
 
-    _value = tween.evaluate(_animationController);
+    final T data = tween.evaluate(_animationController);
+    _value = YgChartPlotterData<T>(
+      data: data,
+      indexRange: _parent?.value.indexRange ?? data.indexRange.toDoubleRange(),
+      valueRange: switch (_group) {
+        DataGroup.primary => _parent?.value.primaryRange ?? data.valueRange,
+        DataGroup.secondary => _parent?.value.secondaryRange ?? data.valueRange,
+      },
+    );
   }
 
   void update(T data, DataGroup group) {
@@ -61,7 +78,7 @@ class YgChartDatasetController<T extends AnyDataset> extends ChangeNotifier impl
     }
 
     if (_target != data) {
-      _tween = _tweenBuilder(_value, data);
+      _tween = _tweenBuilder(_dataset, data);
       _target = data;
       _animationController.value = 0;
       _animationController.animateTo(
@@ -79,10 +96,33 @@ class YgChartDatasetController<T extends AnyDataset> extends ChangeNotifier impl
   }
 
   void attach(YgChartController parent) {
+    assert(
+      _parent == null,
+      'Can not attach YgChartDataSetController to multiple YgChartControllers.',
+    );
+
+    if (_parent != null) {
+      return;
+    }
+
     _parent = parent;
+    _parent!.addListener(_tick);
   }
 
   void detach() {
+    _parent!.removeListener(_tick);
     _parent = null;
   }
+}
+
+class YgChartPlotterData<T extends AnyDataset> {
+  const YgChartPlotterData({
+    required this.data,
+    required this.indexRange,
+    required this.valueRange,
+  });
+
+  final T? data;
+  final DoubleRange indexRange;
+  final DoubleRange valueRange;
 }

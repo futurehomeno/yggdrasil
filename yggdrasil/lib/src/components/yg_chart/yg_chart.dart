@@ -1,5 +1,5 @@
 import 'package:flutter/widgets.dart';
-import 'package:yggdrasil/src/components/yg_chart/controller/yg_chart_controller.dart';
+import 'package:yggdrasil/src/components/yg_chart/controller/yg_chart_controller_old.dart';
 import 'package:yggdrasil/src/components/yg_chart/models/config/axes/yg_axes_config.dart';
 import 'package:yggdrasil/src/components/yg_chart/models/config/yg_interaction_config.dart';
 
@@ -24,12 +24,12 @@ class YgChart extends StatefulWidget {
 }
 
 class _YgChartState extends State<YgChart> with TickerProviderStateMixin {
-  late final YgChartController _chartController;
+  late final YgChartControllerOld _chartController;
 
   @override
   void initState() {
     super.initState();
-    _chartController = YgChartController(
+    _chartController = YgChartControllerOld(
       vsync: this,
       config: widget.axes.controllerConfig,
     );

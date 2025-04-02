@@ -1,5 +1,5 @@
 import 'package:flutter/widgets.dart';
-import 'package:yggdrasil/src/components/yg_chart/controller/yg_chart_controller.dart';
+import 'package:yggdrasil/src/components/yg_chart/controller/yg_chart_controller_old.dart';
 import 'package:yggdrasil/src/components/yg_chart/controller/yg_chart_data_set_controller.dart';
 import 'package:yggdrasil/src/components/yg_chart/enums/data_group.dart';
 import 'package:yggdrasil/src/components/yg_chart/models/data/dataset.dart';
@@ -27,7 +27,7 @@ class YgChartPlottingWidget<T extends AnyDataset> extends StatefulWidget {
 class _YgChartPlottingWidgetState<T extends AnyDataset> extends State<YgChartPlottingWidget<T>>
     with TickerProviderStateMixin {
   late final YgChartDatasetController<T> _controller;
-  YgChartController? _parent;
+  YgChartControllerOld? _parent;
 
   @override
   void initState() {
@@ -58,7 +58,7 @@ class _YgChartPlottingWidgetState<T extends AnyDataset> extends State<YgChartPlo
 
   @override
   void didChangeDependencies() {
-    final YgChartController? newParent = YgChartController.maybeOf(context);
+    final YgChartControllerOld? newParent = YgChartControllerOld.maybeOf(context);
     if (_parent != newParent) {
       _parent?.unregisterDatasetController(_controller);
       _parent = newParent;

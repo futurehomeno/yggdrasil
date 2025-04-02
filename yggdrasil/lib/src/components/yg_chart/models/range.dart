@@ -2,6 +2,7 @@ import 'dart:math' as math;
 
 typedef DoubleRange = Range<double>;
 typedef IntRange = Range<int>;
+typedef AnyRange = Range<num>;
 
 // TODO: Maybe add support to methods for figuring out the best return type automatically?
 class Range<N extends num> {
@@ -49,6 +50,33 @@ class Range<N extends num> {
     );
   }
 
+  static Range<N>? merge<N extends num>(List<Range<N>> ranges) {
+    if (ranges.isEmpty) {
+      return null;
+    }
+
+    if (ranges.length == 1) {
+      return ranges.first;
+    }
+
+    N min = ranges.first.min;
+    N max = ranges.first.max;
+    for (int i = 1; i < ranges.length; i++) {
+      final Range<N> range = ranges[i];
+      if (range.min > min) {
+        min = range.min;
+      }
+      if (range.max > max) {
+        max = range.max;
+      }
+    }
+
+    return Range<N>(
+      start: min,
+      end: max,
+    );
+  }
+
   static Range<N> _asType<N extends num>(Range<num> range) {
     if (N == double) {
       return range.toDoubleRange() as Range<N>;
@@ -60,12 +88,28 @@ class Range<N extends num> {
   final N start;
   final N end;
 
-  /// Returns a new range which includes both this and the [other] range.
-  DoubleRange encapsulate(Range<num> other) {
-    return DoubleRange(
-      start: math.min(start.toDouble(), other.start.toDouble()),
-      end: math.max(end.toDouble(), other.end.toDouble()),
+  Range<N> encapsulatePoint(N point) {
+    return Range<N>(
+      start: math.min(min, point),
+      end: math.max(max, point),
     );
+  }
+
+  /// Returns a new range which includes both this and the [other] range.
+  Range<N> encapsulate(Range<N> other) {
+    return Range<N>(
+      start: math.min(min, other.min),
+      end: math.max(max, other.max),
+    );
+  }
+
+  /// Whether this range fully contains the [other] range.
+  bool contains(Range<N> other) {
+    return other.min >= min && other.max <= max;
+  }
+
+  bool containsPoint(double point) {
+    return point >= min && point <= max;
   }
 
   /// Returns a new range which falls within both this and the [other] range.
@@ -144,7 +188,7 @@ class Range<N extends num> {
     ) as Range<N>;
   }
 
-  Range<N> get normalized => Range<N>(start: min, end: max);
+  Range<N> get normalized => isNormalized ? this : Range<N>(start: min, end: max);
 
   /// The highest value out of start and end.
   N get max => math.max(start, end);
@@ -157,6 +201,13 @@ class Range<N extends num> {
   bool get isFinite => start.isFinite && end.isFinite;
 
   bool get isInfinite => start.isInfinite || end.isInfinite;
+
+  bool get isNormalized => start >= end;
+
+  /// Whether a range has a length of more than 0.
+  bool get isNotEmpty => start != end;
+
+  bool get isEmpty => start == end;
 
   @override
   String toString() => 'Range($start, $end)';

@@ -32,6 +32,8 @@ abstract class YgChartPlottingRenderer<T extends AnyDataset>
 
   EdgeInsets getMinPadding() => EdgeInsets.zero;
 
+  double getMinIndexPixelScale() => 0;
+
   @override
   void attach(PipelineOwner owner) {
     controller.addListener(markNeedsPaint);
@@ -65,7 +67,8 @@ abstract class YgChartPlottingRenderer<T extends AnyDataset>
   EdgeInsets get padding => parentData.padding!;
 
   Offset transform(double index, double value) {
-    return parentData.transform!.apply(index, value);
+    throw UnimplementedError();
+    // return parentData.transform!.apply(index, value);
   }
 }
 
