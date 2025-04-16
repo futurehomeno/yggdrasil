@@ -5,10 +5,14 @@ class _YgLayoutBodyRegular extends StatefulWidget with StatefulWidgetDebugMixin 
   const _YgLayoutBodyRegular({
     super.key,
     required this.child,
+    this.reverse = false,
     this.footer,
     this.loading = false,
     this.footerBehavior = YgFooterBehavior.sticky,
   });
+
+  /// Whether to show bottom content first.
+  final bool reverse;
 
   /// The child widget shown inside the scrollable view.
   final Widget child;
@@ -126,6 +130,7 @@ class _YgLayoutBodyRegularState extends State<_YgLayoutBodyRegular> {
             top: false,
             child: RepaintBoundary(
               child: SingleChildScrollView(
+                reverse: widget.reverse,
                 physics: YgLayoutHeaderAwareScrollPhysics(
                   controller: controller,
                 ),

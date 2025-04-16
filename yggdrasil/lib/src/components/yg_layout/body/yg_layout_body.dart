@@ -23,6 +23,7 @@ abstract class YgLayoutBody extends Widget {
   /// Enforces a minimum height on its child to allow centering of the content.
   const factory YgLayoutBody({
     required Widget child,
+    bool reverse,
     Widget? footer,
     YgFooterBehavior footerBehavior,
     Key? key,
