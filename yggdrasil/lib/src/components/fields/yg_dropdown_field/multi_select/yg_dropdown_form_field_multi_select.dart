@@ -102,4 +102,9 @@ class _YgDropdownFormFieldMultiSelect<T extends Object> extends YgDropdownFormFi
   FormFieldState<Set<T>> createState() {
     return FormFieldState<Set<T>>();
   }
+
+  @override
+  FormFieldErrorBuilder get errorBuilder => (BuildContext context, String errorText) {
+    return const SizedBox.shrink();
+  };
 }

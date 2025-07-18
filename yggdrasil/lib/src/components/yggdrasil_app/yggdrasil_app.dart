@@ -213,11 +213,7 @@ class _YggdrasilAppState extends State<YggdrasilApp> {
 
   Widget _inspectorSelectButtonBuilder(BuildContext context, VoidCallback onPressed) {
     return SafeArea(
-      child: YgIconButton(
-        variant: YgIconButtonVariant.filled,
-        onPressed: onPressed,
-        icon: YgIcons.search,
-      ),
+      child: YgIconButton(variant: YgIconButtonVariant.filled, onPressed: onPressed, icon: YgIcons.search),
     );
   }
 
@@ -265,10 +261,8 @@ class _YggdrasilAppState extends State<YggdrasilApp> {
             key: GlobalObjectKey(this),
             navigatorKey: widget.navigatorKey,
             navigatorObservers: widget.navigatorObservers!,
-            pageRouteBuilder: <T>(RouteSettings settings, WidgetBuilder builder) => MaterialPageRoute<T>(
-              settings: settings,
-              builder: builder,
-            ),
+            pageRouteBuilder: <T>(RouteSettings settings, WidgetBuilder builder) =>
+                MaterialPageRoute<T>(settings: settings, builder: builder),
             home: widget.home,
             routes: widget.routes!,
             initialRoute: widget.initialRoute,
@@ -288,7 +282,6 @@ class _YggdrasilAppState extends State<YggdrasilApp> {
             showPerformanceOverlay: widget.showPerformanceOverlay,
             showSemanticsDebugger: widget.showSemanticsDebugger,
             debugShowCheckedModeBanner: widget.debugShowCheckedModeBanner,
-            inspectorSelectButtonBuilder: _inspectorSelectButtonBuilder,
             shortcuts: widget.shortcuts,
             actions: widget.actions,
             restorationScopeId: widget.restorationScopeId,
@@ -300,12 +293,7 @@ class _YggdrasilAppState extends State<YggdrasilApp> {
                   child: DefaultSelectionStyle(
                     selectionColor: effectiveSelectionColor,
                     cursorColor: effectiveCursorColor,
-                    child: YgSnackBarManager(
-                      key: widget.snackBarManagerKey,
-                      child: _maybeWrapWithBuilder(
-                        child!,
-                      ),
-                    ),
+                    child: YgSnackBarManager(key: widget.snackBarManagerKey, child: _maybeWrapWithBuilder(child!)),
                   ),
                 ),
               );
@@ -325,10 +313,7 @@ class _YggdrasilAppState extends State<YggdrasilApp> {
 
     return Builder(
       builder: (BuildContext context) {
-        return builder(
-          context,
-          child,
-        );
+        return builder(context, child);
       },
     );
   }
