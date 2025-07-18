@@ -211,12 +211,6 @@ class _YggdrasilAppState extends State<YggdrasilApp> {
     ];
   }
 
-  Widget _inspectorSelectButtonBuilder(BuildContext context, VoidCallback onPressed) {
-    return SafeArea(
-      child: YgIconButton(variant: YgIconButtonVariant.filled, onPressed: onPressed, icon: YgIcons.search),
-    );
-  }
-
   // TODO(DEV-3148): Rewrite this when the new theme generation is done.
   ThemeData _themeBuilder(BuildContext context) {
     ThemeData? theme;
