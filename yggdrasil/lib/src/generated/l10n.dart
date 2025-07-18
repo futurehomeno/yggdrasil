@@ -18,8 +18,10 @@ class DefaultYggdrasilLocalizations {
   static DefaultYggdrasilLocalizations? _current;
 
   static DefaultYggdrasilLocalizations get current {
-    assert(_current != null,
-        'No instance of DefaultYggdrasilLocalizations was loaded. Try to initialize the DefaultYggdrasilLocalizations delegate before accessing DefaultYggdrasilLocalizations.current.');
+    assert(
+      _current != null,
+      'No instance of DefaultYggdrasilLocalizations was loaded. Try to initialize the DefaultYggdrasilLocalizations delegate before accessing DefaultYggdrasilLocalizations.current.',
+    );
     return _current!;
   }
 
@@ -41,14 +43,18 @@ class DefaultYggdrasilLocalizations {
 
   static DefaultYggdrasilLocalizations of(BuildContext context) {
     final instance = DefaultYggdrasilLocalizations.maybeOf(context);
-    assert(instance != null,
-        'No instance of DefaultYggdrasilLocalizations present in the widget tree. Did you add DefaultYggdrasilLocalizations.delegate in localizationsDelegates?');
+    assert(
+      instance != null,
+      'No instance of DefaultYggdrasilLocalizations present in the widget tree. Did you add DefaultYggdrasilLocalizations.delegate in localizationsDelegates?',
+    );
     return instance!;
   }
 
   static DefaultYggdrasilLocalizations? maybeOf(BuildContext context) {
     return Localizations.of<DefaultYggdrasilLocalizations>(
-        context, DefaultYggdrasilLocalizations);
+      context,
+      DefaultYggdrasilLocalizations,
+    );
   }
 
   /// `Step {step} of {steps}`
