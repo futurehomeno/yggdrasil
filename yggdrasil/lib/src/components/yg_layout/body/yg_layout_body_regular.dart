@@ -8,7 +8,7 @@ class _YgLayoutBodyRegular extends StatefulWidget with StatefulWidgetDebugMixin 
     this.reverse = false,
     this.footer,
     this.loading = false,
-    this.preserveFooterInsets = false,
+    this.preserveFooterInset = false,
     this.footerBehavior = YgFooterBehavior.sticky,
   });
 
@@ -30,7 +30,7 @@ class _YgLayoutBodyRegular extends StatefulWidget with StatefulWidgetDebugMixin 
   /// Preserves insets from e.i. the on screen keyboard for the footer.
   ///
   /// Currently only applies to the [YgFooterBehavior.sticky] behavior.
-  final bool preserveFooterInsets;
+  final bool preserveFooterInset;
 
   /// Whether the parent [YgLayout] should show a loading indicator.
   @override
@@ -110,7 +110,7 @@ class _YgLayoutBodyRegularState extends State<_YgLayoutBodyRegular> {
           );
 
           final double bottomPadding;
-          if (widget.preserveFooterInsets) {
+          if (widget.preserveFooterInset) {
             bottomPadding = max(padding.bottom, viewInsets.bottom);
           } else {
             bottomPadding = padding.bottom;
