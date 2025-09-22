@@ -8,7 +8,6 @@ class _YgLayoutBodyRegular extends StatefulWidget with StatefulWidgetDebugMixin 
     this.reverse = false,
     this.footer,
     this.loading = false,
-    this.preserveFooterInset = false,
     this.footerBehavior = YgFooterBehavior.sticky,
   });
 
@@ -26,11 +25,6 @@ class _YgLayoutBodyRegular extends StatefulWidget with StatefulWidgetDebugMixin 
 
   /// The behavior of the footer.
   final YgFooterBehavior footerBehavior;
-
-  /// Preserves insets from e.i. the on screen keyboard for the footer.
-  ///
-  /// Currently only applies to the [YgFooterBehavior.sticky] behavior.
-  final bool preserveFooterInset;
 
   /// Whether the parent [YgLayout] should show a loading indicator.
   @override
@@ -97,7 +91,7 @@ class _YgLayoutBodyRegularState extends State<_YgLayoutBodyRegular> {
 
           // Push up the content in the view when the on screen keyboard opens.
           bottom = SizedBox(
-            height: max(0, viewInsets.bottom - padding.bottom),
+            height: viewInsets.bottom,
           );
 
           break;
@@ -109,13 +103,6 @@ class _YgLayoutBodyRegularState extends State<_YgLayoutBodyRegular> {
             bottom: 0,
           );
 
-          final double bottomPadding;
-          if (widget.preserveFooterInset) {
-            bottomPadding = max(padding.bottom, viewInsets.bottom);
-          } else {
-            bottomPadding = padding.bottom;
-          }
-
           // Make the footer at least the height of the view insets to push the
           // bottom of the content on screen when the keyboard opens.
           bottom = ConstrainedBox(
@@ -124,7 +111,7 @@ class _YgLayoutBodyRegularState extends State<_YgLayoutBodyRegular> {
             ),
             child: Padding(
               padding: EdgeInsets.only(
-                bottom: bottomPadding,
+                bottom: padding.bottom,
                 left: padding.left,
                 right: padding.right,
               ),
