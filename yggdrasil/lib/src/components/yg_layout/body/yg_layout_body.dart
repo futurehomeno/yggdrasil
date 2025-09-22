@@ -1,5 +1,3 @@
-import 'dart:math';
-
 import 'package:flutter/material.dart';
 import 'package:yggdrasil/src/components/yg_layout/enums/yg_footer_behavior.dart';
 import 'package:yggdrasil/src/theme/_theme.dart';
@@ -30,7 +28,6 @@ abstract class YgLayoutBody extends Widget {
     YgFooterBehavior footerBehavior,
     Key? key,
     bool loading,
-    bool preserveFooterInset,
   }) = _YgLayoutBodyRegular;
 
   /// Creates a scrollable sliver layout.
