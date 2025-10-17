@@ -74,7 +74,7 @@ abstract class YgButtonGroup extends StatelessWidget with StatelessWidgetDebugMi
     }
 
     return Row(
-      mainAxisAlignment: MainAxisAlignment.center,
+      mainAxisAlignment: MainAxisAlignment.spaceBetween,
       children: children
           .map((Widget child) => Flexible(child: child))
           .toList()
