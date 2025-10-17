@@ -184,7 +184,7 @@ mixin EditableTextContainerStateMixin<W extends StatefulWidget> on State<W>
       return false;
     }
 
-    if (cause == SelectionChangedCause.longPress || cause == SelectionChangedCause.scribble) {
+    if (cause == SelectionChangedCause.longPress || cause == SelectionChangedCause.stylusHandwriting) {
       return true;
     }
 

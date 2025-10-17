@@ -38,9 +38,9 @@ class YgAdvancedSearchFormField<Value, ResultValue> extends YgSearchFormField<Va
     this.onChanged,
     YgSearchValueAndText<Value>? initialValue,
     List<FormFieldValidator<Value>>? validators,
-  })  : _initialValueInternal = initialValue,
-        initialValue = initialValue?.value,
-        super._();
+  }) : _initialValueInternal = initialValue,
+       initialValue = initialValue?.value,
+       super._();
 
   /// Optional controller to control this widget.
   ///
@@ -106,4 +106,9 @@ class YgAdvancedSearchFormField<Value, ResultValue> extends YgSearchFormField<Va
       ),
     );
   }
+
+  @override
+  FormFieldErrorBuilder get errorBuilder => (BuildContext context, String errorText) {
+    return const SizedBox.shrink();
+  };
 }

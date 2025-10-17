@@ -51,7 +51,7 @@ class YgSnackBarManagerState extends State<YgSnackBarManager> with TickerProvide
           for (final _SnackBarEntry snackBarData in _renderedSnackBars)
             Positioned(
               key: snackBarData.key,
-              bottom: 0,
+              bottom: MediaQuery.viewInsetsOf(context).bottom,
               right: 0,
               left: 0,
               child: RepaintBoundary(

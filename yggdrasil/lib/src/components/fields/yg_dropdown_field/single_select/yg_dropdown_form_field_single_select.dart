@@ -25,13 +25,11 @@ class _YgDropdownFormFieldSingleSelect<T extends Object> extends YgDropdownFormF
     this.controller,
     this.onChanged,
     List<FormFieldValidator<T>>? validators,
-  })  : onSaved = null,
-        validator = YgValidateHelper.combineValidators(validators),
-        autovalidateMode = YgValidateHelper.mapAutoValidate(autoValidate),
-        _key = key,
-        super._(
-          key: key,
-        );
+  }) : onSaved = null,
+       validator = YgValidateHelper.combineValidators(validators),
+       autovalidateMode = YgValidateHelper.mapAutoValidate(autoValidate),
+       _key = key,
+       super._(key: key);
 
   Widget _builder(FormFieldState<T?> field) {
     final YgValidateHelper<T> helper = YgValidateHelper<T>(
@@ -102,4 +100,9 @@ class _YgDropdownFormFieldSingleSelect<T extends Object> extends YgDropdownFormF
   FormFieldState<T> createState() {
     return FormFieldState<T>();
   }
+
+  @override
+  FormFieldErrorBuilder get errorBuilder => (BuildContext context, String errorText) {
+    return const SizedBox.shrink();
+  };
 }

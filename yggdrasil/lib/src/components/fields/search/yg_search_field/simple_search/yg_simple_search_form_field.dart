@@ -89,4 +89,9 @@ class _YgSimpleSearchFormField<Value> extends YgSearchFormField<Value> {
       ),
     );
   }
+
+  @override
+  FormFieldErrorBuilder get errorBuilder => (BuildContext context, String errorText) {
+    return const SizedBox.shrink();
+  };
 }
