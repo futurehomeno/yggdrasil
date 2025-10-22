@@ -13,8 +13,8 @@ class NonNullableRectTween extends Tween<Rect> {
 
   @override
   Rect lerp(double t) => Rect.lerp(
-        begin,
-        end,
-        t,
-      )!;
+    begin,
+    end,
+    t,
+  )!;
 }

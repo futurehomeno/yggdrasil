@@ -18,15 +18,15 @@ class YgSectionTitleBar extends MultiChildRenderObjectWidget {
     Widget? trailingInternal,
     required this.gap,
     required this.minAvailableTrailingWidth,
-  })  : trailing = trailing != null,
-        trailingInternal = trailingInternal != null,
-        super(
-          children: <Widget>[
-            title,
-            if (trailing != null) trailing,
-            if (trailingInternal != null) trailingInternal,
-          ],
-        );
+  }) : trailing = trailing != null,
+       trailingInternal = trailingInternal != null,
+       super(
+         children: <Widget>[
+           title,
+           if (trailing != null) trailing,
+           if (trailingInternal != null) trailingInternal,
+         ],
+       );
 
   /// Whether there is a trailing widget.
   final bool trailing;
@@ -77,10 +77,10 @@ class YgSectionTitleBarRenderer extends RenderBox
     required bool trailingInternal,
     required double minAvailableTrailingWidth,
     required double gap,
-  })  : _trailingInternal = trailingInternal,
-        _trailing = trailing,
-        _minAvailableTrailingWidth = minAvailableTrailingWidth,
-        _gap = gap;
+  }) : _trailingInternal = trailingInternal,
+       _trailing = trailing,
+       _minAvailableTrailingWidth = minAvailableTrailingWidth,
+       _gap = gap;
 
   // region Values
 
@@ -145,8 +145,8 @@ class YgSectionTitleBarRenderer extends RenderBox
     // Create a new set of constraints for the children. This allows the child
     // widgets to have a width as small as they want.
     final BoxConstraints constraints = this.constraints.copyWith(
-          minWidth: 0,
-        );
+      minWidth: 0,
+    );
 
     // Initialize the available width and height.
     double availableWidth = constraints.maxWidth;

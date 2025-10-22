@@ -7,9 +7,9 @@ class YgSearchBarState extends YgState {
     bool pressed = false,
     bool hovered = false,
     bool focused = false,
-  })  : pressed = YgStateValue<bool>(pressed),
-        hovered = YgStateValue<bool>(hovered),
-        focused = YgStateValue<bool>(focused);
+  }) : pressed = YgStateValue<bool>(pressed),
+       hovered = YgStateValue<bool>(hovered),
+       focused = YgStateValue<bool>(focused);
 
   final YgStateValue<bool> pressed;
   final YgStateValue<bool> hovered;
@@ -17,8 +17,8 @@ class YgSearchBarState extends YgState {
 
   @override
   List<YgStateValue<Object?>> get props => <YgStateValue<Object?>>[
-        pressed,
-        hovered,
-        focused,
-      ];
+    pressed,
+    hovered,
+    focused,
+  ];
 }

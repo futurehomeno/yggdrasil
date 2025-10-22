@@ -58,8 +58,15 @@ class YgAdvancedSearchBar<Value, ResultValue> extends YgSearchBar<Value> {
   State<YgAdvancedSearchBar<Value, ResultValue>> createState() => _YgAdvancedSearchBarWidgetState<Value, ResultValue>();
 }
 
-class _YgAdvancedSearchBarWidgetState<Value, ResultValue> extends _YgSearchBarWidgetState<Value, ResultValue,
-        YgSearchResult<ResultValue>, YgSearchResultsLayout<ResultValue>, YgAdvancedSearchBar<Value, ResultValue>>
+class _YgAdvancedSearchBarWidgetState<Value, ResultValue>
+    extends
+        _YgSearchBarWidgetState<
+          Value,
+          ResultValue,
+          YgSearchResult<ResultValue>,
+          YgSearchResultsLayout<ResultValue>,
+          YgAdvancedSearchBar<Value, ResultValue>
+        >
     with YgAdvancedSearchStateMixin<Value, ResultValue, YgAdvancedSearchBar<Value, ResultValue>> {
   @override
   void onChanged() {
@@ -76,6 +83,6 @@ class _YgAdvancedSearchBarWidgetState<Value, ResultValue> extends _YgSearchBarWi
 
   @override
   YgAdvancedSearchController<Value, ResultValue> createController() => YgAdvancedSearchController<Value, ResultValue>(
-        initialValue: widget.initialValue,
-      );
+    initialValue: widget.initialValue,
+  );
 }

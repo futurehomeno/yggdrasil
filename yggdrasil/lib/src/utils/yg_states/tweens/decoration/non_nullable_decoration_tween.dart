@@ -13,8 +13,8 @@ class NonNullableDecorationTween extends Tween<Decoration> {
 
   @override
   Decoration lerp(double t) => Decoration.lerp(
-        begin,
-        end,
-        t,
-      )!;
+    begin,
+    end,
+    t,
+  )!;
 }

@@ -32,8 +32,16 @@ import 'package:yggdrasil/yggdrasil.dart';
 ///   ),
 /// );
 /// ```
-class YgExactSimpleSearchProvider<Value> extends YgExactSearchProviderInterface<Value, Value, YgSearchResult<Value>,
-    YgSearchResultsLayout<Value>, YgSearchItem<Value>> implements YgSimpleSearchProvider<Value> {
+class YgExactSimpleSearchProvider<Value>
+    extends
+        YgExactSearchProviderInterface<
+          Value,
+          Value,
+          YgSearchResult<Value>,
+          YgSearchResultsLayout<Value>,
+          YgSearchItem<Value>
+        >
+    implements YgSimpleSearchProvider<Value> {
   const YgExactSimpleSearchProvider({
     required super.items,
     required super.noResultsBuilder,
@@ -50,8 +58,14 @@ class YgExactSimpleSearchProvider<Value> extends YgExactSearchProviderInterface<
 
 class _YgExactSimpleSearchSession<Value> extends YgSimpleSearchSession<Value, YgExactSimpleSearchProvider<Value>>
     with
-        YgExactSearchSessionMixin<Value, Value, YgSearchResult<Value>, YgSearchResultsLayout<Value>,
-            YgSearchItem<Value>, YgExactSimpleSearchProvider<Value>> {
+        YgExactSearchSessionMixin<
+          Value,
+          Value,
+          YgSearchResult<Value>,
+          YgSearchResultsLayout<Value>,
+          YgSearchItem<Value>,
+          YgExactSimpleSearchProvider<Value>
+        > {
   @override
   YgSearchResultsLayout<Value> createLayoutFromResultsAndLeading({
     required List<YgSearchResult<Value>>? results,

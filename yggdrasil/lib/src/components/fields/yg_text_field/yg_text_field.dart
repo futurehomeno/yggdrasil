@@ -40,22 +40,22 @@ class YgTextField extends StatefulWidget with StatefulWidgetDebugMixin {
     this.variant = YgFieldVariant.standard,
     this.maxLengthEnforcement = YgMaxLengthEnforcement.none,
     this.autofocus = false,
-  })  : assert(
-          maxLines == null || minLines == null || maxLines >= minLines,
-          'When both minLines and maxLines are set, maxLines should be equal or higher than minLines',
-        ),
-        assert(
-          suffix == null || showObscureTextButton == false || obscureText == false,
-          'Can not add a suffix if showObscureTextButton and obscureText are set to true',
-        ),
-        assert(
-          (suffix == null) == (onSuffixPressed == null),
-          'Suffix and onSuffixPressed should either be both null or both defined',
-        ),
-        assert(
-          maxLength == null || maxLength > 0,
-          'Max length has to be either null or at least 1',
-        );
+  }) : assert(
+         maxLines == null || minLines == null || maxLines >= minLines,
+         'When both minLines and maxLines are set, maxLines should be equal or higher than minLines',
+       ),
+       assert(
+         suffix == null || showObscureTextButton == false || obscureText == false,
+         'Can not add a suffix if showObscureTextButton and obscureText are set to true',
+       ),
+       assert(
+         (suffix == null) == (onSuffixPressed == null),
+         'Suffix and onSuffixPressed should either be both null or both defined',
+       ),
+       assert(
+         maxLength == null || maxLength > 0,
+         'Max length has to be either null or at least 1',
+       );
 
   const YgTextField.email({
     super.key,
@@ -81,21 +81,21 @@ class YgTextField extends StatefulWidget with StatefulWidgetDebugMixin {
     this.size = YgFieldSize.large,
     this.variant = YgFieldVariant.standard,
     this.autofocus = false,
-  })  : maxLines = 1,
-        minLines = null,
-        obscureText = false,
-        showObscureTextButton = false,
-        autocorrect = false,
-        textCapitalization = TextCapitalization.none,
-        keyboardType = TextInputType.emailAddress,
-        assert(
-          (suffix == null) == (onSuffixPressed == null),
-          'Suffix and onSuffixPressed should either be both null or both defined',
-        ),
-        assert(
-          maxLength == null || maxLength > 0,
-          'Max length has to be either null or at least 1',
-        );
+  }) : maxLines = 1,
+       minLines = null,
+       obscureText = false,
+       showObscureTextButton = false,
+       autocorrect = false,
+       textCapitalization = TextCapitalization.none,
+       keyboardType = TextInputType.emailAddress,
+       assert(
+         (suffix == null) == (onSuffixPressed == null),
+         'Suffix and onSuffixPressed should either be both null or both defined',
+       ),
+       assert(
+         maxLength == null || maxLength > 0,
+         'Max length has to be either null or at least 1',
+       );
 
   const YgTextField.password({
     super.key,
@@ -122,24 +122,24 @@ class YgTextField extends StatefulWidget with StatefulWidgetDebugMixin {
     this.variant = YgFieldVariant.standard,
     this.maxLengthEnforcement = YgMaxLengthEnforcement.none,
     this.autofocus = false,
-  })  : maxLines = 1,
-        minLines = null,
-        obscureText = true,
-        autocorrect = false,
-        textCapitalization = TextCapitalization.none,
-        keyboardType = TextInputType.text,
-        assert(
-          suffix == null || showObscureTextButton == false,
-          'Can not add a suffix if showObscureTextButton is set to true',
-        ),
-        assert(
-          (suffix == null) == (onSuffixPressed == null),
-          'Suffix and onSuffixPressed should either be both null or both defined',
-        ),
-        assert(
-          maxLength == null || maxLength > 0,
-          'Max length has to be either null or at least 1',
-        );
+  }) : maxLines = 1,
+       minLines = null,
+       obscureText = true,
+       autocorrect = false,
+       textCapitalization = TextCapitalization.none,
+       keyboardType = TextInputType.text,
+       assert(
+         suffix == null || showObscureTextButton == false,
+         'Can not add a suffix if showObscureTextButton is set to true',
+       ),
+       assert(
+         (suffix == null) == (onSuffixPressed == null),
+         'Suffix and onSuffixPressed should either be both null or both defined',
+       ),
+       assert(
+         maxLength == null || maxLength > 0,
+         'Max length has to be either null or at least 1',
+       );
 
   const YgTextField.multiline({
     super.key,
@@ -166,28 +166,28 @@ class YgTextField extends StatefulWidget with StatefulWidgetDebugMixin {
     this.variant = YgFieldVariant.standard,
     this.maxLengthEnforcement = YgMaxLengthEnforcement.none,
     this.autofocus = false,
-  })  : obscureText = false,
-        autocorrect = true,
-        textCapitalization = TextCapitalization.sentences,
-        keyboardType = TextInputType.text,
-        showObscureTextButton = false,
-        textInputAction = TextInputAction.newline,
-        assert(
-          maxLines == null || maxLines > 1,
-          'maxLines should be null or higher than 1, for a single line text field use a different constructor.',
-        ),
-        assert(
-          maxLines == null || minLines == null || maxLines >= minLines,
-          'When both minLines and maxLines are set, maxLines should be equal or higher than minLines',
-        ),
-        assert(
-          (suffix == null) == (onSuffixPressed == null),
-          'Suffix and onSuffixPressed should either be both null or both defined',
-        ),
-        assert(
-          maxLength == null || maxLength > 0,
-          'Max length has to be either null or at least 1',
-        );
+  }) : obscureText = false,
+       autocorrect = true,
+       textCapitalization = TextCapitalization.sentences,
+       keyboardType = TextInputType.text,
+       showObscureTextButton = false,
+       textInputAction = TextInputAction.newline,
+       assert(
+         maxLines == null || maxLines > 1,
+         'maxLines should be null or higher than 1, for a single line text field use a different constructor.',
+       ),
+       assert(
+         maxLines == null || minLines == null || maxLines >= minLines,
+         'When both minLines and maxLines are set, maxLines should be equal or higher than minLines',
+       ),
+       assert(
+         (suffix == null) == (onSuffixPressed == null),
+         'Suffix and onSuffixPressed should either be both null or both defined',
+       ),
+       assert(
+         maxLength == null || maxLength > 0,
+         'Max length has to be either null or at least 1',
+       );
 
   /// Obscures the text in the text field.
   ///

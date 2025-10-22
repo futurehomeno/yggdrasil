@@ -27,18 +27,18 @@ final class YgListTile extends StatelessWidget with StatelessWidgetDebugMixin {
     this.onTap,
     this.onInfoTap,
     this.density = YgListTileDensity.standard,
-  })  : assert(
-          title != null || leadingWidgets != null || subtitle != null,
-          'Can not have neither a title, subtitle or leading widget.',
-        ),
-        assert(
-          subtitleIcon == null || subtitle != null,
-          'Can not add a subtitleIcon without a subtitle.',
-        ),
-        assert(
-          title != null || onInfoTap == null,
-          'Can not have a infoButton without a title.',
-        );
+  }) : assert(
+         title != null || leadingWidgets != null || subtitle != null,
+         'Can not have neither a title, subtitle or leading widget.',
+       ),
+       assert(
+         subtitleIcon == null || subtitle != null,
+         'Can not add a subtitleIcon without a subtitle.',
+       ),
+       assert(
+         title != null || onInfoTap == null,
+         'Can not have a infoButton without a title.',
+       );
 
   /// Convenience for generating links from YgListTiles.
   factory YgListTile.link({

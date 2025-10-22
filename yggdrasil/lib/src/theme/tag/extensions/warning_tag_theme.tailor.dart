@@ -58,23 +58,18 @@ class YgWarningTagTheme extends ThemeExtension<YgWarningTagTheme> {
   }) {
     return YgWarningTagTheme(
       backgroundColor: backgroundColor ?? this.backgroundColor,
-      disabledBackgroundColor:
-          disabledBackgroundColor ?? this.disabledBackgroundColor,
-      strongBackgroundColor:
-          strongBackgroundColor ?? this.strongBackgroundColor,
+      disabledBackgroundColor: disabledBackgroundColor ?? this.disabledBackgroundColor,
+      strongBackgroundColor: strongBackgroundColor ?? this.strongBackgroundColor,
     );
   }
 
   @override
-  YgWarningTagTheme lerp(
-      covariant ThemeExtension<YgWarningTagTheme>? other, double t) {
+  YgWarningTagTheme lerp(covariant ThemeExtension<YgWarningTagTheme>? other, double t) {
     if (other is! YgWarningTagTheme) return this as YgWarningTagTheme;
     return YgWarningTagTheme(
       backgroundColor: Color.lerp(backgroundColor, other.backgroundColor, t)!,
-      disabledBackgroundColor: Color.lerp(
-          disabledBackgroundColor, other.disabledBackgroundColor, t)!,
-      strongBackgroundColor:
-          Color.lerp(strongBackgroundColor, other.strongBackgroundColor, t)!,
+      disabledBackgroundColor: Color.lerp(disabledBackgroundColor, other.disabledBackgroundColor, t)!,
+      strongBackgroundColor: Color.lerp(strongBackgroundColor, other.strongBackgroundColor, t)!,
     );
   }
 
@@ -83,12 +78,9 @@ class YgWarningTagTheme extends ThemeExtension<YgWarningTagTheme> {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is YgWarningTagTheme &&
-            const DeepCollectionEquality()
-                .equals(backgroundColor, other.backgroundColor) &&
-            const DeepCollectionEquality().equals(
-                disabledBackgroundColor, other.disabledBackgroundColor) &&
-            const DeepCollectionEquality()
-                .equals(strongBackgroundColor, other.strongBackgroundColor));
+            const DeepCollectionEquality().equals(backgroundColor, other.backgroundColor) &&
+            const DeepCollectionEquality().equals(disabledBackgroundColor, other.disabledBackgroundColor) &&
+            const DeepCollectionEquality().equals(strongBackgroundColor, other.strongBackgroundColor));
   }
 
   @override

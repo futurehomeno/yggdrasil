@@ -162,16 +162,12 @@ class YgTabsTheme extends ThemeExtension<YgTabsTheme> {
       indicatorGradient: indicatorGradient ?? this.indicatorGradient,
       indicatorHeight: indicatorHeight ?? this.indicatorHeight,
       indicatorRadius: indicatorRadius ?? this.indicatorRadius,
-      pressedBackgroundColor:
-          pressedBackgroundColor ?? this.pressedBackgroundColor,
-      selectedLabelTextStyle:
-          selectedLabelTextStyle ?? this.selectedLabelTextStyle,
-      tabBarBackgroundColor:
-          tabBarBackgroundColor ?? this.tabBarBackgroundColor,
+      pressedBackgroundColor: pressedBackgroundColor ?? this.pressedBackgroundColor,
+      selectedLabelTextStyle: selectedLabelTextStyle ?? this.selectedLabelTextStyle,
+      tabBarBackgroundColor: tabBarBackgroundColor ?? this.tabBarBackgroundColor,
       tabInnerPadding: tabInnerPadding ?? this.tabInnerPadding,
       tabOuterPadding: tabOuterPadding ?? this.tabOuterPadding,
-      unselectedLabelTextStyle:
-          unselectedLabelTextStyle ?? this.unselectedLabelTextStyle,
+      unselectedLabelTextStyle: unselectedLabelTextStyle ?? this.unselectedLabelTextStyle,
     );
   }
 
@@ -183,24 +179,18 @@ class YgTabsTheme extends ThemeExtension<YgTabsTheme> {
       animationDuration: t < 0.5 ? animationDuration : other.animationDuration,
       dividerColor: Color.lerp(dividerColor, other.dividerColor, t)!,
       dividerHeight: t < 0.5 ? dividerHeight : other.dividerHeight,
-      focusBackgroundColor:
-          Color.lerp(focusBackgroundColor, other.focusBackgroundColor, t)!,
-      hoverBackgroundColor:
-          Color.lerp(hoverBackgroundColor, other.hoverBackgroundColor, t)!,
+      focusBackgroundColor: Color.lerp(focusBackgroundColor, other.focusBackgroundColor, t)!,
+      hoverBackgroundColor: Color.lerp(hoverBackgroundColor, other.hoverBackgroundColor, t)!,
       iconLabelSpacing: t < 0.5 ? iconLabelSpacing : other.iconLabelSpacing,
       indicatorGradient: t < 0.5 ? indicatorGradient : other.indicatorGradient,
       indicatorHeight: t < 0.5 ? indicatorHeight : other.indicatorHeight,
       indicatorRadius: t < 0.5 ? indicatorRadius : other.indicatorRadius,
-      pressedBackgroundColor:
-          Color.lerp(pressedBackgroundColor, other.pressedBackgroundColor, t)!,
-      selectedLabelTextStyle: TextStyle.lerp(
-          selectedLabelTextStyle, other.selectedLabelTextStyle, t)!,
-      tabBarBackgroundColor:
-          Color.lerp(tabBarBackgroundColor, other.tabBarBackgroundColor, t)!,
+      pressedBackgroundColor: Color.lerp(pressedBackgroundColor, other.pressedBackgroundColor, t)!,
+      selectedLabelTextStyle: TextStyle.lerp(selectedLabelTextStyle, other.selectedLabelTextStyle, t)!,
+      tabBarBackgroundColor: Color.lerp(tabBarBackgroundColor, other.tabBarBackgroundColor, t)!,
       tabInnerPadding: t < 0.5 ? tabInnerPadding : other.tabInnerPadding,
       tabOuterPadding: t < 0.5 ? tabOuterPadding : other.tabOuterPadding,
-      unselectedLabelTextStyle: TextStyle.lerp(
-          unselectedLabelTextStyle, other.unselectedLabelTextStyle, t)!,
+      unselectedLabelTextStyle: TextStyle.lerp(unselectedLabelTextStyle, other.unselectedLabelTextStyle, t)!,
     );
   }
 
@@ -209,38 +199,22 @@ class YgTabsTheme extends ThemeExtension<YgTabsTheme> {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is YgTabsTheme &&
-            const DeepCollectionEquality()
-                .equals(animationCurve, other.animationCurve) &&
-            const DeepCollectionEquality()
-                .equals(animationDuration, other.animationDuration) &&
-            const DeepCollectionEquality()
-                .equals(dividerColor, other.dividerColor) &&
-            const DeepCollectionEquality()
-                .equals(dividerHeight, other.dividerHeight) &&
-            const DeepCollectionEquality()
-                .equals(focusBackgroundColor, other.focusBackgroundColor) &&
-            const DeepCollectionEquality()
-                .equals(hoverBackgroundColor, other.hoverBackgroundColor) &&
-            const DeepCollectionEquality()
-                .equals(iconLabelSpacing, other.iconLabelSpacing) &&
-            const DeepCollectionEquality()
-                .equals(indicatorGradient, other.indicatorGradient) &&
-            const DeepCollectionEquality()
-                .equals(indicatorHeight, other.indicatorHeight) &&
-            const DeepCollectionEquality()
-                .equals(indicatorRadius, other.indicatorRadius) &&
-            const DeepCollectionEquality()
-                .equals(pressedBackgroundColor, other.pressedBackgroundColor) &&
-            const DeepCollectionEquality()
-                .equals(selectedLabelTextStyle, other.selectedLabelTextStyle) &&
-            const DeepCollectionEquality()
-                .equals(tabBarBackgroundColor, other.tabBarBackgroundColor) &&
-            const DeepCollectionEquality()
-                .equals(tabInnerPadding, other.tabInnerPadding) &&
-            const DeepCollectionEquality()
-                .equals(tabOuterPadding, other.tabOuterPadding) &&
-            const DeepCollectionEquality().equals(
-                unselectedLabelTextStyle, other.unselectedLabelTextStyle));
+            const DeepCollectionEquality().equals(animationCurve, other.animationCurve) &&
+            const DeepCollectionEquality().equals(animationDuration, other.animationDuration) &&
+            const DeepCollectionEquality().equals(dividerColor, other.dividerColor) &&
+            const DeepCollectionEquality().equals(dividerHeight, other.dividerHeight) &&
+            const DeepCollectionEquality().equals(focusBackgroundColor, other.focusBackgroundColor) &&
+            const DeepCollectionEquality().equals(hoverBackgroundColor, other.hoverBackgroundColor) &&
+            const DeepCollectionEquality().equals(iconLabelSpacing, other.iconLabelSpacing) &&
+            const DeepCollectionEquality().equals(indicatorGradient, other.indicatorGradient) &&
+            const DeepCollectionEquality().equals(indicatorHeight, other.indicatorHeight) &&
+            const DeepCollectionEquality().equals(indicatorRadius, other.indicatorRadius) &&
+            const DeepCollectionEquality().equals(pressedBackgroundColor, other.pressedBackgroundColor) &&
+            const DeepCollectionEquality().equals(selectedLabelTextStyle, other.selectedLabelTextStyle) &&
+            const DeepCollectionEquality().equals(tabBarBackgroundColor, other.tabBarBackgroundColor) &&
+            const DeepCollectionEquality().equals(tabInnerPadding, other.tabInnerPadding) &&
+            const DeepCollectionEquality().equals(tabOuterPadding, other.tabOuterPadding) &&
+            const DeepCollectionEquality().equals(unselectedLabelTextStyle, other.unselectedLabelTextStyle));
   }
 
   @override

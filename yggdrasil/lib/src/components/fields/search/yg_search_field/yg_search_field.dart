@@ -184,11 +184,13 @@ abstract class YgSearchField<Value> extends StatefulWidget with StatefulWidgetDe
 }
 
 abstract class YgSearchFieldWidgetState<
-        Value,
-        ResultValue,
-        Result extends YgBaseSearchResult,
-        ResultsLayout extends YgBaseSearchResultsLayout<Result>,
-        StatefulWidget extends YgSearchField<Value>> extends StateWithYgState<StatefulWidget, YgSearchFieldState>
+  Value,
+  ResultValue,
+  Result extends YgBaseSearchResult,
+  ResultsLayout extends YgBaseSearchResultsLayout<Result>,
+  StatefulWidget extends YgSearchField<Value>
+>
+    extends StateWithYgState<StatefulWidget, YgSearchFieldState>
     with YgControllerManagerMixin
     implements YgSearchStateMixinInterface<Value, ResultValue, Result, ResultsLayout> {
   /// Manages the controller of this widget.
@@ -246,7 +248,8 @@ abstract class YgSearchFieldWidgetState<
 
   @override
   Widget build(BuildContext context) {
-    final bool isTextField = (widget.searchAction == YgSearchAction.menu) ||
+    final bool isTextField =
+        (widget.searchAction == YgSearchAction.menu) ||
         (widget.searchAction == YgSearchAction.auto && !YgConsts.isMobile);
 
     final YgSearchControllerAny<Value, ResultValue> controller = _controllerManager.value;

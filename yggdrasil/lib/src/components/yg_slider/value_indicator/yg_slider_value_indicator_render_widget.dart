@@ -64,18 +64,18 @@ class YgSliderValueIndicatorRenderer extends RenderBox {
     required double max,
     required double? stepSize,
     required YgSliderValueBuilder? valueBuilder,
-  })  : _style = style,
-        _value = value,
-        _defaultStyle = defaultStyle,
-        _layerLink = layerLink,
-        _min = min,
-        _max = max,
-        _stepSize = stepSize,
-        _valueBuilder = valueBuilder,
-        _textPainter = TextPainter(
-          textDirection: textDirection,
-          textAlign: TextAlign.center,
-        );
+  }) : _style = style,
+       _value = value,
+       _defaultStyle = defaultStyle,
+       _layerLink = layerLink,
+       _min = min,
+       _max = max,
+       _stepSize = stepSize,
+       _valueBuilder = valueBuilder,
+       _textPainter = TextPainter(
+         textDirection: textDirection,
+         textAlign: TextAlign.center,
+       );
 
   // region Values
 

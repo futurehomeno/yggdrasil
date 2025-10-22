@@ -28,9 +28,7 @@ class DefaultYggdrasilLocalizations {
   static const AppLocalizationDelegate delegate = AppLocalizationDelegate();
 
   static Future<DefaultYggdrasilLocalizations> load(Locale locale) {
-    final name = (locale.countryCode?.isEmpty ?? false)
-        ? locale.languageCode
-        : locale.toString();
+    final name = (locale.countryCode?.isEmpty ?? false) ? locale.languageCode : locale.toString();
     final localeName = Intl.canonicalizedLocale(name);
     return initializeMessages(localeName).then((_) {
       Intl.defaultLocale = localeName;
@@ -62,8 +60,7 @@ class DefaultYggdrasilLocalizations {
     return Intl.message(
       'Step $step of $steps',
       name: 'wizardHeaderNOfN',
-      desc:
-          'The text that shows the current step out of the total steps. For example, \'Step 1 of 3\'.',
+      desc: 'The text that shows the current step out of the total steps. For example, \'Step 1 of 3\'.',
       args: [step, steps],
     );
   }
@@ -73,15 +70,13 @@ class DefaultYggdrasilLocalizations {
     return Intl.message(
       'Done',
       name: 'dropdownDone',
-      desc:
-          'The text to display on the button when the user has finished making a selection.',
+      desc: 'The text to display on the button when the user has finished making a selection.',
       args: [],
     );
   }
 }
 
-class AppLocalizationDelegate
-    extends LocalizationsDelegate<DefaultYggdrasilLocalizations> {
+class AppLocalizationDelegate extends LocalizationsDelegate<DefaultYggdrasilLocalizations> {
   const AppLocalizationDelegate();
 
   List<Locale> get supportedLocales {
@@ -97,8 +92,7 @@ class AppLocalizationDelegate
   @override
   bool isSupported(Locale locale) => _isSupported(locale);
   @override
-  Future<DefaultYggdrasilLocalizations> load(Locale locale) =>
-      DefaultYggdrasilLocalizations.load(locale);
+  Future<DefaultYggdrasilLocalizations> load(Locale locale) => DefaultYggdrasilLocalizations.load(locale);
   @override
   bool shouldReload(AppLocalizationDelegate old) => false;
 

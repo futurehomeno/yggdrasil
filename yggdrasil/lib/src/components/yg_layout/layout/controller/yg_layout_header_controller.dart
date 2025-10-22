@@ -8,16 +8,16 @@ class YgLayoutHeaderController extends ValueNotifier<YgLayoutHeaderControllerVal
   YgLayoutHeaderController({
     required TickerProvider vsync,
     int initialView = 0,
-  })  : _headerOffsetController = AnimationController(
-          vsync: vsync,
-        ),
-        _activeView = initialView,
-        super(
-          const YgLayoutHeaderControllerValue(
-            shadow: false,
-            loading: false,
-          ),
-        ) {
+  }) : _headerOffsetController = AnimationController(
+         vsync: vsync,
+       ),
+       _activeView = initialView,
+       super(
+         const YgLayoutHeaderControllerValue(
+           shadow: false,
+           loading: false,
+         ),
+       ) {
     _headerOffsetController.addListener(notifyListeners);
   }
 

@@ -8,8 +8,8 @@ class _YgButtonGroupActionOrCancel extends YgButtonGroup {
     required this.onActionPressed,
     required this.onCancelPressed,
   }) : super._(
-          axis: Axis.vertical,
-        );
+         axis: Axis.vertical,
+       );
 
   const _YgButtonGroupActionOrCancel.horizontal({
     super.key,
@@ -18,8 +18,8 @@ class _YgButtonGroupActionOrCancel extends YgButtonGroup {
     required this.onActionPressed,
     required this.onCancelPressed,
   }) : super._(
-          axis: Axis.horizontal,
-        );
+         axis: Axis.horizontal,
+       );
 
   final String actionText;
   final VoidCallback onActionPressed;

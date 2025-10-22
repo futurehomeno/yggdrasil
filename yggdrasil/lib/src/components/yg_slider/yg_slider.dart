@@ -36,14 +36,14 @@ class YgSlider extends StatefulWidget with StatefulWidgetDebugMixin {
     this.valueIndicator = false,
     this.differenceIndicator = false,
     this.variant = YgSliderVariant.temperature,
-  })  : assert(
-          min <= max,
-          'min can not be larger max value.',
-        ),
-        assert(
-          valueIndicator || valueBuilder == null,
-          'Can not have valueBuilder without valueIndicator.',
-        );
+  }) : assert(
+         min <= max,
+         'min can not be larger max value.',
+       ),
+       assert(
+         valueIndicator || valueBuilder == null,
+         'Can not have valueBuilder without valueIndicator.',
+       );
 
   /// The value of the slider.
   final double value;
@@ -330,11 +330,11 @@ class _YgSliderWidgetState extends StateWithYgStateAndStyle<YgSlider, YgSliderSt
           focusNode: _focusNodeManager.value,
           listeners: <LogicalKeyboardKey, RepeatableCallback>{
             LogicalKeyboardKey.arrowLeft: ({required bool repeat}) => _handleStepUpdate(
-                  _targetValue - (repeat ? repeatedStepSize : effectiveStepSize),
-                ),
+              _targetValue - (repeat ? repeatedStepSize : effectiveStepSize),
+            ),
             LogicalKeyboardKey.arrowRight: ({required bool repeat}) => _handleStepUpdate(
-                  _targetValue + (repeat ? repeatedStepSize : effectiveStepSize),
-                ),
+              _targetValue + (repeat ? repeatedStepSize : effectiveStepSize),
+            ),
           },
           autoFocus: widget.autofocus,
           interval: interval,

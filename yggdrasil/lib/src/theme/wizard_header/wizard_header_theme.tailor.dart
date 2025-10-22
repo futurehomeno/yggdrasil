@@ -136,22 +136,18 @@ class YgWizardHeaderTheme extends ThemeExtension<YgWizardHeaderTheme> {
   }
 
   @override
-  YgWizardHeaderTheme lerp(
-      covariant ThemeExtension<YgWizardHeaderTheme>? other, double t) {
+  YgWizardHeaderTheme lerp(covariant ThemeExtension<YgWizardHeaderTheme>? other, double t) {
     if (other is! YgWizardHeaderTheme) return this as YgWizardHeaderTheme;
     return YgWizardHeaderTheme(
       animationCurve: t < 0.5 ? animationCurve : other.animationCurve,
       animationDuration: t < 0.5 ? animationDuration : other.animationDuration,
       backgroundColor: Color.lerp(backgroundColor, other.backgroundColor, t)!,
-      barBackgroundColor:
-          Color.lerp(barBackgroundColor, other.barBackgroundColor, t)!,
-      barForegroundColor:
-          Color.lerp(barForegroundColor, other.barForegroundColor, t)!,
+      barBackgroundColor: Color.lerp(barBackgroundColor, other.barBackgroundColor, t)!,
+      barForegroundColor: Color.lerp(barForegroundColor, other.barForegroundColor, t)!,
       barPadding: t < 0.5 ? barPadding : other.barPadding,
       barSegmentGap: t < 0.5 ? barSegmentGap : other.barSegmentGap,
       barStroke: t < 0.5 ? barStroke : other.barStroke,
-      counterTextStyle:
-          TextStyle.lerp(counterTextStyle, other.counterTextStyle, t)!,
+      counterTextStyle: TextStyle.lerp(counterTextStyle, other.counterTextStyle, t)!,
       padding: t < 0.5 ? padding : other.padding,
       titlePadding: t < 0.5 ? titlePadding : other.titlePadding,
       titleTextStyle: TextStyle.lerp(titleTextStyle, other.titleTextStyle, t)!,
@@ -163,28 +159,18 @@ class YgWizardHeaderTheme extends ThemeExtension<YgWizardHeaderTheme> {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is YgWizardHeaderTheme &&
-            const DeepCollectionEquality()
-                .equals(animationCurve, other.animationCurve) &&
-            const DeepCollectionEquality()
-                .equals(animationDuration, other.animationDuration) &&
-            const DeepCollectionEquality()
-                .equals(backgroundColor, other.backgroundColor) &&
-            const DeepCollectionEquality()
-                .equals(barBackgroundColor, other.barBackgroundColor) &&
-            const DeepCollectionEquality()
-                .equals(barForegroundColor, other.barForegroundColor) &&
-            const DeepCollectionEquality()
-                .equals(barPadding, other.barPadding) &&
-            const DeepCollectionEquality()
-                .equals(barSegmentGap, other.barSegmentGap) &&
+            const DeepCollectionEquality().equals(animationCurve, other.animationCurve) &&
+            const DeepCollectionEquality().equals(animationDuration, other.animationDuration) &&
+            const DeepCollectionEquality().equals(backgroundColor, other.backgroundColor) &&
+            const DeepCollectionEquality().equals(barBackgroundColor, other.barBackgroundColor) &&
+            const DeepCollectionEquality().equals(barForegroundColor, other.barForegroundColor) &&
+            const DeepCollectionEquality().equals(barPadding, other.barPadding) &&
+            const DeepCollectionEquality().equals(barSegmentGap, other.barSegmentGap) &&
             const DeepCollectionEquality().equals(barStroke, other.barStroke) &&
-            const DeepCollectionEquality()
-                .equals(counterTextStyle, other.counterTextStyle) &&
+            const DeepCollectionEquality().equals(counterTextStyle, other.counterTextStyle) &&
             const DeepCollectionEquality().equals(padding, other.padding) &&
-            const DeepCollectionEquality()
-                .equals(titlePadding, other.titlePadding) &&
-            const DeepCollectionEquality()
-                .equals(titleTextStyle, other.titleTextStyle));
+            const DeepCollectionEquality().equals(titlePadding, other.titlePadding) &&
+            const DeepCollectionEquality().equals(titleTextStyle, other.titleTextStyle));
   }
 
   @override

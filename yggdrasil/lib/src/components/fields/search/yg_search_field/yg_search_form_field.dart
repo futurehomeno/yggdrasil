@@ -65,11 +65,11 @@ abstract class YgSearchFormField<Value> extends StatefulWidget implements FormFi
     this.autoValidate = YgAutoValidate.disabled,
     List<FormFieldValidator<Value>>? validators,
     String? error,
-  })  : restorationId = null,
-        onSaved = null,
-        forceErrorText = error,
-        validator = YgValidateHelper.combineValidators<Value>(validators),
-        autovalidateMode = YgValidateHelper.mapAutoValidate(autoValidate);
+  }) : restorationId = null,
+       onSaved = null,
+       forceErrorText = error,
+       validator = YgValidateHelper.combineValidators<Value>(validators),
+       autovalidateMode = YgValidateHelper.mapAutoValidate(autoValidate);
 
   /// Hint widget shown in the top of the search results.
   final Widget? hint;

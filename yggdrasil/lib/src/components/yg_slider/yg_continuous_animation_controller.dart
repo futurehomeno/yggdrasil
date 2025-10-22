@@ -10,11 +10,11 @@ class YgContinuousAnimationController extends Animation<double> with ChangeNotif
     required Duration duration,
     required Curve curve,
     double value = 0,
-  })  : _from = value,
-        _to = value,
-        _value = value,
-        _duration = duration,
-        _curve = curve {
+  }) : _from = value,
+       _to = value,
+       _value = value,
+       _duration = duration,
+       _curve = curve {
     _ticker = vsync.createTicker(_tick);
   }
 

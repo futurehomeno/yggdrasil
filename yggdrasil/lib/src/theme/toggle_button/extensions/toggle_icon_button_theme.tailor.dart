@@ -64,8 +64,7 @@ class ToggleIconButtonTheme extends ThemeExtension<ToggleIconButtonTheme> {
   }
 
   @override
-  ToggleIconButtonTheme lerp(
-      covariant ThemeExtension<ToggleIconButtonTheme>? other, double t) {
+  ToggleIconButtonTheme lerp(covariant ThemeExtension<ToggleIconButtonTheme>? other, double t) {
     if (other is! ToggleIconButtonTheme) return this as ToggleIconButtonTheme;
     return ToggleIconButtonTheme(
       paddingLarge: t < 0.5 ? paddingLarge : other.paddingLarge,
@@ -79,12 +78,9 @@ class ToggleIconButtonTheme extends ThemeExtension<ToggleIconButtonTheme> {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is ToggleIconButtonTheme &&
-            const DeepCollectionEquality()
-                .equals(paddingLarge, other.paddingLarge) &&
-            const DeepCollectionEquality()
-                .equals(paddingMedium, other.paddingMedium) &&
-            const DeepCollectionEquality()
-                .equals(paddingSmall, other.paddingSmall));
+            const DeepCollectionEquality().equals(paddingLarge, other.paddingLarge) &&
+            const DeepCollectionEquality().equals(paddingMedium, other.paddingMedium) &&
+            const DeepCollectionEquality().equals(paddingSmall, other.paddingSmall));
   }
 
   @override

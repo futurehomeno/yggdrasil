@@ -13,8 +13,8 @@ class NullableFractionalOffsetTween extends Tween<FractionalOffset?> {
 
   @override
   FractionalOffset? lerp(double t) => FractionalOffset.lerp(
-        begin,
-        end,
-        t,
-      );
+    begin,
+    end,
+    t,
+  );
 }

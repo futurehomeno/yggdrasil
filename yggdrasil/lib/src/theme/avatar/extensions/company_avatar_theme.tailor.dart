@@ -48,8 +48,7 @@ class YgCompanyAvatarTheme extends ThemeExtension<YgCompanyAvatarTheme> {
   }
 
   @override
-  YgCompanyAvatarTheme lerp(
-      covariant ThemeExtension<YgCompanyAvatarTheme>? other, double t) {
+  YgCompanyAvatarTheme lerp(covariant ThemeExtension<YgCompanyAvatarTheme>? other, double t) {
     if (other is! YgCompanyAvatarTheme) return this as YgCompanyAvatarTheme;
     return YgCompanyAvatarTheme(
       borderRadius: t < 0.5 ? borderRadius : other.borderRadius,
@@ -61,8 +60,7 @@ class YgCompanyAvatarTheme extends ThemeExtension<YgCompanyAvatarTheme> {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is YgCompanyAvatarTheme &&
-            const DeepCollectionEquality()
-                .equals(borderRadius, other.borderRadius));
+            const DeepCollectionEquality().equals(borderRadius, other.borderRadius));
   }
 
   @override

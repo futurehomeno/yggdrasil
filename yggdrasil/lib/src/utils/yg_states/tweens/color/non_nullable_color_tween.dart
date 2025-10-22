@@ -13,8 +13,8 @@ class NonNullableColorTween extends Tween<Color> {
 
   @override
   Color lerp(double t) => Color.lerp(
-        begin,
-        end,
-        t,
-      )!;
+    begin,
+    end,
+    t,
+  )!;
 }

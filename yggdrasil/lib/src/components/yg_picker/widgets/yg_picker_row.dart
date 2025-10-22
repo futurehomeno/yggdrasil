@@ -38,10 +38,12 @@ class YgRowRenderer extends RenderBox
 
     // Populate the sizeObjectList with SizeObjects
     for (final RenderBox child in children) {
-      sizeObjectList.add(_ChildWidthPair(
-        child: child,
-        width: child.getMaxIntrinsicWidth(double.infinity),
-      ));
+      sizeObjectList.add(
+        _ChildWidthPair(
+          child: child,
+          width: child.getMaxIntrinsicWidth(double.infinity),
+        ),
+      );
     }
 
     // Sort the sizeObjectList based on width. This is necessary because we want

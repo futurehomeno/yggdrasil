@@ -22,32 +22,28 @@ class LoadingDialogTheme extends ThemeExtension<LoadingDialogTheme> {
   final EdgeInsets iconPadding;
 
   static final LoadingDialogTheme consumerLight = LoadingDialogTheme(
-    circularProgressIndicatorWidth:
-        _$LoadingDialogTheme.circularProgressIndicatorWidth[0],
+    circularProgressIndicatorWidth: _$LoadingDialogTheme.circularProgressIndicatorWidth[0],
     iconBackground: _$LoadingDialogTheme.iconBackground[0],
     iconColor: _$LoadingDialogTheme.iconColor[0],
     iconPadding: _$LoadingDialogTheme.iconPadding[0],
   );
 
   static final LoadingDialogTheme consumerDark = LoadingDialogTheme(
-    circularProgressIndicatorWidth:
-        _$LoadingDialogTheme.circularProgressIndicatorWidth[1],
+    circularProgressIndicatorWidth: _$LoadingDialogTheme.circularProgressIndicatorWidth[1],
     iconBackground: _$LoadingDialogTheme.iconBackground[1],
     iconColor: _$LoadingDialogTheme.iconColor[1],
     iconPadding: _$LoadingDialogTheme.iconPadding[1],
   );
 
   static final LoadingDialogTheme professionalLight = LoadingDialogTheme(
-    circularProgressIndicatorWidth:
-        _$LoadingDialogTheme.circularProgressIndicatorWidth[2],
+    circularProgressIndicatorWidth: _$LoadingDialogTheme.circularProgressIndicatorWidth[2],
     iconBackground: _$LoadingDialogTheme.iconBackground[2],
     iconColor: _$LoadingDialogTheme.iconColor[2],
     iconPadding: _$LoadingDialogTheme.iconPadding[2],
   );
 
   static final LoadingDialogTheme professionalDark = LoadingDialogTheme(
-    circularProgressIndicatorWidth:
-        _$LoadingDialogTheme.circularProgressIndicatorWidth[3],
+    circularProgressIndicatorWidth: _$LoadingDialogTheme.circularProgressIndicatorWidth[3],
     iconBackground: _$LoadingDialogTheme.iconBackground[3],
     iconColor: _$LoadingDialogTheme.iconColor[3],
     iconPadding: _$LoadingDialogTheme.iconPadding[3],
@@ -68,8 +64,7 @@ class LoadingDialogTheme extends ThemeExtension<LoadingDialogTheme> {
     EdgeInsets? iconPadding,
   }) {
     return LoadingDialogTheme(
-      circularProgressIndicatorWidth:
-          circularProgressIndicatorWidth ?? this.circularProgressIndicatorWidth,
+      circularProgressIndicatorWidth: circularProgressIndicatorWidth ?? this.circularProgressIndicatorWidth,
       iconBackground: iconBackground ?? this.iconBackground,
       iconColor: iconColor ?? this.iconColor,
       iconPadding: iconPadding ?? this.iconPadding,
@@ -77,13 +72,10 @@ class LoadingDialogTheme extends ThemeExtension<LoadingDialogTheme> {
   }
 
   @override
-  LoadingDialogTheme lerp(
-      covariant ThemeExtension<LoadingDialogTheme>? other, double t) {
+  LoadingDialogTheme lerp(covariant ThemeExtension<LoadingDialogTheme>? other, double t) {
     if (other is! LoadingDialogTheme) return this as LoadingDialogTheme;
     return LoadingDialogTheme(
-      circularProgressIndicatorWidth: t < 0.5
-          ? circularProgressIndicatorWidth
-          : other.circularProgressIndicatorWidth,
+      circularProgressIndicatorWidth: t < 0.5 ? circularProgressIndicatorWidth : other.circularProgressIndicatorWidth,
       iconBackground: Color.lerp(iconBackground, other.iconBackground, t)!,
       iconColor: Color.lerp(iconColor, other.iconColor, t)!,
       iconPadding: t < 0.5 ? iconPadding : other.iconPadding,
@@ -96,13 +88,12 @@ class LoadingDialogTheme extends ThemeExtension<LoadingDialogTheme> {
         (other.runtimeType == runtimeType &&
             other is LoadingDialogTheme &&
             const DeepCollectionEquality().equals(
-                circularProgressIndicatorWidth,
-                other.circularProgressIndicatorWidth) &&
-            const DeepCollectionEquality()
-                .equals(iconBackground, other.iconBackground) &&
+              circularProgressIndicatorWidth,
+              other.circularProgressIndicatorWidth,
+            ) &&
+            const DeepCollectionEquality().equals(iconBackground, other.iconBackground) &&
             const DeepCollectionEquality().equals(iconColor, other.iconColor) &&
-            const DeepCollectionEquality()
-                .equals(iconPadding, other.iconPadding));
+            const DeepCollectionEquality().equals(iconPadding, other.iconPadding));
   }
 
   @override

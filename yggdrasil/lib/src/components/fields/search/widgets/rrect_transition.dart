@@ -35,8 +35,8 @@ class _RRectTransitionRenderer extends RenderProxyBox {
   _RRectTransitionRenderer({
     required Animation<double> animation,
     required RRect rrect,
-  })  : _rrect = rrect,
-        _animation = animation;
+  }) : _rrect = rrect,
+       _animation = animation;
 
   Animation<double> _animation;
   Animation<double> get animation => _animation;

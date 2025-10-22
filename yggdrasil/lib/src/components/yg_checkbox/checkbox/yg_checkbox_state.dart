@@ -7,11 +7,11 @@ class YgCheckboxState extends YgState {
     bool? checked = false,
     bool error = false,
     bool disabled = false,
-  })  : focused = YgStateValue<bool>(focused),
-        hovered = YgStateValue<bool>(hovered),
-        checked = YgStateValue<bool?>(checked),
-        error = YgStateValue<bool>(error),
-        disabled = YgStateValue<bool>(disabled);
+  }) : focused = YgStateValue<bool>(focused),
+       hovered = YgStateValue<bool>(hovered),
+       checked = YgStateValue<bool?>(checked),
+       error = YgStateValue<bool>(error),
+       disabled = YgStateValue<bool>(disabled);
 
   final YgStateValue<bool> focused;
   final YgStateValue<bool> hovered;
@@ -21,10 +21,10 @@ class YgCheckboxState extends YgState {
 
   @override
   List<YgStateValue<Object?>> get props => <YgStateValue<Object?>>[
-        focused,
-        hovered,
-        checked,
-        error,
-        disabled,
-      ];
+    focused,
+    hovered,
+    checked,
+    error,
+    disabled,
+  ];
 }

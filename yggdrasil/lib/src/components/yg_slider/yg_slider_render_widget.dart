@@ -75,12 +75,12 @@ class YgSliderRenderer extends RenderBox {
     required this.onChange,
     required this.editingChanged,
     required this.state,
-  })  : _style = style,
-        _value = value,
-        _difference = difference,
-        _min = min,
-        _max = max,
-        _layerLink = layerLink {
+  }) : _style = style,
+       _value = value,
+       _difference = difference,
+       _min = min,
+       _max = max,
+       _layerLink = layerLink {
     _drag = HorizontalDragGestureRecognizer()
       ..onStart = _handleDragStart
       ..onUpdate = _handleDragUpdate
@@ -241,7 +241,8 @@ class YgSliderRenderer extends RenderBox {
     // Calculate handle dimensions.
     final double handleRadius = size.height / 2;
     final double handleTrackLength = size.width - size.height;
-    final Offset handleOffset = Offset(
+    final Offset handleOffset =
+        Offset(
           handleRadius + (handleTrackLength * valuePercentage),
           size.height / 2,
         ) +
@@ -316,7 +317,8 @@ class YgSliderRenderer extends RenderBox {
 
     /// Draw the difference as a line.
     final double differenceScale = size.width - size.height;
-    final Offset p1 = Offset(
+    final Offset p1 =
+        Offset(
           handleRadius + (currentValue * differenceScale),
           size.height / 2,
         ) +
@@ -348,17 +350,16 @@ class YgSliderRenderer extends RenderBox {
     required Offset p2,
     required Radius left,
     required Radius right,
-  }) =>
-      RRect.fromLTRBAndCorners(
-        p1.dx,
-        p1.dy,
-        p2.dx,
-        p2.dy,
-        bottomLeft: left,
-        topLeft: left,
-        bottomRight: right,
-        topRight: right,
-      );
+  }) => RRect.fromLTRBAndCorners(
+    p1.dx,
+    p1.dy,
+    p2.dx,
+    p2.dy,
+    bottomLeft: left,
+    topLeft: left,
+    bottomRight: right,
+    topRight: right,
+  );
 
   // endregion
 

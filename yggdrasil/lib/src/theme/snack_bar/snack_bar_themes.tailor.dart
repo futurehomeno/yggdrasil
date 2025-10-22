@@ -154,10 +154,8 @@ class YgSnackBarTheme extends ThemeExtension<YgSnackBarTheme> {
       borderRadius: borderRadius ?? this.borderRadius,
       closeIconColor: closeIconColor ?? this.closeIconColor,
       constraints: constraints ?? this.constraints,
-      criticalSnackBarTheme:
-          criticalSnackBarTheme ?? this.criticalSnackBarTheme,
-      highlightSnackBarTheme:
-          highlightSnackBarTheme ?? this.highlightSnackBarTheme,
+      criticalSnackBarTheme: criticalSnackBarTheme ?? this.criticalSnackBarTheme,
+      highlightSnackBarTheme: highlightSnackBarTheme ?? this.highlightSnackBarTheme,
       iconContainerSize: iconContainerSize ?? this.iconContainerSize,
       margin: margin ?? this.margin,
       messageSpacing: messageSpacing ?? this.messageSpacing,
@@ -170,8 +168,7 @@ class YgSnackBarTheme extends ThemeExtension<YgSnackBarTheme> {
   }
 
   @override
-  YgSnackBarTheme lerp(
-      covariant ThemeExtension<YgSnackBarTheme>? other, double t) {
+  YgSnackBarTheme lerp(covariant ThemeExtension<YgSnackBarTheme>? other, double t) {
     if (other is! YgSnackBarTheme) return this as YgSnackBarTheme;
     return YgSnackBarTheme(
       animationCurve: t < 0.5 ? animationCurve : other.animationCurve,
@@ -180,20 +177,16 @@ class YgSnackBarTheme extends ThemeExtension<YgSnackBarTheme> {
       borderRadius: t < 0.5 ? borderRadius : other.borderRadius,
       closeIconColor: Color.lerp(closeIconColor, other.closeIconColor, t)!,
       constraints: t < 0.5 ? constraints : other.constraints,
-      criticalSnackBarTheme: criticalSnackBarTheme.lerp(
-          other.criticalSnackBarTheme, t) as CriticalSnackBarTheme,
-      highlightSnackBarTheme: highlightSnackBarTheme.lerp(
-          other.highlightSnackBarTheme, t) as HighlightSnackBarTheme,
+      criticalSnackBarTheme: criticalSnackBarTheme.lerp(other.criticalSnackBarTheme, t) as CriticalSnackBarTheme,
+      highlightSnackBarTheme: highlightSnackBarTheme.lerp(other.highlightSnackBarTheme, t) as HighlightSnackBarTheme,
       iconContainerSize: t < 0.5 ? iconContainerSize : other.iconContainerSize,
       margin: t < 0.5 ? margin : other.margin,
       messageSpacing: t < 0.5 ? messageSpacing : other.messageSpacing,
-      messageTextStyle:
-          TextStyle.lerp(messageTextStyle, other.messageTextStyle, t)!,
+      messageTextStyle: TextStyle.lerp(messageTextStyle, other.messageTextStyle, t)!,
       minTextHeight: t < 0.5 ? minTextHeight : other.minTextHeight,
       padding: t < 0.5 ? padding : other.padding,
       shownDuration: t < 0.5 ? shownDuration : other.shownDuration,
-      successSnackBarTheme: successSnackBarTheme.lerp(
-          other.successSnackBarTheme, t) as SuccessSnackBarTheme,
+      successSnackBarTheme: successSnackBarTheme.lerp(other.successSnackBarTheme, t) as SuccessSnackBarTheme,
     );
   }
 
@@ -202,36 +195,22 @@ class YgSnackBarTheme extends ThemeExtension<YgSnackBarTheme> {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is YgSnackBarTheme &&
-            const DeepCollectionEquality()
-                .equals(animationCurve, other.animationCurve) &&
-            const DeepCollectionEquality()
-                .equals(animationDuration, other.animationDuration) &&
-            const DeepCollectionEquality()
-                .equals(backgroundColor, other.backgroundColor) &&
-            const DeepCollectionEquality()
-                .equals(borderRadius, other.borderRadius) &&
-            const DeepCollectionEquality()
-                .equals(closeIconColor, other.closeIconColor) &&
-            const DeepCollectionEquality()
-                .equals(constraints, other.constraints) &&
-            const DeepCollectionEquality()
-                .equals(criticalSnackBarTheme, other.criticalSnackBarTheme) &&
-            const DeepCollectionEquality()
-                .equals(highlightSnackBarTheme, other.highlightSnackBarTheme) &&
-            const DeepCollectionEquality()
-                .equals(iconContainerSize, other.iconContainerSize) &&
+            const DeepCollectionEquality().equals(animationCurve, other.animationCurve) &&
+            const DeepCollectionEquality().equals(animationDuration, other.animationDuration) &&
+            const DeepCollectionEquality().equals(backgroundColor, other.backgroundColor) &&
+            const DeepCollectionEquality().equals(borderRadius, other.borderRadius) &&
+            const DeepCollectionEquality().equals(closeIconColor, other.closeIconColor) &&
+            const DeepCollectionEquality().equals(constraints, other.constraints) &&
+            const DeepCollectionEquality().equals(criticalSnackBarTheme, other.criticalSnackBarTheme) &&
+            const DeepCollectionEquality().equals(highlightSnackBarTheme, other.highlightSnackBarTheme) &&
+            const DeepCollectionEquality().equals(iconContainerSize, other.iconContainerSize) &&
             const DeepCollectionEquality().equals(margin, other.margin) &&
-            const DeepCollectionEquality()
-                .equals(messageSpacing, other.messageSpacing) &&
-            const DeepCollectionEquality()
-                .equals(messageTextStyle, other.messageTextStyle) &&
-            const DeepCollectionEquality()
-                .equals(minTextHeight, other.minTextHeight) &&
+            const DeepCollectionEquality().equals(messageSpacing, other.messageSpacing) &&
+            const DeepCollectionEquality().equals(messageTextStyle, other.messageTextStyle) &&
+            const DeepCollectionEquality().equals(minTextHeight, other.minTextHeight) &&
             const DeepCollectionEquality().equals(padding, other.padding) &&
-            const DeepCollectionEquality()
-                .equals(shownDuration, other.shownDuration) &&
-            const DeepCollectionEquality()
-                .equals(successSnackBarTheme, other.successSnackBarTheme));
+            const DeepCollectionEquality().equals(shownDuration, other.shownDuration) &&
+            const DeepCollectionEquality().equals(successSnackBarTheme, other.successSnackBarTheme));
   }
 
   @override

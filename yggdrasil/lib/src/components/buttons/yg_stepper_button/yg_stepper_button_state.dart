@@ -16,7 +16,7 @@ class YgStepperButtonState extends YgButtonBaseState {
 
   @override
   List<YgStateValue<Object?>> get props => <YgStateValue<Object?>>[
-        ...super.props,
-        size,
-      ];
+    ...super.props,
+    size,
+  ];
 }

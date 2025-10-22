@@ -8,8 +8,7 @@ part of 'toggle_icon_text_button_theme.dart';
 // TailorAnnotationsGenerator
 // **************************************************************************
 
-class ToggleIconTextButtonTheme
-    extends ThemeExtension<ToggleIconTextButtonTheme> {
+class ToggleIconTextButtonTheme extends ThemeExtension<ToggleIconTextButtonTheme> {
   const ToggleIconTextButtonTheme({
     required this.paddingLarge,
     required this.paddingMedium,
@@ -20,29 +19,25 @@ class ToggleIconTextButtonTheme
   final EdgeInsets paddingMedium;
   final EdgeInsets paddingSmall;
 
-  static final ToggleIconTextButtonTheme consumerLight =
-      ToggleIconTextButtonTheme(
+  static final ToggleIconTextButtonTheme consumerLight = ToggleIconTextButtonTheme(
     paddingLarge: _$ToggleIconTextButtonTheme.paddingLarge[0],
     paddingMedium: _$ToggleIconTextButtonTheme.paddingMedium[0],
     paddingSmall: _$ToggleIconTextButtonTheme.paddingSmall[0],
   );
 
-  static final ToggleIconTextButtonTheme consumerDark =
-      ToggleIconTextButtonTheme(
+  static final ToggleIconTextButtonTheme consumerDark = ToggleIconTextButtonTheme(
     paddingLarge: _$ToggleIconTextButtonTheme.paddingLarge[1],
     paddingMedium: _$ToggleIconTextButtonTheme.paddingMedium[1],
     paddingSmall: _$ToggleIconTextButtonTheme.paddingSmall[1],
   );
 
-  static final ToggleIconTextButtonTheme professionalLight =
-      ToggleIconTextButtonTheme(
+  static final ToggleIconTextButtonTheme professionalLight = ToggleIconTextButtonTheme(
     paddingLarge: _$ToggleIconTextButtonTheme.paddingLarge[2],
     paddingMedium: _$ToggleIconTextButtonTheme.paddingMedium[2],
     paddingSmall: _$ToggleIconTextButtonTheme.paddingSmall[2],
   );
 
-  static final ToggleIconTextButtonTheme professionalDark =
-      ToggleIconTextButtonTheme(
+  static final ToggleIconTextButtonTheme professionalDark = ToggleIconTextButtonTheme(
     paddingLarge: _$ToggleIconTextButtonTheme.paddingLarge[3],
     paddingMedium: _$ToggleIconTextButtonTheme.paddingMedium[3],
     paddingSmall: _$ToggleIconTextButtonTheme.paddingSmall[3],
@@ -69,10 +64,8 @@ class ToggleIconTextButtonTheme
   }
 
   @override
-  ToggleIconTextButtonTheme lerp(
-      covariant ThemeExtension<ToggleIconTextButtonTheme>? other, double t) {
-    if (other is! ToggleIconTextButtonTheme)
-      return this as ToggleIconTextButtonTheme;
+  ToggleIconTextButtonTheme lerp(covariant ThemeExtension<ToggleIconTextButtonTheme>? other, double t) {
+    if (other is! ToggleIconTextButtonTheme) return this as ToggleIconTextButtonTheme;
     return ToggleIconTextButtonTheme(
       paddingLarge: t < 0.5 ? paddingLarge : other.paddingLarge,
       paddingMedium: t < 0.5 ? paddingMedium : other.paddingMedium,
@@ -85,12 +78,9 @@ class ToggleIconTextButtonTheme
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is ToggleIconTextButtonTheme &&
-            const DeepCollectionEquality()
-                .equals(paddingLarge, other.paddingLarge) &&
-            const DeepCollectionEquality()
-                .equals(paddingMedium, other.paddingMedium) &&
-            const DeepCollectionEquality()
-                .equals(paddingSmall, other.paddingSmall));
+            const DeepCollectionEquality().equals(paddingLarge, other.paddingLarge) &&
+            const DeepCollectionEquality().equals(paddingMedium, other.paddingMedium) &&
+            const DeepCollectionEquality().equals(paddingSmall, other.paddingSmall));
   }
 
   @override

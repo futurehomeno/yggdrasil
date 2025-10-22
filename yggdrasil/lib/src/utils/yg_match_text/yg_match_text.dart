@@ -47,19 +47,23 @@ class YgMatchText extends StatelessWidget {
         // If this is not the first match, add previous match
         if (matchEnd > 0) {
           final String string = text.substring(matchStart, matchEnd);
-          parts.add(TextSpan(
-            text: string,
-            style: matchedStyle,
-          ));
+          parts.add(
+            TextSpan(
+              text: string,
+              style: matchedStyle,
+            ),
+          );
         }
 
         // If this match does not start at zero, add normal text between the
         // previous and current match.
         if (match.start > 0) {
           final String string = text.substring(matchEnd, match.start);
-          parts.add(TextSpan(
-            text: string,
-          ));
+          parts.add(
+            TextSpan(
+              text: string,
+            ),
+          );
         }
 
         // If the start is more than the already defined start, update it. If
@@ -83,27 +87,35 @@ class YgMatchText extends StatelessWidget {
 
     if (matchEnd <= 0) {
       // There were no valid matches.
-      parts.add(TextSpan(
-        text: text,
-      ));
+      parts.add(
+        TextSpan(
+          text: text,
+        ),
+      );
     } else if (matchEnd >= text.length) {
       // The last match ends at the end of or outside of the text.
       final String string = text.substring(matchStart, text.length);
-      parts.add(TextSpan(
-        text: string,
-        style: matchedStyle,
-      ));
+      parts.add(
+        TextSpan(
+          text: string,
+          style: matchedStyle,
+        ),
+      );
     } else {
       final String matchedString = text.substring(matchStart, matchEnd);
-      parts.add(TextSpan(
-        text: matchedString,
-        style: matchedStyle,
-      ));
+      parts.add(
+        TextSpan(
+          text: matchedString,
+          style: matchedStyle,
+        ),
+      );
 
       final String remainingString = text.substring(matchEnd, text.length);
-      parts.add(TextSpan(
-        text: remainingString,
-      ));
+      parts.add(
+        TextSpan(
+          text: remainingString,
+        ),
+      );
     }
 
     return Text.rich(

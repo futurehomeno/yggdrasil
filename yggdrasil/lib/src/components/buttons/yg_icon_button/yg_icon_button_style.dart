@@ -106,36 +106,36 @@ class YgIconButtonVariantTheme {
   });
 
   factory YgIconButtonVariantTheme.standard(YgStandardIconButtonTheme theme) => YgIconButtonVariantTheme(
-        backgroundColor: theme.backgroundColor,
-        disabledBackgroundColor: theme.disabledBackgroundColor,
-        disabledIconColor: theme.disabledIconColor,
-        iconColor: theme.iconColor,
-        splashColor: theme.splashColor,
-      );
+    backgroundColor: theme.backgroundColor,
+    disabledBackgroundColor: theme.disabledBackgroundColor,
+    disabledIconColor: theme.disabledIconColor,
+    iconColor: theme.iconColor,
+    splashColor: theme.splashColor,
+  );
 
   factory YgIconButtonVariantTheme.filled(YgFilledIconButtonTheme theme) => YgIconButtonVariantTheme(
-        backgroundColor: theme.backgroundColor,
-        disabledBackgroundColor: theme.disabledBackgroundColor,
-        disabledIconColor: theme.disabledIconColor,
-        iconColor: theme.iconColor,
-        splashColor: theme.splashColor,
-      );
+    backgroundColor: theme.backgroundColor,
+    disabledBackgroundColor: theme.disabledBackgroundColor,
+    disabledIconColor: theme.disabledIconColor,
+    iconColor: theme.iconColor,
+    splashColor: theme.splashColor,
+  );
 
   factory YgIconButtonVariantTheme.tonal(YgTonalIconButtonTheme theme) => YgIconButtonVariantTheme(
-        backgroundColor: theme.backgroundColor,
-        disabledBackgroundColor: theme.disabledBackgroundColor,
-        disabledIconColor: theme.disabledIconColor,
-        iconColor: theme.iconColor,
-        splashColor: theme.splashColor,
-      );
+    backgroundColor: theme.backgroundColor,
+    disabledBackgroundColor: theme.disabledBackgroundColor,
+    disabledIconColor: theme.disabledIconColor,
+    iconColor: theme.iconColor,
+    splashColor: theme.splashColor,
+  );
 
   factory YgIconButtonVariantTheme.outlined(YgOutlinedIconButtonTheme theme) => YgIconButtonVariantTheme(
-        backgroundColor: theme.backgroundColor,
-        disabledBackgroundColor: theme.disabledBackgroundColor,
-        disabledIconColor: theme.disabledIconColor,
-        iconColor: theme.iconColor,
-        splashColor: theme.splashColor,
-      );
+    backgroundColor: theme.backgroundColor,
+    disabledBackgroundColor: theme.disabledBackgroundColor,
+    disabledIconColor: theme.disabledIconColor,
+    iconColor: theme.iconColor,
+    splashColor: theme.splashColor,
+  );
 
   final Color backgroundColor;
   final Color disabledBackgroundColor;

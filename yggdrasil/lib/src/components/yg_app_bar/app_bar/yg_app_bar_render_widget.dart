@@ -52,10 +52,10 @@ class YgAppBarRenderer extends RenderBox
     required EdgeInsets padding,
     required double height,
     required bool centerTitle,
-  })  : _gap = gap,
-        _padding = padding,
-        _height = height,
-        _centerTitle = centerTitle;
+  }) : _gap = gap,
+       _padding = padding,
+       _height = height,
+       _centerTitle = centerTitle;
 
   // region Values
 

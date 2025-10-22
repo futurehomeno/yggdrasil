@@ -59,8 +59,10 @@ class YgStringSearchBar extends YgSearchBar<String> {
   State<YgStringSearchBar> createState() => _YgStringSearchBarState();
 }
 
-class _YgStringSearchBarState extends _YgSearchBarWidgetState<String, String, YgStringSearchResult,
-    YgStringSearchResultsLayout, YgStringSearchBar> with YgStringSearchStateMixin<YgStringSearchBar> {
+class _YgStringSearchBarState
+    extends
+        _YgSearchBarWidgetState<String, String, YgStringSearchResult, YgStringSearchResultsLayout, YgStringSearchBar>
+    with YgStringSearchStateMixin<YgStringSearchBar> {
   @override
   void onChanged() {
     widget.onChanged?.call(
@@ -76,6 +78,6 @@ class _YgStringSearchBarState extends _YgSearchBarWidgetState<String, String, Yg
 
   @override
   YgStringSearchController createController() => YgStringSearchController(
-        initialValue: widget.initialValue,
-      );
+    initialValue: widget.initialValue,
+  );
 }

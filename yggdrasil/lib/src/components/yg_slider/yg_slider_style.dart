@@ -104,18 +104,18 @@ class _YgSliderVariantTheme {
   });
 
   factory _YgSliderVariantTheme.temperature(YgTemperatureSliderTheme theme) => _YgSliderVariantTheme(
-        trackIncreasingColor: theme.trackIncreasingColor,
-        trackDecreasingColor: theme.trackDecreasingColor,
-        differenceIndicatorIncreasingColor: theme.differenceIndicatorIncreasingColor,
-        differenceIndicatorDecreasingColor: theme.differenceIndicatorDecreasingColor,
-      );
+    trackIncreasingColor: theme.trackIncreasingColor,
+    trackDecreasingColor: theme.trackDecreasingColor,
+    differenceIndicatorIncreasingColor: theme.differenceIndicatorIncreasingColor,
+    differenceIndicatorDecreasingColor: theme.differenceIndicatorDecreasingColor,
+  );
 
   factory _YgSliderVariantTheme.shades(YgShadesSliderTheme theme) => _YgSliderVariantTheme(
-        trackIncreasingColor: theme.trackIncreasingColor,
-        trackDecreasingColor: theme.trackDecreasingColor,
-        differenceIndicatorIncreasingColor: theme.differenceIndicatorIncreasingColor,
-        differenceIndicatorDecreasingColor: theme.differenceIndicatorDecreasingColor,
-      );
+    trackIncreasingColor: theme.trackIncreasingColor,
+    trackDecreasingColor: theme.trackDecreasingColor,
+    differenceIndicatorIncreasingColor: theme.differenceIndicatorIncreasingColor,
+    differenceIndicatorDecreasingColor: theme.differenceIndicatorDecreasingColor,
+  );
 
   final Color trackIncreasingColor;
   final Color trackDecreasingColor;

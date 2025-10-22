@@ -13,8 +13,8 @@ class NullableAlignmentTween extends Tween<Alignment?> {
 
   @override
   Alignment? lerp(double t) => Alignment.lerp(
-        begin,
-        end,
-        t,
-      );
+    begin,
+    end,
+    t,
+  );
 }

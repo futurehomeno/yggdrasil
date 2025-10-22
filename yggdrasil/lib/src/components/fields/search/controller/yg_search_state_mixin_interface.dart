@@ -3,8 +3,12 @@ import 'package:yggdrasil/src/components/fields/search/interfaces/yg_base_search
 import 'package:yggdrasil/src/components/fields/search/interfaces/yg_base_search_results_layout.dart';
 
 /// Internal interface used by all search widgets.
-abstract interface class YgSearchStateMixinInterface<Value, ResultValue, Result extends YgBaseSearchResult,
-    ResultsLayout extends YgBaseSearchResultsLayout<Result>> {
+abstract interface class YgSearchStateMixinInterface<
+  Value,
+  ResultValue,
+  Result extends YgBaseSearchResult,
+  ResultsLayout extends YgBaseSearchResultsLayout<Result>
+> {
   /// Called by the search controller when the value changes.
   ///
   /// Should be used to call the onChanged callback on the widget it self with

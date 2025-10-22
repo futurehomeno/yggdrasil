@@ -1,8 +1,8 @@
 part of 'yg_dropdown_field.dart';
 
 /// Any dropdown controller.
-typedef YgAnyDropdownController<T extends Object>
-    = YgDropdownController<T, Object?, YgDropdownFieldWidgetState<T, YgDropdownField<T>>>;
+typedef YgAnyDropdownController<T extends Object> =
+    YgDropdownController<T, Object?, YgDropdownFieldWidgetState<T, YgDropdownField<T>>>;
 
 /// The base class controller for a [YgDropdownField].
 ///
@@ -12,7 +12,8 @@ typedef YgAnyDropdownController<T extends Object>
 ///  - [YgSingleSelectDropdownController].
 ///  - [YgMultiSelectDropdownController].
 sealed class YgDropdownController<T extends Object, V, S extends YgDropdownFieldWidgetState<T, YgDropdownField<T>>>
-    extends ChangeNotifier implements YgAttachable<S>, YgDisposable {
+    extends ChangeNotifier
+    implements YgAttachable<S>, YgDisposable {
   YgDropdownController({
     required V initialValue,
   }) : _value = initialValue;

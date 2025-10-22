@@ -11,16 +11,16 @@ class YgButtonState extends YgButtonBaseState {
     super.pressed,
     YgButtonVariant variant = YgButtonVariant.primary,
     YgButtonSize size = YgButtonSize.large,
-  })  : variant = YgStateValue<YgButtonVariant>(variant),
-        size = YgStateValue<YgButtonSize>(size);
+  }) : variant = YgStateValue<YgButtonVariant>(variant),
+       size = YgStateValue<YgButtonSize>(size);
 
   final YgStateValue<YgButtonVariant> variant;
   final YgStateValue<YgButtonSize> size;
 
   @override
   List<YgStateValue<Object?>> get props => <YgStateValue<Object?>>[
-        ...super.props,
-        variant,
-        size,
-      ];
+    ...super.props,
+    variant,
+    size,
+  ];
 }

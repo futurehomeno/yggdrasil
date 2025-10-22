@@ -47,8 +47,7 @@ class YgSecondaryButtonTheme extends ThemeExtension<YgSecondaryButtonTheme> {
     textStyle: _$YgSecondaryButtonTheme.textStyle[1],
   );
 
-  static final YgSecondaryButtonTheme professionalLight =
-      YgSecondaryButtonTheme(
+  static final YgSecondaryButtonTheme professionalLight = YgSecondaryButtonTheme(
     backgroundColor: _$YgSecondaryButtonTheme.backgroundColor[2],
     borderGradient: _$YgSecondaryButtonTheme.borderGradient[2],
     disabledBorderGradient: _$YgSecondaryButtonTheme.disabledBorderGradient[2],
@@ -88,8 +87,7 @@ class YgSecondaryButtonTheme extends ThemeExtension<YgSecondaryButtonTheme> {
     return YgSecondaryButtonTheme(
       backgroundColor: backgroundColor ?? this.backgroundColor,
       borderGradient: borderGradient ?? this.borderGradient,
-      disabledBorderGradient:
-          disabledBorderGradient ?? this.disabledBorderGradient,
+      disabledBorderGradient: disabledBorderGradient ?? this.disabledBorderGradient,
       disabledTextStyle: disabledTextStyle ?? this.disabledTextStyle,
       iconDefaultColor: iconDefaultColor ?? this.iconDefaultColor,
       iconDisabledColor: iconDisabledColor ?? this.iconDisabledColor,
@@ -98,20 +96,15 @@ class YgSecondaryButtonTheme extends ThemeExtension<YgSecondaryButtonTheme> {
   }
 
   @override
-  YgSecondaryButtonTheme lerp(
-      covariant ThemeExtension<YgSecondaryButtonTheme>? other, double t) {
+  YgSecondaryButtonTheme lerp(covariant ThemeExtension<YgSecondaryButtonTheme>? other, double t) {
     if (other is! YgSecondaryButtonTheme) return this as YgSecondaryButtonTheme;
     return YgSecondaryButtonTheme(
       backgroundColor: Color.lerp(backgroundColor, other.backgroundColor, t)!,
       borderGradient: t < 0.5 ? borderGradient : other.borderGradient,
-      disabledBorderGradient:
-          t < 0.5 ? disabledBorderGradient : other.disabledBorderGradient,
-      disabledTextStyle:
-          TextStyle.lerp(disabledTextStyle, other.disabledTextStyle, t)!,
-      iconDefaultColor:
-          Color.lerp(iconDefaultColor, other.iconDefaultColor, t)!,
-      iconDisabledColor:
-          Color.lerp(iconDisabledColor, other.iconDisabledColor, t)!,
+      disabledBorderGradient: t < 0.5 ? disabledBorderGradient : other.disabledBorderGradient,
+      disabledTextStyle: TextStyle.lerp(disabledTextStyle, other.disabledTextStyle, t)!,
+      iconDefaultColor: Color.lerp(iconDefaultColor, other.iconDefaultColor, t)!,
+      iconDisabledColor: Color.lerp(iconDisabledColor, other.iconDisabledColor, t)!,
       textStyle: TextStyle.lerp(textStyle, other.textStyle, t)!,
     );
   }
@@ -121,18 +114,12 @@ class YgSecondaryButtonTheme extends ThemeExtension<YgSecondaryButtonTheme> {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is YgSecondaryButtonTheme &&
-            const DeepCollectionEquality()
-                .equals(backgroundColor, other.backgroundColor) &&
-            const DeepCollectionEquality()
-                .equals(borderGradient, other.borderGradient) &&
-            const DeepCollectionEquality()
-                .equals(disabledBorderGradient, other.disabledBorderGradient) &&
-            const DeepCollectionEquality()
-                .equals(disabledTextStyle, other.disabledTextStyle) &&
-            const DeepCollectionEquality()
-                .equals(iconDefaultColor, other.iconDefaultColor) &&
-            const DeepCollectionEquality()
-                .equals(iconDisabledColor, other.iconDisabledColor) &&
+            const DeepCollectionEquality().equals(backgroundColor, other.backgroundColor) &&
+            const DeepCollectionEquality().equals(borderGradient, other.borderGradient) &&
+            const DeepCollectionEquality().equals(disabledBorderGradient, other.disabledBorderGradient) &&
+            const DeepCollectionEquality().equals(disabledTextStyle, other.disabledTextStyle) &&
+            const DeepCollectionEquality().equals(iconDefaultColor, other.iconDefaultColor) &&
+            const DeepCollectionEquality().equals(iconDisabledColor, other.iconDisabledColor) &&
             const DeepCollectionEquality().equals(textStyle, other.textStyle));
   }
 

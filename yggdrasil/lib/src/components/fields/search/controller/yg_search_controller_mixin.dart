@@ -19,12 +19,14 @@ part 'string_search/yg_string_search_controller.dart';
 /// Does not implement any search logic, instead focuses on linking the search
 /// controller to a search widget.
 mixin _YgSearchControllerMixin<
-        Value,
-        ControllerValue,
-        ResultValue,
-        Result extends YgBaseSearchResult,
-        ResultsLayout extends YgBaseSearchResultsLayout<Result>,
-        SearchMixin extends YgSearchStateMixinInterface<Value, ResultValue, Result, ResultsLayout>> on ChangeNotifier
+  Value,
+  ControllerValue,
+  ResultValue,
+  Result extends YgBaseSearchResult,
+  ResultsLayout extends YgBaseSearchResultsLayout<Result>,
+  SearchMixin extends YgSearchStateMixinInterface<Value, ResultValue, Result, ResultsLayout>
+>
+    on ChangeNotifier
     implements YgSearchController<Value, ControllerValue, ResultValue, Result, ResultsLayout, SearchMixin> {
   SearchMixin? _state;
 

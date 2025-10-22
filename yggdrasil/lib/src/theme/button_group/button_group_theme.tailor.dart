@@ -48,8 +48,7 @@ class YgButtonGroupTheme extends ThemeExtension<YgButtonGroupTheme> {
   }
 
   @override
-  YgButtonGroupTheme lerp(
-      covariant ThemeExtension<YgButtonGroupTheme>? other, double t) {
+  YgButtonGroupTheme lerp(covariant ThemeExtension<YgButtonGroupTheme>? other, double t) {
     if (other is! YgButtonGroupTheme) return this as YgButtonGroupTheme;
     return YgButtonGroupTheme(
       buttonSpacing: t < 0.5 ? buttonSpacing : other.buttonSpacing,
@@ -61,8 +60,7 @@ class YgButtonGroupTheme extends ThemeExtension<YgButtonGroupTheme> {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is YgButtonGroupTheme &&
-            const DeepCollectionEquality()
-                .equals(buttonSpacing, other.buttonSpacing));
+            const DeepCollectionEquality().equals(buttonSpacing, other.buttonSpacing));
   }
 
   @override

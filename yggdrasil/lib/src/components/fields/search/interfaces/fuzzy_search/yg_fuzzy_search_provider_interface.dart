@@ -6,11 +6,13 @@ import 'package:yggdrasil/src/components/fields/search/interfaces/yg_base_search
 
 /// Internal interface for providing fuzzy search.
 abstract class YgFuzzySearchProviderInterface<
-    Value,
-    ResultValue,
-    Result extends YgBaseSearchResult,
-    ResultsLayout extends YgBaseSearchResultsLayout<Result>,
-    Item extends YgBaseSearchItem<Result>> implements YgBaseSearchProvider<Value, ResultValue, Result, ResultsLayout> {
+  Value,
+  ResultValue,
+  Result extends YgBaseSearchResult,
+  ResultsLayout extends YgBaseSearchResultsLayout<Result>,
+  Item extends YgBaseSearchItem<Result>
+>
+    implements YgBaseSearchProvider<Value, ResultValue, Result, ResultsLayout> {
   const YgFuzzySearchProviderInterface({
     required this.items,
     required this.noResultsBuilder,

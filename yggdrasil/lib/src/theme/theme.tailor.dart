@@ -343,11 +343,9 @@ class YgTheme extends ThemeExtension<YgTheme> {
       layoutTheme: layoutTheme ?? this.layoutTheme,
       listTileTheme: listTileTheme ?? this.listTileTheme,
       miniBarGraphTheme: miniBarGraphTheme ?? this.miniBarGraphTheme,
-      mobileScannerContainerTheme:
-          mobileScannerContainerTheme ?? this.mobileScannerContainerTheme,
+      mobileScannerContainerTheme: mobileScannerContainerTheme ?? this.mobileScannerContainerTheme,
       pickerTheme: pickerTheme ?? this.pickerTheme,
-      progressIndicatorTheme:
-          progressIndicatorTheme ?? this.progressIndicatorTheme,
+      progressIndicatorTheme: progressIndicatorTheme ?? this.progressIndicatorTheme,
       pulseTheme: pulseTheme ?? this.pulseTheme,
       radioTheme: radioTheme ?? this.radioTheme,
       searchBarTheme: searchBarTheme ?? this.searchBarTheme,
@@ -376,63 +374,45 @@ class YgTheme extends ThemeExtension<YgTheme> {
       appBarTheme: appBarTheme.lerp(other.appBarTheme, t) as YgAppBarTheme,
       avatarTheme: avatarTheme.lerp(other.avatarTheme, t) as YgAvatarTheme,
       badgeTheme: badgeTheme.lerp(other.badgeTheme, t) as YgBadgeTheme,
-      bottomSheetTheme: bottomSheetTheme.lerp(other.bottomSheetTheme, t)
-          as YgBottomSheetTheme,
-      buttonGroupTheme: buttonGroupTheme.lerp(other.buttonGroupTheme, t)
-          as YgButtonGroupTheme,
+      bottomSheetTheme: bottomSheetTheme.lerp(other.bottomSheetTheme, t) as YgBottomSheetTheme,
+      buttonGroupTheme: buttonGroupTheme.lerp(other.buttonGroupTheme, t) as YgButtonGroupTheme,
       buttonTheme: buttonTheme.lerp(other.buttonTheme, t) as YgButtonTheme,
       calloutTheme: calloutTheme.lerp(other.calloutTheme, t) as YgCalloutTheme,
       cardTheme: cardTheme.lerp(other.cardTheme, t) as YgCardTheme,
-      checkboxTheme:
-          checkboxTheme.lerp(other.checkboxTheme, t) as YgCheckboxTheme,
+      checkboxTheme: checkboxTheme.lerp(other.checkboxTheme, t) as YgCheckboxTheme,
       defaults: defaults.lerp(other.defaults, t) as YgDefaults,
       dialogTheme: dialogTheme.lerp(other.dialogTheme, t) as YgDialogTheme,
       dividerTheme: dividerTheme.lerp(other.dividerTheme, t) as YgDividerTheme,
       fieldTheme: fieldTheme.lerp(other.fieldTheme, t) as YgFieldTheme,
       gaugeTheme: gaugeTheme.lerp(other.gaugeTheme, t) as YgGaugeTheme,
-      iconButtonTheme:
-          iconButtonTheme.lerp(other.iconButtonTheme, t) as YgIconButtonTheme,
+      iconButtonTheme: iconButtonTheme.lerp(other.iconButtonTheme, t) as YgIconButtonTheme,
       iconTheme: iconTheme.lerp(other.iconTheme, t) as YgIconTheme,
-      internalTheme:
-          internalTheme.lerp(other.internalTheme, t) as YgInternalTheme,
+      internalTheme: internalTheme.lerp(other.internalTheme, t) as YgInternalTheme,
       layoutTheme: layoutTheme.lerp(other.layoutTheme, t) as YgLayoutTheme,
-      listTileTheme:
-          listTileTheme.lerp(other.listTileTheme, t) as YgListTileTheme,
-      miniBarGraphTheme: miniBarGraphTheme.lerp(other.miniBarGraphTheme, t)
-          as YgMiniBarGraphTheme,
+      listTileTheme: listTileTheme.lerp(other.listTileTheme, t) as YgListTileTheme,
+      miniBarGraphTheme: miniBarGraphTheme.lerp(other.miniBarGraphTheme, t) as YgMiniBarGraphTheme,
       mobileScannerContainerTheme:
-          mobileScannerContainerTheme.lerp(other.mobileScannerContainerTheme, t)
-              as YgMobileScannerContainerTheme,
+          mobileScannerContainerTheme.lerp(other.mobileScannerContainerTheme, t) as YgMobileScannerContainerTheme,
       pickerTheme: pickerTheme.lerp(other.pickerTheme, t) as YgPickerTheme,
-      progressIndicatorTheme: progressIndicatorTheme.lerp(
-          other.progressIndicatorTheme, t) as YgProgressIndicatorTheme,
+      progressIndicatorTheme: progressIndicatorTheme.lerp(other.progressIndicatorTheme, t) as YgProgressIndicatorTheme,
       pulseTheme: pulseTheme.lerp(other.pulseTheme, t) as YgPulseTheme,
       radioTheme: radioTheme.lerp(other.radioTheme, t) as YgRadioTheme,
-      searchBarTheme:
-          searchBarTheme.lerp(other.searchBarTheme, t) as YgSearchBarTheme,
-      searchFieldTheme: searchFieldTheme.lerp(other.searchFieldTheme, t)
-          as YgSearchFieldTheme,
-      searchModalTheme: searchModalTheme.lerp(other.searchModalTheme, t)
-          as YgSearchModalTheme,
+      searchBarTheme: searchBarTheme.lerp(other.searchBarTheme, t) as YgSearchBarTheme,
+      searchFieldTheme: searchFieldTheme.lerp(other.searchFieldTheme, t) as YgSearchFieldTheme,
+      searchModalTheme: searchModalTheme.lerp(other.searchModalTheme, t) as YgSearchModalTheme,
       sectionTheme: sectionTheme.lerp(other.sectionTheme, t) as YgSectionTheme,
-      segmentedButtonTheme: segmentedButtonTheme.lerp(
-          other.segmentedButtonTheme, t) as YgSegmentedButtonTheme,
+      segmentedButtonTheme: segmentedButtonTheme.lerp(other.segmentedButtonTheme, t) as YgSegmentedButtonTheme,
       sliderTheme: sliderTheme.lerp(other.sliderTheme, t) as YgSliderTheme,
-      snackBarTheme:
-          snackBarTheme.lerp(other.snackBarTheme, t) as YgSnackBarTheme,
-      stepperButtonTheme: stepperButtonTheme.lerp(other.stepperButtonTheme, t)
-          as YgStepperButtonTheme,
+      snackBarTheme: snackBarTheme.lerp(other.snackBarTheme, t) as YgSnackBarTheme,
+      stepperButtonTheme: stepperButtonTheme.lerp(other.stepperButtonTheme, t) as YgStepperButtonTheme,
       stepperTheme: stepperTheme.lerp(other.stepperTheme, t) as YgStepperTheme,
       switchTheme: switchTheme.lerp(other.switchTheme, t) as YgSwitchTheme,
       tabsTheme: tabsTheme.lerp(other.tabsTheme, t) as YgTabsTheme,
       tagTheme: tagTheme.lerp(other.tagTheme, t) as YgTagTheme,
-      textLinkTheme:
-          textLinkTheme.lerp(other.textLinkTheme, t) as YgTextLinkTheme,
-      toggleButtonTheme: toggleButtonTheme.lerp(other.toggleButtonTheme, t)
-          as YgToggleButtonTheme,
+      textLinkTheme: textLinkTheme.lerp(other.textLinkTheme, t) as YgTextLinkTheme,
+      toggleButtonTheme: toggleButtonTheme.lerp(other.toggleButtonTheme, t) as YgToggleButtonTheme,
       tokens: tokens.lerp(other.tokens, t) as YgTokens,
-      wizardHeaderTheme: wizardHeaderTheme.lerp(other.wizardHeaderTheme, t)
-          as YgWizardHeaderTheme,
+      wizardHeaderTheme: wizardHeaderTheme.lerp(other.wizardHeaderTheme, t) as YgWizardHeaderTheme,
     );
   }
 
@@ -441,82 +421,47 @@ class YgTheme extends ThemeExtension<YgTheme> {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is YgTheme &&
-            const DeepCollectionEquality()
-                .equals(appBarTheme, other.appBarTheme) &&
-            const DeepCollectionEquality()
-                .equals(avatarTheme, other.avatarTheme) &&
-            const DeepCollectionEquality()
-                .equals(badgeTheme, other.badgeTheme) &&
-            const DeepCollectionEquality()
-                .equals(bottomSheetTheme, other.bottomSheetTheme) &&
-            const DeepCollectionEquality()
-                .equals(buttonGroupTheme, other.buttonGroupTheme) &&
-            const DeepCollectionEquality()
-                .equals(buttonTheme, other.buttonTheme) &&
-            const DeepCollectionEquality()
-                .equals(calloutTheme, other.calloutTheme) &&
+            const DeepCollectionEquality().equals(appBarTheme, other.appBarTheme) &&
+            const DeepCollectionEquality().equals(avatarTheme, other.avatarTheme) &&
+            const DeepCollectionEquality().equals(badgeTheme, other.badgeTheme) &&
+            const DeepCollectionEquality().equals(bottomSheetTheme, other.bottomSheetTheme) &&
+            const DeepCollectionEquality().equals(buttonGroupTheme, other.buttonGroupTheme) &&
+            const DeepCollectionEquality().equals(buttonTheme, other.buttonTheme) &&
+            const DeepCollectionEquality().equals(calloutTheme, other.calloutTheme) &&
             const DeepCollectionEquality().equals(cardTheme, other.cardTheme) &&
-            const DeepCollectionEquality()
-                .equals(checkboxTheme, other.checkboxTheme) &&
+            const DeepCollectionEquality().equals(checkboxTheme, other.checkboxTheme) &&
             const DeepCollectionEquality().equals(defaults, other.defaults) &&
-            const DeepCollectionEquality()
-                .equals(dialogTheme, other.dialogTheme) &&
-            const DeepCollectionEquality()
-                .equals(dividerTheme, other.dividerTheme) &&
-            const DeepCollectionEquality()
-                .equals(fieldTheme, other.fieldTheme) &&
-            const DeepCollectionEquality()
-                .equals(gaugeTheme, other.gaugeTheme) &&
-            const DeepCollectionEquality()
-                .equals(iconButtonTheme, other.iconButtonTheme) &&
+            const DeepCollectionEquality().equals(dialogTheme, other.dialogTheme) &&
+            const DeepCollectionEquality().equals(dividerTheme, other.dividerTheme) &&
+            const DeepCollectionEquality().equals(fieldTheme, other.fieldTheme) &&
+            const DeepCollectionEquality().equals(gaugeTheme, other.gaugeTheme) &&
+            const DeepCollectionEquality().equals(iconButtonTheme, other.iconButtonTheme) &&
             const DeepCollectionEquality().equals(iconTheme, other.iconTheme) &&
-            const DeepCollectionEquality()
-                .equals(internalTheme, other.internalTheme) &&
-            const DeepCollectionEquality()
-                .equals(layoutTheme, other.layoutTheme) &&
-            const DeepCollectionEquality()
-                .equals(listTileTheme, other.listTileTheme) &&
-            const DeepCollectionEquality()
-                .equals(miniBarGraphTheme, other.miniBarGraphTheme) &&
-            const DeepCollectionEquality().equals(mobileScannerContainerTheme,
-                other.mobileScannerContainerTheme) &&
-            const DeepCollectionEquality()
-                .equals(pickerTheme, other.pickerTheme) &&
-            const DeepCollectionEquality()
-                .equals(progressIndicatorTheme, other.progressIndicatorTheme) &&
-            const DeepCollectionEquality()
-                .equals(pulseTheme, other.pulseTheme) &&
-            const DeepCollectionEquality()
-                .equals(radioTheme, other.radioTheme) &&
-            const DeepCollectionEquality()
-                .equals(searchBarTheme, other.searchBarTheme) &&
-            const DeepCollectionEquality()
-                .equals(searchFieldTheme, other.searchFieldTheme) &&
-            const DeepCollectionEquality()
-                .equals(searchModalTheme, other.searchModalTheme) &&
-            const DeepCollectionEquality()
-                .equals(sectionTheme, other.sectionTheme) &&
-            const DeepCollectionEquality()
-                .equals(segmentedButtonTheme, other.segmentedButtonTheme) &&
-            const DeepCollectionEquality()
-                .equals(sliderTheme, other.sliderTheme) &&
-            const DeepCollectionEquality()
-                .equals(snackBarTheme, other.snackBarTheme) &&
-            const DeepCollectionEquality()
-                .equals(stepperButtonTheme, other.stepperButtonTheme) &&
-            const DeepCollectionEquality()
-                .equals(stepperTheme, other.stepperTheme) &&
-            const DeepCollectionEquality()
-                .equals(switchTheme, other.switchTheme) &&
+            const DeepCollectionEquality().equals(internalTheme, other.internalTheme) &&
+            const DeepCollectionEquality().equals(layoutTheme, other.layoutTheme) &&
+            const DeepCollectionEquality().equals(listTileTheme, other.listTileTheme) &&
+            const DeepCollectionEquality().equals(miniBarGraphTheme, other.miniBarGraphTheme) &&
+            const DeepCollectionEquality().equals(mobileScannerContainerTheme, other.mobileScannerContainerTheme) &&
+            const DeepCollectionEquality().equals(pickerTheme, other.pickerTheme) &&
+            const DeepCollectionEquality().equals(progressIndicatorTheme, other.progressIndicatorTheme) &&
+            const DeepCollectionEquality().equals(pulseTheme, other.pulseTheme) &&
+            const DeepCollectionEquality().equals(radioTheme, other.radioTheme) &&
+            const DeepCollectionEquality().equals(searchBarTheme, other.searchBarTheme) &&
+            const DeepCollectionEquality().equals(searchFieldTheme, other.searchFieldTheme) &&
+            const DeepCollectionEquality().equals(searchModalTheme, other.searchModalTheme) &&
+            const DeepCollectionEquality().equals(sectionTheme, other.sectionTheme) &&
+            const DeepCollectionEquality().equals(segmentedButtonTheme, other.segmentedButtonTheme) &&
+            const DeepCollectionEquality().equals(sliderTheme, other.sliderTheme) &&
+            const DeepCollectionEquality().equals(snackBarTheme, other.snackBarTheme) &&
+            const DeepCollectionEquality().equals(stepperButtonTheme, other.stepperButtonTheme) &&
+            const DeepCollectionEquality().equals(stepperTheme, other.stepperTheme) &&
+            const DeepCollectionEquality().equals(switchTheme, other.switchTheme) &&
             const DeepCollectionEquality().equals(tabsTheme, other.tabsTheme) &&
             const DeepCollectionEquality().equals(tagTheme, other.tagTheme) &&
-            const DeepCollectionEquality()
-                .equals(textLinkTheme, other.textLinkTheme) &&
-            const DeepCollectionEquality()
-                .equals(toggleButtonTheme, other.toggleButtonTheme) &&
+            const DeepCollectionEquality().equals(textLinkTheme, other.textLinkTheme) &&
+            const DeepCollectionEquality().equals(toggleButtonTheme, other.toggleButtonTheme) &&
             const DeepCollectionEquality().equals(tokens, other.tokens) &&
-            const DeepCollectionEquality()
-                .equals(wizardHeaderTheme, other.wizardHeaderTheme));
+            const DeepCollectionEquality().equals(wizardHeaderTheme, other.wizardHeaderTheme));
   }
 
   @override
@@ -590,19 +535,16 @@ extension YgThemeBuildContextProps on BuildContext {
   YgLayoutTheme get layoutTheme => ygTheme.layoutTheme;
   YgListTileTheme get listTileTheme => ygTheme.listTileTheme;
   YgMiniBarGraphTheme get miniBarGraphTheme => ygTheme.miniBarGraphTheme;
-  YgMobileScannerContainerTheme get mobileScannerContainerTheme =>
-      ygTheme.mobileScannerContainerTheme;
+  YgMobileScannerContainerTheme get mobileScannerContainerTheme => ygTheme.mobileScannerContainerTheme;
   YgPickerTheme get pickerTheme => ygTheme.pickerTheme;
-  YgProgressIndicatorTheme get progressIndicatorTheme =>
-      ygTheme.progressIndicatorTheme;
+  YgProgressIndicatorTheme get progressIndicatorTheme => ygTheme.progressIndicatorTheme;
   YgPulseTheme get pulseTheme => ygTheme.pulseTheme;
   YgRadioTheme get radioTheme => ygTheme.radioTheme;
   YgSearchBarTheme get searchBarTheme => ygTheme.searchBarTheme;
   YgSearchFieldTheme get searchFieldTheme => ygTheme.searchFieldTheme;
   YgSearchModalTheme get searchModalTheme => ygTheme.searchModalTheme;
   YgSectionTheme get sectionTheme => ygTheme.sectionTheme;
-  YgSegmentedButtonTheme get segmentedButtonTheme =>
-      ygTheme.segmentedButtonTheme;
+  YgSegmentedButtonTheme get segmentedButtonTheme => ygTheme.segmentedButtonTheme;
   YgSliderTheme get sliderTheme => ygTheme.sliderTheme;
   YgSnackBarTheme get snackBarTheme => ygTheme.snackBarTheme;
   YgStepperButtonTheme get stepperButtonTheme => ygTheme.stepperButtonTheme;

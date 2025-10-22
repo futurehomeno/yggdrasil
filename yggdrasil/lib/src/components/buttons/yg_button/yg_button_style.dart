@@ -106,54 +106,54 @@ class ButtonVariantTheme {
   });
 
   factory ButtonVariantTheme.primary(YgPrimaryButtonTheme theme) => ButtonVariantTheme(
-        backgroundColor: theme.backgroundColor,
-        textStyle: theme.textStyle,
-        disabledTextStyle: theme.disabledTextStyle,
-        borderGradient: theme.borderGradient,
-        disabledBorderGradient: theme.disabledBorderGradient,
-        iconDefaultColor: theme.iconDefaultColor,
-        iconDisabledColor: theme.iconDisabledColor,
-      );
+    backgroundColor: theme.backgroundColor,
+    textStyle: theme.textStyle,
+    disabledTextStyle: theme.disabledTextStyle,
+    borderGradient: theme.borderGradient,
+    disabledBorderGradient: theme.disabledBorderGradient,
+    iconDefaultColor: theme.iconDefaultColor,
+    iconDisabledColor: theme.iconDisabledColor,
+  );
 
   factory ButtonVariantTheme.secondary(YgSecondaryButtonTheme theme) => ButtonVariantTheme(
-        backgroundColor: theme.backgroundColor,
-        textStyle: theme.textStyle,
-        disabledTextStyle: theme.disabledTextStyle,
-        borderGradient: theme.borderGradient,
-        disabledBorderGradient: theme.disabledBorderGradient,
-        iconDefaultColor: theme.iconDefaultColor,
-        iconDisabledColor: theme.iconDisabledColor,
-      );
+    backgroundColor: theme.backgroundColor,
+    textStyle: theme.textStyle,
+    disabledTextStyle: theme.disabledTextStyle,
+    borderGradient: theme.borderGradient,
+    disabledBorderGradient: theme.disabledBorderGradient,
+    iconDefaultColor: theme.iconDefaultColor,
+    iconDisabledColor: theme.iconDisabledColor,
+  );
 
   factory ButtonVariantTheme.text(YgTextButtonTheme theme) => ButtonVariantTheme(
-        backgroundColor: theme.backgroundColor,
-        textStyle: theme.textStyle,
-        disabledTextStyle: theme.disabledTextStyle,
-        borderGradient: theme.borderGradient,
-        disabledBorderGradient: theme.disabledBorderGradient,
-        iconDefaultColor: theme.iconDefaultColor,
-        iconDisabledColor: theme.iconDisabledColor,
-      );
+    backgroundColor: theme.backgroundColor,
+    textStyle: theme.textStyle,
+    disabledTextStyle: theme.disabledTextStyle,
+    borderGradient: theme.borderGradient,
+    disabledBorderGradient: theme.disabledBorderGradient,
+    iconDefaultColor: theme.iconDefaultColor,
+    iconDisabledColor: theme.iconDisabledColor,
+  );
 
   factory ButtonVariantTheme.critical(YgCriticalButtonTheme theme) => ButtonVariantTheme(
-        backgroundColor: theme.backgroundColor,
-        textStyle: theme.textStyle,
-        disabledTextStyle: theme.disabledTextStyle,
-        borderGradient: theme.borderGradient,
-        disabledBorderGradient: theme.disabledBorderGradient,
-        iconDefaultColor: theme.iconDefaultColor,
-        iconDisabledColor: theme.iconDisabledColor,
-      );
+    backgroundColor: theme.backgroundColor,
+    textStyle: theme.textStyle,
+    disabledTextStyle: theme.disabledTextStyle,
+    borderGradient: theme.borderGradient,
+    disabledBorderGradient: theme.disabledBorderGradient,
+    iconDefaultColor: theme.iconDefaultColor,
+    iconDisabledColor: theme.iconDisabledColor,
+  );
 
   factory ButtonVariantTheme.link(YgLinkButtonTheme theme) => ButtonVariantTheme(
-        backgroundColor: theme.backgroundColor,
-        textStyle: theme.textStyle,
-        disabledTextStyle: theme.disabledTextStyle,
-        borderGradient: theme.borderGradient,
-        disabledBorderGradient: theme.disabledBorderGradient,
-        iconDefaultColor: theme.iconDefaultColor,
-        iconDisabledColor: theme.iconDisabledColor,
-      );
+    backgroundColor: theme.backgroundColor,
+    textStyle: theme.textStyle,
+    disabledTextStyle: theme.disabledTextStyle,
+    borderGradient: theme.borderGradient,
+    disabledBorderGradient: theme.disabledBorderGradient,
+    iconDefaultColor: theme.iconDefaultColor,
+    iconDisabledColor: theme.iconDisabledColor,
+  );
 
   final Color backgroundColor;
   final TextStyle textStyle;

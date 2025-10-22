@@ -48,8 +48,7 @@ class YgAvatarStackTheme extends ThemeExtension<YgAvatarStackTheme> {
   }
 
   @override
-  YgAvatarStackTheme lerp(
-      covariant ThemeExtension<YgAvatarStackTheme>? other, double t) {
+  YgAvatarStackTheme lerp(covariant ThemeExtension<YgAvatarStackTheme>? other, double t) {
     if (other is! YgAvatarStackTheme) return this as YgAvatarStackTheme;
     return YgAvatarStackTheme(
       overlapDistance: t < 0.5 ? overlapDistance : other.overlapDistance,
@@ -61,8 +60,7 @@ class YgAvatarStackTheme extends ThemeExtension<YgAvatarStackTheme> {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is YgAvatarStackTheme &&
-            const DeepCollectionEquality()
-                .equals(overlapDistance, other.overlapDistance));
+            const DeepCollectionEquality().equals(overlapDistance, other.overlapDistance));
   }
 
   @override

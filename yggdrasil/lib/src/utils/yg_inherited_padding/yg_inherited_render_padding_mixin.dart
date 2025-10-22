@@ -6,9 +6,11 @@ mixin YgInheritedRenderPaddingMixin on RenderObject {
   EdgeInsets getPadding() {
     EdgeInsets padding = EdgeInsets.zero;
 
-    for (RenderObject? parent = this.parent;
-        parent != null && parent is! YgInheritedRenderPaddingMixin;
-        parent = parent.parent) {
+    for (
+      RenderObject? parent = this.parent;
+      parent != null && parent is! YgInheritedRenderPaddingMixin;
+      parent = parent.parent
+    ) {
       if (parent is YgInheritedRenderPaddingProviderMixin) {
         padding += parent.padding;
       }

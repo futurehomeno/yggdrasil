@@ -12,11 +12,11 @@ class ScrollableDropdown extends MultiChildRenderObjectWidget {
     required this.alignment,
     required this.gap,
   }) : super(
-          children: <Widget>[
-            target,
-            follower,
-          ],
-        );
+         children: <Widget>[
+           target,
+           follower,
+         ],
+       );
 
   final DropDownAlignment alignment;
   final double gap;
@@ -47,8 +47,8 @@ class ScrollableDropdownRenderer extends RenderBox
   ScrollableDropdownRenderer({
     required DropDownAlignment alignment,
     required double gap,
-  })  : _alignment = alignment,
-        _gap = gap;
+  }) : _alignment = alignment,
+       _gap = gap;
 
   final LayerLink _link = LayerLink();
   PaintingContext? followerPaintingContext;
@@ -87,12 +87,14 @@ class ScrollableDropdownRenderer extends RenderBox
     }
 
     followed.layout(constraints, parentUsesSize: true);
-    follower.layout(BoxConstraints(
-      maxHeight: double.infinity,
-      minHeight: 0,
-      maxWidth: followed.size.width,
-      minWidth: followed.size.width,
-    ));
+    follower.layout(
+      BoxConstraints(
+        maxHeight: double.infinity,
+        minHeight: 0,
+        maxWidth: followed.size.width,
+        minWidth: followed.size.width,
+      ),
+    );
     size = followed.size;
   }
 

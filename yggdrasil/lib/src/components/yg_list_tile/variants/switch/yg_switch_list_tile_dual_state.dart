@@ -11,19 +11,19 @@ final class _YgSwitchListTileDualState extends YgSwitchListTile with YgDualState
     super.subtitleIcon,
     super.trailingWidget,
     super.density = YgListTileDensity.standard,
-  })  : assert(
-          title != null || leadingWidget != null,
-          'Can not have neither a title or leading widget.',
-        ),
-        assert(
-          subtitleIcon == null || subtitle != null,
-          'Can not add a subtitleIcon without a subtitle.',
-        ),
-        assert(
-          title != null || subtitle == null,
-          'Can not have a subtitle without a title.',
-        ),
-        super._();
+  }) : assert(
+         title != null || leadingWidget != null,
+         'Can not have neither a title or leading widget.',
+       ),
+       assert(
+         subtitleIcon == null || subtitle != null,
+         'Can not add a subtitleIcon without a subtitle.',
+       ),
+       assert(
+         title != null || subtitle == null,
+         'Can not have a subtitle without a title.',
+       ),
+       super._();
 
   /// See [YgSwitch] documentation.
   @override

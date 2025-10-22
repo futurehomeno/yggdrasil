@@ -66,24 +66,19 @@ class YgSearchFieldTheme extends ThemeExtension<YgSearchFieldTheme> {
     return YgSearchFieldTheme(
       animationCurve: animationCurve ?? this.animationCurve,
       animationDuration: animationDuration ?? this.animationDuration,
-      progressIndicatorColor:
-          progressIndicatorColor ?? this.progressIndicatorColor,
-      progressIndicatorSize:
-          progressIndicatorSize ?? this.progressIndicatorSize,
+      progressIndicatorColor: progressIndicatorColor ?? this.progressIndicatorColor,
+      progressIndicatorSize: progressIndicatorSize ?? this.progressIndicatorSize,
     );
   }
 
   @override
-  YgSearchFieldTheme lerp(
-      covariant ThemeExtension<YgSearchFieldTheme>? other, double t) {
+  YgSearchFieldTheme lerp(covariant ThemeExtension<YgSearchFieldTheme>? other, double t) {
     if (other is! YgSearchFieldTheme) return this as YgSearchFieldTheme;
     return YgSearchFieldTheme(
       animationCurve: t < 0.5 ? animationCurve : other.animationCurve,
       animationDuration: t < 0.5 ? animationDuration : other.animationDuration,
-      progressIndicatorColor:
-          Color.lerp(progressIndicatorColor, other.progressIndicatorColor, t)!,
-      progressIndicatorSize:
-          t < 0.5 ? progressIndicatorSize : other.progressIndicatorSize,
+      progressIndicatorColor: Color.lerp(progressIndicatorColor, other.progressIndicatorColor, t)!,
+      progressIndicatorSize: t < 0.5 ? progressIndicatorSize : other.progressIndicatorSize,
     );
   }
 
@@ -92,14 +87,10 @@ class YgSearchFieldTheme extends ThemeExtension<YgSearchFieldTheme> {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is YgSearchFieldTheme &&
-            const DeepCollectionEquality()
-                .equals(animationCurve, other.animationCurve) &&
-            const DeepCollectionEquality()
-                .equals(animationDuration, other.animationDuration) &&
-            const DeepCollectionEquality()
-                .equals(progressIndicatorColor, other.progressIndicatorColor) &&
-            const DeepCollectionEquality()
-                .equals(progressIndicatorSize, other.progressIndicatorSize));
+            const DeepCollectionEquality().equals(animationCurve, other.animationCurve) &&
+            const DeepCollectionEquality().equals(animationDuration, other.animationDuration) &&
+            const DeepCollectionEquality().equals(progressIndicatorColor, other.progressIndicatorColor) &&
+            const DeepCollectionEquality().equals(progressIndicatorSize, other.progressIndicatorSize));
   }
 
   @override

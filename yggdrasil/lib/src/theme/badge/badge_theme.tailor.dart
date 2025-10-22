@@ -139,8 +139,7 @@ class YgBadgeTheme extends ThemeExtension<YgBadgeTheme> {
       borderRadius: borderRadius ?? this.borderRadius,
       iconPadding: iconPadding ?? this.iconPadding,
       iconSize: iconSize ?? this.iconSize,
-      iconVariantChildPadding:
-          iconVariantChildPadding ?? this.iconVariantChildPadding,
+      iconVariantChildPadding: iconVariantChildPadding ?? this.iconVariantChildPadding,
       strongColor: strongColor ?? this.strongColor,
       strongIconColor: strongIconColor ?? this.strongIconColor,
       strongTextStyle: strongTextStyle ?? this.strongTextStyle,
@@ -161,12 +160,10 @@ class YgBadgeTheme extends ThemeExtension<YgBadgeTheme> {
       borderRadius: t < 0.5 ? borderRadius : other.borderRadius,
       iconPadding: t < 0.5 ? iconPadding : other.iconPadding,
       iconSize: t < 0.5 ? iconSize : other.iconSize,
-      iconVariantChildPadding:
-          t < 0.5 ? iconVariantChildPadding : other.iconVariantChildPadding,
+      iconVariantChildPadding: t < 0.5 ? iconVariantChildPadding : other.iconVariantChildPadding,
       strongColor: Color.lerp(strongColor, other.strongColor, t)!,
       strongIconColor: Color.lerp(strongIconColor, other.strongIconColor, t)!,
-      strongTextStyle:
-          TextStyle.lerp(strongTextStyle, other.strongTextStyle, t)!,
+      strongTextStyle: TextStyle.lerp(strongTextStyle, other.strongTextStyle, t)!,
       textMinWidth: t < 0.5 ? textMinWidth : other.textMinWidth,
       textPadding: t < 0.5 ? textPadding : other.textPadding,
       weakColor: Color.lerp(weakColor, other.weakColor, t)!,
@@ -180,32 +177,20 @@ class YgBadgeTheme extends ThemeExtension<YgBadgeTheme> {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is YgBadgeTheme &&
-            const DeepCollectionEquality()
-                .equals(animationCurve, other.animationCurve) &&
-            const DeepCollectionEquality()
-                .equals(animationDuration, other.animationDuration) &&
-            const DeepCollectionEquality()
-                .equals(borderRadius, other.borderRadius) &&
-            const DeepCollectionEquality()
-                .equals(iconPadding, other.iconPadding) &&
+            const DeepCollectionEquality().equals(animationCurve, other.animationCurve) &&
+            const DeepCollectionEquality().equals(animationDuration, other.animationDuration) &&
+            const DeepCollectionEquality().equals(borderRadius, other.borderRadius) &&
+            const DeepCollectionEquality().equals(iconPadding, other.iconPadding) &&
             const DeepCollectionEquality().equals(iconSize, other.iconSize) &&
-            const DeepCollectionEquality().equals(
-                iconVariantChildPadding, other.iconVariantChildPadding) &&
-            const DeepCollectionEquality()
-                .equals(strongColor, other.strongColor) &&
-            const DeepCollectionEquality()
-                .equals(strongIconColor, other.strongIconColor) &&
-            const DeepCollectionEquality()
-                .equals(strongTextStyle, other.strongTextStyle) &&
-            const DeepCollectionEquality()
-                .equals(textMinWidth, other.textMinWidth) &&
-            const DeepCollectionEquality()
-                .equals(textPadding, other.textPadding) &&
+            const DeepCollectionEquality().equals(iconVariantChildPadding, other.iconVariantChildPadding) &&
+            const DeepCollectionEquality().equals(strongColor, other.strongColor) &&
+            const DeepCollectionEquality().equals(strongIconColor, other.strongIconColor) &&
+            const DeepCollectionEquality().equals(strongTextStyle, other.strongTextStyle) &&
+            const DeepCollectionEquality().equals(textMinWidth, other.textMinWidth) &&
+            const DeepCollectionEquality().equals(textPadding, other.textPadding) &&
             const DeepCollectionEquality().equals(weakColor, other.weakColor) &&
-            const DeepCollectionEquality()
-                .equals(weakIconColor, other.weakIconColor) &&
-            const DeepCollectionEquality()
-                .equals(weakTextStyle, other.weakTextStyle));
+            const DeepCollectionEquality().equals(weakIconColor, other.weakIconColor) &&
+            const DeepCollectionEquality().equals(weakTextStyle, other.weakTextStyle));
   }
 
   @override

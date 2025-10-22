@@ -10,11 +10,11 @@ class YgValidateHelper<T> {
     required ValueChanged<bool>? onFocusChanged,
     required YgCompleteAction completeAction,
     required void Function()? onEditingComplete,
-  })  : _key = key,
-        _autoValidate = autoValidate,
-        _onEditingComplete = onEditingComplete,
-        _completeAction = completeAction,
-        _onFocusChanged = onFocusChanged;
+  }) : _key = key,
+       _autoValidate = autoValidate,
+       _onEditingComplete = onEditingComplete,
+       _completeAction = completeAction,
+       _onFocusChanged = onFocusChanged;
 
   /// Maps our [YgAutoValidate] to the flutter equivalent.
   ///
@@ -37,7 +37,7 @@ class YgValidateHelper<T> {
   /// Should be used to get the default [YgCompleteAction], should be
   /// overridable by the user.
   static YgCompleteAction mapTextInputAction(TextInputAction textInputAction) {
-    switch(textInputAction) {
+    switch (textInputAction) {
       case TextInputAction.next:
         return YgCompleteAction.focusNext;
       case TextInputAction.previous:

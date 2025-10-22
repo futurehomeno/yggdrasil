@@ -41,8 +41,8 @@ enum YgMaxLengthEnforcement {
   MaxLengthEnforcement resolve(BuildContext context) {
     return switch (this) {
       YgMaxLengthEnforcement.auto => LengthLimitingTextInputFormatter.getDefaultMaxLengthEnforcement(
-          Theme.of(context).platform,
-        ),
+        Theme.of(context).platform,
+      ),
       YgMaxLengthEnforcement.none => MaxLengthEnforcement.none,
       YgMaxLengthEnforcement.enforced => MaxLengthEnforcement.enforced,
       YgMaxLengthEnforcement.truncateAfterCompositionEnds => MaxLengthEnforcement.truncateAfterCompositionEnds,

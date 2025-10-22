@@ -50,10 +50,10 @@ class YgTabBarRenderer extends RenderBox
     required TabController controller,
     required YgTabIndicatorStyle indicatorStyle,
     required ImageConfiguration imageConfiguration,
-  })  : _minWidth = minWidth,
-        _controller = controller,
-        _indicatorStyle = indicatorStyle,
-        _imageConfiguration = imageConfiguration;
+  }) : _minWidth = minWidth,
+       _controller = controller,
+       _indicatorStyle = indicatorStyle,
+       _imageConfiguration = imageConfiguration;
 
   // region Values
 

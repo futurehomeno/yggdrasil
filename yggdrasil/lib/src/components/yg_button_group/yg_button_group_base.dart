@@ -11,8 +11,8 @@ class _YgButtonGroupBase extends YgButtonGroup {
     super.key,
     required this.children,
   }) : super._(
-          axis: Axis.vertical,
-        );
+         axis: Axis.vertical,
+       );
 
   const _YgButtonGroupBase.horizontal({
     super.key,

@@ -48,12 +48,16 @@ class _YgSimpleSearchField<Value> extends YgSearchField<Value> {
   State<YgSearchField<Value>> createState() => _YgSimpleSearchFieldState<Value>();
 }
 
-class _YgSimpleSearchFieldState<Value> extends YgSearchFieldWidgetState<
-    Value,
-    Value,
-    YgSearchResult<Value>,
-    YgSearchResultsLayout<Value>,
-    _YgSimpleSearchField<Value>> with YgSimpleSearchStateMixin<Value, _YgSimpleSearchField<Value>> {
+class _YgSimpleSearchFieldState<Value>
+    extends
+        YgSearchFieldWidgetState<
+          Value,
+          Value,
+          YgSearchResult<Value>,
+          YgSearchResultsLayout<Value>,
+          _YgSimpleSearchField<Value>
+        >
+    with YgSimpleSearchStateMixin<Value, _YgSimpleSearchField<Value>> {
   @override
   void onChanged() {
     widget.onChanged?.call(
@@ -69,6 +73,6 @@ class _YgSimpleSearchFieldState<Value> extends YgSearchFieldWidgetState<
 
   @override
   YgSimpleSearchController<Value> createController() => YgSimpleSearchController<Value>(
-        initialValue: widget.initialValue,
-      );
+    initialValue: widget.initialValue,
+  );
 }

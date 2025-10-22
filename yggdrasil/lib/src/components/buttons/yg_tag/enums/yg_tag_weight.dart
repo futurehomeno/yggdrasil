@@ -1,4 +1,4 @@
 enum YgTagWeight {
   strong,
-  weak;
+  weak,
 }

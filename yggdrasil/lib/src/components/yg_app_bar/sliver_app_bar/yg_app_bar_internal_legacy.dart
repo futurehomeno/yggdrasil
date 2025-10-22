@@ -139,8 +139,9 @@ class _YgAppBarInternalLegacyState extends State<YgAppBarInternalLegacy> {
     final Set<WidgetState> states = <WidgetState>{
       if (settings?.isScrolledUnder ?? _scrolledUnder) WidgetState.scrolledUnder,
     };
-    final double effectiveElevation =
-        states.contains(WidgetState.scrolledUnder) ? theme.scrolledUnderElevation : theme.elevation;
+    final double effectiveElevation = states.contains(WidgetState.scrolledUnder)
+        ? theme.scrolledUnderElevation
+        : theme.elevation;
 
     final Widget? leading = _getLeading();
     final Widget? title = _getTitle();
@@ -313,7 +314,7 @@ class _ToolbarContainerLayout extends SingleChildLayoutDelegate {
 // Convenience class for adding preferred app size.
 class _PreferredAppBarSize extends Size {
   _PreferredAppBarSize(this.toolbarHeight, this.bottomHeight)
-      : super.fromHeight((toolbarHeight ?? 0) + (bottomHeight ?? 0));
+    : super.fromHeight((toolbarHeight ?? 0) + (bottomHeight ?? 0));
 
   final double? toolbarHeight;
   final double? bottomHeight;

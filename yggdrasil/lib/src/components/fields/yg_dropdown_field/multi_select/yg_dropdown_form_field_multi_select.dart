@@ -25,13 +25,13 @@ class _YgDropdownFormFieldMultiSelect<T extends Object> extends YgDropdownFormFi
     this.controller,
     this.onChanged,
     List<FormFieldValidator<Set<T>>>? validators,
-  })  : validator = YgValidateHelper.combineValidators(validators),
-        autovalidateMode = YgValidateHelper.mapAutoValidate(autoValidate),
-        onSaved = null,
-        _key = key,
-        super._(
-          key: key,
-        );
+  }) : validator = YgValidateHelper.combineValidators(validators),
+       autovalidateMode = YgValidateHelper.mapAutoValidate(autoValidate),
+       onSaved = null,
+       _key = key,
+       super._(
+         key: key,
+       );
 
   Widget _builder(FormFieldState<Set<T>?> field) {
     final YgValidateHelper<Set<T>> helper = YgValidateHelper<Set<T>>(

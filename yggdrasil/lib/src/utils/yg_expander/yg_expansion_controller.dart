@@ -34,8 +34,8 @@ class YgExpansionController extends ChangeNotifier {
   ///
   /// Use this only within a child of [YgExpander].
   static YgExpansionController of(BuildContext context) {
-    final YgExpanderDefaultControllerInheritedWidget? result =
-        context.dependOnInheritedWidgetOfExactType<YgExpanderDefaultControllerInheritedWidget>();
+    final YgExpanderDefaultControllerInheritedWidget? result = context
+        .dependOnInheritedWidgetOfExactType<YgExpanderDefaultControllerInheritedWidget>();
 
     if (result != null) {
       return result.controller;

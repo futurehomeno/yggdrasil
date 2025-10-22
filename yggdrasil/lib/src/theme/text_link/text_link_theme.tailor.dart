@@ -134,8 +134,7 @@ class YgTextLinkTheme extends ThemeExtension<YgTextLinkTheme> {
       hoverColor: hoverColor ?? this.hoverColor,
       iconColor: iconColor ?? this.iconColor,
       iconPadding: iconPadding ?? this.iconPadding,
-      mediumStrongTextStyle:
-          mediumStrongTextStyle ?? this.mediumStrongTextStyle,
+      mediumStrongTextStyle: mediumStrongTextStyle ?? this.mediumStrongTextStyle,
       mediumWeakTextStyle: mediumWeakTextStyle ?? this.mediumWeakTextStyle,
       padding: padding ?? this.padding,
       pressedColor: pressedColor ?? this.pressedColor,
@@ -145,8 +144,7 @@ class YgTextLinkTheme extends ThemeExtension<YgTextLinkTheme> {
   }
 
   @override
-  YgTextLinkTheme lerp(
-      covariant ThemeExtension<YgTextLinkTheme>? other, double t) {
+  YgTextLinkTheme lerp(covariant ThemeExtension<YgTextLinkTheme>? other, double t) {
     if (other is! YgTextLinkTheme) return this as YgTextLinkTheme;
     return YgTextLinkTheme(
       borderRadius: t < 0.5 ? borderRadius : other.borderRadius,
@@ -156,16 +154,12 @@ class YgTextLinkTheme extends ThemeExtension<YgTextLinkTheme> {
       hoverColor: Color.lerp(hoverColor, other.hoverColor, t)!,
       iconColor: Color.lerp(iconColor, other.iconColor, t)!,
       iconPadding: t < 0.5 ? iconPadding : other.iconPadding,
-      mediumStrongTextStyle: TextStyle.lerp(
-          mediumStrongTextStyle, other.mediumStrongTextStyle, t)!,
-      mediumWeakTextStyle:
-          TextStyle.lerp(mediumWeakTextStyle, other.mediumWeakTextStyle, t)!,
+      mediumStrongTextStyle: TextStyle.lerp(mediumStrongTextStyle, other.mediumStrongTextStyle, t)!,
+      mediumWeakTextStyle: TextStyle.lerp(mediumWeakTextStyle, other.mediumWeakTextStyle, t)!,
       padding: t < 0.5 ? padding : other.padding,
       pressedColor: Color.lerp(pressedColor, other.pressedColor, t)!,
-      smallStrongTextStyle:
-          TextStyle.lerp(smallStrongTextStyle, other.smallStrongTextStyle, t)!,
-      smallWeakTextStyle:
-          TextStyle.lerp(smallWeakTextStyle, other.smallWeakTextStyle, t)!,
+      smallStrongTextStyle: TextStyle.lerp(smallStrongTextStyle, other.smallStrongTextStyle, t)!,
+      smallWeakTextStyle: TextStyle.lerp(smallWeakTextStyle, other.smallWeakTextStyle, t)!,
     );
   }
 
@@ -174,30 +168,19 @@ class YgTextLinkTheme extends ThemeExtension<YgTextLinkTheme> {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is YgTextLinkTheme &&
-            const DeepCollectionEquality()
-                .equals(borderRadius, other.borderRadius) &&
-            const DeepCollectionEquality()
-                .equals(defaultColor, other.defaultColor) &&
-            const DeepCollectionEquality()
-                .equals(disabledColor, other.disabledColor) &&
-            const DeepCollectionEquality()
-                .equals(focusColor, other.focusColor) &&
-            const DeepCollectionEquality()
-                .equals(hoverColor, other.hoverColor) &&
+            const DeepCollectionEquality().equals(borderRadius, other.borderRadius) &&
+            const DeepCollectionEquality().equals(defaultColor, other.defaultColor) &&
+            const DeepCollectionEquality().equals(disabledColor, other.disabledColor) &&
+            const DeepCollectionEquality().equals(focusColor, other.focusColor) &&
+            const DeepCollectionEquality().equals(hoverColor, other.hoverColor) &&
             const DeepCollectionEquality().equals(iconColor, other.iconColor) &&
-            const DeepCollectionEquality()
-                .equals(iconPadding, other.iconPadding) &&
-            const DeepCollectionEquality()
-                .equals(mediumStrongTextStyle, other.mediumStrongTextStyle) &&
-            const DeepCollectionEquality()
-                .equals(mediumWeakTextStyle, other.mediumWeakTextStyle) &&
+            const DeepCollectionEquality().equals(iconPadding, other.iconPadding) &&
+            const DeepCollectionEquality().equals(mediumStrongTextStyle, other.mediumStrongTextStyle) &&
+            const DeepCollectionEquality().equals(mediumWeakTextStyle, other.mediumWeakTextStyle) &&
             const DeepCollectionEquality().equals(padding, other.padding) &&
-            const DeepCollectionEquality()
-                .equals(pressedColor, other.pressedColor) &&
-            const DeepCollectionEquality()
-                .equals(smallStrongTextStyle, other.smallStrongTextStyle) &&
-            const DeepCollectionEquality()
-                .equals(smallWeakTextStyle, other.smallWeakTextStyle));
+            const DeepCollectionEquality().equals(pressedColor, other.pressedColor) &&
+            const DeepCollectionEquality().equals(smallStrongTextStyle, other.smallStrongTextStyle) &&
+            const DeepCollectionEquality().equals(smallWeakTextStyle, other.smallWeakTextStyle));
   }
 
   @override

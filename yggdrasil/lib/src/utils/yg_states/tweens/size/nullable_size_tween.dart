@@ -13,8 +13,8 @@ class NullableSizeTween extends Tween<Size?> {
 
   @override
   Size? lerp(double t) => Size.lerp(
-        begin,
-        end,
-        t,
-      );
+    begin,
+    end,
+    t,
+  );
 }

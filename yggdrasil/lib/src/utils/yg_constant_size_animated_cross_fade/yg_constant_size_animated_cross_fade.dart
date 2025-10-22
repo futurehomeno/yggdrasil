@@ -42,9 +42,9 @@ class _YgConstantSizeAnimatedCrossFadeState extends State<YgConstantSizeAnimated
   );
 
   double get _animationTarget => switch (widget.crossFadeState) {
-        CrossFadeState.showFirst => 0,
-        CrossFadeState.showSecond => 1,
-      };
+    CrossFadeState.showFirst => 0,
+    CrossFadeState.showSecond => 1,
+  };
 
   @override
   void initState() {

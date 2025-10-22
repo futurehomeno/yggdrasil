@@ -74,9 +74,9 @@ abstract class YgDropdownFormField<T extends Object> extends StatefulWidget {
     required this.onEditingComplete,
     required this.metric,
     required String? error,
-  })  : enabled = !disabled,
-        restorationId = null,
-        forceErrorText = error;
+  }) : enabled = !disabled,
+       restorationId = null,
+       forceErrorText = error;
 
   /// See [YgDropdownField.metric].
   final String? metric;

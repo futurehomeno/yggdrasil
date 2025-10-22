@@ -15,12 +15,13 @@ import 'yg_fuzzy_search_provider_interface.dart';
 
 /// Internal mixin used by search providers providing fuzzy search capabilities.
 mixin YgFuzzySearchSessionMixin<
-        Value,
-        ResultValue,
-        Result extends YgBaseSearchResult,
-        ResultsLayout extends YgBaseSearchResultsLayout<Result>,
-        Item extends YgBaseSearchItem<Result>,
-        Provider extends YgFuzzySearchProviderInterface<Value, ResultValue, Result, ResultsLayout, Item>>
+  Value,
+  ResultValue,
+  Result extends YgBaseSearchResult,
+  ResultsLayout extends YgBaseSearchResultsLayout<Result>,
+  Item extends YgBaseSearchItem<Result>,
+  Provider extends YgFuzzySearchProviderInterface<Value, ResultValue, Result, ResultsLayout, Item>
+>
     on YgBaseSearchSession<Value, ResultValue, Result, ResultsLayout, Provider> {
   static const String _titleKey = 'title';
   static const String _subtitleKey = 'subtitle';

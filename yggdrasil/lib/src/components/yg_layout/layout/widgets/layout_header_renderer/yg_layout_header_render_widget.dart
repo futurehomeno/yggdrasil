@@ -56,10 +56,10 @@ class YgLayoutHeaderRenderer extends RenderBox
     required EdgeInsets viewPadding,
     required Color headerColor,
     required YgHeaderBehavior headerBehavior,
-  })  : _controller = controller,
-        _viewPadding = viewPadding,
-        _headerColor = headerColor,
-        _headerBehavior = headerBehavior;
+  }) : _controller = controller,
+       _viewPadding = viewPadding,
+       _headerColor = headerColor,
+       _headerBehavior = headerBehavior;
 
   // region Properties
 
@@ -164,12 +164,14 @@ class YgLayoutHeaderRenderer extends RenderBox
 
     // Shadow does not take up space and should be painted over the content.
     if (shadow != null) {
-      shadow.layout(BoxConstraints(
-        minHeight: 0,
-        maxHeight: max(0, constraints.maxHeight - headerExpandedHeight),
-        maxWidth: constraints.maxWidth,
-        minWidth: constraints.maxWidth,
-      ));
+      shadow.layout(
+        BoxConstraints(
+          minHeight: 0,
+          maxHeight: max(0, constraints.maxHeight - headerExpandedHeight),
+          maxWidth: constraints.maxWidth,
+          minWidth: constraints.maxWidth,
+        ),
+      );
     }
 
     // Loading does also not take up space and is painted over the content /
@@ -234,15 +236,15 @@ class YgLayoutHeaderRenderer extends RenderBox
         switch (headerBehavior) {
           YgHeaderBehavior.fixed => topPadding,
           YgHeaderBehavior.hideAppBar => lerpDouble(
-              topPadding,
-              -appBar.size.height,
-              t,
-            )!,
+            topPadding,
+            -appBar.size.height,
+            t,
+          )!,
           YgHeaderBehavior.hideEverything => lerpDouble(
-              topPadding,
-              -appBar.size.height - (trailing?.size.height ?? 0),
-              t,
-            )!,
+            topPadding,
+            -appBar.size.height - (trailing?.size.height ?? 0),
+            t,
+          )!,
         },
       );
     }

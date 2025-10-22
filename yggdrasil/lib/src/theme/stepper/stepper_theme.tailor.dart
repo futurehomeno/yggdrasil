@@ -96,19 +96,15 @@ class YgStepperTheme extends ThemeExtension<YgStepperTheme> {
   }
 
   @override
-  YgStepperTheme lerp(
-      covariant ThemeExtension<YgStepperTheme>? other, double t) {
+  YgStepperTheme lerp(covariant ThemeExtension<YgStepperTheme>? other, double t) {
     if (other is! YgStepperTheme) return this as YgStepperTheme;
     return YgStepperTheme(
       animationCurve: t < 0.5 ? animationCurve : other.animationCurve,
       animationDuration: t < 0.5 ? animationDuration : other.animationDuration,
       height: t < 0.5 ? height : other.height,
-      metricTextStyle:
-          TextStyle.lerp(metricTextStyle, other.metricTextStyle, t)!,
-      textDefaultColor:
-          Color.lerp(textDefaultColor, other.textDefaultColor, t)!,
-      textDisabledColor:
-          Color.lerp(textDisabledColor, other.textDisabledColor, t)!,
+      metricTextStyle: TextStyle.lerp(metricTextStyle, other.metricTextStyle, t)!,
+      textDefaultColor: Color.lerp(textDefaultColor, other.textDefaultColor, t)!,
+      textDisabledColor: Color.lerp(textDisabledColor, other.textDisabledColor, t)!,
       valueTextStyle: TextStyle.lerp(valueTextStyle, other.valueTextStyle, t)!,
     );
   }
@@ -118,19 +114,13 @@ class YgStepperTheme extends ThemeExtension<YgStepperTheme> {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is YgStepperTheme &&
-            const DeepCollectionEquality()
-                .equals(animationCurve, other.animationCurve) &&
-            const DeepCollectionEquality()
-                .equals(animationDuration, other.animationDuration) &&
+            const DeepCollectionEquality().equals(animationCurve, other.animationCurve) &&
+            const DeepCollectionEquality().equals(animationDuration, other.animationDuration) &&
             const DeepCollectionEquality().equals(height, other.height) &&
-            const DeepCollectionEquality()
-                .equals(metricTextStyle, other.metricTextStyle) &&
-            const DeepCollectionEquality()
-                .equals(textDefaultColor, other.textDefaultColor) &&
-            const DeepCollectionEquality()
-                .equals(textDisabledColor, other.textDisabledColor) &&
-            const DeepCollectionEquality()
-                .equals(valueTextStyle, other.valueTextStyle));
+            const DeepCollectionEquality().equals(metricTextStyle, other.metricTextStyle) &&
+            const DeepCollectionEquality().equals(textDefaultColor, other.textDefaultColor) &&
+            const DeepCollectionEquality().equals(textDisabledColor, other.textDisabledColor) &&
+            const DeepCollectionEquality().equals(valueTextStyle, other.valueTextStyle));
   }
 
   @override

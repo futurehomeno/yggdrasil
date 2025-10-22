@@ -90,8 +90,8 @@ class _YgButtonBaseState<T extends YgButtonBaseState>
     extends StateWithYgStateAndStyle<YgButtonBase<T>, T, YgButtonBaseStyle<T>> {
   late final YgMaterialStatesControllerWithChangeCallback _materialController =
       YgMaterialStatesControllerWithChangeCallback(
-    onStateChange: _handleMaterialStateChange,
-  );
+        onStateChange: _handleMaterialStateChange,
+      );
 
   @override
   T createState() {

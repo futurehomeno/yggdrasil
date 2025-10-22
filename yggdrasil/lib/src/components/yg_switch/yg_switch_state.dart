@@ -6,10 +6,10 @@ class YgSwitchState extends YgState {
     bool disabled = false,
     bool hovered = false,
     bool focused = false,
-  })  : toggled = YgStateValue<bool?>(toggled),
-        disabled = YgStateValue<bool>(disabled),
-        hovered = YgStateValue<bool>(hovered),
-        focused = YgStateValue<bool>(focused);
+  }) : toggled = YgStateValue<bool?>(toggled),
+       disabled = YgStateValue<bool>(disabled),
+       hovered = YgStateValue<bool>(hovered),
+       focused = YgStateValue<bool>(focused);
 
   final YgStateValue<bool?> toggled;
   final YgStateValue<bool> disabled;
@@ -18,9 +18,9 @@ class YgSwitchState extends YgState {
 
   @override
   List<YgStateValue<Object?>> get props => <YgStateValue<Object?>>[
-        toggled,
-        disabled,
-        hovered,
-        focused,
-      ];
+    toggled,
+    disabled,
+    hovered,
+    focused,
+  ];
 }

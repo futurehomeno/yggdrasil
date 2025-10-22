@@ -57,19 +57,19 @@ class YgSnackBarVariantTheme {
   });
 
   factory YgSnackBarVariantTheme.critical(CriticalSnackBarTheme theme) => YgSnackBarVariantTheme(
-        iconColor: theme.iconColor,
-        iconContainerColor: theme.iconContainerColor,
-      );
+    iconColor: theme.iconColor,
+    iconContainerColor: theme.iconContainerColor,
+  );
 
   factory YgSnackBarVariantTheme.highlight(HighlightSnackBarTheme theme) => YgSnackBarVariantTheme(
-        iconColor: theme.iconColor,
-        iconContainerColor: theme.iconContainerColor,
-      );
+    iconColor: theme.iconColor,
+    iconContainerColor: theme.iconContainerColor,
+  );
 
   factory YgSnackBarVariantTheme.success(SuccessSnackBarTheme theme) => YgSnackBarVariantTheme(
-        iconColor: theme.iconColor,
-        iconContainerColor: theme.iconContainerColor,
-      );
+    iconColor: theme.iconColor,
+    iconContainerColor: theme.iconContainerColor,
+  );
 
   final Color iconContainerColor;
   final Color iconColor;

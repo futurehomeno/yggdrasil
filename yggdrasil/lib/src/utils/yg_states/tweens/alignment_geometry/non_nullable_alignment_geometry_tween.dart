@@ -13,8 +13,8 @@ class NonNullableAlignmentGeometryTween extends Tween<AlignmentGeometry> {
 
   @override
   AlignmentGeometry lerp(double t) => AlignmentGeometry.lerp(
-        begin,
-        end,
-        t,
-      )!;
+    begin,
+    end,
+    t,
+  )!;
 }

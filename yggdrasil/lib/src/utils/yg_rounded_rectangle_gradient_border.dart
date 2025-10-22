@@ -123,8 +123,8 @@ class YgRoundedRectangleGradientBorder extends OutlinedBorder {
 
   @override
   int get hashCode => Object.hash(
-        borderRadius,
-        gradient,
-        width,
-      );
+    borderRadius,
+    gradient,
+    width,
+  );
 }

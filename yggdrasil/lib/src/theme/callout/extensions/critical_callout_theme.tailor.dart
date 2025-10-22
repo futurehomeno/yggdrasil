@@ -56,8 +56,7 @@ class CriticalCalloutTheme extends ThemeExtension<CriticalCalloutTheme> {
   }
 
   @override
-  CriticalCalloutTheme lerp(
-      covariant ThemeExtension<CriticalCalloutTheme>? other, double t) {
+  CriticalCalloutTheme lerp(covariant ThemeExtension<CriticalCalloutTheme>? other, double t) {
     if (other is! CriticalCalloutTheme) return this as CriticalCalloutTheme;
     return CriticalCalloutTheme(
       backgroundColor: Color.lerp(backgroundColor, other.backgroundColor, t)!,
@@ -70,10 +69,8 @@ class CriticalCalloutTheme extends ThemeExtension<CriticalCalloutTheme> {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is CriticalCalloutTheme &&
-            const DeepCollectionEquality()
-                .equals(backgroundColor, other.backgroundColor) &&
-            const DeepCollectionEquality()
-                .equals(borderColor, other.borderColor));
+            const DeepCollectionEquality().equals(backgroundColor, other.backgroundColor) &&
+            const DeepCollectionEquality().equals(borderColor, other.borderColor));
   }
 
   @override

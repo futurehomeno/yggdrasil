@@ -53,12 +53,9 @@ class YgSegmentedButtonTheme extends ThemeExtension<YgSegmentedButtonTheme> {
     animationCurve: _$YgSegmentedButtonTheme.animationCurve[0],
     animationDuration: _$YgSegmentedButtonTheme.animationDuration[0],
     backgroundDefaultColor: _$YgSegmentedButtonTheme.backgroundDefaultColor[0],
-    backgroundDisabledColor:
-        _$YgSegmentedButtonTheme.backgroundDisabledColor[0],
-    backgroundSelectedColor:
-        _$YgSegmentedButtonTheme.backgroundSelectedColor[0],
-    backgroundSelectedDisabledColor:
-        _$YgSegmentedButtonTheme.backgroundSelectedDisabledColor[0],
+    backgroundDisabledColor: _$YgSegmentedButtonTheme.backgroundDisabledColor[0],
+    backgroundSelectedColor: _$YgSegmentedButtonTheme.backgroundSelectedColor[0],
+    backgroundSelectedDisabledColor: _$YgSegmentedButtonTheme.backgroundSelectedDisabledColor[0],
     borderRadius: _$YgSegmentedButtonTheme.borderRadius[0],
     borderSide: _$YgSegmentedButtonTheme.borderSide[0],
     childSpacing: _$YgSegmentedButtonTheme.childSpacing[0],
@@ -77,12 +74,9 @@ class YgSegmentedButtonTheme extends ThemeExtension<YgSegmentedButtonTheme> {
     animationCurve: _$YgSegmentedButtonTheme.animationCurve[1],
     animationDuration: _$YgSegmentedButtonTheme.animationDuration[1],
     backgroundDefaultColor: _$YgSegmentedButtonTheme.backgroundDefaultColor[1],
-    backgroundDisabledColor:
-        _$YgSegmentedButtonTheme.backgroundDisabledColor[1],
-    backgroundSelectedColor:
-        _$YgSegmentedButtonTheme.backgroundSelectedColor[1],
-    backgroundSelectedDisabledColor:
-        _$YgSegmentedButtonTheme.backgroundSelectedDisabledColor[1],
+    backgroundDisabledColor: _$YgSegmentedButtonTheme.backgroundDisabledColor[1],
+    backgroundSelectedColor: _$YgSegmentedButtonTheme.backgroundSelectedColor[1],
+    backgroundSelectedDisabledColor: _$YgSegmentedButtonTheme.backgroundSelectedDisabledColor[1],
     borderRadius: _$YgSegmentedButtonTheme.borderRadius[1],
     borderSide: _$YgSegmentedButtonTheme.borderSide[1],
     childSpacing: _$YgSegmentedButtonTheme.childSpacing[1],
@@ -97,17 +91,13 @@ class YgSegmentedButtonTheme extends ThemeExtension<YgSegmentedButtonTheme> {
     textStyle: _$YgSegmentedButtonTheme.textStyle[1],
   );
 
-  static final YgSegmentedButtonTheme professionalLight =
-      YgSegmentedButtonTheme(
+  static final YgSegmentedButtonTheme professionalLight = YgSegmentedButtonTheme(
     animationCurve: _$YgSegmentedButtonTheme.animationCurve[2],
     animationDuration: _$YgSegmentedButtonTheme.animationDuration[2],
     backgroundDefaultColor: _$YgSegmentedButtonTheme.backgroundDefaultColor[2],
-    backgroundDisabledColor:
-        _$YgSegmentedButtonTheme.backgroundDisabledColor[2],
-    backgroundSelectedColor:
-        _$YgSegmentedButtonTheme.backgroundSelectedColor[2],
-    backgroundSelectedDisabledColor:
-        _$YgSegmentedButtonTheme.backgroundSelectedDisabledColor[2],
+    backgroundDisabledColor: _$YgSegmentedButtonTheme.backgroundDisabledColor[2],
+    backgroundSelectedColor: _$YgSegmentedButtonTheme.backgroundSelectedColor[2],
+    backgroundSelectedDisabledColor: _$YgSegmentedButtonTheme.backgroundSelectedDisabledColor[2],
     borderRadius: _$YgSegmentedButtonTheme.borderRadius[2],
     borderSide: _$YgSegmentedButtonTheme.borderSide[2],
     childSpacing: _$YgSegmentedButtonTheme.childSpacing[2],
@@ -126,12 +116,9 @@ class YgSegmentedButtonTheme extends ThemeExtension<YgSegmentedButtonTheme> {
     animationCurve: _$YgSegmentedButtonTheme.animationCurve[3],
     animationDuration: _$YgSegmentedButtonTheme.animationDuration[3],
     backgroundDefaultColor: _$YgSegmentedButtonTheme.backgroundDefaultColor[3],
-    backgroundDisabledColor:
-        _$YgSegmentedButtonTheme.backgroundDisabledColor[3],
-    backgroundSelectedColor:
-        _$YgSegmentedButtonTheme.backgroundSelectedColor[3],
-    backgroundSelectedDisabledColor:
-        _$YgSegmentedButtonTheme.backgroundSelectedDisabledColor[3],
+    backgroundDisabledColor: _$YgSegmentedButtonTheme.backgroundDisabledColor[3],
+    backgroundSelectedColor: _$YgSegmentedButtonTheme.backgroundSelectedColor[3],
+    backgroundSelectedDisabledColor: _$YgSegmentedButtonTheme.backgroundSelectedDisabledColor[3],
     borderRadius: _$YgSegmentedButtonTheme.borderRadius[3],
     borderSide: _$YgSegmentedButtonTheme.borderSide[3],
     childSpacing: _$YgSegmentedButtonTheme.childSpacing[3],
@@ -177,14 +164,10 @@ class YgSegmentedButtonTheme extends ThemeExtension<YgSegmentedButtonTheme> {
     return YgSegmentedButtonTheme(
       animationCurve: animationCurve ?? this.animationCurve,
       animationDuration: animationDuration ?? this.animationDuration,
-      backgroundDefaultColor:
-          backgroundDefaultColor ?? this.backgroundDefaultColor,
-      backgroundDisabledColor:
-          backgroundDisabledColor ?? this.backgroundDisabledColor,
-      backgroundSelectedColor:
-          backgroundSelectedColor ?? this.backgroundSelectedColor,
-      backgroundSelectedDisabledColor: backgroundSelectedDisabledColor ??
-          this.backgroundSelectedDisabledColor,
+      backgroundDefaultColor: backgroundDefaultColor ?? this.backgroundDefaultColor,
+      backgroundDisabledColor: backgroundDisabledColor ?? this.backgroundDisabledColor,
+      backgroundSelectedColor: backgroundSelectedColor ?? this.backgroundSelectedColor,
+      backgroundSelectedDisabledColor: backgroundSelectedDisabledColor ?? this.backgroundSelectedDisabledColor,
       borderRadius: borderRadius ?? this.borderRadius,
       borderSide: borderSide ?? this.borderSide,
       childSpacing: childSpacing ?? this.childSpacing,
@@ -201,39 +184,30 @@ class YgSegmentedButtonTheme extends ThemeExtension<YgSegmentedButtonTheme> {
   }
 
   @override
-  YgSegmentedButtonTheme lerp(
-      covariant ThemeExtension<YgSegmentedButtonTheme>? other, double t) {
+  YgSegmentedButtonTheme lerp(covariant ThemeExtension<YgSegmentedButtonTheme>? other, double t) {
     if (other is! YgSegmentedButtonTheme) return this as YgSegmentedButtonTheme;
     return YgSegmentedButtonTheme(
       animationCurve: t < 0.5 ? animationCurve : other.animationCurve,
       animationDuration: t < 0.5 ? animationDuration : other.animationDuration,
-      backgroundDefaultColor:
-          Color.lerp(backgroundDefaultColor, other.backgroundDefaultColor, t)!,
-      backgroundDisabledColor: Color.lerp(
-          backgroundDisabledColor, other.backgroundDisabledColor, t)!,
-      backgroundSelectedColor: Color.lerp(
-          backgroundSelectedColor, other.backgroundSelectedColor, t)!,
+      backgroundDefaultColor: Color.lerp(backgroundDefaultColor, other.backgroundDefaultColor, t)!,
+      backgroundDisabledColor: Color.lerp(backgroundDisabledColor, other.backgroundDisabledColor, t)!,
+      backgroundSelectedColor: Color.lerp(backgroundSelectedColor, other.backgroundSelectedColor, t)!,
       backgroundSelectedDisabledColor: Color.lerp(
-          backgroundSelectedDisabledColor,
-          other.backgroundSelectedDisabledColor,
-          t)!,
+        backgroundSelectedDisabledColor,
+        other.backgroundSelectedDisabledColor,
+        t,
+      )!,
       borderRadius: t < 0.5 ? borderRadius : other.borderRadius,
       borderSide: t < 0.5 ? borderSide : other.borderSide,
       childSpacing: t < 0.5 ? childSpacing : other.childSpacing,
-      iconDefaultColor:
-          Color.lerp(iconDefaultColor, other.iconDefaultColor, t)!,
-      iconDisabledColor:
-          Color.lerp(iconDisabledColor, other.iconDisabledColor, t)!,
-      iconSelectedColor:
-          Color.lerp(iconSelectedColor, other.iconSelectedColor, t)!,
+      iconDefaultColor: Color.lerp(iconDefaultColor, other.iconDefaultColor, t)!,
+      iconDisabledColor: Color.lerp(iconDisabledColor, other.iconDisabledColor, t)!,
+      iconSelectedColor: Color.lerp(iconSelectedColor, other.iconSelectedColor, t)!,
       iconSize: t < 0.5 ? iconSize : other.iconSize,
       padding: t < 0.5 ? padding : other.padding,
-      textDefaultColor:
-          Color.lerp(textDefaultColor, other.textDefaultColor, t)!,
-      textDisabledColor:
-          Color.lerp(textDisabledColor, other.textDisabledColor, t)!,
-      textSelectedColor:
-          Color.lerp(textSelectedColor, other.textSelectedColor, t)!,
+      textDefaultColor: Color.lerp(textDefaultColor, other.textDefaultColor, t)!,
+      textDisabledColor: Color.lerp(textDisabledColor, other.textDisabledColor, t)!,
+      textSelectedColor: Color.lerp(textSelectedColor, other.textSelectedColor, t)!,
       textStyle: TextStyle.lerp(textStyle, other.textStyle, t)!,
     );
   }
@@ -243,39 +217,26 @@ class YgSegmentedButtonTheme extends ThemeExtension<YgSegmentedButtonTheme> {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is YgSegmentedButtonTheme &&
-            const DeepCollectionEquality()
-                .equals(animationCurve, other.animationCurve) &&
-            const DeepCollectionEquality()
-                .equals(animationDuration, other.animationDuration) &&
-            const DeepCollectionEquality()
-                .equals(backgroundDefaultColor, other.backgroundDefaultColor) &&
+            const DeepCollectionEquality().equals(animationCurve, other.animationCurve) &&
+            const DeepCollectionEquality().equals(animationDuration, other.animationDuration) &&
+            const DeepCollectionEquality().equals(backgroundDefaultColor, other.backgroundDefaultColor) &&
+            const DeepCollectionEquality().equals(backgroundDisabledColor, other.backgroundDisabledColor) &&
+            const DeepCollectionEquality().equals(backgroundSelectedColor, other.backgroundSelectedColor) &&
             const DeepCollectionEquality().equals(
-                backgroundDisabledColor, other.backgroundDisabledColor) &&
-            const DeepCollectionEquality().equals(
-                backgroundSelectedColor, other.backgroundSelectedColor) &&
-            const DeepCollectionEquality().equals(
-                backgroundSelectedDisabledColor,
-                other.backgroundSelectedDisabledColor) &&
-            const DeepCollectionEquality()
-                .equals(borderRadius, other.borderRadius) &&
-            const DeepCollectionEquality()
-                .equals(borderSide, other.borderSide) &&
-            const DeepCollectionEquality()
-                .equals(childSpacing, other.childSpacing) &&
-            const DeepCollectionEquality()
-                .equals(iconDefaultColor, other.iconDefaultColor) &&
-            const DeepCollectionEquality()
-                .equals(iconDisabledColor, other.iconDisabledColor) &&
-            const DeepCollectionEquality()
-                .equals(iconSelectedColor, other.iconSelectedColor) &&
+              backgroundSelectedDisabledColor,
+              other.backgroundSelectedDisabledColor,
+            ) &&
+            const DeepCollectionEquality().equals(borderRadius, other.borderRadius) &&
+            const DeepCollectionEquality().equals(borderSide, other.borderSide) &&
+            const DeepCollectionEquality().equals(childSpacing, other.childSpacing) &&
+            const DeepCollectionEquality().equals(iconDefaultColor, other.iconDefaultColor) &&
+            const DeepCollectionEquality().equals(iconDisabledColor, other.iconDisabledColor) &&
+            const DeepCollectionEquality().equals(iconSelectedColor, other.iconSelectedColor) &&
             const DeepCollectionEquality().equals(iconSize, other.iconSize) &&
             const DeepCollectionEquality().equals(padding, other.padding) &&
-            const DeepCollectionEquality()
-                .equals(textDefaultColor, other.textDefaultColor) &&
-            const DeepCollectionEquality()
-                .equals(textDisabledColor, other.textDisabledColor) &&
-            const DeepCollectionEquality()
-                .equals(textSelectedColor, other.textSelectedColor) &&
+            const DeepCollectionEquality().equals(textDefaultColor, other.textDefaultColor) &&
+            const DeepCollectionEquality().equals(textDisabledColor, other.textDisabledColor) &&
+            const DeepCollectionEquality().equals(textSelectedColor, other.textSelectedColor) &&
             const DeepCollectionEquality().equals(textStyle, other.textStyle));
   }
 

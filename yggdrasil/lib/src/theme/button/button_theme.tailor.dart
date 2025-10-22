@@ -142,20 +142,15 @@ class YgButtonTheme extends ThemeExtension<YgButtonTheme> {
       borderRadius: t < 0.5 ? borderRadius : other.borderRadius,
       borderWidth: t < 0.5 ? borderWidth : other.borderWidth,
       contentPadding: t < 0.5 ? contentPadding : other.contentPadding,
-      criticalButtonTheme: criticalButtonTheme.lerp(
-          other.criticalButtonTheme, t) as YgCriticalButtonTheme,
+      criticalButtonTheme: criticalButtonTheme.lerp(other.criticalButtonTheme, t) as YgCriticalButtonTheme,
       iconSize: t < 0.5 ? iconSize : other.iconSize,
-      linkButtonTheme:
-          linkButtonTheme.lerp(other.linkButtonTheme, t) as YgLinkButtonTheme,
+      linkButtonTheme: linkButtonTheme.lerp(other.linkButtonTheme, t) as YgLinkButtonTheme,
       paddingLarge: t < 0.5 ? paddingLarge : other.paddingLarge,
       paddingMedium: t < 0.5 ? paddingMedium : other.paddingMedium,
       paddingSmall: t < 0.5 ? paddingSmall : other.paddingSmall,
-      primaryButtonTheme: primaryButtonTheme.lerp(other.primaryButtonTheme, t)
-          as YgPrimaryButtonTheme,
-      secondaryButtonTheme: secondaryButtonTheme.lerp(
-          other.secondaryButtonTheme, t) as YgSecondaryButtonTheme,
-      textButtonTheme:
-          textButtonTheme.lerp(other.textButtonTheme, t) as YgTextButtonTheme,
+      primaryButtonTheme: primaryButtonTheme.lerp(other.primaryButtonTheme, t) as YgPrimaryButtonTheme,
+      secondaryButtonTheme: secondaryButtonTheme.lerp(other.secondaryButtonTheme, t) as YgSecondaryButtonTheme,
+      textButtonTheme: textButtonTheme.lerp(other.textButtonTheme, t) as YgTextButtonTheme,
     );
   }
 
@@ -164,29 +159,18 @@ class YgButtonTheme extends ThemeExtension<YgButtonTheme> {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is YgButtonTheme &&
-            const DeepCollectionEquality()
-                .equals(borderRadius, other.borderRadius) &&
-            const DeepCollectionEquality()
-                .equals(borderWidth, other.borderWidth) &&
-            const DeepCollectionEquality()
-                .equals(contentPadding, other.contentPadding) &&
-            const DeepCollectionEquality()
-                .equals(criticalButtonTheme, other.criticalButtonTheme) &&
+            const DeepCollectionEquality().equals(borderRadius, other.borderRadius) &&
+            const DeepCollectionEquality().equals(borderWidth, other.borderWidth) &&
+            const DeepCollectionEquality().equals(contentPadding, other.contentPadding) &&
+            const DeepCollectionEquality().equals(criticalButtonTheme, other.criticalButtonTheme) &&
             const DeepCollectionEquality().equals(iconSize, other.iconSize) &&
-            const DeepCollectionEquality()
-                .equals(linkButtonTheme, other.linkButtonTheme) &&
-            const DeepCollectionEquality()
-                .equals(paddingLarge, other.paddingLarge) &&
-            const DeepCollectionEquality()
-                .equals(paddingMedium, other.paddingMedium) &&
-            const DeepCollectionEquality()
-                .equals(paddingSmall, other.paddingSmall) &&
-            const DeepCollectionEquality()
-                .equals(primaryButtonTheme, other.primaryButtonTheme) &&
-            const DeepCollectionEquality()
-                .equals(secondaryButtonTheme, other.secondaryButtonTheme) &&
-            const DeepCollectionEquality()
-                .equals(textButtonTheme, other.textButtonTheme));
+            const DeepCollectionEquality().equals(linkButtonTheme, other.linkButtonTheme) &&
+            const DeepCollectionEquality().equals(paddingLarge, other.paddingLarge) &&
+            const DeepCollectionEquality().equals(paddingMedium, other.paddingMedium) &&
+            const DeepCollectionEquality().equals(paddingSmall, other.paddingSmall) &&
+            const DeepCollectionEquality().equals(primaryButtonTheme, other.primaryButtonTheme) &&
+            const DeepCollectionEquality().equals(secondaryButtonTheme, other.secondaryButtonTheme) &&
+            const DeepCollectionEquality().equals(textButtonTheme, other.textButtonTheme));
   }
 
   @override

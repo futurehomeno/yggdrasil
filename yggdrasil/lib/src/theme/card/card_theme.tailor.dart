@@ -102,13 +102,10 @@ class YgCardTheme extends ThemeExtension<YgCardTheme> {
       animationCurve: t < 0.5 ? animationCurve : other.animationCurve,
       animationDuration: t < 0.5 ? animationDuration : other.animationDuration,
       borderRadius: t < 0.5 ? borderRadius : other.borderRadius,
-      elevatedCardTheme: elevatedCardTheme.lerp(other.elevatedCardTheme, t)
-          as ElevatedCardTheme,
+      elevatedCardTheme: elevatedCardTheme.lerp(other.elevatedCardTheme, t) as ElevatedCardTheme,
       elevation: t < 0.5 ? elevation : other.elevation,
-      filledCardTheme:
-          filledCardTheme.lerp(other.filledCardTheme, t) as FilledCardTheme,
-      outlinedCardTheme: outlinedCardTheme.lerp(other.outlinedCardTheme, t)
-          as OutlinedCardTheme,
+      filledCardTheme: filledCardTheme.lerp(other.filledCardTheme, t) as FilledCardTheme,
+      outlinedCardTheme: outlinedCardTheme.lerp(other.outlinedCardTheme, t) as OutlinedCardTheme,
     );
   }
 
@@ -117,19 +114,13 @@ class YgCardTheme extends ThemeExtension<YgCardTheme> {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is YgCardTheme &&
-            const DeepCollectionEquality()
-                .equals(animationCurve, other.animationCurve) &&
-            const DeepCollectionEquality()
-                .equals(animationDuration, other.animationDuration) &&
-            const DeepCollectionEquality()
-                .equals(borderRadius, other.borderRadius) &&
-            const DeepCollectionEquality()
-                .equals(elevatedCardTheme, other.elevatedCardTheme) &&
+            const DeepCollectionEquality().equals(animationCurve, other.animationCurve) &&
+            const DeepCollectionEquality().equals(animationDuration, other.animationDuration) &&
+            const DeepCollectionEquality().equals(borderRadius, other.borderRadius) &&
+            const DeepCollectionEquality().equals(elevatedCardTheme, other.elevatedCardTheme) &&
             const DeepCollectionEquality().equals(elevation, other.elevation) &&
-            const DeepCollectionEquality()
-                .equals(filledCardTheme, other.filledCardTheme) &&
-            const DeepCollectionEquality()
-                .equals(outlinedCardTheme, other.outlinedCardTheme));
+            const DeepCollectionEquality().equals(filledCardTheme, other.filledCardTheme) &&
+            const DeepCollectionEquality().equals(outlinedCardTheme, other.outlinedCardTheme));
   }
 
   @override

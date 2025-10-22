@@ -12,12 +12,13 @@ import 'yg_exact_search_provider_interface.dart';
 
 /// Internal mixin used by search providers providing exact search capabilities.
 mixin YgExactSearchSessionMixin<
-        Value,
-        ResultValue,
-        Result extends YgBaseSearchResult,
-        ResultsLayout extends YgBaseSearchResultsLayout<Result>,
-        Item extends YgBaseSearchItem<Result>,
-        Provider extends YgExactSearchProviderInterface<Value, ResultValue, Result, ResultsLayout, Item>>
+  Value,
+  ResultValue,
+  Result extends YgBaseSearchResult,
+  ResultsLayout extends YgBaseSearchResultsLayout<Result>,
+  Item extends YgBaseSearchItem<Result>,
+  Provider extends YgExactSearchProviderInterface<Value, ResultValue, Result, ResultsLayout, Item>
+>
     on YgBaseSearchSession<Value, ResultValue, Result, ResultsLayout, Provider> {
   @override
   ResultsLayout buildResultsLayout(String query) {
@@ -116,8 +117,7 @@ mixin YgExactSearchSessionMixin<
       (
         _ResultWithScore<Result> a,
         _ResultWithScore<Result> b,
-      ) =>
-          a.score.compareTo(b.score),
+      ) => a.score.compareTo(b.score),
     );
 
     for (final _ResultWithScore<Result> resultWithScore in resultsWithScore) {
@@ -146,7 +146,4 @@ mixin YgExactSearchSessionMixin<
   });
 }
 
-typedef _ResultWithScore<R> = ({
-  R result,
-  double score,
-});
+typedef _ResultWithScore<R> = ({R result, double score});
