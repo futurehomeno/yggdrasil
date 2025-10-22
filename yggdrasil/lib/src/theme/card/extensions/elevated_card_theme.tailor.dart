@@ -48,8 +48,7 @@ class ElevatedCardTheme extends ThemeExtension<ElevatedCardTheme> {
   }
 
   @override
-  ElevatedCardTheme lerp(
-      covariant ThemeExtension<ElevatedCardTheme>? other, double t) {
+  ElevatedCardTheme lerp(covariant ThemeExtension<ElevatedCardTheme>? other, double t) {
     if (other is! ElevatedCardTheme) return this as ElevatedCardTheme;
     return ElevatedCardTheme(
       backgroundColor: Color.lerp(backgroundColor, other.backgroundColor, t)!,
@@ -61,8 +60,7 @@ class ElevatedCardTheme extends ThemeExtension<ElevatedCardTheme> {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is ElevatedCardTheme &&
-            const DeepCollectionEquality()
-                .equals(backgroundColor, other.backgroundColor));
+            const DeepCollectionEquality().equals(backgroundColor, other.backgroundColor));
   }
 
   @override

@@ -6,21 +6,32 @@ import 'package:yggdrasil/src/components/fields/search/interfaces/yg_base_search
 import 'package:yggdrasil/src/components/fields/search/interfaces/yg_base_search_results_layout.dart';
 
 /// Base class for all search providers.
-abstract class YgBaseSearchProvider<Value, ResultValue, Result extends YgBaseSearchResult,
-    ResultsLayout extends YgBaseSearchResultsLayout<Result>> {
+abstract class YgBaseSearchProvider<
+  Value,
+  ResultValue,
+  Result extends YgBaseSearchResult,
+  ResultsLayout extends YgBaseSearchResultsLayout<Result>
+> {
   const YgBaseSearchProvider();
 
-  YgBaseSearchSession<Value, ResultValue, Result, ResultsLayout,
-      YgBaseSearchProvider<Value, ResultValue, Result, ResultsLayout>> createSession();
+  YgBaseSearchSession<
+    Value,
+    ResultValue,
+    Result,
+    ResultsLayout,
+    YgBaseSearchProvider<Value, ResultValue, Result, ResultsLayout>
+  >
+  createSession();
 }
 
 /// Base class for all search sessions.
 abstract class YgBaseSearchSession<
-    Value,
-    ResultValue,
-    Result extends YgBaseSearchResult,
-    ResultsLayout extends YgBaseSearchResultsLayout<Result>,
-    Provider extends YgBaseSearchProvider<Value, ResultValue, Result, ResultsLayout>> {
+  Value,
+  ResultValue,
+  Result extends YgBaseSearchResult,
+  ResultsLayout extends YgBaseSearchResultsLayout<Result>,
+  Provider extends YgBaseSearchProvider<Value, ResultValue, Result, ResultsLayout>
+> {
   YgSearchControllerAny<Value, ResultValue>? _controller;
   Provider? _provider;
 

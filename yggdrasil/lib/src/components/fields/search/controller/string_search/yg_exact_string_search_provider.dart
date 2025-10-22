@@ -34,8 +34,16 @@ import 'yg_string_search_provider.dart';
 ///   ),
 /// );
 /// ```
-class YgExactStringSearchProvider extends YgExactSearchProviderInterface<String, String, YgStringSearchResult,
-    YgStringSearchResultsLayout, YgStringSearchItem> implements YgStringSearchProvider {
+class YgExactStringSearchProvider
+    extends
+        YgExactSearchProviderInterface<
+          String,
+          String,
+          YgStringSearchResult,
+          YgStringSearchResultsLayout,
+          YgStringSearchItem
+        >
+    implements YgStringSearchProvider {
   const YgExactStringSearchProvider({
     required super.items,
     required super.noResultsBuilder,
@@ -53,8 +61,14 @@ class YgExactStringSearchProvider extends YgExactSearchProviderInterface<String,
 
 class _YgExactStringSearchSession extends YgStringSearchSession<YgExactStringSearchProvider>
     with
-        YgExactSearchSessionMixin<String, String, YgStringSearchResult, YgStringSearchResultsLayout, YgStringSearchItem,
-            YgExactStringSearchProvider> {
+        YgExactSearchSessionMixin<
+          String,
+          String,
+          YgStringSearchResult,
+          YgStringSearchResultsLayout,
+          YgStringSearchItem,
+          YgExactStringSearchProvider
+        > {
   @override
   YgStringSearchResultsLayout createLayoutFromResultsAndLeading({
     required List<YgStringSearchResult>? results,

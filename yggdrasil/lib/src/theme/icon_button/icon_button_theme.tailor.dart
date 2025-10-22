@@ -92,37 +92,31 @@ class YgIconButtonTheme extends ThemeExtension<YgIconButtonTheme> {
     YgTonalIconButtonTheme? tonalIconButtonTheme,
   }) {
     return YgIconButtonTheme(
-      filledIconButtonTheme:
-          filledIconButtonTheme ?? this.filledIconButtonTheme,
+      filledIconButtonTheme: filledIconButtonTheme ?? this.filledIconButtonTheme,
       iconSizeMedium: iconSizeMedium ?? this.iconSizeMedium,
       iconSizeSmall: iconSizeSmall ?? this.iconSizeSmall,
-      outlinedIconButtonTheme:
-          outlinedIconButtonTheme ?? this.outlinedIconButtonTheme,
+      outlinedIconButtonTheme: outlinedIconButtonTheme ?? this.outlinedIconButtonTheme,
       sizeMedium: sizeMedium ?? this.sizeMedium,
       sizeSmall: sizeSmall ?? this.sizeSmall,
-      standardIconButtonTheme:
-          standardIconButtonTheme ?? this.standardIconButtonTheme,
+      standardIconButtonTheme: standardIconButtonTheme ?? this.standardIconButtonTheme,
       tonalIconButtonTheme: tonalIconButtonTheme ?? this.tonalIconButtonTheme,
     );
   }
 
   @override
-  YgIconButtonTheme lerp(
-      covariant ThemeExtension<YgIconButtonTheme>? other, double t) {
+  YgIconButtonTheme lerp(covariant ThemeExtension<YgIconButtonTheme>? other, double t) {
     if (other is! YgIconButtonTheme) return this as YgIconButtonTheme;
     return YgIconButtonTheme(
-      filledIconButtonTheme: filledIconButtonTheme.lerp(
-          other.filledIconButtonTheme, t) as YgFilledIconButtonTheme,
+      filledIconButtonTheme: filledIconButtonTheme.lerp(other.filledIconButtonTheme, t) as YgFilledIconButtonTheme,
       iconSizeMedium: t < 0.5 ? iconSizeMedium : other.iconSizeMedium,
       iconSizeSmall: t < 0.5 ? iconSizeSmall : other.iconSizeSmall,
-      outlinedIconButtonTheme: outlinedIconButtonTheme.lerp(
-          other.outlinedIconButtonTheme, t) as YgOutlinedIconButtonTheme,
+      outlinedIconButtonTheme:
+          outlinedIconButtonTheme.lerp(other.outlinedIconButtonTheme, t) as YgOutlinedIconButtonTheme,
       sizeMedium: t < 0.5 ? sizeMedium : other.sizeMedium,
       sizeSmall: t < 0.5 ? sizeSmall : other.sizeSmall,
-      standardIconButtonTheme: standardIconButtonTheme.lerp(
-          other.standardIconButtonTheme, t) as YgStandardIconButtonTheme,
-      tonalIconButtonTheme: tonalIconButtonTheme.lerp(
-          other.tonalIconButtonTheme, t) as YgTonalIconButtonTheme,
+      standardIconButtonTheme:
+          standardIconButtonTheme.lerp(other.standardIconButtonTheme, t) as YgStandardIconButtonTheme,
+      tonalIconButtonTheme: tonalIconButtonTheme.lerp(other.tonalIconButtonTheme, t) as YgTonalIconButtonTheme,
     );
   }
 
@@ -131,21 +125,14 @@ class YgIconButtonTheme extends ThemeExtension<YgIconButtonTheme> {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is YgIconButtonTheme &&
-            const DeepCollectionEquality()
-                .equals(filledIconButtonTheme, other.filledIconButtonTheme) &&
-            const DeepCollectionEquality()
-                .equals(iconSizeMedium, other.iconSizeMedium) &&
-            const DeepCollectionEquality()
-                .equals(iconSizeSmall, other.iconSizeSmall) &&
-            const DeepCollectionEquality().equals(
-                outlinedIconButtonTheme, other.outlinedIconButtonTheme) &&
-            const DeepCollectionEquality()
-                .equals(sizeMedium, other.sizeMedium) &&
+            const DeepCollectionEquality().equals(filledIconButtonTheme, other.filledIconButtonTheme) &&
+            const DeepCollectionEquality().equals(iconSizeMedium, other.iconSizeMedium) &&
+            const DeepCollectionEquality().equals(iconSizeSmall, other.iconSizeSmall) &&
+            const DeepCollectionEquality().equals(outlinedIconButtonTheme, other.outlinedIconButtonTheme) &&
+            const DeepCollectionEquality().equals(sizeMedium, other.sizeMedium) &&
             const DeepCollectionEquality().equals(sizeSmall, other.sizeSmall) &&
-            const DeepCollectionEquality().equals(
-                standardIconButtonTheme, other.standardIconButtonTheme) &&
-            const DeepCollectionEquality()
-                .equals(tonalIconButtonTheme, other.tonalIconButtonTheme));
+            const DeepCollectionEquality().equals(standardIconButtonTheme, other.standardIconButtonTheme) &&
+            const DeepCollectionEquality().equals(tonalIconButtonTheme, other.tonalIconButtonTheme));
   }
 
   @override

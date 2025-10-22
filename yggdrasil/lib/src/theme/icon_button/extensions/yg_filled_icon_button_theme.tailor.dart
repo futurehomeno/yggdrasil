@@ -25,8 +25,7 @@ class YgFilledIconButtonTheme extends ThemeExtension<YgFilledIconButtonTheme> {
 
   static final YgFilledIconButtonTheme consumerLight = YgFilledIconButtonTheme(
     backgroundColor: _$YgFilledIconButtonTheme.backgroundColor[0],
-    disabledBackgroundColor:
-        _$YgFilledIconButtonTheme.disabledBackgroundColor[0],
+    disabledBackgroundColor: _$YgFilledIconButtonTheme.disabledBackgroundColor[0],
     disabledIconColor: _$YgFilledIconButtonTheme.disabledIconColor[0],
     iconColor: _$YgFilledIconButtonTheme.iconColor[0],
     splashColor: _$YgFilledIconButtonTheme.splashColor[0],
@@ -34,28 +33,23 @@ class YgFilledIconButtonTheme extends ThemeExtension<YgFilledIconButtonTheme> {
 
   static final YgFilledIconButtonTheme consumerDark = YgFilledIconButtonTheme(
     backgroundColor: _$YgFilledIconButtonTheme.backgroundColor[1],
-    disabledBackgroundColor:
-        _$YgFilledIconButtonTheme.disabledBackgroundColor[1],
+    disabledBackgroundColor: _$YgFilledIconButtonTheme.disabledBackgroundColor[1],
     disabledIconColor: _$YgFilledIconButtonTheme.disabledIconColor[1],
     iconColor: _$YgFilledIconButtonTheme.iconColor[1],
     splashColor: _$YgFilledIconButtonTheme.splashColor[1],
   );
 
-  static final YgFilledIconButtonTheme professionalLight =
-      YgFilledIconButtonTheme(
+  static final YgFilledIconButtonTheme professionalLight = YgFilledIconButtonTheme(
     backgroundColor: _$YgFilledIconButtonTheme.backgroundColor[2],
-    disabledBackgroundColor:
-        _$YgFilledIconButtonTheme.disabledBackgroundColor[2],
+    disabledBackgroundColor: _$YgFilledIconButtonTheme.disabledBackgroundColor[2],
     disabledIconColor: _$YgFilledIconButtonTheme.disabledIconColor[2],
     iconColor: _$YgFilledIconButtonTheme.iconColor[2],
     splashColor: _$YgFilledIconButtonTheme.splashColor[2],
   );
 
-  static final YgFilledIconButtonTheme professionalDark =
-      YgFilledIconButtonTheme(
+  static final YgFilledIconButtonTheme professionalDark = YgFilledIconButtonTheme(
     backgroundColor: _$YgFilledIconButtonTheme.backgroundColor[3],
-    disabledBackgroundColor:
-        _$YgFilledIconButtonTheme.disabledBackgroundColor[3],
+    disabledBackgroundColor: _$YgFilledIconButtonTheme.disabledBackgroundColor[3],
     disabledIconColor: _$YgFilledIconButtonTheme.disabledIconColor[3],
     iconColor: _$YgFilledIconButtonTheme.iconColor[3],
     splashColor: _$YgFilledIconButtonTheme.splashColor[3],
@@ -78,8 +72,7 @@ class YgFilledIconButtonTheme extends ThemeExtension<YgFilledIconButtonTheme> {
   }) {
     return YgFilledIconButtonTheme(
       backgroundColor: backgroundColor ?? this.backgroundColor,
-      disabledBackgroundColor:
-          disabledBackgroundColor ?? this.disabledBackgroundColor,
+      disabledBackgroundColor: disabledBackgroundColor ?? this.disabledBackgroundColor,
       disabledIconColor: disabledIconColor ?? this.disabledIconColor,
       iconColor: iconColor ?? this.iconColor,
       splashColor: splashColor ?? this.splashColor,
@@ -87,16 +80,12 @@ class YgFilledIconButtonTheme extends ThemeExtension<YgFilledIconButtonTheme> {
   }
 
   @override
-  YgFilledIconButtonTheme lerp(
-      covariant ThemeExtension<YgFilledIconButtonTheme>? other, double t) {
-    if (other is! YgFilledIconButtonTheme)
-      return this as YgFilledIconButtonTheme;
+  YgFilledIconButtonTheme lerp(covariant ThemeExtension<YgFilledIconButtonTheme>? other, double t) {
+    if (other is! YgFilledIconButtonTheme) return this as YgFilledIconButtonTheme;
     return YgFilledIconButtonTheme(
       backgroundColor: Color.lerp(backgroundColor, other.backgroundColor, t)!,
-      disabledBackgroundColor: Color.lerp(
-          disabledBackgroundColor, other.disabledBackgroundColor, t)!,
-      disabledIconColor:
-          Color.lerp(disabledIconColor, other.disabledIconColor, t)!,
+      disabledBackgroundColor: Color.lerp(disabledBackgroundColor, other.disabledBackgroundColor, t)!,
+      disabledIconColor: Color.lerp(disabledIconColor, other.disabledIconColor, t)!,
       iconColor: Color.lerp(iconColor, other.iconColor, t)!,
       splashColor: Color.lerp(splashColor, other.splashColor, t)!,
     );
@@ -107,15 +96,11 @@ class YgFilledIconButtonTheme extends ThemeExtension<YgFilledIconButtonTheme> {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is YgFilledIconButtonTheme &&
-            const DeepCollectionEquality()
-                .equals(backgroundColor, other.backgroundColor) &&
-            const DeepCollectionEquality().equals(
-                disabledBackgroundColor, other.disabledBackgroundColor) &&
-            const DeepCollectionEquality()
-                .equals(disabledIconColor, other.disabledIconColor) &&
+            const DeepCollectionEquality().equals(backgroundColor, other.backgroundColor) &&
+            const DeepCollectionEquality().equals(disabledBackgroundColor, other.disabledBackgroundColor) &&
+            const DeepCollectionEquality().equals(disabledIconColor, other.disabledIconColor) &&
             const DeepCollectionEquality().equals(iconColor, other.iconColor) &&
-            const DeepCollectionEquality()
-                .equals(splashColor, other.splashColor));
+            const DeepCollectionEquality().equals(splashColor, other.splashColor));
   }
 
   @override

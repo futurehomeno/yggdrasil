@@ -13,8 +13,8 @@ class NonNullableEdgeInsetsTween extends Tween<EdgeInsets> {
 
   @override
   EdgeInsets lerp(double t) => EdgeInsets.lerp(
-        begin,
-        end,
-        t,
-      )!;
+    begin,
+    end,
+    t,
+  )!;
 }

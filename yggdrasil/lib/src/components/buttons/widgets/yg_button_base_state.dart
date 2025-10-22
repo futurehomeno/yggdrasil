@@ -7,10 +7,10 @@ class YgButtonBaseState extends YgState {
     bool hovered = false,
     bool disabled = false,
     bool pressed = false,
-  })  : focused = YgStateValue<bool>(focused),
-        hovered = YgStateValue<bool>(hovered),
-        disabled = YgStateValue<bool>(disabled),
-        pressed = YgStateValue<bool>(pressed);
+  }) : focused = YgStateValue<bool>(focused),
+       hovered = YgStateValue<bool>(hovered),
+       disabled = YgStateValue<bool>(disabled),
+       pressed = YgStateValue<bool>(pressed);
 
   final YgStateValue<bool> focused;
   final YgStateValue<bool> hovered;
@@ -20,9 +20,9 @@ class YgButtonBaseState extends YgState {
   @override
   @mustCallSuper
   List<YgStateValue<Object?>> get props => <YgStateValue<Object?>>[
-        focused,
-        hovered,
-        disabled,
-        pressed,
-      ];
+    focused,
+    hovered,
+    disabled,
+    pressed,
+  ];
 }

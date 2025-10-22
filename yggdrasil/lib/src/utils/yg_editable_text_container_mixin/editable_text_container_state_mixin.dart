@@ -41,23 +41,23 @@ mixin EditableTextContainerStateMixin<W extends StatefulWidget> on State<W>
 
   late final YgControllerManagerImplementation<FocusNode> _focusNodeManager =
       YgControllerManagerImplementation<FocusNode>(
-    createController: () => FocusNode(),
-    getUserController: () => userFocusNode,
-    state: this,
-    listener: focusChanged,
-  );
+        createController: () => FocusNode(),
+        getUserController: () => userFocusNode,
+        state: this,
+        listener: focusChanged,
+      );
 
   FocusNode get focusNode => _focusNodeManager.value;
 
   late final YgControllerManagerImplementation<TextEditingController> _controllerManager =
       YgControllerManagerImplementation<TextEditingController>(
-    createController: () => TextEditingController(
-      text: initialValue,
-    ),
-    getUserController: () => userController,
-    state: this,
-    listener: valueUpdated,
-  );
+        createController: () => TextEditingController(
+          text: initialValue,
+        ),
+        getUserController: () => userController,
+        state: this,
+        listener: valueUpdated,
+      );
 
   TextEditingController get controller => _controllerManager.value;
 

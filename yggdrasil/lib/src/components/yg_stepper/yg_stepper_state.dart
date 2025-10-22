@@ -9,6 +9,6 @@ class YgStepperState extends YgState {
 
   @override
   List<YgStateValue<Object?>> get props => <YgStateValue<Object?>>[
-        disabled,
-      ];
+    disabled,
+  ];
 }

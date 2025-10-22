@@ -53,8 +53,7 @@ class YgAvatarTheme extends ThemeExtension<YgAvatarTheme> {
     diameterSmall: _$YgAvatarTheme.diameterSmall[0],
     imageBackgroundColor: _$YgAvatarTheme.imageBackgroundColor[0],
     initialsLargeTextStyle: _$YgAvatarTheme.initialsLargeTextStyle[0],
-    initialsMediumSmallTextStyle:
-        _$YgAvatarTheme.initialsMediumSmallTextStyle[0],
+    initialsMediumSmallTextStyle: _$YgAvatarTheme.initialsMediumSmallTextStyle[0],
     padding: _$YgAvatarTheme.padding[0],
     personAvatarTheme: _$YgAvatarTheme.personAvatarTheme[0],
   );
@@ -71,8 +70,7 @@ class YgAvatarTheme extends ThemeExtension<YgAvatarTheme> {
     diameterSmall: _$YgAvatarTheme.diameterSmall[1],
     imageBackgroundColor: _$YgAvatarTheme.imageBackgroundColor[1],
     initialsLargeTextStyle: _$YgAvatarTheme.initialsLargeTextStyle[1],
-    initialsMediumSmallTextStyle:
-        _$YgAvatarTheme.initialsMediumSmallTextStyle[1],
+    initialsMediumSmallTextStyle: _$YgAvatarTheme.initialsMediumSmallTextStyle[1],
     padding: _$YgAvatarTheme.padding[1],
     personAvatarTheme: _$YgAvatarTheme.personAvatarTheme[1],
   );
@@ -89,8 +87,7 @@ class YgAvatarTheme extends ThemeExtension<YgAvatarTheme> {
     diameterSmall: _$YgAvatarTheme.diameterSmall[2],
     imageBackgroundColor: _$YgAvatarTheme.imageBackgroundColor[2],
     initialsLargeTextStyle: _$YgAvatarTheme.initialsLargeTextStyle[2],
-    initialsMediumSmallTextStyle:
-        _$YgAvatarTheme.initialsMediumSmallTextStyle[2],
+    initialsMediumSmallTextStyle: _$YgAvatarTheme.initialsMediumSmallTextStyle[2],
     padding: _$YgAvatarTheme.padding[2],
     personAvatarTheme: _$YgAvatarTheme.personAvatarTheme[2],
   );
@@ -107,8 +104,7 @@ class YgAvatarTheme extends ThemeExtension<YgAvatarTheme> {
     diameterSmall: _$YgAvatarTheme.diameterSmall[3],
     imageBackgroundColor: _$YgAvatarTheme.imageBackgroundColor[3],
     initialsLargeTextStyle: _$YgAvatarTheme.initialsLargeTextStyle[3],
-    initialsMediumSmallTextStyle:
-        _$YgAvatarTheme.initialsMediumSmallTextStyle[3],
+    initialsMediumSmallTextStyle: _$YgAvatarTheme.initialsMediumSmallTextStyle[3],
     padding: _$YgAvatarTheme.padding[3],
     personAvatarTheme: _$YgAvatarTheme.personAvatarTheme[3],
   );
@@ -148,10 +144,8 @@ class YgAvatarTheme extends ThemeExtension<YgAvatarTheme> {
       diameterMedium: diameterMedium ?? this.diameterMedium,
       diameterSmall: diameterSmall ?? this.diameterSmall,
       imageBackgroundColor: imageBackgroundColor ?? this.imageBackgroundColor,
-      initialsLargeTextStyle:
-          initialsLargeTextStyle ?? this.initialsLargeTextStyle,
-      initialsMediumSmallTextStyle:
-          initialsMediumSmallTextStyle ?? this.initialsMediumSmallTextStyle,
+      initialsLargeTextStyle: initialsLargeTextStyle ?? this.initialsLargeTextStyle,
+      initialsMediumSmallTextStyle: initialsMediumSmallTextStyle ?? this.initialsMediumSmallTextStyle,
       padding: padding ?? this.padding,
       personAvatarTheme: personAvatarTheme ?? this.personAvatarTheme,
     );
@@ -163,24 +157,22 @@ class YgAvatarTheme extends ThemeExtension<YgAvatarTheme> {
     return YgAvatarTheme(
       animationCurve: t < 0.5 ? animationCurve : other.animationCurve,
       animationDuration: t < 0.5 ? animationDuration : other.animationDuration,
-      avatarStackTheme: avatarStackTheme.lerp(other.avatarStackTheme, t)
-          as YgAvatarStackTheme,
+      avatarStackTheme: avatarStackTheme.lerp(other.avatarStackTheme, t) as YgAvatarStackTheme,
       backgroundColor: Color.lerp(backgroundColor, other.backgroundColor, t)!,
       borderSide: t < 0.5 ? borderSide : other.borderSide,
-      companyAvatarTheme: companyAvatarTheme.lerp(other.companyAvatarTheme, t)
-          as YgCompanyAvatarTheme,
+      companyAvatarTheme: companyAvatarTheme.lerp(other.companyAvatarTheme, t) as YgCompanyAvatarTheme,
       diameterLarge: t < 0.5 ? diameterLarge : other.diameterLarge,
       diameterMedium: t < 0.5 ? diameterMedium : other.diameterMedium,
       diameterSmall: t < 0.5 ? diameterSmall : other.diameterSmall,
-      imageBackgroundColor:
-          Color.lerp(imageBackgroundColor, other.imageBackgroundColor, t)!,
-      initialsLargeTextStyle: TextStyle.lerp(
-          initialsLargeTextStyle, other.initialsLargeTextStyle, t)!,
+      imageBackgroundColor: Color.lerp(imageBackgroundColor, other.imageBackgroundColor, t)!,
+      initialsLargeTextStyle: TextStyle.lerp(initialsLargeTextStyle, other.initialsLargeTextStyle, t)!,
       initialsMediumSmallTextStyle: TextStyle.lerp(
-          initialsMediumSmallTextStyle, other.initialsMediumSmallTextStyle, t)!,
+        initialsMediumSmallTextStyle,
+        other.initialsMediumSmallTextStyle,
+        t,
+      )!,
       padding: t < 0.5 ? padding : other.padding,
-      personAvatarTheme: personAvatarTheme.lerp(other.personAvatarTheme, t)
-          as YgPersonAvatarTheme,
+      personAvatarTheme: personAvatarTheme.lerp(other.personAvatarTheme, t) as YgPersonAvatarTheme,
     );
   }
 
@@ -189,33 +181,20 @@ class YgAvatarTheme extends ThemeExtension<YgAvatarTheme> {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is YgAvatarTheme &&
-            const DeepCollectionEquality()
-                .equals(animationCurve, other.animationCurve) &&
-            const DeepCollectionEquality()
-                .equals(animationDuration, other.animationDuration) &&
-            const DeepCollectionEquality()
-                .equals(avatarStackTheme, other.avatarStackTheme) &&
-            const DeepCollectionEquality()
-                .equals(backgroundColor, other.backgroundColor) &&
-            const DeepCollectionEquality()
-                .equals(borderSide, other.borderSide) &&
-            const DeepCollectionEquality()
-                .equals(companyAvatarTheme, other.companyAvatarTheme) &&
-            const DeepCollectionEquality()
-                .equals(diameterLarge, other.diameterLarge) &&
-            const DeepCollectionEquality()
-                .equals(diameterMedium, other.diameterMedium) &&
-            const DeepCollectionEquality()
-                .equals(diameterSmall, other.diameterSmall) &&
-            const DeepCollectionEquality()
-                .equals(imageBackgroundColor, other.imageBackgroundColor) &&
-            const DeepCollectionEquality()
-                .equals(initialsLargeTextStyle, other.initialsLargeTextStyle) &&
-            const DeepCollectionEquality().equals(initialsMediumSmallTextStyle,
-                other.initialsMediumSmallTextStyle) &&
+            const DeepCollectionEquality().equals(animationCurve, other.animationCurve) &&
+            const DeepCollectionEquality().equals(animationDuration, other.animationDuration) &&
+            const DeepCollectionEquality().equals(avatarStackTheme, other.avatarStackTheme) &&
+            const DeepCollectionEquality().equals(backgroundColor, other.backgroundColor) &&
+            const DeepCollectionEquality().equals(borderSide, other.borderSide) &&
+            const DeepCollectionEquality().equals(companyAvatarTheme, other.companyAvatarTheme) &&
+            const DeepCollectionEquality().equals(diameterLarge, other.diameterLarge) &&
+            const DeepCollectionEquality().equals(diameterMedium, other.diameterMedium) &&
+            const DeepCollectionEquality().equals(diameterSmall, other.diameterSmall) &&
+            const DeepCollectionEquality().equals(imageBackgroundColor, other.imageBackgroundColor) &&
+            const DeepCollectionEquality().equals(initialsLargeTextStyle, other.initialsLargeTextStyle) &&
+            const DeepCollectionEquality().equals(initialsMediumSmallTextStyle, other.initialsMediumSmallTextStyle) &&
             const DeepCollectionEquality().equals(padding, other.padding) &&
-            const DeepCollectionEquality()
-                .equals(personAvatarTheme, other.personAvatarTheme));
+            const DeepCollectionEquality().equals(personAvatarTheme, other.personAvatarTheme));
   }
 
   @override

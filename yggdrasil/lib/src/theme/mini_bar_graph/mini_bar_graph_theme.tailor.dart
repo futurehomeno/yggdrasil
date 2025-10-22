@@ -197,56 +197,40 @@ class YgMiniBarGraphTheme extends ThemeExtension<YgMiniBarGraphTheme> {
       maxBarSpacing: maxBarSpacing ?? this.maxBarSpacing,
       metricTextStyle: metricTextStyle ?? this.metricTextStyle,
       minGraphHeight: minGraphHeight ?? this.minGraphHeight,
-      valueTextBarGraphSpacing:
-          valueTextBarGraphSpacing ?? this.valueTextBarGraphSpacing,
-      valueTextColorDisabled:
-          valueTextColorDisabled ?? this.valueTextColorDisabled,
-      valueTextColorNeutral:
-          valueTextColorNeutral ?? this.valueTextColorNeutral,
-      valueTextColorPositive:
-          valueTextColorPositive ?? this.valueTextColorPositive,
-      valueTextColorWarning:
-          valueTextColorWarning ?? this.valueTextColorWarning,
-      valueTextMetricSpacing:
-          valueTextMetricSpacing ?? this.valueTextMetricSpacing,
+      valueTextBarGraphSpacing: valueTextBarGraphSpacing ?? this.valueTextBarGraphSpacing,
+      valueTextColorDisabled: valueTextColorDisabled ?? this.valueTextColorDisabled,
+      valueTextColorNeutral: valueTextColorNeutral ?? this.valueTextColorNeutral,
+      valueTextColorPositive: valueTextColorPositive ?? this.valueTextColorPositive,
+      valueTextColorWarning: valueTextColorWarning ?? this.valueTextColorWarning,
+      valueTextMetricSpacing: valueTextMetricSpacing ?? this.valueTextMetricSpacing,
       valueTextStyle: valueTextStyle ?? this.valueTextStyle,
     );
   }
 
   @override
-  YgMiniBarGraphTheme lerp(
-      covariant ThemeExtension<YgMiniBarGraphTheme>? other, double t) {
+  YgMiniBarGraphTheme lerp(covariant ThemeExtension<YgMiniBarGraphTheme>? other, double t) {
     if (other is! YgMiniBarGraphTheme) return this as YgMiniBarGraphTheme;
     return YgMiniBarGraphTheme(
-      barBorderColorNull:
-          Color.lerp(barBorderColorNull, other.barBorderColorNull, t)!,
+      barBorderColorNull: Color.lerp(barBorderColorNull, other.barBorderColorNull, t)!,
       barBorderRadius: t < 0.5 ? barBorderRadius : other.barBorderRadius,
       barColorDefault: Color.lerp(barColorDefault, other.barColorDefault, t)!,
       barColorNeutral: Color.lerp(barColorNeutral, other.barColorNeutral, t)!,
       barColorNull: Color.lerp(barColorNull, other.barColorNull, t)!,
       barColorSuccess: Color.lerp(barColorSuccess, other.barColorSuccess, t)!,
       barColorWarning: Color.lerp(barColorWarning, other.barColorWarning, t)!,
-      barIndicatorSpacing:
-          t < 0.5 ? barIndicatorSpacing : other.barIndicatorSpacing,
+      barIndicatorSpacing: t < 0.5 ? barIndicatorSpacing : other.barIndicatorSpacing,
       barWidth: t < 0.5 ? barWidth : other.barWidth,
       graphPadding: t < 0.5 ? graphPadding : other.graphPadding,
       indicatorSize: t < 0.5 ? indicatorSize : other.indicatorSize,
       maxBarSpacing: t < 0.5 ? maxBarSpacing : other.maxBarSpacing,
-      metricTextStyle:
-          TextStyle.lerp(metricTextStyle, other.metricTextStyle, t)!,
+      metricTextStyle: TextStyle.lerp(metricTextStyle, other.metricTextStyle, t)!,
       minGraphHeight: t < 0.5 ? minGraphHeight : other.minGraphHeight,
-      valueTextBarGraphSpacing:
-          t < 0.5 ? valueTextBarGraphSpacing : other.valueTextBarGraphSpacing,
-      valueTextColorDisabled:
-          Color.lerp(valueTextColorDisabled, other.valueTextColorDisabled, t)!,
-      valueTextColorNeutral:
-          Color.lerp(valueTextColorNeutral, other.valueTextColorNeutral, t)!,
-      valueTextColorPositive:
-          Color.lerp(valueTextColorPositive, other.valueTextColorPositive, t)!,
-      valueTextColorWarning:
-          Color.lerp(valueTextColorWarning, other.valueTextColorWarning, t)!,
-      valueTextMetricSpacing:
-          t < 0.5 ? valueTextMetricSpacing : other.valueTextMetricSpacing,
+      valueTextBarGraphSpacing: t < 0.5 ? valueTextBarGraphSpacing : other.valueTextBarGraphSpacing,
+      valueTextColorDisabled: Color.lerp(valueTextColorDisabled, other.valueTextColorDisabled, t)!,
+      valueTextColorNeutral: Color.lerp(valueTextColorNeutral, other.valueTextColorNeutral, t)!,
+      valueTextColorPositive: Color.lerp(valueTextColorPositive, other.valueTextColorPositive, t)!,
+      valueTextColorWarning: Color.lerp(valueTextColorWarning, other.valueTextColorWarning, t)!,
+      valueTextMetricSpacing: t < 0.5 ? valueTextMetricSpacing : other.valueTextMetricSpacing,
       valueTextStyle: TextStyle.lerp(valueTextStyle, other.valueTextStyle, t)!,
     );
   }
@@ -256,47 +240,27 @@ class YgMiniBarGraphTheme extends ThemeExtension<YgMiniBarGraphTheme> {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is YgMiniBarGraphTheme &&
-            const DeepCollectionEquality()
-                .equals(barBorderColorNull, other.barBorderColorNull) &&
-            const DeepCollectionEquality()
-                .equals(barBorderRadius, other.barBorderRadius) &&
-            const DeepCollectionEquality()
-                .equals(barColorDefault, other.barColorDefault) &&
-            const DeepCollectionEquality()
-                .equals(barColorNeutral, other.barColorNeutral) &&
-            const DeepCollectionEquality()
-                .equals(barColorNull, other.barColorNull) &&
-            const DeepCollectionEquality()
-                .equals(barColorSuccess, other.barColorSuccess) &&
-            const DeepCollectionEquality()
-                .equals(barColorWarning, other.barColorWarning) &&
-            const DeepCollectionEquality()
-                .equals(barIndicatorSpacing, other.barIndicatorSpacing) &&
+            const DeepCollectionEquality().equals(barBorderColorNull, other.barBorderColorNull) &&
+            const DeepCollectionEquality().equals(barBorderRadius, other.barBorderRadius) &&
+            const DeepCollectionEquality().equals(barColorDefault, other.barColorDefault) &&
+            const DeepCollectionEquality().equals(barColorNeutral, other.barColorNeutral) &&
+            const DeepCollectionEquality().equals(barColorNull, other.barColorNull) &&
+            const DeepCollectionEquality().equals(barColorSuccess, other.barColorSuccess) &&
+            const DeepCollectionEquality().equals(barColorWarning, other.barColorWarning) &&
+            const DeepCollectionEquality().equals(barIndicatorSpacing, other.barIndicatorSpacing) &&
             const DeepCollectionEquality().equals(barWidth, other.barWidth) &&
-            const DeepCollectionEquality()
-                .equals(graphPadding, other.graphPadding) &&
-            const DeepCollectionEquality()
-                .equals(indicatorSize, other.indicatorSize) &&
-            const DeepCollectionEquality()
-                .equals(maxBarSpacing, other.maxBarSpacing) &&
-            const DeepCollectionEquality()
-                .equals(metricTextStyle, other.metricTextStyle) &&
-            const DeepCollectionEquality()
-                .equals(minGraphHeight, other.minGraphHeight) &&
-            const DeepCollectionEquality().equals(
-                valueTextBarGraphSpacing, other.valueTextBarGraphSpacing) &&
-            const DeepCollectionEquality()
-                .equals(valueTextColorDisabled, other.valueTextColorDisabled) &&
-            const DeepCollectionEquality()
-                .equals(valueTextColorNeutral, other.valueTextColorNeutral) &&
-            const DeepCollectionEquality()
-                .equals(valueTextColorPositive, other.valueTextColorPositive) &&
-            const DeepCollectionEquality()
-                .equals(valueTextColorWarning, other.valueTextColorWarning) &&
-            const DeepCollectionEquality()
-                .equals(valueTextMetricSpacing, other.valueTextMetricSpacing) &&
-            const DeepCollectionEquality()
-                .equals(valueTextStyle, other.valueTextStyle));
+            const DeepCollectionEquality().equals(graphPadding, other.graphPadding) &&
+            const DeepCollectionEquality().equals(indicatorSize, other.indicatorSize) &&
+            const DeepCollectionEquality().equals(maxBarSpacing, other.maxBarSpacing) &&
+            const DeepCollectionEquality().equals(metricTextStyle, other.metricTextStyle) &&
+            const DeepCollectionEquality().equals(minGraphHeight, other.minGraphHeight) &&
+            const DeepCollectionEquality().equals(valueTextBarGraphSpacing, other.valueTextBarGraphSpacing) &&
+            const DeepCollectionEquality().equals(valueTextColorDisabled, other.valueTextColorDisabled) &&
+            const DeepCollectionEquality().equals(valueTextColorNeutral, other.valueTextColorNeutral) &&
+            const DeepCollectionEquality().equals(valueTextColorPositive, other.valueTextColorPositive) &&
+            const DeepCollectionEquality().equals(valueTextColorWarning, other.valueTextColorWarning) &&
+            const DeepCollectionEquality().equals(valueTextMetricSpacing, other.valueTextMetricSpacing) &&
+            const DeepCollectionEquality().equals(valueTextStyle, other.valueTextStyle));
   }
 
   @override

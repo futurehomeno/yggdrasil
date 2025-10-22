@@ -18,6 +18,10 @@ analyzer:
 
 include: package:flutter_lints/flutter.yaml
 
+formatter:
+  page_width: 120
+  trailing_commas: preserve
+
 linter:
   rules:
     # =========================
@@ -40,6 +44,7 @@ linter:
     unawaited_futures: true
     avoid_dynamic_calls: true
     directives_ordering: true
+    require_trailing_commas: true
 
 dart_code_metrics:
   metrics:

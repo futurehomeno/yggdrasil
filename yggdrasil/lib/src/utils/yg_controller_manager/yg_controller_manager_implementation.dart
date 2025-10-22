@@ -10,10 +10,10 @@ class YgControllerManagerImplementation<T extends Listenable> implements YgContr
     required T Function() createController,
     required T? Function() getUserController,
     void Function()? listener,
-  })  : _state = state,
-        _listener = listener,
-        _getUserController = getUserController,
-        _createController = createController {
+  }) : _state = state,
+       _listener = listener,
+       _getUserController = getUserController,
+       _createController = createController {
     final T? userController = getUserController();
     if (userController == null) {
       _wasNull = true;

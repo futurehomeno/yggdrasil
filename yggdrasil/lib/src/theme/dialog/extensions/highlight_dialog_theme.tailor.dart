@@ -64,8 +64,7 @@ class HighlightDialogTheme extends ThemeExtension<HighlightDialogTheme> {
   }
 
   @override
-  HighlightDialogTheme lerp(
-      covariant ThemeExtension<HighlightDialogTheme>? other, double t) {
+  HighlightDialogTheme lerp(covariant ThemeExtension<HighlightDialogTheme>? other, double t) {
     if (other is! HighlightDialogTheme) return this as HighlightDialogTheme;
     return HighlightDialogTheme(
       iconBackground: Color.lerp(iconBackground, other.iconBackground, t)!,
@@ -79,11 +78,9 @@ class HighlightDialogTheme extends ThemeExtension<HighlightDialogTheme> {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is HighlightDialogTheme &&
-            const DeepCollectionEquality()
-                .equals(iconBackground, other.iconBackground) &&
+            const DeepCollectionEquality().equals(iconBackground, other.iconBackground) &&
             const DeepCollectionEquality().equals(iconColor, other.iconColor) &&
-            const DeepCollectionEquality()
-                .equals(iconPadding, other.iconPadding));
+            const DeepCollectionEquality().equals(iconPadding, other.iconPadding));
   }
 
   @override

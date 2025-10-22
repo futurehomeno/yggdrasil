@@ -71,19 +71,15 @@ class YgToggleButtonTheme extends ThemeExtension<YgToggleButtonTheme> {
     animationCurve: _$YgToggleButtonTheme.animationCurve[0],
     animationDuration: _$YgToggleButtonTheme.animationDuration[0],
     backgroundColor: _$YgToggleButtonTheme.backgroundColor[0],
-    backgroundHoveredFocusedColor:
-        _$YgToggleButtonTheme.backgroundHoveredFocusedColor[0],
+    backgroundHoveredFocusedColor: _$YgToggleButtonTheme.backgroundHoveredFocusedColor[0],
     backgroundToggledColor: _$YgToggleButtonTheme.backgroundToggledColor[0],
-    backgroundToggledDisabledColor:
-        _$YgToggleButtonTheme.backgroundToggledDisabledColor[0],
+    backgroundToggledDisabledColor: _$YgToggleButtonTheme.backgroundToggledDisabledColor[0],
     borderDefaultColor: _$YgToggleButtonTheme.borderDefaultColor[0],
     borderDisabledColor: _$YgToggleButtonTheme.borderDisabledColor[0],
-    borderHoveredFocusedColor:
-        _$YgToggleButtonTheme.borderHoveredFocusedColor[0],
+    borderHoveredFocusedColor: _$YgToggleButtonTheme.borderHoveredFocusedColor[0],
     borderRadius: _$YgToggleButtonTheme.borderRadius[0],
     borderToggledColor: _$YgToggleButtonTheme.borderToggledColor[0],
-    borderToggledDisabledColor:
-        _$YgToggleButtonTheme.borderToggledDisabledColor[0],
+    borderToggledDisabledColor: _$YgToggleButtonTheme.borderToggledDisabledColor[0],
     iconDefaultColor: _$YgToggleButtonTheme.iconDefaultColor[0],
     iconDefaultSize: _$YgToggleButtonTheme.iconDefaultSize[0],
     iconDisabledColor: _$YgToggleButtonTheme.iconDisabledColor[0],
@@ -97,8 +93,7 @@ class YgToggleButtonTheme extends ThemeExtension<YgToggleButtonTheme> {
     textStyleSmall: _$YgToggleButtonTheme.textStyleSmall[0],
     textToggledColor: _$YgToggleButtonTheme.textToggledColor[0],
     toggleIconButtonTheme: _$YgToggleButtonTheme.toggleIconButtonTheme[0],
-    toggleIconTextButtonTheme:
-        _$YgToggleButtonTheme.toggleIconTextButtonTheme[0],
+    toggleIconTextButtonTheme: _$YgToggleButtonTheme.toggleIconTextButtonTheme[0],
     toggleTextButtonTheme: _$YgToggleButtonTheme.toggleTextButtonTheme[0],
   );
 
@@ -106,19 +101,15 @@ class YgToggleButtonTheme extends ThemeExtension<YgToggleButtonTheme> {
     animationCurve: _$YgToggleButtonTheme.animationCurve[1],
     animationDuration: _$YgToggleButtonTheme.animationDuration[1],
     backgroundColor: _$YgToggleButtonTheme.backgroundColor[1],
-    backgroundHoveredFocusedColor:
-        _$YgToggleButtonTheme.backgroundHoveredFocusedColor[1],
+    backgroundHoveredFocusedColor: _$YgToggleButtonTheme.backgroundHoveredFocusedColor[1],
     backgroundToggledColor: _$YgToggleButtonTheme.backgroundToggledColor[1],
-    backgroundToggledDisabledColor:
-        _$YgToggleButtonTheme.backgroundToggledDisabledColor[1],
+    backgroundToggledDisabledColor: _$YgToggleButtonTheme.backgroundToggledDisabledColor[1],
     borderDefaultColor: _$YgToggleButtonTheme.borderDefaultColor[1],
     borderDisabledColor: _$YgToggleButtonTheme.borderDisabledColor[1],
-    borderHoveredFocusedColor:
-        _$YgToggleButtonTheme.borderHoveredFocusedColor[1],
+    borderHoveredFocusedColor: _$YgToggleButtonTheme.borderHoveredFocusedColor[1],
     borderRadius: _$YgToggleButtonTheme.borderRadius[1],
     borderToggledColor: _$YgToggleButtonTheme.borderToggledColor[1],
-    borderToggledDisabledColor:
-        _$YgToggleButtonTheme.borderToggledDisabledColor[1],
+    borderToggledDisabledColor: _$YgToggleButtonTheme.borderToggledDisabledColor[1],
     iconDefaultColor: _$YgToggleButtonTheme.iconDefaultColor[1],
     iconDefaultSize: _$YgToggleButtonTheme.iconDefaultSize[1],
     iconDisabledColor: _$YgToggleButtonTheme.iconDisabledColor[1],
@@ -132,8 +123,7 @@ class YgToggleButtonTheme extends ThemeExtension<YgToggleButtonTheme> {
     textStyleSmall: _$YgToggleButtonTheme.textStyleSmall[1],
     textToggledColor: _$YgToggleButtonTheme.textToggledColor[1],
     toggleIconButtonTheme: _$YgToggleButtonTheme.toggleIconButtonTheme[1],
-    toggleIconTextButtonTheme:
-        _$YgToggleButtonTheme.toggleIconTextButtonTheme[1],
+    toggleIconTextButtonTheme: _$YgToggleButtonTheme.toggleIconTextButtonTheme[1],
     toggleTextButtonTheme: _$YgToggleButtonTheme.toggleTextButtonTheme[1],
   );
 
@@ -141,19 +131,15 @@ class YgToggleButtonTheme extends ThemeExtension<YgToggleButtonTheme> {
     animationCurve: _$YgToggleButtonTheme.animationCurve[2],
     animationDuration: _$YgToggleButtonTheme.animationDuration[2],
     backgroundColor: _$YgToggleButtonTheme.backgroundColor[2],
-    backgroundHoveredFocusedColor:
-        _$YgToggleButtonTheme.backgroundHoveredFocusedColor[2],
+    backgroundHoveredFocusedColor: _$YgToggleButtonTheme.backgroundHoveredFocusedColor[2],
     backgroundToggledColor: _$YgToggleButtonTheme.backgroundToggledColor[2],
-    backgroundToggledDisabledColor:
-        _$YgToggleButtonTheme.backgroundToggledDisabledColor[2],
+    backgroundToggledDisabledColor: _$YgToggleButtonTheme.backgroundToggledDisabledColor[2],
     borderDefaultColor: _$YgToggleButtonTheme.borderDefaultColor[2],
     borderDisabledColor: _$YgToggleButtonTheme.borderDisabledColor[2],
-    borderHoveredFocusedColor:
-        _$YgToggleButtonTheme.borderHoveredFocusedColor[2],
+    borderHoveredFocusedColor: _$YgToggleButtonTheme.borderHoveredFocusedColor[2],
     borderRadius: _$YgToggleButtonTheme.borderRadius[2],
     borderToggledColor: _$YgToggleButtonTheme.borderToggledColor[2],
-    borderToggledDisabledColor:
-        _$YgToggleButtonTheme.borderToggledDisabledColor[2],
+    borderToggledDisabledColor: _$YgToggleButtonTheme.borderToggledDisabledColor[2],
     iconDefaultColor: _$YgToggleButtonTheme.iconDefaultColor[2],
     iconDefaultSize: _$YgToggleButtonTheme.iconDefaultSize[2],
     iconDisabledColor: _$YgToggleButtonTheme.iconDisabledColor[2],
@@ -167,8 +153,7 @@ class YgToggleButtonTheme extends ThemeExtension<YgToggleButtonTheme> {
     textStyleSmall: _$YgToggleButtonTheme.textStyleSmall[2],
     textToggledColor: _$YgToggleButtonTheme.textToggledColor[2],
     toggleIconButtonTheme: _$YgToggleButtonTheme.toggleIconButtonTheme[2],
-    toggleIconTextButtonTheme:
-        _$YgToggleButtonTheme.toggleIconTextButtonTheme[2],
+    toggleIconTextButtonTheme: _$YgToggleButtonTheme.toggleIconTextButtonTheme[2],
     toggleTextButtonTheme: _$YgToggleButtonTheme.toggleTextButtonTheme[2],
   );
 
@@ -176,19 +161,15 @@ class YgToggleButtonTheme extends ThemeExtension<YgToggleButtonTheme> {
     animationCurve: _$YgToggleButtonTheme.animationCurve[3],
     animationDuration: _$YgToggleButtonTheme.animationDuration[3],
     backgroundColor: _$YgToggleButtonTheme.backgroundColor[3],
-    backgroundHoveredFocusedColor:
-        _$YgToggleButtonTheme.backgroundHoveredFocusedColor[3],
+    backgroundHoveredFocusedColor: _$YgToggleButtonTheme.backgroundHoveredFocusedColor[3],
     backgroundToggledColor: _$YgToggleButtonTheme.backgroundToggledColor[3],
-    backgroundToggledDisabledColor:
-        _$YgToggleButtonTheme.backgroundToggledDisabledColor[3],
+    backgroundToggledDisabledColor: _$YgToggleButtonTheme.backgroundToggledDisabledColor[3],
     borderDefaultColor: _$YgToggleButtonTheme.borderDefaultColor[3],
     borderDisabledColor: _$YgToggleButtonTheme.borderDisabledColor[3],
-    borderHoveredFocusedColor:
-        _$YgToggleButtonTheme.borderHoveredFocusedColor[3],
+    borderHoveredFocusedColor: _$YgToggleButtonTheme.borderHoveredFocusedColor[3],
     borderRadius: _$YgToggleButtonTheme.borderRadius[3],
     borderToggledColor: _$YgToggleButtonTheme.borderToggledColor[3],
-    borderToggledDisabledColor:
-        _$YgToggleButtonTheme.borderToggledDisabledColor[3],
+    borderToggledDisabledColor: _$YgToggleButtonTheme.borderToggledDisabledColor[3],
     iconDefaultColor: _$YgToggleButtonTheme.iconDefaultColor[3],
     iconDefaultSize: _$YgToggleButtonTheme.iconDefaultSize[3],
     iconDisabledColor: _$YgToggleButtonTheme.iconDisabledColor[3],
@@ -202,8 +183,7 @@ class YgToggleButtonTheme extends ThemeExtension<YgToggleButtonTheme> {
     textStyleSmall: _$YgToggleButtonTheme.textStyleSmall[3],
     textToggledColor: _$YgToggleButtonTheme.textToggledColor[3],
     toggleIconButtonTheme: _$YgToggleButtonTheme.toggleIconButtonTheme[3],
-    toggleIconTextButtonTheme:
-        _$YgToggleButtonTheme.toggleIconTextButtonTheme[3],
+    toggleIconTextButtonTheme: _$YgToggleButtonTheme.toggleIconTextButtonTheme[3],
     toggleTextButtonTheme: _$YgToggleButtonTheme.toggleTextButtonTheme[3],
   );
 
@@ -248,25 +228,19 @@ class YgToggleButtonTheme extends ThemeExtension<YgToggleButtonTheme> {
       animationCurve: animationCurve ?? this.animationCurve,
       animationDuration: animationDuration ?? this.animationDuration,
       backgroundColor: backgroundColor ?? this.backgroundColor,
-      backgroundHoveredFocusedColor:
-          backgroundHoveredFocusedColor ?? this.backgroundHoveredFocusedColor,
-      backgroundToggledColor:
-          backgroundToggledColor ?? this.backgroundToggledColor,
-      backgroundToggledDisabledColor:
-          backgroundToggledDisabledColor ?? this.backgroundToggledDisabledColor,
+      backgroundHoveredFocusedColor: backgroundHoveredFocusedColor ?? this.backgroundHoveredFocusedColor,
+      backgroundToggledColor: backgroundToggledColor ?? this.backgroundToggledColor,
+      backgroundToggledDisabledColor: backgroundToggledDisabledColor ?? this.backgroundToggledDisabledColor,
       borderDefaultColor: borderDefaultColor ?? this.borderDefaultColor,
       borderDisabledColor: borderDisabledColor ?? this.borderDisabledColor,
-      borderHoveredFocusedColor:
-          borderHoveredFocusedColor ?? this.borderHoveredFocusedColor,
+      borderHoveredFocusedColor: borderHoveredFocusedColor ?? this.borderHoveredFocusedColor,
       borderRadius: borderRadius ?? this.borderRadius,
       borderToggledColor: borderToggledColor ?? this.borderToggledColor,
-      borderToggledDisabledColor:
-          borderToggledDisabledColor ?? this.borderToggledDisabledColor,
+      borderToggledDisabledColor: borderToggledDisabledColor ?? this.borderToggledDisabledColor,
       iconDefaultColor: iconDefaultColor ?? this.iconDefaultColor,
       iconDefaultSize: iconDefaultSize ?? this.iconDefaultSize,
       iconDisabledColor: iconDisabledColor ?? this.iconDisabledColor,
-      iconLargeIconOnlySize:
-          iconLargeIconOnlySize ?? this.iconLargeIconOnlySize,
+      iconLargeIconOnlySize: iconLargeIconOnlySize ?? this.iconLargeIconOnlySize,
       iconTextSpacing: iconTextSpacing ?? this.iconTextSpacing,
       iconToggledColor: iconToggledColor ?? this.iconToggledColor,
       textDefaultColor: textDefaultColor ?? this.textDefaultColor,
@@ -275,66 +249,48 @@ class YgToggleButtonTheme extends ThemeExtension<YgToggleButtonTheme> {
       textStyleMedium: textStyleMedium ?? this.textStyleMedium,
       textStyleSmall: textStyleSmall ?? this.textStyleSmall,
       textToggledColor: textToggledColor ?? this.textToggledColor,
-      toggleIconButtonTheme:
-          toggleIconButtonTheme ?? this.toggleIconButtonTheme,
-      toggleIconTextButtonTheme:
-          toggleIconTextButtonTheme ?? this.toggleIconTextButtonTheme,
-      toggleTextButtonTheme:
-          toggleTextButtonTheme ?? this.toggleTextButtonTheme,
+      toggleIconButtonTheme: toggleIconButtonTheme ?? this.toggleIconButtonTheme,
+      toggleIconTextButtonTheme: toggleIconTextButtonTheme ?? this.toggleIconTextButtonTheme,
+      toggleTextButtonTheme: toggleTextButtonTheme ?? this.toggleTextButtonTheme,
     );
   }
 
   @override
-  YgToggleButtonTheme lerp(
-      covariant ThemeExtension<YgToggleButtonTheme>? other, double t) {
+  YgToggleButtonTheme lerp(covariant ThemeExtension<YgToggleButtonTheme>? other, double t) {
     if (other is! YgToggleButtonTheme) return this as YgToggleButtonTheme;
     return YgToggleButtonTheme(
       animationCurve: t < 0.5 ? animationCurve : other.animationCurve,
       animationDuration: t < 0.5 ? animationDuration : other.animationDuration,
       backgroundColor: Color.lerp(backgroundColor, other.backgroundColor, t)!,
-      backgroundHoveredFocusedColor: Color.lerp(backgroundHoveredFocusedColor,
-          other.backgroundHoveredFocusedColor, t)!,
-      backgroundToggledColor:
-          Color.lerp(backgroundToggledColor, other.backgroundToggledColor, t)!,
-      backgroundToggledDisabledColor: Color.lerp(backgroundToggledDisabledColor,
-          other.backgroundToggledDisabledColor, t)!,
-      borderDefaultColor:
-          Color.lerp(borderDefaultColor, other.borderDefaultColor, t)!,
-      borderDisabledColor:
-          Color.lerp(borderDisabledColor, other.borderDisabledColor, t)!,
-      borderHoveredFocusedColor: Color.lerp(
-          borderHoveredFocusedColor, other.borderHoveredFocusedColor, t)!,
+      backgroundHoveredFocusedColor: Color.lerp(backgroundHoveredFocusedColor, other.backgroundHoveredFocusedColor, t)!,
+      backgroundToggledColor: Color.lerp(backgroundToggledColor, other.backgroundToggledColor, t)!,
+      backgroundToggledDisabledColor: Color.lerp(
+        backgroundToggledDisabledColor,
+        other.backgroundToggledDisabledColor,
+        t,
+      )!,
+      borderDefaultColor: Color.lerp(borderDefaultColor, other.borderDefaultColor, t)!,
+      borderDisabledColor: Color.lerp(borderDisabledColor, other.borderDisabledColor, t)!,
+      borderHoveredFocusedColor: Color.lerp(borderHoveredFocusedColor, other.borderHoveredFocusedColor, t)!,
       borderRadius: t < 0.5 ? borderRadius : other.borderRadius,
-      borderToggledColor:
-          Color.lerp(borderToggledColor, other.borderToggledColor, t)!,
-      borderToggledDisabledColor: Color.lerp(
-          borderToggledDisabledColor, other.borderToggledDisabledColor, t)!,
-      iconDefaultColor:
-          Color.lerp(iconDefaultColor, other.iconDefaultColor, t)!,
+      borderToggledColor: Color.lerp(borderToggledColor, other.borderToggledColor, t)!,
+      borderToggledDisabledColor: Color.lerp(borderToggledDisabledColor, other.borderToggledDisabledColor, t)!,
+      iconDefaultColor: Color.lerp(iconDefaultColor, other.iconDefaultColor, t)!,
       iconDefaultSize: t < 0.5 ? iconDefaultSize : other.iconDefaultSize,
-      iconDisabledColor:
-          Color.lerp(iconDisabledColor, other.iconDisabledColor, t)!,
-      iconLargeIconOnlySize:
-          t < 0.5 ? iconLargeIconOnlySize : other.iconLargeIconOnlySize,
+      iconDisabledColor: Color.lerp(iconDisabledColor, other.iconDisabledColor, t)!,
+      iconLargeIconOnlySize: t < 0.5 ? iconLargeIconOnlySize : other.iconLargeIconOnlySize,
       iconTextSpacing: t < 0.5 ? iconTextSpacing : other.iconTextSpacing,
-      iconToggledColor:
-          Color.lerp(iconToggledColor, other.iconToggledColor, t)!,
-      textDefaultColor:
-          Color.lerp(textDefaultColor, other.textDefaultColor, t)!,
-      textDisabledColor:
-          Color.lerp(textDisabledColor, other.textDisabledColor, t)!,
+      iconToggledColor: Color.lerp(iconToggledColor, other.iconToggledColor, t)!,
+      textDefaultColor: Color.lerp(textDefaultColor, other.textDefaultColor, t)!,
+      textDisabledColor: Color.lerp(textDisabledColor, other.textDisabledColor, t)!,
       textStyleLarge: TextStyle.lerp(textStyleLarge, other.textStyleLarge, t)!,
-      textStyleMedium:
-          TextStyle.lerp(textStyleMedium, other.textStyleMedium, t)!,
+      textStyleMedium: TextStyle.lerp(textStyleMedium, other.textStyleMedium, t)!,
       textStyleSmall: TextStyle.lerp(textStyleSmall, other.textStyleSmall, t)!,
-      textToggledColor:
-          Color.lerp(textToggledColor, other.textToggledColor, t)!,
-      toggleIconButtonTheme: toggleIconButtonTheme.lerp(
-          other.toggleIconButtonTheme, t) as ToggleIconButtonTheme,
-      toggleIconTextButtonTheme: toggleIconTextButtonTheme.lerp(
-          other.toggleIconTextButtonTheme, t) as ToggleIconTextButtonTheme,
-      toggleTextButtonTheme: toggleTextButtonTheme.lerp(
-          other.toggleTextButtonTheme, t) as ToggleTextButtonTheme,
+      textToggledColor: Color.lerp(textToggledColor, other.textToggledColor, t)!,
+      toggleIconButtonTheme: toggleIconButtonTheme.lerp(other.toggleIconButtonTheme, t) as ToggleIconButtonTheme,
+      toggleIconTextButtonTheme:
+          toggleIconTextButtonTheme.lerp(other.toggleIconTextButtonTheme, t) as ToggleIconTextButtonTheme,
+      toggleTextButtonTheme: toggleTextButtonTheme.lerp(other.toggleTextButtonTheme, t) as ToggleTextButtonTheme,
     );
   }
 
@@ -343,61 +299,36 @@ class YgToggleButtonTheme extends ThemeExtension<YgToggleButtonTheme> {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is YgToggleButtonTheme &&
-            const DeepCollectionEquality()
-                .equals(animationCurve, other.animationCurve) &&
-            const DeepCollectionEquality()
-                .equals(animationDuration, other.animationDuration) &&
-            const DeepCollectionEquality()
-                .equals(backgroundColor, other.backgroundColor) &&
-            const DeepCollectionEquality().equals(backgroundHoveredFocusedColor,
-                other.backgroundHoveredFocusedColor) &&
-            const DeepCollectionEquality()
-                .equals(backgroundToggledColor, other.backgroundToggledColor) &&
+            const DeepCollectionEquality().equals(animationCurve, other.animationCurve) &&
+            const DeepCollectionEquality().equals(animationDuration, other.animationDuration) &&
+            const DeepCollectionEquality().equals(backgroundColor, other.backgroundColor) &&
+            const DeepCollectionEquality().equals(backgroundHoveredFocusedColor, other.backgroundHoveredFocusedColor) &&
+            const DeepCollectionEquality().equals(backgroundToggledColor, other.backgroundToggledColor) &&
             const DeepCollectionEquality().equals(
-                backgroundToggledDisabledColor,
-                other.backgroundToggledDisabledColor) &&
-            const DeepCollectionEquality()
-                .equals(borderDefaultColor, other.borderDefaultColor) &&
-            const DeepCollectionEquality()
-                .equals(borderDisabledColor, other.borderDisabledColor) &&
-            const DeepCollectionEquality().equals(
-                borderHoveredFocusedColor, other.borderHoveredFocusedColor) &&
-            const DeepCollectionEquality()
-                .equals(borderRadius, other.borderRadius) &&
-            const DeepCollectionEquality()
-                .equals(borderToggledColor, other.borderToggledColor) &&
-            const DeepCollectionEquality().equals(
-                borderToggledDisabledColor, other.borderToggledDisabledColor) &&
-            const DeepCollectionEquality()
-                .equals(iconDefaultColor, other.iconDefaultColor) &&
-            const DeepCollectionEquality()
-                .equals(iconDefaultSize, other.iconDefaultSize) &&
-            const DeepCollectionEquality()
-                .equals(iconDisabledColor, other.iconDisabledColor) &&
-            const DeepCollectionEquality()
-                .equals(iconLargeIconOnlySize, other.iconLargeIconOnlySize) &&
-            const DeepCollectionEquality()
-                .equals(iconTextSpacing, other.iconTextSpacing) &&
-            const DeepCollectionEquality()
-                .equals(iconToggledColor, other.iconToggledColor) &&
-            const DeepCollectionEquality()
-                .equals(textDefaultColor, other.textDefaultColor) &&
-            const DeepCollectionEquality()
-                .equals(textDisabledColor, other.textDisabledColor) &&
-            const DeepCollectionEquality()
-                .equals(textStyleLarge, other.textStyleLarge) &&
-            const DeepCollectionEquality()
-                .equals(textStyleMedium, other.textStyleMedium) &&
-            const DeepCollectionEquality()
-                .equals(textStyleSmall, other.textStyleSmall) &&
-            const DeepCollectionEquality()
-                .equals(textToggledColor, other.textToggledColor) &&
-            const DeepCollectionEquality()
-                .equals(toggleIconButtonTheme, other.toggleIconButtonTheme) &&
-            const DeepCollectionEquality().equals(
-                toggleIconTextButtonTheme, other.toggleIconTextButtonTheme) &&
-            const DeepCollectionEquality()
-                .equals(toggleTextButtonTheme, other.toggleTextButtonTheme));
+              backgroundToggledDisabledColor,
+              other.backgroundToggledDisabledColor,
+            ) &&
+            const DeepCollectionEquality().equals(borderDefaultColor, other.borderDefaultColor) &&
+            const DeepCollectionEquality().equals(borderDisabledColor, other.borderDisabledColor) &&
+            const DeepCollectionEquality().equals(borderHoveredFocusedColor, other.borderHoveredFocusedColor) &&
+            const DeepCollectionEquality().equals(borderRadius, other.borderRadius) &&
+            const DeepCollectionEquality().equals(borderToggledColor, other.borderToggledColor) &&
+            const DeepCollectionEquality().equals(borderToggledDisabledColor, other.borderToggledDisabledColor) &&
+            const DeepCollectionEquality().equals(iconDefaultColor, other.iconDefaultColor) &&
+            const DeepCollectionEquality().equals(iconDefaultSize, other.iconDefaultSize) &&
+            const DeepCollectionEquality().equals(iconDisabledColor, other.iconDisabledColor) &&
+            const DeepCollectionEquality().equals(iconLargeIconOnlySize, other.iconLargeIconOnlySize) &&
+            const DeepCollectionEquality().equals(iconTextSpacing, other.iconTextSpacing) &&
+            const DeepCollectionEquality().equals(iconToggledColor, other.iconToggledColor) &&
+            const DeepCollectionEquality().equals(textDefaultColor, other.textDefaultColor) &&
+            const DeepCollectionEquality().equals(textDisabledColor, other.textDisabledColor) &&
+            const DeepCollectionEquality().equals(textStyleLarge, other.textStyleLarge) &&
+            const DeepCollectionEquality().equals(textStyleMedium, other.textStyleMedium) &&
+            const DeepCollectionEquality().equals(textStyleSmall, other.textStyleSmall) &&
+            const DeepCollectionEquality().equals(textToggledColor, other.textToggledColor) &&
+            const DeepCollectionEquality().equals(toggleIconButtonTheme, other.toggleIconButtonTheme) &&
+            const DeepCollectionEquality().equals(toggleIconTextButtonTheme, other.toggleIconTextButtonTheme) &&
+            const DeepCollectionEquality().equals(toggleTextButtonTheme, other.toggleTextButtonTheme));
   }
 
   @override

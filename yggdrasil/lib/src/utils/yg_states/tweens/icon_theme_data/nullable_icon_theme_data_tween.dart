@@ -13,8 +13,8 @@ class NullableIconThemeDataTween extends Tween<IconThemeData?> {
 
   @override
   IconThemeData lerp(double t) => IconThemeData.lerp(
-        begin,
-        end,
-        t,
-      );
+    begin,
+    end,
+    t,
+  );
 }

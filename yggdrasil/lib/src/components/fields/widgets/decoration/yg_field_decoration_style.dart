@@ -33,22 +33,22 @@ class YgFieldDecorationStyle extends YgStyle<YgFieldState> {
 
     final EdgeInsets borderPadding = switch (variant) {
       YgFieldVariant.outlined => const EdgeInsets.all(
-          2.0,
-        ),
+        2.0,
+      ),
       YgFieldVariant.standard => const EdgeInsets.only(
-          bottom: 2,
-        ),
+        bottom: 2,
+      ),
     };
 
     final EdgeInsets basePadding = switch (variant) {
       YgFieldVariant.outlined => switch (size) {
-          YgFieldSize.large => _theme.largeOutlinedContentPadding,
-          YgFieldSize.medium => _theme.mediumOutlinedContentPadding,
-        },
+        YgFieldSize.large => _theme.largeOutlinedContentPadding,
+        YgFieldSize.medium => _theme.mediumOutlinedContentPadding,
+      },
       YgFieldVariant.standard => switch (size) {
-          YgFieldSize.large => _theme.largeStandardContentPadding,
-          YgFieldSize.medium => _theme.mediumStandardContentPadding,
-        },
+        YgFieldSize.large => _theme.largeStandardContentPadding,
+        YgFieldSize.medium => _theme.mediumStandardContentPadding,
+      },
     };
 
     if (state.suffix.value) {

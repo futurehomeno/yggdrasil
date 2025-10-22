@@ -227,33 +227,33 @@ class SectionOptions {
   });
 
   static List<SectionOptions> createOptions(String string, String prefix) => <SectionOptions>[
-        SectionOptions(
-          name: 'with $prefix title',
-          title: string,
-        ),
-        SectionOptions(
-          name: 'with $prefix title and $prefix subtitle',
-          title: string,
-          subtitle: string,
-        ),
-        SectionOptions(
-          name: 'with $prefix title and $prefix tag',
-          title: string,
-          trailing: YgTag(child: Text(string)),
-        ),
-        SectionOptions(
-          name: 'with $prefix title and icon',
-          title: string,
-          icon: YgIcons.placeholder,
-        ),
-        SectionOptions(
-          name: 'with $prefix title, $prefix subtitle, $prefix tag and icon',
-          title: string,
-          trailing: YgTag(child: Text(string)),
-          subtitle: string,
-          icon: YgIcons.placeholder,
-        ),
-      ];
+    SectionOptions(
+      name: 'with $prefix title',
+      title: string,
+    ),
+    SectionOptions(
+      name: 'with $prefix title and $prefix subtitle',
+      title: string,
+      subtitle: string,
+    ),
+    SectionOptions(
+      name: 'with $prefix title and $prefix tag',
+      title: string,
+      trailing: YgTag(child: Text(string)),
+    ),
+    SectionOptions(
+      name: 'with $prefix title and icon',
+      title: string,
+      icon: YgIcons.placeholder,
+    ),
+    SectionOptions(
+      name: 'with $prefix title, $prefix subtitle, $prefix tag and icon',
+      title: string,
+      trailing: YgTag(child: Text(string)),
+      subtitle: string,
+      icon: YgIcons.placeholder,
+    ),
+  ];
 
   static final List<SectionOptions> all = <SectionOptions>[
     const SectionOptions(

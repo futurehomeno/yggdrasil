@@ -8,11 +8,11 @@ class _YgConstantSizeCrossFadeRenderWidget extends MultiChildRenderObjectWidget 
     required this.secondChildAlignment,
     required this.animation,
   }) : super(
-          children: <Widget>[
-            firstChild,
-            secondChild,
-          ],
-        );
+         children: <Widget>[
+           firstChild,
+           secondChild,
+         ],
+       );
 
   final Alignment firstChildAlignment;
   final Alignment secondChildAlignment;
@@ -45,9 +45,9 @@ class _YgConstantSizeCrossFadeRenderer extends RenderBox
     required Alignment firstChildAlignment,
     required Alignment secondChildAlignment,
     required Animation<double> animation,
-  })  : _firstChildAlignment = firstChildAlignment,
-        _secondChildAlignment = secondChildAlignment,
-        _animation = animation;
+  }) : _firstChildAlignment = firstChildAlignment,
+       _secondChildAlignment = secondChildAlignment,
+       _animation = animation;
 
   Alignment _firstChildAlignment;
   Alignment get firstChildAlignment => _firstChildAlignment;

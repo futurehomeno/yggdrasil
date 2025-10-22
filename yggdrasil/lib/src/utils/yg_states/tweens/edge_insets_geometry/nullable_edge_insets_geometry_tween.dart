@@ -13,8 +13,8 @@ class NullableEdgeInsetsGeometryTween extends Tween<EdgeInsetsGeometry?> {
 
   @override
   EdgeInsetsGeometry? lerp(double t) => EdgeInsetsGeometry.lerp(
-        begin,
-        end,
-        t,
-      );
+    begin,
+    end,
+    t,
+  );
 }

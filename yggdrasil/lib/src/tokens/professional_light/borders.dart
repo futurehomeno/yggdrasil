@@ -4,23 +4,31 @@ import 'package:flutter/material.dart';
 
 class FhBorders {
   const FhBorders._();
-  static const Border none = Border.fromBorderSide(BorderSide(
-    color: Color(0xffb6c2ca),
-    width: 0.0,
-  ));
+  static const Border none = Border.fromBorderSide(
+    BorderSide(
+      color: Color(0xffb6c2ca),
+      width: 0.0,
+    ),
+  );
 
-  static const Border sm = Border.fromBorderSide(BorderSide(
-    color: Color(0xffb6c2ca),
-    width: 1.0,
-  ));
+  static const Border sm = Border.fromBorderSide(
+    BorderSide(
+      color: Color(0xffb6c2ca),
+      width: 1.0,
+    ),
+  );
 
-  static const Border md = Border.fromBorderSide(BorderSide(
-    color: Color(0xffb6c2ca),
-    width: 2.0,
-  ));
+  static const Border md = Border.fromBorderSide(
+    BorderSide(
+      color: Color(0xffb6c2ca),
+      width: 2.0,
+    ),
+  );
 
-  static const Border lg = Border.fromBorderSide(BorderSide(
-    color: Color(0xffb6c2ca),
-    width: 3.0,
-  ));
+  static const Border lg = Border.fromBorderSide(
+    BorderSide(
+      color: Color(0xffb6c2ca),
+      width: 3.0,
+    ),
+  );
 }

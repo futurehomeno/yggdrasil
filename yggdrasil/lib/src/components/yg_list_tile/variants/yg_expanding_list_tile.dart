@@ -31,18 +31,18 @@ final class YgExpandingListTile extends StatelessWidget with StatelessWidgetDebu
     this.onExpandedChanged,
     this.initiallyExpanded = false,
     this.density = YgListTileDensity.standard,
-  })  : assert(
-          title != null || leadingWidgets != null || subtitle != null,
-          'Can not have neither a title, subtitle, or leading widget.',
-        ),
-        assert(
-          subtitleIcon == null || subtitle != null,
-          'Can not add a subtitleIcon without a subtitle.',
-        ),
-        assert(
-          title != null || onInfoTap == null,
-          'Can not have a infoButton without a title.',
-        );
+  }) : assert(
+         title != null || leadingWidgets != null || subtitle != null,
+         'Can not have neither a title, subtitle, or leading widget.',
+       ),
+       assert(
+         subtitleIcon == null || subtitle != null,
+         'Can not add a subtitleIcon without a subtitle.',
+       ),
+       assert(
+         title != null || onInfoTap == null,
+         'Can not have a infoButton without a title.',
+       );
 
   /// The widget rendered below the list tile when it is expanded..
   final Widget child;

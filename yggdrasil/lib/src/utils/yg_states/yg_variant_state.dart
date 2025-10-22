@@ -13,6 +13,6 @@ class YgVariantState<T extends Enum> extends YgState {
 
   @override
   List<YgStateValue<Object?>> get props => <YgStateValue<Object?>>[
-        variant,
-      ];
+    variant,
+  ];
 }

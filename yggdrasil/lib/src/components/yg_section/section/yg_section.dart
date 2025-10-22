@@ -55,9 +55,9 @@ abstract class YgSection extends StatelessWidget with StatelessWidgetDebugMixin 
     this.icon,
     this.onHeaderPressed,
   }) : assert(
-          title != null || (subtitle == null && trailing == null && icon == null),
-          'subtitle, trailing or icon cannot be set without a title.',
-        );
+         title != null || (subtitle == null && trailing == null && icon == null),
+         'subtitle, trailing or icon cannot be set without a title.',
+       );
 
   @override
   Widget build(BuildContext context) {

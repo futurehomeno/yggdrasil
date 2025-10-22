@@ -6,8 +6,8 @@ class YgSingleSelectDropdownController<T extends Object>
   YgSingleSelectDropdownController({
     super.initialValue,
   }) : pendingValue = ValueNotifier<T?>(
-          initialValue,
-        );
+         initialValue,
+       );
 
   @override
   final ValueNotifier<T?> pendingValue;

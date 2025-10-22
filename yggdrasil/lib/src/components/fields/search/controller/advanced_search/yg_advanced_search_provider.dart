@@ -19,10 +19,19 @@ abstract class YgAdvancedSearchProvider<Value, ResultValue>
 /// !-- IMPORTANT --
 /// Error handling should be handled by the user of this interface, the
 /// controller will not handle any errors by it self.
-abstract class YgAdvancedSearchSession<Value, ResultValue,
-        Provider extends YgAdvancedSearchProvider<Value, ResultValue>>
-    extends YgBaseSearchSession<Value, ResultValue, YgSearchResult<ResultValue>, YgSearchResultsLayout<ResultValue>,
-        YgAdvancedSearchProvider<Value, ResultValue>> {
+abstract class YgAdvancedSearchSession<
+  Value,
+  ResultValue,
+  Provider extends YgAdvancedSearchProvider<Value, ResultValue>
+>
+    extends
+        YgBaseSearchSession<
+          Value,
+          ResultValue,
+          YgSearchResult<ResultValue>,
+          YgSearchResultsLayout<ResultValue>,
+          YgAdvancedSearchProvider<Value, ResultValue>
+        > {
   /// Should create the final value and text representation stored in the search
   /// widget.
   ///

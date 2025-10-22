@@ -13,8 +13,8 @@ class NonNullableRelativeRectTween extends Tween<RelativeRect> {
 
   @override
   RelativeRect lerp(double t) => RelativeRect.lerp(
-        begin,
-        end,
-        t,
-      )!;
+    begin,
+    end,
+    t,
+  )!;
 }

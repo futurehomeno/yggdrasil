@@ -110,34 +110,34 @@ class YgTagVariantStyle {
   });
 
   factory YgTagVariantStyle.neutral(YgNeutralTagTheme theme) => YgTagVariantStyle(
-        backgroundColor: theme.backgroundColor,
-        disabledBackgroundColor: theme.disabledBackgroundColor,
-        strongBackgroundColor: theme.strongBackgroundColor,
-      );
+    backgroundColor: theme.backgroundColor,
+    disabledBackgroundColor: theme.disabledBackgroundColor,
+    strongBackgroundColor: theme.strongBackgroundColor,
+  );
 
   factory YgTagVariantStyle.informative(YgInformativeTagTheme theme) => YgTagVariantStyle(
-        backgroundColor: theme.backgroundColor,
-        disabledBackgroundColor: theme.disabledBackgroundColor,
-        strongBackgroundColor: theme.strongBackgroundColor,
-      );
+    backgroundColor: theme.backgroundColor,
+    disabledBackgroundColor: theme.disabledBackgroundColor,
+    strongBackgroundColor: theme.strongBackgroundColor,
+  );
 
   factory YgTagVariantStyle.positive(YgPositiveTagTheme theme) => YgTagVariantStyle(
-        backgroundColor: theme.backgroundColor,
-        disabledBackgroundColor: theme.disabledBackgroundColor,
-        strongBackgroundColor: theme.strongBackgroundColor,
-      );
+    backgroundColor: theme.backgroundColor,
+    disabledBackgroundColor: theme.disabledBackgroundColor,
+    strongBackgroundColor: theme.strongBackgroundColor,
+  );
 
   factory YgTagVariantStyle.warning(YgWarningTagTheme theme) => YgTagVariantStyle(
-        backgroundColor: theme.backgroundColor,
-        disabledBackgroundColor: theme.disabledBackgroundColor,
-        strongBackgroundColor: theme.strongBackgroundColor,
-      );
+    backgroundColor: theme.backgroundColor,
+    disabledBackgroundColor: theme.disabledBackgroundColor,
+    strongBackgroundColor: theme.strongBackgroundColor,
+  );
 
   factory YgTagVariantStyle.negative(YgNegativeTagTheme theme) => YgTagVariantStyle(
-        backgroundColor: theme.backgroundColor,
-        disabledBackgroundColor: theme.disabledBackgroundColor,
-        strongBackgroundColor: theme.strongBackgroundColor,
-      );
+    backgroundColor: theme.backgroundColor,
+    disabledBackgroundColor: theme.disabledBackgroundColor,
+    strongBackgroundColor: theme.strongBackgroundColor,
+  );
 
   final Color backgroundColor;
   final Color disabledBackgroundColor;

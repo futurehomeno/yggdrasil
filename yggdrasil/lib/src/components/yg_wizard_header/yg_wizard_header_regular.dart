@@ -5,15 +5,15 @@ class _YgWizardHeaderRegular extends YgWizardHeader {
     required super.titleBuilder,
     required this.currentStep,
     required this.steps,
-  })  : assert(
-          currentStep < steps,
-          'currentStep has to be less than steps',
-        ),
-        assert(
-          steps > 1,
-          'Wizard header must have at least 2 steps',
-        ),
-        super._();
+  }) : assert(
+         currentStep < steps,
+         'currentStep has to be less than steps',
+       ),
+       assert(
+         steps > 1,
+         'Wizard header must have at least 2 steps',
+       ),
+       super._();
 
   /// The amount of steps.
   ///

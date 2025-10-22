@@ -56,12 +56,10 @@ class YgRadioGroupTheme extends ThemeExtension<YgRadioGroupTheme> {
   }
 
   @override
-  YgRadioGroupTheme lerp(
-      covariant ThemeExtension<YgRadioGroupTheme>? other, double t) {
+  YgRadioGroupTheme lerp(covariant ThemeExtension<YgRadioGroupTheme>? other, double t) {
     if (other is! YgRadioGroupTheme) return this as YgRadioGroupTheme;
     return YgRadioGroupTheme(
-      labelColumnSpacing:
-          t < 0.5 ? labelColumnSpacing : other.labelColumnSpacing,
+      labelColumnSpacing: t < 0.5 ? labelColumnSpacing : other.labelColumnSpacing,
       labelTextStyle: TextStyle.lerp(labelTextStyle, other.labelTextStyle, t)!,
     );
   }
@@ -71,10 +69,8 @@ class YgRadioGroupTheme extends ThemeExtension<YgRadioGroupTheme> {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is YgRadioGroupTheme &&
-            const DeepCollectionEquality()
-                .equals(labelColumnSpacing, other.labelColumnSpacing) &&
-            const DeepCollectionEquality()
-                .equals(labelTextStyle, other.labelTextStyle));
+            const DeepCollectionEquality().equals(labelColumnSpacing, other.labelColumnSpacing) &&
+            const DeepCollectionEquality().equals(labelTextStyle, other.labelTextStyle));
   }
 
   @override

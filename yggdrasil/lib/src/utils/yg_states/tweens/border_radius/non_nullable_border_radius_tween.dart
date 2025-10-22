@@ -13,8 +13,8 @@ class NonNullableBorderRadiusTween extends Tween<BorderRadius> {
 
   @override
   BorderRadius lerp(double t) => BorderRadius.lerp(
-        begin,
-        end,
-        t,
-      )!;
+    begin,
+    end,
+    t,
+  )!;
 }

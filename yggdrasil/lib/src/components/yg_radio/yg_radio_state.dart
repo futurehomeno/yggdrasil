@@ -7,11 +7,11 @@ class YgRadioState extends YgState {
     bool error = false,
     bool disabled = false,
     bool selected = false,
-  })  : hovered = YgStateValue<bool>(hovered),
-        focused = YgStateValue<bool>(focused),
-        error = YgStateValue<bool>(error),
-        disabled = YgStateValue<bool>(disabled),
-        selected = YgStateValue<bool>(selected);
+  }) : hovered = YgStateValue<bool>(hovered),
+       focused = YgStateValue<bool>(focused),
+       error = YgStateValue<bool>(error),
+       disabled = YgStateValue<bool>(disabled),
+       selected = YgStateValue<bool>(selected);
 
   final YgStateValue<bool> hovered;
   final YgStateValue<bool> focused;
@@ -21,10 +21,10 @@ class YgRadioState extends YgState {
 
   @override
   List<YgStateValue<Object>> get props => <YgStateValue<Object>>[
-        hovered,
-        focused,
-        error,
-        disabled,
-        selected,
-      ];
+    hovered,
+    focused,
+    error,
+    disabled,
+    selected,
+  ];
 }

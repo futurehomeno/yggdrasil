@@ -6,15 +6,15 @@ class YgIconFrameState extends YgState {
   YgIconFrameState({
     required Color? color,
     required YgIconSize? size,
-  })  : color = YgStateValue<Color?>(color),
-        size = YgStateValue<YgIconSize?>(size);
+  }) : color = YgStateValue<Color?>(color),
+       size = YgStateValue<YgIconSize?>(size);
 
   final YgStateValue<Color?> color;
   final YgStateValue<YgIconSize?> size;
 
   @override
   List<YgStateValue<Object?>> get props => <YgStateValue<Object?>>[
-        color,
-        size,
-      ];
+    color,
+    size,
+  ];
 }

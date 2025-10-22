@@ -89,7 +89,8 @@ void _generateIconsListFile({
   required List<String> iconNamesList,
   required String outputPath,
 }) {
-  final String iconsListContent = '''
+  final String iconsListContent =
+      '''
 import 'package:yggdrasil/src/utils/yg_icon_data/_yg_icon_data.dart';
 
 class YgIcons {

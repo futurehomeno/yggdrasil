@@ -45,8 +45,7 @@ class YgSwitchTheme extends ThemeExtension<YgSwitchTheme> {
     trackDefaultColor: _$YgSwitchTheme.trackDefaultColor[0],
     trackDisabledColor: _$YgSwitchTheme.trackDisabledColor[0],
     trackToggledColor: _$YgSwitchTheme.trackToggledColor[0],
-    trackToggledFocusedHoveredColor:
-        _$YgSwitchTheme.trackToggledFocusedHoveredColor[0],
+    trackToggledFocusedHoveredColor: _$YgSwitchTheme.trackToggledFocusedHoveredColor[0],
     width: _$YgSwitchTheme.width[0],
   );
 
@@ -60,8 +59,7 @@ class YgSwitchTheme extends ThemeExtension<YgSwitchTheme> {
     trackDefaultColor: _$YgSwitchTheme.trackDefaultColor[1],
     trackDisabledColor: _$YgSwitchTheme.trackDisabledColor[1],
     trackToggledColor: _$YgSwitchTheme.trackToggledColor[1],
-    trackToggledFocusedHoveredColor:
-        _$YgSwitchTheme.trackToggledFocusedHoveredColor[1],
+    trackToggledFocusedHoveredColor: _$YgSwitchTheme.trackToggledFocusedHoveredColor[1],
     width: _$YgSwitchTheme.width[1],
   );
 
@@ -75,8 +73,7 @@ class YgSwitchTheme extends ThemeExtension<YgSwitchTheme> {
     trackDefaultColor: _$YgSwitchTheme.trackDefaultColor[2],
     trackDisabledColor: _$YgSwitchTheme.trackDisabledColor[2],
     trackToggledColor: _$YgSwitchTheme.trackToggledColor[2],
-    trackToggledFocusedHoveredColor:
-        _$YgSwitchTheme.trackToggledFocusedHoveredColor[2],
+    trackToggledFocusedHoveredColor: _$YgSwitchTheme.trackToggledFocusedHoveredColor[2],
     width: _$YgSwitchTheme.width[2],
   );
 
@@ -90,8 +87,7 @@ class YgSwitchTheme extends ThemeExtension<YgSwitchTheme> {
     trackDefaultColor: _$YgSwitchTheme.trackDefaultColor[3],
     trackDisabledColor: _$YgSwitchTheme.trackDisabledColor[3],
     trackToggledColor: _$YgSwitchTheme.trackToggledColor[3],
-    trackToggledFocusedHoveredColor:
-        _$YgSwitchTheme.trackToggledFocusedHoveredColor[3],
+    trackToggledFocusedHoveredColor: _$YgSwitchTheme.trackToggledFocusedHoveredColor[3],
     width: _$YgSwitchTheme.width[3],
   );
 
@@ -126,8 +122,7 @@ class YgSwitchTheme extends ThemeExtension<YgSwitchTheme> {
       trackDefaultColor: trackDefaultColor ?? this.trackDefaultColor,
       trackDisabledColor: trackDisabledColor ?? this.trackDisabledColor,
       trackToggledColor: trackToggledColor ?? this.trackToggledColor,
-      trackToggledFocusedHoveredColor: trackToggledFocusedHoveredColor ??
-          this.trackToggledFocusedHoveredColor,
+      trackToggledFocusedHoveredColor: trackToggledFocusedHoveredColor ?? this.trackToggledFocusedHoveredColor,
       width: width ?? this.width,
     );
   }
@@ -138,22 +133,18 @@ class YgSwitchTheme extends ThemeExtension<YgSwitchTheme> {
     return YgSwitchTheme(
       animationCurve: t < 0.5 ? animationCurve : other.animationCurve,
       animationDuration: t < 0.5 ? animationDuration : other.animationDuration,
-      handleDefaultColor:
-          Color.lerp(handleDefaultColor, other.handleDefaultColor, t)!,
-      handleDisabledColor:
-          Color.lerp(handleDisabledColor, other.handleDisabledColor, t)!,
+      handleDefaultColor: Color.lerp(handleDefaultColor, other.handleDefaultColor, t)!,
+      handleDisabledColor: Color.lerp(handleDisabledColor, other.handleDisabledColor, t)!,
       handlePadding: t < 0.5 ? handlePadding : other.handlePadding,
       handleSize: t < 0.5 ? handleSize : other.handleSize,
-      trackDefaultColor:
-          Color.lerp(trackDefaultColor, other.trackDefaultColor, t)!,
-      trackDisabledColor:
-          Color.lerp(trackDisabledColor, other.trackDisabledColor, t)!,
-      trackToggledColor:
-          Color.lerp(trackToggledColor, other.trackToggledColor, t)!,
+      trackDefaultColor: Color.lerp(trackDefaultColor, other.trackDefaultColor, t)!,
+      trackDisabledColor: Color.lerp(trackDisabledColor, other.trackDisabledColor, t)!,
+      trackToggledColor: Color.lerp(trackToggledColor, other.trackToggledColor, t)!,
       trackToggledFocusedHoveredColor: Color.lerp(
-          trackToggledFocusedHoveredColor,
-          other.trackToggledFocusedHoveredColor,
-          t)!,
+        trackToggledFocusedHoveredColor,
+        other.trackToggledFocusedHoveredColor,
+        t,
+      )!,
       width: t < 0.5 ? width : other.width,
     );
   }
@@ -163,27 +154,19 @@ class YgSwitchTheme extends ThemeExtension<YgSwitchTheme> {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is YgSwitchTheme &&
-            const DeepCollectionEquality()
-                .equals(animationCurve, other.animationCurve) &&
-            const DeepCollectionEquality()
-                .equals(animationDuration, other.animationDuration) &&
-            const DeepCollectionEquality()
-                .equals(handleDefaultColor, other.handleDefaultColor) &&
-            const DeepCollectionEquality()
-                .equals(handleDisabledColor, other.handleDisabledColor) &&
-            const DeepCollectionEquality()
-                .equals(handlePadding, other.handlePadding) &&
-            const DeepCollectionEquality()
-                .equals(handleSize, other.handleSize) &&
-            const DeepCollectionEquality()
-                .equals(trackDefaultColor, other.trackDefaultColor) &&
-            const DeepCollectionEquality()
-                .equals(trackDisabledColor, other.trackDisabledColor) &&
-            const DeepCollectionEquality()
-                .equals(trackToggledColor, other.trackToggledColor) &&
+            const DeepCollectionEquality().equals(animationCurve, other.animationCurve) &&
+            const DeepCollectionEquality().equals(animationDuration, other.animationDuration) &&
+            const DeepCollectionEquality().equals(handleDefaultColor, other.handleDefaultColor) &&
+            const DeepCollectionEquality().equals(handleDisabledColor, other.handleDisabledColor) &&
+            const DeepCollectionEquality().equals(handlePadding, other.handlePadding) &&
+            const DeepCollectionEquality().equals(handleSize, other.handleSize) &&
+            const DeepCollectionEquality().equals(trackDefaultColor, other.trackDefaultColor) &&
+            const DeepCollectionEquality().equals(trackDisabledColor, other.trackDisabledColor) &&
+            const DeepCollectionEquality().equals(trackToggledColor, other.trackToggledColor) &&
             const DeepCollectionEquality().equals(
-                trackToggledFocusedHoveredColor,
-                other.trackToggledFocusedHoveredColor) &&
+              trackToggledFocusedHoveredColor,
+              other.trackToggledFocusedHoveredColor,
+            ) &&
             const DeepCollectionEquality().equals(width, other.width));
   }
 

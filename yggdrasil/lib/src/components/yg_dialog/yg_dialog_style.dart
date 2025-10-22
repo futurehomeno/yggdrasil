@@ -57,34 +57,34 @@ class YgDialogVariantTheme {
   });
 
   factory YgDialogVariantTheme.loading(LoadingDialogTheme theme) => YgDialogVariantTheme(
-        iconBackground: theme.iconBackground,
-        iconColor: theme.iconColor,
-        iconPadding: theme.iconPadding,
-      );
+    iconBackground: theme.iconBackground,
+    iconColor: theme.iconColor,
+    iconPadding: theme.iconPadding,
+  );
 
   factory YgDialogVariantTheme.confirm(ConfirmDialogTheme theme) => YgDialogVariantTheme(
-        iconBackground: theme.iconBackground,
-        iconColor: theme.iconColor,
-        iconPadding: theme.iconPadding,
-      );
+    iconBackground: theme.iconBackground,
+    iconColor: theme.iconColor,
+    iconPadding: theme.iconPadding,
+  );
 
   factory YgDialogVariantTheme.critical(CriticalDialogTheme theme) => YgDialogVariantTheme(
-        iconBackground: theme.iconBackground,
-        iconColor: theme.iconColor,
-        iconPadding: theme.iconPadding,
-      );
+    iconBackground: theme.iconBackground,
+    iconColor: theme.iconColor,
+    iconPadding: theme.iconPadding,
+  );
 
   factory YgDialogVariantTheme.highlight(HighlightDialogTheme theme) => YgDialogVariantTheme(
-        iconBackground: theme.iconBackground,
-        iconColor: theme.iconColor,
-        iconPadding: theme.iconPadding,
-      );
+    iconBackground: theme.iconBackground,
+    iconColor: theme.iconColor,
+    iconPadding: theme.iconPadding,
+  );
 
   factory YgDialogVariantTheme.success(SuccessDialogTheme theme) => YgDialogVariantTheme(
-        iconBackground: theme.iconBackground,
-        iconColor: theme.iconColor,
-        iconPadding: theme.iconPadding,
-      );
+    iconBackground: theme.iconBackground,
+    iconColor: theme.iconColor,
+    iconPadding: theme.iconPadding,
+  );
 
   final Color iconBackground;
   final Color iconColor;

@@ -59,8 +59,7 @@ class YgCheckboxTheme extends ThemeExtension<YgCheckboxTheme> {
     checkboxGroupTheme: _$YgCheckboxTheme.checkboxGroupTheme[0],
     checkboxItemTheme: _$YgCheckboxTheme.checkboxItemTheme[0],
     checkedBorderColor: _$YgCheckboxTheme.checkedBorderColor[0],
-    checkedFocusHoverBorderColor:
-        _$YgCheckboxTheme.checkedFocusHoverBorderColor[0],
+    checkedFocusHoverBorderColor: _$YgCheckboxTheme.checkedFocusHoverBorderColor[0],
     defaultBackgroundColor: _$YgCheckboxTheme.defaultBackgroundColor[0],
     defaultBorderColor: _$YgCheckboxTheme.defaultBorderColor[0],
     defaultIconColor: _$YgCheckboxTheme.defaultIconColor[0],
@@ -82,8 +81,7 @@ class YgCheckboxTheme extends ThemeExtension<YgCheckboxTheme> {
     checkboxGroupTheme: _$YgCheckboxTheme.checkboxGroupTheme[1],
     checkboxItemTheme: _$YgCheckboxTheme.checkboxItemTheme[1],
     checkedBorderColor: _$YgCheckboxTheme.checkedBorderColor[1],
-    checkedFocusHoverBorderColor:
-        _$YgCheckboxTheme.checkedFocusHoverBorderColor[1],
+    checkedFocusHoverBorderColor: _$YgCheckboxTheme.checkedFocusHoverBorderColor[1],
     defaultBackgroundColor: _$YgCheckboxTheme.defaultBackgroundColor[1],
     defaultBorderColor: _$YgCheckboxTheme.defaultBorderColor[1],
     defaultIconColor: _$YgCheckboxTheme.defaultIconColor[1],
@@ -105,8 +103,7 @@ class YgCheckboxTheme extends ThemeExtension<YgCheckboxTheme> {
     checkboxGroupTheme: _$YgCheckboxTheme.checkboxGroupTheme[2],
     checkboxItemTheme: _$YgCheckboxTheme.checkboxItemTheme[2],
     checkedBorderColor: _$YgCheckboxTheme.checkedBorderColor[2],
-    checkedFocusHoverBorderColor:
-        _$YgCheckboxTheme.checkedFocusHoverBorderColor[2],
+    checkedFocusHoverBorderColor: _$YgCheckboxTheme.checkedFocusHoverBorderColor[2],
     defaultBackgroundColor: _$YgCheckboxTheme.defaultBackgroundColor[2],
     defaultBorderColor: _$YgCheckboxTheme.defaultBorderColor[2],
     defaultIconColor: _$YgCheckboxTheme.defaultIconColor[2],
@@ -128,8 +125,7 @@ class YgCheckboxTheme extends ThemeExtension<YgCheckboxTheme> {
     checkboxGroupTheme: _$YgCheckboxTheme.checkboxGroupTheme[3],
     checkboxItemTheme: _$YgCheckboxTheme.checkboxItemTheme[3],
     checkedBorderColor: _$YgCheckboxTheme.checkedBorderColor[3],
-    checkedFocusHoverBorderColor:
-        _$YgCheckboxTheme.checkedFocusHoverBorderColor[3],
+    checkedFocusHoverBorderColor: _$YgCheckboxTheme.checkedFocusHoverBorderColor[3],
     defaultBackgroundColor: _$YgCheckboxTheme.defaultBackgroundColor[3],
     defaultBorderColor: _$YgCheckboxTheme.defaultBorderColor[3],
     defaultIconColor: _$YgCheckboxTheme.defaultIconColor[3],
@@ -180,61 +176,42 @@ class YgCheckboxTheme extends ThemeExtension<YgCheckboxTheme> {
       checkboxGroupTheme: checkboxGroupTheme ?? this.checkboxGroupTheme,
       checkboxItemTheme: checkboxItemTheme ?? this.checkboxItemTheme,
       checkedBorderColor: checkedBorderColor ?? this.checkedBorderColor,
-      checkedFocusHoverBorderColor:
-          checkedFocusHoverBorderColor ?? this.checkedFocusHoverBorderColor,
-      defaultBackgroundColor:
-          defaultBackgroundColor ?? this.defaultBackgroundColor,
+      checkedFocusHoverBorderColor: checkedFocusHoverBorderColor ?? this.checkedFocusHoverBorderColor,
+      defaultBackgroundColor: defaultBackgroundColor ?? this.defaultBackgroundColor,
       defaultBorderColor: defaultBorderColor ?? this.defaultBorderColor,
       defaultIconColor: defaultIconColor ?? this.defaultIconColor,
-      disabledBackgroundColor:
-          disabledBackgroundColor ?? this.disabledBackgroundColor,
+      disabledBackgroundColor: disabledBackgroundColor ?? this.disabledBackgroundColor,
       disabledBorderColor: disabledBorderColor ?? this.disabledBorderColor,
       disabledIconColor: disabledIconColor ?? this.disabledIconColor,
       errorBorderColor: errorBorderColor ?? this.errorBorderColor,
-      errorFocusHoverBorderColor:
-          errorFocusHoverBorderColor ?? this.errorFocusHoverBorderColor,
-      focusHoverBorderColor:
-          focusHoverBorderColor ?? this.focusHoverBorderColor,
+      errorFocusHoverBorderColor: errorFocusHoverBorderColor ?? this.errorFocusHoverBorderColor,
+      focusHoverBorderColor: focusHoverBorderColor ?? this.focusHoverBorderColor,
       padding: padding ?? this.padding,
       size: size ?? this.size,
     );
   }
 
   @override
-  YgCheckboxTheme lerp(
-      covariant ThemeExtension<YgCheckboxTheme>? other, double t) {
+  YgCheckboxTheme lerp(covariant ThemeExtension<YgCheckboxTheme>? other, double t) {
     if (other is! YgCheckboxTheme) return this as YgCheckboxTheme;
     return YgCheckboxTheme(
       animationCurve: t < 0.5 ? animationCurve : other.animationCurve,
       animationDuration: t < 0.5 ? animationDuration : other.animationDuration,
       borderRadius: t < 0.5 ? borderRadius : other.borderRadius,
       borderWidth: t < 0.5 ? borderWidth : other.borderWidth,
-      checkboxGroupTheme: checkboxGroupTheme.lerp(other.checkboxGroupTheme, t)
-          as YgCheckboxGroupTheme,
-      checkboxItemTheme: checkboxItemTheme.lerp(other.checkboxItemTheme, t)
-          as YgCheckboxItemTheme,
-      checkedBorderColor:
-          Color.lerp(checkedBorderColor, other.checkedBorderColor, t)!,
-      checkedFocusHoverBorderColor: Color.lerp(
-          checkedFocusHoverBorderColor, other.checkedFocusHoverBorderColor, t)!,
-      defaultBackgroundColor:
-          Color.lerp(defaultBackgroundColor, other.defaultBackgroundColor, t)!,
-      defaultBorderColor:
-          Color.lerp(defaultBorderColor, other.defaultBorderColor, t)!,
-      defaultIconColor:
-          Color.lerp(defaultIconColor, other.defaultIconColor, t)!,
-      disabledBackgroundColor: Color.lerp(
-          disabledBackgroundColor, other.disabledBackgroundColor, t)!,
-      disabledBorderColor:
-          Color.lerp(disabledBorderColor, other.disabledBorderColor, t)!,
-      disabledIconColor:
-          Color.lerp(disabledIconColor, other.disabledIconColor, t)!,
-      errorBorderColor:
-          Color.lerp(errorBorderColor, other.errorBorderColor, t)!,
-      errorFocusHoverBorderColor: Color.lerp(
-          errorFocusHoverBorderColor, other.errorFocusHoverBorderColor, t)!,
-      focusHoverBorderColor:
-          Color.lerp(focusHoverBorderColor, other.focusHoverBorderColor, t)!,
+      checkboxGroupTheme: checkboxGroupTheme.lerp(other.checkboxGroupTheme, t) as YgCheckboxGroupTheme,
+      checkboxItemTheme: checkboxItemTheme.lerp(other.checkboxItemTheme, t) as YgCheckboxItemTheme,
+      checkedBorderColor: Color.lerp(checkedBorderColor, other.checkedBorderColor, t)!,
+      checkedFocusHoverBorderColor: Color.lerp(checkedFocusHoverBorderColor, other.checkedFocusHoverBorderColor, t)!,
+      defaultBackgroundColor: Color.lerp(defaultBackgroundColor, other.defaultBackgroundColor, t)!,
+      defaultBorderColor: Color.lerp(defaultBorderColor, other.defaultBorderColor, t)!,
+      defaultIconColor: Color.lerp(defaultIconColor, other.defaultIconColor, t)!,
+      disabledBackgroundColor: Color.lerp(disabledBackgroundColor, other.disabledBackgroundColor, t)!,
+      disabledBorderColor: Color.lerp(disabledBorderColor, other.disabledBorderColor, t)!,
+      disabledIconColor: Color.lerp(disabledIconColor, other.disabledIconColor, t)!,
+      errorBorderColor: Color.lerp(errorBorderColor, other.errorBorderColor, t)!,
+      errorFocusHoverBorderColor: Color.lerp(errorFocusHoverBorderColor, other.errorFocusHoverBorderColor, t)!,
+      focusHoverBorderColor: Color.lerp(focusHoverBorderColor, other.focusHoverBorderColor, t)!,
       padding: t < 0.5 ? padding : other.padding,
       size: t < 0.5 ? size : other.size,
     );
@@ -245,40 +222,23 @@ class YgCheckboxTheme extends ThemeExtension<YgCheckboxTheme> {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is YgCheckboxTheme &&
-            const DeepCollectionEquality()
-                .equals(animationCurve, other.animationCurve) &&
-            const DeepCollectionEquality()
-                .equals(animationDuration, other.animationDuration) &&
-            const DeepCollectionEquality()
-                .equals(borderRadius, other.borderRadius) &&
-            const DeepCollectionEquality()
-                .equals(borderWidth, other.borderWidth) &&
-            const DeepCollectionEquality()
-                .equals(checkboxGroupTheme, other.checkboxGroupTheme) &&
-            const DeepCollectionEquality()
-                .equals(checkboxItemTheme, other.checkboxItemTheme) &&
-            const DeepCollectionEquality()
-                .equals(checkedBorderColor, other.checkedBorderColor) &&
-            const DeepCollectionEquality().equals(checkedFocusHoverBorderColor,
-                other.checkedFocusHoverBorderColor) &&
-            const DeepCollectionEquality()
-                .equals(defaultBackgroundColor, other.defaultBackgroundColor) &&
-            const DeepCollectionEquality()
-                .equals(defaultBorderColor, other.defaultBorderColor) &&
-            const DeepCollectionEquality()
-                .equals(defaultIconColor, other.defaultIconColor) &&
-            const DeepCollectionEquality().equals(
-                disabledBackgroundColor, other.disabledBackgroundColor) &&
-            const DeepCollectionEquality()
-                .equals(disabledBorderColor, other.disabledBorderColor) &&
-            const DeepCollectionEquality()
-                .equals(disabledIconColor, other.disabledIconColor) &&
-            const DeepCollectionEquality()
-                .equals(errorBorderColor, other.errorBorderColor) &&
-            const DeepCollectionEquality().equals(
-                errorFocusHoverBorderColor, other.errorFocusHoverBorderColor) &&
-            const DeepCollectionEquality()
-                .equals(focusHoverBorderColor, other.focusHoverBorderColor) &&
+            const DeepCollectionEquality().equals(animationCurve, other.animationCurve) &&
+            const DeepCollectionEquality().equals(animationDuration, other.animationDuration) &&
+            const DeepCollectionEquality().equals(borderRadius, other.borderRadius) &&
+            const DeepCollectionEquality().equals(borderWidth, other.borderWidth) &&
+            const DeepCollectionEquality().equals(checkboxGroupTheme, other.checkboxGroupTheme) &&
+            const DeepCollectionEquality().equals(checkboxItemTheme, other.checkboxItemTheme) &&
+            const DeepCollectionEquality().equals(checkedBorderColor, other.checkedBorderColor) &&
+            const DeepCollectionEquality().equals(checkedFocusHoverBorderColor, other.checkedFocusHoverBorderColor) &&
+            const DeepCollectionEquality().equals(defaultBackgroundColor, other.defaultBackgroundColor) &&
+            const DeepCollectionEquality().equals(defaultBorderColor, other.defaultBorderColor) &&
+            const DeepCollectionEquality().equals(defaultIconColor, other.defaultIconColor) &&
+            const DeepCollectionEquality().equals(disabledBackgroundColor, other.disabledBackgroundColor) &&
+            const DeepCollectionEquality().equals(disabledBorderColor, other.disabledBorderColor) &&
+            const DeepCollectionEquality().equals(disabledIconColor, other.disabledIconColor) &&
+            const DeepCollectionEquality().equals(errorBorderColor, other.errorBorderColor) &&
+            const DeepCollectionEquality().equals(errorFocusHoverBorderColor, other.errorFocusHoverBorderColor) &&
+            const DeepCollectionEquality().equals(focusHoverBorderColor, other.focusHoverBorderColor) &&
             const DeepCollectionEquality().equals(padding, other.padding) &&
             const DeepCollectionEquality().equals(size, other.size));
   }

@@ -23,15 +23,15 @@ class _YgAnimatedProperty<T extends YgState, V> extends Animation<V>
     required YgProperty<T, V> property,
     required T state,
     required Duration duration,
-  })  : _state = state,
-        _vsync = vsync,
-        _curve = curve,
-        _property = property,
-        _animationController = AnimationController(
-          vsync: vsync,
-          duration: duration,
-          value: 1.0,
-        ) {
+  }) : _state = state,
+       _vsync = vsync,
+       _curve = curve,
+       _property = property,
+       _animationController = AnimationController(
+         vsync: vsync,
+         duration: duration,
+         value: 1.0,
+       ) {
     _state.addListener(_handleStateChange);
     _vsync.addDependenciesChangedListener(_handleDependenciesChange);
     _animationController.addListener(_handleAnimationTick);

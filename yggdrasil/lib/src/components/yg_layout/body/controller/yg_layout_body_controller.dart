@@ -7,12 +7,12 @@ class YgLayoutBodyController extends ValueNotifier<YgLayoutBodyControllerValue> 
   YgLayoutBodyController({
     bool loading = false,
   }) : super(
-          YgLayoutBodyControllerValue(
-            loading: loading,
-            extendAfter: 0,
-            extendBefore: 0,
-          ),
-        );
+         YgLayoutBodyControllerValue(
+           loading: loading,
+           extendAfter: 0,
+           extendBefore: 0,
+         ),
+       );
 
   YgLayoutHeaderController? _parentController;
 

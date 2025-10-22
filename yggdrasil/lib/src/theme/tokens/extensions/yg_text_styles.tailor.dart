@@ -340,20 +340,14 @@ class YgTextStyle extends ThemeExtension<YgTextStyle> {
       paragraph3Medium: paragraph3Medium ?? this.paragraph3Medium,
       paragraph3Regular: paragraph3Regular ?? this.paragraph3Regular,
       sectionHeading1Bold: sectionHeading1Bold ?? this.sectionHeading1Bold,
-      sectionHeading1Medium:
-          sectionHeading1Medium ?? this.sectionHeading1Medium,
-      sectionHeading1Regular:
-          sectionHeading1Regular ?? this.sectionHeading1Regular,
+      sectionHeading1Medium: sectionHeading1Medium ?? this.sectionHeading1Medium,
+      sectionHeading1Regular: sectionHeading1Regular ?? this.sectionHeading1Regular,
       sectionHeading2Bold: sectionHeading2Bold ?? this.sectionHeading2Bold,
-      sectionHeading2Medium:
-          sectionHeading2Medium ?? this.sectionHeading2Medium,
-      sectionHeading2Regular:
-          sectionHeading2Regular ?? this.sectionHeading2Regular,
+      sectionHeading2Medium: sectionHeading2Medium ?? this.sectionHeading2Medium,
+      sectionHeading2Regular: sectionHeading2Regular ?? this.sectionHeading2Regular,
       sectionHeading3Bold: sectionHeading3Bold ?? this.sectionHeading3Bold,
-      sectionHeading3Medium:
-          sectionHeading3Medium ?? this.sectionHeading3Medium,
-      sectionHeading3Regular:
-          sectionHeading3Regular ?? this.sectionHeading3Regular,
+      sectionHeading3Medium: sectionHeading3Medium ?? this.sectionHeading3Medium,
+      sectionHeading3Regular: sectionHeading3Regular ?? this.sectionHeading3Regular,
     );
   }
 
@@ -363,71 +357,43 @@ class YgTextStyle extends ThemeExtension<YgTextStyle> {
     return YgTextStyle(
       caption1Bold: TextStyle.lerp(caption1Bold, other.caption1Bold, t)!,
       caption1Medium: TextStyle.lerp(caption1Medium, other.caption1Medium, t)!,
-      caption1Regular:
-          TextStyle.lerp(caption1Regular, other.caption1Regular, t)!,
+      caption1Regular: TextStyle.lerp(caption1Regular, other.caption1Regular, t)!,
       display1Bold: TextStyle.lerp(display1Bold, other.display1Bold, t)!,
       display1Medium: TextStyle.lerp(display1Medium, other.display1Medium, t)!,
-      display1Regular:
-          TextStyle.lerp(display1Regular, other.display1Regular, t)!,
+      display1Regular: TextStyle.lerp(display1Regular, other.display1Regular, t)!,
       display2Bold: TextStyle.lerp(display2Bold, other.display2Bold, t)!,
       display2Medium: TextStyle.lerp(display2Medium, other.display2Medium, t)!,
-      display2Regular:
-          TextStyle.lerp(display2Regular, other.display2Regular, t)!,
+      display2Regular: TextStyle.lerp(display2Regular, other.display2Regular, t)!,
       display3Bold: TextStyle.lerp(display3Bold, other.display3Bold, t)!,
       display3Medium: TextStyle.lerp(display3Medium, other.display3Medium, t)!,
-      display3Regular:
-          TextStyle.lerp(display3Regular, other.display3Regular, t)!,
-      pageHeading1Bold:
-          TextStyle.lerp(pageHeading1Bold, other.pageHeading1Bold, t)!,
-      pageHeading1Medium:
-          TextStyle.lerp(pageHeading1Medium, other.pageHeading1Medium, t)!,
-      pageHeading1Regular:
-          TextStyle.lerp(pageHeading1Regular, other.pageHeading1Regular, t)!,
-      pageHeading2Bold:
-          TextStyle.lerp(pageHeading2Bold, other.pageHeading2Bold, t)!,
-      pageHeading2Medium:
-          TextStyle.lerp(pageHeading2Medium, other.pageHeading2Medium, t)!,
-      pageHeading2Regular:
-          TextStyle.lerp(pageHeading2Regular, other.pageHeading2Regular, t)!,
-      pageHeading3Bold:
-          TextStyle.lerp(pageHeading3Bold, other.pageHeading3Bold, t)!,
-      pageHeading3Medium:
-          TextStyle.lerp(pageHeading3Medium, other.pageHeading3Medium, t)!,
-      pageHeading3Regular:
-          TextStyle.lerp(pageHeading3Regular, other.pageHeading3Regular, t)!,
+      display3Regular: TextStyle.lerp(display3Regular, other.display3Regular, t)!,
+      pageHeading1Bold: TextStyle.lerp(pageHeading1Bold, other.pageHeading1Bold, t)!,
+      pageHeading1Medium: TextStyle.lerp(pageHeading1Medium, other.pageHeading1Medium, t)!,
+      pageHeading1Regular: TextStyle.lerp(pageHeading1Regular, other.pageHeading1Regular, t)!,
+      pageHeading2Bold: TextStyle.lerp(pageHeading2Bold, other.pageHeading2Bold, t)!,
+      pageHeading2Medium: TextStyle.lerp(pageHeading2Medium, other.pageHeading2Medium, t)!,
+      pageHeading2Regular: TextStyle.lerp(pageHeading2Regular, other.pageHeading2Regular, t)!,
+      pageHeading3Bold: TextStyle.lerp(pageHeading3Bold, other.pageHeading3Bold, t)!,
+      pageHeading3Medium: TextStyle.lerp(pageHeading3Medium, other.pageHeading3Medium, t)!,
+      pageHeading3Regular: TextStyle.lerp(pageHeading3Regular, other.pageHeading3Regular, t)!,
       paragraph1Bold: TextStyle.lerp(paragraph1Bold, other.paragraph1Bold, t)!,
-      paragraph1Medium:
-          TextStyle.lerp(paragraph1Medium, other.paragraph1Medium, t)!,
-      paragraph1Regular:
-          TextStyle.lerp(paragraph1Regular, other.paragraph1Regular, t)!,
+      paragraph1Medium: TextStyle.lerp(paragraph1Medium, other.paragraph1Medium, t)!,
+      paragraph1Regular: TextStyle.lerp(paragraph1Regular, other.paragraph1Regular, t)!,
       paragraph2Bold: TextStyle.lerp(paragraph2Bold, other.paragraph2Bold, t)!,
-      paragraph2Medium:
-          TextStyle.lerp(paragraph2Medium, other.paragraph2Medium, t)!,
-      paragraph2Regular:
-          TextStyle.lerp(paragraph2Regular, other.paragraph2Regular, t)!,
+      paragraph2Medium: TextStyle.lerp(paragraph2Medium, other.paragraph2Medium, t)!,
+      paragraph2Regular: TextStyle.lerp(paragraph2Regular, other.paragraph2Regular, t)!,
       paragraph3Bold: TextStyle.lerp(paragraph3Bold, other.paragraph3Bold, t)!,
-      paragraph3Medium:
-          TextStyle.lerp(paragraph3Medium, other.paragraph3Medium, t)!,
-      paragraph3Regular:
-          TextStyle.lerp(paragraph3Regular, other.paragraph3Regular, t)!,
-      sectionHeading1Bold:
-          TextStyle.lerp(sectionHeading1Bold, other.sectionHeading1Bold, t)!,
-      sectionHeading1Medium: TextStyle.lerp(
-          sectionHeading1Medium, other.sectionHeading1Medium, t)!,
-      sectionHeading1Regular: TextStyle.lerp(
-          sectionHeading1Regular, other.sectionHeading1Regular, t)!,
-      sectionHeading2Bold:
-          TextStyle.lerp(sectionHeading2Bold, other.sectionHeading2Bold, t)!,
-      sectionHeading2Medium: TextStyle.lerp(
-          sectionHeading2Medium, other.sectionHeading2Medium, t)!,
-      sectionHeading2Regular: TextStyle.lerp(
-          sectionHeading2Regular, other.sectionHeading2Regular, t)!,
-      sectionHeading3Bold:
-          TextStyle.lerp(sectionHeading3Bold, other.sectionHeading3Bold, t)!,
-      sectionHeading3Medium: TextStyle.lerp(
-          sectionHeading3Medium, other.sectionHeading3Medium, t)!,
-      sectionHeading3Regular: TextStyle.lerp(
-          sectionHeading3Regular, other.sectionHeading3Regular, t)!,
+      paragraph3Medium: TextStyle.lerp(paragraph3Medium, other.paragraph3Medium, t)!,
+      paragraph3Regular: TextStyle.lerp(paragraph3Regular, other.paragraph3Regular, t)!,
+      sectionHeading1Bold: TextStyle.lerp(sectionHeading1Bold, other.sectionHeading1Bold, t)!,
+      sectionHeading1Medium: TextStyle.lerp(sectionHeading1Medium, other.sectionHeading1Medium, t)!,
+      sectionHeading1Regular: TextStyle.lerp(sectionHeading1Regular, other.sectionHeading1Regular, t)!,
+      sectionHeading2Bold: TextStyle.lerp(sectionHeading2Bold, other.sectionHeading2Bold, t)!,
+      sectionHeading2Medium: TextStyle.lerp(sectionHeading2Medium, other.sectionHeading2Medium, t)!,
+      sectionHeading2Regular: TextStyle.lerp(sectionHeading2Regular, other.sectionHeading2Regular, t)!,
+      sectionHeading3Bold: TextStyle.lerp(sectionHeading3Bold, other.sectionHeading3Bold, t)!,
+      sectionHeading3Medium: TextStyle.lerp(sectionHeading3Medium, other.sectionHeading3Medium, t)!,
+      sectionHeading3Regular: TextStyle.lerp(sectionHeading3Regular, other.sectionHeading3Regular, t)!,
     );
   }
 
@@ -436,84 +402,45 @@ class YgTextStyle extends ThemeExtension<YgTextStyle> {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is YgTextStyle &&
-            const DeepCollectionEquality()
-                .equals(caption1Bold, other.caption1Bold) &&
-            const DeepCollectionEquality()
-                .equals(caption1Medium, other.caption1Medium) &&
-            const DeepCollectionEquality()
-                .equals(caption1Regular, other.caption1Regular) &&
-            const DeepCollectionEquality()
-                .equals(display1Bold, other.display1Bold) &&
-            const DeepCollectionEquality()
-                .equals(display1Medium, other.display1Medium) &&
-            const DeepCollectionEquality()
-                .equals(display1Regular, other.display1Regular) &&
-            const DeepCollectionEquality()
-                .equals(display2Bold, other.display2Bold) &&
-            const DeepCollectionEquality()
-                .equals(display2Medium, other.display2Medium) &&
-            const DeepCollectionEquality()
-                .equals(display2Regular, other.display2Regular) &&
-            const DeepCollectionEquality()
-                .equals(display3Bold, other.display3Bold) &&
-            const DeepCollectionEquality()
-                .equals(display3Medium, other.display3Medium) &&
-            const DeepCollectionEquality()
-                .equals(display3Regular, other.display3Regular) &&
-            const DeepCollectionEquality()
-                .equals(pageHeading1Bold, other.pageHeading1Bold) &&
-            const DeepCollectionEquality()
-                .equals(pageHeading1Medium, other.pageHeading1Medium) &&
-            const DeepCollectionEquality()
-                .equals(pageHeading1Regular, other.pageHeading1Regular) &&
-            const DeepCollectionEquality()
-                .equals(pageHeading2Bold, other.pageHeading2Bold) &&
-            const DeepCollectionEquality()
-                .equals(pageHeading2Medium, other.pageHeading2Medium) &&
-            const DeepCollectionEquality()
-                .equals(pageHeading2Regular, other.pageHeading2Regular) &&
-            const DeepCollectionEquality()
-                .equals(pageHeading3Bold, other.pageHeading3Bold) &&
-            const DeepCollectionEquality()
-                .equals(pageHeading3Medium, other.pageHeading3Medium) &&
-            const DeepCollectionEquality()
-                .equals(pageHeading3Regular, other.pageHeading3Regular) &&
-            const DeepCollectionEquality()
-                .equals(paragraph1Bold, other.paragraph1Bold) &&
-            const DeepCollectionEquality()
-                .equals(paragraph1Medium, other.paragraph1Medium) &&
-            const DeepCollectionEquality()
-                .equals(paragraph1Regular, other.paragraph1Regular) &&
-            const DeepCollectionEquality()
-                .equals(paragraph2Bold, other.paragraph2Bold) &&
-            const DeepCollectionEquality()
-                .equals(paragraph2Medium, other.paragraph2Medium) &&
-            const DeepCollectionEquality()
-                .equals(paragraph2Regular, other.paragraph2Regular) &&
-            const DeepCollectionEquality()
-                .equals(paragraph3Bold, other.paragraph3Bold) &&
-            const DeepCollectionEquality()
-                .equals(paragraph3Medium, other.paragraph3Medium) &&
-            const DeepCollectionEquality()
-                .equals(paragraph3Regular, other.paragraph3Regular) &&
-            const DeepCollectionEquality()
-                .equals(sectionHeading1Bold, other.sectionHeading1Bold) &&
-            const DeepCollectionEquality()
-                .equals(sectionHeading1Medium, other.sectionHeading1Medium) &&
-            const DeepCollectionEquality()
-                .equals(sectionHeading1Regular, other.sectionHeading1Regular) &&
-            const DeepCollectionEquality()
-                .equals(sectionHeading2Bold, other.sectionHeading2Bold) &&
-            const DeepCollectionEquality()
-                .equals(sectionHeading2Medium, other.sectionHeading2Medium) &&
-            const DeepCollectionEquality()
-                .equals(sectionHeading2Regular, other.sectionHeading2Regular) &&
-            const DeepCollectionEquality()
-                .equals(sectionHeading3Bold, other.sectionHeading3Bold) &&
-            const DeepCollectionEquality()
-                .equals(sectionHeading3Medium, other.sectionHeading3Medium) &&
-            const DeepCollectionEquality()
-                .equals(sectionHeading3Regular, other.sectionHeading3Regular));
+            const DeepCollectionEquality().equals(caption1Bold, other.caption1Bold) &&
+            const DeepCollectionEquality().equals(caption1Medium, other.caption1Medium) &&
+            const DeepCollectionEquality().equals(caption1Regular, other.caption1Regular) &&
+            const DeepCollectionEquality().equals(display1Bold, other.display1Bold) &&
+            const DeepCollectionEquality().equals(display1Medium, other.display1Medium) &&
+            const DeepCollectionEquality().equals(display1Regular, other.display1Regular) &&
+            const DeepCollectionEquality().equals(display2Bold, other.display2Bold) &&
+            const DeepCollectionEquality().equals(display2Medium, other.display2Medium) &&
+            const DeepCollectionEquality().equals(display2Regular, other.display2Regular) &&
+            const DeepCollectionEquality().equals(display3Bold, other.display3Bold) &&
+            const DeepCollectionEquality().equals(display3Medium, other.display3Medium) &&
+            const DeepCollectionEquality().equals(display3Regular, other.display3Regular) &&
+            const DeepCollectionEquality().equals(pageHeading1Bold, other.pageHeading1Bold) &&
+            const DeepCollectionEquality().equals(pageHeading1Medium, other.pageHeading1Medium) &&
+            const DeepCollectionEquality().equals(pageHeading1Regular, other.pageHeading1Regular) &&
+            const DeepCollectionEquality().equals(pageHeading2Bold, other.pageHeading2Bold) &&
+            const DeepCollectionEquality().equals(pageHeading2Medium, other.pageHeading2Medium) &&
+            const DeepCollectionEquality().equals(pageHeading2Regular, other.pageHeading2Regular) &&
+            const DeepCollectionEquality().equals(pageHeading3Bold, other.pageHeading3Bold) &&
+            const DeepCollectionEquality().equals(pageHeading3Medium, other.pageHeading3Medium) &&
+            const DeepCollectionEquality().equals(pageHeading3Regular, other.pageHeading3Regular) &&
+            const DeepCollectionEquality().equals(paragraph1Bold, other.paragraph1Bold) &&
+            const DeepCollectionEquality().equals(paragraph1Medium, other.paragraph1Medium) &&
+            const DeepCollectionEquality().equals(paragraph1Regular, other.paragraph1Regular) &&
+            const DeepCollectionEquality().equals(paragraph2Bold, other.paragraph2Bold) &&
+            const DeepCollectionEquality().equals(paragraph2Medium, other.paragraph2Medium) &&
+            const DeepCollectionEquality().equals(paragraph2Regular, other.paragraph2Regular) &&
+            const DeepCollectionEquality().equals(paragraph3Bold, other.paragraph3Bold) &&
+            const DeepCollectionEquality().equals(paragraph3Medium, other.paragraph3Medium) &&
+            const DeepCollectionEquality().equals(paragraph3Regular, other.paragraph3Regular) &&
+            const DeepCollectionEquality().equals(sectionHeading1Bold, other.sectionHeading1Bold) &&
+            const DeepCollectionEquality().equals(sectionHeading1Medium, other.sectionHeading1Medium) &&
+            const DeepCollectionEquality().equals(sectionHeading1Regular, other.sectionHeading1Regular) &&
+            const DeepCollectionEquality().equals(sectionHeading2Bold, other.sectionHeading2Bold) &&
+            const DeepCollectionEquality().equals(sectionHeading2Medium, other.sectionHeading2Medium) &&
+            const DeepCollectionEquality().equals(sectionHeading2Regular, other.sectionHeading2Regular) &&
+            const DeepCollectionEquality().equals(sectionHeading3Bold, other.sectionHeading3Bold) &&
+            const DeepCollectionEquality().equals(sectionHeading3Medium, other.sectionHeading3Medium) &&
+            const DeepCollectionEquality().equals(sectionHeading3Regular, other.sectionHeading3Regular));
   }
 
   @override

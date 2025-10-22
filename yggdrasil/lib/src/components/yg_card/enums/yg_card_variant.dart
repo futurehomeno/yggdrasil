@@ -1,5 +1,5 @@
 enum YgCardVariant {
   elevated,
   filled,
-  outlined;
+  outlined,
 }

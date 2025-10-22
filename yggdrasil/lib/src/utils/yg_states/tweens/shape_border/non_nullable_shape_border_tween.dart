@@ -13,8 +13,8 @@ class NonNullableShapeBorderTween extends Tween<ShapeBorder> {
 
   @override
   ShapeBorder lerp(double t) => ShapeBorder.lerp(
-        begin,
-        end,
-        t,
-      )!;
+    begin,
+    end,
+    t,
+  )!;
 }

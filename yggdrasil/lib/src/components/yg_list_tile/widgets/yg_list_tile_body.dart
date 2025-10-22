@@ -21,14 +21,14 @@ class YgListTileBody extends StatefulWidget {
     required this.onTap,
     required this.density,
     required this.builder,
-  })  : assert(
-          title != null || infoButton == null,
-          'Can not have a infoButton without a title.',
-        ),
-        assert(
-          title != null || leading != null || subtitle != null,
-          'Can not have neither a title, subtitle or leading widget.',
-        );
+  }) : assert(
+         title != null || infoButton == null,
+         'Can not have a infoButton without a title.',
+       ),
+       assert(
+         title != null || leading != null || subtitle != null,
+         'Can not have neither a title, subtitle or leading widget.',
+       );
 
   factory YgListTileBody.withChildAndOptionalLeading({
     Key? key,
@@ -49,10 +49,7 @@ class YgListTileBody extends StatefulWidget {
       'Can not have neither a title or leading widget.',
     );
 
-    final ({
-      Widget? leading,
-      Widget? trailing,
-    }) result = _getLeadingTrailing(
+    final ({Widget? leading, Widget? trailing}) result = _getLeadingTrailing(
       child,
       leading,
       title != null,
@@ -73,10 +70,7 @@ class YgListTileBody extends StatefulWidget {
     );
   }
 
-  static ({
-    Widget? leading,
-    Widget? trailing,
-  }) _getLeadingTrailing(Widget child, Widget? leading, bool hasTitle) {
+  static ({Widget? leading, Widget? trailing}) _getLeadingTrailing(Widget child, Widget? leading, bool hasTitle) {
     if (leading != null) {
       if (hasTitle) {
         return (

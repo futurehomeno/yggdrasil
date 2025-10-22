@@ -11,12 +11,18 @@ part of '../yg_search_controller_mixin.dart';
 /// [searchQuery] to the title of that result.
 class YgStringSearchController extends TextEditingController
     with
-        _YgSearchControllerMixin<String, TextEditingValue, String, YgStringSearchResult, YgStringSearchResultsLayout,
-            YgStringSearchStateMixin<StatefulWidget>> {
+        _YgSearchControllerMixin<
+          String,
+          TextEditingValue,
+          String,
+          YgStringSearchResult,
+          YgStringSearchResultsLayout,
+          YgStringSearchStateMixin<StatefulWidget>
+        > {
   YgStringSearchController({
     String? initialValue,
-  })  : _lastHandledSearch = initialValue ?? '',
-        super(text: initialValue);
+  }) : _lastHandledSearch = initialValue ?? '',
+       super(text: initialValue);
 
   YgStringSearchSession<YgStringSearchProvider>? _session;
   String _lastHandledSearch;

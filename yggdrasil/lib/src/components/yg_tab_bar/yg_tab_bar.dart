@@ -182,14 +182,16 @@ class _YgTabBarState extends State<YgTabBar> {
 
     for (int i = 0; i < widget.tabs.length; i++) {
       final YgTab tab = widget.tabs[i];
-      mapped.add(YgTabInternal(
-        key: _keys[i],
-        icon: tab.icon,
-        label: tab.label,
-        onPressed: () => _onTap(i),
-        index: i,
-        controller: _controller!,
-      ));
+      mapped.add(
+        YgTabInternal(
+          key: _keys[i],
+          icon: tab.icon,
+          label: tab.label,
+          onPressed: () => _onTap(i),
+          index: i,
+          controller: _controller!,
+        ),
+      );
     }
 
     return mapped;

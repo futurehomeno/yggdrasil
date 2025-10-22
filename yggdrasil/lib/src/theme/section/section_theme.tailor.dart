@@ -72,15 +72,13 @@ class YgSectionTheme extends ThemeExtension<YgSectionTheme> {
   }
 
   @override
-  YgSectionTheme lerp(
-      covariant ThemeExtension<YgSectionTheme>? other, double t) {
+  YgSectionTheme lerp(covariant ThemeExtension<YgSectionTheme>? other, double t) {
     if (other is! YgSectionTheme) return this as YgSectionTheme;
     return YgSectionTheme(
       animationCurve: t < 0.5 ? animationCurve : other.animationCurve,
       animationDuration: t < 0.5 ? animationDuration : other.animationDuration,
       padding: t < 0.5 ? padding : other.padding,
-      sectionHeader:
-          sectionHeader.lerp(other.sectionHeader, t) as YgSectionHeaderTheme,
+      sectionHeader: sectionHeader.lerp(other.sectionHeader, t) as YgSectionHeaderTheme,
     );
   }
 
@@ -89,13 +87,10 @@ class YgSectionTheme extends ThemeExtension<YgSectionTheme> {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is YgSectionTheme &&
-            const DeepCollectionEquality()
-                .equals(animationCurve, other.animationCurve) &&
-            const DeepCollectionEquality()
-                .equals(animationDuration, other.animationDuration) &&
+            const DeepCollectionEquality().equals(animationCurve, other.animationCurve) &&
+            const DeepCollectionEquality().equals(animationDuration, other.animationDuration) &&
             const DeepCollectionEquality().equals(padding, other.padding) &&
-            const DeepCollectionEquality()
-                .equals(sectionHeader, other.sectionHeader));
+            const DeepCollectionEquality().equals(sectionHeader, other.sectionHeader));
   }
 
   @override

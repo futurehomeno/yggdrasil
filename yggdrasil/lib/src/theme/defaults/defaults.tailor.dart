@@ -139,8 +139,7 @@ class YgDefaults extends ThemeExtension<YgDefaults> {
       focusColor: Color.lerp(focusColor, other.focusColor, t)!,
       highlightColor: Color.lerp(highlightColor, other.highlightColor, t)!,
       iconColor: Color.lerp(iconColor, other.iconColor, t)!,
-      invertedIconColor:
-          Color.lerp(invertedIconColor, other.invertedIconColor, t)!,
+      invertedIconColor: Color.lerp(invertedIconColor, other.invertedIconColor, t)!,
       scaffoldColor: Color.lerp(scaffoldColor, other.scaffoldColor, t)!,
       splashColor: Color.lerp(splashColor, other.splashColor, t)!,
     );
@@ -151,27 +150,17 @@ class YgDefaults extends ThemeExtension<YgDefaults> {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is YgDefaults &&
-            const DeepCollectionEquality()
-                .equals(animationCurve, other.animationCurve) &&
-            const DeepCollectionEquality()
-                .equals(animationDuration, other.animationDuration) &&
-            const DeepCollectionEquality()
-                .equals(appBarColor, other.appBarColor) &&
-            const DeepCollectionEquality()
-                .equals(brightness, other.brightness) &&
-            const DeepCollectionEquality()
-                .equals(colorSchemeSeed, other.colorSchemeSeed) &&
-            const DeepCollectionEquality()
-                .equals(focusColor, other.focusColor) &&
-            const DeepCollectionEquality()
-                .equals(highlightColor, other.highlightColor) &&
+            const DeepCollectionEquality().equals(animationCurve, other.animationCurve) &&
+            const DeepCollectionEquality().equals(animationDuration, other.animationDuration) &&
+            const DeepCollectionEquality().equals(appBarColor, other.appBarColor) &&
+            const DeepCollectionEquality().equals(brightness, other.brightness) &&
+            const DeepCollectionEquality().equals(colorSchemeSeed, other.colorSchemeSeed) &&
+            const DeepCollectionEquality().equals(focusColor, other.focusColor) &&
+            const DeepCollectionEquality().equals(highlightColor, other.highlightColor) &&
             const DeepCollectionEquality().equals(iconColor, other.iconColor) &&
-            const DeepCollectionEquality()
-                .equals(invertedIconColor, other.invertedIconColor) &&
-            const DeepCollectionEquality()
-                .equals(scaffoldColor, other.scaffoldColor) &&
-            const DeepCollectionEquality()
-                .equals(splashColor, other.splashColor));
+            const DeepCollectionEquality().equals(invertedIconColor, other.invertedIconColor) &&
+            const DeepCollectionEquality().equals(scaffoldColor, other.scaffoldColor) &&
+            const DeepCollectionEquality().equals(splashColor, other.splashColor));
   }
 
   @override

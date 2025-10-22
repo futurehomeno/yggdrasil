@@ -2,5 +2,5 @@
 enum YgToggleButtonVariant {
   iconOnly,
   text,
-  leadingIcon;
+  leadingIcon,
 }

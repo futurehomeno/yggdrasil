@@ -23,8 +23,8 @@ class _YgWizardHeaderFromPageController extends YgWizardHeader {
 class _YgWizardHeaderStateFromPageController extends _YgWizardHeaderState<_YgWizardHeaderFromPageController> {
   @override
   Animation<double> get _valueAnimation => _PageControllerAnimation(
-        parent: widget.controller,
-      );
+    parent: widget.controller,
+  );
 
   @override
   int get _steps => widget.steps;

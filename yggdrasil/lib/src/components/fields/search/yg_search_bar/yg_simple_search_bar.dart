@@ -46,12 +46,16 @@ class _YgSimpleSearchBar<Value> extends YgSearchBar<Value> {
   State<_YgSimpleSearchBar<Value>> createState() => _YgSimpleSearchBarWidgetState<Value>();
 }
 
-class _YgSimpleSearchBarWidgetState<Value> extends _YgSearchBarWidgetState<
-    Value,
-    Value,
-    YgSearchResult<Value>,
-    YgSearchResultsLayout<Value>,
-    _YgSimpleSearchBar<Value>> with YgSimpleSearchStateMixin<Value, _YgSimpleSearchBar<Value>> {
+class _YgSimpleSearchBarWidgetState<Value>
+    extends
+        _YgSearchBarWidgetState<
+          Value,
+          Value,
+          YgSearchResult<Value>,
+          YgSearchResultsLayout<Value>,
+          _YgSimpleSearchBar<Value>
+        >
+    with YgSimpleSearchStateMixin<Value, _YgSimpleSearchBar<Value>> {
   @override
   void onChanged() {
     widget.onChanged?.call(
@@ -67,6 +71,6 @@ class _YgSimpleSearchBarWidgetState<Value> extends _YgSearchBarWidgetState<
 
   @override
   YgSimpleSearchController<Value> createController() => YgSimpleSearchController<Value>(
-        initialValue: widget.initialValue,
-      );
+    initialValue: widget.initialValue,
+  );
 }

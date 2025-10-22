@@ -12,12 +12,18 @@ typedef _SimpleState<Value> = YgSimpleSearchStateMixin<Value, StatefulWidget>;
 class YgSimpleSearchController<Value>
     with
         ChangeNotifier,
-        _YgSearchControllerMixin<Value, Value?, Value, YgSearchResult<Value>, YgSearchResultsLayout<Value>,
-            YgSimpleSearchStateMixin<Value, StatefulWidget>> {
+        _YgSearchControllerMixin<
+          Value,
+          Value?,
+          Value,
+          YgSearchResult<Value>,
+          YgSearchResultsLayout<Value>,
+          YgSimpleSearchStateMixin<Value, StatefulWidget>
+        > {
   YgSimpleSearchController({
     Value? initialValue,
-  })  : _textEditingController = TextEditingController(),
-        _value = initialValue {
+  }) : _textEditingController = TextEditingController(),
+       _value = initialValue {
     _textEditingController.addListener(_updateResults);
   }
 

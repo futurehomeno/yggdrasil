@@ -13,8 +13,8 @@ class NonNullableBorderSideTween extends Tween<BorderSide> {
 
   @override
   BorderSide lerp(double t) => BorderSide.lerp(
-        begin!,
-        end!,
-        t,
-      );
+    begin!,
+    end!,
+    t,
+  );
 }

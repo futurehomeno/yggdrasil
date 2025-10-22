@@ -12,15 +12,15 @@ class YgFieldState extends YgState {
     bool suffix = false,
     YgFieldVariant variant = YgFieldVariant.standard,
     YgFieldSize size = YgFieldSize.large,
-  })  : focused = YgStateValue<bool>(focused),
-        hovered = YgStateValue<bool>(hovered),
-        disabled = YgStateValue<bool>(disabled),
-        error = YgStateValue<bool>(error),
-        filled = YgStateValue<bool>(filled),
-        placeholder = YgStateValue<bool>(placeholder),
-        suffix = YgStateValue<bool>(suffix),
-        variant = YgStateValue<YgFieldVariant>(variant),
-        size = YgStateValue<YgFieldSize>(size);
+  }) : focused = YgStateValue<bool>(focused),
+       hovered = YgStateValue<bool>(hovered),
+       disabled = YgStateValue<bool>(disabled),
+       error = YgStateValue<bool>(error),
+       filled = YgStateValue<bool>(filled),
+       placeholder = YgStateValue<bool>(placeholder),
+       suffix = YgStateValue<bool>(suffix),
+       variant = YgStateValue<YgFieldVariant>(variant),
+       size = YgStateValue<YgFieldSize>(size);
 
   final YgStateValue<bool> focused;
   final YgStateValue<bool> hovered;
@@ -38,14 +38,14 @@ class YgFieldState extends YgState {
 
   @override
   List<YgStateValue<Object>> get props => <YgStateValue<Object>>[
-        focused,
-        hovered,
-        disabled,
-        error,
-        filled,
-        placeholder,
-        suffix,
-        variant,
-        size,
-      ];
+    focused,
+    hovered,
+    disabled,
+    error,
+    filled,
+    placeholder,
+    suffix,
+    variant,
+    size,
+  ];
 }

@@ -2,10 +2,11 @@ import 'package:flutter/widgets.dart';
 import 'package:yggdrasil/src/components/yg_layout/body/controller/_controller.dart';
 import 'package:yggdrasil/src/components/yg_layout/layout/widgets/yg_layout_header_controller_provider.dart';
 
-typedef YgLayoutBodyContentBuilder = Widget Function(
-  BuildContext context,
-  YgLayoutBodyController controller,
-);
+typedef YgLayoutBodyContentBuilder =
+    Widget Function(
+      BuildContext context,
+      YgLayoutBodyController controller,
+    );
 
 /// Internal widget used by the [YgLayoutBody].
 ///

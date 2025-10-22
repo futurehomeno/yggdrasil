@@ -6,8 +6,8 @@ class YgSnackBarFuture implements Future<void> {
   const YgSnackBarFuture._({
     required Future<void> parent,
     required VoidCallback hideCallback,
-  })  : _parent = parent,
-        _hideCallback = hideCallback;
+  }) : _parent = parent,
+       _hideCallback = hideCallback;
 
   final Future<void> _parent;
   final VoidCallback _hideCallback;

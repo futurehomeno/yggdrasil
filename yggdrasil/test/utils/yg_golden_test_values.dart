@@ -18,17 +18,17 @@ class YgGoldenTestValues {
 
   /// All themes that we want to test in goldens.
   static List<YgThemeTestData> get themesToTest => <YgThemeTestData>[
-        YgThemeTestData(
-          fileName: 'consumer_light',
-          theme: YgTheme.consumerLight,
-          themeName: 'Consumer light',
-        ),
-        YgThemeTestData(
-          fileName: 'consumer_dark',
-          theme: YgTheme.consumerDark,
-          themeName: 'Consumer dark',
-        ),
-      ];
+    YgThemeTestData(
+      fileName: 'consumer_light',
+      theme: YgTheme.consumerLight,
+      themeName: 'Consumer light',
+    ),
+    YgThemeTestData(
+      fileName: 'consumer_dark',
+      theme: YgTheme.consumerDark,
+      themeName: 'Consumer dark',
+    ),
+  ];
 
   static const String shortText = 'Alchemist.';
 

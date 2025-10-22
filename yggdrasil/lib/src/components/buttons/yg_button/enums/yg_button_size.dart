@@ -1,5 +1,5 @@
 enum YgButtonSize {
   small,
   medium,
-  large;
+  large,
 }

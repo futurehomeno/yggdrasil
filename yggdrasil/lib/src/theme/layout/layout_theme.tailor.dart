@@ -87,14 +87,10 @@ class YgLayoutTheme extends ThemeExtension<YgLayoutTheme> {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is YgLayoutTheme &&
-            const DeepCollectionEquality()
-                .equals(animationCurve, other.animationCurve) &&
-            const DeepCollectionEquality()
-                .equals(animationDuration, other.animationDuration) &&
-            const DeepCollectionEquality()
-                .equals(backgroundColor, other.backgroundColor) &&
-            const DeepCollectionEquality()
-                .equals(footerPadding, other.footerPadding));
+            const DeepCollectionEquality().equals(animationCurve, other.animationCurve) &&
+            const DeepCollectionEquality().equals(animationDuration, other.animationDuration) &&
+            const DeepCollectionEquality().equals(backgroundColor, other.backgroundColor) &&
+            const DeepCollectionEquality().equals(footerPadding, other.footerPadding));
   }
 
   @override

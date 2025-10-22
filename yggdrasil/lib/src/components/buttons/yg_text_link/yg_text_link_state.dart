@@ -10,16 +10,16 @@ class YgTextLinkState extends YgButtonBaseState {
     super.pressed,
     YgTextLinkWeight weight = YgTextLinkWeight.weak,
     YgTextLinkSize size = YgTextLinkSize.medium,
-  })  : weight = YgStateValue<YgTextLinkWeight>(weight),
-        size = YgStateValue<YgTextLinkSize>(size);
+  }) : weight = YgStateValue<YgTextLinkWeight>(weight),
+       size = YgStateValue<YgTextLinkSize>(size);
 
   final YgStateValue<YgTextLinkWeight> weight;
   final YgStateValue<YgTextLinkSize> size;
 
   @override
   List<YgStateValue<Object?>> get props => <YgStateValue<Object?>>[
-        ...super.props,
-        weight,
-        size,
-      ];
+    ...super.props,
+    weight,
+    size,
+  ];
 }

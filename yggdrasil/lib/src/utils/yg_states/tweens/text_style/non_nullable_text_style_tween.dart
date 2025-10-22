@@ -13,8 +13,8 @@ class NonNullableTextStyleTween extends Tween<TextStyle> {
 
   @override
   TextStyle lerp(double t) => TextStyle.lerp(
-        begin,
-        end,
-        t,
-      )!;
+    begin,
+    end,
+    t,
+  )!;
 }

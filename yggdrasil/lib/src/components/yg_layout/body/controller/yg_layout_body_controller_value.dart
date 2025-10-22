@@ -29,10 +29,10 @@ class YgLayoutBodyControllerValue {
 
   @override
   int get hashCode => Object.hash(
-        loading,
-        extendBefore,
-        extendAfter,
-      );
+    loading,
+    extendBefore,
+    extendAfter,
+  );
 
   @override
   bool operator ==(Object other) =>

@@ -19,17 +19,17 @@ class _YgIconAny extends YgIcon {
       iconBuilder: (BuildContext context, Color color) {
         return switch (iconData) {
           YgAnimatedIconData() => AnimatedIcon(
-              iconData: iconData,
-              animated: true,
-            ),
+            iconData: iconData,
+            animated: true,
+          ),
           YgColorableIconData() => ColorableIcon(
-              iconData: iconData,
-              color: color,
-            ),
+            iconData: iconData,
+            color: color,
+          ),
           _ => ColorfulIcon(
-              color: color,
-              iconData: iconData,
-            ),
+            color: color,
+            iconData: iconData,
+          ),
         };
       },
       semanticLabel: semanticLabel ?? iconData.name,

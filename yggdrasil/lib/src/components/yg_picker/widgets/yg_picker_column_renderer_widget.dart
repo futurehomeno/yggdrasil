@@ -60,13 +60,13 @@ class PickerValueRenderer<T extends Object> extends RenderBox {
     required double minWidth,
     required TextStyle textDefaultStyle,
     required TextStyle textSelectedStyle,
-  })  : _offset = offset,
-        _entries = entries,
-        _looping = looping,
-        _rowHeight = rowHeight,
-        _minWidth = minWidth,
-        _textDefaultStyle = textDefaultStyle,
-        _textSelectedStyle = textSelectedStyle;
+  }) : _offset = offset,
+       _entries = entries,
+       _looping = looping,
+       _rowHeight = rowHeight,
+       _minWidth = minWidth,
+       _textDefaultStyle = textDefaultStyle,
+       _textSelectedStyle = textSelectedStyle;
 
   final TextPainter _textPainter = TextPainter(
     textAlign: TextAlign.center,

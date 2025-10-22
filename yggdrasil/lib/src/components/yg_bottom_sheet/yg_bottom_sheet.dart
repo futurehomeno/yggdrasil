@@ -20,8 +20,8 @@ class YgBottomSheet extends StatelessWidget with StatelessWidgetDebugMixin {
   @override
   Widget build(BuildContext context) {
     final YgBottomSheetTheme bottomSheetTheme = context.bottomSheetTheme;
-    final YgBottomSheetScrollPhysicsProvider? scrollPhysicsProvider =
-        context.dependOnInheritedWidgetOfExactType<YgBottomSheetScrollPhysicsProvider>();
+    final YgBottomSheetScrollPhysicsProvider? scrollPhysicsProvider = context
+        .dependOnInheritedWidgetOfExactType<YgBottomSheetScrollPhysicsProvider>();
 
     return RepaintBoundary(
       child: Material(

@@ -10,13 +10,13 @@ class YgFixedExtentScrollPosition extends ScrollPositionWithSingleContext implem
     required super.context,
     required int initialItem,
     super.oldPosition,
-  })  : assert(
-          context is YgFixedExtentScrollableState,
-          'FixedExtentScrollController can only be used with ListWheelScrollViews',
-        ),
-        super(
-          initialPixels: _getItemExtentFromScrollContext(context) * initialItem,
-        );
+  }) : assert(
+         context is YgFixedExtentScrollableState,
+         'FixedExtentScrollController can only be used with ListWheelScrollViews',
+       ),
+       super(
+         initialPixels: _getItemExtentFromScrollContext(context) * initialItem,
+       );
 
   static double _getItemExtentFromScrollContext(ScrollContext context) {
     final YgFixedExtentScrollableState scrollable = context as YgFixedExtentScrollableState;

@@ -369,16 +369,18 @@ class TweenFactory {
         initialValue as int;
 
         return IntTween(
-          begin: initialValue,
-          end: initialValue,
-        ) as Tween<T>;
+              begin: initialValue,
+              end: initialValue,
+            )
+            as Tween<T>;
       case _T<Matrix4>():
         initialValue as Matrix4;
 
         return Matrix4Tween(
-          begin: initialValue,
-          end: initialValue,
-        ) as Tween<T>;
+              begin: initialValue,
+              end: initialValue,
+            )
+            as Tween<T>;
       default:
         return Tween<T>(
           begin: initialValue,

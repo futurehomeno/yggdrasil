@@ -12,9 +12,9 @@ class YgToggleButtonState extends YgButtonBaseState {
     YgToggleButtonVariant variant = YgToggleButtonVariant.text,
     YgToggleButtonSize size = YgToggleButtonSize.large,
     bool toggled = false,
-  })  : variant = YgStateValue<YgToggleButtonVariant>(variant),
-        size = YgStateValue<YgToggleButtonSize>(size),
-        toggled = YgStateValue<bool>(toggled);
+  }) : variant = YgStateValue<YgToggleButtonVariant>(variant),
+       size = YgStateValue<YgToggleButtonSize>(size),
+       toggled = YgStateValue<bool>(toggled);
 
   final YgStateValue<YgToggleButtonVariant> variant;
   final YgStateValue<YgToggleButtonSize> size;
@@ -22,9 +22,9 @@ class YgToggleButtonState extends YgButtonBaseState {
 
   @override
   List<YgStateValue<Object?>> get props => <YgStateValue<Object?>>[
-        ...super.props,
-        variant,
-        size,
-        toggled,
-      ];
+    ...super.props,
+    variant,
+    size,
+    toggled,
+  ];
 }

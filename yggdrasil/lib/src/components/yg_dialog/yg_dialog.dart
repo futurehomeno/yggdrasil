@@ -20,32 +20,32 @@ class YgDialog extends StatefulWidget with StatefulWidgetDebugMixin {
     required this.title,
     this.description,
     this.buttons,
-  })  : variant = YgDialogVariant.success,
-        icon = const YgIcon(YgIcons.check);
+  }) : variant = YgDialogVariant.success,
+       icon = const YgIcon(YgIcons.check);
 
   const YgDialog.critical({
     super.key,
     required this.title,
     this.description,
     this.buttons,
-  })  : variant = YgDialogVariant.critical,
-        icon = const YgIcon(YgIcons.failed);
+  }) : variant = YgDialogVariant.critical,
+       icon = const YgIcon(YgIcons.failed);
 
   const YgDialog.highlight({
     super.key,
     required this.title,
     this.description,
     this.buttons,
-  })  : variant = YgDialogVariant.highlight,
-        icon = const YgIcon(YgIcons.info);
+  }) : variant = YgDialogVariant.highlight,
+       icon = const YgIcon(YgIcons.info);
 
   const YgDialog.loading({
     super.key,
     required this.title,
     this.description,
-  })  : variant = YgDialogVariant.loading,
-        icon = null,
-        buttons = null;
+  }) : variant = YgDialogVariant.loading,
+       icon = null,
+       buttons = null;
 
   /// Title of the dialog.
   final String title;

@@ -38,10 +38,10 @@ class _YgDrivenProperty<T extends YgState, V> extends ChangeNotifier implements 
     required T state,
     required YgVsync vsync,
     required YgProperty<T, V> property,
-  })  : _property = property,
-        _vsync = vsync,
-        _state = state,
-        _usesStates = property is! YgPropertyResolveAllMixin<T, V> {
+  }) : _property = property,
+       _vsync = vsync,
+       _state = state,
+       _usesStates = property is! YgPropertyResolveAllMixin<T, V> {
     if (_usesStates) {
       _state.addListener(_handleChange);
     }

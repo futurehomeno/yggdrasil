@@ -23,9 +23,9 @@ class YgLayoutHeaderControllerValue {
 
   @override
   int get hashCode => Object.hash(
-        shadow,
-        loading,
-      );
+    shadow,
+    loading,
+  );
 
   @override
   bool operator ==(Object other) =>

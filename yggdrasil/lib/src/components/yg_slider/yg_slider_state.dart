@@ -14,16 +14,16 @@ class YgSliderState extends YgState {
     bool staticDifferenceIndicatorIndicator = false,
     bool increasing = false,
     YgSliderVariant variant = YgSliderVariant.temperature,
-  })  : disabled = YgStateValue<bool>(disabled),
-        editing = YgStateValue<bool>(editing),
-        recentlyEdited = YgStateValue<bool>(recentlyEdited),
-        hovered = YgStateValue<bool>(hovered),
-        focused = YgStateValue<bool>(focused),
-        valueIndicatorEnabled = YgStateValue<bool>(valueIndicatorEnabled),
-        differenceIndicatorEnabled = YgStateValue<bool>(differenceIndicatorEnabled),
-        staticDifferenceIndicatorEnabled = YgStateValue<bool>(staticDifferenceIndicatorIndicator),
-        increasing = YgStateValue<bool>(increasing),
-        variant = YgStateValue<YgSliderVariant>(variant);
+  }) : disabled = YgStateValue<bool>(disabled),
+       editing = YgStateValue<bool>(editing),
+       recentlyEdited = YgStateValue<bool>(recentlyEdited),
+       hovered = YgStateValue<bool>(hovered),
+       focused = YgStateValue<bool>(focused),
+       valueIndicatorEnabled = YgStateValue<bool>(valueIndicatorEnabled),
+       differenceIndicatorEnabled = YgStateValue<bool>(differenceIndicatorEnabled),
+       staticDifferenceIndicatorEnabled = YgStateValue<bool>(staticDifferenceIndicatorIndicator),
+       increasing = YgStateValue<bool>(increasing),
+       variant = YgStateValue<YgSliderVariant>(variant);
 
   final YgStateValue<YgSliderVariant> variant;
 
@@ -42,15 +42,15 @@ class YgSliderState extends YgState {
 
   @override
   List<YgStateValue<Object?>> get props => <YgStateValue<Object?>>[
-        variant,
-        disabled,
-        editing,
-        recentlyEdited,
-        hovered,
-        focused,
-        increasing,
-        valueIndicatorEnabled,
-        differenceIndicatorEnabled,
-        staticDifferenceIndicatorEnabled,
-      ];
+    variant,
+    disabled,
+    editing,
+    recentlyEdited,
+    hovered,
+    focused,
+    increasing,
+    valueIndicatorEnabled,
+    differenceIndicatorEnabled,
+    staticDifferenceIndicatorEnabled,
+  ];
 }

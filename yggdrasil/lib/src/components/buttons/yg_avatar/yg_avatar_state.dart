@@ -13,9 +13,9 @@ class YgAvatarState extends YgButtonBaseState {
     YgAvatarSize size = YgAvatarSize.medium,
     YgAvatarVariant variant = YgAvatarVariant.person,
     bool image = false,
-  })  : size = YgStateValue<YgAvatarSize>(size),
-        variant = YgStateValue<YgAvatarVariant>(variant),
-        image = YgStateValue<bool>(image);
+  }) : size = YgStateValue<YgAvatarSize>(size),
+       variant = YgStateValue<YgAvatarVariant>(variant),
+       image = YgStateValue<bool>(image);
 
   final YgStateValue<YgAvatarSize> size;
   final YgStateValue<YgAvatarVariant> variant;
@@ -23,9 +23,9 @@ class YgAvatarState extends YgButtonBaseState {
 
   @override
   List<YgStateValue<Object?>> get props => <YgStateValue<Object?>>[
-        ...super.props,
-        size,
-        variant,
-        image,
-      ];
+    ...super.props,
+    size,
+    variant,
+    image,
+  ];
 }

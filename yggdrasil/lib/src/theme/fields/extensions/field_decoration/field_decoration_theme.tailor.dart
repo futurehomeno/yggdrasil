@@ -57,8 +57,7 @@ class YgFieldDecorationTheme extends ThemeExtension<YgFieldDecorationTheme> {
 
   static final YgFieldDecorationTheme consumerLight = YgFieldDecorationTheme(
     backgroundDefaultColor: _$YgFieldDecorationTheme.backgroundDefaultColor[0],
-    backgroundDisabledColor:
-        _$YgFieldDecorationTheme.backgroundDisabledColor[0],
+    backgroundDisabledColor: _$YgFieldDecorationTheme.backgroundDisabledColor[0],
     backgroundErrorColor: _$YgFieldDecorationTheme.backgroundErrorColor[0],
     borderDefault: _$YgFieldDecorationTheme.borderDefault[0],
     borderDisabled: _$YgFieldDecorationTheme.borderDisabled[0],
@@ -72,22 +71,17 @@ class YgFieldDecorationTheme extends ThemeExtension<YgFieldDecorationTheme> {
     errorIconColor: _$YgFieldDecorationTheme.errorIconColor[0],
     errorPadding: _$YgFieldDecorationTheme.errorPadding[0],
     errorTextStyle: _$YgFieldDecorationTheme.errorTextStyle[0],
-    largeOutlinedContentPadding:
-        _$YgFieldDecorationTheme.largeOutlinedContentPadding[0],
-    largeStandardContentPadding:
-        _$YgFieldDecorationTheme.largeStandardContentPadding[0],
-    mediumOutlinedContentPadding:
-        _$YgFieldDecorationTheme.mediumOutlinedContentPadding[0],
-    mediumStandardContentPadding:
-        _$YgFieldDecorationTheme.mediumStandardContentPadding[0],
+    largeOutlinedContentPadding: _$YgFieldDecorationTheme.largeOutlinedContentPadding[0],
+    largeStandardContentPadding: _$YgFieldDecorationTheme.largeStandardContentPadding[0],
+    mediumOutlinedContentPadding: _$YgFieldDecorationTheme.mediumOutlinedContentPadding[0],
+    mediumStandardContentPadding: _$YgFieldDecorationTheme.mediumStandardContentPadding[0],
     outlinedSuffixPadding: _$YgFieldDecorationTheme.outlinedSuffixPadding[0],
     standardSuffixPadding: _$YgFieldDecorationTheme.standardSuffixPadding[0],
   );
 
   static final YgFieldDecorationTheme consumerDark = YgFieldDecorationTheme(
     backgroundDefaultColor: _$YgFieldDecorationTheme.backgroundDefaultColor[1],
-    backgroundDisabledColor:
-        _$YgFieldDecorationTheme.backgroundDisabledColor[1],
+    backgroundDisabledColor: _$YgFieldDecorationTheme.backgroundDisabledColor[1],
     backgroundErrorColor: _$YgFieldDecorationTheme.backgroundErrorColor[1],
     borderDefault: _$YgFieldDecorationTheme.borderDefault[1],
     borderDisabled: _$YgFieldDecorationTheme.borderDisabled[1],
@@ -101,23 +95,17 @@ class YgFieldDecorationTheme extends ThemeExtension<YgFieldDecorationTheme> {
     errorIconColor: _$YgFieldDecorationTheme.errorIconColor[1],
     errorPadding: _$YgFieldDecorationTheme.errorPadding[1],
     errorTextStyle: _$YgFieldDecorationTheme.errorTextStyle[1],
-    largeOutlinedContentPadding:
-        _$YgFieldDecorationTheme.largeOutlinedContentPadding[1],
-    largeStandardContentPadding:
-        _$YgFieldDecorationTheme.largeStandardContentPadding[1],
-    mediumOutlinedContentPadding:
-        _$YgFieldDecorationTheme.mediumOutlinedContentPadding[1],
-    mediumStandardContentPadding:
-        _$YgFieldDecorationTheme.mediumStandardContentPadding[1],
+    largeOutlinedContentPadding: _$YgFieldDecorationTheme.largeOutlinedContentPadding[1],
+    largeStandardContentPadding: _$YgFieldDecorationTheme.largeStandardContentPadding[1],
+    mediumOutlinedContentPadding: _$YgFieldDecorationTheme.mediumOutlinedContentPadding[1],
+    mediumStandardContentPadding: _$YgFieldDecorationTheme.mediumStandardContentPadding[1],
     outlinedSuffixPadding: _$YgFieldDecorationTheme.outlinedSuffixPadding[1],
     standardSuffixPadding: _$YgFieldDecorationTheme.standardSuffixPadding[1],
   );
 
-  static final YgFieldDecorationTheme professionalLight =
-      YgFieldDecorationTheme(
+  static final YgFieldDecorationTheme professionalLight = YgFieldDecorationTheme(
     backgroundDefaultColor: _$YgFieldDecorationTheme.backgroundDefaultColor[2],
-    backgroundDisabledColor:
-        _$YgFieldDecorationTheme.backgroundDisabledColor[2],
+    backgroundDisabledColor: _$YgFieldDecorationTheme.backgroundDisabledColor[2],
     backgroundErrorColor: _$YgFieldDecorationTheme.backgroundErrorColor[2],
     borderDefault: _$YgFieldDecorationTheme.borderDefault[2],
     borderDisabled: _$YgFieldDecorationTheme.borderDisabled[2],
@@ -131,22 +119,17 @@ class YgFieldDecorationTheme extends ThemeExtension<YgFieldDecorationTheme> {
     errorIconColor: _$YgFieldDecorationTheme.errorIconColor[2],
     errorPadding: _$YgFieldDecorationTheme.errorPadding[2],
     errorTextStyle: _$YgFieldDecorationTheme.errorTextStyle[2],
-    largeOutlinedContentPadding:
-        _$YgFieldDecorationTheme.largeOutlinedContentPadding[2],
-    largeStandardContentPadding:
-        _$YgFieldDecorationTheme.largeStandardContentPadding[2],
-    mediumOutlinedContentPadding:
-        _$YgFieldDecorationTheme.mediumOutlinedContentPadding[2],
-    mediumStandardContentPadding:
-        _$YgFieldDecorationTheme.mediumStandardContentPadding[2],
+    largeOutlinedContentPadding: _$YgFieldDecorationTheme.largeOutlinedContentPadding[2],
+    largeStandardContentPadding: _$YgFieldDecorationTheme.largeStandardContentPadding[2],
+    mediumOutlinedContentPadding: _$YgFieldDecorationTheme.mediumOutlinedContentPadding[2],
+    mediumStandardContentPadding: _$YgFieldDecorationTheme.mediumStandardContentPadding[2],
     outlinedSuffixPadding: _$YgFieldDecorationTheme.outlinedSuffixPadding[2],
     standardSuffixPadding: _$YgFieldDecorationTheme.standardSuffixPadding[2],
   );
 
   static final YgFieldDecorationTheme professionalDark = YgFieldDecorationTheme(
     backgroundDefaultColor: _$YgFieldDecorationTheme.backgroundDefaultColor[3],
-    backgroundDisabledColor:
-        _$YgFieldDecorationTheme.backgroundDisabledColor[3],
+    backgroundDisabledColor: _$YgFieldDecorationTheme.backgroundDisabledColor[3],
     backgroundErrorColor: _$YgFieldDecorationTheme.backgroundErrorColor[3],
     borderDefault: _$YgFieldDecorationTheme.borderDefault[3],
     borderDisabled: _$YgFieldDecorationTheme.borderDisabled[3],
@@ -160,14 +143,10 @@ class YgFieldDecorationTheme extends ThemeExtension<YgFieldDecorationTheme> {
     errorIconColor: _$YgFieldDecorationTheme.errorIconColor[3],
     errorPadding: _$YgFieldDecorationTheme.errorPadding[3],
     errorTextStyle: _$YgFieldDecorationTheme.errorTextStyle[3],
-    largeOutlinedContentPadding:
-        _$YgFieldDecorationTheme.largeOutlinedContentPadding[3],
-    largeStandardContentPadding:
-        _$YgFieldDecorationTheme.largeStandardContentPadding[3],
-    mediumOutlinedContentPadding:
-        _$YgFieldDecorationTheme.mediumOutlinedContentPadding[3],
-    mediumStandardContentPadding:
-        _$YgFieldDecorationTheme.mediumStandardContentPadding[3],
+    largeOutlinedContentPadding: _$YgFieldDecorationTheme.largeOutlinedContentPadding[3],
+    largeStandardContentPadding: _$YgFieldDecorationTheme.largeStandardContentPadding[3],
+    mediumOutlinedContentPadding: _$YgFieldDecorationTheme.mediumOutlinedContentPadding[3],
+    mediumStandardContentPadding: _$YgFieldDecorationTheme.mediumStandardContentPadding[3],
     outlinedSuffixPadding: _$YgFieldDecorationTheme.outlinedSuffixPadding[3],
     standardSuffixPadding: _$YgFieldDecorationTheme.standardSuffixPadding[3],
   );
@@ -204,10 +183,8 @@ class YgFieldDecorationTheme extends ThemeExtension<YgFieldDecorationTheme> {
     EdgeInsets? standardSuffixPadding,
   }) {
     return YgFieldDecorationTheme(
-      backgroundDefaultColor:
-          backgroundDefaultColor ?? this.backgroundDefaultColor,
-      backgroundDisabledColor:
-          backgroundDisabledColor ?? this.backgroundDisabledColor,
+      backgroundDefaultColor: backgroundDefaultColor ?? this.backgroundDefaultColor,
+      backgroundDisabledColor: backgroundDisabledColor ?? this.backgroundDisabledColor,
       backgroundErrorColor: backgroundErrorColor ?? this.backgroundErrorColor,
       borderDefault: borderDefault ?? this.borderDefault,
       borderDisabled: borderDisabled ?? this.borderDisabled,
@@ -221,63 +198,40 @@ class YgFieldDecorationTheme extends ThemeExtension<YgFieldDecorationTheme> {
       errorIconColor: errorIconColor ?? this.errorIconColor,
       errorPadding: errorPadding ?? this.errorPadding,
       errorTextStyle: errorTextStyle ?? this.errorTextStyle,
-      largeOutlinedContentPadding:
-          largeOutlinedContentPadding ?? this.largeOutlinedContentPadding,
-      largeStandardContentPadding:
-          largeStandardContentPadding ?? this.largeStandardContentPadding,
-      mediumOutlinedContentPadding:
-          mediumOutlinedContentPadding ?? this.mediumOutlinedContentPadding,
-      mediumStandardContentPadding:
-          mediumStandardContentPadding ?? this.mediumStandardContentPadding,
-      outlinedSuffixPadding:
-          outlinedSuffixPadding ?? this.outlinedSuffixPadding,
-      standardSuffixPadding:
-          standardSuffixPadding ?? this.standardSuffixPadding,
+      largeOutlinedContentPadding: largeOutlinedContentPadding ?? this.largeOutlinedContentPadding,
+      largeStandardContentPadding: largeStandardContentPadding ?? this.largeStandardContentPadding,
+      mediumOutlinedContentPadding: mediumOutlinedContentPadding ?? this.mediumOutlinedContentPadding,
+      mediumStandardContentPadding: mediumStandardContentPadding ?? this.mediumStandardContentPadding,
+      outlinedSuffixPadding: outlinedSuffixPadding ?? this.outlinedSuffixPadding,
+      standardSuffixPadding: standardSuffixPadding ?? this.standardSuffixPadding,
     );
   }
 
   @override
-  YgFieldDecorationTheme lerp(
-      covariant ThemeExtension<YgFieldDecorationTheme>? other, double t) {
+  YgFieldDecorationTheme lerp(covariant ThemeExtension<YgFieldDecorationTheme>? other, double t) {
     if (other is! YgFieldDecorationTheme) return this as YgFieldDecorationTheme;
     return YgFieldDecorationTheme(
-      backgroundDefaultColor:
-          Color.lerp(backgroundDefaultColor, other.backgroundDefaultColor, t)!,
-      backgroundDisabledColor: Color.lerp(
-          backgroundDisabledColor, other.backgroundDisabledColor, t)!,
-      backgroundErrorColor:
-          Color.lerp(backgroundErrorColor, other.backgroundErrorColor, t)!,
+      backgroundDefaultColor: Color.lerp(backgroundDefaultColor, other.backgroundDefaultColor, t)!,
+      backgroundDisabledColor: Color.lerp(backgroundDisabledColor, other.backgroundDisabledColor, t)!,
+      backgroundErrorColor: Color.lerp(backgroundErrorColor, other.backgroundErrorColor, t)!,
       borderDefault: t < 0.5 ? borderDefault : other.borderDefault,
       borderDisabled: t < 0.5 ? borderDisabled : other.borderDisabled,
       borderError: t < 0.5 ? borderError : other.borderError,
       borderFocus: t < 0.5 ? borderFocus : other.borderFocus,
       borderHover: t < 0.5 ? borderHover : other.borderHover,
-      borderRadiusDefault:
-          t < 0.5 ? borderRadiusDefault : other.borderRadiusDefault,
-      borderRadiusOutlined:
-          t < 0.5 ? borderRadiusOutlined : other.borderRadiusOutlined,
+      borderRadiusDefault: t < 0.5 ? borderRadiusDefault : other.borderRadiusDefault,
+      borderRadiusOutlined: t < 0.5 ? borderRadiusOutlined : other.borderRadiusOutlined,
       bottomSpacing: t < 0.5 ? bottomSpacing : other.bottomSpacing,
-      counterTextStyle:
-          TextStyle.lerp(counterTextStyle, other.counterTextStyle, t)!,
+      counterTextStyle: TextStyle.lerp(counterTextStyle, other.counterTextStyle, t)!,
       errorIconColor: Color.lerp(errorIconColor, other.errorIconColor, t)!,
       errorPadding: t < 0.5 ? errorPadding : other.errorPadding,
       errorTextStyle: TextStyle.lerp(errorTextStyle, other.errorTextStyle, t)!,
-      largeOutlinedContentPadding: t < 0.5
-          ? largeOutlinedContentPadding
-          : other.largeOutlinedContentPadding,
-      largeStandardContentPadding: t < 0.5
-          ? largeStandardContentPadding
-          : other.largeStandardContentPadding,
-      mediumOutlinedContentPadding: t < 0.5
-          ? mediumOutlinedContentPadding
-          : other.mediumOutlinedContentPadding,
-      mediumStandardContentPadding: t < 0.5
-          ? mediumStandardContentPadding
-          : other.mediumStandardContentPadding,
-      outlinedSuffixPadding:
-          t < 0.5 ? outlinedSuffixPadding : other.outlinedSuffixPadding,
-      standardSuffixPadding:
-          t < 0.5 ? standardSuffixPadding : other.standardSuffixPadding,
+      largeOutlinedContentPadding: t < 0.5 ? largeOutlinedContentPadding : other.largeOutlinedContentPadding,
+      largeStandardContentPadding: t < 0.5 ? largeStandardContentPadding : other.largeStandardContentPadding,
+      mediumOutlinedContentPadding: t < 0.5 ? mediumOutlinedContentPadding : other.mediumOutlinedContentPadding,
+      mediumStandardContentPadding: t < 0.5 ? mediumStandardContentPadding : other.mediumStandardContentPadding,
+      outlinedSuffixPadding: t < 0.5 ? outlinedSuffixPadding : other.outlinedSuffixPadding,
+      standardSuffixPadding: t < 0.5 ? standardSuffixPadding : other.standardSuffixPadding,
     );
   }
 
@@ -286,48 +240,27 @@ class YgFieldDecorationTheme extends ThemeExtension<YgFieldDecorationTheme> {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is YgFieldDecorationTheme &&
-            const DeepCollectionEquality()
-                .equals(backgroundDefaultColor, other.backgroundDefaultColor) &&
-            const DeepCollectionEquality().equals(
-                backgroundDisabledColor, other.backgroundDisabledColor) &&
-            const DeepCollectionEquality()
-                .equals(backgroundErrorColor, other.backgroundErrorColor) &&
-            const DeepCollectionEquality()
-                .equals(borderDefault, other.borderDefault) &&
-            const DeepCollectionEquality()
-                .equals(borderDisabled, other.borderDisabled) &&
-            const DeepCollectionEquality()
-                .equals(borderError, other.borderError) &&
-            const DeepCollectionEquality()
-                .equals(borderFocus, other.borderFocus) &&
-            const DeepCollectionEquality()
-                .equals(borderHover, other.borderHover) &&
-            const DeepCollectionEquality()
-                .equals(borderRadiusDefault, other.borderRadiusDefault) &&
-            const DeepCollectionEquality()
-                .equals(borderRadiusOutlined, other.borderRadiusOutlined) &&
-            const DeepCollectionEquality()
-                .equals(bottomSpacing, other.bottomSpacing) &&
-            const DeepCollectionEquality()
-                .equals(counterTextStyle, other.counterTextStyle) &&
-            const DeepCollectionEquality()
-                .equals(errorIconColor, other.errorIconColor) &&
-            const DeepCollectionEquality()
-                .equals(errorPadding, other.errorPadding) &&
-            const DeepCollectionEquality()
-                .equals(errorTextStyle, other.errorTextStyle) &&
-            const DeepCollectionEquality().equals(largeOutlinedContentPadding,
-                other.largeOutlinedContentPadding) &&
-            const DeepCollectionEquality().equals(largeStandardContentPadding,
-                other.largeStandardContentPadding) &&
-            const DeepCollectionEquality().equals(mediumOutlinedContentPadding,
-                other.mediumOutlinedContentPadding) &&
-            const DeepCollectionEquality().equals(mediumStandardContentPadding,
-                other.mediumStandardContentPadding) &&
-            const DeepCollectionEquality()
-                .equals(outlinedSuffixPadding, other.outlinedSuffixPadding) &&
-            const DeepCollectionEquality()
-                .equals(standardSuffixPadding, other.standardSuffixPadding));
+            const DeepCollectionEquality().equals(backgroundDefaultColor, other.backgroundDefaultColor) &&
+            const DeepCollectionEquality().equals(backgroundDisabledColor, other.backgroundDisabledColor) &&
+            const DeepCollectionEquality().equals(backgroundErrorColor, other.backgroundErrorColor) &&
+            const DeepCollectionEquality().equals(borderDefault, other.borderDefault) &&
+            const DeepCollectionEquality().equals(borderDisabled, other.borderDisabled) &&
+            const DeepCollectionEquality().equals(borderError, other.borderError) &&
+            const DeepCollectionEquality().equals(borderFocus, other.borderFocus) &&
+            const DeepCollectionEquality().equals(borderHover, other.borderHover) &&
+            const DeepCollectionEquality().equals(borderRadiusDefault, other.borderRadiusDefault) &&
+            const DeepCollectionEquality().equals(borderRadiusOutlined, other.borderRadiusOutlined) &&
+            const DeepCollectionEquality().equals(bottomSpacing, other.bottomSpacing) &&
+            const DeepCollectionEquality().equals(counterTextStyle, other.counterTextStyle) &&
+            const DeepCollectionEquality().equals(errorIconColor, other.errorIconColor) &&
+            const DeepCollectionEquality().equals(errorPadding, other.errorPadding) &&
+            const DeepCollectionEquality().equals(errorTextStyle, other.errorTextStyle) &&
+            const DeepCollectionEquality().equals(largeOutlinedContentPadding, other.largeOutlinedContentPadding) &&
+            const DeepCollectionEquality().equals(largeStandardContentPadding, other.largeStandardContentPadding) &&
+            const DeepCollectionEquality().equals(mediumOutlinedContentPadding, other.mediumOutlinedContentPadding) &&
+            const DeepCollectionEquality().equals(mediumStandardContentPadding, other.mediumStandardContentPadding) &&
+            const DeepCollectionEquality().equals(outlinedSuffixPadding, other.outlinedSuffixPadding) &&
+            const DeepCollectionEquality().equals(standardSuffixPadding, other.standardSuffixPadding));
   }
 
   @override

@@ -50,8 +50,7 @@ class YgAppBarTheme extends ThemeExtension<YgAppBarTheme> {
     largeAppBarTheme: _$YgAppBarTheme.largeAppBarTheme[0],
     mediumAppBarTheme: _$YgAppBarTheme.mediumAppBarTheme[0],
     scrolledUnderElevation: _$YgAppBarTheme.scrolledUnderElevation[0],
-    titleExpandedHorizontalPadding:
-        _$YgAppBarTheme.titleExpandedHorizontalPadding[0],
+    titleExpandedHorizontalPadding: _$YgAppBarTheme.titleExpandedHorizontalPadding[0],
     titleSpacing: _$YgAppBarTheme.titleSpacing[0],
     titleTextStyle: _$YgAppBarTheme.titleTextStyle[0],
     titleVerticalPadding: _$YgAppBarTheme.titleVerticalPadding[0],
@@ -65,8 +64,7 @@ class YgAppBarTheme extends ThemeExtension<YgAppBarTheme> {
     largeAppBarTheme: _$YgAppBarTheme.largeAppBarTheme[1],
     mediumAppBarTheme: _$YgAppBarTheme.mediumAppBarTheme[1],
     scrolledUnderElevation: _$YgAppBarTheme.scrolledUnderElevation[1],
-    titleExpandedHorizontalPadding:
-        _$YgAppBarTheme.titleExpandedHorizontalPadding[1],
+    titleExpandedHorizontalPadding: _$YgAppBarTheme.titleExpandedHorizontalPadding[1],
     titleSpacing: _$YgAppBarTheme.titleSpacing[1],
     titleTextStyle: _$YgAppBarTheme.titleTextStyle[1],
     titleVerticalPadding: _$YgAppBarTheme.titleVerticalPadding[1],
@@ -80,8 +78,7 @@ class YgAppBarTheme extends ThemeExtension<YgAppBarTheme> {
     largeAppBarTheme: _$YgAppBarTheme.largeAppBarTheme[2],
     mediumAppBarTheme: _$YgAppBarTheme.mediumAppBarTheme[2],
     scrolledUnderElevation: _$YgAppBarTheme.scrolledUnderElevation[2],
-    titleExpandedHorizontalPadding:
-        _$YgAppBarTheme.titleExpandedHorizontalPadding[2],
+    titleExpandedHorizontalPadding: _$YgAppBarTheme.titleExpandedHorizontalPadding[2],
     titleSpacing: _$YgAppBarTheme.titleSpacing[2],
     titleTextStyle: _$YgAppBarTheme.titleTextStyle[2],
     titleVerticalPadding: _$YgAppBarTheme.titleVerticalPadding[2],
@@ -95,8 +92,7 @@ class YgAppBarTheme extends ThemeExtension<YgAppBarTheme> {
     largeAppBarTheme: _$YgAppBarTheme.largeAppBarTheme[3],
     mediumAppBarTheme: _$YgAppBarTheme.mediumAppBarTheme[3],
     scrolledUnderElevation: _$YgAppBarTheme.scrolledUnderElevation[3],
-    titleExpandedHorizontalPadding:
-        _$YgAppBarTheme.titleExpandedHorizontalPadding[3],
+    titleExpandedHorizontalPadding: _$YgAppBarTheme.titleExpandedHorizontalPadding[3],
     titleSpacing: _$YgAppBarTheme.titleSpacing[3],
     titleTextStyle: _$YgAppBarTheme.titleTextStyle[3],
     titleVerticalPadding: _$YgAppBarTheme.titleVerticalPadding[3],
@@ -125,16 +121,13 @@ class YgAppBarTheme extends ThemeExtension<YgAppBarTheme> {
     double? toolbarHeight,
   }) {
     return YgAppBarTheme(
-      appBarHorizontalPadding:
-          appBarHorizontalPadding ?? this.appBarHorizontalPadding,
+      appBarHorizontalPadding: appBarHorizontalPadding ?? this.appBarHorizontalPadding,
       backgroundColor: backgroundColor ?? this.backgroundColor,
       elevation: elevation ?? this.elevation,
       largeAppBarTheme: largeAppBarTheme ?? this.largeAppBarTheme,
       mediumAppBarTheme: mediumAppBarTheme ?? this.mediumAppBarTheme,
-      scrolledUnderElevation:
-          scrolledUnderElevation ?? this.scrolledUnderElevation,
-      titleExpandedHorizontalPadding:
-          titleExpandedHorizontalPadding ?? this.titleExpandedHorizontalPadding,
+      scrolledUnderElevation: scrolledUnderElevation ?? this.scrolledUnderElevation,
+      titleExpandedHorizontalPadding: titleExpandedHorizontalPadding ?? this.titleExpandedHorizontalPadding,
       titleSpacing: titleSpacing ?? this.titleSpacing,
       titleTextStyle: titleTextStyle ?? this.titleTextStyle,
       titleVerticalPadding: titleVerticalPadding ?? this.titleVerticalPadding,
@@ -146,23 +139,16 @@ class YgAppBarTheme extends ThemeExtension<YgAppBarTheme> {
   YgAppBarTheme lerp(covariant ThemeExtension<YgAppBarTheme>? other, double t) {
     if (other is! YgAppBarTheme) return this as YgAppBarTheme;
     return YgAppBarTheme(
-      appBarHorizontalPadding:
-          t < 0.5 ? appBarHorizontalPadding : other.appBarHorizontalPadding,
+      appBarHorizontalPadding: t < 0.5 ? appBarHorizontalPadding : other.appBarHorizontalPadding,
       backgroundColor: Color.lerp(backgroundColor, other.backgroundColor, t)!,
       elevation: t < 0.5 ? elevation : other.elevation,
-      largeAppBarTheme:
-          largeAppBarTheme.lerp(other.largeAppBarTheme, t) as LargeAppBarTheme,
-      mediumAppBarTheme: mediumAppBarTheme.lerp(other.mediumAppBarTheme, t)
-          as MediumAppBarTheme,
-      scrolledUnderElevation:
-          t < 0.5 ? scrolledUnderElevation : other.scrolledUnderElevation,
-      titleExpandedHorizontalPadding: t < 0.5
-          ? titleExpandedHorizontalPadding
-          : other.titleExpandedHorizontalPadding,
+      largeAppBarTheme: largeAppBarTheme.lerp(other.largeAppBarTheme, t) as LargeAppBarTheme,
+      mediumAppBarTheme: mediumAppBarTheme.lerp(other.mediumAppBarTheme, t) as MediumAppBarTheme,
+      scrolledUnderElevation: t < 0.5 ? scrolledUnderElevation : other.scrolledUnderElevation,
+      titleExpandedHorizontalPadding: t < 0.5 ? titleExpandedHorizontalPadding : other.titleExpandedHorizontalPadding,
       titleSpacing: t < 0.5 ? titleSpacing : other.titleSpacing,
       titleTextStyle: TextStyle.lerp(titleTextStyle, other.titleTextStyle, t)!,
-      titleVerticalPadding:
-          t < 0.5 ? titleVerticalPadding : other.titleVerticalPadding,
+      titleVerticalPadding: t < 0.5 ? titleVerticalPadding : other.titleVerticalPadding,
       toolbarHeight: t < 0.5 ? toolbarHeight : other.toolbarHeight,
     );
   }
@@ -172,28 +158,20 @@ class YgAppBarTheme extends ThemeExtension<YgAppBarTheme> {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is YgAppBarTheme &&
-            const DeepCollectionEquality().equals(
-                appBarHorizontalPadding, other.appBarHorizontalPadding) &&
-            const DeepCollectionEquality()
-                .equals(backgroundColor, other.backgroundColor) &&
+            const DeepCollectionEquality().equals(appBarHorizontalPadding, other.appBarHorizontalPadding) &&
+            const DeepCollectionEquality().equals(backgroundColor, other.backgroundColor) &&
             const DeepCollectionEquality().equals(elevation, other.elevation) &&
-            const DeepCollectionEquality()
-                .equals(largeAppBarTheme, other.largeAppBarTheme) &&
-            const DeepCollectionEquality()
-                .equals(mediumAppBarTheme, other.mediumAppBarTheme) &&
-            const DeepCollectionEquality()
-                .equals(scrolledUnderElevation, other.scrolledUnderElevation) &&
+            const DeepCollectionEquality().equals(largeAppBarTheme, other.largeAppBarTheme) &&
+            const DeepCollectionEquality().equals(mediumAppBarTheme, other.mediumAppBarTheme) &&
+            const DeepCollectionEquality().equals(scrolledUnderElevation, other.scrolledUnderElevation) &&
             const DeepCollectionEquality().equals(
-                titleExpandedHorizontalPadding,
-                other.titleExpandedHorizontalPadding) &&
-            const DeepCollectionEquality()
-                .equals(titleSpacing, other.titleSpacing) &&
-            const DeepCollectionEquality()
-                .equals(titleTextStyle, other.titleTextStyle) &&
-            const DeepCollectionEquality()
-                .equals(titleVerticalPadding, other.titleVerticalPadding) &&
-            const DeepCollectionEquality()
-                .equals(toolbarHeight, other.toolbarHeight));
+              titleExpandedHorizontalPadding,
+              other.titleExpandedHorizontalPadding,
+            ) &&
+            const DeepCollectionEquality().equals(titleSpacing, other.titleSpacing) &&
+            const DeepCollectionEquality().equals(titleTextStyle, other.titleTextStyle) &&
+            const DeepCollectionEquality().equals(titleVerticalPadding, other.titleVerticalPadding) &&
+            const DeepCollectionEquality().equals(toolbarHeight, other.toolbarHeight));
   }
 
   @override

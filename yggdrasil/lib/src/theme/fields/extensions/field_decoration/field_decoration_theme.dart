@@ -34,41 +34,57 @@ class _$YgFieldDecorationTheme {
   ];
 
   static final List<Border> borderFocus = <Border>[
-    const Border.fromBorderSide(BorderSide(
-      color: consumer_light.FhColors.interactiveHighlightDefault,
-      width: 2.0,
-    )),
-    const Border.fromBorderSide(BorderSide(
-      color: consumer_dark.FhColors.interactiveHighlightDefault,
-      width: 2.0,
-    )),
-    const Border.fromBorderSide(BorderSide(
-      color: professional_light.FhColors.interactiveHighlightDefault,
-      width: 2.0,
-    )),
-    const Border.fromBorderSide(BorderSide(
-      color: professional_dark.FhColors.interactiveHighlightDefault,
-      width: 2.0,
-    )),
+    const Border.fromBorderSide(
+      BorderSide(
+        color: consumer_light.FhColors.interactiveHighlightDefault,
+        width: 2.0,
+      ),
+    ),
+    const Border.fromBorderSide(
+      BorderSide(
+        color: consumer_dark.FhColors.interactiveHighlightDefault,
+        width: 2.0,
+      ),
+    ),
+    const Border.fromBorderSide(
+      BorderSide(
+        color: professional_light.FhColors.interactiveHighlightDefault,
+        width: 2.0,
+      ),
+    ),
+    const Border.fromBorderSide(
+      BorderSide(
+        color: professional_dark.FhColors.interactiveHighlightDefault,
+        width: 2.0,
+      ),
+    ),
   ];
 
   static final List<Border> borderError = <Border>[
-    const Border.fromBorderSide(BorderSide(
-      color: consumer_light.FhColors.interactiveCriticalDefault,
-      width: 2.0,
-    )),
-    const Border.fromBorderSide(BorderSide(
-      color: consumer_dark.FhColors.interactiveCriticalDefault,
-      width: 2.0,
-    )),
-    const Border.fromBorderSide(BorderSide(
-      color: professional_light.FhColors.interactiveCriticalDefault,
-      width: 2.0,
-    )),
-    const Border.fromBorderSide(BorderSide(
-      color: professional_dark.FhColors.interactiveCriticalDefault,
-      width: 2.0,
-    )),
+    const Border.fromBorderSide(
+      BorderSide(
+        color: consumer_light.FhColors.interactiveCriticalDefault,
+        width: 2.0,
+      ),
+    ),
+    const Border.fromBorderSide(
+      BorderSide(
+        color: consumer_dark.FhColors.interactiveCriticalDefault,
+        width: 2.0,
+      ),
+    ),
+    const Border.fromBorderSide(
+      BorderSide(
+        color: professional_light.FhColors.interactiveCriticalDefault,
+        width: 2.0,
+      ),
+    ),
+    const Border.fromBorderSide(
+      BorderSide(
+        color: professional_dark.FhColors.interactiveCriticalDefault,
+        width: 2.0,
+      ),
+    ),
   ];
 
   static final List<Border> borderDisabled = <Border>[

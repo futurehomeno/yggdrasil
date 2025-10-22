@@ -7,8 +7,12 @@ import 'package:yggdrasil/src/components/fields/search/models/shared/yg_search_r
 /// Internal mixin class used for advances search variants of widgets.
 mixin YgAdvancedSearchStateMixin<Value, ResultValue, Widget extends StatefulWidget> on State<Widget>
     implements
-        YgSearchStateMixinInterface<Value, ResultValue, YgSearchResult<ResultValue>,
-            YgSearchResultsLayout<ResultValue>> {
+        YgSearchStateMixinInterface<
+          Value,
+          ResultValue,
+          YgSearchResult<ResultValue>,
+          YgSearchResultsLayout<ResultValue>
+        > {
   @override
   YgAdvancedSearchProvider<Value, ResultValue> get searchProvider;
 }

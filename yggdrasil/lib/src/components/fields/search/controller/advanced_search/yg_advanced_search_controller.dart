@@ -1,7 +1,7 @@
 part of '../yg_search_controller_mixin.dart';
 
-typedef _AdvancedSession<Value, ResultValue>
-    = YgAdvancedSearchSession<Value, ResultValue, YgAdvancedSearchProvider<Value, ResultValue>>;
+typedef _AdvancedSession<Value, ResultValue> =
+    YgAdvancedSearchSession<Value, ResultValue, YgAdvancedSearchProvider<Value, ResultValue>>;
 typedef _AdvancedState<Value, ResultValue> = YgAdvancedSearchStateMixin<Value, ResultValue, StatefulWidget>;
 
 // TODO(Tim): Look in to maybe extending the lifespan of a session to simplify
@@ -22,13 +22,19 @@ typedef _AdvancedState<Value, ResultValue> = YgAdvancedSearchStateMixin<Value, R
 class YgAdvancedSearchController<Value, ResultValue>
     with
         ChangeNotifier,
-        _YgSearchControllerMixin<Value, Value?, ResultValue, YgSearchResult<ResultValue>,
-            YgSearchResultsLayout<ResultValue>, YgAdvancedSearchStateMixin<Value, ResultValue, StatefulWidget>> {
+        _YgSearchControllerMixin<
+          Value,
+          Value?,
+          ResultValue,
+          YgSearchResult<ResultValue>,
+          YgSearchResultsLayout<ResultValue>,
+          YgAdvancedSearchStateMixin<Value, ResultValue, StatefulWidget>
+        > {
   YgAdvancedSearchController({
     YgSearchValueAndText<Value>? initialValue,
-  })  : _textEditingController = TextEditingController(text: initialValue?.text),
-        _value = initialValue?.value,
-        _valueText = initialValue?.text {
+  }) : _textEditingController = TextEditingController(text: initialValue?.text),
+       _value = initialValue?.value,
+       _valueText = initialValue?.text {
     _textEditingController.addListener(_updateResults);
   }
 
@@ -64,17 +70,16 @@ class YgAdvancedSearchController<Value, ResultValue>
   void updateValue({
     required Value value,
     required String text,
-  }) =>
-      _updateValueInternal(
-        text: text,
-        value: value,
-      );
+  }) => _updateValueInternal(
+    text: text,
+    value: value,
+  );
 
   @override
   void clear() => _updateValueInternal(
-        text: null,
-        value: null,
-      );
+    text: null,
+    value: null,
+  );
 
   void _updateValueInternal({
     required Value? value,
@@ -243,8 +248,8 @@ class YgAdvancedSearchController<Value, ResultValue>
     }
 
     final YgAdvancedSearchProvider<Value, ResultValue> provider = state.searchProvider;
-    final YgAdvancedSearchSession<Value, ResultValue, YgAdvancedSearchProvider<Value, ResultValue>> session =
-        provider.createSession();
+    final YgAdvancedSearchSession<Value, ResultValue, YgAdvancedSearchProvider<Value, ResultValue>> session = provider
+        .createSession();
     session.attach(this, provider);
     session.initSession();
     _endingSession = false;

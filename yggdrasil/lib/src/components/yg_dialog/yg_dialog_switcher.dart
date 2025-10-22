@@ -52,19 +52,19 @@ class _YgDialogSwitcherState extends State<YgDialogSwitcher> with TickerProvider
       final _YgSwitcherEntry oldEntry = _currentEntry;
       oldEntry.controller
           .animateTo(
-        0,
-        curve: const Cubic(0.42, 0, 0.2, 1),
-        duration: const Duration(milliseconds: 300),
-      )
+            0,
+            curve: const Cubic(0.42, 0, 0.2, 1),
+            duration: const Duration(milliseconds: 300),
+          )
           .then(
-        (_) {
-          _renderedEntries.remove(oldEntry);
-          oldEntry.controller.dispose();
-          if (mounted) {
-            setState(() {});
-          }
-        },
-      );
+            (_) {
+              _renderedEntries.remove(oldEntry);
+              oldEntry.controller.dispose();
+              if (mounted) {
+                setState(() {});
+              }
+            },
+          );
 
       _addCurrentEntry();
       _sizeTransitionController.value = 0;

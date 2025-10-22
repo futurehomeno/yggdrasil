@@ -64,8 +64,7 @@ class YgSliderTheme extends ThemeExtension<YgSliderTheme> {
   static final YgSliderTheme consumerLight = YgSliderTheme(
     animationCurve: _$YgSliderTheme.animationCurve[0],
     animationDuration: _$YgSliderTheme.animationDuration[0],
-    differenceIndicatorDisabledColor:
-        _$YgSliderTheme.differenceIndicatorDisabledColor[0],
+    differenceIndicatorDisabledColor: _$YgSliderTheme.differenceIndicatorDisabledColor[0],
     differenceIndicatorHeight: _$YgSliderTheme.differenceIndicatorHeight[0],
     differenceIndicatorRadius: _$YgSliderTheme.differenceIndicatorRadius[0],
     handleDefaultColor: _$YgSliderTheme.handleDefaultColor[0],
@@ -92,8 +91,7 @@ class YgSliderTheme extends ThemeExtension<YgSliderTheme> {
   static final YgSliderTheme consumerDark = YgSliderTheme(
     animationCurve: _$YgSliderTheme.animationCurve[1],
     animationDuration: _$YgSliderTheme.animationDuration[1],
-    differenceIndicatorDisabledColor:
-        _$YgSliderTheme.differenceIndicatorDisabledColor[1],
+    differenceIndicatorDisabledColor: _$YgSliderTheme.differenceIndicatorDisabledColor[1],
     differenceIndicatorHeight: _$YgSliderTheme.differenceIndicatorHeight[1],
     differenceIndicatorRadius: _$YgSliderTheme.differenceIndicatorRadius[1],
     handleDefaultColor: _$YgSliderTheme.handleDefaultColor[1],
@@ -120,8 +118,7 @@ class YgSliderTheme extends ThemeExtension<YgSliderTheme> {
   static final YgSliderTheme professionalLight = YgSliderTheme(
     animationCurve: _$YgSliderTheme.animationCurve[2],
     animationDuration: _$YgSliderTheme.animationDuration[2],
-    differenceIndicatorDisabledColor:
-        _$YgSliderTheme.differenceIndicatorDisabledColor[2],
+    differenceIndicatorDisabledColor: _$YgSliderTheme.differenceIndicatorDisabledColor[2],
     differenceIndicatorHeight: _$YgSliderTheme.differenceIndicatorHeight[2],
     differenceIndicatorRadius: _$YgSliderTheme.differenceIndicatorRadius[2],
     handleDefaultColor: _$YgSliderTheme.handleDefaultColor[2],
@@ -148,8 +145,7 @@ class YgSliderTheme extends ThemeExtension<YgSliderTheme> {
   static final YgSliderTheme professionalDark = YgSliderTheme(
     animationCurve: _$YgSliderTheme.animationCurve[3],
     animationDuration: _$YgSliderTheme.animationDuration[3],
-    differenceIndicatorDisabledColor:
-        _$YgSliderTheme.differenceIndicatorDisabledColor[3],
+    differenceIndicatorDisabledColor: _$YgSliderTheme.differenceIndicatorDisabledColor[3],
     differenceIndicatorHeight: _$YgSliderTheme.differenceIndicatorHeight[3],
     differenceIndicatorRadius: _$YgSliderTheme.differenceIndicatorRadius[3],
     handleDefaultColor: _$YgSliderTheme.handleDefaultColor[3],
@@ -210,12 +206,9 @@ class YgSliderTheme extends ThemeExtension<YgSliderTheme> {
     return YgSliderTheme(
       animationCurve: animationCurve ?? this.animationCurve,
       animationDuration: animationDuration ?? this.animationDuration,
-      differenceIndicatorDisabledColor: differenceIndicatorDisabledColor ??
-          this.differenceIndicatorDisabledColor,
-      differenceIndicatorHeight:
-          differenceIndicatorHeight ?? this.differenceIndicatorHeight,
-      differenceIndicatorRadius:
-          differenceIndicatorRadius ?? this.differenceIndicatorRadius,
+      differenceIndicatorDisabledColor: differenceIndicatorDisabledColor ?? this.differenceIndicatorDisabledColor,
+      differenceIndicatorHeight: differenceIndicatorHeight ?? this.differenceIndicatorHeight,
+      differenceIndicatorRadius: differenceIndicatorRadius ?? this.differenceIndicatorRadius,
       handleDefaultColor: handleDefaultColor ?? this.handleDefaultColor,
       handleDisabledColor: handleDisabledColor ?? this.handleDisabledColor,
       handleFocusColor: handleFocusColor ?? this.handleFocusColor,
@@ -224,22 +217,17 @@ class YgSliderTheme extends ThemeExtension<YgSliderTheme> {
       handlePressedColor: handlePressedColor ?? this.handlePressedColor,
       shadesSliderTheme: shadesSliderTheme ?? this.shadesSliderTheme,
       stepperButtonsGap: stepperButtonsGap ?? this.stepperButtonsGap,
-      temperatureSliderTheme:
-          temperatureSliderTheme ?? this.temperatureSliderTheme,
+      temperatureSliderTheme: temperatureSliderTheme ?? this.temperatureSliderTheme,
       trackBackgroundColor: trackBackgroundColor ?? this.trackBackgroundColor,
       trackDisabledColor: trackDisabledColor ?? this.trackDisabledColor,
       trackHeight: trackHeight ?? this.trackHeight,
       trackInnerRadius: trackInnerRadius ?? this.trackInnerRadius,
       trackOuterRadius: trackOuterRadius ?? this.trackOuterRadius,
-      valueIndicatorBottomOffset:
-          valueIndicatorBottomOffset ?? this.valueIndicatorBottomOffset,
-      valueIndicatorDefaultColor:
-          valueIndicatorDefaultColor ?? this.valueIndicatorDefaultColor,
-      valueIndicatorPadding:
-          valueIndicatorPadding ?? this.valueIndicatorPadding,
+      valueIndicatorBottomOffset: valueIndicatorBottomOffset ?? this.valueIndicatorBottomOffset,
+      valueIndicatorDefaultColor: valueIndicatorDefaultColor ?? this.valueIndicatorDefaultColor,
+      valueIndicatorPadding: valueIndicatorPadding ?? this.valueIndicatorPadding,
       valueIndicatorRadius: valueIndicatorRadius ?? this.valueIndicatorRadius,
-      valueIndicatorTextStyle:
-          valueIndicatorTextStyle ?? this.valueIndicatorTextStyle,
+      valueIndicatorTextStyle: valueIndicatorTextStyle ?? this.valueIndicatorTextStyle,
     );
   }
 
@@ -250,47 +238,31 @@ class YgSliderTheme extends ThemeExtension<YgSliderTheme> {
       animationCurve: t < 0.5 ? animationCurve : other.animationCurve,
       animationDuration: t < 0.5 ? animationDuration : other.animationDuration,
       differenceIndicatorDisabledColor: Color.lerp(
-          differenceIndicatorDisabledColor,
-          other.differenceIndicatorDisabledColor,
-          t)!,
-      differenceIndicatorHeight:
-          t < 0.5 ? differenceIndicatorHeight : other.differenceIndicatorHeight,
-      differenceIndicatorRadius:
-          t < 0.5 ? differenceIndicatorRadius : other.differenceIndicatorRadius,
-      handleDefaultColor:
-          Color.lerp(handleDefaultColor, other.handleDefaultColor, t)!,
-      handleDisabledColor:
-          Color.lerp(handleDisabledColor, other.handleDisabledColor, t)!,
-      handleFocusColor:
-          Color.lerp(handleFocusColor, other.handleFocusColor, t)!,
-      handleHoverColor:
-          Color.lerp(handleHoverColor, other.handleHoverColor, t)!,
+        differenceIndicatorDisabledColor,
+        other.differenceIndicatorDisabledColor,
+        t,
+      )!,
+      differenceIndicatorHeight: t < 0.5 ? differenceIndicatorHeight : other.differenceIndicatorHeight,
+      differenceIndicatorRadius: t < 0.5 ? differenceIndicatorRadius : other.differenceIndicatorRadius,
+      handleDefaultColor: Color.lerp(handleDefaultColor, other.handleDefaultColor, t)!,
+      handleDisabledColor: Color.lerp(handleDisabledColor, other.handleDisabledColor, t)!,
+      handleFocusColor: Color.lerp(handleFocusColor, other.handleFocusColor, t)!,
+      handleHoverColor: Color.lerp(handleHoverColor, other.handleHoverColor, t)!,
       handlePadding: t < 0.5 ? handlePadding : other.handlePadding,
-      handlePressedColor:
-          Color.lerp(handlePressedColor, other.handlePressedColor, t)!,
-      shadesSliderTheme: shadesSliderTheme.lerp(other.shadesSliderTheme, t)
-          as YgShadesSliderTheme,
+      handlePressedColor: Color.lerp(handlePressedColor, other.handlePressedColor, t)!,
+      shadesSliderTheme: shadesSliderTheme.lerp(other.shadesSliderTheme, t) as YgShadesSliderTheme,
       stepperButtonsGap: t < 0.5 ? stepperButtonsGap : other.stepperButtonsGap,
-      temperatureSliderTheme: temperatureSliderTheme.lerp(
-          other.temperatureSliderTheme, t) as YgTemperatureSliderTheme,
-      trackBackgroundColor:
-          Color.lerp(trackBackgroundColor, other.trackBackgroundColor, t)!,
-      trackDisabledColor:
-          Color.lerp(trackDisabledColor, other.trackDisabledColor, t)!,
+      temperatureSliderTheme: temperatureSliderTheme.lerp(other.temperatureSliderTheme, t) as YgTemperatureSliderTheme,
+      trackBackgroundColor: Color.lerp(trackBackgroundColor, other.trackBackgroundColor, t)!,
+      trackDisabledColor: Color.lerp(trackDisabledColor, other.trackDisabledColor, t)!,
       trackHeight: t < 0.5 ? trackHeight : other.trackHeight,
       trackInnerRadius: t < 0.5 ? trackInnerRadius : other.trackInnerRadius,
       trackOuterRadius: t < 0.5 ? trackOuterRadius : other.trackOuterRadius,
-      valueIndicatorBottomOffset: t < 0.5
-          ? valueIndicatorBottomOffset
-          : other.valueIndicatorBottomOffset,
-      valueIndicatorDefaultColor: Color.lerp(
-          valueIndicatorDefaultColor, other.valueIndicatorDefaultColor, t)!,
-      valueIndicatorPadding:
-          t < 0.5 ? valueIndicatorPadding : other.valueIndicatorPadding,
-      valueIndicatorRadius:
-          t < 0.5 ? valueIndicatorRadius : other.valueIndicatorRadius,
-      valueIndicatorTextStyle: TextStyle.lerp(
-          valueIndicatorTextStyle, other.valueIndicatorTextStyle, t)!,
+      valueIndicatorBottomOffset: t < 0.5 ? valueIndicatorBottomOffset : other.valueIndicatorBottomOffset,
+      valueIndicatorDefaultColor: Color.lerp(valueIndicatorDefaultColor, other.valueIndicatorDefaultColor, t)!,
+      valueIndicatorPadding: t < 0.5 ? valueIndicatorPadding : other.valueIndicatorPadding,
+      valueIndicatorRadius: t < 0.5 ? valueIndicatorRadius : other.valueIndicatorRadius,
+      valueIndicatorTextStyle: TextStyle.lerp(valueIndicatorTextStyle, other.valueIndicatorTextStyle, t)!,
     );
   }
 
@@ -299,55 +271,33 @@ class YgSliderTheme extends ThemeExtension<YgSliderTheme> {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is YgSliderTheme &&
-            const DeepCollectionEquality()
-                .equals(animationCurve, other.animationCurve) &&
-            const DeepCollectionEquality()
-                .equals(animationDuration, other.animationDuration) &&
+            const DeepCollectionEquality().equals(animationCurve, other.animationCurve) &&
+            const DeepCollectionEquality().equals(animationDuration, other.animationDuration) &&
             const DeepCollectionEquality().equals(
-                differenceIndicatorDisabledColor,
-                other.differenceIndicatorDisabledColor) &&
-            const DeepCollectionEquality().equals(
-                differenceIndicatorHeight, other.differenceIndicatorHeight) &&
-            const DeepCollectionEquality().equals(
-                differenceIndicatorRadius, other.differenceIndicatorRadius) &&
-            const DeepCollectionEquality()
-                .equals(handleDefaultColor, other.handleDefaultColor) &&
-            const DeepCollectionEquality()
-                .equals(handleDisabledColor, other.handleDisabledColor) &&
-            const DeepCollectionEquality()
-                .equals(handleFocusColor, other.handleFocusColor) &&
-            const DeepCollectionEquality()
-                .equals(handleHoverColor, other.handleHoverColor) &&
-            const DeepCollectionEquality()
-                .equals(handlePadding, other.handlePadding) &&
-            const DeepCollectionEquality()
-                .equals(handlePressedColor, other.handlePressedColor) &&
-            const DeepCollectionEquality()
-                .equals(shadesSliderTheme, other.shadesSliderTheme) &&
-            const DeepCollectionEquality()
-                .equals(stepperButtonsGap, other.stepperButtonsGap) &&
-            const DeepCollectionEquality()
-                .equals(temperatureSliderTheme, other.temperatureSliderTheme) &&
-            const DeepCollectionEquality()
-                .equals(trackBackgroundColor, other.trackBackgroundColor) &&
-            const DeepCollectionEquality()
-                .equals(trackDisabledColor, other.trackDisabledColor) &&
-            const DeepCollectionEquality()
-                .equals(trackHeight, other.trackHeight) &&
-            const DeepCollectionEquality()
-                .equals(trackInnerRadius, other.trackInnerRadius) &&
-            const DeepCollectionEquality()
-                .equals(trackOuterRadius, other.trackOuterRadius) &&
-            const DeepCollectionEquality().equals(
-                valueIndicatorBottomOffset, other.valueIndicatorBottomOffset) &&
-            const DeepCollectionEquality().equals(
-                valueIndicatorDefaultColor, other.valueIndicatorDefaultColor) &&
-            const DeepCollectionEquality()
-                .equals(valueIndicatorPadding, other.valueIndicatorPadding) &&
-            const DeepCollectionEquality()
-                .equals(valueIndicatorRadius, other.valueIndicatorRadius) &&
-            const DeepCollectionEquality().equals(
-                valueIndicatorTextStyle, other.valueIndicatorTextStyle));
+              differenceIndicatorDisabledColor,
+              other.differenceIndicatorDisabledColor,
+            ) &&
+            const DeepCollectionEquality().equals(differenceIndicatorHeight, other.differenceIndicatorHeight) &&
+            const DeepCollectionEquality().equals(differenceIndicatorRadius, other.differenceIndicatorRadius) &&
+            const DeepCollectionEquality().equals(handleDefaultColor, other.handleDefaultColor) &&
+            const DeepCollectionEquality().equals(handleDisabledColor, other.handleDisabledColor) &&
+            const DeepCollectionEquality().equals(handleFocusColor, other.handleFocusColor) &&
+            const DeepCollectionEquality().equals(handleHoverColor, other.handleHoverColor) &&
+            const DeepCollectionEquality().equals(handlePadding, other.handlePadding) &&
+            const DeepCollectionEquality().equals(handlePressedColor, other.handlePressedColor) &&
+            const DeepCollectionEquality().equals(shadesSliderTheme, other.shadesSliderTheme) &&
+            const DeepCollectionEquality().equals(stepperButtonsGap, other.stepperButtonsGap) &&
+            const DeepCollectionEquality().equals(temperatureSliderTheme, other.temperatureSliderTheme) &&
+            const DeepCollectionEquality().equals(trackBackgroundColor, other.trackBackgroundColor) &&
+            const DeepCollectionEquality().equals(trackDisabledColor, other.trackDisabledColor) &&
+            const DeepCollectionEquality().equals(trackHeight, other.trackHeight) &&
+            const DeepCollectionEquality().equals(trackInnerRadius, other.trackInnerRadius) &&
+            const DeepCollectionEquality().equals(trackOuterRadius, other.trackOuterRadius) &&
+            const DeepCollectionEquality().equals(valueIndicatorBottomOffset, other.valueIndicatorBottomOffset) &&
+            const DeepCollectionEquality().equals(valueIndicatorDefaultColor, other.valueIndicatorDefaultColor) &&
+            const DeepCollectionEquality().equals(valueIndicatorPadding, other.valueIndicatorPadding) &&
+            const DeepCollectionEquality().equals(valueIndicatorRadius, other.valueIndicatorRadius) &&
+            const DeepCollectionEquality().equals(valueIndicatorTextStyle, other.valueIndicatorTextStyle));
   }
 
   @override

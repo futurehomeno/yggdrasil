@@ -213,11 +213,12 @@ abstract class YgDropdownField<T extends Object> extends StatefulWidget with Sta
   }
 }
 
-typedef _YgDropdownControllerManager<T extends Object>
-    = YgControllerManager<YgDropdownController<T, Object?, YgDropdownFieldWidgetState<T, YgDropdownField<T>>>>;
+typedef _YgDropdownControllerManager<T extends Object> =
+    YgControllerManager<YgDropdownController<T, Object?, YgDropdownFieldWidgetState<T, YgDropdownField<T>>>>;
 
 abstract class YgDropdownFieldWidgetState<T extends Object, W extends YgDropdownField<T>>
-    extends StateWithYgState<W, YgDropdownFieldState> with YgControllerManagerMixin {
+    extends StateWithYgState<W, YgDropdownFieldState>
+    with YgControllerManagerMixin {
   /// Manages the controller of this widget.
   late final _YgDropdownControllerManager<T> _controllerManager = manageController(
     createController: createController,
@@ -353,7 +354,8 @@ abstract class YgDropdownFieldWidgetState<T extends Object, W extends YgDropdown
 
   void openMenu() {
     final RenderBox itemBox = context.findRenderObject()! as RenderBox;
-    final Rect itemRect = itemBox.localToGlobal(
+    final Rect itemRect =
+        itemBox.localToGlobal(
           Offset.zero,
           ancestor: Navigator.of(context).context.findRenderObject(),
         ) &

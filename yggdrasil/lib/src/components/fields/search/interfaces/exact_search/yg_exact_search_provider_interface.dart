@@ -7,11 +7,13 @@ import '../yg_base_search_item.dart';
 
 /// Internal interface for providing exact search.
 abstract class YgExactSearchProviderInterface<
-    Value,
-    ResultValue,
-    Result extends YgBaseSearchResult,
-    ResultsLayout extends YgBaseSearchResultsLayout<Result>,
-    Item extends YgBaseSearchItem<Result>> implements YgBaseSearchProvider<Value, ResultValue, Result, ResultsLayout> {
+  Value,
+  ResultValue,
+  Result extends YgBaseSearchResult,
+  ResultsLayout extends YgBaseSearchResultsLayout<Result>,
+  Item extends YgBaseSearchItem<Result>
+>
+    implements YgBaseSearchProvider<Value, ResultValue, Result, ResultsLayout> {
   const YgExactSearchProviderInterface({
     required this.items,
     required this.noResultsBuilder,

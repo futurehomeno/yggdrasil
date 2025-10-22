@@ -158,8 +158,13 @@ abstract class YgSearchBar<Value> extends StatefulWidget {
   final YgCompleteAction completeAction;
 }
 
-abstract class _YgSearchBarWidgetState<Value, ResultValue, Result extends YgBaseSearchResult,
-        ResultsLayout extends YgBaseSearchResultsLayout<Result>, StatefulWidget extends YgSearchBar<Value>>
+abstract class _YgSearchBarWidgetState<
+  Value,
+  ResultValue,
+  Result extends YgBaseSearchResult,
+  ResultsLayout extends YgBaseSearchResultsLayout<Result>,
+  StatefulWidget extends YgSearchBar<Value>
+>
     extends StateWithYgStateAndStyle<StatefulWidget, YgSearchBarState, YgSearchBarStyle>
     with YgControllerManagerMixin
     implements YgSearchStateMixinInterface<Value, ResultValue, Result, ResultsLayout> {
@@ -168,8 +173,8 @@ abstract class _YgSearchBarWidgetState<Value, ResultValue, Result extends YgBase
 
   late final YgMaterialStatesControllerWithChangeCallback _materialController =
       YgMaterialStatesControllerWithChangeCallback(
-    onStateChange: _handleMaterialStateChange,
-  );
+        onStateChange: _handleMaterialStateChange,
+      );
 
   /// Manages the controller of this widget.
   YgSearchControllerAny<Value, ResultValue> createController();

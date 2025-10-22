@@ -17,18 +17,18 @@ final class YgRadioListTile<T> extends StatelessWidget with StatelessWidgetDebug
     this.subtitleIcon,
     this.leadingWidget,
     this.density = YgListTileDensity.standard,
-  })  : assert(
-          title != null || leadingWidget != null,
-          'Can not have neither a title or leading widget.',
-        ),
-        assert(
-          subtitleIcon == null || subtitle != null,
-          'Can not add a subtitleIcon without a subtitle.',
-        ),
-        assert(
-          title != null || subtitle == null,
-          'Can not have a subtitle without a title.',
-        );
+  }) : assert(
+         title != null || leadingWidget != null,
+         'Can not have neither a title or leading widget.',
+       ),
+       assert(
+         subtitleIcon == null || subtitle != null,
+         'Can not add a subtitleIcon without a subtitle.',
+       ),
+       assert(
+         title != null || subtitle == null,
+         'Can not have a subtitle without a title.',
+       );
 
   /// See [YgRadio.value].
   final T value;

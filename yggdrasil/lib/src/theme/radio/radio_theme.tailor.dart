@@ -67,8 +67,7 @@ class YgRadioTheme extends ThemeExtension<YgRadioTheme> {
     borderErrorFocusHoverColor: _$YgRadioTheme.borderErrorFocusHoverColor[0],
     borderFocusHoverColor: _$YgRadioTheme.borderFocusHoverColor[0],
     borderSelectedColor: _$YgRadioTheme.borderSelectedColor[0],
-    borderSelectedFocusHoverColor:
-        _$YgRadioTheme.borderSelectedFocusHoverColor[0],
+    borderSelectedFocusHoverColor: _$YgRadioTheme.borderSelectedFocusHoverColor[0],
     borderSelectedSize: _$YgRadioTheme.borderSelectedSize[0],
     centerDotDefaultColor: _$YgRadioTheme.centerDotDefaultColor[0],
     centerDotDefaultSize: _$YgRadioTheme.centerDotDefaultSize[0],
@@ -92,8 +91,7 @@ class YgRadioTheme extends ThemeExtension<YgRadioTheme> {
     borderErrorFocusHoverColor: _$YgRadioTheme.borderErrorFocusHoverColor[1],
     borderFocusHoverColor: _$YgRadioTheme.borderFocusHoverColor[1],
     borderSelectedColor: _$YgRadioTheme.borderSelectedColor[1],
-    borderSelectedFocusHoverColor:
-        _$YgRadioTheme.borderSelectedFocusHoverColor[1],
+    borderSelectedFocusHoverColor: _$YgRadioTheme.borderSelectedFocusHoverColor[1],
     borderSelectedSize: _$YgRadioTheme.borderSelectedSize[1],
     centerDotDefaultColor: _$YgRadioTheme.centerDotDefaultColor[1],
     centerDotDefaultSize: _$YgRadioTheme.centerDotDefaultSize[1],
@@ -117,8 +115,7 @@ class YgRadioTheme extends ThemeExtension<YgRadioTheme> {
     borderErrorFocusHoverColor: _$YgRadioTheme.borderErrorFocusHoverColor[2],
     borderFocusHoverColor: _$YgRadioTheme.borderFocusHoverColor[2],
     borderSelectedColor: _$YgRadioTheme.borderSelectedColor[2],
-    borderSelectedFocusHoverColor:
-        _$YgRadioTheme.borderSelectedFocusHoverColor[2],
+    borderSelectedFocusHoverColor: _$YgRadioTheme.borderSelectedFocusHoverColor[2],
     borderSelectedSize: _$YgRadioTheme.borderSelectedSize[2],
     centerDotDefaultColor: _$YgRadioTheme.centerDotDefaultColor[2],
     centerDotDefaultSize: _$YgRadioTheme.centerDotDefaultSize[2],
@@ -142,8 +139,7 @@ class YgRadioTheme extends ThemeExtension<YgRadioTheme> {
     borderErrorFocusHoverColor: _$YgRadioTheme.borderErrorFocusHoverColor[3],
     borderFocusHoverColor: _$YgRadioTheme.borderFocusHoverColor[3],
     borderSelectedColor: _$YgRadioTheme.borderSelectedColor[3],
-    borderSelectedFocusHoverColor:
-        _$YgRadioTheme.borderSelectedFocusHoverColor[3],
+    borderSelectedFocusHoverColor: _$YgRadioTheme.borderSelectedFocusHoverColor[3],
     borderSelectedSize: _$YgRadioTheme.borderSelectedSize[3],
     centerDotDefaultColor: _$YgRadioTheme.centerDotDefaultColor[3],
     centerDotDefaultSize: _$YgRadioTheme.centerDotDefaultSize[3],
@@ -189,30 +185,21 @@ class YgRadioTheme extends ThemeExtension<YgRadioTheme> {
     return YgRadioTheme(
       animationCurve: animationCurve ?? this.animationCurve,
       animationDuration: animationDuration ?? this.animationDuration,
-      backgroundDefaultColor:
-          backgroundDefaultColor ?? this.backgroundDefaultColor,
-      backgroundDisabledColor:
-          backgroundDisabledColor ?? this.backgroundDisabledColor,
+      backgroundDefaultColor: backgroundDefaultColor ?? this.backgroundDefaultColor,
+      backgroundDisabledColor: backgroundDisabledColor ?? this.backgroundDisabledColor,
       borderDefaultColor: borderDefaultColor ?? this.borderDefaultColor,
-      borderDefaultOrDisabledSize:
-          borderDefaultOrDisabledSize ?? this.borderDefaultOrDisabledSize,
+      borderDefaultOrDisabledSize: borderDefaultOrDisabledSize ?? this.borderDefaultOrDisabledSize,
       borderDisabledColor: borderDisabledColor ?? this.borderDisabledColor,
       borderErrorColor: borderErrorColor ?? this.borderErrorColor,
-      borderErrorFocusHoverColor:
-          borderErrorFocusHoverColor ?? this.borderErrorFocusHoverColor,
-      borderFocusHoverColor:
-          borderFocusHoverColor ?? this.borderFocusHoverColor,
+      borderErrorFocusHoverColor: borderErrorFocusHoverColor ?? this.borderErrorFocusHoverColor,
+      borderFocusHoverColor: borderFocusHoverColor ?? this.borderFocusHoverColor,
       borderSelectedColor: borderSelectedColor ?? this.borderSelectedColor,
-      borderSelectedFocusHoverColor:
-          borderSelectedFocusHoverColor ?? this.borderSelectedFocusHoverColor,
+      borderSelectedFocusHoverColor: borderSelectedFocusHoverColor ?? this.borderSelectedFocusHoverColor,
       borderSelectedSize: borderSelectedSize ?? this.borderSelectedSize,
-      centerDotDefaultColor:
-          centerDotDefaultColor ?? this.centerDotDefaultColor,
+      centerDotDefaultColor: centerDotDefaultColor ?? this.centerDotDefaultColor,
       centerDotDefaultSize: centerDotDefaultSize ?? this.centerDotDefaultSize,
-      centerDotDisabledColor:
-          centerDotDisabledColor ?? this.centerDotDisabledColor,
-      centerDotSelectedSize:
-          centerDotSelectedSize ?? this.centerDotSelectedSize,
+      centerDotDisabledColor: centerDotDisabledColor ?? this.centerDotDisabledColor,
+      centerDotSelectedSize: centerDotSelectedSize ?? this.centerDotSelectedSize,
       padding: padding ?? this.padding,
       radioGroupTheme: radioGroupTheme ?? this.radioGroupTheme,
       radioItemTheme: radioItemTheme ?? this.radioItemTheme,
@@ -226,42 +213,24 @@ class YgRadioTheme extends ThemeExtension<YgRadioTheme> {
     return YgRadioTheme(
       animationCurve: t < 0.5 ? animationCurve : other.animationCurve,
       animationDuration: t < 0.5 ? animationDuration : other.animationDuration,
-      backgroundDefaultColor:
-          Color.lerp(backgroundDefaultColor, other.backgroundDefaultColor, t)!,
-      backgroundDisabledColor: Color.lerp(
-          backgroundDisabledColor, other.backgroundDisabledColor, t)!,
-      borderDefaultColor:
-          Color.lerp(borderDefaultColor, other.borderDefaultColor, t)!,
-      borderDefaultOrDisabledSize: t < 0.5
-          ? borderDefaultOrDisabledSize
-          : other.borderDefaultOrDisabledSize,
-      borderDisabledColor:
-          Color.lerp(borderDisabledColor, other.borderDisabledColor, t)!,
-      borderErrorColor:
-          Color.lerp(borderErrorColor, other.borderErrorColor, t)!,
-      borderErrorFocusHoverColor: Color.lerp(
-          borderErrorFocusHoverColor, other.borderErrorFocusHoverColor, t)!,
-      borderFocusHoverColor:
-          Color.lerp(borderFocusHoverColor, other.borderFocusHoverColor, t)!,
-      borderSelectedColor:
-          Color.lerp(borderSelectedColor, other.borderSelectedColor, t)!,
-      borderSelectedFocusHoverColor: Color.lerp(borderSelectedFocusHoverColor,
-          other.borderSelectedFocusHoverColor, t)!,
-      borderSelectedSize:
-          t < 0.5 ? borderSelectedSize : other.borderSelectedSize,
-      centerDotDefaultColor:
-          Color.lerp(centerDotDefaultColor, other.centerDotDefaultColor, t)!,
-      centerDotDefaultSize:
-          t < 0.5 ? centerDotDefaultSize : other.centerDotDefaultSize,
-      centerDotDisabledColor:
-          Color.lerp(centerDotDisabledColor, other.centerDotDisabledColor, t)!,
-      centerDotSelectedSize:
-          t < 0.5 ? centerDotSelectedSize : other.centerDotSelectedSize,
+      backgroundDefaultColor: Color.lerp(backgroundDefaultColor, other.backgroundDefaultColor, t)!,
+      backgroundDisabledColor: Color.lerp(backgroundDisabledColor, other.backgroundDisabledColor, t)!,
+      borderDefaultColor: Color.lerp(borderDefaultColor, other.borderDefaultColor, t)!,
+      borderDefaultOrDisabledSize: t < 0.5 ? borderDefaultOrDisabledSize : other.borderDefaultOrDisabledSize,
+      borderDisabledColor: Color.lerp(borderDisabledColor, other.borderDisabledColor, t)!,
+      borderErrorColor: Color.lerp(borderErrorColor, other.borderErrorColor, t)!,
+      borderErrorFocusHoverColor: Color.lerp(borderErrorFocusHoverColor, other.borderErrorFocusHoverColor, t)!,
+      borderFocusHoverColor: Color.lerp(borderFocusHoverColor, other.borderFocusHoverColor, t)!,
+      borderSelectedColor: Color.lerp(borderSelectedColor, other.borderSelectedColor, t)!,
+      borderSelectedFocusHoverColor: Color.lerp(borderSelectedFocusHoverColor, other.borderSelectedFocusHoverColor, t)!,
+      borderSelectedSize: t < 0.5 ? borderSelectedSize : other.borderSelectedSize,
+      centerDotDefaultColor: Color.lerp(centerDotDefaultColor, other.centerDotDefaultColor, t)!,
+      centerDotDefaultSize: t < 0.5 ? centerDotDefaultSize : other.centerDotDefaultSize,
+      centerDotDisabledColor: Color.lerp(centerDotDisabledColor, other.centerDotDisabledColor, t)!,
+      centerDotSelectedSize: t < 0.5 ? centerDotSelectedSize : other.centerDotSelectedSize,
       padding: t < 0.5 ? padding : other.padding,
-      radioGroupTheme:
-          radioGroupTheme.lerp(other.radioGroupTheme, t) as YgRadioGroupTheme,
-      radioItemTheme:
-          radioItemTheme.lerp(other.radioItemTheme, t) as YgRadioItemTheme,
+      radioGroupTheme: radioGroupTheme.lerp(other.radioGroupTheme, t) as YgRadioGroupTheme,
+      radioItemTheme: radioItemTheme.lerp(other.radioItemTheme, t) as YgRadioItemTheme,
       size: t < 0.5 ? size : other.size,
     );
   }
@@ -271,45 +240,26 @@ class YgRadioTheme extends ThemeExtension<YgRadioTheme> {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is YgRadioTheme &&
-            const DeepCollectionEquality()
-                .equals(animationCurve, other.animationCurve) &&
-            const DeepCollectionEquality()
-                .equals(animationDuration, other.animationDuration) &&
-            const DeepCollectionEquality()
-                .equals(backgroundDefaultColor, other.backgroundDefaultColor) &&
-            const DeepCollectionEquality().equals(
-                backgroundDisabledColor, other.backgroundDisabledColor) &&
-            const DeepCollectionEquality()
-                .equals(borderDefaultColor, other.borderDefaultColor) &&
-            const DeepCollectionEquality().equals(borderDefaultOrDisabledSize,
-                other.borderDefaultOrDisabledSize) &&
-            const DeepCollectionEquality()
-                .equals(borderDisabledColor, other.borderDisabledColor) &&
-            const DeepCollectionEquality()
-                .equals(borderErrorColor, other.borderErrorColor) &&
-            const DeepCollectionEquality().equals(
-                borderErrorFocusHoverColor, other.borderErrorFocusHoverColor) &&
-            const DeepCollectionEquality()
-                .equals(borderFocusHoverColor, other.borderFocusHoverColor) &&
-            const DeepCollectionEquality()
-                .equals(borderSelectedColor, other.borderSelectedColor) &&
-            const DeepCollectionEquality().equals(borderSelectedFocusHoverColor,
-                other.borderSelectedFocusHoverColor) &&
-            const DeepCollectionEquality()
-                .equals(borderSelectedSize, other.borderSelectedSize) &&
-            const DeepCollectionEquality()
-                .equals(centerDotDefaultColor, other.centerDotDefaultColor) &&
-            const DeepCollectionEquality()
-                .equals(centerDotDefaultSize, other.centerDotDefaultSize) &&
-            const DeepCollectionEquality()
-                .equals(centerDotDisabledColor, other.centerDotDisabledColor) &&
-            const DeepCollectionEquality()
-                .equals(centerDotSelectedSize, other.centerDotSelectedSize) &&
+            const DeepCollectionEquality().equals(animationCurve, other.animationCurve) &&
+            const DeepCollectionEquality().equals(animationDuration, other.animationDuration) &&
+            const DeepCollectionEquality().equals(backgroundDefaultColor, other.backgroundDefaultColor) &&
+            const DeepCollectionEquality().equals(backgroundDisabledColor, other.backgroundDisabledColor) &&
+            const DeepCollectionEquality().equals(borderDefaultColor, other.borderDefaultColor) &&
+            const DeepCollectionEquality().equals(borderDefaultOrDisabledSize, other.borderDefaultOrDisabledSize) &&
+            const DeepCollectionEquality().equals(borderDisabledColor, other.borderDisabledColor) &&
+            const DeepCollectionEquality().equals(borderErrorColor, other.borderErrorColor) &&
+            const DeepCollectionEquality().equals(borderErrorFocusHoverColor, other.borderErrorFocusHoverColor) &&
+            const DeepCollectionEquality().equals(borderFocusHoverColor, other.borderFocusHoverColor) &&
+            const DeepCollectionEquality().equals(borderSelectedColor, other.borderSelectedColor) &&
+            const DeepCollectionEquality().equals(borderSelectedFocusHoverColor, other.borderSelectedFocusHoverColor) &&
+            const DeepCollectionEquality().equals(borderSelectedSize, other.borderSelectedSize) &&
+            const DeepCollectionEquality().equals(centerDotDefaultColor, other.centerDotDefaultColor) &&
+            const DeepCollectionEquality().equals(centerDotDefaultSize, other.centerDotDefaultSize) &&
+            const DeepCollectionEquality().equals(centerDotDisabledColor, other.centerDotDisabledColor) &&
+            const DeepCollectionEquality().equals(centerDotSelectedSize, other.centerDotSelectedSize) &&
             const DeepCollectionEquality().equals(padding, other.padding) &&
-            const DeepCollectionEquality()
-                .equals(radioGroupTheme, other.radioGroupTheme) &&
-            const DeepCollectionEquality()
-                .equals(radioItemTheme, other.radioItemTheme) &&
+            const DeepCollectionEquality().equals(radioGroupTheme, other.radioGroupTheme) &&
+            const DeepCollectionEquality().equals(radioItemTheme, other.radioItemTheme) &&
             const DeepCollectionEquality().equals(size, other.size));
   }
 

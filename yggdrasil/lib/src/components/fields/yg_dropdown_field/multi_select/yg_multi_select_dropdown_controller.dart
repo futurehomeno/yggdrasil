@@ -5,12 +5,12 @@ class YgMultiSelectDropdownController<T extends Object>
     extends YgDropdownController<T, Set<T>, _YgDropdownFieldMultiSelectState<T>> {
   YgMultiSelectDropdownController({
     Set<T>? initialValue,
-  })  : pendingValue = ValueNotifier<Set<T>>(
-          Set<T>.of(initialValue ?? <T>{}),
-        ),
-        super(
-          initialValue: Set<T>.of(initialValue ?? <T>{}),
-        );
+  }) : pendingValue = ValueNotifier<Set<T>>(
+         Set<T>.of(initialValue ?? <T>{}),
+       ),
+       super(
+         initialValue: Set<T>.of(initialValue ?? <T>{}),
+       );
 
   @override
   final ValueNotifier<Set<T>> pendingValue;

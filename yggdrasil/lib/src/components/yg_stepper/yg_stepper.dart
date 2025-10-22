@@ -20,22 +20,22 @@ class YgStepper extends StatefulWidget with StatefulWidgetDebugMixin {
     this.stepSize = 1,
     this.min = 0,
     this.max = 100,
-  })  : assert(
-          stepSize > 0,
-          'step size has to be more than 0',
-        ),
-        assert(
-          max > min,
-          'max has to be more than min',
-        ),
-        assert(
-          value >= min && value <= max,
-          'value has to be between min and max',
-        ),
-        assert(
-          precision == null || precision >= 0,
-          'precision can not be smaller than 0',
-        );
+  }) : assert(
+         stepSize > 0,
+         'step size has to be more than 0',
+       ),
+       assert(
+         max > min,
+         'max has to be more than min',
+       ),
+       assert(
+         value >= min && value <= max,
+         'value has to be between min and max',
+       ),
+       assert(
+         precision == null || precision >= 0,
+         'precision can not be smaller than 0',
+       );
 
   /// The minimum value.
   ///

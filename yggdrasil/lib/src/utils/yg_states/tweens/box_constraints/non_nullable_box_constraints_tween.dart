@@ -13,8 +13,8 @@ class NonNullableBoxConstraintsTween extends Tween<BoxConstraints> {
 
   @override
   BoxConstraints lerp(double t) => BoxConstraints.lerp(
-        begin,
-        end,
-        t,
-      )!;
+    begin,
+    end,
+    t,
+  )!;
 }

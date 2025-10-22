@@ -11,16 +11,16 @@ class YgIconButtonState extends YgButtonBaseState {
     super.pressed,
     YgIconButtonVariant variant = YgIconButtonVariant.standard,
     YgIconButtonSize size = YgIconButtonSize.medium,
-  })  : variant = YgStateValue<YgIconButtonVariant>(variant),
-        size = YgStateValue<YgIconButtonSize>(size);
+  }) : variant = YgStateValue<YgIconButtonVariant>(variant),
+       size = YgStateValue<YgIconButtonSize>(size);
 
   final YgStateValue<YgIconButtonVariant> variant;
   final YgStateValue<YgIconButtonSize> size;
 
   @override
   List<YgStateValue<Object?>> get props => <YgStateValue<Object?>>[
-        ...super.props,
-        variant,
-        size,
-      ];
+    ...super.props,
+    variant,
+    size,
+  ];
 }

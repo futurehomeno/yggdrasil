@@ -13,8 +13,8 @@ class NonNullableOffsetTween extends Tween<Offset> {
 
   @override
   Offset lerp(double t) => Offset.lerp(
-        begin,
-        end,
-        t,
-      )!;
+    begin,
+    end,
+    t,
+  )!;
 }

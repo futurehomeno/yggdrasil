@@ -64,12 +64,10 @@ class YgCheckboxItemTheme extends ThemeExtension<YgCheckboxItemTheme> {
   }
 
   @override
-  YgCheckboxItemTheme lerp(
-      covariant ThemeExtension<YgCheckboxItemTheme>? other, double t) {
+  YgCheckboxItemTheme lerp(covariant ThemeExtension<YgCheckboxItemTheme>? other, double t) {
     if (other is! YgCheckboxItemTheme) return this as YgCheckboxItemTheme;
     return YgCheckboxItemTheme(
-      checkboxTitleSpacing:
-          t < 0.5 ? checkboxTitleSpacing : other.checkboxTitleSpacing,
+      checkboxTitleSpacing: t < 0.5 ? checkboxTitleSpacing : other.checkboxTitleSpacing,
       titlePadding: t < 0.5 ? titlePadding : other.titlePadding,
       titleTextStyle: TextStyle.lerp(titleTextStyle, other.titleTextStyle, t)!,
     );
@@ -80,12 +78,9 @@ class YgCheckboxItemTheme extends ThemeExtension<YgCheckboxItemTheme> {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is YgCheckboxItemTheme &&
-            const DeepCollectionEquality()
-                .equals(checkboxTitleSpacing, other.checkboxTitleSpacing) &&
-            const DeepCollectionEquality()
-                .equals(titlePadding, other.titlePadding) &&
-            const DeepCollectionEquality()
-                .equals(titleTextStyle, other.titleTextStyle));
+            const DeepCollectionEquality().equals(checkboxTitleSpacing, other.checkboxTitleSpacing) &&
+            const DeepCollectionEquality().equals(titlePadding, other.titlePadding) &&
+            const DeepCollectionEquality().equals(titleTextStyle, other.titleTextStyle));
   }
 
   @override

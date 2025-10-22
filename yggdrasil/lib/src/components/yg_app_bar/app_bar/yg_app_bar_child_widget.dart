@@ -9,8 +9,8 @@ class YgAppBarChildWidget extends ParentDataWidget<YgAppBarRendererParentData> {
     required super.child,
     required this.slot,
   }) : super(
-          key: key ?? ValueKey<YgAppBarSlot>(slot),
-        );
+         key: key ?? ValueKey<YgAppBarSlot>(slot),
+       );
 
   final YgAppBarSlot slot;
 

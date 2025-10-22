@@ -135,17 +135,17 @@ class YgSnackBarManagerState extends State<YgSnackBarManager> with TickerProvide
     // Start animating the snack bar off screen.
     snackBarEntry.animationController
         .animateTo(
-      0,
-      curve: _theme.animationCurve,
-      duration: _theme.animationDuration,
-    )
+          0,
+          curve: _theme.animationCurve,
+          duration: _theme.animationDuration,
+        )
         .then(
-      (_) {
-        _renderedSnackBars.remove(snackBarEntry);
-        snackBarEntry.animationController.dispose();
-        setState(() {});
-      },
-    );
+          (_) {
+            _renderedSnackBars.remove(snackBarEntry);
+            snackBarEntry.animationController.dispose();
+            setState(() {});
+          },
+        );
 
     snackBarEntry.completer.complete();
 

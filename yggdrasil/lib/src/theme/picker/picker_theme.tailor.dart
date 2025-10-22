@@ -117,8 +117,7 @@ class YgPickerTheme extends ThemeExtension<YgPickerTheme> {
       animationDuration: animationDuration ?? this.animationDuration,
       backgroundColor: backgroundColor ?? this.backgroundColor,
       columnPadding: columnPadding ?? this.columnPadding,
-      indicatorBorderRadius:
-          indicatorBorderRadius ?? this.indicatorBorderRadius,
+      indicatorBorderRadius: indicatorBorderRadius ?? this.indicatorBorderRadius,
       indicatorColor: indicatorColor ?? this.indicatorColor,
       indicatorPadding: indicatorPadding ?? this.indicatorPadding,
       minimumColumnWidth: minimumColumnWidth ?? this.minimumColumnWidth,
@@ -136,17 +135,13 @@ class YgPickerTheme extends ThemeExtension<YgPickerTheme> {
       animationDuration: t < 0.5 ? animationDuration : other.animationDuration,
       backgroundColor: Color.lerp(backgroundColor, other.backgroundColor, t)!,
       columnPadding: t < 0.5 ? columnPadding : other.columnPadding,
-      indicatorBorderRadius:
-          t < 0.5 ? indicatorBorderRadius : other.indicatorBorderRadius,
+      indicatorBorderRadius: t < 0.5 ? indicatorBorderRadius : other.indicatorBorderRadius,
       indicatorColor: Color.lerp(indicatorColor, other.indicatorColor, t)!,
       indicatorPadding: t < 0.5 ? indicatorPadding : other.indicatorPadding,
-      minimumColumnWidth:
-          t < 0.5 ? minimumColumnWidth : other.minimumColumnWidth,
-      textDefaultStyle:
-          TextStyle.lerp(textDefaultStyle, other.textDefaultStyle, t)!,
+      minimumColumnWidth: t < 0.5 ? minimumColumnWidth : other.minimumColumnWidth,
+      textDefaultStyle: TextStyle.lerp(textDefaultStyle, other.textDefaultStyle, t)!,
       textPadding: t < 0.5 ? textPadding : other.textPadding,
-      textSelectedStyle:
-          TextStyle.lerp(textSelectedStyle, other.textSelectedStyle, t)!,
+      textSelectedStyle: TextStyle.lerp(textSelectedStyle, other.textSelectedStyle, t)!,
     );
   }
 
@@ -155,28 +150,17 @@ class YgPickerTheme extends ThemeExtension<YgPickerTheme> {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is YgPickerTheme &&
-            const DeepCollectionEquality()
-                .equals(animationCurve, other.animationCurve) &&
-            const DeepCollectionEquality()
-                .equals(animationDuration, other.animationDuration) &&
-            const DeepCollectionEquality()
-                .equals(backgroundColor, other.backgroundColor) &&
-            const DeepCollectionEquality()
-                .equals(columnPadding, other.columnPadding) &&
-            const DeepCollectionEquality()
-                .equals(indicatorBorderRadius, other.indicatorBorderRadius) &&
-            const DeepCollectionEquality()
-                .equals(indicatorColor, other.indicatorColor) &&
-            const DeepCollectionEquality()
-                .equals(indicatorPadding, other.indicatorPadding) &&
-            const DeepCollectionEquality()
-                .equals(minimumColumnWidth, other.minimumColumnWidth) &&
-            const DeepCollectionEquality()
-                .equals(textDefaultStyle, other.textDefaultStyle) &&
-            const DeepCollectionEquality()
-                .equals(textPadding, other.textPadding) &&
-            const DeepCollectionEquality()
-                .equals(textSelectedStyle, other.textSelectedStyle));
+            const DeepCollectionEquality().equals(animationCurve, other.animationCurve) &&
+            const DeepCollectionEquality().equals(animationDuration, other.animationDuration) &&
+            const DeepCollectionEquality().equals(backgroundColor, other.backgroundColor) &&
+            const DeepCollectionEquality().equals(columnPadding, other.columnPadding) &&
+            const DeepCollectionEquality().equals(indicatorBorderRadius, other.indicatorBorderRadius) &&
+            const DeepCollectionEquality().equals(indicatorColor, other.indicatorColor) &&
+            const DeepCollectionEquality().equals(indicatorPadding, other.indicatorPadding) &&
+            const DeepCollectionEquality().equals(minimumColumnWidth, other.minimumColumnWidth) &&
+            const DeepCollectionEquality().equals(textDefaultStyle, other.textDefaultStyle) &&
+            const DeepCollectionEquality().equals(textPadding, other.textPadding) &&
+            const DeepCollectionEquality().equals(textSelectedStyle, other.textSelectedStyle));
   }
 
   @override

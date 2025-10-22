@@ -7,8 +7,8 @@ import 'yg_checkbox_style.dart';
 class YgCheckboxPainter extends CustomPainter {
   YgCheckboxPainter({
     required this.style,
-  })  : iconPainter = YgCheckboxIconPainter(style: style),
-        super(repaint: style);
+  }) : iconPainter = YgCheckboxIconPainter(style: style),
+       super(repaint: style);
 
   final YgCheckboxStyle style;
   final YgCheckboxIconPainter iconPainter;

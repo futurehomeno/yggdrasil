@@ -22,7 +22,7 @@ class YgDropdownFieldState extends YgFieldState {
 
   @override
   List<YgStateValue<Object>> get props => <YgStateValue<Object>>[
-        ...super.props,
-        opened,
-      ];
+    ...super.props,
+    opened,
+  ];
 }

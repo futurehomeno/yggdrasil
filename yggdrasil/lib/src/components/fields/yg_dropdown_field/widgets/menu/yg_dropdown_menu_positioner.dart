@@ -41,10 +41,10 @@ class _YgDropdownMenuPositionerRenderObject extends RenderBox with RenderObjectW
     required Animation<double> animation,
     required EdgeInsets screenPadding,
     required double padding,
-  })  : _parentRect = rect,
-        _animation = animation,
-        _padding = padding,
-        _screenPadding = screenPadding;
+  }) : _parentRect = rect,
+       _animation = animation,
+       _padding = padding,
+       _screenPadding = screenPadding;
 
   late Offset _offset;
 
