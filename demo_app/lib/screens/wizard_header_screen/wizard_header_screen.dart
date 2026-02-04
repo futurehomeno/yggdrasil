@@ -26,7 +26,7 @@ class WizardHeaderScreen extends StatelessWidget {
           children: [
             Column(
               children: List<Widget>.generate(
-                9,
+                10,
                 (int index) => WizardHeaderExample(
                   steps: index + 2,
                   title: 'WizardHeader with ${index + 2} steps',
