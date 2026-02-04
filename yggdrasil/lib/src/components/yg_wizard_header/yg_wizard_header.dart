@@ -58,9 +58,7 @@ abstract class YgWizardHeader extends StatefulWidget with StatefulWidgetDebugMix
     required TitleBuilderCallback titleBuilder,
   }) = _YgWizardHeaderFromAnimation;
 
-  const YgWizardHeader._({
-    required this.titleBuilder,
-  });
+  const YgWizardHeader._({required this.titleBuilder});
 
   /// The title of the Wizard header.
   final TitleBuilderCallback titleBuilder;
@@ -68,7 +66,7 @@ abstract class YgWizardHeader extends StatefulWidget with StatefulWidgetDebugMix
 
 abstract class _YgWizardHeaderState<W extends YgWizardHeader> extends State<W> with TickerProviderStateMixin {
   /// The maximum amount of steps that will be rendered as a progress bar.
-  static const int _maxVisibleSteps = 5;
+  static const int _maxVisibleSteps = 8;
 
   /// The animation used to drive the animations in this widget.
   Animation<double> get _valueAnimation;
@@ -153,10 +151,7 @@ abstract class _YgWizardHeaderState<W extends YgWizardHeader> extends State<W> w
                   ),
                 ),
               Text(
-                DefaultYggdrasilLocalizations.current.wizardHeaderNOfN(
-                  _currentStep + 1,
-                  _currentSteps,
-                ),
+                DefaultYggdrasilLocalizations.current.wizardHeaderNOfN(_currentStep + 1, _currentSteps),
                 style: context.wizardHeaderTheme.counterTextStyle,
               ),
             ],
