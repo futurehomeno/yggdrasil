@@ -5,8 +5,8 @@ publish_to: none
 version: 1.13.6
 
 environment:
-  sdk: 3.8.1
-  flutter: 3.32.7
+  sdk: 3.11.0
+  flutter: 3.41.2
 
 dependencies:
   flutter:
@@ -15,7 +15,7 @@ dependencies:
   intl: 0.20.2
   theme_tailor_annotation:
     git:
-      ref: kamil/flutter-update-3.32.7
+      ref: kamil/update-to-flutter-3.41.2
       url: git@github.com:futurehomeno/theme_tailor.git
       path: packages/theme_tailor_annotation
   flutter_svg: 2.0.15
@@ -28,14 +28,14 @@ dev_dependencies:
   # Run `flutter test --update-goldens` to regenerate goldens.
   alchemist: 0.7.0
   # Run `flutter pub run build_runner build --delete-conflicting-outputs` in order to generate stuff.
-  build_runner: 2.5.4
+  build_runner: ^2.5.4
   recase: 4.1.0
-  intl_utils: 2.8.11
+  intl_utils: 2.8.14
   flutter_test:
     sdk: flutter
   theme_tailor:
     git:
-      ref: kamil/flutter-update-3.32.7
+      ref: kamil/update-to-flutter-3.41.2
       url: git@github.com:futurehomeno/theme_tailor.git
       path: packages/theme_tailor
 

@@ -67,6 +67,7 @@ abstract class YgSearchFormField<Value> extends StatefulWidget implements FormFi
     String? error,
   }) : restorationId = null,
        onSaved = null,
+       onReset = null,
        forceErrorText = error,
        validator = YgValidateHelper.combineValidators<Value>(validators),
        autovalidateMode = YgValidateHelper.mapAutoValidate(autoValidate);
@@ -192,6 +193,9 @@ abstract class YgSearchFormField<Value> extends StatefulWidget implements FormFi
 
   @override
   final FormFieldSetter<Value>? onSaved;
+
+  @override
+  final VoidCallback? onReset;
 
   @override
   FormFieldState<Value> createState() => FormFieldState<Value>();
