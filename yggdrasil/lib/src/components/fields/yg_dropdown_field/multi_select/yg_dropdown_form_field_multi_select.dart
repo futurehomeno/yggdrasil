@@ -28,6 +28,7 @@ class _YgDropdownFormFieldMultiSelect<T extends Object> extends YgDropdownFormFi
   }) : validator = YgValidateHelper.combineValidators(validators),
        autovalidateMode = YgValidateHelper.mapAutoValidate(autoValidate),
        onSaved = null,
+       onReset = null,
        _key = key,
        super._(
          key: key,
@@ -87,6 +88,9 @@ class _YgDropdownFormFieldMultiSelect<T extends Object> extends YgDropdownFormFi
 
   @override
   final FormFieldSetter<Set<T>>? onSaved;
+
+  @override
+  final VoidCallback? onReset;
 
   /// The controller of the field.
   ///

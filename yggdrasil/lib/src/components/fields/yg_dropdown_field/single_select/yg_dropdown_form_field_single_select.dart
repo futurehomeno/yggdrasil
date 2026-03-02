@@ -26,6 +26,7 @@ class _YgDropdownFormFieldSingleSelect<T extends Object> extends YgDropdownFormF
     this.onChanged,
     List<FormFieldValidator<T>>? validators,
   }) : onSaved = null,
+       onReset = null,
        validator = YgValidateHelper.combineValidators(validators),
        autovalidateMode = YgValidateHelper.mapAutoValidate(autoValidate),
        _key = key,
@@ -85,6 +86,9 @@ class _YgDropdownFormFieldSingleSelect<T extends Object> extends YgDropdownFormF
 
   @override
   final FormFieldSetter<T?>? onSaved;
+
+  @override
+  final VoidCallback? onReset;
 
   /// The controller of the field.
   ///
