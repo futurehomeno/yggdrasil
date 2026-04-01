@@ -150,9 +150,39 @@ mixin EditableTextContainerStateMixin<W extends StatefulWidget> on State<W>
     );
   }
 
-  Widget _buildContextMenu(BuildContext _, EditableTextState editableTextState) {
-    return AdaptiveTextSelectionToolbar.editableText(
-      editableTextState: editableTextState,
+  Widget _buildContextMenu(BuildContext context, EditableTextState editableTextState) {
+    final double topPadding = MediaQuery.viewPaddingOf(context).top;
+    final TextSelectionToolbarAnchors anchors = editableTextState.contextMenuAnchors;
+
+    // The toolbar renders above primaryAnchor. If there isn't enough room
+    // above it (accounting for the safe area + toolbar height), use
+    // secondaryAnchor as primary so the toolbar appears below the selection.
+    const double kToolbarHeight = 150.0;
+    final bool hasRoomAbove = anchors.primaryAnchor.dy > topPadding + kToolbarHeight;
+
+    final Offset primaryAnchor;
+    final Offset? secondaryAnchor;
+
+    if (hasRoomAbove) {
+      primaryAnchor = anchors.primaryAnchor;
+      secondaryAnchor = anchors.secondaryAnchor;
+    } else {
+      // Use secondary (below selection) as primary so toolbar renders below.
+      primaryAnchor =
+          anchors.secondaryAnchor ??
+          Offset(
+            anchors.primaryAnchor.dx,
+            topPadding + kToolbarHeight,
+          );
+      secondaryAnchor = null;
+    }
+
+    return AdaptiveTextSelectionToolbar.buttonItems(
+      anchors: TextSelectionToolbarAnchors(
+        primaryAnchor: primaryAnchor,
+        secondaryAnchor: secondaryAnchor,
+      ),
+      buttonItems: editableTextState.contextMenuButtonItems,
     );
   }
 
