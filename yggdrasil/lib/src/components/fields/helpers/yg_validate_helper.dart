@@ -92,7 +92,7 @@ class YgValidateHelper<T> {
 
   /// Handler for when the user finishes editing a field.
   void onEditingComplete() {
-    final VoidCallback? onEditingComplete = this._onEditingComplete;
+    final VoidCallback? onEditingComplete = _onEditingComplete;
 
     if (_autoValidate == YgAutoValidate.onComplete && !_key.validate()) {
       return;

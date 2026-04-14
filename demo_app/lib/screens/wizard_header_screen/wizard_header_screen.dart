@@ -23,7 +23,7 @@ class WizardHeaderScreen extends StatelessWidget {
       componentName: 'WizardHeader',
       child: YgLayoutBody(
         child: Column(
-          children: [
+          children: <Widget>[
             Column(
               children: List<Widget>.generate(
                 10,

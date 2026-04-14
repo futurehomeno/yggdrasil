@@ -12,29 +12,35 @@ class YgProgressIndicatorTheme extends ThemeExtension<YgProgressIndicatorTheme> 
   const YgProgressIndicatorTheme({
     required this.circularProgressIndicatorTheme,
     required this.linearProgressIndicatorTheme,
+    required this.progressPercentageIndicatorTheme,
   });
 
   final CircularProgressIndicatorTheme circularProgressIndicatorTheme;
   final LinearProgressIndicatorTheme linearProgressIndicatorTheme;
+  final ProgressPercentageIndicatorTheme progressPercentageIndicatorTheme;
 
   static final YgProgressIndicatorTheme consumerLight = YgProgressIndicatorTheme(
     circularProgressIndicatorTheme: _$YgProgressIndicatorTheme.circularProgressIndicatorTheme[0],
     linearProgressIndicatorTheme: _$YgProgressIndicatorTheme.linearProgressIndicatorTheme[0],
+    progressPercentageIndicatorTheme: _$YgProgressIndicatorTheme.progressPercentageIndicatorTheme[0],
   );
 
   static final YgProgressIndicatorTheme consumerDark = YgProgressIndicatorTheme(
     circularProgressIndicatorTheme: _$YgProgressIndicatorTheme.circularProgressIndicatorTheme[1],
     linearProgressIndicatorTheme: _$YgProgressIndicatorTheme.linearProgressIndicatorTheme[1],
+    progressPercentageIndicatorTheme: _$YgProgressIndicatorTheme.progressPercentageIndicatorTheme[1],
   );
 
   static final YgProgressIndicatorTheme professionalLight = YgProgressIndicatorTheme(
     circularProgressIndicatorTheme: _$YgProgressIndicatorTheme.circularProgressIndicatorTheme[2],
     linearProgressIndicatorTheme: _$YgProgressIndicatorTheme.linearProgressIndicatorTheme[2],
+    progressPercentageIndicatorTheme: _$YgProgressIndicatorTheme.progressPercentageIndicatorTheme[2],
   );
 
   static final YgProgressIndicatorTheme professionalDark = YgProgressIndicatorTheme(
     circularProgressIndicatorTheme: _$YgProgressIndicatorTheme.circularProgressIndicatorTheme[3],
     linearProgressIndicatorTheme: _$YgProgressIndicatorTheme.linearProgressIndicatorTheme[3],
+    progressPercentageIndicatorTheme: _$YgProgressIndicatorTheme.progressPercentageIndicatorTheme[3],
   );
 
   static final themes = [
@@ -48,10 +54,13 @@ class YgProgressIndicatorTheme extends ThemeExtension<YgProgressIndicatorTheme> 
   YgProgressIndicatorTheme copyWith({
     CircularProgressIndicatorTheme? circularProgressIndicatorTheme,
     LinearProgressIndicatorTheme? linearProgressIndicatorTheme,
+    ProgressPercentageIndicatorTheme? progressPercentageIndicatorTheme,
   }) {
     return YgProgressIndicatorTheme(
       circularProgressIndicatorTheme: circularProgressIndicatorTheme ?? this.circularProgressIndicatorTheme,
       linearProgressIndicatorTheme: linearProgressIndicatorTheme ?? this.linearProgressIndicatorTheme,
+      progressPercentageIndicatorTheme:
+          progressPercentageIndicatorTheme ?? this.progressPercentageIndicatorTheme,
     );
   }
 
@@ -64,6 +73,9 @@ class YgProgressIndicatorTheme extends ThemeExtension<YgProgressIndicatorTheme> 
               as CircularProgressIndicatorTheme,
       linearProgressIndicatorTheme:
           linearProgressIndicatorTheme.lerp(other.linearProgressIndicatorTheme, t) as LinearProgressIndicatorTheme,
+      progressPercentageIndicatorTheme:
+          progressPercentageIndicatorTheme.lerp(other.progressPercentageIndicatorTheme, t)
+              as ProgressPercentageIndicatorTheme,
     );
   }
 
@@ -76,7 +88,9 @@ class YgProgressIndicatorTheme extends ThemeExtension<YgProgressIndicatorTheme> 
               circularProgressIndicatorTheme,
               other.circularProgressIndicatorTheme,
             ) &&
-            const DeepCollectionEquality().equals(linearProgressIndicatorTheme, other.linearProgressIndicatorTheme));
+            const DeepCollectionEquality().equals(linearProgressIndicatorTheme, other.linearProgressIndicatorTheme) &&
+            const DeepCollectionEquality().equals(
+                progressPercentageIndicatorTheme, other.progressPercentageIndicatorTheme));
   }
 
   @override
@@ -85,6 +99,7 @@ class YgProgressIndicatorTheme extends ThemeExtension<YgProgressIndicatorTheme> 
       runtimeType.hashCode,
       const DeepCollectionEquality().hash(circularProgressIndicatorTheme),
       const DeepCollectionEquality().hash(linearProgressIndicatorTheme),
+      const DeepCollectionEquality().hash(progressPercentageIndicatorTheme),
     );
   }
 }

@@ -12,4 +12,8 @@ class _$YgProgressIndicatorTheme {
 
   @themeExtension
   static final List<LinearProgressIndicatorTheme> linearProgressIndicatorTheme = LinearProgressIndicatorTheme.themes;
+
+  @themeExtension
+  static final List<ProgressPercentageIndicatorTheme> progressPercentageIndicatorTheme =
+      ProgressPercentageIndicatorTheme.themes;
 }

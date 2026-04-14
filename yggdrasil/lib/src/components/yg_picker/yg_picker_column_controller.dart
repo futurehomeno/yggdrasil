@@ -106,7 +106,7 @@ class YgPickerColumnController<T extends Object> extends ChangeNotifier
   void attach(_YgPickerColumnState<T> column) {
     _column = column;
 
-    final T? value = this._value;
+    final T? value = _value;
     if (value == null) {
       return;
     }
