@@ -24,7 +24,7 @@ class YgControllerManagerImplementation<T extends Listenable> implements YgContr
     }
 
     final T controller = _controller;
-    final VoidCallback? listener = this._listener;
+    final VoidCallback? listener = _listener;
     if (listener != null) {
       controller.addListener(listener);
     }
@@ -72,7 +72,7 @@ class YgControllerManagerImplementation<T extends Listenable> implements YgContr
   }
 
   void _updateController(T newController) {
-    final VoidCallback? listener = this._listener;
+    final VoidCallback? listener = _listener;
     final T controller = _controller;
     if (controller is YgAttachable && _attached) {
       controller.detach();
@@ -93,7 +93,7 @@ class YgControllerManagerImplementation<T extends Listenable> implements YgContr
   }
 
   void dispose() {
-    final VoidCallback? listener = this._listener;
+    final VoidCallback? listener = _listener;
     final T controller = _controller;
     if (listener != null) {
       controller.removeListener(listener);

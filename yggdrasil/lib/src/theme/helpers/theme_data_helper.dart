@@ -19,7 +19,7 @@ class YgThemeDataHelper {
       highlightColor: theme.defaults.highlightColor,
       focusColor: theme.defaults.focusColor,
       // Temporary theme values. Will be removed once we have proper component.
-      appBarTheme: AppBarTheme(color: theme.defaults.appBarColor),
+      appBarTheme: AppBarTheme(backgroundColor: theme.defaults.appBarColor),
       iconTheme: IconThemeData(
         color: theme.defaults.iconColor,
       ),
