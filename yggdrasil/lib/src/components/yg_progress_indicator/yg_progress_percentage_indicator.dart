@@ -3,7 +3,7 @@ import 'package:flutter/rendering.dart';
 import 'package:yggdrasil/src/theme/_theme.dart';
 import 'package:yggdrasil/src/utils/_utils.dart';
 
-/// Displays a progress percentage with a [YgLinearProgressIndicator],
+/// Displays a progress percentage with a [LinearProgressIndicator],
 /// time remaining, and an optional animated shimmer overlay.
 class YgProgressPercentageIndicator extends StatefulWidget with StatefulWidgetDebugMixin {
   const YgProgressPercentageIndicator({
@@ -187,9 +187,7 @@ class _ShimmerRenderBox extends RenderBox {
     required Color shimmerColor,
   }) : _controller = controller,
        _percentage = percentage,
-       _shimmerColor = shimmerColor {
-    _controller.addListener(markNeedsPaint);
-  }
+       _shimmerColor = shimmerColor;
 
   final AnimationController _controller;
 

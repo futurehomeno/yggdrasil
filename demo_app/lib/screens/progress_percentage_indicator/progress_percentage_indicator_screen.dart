@@ -23,9 +23,6 @@ class ProgressPercentageIndicatorScreen extends StatefulWidget {
 }
 
 class _ProgressPercentageIndicatorScreenState extends State<ProgressPercentageIndicatorScreen> {
-  double _animatedPercentage = 0.0;
-  Timer? _timer;
-
   double _devicePercentage = 0.0;
   Timer? _deviceTimer;
   final Random _random = Random();
@@ -33,28 +30,13 @@ class _ProgressPercentageIndicatorScreenState extends State<ProgressPercentageIn
   @override
   void initState() {
     super.initState();
-    _startSimulation();
     _startDeviceSimulation();
   }
 
   @override
   void dispose() {
-    _timer?.cancel();
     _deviceTimer?.cancel();
     super.dispose();
-  }
-
-  void _startSimulation() {
-    _timer?.cancel();
-    _animatedPercentage = 0.0;
-    _timer = Timer.periodic(const Duration(milliseconds: 50), (Timer timer) {
-      setState(() {
-        _animatedPercentage += 0.005;
-        if (_animatedPercentage >= 1.0) {
-          _animatedPercentage = 0.0;
-        }
-      });
-    });
   }
 
   void _startDeviceSimulation() {
@@ -79,10 +61,6 @@ class _ProgressPercentageIndicatorScreenState extends State<ProgressPercentageIn
 
   @override
   Widget build(BuildContext context) {
-    final int remainingSeconds = ((1.0 - _animatedPercentage) * 90).round();
-    final int totalMB = 212;
-    final int uploadedMB = (_animatedPercentage * totalMB).round();
-
     final int deviceRemainingSeconds = ((1.0 - _devicePercentage) * 180).round();
     final int deviceTotalMB = 512;
     final int deviceUploadedMB = (_devicePercentage * deviceTotalMB).round();
