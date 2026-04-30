@@ -62,6 +62,11 @@ class HomeScreen extends StatelessWidget {
                       trailingWidgets: const <YgIcon>[YgIcon(YgIcons.caretRight)],
                     ),
                     YgListTile(
+                      title: 'BottomNavigationBar',
+                      onTap: () => sl<YgRouter>().push(BottomNavigationBarScreen.route()),
+                      trailingWidgets: const <YgIcon>[YgIcon(YgIcons.caretRight)],
+                    ),
+                    YgListTile(
                       title: 'BottomSheet',
                       onTap: () => sl<YgRouter>().push(BottomSheetScreen.route()),
                       trailingWidgets: const <YgIcon>[YgIcon(YgIcons.caretRight)],
