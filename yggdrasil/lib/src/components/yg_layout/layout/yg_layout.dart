@@ -25,6 +25,7 @@ abstract class YgLayout extends StatefulWidget with StatefulWidgetDebugMixin {
     YgHeaderBehavior headerBehavior,
     Widget? appBar,
     Widget? bottom,
+    Widget? bottomNavigationBar,
   }) = _YgLayoutRegular;
 
   /// Creates a layout with tabs.
@@ -41,6 +42,7 @@ abstract class YgLayout extends StatefulWidget with StatefulWidgetDebugMixin {
     bool swiping,
     Widget? bottom,
     Widget? appBar,
+    Widget? bottomNavigationBar,
     ValueChanged<int>? onTabChanged,
     ValueChanged<int>? onTabVisible,
   }) = _YgLayoutTabbed;
@@ -49,6 +51,7 @@ abstract class YgLayout extends StatefulWidget with StatefulWidgetDebugMixin {
     super.key,
     this.appBar,
     this.bottom,
+    this.bottomNavigationBar,
     this.headerBehavior = YgHeaderBehavior.fixed,
   });
 
@@ -63,6 +66,15 @@ abstract class YgLayout extends StatefulWidget with StatefulWidgetDebugMixin {
   /// This widget will get hidden when the user scrolls if [headerBehavior] is
   /// set to hideEverything.
   final Widget? bottom;
+
+  /// A widget pinned to the bottom of the screen, intended for navigation
+  /// bars such as [YgBottomNavigationBar].
+  ///
+  /// The layout reserves vertical space for this widget and strips the bottom
+  /// inset from the [content]'s [MediaQuery] so that the navigation bar is the
+  /// sole owner of the bottom safe area. The content scrolls above the bar
+  /// rather than behind it.
+  final Widget? bottomNavigationBar;
 
   /// The scrolling related header behavior.
   ///

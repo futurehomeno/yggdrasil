@@ -262,8 +262,11 @@ class _BottomNavigationBarScreenState extends State<BottomNavigationBarScreen> {
             YgSection.column(
               title: 'Safe area',
               subtitle:
-                  'When the bar is placed directly above the bottom of the screen, leave applySafeArea: true (the default). '
-                  'When wrapped in a parent that already pads the bottom inset (e.g. YgLayoutBody.footer), pass '
+                  'For full-screen usage, pass the bar to YgLayout.bottomNavigationBar — '
+                  'the layout reserves space and strips the bottom inset from the content '
+                  'so the bar owns the safe area (applySafeArea defaults to true). '
+                  'When embedding the bar inside a parent that already pads the bottom '
+                  'inset (e.g. YgLayoutBody.footer or another navigation bar slot), set '
                   'applySafeArea: false so the safe area is not consumed twice.',
               children: <Widget>[
                 YgButton(
@@ -279,9 +282,11 @@ class _BottomNavigationBarScreenState extends State<BottomNavigationBarScreen> {
   }
 }
 
-/// Full-screen demo of [YgBottomNavigationBar] used as a sticky footer of
-/// [YgLayoutBody]. The bar is rendered with `applySafeArea: false` because
-/// the layout body already pads the bottom inset.
+/// Full-screen demo using [YgLayout]'s `bottomNavigationBar` slot — the bar
+/// sits at the bottom of the screen and the layout reserves vertical space
+/// for it. The bar handles its own safe area (default `applySafeArea: true`)
+/// because [YgLayout] strips the bottom inset from the content's MediaQuery
+/// before passing it down.
 class _BottomNavigationBarFullScreenDemo extends StatefulWidget {
   const _BottomNavigationBarFullScreenDemo();
 
@@ -312,13 +317,12 @@ class _BottomNavigationBarFullScreenDemoState extends State<_BottomNavigationBar
   Widget build(BuildContext context) {
     return DemoScreen(
       componentName: 'BottomNavigationBar — full screen',
+      bottomNavigationBar: YgBottomNavigationBar(
+        items: _tabs,
+        currentIndex: _index,
+        onTap: (int index) => setState(() => _index = index),
+      ),
       child: YgLayoutBody(
-        footer: YgBottomNavigationBar(
-          items: _tabs,
-          currentIndex: _index,
-          applySafeArea: false,
-          onTap: (int index) => setState(() => _index = index),
-        ),
         child: Padding(
           padding: const EdgeInsets.all(16),
           child: Column(
@@ -329,8 +333,9 @@ class _BottomNavigationBarFullScreenDemoState extends State<_BottomNavigationBar
               ),
               const SizedBox(height: 12),
               const Text(
-                'YgLayoutBody.footer pads the bottom inset itself, so the bar '
-                'is rendered with applySafeArea: false to avoid double padding.',
+                'YgLayout.bottomNavigationBar pins the bar to the bottom and '
+                'strips the bottom inset from the content, so the bar handles '
+                'safe area by itself.',
               ),
             ],
           ),

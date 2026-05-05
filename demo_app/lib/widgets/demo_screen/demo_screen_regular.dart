@@ -5,6 +5,7 @@ class _DemoScreenRegular extends DemoScreen {
     super.key,
     required this.child,
     super.appBar,
+    super.bottomNavigationBar,
     super.componentName,
     super.headerBehavior,
   }) : super._();
@@ -16,6 +17,7 @@ class _DemoScreenRegular extends DemoScreen {
     return YgLayout(
       headerBehavior: headerBehavior,
       appBar: appBar,
+      bottomNavigationBar: bottomNavigationBar,
       child: child,
     );
   }

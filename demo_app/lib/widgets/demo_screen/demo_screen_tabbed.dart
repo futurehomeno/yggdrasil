@@ -5,6 +5,7 @@ class _DemoScreenTabbed extends DemoScreen {
     super.key,
     required this.tabs,
     super.appBar,
+    super.bottomNavigationBar,
     super.componentName,
     super.headerBehavior,
   }) : super._();
@@ -16,6 +17,7 @@ class _DemoScreenTabbed extends DemoScreen {
     return YgLayout.tabbed(
       headerBehavior: headerBehavior,
       appBar: appBar,
+      bottomNavigationBar: bottomNavigationBar,
       tabs: tabs,
     );
   }

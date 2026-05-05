@@ -16,6 +16,7 @@ class YgLayoutInternal extends StatelessWidget {
     required this.headerBehavior,
     this.appBar,
     this.bottom,
+    this.bottomNavigationBar,
   });
 
   /// The content shown in the layout.
@@ -26,6 +27,13 @@ class YgLayoutInternal extends StatelessWidget {
 
   /// The widget shown bellow the [appBar].
   final Widget? bottom;
+
+  /// Widget pinned to the bottom of the screen (e.g. a bottom navigation bar).
+  ///
+  /// When non-null, this widget receives the bottom inset from the original
+  /// [MediaQuery] (so it can pad itself for the safe area), while the [content]
+  /// has its bottom inset stripped so it does not double-pad.
+  final Widget? bottomNavigationBar;
 
   /// The controller responsible for animating the header.
   final YgLayoutHeaderController controller;
@@ -39,42 +47,68 @@ class YgLayoutInternal extends StatelessWidget {
 
     final Widget? appBar = this.appBar;
     final Widget? bottom = this.bottom;
+    final Widget? bottomNavigationBar = this.bottomNavigationBar;
+
+    Widget contentArea = YgLayoutRenderWidget(
+      children: <Widget>[
+        content,
+        MediaQuery.removePadding(
+          removeTop: true,
+          context: context,
+          child: YgLayoutHeaderRenderWidget(
+            padding: MediaQuery.paddingOf(context),
+            controller: controller,
+            behavior: headerBehavior,
+            headerColor: theme.backgroundColor,
+            children: <Widget>[
+              if (appBar != null)
+                YgLayoutHeaderChildWidget(
+                  slot: YgLayoutHeaderSlot.appBar,
+                  child: appBar,
+                ),
+              if (bottom != null)
+                YgLayoutHeaderChildWidget(
+                  slot: YgLayoutHeaderSlot.trailing,
+                  child: bottom,
+                ),
+              YgLayoutHeaderLoadingBar(
+                controller: controller,
+              ),
+              YgLayoutHeaderShadow(
+                controller: controller,
+              ),
+            ],
+          ),
+        ),
+      ],
+    );
+
+    if (bottomNavigationBar != null) {
+      return Material(
+        color: theme.backgroundColor,
+        child: Column(
+          mainAxisSize: MainAxisSize.max,
+          children: <Widget>[
+            Expanded(
+              // Strip the bottom inset from the content's MediaQuery so
+              // YgLayoutBody doesn't pad bottom safe area on top of the
+              // navigation bar. The bar itself sees the original MediaQuery
+              // (sibling in the Column) and applies its own SafeArea.
+              child: MediaQuery.removePadding(
+                context: context,
+                removeBottom: true,
+                child: contentArea,
+              ),
+            ),
+            bottomNavigationBar,
+          ],
+        ),
+      );
+    }
 
     return Material(
       color: theme.backgroundColor,
-      child: YgLayoutRenderWidget(
-        children: <Widget>[
-          content,
-          MediaQuery.removePadding(
-            removeTop: true,
-            context: context,
-            child: YgLayoutHeaderRenderWidget(
-              padding: MediaQuery.paddingOf(context),
-              controller: controller,
-              behavior: headerBehavior,
-              headerColor: theme.backgroundColor,
-              children: <Widget>[
-                if (appBar != null)
-                  YgLayoutHeaderChildWidget(
-                    slot: YgLayoutHeaderSlot.appBar,
-                    child: appBar,
-                  ),
-                if (bottom != null)
-                  YgLayoutHeaderChildWidget(
-                    slot: YgLayoutHeaderSlot.trailing,
-                    child: bottom,
-                  ),
-                YgLayoutHeaderLoadingBar(
-                  controller: controller,
-                ),
-                YgLayoutHeaderShadow(
-                  controller: controller,
-                ),
-              ],
-            ),
-          ),
-        ],
-      ),
+      child: contentArea,
     );
   }
 }

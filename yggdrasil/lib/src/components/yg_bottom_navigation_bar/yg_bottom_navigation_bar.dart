@@ -21,9 +21,13 @@ import 'yg_bottom_navigation_bar_item.dart';
 /// Safe area handling
 /// ------------------
 /// By default, the bar applies bottom [SafeArea] padding so it can be used
-/// directly as the bottom widget of a screen. When the parent already handles
-/// the bottom safe area (e.g. [YgLayoutBody]'s `footer` slot or any other
-/// slot in [YgLayout] that pads for the bottom inset), set [applySafeArea] to
+/// directly as the bottom widget of a screen — including the recommended
+/// pattern of passing it to [YgLayout]'s `bottomNavigationBar` slot. The
+/// layout reserves vertical space for the bar and strips the bottom inset
+/// from the content's [MediaQuery], leaving the bar to own the safe area.
+///
+/// When the bar is wrapped in a parent that *already* pads the bottom inset
+/// itself (e.g. [YgLayoutBody]'s `footer` slot), set [applySafeArea] to
 /// false to avoid padding the bar twice.
 class YgBottomNavigationBar extends StatelessWidget with StatelessWidgetDebugMixin {
   const YgBottomNavigationBar({
