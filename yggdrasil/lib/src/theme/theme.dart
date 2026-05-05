@@ -34,6 +34,9 @@ class _$YgTheme {
   static final List<YgBadgeTheme> badgeTheme = YgBadgeTheme.themes;
 
   @themeExtension
+  static final List<YgBottomNavigationBarTheme> bottomNavigationBarTheme = YgBottomNavigationBarTheme.themes;
+
+  @themeExtension
   static final List<YgBottomSheetTheme> bottomSheetTheme = YgBottomSheetTheme.themes;
 
   @themeExtension

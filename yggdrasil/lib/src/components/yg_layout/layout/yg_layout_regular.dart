@@ -7,6 +7,7 @@ class _YgLayoutRegular extends YgLayout {
     required this.child,
     super.appBar,
     super.bottom,
+    super.bottomNavigationBar,
     super.headerBehavior,
   }) : super._();
 
@@ -25,6 +26,7 @@ class _YgLayoutRegularState extends _YgLayoutState<_YgLayoutRegular> {
       headerBehavior: widget.headerBehavior,
       appBar: widget.appBar,
       bottom: widget.bottom,
+      bottomNavigationBar: widget.bottomNavigationBar,
       content: YgLayoutHeaderControllerProvider(
         controller: _controller,
         index: 0,

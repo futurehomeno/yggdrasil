@@ -13,6 +13,7 @@ class YgTheme extends ThemeExtension<YgTheme> {
     required this.appBarTheme,
     required this.avatarTheme,
     required this.badgeTheme,
+    required this.bottomNavigationBarTheme,
     required this.bottomSheetTheme,
     required this.buttonGroupTheme,
     required this.buttonTheme,
@@ -56,6 +57,7 @@ class YgTheme extends ThemeExtension<YgTheme> {
   final YgAppBarTheme appBarTheme;
   final YgAvatarTheme avatarTheme;
   final YgBadgeTheme badgeTheme;
+  final YgBottomNavigationBarTheme bottomNavigationBarTheme;
   final YgBottomSheetTheme bottomSheetTheme;
   final YgButtonGroupTheme buttonGroupTheme;
   final YgButtonTheme buttonTheme;
@@ -99,6 +101,7 @@ class YgTheme extends ThemeExtension<YgTheme> {
     appBarTheme: _$YgTheme.appBarTheme[0],
     avatarTheme: _$YgTheme.avatarTheme[0],
     badgeTheme: _$YgTheme.badgeTheme[0],
+    bottomNavigationBarTheme: _$YgTheme.bottomNavigationBarTheme[0],
     bottomSheetTheme: _$YgTheme.bottomSheetTheme[0],
     buttonGroupTheme: _$YgTheme.buttonGroupTheme[0],
     buttonTheme: _$YgTheme.buttonTheme[0],
@@ -143,6 +146,7 @@ class YgTheme extends ThemeExtension<YgTheme> {
     appBarTheme: _$YgTheme.appBarTheme[1],
     avatarTheme: _$YgTheme.avatarTheme[1],
     badgeTheme: _$YgTheme.badgeTheme[1],
+    bottomNavigationBarTheme: _$YgTheme.bottomNavigationBarTheme[1],
     bottomSheetTheme: _$YgTheme.bottomSheetTheme[1],
     buttonGroupTheme: _$YgTheme.buttonGroupTheme[1],
     buttonTheme: _$YgTheme.buttonTheme[1],
@@ -187,6 +191,7 @@ class YgTheme extends ThemeExtension<YgTheme> {
     appBarTheme: _$YgTheme.appBarTheme[2],
     avatarTheme: _$YgTheme.avatarTheme[2],
     badgeTheme: _$YgTheme.badgeTheme[2],
+    bottomNavigationBarTheme: _$YgTheme.bottomNavigationBarTheme[2],
     bottomSheetTheme: _$YgTheme.bottomSheetTheme[2],
     buttonGroupTheme: _$YgTheme.buttonGroupTheme[2],
     buttonTheme: _$YgTheme.buttonTheme[2],
@@ -231,6 +236,7 @@ class YgTheme extends ThemeExtension<YgTheme> {
     appBarTheme: _$YgTheme.appBarTheme[3],
     avatarTheme: _$YgTheme.avatarTheme[3],
     badgeTheme: _$YgTheme.badgeTheme[3],
+    bottomNavigationBarTheme: _$YgTheme.bottomNavigationBarTheme[3],
     bottomSheetTheme: _$YgTheme.bottomSheetTheme[3],
     buttonGroupTheme: _$YgTheme.buttonGroupTheme[3],
     buttonTheme: _$YgTheme.buttonTheme[3],
@@ -283,6 +289,7 @@ class YgTheme extends ThemeExtension<YgTheme> {
     YgAppBarTheme? appBarTheme,
     YgAvatarTheme? avatarTheme,
     YgBadgeTheme? badgeTheme,
+    YgBottomNavigationBarTheme? bottomNavigationBarTheme,
     YgBottomSheetTheme? bottomSheetTheme,
     YgButtonGroupTheme? buttonGroupTheme,
     YgButtonTheme? buttonTheme,
@@ -326,6 +333,7 @@ class YgTheme extends ThemeExtension<YgTheme> {
       appBarTheme: appBarTheme ?? this.appBarTheme,
       avatarTheme: avatarTheme ?? this.avatarTheme,
       badgeTheme: badgeTheme ?? this.badgeTheme,
+      bottomNavigationBarTheme: bottomNavigationBarTheme ?? this.bottomNavigationBarTheme,
       bottomSheetTheme: bottomSheetTheme ?? this.bottomSheetTheme,
       buttonGroupTheme: buttonGroupTheme ?? this.buttonGroupTheme,
       buttonTheme: buttonTheme ?? this.buttonTheme,
@@ -374,6 +382,8 @@ class YgTheme extends ThemeExtension<YgTheme> {
       appBarTheme: appBarTheme.lerp(other.appBarTheme, t) as YgAppBarTheme,
       avatarTheme: avatarTheme.lerp(other.avatarTheme, t) as YgAvatarTheme,
       badgeTheme: badgeTheme.lerp(other.badgeTheme, t) as YgBadgeTheme,
+      bottomNavigationBarTheme:
+          bottomNavigationBarTheme.lerp(other.bottomNavigationBarTheme, t) as YgBottomNavigationBarTheme,
       bottomSheetTheme: bottomSheetTheme.lerp(other.bottomSheetTheme, t) as YgBottomSheetTheme,
       buttonGroupTheme: buttonGroupTheme.lerp(other.buttonGroupTheme, t) as YgButtonGroupTheme,
       buttonTheme: buttonTheme.lerp(other.buttonTheme, t) as YgButtonTheme,
@@ -424,6 +434,7 @@ class YgTheme extends ThemeExtension<YgTheme> {
             const DeepCollectionEquality().equals(appBarTheme, other.appBarTheme) &&
             const DeepCollectionEquality().equals(avatarTheme, other.avatarTheme) &&
             const DeepCollectionEquality().equals(badgeTheme, other.badgeTheme) &&
+            const DeepCollectionEquality().equals(bottomNavigationBarTheme, other.bottomNavigationBarTheme) &&
             const DeepCollectionEquality().equals(bottomSheetTheme, other.bottomSheetTheme) &&
             const DeepCollectionEquality().equals(buttonGroupTheme, other.buttonGroupTheme) &&
             const DeepCollectionEquality().equals(buttonTheme, other.buttonTheme) &&
@@ -471,6 +482,7 @@ class YgTheme extends ThemeExtension<YgTheme> {
       const DeepCollectionEquality().hash(appBarTheme),
       const DeepCollectionEquality().hash(avatarTheme),
       const DeepCollectionEquality().hash(badgeTheme),
+      const DeepCollectionEquality().hash(bottomNavigationBarTheme),
       const DeepCollectionEquality().hash(bottomSheetTheme),
       const DeepCollectionEquality().hash(buttonGroupTheme),
       const DeepCollectionEquality().hash(buttonTheme),
@@ -518,6 +530,7 @@ extension YgThemeBuildContextProps on BuildContext {
   YgAppBarTheme get appBarTheme => ygTheme.appBarTheme;
   YgAvatarTheme get avatarTheme => ygTheme.avatarTheme;
   YgBadgeTheme get badgeTheme => ygTheme.badgeTheme;
+  YgBottomNavigationBarTheme get bottomNavigationBarTheme => ygTheme.bottomNavigationBarTheme;
   YgBottomSheetTheme get bottomSheetTheme => ygTheme.bottomSheetTheme;
   YgButtonGroupTheme get buttonGroupTheme => ygTheme.buttonGroupTheme;
   YgButtonTheme get buttonTheme => ygTheme.buttonTheme;

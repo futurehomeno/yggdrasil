@@ -3,6 +3,7 @@ export 'app_bar_sliver/_app_bar_sliver.dart';
 export 'avatar/_avatar.dart';
 export 'avatar_stack/_avatar_stack.dart';
 export 'badge/_badge.dart';
+export 'bottom_navigation_bar/_bottom_navigation_bar.dart';
 export 'bottom_sheet/_bottom_sheet.dart';
 export 'button/_button.dart';
 export 'button_group/_button_group.dart';

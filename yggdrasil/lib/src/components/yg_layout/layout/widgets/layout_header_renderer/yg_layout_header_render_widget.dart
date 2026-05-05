@@ -326,12 +326,19 @@ class YgLayoutHeaderRenderer extends RenderBox
   @override
   void attach(PipelineOwner owner) {
     super.attach(owner);
-    _controller.addListener(markNeedsLayout);
+    // Controller updates only affect paint-time positioning (children's
+    // parentData.offset is set inside [paint], never inside [performLayout]),
+    // so a paint invalidation is sufficient. Using [markNeedsLayout] here
+    // crashed when the controller fired notifications while an unrelated
+    // render tree (e.g. a sliver mounting a child) was actively laying out,
+    // since [markNeedsLayout] is restricted to descendants of the active
+    // layout. [markNeedsPaint] has no such restriction.
+    _controller.addListener(markNeedsPaint);
   }
 
   @override
   void detach() {
-    _controller.removeListener(markNeedsLayout);
+    _controller.removeListener(markNeedsPaint);
     super.detach();
   }
 

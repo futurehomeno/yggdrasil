@@ -14,6 +14,7 @@ class _YgLayoutTabbed extends YgLayout {
     super.key,
     super.appBar,
     super.bottom,
+    super.bottomNavigationBar,
     this.onTabChanged,
     this.onTabVisible,
     required this.tabs,
@@ -85,6 +86,7 @@ class _YgLayoutTabbedState extends _YgLayoutState<_YgLayoutTabbed> {
         controller: _controller,
         headerBehavior: widget.headerBehavior,
         appBar: widget.appBar,
+        bottomNavigationBar: widget.bottomNavigationBar,
         bottom: Material(
           type: MaterialType.transparency,
           child: Column(
