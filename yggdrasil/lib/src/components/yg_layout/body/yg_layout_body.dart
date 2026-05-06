@@ -23,6 +23,10 @@ abstract class YgLayoutBody extends Widget {
   /// Creates a scrollable layout with a optional footer.
   ///
   /// Enforces a minimum height on its child to allow centering of the content.
+  ///
+  /// When [onRefresh] is provided, a pull-to-refresh gesture is enabled on the
+  /// scrollable. The returned [Future] should complete when the refresh is
+  /// done; the indicator stays visible until then.
   const factory YgLayoutBody({
     required Widget child,
     bool reverse,
@@ -31,16 +35,37 @@ abstract class YgLayoutBody extends Widget {
     Key? key,
     bool loading,
     bool preserveFooterInset,
+    Future<void> Function()? onRefresh,
   }) = _YgLayoutBodyRegular;
 
   /// Creates a scrollable sliver layout.
   ///
   /// Does not have a footer as a sliver list does not have a known end.
+  ///
+  /// When [onRefresh] is provided, a pull-to-refresh gesture is enabled on the
+  /// scrollable. The returned [Future] should complete when the refresh is
+  /// done; the indicator stays visible until then.
   const factory YgLayoutBody.sliver({
     Key? key,
     bool loading,
     required Widget sliver,
+    Future<void> Function()? onRefresh,
   }) = _YgLayoutBodySliver;
 
   bool get loading;
+}
+
+/// Builds the parent physics chain used when pull-to-refresh is enabled.
+///
+/// Layers the platform's default physics under [AlwaysScrollableScrollPhysics]
+/// so the [RefreshIndicator] receives proper overscroll notifications even
+/// when the content is shorter than the viewport.
+ScrollPhysics? _refreshPhysicsParent(BuildContext context, Future<void> Function()? onRefresh) {
+  if (onRefresh == null) {
+    return null;
+  }
+
+  return AlwaysScrollableScrollPhysics(
+    parent: ScrollConfiguration.of(context).getScrollPhysics(context),
+  );
 }

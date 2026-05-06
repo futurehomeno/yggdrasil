@@ -76,13 +76,30 @@ class YgLayoutBodyController extends ValueNotifier<YgLayoutBodyControllerValue> 
   }
 
   void handleScrollUpdateNotification(ScrollUpdateNotification notification) {
-    for (final ValueChanged<double> listener in _scrollListeners) {
-      listener(notification.scrollDelta ?? 0);
+    final ScrollMetrics metrics = notification.metrics;
+    final double delta = notification.scrollDelta ?? 0;
+    final double previousPixels = metrics.pixels - delta;
+
+    // Only forward the scroll delta to header listeners while both the start
+    // and end of the movement lie inside the normal scroll range. Overscroll
+    // deltas (from a pull-to-refresh gesture or a bouncing spring-back) would
+    // otherwise accumulate into the header offset and hide the header on
+    // release.
+    final bool inRange = _isInRange(previousPixels, metrics) && _isInRange(metrics.pixels, metrics);
+    if (inRange) {
+      for (final ValueChanged<double> listener in _scrollListeners) {
+        listener(delta);
+      }
     }
+
     value = value.copyWith(
-      extendAfter: notification.metrics.extentAfter,
-      extendBefore: notification.metrics.extentBefore,
+      extendAfter: metrics.extentAfter,
+      extendBefore: metrics.extentBefore,
     );
+  }
+
+  static bool _isInRange(double pixels, ScrollMetrics metrics) {
+    return pixels >= metrics.minScrollExtent && pixels <= metrics.maxScrollExtent;
   }
 
   void addScrollListener(ValueChanged<double> listener) {

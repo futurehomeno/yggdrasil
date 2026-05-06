@@ -8,6 +8,7 @@ class _YgLayoutBodySliver extends StatelessWidget with StatelessWidgetDebugMixin
     super.key,
     required this.sliver,
     this.loading = false,
+    this.onRefresh,
   });
 
   /// The child sliver.
@@ -17,14 +18,45 @@ class _YgLayoutBodySliver extends StatelessWidget with StatelessWidgetDebugMixin
   @override
   final bool loading;
 
+  /// Called when the user performs a pull-to-refresh gesture.
+  ///
+  /// When non-null, a [RefreshIndicator] is wrapped around the scrollable. The
+  /// returned future should complete when the refresh has finished.
+  final Future<void> Function()? onRefresh;
+
   @override
   Widget build(BuildContext context) {
     final EdgeInsets viewInsets = MediaQuery.viewInsetsOf(context);
     final EdgeInsets viewPadding = MediaQuery.viewPaddingOf(context);
+    final Future<void> Function()? onRefresh = this.onRefresh;
 
     return YgLayoutBodyInternal(
       loading: loading,
       builder: (BuildContext context, YgLayoutBodyController controller) {
+        Widget scrollable = CustomScrollView(
+          physics: YgLayoutHeaderAwareScrollPhysics(
+            controller: controller,
+            parent: _refreshPhysicsParent(context, onRefresh),
+          ),
+          slivers: <Widget>[
+            YgSliverContentPositioner(
+              child: SliverPadding(
+                padding: viewPadding.copyWith(
+                  top: 0,
+                ),
+                sliver: sliver,
+              ),
+            ),
+          ],
+        );
+
+        if (onRefresh != null) {
+          scrollable = YgLayoutBodyRefreshIndicator(
+            onRefresh: onRefresh,
+            child: scrollable,
+          );
+        }
+
         return MediaQuery.removePadding(
           context: context,
           removeTop: true,
@@ -35,21 +67,7 @@ class _YgLayoutBodySliver extends StatelessWidget with StatelessWidgetDebugMixin
             padding: EdgeInsets.only(
               bottom: viewInsets.bottom,
             ),
-            child: CustomScrollView(
-              physics: YgLayoutHeaderAwareScrollPhysics(
-                controller: controller,
-              ),
-              slivers: <Widget>[
-                YgSliverContentPositioner(
-                  child: SliverPadding(
-                    padding: viewPadding.copyWith(
-                      top: 0,
-                    ),
-                    sliver: sliver,
-                  ),
-                ),
-              ],
-            ),
+            child: scrollable,
           ),
         );
       },
