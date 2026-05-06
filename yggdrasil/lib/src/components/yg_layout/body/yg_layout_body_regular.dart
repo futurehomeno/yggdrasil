@@ -10,6 +10,7 @@ class _YgLayoutBodyRegular extends StatefulWidget with StatefulWidgetDebugMixin 
     this.loading = false,
     this.preserveFooterInset = false,
     this.footerBehavior = YgFooterBehavior.sticky,
+    this.onRefresh,
   });
 
   /// Whether to show bottom content first.
@@ -35,6 +36,12 @@ class _YgLayoutBodyRegular extends StatefulWidget with StatefulWidgetDebugMixin 
   /// Whether the parent [YgLayout] should show a loading indicator.
   @override
   final bool loading;
+
+  /// Called when the user performs a pull-to-refresh gesture.
+  ///
+  /// When non-null, a [RefreshIndicator] is wrapped around the scrollable. The
+  /// returned future should complete when the refresh has finished.
+  final Future<void> Function()? onRefresh;
 
   @override
   State<_YgLayoutBodyRegular> createState() => _YgLayoutBodyRegularState();
@@ -136,35 +143,47 @@ class _YgLayoutBodyRegularState extends State<_YgLayoutBodyRegular> {
       }
     }
 
+    final Future<void> Function()? onRefresh = widget.onRefresh;
+
+    Widget scrollable = SingleChildScrollView(
+      reverse: widget.reverse,
+      physics: YgLayoutHeaderAwareScrollPhysics(
+        controller: controller,
+        parent: _refreshPhysicsParent(context, onRefresh),
+      ),
+      child: RepaintBoundary(
+        child: YgLayoutContentPositioner(
+          contentPadding: contentPadding,
+          child: MediaQuery.removeViewInsets(
+            context: context,
+            removeBottom: true,
+            child: MediaQuery.removePadding(
+              context: context,
+              removeTop: true,
+              removeBottom: true,
+              removeLeft: true,
+              removeRight: true,
+              child: content,
+            ),
+          ),
+        ),
+      ),
+    );
+
+    if (onRefresh != null) {
+      scrollable = YgLayoutBodyRefreshIndicator(
+        onRefresh: onRefresh,
+        child: scrollable,
+      );
+    }
+
     return Column(
       children: <Widget>[
         Flexible(
           child: YgScrollShadow(
             top: false,
             child: RepaintBoundary(
-              child: SingleChildScrollView(
-                reverse: widget.reverse,
-                physics: YgLayoutHeaderAwareScrollPhysics(
-                  controller: controller,
-                ),
-                child: RepaintBoundary(
-                  child: YgLayoutContentPositioner(
-                    contentPadding: contentPadding,
-                    child: MediaQuery.removeViewInsets(
-                      context: context,
-                      removeBottom: true,
-                      child: MediaQuery.removePadding(
-                        context: context,
-                        removeTop: true,
-                        removeBottom: true,
-                        removeLeft: true,
-                        removeRight: true,
-                        child: content,
-                      ),
-                    ),
-                  ),
-                ),
-              ),
+              child: scrollable,
             ),
           ),
         ),

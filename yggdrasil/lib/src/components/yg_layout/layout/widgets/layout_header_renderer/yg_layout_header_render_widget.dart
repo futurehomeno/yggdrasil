@@ -201,6 +201,8 @@ class YgLayoutHeaderRenderer extends RenderBox
         _ => headerExpandedHeight,
       },
     );
+
+    controller.setHeaderHeight(headerExpandedHeight);
   }
 
   /// Set padding on parent padding provider.

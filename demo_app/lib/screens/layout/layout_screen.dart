@@ -70,6 +70,16 @@ class LayoutScreen extends StatelessWidget {
                   onTap: () => sl<YgRouter>().push(LayoutRegularPushDownFooterScreen.route()),
                   trailingWidgets: const <YgIcon>[YgIcon(YgIcons.caretRight)],
                 ),
+                YgListTile(
+                  title: 'Pull to refresh',
+                  onTap: () => sl<YgRouter>().push(LayoutRegularPullToRefreshScreen.route()),
+                  trailingWidgets: const <YgIcon>[YgIcon(YgIcons.caretRight)],
+                ),
+                YgListTile(
+                  title: 'Pull to refresh (sliver)',
+                  onTap: () => sl<YgRouter>().push(LayoutRegularSliverPullToRefreshScreen.route()),
+                  trailingWidgets: const <YgIcon>[YgIcon(YgIcons.caretRight)],
+                ),
               ],
             ),
             YgSection.list(

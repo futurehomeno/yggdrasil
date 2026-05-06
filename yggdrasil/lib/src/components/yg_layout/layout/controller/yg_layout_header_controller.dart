@@ -1,3 +1,5 @@
+import 'package:flutter/foundation.dart';
+import 'package:flutter/scheduler.dart';
 import 'package:flutter/widgets.dart';
 import 'package:yggdrasil/src/components/yg_layout/body/controller/_controller.dart';
 
@@ -32,7 +34,16 @@ class YgLayoutHeaderController extends ValueNotifier<YgLayoutHeaderControllerVal
   double _collapsibleHeight = 0;
   double get collapsibleHeight => _collapsibleHeight;
 
+  /// Total expanded header height (status bar + app bar + trailing).
+  ///
+  /// Written by the header renderer during layout via [setHeaderHeight], read
+  /// by descendants that need to position content below the header (e.g. the
+  /// pull-to-refresh indicator).
+  final ValueNotifier<double> _headerHeight = ValueNotifier<double>(0);
+  ValueListenable<double> get headerHeight => _headerHeight;
+
   bool _resettable = false;
+  bool _disposed = false;
 
   /// Desired offset from the current scroll position.
   double get desiredOffset => _desiredOffset;
@@ -62,6 +73,22 @@ class YgLayoutHeaderController extends ValueNotifier<YgLayoutHeaderControllerVal
 
   void setCollapsibleHeight(double newHeight) {
     _collapsibleHeight = newHeight;
+  }
+
+  void setHeaderHeight(double newHeight) {
+    if (_headerHeight.value == newHeight) {
+      return;
+    }
+
+    // Defer the update to the next frame so we never mutate the notifier
+    // (which schedules widget rebuilds) while the renderer is still inside a
+    // layout pass.
+    SchedulerBinding.instance.addPostFrameCallback((_) {
+      if (_disposed || _headerHeight.value == newHeight) {
+        return;
+      }
+      _headerHeight.value = newHeight;
+    });
   }
 
   void registerView(int index, YgLayoutBodyController controller) {
@@ -151,8 +178,10 @@ class YgLayoutHeaderController extends ValueNotifier<YgLayoutHeaderControllerVal
 
   @override
   void dispose() {
+    _disposed = true;
     _headerOffsetController.removeListener(notifyListeners);
     _headerOffsetController.dispose();
+    _headerHeight.dispose();
     super.dispose();
   }
 }
