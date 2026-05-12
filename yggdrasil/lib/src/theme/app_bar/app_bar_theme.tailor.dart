@@ -16,6 +16,11 @@ class YgAppBarTheme extends ThemeExtension<YgAppBarTheme> {
     required this.largeAppBarTheme,
     required this.mediumAppBarTheme,
     required this.scrolledUnderElevation,
+    required this.titleButtonBackgroundColor,
+    required this.titleButtonBorderRadius,
+    required this.titleButtonIconSpacing,
+    required this.titleButtonPadding,
+    required this.titleButtonTextStyle,
     required this.titleExpandedHorizontalPadding,
     required this.titleSpacing,
     required this.titleTextStyle,
@@ -34,6 +39,23 @@ class YgAppBarTheme extends ThemeExtension<YgAppBarTheme> {
   /// Elevation when there's content "under" the app bar.
   final double scrolledUnderElevation;
 
+  /// Background color of the title when [YgAppBar.onTitleTap] is set.
+  final Color titleButtonBackgroundColor;
+
+  /// Border radius of the tappable title container.
+  final BorderRadius titleButtonBorderRadius;
+
+  /// Spacing between the title text and the trailing icon inside the button.
+  final double titleButtonIconSpacing;
+
+  /// Inner padding of the tappable title container.
+  final EdgeInsets titleButtonPadding;
+
+  /// Text style of the title when rendered inside the tappable button —
+  /// slightly smaller than [titleTextStyle] so the button feels distinct from
+  /// the default heading.
+  final TextStyle titleButtonTextStyle;
+
   /// Spacing between edge and title on both sides when it's expanded.
   final double titleExpandedHorizontalPadding;
   final double titleSpacing;
@@ -50,6 +72,11 @@ class YgAppBarTheme extends ThemeExtension<YgAppBarTheme> {
     largeAppBarTheme: _$YgAppBarTheme.largeAppBarTheme[0],
     mediumAppBarTheme: _$YgAppBarTheme.mediumAppBarTheme[0],
     scrolledUnderElevation: _$YgAppBarTheme.scrolledUnderElevation[0],
+    titleButtonBackgroundColor: _$YgAppBarTheme.titleButtonBackgroundColor[0],
+    titleButtonBorderRadius: _$YgAppBarTheme.titleButtonBorderRadius[0],
+    titleButtonIconSpacing: _$YgAppBarTheme.titleButtonIconSpacing[0],
+    titleButtonPadding: _$YgAppBarTheme.titleButtonPadding[0],
+    titleButtonTextStyle: _$YgAppBarTheme.titleButtonTextStyle[0],
     titleExpandedHorizontalPadding: _$YgAppBarTheme.titleExpandedHorizontalPadding[0],
     titleSpacing: _$YgAppBarTheme.titleSpacing[0],
     titleTextStyle: _$YgAppBarTheme.titleTextStyle[0],
@@ -64,6 +91,11 @@ class YgAppBarTheme extends ThemeExtension<YgAppBarTheme> {
     largeAppBarTheme: _$YgAppBarTheme.largeAppBarTheme[1],
     mediumAppBarTheme: _$YgAppBarTheme.mediumAppBarTheme[1],
     scrolledUnderElevation: _$YgAppBarTheme.scrolledUnderElevation[1],
+    titleButtonBackgroundColor: _$YgAppBarTheme.titleButtonBackgroundColor[1],
+    titleButtonBorderRadius: _$YgAppBarTheme.titleButtonBorderRadius[1],
+    titleButtonIconSpacing: _$YgAppBarTheme.titleButtonIconSpacing[1],
+    titleButtonPadding: _$YgAppBarTheme.titleButtonPadding[1],
+    titleButtonTextStyle: _$YgAppBarTheme.titleButtonTextStyle[1],
     titleExpandedHorizontalPadding: _$YgAppBarTheme.titleExpandedHorizontalPadding[1],
     titleSpacing: _$YgAppBarTheme.titleSpacing[1],
     titleTextStyle: _$YgAppBarTheme.titleTextStyle[1],
@@ -78,6 +110,11 @@ class YgAppBarTheme extends ThemeExtension<YgAppBarTheme> {
     largeAppBarTheme: _$YgAppBarTheme.largeAppBarTheme[2],
     mediumAppBarTheme: _$YgAppBarTheme.mediumAppBarTheme[2],
     scrolledUnderElevation: _$YgAppBarTheme.scrolledUnderElevation[2],
+    titleButtonBackgroundColor: _$YgAppBarTheme.titleButtonBackgroundColor[2],
+    titleButtonBorderRadius: _$YgAppBarTheme.titleButtonBorderRadius[2],
+    titleButtonIconSpacing: _$YgAppBarTheme.titleButtonIconSpacing[2],
+    titleButtonPadding: _$YgAppBarTheme.titleButtonPadding[2],
+    titleButtonTextStyle: _$YgAppBarTheme.titleButtonTextStyle[2],
     titleExpandedHorizontalPadding: _$YgAppBarTheme.titleExpandedHorizontalPadding[2],
     titleSpacing: _$YgAppBarTheme.titleSpacing[2],
     titleTextStyle: _$YgAppBarTheme.titleTextStyle[2],
@@ -92,6 +129,11 @@ class YgAppBarTheme extends ThemeExtension<YgAppBarTheme> {
     largeAppBarTheme: _$YgAppBarTheme.largeAppBarTheme[3],
     mediumAppBarTheme: _$YgAppBarTheme.mediumAppBarTheme[3],
     scrolledUnderElevation: _$YgAppBarTheme.scrolledUnderElevation[3],
+    titleButtonBackgroundColor: _$YgAppBarTheme.titleButtonBackgroundColor[3],
+    titleButtonBorderRadius: _$YgAppBarTheme.titleButtonBorderRadius[3],
+    titleButtonIconSpacing: _$YgAppBarTheme.titleButtonIconSpacing[3],
+    titleButtonPadding: _$YgAppBarTheme.titleButtonPadding[3],
+    titleButtonTextStyle: _$YgAppBarTheme.titleButtonTextStyle[3],
     titleExpandedHorizontalPadding: _$YgAppBarTheme.titleExpandedHorizontalPadding[3],
     titleSpacing: _$YgAppBarTheme.titleSpacing[3],
     titleTextStyle: _$YgAppBarTheme.titleTextStyle[3],
@@ -114,6 +156,11 @@ class YgAppBarTheme extends ThemeExtension<YgAppBarTheme> {
     LargeAppBarTheme? largeAppBarTheme,
     MediumAppBarTheme? mediumAppBarTheme,
     double? scrolledUnderElevation,
+    Color? titleButtonBackgroundColor,
+    BorderRadius? titleButtonBorderRadius,
+    double? titleButtonIconSpacing,
+    EdgeInsets? titleButtonPadding,
+    TextStyle? titleButtonTextStyle,
     double? titleExpandedHorizontalPadding,
     double? titleSpacing,
     TextStyle? titleTextStyle,
@@ -127,6 +174,11 @@ class YgAppBarTheme extends ThemeExtension<YgAppBarTheme> {
       largeAppBarTheme: largeAppBarTheme ?? this.largeAppBarTheme,
       mediumAppBarTheme: mediumAppBarTheme ?? this.mediumAppBarTheme,
       scrolledUnderElevation: scrolledUnderElevation ?? this.scrolledUnderElevation,
+      titleButtonBackgroundColor: titleButtonBackgroundColor ?? this.titleButtonBackgroundColor,
+      titleButtonBorderRadius: titleButtonBorderRadius ?? this.titleButtonBorderRadius,
+      titleButtonIconSpacing: titleButtonIconSpacing ?? this.titleButtonIconSpacing,
+      titleButtonPadding: titleButtonPadding ?? this.titleButtonPadding,
+      titleButtonTextStyle: titleButtonTextStyle ?? this.titleButtonTextStyle,
       titleExpandedHorizontalPadding: titleExpandedHorizontalPadding ?? this.titleExpandedHorizontalPadding,
       titleSpacing: titleSpacing ?? this.titleSpacing,
       titleTextStyle: titleTextStyle ?? this.titleTextStyle,
@@ -145,6 +197,11 @@ class YgAppBarTheme extends ThemeExtension<YgAppBarTheme> {
       largeAppBarTheme: largeAppBarTheme.lerp(other.largeAppBarTheme, t) as LargeAppBarTheme,
       mediumAppBarTheme: mediumAppBarTheme.lerp(other.mediumAppBarTheme, t) as MediumAppBarTheme,
       scrolledUnderElevation: t < 0.5 ? scrolledUnderElevation : other.scrolledUnderElevation,
+      titleButtonBackgroundColor: Color.lerp(titleButtonBackgroundColor, other.titleButtonBackgroundColor, t)!,
+      titleButtonBorderRadius: BorderRadius.lerp(titleButtonBorderRadius, other.titleButtonBorderRadius, t)!,
+      titleButtonIconSpacing: t < 0.5 ? titleButtonIconSpacing : other.titleButtonIconSpacing,
+      titleButtonPadding: EdgeInsets.lerp(titleButtonPadding, other.titleButtonPadding, t)!,
+      titleButtonTextStyle: TextStyle.lerp(titleButtonTextStyle, other.titleButtonTextStyle, t)!,
       titleExpandedHorizontalPadding: t < 0.5 ? titleExpandedHorizontalPadding : other.titleExpandedHorizontalPadding,
       titleSpacing: t < 0.5 ? titleSpacing : other.titleSpacing,
       titleTextStyle: TextStyle.lerp(titleTextStyle, other.titleTextStyle, t)!,
@@ -164,6 +221,11 @@ class YgAppBarTheme extends ThemeExtension<YgAppBarTheme> {
             const DeepCollectionEquality().equals(largeAppBarTheme, other.largeAppBarTheme) &&
             const DeepCollectionEquality().equals(mediumAppBarTheme, other.mediumAppBarTheme) &&
             const DeepCollectionEquality().equals(scrolledUnderElevation, other.scrolledUnderElevation) &&
+            const DeepCollectionEquality().equals(titleButtonBackgroundColor, other.titleButtonBackgroundColor) &&
+            const DeepCollectionEquality().equals(titleButtonBorderRadius, other.titleButtonBorderRadius) &&
+            const DeepCollectionEquality().equals(titleButtonIconSpacing, other.titleButtonIconSpacing) &&
+            const DeepCollectionEquality().equals(titleButtonPadding, other.titleButtonPadding) &&
+            const DeepCollectionEquality().equals(titleButtonTextStyle, other.titleButtonTextStyle) &&
             const DeepCollectionEquality().equals(
               titleExpandedHorizontalPadding,
               other.titleExpandedHorizontalPadding,
@@ -184,6 +246,11 @@ class YgAppBarTheme extends ThemeExtension<YgAppBarTheme> {
       const DeepCollectionEquality().hash(largeAppBarTheme),
       const DeepCollectionEquality().hash(mediumAppBarTheme),
       const DeepCollectionEquality().hash(scrolledUnderElevation),
+      const DeepCollectionEquality().hash(titleButtonBackgroundColor),
+      const DeepCollectionEquality().hash(titleButtonBorderRadius),
+      const DeepCollectionEquality().hash(titleButtonIconSpacing),
+      const DeepCollectionEquality().hash(titleButtonPadding),
+      const DeepCollectionEquality().hash(titleButtonTextStyle),
       const DeepCollectionEquality().hash(titleExpandedHorizontalPadding),
       const DeepCollectionEquality().hash(titleSpacing),
       const DeepCollectionEquality().hash(titleTextStyle),
