@@ -97,4 +97,71 @@ class _$YgAppBarTheme {
     64.0,
     64.0,
   ];
+
+  /// Background color of the title when [YgAppBar.onTitleTap] is set.
+  static const List<Color> titleButtonBackgroundColor = <Color>[
+    consumer_light.FhColors.backgroundWeak,
+    consumer_dark.FhColors.backgroundWeak,
+    professional_light.FhColors.backgroundWeak,
+    professional_dark.FhColors.backgroundWeak,
+  ];
+
+  /// Border radius of the tappable title container — matches [YgButton] so
+  /// the title reads as a button.
+  static const List<BorderRadius> titleButtonBorderRadius = <BorderRadius>[
+    consumer_light.FhRadii.xxl,
+    consumer_dark.FhRadii.xxl,
+    professional_light.FhRadii.xxl,
+    professional_dark.FhRadii.xxl,
+  ];
+
+  /// Inner padding of the tappable title container.
+  static const List<EdgeInsets> titleButtonPadding = <EdgeInsets>[
+    EdgeInsets.symmetric(
+      horizontal: consumer_light.FhDimensions.sm,
+      vertical: consumer_light.FhDimensions.xs,
+    ),
+    EdgeInsets.symmetric(
+      horizontal: consumer_dark.FhDimensions.sm,
+      vertical: consumer_dark.FhDimensions.xs,
+    ),
+    EdgeInsets.symmetric(
+      horizontal: professional_light.FhDimensions.sm,
+      vertical: professional_light.FhDimensions.xs,
+    ),
+    EdgeInsets.symmetric(
+      horizontal: professional_dark.FhDimensions.sm,
+      vertical: professional_dark.FhDimensions.xs,
+    ),
+  ];
+
+  /// Spacing between the title text and the trailing icon inside the button.
+  static const List<double> titleButtonIconSpacing = <double>[
+    consumer_light.FhDimensions.xxs,
+    consumer_dark.FhDimensions.xxs,
+    professional_light.FhDimensions.xxs,
+    professional_dark.FhDimensions.xxs,
+  ];
+
+  /// Text style of the title when rendered inside the tappable button —
+  /// slightly smaller than [titleTextStyle] so the button feels distinct from
+  /// the default heading.
+  static final List<TextStyle> titleButtonTextStyle = <TextStyle>[
+    consumer_light.FhTextStyles.sectionHeading3Medium.copyWith(
+      color: consumer_light.FhColors.textDefault,
+      height: 1.2,
+    ),
+    consumer_dark.FhTextStyles.sectionHeading3Medium.copyWith(
+      color: consumer_dark.FhColors.textDefault,
+      height: 1.2,
+    ),
+    professional_light.FhTextStyles.sectionHeading3Medium.copyWith(
+      color: professional_light.FhColors.textDefault,
+      height: 1.2,
+    ),
+    professional_dark.FhTextStyles.sectionHeading3Medium.copyWith(
+      color: professional_dark.FhColors.textDefault,
+      height: 1.2,
+    ),
+  ];
 }

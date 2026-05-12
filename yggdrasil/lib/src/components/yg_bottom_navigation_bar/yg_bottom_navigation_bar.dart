@@ -264,7 +264,7 @@ class _Item extends StatelessWidget {
                   data: IconThemeData(color: animatedColor),
                   child: YgIcon(
                     item.icon,
-                    size: YgIconSize.small,
+                    size: YgIconSize.large,
                   ),
                 );
               },

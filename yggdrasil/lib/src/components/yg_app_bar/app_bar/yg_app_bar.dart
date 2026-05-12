@@ -14,6 +14,8 @@ class YgAppBar extends StatelessWidget with StatelessWidgetDebugMixin implements
     this.actions,
     this.centerTitle = false,
     this.automaticallyImplyLeading = true,
+    this.onTitleTap,
+    this.titleTrailingIcon,
   });
 
   /// The primary text displayed in the app bar.
@@ -45,6 +47,18 @@ class YgAppBar extends StatelessWidget with StatelessWidgetDebugMixin implements
 
   /// Whether the title should be centered.
   final bool centerTitle;
+
+  /// Called when the title is tapped.
+  ///
+  /// When set, the title renders as a tappable pill-shaped container with a
+  /// trailing chevron, signalling that tapping the title switches the
+  /// screen's context (e.g. picking a different site).
+  final VoidCallback? onTitleTap;
+
+  /// Icon shown after the title when [onTitleTap] is set.
+  ///
+  /// Defaults to [YgIcons.caretRight].
+  final YgIconData? titleTrailingIcon;
 
   @override
   Widget build(BuildContext context) {
@@ -105,20 +119,67 @@ class YgAppBar extends StatelessWidget with StatelessWidgetDebugMixin implements
 
   Widget? _getTitle(BuildContext context) {
     final String? title = this.title;
+    if (title == null) {
+      return null;
+    }
 
-    if (title != null) {
+    final YgAppBarTheme theme = context.appBarTheme;
+    final VoidCallback? onTap = onTitleTap;
+
+    if (onTap == null) {
       return Semantics(
         namesRoute: true,
         header: true,
         child: Text(
           title,
-          style: context.appBarTheme.titleTextStyle,
+          style: theme.titleTextStyle,
           overflow: TextOverflow.ellipsis,
         ),
       );
     }
 
-    return null;
+    return Semantics(
+      namesRoute: true,
+      header: true,
+      button: true,
+      onTap: onTap,
+      child: Material(
+        type: MaterialType.transparency,
+        child: InkWell(
+          onTap: onTap,
+          borderRadius: theme.titleButtonBorderRadius,
+          child: Ink(
+            decoration: BoxDecoration(
+              color: theme.titleButtonBackgroundColor,
+              borderRadius: theme.titleButtonBorderRadius,
+            ),
+            child: Padding(
+              padding: theme.titleButtonPadding,
+              child: Row(
+                mainAxisSize: MainAxisSize.min,
+                children: <Widget>[
+                  Flexible(
+                    child: Text(
+                      title,
+                      style: theme.titleButtonTextStyle,
+                      overflow: TextOverflow.ellipsis,
+                    ),
+                  ),
+                  SizedBox(width: theme.titleButtonIconSpacing),
+                  IconTheme(
+                    data: IconThemeData(color: theme.titleButtonTextStyle.color),
+                    child: YgIcon(
+                      titleTrailingIcon ?? YgIcons.caretRight,
+                      size: YgIconSize.small,
+                    ),
+                  ),
+                ],
+              ),
+            ),
+          ),
+        ),
+      ),
+    );
   }
 
   Widget? _getActions() {
