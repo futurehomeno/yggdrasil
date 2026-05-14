@@ -107,16 +107,22 @@ class YgLayoutHeaderController extends ValueNotifier<YgLayoutHeaderControllerVal
     }
   }
 
-  void unregisterView(int index) {
-    final YgLayoutBodyController? oldController = _viewControllers.remove(index);
-    if (oldController == null) {
+  void unregisterView(int index, YgLayoutBodyController controller) {
+    // The old body's [State.dispose] runs *after* the new body's
+    // [State.initState] when the body widget is swapped in place, so the slot
+    // may already be owned by a newer controller by the time we get here.
+    // Only clear the slot if the controller being unregistered is still the
+    // one registered for [index].
+    if (_viewControllers[index] != controller) {
+      controller.detach();
       return;
     }
 
-    oldController.detach();
+    _viewControllers.remove(index);
+    controller.detach();
 
     if (index == _activeView) {
-      _updateActiveViewController(oldController, null);
+      _updateActiveViewController(controller, null);
     }
   }
 

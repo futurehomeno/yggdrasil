@@ -56,6 +56,7 @@ class _YgLayoutBodyInternalState extends State<YgLayoutBodyInternal> {
     if (provider != null) {
       provider.controller.unregisterView(
         provider.index,
+        _controller,
       );
     }
 
@@ -72,7 +73,7 @@ class _YgLayoutBodyInternalState extends State<YgLayoutBodyInternal> {
 
     _provider = provider;
 
-    oldProvider?.controller.unregisterView(oldProvider.index);
+    oldProvider?.controller.unregisterView(oldProvider.index, _controller);
     provider?.controller.registerView(provider.index, _controller);
   }
 
