@@ -1,0 +1,4 @@
+enum DataGroup {
+  primary,
+  secondary,
+}
