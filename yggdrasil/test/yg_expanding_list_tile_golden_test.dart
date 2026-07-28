@@ -16,6 +16,12 @@ void main() {
         color: Colors.green,
       );
 
+      final Container alwaysVisibleContent = Container(
+        width: 100,
+        height: 50,
+        color: Colors.blue,
+      );
+
       final GoldenTestGroup ygExpandingListTileGoldenTestGroup = GoldenTestGroup(
         columns: 2,
         scenarioConstraints: YgGoldenTestValues.scenarioConstraints,
@@ -225,6 +231,32 @@ void main() {
               supportingWidgets: const <Widget>[
                 YgIcon(YgIcons.info),
               ],
+              child: child,
+            ),
+          ),
+          GoldenTestScenario(
+            name: 'With always visible content',
+            child: YgExpandingListTile(
+              title: YgGoldenTestValues.shortText,
+              alwaysVisibleContent: alwaysVisibleContent,
+              child: child,
+            ),
+          ),
+          GoldenTestScenario(
+            name: 'With always visible content, title and subtitle',
+            child: YgExpandingListTile(
+              title: YgGoldenTestValues.shortText,
+              subtitle: YgGoldenTestValues.mediumText,
+              alwaysVisibleContent: alwaysVisibleContent,
+              child: child,
+            ),
+          ),
+          GoldenTestScenario(
+            name: 'Expanded, with always visible content',
+            child: YgExpandingListTile(
+              initiallyExpanded: true,
+              title: YgGoldenTestValues.shortText,
+              alwaysVisibleContent: alwaysVisibleContent,
               child: child,
             ),
           ),

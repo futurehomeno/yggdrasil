@@ -3,7 +3,7 @@ import 'package:yggdrasil/yggdrasil.dart';
 import 'package:yggdrasil_demo/core/_core.dart';
 import 'package:yggdrasil_demo/widgets/_widgets.dart';
 
-class ExpandingListTileScreen extends StatelessWidget {
+class ExpandingListTileScreen extends StatefulWidget {
   const ExpandingListTileScreen({super.key});
 
   static const String routeName = 'ExpandingListTileScreen';
@@ -14,6 +14,13 @@ class ExpandingListTileScreen extends StatelessWidget {
       screen: const ExpandingListTileScreen(),
     );
   }
+
+  @override
+  State<ExpandingListTileScreen> createState() => _ExpandingListTileScreenState();
+}
+
+class _ExpandingListTileScreenState extends State<ExpandingListTileScreen> {
+  double _temperatureValue = 0.5;
 
   @override
   Widget build(BuildContext context) {
@@ -114,6 +121,19 @@ class ExpandingListTileScreen extends StatelessWidget {
                 YgIcon(YgIcons.info, size: YgIconSize.large),
                 YgIcon(YgIcons.info, size: YgIconSize.large),
               ],
+              child: child,
+            ),
+            YgExpandingListTile(
+              title: 'With always visible content',
+              subtitle: 'Temperature slider visible without expanding',
+              alwaysVisibleContent: YgSlider(
+                value: _temperatureValue,
+                variant: YgSliderVariant.temperature,
+                valueIndicator: true,
+                onEditingComplete: (double newValue) => setState(
+                  () => _temperatureValue = newValue,
+                ),
+              ),
               child: child,
             ),
           ],
