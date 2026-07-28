@@ -26,6 +26,7 @@ final class YgExpandingListTile extends StatelessWidget with StatelessWidgetDebu
     this.subtitleIcon,
     this.leadingWidgets,
     this.supportingWidgets,
+    this.alwaysVisibleContent,
     this.onInfoTap,
     this.controller,
     this.onExpandedChanged,
@@ -54,6 +55,15 @@ final class YgExpandingListTile extends StatelessWidget with StatelessWidgetDebu
   ///
   /// Will be stacked on top of each other when there is more than one specified.
   final List<Widget>? supportingWidgets;
+
+  /// Content which is visible even when the list tile is not expanded.
+  ///
+  /// Rendered below the main content of the list tile and above [child] when
+  /// the list tile is expanded.
+  ///
+  /// Taps on this content do not toggle the expansion of the list tile, so it
+  /// can safely contain interactive widgets like a [YgSlider].
+  final Widget? alwaysVisibleContent;
 
   /// When provided, shows an info button next to the title.
   ///
@@ -130,7 +140,7 @@ final class YgExpandingListTile extends StatelessWidget with StatelessWidgetDebu
             ),
             builder: (BuildContext context, Widget body) {
               return YgExpander(
-                headerBuilder: (BuildContext _, YgExpansionController __) => body,
+                headerBuilder: (BuildContext _, YgExpansionController __) => _buildHeader(theme, body),
                 duration: theme.animationDuration,
                 curve: theme.animationCurve,
                 alignment: Alignment.bottomCenter,
@@ -147,6 +157,39 @@ final class YgExpandingListTile extends StatelessWidget with StatelessWidgetDebu
       ),
     );
   }
+
+  /// Builds the always visible part of the list tile.
+  ///
+  /// Consists of the [body] of the list tile and [alwaysVisibleContent] below
+  /// it when provided.
+  Widget _buildHeader(YgListTileTheme theme, Widget body) {
+    final Widget? alwaysVisibleContent = this.alwaysVisibleContent;
+
+    if (alwaysVisibleContent == null) {
+      return body;
+    }
+
+    return Column(
+      mainAxisSize: MainAxisSize.min,
+      children: <Widget>[
+        body,
+        // Absorbs taps on the always visible content so interacting with it
+        // does not toggle the expansion of the list tile.
+        GestureDetector(
+          onTap: _absorbTap,
+          behavior: HitTestBehavior.opaque,
+          excludeFromSemantics: true,
+          child: alwaysVisibleContent,
+        ),
+      ].withVerticalSpacing(theme.contentSpacing),
+    );
+  }
+
+  /// Intentionally does nothing.
+  ///
+  /// Claims taps on [alwaysVisibleContent] in the gesture arena so they do not
+  /// reach the tap handler toggling the expansion of the list tile.
+  static void _absorbTap() {}
 
   @override
   YgDebugType get debugType => YgDebugType.intractable;
