@@ -25,17 +25,17 @@ class _$YgListTileTheme {
   ];
 
   static final List<TextStyle> subtitleTextStyle = <TextStyle>[
-    consumer_light.FhTextStyles.caption1Regular.copyWith(
-      color: consumer_light.FhColors.textWeak,
+    consumer_light.FhTextStyles.paragraph3Regular.copyWith(
+      color: consumer_light.FhColors.textDefault,
     ),
-    consumer_dark.FhTextStyles.caption1Regular.copyWith(
-      color: consumer_dark.FhColors.textWeak,
+    consumer_dark.FhTextStyles.paragraph3Regular.copyWith(
+      color: consumer_dark.FhColors.textDefault,
     ),
-    professional_light.FhTextStyles.caption1Regular.copyWith(
-      color: professional_light.FhColors.textWeak,
+    professional_light.FhTextStyles.paragraph3Regular.copyWith(
+      color: professional_light.FhColors.textDefault,
     ),
-    professional_dark.FhTextStyles.caption1Regular.copyWith(
-      color: professional_dark.FhColors.textWeak,
+    professional_dark.FhTextStyles.paragraph3Regular.copyWith(
+      color: professional_dark.FhColors.textDefault,
     ),
   ];
 
