@@ -27,16 +27,16 @@ class _$YgSectionHeaderTheme {
 
   static final List<TextStyle> subtitleTextStyle = <TextStyle>[
     consumer_light.FhTextStyles.paragraph3Regular.copyWith(
-      color: consumer_light.FhColors.textWeak,
+      color: consumer_light.FhColors.textDefault,
     ),
     consumer_dark.FhTextStyles.paragraph3Regular.copyWith(
-      color: consumer_dark.FhColors.textWeak,
+      color: consumer_dark.FhColors.textDefault,
     ),
     professional_light.FhTextStyles.paragraph3Regular.copyWith(
-      color: professional_light.FhColors.textWeak,
+      color: professional_light.FhColors.textDefault,
     ),
     professional_dark.FhTextStyles.paragraph3Regular.copyWith(
-      color: professional_dark.FhColors.textWeak,
+      color: professional_dark.FhColors.textDefault,
     ),
   ];
 
