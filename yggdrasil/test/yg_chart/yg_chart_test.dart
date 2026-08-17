@@ -1,6 +1,7 @@
 import 'package:flutter/gestures.dart' show kLongPressTimeout;
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
+import 'package:yggdrasil/src/components/yg_chart/widgets/yg_chart_legend.dart';
 import 'package:yggdrasil/src/components/yg_chart/yg_chart_painter.dart';
 import 'package:yggdrasil/yggdrasil.dart';
 
@@ -27,6 +28,17 @@ void main() {
     values: <double>[0.5, 1.5, 1.0, 2.5],
     unit: 'kr',
     type: YgChartSeriesType.line,
+    axis: YgChartAxis.right,
+  );
+
+  const YgChartSeries temperature = YgChartSeries(
+    id: 'temperature',
+    label: 'Temperature',
+    values: <double>[21.5, 22.0, 22.5, 22.0],
+    lowerValues: <double>[21.0, 21.5, 22.0, 21.0],
+    upperValues: <double>[22.0, 23.0, 23.0, 22.5],
+    unit: '°C',
+    type: YgChartSeriesType.band,
     axis: YgChartAxis.right,
   );
 
@@ -296,6 +308,106 @@ void main() {
 
     await gesture.up();
     await tester.pumpAndSettle();
+  });
+
+  testWidgets('renders a band series next to other series', (WidgetTester tester) async {
+    await pumpChart(
+      tester,
+      const YgChart(
+        series: <YgChartSeries>[consumption, temperature],
+        xLabels: xLabels,
+      ),
+    );
+
+    expect(find.text('Temperature'), findsOneWidget);
+
+    final YgChartPainter painter = painterOf(tester);
+    expect(painter.dataManager.orderedSeries, hasLength(2));
+    expect(
+      painter.dataManager.currentLowerValuesOf('temperature'),
+      temperature.lowerValues,
+    );
+    expect(
+      painter.dataManager.currentUpperValuesOf('temperature'),
+      temperature.upperValues,
+    );
+    expect(tester.takeException(), isNull);
+  });
+
+  testWidgets('tooltip includes the band bounds of a band series', (WidgetTester tester) async {
+    YgChartTooltipData? lastData;
+
+    await pumpChart(
+      tester,
+      YgChart(
+        series: const <YgChartSeries>[consumption, temperature],
+        xLabels: xLabels,
+        tooltipBuilder: (BuildContext context, YgChartTooltipData data) {
+          lastData = data;
+
+          return Text('tooltip-${data.xLabel}');
+        },
+      ),
+    );
+
+    final Offset center = tester.getCenter(
+      find
+          .descendant(
+            of: find.byType(YgChart),
+            matching: find.byType(CustomPaint),
+          )
+          .first,
+    );
+    final TestGesture gesture = await tester.startGesture(center);
+    await tester.pump(kLongPressTimeout + const Duration(milliseconds: 50));
+    await tester.pump();
+
+    final YgChartTooltipData data = lastData!;
+    expect(data.entries, hasLength(2));
+
+    // The bar series has no band bounds.
+    expect(data.entries[0].lowerValue, isNull);
+    expect(data.entries[0].upperValue, isNull);
+
+    expect(data.entries[1].value, temperature.values[data.index]);
+    expect(data.entries[1].lowerValue, temperature.lowerValues![data.index]);
+    expect(data.entries[1].upperValue, temperature.upperValues![data.index]);
+
+    await gesture.up();
+    await tester.pumpAndSettle();
+  });
+
+  testWidgets('overflowing legend stays on one row and scrolls horizontally', (WidgetTester tester) async {
+    await pumpChart(
+      tester,
+      YgChart(
+        size: YgChartSize.xsmall,
+        xLabels: xLabels,
+        series: <YgChartSeries>[
+          for (int i = 0; i < 8; i++)
+            YgChartSeries(
+              id: 'series-$i',
+              label: 'Long series label $i',
+              values: const <double>[1.0, 2.0, 3.0, 4.0],
+              unit: 'kWh',
+              type: YgChartSeriesType.line,
+            ),
+        ],
+      ),
+    );
+
+    // All items are on a single row: the legend is no taller than one item.
+    expect(tester.getSize(find.byType(YgChartLegend)).height, lessThan(40.0));
+
+    // The last item starts beyond the right edge and can be scrolled into
+    // view.
+    final Finder lastLabel = find.text('Long series label 7');
+    final double lastLabelStart = tester.getTopLeft(lastLabel).dx;
+    expect(lastLabelStart, greaterThan(800.0));
+
+    await tester.drag(find.byType(YgChartLegend), const Offset(-400.0, 0.0));
+    await tester.pumpAndSettle();
+    expect(tester.getTopLeft(lastLabel).dx, lessThan(lastLabelStart));
   });
 
   testWidgets('legend can be disabled', (WidgetTester tester) async {

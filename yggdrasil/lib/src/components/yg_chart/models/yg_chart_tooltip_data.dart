@@ -32,6 +32,8 @@ class YgChartTooltipEntry {
   const YgChartTooltipEntry({
     required this.series,
     required this.value,
+    this.lowerValue,
+    this.upperValue,
   });
 
   /// The series the value belongs to, with its resolved color.
@@ -40,6 +42,14 @@ class YgChartTooltipEntry {
   /// The exact value of the series at the pressed index.
   ///
   /// This is the value passed to [YgChartSeries.values], not the animated
-  /// value currently shown on the chart.
+  /// value currently shown on the chart. For band series this is the center
+  /// line value.
   final double value;
+
+  /// The exact band bounds of the series at the pressed index.
+  ///
+  /// Only set for [YgChartSeriesType.band] series, see
+  /// [YgChartSeries.lowerValues] and [YgChartSeries.upperValues].
+  final double? lowerValue;
+  final double? upperValue;
 }

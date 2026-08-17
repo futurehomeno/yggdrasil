@@ -42,6 +42,16 @@ void main() {
         axis: YgChartAxis.right,
       );
 
+      const YgChartSeries roomTemperature = YgChartSeries(
+        id: 'room-temperature',
+        label: 'Room temperature',
+        values: <double>[23.4, 23.9, 23.6, 23.8, 23.0, 22.3, 22.5],
+        lowerValues: <double>[23.0, 23.3, 23.1, 23.2, 22.4, 22.0, 22.2],
+        upperValues: <double>[23.9, 24.4, 24.0, 24.3, 23.5, 22.8, 22.9],
+        unit: '°C',
+        type: YgChartSeriesType.band,
+      );
+
       final GoldenTestGroup ygChartGoldenTestGroup = GoldenTestGroup(
         columns: 2,
         scenarioConstraints: YgGoldenTestValues.scenarioConstraints,
@@ -85,6 +95,13 @@ void main() {
             ),
           ),
           GoldenTestScenario(
+            name: 'With a band series',
+            child: const YgChart(
+              series: <YgChartSeries>[roomTemperature],
+              xLabels: weekLabels,
+            ),
+          ),
+          GoldenTestScenario(
             name: 'With small size and no legend',
             child: const YgChart(
               series: <YgChartSeries>[heating, appliances],
@@ -99,6 +116,28 @@ void main() {
               series: <YgChartSeries>[heating, appliances],
               xLabels: weekLabels,
               size: YgChartSize.large,
+            ),
+          ),
+          GoldenTestScenario(
+            name: 'With xsmall size and an overflowing legend',
+            child: YgChart(
+              size: YgChartSize.xsmall,
+              xLabels: weekLabels,
+              series: <YgChartSeries>[
+                for (final (int index, String room) in const <String>[
+                  'Living room',
+                  'Kitchen',
+                  'Bedroom',
+                  'Bathroom',
+                  'Home office',
+                ].indexed)
+                  YgChartSeries(
+                    id: 'room-$index',
+                    label: room,
+                    values: List<double>.generate(7, (int day) => 1.0 + (day + index) % 4),
+                    unit: 'kWh',
+                  ),
+              ],
             ),
           ),
         ],

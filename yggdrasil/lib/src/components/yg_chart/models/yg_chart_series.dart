@@ -11,6 +11,8 @@ class YgChartSeries {
     this.type = YgChartSeriesType.bar,
     this.axis = YgChartAxis.left,
     this.color,
+    this.lowerValues,
+    this.upperValues,
   });
 
   /// Unique identifier of the series.
@@ -26,6 +28,9 @@ class YgChartSeries {
   ///
   /// Must have the same length as [YgChart.xLabels]. Negative values are
   /// supported and are drawn below the zero line.
+  ///
+  /// For [YgChartSeriesType.band] series this is the center line, typically
+  /// the average of the values the band was computed from.
   final List<double> values;
 
   /// Unit of the values, for example 'kWh' or 'kr'.
@@ -46,6 +51,19 @@ class YgChartSeries {
   /// on the position of the series in [YgChart.series].
   final Color? color;
 
+  /// Lower bound of the band around [values], one value per x-axis label.
+  ///
+  /// Required for [YgChartSeriesType.band] series and must be null for other
+  /// types. The chart renders the values as given, so the caller is
+  /// responsible for computing the bounds (for example the minimum of
+  /// multiple sensors) and keeping them below [values].
+  final List<double>? lowerValues;
+
+  /// Upper bound of the band around [values], one value per x-axis label.
+  ///
+  /// See [lowerValues].
+  final List<double>? upperValues;
+
   /// Copy of this series with the given fields replaced.
   YgChartSeries copyWith({
     Color? color,
@@ -58,6 +76,8 @@ class YgChartSeries {
       type: type,
       axis: axis,
       color: color ?? this.color,
+      lowerValues: lowerValues,
+      upperValues: upperValues,
     );
   }
 }

@@ -40,6 +40,15 @@ class YgChartDataManager {
   final Map<String, List<double>> _currentValues = <String, List<double>>{};
   final Map<String, List<double>> _finalValues = <String, List<double>>{};
 
+  // The lower and upper bounds of band series, animated exactly like the
+  // values. Only populated for series of type band.
+  final Map<String, List<double>> _startLowerValues = <String, List<double>>{};
+  final Map<String, List<double>> _currentLowerValues = <String, List<double>>{};
+  final Map<String, List<double>> _finalLowerValues = <String, List<double>>{};
+  final Map<String, List<double>> _startUpperValues = <String, List<double>>{};
+  final Map<String, List<double>> _currentUpperValues = <String, List<double>>{};
+  final Map<String, List<double>> _finalUpperValues = <String, List<double>>{};
+
   // Line series appear and disappear by fading instead of collapsing to the
   // zero line, so their opacity is animated just like the values. Bar series
   // keep an opacity of 1.0 and grow from / shrink to the baseline instead.
@@ -72,6 +81,14 @@ class YgChartDataManager {
 
   /// Current (possibly mid-animation) values of the series with [id].
   List<double> currentValuesOf(String id) => _currentValues[id]!;
+
+  /// Current (possibly mid-animation) lower band bounds of the band series
+  /// with [id].
+  List<double> currentLowerValuesOf(String id) => _currentLowerValues[id]!;
+
+  /// Current (possibly mid-animation) upper band bounds of the band series
+  /// with [id].
+  List<double> currentUpperValuesOf(String id) => _currentUpperValues[id]!;
 
   /// Current (possibly mid-animation) opacity of the series with [id].
   ///
@@ -137,6 +154,12 @@ class YgChartDataManager {
       _startValues.clear();
       _currentValues.clear();
       _finalValues.clear();
+      _startLowerValues.clear();
+      _currentLowerValues.clear();
+      _finalLowerValues.clear();
+      _startUpperValues.clear();
+      _currentUpperValues.clear();
+      _finalUpperValues.clear();
       _startOpacity.clear();
       _currentOpacity.clear();
       _finalOpacity.clear();
@@ -155,8 +178,8 @@ class YgChartDataManager {
           (int index) => _valueAt(series, index),
         );
 
-        if (series.type == YgChartSeriesType.line) {
-          // Lines fade in at their actual values.
+        if (series.type != YgChartSeriesType.bar) {
+          // Lines and bands fade in at their actual values.
           _startValues[series.id] = List<double>.of(newValues);
           _currentValues[series.id] = List<double>.of(newValues);
           _startOpacity[series.id] = 0.0;
@@ -171,6 +194,9 @@ class YgChartDataManager {
         }
         _finalValues[series.id] = newValues;
         _finalOpacity[series.id] = 1.0;
+        if (series.type == YgChartSeriesType.band) {
+          _initializeBandBounds(series);
+        }
         changed = true;
       } else {
         final List<double> startValues = _startValues[series.id]!;
@@ -187,6 +213,33 @@ class YgChartDataManager {
           changed = true;
         }
 
+        if (series.type == YgChartSeriesType.band) {
+          if (_finalLowerValues.containsKey(series.id)) {
+            changed =
+                _retargetBandBound(
+                  series: series,
+                  startValues: _startLowerValues[series.id]!,
+                  currentValues: _currentLowerValues[series.id]!,
+                  finalValues: _finalLowerValues[series.id]!,
+                  upper: false,
+                ) ||
+                changed;
+            changed =
+                _retargetBandBound(
+                  series: series,
+                  startValues: _startUpperValues[series.id]!,
+                  currentValues: _currentUpperValues[series.id]!,
+                  finalValues: _finalUpperValues[series.id]!,
+                  upper: true,
+                ) ||
+                changed;
+          } else {
+            // The series changed type to band, snap the bounds in place.
+            _initializeBandBounds(series);
+            changed = true;
+          }
+        }
+
         // A series that was fading out fades back in when it becomes
         // visible again.
         if (_finalOpacity[series.id] != 1.0) {
@@ -198,14 +251,14 @@ class YgChartDataManager {
       }
     }
 
-    // Series no longer visible animate out: lines fade in place, bars
-    // shrink to the zero line.
+    // Series no longer visible animate out: lines and bands fade in place,
+    // bars shrink to the zero line.
     for (final String id in _seriesById.keys) {
       if (_visibleIds.contains(id)) {
         continue;
       }
 
-      if (_seriesById[id]!.type == YgChartSeriesType.line) {
+      if (_seriesById[id]!.type != YgChartSeriesType.bar) {
         if (_finalOpacity[id] != 0.0) {
           _startOpacity[id] = _currentOpacity[id]!;
           _finalOpacity[id] = 0.0;
@@ -272,6 +325,20 @@ class YgChartDataManager {
 
       for (int i = 0; i < _valueCount; i++) {
         entry.value[i] = lerpDouble(startValues[i], finalValues[i], movementT)!;
+      }
+
+      final List<double>? currentLower = _currentLowerValues[entry.key];
+      if (currentLower != null) {
+        final List<double> startLower = _startLowerValues[entry.key]!;
+        final List<double> finalLower = _finalLowerValues[entry.key]!;
+        final List<double> startUpper = _startUpperValues[entry.key]!;
+        final List<double> currentUpper = _currentUpperValues[entry.key]!;
+        final List<double> finalUpper = _finalUpperValues[entry.key]!;
+
+        for (int i = 0; i < _valueCount; i++) {
+          currentLower[i] = lerpDouble(startLower[i], finalLower[i], movementT)!;
+          currentUpper[i] = lerpDouble(startUpper[i], finalUpper[i], movementT)!;
+        }
       }
 
       final double startOpacity = _startOpacity[entry.key]!;
@@ -367,6 +434,8 @@ class YgChartDataManager {
       }
 
       final List<double> finalValues = _finalValues[series.id]!;
+      final List<double>? finalLower = _finalLowerValues[series.id];
+      final List<double>? finalUpper = _finalUpperValues[series.id];
       for (int i = 0; i < _valueCount; i++) {
         final double value = finalValues[i];
 
@@ -380,6 +449,13 @@ class YgChartDataManager {
         } else {
           rawMin = math.min(rawMin ?? value, value);
           rawMax = math.max(rawMax ?? value, value);
+
+          // The band around a band series must stay inside the plot as
+          // well.
+          if (finalLower != null && finalUpper != null) {
+            rawMin = math.min(rawMin, finalLower[i]);
+            rawMax = math.max(rawMax, finalUpper[i]);
+          }
         }
       }
     }
@@ -460,8 +536,8 @@ class YgChartDataManager {
     double finalMin = (paddedMin / step).floorToDouble() * step;
     while (finalMin + intervals * step < paddedMax) {
       // Flooring the min pushed the top of the range below the data, grow
-      // to the next nice step and try again.
-      step = _niceStepFor(step * 1.5);
+      // one nice step at a time so the range stays as tight as possible.
+      step = _nextNiceStep(step);
       finalMin = (paddedMin / step).floorToDouble() * step;
     }
 
@@ -521,6 +597,28 @@ class YgChartDataManager {
     }
 
     return niceNormalized * magnitude;
+  }
+
+  /// The next nice step strictly larger than [step].
+  ///
+  /// Climbs the same 1 / 2 / 2.5 / 5 ladder as [_niceStepFor] one rung at a
+  /// time, so a range that barely does not fit is not blown up further than
+  /// necessary.
+  double _nextNiceStep(double step) {
+    final double magnitude = math.pow(10.0, (math.log(step) / math.ln10).floorToDouble()).toDouble();
+    final double normalized = step / magnitude;
+
+    if (normalized < 2.0) {
+      return 2.0 * magnitude;
+    }
+    if (normalized < 2.5) {
+      return 2.5 * magnitude;
+    }
+    if (normalized < 5.0) {
+      return 5.0 * magnitude;
+    }
+
+    return 10.0 * magnitude;
   }
 
   /// Smallest amount of decimals that renders multiples of [step] exactly.
@@ -595,6 +693,12 @@ class YgChartDataManager {
       _startValues.remove(id);
       _currentValues.remove(id);
       _finalValues.remove(id);
+      _startLowerValues.remove(id);
+      _currentLowerValues.remove(id);
+      _finalLowerValues.remove(id);
+      _startUpperValues.remove(id);
+      _currentUpperValues.remove(id);
+      _finalUpperValues.remove(id);
       _startOpacity.remove(id);
       _currentOpacity.remove(id);
       _finalOpacity.remove(id);
@@ -608,12 +712,72 @@ class YgChartDataManager {
     };
   }
 
+  /// Starts tracking the band bounds of [series] at their actual values.
+  ///
+  /// The band fades in and out with the opacity of the series, so unlike bar
+  /// values the bounds never animate from zero.
+  void _initializeBandBounds(YgChartSeries series) {
+    final List<double> newLower = List<double>.generate(
+      _valueCount,
+      (int index) => _boundAt(series, index, upper: false),
+    );
+    final List<double> newUpper = List<double>.generate(
+      _valueCount,
+      (int index) => _boundAt(series, index, upper: true),
+    );
+
+    _startLowerValues[series.id] = List<double>.of(newLower);
+    _currentLowerValues[series.id] = List<double>.of(newLower);
+    _finalLowerValues[series.id] = newLower;
+    _startUpperValues[series.id] = List<double>.of(newUpper);
+    _currentUpperValues[series.id] = List<double>.of(newUpper);
+    _finalUpperValues[series.id] = newUpper;
+  }
+
+  /// Diffs one band bound of [series] against its tracked final values, the
+  /// same way [updateData] diffs the series values.
+  bool _retargetBandBound({
+    required YgChartSeries series,
+    required List<double> startValues,
+    required List<double> currentValues,
+    required List<double> finalValues,
+    required bool upper,
+  }) {
+    bool changed = false;
+
+    for (int i = 0; i < _valueCount; i++) {
+      final double newValue = _boundAt(series, i, upper: upper);
+      if (finalValues[i] == newValue) {
+        continue;
+      }
+
+      startValues[i] = currentValues[i];
+      finalValues[i] = newValue;
+      changed = true;
+    }
+
+    return changed;
+  }
+
   double _valueAt(YgChartSeries series, int index) {
     if (index < 0 || index >= series.values.length) {
       return 0.0;
     }
 
     return series.values[index];
+  }
+
+  /// The lower or upper band bound of [series] at [index].
+  ///
+  /// Falls back to the center value when the series has no bounds, so a
+  /// misconfigured band series renders as a plain line.
+  double _boundAt(YgChartSeries series, int index, {required bool upper}) {
+    final List<double>? bounds = upper ? series.upperValues : series.lowerValues;
+    if (bounds == null || index < 0 || index >= bounds.length) {
+      return _valueAt(series, index);
+    }
+
+    return bounds[index];
   }
 
   List<double> _zeroes() {

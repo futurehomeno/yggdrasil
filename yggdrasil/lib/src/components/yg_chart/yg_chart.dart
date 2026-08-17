@@ -13,8 +13,12 @@ import 'package:yggdrasil/src/utils/_utils.dart';
 
 /// Animated chart rendering multiple data series as bars and lines.
 ///
-/// - Bar and line series share one canvas. Bar series on the same axis are
-///   stacked, line series are drawn on top of the bars.
+/// - Bar, line and band series share one canvas. Bar series on the same axis
+///   are stacked, line series are drawn on top of the bars.
+/// - Band series render a translucent area between a lower and upper bound
+///   with their values as the center line, for example the average of
+///   multiple temperature sensors inside their min-max envelope. The bounds
+///   are passed precomputed, see [YgChartSeries.lowerValues].
 /// - Negative values are supported and drawn below the zero line.
 /// - Series can be assigned to a secondary right axis (for example energy
 ///   consumption in kWh on the left and energy price on the right), see
@@ -303,10 +307,17 @@ class _YgChartState extends State<YgChart> with TickerProviderStateMixin {
     final List<YgChartTooltipEntry> entries = resolvedSeries
         .where((YgChartSeries series) => !_hiddenSeriesIds.contains(series.id))
         .map<YgChartTooltipEntry>(
-          (YgChartSeries series) => YgChartTooltipEntry(
-            series: series,
-            value: index < series.values.length ? series.values[index] : 0.0,
-          ),
+          (YgChartSeries series) {
+            final List<double>? lowerValues = series.lowerValues;
+            final List<double>? upperValues = series.upperValues;
+
+            return YgChartTooltipEntry(
+              series: series,
+              value: index < series.values.length ? series.values[index] : 0.0,
+              lowerValue: lowerValues != null && index < lowerValues.length ? lowerValues[index] : null,
+              upperValue: upperValues != null && index < upperValues.length ? upperValues[index] : null,
+            );
+          },
         )
         .toList();
 
@@ -345,6 +356,26 @@ class _YgChartState extends State<YgChart> with TickerProviderStateMixin {
         'YgChart series "${series.id}" has ${series.values.length} values, '
         'expected one per xLabel (${widget.xLabels.length}).',
       );
+
+      if (series.type == YgChartSeriesType.band) {
+        assert(
+          series.lowerValues != null && series.upperValues != null,
+          'YgChart band series "${series.id}" must provide lowerValues and '
+          'upperValues.',
+        );
+        assert(
+          (series.lowerValues ?? const <double>[]).length == widget.xLabels.length &&
+              (series.upperValues ?? const <double>[]).length == widget.xLabels.length,
+          'YgChart band series "${series.id}" bounds must have one value per '
+          'xLabel (${widget.xLabels.length}).',
+        );
+      } else {
+        assert(
+          series.lowerValues == null && series.upperValues == null,
+          'YgChart series "${series.id}" of type ${series.type.name} must '
+          'not provide band bounds.',
+        );
+      }
 
       final String? axisUnit = unitPerAxis[series.axis];
       assert(

@@ -10,7 +10,9 @@ import 'package:yggdrasil/src/utils/_utils.dart';
 /// The tappable legend of a [YgChart].
 ///
 /// Shows one item per series, which can be tapped to hide or show the series
-/// on the chart.
+/// on the chart. The items are laid out on a single row that scrolls
+/// horizontally when it overflows, so the legend never grows the chart
+/// vertically.
 class YgChartLegend extends StatelessWidget with StatelessWidgetDebugMixin {
   const YgChartLegend({
     super.key,
@@ -32,19 +34,26 @@ class YgChartLegend extends StatelessWidget with StatelessWidgetDebugMixin {
   Widget build(BuildContext context) {
     final double spacing = context.tokens.dimensions.xxs;
 
-    return Wrap(
-      alignment: WrapAlignment.center,
-      spacing: spacing,
-      runSpacing: spacing,
-      children: series
-          .map<Widget>(
-            (YgChartSeries currentSeries) => _YgChartLegendItem(
-              series: currentSeries,
-              hidden: hiddenSeriesIds.contains(currentSeries.id),
-              onTap: () => onSeriesTap(currentSeries),
-            ),
-          )
-          .toList(),
+    // Centered like a Wrap while the items fit; the Center makes the scroll
+    // view shrink-wrap its content, so once the items overflow it fills the
+    // width and scrolls instead of growing a second row.
+    return Center(
+      child: SingleChildScrollView(
+        scrollDirection: Axis.horizontal,
+        child: Row(
+          mainAxisSize: MainAxisSize.min,
+          children: <Widget>[
+            for (int i = 0; i < series.length; i++) ...<Widget>[
+              if (i > 0) SizedBox(width: spacing),
+              _YgChartLegendItem(
+                series: series[i],
+                hidden: hiddenSeriesIds.contains(series[i].id),
+                onTap: () => onSeriesTap(series[i]),
+              ),
+            ],
+          ],
+        ),
+      ),
     );
   }
 }
@@ -59,6 +68,11 @@ class _YgChartLegendItem extends StatelessWidget {
   static const double _barMarkerSize = 10.0;
   static const double _lineMarkerWidth = 14.0;
   static const double _lineMarkerHeight = 3.0;
+  static const double _bandMarkerHeight = 10.0;
+
+  /// Matches the fill opacity of the band on the chart canvas, see
+  /// [YgChartPainter].
+  static const double _bandMarkerFillOpacity = 0.2;
 
   final YgChartSeries series;
   final bool hidden;
@@ -124,6 +138,29 @@ class _YgChartLegendItem extends StatelessWidget {
         decoration: BoxDecoration(
           color: markerColor,
           borderRadius: BorderRadius.circular(_lineMarkerHeight / 2.0),
+        ),
+      ),
+      // The band marker mirrors the band on the canvas: the center line on
+      // top of the translucent area.
+      YgChartSeriesType.band => AnimatedContainer(
+        duration: context.defaults.animationDuration,
+        curve: context.defaults.animationCurve,
+        width: _lineMarkerWidth,
+        height: _bandMarkerHeight,
+        decoration: BoxDecoration(
+          color: markerColor.withValues(alpha: markerColor.a * _bandMarkerFillOpacity),
+          borderRadius: BorderRadius.circular(_lineMarkerHeight),
+        ),
+        child: Center(
+          child: AnimatedContainer(
+            duration: context.defaults.animationDuration,
+            curve: context.defaults.animationCurve,
+            height: _lineMarkerHeight,
+            decoration: BoxDecoration(
+              color: markerColor,
+              borderRadius: BorderRadius.circular(_lineMarkerHeight / 2.0),
+            ),
+          ),
         ),
       ),
     };

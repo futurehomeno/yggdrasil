@@ -9,6 +9,8 @@ void main() {
       List<double> values = const <double>[0.0, 5.0, 10.0],
       YgChartSeriesType type = YgChartSeriesType.bar,
       YgChartAxis axis = YgChartAxis.left,
+      List<double>? lowerValues,
+      List<double>? upperValues,
     }) {
       return YgChartSeries(
         id: id,
@@ -17,6 +19,23 @@ void main() {
         unit: 'kWh',
         type: type,
         axis: axis,
+        lowerValues: lowerValues,
+        upperValues: upperValues,
+      );
+    }
+
+    YgChartSeries buildBandSeries({
+      String id = 'band',
+      List<double> values = const <double>[22.0, 23.0, 24.0],
+      List<double> lowerValues = const <double>[21.0, 22.0, 23.0],
+      List<double> upperValues = const <double>[23.0, 24.0, 25.0],
+    }) {
+      return buildSeries(
+        id: id,
+        values: values,
+        type: YgChartSeriesType.band,
+        lowerValues: lowerValues,
+        upperValues: upperValues,
       );
     }
 
@@ -257,6 +276,24 @@ void main() {
       expect(manager.finalMaxOf(YgChartAxis.left), 24.0);
     });
 
+    test('floating axis grows one nice step at a time', () {
+      final YgChartDataManager manager = YgChartDataManager();
+
+      manager.updateData(
+        <YgChartSeries>[
+          buildSeries(id: 'temperature', values: <double>[25.1, 26.0, 28.2], type: YgChartSeriesType.line),
+        ],
+        valueCount: 3,
+        tickCount: 3,
+      );
+
+      // The initial step of 2.0 gives 24..28 which just misses the max.
+      // The next rung of the ladder is 2.5 (not 5.0), so the range becomes
+      // 25..30 instead of blowing up to 25..35.
+      expect(manager.finalMinOf(YgChartAxis.left), 25.0);
+      expect(manager.finalMaxOf(YgChartAxis.left), 30.0);
+    });
+
     test('flat line only axis gets a padded range around its value', () {
       final YgChartDataManager manager = YgChartDataManager();
 
@@ -345,6 +382,105 @@ void main() {
 
       manager.applyAnimationValue(1.0);
       expect(manager.currentMaxOf(YgChartAxis.left), newMax);
+    });
+
+    test('new band series fades in at its values and bounds', () {
+      final YgChartDataManager manager = YgChartDataManager();
+
+      manager.updateData(
+        <YgChartSeries>[buildBandSeries()],
+        valueCount: 3,
+        tickCount: 5,
+      );
+
+      manager.applyAnimationValue(0.0);
+      expect(manager.currentValuesOf('band'), <double>[22.0, 23.0, 24.0]);
+      expect(manager.currentLowerValuesOf('band'), <double>[21.0, 22.0, 23.0]);
+      expect(manager.currentUpperValuesOf('band'), <double>[23.0, 24.0, 25.0]);
+      expect(manager.opacityOf('band'), 0.0);
+
+      manager.applyAnimationValue(1.0);
+      expect(manager.opacityOf('band'), 1.0);
+    });
+
+    test('band bounds animate between values', () {
+      final YgChartDataManager manager = YgChartDataManager();
+
+      manager.updateData(
+        <YgChartSeries>[buildBandSeries()],
+        valueCount: 3,
+        tickCount: 5,
+      );
+      manager.applyAnimationValue(1.0);
+
+      manager.updateData(
+        <YgChartSeries>[
+          buildBandSeries(
+            values: <double>[24.0, 25.0, 26.0],
+            lowerValues: <double>[23.0, 24.0, 25.0],
+            upperValues: <double>[25.0, 26.0, 27.0],
+          ),
+        ],
+        valueCount: 3,
+        tickCount: 5,
+      );
+
+      manager.applyAnimationValue(0.5);
+      expect(manager.currentValuesOf('band')[0], closeTo(23.0, 0.000001));
+      expect(manager.currentLowerValuesOf('band')[0], closeTo(22.0, 0.000001));
+      expect(manager.currentUpperValuesOf('band')[0], closeTo(24.0, 0.000001));
+
+      manager.applyAnimationValue(1.0);
+      expect(manager.currentLowerValuesOf('band'), <double>[23.0, 24.0, 25.0]);
+      expect(manager.currentUpperValuesOf('band'), <double>[25.0, 26.0, 27.0]);
+    });
+
+    test('band bounds extend the axis range', () {
+      final YgChartDataManager manager = YgChartDataManager();
+
+      manager.updateData(
+        <YgChartSeries>[buildBandSeries()],
+        valueCount: 3,
+        tickCount: 5,
+      );
+
+      // The axis zooms in on the data like for lines, but has to contain
+      // the full band, not just the center line.
+      expect(manager.finalMinOf(YgChartAxis.left), lessThanOrEqualTo(21.0));
+      expect(manager.finalMaxOf(YgChartAxis.left), greaterThanOrEqualTo(25.0));
+    });
+
+    test('removed band series fades out in place and is pruned', () {
+      final YgChartDataManager manager = YgChartDataManager();
+
+      manager.updateData(
+        <YgChartSeries>[
+          buildSeries(id: 'a'),
+          buildBandSeries(),
+        ],
+        valueCount: 3,
+        tickCount: 5,
+      );
+      manager.applyAnimationValue(1.0);
+
+      manager.updateData(
+        <YgChartSeries>[buildSeries(id: 'a')],
+        valueCount: 3,
+        tickCount: 5,
+      );
+
+      manager.applyAnimationValue(0.15);
+      // The band keeps its position and fades instead of collapsing.
+      expect(manager.currentValuesOf('band'), <double>[22.0, 23.0, 24.0]);
+      expect(manager.currentLowerValuesOf('band'), <double>[21.0, 22.0, 23.0]);
+      expect(manager.opacityOf('band'), greaterThan(0.0));
+      expect(manager.opacityOf('band'), lessThan(1.0));
+
+      manager.applyAnimationValue(1.0);
+      expect(
+        manager.orderedSeries.map((YgChartSeries series) => series.id),
+        <String>['a'],
+      );
     });
 
     test('changing the value count rebuilds the tracked state', () {

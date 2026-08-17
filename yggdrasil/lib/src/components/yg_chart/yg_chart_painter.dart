@@ -6,7 +6,7 @@ import 'package:yggdrasil/src/components/yg_chart/enums/_enums.dart';
 import 'package:yggdrasil/src/components/yg_chart/models/_models.dart';
 import 'package:yggdrasil/src/components/yg_chart/yg_chart_data_manager.dart';
 
-/// Paints the grid, axis labels, bars and lines of a [YgChart].
+/// Paints the grid, axis labels, bars, lines and bands of a [YgChart].
 ///
 /// The painter repaints on every tick of [animation] and reads the values to
 /// render from [dataManager], which interpolates them based on the animation
@@ -37,6 +37,10 @@ class YgChartPainter extends CustomPainter {
   static const double _maxBarWidth = 14.0;
   static const double _stackGapHalf = 1.0;
   static const double _lineWidth = 2.0;
+
+  /// Opacity of the area between the bounds of a band series, relative to
+  /// the series color.
+  static const double _bandFillOpacity = 0.2;
   static const double _lineCurveHalfLength = 6.0;
   static const double _xLabelSpacing = 8.0;
 
@@ -97,6 +101,7 @@ class YgChartPainter extends CustomPainter {
     canvas.save();
     canvas.clipRect(plotRect.inflate(_stackGapHalf));
     _paintBars(canvas, plotRect);
+    _paintBands(canvas, plotRect);
     _paintLines(canvas, plotRect);
     canvas.restore();
   }
@@ -359,6 +364,77 @@ class YgChartPainter extends CustomPainter {
     }
   }
 
+  /// Paints the band series: a translucent area between the lower and upper
+  /// bounds with the center line drawn on top.
+  ///
+  /// Bands are painted above the bars and below the plain line series, so a
+  /// line stays readable when it crosses a band.
+  void _paintBands(Canvas canvas, Rect plotRect) {
+    final List<YgChartSeries> bandSeries = dataManager.orderedSeries
+        .where((YgChartSeries series) => series.type == YgChartSeriesType.band)
+        .toList();
+    if (bandSeries.isEmpty || dataManager.valueCount == 0) {
+      return;
+    }
+
+    final double slotWidth = plotRect.width / dataManager.valueCount;
+
+    for (final YgChartSeries series in bandSeries) {
+      final double opacity = dataManager.opacityOf(series.id);
+      if (opacity <= 0.0) {
+        continue;
+      }
+
+      final List<double> centerValues = dataManager.currentValuesOf(series.id);
+      final List<double> lowerValues = dataManager.currentLowerValuesOf(series.id);
+      final List<double> upperValues = dataManager.currentUpperValuesOf(series.id);
+
+      final List<Offset> centerPoints = <Offset>[];
+      final List<Offset> lowerPoints = <Offset>[];
+      final List<Offset> upperPoints = <Offset>[];
+
+      for (int i = 0; i < dataManager.valueCount; i++) {
+        if (centerValues[i].isNaN || lowerValues[i].isNaN || upperValues[i].isNaN) {
+          continue;
+        }
+
+        final double x = plotRect.left + (i + 0.5) * slotWidth;
+        centerPoints.add(Offset(x, _yFor(centerValues[i], series.axis, plotRect)));
+        lowerPoints.add(Offset(x, _yFor(lowerValues[i], series.axis, plotRect)));
+        upperPoints.add(Offset(x, _yFor(upperValues[i], series.axis, plotRect)));
+      }
+
+      if (centerPoints.isEmpty) {
+        continue;
+      }
+
+      final Color color = series.color ?? baselineColor;
+      final Color fillColor = color.withValues(alpha: color.a * _bandFillOpacity * opacity);
+      final Color lineColor = opacity < 1.0 ? color.withValues(alpha: color.a * opacity) : color;
+
+      if (centerPoints.length == 1) {
+        // A single column renders as a dot on a vertical band segment.
+        final Paint segmentPaint = Paint()
+          ..color = fillColor
+          ..strokeWidth = 2.0 * _lineWidth;
+        canvas.drawLine(upperPoints.first, lowerPoints.first, segmentPaint);
+        canvas.drawCircle(centerPoints.first, _lineWidth, Paint()..color = lineColor);
+        continue;
+      }
+
+      final Paint fillPaint = Paint()..color = fillColor;
+      canvas.drawPath(_buildBandPath(upperPoints, lowerPoints), fillPaint);
+
+      // Unlike the line series the band is drawn raw: straight segments
+      // with sharp corners and ends.
+      final Paint linePaint = Paint()
+        ..color = lineColor
+        ..strokeWidth = _lineWidth
+        ..style = PaintingStyle.stroke;
+      canvas.drawPath(_buildStraightPath(centerPoints), linePaint);
+    }
+  }
+
   void _paintLines(Canvas canvas, Rect plotRect) {
     final List<YgChartSeries> lineSeries = dataManager.orderedSeries
         .where((YgChartSeries series) => series.type == YgChartSeriesType.line)
@@ -411,6 +487,28 @@ class YgChartPainter extends CustomPainter {
 
       canvas.drawPath(_buildLinePath(points), linePaint);
     }
+  }
+
+  /// Builds the closed outline of a band: along the upper bound, down to the
+  /// lower bound and back along it to the start.
+  ///
+  /// Built from straight segments, matching the raw look of the band center
+  /// line.
+  Path _buildBandPath(List<Offset> upperPoints, List<Offset> lowerPoints) {
+    return Path()..addPolygon(
+      <Offset>[...upperPoints, ...lowerPoints.reversed],
+      true,
+    );
+  }
+
+  /// Builds a path of straight segments through [points].
+  Path _buildStraightPath(List<Offset> points) {
+    final Path path = Path()..moveTo(points.first.dx, points.first.dy);
+    for (int i = 1; i < points.length; i++) {
+      path.lineTo(points[i].dx, points[i].dy);
+    }
+
+    return path;
   }
 
   /// Builds a path through [points] with slightly curved corners.

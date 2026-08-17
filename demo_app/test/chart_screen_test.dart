@@ -55,7 +55,7 @@ void main() {
     );
     await tester.pumpAndSettle();
 
-    expect(find.byType(YgChart), findsNWidgets(4));
+    expect(find.byType(YgChart), findsNWidgets(5));
 
     // Switch the size of the first chart.
     await tapClearOfHeader(tester, find.text('large'));
@@ -109,6 +109,29 @@ void main() {
     await longPress.up();
     await tester.pumpAndSettle();
     expect(find.textContaining('Heating:'), findsNothing);
+
+    // Long press the temperature band chart: its tooltip shows the average
+    // from the chart data plus the raw sensor readings, which only the app
+    // knows about.
+    final Finder bandCanvas = find
+        .descendant(
+          of: find.byType(YgChart).at(2),
+          matching: find.byType(CustomPaint),
+        )
+        .first;
+    await tester.ensureVisible(bandCanvas);
+    await tester.pumpAndSettle();
+
+    final TestGesture bandPress = await tester.startGesture(tester.getCenter(bandCanvas));
+    await tester.pump(kLongPressTimeout + const Duration(milliseconds: 50));
+    await tester.pump();
+    expect(find.textContaining('Average:'), findsOneWidget);
+    expect(find.textContaining('Sensor 1:'), findsOneWidget);
+    expect(find.textContaining('Sensor 3:'), findsOneWidget);
+
+    await bandPress.up();
+    await tester.pumpAndSettle();
+    expect(find.textContaining('Average:'), findsNothing);
 
     expect(tester.takeException(), isNull);
   });
