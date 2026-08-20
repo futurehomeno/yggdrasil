@@ -16,4 +16,21 @@ enum YgChartSeriesType {
   /// [YgChartSeries.upperValues] in addition to [YgChartSeries.values],
   /// which holds the center line.
   band,
+
+  /// Rendered as a stepped line with the area down to the zero line filled
+  /// translucently, resembling bars, for example power drawn over a day.
+  ///
+  /// Each value holds over the full width of its slot. Like bars the series
+  /// keeps its axis anchored at the zero line and animates in and out by
+  /// growing from and shrinking to it, but it does not stack.
+  steppedArea
+  ;
+
+  /// Whether series of this type appear and disappear by fading in place
+  /// instead of growing from and shrinking to the zero line.
+  bool get fadesInPlace => this == line || this == band;
+
+  /// Whether series of this type keep their axis anchored at the zero line
+  /// instead of letting it zoom in on the data.
+  bool get anchorsAtZero => this == bar || this == steppedArea;
 }

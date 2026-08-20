@@ -24,6 +24,7 @@ class ChartScreen extends StatefulWidget {
 class _ChartScreenState extends State<ChartScreen> {
   static const List<String> _weekLabels = <String>['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'];
   static const List<String> _monthLabels = <String>['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun'];
+  static const List<String> _hourLabels = <String>['00', '03', '06', '09', '12', '15', '18', '21'];
 
   final Random _random = Random();
 
@@ -35,6 +36,15 @@ class _ChartScreenState extends State<ChartScreen> {
 
   late List<double> _consumption = _randomValues(count: 7, max: 6.0);
   late List<double> _production = _randomValues(count: 7, max: 5.0).map((double value) => -value).toList();
+
+  late List<double> _power = _randomPowerProfile();
+  late List<_PowerEvent> _powerEvents = _randomPowerEvents();
+
+  /// The band selected on the event density rail of the power chart,
+  /// rendered as a summary tile below it. The chart only reports the band
+  /// under the pointer; the selection and the detail view are owned by the
+  /// app.
+  int? _selectedEventBand;
 
   /// Raw readings of the room temperature sensors, one list per sensor.
   ///
@@ -132,6 +142,43 @@ class _ChartScreenState extends State<ChartScreen> {
               ],
             ),
             YgSection.column(
+              title: 'Charging power over a day (stepped area)',
+              children: <Widget>[
+                YgChart(
+                  size: YgChartSize.small,
+                  xLabels: _hourLabels,
+                  tooltipBuilder: _buildTooltip,
+                  railEvents: <YgChartRailEvent>[
+                    for (final _PowerEvent event in _powerEvents)
+                      YgChartRailEvent(
+                        position: event.time,
+                        color: event.color,
+                      ),
+                  ],
+                  selectedRailBand: _selectedEventBand,
+                  onRailBandSelected: (int band) => setState(() => _selectedEventBand = band),
+                  series: <YgChartSeries>[
+                    YgChartSeries(
+                      id: 'power',
+                      label: 'Power',
+                      values: _power,
+                      unit: 'kW',
+                      type: YgChartSeriesType.steppedArea,
+                    ),
+                  ],
+                ),
+                if (_selectedEventBand != null) _buildSelectedBandTile(_selectedEventBand!),
+                YgButton(
+                  onPressed: () => setState(() {
+                    _power = _randomPowerProfile();
+                    _powerEvents = _randomPowerEvents();
+                    _selectedEventBand = null;
+                  }),
+                  child: const Text('Randomize data'),
+                ),
+              ],
+            ),
+            YgSection.column(
               title: 'Temperature band (average of three sensors)',
               children: <Widget>[
                 YgChart(
@@ -208,10 +255,42 @@ class _ChartScreenState extends State<ChartScreen> {
 
   /// Tooltip with one row per visible series, long press a chart to see it.
   Widget _buildTooltip(BuildContext context, YgChartTooltipData data) {
-    final TextStyle textStyle = context.tokens.textStyles.caption1Regular.copyWith(
-      color: context.tokens.colors.textInverse,
-    );
+    final TextStyle textStyle = _tooltipTextStyle(context);
 
+    return _tooltipFrame(
+      context: context,
+      xLabel: data.xLabel,
+      rows: <Widget>[
+        for (final YgChartTooltipEntry entry in data.entries)
+          Row(
+            mainAxisSize: MainAxisSize.min,
+            children: <Widget>[
+              Container(
+                width: 8.0,
+                height: 8.0,
+                decoration: BoxDecoration(
+                  color: entry.series.color,
+                  shape: BoxShape.circle,
+                ),
+              ),
+              const SizedBox(width: 5.0),
+              Text(
+                '${entry.series.label}: ${entry.value.toStringAsFixed(1)} ${entry.series.unit}',
+                style: textStyle,
+              ),
+            ],
+          ),
+      ],
+    );
+  }
+
+  /// The shared chrome of the demo tooltips: an inverse rounded card with
+  /// the pressed x-label as its header.
+  Widget _tooltipFrame({
+    required BuildContext context,
+    required String xLabel,
+    required List<Widget> rows,
+  }) {
     return Container(
       margin: const EdgeInsets.all(5.0),
       padding: const EdgeInsets.symmetric(horizontal: 10.0, vertical: 5.0),
@@ -224,32 +303,20 @@ class _ChartScreenState extends State<ChartScreen> {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: <Widget>[
           Text(
-            data.xLabel,
+            xLabel,
             style: context.tokens.textStyles.caption1Bold.copyWith(
               color: context.tokens.colors.textInverse,
             ),
           ),
-          for (final YgChartTooltipEntry entry in data.entries)
-            Row(
-              mainAxisSize: MainAxisSize.min,
-              children: <Widget>[
-                Container(
-                  width: 8.0,
-                  height: 8.0,
-                  decoration: BoxDecoration(
-                    color: entry.series.color,
-                    shape: BoxShape.circle,
-                  ),
-                ),
-                const SizedBox(width: 5.0),
-                Text(
-                  '${entry.series.label}: ${entry.value.toStringAsFixed(1)} ${entry.series.unit}',
-                  style: textStyle,
-                ),
-              ],
-            ),
+          ...rows,
         ],
       ),
+    );
+  }
+
+  TextStyle _tooltipTextStyle(BuildContext context) {
+    return context.tokens.textStyles.caption1Regular.copyWith(
+      color: context.tokens.colors.textInverse,
     );
   }
 
@@ -261,39 +328,53 @@ class _ChartScreenState extends State<ChartScreen> {
     }
 
     final YgChartTooltipEntry entry = data.entries.first;
-    final TextStyle textStyle = context.tokens.textStyles.caption1Regular.copyWith(
-      color: context.tokens.colors.textInverse,
-    );
+    final TextStyle textStyle = _tooltipTextStyle(context);
 
-    return Container(
-      margin: const EdgeInsets.all(5.0),
-      padding: const EdgeInsets.symmetric(horizontal: 10.0, vertical: 5.0),
-      decoration: BoxDecoration(
-        color: context.tokens.colors.backgroundInverse,
-        borderRadius: context.tokens.radii.xs,
-      ),
-      child: Column(
-        mainAxisSize: MainAxisSize.min,
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: <Widget>[
+    return _tooltipFrame(
+      context: context,
+      xLabel: data.xLabel,
+      rows: <Widget>[
+        Text(
+          'Average: ${entry.value.toStringAsFixed(1)} ${entry.series.unit}',
+          style: textStyle,
+        ),
+        for (int sensor = 0; sensor < _roomSensors.length; sensor++)
           Text(
-            data.xLabel,
-            style: context.tokens.textStyles.caption1Bold.copyWith(
-              color: context.tokens.colors.textInverse,
-            ),
-          ),
-          Text(
-            'Average: ${entry.value.toStringAsFixed(1)} ${entry.series.unit}',
+            'Sensor ${sensor + 1}: ${_roomSensors[sensor][data.index].toStringAsFixed(1)} ${entry.series.unit}',
             style: textStyle,
           ),
-          for (int sensor = 0; sensor < _roomSensors.length; sensor++)
-            Text(
-              'Sensor ${sensor + 1}: ${_roomSensors[sensor][data.index].toStringAsFixed(1)} ${entry.series.unit}',
-              style: textStyle,
-            ),
-        ],
-      ),
+      ],
     );
+  }
+
+  /// Summary of the events in the rail band selected on the power chart.
+  Widget _buildSelectedBandTile(int band) {
+    final List<_PowerEvent> bandEvents = _powerEvents.where((_PowerEvent event) => event.time.floor() == band).toList();
+    final String bandEnd = band + 1 < _hourLabels.length ? _hourLabels[band + 1] : '24';
+
+    return YgListTile(
+      title: '${_hourLabels[band]}:00 – $bandEnd:00 · ${bandEvents.length} events',
+      subtitle: bandEvents.isEmpty
+          ? 'No events in this band'
+          : bandEvents.map((_PowerEvent event) => event.type).toSet().join(' · '),
+    );
+  }
+
+  /// Simulated charger events over the day, clustered around the charging
+  /// session so the rail visibly varies in density.
+  List<_PowerEvent> _randomPowerEvents() {
+    const List<(String, Color?)> eventTypes = <(String, Color?)>[
+      ('Charging', null),
+      ('Suspended by ev', Color(0xffe0762a)),
+      ('Ready to charge', Color(0xff3f9a68)),
+    ];
+
+    return List<_PowerEvent>.generate(60, (_) {
+      final (String type, Color? color) = eventTypes[_random.nextInt(eventTypes.length)];
+      final double time = _random.nextDouble() * (_random.nextInt(4) > 0 ? 5.0 : _hourLabels.length.toDouble());
+
+      return _PowerEvent(time: time, type: type, color: color);
+    });
   }
 
   void _randomizeEnergyData() {
@@ -316,6 +397,15 @@ class _ChartScreenState extends State<ChartScreen> {
 
   void _randomizeTemperatureData() {
     setState(() => _roomSensors = _randomSensorValues());
+  }
+
+  /// A charging-like power profile: idle most of the time with a few flat
+  /// high-power plateaus, so the step look is clearly visible.
+  List<double> _randomPowerProfile() {
+    return List<double>.generate(
+      _hourLabels.length,
+      (_) => _random.nextBool() ? 0.2 + _random.nextDouble() * 0.4 : 3.0 + _random.nextDouble() * 4.0,
+    );
   }
 
   /// Simulated readings of three sensors following the same room trend,
@@ -352,4 +442,21 @@ class _ChartScreenState extends State<ChartScreen> {
       (_) => min + _random.nextDouble() * (max - min),
     );
   }
+}
+
+/// One simulated charger event shown on the event density rail.
+class _PowerEvent {
+  const _PowerEvent({
+    required this.time,
+    required this.type,
+    this.color,
+  });
+
+  /// Position on the x-axis in column units (three hours per column).
+  final double time;
+
+  final String type;
+
+  /// Own color of the event; null uses the default rail event color.
+  final Color? color;
 }

@@ -1,6 +1,7 @@
 import 'package:flutter/gestures.dart' show kLongPressTimeout;
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
+import 'package:yggdrasil/src/components/yg_chart/widgets/yg_chart_event_rail.dart';
 import 'package:yggdrasil/src/components/yg_chart/widgets/yg_chart_legend.dart';
 import 'package:yggdrasil/src/components/yg_chart/yg_chart_painter.dart';
 import 'package:yggdrasil/yggdrasil.dart';
@@ -57,10 +58,12 @@ void main() {
 
   YgChartPainter painterOf(WidgetTester tester) {
     final CustomPaint customPaint = tester.widget<CustomPaint>(
-      find.descendant(
-        of: find.byType(YgChart),
-        matching: find.byType(CustomPaint),
-      ),
+      find
+          .descendant(
+            of: find.byType(YgChart),
+            matching: find.byType(CustomPaint),
+          )
+          .first,
     );
 
     return customPaint.painter! as YgChartPainter;
@@ -377,6 +380,33 @@ void main() {
     await tester.pumpAndSettle();
   });
 
+  testWidgets('renders a stepped area series next to other series', (WidgetTester tester) async {
+    const YgChartSeries power = YgChartSeries(
+      id: 'power',
+      label: 'Power',
+      values: <double>[0.4, 5.2, 1.2, 6.0],
+      unit: 'kWh',
+      type: YgChartSeriesType.steppedArea,
+    );
+
+    await pumpChart(
+      tester,
+      const YgChart(
+        series: <YgChartSeries>[power, consumption],
+        xLabels: xLabels,
+      ),
+    );
+
+    expect(find.text('Power'), findsOneWidget);
+
+    final YgChartPainter painter = painterOf(tester);
+    expect(painter.dataManager.orderedSeries, hasLength(2));
+    expect(painter.dataManager.currentValuesOf('power'), power.values);
+    // The stepped area anchors the axis at zero.
+    expect(painter.dataManager.finalMinOf(YgChartAxis.left), 0.0);
+    expect(tester.takeException(), isNull);
+  });
+
   testWidgets('overflowing legend stays on one row and scrolls horizontally', (WidgetTester tester) async {
     await pumpChart(
       tester,
@@ -408,6 +438,215 @@ void main() {
     await tester.drag(find.byType(YgChartLegend), const Offset(-400.0, 0.0));
     await tester.pumpAndSettle();
     expect(tester.getTopLeft(lastLabel).dx, lessThan(lastLabelStart));
+  });
+
+  testWidgets('event markers render over their columns and report taps', (WidgetTester tester) async {
+    final List<YgChartEventMarker> tapped = <YgChartEventMarker>[];
+
+    await pumpChart(
+      tester,
+      YgChart(
+        series: const <YgChartSeries>[consumption],
+        xLabels: xLabels,
+        eventMarkers: const <YgChartEventMarker>[
+          YgChartEventMarker(
+            index: 1,
+            color: Color(0xffd23d2c),
+            icon: YgIcons.alert,
+            label: 'Device error',
+          ),
+          YgChartEventMarker(
+            index: 3,
+            color: Color(0xff5d7a8a),
+            count: 3,
+          ),
+        ],
+        onEventMarkerTap: tapped.add,
+      ),
+    );
+
+    expect(find.byKey(const ValueKey<String>('YgChartEventMarker-1')), findsOneWidget);
+    // The marker without an icon shows its event count.
+    expect(find.text('3'), findsOneWidget);
+
+    // The icon marker sits horizontally centered on its column.
+    final Rect plotRect = painterOf(tester).layout.plotRect!;
+    final double slotWidth = plotRect.width / xLabels.length;
+    final Offset canvasTopLeft = tester.getTopLeft(
+      find
+          .descendant(
+            of: find.byType(YgChart),
+            matching: find.byType(CustomPaint),
+          )
+          .first,
+    );
+    final Offset markerCenter = tester.getCenter(find.byKey(const ValueKey<String>('YgChartEventMarker-1')));
+    expect(
+      markerCenter.dx - canvasTopLeft.dx,
+      closeTo(plotRect.left + 1.5 * slotWidth, 0.001),
+    );
+
+    await tester.tap(find.byKey(const ValueKey<String>('YgChartEventMarker-1')));
+    await tester.tap(find.byKey(const ValueKey<String>('YgChartEventMarker-3')));
+
+    expect(tapped, hasLength(2));
+    expect(tapped[0].index, 1);
+    expect(tapped[1].count, 3);
+  });
+
+  testWidgets('selected event marker shows a ring around its badge', (WidgetTester tester) async {
+    const Color markerColor = Color(0xffd23d2c);
+
+    Future<void> pumpWithSelection(int? selectedIndex) {
+      return pumpChart(
+        tester,
+        YgChart(
+          series: const <YgChartSeries>[consumption],
+          xLabels: xLabels,
+          eventMarkers: const <YgChartEventMarker>[
+            YgChartEventMarker(index: 1, color: markerColor, icon: YgIcons.alert),
+            YgChartEventMarker(index: 3, color: Color(0xff5d7a8a), count: 3),
+          ],
+          selectedEventMarkerIndex: selectedIndex,
+        ),
+      );
+    }
+
+    Color ringColorOf(int index) {
+      final AnimatedContainer container = tester.widget<AnimatedContainer>(
+        find.descendant(
+          of: find.byKey(ValueKey<String>('YgChartEventMarker-$index')),
+          matching: find.byType(AnimatedContainer),
+        ),
+      );
+      final Border border = (container.decoration! as BoxDecoration).border! as Border;
+
+      return border.top.color;
+    }
+
+    await pumpWithSelection(1);
+    expect(ringColorOf(1), markerColor);
+    expect(ringColorOf(3).a, 0.0);
+
+    // Clearing the selection removes the ring again.
+    await pumpWithSelection(null);
+    expect(ringColorOf(1).a, 0.0);
+  });
+
+  testWidgets('duplicate event marker columns trigger an assertion', (WidgetTester tester) async {
+    await pumpChart(
+      tester,
+      const YgChart(
+        series: <YgChartSeries>[consumption],
+        xLabels: xLabels,
+        eventMarkers: <YgChartEventMarker>[
+          YgChartEventMarker(index: 1, color: Color(0xffd23d2c)),
+          YgChartEventMarker(index: 1, color: Color(0xff5d7a8a)),
+        ],
+      ),
+    );
+
+    expect(tester.takeException(), isAssertionError);
+  });
+
+  testWidgets('event rail reserves plot space and reports bands under taps and drags', (WidgetTester tester) async {
+    final List<int> selections = <int>[];
+
+    await pumpChart(
+      tester,
+      YgChart(
+        series: const <YgChartSeries>[consumption],
+        xLabels: xLabels,
+        railEvents: const <YgChartRailEvent>[
+          YgChartRailEvent(position: 0.5),
+          YgChartRailEvent(position: 1.2, color: Color(0xffd23d2c)),
+          YgChartRailEvent(position: 3.7),
+        ],
+        onRailBandSelected: selections.add,
+      ),
+    );
+
+    final Finder rail = find.byType(YgChartEventRail);
+    expect(rail, findsOneWidget);
+
+    // The plot shrinks to make room for the rail between it and the labels.
+    final Rect plotRect = painterOf(tester).layout.plotRect!;
+    expect(
+      plotRect.bottom,
+      YgChartSize.medium.height -
+          YgChartPainter.xLabelRowHeight -
+          YgChartEventRail.plotSpacing -
+          YgChartEventRail.height,
+    );
+
+    // Tapping the left edge of the rail selects the first band.
+    final Rect railRect = tester.getRect(rail);
+    await tester.tapAt(Offset(railRect.left + railRect.width * 0.05, railRect.center.dy));
+    await tester.pump();
+    expect(selections, <int>[0]);
+
+    // Dragging to the right reports the band under the pointer.
+    final TestGesture gesture = await tester.startGesture(
+      Offset(railRect.left + railRect.width * 0.05, railRect.center.dy),
+    );
+    await gesture.moveBy(Offset(railRect.width * 0.9, 0.0));
+    await gesture.up();
+    await tester.pump();
+    expect(selections.last, xLabels.length - 1);
+  });
+
+  testWidgets('rail events outside of the x-axis range trigger an assertion', (WidgetTester tester) async {
+    await pumpChart(
+      tester,
+      const YgChart(
+        series: <YgChartSeries>[consumption],
+        xLabels: xLabels,
+        railEvents: <YgChartRailEvent>[
+          YgChartRailEvent(position: 99.0),
+        ],
+      ),
+    );
+
+    expect(tester.takeException(), isAssertionError);
+  });
+
+  testWidgets('a series removed while hidden comes back visible', (WidgetTester tester) async {
+    await pumpChart(
+      tester,
+      YgChart(
+        series: const <YgChartSeries>[consumption, price],
+        xLabels: xLabels,
+        onSeriesToggled: (YgChartSeries series, bool visible) {},
+      ),
+    );
+
+    // Hide the price series, then rebuild without it.
+    await tester.tap(find.text('Price'));
+    await tester.pumpAndSettle();
+    await pumpChart(
+      tester,
+      YgChart(
+        series: const <YgChartSeries>[consumption],
+        xLabels: xLabels,
+        onSeriesToggled: (YgChartSeries series, bool visible) {},
+      ),
+    );
+
+    // A fresh series with the same id must not inherit the stale hidden
+    // state.
+    await pumpChart(
+      tester,
+      YgChart(
+        series: const <YgChartSeries>[consumption, price],
+        xLabels: xLabels,
+        onSeriesToggled: (YgChartSeries series, bool visible) {},
+      ),
+    );
+
+    expect(
+      painterOf(tester).dataManager.orderedSeries.map((YgChartSeries series) => series.id),
+      contains('price'),
+    );
   });
 
   testWidgets('legend can be disabled', (WidgetTester tester) async {

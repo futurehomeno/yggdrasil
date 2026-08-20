@@ -294,6 +294,24 @@ void main() {
       expect(manager.finalMaxOf(YgChartAxis.left), 30.0);
     });
 
+    test('floating axis snaps its bounds to multiples of the snap value', () {
+      final YgChartDataManager manager = YgChartDataManager();
+
+      manager.updateData(
+        <YgChartSeries>[
+          buildSeries(id: 'temperature', values: <double>[24.5, 26.0, 26.9], type: YgChartSeriesType.line),
+        ],
+        valueCount: 3,
+        tickCount: 3,
+        leftAxisSnap: 5.0,
+      );
+
+      // Instead of hugging 24.5..26.9 the axis rounds outwards to full
+      // multiples of 5, so charts of the same kind are easy to compare.
+      expect(manager.finalMinOf(YgChartAxis.left), 20.0);
+      expect(manager.finalMaxOf(YgChartAxis.left), 30.0);
+    });
+
     test('flat line only axis gets a padded range around its value', () {
       final YgChartDataManager manager = YgChartDataManager();
 
@@ -480,6 +498,219 @@ void main() {
       expect(
         manager.orderedSeries.map((YgChartSeries series) => series.id),
         <String>['a'],
+      );
+    });
+
+    test('new stepped area series grows in from zero like bars', () {
+      final YgChartDataManager manager = YgChartDataManager();
+
+      manager.updateData(
+        <YgChartSeries>[
+          buildSeries(values: <double>[2.0, 4.0, 6.0], type: YgChartSeriesType.steppedArea),
+        ],
+        valueCount: 3,
+        tickCount: 5,
+      );
+
+      manager.applyAnimationValue(0.0);
+      expect(manager.currentValuesOf('series'), <double>[0.0, 0.0, 0.0]);
+      expect(manager.opacityOf('series'), 1.0);
+
+      manager.applyAnimationValue(1.0);
+      expect(manager.currentValuesOf('series'), <double>[2.0, 4.0, 6.0]);
+    });
+
+    test('stepped area series keeps the axis anchored at zero', () {
+      final YgChartDataManager manager = YgChartDataManager();
+
+      manager.updateData(
+        <YgChartSeries>[
+          buildSeries(values: <double>[20.0, 22.0, 24.0], type: YgChartSeriesType.steppedArea),
+        ],
+        valueCount: 3,
+        tickCount: 5,
+      );
+
+      // Unlike a pure line axis the axis does not zoom in on the data, the
+      // area needs the zero line as its base.
+      expect(manager.finalMinOf(YgChartAxis.left), 0.0);
+      expect(manager.finalMaxOf(YgChartAxis.left), greaterThanOrEqualTo(24.0));
+    });
+
+    test('removed stepped area series shrinks to zero and is pruned', () {
+      final YgChartDataManager manager = YgChartDataManager();
+
+      manager.updateData(
+        <YgChartSeries>[
+          buildSeries(id: 'a'),
+          buildSeries(id: 'b', values: <double>[2.0, 2.0, 2.0], type: YgChartSeriesType.steppedArea),
+        ],
+        valueCount: 3,
+        tickCount: 5,
+      );
+      manager.applyAnimationValue(1.0);
+
+      manager.updateData(
+        <YgChartSeries>[buildSeries(id: 'a')],
+        valueCount: 3,
+        tickCount: 5,
+      );
+
+      manager.applyAnimationValue(0.5);
+      expect(manager.currentValuesOf('b'), <double>[1.0, 1.0, 1.0]);
+      expect(manager.opacityOf('b'), 1.0);
+
+      manager.applyAnimationValue(1.0);
+      expect(
+        manager.orderedSeries.map((YgChartSeries series) => series.id),
+        <String>['a'],
+      );
+    });
+
+    test('NaN gap values do not crash and are excluded from the axis range', () {
+      final YgChartDataManager manager = YgChartDataManager();
+
+      manager.updateData(
+        <YgChartSeries>[
+          buildSeries(values: <double>[2.0, double.nan, 8.0]),
+          buildSeries(id: 'line', values: <double>[double.nan, 4.0, 12.0], type: YgChartSeriesType.line),
+        ],
+        valueCount: 3,
+        tickCount: 5,
+      );
+
+      expect(manager.finalMinOf(YgChartAxis.left), 0.0);
+      expect(manager.finalMaxOf(YgChartAxis.left), greaterThanOrEqualTo(12.0));
+      expect(manager.finalMaxOf(YgChartAxis.left).isFinite, isTrue);
+    });
+
+    test('unchanged series keep their values when another update starts', () {
+      final YgChartDataManager manager = YgChartDataManager();
+
+      manager.updateData(
+        <YgChartSeries>[
+          buildSeries(id: 'a', values: <double>[4.0, 6.0, 8.0]),
+          buildSeries(id: 'fading', values: <double>[1.0, 1.0, 1.0], type: YgChartSeriesType.line),
+        ],
+        valueCount: 3,
+        tickCount: 5,
+      );
+      manager.applyAnimationValue(1.0);
+
+      // Update only the line's values; the untouched bar must not replay
+      // its grow-in from zero and the line must not replay its fade-in.
+      manager.updateData(
+        <YgChartSeries>[
+          buildSeries(id: 'a', values: <double>[4.0, 6.0, 8.0]),
+          buildSeries(id: 'fading', values: <double>[2.0, 2.0, 2.0], type: YgChartSeriesType.line),
+        ],
+        valueCount: 3,
+        tickCount: 5,
+      );
+
+      manager.applyAnimationValue(0.0);
+      expect(manager.currentValuesOf('a'), <double>[4.0, 6.0, 8.0]);
+      expect(manager.opacityOf('fading'), 1.0);
+    });
+
+    test('axis with an unchanged target does not replay its previous animation', () {
+      final YgChartDataManager manager = YgChartDataManager();
+
+      manager.updateData(
+        <YgChartSeries>[
+          buildSeries(values: <double>[0.0, 4.0, 8.0]),
+        ],
+        valueCount: 3,
+        tickCount: 5,
+      );
+      manager.applyAnimationValue(1.0);
+
+      manager.updateData(
+        <YgChartSeries>[
+          buildSeries(values: <double>[0.0, 40.0, 100.0]),
+        ],
+        valueCount: 3,
+        tickCount: 5,
+      );
+      manager.applyAnimationValue(1.0);
+      final double settledMax = manager.currentMaxOf(YgChartAxis.left);
+
+      // A value-only change that keeps the same nice axis range must not
+      // snap the axis back to the pre-previous range at the animation
+      // start, and the labels must not cross-fade to outdated values.
+      manager.updateData(
+        <YgChartSeries>[
+          buildSeries(values: <double>[0.0, 50.0, 100.0]),
+        ],
+        valueCount: 3,
+        tickCount: 5,
+      );
+
+      manager.applyAnimationValue(0.0);
+      expect(manager.currentMaxOf(YgChartAxis.left), settledMax);
+      expect(manager.previousMaxOf(YgChartAxis.left), manager.finalMaxOf(YgChartAxis.left));
+    });
+
+    test('changing a band series to a line drops the stale band bounds', () {
+      final YgChartDataManager manager = YgChartDataManager();
+
+      manager.updateData(
+        <YgChartSeries>[
+          buildBandSeries(
+            id: 'temp',
+            values: <double>[20.0, 21.0, 22.0],
+            lowerValues: <double>[15.0, 16.0, 17.0],
+            upperValues: <double>[30.0, 31.0, 32.0],
+          ),
+        ],
+        valueCount: 3,
+        tickCount: 5,
+      );
+      manager.applyAnimationValue(1.0);
+      expect(manager.finalMaxOf(YgChartAxis.left), greaterThanOrEqualTo(32.0));
+
+      manager.updateData(
+        <YgChartSeries>[
+          buildSeries(id: 'temp', values: <double>[20.0, 21.0, 22.0], type: YgChartSeriesType.line),
+        ],
+        valueCount: 3,
+        tickCount: 5,
+      );
+
+      // The axis zooms back in on the line instead of keeping the old
+      // envelope in its extent.
+      expect(manager.finalMaxOf(YgChartAxis.left), lessThan(30.0));
+      expect(manager.finalMinOf(YgChartAxis.left), greaterThanOrEqualTo(15.0));
+    });
+
+    test('a re-added series returns to its original stacking position', () {
+      final YgChartDataManager manager = YgChartDataManager();
+
+      List<YgChartSeries> bothSeries() => <YgChartSeries>[
+        buildSeries(id: 'a'),
+        buildSeries(id: 'b', values: <double>[2.0, 2.0, 2.0]),
+      ];
+
+      manager.updateData(bothSeries(), valueCount: 3, tickCount: 5);
+      manager.applyAnimationValue(1.0);
+
+      // Hide 'a' long enough for it to animate out and be pruned.
+      manager.updateData(
+        <YgChartSeries>[
+          buildSeries(id: 'b', values: <double>[2.0, 2.0, 2.0]),
+        ],
+        valueCount: 3,
+        tickCount: 5,
+      );
+      manager.applyAnimationValue(1.0);
+      expect(manager.orderedSeries.map((YgChartSeries series) => series.id), <String>['b']);
+
+      // Re-showing 'a' must restore the original stacking order instead of
+      // appending it on top of the stack.
+      manager.updateData(bothSeries(), valueCount: 3, tickCount: 5);
+      expect(
+        manager.orderedSeries.map((YgChartSeries series) => series.id),
+        <String>['a', 'b'],
       );
     });
 

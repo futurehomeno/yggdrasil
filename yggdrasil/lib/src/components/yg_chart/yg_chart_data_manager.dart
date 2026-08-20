@@ -34,33 +34,24 @@ class YgChartDataManager {
   int _valueCount = 0;
   int _tickCount = 3;
 
+  // Snapping of zoomed-in axes, see YgChart.leftAxisSnap.
+  double? _leftAxisSnap;
+  double? _rightAxisSnap;
+
+  /// The animated state of every tracked series, keyed by series id.
+  ///
   /// Insertion order doubles as the bar stacking / paint order.
-  final Map<String, YgChartSeries> _seriesById = <String, YgChartSeries>{};
-  final Map<String, List<double>> _startValues = <String, List<double>>{};
-  final Map<String, List<double>> _currentValues = <String, List<double>>{};
-  final Map<String, List<double>> _finalValues = <String, List<double>>{};
-
-  // The lower and upper bounds of band series, animated exactly like the
-  // values. Only populated for series of type band.
-  final Map<String, List<double>> _startLowerValues = <String, List<double>>{};
-  final Map<String, List<double>> _currentLowerValues = <String, List<double>>{};
-  final Map<String, List<double>> _finalLowerValues = <String, List<double>>{};
-  final Map<String, List<double>> _startUpperValues = <String, List<double>>{};
-  final Map<String, List<double>> _currentUpperValues = <String, List<double>>{};
-  final Map<String, List<double>> _finalUpperValues = <String, List<double>>{};
-
-  // Line series appear and disappear by fading instead of collapsing to the
-  // zero line, so their opacity is animated just like the values. Bar series
-  // keep an opacity of 1.0 and grow from / shrink to the baseline instead.
-  final Map<String, double> _startOpacity = <String, double>{};
-  final Map<String, double> _currentOpacity = <String, double>{};
-  final Map<String, double> _finalOpacity = <String, double>{};
+  final Map<String, _YgChartSeriesState> _seriesStates = <String, _YgChartSeriesState>{};
 
   Set<String> _visibleIds = <String>{};
 
   /// Whether the running animation staggers fading and movement, see the
   /// timing constants above. Set when an update changes series visibility.
   bool _staged = false;
+
+  /// Whether the fully-completed animation state has been applied, so
+  /// repeated repaints of a chart at rest skip re-interpolating every value.
+  bool _settled = false;
 
   double _movementProgress = 1.0;
 
@@ -77,23 +68,25 @@ class YgChartDataManager {
   ///
   /// Ordered as passed to [updateData], which is also the stacking order of
   /// bar series.
-  List<YgChartSeries> get orderedSeries => _seriesById.values.toList();
+  List<YgChartSeries> get orderedSeries => <YgChartSeries>[
+    for (final _YgChartSeriesState state in _seriesStates.values) state.series,
+  ];
 
   /// Current (possibly mid-animation) values of the series with [id].
-  List<double> currentValuesOf(String id) => _currentValues[id]!;
+  List<double> currentValuesOf(String id) => _seriesStates[id]!.values.current;
 
   /// Current (possibly mid-animation) lower band bounds of the band series
   /// with [id].
-  List<double> currentLowerValuesOf(String id) => _currentLowerValues[id]!;
+  List<double> currentLowerValuesOf(String id) => _seriesStates[id]!.lower!.current;
 
   /// Current (possibly mid-animation) upper band bounds of the band series
   /// with [id].
-  List<double> currentUpperValuesOf(String id) => _currentUpperValues[id]!;
+  List<double> currentUpperValuesOf(String id) => _seriesStates[id]!.upper!.current;
 
   /// Current (possibly mid-animation) opacity of the series with [id].
   ///
   /// Only line series fade, bar series always report 1.0.
-  double opacityOf(String id) => _currentOpacity[id] ?? 1.0;
+  double opacityOf(String id) => _seriesStates[id]?.currentOpacity ?? 1.0;
 
   /// Eased progress of the movement channel of the running animation.
   ///
@@ -136,9 +129,14 @@ class YgChartDataManager {
     List<YgChartSeries> visibleSeries, {
     required int valueCount,
     required int tickCount,
+    double? leftAxisSnap,
+    double? rightAxisSnap,
   }) {
     bool changed = false;
     bool visibilityChanged = false;
+
+    _leftAxisSnap = leftAxisSnap;
+    _rightAxisSnap = rightAxisSnap;
 
     if (tickCount != _tickCount) {
       _tickCount = tickCount;
@@ -150,101 +148,62 @@ class YgChartDataManager {
       // counts is not meaningful, so the tracked state is rebuilt from
       // scratch and the new values animate in from zero.
       _valueCount = valueCount;
-      _seriesById.clear();
-      _startValues.clear();
-      _currentValues.clear();
-      _finalValues.clear();
-      _startLowerValues.clear();
-      _currentLowerValues.clear();
-      _finalLowerValues.clear();
-      _startUpperValues.clear();
-      _currentUpperValues.clear();
-      _finalUpperValues.clear();
-      _startOpacity.clear();
-      _currentOpacity.clear();
-      _finalOpacity.clear();
+      _seriesStates.clear();
       changed = true;
     }
 
     _visibleIds = visibleSeries.map((YgChartSeries series) => series.id).toSet();
 
     for (final YgChartSeries series in visibleSeries) {
-      final List<double>? finalValues = _finalValues[series.id];
-      _seriesById[series.id] = series;
+      final _YgChartSeriesState? state = _seriesStates[series.id];
 
-      if (finalValues == null) {
+      if (state == null) {
         final List<double> newValues = List<double>.generate(
           _valueCount,
           (int index) => _valueAt(series, index),
         );
 
-        if (series.type != YgChartSeriesType.bar) {
-          // Lines and bands fade in at their actual values.
-          _startValues[series.id] = List<double>.of(newValues);
-          _currentValues[series.id] = List<double>.of(newValues);
-          _startOpacity[series.id] = 0.0;
-          _currentOpacity[series.id] = 0.0;
-          visibilityChanged = true;
-        } else {
-          // Bars grow in from the zero line.
-          _startValues[series.id] = _zeroes();
-          _currentValues[series.id] = _zeroes();
-          _startOpacity[series.id] = 1.0;
-          _currentOpacity[series.id] = 1.0;
-        }
-        _finalValues[series.id] = newValues;
-        _finalOpacity[series.id] = 1.0;
-        if (series.type == YgChartSeriesType.band) {
-          _initializeBandBounds(series);
-        }
+        // Lines and bands fade in at their actual values, bars and stepped
+        // areas grow in from the zero line.
+        final bool fadesIn = series.type.fadesInPlace;
+        _seriesStates[series.id] = _YgChartSeriesState(
+          series: series,
+          values: fadesIn ? _YgChartChannel.at(newValues) : _YgChartChannel.growingTo(newValues, _valueCount),
+          lower: series.type == YgChartSeriesType.band ? _bandBoundChannel(series, upper: false) : null,
+          upper: series.type == YgChartSeriesType.band ? _bandBoundChannel(series, upper: true) : null,
+          opacity: fadesIn ? 0.0 : 1.0,
+        );
+        visibilityChanged = visibilityChanged || fadesIn;
         changed = true;
       } else {
-        final List<double> startValues = _startValues[series.id]!;
-        final List<double> currentValues = _currentValues[series.id]!;
-
-        for (int i = 0; i < _valueCount; i++) {
-          final double newValue = _valueAt(series, i);
-          if (finalValues[i] == newValue) {
-            continue;
-          }
-
-          startValues[i] = currentValues[i];
-          finalValues[i] = newValue;
-          changed = true;
-        }
+        state.series = series;
+        changed = state.values.retarget(_valueCount, (int index) => _valueAt(series, index)) || changed;
 
         if (series.type == YgChartSeriesType.band) {
-          if (_finalLowerValues.containsKey(series.id)) {
-            changed =
-                _retargetBandBound(
-                  series: series,
-                  startValues: _startLowerValues[series.id]!,
-                  currentValues: _currentLowerValues[series.id]!,
-                  finalValues: _finalLowerValues[series.id]!,
-                  upper: false,
-                ) ||
-                changed;
-            changed =
-                _retargetBandBound(
-                  series: series,
-                  startValues: _startUpperValues[series.id]!,
-                  currentValues: _currentUpperValues[series.id]!,
-                  finalValues: _finalUpperValues[series.id]!,
-                  upper: true,
-                ) ||
-                changed;
+          final _YgChartChannel? lower = state.lower;
+          final _YgChartChannel? upper = state.upper;
+          if (lower != null && upper != null) {
+            changed = lower.retarget(_valueCount, (int index) => _boundAt(series, index, upper: false)) || changed;
+            changed = upper.retarget(_valueCount, (int index) => _boundAt(series, index, upper: true)) || changed;
           } else {
             // The series changed type to band, snap the bounds in place.
-            _initializeBandBounds(series);
+            state.lower = _bandBoundChannel(series, upper: false);
+            state.upper = _bandBoundChannel(series, upper: true);
             changed = true;
           }
+        } else if (state.lower != null) {
+          // The series changed type away from band; without this the stale
+          // bounds would keep extending the axis extent.
+          state.lower = null;
+          state.upper = null;
+          changed = true;
         }
 
         // A series that was fading out fades back in when it becomes
         // visible again.
-        if (_finalOpacity[series.id] != 1.0) {
-          _startOpacity[series.id] = _currentOpacity[series.id]!;
-          _finalOpacity[series.id] = 1.0;
+        if (state.finalOpacity != 1.0) {
+          state.startOpacity = state.currentOpacity;
+          state.finalOpacity = 1.0;
           changed = true;
           visibilityChanged = true;
         }
@@ -252,43 +211,108 @@ class YgChartDataManager {
     }
 
     // Series no longer visible animate out: lines and bands fade in place,
-    // bars shrink to the zero line.
-    for (final String id in _seriesById.keys) {
-      if (_visibleIds.contains(id)) {
+    // bars and stepped areas shrink to the zero line.
+    for (final _YgChartSeriesState state in _seriesStates.values) {
+      if (_visibleIds.contains(state.series.id)) {
         continue;
       }
 
-      if (_seriesById[id]!.type != YgChartSeriesType.bar) {
-        if (_finalOpacity[id] != 0.0) {
-          _startOpacity[id] = _currentOpacity[id]!;
-          _finalOpacity[id] = 0.0;
+      if (state.series.type.fadesInPlace) {
+        if (state.finalOpacity != 0.0) {
+          state.startOpacity = state.currentOpacity;
+          state.finalOpacity = 0.0;
           changed = true;
           visibilityChanged = true;
         }
         continue;
       }
 
-      final List<double> startValues = _startValues[id]!;
-      final List<double> currentValues = _currentValues[id]!;
-      final List<double> finalValues = _finalValues[id]!;
-
-      for (int i = 0; i < _valueCount; i++) {
-        if (finalValues[i] == 0.0) {
-          continue;
-        }
-
-        startValues[i] = currentValues[i];
-        finalValues[i] = 0.0;
-        changed = true;
-      }
+      changed = state.values.retarget(_valueCount, (int index) => 0.0) || changed;
     }
 
-    final bool anyChange = _updateAxisTargets() || changed;
+    _restoreSeriesOrder(visibleSeries);
+
+    final (bool leftAxisChanged, bool rightAxisChanged) = _updateAxisTargets();
+    final bool anyChange = leftAxisChanged || rightAxisChanged || changed;
     if (anyChange) {
       _staged = visibilityChanged;
+      _settled = false;
+      _rebaseForNewAnimation(
+        leftAxisRetargeted: leftAxisChanged,
+        rightAxisRetargeted: rightAxisChanged,
+      );
     }
 
     return anyChange;
+  }
+
+  /// Restores the tracked order to the order of [visibleSeries].
+  ///
+  /// The map relies on insertion order, so a series hidden long enough to
+  /// be pruned would otherwise re-enter at the end and silently change the
+  /// bar stacking order. Only rebuilt on an actual mismatch, so series
+  /// animating out keep their position in the common case.
+  void _restoreSeriesOrder(List<YgChartSeries> visibleSeries) {
+    final Iterator<String> trackedVisibleIds = _seriesStates.keys.where(_visibleIds.contains).iterator;
+    bool matches = true;
+    for (final YgChartSeries series in visibleSeries) {
+      if (!trackedVisibleIds.moveNext() || trackedVisibleIds.current != series.id) {
+        matches = false;
+        break;
+      }
+    }
+
+    if (matches) {
+      return;
+    }
+
+    // Visible series in their input order, series animating out after them.
+    final Map<String, _YgChartSeriesState> reordered = <String, _YgChartSeriesState>{
+      for (final YgChartSeries series in visibleSeries) series.id: _seriesStates[series.id]!,
+    };
+    for (final MapEntry<String, _YgChartSeriesState> entry in _seriesStates.entries) {
+      reordered.putIfAbsent(entry.key, () => entry.value);
+    }
+    _seriesStates
+      ..clear()
+      ..addAll(reordered);
+  }
+
+  /// Restarts every animation channel from its current mid-animation state.
+  ///
+  /// A change resets the animation controller to zero, so every channel must
+  /// interpolate from what is currently on screen — including channels whose
+  /// own target did not change in this update, which would otherwise snap
+  /// back to the start of a previous animation and replay it. Axes that were
+  /// retargeted in this update are already rebased by [_applyAxisTarget].
+  void _rebaseForNewAnimation({
+    required bool leftAxisRetargeted,
+    required bool rightAxisRetargeted,
+  }) {
+    for (final _YgChartSeriesState state in _seriesStates.values) {
+      state.values.rebase();
+      state.lower?.rebase();
+      state.upper?.rebase();
+      state.startOpacity = state.currentOpacity;
+    }
+
+    if (!leftAxisRetargeted) {
+      _rebaseSettledAxis(_leftAxis);
+    }
+    if (!rightAxisRetargeted) {
+      _rebaseSettledAxis(_rightAxis);
+    }
+  }
+
+  /// Rebases an axis whose target did not change in this update, so the new
+  /// animation neither replays the previous range movement nor cross-fades
+  /// to outdated labels.
+  void _rebaseSettledAxis(_YgChartAxisState axis) {
+    axis.startMin = axis.currentMin;
+    axis.startMax = axis.currentMax;
+    axis.labelStartMin = axis.finalMin;
+    axis.labelStartMax = axis.finalMax;
+    axis.labelStartPrecision = axis.precision;
   }
 
   /// Moves the current values, opacities and axis ranges towards their
@@ -301,6 +325,13 @@ class YgChartDataManager {
   /// one thing happens at a time.
   void applyAnimationValue(double animationValue) {
     final double t = math.min(1.0, math.max(0.0, animationValue));
+
+    // A chart at rest is repainted for unrelated reasons (tooltip moves,
+    // ancestor rebuilds); the current state already equals the final state
+    // then, so skip re-interpolating every channel.
+    if (_settled && t >= 1.0) {
+      return;
+    }
 
     final double movementT;
     final double fadeOutT;
@@ -319,46 +350,29 @@ class YgChartDataManager {
     _applyToAxis(_leftAxis, movementT);
     _applyToAxis(_rightAxis, movementT);
 
-    for (final MapEntry<String, List<double>> entry in _currentValues.entries) {
-      final List<double> startValues = _startValues[entry.key]!;
-      final List<double> finalValues = _finalValues[entry.key]!;
+    for (final _YgChartSeriesState state in _seriesStates.values) {
+      state.values.lerp(_valueCount, movementT);
+      state.lower?.lerp(_valueCount, movementT);
+      state.upper?.lerp(_valueCount, movementT);
 
-      for (int i = 0; i < _valueCount; i++) {
-        entry.value[i] = lerpDouble(startValues[i], finalValues[i], movementT)!;
-      }
-
-      final List<double>? currentLower = _currentLowerValues[entry.key];
-      if (currentLower != null) {
-        final List<double> startLower = _startLowerValues[entry.key]!;
-        final List<double> finalLower = _finalLowerValues[entry.key]!;
-        final List<double> startUpper = _startUpperValues[entry.key]!;
-        final List<double> currentUpper = _currentUpperValues[entry.key]!;
-        final List<double> finalUpper = _finalUpperValues[entry.key]!;
-
-        for (int i = 0; i < _valueCount; i++) {
-          currentLower[i] = lerpDouble(startLower[i], finalLower[i], movementT)!;
-          currentUpper[i] = lerpDouble(startUpper[i], finalUpper[i], movementT)!;
-        }
-      }
-
-      final double startOpacity = _startOpacity[entry.key]!;
-      final double finalOpacity = _finalOpacity[entry.key]!;
-      final double opacityT = finalOpacity < startOpacity ? fadeOutT : fadeInT;
-      _currentOpacity[entry.key] = lerpDouble(startOpacity, finalOpacity, opacityT)!;
+      final double opacityT = state.finalOpacity < state.startOpacity ? fadeOutT : fadeInT;
+      state.currentOpacity = lerpDouble(state.startOpacity, state.finalOpacity, opacityT)!;
     }
 
     _pruneRemovedSeries();
+    _settled = t >= 1.0;
   }
 
-  bool _updateAxisTargets() {
-    final (double? leftMin, double? leftMax, bool leftHasBars) = _rawExtentOf(YgChartAxis.left);
-    final (double? rightMin, double? rightMax, bool rightHasBars) = _rawExtentOf(YgChartAxis.right);
+  (bool, bool) _updateAxisTargets() {
+    final (double? leftMin, double? leftMax, bool leftAnchorsAtZero) = _rawExtentOf(YgChartAxis.left);
+    final (double? rightMin, double? rightMax, bool rightAnchorsAtZero) = _rawExtentOf(YgChartAxis.right);
 
-    // Axes with only line series and all values above zero zoom in on the
-    // data instead of anchoring at zero, so small variations (e.g. room
-    // temperatures) stay readable. Bars always grow from the zero line.
-    final bool leftFloats = !leftHasBars && leftMin != null && leftMin > 0.0;
-    final bool rightFloats = !rightHasBars && rightMin != null && rightMin > 0.0;
+    // Axes with only line and band series and all values above zero zoom in
+    // on the data instead of anchoring at zero, so small variations (e.g.
+    // room temperatures) stay readable. Bars and stepped areas always grow
+    // from the zero line.
+    final bool leftFloats = !leftAnchorsAtZero && leftMin != null && leftMin > 0.0;
+    final bool rightFloats = !rightAnchorsAtZero && rightMin != null && rightMin > 0.0;
 
     // Zero-anchored extents of the axes that keep their zero line.
     final double leftRawMin = math.min(leftMin ?? 0.0, 0.0);
@@ -387,6 +401,7 @@ class YgChartDataManager {
             rawMin: leftMin,
             rawMax: leftMax!,
             intervals: intervals,
+            snap: _leftAxisSnap,
           )
         : _retargetAxis(
             axis: _leftAxis,
@@ -401,6 +416,7 @@ class YgChartDataManager {
             rawMin: rightMin,
             rawMax: rightMax!,
             intervals: intervals,
+            snap: _rightAxisSnap,
           )
         : _retargetAxis(
             axis: _rightAxis,
@@ -410,51 +426,64 @@ class YgChartDataManager {
             intervals: intervals,
           );
 
-    return leftChanged || rightChanged;
+    return (leftChanged, rightChanged);
   }
 
   /// Lowest and highest value that will be shown on [axis], based on the
-  /// final values of the visible series, and whether the axis has visible
-  /// bar series.
+  /// final values of the visible series, and whether the axis must stay
+  /// anchored at the zero line.
   ///
   /// Series animating out are excluded, so the axis rescales to the
   /// remaining data right away. Bar series stack, so their positive and
-  /// negative values are summed per index and zero is included in their
-  /// extent. Returns null bounds when the axis has no visible series.
+  /// negative values are summed per index. NaN values are gap markers (the
+  /// painter skips them) and do not contribute to the extent. Returns null
+  /// bounds when the axis has no visible values.
   (double?, double?, bool) _rawExtentOf(YgChartAxis axis) {
     double? rawMin;
     double? rawMax;
     bool hasBars = false;
+    bool anchorsAtZero = false;
     final List<double> positiveSums = List<double>.filled(_valueCount, 0.0);
     final List<double> negativeSums = List<double>.filled(_valueCount, 0.0);
 
-    for (final YgChartSeries series in _seriesById.values) {
+    for (final _YgChartSeriesState state in _seriesStates.values) {
+      final YgChartSeries series = state.series;
       if (series.axis != axis || !_visibleIds.contains(series.id)) {
         continue;
       }
 
-      final List<double> finalValues = _finalValues[series.id]!;
-      final List<double>? finalLower = _finalLowerValues[series.id];
-      final List<double>? finalUpper = _finalUpperValues[series.id];
+      hasBars = hasBars || series.type == YgChartSeriesType.bar;
+      anchorsAtZero = anchorsAtZero || series.type.anchorsAtZero;
+
+      final List<double> finalValues = state.values.target;
+      final List<double>? finalLower = state.lower?.target;
+      final List<double>? finalUpper = state.upper?.target;
       for (int i = 0; i < _valueCount; i++) {
         final double value = finalValues[i];
 
         if (series.type == YgChartSeriesType.bar) {
-          hasBars = true;
+          if (value.isNaN) {
+            continue;
+          }
+
           if (value >= 0.0) {
             positiveSums[i] += value;
           } else {
             negativeSums[i] += value;
           }
         } else {
-          rawMin = math.min(rawMin ?? value, value);
-          rawMax = math.max(rawMax ?? value, value);
+          if (!value.isNaN) {
+            rawMin = math.min(rawMin ?? value, value);
+            rawMax = math.max(rawMax ?? value, value);
+          }
 
           // The band around a band series must stay inside the plot as
           // well.
-          if (finalLower != null && finalUpper != null) {
-            rawMin = math.min(rawMin, finalLower[i]);
-            rawMax = math.max(rawMax, finalUpper[i]);
+          if (finalLower != null && !finalLower[i].isNaN) {
+            rawMin = math.min(rawMin ?? finalLower[i], finalLower[i]);
+          }
+          if (finalUpper != null && !finalUpper[i].isNaN) {
+            rawMax = math.max(rawMax ?? finalUpper[i], finalUpper[i]);
           }
         }
       }
@@ -467,7 +496,7 @@ class YgChartDataManager {
       }
     }
 
-    return (rawMin, rawMax, hasBars);
+    return (rawMin, rawMax, anchorsAtZero);
   }
 
   int _negativeIntervalsFor(double rawMin, double rawMax, int intervals) {
@@ -516,11 +545,15 @@ class YgChartDataManager {
   ///
   /// Used for axes with only line series above zero, where anchoring at
   /// zero would flatten small variations into a nearly straight line.
+  ///
+  /// With [snap] set, the bounds are rounded outwards to multiples of it
+  /// instead of hugging the data, see [YgChart.leftAxisSnap].
   bool _retargetFloatingAxis({
     required _YgChartAxisState axis,
     required double rawMin,
     required double rawMax,
     required int intervals,
+    double? snap,
   }) {
     double paddedMin = rawMin;
     double paddedMax = rawMax;
@@ -530,6 +563,27 @@ class YgChartDataManager {
       final double padding = math.max(paddedMax.abs() * 0.05, 1.0);
       paddedMin -= padding;
       paddedMax += padding;
+    }
+
+    if (snap != null && snap > 0.0) {
+      double snappedMin = (paddedMin / snap).floorToDouble() * snap;
+      if (snappedMin < 0.0) {
+        // The data itself is above zero, so showing a negative range would
+        // be misleading.
+        snappedMin = 0.0;
+      }
+
+      double snappedMax = (paddedMax / snap).ceilToDouble() * snap;
+      if (snappedMax <= snappedMin) {
+        snappedMax = snappedMin + snap;
+      }
+
+      return _applyAxisTarget(
+        axis: axis,
+        finalMin: snappedMin,
+        finalMax: snappedMax,
+        precision: _precisionFor((snappedMax - snappedMin) / intervals),
+      );
     }
 
     double step = _niceStepFor((paddedMax - paddedMin) / intervals);
@@ -651,6 +705,9 @@ class YgChartDataManager {
     return (t - begin) / (end - begin);
   }
 
+  // Deliberately polynomial easings instead of Flutter's bezier-based
+  // Curves: they hit exact values at round inputs (0.5 at t=0.5), which
+  // keeps the animation math and its tests deterministic.
   double _easeInOutCubic(double t) {
     return t < 0.5 ? 4.0 * t * t * t : 1.0 - math.pow(-2.0 * t + 2.0, 3.0) / 2.0;
   }
@@ -660,49 +717,24 @@ class YgChartDataManager {
   }
 
   void _pruneRemovedSeries() {
-    final List<String> idsToRemove = <String>[];
-
-    for (final String id in _seriesById.keys) {
+    _seriesStates.removeWhere((String id, _YgChartSeriesState state) {
       if (_visibleIds.contains(id)) {
-        continue;
+        return false;
       }
 
       // A faded out line is done animating out.
-      if (_currentOpacity[id] == 0.0 && _finalOpacity[id] == 0.0) {
-        idsToRemove.add(id);
-        continue;
+      if (state.currentOpacity == 0.0 && state.finalOpacity == 0.0) {
+        return true;
       }
 
-      final List<double> currentValues = _currentValues[id]!;
-      final List<double> finalValues = _finalValues[id]!;
-      bool allZero = true;
       for (int i = 0; i < _valueCount; i++) {
-        if (currentValues[i] != 0.0 || finalValues[i] != 0.0) {
-          allZero = false;
-          break;
+        if (state.values.current[i] != 0.0 || state.values.target[i] != 0.0) {
+          return false;
         }
       }
 
-      if (allZero) {
-        idsToRemove.add(id);
-      }
-    }
-
-    for (final String id in idsToRemove) {
-      _seriesById.remove(id);
-      _startValues.remove(id);
-      _currentValues.remove(id);
-      _finalValues.remove(id);
-      _startLowerValues.remove(id);
-      _currentLowerValues.remove(id);
-      _finalLowerValues.remove(id);
-      _startUpperValues.remove(id);
-      _currentUpperValues.remove(id);
-      _finalUpperValues.remove(id);
-      _startOpacity.remove(id);
-      _currentOpacity.remove(id);
-      _finalOpacity.remove(id);
-    }
+      return true;
+    });
   }
 
   _YgChartAxisState _axisStateOf(YgChartAxis axis) {
@@ -712,51 +744,14 @@ class YgChartDataManager {
     };
   }
 
-  /// Starts tracking the band bounds of [series] at their actual values.
+  /// A channel tracking a band bound of [series] at its actual values.
   ///
-  /// The band fades in and out with the opacity of the series, so unlike bar
-  /// values the bounds never animate from zero.
-  void _initializeBandBounds(YgChartSeries series) {
-    final List<double> newLower = List<double>.generate(
-      _valueCount,
-      (int index) => _boundAt(series, index, upper: false),
+  /// The band fades in and out with the opacity of the series, so unlike
+  /// bar values the bounds never animate from zero.
+  _YgChartChannel _bandBoundChannel(YgChartSeries series, {required bool upper}) {
+    return _YgChartChannel.at(
+      List<double>.generate(_valueCount, (int index) => _boundAt(series, index, upper: upper)),
     );
-    final List<double> newUpper = List<double>.generate(
-      _valueCount,
-      (int index) => _boundAt(series, index, upper: true),
-    );
-
-    _startLowerValues[series.id] = List<double>.of(newLower);
-    _currentLowerValues[series.id] = List<double>.of(newLower);
-    _finalLowerValues[series.id] = newLower;
-    _startUpperValues[series.id] = List<double>.of(newUpper);
-    _currentUpperValues[series.id] = List<double>.of(newUpper);
-    _finalUpperValues[series.id] = newUpper;
-  }
-
-  /// Diffs one band bound of [series] against its tracked final values, the
-  /// same way [updateData] diffs the series values.
-  bool _retargetBandBound({
-    required YgChartSeries series,
-    required List<double> startValues,
-    required List<double> currentValues,
-    required List<double> finalValues,
-    required bool upper,
-  }) {
-    bool changed = false;
-
-    for (int i = 0; i < _valueCount; i++) {
-      final double newValue = _boundAt(series, i, upper: upper);
-      if (finalValues[i] == newValue) {
-        continue;
-      }
-
-      startValues[i] = currentValues[i];
-      finalValues[i] = newValue;
-      changed = true;
-    }
-
-    return changed;
   }
 
   double _valueAt(YgChartSeries series, int index) {
@@ -779,10 +774,88 @@ class YgChartDataManager {
 
     return bounds[index];
   }
+}
 
-  List<double> _zeroes() {
-    return List<double>.filled(_valueCount, 0.0);
+/// One animated value channel of a series: parallel start, current and
+/// target lists interpolated by [YgChartDataManager.applyAnimationValue].
+///
+/// Band series carry two extra channels for their bounds; every channel is
+/// retargeted, rebased and interpolated the same way.
+class _YgChartChannel {
+  /// A channel starting at [target], so the values fade in in place.
+  _YgChartChannel.at(this.target) : start = List<double>.of(target), current = List<double>.of(target);
+
+  /// A channel growing from the zero line towards [target].
+  _YgChartChannel.growingTo(this.target, int valueCount)
+    : start = List<double>.filled(valueCount, 0.0),
+      current = List<double>.filled(valueCount, 0.0);
+
+  final List<double> start;
+  final List<double> current;
+  final List<double> target;
+
+  /// Diffs the channel against [targetAt], rebasing changed indexes to
+  /// their current value; returns whether anything changed.
+  bool retarget(int valueCount, double Function(int index) targetAt) {
+    bool changed = false;
+
+    for (int i = 0; i < valueCount; i++) {
+      final double newValue = targetAt(i);
+      if (target[i] == newValue) {
+        continue;
+      }
+
+      start[i] = current[i];
+      target[i] = newValue;
+      changed = true;
+    }
+
+    return changed;
   }
+
+  /// Restarts the channel from its current mid-animation values.
+  void rebase() {
+    start.setAll(0, current);
+  }
+
+  /// Moves the current values towards the target, [t] along the movement
+  /// channel of the animation.
+  void lerp(int valueCount, double t) {
+    for (int i = 0; i < valueCount; i++) {
+      current[i] = lerpDouble(start[i], target[i], t)!;
+    }
+  }
+}
+
+/// The animated state of one series tracked by [YgChartDataManager].
+class _YgChartSeriesState {
+  _YgChartSeriesState({
+    required this.series,
+    required this.values,
+    required this.lower,
+    required this.upper,
+    required double opacity,
+  }) : startOpacity = opacity,
+       currentOpacity = opacity,
+       finalOpacity = 1.0;
+
+  /// The series as last passed to [YgChartDataManager.updateData].
+  YgChartSeries series;
+
+  /// The series values; for band series the center line.
+  final _YgChartChannel values;
+
+  /// The band bounds, only set for series of type band.
+  _YgChartChannel? lower;
+  _YgChartChannel? upper;
+
+  // Lines and bands appear and disappear by fading instead of collapsing
+  // to the zero line, so their opacity is animated just like the values.
+  // Bar and stepped area series keep an opacity of 1.0 and grow from /
+  // shrink to the baseline instead.
+  double startOpacity;
+  double currentOpacity;
+  double finalOpacity;
 }
 
 /// Animated range of a single vertical axis.

@@ -119,6 +119,94 @@ void main() {
             ),
           ),
           GoldenTestScenario(
+            name: 'With a stepped area series',
+            child: const YgChart(
+              series: <YgChartSeries>[
+                YgChartSeries(
+                  id: 'power',
+                  label: 'Power',
+                  values: <double>[0.4, 5.2, 5.6, 1.2, 3.1, 0.4, 6.0],
+                  unit: 'kW',
+                  type: YgChartSeriesType.steppedArea,
+                ),
+              ],
+              xLabels: weekLabels,
+            ),
+          ),
+          GoldenTestScenario(
+            name: 'With event markers',
+            child: const YgChart(
+              series: <YgChartSeries>[
+                YgChartSeries(
+                  id: 'power',
+                  label: 'Power',
+                  values: <double>[0.4, 5.2, 5.6, 1.2, 3.1, 0.4, 6.0],
+                  unit: 'kW',
+                  type: YgChartSeriesType.steppedArea,
+                ),
+              ],
+              xLabels: weekLabels,
+              size: YgChartSize.small,
+              selectedEventMarkerIndex: 1,
+              eventMarkers: <YgChartEventMarker>[
+                YgChartEventMarker(
+                  index: 1,
+                  color: Color(0xffd23d2c),
+                  icon: YgIcons.alert,
+                  label: 'Device error',
+                ),
+                YgChartEventMarker(
+                  index: 4,
+                  color: Color(0xff5d7a8a),
+                  count: 3,
+                ),
+              ],
+            ),
+          ),
+          GoldenTestScenario(
+            name: 'With an event density rail',
+            child: YgChart(
+              series: const <YgChartSeries>[
+                YgChartSeries(
+                  id: 'power',
+                  label: 'Power',
+                  values: <double>[0.4, 5.2, 5.6, 1.2, 3.1, 0.4, 6.0],
+                  unit: 'kW',
+                  type: YgChartSeriesType.steppedArea,
+                ),
+              ],
+              xLabels: weekLabels,
+              size: YgChartSize.small,
+              selectedRailBand: 1,
+              railEvents: <YgChartRailEvent>[
+                // Deterministic pseudo-random cluster in the first five
+                // columns, every fifth event with an own color.
+                for (int i = 0; i < 40; i++)
+                  YgChartRailEvent(
+                    position: (i * i * 7) % 47 / 47.0 * 5.0,
+                    color: i % 5 == 0 ? const Color(0xffd23d2c) : null,
+                  ),
+              ],
+            ),
+          ),
+          GoldenTestScenario(
+            name: 'With xxsmall size and no legend',
+            child: const YgChart(
+              series: <YgChartSeries>[
+                YgChartSeries(
+                  id: 'power',
+                  label: 'Power',
+                  values: <double>[0.4, 5.2, 5.6, 1.2, 3.1, 0.4, 6.0],
+                  unit: 'kW',
+                  type: YgChartSeriesType.steppedArea,
+                ),
+              ],
+              xLabels: weekLabels,
+              size: YgChartSize.xxsmall,
+              showLegend: false,
+            ),
+          ),
+          GoldenTestScenario(
             name: 'With xsmall size and an overflowing legend',
             child: YgChart(
               size: YgChartSize.xsmall,

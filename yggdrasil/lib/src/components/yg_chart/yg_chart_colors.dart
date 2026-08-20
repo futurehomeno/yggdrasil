@@ -16,6 +16,11 @@ import 'package:yggdrasil/src/tokens/consumer_light/colors.dart' as consumer_lig
 class YgChartColors {
   const YgChartColors._();
 
+  /// Opacity of translucent area fills relative to the series color: the
+  /// band envelope, the area of a stepped area series and the matching
+  /// legend markers.
+  static const double areaFillOpacity = 0.2;
+
   /// Categorical palette used on light backgrounds.
   static const List<Color> categoricalLight = <Color>[
     consumer_light.FhColors.borderSuccessDefault, // green
@@ -43,5 +48,30 @@ class YgChartColors {
     final bool isLightBackground = context.tokens.colors.backgroundDefault.computeLuminance() > 0.5;
 
     return isLightBackground ? categoricalLight : categoricalDark;
+  }
+
+  /// Resolves one color per item: items with an explicit color keep it, the
+  /// others get palette colors assigned by their position among the
+  /// auto-colored items.
+  ///
+  /// Assignment by position keeps an item's color stable when other items
+  /// are toggled or recolored. Shared by [YgChart] and [YgStateTimeline] so
+  /// both assign the same colors to the same data.
+  static List<Color> resolveAutoColors(BuildContext context, List<Color?> explicitColors) {
+    final List<Color> palette = categoricalOf(context);
+    final List<Color> resolved = <Color>[];
+    int autoColorIndex = 0;
+
+    for (final Color? explicitColor in explicitColors) {
+      if (explicitColor != null) {
+        resolved.add(explicitColor);
+        continue;
+      }
+
+      resolved.add(palette[autoColorIndex % palette.length]);
+      autoColorIndex++;
+    }
+
+    return resolved;
   }
 }

@@ -1,9 +1,11 @@
 import 'dart:math' as math;
 
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:path_drawing/path_drawing.dart';
 import 'package:yggdrasil/src/components/yg_chart/enums/_enums.dart';
 import 'package:yggdrasil/src/components/yg_chart/models/_models.dart';
+import 'package:yggdrasil/src/components/yg_chart/yg_chart_colors.dart';
 import 'package:yggdrasil/src/components/yg_chart/yg_chart_data_manager.dart';
 
 /// Paints the grid, axis labels, bars, lines and bands of a [YgChart].
@@ -22,6 +24,8 @@ class YgChartPainter extends CustomPainter {
     required this.gridColor,
     required this.baselineColor,
     required this.layout,
+    required this.textCache,
+    this.bottomInset = 0.0,
     this.selectedIndex,
     this.selectionColor,
   }) : super(repaint: animation);
@@ -38,9 +42,10 @@ class YgChartPainter extends CustomPainter {
   static const double _stackGapHalf = 1.0;
   static const double _lineWidth = 2.0;
 
-  /// Opacity of the area between the bounds of a band series, relative to
-  /// the series color.
-  static const double _bandFillOpacity = 0.2;
+  /// Stepped area series get a slightly heavier line than plain line
+  /// series, so the step outline holds up against its area fill.
+  static const double _steppedAreaLineWidth = 3.0;
+
   static const double _lineCurveHalfLength = 6.0;
   static const double _xLabelSpacing = 8.0;
 
@@ -66,6 +71,14 @@ class YgChartPainter extends CustomPainter {
   /// gestures can be mapped to value indexes.
   final YgChartLayout layout;
 
+  /// Reuses laid out text between the paints of the animation, see
+  /// [YgChartTextLayoutCache].
+  final YgChartTextLayoutCache textCache;
+
+  /// Extra space kept free between the plot and the x-axis labels, for
+  /// example for the event density rail.
+  final double bottomInset;
+
   /// Index of the long pressed column, marked with a dashed vertical line.
   final int? selectedIndex;
 
@@ -83,7 +96,7 @@ class YgChartPainter extends CustomPainter {
       leftGutterWidth + _axisLabelPadding,
       unitRowHeight,
       size.width - (rightUnit != null ? rightGutterWidth + _axisLabelPadding : 0.0),
-      size.height - xLabelRowHeight,
+      size.height - xLabelRowHeight - bottomInset,
     );
 
     layout.plotRect = plotRect;
@@ -98,11 +111,27 @@ class YgChartPainter extends CustomPainter {
     _paintXLabels(canvas, plotRect);
     _paintSelection(canvas, plotRect);
 
+    // Group the series by type once; paint runs on every animation frame,
+    // so the per-type painters must not re-filter the series themselves.
+    final List<YgChartSeries> barSeries = <YgChartSeries>[];
+    final List<YgChartSeries> steppedAreaSeries = <YgChartSeries>[];
+    final List<YgChartSeries> bandSeries = <YgChartSeries>[];
+    final List<YgChartSeries> lineSeries = <YgChartSeries>[];
+    for (final YgChartSeries series in dataManager.orderedSeries) {
+      (switch (series.type) {
+        YgChartSeriesType.bar => barSeries,
+        YgChartSeriesType.steppedArea => steppedAreaSeries,
+        YgChartSeriesType.band => bandSeries,
+        YgChartSeriesType.line => lineSeries,
+      }).add(series);
+    }
+
     canvas.save();
     canvas.clipRect(plotRect.inflate(_stackGapHalf));
-    _paintBars(canvas, plotRect);
-    _paintBands(canvas, plotRect);
-    _paintLines(canvas, plotRect);
+    _paintBars(canvas, plotRect, barSeries);
+    _paintSteppedAreas(canvas, plotRect, steppedAreaSeries);
+    _paintBands(canvas, plotRect, bandSeries);
+    _paintLines(canvas, plotRect, lineSeries);
     canvas.restore();
   }
 
@@ -134,9 +163,22 @@ class YgChartPainter extends CustomPainter {
 
   @override
   bool shouldRepaint(covariant YgChartPainter oldDelegate) {
-    // The data manager is stateful and mutated between paints, so a repaint
-    // on rebuild is always required.
-    return true;
+    // Data and animation changes repaint through the repaint listenable
+    // (the data manager only mutates when an animation is started), so this
+    // only gates repaints caused by widget rebuilds.
+    return oldDelegate.textCache != textCache ||
+        oldDelegate.dataManager != dataManager ||
+        oldDelegate.animation != animation ||
+        !listEquals(oldDelegate.xLabels, xLabels) ||
+        oldDelegate.leftUnit != leftUnit ||
+        oldDelegate.rightUnit != rightUnit ||
+        oldDelegate.axisTextStyle != axisTextStyle ||
+        oldDelegate.gridColor != gridColor ||
+        oldDelegate.baselineColor != baselineColor ||
+        oldDelegate.layout != layout ||
+        oldDelegate.bottomInset != bottomInset ||
+        oldDelegate.selectedIndex != selectedIndex ||
+        oldDelegate.selectionColor != selectionColor;
   }
 
   void _paintGridAndAxisLabels(Canvas canvas, Rect plotRect) {
@@ -178,22 +220,37 @@ class YgChartPainter extends CustomPainter {
 
     // The zero line doubles as the baseline the bars grow from, so it is
     // slightly stronger than the other gridlines. The zero-anchored axes
-    // share the zero height by construction, see YgChartDataManager. An
-    // axis zoomed in on its data may not contain zero at all, then no
-    // baseline is drawn.
-    final double minValue = dataManager.currentMinOf(YgChartAxis.left);
-    final double maxValue = dataManager.currentMaxOf(YgChartAxis.left);
-    if (minValue <= 0.0 && maxValue >= 0.0) {
+    // share the zero height by construction, see YgChartDataManager; the
+    // baseline follows whichever shown axis still contains zero, so it does
+    // not disappear when only the other axis zooms in on its data.
+    final YgChartAxis? baselineAxis = _baselineAxis();
+    if (baselineAxis != null) {
       final Paint baselinePaint = Paint()
         ..color = baselineColor
         ..strokeWidth = 1.0;
-      final double zeroY = _yFor(0.0, YgChartAxis.left, plotRect);
+      final double zeroY = _yFor(0.0, baselineAxis, plotRect);
       canvas.drawLine(
         Offset(plotRect.left, zeroY),
         Offset(plotRect.right, zeroY),
         baselinePaint,
       );
     }
+  }
+
+  /// The axis the zero baseline is drawn against, or null when no shown
+  /// axis contains zero.
+  YgChartAxis? _baselineAxis() {
+    for (final YgChartAxis axis in YgChartAxis.values) {
+      if (axis == YgChartAxis.right && rightUnit == null) {
+        continue;
+      }
+
+      if (dataManager.currentMinOf(axis) <= 0.0 && dataManager.currentMaxOf(axis) >= 0.0) {
+        return axis;
+      }
+    }
+
+    return null;
   }
 
   void _paintUnits(Canvas canvas, Rect plotRect) {
@@ -240,15 +297,12 @@ class YgChartPainter extends CustomPainter {
 
       labelPainter.paint(
         canvas,
-        Offset(x, plotRect.bottom + (xLabelRowHeight - labelPainter.height) / 2.0),
+        Offset(x, plotRect.bottom + bottomInset + (xLabelRowHeight - labelPainter.height) / 2.0),
       );
     }
   }
 
-  void _paintBars(Canvas canvas, Rect plotRect) {
-    final List<YgChartSeries> barSeries = dataManager.orderedSeries
-        .where((YgChartSeries series) => series.type == YgChartSeriesType.bar)
-        .toList();
+  void _paintBars(Canvas canvas, Rect plotRect, List<YgChartSeries> barSeries) {
     if (barSeries.isEmpty || dataManager.valueCount == 0) {
       return;
     }
@@ -261,6 +315,12 @@ class YgChartPainter extends CustomPainter {
         barAxes.add(series.axis);
       }
     }
+
+    // The stacking order per axis does not change between the indexes.
+    final Map<YgChartAxis, List<YgChartSeries>> seriesPerAxis = <YgChartAxis, List<YgChartSeries>>{
+      for (final YgChartAxis axis in barAxes)
+        axis: barSeries.where((YgChartSeries series) => series.axis == axis).toList(),
+    };
 
     final double slotWidth = plotRect.width / dataManager.valueCount;
     final double groupWidth = math.min(
@@ -280,7 +340,7 @@ class YgChartPainter extends CustomPainter {
           canvas: canvas,
           plotRect: plotRect,
           barPaint: barPaint,
-          barSeries: barSeries.where((YgChartSeries series) => series.axis == axis).toList(),
+          barSeries: seriesPerAxis[axis]!,
           axis: axis,
           index: index,
           barLeft: barLeft,
@@ -364,15 +424,103 @@ class YgChartPainter extends CustomPainter {
     }
   }
 
+  /// Paints the stepped area series: a stepped line resembling bars with
+  /// the area down to the zero line filled translucently.
+  ///
+  /// Painted above the bars and below the bands and lines.
+  void _paintSteppedAreas(Canvas canvas, Rect plotRect, List<YgChartSeries> steppedSeries) {
+    if (steppedSeries.isEmpty || dataManager.valueCount == 0) {
+      return;
+    }
+
+    final double slotWidth = plotRect.width / dataManager.valueCount;
+    final Paint fillPaint = Paint();
+    // Like the band line the steps are drawn raw: sharp corners and ends.
+    final Paint linePaint = Paint()
+      ..strokeWidth = _steppedAreaLineWidth
+      ..style = PaintingStyle.stroke;
+
+    for (final YgChartSeries series in steppedSeries) {
+      final double opacity = dataManager.opacityOf(series.id);
+      if (opacity <= 0.0) {
+        continue;
+      }
+
+      final List<double> values = dataManager.currentValuesOf(series.id);
+      final Color color = series.color ?? baselineColor;
+      fillPaint.color = color.withValues(alpha: color.a * YgChartColors.areaFillOpacity * opacity);
+      linePaint.color = _fadedColor(color, opacity);
+
+      final double baselineY = _yFor(0.0, series.axis, plotRect);
+
+      // NaN values split the series into independently drawn runs.
+      int runStart = -1;
+      for (int i = 0; i <= dataManager.valueCount; i++) {
+        final bool valid = i < dataManager.valueCount && !values[i].isNaN;
+        if (valid && runStart < 0) {
+          runStart = i;
+        } else if (!valid && runStart >= 0) {
+          _paintSteppedAreaRun(
+            canvas: canvas,
+            plotRect: plotRect,
+            slotWidth: slotWidth,
+            values: values,
+            axis: series.axis,
+            from: runStart,
+            to: i - 1,
+            baselineY: baselineY,
+            fillPaint: fillPaint,
+            linePaint: linePaint,
+          );
+          runStart = -1;
+        }
+      }
+    }
+  }
+
+  /// Paints one gapless run of a stepped area series.
+  ///
+  /// Every value holds over the full width of its slot and consecutive
+  /// values are connected with vertical segments, giving the bar-like step
+  /// look.
+  void _paintSteppedAreaRun({
+    required Canvas canvas,
+    required Rect plotRect,
+    required double slotWidth,
+    required List<double> values,
+    required YgChartAxis axis,
+    required int from,
+    required int to,
+    required double baselineY,
+    required Paint fillPaint,
+    required Paint linePaint,
+  }) {
+    final Path outline = Path()..moveTo(plotRect.left + from * slotWidth, _yFor(values[from], axis, plotRect));
+
+    for (int i = from; i <= to; i++) {
+      final double y = _yFor(values[i], axis, plotRect);
+      if (i > from) {
+        // Vertical connector at the slot boundary.
+        outline.lineTo(plotRect.left + i * slotWidth, y);
+      }
+      outline.lineTo(plotRect.left + (i + 1) * slotWidth, y);
+    }
+
+    final Path fill = Path.from(outline)
+      ..lineTo(plotRect.left + (to + 1) * slotWidth, baselineY)
+      ..lineTo(plotRect.left + from * slotWidth, baselineY)
+      ..close();
+
+    canvas.drawPath(fill, fillPaint);
+    canvas.drawPath(outline, linePaint);
+  }
+
   /// Paints the band series: a translucent area between the lower and upper
   /// bounds with the center line drawn on top.
   ///
   /// Bands are painted above the bars and below the plain line series, so a
   /// line stays readable when it crosses a band.
-  void _paintBands(Canvas canvas, Rect plotRect) {
-    final List<YgChartSeries> bandSeries = dataManager.orderedSeries
-        .where((YgChartSeries series) => series.type == YgChartSeriesType.band)
-        .toList();
+  void _paintBands(Canvas canvas, Rect plotRect, List<YgChartSeries> bandSeries) {
     if (bandSeries.isEmpty || dataManager.valueCount == 0) {
       return;
     }
@@ -409,8 +557,8 @@ class YgChartPainter extends CustomPainter {
       }
 
       final Color color = series.color ?? baselineColor;
-      final Color fillColor = color.withValues(alpha: color.a * _bandFillOpacity * opacity);
-      final Color lineColor = opacity < 1.0 ? color.withValues(alpha: color.a * opacity) : color;
+      final Color fillColor = color.withValues(alpha: color.a * YgChartColors.areaFillOpacity * opacity);
+      final Color lineColor = _fadedColor(color, opacity);
 
       if (centerPoints.length == 1) {
         // A single column renders as a dot on a vertical band segment.
@@ -435,10 +583,7 @@ class YgChartPainter extends CustomPainter {
     }
   }
 
-  void _paintLines(Canvas canvas, Rect plotRect) {
-    final List<YgChartSeries> lineSeries = dataManager.orderedSeries
-        .where((YgChartSeries series) => series.type == YgChartSeriesType.line)
-        .toList();
+  void _paintLines(Canvas canvas, Rect plotRect, List<YgChartSeries> lineSeries) {
     if (lineSeries.isEmpty || dataManager.valueCount == 0) {
       return;
     }
@@ -474,7 +619,7 @@ class YgChartPainter extends CustomPainter {
 
       final Color lineColor = series.color ?? baselineColor;
       final Paint linePaint = Paint()
-        ..color = opacity < 1.0 ? lineColor.withValues(alpha: lineColor.a * opacity) : lineColor
+        ..color = _fadedColor(lineColor, opacity)
         ..strokeWidth = _lineWidth
         ..style = PaintingStyle.stroke
         ..strokeJoin = StrokeJoin.round
@@ -503,12 +648,12 @@ class YgChartPainter extends CustomPainter {
 
   /// Builds a path of straight segments through [points].
   Path _buildStraightPath(List<Offset> points) {
-    final Path path = Path()..moveTo(points.first.dx, points.first.dy);
-    for (int i = 1; i < points.length; i++) {
-      path.lineTo(points[i].dx, points[i].dy);
-    }
+    return Path()..addPolygon(points, false);
+  }
 
-    return path;
+  /// [color] with its alpha scaled by the fade [opacity] of its series.
+  static Color _fadedColor(Color color, double opacity) {
+    return opacity < 1.0 ? color.withValues(alpha: color.a * opacity) : color;
   }
 
   /// Builds a path through [points] with slightly curved corners.
@@ -583,6 +728,12 @@ class YgChartPainter extends CustomPainter {
       canvas,
       Offset(alignRight ? anchorX - labelPainter.width : anchorX, y - labelPainter.height / 2.0),
     );
+
+    if (opacity < 1.0) {
+      // Faded painters are transient (fully visible ones come from the
+      // cache and are reused between frames).
+      labelPainter.dispose();
+    }
   }
 
   /// Marks the long pressed column with a dashed vertical line.
@@ -644,16 +795,68 @@ class YgChartPainter extends CustomPainter {
   }
 
   TextPainter _layoutText(String text, {double opacity = 1.0}) {
-    TextStyle style = axisTextStyle;
-    if (opacity < 1.0) {
-      final Color color = style.color ?? const Color(0xff000000);
-      style = style.copyWith(color: color.withValues(alpha: color.a * opacity));
+    if (opacity >= 1.0) {
+      return textCache.painterFor(text, axisTextStyle);
     }
 
+    // Faded labels only exist while a label cross-fade animates, so they
+    // are not worth caching per opacity step.
+    final Color color = axisTextStyle.color ?? const Color(0xff000000);
+
     return TextPainter(
-      text: TextSpan(text: text, style: style),
+      text: TextSpan(
+        text: text,
+        style: axisTextStyle.copyWith(color: color.withValues(alpha: color.a * opacity)),
+      ),
       textDirection: TextDirection.ltr,
     )..layout();
+  }
+}
+
+/// Reuses laid out [TextPainter]s across the paints of a [YgChart].
+///
+/// Text layout is the most expensive part of a chart frame and the painter
+/// draws every axis and x-axis label on every animation tick, while the
+/// label texts only change when the data manager retargets. Owned by the
+/// chart state (like [YgChartLayout]) so the layouts survive between the
+/// painter instances created by rebuilds.
+class YgChartTextLayoutCache {
+  YgChartTextLayoutCache();
+
+  /// Safety cap; a chart shows far fewer distinct labels at a time, but
+  /// long-running charts retarget through many label sets.
+  static const int _maxEntries = 128;
+
+  final Map<String, TextPainter> _painters = <String, TextPainter>{};
+  TextStyle? _style;
+
+  /// The painter for [text] laid out in [style], reusing a cached layout.
+  TextPainter painterFor(String text, TextStyle style) {
+    if (style != _style) {
+      _evictAll();
+      _style = style;
+    } else if (_painters.length >= _maxEntries && !_painters.containsKey(text)) {
+      _evictAll();
+    }
+
+    return _painters.putIfAbsent(
+      text,
+      () => TextPainter(
+        text: TextSpan(text: text, style: style),
+        textDirection: TextDirection.ltr,
+      )..layout(),
+    );
+  }
+
+  void _evictAll() {
+    for (final TextPainter painter in _painters.values) {
+      painter.dispose();
+    }
+    _painters.clear();
+  }
+
+  void dispose() {
+    _evictAll();
   }
 }
 
@@ -662,12 +865,59 @@ class YgChartPainter extends CustomPainter {
 /// Owned by the [YgChart] state and written by the painter, so gesture
 /// positions can be mapped to value indexes without duplicating the axis
 /// gutter measurement outside of the painter.
-class YgChartLayout {
+class YgChartLayout extends ChangeNotifier {
   YgChartLayout();
 
+  Rect? _plotRect;
+  Size? _canvasSize;
+
+  bool _notifyScheduled = false;
+  bool _disposed = false;
+
   /// The area of the canvas the data is drawn in.
-  Rect? plotRect;
+  Rect? get plotRect => _plotRect;
+  set plotRect(Rect? value) {
+    if (_plotRect == value) {
+      return;
+    }
+
+    _plotRect = value;
+    _scheduleNotify();
+  }
 
   /// The full size of the chart canvas.
-  Size? canvasSize;
+  Size? get canvasSize => _canvasSize;
+  set canvasSize(Size? value) {
+    if (_canvasSize == value) {
+      return;
+    }
+
+    _canvasSize = value;
+    _scheduleNotify();
+  }
+
+  /// Notifies listeners after the current frame.
+  ///
+  /// The geometry is written during paint, where rebuilding listeners (for
+  /// example the event marker layer) is not allowed, so the notification is
+  /// deferred to the end of the frame.
+  void _scheduleNotify() {
+    if (_notifyScheduled) {
+      return;
+    }
+
+    _notifyScheduled = true;
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+      _notifyScheduled = false;
+      if (!_disposed) {
+        notifyListeners();
+      }
+    });
+  }
+
+  @override
+  void dispose() {
+    _disposed = true;
+    super.dispose();
+  }
 }

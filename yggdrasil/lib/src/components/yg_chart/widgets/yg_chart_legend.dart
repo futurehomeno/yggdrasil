@@ -3,6 +3,8 @@
 import 'package:flutter/material.dart';
 import 'package:yggdrasil/src/components/yg_chart/enums/_enums.dart';
 import 'package:yggdrasil/src/components/yg_chart/models/_models.dart';
+import 'package:yggdrasil/src/components/yg_chart/widgets/yg_single_row_legend.dart';
+import 'package:yggdrasil/src/components/yg_chart/yg_chart_colors.dart';
 import 'package:yggdrasil/src/theme/_theme.dart';
 import 'package:yggdrasil/src/theme/tokens/extensions/_extensions.dart';
 import 'package:yggdrasil/src/utils/_utils.dart';
@@ -32,28 +34,15 @@ class YgChartLegend extends StatelessWidget with StatelessWidgetDebugMixin {
 
   @override
   Widget build(BuildContext context) {
-    final double spacing = context.tokens.dimensions.xxs;
-
-    // Centered like a Wrap while the items fit; the Center makes the scroll
-    // view shrink-wrap its content, so once the items overflow it fills the
-    // width and scrolls instead of growing a second row.
-    return Center(
-      child: SingleChildScrollView(
-        scrollDirection: Axis.horizontal,
-        child: Row(
-          mainAxisSize: MainAxisSize.min,
-          children: <Widget>[
-            for (int i = 0; i < series.length; i++) ...<Widget>[
-              if (i > 0) SizedBox(width: spacing),
-              _YgChartLegendItem(
-                series: series[i],
-                hidden: hiddenSeriesIds.contains(series[i].id),
-                onTap: () => onSeriesTap(series[i]),
-              ),
-            ],
-          ],
-        ),
-      ),
+    return YgSingleRowLegend(
+      children: <Widget>[
+        for (final YgChartSeries currentSeries in series)
+          _YgChartLegendItem(
+            series: currentSeries,
+            hidden: hiddenSeriesIds.contains(currentSeries.id),
+            onTap: () => onSeriesTap(currentSeries),
+          ),
+      ],
     );
   }
 }
@@ -69,10 +58,6 @@ class _YgChartLegendItem extends StatelessWidget {
   static const double _lineMarkerWidth = 14.0;
   static const double _lineMarkerHeight = 3.0;
   static const double _bandMarkerHeight = 10.0;
-
-  /// Matches the fill opacity of the band on the chart canvas, see
-  /// [YgChartPainter].
-  static const double _bandMarkerFillOpacity = 0.2;
 
   final YgChartSeries series;
   final bool hidden;
@@ -140,6 +125,30 @@ class _YgChartLegendItem extends StatelessWidget {
           borderRadius: BorderRadius.circular(_lineMarkerHeight / 2.0),
         ),
       ),
+      // The stepped area marker mirrors the series on the canvas: the line
+      // along the top edge of the translucent area.
+      YgChartSeriesType.steppedArea => AnimatedContainer(
+        duration: context.defaults.animationDuration,
+        curve: context.defaults.animationCurve,
+        width: _lineMarkerWidth,
+        height: _bandMarkerHeight,
+        decoration: BoxDecoration(
+          color: markerColor.withValues(alpha: markerColor.a * YgChartColors.areaFillOpacity),
+          borderRadius: BorderRadius.circular(_lineMarkerHeight),
+        ),
+        child: Align(
+          alignment: Alignment.topCenter,
+          child: AnimatedContainer(
+            duration: context.defaults.animationDuration,
+            curve: context.defaults.animationCurve,
+            height: _lineMarkerHeight,
+            decoration: BoxDecoration(
+              color: markerColor,
+              borderRadius: BorderRadius.circular(_lineMarkerHeight / 2.0),
+            ),
+          ),
+        ),
+      ),
       // The band marker mirrors the band on the canvas: the center line on
       // top of the translucent area.
       YgChartSeriesType.band => AnimatedContainer(
@@ -148,7 +157,7 @@ class _YgChartLegendItem extends StatelessWidget {
         width: _lineMarkerWidth,
         height: _bandMarkerHeight,
         decoration: BoxDecoration(
-          color: markerColor.withValues(alpha: markerColor.a * _bandMarkerFillOpacity),
+          color: markerColor.withValues(alpha: markerColor.a * YgChartColors.areaFillOpacity),
           borderRadius: BorderRadius.circular(_lineMarkerHeight),
         ),
         child: Center(

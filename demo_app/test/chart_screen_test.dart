@@ -2,7 +2,6 @@ import 'package:flutter/gestures.dart' show kLongPressTimeout;
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:provider/provider.dart';
-import 'package:yggdrasil/src/components/yg_chart/yg_chart_painter.dart';
 import 'package:yggdrasil/yggdrasil.dart';
 import 'package:yggdrasil_demo/core/_core.dart';
 import 'package:yggdrasil_demo/screens/_screens.dart';
@@ -30,19 +29,6 @@ void main() {
     await tester.tap(finder);
   }
 
-  YgChartPainter firstChartPainter(WidgetTester tester) {
-    final CustomPaint customPaint = tester.widget<CustomPaint>(
-      find
-          .descendant(
-            of: find.byType(YgChart).first,
-            matching: find.byType(CustomPaint),
-          )
-          .first,
-    );
-
-    return customPaint.painter! as YgChartPainter;
-  }
-
   testWidgets('chart demo screen renders and reacts to its controls', (WidgetTester tester) async {
     await tester.pumpWidget(
       ChangeNotifierProvider<YgAppState>(
@@ -55,7 +41,7 @@ void main() {
     );
     await tester.pumpAndSettle();
 
-    expect(find.byType(YgChart), findsNWidgets(5));
+    expect(find.byType(YgChart), findsNWidgets(6));
 
     // Switch the size of the first chart.
     await tapClearOfHeader(tester, find.text('large'));
@@ -75,23 +61,11 @@ void main() {
     await tapClearOfHeader(tester, find.text('Randomize data').first);
     await tester.pumpAndSettle();
 
-    // Toggle the price series through the legend of the first chart.
+    // Hide the price series through the legend of the first chart; the
+    // tooltip no longer lists it.
     await tapClearOfHeader(tester, find.text('Price').first);
     await tester.pumpAndSettle();
-    expect(
-      firstChartPainter(tester).dataManager.orderedSeries.map((YgChartSeries series) => series.id),
-      isNot(contains('price')),
-    );
 
-    // Toggle it back on.
-    await tapClearOfHeader(tester, find.text('Price').first);
-    await tester.pumpAndSettle();
-    expect(
-      firstChartPainter(tester).dataManager.orderedSeries.map((YgChartSeries series) => series.id),
-      contains('price'),
-    );
-
-    // Long press the first chart to show its tooltip.
     final Finder chartCanvas = find
         .descendant(
           of: find.byType(YgChart).first,
@@ -101,21 +75,74 @@ void main() {
     await tester.ensureVisible(chartCanvas);
     await tester.pumpAndSettle();
 
-    final TestGesture longPress = await tester.startGesture(tester.getCenter(chartCanvas));
+    TestGesture longPress = await tester.startGesture(tester.getCenter(chartCanvas));
     await tester.pump(kLongPressTimeout + const Duration(milliseconds: 50));
     await tester.pump();
     expect(find.textContaining('Heating:'), findsOneWidget);
+    expect(find.textContaining('Price:'), findsNothing);
+    await longPress.up();
+    await tester.pumpAndSettle();
+
+    // Toggle it back on; the tooltip lists it again.
+    await tapClearOfHeader(tester, find.text('Price').first);
+    await tester.pumpAndSettle();
+
+    await tester.ensureVisible(chartCanvas);
+    await tester.pumpAndSettle();
+    if (tester.getCenter(chartCanvas).dy < 120.0) {
+      await tester.drag(find.byType(Scrollable).first, const Offset(0.0, 120.0));
+      await tester.pumpAndSettle();
+    }
+
+    longPress = await tester.startGesture(tester.getCenter(chartCanvas));
+    await tester.pump(kLongPressTimeout + const Duration(milliseconds: 50));
+    await tester.pump();
+    expect(find.textContaining('Price:'), findsOneWidget);
 
     await longPress.up();
     await tester.pumpAndSettle();
     expect(find.textContaining('Heating:'), findsNothing);
+
+    // Tapping the event density rail of the stepped area chart selects a
+    // band and the app renders its summary as a list tile below the chart.
+    // The rail is the second paint layer of the power chart (the canvas is
+    // the first); asserted through the public widget surface only.
+    final Finder rail = find
+        .descendant(
+          of: find.byType(YgChart).at(2),
+          matching: find.byType(CustomPaint),
+        )
+        .at(1);
+    await tester.ensureVisible(rail);
+    await tester.pumpAndSettle();
+
+    Rect railRect = tester.getRect(rail);
+    if (railRect.top < 120.0) {
+      await tester.drag(find.byType(Scrollable).first, const Offset(0.0, 120.0));
+      await tester.pumpAndSettle();
+      railRect = tester.getRect(rail);
+    }
+
+    await tester.tapAt(Offset(railRect.left + railRect.width * 0.05, railRect.center.dy));
+    await tester.pumpAndSettle();
+    expect(find.textContaining('00:00 – 03:00'), findsOneWidget);
+
+    // Dragging along the rail moves the selection to another band.
+    final TestGesture railDrag = await tester.startGesture(
+      Offset(railRect.left + railRect.width * 0.05, railRect.center.dy),
+    );
+    await railDrag.moveBy(Offset(railRect.width * 0.5, 0.0));
+    await railDrag.up();
+    await tester.pumpAndSettle();
+    expect(find.textContaining('00:00 – 03:00'), findsNothing);
+    expect(find.textContaining('12:00 – 15:00'), findsOneWidget);
 
     // Long press the temperature band chart: its tooltip shows the average
     // from the chart data plus the raw sensor readings, which only the app
     // knows about.
     final Finder bandCanvas = find
         .descendant(
-          of: find.byType(YgChart).at(2),
+          of: find.byType(YgChart).at(3),
           matching: find.byType(CustomPaint),
         )
         .first;

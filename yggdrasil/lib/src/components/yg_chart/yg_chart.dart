@@ -3,6 +3,8 @@ import 'dart:math' as math;
 import 'package:flutter/material.dart';
 import 'package:yggdrasil/src/components/yg_chart/enums/_enums.dart';
 import 'package:yggdrasil/src/components/yg_chart/models/_models.dart';
+import 'package:yggdrasil/src/components/yg_chart/widgets/yg_chart_event_marker_badge.dart';
+import 'package:yggdrasil/src/components/yg_chart/widgets/yg_chart_event_rail.dart';
 import 'package:yggdrasil/src/components/yg_chart/widgets/yg_chart_legend.dart';
 import 'package:yggdrasil/src/components/yg_chart/yg_chart_colors.dart';
 import 'package:yggdrasil/src/components/yg_chart/yg_chart_data_manager.dart';
@@ -19,6 +21,9 @@ import 'package:yggdrasil/src/utils/_utils.dart';
 ///   with their values as the center line, for example the average of
 ///   multiple temperature sensors inside their min-max envelope. The bounds
 ///   are passed precomputed, see [YgChartSeries.lowerValues].
+/// - Stepped area series render a stepped line resembling bars with the
+///   area down to the zero line filled translucently, for example power
+///   drawn over a day. Each value holds over the full width of its slot.
 /// - Negative values are supported and drawn below the zero line.
 /// - Series can be assigned to a secondary right axis (for example energy
 ///   consumption in kWh on the left and energy price on the right), see
@@ -28,6 +33,11 @@ import 'package:yggdrasil/src/utils/_utils.dart';
 /// - A tappable legend below the chart toggles individual series on and off.
 /// - Long pressing the chart shows a tooltip with the exact values of the
 ///   pressed column, rendered by [tooltipBuilder].
+/// - Events (for example device errors) can be marked per column with
+///   tappable badges in the upper part of the plot, see [eventMarkers].
+/// - Events too numerous for badges can be shown on an event density rail
+///   between the plot and the x-axis labels, where dragging selects a one
+///   column wide band, see [railEvents].
 class YgChart extends StatefulWidget with StatefulWidgetDebugMixin {
   const YgChart({
     super.key,
@@ -35,6 +45,14 @@ class YgChart extends StatefulWidget with StatefulWidgetDebugMixin {
     required this.xLabels,
     this.size = YgChartSize.medium,
     this.showLegend = true,
+    this.leftAxisSnap,
+    this.rightAxisSnap,
+    this.eventMarkers = const <YgChartEventMarker>[],
+    this.selectedEventMarkerIndex,
+    this.onEventMarkerTap,
+    this.railEvents = const <YgChartRailEvent>[],
+    this.selectedRailBand,
+    this.onRailBandSelected,
     this.onSeriesToggled,
     this.tooltipBuilder,
   });
@@ -57,6 +75,62 @@ class YgChart extends StatefulWidget with StatefulWidgetDebugMixin {
 
   /// Whether the tappable legend is shown below the chart.
   final bool showLegend;
+
+  /// Snaps the bounds of the left axis to multiples of this value when the
+  /// axis zooms in on its data (line series only, all values above zero).
+  ///
+  /// Without snapping such an axis hugs the data as tightly as possible,
+  /// which makes charts of the same kind hard to compare - two room
+  /// temperature charts might show 26..27 and 21..24. Snapping both to
+  /// multiples of e.g. 5.0 renders them as 25..30 and 20..25 instead.
+  ///
+  /// Zero-anchored axes (any bars, or values at or below zero) are not
+  /// affected. When null the axis is not snapped.
+  final double? leftAxisSnap;
+
+  /// Snaps the bounds of the right axis, see [leftAxisSnap].
+  final double? rightAxisSnap;
+
+  /// Event badges shown in the upper part of the plot, at most one per
+  /// column, see [YgChartEventMarker].
+  final List<YgChartEventMarker> eventMarkers;
+
+  /// Column index of the selected event marker, drawn with a ring around
+  /// its badge.
+  ///
+  /// The selection is owned by the caller: react to [onEventMarkerTap],
+  /// store the selection and render the event details wherever fits (for
+  /// example a list tile below the chart). When null no marker is marked as
+  /// selected.
+  final int? selectedEventMarkerIndex;
+
+  /// Called with the tapped event marker.
+  ///
+  /// The chart does not change its own state; update
+  /// [selectedEventMarkerIndex] (and for example the detail view) in
+  /// response.
+  final ValueChanged<YgChartEventMarker>? onEventMarkerTap;
+
+  /// Events shown as ticks on the event density rail between the plot and
+  /// the x-axis labels, see [YgChartRailEvent].
+  ///
+  /// Meant for events too numerous to mark with [eventMarkers]. When empty
+  /// no rail is shown.
+  final List<YgChartRailEvent> railEvents;
+
+  /// Index of the column band outlined on the event density rail.
+  ///
+  /// Like [selectedEventMarkerIndex] the selection is owned by the caller:
+  /// react to [onRailBandSelected], store the selection and render the
+  /// events of the band wherever fits. When null no band is outlined.
+  final int? selectedRailBand;
+
+  /// Called with the band under the pointer while tapping or dragging along
+  /// the event density rail.
+  ///
+  /// Only called when the band changes; update [selectedRailBand] in
+  /// response.
+  final ValueChanged<int>? onRailBandSelected;
 
   /// Called when a series is hidden or shown through the legend.
   final void Function(YgChartSeries series, bool visible)? onSeriesToggled;
@@ -96,6 +170,9 @@ class _YgChartState extends State<YgChart> with TickerProviderStateMixin {
   /// Geometry of the last paint, used to map gestures to value indexes.
   final YgChartLayout _layout = YgChartLayout();
 
+  /// Laid out label text, reused across the paints of an animation.
+  final YgChartTextLayoutCache _textCache = YgChartTextLayoutCache();
+
   @override
   void didChangeDependencies() {
     super.didChangeDependencies();
@@ -111,6 +188,8 @@ class _YgChartState extends State<YgChart> with TickerProviderStateMixin {
   @override
   void dispose() {
     _controller.dispose();
+    _layout.dispose();
+    _textCache.dispose();
     super.dispose();
   }
 
@@ -142,7 +221,8 @@ class _YgChartState extends State<YgChart> with TickerProviderStateMixin {
   Widget _buildCanvas(BuildContext context, List<YgChartSeries> resolvedSeries) {
     final YgColor colors = context.tokens.colors;
     final int? selectedIndex = _selectedIndex;
-    final bool hasTooltip = widget.tooltipBuilder != null;
+    final YgChartTooltipBuilder? tooltipBuilder = widget.tooltipBuilder;
+    final bool hasTooltip = tooltipBuilder != null;
 
     final Rect? plotRect = _layout.plotRect;
     final Size? canvasSize = _layout.canvasSize;
@@ -174,6 +254,8 @@ class _YgChartState extends State<YgChart> with TickerProviderStateMixin {
                   gridColor: colors.borderDefault.withValues(alpha: 0.4),
                   baselineColor: colors.borderDefault,
                   layout: _layout,
+                  textCache: _textCache,
+                  bottomInset: _railInset,
                   selectedIndex: hasTooltip ? selectedIndex : null,
                   selectionColor: colors.borderDefault,
                 ),
@@ -181,7 +263,24 @@ class _YgChartState extends State<YgChart> with TickerProviderStateMixin {
             ),
           ),
         ),
-        if (hasTooltip && selectedIndex != null && plotRect != null && canvasSize != null)
+        if (widget.eventMarkers.isNotEmpty && widget.xLabels.isNotEmpty)
+          Positioned.fill(
+            child: ListenableBuilder(
+              // The plot geometry is only known after the first paint and
+              // moves while the axis gutters animate; the layout notifies
+              // after every frame that changed it.
+              listenable: _layout,
+              builder: (BuildContext context, Widget? child) => _buildEventMarkers(),
+            ),
+          ),
+        if (widget.railEvents.isNotEmpty && widget.xLabels.isNotEmpty)
+          Positioned.fill(
+            child: ListenableBuilder(
+              listenable: _layout,
+              builder: (BuildContext context, Widget? child) => _buildEventRail(context),
+            ),
+          ),
+        if (tooltipBuilder != null && selectedIndex != null && plotRect != null && canvasSize != null)
           Positioned.fill(
             child: IgnorePointer(
               child: AnimatedAlign(
@@ -191,7 +290,7 @@ class _YgChartState extends State<YgChart> with TickerProviderStateMixin {
                   _tooltipAlignmentX(selectedIndex, plotRect, canvasSize.width),
                   -1.0,
                 ),
-                child: widget.tooltipBuilder!(
+                child: tooltipBuilder(
                   context,
                   _tooltipDataFor(selectedIndex, resolvedSeries),
                 ),
@@ -200,6 +299,116 @@ class _YgChartState extends State<YgChart> with TickerProviderStateMixin {
           ),
       ],
     );
+  }
+
+  /// The event marker badges, positioned over their columns in the upper
+  /// part of the plot.
+  Widget _buildEventMarkers() {
+    final Rect? plotRect = _layout.plotRect;
+    if (plotRect == null || plotRect.width <= 0.0) {
+      return const SizedBox.shrink();
+    }
+
+    final double slotWidth = plotRect.width / widget.xLabels.length;
+
+    return Stack(
+      children: <Widget>[
+        for (final YgChartEventMarker marker in widget.eventMarkers)
+          Positioned(
+            left:
+                plotRect.left +
+                (marker.index + 0.5) * slotWidth -
+                YgChartEventMarkerBadge.diameter / 2.0 -
+                YgChartEventMarkerBadge.tapPadding,
+            top: plotRect.top - YgChartEventMarkerBadge.tapPadding,
+            child: YgChartEventMarkerBadge(
+              key: ValueKey<String>('YgChartEventMarker-${marker.index}'),
+              marker: marker,
+              selected: marker.index == widget.selectedEventMarkerIndex,
+              onTap: widget.onEventMarkerTap,
+            ),
+          ),
+      ],
+    );
+  }
+
+  /// Extra canvas height reserved between the plot and the x-axis labels
+  /// for the event density rail.
+  double get _railInset => widget.railEvents.isEmpty ? 0.0 : YgChartEventRail.plotSpacing + YgChartEventRail.height;
+
+  /// The event density rail, positioned between the plot and the x-axis
+  /// labels.
+  Widget _buildEventRail(BuildContext context) {
+    final Rect? plotRect = _layout.plotRect;
+    if (plotRect == null || plotRect.width <= 0.0) {
+      return const SizedBox.shrink();
+    }
+
+    final YgColor colors = context.tokens.colors;
+
+    return Stack(
+      children: <Widget>[
+        Positioned(
+          left: plotRect.left,
+          top: plotRect.bottom + YgChartEventRail.plotSpacing,
+          width: plotRect.width,
+          height: YgChartEventRail.height,
+          child: YgChartEventRail(
+            events: widget.railEvents,
+            bandCount: widget.xLabels.length,
+            trackColor: colors.backgroundWeak,
+            defaultEventColor: colors.interactiveHighlightDefault,
+            selectionColor: colors.textDefault,
+            selectedBand: widget.selectedRailBand,
+            bandSemanticValues: widget.xLabels,
+            onBandSelected: widget.onRailBandSelected,
+          ),
+        ),
+      ],
+    );
+  }
+
+  bool _debugValidateRailEvents() {
+    for (final YgChartRailEvent event in widget.railEvents) {
+      assert(
+        event.position >= 0.0 && event.position <= widget.xLabels.length,
+        'YgChart rail event position ${event.position} is outside of the '
+        'x-axis range (0..${widget.xLabels.length}).',
+      );
+    }
+
+    final int? selectedRailBand = widget.selectedRailBand;
+    assert(
+      selectedRailBand == null || (selectedRailBand >= 0 && selectedRailBand < widget.xLabels.length),
+      'YgChart selectedRailBand $selectedRailBand is outside of the xLabel '
+      'range (0..${widget.xLabels.length - 1}).',
+    );
+
+    return true;
+  }
+
+  bool _debugValidateEventMarkers() {
+    final Set<int> markerIndexes = <int>{};
+
+    for (final YgChartEventMarker marker in widget.eventMarkers) {
+      assert(
+        marker.index >= 0 && marker.index < widget.xLabels.length,
+        'YgChart event marker index ${marker.index} is outside of the xLabel '
+        'range (0..${widget.xLabels.length - 1}).',
+      );
+      assert(
+        markerIndexes.add(marker.index),
+        'YgChart allows at most one event marker per column, found multiple '
+        'for index ${marker.index}.',
+      );
+      assert(
+        marker.count >= 1,
+        'YgChart event marker at index ${marker.index} must stand for at '
+        'least one event.',
+      );
+    }
+
+    return true;
   }
 
   /// Amount of value steps shown on the axes, based on the chart height.
@@ -211,11 +420,20 @@ class _YgChartState extends State<YgChart> with TickerProviderStateMixin {
 
   void _syncData() {
     assert(_debugValidateSeries());
+    assert(_debugValidateEventMarkers());
+    assert(_debugValidateRailEvents());
 
     final int? selectedIndex = _selectedIndex;
     if (selectedIndex != null && selectedIndex >= widget.xLabels.length) {
       _selectedIndex = null;
     }
+
+    // Hidden state only applies to series that still exist; without this a
+    // series removed while hidden would silently come back hidden when a
+    // series with the same id is added again later.
+    _hiddenSeriesIds.removeWhere(
+      (String id) => !widget.series.any((YgChartSeries series) => series.id == id),
+    );
 
     final List<YgChartSeries> visibleSeries = _resolveSeriesColors()
         .where((YgChartSeries series) => !_hiddenSeriesIds.contains(series.id))
@@ -225,6 +443,8 @@ class _YgChartState extends State<YgChart> with TickerProviderStateMixin {
       visibleSeries,
       valueCount: widget.xLabels.length,
       tickCount: _tickCount,
+      leftAxisSnap: widget.leftAxisSnap,
+      rightAxisSnap: widget.rightAxisSnap,
     );
 
     if (changed) {
@@ -242,19 +462,15 @@ class _YgChartState extends State<YgChart> with TickerProviderStateMixin {
   /// Colors are assigned based on the position in the full series list, so a
   /// series keeps its color when other series are hidden through the legend.
   List<YgChartSeries> _resolveSeriesColors() {
-    final List<Color> palette = YgChartColors.categoricalOf(context);
-    int autoColorIndex = 0;
+    final List<Color> colors = YgChartColors.resolveAutoColors(
+      context,
+      <Color?>[for (final YgChartSeries series in widget.series) series.color],
+    );
 
-    return widget.series.map<YgChartSeries>((YgChartSeries series) {
-      if (series.color != null) {
-        return series;
-      }
-
-      final Color color = palette[autoColorIndex % palette.length];
-      autoColorIndex++;
-
-      return series.copyWith(color: color);
-    }).toList();
+    return <YgChartSeries>[
+      for (final (int index, YgChartSeries series) in widget.series.indexed)
+        series.color != null ? series : series.copyWith(color: colors[index]),
+    ];
   }
 
   /// Unit of [axis], or null when no series is assigned to it.

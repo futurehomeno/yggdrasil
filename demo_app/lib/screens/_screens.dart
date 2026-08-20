@@ -41,6 +41,7 @@ export 'section_header/_section_header.dart';
 export 'segmented_button/_segmented_button.dart';
 export 'slider/_slider.dart';
 export 'snack_bar/_snack_bar.dart';
+export 'state_timeline/_state_timeline.dart';
 export 'stepper/_stepper.dart';
 export 'switch/_switch.dart';
 export 'switch_list_tile/_switch_list_tile.dart';
