@@ -89,11 +89,14 @@ class YgChartPainter extends CustomPainter {
   void paint(Canvas canvas, Size size) {
     dataManager.applyAnimationValue(animation.value);
 
-    final double leftGutterWidth = _measureGutterWidth(YgChartAxis.left, leftUnit);
+    // An axis without series (null unit) is not drawn and reserves no
+    // gutter; the data manager gives it a synthetic default range that must
+    // not surface as labels.
+    final double leftGutterWidth = leftUnit != null ? _measureGutterWidth(YgChartAxis.left, leftUnit) : 0.0;
     final double rightGutterWidth = rightUnit != null ? _measureGutterWidth(YgChartAxis.right, rightUnit) : 0.0;
 
     final Rect plotRect = Rect.fromLTRB(
-      leftGutterWidth + _axisLabelPadding,
+      leftUnit != null ? leftGutterWidth + _axisLabelPadding : 0.0,
       unitRowHeight,
       size.width - (rightUnit != null ? rightGutterWidth + _axisLabelPadding : 0.0),
       size.height - xLabelRowHeight - bottomInset,
@@ -109,7 +112,6 @@ class YgChartPainter extends CustomPainter {
     _paintGridAndAxisLabels(canvas, plotRect);
     _paintUnits(canvas, plotRect);
     _paintXLabels(canvas, plotRect);
-    _paintSelection(canvas, plotRect);
 
     // Group the series by type once; paint runs on every animation frame,
     // so the per-type painters must not re-filter the series themselves.
@@ -133,6 +135,10 @@ class YgChartPainter extends CustomPainter {
     _paintBands(canvas, plotRect, bandSeries);
     _paintLines(canvas, plotRect, lineSeries);
     canvas.restore();
+
+    // Above the data, so the guide stays visible on top of opaque bars and
+    // area fills.
+    _paintSelection(canvas, plotRect);
   }
 
   /// Width needed for the value labels and unit of [axis].
@@ -197,14 +203,16 @@ class YgChartPainter extends CustomPainter {
         gridPaint,
       );
 
-      _paintTickLabel(
-        canvas,
-        axis: YgChartAxis.left,
-        fraction: fraction,
-        anchorX: plotRect.left - _axisLabelPadding,
-        y: y,
-        alignRight: true,
-      );
+      if (leftUnit != null) {
+        _paintTickLabel(
+          canvas,
+          axis: YgChartAxis.left,
+          fraction: fraction,
+          anchorX: plotRect.left - _axisLabelPadding,
+          y: y,
+          alignRight: true,
+        );
+      }
 
       if (rightUnit != null) {
         _paintTickLabel(
@@ -241,7 +249,10 @@ class YgChartPainter extends CustomPainter {
   /// axis contains zero.
   YgChartAxis? _baselineAxis() {
     for (final YgChartAxis axis in YgChartAxis.values) {
-      if (axis == YgChartAxis.right && rightUnit == null) {
+      final String? unit = axis == YgChartAxis.left ? leftUnit : rightUnit;
+      if (unit == null) {
+        // The axis has no series; its synthetic default range must not
+        // produce a baseline.
         continue;
       }
 
@@ -537,50 +548,76 @@ class YgChartPainter extends CustomPainter {
       final List<double> lowerValues = dataManager.currentLowerValuesOf(series.id);
       final List<double> upperValues = dataManager.currentUpperValuesOf(series.id);
 
-      final List<Offset> centerPoints = <Offset>[];
-      final List<Offset> lowerPoints = <Offset>[];
-      final List<Offset> upperPoints = <Offset>[];
-
-      for (int i = 0; i < dataManager.valueCount; i++) {
-        if (centerValues[i].isNaN || lowerValues[i].isNaN || upperValues[i].isNaN) {
-          continue;
-        }
-
-        final double x = plotRect.left + (i + 0.5) * slotWidth;
-        centerPoints.add(Offset(x, _yFor(centerValues[i], series.axis, plotRect)));
-        lowerPoints.add(Offset(x, _yFor(lowerValues[i], series.axis, plotRect)));
-        upperPoints.add(Offset(x, _yFor(upperValues[i], series.axis, plotRect)));
-      }
-
-      if (centerPoints.isEmpty) {
-        continue;
-      }
-
       final Color color = series.color ?? baselineColor;
       final Color fillColor = color.withValues(alpha: color.a * YgChartColors.areaFillOpacity * opacity);
       final Color lineColor = _fadedColor(color, opacity);
 
-      if (centerPoints.length == 1) {
-        // A single column renders as a dot on a vertical band segment.
-        final Paint segmentPaint = Paint()
-          ..color = fillColor
-          ..strokeWidth = 2.0 * _lineWidth;
-        canvas.drawLine(upperPoints.first, lowerPoints.first, segmentPaint);
-        canvas.drawCircle(centerPoints.first, _lineWidth, Paint()..color = lineColor);
-        continue;
+      // NaN values are gaps; every gap-free run is drawn as its own band,
+      // like the runs of a stepped area series.
+      List<Offset> centerRun = <Offset>[];
+      List<Offset> lowerRun = <Offset>[];
+      List<Offset> upperRun = <Offset>[];
+      for (int i = 0; i <= dataManager.valueCount; i++) {
+        final bool valid =
+            i < dataManager.valueCount && !centerValues[i].isNaN && !lowerValues[i].isNaN && !upperValues[i].isNaN;
+
+        if (valid) {
+          final double x = plotRect.left + (i + 0.5) * slotWidth;
+          centerRun.add(Offset(x, _yFor(centerValues[i], series.axis, plotRect)));
+          lowerRun.add(Offset(x, _yFor(lowerValues[i], series.axis, plotRect)));
+          upperRun.add(Offset(x, _yFor(upperValues[i], series.axis, plotRect)));
+          continue;
+        }
+
+        if (centerRun.isEmpty) {
+          continue;
+        }
+
+        _paintBandRun(
+          canvas: canvas,
+          centerPoints: centerRun,
+          lowerPoints: lowerRun,
+          upperPoints: upperRun,
+          fillColor: fillColor,
+          lineColor: lineColor,
+        );
+        centerRun = <Offset>[];
+        lowerRun = <Offset>[];
+        upperRun = <Offset>[];
       }
-
-      final Paint fillPaint = Paint()..color = fillColor;
-      canvas.drawPath(_buildBandPath(upperPoints, lowerPoints), fillPaint);
-
-      // Unlike the line series the band is drawn raw: straight segments
-      // with sharp corners and ends.
-      final Paint linePaint = Paint()
-        ..color = lineColor
-        ..strokeWidth = _lineWidth
-        ..style = PaintingStyle.stroke;
-      canvas.drawPath(_buildStraightPath(centerPoints), linePaint);
     }
+  }
+
+  /// Paints one gap-free run of a band series.
+  void _paintBandRun({
+    required Canvas canvas,
+    required List<Offset> centerPoints,
+    required List<Offset> lowerPoints,
+    required List<Offset> upperPoints,
+    required Color fillColor,
+    required Color lineColor,
+  }) {
+    if (centerPoints.length == 1) {
+      // A single column renders as a dot on a vertical band segment.
+      final Paint segmentPaint = Paint()
+        ..color = fillColor
+        ..strokeWidth = 2.0 * _lineWidth;
+      canvas.drawLine(upperPoints.first, lowerPoints.first, segmentPaint);
+      canvas.drawCircle(centerPoints.first, _lineWidth, Paint()..color = lineColor);
+
+      return;
+    }
+
+    final Paint fillPaint = Paint()..color = fillColor;
+    canvas.drawPath(_buildBandPath(upperPoints, lowerPoints), fillPaint);
+
+    // Unlike the line series the band is drawn raw: straight segments
+    // with sharp corners and ends.
+    final Paint linePaint = Paint()
+      ..color = lineColor
+      ..strokeWidth = _lineWidth
+      ..style = PaintingStyle.stroke;
+    canvas.drawPath(_buildStraightPath(centerPoints), linePaint);
   }
 
   void _paintLines(Canvas canvas, Rect plotRect, List<YgChartSeries> lineSeries) {
@@ -597,26 +634,6 @@ class YgChartPainter extends CustomPainter {
       }
 
       final List<double> values = dataManager.currentValuesOf(series.id);
-      final List<Offset> points = <Offset>[];
-
-      for (int i = 0; i < dataManager.valueCount; i++) {
-        final double value = values[i];
-        if (value.isNaN) {
-          continue;
-        }
-
-        points.add(
-          Offset(
-            plotRect.left + (i + 0.5) * slotWidth,
-            _yFor(value, series.axis, plotRect),
-          ),
-        );
-      }
-
-      if (points.isEmpty) {
-        continue;
-      }
-
       final Color lineColor = series.color ?? baselineColor;
       final Paint linePaint = Paint()
         ..color = _fadedColor(lineColor, opacity)
@@ -625,13 +642,42 @@ class YgChartPainter extends CustomPainter {
         ..strokeJoin = StrokeJoin.round
         ..strokeCap = StrokeCap.round;
 
-      if (points.length == 1) {
-        canvas.drawCircle(points.first, _lineWidth, linePaint..style = PaintingStyle.fill);
-        continue;
-      }
+      // NaN values are gaps; every gap-free run is drawn as its own path
+      // instead of connecting the points on either side of a gap.
+      List<Offset> runPoints = <Offset>[];
+      for (int i = 0; i <= dataManager.valueCount; i++) {
+        final bool valid = i < dataManager.valueCount && !values[i].isNaN;
+        if (valid) {
+          runPoints.add(
+            Offset(
+              plotRect.left + (i + 0.5) * slotWidth,
+              _yFor(values[i], series.axis, plotRect),
+            ),
+          );
+          continue;
+        }
 
-      canvas.drawPath(_buildLinePath(points), linePaint);
+        if (runPoints.isEmpty) {
+          continue;
+        }
+
+        _paintLineRun(canvas, runPoints, linePaint);
+        runPoints = <Offset>[];
+      }
     }
+  }
+
+  /// Paints one gap-free run of a line series.
+  void _paintLineRun(Canvas canvas, List<Offset> points, Paint linePaint) {
+    if (points.length == 1) {
+      // A single sample between gaps renders as a dot.
+      canvas.drawCircle(points.first, _lineWidth, linePaint..style = PaintingStyle.fill);
+      linePaint.style = PaintingStyle.stroke;
+
+      return;
+    }
+
+    canvas.drawPath(_buildLinePath(points), linePaint);
   }
 
   /// Builds the closed outline of a band: along the upper bound, down to the

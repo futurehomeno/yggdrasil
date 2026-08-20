@@ -588,7 +588,9 @@ class YgChartDataManager {
 
     double step = _niceStepFor((paddedMax - paddedMin) / intervals);
     double finalMin = (paddedMin / step).floorToDouble() * step;
-    while (finalMin + intervals * step < paddedMax) {
+    // Every nice step is at least 25% larger, so a handful of iterations
+    // always suffices; the bound only guards against numerical edge cases.
+    for (int attempt = 0; attempt < 64 && finalMin + intervals * step < paddedMax; attempt++) {
       // Flooring the min pushed the top of the range below the data, grow
       // one nice step at a time so the range stays as tight as possible.
       step = _nextNiceStep(step);

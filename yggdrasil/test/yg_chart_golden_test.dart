@@ -190,6 +190,39 @@ void main() {
             ),
           ),
           GoldenTestScenario(
+            name: 'With NaN gap values',
+            child: const YgChart(
+              series: <YgChartSeries>[
+                YgChartSeries(
+                  id: 'line',
+                  label: 'Line',
+                  values: <double>[1.0, 2.0, double.nan, 2.5, double.nan, 1.5, 2.0],
+                  unit: 'kWh',
+                  type: YgChartSeriesType.line,
+                ),
+                YgChartSeries(
+                  id: 'band',
+                  label: 'Band',
+                  values: <double>[3.0, 3.2, 3.4, double.nan, 3.6, 3.4, 3.2],
+                  lowerValues: <double>[2.8, 3.0, 3.2, double.nan, 3.4, 3.2, 3.0],
+                  upperValues: <double>[3.2, 3.4, 3.6, double.nan, 3.8, 3.6, 3.4],
+                  unit: 'kWh',
+                  type: YgChartSeriesType.band,
+                ),
+              ],
+              xLabels: weekLabels,
+              size: YgChartSize.small,
+            ),
+          ),
+          GoldenTestScenario(
+            name: 'With only right axis series',
+            child: const YgChart(
+              series: <YgChartSeries>[price],
+              xLabels: weekLabels,
+              size: YgChartSize.small,
+            ),
+          ),
+          GoldenTestScenario(
             name: 'With xxsmall size and no legend',
             child: const YgChart(
               series: <YgChartSeries>[

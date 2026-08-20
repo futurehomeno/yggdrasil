@@ -649,6 +649,22 @@ void main() {
     );
   });
 
+  testWidgets('a chart with only right axis series draws no left axis', (WidgetTester tester) async {
+    await pumpChart(
+      tester,
+      const YgChart(
+        series: <YgChartSeries>[price],
+        xLabels: xLabels,
+      ),
+    );
+
+    final YgChartPainter painter = painterOf(tester);
+    expect(painter.leftUnit, isNull);
+    // No gutter is reserved for the absent left axis.
+    expect(painter.layout.plotRect!.left, 0.0);
+    expect(tester.takeException(), isNull);
+  });
+
   testWidgets('legend can be disabled', (WidgetTester tester) async {
     await pumpChart(
       tester,
