@@ -41,8 +41,7 @@ class EnergyOptimizationSettingsScreen extends StatelessWidget {
                 ),
                 YgListTile(
                   title: 'Energy price',
-                  subtitle:
-                      'Energy usage will be optimised based on your local energy prices',
+                  subtitle: 'Energy usage will be optimised based on your local energy prices',
                   leadingWidgets: <Widget>[YgIcon(YgIcons.moneyBag)],
                   trailingWidgets: <Widget>[
                     YgTag(
@@ -80,8 +79,7 @@ class EnergyOptimizationSettingsScreen extends StatelessWidget {
               children: <Widget>[
                 YgListTile(
                   title: 'Consumption limit',
-                  subtitle:
-                      'Maintains hourly energy threshold to avoid peak grid tariffs',
+                  subtitle: 'Maintains hourly energy threshold to avoid peak grid tariffs',
                   leadingWidgets: <Widget>[YgIcon(YgIcons.power)],
                   trailingWidgets: <Widget>[
                     YgTag(
@@ -99,8 +97,7 @@ class EnergyOptimizationSettingsScreen extends StatelessWidget {
                 ),
                 YgListTile(
                   title: 'Peak average vs consumption limit',
-                  subtitle:
-                      'Compares your peak usage average against the configured limit',
+                  subtitle: 'Compares your peak usage average against the configured limit',
                   leadingWidgets: <Widget>[YgIcon(YgIcons.power)],
                   trailingWidgets: <Widget>[
                     YgTag(
@@ -120,8 +117,7 @@ class EnergyOptimizationSettingsScreen extends StatelessWidget {
               children: <Widget>[
                 YgListTile(
                   title: 'Dynamic load balancing',
-                  subtitle:
-                      'Balances the consumption of your devices to protect the main breaker',
+                  subtitle: 'Balances the consumption of your devices to protect the main breaker',
                   leadingWidgets: <Widget>[YgIcon(YgIcons.power)],
                   trailingWidgets: <Widget>[
                     YgTag(

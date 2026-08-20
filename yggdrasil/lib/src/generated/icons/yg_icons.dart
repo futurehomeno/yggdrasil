@@ -902,6 +902,10 @@ class YgIcons {
   static const YgColorableIconData outdoors = YgColorableIconData(name: 'outdoors', path: 'assets/icons/outdoors.svg');
   static const YgColorableIconData panda = YgColorableIconData(name: 'panda', path: 'assets/icons/panda.svg');
   static const YgColorableIconData pause = YgColorableIconData(name: 'pause', path: 'assets/icons/pause.svg');
+  static const YgColorableIconData pauseFilled = YgColorableIconData(
+    name: 'pauseFilled',
+    path: 'assets/icons/pause_filled.svg',
+  );
   static const YgColorableIconData peakTimer = YgColorableIconData(
     name: 'peakTimer',
     path: 'assets/icons/peak_timer.svg',
@@ -938,6 +942,10 @@ class YgIcons {
   static const YgColorableIconData plant = YgColorableIconData(name: 'plant', path: 'assets/icons/plant.svg');
   static const YgColorableIconData play = YgColorableIconData(name: 'play', path: 'assets/icons/play.svg');
   static const YgColorableIconData playAlt = YgColorableIconData(name: 'playAlt', path: 'assets/icons/play_alt.svg');
+  static const YgColorableIconData playFilled = YgColorableIconData(
+    name: 'playFilled',
+    path: 'assets/icons/play_filled.svg',
+  );
   static const YgColorableIconData playQuestion = YgColorableIconData(
     name: 'playQuestion',
     path: 'assets/icons/play_question.svg',
@@ -1169,6 +1177,10 @@ class YgIcons {
   );
   static const YgColorableIconData steam = YgColorableIconData(name: 'steam', path: 'assets/icons/steam.svg');
   static const YgColorableIconData stop = YgColorableIconData(name: 'stop', path: 'assets/icons/stop.svg');
+  static const YgColorableIconData stopFilled = YgColorableIconData(
+    name: 'stopFilled',
+    path: 'assets/icons/stop_filled.svg',
+  );
   static const YgColorableIconData stopSmall = YgColorableIconData(
     name: 'stopSmall',
     path: 'assets/icons/stop_small.svg',
@@ -1759,6 +1771,7 @@ class YgIcons {
     outdoors,
     panda,
     pause,
+    pauseFilled,
     peakTimer,
     peakTimerColorful,
     permissionAllow,
@@ -1774,6 +1787,7 @@ class YgIcons {
     plant,
     play,
     playAlt,
+    playFilled,
     playQuestion,
     playlist,
     plus,
@@ -1861,6 +1875,7 @@ class YgIcons {
     statistics,
     steam,
     stop,
+    stopFilled,
     stopSmall,
     stopwatch,
     storage,

@@ -216,8 +216,7 @@ class _BottomNavigationBarScreenState extends State<BottomNavigationBarScreen> {
             ),
             YgSection.column(
               title: 'Live: insert and remove items in the middle',
-              subtitle:
-                  'Use the + / − buttons to inject or remove a tile in the middle of the bar. '
+              subtitle: 'Use the + / − buttons to inject or remove a tile in the middle of the bar. '
                   'Existing tiles smoothly resize to make room (or close the gap), and inserted '
                   'tiles fade in.',
               children: <Widget>[
@@ -261,8 +260,7 @@ class _BottomNavigationBarScreenState extends State<BottomNavigationBarScreen> {
             ),
             YgSection.column(
               title: 'Safe area',
-              subtitle:
-                  'For full-screen usage, pass the bar to YgLayout.bottomNavigationBar — '
+              subtitle: 'For full-screen usage, pass the bar to YgLayout.bottomNavigationBar — '
                   'the layout reserves space and strips the bottom inset from the content '
                   'so the bar owns the safe area (applySafeArea defaults to true). '
                   'When embedding the bar inside a parent that already pads the bottom '

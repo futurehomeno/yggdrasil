@@ -33,6 +33,20 @@ void main() {
               size: YgIconSize.small,
             ),
           ),
+          GoldenTestScenario(
+            name: 'With playback icons and their filled variants',
+            child: const Row(
+              mainAxisSize: MainAxisSize.min,
+              children: <Widget>[
+                YgIcon(YgIcons.play),
+                YgIcon(YgIcons.playFilled),
+                YgIcon(YgIcons.pause),
+                YgIcon(YgIcons.pauseFilled),
+                YgIcon(YgIcons.stop),
+                YgIcon(YgIcons.stopFilled),
+              ],
+            ),
+          ),
         ],
       );
 
