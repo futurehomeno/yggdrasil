@@ -173,7 +173,9 @@ void main() {
     final TestGesture press = await longPressAt(tester, tester.getCenter(find.byType(YgStateTimeline).first));
 
     expect(timelineIndicators(), findsNWidgets(2));
-    expect(chartPainterOf(tester).scrubFraction, moreOrLessEquals(0.5));
+    // The pressed fraction snaps to the center of column 12 of the 24
+    // column chart, so chart and timeline indicators share one x.
+    expect(chartPainterOf(tester).scrubFraction, moreOrLessEquals(12.5 / 24.0));
 
     await press.up();
     await tester.pumpAndSettle();
@@ -234,10 +236,38 @@ void main() {
 
     final TestGesture press = await longPressAt(tester, tester.getCenter(find.byType(YgStateTimeline)));
 
+    // The pressed moment snaps to the chart column center (12.5 of 24).
     expect(find.textContaining('Power: column 12'), findsOneWidget);
-    expect(find.textContaining('Energy: 12.0 h'), findsOneWidget);
+    expect(find.textContaining('Energy: 12.5 h'), findsOneWidget);
 
     await press.up();
+    await tester.pumpAndSettle();
+  });
+
+  testWidgets('default chart value skips series hidden through the legend', (WidgetTester tester) async {
+    await pumpContainer(tester, mixedContainer);
+
+    // Hide the only series of the power chart through its legend; the
+    // subtitle no longer reports a value that has no on-plot mark.
+    await tester.tap(find.text('Power').last);
+    await tester.pumpAndSettle();
+
+    final TestGesture press = await longPressAt(tester, tester.getCenter(find.byType(YgStateTimeline).first));
+
+    expect(find.textContaining('Power:'), findsNothing);
+    expect(find.textContaining('Mode: Eco'), findsOneWidget);
+
+    await press.up();
+    await tester.pumpAndSettle();
+
+    // Toggling it back on restores the value.
+    await tester.tap(find.text('Power').last);
+    await tester.pumpAndSettle();
+
+    final TestGesture secondPress = await longPressAt(tester, tester.getCenter(find.byType(YgStateTimeline).first));
+    expect(find.textContaining('Power: 2.5 kW'), findsOneWidget);
+
+    await secondPress.up();
     await tester.pumpAndSettle();
   });
 

@@ -23,12 +23,15 @@ import 'package:yggdrasil/src/utils/_utils.dart';
 ///   inset to match the widest axis gutters of the charts.
 /// - Long pressing any entry draws an orange indicator at the pressed
 ///   moment on every entry: a capsule handle on timeline bars and a full
-///   height line with a dot per line series on chart plots. On charts the
-///   indicator snaps to the column under the pressed moment.
+///   height line with a dot per line series on chart plots. With chart
+///   entries the pressed moment snaps to the column grid of the chart
+///   with the most columns, so the indicator sits at the same x on every
+///   entry; timeline-only containers scrub continuously.
 /// - While scrubbing every subtitle shows the value at the pressed moment,
 ///   for example "Mode: Heat" or "Power: 2.5 kW". Defaults are the label
 ///   of the active state (timelines) and the first series value with its
-///   unit (charts); the valueBuilder of an entry overrides the text.
+///   unit (charts, skipping series hidden through the legend); the
+///   valueBuilder of an entry overrides the text.
 class YgChartContainer extends StatefulWidget with StatefulWidgetDebugMixin {
   const YgChartContainer({
     super.key,
@@ -66,12 +69,25 @@ class YgChartContainer extends StatefulWidget with StatefulWidgetDebugMixin {
 }
 
 class _YgChartContainerState extends State<YgChartContainer> {
-  /// The long pressed moment on the shared time span, null while idle.
-  double? _scrubPosition;
+  /// The long pressed moment as a fraction (0..1) of the shared plot
+  /// width, null while idle.
+  ///
+  /// Already snapped to the chart column grid, see [_snapFraction].
+  double? _scrubFraction;
 
   /// One layout per chart entry, keyed by entry index, to read the natural
   /// axis gutter widths from.
   final Map<int, YgChartLayout> _chartLayouts = <int, YgChartLayout>{};
+
+  /// The plot insets applied by the last build.
+  ///
+  /// Compared against the freshly computed insets on layout notifications,
+  /// so only an actual gutter change rebuilds the container.
+  (double, double) _appliedPlotInsets = (0.0, 0.0);
+
+  /// Series hidden through the legend of a chart entry, keyed by entry
+  /// index, so the default subtitle value skips them like the chart does.
+  final Map<int, Set<String>> _hiddenSeriesByEntry = <int, Set<String>>{};
 
   @override
   void initState() {
@@ -83,11 +99,6 @@ class _YgChartContainerState extends State<YgChartContainer> {
   void didUpdateWidget(YgChartContainer oldWidget) {
     super.didUpdateWidget(oldWidget);
     _syncChartLayouts();
-
-    final double? scrubPosition = _scrubPosition;
-    if (scrubPosition != null && (scrubPosition < widget.start || scrubPosition > widget.end)) {
-      _scrubPosition = null;
-    }
   }
 
   @override
@@ -102,13 +113,14 @@ class _YgChartContainerState extends State<YgChartContainer> {
   @override
   Widget build(BuildContext context) {
     assert(_debugValidateEntries());
+    _appliedPlotInsets = _plotInsets;
 
     return GestureDetector(
       behavior: HitTestBehavior.opaque,
-      onLongPressStart: (LongPressStartDetails details) => _updateScrubPosition(details.localPosition),
-      onLongPressMoveUpdate: (LongPressMoveUpdateDetails details) => _updateScrubPosition(details.localPosition),
-      onLongPressEnd: (LongPressEndDetails details) => _clearScrubPosition(),
-      onLongPressCancel: _clearScrubPosition,
+      onLongPressStart: (LongPressStartDetails details) => _updateScrubFraction(details.localPosition),
+      onLongPressMoveUpdate: (LongPressMoveUpdateDetails details) => _updateScrubFraction(details.localPosition),
+      onLongPressEnd: (LongPressEndDetails details) => _clearScrubFraction(),
+      onLongPressCancel: _clearScrubFraction,
       child: Column(
         mainAxisSize: MainAxisSize.min,
         crossAxisAlignment: CrossAxisAlignment.stretch,
@@ -124,13 +136,11 @@ class _YgChartContainerState extends State<YgChartContainer> {
   }
 
   Widget _buildEntry(BuildContext context, int index, YgChartContainerEntry entry) {
-    final double? scrubPosition = _scrubPosition;
-
     return Column(
       mainAxisSize: MainAxisSize.min,
       crossAxisAlignment: CrossAxisAlignment.stretch,
       children: <Widget>[
-        _buildSubtitle(context, entry, scrubPosition),
+        _buildSubtitle(context, index, entry),
         Padding(
           padding: EdgeInsets.only(top: context.tokens.dimensions.xxs),
           child: switch (entry) {
@@ -144,7 +154,7 @@ class _YgChartContainerState extends State<YgChartContainer> {
 
   Widget _buildTimeline(BuildContext context, YgChartContainerTimeline entry) {
     final double? scrubFraction = _scrubFraction;
-    final (double leftInset, double rightInset) = _plotInsets;
+    final (double leftInset, double rightInset) = _appliedPlotInsets;
 
     return Padding(
       // Aligns the timeline bar with the chart plots, see _plotInsets.
@@ -155,8 +165,8 @@ class _YgChartContainerState extends State<YgChartContainer> {
             : YgChartContainerIndicatorPainter(
                 fraction: scrubFraction,
                 barHeight: entry.size.barHeight,
-                color: context.tokens.colors.backgroundAccentDefault,
-                ringColor: context.tokens.colors.backgroundDefault,
+                color: YgChartScrubHandle.colorOf(context),
+                ringColor: YgChartScrubHandle.ringColorOf(context),
               ),
         child: YgStateTimeline(
           series: entry.series,
@@ -171,7 +181,7 @@ class _YgChartContainerState extends State<YgChartContainer> {
   }
 
   Widget _buildChart(BuildContext context, int index, YgChartContainerChart entry) {
-    final (double leftInset, double rightInset) = _plotInsets;
+    final (double leftInset, double rightInset) = _appliedPlotInsets;
 
     return YgChart(
       series: entry.series,
@@ -180,6 +190,7 @@ class _YgChartContainerState extends State<YgChartContainer> {
       showLegend: entry.showLegend,
       leftAxisSnap: entry.leftAxisSnap,
       rightAxisSnap: entry.rightAxisSnap,
+      onSeriesToggled: (YgChartSeries series, bool visible) => _onSeriesToggled(index, series, visible),
       scrubFraction: _scrubFraction,
       minLeftPlotInset: leftInset,
       minRightPlotInset: rightInset,
@@ -189,9 +200,10 @@ class _YgChartContainerState extends State<YgChartContainer> {
 
   /// The subtitle above the chart, with the value at the scrubbed moment
   /// appended while scrubbing.
-  Widget _buildSubtitle(BuildContext context, YgChartContainerEntry entry, double? scrubPosition) {
+  Widget _buildSubtitle(BuildContext context, int index, YgChartContainerEntry entry) {
     final YgColor colors = context.tokens.colors;
-    final String? valueText = scrubPosition == null ? null : _valueTextAt(entry, scrubPosition);
+    final double? scrubFraction = _scrubFraction;
+    final String? valueText = scrubFraction == null ? null : _valueTextAt(index, entry, scrubFraction);
 
     return Text.rich(
       TextSpan(
@@ -212,10 +224,12 @@ class _YgChartContainerState extends State<YgChartContainer> {
     );
   }
 
-  /// The text shown after the subtitle of [entry] for [position].
-  String? _valueTextAt(YgChartContainerEntry entry, double position) {
+  /// The text shown after the subtitle of the entry at [index] for the
+  /// scrubbed [fraction].
+  String? _valueTextAt(int index, YgChartContainerEntry entry, double fraction) {
     switch (entry) {
       case YgChartContainerTimeline():
+        final double position = _positionOf(fraction);
         final YgChartContainerValueBuilder? valueBuilder = entry.valueBuilder;
         if (valueBuilder != null) {
           return valueBuilder(position);
@@ -234,37 +248,32 @@ class _YgChartContainerState extends State<YgChartContainer> {
         return null;
 
       case YgChartContainerChart():
-        final int index = _columnIndexAt(entry, position);
+        if (entry.xLabels.isEmpty) {
+          return null;
+        }
+
+        final int column = YgChartPainter.columnAt(fraction, entry.xLabels.length);
         final YgChartContainerColumnValueBuilder? valueBuilder = entry.valueBuilder;
         if (valueBuilder != null) {
-          return valueBuilder(index);
+          return valueBuilder(column);
         }
 
-        if (entry.series.isEmpty) {
-          return null;
+        // The first series still shown, skipping series hidden through the
+        // chart legend so the value always has an on-plot mark.
+        final Set<String> hiddenIds = _hiddenSeriesByEntry[index] ?? const <String>{};
+        for (final YgChartSeries series in entry.series) {
+          if (hiddenIds.contains(series.id)) {
+            continue;
+          }
+          if (column >= series.values.length || series.values[column].isNaN) {
+            return null;
+          }
+
+          return '${_formatValue(series.values[column])} ${series.unit}'.trimRight();
         }
 
-        final YgChartSeries series = entry.series.first;
-        if (index >= series.values.length || series.values[index].isNaN) {
-          return null;
-        }
-
-        return '${_formatValue(series.values[index])} ${series.unit}'.trimRight();
+        return null;
     }
-  }
-
-  /// Index of the column of [entry] the scrubbed [position] falls into,
-  /// matching the column the chart snaps its indicator to.
-  int _columnIndexAt(YgChartContainerChart entry, double position) {
-    final double span = widget.end - widget.start;
-    final int count = entry.xLabels.length;
-    if (span <= 0.0 || count == 0) {
-      return 0;
-    }
-
-    final double fraction = (position - widget.start) / span;
-
-    return math.max(0, math.min(count - 1, (fraction * count).floor()));
   }
 
   /// A chart value without decimal noise: "2.5 kW" but "3 kW".
@@ -274,15 +283,9 @@ class _YgChartContainerState extends State<YgChartContainer> {
     return text.endsWith('.0') ? text.substring(0, text.length - 2) : text;
   }
 
-  /// The scrubbed moment as a fraction (0..1) of the shared plot width.
-  double? get _scrubFraction {
-    final double? scrubPosition = _scrubPosition;
-    final double span = widget.end - widget.start;
-    if (scrubPosition == null || span <= 0.0) {
-      return null;
-    }
-
-    return (scrubPosition - widget.start) / span;
+  /// The scrubbed [fraction] as a value on the shared time span.
+  double _positionOf(double fraction) {
+    return widget.start + fraction * (widget.end - widget.start);
   }
 
   /// Horizontal insets aligning all plots: the widest natural axis gutters
@@ -320,6 +323,7 @@ class _YgChartContainerState extends State<YgChartContainer> {
 
       return true;
     });
+    _hiddenSeriesByEntry.removeWhere((int index, Set<String> ids) => !chartIndexes.contains(index));
 
     for (final int index in chartIndexes) {
       _chartLayouts.putIfAbsent(index, () => YgChartLayout()..addListener(_onChartLayoutChanged));
@@ -329,21 +333,35 @@ class _YgChartContainerState extends State<YgChartContainer> {
   /// Re-applies the plot insets after a chart re-measured its gutters.
   ///
   /// The layouts notify after the frame that changed them, so rebuilding
-  /// here is safe. The rebuild converges: the insets passed down do not
-  /// change the natural gutter widths reported back.
+  /// here is safe, and only an actual inset change rebuilds at all. The
+  /// rebuild converges: the insets passed down do not change the natural
+  /// gutter widths reported back.
   void _onChartLayoutChanged() {
-    if (mounted) {
+    if (mounted && _plotInsets != _appliedPlotInsets) {
       setState(() {});
     }
   }
 
-  void _updateScrubPosition(Offset localPosition) {
+  /// Records series hidden through the legend of the chart entry at
+  /// [index], see [_valueTextAt].
+  void _onSeriesToggled(int index, YgChartSeries series, bool visible) {
+    setState(() {
+      final Set<String> hiddenIds = _hiddenSeriesByEntry.putIfAbsent(index, () => <String>{});
+      if (visible) {
+        hiddenIds.remove(series.id);
+      } else {
+        hiddenIds.add(series.id);
+      }
+    });
+  }
+
+  void _updateScrubFraction(Offset localPosition) {
     final Size? size = context.size;
     if (size == null) {
       return;
     }
 
-    final (double leftInset, double rightInset) = _plotInsets;
+    final (double leftInset, double rightInset) = _appliedPlotInsets;
     final double plotWidth = size.width - leftInset - rightInset;
     if (plotWidth <= 0.0) {
       return;
@@ -351,17 +369,39 @@ class _YgChartContainerState extends State<YgChartContainer> {
 
     // The plots of all entries are aligned, so the pressed fraction maps to
     // the same moment no matter which entry is pressed.
-    final double fraction = math.max(0.0, math.min(1.0, (localPosition.dx - leftInset) / plotWidth));
-    final double position = widget.start + fraction * (widget.end - widget.start);
+    final double fraction = _snapFraction(
+      math.max(0.0, math.min(1.0, (localPosition.dx - leftInset) / plotWidth)),
+    );
 
-    if (position != _scrubPosition) {
-      setState(() => _scrubPosition = position);
+    if (fraction != _scrubFraction) {
+      setState(() => _scrubFraction = fraction);
     }
   }
 
-  void _clearScrubPosition() {
-    if (_scrubPosition != null) {
-      setState(() => _scrubPosition = null);
+  /// Snaps [fraction] to the center of the column under it on the chart
+  /// entry with the most columns.
+  ///
+  /// The chart painters snap their indicator to a column center anyway, so
+  /// without this the continuous timeline handles would sit up to half a
+  /// column off the chart handles. Timeline-only containers keep the
+  /// continuous fraction.
+  double _snapFraction(double fraction) {
+    int columnCount = 0;
+    for (final YgChartContainerEntry entry in widget.entries) {
+      if (entry is YgChartContainerChart) {
+        columnCount = math.max(columnCount, entry.xLabels.length);
+      }
+    }
+    if (columnCount == 0) {
+      return fraction;
+    }
+
+    return (YgChartPainter.columnAt(fraction, columnCount) + 0.5) / columnCount;
+  }
+
+  void _clearScrubFraction() {
+    if (_scrubFraction != null) {
+      setState(() => _scrubFraction = null);
     }
   }
 

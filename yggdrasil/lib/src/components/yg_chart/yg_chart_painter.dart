@@ -7,6 +7,7 @@ import 'package:yggdrasil/src/components/yg_chart/enums/_enums.dart';
 import 'package:yggdrasil/src/components/yg_chart/models/_models.dart';
 import 'package:yggdrasil/src/components/yg_chart/yg_chart_colors.dart';
 import 'package:yggdrasil/src/components/yg_chart/yg_chart_data_manager.dart';
+import 'package:yggdrasil/src/theme/_theme.dart';
 
 /// Paints the grid, axis labels, bars, lines and bands of a [YgChart].
 ///
@@ -36,6 +37,15 @@ class YgChartPainter extends CustomPainter {
     this.scrubColor,
     this.scrubRingColor,
   }) : super(repaint: animation);
+
+  /// The column index the position at [fraction] (0..1 of the plot width)
+  /// falls into, clamped to the valid range.
+  ///
+  /// Shared by the tooltip selection, the scrub indicator and the subtitle
+  /// values of a [YgChartContainer], so they always name the same column.
+  static int columnAt(double fraction, int columnCount) {
+    return math.max(0, math.min(columnCount - 1, (fraction * columnCount).floor()));
+  }
 
   /// Height of the row above the plot showing the axis units.
   static const double unitRowHeight = 22.0;
@@ -913,10 +923,7 @@ class YgChartPainter extends CustomPainter {
     }
 
     final double slotWidth = plotRect.width / dataManager.valueCount;
-    final int index = math.max(
-      0,
-      math.min(dataManager.valueCount - 1, (scrubFraction * dataManager.valueCount).floor()),
-    );
+    final int index = columnAt(scrubFraction, dataManager.valueCount);
     final double x = plotRect.left + (index + 0.5) * slotWidth;
 
     YgChartScrubHandle.paint(
@@ -929,6 +936,8 @@ class YgChartPainter extends CustomPainter {
     );
 
     final Color? ringColor = scrubRingColor;
+    final Paint? ringPaint = ringColor == null ? null : (Paint()..color = ringColor);
+    final Paint dotPaint = Paint();
     for (final YgChartSeries series in lineSeries) {
       final double opacity = dataManager.opacityOf(series.id);
       if (opacity <= 0.0) {
@@ -941,10 +950,11 @@ class YgChartPainter extends CustomPainter {
       }
 
       final Offset dotCenter = Offset(x, _yFor(value, series.axis, plotRect));
-      if (ringColor != null) {
-        canvas.drawCircle(dotCenter, _scrubDotRadius + _scrubDotRingWidth, Paint()..color = ringColor);
+      if (ringPaint != null) {
+        canvas.drawCircle(dotCenter, _scrubDotRadius + _scrubDotRingWidth, ringPaint);
       }
-      canvas.drawCircle(dotCenter, _scrubDotRadius, Paint()..color = series.color ?? scrubColor);
+      dotPaint.color = series.color ?? scrubColor;
+      canvas.drawCircle(dotCenter, _scrubDotRadius, dotPaint);
     }
   }
 
@@ -1055,6 +1065,16 @@ class YgChartTextLayoutCache {
 /// on every entry.
 class YgChartScrubHandle {
   const YgChartScrubHandle._();
+
+  /// Resolves the color of the handle, the design system orange.
+  ///
+  /// One place for the token choice, so the handle keeps the same color on
+  /// chart and timeline entries.
+  static Color colorOf(BuildContext context) => context.tokens.colors.backgroundAccentDefault;
+
+  /// Resolves the color of the ring around the handle, the surface behind
+  /// the chart.
+  static Color ringColorOf(BuildContext context) => context.tokens.colors.backgroundDefault;
 
   /// Width of the capsule handle.
   static const double lineWidth = 4.0;

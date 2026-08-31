@@ -304,8 +304,8 @@ class _YgChartState extends State<YgChart> with TickerProviderStateMixin {
                   minLeftInset: widget.minLeftPlotInset,
                   minRightInset: widget.minRightPlotInset,
                   scrubFraction: widget.scrubFraction,
-                  scrubColor: colors.backgroundAccentDefault,
-                  scrubRingColor: colors.backgroundDefault,
+                  scrubColor: YgChartScrubHandle.colorOf(context),
+                  scrubRingColor: YgChartScrubHandle.ringColorOf(context),
                 ),
               ),
             ),
@@ -552,9 +552,10 @@ class _YgChartState extends State<YgChart> with TickerProviderStateMixin {
       return;
     }
 
-    final double slotWidth = plotRect.width / widget.xLabels.length;
-    final int rawIndex = ((localPosition.dx - plotRect.left) / slotWidth).floor();
-    final int index = math.max(0, math.min(widget.xLabels.length - 1, rawIndex));
+    final int index = YgChartPainter.columnAt(
+      (localPosition.dx - plotRect.left) / plotRect.width,
+      widget.xLabels.length,
+    );
 
     if (index != _selectedIndex) {
       setState(() => _selectedIndex = index);
