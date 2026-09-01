@@ -37,7 +37,11 @@ import 'package:yggdrasil/src/utils/_utils.dart';
 ///   tappable badges in the upper part of the plot, see [eventMarkers].
 /// - Events too numerous for badges can be shown on an event density rail
 ///   between the plot and the x-axis labels, where dragging selects a one
-///   column wide band, see [railEvents].
+///   column wide band; the selected band and the plot column above it are
+///   highlighted as one bar, see [railEvents] and [selectedRailBand].
+/// - Inside a [YgChartContainer] the chart is scrubbed externally and its
+///   plot aligned with the other entries, see [scrubFraction] and
+///   [minLeftPlotInset].
 class YgChart extends StatefulWidget with StatefulWidgetDebugMixin {
   const YgChart({
     super.key,
@@ -55,6 +59,10 @@ class YgChart extends StatefulWidget with StatefulWidgetDebugMixin {
     this.onRailBandSelected,
     this.onSeriesToggled,
     this.tooltipBuilder,
+    this.scrubFraction,
+    this.minLeftPlotInset = 0.0,
+    this.minRightPlotInset = 0.0,
+    this.layout,
   });
 
   /// The data series shown on the chart.
@@ -118,11 +126,14 @@ class YgChart extends StatefulWidget with StatefulWidgetDebugMixin {
   /// no rail is shown.
   final List<YgChartRailEvent> railEvents;
 
-  /// Index of the column band outlined on the event density rail.
+  /// Index of the column band selected on the event density rail.
+  ///
+  /// The band is outlined and tinted on the rail and its column is washed
+  /// over the full plot height, so the whole bar reads as selected.
   ///
   /// Like [selectedEventMarkerIndex] the selection is owned by the caller:
   /// react to [onRailBandSelected], store the selection and render the
-  /// events of the band wherever fits. When null no band is outlined.
+  /// events of the band wherever fits. When null no band is marked.
   final int? selectedRailBand;
 
   /// Called with the band under the pointer while tapping or dragging along
@@ -142,6 +153,32 @@ class YgChart extends StatefulWidget with StatefulWidgetDebugMixin {
   /// the plot and horizontally follows the pressed column. When null the
   /// chart has no tooltip interaction.
   final YgChartTooltipBuilder? tooltipBuilder;
+
+  /// Fraction (0..1) of the plot width an external scrub indicator is
+  /// drawn at: the accent colored capsule handle over the full plot
+  /// height ([YgChartScrubHandle]), exactly at the given fraction so it
+  /// stays aligned across charts, with a dot where each line series
+  /// crosses it.
+  ///
+  /// Driven by a wrapping [YgChartContainer], which owns the long press
+  /// gesture; combine with a null [tooltipBuilder] so the chart does not
+  /// compete for the gesture. When null no indicator is drawn.
+  final double? scrubFraction;
+
+  /// Lower bounds for the horizontal plot insets, so a [YgChartContainer]
+  /// can align the plots of all of its charts to the widest axis gutters.
+  ///
+  /// The chart never shrinks its gutters below what its own axis labels
+  /// need. Zero by default.
+  final double minLeftPlotInset;
+  final double minRightPlotInset;
+
+  /// Layout the plot geometry is reported through, owned by the caller.
+  ///
+  /// A [YgChartContainer] passes one per chart to read the natural axis
+  /// gutter widths, see [YgChartLayout.naturalLeftInset]. When null the
+  /// chart keeps its geometry to itself.
+  final YgChartLayout? layout;
 
   @override
   State<YgChart> createState() => _YgChartState();
@@ -168,7 +205,12 @@ class _YgChartState extends State<YgChart> with TickerProviderStateMixin {
   int? _selectedIndex;
 
   /// Geometry of the last paint, used to map gestures to value indexes.
-  final YgChartLayout _layout = YgChartLayout();
+  ///
+  /// Only used when the caller does not pass [YgChart.layout]; an external
+  /// layout is owned and disposed by the caller.
+  final YgChartLayout _ownLayout = YgChartLayout();
+
+  YgChartLayout get _layout => widget.layout ?? _ownLayout;
 
   /// Laid out label text, reused across the paints of an animation.
   final YgChartTextLayoutCache _textCache = YgChartTextLayoutCache();
@@ -188,7 +230,7 @@ class _YgChartState extends State<YgChart> with TickerProviderStateMixin {
   @override
   void dispose() {
     _controller.dispose();
-    _layout.dispose();
+    _ownLayout.dispose();
     _textCache.dispose();
     super.dispose();
   }
@@ -258,6 +300,13 @@ class _YgChartState extends State<YgChart> with TickerProviderStateMixin {
                   bottomInset: _railInset,
                   selectedIndex: hasTooltip ? selectedIndex : null,
                   selectionColor: colors.borderDefault,
+                  highlightedIndex: widget.selectedRailBand,
+                  highlightColor: colors.textDefault.withValues(alpha: 0.08),
+                  minLeftInset: widget.minLeftPlotInset,
+                  minRightInset: widget.minRightPlotInset,
+                  scrubFraction: widget.scrubFraction,
+                  scrubColor: YgChartScrubHandle.colorOf(context),
+                  scrubRingColor: YgChartScrubHandle.ringColorOf(context),
                 ),
               ),
             ),
@@ -504,9 +553,10 @@ class _YgChartState extends State<YgChart> with TickerProviderStateMixin {
       return;
     }
 
-    final double slotWidth = plotRect.width / widget.xLabels.length;
-    final int rawIndex = ((localPosition.dx - plotRect.left) / slotWidth).floor();
-    final int index = math.max(0, math.min(widget.xLabels.length - 1, rawIndex));
+    final int index = YgChartPainter.columnAt(
+      (localPosition.dx - plotRect.left) / plotRect.width,
+      widget.xLabels.length,
+    );
 
     if (index != _selectedIndex) {
       setState(() => _selectedIndex = index);

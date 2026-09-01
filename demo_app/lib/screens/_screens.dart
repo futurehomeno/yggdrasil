@@ -10,6 +10,7 @@ export 'button_group/_button_group.dart';
 export 'callout/_callout.dart';
 export 'card/_card.dart';
 export 'chart/_chart.dart';
+export 'chart_container/_chart_container.dart';
 export 'checkbox/_checkbox.dart';
 export 'checkbox_list_tile/_checkbox_list_tile.dart';
 export 'dialog/_dialog.dart';

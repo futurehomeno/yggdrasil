@@ -7,6 +7,7 @@ import 'package:yggdrasil/src/components/yg_chart/enums/_enums.dart';
 import 'package:yggdrasil/src/components/yg_chart/models/_models.dart';
 import 'package:yggdrasil/src/components/yg_chart/yg_chart_colors.dart';
 import 'package:yggdrasil/src/components/yg_chart/yg_chart_data_manager.dart';
+import 'package:yggdrasil/src/theme/_theme.dart';
 
 /// Paints the grid, axis labels, bars, lines and bands of a [YgChart].
 ///
@@ -28,7 +29,23 @@ class YgChartPainter extends CustomPainter {
     this.bottomInset = 0.0,
     this.selectedIndex,
     this.selectionColor,
+    this.highlightedIndex,
+    this.highlightColor,
+    this.minLeftInset = 0.0,
+    this.minRightInset = 0.0,
+    this.scrubFraction,
+    this.scrubColor,
+    this.scrubRingColor,
   }) : super(repaint: animation);
+
+  /// The column index the position at [fraction] (0..1 of the plot width)
+  /// falls into, clamped to the valid range.
+  ///
+  /// Shared by the tooltip selection, the scrub indicator and the subtitle
+  /// values of a [YgChartContainer], so they always name the same column.
+  static int columnAt(double fraction, int columnCount) {
+    return math.max(0, math.min(columnCount - 1, (fraction * columnCount).floor()));
+  }
 
   /// Height of the row above the plot showing the axis units.
   static const double unitRowHeight = 22.0;
@@ -48,6 +65,13 @@ class YgChartPainter extends CustomPainter {
 
   static const double _lineCurveHalfLength = 6.0;
   static const double _xLabelSpacing = 8.0;
+
+  static const double _scrubDotRadius = 3.0;
+  static const double _scrubDotRingWidth = 2.0;
+
+  /// Corner radius of the column highlight wash, matching the rounding of
+  /// the event density rail track.
+  static const double _highlightRadius = 4.0;
 
   final YgChartDataManager dataManager;
   final Animation<double> animation;
@@ -85,6 +109,41 @@ class YgChartPainter extends CustomPainter {
   /// Color of the dashed line marking [selectedIndex].
   final Color? selectionColor;
 
+  /// Index of the column washed with [highlightColor] over the full plot
+  /// height, drawn behind the data.
+  ///
+  /// Marks the band selected on the event density rail, so the rail band
+  /// and the plot column above it read as one highlighted bar. When null
+  /// no column is highlighted.
+  final int? highlightedIndex;
+
+  /// Color of the translucent wash marking [highlightedIndex].
+  final Color? highlightColor;
+
+  /// Lower bounds for the horizontal plot insets.
+  ///
+  /// A [YgChartContainer] widens the axis gutters of its charts to the
+  /// largest one, so all plots align. The naturally measured insets are
+  /// reported back through [YgChartLayout.naturalLeftInset].
+  final double minLeftInset;
+  final double minRightInset;
+
+  /// Fraction (0..1) of the plot width an external scrub indicator is
+  /// drawn at, exactly as given so it stays aligned across charts.
+  ///
+  /// Driven by a wrapping [YgChartContainer]; unlike [selectedIndex] the
+  /// indicator is the [YgChartScrubHandle] capsule in [scrubColor] with a
+  /// dot where each line series crosses it. When null no indicator is
+  /// drawn.
+  final double? scrubFraction;
+
+  /// Color of the scrub indicator handle and its dots.
+  final Color? scrubColor;
+
+  /// Color of the ring around the scrub indicator dots, the surface behind
+  /// the chart.
+  final Color? scrubRingColor;
+
   @override
   void paint(Canvas canvas, Size size) {
     dataManager.applyAnimationValue(animation.value);
@@ -95,15 +154,20 @@ class YgChartPainter extends CustomPainter {
     final double leftGutterWidth = leftUnit != null ? _measureGutterWidth(YgChartAxis.left, leftUnit) : 0.0;
     final double rightGutterWidth = rightUnit != null ? _measureGutterWidth(YgChartAxis.right, rightUnit) : 0.0;
 
+    final double naturalLeftInset = leftUnit != null ? leftGutterWidth + _axisLabelPadding : 0.0;
+    final double naturalRightInset = rightUnit != null ? rightGutterWidth + _axisLabelPadding : 0.0;
+
     final Rect plotRect = Rect.fromLTRB(
-      leftUnit != null ? leftGutterWidth + _axisLabelPadding : 0.0,
+      math.max(naturalLeftInset, minLeftInset),
       unitRowHeight,
-      size.width - (rightUnit != null ? rightGutterWidth + _axisLabelPadding : 0.0),
+      size.width - math.max(naturalRightInset, minRightInset),
       size.height - xLabelRowHeight - bottomInset,
     );
 
     layout.plotRect = plotRect;
     layout.canvasSize = size;
+    layout.naturalLeftInset = naturalLeftInset;
+    layout.naturalRightInset = naturalRightInset;
 
     if (plotRect.width <= 0.0 || plotRect.height <= 0.0) {
       return;
@@ -112,6 +176,7 @@ class YgChartPainter extends CustomPainter {
     _paintGridAndAxisLabels(canvas, plotRect);
     _paintUnits(canvas, plotRect);
     _paintXLabels(canvas, plotRect);
+    _paintColumnHighlight(canvas, plotRect);
 
     // Group the series by type once; paint runs on every animation frame,
     // so the per-type painters must not re-filter the series themselves.
@@ -139,6 +204,7 @@ class YgChartPainter extends CustomPainter {
     // Above the data, so the guide stays visible on top of opaque bars and
     // area fills.
     _paintSelection(canvas, plotRect);
+    _paintScrub(canvas, plotRect, lineSeries);
   }
 
   /// Width needed for the value labels and unit of [axis].
@@ -184,7 +250,14 @@ class YgChartPainter extends CustomPainter {
         oldDelegate.layout != layout ||
         oldDelegate.bottomInset != bottomInset ||
         oldDelegate.selectedIndex != selectedIndex ||
-        oldDelegate.selectionColor != selectionColor;
+        oldDelegate.selectionColor != selectionColor ||
+        oldDelegate.highlightedIndex != highlightedIndex ||
+        oldDelegate.highlightColor != highlightColor ||
+        oldDelegate.minLeftInset != minLeftInset ||
+        oldDelegate.minRightInset != minRightInset ||
+        oldDelegate.scrubFraction != scrubFraction ||
+        oldDelegate.scrubColor != scrubColor ||
+        oldDelegate.scrubRingColor != scrubRingColor;
   }
 
   void _paintGridAndAxisLabels(Canvas canvas, Rect plotRect) {
@@ -808,6 +881,85 @@ class YgChartPainter extends CustomPainter {
     canvas.drawPath(dashedLine, selectionPaint);
   }
 
+  /// Washes the highlighted column over the full plot height, see
+  /// [highlightedIndex].
+  ///
+  /// Painted above the grid but below the data, so the wash stays subtle
+  /// and the series remain crisp on top of it.
+  void _paintColumnHighlight(Canvas canvas, Rect plotRect) {
+    final int? highlightedIndex = this.highlightedIndex;
+    final Color? highlightColor = this.highlightColor;
+    if (highlightedIndex == null ||
+        highlightColor == null ||
+        highlightedIndex < 0 ||
+        highlightedIndex >= dataManager.valueCount) {
+      return;
+    }
+
+    final double slotWidth = plotRect.width / dataManager.valueCount;
+
+    canvas.drawRRect(
+      RRect.fromRectAndRadius(
+        Rect.fromLTRB(
+          plotRect.left + highlightedIndex * slotWidth,
+          plotRect.top,
+          plotRect.left + (highlightedIndex + 1) * slotWidth,
+          plotRect.bottom,
+        ),
+        const Radius.circular(_highlightRadius),
+      ),
+      Paint()..color = highlightColor,
+    );
+  }
+
+  /// Marks the externally scrubbed column with the shared capsule handle
+  /// over the full plot height and a dot on every line series, see
+  /// [scrubFraction].
+  void _paintScrub(Canvas canvas, Rect plotRect, List<YgChartSeries> lineSeries) {
+    final double? scrubFraction = this.scrubFraction;
+    final Color? scrubColor = this.scrubColor;
+    if (scrubFraction == null || scrubColor == null || dataManager.valueCount == 0) {
+      return;
+    }
+
+    // The caller already aligned the fraction across every chart it scrubs,
+    // so it maps to x directly; this chart's own grid only picks the column
+    // the dots sample their values from.
+    final double x = plotRect.left + scrubFraction * plotRect.width;
+    final int index = columnAt(scrubFraction, dataManager.valueCount);
+
+    YgChartScrubHandle.paint(
+      canvas,
+      x: x,
+      top: plotRect.top,
+      bottom: plotRect.bottom,
+      color: scrubColor,
+      ringColor: scrubRingColor,
+    );
+
+    final Color? ringColor = scrubRingColor;
+    final Paint? ringPaint = ringColor == null ? null : (Paint()..color = ringColor);
+    final Paint dotPaint = Paint();
+    for (final YgChartSeries series in lineSeries) {
+      final double opacity = dataManager.opacityOf(series.id);
+      if (opacity <= 0.0) {
+        continue;
+      }
+
+      final double value = dataManager.currentValuesOf(series.id)[index];
+      if (value.isNaN) {
+        continue;
+      }
+
+      final Offset dotCenter = Offset(x, _yFor(value, series.axis, plotRect));
+      if (ringPaint != null) {
+        canvas.drawCircle(dotCenter, _scrubDotRadius + _scrubDotRingWidth, ringPaint);
+      }
+      dotPaint.color = series.color ?? scrubColor;
+      canvas.drawCircle(dotCenter, _scrubDotRadius, dotPaint);
+    }
+  }
+
   static String _axisLabelAt(
     YgChartDataManager dataManager,
     YgChartAxis axis,
@@ -906,6 +1058,63 @@ class YgChartTextLayoutCache {
   }
 }
 
+/// Draws the scrub indicator handle of a [YgChartContainer]: a rounded
+/// capsule slightly taller than the area it marks, wrapped in a ring of
+/// the surface color so it stays visible on top of similar colors.
+///
+/// Shared by [YgChartPainter] (over the plot) and the timeline indicator
+/// painter of the container (over the bar), so the handle looks identical
+/// on every entry.
+class YgChartScrubHandle {
+  const YgChartScrubHandle._();
+
+  /// Resolves the color of the handle, the design system orange.
+  ///
+  /// One place for the token choice, so the handle keeps the same color on
+  /// chart and timeline entries.
+  static Color colorOf(BuildContext context) => context.tokens.colors.backgroundAccentDefault;
+
+  /// Resolves the color of the ring around the handle, the surface behind
+  /// the chart.
+  static Color ringColorOf(BuildContext context) => context.tokens.colors.backgroundDefault;
+
+  /// Width of the capsule handle.
+  static const double lineWidth = 4.0;
+
+  /// How far the handle extends beyond the top and bottom of the area it
+  /// marks.
+  static const double overshoot = 5.0;
+
+  /// Width of the ring separating the handle from the content below it.
+  static const double ringWidth = 2.0;
+
+  /// Paints the handle at [x], marking the area between [top] and
+  /// [bottom].
+  static void paint(
+    Canvas canvas, {
+    required double x,
+    required double top,
+    required double bottom,
+    required Color color,
+    Color? ringColor,
+  }) {
+    final RRect capsule = RRect.fromRectAndRadius(
+      Rect.fromLTRB(
+        x - lineWidth / 2.0,
+        top - overshoot,
+        x + lineWidth / 2.0,
+        bottom + overshoot,
+      ),
+      const Radius.circular(lineWidth / 2.0),
+    );
+
+    if (ringColor != null) {
+      canvas.drawRRect(capsule.inflate(ringWidth), Paint()..color = ringColor);
+    }
+    canvas.drawRRect(capsule, Paint()..color = color);
+  }
+}
+
 /// The geometry of the last [YgChartPainter] paint.
 ///
 /// Owned by the [YgChart] state and written by the painter, so gesture
@@ -916,6 +1125,8 @@ class YgChartLayout extends ChangeNotifier {
 
   Rect? _plotRect;
   Size? _canvasSize;
+  double? _naturalLeftInset;
+  double? _naturalRightInset;
 
   bool _notifyScheduled = false;
   bool _disposed = false;
@@ -939,6 +1150,32 @@ class YgChartLayout extends ChangeNotifier {
     }
 
     _canvasSize = value;
+    _scheduleNotify();
+  }
+
+  /// The horizontal plot insets the axis labels naturally need, before any
+  /// [YgChartPainter.minLeftInset] widening is applied.
+  ///
+  /// A [YgChartContainer] reads these to align the plots of all of its
+  /// charts to the widest gutters. Kept separate from [plotRect] so a
+  /// widened gutter can shrink back when the chart needing it changes.
+  double? get naturalLeftInset => _naturalLeftInset;
+  set naturalLeftInset(double? value) {
+    if (_naturalLeftInset == value) {
+      return;
+    }
+
+    _naturalLeftInset = value;
+    _scheduleNotify();
+  }
+
+  double? get naturalRightInset => _naturalRightInset;
+  set naturalRightInset(double? value) {
+    if (_naturalRightInset == value) {
+      return;
+    }
+
+    _naturalRightInset = value;
     _scheduleNotify();
   }
 

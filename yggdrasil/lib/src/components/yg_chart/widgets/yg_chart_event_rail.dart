@@ -10,7 +10,8 @@ import 'package:yggdrasil/src/utils/_utils.dart';
 /// Renders every event as a thin vertical tick on a rounded track and maps
 /// taps and horizontal drags to the one column wide band under the pointer,
 /// so the app can render the events of the selected band itself. The
-/// selected band is outlined on the track.
+/// selected band is outlined and tinted on the track; the chart washes the
+/// plot column above it, see [YgChart.selectedRailBand].
 class YgChartEventRail extends StatelessWidget with StatelessWidgetDebugMixin {
   const YgChartEventRail({
     super.key,
@@ -45,7 +46,7 @@ class YgChartEventRail extends StatelessWidget with StatelessWidgetDebugMixin {
   /// Color of the outline around the selected band.
   final Color selectionColor;
 
-  /// Index of the outlined band, or null when nothing is selected.
+  /// Index of the framed band, or null when nothing is selected.
   final int? selectedBand;
 
   /// Semantic descriptions of the bands, one per band (for example the
@@ -146,6 +147,10 @@ class _YgChartEventRailPainter extends CustomPainter {
   static const double _tickVerticalInset = 2.0;
   static const double _selectionStrokeWidth = 2.0;
 
+  /// Opacity of the tint filling the selected band, subtle enough to keep
+  /// the ticks below readable.
+  static const double _selectionFillOpacity = 0.1;
+
   final List<YgChartRailEvent> events;
   final int bandCount;
   final Color trackColor;
@@ -188,23 +193,27 @@ class _YgChartEventRailPainter extends CustomPainter {
     final int? selectedBand = this.selectedBand;
     if (selectedBand != null && selectedBand >= 0 && selectedBand < bandCount) {
       final double bandWidth = size.width / bandCount;
+      final RRect bandRRect = RRect.fromRectAndRadius(
+        Rect.fromLTRB(
+          selectedBand * bandWidth,
+          0.0,
+          (selectedBand + 1) * bandWidth,
+          size.height,
+        ).deflate(_selectionStrokeWidth / 2.0),
+        const Radius.circular(_trackRadius),
+      );
+
+      // A tint over the whole band plus the outline, so the band reads as
+      // selected together with the highlighted plot column above it.
       final Paint selectionPaint = Paint()
+        ..color = selectionColor.withValues(alpha: selectionColor.a * _selectionFillOpacity);
+      canvas.drawRRect(bandRRect, selectionPaint);
+
+      selectionPaint
         ..color = selectionColor
         ..style = PaintingStyle.stroke
         ..strokeWidth = _selectionStrokeWidth;
-
-      canvas.drawRRect(
-        RRect.fromRectAndRadius(
-          Rect.fromLTRB(
-            selectedBand * bandWidth,
-            0.0,
-            (selectedBand + 1) * bandWidth,
-            size.height,
-          ).deflate(_selectionStrokeWidth / 2.0),
-          const Radius.circular(_trackRadius),
-        ),
-        selectionPaint,
-      );
+      canvas.drawRRect(bandRRect, selectionPaint);
     }
   }
 

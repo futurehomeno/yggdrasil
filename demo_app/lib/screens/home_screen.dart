@@ -267,6 +267,11 @@ class HomeScreen extends StatelessWidget {
                       trailingWidgets: const <YgIcon>[YgIcon(YgIcons.caretRight)],
                     ),
                     YgListTile(
+                      title: 'Statistics - ChartContainer',
+                      onTap: () => sl<YgRouter>().push(ChartContainerScreen.route()),
+                      trailingWidgets: const <YgIcon>[YgIcon(YgIcons.caretRight)],
+                    ),
+                    YgListTile(
                       title: 'Statistics - StateTimeline',
                       onTap: () => sl<YgRouter>().push(StateTimelineScreen.route()),
                       trailingWidgets: const <YgIcon>[YgIcon(YgIcons.caretRight)],

@@ -595,6 +595,36 @@ void main() {
     expect(selections.last, xLabels.length - 1);
   });
 
+  testWidgets('selected rail band highlights its plot column', (WidgetTester tester) async {
+    await pumpChart(
+      tester,
+      const YgChart(
+        series: <YgChartSeries>[consumption],
+        xLabels: xLabels,
+        railEvents: <YgChartRailEvent>[
+          YgChartRailEvent(position: 1.2),
+        ],
+        selectedRailBand: 2,
+      ),
+    );
+
+    expect(painterOf(tester).highlightedIndex, 2);
+
+    // Without a selection no column is highlighted.
+    await pumpChart(
+      tester,
+      const YgChart(
+        series: <YgChartSeries>[consumption],
+        xLabels: xLabels,
+        railEvents: <YgChartRailEvent>[
+          YgChartRailEvent(position: 1.2),
+        ],
+      ),
+    );
+
+    expect(painterOf(tester).highlightedIndex, isNull);
+  });
+
   testWidgets('rail events outside of the x-axis range trigger an assertion', (WidgetTester tester) async {
     await pumpChart(
       tester,
