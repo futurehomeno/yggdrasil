@@ -129,7 +129,7 @@ class YgChartPainter extends CustomPainter {
   final double minRightInset;
 
   /// Fraction (0..1) of the plot width an external scrub indicator is
-  /// drawn at, snapped to the center of the column under it.
+  /// drawn at, exactly as given so it stays aligned across charts.
   ///
   /// Driven by a wrapping [YgChartContainer]; unlike [selectedIndex] the
   /// indicator is the [YgChartScrubHandle] capsule in [scrubColor] with a
@@ -922,9 +922,11 @@ class YgChartPainter extends CustomPainter {
       return;
     }
 
-    final double slotWidth = plotRect.width / dataManager.valueCount;
+    // The caller already aligned the fraction across every chart it scrubs,
+    // so it maps to x directly; this chart's own grid only picks the column
+    // the dots sample their values from.
+    final double x = plotRect.left + scrubFraction * plotRect.width;
     final int index = columnAt(scrubFraction, dataManager.valueCount);
-    final double x = plotRect.left + (index + 0.5) * slotWidth;
 
     YgChartScrubHandle.paint(
       canvas,

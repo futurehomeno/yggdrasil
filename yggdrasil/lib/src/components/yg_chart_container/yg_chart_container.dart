@@ -325,6 +325,16 @@ class _YgChartContainerState extends State<YgChartContainer> {
     });
     _hiddenSeriesByEntry.removeWhere((int index, Set<String> ids) => !chartIndexes.contains(index));
 
+    // Hidden state only applies to series that still exist; [YgChart] prunes
+    // its own hidden ids the same way, so a series removed while hidden and
+    // added again later shows on the plot and must show in the subtitle too.
+    for (final (int index, YgChartContainerEntry entry) in widget.entries.indexed) {
+      final Set<String>? hiddenIds = _hiddenSeriesByEntry[index];
+      if (entry is YgChartContainerChart && hiddenIds != null) {
+        hiddenIds.removeWhere((String id) => !entry.series.any((YgChartSeries series) => series.id == id));
+      }
+    }
+
     for (final int index in chartIndexes) {
       _chartLayouts.putIfAbsent(index, () => YgChartLayout()..addListener(_onChartLayoutChanged));
     }

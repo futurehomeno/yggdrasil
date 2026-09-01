@@ -271,6 +271,50 @@ void main() {
     await tester.pumpAndSettle();
   });
 
+  testWidgets('a series removed while hidden shows its value again once added back', (WidgetTester tester) async {
+    const YgChartContainerChart temperatureEntry = YgChartContainerChart(
+      subtitle: 'Power',
+      xLabels: hourLabels,
+      series: <YgChartSeries>[
+        YgChartSeries(
+          id: 'temperature',
+          label: 'Temperature',
+          values: powerValues,
+          unit: '°C',
+          type: YgChartSeriesType.line,
+        ),
+      ],
+    );
+
+    await pumpContainer(tester, mixedContainer);
+    await tester.tap(find.text('Power').last);
+    await tester.pumpAndSettle();
+
+    // Replacing the hidden series drops its hidden state, matching the
+    // chart itself, so once added back it shows on the plot and in the
+    // subtitle again.
+    await pumpContainer(
+      tester,
+      const YgChartContainer(
+        entries: <YgChartContainerEntry>[
+          temperatureEntry,
+          YgChartContainerTimeline(subtitle: 'Mode', series: modeSeries),
+          YgChartContainerTimeline(subtitle: 'State', series: stateSeries),
+        ],
+        start: 0.0,
+        end: 24.0,
+        axisLabels: dayLabels,
+      ),
+    );
+    await pumpContainer(tester, mixedContainer);
+
+    final TestGesture press = await longPressAt(tester, tester.getCenter(find.byType(YgStateTimeline).first));
+    expect(find.textContaining('Power: 2.5 kW'), findsOneWidget);
+
+    await press.up();
+    await tester.pumpAndSettle();
+  });
+
   testWidgets('too many entries trigger an assertion', (WidgetTester tester) async {
     await pumpContainer(
       tester,

@@ -156,8 +156,9 @@ class YgChart extends StatefulWidget with StatefulWidgetDebugMixin {
 
   /// Fraction (0..1) of the plot width an external scrub indicator is
   /// drawn at: the accent colored capsule handle over the full plot
-  /// height ([YgChartScrubHandle]), snapped to the center of the column
-  /// under it, with a dot where each line series crosses it.
+  /// height ([YgChartScrubHandle]), exactly at the given fraction so it
+  /// stays aligned across charts, with a dot where each line series
+  /// crosses it.
   ///
   /// Driven by a wrapping [YgChartContainer], which owns the long press
   /// gesture; combine with a null [tooltipBuilder] so the chart does not
