@@ -87,7 +87,24 @@ void main() {
     expect(find.text('Sleep'), findsOneWidget);
     expect(find.text('Vacation'), findsOneWidget);
     expect(find.byType(SingleChildScrollView), findsNothing);
+    expect(find.byKey(const ValueKey<Object?>('home')), findsOneWidget);
     expect(tester.takeException(), isNull);
+  });
+
+  testWidgets('asserts on tiles with duplicate values', (WidgetTester tester) async {
+    await pumpSelector(
+      tester,
+      YgTileSelector<String>(
+        tiles: const <YgSelectorTile<String>>[
+          YgSelectorTile<String>(value: 'home', icon: YgIcons.house, label: 'Home'),
+          YgSelectorTile<String>(value: 'home', icon: YgIcons.homeAway, label: 'Away'),
+        ],
+        value: 'home',
+        onValueChanged: (String newValue) {},
+      ),
+    );
+
+    expect(tester.takeException(), isAssertionError);
   });
 
   testWidgets('calls onValueChanged with the value of the pressed tile', (WidgetTester tester) async {

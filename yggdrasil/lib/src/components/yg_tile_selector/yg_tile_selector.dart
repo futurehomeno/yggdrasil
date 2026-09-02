@@ -61,6 +61,10 @@ class YgTileSelector<T extends Object?> extends StatelessWidget with StatelessWi
       'Can not have less than 2 tiles.',
     );
     assert(
+      tiles.map((YgSelectorTile<T> tile) => tile.value).toSet().length == tiles.length,
+      'Can not have multiple tiles with the same value.',
+    );
+    assert(
       tiles.where((YgSelectorTile<T> tile) => tile.value == value).length == 1,
       'Exactly one tile must have the current value.',
     );
@@ -82,12 +86,16 @@ class YgTileSelector<T extends Object?> extends StatelessWidget with StatelessWi
 
             if (scrollable) {
               return SizedBox(
+                key: ValueKey<Object?>(tile.value),
                 width: spec.scrollTileWidth,
                 child: tileButton,
               );
             }
 
-            return Expanded(child: tileButton);
+            return Expanded(
+              key: ValueKey<Object?>(tile.value),
+              child: tileButton,
+            );
           },
         )
         .toList()

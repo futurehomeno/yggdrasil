@@ -111,6 +111,7 @@ class _YgTileSelectorTileState extends State<YgTileSelectorTile> with SingleTick
     super.didUpdateWidget(oldWidget);
     if (_disabled) {
       _pressed = false;
+      _pressOrigin = null;
     }
 
     if (widget.selected && !oldWidget.selected) {
@@ -143,7 +144,7 @@ class _YgTileSelectorTileState extends State<YgTileSelectorTile> with SingleTick
       inMutuallyExclusiveGroup: true,
       child: Listener(
         onPointerDown: _disabled ? null : _handlePointerDown,
-        onPointerMove: _handlePointerMove,
+        onPointerMove: _disabled ? null : _handlePointerMove,
         onPointerUp: (_) => _setPressed(false),
         onPointerCancel: (_) => _setPressed(false),
         child: AnimatedScale(
