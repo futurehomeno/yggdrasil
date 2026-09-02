@@ -19,8 +19,10 @@ import 'package:yggdrasil/yggdrasil.dart';
 /// a hairline border.
 ///
 /// While pressed a tile scales down, on release it springs back with a small
-/// bounce. When animations are disabled on the device only the selection
-/// colors change.
+/// bounce. When the selection moves to a tile its circle pops in with a
+/// spring, the icon sharpens from a slight blur and a halo ring expands out
+/// of the circle. When animations are disabled on the device only the
+/// selection colors change.
 class YgTileSelector<T extends Object?> extends StatelessWidget with StatelessWidgetDebugMixin {
   const YgTileSelector({
     super.key,

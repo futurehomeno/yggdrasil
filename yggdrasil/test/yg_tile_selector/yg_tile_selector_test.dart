@@ -247,6 +247,62 @@ void main() {
     expect(calls, isEmpty);
   });
 
+  testWidgets('plays the blur pop entrance when the selection moves', (WidgetTester tester) async {
+    String value = 'home';
+    await pumpSelector(
+      tester,
+      StatefulBuilder(
+        builder: (BuildContext context, StateSetter setState) {
+          return YgTileSelector<String>(
+            tiles: modes,
+            value: value,
+            onValueChanged: (String newValue) => setState(() => value = newValue),
+          );
+        },
+      ),
+    );
+
+    expect(find.byType(ImageFiltered), findsNothing);
+
+    await tester.tap(find.text('Away'));
+    await tester.pump();
+    await tester.pump();
+
+    expect(find.byType(ImageFiltered), findsOneWidget);
+
+    await tester.pumpAndSettle();
+
+    expect(find.byType(ImageFiltered), findsNothing);
+  });
+
+  testWidgets('skips the selection entrance when animations are disabled', (WidgetTester tester) async {
+    String value = 'home';
+    await pumpSelector(
+      tester,
+      Builder(
+        builder: (BuildContext context) => MediaQuery(
+          data: MediaQuery.of(context).copyWith(disableAnimations: true),
+          child: StatefulBuilder(
+            builder: (BuildContext context, StateSetter setState) {
+              return YgTileSelector<String>(
+                tiles: modes,
+                value: value,
+                onValueChanged: (String newValue) => setState(() => value = newValue),
+              );
+            },
+          ),
+        ),
+      ),
+    );
+
+    await tester.tap(find.text('Away'));
+    await tester.pump();
+    await tester.pump();
+
+    expect(find.byType(ImageFiltered), findsNothing);
+    await tester.pumpAndSettle();
+  });
+
   testWidgets('skips the press animation when animations are disabled', (WidgetTester tester) async {
     await pumpSelector(
       tester,

@@ -1,3 +1,5 @@
+import 'dart:ui' show ImageFilter;
+
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:yggdrasil/src/components/yg_icon/_yg_icon.dart';
@@ -10,9 +12,12 @@ import 'package:yggdrasil/src/utils/_utils.dart';
 /// A tile button, used internally for the [YgTileSelector].
 ///
 /// Shows the icon of the tile in a circle with the label below it. While
-/// pressed the whole tile scales down, on release it springs back up. The
-/// selection is carried entirely by color, see [YgTileSelector] for the
-/// states and [YgTileSelectorVariant] for the looks.
+/// pressed the whole tile scales down, on release it springs back up. When
+/// the tile becomes selected its circle pops in with a spring, the icon
+/// sharpens from a slight blur and a halo ring expands out of the circle.
+/// The selection is otherwise carried entirely by color, see
+/// [YgTileSelector] for the states and [YgTileSelectorVariant] for the
+/// looks.
 class YgTileSelectorTile extends StatefulWidget {
   const YgTileSelectorTile({
     super.key,
@@ -48,7 +53,7 @@ class YgTileSelectorTile extends StatefulWidget {
   State<YgTileSelectorTile> createState() => _YgTileSelectorTileState();
 }
 
-class _YgTileSelectorTileState extends State<YgTileSelectorTile> {
+class _YgTileSelectorTileState extends State<YgTileSelectorTile> with SingleTickerProviderStateMixin {
   /// How far the tile scales down while pressed.
   static const double _pressedScale = 0.93;
 
@@ -58,6 +63,40 @@ class _YgTileSelectorTileState extends State<YgTileSelectorTile> {
   static const Curve _pressCurve = Curves.easeOutCubic;
   static const Duration _releaseDuration = Duration(milliseconds: 350);
   static const Curve _releaseCurve = Curves.elasticOut;
+
+  /// The entrance of a newly selected tile: the circle springs up from
+  /// [_circlePopScale], the icon sharpens from [_iconBlurSigma] and a halo
+  /// ring grows to [_haloScale] while fading out.
+  static const Duration _selectDuration = Duration(milliseconds: 500);
+  static const double _circlePopScale = 0.7;
+  static const double _iconBlurSigma = 5.0;
+  static const double _haloScale = 1.6;
+  static const double _haloOpacity = 0.5;
+  static const Interval _blurInterval = Interval(0.0, 0.35, curve: Curves.easeOut);
+  static const Interval _haloInterval = Interval(0.0, 0.55, curve: Curves.easeOutCubic);
+
+  /// Starts settled so an initially selected tile does not animate.
+  late final AnimationController _selectController = AnimationController(
+    vsync: this,
+    duration: _selectDuration,
+    value: 1.0,
+  );
+
+  late final Animation<double> _circleScale = _selectController.drive(
+    Tween<double>(begin: _circlePopScale, end: 1.0).chain(CurveTween(curve: Curves.elasticOut)),
+  );
+
+  late final Animation<double> _iconBlur = _selectController.drive(
+    Tween<double>(begin: _iconBlurSigma, end: 0.0).chain(CurveTween(curve: _blurInterval)),
+  );
+
+  late final Animation<double> _haloScaleAnimation = _selectController.drive(
+    Tween<double>(begin: 1.0, end: _haloScale).chain(CurveTween(curve: _haloInterval)),
+  );
+
+  late final Animation<double> _haloFadeAnimation = _selectController.drive(
+    Tween<double>(begin: _haloOpacity, end: 0.0).chain(CurveTween(curve: _haloInterval)),
+  );
 
   bool _pressed = false;
   bool _focused = false;
@@ -73,6 +112,20 @@ class _YgTileSelectorTileState extends State<YgTileSelectorTile> {
     if (_disabled) {
       _pressed = false;
     }
+
+    if (widget.selected && !oldWidget.selected) {
+      if (MediaQuery.disableAnimationsOf(context)) {
+        _selectController.value = 1.0;
+      } else {
+        _selectController.forward(from: 0.0);
+      }
+    }
+  }
+
+  @override
+  void dispose() {
+    _selectController.dispose();
+    super.dispose();
   }
 
   @override
@@ -129,24 +182,44 @@ class _YgTileSelectorTileState extends State<YgTileSelectorTile> {
                   child: Column(
                     mainAxisSize: MainAxisSize.min,
                     children: <Widget>[
-                      AnimatedContainer(
-                        duration: colorDuration,
-                        curve: colorCurve,
+                      SizedBox(
                         width: spec.circleSize,
                         height: spec.circleSize,
-                        alignment: Alignment.center,
-                        decoration: BoxDecoration(
-                          color: _resolveCircleColor(colors),
-                          shape: BoxShape.circle,
-                        ),
-                        child: ExcludeSemantics(
-                          child: IconTheme.merge(
-                            data: IconThemeData(size: spec.iconSize),
-                            child: YgIcon.colorable(
-                              widget.icon,
-                              color: _resolveIconColor(colors),
+                        child: Stack(
+                          fit: StackFit.expand,
+                          clipBehavior: Clip.none,
+                          children: <Widget>[
+                            FadeTransition(
+                              opacity: _haloFadeAnimation,
+                              child: ScaleTransition(
+                                scale: _haloScaleAnimation,
+                                child: DecoratedBox(
+                                  decoration: BoxDecoration(
+                                    shape: BoxShape.circle,
+                                    border: Border.all(
+                                      color: colors.borderHighlightDefault,
+                                      width: tokens.borders.md.top.width,
+                                    ),
+                                  ),
+                                ),
+                              ),
                             ),
-                          ),
+                            ScaleTransition(
+                              scale: _circleScale,
+                              child: AnimatedContainer(
+                                duration: colorDuration,
+                                curve: colorCurve,
+                                alignment: Alignment.center,
+                                decoration: BoxDecoration(
+                                  color: _resolveCircleColor(colors),
+                                  shape: BoxShape.circle,
+                                ),
+                                child: ExcludeSemantics(
+                                  child: _buildIcon(colors),
+                                ),
+                              ),
+                            ),
+                          ],
                         ),
                       ),
                       SizedBox(height: spec.labelSpacing),
@@ -169,6 +242,37 @@ class _YgTileSelectorTileState extends State<YgTileSelectorTile> {
           ),
         ),
       ),
+    );
+  }
+
+  /// The icon of the tile, blurred while the selection entrance plays.
+  Widget _buildIcon(YgColor colors) {
+    final Widget icon = IconTheme.merge(
+      data: IconThemeData(size: widget.spec.iconSize),
+      child: YgIcon.colorable(
+        widget.icon,
+        color: _resolveIconColor(colors),
+      ),
+    );
+
+    return AnimatedBuilder(
+      animation: _iconBlur,
+      child: icon,
+      builder: (BuildContext context, Widget? child) {
+        final double sigma = _iconBlur.value;
+        if (sigma == 0.0) {
+          return child!;
+        }
+
+        return ImageFiltered(
+          imageFilter: ImageFilter.blur(
+            sigmaX: sigma,
+            sigmaY: sigma,
+            tileMode: TileMode.decal,
+          ),
+          child: child,
+        );
+      },
     );
   }
 
