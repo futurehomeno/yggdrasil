@@ -30,5 +30,6 @@ export 'yg_state_timeline/_yg_state_timeline.dart';
 export 'yg_stepper/_yg_stepper.dart';
 export 'yg_switch/_yg_switch.dart';
 export 'yg_tab_bar/_yg_tab_bar.dart';
+export 'yg_tile_selector/_yg_tile_selector.dart';
 export 'yg_wizard_header/_yg_wizard_header.dart';
 export 'yggdrasil_app/_yggdrasil_app.dart';

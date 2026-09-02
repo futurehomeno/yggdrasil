@@ -50,5 +50,6 @@ export 'tabs/_tabs.dart';
 export 'tag/_tag.dart';
 export 'text_field/_text_field.dart';
 export 'text_link/_text_link.dart';
+export 'tile_selector/_tile_selector.dart';
 export 'toggle_button/_toggle_button.dart';
 export 'wizard_header_screen/_wizard_header_screen.dart';
