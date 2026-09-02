@@ -1,8 +1,8 @@
 import 'package:yggdrasil/yggdrasil.dart';
 
 /// A tile of a [YgTileSelector].
-class YgTileSelectorTile<T extends Object?> {
-  const YgTileSelectorTile({
+class YgSelectorTile<T extends Object?> {
+  const YgSelectorTile({
     required this.value,
     required this.icon,
     required this.label,

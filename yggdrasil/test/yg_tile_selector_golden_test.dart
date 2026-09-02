@@ -12,25 +12,25 @@ void main() {
   group(
     'YgTileSelectorGoldenTest',
     () {
-      const List<YgTileSelectorTile<String>> modes = <YgTileSelectorTile<String>>[
-        YgTileSelectorTile<String>(value: 'home', icon: YgIcons.house, label: 'Home'),
-        YgTileSelectorTile<String>(value: 'away', icon: YgIcons.homeAway, label: 'Away'),
-        YgTileSelectorTile<String>(value: 'sleep', icon: YgIcons.night, label: 'Sleep'),
-        YgTileSelectorTile<String>(value: 'vacation', icon: YgIcons.homeVacation, label: 'Vacation'),
+      const List<YgSelectorTile<String>> modes = <YgSelectorTile<String>>[
+        YgSelectorTile<String>(value: 'home', icon: YgIcons.house, label: 'Home'),
+        YgSelectorTile<String>(value: 'away', icon: YgIcons.homeAway, label: 'Away'),
+        YgSelectorTile<String>(value: 'sleep', icon: YgIcons.night, label: 'Sleep'),
+        YgSelectorTile<String>(value: 'vacation', icon: YgIcons.homeVacation, label: 'Vacation'),
       ];
 
-      const List<YgTileSelectorTile<String>> partiallyDisabledModes = <YgTileSelectorTile<String>>[
-        YgTileSelectorTile<String>(value: 'home', icon: YgIcons.house, label: 'Home'),
-        YgTileSelectorTile<String>(value: 'away', icon: YgIcons.homeAway, label: 'Away'),
-        YgTileSelectorTile<String>(value: 'sleep', icon: YgIcons.night, label: 'Sleep', disabled: true),
-        YgTileSelectorTile<String>(value: 'vacation', icon: YgIcons.homeVacation, label: 'Vacation'),
+      const List<YgSelectorTile<String>> partiallyDisabledModes = <YgSelectorTile<String>>[
+        YgSelectorTile<String>(value: 'home', icon: YgIcons.house, label: 'Home'),
+        YgSelectorTile<String>(value: 'away', icon: YgIcons.homeAway, label: 'Away'),
+        YgSelectorTile<String>(value: 'sleep', icon: YgIcons.night, label: 'Sleep', disabled: true),
+        YgSelectorTile<String>(value: 'vacation', icon: YgIcons.homeVacation, label: 'Vacation'),
       ];
 
-      const List<YgTileSelectorTile<String>> manyModes = <YgTileSelectorTile<String>>[
+      const List<YgSelectorTile<String>> manyModes = <YgSelectorTile<String>>[
         ...modes,
-        YgTileSelectorTile<String>(value: 'heat', icon: YgIcons.flames, label: 'Heat'),
-        YgTileSelectorTile<String>(value: 'eco', icon: YgIcons.leaf, label: 'Eco'),
-        YgTileSelectorTile<String>(value: 'auto', icon: YgIcons.autoChange, label: 'Auto'),
+        YgSelectorTile<String>(value: 'heat', icon: YgIcons.flames, label: 'Heat'),
+        YgSelectorTile<String>(value: 'eco', icon: YgIcons.leaf, label: 'Eco'),
+        YgSelectorTile<String>(value: 'auto', icon: YgIcons.autoChange, label: 'Auto'),
       ];
 
       final GoldenTestGroup ygTileSelectorGoldenTestGroup = GoldenTestGroup(
@@ -91,9 +91,9 @@ void main() {
           GoldenTestScenario(
             name: 'With two tiles',
             child: const YgTileSelector<String>(
-              tiles: <YgTileSelectorTile<String>>[
-                YgTileSelectorTile<String>(value: 'home', icon: YgIcons.house, label: 'Home'),
-                YgTileSelectorTile<String>(value: 'away', icon: YgIcons.homeAway, label: 'Away'),
+              tiles: <YgSelectorTile<String>>[
+                YgSelectorTile<String>(value: 'home', icon: YgIcons.house, label: 'Home'),
+                YgSelectorTile<String>(value: 'away', icon: YgIcons.homeAway, label: 'Away'),
               ],
               value: 'home',
               onValueChanged: _onValueChanged,
@@ -102,10 +102,10 @@ void main() {
           GoldenTestScenario(
             name: 'With three tiles outlined',
             child: const YgTileSelector<String>(
-              tiles: <YgTileSelectorTile<String>>[
-                YgTileSelectorTile<String>(value: 'home', icon: YgIcons.house, label: 'Home'),
-                YgTileSelectorTile<String>(value: 'away', icon: YgIcons.homeAway, label: 'Away'),
-                YgTileSelectorTile<String>(value: 'sleep', icon: YgIcons.night, label: 'Sleep'),
+              tiles: <YgSelectorTile<String>>[
+                YgSelectorTile<String>(value: 'home', icon: YgIcons.house, label: 'Home'),
+                YgSelectorTile<String>(value: 'away', icon: YgIcons.homeAway, label: 'Away'),
+                YgSelectorTile<String>(value: 'sleep', icon: YgIcons.night, label: 'Sleep'),
               ],
               value: 'home',
               variant: YgTileSelectorVariant.outlined,

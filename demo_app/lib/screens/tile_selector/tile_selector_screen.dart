@@ -20,35 +20,35 @@ class TileSelectorScreen extends StatefulWidget {
 }
 
 class _TileSelectorScreenState extends State<TileSelectorScreen> {
-  static const List<YgTileSelectorTile<String>> _modes = <YgTileSelectorTile<String>>[
-    YgTileSelectorTile<String>(value: 'home', icon: YgIcons.house, label: 'Home'),
-    YgTileSelectorTile<String>(value: 'away', icon: YgIcons.homeAway, label: 'Away'),
-    YgTileSelectorTile<String>(value: 'sleep', icon: YgIcons.night, label: 'Sleep'),
-    YgTileSelectorTile<String>(value: 'vacation', icon: YgIcons.homeVacation, label: 'Vacation'),
+  static const List<YgSelectorTile<String>> _modes = <YgSelectorTile<String>>[
+    YgSelectorTile<String>(value: 'home', icon: YgIcons.house, label: 'Home'),
+    YgSelectorTile<String>(value: 'away', icon: YgIcons.homeAway, label: 'Away'),
+    YgSelectorTile<String>(value: 'sleep', icon: YgIcons.night, label: 'Sleep'),
+    YgSelectorTile<String>(value: 'vacation', icon: YgIcons.homeVacation, label: 'Vacation'),
   ];
 
-  static const List<YgTileSelectorTile<String>> _partiallyDisabledModes = <YgTileSelectorTile<String>>[
-    YgTileSelectorTile<String>(value: 'home', icon: YgIcons.house, label: 'Home'),
-    YgTileSelectorTile<String>(value: 'away', icon: YgIcons.homeAway, label: 'Away'),
-    YgTileSelectorTile<String>(value: 'sleep', icon: YgIcons.night, label: 'Sleep', disabled: true),
-    YgTileSelectorTile<String>(value: 'vacation', icon: YgIcons.homeVacation, label: 'Vacation'),
+  static const List<YgSelectorTile<String>> _partiallyDisabledModes = <YgSelectorTile<String>>[
+    YgSelectorTile<String>(value: 'home', icon: YgIcons.house, label: 'Home'),
+    YgSelectorTile<String>(value: 'away', icon: YgIcons.homeAway, label: 'Away'),
+    YgSelectorTile<String>(value: 'sleep', icon: YgIcons.night, label: 'Sleep', disabled: true),
+    YgSelectorTile<String>(value: 'vacation', icon: YgIcons.homeVacation, label: 'Vacation'),
   ];
 
-  static const List<YgTileSelectorTile<String>> _manyModes = <YgTileSelectorTile<String>>[
+  static const List<YgSelectorTile<String>> _manyModes = <YgSelectorTile<String>>[
     ..._modes,
-    YgTileSelectorTile<String>(value: 'heat', icon: YgIcons.flames, label: 'Heat'),
-    YgTileSelectorTile<String>(value: 'eco', icon: YgIcons.leaf, label: 'Eco'),
-    YgTileSelectorTile<String>(value: 'auto', icon: YgIcons.autoChange, label: 'Auto'),
+    YgSelectorTile<String>(value: 'heat', icon: YgIcons.flames, label: 'Heat'),
+    YgSelectorTile<String>(value: 'eco', icon: YgIcons.leaf, label: 'Eco'),
+    YgSelectorTile<String>(value: 'auto', icon: YgIcons.autoChange, label: 'Auto'),
   ];
 
-  static const List<YgTileSelectorTile<String>> _twoModes = <YgTileSelectorTile<String>>[
-    YgTileSelectorTile<String>(value: 'home', icon: YgIcons.house, label: 'Home'),
-    YgTileSelectorTile<String>(value: 'away', icon: YgIcons.homeAway, label: 'Away'),
+  static const List<YgSelectorTile<String>> _twoModes = <YgSelectorTile<String>>[
+    YgSelectorTile<String>(value: 'home', icon: YgIcons.house, label: 'Home'),
+    YgSelectorTile<String>(value: 'away', icon: YgIcons.homeAway, label: 'Away'),
   ];
 
-  static const List<YgTileSelectorTile<String>> _threeModes = <YgTileSelectorTile<String>>[
+  static const List<YgSelectorTile<String>> _threeModes = <YgSelectorTile<String>>[
     ..._twoModes,
-    YgTileSelectorTile<String>(value: 'sleep', icon: YgIcons.night, label: 'Sleep'),
+    YgSelectorTile<String>(value: 'sleep', icon: YgIcons.night, label: 'Sleep'),
   ];
 
   String smallValue = 'home';

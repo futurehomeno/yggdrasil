@@ -6,7 +6,7 @@ import 'package:yggdrasil/yggdrasil.dart';
 ///
 /// A lightweight alternative to the [YgSegmentedButton] for choices which
 /// deserve more visual weight, for example the mode of a thermostat. Every
-/// [YgTileSelectorTile] is shown as a tile with a big icon in a circle and a
+/// [YgSelectorTile] is shown as a tile with a big icon in a circle and a
 /// label below it, exactly one tile is selected at a time, like a radio
 /// group.
 ///
@@ -35,7 +35,7 @@ class YgTileSelector<T extends Object?> extends StatelessWidget with StatelessWi
   static const int _maxTilesWithoutScrolling = 5;
 
   /// The tiles of this selector.
-  final List<YgTileSelectorTile<T>> tiles;
+  final List<YgSelectorTile<T>> tiles;
 
   /// The current value of this selector.
   final T value;
@@ -43,7 +43,7 @@ class YgTileSelector<T extends Object?> extends StatelessWidget with StatelessWi
   /// Called when the user selects a tile.
   ///
   /// The whole selector is disabled when null. To disable a single tile use
-  /// [YgTileSelectorTile.disabled] instead.
+  /// [YgSelectorTile.disabled] instead.
   final ValueChanged<T>? onValueChanged;
 
   /// The size of the tiles, see [YgTileSelectorSize].
@@ -58,48 +58,48 @@ class YgTileSelector<T extends Object?> extends StatelessWidget with StatelessWi
       tiles.length >= 2,
       'Can not have less than 2 tiles.',
     );
+    assert(
+      tiles.where((YgSelectorTile<T> tile) => tile.value == value).length == 1,
+      'Exactly one tile must have the current value.',
+    );
 
+    final ValueChanged<T>? onValueChanged = this.onValueChanged;
     final YgTileSelectorSpec spec = YgTileSelectorSpec.resolve(context, size);
-    final List<YgTileSelectorTileButton> tileButtons = tiles
-        .map(
-          (YgTileSelectorTile<T> tile) => YgTileSelectorTileButton(
-            onPressed: _isTileDisabled(tile) ? null : () => onValueChanged?.call(tile.value),
-            selected: tile.value == value,
-            icon: tile.icon,
-            label: tile.label,
-            spec: spec,
-            variant: variant,
-          ),
-        )
-        .toList();
+    final bool scrollable = tiles.length > _maxTilesWithoutScrolling;
+    final List<Widget> tileButtons = tiles
+        .map<Widget>(
+          (YgSelectorTile<T> tile) {
+            final Widget tileButton = YgTileSelectorTile(
+              onPressed: onValueChanged == null || tile.disabled ? null : () => onValueChanged(tile.value),
+              selected: tile.value == value,
+              icon: tile.icon,
+              label: tile.label,
+              spec: spec,
+              variant: variant,
+            );
 
-    if (tiles.length <= _maxTilesWithoutScrolling) {
-      return Row(
-        children: tileButtons
-            .map<Widget>((YgTileSelectorTileButton tile) => Expanded(child: tile))
-            .toList()
-            .withHorizontalSpacing(spec.tileSpacing),
+            if (scrollable) {
+              return SizedBox(
+                width: spec.scrollTileWidth,
+                child: tileButton,
+              );
+            }
+
+            return Expanded(child: tileButton);
+          },
+        )
+        .toList()
+        .withHorizontalSpacing(spec.tileSpacing);
+
+    Widget content = Row(children: tileButtons);
+    if (scrollable) {
+      content = SingleChildScrollView(
+        scrollDirection: Axis.horizontal,
+        child: content,
       );
     }
 
-    return SingleChildScrollView(
-      scrollDirection: Axis.horizontal,
-      child: Row(
-        children: tileButtons
-            .map<Widget>(
-              (YgTileSelectorTileButton tile) => SizedBox(
-                width: spec.scrollTileWidth,
-                child: tile,
-              ),
-            )
-            .toList()
-            .withHorizontalSpacing(spec.tileSpacing),
-      ),
-    );
-  }
-
-  bool _isTileDisabled(YgTileSelectorTile<T> tile) {
-    return tile.disabled || onValueChanged == null;
+    return RepaintBoundary(child: content);
   }
 
   @override

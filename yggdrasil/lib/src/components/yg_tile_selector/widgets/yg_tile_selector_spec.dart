@@ -19,6 +19,7 @@ class YgTileSelectorSpec {
     final YgDimension dimensions = context.tokens.dimensions;
     final YgTextStyle textStyles = context.tokens.textStyles;
     final YgRadius radii = context.tokens.radii;
+    final double scrollTileGutter = dimensions.md;
 
     return switch (size) {
       YgTileSelectorSize.small => YgTileSelectorSpec(
@@ -31,7 +32,7 @@ class YgTileSelectorSpec {
           labelStyle: textStyles.caption1Medium,
           borderRadius: radii.sm,
           tileSpacing: dimensions.xxs,
-          scrollTileGutter: dimensions.md,
+          scrollTileGutter: scrollTileGutter,
         ),
       YgTileSelectorSize.medium => YgTileSelectorSpec(
           iconSize: dimensions.lg,
@@ -43,7 +44,7 @@ class YgTileSelectorSpec {
           labelStyle: textStyles.paragraph3Medium,
           borderRadius: radii.md,
           tileSpacing: dimensions.xs,
-          scrollTileGutter: dimensions.md,
+          scrollTileGutter: scrollTileGutter,
         ),
       YgTileSelectorSize.large => YgTileSelectorSpec(
           iconSize: dimensions.xl,
@@ -55,7 +56,7 @@ class YgTileSelectorSpec {
           labelStyle: textStyles.paragraph2Medium,
           borderRadius: radii.lg,
           tileSpacing: dimensions.xs,
-          scrollTileGutter: dimensions.md,
+          scrollTileGutter: scrollTileGutter,
         ),
     };
   }
