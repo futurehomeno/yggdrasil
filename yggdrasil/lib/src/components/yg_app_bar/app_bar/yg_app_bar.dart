@@ -14,14 +14,49 @@ class YgAppBar extends StatelessWidget with StatelessWidgetDebugMixin implements
     this.actions,
     this.centerTitle = false,
     this.automaticallyImplyLeading = true,
-    this.onTitleTap,
-    this.titleTrailingIcon,
-  });
+  }) : titleButton = null;
+
+  /// An AppBar whose title slot renders a button composed by the caller.
+  ///
+  /// Typically used to switch the screen's context (e.g. picking a different
+  /// site):
+  ///
+  /// ```dart
+  /// YgAppBar.withButton(
+  ///   titleButton: YgButton.leadingIcon(
+  ///     onPressed: _openChangeSiteScreen,
+  ///     icon: YgIcons.homeAway,
+  ///     child: Row(
+  ///       mainAxisSize: MainAxisSize.min,
+  ///       children: <Widget>[
+  ///         const Flexible(child: Text('Site name')),
+  ///         SizedBox(width: context.tokens.dimensions.xs),
+  ///         const YgTag(child: Text('(2)')),
+  ///       ],
+  ///     ),
+  ///   ),
+  /// )
+  /// ```
+  const YgAppBar.withButton({
+    super.key,
+    required YgButton this.titleButton,
+    this.leading,
+    this.actions,
+    this.centerTitle = false,
+    this.automaticallyImplyLeading = true,
+  }) : title = null;
 
   /// The primary text displayed in the app bar.
   ///
   /// Becomes the middle component of the [NavigationToolbar] built by this widget.
   final String? title;
+
+  /// Button rendered in the title slot instead of [title].
+  ///
+  /// Set through [YgAppBar.withButton]. The caller composes the content of
+  /// the button (text, icons, tags); wrap long text in a [Flexible] so it can
+  /// shrink and ellipsize within the available space.
+  final YgButton? titleButton;
 
   /// A widget to display before the toolbar's [title].
   ///
@@ -47,18 +82,6 @@ class YgAppBar extends StatelessWidget with StatelessWidgetDebugMixin implements
 
   /// Whether the title should be centered.
   final bool centerTitle;
-
-  /// Called when the title is tapped.
-  ///
-  /// When set, the title renders as a tappable pill-shaped container with a
-  /// trailing chevron, signalling that tapping the title switches the
-  /// screen's context (e.g. picking a different site).
-  final VoidCallback? onTitleTap;
-
-  /// Icon shown after the title when [onTitleTap] is set.
-  ///
-  /// Defaults to [YgIcons.caretRight].
-  final YgIconData? titleTrailingIcon;
 
   @override
   Widget build(BuildContext context) {
@@ -118,66 +141,27 @@ class YgAppBar extends StatelessWidget with StatelessWidgetDebugMixin implements
   }
 
   Widget? _getTitle(BuildContext context) {
+    final YgButton? titleButton = this.titleButton;
+    if (titleButton != null) {
+      return Semantics(
+        namesRoute: true,
+        header: true,
+        child: titleButton,
+      );
+    }
+
     final String? title = this.title;
     if (title == null) {
       return null;
     }
 
-    final YgAppBarTheme theme = context.appBarTheme;
-    final VoidCallback? onTap = onTitleTap;
-
-    if (onTap == null) {
-      return Semantics(
-        namesRoute: true,
-        header: true,
-        child: Text(
-          title,
-          style: theme.titleTextStyle,
-          overflow: TextOverflow.ellipsis,
-        ),
-      );
-    }
-
     return Semantics(
       namesRoute: true,
       header: true,
-      button: true,
-      onTap: onTap,
-      child: Material(
-        type: MaterialType.transparency,
-        child: InkWell(
-          onTap: onTap,
-          borderRadius: theme.titleButtonBorderRadius,
-          child: Ink(
-            decoration: BoxDecoration(
-              color: theme.titleButtonBackgroundColor,
-              borderRadius: theme.titleButtonBorderRadius,
-            ),
-            child: Padding(
-              padding: theme.titleButtonPadding,
-              child: Row(
-                mainAxisSize: MainAxisSize.min,
-                children: <Widget>[
-                  Flexible(
-                    child: Text(
-                      title,
-                      style: theme.titleButtonTextStyle,
-                      overflow: TextOverflow.ellipsis,
-                    ),
-                  ),
-                  SizedBox(width: theme.titleButtonIconSpacing),
-                  IconTheme(
-                    data: IconThemeData(color: theme.titleButtonTextStyle.color),
-                    child: YgIcon(
-                      titleTrailingIcon ?? YgIcons.caretRight,
-                      size: YgIconSize.small,
-                    ),
-                  ),
-                ],
-              ),
-            ),
-          ),
-        ),
+      child: Text(
+        title,
+        style: context.appBarTheme.titleTextStyle,
+        overflow: TextOverflow.ellipsis,
       ),
     );
   }

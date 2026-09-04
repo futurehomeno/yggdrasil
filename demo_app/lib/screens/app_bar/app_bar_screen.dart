@@ -25,19 +25,14 @@ class _AppBarScreenState extends State<AppBarScreen> {
   bool _customLeading = false;
   bool _centerTitle = false;
   bool _automaticallyImplyLeading = true;
+  bool _titleButton = false;
   List<YgIconButton> _actions = <YgIconButton>[];
   int _actionsRadioGroupValue = 1;
 
   @override
   Widget build(BuildContext context) {
     return DemoScreen(
-      appBar: YgAppBar(
-        title: 'App bar',
-        leading: _getLeading(),
-        automaticallyImplyLeading: _automaticallyImplyLeading,
-        actions: _actions,
-        centerTitle: _centerTitle,
-      ),
+      appBar: _getAppBar(context),
       child: YgLayoutBody(
         child: Column(
           children: <Widget>[
@@ -71,6 +66,17 @@ class _AppBarScreenState extends State<AppBarScreen> {
                   title: 'Custom leading',
                   value: _customLeading,
                   onChanged: _toggleCustomLeading,
+                ),
+              ],
+            ),
+            YgSection.list(
+              title: 'Title button',
+              subtitle: 'Replaces the text title with a YgButton composed by the caller.',
+              children: <Widget>[
+                YgCheckboxListTile(
+                  title: 'Title button',
+                  value: _titleButton,
+                  onChanged: _toggleTitleButton,
                 ),
               ],
             ),
@@ -118,6 +124,37 @@ class _AppBarScreenState extends State<AppBarScreen> {
     );
   }
 
+  YgAppBar _getAppBar(BuildContext context) {
+    if (_titleButton) {
+      return YgAppBar.withButton(
+        titleButton: YgButton.leadingIcon(
+          onPressed: () {},
+          icon: YgIcons.homeAway,
+          child: Row(
+            mainAxisSize: MainAxisSize.min,
+            children: <Widget>[
+              const Flexible(child: Text('SiteName')),
+              SizedBox(width: context.tokens.dimensions.xs),
+              const YgTag(size: YgTagSize.small, child: Text('(2)')),
+            ],
+          ),
+        ),
+        leading: _getLeading(),
+        automaticallyImplyLeading: _automaticallyImplyLeading,
+        actions: _actions,
+        centerTitle: _centerTitle,
+      );
+    }
+
+    return YgAppBar(
+      title: 'App bar',
+      leading: _getLeading(),
+      automaticallyImplyLeading: _automaticallyImplyLeading,
+      actions: _actions,
+      centerTitle: _centerTitle,
+    );
+  }
+
   Widget? _getLeading() {
     if (_customLeading) {
       return YgIconButton(
@@ -149,6 +186,11 @@ class _AppBarScreenState extends State<AppBarScreen> {
   void _setNoActions(int? newValue) {
     _actionsRadioGroupValue = newValue!;
     _actions = <YgIconButton>[];
+    setState(() {});
+  }
+
+  void _toggleTitleButton(bool? newValue) {
+    _titleButton = newValue!;
     setState(() {});
   }
 
