@@ -10,6 +10,7 @@ export 'yg_callout/_yg_callout.dart';
 export 'yg_card/_yg_card.dart';
 export 'yg_chart/_yg_chart.dart';
 export 'yg_chart_container/_yg_chart_container.dart';
+export 'yg_chart_simple/_yg_chart_simple.dart';
 export 'yg_checkbox/_yg_checkbox.dart';
 export 'yg_dialog/_yg_dialog.dart';
 export 'yg_divider/_yg_divider.dart';

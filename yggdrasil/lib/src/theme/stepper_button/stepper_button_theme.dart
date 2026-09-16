@@ -50,6 +50,34 @@ class _$YgStepperButtonTheme {
     professional_dark.FhColors.iconDefault,
   ];
 
+  static const List<Color> filledColor = <Color>[
+    consumer_light.FhColors.backgroundInverse,
+    consumer_dark.FhColors.backgroundInverse,
+    professional_light.FhColors.backgroundInverse,
+    professional_dark.FhColors.backgroundInverse,
+  ];
+
+  static const List<Color> filledDisabledColor = <Color>[
+    consumer_light.FhColors.backgroundDisabled,
+    consumer_dark.FhColors.backgroundDisabled,
+    professional_light.FhColors.backgroundDisabled,
+    professional_dark.FhColors.backgroundDisabled,
+  ];
+
+  static const List<Color> filledIconColor = <Color>[
+    consumer_light.FhColors.iconInverse,
+    consumer_dark.FhColors.iconInverse,
+    professional_light.FhColors.iconInverse,
+    professional_dark.FhColors.iconInverse,
+  ];
+
+  static const List<Color> filledDisabledIconColor = <Color>[
+    consumer_light.FhColors.iconDisabled,
+    consumer_dark.FhColors.iconDisabled,
+    professional_light.FhColors.iconDisabled,
+    professional_dark.FhColors.iconDisabled,
+  ];
+
   static const List<Color> disabledIconColor = <Color>[
     consumer_light.FhColors.iconDisabled,
     consumer_dark.FhColors.iconDisabled,
@@ -62,6 +90,13 @@ class _$YgStepperButtonTheme {
     consumer_dark.FhColors.backgroundDisabled.withOpacity(0.25),
     professional_light.FhColors.backgroundDisabled.withOpacity(0.25),
     professional_dark.FhColors.backgroundDisabled.withOpacity(0.25),
+  ];
+
+  static final List<EdgeInsets> paddingSmall = <EdgeInsets>[
+    const EdgeInsets.all(consumer_light.FhDimensions.xs),
+    const EdgeInsets.all(consumer_dark.FhDimensions.xs),
+    const EdgeInsets.all(professional_light.FhDimensions.xs),
+    const EdgeInsets.all(professional_dark.FhDimensions.xs),
   ];
 
   static final List<EdgeInsets> paddingMedium = <EdgeInsets>[

@@ -1,3 +1,4 @@
+import 'package:flutter/material.dart';
 import 'package:yggdrasil/src/components/buttons/widgets/_widgets.dart';
 import 'package:yggdrasil/src/utils/_utils.dart';
 
@@ -10,13 +11,23 @@ class YgStepperButtonState extends YgButtonBaseState {
     super.hovered,
     super.pressed,
     YgStepperButtonSize size = YgStepperButtonSize.large,
-  }) : size = YgStateValue<YgStepperButtonSize>(size);
+    YgStepperButtonVariant variant = YgStepperButtonVariant.outlined,
+    Color? color,
+  }) : size = YgStateValue<YgStepperButtonSize>(size),
+       variant = YgStateValue<YgStepperButtonVariant>(variant),
+       color = YgStateValue<Color?>(color);
 
   final YgStateValue<YgStepperButtonSize> size;
+
+  final YgStateValue<YgStepperButtonVariant> variant;
+
+  final YgStateValue<Color?> color;
 
   @override
   List<YgStateValue<Object?>> get props => <YgStateValue<Object?>>[
     ...super.props,
     size,
+    variant,
+    color,
   ];
 }

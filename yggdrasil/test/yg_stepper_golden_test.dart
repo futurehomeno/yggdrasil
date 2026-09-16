@@ -73,6 +73,81 @@ void main() {
               onChanged: (_) {},
             ),
           ),
+          GoldenTestScenario(
+            name: 'With small size',
+            child: YgStepper(
+              value: 5.0,
+              min: 0.0,
+              max: 10.0,
+              size: YgStepperSize.small,
+              metric: YgGoldenTestValues.shortText,
+              onChanged: (_) {},
+            ),
+          ),
+          GoldenTestScenario(
+            name: 'With medium size',
+            child: YgStepper(
+              value: 5.0,
+              min: 0.0,
+              max: 10.0,
+              size: YgStepperSize.medium,
+              metric: YgGoldenTestValues.shortText,
+              onChanged: (_) {},
+            ),
+          ),
+          GoldenTestScenario(
+            name: 'With filled variant',
+            child: YgStepper(
+              value: 5.0,
+              min: 0.0,
+              max: 10.0,
+              variant: YgStepperVariant.filled,
+              onChanged: (_) {},
+            ),
+          ),
+          GoldenTestScenario(
+            name: 'With filled variant at minimum value',
+            child: YgStepper(
+              value: 0.0,
+              min: 0.0,
+              max: 10.0,
+              variant: YgStepperVariant.filled,
+              onChanged: (_) {},
+            ),
+          ),
+          GoldenTestScenario(
+            name: 'Disabled with filled variant',
+            child: const YgStepper(
+              value: 5.0,
+              min: 0.0,
+              max: 10.0,
+              variant: YgStepperVariant.filled,
+              onChanged: null,
+            ),
+          ),
+          GoldenTestScenario(
+            name: 'With custom button colors',
+            child: YgStepper(
+              value: 5.0,
+              min: 0.0,
+              max: 10.0,
+              colorForPlus: Colors.green,
+              colorForMinus: Colors.red,
+              onChanged: (_) {},
+            ),
+          ),
+          GoldenTestScenario(
+            name: 'With custom button colors and filled variant',
+            child: YgStepper(
+              value: 5.0,
+              min: 0.0,
+              max: 10.0,
+              variant: YgStepperVariant.filled,
+              colorForPlus: Colors.green,
+              colorForMinus: Colors.red,
+              onChanged: (_) {},
+            ),
+          ),
         ],
       );
 

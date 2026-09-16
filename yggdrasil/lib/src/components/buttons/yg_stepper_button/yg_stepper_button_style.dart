@@ -20,7 +20,17 @@ class YgStepperButtonStyle extends YgButtonBaseStyle<YgStepperButtonState> {
 
   @override
   Color resolveColor() {
-    return Colors.transparent;
+    switch (state.variant.value) {
+      case YgStepperButtonVariant.outlined:
+        return Colors.transparent;
+
+      case YgStepperButtonVariant.filled:
+        if (state.disabled.value) {
+          return _theme.filledDisabledColor;
+        }
+
+        return state.color.value ?? _theme.filledColor;
+    }
   }
 
   @override
@@ -28,6 +38,7 @@ class YgStepperButtonStyle extends YgButtonBaseStyle<YgStepperButtonState> {
     final EdgeInsets padding = switch (state.size.value) {
       YgStepperButtonSize.large => _theme.paddingLarge,
       YgStepperButtonSize.medium => _theme.paddingMedium,
+      YgStepperButtonSize.small => _theme.paddingSmall,
     };
 
     return BoxConstraints.tight(
@@ -46,33 +57,73 @@ class YgStepperButtonStyle extends YgButtonBaseStyle<YgStepperButtonState> {
 
   @override
   Color resolveIconColor() {
-    if (state.disabled.value) {
-      return _theme.disabledIconColor;
-    }
+    switch (state.variant.value) {
+      case YgStepperButtonVariant.outlined:
+        if (state.disabled.value) {
+          return _theme.disabledIconColor;
+        }
 
-    return _theme.iconColor;
+        return state.color.value ?? _theme.iconColor;
+
+      case YgStepperButtonVariant.filled:
+        if (state.disabled.value) {
+          return _theme.filledDisabledIconColor;
+        }
+
+        return _theme.filledIconColor;
+    }
   }
 
   @override
   Color resolveSplashColor() {
-    return _theme.splashColor;
+    switch (state.variant.value) {
+      case YgStepperButtonVariant.outlined:
+        return _theme.splashColor;
+
+      case YgStepperButtonVariant.filled:
+        return super.resolveSplashColor();
+    }
   }
 
   @override
   OutlinedBorder resolveOutlinedBorder() {
-    if (state.disabled.value) {
-      return YgRoundedRectangleGradientBorder(
-        gradient: _theme.disabledBorderGradient,
-        borderRadius: _theme.borderRadius,
-        width: _theme.borderWidth,
-      );
-    }
-
     return YgRoundedRectangleGradientBorder(
-      gradient: _theme.borderGradient,
+      gradient: _resolveBorderGradient(),
       borderRadius: _theme.borderRadius,
       width: _theme.borderWidth,
     );
+  }
+
+  LinearGradient _resolveBorderGradient() {
+    switch (state.variant.value) {
+      case YgStepperButtonVariant.outlined:
+        if (state.disabled.value) {
+          return _theme.disabledBorderGradient;
+        }
+
+        final Color? color = state.color.value;
+        if (color != null) {
+          return LinearGradient(
+            colors: <Color>[
+              color,
+              color,
+            ],
+          );
+        }
+
+        return _theme.borderGradient;
+
+      case YgStepperButtonVariant.filled:
+        // Matches the fill so the button appears borderless.
+        final Color color = resolveColor();
+
+        return LinearGradient(
+          colors: <Color>[
+            color,
+            color,
+          ],
+        );
+    }
   }
 
   YgStepperButtonTheme get _theme => context.stepperButtonTheme;

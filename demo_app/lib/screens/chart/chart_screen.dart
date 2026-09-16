@@ -71,11 +71,14 @@ class _ChartScreenState extends State<ChartScreen> {
               children: <Widget>[
                 YgSegmentedButton<YgChartSize>(
                   segments: <YgButtonSegment<YgChartSize>>[
+                    // The segmented button fits at most 5 segments; xxxsmall
+                    // is meant for YgChartSimple, see YgChartSize.xxxsmall.
                     for (final YgChartSize size in YgChartSize.values)
-                      YgButtonSegment<YgChartSize>(
-                        label: size.name,
-                        value: size,
-                      ),
+                      if (size != YgChartSize.xxxsmall)
+                        YgButtonSegment<YgChartSize>(
+                          label: size.name,
+                          value: size,
+                        ),
                   ],
                   value: _selectedSize,
                   onValueChanged: (YgChartSize newSize) => setState(() => _selectedSize = newSize),

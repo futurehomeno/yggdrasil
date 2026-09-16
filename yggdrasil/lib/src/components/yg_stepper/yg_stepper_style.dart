@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:yggdrasil/src/components/yg_stepper/enums/_enums.dart';
 import 'package:yggdrasil/src/components/yg_stepper/yg_stepper_state.dart';
 import 'package:yggdrasil/src/theme/stepper/stepper_theme.dart';
 import 'package:yggdrasil/src/theme/theme.dart';
@@ -14,13 +15,25 @@ class YgStepperStyle extends YgStyle<YgStepperState> {
   late final YgAnimatedProperty<TextStyle> valueStyle = animate(_resolveValueStyle);
 
   TextStyle _resolveMetricStyle() {
-    return _theme.metricTextStyle.copyWith(
+    final TextStyle textStyle = switch (state.size.value) {
+      YgStepperSize.small => _theme.metricTextStyleSmall,
+      YgStepperSize.medium => _theme.metricTextStyleMedium,
+      YgStepperSize.large => _theme.metricTextStyleLarge,
+    };
+
+    return textStyle.copyWith(
       color: _resolveTextColor(state),
     );
   }
 
   TextStyle _resolveValueStyle() {
-    return _theme.valueTextStyle.copyWith(
+    final TextStyle textStyle = switch (state.size.value) {
+      YgStepperSize.small => _theme.valueTextStyleSmall,
+      YgStepperSize.medium => _theme.valueTextStyleMedium,
+      YgStepperSize.large => _theme.valueTextStyleLarge,
+    };
+
+    return textStyle.copyWith(
       color: _resolveTextColor(state),
     );
   }

@@ -20,6 +20,10 @@ class YgStepper extends StatefulWidget with StatefulWidgetDebugMixin {
     this.stepSize = 1,
     this.min = 0,
     this.max = 100,
+    this.size = YgStepperSize.large,
+    this.variant = YgStepperVariant.outlined,
+    this.colorForPlus,
+    this.colorForMinus,
   }) : assert(
          stepSize > 0,
          'step size has to be more than 0',
@@ -70,6 +74,30 @@ class YgStepper extends StatefulWidget with StatefulWidgetDebugMixin {
   /// instead.
   final int? precision;
 
+  /// The size of the stepper.
+  ///
+  /// For specific info see [YgStepperSize].
+  final YgStepperSize size;
+
+  /// The variant of the stepper.
+  ///
+  /// For specific info see [YgStepperVariant].
+  final YgStepperVariant variant;
+
+  /// Optional color override for the add button.
+  ///
+  /// Replaces the outline and icon color for [YgStepperVariant.outlined] and
+  /// the background color for [YgStepperVariant.filled]. Ignored when the
+  /// button is disabled.
+  final Color? colorForPlus;
+
+  /// Optional color override for the minus button.
+  ///
+  /// Replaces the outline and icon color for [YgStepperVariant.outlined] and
+  /// the background color for [YgStepperVariant.filled]. Ignored when the
+  /// button is disabled.
+  final Color? colorForMinus;
+
   @override
   State<YgStepper> createState() => _YgStepperState();
 }
@@ -79,12 +107,14 @@ class _YgStepperState extends StateWithYgStateAndStyle<YgStepper, YgStepperState
   YgStepperState createState() {
     return YgStepperState(
       disabled: widget.onChanged == null,
+      size: widget.size,
     );
   }
 
   @override
   void updateState() {
     state.disabled.value = widget.onChanged == null;
+    state.size.value = widget.size;
   }
 
   @override
@@ -105,8 +135,14 @@ class _YgStepperState extends StateWithYgStateAndStyle<YgStepper, YgStepperState
       widget.precision ?? widget.stepSize.precision,
     );
 
+    final double height = switch (widget.size) {
+      YgStepperSize.small => theme.heightSmall,
+      YgStepperSize.medium => theme.heightMedium,
+      YgStepperSize.large => theme.heightLarge,
+    };
+
     return SizedBox(
-      height: theme.height,
+      height: height,
       child: Row(
         crossAxisAlignment: CrossAxisAlignment.center,
         children: <Widget>[
@@ -114,6 +150,9 @@ class _YgStepperState extends StateWithYgStateAndStyle<YgStepper, YgStepperState
             onPressed: _handleDecrease,
             disabled: !canDecrease,
             icon: YgIcons.minus,
+            size: _buttonSize,
+            variant: _buttonVariant,
+            color: widget.colorForMinus,
           ),
           Expanded(
             child: Column(
@@ -141,10 +180,33 @@ class _YgStepperState extends StateWithYgStateAndStyle<YgStepper, YgStepperState
             onPressed: _handleIncrease,
             disabled: !canIncrease,
             icon: YgIcons.plus,
+            size: _buttonSize,
+            variant: _buttonVariant,
+            color: widget.colorForPlus,
           ),
         ],
       ),
     );
+  }
+
+  YgStepperButtonSize get _buttonSize {
+    switch (widget.size) {
+      case YgStepperSize.small:
+        return YgStepperButtonSize.small;
+      case YgStepperSize.medium:
+        return YgStepperButtonSize.medium;
+      case YgStepperSize.large:
+        return YgStepperButtonSize.large;
+    }
+  }
+
+  YgStepperButtonVariant get _buttonVariant {
+    switch (widget.variant) {
+      case YgStepperVariant.outlined:
+        return YgStepperButtonVariant.outlined;
+      case YgStepperVariant.filled:
+        return YgStepperButtonVariant.filled;
+    }
   }
 
   void _handleIncrease() {

@@ -24,6 +24,9 @@ class _StepperScreenState extends State<StepperScreen> {
   double value2 = 0;
   double value3 = 0;
   double value4 = 0;
+  double sizesValue = 0;
+  double filledValue = 0;
+  double coloredValue = 0;
 
   @override
   Widget build(BuildContext context) {
@@ -60,6 +63,55 @@ class _StepperScreenState extends State<StepperScreen> {
                 onChanged: null,
                 max: 10,
                 metric: 'KwH',
+              ),
+            ),
+            YgSection.column(
+              title: 'Stepper sizes',
+              children: <Widget>[
+                for (final YgStepperSize size in YgStepperSize.values)
+                  YgStepper(
+                    value: sizesValue,
+                    onChanged: (double value) => setState(
+                      () => sizesValue = value,
+                    ),
+                    max: 10,
+                    size: size,
+                    metric: 'KwH',
+                  ),
+              ],
+            ),
+            YgSection(
+              title: 'Filled stepper',
+              child: YgStepper(
+                value: filledValue,
+                onChanged: (double value) => setState(
+                  () => filledValue = value,
+                ),
+                max: 10,
+                variant: YgStepperVariant.filled,
+                metric: 'KwH',
+              ),
+            ),
+            const YgSection(
+              title: 'Disabled filled stepper',
+              child: YgStepper(
+                value: 0,
+                onChanged: null,
+                max: 10,
+                variant: YgStepperVariant.filled,
+                metric: 'KwH',
+              ),
+            ),
+            YgSection(
+              title: 'Stepper with custom button colors',
+              child: YgStepper(
+                value: coloredValue,
+                onChanged: (double value) => setState(
+                  () => coloredValue = value,
+                ),
+                max: 10,
+                colorForPlus: context.tokens.colors.iconSuccess,
+                colorForMinus: context.tokens.colors.iconCritical,
               ),
             ),
             YgSection.column(

@@ -11,6 +11,7 @@ export 'callout/_callout.dart';
 export 'card/_card.dart';
 export 'chart/_chart.dart';
 export 'chart_container/_chart_container.dart';
+export 'chart_simple/_chart_simple.dart';
 export 'checkbox/_checkbox.dart';
 export 'checkbox_list_tile/_checkbox_list_tile.dart';
 export 'dialog/_dialog.dart';

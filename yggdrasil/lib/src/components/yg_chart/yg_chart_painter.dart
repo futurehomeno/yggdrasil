@@ -7,6 +7,7 @@ import 'package:yggdrasil/src/components/yg_chart/enums/_enums.dart';
 import 'package:yggdrasil/src/components/yg_chart/models/_models.dart';
 import 'package:yggdrasil/src/components/yg_chart/yg_chart_colors.dart';
 import 'package:yggdrasil/src/components/yg_chart/yg_chart_data_manager.dart';
+import 'package:yggdrasil/src/components/yg_chart/yg_chart_paths.dart';
 import 'package:yggdrasil/src/theme/_theme.dart';
 
 /// Paints the grid, axis labels, bars, lines and bands of a [YgChart].
@@ -682,7 +683,7 @@ class YgChartPainter extends CustomPainter {
     }
 
     final Paint fillPaint = Paint()..color = fillColor;
-    canvas.drawPath(_buildBandPath(upperPoints, lowerPoints), fillPaint);
+    canvas.drawPath(YgChartPaths.bandPath(upperPoints, lowerPoints), fillPaint);
 
     // Unlike the line series the band is drawn raw: straight segments
     // with sharp corners and ends.
@@ -690,7 +691,7 @@ class YgChartPainter extends CustomPainter {
       ..color = lineColor
       ..strokeWidth = _lineWidth
       ..style = PaintingStyle.stroke;
-    canvas.drawPath(_buildStraightPath(centerPoints), linePaint);
+    canvas.drawPath(YgChartPaths.straightPath(centerPoints), linePaint);
   }
 
   void _paintLines(Canvas canvas, Rect plotRect, List<YgChartSeries> lineSeries) {
@@ -750,59 +751,12 @@ class YgChartPainter extends CustomPainter {
       return;
     }
 
-    canvas.drawPath(_buildLinePath(points), linePaint);
-  }
-
-  /// Builds the closed outline of a band: along the upper bound, down to the
-  /// lower bound and back along it to the start.
-  ///
-  /// Built from straight segments, matching the raw look of the band center
-  /// line.
-  Path _buildBandPath(List<Offset> upperPoints, List<Offset> lowerPoints) {
-    return Path()..addPolygon(
-      <Offset>[...upperPoints, ...lowerPoints.reversed],
-      true,
-    );
-  }
-
-  /// Builds a path of straight segments through [points].
-  Path _buildStraightPath(List<Offset> points) {
-    return Path()..addPolygon(points, false);
+    canvas.drawPath(YgChartPaths.linePath(points, curveHalfLength: _lineCurveHalfLength), linePaint);
   }
 
   /// [color] with its alpha scaled by the fade [opacity] of its series.
   static Color _fadedColor(Color color, double opacity) {
     return opacity < 1.0 ? color.withValues(alpha: color.a * opacity) : color;
-  }
-
-  /// Builds a path through [points] with slightly curved corners.
-  Path _buildLinePath(List<Offset> points) {
-    final Path path = Path()..moveTo(points.first.dx, points.first.dy);
-
-    for (int i = 1; i < points.length; i++) {
-      final Offset start = points[i - 1];
-      final Offset end = points[i];
-      final Offset delta = end - start;
-      final double segmentLength = delta.distance;
-      if (segmentLength == 0.0) {
-        continue;
-      }
-
-      final Offset direction = delta / segmentLength;
-      final double cutLength = math.min(_lineCurveHalfLength, segmentLength / 2.0);
-
-      if (i > 1) {
-        // Curve into this segment around the shared corner point.
-        final Offset curveEnd = start + direction * cutLength;
-        path.conicTo(start.dx, start.dy, curveEnd.dx, curveEnd.dy, 1.0);
-      }
-
-      final bool isLast = i == points.length - 1;
-      final Offset lineEnd = isLast ? end : end - direction * cutLength;
-      path.lineTo(lineEnd.dx, lineEnd.dy);
-    }
-
-    return path;
   }
 
   /// Paints the value label of one gridline.
