@@ -27,7 +27,9 @@ class YgChartSeries {
   /// One value per x-axis label of the chart.
   ///
   /// Must have the same length as [YgChart.xLabels]. Negative values are
-  /// supported and are drawn below the zero line.
+  /// supported and are drawn below the zero line. NaN values are rendered
+  /// as gaps, for example the hours of the day in progress that have not
+  /// happened yet; they are also excluded from the axis range.
   ///
   /// For [YgChartSeriesType.band] series this is the center line, typically
   /// the average of the values the band was computed from.

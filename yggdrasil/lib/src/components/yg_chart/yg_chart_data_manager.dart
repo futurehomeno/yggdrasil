@@ -803,7 +803,10 @@ class _YgChartChannel {
 
     for (int i = 0; i < valueCount; i++) {
       final double newValue = targetAt(i);
-      if (target[i] == newValue) {
+      // A gap never equals itself, so gaps are compared separately -
+      // otherwise a series with gaps would report a change on every update
+      // and restart its animation forever.
+      if (target[i] == newValue || (target[i].isNaN && newValue.isNaN)) {
         continue;
       }
 
@@ -822,9 +825,17 @@ class _YgChartChannel {
 
   /// Moves the current values towards the target, [t] along the movement
   /// channel of the animation.
+  ///
+  /// There is no value between a gap (NaN) and a number, so an index with a
+  /// gap on exactly one end snaps to its target instead of interpolating:
+  /// the gap opens, or closes, right away while the rest of the data
+  /// animates.
   void lerp(int valueCount, double t) {
     for (int i = 0; i < valueCount; i++) {
-      current[i] = lerpDouble(start[i], target[i], t)!;
+      final double startValue = start[i];
+      final double targetValue = target[i];
+
+      current[i] = startValue.isNaN || targetValue.isNaN ? targetValue : lerpDouble(startValue, targetValue, t)!;
     }
   }
 }

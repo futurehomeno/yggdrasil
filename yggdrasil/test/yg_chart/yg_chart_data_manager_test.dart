@@ -188,6 +188,80 @@ void main() {
       expect(changed, isFalse);
     });
 
+    test('a value turning into a gap snaps instead of interpolating', () {
+      final YgChartDataManager manager = YgChartDataManager();
+
+      manager.updateData(
+        <YgChartSeries>[buildSeries(values: <double>[4.0, 8.0, 10.0])],
+        valueCount: 3,
+        tickCount: 5,
+      );
+      manager.applyAnimationValue(1.0);
+
+      manager.updateData(
+        <YgChartSeries>[
+          buildSeries(values: <double>[4.0, 4.0, double.nan]),
+        ],
+        valueCount: 3,
+        tickCount: 5,
+      );
+
+      // Halfway through, the value still animates while the gap is already
+      // open - there is no value between a number and a gap to animate to.
+      manager.applyAnimationValue(0.5);
+      expect(
+        manager.currentValuesOf('series'),
+        <Matcher>[equals(4.0), equals(6.0), isNaN],
+      );
+
+      manager.applyAnimationValue(1.0);
+      expect(
+        manager.currentValuesOf('series'),
+        <Matcher>[equals(4.0), equals(4.0), isNaN],
+      );
+    });
+
+    test('a series animating in with a gap keeps it', () {
+      final YgChartDataManager manager = YgChartDataManager();
+
+      manager.updateData(
+        <YgChartSeries>[
+          buildSeries(values: <double>[4.0, double.nan, 10.0]),
+        ],
+        valueCount: 3,
+        tickCount: 5,
+      );
+
+      manager.applyAnimationValue(0.5);
+      expect(
+        manager.currentValuesOf('series'),
+        <Matcher>[equals(2.0), isNaN, equals(5.0)],
+      );
+    });
+
+    test('unchanged gaps do not report a change', () {
+      final YgChartDataManager manager = YgChartDataManager();
+
+      manager.updateData(
+        <YgChartSeries>[
+          buildSeries(values: <double>[4.0, double.nan, double.nan]),
+        ],
+        valueCount: 3,
+        tickCount: 5,
+      );
+      manager.applyAnimationValue(1.0);
+
+      final bool changed = manager.updateData(
+        <YgChartSeries>[
+          buildSeries(values: <double>[4.0, double.nan, double.nan]),
+        ],
+        valueCount: 3,
+        tickCount: 5,
+      );
+
+      expect(changed, isFalse);
+    });
+
     test('axis range is rounded to nice steps', () {
       final YgChartDataManager manager = YgChartDataManager();
 
