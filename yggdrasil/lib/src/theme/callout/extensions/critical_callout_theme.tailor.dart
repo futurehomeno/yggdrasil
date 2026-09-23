@@ -1,3 +1,4 @@
+// dart format width=80
 // coverage:ignore-file
 // GENERATED CODE - DO NOT MODIFY BY HAND
 // ignore_for_file: type=lint, unused_element, unnecessary_cast
@@ -45,10 +46,7 @@ class CriticalCalloutTheme extends ThemeExtension<CriticalCalloutTheme> {
   ];
 
   @override
-  CriticalCalloutTheme copyWith({
-    Color? backgroundColor,
-    Color? borderColor,
-  }) {
+  CriticalCalloutTheme copyWith({Color? backgroundColor, Color? borderColor}) {
     return CriticalCalloutTheme(
       backgroundColor: backgroundColor ?? this.backgroundColor,
       borderColor: borderColor ?? this.borderColor,
@@ -56,7 +54,10 @@ class CriticalCalloutTheme extends ThemeExtension<CriticalCalloutTheme> {
   }
 
   @override
-  CriticalCalloutTheme lerp(covariant ThemeExtension<CriticalCalloutTheme>? other, double t) {
+  CriticalCalloutTheme lerp(
+    covariant ThemeExtension<CriticalCalloutTheme>? other,
+    double t,
+  ) {
     if (other is! CriticalCalloutTheme) return this as CriticalCalloutTheme;
     return CriticalCalloutTheme(
       backgroundColor: Color.lerp(backgroundColor, other.backgroundColor, t)!,
@@ -69,8 +70,14 @@ class CriticalCalloutTheme extends ThemeExtension<CriticalCalloutTheme> {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is CriticalCalloutTheme &&
-            const DeepCollectionEquality().equals(backgroundColor, other.backgroundColor) &&
-            const DeepCollectionEquality().equals(borderColor, other.borderColor));
+            const DeepCollectionEquality().equals(
+              backgroundColor,
+              other.backgroundColor,
+            ) &&
+            const DeepCollectionEquality().equals(
+              borderColor,
+              other.borderColor,
+            ));
   }
 
   @override

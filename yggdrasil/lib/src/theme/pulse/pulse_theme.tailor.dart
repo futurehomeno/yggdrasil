@@ -1,3 +1,4 @@
+// dart format width=80
 // coverage:ignore-file
 // GENERATED CODE - DO NOT MODIFY BY HAND
 // ignore_for_file: type=lint, unused_element, unnecessary_cast
@@ -96,11 +97,26 @@ class YgPulseTheme extends ThemeExtension<YgPulseTheme> {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is YgPulseTheme &&
-            const DeepCollectionEquality().equals(backgroundColor, other.backgroundColor) &&
-            const DeepCollectionEquality().equals(preferredSize, other.preferredSize) &&
-            const DeepCollectionEquality().equals(pulseCurve, other.pulseCurve) &&
-            const DeepCollectionEquality().equals(pulseDuration, other.pulseDuration) &&
-            const DeepCollectionEquality().equals(pulseInterval, other.pulseInterval));
+            const DeepCollectionEquality().equals(
+              backgroundColor,
+              other.backgroundColor,
+            ) &&
+            const DeepCollectionEquality().equals(
+              preferredSize,
+              other.preferredSize,
+            ) &&
+            const DeepCollectionEquality().equals(
+              pulseCurve,
+              other.pulseCurve,
+            ) &&
+            const DeepCollectionEquality().equals(
+              pulseDuration,
+              other.pulseDuration,
+            ) &&
+            const DeepCollectionEquality().equals(
+              pulseInterval,
+              other.pulseInterval,
+            ));
   }
 
   @override

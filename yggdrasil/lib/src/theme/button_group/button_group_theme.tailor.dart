@@ -1,3 +1,4 @@
+// dart format width=80
 // coverage:ignore-file
 // GENERATED CODE - DO NOT MODIFY BY HAND
 // ignore_for_file: type=lint, unused_element, unnecessary_cast
@@ -9,9 +10,7 @@ part of 'button_group_theme.dart';
 // **************************************************************************
 
 class YgButtonGroupTheme extends ThemeExtension<YgButtonGroupTheme> {
-  const YgButtonGroupTheme({
-    required this.buttonSpacing,
-  });
+  const YgButtonGroupTheme({required this.buttonSpacing});
 
   final double buttonSpacing;
 
@@ -39,16 +38,17 @@ class YgButtonGroupTheme extends ThemeExtension<YgButtonGroupTheme> {
   ];
 
   @override
-  YgButtonGroupTheme copyWith({
-    double? buttonSpacing,
-  }) {
+  YgButtonGroupTheme copyWith({double? buttonSpacing}) {
     return YgButtonGroupTheme(
       buttonSpacing: buttonSpacing ?? this.buttonSpacing,
     );
   }
 
   @override
-  YgButtonGroupTheme lerp(covariant ThemeExtension<YgButtonGroupTheme>? other, double t) {
+  YgButtonGroupTheme lerp(
+    covariant ThemeExtension<YgButtonGroupTheme>? other,
+    double t,
+  ) {
     if (other is! YgButtonGroupTheme) return this as YgButtonGroupTheme;
     return YgButtonGroupTheme(
       buttonSpacing: t < 0.5 ? buttonSpacing : other.buttonSpacing,
@@ -60,7 +60,10 @@ class YgButtonGroupTheme extends ThemeExtension<YgButtonGroupTheme> {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is YgButtonGroupTheme &&
-            const DeepCollectionEquality().equals(buttonSpacing, other.buttonSpacing));
+            const DeepCollectionEquality().equals(
+              buttonSpacing,
+              other.buttonSpacing,
+            ));
   }
 
   @override

@@ -1,3 +1,4 @@
+// dart format width=80
 // coverage:ignore-file
 // GENERATED CODE - DO NOT MODIFY BY HAND
 // ignore_for_file: type=lint, unused_element, unnecessary_cast
@@ -172,13 +173,16 @@ class YgDialogTheme extends ThemeExtension<YgDialogTheme> {
       loadingDialogTheme: loadingDialogTheme ?? this.loadingDialogTheme,
       maxWidth: maxWidth ?? this.maxWidth,
       minWidth: minWidth ?? this.minWidth,
-      movementAnimationCurve: movementAnimationCurve ?? this.movementAnimationCurve,
-      movementAnimationDuration: movementAnimationDuration ?? this.movementAnimationDuration,
+      movementAnimationCurve:
+          movementAnimationCurve ?? this.movementAnimationCurve,
+      movementAnimationDuration:
+          movementAnimationDuration ?? this.movementAnimationDuration,
       outerBorderRadius: outerBorderRadius ?? this.outerBorderRadius,
       outerPadding: outerPadding ?? this.outerPadding,
       scrimColor: scrimColor ?? this.scrimColor,
       successDialogTheme: successDialogTheme ?? this.successDialogTheme,
-      titleDescriptionSpacing: titleDescriptionSpacing ?? this.titleDescriptionSpacing,
+      titleDescriptionSpacing:
+          titleDescriptionSpacing ?? this.titleDescriptionSpacing,
       titleTextStyle: titleTextStyle ?? this.titleTextStyle,
     );
   }
@@ -188,22 +192,47 @@ class YgDialogTheme extends ThemeExtension<YgDialogTheme> {
     if (other is! YgDialogTheme) return this as YgDialogTheme;
     return YgDialogTheme(
       backgroundColor: Color.lerp(backgroundColor, other.backgroundColor, t)!,
-      confirmDialogTheme: confirmDialogTheme.lerp(other.confirmDialogTheme, t) as ConfirmDialogTheme,
+      confirmDialogTheme: confirmDialogTheme.lerp(
+        other.confirmDialogTheme,
+        t,
+      ) as ConfirmDialogTheme,
       contentPadding: t < 0.5 ? contentPadding : other.contentPadding,
       contentSpacing: t < 0.5 ? contentSpacing : other.contentSpacing,
-      criticalDialogTheme: criticalDialogTheme.lerp(other.criticalDialogTheme, t) as CriticalDialogTheme,
-      descriptionTextStyle: TextStyle.lerp(descriptionTextStyle, other.descriptionTextStyle, t)!,
-      highlightDialogTheme: highlightDialogTheme.lerp(other.highlightDialogTheme, t) as HighlightDialogTheme,
-      loadingDialogTheme: loadingDialogTheme.lerp(other.loadingDialogTheme, t) as LoadingDialogTheme,
+      criticalDialogTheme: criticalDialogTheme.lerp(
+        other.criticalDialogTheme,
+        t,
+      ) as CriticalDialogTheme,
+      descriptionTextStyle: TextStyle.lerp(
+        descriptionTextStyle,
+        other.descriptionTextStyle,
+        t,
+      )!,
+      highlightDialogTheme: highlightDialogTheme.lerp(
+        other.highlightDialogTheme,
+        t,
+      ) as HighlightDialogTheme,
+      loadingDialogTheme: loadingDialogTheme.lerp(
+        other.loadingDialogTheme,
+        t,
+      ) as LoadingDialogTheme,
       maxWidth: t < 0.5 ? maxWidth : other.maxWidth,
       minWidth: t < 0.5 ? minWidth : other.minWidth,
-      movementAnimationCurve: t < 0.5 ? movementAnimationCurve : other.movementAnimationCurve,
-      movementAnimationDuration: t < 0.5 ? movementAnimationDuration : other.movementAnimationDuration,
+      movementAnimationCurve: t < 0.5
+          ? movementAnimationCurve
+          : other.movementAnimationCurve,
+      movementAnimationDuration: t < 0.5
+          ? movementAnimationDuration
+          : other.movementAnimationDuration,
       outerBorderRadius: t < 0.5 ? outerBorderRadius : other.outerBorderRadius,
       outerPadding: t < 0.5 ? outerPadding : other.outerPadding,
       scrimColor: Color.lerp(scrimColor, other.scrimColor, t)!,
-      successDialogTheme: successDialogTheme.lerp(other.successDialogTheme, t) as SuccessDialogTheme,
-      titleDescriptionSpacing: t < 0.5 ? titleDescriptionSpacing : other.titleDescriptionSpacing,
+      successDialogTheme: successDialogTheme.lerp(
+        other.successDialogTheme,
+        t,
+      ) as SuccessDialogTheme,
+      titleDescriptionSpacing: t < 0.5
+          ? titleDescriptionSpacing
+          : other.titleDescriptionSpacing,
       titleTextStyle: TextStyle.lerp(titleTextStyle, other.titleTextStyle, t)!,
     );
   }
@@ -213,24 +242,72 @@ class YgDialogTheme extends ThemeExtension<YgDialogTheme> {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is YgDialogTheme &&
-            const DeepCollectionEquality().equals(backgroundColor, other.backgroundColor) &&
-            const DeepCollectionEquality().equals(confirmDialogTheme, other.confirmDialogTheme) &&
-            const DeepCollectionEquality().equals(contentPadding, other.contentPadding) &&
-            const DeepCollectionEquality().equals(contentSpacing, other.contentSpacing) &&
-            const DeepCollectionEquality().equals(criticalDialogTheme, other.criticalDialogTheme) &&
-            const DeepCollectionEquality().equals(descriptionTextStyle, other.descriptionTextStyle) &&
-            const DeepCollectionEquality().equals(highlightDialogTheme, other.highlightDialogTheme) &&
-            const DeepCollectionEquality().equals(loadingDialogTheme, other.loadingDialogTheme) &&
+            const DeepCollectionEquality().equals(
+              backgroundColor,
+              other.backgroundColor,
+            ) &&
+            const DeepCollectionEquality().equals(
+              confirmDialogTheme,
+              other.confirmDialogTheme,
+            ) &&
+            const DeepCollectionEquality().equals(
+              contentPadding,
+              other.contentPadding,
+            ) &&
+            const DeepCollectionEquality().equals(
+              contentSpacing,
+              other.contentSpacing,
+            ) &&
+            const DeepCollectionEquality().equals(
+              criticalDialogTheme,
+              other.criticalDialogTheme,
+            ) &&
+            const DeepCollectionEquality().equals(
+              descriptionTextStyle,
+              other.descriptionTextStyle,
+            ) &&
+            const DeepCollectionEquality().equals(
+              highlightDialogTheme,
+              other.highlightDialogTheme,
+            ) &&
+            const DeepCollectionEquality().equals(
+              loadingDialogTheme,
+              other.loadingDialogTheme,
+            ) &&
             const DeepCollectionEquality().equals(maxWidth, other.maxWidth) &&
             const DeepCollectionEquality().equals(minWidth, other.minWidth) &&
-            const DeepCollectionEquality().equals(movementAnimationCurve, other.movementAnimationCurve) &&
-            const DeepCollectionEquality().equals(movementAnimationDuration, other.movementAnimationDuration) &&
-            const DeepCollectionEquality().equals(outerBorderRadius, other.outerBorderRadius) &&
-            const DeepCollectionEquality().equals(outerPadding, other.outerPadding) &&
-            const DeepCollectionEquality().equals(scrimColor, other.scrimColor) &&
-            const DeepCollectionEquality().equals(successDialogTheme, other.successDialogTheme) &&
-            const DeepCollectionEquality().equals(titleDescriptionSpacing, other.titleDescriptionSpacing) &&
-            const DeepCollectionEquality().equals(titleTextStyle, other.titleTextStyle));
+            const DeepCollectionEquality().equals(
+              movementAnimationCurve,
+              other.movementAnimationCurve,
+            ) &&
+            const DeepCollectionEquality().equals(
+              movementAnimationDuration,
+              other.movementAnimationDuration,
+            ) &&
+            const DeepCollectionEquality().equals(
+              outerBorderRadius,
+              other.outerBorderRadius,
+            ) &&
+            const DeepCollectionEquality().equals(
+              outerPadding,
+              other.outerPadding,
+            ) &&
+            const DeepCollectionEquality().equals(
+              scrimColor,
+              other.scrimColor,
+            ) &&
+            const DeepCollectionEquality().equals(
+              successDialogTheme,
+              other.successDialogTheme,
+            ) &&
+            const DeepCollectionEquality().equals(
+              titleDescriptionSpacing,
+              other.titleDescriptionSpacing,
+            ) &&
+            const DeepCollectionEquality().equals(
+              titleTextStyle,
+              other.titleTextStyle,
+            ));
   }
 
   @override

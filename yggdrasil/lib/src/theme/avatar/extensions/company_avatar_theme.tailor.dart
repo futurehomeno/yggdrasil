@@ -1,3 +1,4 @@
+// dart format width=80
 // coverage:ignore-file
 // GENERATED CODE - DO NOT MODIFY BY HAND
 // ignore_for_file: type=lint, unused_element, unnecessary_cast
@@ -9,9 +10,7 @@ part of 'company_avatar_theme.dart';
 // **************************************************************************
 
 class YgCompanyAvatarTheme extends ThemeExtension<YgCompanyAvatarTheme> {
-  const YgCompanyAvatarTheme({
-    required this.borderRadius,
-  });
+  const YgCompanyAvatarTheme({required this.borderRadius});
 
   final BorderRadius borderRadius;
 
@@ -39,16 +38,17 @@ class YgCompanyAvatarTheme extends ThemeExtension<YgCompanyAvatarTheme> {
   ];
 
   @override
-  YgCompanyAvatarTheme copyWith({
-    BorderRadius? borderRadius,
-  }) {
+  YgCompanyAvatarTheme copyWith({BorderRadius? borderRadius}) {
     return YgCompanyAvatarTheme(
       borderRadius: borderRadius ?? this.borderRadius,
     );
   }
 
   @override
-  YgCompanyAvatarTheme lerp(covariant ThemeExtension<YgCompanyAvatarTheme>? other, double t) {
+  YgCompanyAvatarTheme lerp(
+    covariant ThemeExtension<YgCompanyAvatarTheme>? other,
+    double t,
+  ) {
     if (other is! YgCompanyAvatarTheme) return this as YgCompanyAvatarTheme;
     return YgCompanyAvatarTheme(
       borderRadius: t < 0.5 ? borderRadius : other.borderRadius,
@@ -60,7 +60,10 @@ class YgCompanyAvatarTheme extends ThemeExtension<YgCompanyAvatarTheme> {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is YgCompanyAvatarTheme &&
-            const DeepCollectionEquality().equals(borderRadius, other.borderRadius));
+            const DeepCollectionEquality().equals(
+              borderRadius,
+              other.borderRadius,
+            ));
   }
 
   @override

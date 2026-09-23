@@ -1,3 +1,4 @@
+// dart format width=80
 // coverage:ignore-file
 // GENERATED CODE - DO NOT MODIFY BY HAND
 // ignore_for_file: type=lint, unused_element, unnecessary_cast
@@ -84,7 +85,11 @@ class YgGaugeTheme extends ThemeExtension<YgGaugeTheme> {
     if (other is! YgGaugeTheme) return this as YgGaugeTheme;
     return YgGaugeTheme(
       labelTextStyle: TextStyle.lerp(labelTextStyle, other.labelTextStyle, t)!,
-      notationTextStyle: TextStyle.lerp(notationTextStyle, other.notationTextStyle, t)!,
+      notationTextStyle: TextStyle.lerp(
+        notationTextStyle,
+        other.notationTextStyle,
+        t,
+      )!,
       titleTextStyle: TextStyle.lerp(titleTextStyle, other.titleTextStyle, t)!,
       tweenCurve: t < 0.5 ? tweenCurve : other.tweenCurve,
       tweenDuration: t < 0.5 ? tweenDuration : other.tweenDuration,
@@ -96,11 +101,26 @@ class YgGaugeTheme extends ThemeExtension<YgGaugeTheme> {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is YgGaugeTheme &&
-            const DeepCollectionEquality().equals(labelTextStyle, other.labelTextStyle) &&
-            const DeepCollectionEquality().equals(notationTextStyle, other.notationTextStyle) &&
-            const DeepCollectionEquality().equals(titleTextStyle, other.titleTextStyle) &&
-            const DeepCollectionEquality().equals(tweenCurve, other.tweenCurve) &&
-            const DeepCollectionEquality().equals(tweenDuration, other.tweenDuration));
+            const DeepCollectionEquality().equals(
+              labelTextStyle,
+              other.labelTextStyle,
+            ) &&
+            const DeepCollectionEquality().equals(
+              notationTextStyle,
+              other.notationTextStyle,
+            ) &&
+            const DeepCollectionEquality().equals(
+              titleTextStyle,
+              other.titleTextStyle,
+            ) &&
+            const DeepCollectionEquality().equals(
+              tweenCurve,
+              other.tweenCurve,
+            ) &&
+            const DeepCollectionEquality().equals(
+              tweenDuration,
+              other.tweenDuration,
+            ));
   }
 
   @override

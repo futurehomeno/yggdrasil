@@ -1,3 +1,4 @@
+// dart format width=80
 // coverage:ignore-file
 // GENERATED CODE - DO NOT MODIFY BY HAND
 // ignore_for_file: type=lint, unused_element, unnecessary_cast
@@ -9,9 +10,7 @@ part of 'internal.dart';
 // **************************************************************************
 
 class YgInternalTheme extends ThemeExtension<YgInternalTheme> {
-  const YgInternalTheme({
-    required this.scrollShadow,
-  });
+  const YgInternalTheme({required this.scrollShadow});
 
   final YgScrollShadowThemes scrollShadow;
 
@@ -39,19 +38,19 @@ class YgInternalTheme extends ThemeExtension<YgInternalTheme> {
   ];
 
   @override
-  YgInternalTheme copyWith({
-    YgScrollShadowThemes? scrollShadow,
-  }) {
-    return YgInternalTheme(
-      scrollShadow: scrollShadow ?? this.scrollShadow,
-    );
+  YgInternalTheme copyWith({YgScrollShadowThemes? scrollShadow}) {
+    return YgInternalTheme(scrollShadow: scrollShadow ?? this.scrollShadow);
   }
 
   @override
-  YgInternalTheme lerp(covariant ThemeExtension<YgInternalTheme>? other, double t) {
+  YgInternalTheme lerp(
+    covariant ThemeExtension<YgInternalTheme>? other,
+    double t,
+  ) {
     if (other is! YgInternalTheme) return this as YgInternalTheme;
     return YgInternalTheme(
-      scrollShadow: scrollShadow.lerp(other.scrollShadow, t) as YgScrollShadowThemes,
+      scrollShadow:
+          scrollShadow.lerp(other.scrollShadow, t) as YgScrollShadowThemes,
     );
   }
 
@@ -60,7 +59,10 @@ class YgInternalTheme extends ThemeExtension<YgInternalTheme> {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is YgInternalTheme &&
-            const DeepCollectionEquality().equals(scrollShadow, other.scrollShadow));
+            const DeepCollectionEquality().equals(
+              scrollShadow,
+              other.scrollShadow,
+            ));
   }
 
   @override

@@ -1,3 +1,4 @@
+// dart format width=80
 // coverage:ignore-file
 // GENERATED CODE - DO NOT MODIFY BY HAND
 // ignore_for_file: type=lint, unused_element, unnecessary_cast
@@ -72,12 +73,19 @@ class LargeAppBarTheme extends ThemeExtension<LargeAppBarTheme> {
   }
 
   @override
-  LargeAppBarTheme lerp(covariant ThemeExtension<LargeAppBarTheme>? other, double t) {
+  LargeAppBarTheme lerp(
+    covariant ThemeExtension<LargeAppBarTheme>? other,
+    double t,
+  ) {
     if (other is! LargeAppBarTheme) return this as LargeAppBarTheme;
     return LargeAppBarTheme(
-      bottomTitlePadding: t < 0.5 ? bottomTitlePadding : other.bottomTitlePadding,
+      bottomTitlePadding: t < 0.5
+          ? bottomTitlePadding
+          : other.bottomTitlePadding,
       expandedHeight: t < 0.5 ? expandedHeight : other.expandedHeight,
-      expandedTitleScale: t < 0.5 ? expandedTitleScale : other.expandedTitleScale,
+      expandedTitleScale: t < 0.5
+          ? expandedTitleScale
+          : other.expandedTitleScale,
       topTitlePadding: t < 0.5 ? topTitlePadding : other.topTitlePadding,
     );
   }
@@ -87,10 +95,22 @@ class LargeAppBarTheme extends ThemeExtension<LargeAppBarTheme> {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is LargeAppBarTheme &&
-            const DeepCollectionEquality().equals(bottomTitlePadding, other.bottomTitlePadding) &&
-            const DeepCollectionEquality().equals(expandedHeight, other.expandedHeight) &&
-            const DeepCollectionEquality().equals(expandedTitleScale, other.expandedTitleScale) &&
-            const DeepCollectionEquality().equals(topTitlePadding, other.topTitlePadding));
+            const DeepCollectionEquality().equals(
+              bottomTitlePadding,
+              other.bottomTitlePadding,
+            ) &&
+            const DeepCollectionEquality().equals(
+              expandedHeight,
+              other.expandedHeight,
+            ) &&
+            const DeepCollectionEquality().equals(
+              expandedTitleScale,
+              other.expandedTitleScale,
+            ) &&
+            const DeepCollectionEquality().equals(
+              topTitlePadding,
+              other.topTitlePadding,
+            ));
   }
 
   @override

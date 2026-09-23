@@ -1,3 +1,4 @@
+// dart format width=80
 // coverage:ignore-file
 // GENERATED CODE - DO NOT MODIFY BY HAND
 // ignore_for_file: type=lint, unused_element, unnecessary_cast
@@ -64,7 +65,10 @@ class ToggleTextButtonTheme extends ThemeExtension<ToggleTextButtonTheme> {
   }
 
   @override
-  ToggleTextButtonTheme lerp(covariant ThemeExtension<ToggleTextButtonTheme>? other, double t) {
+  ToggleTextButtonTheme lerp(
+    covariant ThemeExtension<ToggleTextButtonTheme>? other,
+    double t,
+  ) {
     if (other is! ToggleTextButtonTheme) return this as ToggleTextButtonTheme;
     return ToggleTextButtonTheme(
       paddingLarge: t < 0.5 ? paddingLarge : other.paddingLarge,
@@ -78,9 +82,18 @@ class ToggleTextButtonTheme extends ThemeExtension<ToggleTextButtonTheme> {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is ToggleTextButtonTheme &&
-            const DeepCollectionEquality().equals(paddingLarge, other.paddingLarge) &&
-            const DeepCollectionEquality().equals(paddingMedium, other.paddingMedium) &&
-            const DeepCollectionEquality().equals(paddingSmall, other.paddingSmall));
+            const DeepCollectionEquality().equals(
+              paddingLarge,
+              other.paddingLarge,
+            ) &&
+            const DeepCollectionEquality().equals(
+              paddingMedium,
+              other.paddingMedium,
+            ) &&
+            const DeepCollectionEquality().equals(
+              paddingSmall,
+              other.paddingSmall,
+            ));
   }
 
   @override

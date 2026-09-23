@@ -7,6 +7,13 @@ analyzer:
     - "lib/src/tokens/**/*.dart"
     - "lib/**/*.tailor.dart"
     - "lib/src/generated/**"
+    - build/**
+    - android/**
+    - ios/**
+    - web/**
+    - windows/**
+    - macos/**
+    - linux/**
 
   errors:
     # Treat missing required parameters as a warning (not a hint).

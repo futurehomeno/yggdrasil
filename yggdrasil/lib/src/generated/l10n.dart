@@ -1,6 +1,7 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
+
 import 'intl/messages_all.dart';
 
 // **************************************************************************
@@ -62,8 +63,7 @@ class DefaultYggdrasilLocalizations {
     return Intl.message(
       'Step $step of $steps',
       name: 'wizardHeaderNOfN',
-      desc:
-          'The text that shows the current step out of the total steps. For example, \'Step 1 of 3\'.',
+      desc: 'The text that shows the current step out of the total steps. For example, \'Step 1 of 3\'.',
       args: [step, steps],
     );
   }
@@ -73,8 +73,7 @@ class DefaultYggdrasilLocalizations {
     return Intl.message(
       'Done',
       name: 'dropdownDone',
-      desc:
-          'The text to display on the button when the user has finished making a selection.',
+      desc: 'The text to display on the button when the user has finished making a selection.',
       args: [],
     );
   }

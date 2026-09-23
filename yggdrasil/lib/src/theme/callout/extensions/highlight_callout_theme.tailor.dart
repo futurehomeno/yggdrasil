@@ -1,3 +1,4 @@
+// dart format width=80
 // coverage:ignore-file
 // GENERATED CODE - DO NOT MODIFY BY HAND
 // ignore_for_file: type=lint, unused_element, unnecessary_cast
@@ -45,10 +46,7 @@ class HighlightCalloutTheme extends ThemeExtension<HighlightCalloutTheme> {
   ];
 
   @override
-  HighlightCalloutTheme copyWith({
-    Color? backgroundColor,
-    Color? borderColor,
-  }) {
+  HighlightCalloutTheme copyWith({Color? backgroundColor, Color? borderColor}) {
     return HighlightCalloutTheme(
       backgroundColor: backgroundColor ?? this.backgroundColor,
       borderColor: borderColor ?? this.borderColor,
@@ -56,7 +54,10 @@ class HighlightCalloutTheme extends ThemeExtension<HighlightCalloutTheme> {
   }
 
   @override
-  HighlightCalloutTheme lerp(covariant ThemeExtension<HighlightCalloutTheme>? other, double t) {
+  HighlightCalloutTheme lerp(
+    covariant ThemeExtension<HighlightCalloutTheme>? other,
+    double t,
+  ) {
     if (other is! HighlightCalloutTheme) return this as HighlightCalloutTheme;
     return HighlightCalloutTheme(
       backgroundColor: Color.lerp(backgroundColor, other.backgroundColor, t)!,
@@ -69,8 +70,14 @@ class HighlightCalloutTheme extends ThemeExtension<HighlightCalloutTheme> {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is HighlightCalloutTheme &&
-            const DeepCollectionEquality().equals(backgroundColor, other.backgroundColor) &&
-            const DeepCollectionEquality().equals(borderColor, other.borderColor));
+            const DeepCollectionEquality().equals(
+              backgroundColor,
+              other.backgroundColor,
+            ) &&
+            const DeepCollectionEquality().equals(
+              borderColor,
+              other.borderColor,
+            ));
   }
 
   @override

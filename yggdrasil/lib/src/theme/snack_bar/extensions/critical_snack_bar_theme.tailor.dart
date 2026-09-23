@@ -1,3 +1,4 @@
+// dart format width=80
 // coverage:ignore-file
 // GENERATED CODE - DO NOT MODIFY BY HAND
 // ignore_for_file: type=lint, unused_element, unnecessary_cast
@@ -56,11 +57,18 @@ class CriticalSnackBarTheme extends ThemeExtension<CriticalSnackBarTheme> {
   }
 
   @override
-  CriticalSnackBarTheme lerp(covariant ThemeExtension<CriticalSnackBarTheme>? other, double t) {
+  CriticalSnackBarTheme lerp(
+    covariant ThemeExtension<CriticalSnackBarTheme>? other,
+    double t,
+  ) {
     if (other is! CriticalSnackBarTheme) return this as CriticalSnackBarTheme;
     return CriticalSnackBarTheme(
       iconColor: Color.lerp(iconColor, other.iconColor, t)!,
-      iconContainerColor: Color.lerp(iconContainerColor, other.iconContainerColor, t)!,
+      iconContainerColor: Color.lerp(
+        iconContainerColor,
+        other.iconContainerColor,
+        t,
+      )!,
     );
   }
 
@@ -70,7 +78,10 @@ class CriticalSnackBarTheme extends ThemeExtension<CriticalSnackBarTheme> {
         (other.runtimeType == runtimeType &&
             other is CriticalSnackBarTheme &&
             const DeepCollectionEquality().equals(iconColor, other.iconColor) &&
-            const DeepCollectionEquality().equals(iconContainerColor, other.iconContainerColor));
+            const DeepCollectionEquality().equals(
+              iconContainerColor,
+              other.iconContainerColor,
+            ));
   }
 
   @override

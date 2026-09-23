@@ -1,3 +1,4 @@
+// dart format width=80
 // coverage:ignore-file
 // GENERATED CODE - DO NOT MODIFY BY HAND
 // ignore_for_file: type=lint, unused_element, unnecessary_cast
@@ -85,9 +86,14 @@ class YgFieldTheme extends ThemeExtension<YgFieldTheme> {
     return YgFieldTheme(
       animationCurve: t < 0.5 ? animationCurve : other.animationCurve,
       animationDuration: t < 0.5 ? animationDuration : other.animationDuration,
-      contentTheme: contentTheme.lerp(other.contentTheme, t) as YgFieldContentTheme,
-      decorationTheme: decorationTheme.lerp(other.decorationTheme, t) as YgFieldDecorationTheme,
-      dropdownTheme: dropdownTheme.lerp(other.dropdownTheme, t) as YgDropdownFieldTheme,
+      contentTheme:
+          contentTheme.lerp(other.contentTheme, t) as YgFieldContentTheme,
+      decorationTheme: decorationTheme.lerp(
+        other.decorationTheme,
+        t,
+      ) as YgFieldDecorationTheme,
+      dropdownTheme:
+          dropdownTheme.lerp(other.dropdownTheme, t) as YgDropdownFieldTheme,
     );
   }
 
@@ -96,11 +102,26 @@ class YgFieldTheme extends ThemeExtension<YgFieldTheme> {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is YgFieldTheme &&
-            const DeepCollectionEquality().equals(animationCurve, other.animationCurve) &&
-            const DeepCollectionEquality().equals(animationDuration, other.animationDuration) &&
-            const DeepCollectionEquality().equals(contentTheme, other.contentTheme) &&
-            const DeepCollectionEquality().equals(decorationTheme, other.decorationTheme) &&
-            const DeepCollectionEquality().equals(dropdownTheme, other.dropdownTheme));
+            const DeepCollectionEquality().equals(
+              animationCurve,
+              other.animationCurve,
+            ) &&
+            const DeepCollectionEquality().equals(
+              animationDuration,
+              other.animationDuration,
+            ) &&
+            const DeepCollectionEquality().equals(
+              contentTheme,
+              other.contentTheme,
+            ) &&
+            const DeepCollectionEquality().equals(
+              decorationTheme,
+              other.decorationTheme,
+            ) &&
+            const DeepCollectionEquality().equals(
+              dropdownTheme,
+              other.dropdownTheme,
+            ));
   }
 
   @override

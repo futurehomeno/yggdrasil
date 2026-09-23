@@ -7,6 +7,7 @@ analyzer:
     - "lib/src/tokens/**/*.dart"
     - "lib/**/*.tailor.dart"
     - "lib/src/generated/**"
+    - build/**
 
   errors:
     # Treat missing required parameters as a warning (not a hint).

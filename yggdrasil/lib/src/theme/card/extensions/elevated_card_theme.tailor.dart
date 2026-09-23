@@ -1,3 +1,4 @@
+// dart format width=80
 // coverage:ignore-file
 // GENERATED CODE - DO NOT MODIFY BY HAND
 // ignore_for_file: type=lint, unused_element, unnecessary_cast
@@ -9,9 +10,7 @@ part of 'elevated_card_theme.dart';
 // **************************************************************************
 
 class ElevatedCardTheme extends ThemeExtension<ElevatedCardTheme> {
-  const ElevatedCardTheme({
-    required this.backgroundColor,
-  });
+  const ElevatedCardTheme({required this.backgroundColor});
 
   final Color backgroundColor;
 
@@ -39,16 +38,17 @@ class ElevatedCardTheme extends ThemeExtension<ElevatedCardTheme> {
   ];
 
   @override
-  ElevatedCardTheme copyWith({
-    Color? backgroundColor,
-  }) {
+  ElevatedCardTheme copyWith({Color? backgroundColor}) {
     return ElevatedCardTheme(
       backgroundColor: backgroundColor ?? this.backgroundColor,
     );
   }
 
   @override
-  ElevatedCardTheme lerp(covariant ThemeExtension<ElevatedCardTheme>? other, double t) {
+  ElevatedCardTheme lerp(
+    covariant ThemeExtension<ElevatedCardTheme>? other,
+    double t,
+  ) {
     if (other is! ElevatedCardTheme) return this as ElevatedCardTheme;
     return ElevatedCardTheme(
       backgroundColor: Color.lerp(backgroundColor, other.backgroundColor, t)!,
@@ -60,7 +60,10 @@ class ElevatedCardTheme extends ThemeExtension<ElevatedCardTheme> {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is ElevatedCardTheme &&
-            const DeepCollectionEquality().equals(backgroundColor, other.backgroundColor));
+            const DeepCollectionEquality().equals(
+              backgroundColor,
+              other.backgroundColor,
+            ));
   }
 
   @override

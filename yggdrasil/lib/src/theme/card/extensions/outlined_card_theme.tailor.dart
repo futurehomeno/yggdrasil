@@ -1,3 +1,4 @@
+// dart format width=80
 // coverage:ignore-file
 // GENERATED CODE - DO NOT MODIFY BY HAND
 // ignore_for_file: type=lint, unused_element, unnecessary_cast
@@ -45,10 +46,7 @@ class OutlinedCardTheme extends ThemeExtension<OutlinedCardTheme> {
   ];
 
   @override
-  OutlinedCardTheme copyWith({
-    Color? backgroundColor,
-    BorderSide? borderSide,
-  }) {
+  OutlinedCardTheme copyWith({Color? backgroundColor, BorderSide? borderSide}) {
     return OutlinedCardTheme(
       backgroundColor: backgroundColor ?? this.backgroundColor,
       borderSide: borderSide ?? this.borderSide,
@@ -56,7 +54,10 @@ class OutlinedCardTheme extends ThemeExtension<OutlinedCardTheme> {
   }
 
   @override
-  OutlinedCardTheme lerp(covariant ThemeExtension<OutlinedCardTheme>? other, double t) {
+  OutlinedCardTheme lerp(
+    covariant ThemeExtension<OutlinedCardTheme>? other,
+    double t,
+  ) {
     if (other is! OutlinedCardTheme) return this as OutlinedCardTheme;
     return OutlinedCardTheme(
       backgroundColor: Color.lerp(backgroundColor, other.backgroundColor, t)!,
@@ -69,8 +70,14 @@ class OutlinedCardTheme extends ThemeExtension<OutlinedCardTheme> {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is OutlinedCardTheme &&
-            const DeepCollectionEquality().equals(backgroundColor, other.backgroundColor) &&
-            const DeepCollectionEquality().equals(borderSide, other.borderSide));
+            const DeepCollectionEquality().equals(
+              backgroundColor,
+              other.backgroundColor,
+            ) &&
+            const DeepCollectionEquality().equals(
+              borderSide,
+              other.borderSide,
+            ));
   }
 
   @override
