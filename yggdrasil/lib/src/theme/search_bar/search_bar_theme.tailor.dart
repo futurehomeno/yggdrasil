@@ -1,3 +1,4 @@
+// dart format width=80
 // coverage:ignore-file
 // GENERATED CODE - DO NOT MODIFY BY HAND
 // ignore_for_file: type=lint, unused_element, unnecessary_cast
@@ -153,22 +154,30 @@ class YgSearchBarTheme extends ThemeExtension<YgSearchBarTheme> {
       barColor: barColor ?? this.barColor,
       barHeight: barHeight ?? this.barHeight,
       barPadding: barPadding ?? this.barPadding,
-      containerBorderRadius: containerBorderRadius ?? this.containerBorderRadius,
-      containerDefaultColor: containerDefaultColor ?? this.containerDefaultColor,
-      containerFocusedColor: containerFocusedColor ?? this.containerFocusedColor,
-      containerHoveredColor: containerHoveredColor ?? this.containerHoveredColor,
+      containerBorderRadius:
+          containerBorderRadius ?? this.containerBorderRadius,
+      containerDefaultColor:
+          containerDefaultColor ?? this.containerDefaultColor,
+      containerFocusedColor:
+          containerFocusedColor ?? this.containerFocusedColor,
+      containerHoveredColor:
+          containerHoveredColor ?? this.containerHoveredColor,
       contentHeight: contentHeight ?? this.contentHeight,
       contentPadding: contentPadding ?? this.contentPadding,
       contentSpacing: contentSpacing ?? this.contentSpacing,
       elevation: elevation ?? this.elevation,
       placeholderTextStyle: placeholderTextStyle ?? this.placeholderTextStyle,
-      scrolledUnderElevation: scrolledUnderElevation ?? this.scrolledUnderElevation,
+      scrolledUnderElevation:
+          scrolledUnderElevation ?? this.scrolledUnderElevation,
       valueTextStyle: valueTextStyle ?? this.valueTextStyle,
     );
   }
 
   @override
-  YgSearchBarTheme lerp(covariant ThemeExtension<YgSearchBarTheme>? other, double t) {
+  YgSearchBarTheme lerp(
+    covariant ThemeExtension<YgSearchBarTheme>? other,
+    double t,
+  ) {
     if (other is! YgSearchBarTheme) return this as YgSearchBarTheme;
     return YgSearchBarTheme(
       animationCurve: t < 0.5 ? animationCurve : other.animationCurve,
@@ -176,16 +185,36 @@ class YgSearchBarTheme extends ThemeExtension<YgSearchBarTheme> {
       barColor: Color.lerp(barColor, other.barColor, t)!,
       barHeight: t < 0.5 ? barHeight : other.barHeight,
       barPadding: t < 0.5 ? barPadding : other.barPadding,
-      containerBorderRadius: t < 0.5 ? containerBorderRadius : other.containerBorderRadius,
-      containerDefaultColor: Color.lerp(containerDefaultColor, other.containerDefaultColor, t)!,
-      containerFocusedColor: Color.lerp(containerFocusedColor, other.containerFocusedColor, t)!,
-      containerHoveredColor: Color.lerp(containerHoveredColor, other.containerHoveredColor, t)!,
+      containerBorderRadius: t < 0.5
+          ? containerBorderRadius
+          : other.containerBorderRadius,
+      containerDefaultColor: Color.lerp(
+        containerDefaultColor,
+        other.containerDefaultColor,
+        t,
+      )!,
+      containerFocusedColor: Color.lerp(
+        containerFocusedColor,
+        other.containerFocusedColor,
+        t,
+      )!,
+      containerHoveredColor: Color.lerp(
+        containerHoveredColor,
+        other.containerHoveredColor,
+        t,
+      )!,
       contentHeight: t < 0.5 ? contentHeight : other.contentHeight,
       contentPadding: t < 0.5 ? contentPadding : other.contentPadding,
       contentSpacing: t < 0.5 ? contentSpacing : other.contentSpacing,
       elevation: t < 0.5 ? elevation : other.elevation,
-      placeholderTextStyle: TextStyle.lerp(placeholderTextStyle, other.placeholderTextStyle, t)!,
-      scrolledUnderElevation: t < 0.5 ? scrolledUnderElevation : other.scrolledUnderElevation,
+      placeholderTextStyle: TextStyle.lerp(
+        placeholderTextStyle,
+        other.placeholderTextStyle,
+        t,
+      )!,
+      scrolledUnderElevation: t < 0.5
+          ? scrolledUnderElevation
+          : other.scrolledUnderElevation,
       valueTextStyle: TextStyle.lerp(valueTextStyle, other.valueTextStyle, t)!,
     );
   }
@@ -195,22 +224,61 @@ class YgSearchBarTheme extends ThemeExtension<YgSearchBarTheme> {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is YgSearchBarTheme &&
-            const DeepCollectionEquality().equals(animationCurve, other.animationCurve) &&
-            const DeepCollectionEquality().equals(animationDuration, other.animationDuration) &&
+            const DeepCollectionEquality().equals(
+              animationCurve,
+              other.animationCurve,
+            ) &&
+            const DeepCollectionEquality().equals(
+              animationDuration,
+              other.animationDuration,
+            ) &&
             const DeepCollectionEquality().equals(barColor, other.barColor) &&
             const DeepCollectionEquality().equals(barHeight, other.barHeight) &&
-            const DeepCollectionEquality().equals(barPadding, other.barPadding) &&
-            const DeepCollectionEquality().equals(containerBorderRadius, other.containerBorderRadius) &&
-            const DeepCollectionEquality().equals(containerDefaultColor, other.containerDefaultColor) &&
-            const DeepCollectionEquality().equals(containerFocusedColor, other.containerFocusedColor) &&
-            const DeepCollectionEquality().equals(containerHoveredColor, other.containerHoveredColor) &&
-            const DeepCollectionEquality().equals(contentHeight, other.contentHeight) &&
-            const DeepCollectionEquality().equals(contentPadding, other.contentPadding) &&
-            const DeepCollectionEquality().equals(contentSpacing, other.contentSpacing) &&
+            const DeepCollectionEquality().equals(
+              barPadding,
+              other.barPadding,
+            ) &&
+            const DeepCollectionEquality().equals(
+              containerBorderRadius,
+              other.containerBorderRadius,
+            ) &&
+            const DeepCollectionEquality().equals(
+              containerDefaultColor,
+              other.containerDefaultColor,
+            ) &&
+            const DeepCollectionEquality().equals(
+              containerFocusedColor,
+              other.containerFocusedColor,
+            ) &&
+            const DeepCollectionEquality().equals(
+              containerHoveredColor,
+              other.containerHoveredColor,
+            ) &&
+            const DeepCollectionEquality().equals(
+              contentHeight,
+              other.contentHeight,
+            ) &&
+            const DeepCollectionEquality().equals(
+              contentPadding,
+              other.contentPadding,
+            ) &&
+            const DeepCollectionEquality().equals(
+              contentSpacing,
+              other.contentSpacing,
+            ) &&
             const DeepCollectionEquality().equals(elevation, other.elevation) &&
-            const DeepCollectionEquality().equals(placeholderTextStyle, other.placeholderTextStyle) &&
-            const DeepCollectionEquality().equals(scrolledUnderElevation, other.scrolledUnderElevation) &&
-            const DeepCollectionEquality().equals(valueTextStyle, other.valueTextStyle));
+            const DeepCollectionEquality().equals(
+              placeholderTextStyle,
+              other.placeholderTextStyle,
+            ) &&
+            const DeepCollectionEquality().equals(
+              scrolledUnderElevation,
+              other.scrolledUnderElevation,
+            ) &&
+            const DeepCollectionEquality().equals(
+              valueTextStyle,
+              other.valueTextStyle,
+            ));
   }
 
   @override

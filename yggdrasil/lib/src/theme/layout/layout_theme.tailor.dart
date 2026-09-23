@@ -1,3 +1,4 @@
+// dart format width=80
 // coverage:ignore-file
 // GENERATED CODE - DO NOT MODIFY BY HAND
 // ignore_for_file: type=lint, unused_element, unnecessary_cast
@@ -87,10 +88,22 @@ class YgLayoutTheme extends ThemeExtension<YgLayoutTheme> {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is YgLayoutTheme &&
-            const DeepCollectionEquality().equals(animationCurve, other.animationCurve) &&
-            const DeepCollectionEquality().equals(animationDuration, other.animationDuration) &&
-            const DeepCollectionEquality().equals(backgroundColor, other.backgroundColor) &&
-            const DeepCollectionEquality().equals(footerPadding, other.footerPadding));
+            const DeepCollectionEquality().equals(
+              animationCurve,
+              other.animationCurve,
+            ) &&
+            const DeepCollectionEquality().equals(
+              animationDuration,
+              other.animationDuration,
+            ) &&
+            const DeepCollectionEquality().equals(
+              backgroundColor,
+              other.backgroundColor,
+            ) &&
+            const DeepCollectionEquality().equals(
+              footerPadding,
+              other.footerPadding,
+            ));
   }
 
   @override

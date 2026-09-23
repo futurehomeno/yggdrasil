@@ -1,3 +1,4 @@
+// dart format width=80
 // coverage:ignore-file
 // GENERATED CODE - DO NOT MODIFY BY HAND
 // ignore_for_file: type=lint, unused_element, unnecessary_cast
@@ -58,18 +59,31 @@ class YgPositiveTagTheme extends ThemeExtension<YgPositiveTagTheme> {
   }) {
     return YgPositiveTagTheme(
       backgroundColor: backgroundColor ?? this.backgroundColor,
-      disabledBackgroundColor: disabledBackgroundColor ?? this.disabledBackgroundColor,
-      strongBackgroundColor: strongBackgroundColor ?? this.strongBackgroundColor,
+      disabledBackgroundColor:
+          disabledBackgroundColor ?? this.disabledBackgroundColor,
+      strongBackgroundColor:
+          strongBackgroundColor ?? this.strongBackgroundColor,
     );
   }
 
   @override
-  YgPositiveTagTheme lerp(covariant ThemeExtension<YgPositiveTagTheme>? other, double t) {
+  YgPositiveTagTheme lerp(
+    covariant ThemeExtension<YgPositiveTagTheme>? other,
+    double t,
+  ) {
     if (other is! YgPositiveTagTheme) return this as YgPositiveTagTheme;
     return YgPositiveTagTheme(
       backgroundColor: Color.lerp(backgroundColor, other.backgroundColor, t)!,
-      disabledBackgroundColor: Color.lerp(disabledBackgroundColor, other.disabledBackgroundColor, t)!,
-      strongBackgroundColor: Color.lerp(strongBackgroundColor, other.strongBackgroundColor, t)!,
+      disabledBackgroundColor: Color.lerp(
+        disabledBackgroundColor,
+        other.disabledBackgroundColor,
+        t,
+      )!,
+      strongBackgroundColor: Color.lerp(
+        strongBackgroundColor,
+        other.strongBackgroundColor,
+        t,
+      )!,
     );
   }
 
@@ -78,9 +92,18 @@ class YgPositiveTagTheme extends ThemeExtension<YgPositiveTagTheme> {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is YgPositiveTagTheme &&
-            const DeepCollectionEquality().equals(backgroundColor, other.backgroundColor) &&
-            const DeepCollectionEquality().equals(disabledBackgroundColor, other.disabledBackgroundColor) &&
-            const DeepCollectionEquality().equals(strongBackgroundColor, other.strongBackgroundColor));
+            const DeepCollectionEquality().equals(
+              backgroundColor,
+              other.backgroundColor,
+            ) &&
+            const DeepCollectionEquality().equals(
+              disabledBackgroundColor,
+              other.disabledBackgroundColor,
+            ) &&
+            const DeepCollectionEquality().equals(
+              strongBackgroundColor,
+              other.strongBackgroundColor,
+            ));
   }
 
   @override

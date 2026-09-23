@@ -1,3 +1,4 @@
+// dart format width=80
 // coverage:ignore-file
 // GENERATED CODE - DO NOT MODIFY BY HAND
 // ignore_for_file: type=lint, unused_element, unnecessary_cast
@@ -96,9 +97,18 @@ class YgIconTheme extends ThemeExtension<YgIconTheme> {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is YgIconTheme &&
-            const DeepCollectionEquality().equals(animationCurve, other.animationCurve) &&
-            const DeepCollectionEquality().equals(animationDuration, other.animationDuration) &&
-            const DeepCollectionEquality().equals(defaultColor, other.defaultColor) &&
+            const DeepCollectionEquality().equals(
+              animationCurve,
+              other.animationCurve,
+            ) &&
+            const DeepCollectionEquality().equals(
+              animationDuration,
+              other.animationDuration,
+            ) &&
+            const DeepCollectionEquality().equals(
+              defaultColor,
+              other.defaultColor,
+            ) &&
             const DeepCollectionEquality().equals(sizeLarge, other.sizeLarge) &&
             const DeepCollectionEquality().equals(sizeSmall, other.sizeSmall));
   }

@@ -1,3 +1,4 @@
+// dart format width=80
 // coverage:ignore-file
 // GENERATED CODE - DO NOT MODIFY BY HAND
 // ignore_for_file: type=lint, unused_element, unnecessary_cast
@@ -64,7 +65,10 @@ class CriticalDialogTheme extends ThemeExtension<CriticalDialogTheme> {
   }
 
   @override
-  CriticalDialogTheme lerp(covariant ThemeExtension<CriticalDialogTheme>? other, double t) {
+  CriticalDialogTheme lerp(
+    covariant ThemeExtension<CriticalDialogTheme>? other,
+    double t,
+  ) {
     if (other is! CriticalDialogTheme) return this as CriticalDialogTheme;
     return CriticalDialogTheme(
       iconBackground: Color.lerp(iconBackground, other.iconBackground, t)!,
@@ -78,9 +82,15 @@ class CriticalDialogTheme extends ThemeExtension<CriticalDialogTheme> {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is CriticalDialogTheme &&
-            const DeepCollectionEquality().equals(iconBackground, other.iconBackground) &&
+            const DeepCollectionEquality().equals(
+              iconBackground,
+              other.iconBackground,
+            ) &&
             const DeepCollectionEquality().equals(iconColor, other.iconColor) &&
-            const DeepCollectionEquality().equals(iconPadding, other.iconPadding));
+            const DeepCollectionEquality().equals(
+              iconPadding,
+              other.iconPadding,
+            ));
   }
 
   @override

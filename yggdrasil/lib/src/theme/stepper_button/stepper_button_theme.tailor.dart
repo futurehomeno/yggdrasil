@@ -1,3 +1,4 @@
+// dart format width=80
 // coverage:ignore-file
 // GENERATED CODE - DO NOT MODIFY BY HAND
 // ignore_for_file: type=lint, unused_element, unnecessary_cast
@@ -109,7 +110,8 @@ class YgStepperButtonTheme extends ThemeExtension<YgStepperButtonTheme> {
       borderGradient: borderGradient ?? this.borderGradient,
       borderRadius: borderRadius ?? this.borderRadius,
       borderWidth: borderWidth ?? this.borderWidth,
-      disabledBorderGradient: disabledBorderGradient ?? this.disabledBorderGradient,
+      disabledBorderGradient:
+          disabledBorderGradient ?? this.disabledBorderGradient,
       disabledIconColor: disabledIconColor ?? this.disabledIconColor,
       iconColor: iconColor ?? this.iconColor,
       iconSize: iconSize ?? this.iconSize,
@@ -120,14 +122,23 @@ class YgStepperButtonTheme extends ThemeExtension<YgStepperButtonTheme> {
   }
 
   @override
-  YgStepperButtonTheme lerp(covariant ThemeExtension<YgStepperButtonTheme>? other, double t) {
+  YgStepperButtonTheme lerp(
+    covariant ThemeExtension<YgStepperButtonTheme>? other,
+    double t,
+  ) {
     if (other is! YgStepperButtonTheme) return this as YgStepperButtonTheme;
     return YgStepperButtonTheme(
       borderGradient: t < 0.5 ? borderGradient : other.borderGradient,
       borderRadius: t < 0.5 ? borderRadius : other.borderRadius,
       borderWidth: t < 0.5 ? borderWidth : other.borderWidth,
-      disabledBorderGradient: t < 0.5 ? disabledBorderGradient : other.disabledBorderGradient,
-      disabledIconColor: Color.lerp(disabledIconColor, other.disabledIconColor, t)!,
+      disabledBorderGradient: t < 0.5
+          ? disabledBorderGradient
+          : other.disabledBorderGradient,
+      disabledIconColor: Color.lerp(
+        disabledIconColor,
+        other.disabledIconColor,
+        t,
+      )!,
       iconColor: Color.lerp(iconColor, other.iconColor, t)!,
       iconSize: t < 0.5 ? iconSize : other.iconSize,
       paddingLarge: t < 0.5 ? paddingLarge : other.paddingLarge,
@@ -141,16 +152,40 @@ class YgStepperButtonTheme extends ThemeExtension<YgStepperButtonTheme> {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is YgStepperButtonTheme &&
-            const DeepCollectionEquality().equals(borderGradient, other.borderGradient) &&
-            const DeepCollectionEquality().equals(borderRadius, other.borderRadius) &&
-            const DeepCollectionEquality().equals(borderWidth, other.borderWidth) &&
-            const DeepCollectionEquality().equals(disabledBorderGradient, other.disabledBorderGradient) &&
-            const DeepCollectionEquality().equals(disabledIconColor, other.disabledIconColor) &&
+            const DeepCollectionEquality().equals(
+              borderGradient,
+              other.borderGradient,
+            ) &&
+            const DeepCollectionEquality().equals(
+              borderRadius,
+              other.borderRadius,
+            ) &&
+            const DeepCollectionEquality().equals(
+              borderWidth,
+              other.borderWidth,
+            ) &&
+            const DeepCollectionEquality().equals(
+              disabledBorderGradient,
+              other.disabledBorderGradient,
+            ) &&
+            const DeepCollectionEquality().equals(
+              disabledIconColor,
+              other.disabledIconColor,
+            ) &&
             const DeepCollectionEquality().equals(iconColor, other.iconColor) &&
             const DeepCollectionEquality().equals(iconSize, other.iconSize) &&
-            const DeepCollectionEquality().equals(paddingLarge, other.paddingLarge) &&
-            const DeepCollectionEquality().equals(paddingMedium, other.paddingMedium) &&
-            const DeepCollectionEquality().equals(splashColor, other.splashColor));
+            const DeepCollectionEquality().equals(
+              paddingLarge,
+              other.paddingLarge,
+            ) &&
+            const DeepCollectionEquality().equals(
+              paddingMedium,
+              other.paddingMedium,
+            ) &&
+            const DeepCollectionEquality().equals(
+              splashColor,
+              other.splashColor,
+            ));
   }
 
   @override

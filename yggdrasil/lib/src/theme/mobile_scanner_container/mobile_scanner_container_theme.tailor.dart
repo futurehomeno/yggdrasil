@@ -1,3 +1,4 @@
+// dart format width=80
 // coverage:ignore-file
 // GENERATED CODE - DO NOT MODIFY BY HAND
 // ignore_for_file: type=lint, unused_element, unnecessary_cast
@@ -8,7 +9,8 @@ part of 'mobile_scanner_container_theme.dart';
 // TailorAnnotationsGenerator
 // **************************************************************************
 
-class YgMobileScannerContainerTheme extends ThemeExtension<YgMobileScannerContainerTheme> {
+class YgMobileScannerContainerTheme
+    extends ThemeExtension<YgMobileScannerContainerTheme> {
   const YgMobileScannerContainerTheme({
     required this.backgroundColor,
     required this.borderRadius,
@@ -19,29 +21,33 @@ class YgMobileScannerContainerTheme extends ThemeExtension<YgMobileScannerContai
   final BorderRadius borderRadius;
   final double width;
 
-  static final YgMobileScannerContainerTheme consumerLight = YgMobileScannerContainerTheme(
-    backgroundColor: _$YgMobileScannerContainerTheme.backgroundColor[0],
-    borderRadius: _$YgMobileScannerContainerTheme.borderRadius[0],
-    width: _$YgMobileScannerContainerTheme.width[0],
-  );
+  static final YgMobileScannerContainerTheme consumerLight =
+      YgMobileScannerContainerTheme(
+        backgroundColor: _$YgMobileScannerContainerTheme.backgroundColor[0],
+        borderRadius: _$YgMobileScannerContainerTheme.borderRadius[0],
+        width: _$YgMobileScannerContainerTheme.width[0],
+      );
 
-  static final YgMobileScannerContainerTheme consumerDark = YgMobileScannerContainerTheme(
-    backgroundColor: _$YgMobileScannerContainerTheme.backgroundColor[1],
-    borderRadius: _$YgMobileScannerContainerTheme.borderRadius[1],
-    width: _$YgMobileScannerContainerTheme.width[1],
-  );
+  static final YgMobileScannerContainerTheme consumerDark =
+      YgMobileScannerContainerTheme(
+        backgroundColor: _$YgMobileScannerContainerTheme.backgroundColor[1],
+        borderRadius: _$YgMobileScannerContainerTheme.borderRadius[1],
+        width: _$YgMobileScannerContainerTheme.width[1],
+      );
 
-  static final YgMobileScannerContainerTheme professionalLight = YgMobileScannerContainerTheme(
-    backgroundColor: _$YgMobileScannerContainerTheme.backgroundColor[2],
-    borderRadius: _$YgMobileScannerContainerTheme.borderRadius[2],
-    width: _$YgMobileScannerContainerTheme.width[2],
-  );
+  static final YgMobileScannerContainerTheme professionalLight =
+      YgMobileScannerContainerTheme(
+        backgroundColor: _$YgMobileScannerContainerTheme.backgroundColor[2],
+        borderRadius: _$YgMobileScannerContainerTheme.borderRadius[2],
+        width: _$YgMobileScannerContainerTheme.width[2],
+      );
 
-  static final YgMobileScannerContainerTheme professionalDark = YgMobileScannerContainerTheme(
-    backgroundColor: _$YgMobileScannerContainerTheme.backgroundColor[3],
-    borderRadius: _$YgMobileScannerContainerTheme.borderRadius[3],
-    width: _$YgMobileScannerContainerTheme.width[3],
-  );
+  static final YgMobileScannerContainerTheme professionalDark =
+      YgMobileScannerContainerTheme(
+        backgroundColor: _$YgMobileScannerContainerTheme.backgroundColor[3],
+        borderRadius: _$YgMobileScannerContainerTheme.borderRadius[3],
+        width: _$YgMobileScannerContainerTheme.width[3],
+      );
 
   static final themes = [
     consumerLight,
@@ -64,8 +70,12 @@ class YgMobileScannerContainerTheme extends ThemeExtension<YgMobileScannerContai
   }
 
   @override
-  YgMobileScannerContainerTheme lerp(covariant ThemeExtension<YgMobileScannerContainerTheme>? other, double t) {
-    if (other is! YgMobileScannerContainerTheme) return this as YgMobileScannerContainerTheme;
+  YgMobileScannerContainerTheme lerp(
+    covariant ThemeExtension<YgMobileScannerContainerTheme>? other,
+    double t,
+  ) {
+    if (other is! YgMobileScannerContainerTheme)
+      return this as YgMobileScannerContainerTheme;
     return YgMobileScannerContainerTheme(
       backgroundColor: Color.lerp(backgroundColor, other.backgroundColor, t)!,
       borderRadius: t < 0.5 ? borderRadius : other.borderRadius,
@@ -78,8 +88,14 @@ class YgMobileScannerContainerTheme extends ThemeExtension<YgMobileScannerContai
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is YgMobileScannerContainerTheme &&
-            const DeepCollectionEquality().equals(backgroundColor, other.backgroundColor) &&
-            const DeepCollectionEquality().equals(borderRadius, other.borderRadius) &&
+            const DeepCollectionEquality().equals(
+              backgroundColor,
+              other.backgroundColor,
+            ) &&
+            const DeepCollectionEquality().equals(
+              borderRadius,
+              other.borderRadius,
+            ) &&
             const DeepCollectionEquality().equals(width, other.width));
   }
 

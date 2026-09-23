@@ -1,3 +1,4 @@
+// dart format width=80
 // coverage:ignore-file
 // GENERATED CODE - DO NOT MODIFY BY HAND
 // ignore_for_file: type=lint, unused_element, unnecessary_cast
@@ -128,14 +129,18 @@ class YgDropdownFieldTheme extends ThemeExtension<YgDropdownFieldTheme> {
   }) {
     return YgDropdownFieldTheme(
       menuAnimationCurve: menuAnimationCurve ?? this.menuAnimationCurve,
-      menuAnimationDuration: menuAnimationDuration ?? this.menuAnimationDuration,
+      menuAnimationDuration:
+          menuAnimationDuration ?? this.menuAnimationDuration,
       menuElevation: menuElevation ?? this.menuElevation,
       menuItemBackground: menuItemBackground ?? this.menuItemBackground,
       menuItemPadding: menuItemPadding ?? this.menuItemPadding,
-      menuItemPrefixPadding: menuItemPrefixPadding ?? this.menuItemPrefixPadding,
+      menuItemPrefixPadding:
+          menuItemPrefixPadding ?? this.menuItemPrefixPadding,
       menuItemRadius: menuItemRadius ?? this.menuItemRadius,
-      menuItemSubtitleStyle: menuItemSubtitleStyle ?? this.menuItemSubtitleStyle,
-      menuItemSuffixPadding: menuItemSuffixPadding ?? this.menuItemSuffixPadding,
+      menuItemSubtitleStyle:
+          menuItemSubtitleStyle ?? this.menuItemSubtitleStyle,
+      menuItemSuffixPadding:
+          menuItemSuffixPadding ?? this.menuItemSuffixPadding,
       menuItemTitleStyle: menuItemTitleStyle ?? this.menuItemTitleStyle,
       menuPadding: menuPadding ?? this.menuPadding,
       menuRadius: menuRadius ?? this.menuRadius,
@@ -144,22 +149,47 @@ class YgDropdownFieldTheme extends ThemeExtension<YgDropdownFieldTheme> {
   }
 
   @override
-  YgDropdownFieldTheme lerp(covariant ThemeExtension<YgDropdownFieldTheme>? other, double t) {
+  YgDropdownFieldTheme lerp(
+    covariant ThemeExtension<YgDropdownFieldTheme>? other,
+    double t,
+  ) {
     if (other is! YgDropdownFieldTheme) return this as YgDropdownFieldTheme;
     return YgDropdownFieldTheme(
-      menuAnimationCurve: t < 0.5 ? menuAnimationCurve : other.menuAnimationCurve,
-      menuAnimationDuration: t < 0.5 ? menuAnimationDuration : other.menuAnimationDuration,
+      menuAnimationCurve: t < 0.5
+          ? menuAnimationCurve
+          : other.menuAnimationCurve,
+      menuAnimationDuration: t < 0.5
+          ? menuAnimationDuration
+          : other.menuAnimationDuration,
       menuElevation: t < 0.5 ? menuElevation : other.menuElevation,
-      menuItemBackground: Color.lerp(menuItemBackground, other.menuItemBackground, t)!,
+      menuItemBackground: Color.lerp(
+        menuItemBackground,
+        other.menuItemBackground,
+        t,
+      )!,
       menuItemPadding: t < 0.5 ? menuItemPadding : other.menuItemPadding,
-      menuItemPrefixPadding: t < 0.5 ? menuItemPrefixPadding : other.menuItemPrefixPadding,
+      menuItemPrefixPadding: t < 0.5
+          ? menuItemPrefixPadding
+          : other.menuItemPrefixPadding,
       menuItemRadius: t < 0.5 ? menuItemRadius : other.menuItemRadius,
-      menuItemSubtitleStyle: TextStyle.lerp(menuItemSubtitleStyle, other.menuItemSubtitleStyle, t)!,
-      menuItemSuffixPadding: t < 0.5 ? menuItemSuffixPadding : other.menuItemSuffixPadding,
-      menuItemTitleStyle: TextStyle.lerp(menuItemTitleStyle, other.menuItemTitleStyle, t)!,
+      menuItemSubtitleStyle: TextStyle.lerp(
+        menuItemSubtitleStyle,
+        other.menuItemSubtitleStyle,
+        t,
+      )!,
+      menuItemSuffixPadding: t < 0.5
+          ? menuItemSuffixPadding
+          : other.menuItemSuffixPadding,
+      menuItemTitleStyle: TextStyle.lerp(
+        menuItemTitleStyle,
+        other.menuItemTitleStyle,
+        t,
+      )!,
       menuPadding: t < 0.5 ? menuPadding : other.menuPadding,
       menuRadius: t < 0.5 ? menuRadius : other.menuRadius,
-      menuToFieldPadding: t < 0.5 ? menuToFieldPadding : other.menuToFieldPadding,
+      menuToFieldPadding: t < 0.5
+          ? menuToFieldPadding
+          : other.menuToFieldPadding,
     );
   }
 
@@ -168,19 +198,58 @@ class YgDropdownFieldTheme extends ThemeExtension<YgDropdownFieldTheme> {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is YgDropdownFieldTheme &&
-            const DeepCollectionEquality().equals(menuAnimationCurve, other.menuAnimationCurve) &&
-            const DeepCollectionEquality().equals(menuAnimationDuration, other.menuAnimationDuration) &&
-            const DeepCollectionEquality().equals(menuElevation, other.menuElevation) &&
-            const DeepCollectionEquality().equals(menuItemBackground, other.menuItemBackground) &&
-            const DeepCollectionEquality().equals(menuItemPadding, other.menuItemPadding) &&
-            const DeepCollectionEquality().equals(menuItemPrefixPadding, other.menuItemPrefixPadding) &&
-            const DeepCollectionEquality().equals(menuItemRadius, other.menuItemRadius) &&
-            const DeepCollectionEquality().equals(menuItemSubtitleStyle, other.menuItemSubtitleStyle) &&
-            const DeepCollectionEquality().equals(menuItemSuffixPadding, other.menuItemSuffixPadding) &&
-            const DeepCollectionEquality().equals(menuItemTitleStyle, other.menuItemTitleStyle) &&
-            const DeepCollectionEquality().equals(menuPadding, other.menuPadding) &&
-            const DeepCollectionEquality().equals(menuRadius, other.menuRadius) &&
-            const DeepCollectionEquality().equals(menuToFieldPadding, other.menuToFieldPadding));
+            const DeepCollectionEquality().equals(
+              menuAnimationCurve,
+              other.menuAnimationCurve,
+            ) &&
+            const DeepCollectionEquality().equals(
+              menuAnimationDuration,
+              other.menuAnimationDuration,
+            ) &&
+            const DeepCollectionEquality().equals(
+              menuElevation,
+              other.menuElevation,
+            ) &&
+            const DeepCollectionEquality().equals(
+              menuItemBackground,
+              other.menuItemBackground,
+            ) &&
+            const DeepCollectionEquality().equals(
+              menuItemPadding,
+              other.menuItemPadding,
+            ) &&
+            const DeepCollectionEquality().equals(
+              menuItemPrefixPadding,
+              other.menuItemPrefixPadding,
+            ) &&
+            const DeepCollectionEquality().equals(
+              menuItemRadius,
+              other.menuItemRadius,
+            ) &&
+            const DeepCollectionEquality().equals(
+              menuItemSubtitleStyle,
+              other.menuItemSubtitleStyle,
+            ) &&
+            const DeepCollectionEquality().equals(
+              menuItemSuffixPadding,
+              other.menuItemSuffixPadding,
+            ) &&
+            const DeepCollectionEquality().equals(
+              menuItemTitleStyle,
+              other.menuItemTitleStyle,
+            ) &&
+            const DeepCollectionEquality().equals(
+              menuPadding,
+              other.menuPadding,
+            ) &&
+            const DeepCollectionEquality().equals(
+              menuRadius,
+              other.menuRadius,
+            ) &&
+            const DeepCollectionEquality().equals(
+              menuToFieldPadding,
+              other.menuToFieldPadding,
+            ));
   }
 
   @override

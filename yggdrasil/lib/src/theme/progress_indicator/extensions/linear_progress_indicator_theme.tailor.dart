@@ -1,3 +1,4 @@
+// dart format width=80
 // coverage:ignore-file
 // GENERATED CODE - DO NOT MODIFY BY HAND
 // ignore_for_file: type=lint, unused_element, unnecessary_cast
@@ -8,7 +9,8 @@ part of 'linear_progress_indicator_theme.dart';
 // TailorAnnotationsGenerator
 // **************************************************************************
 
-class LinearProgressIndicatorTheme extends ThemeExtension<LinearProgressIndicatorTheme> {
+class LinearProgressIndicatorTheme
+    extends ThemeExtension<LinearProgressIndicatorTheme> {
   const LinearProgressIndicatorTheme({
     required this.backgroundColor,
     required this.borderRadius,
@@ -21,33 +23,37 @@ class LinearProgressIndicatorTheme extends ThemeExtension<LinearProgressIndicato
   final Color color;
   final double height;
 
-  static final LinearProgressIndicatorTheme consumerLight = LinearProgressIndicatorTheme(
-    backgroundColor: _$LinearProgressIndicatorTheme.backgroundColor[0],
-    borderRadius: _$LinearProgressIndicatorTheme.borderRadius[0],
-    color: _$LinearProgressIndicatorTheme.color[0],
-    height: _$LinearProgressIndicatorTheme.height[0],
-  );
+  static final LinearProgressIndicatorTheme consumerLight =
+      LinearProgressIndicatorTheme(
+        backgroundColor: _$LinearProgressIndicatorTheme.backgroundColor[0],
+        borderRadius: _$LinearProgressIndicatorTheme.borderRadius[0],
+        color: _$LinearProgressIndicatorTheme.color[0],
+        height: _$LinearProgressIndicatorTheme.height[0],
+      );
 
-  static final LinearProgressIndicatorTheme consumerDark = LinearProgressIndicatorTheme(
-    backgroundColor: _$LinearProgressIndicatorTheme.backgroundColor[1],
-    borderRadius: _$LinearProgressIndicatorTheme.borderRadius[1],
-    color: _$LinearProgressIndicatorTheme.color[1],
-    height: _$LinearProgressIndicatorTheme.height[1],
-  );
+  static final LinearProgressIndicatorTheme consumerDark =
+      LinearProgressIndicatorTheme(
+        backgroundColor: _$LinearProgressIndicatorTheme.backgroundColor[1],
+        borderRadius: _$LinearProgressIndicatorTheme.borderRadius[1],
+        color: _$LinearProgressIndicatorTheme.color[1],
+        height: _$LinearProgressIndicatorTheme.height[1],
+      );
 
-  static final LinearProgressIndicatorTheme professionalLight = LinearProgressIndicatorTheme(
-    backgroundColor: _$LinearProgressIndicatorTheme.backgroundColor[2],
-    borderRadius: _$LinearProgressIndicatorTheme.borderRadius[2],
-    color: _$LinearProgressIndicatorTheme.color[2],
-    height: _$LinearProgressIndicatorTheme.height[2],
-  );
+  static final LinearProgressIndicatorTheme professionalLight =
+      LinearProgressIndicatorTheme(
+        backgroundColor: _$LinearProgressIndicatorTheme.backgroundColor[2],
+        borderRadius: _$LinearProgressIndicatorTheme.borderRadius[2],
+        color: _$LinearProgressIndicatorTheme.color[2],
+        height: _$LinearProgressIndicatorTheme.height[2],
+      );
 
-  static final LinearProgressIndicatorTheme professionalDark = LinearProgressIndicatorTheme(
-    backgroundColor: _$LinearProgressIndicatorTheme.backgroundColor[3],
-    borderRadius: _$LinearProgressIndicatorTheme.borderRadius[3],
-    color: _$LinearProgressIndicatorTheme.color[3],
-    height: _$LinearProgressIndicatorTheme.height[3],
-  );
+  static final LinearProgressIndicatorTheme professionalDark =
+      LinearProgressIndicatorTheme(
+        backgroundColor: _$LinearProgressIndicatorTheme.backgroundColor[3],
+        borderRadius: _$LinearProgressIndicatorTheme.borderRadius[3],
+        color: _$LinearProgressIndicatorTheme.color[3],
+        height: _$LinearProgressIndicatorTheme.height[3],
+      );
 
   static final themes = [
     consumerLight,
@@ -72,8 +78,12 @@ class LinearProgressIndicatorTheme extends ThemeExtension<LinearProgressIndicato
   }
 
   @override
-  LinearProgressIndicatorTheme lerp(covariant ThemeExtension<LinearProgressIndicatorTheme>? other, double t) {
-    if (other is! LinearProgressIndicatorTheme) return this as LinearProgressIndicatorTheme;
+  LinearProgressIndicatorTheme lerp(
+    covariant ThemeExtension<LinearProgressIndicatorTheme>? other,
+    double t,
+  ) {
+    if (other is! LinearProgressIndicatorTheme)
+      return this as LinearProgressIndicatorTheme;
     return LinearProgressIndicatorTheme(
       backgroundColor: Color.lerp(backgroundColor, other.backgroundColor, t)!,
       borderRadius: t < 0.5 ? borderRadius : other.borderRadius,
@@ -87,8 +97,14 @@ class LinearProgressIndicatorTheme extends ThemeExtension<LinearProgressIndicato
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is LinearProgressIndicatorTheme &&
-            const DeepCollectionEquality().equals(backgroundColor, other.backgroundColor) &&
-            const DeepCollectionEquality().equals(borderRadius, other.borderRadius) &&
+            const DeepCollectionEquality().equals(
+              backgroundColor,
+              other.backgroundColor,
+            ) &&
+            const DeepCollectionEquality().equals(
+              borderRadius,
+              other.borderRadius,
+            ) &&
             const DeepCollectionEquality().equals(color, other.color) &&
             const DeepCollectionEquality().equals(height, other.height));
   }

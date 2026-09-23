@@ -1,3 +1,4 @@
+// dart format width=80
 // coverage:ignore-file
 // GENERATED CODE - DO NOT MODIFY BY HAND
 // ignore_for_file: type=lint, unused_element, unnecessary_cast
@@ -45,10 +46,7 @@ class SuccessCalloutTheme extends ThemeExtension<SuccessCalloutTheme> {
   ];
 
   @override
-  SuccessCalloutTheme copyWith({
-    Color? backgroundColor,
-    Color? borderColor,
-  }) {
+  SuccessCalloutTheme copyWith({Color? backgroundColor, Color? borderColor}) {
     return SuccessCalloutTheme(
       backgroundColor: backgroundColor ?? this.backgroundColor,
       borderColor: borderColor ?? this.borderColor,
@@ -56,7 +54,10 @@ class SuccessCalloutTheme extends ThemeExtension<SuccessCalloutTheme> {
   }
 
   @override
-  SuccessCalloutTheme lerp(covariant ThemeExtension<SuccessCalloutTheme>? other, double t) {
+  SuccessCalloutTheme lerp(
+    covariant ThemeExtension<SuccessCalloutTheme>? other,
+    double t,
+  ) {
     if (other is! SuccessCalloutTheme) return this as SuccessCalloutTheme;
     return SuccessCalloutTheme(
       backgroundColor: Color.lerp(backgroundColor, other.backgroundColor, t)!,
@@ -69,8 +70,14 @@ class SuccessCalloutTheme extends ThemeExtension<SuccessCalloutTheme> {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is SuccessCalloutTheme &&
-            const DeepCollectionEquality().equals(backgroundColor, other.backgroundColor) &&
-            const DeepCollectionEquality().equals(borderColor, other.borderColor));
+            const DeepCollectionEquality().equals(
+              backgroundColor,
+              other.backgroundColor,
+            ) &&
+            const DeepCollectionEquality().equals(
+              borderColor,
+              other.borderColor,
+            ));
   }
 
   @override

@@ -1,3 +1,4 @@
+// dart format width=80
 // coverage:ignore-file
 // GENERATED CODE - DO NOT MODIFY BY HAND
 // ignore_for_file: type=lint, unused_element, unnecessary_cast
@@ -43,7 +44,8 @@ class YgFieldContentTheme extends ThemeExtension<YgFieldContentTheme> {
     labelDefaultTextStyle: _$YgFieldContentTheme.labelDefaultTextStyle[0],
     labelDisabledColor: _$YgFieldContentTheme.labelDisabledColor[0],
     labelFocusFilledColor: _$YgFieldContentTheme.labelFocusFilledColor[0],
-    labelFocusFilledTextStyle: _$YgFieldContentTheme.labelFocusFilledTextStyle[0],
+    labelFocusFilledTextStyle:
+        _$YgFieldContentTheme.labelFocusFilledTextStyle[0],
     placeholderDefaultColor: _$YgFieldContentTheme.placeholderDefaultColor[0],
     placeholderDisabledColor: _$YgFieldContentTheme.placeholderDisabledColor[0],
     placeholderTextStyle: _$YgFieldContentTheme.placeholderTextStyle[0],
@@ -58,7 +60,8 @@ class YgFieldContentTheme extends ThemeExtension<YgFieldContentTheme> {
     labelDefaultTextStyle: _$YgFieldContentTheme.labelDefaultTextStyle[1],
     labelDisabledColor: _$YgFieldContentTheme.labelDisabledColor[1],
     labelFocusFilledColor: _$YgFieldContentTheme.labelFocusFilledColor[1],
-    labelFocusFilledTextStyle: _$YgFieldContentTheme.labelFocusFilledTextStyle[1],
+    labelFocusFilledTextStyle:
+        _$YgFieldContentTheme.labelFocusFilledTextStyle[1],
     placeholderDefaultColor: _$YgFieldContentTheme.placeholderDefaultColor[1],
     placeholderDisabledColor: _$YgFieldContentTheme.placeholderDisabledColor[1],
     placeholderTextStyle: _$YgFieldContentTheme.placeholderTextStyle[1],
@@ -73,7 +76,8 @@ class YgFieldContentTheme extends ThemeExtension<YgFieldContentTheme> {
     labelDefaultTextStyle: _$YgFieldContentTheme.labelDefaultTextStyle[2],
     labelDisabledColor: _$YgFieldContentTheme.labelDisabledColor[2],
     labelFocusFilledColor: _$YgFieldContentTheme.labelFocusFilledColor[2],
-    labelFocusFilledTextStyle: _$YgFieldContentTheme.labelFocusFilledTextStyle[2],
+    labelFocusFilledTextStyle:
+        _$YgFieldContentTheme.labelFocusFilledTextStyle[2],
     placeholderDefaultColor: _$YgFieldContentTheme.placeholderDefaultColor[2],
     placeholderDisabledColor: _$YgFieldContentTheme.placeholderDisabledColor[2],
     placeholderTextStyle: _$YgFieldContentTheme.placeholderTextStyle[2],
@@ -88,7 +92,8 @@ class YgFieldContentTheme extends ThemeExtension<YgFieldContentTheme> {
     labelDefaultTextStyle: _$YgFieldContentTheme.labelDefaultTextStyle[3],
     labelDisabledColor: _$YgFieldContentTheme.labelDisabledColor[3],
     labelFocusFilledColor: _$YgFieldContentTheme.labelFocusFilledColor[3],
-    labelFocusFilledTextStyle: _$YgFieldContentTheme.labelFocusFilledTextStyle[3],
+    labelFocusFilledTextStyle:
+        _$YgFieldContentTheme.labelFocusFilledTextStyle[3],
     placeholderDefaultColor: _$YgFieldContentTheme.placeholderDefaultColor[3],
     placeholderDisabledColor: _$YgFieldContentTheme.placeholderDisabledColor[3],
     placeholderTextStyle: _$YgFieldContentTheme.placeholderTextStyle[3],
@@ -122,12 +127,17 @@ class YgFieldContentTheme extends ThemeExtension<YgFieldContentTheme> {
     return YgFieldContentTheme(
       cursorColor: cursorColor ?? this.cursorColor,
       labelDefaultColor: labelDefaultColor ?? this.labelDefaultColor,
-      labelDefaultTextStyle: labelDefaultTextStyle ?? this.labelDefaultTextStyle,
+      labelDefaultTextStyle:
+          labelDefaultTextStyle ?? this.labelDefaultTextStyle,
       labelDisabledColor: labelDisabledColor ?? this.labelDisabledColor,
-      labelFocusFilledColor: labelFocusFilledColor ?? this.labelFocusFilledColor,
-      labelFocusFilledTextStyle: labelFocusFilledTextStyle ?? this.labelFocusFilledTextStyle,
-      placeholderDefaultColor: placeholderDefaultColor ?? this.placeholderDefaultColor,
-      placeholderDisabledColor: placeholderDisabledColor ?? this.placeholderDisabledColor,
+      labelFocusFilledColor:
+          labelFocusFilledColor ?? this.labelFocusFilledColor,
+      labelFocusFilledTextStyle:
+          labelFocusFilledTextStyle ?? this.labelFocusFilledTextStyle,
+      placeholderDefaultColor:
+          placeholderDefaultColor ?? this.placeholderDefaultColor,
+      placeholderDisabledColor:
+          placeholderDisabledColor ?? this.placeholderDisabledColor,
       placeholderTextStyle: placeholderTextStyle ?? this.placeholderTextStyle,
       valueDefaultColor: valueDefaultColor ?? this.valueDefaultColor,
       valueDisabledColor: valueDisabledColor ?? this.valueDisabledColor,
@@ -136,20 +146,63 @@ class YgFieldContentTheme extends ThemeExtension<YgFieldContentTheme> {
   }
 
   @override
-  YgFieldContentTheme lerp(covariant ThemeExtension<YgFieldContentTheme>? other, double t) {
+  YgFieldContentTheme lerp(
+    covariant ThemeExtension<YgFieldContentTheme>? other,
+    double t,
+  ) {
     if (other is! YgFieldContentTheme) return this as YgFieldContentTheme;
     return YgFieldContentTheme(
       cursorColor: Color.lerp(cursorColor, other.cursorColor, t)!,
-      labelDefaultColor: Color.lerp(labelDefaultColor, other.labelDefaultColor, t)!,
-      labelDefaultTextStyle: TextStyle.lerp(labelDefaultTextStyle, other.labelDefaultTextStyle, t)!,
-      labelDisabledColor: Color.lerp(labelDisabledColor, other.labelDisabledColor, t)!,
-      labelFocusFilledColor: Color.lerp(labelFocusFilledColor, other.labelFocusFilledColor, t)!,
-      labelFocusFilledTextStyle: TextStyle.lerp(labelFocusFilledTextStyle, other.labelFocusFilledTextStyle, t)!,
-      placeholderDefaultColor: Color.lerp(placeholderDefaultColor, other.placeholderDefaultColor, t)!,
-      placeholderDisabledColor: Color.lerp(placeholderDisabledColor, other.placeholderDisabledColor, t)!,
-      placeholderTextStyle: TextStyle.lerp(placeholderTextStyle, other.placeholderTextStyle, t)!,
-      valueDefaultColor: Color.lerp(valueDefaultColor, other.valueDefaultColor, t)!,
-      valueDisabledColor: Color.lerp(valueDisabledColor, other.valueDisabledColor, t)!,
+      labelDefaultColor: Color.lerp(
+        labelDefaultColor,
+        other.labelDefaultColor,
+        t,
+      )!,
+      labelDefaultTextStyle: TextStyle.lerp(
+        labelDefaultTextStyle,
+        other.labelDefaultTextStyle,
+        t,
+      )!,
+      labelDisabledColor: Color.lerp(
+        labelDisabledColor,
+        other.labelDisabledColor,
+        t,
+      )!,
+      labelFocusFilledColor: Color.lerp(
+        labelFocusFilledColor,
+        other.labelFocusFilledColor,
+        t,
+      )!,
+      labelFocusFilledTextStyle: TextStyle.lerp(
+        labelFocusFilledTextStyle,
+        other.labelFocusFilledTextStyle,
+        t,
+      )!,
+      placeholderDefaultColor: Color.lerp(
+        placeholderDefaultColor,
+        other.placeholderDefaultColor,
+        t,
+      )!,
+      placeholderDisabledColor: Color.lerp(
+        placeholderDisabledColor,
+        other.placeholderDisabledColor,
+        t,
+      )!,
+      placeholderTextStyle: TextStyle.lerp(
+        placeholderTextStyle,
+        other.placeholderTextStyle,
+        t,
+      )!,
+      valueDefaultColor: Color.lerp(
+        valueDefaultColor,
+        other.valueDefaultColor,
+        t,
+      )!,
+      valueDisabledColor: Color.lerp(
+        valueDisabledColor,
+        other.valueDisabledColor,
+        t,
+      )!,
       valueTextStyle: TextStyle.lerp(valueTextStyle, other.valueTextStyle, t)!,
     );
   }
@@ -159,18 +212,54 @@ class YgFieldContentTheme extends ThemeExtension<YgFieldContentTheme> {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is YgFieldContentTheme &&
-            const DeepCollectionEquality().equals(cursorColor, other.cursorColor) &&
-            const DeepCollectionEquality().equals(labelDefaultColor, other.labelDefaultColor) &&
-            const DeepCollectionEquality().equals(labelDefaultTextStyle, other.labelDefaultTextStyle) &&
-            const DeepCollectionEquality().equals(labelDisabledColor, other.labelDisabledColor) &&
-            const DeepCollectionEquality().equals(labelFocusFilledColor, other.labelFocusFilledColor) &&
-            const DeepCollectionEquality().equals(labelFocusFilledTextStyle, other.labelFocusFilledTextStyle) &&
-            const DeepCollectionEquality().equals(placeholderDefaultColor, other.placeholderDefaultColor) &&
-            const DeepCollectionEquality().equals(placeholderDisabledColor, other.placeholderDisabledColor) &&
-            const DeepCollectionEquality().equals(placeholderTextStyle, other.placeholderTextStyle) &&
-            const DeepCollectionEquality().equals(valueDefaultColor, other.valueDefaultColor) &&
-            const DeepCollectionEquality().equals(valueDisabledColor, other.valueDisabledColor) &&
-            const DeepCollectionEquality().equals(valueTextStyle, other.valueTextStyle));
+            const DeepCollectionEquality().equals(
+              cursorColor,
+              other.cursorColor,
+            ) &&
+            const DeepCollectionEquality().equals(
+              labelDefaultColor,
+              other.labelDefaultColor,
+            ) &&
+            const DeepCollectionEquality().equals(
+              labelDefaultTextStyle,
+              other.labelDefaultTextStyle,
+            ) &&
+            const DeepCollectionEquality().equals(
+              labelDisabledColor,
+              other.labelDisabledColor,
+            ) &&
+            const DeepCollectionEquality().equals(
+              labelFocusFilledColor,
+              other.labelFocusFilledColor,
+            ) &&
+            const DeepCollectionEquality().equals(
+              labelFocusFilledTextStyle,
+              other.labelFocusFilledTextStyle,
+            ) &&
+            const DeepCollectionEquality().equals(
+              placeholderDefaultColor,
+              other.placeholderDefaultColor,
+            ) &&
+            const DeepCollectionEquality().equals(
+              placeholderDisabledColor,
+              other.placeholderDisabledColor,
+            ) &&
+            const DeepCollectionEquality().equals(
+              placeholderTextStyle,
+              other.placeholderTextStyle,
+            ) &&
+            const DeepCollectionEquality().equals(
+              valueDefaultColor,
+              other.valueDefaultColor,
+            ) &&
+            const DeepCollectionEquality().equals(
+              valueDisabledColor,
+              other.valueDisabledColor,
+            ) &&
+            const DeepCollectionEquality().equals(
+              valueTextStyle,
+              other.valueTextStyle,
+            ));
   }
 
   @override

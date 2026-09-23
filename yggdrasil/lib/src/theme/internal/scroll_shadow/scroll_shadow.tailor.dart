@@ -1,3 +1,4 @@
+// dart format width=80
 // coverage:ignore-file
 // GENERATED CODE - DO NOT MODIFY BY HAND
 // ignore_for_file: type=lint, unused_element, unnecessary_cast
@@ -72,7 +73,10 @@ class YgScrollShadowThemes extends ThemeExtension<YgScrollShadowThemes> {
   }
 
   @override
-  YgScrollShadowThemes lerp(covariant ThemeExtension<YgScrollShadowThemes>? other, double t) {
+  YgScrollShadowThemes lerp(
+    covariant ThemeExtension<YgScrollShadowThemes>? other,
+    double t,
+  ) {
     if (other is! YgScrollShadowThemes) return this as YgScrollShadowThemes;
     return YgScrollShadowThemes(
       fadeCurve: t < 0.5 ? fadeCurve : other.fadeCurve,
@@ -88,9 +92,18 @@ class YgScrollShadowThemes extends ThemeExtension<YgScrollShadowThemes> {
         (other.runtimeType == runtimeType &&
             other is YgScrollShadowThemes &&
             const DeepCollectionEquality().equals(fadeCurve, other.fadeCurve) &&
-            const DeepCollectionEquality().equals(fadeDuration, other.fadeDuration) &&
-            const DeepCollectionEquality().equals(shadowColor, other.shadowColor) &&
-            const DeepCollectionEquality().equals(shadowSize, other.shadowSize));
+            const DeepCollectionEquality().equals(
+              fadeDuration,
+              other.fadeDuration,
+            ) &&
+            const DeepCollectionEquality().equals(
+              shadowColor,
+              other.shadowColor,
+            ) &&
+            const DeepCollectionEquality().equals(
+              shadowSize,
+              other.shadowSize,
+            ));
   }
 
   @override

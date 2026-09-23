@@ -1,3 +1,4 @@
+// dart format width=80
 // coverage:ignore-file
 // GENERATED CODE - DO NOT MODIFY BY HAND
 // ignore_for_file: type=lint, unused_element, unnecessary_cast
@@ -64,7 +65,10 @@ class ConfirmDialogTheme extends ThemeExtension<ConfirmDialogTheme> {
   }
 
   @override
-  ConfirmDialogTheme lerp(covariant ThemeExtension<ConfirmDialogTheme>? other, double t) {
+  ConfirmDialogTheme lerp(
+    covariant ThemeExtension<ConfirmDialogTheme>? other,
+    double t,
+  ) {
     if (other is! ConfirmDialogTheme) return this as ConfirmDialogTheme;
     return ConfirmDialogTheme(
       iconBackground: Color.lerp(iconBackground, other.iconBackground, t)!,
@@ -78,9 +82,15 @@ class ConfirmDialogTheme extends ThemeExtension<ConfirmDialogTheme> {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is ConfirmDialogTheme &&
-            const DeepCollectionEquality().equals(iconBackground, other.iconBackground) &&
+            const DeepCollectionEquality().equals(
+              iconBackground,
+              other.iconBackground,
+            ) &&
             const DeepCollectionEquality().equals(iconColor, other.iconColor) &&
-            const DeepCollectionEquality().equals(iconPadding, other.iconPadding));
+            const DeepCollectionEquality().equals(
+              iconPadding,
+              other.iconPadding,
+            ));
   }
 
   @override
