@@ -651,6 +651,70 @@ class YgIcons {
   static const YgColorableIconData fan = YgColorableIconData(name: 'fan', path: 'assets/icons/fan.svg');
   static const YgColorableIconData fanAlt = YgColorableIconData(name: 'fanAlt', path: 'assets/icons/fan_alt.svg');
   static const YgColorableIconData fanSmall = YgColorableIconData(name: 'fanSmall', path: 'assets/icons/fan_small.svg');
+  static const YgColorableIconData fanSpeedAi = YgColorableIconData(
+    name: 'fanSpeedAi',
+    path: 'assets/icons/fan_speed_ai.svg',
+  );
+  static const YgIconData fanSpeedAiColorful = YgIconData(
+    name: 'fanSpeedAiColorful',
+    path: 'assets/icons/fan_speed_ai_colorful.svg',
+  );
+  static const YgColorableIconData fanSpeedAuto = YgColorableIconData(
+    name: 'fanSpeedAuto',
+    path: 'assets/icons/fan_speed_auto.svg',
+  );
+  static const YgIconData fanSpeedAutoColorful = YgIconData(
+    name: 'fanSpeedAutoColorful',
+    path: 'assets/icons/fan_speed_auto_colorful.svg',
+  );
+  static const YgColorableIconData fanSpeedLevel0 = YgColorableIconData(
+    name: 'fanSpeedLevel0',
+    path: 'assets/icons/fan_speed_level_0.svg',
+  );
+  static const YgIconData fanSpeedLevel0Colorful = YgIconData(
+    name: 'fanSpeedLevel0Colorful',
+    path: 'assets/icons/fan_speed_level_0_colorful.svg',
+  );
+  static const YgColorableIconData fanSpeedLevel1 = YgColorableIconData(
+    name: 'fanSpeedLevel1',
+    path: 'assets/icons/fan_speed_level_1.svg',
+  );
+  static const YgIconData fanSpeedLevel1Colorful = YgIconData(
+    name: 'fanSpeedLevel1Colorful',
+    path: 'assets/icons/fan_speed_level_1_colorful.svg',
+  );
+  static const YgColorableIconData fanSpeedLevel2 = YgColorableIconData(
+    name: 'fanSpeedLevel2',
+    path: 'assets/icons/fan_speed_level_2.svg',
+  );
+  static const YgIconData fanSpeedLevel2Colorful = YgIconData(
+    name: 'fanSpeedLevel2Colorful',
+    path: 'assets/icons/fan_speed_level_2_colorful.svg',
+  );
+  static const YgColorableIconData fanSpeedLevel3 = YgColorableIconData(
+    name: 'fanSpeedLevel3',
+    path: 'assets/icons/fan_speed_level_3.svg',
+  );
+  static const YgIconData fanSpeedLevel3Colorful = YgIconData(
+    name: 'fanSpeedLevel3Colorful',
+    path: 'assets/icons/fan_speed_level_3_colorful.svg',
+  );
+  static const YgColorableIconData fanSpeedLevel4 = YgColorableIconData(
+    name: 'fanSpeedLevel4',
+    path: 'assets/icons/fan_speed_level_4.svg',
+  );
+  static const YgIconData fanSpeedLevel4Colorful = YgIconData(
+    name: 'fanSpeedLevel4Colorful',
+    path: 'assets/icons/fan_speed_level_4_colorful.svg',
+  );
+  static const YgColorableIconData fanSpeedLevel5 = YgColorableIconData(
+    name: 'fanSpeedLevel5',
+    path: 'assets/icons/fan_speed_level_5.svg',
+  );
+  static const YgIconData fanSpeedLevel5Colorful = YgIconData(
+    name: 'fanSpeedLevel5Colorful',
+    path: 'assets/icons/fan_speed_level_5_colorful.svg',
+  );
   static const YgColorableIconData fatAlertEmark = YgColorableIconData(
     name: 'fatAlertEmark',
     path: 'assets/icons/fat_alert_emark.svg',
@@ -1197,6 +1261,118 @@ class YgIcons {
     name: 'supportBubble',
     path: 'assets/icons/support_bubble.svg',
   );
+  static const YgColorableIconData swingHorizontalAuto = YgColorableIconData(
+    name: 'swingHorizontalAuto',
+    path: 'assets/icons/swing_horizontal_auto.svg',
+  );
+  static const YgIconData swingHorizontalAutoColorful = YgIconData(
+    name: 'swingHorizontalAutoColorful',
+    path: 'assets/icons/swing_horizontal_auto_colorful.svg',
+  );
+  static const YgColorableIconData swingHorizontalLeft = YgColorableIconData(
+    name: 'swingHorizontalLeft',
+    path: 'assets/icons/swing_horizontal_left.svg',
+  );
+  static const YgIconData swingHorizontalLeftColorful = YgIconData(
+    name: 'swingHorizontalLeftColorful',
+    path: 'assets/icons/swing_horizontal_left_colorful.svg',
+  );
+  static const YgColorableIconData swingHorizontalMiddle = YgColorableIconData(
+    name: 'swingHorizontalMiddle',
+    path: 'assets/icons/swing_horizontal_middle.svg',
+  );
+  static const YgIconData swingHorizontalMiddleColorful = YgIconData(
+    name: 'swingHorizontalMiddleColorful',
+    path: 'assets/icons/swing_horizontal_middle_colorful.svg',
+  );
+  static const YgColorableIconData swingHorizontalMiddleLeft = YgColorableIconData(
+    name: 'swingHorizontalMiddleLeft',
+    path: 'assets/icons/swing_horizontal_middle_left.svg',
+  );
+  static const YgIconData swingHorizontalMiddleLeftColorful = YgIconData(
+    name: 'swingHorizontalMiddleLeftColorful',
+    path: 'assets/icons/swing_horizontal_middle_left_colorful.svg',
+  );
+  static const YgColorableIconData swingHorizontalMiddleRight = YgColorableIconData(
+    name: 'swingHorizontalMiddleRight',
+    path: 'assets/icons/swing_horizontal_middle_right.svg',
+  );
+  static const YgIconData swingHorizontalMiddleRightColorful = YgIconData(
+    name: 'swingHorizontalMiddleRightColorful',
+    path: 'assets/icons/swing_horizontal_middle_right_colorful.svg',
+  );
+  static const YgColorableIconData swingHorizontalMoving = YgColorableIconData(
+    name: 'swingHorizontalMoving',
+    path: 'assets/icons/swing_horizontal_moving.svg',
+  );
+  static const YgIconData swingHorizontalMovingColorful = YgIconData(
+    name: 'swingHorizontalMovingColorful',
+    path: 'assets/icons/swing_horizontal_moving_colorful.svg',
+  );
+  static const YgColorableIconData swingHorizontalRight = YgColorableIconData(
+    name: 'swingHorizontalRight',
+    path: 'assets/icons/swing_horizontal_right.svg',
+  );
+  static const YgIconData swingHorizontalRightColorful = YgIconData(
+    name: 'swingHorizontalRightColorful',
+    path: 'assets/icons/swing_horizontal_right_colorful.svg',
+  );
+  static const YgColorableIconData swingVerticalAuto = YgColorableIconData(
+    name: 'swingVerticalAuto',
+    path: 'assets/icons/swing_vertical_auto.svg',
+  );
+  static const YgIconData swingVerticalAutoColorful = YgIconData(
+    name: 'swingVerticalAutoColorful',
+    path: 'assets/icons/swing_vertical_auto_colorful.svg',
+  );
+  static const YgColorableIconData swingVerticalBottom = YgColorableIconData(
+    name: 'swingVerticalBottom',
+    path: 'assets/icons/swing_vertical_bottom.svg',
+  );
+  static const YgIconData swingVerticalBottomColorful = YgIconData(
+    name: 'swingVerticalBottomColorful',
+    path: 'assets/icons/swing_vertical_bottom_colorful.svg',
+  );
+  static const YgColorableIconData swingVerticalMiddle = YgColorableIconData(
+    name: 'swingVerticalMiddle',
+    path: 'assets/icons/swing_vertical_middle.svg',
+  );
+  static const YgColorableIconData swingVerticalMiddleBottom = YgColorableIconData(
+    name: 'swingVerticalMiddleBottom',
+    path: 'assets/icons/swing_vertical_middle_bottom.svg',
+  );
+  static const YgIconData swingVerticalMiddleBottomColorful = YgIconData(
+    name: 'swingVerticalMiddleBottomColorful',
+    path: 'assets/icons/swing_vertical_middle_bottom_colorful.svg',
+  );
+  static const YgIconData swingVerticalMiddleColorful = YgIconData(
+    name: 'swingVerticalMiddleColorful',
+    path: 'assets/icons/swing_vertical_middle_colorful.svg',
+  );
+  static const YgColorableIconData swingVerticalMiddleTop = YgColorableIconData(
+    name: 'swingVerticalMiddleTop',
+    path: 'assets/icons/swing_vertical_middle_top.svg',
+  );
+  static const YgIconData swingVerticalMiddleTopColorful = YgIconData(
+    name: 'swingVerticalMiddleTopColorful',
+    path: 'assets/icons/swing_vertical_middle_top_colorful.svg',
+  );
+  static const YgColorableIconData swingVerticalMoving = YgColorableIconData(
+    name: 'swingVerticalMoving',
+    path: 'assets/icons/swing_vertical_moving.svg',
+  );
+  static const YgIconData swingVerticalMovingColorful = YgIconData(
+    name: 'swingVerticalMovingColorful',
+    path: 'assets/icons/swing_vertical_moving_colorful.svg',
+  );
+  static const YgColorableIconData swingVerticalTop = YgColorableIconData(
+    name: 'swingVerticalTop',
+    path: 'assets/icons/swing_vertical_top.svg',
+  );
+  static const YgIconData swingVerticalTopColorful = YgIconData(
+    name: 'swingVerticalTopColorful',
+    path: 'assets/icons/swing_vertical_top_colorful.svg',
+  );
   static const YgColorableIconData switchButton = YgColorableIconData(
     name: 'switchButton',
     path: 'assets/icons/switch_button.svg',
@@ -1655,6 +1831,22 @@ class YgIcons {
     fan,
     fanAlt,
     fanSmall,
+    fanSpeedAi,
+    fanSpeedAiColorful,
+    fanSpeedAuto,
+    fanSpeedAutoColorful,
+    fanSpeedLevel0,
+    fanSpeedLevel0Colorful,
+    fanSpeedLevel1,
+    fanSpeedLevel1Colorful,
+    fanSpeedLevel2,
+    fanSpeedLevel2Colorful,
+    fanSpeedLevel3,
+    fanSpeedLevel3Colorful,
+    fanSpeedLevel4,
+    fanSpeedLevel4Colorful,
+    fanSpeedLevel5,
+    fanSpeedLevel5Colorful,
     fatAlertEmark,
     feather,
     filter,
@@ -1883,6 +2075,34 @@ class YgIcons {
     sum,
     support,
     supportBubble,
+    swingHorizontalAuto,
+    swingHorizontalAutoColorful,
+    swingHorizontalLeft,
+    swingHorizontalLeftColorful,
+    swingHorizontalMiddle,
+    swingHorizontalMiddleColorful,
+    swingHorizontalMiddleLeft,
+    swingHorizontalMiddleLeftColorful,
+    swingHorizontalMiddleRight,
+    swingHorizontalMiddleRightColorful,
+    swingHorizontalMoving,
+    swingHorizontalMovingColorful,
+    swingHorizontalRight,
+    swingHorizontalRightColorful,
+    swingVerticalAuto,
+    swingVerticalAutoColorful,
+    swingVerticalBottom,
+    swingVerticalBottomColorful,
+    swingVerticalMiddle,
+    swingVerticalMiddleBottom,
+    swingVerticalMiddleBottomColorful,
+    swingVerticalMiddleColorful,
+    swingVerticalMiddleTop,
+    swingVerticalMiddleTopColorful,
+    swingVerticalMoving,
+    swingVerticalMovingColorful,
+    swingVerticalTop,
+    swingVerticalTopColorful,
     switchButton,
     tamperBad,
     tamperNotOk,
