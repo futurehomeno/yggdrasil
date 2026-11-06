@@ -47,6 +47,14 @@ void main() {
               ),
             ),
           ),
+          GoldenTestScenario(
+            name: 'Weak variant with short title and long content',
+            child: const YgBottomSheet(
+              variant: YgBottomSheetVariant.weak,
+              title: YgGoldenTestValues.shortText,
+              content: Text(YgGoldenTestValues.longText),
+            ),
+          ),
         ],
       );
 

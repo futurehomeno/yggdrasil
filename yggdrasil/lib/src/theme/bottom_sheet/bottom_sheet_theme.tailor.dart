@@ -27,6 +27,7 @@ class YgBottomSheetTheme extends ThemeExtension<YgBottomSheetTheme> {
     required this.titleCloseButtonSpacing,
     required this.titleStyle,
     required this.verticalOuterPadding,
+    required this.weakBackgroundColor,
   });
 
   final Color backgroundColor;
@@ -45,6 +46,7 @@ class YgBottomSheetTheme extends ThemeExtension<YgBottomSheetTheme> {
   final double titleCloseButtonSpacing;
   final TextStyle titleStyle;
   final EdgeInsets verticalOuterPadding;
+  final Color weakBackgroundColor;
 
   static final YgBottomSheetTheme consumerLight = YgBottomSheetTheme(
     backgroundColor: _$YgBottomSheetTheme.backgroundColor[0],
@@ -64,6 +66,7 @@ class YgBottomSheetTheme extends ThemeExtension<YgBottomSheetTheme> {
     titleCloseButtonSpacing: _$YgBottomSheetTheme.titleCloseButtonSpacing[0],
     titleStyle: _$YgBottomSheetTheme.titleStyle[0],
     verticalOuterPadding: _$YgBottomSheetTheme.verticalOuterPadding[0],
+    weakBackgroundColor: _$YgBottomSheetTheme.weakBackgroundColor[0],
   );
 
   static final YgBottomSheetTheme consumerDark = YgBottomSheetTheme(
@@ -84,6 +87,7 @@ class YgBottomSheetTheme extends ThemeExtension<YgBottomSheetTheme> {
     titleCloseButtonSpacing: _$YgBottomSheetTheme.titleCloseButtonSpacing[1],
     titleStyle: _$YgBottomSheetTheme.titleStyle[1],
     verticalOuterPadding: _$YgBottomSheetTheme.verticalOuterPadding[1],
+    weakBackgroundColor: _$YgBottomSheetTheme.weakBackgroundColor[1],
   );
 
   static final YgBottomSheetTheme professionalLight = YgBottomSheetTheme(
@@ -104,6 +108,7 @@ class YgBottomSheetTheme extends ThemeExtension<YgBottomSheetTheme> {
     titleCloseButtonSpacing: _$YgBottomSheetTheme.titleCloseButtonSpacing[2],
     titleStyle: _$YgBottomSheetTheme.titleStyle[2],
     verticalOuterPadding: _$YgBottomSheetTheme.verticalOuterPadding[2],
+    weakBackgroundColor: _$YgBottomSheetTheme.weakBackgroundColor[2],
   );
 
   static final YgBottomSheetTheme professionalDark = YgBottomSheetTheme(
@@ -124,6 +129,7 @@ class YgBottomSheetTheme extends ThemeExtension<YgBottomSheetTheme> {
     titleCloseButtonSpacing: _$YgBottomSheetTheme.titleCloseButtonSpacing[3],
     titleStyle: _$YgBottomSheetTheme.titleStyle[3],
     verticalOuterPadding: _$YgBottomSheetTheme.verticalOuterPadding[3],
+    weakBackgroundColor: _$YgBottomSheetTheme.weakBackgroundColor[3],
   );
 
   static final themes = [
@@ -151,6 +157,7 @@ class YgBottomSheetTheme extends ThemeExtension<YgBottomSheetTheme> {
     double? titleCloseButtonSpacing,
     TextStyle? titleStyle,
     EdgeInsets? verticalOuterPadding,
+    Color? weakBackgroundColor,
   }) {
     return YgBottomSheetTheme(
       backgroundColor: backgroundColor ?? this.backgroundColor,
@@ -173,6 +180,7 @@ class YgBottomSheetTheme extends ThemeExtension<YgBottomSheetTheme> {
           titleCloseButtonSpacing ?? this.titleCloseButtonSpacing,
       titleStyle: titleStyle ?? this.titleStyle,
       verticalOuterPadding: verticalOuterPadding ?? this.verticalOuterPadding,
+      weakBackgroundColor: weakBackgroundColor ?? this.weakBackgroundColor,
     );
   }
 
@@ -211,6 +219,11 @@ class YgBottomSheetTheme extends ThemeExtension<YgBottomSheetTheme> {
       verticalOuterPadding: t < 0.5
           ? verticalOuterPadding
           : other.verticalOuterPadding,
+      weakBackgroundColor: Color.lerp(
+        weakBackgroundColor,
+        other.weakBackgroundColor,
+        t,
+      )!,
     );
   }
 
@@ -282,6 +295,10 @@ class YgBottomSheetTheme extends ThemeExtension<YgBottomSheetTheme> {
             const DeepCollectionEquality().equals(
               verticalOuterPadding,
               other.verticalOuterPadding,
+            ) &&
+            const DeepCollectionEquality().equals(
+              weakBackgroundColor,
+              other.weakBackgroundColor,
             ));
   }
 
@@ -305,6 +322,7 @@ class YgBottomSheetTheme extends ThemeExtension<YgBottomSheetTheme> {
       const DeepCollectionEquality().hash(titleCloseButtonSpacing),
       const DeepCollectionEquality().hash(titleStyle),
       const DeepCollectionEquality().hash(verticalOuterPadding),
+      const DeepCollectionEquality().hash(weakBackgroundColor),
     );
   }
 }

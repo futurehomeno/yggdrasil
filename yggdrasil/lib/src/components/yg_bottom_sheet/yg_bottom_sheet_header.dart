@@ -8,10 +8,12 @@ import 'yg_bottom_sheet_drag_handle.dart';
 class YgBottomSheetHeader extends StatelessWidget {
   const YgBottomSheetHeader({
     required this.title,
+    this.variant = YgBottomSheetVariant.standard,
     super.key,
   });
 
   final String title;
+  final YgBottomSheetVariant variant;
 
   @override
   Widget build(BuildContext context) {
@@ -35,7 +37,12 @@ class YgBottomSheetHeader extends StatelessWidget {
                 ),
               ),
               YgIconButton(
-                variant: YgIconButtonVariant.tonal,
+                // The tonal background is the weak background, so it would
+                // disappear on a weak bottom sheet.
+                variant: switch (variant) {
+                  YgBottomSheetVariant.standard => YgIconButtonVariant.tonal,
+                  YgBottomSheetVariant.weak => YgIconButtonVariant.standard,
+                },
                 icon: YgIcons.cross,
                 size: YgIconButtonSize.small,
                 onPressed: () => const YgBottomSheetClosePressedNotification().dispatch(
