@@ -75,10 +75,11 @@ class YgAppBar extends StatelessWidget with StatelessWidgetDebugMixin implements
   /// If false and [leading] is null, title will be centered.
   final bool automaticallyImplyLeading;
 
-  /// A list of Widgets to display in a row after the [title] widget.
+  /// A list of widgets to display in a row after the [title] widget.
   ///
-  /// These widgets are [YgIconButton]s representing common operations.
-  final List<YgIconButton>? actions;
+  /// Typically [YgIconButton]s representing common operations, optionally
+  /// wrapped (e.g. in a [Padding]) to line up with a custom [leading] widget.
+  final List<Widget>? actions;
 
   /// Whether the title should be centered.
   final bool centerTitle;
@@ -167,7 +168,7 @@ class YgAppBar extends StatelessWidget with StatelessWidgetDebugMixin implements
   }
 
   Widget? _getActions() {
-    final List<YgIconButton>? actions = this.actions;
+    final List<Widget>? actions = this.actions;
 
     if (actions != null && actions.isNotEmpty) {
       return Row(
