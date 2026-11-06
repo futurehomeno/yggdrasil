@@ -11,11 +11,18 @@ class YgBottomSheet extends StatelessWidget with StatelessWidgetDebugMixin {
     required this.title,
     required this.content,
     this.footerButtons,
+    this.variant = YgBottomSheetVariant.standard,
   });
 
   final String title;
   final Widget content;
   final Widget? footerButtons;
+
+  /// Background variant of the bottom sheet.
+  ///
+  /// Use [YgBottomSheetVariant.weak] when the content consists of cards on a
+  /// weak background, e.g. a YgSettingSection.
+  final YgBottomSheetVariant variant;
 
   @override
   Widget build(BuildContext context) {
@@ -26,7 +33,10 @@ class YgBottomSheet extends StatelessWidget with StatelessWidgetDebugMixin {
     return RepaintBoundary(
       child: Material(
         borderRadius: bottomSheetTheme.borderRadius,
-        color: bottomSheetTheme.backgroundColor,
+        color: switch (variant) {
+          YgBottomSheetVariant.standard => bottomSheetTheme.backgroundColor,
+          YgBottomSheetVariant.weak => bottomSheetTheme.weakBackgroundColor,
+        },
         clipBehavior: Clip.antiAlias,
         child: SafeArea(
           top: false,
@@ -38,6 +48,7 @@ class YgBottomSheet extends StatelessWidget with StatelessWidgetDebugMixin {
               children: <Widget>[
                 YgBottomSheetHeader(
                   title: title,
+                  variant: variant,
                 ),
                 Flexible(
                   child: YgScrollShadow(

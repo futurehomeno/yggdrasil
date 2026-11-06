@@ -640,6 +640,7 @@ class YgIcons {
     path: 'assets/icons/enocean_colorful.svg',
   );
   static const YgColorableIconData error = YgColorableIconData(name: 'error', path: 'assets/icons/error.svg');
+  static const YgColorableIconData explore = YgColorableIconData(name: 'explore', path: 'assets/icons/explore.svg');
   static const YgColorableIconData export = YgColorableIconData(name: 'export', path: 'assets/icons/export.svg');
   static const YgColorableIconData eyeClosed = YgColorableIconData(
     name: 'eyeClosed',
@@ -1823,6 +1824,7 @@ class YgIcons {
     enocean,
     enoceanColorful,
     error,
+    explore,
     export,
     eyeClosed,
     eyeOpen,

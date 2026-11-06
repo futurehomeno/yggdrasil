@@ -37,6 +37,14 @@ class _$YgBottomSheetTheme {
     professional_dark.FhColors.backgroundDefault,
   ];
 
+  // Background of the YgBottomSheetVariant.weak variant.
+  static const List<Color> weakBackgroundColor = <Color>[
+    consumer_light.FhColors.backgroundWeak,
+    consumer_dark.FhColors.backgroundWeak,
+    professional_light.FhColors.backgroundWeak,
+    professional_dark.FhColors.backgroundWeak,
+  ];
+
   static const List<Color> scrimColor = <Color>[
     consumer_light.FhColors.backgroundOverlay,
     consumer_dark.FhColors.backgroundOverlay,

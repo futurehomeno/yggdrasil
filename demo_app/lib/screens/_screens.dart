@@ -40,6 +40,7 @@ export 'search/search_field/_search_field.dart';
 export 'section/_section.dart';
 export 'section_header/_section_header.dart';
 export 'segmented_button/_segmented_button.dart';
+export 'setting_section/_setting_section.dart';
 export 'slider/_slider.dart';
 export 'snack_bar/_snack_bar.dart';
 export 'state_timeline/_state_timeline.dart';
