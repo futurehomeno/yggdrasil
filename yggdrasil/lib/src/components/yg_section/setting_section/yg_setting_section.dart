@@ -5,7 +5,7 @@ import 'package:yggdrasil/yggdrasil.dart';
 ///
 /// Renders every [YgSettingGroup] as a card on a weak background, with the
 /// group name as a header above the card. Groups without positions are not
-/// rendered.
+/// rendered, and when no group has positions the section takes up no space.
 class YgSettingSection extends StatelessWidget with StatelessWidgetDebugMixin {
   const YgSettingSection({
     super.key,
@@ -21,6 +21,10 @@ class YgSettingSection extends StatelessWidget with StatelessWidgetDebugMixin {
     final List<YgSettingGroup> visibleGroups = groups
         .where((YgSettingGroup group) => group.positions.isNotEmpty)
         .toList();
+
+    if (visibleGroups.isEmpty) {
+      return const SizedBox.shrink();
+    }
 
     return ColoredBox(
       color: context.tokens.colors.backgroundWeak,
