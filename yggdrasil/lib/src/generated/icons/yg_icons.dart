@@ -1494,6 +1494,36 @@ class YgIcons {
   static const YgColorableIconData unlock = YgColorableIconData(name: 'unlock', path: 'assets/icons/unlock.svg');
   static const YgColorableIconData unlocked = YgColorableIconData(name: 'unlocked', path: 'assets/icons/unlocked.svg');
   static const YgColorableIconData upstairs = YgColorableIconData(name: 'upstairs', path: 'assets/icons/upstairs.svg');
+  static const YgColorableIconData user = YgColorableIconData(name: 'user', path: 'assets/icons/user.svg');
+  static const YgColorableIconData userCheck = YgColorableIconData(
+    name: 'userCheck',
+    path: 'assets/icons/user_check.svg',
+  );
+  static const YgColorableIconData userCircle = YgColorableIconData(
+    name: 'userCircle',
+    path: 'assets/icons/user_circle.svg',
+  );
+  static const YgColorableIconData userEdit = YgColorableIconData(name: 'userEdit', path: 'assets/icons/user_edit.svg');
+  static const YgColorableIconData userLock = YgColorableIconData(name: 'userLock', path: 'assets/icons/user_lock.svg');
+  static const YgColorableIconData userMinus = YgColorableIconData(
+    name: 'userMinus',
+    path: 'assets/icons/user_minus.svg',
+  );
+  static const YgColorableIconData userPlus = YgColorableIconData(name: 'userPlus', path: 'assets/icons/user_plus.svg');
+  static const YgColorableIconData userSearch = YgColorableIconData(
+    name: 'userSearch',
+    path: 'assets/icons/user_search.svg',
+  );
+  static const YgColorableIconData userSettings = YgColorableIconData(
+    name: 'userSettings',
+    path: 'assets/icons/user_settings.svg',
+  );
+  static const YgColorableIconData userShield = YgColorableIconData(
+    name: 'userShield',
+    path: 'assets/icons/user_shield.svg',
+  );
+  static const YgColorableIconData userX = YgColorableIconData(name: 'userX', path: 'assets/icons/user_x.svg');
+  static const YgColorableIconData users = YgColorableIconData(name: 'users', path: 'assets/icons/users.svg');
   static const YgColorableIconData valves = YgColorableIconData(name: 'valves', path: 'assets/icons/valves.svg');
   static const YgColorableIconData wallet = YgColorableIconData(name: 'wallet', path: 'assets/icons/wallet.svg');
   static const YgColorableIconData warning = YgColorableIconData(name: 'warning', path: 'assets/icons/warning.svg');
@@ -2147,6 +2177,18 @@ class YgIcons {
     unlock,
     unlocked,
     upstairs,
+    user,
+    userCheck,
+    userCircle,
+    userEdit,
+    userLock,
+    userMinus,
+    userPlus,
+    userSearch,
+    userSettings,
+    userShield,
+    userX,
+    users,
     valves,
     wallet,
     warning,
