@@ -161,6 +161,10 @@ class YgIcons {
     name: 'calendarAdd',
     path: 'assets/icons/calendar_add.svg',
   );
+  static const YgIconData calendarAddColorful = YgIconData(
+    name: 'calendarAddColorful',
+    path: 'assets/icons/calendar_add_colorful.svg',
+  );
   static const YgColorableIconData calendarEdit = YgColorableIconData(
     name: 'calendarEdit',
     path: 'assets/icons/calendar_edit.svg',
@@ -804,7 +808,65 @@ class YgIcons {
   static const YgColorableIconData handle = YgColorableIconData(name: 'handle', path: 'assets/icons/handle.svg');
   static const YgColorableIconData health = YgColorableIconData(name: 'health', path: 'assets/icons/health.svg');
   static const YgColorableIconData heart = YgColorableIconData(name: 'heart', path: 'assets/icons/heart.svg');
+  static const YgColorableIconData heatPump = YgColorableIconData(name: 'heatPump', path: 'assets/icons/heat_pump.svg');
   static const YgColorableIconData heater = YgColorableIconData(name: 'heater', path: 'assets/icons/heater.svg');
+  static const YgColorableIconData heating = YgColorableIconData(name: 'heating', path: 'assets/icons/heating.svg');
+  static const YgIconData heatingColorful = YgIconData(
+    name: 'heatingColorful',
+    path: 'assets/icons/heating_colorful.svg',
+  );
+  static const YgColorableIconData heatingFloor = YgColorableIconData(
+    name: 'heatingFloor',
+    path: 'assets/icons/heating_floor.svg',
+  );
+  static const YgColorableIconData heatingFloorConcrete = YgColorableIconData(
+    name: 'heatingFloorConcrete',
+    path: 'assets/icons/heating_floor_concrete.svg',
+  );
+  static const YgColorableIconData heatingHistory = YgColorableIconData(
+    name: 'heatingHistory',
+    path: 'assets/icons/heating_history.svg',
+  );
+  static const YgIconData heatingHistoryColorful = YgIconData(
+    name: 'heatingHistoryColorful',
+    path: 'assets/icons/heating_history_colorful.svg',
+  );
+  static const YgColorableIconData heatingOff = YgColorableIconData(
+    name: 'heatingOff',
+    path: 'assets/icons/heating_off.svg',
+  );
+  static const YgIconData heatingOffColorful = YgIconData(
+    name: 'heatingOffColorful',
+    path: 'assets/icons/heating_off_colorful.svg',
+  );
+  static const YgColorableIconData heatingPanel = YgColorableIconData(
+    name: 'heatingPanel',
+    path: 'assets/icons/heating_panel.svg',
+  );
+  static const YgColorableIconData heatingPaused = YgColorableIconData(
+    name: 'heatingPaused',
+    path: 'assets/icons/heating_paused.svg',
+  );
+  static const YgColorableIconData heatingReached = YgColorableIconData(
+    name: 'heatingReached',
+    path: 'assets/icons/heating_reached.svg',
+  );
+  static const YgIconData heatingReachedColorful = YgIconData(
+    name: 'heatingReachedColorful',
+    path: 'assets/icons/heating_reached_colorful.svg',
+  );
+  static const YgColorableIconData heatingShare = YgColorableIconData(
+    name: 'heatingShare',
+    path: 'assets/icons/heating_share.svg',
+  );
+  static const YgIconData heatingShareColorful = YgIconData(
+    name: 'heatingShareColorful',
+    path: 'assets/icons/heating_share_colorful.svg',
+  );
+  static const YgColorableIconData heatingUnknown = YgColorableIconData(
+    name: 'heatingUnknown',
+    path: 'assets/icons/heating_unknown.svg',
+  );
   static const YgColorableIconData history = YgColorableIconData(name: 'history', path: 'assets/icons/history.svg');
   static const YgColorableIconData homeAway = YgColorableIconData(name: 'homeAway', path: 'assets/icons/home_away.svg');
   static const YgColorableIconData homeMorning = YgColorableIconData(
@@ -871,6 +933,35 @@ class YgIcons {
     name: 'leakWaterOn',
     path: 'assets/icons/leak_water_on.svg',
   );
+  static const YgColorableIconData lessHeating = YgColorableIconData(
+    name: 'lessHeating',
+    path: 'assets/icons/less_heating.svg',
+  );
+  static const YgIconData lessHeatingColorful = YgIconData(
+    name: 'lessHeatingColorful',
+    path: 'assets/icons/less_heating_colorful.svg',
+  );
+  static const YgColorableIconData levelLower = YgColorableIconData(
+    name: 'levelLower',
+    path: 'assets/icons/level_lower.svg',
+  );
+  static const YgIconData levelLowerColorful = YgIconData(
+    name: 'levelLowerColorful',
+    path: 'assets/icons/level_lower_colorful.svg',
+  );
+  static const YgColorableIconData levelOff = YgColorableIconData(name: 'levelOff', path: 'assets/icons/level_off.svg');
+  static const YgIconData levelOffColorful = YgIconData(
+    name: 'levelOffColorful',
+    path: 'assets/icons/level_off_colorful.svg',
+  );
+  static const YgColorableIconData levelWarm = YgColorableIconData(
+    name: 'levelWarm',
+    path: 'assets/icons/level_warm.svg',
+  );
+  static const YgIconData levelWarmColorful = YgIconData(
+    name: 'levelWarmColorful',
+    path: 'assets/icons/level_warm_colorful.svg',
+  );
   static const YgColorableIconData lighting = YgColorableIconData(name: 'lighting', path: 'assets/icons/lighting.svg');
   static const YgColorableIconData link = YgColorableIconData(name: 'link', path: 'assets/icons/link.svg');
   static const YgColorableIconData lockBad = YgColorableIconData(name: 'lockBad', path: 'assets/icons/lock_bad.svg');
@@ -927,6 +1018,14 @@ class YgIcons {
   static const YgColorableIconData moisture = YgColorableIconData(name: 'moisture', path: 'assets/icons/moisture.svg');
   static const YgColorableIconData moneyBag = YgColorableIconData(name: 'moneyBag', path: 'assets/icons/money_bag.svg');
   static const YgColorableIconData more = YgColorableIconData(name: 'more', path: 'assets/icons/more.svg');
+  static const YgColorableIconData moreHeating = YgColorableIconData(
+    name: 'moreHeating',
+    path: 'assets/icons/more_heating.svg',
+  );
+  static const YgIconData moreHeatingColorful = YgIconData(
+    name: 'moreHeatingColorful',
+    path: 'assets/icons/more_heating_colorful.svg',
+  );
   static const YgColorableIconData movementNothing = YgColorableIconData(
     name: 'movementNothing',
     path: 'assets/icons/movement_nothing.svg',
@@ -1027,6 +1126,38 @@ class YgIcons {
     path: 'assets/icons/power_filled.svg',
   );
   static const YgColorableIconData powerOff = YgColorableIconData(name: 'powerOff', path: 'assets/icons/power_off.svg');
+  static const YgColorableIconData presetAllDay = YgColorableIconData(
+    name: 'presetAllDay',
+    path: 'assets/icons/preset_all_day.svg',
+  );
+  static const YgIconData presetAllDayColorful = YgIconData(
+    name: 'presetAllDayColorful',
+    path: 'assets/icons/preset_all_day_colorful.svg',
+  );
+  static const YgColorableIconData presetCustom = YgColorableIconData(
+    name: 'presetCustom',
+    path: 'assets/icons/preset_custom.svg',
+  );
+  static const YgIconData presetCustomColorful = YgIconData(
+    name: 'presetCustomColorful',
+    path: 'assets/icons/preset_custom_colorful.svg',
+  );
+  static const YgColorableIconData presetEvenings = YgColorableIconData(
+    name: 'presetEvenings',
+    path: 'assets/icons/preset_evenings.svg',
+  );
+  static const YgIconData presetEveningsColorful = YgIconData(
+    name: 'presetEveningsColorful',
+    path: 'assets/icons/preset_evenings_colorful.svg',
+  );
+  static const YgColorableIconData presetMorningsEvenings = YgColorableIconData(
+    name: 'presetMorningsEvenings',
+    path: 'assets/icons/preset_mornings_evenings.svg',
+  );
+  static const YgIconData presetMorningsEveningsColorful = YgIconData(
+    name: 'presetMorningsEveningsColorful',
+    path: 'assets/icons/preset_mornings_evenings_colorful.svg',
+  );
   static const YgColorableIconData pressure = YgColorableIconData(name: 'pressure', path: 'assets/icons/pressure.svg');
   static const YgColorableIconData pressureAlt = YgColorableIconData(
     name: 'pressureAlt',
@@ -1074,6 +1205,35 @@ class YgIcons {
     path: 'assets/icons/scenario_red.svg',
   );
   static const YgColorableIconData scenes = YgColorableIconData(name: 'scenes', path: 'assets/icons/scenes.svg');
+  static const YgColorableIconData schedule = YgColorableIconData(name: 'schedule', path: 'assets/icons/schedule.svg');
+  static const YgColorableIconData scheduleBack = YgColorableIconData(
+    name: 'scheduleBack',
+    path: 'assets/icons/schedule_back.svg',
+  );
+  static const YgIconData scheduleColorful = YgIconData(
+    name: 'scheduleColorful',
+    path: 'assets/icons/schedule_colorful.svg',
+  );
+  static const YgColorableIconData scheduleCopy = YgColorableIconData(
+    name: 'scheduleCopy',
+    path: 'assets/icons/schedule_copy.svg',
+  );
+  static const YgColorableIconData scheduleOff = YgColorableIconData(
+    name: 'scheduleOff',
+    path: 'assets/icons/schedule_off.svg',
+  );
+  static const YgColorableIconData scheduleOn = YgColorableIconData(
+    name: 'scheduleOn',
+    path: 'assets/icons/schedule_on.svg',
+  );
+  static const YgIconData scheduleOnColorful = YgIconData(
+    name: 'scheduleOnColorful',
+    path: 'assets/icons/schedule_on_colorful.svg',
+  );
+  static const YgColorableIconData scheduleWaiting = YgColorableIconData(
+    name: 'scheduleWaiting',
+    path: 'assets/icons/schedule_waiting.svg',
+  );
   static const YgColorableIconData sdcoUnknown = YgColorableIconData(
     name: 'sdcoUnknown',
     path: 'assets/icons/sdco_unknown.svg',
@@ -1451,6 +1611,10 @@ class YgIcons {
     name: 'temperatureOkColorful',
     path: 'assets/icons/temperature_ok_colorful.svg',
   );
+  static const YgColorableIconData temporaryChange = YgColorableIconData(
+    name: 'temporaryChange',
+    path: 'assets/icons/temporary_change.svg',
+  );
   static const YgColorableIconData temporaryPin = YgColorableIconData(
     name: 'temporaryPin',
     path: 'assets/icons/temporary_pin.svg',
@@ -1526,6 +1690,19 @@ class YgIcons {
   static const YgColorableIconData users = YgColorableIconData(name: 'users', path: 'assets/icons/users.svg');
   static const YgColorableIconData valves = YgColorableIconData(name: 'valves', path: 'assets/icons/valves.svg');
   static const YgColorableIconData wallet = YgColorableIconData(name: 'wallet', path: 'assets/icons/wallet.svg');
+  static const YgColorableIconData warmTime = YgColorableIconData(name: 'warmTime', path: 'assets/icons/warm_time.svg');
+  static const YgIconData warmTimeColorful = YgIconData(
+    name: 'warmTimeColorful',
+    path: 'assets/icons/warm_time_colorful.svg',
+  );
+  static const YgColorableIconData warmUpTime = YgColorableIconData(
+    name: 'warmUpTime',
+    path: 'assets/icons/warm_up_time.svg',
+  );
+  static const YgIconData warmUpTimeColorful = YgIconData(
+    name: 'warmUpTimeColorful',
+    path: 'assets/icons/warm_up_time_colorful.svg',
+  );
   static const YgColorableIconData warning = YgColorableIconData(name: 'warning', path: 'assets/icons/warning.svg');
   static const YgColorableIconData water = YgColorableIconData(name: 'water', path: 'assets/icons/water.svg');
   static const YgColorableIconData waterFlow = YgColorableIconData(
@@ -1711,6 +1888,7 @@ class YgIcons {
     cabin,
     calendar,
     calendarAdd,
+    calendarAddColorful,
     calendarEdit,
     calendarPin,
     call,
@@ -1916,7 +2094,23 @@ class YgIcons {
     handle,
     health,
     heart,
+    heatPump,
     heater,
+    heating,
+    heatingColorful,
+    heatingFloor,
+    heatingFloorConcrete,
+    heatingHistory,
+    heatingHistoryColorful,
+    heatingOff,
+    heatingOffColorful,
+    heatingPanel,
+    heatingPaused,
+    heatingReached,
+    heatingReachedColorful,
+    heatingShare,
+    heatingShareColorful,
+    heatingUnknown,
     history,
     homeAway,
     homeMorning,
@@ -1947,6 +2141,14 @@ class YgIcons {
     leafWater,
     leakWaterOff,
     leakWaterOn,
+    lessHeating,
+    lessHeatingColorful,
+    levelLower,
+    levelLowerColorful,
+    levelOff,
+    levelOffColorful,
+    levelWarm,
+    levelWarmColorful,
     lighting,
     link,
     lockBad,
@@ -1976,6 +2178,8 @@ class YgIcons {
     moisture,
     moneyBag,
     more,
+    moreHeating,
+    moreHeatingColorful,
     movementNothing,
     movementPaws,
     movementPawsFilled,
@@ -2019,6 +2223,14 @@ class YgIcons {
     powerDisabled,
     powerFilled,
     powerOff,
+    presetAllDay,
+    presetAllDayColorful,
+    presetCustom,
+    presetCustomColorful,
+    presetEvenings,
+    presetEveningsColorful,
+    presetMorningsEvenings,
+    presetMorningsEveningsColorful,
     pressure,
     pressureAlt,
     qrCode,
@@ -2042,6 +2254,14 @@ class YgIcons {
     scenarioDotRedColorful,
     scenarioRed,
     scenes,
+    schedule,
+    scheduleBack,
+    scheduleColorful,
+    scheduleCopy,
+    scheduleOff,
+    scheduleOn,
+    scheduleOnColorful,
+    scheduleWaiting,
     sdcoUnknown,
     sdcoUnknownColorful,
     sea,
@@ -2155,6 +2375,7 @@ class YgIcons {
     temperatureLowCriticalColorful,
     temperatureOk,
     temperatureOkColorful,
+    temporaryChange,
     temporaryPin,
     threshold,
     thresholdNew,
@@ -2191,6 +2412,10 @@ class YgIcons {
     users,
     valves,
     wallet,
+    warmTime,
+    warmTimeColorful,
+    warmUpTime,
+    warmUpTimeColorful,
     warning,
     water,
     waterFlow,
